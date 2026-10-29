@@ -52,24 +52,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Он пишет за столом»",
+        "prompt": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Каждый день он пишет за столом»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Он пишет за столом»",
+        "accessibilityLabel": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Каждый день он пишет за столом»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He writes at the table.",
+          "targetPhrase": "He writes at the table every day.",
           "localizedMeaning": {
-            "ru": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Он пишет за столом»",
-            "uk": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»"
+            "ru": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Каждый день он пишет за столом»",
+            "uk": "Подруга питає, що робить ваш брат за столом. Скажіть: «Щодня він пише за столом»"
           },
           "orderedTokens": [
             "He",
             "writes",
             "at",
             "the",
-            "table"
+            "table",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "write"
@@ -78,10 +80,10 @@
             {
               "responseId": "en:lesson-06:session-21:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Он пишет за столом»",
+              "testedDimension": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Каждый день он пишет за столом»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `writes` — `He writes at the table.`",
-                "uk": "тут потрібно `writes` — `He writes at the table.`"
+                "ru": "здесь нужно `writes` — `He writes at the table every day.`",
+                "uk": "тут потрібно `writes` — `He writes at the table every day.`"
               }
             }
           ],
@@ -493,24 +495,26 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Она плавает в бассейне»",
+        "prompt": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Каждый день она плавает в бассейне»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Она плавает в бассейне»",
+        "accessibilityLabel": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Каждый день она плавает в бассейне»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She swims in the pool.",
+          "targetPhrase": "She swims in the pool every day.",
           "localizedMeaning": {
-            "ru": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Она плавает в бассейне»",
-            "uk": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»"
+            "ru": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Каждый день она плавает в бассейне»",
+            "uk": "Рятувальник питає, що робить ваша сестра. Скажіть: «Щодня вона плаває в басейні»"
           },
           "orderedTokens": [
             "She",
             "swims",
             "in",
             "the",
-            "pool"
+            "pool",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "swim"
@@ -519,10 +523,10 @@
             {
               "responseId": "en:lesson-06:session-21:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Она плавает в бассейне»",
+              "testedDimension": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Каждый день она плавает в бассейне»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `swims` — `She swims in the pool.`",
-                "uk": "тут потрібно `swims` — `She swims in the pool.`"
+                "ru": "здесь нужно `swims` — `She swims in the pool every day.`",
+                "uk": "тут потрібно `swims` — `She swims in the pool every day.`"
               }
             }
           ],
@@ -572,7 +576,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о сестре: «Она пишет здесь». Выберите слово",
+        "prompt": "Скажите о сестре: «Каждый день она пишет здесь». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-21:i08:r1",
@@ -589,14 +593,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о сестре: «Она пишет здесь». Выберите слово",
+        "accessibilityLabel": "Скажите о сестре: «Каждый день она пишет здесь». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о сестре: «Она пишет здесь». Выберите слово",
-            "uk": "Скажіть про сестру: «Вона пише тут». Виберіть слово"
+            "ru": "Скажите о сестре: «Каждый день она пишет здесь». Выберите слово",
+            "uk": "Скажіть про сестру: «Щодня вона пише тут». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ here.",
+          "gappedTargetPhrase": "She ___ here every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-21:i08:r1",
@@ -611,12 +615,12 @@
               "text": "is writes"
             }
           ],
-          "testedDimension": "Скажите о сестре: «Она пишет здесь». Выберите слово",
+          "testedDimension": "Скажите о сестре: «Каждый день она пишет здесь». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-21:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о сестре: «Она пишет здесь». Выберите слово",
+              "testedDimension": "Скажите о сестре: «Каждый день она пишет здесь». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `she` — `writes`, с `s`.",
                 "uk": "Після `she` — `writes`, з `s`."
@@ -625,7 +629,7 @@
             {
               "responseId": "en:lesson-06:session-21:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о сестре: «Она пишет здесь». Выберите слово",
+              "testedDimension": "Скажите о сестре: «Каждый день она пишет здесь». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She writes`, без `is`.",
                 "uk": "Кажемо `She writes`, без `is`."
@@ -918,7 +922,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о брате: «Он прыгает в бассейн». Выберите слово",
+        "prompt": "Скажите о брате: «Каждый день он прыгает в бассейн». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-21:i14:r1",
@@ -935,14 +939,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о брате: «Он прыгает в бассейн». Выберите слово",
+        "accessibilityLabel": "Скажите о брате: «Каждый день он прыгает в бассейн». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он прыгает в бассейн». Выберите слово",
-            "uk": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день он прыгает в бассейн». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня він стрибає в басейн». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ in the pool.",
+          "gappedTargetPhrase": "He ___ in the pool every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-21:i14:r1",
@@ -957,12 +961,12 @@
               "text": "is jumps"
             }
           ],
-          "testedDimension": "Скажите о брате: «Он прыгает в бассейн». Выберите слово",
+          "testedDimension": "Скажите о брате: «Каждый день он прыгает в бассейн». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-21:i14:r2",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он прыгает в бассейн». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день он прыгает в бассейн». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `he` — `jumps`, с `s`.",
                 "uk": "Після `he` — `jumps`, з `s`."
@@ -971,7 +975,7 @@
             {
               "responseId": "en:lesson-06:session-21:i14:r3",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он прыгает в бассейн». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день он прыгает в бассейн». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He jumps`, без `is`.",
                 "uk": "Кажемо `He jumps`, без `is`."
@@ -1222,24 +1226,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»",
+        "prompt": "Подруга питає, що робить ваш брат за столом. Скажіть: «Щодня він пише за столом»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»",
+        "accessibilityLabel": "Подруга питає, що робить ваш брат за столом. Скажіть: «Щодня він пише за столом»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He writes at the table.",
+          "targetPhrase": "He writes at the table every day.",
           "localizedMeaning": {
-            "ru": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Он пишет за столом»",
-            "uk": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»"
+            "ru": "Подруга спрашивает, что делает ваш брат за столом. Скажите: «Каждый день он пишет за столом»",
+            "uk": "Подруга питає, що робить ваш брат за столом. Скажіть: «Щодня він пише за столом»"
           },
           "orderedTokens": [
             "He",
             "writes",
             "at",
             "the",
-            "table"
+            "table",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "write"
@@ -1248,10 +1254,10 @@
             {
               "responseId": "en:lesson-06:session-21:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»",
+              "testedDimension": "Подруга питає, що робить ваш брат за столом. Скажіть: «Щодня він пише за столом»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `writes` — `He writes at the table.`",
-                "uk": "тут потрібно `writes` — `He writes at the table.`"
+                "ru": "здесь нужно `writes` — `He writes at the table every day.`",
+                "uk": "тут потрібно `writes` — `He writes at the table every day.`"
               }
             }
           ],
@@ -1663,24 +1669,26 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»",
+        "prompt": "Рятувальник питає, що робить ваша сестра. Скажіть: «Щодня вона плаває в басейні»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»",
+        "accessibilityLabel": "Рятувальник питає, що робить ваша сестра. Скажіть: «Щодня вона плаває в басейні»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She swims in the pool.",
+          "targetPhrase": "She swims in the pool every day.",
           "localizedMeaning": {
-            "ru": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Она плавает в бассейне»",
-            "uk": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»"
+            "ru": "Спасатель спрашивает, что делает ваша сестра. Скажите: «Каждый день она плавает в бассейне»",
+            "uk": "Рятувальник питає, що робить ваша сестра. Скажіть: «Щодня вона плаває в басейні»"
           },
           "orderedTokens": [
             "She",
             "swims",
             "in",
             "the",
-            "pool"
+            "pool",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "swim"
@@ -1689,10 +1697,10 @@
             {
               "responseId": "en:lesson-06:session-21:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»",
+              "testedDimension": "Рятувальник питає, що робить ваша сестра. Скажіть: «Щодня вона плаває в басейні»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `swims` — `She swims in the pool.`",
-                "uk": "тут потрібно `swims` — `She swims in the pool.`"
+                "ru": "здесь нужно `swims` — `She swims in the pool every day.`",
+                "uk": "тут потрібно `swims` — `She swims in the pool every day.`"
               }
             }
           ],
@@ -1742,7 +1750,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
+        "prompt": "Скажіть про сестру: «Щодня вона пише тут». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-21:i08:r1",
@@ -1759,14 +1767,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
+        "accessibilityLabel": "Скажіть про сестру: «Щодня вона пише тут». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о сестре: «Она пишет здесь». Выберите слово",
-            "uk": "Скажіть про сестру: «Вона пише тут». Виберіть слово"
+            "ru": "Скажите о сестре: «Каждый день она пишет здесь». Выберите слово",
+            "uk": "Скажіть про сестру: «Щодня вона пише тут». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ here.",
+          "gappedTargetPhrase": "She ___ here every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-21:i08:r1",
@@ -1781,12 +1789,12 @@
               "text": "is writes"
             }
           ],
-          "testedDimension": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
+          "testedDimension": "Скажіть про сестру: «Щодня вона пише тут». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-21:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
+              "testedDimension": "Скажіть про сестру: «Щодня вона пише тут». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `she` — `writes`, с `s`.",
                 "uk": "Після `she` — `writes`, з `s`."
@@ -1795,7 +1803,7 @@
             {
               "responseId": "en:lesson-06:session-21:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про сестру: «Вона пише тут». Виберіть слово",
+              "testedDimension": "Скажіть про сестру: «Щодня вона пише тут». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She writes`, без `is`.",
                 "uk": "Кажемо `She writes`, без `is`."
@@ -2088,7 +2096,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+        "prompt": "Скажіть про брата: «Щодня він стрибає в басейн». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-21:i14:r1",
@@ -2105,14 +2113,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+        "accessibilityLabel": "Скажіть про брата: «Щодня він стрибає в басейн». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он прыгает в бассейн». Выберите слово",
-            "uk": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день он прыгает в бассейн». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня він стрибає в басейн». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ in the pool.",
+          "gappedTargetPhrase": "He ___ in the pool every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-21:i14:r1",
@@ -2127,12 +2135,12 @@
               "text": "is jumps"
             }
           ],
-          "testedDimension": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+          "testedDimension": "Скажіть про брата: «Щодня він стрибає в басейн». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-21:i14:r2",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня він стрибає в басейн». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `he` — `jumps`, с `s`.",
                 "uk": "Після `he` — `jumps`, з `s`."
@@ -2141,7 +2149,7 @@
             {
               "responseId": "en:lesson-06:session-21:i14:r3",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він стрибає в басейн». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня він стрибає в басейн». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He jumps`, без `is`.",
                 "uk": "Кажемо `He jumps`, без `is`."
@@ -2351,7 +2359,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-21:i01",
-      "correctText": "He writes at the table.",
+      "correctText": "He writes at the table every day.",
       "correctResponseId": null
     },
     {
@@ -2391,7 +2399,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-21:i06",
-      "correctText": "She swims in the pool.",
+      "correctText": "She swims in the pool every day.",
       "correctResponseId": null
     },
     {

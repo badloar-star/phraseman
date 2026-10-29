@@ -52,23 +52,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
+        "prompt": "Гость спрашивает о вас с сестрой. Скажите: «Каждый день мы принимаем душ дома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
+        "accessibilityLabel": "Гость спрашивает о вас с сестрой. Скажите: «Каждый день мы принимаем душ дома»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We shower at home.",
+          "targetPhrase": "We shower at home every day.",
           "localizedMeaning": {
-            "ru": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
-            "uk": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»"
+            "ru": "Гость спрашивает о вас с сестрой. Скажите: «Каждый день мы принимаем душ дома»",
+            "uk": "Гість питає про вас із сестрою. Скажіть: «Щодня ми приймаємо душ удома»"
           },
           "orderedTokens": [
             "We",
             "shower",
             "at",
-            "home"
+            "home",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "showers"
@@ -77,10 +79,10 @@
             {
               "responseId": "en:lesson-06:session-31:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
+              "testedDimension": "Гость спрашивает о вас с сестрой. Скажите: «Каждый день мы принимаем душ дома»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `shower` — `We shower at home.`",
-                "uk": "тут потрібно `shower` — `We shower at home.`"
+                "ru": "здесь нужно `shower` — `We shower at home every day.`",
+                "uk": "тут потрібно `shower` — `We shower at home every day.`"
               }
             }
           ],
@@ -173,7 +175,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+        "prompt": "Скажите о госте: «Каждый день он принимает душ в ванной». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-31:i03:r1",
@@ -190,14 +192,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+        "accessibilityLabel": "Скажите о госте: «Каждый день он принимает душ в ванной». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
-            "uk": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово"
+            "ru": "Скажите о госте: «Каждый день он принимает душ в ванной». Выберите слово",
+            "uk": "Скажіть про гостя: «Щодня він приймає душ у ванній». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ in the bathroom.",
+          "gappedTargetPhrase": "He ___ in the bathroom every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-31:i03:r1",
@@ -212,12 +214,12 @@
               "text": "is showers"
             }
           ],
-          "testedDimension": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+          "testedDimension": "Скажите о госте: «Каждый день он принимает душ в ванной». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-31:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+              "testedDimension": "Скажите о госте: «Каждый день он принимает душ в ванной». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `he` нужно `showers`, с `s`.",
                 "uk": "Після `he` потрібно `showers`, з `s`."
@@ -226,7 +228,7 @@
             {
               "responseId": "en:lesson-06:session-31:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
+              "testedDimension": "Скажите о госте: «Каждый день он принимает душ в ванной». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He showers`, без `is`.",
                 "uk": "Кажемо `He showers`, без `is`."
@@ -572,7 +574,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я ополаскиваю чашку». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-31:i08:r1",
@@ -589,14 +591,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я ополаскиваю чашку». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
-            "uk": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я ополаскиваю чашку». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я ополіскую чашку». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ the cup.",
+          "gappedTargetPhrase": "I ___ the cup every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-31:i08:r1",
@@ -611,12 +613,12 @@
               "text": "am rinse"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я ополаскиваю чашку». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-31:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я ополаскиваю чашку». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `rinse`, без `s`.",
                 "uk": "Після `I` потрібно `rinse`, без `s`."
@@ -625,7 +627,7 @@
             {
               "responseId": "en:lesson-06:session-31:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я ополаскиваю чашку». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I rinse`, без `am`.",
                 "uk": "Кажемо `I rinse`, без `am`."
@@ -1220,23 +1222,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»",
+        "prompt": "Гість питає про вас із сестрою. Скажіть: «Щодня ми приймаємо душ удома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»",
+        "accessibilityLabel": "Гість питає про вас із сестрою. Скажіть: «Щодня ми приймаємо душ удома»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We shower at home.",
+          "targetPhrase": "We shower at home every day.",
           "localizedMeaning": {
-            "ru": "Гость спрашивает о вас с сестрой. Скажите: «Мы принимаем душ дома»",
-            "uk": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»"
+            "ru": "Гость спрашивает о вас с сестрой. Скажите: «Каждый день мы принимаем душ дома»",
+            "uk": "Гість питає про вас із сестрою. Скажіть: «Щодня ми приймаємо душ удома»"
           },
           "orderedTokens": [
             "We",
             "shower",
             "at",
-            "home"
+            "home",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "showers"
@@ -1245,10 +1249,10 @@
             {
               "responseId": "en:lesson-06:session-31:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»",
+              "testedDimension": "Гість питає про вас із сестрою. Скажіть: «Щодня ми приймаємо душ удома»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `shower` — `We shower at home.`",
-                "uk": "тут потрібно `shower` — `We shower at home.`"
+                "ru": "здесь нужно `shower` — `We shower at home every day.`",
+                "uk": "тут потрібно `shower` — `We shower at home every day.`"
               }
             }
           ],
@@ -1341,7 +1345,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+        "prompt": "Скажіть про гостя: «Щодня він приймає душ у ванній». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-31:i03:r1",
@@ -1358,14 +1362,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+        "accessibilityLabel": "Скажіть про гостя: «Щодня він приймає душ у ванній». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о госте: «Он принимает душ в ванной». Выберите слово",
-            "uk": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово"
+            "ru": "Скажите о госте: «Каждый день он принимает душ в ванной». Выберите слово",
+            "uk": "Скажіть про гостя: «Щодня він приймає душ у ванній». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ in the bathroom.",
+          "gappedTargetPhrase": "He ___ in the bathroom every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-31:i03:r1",
@@ -1380,12 +1384,12 @@
               "text": "is showers"
             }
           ],
-          "testedDimension": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+          "testedDimension": "Скажіть про гостя: «Щодня він приймає душ у ванній». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-31:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+              "testedDimension": "Скажіть про гостя: «Щодня він приймає душ у ванній». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `he` нужно `showers`, с `s`.",
                 "uk": "Після `he` потрібно `showers`, з `s`."
@@ -1394,7 +1398,7 @@
             {
               "responseId": "en:lesson-06:session-31:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово",
+              "testedDimension": "Скажіть про гостя: «Щодня він приймає душ у ванній». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He showers`, без `is`.",
                 "uk": "Кажемо `He showers`, без `is`."
@@ -1740,7 +1744,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я ополіскую чашку». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-31:i08:r1",
@@ -1757,14 +1761,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я ополіскую чашку». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я ополаскиваю чашку». Выберите слово",
-            "uk": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я ополаскиваю чашку». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я ополіскую чашку». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ the cup.",
+          "gappedTargetPhrase": "I ___ the cup every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-31:i08:r1",
@@ -1779,12 +1783,12 @@
               "text": "am rinse"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я ополіскую чашку». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-31:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я ополіскую чашку». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `rinse`, без `s`.",
                 "uk": "Після `I` потрібно `rinse`, без `s`."
@@ -1793,7 +1797,7 @@
             {
               "responseId": "en:lesson-06:session-31:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я ополіскую чашку». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я ополіскую чашку». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I rinse`, без `am`.",
                 "uk": "Кажемо `I rinse`, без `am`."
@@ -2347,7 +2351,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-31:i01",
-      "correctText": "We shower at home.",
+      "correctText": "We shower at home every day.",
       "correctResponseId": null
     },
     {

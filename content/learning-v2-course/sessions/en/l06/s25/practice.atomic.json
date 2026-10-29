@@ -52,23 +52,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
+        "prompt": "Коллега спрашивает о вас с соседкой. Скажите: «Каждый день мы ходим на работу пешком»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
+        "accessibilityLabel": "Коллега спрашивает о вас с соседкой. Скажите: «Каждый день мы ходим на работу пешком»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We walk to work.",
+          "targetPhrase": "We walk to work every day.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
-            "uk": "Колега питає про вас із сусідкою. Скажіть: «Ми ходимо на роботу пішки»"
+            "ru": "Коллега спрашивает о вас с соседкой. Скажите: «Каждый день мы ходим на работу пешком»",
+            "uk": "Колега питає про вас із сусідкою. Скажіть: «Щодня ми ходимо на роботу пішки»"
           },
           "orderedTokens": [
             "We",
             "walk",
             "to",
-            "work"
+            "work",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "walks"
@@ -77,10 +79,10 @@
             {
               "responseId": "en:lesson-06:session-25:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
+              "testedDimension": "Коллега спрашивает о вас с соседкой. Скажите: «Каждый день мы ходим на работу пешком»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `walk` — `We walk to work.`",
-                "uk": "тут потрібно `walk` — `We walk to work.`"
+                "ru": "здесь нужно `walk` — `We walk to work every day.`",
+                "uk": "тут потрібно `walk` — `We walk to work every day.`"
               }
             }
           ],
@@ -173,7 +175,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
+        "prompt": "Скажите о соседке: «Каждый день она ходит на работу пешком». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-25:i03:r1",
@@ -190,14 +192,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
+        "accessibilityLabel": "Скажите о соседке: «Каждый день она ходит на работу пешком». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
-            "uk": "Скажіть про сусідку: «Вона ходить на роботу пішки». Виберіть слово"
+            "ru": "Скажите о соседке: «Каждый день она ходит на работу пешком». Выберите слово",
+            "uk": "Скажіть про сусідку: «Щодня вона ходить на роботу пішки». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ to work.",
+          "gappedTargetPhrase": "She ___ to work every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-25:i03:r1",
@@ -212,12 +214,12 @@
               "text": "is walks"
             }
           ],
-          "testedDimension": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
+          "testedDimension": "Скажите о соседке: «Каждый день она ходит на работу пешком». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-25:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
+              "testedDimension": "Скажите о соседке: «Каждый день она ходит на работу пешком». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `she` нужно `walks`, с `s`.",
                 "uk": "Після `she` потрібно `walks`, з `s`."
@@ -226,7 +228,7 @@
             {
               "responseId": "en:lesson-06:session-25:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
+              "testedDimension": "Скажите о соседке: «Каждый день она ходит на работу пешком». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She walks`, без `is`.",
                 "uk": "Кажемо `She walks`, без `is`."
@@ -529,7 +531,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я хожу на работу пешком». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-25:i08:r1",
@@ -546,14 +548,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я хожу на работу пешком». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
-            "uk": "Скажіть про себе: «Я ходжу на роботу пішки». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я хожу на работу пешком». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я ходжу на роботу пішки». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ to work.",
+          "gappedTargetPhrase": "I ___ to work every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-25:i08:r1",
@@ -568,12 +570,12 @@
               "text": "am walk"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я хожу на работу пешком». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-25:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я хожу на работу пешком». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `walk`, без `s`.",
                 "uk": "Після `I` потрібно `walk`, без `s`."
@@ -582,7 +584,7 @@
             {
               "responseId": "en:lesson-06:session-25:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я хожу на работу пешком». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I walk`, без `am`.",
                 "uk": "Кажемо `I walk`, без `am`."
@@ -1221,23 +1223,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега питає про вас із сусідкою. Скажіть: «Ми ходимо на роботу пішки»",
+        "prompt": "Колега питає про вас із сусідкою. Скажіть: «Щодня ми ходимо на роботу пішки»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега питає про вас із сусідкою. Скажіть: «Ми ходимо на роботу пішки»",
+        "accessibilityLabel": "Колега питає про вас із сусідкою. Скажіть: «Щодня ми ходимо на роботу пішки»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We walk to work.",
+          "targetPhrase": "We walk to work every day.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»",
-            "uk": "Колега питає про вас із сусідкою. Скажіть: «Ми ходимо на роботу пішки»"
+            "ru": "Коллега спрашивает о вас с соседкой. Скажите: «Каждый день мы ходим на работу пешком»",
+            "uk": "Колега питає про вас із сусідкою. Скажіть: «Щодня ми ходимо на роботу пішки»"
           },
           "orderedTokens": [
             "We",
             "walk",
             "to",
-            "work"
+            "work",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "walks"
@@ -1246,10 +1250,10 @@
             {
               "responseId": "en:lesson-06:session-25:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Колега питає про вас із сусідкою. Скажіть: «Ми ходимо на роботу пішки»",
+              "testedDimension": "Колега питає про вас із сусідкою. Скажіть: «Щодня ми ходимо на роботу пішки»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `walk` — `We walk to work.`",
-                "uk": "тут потрібно `walk` — `We walk to work.`"
+                "ru": "здесь нужно `walk` — `We walk to work every day.`",
+                "uk": "тут потрібно `walk` — `We walk to work every day.`"
               }
             }
           ],
@@ -1342,7 +1346,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про сусідку: «Вона ходить на роботу пішки». Виберіть слово",
+        "prompt": "Скажіть про сусідку: «Щодня вона ходить на роботу пішки». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-25:i03:r1",
@@ -1359,14 +1363,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про сусідку: «Вона ходить на роботу пішки». Виберіть слово",
+        "accessibilityLabel": "Скажіть про сусідку: «Щодня вона ходить на роботу пішки». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о соседке: «Она ходит на работу пешком». Выберите слово",
-            "uk": "Скажіть про сусідку: «Вона ходить на роботу пішки». Виберіть слово"
+            "ru": "Скажите о соседке: «Каждый день она ходит на работу пешком». Выберите слово",
+            "uk": "Скажіть про сусідку: «Щодня вона ходить на роботу пішки». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ to work.",
+          "gappedTargetPhrase": "She ___ to work every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-25:i03:r1",
@@ -1381,12 +1385,12 @@
               "text": "is walks"
             }
           ],
-          "testedDimension": "Скажіть про сусідку: «Вона ходить на роботу пішки». Виберіть слово",
+          "testedDimension": "Скажіть про сусідку: «Щодня вона ходить на роботу пішки». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-25:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про сусідку: «Вона ходить на роботу пішки». Виберіть слово",
+              "testedDimension": "Скажіть про сусідку: «Щодня вона ходить на роботу пішки». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `she` нужно `walks`, с `s`.",
                 "uk": "Після `she` потрібно `walks`, з `s`."
@@ -1395,7 +1399,7 @@
             {
               "responseId": "en:lesson-06:session-25:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про сусідку: «Вона ходить на роботу пішки». Виберіть слово",
+              "testedDimension": "Скажіть про сусідку: «Щодня вона ходить на роботу пішки». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She walks`, без `is`.",
                 "uk": "Кажемо `She walks`, без `is`."
@@ -1698,7 +1702,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я ходжу на роботу пішки». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я ходжу на роботу пішки». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-25:i08:r1",
@@ -1715,14 +1719,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я ходжу на роботу пішки». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я ходжу на роботу пішки». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я хожу на работу пешком». Выберите слово",
-            "uk": "Скажіть про себе: «Я ходжу на роботу пішки». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я хожу на работу пешком». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я ходжу на роботу пішки». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ to work.",
+          "gappedTargetPhrase": "I ___ to work every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-25:i08:r1",
@@ -1737,12 +1741,12 @@
               "text": "am walk"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я ходжу на роботу пішки». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я ходжу на роботу пішки». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-25:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я ходжу на роботу пішки». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я ходжу на роботу пішки». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `walk`, без `s`.",
                 "uk": "Після `I` потрібно `walk`, без `s`."
@@ -1751,7 +1755,7 @@
             {
               "responseId": "en:lesson-06:session-25:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я ходжу на роботу пішки». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я ходжу на роботу пішки». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I walk`, без `am`.",
                 "uk": "Кажемо `I walk`, без `am`."
@@ -2349,7 +2353,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-25:i01",
-      "correctText": "We walk to work.",
+      "correctText": "We walk to work every day.",
       "correctResponseId": null
     },
     {

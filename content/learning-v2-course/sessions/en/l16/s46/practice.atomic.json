@@ -174,7 +174,7 @@
           },
           {
             "responseId": "en:lesson-16:session-46:i03:r2",
-            "text": "am going to nod off"
+            "text": "am going nod off"
           },
           {
             "responseId": "en:lesson-16:session-46:i03:r3",
@@ -198,7 +198,7 @@
             },
             {
               "responseId": "en:lesson-16:session-46:i03:r2",
-              "text": "am going to nod off"
+              "text": "am going nod off"
             },
             {
               "responseId": "en:lesson-16:session-46:i03:r3",
@@ -212,8 +212,8 @@
               "correct": false,
               "testedDimension": "Вы предполагаете, что после долгого дня можете задремать по дороге домой. Передайте мнение-прогноз через will.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+                "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will nod off.",
+                "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will nod off."
               }
             },
             {
@@ -399,7 +399,7 @@
           },
           {
             "responseId": "en:lesson-16:session-46:i06:r2",
-            "text": "is going to warm up"
+            "text": "is going warm up"
           },
           {
             "responseId": "en:lesson-16:session-46:i06:r3",
@@ -423,7 +423,7 @@
             },
             {
               "responseId": "en:lesson-16:session-46:i06:r2",
-              "text": "is going to warm up"
+              "text": "is going warm up"
             },
             {
               "responseId": "en:lesson-16:session-46:i06:r3",
@@ -437,8 +437,8 @@
               "correct": false,
               "testedDimension": "Вы не знаете решения тренера и предполагаете, где команда проведёт разминку. Передайте мнение-прогноз через will.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+                "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will warm up.",
+                "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will warm up."
               }
             },
             {
@@ -616,7 +616,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.",
+        "prompt": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
         "responseOptions": [
           {
             "responseId": "en:lesson-16:session-46:i09:r1",
@@ -633,12 +633,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.",
+        "accessibilityLabel": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.",
-            "uk": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to."
+            "ru": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
+            "uk": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to."
           },
           "gappedTargetPhrase": "I ___ before dinner.",
           "gapOptions": [
@@ -655,21 +655,21 @@
               "text": "be"
             }
           ],
-          "testedDimension": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.",
+          "testedDimension": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-16:session-46:i09:r2",
               "correct": false,
-              "testedDimension": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.",
+              "testedDimension": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+                "ru": "Am freshening up — так говорят об уже согласованном плане. Здесь пока только решение: am going to freshen up.",
+                "uk": "Am freshening up — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to freshen up."
               }
             },
             {
               "responseId": "en:lesson-16:session-46:i09:r3",
               "correct": false,
-              "testedDimension": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.",
+              "testedDimension": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
               "feedbackByLocale": {
                 "ru": "Нужна правильно построенная полная форма: am going to freshen up.",
                 "uk": "Потрібна правильно побудована повна форма: am going to freshen up."
@@ -728,17 +728,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
+        "prompt": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Это уже решено. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
+        "accessibilityLabel": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Это уже решено. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "We are winding down at the spa tomorrow.",
           "localizedMeaning": {
-            "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
-            "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів»."
+            "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Это уже решено. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
+            "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Це вже вирішено. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів»."
           },
           "orderedTokens": [
             "We",
@@ -841,7 +841,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.",
+        "prompt": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Скажите, что это уже решено.",
         "responseOptions": [
           {
             "responseId": "en:lesson-16:session-46:i12:r1",
@@ -849,7 +849,7 @@
           },
           {
             "responseId": "en:lesson-16:session-46:i12:r2",
-            "text": "are going to wind down"
+            "text": "are wind down"
           },
           {
             "responseId": "en:lesson-16:session-46:i12:r3",
@@ -858,12 +858,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.",
+        "accessibilityLabel": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Скажите, что это уже решено.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.",
-            "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous."
+            "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Скажите, что это уже решено.",
+            "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Скажіть, що це вже вирішено."
           },
           "gappedTargetPhrase": "We ___ at the spa tomorrow.",
           "gapOptions": [
@@ -873,28 +873,28 @@
             },
             {
               "responseId": "en:lesson-16:session-46:i12:r2",
-              "text": "are going to wind down"
+              "text": "are wind down"
             },
             {
               "responseId": "en:lesson-16:session-46:i12:r3",
               "text": "be"
             }
           ],
-          "testedDimension": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.",
+          "testedDimension": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Скажите, что это уже решено.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-16:session-46:i12:r2",
               "correct": false,
-              "testedDimension": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.",
+              "testedDimension": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Скажите, что это уже решено.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+                "ru": "После are нужна форма с -ing: are winding down.",
+                "uk": "Після are потрібна форма з -ing: are winding down."
               }
             },
             {
               "responseId": "en:lesson-16:session-46:i12:r3",
               "correct": false,
-              "testedDimension": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.",
+              "testedDimension": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Скажите, что это уже решено.",
               "feedbackByLocale": {
                 "ru": "Нужна правильно построенная полная форма: are winding down.",
                 "uk": "Потрібна правильно побудована повна форма: are winding down."
@@ -1064,13 +1064,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+        "prompt": "Скажите, что это уже решено.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-16:session-46:i16:audio"
         ],
-        "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+        "accessibilityLabel": "Скажите, что это уже решено.",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1297,7 +1297,7 @@
           },
           {
             "responseId": "en:lesson-16:session-46:i03:r2",
-            "text": "am going to nod off"
+            "text": "am going nod off"
           },
           {
             "responseId": "en:lesson-16:session-46:i03:r3",
@@ -1321,7 +1321,7 @@
             },
             {
               "responseId": "en:lesson-16:session-46:i03:r2",
-              "text": "am going to nod off"
+              "text": "am going nod off"
             },
             {
               "responseId": "en:lesson-16:session-46:i03:r3",
@@ -1335,8 +1335,8 @@
               "correct": false,
               "testedDimension": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+                "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will nod off.",
+                "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will nod off."
               }
             },
             {
@@ -1522,7 +1522,7 @@
           },
           {
             "responseId": "en:lesson-16:session-46:i06:r2",
-            "text": "is going to warm up"
+            "text": "is going warm up"
           },
           {
             "responseId": "en:lesson-16:session-46:i06:r3",
@@ -1546,7 +1546,7 @@
             },
             {
               "responseId": "en:lesson-16:session-46:i06:r2",
-              "text": "is going to warm up"
+              "text": "is going warm up"
             },
             {
               "responseId": "en:lesson-16:session-46:i06:r3",
@@ -1560,8 +1560,8 @@
               "correct": false,
               "testedDimension": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+                "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will warm up.",
+                "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will warm up."
               }
             },
             {
@@ -1739,7 +1739,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+        "prompt": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.",
         "responseOptions": [
           {
             "responseId": "en:lesson-16:session-46:i09:r1",
@@ -1756,12 +1756,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+        "accessibilityLabel": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.",
-            "uk": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to."
+            "ru": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
+            "uk": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to."
           },
           "gappedTargetPhrase": "I ___ before dinner.",
           "gapOptions": [
@@ -1778,21 +1778,21 @@
               "text": "be"
             }
           ],
-          "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+          "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-16:session-46:i09:r2",
               "correct": false,
-              "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+              "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+                "ru": "Am freshening up — так говорят об уже согласованном плане. Здесь пока только решение: am going to freshen up.",
+                "uk": "Am freshening up — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to freshen up."
               }
             },
             {
               "responseId": "en:lesson-16:session-46:i09:r3",
               "correct": false,
-              "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+              "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.",
               "feedbackByLocale": {
                 "ru": "Нужна правильно построенная полная форма: am going to freshen up.",
                 "uk": "Потрібна правильно побудована повна форма: am going to freshen up."
@@ -1851,17 +1851,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів».",
+        "prompt": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Це вже вирішено. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів».",
+        "accessibilityLabel": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Це вже вирішено. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів».",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "We are winding down at the spa tomorrow.",
           "localizedMeaning": {
-            "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
-            "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів»."
+            "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Это уже решено. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
+            "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Це вже вирішено. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів»."
           },
           "orderedTokens": [
             "We",
@@ -1964,7 +1964,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+        "prompt": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Скажіть, що це вже вирішено.",
         "responseOptions": [
           {
             "responseId": "en:lesson-16:session-46:i12:r1",
@@ -1972,7 +1972,7 @@
           },
           {
             "responseId": "en:lesson-16:session-46:i12:r2",
-            "text": "are going to wind down"
+            "text": "are wind down"
           },
           {
             "responseId": "en:lesson-16:session-46:i12:r3",
@@ -1981,12 +1981,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+        "accessibilityLabel": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Скажіть, що це вже вирішено.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.",
-            "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous."
+            "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Скажите, что это уже решено.",
+            "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Скажіть, що це вже вирішено."
           },
           "gappedTargetPhrase": "We ___ at the spa tomorrow.",
           "gapOptions": [
@@ -1996,28 +1996,28 @@
             },
             {
               "responseId": "en:lesson-16:session-46:i12:r2",
-              "text": "are going to wind down"
+              "text": "are wind down"
             },
             {
               "responseId": "en:lesson-16:session-46:i12:r3",
               "text": "be"
             }
           ],
-          "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+          "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Скажіть, що це вже вирішено.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-16:session-46:i12:r2",
               "correct": false,
-              "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+              "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Скажіть, що це вже вирішено.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+                "ru": "После are нужна форма с -ing: are winding down.",
+                "uk": "Після are потрібна форма з -ing: are winding down."
               }
             },
             {
               "responseId": "en:lesson-16:session-46:i12:r3",
               "correct": false,
-              "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+              "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Скажіть, що це вже вирішено.",
               "feedbackByLocale": {
                 "ru": "Нужна правильно построенная полная форма: are winding down.",
                 "uk": "Потрібна правильно побудована повна форма: are winding down."
@@ -2187,13 +2187,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+        "prompt": "Скажіть, що це вже вирішено.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-16:session-46:i16:audio"
         ],
-        "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+        "accessibilityLabel": "Скажіть, що це вже вирішено.",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {

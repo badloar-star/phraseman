@@ -52,17 +52,17 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
+        "prompt": "Сосед спрашивает о вас с соседкой. Скажите: «Каждый день мы выращиваем цветы на балконе»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
+        "accessibilityLabel": "Сосед спрашивает о вас с соседкой. Скажите: «Каждый день мы выращиваем цветы на балконе»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We grow flowers on the balcony.",
+          "targetPhrase": "We grow flowers on the balcony every day.",
           "localizedMeaning": {
-            "ru": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
-            "uk": "Сусід питає про вас із сусідкою. Скажіть: «Ми вирощуємо квіти на балконі»"
+            "ru": "Сосед спрашивает о вас с соседкой. Скажите: «Каждый день мы выращиваем цветы на балконе»",
+            "uk": "Сусід питає про вас із сусідкою. Скажіть: «Щодня ми вирощуємо квіти на балконі»"
           },
           "orderedTokens": [
             "We",
@@ -70,7 +70,9 @@
             "flowers",
             "on",
             "the",
-            "balcony"
+            "balcony",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "grows"
@@ -79,10 +81,10 @@
             {
               "responseId": "en:lesson-06:session-43:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
+              "testedDimension": "Сосед спрашивает о вас с соседкой. Скажите: «Каждый день мы выращиваем цветы на балконе»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `grow` — `We grow flowers on the balcony.`",
-                "uk": "тут потрібно `grow` — `We grow flowers on the balcony.`"
+                "ru": "здесь нужно `grow` — `We grow flowers on the balcony every day.`",
+                "uk": "тут потрібно `grow` — `We grow flowers on the balcony every day.`"
               }
             }
           ],
@@ -175,7 +177,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
+        "prompt": "Скажите о соседке: «Каждый день она выращивает цветы на балконе». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-43:i03:r1",
@@ -192,14 +194,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
+        "accessibilityLabel": "Скажите о соседке: «Каждый день она выращивает цветы на балконе». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
-            "uk": "Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово"
+            "ru": "Скажите о соседке: «Каждый день она выращивает цветы на балконе». Выберите слово",
+            "uk": "Скажіть про сусідку: «Щодня вона вирощує квіти на балконі». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ flowers on the balcony.",
+          "gappedTargetPhrase": "She ___ flowers on the balcony every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-43:i03:r1",
@@ -214,12 +216,12 @@
               "text": "is grows"
             }
           ],
-          "testedDimension": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
+          "testedDimension": "Скажите о соседке: «Каждый день она выращивает цветы на балконе». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-43:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
+              "testedDimension": "Скажите о соседке: «Каждый день она выращивает цветы на балконе». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `she` нужно `grows`, с `s`.",
                 "uk": "Після `she` потрібно `grows`, з `s`."
@@ -228,7 +230,7 @@
             {
               "responseId": "en:lesson-06:session-43:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
+              "testedDimension": "Скажите о соседке: «Каждый день она выращивает цветы на балконе». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She grows`, без `is`.",
                 "uk": "Кажемо `She grows`, без `is`."
@@ -531,7 +533,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я выращиваю цветы на балконе». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-43:i08:r1",
@@ -548,14 +550,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я выращиваю цветы на балконе». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
-            "uk": "Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я выращиваю цветы на балконе». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я вирощую квіти на балконі». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ flowers on the balcony.",
+          "gappedTargetPhrase": "I ___ flowers on the balcony every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-43:i08:r1",
@@ -570,12 +572,12 @@
               "text": "am grow"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я выращиваю цветы на балконе». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-43:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я выращиваю цветы на балконе». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `grow`, без `s`.",
                 "uk": "Після `I` потрібно `grow`, без `s`."
@@ -584,7 +586,7 @@
             {
               "responseId": "en:lesson-06:session-43:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я выращиваю цветы на балконе». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I grow`, без `am`.",
                 "uk": "Кажемо `I grow`, без `am`."
@@ -1224,17 +1226,17 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сусід питає про вас із сусідкою. Скажіть: «Ми вирощуємо квіти на балконі»",
+        "prompt": "Сусід питає про вас із сусідкою. Скажіть: «Щодня ми вирощуємо квіти на балконі»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусід питає про вас із сусідкою. Скажіть: «Ми вирощуємо квіти на балконі»",
+        "accessibilityLabel": "Сусід питає про вас із сусідкою. Скажіть: «Щодня ми вирощуємо квіти на балконі»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We grow flowers on the balcony.",
+          "targetPhrase": "We grow flowers on the balcony every day.",
           "localizedMeaning": {
-            "ru": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
-            "uk": "Сусід питає про вас із сусідкою. Скажіть: «Ми вирощуємо квіти на балконі»"
+            "ru": "Сосед спрашивает о вас с соседкой. Скажите: «Каждый день мы выращиваем цветы на балконе»",
+            "uk": "Сусід питає про вас із сусідкою. Скажіть: «Щодня ми вирощуємо квіти на балконі»"
           },
           "orderedTokens": [
             "We",
@@ -1242,7 +1244,9 @@
             "flowers",
             "on",
             "the",
-            "balcony"
+            "balcony",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "grows"
@@ -1251,10 +1255,10 @@
             {
               "responseId": "en:lesson-06:session-43:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сусід питає про вас із сусідкою. Скажіть: «Ми вирощуємо квіти на балконі»",
+              "testedDimension": "Сусід питає про вас із сусідкою. Скажіть: «Щодня ми вирощуємо квіти на балконі»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `grow` — `We grow flowers on the balcony.`",
-                "uk": "тут потрібно `grow` — `We grow flowers on the balcony.`"
+                "ru": "здесь нужно `grow` — `We grow flowers on the balcony every day.`",
+                "uk": "тут потрібно `grow` — `We grow flowers on the balcony every day.`"
               }
             }
           ],
@@ -1347,7 +1351,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово",
+        "prompt": "Скажіть про сусідку: «Щодня вона вирощує квіти на балконі». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-43:i03:r1",
@@ -1364,14 +1368,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово",
+        "accessibilityLabel": "Скажіть про сусідку: «Щодня вона вирощує квіти на балконі». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
-            "uk": "Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово"
+            "ru": "Скажите о соседке: «Каждый день она выращивает цветы на балконе». Выберите слово",
+            "uk": "Скажіть про сусідку: «Щодня вона вирощує квіти на балконі». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ flowers on the balcony.",
+          "gappedTargetPhrase": "She ___ flowers on the balcony every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-43:i03:r1",
@@ -1386,12 +1390,12 @@
               "text": "is grows"
             }
           ],
-          "testedDimension": "Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово",
+          "testedDimension": "Скажіть про сусідку: «Щодня вона вирощує квіти на балконі». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-43:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово",
+              "testedDimension": "Скажіть про сусідку: «Щодня вона вирощує квіти на балконі». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `she` нужно `grows`, с `s`.",
                 "uk": "Після `she` потрібно `grows`, з `s`."
@@ -1400,7 +1404,7 @@
             {
               "responseId": "en:lesson-06:session-43:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово",
+              "testedDimension": "Скажіть про сусідку: «Щодня вона вирощує квіти на балконі». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She grows`, без `is`.",
                 "uk": "Кажемо `She grows`, без `is`."
@@ -1703,7 +1707,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я вирощую квіти на балконі». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-43:i08:r1",
@@ -1720,14 +1724,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я вирощую квіти на балконі». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
-            "uk": "Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я выращиваю цветы на балконе». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я вирощую квіти на балконі». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ flowers on the balcony.",
+          "gappedTargetPhrase": "I ___ flowers on the balcony every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-43:i08:r1",
@@ -1742,12 +1746,12 @@
               "text": "am grow"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я вирощую квіти на балконі». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-43:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я вирощую квіти на балконі». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `grow`, без `s`.",
                 "uk": "Після `I` потрібно `grow`, без `s`."
@@ -1756,7 +1760,7 @@
             {
               "responseId": "en:lesson-06:session-43:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я вирощую квіти на балконі». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I grow`, без `am`.",
                 "uk": "Кажемо `I grow`, без `am`."
@@ -2355,7 +2359,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i01",
-      "correctText": "We grow flowers on the balcony.",
+      "correctText": "We grow flowers on the balcony every day.",
       "correctResponseId": null
     },
     {

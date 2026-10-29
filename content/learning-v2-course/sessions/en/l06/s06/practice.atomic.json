@@ -52,22 +52,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
+        "prompt": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Каждый день мы играем в футбол»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
+        "accessibilityLabel": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Каждый день мы играем в футбол»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We play football.",
+          "targetPhrase": "We play football every day.",
           "localizedMeaning": {
-            "ru": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
-            "uk": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»"
+            "ru": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Каждый день мы играем в футбол»",
+            "uk": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Щодня ми граємо у футбол»"
           },
           "orderedTokens": [
             "We",
             "play",
-            "football"
+            "football",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -76,10 +78,10 @@
             {
               "responseId": "en:lesson-06:session-06:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
+              "testedDimension": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Каждый день мы играем в футбол»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `play` — `We play football.`",
-                "uk": "тут потрібно `play` — `We play football.`"
+                "ru": "здесь нужно `play` — `We play football every day.`",
+                "uk": "тут потрібно `play` — `We play football every day.`"
               }
             }
           ],
@@ -258,7 +260,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+        "prompt": "Сосед спрашивает, как вы каждый день добираетесь до парка. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-06:i03:r1",
@@ -275,14 +277,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+        "accessibilityLabel": "Сосед спрашивает, как вы каждый день добираетесь до парка. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
-            "uk": "Сусід питає, як ви добираєтеся до парку. Виберіть слово"
+            "ru": "Сосед спрашивает, как вы каждый день добираетесь до парка. Выберите слово",
+            "uk": "Сусід питає, як ви щодня добираєтеся до парку. Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ a bicycle.",
+          "gappedTargetPhrase": "I ___ a bicycle every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-06:i03:r1",
@@ -297,12 +299,12 @@
               "text": "are ride"
             }
           ],
-          "testedDimension": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+          "testedDimension": "Сосед спрашивает, как вы каждый день добираетесь до парка. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-06:i03:r2",
               "correct": false,
-              "testedDimension": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+              "testedDimension": "Сосед спрашивает, как вы каждый день добираетесь до парка. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` сразу ставим `ride`, без `am`.",
                 "uk": "Після `I` одразу ставимо `ride`, без `am`."
@@ -311,7 +313,7 @@
             {
               "responseId": "en:lesson-06:session-06:i03:r3",
               "correct": false,
-              "testedDimension": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+              "testedDimension": "Сосед спрашивает, как вы каждый день добираетесь до парка. Выберите слово",
               "feedbackByLocale": {
                 "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I ride`.",
                 "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I ride`."
@@ -571,7 +573,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+        "prompt": "Дети выбегают на аллею. Скажите сестре, что каждый день они бегают в парке. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-06:i08:r1",
@@ -588,14 +590,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+        "accessibilityLabel": "Дети выбегают на аллею. Скажите сестре, что каждый день они бегают в парке. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
-            "uk": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово"
+            "ru": "Дети выбегают на аллею. Скажите сестре, что каждый день они бегают в парке. Выберите слово",
+            "uk": "Діти вибігають на алею. Скажіть сестрі, що щодня вони бігають у парку. Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ in the park.",
+          "gappedTargetPhrase": "They ___ in the park every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-06:i08:r1",
@@ -610,12 +612,12 @@
               "text": "is run"
             }
           ],
-          "testedDimension": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+          "testedDimension": "Дети выбегают на аллею. Скажите сестре, что каждый день они бегают в парке. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-06:i08:r2",
               "correct": false,
-              "testedDimension": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+              "testedDimension": "Дети выбегают на аллею. Скажите сестре, что каждый день они бегают в парке. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `They` сразу ставим `run`, без `are`.",
                 "uk": "Після `They` одразу ставимо `run`, без `are`."
@@ -624,7 +626,7 @@
             {
               "responseId": "en:lesson-06:session-06:i08:r3",
               "correct": false,
-              "testedDimension": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+              "testedDimension": "Дети выбегают на аллею. Скажите сестре, что каждый день они бегают в парке. Выберите слово",
               "feedbackByLocale": {
                 "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They run`.",
                 "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They run`."
@@ -838,17 +840,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
+        "prompt": "Вы встретили соседа у пруда. Скажите ему: «Каждый день я езжу на велосипеде в парке»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
+        "accessibilityLabel": "Вы встретили соседа у пруда. Скажите ему: «Каждый день я езжу на велосипеде в парке»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I ride a bicycle in the park.",
+          "targetPhrase": "I ride a bicycle in the park every day.",
           "localizedMeaning": {
-            "ru": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
-            "uk": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»"
+            "ru": "Вы встретили соседа у пруда. Скажите ему: «Каждый день я езжу на велосипеде в парке»",
+            "uk": "Ви зустріли сусіда біля ставка. Скажіть йому: «Щодня я їжджу на велосипеді в парку»"
           },
           "orderedTokens": [
             "I",
@@ -857,7 +859,9 @@
             "bicycle",
             "in",
             "the",
-            "park"
+            "park",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "am"
@@ -866,10 +870,10 @@
             {
               "responseId": "en:lesson-06:session-06:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
+              "testedDimension": "Вы встретили соседа у пруда. Скажите ему: «Каждый день я езжу на велосипеде в парке»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `ride` — `I ride a bicycle in the park.`",
-                "uk": "тут потрібно `ride` — `I ride a bicycle in the park.`"
+                "ru": "здесь нужно `ride` — `I ride a bicycle in the park every day.`",
+                "uk": "тут потрібно `ride` — `I ride a bicycle in the park every day.`"
               }
             }
           ],
@@ -919,7 +923,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+        "prompt": "Каждый день вы с друзьями выходите во двор с мячом. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-06:i14:r1",
@@ -936,14 +940,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+        "accessibilityLabel": "Каждый день вы с друзьями выходите во двор с мячом. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы с друзьями вышли во двор с мячом. Выберите слово",
-            "uk": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово"
+            "ru": "Каждый день вы с друзьями выходите во двор с мячом. Выберите слово",
+            "uk": "Щодня ви з друзями виходите у двір із м’ячем. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ football in the yard.",
+          "gappedTargetPhrase": "We ___ football in the yard every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-06:i14:r1",
@@ -958,12 +962,12 @@
               "text": "am play"
             }
           ],
-          "testedDimension": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+          "testedDimension": "Каждый день вы с друзьями выходите во двор с мячом. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-06:i14:r2",
               "correct": false,
-              "testedDimension": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+              "testedDimension": "Каждый день вы с друзьями выходите во двор с мячом. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `play`, без `are`.",
                 "uk": "Після `We` одразу ставимо `play`, без `are`."
@@ -972,7 +976,7 @@
             {
               "responseId": "en:lesson-06:session-06:i14:r3",
               "correct": false,
-              "testedDimension": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+              "testedDimension": "Каждый день вы с друзьями выходите во двор с мячом. Выберите слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We play`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We play`."
@@ -1223,22 +1227,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»",
+        "prompt": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Щодня ми граємо у футбол»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»",
+        "accessibilityLabel": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Щодня ми граємо у футбол»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We play football.",
+          "targetPhrase": "We play football every day.",
           "localizedMeaning": {
-            "ru": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
-            "uk": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»"
+            "ru": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Каждый день мы играем в футбол»",
+            "uk": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Щодня ми граємо у футбол»"
           },
           "orderedTokens": [
             "We",
             "play",
-            "football"
+            "football",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -1247,10 +1253,10 @@
             {
               "responseId": "en:lesson-06:session-06:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»",
+              "testedDimension": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Щодня ми граємо у футбол»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `play` — `We play football.`",
-                "uk": "тут потрібно `play` — `We play football.`"
+                "ru": "здесь нужно `play` — `We play football every day.`",
+                "uk": "тут потрібно `play` — `We play football every day.`"
               }
             }
           ],
@@ -1429,7 +1435,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+        "prompt": "Сусід питає, як ви щодня добираєтеся до парку. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-06:i03:r1",
@@ -1446,14 +1452,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+        "accessibilityLabel": "Сусід питає, як ви щодня добираєтеся до парку. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
-            "uk": "Сусід питає, як ви добираєтеся до парку. Виберіть слово"
+            "ru": "Сосед спрашивает, как вы каждый день добираетесь до парка. Выберите слово",
+            "uk": "Сусід питає, як ви щодня добираєтеся до парку. Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ a bicycle.",
+          "gappedTargetPhrase": "I ___ a bicycle every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-06:i03:r1",
@@ -1468,12 +1474,12 @@
               "text": "are ride"
             }
           ],
-          "testedDimension": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+          "testedDimension": "Сусід питає, як ви щодня добираєтеся до парку. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-06:i03:r2",
               "correct": false,
-              "testedDimension": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+              "testedDimension": "Сусід питає, як ви щодня добираєтеся до парку. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` сразу ставим `ride`, без `am`.",
                 "uk": "Після `I` одразу ставимо `ride`, без `am`."
@@ -1482,7 +1488,7 @@
             {
               "responseId": "en:lesson-06:session-06:i03:r3",
               "correct": false,
-              "testedDimension": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+              "testedDimension": "Сусід питає, як ви щодня добираєтеся до парку. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I ride`.",
                 "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I ride`."
@@ -1742,7 +1748,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+        "prompt": "Діти вибігають на алею. Скажіть сестрі, що щодня вони бігають у парку. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-06:i08:r1",
@@ -1759,14 +1765,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+        "accessibilityLabel": "Діти вибігають на алею. Скажіть сестрі, що щодня вони бігають у парку. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
-            "uk": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово"
+            "ru": "Дети выбегают на аллею. Скажите сестре, что каждый день они бегают в парке. Выберите слово",
+            "uk": "Діти вибігають на алею. Скажіть сестрі, що щодня вони бігають у парку. Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ in the park.",
+          "gappedTargetPhrase": "They ___ in the park every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-06:i08:r1",
@@ -1781,12 +1787,12 @@
               "text": "is run"
             }
           ],
-          "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+          "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що щодня вони бігають у парку. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-06:i08:r2",
               "correct": false,
-              "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+              "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що щодня вони бігають у парку. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `They` сразу ставим `run`, без `are`.",
                 "uk": "Після `They` одразу ставимо `run`, без `are`."
@@ -1795,7 +1801,7 @@
             {
               "responseId": "en:lesson-06:session-06:i08:r3",
               "correct": false,
-              "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+              "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що щодня вони бігають у парку. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They run`.",
                 "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They run`."
@@ -2009,17 +2015,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»",
+        "prompt": "Ви зустріли сусіда біля ставка. Скажіть йому: «Щодня я їжджу на велосипеді в парку»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»",
+        "accessibilityLabel": "Ви зустріли сусіда біля ставка. Скажіть йому: «Щодня я їжджу на велосипеді в парку»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I ride a bicycle in the park.",
+          "targetPhrase": "I ride a bicycle in the park every day.",
           "localizedMeaning": {
-            "ru": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
-            "uk": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»"
+            "ru": "Вы встретили соседа у пруда. Скажите ему: «Каждый день я езжу на велосипеде в парке»",
+            "uk": "Ви зустріли сусіда біля ставка. Скажіть йому: «Щодня я їжджу на велосипеді в парку»"
           },
           "orderedTokens": [
             "I",
@@ -2028,7 +2034,9 @@
             "bicycle",
             "in",
             "the",
-            "park"
+            "park",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "am"
@@ -2037,10 +2045,10 @@
             {
               "responseId": "en:lesson-06:session-06:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»",
+              "testedDimension": "Ви зустріли сусіда біля ставка. Скажіть йому: «Щодня я їжджу на велосипеді в парку»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `ride` — `I ride a bicycle in the park.`",
-                "uk": "тут потрібно `ride` — `I ride a bicycle in the park.`"
+                "ru": "здесь нужно `ride` — `I ride a bicycle in the park every day.`",
+                "uk": "тут потрібно `ride` — `I ride a bicycle in the park every day.`"
               }
             }
           ],
@@ -2090,7 +2098,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+        "prompt": "Щодня ви з друзями виходите у двір із м’ячем. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-06:i14:r1",
@@ -2107,14 +2115,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+        "accessibilityLabel": "Щодня ви з друзями виходите у двір із м’ячем. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы с друзьями вышли во двор с мячом. Выберите слово",
-            "uk": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово"
+            "ru": "Каждый день вы с друзьями выходите во двор с мячом. Выберите слово",
+            "uk": "Щодня ви з друзями виходите у двір із м’ячем. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ football in the yard.",
+          "gappedTargetPhrase": "We ___ football in the yard every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-06:i14:r1",
@@ -2129,12 +2137,12 @@
               "text": "am play"
             }
           ],
-          "testedDimension": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+          "testedDimension": "Щодня ви з друзями виходите у двір із м’ячем. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-06:i14:r2",
               "correct": false,
-              "testedDimension": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+              "testedDimension": "Щодня ви з друзями виходите у двір із м’ячем. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `play`, без `are`.",
                 "uk": "Після `We` одразу ставимо `play`, без `are`."
@@ -2143,7 +2151,7 @@
             {
               "responseId": "en:lesson-06:session-06:i14:r3",
               "correct": false,
-              "testedDimension": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+              "testedDimension": "Щодня ви з друзями виходите у двір із м’ячем. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We play`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We play`."
@@ -2353,7 +2361,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-06:i01",
-      "correctText": "We play football.",
+      "correctText": "We play football every day.",
       "correctResponseId": null
     },
     {
@@ -2423,7 +2431,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-06:i12",
-      "correctText": "I ride a bicycle in the park.",
+      "correctText": "I ride a bicycle in the park every day.",
       "correctResponseId": null
     },
     {

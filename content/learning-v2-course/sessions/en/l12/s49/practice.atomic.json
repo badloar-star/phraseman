@@ -186,7 +186,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a reusable bag.",
+          "gappedTargetPhrase": "I ___ a reusable bag yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-49:i03:r1",
@@ -408,7 +408,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the unwanted clothes.",
+          "gappedTargetPhrase": "I ___ the unwanted clothes yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-49:i06:r1",
@@ -630,7 +630,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a brand-new coat.",
+          "gappedTargetPhrase": "I ___ a brand-new coat yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-49:i09:r1",
@@ -852,7 +852,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the worn-out shoes.",
+          "gappedTargetPhrase": "I ___ the worn-out shoes yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-49:i12:r1",
@@ -1290,7 +1290,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a reusable bag.",
+          "gappedTargetPhrase": "I ___ a reusable bag yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-49:i03:r1",
@@ -1512,7 +1512,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the unwanted clothes.",
+          "gappedTargetPhrase": "I ___ the unwanted clothes yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-49:i06:r1",
@@ -1734,7 +1734,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a brand-new coat.",
+          "gappedTargetPhrase": "I ___ a brand-new coat yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-49:i09:r1",
@@ -1956,7 +1956,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the worn-out shoes.",
+          "gappedTargetPhrase": "I ___ the worn-out shoes yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-49:i12:r1",

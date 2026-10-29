@@ -1008,7 +1008,7 @@
             "door"
           ],
           "authoredDistractorTokens": [
-            "a"
+            "are"
           ],
           "slotFeedback": [
             {
@@ -1016,8 +1016,8 @@
               "correct": false,
               "testedDimension": "Гость заходит в участок. Скажите ему полной фразой: рядом с дверью стоит сотрудник полиции",
               "feedbackByLocale": {
-                "ru": "здесь нужно `an` — `There is an officer next to the door.`",
-                "uk": "тут потрібно `an` — `There is an officer next to the door.`"
+                "ru": "сотрудник один, поэтому `is` — `There is an officer next to the door.`",
+                "uk": "співробітник один, тому `is` — `There is an officer next to the door.`"
               }
             }
           ],
@@ -2149,7 +2149,7 @@
             "door"
           ],
           "authoredDistractorTokens": [
-            "a"
+            "are"
           ],
           "slotFeedback": [
             {
@@ -2157,8 +2157,8 @@
               "correct": false,
               "testedDimension": "Гість заходить до дільниці. Скажіть йому повною фразою: поруч із дверима стоїть співробітник поліції",
               "feedbackByLocale": {
-                "ru": "здесь нужно `an` — `There is an officer next to the door.`",
-                "uk": "тут потрібно `an` — `There is an officer next to the door.`"
+                "ru": "сотрудник один, поэтому `is` — `There is an officer next to the door.`",
+                "uk": "співробітник один, тому `is` — `There is an officer next to the door.`"
               }
             }
           ],

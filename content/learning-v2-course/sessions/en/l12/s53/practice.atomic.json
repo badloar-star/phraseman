@@ -186,7 +186,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ my sleeping bag.",
+          "gappedTargetPhrase": "I ___ my sleeping bag yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-53:i03:r1",
@@ -407,7 +407,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the airbed.",
+          "gappedTargetPhrase": "I ___ the airbed yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-53:i06:r1",
@@ -629,7 +629,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a tent peg.",
+          "gappedTargetPhrase": "I ___ a tent peg yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-53:i09:r1",
@@ -851,7 +851,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the camping stove.",
+          "gappedTargetPhrase": "I ___ the camping stove yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-53:i12:r1",
@@ -1289,7 +1289,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ my sleeping bag.",
+          "gappedTargetPhrase": "I ___ my sleeping bag yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-53:i03:r1",
@@ -1510,7 +1510,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the airbed.",
+          "gappedTargetPhrase": "I ___ the airbed yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-53:i06:r1",
@@ -1732,7 +1732,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a tent peg.",
+          "gappedTargetPhrase": "I ___ a tent peg yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-53:i09:r1",
@@ -1954,7 +1954,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the camping stove.",
+          "gappedTargetPhrase": "I ___ the camping stove yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-53:i12:r1",

@@ -52,22 +52,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
+        "prompt": "Гость спрашивает, что делает бабушка. Скажите: «Каждый день она готовит суп»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
+        "accessibilityLabel": "Гость спрашивает, что делает бабушка. Скажите: «Каждый день она готовит суп»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She cooks soup.",
+          "targetPhrase": "She cooks soup every day.",
           "localizedMeaning": {
-            "ru": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
-            "uk": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»"
+            "ru": "Гость спрашивает, что делает бабушка. Скажите: «Каждый день она готовит суп»",
+            "uk": "Гість питає, що робить бабуся. Скажіть: «Щодня вона готує суп»"
           },
           "orderedTokens": [
             "She",
             "cooks",
-            "soup"
+            "soup",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "cook"
@@ -76,10 +78,10 @@
             {
               "responseId": "en:lesson-06:session-20:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
+              "testedDimension": "Гость спрашивает, что делает бабушка. Скажите: «Каждый день она готовит суп»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `cooks` — `She cooks soup.`",
-                "uk": "тут потрібно `cooks` — `She cooks soup.`"
+                "ru": "здесь нужно `cooks` — `She cooks soup every day.`",
+                "uk": "тут потрібно `cooks` — `She cooks soup every day.`"
               }
             }
           ],
@@ -491,23 +493,25 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
+        "prompt": "Гость спрашивает, чем занимается дедушка. Скажите: «Каждый день он рисует красками дома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
+        "accessibilityLabel": "Гость спрашивает, чем занимается дедушка. Скажите: «Каждый день он рисует красками дома»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He paints at home.",
+          "targetPhrase": "He paints at home every day.",
           "localizedMeaning": {
-            "ru": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
-            "uk": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»"
+            "ru": "Гость спрашивает, чем занимается дедушка. Скажите: «Каждый день он рисует красками дома»",
+            "uk": "Гість питає, чим займається дідусь. Скажіть: «Щодня він малює фарбами вдома»"
           },
           "orderedTokens": [
             "He",
             "paints",
             "at",
-            "home"
+            "home",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "paint"
@@ -516,10 +520,10 @@
             {
               "responseId": "en:lesson-06:session-20:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
+              "testedDimension": "Гость спрашивает, чем занимается дедушка. Скажите: «Каждый день он рисует красками дома»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `paints` — `He paints at home.`",
-                "uk": "тут потрібно `paints` — `He paints at home.`"
+                "ru": "здесь нужно `paints` — `He paints at home every day.`",
+                "uk": "тут потрібно `paints` — `He paints at home every day.`"
               }
             }
           ],
@@ -569,7 +573,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+        "prompt": "Скажите о бабушке: «Каждый день она пробует суп». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-20:i08:r1",
@@ -586,14 +590,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+        "accessibilityLabel": "Скажите о бабушке: «Каждый день она пробует суп». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о бабушке: «Она пробует суп». Выберите слово",
-            "uk": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово"
+            "ru": "Скажите о бабушке: «Каждый день она пробует суп». Выберите слово",
+            "uk": "Скажіть про бабусю: «Щодня вона куштує суп». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ the soup.",
+          "gappedTargetPhrase": "She ___ the soup every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-20:i08:r1",
@@ -608,12 +612,12 @@
               "text": "is tastes"
             }
           ],
-          "testedDimension": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+          "testedDimension": "Скажите о бабушке: «Каждый день она пробует суп». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-20:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+              "testedDimension": "Скажите о бабушке: «Каждый день она пробует суп». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `she` — `tastes`, с `s`.",
                 "uk": "Після `she` — `tastes`, з `s`."
@@ -622,7 +626,7 @@
             {
               "responseId": "en:lesson-06:session-20:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о бабушке: «Она пробует суп». Выберите слово",
+              "testedDimension": "Скажите о бабушке: «Каждый день она пробует суп». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She tastes`, без `is`.",
                 "uk": "Кажемо `She tastes`, без `is`."
@@ -914,7 +918,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+        "prompt": "Скажите о бабушке: «Каждый день она варит яйца». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-20:i14:r1",
@@ -931,14 +935,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+        "accessibilityLabel": "Скажите о бабушке: «Каждый день она варит яйца». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о бабушке: «Она варит яйца». Выберите слово",
-            "uk": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово"
+            "ru": "Скажите о бабушке: «Каждый день она варит яйца». Выберите слово",
+            "uk": "Скажіть про бабусю: «Щодня вона варить яйця». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ the eggs.",
+          "gappedTargetPhrase": "She ___ the eggs every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-20:i14:r1",
@@ -953,12 +957,12 @@
               "text": "is boils"
             }
           ],
-          "testedDimension": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+          "testedDimension": "Скажите о бабушке: «Каждый день она варит яйца». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-20:i14:r2",
               "correct": false,
-              "testedDimension": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+              "testedDimension": "Скажите о бабушке: «Каждый день она варит яйца». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `she` — `boils`, с `s`.",
                 "uk": "Після `she` — `boils`, з `s`."
@@ -967,7 +971,7 @@
             {
               "responseId": "en:lesson-06:session-20:i14:r3",
               "correct": false,
-              "testedDimension": "Скажите о бабушке: «Она варит яйца». Выберите слово",
+              "testedDimension": "Скажите о бабушке: «Каждый день она варит яйца». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She boils`, без `is`.",
                 "uk": "Кажемо `She boils`, без `is`."
@@ -1218,22 +1222,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»",
+        "prompt": "Гість питає, що робить бабуся. Скажіть: «Щодня вона готує суп»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»",
+        "accessibilityLabel": "Гість питає, що робить бабуся. Скажіть: «Щодня вона готує суп»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She cooks soup.",
+          "targetPhrase": "She cooks soup every day.",
           "localizedMeaning": {
-            "ru": "Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»",
-            "uk": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»"
+            "ru": "Гость спрашивает, что делает бабушка. Скажите: «Каждый день она готовит суп»",
+            "uk": "Гість питає, що робить бабуся. Скажіть: «Щодня вона готує суп»"
           },
           "orderedTokens": [
             "She",
             "cooks",
-            "soup"
+            "soup",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "cook"
@@ -1242,10 +1248,10 @@
             {
               "responseId": "en:lesson-06:session-20:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Гість питає, що робить бабуся. Скажіть: «Вона готує суп»",
+              "testedDimension": "Гість питає, що робить бабуся. Скажіть: «Щодня вона готує суп»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `cooks` — `She cooks soup.`",
-                "uk": "тут потрібно `cooks` — `She cooks soup.`"
+                "ru": "здесь нужно `cooks` — `She cooks soup every day.`",
+                "uk": "тут потрібно `cooks` — `She cooks soup every day.`"
               }
             }
           ],
@@ -1657,23 +1663,25 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»",
+        "prompt": "Гість питає, чим займається дідусь. Скажіть: «Щодня він малює фарбами вдома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»",
+        "accessibilityLabel": "Гість питає, чим займається дідусь. Скажіть: «Щодня він малює фарбами вдома»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He paints at home.",
+          "targetPhrase": "He paints at home every day.",
           "localizedMeaning": {
-            "ru": "Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»",
-            "uk": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»"
+            "ru": "Гость спрашивает, чем занимается дедушка. Скажите: «Каждый день он рисует красками дома»",
+            "uk": "Гість питає, чим займається дідусь. Скажіть: «Щодня він малює фарбами вдома»"
           },
           "orderedTokens": [
             "He",
             "paints",
             "at",
-            "home"
+            "home",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "paint"
@@ -1682,10 +1690,10 @@
             {
               "responseId": "en:lesson-06:session-20:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Гість питає, чим займається дідусь. Скажіть: «Він малює фарбами вдома»",
+              "testedDimension": "Гість питає, чим займається дідусь. Скажіть: «Щодня він малює фарбами вдома»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `paints` — `He paints at home.`",
-                "uk": "тут потрібно `paints` — `He paints at home.`"
+                "ru": "здесь нужно `paints` — `He paints at home every day.`",
+                "uk": "тут потрібно `paints` — `He paints at home every day.`"
               }
             }
           ],
@@ -1735,7 +1743,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+        "prompt": "Скажіть про бабусю: «Щодня вона куштує суп». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-20:i08:r1",
@@ -1752,14 +1760,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+        "accessibilityLabel": "Скажіть про бабусю: «Щодня вона куштує суп». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о бабушке: «Она пробует суп». Выберите слово",
-            "uk": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово"
+            "ru": "Скажите о бабушке: «Каждый день она пробует суп». Выберите слово",
+            "uk": "Скажіть про бабусю: «Щодня вона куштує суп». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ the soup.",
+          "gappedTargetPhrase": "She ___ the soup every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-20:i08:r1",
@@ -1774,12 +1782,12 @@
               "text": "is tastes"
             }
           ],
-          "testedDimension": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+          "testedDimension": "Скажіть про бабусю: «Щодня вона куштує суп». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-20:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+              "testedDimension": "Скажіть про бабусю: «Щодня вона куштує суп». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `she` — `tastes`, с `s`.",
                 "uk": "Після `she` — `tastes`, з `s`."
@@ -1788,7 +1796,7 @@
             {
               "responseId": "en:lesson-06:session-20:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про бабусю: «Вона куштує суп». Виберіть слово",
+              "testedDimension": "Скажіть про бабусю: «Щодня вона куштує суп». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She tastes`, без `is`.",
                 "uk": "Кажемо `She tastes`, без `is`."
@@ -2080,7 +2088,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+        "prompt": "Скажіть про бабусю: «Щодня вона варить яйця». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-20:i14:r1",
@@ -2097,14 +2105,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+        "accessibilityLabel": "Скажіть про бабусю: «Щодня вона варить яйця». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о бабушке: «Она варит яйца». Выберите слово",
-            "uk": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово"
+            "ru": "Скажите о бабушке: «Каждый день она варит яйца». Выберите слово",
+            "uk": "Скажіть про бабусю: «Щодня вона варить яйця». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ the eggs.",
+          "gappedTargetPhrase": "She ___ the eggs every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-20:i14:r1",
@@ -2119,12 +2127,12 @@
               "text": "is boils"
             }
           ],
-          "testedDimension": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+          "testedDimension": "Скажіть про бабусю: «Щодня вона варить яйця». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-20:i14:r2",
               "correct": false,
-              "testedDimension": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+              "testedDimension": "Скажіть про бабусю: «Щодня вона варить яйця». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `she` — `boils`, с `s`.",
                 "uk": "Після `she` — `boils`, з `s`."
@@ -2133,7 +2141,7 @@
             {
               "responseId": "en:lesson-06:session-20:i14:r3",
               "correct": false,
-              "testedDimension": "Скажіть про бабусю: «Вона варить яйця». Виберіть слово",
+              "testedDimension": "Скажіть про бабусю: «Щодня вона варить яйця». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She boils`, без `is`.",
                 "uk": "Кажемо `She boils`, без `is`."
@@ -2343,7 +2351,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-20:i01",
-      "correctText": "She cooks soup.",
+      "correctText": "She cooks soup every day.",
       "correctResponseId": null
     },
     {
@@ -2383,7 +2391,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-20:i06",
-      "correctText": "He paints at home.",
+      "correctText": "He paints at home every day.",
       "correctResponseId": null
     },
     {

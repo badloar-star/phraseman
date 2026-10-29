@@ -449,22 +449,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Они беседуют здесь»",
+        "prompt": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Каждый день они беседуют здесь»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Они беседуют здесь»",
+        "accessibilityLabel": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Каждый день они беседуют здесь»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They chat here.",
+          "targetPhrase": "They chat here every day.",
           "localizedMeaning": {
-            "ru": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Они беседуют здесь»",
-            "uk": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»"
+            "ru": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Каждый день они беседуют здесь»",
+            "uk": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Щодня вони бесідують тут»"
           },
           "orderedTokens": [
             "They",
             "chat",
-            "here"
+            "here",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "chats"
@@ -473,10 +475,10 @@
             {
               "responseId": "en:lesson-06:session-49:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Они беседуют здесь»",
+              "testedDimension": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Каждый день они беседуют здесь»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `chat` — `They chat here.`",
-                "uk": "тут потрібно `chat` — `They chat here.`"
+                "ru": "здесь нужно `chat` — `They chat here every day.`",
+                "uk": "тут потрібно `chat` — `They chat here every day.`"
               }
             }
           ],
@@ -569,7 +571,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите «Он беседует здесь». Выберите слово",
+        "prompt": "Скажите «Каждый день он беседует здесь». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-49:i08:r1",
@@ -586,14 +588,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите «Он беседует здесь». Выберите слово",
+        "accessibilityLabel": "Скажите «Каждый день он беседует здесь». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите «Он беседует здесь». Выберите слово",
-            "uk": "Скажіть «Він бесідує тут». Виберіть слово"
+            "ru": "Скажите «Каждый день он беседует здесь». Выберите слово",
+            "uk": "Скажіть «Щодня він бесідує тут». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ here.",
+          "gappedTargetPhrase": "He ___ here every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-49:i08:r1",
@@ -608,12 +610,12 @@
               "text": "is chats"
             }
           ],
-          "testedDimension": "Скажите «Он беседует здесь». Выберите слово",
+          "testedDimension": "Скажите «Каждый день он беседует здесь». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-49:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите «Он беседует здесь». Выберите слово",
+              "testedDimension": "Скажите «Каждый день он беседует здесь». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `he` — `chats`.",
                 "uk": "Після `he` — `chats`."
@@ -622,7 +624,7 @@
             {
               "responseId": "en:lesson-06:session-49:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите «Он беседует здесь». Выберите слово",
+              "testedDimension": "Скажите «Каждый день он беседует здесь». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Нужно `He chats`, без `is`.",
                 "uk": "Потрібно `He chats`, без `is`."
@@ -913,7 +915,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите «Соседка беседует здесь». Выберите слово",
+        "prompt": "Скажите «Каждый день соседка беседует здесь». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-49:i14:r1",
@@ -930,14 +932,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите «Соседка беседует здесь». Выберите слово",
+        "accessibilityLabel": "Скажите «Каждый день соседка беседует здесь». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите «Соседка беседует здесь». Выберите слово",
-            "uk": "Скажіть «Сусідка бесідує тут». Виберіть слово"
+            "ru": "Скажите «Каждый день соседка беседует здесь». Выберите слово",
+            "uk": "Скажіть «Щодня сусідка бесідує тут». Виберіть слово"
           },
-          "gappedTargetPhrase": "My neighbour ___ here.",
+          "gappedTargetPhrase": "My neighbour ___ here every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-49:i14:r1",
@@ -952,12 +954,12 @@
               "text": "is chats"
             }
           ],
-          "testedDimension": "Скажите «Соседка беседует здесь». Выберите слово",
+          "testedDimension": "Скажите «Каждый день соседка беседует здесь». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-49:i14:r2",
               "correct": false,
-              "testedDimension": "Скажите «Соседка беседует здесь». Выберите слово",
+              "testedDimension": "Скажите «Каждый день соседка беседует здесь». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Соседка — она: `My neighbour chats`.",
                 "uk": "Сусідка — вона: `My neighbour chats`."
@@ -966,7 +968,7 @@
             {
               "responseId": "en:lesson-06:session-49:i14:r3",
               "correct": false,
-              "testedDimension": "Скажите «Соседка беседует здесь». Выберите слово",
+              "testedDimension": "Скажите «Каждый день соседка беседует здесь». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Нужно `My neighbour chats`, без `is`.",
                 "uk": "Потрібно `My neighbour chats`, без `is`."
@@ -1614,22 +1616,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»",
+        "prompt": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Щодня вони бесідують тут»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»",
+        "accessibilityLabel": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Щодня вони бесідують тут»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They chat here.",
+          "targetPhrase": "They chat here every day.",
           "localizedMeaning": {
-            "ru": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Они беседуют здесь»",
-            "uk": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»"
+            "ru": "Соседка спрашивает о двух стариках на скамейке. Скажите: «Каждый день они беседуют здесь»",
+            "uk": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Щодня вони бесідують тут»"
           },
           "orderedTokens": [
             "They",
             "chat",
-            "here"
+            "here",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "chats"
@@ -1638,10 +1642,10 @@
             {
               "responseId": "en:lesson-06:session-49:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Вони бесідують тут»",
+              "testedDimension": "Сусідка питає про двох літніх людей на лавці. Скажіть: «Щодня вони бесідують тут»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `chat` — `They chat here.`",
-                "uk": "тут потрібно `chat` — `They chat here.`"
+                "ru": "здесь нужно `chat` — `They chat here every day.`",
+                "uk": "тут потрібно `chat` — `They chat here every day.`"
               }
             }
           ],
@@ -1734,7 +1738,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть «Він бесідує тут». Виберіть слово",
+        "prompt": "Скажіть «Щодня він бесідує тут». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-49:i08:r1",
@@ -1751,14 +1755,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть «Він бесідує тут». Виберіть слово",
+        "accessibilityLabel": "Скажіть «Щодня він бесідує тут». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите «Он беседует здесь». Выберите слово",
-            "uk": "Скажіть «Він бесідує тут». Виберіть слово"
+            "ru": "Скажите «Каждый день он беседует здесь». Выберите слово",
+            "uk": "Скажіть «Щодня він бесідує тут». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ here.",
+          "gappedTargetPhrase": "He ___ here every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-49:i08:r1",
@@ -1773,12 +1777,12 @@
               "text": "is chats"
             }
           ],
-          "testedDimension": "Скажіть «Він бесідує тут». Виберіть слово",
+          "testedDimension": "Скажіть «Щодня він бесідує тут». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-49:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть «Він бесідує тут». Виберіть слово",
+              "testedDimension": "Скажіть «Щодня він бесідує тут». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `he` — `chats`.",
                 "uk": "Після `he` — `chats`."
@@ -1787,7 +1791,7 @@
             {
               "responseId": "en:lesson-06:session-49:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть «Він бесідує тут». Виберіть слово",
+              "testedDimension": "Скажіть «Щодня він бесідує тут». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Нужно `He chats`, без `is`.",
                 "uk": "Потрібно `He chats`, без `is`."
@@ -2078,7 +2082,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть «Сусідка бесідує тут». Виберіть слово",
+        "prompt": "Скажіть «Щодня сусідка бесідує тут». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-49:i14:r1",
@@ -2095,14 +2099,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть «Сусідка бесідує тут». Виберіть слово",
+        "accessibilityLabel": "Скажіть «Щодня сусідка бесідує тут». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите «Соседка беседует здесь». Выберите слово",
-            "uk": "Скажіть «Сусідка бесідує тут». Виберіть слово"
+            "ru": "Скажите «Каждый день соседка беседует здесь». Выберите слово",
+            "uk": "Скажіть «Щодня сусідка бесідує тут». Виберіть слово"
           },
-          "gappedTargetPhrase": "My neighbour ___ here.",
+          "gappedTargetPhrase": "My neighbour ___ here every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-49:i14:r1",
@@ -2117,12 +2121,12 @@
               "text": "is chats"
             }
           ],
-          "testedDimension": "Скажіть «Сусідка бесідує тут». Виберіть слово",
+          "testedDimension": "Скажіть «Щодня сусідка бесідує тут». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-49:i14:r2",
               "correct": false,
-              "testedDimension": "Скажіть «Сусідка бесідує тут». Виберіть слово",
+              "testedDimension": "Скажіть «Щодня сусідка бесідує тут». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Соседка — она: `My neighbour chats`.",
                 "uk": "Сусідка — вона: `My neighbour chats`."
@@ -2131,7 +2135,7 @@
             {
               "responseId": "en:lesson-06:session-49:i14:r3",
               "correct": false,
-              "testedDimension": "Скажіть «Сусідка бесідує тут». Виберіть слово",
+              "testedDimension": "Скажіть «Щодня сусідка бесідує тут». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Нужно `My neighbour chats`, без `is`.",
                 "uk": "Потрібно `My neighbour chats`, без `is`."
@@ -2376,7 +2380,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-49:i06",
-      "correctText": "They chat here.",
+      "correctText": "They chat here every day.",
       "correctResponseId": null
     },
     {

@@ -52,24 +52,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Брат спрашивает, где вы плаваете. Скажите: «Я плаваю в этом бассейне»",
+        "prompt": "Брат спрашивает, где вы плаваете. Скажите: «Каждый день я плаваю в этом бассейне»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Брат спрашивает, где вы плаваете. Скажите: «Я плаваю в этом бассейне»",
+        "accessibilityLabel": "Брат спрашивает, где вы плаваете. Скажите: «Каждый день я плаваю в этом бассейне»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I swim in this pool.",
+          "targetPhrase": "I swim in this pool every day.",
           "localizedMeaning": {
-            "ru": "Брат спрашивает, где вы плаваете. Скажите: «Я плаваю в этом бассейне»",
-            "uk": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»"
+            "ru": "Брат спрашивает, где вы плаваете. Скажите: «Каждый день я плаваю в этом бассейне»",
+            "uk": "Брат питає, де ви плаваєте. Скажіть: «Щодня я плаваю в цьому басейні»"
           },
           "orderedTokens": [
             "I",
             "swim",
             "in",
             "this",
-            "pool"
+            "pool",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "am"
@@ -78,10 +80,10 @@
             {
               "responseId": "en:lesson-06:session-13:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Брат спрашивает, где вы плаваете. Скажите: «Я плаваю в этом бассейне»",
+              "testedDimension": "Брат спрашивает, где вы плаваете. Скажите: «Каждый день я плаваю в этом бассейне»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `swim` — `I swim in this pool.`",
-                "uk": "тут потрібно `swim` — `I swim in this pool.`"
+                "ru": "здесь нужно `swim` — `I swim in this pool every day.`",
+                "uk": "тут потрібно `swim` — `I swim in this pool every day.`"
               }
             }
           ],
@@ -174,7 +176,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово",
+        "prompt": "Скажите о людях в бассейне: «Каждый день они плавают в бассейне». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-13:i03:r1",
@@ -191,14 +193,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово",
+        "accessibilityLabel": "Скажите о людях в бассейне: «Каждый день они плавают в бассейне». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово",
-            "uk": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово"
+            "ru": "Скажите о людях в бассейне: «Каждый день они плавают в бассейне». Выберите слово",
+            "uk": "Скажіть про людей у басейні: «Щодня вони плавають у басейні». Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ in the pool.",
+          "gappedTargetPhrase": "They ___ in the pool every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-13:i03:r1",
@@ -213,12 +215,12 @@
               "text": "are swim"
             }
           ],
-          "testedDimension": "Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово",
+          "testedDimension": "Скажите о людях в бассейне: «Каждый день они плавают в бассейне». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-13:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово",
+              "testedDimension": "Скажите о людях в бассейне: «Каждый день они плавают в бассейне». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `they` — `swim`, без `s`.",
                 "uk": "Після `they` — `swim`, без `s`."
@@ -227,7 +229,7 @@
             {
               "responseId": "en:lesson-06:session-13:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово",
+              "testedDimension": "Скажите о людях в бассейне: «Каждый день они плавают в бассейне». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `They swim`, без `are`.",
                 "uk": "Кажемо `They swim`, без `are`."
@@ -427,8 +429,8 @@
               "responseId": "en:lesson-06:session-13:word:trunks:r1",
               "targetText": "trunks",
               "meaningByLocale": {
-                "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда во множественном числе.",
-                "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у множині."
+                "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда в форме для нескольких.",
+                "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у формі для кількох."
               }
             }
           ],
@@ -438,8 +440,8 @@
           "wordCard": {
             "word": "trunks",
             "definitionByLocale": {
-              "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда во множественном числе.",
-              "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у множині."
+              "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда в форме для нескольких.",
+              "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у формі для кількох."
             }
           }
         },
@@ -917,7 +919,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово",
+        "prompt": "Скажите о себе и брате: «Каждый день мы плаваем в этом бассейне». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-13:i14:r1",
@@ -934,14 +936,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово",
+        "accessibilityLabel": "Скажите о себе и брате: «Каждый день мы плаваем в этом бассейне». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово",
-            "uk": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово"
+            "ru": "Скажите о себе и брате: «Каждый день мы плаваем в этом бассейне». Выберите слово",
+            "uk": "Скажіть про себе й брата: «Щодня ми плаваємо в цьому басейні». Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ in this pool.",
+          "gappedTargetPhrase": "We ___ in this pool every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-13:i14:r1",
@@ -956,12 +958,12 @@
               "text": "are swim"
             }
           ],
-          "testedDimension": "Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово",
+          "testedDimension": "Скажите о себе и брате: «Каждый день мы плаваем в этом бассейне». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-13:i14:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово",
+              "testedDimension": "Скажите о себе и брате: «Каждый день мы плаваем в этом бассейне». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `we` — `swim`, без `s`.",
                 "uk": "Після `we` — `swim`, без `s`."
@@ -970,7 +972,7 @@
             {
               "responseId": "en:lesson-06:session-13:i14:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово",
+              "testedDimension": "Скажите о себе и брате: «Каждый день мы плаваем в этом бассейне». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `We swim`, без `are`.",
                 "uk": "Кажемо `We swim`, без `are`."
@@ -1221,24 +1223,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»",
+        "prompt": "Брат питає, де ви плаваєте. Скажіть: «Щодня я плаваю в цьому басейні»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»",
+        "accessibilityLabel": "Брат питає, де ви плаваєте. Скажіть: «Щодня я плаваю в цьому басейні»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I swim in this pool.",
+          "targetPhrase": "I swim in this pool every day.",
           "localizedMeaning": {
-            "ru": "Брат спрашивает, где вы плаваете. Скажите: «Я плаваю в этом бассейне»",
-            "uk": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»"
+            "ru": "Брат спрашивает, где вы плаваете. Скажите: «Каждый день я плаваю в этом бассейне»",
+            "uk": "Брат питає, де ви плаваєте. Скажіть: «Щодня я плаваю в цьому басейні»"
           },
           "orderedTokens": [
             "I",
             "swim",
             "in",
             "this",
-            "pool"
+            "pool",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "am"
@@ -1247,10 +1251,10 @@
             {
               "responseId": "en:lesson-06:session-13:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Брат питає, де ви плаваєте. Скажіть: «Я плаваю в цьому басейні»",
+              "testedDimension": "Брат питає, де ви плаваєте. Скажіть: «Щодня я плаваю в цьому басейні»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `swim` — `I swim in this pool.`",
-                "uk": "тут потрібно `swim` — `I swim in this pool.`"
+                "ru": "здесь нужно `swim` — `I swim in this pool every day.`",
+                "uk": "тут потрібно `swim` — `I swim in this pool every day.`"
               }
             }
           ],
@@ -1343,7 +1347,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
+        "prompt": "Скажіть про людей у басейні: «Щодня вони плавають у басейні». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-13:i03:r1",
@@ -1360,14 +1364,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
+        "accessibilityLabel": "Скажіть про людей у басейні: «Щодня вони плавають у басейні». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово",
-            "uk": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово"
+            "ru": "Скажите о людях в бассейне: «Каждый день они плавают в бассейне». Выберите слово",
+            "uk": "Скажіть про людей у басейні: «Щодня вони плавають у басейні». Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ in the pool.",
+          "gappedTargetPhrase": "They ___ in the pool every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-13:i03:r1",
@@ -1382,12 +1386,12 @@
               "text": "are swim"
             }
           ],
-          "testedDimension": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
+          "testedDimension": "Скажіть про людей у басейні: «Щодня вони плавають у басейні». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-13:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
+              "testedDimension": "Скажіть про людей у басейні: «Щодня вони плавають у басейні». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `they` — `swim`, без `s`.",
                 "uk": "Після `they` — `swim`, без `s`."
@@ -1396,7 +1400,7 @@
             {
               "responseId": "en:lesson-06:session-13:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про людей у басейні: «Вони плавають у басейні». Виберіть слово",
+              "testedDimension": "Скажіть про людей у басейні: «Щодня вони плавають у басейні». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `They swim`, без `are`.",
                 "uk": "Кажемо `They swim`, без `are`."
@@ -1596,8 +1600,8 @@
               "responseId": "en:lesson-06:session-13:word:trunks:r1",
               "targetText": "trunks",
               "meaningByLocale": {
-                "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда во множественном числе.",
-                "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у множині."
+                "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда в форме для нескольких.",
+                "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у формі для кількох."
               }
             }
           ],
@@ -1607,8 +1611,8 @@
           "wordCard": {
             "word": "trunks",
             "definitionByLocale": {
-              "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда во множественном числе.",
-              "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у множині."
+              "ru": "плавки. These trunks are small. — «Эти плавки маленькие». О мужской одежде для плавания. Слово всегда в форме для нескольких.",
+              "uk": "плавки. These trunks are small. — «Ці плавки малі». Про чоловічий одяг для плавання. Слово завжди у формі для кількох."
             }
           }
         },
@@ -2086,7 +2090,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
+        "prompt": "Скажіть про себе й брата: «Щодня ми плаваємо в цьому басейні». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-13:i14:r1",
@@ -2103,14 +2107,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе й брата: «Щодня ми плаваємо в цьому басейні». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово",
-            "uk": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово"
+            "ru": "Скажите о себе и брате: «Каждый день мы плаваем в этом бассейне». Выберите слово",
+            "uk": "Скажіть про себе й брата: «Щодня ми плаваємо в цьому басейні». Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ in this pool.",
+          "gappedTargetPhrase": "We ___ in this pool every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-13:i14:r1",
@@ -2125,12 +2129,12 @@
               "text": "are swim"
             }
           ],
-          "testedDimension": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
+          "testedDimension": "Скажіть про себе й брата: «Щодня ми плаваємо в цьому басейні». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-13:i14:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
+              "testedDimension": "Скажіть про себе й брата: «Щодня ми плаваємо в цьому басейні». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `we` — `swim`, без `s`.",
                 "uk": "Після `we` — `swim`, без `s`."
@@ -2139,7 +2143,7 @@
             {
               "responseId": "en:lesson-06:session-13:i14:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе й брата: «Ми плаваємо в цьому басейні». Виберіть слово",
+              "testedDimension": "Скажіть про себе й брата: «Щодня ми плаваємо в цьому басейні». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `We swim`, без `are`.",
                 "uk": "Кажемо `We swim`, без `are`."
@@ -2349,7 +2353,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-13:i01",
-      "correctText": "I swim in this pool.",
+      "correctText": "I swim in this pool every day.",
       "correctResponseId": null
     },
     {

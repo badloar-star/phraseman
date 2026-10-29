@@ -28,8 +28,8 @@
               "responseId": "en:lesson-06:session-53:word:overalls:r1",
               "targetText": "overalls",
               "meaningByLocale": {
-                "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.",
-                "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у множині."
+                "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит в форме для нескольких.",
+                "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у формі для кількох."
               }
             }
           ],
@@ -39,8 +39,8 @@
           "wordCard": {
             "word": "overalls",
             "definitionByLocale": {
-              "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.",
-              "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у множині."
+              "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит в форме для нескольких.",
+              "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у формі для кількох."
             }
           }
         },
@@ -52,22 +52,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
+        "prompt": "Друг спрашивает о рабочих. Скажите: «Каждый день они носят комбинезоны»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
+        "accessibilityLabel": "Друг спрашивает о рабочих. Скажите: «Каждый день они носят комбинезоны»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They wear overalls.",
+          "targetPhrase": "They wear overalls every day.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
-            "uk": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»"
+            "ru": "Друг спрашивает о рабочих. Скажите: «Каждый день они носят комбинезоны»",
+            "uk": "Друг питає про робітників. Скажіть: «Щодня вони носять комбінезони»"
           },
           "orderedTokens": [
             "They",
             "wear",
-            "overalls"
+            "overalls",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "wears"
@@ -76,10 +78,10 @@
             {
               "responseId": "en:lesson-06:session-53:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
+              "testedDimension": "Друг спрашивает о рабочих. Скажите: «Каждый день они носят комбинезоны»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `wear` — `They wear overalls.`",
-                "uk": "тут потрібно `wear` — `They wear overalls.`"
+                "ru": "здесь нужно `wear` — `They wear overalls every day.`",
+                "uk": "тут потрібно `wear` — `They wear overalls every day.`"
               }
             }
           ],
@@ -215,7 +217,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+        "prompt": "Скажите об охраннице: «Каждый день она носит гарнитуру». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-53:i03:r1",
@@ -232,14 +234,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+        "accessibilityLabel": "Скажите об охраннице: «Каждый день она носит гарнитуру». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
-            "uk": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово"
+            "ru": "Скажите об охраннице: «Каждый день она носит гарнитуру». Выберите слово",
+            "uk": "Скажіть про охоронницю: «Щодня вона носить гарнітуру». Виберіть слово"
           },
-          "gappedTargetPhrase": "She wears ___ earpiece.",
+          "gappedTargetPhrase": "She wears ___ earpiece every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-53:i03:r1",
@@ -254,12 +256,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+          "testedDimension": "Скажите об охраннице: «Каждый день она носит гарнитуру». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-53:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+              "testedDimension": "Скажите об охраннице: «Каждый день она носит гарнитуру». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Слово `earpiece` начинается с гласного звука, поэтому нужно `an`.",
                 "uk": "Слово `earpiece` починається з голосного звуку, тому потрібно `an`."
@@ -268,7 +270,7 @@
             {
               "responseId": "en:lesson-06:session-53:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
+              "testedDimension": "Скажите об охраннице: «Каждый день она носит гарнитуру». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Перед названием одной вещи здесь нужно `an`.",
                 "uk": "Перед назвою однієї речі тут потрібно `an`."
@@ -448,23 +450,25 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает о форме. Скажите: «Она носит форму»",
+        "prompt": "Друг спрашивает о форме. Скажите: «Каждый день она носит форму»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает о форме. Скажите: «Она носит форму»",
+        "accessibilityLabel": "Друг спрашивает о форме. Скажите: «Каждый день она носит форму»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She wears a uniform.",
+          "targetPhrase": "She wears a uniform every day.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о форме. Скажите: «Она носит форму»",
-            "uk": "Друг питає про форму. Скажіть: «Вона носить форму»"
+            "ru": "Друг спрашивает о форме. Скажите: «Каждый день она носит форму»",
+            "uk": "Друг питає про форму. Скажіть: «Щодня вона носить форму»"
           },
           "orderedTokens": [
             "She",
             "wears",
             "a",
-            "uniform"
+            "uniform",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "wear"
@@ -473,10 +477,10 @@
             {
               "responseId": "en:lesson-06:session-53:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Друг спрашивает о форме. Скажите: «Она носит форму»",
+              "testedDimension": "Друг спрашивает о форме. Скажите: «Каждый день она носит форму»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `wears` — `She wears a uniform.`",
-                "uk": "тут потрібно `wears` — `She wears a uniform.`"
+                "ru": "здесь нужно `wears` — `She wears a uniform every day.`",
+                "uk": "тут потрібно `wears` — `She wears a uniform every day.`"
               }
             }
           ],
@@ -569,7 +573,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+        "prompt": "Скажите о рабочих: «Каждый день они носят козырьки». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-53:i08:r1",
@@ -586,14 +590,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+        "accessibilityLabel": "Скажите о рабочих: «Каждый день они носят козырьки». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
-            "uk": "Скажіть про робітників: «Вони носять козирки». Виберіть слово"
+            "ru": "Скажите о рабочих: «Каждый день они носят козырьки». Выберите слово",
+            "uk": "Скажіть про робітників: «Щодня вони носять козирки». Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ visors.",
+          "gappedTargetPhrase": "They ___ visors every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-53:i08:r1",
@@ -608,12 +612,12 @@
               "text": "are wear"
             }
           ],
-          "testedDimension": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+          "testedDimension": "Скажите о рабочих: «Каждый день они носят козырьки». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-53:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+              "testedDimension": "Скажите о рабочих: «Каждый день они носят козырьки». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `they` нужно `wear`, без `s`.",
                 "uk": "Після `they` потрібно `wear`, без `s`."
@@ -622,7 +626,7 @@
             {
               "responseId": "en:lesson-06:session-53:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
+              "testedDimension": "Скажите о рабочих: «Каждый день они носят козырьки». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `They wear`, без `are`.",
                 "uk": "Кажемо `They wear`, без `are`."
@@ -1193,8 +1197,8 @@
               "responseId": "en:lesson-06:session-53:word:overalls:r1",
               "targetText": "overalls",
               "meaningByLocale": {
-                "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.",
-                "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у множині."
+                "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит в форме для нескольких.",
+                "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у формі для кількох."
               }
             }
           ],
@@ -1204,8 +1208,8 @@
           "wordCard": {
             "word": "overalls",
             "definitionByLocale": {
-              "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.",
-              "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у множині."
+              "ru": "рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит в форме для нескольких.",
+              "uk": "робочий комбінезон. They wear overalls. — «Вони носять комбінезони». Куртка й штани в одному цілому, щоб не бруднити свій одяг. По-англійськи слово стоїть у формі для кількох."
             }
           }
         },
@@ -1217,22 +1221,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»",
+        "prompt": "Друг питає про робітників. Скажіть: «Щодня вони носять комбінезони»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»",
+        "accessibilityLabel": "Друг питає про робітників. Скажіть: «Щодня вони носять комбінезони»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They wear overalls.",
+          "targetPhrase": "They wear overalls every day.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»",
-            "uk": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»"
+            "ru": "Друг спрашивает о рабочих. Скажите: «Каждый день они носят комбинезоны»",
+            "uk": "Друг питає про робітників. Скажіть: «Щодня вони носять комбінезони»"
           },
           "orderedTokens": [
             "They",
             "wear",
-            "overalls"
+            "overalls",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "wears"
@@ -1241,10 +1247,10 @@
             {
               "responseId": "en:lesson-06:session-53:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Друг питає про робітників. Скажіть: «Вони носять комбінезони»",
+              "testedDimension": "Друг питає про робітників. Скажіть: «Щодня вони носять комбінезони»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `wear` — `They wear overalls.`",
-                "uk": "тут потрібно `wear` — `They wear overalls.`"
+                "ru": "здесь нужно `wear` — `They wear overalls every day.`",
+                "uk": "тут потрібно `wear` — `They wear overalls every day.`"
               }
             }
           ],
@@ -1380,7 +1386,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+        "prompt": "Скажіть про охоронницю: «Щодня вона носить гарнітуру». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-53:i03:r1",
@@ -1397,14 +1403,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+        "accessibilityLabel": "Скажіть про охоронницю: «Щодня вона носить гарнітуру». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите об охраннице: «Она носит гарнитуру». Выберите слово",
-            "uk": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово"
+            "ru": "Скажите об охраннице: «Каждый день она носит гарнитуру». Выберите слово",
+            "uk": "Скажіть про охоронницю: «Щодня вона носить гарнітуру». Виберіть слово"
           },
-          "gappedTargetPhrase": "She wears ___ earpiece.",
+          "gappedTargetPhrase": "She wears ___ earpiece every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-53:i03:r1",
@@ -1419,12 +1425,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+          "testedDimension": "Скажіть про охоронницю: «Щодня вона носить гарнітуру». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-53:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+              "testedDimension": "Скажіть про охоронницю: «Щодня вона носить гарнітуру». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Слово `earpiece` начинается с гласного звука, поэтому нужно `an`.",
                 "uk": "Слово `earpiece` починається з голосного звуку, тому потрібно `an`."
@@ -1433,7 +1439,7 @@
             {
               "responseId": "en:lesson-06:session-53:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про охоронницю: «Вона носить гарнітуру». Виберіть слово",
+              "testedDimension": "Скажіть про охоронницю: «Щодня вона носить гарнітуру». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Перед названием одной вещи здесь нужно `an`.",
                 "uk": "Перед назвою однієї речі тут потрібно `an`."
@@ -1613,23 +1619,25 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг питає про форму. Скажіть: «Вона носить форму»",
+        "prompt": "Друг питає про форму. Скажіть: «Щодня вона носить форму»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг питає про форму. Скажіть: «Вона носить форму»",
+        "accessibilityLabel": "Друг питає про форму. Скажіть: «Щодня вона носить форму»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She wears a uniform.",
+          "targetPhrase": "She wears a uniform every day.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о форме. Скажите: «Она носит форму»",
-            "uk": "Друг питає про форму. Скажіть: «Вона носить форму»"
+            "ru": "Друг спрашивает о форме. Скажите: «Каждый день она носит форму»",
+            "uk": "Друг питає про форму. Скажіть: «Щодня вона носить форму»"
           },
           "orderedTokens": [
             "She",
             "wears",
             "a",
-            "uniform"
+            "uniform",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "wear"
@@ -1638,10 +1646,10 @@
             {
               "responseId": "en:lesson-06:session-53:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Друг питає про форму. Скажіть: «Вона носить форму»",
+              "testedDimension": "Друг питає про форму. Скажіть: «Щодня вона носить форму»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `wears` — `She wears a uniform.`",
-                "uk": "тут потрібно `wears` — `She wears a uniform.`"
+                "ru": "здесь нужно `wears` — `She wears a uniform every day.`",
+                "uk": "тут потрібно `wears` — `She wears a uniform every day.`"
               }
             }
           ],
@@ -1734,7 +1742,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+        "prompt": "Скажіть про робітників: «Щодня вони носять козирки». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-53:i08:r1",
@@ -1751,14 +1759,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+        "accessibilityLabel": "Скажіть про робітників: «Щодня вони носять козирки». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о рабочих: «Они носят козырьки». Выберите слово",
-            "uk": "Скажіть про робітників: «Вони носять козирки». Виберіть слово"
+            "ru": "Скажите о рабочих: «Каждый день они носят козырьки». Выберите слово",
+            "uk": "Скажіть про робітників: «Щодня вони носять козирки». Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ visors.",
+          "gappedTargetPhrase": "They ___ visors every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-53:i08:r1",
@@ -1773,12 +1781,12 @@
               "text": "are wear"
             }
           ],
-          "testedDimension": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+          "testedDimension": "Скажіть про робітників: «Щодня вони носять козирки». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-53:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+              "testedDimension": "Скажіть про робітників: «Щодня вони носять козирки». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `they` нужно `wear`, без `s`.",
                 "uk": "Після `they` потрібно `wear`, без `s`."
@@ -1787,7 +1795,7 @@
             {
               "responseId": "en:lesson-06:session-53:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про робітників: «Вони носять козирки». Виберіть слово",
+              "testedDimension": "Скажіть про робітників: «Щодня вони носять козирки». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `They wear`, без `are`.",
                 "uk": "Кажемо `They wear`, без `are`."
@@ -2341,7 +2349,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-53:i01",
-      "correctText": "They wear overalls.",
+      "correctText": "They wear overalls every day.",
       "correctResponseId": null
     },
     {
@@ -2376,7 +2384,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-53:i06",
-      "correctText": "She wears a uniform.",
+      "correctText": "She wears a uniform every day.",
       "correctResponseId": null
     },
     {

@@ -585,8 +585,8 @@
               "correct": false,
               "testedDimension": "Уточните время ухода из кафе.",
               "feedbackByLocale": {
-                "ru": "Нужен Past Simple: left.",
-                "uk": "Потрібен Past Simple: left."
+                "ru": "Нужна форма прошлого: left.",
+                "uk": "Потрібна форма минулого: left."
               }
             }
           ]
@@ -1542,8 +1542,8 @@
               "correct": false,
               "testedDimension": "Уточніть час виходу з кафе.",
               "feedbackByLocale": {
-                "ru": "Нужен Past Simple: left.",
-                "uk": "Потрібен Past Simple: left."
+                "ru": "Нужна форма прошлого: left.",
+                "uk": "Потрібна форма минулого: left."
               }
             }
           ]

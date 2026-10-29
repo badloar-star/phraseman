@@ -52,24 +52,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает о вас с братом. Скажите: «Мы храпим в палатке»",
+        "prompt": "Друг спрашивает о вас с братом. Скажите: «Каждую ночь мы храпим в палатке»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает о вас с братом. Скажите: «Мы храпим в палатке»",
+        "accessibilityLabel": "Друг спрашивает о вас с братом. Скажите: «Каждую ночь мы храпим в палатке»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We snore in the tent.",
+          "targetPhrase": "We snore in the tent every night.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о вас с братом. Скажите: «Мы храпим в палатке»",
-            "uk": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»"
+            "ru": "Друг спрашивает о вас с братом. Скажите: «Каждую ночь мы храпим в палатке»",
+            "uk": "Друг питає про вас із братом. Скажіть: «Щоночі ми хропемо в наметі»"
           },
           "orderedTokens": [
             "We",
             "snore",
             "in",
             "the",
-            "tent"
+            "tent",
+            "every",
+            "night"
           ],
           "authoredDistractorTokens": [
             "snores"
@@ -78,10 +80,10 @@
             {
               "responseId": "en:lesson-06:session-47:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Друг спрашивает о вас с братом. Скажите: «Мы храпим в палатке»",
+              "testedDimension": "Друг спрашивает о вас с братом. Скажите: «Каждую ночь мы храпим в палатке»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `snore` — `We snore in the tent.`",
-                "uk": "тут потрібно `snore` — `We snore in the tent.`"
+                "ru": "здесь нужно `snore` — `We snore in the tent every night.`",
+                "uk": "тут потрібно `snore` — `We snore in the tent every night.`"
               }
             }
           ],
@@ -174,7 +176,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о брате: «Он храпит в палатке». Выберите слово",
+        "prompt": "Скажите о брате: «Каждую ночь он храпит в палатке». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-47:i03:r1",
@@ -191,14 +193,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о брате: «Он храпит в палатке». Выберите слово",
+        "accessibilityLabel": "Скажите о брате: «Каждую ночь он храпит в палатке». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он храпит в палатке». Выберите слово",
-            "uk": "Скажіть про брата: «Він хропе в наметі». Виберіть слово"
+            "ru": "Скажите о брате: «Каждую ночь он храпит в палатке». Выберите слово",
+            "uk": "Скажіть про брата: «Щоночі він хропе в наметі». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ in the tent.",
+          "gappedTargetPhrase": "He ___ in the tent every night.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-47:i03:r1",
@@ -213,12 +215,12 @@
               "text": "is snores"
             }
           ],
-          "testedDimension": "Скажите о брате: «Он храпит в палатке». Выберите слово",
+          "testedDimension": "Скажите о брате: «Каждую ночь он храпит в палатке». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-47:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он храпит в палатке». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждую ночь он храпит в палатке». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `he` нужно `snores`, с `s`.",
                 "uk": "Після `he` потрібно `snores`, з `s`."
@@ -227,7 +229,7 @@
             {
               "responseId": "en:lesson-06:session-47:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он храпит в палатке». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждую ночь он храпит в палатке». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He snores`, без `is`.",
                 "uk": "Кажемо `He snores`, без `is`."
@@ -530,7 +532,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я храплю в палатке». Выберите слово",
+        "prompt": "Скажите о себе: «Каждую ночь я храплю в палатке». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-47:i08:r1",
@@ -547,14 +549,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я храплю в палатке». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждую ночь я храплю в палатке». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я храплю в палатке». Выберите слово",
-            "uk": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово"
+            "ru": "Скажите о себе: «Каждую ночь я храплю в палатке». Выберите слово",
+            "uk": "Скажіть про себе: «Щоночі я хроплю в наметі». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ in the tent.",
+          "gappedTargetPhrase": "I ___ in the tent every night.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-47:i08:r1",
@@ -569,12 +571,12 @@
               "text": "am snore"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я храплю в палатке». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждую ночь я храплю в палатке». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-47:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я храплю в палатке». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждую ночь я храплю в палатке». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `snore`, без `s`.",
                 "uk": "Після `I` потрібно `snore`, без `s`."
@@ -583,7 +585,7 @@
             {
               "responseId": "en:lesson-06:session-47:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я храплю в палатке». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждую ночь я храплю в палатке». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I snore`, без `am`.",
                 "uk": "Кажемо `I snore`, без `am`."
@@ -1223,24 +1225,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»",
+        "prompt": "Друг питає про вас із братом. Скажіть: «Щоночі ми хропемо в наметі»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»",
+        "accessibilityLabel": "Друг питає про вас із братом. Скажіть: «Щоночі ми хропемо в наметі»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We snore in the tent.",
+          "targetPhrase": "We snore in the tent every night.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о вас с братом. Скажите: «Мы храпим в палатке»",
-            "uk": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»"
+            "ru": "Друг спрашивает о вас с братом. Скажите: «Каждую ночь мы храпим в палатке»",
+            "uk": "Друг питає про вас із братом. Скажіть: «Щоночі ми хропемо в наметі»"
           },
           "orderedTokens": [
             "We",
             "snore",
             "in",
             "the",
-            "tent"
+            "tent",
+            "every",
+            "night"
           ],
           "authoredDistractorTokens": [
             "snores"
@@ -1249,10 +1253,10 @@
             {
               "responseId": "en:lesson-06:session-47:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»",
+              "testedDimension": "Друг питає про вас із братом. Скажіть: «Щоночі ми хропемо в наметі»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `snore` — `We snore in the tent.`",
-                "uk": "тут потрібно `snore` — `We snore in the tent.`"
+                "ru": "здесь нужно `snore` — `We snore in the tent every night.`",
+                "uk": "тут потрібно `snore` — `We snore in the tent every night.`"
               }
             }
           ],
@@ -1345,7 +1349,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
+        "prompt": "Скажіть про брата: «Щоночі він хропе в наметі». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-47:i03:r1",
@@ -1362,14 +1366,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
+        "accessibilityLabel": "Скажіть про брата: «Щоночі він хропе в наметі». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он храпит в палатке». Выберите слово",
-            "uk": "Скажіть про брата: «Він хропе в наметі». Виберіть слово"
+            "ru": "Скажите о брате: «Каждую ночь он храпит в палатке». Выберите слово",
+            "uk": "Скажіть про брата: «Щоночі він хропе в наметі». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ in the tent.",
+          "gappedTargetPhrase": "He ___ in the tent every night.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-47:i03:r1",
@@ -1384,12 +1388,12 @@
               "text": "is snores"
             }
           ],
-          "testedDimension": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
+          "testedDimension": "Скажіть про брата: «Щоночі він хропе в наметі». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-47:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щоночі він хропе в наметі». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `he` нужно `snores`, с `s`.",
                 "uk": "Після `he` потрібно `snores`, з `s`."
@@ -1398,7 +1402,7 @@
             {
               "responseId": "en:lesson-06:session-47:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він хропе в наметі». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щоночі він хропе в наметі». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He snores`, без `is`.",
                 "uk": "Кажемо `He snores`, без `is`."
@@ -1701,7 +1705,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щоночі я хроплю в наметі». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-47:i08:r1",
@@ -1718,14 +1722,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щоночі я хроплю в наметі». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я храплю в палатке». Выберите слово",
-            "uk": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово"
+            "ru": "Скажите о себе: «Каждую ночь я храплю в палатке». Выберите слово",
+            "uk": "Скажіть про себе: «Щоночі я хроплю в наметі». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ in the tent.",
+          "gappedTargetPhrase": "I ___ in the tent every night.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-47:i08:r1",
@@ -1740,12 +1744,12 @@
               "text": "am snore"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щоночі я хроплю в наметі». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-47:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щоночі я хроплю в наметі». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `snore`, без `s`.",
                 "uk": "Після `I` потрібно `snore`, без `s`."
@@ -1754,7 +1758,7 @@
             {
               "responseId": "en:lesson-06:session-47:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я хроплю в наметі». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щоночі я хроплю в наметі». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I snore`, без `am`.",
                 "uk": "Кажемо `I snore`, без `am`."
@@ -2353,7 +2357,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-47:i01",
-      "correctText": "We snore in the tent.",
+      "correctText": "We snore in the tent every night.",
       "correctResponseId": null
     },
     {

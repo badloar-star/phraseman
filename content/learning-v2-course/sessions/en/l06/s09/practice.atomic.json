@@ -52,23 +52,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
+        "prompt": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Каждый день я начинаю в четыре»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
+        "accessibilityLabel": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Каждый день я начинаю в четыре»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I start at four.",
+          "targetPhrase": "I start at four every day.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
-            "uk": "Колега питає, о котрій ви починаєте. Скажіть: «Я починаю о четвертій»"
+            "ru": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Каждый день я начинаю в четыре»",
+            "uk": "Колега питає, о котрій ви починаєте. Скажіть: «Щодня я починаю о четвертій»"
           },
           "orderedTokens": [
             "I",
             "start",
             "at",
-            "four"
+            "four",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "am"
@@ -77,10 +79,10 @@
             {
               "responseId": "en:lesson-06:session-09:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
+              "testedDimension": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Каждый день я начинаю в четыре»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `start` — `I start at four.`",
-                "uk": "тут потрібно `start` — `I start at four.`"
+                "ru": "здесь нужно `start` — `I start at four every day.`",
+                "uk": "тут потрібно `start` — `I start at four every day.`"
               }
             }
           ],
@@ -216,7 +218,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
+        "prompt": "Скажите коллеге: «Каждый день мы начинаем смену в два». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-09:i03:r1",
@@ -233,14 +235,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
+        "accessibilityLabel": "Скажите коллеге: «Каждый день мы начинаем смену в два». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
-            "uk": "Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово"
+            "ru": "Скажите коллеге: «Каждый день мы начинаем смену в два». Выберите слово",
+            "uk": "Скажіть колезі: «Щодня ми починаємо зміну о другій». Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ the shift at two.",
+          "gappedTargetPhrase": "We ___ the shift at two every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-09:i03:r1",
@@ -255,12 +257,12 @@
               "text": "are start"
             }
           ],
-          "testedDimension": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
+          "testedDimension": "Скажите коллеге: «Каждый день мы начинаем смену в два». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-09:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
+              "testedDimension": "Скажите коллеге: «Каждый день мы начинаем смену в два». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `we` — `start`, без `s`.",
                 "uk": "Після `we` — `start`, без `s`."
@@ -269,7 +271,7 @@
             {
               "responseId": "en:lesson-06:session-09:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
+              "testedDimension": "Скажите коллеге: «Каждый день мы начинаем смену в два». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `We start`, без `are`.",
                 "uk": "Кажемо `We start`, без `are`."
@@ -922,7 +924,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я начинаю смену в четыре». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-09:i14:r1",
@@ -939,14 +941,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я начинаю смену в четыре». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
-            "uk": "Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я начинаю смену в четыре». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я починаю зміну о четвертій». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ the shift at four.",
+          "gappedTargetPhrase": "I ___ the shift at four every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-09:i14:r1",
@@ -961,12 +963,12 @@
               "text": "am start"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я начинаю смену в четыре». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-09:i14:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я начинаю смену в четыре». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` — `start`, без `s`.",
                 "uk": "Після `I` — `start`, без `s`."
@@ -975,7 +977,7 @@
             {
               "responseId": "en:lesson-06:session-09:i14:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я начинаю смену в четыре». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I start`, без `am`.",
                 "uk": "Кажемо `I start`, без `am`."
@@ -1226,23 +1228,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега питає, о котрій ви починаєте. Скажіть: «Я починаю о четвертій»",
+        "prompt": "Колега питає, о котрій ви починаєте. Скажіть: «Щодня я починаю о четвертій»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега питає, о котрій ви починаєте. Скажіть: «Я починаю о четвертій»",
+        "accessibilityLabel": "Колега питає, о котрій ви починаєте. Скажіть: «Щодня я починаю о четвертій»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I start at four.",
+          "targetPhrase": "I start at four every day.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»",
-            "uk": "Колега питає, о котрій ви починаєте. Скажіть: «Я починаю о четвертій»"
+            "ru": "Коллега спрашивает, во сколько вы начинаете. Скажите: «Каждый день я начинаю в четыре»",
+            "uk": "Колега питає, о котрій ви починаєте. Скажіть: «Щодня я починаю о четвертій»"
           },
           "orderedTokens": [
             "I",
             "start",
             "at",
-            "four"
+            "four",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "am"
@@ -1251,10 +1255,10 @@
             {
               "responseId": "en:lesson-06:session-09:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Колега питає, о котрій ви починаєте. Скажіть: «Я починаю о четвертій»",
+              "testedDimension": "Колега питає, о котрій ви починаєте. Скажіть: «Щодня я починаю о четвертій»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `start` — `I start at four.`",
-                "uk": "тут потрібно `start` — `I start at four.`"
+                "ru": "здесь нужно `start` — `I start at four every day.`",
+                "uk": "тут потрібно `start` — `I start at four every day.`"
               }
             }
           ],
@@ -1390,7 +1394,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово",
+        "prompt": "Скажіть колезі: «Щодня ми починаємо зміну о другій». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-09:i03:r1",
@@ -1407,14 +1411,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово",
+        "accessibilityLabel": "Скажіть колезі: «Щодня ми починаємо зміну о другій». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите коллеге: «Мы начинаем смену в два». Выберите слово",
-            "uk": "Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово"
+            "ru": "Скажите коллеге: «Каждый день мы начинаем смену в два». Выберите слово",
+            "uk": "Скажіть колезі: «Щодня ми починаємо зміну о другій». Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ the shift at two.",
+          "gappedTargetPhrase": "We ___ the shift at two every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-09:i03:r1",
@@ -1429,12 +1433,12 @@
               "text": "are start"
             }
           ],
-          "testedDimension": "Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово",
+          "testedDimension": "Скажіть колезі: «Щодня ми починаємо зміну о другій». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-09:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово",
+              "testedDimension": "Скажіть колезі: «Щодня ми починаємо зміну о другій». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `we` — `start`, без `s`.",
                 "uk": "Після `we` — `start`, без `s`."
@@ -1443,7 +1447,7 @@
             {
               "responseId": "en:lesson-06:session-09:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово",
+              "testedDimension": "Скажіть колезі: «Щодня ми починаємо зміну о другій». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `We start`, без `are`.",
                 "uk": "Кажемо `We start`, без `are`."
@@ -2096,7 +2100,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я починаю зміну о четвертій». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-09:i14:r1",
@@ -2113,14 +2117,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я починаю зміну о четвертій». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я начинаю смену в четыре». Выберите слово",
-            "uk": "Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я начинаю смену в четыре». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я починаю зміну о четвертій». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ the shift at four.",
+          "gappedTargetPhrase": "I ___ the shift at four every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-09:i14:r1",
@@ -2135,12 +2139,12 @@
               "text": "am start"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я починаю зміну о четвертій». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-09:i14:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я починаю зміну о четвертій». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` — `start`, без `s`.",
                 "uk": "Після `I` — `start`, без `s`."
@@ -2149,7 +2153,7 @@
             {
               "responseId": "en:lesson-06:session-09:i14:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я починаю зміну о четвертій». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I start`, без `am`.",
                 "uk": "Кажемо `I start`, без `am`."
@@ -2359,7 +2363,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-09:i01",
-      "correctText": "I start at four.",
+      "correctText": "I start at four every day.",
       "correctResponseId": null
     },
     {

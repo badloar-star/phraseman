@@ -406,23 +406,25 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
+        "prompt": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Каждый день этот художник рисует портреты»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
+        "accessibilityLabel": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Каждый день этот художник рисует портреты»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This artist paints portraits.",
+          "targetPhrase": "This artist paints portraits every day.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
-            "uk": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»"
+            "ru": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Каждый день этот художник рисует портреты»",
+            "uk": "Друг питає, що малює художник біля фонтану. Скажіть: «Щодня цей художник малює портрети»"
           },
           "orderedTokens": [
             "This",
             "artist",
             "paints",
-            "portraits"
+            "portraits",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "paint"
@@ -431,10 +433,10 @@
             {
               "responseId": "en:lesson-06:session-55:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
+              "testedDimension": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Каждый день этот художник рисует портреты»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `paints` — `This artist paints portraits.`",
-                "uk": "тут потрібно `paints` — `This artist paints portraits.`"
+                "ru": "здесь нужно `paints` — `This artist paints portraits every day.`",
+                "uk": "тут потрібно `paints` — `This artist paints portraits every day.`"
               }
             }
           ],
@@ -527,7 +529,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+        "prompt": "Расскажите о знакомых художниках: «Каждый день они рисуют портреты». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-55:i08:r1",
@@ -544,14 +546,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+        "accessibilityLabel": "Расскажите о знакомых художниках: «Каждый день они рисуют портреты». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
-            "uk": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово"
+            "ru": "Расскажите о знакомых художниках: «Каждый день они рисуют портреты». Выберите слово",
+            "uk": "Розкажіть про знайомих художників: «Щодня вони малюють портрети». Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ portraits.",
+          "gappedTargetPhrase": "They ___ portraits every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-55:i08:r1",
@@ -566,12 +568,12 @@
               "text": "are paint"
             }
           ],
-          "testedDimension": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+          "testedDimension": "Расскажите о знакомых художниках: «Каждый день они рисуют портреты». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-55:i08:r2",
               "correct": false,
-              "testedDimension": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+              "testedDimension": "Расскажите о знакомых художниках: «Каждый день они рисуют портреты». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `they` нужно `paint`, без `s`.",
                 "uk": "Після `they` потрібно `paint`, без `s`."
@@ -580,7 +582,7 @@
             {
               "responseId": "en:lesson-06:session-55:i08:r3",
               "correct": false,
-              "testedDimension": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
+              "testedDimension": "Расскажите о знакомых художниках: «Каждый день они рисуют портреты». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Нужно `They paint`, без `are`.",
                 "uk": "Потрібно `They paint`, без `are`."
@@ -914,7 +916,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+        "prompt": "Скажите о соседке: «Каждый день она рисует портреты». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-55:i14:r1",
@@ -931,14 +933,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+        "accessibilityLabel": "Скажите о соседке: «Каждый день она рисует портреты». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о соседке: «Она рисует портреты». Выберите слово",
-            "uk": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово"
+            "ru": "Скажите о соседке: «Каждый день она рисует портреты». Выберите слово",
+            "uk": "Скажіть про сусідку: «Щодня вона малює портрети». Виберіть слово"
           },
-          "gappedTargetPhrase": "My neighbour ___ portraits.",
+          "gappedTargetPhrase": "My neighbour ___ portraits every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-55:i14:r1",
@@ -953,12 +955,12 @@
               "text": "is paints"
             }
           ],
-          "testedDimension": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+          "testedDimension": "Скажите о соседке: «Каждый день она рисует портреты». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-55:i14:r2",
               "correct": false,
-              "testedDimension": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+              "testedDimension": "Скажите о соседке: «Каждый день она рисует портреты». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Соседка — она: `My neighbour paints`.",
                 "uk": "Сусідка — вона: `My neighbour paints`."
@@ -967,7 +969,7 @@
             {
               "responseId": "en:lesson-06:session-55:i14:r3",
               "correct": false,
-              "testedDimension": "Скажите о соседке: «Она рисует портреты». Выберите слово",
+              "testedDimension": "Скажите о соседке: «Каждый день она рисует портреты». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Нужно `My neighbour paints`, без `is`.",
                 "uk": "Потрібно `My neighbour paints`, без `is`."
@@ -1572,23 +1574,25 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»",
+        "prompt": "Друг питає, що малює художник біля фонтану. Скажіть: «Щодня цей художник малює портрети»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»",
+        "accessibilityLabel": "Друг питає, що малює художник біля фонтану. Скажіть: «Щодня цей художник малює портрети»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This artist paints portraits.",
+          "targetPhrase": "This artist paints portraits every day.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты»",
-            "uk": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»"
+            "ru": "Друг спрашивает, что рисует художник у фонтана. Скажите: «Каждый день этот художник рисует портреты»",
+            "uk": "Друг питає, що малює художник біля фонтану. Скажіть: «Щодня цей художник малює портрети»"
           },
           "orderedTokens": [
             "This",
             "artist",
             "paints",
-            "portraits"
+            "portraits",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "paint"
@@ -1597,10 +1601,10 @@
             {
               "responseId": "en:lesson-06:session-55:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»",
+              "testedDimension": "Друг питає, що малює художник біля фонтану. Скажіть: «Щодня цей художник малює портрети»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `paints` — `This artist paints portraits.`",
-                "uk": "тут потрібно `paints` — `This artist paints portraits.`"
+                "ru": "здесь нужно `paints` — `This artist paints portraits every day.`",
+                "uk": "тут потрібно `paints` — `This artist paints portraits every day.`"
               }
             }
           ],
@@ -1693,7 +1697,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+        "prompt": "Розкажіть про знайомих художників: «Щодня вони малюють портрети». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-55:i08:r1",
@@ -1710,14 +1714,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+        "accessibilityLabel": "Розкажіть про знайомих художників: «Щодня вони малюють портрети». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Расскажите о знакомых художниках: «Они рисуют портреты». Выберите слово",
-            "uk": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово"
+            "ru": "Расскажите о знакомых художниках: «Каждый день они рисуют портреты». Выберите слово",
+            "uk": "Розкажіть про знайомих художників: «Щодня вони малюють портрети». Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ portraits.",
+          "gappedTargetPhrase": "They ___ portraits every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-55:i08:r1",
@@ -1732,12 +1736,12 @@
               "text": "are paint"
             }
           ],
-          "testedDimension": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+          "testedDimension": "Розкажіть про знайомих художників: «Щодня вони малюють портрети». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-55:i08:r2",
               "correct": false,
-              "testedDimension": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+              "testedDimension": "Розкажіть про знайомих художників: «Щодня вони малюють портрети». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `they` нужно `paint`, без `s`.",
                 "uk": "Після `they` потрібно `paint`, без `s`."
@@ -1746,7 +1750,7 @@
             {
               "responseId": "en:lesson-06:session-55:i08:r3",
               "correct": false,
-              "testedDimension": "Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово",
+              "testedDimension": "Розкажіть про знайомих художників: «Щодня вони малюють портрети». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Нужно `They paint`, без `are`.",
                 "uk": "Потрібно `They paint`, без `are`."
@@ -2080,7 +2084,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+        "prompt": "Скажіть про сусідку: «Щодня вона малює портрети». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-55:i14:r1",
@@ -2097,14 +2101,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+        "accessibilityLabel": "Скажіть про сусідку: «Щодня вона малює портрети». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о соседке: «Она рисует портреты». Выберите слово",
-            "uk": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово"
+            "ru": "Скажите о соседке: «Каждый день она рисует портреты». Выберите слово",
+            "uk": "Скажіть про сусідку: «Щодня вона малює портрети». Виберіть слово"
           },
-          "gappedTargetPhrase": "My neighbour ___ portraits.",
+          "gappedTargetPhrase": "My neighbour ___ portraits every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-55:i14:r1",
@@ -2119,12 +2123,12 @@
               "text": "is paints"
             }
           ],
-          "testedDimension": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+          "testedDimension": "Скажіть про сусідку: «Щодня вона малює портрети». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-55:i14:r2",
               "correct": false,
-              "testedDimension": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+              "testedDimension": "Скажіть про сусідку: «Щодня вона малює портрети». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Соседка — она: `My neighbour paints`.",
                 "uk": "Сусідка — вона: `My neighbour paints`."
@@ -2133,7 +2137,7 @@
             {
               "responseId": "en:lesson-06:session-55:i14:r3",
               "correct": false,
-              "testedDimension": "Скажіть про сусідку: «Вона малює портрети». Виберіть слово",
+              "testedDimension": "Скажіть про сусідку: «Щодня вона малює портрети». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Нужно `My neighbour paints`, без `is`.",
                 "uk": "Потрібно `My neighbour paints`, без `is`."
@@ -2373,7 +2377,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-55:i06",
-      "correctText": "This artist paints portraits.",
+      "correctText": "This artist paints portraits every day.",
       "correctResponseId": null
     },
     {

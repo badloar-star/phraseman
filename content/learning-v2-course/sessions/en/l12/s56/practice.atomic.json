@@ -186,7 +186,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a hair tie.",
+          "gappedTargetPhrase": "I ___ a hair tie yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-56:i03:r1",
@@ -408,7 +408,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a hair clip.",
+          "gappedTargetPhrase": "I ___ a hair clip yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-56:i06:r1",
@@ -629,7 +629,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a hairpin.",
+          "gappedTargetPhrase": "I ___ a hairpin yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-56:i09:r1",
@@ -851,7 +851,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ my shower cap.",
+          "gappedTargetPhrase": "I ___ my shower cap yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-56:i12:r1",
@@ -1289,7 +1289,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a hair tie.",
+          "gappedTargetPhrase": "I ___ a hair tie yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-56:i03:r1",
@@ -1511,7 +1511,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a hair clip.",
+          "gappedTargetPhrase": "I ___ a hair clip yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-56:i06:r1",
@@ -1732,7 +1732,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a hairpin.",
+          "gappedTargetPhrase": "I ___ a hairpin yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-56:i09:r1",
@@ -1954,7 +1954,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ my shower cap.",
+          "gappedTargetPhrase": "I ___ my shower cap yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-56:i12:r1",

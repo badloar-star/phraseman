@@ -52,23 +52,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает о вас с сестрой. Скажите: «Мы ездим на работу на велосипеде»",
+        "prompt": "Коллега спрашивает о вас с сестрой. Скажите: «Каждый день мы ездим на работу на велосипеде»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает о вас с сестрой. Скажите: «Мы ездим на работу на велосипеде»",
+        "accessibilityLabel": "Коллега спрашивает о вас с сестрой. Скажите: «Каждый день мы ездим на работу на велосипеде»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We cycle to work.",
+          "targetPhrase": "We cycle to work every day.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает о вас с сестрой. Скажите: «Мы ездим на работу на велосипеде»",
-            "uk": "Колега питає про вас із сестрою. Скажіть: «Ми їздимо на роботу на велосипеді»"
+            "ru": "Коллега спрашивает о вас с сестрой. Скажите: «Каждый день мы ездим на работу на велосипеде»",
+            "uk": "Колега питає про вас із сестрою. Скажіть: «Щодня ми їздимо на роботу на велосипеді»"
           },
           "orderedTokens": [
             "We",
             "cycle",
             "to",
-            "work"
+            "work",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "cycles"
@@ -77,10 +79,10 @@
             {
               "responseId": "en:lesson-06:session-39:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Коллега спрашивает о вас с сестрой. Скажите: «Мы ездим на работу на велосипеде»",
+              "testedDimension": "Коллега спрашивает о вас с сестрой. Скажите: «Каждый день мы ездим на работу на велосипеде»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `cycle` — `We cycle to work.`",
-                "uk": "тут потрібно `cycle` — `We cycle to work.`"
+                "ru": "здесь нужно `cycle` — `We cycle to work every day.`",
+                "uk": "тут потрібно `cycle` — `We cycle to work every day.`"
               }
             }
           ],
@@ -173,7 +175,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о сестре: «Моя сестра ездит на работу на велосипеде». Выберите слово",
+        "prompt": "Скажите о сестре: «Каждый день моя сестра ездит на работу на велосипеде». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-39:i03:r1",
@@ -190,14 +192,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о сестре: «Моя сестра ездит на работу на велосипеде». Выберите слово",
+        "accessibilityLabel": "Скажите о сестре: «Каждый день моя сестра ездит на работу на велосипеде». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о сестре: «Моя сестра ездит на работу на велосипеде». Выберите слово",
-            "uk": "Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово"
+            "ru": "Скажите о сестре: «Каждый день моя сестра ездит на работу на велосипеде». Выберите слово",
+            "uk": "Скажіть про сестру: «Щодня моя сестра їздить на роботу на велосипеді». Виберіть слово"
           },
-          "gappedTargetPhrase": "My sister ___ to work.",
+          "gappedTargetPhrase": "My sister ___ to work every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-39:i03:r1",
@@ -212,12 +214,12 @@
               "text": "is cycles"
             }
           ],
-          "testedDimension": "Скажите о сестре: «Моя сестра ездит на работу на велосипеде». Выберите слово",
+          "testedDimension": "Скажите о сестре: «Каждый день моя сестра ездит на работу на велосипеде». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-39:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о сестре: «Моя сестра ездит на работу на велосипеде». Выберите слово",
+              "testedDimension": "Скажите о сестре: «Каждый день моя сестра ездит на работу на велосипеде». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Сестра — это `she`, поэтому нужно `cycles`, с `s`.",
                 "uk": "Сестра — це `she`, тому потрібно `cycles`, з `s`."
@@ -226,7 +228,7 @@
             {
               "responseId": "en:lesson-06:session-39:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о сестре: «Моя сестра ездит на работу на велосипеде». Выберите слово",
+              "testedDimension": "Скажите о сестре: «Каждый день моя сестра ездит на работу на велосипеде». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `cycles`, без `is`.",
                 "uk": "Кажемо `cycles`, без `is`."
@@ -529,7 +531,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я езжу в парк на велосипеде». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я езжу в парк на велосипеде». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-39:i08:r1",
@@ -546,14 +548,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я езжу в парк на велосипеде». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я езжу в парк на велосипеде». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я езжу в парк на велосипеде». Выберите слово",
-            "uk": "Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я езжу в парк на велосипеде». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я їжджу в парк на велосипеді». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ to the park.",
+          "gappedTargetPhrase": "I ___ to the park every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-39:i08:r1",
@@ -568,12 +570,12 @@
               "text": "am cycle"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я езжу в парк на велосипеде». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я езжу в парк на велосипеде». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-39:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я езжу в парк на велосипеде». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я езжу в парк на велосипеде». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `cycle`, без `s`.",
                 "uk": "Після `I` потрібно `cycle`, без `s`."
@@ -582,7 +584,7 @@
             {
               "responseId": "en:lesson-06:session-39:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я езжу в парк на велосипеде». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я езжу в парк на велосипеде». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I cycle`, без `am`.",
                 "uk": "Кажемо `I cycle`, без `am`."
@@ -1221,23 +1223,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега питає про вас із сестрою. Скажіть: «Ми їздимо на роботу на велосипеді»",
+        "prompt": "Колега питає про вас із сестрою. Скажіть: «Щодня ми їздимо на роботу на велосипеді»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега питає про вас із сестрою. Скажіть: «Ми їздимо на роботу на велосипеді»",
+        "accessibilityLabel": "Колега питає про вас із сестрою. Скажіть: «Щодня ми їздимо на роботу на велосипеді»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We cycle to work.",
+          "targetPhrase": "We cycle to work every day.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает о вас с сестрой. Скажите: «Мы ездим на работу на велосипеде»",
-            "uk": "Колега питає про вас із сестрою. Скажіть: «Ми їздимо на роботу на велосипеді»"
+            "ru": "Коллега спрашивает о вас с сестрой. Скажите: «Каждый день мы ездим на работу на велосипеде»",
+            "uk": "Колега питає про вас із сестрою. Скажіть: «Щодня ми їздимо на роботу на велосипеді»"
           },
           "orderedTokens": [
             "We",
             "cycle",
             "to",
-            "work"
+            "work",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "cycles"
@@ -1246,10 +1250,10 @@
             {
               "responseId": "en:lesson-06:session-39:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Колега питає про вас із сестрою. Скажіть: «Ми їздимо на роботу на велосипеді»",
+              "testedDimension": "Колега питає про вас із сестрою. Скажіть: «Щодня ми їздимо на роботу на велосипеді»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `cycle` — `We cycle to work.`",
-                "uk": "тут потрібно `cycle` — `We cycle to work.`"
+                "ru": "здесь нужно `cycle` — `We cycle to work every day.`",
+                "uk": "тут потрібно `cycle` — `We cycle to work every day.`"
               }
             }
           ],
@@ -1342,7 +1346,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово",
+        "prompt": "Скажіть про сестру: «Щодня моя сестра їздить на роботу на велосипеді». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-39:i03:r1",
@@ -1359,14 +1363,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово",
+        "accessibilityLabel": "Скажіть про сестру: «Щодня моя сестра їздить на роботу на велосипеді». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о сестре: «Моя сестра ездит на работу на велосипеде». Выберите слово",
-            "uk": "Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово"
+            "ru": "Скажите о сестре: «Каждый день моя сестра ездит на работу на велосипеде». Выберите слово",
+            "uk": "Скажіть про сестру: «Щодня моя сестра їздить на роботу на велосипеді». Виберіть слово"
           },
-          "gappedTargetPhrase": "My sister ___ to work.",
+          "gappedTargetPhrase": "My sister ___ to work every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-39:i03:r1",
@@ -1381,12 +1385,12 @@
               "text": "is cycles"
             }
           ],
-          "testedDimension": "Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово",
+          "testedDimension": "Скажіть про сестру: «Щодня моя сестра їздить на роботу на велосипеді». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-39:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово",
+              "testedDimension": "Скажіть про сестру: «Щодня моя сестра їздить на роботу на велосипеді». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Сестра — это `she`, поэтому нужно `cycles`, с `s`.",
                 "uk": "Сестра — це `she`, тому потрібно `cycles`, з `s`."
@@ -1395,7 +1399,7 @@
             {
               "responseId": "en:lesson-06:session-39:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово",
+              "testedDimension": "Скажіть про сестру: «Щодня моя сестра їздить на роботу на велосипеді». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `cycles`, без `is`.",
                 "uk": "Кажемо `cycles`, без `is`."
@@ -1698,7 +1702,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я їжджу в парк на велосипеді». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-39:i08:r1",
@@ -1715,14 +1719,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я їжджу в парк на велосипеді». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я езжу в парк на велосипеде». Выберите слово",
-            "uk": "Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я езжу в парк на велосипеде». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я їжджу в парк на велосипеді». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ to the park.",
+          "gappedTargetPhrase": "I ___ to the park every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-39:i08:r1",
@@ -1737,12 +1741,12 @@
               "text": "am cycle"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я їжджу в парк на велосипеді». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-39:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я їжджу в парк на велосипеді». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `cycle`, без `s`.",
                 "uk": "Після `I` потрібно `cycle`, без `s`."
@@ -1751,7 +1755,7 @@
             {
               "responseId": "en:lesson-06:session-39:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я їжджу в парк на велосипеді». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I cycle`, без `am`.",
                 "uk": "Кажемо `I cycle`, без `am`."
@@ -2349,7 +2353,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-39:i01",
-      "correctText": "We cycle to work.",
+      "correctText": "We cycle to work every day.",
       "correctResponseId": null
     },
     {

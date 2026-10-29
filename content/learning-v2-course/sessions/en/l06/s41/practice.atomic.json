@@ -52,24 +52,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
+        "prompt": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ловим рыбу на озере»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
+        "accessibilityLabel": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ловим рыбу на озере»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We fish at the lake.",
+          "targetPhrase": "We fish at the lake every day.",
           "localizedMeaning": {
-            "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
-            "uk": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»"
+            "ru": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ловим рыбу на озере»",
+            "uk": "Сусід питає про вас із братом. Скажіть: «Щодня ми ловимо рибу на озері»"
           },
           "orderedTokens": [
             "We",
             "fish",
             "at",
             "the",
-            "lake"
+            "lake",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "fishes"
@@ -78,10 +80,10 @@
             {
               "responseId": "en:lesson-06:session-41:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
+              "testedDimension": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ловим рыбу на озере»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `fish` — `We fish at the lake.`",
-                "uk": "тут потрібно `fish` — `We fish at the lake.`"
+                "ru": "здесь нужно `fish` — `We fish at the lake every day.`",
+                "uk": "тут потрібно `fish` — `We fish at the lake every day.`"
               }
             }
           ],
@@ -174,7 +176,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+        "prompt": "Скажите о брате: «Каждый день он ловит рыбу на озере». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-41:i03:r1",
@@ -191,14 +193,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+        "accessibilityLabel": "Скажите о брате: «Каждый день он ловит рыбу на озере». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
-            "uk": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день он ловит рыбу на озере». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня він ловить рибу на озері». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ at the lake.",
+          "gappedTargetPhrase": "He ___ at the lake every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-41:i03:r1",
@@ -213,12 +215,12 @@
               "text": "is fishes"
             }
           ],
-          "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+          "testedDimension": "Скажите о брате: «Каждый день он ловит рыбу на озере». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-41:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день он ловит рыбу на озере». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `he` нужно `fishes`, с `es`.",
                 "uk": "Після `he` потрібно `fishes`, з `es`."
@@ -227,7 +229,7 @@
             {
               "responseId": "en:lesson-06:session-41:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день он ловит рыбу на озере». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He fishes`, без `is`.",
                 "uk": "Кажемо `He fishes`, без `is`."
@@ -530,7 +532,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я ловлю рыбу на озере». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-41:i08:r1",
@@ -547,14 +549,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я ловлю рыбу на озере». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
-            "uk": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я ловлю рыбу на озере». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я ловлю рибу на озері». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ at the lake.",
+          "gappedTargetPhrase": "I ___ at the lake every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-41:i08:r1",
@@ -569,12 +571,12 @@
               "text": "am fish"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я ловлю рыбу на озере». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-41:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я ловлю рыбу на озере». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `fish`, без `es`.",
                 "uk": "Після `I` потрібно `fish`, без `es`."
@@ -583,7 +585,7 @@
             {
               "responseId": "en:lesson-06:session-41:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я ловлю рыбу на озере». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I fish`, без `am`.",
                 "uk": "Кажемо `I fish`, без `am`."
@@ -1223,24 +1225,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»",
+        "prompt": "Сусід питає про вас із братом. Скажіть: «Щодня ми ловимо рибу на озері»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»",
+        "accessibilityLabel": "Сусід питає про вас із братом. Скажіть: «Щодня ми ловимо рибу на озері»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We fish at the lake.",
+          "targetPhrase": "We fish at the lake every day.",
           "localizedMeaning": {
-            "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
-            "uk": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»"
+            "ru": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ловим рыбу на озере»",
+            "uk": "Сусід питає про вас із братом. Скажіть: «Щодня ми ловимо рибу на озері»"
           },
           "orderedTokens": [
             "We",
             "fish",
             "at",
             "the",
-            "lake"
+            "lake",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "fishes"
@@ -1249,10 +1253,10 @@
             {
               "responseId": "en:lesson-06:session-41:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»",
+              "testedDimension": "Сусід питає про вас із братом. Скажіть: «Щодня ми ловимо рибу на озері»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `fish` — `We fish at the lake.`",
-                "uk": "тут потрібно `fish` — `We fish at the lake.`"
+                "ru": "здесь нужно `fish` — `We fish at the lake every day.`",
+                "uk": "тут потрібно `fish` — `We fish at the lake every day.`"
               }
             }
           ],
@@ -1345,7 +1349,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+        "prompt": "Скажіть про брата: «Щодня він ловить рибу на озері». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-41:i03:r1",
@@ -1362,14 +1366,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+        "accessibilityLabel": "Скажіть про брата: «Щодня він ловить рибу на озері». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
-            "uk": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день он ловит рыбу на озере». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня він ловить рибу на озері». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ at the lake.",
+          "gappedTargetPhrase": "He ___ at the lake every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-41:i03:r1",
@@ -1384,12 +1388,12 @@
               "text": "is fishes"
             }
           ],
-          "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+          "testedDimension": "Скажіть про брата: «Щодня він ловить рибу на озері». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-41:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня він ловить рибу на озері». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `he` нужно `fishes`, с `es`.",
                 "uk": "Після `he` потрібно `fishes`, з `es`."
@@ -1398,7 +1402,7 @@
             {
               "responseId": "en:lesson-06:session-41:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня він ловить рибу на озері». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He fishes`, без `is`.",
                 "uk": "Кажемо `He fishes`, без `is`."
@@ -1701,7 +1705,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я ловлю рибу на озері». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-41:i08:r1",
@@ -1718,14 +1722,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я ловлю рибу на озері». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
-            "uk": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я ловлю рыбу на озере». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я ловлю рибу на озері». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ at the lake.",
+          "gappedTargetPhrase": "I ___ at the lake every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-41:i08:r1",
@@ -1740,12 +1744,12 @@
               "text": "am fish"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я ловлю рибу на озері». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-41:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я ловлю рибу на озері». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `fish`, без `es`.",
                 "uk": "Після `I` потрібно `fish`, без `es`."
@@ -1754,7 +1758,7 @@
             {
               "responseId": "en:lesson-06:session-41:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я ловлю рибу на озері». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I fish`, без `am`.",
                 "uk": "Кажемо `I fish`, без `am`."
@@ -2353,7 +2357,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-41:i01",
-      "correctText": "We fish at the lake.",
+      "correctText": "We fish at the lake every day.",
       "correctResponseId": null
     },
     {

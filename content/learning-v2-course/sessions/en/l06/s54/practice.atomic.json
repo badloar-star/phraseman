@@ -52,22 +52,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сосед ищет мастеров. Скажите: «Они ремонтируют крыши»",
+        "prompt": "Сосед ищет мастеров. Скажите: «Каждый день они ремонтируют крыши»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сосед ищет мастеров. Скажите: «Они ремонтируют крыши»",
+        "accessibilityLabel": "Сосед ищет мастеров. Скажите: «Каждый день они ремонтируют крыши»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They repair roofs.",
+          "targetPhrase": "They repair roofs every day.",
           "localizedMeaning": {
-            "ru": "Сосед ищет мастеров. Скажите: «Они ремонтируют крыши»",
-            "uk": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»"
+            "ru": "Сосед ищет мастеров. Скажите: «Каждый день они ремонтируют крыши»",
+            "uk": "Сусід шукає майстрів. Скажіть: «Щодня вони ремонтують дахи»"
           },
           "orderedTokens": [
             "They",
             "repair",
-            "roofs"
+            "roofs",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "repairs"
@@ -76,10 +78,10 @@
             {
               "responseId": "en:lesson-06:session-54:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сосед ищет мастеров. Скажите: «Они ремонтируют крыши»",
+              "testedDimension": "Сосед ищет мастеров. Скажите: «Каждый день они ремонтируют крыши»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `repair` — `They repair roofs.`",
-                "uk": "тут потрібно `repair` — `They repair roofs.`"
+                "ru": "здесь нужно `repair` — `They repair roofs every day.`",
+                "uk": "тут потрібно `repair` — `They repair roofs every day.`"
               }
             }
           ],
@@ -215,7 +217,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о сестре: «Она ремонтирует желоба». Выберите слово",
+        "prompt": "Скажите о сестре: «Каждый день она ремонтирует желоба». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-54:i03:r1",
@@ -232,14 +234,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о сестре: «Она ремонтирует желоба». Выберите слово",
+        "accessibilityLabel": "Скажите о сестре: «Каждый день она ремонтирует желоба». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о сестре: «Она ремонтирует желоба». Выберите слово",
-            "uk": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово"
+            "ru": "Скажите о сестре: «Каждый день она ремонтирует желоба». Выберите слово",
+            "uk": "Скажіть про сестру: «Щодня вона ремонтує жолоби». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ gutters.",
+          "gappedTargetPhrase": "She ___ gutters every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-54:i03:r1",
@@ -254,12 +256,12 @@
               "text": "is repairs"
             }
           ],
-          "testedDimension": "Скажите о сестре: «Она ремонтирует желоба». Выберите слово",
+          "testedDimension": "Скажите о сестре: «Каждый день она ремонтирует желоба». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-54:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о сестре: «Она ремонтирует желоба». Выберите слово",
+              "testedDimension": "Скажите о сестре: «Каждый день она ремонтирует желоба». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `she` нужно `repairs`, с `s`.",
                 "uk": "Після `she` потрібно `repairs`, з `s`."
@@ -268,7 +270,7 @@
             {
               "responseId": "en:lesson-06:session-54:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о сестре: «Она ремонтирует желоба». Выберите слово",
+              "testedDimension": "Скажите о сестре: «Каждый день она ремонтирует желоба». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She repairs`, без `is`.",
                 "uk": "Кажемо `She repairs`, без `is`."
@@ -448,22 +450,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сосед спрашивает о вас с братом. Скажите: «Мы ремонтируем крыши»",
+        "prompt": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ремонтируем крыши»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сосед спрашивает о вас с братом. Скажите: «Мы ремонтируем крыши»",
+        "accessibilityLabel": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ремонтируем крыши»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We repair roofs.",
+          "targetPhrase": "We repair roofs every day.",
           "localizedMeaning": {
-            "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы ремонтируем крыши»",
-            "uk": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»"
+            "ru": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ремонтируем крыши»",
+            "uk": "Сусід питає про вас із братом. Скажіть: «Щодня ми ремонтуємо дахи»"
           },
           "orderedTokens": [
             "We",
             "repair",
-            "roofs"
+            "roofs",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "repairs"
@@ -472,10 +476,10 @@
             {
               "responseId": "en:lesson-06:session-54:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Сосед спрашивает о вас с братом. Скажите: «Мы ремонтируем крыши»",
+              "testedDimension": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ремонтируем крыши»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `repair` — `We repair roofs.`",
-                "uk": "тут потрібно `repair` — `We repair roofs.`"
+                "ru": "здесь нужно `repair` — `We repair roofs every day.`",
+                "uk": "тут потрібно `repair` — `We repair roofs every day.`"
               }
             }
           ],
@@ -568,7 +572,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о мастере: «Он ремонтирует желоба». Выберите слово",
+        "prompt": "Скажите о мастере: «Каждый день он ремонтирует желоба». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-54:i08:r1",
@@ -585,14 +589,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о мастере: «Он ремонтирует желоба». Выберите слово",
+        "accessibilityLabel": "Скажите о мастере: «Каждый день он ремонтирует желоба». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о мастере: «Он ремонтирует желоба». Выберите слово",
-            "uk": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово"
+            "ru": "Скажите о мастере: «Каждый день он ремонтирует желоба». Выберите слово",
+            "uk": "Скажіть про майстра: «Щодня він ремонтує жолоби». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ gutters.",
+          "gappedTargetPhrase": "He ___ gutters every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-54:i08:r1",
@@ -607,12 +611,12 @@
               "text": "is repairs"
             }
           ],
-          "testedDimension": "Скажите о мастере: «Он ремонтирует желоба». Выберите слово",
+          "testedDimension": "Скажите о мастере: «Каждый день он ремонтирует желоба». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-54:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о мастере: «Он ремонтирует желоба». Выберите слово",
+              "testedDimension": "Скажите о мастере: «Каждый день он ремонтирует желоба». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `he` нужно `repairs`, с `s`.",
                 "uk": "Після `he` потрібно `repairs`, з `s`."
@@ -621,7 +625,7 @@
             {
               "responseId": "en:lesson-06:session-54:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о мастере: «Он ремонтирует желоба». Выберите слово",
+              "testedDimension": "Скажите о мастере: «Каждый день он ремонтирует желоба». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He repairs`, без `is`.",
                 "uk": "Кажемо `He repairs`, без `is`."
@@ -911,7 +915,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о соседке: «Она ремонтирует крыши». Выберите слово",
+        "prompt": "Скажите о соседке: «Каждый день она ремонтирует крыши». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-54:i14:r1",
@@ -928,14 +932,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о соседке: «Она ремонтирует крыши». Выберите слово",
+        "accessibilityLabel": "Скажите о соседке: «Каждый день она ремонтирует крыши». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о соседке: «Она ремонтирует крыши». Выберите слово",
-            "uk": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово"
+            "ru": "Скажите о соседке: «Каждый день она ремонтирует крыши». Выберите слово",
+            "uk": "Скажіть про сусідку: «Щодня вона ремонтує дахи». Виберіть слово"
           },
-          "gappedTargetPhrase": "My neighbour ___ roofs.",
+          "gappedTargetPhrase": "My neighbour ___ roofs every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-54:i14:r1",
@@ -950,12 +954,12 @@
               "text": "is repairs"
             }
           ],
-          "testedDimension": "Скажите о соседке: «Она ремонтирует крыши». Выберите слово",
+          "testedDimension": "Скажите о соседке: «Каждый день она ремонтирует крыши». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-54:i14:r2",
               "correct": false,
-              "testedDimension": "Скажите о соседке: «Она ремонтирует крыши». Выберите слово",
+              "testedDimension": "Скажите о соседке: «Каждый день она ремонтирует крыши». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Соседка — она: `My neighbour repairs`.",
                 "uk": "Сусідка — вона: `My neighbour repairs`."
@@ -964,7 +968,7 @@
             {
               "responseId": "en:lesson-06:session-54:i14:r3",
               "correct": false,
-              "testedDimension": "Скажите о соседке: «Она ремонтирует крыши». Выберите слово",
+              "testedDimension": "Скажите о соседке: «Каждый день она ремонтирует крыши». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Нужно `My neighbour repairs`, без `is`.",
                 "uk": "Потрібно `My neighbour repairs`, без `is`."
@@ -1215,22 +1219,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»",
+        "prompt": "Сусід шукає майстрів. Скажіть: «Щодня вони ремонтують дахи»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»",
+        "accessibilityLabel": "Сусід шукає майстрів. Скажіть: «Щодня вони ремонтують дахи»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They repair roofs.",
+          "targetPhrase": "They repair roofs every day.",
           "localizedMeaning": {
-            "ru": "Сосед ищет мастеров. Скажите: «Они ремонтируют крыши»",
-            "uk": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»"
+            "ru": "Сосед ищет мастеров. Скажите: «Каждый день они ремонтируют крыши»",
+            "uk": "Сусід шукає майстрів. Скажіть: «Щодня вони ремонтують дахи»"
           },
           "orderedTokens": [
             "They",
             "repair",
-            "roofs"
+            "roofs",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "repairs"
@@ -1239,10 +1245,10 @@
             {
               "responseId": "en:lesson-06:session-54:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»",
+              "testedDimension": "Сусід шукає майстрів. Скажіть: «Щодня вони ремонтують дахи»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `repair` — `They repair roofs.`",
-                "uk": "тут потрібно `repair` — `They repair roofs.`"
+                "ru": "здесь нужно `repair` — `They repair roofs every day.`",
+                "uk": "тут потрібно `repair` — `They repair roofs every day.`"
               }
             }
           ],
@@ -1378,7 +1384,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
+        "prompt": "Скажіть про сестру: «Щодня вона ремонтує жолоби». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-54:i03:r1",
@@ -1395,14 +1401,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
+        "accessibilityLabel": "Скажіть про сестру: «Щодня вона ремонтує жолоби». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о сестре: «Она ремонтирует желоба». Выберите слово",
-            "uk": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово"
+            "ru": "Скажите о сестре: «Каждый день она ремонтирует желоба». Выберите слово",
+            "uk": "Скажіть про сестру: «Щодня вона ремонтує жолоби». Виберіть слово"
           },
-          "gappedTargetPhrase": "She ___ gutters.",
+          "gappedTargetPhrase": "She ___ gutters every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-54:i03:r1",
@@ -1417,12 +1423,12 @@
               "text": "is repairs"
             }
           ],
-          "testedDimension": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
+          "testedDimension": "Скажіть про сестру: «Щодня вона ремонтує жолоби». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-54:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
+              "testedDimension": "Скажіть про сестру: «Щодня вона ремонтує жолоби». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `she` нужно `repairs`, с `s`.",
                 "uk": "Після `she` потрібно `repairs`, з `s`."
@@ -1431,7 +1437,7 @@
             {
               "responseId": "en:lesson-06:session-54:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово",
+              "testedDimension": "Скажіть про сестру: «Щодня вона ремонтує жолоби». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `She repairs`, без `is`.",
                 "uk": "Кажемо `She repairs`, без `is`."
@@ -1611,22 +1617,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»",
+        "prompt": "Сусід питає про вас із братом. Скажіть: «Щодня ми ремонтуємо дахи»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»",
+        "accessibilityLabel": "Сусід питає про вас із братом. Скажіть: «Щодня ми ремонтуємо дахи»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We repair roofs.",
+          "targetPhrase": "We repair roofs every day.",
           "localizedMeaning": {
-            "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы ремонтируем крыши»",
-            "uk": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»"
+            "ru": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы ремонтируем крыши»",
+            "uk": "Сусід питає про вас із братом. Скажіть: «Щодня ми ремонтуємо дахи»"
           },
           "orderedTokens": [
             "We",
             "repair",
-            "roofs"
+            "roofs",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "repairs"
@@ -1635,10 +1643,10 @@
             {
               "responseId": "en:lesson-06:session-54:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»",
+              "testedDimension": "Сусід питає про вас із братом. Скажіть: «Щодня ми ремонтуємо дахи»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `repair` — `We repair roofs.`",
-                "uk": "тут потрібно `repair` — `We repair roofs.`"
+                "ru": "здесь нужно `repair` — `We repair roofs every day.`",
+                "uk": "тут потрібно `repair` — `We repair roofs every day.`"
               }
             }
           ],
@@ -1731,7 +1739,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
+        "prompt": "Скажіть про майстра: «Щодня він ремонтує жолоби». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-54:i08:r1",
@@ -1748,14 +1756,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
+        "accessibilityLabel": "Скажіть про майстра: «Щодня він ремонтує жолоби». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о мастере: «Он ремонтирует желоба». Выберите слово",
-            "uk": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово"
+            "ru": "Скажите о мастере: «Каждый день он ремонтирует желоба». Выберите слово",
+            "uk": "Скажіть про майстра: «Щодня він ремонтує жолоби». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ gutters.",
+          "gappedTargetPhrase": "He ___ gutters every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-54:i08:r1",
@@ -1770,12 +1778,12 @@
               "text": "is repairs"
             }
           ],
-          "testedDimension": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
+          "testedDimension": "Скажіть про майстра: «Щодня він ремонтує жолоби». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-54:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
+              "testedDimension": "Скажіть про майстра: «Щодня він ремонтує жолоби». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `he` нужно `repairs`, с `s`.",
                 "uk": "Після `he` потрібно `repairs`, з `s`."
@@ -1784,7 +1792,7 @@
             {
               "responseId": "en:lesson-06:session-54:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово",
+              "testedDimension": "Скажіть про майстра: «Щодня він ремонтує жолоби». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He repairs`, без `is`.",
                 "uk": "Кажемо `He repairs`, без `is`."
@@ -2074,7 +2082,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
+        "prompt": "Скажіть про сусідку: «Щодня вона ремонтує дахи». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-54:i14:r1",
@@ -2091,14 +2099,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
+        "accessibilityLabel": "Скажіть про сусідку: «Щодня вона ремонтує дахи». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о соседке: «Она ремонтирует крыши». Выберите слово",
-            "uk": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово"
+            "ru": "Скажите о соседке: «Каждый день она ремонтирует крыши». Выберите слово",
+            "uk": "Скажіть про сусідку: «Щодня вона ремонтує дахи». Виберіть слово"
           },
-          "gappedTargetPhrase": "My neighbour ___ roofs.",
+          "gappedTargetPhrase": "My neighbour ___ roofs every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-54:i14:r1",
@@ -2113,12 +2121,12 @@
               "text": "is repairs"
             }
           ],
-          "testedDimension": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
+          "testedDimension": "Скажіть про сусідку: «Щодня вона ремонтує дахи». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-54:i14:r2",
               "correct": false,
-              "testedDimension": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
+              "testedDimension": "Скажіть про сусідку: «Щодня вона ремонтує дахи». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Соседка — она: `My neighbour repairs`.",
                 "uk": "Сусідка — вона: `My neighbour repairs`."
@@ -2127,7 +2135,7 @@
             {
               "responseId": "en:lesson-06:session-54:i14:r3",
               "correct": false,
-              "testedDimension": "Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово",
+              "testedDimension": "Скажіть про сусідку: «Щодня вона ремонтує дахи». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Нужно `My neighbour repairs`, без `is`.",
                 "uk": "Потрібно `My neighbour repairs`, без `is`."
@@ -2337,7 +2345,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i01",
-      "correctText": "They repair roofs.",
+      "correctText": "They repair roofs every day.",
       "correctResponseId": null
     },
     {
@@ -2372,7 +2380,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-54:i06",
-      "correctText": "We repair roofs.",
+      "correctText": "We repair roofs every day.",
       "correctResponseId": null
     },
     {

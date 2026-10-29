@@ -172,7 +172,7 @@
           },
           {
             "responseId": "en:lesson-16:session-51:i03:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-51:i03:r3",
@@ -196,7 +196,7 @@
             },
             {
               "responseId": "en:lesson-16:session-51:i03:r2",
-              "text": "is going to be"
+              "text": "is going be"
             },
             {
               "responseId": "en:lesson-16:session-51:i03:r3",
@@ -210,8 +210,8 @@
               "correct": false,
               "testedDimension": "Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. Передайте мнение-прогноз через will.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+                "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+                "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
               }
             },
             {
@@ -396,7 +396,7 @@
           },
           {
             "responseId": "en:lesson-16:session-51:i06:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-51:i06:r3",
@@ -420,7 +420,7 @@
             },
             {
               "responseId": "en:lesson-16:session-51:i06:r2",
-              "text": "is going to be"
+              "text": "is going be"
             },
             {
               "responseId": "en:lesson-16:session-51:i06:r3",
@@ -434,8 +434,8 @@
               "correct": false,
               "testedDimension": "Вы предполагаете, что вечером у входа будет достаточно света. Передайте мнение-прогноз через will.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+                "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+                "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
               }
             },
             {
@@ -660,8 +660,8 @@
               "correct": false,
               "testedDimension": "Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. Передайте заранее принятое намерение через going to.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+                "ru": "Am looking — так говорят об уже согласованном плане. Здесь пока только решение: am going to look.",
+                "uk": "Am looking — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to look."
               }
             },
             {
@@ -726,17 +726,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
+        "prompt": "Вы согласовали с владельцем просмотр квартиры на завтра. Это уже решено. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
+        "accessibilityLabel": "Вы согласовали с владельцем просмотр квартиры на завтра. Это уже решено. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "We are viewing a well-kept flat tomorrow.",
           "localizedMeaning": {
-            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
-            "uk": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру»."
+            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Это уже решено. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
+            "uk": "Ви узгодили з власником перегляд квартири на завтра. Це вже вирішено. Скажіть: «Завтра ми оглядаємо доглянуту квартиру»."
           },
           "orderedTokens": [
             "We",
@@ -838,7 +838,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "prompt": "Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено.",
         "responseOptions": [
           {
             "responseId": "en:lesson-16:session-51:i12:r1",
@@ -846,7 +846,7 @@
           },
           {
             "responseId": "en:lesson-16:session-51:i12:r2",
-            "text": "are going to view"
+            "text": "are view"
           },
           {
             "responseId": "en:lesson-16:session-51:i12:r3",
@@ -855,12 +855,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "accessibilityLabel": "Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
-            "uk": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous."
+            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено.",
+            "uk": "Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено."
           },
           "gappedTargetPhrase": "We ___ a well-kept flat tomorrow.",
           "gapOptions": [
@@ -870,28 +870,28 @@
             },
             {
               "responseId": "en:lesson-16:session-51:i12:r2",
-              "text": "are going to view"
+              "text": "are view"
             },
             {
               "responseId": "en:lesson-16:session-51:i12:r3",
               "text": "be"
             }
           ],
-          "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+          "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-16:session-51:i12:r2",
               "correct": false,
-              "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+              "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+                "ru": "После are нужна форма с -ing: are viewing.",
+                "uk": "Після are потрібна форма з -ing: are viewing."
               }
             },
             {
               "responseId": "en:lesson-16:session-51:i12:r3",
               "correct": false,
-              "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
+              "testedDimension": "Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено.",
               "feedbackByLocale": {
                 "ru": "Нужна правильно построенная полная форма: are viewing.",
                 "uk": "Потрібна правильно побудована повна форма: are viewing."
@@ -1060,13 +1060,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+        "prompt": "Скажите, что это уже решено.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-16:session-51:i16:audio"
         ],
-        "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+        "accessibilityLabel": "Скажите, что это уже решено.",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1291,7 +1291,7 @@
           },
           {
             "responseId": "en:lesson-16:session-51:i03:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-51:i03:r3",
@@ -1315,7 +1315,7 @@
             },
             {
               "responseId": "en:lesson-16:session-51:i03:r2",
-              "text": "is going to be"
+              "text": "is going be"
             },
             {
               "responseId": "en:lesson-16:session-51:i03:r3",
@@ -1329,8 +1329,8 @@
               "correct": false,
               "testedDimension": "Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+                "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+                "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
               }
             },
             {
@@ -1515,7 +1515,7 @@
           },
           {
             "responseId": "en:lesson-16:session-51:i06:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-51:i06:r3",
@@ -1539,7 +1539,7 @@
             },
             {
               "responseId": "en:lesson-16:session-51:i06:r2",
-              "text": "is going to be"
+              "text": "is going be"
             },
             {
               "responseId": "en:lesson-16:session-51:i06:r3",
@@ -1553,8 +1553,8 @@
               "correct": false,
               "testedDimension": "Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+                "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+                "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
               }
             },
             {
@@ -1779,8 +1779,8 @@
               "correct": false,
               "testedDimension": "Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+                "ru": "Am looking — так говорят об уже согласованном плане. Здесь пока только решение: am going to look.",
+                "uk": "Am looking — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to look."
               }
             },
             {
@@ -1845,17 +1845,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру».",
+        "prompt": "Ви узгодили з власником перегляд квартири на завтра. Це вже вирішено. Скажіть: «Завтра ми оглядаємо доглянуту квартиру».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру».",
+        "accessibilityLabel": "Ви узгодили з власником перегляд квартири на завтра. Це вже вирішено. Скажіть: «Завтра ми оглядаємо доглянуту квартиру».",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "We are viewing a well-kept flat tomorrow.",
           "localizedMeaning": {
-            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
-            "uk": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру»."
+            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Это уже решено. Скажите: «Завтра мы осматриваем ухоженную квартиру».",
+            "uk": "Ви узгодили з власником перегляд квартири на завтра. Це вже вирішено. Скажіть: «Завтра ми оглядаємо доглянуту квартиру»."
           },
           "orderedTokens": [
             "We",
@@ -1957,7 +1957,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+        "prompt": "Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено.",
         "responseOptions": [
           {
             "responseId": "en:lesson-16:session-51:i12:r1",
@@ -1965,7 +1965,7 @@
           },
           {
             "responseId": "en:lesson-16:session-51:i12:r2",
-            "text": "are going to view"
+            "text": "are view"
           },
           {
             "responseId": "en:lesson-16:session-51:i12:r3",
@@ -1974,12 +1974,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+        "accessibilityLabel": "Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.",
-            "uk": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous."
+            "ru": "Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено.",
+            "uk": "Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено."
           },
           "gappedTargetPhrase": "We ___ a well-kept flat tomorrow.",
           "gapOptions": [
@@ -1989,28 +1989,28 @@
             },
             {
               "responseId": "en:lesson-16:session-51:i12:r2",
-              "text": "are going to view"
+              "text": "are view"
             },
             {
               "responseId": "en:lesson-16:session-51:i12:r3",
               "text": "be"
             }
           ],
-          "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+          "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-16:session-51:i12:r2",
               "correct": false,
-              "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+              "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено.",
               "feedbackByLocale": {
-                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+                "ru": "После are нужна форма с -ing: are viewing.",
+                "uk": "Після are потрібна форма з -ing: are viewing."
               }
             },
             {
               "responseId": "en:lesson-16:session-51:i12:r3",
               "correct": false,
-              "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.",
+              "testedDimension": "Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено.",
               "feedbackByLocale": {
                 "ru": "Нужна правильно построенная полная форма: are viewing.",
                 "uk": "Потрібна правильно побудована повна форма: are viewing."
@@ -2179,13 +2179,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+        "prompt": "Скажіть, що це вже вирішено.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-16:session-51:i16:audio"
         ],
-        "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+        "accessibilityLabel": "Скажіть, що це вже вирішено.",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {

@@ -52,23 +52,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
+        "prompt": "Подруга зовёт вас с братом в кафе. Скажите: «Каждый день мы занимаемся дома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
+        "accessibilityLabel": "Подруга зовёт вас с братом в кафе. Скажите: «Каждый день мы занимаемся дома»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We study at home.",
+          "targetPhrase": "We study at home every day.",
           "localizedMeaning": {
-            "ru": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
-            "uk": "Подруга кличе вас із братом до кафе. Скажіть: «Ми займаємося вдома»"
+            "ru": "Подруга зовёт вас с братом в кафе. Скажите: «Каждый день мы занимаемся дома»",
+            "uk": "Подруга кличе вас із братом до кафе. Скажіть: «Щодня ми займаємося вдома»"
           },
           "orderedTokens": [
             "We",
             "study",
             "at",
-            "home"
+            "home",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "studies"
@@ -77,10 +79,10 @@
             {
               "responseId": "en:lesson-06:session-33:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
+              "testedDimension": "Подруга зовёт вас с братом в кафе. Скажите: «Каждый день мы занимаемся дома»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `study` — `We study at home.`",
-                "uk": "тут потрібно `study` — `We study at home.`"
+                "ru": "здесь нужно `study` — `We study at home every day.`",
+                "uk": "тут потрібно `study` — `We study at home every day.`"
               }
             }
           ],
@@ -216,7 +218,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
+        "prompt": "Скажите о брате: «Каждый день мой брат занимается в библиотеке». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-33:i03:r1",
@@ -233,14 +235,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
+        "accessibilityLabel": "Скажите о брате: «Каждый день мой брат занимается в библиотеке». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
-            "uk": "Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день мой брат занимается в библиотеке». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня мій брат займається в бібліотеці». Виберіть слово"
           },
-          "gappedTargetPhrase": "My brother ___ in the library.",
+          "gappedTargetPhrase": "My brother ___ in the library every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-33:i03:r1",
@@ -255,12 +257,12 @@
               "text": "studys"
             }
           ],
-          "testedDimension": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
+          "testedDimension": "Скажите о брате: «Каждый день мой брат занимается в библиотеке». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-33:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день мой брат занимается в библиотеке». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Брат — это `he`, поэтому нужно `studies`, с `ies`.",
                 "uk": "Брат — це `he`, тому потрібно `studies`, з `ies`."
@@ -269,7 +271,7 @@
             {
               "responseId": "en:lesson-06:session-33:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день мой брат занимается в библиотеке». Выберите слово",
               "feedbackByLocale": {
                 "ru": "В `study` меняем `y` на `ies`: `studies`.",
                 "uk": "У `study` змінюємо `y` на `ies`: `studies`."
@@ -529,7 +531,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я читаю сочинение». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я читаю сочинение». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-33:i08:r1",
@@ -546,14 +548,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я читаю сочинение». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я читаю сочинение». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я читаю сочинение». Выберите слово",
-            "uk": "Скажіть про себе: «Я читаю твір». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я читаю сочинение». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я читаю твір». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ the essay.",
+          "gappedTargetPhrase": "I ___ the essay every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-33:i08:r1",
@@ -568,12 +570,12 @@
               "text": "am read"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я читаю сочинение». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я читаю сочинение». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-33:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я читаю сочинение». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я читаю сочинение». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `read`, без `s`.",
                 "uk": "Після `I` потрібно `read`, без `s`."
@@ -582,7 +584,7 @@
             {
               "responseId": "en:lesson-06:session-33:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я читаю сочинение». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я читаю сочинение». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I read`, без `am`.",
                 "uk": "Кажемо `I read`, без `am`."
@@ -1220,23 +1222,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга кличе вас із братом до кафе. Скажіть: «Ми займаємося вдома»",
+        "prompt": "Подруга кличе вас із братом до кафе. Скажіть: «Щодня ми займаємося вдома»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга кличе вас із братом до кафе. Скажіть: «Ми займаємося вдома»",
+        "accessibilityLabel": "Подруга кличе вас із братом до кафе. Скажіть: «Щодня ми займаємося вдома»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We study at home.",
+          "targetPhrase": "We study at home every day.",
           "localizedMeaning": {
-            "ru": "Подруга зовёт вас с братом в кафе. Скажите: «Мы занимаемся дома»",
-            "uk": "Подруга кличе вас із братом до кафе. Скажіть: «Ми займаємося вдома»"
+            "ru": "Подруга зовёт вас с братом в кафе. Скажите: «Каждый день мы занимаемся дома»",
+            "uk": "Подруга кличе вас із братом до кафе. Скажіть: «Щодня ми займаємося вдома»"
           },
           "orderedTokens": [
             "We",
             "study",
             "at",
-            "home"
+            "home",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "studies"
@@ -1245,10 +1249,10 @@
             {
               "responseId": "en:lesson-06:session-33:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Подруга кличе вас із братом до кафе. Скажіть: «Ми займаємося вдома»",
+              "testedDimension": "Подруга кличе вас із братом до кафе. Скажіть: «Щодня ми займаємося вдома»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `study` — `We study at home.`",
-                "uk": "тут потрібно `study` — `We study at home.`"
+                "ru": "здесь нужно `study` — `We study at home every day.`",
+                "uk": "тут потрібно `study` — `We study at home every day.`"
               }
             }
           ],
@@ -1384,7 +1388,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово",
+        "prompt": "Скажіть про брата: «Щодня мій брат займається в бібліотеці». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-33:i03:r1",
@@ -1401,14 +1405,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово",
+        "accessibilityLabel": "Скажіть про брата: «Щодня мій брат займається в бібліотеці». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Мой брат занимается в библиотеке». Выберите слово",
-            "uk": "Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день мой брат занимается в библиотеке». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня мій брат займається в бібліотеці». Виберіть слово"
           },
-          "gappedTargetPhrase": "My brother ___ in the library.",
+          "gappedTargetPhrase": "My brother ___ in the library every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-33:i03:r1",
@@ -1423,12 +1427,12 @@
               "text": "studys"
             }
           ],
-          "testedDimension": "Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово",
+          "testedDimension": "Скажіть про брата: «Щодня мій брат займається в бібліотеці». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-33:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня мій брат займається в бібліотеці». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Брат — это `he`, поэтому нужно `studies`, с `ies`.",
                 "uk": "Брат — це `he`, тому потрібно `studies`, з `ies`."
@@ -1437,7 +1441,7 @@
             {
               "responseId": "en:lesson-06:session-33:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня мій брат займається в бібліотеці». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "В `study` меняем `y` на `ies`: `studies`.",
                 "uk": "У `study` змінюємо `y` на `ies`: `studies`."
@@ -1697,7 +1701,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я читаю твір». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я читаю твір». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-33:i08:r1",
@@ -1714,14 +1718,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я читаю твір». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я читаю твір». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я читаю сочинение». Выберите слово",
-            "uk": "Скажіть про себе: «Я читаю твір». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я читаю сочинение». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я читаю твір». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ the essay.",
+          "gappedTargetPhrase": "I ___ the essay every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-33:i08:r1",
@@ -1736,12 +1740,12 @@
               "text": "am read"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я читаю твір». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я читаю твір». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-33:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я читаю твір». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я читаю твір». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `read`, без `s`.",
                 "uk": "Після `I` потрібно `read`, без `s`."
@@ -1750,7 +1754,7 @@
             {
               "responseId": "en:lesson-06:session-33:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я читаю твір». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я читаю твір». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I read`, без `am`.",
                 "uk": "Кажемо `I read`, без `am`."
@@ -2347,7 +2351,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-33:i01",
-      "correctText": "We study at home.",
+      "correctText": "We study at home every day.",
       "correctResponseId": null
     },
     {

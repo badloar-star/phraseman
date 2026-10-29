@@ -52,23 +52,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
+        "prompt": "Сестра села рядом с горой полотенец. Скажите: «Каждую неделю мы складываем полотенца»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
+        "accessibilityLabel": "Сестра села рядом с горой полотенец. Скажите: «Каждую неделю мы складываем полотенца»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We fold the towels.",
+          "targetPhrase": "We fold the towels every week.",
           "localizedMeaning": {
-            "ru": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
-            "uk": "Сестра сіла поруч із горою рушників. Скажіть: «Ми складаємо рушники»"
+            "ru": "Сестра села рядом с горой полотенец. Скажите: «Каждую неделю мы складываем полотенца»",
+            "uk": "Сестра сіла поруч із горою рушників. Скажіть: «Щотижня ми складаємо рушники»"
           },
           "orderedTokens": [
             "We",
             "fold",
             "the",
-            "towels"
+            "towels",
+            "every",
+            "week"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -77,10 +79,10 @@
             {
               "responseId": "en:lesson-06:session-08:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
+              "testedDimension": "Сестра села рядом с горой полотенец. Скажите: «Каждую неделю мы складываем полотенца»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `fold` — `We fold the towels.`",
-                "uk": "тут потрібно `fold` — `We fold the towels.`"
+                "ru": "здесь нужно `fold` — `We fold the towels every week.`",
+                "uk": "тут потрібно `fold` — `We fold the towels every week.`"
               }
             }
           ],
@@ -259,7 +261,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
+        "prompt": "Двое работников прачечной стоят над горой носков. Скажите, что каждую неделю они их сортируют. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-08:i03:r1",
@@ -276,14 +278,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
+        "accessibilityLabel": "Двое работников прачечной стоят над горой носков. Скажите, что каждую неделю они их сортируют. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
-            "uk": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово"
+            "ru": "Двое работников прачечной стоят над горой носков. Скажите, что каждую неделю они их сортируют. Выберите слово",
+            "uk": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що щотижня вони їх сортують. Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ the socks.",
+          "gappedTargetPhrase": "They ___ the socks every week.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-08:i03:r1",
@@ -298,12 +300,12 @@
               "text": "is sort"
             }
           ],
-          "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
+          "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что каждую неделю они их сортируют. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-08:i03:r2",
               "correct": false,
-              "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
+              "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что каждую неделю они их сортируют. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `They` сразу ставим `sort`, без `are`.",
                 "uk": "Після `They` одразу ставимо `sort`, без `are`."
@@ -312,7 +314,7 @@
             {
               "responseId": "en:lesson-06:session-08:i03:r3",
               "correct": false,
-              "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
+              "testedDimension": "Двое работников прачечной стоят над горой носков. Скажите, что каждую неделю они их сортируют. Выберите слово",
               "feedbackByLocale": {
                 "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They sort`.",
                 "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They sort`."
@@ -572,7 +574,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
+        "prompt": "Каждую неделю сосед смотрит, как вы развешиваете рубашки. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-08:i08:r1",
@@ -589,14 +591,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
+        "accessibilityLabel": "Каждую неделю сосед смотрит, как вы развешиваете рубашки. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
-            "uk": "Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово"
+            "ru": "Каждую неделю сосед смотрит, как вы развешиваете рубашки. Выберите слово",
+            "uk": "Щотижня сусід дивиться, як ви розвішуєте сорочки. Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ the shirts on the line.",
+          "gappedTargetPhrase": "I ___ the shirts on the line every week.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-08:i08:r1",
@@ -611,12 +613,12 @@
               "text": "are hang"
             }
           ],
-          "testedDimension": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
+          "testedDimension": "Каждую неделю сосед смотрит, как вы развешиваете рубашки. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-08:i08:r2",
               "correct": false,
-              "testedDimension": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
+              "testedDimension": "Каждую неделю сосед смотрит, как вы развешиваете рубашки. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` сразу ставим `hang`, без `am`.",
                 "uk": "Після `I` одразу ставимо `hang`, без `am`."
@@ -625,7 +627,7 @@
             {
               "responseId": "en:lesson-06:session-08:i08:r3",
               "correct": false,
-              "testedDimension": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
+              "testedDimension": "Каждую неделю сосед смотрит, как вы развешиваете рубашки. Выберите слово",
               "feedbackByLocale": {
                 "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I hang`.",
                 "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I hang`."
@@ -842,17 +844,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
+        "prompt": "Две подруги разбирают бельё. Расскажите соседу: «Каждую неделю они несут полотенца и они складывают простыни»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
+        "accessibilityLabel": "Две подруги разбирают бельё. Расскажите соседу: «Каждую неделю они несут полотенца и они складывают простыни»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They carry the towels and they fold the sheets.",
+          "targetPhrase": "They carry the towels and they fold the sheets every week.",
           "localizedMeaning": {
-            "ru": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
-            "uk": "Дві подруги розбирають білизну. Розкажіть сусідові: «Вони несуть рушники і вони складають простирадла»"
+            "ru": "Две подруги разбирают бельё. Расскажите соседу: «Каждую неделю они несут полотенца и они складывают простыни»",
+            "uk": "Дві подруги розбирають білизну. Розкажіть сусідові: «Щотижня вони несуть рушники і вони складають простирадла»"
           },
           "orderedTokens": [
             "They",
@@ -863,7 +865,9 @@
             "they",
             "fold",
             "the",
-            "sheets"
+            "sheets",
+            "every",
+            "week"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -872,10 +876,10 @@
             {
               "responseId": "en:lesson-06:session-08:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
+              "testedDimension": "Две подруги разбирают бельё. Расскажите соседу: «Каждую неделю они несут полотенца и они складывают простыни»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `carry` — `They carry the towels and they fold the sheets.`",
-                "uk": "тут потрібно `carry` — `They carry the towels and they fold the sheets.`"
+                "ru": "здесь нужно `carry` — `They carry the towels and they fold the sheets every week.`",
+                "uk": "тут потрібно `carry` — `They carry the towels and they fold the sheets every week.`"
               }
             }
           ],
@@ -925,7 +929,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
+        "prompt": "Каждую неделю вы с сестрой стоите над кучей чистого белья. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-08:i14:r1",
@@ -942,14 +946,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
+        "accessibilityLabel": "Каждую неделю вы с сестрой стоите над кучей чистого белья. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
-            "uk": "Ви із сестрою стоїте над купою чистої білизни. Виберіть слово"
+            "ru": "Каждую неделю вы с сестрой стоите над кучей чистого белья. Выберите слово",
+            "uk": "Щотижня ви із сестрою стоїте над купою чистої білизни. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ the towels.",
+          "gappedTargetPhrase": "We ___ the towels every week.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-08:i14:r1",
@@ -964,12 +968,12 @@
               "text": "am fold"
             }
           ],
-          "testedDimension": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
+          "testedDimension": "Каждую неделю вы с сестрой стоите над кучей чистого белья. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-08:i14:r2",
               "correct": false,
-              "testedDimension": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
+              "testedDimension": "Каждую неделю вы с сестрой стоите над кучей чистого белья. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `fold`, без `are`.",
                 "uk": "Після `We` одразу ставимо `fold`, без `are`."
@@ -978,7 +982,7 @@
             {
               "responseId": "en:lesson-06:session-08:i14:r3",
               "correct": false,
-              "testedDimension": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
+              "testedDimension": "Каждую неделю вы с сестрой стоите над кучей чистого белья. Выберите слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We fold`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We fold`."
@@ -1229,23 +1233,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сестра сіла поруч із горою рушників. Скажіть: «Ми складаємо рушники»",
+        "prompt": "Сестра сіла поруч із горою рушників. Скажіть: «Щотижня ми складаємо рушники»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сестра сіла поруч із горою рушників. Скажіть: «Ми складаємо рушники»",
+        "accessibilityLabel": "Сестра сіла поруч із горою рушників. Скажіть: «Щотижня ми складаємо рушники»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We fold the towels.",
+          "targetPhrase": "We fold the towels every week.",
           "localizedMeaning": {
-            "ru": "Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»",
-            "uk": "Сестра сіла поруч із горою рушників. Скажіть: «Ми складаємо рушники»"
+            "ru": "Сестра села рядом с горой полотенец. Скажите: «Каждую неделю мы складываем полотенца»",
+            "uk": "Сестра сіла поруч із горою рушників. Скажіть: «Щотижня ми складаємо рушники»"
           },
           "orderedTokens": [
             "We",
             "fold",
             "the",
-            "towels"
+            "towels",
+            "every",
+            "week"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -1254,10 +1260,10 @@
             {
               "responseId": "en:lesson-06:session-08:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сестра сіла поруч із горою рушників. Скажіть: «Ми складаємо рушники»",
+              "testedDimension": "Сестра сіла поруч із горою рушників. Скажіть: «Щотижня ми складаємо рушники»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `fold` — `We fold the towels.`",
-                "uk": "тут потрібно `fold` — `We fold the towels.`"
+                "ru": "здесь нужно `fold` — `We fold the towels every week.`",
+                "uk": "тут потрібно `fold` — `We fold the towels every week.`"
               }
             }
           ],
@@ -1436,7 +1442,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово",
+        "prompt": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що щотижня вони їх сортують. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-08:i03:r1",
@@ -1453,14 +1459,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово",
+        "accessibilityLabel": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що щотижня вони їх сортують. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово",
-            "uk": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово"
+            "ru": "Двое работников прачечной стоят над горой носков. Скажите, что каждую неделю они их сортируют. Выберите слово",
+            "uk": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що щотижня вони їх сортують. Виберіть слово"
           },
-          "gappedTargetPhrase": "They ___ the socks.",
+          "gappedTargetPhrase": "They ___ the socks every week.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-08:i03:r1",
@@ -1475,12 +1481,12 @@
               "text": "is sort"
             }
           ],
-          "testedDimension": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово",
+          "testedDimension": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що щотижня вони їх сортують. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-08:i03:r2",
               "correct": false,
-              "testedDimension": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово",
+              "testedDimension": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що щотижня вони їх сортують. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `They` сразу ставим `sort`, без `are`.",
                 "uk": "Після `They` одразу ставимо `sort`, без `are`."
@@ -1489,7 +1495,7 @@
             {
               "responseId": "en:lesson-06:session-08:i03:r3",
               "correct": false,
-              "testedDimension": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово",
+              "testedDimension": "Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що щотижня вони їх сортують. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They sort`.",
                 "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They sort`."
@@ -1749,7 +1755,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
+        "prompt": "Щотижня сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-08:i08:r1",
@@ -1766,14 +1772,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
+        "accessibilityLabel": "Щотижня сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Сосед смотрит, как вы развешиваете рубашки. Выберите слово",
-            "uk": "Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово"
+            "ru": "Каждую неделю сосед смотрит, как вы развешиваете рубашки. Выберите слово",
+            "uk": "Щотижня сусід дивиться, як ви розвішуєте сорочки. Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ the shirts on the line.",
+          "gappedTargetPhrase": "I ___ the shirts on the line every week.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-08:i08:r1",
@@ -1788,12 +1794,12 @@
               "text": "are hang"
             }
           ],
-          "testedDimension": "Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
+          "testedDimension": "Щотижня сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-08:i08:r2",
               "correct": false,
-              "testedDimension": "Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
+              "testedDimension": "Щотижня сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` сразу ставим `hang`, без `am`.",
                 "uk": "Після `I` одразу ставимо `hang`, без `am`."
@@ -1802,7 +1808,7 @@
             {
               "responseId": "en:lesson-06:session-08:i08:r3",
               "correct": false,
-              "testedDimension": "Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
+              "testedDimension": "Щотижня сусід дивиться, як ви розвішуєте сорочки. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I hang`.",
                 "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I hang`."
@@ -2019,17 +2025,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Дві подруги розбирають білизну. Розкажіть сусідові: «Вони несуть рушники і вони складають простирадла»",
+        "prompt": "Дві подруги розбирають білизну. Розкажіть сусідові: «Щотижня вони несуть рушники і вони складають простирадла»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дві подруги розбирають білизну. Розкажіть сусідові: «Вони несуть рушники і вони складають простирадла»",
+        "accessibilityLabel": "Дві подруги розбирають білизну. Розкажіть сусідові: «Щотижня вони несуть рушники і вони складають простирадла»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They carry the towels and they fold the sheets.",
+          "targetPhrase": "They carry the towels and they fold the sheets every week.",
           "localizedMeaning": {
-            "ru": "Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»",
-            "uk": "Дві подруги розбирають білизну. Розкажіть сусідові: «Вони несуть рушники і вони складають простирадла»"
+            "ru": "Две подруги разбирают бельё. Расскажите соседу: «Каждую неделю они несут полотенца и они складывают простыни»",
+            "uk": "Дві подруги розбирають білизну. Розкажіть сусідові: «Щотижня вони несуть рушники і вони складають простирадла»"
           },
           "orderedTokens": [
             "They",
@@ -2040,7 +2046,9 @@
             "they",
             "fold",
             "the",
-            "sheets"
+            "sheets",
+            "every",
+            "week"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -2049,10 +2057,10 @@
             {
               "responseId": "en:lesson-06:session-08:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Дві подруги розбирають білизну. Розкажіть сусідові: «Вони несуть рушники і вони складають простирадла»",
+              "testedDimension": "Дві подруги розбирають білизну. Розкажіть сусідові: «Щотижня вони несуть рушники і вони складають простирадла»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `carry` — `They carry the towels and they fold the sheets.`",
-                "uk": "тут потрібно `carry` — `They carry the towels and they fold the sheets.`"
+                "ru": "здесь нужно `carry` — `They carry the towels and they fold the sheets every week.`",
+                "uk": "тут потрібно `carry` — `They carry the towels and they fold the sheets every week.`"
               }
             }
           ],
@@ -2102,7 +2110,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
+        "prompt": "Щотижня ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-08:i14:r1",
@@ -2119,14 +2127,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
+        "accessibilityLabel": "Щотижня ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы с сестрой стоите над кучей чистого белья. Выберите слово",
-            "uk": "Ви із сестрою стоїте над купою чистої білизни. Виберіть слово"
+            "ru": "Каждую неделю вы с сестрой стоите над кучей чистого белья. Выберите слово",
+            "uk": "Щотижня ви із сестрою стоїте над купою чистої білизни. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ the towels.",
+          "gappedTargetPhrase": "We ___ the towels every week.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-08:i14:r1",
@@ -2141,12 +2149,12 @@
               "text": "am fold"
             }
           ],
-          "testedDimension": "Ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
+          "testedDimension": "Щотижня ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-08:i14:r2",
               "correct": false,
-              "testedDimension": "Ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
+              "testedDimension": "Щотижня ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `fold`, без `are`.",
                 "uk": "Після `We` одразу ставимо `fold`, без `are`."
@@ -2155,7 +2163,7 @@
             {
               "responseId": "en:lesson-06:session-08:i14:r3",
               "correct": false,
-              "testedDimension": "Ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
+              "testedDimension": "Щотижня ви із сестрою стоїте над купою чистої білизни. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We fold`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We fold`."
@@ -2365,7 +2373,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i01",
-      "correctText": "We fold the towels.",
+      "correctText": "We fold the towels every week.",
       "correctResponseId": null
     },
     {
@@ -2435,7 +2443,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-08:i12",
-      "correctText": "They carry the towels and they fold the sheets.",
+      "correctText": "They carry the towels and they fold the sheets every week.",
       "correctResponseId": null
     },
     {

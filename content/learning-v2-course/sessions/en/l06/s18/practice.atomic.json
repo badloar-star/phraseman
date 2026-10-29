@@ -52,24 +52,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
+        "prompt": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он улыбается малышу»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
+        "accessibilityLabel": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он улыбается малышу»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He smiles at the baby.",
+          "targetPhrase": "He smiles at the baby every day.",
           "localizedMeaning": {
-            "ru": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
-            "uk": "Подруга питає, що робить ваш брат. Скажіть: «Він усміхається малюкові»"
+            "ru": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он улыбается малышу»",
+            "uk": "Подруга питає, що робить ваш брат. Скажіть: «Щодня він усміхається малюкові»"
           },
           "orderedTokens": [
             "He",
             "smiles",
             "at",
             "the",
-            "baby"
+            "baby",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "smile"
@@ -78,10 +80,10 @@
             {
               "responseId": "en:lesson-06:session-18:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
+              "testedDimension": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он улыбается малышу»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `smiles` — `He smiles at the baby.`",
-                "uk": "тут потрібно `smiles` — `He smiles at the baby.`"
+                "ru": "здесь нужно `smiles` — `He smiles at the baby every day.`",
+                "uk": "тут потрібно `smiles` — `He smiles at the baby every day.`"
               }
             }
           ],
@@ -493,22 +495,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
+        "prompt": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Каждый день она практикует английский»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
+        "accessibilityLabel": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Каждый день она практикует английский»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She practices English.",
+          "targetPhrase": "She practices English every day.",
           "localizedMeaning": {
-            "ru": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
-            "uk": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Вона практикує англійську»"
+            "ru": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Каждый день она практикует английский»",
+            "uk": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Щодня вона практикує англійську»"
           },
           "orderedTokens": [
             "She",
             "practices",
-            "English"
+            "English",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "practice"
@@ -517,10 +521,10 @@
             {
               "responseId": "en:lesson-06:session-18:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
+              "testedDimension": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Каждый день она практикует английский»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `practices` — `She practices English.`",
-                "uk": "тут потрібно `practices` — `She practices English.`"
+                "ru": "здесь нужно `practices` — `She practices English every day.`",
+                "uk": "тут потрібно `practices` — `She practices English every day.`"
               }
             }
           ],
@@ -570,7 +574,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о брате: «Он улыбается малышу». Выберите слово",
+        "prompt": "Скажите о брате: «Каждый день он улыбается малышу». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-18:i08:r1",
@@ -587,14 +591,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о брате: «Он улыбается малышу». Выберите слово",
+        "accessibilityLabel": "Скажите о брате: «Каждый день он улыбается малышу». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он улыбается малышу». Выберите слово",
-            "uk": "Скажіть про брата: «Він усміхається малюкові». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день он улыбается малышу». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня він усміхається малюкові». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ at the baby.",
+          "gappedTargetPhrase": "He ___ at the baby every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-18:i08:r1",
@@ -609,12 +613,12 @@
               "text": "is smiles"
             }
           ],
-          "testedDimension": "Скажите о брате: «Он улыбается малышу». Выберите слово",
+          "testedDimension": "Скажите о брате: «Каждый день он улыбается малышу». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-18:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он улыбается малышу». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день он улыбается малышу». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `he` — `smiles`, с `s`.",
                 "uk": "Після `he` — `smiles`, з `s`."
@@ -623,7 +627,7 @@
             {
               "responseId": "en:lesson-06:session-18:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он улыбается малышу». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день он улыбается малышу». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He smiles`, без `is`.",
                 "uk": "Кажемо `He smiles`, без `is`."
@@ -915,7 +919,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о брате: «Он кашляет дома». Выберите слово",
+        "prompt": "Скажите о брате: «Каждый день он кашляет дома». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-18:i14:r1",
@@ -932,14 +936,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о брате: «Он кашляет дома». Выберите слово",
+        "accessibilityLabel": "Скажите о брате: «Каждый день он кашляет дома». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он кашляет дома». Выберите слово",
-            "uk": "Скажіть про брата: «Він кашляє вдома». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день он кашляет дома». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня він кашляє вдома». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ at home.",
+          "gappedTargetPhrase": "He ___ at home every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-18:i14:r1",
@@ -954,12 +958,12 @@
               "text": "is coughs"
             }
           ],
-          "testedDimension": "Скажите о брате: «Он кашляет дома». Выберите слово",
+          "testedDimension": "Скажите о брате: «Каждый день он кашляет дома». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-18:i14:r2",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он кашляет дома». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день он кашляет дома». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `he` — `coughs`, с `s`.",
                 "uk": "Після `he` — `coughs`, з `s`."
@@ -968,7 +972,7 @@
             {
               "responseId": "en:lesson-06:session-18:i14:r3",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Он кашляет дома». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день он кашляет дома». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He coughs`, без `is`.",
                 "uk": "Кажемо `He coughs`, без `is`."
@@ -1219,24 +1223,26 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга питає, що робить ваш брат. Скажіть: «Він усміхається малюкові»",
+        "prompt": "Подруга питає, що робить ваш брат. Скажіть: «Щодня він усміхається малюкові»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга питає, що робить ваш брат. Скажіть: «Він усміхається малюкові»",
+        "accessibilityLabel": "Подруга питає, що робить ваш брат. Скажіть: «Щодня він усміхається малюкові»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He smiles at the baby.",
+          "targetPhrase": "He smiles at the baby every day.",
           "localizedMeaning": {
-            "ru": "Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»",
-            "uk": "Подруга питає, що робить ваш брат. Скажіть: «Він усміхається малюкові»"
+            "ru": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он улыбается малышу»",
+            "uk": "Подруга питає, що робить ваш брат. Скажіть: «Щодня він усміхається малюкові»"
           },
           "orderedTokens": [
             "He",
             "smiles",
             "at",
             "the",
-            "baby"
+            "baby",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "smile"
@@ -1245,10 +1251,10 @@
             {
               "responseId": "en:lesson-06:session-18:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Подруга питає, що робить ваш брат. Скажіть: «Він усміхається малюкові»",
+              "testedDimension": "Подруга питає, що робить ваш брат. Скажіть: «Щодня він усміхається малюкові»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `smiles` — `He smiles at the baby.`",
-                "uk": "тут потрібно `smiles` — `He smiles at the baby.`"
+                "ru": "здесь нужно `smiles` — `He smiles at the baby every day.`",
+                "uk": "тут потрібно `smiles` — `He smiles at the baby every day.`"
               }
             }
           ],
@@ -1660,22 +1666,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Вона практикує англійську»",
+        "prompt": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Щодня вона практикує англійську»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Вона практикує англійську»",
+        "accessibilityLabel": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Щодня вона практикує англійську»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She practices English.",
+          "targetPhrase": "She practices English every day.",
           "localizedMeaning": {
-            "ru": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»",
-            "uk": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Вона практикує англійську»"
+            "ru": "Учительница спрашивает, что делает ваша сестра дома. Скажите: «Каждый день она практикует английский»",
+            "uk": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Щодня вона практикує англійську»"
           },
           "orderedTokens": [
             "She",
             "practices",
-            "English"
+            "English",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "practice"
@@ -1684,10 +1692,10 @@
             {
               "responseId": "en:lesson-06:session-18:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Вона практикує англійську»",
+              "testedDimension": "Вчителька питає, що робить ваша сестра вдома. Скажіть: «Щодня вона практикує англійську»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `practices` — `She practices English.`",
-                "uk": "тут потрібно `practices` — `She practices English.`"
+                "ru": "здесь нужно `practices` — `She practices English every day.`",
+                "uk": "тут потрібно `practices` — `She practices English every day.`"
               }
             }
           ],
@@ -1737,7 +1745,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про брата: «Він усміхається малюкові». Виберіть слово",
+        "prompt": "Скажіть про брата: «Щодня він усміхається малюкові». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-18:i08:r1",
@@ -1754,14 +1762,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про брата: «Він усміхається малюкові». Виберіть слово",
+        "accessibilityLabel": "Скажіть про брата: «Щодня він усміхається малюкові». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он улыбается малышу». Выберите слово",
-            "uk": "Скажіть про брата: «Він усміхається малюкові». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день он улыбается малышу». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня він усміхається малюкові». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ at the baby.",
+          "gappedTargetPhrase": "He ___ at the baby every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-18:i08:r1",
@@ -1776,12 +1784,12 @@
               "text": "is smiles"
             }
           ],
-          "testedDimension": "Скажіть про брата: «Він усміхається малюкові». Виберіть слово",
+          "testedDimension": "Скажіть про брата: «Щодня він усміхається малюкові». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-18:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він усміхається малюкові». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня він усміхається малюкові». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `he` — `smiles`, с `s`.",
                 "uk": "Після `he` — `smiles`, з `s`."
@@ -1790,7 +1798,7 @@
             {
               "responseId": "en:lesson-06:session-18:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він усміхається малюкові». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня він усміхається малюкові». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He smiles`, без `is`.",
                 "uk": "Кажемо `He smiles`, без `is`."
@@ -2082,7 +2090,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про брата: «Він кашляє вдома». Виберіть слово",
+        "prompt": "Скажіть про брата: «Щодня він кашляє вдома». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-18:i14:r1",
@@ -2099,14 +2107,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про брата: «Він кашляє вдома». Виберіть слово",
+        "accessibilityLabel": "Скажіть про брата: «Щодня він кашляє вдома». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Он кашляет дома». Выберите слово",
-            "uk": "Скажіть про брата: «Він кашляє вдома». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день он кашляет дома». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня він кашляє вдома». Виберіть слово"
           },
-          "gappedTargetPhrase": "He ___ at home.",
+          "gappedTargetPhrase": "He ___ at home every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-18:i14:r1",
@@ -2121,12 +2129,12 @@
               "text": "is coughs"
             }
           ],
-          "testedDimension": "Скажіть про брата: «Він кашляє вдома». Виберіть слово",
+          "testedDimension": "Скажіть про брата: «Щодня він кашляє вдома». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-18:i14:r2",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він кашляє вдома». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня він кашляє вдома». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `he` — `coughs`, с `s`.",
                 "uk": "Після `he` — `coughs`, з `s`."
@@ -2135,7 +2143,7 @@
             {
               "responseId": "en:lesson-06:session-18:i14:r3",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Він кашляє вдома». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня він кашляє вдома». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `He coughs`, без `is`.",
                 "uk": "Кажемо `He coughs`, без `is`."
@@ -2345,7 +2353,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i01",
-      "correctText": "He smiles at the baby.",
+      "correctText": "He smiles at the baby every day.",
       "correctResponseId": null
     },
     {
@@ -2385,7 +2393,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-18:i06",
-      "correctText": "She practices English.",
+      "correctText": "She practices English every day.",
       "correctResponseId": null
     },
     {

@@ -52,22 +52,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга спрашивает о вас с братом. Скажите: «Мы пьём чай»",
+        "prompt": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы пьём чай»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга спрашивает о вас с братом. Скажите: «Мы пьём чай»",
+        "accessibilityLabel": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы пьём чай»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We drink tea.",
+          "targetPhrase": "We drink tea every day.",
           "localizedMeaning": {
-            "ru": "Подруга спрашивает о вас с братом. Скажите: «Мы пьём чай»",
-            "uk": "Подруга питає про вас із братом. Скажіть: «Ми п’ємо чай»"
+            "ru": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы пьём чай»",
+            "uk": "Подруга питає про вас із братом. Скажіть: «Щодня ми п’ємо чай»"
           },
           "orderedTokens": [
             "We",
             "drink",
-            "tea"
+            "tea",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "drinks"
@@ -76,10 +78,10 @@
             {
               "responseId": "en:lesson-06:session-34:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Подруга спрашивает о вас с братом. Скажите: «Мы пьём чай»",
+              "testedDimension": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы пьём чай»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `drink` — `We drink tea.`",
-                "uk": "тут потрібно `drink` — `We drink tea.`"
+                "ru": "здесь нужно `drink` — `We drink tea every day.`",
+                "uk": "тут потрібно `drink` — `We drink tea every day.`"
               }
             }
           ],
@@ -215,7 +217,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о брате: «Мой брат пьёт молоко». Выберите слово",
+        "prompt": "Скажите о брате: «Каждый день мой брат пьёт молоко». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-34:i03:r1",
@@ -232,14 +234,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о брате: «Мой брат пьёт молоко». Выберите слово",
+        "accessibilityLabel": "Скажите о брате: «Каждый день мой брат пьёт молоко». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Мой брат пьёт молоко». Выберите слово",
-            "uk": "Скажіть про брата: «Мій брат п’є молоко». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день мой брат пьёт молоко». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня мій брат п’є молоко». Виберіть слово"
           },
-          "gappedTargetPhrase": "My brother ___ milk.",
+          "gappedTargetPhrase": "My brother ___ milk every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-34:i03:r1",
@@ -254,12 +256,12 @@
               "text": "is drinks"
             }
           ],
-          "testedDimension": "Скажите о брате: «Мой брат пьёт молоко». Выберите слово",
+          "testedDimension": "Скажите о брате: «Каждый день мой брат пьёт молоко». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-34:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Мой брат пьёт молоко». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день мой брат пьёт молоко». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Брат — это `he`, поэтому нужно `drinks`, с `s`.",
                 "uk": "Брат — це `he`, тому потрібно `drinks`, з `s`."
@@ -268,7 +270,7 @@
             {
               "responseId": "en:lesson-06:session-34:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Мой брат пьёт молоко». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день мой брат пьёт молоко». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `drinks`, без `is`.",
                 "uk": "Кажемо `drinks`, без `is`."
@@ -528,7 +530,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я пью сок». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я пью сок». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-34:i08:r1",
@@ -545,14 +547,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я пью сок». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я пью сок». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я пью сок». Выберите слово",
-            "uk": "Скажіть про себе: «Я п’ю сік». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я пью сок». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я п’ю сік». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ juice.",
+          "gappedTargetPhrase": "I ___ juice every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-34:i08:r1",
@@ -567,12 +569,12 @@
               "text": "am drink"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я пью сок». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я пью сок». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-34:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я пью сок». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я пью сок». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `drink`, без `s`.",
                 "uk": "Після `I` потрібно `drink`, без `s`."
@@ -581,7 +583,7 @@
             {
               "responseId": "en:lesson-06:session-34:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я пью сок». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я пью сок». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I drink`, без `am`.",
                 "uk": "Кажемо `I drink`, без `am`."
@@ -1220,22 +1222,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга питає про вас із братом. Скажіть: «Ми п’ємо чай»",
+        "prompt": "Подруга питає про вас із братом. Скажіть: «Щодня ми п’ємо чай»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга питає про вас із братом. Скажіть: «Ми п’ємо чай»",
+        "accessibilityLabel": "Подруга питає про вас із братом. Скажіть: «Щодня ми п’ємо чай»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We drink tea.",
+          "targetPhrase": "We drink tea every day.",
           "localizedMeaning": {
-            "ru": "Подруга спрашивает о вас с братом. Скажите: «Мы пьём чай»",
-            "uk": "Подруга питає про вас із братом. Скажіть: «Ми п’ємо чай»"
+            "ru": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы пьём чай»",
+            "uk": "Подруга питає про вас із братом. Скажіть: «Щодня ми п’ємо чай»"
           },
           "orderedTokens": [
             "We",
             "drink",
-            "tea"
+            "tea",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "drinks"
@@ -1244,10 +1248,10 @@
             {
               "responseId": "en:lesson-06:session-34:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Подруга питає про вас із братом. Скажіть: «Ми п’ємо чай»",
+              "testedDimension": "Подруга питає про вас із братом. Скажіть: «Щодня ми п’ємо чай»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `drink` — `We drink tea.`",
-                "uk": "тут потрібно `drink` — `We drink tea.`"
+                "ru": "здесь нужно `drink` — `We drink tea every day.`",
+                "uk": "тут потрібно `drink` — `We drink tea every day.`"
               }
             }
           ],
@@ -1383,7 +1387,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про брата: «Мій брат п’є молоко». Виберіть слово",
+        "prompt": "Скажіть про брата: «Щодня мій брат п’є молоко». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-34:i03:r1",
@@ -1400,14 +1404,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про брата: «Мій брат п’є молоко». Виберіть слово",
+        "accessibilityLabel": "Скажіть про брата: «Щодня мій брат п’є молоко». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Мой брат пьёт молоко». Выберите слово",
-            "uk": "Скажіть про брата: «Мій брат п’є молоко». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день мой брат пьёт молоко». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня мій брат п’є молоко». Виберіть слово"
           },
-          "gappedTargetPhrase": "My brother ___ milk.",
+          "gappedTargetPhrase": "My brother ___ milk every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-34:i03:r1",
@@ -1422,12 +1426,12 @@
               "text": "is drinks"
             }
           ],
-          "testedDimension": "Скажіть про брата: «Мій брат п’є молоко». Виберіть слово",
+          "testedDimension": "Скажіть про брата: «Щодня мій брат п’є молоко». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-34:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Мій брат п’є молоко». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня мій брат п’є молоко». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Брат — это `he`, поэтому нужно `drinks`, с `s`.",
                 "uk": "Брат — це `he`, тому потрібно `drinks`, з `s`."
@@ -1436,7 +1440,7 @@
             {
               "responseId": "en:lesson-06:session-34:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Мій брат п’є молоко». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня мій брат п’є молоко». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `drinks`, без `is`.",
                 "uk": "Кажемо `drinks`, без `is`."
@@ -1696,7 +1700,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я п’ю сік». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я п’ю сік». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-34:i08:r1",
@@ -1713,14 +1717,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я п’ю сік». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я п’ю сік». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я пью сок». Выберите слово",
-            "uk": "Скажіть про себе: «Я п’ю сік». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я пью сок». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я п’ю сік». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ juice.",
+          "gappedTargetPhrase": "I ___ juice every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-34:i08:r1",
@@ -1735,12 +1739,12 @@
               "text": "am drink"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я п’ю сік». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я п’ю сік». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-34:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я п’ю сік». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я п’ю сік». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `drink`, без `s`.",
                 "uk": "Після `I` потрібно `drink`, без `s`."
@@ -1749,7 +1753,7 @@
             {
               "responseId": "en:lesson-06:session-34:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я п’ю сік». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я п’ю сік». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I drink`, без `am`.",
                 "uk": "Кажемо `I drink`, без `am`."
@@ -2347,7 +2351,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-34:i01",
-      "correctText": "We drink tea.",
+      "correctText": "We drink tea every day.",
       "correctResponseId": null
     },
     {

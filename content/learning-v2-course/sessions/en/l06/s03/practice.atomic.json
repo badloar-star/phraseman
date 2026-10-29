@@ -52,23 +52,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «Мы косим лужайку»",
+        "prompt": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «По субботам мы косим лужайку»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «Мы косим лужайку»",
+        "accessibilityLabel": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «По субботам мы косим лужайку»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We mow the lawn.",
+          "targetPhrase": "We mow the lawn on Saturdays.",
           "localizedMeaning": {
-            "ru": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «Мы косим лужайку»",
-            "uk": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»"
+            "ru": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «По субботам мы косим лужайку»",
+            "uk": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Щосуботи ми косимо галявину»"
           },
           "orderedTokens": [
             "We",
             "mow",
             "the",
-            "lawn"
+            "lawn",
+            "on",
+            "Saturdays"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -77,10 +79,10 @@
             {
               "responseId": "en:lesson-06:session-03:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «Мы косим лужайку»",
+              "testedDimension": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «По субботам мы косим лужайку»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `mow` — `We mow the lawn.`",
-                "uk": "тут потрібно `mow` — `We mow the lawn.`"
+                "ru": "здесь нужно `mow` — `We mow the lawn on Saturdays.`",
+                "uk": "тут потрібно `mow` — `We mow the lawn on Saturdays.`"
               }
             }
           ],
@@ -259,7 +261,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово",
+        "prompt": "Груши на дереве созрели. Скажите подруге, что каждую осень вы их собираете. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-03:i03:r1",
@@ -276,14 +278,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово",
+        "accessibilityLabel": "Груши на дереве созрели. Скажите подруге, что каждую осень вы их собираете. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово",
-            "uk": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово"
+            "ru": "Груши на дереве созрели. Скажите подруге, что каждую осень вы их собираете. Выберите слово",
+            "uk": "Груші на дереві дозріли. Скажіть подрузі, що щоосені ви їх збираєте. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ pears.",
+          "gappedTargetPhrase": "We ___ pears every autumn.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-03:i03:r1",
@@ -298,12 +300,12 @@
               "text": "am pick"
             }
           ],
-          "testedDimension": "Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово",
+          "testedDimension": "Груши на дереве созрели. Скажите подруге, что каждую осень вы их собираете. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-03:i03:r2",
               "correct": false,
-              "testedDimension": "Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово",
+              "testedDimension": "Груши на дереве созрели. Скажите подруге, что каждую осень вы их собираете. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `pick`, без `are`.",
                 "uk": "Після `We` одразу ставимо `pick`, без `are`."
@@ -312,7 +314,7 @@
             {
               "responseId": "en:lesson-06:session-03:i03:r3",
               "correct": false,
-              "testedDimension": "Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово",
+              "testedDimension": "Груши на дереве созрели. Скажите подруге, что каждую осень вы их собираете. Выберите слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We pick`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We pick`."
@@ -572,7 +574,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово",
+        "prompt": "Трава во дворе слишком высокая. Скажите соседке, что по субботам вы её косите. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-03:i08:r1",
@@ -589,14 +591,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово",
+        "accessibilityLabel": "Трава во дворе слишком высокая. Скажите соседке, что по субботам вы её косите. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово",
-            "uk": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово"
+            "ru": "Трава во дворе слишком высокая. Скажите соседке, что по субботам вы её косите. Выберите слово",
+            "uk": "Трава у дворі занадто висока. Скажіть сусідці, що щосуботи ви її косите. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ the lawn.",
+          "gappedTargetPhrase": "We ___ the lawn on Saturdays.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-03:i08:r1",
@@ -611,12 +613,12 @@
               "text": "am mow"
             }
           ],
-          "testedDimension": "Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово",
+          "testedDimension": "Трава во дворе слишком высокая. Скажите соседке, что по субботам вы её косите. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-03:i08:r2",
               "correct": false,
-              "testedDimension": "Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово",
+              "testedDimension": "Трава во дворе слишком высокая. Скажите соседке, что по субботам вы её косите. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `mow`, без `are`.",
                 "uk": "Після `We` одразу ставимо `mow`, без `are`."
@@ -625,7 +627,7 @@
             {
               "responseId": "en:lesson-06:session-03:i08:r3",
               "correct": false,
-              "testedDimension": "Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово",
+              "testedDimension": "Трава во дворе слишком высокая. Скажите соседке, что по субботам вы её косите. Выберите слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We mow`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We mow`."
@@ -841,17 +843,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Мы собираем груши в саду»",
+        "prompt": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Каждую осень мы собираем груши в саду»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Мы собираем груши в саду»",
+        "accessibilityLabel": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Каждую осень мы собираем груши в саду»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We pick pears in the garden.",
+          "targetPhrase": "We pick pears in the garden every autumn.",
           "localizedMeaning": {
-            "ru": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Мы собираем груши в саду»",
-            "uk": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»"
+            "ru": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Каждую осень мы собираем груши в саду»",
+            "uk": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Щоосені ми збираємо груші в саду»"
           },
           "orderedTokens": [
             "We",
@@ -859,7 +861,9 @@
             "pears",
             "in",
             "the",
-            "garden"
+            "garden",
+            "every",
+            "autumn"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -868,10 +872,10 @@
             {
               "responseId": "en:lesson-06:session-03:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Мы собираем груши в саду»",
+              "testedDimension": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Каждую осень мы собираем груши в саду»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `pick` — `We pick pears in the garden.`",
-                "uk": "тут потрібно `pick` — `We pick pears in the garden.`"
+                "ru": "здесь нужно `pick` — `We pick pears in the garden every autumn.`",
+                "uk": "тут потрібно `pick` — `We pick pears in the garden every autumn.`"
               }
             }
           ],
@@ -921,7 +925,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово",
+        "prompt": "Живая изгородь разрослась. Скажите брату, что по субботам вы её подрезаете. Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-03:i14:r1",
@@ -938,14 +942,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово",
+        "accessibilityLabel": "Живая изгородь разрослась. Скажите брату, что по субботам вы её подрезаете. Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово",
-            "uk": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово"
+            "ru": "Живая изгородь разрослась. Скажите брату, что по субботам вы её подрезаете. Выберите слово",
+            "uk": "Жива огорожа розрослася. Скажіть братові, що щосуботи ви її підрізаєте. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ the hedge.",
+          "gappedTargetPhrase": "We ___ the hedge on Saturdays.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-03:i14:r1",
@@ -960,12 +964,12 @@
               "text": "am trim"
             }
           ],
-          "testedDimension": "Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово",
+          "testedDimension": "Живая изгородь разрослась. Скажите брату, что по субботам вы её подрезаете. Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-03:i14:r2",
               "correct": false,
-              "testedDimension": "Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово",
+              "testedDimension": "Живая изгородь разрослась. Скажите брату, что по субботам вы её подрезаете. Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `trim`, без `are`.",
                 "uk": "Після `We` одразу ставимо `trim`, без `are`."
@@ -974,7 +978,7 @@
             {
               "responseId": "en:lesson-06:session-03:i14:r3",
               "correct": false,
-              "testedDimension": "Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово",
+              "testedDimension": "Живая изгородь разрослась. Скажите брату, что по субботам вы её подрезаете. Выберите слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We trim`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We trim`."
@@ -1225,23 +1229,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»",
+        "prompt": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Щосуботи ми косимо галявину»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»",
+        "accessibilityLabel": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Щосуботи ми косимо галявину»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We mow the lawn.",
+          "targetPhrase": "We mow the lawn on Saturdays.",
           "localizedMeaning": {
-            "ru": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «Мы косим лужайку»",
-            "uk": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»"
+            "ru": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «По субботам мы косим лужайку»",
+            "uk": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Щосуботи ми косимо галявину»"
           },
           "orderedTokens": [
             "We",
             "mow",
             "the",
-            "lawn"
+            "lawn",
+            "on",
+            "Saturdays"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -1250,10 +1256,10 @@
             {
               "responseId": "en:lesson-06:session-03:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»",
+              "testedDimension": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Щосуботи ми косимо галявину»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `mow` — `We mow the lawn.`",
-                "uk": "тут потрібно `mow` — `We mow the lawn.`"
+                "ru": "здесь нужно `mow` — `We mow the lawn on Saturdays.`",
+                "uk": "тут потрібно `mow` — `We mow the lawn on Saturdays.`"
               }
             }
           ],
@@ -1432,7 +1438,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
+        "prompt": "Груші на дереві дозріли. Скажіть подрузі, що щоосені ви їх збираєте. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-03:i03:r1",
@@ -1449,14 +1455,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
+        "accessibilityLabel": "Груші на дереві дозріли. Скажіть подрузі, що щоосені ви їх збираєте. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово",
-            "uk": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово"
+            "ru": "Груши на дереве созрели. Скажите подруге, что каждую осень вы их собираете. Выберите слово",
+            "uk": "Груші на дереві дозріли. Скажіть подрузі, що щоосені ви їх збираєте. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ pears.",
+          "gappedTargetPhrase": "We ___ pears every autumn.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-03:i03:r1",
@@ -1471,12 +1477,12 @@
               "text": "am pick"
             }
           ],
-          "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
+          "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що щоосені ви їх збираєте. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-03:i03:r2",
               "correct": false,
-              "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
+              "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що щоосені ви їх збираєте. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `pick`, без `are`.",
                 "uk": "Після `We` одразу ставимо `pick`, без `are`."
@@ -1485,7 +1491,7 @@
             {
               "responseId": "en:lesson-06:session-03:i03:r3",
               "correct": false,
-              "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
+              "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що щоосені ви їх збираєте. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We pick`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We pick`."
@@ -1745,7 +1751,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
+        "prompt": "Трава у дворі занадто висока. Скажіть сусідці, що щосуботи ви її косите. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-03:i08:r1",
@@ -1762,14 +1768,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
+        "accessibilityLabel": "Трава у дворі занадто висока. Скажіть сусідці, що щосуботи ви її косите. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово",
-            "uk": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово"
+            "ru": "Трава во дворе слишком высокая. Скажите соседке, что по субботам вы её косите. Выберите слово",
+            "uk": "Трава у дворі занадто висока. Скажіть сусідці, що щосуботи ви її косите. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ the lawn.",
+          "gappedTargetPhrase": "We ___ the lawn on Saturdays.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-03:i08:r1",
@@ -1784,12 +1790,12 @@
               "text": "am mow"
             }
           ],
-          "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
+          "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що щосуботи ви її косите. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-03:i08:r2",
               "correct": false,
-              "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
+              "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що щосуботи ви її косите. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `mow`, без `are`.",
                 "uk": "Після `We` одразу ставимо `mow`, без `are`."
@@ -1798,7 +1804,7 @@
             {
               "responseId": "en:lesson-06:session-03:i08:r3",
               "correct": false,
-              "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
+              "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що щосуботи ви її косите. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We mow`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We mow`."
@@ -2014,17 +2020,17 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»",
+        "prompt": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Щоосені ми збираємо груші в саду»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»",
+        "accessibilityLabel": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Щоосені ми збираємо груші в саду»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We pick pears in the garden.",
+          "targetPhrase": "We pick pears in the garden every autumn.",
           "localizedMeaning": {
-            "ru": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Мы собираем груши в саду»",
-            "uk": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»"
+            "ru": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Каждую осень мы собираем груши в саду»",
+            "uk": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Щоосені ми збираємо груші в саду»"
           },
           "orderedTokens": [
             "We",
@@ -2032,7 +2038,9 @@
             "pears",
             "in",
             "the",
-            "garden"
+            "garden",
+            "every",
+            "autumn"
           ],
           "authoredDistractorTokens": [
             "are"
@@ -2041,10 +2049,10 @@
             {
               "responseId": "en:lesson-06:session-03:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»",
+              "testedDimension": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Щоосені ми збираємо груші в саду»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `pick` — `We pick pears in the garden.`",
-                "uk": "тут потрібно `pick` — `We pick pears in the garden.`"
+                "ru": "здесь нужно `pick` — `We pick pears in the garden every autumn.`",
+                "uk": "тут потрібно `pick` — `We pick pears in the garden every autumn.`"
               }
             }
           ],
@@ -2094,7 +2102,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
+        "prompt": "Жива огорожа розрослася. Скажіть братові, що щосуботи ви її підрізаєте. Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-03:i14:r1",
@@ -2111,14 +2119,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
+        "accessibilityLabel": "Жива огорожа розрослася. Скажіть братові, що щосуботи ви її підрізаєте. Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово",
-            "uk": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово"
+            "ru": "Живая изгородь разрослась. Скажите брату, что по субботам вы её подрезаете. Выберите слово",
+            "uk": "Жива огорожа розрослася. Скажіть братові, що щосуботи ви її підрізаєте. Виберіть слово"
           },
-          "gappedTargetPhrase": "We ___ the hedge.",
+          "gappedTargetPhrase": "We ___ the hedge on Saturdays.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-03:i14:r1",
@@ -2133,12 +2141,12 @@
               "text": "am trim"
             }
           ],
-          "testedDimension": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
+          "testedDimension": "Жива огорожа розрослася. Скажіть братові, що щосуботи ви її підрізаєте. Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-03:i14:r2",
               "correct": false,
-              "testedDimension": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
+              "testedDimension": "Жива огорожа розрослася. Скажіть братові, що щосуботи ви її підрізаєте. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `We` сразу ставим `trim`, без `are`.",
                 "uk": "Після `We` одразу ставимо `trim`, без `are`."
@@ -2147,7 +2155,7 @@
             {
               "responseId": "en:lesson-06:session-03:i14:r3",
               "correct": false,
-              "testedDimension": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
+              "testedDimension": "Жива огорожа розрослася. Скажіть братові, що щосуботи ви її підрізаєте. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "`am` ставится только после `I`; здесь нужно `We trim`.",
                 "uk": "`am` ставиться тільки після `I`; тут потрібно `We trim`."
@@ -2357,7 +2365,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i01",
-      "correctText": "We mow the lawn.",
+      "correctText": "We mow the lawn on Saturdays.",
       "correctResponseId": null
     },
     {
@@ -2427,7 +2435,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i12",
-      "correctText": "We pick pears in the garden.",
+      "correctText": "We pick pears in the garden every autumn.",
       "correctResponseId": null
     },
     {

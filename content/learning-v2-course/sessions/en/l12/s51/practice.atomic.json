@@ -186,7 +186,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ an ice cube.",
+          "gappedTargetPhrase": "I ___ an ice cube yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-51:i03:r1",
@@ -408,7 +408,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the ice tray.",
+          "gappedTargetPhrase": "I ___ the ice tray yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-51:i06:r1",
@@ -630,7 +630,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a freezer bag.",
+          "gappedTargetPhrase": "I ___ a freezer bag yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-51:i09:r1",
@@ -852,7 +852,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the food container.",
+          "gappedTargetPhrase": "I ___ the food container yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-51:i12:r1",
@@ -1287,7 +1287,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ an ice cube.",
+          "gappedTargetPhrase": "I ___ an ice cube yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-51:i03:r1",
@@ -1509,7 +1509,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the ice tray.",
+          "gappedTargetPhrase": "I ___ the ice tray yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-51:i06:r1",
@@ -1731,7 +1731,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ a freezer bag.",
+          "gappedTargetPhrase": "I ___ a freezer bag yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-51:i09:r1",
@@ -1953,7 +1953,7 @@
             "ru": "Речь о прошлом. Выберите форму",
             "uk": "Йдеться про минуле. Виберіть форму"
           },
-          "gappedTargetPhrase": "I ___ the food container.",
+          "gappedTargetPhrase": "I ___ the food container yesterday.",
           "gapOptions": [
             {
               "responseId": "en:lesson-12:session-51:i12:r1",

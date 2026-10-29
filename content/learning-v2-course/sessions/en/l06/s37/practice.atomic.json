@@ -9,22 +9,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Продавец спрашивает о вас с братом. Скажите: «Мы покупаем здесь»",
+        "prompt": "Продавец спрашивает о вас с братом. Скажите: «Каждый день мы покупаем здесь»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Продавец спрашивает о вас с братом. Скажите: «Мы покупаем здесь»",
+        "accessibilityLabel": "Продавец спрашивает о вас с братом. Скажите: «Каждый день мы покупаем здесь»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We shop here.",
+          "targetPhrase": "We shop here every day.",
           "localizedMeaning": {
-            "ru": "Продавец спрашивает о вас с братом. Скажите: «Мы покупаем здесь»",
-            "uk": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»"
+            "ru": "Продавец спрашивает о вас с братом. Скажите: «Каждый день мы покупаем здесь»",
+            "uk": "Продавець питає про вас із братом. Скажіть: «Щодня ми купуємо тут»"
           },
           "orderedTokens": [
             "We",
             "shop",
-            "here"
+            "here",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "shops"
@@ -33,10 +35,10 @@
             {
               "responseId": "en:lesson-06:session-37:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Продавец спрашивает о вас с братом. Скажите: «Мы покупаем здесь»",
+              "testedDimension": "Продавец спрашивает о вас с братом. Скажите: «Каждый день мы покупаем здесь»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `shop` — `We shop here.`",
-                "uk": "тут потрібно `shop` — `We shop here.`"
+                "ru": "здесь нужно `shop` — `We shop here every day.`",
+                "uk": "тут потрібно `shop` — `We shop here every day.`"
               }
             }
           ],
@@ -129,7 +131,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о брате: «Мой брат покупает хлеб». Выберите слово",
+        "prompt": "Скажите о брате: «Каждый день мой брат ходит за хлебом». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-37:i03:r1",
@@ -146,14 +148,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о брате: «Мой брат покупает хлеб». Выберите слово",
+        "accessibilityLabel": "Скажите о брате: «Каждый день мой брат ходит за хлебом». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Мой брат покупает хлеб». Выберите слово",
-            "uk": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день мой брат ходит за хлебом». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня мій брат ходить по хліб». Виберіть слово"
           },
-          "gappedTargetPhrase": "My brother ___ bread.",
+          "gappedTargetPhrase": "My brother ___ for bread every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-37:i03:r1",
@@ -168,12 +170,12 @@
               "text": "is shops"
             }
           ],
-          "testedDimension": "Скажите о брате: «Мой брат покупает хлеб». Выберите слово",
+          "testedDimension": "Скажите о брате: «Каждый день мой брат ходит за хлебом». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-37:i03:r2",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Мой брат покупает хлеб». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день мой брат ходит за хлебом». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Брат — это `he`, поэтому нужно `shops`, с `s`.",
                 "uk": "Брат — це `he`, тому потрібно `shops`, з `s`."
@@ -182,7 +184,7 @@
             {
               "responseId": "en:lesson-06:session-37:i03:r3",
               "correct": false,
-              "testedDimension": "Скажите о брате: «Мой брат покупает хлеб». Выберите слово",
+              "testedDimension": "Скажите о брате: «Каждый день мой брат ходит за хлебом». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `shops`, без `is`.",
                 "uk": "Кажемо `shops`, без `is`."
@@ -528,7 +530,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово",
+        "prompt": "Скажите о себе: «Каждый день я хожу за покупками с корзиной». Выберите слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-37:i08:r1",
@@ -545,14 +547,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово",
+        "accessibilityLabel": "Скажите о себе: «Каждый день я хожу за покупками с корзиной». Выберите слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово",
-            "uk": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я хожу за покупками с корзиной». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я ходжу по покупки з кошиком». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ with a basket.",
+          "gappedTargetPhrase": "I ___ with a basket every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-37:i08:r1",
@@ -567,12 +569,12 @@
               "text": "am shop"
             }
           ],
-          "testedDimension": "Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово",
+          "testedDimension": "Скажите о себе: «Каждый день я хожу за покупками с корзиной». Выберите слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-37:i08:r2",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я хожу за покупками с корзиной». Выберите слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `shop`, без `s`.",
                 "uk": "Після `I` потрібно `shop`, без `s`."
@@ -581,7 +583,7 @@
             {
               "responseId": "en:lesson-06:session-37:i08:r3",
               "correct": false,
-              "testedDimension": "Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово",
+              "testedDimension": "Скажите о себе: «Каждый день я хожу за покупками с корзиной». Выберите слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I shop`, без `am`.",
                 "uk": "Кажемо `I shop`, без `am`."
@@ -1177,22 +1179,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»",
+        "prompt": "Продавець питає про вас із братом. Скажіть: «Щодня ми купуємо тут»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»",
+        "accessibilityLabel": "Продавець питає про вас із братом. Скажіть: «Щодня ми купуємо тут»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We shop here.",
+          "targetPhrase": "We shop here every day.",
           "localizedMeaning": {
-            "ru": "Продавец спрашивает о вас с братом. Скажите: «Мы покупаем здесь»",
-            "uk": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»"
+            "ru": "Продавец спрашивает о вас с братом. Скажите: «Каждый день мы покупаем здесь»",
+            "uk": "Продавець питає про вас із братом. Скажіть: «Щодня ми купуємо тут»"
           },
           "orderedTokens": [
             "We",
             "shop",
-            "here"
+            "here",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [
             "shops"
@@ -1201,10 +1205,10 @@
             {
               "responseId": "en:lesson-06:session-37:i01:tile:d1",
               "correct": false,
-              "testedDimension": "Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»",
+              "testedDimension": "Продавець питає про вас із братом. Скажіть: «Щодня ми купуємо тут»",
               "feedbackByLocale": {
-                "ru": "здесь нужно `shop` — `We shop here.`",
-                "uk": "тут потрібно `shop` — `We shop here.`"
+                "ru": "здесь нужно `shop` — `We shop here every day.`",
+                "uk": "тут потрібно `shop` — `We shop here every day.`"
               }
             }
           ],
@@ -1297,7 +1301,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
+        "prompt": "Скажіть про брата: «Щодня мій брат ходить по хліб». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-37:i03:r1",
@@ -1314,14 +1318,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
+        "accessibilityLabel": "Скажіть про брата: «Щодня мій брат ходить по хліб». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о брате: «Мой брат покупает хлеб». Выберите слово",
-            "uk": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово"
+            "ru": "Скажите о брате: «Каждый день мой брат ходит за хлебом». Выберите слово",
+            "uk": "Скажіть про брата: «Щодня мій брат ходить по хліб». Виберіть слово"
           },
-          "gappedTargetPhrase": "My brother ___ bread.",
+          "gappedTargetPhrase": "My brother ___ for bread every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-37:i03:r1",
@@ -1336,12 +1340,12 @@
               "text": "is shops"
             }
           ],
-          "testedDimension": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
+          "testedDimension": "Скажіть про брата: «Щодня мій брат ходить по хліб». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-37:i03:r2",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня мій брат ходить по хліб». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Брат — это `he`, поэтому нужно `shops`, с `s`.",
                 "uk": "Брат — це `he`, тому потрібно `shops`, з `s`."
@@ -1350,7 +1354,7 @@
             {
               "responseId": "en:lesson-06:session-37:i03:r3",
               "correct": false,
-              "testedDimension": "Скажіть про брата: «Мій брат купує хліб». Виберіть слово",
+              "testedDimension": "Скажіть про брата: «Щодня мій брат ходить по хліб». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `shops`, без `is`.",
                 "uk": "Кажемо `shops`, без `is`."
@@ -1696,7 +1700,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
+        "prompt": "Скажіть про себе: «Щодня я ходжу по покупки з кошиком». Виберіть слово",
         "responseOptions": [
           {
             "responseId": "en:lesson-06:session-37:i08:r1",
@@ -1713,14 +1717,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
+        "accessibilityLabel": "Скажіть про себе: «Щодня я ходжу по покупки з кошиком». Виберіть слово",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово",
-            "uk": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово"
+            "ru": "Скажите о себе: «Каждый день я хожу за покупками с корзиной». Выберите слово",
+            "uk": "Скажіть про себе: «Щодня я ходжу по покупки з кошиком». Виберіть слово"
           },
-          "gappedTargetPhrase": "I ___ with a basket.",
+          "gappedTargetPhrase": "I ___ with a basket every day.",
           "gapOptions": [
             {
               "responseId": "en:lesson-06:session-37:i08:r1",
@@ -1735,12 +1739,12 @@
               "text": "am shop"
             }
           ],
-          "testedDimension": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
+          "testedDimension": "Скажіть про себе: «Щодня я ходжу по покупки з кошиком». Виберіть слово",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-06:session-37:i08:r2",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я ходжу по покупки з кошиком». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "После `I` нужно `shop`, без `s`.",
                 "uk": "Після `I` потрібно `shop`, без `s`."
@@ -1749,7 +1753,7 @@
             {
               "responseId": "en:lesson-06:session-37:i08:r3",
               "correct": false,
-              "testedDimension": "Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово",
+              "testedDimension": "Скажіть про себе: «Щодня я ходжу по покупки з кошиком». Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Говорим `I shop`, без `am`.",
                 "uk": "Кажемо `I shop`, без `am`."
@@ -2342,7 +2346,7 @@
   "answers": [
     {
       "interactionId": "en:lesson-06:session-37:i01",
-      "correctText": "We shop here.",
+      "correctText": "We shop here every day.",
       "correctResponseId": null
     },
     {

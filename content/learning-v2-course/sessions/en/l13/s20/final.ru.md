@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу, что произошло и чего не произошло вчера.
 
-**Что вы освоите:** review: base form after did/did not
+**Что вы освоите:** повторить: после did и didn’t действие без изменений — I didn’t see
 **Новые слова:** fall over, trip over, bump into, knock over
 
 ## Интро 1

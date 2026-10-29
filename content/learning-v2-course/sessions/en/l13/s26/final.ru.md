@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга о вчерашней уборке дома и в саду.
 
-**Что вы освоите:** review: finished time anchors with did/did not
+**Что вы освоите:** повторить: did и didn’t с yesterday, last week
 **Новые слова:** garden shed, doorframe, window frame, curtain rail
 
 ## Интро 1

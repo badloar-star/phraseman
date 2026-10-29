@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга, який посуд він учора підготував до вечері.
 
-**Що ви опануєте:** review: Did + subject + base verb?
+**Що ви опануєте:** повторити: запитати про минуле — Did you call?
 **Нові слова:** soup spoon, dessert spoon, serving dish, dinner plate
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другові про покупки й повернення речей.
 
-**Що ви опануєте:** new: didn't + base verb; review: did questions
+**Що ви опануєте:** сказати «ні» про минуле: I didn’t call
 **Нові слова:** save up, pay back, take back, give back
 
 ## Інтро 1

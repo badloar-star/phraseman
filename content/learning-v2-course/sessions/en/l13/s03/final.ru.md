@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга, какие овощи он вчера приготовил.
 
-**Что вы освоите:** review: Did + subject + base verb?
+**Что вы освоите:** повторить: спросить о прошлом — Did you call?
 **Новые слова:** aubergine, courgette, Brussels sprouts, spring onion
 
 ## Интро 1

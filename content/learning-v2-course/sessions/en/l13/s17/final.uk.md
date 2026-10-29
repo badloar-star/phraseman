@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другові, як учора змінювалися темп і настрій.
 
-**Що ви опануєте:** new focus: base form after did/did not; review: questions and negatives
+**Що ви опануєте:** після did і didn’t ставити дію без змін: Did you see? I didn’t see
 **Нові слова:** slow down, speed up, calm down, cheer up
 
 ## Інтро 1

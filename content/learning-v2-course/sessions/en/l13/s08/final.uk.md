@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга, який хліб він учора купив і скуштував.
 
-**Що ви опануєте:** review: Did + subject + base verb?
+**Що ви опануєте:** повторити: запитати про минуле — Did you call?
 **Нові слова:** white bread, wholemeal bread, rye bread, crumpet
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга, какую посуду он вчера приготовил к ужину.
 
-**Что вы освоите:** review: Did + subject + base verb?
+**Что вы освоите:** повторить: спросить о прошлом — Did you call?
 **Новые слова:** soup spoon, dessert spoon, serving dish, dinner plate
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга про вчорашні почуття й увагу до інших.
 
-**Що ви опануєте:** review: past questions with finished time anchors
+**Що ви опануєте:** повторити: запитати про минуле з yesterday, last week
 **Нові слова:** hopeful, thoughtful, miserable, frightened
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга, що він учора помив і прибрав.
 
-**Що ви опануєте:** new: Did + subject + base verb?; review: past events
+**Що ви опануєте:** запитати про минуле: Did you call?
 **Нові слова:** bread bin, coffee mug, dish rack, tea strainer
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга, что он вчера помыл и убрал.
 
-**Что вы освоите:** new: Did + subject + base verb?; review: past events
+**Что вы освоите:** спросить о прошлом: Did you call?
 **Новые слова:** bread bin, coffee mug, dish rack, tea strainer
 
 ## Интро 1

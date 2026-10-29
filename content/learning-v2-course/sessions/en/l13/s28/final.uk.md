@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другові про вчорашній дзвінок і дорогу на вокзал.
 
-**Що ви опануєте:** review: finished time anchors with past statements/questions
+**Що ви опануєте:** повторити: розповісти й запитати про минуле з yesterday, last week
 **Нові слова:** definitely, certainly, luckily, unfortunately
 
 ## Інтро 1

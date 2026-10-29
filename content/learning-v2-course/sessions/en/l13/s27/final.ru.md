@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга, какие овощи он вчера приготовил.
 
-**Что вы освоите:** review: finished time anchors with did/did not
+**Что вы освоите:** повторить: did и didn’t с yesterday, last week
 **Новые слова:** sweet potato, turnip, parsnip, butternut squash
 
 ## Интро 1

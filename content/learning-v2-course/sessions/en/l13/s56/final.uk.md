@@ -2,7 +2,7 @@
 
 **Ситуація.** Підбийте підсумок поїздки: дорога туди, пересадка, ночівля й повернення.
 
-**Що ви опануєте:** review: past questions and event sequence
+**Що ви опануєте:** повторити: запитати про минуле й розповісти по черзі
 **Нові слова:** outward journey, return journey, connecting flight, overnight stay
 
 ## Інтро 1

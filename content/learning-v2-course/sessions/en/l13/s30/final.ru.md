@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга, как вчера прошли регистрация, ожидание и полёт.
 
-**Что вы освоите:** review: past questions with finished time anchors
+**Что вы освоите:** повторить: спросить о прошлом с yesterday, last week
 **Новые слова:** flight attendant, security check, check-in desk, departure lounge
 
 ## Интро 1

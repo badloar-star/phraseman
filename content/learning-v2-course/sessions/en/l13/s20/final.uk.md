@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другові, що сталося й чого не сталося вчора.
 
-**Що ви опануєте:** review: base form after did/did not
+**Що ви опануєте:** повторити: після did і didn’t дія без змін — I didn’t see
 **Нові слова:** fall over, trip over, bump into, knock over
 
 ## Інтро 1

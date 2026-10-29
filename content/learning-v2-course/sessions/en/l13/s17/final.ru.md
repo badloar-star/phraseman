@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу, как вчера менялись темп и настроение.
 
-**Что вы освоите:** new focus: base form after did/did not; review: questions and negatives
+**Что вы освоите:** после did и didn’t ставить действие без изменений: Did you see? I didn’t see
 **Новые слова:** slow down, speed up, calm down, cheer up
 
 ## Интро 1

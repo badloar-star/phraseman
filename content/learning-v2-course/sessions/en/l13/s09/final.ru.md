@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу о покупках и возвращении вещей.
 
-**Что вы освоите:** new: didn't + base verb; review: did questions
+**Что вы освоите:** сказать «не» о прошлом: I didn’t call
 **Новые слова:** save up, pay back, take back, give back
 
 ## Интро 1

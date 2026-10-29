@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга про вчорашні покупки й ягоди для пирога.
 
-**Що ви опануєте:** review: past questions with finished time anchors
+**Що ви опануєте:** повторити: запитати про минуле з yesterday, last week
 **Нові слова:** blackcurrants, redcurrants, gooseberries, cranberries
 
 ## Інтро 1

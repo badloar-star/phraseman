@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга о вчерашних чувствах и внимании к другим.
 
-**Что вы освоите:** review: past questions with finished time anchors
+**Что вы освоите:** повторить: спросить о прошлом с yesterday, last week
 **Новые слова:** hopeful, thoughtful, miserable, frightened
 
 ## Интро 1

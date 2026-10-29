@@ -2,7 +2,7 @@
 
 **Ситуація.** Уточніть у друга час дзвінка й підготовки до вчорашньої поїздки.
 
-**Що ви опануєте:** new focus: finished time anchors with did/did not
+**Що ви опануєте:** запитати й сказати «ні» про минуле з yesterday, last week
 **Нові слова:** recently, afterwards, beforehand, immediately
 
 ## Інтро 1

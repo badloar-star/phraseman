@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу о вчерашнем звонке и дороге на вокзал.
 
-**Что вы освоите:** review: finished time anchors with past statements/questions
+**Что вы освоите:** повторить: рассказать и спросить о прошлом с yesterday, last week
 **Новые слова:** definitely, certainly, luckily, unfortunately
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете небольшую домашнюю случайность, объясняете открытое окно и готовитесь выйти.
 
-**Что вы освоите:** past questions with finished time anchors
+**Что вы освоите:** спросить о прошлом с yesterday, last week: Did you go yesterday?
 **Новые слова:** accidentally, deliberately, properly, completely
 
 ## Интро 1

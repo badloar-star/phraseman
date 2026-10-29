@@ -2,7 +2,7 @@
 
 **Ситуация.** Уточните у друга время звонка и подготовки к вчерашней поездке.
 
-**Что вы освоите:** new focus: finished time anchors with did/did not
+**Что вы освоите:** спросить и сказать «не» о прошлом с yesterday, last week
 **Новые слова:** recently, afterwards, beforehand, immediately
 
 ## Интро 1

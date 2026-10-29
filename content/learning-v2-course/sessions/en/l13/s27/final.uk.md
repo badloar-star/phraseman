@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга, які овочі він учора приготував.
 
-**Що ви опануєте:** review: finished time anchors with did/did not
+**Що ви опануєте:** повторити: did і didn’t з yesterday, last week
 **Нові слова:** sweet potato, turnip, parsnip, butternut squash
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга, як учора минули реєстрація, очікування й політ.
 
-**Що ви опануєте:** review: past questions with finished time anchors
+**Що ви опануєте:** повторити: запитати про минуле з yesterday, last week
 **Нові слова:** flight attendant, security check, check-in desk, departure lounge
 
 ## Інтро 1

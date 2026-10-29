@@ -2,7 +2,7 @@
 
 **Ситуация.** Обсудите с другом, как вы вчера рассчитались в кафе.
 
-**Что вы освоите:** review: past questions and event sequence
+**Что вы освоите:** повторить: спросить о прошлом и рассказать по порядку
 **Новые слова:** split the bill, pay by card, pay in cash, keep the change
 
 ## Интро 1

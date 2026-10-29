@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга, які овочі він учора приготував.
 
-**Що ви опануєте:** review: Did + subject + base verb?
+**Що ви опануєте:** повторити: запитати про минуле — Did you call?
 **Нові слова:** aubergine, courgette, Brussels sprouts, spring onion
 
 ## Інтро 1

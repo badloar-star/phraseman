@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга про вчорашнє прибирання вдома й у саду.
 
-**Що ви опануєте:** review: finished time anchors with did/did not
+**Що ви опануєте:** повторити: did і didn’t з yesterday, last week
 **Нові слова:** garden shed, doorframe, window frame, curtain rail
 
 ## Інтро 1

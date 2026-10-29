@@ -189,6 +189,7 @@ export async function saveCommunityPackCreateDraft(
   d: Omit<CommunityPackCreateDraftV1, 'v'>,
   studyTarget?: RuntimeStudyTarget,
   sourceLocale?: RuntimeSourceLocale,
+  options?: Readonly<{ throwOnError?: boolean }>,
 ): Promise<void> {
   const body: CommunityPackCreateDraftV1 = {
     v: 1,
@@ -215,8 +216,10 @@ export async function saveCommunityPackCreateDraft(
       await AsyncStorage.setItem(key, JSON.stringify({ ...body, draftsByPackLanguage: drafts }));
     });
   } catch (e) {
-      // ignore
       DebugLogger.error('communityPackDraftStorage:saveCommunityPackCreateDraft', e instanceof Error ? e : new Error(String(e)), 'warning');
+      // Navigation must keep the editor open when persistence was not confirmed.
+      // Existing background autosaves retain their non-throwing contract.
+      if (options?.throwOnError) throw e;
     }
 }
 

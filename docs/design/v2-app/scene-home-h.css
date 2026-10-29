@@ -1,0 +1,21 @@
+/* scene-home-h.css — макет «Сцена Главной высотой как у «Уроков»» (см. scene-home-h.app.js): два телефона в ряд (Главная сейчас/вариант,
+   Уроки), линейка по краю сцены «Уроков», мерцающие звёзды поверх тёмного неба; служебных надписей в телефоне нет. */
+#sh .sp-real-row { margin-top: 20px; }
+#sh .sh-phones { display: flex; gap: 24px; align-items: flex-start; position: relative; }
+#sh .col { width: 430px; flex: none; }
+#sh .col > .lbl { font-size: 15px; color: #FFFFFF; font-weight: 700; margin-bottom: 8px; }
+#sh .sp-rf-badge { display: none !important; }
+.sf-empty { color: #8E8E96; font-size: 15px; margin: 40px 0; }
+.sf-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 8px; }
+.sf-bar .sp-lbl { margin-left: 8px; }
+/* линейка — пунктир по краю сцены «Уроков» через оба телефона (элемент страницы, поверх) */
+.sh-ruler { position: absolute; left: -8px; right: -8px; height: 0; border-top: 1px dashed rgba(242, 192, 90, .9); pointer-events: none; z-index: 40; }
+/* мерцающие звёзды — слой поверх тёмного неба в тех же точках, что звёзды формулы */
+.sh-stars { position: absolute; inset: 0; pointer-events: none; z-index: 24; }
+.sh-star { position: absolute; border-radius: 50%; background: #fff; box-shadow: 0 0 4px 1px rgba(255, 255, 255, .55); animation-name: sh-tw; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+@keyframes sh-tw { 0%, 100% { transform: scale(.7); filter: brightness(.6); } 50% { transform: scale(1.25); filter: brightness(1.6); } }
+@media (prefers-reduced-motion: reduce) { .sh-star { animation: none !important; } }
+/* перерисованный заголовок урока — как в чистом макете */
+.sf-copy { position: absolute; left: 21px; z-index: 25; color: #fff; pointer-events: none; display: flex; flex-direction: column; gap: 4px; }
+.sf-copy small { font-size: 13.6px; line-height: 17px; color: rgba(255, 255, 255, .72); }
+.sf-copy b { font-weight: 700; font-size: 25px; line-height: 30px; letter-spacing: -.2px; text-wrap: balance; }

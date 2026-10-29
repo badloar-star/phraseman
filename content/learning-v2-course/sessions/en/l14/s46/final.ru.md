@@ -2,7 +2,7 @@
 
 **Ситуация.** Опишите спокойный вечер за шитьём и вязанием.
 
-**Что вы освоите:** сказать, что делали, пока другой занимался своим: while she was sewing
+**Что вы освоите:** сказать, что делали, пока другой был занят: I was reading while she was sewing.
 **Новые слова:** safety pin, sewing machine, pincushion, knitting needles
 
 ## Интро 1

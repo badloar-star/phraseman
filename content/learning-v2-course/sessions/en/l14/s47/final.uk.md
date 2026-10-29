@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про готування зі звичайним кухонним приладдям.
 
-**Що ви опануєте:** сказати, що робили, поки інший займався своїм: while she was cooking
+**Що ви опануєте:** сказати, що робили, коли щось сталося: They were making dinner when I arrived.
 **Нові слова:** garlic press, slotted spoon, colander, potato masher
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви робили паперові прикраси вдома; опишіть роботу до дзвінка.
 
-**Що ви опануєте:** сказати, що робили, поки інший займався своїм: while she was reading
+**Що ви опануєте:** сказати, що робили, коли щось сталося: We were using masking tape when you called.
 **Нові слова:** glue stick, hole punch, paperweight, masking tape
 
 ## Інтро 1

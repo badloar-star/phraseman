@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть спокійний вечір за шиттям і в’язанням.
 
-**Що ви опануєте:** сказати, що робили, поки інший займався своїм: while she was sewing
+**Що ви опануєте:** сказати, що робили, поки інший був зайнятий: I was reading while she was sewing.
 **Нові слова:** safety pin, sewing machine, pincushion, knitting needles
 
 ## Інтро 1

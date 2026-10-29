@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайдіть потрібні речі для прання й миття посуду.
 
-**Що ви опануєте:** can, whose
+**Що ви опануєте:** запитати, чия річ, і сказати, що можна: Whose bag is this? Can I take it?
 **Нові слова:** clothes airer, tumble dryer, laundry bag, dishwasher tablet
 
 ## Інтро 1

@@ -8,9 +8,9 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo, useCallback, useState } from 'react';
-import { PixelRatio, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
+import { PixelRatio, StyleSheet, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 
-import { logSceneTheme } from '../home/v2/scene/scene_theme_log';
+import { logSceneEdge, logSceneTheme } from '../home/v2/scene/scene_theme_log';
 import { useTheme } from '../ThemeContext';
 import SceneBackdrop from './SceneBackdrop';
 import { sceneBottomHex, sceneTopHex, scenePaletteCached, type SceneScreen } from './scene_palette';
@@ -35,11 +35,14 @@ function SceneBackdropFill({ screen, logName, idPrefix, fallback }: Props) {
     setSize((prev) => (prev && prev.w === w && prev.h === h ? prev : { w, h }));
   }, []);
   const dpr = PixelRatio.get();
+  const { height: windowH } = useWindowDimensions();
   let palette = null;
   if (size) {
     const t0 = Date.now();
     palette = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, screen, size.w * dpr, size.h * dpr, dpr);
     logSceneTheme(logName, liquidGlassThemeId, liquidGlassAppearance, `scenePalette(${palette.mode})`, { mode: palette.mode, ms: Date.now() - t0, w: size.w, h: size.h, top: sceneTopHex(palette), bottom: sceneBottomHex(palette) });
+    // зачем (слово владельца 29.10, [SCENE-EDGE]): блок сцены экрана, его доля от окна; край и радиус задаёт родитель экрана — слой заполняет его целиком (absoluteFill)
+    logSceneEdge(logName, { sceneH: size.h, sceneW: size.w, windowH: Math.round(windowH), shareOfWindow: Math.round((size.h / windowH) * 100), themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: palette.mode, source: 'scenePalette', fill: 'absoluteFill' });
   }
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>

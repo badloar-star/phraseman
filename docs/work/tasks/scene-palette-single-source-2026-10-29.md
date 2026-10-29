@@ -97,3 +97,52 @@ Governance-ID: TG-6217288ECA94
 
 Outcome: вечерняя Главная (после 20:00, серия под угрозой) рисует утверждённое владельцем «Небо + тёплый край» (тёмное и светлое) из scenePalette: тёплый свет справа внизу оттенка темы, без красного и углей. Сторожа: parity + single_source + новый тест «вечер: тёплый край у всех тем, белый ≥ 4,6 на зоне текста».
 Scope: scene_palette.ts (scenePaletteCached с вечером), HomeSceneStage.tsx, тест. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 5: Пик — scenePalette в SpireScene и рекорд этажа целиком (клиент + сервер)
+
+Governance-ID: TG-46DE5C5EB96F
+
+Outcome: (1) фон Пика (SpireScene/SpireScenePedestal/backdrop) берёт цвета из scenePalette («Глубокое небо» / «А»); (2) «Рекорд этажа» — одна фича, клиент и сервер: SpireFloorRecord, SpireRecordAttempt, spire_record_copy (9 языков), shared/spire_floor_records, серверная функция spireFloorRecords + тесты; вход в рекорд на клиенте за флагом SPIRE_FLOOR_RECORD_ENABLED, выключен по умолчанию, пока Ядро не выложит сервер; (3) политика конфиденциальности сверена с показом «Ваш / Участник» и лучших результатов комнаты.
+Scope: components/spire/{SpireHomeScreen,scene/SpireScene,scene/SpireScenePedestal,scene/spire_scene_backdrop*,SpireFloorRecord,SpireRecordAttempt,spire_record_copy}, app/spire/spire_floor_record_flag.ts, shared/spire_floor_records.ts, functions/src/spire_floor_records*.ts, тесты. Не берём: achievements, no_energy_sheet, report_store, spire_week_result_client (другие хозяева). Architecture/Security/Debt/Verification/Rollback — как выше; серверный коммит — после слияния 13f66f310, экспорт в index.ts — Ядро.
+
+## Шаг 6: перепин сторожа обложки Сезона
+
+Governance-ID: TG-48746D462B6B
+
+Outcome: tests/season_wire_contract.test.ts проверяет новое утверждённое поведение обложки (SceneBackdropFill из scenePalette на всю обложку) вместо старых градиентов heroArt; проверка не слабее — слой обязан заполнять всю обложку, старых градиентов нет.
+Scope: один тест. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 7: экран Пика ≤ 400 строк (tests/spire_scene_contract)
+
+Governance-ID: TG-7EBBC7226ED9
+
+Outcome: components/spire/SpireHomeScreen.tsx снова ≤ 400 строк без ослабления теста: вход в рекорд этажа вынесен в components/spire/spire_record_slot.tsx (флаг + карточка), экран зовёт одну функцию. На HEAD тест зелёный (399 строк) — красный только в рабочей копии из-за встроенной карточки рекорда; чинится вместе с коммитом рекорда.
+Scope: SpireHomeScreen.tsx, новый spire_record_slot.tsx, тесты spire_floor_record_flag. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 8: перепин tests/spire_scene_contract (overScene у Сообщества)
+
+Governance-ID: TG-B7552D855F06
+
+Outcome: tests/spire_scene_contract.test.ts:148 следует за реальным условием шапки Сообщества на HEAD: поверх сцены — раздел «Наборы» (своя сцена) ИЛИ «Пик» при флаге сцены и готовой сцене. Условие изменено сводным коммитом a82a3b220 (наборы со сценой); тест не ослаблен — проверяются обе части условия.
+Scope: один тест. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 9: типы SpireHomeScreen (pre-push)
+
+Governance-ID: TG-D78ABC5EFA9F
+
+Outcome: TS2322 в components/spire/SpireHomeScreen.tsx: в spireRecordSlot вместо булева preview передан объект превью (или null); передаётся !!preview. Типы рабочего дерева сходятся.
+Scope: одно выражение. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 10: линт text-integrity/no-unsafe-text-truncation (129 ошибок в HEAD) + react/display-name в spire_record_slot
+
+Governance-ID: TG-33D2AC612B0D
+
+Outcome: правило no-unsafe-text-truncation (tools/eslint-rules/no-unsafe-text-truncation) не находит нарушений: текст не обрезается молча — перенос/вёрстка либо явная разрешённая обрезка (ClampedText / допустимый маркер), никакого adjustsFontSizeToFit; внешний вид не меняется (где меняется — сверка со снимками). Коммит частями по экранам. Заодно react/display-name в components/spire/spire_record_slot.tsx:28.
+Scope: файлы из C:/Temp/claude/coord/lint.txt. Architecture/Security/Debt/Verification/Rollback — как выше (откат — revert по экрану).
+
+## Шаг 11: «обрезана верхняя часть сцены, НИГДЕ!» — жёсткий край сцены и тёмная сцена в светлой теме (слово владельца со скрином)
+
+Governance-ID: TG-CF505DDA12AA
+
+Outcome: на всех экранах со сценой (начиная с «Карточки → Все сохранённые») сцена не обрывается жёсткой горизонтальной линией — плавно уходит в фон; цвет сцены только из scenePalette по теме и оформлению (светлое «А», тёмное «Глубокое небо»); лог [SCENE-EDGE] (экран, высота блока сцены, высота экрана, тема, палитра и её источник) сначала; сторож: ни один экран со сценой не задаёт ей фиксированную высоту с жёстким краем.
+Scope: app/flashcards_collection.tsx и прочие экраны со сценой (опись по homeSceneTokensForTheme / своим градиентам), новый сторож. Строка замка OWNER_LOCKS — через координатора. Architecture/Security/Debt/Verification/Rollback — как выше.

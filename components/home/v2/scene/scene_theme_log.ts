@@ -36,3 +36,18 @@ export function logSceneTheme(screen: string, themeId: string, appearance: 'dark
   lastByScreen.set(screen, body);
   console.log(SCENE_THEME_LOG, screen, body);
 }
+
+export const SCENE_EDGE_LOG = '[SCENE-EDGE]';
+const lastEdgeByScreen = new Map<string, string>();
+
+/**
+ * Журнал края сцены (слово владельца 29.10 со скрином: «обрезана верхняя часть сцены, НИГДЕ!»; закон «сперва логи»): по одному поиску `[SCENE-EDGE]` видно для каждого экрана
+ * высоту блока сцены, высоту окна, долю, радиус нижнего края, плавно ли он уходит в фон (`fadeToBg`), тему/оформление и откуда палитра (`source`: scenePalette / свой цвет экрана).
+ * Повтор тех же значений для того же экрана молчит.
+ */
+export function logSceneEdge(screen: string, info: Readonly<Record<string, string | number | boolean | null>>): void {
+  const body = JSON.stringify(info);
+  if (lastEdgeByScreen.get(screen) === body) return;
+  lastEdgeByScreen.set(screen, body);
+  console.log(SCENE_EDGE_LOG, screen, body); // guard-ok: одна строка на смену значений
+}

@@ -17,7 +17,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import { PixelRatio, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import SceneBackdrop from '../../../scene/SceneBackdrop';
 import { scenePaletteCached } from '../../../scene/scene_palette';
-import { logSceneTheme } from './scene_theme_log';
+import { logSceneEdge, logSceneTheme } from './scene_theme_log';
 import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
@@ -147,6 +147,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       rightOffset: -14, heroSpaceH: heroSpaceH === null ? -1 : heroSpaceH, bounded: heroBounded ? 1 : 0, shareOfSceneW: Math.round((HERO / windowW) * 100), shareOfSceneH: Math.round((HERO / stageH) * 100),
     });
   }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, topInset, heroSpaceH, heroBounded]);
+  // зачем (слово владельца 29.10, [SCENE-EDGE]): блок сцены Главной — высота, доля окна, нижний край (радиус 32, без плавного ухода в фон), источник палитры
+  useEffect(() => {
+    logSceneEdge('home', { sceneH: Math.round(stageH), sceneW: Math.round(windowW), windowH: Math.round(windowH), shareOfWindow: Math.round((stageH / windowH) * 100), bottomRadius: 32, fadeToBg: false, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: scenePal.mode, source: 'scenePalette', evening });
+  }, [stageH, windowW, windowH, liquidGlassThemeId, liquidGlassAppearance, scenePal.mode, evening]);
   const heroMask = useMemo(() => <LinearGradient colors={['black', 'black', 'transparent']} locations={[0, fade.fadeFrom, fade.fadeTo]} style={StyleSheet.absoluteFill} />, [fade.fadeFrom, fade.fadeTo]);
   useEffect(() => { console.log(LOG, 'hero_fade', JSON.stringify({ why: fade.why, bounded: fade.bounded, masked: fade.masked, fadeFrom: Number(fade.fadeFrom.toFixed(2)), fadeTo: Number(fade.fadeTo.toFixed(2)), fontScale, spaceH: heroSpaceH })); }, [fade.why, fade.bounded, fade.masked, fade.fadeFrom, fade.fadeTo, fontScale, heroSpaceH]); // guard-ok: одна строка на смену геометрии героя
   // зачем (Сверка home7, [HOME-FIT]): заголовок «Продолжим с эпизода 1» на 390 переносился на 2 строки (+42 dp) и уводил «Фразу дня» под панель; длинный заголовок — кегль 26/32 (как long у обложки Сезона), первый кадр без измерения, без ужатия

@@ -8,7 +8,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo, useCallback, useState } from 'react';
-import { PixelRatio, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
+import { PixelRatio, StyleSheet, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { logSceneEdge } from '../../home/v2/scene/scene_theme_log';
 
 import SceneBackdrop from '../../scene/SceneBackdrop';
 import { scenePaletteCached } from '../../scene/scene_palette';
@@ -28,7 +29,9 @@ function DialogsSceneBackdrop({ colors: c, idPrefix }: Props) {
     setSize((prev) => (prev && prev.w === w && prev.h === h ? prev : { w, h }));
   }, []);
   const dpr = PixelRatio.get();
+  const { height: windowH } = useWindowDimensions();
   const palette = size ? scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'dialogs', size.w * dpr, size.h * dpr, dpr) : null;
+  if (palette && size) logSceneEdge('dialogs', { sceneH: size.h, sceneW: size.w, windowH: Math.round(windowH), shareOfWindow: Math.round((size.h / windowH) * 100), bottomRadius: 32, fadeToBg: false, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: palette.mode, source: 'scenePalette' }); // guard-ok: журнал края сцены
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
       {palette ? (

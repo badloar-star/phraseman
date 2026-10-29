@@ -554,7 +554,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Квитки купили раніше, ніж ви зателефонували. Доповніть Past Perfect.",
+      "prompt": "Квитки купили раніше, ніж ви зателефонували. Покажіть, що це сталося раніше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-18:i08:r1",
@@ -571,12 +571,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Квитки купили раніше, ніж ви зателефонували. Доповніть Past Perfect.",
+      "accessibilityLabel": "Квитки купили раніше, ніж ви зателефонували. Покажіть, що це сталося раніше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Билеты купили раньше, чем вы позвонили. Дополните Past Perfect.",
-          "uk": "Квитки купили раніше, ніж ви зателефонували. Доповніть Past Perfect."
+          "uk": "Квитки купили раніше, ніж ви зателефонували. Покажіть, що це сталося раніше."
         },
         "gappedTargetPhrase": "They ___ bought the tickets before I called.",
         "gapOptions": [
@@ -851,7 +851,7 @@
             "correct": false,
             "testedDimension": "Учора ви побачилися з двоюрідним братом один раз.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple met.",
+              "ru": "Yesterday требует формы прошлого met.",
               "uk": "Yesterday потребує Past Simple met."
             }
           },
@@ -1024,7 +1024,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви вже відповіли на запрошення. Доповніть Present Perfect.",
+      "prompt": "Ви вже відповіли на запрошення. Доповніть фразу з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-18:i16:r1",
@@ -1041,12 +1041,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вже відповіли на запрошення. Доповніть Present Perfect.",
+      "accessibilityLabel": "Ви вже відповіли на запрошення. Доповніть фразу з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы уже ответили на приглашение. Дополните Present Perfect.",
-          "uk": "Ви вже відповіли на запрошення. Доповніть Present Perfect."
+          "uk": "Ви вже відповіли на запрошення. Доповніть фразу з have / has."
         },
         "gappedTargetPhrase": "I have already ___ to the invitation.",
         "gapOptions": [
@@ -1079,7 +1079,7 @@
             "correct": false,
             "testedDimension": "Ви вже відповіли на запрошення. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Have replying не образует Present Perfect.",
+              "ru": "Have replying не образует have / has + done.",
               "uk": "Have replying не утворює Present Perfect."
             }
           }
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "56f9adf4d309193222c4916106091eb04e6265ce69c68a43d80c425e7ac5a471"
+  "learnerFingerprint": "11d9de5078acbcbec0404ece6ed4ebf8ba5c138e4b1d005e6f7b1f6cb76705d2"
 }

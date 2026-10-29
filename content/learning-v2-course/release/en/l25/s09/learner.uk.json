@@ -815,7 +815,7 @@
             "correct": false,
             "testedDimension": "Ідеться про один учорашній похід, не про колишню звичку.",
             "feedbackByLocale": {
-              "ru": "Yesterday — завершённое время: выбираем walked.",
+              "ru": "Yesterday — это уже прошлое: выбираем walked.",
               "uk": "Yesterday — завершений час: вибираємо walked."
             }
           },
@@ -824,7 +824,7 @@
             "correct": false,
             "testedDimension": "Ідеться про один учорашній похід, не про колишню звичку.",
             "feedbackByLocale": {
-              "ru": "Для одного вчерашнего похода нужен Past Simple; would walk здесь не передаёт нужное событие.",
+              "ru": "Для одного вчерашнего похода нужна форма прошлого; would walk здесь не передаёт нужное событие.",
               "uk": "Для одного вчорашнього походу потрібен Past Simple; would walk тут не передає потрібну подію."
             }
           }
@@ -1034,7 +1034,7 @@
             "correct": false,
             "testedDimension": "Ви говорите про досвід поїздок до сьогодні.",
             "feedbackByLocale": {
-              "ru": "После have нужна третья форма visited.",
+              "ru": "После have нужна форма visited.",
               "uk": "Після have потрібна третя форма visited."
             }
           },
@@ -1043,7 +1043,7 @@
             "correct": false,
             "testedDimension": "Ви говорите про досвід поїздок до сьогодні.",
             "feedbackByLocale": {
-              "ru": "Have visiting не образует Present Perfect.",
+              "ru": "Have visiting не образует have / has + done.",
               "uk": "Have visiting не утворює Present Perfect."
             }
           }
@@ -1125,5 +1125,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "183cec401a42e037c96aa10e078d531a6a6fcbae350beb4fb04299050d4a02cb"
+  "learnerFingerprint": "90d931e9a6d56f50a7b890e1604527bfe321e1ba2501347ef50e54cadec966ff"
 }

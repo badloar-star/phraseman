@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-43",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: I have adopted a cat.",
+    "uk": "сказати, що вже зроблено й це видно зараз: I have adopted a cat."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Нова тварина вдома"
       },
       "bodyByLocale": {
-        "ru": "Adopt — взять в семью: например, животное из приюта. I have adopted a cat — я взял кошку в семью. Adopted — третья форма adopt. Это сообщает о важном результате: теперь кошка живёт у меня. Судя по занятому дивану, она считает, что это я живу у неё.",
-        "uk": "Adopt — взяти в родину: наприклад, тварину з притулку. I have adopted a cat — я взяв кішку в родину. Adopted — третя форма adopt. Це повідомляє про важливий результат: тепер кішка живе в мене. Судячи із зайнятого дивана, вона вважає, що це я живу в неї."
+        "ru": "Adopt — взять в семью: например, животное из приюта. I have adopted a cat — я взял кошку в семью. Adopted — форма adopt после have. Это сообщает о важном результате: теперь кошка живёт у меня. Судя по занятому дивану, она считает, что это я живу у неё.",
+        "uk": "Adopt — взяти в родину: наприклад, тварину з притулку. I have adopted a cat — я взяв кішку в родину. Adopted — форма adopt після have. Це повідомляє про важливий результат: тепер кішка живе в мене. Судячи із зайнятого дивана, вона вважає, що це я живу в неї."
       },
       "question": {
         "interactionId": "en:lesson-23:session-43:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Зміна звички"
       },
       "bodyByLocale": {
-        "ru": "Quit — бросить, прекратить. He has quit smoking — он бросил курить. Запомните сочетание quit smoking целиком. Третья форма quit пишется так же, как начальная. С he используем has. Фраза сообщает об изменении, которое важно сейчас.",
-        "uk": "Quit — кинути, припинити. He has quit smoking — він кинув курити. Запам’ятайте сполучення quit smoking цілком. Третя форма quit пишеться так само, як початкова. Із he використовуємо has. Фраза повідомляє про зміну, яка важлива зараз."
+        "ru": "Quit — бросить, прекратить. He has quit smoking — он бросил курить. Запомните сочетание quit smoking целиком. Форма после have quit пишется так же, как начальная. С he используем has. Фраза сообщает об изменении, которое важно сейчас.",
+        "uk": "Quit — кинути, припинити. He has quit smoking — він кинув курити. Запам’ятайте сполучення quit smoking цілком. Форма після have quit пишеться так само, як початкова. Із he використовуємо has. Фраза повідомляє про зміну, яка важлива зараз."
       },
       "question": {
         "interactionId": "en:lesson-23:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5d22464472869c09a298d73fbe06c631a94ee7e9a05bca5f13e4e078978167bf"
+  "introFingerprint": "0de2bfa7d33f10a823463eded1c9198d7c3b8185bf4fbd465c309356657a79ae"
 }

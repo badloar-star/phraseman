@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-53",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали в жизни: I have crossed the border.",
+    "uk": "розповісти, що ви вже робили в житті: I have crossed the border."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Дізналися про місцевих жителів"
       },
       "bodyByLocale": {
-        "ru": "На экскурсии вам рассказали о людях, которые живут в этом районе. Вы делитесь тем, что узнали: We have learned about the local population — мы узнали о местном населении. Population означает «население». Собираем: we + have + learned + about the local population. После we ставим have, learned — третью форму learn. About связывает действие с темой: о ком вы узнали. Have learned показывает, что теперь у вас есть эти сведения.",
-        "uk": "На екскурсії вам розповіли про людей, які живуть у цьому районі. Ви ділитеся тим, що дізналися: We have learned about the local population — ми дізналися про місцеве населення. Population означає «населення». Складаємо: we + have + learned + about the local population. Після we ставимо have, learned — третя форма learn. About пов’язує дію з темою: про кого ви дізналися. Have learned показує, що тепер ви маєте ці відомості."
+        "ru": "На экскурсии вам рассказали о людях, которые живут в этом районе. Вы делитесь тем, что узнали: We have learned about the local population — мы узнали о местном населении. Population означает «население». Собираем: we + have + learned + about the local population. После we ставим have, learned — форму learn. About связывает действие с темой: о ком вы узнали. Have learned показывает, что теперь у вас есть эти сведения.",
+        "uk": "На екскурсії вам розповіли про людей, які живуть у цьому районі. Ви ділитеся тим, що дізналися: We have learned about the local population — ми дізналися про місцеве населення. Population означає «населення». Складаємо: we + have + learned + about the local population. Після we ставимо have, learned — форма learn після have. About пов’язує дію з темою: про кого ви дізналися. Have learned показує, що тепер ви маєте ці відомості."
       },
       "question": {
         "interactionId": "en:lesson-23:session-53:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Досвід далекої поїздки"
       },
       "bodyByLocale": {
-        "ru": "Знакомый рассказывает о друге, который уже побывал на другом континенте. He has travelled to another continent — он путешествовал на другой континент. Continent означает «континент». Собираем: he + has + travelled + to another continent. С he ставим has; travelled — третья форма travel. To вводит направление поездки. Has travelled сообщает об опыте без указания даты.",
-        "uk": "Знайомий розповідає про друга, який уже побував на іншому континенті. He has travelled to another continent — він подорожував на інший континент. Continent означає «континент». Складаємо: he + has + travelled + to another continent. Із he ставимо has; travelled — третя форма travel. To вводить напрямок поїздки. Has travelled повідомляє про досвід без зазначення дати."
+        "ru": "Знакомый рассказывает о друге, который уже побывал на другом континенте. He has travelled to another continent — он путешествовал на другой континент. Continent означает «континент». Собираем: he + has + travelled + to another continent. С he ставим has; travelled — форма travel после have. To вводит направление поездки. Has travelled сообщает об опыте без указания даты.",
+        "uk": "Знайомий розповідає про друга, який уже побував на іншому континенті. He has travelled to another continent — він подорожував на інший континент. Continent означає «континент». Складаємо: he + has + travelled + to another continent. Із he ставимо has; travelled — форма travel після have. To вводить напрямок поїздки. Has travelled повідомляє про досвід без зазначення дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "eaf4dbd1d2ae046c093a3536418dc969939422884eb33eadfdc295a6fc1bf3b3"
+  "introFingerprint": "63aba1ffea34ddbb7b6e5413b1dd22eb4687d2708bd7e804bdfda201d6b11e62"
 }

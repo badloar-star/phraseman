@@ -799,7 +799,7 @@
             "correct": false,
             "testedDimension": "Доповніть розповідь про гроші.",
             "feedbackByLocale": {
-              "ru": "С last week нужен Past Simple: found без have.",
+              "ru": "С last week нужна форма прошлого: found без have.",
               "uk": "Із last week потрібен Past Simple: found без have."
             }
           },
@@ -808,7 +808,7 @@
             "correct": false,
             "testedDimension": "Доповніть розповідь про гроші.",
             "feedbackByLocale": {
-              "ru": "С last week нужен Past Simple: found без have.",
+              "ru": "С last week нужна форма прошлого: found без have.",
               "uk": "Із last week потрібен Past Simple: found без have."
             }
           }
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2c44d06c04b0d91a5097da04fcc3872798053de9da071d46ef2752578354ff0f"
+  "learnerFingerprint": "a00e5e682b13fb5d027dfdfd0fe5afd605030d541e844751e3b19fb610cbf621"
 }

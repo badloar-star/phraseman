@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-56",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали в жизни: He has recovered from an injury.",
+    "uk": "розповісти, що ви вже робили в житті: He has recovered from an injury."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Запитання лікарю вже поставлено"
       },
       "bodyByLocale": {
-        "ru": "Вы с родственником поговорили с врачом об инфекции и сообщаете об этом семье. We have asked about the infection — мы спросили об инфекции. Infection означает «инфекция». Собираем: we + have + asked + about the infection. С we используем have, asked — третья форма правильного глагола ask. About вводит тему вопроса. Have asked показывает, что вопрос уже задан; время разговора здесь не уточняем.",
-        "uk": "Ви з родичем поговорили з лікарем про інфекцію й повідомляєте про це сім’ї. We have asked about the infection — ми запитали про інфекцію. Infection означає «інфекція». Складаємо: we + have + asked + about the infection. Із we використовуємо have, asked — третя форма правильного дієслова ask. About вводить тему запитання. Have asked показує, що запитання вже поставлено; час розмови тут не уточнюємо."
+        "ru": "Вы с родственником поговорили с врачом об инфекции и сообщаете об этом семье. We have asked about the infection — мы спросили об инфекции. Infection означает «инфекция». Собираем: we + have + asked + about the infection. С we используем have, asked — форма после have правильного глагола ask. About вводит тему вопроса. Have asked показывает, что вопрос уже задан; время разговора здесь не уточняем.",
+        "uk": "Ви з родичем поговорили з лікарем про інфекцію й повідомляєте про це сім’ї. We have asked about the infection — ми запитали про інфекцію. Infection означає «інфекція». Складаємо: we + have + asked + about the infection. Із we використовуємо have, asked — форма після have правильного дієслова ask. About вводить тему запитання. Have asked показує, що запитання вже поставлено; час розмови тут не уточнюємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-56:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Знову може ходити"
       },
       "bodyByLocale": {
-        "ru": "Ваш знакомый повредил ногу, но теперь восстановился и снова ходит как прежде. He has recovered from an injury — он восстановился после травмы. Injury означает «травма». Собираем: he + has + recovered + from an injury. С he ставим has, затем recovered — третью форму recover. После recover используем from, чтобы назвать, после чего человек восстановился. Has recovered сообщает о результате сейчас: восстановление завершилось.",
-        "uk": "Ваш знайомий травмував ногу, але тепер відновився й знову ходить як раніше. He has recovered from an injury — він відновився після травми. Injury означає «травма». Складаємо: he + has + recovered + from an injury. Із he ставимо has, потім recovered — третю форму recover. Після recover використовуємо from, щоб назвати, після чого людина відновилася. Has recovered повідомляє про результат зараз: відновлення завершилося."
+        "ru": "Ваш знакомый повредил ногу, но теперь восстановился и снова ходит как прежде. He has recovered from an injury — он восстановился после травмы. Injury означает «травма». Собираем: he + has + recovered + from an injury. С he ставим has, затем recovered — форму recover. После recover используем from, чтобы назвать, после чего человек восстановился. Has recovered сообщает о результате сейчас: восстановление завершилось.",
+        "uk": "Ваш знайомий травмував ногу, але тепер відновився й знову ходить як раніше. He has recovered from an injury — він відновився після травми. Injury означає «травма». Складаємо: he + has + recovered + from an injury. Із he ставимо has, потім recovered — форму recover. Після recover використовуємо from, щоб назвати, після чого людина відновилася. Has recovered повідомляє про результат зараз: відновлення завершилося."
       },
       "question": {
         "interactionId": "en:lesson-23:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6cf0a9adfdea3071394c22d56a60bd8138b0c92b3c6a66b0beb27b0b4cea4f6d"
+  "introFingerprint": "40b67077698e52664922f273fd68c76816ad38c4d365150a7cbabde7da987f4f"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-33",
   "learningOutcomeByLocale": {
-    "ru": "have + just|already + participle; yet at end",
-    "uk": "have + just|already + participle; yet at end"
+    "ru": "сказать, что вы только что что-то сделали: I have just met a scientist.",
+    "uk": "сказати, що ви щойно щось зробили: I have just met a scientist."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Щойно"
       },
       "bodyByLocale": {
-        "ru": "Scientist — учёный, человек, который занимается наукой. I have just met a scientist — я только что встретился с учёным. Just стоит между have и третьей формой met. В этой фразе just означает, что встреча произошла совсем недавно.",
-        "uk": "Scientist — науковець, людина, яка займається наукою. I have just met a scientist — я щойно зустрівся з науковцем. Just стоїть між have і третьою формою met. У цій фразі just означає, що зустріч відбулася зовсім недавно."
+        "ru": "Scientist — учёный, человек, который занимается наукой. I have just met a scientist — я только что встретился с учёным. Just стоит между have и формой после have met. В этой фразе just означает, что встреча произошла совсем недавно.",
+        "uk": "Scientist — науковець, людина, яка займається наукою. I have just met a scientist — я щойно зустрівся з науковцем. Just стоїть між have і формою після have met. У цій фразі just означає, що зустріч відбулася зовсім недавно."
       },
       "question": {
         "interactionId": "en:lesson-23:session-33:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Зустріч уже відбулася"
       },
       "bodyByLocale": {
-        "ru": "Подруга собиралась встретиться с инженером, и теперь вы сообщаете, что встреча состоялась. She has already met an engineer — она уже встретилась с инженером. Engineer означает «инженер». Собираем: she + has + already + met + an engineer. Already означает «уже»: ставим его после has и перед третьей формой met. Так подчёркиваем, что к настоящему моменту встреча уже состоялась.",
-        "uk": "Подруга збиралася зустрітися з інженером, і тепер ви повідомляєте, що зустріч відбулася. She has already met an engineer — вона вже зустрілася з інженером. Engineer означає «інженер». Складаємо: she + has + already + met + an engineer. Already означає «вже»: ставимо його після has і перед третьою формою met. Так підкреслюємо, що на цей момент зустріч уже відбулася."
+        "ru": "Подруга собиралась встретиться с инженером, и теперь вы сообщаете, что встреча состоялась. She has already met an engineer — она уже встретилась с инженером. Engineer означает «инженер». Собираем: she + has + already + met + an engineer. Already означает «уже»: ставим его после has и перед формой после have met. Так подчёркиваем, что к настоящему моменту встреча уже состоялась.",
+        "uk": "Подруга збиралася зустрітися з інженером, і тепер ви повідомляєте, що зустріч відбулася. She has already met an engineer — вона вже зустрілася з інженером. Engineer означає «інженер». Складаємо: she + has + already + met + an engineer. Already означає «вже»: ставимо його після has і перед формою після have met. Так підкреслюємо, що на цей момент зустріч уже відбулася."
       },
       "question": {
         "interactionId": "en:lesson-23:session-33:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a192203fcc8da985f8f42f767b71f775bbf75994da59050822ae4ab59d32c9ac"
+  "introFingerprint": "99c85bed33bfbc3ef2bdbce8fb1ddfc56b685bd19b51be1ba5f209d26bcff408"
 }

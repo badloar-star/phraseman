@@ -1061,7 +1061,7 @@
             "correct": false,
             "testedDimension": "Ви хочете спробувати ще раз. Потрібна одна додаткова спроба.",
             "feedbackByLocale": {
-              "ru": "Перед единственным try без артикля используем another.",
+              "ru": "Перед try (одна попытка) используем another, без a.",
               "uk": "Перед одниною try без артикля використовуємо another."
             }
           },
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "71abfebb6fea08e0cd9507e1cd67bea57fc3ccf01c289357d8be4c2921c44c96"
+  "learnerFingerprint": "5dbda68ef06505b2fc5dcf252d829325077bdfacd7b7edf898aa1e388ccb932a"
 }

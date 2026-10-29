@@ -815,7 +815,7 @@
             "correct": false,
             "testedDimension": "Речь об одном вчерашнем походе, не о прежней привычке.",
             "feedbackByLocale": {
-              "ru": "Yesterday — завершённое время: выбираем walked.",
+              "ru": "Yesterday — это уже прошлое: выбираем walked.",
               "uk": "Yesterday — завершений час: вибираємо walked."
             }
           },
@@ -824,7 +824,7 @@
             "correct": false,
             "testedDimension": "Речь об одном вчерашнем походе, не о прежней привычке.",
             "feedbackByLocale": {
-              "ru": "Для одного вчерашнего похода нужен Past Simple; would walk здесь не передаёт нужное событие.",
+              "ru": "Для одного вчерашнего похода нужна форма прошлого; would walk здесь не передаёт нужное событие.",
               "uk": "Для одного вчорашнього походу потрібен Past Simple; would walk тут не передає потрібну подію."
             }
           }
@@ -1034,7 +1034,7 @@
             "correct": false,
             "testedDimension": "Вы говорите об опыте поездок до сегодняшнего дня.",
             "feedbackByLocale": {
-              "ru": "После have нужна третья форма visited.",
+              "ru": "После have нужна форма visited.",
               "uk": "Після have потрібна третя форма visited."
             }
           },
@@ -1043,7 +1043,7 @@
             "correct": false,
             "testedDimension": "Вы говорите об опыте поездок до сегодняшнего дня.",
             "feedbackByLocale": {
-              "ru": "Have visiting не образует Present Perfect.",
+              "ru": "Have visiting не образует have / has + done.",
               "uk": "Have visiting не утворює Present Perfect."
             }
           }
@@ -1125,5 +1125,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e5e2848aeef2aec27a64c337632c169bcf7d3f0606b9ef0363a0ef6353f5ce33"
+  "learnerFingerprint": "22890bc208afeb88e3331f289e9c6096811ffe6f344a688ba674047dbe3b3d1c"
 }

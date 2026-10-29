@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-31:i03:r1",
@@ -179,12 +179,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "I have ___ the corridor.",
         "gapOptions": [
@@ -208,7 +208,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: cleaned.",
+              "ru": "Нужна форма после have: cleaned.",
               "uk": "Потрібна третя форма: cleaned."
             }
           },
@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: cleaned.",
+              "ru": "Нужна форма после have: cleaned.",
               "uk": "Потрібна третя форма: cleaned."
             }
           }
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-31:i06:r1",
@@ -401,12 +401,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "She has ___ the cabinet.",
         "gapOptions": [
@@ -430,7 +430,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: repaired.",
+              "ru": "Нужна форма после have: repaired.",
               "uk": "Потрібна третя форма: repaired."
             }
           },
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: repaired.",
+              "ru": "Нужна форма после have: repaired.",
               "uk": "Потрібна третя форма: repaired."
             }
           }
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-31:i09:r1",
@@ -623,12 +623,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "We have ___ the basin.",
         "gapOptions": [
@@ -652,7 +652,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: cleaned.",
+              "ru": "Нужна форма после have: cleaned.",
               "uk": "Потрібна третя форма: cleaned."
             }
           },
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: cleaned.",
+              "ru": "Нужна форма после have: cleaned.",
               "uk": "Потрібна третя форма: cleaned."
             }
           }
@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-31:i12:r1",
@@ -845,12 +845,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "He has ___ the lounge.",
         "gapOptions": [
@@ -874,7 +874,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: decorated.",
+              "ru": "Нужна форма после have: decorated.",
               "uk": "Потрібна третя форма: decorated."
             }
           },
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: decorated.",
+              "ru": "Нужна форма после have: decorated.",
               "uk": "Потрібна третя форма: decorated."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8470ae68079c5da4951bb65e6e443aa169cea0d509c946440fdecb0776b9a98c"
+  "learnerFingerprint": "67a41051694def217d957df996d73ecd17e723bb67c9867f6e8a6ec2a09f5950"
 }

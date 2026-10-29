@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-29",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, на каком транспорте вы уже ездили: I have driven a van.",
+    "uk": "розповісти, яким транспортом ви вже їздили: I have driven a van."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Уже водили фургон"
       },
       "bodyByLocale": {
-        "ru": "Друг собирается перевозить вещи и спрашивает, есть ли у вас опыт вождения фургона. I have driven a van — я водил фургон. Van означает «фургон». Собираем: I + have + driven + a van. С I ставим have, driven — третья форма drive. Have driven сообщает об опыте вождения, а не о том, что вы сейчас за рулём.",
-        "uk": "Друг збирається перевозити речі й запитує, чи маєте ви досвід водіння фургона. I have driven a van — я водив фургон. Van означає «фургон». Складаємо: I + have + driven + a van. Із I ставимо have, driven — третя форма drive. Have driven повідомляє про досвід водіння, а не про те, що ви зараз за кермом."
+        "ru": "Друг собирается перевозить вещи и спрашивает, есть ли у вас опыт вождения фургона. I have driven a van — я водил фургон. Van означает «фургон». Собираем: I + have + driven + a van. С I ставим have, driven — форма drive после have. Have driven сообщает об опыте вождения, а не о том, что вы сейчас за рулём.",
+        "uk": "Друг збирається перевозити речі й запитує, чи маєте ви досвід водіння фургона. I have driven a van — я водив фургон. Van означає «фургон». Складаємо: I + have + driven + a van. Із I ставимо have, driven — форма drive після have. Have driven повідомляє про досвід водіння, а не про те, що ви зараз за кермом."
       },
       "question": {
         "interactionId": "en:lesson-23:session-29:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Розрізняємо слова"
       },
       "bodyByLocale": {
-        "ru": "Helicopter — вертолёт. We have seen a helicopter — мы видели вертолёт. Seen — третья форма see. Эта фраза сообщает только, что мы видели его: она не означает, что мы на нём летали.",
-        "uk": "Helicopter — гелікоптер. We have seen a helicopter — ми бачили гелікоптер. Seen — третя форма see. Ця фраза повідомляє лише, що ми його бачили: вона не означає, що ми на ньому літали."
+        "ru": "Helicopter — вертолёт. We have seen a helicopter — мы видели вертолёт. Seen — форма see после have. Эта фраза сообщает только, что мы видели его: она не означает, что мы на нём летали.",
+        "uk": "Helicopter — гелікоптер. We have seen a helicopter — ми бачили гелікоптер. Seen — форма see після have. Ця фраза повідомляє лише, що ми його бачили: вона не означає, що ми на ньому літали."
       },
       "question": {
         "interactionId": "en:lesson-23:session-29:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ще один приклад"
       },
       "bodyByLocale": {
-        "ru": "Tractor — трактор, который часто используют на ферме. He has driven a tractor — он водил трактор. Это опыт, без указания конкретного дня. С he нужно has, затем третья форма driven.",
-        "uk": "Tractor — трактор, який часто використовують на фермі. He has driven a tractor — він водив трактор. Це досвід, без зазначення конкретного дня. Із he потрібно has, потім третя форма driven."
+        "ru": "Tractor — трактор, который часто используют на ферме. He has driven a tractor — он водил трактор. Это опыт, без указания конкретного дня. С he нужно has, затем форма driven.",
+        "uk": "Tractor — трактор, який часто використовують на фермі. He has driven a tractor — він водив трактор. Це досвід, без зазначення конкретного дня. Із he потрібно has, потім форма driven."
       },
       "question": {
         "interactionId": "en:lesson-23:session-29:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f96bbc5afd579ceb1ee10df67b7b64a89328ce316d9ee62c992e2ceed3776920"
+  "introFingerprint": "47abe1caca6c5e6adeb559dbf73baf27f0cb7ed51e52892be23a00b0c43aafe9"
 }

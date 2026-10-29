@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-39",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, какие языки вы изучали: I have studied French.",
+    "uk": "розповісти, які мови ви вивчали: I have studied French."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Знайома мова"
       },
       "bodyByLocale": {
-        "ru": "На языковых занятиях преподаватель спрашивает, изучали ли вы раньше французский. I have studied French — я изучал французский язык. French здесь означает «французский язык». Собираем: I + have + studied + French. После I ставим have, затем studied — третью форму study. Название изученного языка ставим сразу после studied. Have studied сообщает о прежнем опыте, но не обещает свободного владения языком.",
-        "uk": "На мовних заняттях викладач запитує, чи вивчали ви раніше французьку. I have studied French — я вивчав французьку мову. French тут означає «французька мова». Складаємо: I + have + studied + French. Після I ставимо have, потім studied — третю форму study. Назву вивченої мови ставимо одразу після studied. Have studied повідомляє про попередній досвід, але не обіцяє вільного володіння мовою."
+        "ru": "На языковых занятиях преподаватель спрашивает, изучали ли вы раньше французский. I have studied French — я изучал французский язык. French здесь означает «французский язык». Собираем: I + have + studied + French. После I ставим have, затем studied — форму study. Название изученного языка ставим сразу после studied. Have studied сообщает о прежнем опыте, но не обещает свободного владения языком.",
+        "uk": "На мовних заняттях викладач запитує, чи вивчали ви раніше французьку. I have studied French — я вивчав французьку мову. French тут означає «французька мова». Складаємо: I + have + studied + French. Після I ставимо have, потім studied — форму study. Назву вивченої мови ставимо одразу після studied. Have studied повідомляє про попередній досвід, але не обіцяє вільного володіння мовою."
       },
       "question": {
         "interactionId": "en:lesson-23:session-39:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Розрізняємо слова"
       },
       "bodyByLocale": {
-        "ru": "Spanish — испанский язык. We have studied Spanish — мы изучали испанский язык. Studied — третья форма study. Фраза сообщает об опыте учёбы; она сама по себе не говорит, насколько хорошо мы сейчас владеем языком.",
-        "uk": "Spanish — іспанська мова. We have studied Spanish — ми вивчали іспанську мову. Studied — третя форма study. Фраза повідомляє про досвід навчання; сама по собі вона не каже, наскільки добре ми зараз володіємо мовою."
+        "ru": "Spanish — испанский язык. We have studied Spanish — мы изучали испанский язык. Studied — форма study после have. Фраза сообщает об опыте учёбы; она сама по себе не говорит, насколько хорошо мы сейчас владеем языком.",
+        "uk": "Spanish — іспанська мова. We have studied Spanish — ми вивчали іспанську мову. Studied — форма study після have. Фраза повідомляє про досвід навчання; сама по собі вона не каже, наскільки добре ми зараз володіємо мовою."
       },
       "question": {
         "interactionId": "en:lesson-23:session-39:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c66bd3c21c87252be6a713d8c2c37faef858f97ba8b07e2fc5da4724ab8f5a5e"
+  "introFingerprint": "3b0bc4c3a480cf457b2fefa0423763fe8805f1203fbea7349154911175faeb8b"
 }

@@ -437,7 +437,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перечитування було раніше за надсилання листа. Доповніть третю форму.",
+      "prompt": "Перечитування було раніше за надсилання листа. Доповніть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-17:i06:r1",
@@ -454,12 +454,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перечитування було раніше за надсилання листа. Доповніть третю форму.",
+      "accessibilityLabel": "Перечитування було раніше за надсилання листа. Доповніть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Перечитывание было раньше отправки письма. Дополните третью форму.",
-          "uk": "Перечитування було раніше за надсилання листа. Доповніть третю форму."
+          "uk": "Перечитування було раніше за надсилання листа. Доповніть потрібну форму слова."
         },
         "gappedTargetPhrase": "I had ___ the letter before I sent it.",
         "gapOptions": [
@@ -483,7 +483,7 @@
             "correct": false,
             "testedDimension": "Перечитування було раніше за надсилання листа. Доповніть третю форму.",
             "feedbackByLocale": {
-              "ru": "После had нужна третья форма reread.",
+              "ru": "После had нужна форма reread.",
               "uk": "Після had потрібна третя форма reread."
             }
           },
@@ -492,7 +492,7 @@
             "correct": false,
             "testedDimension": "Перечитування було раніше за надсилання листа. Доповніть третю форму.",
             "feedbackByLocale": {
-              "ru": "Rereads — настоящее время с -s; здесь нужна третья форма reread.",
+              "ru": "Rereads — настоящее время с -s; здесь нужна форма reread.",
               "uk": "Rereads — теперішній час із -s; тут потрібна третя форма reread."
             }
           }
@@ -658,11 +658,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Зіставте треті форми з діями",
+      "prompt": "Зіставте форми слів із діями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зіставте треті форми з діями",
+      "accessibilityLabel": "Зіставте форми слів із діями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -988,7 +988,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви приїхали пізніше за закінчення фільму. Доповніть третю форму.",
+      "prompt": "Ви приїхали пізніше за закінчення фільму. Доповніть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-17:i15:r1",
@@ -1005,12 +1005,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви приїхали пізніше за закінчення фільму. Доповніть третю форму.",
+      "accessibilityLabel": "Ви приїхали пізніше за закінчення фільму. Доповніть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы приехали позже окончания фильма. Дополните третью форму.",
-          "uk": "Ви приїхали пізніше за закінчення фільму. Доповніть третю форму."
+          "uk": "Ви приїхали пізніше за закінчення фільму. Доповніть потрібну форму слова."
         },
         "gappedTargetPhrase": "The film had ___ when we arrived.",
         "gapOptions": [
@@ -1043,7 +1043,7 @@
             "correct": false,
             "testedDimension": "Ви приїхали пізніше за закінчення фільму. Доповніть третю форму.",
             "feedbackByLocale": {
-              "ru": "Had ending не образует Past Perfect.",
+              "ru": "Had ending не образует had + done.",
               "uk": "Had ending не утворює Past Perfect."
             }
           }
@@ -1129,5 +1129,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2b28ead7f47696e7b8132db714c3f547af18afc7ad0b3c4c1600c0c4c1a6ce48"
+  "learnerFingerprint": "fed7c1b0c2871208f0e8b1bbe4dafea588a085afd4a2f86c47baa7158efafa42"
 }

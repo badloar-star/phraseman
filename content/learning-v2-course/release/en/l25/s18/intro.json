@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-18",
   "learningOutcomeByLocale": {
-    "ru": "had + past participle before later past event",
-    "uk": "had + past participle before later past event"
+    "ru": "сказать, что вы уже отправили приглашения: I have already sent the invitations.",
+    "uk": "сказати, що ви вже надіслали запрошення: I have already sent the invitations."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Перед надсиланням запрошення"
       },
       "bodyByLocale": {
-        "ru": "Rewrite — переписать, написать заново. She had rewritten the invitation before she posted it — она переписала приглашение до того, как отправила его по почте. Сначала переписала, затем отправила. Had rewritten — Past Perfect; rewritten — третья форма rewrite. Posted здесь означает «отправила по почте»: приглашение было бумажным.",
-        "uk": "Rewrite — переписати, написати заново. She had rewritten the invitation before she posted it — вона переписала запрошення до того, як надіслала його поштою. Спочатку переписала, потім надіслала. Had rewritten — Past Perfect; rewritten — третя форма rewrite. Posted тут означає «надіслала поштою»: запрошення було паперовим."
+        "ru": "Rewrite — переписать, написать заново. She had rewritten the invitation before she posted it — она переписала приглашение до того, как отправила его по почте. Сначала переписала, затем отправила. Had rewritten — had + done; rewritten — форма rewrite после have. Posted здесь означает «отправила по почте»: приглашение было бумажным.",
+        "uk": "Rewrite — переписати, написати заново. She had rewritten the invitation before she posted it — вона переписала запрошення до того, як надіслала його поштою. Спочатку переписала, потім надіслала. Had rewritten — had + done; rewritten — форма rewrite після have. Posted тут означає «надіслала поштою»: запрошення було паперовим."
       },
       "question": {
         "interactionId": "en:lesson-25:session-18:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Історію переказали до сну"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете вчерашний вечер: отец пересказал детям историю, прежде чем они легли спать. Скажите: He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Собираем: He + had retold + the story + before the children went to bed — кто, что сделал раньше, что пересказал, до какого события. После had нужна третья форма retold, а не retell. Had retold показывает законченный пересказ, went to bed — последующий отход ко сну.",
-        "uk": "Ви згадуєте вчорашній вечір: батько переказав дітям історію, перш ніж вони лягли спати. Скажіть: He had retold the story before the children went to bed — він переказав історію до того, як діти лягли спати. Складаємо: He + had retold + the story + before the children went to bed — хто, що зробив раніше, що переказав, до якої події. Після had потрібна третя форма retold, а не retell. Had retold показує завершений переказ, went to bed — пізніший відхід до сну."
+        "ru": "Вы вспоминаете вчерашний вечер: отец пересказал детям историю, прежде чем они легли спать. Скажите: He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Собираем: He + had retold + the story + before the children went to bed — кто, что сделал раньше, что пересказал, до какого события. После had нужна форма retold, а не retell. Had retold показывает законченный пересказ, went to bed — последующий отход ко сну.",
+        "uk": "Ви згадуєте вчорашній вечір: батько переказав дітям історію, перш ніж вони лягли спати. Скажіть: He had retold the story before the children went to bed — він переказав історію до того, як діти лягли спати. Складаємо: He + had retold + the story + before the children went to bed — хто, що зробив раніше, що переказав, до якої події. Після had потрібна форма retold, а не retell. Had retold показує завершений переказ, went to bed — пізніший відхід до сну."
       },
       "question": {
         "interactionId": "en:lesson-25:session-18:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "39d304f58b0d6921e8f44f660e533a2f8f20e0613ae379c1586e3046632dee9a"
+  "introFingerprint": "c3ea9089f0465182f7501b95fa432d913e7b5a66bdce3bef0254a2d50302feea"
 }

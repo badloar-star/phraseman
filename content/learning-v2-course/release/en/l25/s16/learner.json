@@ -841,7 +841,7 @@
             "correct": false,
             "testedDimension": "Вчера вы поговорили с учителем один раз.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple spoke.",
+              "ru": "Yesterday требует формы прошлого spoke.",
               "uk": "Yesterday потребує Past Simple spoke."
             }
           },
@@ -938,7 +938,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уже ответили на вопрос. Дополните Present Perfect.",
+      "prompt": "Вы уже ответили на вопрос. Дополните фразу с have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-16:i15:r1",
@@ -955,11 +955,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже ответили на вопрос. Дополните Present Perfect.",
+      "accessibilityLabel": "Вы уже ответили на вопрос. Дополните фразу с have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уже ответили на вопрос. Дополните Present Perfect.",
+          "ru": "Вы уже ответили на вопрос. Дополните фразу с have / has.",
           "uk": "Ви вже відповіли на запитання. Доповніть Present Perfect."
         },
         "gappedTargetPhrase": "I have already ___ that question.",
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "924cbc01300858817554054a69fc92e1ea81f6cca9ebff3e7129b81a872e2b0c"
+  "learnerFingerprint": "5c6132698fd7fbb4800d51f15271d3bddc391f7c809b1b72651456738a439bbf"
 }

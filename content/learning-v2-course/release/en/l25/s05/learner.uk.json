@@ -843,7 +843,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви розповідаєте про досвід без дати. Доповніть Present Perfect.",
+      "prompt": "Ви розповідаєте про досвід без дати. Доповніть фразу з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-05:i13:r1",
@@ -860,12 +860,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви розповідаєте про досвід без дати. Доповніть Present Perfect.",
+      "accessibilityLabel": "Ви розповідаєте про досвід без дати. Доповніть фразу з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы рассказываете об опыте без даты. Дополните Present Perfect.",
-          "uk": "Ви розповідаєте про досвід без дати. Доповніть Present Perfect."
+          "uk": "Ви розповідаєте про досвід без дати. Доповніть фразу з have / has."
         },
         "gappedTargetPhrase": "I have ___ with deaf adults before.",
         "gapOptions": [
@@ -889,7 +889,7 @@
             "correct": false,
             "testedDimension": "Ви розповідаєте про досвід без дати. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "После have в Present Perfect нужна форма worked.",
+              "ru": "После have в have / has + done нужна форма worked.",
               "uk": "Після have у Present Perfect потрібна форма worked."
             }
           },
@@ -898,7 +898,7 @@
             "correct": false,
             "testedDimension": "Ви розповідаєте про досвід без дати. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Working здесь не образует Present Perfect; нужно worked.",
+              "ru": "Working здесь не образует have / has + done; нужно worked.",
               "uk": "Working тут не утворює Present Perfect; потрібно worked."
             }
           }
@@ -1067,7 +1067,7 @@
             "correct": false,
             "testedDimension": "Йдеться про одну вечерю вчора. Виберіть форму для завершеної події.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует здесь Past Simple: cooked.",
+              "ru": "Yesterday требует здесь формы прошлого: cooked.",
               "uk": "Yesterday потребує тут Past Simple: cooked."
             }
           },
@@ -1124,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c8ae82a2cfaf3ab870302d93191dce729c16969c2ba5b9d7422e7156d3899f35"
+  "learnerFingerprint": "1af12147d1381990424b8090ac53b58a915208822845dd9ca69d4af23d2615db"
 }

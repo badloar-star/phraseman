@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-50",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что уже случилось: I have reported a theft.",
+    "uk": "розповісти, що вже сталося: I have reported a theft."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Бачили крадіжку"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом видели, как человек украл сумку, и сообщаете об этом: We have seen a thief — мы видели вора. Thief означает «вор». Собираем: we + have + seen + a thief. С we используем have; seen — третья форма see, а не saw. Have seen связывает увиденное с сообщением сейчас; точное время события в этой фразе не называем.",
-        "uk": "Ви з другом бачили, як людина вкрала сумку, й повідомляєте про це: We have seen a thief — ми бачили злодія. Thief означає «злодій». Складаємо: we + have + seen + a thief. Із we використовуємо have; seen — третя форма see, а не saw. Have seen пов’язує побачене з повідомленням зараз; точний час події в цій фразі не називаємо."
+        "ru": "Вы с другом видели, как человек украл сумку, и сообщаете об этом: We have seen a thief — мы видели вора. Thief означает «вор». Собираем: we + have + seen + a thief. С we используем have; seen — форма see после have, а не saw. Have seen связывает увиденное с сообщением сейчас; точное время события в этой фразе не называем.",
+        "uk": "Ви з другом бачили, як людина вкрала сумку, й повідомляєте про це: We have seen a thief — ми бачили злодія. Thief означає «злодій». Складаємо: we + have + seen + a thief. Із we використовуємо have; seen — форма see після have, а не saw. Have seen пов’язує побачене з повідомленням зараз; точний час події в цій фразі не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-50:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a9522d5ce9b82c697b19a4c7c828765a098d78915bf4d3f803cbc2f27ba6edaa"
+  "introFingerprint": "dfe217145bdc122e51ea4e77c9455f3e59ca1fc0a44d8bca3a1f0e3a5b91abe9"
 }

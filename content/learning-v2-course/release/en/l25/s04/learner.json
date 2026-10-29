@@ -766,7 +766,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы рассказываете об опыте без даты. Дополните Present Perfect.",
+      "prompt": "Вы рассказываете об опыте без даты. Дополните фразу с have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-04:i11:r1",
@@ -783,11 +783,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы рассказываете об опыте без даты. Дополните Present Perfect.",
+      "accessibilityLabel": "Вы рассказываете об опыте без даты. Дополните фразу с have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы рассказываете об опыте без даты. Дополните Present Perfect.",
+          "ru": "Вы рассказываете об опыте без даты. Дополните фразу с have / has.",
           "uk": "Ви розповідаєте про досвід без дати. Доповніть Present Perfect."
         },
         "gappedTargetPhrase": "I have ___ my former teacher twice.",
@@ -812,7 +812,7 @@
             "correct": false,
             "testedDimension": "Вы рассказываете об опыте без даты. Дополните Present Perfect.",
             "feedbackByLocale": {
-              "ru": "После have в Present Perfect нужна форма met.",
+              "ru": "После have в have / has + done нужна форма met.",
               "uk": "Після have у Present Perfect потрібна форма met."
             }
           },
@@ -821,7 +821,7 @@
             "correct": false,
             "testedDimension": "Вы рассказываете об опыте без даты. Дополните Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Meeting здесь не образует Present Perfect; нужно met.",
+              "ru": "Meeting здесь не образует have / has + done; нужно met.",
               "uk": "Meeting тут не утворює Present Perfect; потрібно met."
             }
           }
@@ -1122,5 +1122,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "043efb268757184021d942a48e3d1ca9ae422a55ab29e6b4493b5d0fe2c73207"
+  "learnerFingerprint": "43b7156148446620f032e981f3c6d955afe7f739eab65757bab1087ecac35b4c"
 }

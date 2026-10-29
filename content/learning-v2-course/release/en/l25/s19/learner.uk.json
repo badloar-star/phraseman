@@ -625,7 +625,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect.",
+      "prompt": "Відповідь зняла ваші сумніви до того, як ви погодилися. Покажіть, що це сталося раніше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-19:i09:r1",
@@ -642,12 +642,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect.",
+      "accessibilityLabel": "Відповідь зняла ваші сумніви до того, як ви погодилися. Покажіть, що це сталося раніше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
-          "uk": "Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect."
+          "uk": "Відповідь зняла ваші сумніви до того, як ви погодилися. Покажіть, що це сталося раніше."
         },
         "gappedTargetPhrase": "The answer ___ satisfied me before I agreed.",
         "gapOptions": [
@@ -922,7 +922,7 @@
             "correct": false,
             "testedDimension": "Ви запитали дорогу вчора. Це один завершений випадок.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple asked.",
+              "ru": "Yesterday требует формы прошлого asked.",
               "uk": "Yesterday потребує Past Simple asked."
             }
           },
@@ -1124,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0a849a81dacfdb28067186673970e9f480cc1392e62f620b0ccb4a28daf44d9c"
+  "learnerFingerprint": "0994ef5a86f254a6cee600e6523af3b5346d35c5f37bca570bdaaf0eb82d038d"
 }

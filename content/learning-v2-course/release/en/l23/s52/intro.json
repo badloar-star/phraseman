@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-52",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали в жизни: She has met the mayor.",
+    "uk": "розповісти, що ви вже робили в житті: She has met the mayor."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Ваш досвід"
       },
       "bodyByLocale": {
-        "ru": "Election — выборы. По-русски говорим во множественном числе, а по-английски одно событие можно назвать an election. I have voted in an election — я голосовал на выборах. Voted — форма знакомого vote после have.",
-        "uk": "Election — вибори. Українською кажемо у множині, а англійською одну подію можна назвати an election. I have voted in an election — я голосував на виборах. Voted — форма знайомого vote після have."
+        "ru": "Election — выборы. По-русски говорим в форме для нескольких, а по-английски одно событие можно назвать an election. I have voted in an election — я голосовал на выборах. Voted — форма знакомого vote после have.",
+        "uk": "Election — вибори. Українською кажемо у формі для кількох, а англійською одну подію можна назвати an election. I have voted in an election — я голосував на виборах. Voted — форма знайомого vote після have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-52:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Статтю вже прочитано"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом прочитали статью о правительстве и теперь можете обсудить её. We have read about the government — мы прочитали о правительстве. Government означает «правительство». Собираем: we + have + read + about the government. После have нужна третья форма read: она пишется как начальная форма, но произносится как red. About вводит тему статьи. Have read сообщает, что вы уже прочитали материал.",
-        "uk": "Ви з другом прочитали статтю про уряд і тепер можете обговорити її. We have read about the government — ми прочитали про уряд. Government означає «уряд». Складаємо: we + have + read + about the government. Після have потрібна третя форма read: вона пишеться як початкова форма, але вимовляється як red. About вводить тему статті. Have read повідомляє, що ви вже прочитали матеріал."
+        "ru": "Вы с другом прочитали статью о правительстве и теперь можете обсудить её. We have read about the government — мы прочитали о правительстве. Government означает «правительство». Собираем: we + have + read + about the government. После have нужна форма read: она пишется как начальная форма, но произносится как red. About вводит тему статьи. Have read сообщает, что вы уже прочитали материал.",
+        "uk": "Ви з другом прочитали статтю про уряд і тепер можете обговорити її. We have read about the government — ми прочитали про уряд. Government означає «уряд». Складаємо: we + have + read + about the government. Після have потрібна форма read: вона пишеться як початкова форма, але вимовляється як red. About вводить тему статті. Have read повідомляє, що ви вже прочитали матеріал."
       },
       "question": {
         "interactionId": "en:lesson-23:session-52:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Бачив по телевізору"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о знакомом, который видел президента в телепередаче. He has seen the president on TV — он видел президента по телевизору. President означает «президент». Собираем: he + has + seen + the president + on TV. После he ставим has, затем seen — третью форму see. On TV уточняет, где он видел президента. Has seen сообщает об этом опыте без указания даты.",
-        "uk": "Ви розповідаєте про знайомого, який бачив президента в телепередачі. He has seen the president on TV — він бачив президента по телевізору. President означає «президент». Складаємо: he + has + seen + the president + on TV. Після he ставимо has, потім seen — третю форму see. On TV уточнює, де він бачив президента. Has seen повідомляє про цей досвід без зазначення дати."
+        "ru": "Вы рассказываете о знакомом, который видел президента в телепередаче. He has seen the president on TV — он видел президента по телевизору. President означает «президент». Собираем: he + has + seen + the president + on TV. После he ставим has, затем seen — форму see. On TV уточняет, где он видел президента. Has seen сообщает об этом опыте без указания даты.",
+        "uk": "Ви розповідаєте про знайомого, який бачив президента в телепередачі. He has seen the president on TV — він бачив президента по телевізору. President означає «президент». Складаємо: he + has + seen + the president + on TV. Після he ставимо has, потім seen — форму see. On TV уточнює, де він бачив президента. Has seen повідомляє про цей досвід без зазначення дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-52:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f6c23059c27c6e17359957bc693f25219cf693f927d0ea1ee93f98d381ec36c6"
+  "introFingerprint": "614c9bca6e0a570df64664403d347151fe9929e377562f3809124c429df29c44"
 }

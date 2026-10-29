@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-34",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, где вы побывали на природе: We have climbed a mountain.",
+    "uk": "розповісти, де ви побували на природі: We have climbed a mountain."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Ваш досвід"
       },
       "bodyByLocale": {
-        "ru": "Island — остров, участок суши, со всех сторон окружённый водой. I have visited an island — я побывал на острове. Visited — третья форма visit. Перед island нужен an: первый звук — гласный, а буква s в island не произносится.",
-        "uk": "Island — острів, ділянка суші, з усіх боків оточена водою. I have visited an island — я побував на острові. Visited — третя форма visit. Перед island потрібен an: перший звук — голосний, а літера s в island не вимовляється."
+        "ru": "Island — остров, участок суши, со всех сторон окружённый водой. I have visited an island — я побывал на острове. Visited — форма visit после have. Перед island нужен an: первый звук — гласный, а буква s в island не произносится.",
+        "uk": "Island — острів, ділянка суші, з усіх боків оточена водою. I have visited an island — я побував на острові. Visited — форма visit після have. Перед island потрібен an: перший звук — голосний, а літера s в island не вимовляється."
       },
       "question": {
         "interactionId": "en:lesson-23:session-34:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Уже підіймалися на гору"
       },
       "bodyByLocale": {
-        "ru": "Обсуждая походы, вы с другом рассказываете, что у вас есть опыт подъёма на гору. We have climbed a mountain — мы поднимались на гору. Mountain означает «гора». Собираем: we + have + climbed + a mountain. После we ставим have, climbed — третья форма climb с окончанием -ed. Гору называем сразу после climbed, без on. Have climbed сообщает о вашем опыте, без указания конкретной поездки.",
-        "uk": "Обговорюючи походи, ви з другом розповідаєте, що маєте досвід підйому на гору. We have climbed a mountain — ми підіймалися на гору. Mountain означає «гора». Складаємо: we + have + climbed + a mountain. Після we ставимо have, climbed — третя форма climb із закінченням -ed. Гору називаємо одразу після climbed, без on. Have climbed повідомляє про ваш досвід, без зазначення конкретної подорожі."
+        "ru": "Обсуждая походы, вы с другом рассказываете, что у вас есть опыт подъёма на гору. We have climbed a mountain — мы поднимались на гору. Mountain означает «гора». Собираем: we + have + climbed + a mountain. После we ставим have, climbed — форма climb после have с окончанием -ed. Гору называем сразу после climbed, без on. Have climbed сообщает о вашем опыте, без указания конкретной поездки.",
+        "uk": "Обговорюючи походи, ви з другом розповідаєте, що маєте досвід підйому на гору. We have climbed a mountain — ми підіймалися на гору. Mountain означає «гора». Складаємо: we + have + climbed + a mountain. Після we ставимо have, climbed — форма climb після have із закінченням -ed. Гору називаємо одразу після climbed, без on. Have climbed повідомляє про ваш досвід, без зазначення конкретної подорожі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-34:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ще один приклад"
       },
       "bodyByLocale": {
-        "ru": "Ocean — океан. He has seen the ocean — он видел океан. Seen — третья форма see. Так мы рассказываем об опыте, не называя конкретную поездку. В этой фразе говорим the ocean: речь об океане как о знакомой части мира.",
-        "uk": "Ocean — океан. He has seen the ocean — він бачив океан. Seen — третя форма see. Так ми розповідаємо про досвід, не називаючи конкретної подорожі. У цій фразі кажемо the ocean: ідеться про океан як про знайому частину світу."
+        "ru": "Ocean — океан. He has seen the ocean — он видел океан. Seen — форма see после have. Так мы рассказываем об опыте, не называя конкретную поездку. В этой фразе говорим the ocean: речь об океане как о знакомой части мира.",
+        "uk": "Ocean — океан. He has seen the ocean — він бачив океан. Seen — форма see після have. Так ми розповідаємо про досвід, не називаючи конкретної подорожі. У цій фразі кажемо the ocean: ідеться про океан як про знайому частину світу."
       },
       "question": {
         "interactionId": "en:lesson-23:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e30dddff6c5e85bc3a23ec61296f58a2f8b3987c5adf3bd5292503687e679957"
+  "introFingerprint": "e9d4ed0dea53d63bb171d282f12c7244034fb98716e9a86efbc08ba011e2d911"
 }

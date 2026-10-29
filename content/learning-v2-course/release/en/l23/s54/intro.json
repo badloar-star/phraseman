@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-54",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали в жизни: I have asked the librarian.",
+    "uk": "розповісти, що ви вже робили в житті: I have asked the librarian."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Розмова з перекладачем відбулася"
       },
       "bodyByLocale": {
-        "ru": "Перед встречей вы с коллегой поговорили с устным переводчиком и сообщаете об этом организатору. We have spoken to an interpreter — мы поговорили с устным переводчиком. Interpreter переводит устную речь. Собираем: we + have + spoken + to an interpreter. С we используем have; spoken — третья форма speak. После spoken ставим to, затем называем собеседника. Have spoken сообщает, что разговор уже состоялся.",
-        "uk": "Перед зустріччю ви з колегою поговорили з усним перекладачем і повідомляєте про це організатору. We have spoken to an interpreter — ми поговорили з усним перекладачем. Interpreter перекладає усне мовлення. Складаємо: we + have + spoken + to an interpreter. Із we використовуємо have; spoken — третя форма speak. Після spoken ставимо to, потім називаємо співрозмовника. Have spoken повідомляє, що розмова вже відбулася."
+        "ru": "Перед встречей вы с коллегой поговорили с устным переводчиком и сообщаете об этом организатору. We have spoken to an interpreter — мы поговорили с устным переводчиком. Interpreter переводит устную речь. Собираем: we + have + spoken + to an interpreter. С we используем have; spoken — форма speak после have. После spoken ставим to, затем называем собеседника. Have spoken сообщает, что разговор уже состоялся.",
+        "uk": "Перед зустріччю ви з колегою поговорили з усним перекладачем і повідомляєте про це організатору. We have spoken to an interpreter — ми поговорили з усним перекладачем. Interpreter перекладає усне мовлення. Складаємо: we + have + spoken + to an interpreter. Із we використовуємо have; spoken — форма speak після have. Після spoken ставимо to, потім називаємо співрозмовника. Have spoken повідомляє, що розмова вже відбулася."
       },
       "question": {
         "interactionId": "en:lesson-23:session-54:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4145cc6f3833c5de7d9eb3a18d59cd852616f761629acd95e1259396a7ed0222"
+  "introFingerprint": "78d86c224b57c21173d7e16c78590cc4ba4b915e8c622a049ca4ebe109648e29"
 }

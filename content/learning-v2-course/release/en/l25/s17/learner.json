@@ -437,7 +437,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перечитывание было раньше отправки письма. Дополните третью форму.",
+      "prompt": "Перечитывание было раньше отправки письма. Дополните нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-17:i06:r1",
@@ -454,11 +454,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перечитывание было раньше отправки письма. Дополните третью форму.",
+      "accessibilityLabel": "Перечитывание было раньше отправки письма. Дополните нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перечитывание было раньше отправки письма. Дополните третью форму.",
+          "ru": "Перечитывание было раньше отправки письма. Дополните нужную форму слова.",
           "uk": "Перечитування було раніше за надсилання листа. Доповніть третю форму."
         },
         "gappedTargetPhrase": "I had ___ the letter before I sent it.",
@@ -483,7 +483,7 @@
             "correct": false,
             "testedDimension": "Перечитывание было раньше отправки письма. Дополните третью форму.",
             "feedbackByLocale": {
-              "ru": "После had нужна третья форма reread.",
+              "ru": "После had нужна форма reread.",
               "uk": "Після had потрібна третя форма reread."
             }
           },
@@ -492,7 +492,7 @@
             "correct": false,
             "testedDimension": "Перечитывание было раньше отправки письма. Дополните третью форму.",
             "feedbackByLocale": {
-              "ru": "Rereads — настоящее время с -s; здесь нужна третья форма reread.",
+              "ru": "Rereads — настоящее время с -s; здесь нужна форма reread.",
               "uk": "Rereads — теперішній час із -s; тут потрібна третя форма reread."
             }
           }
@@ -658,11 +658,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соотнесите третьи формы с действиями",
+      "prompt": "Соотнесите формы слов с действиями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соотнесите третьи формы с действиями",
+      "accessibilityLabel": "Соотнесите формы слов с действиями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -988,7 +988,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы приехали позже окончания фильма. Дополните третью форму.",
+      "prompt": "Вы приехали позже окончания фильма. Дополните нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-17:i15:r1",
@@ -1005,11 +1005,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы приехали позже окончания фильма. Дополните третью форму.",
+      "accessibilityLabel": "Вы приехали позже окончания фильма. Дополните нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы приехали позже окончания фильма. Дополните третью форму.",
+          "ru": "Вы приехали позже окончания фильма. Дополните нужную форму слова.",
           "uk": "Ви приїхали пізніше за закінчення фільму. Доповніть третю форму."
         },
         "gappedTargetPhrase": "The film had ___ when we arrived.",
@@ -1043,7 +1043,7 @@
             "correct": false,
             "testedDimension": "Вы приехали позже окончания фильма. Дополните третью форму.",
             "feedbackByLocale": {
-              "ru": "Had ending не образует Past Perfect.",
+              "ru": "Had ending не образует had + done.",
               "uk": "Had ending не утворює Past Perfect."
             }
           }
@@ -1129,5 +1129,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7370fe1f8d7c64d6a16ee1e161305cc4d16145498ba61b11bd1dc50c7c6e680c"
+  "learnerFingerprint": "3827da853ff59d9118458d66195b66bbe9add8c0775f1378efc875a97acfeeb3"
 }

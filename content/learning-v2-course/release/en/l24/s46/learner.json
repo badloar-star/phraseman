@@ -86,7 +86,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о теле и музее.",
+      "prompt": "Дополните рассказ о теле человека.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-46:i02:r1",
@@ -103,11 +103,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о теле и музее.",
+      "accessibilityLabel": "Дополните рассказ о теле человека.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о теле и музее.",
+          "ru": "Дополните рассказ о теле человека.",
           "uk": "Доповніть розповідь про тіло й музей."
         },
         "gappedTargetPhrase": "I ___ washed my skin.",
@@ -309,7 +309,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о теле и музее.",
+      "prompt": "Дополните рассказ о теле человека.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-46:i05:r1",
@@ -326,11 +326,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о теле и музее.",
+      "accessibilityLabel": "Дополните рассказ о теле человека.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о теле и музее.",
+          "ru": "Дополните рассказ о теле человека.",
           "uk": "Доповніть розповідь про тіло й музей."
         },
         "gappedTargetPhrase": "She ___ a rib last year.",
@@ -532,7 +532,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о теле и музее.",
+      "prompt": "Дополните рассказ о теле человека.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-46:i08:r1",
@@ -549,11 +549,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о теле и музее.",
+      "accessibilityLabel": "Дополните рассказ о теле человека.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о теле и музее.",
+          "ru": "Дополните рассказ о теле человека.",
           "uk": "Доповніть розповідь про тіло й музей."
         },
         "gappedTargetPhrase": "We ___ read about the liver.",
@@ -757,7 +757,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о теле и музее.",
+      "prompt": "Дополните рассказ о теле человека.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-46:i11:r1",
@@ -774,11 +774,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о теле и музее.",
+      "accessibilityLabel": "Дополните рассказ о теле человека.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о теле и музее.",
+          "ru": "Дополните рассказ о теле человека.",
           "uk": "Доповніть розповідь про тіло й музей."
         },
         "gappedTargetPhrase": "They ___ a skeleton at the museum yesterday.",
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f4b01b5a31e88a8a4ce848cd123043abffab2a6d77b4069769cb85a66115ad24"
+  "learnerFingerprint": "0bc1b14894154c885f0102fdde8eb83e27a8cfaae5278eafcc40196b5e15c2d9"
 }

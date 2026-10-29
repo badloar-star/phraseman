@@ -915,7 +915,7 @@
             "correct": false,
             "testedDimension": "Це сталося один раз учора, а не було колишньою звичкою.",
             "feedbackByLocale": {
-              "ru": "Yesterday указывает на завершённое прошлое; нужен Past Simple.",
+              "ru": "Yesterday указывает на завершённое прошлое; нужна форма прошлого.",
               "uk": "Yesterday вказує на завершене минуле; потрібен Past Simple."
             }
           },
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9ea04c3c9e18b7e9438a0492db897737a39e09cfa0d7a50c7788ca6f5ab3c73a"
+  "learnerFingerprint": "913915e110bbaa31706d3d8b6dbe025fd264919fe1678fe6fb71f809502b4bf0"
 }

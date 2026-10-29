@@ -763,7 +763,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+      "prompt": "Вы уже вымыли волосы; результат важен сейчас. Дополните фразу с have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-14:i11:r1",
@@ -780,11 +780,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+      "accessibilityLabel": "Вы уже вымыли волосы; результат важен сейчас. Дополните фразу с have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+          "ru": "Вы уже вымыли волосы; результат важен сейчас. Дополните фразу с have / has.",
           "uk": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect."
         },
         "gappedTargetPhrase": "I have already ___ my hair.",
@@ -818,7 +818,7 @@
             "correct": false,
             "testedDimension": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Have washing не образует Present Perfect.",
+              "ru": "Have washing не образует have / has + done.",
               "uk": "Have washing не утворює Present Perfect."
             }
           }
@@ -1029,7 +1029,7 @@
             "correct": false,
             "testedDimension": "Вчера вы сходили в парикмахерскую один раз.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple went.",
+              "ru": "Yesterday требует формы прошлого went.",
               "uk": "Yesterday потребує Past Simple went."
             }
           },
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "882c89243c060b8af93d4fb5298a984d6ce2421e940202010cd1627cafe1d6e5"
+  "learnerFingerprint": "9bff7b2a017b64d3ae939384ec5eab680e91cb2a5f7c1935b39b85468fbe2731"
 }

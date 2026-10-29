@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-23:session-32:intro1:q",
       "responseFeedbackById": {
         "en:lesson-23:session-32:intro1:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-32:intro1:r3": {
-          "ru": "После have или has нужна третья форма: met.",
-          "uk": "Після have або has потрібна третя форма: met."
+          "ru": "После have или has нужна особая форма: met.",
+          "uk": "Після have або has потрібна особлива форма: met."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-23:session-32:intro2:q",
       "responseFeedbackById": {
         "en:lesson-23:session-32:intro2:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-32:intro2:r3": {
-          "ru": "После have или has нужна третья форма: met.",
-          "uk": "Після have або has потрібна третя форма: met."
+          "ru": "После have или has нужна особая форма: met.",
+          "uk": "Після have або has потрібна особлива форма: met."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-23:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-23:session-32:intro3:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-32:intro3:r3": {
-          "ru": "После have или has нужна третья форма: met.",
-          "uk": "Після have або has потрібна третя форма: met."
+          "ru": "После have или has нужна особая форма: met.",
+          "uk": "Після have або has потрібна особлива форма: met."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a136dcbb37b65ed5f34ef9bee4ac7bdca076f21b1ea945689d3266c2f07809e2"
+  "auxiliaryFingerprint": "30326dc622e57b2a72e7a954286a092052c4a4af70fa91f3381b9549d0ec0191"
 }

@@ -845,7 +845,7 @@
             "correct": false,
             "testedDimension": "Вы вспоминаете конкретный подарок на прошлой неделе.",
             "feedbackByLocale": {
-              "ru": "Last week требует Past Simple gave.",
+              "ru": "Last week требует формы прошлого gave.",
               "uk": "Last week потребує Past Simple gave."
             }
           },
@@ -1123,5 +1123,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ce42f4ee51c53009cab5bd75b763f0091ec14083f1f97e40b4aaf340ad0b0c70"
+  "learnerFingerprint": "f95322dcb077e8321714ec77fa6b5150d8688ad7d1f3ae5bc48add4d817ce9de"
 }

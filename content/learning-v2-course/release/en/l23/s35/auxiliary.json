@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-23:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-23:session-35:intro1:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-35:intro1:r3": {
-          "ru": "После have или has нужна третья форма: met.",
-          "uk": "Після have або has потрібна третя форма: met."
+          "ru": "После have или has нужна особая форма: met.",
+          "uk": "Після have або has потрібна особлива форма: met."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-23:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-23:session-35:intro2:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-35:intro2:r3": {
-          "ru": "После have или has нужна третья форма: met.",
-          "uk": "Після have або has потрібна третя форма: met."
+          "ru": "После have или has нужна особая форма: met.",
+          "uk": "Після have або has потрібна особлива форма: met."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-23:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-23:session-35:intro3:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-35:intro3:r3": {
-          "ru": "После have или has нужна третья форма: spoken.",
-          "uk": "Після have або has потрібна третя форма: spoken."
+          "ru": "После have или has нужна особая форма: spoken.",
+          "uk": "Після have або has потрібна особлива форма: spoken."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0430d614cb962434a1d283f276fccd8623c0b794a37c51c290c948de4aa7a998"
+  "auxiliaryFingerprint": "90e7fbce501fe612b581202cbfa53607b1053a37985a22a87f32118ceafff116"
 }

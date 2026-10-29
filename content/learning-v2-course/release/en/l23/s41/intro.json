@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-41",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, с кем вы уже общались в городе: I have spoken to the shopkeeper.",
+    "uk": "розповісти, з ким ви вже спілкувалися в місті: I have spoken to the shopkeeper."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Ваш досвід"
       },
       "bodyByLocale": {
-        "ru": "Shopkeeper — человек, который владеет небольшим магазином или управляет им. I have spoken to the shopkeeper — я поговорил с владельцем магазина. Spoken — третья форма speak. После spoken здесь нужно to: spoken to the shopkeeper.",
-        "uk": "Shopkeeper — людина, яка володіє невеликою крамницею або керує нею. I have spoken to the shopkeeper — я поговорив із власником крамниці. Spoken — третя форма speak. Після spoken тут потрібно to: spoken to the shopkeeper."
+        "ru": "Shopkeeper — человек, который владеет небольшим магазином или управляет им. I have spoken to the shopkeeper — я поговорил с владельцем магазина. Spoken — форма speak после have. После spoken здесь нужно to: spoken to the shopkeeper.",
+        "uk": "Shopkeeper — людина, яка володіє невеликою крамницею або керує нею. I have spoken to the shopkeeper — я поговорив із власником крамниці. Spoken — форма speak після have. Після spoken тут потрібно to: spoken to the shopkeeper."
       },
       "question": {
         "interactionId": "en:lesson-23:session-41:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Допомогли донести коробку"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом помогли работнику магазина донести тяжёлую коробку. We have helped a worker — мы помогли работнику. Worker означает «работник». Собираем: we + have + helped + a worker. После we используем have, helped — третья форма help с окончанием -ed. Человека называем сразу после helped, без to. Have helped сообщает о помощи, которую вы уже оказали.",
-        "uk": "Ви з другом допомогли працівникові магазину донести важку коробку. We have helped a worker — ми допомогли працівникові. Worker означає «працівник». Складаємо: we + have + helped + a worker. Після we використовуємо have, helped — третя форма help із закінченням -ed. Людину називаємо одразу після helped, без to. Have helped повідомляє про допомогу, яку ви вже надали."
+        "ru": "Вы с другом помогли работнику магазина донести тяжёлую коробку. We have helped a worker — мы помогли работнику. Worker означает «работник». Собираем: we + have + helped + a worker. После we используем have, helped — форма help после have с окончанием -ed. Человека называем сразу после helped, без to. Have helped сообщает о помощи, которую вы уже оказали.",
+        "uk": "Ви з другом допомогли працівникові магазину донести важку коробку. We have helped a worker — ми допомогли працівникові. Worker означає «працівник». Складаємо: we + have + helped + a worker. Після we використовуємо have, helped — форма help після have із закінченням -ed. Людину називаємо одразу після helped, без to. Have helped повідомляє про допомогу, яку ви вже надали."
       },
       "question": {
         "interactionId": "en:lesson-23:session-41:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Покупець знайшовся"
       },
       "bodyByLocale": {
-        "ru": "Друг выставил велосипед на продажу и нашёл человека, готового его купить. He has found a buyer — он нашёл покупателя. Buyer означает «покупатель». Собираем: he + has + found + a buyer. С he ставим has; found — третья форма find. Has found сообщает о результате поиска: покупатель уже есть, хотя продажа могла ещё не состояться.",
-        "uk": "Друг виставив велосипед на продаж і знайшов людину, готову його купити. He has found a buyer — він знайшов покупця. Buyer означає «покупець». Складаємо: he + has + found + a buyer. Із he ставимо has; found — третя форма find. Has found повідомляє про результат пошуку: покупець уже є, хоча продаж міг іще не відбутися."
+        "ru": "Друг выставил велосипед на продажу и нашёл человека, готового его купить. He has found a buyer — он нашёл покупателя. Buyer означает «покупатель». Собираем: he + has + found + a buyer. С he ставим has; found — форма find после have. Has found сообщает о результате поиска: покупатель уже есть, хотя продажа могла ещё не состояться.",
+        "uk": "Друг виставив велосипед на продаж і знайшов людину, готову його купити. He has found a buyer — він знайшов покупця. Buyer означає «покупець». Складаємо: he + has + found + a buyer. Із he ставимо has; found — форма find після have. Has found повідомляє про результат пошуку: покупець уже є, хоча продаж міг іще не відбутися."
       },
       "question": {
         "interactionId": "en:lesson-23:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "85acc11920515655b56798c6a8afb47a8a1ed8321bd01d808dd11a51e4fbbfc8"
+  "introFingerprint": "cb3d7f9162bba59c8d43c1196ef2ed1b1d50027f41691786f7541d3d3ae159aa"
 }

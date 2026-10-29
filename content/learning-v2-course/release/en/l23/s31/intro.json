@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-31",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: I have cleaned the corridor.",
+    "uk": "сказати, що вже зроблено й це видно зараз: I have cleaned the corridor."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Коридор уже чистий"
       },
       "bodyByLocale": {
-        "ru": "Вы закончили уборку коридора и сообщаете об этом соседу по квартире. I have cleaned the corridor — я убрал коридор. Corridor означает «коридор». Собираем: I + have + cleaned + the corridor. После I ставим have, cleaned — третья форма clean с окончанием -ed. Have cleaned показывает результат: уборка закончена. The corridor — конкретный коридор в вашей квартире.",
-        "uk": "Ви закінчили прибирання коридору й повідомляєте про це сусідові по квартирі. I have cleaned the corridor — я прибрав коридор. Corridor означає «коридор». Складаємо: I + have + cleaned + the corridor. Після I ставимо have, cleaned — третя форма clean із закінченням -ed. Have cleaned показує результат: прибирання завершено. The corridor — конкретний коридор у вашій квартирі."
+        "ru": "Вы закончили уборку коридора и сообщаете об этом соседу по квартире. I have cleaned the corridor — я убрал коридор. Corridor означает «коридор». Собираем: I + have + cleaned + the corridor. После I ставим have, cleaned — форма clean после have с окончанием -ed. Have cleaned показывает результат: уборка закончена. The corridor — конкретный коридор в вашей квартире.",
+        "uk": "Ви закінчили прибирання коридору й повідомляєте про це сусідові по квартирі. I have cleaned the corridor — я прибрав коридор. Corridor означає «коридор». Складаємо: I + have + cleaned + the corridor. Після I ставимо have, cleaned — форма clean після have із закінченням -ed. Have cleaned показує результат: прибирання завершено. The corridor — конкретний коридор у вашій квартирі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-31:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f5970b001a2c5e7369ac0e54ead994ecc128a4ceaa2199c47cc0f822bad75707"
+  "introFingerprint": "059d199ffc79c606e0fa1b6caeb9e051e3605583b3c8029b2243aae49648461b"
 }

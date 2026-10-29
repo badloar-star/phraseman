@@ -57,9 +57,34 @@ export function normalizeChapterExamV2Answer(text: string): string {
   return s;
 }
 
-/** Ядро нормализованного ответа собеседнику: без «yes»/«no» в начале и «too»/«either» в конце. */
-export function chapterExamV2DialogueCore(normalized: string): string {
-  return normalized.replace(/^(?:yes|no) /, '').replace(/ (?:too|either)$/, '').trim();
+// зачем (🟡 Ревизора 29.10 к 9fd9db9fb): срез «с обеих сторон без условий» пропускал неграмотное («…wobble either») и противоположное
+// («No, I am.» при эталоне «Yes, I am.»). Теперь: yes/no ответа срезается, только если у эталона своего нет, а yes против no — неверно;
+// too — только без отрицания в ядре, either — только с отрицанием.
+const DIALOGUE_NEGATION_RE = /\b(?:not|never|nobody|nothing|none|cannot|dont|doesnt|didnt|cant|wont|wouldnt|couldnt|shouldnt|havent|hasnt|hadnt|isnt|arent|wasnt|werent|mustnt)\b/;
+
+type DialogueParts = Readonly<{ lead: 'yes' | 'no' | null; core: string; tail: 'too' | 'either' | null }>;
+
+function chapterExamV2DialogueParts(normalized: string): DialogueParts {
+  const leadMatch = /^(yes|no) /.exec(normalized);
+  const lead = leadMatch ? (leadMatch[1] as 'yes' | 'no') : null;
+  const rest = lead ? normalized.slice(lead.length + 1) : normalized;
+  const tailMatch = / (too|either)$/.exec(rest);
+  const tail = tailMatch ? (tailMatch[1] as 'too' | 'either') : null;
+  return { lead, core: (tail ? rest.slice(0, -(tail.length + 1)) : rest).trim(), tail };
+}
+
+/** Ответ собеседнику совпадает с эталоном с точностью до допустимых yes/no в начале и too/either в конце (оба нормализованы). */
+export function chapterExamV2DialogueMatch(givenNormalized: string, targetNormalized: string): boolean {
+  const given = chapterExamV2DialogueParts(givenNormalized);
+  const target = chapterExamV2DialogueParts(targetNormalized);
+  if (!given.core || given.core !== target.core) return false;
+  if (given.lead && target.lead && given.lead !== target.lead) return false; // противоположный ответ
+  const negated = DIALOGUE_NEGATION_RE.test(given.core);
+  // зачем (Ревизор 29.10): «No, I am hungry too» — «нет» перед утвердительным ответом противоречит сам себе, если эталон без yes/no
+  if (given.lead === 'no' && !target.lead && !negated) return false;
+  if (given.tail === 'too' && negated) return false;
+  if (given.tail === 'either' && !negated) return false;
+  return true;
 }
 
 function editDistanceAtMostOne(a: string, b: string): boolean {
@@ -89,10 +114,9 @@ export function checkChapterExamV2Answer(item: ChapterExamV2Item, answer: string
   // зачем (Теория через координатора 29.10, после 9c34c1092): в ответе собеседнику живые «Yes, …» / «No, …» в начале и «… too» /
   // «… either» в конце не делают ответ неверным. Срезаем их с обеих сторон и сравниваем ЯДРО — неверное ядро так верным не станет.
   if (item.type === 'dialogue') {
-    const givenCore = chapterExamV2DialogueCore(given);
-    if (givenCore && givenCore !== wrong) {
+    if (given !== wrong) {
       for (const variant of item.accepted) {
-        if (chapterExamV2DialogueCore(normalizeChapterExamV2Answer(variant)) === givenCore) return { correct: true, matched: variant, typo: false };
+        if (chapterExamV2DialogueMatch(given, normalizeChapterExamV2Answer(variant))) return { correct: true, matched: variant, typo: false };
       }
     }
   }

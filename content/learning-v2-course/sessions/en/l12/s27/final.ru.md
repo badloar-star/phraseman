@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как помогли на кухне вчера.
 
-**Что вы освоите:** правильно произносить -ed: helped, cleaned, needed
+**Что вы освоите:** правильно произносить -ed: I cleaned the chopping board.
 **Новые слова:** mixing bowl, soup bowl, chopping board, baking tray
 
 ## Интро 1

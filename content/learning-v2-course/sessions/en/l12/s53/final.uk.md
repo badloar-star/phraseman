@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як учора підготували речі для ночівлі.
 
-**Що ви опануєте:** повторити: packed, checked, counted, cleaned
+**Що ви опануєте:** повторити: I checked the airbed.
 **Нові слова:** sleeping bag, airbed, tent peg, camping stove
 
 ## Інтро 1

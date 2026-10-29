@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что вчера отложили и упаковали.
 
-**Что вы освоите:** повторить: used, packed, chose, checked
+**Что вы освоите:** повторить: I used a reusable bag.
 **Новые слова:** reusable, unwanted, brand-new, worn-out
 
 ## Интро 1

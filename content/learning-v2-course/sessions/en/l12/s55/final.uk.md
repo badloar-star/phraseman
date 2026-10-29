@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, куди вчора сходили й де зробили покупки.
 
-**Що ви опануєте:** повторити: visited, was / were
+**Що ви опануєте:** повторити: I visited the town centre.
 **Нові слова:** town centre, high street, town square, street market
 
 ## Інтро 1

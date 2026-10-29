@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашние игры на улице.
 
-**Что вы освоите:** рассказать о прошлом: threw, used
+**Что вы освоите:** рассказать о прошлом: I threw the tennis ball.
 **Новые слова:** tennis ball, rubber ball, paper plane, skipping rope
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, как вчера проверили и почистили сумку.
 
-**Что вы освоите:** повторить: checked, cleaned
+**Что вы освоите:** повторить: I checked the luggage tag.
 **Новые слова:** luggage tag, shoulder strap, side pocket, inside pocket
 
 ## Интро 1

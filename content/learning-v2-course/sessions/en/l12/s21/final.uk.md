@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про улюбленця й речі для нього.
 
-**Що ви опануєте:** розповісти про минуле: escaped, checked, chose
+**Що ви опануєте:** розповісти про минуле: The cat escaped yesterday.
 **Нові слова:** escape, cat flap, pet carrier, dog collar
 
 ## Інтро 1

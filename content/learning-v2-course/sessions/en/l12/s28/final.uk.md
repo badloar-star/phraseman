@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, чим користувалися перед виходом із дому.
 
-**Що ви опануєте:** правильно вимовляти -ed: changed, wanted
+**Що ви опануєте:** правильно вимовляти -ed: She changed her shoes.
 **Нові слова:** shoehorn, shoe polish, clothes brush, lint roller
 
 ## Інтро 1

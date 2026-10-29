@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, як учора перевірили й почистили сумку.
 
-**Що ви опануєте:** повторити: checked, cleaned
+**Що ви опануєте:** повторити: I checked the luggage tag.
 **Нові слова:** luggage tag, shoulder strap, side pocket, inside pocket
 
 ## Інтро 1

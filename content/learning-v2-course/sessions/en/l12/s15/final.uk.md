@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашні ігри надворі.
 
-**Що ви опануєте:** розповісти про минуле: threw, used
+**Що ви опануєте:** розповісти про минуле: I threw the tennis ball.
 **Нові слова:** tennis ball, rubber ball, paper plane, skipping rope
 
 ## Інтро 1

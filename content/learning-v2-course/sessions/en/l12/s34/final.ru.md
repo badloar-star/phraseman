@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о вчерашних покупках в городе.
 
-**Что вы освоите:** рассказать о том, что уже закончилось: visited, needed
+**Что вы освоите:** рассказать о том, что уже закончилось: We visited a market stall.
 **Новые слова:** market stall, shopping trolley, carrier bag, department store
 
 ## Интро 1

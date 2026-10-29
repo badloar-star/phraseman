@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что помыли и проверили у машины.
 
-**Что вы освоите:** рассказать о прошлом: washed, checked, closed
+**Что вы освоите:** рассказать о прошлом: She washed the windscreen.
 **Новые слова:** car boot, car bonnet, wing mirror, car door
 
 ## Интро 1

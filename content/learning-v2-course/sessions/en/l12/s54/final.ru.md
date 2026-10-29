@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, что вчера поправили, постирали и переставили.
 
-**Что вы освоите:** повторить: moved, washed
+**Что вы освоите:** повторить: I moved the footstool.
 **Новые слова:** sofa cushion, cushion cover, footstool, rocking chair
 
 ## Интро 1

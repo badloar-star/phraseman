@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як учора сходили до музею.
 
-**Що ви опануєте:** розповісти про те, що вже закінчилося: checked, thanked
+**Що ви опануєте:** розповісти про те, що вже закінчилося: I checked the opening hours.
 **Нові слова:** opening hours, entrance ticket, audio guide, tour guide
 
 ## Інтро 1

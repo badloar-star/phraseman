@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, кого навещали вчера.
 
-**Что вы освоите:** рассказать о прошлом: visited, helped, thanked
+**Что вы освоите:** рассказать о прошлом: I visited my mother-in-law.
 **Новые слова:** mother-in-law, father-in-law, great-grandmother, great-grandfather
 
 ## Интро 1

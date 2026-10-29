@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашні покупки в місті.
 
-**Що ви опануєте:** розповісти про те, що вже закінчилося: visited, needed
+**Що ви опануєте:** розповісти про те, що вже закінчилося: We visited a market stall.
 **Нові слова:** market stall, shopping trolley, carrier bag, department store
 
 ## Інтро 1

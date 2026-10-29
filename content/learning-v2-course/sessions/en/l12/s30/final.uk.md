@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашню гру.
 
-**Що ви опануєте:** правильно вимовляти -ed: kicked, cleaned, noticed
+**Що ви опануєте:** правильно вимовляти -ed: She kicked the ball.
 **Нові слова:** kick, football boots, goalkeeper, goalpost
 
 ## Інтро 1

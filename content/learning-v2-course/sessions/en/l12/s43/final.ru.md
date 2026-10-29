@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, какие продукты использовали вчера.
 
-**Что вы освоите:** правильно произносить -ed: cooked, used, wanted
+**Что вы освоите:** правильно произносить -ed: I cooked the chickpeas.
 **Новые слова:** chickpeas, kidney beans, sweetcorn, couscous
 
 ## Интро 1

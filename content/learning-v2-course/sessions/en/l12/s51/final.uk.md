@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як учора прибрали їжу й приготували лід.
 
-**Що ви опануєте:** повторити: added, filled, used, washed
+**Що ви опануєте:** повторити: She washed the bowl.
 **Нові слова:** ice cube, ice tray, freezer bag, food container
 
 ## Інтро 1

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-11",
   "learningOutcomeByLocale": {
-    "ru": "many + plural count noun / much + non-count noun",
-    "uk": "many + plural count noun / much + non-count noun"
+    "ru": "спросить, сколько людей пользуется чем-то: How many commuters use this train?",
+    "uk": "запитати, скільки людей чимось користується: How many commuters use this train?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Хто їздить цим потягом"
       },
       "bodyByLocale": {
-        "ru": "Вы выбираете утренний поезд на работу и спрашиваете знакомого, сколько людей обычно ездит им на работу или учёбу. Commuter — такой постоянный пассажир. Людей можно посчитать: how many commuters. Добавьте use this train: How many commuters use this train? Здесь спрашиваем, кто совершает действие, поэтому how many commuters само занимает место подлежащего; do не добавляем. После множественного commuters ставим use без -s.",
-        "uk": "Ви обираєте ранковий потяг на роботу й запитуєте знайомого, скільки людей зазвичай їздить ним на роботу або навчання. Commuter — такий постійний пасажир. Людей можна порахувати: how many commuters. Додайте use this train: How many commuters use this train? Тут запитуємо, хто виконує дію, тому how many commuters саме займає місце підмета; do не додаємо. Після множини commuters ставимо use без -s."
+        "ru": "Вы выбираете утренний поезд на работу и спрашиваете знакомого, сколько людей обычно ездит им на работу или учёбу. Commuter — такой постоянный пассажир. Людей можно посчитать: how many commuters. Добавьте use this train: How many commuters use this train? Здесь спрашиваем, кто совершает действие, поэтому how many commuters само стоит там, где обычно стоит тот, о ком речь; do не добавляем. После множественного commuters ставим use без -s.",
+        "uk": "Ви обираєте ранковий потяг на роботу й запитуєте знайомого, скільки людей зазвичай їздить ним на роботу або навчання. Commuter — такий постійний пасажир. Людей можна порахувати: how many commuters. Додайте use this train: How many commuters use this train? Тут запитуємо, хто виконує дію, тому how many commuters саме стоїть там, де зазвичай стоїть той, про кого йдеться; do не додаємо. Після форми для кількох commuters ставимо use без -s."
       },
       "question": {
         "interactionId": "en:lesson-17:session-11:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Наскільки завантажені дороги"
       },
       "bodyByLocale": {
-        "ru": "Перед поездкой на работу вы спрашиваете коллегу о загруженности дорог сегодня. Congestion — скопление транспорта, неисчисляемое слово. Соберите вопрос: How much congestion + is there + today? → How much congestion is there today? Much ставим перед congestion. В вопросе о наличии используем порядок is there, а today указывает время.",
-        "uk": "Перед поїздкою на роботу ви запитуєте колегу про завантаженість доріг сьогодні. Congestion — скупчення транспорту, незлічуване слово. Складіть запитання: How much congestion + is there + today? → How much congestion is there today? Much ставимо перед congestion. У запитанні про наявність використовуємо порядок is there, а today вказує час."
+        "ru": "Перед поездкой на работу вы спрашиваете коллегу о загруженности дорог сегодня. Congestion — скопление транспорта, слово, которое не считают поштучно. Соберите вопрос: How much congestion + is there + today? → How much congestion is there today? Much ставим перед congestion. В вопросе о наличии используем порядок is there, а today указывает время.",
+        "uk": "Перед поїздкою на роботу ви запитуєте колегу про завантаженість доріг сьогодні. Congestion — скупчення транспорту, слово, яке не рахують поштучно. Складіть запитання: How much congestion + is there + today? → How much congestion is there today? Much ставимо перед congestion. У запитанні про наявність використовуємо порядок is there, а today вказує час."
       },
       "question": {
         "interactionId": "en:lesson-17:session-11:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Повітря в новому районі"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете с другом район, где по данным местного отчёта загрязнение невелико, и хотите сообщить именно это. Pollution — загрязнение, неисчисляемое слово. Соберите фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't сообщает об отсутствии большого количества, much относится к pollution, а here означает «здесь». Фраза не утверждает, что загрязнения нет совсем.",
-        "uk": "Ви обговорюєте з другом район, де за даними місцевого звіту забруднення невелике, і хочете повідомити саме це. Pollution — забруднення, незлічуване слово. Складіть фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't повідомляє про відсутність великої кількості, much стосується pollution, а here означає «тут». Фраза не стверджує, що забруднення немає зовсім."
+        "ru": "Вы обсуждаете с другом район, где по данным местного отчёта загрязнение невелико, и хотите сообщить именно это. Pollution — загрязнение, слово, которое не считают поштучно. Соберите фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't сообщает об отсутствии большого количества, much относится к pollution, а here означает «здесь». Фраза не утверждает, что загрязнения нет совсем.",
+        "uk": "Ви обговорюєте з другом район, де за даними місцевого звіту забруднення невелике, і хочете повідомити саме це. Pollution — забруднення, слово, яке не рахують поштучно. Складіть фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't повідомляє про відсутність великої кількості, much стосується pollution, а here означає «тут». Фраза не стверджує, що забруднення немає зовсім."
       },
       "question": {
         "interactionId": "en:lesson-17:session-11:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "308a7ad721e086be5456de6c2ae10fd30885a9a16ffa8e2ed887bff6de91cbc7"
+  "introFingerprint": "2a8e3e99a8b49b2315a9f3eec5f8ed58ed082120198227dce74b0c16cd67d99f"
 }

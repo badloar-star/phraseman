@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-02",
   "learningOutcomeByLocale": {
-    "ru": "count nouns / non-count nouns: a, an, plural forms",
-    "uk": "count nouns / non-count nouns: a, an, plural forms"
+    "ru": "назвать продукт: This is a shallot.",
+    "uk": "назвати продукт: This is a shallot."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Назвати цибулину"
       },
       "bodyByLocale": {
-        "ru": "Друг помогает готовить обед и спрашивает, что за маленькая луковица лежит перед ним. Shallot — лук-шалот; одну луковицу можно посчитать. Ответьте: This is a shallot. Сначала This указывает на предмет, затем is связывает его с названием a shallot. Перед названием одного исчисляемого предмета нужен артикль; выбираем a, поскольку shallot начинается с согласного звука.",
-        "uk": "Друг допомагає готувати обід і запитує, що за маленька цибулина лежить перед ним. Shallot — цибуля-шалот; одну цибулину можна порахувати. Відповідайте: This is a shallot. Спочатку This указує на предмет, потім is пов'язує його з назвою a shallot. Перед назвою одного злічуваного предмета потрібен артикль; обираємо a, оскільки shallot починається з приголосного звука."
+        "ru": "Друг помогает готовить обед и спрашивает, что за маленькая луковица лежит перед ним. Shallot — лук-шалот; одну луковицу можно посчитать. Ответьте: This is a shallot. Сначала This указывает на предмет, затем is связывает его с названием a shallot. Перед названием одного предмета нужно a; выбираем a, поскольку shallot начинается с согласного звука.",
+        "uk": "Друг допомагає готувати обід і запитує, що за маленька цибулина лежить перед ним. Shallot — цибуля-шалот; одну цибулину можна порахувати. Відповідайте: This is a shallot. Спочатку This указує на предмет, потім is пов'язує його з назвою a shallot. Перед назвою одного предмета потрібне a; обираємо a, оскільки shallot починається з приголосного звука."
       },
       "question": {
         "interactionId": "en:lesson-17:session-02:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Перець у мисці"
       },
       "bodyByLocale": {
-        "ru": "Вы проверяете миску со специями и говорите другу, что в ней две горошины перца. Peppercorn — одна горошина; после two добавляем -s: peppercorns. Соберите предложение: There are + two peppercorns + in the bowl → There are two peppercorns in the bowl. There are сообщает о нескольких предметах, а in the bowl в конце называет место. Перед two артикль a не нужен.",
-        "uk": "Ви перевіряєте миску зі спеціями й говорите другу, що в ній дві горошини перцю. Peppercorn — одна горошина; після two додаємо -s: peppercorns. Складіть речення: There are + two peppercorns + in the bowl → There are two peppercorns in the bowl. There are повідомляє про кілька предметів, а in the bowl наприкінці називає місце. Перед two артикль a не потрібен."
+        "ru": "Вы проверяете миску со специями и говорите другу, что в ней две горошины перца. Peppercorn — одна горошина; после two добавляем -s: peppercorns. Соберите предложение: There are + two peppercorns + in the bowl → There are two peppercorns in the bowl. There are сообщает о нескольких предметах, а in the bowl в конце называет место. Перед two a не нужен.",
+        "uk": "Ви перевіряєте миску зі спеціями й говорите другу, що в ній дві горошини перцю. Peppercorn — одна горошина; після two додаємо -s: peppercorns. Складіть речення: There are + two peppercorns + in the bowl → There are two peppercorns in the bowl. There are повідомляє про кілька предметів, а in the bowl наприкінці називає місце. Перед two a не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-17:session-02:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Суха крупа"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете другу булгур перед приготовлением и уточняете, что крупа пока сухая. Bulgur — булгур, крупа из пшеницы; здесь это неисчисляемое название продукта. Скажите: This bulgur is dry. Порядок: This bulgur + is + dry. Для крупы в целом используем this и is, а dry описывает её состояние. Отдельные крупинки здесь не считаем и -s к bulgur не добавляем.",
-        "uk": "Ви показуєте другу булгур перед приготуванням і уточнюєте, що крупа поки суха. Bulgur — булгур, крупа з пшениці; тут це незлічувана назва продукту. Скажіть: This bulgur is dry. Порядок: This bulgur + is + dry. Для крупи загалом використовуємо this та is, а dry описує її стан. Окремих крупинок тут не рахуємо й -s до bulgur не додаємо."
+        "ru": "Вы показываете другу булгур перед приготовлением и уточняете, что крупа пока сухая. Bulgur — булгур, крупа из пшеницы; здесь это название продукта — его не считают поштучно. Скажите: This bulgur is dry. Порядок: This bulgur + is + dry. Для крупы в целом используем this и is, а dry описывает её состояние. Отдельные крупинки здесь не считаем и -s к bulgur не добавляем.",
+        "uk": "Ви показуєте другу булгур перед приготуванням і уточнюєте, що крупа поки суха. Bulgur — булгур, крупа з пшениці; тут це назва продукту — її не рахують поштучно. Скажіть: This bulgur is dry. Порядок: This bulgur + is + dry. Для крупи загалом використовуємо this та is, а dry описує її стан. Окремих крупинок тут не рахуємо й -s до bulgur не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-17:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cb39e95c393b8a627cd6676d2a92ff0c83f196994c9f0a55d560b0e3007c17d6"
+  "introFingerprint": "421e97064c49ea97b2f6bb4d8e08ba6d55af4cf04c2082ebf229c4b6c7cc34b0"
 }

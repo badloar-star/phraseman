@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-01:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "This is ___ bookend.",
@@ -273,11 +273,11 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «В комнате два пуфа». У ottoman множественное число — ottomans.",
+      "prompt": "Скажите: «В комнате два пуфа». Если ottoman несколько — ottomans.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «В комнате два пуфа». У ottoman множественное число — ottomans.",
+      "accessibilityLabel": "Скажите: «В комнате два пуфа». Если ottoman несколько — ottomans.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "There are two ottomans in the room.",
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-01:i06:r1",
@@ -402,11 +402,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "There are two ___ in the room.",
@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное число: ottomans.",
+              "ru": "После two нужна форма для нескольких: ottomans.",
               "uk": "Після two потрібна множина: ottomans."
             }
           },
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное число: ottomans.",
+              "ru": "После two нужна форма для нескольких: ottomans.",
               "uk": "Після two потрібна множина: ottomans."
             }
           }
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-01:i09:r1",
@@ -623,11 +623,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "This crockery ___ new.",
@@ -652,7 +652,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Crockery — неисчисляемое слово; согласуем с is, не are.",
+              "ru": "Crockery не считают поштучно; согласуем с is, не are.",
               "uk": "Crockery — незлічуване слово; узгоджуємо з is, не are."
             }
           },
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Crockery — неисчисляемое слово; согласуем с is, не are.",
+              "ru": "Crockery не считают поштучно; согласуем с is, не are.",
               "uk": "Crockery — незлічуване слово; узгоджуємо з is, не are."
             }
           }
@@ -826,7 +826,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-01:i12:r1",
@@ -843,11 +843,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "We need ___.",
@@ -872,7 +872,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Bedding — неисчисляемое слово: без a и без окончания -s.",
+              "ru": "Bedding не считают поштучно: без a и без окончания -s.",
               "uk": "Bedding — незлічуване слово: без a та без закінчення -s."
             }
           },
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Bedding — неисчисляемое слово: без a и без окончания -s.",
+              "ru": "Bedding не считают поштучно: без a и без окончания -s.",
               "uk": "Bedding — незлічуване слово: без a та без закінчення -s."
             }
           }
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "44450ac16b37d2170f54c0c208fed0e604f740cb2023e99ee846b7903a2a405f"
+  "learnerFingerprint": "6c093c7d3fcb332ea2c0a3e77036fb184e81e58236489fb4269f5c2832f3d57a"
 }

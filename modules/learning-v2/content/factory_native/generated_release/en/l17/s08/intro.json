@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-08",
   "learningOutcomeByLocale": {
-    "ru": "count nouns / non-count nouns: a, an, plural forms",
-    "uk": "count nouns / non-count nouns: a, an, plural forms"
+    "ru": "назвать бытовой прибор: This is an appliance.",
+    "uk": "назвати побутовий прилад: This is an appliance."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Назвати побутовий прилад"
       },
       "bodyByLocale": {
-        "ru": "Друг показывает на незнакомый предмет в вашей кухне. Вы объясняете, что это бытовой прибор: This is an appliance. Соберите фразу: This + is + an appliance. Appliance — один исчисляемый предмет, поэтому перед ним нужен артикль. Слово начинается с гласного звука, и мы выбираем an. This указывает на предмет, а is связывает его с названием.",
-        "uk": "Друг показує на незнайомий предмет у вашій кухні. Ви пояснюєте, що це побутовий прилад: This is an appliance. Складіть фразу: This + is + an appliance. Appliance — один злічуваний предмет, тому перед ним потрібен артикль. Слово починається з голосного звука, і ми обираємо an. This указує на предмет, а is пов'язує його з назвою."
+        "ru": "Друг показывает на незнакомый предмет в вашей кухне. Вы объясняете, что это бытовой прибор: This is an appliance. Соберите фразу: This + is + an appliance. Appliance — один предмет, его считают поштучно, поэтому перед ним нужно a. Слово начинается с гласного звука, и мы выбираем an. This указывает на предмет, а is связывает его с названием.",
+        "uk": "Друг показує на незнайомий предмет у вашій кухні. Ви пояснюєте, що це побутовий прилад: This is an appliance. Складіть фразу: This + is + an appliance. Appliance — один предмет, його рахують поштучно, тому перед ним потрібне a. Слово починається з голосного звука, і ми обираємо an. This указує на предмет, а is пов'язує його з назвою."
       },
       "question": {
         "interactionId": "en:lesson-17:session-08:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Два розрахунки на столі"
       },
       "bodyByLocale": {
-        "ru": "Вы сравниваете стоимость ремонта: два предварительных расчёта лежат на столе. Estimate — один такой расчёт; после two используем множественное estimates. Соберите предложение: There are + two estimates + on the table → There are two estimates on the table. There are вводит несколько предметов, затем называем их количество и в конце место. Перед two артикль a не ставим.",
-        "uk": "Ви порівнюєте вартість ремонту: два попередні розрахунки лежать на столі. Estimate — один такий розрахунок; після two використовуємо множину estimates. Складіть речення: There are + two estimates + on the table → There are two estimates on the table. There are вводить кілька предметів, потім називаємо їхню кількість і наприкінці місце. Перед two артикль a не ставимо."
+        "ru": "Вы сравниваете стоимость ремонта: два предварительных расчёта лежат на столе. Estimate — один такой расчёт; после two используем множественное estimates. Соберите предложение: There are + two estimates + on the table → There are two estimates on the table. There are вводит несколько предметов, затем называем их количество и в конце место. Перед two a не ставим.",
+        "uk": "Ви порівнюєте вартість ремонту: два попередні розрахунки лежать на столі. Estimate — один такий розрахунок; після two використовуємо форму для кількох estimates. Складіть речення: There are + two estimates + on the table → There are two estimates on the table. There are вводить кілька предметів, потім називаємо їхню кількість і наприкінці місце. Перед two a не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-17:session-08:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Мокре пакування"
       },
       "bodyByLocale": {
-        "ru": "Вы получили коробку с прибором и показываете другу промокшую упаковку. Packaging здесь означает упаковочный материал в целом и не считается по отдельным предметам. Скажите: This packaging is wet. Порядок: This packaging + is + wet. Используем this и is с неисчисляемым packaging; форму packagings для этого значения не образуем. Wet сообщает, какая упаковка сейчас.",
-        "uk": "Ви отримали коробку з приладом і показуєте другу промокле пакування. Packaging тут означає пакувальний матеріал загалом і не рахується за окремими предметами. Скажіть: This packaging is wet. Порядок: This packaging + is + wet. Використовуємо this та is із незлічуваним packaging; форми packagings для цього значення не утворюємо. Wet повідомляє, яким є пакування зараз."
+        "ru": "Вы получили коробку с прибором и показываете другу промокшую упаковку. Packaging здесь означает упаковочный материал в целом и не считается по отдельным предметам. Скажите: This packaging is wet. Порядок: This packaging + is + wet. Используем this и is с packaging — его не считают поштучно; форму packagings для этого значения не образуем. Wet сообщает, какая упаковка сейчас.",
+        "uk": "Ви отримали коробку з приладом і показуєте другу промокле пакування. Packaging тут означає пакувальний матеріал загалом і не рахується за окремими предметами. Скажіть: This packaging is wet. Порядок: This packaging + is + wet. Використовуємо this та is з packaging — його не рахують поштучно; форми packagings для цього значення не утворюємо. Wet повідомляє, яким є пакування зараз."
       },
       "question": {
         "interactionId": "en:lesson-17:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7c0c08d6a4e749da2e6b432fb5dfb016ec61365281c3fe807da0eac67b3d1b6f"
+  "introFingerprint": "243018713e04ed4beab1732738e89702084a4cf6bba75914464c7b51d38b5ec9"
 }

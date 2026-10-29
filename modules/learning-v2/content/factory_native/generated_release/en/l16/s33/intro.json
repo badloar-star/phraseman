@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-33",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, каким будет предстоящее дело: I think the task will be manageable.",
+    "uk": "припустити, яким буде майбутня справа: I think the task will be manageable."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Розповісти про запис на заняття"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом записались на завтрашнее занятие по первой помощи; время подтверждено. We are joining a worthwhile activity tomorrow. — Завтра мы участвуем в полезном занятии. Чтобы передать договорённость через Present Continuous, соберите we + are + joining. Joining получается из join добавлением -ing. Затем добавьте a worthwhile activity — «занятие, стоящее потраченного времени» — и tomorrow. Именно tomorrow показывает, что речь о будущем. Going to также возможно, но здесь отрабатываем Present Continuous для договорённости.",
-        "uk": "Ви з другом записалися на завтрашнє заняття з першої допомоги; час підтверджено. We are joining a worthwhile activity tomorrow. — Завтра ми беремо участь у корисному занятті. Щоб передати домовленість через Present Continuous, складіть we + are + joining. Joining утворюється з join додаванням -ing. Потім додайте a worthwhile activity — «заняття, варте витраченого часу» — і tomorrow. Саме tomorrow показує, що йдеться про майбутнє. Going to також можливе, але тут відпрацьовуємо Present Continuous для домовленості."
+        "ru": "Вы с другом записались на завтрашнее занятие по первой помощи; время подтверждено. We are joining a worthwhile activity tomorrow. — Завтра мы участвуем в полезном занятии. Чтобы передать договорённость через am / is / are + -ing, соберите we + are + joining. Joining получается из join добавлением -ing. Затем добавьте a worthwhile activity — «занятие, стоящее потраченного времени» — и tomorrow. Именно tomorrow показывает, что речь о будущем. Going to также возможно, но здесь отрабатываем am / is / are + -ing для договорённости.",
+        "uk": "Ви з другом записалися на завтрашнє заняття з першої допомоги; час підтверджено. We are joining a worthwhile activity tomorrow. — Завтра ми беремо участь у корисному занятті. Щоб передати домовленість через am / is / are + -ing, складіть we + are + joining. Joining утворюється з join додаванням -ing. Потім додайте a worthwhile activity — «заняття, варте витраченого часу» — і tomorrow. Саме tomorrow показує, що йдеться про майбутнє. Going to також можливе, але тут відпрацьовуємо am / is / are + -ing для домовленості."
       },
       "question": {
         "interactionId": "en:lesson-16:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b3d21c67120b0ba809bfcf846cb0bfd00062f54db6ca79573b31d5d07f01861c"
+  "introFingerprint": "61328215f80acb73a7d98168f3af1894e92218c3c4aaa4c4d7ac99b72ff8da77"
 }

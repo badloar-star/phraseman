@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що кілька пропозицій уже є. Job offer → job offers.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -442,7 +442,7 @@
             "correct": false,
             "testedDimension": "Ви хотіли більше зустрічей із роботодавцями. Підкресліть, що співбесід мало. Job interview → job interviews.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -665,7 +665,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що певний досвід у вас є, а не його брак.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -888,7 +888,7 @@
             "correct": false,
             "testedDimension": "У цій ситуації працівник має обмежений запас днів лікарняного. Підкресліть, що залишилося мало.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e76c5b65a6bc24ef5d5e1b6a2075b240f93a40b37807601a9ff9d57bca76906a"
+  "learnerFingerprint": "eafdf5e05bc20501f1f955fa773ddccc331fee516b00cfc07888a7d43a1e7dbf"
 }

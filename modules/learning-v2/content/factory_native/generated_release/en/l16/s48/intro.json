@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-48",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, что друг присоединится: I think Anna will come along.",
+    "uk": "припустити, що друг приєднається: I think Anna will come along."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Вихід на прогулянку узгоджено"
       },
       "bodyByLocale": {
-        "ru": "Вы с друзьями договорились завтра выйти на прогулку в восемь. Head out — выйти, отправиться куда-либо. Передайте договорённость: We are heading out at eight tomorrow. Соберите предложение: We + are heading out + at eight + tomorrow. С we используем are, к head добавляем -ing, а out сохраняем. At eight tomorrow называет согласованное время и показывает будущее значение Present Continuous.",
-        "uk": "Ви з друзями домовилися завтра вийти на прогулянку о восьмій. Head out — вийти, вирушити кудись. Передайте домовленість: We are heading out at eight tomorrow. Складіть речення: We + are heading out + at eight + tomorrow. З we використовуємо are, до head додаємо -ing, а out зберігаємо. At eight tomorrow називає узгоджений час і показує майбутнє значення Present Continuous."
+        "ru": "Вы с друзьями договорились завтра выйти на прогулку в восемь. Head out — выйти, отправиться куда-либо. Передайте договорённость: We are heading out at eight tomorrow. Соберите предложение: We + are heading out + at eight + tomorrow. С we используем are, к head добавляем -ing, а out сохраняем. At eight tomorrow называет согласованное время и показывает будущее значение am / is / are + -ing.",
+        "uk": "Ви з друзями домовилися завтра вийти на прогулянку о восьмій. Head out — вийти, вирушити кудись. Передайте домовленість: We are heading out at eight tomorrow. Складіть речення: We + are heading out + at eight + tomorrow. З we використовуємо are, до head додаємо -ing, а out зберігаємо. At eight tomorrow називає узгоджений час і показує майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5d5a404df7299b86beafed61a3c5638aaf27b162994a25a414a28b218b091ab0"
+  "introFingerprint": "c00c374b2cc3c3439e742ec8b8f4d3bcd913fb1499eda5f5d56cb82fbcb15160"
 }

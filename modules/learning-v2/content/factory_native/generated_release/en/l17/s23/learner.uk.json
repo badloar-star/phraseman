@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що кілька добрих слів усе ж почули. Kind word → kind words.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Ви очікували більше подяк. Підкресліть, що записок мало. Thank-you note → thank-you notes.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що вона виявила хоч трохи доброти.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Вона швидко дратувалася. Підкресліть брак терпіння.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "61a8b5d2076f12a62a09d6df7495d17422a0b4d77060fb0cad3f4d070563318b"
+  "learnerFingerprint": "49891827c1624eb739b30b13ec3bcc20956e471a3a087eac50a367c838272f26"
 }

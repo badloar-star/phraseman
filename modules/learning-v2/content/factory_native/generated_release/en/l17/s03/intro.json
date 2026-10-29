@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-03",
   "learningOutcomeByLocale": {
-    "ru": "count nouns / non-count nouns: a, an, plural forms",
-    "uk": "count nouns / non-count nouns: a, an, plural forms"
+    "ru": "назвать книгу: This is a biography.",
+    "uk": "назвати книжку: This is a biography."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Книжка про чуже життя"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете другу книгу о жизни художника, написанную другим человеком. Назовите её вид: This is a biography. Biography — одна книга-биография, исчисляемое слово. Соберите предложение: This + is + a biography. This указывает на книгу, is связывает её с названием, а a стоит перед biography, которое начинается с согласного звука.",
-        "uk": "Ви показуєте другу книжку про життя художника, написану іншою людиною. Назвіть її вид: This is a biography. Biography — одна книжка-біографія, злічуване слово. Складіть речення: This + is + a biography. This указує на книжку, is пов'язує її з назвою, а a стоїть перед biography, яке починається з приголосного звука."
+        "ru": "Вы показываете другу книгу о жизни художника, написанную другим человеком. Назовите её вид: This is a biography. Biography — одна книга-биография, это считают поштучно. Соберите предложение: This + is + a biography. This указывает на книгу, is связывает её с названием, а a стоит перед biography, которое начинается с согласного звука.",
+        "uk": "Ви показуєте другу книжку про життя художника, написану іншою людиною. Назвіть її вид: This is a biography. Biography — одна книжка-біографія, це рахують поштучно. Складіть речення: This + is + a biography. This указує на книжку, is пов'язує її з назвою, а a стоїть перед biography, яке починається з приголосного звука."
       },
       "question": {
         "interactionId": "en:lesson-17:session-03:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Дві автобіографії на полиці"
       },
       "bodyByLocale": {
-        "ru": "Друг ищет книги, в которых авторы рассказывают о собственной жизни. Вы замечаете две на полке. Autobiography — автобиография; во множественном числе y меняем на ies: autobiographies. Соберите фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двух книг используем are; после количества называем книги, затем место.",
-        "uk": "Друг шукає книжки, у яких автори розповідають про власне життя. Ви помічаєте дві на полиці. Autobiography — автобіографія; у множині y змінюємо на ies: autobiographies. Складіть фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двох книжок використовуємо are; після кількості називаємо книжки, потім місце."
+        "ru": "Друг ищет книги, в которых авторы рассказывают о собственной жизни. Вы замечаете две на полке. Autobiography — автобиография; в форме для нескольких y меняем на ies: autobiographies. Соберите фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двух книг используем are; после количества называем книги, затем место.",
+        "uk": "Друг шукає книжки, у яких автори розповідають про власне життя. Ви помічаєте дві на полиці. Autobiography — автобіографія; у формі для кількох y змінюємо на ies: autobiographies. Складіть фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двох книжок використовуємо are; після кількості називаємо книжки, потім місце."
       },
       "question": {
         "interactionId": "en:lesson-17:session-03:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Цікава художня література"
       },
       "bodyByLocale": {
-        "ru": "Вы делитесь с другом впечатлением от художественной литературы, которую сейчас читаете. Fiction здесь обозначает литературу как общее понятие, а не отдельные книги. Скажите: This fiction is interesting. Соберите фразу: This fiction + is + interesting. С неисчисляемым fiction используем this и is, а interesting в конце передаёт впечатление. Здесь не образуем множественную форму fictions.",
-        "uk": "Ви ділитеся з другом враженням від художньої літератури, яку зараз читаєте. Fiction тут позначає літературу як загальне поняття, а не окремі книжки. Скажіть: This fiction is interesting. Складіть фразу: This fiction + is + interesting. Із незлічуваним fiction використовуємо this та is, а interesting наприкінці передає враження. Тут не утворюємо множини fictions."
+        "ru": "Вы делитесь с другом впечатлением от художественной литературы, которую сейчас читаете. Fiction здесь обозначает литературу как общее понятие, а не отдельные книги. Скажите: This fiction is interesting. Соберите фразу: This fiction + is + interesting. С тем, что не считают поштучно, fiction используем this и is, а interesting в конце передаёт впечатление. Здесь не образуем множественную форму fictions.",
+        "uk": "Ви ділитеся з другом враженням від художньої літератури, яку зараз читаєте. Fiction тут позначає літературу як загальне поняття, а не окремі книжки. Скажіть: This fiction is interesting. Складіть фразу: This fiction + is + interesting. Із тим, що не рахують поштучно, fiction використовуємо this та is, а interesting наприкінці передає враження. Тут не утворюємо форми для кількох fictions."
       },
       "question": {
         "interactionId": "en:lesson-17:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "332c0091babab89a4d8320c970e0d649df15848fa78f7a7a27015fa64e0a5c53"
+  "introFingerprint": "33b0169d6625a19a8af657d608cbc81d35a1e7e0c4189c512712a0f2ff5ad50a"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-46",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "сказать, что освежитесь перед ужином: I am going to freshen up before dinner.",
+    "uk": "сказати, що освіжитеся перед вечерею: I am going to freshen up before dinner."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Відпочинок на завтра заброньовано"
       },
       "bodyByLocale": {
-        "ru": "Вы с подругой забронировали посещение спа на завтра, чтобы отдохнуть после напряжённых дней. Wind down — расслабиться. Передайте согласованный план: We are winding down at the spa tomorrow. Порядок: We + are winding down + at the spa + tomorrow. С we ставим are, к wind добавляем -ing и сохраняем down. Забронированное посещение и tomorrow показывают будущее значение Present Continuous.",
-        "uk": "Ви з подругою забронювали відвідування спа на завтра, щоб відпочити після напружених днів. Wind down — розслабитися. Передайте узгоджений план: We are winding down at the spa tomorrow. Порядок: We + are winding down + at the spa + tomorrow. З we ставимо are, до wind додаємо -ing і зберігаємо down. Заброньоване відвідування та tomorrow показують майбутнє значення Present Continuous."
+        "ru": "Вы с подругой забронировали посещение спа на завтра, чтобы отдохнуть после напряжённых дней. Wind down — расслабиться. Передайте согласованный план: We are winding down at the spa tomorrow. Порядок: We + are winding down + at the spa + tomorrow. С we ставим are, к wind добавляем -ing и сохраняем down. Забронированное посещение и tomorrow показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви з подругою забронювали відвідування спа на завтра, щоб відпочити після напружених днів. Wind down — розслабитися. Передайте узгоджений план: We are winding down at the spa tomorrow. Порядок: We + are winding down + at the spa + tomorrow. З we ставимо are, до wind додаємо -ing і зберігаємо down. Заброньоване відвідування та tomorrow показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c4615f84570b3ea6b01bcaa72cacc48abd0eaf21e38f90cc4a5dd8fadae0a2a8"
+  "introFingerprint": "6bff75346c9dc456711e808854b2b5014d2e805bfac885f68d920d39bf39bc32"
 }

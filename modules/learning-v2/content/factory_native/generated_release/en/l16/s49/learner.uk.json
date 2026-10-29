@@ -173,7 +173,7 @@
         },
         {
           "responseId": "en:lesson-16:session-49:i03:r2",
-          "text": "are going to call off"
+          "text": "are going call off"
         },
         {
           "responseId": "en:lesson-16:session-49:i03:r3",
@@ -197,7 +197,7 @@
           },
           {
             "responseId": "en:lesson-16:session-49:i03:r2",
-            "text": "are going to call off"
+            "text": "are going call off"
           },
           {
             "responseId": "en:lesson-16:session-49:i03:r3",
@@ -211,8 +211,8 @@
             "correct": false,
             "testedDimension": "Ви припускаєте, що друзі скасують пікнік, але їхнього рішення ще не знаєте. Передайте думку-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will call off.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will call off."
             }
           },
           {
@@ -397,7 +397,7 @@
         },
         {
           "responseId": "en:lesson-16:session-49:i06:r2",
-          "text": "is going to give up"
+          "text": "is going give up"
         },
         {
           "responseId": "en:lesson-16:session-49:i06:r3",
@@ -421,7 +421,7 @@
           },
           {
             "responseId": "en:lesson-16:session-49:i06:r2",
-            "text": "is going to give up"
+            "text": "is going give up"
           },
           {
             "responseId": "en:lesson-16:session-49:i06:r3",
@@ -435,8 +435,8 @@
             "correct": false,
             "testedDimension": "Друг довго розв’язує складну головоломку. Ви припускаєте, що він скоро перестане намагатися. Передайте думку-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will give up.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will give up."
             }
           },
           {
@@ -728,17 +728,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми виписуємося з готелю завтра о десятій».",
+      "prompt": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Це вже вирішено. Скажіть: «Ми виписуємося з готелю завтра о десятій».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми виписуємося з готелю завтра о десятій».",
+      "accessibilityLabel": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Це вже вирішено. Скажіть: «Ми виписуємося з готелю завтра о десятій».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are checking out at ten tomorrow.",
         "localizedMeaning": {
-          "ru": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы выписываемся из гостиницы завтра в десять».",
-          "uk": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми виписуємося з готелю завтра о десятій»."
+          "ru": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Это уже решено. Скажите: «Мы выписываемся из гостиницы завтра в десять».",
+          "uk": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Це вже вирішено. Скажіть: «Ми виписуємося з готелю завтра о десятій»."
         },
         "orderedTokens": [
           "We",
@@ -840,7 +840,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous.",
+      "prompt": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-16:session-49:i12:r1",
@@ -848,7 +848,7 @@
         },
         {
           "responseId": "en:lesson-16:session-49:i12:r2",
-          "text": "are going to check out"
+          "text": "are check out"
         },
         {
           "responseId": "en:lesson-16:session-49:i12:r3",
@@ -857,12 +857,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous.",
+      "accessibilityLabel": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.",
-          "uk": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous."
+          "ru": "Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Скажите, что это уже решено.",
+          "uk": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ at ten tomorrow.",
         "gapOptions": [
@@ -872,28 +872,28 @@
           },
           {
             "responseId": "en:lesson-16:session-49:i12:r2",
-            "text": "are going to check out"
+            "text": "are check out"
           },
           {
             "responseId": "en:lesson-16:session-49:i12:r3",
             "text": "be"
           }
         ],
-        "testedDimension": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous.",
+        "testedDimension": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-16:session-49:i12:r2",
             "correct": false,
-            "testedDimension": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous.",
+            "testedDimension": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are checking out.",
+              "uk": "Після are потрібна форма з -ing: are checking out."
             }
           },
           {
             "responseId": "en:lesson-16:session-49:i12:r3",
             "correct": false,
-            "testedDimension": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous.",
+            "testedDimension": "Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
               "ru": "Нужна правильно построенная полная форма: are checking out.",
               "uk": "Потрібна правильно побудована повна форма: are checking out."
@@ -1064,13 +1064,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "prompt": "Скажіть, що це вже вирішено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-16:session-49:i16:audio"
       ],
-      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "accessibilityLabel": "Скажіть, що це вже вирішено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1131,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b96244338fa4188cf48118e3defe93cd5861a912ad484bda5f128b9c733de860"
+  "learnerFingerprint": "5afab96eadc97e144655591a245178d555cbf391d8c7654d52d571d1dfb115c6"
 }

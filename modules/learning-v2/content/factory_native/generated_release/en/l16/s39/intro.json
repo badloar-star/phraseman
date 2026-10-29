@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-39",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить свойство вещи для прогулки: I think the fabric will be breathable.",
+    "uk": "припустити властивість речі для прогулянки: I think the fabric will be breathable."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Забрати намет за домовленістю"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом договорились с прокатом завтра забрать компактную палатку. Compact — занимающий мало места. Передайте согласованный план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. С we ставим are, к collect добавляем -ing. Tomorrow и договорённость с прокатом показывают будущее значение Present Continuous.",
-        "uk": "Ви з другом домовилися з прокатом завтра забрати компактний намет. Compact — той, що займає мало місця. Передайте узгоджений план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. З we ставимо are, до collect додаємо -ing. Tomorrow та домовленість із прокатом показують майбутнє значення Present Continuous."
+        "ru": "Вы с другом договорились с прокатом завтра забрать компактную палатку. Compact — занимающий мало места. Передайте согласованный план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. С we ставим are, к collect добавляем -ing. Tomorrow и договорённость с прокатом показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви з другом домовилися з прокатом завтра забрати компактний намет. Compact — той, що займає мало місця. Передайте узгоджений план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. З we ставимо are, до collect додаємо -ing. Tomorrow та домовленість із прокатом показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3e8ccb5c42a0c44443ec8862b2192ad67bff08e8dd1d9669f56e9701ef27ecc0"
+  "introFingerprint": "4413d930113b8e4d3a03a9668a44f1793320e8f166e2cb98581ecf0838696190"
 }

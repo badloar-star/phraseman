@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-17:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-17:session-12:intro1:r2": {
-          "ru": "qualification можно посчитать: many + qualifications во множественном числе.",
-          "uk": "qualification можна порахувати: many + qualifications у множині."
+          "ru": "qualification можно посчитать: many + qualifications в форме для нескольких.",
+          "uk": "qualification можна порахувати: many + qualifications у формі для кількох."
         },
         "en:lesson-17:session-12:intro1:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-17:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-17:session-12:intro2:r2": {
-          "ru": "knowledge в этом значении — неисчисляемое слово: much.",
-          "uk": "knowledge у цьому значенні — незлічуване слово: much."
+          "ru": "knowledge в этом значении не считают поштучно: much.",
+          "uk": "knowledge у цьому значенні не рахують поштучно: much."
         },
         "en:lesson-17:session-12:intro2:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-17:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-17:session-12:intro3:r2": {
-          "ru": "tuition в этом значении — неисчисляемое слово: much.",
-          "uk": "tuition у цьому значенні — незлічуване слово: much."
+          "ru": "tuition в этом значении не считают поштучно: much.",
+          "uk": "tuition у цьому значенні не рахують поштучно: much."
         },
         "en:lesson-17:session-12:intro3:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ffee2bfa8120e6d5f5ef885686c87bebf16c119546de7532ee19ed8fd942b807"
+  "auxiliaryFingerprint": "f20ad029202682db8a9b7ea0a4225092dec94f89230feb08d56cac8675b1b091"
 }

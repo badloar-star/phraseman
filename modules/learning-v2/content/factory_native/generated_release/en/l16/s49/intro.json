@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-49",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, что планы изменятся: I think they will call off the picnic.",
+    "uk": "припустити, що плани зміняться: I think they will call off the picnic."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Виїзд із готелю узгоджено"
       },
       "bodyByLocale": {
-        "ru": "Вы согласовали с гостиницей выезд на завтра в десять. Check out — выписаться из гостиницы. Передайте договорённость: We are checking out at ten tomorrow. Порядок: We + are checking out + at ten + tomorrow. С we ставим are, к check добавляем -ing, а out сохраняем. At ten называет час; tomorrow и согласованное время показывают будущее значение Present Continuous.",
-        "uk": "Ви узгодили з готелем виїзд на завтра о десятій. Check out — виписатися з готелю. Передайте домовленість: We are checking out at ten tomorrow. Порядок: We + are checking out + at ten + tomorrow. З we ставимо are, до check додаємо -ing, а out зберігаємо. At ten називає годину; tomorrow та узгоджений час показують майбутнє значення Present Continuous."
+        "ru": "Вы согласовали с гостиницей выезд на завтра в десять. Check out — выписаться из гостиницы. Передайте договорённость: We are checking out at ten tomorrow. Порядок: We + are checking out + at ten + tomorrow. С we ставим are, к check добавляем -ing, а out сохраняем. At ten называет час; tomorrow и согласованное время показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви узгодили з готелем виїзд на завтра о десятій. Check out — виписатися з готелю. Передайте домовленість: We are checking out at ten tomorrow. Порядок: We + are checking out + at ten + tomorrow. З we ставимо are, до check додаємо -ing, а out зберігаємо. At ten називає годину; tomorrow та узгоджений час показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "52d0b95a16847e5691e92dd455b44cc65d9c3bedbba2524c14c1f42bfe8c226b"
+  "introFingerprint": "64eb229bcdbd065ae43c2679a0434732b1433a800834f540ea329bb3a56dceda"
 }

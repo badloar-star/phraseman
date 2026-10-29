@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-02:i03:r1",
@@ -178,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "This is ___ shallot.",
         "gapOptions": [
@@ -273,11 +273,11 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У мисці дві горошини перцю». У peppercorn множина — peppercorns.",
+      "prompt": "Скажіть: «У мисці дві горошини перцю». Якщо peppercorn кілька — peppercorns.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У мисці дві горошини перцю». У peppercorn множина — peppercorns.",
+      "accessibilityLabel": "Скажіть: «У мисці дві горошини перцю». Якщо peppercorn кілька — peppercorns.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "There are two peppercorns in the bowl.",
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-02:i06:r1",
@@ -402,12 +402,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "There are two ___ in the bowl.",
         "gapOptions": [
@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное peppercorns.",
+              "ru": "После two нужна форма для нескольких: peppercorns.",
               "uk": "Після two потрібна множина peppercorns."
             }
           },
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное peppercorns.",
+              "ru": "После two нужна форма для нескольких: peppercorns.",
               "uk": "Після two потрібна множина peppercorns."
             }
           }
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-02:i09:r1",
@@ -623,12 +623,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "This bulgur ___ dry.",
         "gapOptions": [
@@ -652,7 +652,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Bulgur как название крупы — неисчисляемое слово: is.",
+              "ru": "Bulgur как название крупы не считают поштучно: is.",
               "uk": "Bulgur як назва крупи — незлічуване слово: is."
             }
           },
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Bulgur как название крупы — неисчисляемое слово: is.",
+              "ru": "Bulgur как название крупы не считают поштучно: is.",
               "uk": "Bulgur як назва крупи — незлічуване слово: is."
             }
           }
@@ -826,7 +826,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-02:i12:r1",
@@ -843,12 +843,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "We need ___.",
         "gapOptions": [
@@ -872,7 +872,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Barley как название зерна — без a и без множественного -s.",
+              "ru": "Barley как название зерна — без a и без -s для нескольких.",
               "uk": "Barley як назва зерна — без a та без множинного -s."
             }
           },
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Barley как название зерна — без a и без множественного -s.",
+              "ru": "Barley как название зерна — без a и без -s для нескольких.",
               "uk": "Barley як назва зерна — без a та без множинного -s."
             }
           }
@@ -968,13 +968,13 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть почуту фразу зі злічуваним словом",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-02:i14:audio"
       ],
-      "accessibilityLabel": "Складіть почуту фразу зі злічуваним словом",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -1040,13 +1040,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть фразу з незлічуваним словом",
+      "prompt": "Скажіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-02:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть фразу з незлічуваним словом",
+      "accessibilityLabel": "Скажіть фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "148cd0e3e4ba07fcfa8fbf407037b6b28f3651d8110cb57098ce9310022070d9"
+  "learnerFingerprint": "9412a93782a4765c965cc7e9dc392fd6c08e3bfc57c2786e5210b2ceb4963acc"
 }

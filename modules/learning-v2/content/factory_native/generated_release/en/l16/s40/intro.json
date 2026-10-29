@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-40",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить свойство вещи для кухни: I think the bottle will be leakproof.",
+    "uk": "припустити властивість речі для кухні: I think the bottle will be leakproof."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Завтра забрати стіл"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом согласовали с продавцом, что завтра заберёте складной стол. Foldable — складной. Передайте договорённость: We are collecting a foldable table tomorrow. Соберите фразу: We + are collecting + a foldable table + tomorrow. С we используем are, к collect добавляем -ing. Согласованное получение и tomorrow показывают будущее значение Present Continuous.",
-        "uk": "Ви з другом узгодили з продавцем, що завтра заберете складаний стіл. Foldable — складаний. Передайте домовленість: We are collecting a foldable table tomorrow. Складіть фразу: We + are collecting + a foldable table + tomorrow. З we використовуємо are, до collect додаємо -ing. Узгоджене отримання та tomorrow показують майбутнє значення Present Continuous."
+        "ru": "Вы с другом согласовали с продавцом, что завтра заберёте складной стол. Foldable — складной. Передайте договорённость: We are collecting a foldable table tomorrow. Соберите фразу: We + are collecting + a foldable table + tomorrow. С we используем are, к collect добавляем -ing. Согласованное получение и tomorrow показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви з другом узгодили з продавцем, що завтра заберете складаний стіл. Foldable — складаний. Передайте домовленість: We are collecting a foldable table tomorrow. Складіть фразу: We + are collecting + a foldable table + tomorrow. З we використовуємо are, до collect додаємо -ing. Узгоджене отримання та tomorrow показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e6c24beb5e6360589edad4e0fdedf3e0c4758f90dfe127f926fda593e9d5cce4"
+  "introFingerprint": "b1ca37ce3520dd183aa5be8c1258d565ad4d69e531042a697712c3f49ef885d7"
 }

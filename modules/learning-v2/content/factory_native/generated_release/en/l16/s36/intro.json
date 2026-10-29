@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-36",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, как пройдёт поездка: I think the journey will be uneventful.",
+    "uk": "припустити, як мине поїздка: I think the journey will be uneventful."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Візит узгоджено в останній момент"
       },
       "bodyByLocale": {
-        "ru": "Вы с семьёй только сегодня окончательно договорились с хозяевами о завтрашнем визите. Last-minute — организованный в последний момент. Передайте договорённость: We are making a last-minute visit tomorrow. Порядок: We + are making + a last-minute visit + tomorrow. С we используем are; перед -ing убираем e в make: making. Tomorrow и подтверждение хозяев показывают будущее значение Present Continuous.",
-        "uk": "Ви із сім'єю лише сьогодні остаточно домовилися з господарями про завтрашній візит. Last-minute — організований в останній момент. Передайте домовленість: We are making a last-minute visit tomorrow. Порядок: We + are making + a last-minute visit + tomorrow. З we використовуємо are; перед -ing прибираємо e у make: making. Tomorrow та підтвердження господарів показують майбутнє значення Present Continuous."
+        "ru": "Вы с семьёй только сегодня окончательно договорились с хозяевами о завтрашнем визите. Last-minute — организованный в последний момент. Передайте договорённость: We are making a last-minute visit tomorrow. Порядок: We + are making + a last-minute visit + tomorrow. С we используем are; перед -ing убираем e в make: making. Tomorrow и подтверждение хозяев показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви із сім'єю лише сьогодні остаточно домовилися з господарями про завтрашній візит. Last-minute — організований в останній момент. Передайте домовленість: We are making a last-minute visit tomorrow. Порядок: We + are making + a last-minute visit + tomorrow. З we використовуємо are; перед -ing прибираємо e у make: making. Tomorrow та підтвердження господарів показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "270dceda8ad429cf08d228f41a1da9162ae208b5905527ca93b548bbf2aed52d"
+  "introFingerprint": "c1d9d45967bf4e8390789e842fe7ea0ae0d9be10a93bc2d9bb9e22427bace88d"
 }

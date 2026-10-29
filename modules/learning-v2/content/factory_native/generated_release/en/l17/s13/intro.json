@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-13",
   "learningOutcomeByLocale": {
-    "ru": "many + plural count noun / much + non-count noun",
-    "uk": "many + plural count noun / much + non-count noun"
+    "ru": "спросить, сколько участников: How many participants do we have?",
+    "uk": "запитати, скільки учасників: How many participants do we have?"
   },
   "pages": [
     {
@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Вы расставляете стулья перед встречей и спрашиваете коллегу, сколько участников записалось. Participant — участник; отдельных людей можно посчитать. Начните с How many participants, затем добавьте do + we + have: How many participants do we have? После many используем множественное participants. Do стоит перед we, а have остаётся в исходной форме.",
-        "uk": "Ви розставляєте стільці перед зустріччю й запитуєте колегу, скільки учасників записалося. Participant — учасник; окремих людей можна порахувати. Почніть із How many participants, потім додайте do + we + have: How many participants do we have? Після many використовуємо множину participants. Do стоїть перед we, а have залишається в початковій формі."
+        "uk": "Ви розставляєте стільці перед зустріччю й запитуєте колегу, скільки учасників записалося. Participant — учасник; окремих людей можна порахувати. Почніть із How many participants, потім додайте do + we + have: How many participants do we have? Після many використовуємо форму для кількох participants. Do стоїть перед we, а have залишається в початковій формі."
       },
       "question": {
         "interactionId": "en:lesson-17:session-13:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Розваги для свята"
       },
       "bodyByLocale": {
-        "ru": "Вы готовите небольшой праздник во дворе и обсуждаете с соседом, сколько развлечений включить в программу. Entertainment — развлечения как программа в целом; в английском это неисчисляемое слово. Соберите вопрос: How much entertainment + do + we + need? → How much entertainment do we need? Much ставим перед entertainment, затем do, we и need. Отдельные игры здесь не считаем.",
-        "uk": "Ви готуєте невелике свято у дворі й обговорюєте із сусідом, скільки розваг включити до програми. Entertainment — розваги як програма загалом; в англійській це незлічуване слово. Складіть запитання: How much entertainment + do + we + need? → How much entertainment do we need? Much ставимо перед entertainment, потім do, we і need. Окремі ігри тут не рахуємо."
+        "ru": "Вы готовите небольшой праздник во дворе и обсуждаете с соседом, сколько развлечений включить в программу. Entertainment — развлечения как программа в целом; в английском это слово, которое не считают поштучно. Соберите вопрос: How much entertainment + do + we + need? → How much entertainment do we need? Much ставим перед entertainment, затем do, we и need. Отдельные игры здесь не считаем.",
+        "uk": "Ви готуєте невелике свято у дворі й обговорюєте із сусідом, скільки розваг включити до програми. Entertainment — розваги як програма загалом; в англійській це слово, яке не рахують поштучно. Складіть запитання: How much entertainment + do + we + need? → How much entertainment do we need? Much ставимо перед entertainment, потім do, we і need. Окремі ігри тут не рахуємо."
       },
       "question": {
         "interactionId": "en:lesson-17:session-13:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Грошей на свято небагато"
       },
       "bodyByLocale": {
-        "ru": "На праздник во дворе выделили небольшую сумму, и вы объясняете, почему программа будет скромной. Funding — деньги, выделенные на дело; слово неисчисляемое. Соберите предложение: We + don't + have + much funding → We don't have much funding. После don't идёт have без изменений, а much стоит перед funding. Фраза сообщает, что денег немного, а не что их совсем нет.",
-        "uk": "На свято у дворі виділили невелику суму, і ви пояснюєте, чому програма буде скромною. Funding — гроші, виділені на справу; слово незлічуване. Складіть речення: We + don't + have + much funding → We don't have much funding. Після don't іде have без змін, а much стоїть перед funding. Фраза повідомляє, що грошей небагато, а не що їх зовсім немає."
+        "ru": "На праздник во дворе выделили небольшую сумму, и вы объясняете, почему программа будет скромной. Funding — деньги, выделенные на дело; слово не считается поштучно. Соберите предложение: We + don't + have + much funding → We don't have much funding. После don't идёт have без изменений, а much стоит перед funding. Фраза сообщает, что денег немного, а не что их совсем нет.",
+        "uk": "На свято у дворі виділили невелику суму, і ви пояснюєте, чому програма буде скромною. Funding — гроші, виділені на справу; слово не рахується поштучно. Складіть речення: We + don't + have + much funding → We don't have much funding. Після don't іде have без змін, а much стоїть перед funding. Фраза повідомляє, що грошей небагато, а не що їх зовсім немає."
       },
       "question": {
         "interactionId": "en:lesson-17:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "66c10c95abd4488698ee6c4af32d89d37df27f4b0bdc03e2e5f10feebe8662c0"
+  "introFingerprint": "e5a1f06b03012e875a0dc0a531bf52eddcbe18756fb931acddb7d0462e9ea49e"
 }

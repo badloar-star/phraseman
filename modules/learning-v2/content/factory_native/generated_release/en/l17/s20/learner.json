@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что несколько предложений уже есть. Job offer → job offers.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -442,7 +442,7 @@
             "correct": false,
             "testedDimension": "Вы хотели больше встреч с работодателями. Подчеркните, что собеседований мало. Job interview → job interviews.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -665,7 +665,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -888,7 +888,7 @@
             "correct": false,
             "testedDimension": "В этой ситуации у работника ограничен запас дней больничного. Подчеркните, что осталось мало.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fa394d053d9a6781b23c64bb919238e4452416f601fdb129eeb233b8def32bab"
+  "learnerFingerprint": "0c0f580236aa8d1640ec419842b5987e7cba8fb1b6c023d20246af0e976e6c64"
 }

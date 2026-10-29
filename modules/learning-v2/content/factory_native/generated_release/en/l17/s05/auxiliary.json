@@ -10,8 +10,8 @@
           "uk": "Wrapper починається з приголосного звука: a wrapper; літера w не вимовляється."
         },
         "en:lesson-17:session-05:intro1:r3": {
-          "ru": "Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.",
-          "uk": "Тут не можна залишати злічуваний іменник в однині без артикля."
+          "ru": "Здесь нельзя оставлять название одного предмета без a.",
+          "uk": "Тут не можна залишати назву одного предмета без a."
         }
       }
     },
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-17:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-17:session-05:intro2:r2": {
-          "ru": "После two нужно множественное cigarette ends.",
-          "uk": "Після two потрібна множина cigarette ends."
+          "ru": "После two нужна форма для нескольких: cigarette ends.",
+          "uk": "Після two потрібна форма для кількох: cigarette ends."
         },
         "en:lesson-17:session-05:intro2:r3": {
           "ru": "Не ставьте a перед two.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-17:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-17:session-05:intro3:r2": {
-          "ru": "Litter в значении мусора — неисчисляемое слово: is.",
-          "uk": "Litter у значенні сміття — незлічуване слово: is."
+          "ru": "Litter в значении мусора не считают поштучно: is.",
+          "uk": "Litter у значенні сміття не рахують поштучно: is."
         },
         "en:lesson-17:session-05:intro3:r3": {
-          "ru": "В этом значении у слова нет множественного -s.",
-          "uk": "У цьому значенні слово не має множинного -s."
+          "ru": "В этом значении нет -s для нескольких.",
+          "uk": "У цьому значенні не має -s для кількох."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "54d8b3d17dab4f741b5d87c1c9b0a8a621e147ed802489f1057633870e4673bb"
+  "auxiliaryFingerprint": "91ef6870786f078331baa2f071a2405c32c9e775beb593ebf19efd9bd4ba9fff"
 }

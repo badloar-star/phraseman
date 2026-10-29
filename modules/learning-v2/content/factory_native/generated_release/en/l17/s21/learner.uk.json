@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що кілька кренделів є. Pretzel → pretzels.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Для всіх порцій супу сухариків бракує. Підкресліть, що залишилося мало. Crouton → croutons.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що трохи кіноа є.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Гречки не вистачить на заплановану вечерю. Підкресліть брак.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2e67f25f3ab8e2064976bfe4ea6ecb0b18e0c119b367b4128c397c8ec81350ea"
+  "learnerFingerprint": "77ddae81e604499e42f289bce001a1dd1dbcf1c680df33239c02950fb4500933"
 }

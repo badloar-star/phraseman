@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-34",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, каким будет фильм или работа: I think the film will be disappointing.",
+    "uk": "припустити, яким буде фільм чи робота: I think the film will be disappointing."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Прогулянку на завтра узгоджено"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом договорились завтра прогуляться на свежем воздухе, чтобы взбодриться. Refreshing — освежающий, возвращающий бодрость. Передайте договорённость: We are taking a refreshing walk tomorrow. Порядок: We + are taking + a refreshing walk + tomorrow. С we ставим are; перед -ing убираем e в take: taking. Tomorrow и согласованная прогулка показывают будущее значение Present Continuous.",
-        "uk": "Ви з другом домовилися завтра прогулятися на свіжому повітрі, щоб збадьоритися. Refreshing — освіжальний, той, що повертає бадьорість. Передайте домовленість: We are taking a refreshing walk tomorrow. Порядок: We + are taking + a refreshing walk + tomorrow. З we ставимо are; перед -ing прибираємо e у take: taking. Tomorrow та узгоджена прогулянка показують майбутнє значення Present Continuous."
+        "ru": "Вы с другом договорились завтра прогуляться на свежем воздухе, чтобы взбодриться. Refreshing — освежающий, возвращающий бодрость. Передайте договорённость: We are taking a refreshing walk tomorrow. Порядок: We + are taking + a refreshing walk + tomorrow. С we ставим are; перед -ing убираем e в take: taking. Tomorrow и согласованная прогулка показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви з другом домовилися завтра прогулятися на свіжому повітрі, щоб збадьоритися. Refreshing — освіжальний, той, що повертає бадьорість. Передайте домовленість: We are taking a refreshing walk tomorrow. Порядок: We + are taking + a refreshing walk + tomorrow. З we ставимо are; перед -ing прибираємо e у take: taking. Tomorrow та узгоджена прогулянка показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d7679c341f9eb8f7ae1f9083de40a89a144793b0fee9ec3b329ad3656655801a"
+  "introFingerprint": "96d1f69e8290dc493c6df57fdba500fb7f79bd25e5130cb78a233073f9592ddd"
 }

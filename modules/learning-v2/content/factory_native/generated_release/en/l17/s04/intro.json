@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-04",
   "learningOutcomeByLocale": {
-    "ru": "count nouns / non-count nouns: a, an, plural forms",
-    "uk": "count nouns / non-count nouns: a, an, plural forms"
+    "ru": "сказать, кто пришёл на собеседование: She is a candidate.",
+    "uk": "сказати, хто прийшов на співбесіду: She is a candidate."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Хто прийшов на співбесіду"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете коллеге женщину, которая пришла устраиваться на работу, и объясняете, кто она. Candidate — кандидат на место. Скажите: She is a candidate. Порядок: She + is + a candidate. She обозначает женщину, is связывает её с названием роли. Candidate — один исчисляемый человек; перед словом с согласным звуком ставим a.",
-        "uk": "Ви показуєте колезі жінку, яка прийшла влаштовуватися на роботу, і пояснюєте, хто вона. Candidate — кандидат на місце. Скажіть: She is a candidate. Порядок: She + is + a candidate. She позначає жінку, is пов'язує її з назвою ролі. Candidate — одна злічувана людина; перед словом із приголосним звуком ставимо a."
+        "ru": "Вы показываете коллеге женщину, которая пришла устраиваться на работу, и объясняете, кто она. Candidate — кандидат на место. Скажите: She is a candidate. Порядок: She + is + a candidate. She обозначает женщину, is связывает её с названием роли. Candidate — один человек; перед словом с согласным звуком ставим a.",
+        "uk": "Ви показуєте колезі жінку, яка прийшла влаштовуватися на роботу, і пояснюєте, хто вона. Candidate — кандидат на місце. Скажіть: She is a candidate. Порядок: She + is + a candidate. She позначає жінку, is пов'язує її з назвою ролі. Candidate — одна людина; перед словом із приголосним звуком ставимо a."
       },
       "question": {
         "interactionId": "en:lesson-17:session-04:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Вільні місця в магазині"
       },
       "bodyByLocale": {
-        "ru": "Вы увидели объявление о двух свободных рабочих местах и рассказываете об этом другу. Vacancy — вакансия; во множественном числе y заменяем на ies: vacancies. Соберите фразу: There are + two vacancies + in this shop → There are two vacancies in this shop. There are сообщает о наличии нескольких мест, two vacancies называет их количество, а in this shop — где они есть.",
-        "uk": "Ви побачили оголошення про два вільні робочі місця й розповідаєте про це другу. Vacancy — вакансія; у множині y замінюємо на ies: vacancies. Складіть фразу: There are + two vacancies + in this shop → There are two vacancies in this shop. There are повідомляє про наявність кількох місць, two vacancies називає їхню кількість, а in this shop — де вони є."
+        "ru": "Вы увидели объявление о двух свободных рабочих местах и рассказываете об этом другу. Vacancy — вакансия; в форме для нескольких y заменяем на ies: vacancies. Соберите фразу: There are + two vacancies + in this shop → There are two vacancies in this shop. There are сообщает о наличии нескольких мест, two vacancies называет их количество, а in this shop — где они есть.",
+        "uk": "Ви побачили оголошення про два вільні робочі місця й розповідаєте про це другу. Vacancy — вакансія; у формі для кількох y замінюємо на ies: vacancies. Складіть фразу: There are + two vacancies + in this shop → There are two vacancies in this shop. There are повідомляє про наявність кількох місць, two vacancies називає їхню кількість, а in this shop — де вони є."
       },
       "question": {
         "interactionId": "en:lesson-17:session-04:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Важливе оформлення документів"
       },
       "bodyByLocale": {
-        "ru": "Перед выходом на новую работу вы заполняете обязательные документы и объясняете другу важность этой работы. Paperwork — оформление бумаг в целом, неисчисляемое слово. Соберите предложение: This paperwork + is + important → This paperwork is important. Используем this и is, хотя отдельных бумаг может быть несколько. Important в конце сообщает, какой является эта работа; множественную форму paperworks здесь не образуем.",
-        "uk": "Перед виходом на нову роботу ви заповнюєте обов'язкові документи й пояснюєте другу важливість цієї роботи. Paperwork — оформлення паперів загалом, незлічуване слово. Складіть речення: This paperwork + is + important → This paperwork is important. Використовуємо this та is, хоча окремих паперів може бути кілька. Important наприкінці повідомляє, якою є ця робота; множини paperworks тут не утворюємо."
+        "ru": "Перед выходом на новую работу вы заполняете обязательные документы и объясняете другу важность этой работы. Paperwork — оформление бумаг в целом, слово, которое не считают поштучно. Соберите предложение: This paperwork + is + important → This paperwork is important. Используем this и is, хотя отдельных бумаг может быть несколько. Important в конце сообщает, какой является эта работа; множественную форму paperworks здесь не образуем.",
+        "uk": "Перед виходом на нову роботу ви заповнюєте обов'язкові документи й пояснюєте другу важливість цієї роботи. Paperwork — оформлення паперів загалом, слово, яке не рахують поштучно. Складіть речення: This paperwork + is + important → This paperwork is important. Використовуємо this та is, хоча окремих паперів може бути кілька. Important наприкінці повідомляє, якою є ця робота; форми для кількох paperworks тут не утворюємо."
       },
       "question": {
         "interactionId": "en:lesson-17:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "00733f39ffa1c91166bd39f086c869bd032182996038144316e15374cb123c2d"
+  "introFingerprint": "149cc9f11d18be4660a303ff8e14b9e4cc5b734bf7556e71ba1e404cb9dbd1bf"
 }

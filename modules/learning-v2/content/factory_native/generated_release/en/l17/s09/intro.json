@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-09",
   "learningOutcomeByLocale": {
-    "ru": "many + plural count noun / much + non-count noun",
-    "uk": "many + plural count noun / much + non-count noun"
+    "ru": "спросить, сколько чего-то нужно: How many pecans do we need?",
+    "uk": "запитати, скільки чогось потрібно: How many pecans do we need?"
   },
   "pages": [
     {
@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Вы украшаете пирог и спрашиваете друга, сколько орехов нужно отложить. Pecan — орех пекан; один орех можно посчитать, поэтому спрашиваем how many pecans. Соберите вопрос: How many pecans + do + we + need? → How many pecans do we need? После many ставим множественное pecans, затем do, we и need.",
-        "uk": "Ви прикрашаєте пиріг і запитуєте друга, скільки горіхів потрібно відкласти. Pecan — горіх пекан; один горіх можна порахувати, тому запитуємо how many pecans. Складіть запитання: How many pecans + do + we + need? → How many pecans do we need? Після many ставимо множину pecans, потім do, we і need."
+        "uk": "Ви прикрашаєте пиріг і запитуєте друга, скільки горіхів потрібно відкласти. Pecan — горіх пекан; один горіх можна порахувати, тому запитуємо how many pecans. Складіть запитання: How many pecans + do + we + need? → How many pecans do we need? Після many ставимо форму для кількох pecans, потім do, we і need."
       },
       "question": {
         "interactionId": "en:lesson-17:session-09:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Кількість страви на вечерю"
       },
       "bodyByLocale": {
-        "ru": "Вы готовите ужин для гостей и уточняете у друга, сколько поленты понадобится. Polenta — каша из кукурузной крупы; здесь спрашиваем об общем количестве блюда, поэтому используем неисчисляемое polenta. Соберите вопрос: How much polenta + do + we + need? → How much polenta do we need? Much стоит перед polenta, затем идут do, we и need. Окончание -s к polenta здесь не добавляем.",
-        "uk": "Ви готуєте вечерю для гостей і уточнюєте в друга, скільки поленти знадобиться. Polenta — каша з кукурудзяної крупи; тут запитуємо про загальну кількість страви, тому використовуємо незлічуване polenta. Складіть запитання: How much polenta + do + we + need? → How much polenta do we need? Much стоїть перед polenta, далі йдуть do, we і need. Закінчення -s до polenta тут не додаємо."
+        "ru": "Вы готовите ужин для гостей и уточняете у друга, сколько поленты понадобится. Polenta — каша из кукурузной крупы; здесь спрашиваем об общем количестве блюда, поэтому используем polenta — её не считают поштучно. Соберите вопрос: How much polenta + do + we + need? → How much polenta do we need? Much стоит перед polenta, затем идут do, we и need. Окончание -s к polenta здесь не добавляем.",
+        "uk": "Ви готуєте вечерю для гостей і уточнюєте в друга, скільки поленти знадобиться. Polenta — каша з кукурудзяної крупи; тут запитуємо про загальну кількість страви, тому використовуємо polenta — її не рахують поштучно. Складіть запитання: How much polenta + do + we + need? → How much polenta do we need? Much стоїть перед polenta, далі йдуть do, we і need. Закінчення -s до polenta тут не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-17:session-09:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Крупи залишилося небагато"
       },
       "bodyByLocale": {
-        "ru": "Вы открыли пакет манной крупы перед приготовлением каши и видите, что её осталось немного. Semolina — манная крупа, неисчисляемое слово. Сообщите об этом: We don't have much semolina. Порядок слов: We + don't + have + much semolina. Don't перед have образует отрицание, much относится к количеству крупы. Фраза означает «у нас не так много манной крупы», а не её полное отсутствие.",
-        "uk": "Ви відкрили пакет манної крупи перед приготуванням каші й бачите, що її залишилося небагато. Semolina — манна крупа, незлічуване слово. Повідомте про це: We don't have much semolina. Порядок слів: We + don't + have + much semolina. Don't перед have утворює заперечення, much стосується кількості крупи. Фраза означає «у нас не так багато манної крупи», а не її повну відсутність."
+        "ru": "Вы открыли пакет манной крупы перед приготовлением каши и видите, что её осталось немного. Semolina — манная крупа, слово, которое не считают поштучно. Сообщите об этом: We don't have much semolina. Порядок слов: We + don't + have + much semolina. Don't перед have образует отрицание, much относится к количеству крупы. Фраза означает «у нас не так много манной крупы», а не её полное отсутствие.",
+        "uk": "Ви відкрили пакет манної крупи перед приготуванням каші й бачите, що її залишилося небагато. Semolina — манна крупа, слово, яке не рахують поштучно. Повідомте про це: We don't have much semolina. Порядок слів: We + don't + have + much semolina. Don't перед have утворює заперечення, much стосується кількості крупи. Фраза означає «у нас не так багато манної крупи», а не її повну відсутність."
       },
       "question": {
         "interactionId": "en:lesson-17:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "35200a5f96fa2e048ef5207fcacc9e54b08ee2dca221bcdfb595262245b5124e"
+  "introFingerprint": "7e96ad925dcaa6d61e5eb1f42855fb82c3b7488256fcb134cb7a91b49bafb6a7"
 }

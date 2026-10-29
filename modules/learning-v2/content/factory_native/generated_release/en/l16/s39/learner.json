@@ -173,7 +173,7 @@
         },
         {
           "responseId": "en:lesson-16:session-39:i03:r2",
-          "text": "is going to be"
+          "text": "is going be"
         },
         {
           "responseId": "en:lesson-16:session-39:i03:r3",
@@ -197,7 +197,7 @@
           },
           {
             "responseId": "en:lesson-16:session-39:i03:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-39:i03:r3",
@@ -211,8 +211,8 @@
             "correct": false,
             "testedDimension": "Вы пока не получили новую куртку и предполагаете, что она защитит от ветра. Передайте мнение-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
             }
           },
           {
@@ -397,7 +397,7 @@
         },
         {
           "responseId": "en:lesson-16:session-39:i06:r2",
-          "text": "is going to be"
+          "text": "is going be"
         },
         {
           "responseId": "en:lesson-16:session-39:i06:r3",
@@ -421,7 +421,7 @@
           },
           {
             "responseId": "en:lesson-16:session-39:i06:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-39:i06:r3",
@@ -435,8 +435,8 @@
             "correct": false,
             "testedDimension": "Вы высказываете ожидание о ткани заказанной одежды. Передайте мнение-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
             }
           },
           {
@@ -726,17 +726,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем компактную палатку завтра».",
+      "prompt": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Это уже решено. Скажите: «Мы забираем компактную палатку завтра».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем компактную палатку завтра».",
+      "accessibilityLabel": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Это уже решено. Скажите: «Мы забираем компактную палатку завтра».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are collecting a compact tent tomorrow.",
         "localizedMeaning": {
-          "ru": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем компактную палатку завтра».",
-          "uk": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо компактний намет завтра»."
+          "ru": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Это уже решено. Скажите: «Мы забираем компактную палатку завтра».",
+          "uk": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Це вже вирішено. Скажіть: «Ми забираємо компактний намет завтра»."
         },
         "orderedTokens": [
           "We",
@@ -838,7 +838,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.",
+      "prompt": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-16:session-39:i12:r1",
@@ -846,7 +846,7 @@
         },
         {
           "responseId": "en:lesson-16:session-39:i12:r2",
-          "text": "are going to collect"
+          "text": "are collect"
         },
         {
           "responseId": "en:lesson-16:session-39:i12:r3",
@@ -855,12 +855,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.",
+      "accessibilityLabel": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.",
-          "uk": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous."
+          "ru": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Скажите, что это уже решено.",
+          "uk": "Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ a compact tent tomorrow.",
         "gapOptions": [
@@ -870,28 +870,28 @@
           },
           {
             "responseId": "en:lesson-16:session-39:i12:r2",
-            "text": "are going to collect"
+            "text": "are collect"
           },
           {
             "responseId": "en:lesson-16:session-39:i12:r3",
             "text": "be"
           }
         ],
-        "testedDimension": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.",
+        "testedDimension": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-16:session-39:i12:r2",
             "correct": false,
-            "testedDimension": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.",
+            "testedDimension": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are collecting.",
+              "uk": "Після are потрібна форма з -ing: are collecting."
             }
           },
           {
             "responseId": "en:lesson-16:session-39:i12:r3",
             "correct": false,
-            "testedDimension": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.",
+            "testedDimension": "Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна правильно построенная полная форма: are collecting.",
               "uk": "Потрібна правильно побудована повна форма: are collecting."
@@ -1060,13 +1060,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "prompt": "Скажите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-16:session-39:i16:audio"
       ],
-      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "accessibilityLabel": "Скажите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dcf6ce3174e17b99e4631ce39e590709abfa289a02699c7bfb43be05abbf5514"
+  "learnerFingerprint": "11afe8c9732129556d006ece78d9fa4c53f3377a4de27ee7c8f751a96e90f921"
 }

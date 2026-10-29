@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -438,7 +438,7 @@
             "correct": false,
             "testedDimension": "Ви хотіли більше ідей. Підкресліть, що пропозицій було мало. Suggestion → suggestions.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -660,7 +660,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що хоч трохи похвали отримали, а не її брак.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Вам бракувало підбадьорення. Підкресліть, що підтримки було мало.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ba1e31cf487a9d8632d5425853e225f93d03f6afaf8b4650d7675553c8ae98c0"
+  "learnerFingerprint": "c86dc947cb04b55ef23b8a1bfda7267756af72855d9c742a674a97a18c191f3e"
 }

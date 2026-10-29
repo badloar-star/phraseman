@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -438,7 +438,7 @@
             "correct": false,
             "testedDimension": "Вы хотели больше идей. Подчеркните, что предложений было мало. Suggestion → suggestions.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -660,7 +660,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что хоть немного похвалы получили, а не её нехватку.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Вам не хватило ободрения. Подчеркните, что поддержки было мало.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b6afaec64f6a939e0f0f0ce7f3d2e88ab5cd3ff6d0839abbc9cf62989e4f0833"
+  "learnerFingerprint": "c6ae3cc89e1f8d7004f09503e6586ea93c3129c877a35ae5a2954c96bf5b6d71"
 }

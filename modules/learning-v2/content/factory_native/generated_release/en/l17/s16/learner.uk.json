@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-16:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
         },
         "gappedTargetPhrase": "How ___ poets do you know?",
         "gapOptions": [
@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
             "feedbackByLocale": {
-              "ru": "poet можно посчитать: many + poets во множественном числе.",
+              "ru": "poet можно посчитать: many + poets в форме для нескольких.",
               "uk": "poet можна порахувати: many + poets у множині."
             }
           },
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-16:i06:r1",
@@ -402,12 +402,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
         },
         "gappedTargetPhrase": "We don't know ___ novelists.",
         "gapOptions": [
@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
             "feedbackByLocale": {
-              "ru": "novelist можно посчитать: many + novelists во множественном числе.",
+              "ru": "novelist можно посчитать: many + novelists в форме для нескольких.",
               "uk": "novelist можна порахувати: many + novelists у множині."
             }
           },
@@ -608,7 +608,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-16:i09:r1",
@@ -625,12 +625,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
         },
         "gappedTargetPhrase": "How ___ poetry do you read?",
         "gapOptions": [
@@ -654,7 +654,7 @@
             "correct": false,
             "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
             "feedbackByLocale": {
-              "ru": "poetry в этом значении — неисчисляемое слово: much.",
+              "ru": "poetry в этом значении не считают поштучно: much.",
               "uk": "poetry у цьому значенні — незлічуване слово: much."
             }
           },
@@ -830,7 +830,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-16:i12:r1",
@@ -847,12 +847,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
         },
         "gappedTargetPhrase": "We don't read ___ prose.",
         "gapOptions": [
@@ -876,7 +876,7 @@
             "correct": false,
             "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
             "feedbackByLocale": {
-              "ru": "prose в этом значении — неисчисляемое слово: much.",
+              "ru": "prose в этом значении не считают поштучно: much.",
               "uk": "prose у цьому значенні — незлічуване слово: much."
             }
           },
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3a2198df46c607ab35f5e6841935e1af39cbd3487490cf00a07469e0a3c0fd15"
+  "learnerFingerprint": "e5e4c782ac28b33ebe072a1b3014eb3e0c4debae9b403a9ef8f40a9bb84b3ce4"
 }

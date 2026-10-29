@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-04:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "She is ___ candidate.",
@@ -273,11 +273,11 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «В этом магазине две вакансии». У vacancy множественное число — vacancies.",
+      "prompt": "Скажите: «В этом магазине две вакансии». Если vacancy несколько — vacancies.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «В этом магазине две вакансии». У vacancy множественное число — vacancies.",
+      "accessibilityLabel": "Скажите: «В этом магазине две вакансии». Если vacancy несколько — vacancies.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "There are two vacancies in this shop.",
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-04:i06:r1",
@@ -402,11 +402,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "There are two ___ in this shop.",
@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "У vacancy во множественном числе y меняется на ies: vacancies.",
+              "ru": "У vacancy в форме для нескольких y меняется на ies: vacancies.",
               "uk": "У vacancy у множині y змінюється на ies: vacancies."
             }
           },
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "У vacancy во множественном числе y меняется на ies: vacancies.",
+              "ru": "У vacancy в форме для нескольких y меняется на ies: vacancies.",
               "uk": "У vacancy у множині y змінюється на ies: vacancies."
             }
           }
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-04:i09:r1",
@@ -623,11 +623,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "This paperwork ___ important.",
@@ -652,7 +652,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Paperwork — неисчисляемое слово: is, не are.",
+              "ru": "Paperwork не считают поштучно: is, не are.",
               "uk": "Paperwork — незлічуване слово: is, не are."
             }
           },
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Paperwork — неисчисляемое слово: is, не are.",
+              "ru": "Paperwork не считают поштучно: is, не are.",
               "uk": "Paperwork — незлічуване слово: is, не are."
             }
           }
@@ -826,7 +826,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-04:i12:r1",
@@ -843,11 +843,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "We need ___.",
@@ -872,7 +872,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Training в значении обучения в целом — без a и без множественного -s.",
+              "ru": "Training в значении обучения в целом — без a и без -s для нескольких.",
               "uk": "Training у значенні навчання загалом — без a та без множинного -s."
             }
           },
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Training в значении обучения в целом — без a и без множественного -s.",
+              "ru": "Training в значении обучения в целом — без a и без -s для нескольких.",
               "uk": "Training у значенні навчання загалом — без a та без множинного -s."
             }
           }
@@ -968,13 +968,13 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите услышанную фразу с исчисляемым словом",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-04:i14:audio"
       ],
-      "accessibilityLabel": "Соберите услышанную фразу с исчисляемым словом",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -1040,13 +1040,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите фразу с неисчисляемым словом",
+      "prompt": "Скажите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-04:i16:audio"
       ],
-      "accessibilityLabel": "Скажите фразу с неисчисляемым словом",
+      "accessibilityLabel": "Скажите фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "871d20e736155cfaa04511069af58462e5036c478749d53fcab226b8169d07b9"
+  "learnerFingerprint": "33e8bcdb2431e470fd523e296d9723ffc2c7f9fdfc873a659d498d25fd2c4634"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-51",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, каким будет жильё: I think the room will be draughty.",
+    "uk": "припустити, яким буде житло: I think the room will be draughty."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Огляд квартири вже узгоджено"
       },
       "bodyByLocale": {
-        "ru": "Вы договорились с владельцем на завтра осмотреть ухоженную квартиру. Well-kept — ухоженный, в хорошем состоянии. Скажите о договорённости: We are viewing a well-kept flat tomorrow. Соберите предложение: We + are viewing + a well-kept flat + tomorrow. С we ставим are, действие выражаем формой viewing. Согласованное время tomorrow показывает, что Present Continuous здесь описывает будущее дело.",
-        "uk": "Ви домовилися з власником на завтра оглянути доглянуту квартиру. Well-kept — доглянутий, у хорошому стані. Скажіть про домовленість: We are viewing a well-kept flat tomorrow. Складіть речення: We + are viewing + a well-kept flat + tomorrow. З we ставимо are, дію виражаємо формою viewing. Узгоджений час tomorrow показує, що Present Continuous тут описує майбутню справу."
+        "ru": "Вы договорились с владельцем на завтра осмотреть ухоженную квартиру. Well-kept — ухоженный, в хорошем состоянии. Скажите о договорённости: We are viewing a well-kept flat tomorrow. Соберите предложение: We + are viewing + a well-kept flat + tomorrow. С we ставим are, действие выражаем формой viewing. Согласованное время tomorrow показывает, что am / is / are + -ing здесь описывает будущее дело.",
+        "uk": "Ви домовилися з власником на завтра оглянути доглянуту квартиру. Well-kept — доглянутий, у хорошому стані. Скажіть про домовленість: We are viewing a well-kept flat tomorrow. Складіть речення: We + are viewing + a well-kept flat + tomorrow. З we ставимо are, дію виражаємо формою viewing. Узгоджений час tomorrow показує, що am / is / are + -ing тут описує майбутню справу."
       },
       "question": {
         "interactionId": "en:lesson-16:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3e8df27b977586b22472c679491708eeae23c7c84d9087a9c6cf489583db7029"
+  "introFingerprint": "108028e1a664cbd127dd1c4fd6fd8757427b27a0335e2bea370c0d4240014755"
 }

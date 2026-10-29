@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-14",
   "learningOutcomeByLocale": {
-    "ru": "many + plural count noun / much + non-count noun",
-    "uk": "many + plural count noun / much + non-count noun"
+    "ru": "спросить, сколько у человека жильцов: How many lodgers do you have?",
+    "uk": "запитати, скільки в людини мешканців: How many lodgers do you have?"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Житло для поїздки"
       },
       "bodyByLocale": {
-        "ru": "Вы организуете общую поездку и уточняете у друга, сколько жилья нужно для всей группы. Accommodation — жильё, место для проживания; здесь слово неисчисляемое. Соберите вопрос: How much accommodation + do + we + need? → How much accommodation do we need? Much ставим перед accommodation; затем идут do, we и need. Здесь спрашиваем о необходимом объёме жилья, не называя число отдельных комнат.",
-        "uk": "Ви організовуєте спільну поїздку й уточнюєте в друга, скільки житла потрібно для всієї групи. Accommodation — житло, місце для проживання; тут слово незлічуване. Складіть запитання: How much accommodation + do + we + need? → How much accommodation do we need? Much ставимо перед accommodation; далі йдуть do, we і need. Тут запитуємо про необхідний обсяг житла, не називаючи кількість окремих кімнат."
+        "ru": "Вы организуете общую поездку и уточняете у друга, сколько жилья нужно для всей группы. Accommodation — жильё, место для проживания; здесь слово не считается поштучно. Соберите вопрос: How much accommodation + do + we + need? → How much accommodation do we need? Much ставим перед accommodation; затем идут do, we и need. Здесь спрашиваем о необходимом объёме жилья, не называя число отдельных комнат.",
+        "uk": "Ви організовуєте спільну поїздку й уточнюєте в друга, скільки житла потрібно для всієї групи. Accommodation — житло, місце для проживання; тут слово не рахується поштучно. Складіть запитання: How much accommodation + do + we + need? → How much accommodation do we need? Much ставимо перед accommodation; далі йдуть do, we і need. Тут запитуємо про необхідний обсяг житла, не називаючи кількість окремих кімнат."
       },
       "question": {
         "interactionId": "en:lesson-17:session-14:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Догляд за новим будинком"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете другу о недавно отремонтированном доме: большого ухода он пока не требует. Maintenance — обслуживание и уход; здесь слово неисчисляемое. Соберите фразу: The house + doesn't + need + much maintenance → The house doesn't need much maintenance. Для одного дома используем doesn't, а после него need без -s. Much перед maintenance вместе с отрицанием означает «не требует много ухода».",
-        "uk": "Ви розповідаєте другу про нещодавно відремонтований будинок: значного догляду він поки не потребує. Maintenance — обслуговування та догляд; тут слово незлічуване. Складіть фразу: The house + doesn't + need + much maintenance → The house doesn't need much maintenance. Для одного будинку використовуємо doesn't, а після нього need без -s. Much перед maintenance разом із запереченням означає «не потребує багато догляду»."
+        "ru": "Вы рассказываете другу о недавно отремонтированном доме: большого ухода он пока не требует. Maintenance — обслуживание и уход; здесь слово не считается поштучно. Соберите фразу: The house + doesn't + need + much maintenance → The house doesn't need much maintenance. Для одного дома используем doesn't, а после него need без -s. Much перед maintenance вместе с отрицанием означает «не требует много ухода».",
+        "uk": "Ви розповідаєте другу про нещодавно відремонтований будинок: значного догляду він поки не потребує. Maintenance — обслуговування та догляд; тут слово не рахується поштучно. Складіть фразу: The house + doesn't + need + much maintenance → The house doesn't need much maintenance. Для одного будинку використовуємо doesn't, а після нього need без -s. Much перед maintenance разом із запереченням означає «не потребує багато догляду»."
       },
       "question": {
         "interactionId": "en:lesson-17:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1d01ea27d4edb38ddd1d4e7eba0dbf66a771c40d3ff2508477b57c2137a6f2f6"
+  "introFingerprint": "6eb04597ab3c36a553c9980ae8ca373b301e2d384089f400a53b03b3f6abcbf4"
 }

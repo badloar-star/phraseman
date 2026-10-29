@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що кілька розкладачок для гостей є. Camp bed → camp beds.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Гостей багато, а кімнат бракує. Підкресліть малу кількість кімнат. Guest room → guest rooms.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що хоч трохи місця для речей є.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "Через меблі важко поставити розкладачку. Підкресліть брак місця.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c7b17e1999d696ea43c22e3a64df60b084c2de189fa3fd59180eb0bfff983595"
+  "learnerFingerprint": "1a876d7f3db7e92555f8fa8ebcaec85f43ca18ec3462ec956feea9e14e9a8c83"
 }

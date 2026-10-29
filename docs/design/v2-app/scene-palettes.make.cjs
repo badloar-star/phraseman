@@ -23,7 +23,7 @@ const engineCss = RANGES.map(([a, b, head]) => {
 const themesLine = L.find((l) => l.startsWith('<script>window.__THEMES = '));
 const icodeLine = L.find((l) => l.startsWith('<script>window.__ICODE = '));
 if (!themesLine || !icodeLine) throw new Error('[SP-MAKE] в эталоне нет строк __THEMES / __ICODE');
-for (const f of ['scene-palettes.css', 'scene-palettes.app.js', 'spire-tower-render.js', 'kit.css', 'kit.js', 'real-frame.css', 'real-frame.js', 'scene-recolor.js', 'scene-real.js', 'scene-styles.js', 'scene-cards.js', 'dark-themes.app.js']) {
+for (const f of ['scene-palettes.css', 'scene-palettes.app.js', 'spire-tower-render.js', 'kit.css', 'kit.js', 'real-frame.css', 'real-frame.js', 'scene-recolor.js', 'scene-real.js', 'scene-styles.js', 'scene-cards.js', 'scene-approved.js', 'dark-themes.app.js']) {
   if (!fs.existsSync(path.join(__dirname, f))) throw new Error(`[SP-MAKE] рядом нет ${f}`);
 }
 // реальные кадры Сверки — опись assets/real/scene-frames.json (node scene-frames.cjs: годность, граница сцены, место героя); нет описи — пусто
@@ -53,7 +53,7 @@ ${engineCss}
 <body>
 <div class="page">
   <h1 class="page-h1">Тёмные темы 2.0 — освещение и стили сцен</h1>
-  <p class="page-lead">Только настоящие экраны текущей сборки (кадры Сверки). Выбери тёмную тему — ниже те же экраны: слева как сейчас, правее с новым освещением сцены и в разных стилях рисования; дальше вечерняя Главная и карточки. Меняется только фон сцены — герой, надписи, стекло и карточки на кадре как сняты. Зажми перекрашенный телефон — на его месте покажется «сейчас».</p>
+  <p class="page-lead">Только настоящие экраны текущей сборки (кадры Сверки). Выбери тёмную тему — ниже те же экраны: слева как сейчас, правее с новым освещением сцены и в разных стилях рисования; дальше вечерняя Главная и карточки. Меняется только фон сцены — герой, надписи, стекло и карточки на кадре как сняты. Зажми перекрашенный телефон — на его месте покажется «сейчас». <b>Утверждено владельцем 29.10:</b> тёмное оформление — «Глубокое небо», светлое — «А — тон темы ярче и глубже», на всех экранах (первый раздел).</p>
   <div class="thm sp-bar" id="dtBar"><span id="dtAp" style="display:inline-flex;gap:8px;margin-right:16px"></span><span class="sp-lbl">Тема</span><span id="dtThemes" style="display:inline-flex;flex-wrap:wrap;gap:8px"></span><span class="sp-lbl" id="dtCount" style="margin-left:auto;opacity:.7"></span></div>
   <div id="spControls">
   <div class="thm sp-bar"><span class="sp-lbl">Оформление</span><span id="apList"></span><span class="sp-lbl" style="margin-left:14px">Сцена</span><span id="modeList"></span><span class="chp sp-replay" data-replay>Повторить</span></div>
@@ -70,6 +70,7 @@ ${engineCss}
 <script src="scene-real.js"></script>
 <script src="scene-styles.js"></script>
 <script src="scene-cards.js"></script>
+<script src="scene-approved.js"></script>
 ${themesLine}
 ${icodeLine}
 ${realLine}

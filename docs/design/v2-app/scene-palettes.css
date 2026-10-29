@@ -191,3 +191,7 @@
 #dt .sp-real-row .phones { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
 #dt .sp-real-row .col { flex: none; scroll-snap-align: start; }
 #dt .chp.off, #dtBar .chp.off { opacity: .42; } /* тема без кадра в этом оформлении — кликабельна, покажет плитку «кадр снимается» */
+
+/* пометка выбранного владельцем варианта (вердикт 29.10): зелёная плашка над названием колонки */
+.sp-ok { display: inline-block; margin: 0 0 6px; padding: 3px 10px; border-radius: 999px; background: rgba(52, 199, 89, .18); color: #1E8E3E; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .01em; }
+.sp-real-row[data-frame$="#approved"] .ph[data-ph="sp-rf-will"] { box-shadow: 0 0 0 3px rgba(52, 199, 89, .55), 0 18px 40px rgba(0, 0, 0, .35); }

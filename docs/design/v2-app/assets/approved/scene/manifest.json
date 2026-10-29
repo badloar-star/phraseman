@@ -1,0 +1,3664 @@
+{
+ "version": "2026-10-29",
+ "note": "эталонные кадры утверждённой сцены: область сцены (0…sceneH) перекрашенного реального кадра Сверки; формула — scene-approved.js",
+ "frames": {
+  "home_graphite_dark": {
+   "file": "home_graphite_dark.png",
+   "source": "scene_home_graphite_dark.png",
+   "screen": "home",
+   "theme": "graphite",
+   "name": "Затмение",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 659061,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.198,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_graphite_dark": {
+   "file": "dialogs_graphite_dark.png",
+   "source": "scene_dialogs_graphite_dark.png",
+   "screen": "dialogs",
+   "theme": "graphite",
+   "name": "Затмение",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 837199,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.198,
+     "top": 0
+    }
+   }
+  },
+  "peak_graphite_dark": {
+   "file": "peak_graphite_dark.png",
+   "source": "scene_peak_graphite_dark.png",
+   "screen": "peak",
+   "theme": "graphite",
+   "name": "Затмение",
+   "ap": "dark",
+   "sceneH": 1950,
+   "crop": [
+    0,
+    0,
+    1080,
+    1950
+   ],
+   "bytes": 1611939,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "peak",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.198,
+     "top": 0
+    }
+   }
+  },
+  "season_graphite_dark": {
+   "file": "season_graphite_dark.png",
+   "source": "scene_season_graphite_dark.png",
+   "screen": "season",
+   "theme": "graphite",
+   "name": "Затмение",
+   "ap": "dark",
+   "sceneH": 1029,
+   "crop": [
+    0,
+    0,
+    1080,
+    1029
+   ],
+   "bytes": 567942,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "season",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.197,
+     "top": 0
+    }
+   }
+  },
+  "home_polar_dark": {
+   "file": "home_polar_dark.png",
+   "source": "scene_home_polar_dark.png",
+   "screen": "home",
+   "theme": "polar",
+   "name": "Иней",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 668112,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.199,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_polar_dark": {
+   "file": "dialogs_polar_dark.png",
+   "source": "scene_dialogs_polar_dark.png",
+   "screen": "dialogs",
+   "theme": "polar",
+   "name": "Иней",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 952192,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.199,
+     "top": 0
+    }
+   }
+  },
+  "home_slate_dark": {
+   "file": "home_slate_dark.png",
+   "source": "scene_home_slate_dark.png",
+   "screen": "home",
+   "theme": "slate",
+   "name": "Шторм",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 705685,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.194,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_slate_dark": {
+   "file": "dialogs_slate_dark.png",
+   "source": "scene_dialogs_slate_dark.png",
+   "screen": "dialogs",
+   "theme": "slate",
+   "name": "Шторм",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 1000373,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.194,
+     "top": 0
+    }
+   }
+  },
+  "home_ink_dark": {
+   "file": "home_ink_dark.png",
+   "source": "scene_home_ink_dark.png",
+   "screen": "home",
+   "theme": "ink",
+   "name": "Сумерки",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 656135,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.19,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_ink_dark": {
+   "file": "dialogs_ink_dark.png",
+   "source": "scene_dialogs_ink_dark.png",
+   "screen": "dialogs",
+   "theme": "ink",
+   "name": "Сумерки",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 867996,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.19,
+     "top": 0
+    }
+   }
+  },
+  "peak_ink_dark": {
+   "file": "peak_ink_dark.png",
+   "source": "scene_peak_ink_dark.png",
+   "screen": "peak",
+   "theme": "ink",
+   "name": "Сумерки",
+   "ap": "dark",
+   "sceneH": 1950,
+   "crop": [
+    0,
+    0,
+    1080,
+    1950
+   ],
+   "bytes": 1671053,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "peak",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.19,
+     "top": 0
+    }
+   }
+  },
+  "season_ink_dark": {
+   "file": "season_ink_dark.png",
+   "source": "scene_season_ink_dark.png",
+   "screen": "season",
+   "theme": "ink",
+   "name": "Сумерки",
+   "ap": "dark",
+   "sceneH": 1029,
+   "crop": [
+    0,
+    0,
+    1080,
+    1029
+   ],
+   "bytes": 572427,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "season",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.187,
+     "top": 0
+    }
+   }
+  },
+  "home_lavender_dark": {
+   "file": "home_lavender_dark.png",
+   "source": "scene_home_lavender_dark.png",
+   "screen": "home",
+   "theme": "lavender",
+   "name": "Туманность",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 703211,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.175,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_lavender_dark": {
+   "file": "dialogs_lavender_dark.png",
+   "source": "scene_dialogs_lavender_dark.png",
+   "screen": "dialogs",
+   "theme": "lavender",
+   "name": "Туманность",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 976764,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.175,
+     "top": 0
+    }
+   }
+  },
+  "home_iris_dark": {
+   "file": "home_iris_dark.png",
+   "source": "scene_home_iris_dark.png",
+   "screen": "home",
+   "theme": "iris",
+   "name": "Комета",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 660304,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.177,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_iris_dark": {
+   "file": "dialogs_iris_dark.png",
+   "source": "scene_dialogs_iris_dark.png",
+   "screen": "dialogs",
+   "theme": "iris",
+   "name": "Комета",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 914574,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.177,
+     "top": 0
+    }
+   }
+  },
+  "home_rose_dark": {
+   "file": "home_rose_dark.png",
+   "source": "scene_home_rose_dark.png",
+   "screen": "home",
+   "theme": "rose",
+   "name": "Рассвет",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 647070,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.182,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_rose_dark": {
+   "file": "dialogs_rose_dark.png",
+   "source": "scene_dialogs_rose_dark.png",
+   "screen": "dialogs",
+   "theme": "rose",
+   "name": "Рассвет",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 862733,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.182,
+     "top": 0
+    }
+   }
+  },
+  "home_terracotta_dark": {
+   "file": "home_terracotta_dark.png",
+   "source": "scene_home_terracotta_dark.png",
+   "screen": "home",
+   "theme": "terracotta",
+   "name": "Закат",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 673450,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.178,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_terracotta_dark": {
+   "file": "dialogs_terracotta_dark.png",
+   "source": "scene_dialogs_terracotta_dark.png",
+   "screen": "dialogs",
+   "theme": "terracotta",
+   "name": "Закат",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 970754,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.178,
+     "top": 0
+    }
+   }
+  },
+  "home_taupe_dark": {
+   "file": "home_taupe_dark.png",
+   "source": "scene_home_taupe_dark.png",
+   "screen": "home",
+   "theme": "taupe",
+   "name": "Дюна",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 642473,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.19,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_taupe_dark": {
+   "file": "dialogs_taupe_dark.png",
+   "source": "scene_dialogs_taupe_dark.png",
+   "screen": "dialogs",
+   "theme": "taupe",
+   "name": "Дюна",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 857211,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.19,
+     "top": 0
+    }
+   }
+  },
+  "home_sage_dark": {
+   "file": "home_sage_dark.png",
+   "source": "scene_home_sage_dark.png",
+   "screen": "home",
+   "theme": "sage",
+   "name": "Мята",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 575830,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.213,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_sage_dark": {
+   "file": "dialogs_sage_dark.png",
+   "source": "scene_dialogs_sage_dark.png",
+   "screen": "dialogs",
+   "theme": "sage",
+   "name": "Мята",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 813155,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.213,
+     "top": 0
+    }
+   }
+  },
+  "home_eucalyptus_dark": {
+   "file": "home_eucalyptus_dark.png",
+   "source": "scene_home_eucalyptus_dark.png",
+   "screen": "home",
+   "theme": "eucalyptus",
+   "name": "Лагуна",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 604254,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.211,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_eucalyptus_dark": {
+   "file": "dialogs_eucalyptus_dark.png",
+   "source": "scene_dialogs_eucalyptus_dark.png",
+   "screen": "dialogs",
+   "theme": "eucalyptus",
+   "name": "Лагуна",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 858752,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.211,
+     "top": 0
+    }
+   }
+  },
+  "home_marine_dark": {
+   "file": "home_marine_dark.png",
+   "source": "scene_home_marine_dark.png",
+   "screen": "home",
+   "theme": "marine",
+   "name": "Океан",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 634922,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.207,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_marine_dark": {
+   "file": "dialogs_marine_dark.png",
+   "source": "scene_dialogs_marine_dark.png",
+   "screen": "dialogs",
+   "theme": "marine",
+   "name": "Океан",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 899075,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.207,
+     "top": 0
+    }
+   }
+  },
+  "peak_marine_dark": {
+   "file": "peak_marine_dark.png",
+   "source": "scene_peak_marine_dark.png",
+   "screen": "peak",
+   "theme": "marine",
+   "name": "Океан",
+   "ap": "dark",
+   "sceneH": 1950,
+   "crop": [
+    0,
+    0,
+    1080,
+    1950
+   ],
+   "bytes": 1564737,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "peak",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.207,
+     "top": 0
+    }
+   }
+  },
+  "season_marine_dark": {
+   "file": "season_marine_dark.png",
+   "source": "scene_season_marine_dark.png",
+   "screen": "season",
+   "theme": "marine",
+   "name": "Океан",
+   "ap": "dark",
+   "sceneH": 1029,
+   "crop": [
+    0,
+    0,
+    1080,
+    1029
+   ],
+   "bytes": 522924,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "season",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.206,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_aurora_dark": {
+   "file": "home_grad_aurora_dark.png",
+   "source": "scene_home_grad_aurora_dark.png",
+   "screen": "home",
+   "theme": "grad_aurora",
+   "name": "Аврора",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 661586,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.212,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_aurora_dark": {
+   "file": "dialogs_grad_aurora_dark.png",
+   "source": "scene_dialogs_grad_aurora_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_aurora",
+   "name": "Аврора",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 933603,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.212,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_iris_dark": {
+   "file": "home_grad_iris_dark.png",
+   "source": "scene_home_grad_iris_dark.png",
+   "screen": "home",
+   "theme": "grad_iris",
+   "name": "Ирис",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 718867,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.188,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_iris_dark": {
+   "file": "dialogs_grad_iris_dark.png",
+   "source": "scene_dialogs_grad_iris_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_iris",
+   "name": "Ирис",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 1002245,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.188,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_magma_dark": {
+   "file": "home_grad_magma_dark.png",
+   "source": "scene_home_grad_magma_dark.png",
+   "screen": "home",
+   "theme": "grad_magma",
+   "name": "Магма",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 673051,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.184,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_magma_dark": {
+   "file": "dialogs_grad_magma_dark.png",
+   "source": "scene_dialogs_grad_magma_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_magma",
+   "name": "Магма",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 967126,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.184,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_midnight_dark": {
+   "file": "home_grad_midnight_dark.png",
+   "source": "scene_home_grad_midnight_dark.png",
+   "screen": "home",
+   "theme": "grad_midnight",
+   "name": "Полночь",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 721091,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.199,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_midnight_dark": {
+   "file": "dialogs_grad_midnight_dark.png",
+   "source": "scene_dialogs_grad_midnight_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_midnight",
+   "name": "Полночь",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 1029714,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.199,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_champagne_dark": {
+   "file": "home_grad_champagne_dark.png",
+   "source": "scene_home_grad_champagne_dark.png",
+   "screen": "home",
+   "theme": "grad_champagne",
+   "name": "Шампань",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 693693,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.201,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_champagne_dark": {
+   "file": "dialogs_grad_champagne_dark.png",
+   "source": "scene_dialogs_grad_champagne_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_champagne",
+   "name": "Шампань",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 984791,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.201,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_jade_dark": {
+   "file": "home_grad_jade_dark.png",
+   "source": "scene_home_grad_jade_dark.png",
+   "screen": "home",
+   "theme": "grad_jade",
+   "name": "Нефрит",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 649840,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.211,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_jade_dark": {
+   "file": "dialogs_grad_jade_dark.png",
+   "source": "scene_dialogs_grad_jade_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_jade",
+   "name": "Нефрит",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 906087,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.211,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_orchid_dark": {
+   "file": "home_grad_orchid_dark.png",
+   "source": "scene_home_grad_orchid_dark.png",
+   "screen": "home",
+   "theme": "grad_orchid",
+   "name": "Орхидея",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 739271,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.175,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_orchid_dark": {
+   "file": "dialogs_grad_orchid_dark.png",
+   "source": "scene_dialogs_grad_orchid_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_orchid",
+   "name": "Орхидея",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 1030102,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.175,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_ice_dark": {
+   "file": "home_grad_ice_dark.png",
+   "source": "scene_home_grad_ice_dark.png",
+   "screen": "home",
+   "theme": "grad_ice",
+   "name": "Лёд",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 732021,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.202,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_ice_dark": {
+   "file": "dialogs_grad_ice_dark.png",
+   "source": "scene_dialogs_grad_ice_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_ice",
+   "name": "Лёд",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 1005400,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.202,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_coral_dark": {
+   "file": "home_grad_coral_dark.png",
+   "source": "scene_home_grad_coral_dark.png",
+   "screen": "home",
+   "theme": "grad_coral",
+   "name": "Коралл",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 708004,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.181,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_coral_dark": {
+   "file": "dialogs_grad_coral_dark.png",
+   "source": "scene_dialogs_grad_coral_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_coral",
+   "name": "Коралл",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 997966,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.181,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_lilac_dark": {
+   "file": "home_grad_lilac_dark.png",
+   "source": "scene_home_grad_lilac_dark.png",
+   "screen": "home",
+   "theme": "grad_lilac",
+   "name": "Сирень",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 737994,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.184,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_lilac_dark": {
+   "file": "dialogs_grad_lilac_dark.png",
+   "source": "scene_dialogs_grad_lilac_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_lilac",
+   "name": "Сирень",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 1028215,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.184,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_full_olive_dark": {
+   "file": "home_grad_full_olive_dark.png",
+   "source": "scene_home_grad_full_olive_dark.png",
+   "screen": "home",
+   "theme": "grad_full_olive",
+   "name": "Керамика",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 960552,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.211,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_full_olive_dark": {
+   "file": "dialogs_grad_full_olive_dark.png",
+   "source": "scene_dialogs_grad_full_olive_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_full_olive",
+   "name": "Керамика",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 805860,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.211,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_full_ref_signal_lime_dark": {
+   "file": "home_grad_full_ref_signal_lime_dark.png",
+   "source": "scene_home_grad_full_ref_signal_lime_dark.png",
+   "screen": "home",
+   "theme": "grad_full_ref_signal_lime",
+   "name": "Обсидиан",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 594393,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.213,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_full_ref_signal_lime_dark": {
+   "file": "dialogs_grad_full_ref_signal_lime_dark.png",
+   "source": "scene_dialogs_grad_full_ref_signal_lime_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_full_ref_signal_lime",
+   "name": "Обсидиан",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 682203,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.213,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_full_ref_storm_violet_dark": {
+   "file": "home_grad_full_ref_storm_violet_dark.png",
+   "source": "scene_home_grad_full_ref_storm_violet_dark.png",
+   "screen": "home",
+   "theme": "grad_full_ref_storm_violet",
+   "name": "Аметист",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 545201,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.176,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_full_ref_storm_violet_dark": {
+   "file": "dialogs_grad_full_ref_storm_violet_dark.png",
+   "source": "scene_dialogs_grad_full_ref_storm_violet_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_full_ref_storm_violet",
+   "name": "Аметист",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 774749,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.176,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_full_titanium_dark": {
+   "file": "home_grad_full_titanium_dark.png",
+   "source": "scene_home_grad_full_titanium_dark.png",
+   "screen": "home",
+   "theme": "grad_full_titanium",
+   "name": "Титан",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 933601,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.176,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_full_titanium_dark": {
+   "file": "dialogs_grad_full_titanium_dark.png",
+   "source": "scene_dialogs_grad_full_titanium_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_full_titanium",
+   "name": "Титан",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 798643,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.176,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_full_horizon_dark": {
+   "file": "home_grad_full_horizon_dark.png",
+   "source": "scene_home_grad_full_horizon_dark.png",
+   "screen": "home",
+   "theme": "grad_full_horizon",
+   "name": "Атмосфера",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 914509,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.192,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_full_horizon_dark": {
+   "file": "dialogs_grad_full_horizon_dark.png",
+   "source": "scene_dialogs_grad_full_horizon_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_full_horizon",
+   "name": "Атмосфера",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 757986,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.192,
+     "top": 0
+    }
+   }
+  },
+  "home_grad_full_ref_gravity_blue_dark": {
+   "file": "home_grad_full_ref_gravity_blue_dark.png",
+   "source": "scene_home_grad_full_ref_gravity_blue_dark.png",
+   "screen": "home",
+   "theme": "grad_full_ref_gravity_blue",
+   "name": "Сингулярность",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 528833,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.207,
+     "top": 0
+    }
+   }
+  },
+  "dialogs_grad_full_ref_gravity_blue_dark": {
+   "file": "dialogs_grad_full_ref_gravity_blue_dark.png",
+   "source": "scene_dialogs_grad_full_ref_gravity_blue_dark.png",
+   "screen": "dialogs",
+   "theme": "grad_full_ref_gravity_blue",
+   "name": "Сингулярность",
+   "ap": "dark",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 725632,
+   "mode": "dark-sky",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "dark-sky",
+    "maxDiff": 0,
+    "badPixels": 0,
+    "guard": {
+     "bottom": 0.207,
+     "top": 0
+    }
+   }
+  },
+  "home_graphite_light": {
+   "file": "home_graphite_light.png",
+   "source": "scene_home_graphite_light.png",
+   "screen": "home",
+   "theme": "graphite",
+   "name": "Затмение",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 249846,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_graphite_light": {
+   "file": "dialogs_graphite_light.png",
+   "source": "scene_dialogs_graphite_light.png",
+   "screen": "dialogs",
+   "theme": "graphite",
+   "name": "Затмение",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 625603,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "peak_graphite_light": {
+   "file": "peak_graphite_light.png",
+   "source": "scene_peak_graphite_light.png",
+   "screen": "peak",
+   "theme": "graphite",
+   "name": "Затмение",
+   "ap": "light",
+   "sceneH": 1950,
+   "crop": [
+    0,
+    0,
+    1080,
+    1950
+   ],
+   "bytes": 846739,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "peak",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "season_graphite_light": {
+   "file": "season_graphite_light.png",
+   "source": "scene_season_graphite_light.png",
+   "screen": "season",
+   "theme": "graphite",
+   "name": "Затмение",
+   "ap": "light",
+   "sceneH": 1029,
+   "crop": [
+    0,
+    0,
+    1080,
+    1029
+   ],
+   "bytes": 185044,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "season",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.36
+   }
+  },
+  "home_polar_light": {
+   "file": "home_polar_light.png",
+   "source": "scene_home_polar_light.png",
+   "screen": "home",
+   "theme": "polar",
+   "name": "Иней",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 263139,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_polar_light": {
+   "file": "dialogs_polar_light.png",
+   "source": "scene_dialogs_polar_light.png",
+   "screen": "dialogs",
+   "theme": "polar",
+   "name": "Иней",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 641332,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_slate_light": {
+   "file": "home_slate_light.png",
+   "source": "scene_home_slate_light.png",
+   "screen": "home",
+   "theme": "slate",
+   "name": "Шторм",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 276701,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_slate_light": {
+   "file": "dialogs_slate_light.png",
+   "source": "scene_dialogs_slate_light.png",
+   "screen": "dialogs",
+   "theme": "slate",
+   "name": "Шторм",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 636008,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_ink_light": {
+   "file": "home_ink_light.png",
+   "source": "scene_home_ink_light.png",
+   "screen": "home",
+   "theme": "ink",
+   "name": "Сумерки",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 263404,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_ink_light": {
+   "file": "dialogs_ink_light.png",
+   "source": "scene_dialogs_ink_light.png",
+   "screen": "dialogs",
+   "theme": "ink",
+   "name": "Сумерки",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 630763,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "peak_ink_light": {
+   "file": "peak_ink_light.png",
+   "source": "scene_peak_ink_light.png",
+   "screen": "peak",
+   "theme": "ink",
+   "name": "Сумерки",
+   "ap": "light",
+   "sceneH": 1950,
+   "crop": [
+    0,
+    0,
+    1080,
+    1950
+   ],
+   "bytes": 915885,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "peak",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "season_ink_light": {
+   "file": "season_ink_light.png",
+   "source": "scene_season_ink_light.png",
+   "screen": "season",
+   "theme": "ink",
+   "name": "Сумерки",
+   "ap": "light",
+   "sceneH": 1029,
+   "crop": [
+    0,
+    0,
+    1080,
+    1029
+   ],
+   "bytes": 197200,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "season",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.36
+   }
+  },
+  "home_lavender_light": {
+   "file": "home_lavender_light.png",
+   "source": "scene_home_lavender_light.png",
+   "screen": "home",
+   "theme": "lavender",
+   "name": "Туманность",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 255180,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_lavender_light": {
+   "file": "dialogs_lavender_light.png",
+   "source": "scene_dialogs_lavender_light.png",
+   "screen": "dialogs",
+   "theme": "lavender",
+   "name": "Туманность",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 600590,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_iris_light": {
+   "file": "home_iris_light.png",
+   "source": "scene_home_iris_light.png",
+   "screen": "home",
+   "theme": "iris",
+   "name": "Комета",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 256820,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_iris_light": {
+   "file": "dialogs_iris_light.png",
+   "source": "scene_dialogs_iris_light.png",
+   "screen": "dialogs",
+   "theme": "iris",
+   "name": "Комета",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 636194,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_rose_light": {
+   "file": "home_rose_light.png",
+   "source": "scene_home_rose_light.png",
+   "screen": "home",
+   "theme": "rose",
+   "name": "Рассвет",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 251796,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_rose_light": {
+   "file": "dialogs_rose_light.png",
+   "source": "scene_dialogs_rose_light.png",
+   "screen": "dialogs",
+   "theme": "rose",
+   "name": "Рассвет",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 603774,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_terracotta_light": {
+   "file": "home_terracotta_light.png",
+   "source": "scene_home_terracotta_light.png",
+   "screen": "home",
+   "theme": "terracotta",
+   "name": "Закат",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 254436,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_terracotta_light": {
+   "file": "dialogs_terracotta_light.png",
+   "source": "scene_dialogs_terracotta_light.png",
+   "screen": "dialogs",
+   "theme": "terracotta",
+   "name": "Закат",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 635340,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_taupe_light": {
+   "file": "home_taupe_light.png",
+   "source": "scene_home_taupe_light.png",
+   "screen": "home",
+   "theme": "taupe",
+   "name": "Дюна",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 226825,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_taupe_light": {
+   "file": "dialogs_taupe_light.png",
+   "source": "scene_dialogs_taupe_light.png",
+   "screen": "dialogs",
+   "theme": "taupe",
+   "name": "Дюна",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 647364,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_sage_light": {
+   "file": "home_sage_light.png",
+   "source": "scene_home_sage_light.png",
+   "screen": "home",
+   "theme": "sage",
+   "name": "Мята",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 241256,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 3
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_sage_light": {
+   "file": "dialogs_sage_light.png",
+   "source": "scene_dialogs_sage_light.png",
+   "screen": "dialogs",
+   "theme": "sage",
+   "name": "Мята",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 619697,
+   "mode": "light-A",
+   "unfit": true,
+   "badge": "кадр не совпал с моделью сцены",
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 3
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_eucalyptus_light": {
+   "file": "home_eucalyptus_light.png",
+   "source": "scene_home_eucalyptus_light.png",
+   "screen": "home",
+   "theme": "eucalyptus",
+   "name": "Лагуна",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 218336,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 3
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_eucalyptus_light": {
+   "file": "dialogs_eucalyptus_light.png",
+   "source": "scene_dialogs_eucalyptus_light.png",
+   "screen": "dialogs",
+   "theme": "eucalyptus",
+   "name": "Лагуна",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 611916,
+   "mode": "light-A",
+   "unfit": true,
+   "badge": "кадр не совпал с моделью сцены",
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 3
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_marine_light": {
+   "file": "home_marine_light.png",
+   "source": "scene_home_marine_light.png",
+   "screen": "home",
+   "theme": "marine",
+   "name": "Океан",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 233436,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_marine_light": {
+   "file": "dialogs_marine_light.png",
+   "source": "scene_dialogs_marine_light.png",
+   "screen": "dialogs",
+   "theme": "marine",
+   "name": "Океан",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 672413,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "peak_marine_light": {
+   "file": "peak_marine_light.png",
+   "source": "scene_peak_marine_light.png",
+   "screen": "peak",
+   "theme": "marine",
+   "name": "Океан",
+   "ap": "light",
+   "sceneH": 1950,
+   "crop": [
+    0,
+    0,
+    1080,
+    1950
+   ],
+   "bytes": 831310,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "peak",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "season_marine_light": {
+   "file": "season_marine_light.png",
+   "source": "scene_season_marine_light.png",
+   "screen": "season",
+   "theme": "marine",
+   "name": "Океан",
+   "ap": "light",
+   "sceneH": 1029,
+   "crop": [
+    0,
+    0,
+    1080,
+    1029
+   ],
+   "bytes": 159026,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "season",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.36
+   }
+  },
+  "home_grad_aurora_light": {
+   "file": "home_grad_aurora_light.png",
+   "source": "scene_home_grad_aurora_light.png",
+   "screen": "home",
+   "theme": "grad_aurora",
+   "name": "Аврора",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 226472,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 3
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_aurora_light": {
+   "file": "dialogs_grad_aurora_light.png",
+   "source": "scene_dialogs_grad_aurora_light.png",
+   "screen": "dialogs",
+   "theme": "grad_aurora",
+   "name": "Аврора",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 757531,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 3
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_iris_light": {
+   "file": "home_grad_iris_light.png",
+   "source": "scene_home_grad_iris_light.png",
+   "screen": "home",
+   "theme": "grad_iris",
+   "name": "Ирис",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 248579,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_iris_light": {
+   "file": "dialogs_grad_iris_light.png",
+   "source": "scene_dialogs_grad_iris_light.png",
+   "screen": "dialogs",
+   "theme": "grad_iris",
+   "name": "Ирис",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 733824,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_magma_light": {
+   "file": "home_grad_magma_light.png",
+   "source": "scene_home_grad_magma_light.png",
+   "screen": "home",
+   "theme": "grad_magma",
+   "name": "Магма",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 224962,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_magma_light": {
+   "file": "dialogs_grad_magma_light.png",
+   "source": "scene_dialogs_grad_magma_light.png",
+   "screen": "dialogs",
+   "theme": "grad_magma",
+   "name": "Магма",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 733414,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_midnight_light": {
+   "file": "home_grad_midnight_light.png",
+   "source": "scene_home_grad_midnight_light.png",
+   "screen": "home",
+   "theme": "grad_midnight",
+   "name": "Полночь",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 255907,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_midnight_light": {
+   "file": "dialogs_grad_midnight_light.png",
+   "source": "scene_dialogs_grad_midnight_light.png",
+   "screen": "dialogs",
+   "theme": "grad_midnight",
+   "name": "Полночь",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 758255,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_champagne_light": {
+   "file": "home_grad_champagne_light.png",
+   "source": "scene_home_grad_champagne_light.png",
+   "screen": "home",
+   "theme": "grad_champagne",
+   "name": "Шампань",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 221071,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_champagne_light": {
+   "file": "dialogs_grad_champagne_light.png",
+   "source": "scene_dialogs_grad_champagne_light.png",
+   "screen": "dialogs",
+   "theme": "grad_champagne",
+   "name": "Шампань",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 764087,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_jade_light": {
+   "file": "home_grad_jade_light.png",
+   "source": "scene_home_grad_jade_light.png",
+   "screen": "home",
+   "theme": "grad_jade",
+   "name": "Нефрит",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 218909,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 3
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_jade_light": {
+   "file": "dialogs_grad_jade_light.png",
+   "source": "scene_dialogs_grad_jade_light.png",
+   "screen": "dialogs",
+   "theme": "grad_jade",
+   "name": "Нефрит",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 763380,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 3
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_orchid_light": {
+   "file": "home_grad_orchid_light.png",
+   "source": "scene_home_grad_orchid_light.png",
+   "screen": "home",
+   "theme": "grad_orchid",
+   "name": "Орхидея",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 261657,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_orchid_light": {
+   "file": "dialogs_grad_orchid_light.png",
+   "source": "scene_dialogs_grad_orchid_light.png",
+   "screen": "dialogs",
+   "theme": "grad_orchid",
+   "name": "Орхидея",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 738279,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_ice_light": {
+   "file": "home_grad_ice_light.png",
+   "source": "scene_home_grad_ice_light.png",
+   "screen": "home",
+   "theme": "grad_ice",
+   "name": "Лёд",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 239609,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_ice_light": {
+   "file": "dialogs_grad_ice_light.png",
+   "source": "scene_dialogs_grad_ice_light.png",
+   "screen": "dialogs",
+   "theme": "grad_ice",
+   "name": "Лёд",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 735882,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_coral_light": {
+   "file": "home_grad_coral_light.png",
+   "source": "scene_home_grad_coral_light.png",
+   "screen": "home",
+   "theme": "grad_coral",
+   "name": "Коралл",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 245261,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_coral_light": {
+   "file": "dialogs_grad_coral_light.png",
+   "source": "scene_dialogs_grad_coral_light.png",
+   "screen": "dialogs",
+   "theme": "grad_coral",
+   "name": "Коралл",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 731829,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_lilac_light": {
+   "file": "home_grad_lilac_light.png",
+   "source": "scene_home_grad_lilac_light.png",
+   "screen": "home",
+   "theme": "grad_lilac",
+   "name": "Сирень",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 246304,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.4
+   }
+  },
+  "dialogs_grad_lilac_light": {
+   "file": "dialogs_grad_lilac_light.png",
+   "source": "scene_dialogs_grad_lilac_light.png",
+   "screen": "dialogs",
+   "theme": "grad_lilac",
+   "name": "Сирень",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 693423,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_full_olive_light": {
+   "file": "home_grad_full_olive_light.png",
+   "source": "scene_home_grad_full_olive_light.png",
+   "screen": "home",
+   "theme": "grad_full_olive",
+   "name": "Керамика",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 498067,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": null
+   }
+  },
+  "dialogs_grad_full_olive_light": {
+   "file": "dialogs_grad_full_olive_light.png",
+   "source": "scene_dialogs_grad_full_olive_light.png",
+   "screen": "dialogs",
+   "theme": "grad_full_olive",
+   "name": "Керамика",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 682400,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_full_ref_signal_lime_light": {
+   "file": "home_grad_full_ref_signal_lime_light.png",
+   "source": "scene_home_grad_full_ref_signal_lime_light.png",
+   "screen": "home",
+   "theme": "grad_full_ref_signal_lime",
+   "name": "Обсидиан",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 333759,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": null
+   }
+  },
+  "dialogs_grad_full_ref_signal_lime_light": {
+   "file": "dialogs_grad_full_ref_signal_lime_light.png",
+   "source": "scene_dialogs_grad_full_ref_signal_lime_light.png",
+   "screen": "dialogs",
+   "theme": "grad_full_ref_signal_lime",
+   "name": "Обсидиан",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 678705,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_full_ref_storm_violet_light": {
+   "file": "home_grad_full_ref_storm_violet_light.png",
+   "source": "scene_home_grad_full_ref_storm_violet_light.png",
+   "screen": "home",
+   "theme": "grad_full_ref_storm_violet",
+   "name": "Аметист",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 264846,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": null
+   }
+  },
+  "dialogs_grad_full_ref_storm_violet_light": {
+   "file": "dialogs_grad_full_ref_storm_violet_light.png",
+   "source": "scene_dialogs_grad_full_ref_storm_violet_light.png",
+   "screen": "dialogs",
+   "theme": "grad_full_ref_storm_violet",
+   "name": "Аметист",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 648282,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_full_titanium_light": {
+   "file": "home_grad_full_titanium_light.png",
+   "source": "scene_home_grad_full_titanium_light.png",
+   "screen": "home",
+   "theme": "grad_full_titanium",
+   "name": "Титан",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 605423,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": null
+   }
+  },
+  "dialogs_grad_full_titanium_light": {
+   "file": "dialogs_grad_full_titanium_light.png",
+   "source": "scene_dialogs_grad_full_titanium_light.png",
+   "screen": "dialogs",
+   "theme": "grad_full_titanium",
+   "name": "Титан",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 711414,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 1
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_full_horizon_light": {
+   "file": "home_grad_full_horizon_light.png",
+   "source": "scene_home_grad_full_horizon_light.png",
+   "screen": "home",
+   "theme": "grad_full_horizon",
+   "name": "Атмосфера",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 455707,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": null
+   }
+  },
+  "dialogs_grad_full_horizon_light": {
+   "file": "dialogs_grad_full_horizon_light.png",
+   "source": "scene_dialogs_grad_full_horizon_light.png",
+   "screen": "dialogs",
+   "theme": "grad_full_horizon",
+   "name": "Атмосфера",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 704763,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  },
+  "home_grad_full_ref_gravity_blue_light": {
+   "file": "home_grad_full_ref_gravity_blue_light.png",
+   "source": "scene_home_grad_full_ref_gravity_blue_light.png",
+   "screen": "home",
+   "theme": "grad_full_ref_gravity_blue",
+   "name": "Сингулярность",
+   "ap": "light",
+   "sceneH": 1081,
+   "crop": [
+    0,
+    0,
+    1080,
+    1081
+   ],
+   "bytes": 279423,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "home",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": null
+   }
+  },
+  "dialogs_grad_full_ref_gravity_blue_light": {
+   "file": "dialogs_grad_full_ref_gravity_blue_light.png",
+   "source": "scene_dialogs_grad_full_ref_gravity_blue_light.png",
+   "screen": "dialogs",
+   "theme": "grad_full_ref_gravity_blue",
+   "name": "Сингулярность",
+   "ap": "light",
+   "sceneH": 1082,
+   "crop": [
+    0,
+    0,
+    1080,
+    1082
+   ],
+   "bytes": 662462,
+   "mode": "light-A",
+   "unfit": false,
+   "badge": null,
+   "check": {
+    "screen": "dialogs",
+    "mode": "light-A",
+    "maxDiff": 0,
+    "n": 26,
+    "guard": {
+     "scrim": 0,
+     "top": 2
+    },
+    "scrim": 0.34
+   }
+  }
+ }
+}

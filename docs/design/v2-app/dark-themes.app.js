@@ -4,7 +4,10 @@
    зачем (координатор 28.10, слово владельца: «я просил макеты переработки тёмных тем, новые стили полностью, освещения»; по версии 2:
    «аналоговая интересно, но в тёмной верхняя часть сцены тусклая»; «сделай макет со всеми темами и цветами»): каждый телефон — реальный
    кадр, у которого по пикселям перекрашен только фон сцены (scene-recolor.js); новый фон — формула цвета/света или картинка стиля
-   (scene-styles.js). Белый на зоне текста ≥ 4,6 держится затемнением ПОД текстом (низ сцены), а не всем небом. Журнал — [DT]. */
+   (scene-styles.js). Белый на зоне текста ≥ 4,6 держится затемнением ПОД текстом (низ сцены), а не всем небом. Журнал — [DT].
+   Вердикт владельца 29.10 (дословно: «Тёмная тема везде должна стать глубокое небо!!! а светлая — тон темы ярче и глубже! Это всех
+   экранов касается»): первый раздел «Утверждено» — на каждом экране ровно выбранный вариант; выбранные варианты помечены и в своих
+   разделах; checkApproved сверяет макет со спецификацией scene-approved.js (чистая функция для переноса в код Темами), журнал [DT-APPROVED]. */
 (() => {
   const LOG = '[DT]'; const RF = window.RF; const SP = window.__sp; const SS = window.SceneStyles; const SR = window.SceneRecolor; const REAL = window.__REAL || {};
   if (!SP || !SS || !RF || !SR || !window.SceneReal) { console.log(LOG, 'нет движков:', JSON.stringify({ sp: !!SP, styles: !!SS, rf: !!RF, recolor: !!SR, real: !!window.SceneReal })); return; }
@@ -92,17 +95,17 @@
     JOBS[key] = job;
     const now = RF.phone({ src: job.src, exists: true, cls: 'sp-rf', status: job.status, tab: job.tab });
     const will = (v) => RF.phone({ src: job.src, exists: true, cls: 'sp-rf sp-rf-will', status: job.status, tab: job.tab, fixed: '<span class="sp-rf-badge">считаю…</span>' }).replace('data-ph="sp-rf sp-rf-will"', `data-ph="sp-rf-will" data-strat="${v.key}"`);
-    return `<div class="sp-real-row" data-frame="${key}"><h3>${title}<small>${m.file}${!m.hero && (m.screen === 'home' || m.screen === 'dialogs') ? ' · герой не найден: под ним классификатор' : ''}${m.note ? ' · ' + m.note : ''}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${variants.map((v) => col(`${v.name}<br><small>${v.why}</small>`, will(v))).join('')}</div></div>`;
+    return `<div class="sp-real-row" data-frame="${key}"><h3>${title}<small>${m.file}${!m.hero && (m.screen === 'home' || m.screen === 'dialogs') ? ' · герой не найден: под ним классификатор' : ''}${m.note ? ' · ' + m.note : ''}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${variants.map((v) => col(`${v.approved ? '<span class="sp-ok">утверждено 29.10</span>' : ''}${v.name}<br><small>${v.why}</small>`, will(v))).join('')}</div></div>`;
   };
   const missing = (title, file) => `<div class="sp-real-row"><h3>${title}<small>${file}</small></h3><div class="phones">${col('кадр снимается', RF.phone({ src: file, exists: false, cls: 'sp-rf' }).replace('кадр не снят', 'кадр снимается'))}</div></div>`;
-  const stylesOf = (m, keys) => keys.map((k) => ({ key: k, name: SS.STYLES[k].name, why: SS.STYLES[k].why, spec: styleSpec(THEME, m, k) }));
+  const stylesOf = (m, keys) => keys.map((k) => ({ key: k, name: SS.STYLES[k].name, why: SS.STYLES[k].why, spec: styleSpec(THEME, m, k), approved: k === 'sky' && m.ap === 'dark' }));
   const sectionColors = () => {
     const m = frameOf('home'); const file = `scene_home_${THEME}_${AP}.png`;
     let body;
     if (!m) body = missing(`Главная · ${APN(AP)}`, file);
     else {
       const old = oldSpecFor(m); const sl = (k) => SP.schemeLine(SP.scenePal(THEME, AP, k));
-      const variants = [{ key: 'A', name: 'А · тон темы, ярче и глубже', why: sl('A'), spec: stratSpec(THEME, AP, 'A', old, m.sceneH) }, { key: 'B', name: 'Б · аналоговая', why: sl('B'), spec: stratSpec(THEME, AP, 'B', old, m.sceneH) }]
+      const variants = [{ key: 'A', name: 'А · тон темы, ярче и глубже', why: sl('A'), spec: stratSpec(THEME, AP, 'A', old, m.sceneH), approved: AP === 'light' }, { key: 'B', name: 'Б · аналоговая', why: sl('B'), spec: stratSpec(THEME, AP, 'B', old, m.sceneH) }]
         .concat(B_PLUS.map((lvl) => ({ key: lvl.key, name: lvl.name, why: `основа Б, верх L ${lvl.L.toFixed(2)} / C ${lvl.Cc.toFixed(2)}, сияние сверху ${lvl.sun}, низ в тёмный шов`, spec: bPlusSpec(THEME, AP, lvl, old, m.sceneH) })))
         .concat([{ key: 'C', name: 'В · акцент-свет', why: sl('C'), spec: stratSpec(THEME, AP, 'C', old, m.sceneH) }, { key: 'D', name: 'Г · два света по сплиту', why: sl('D'), spec: stratSpec(THEME, AP, 'D', old, m.sceneH) }]);
       body = row(`${m.file}#colors`, m, variants, `Главная · ${APN(AP)} · цвета`);
@@ -138,6 +141,43 @@
     return `<section class="block" id="dt-cards"><h2>Карточки и плашки — тон, тень, свет, без рамок</h2><p class="sp-note">На кадре найдено ${m.cards.length} карточек (панель «Сегодня», плитки, «Фраза дня»). Меняется только заливка карточек и фон вокруг них: надписи и значки как сняты. Тон — в оттенке темы, тень — мягкая под карточкой, свет — кромка сверху; рамок нет.</p>${html}${rings}</section>`;
   };
 
+  /* ── утверждено владельцем 29.10: тёмное — «Глубокое небо», светлое — «А — тон темы ярче и глубже», все экраны со сценой ──
+     светлые Диалоги: сцена становится тёмной — тёмные надписи кадра переводятся в белые по доле краски (ink в задании) */
+  const approvedVariant = (m) => (m.ap === 'dark'
+    ? { key: 'sky', name: 'Утверждено 29.10 · Глубокое небо', why: SS.STYLES.sky.why, spec: styleSpec(THEME, m, 'sky'), approved: true }
+    : { key: 'A', name: 'Утверждено 29.10 · А — тон темы ярче и глубже', why: SP.schemeLine(SP.scenePal(THEME, 'light', 'A')), spec: stratSpec(THEME, 'light', 'A', oldSpecFor(m), m.sceneH), approved: true });
+  const sectionApproved = () => {
+    const rows = SCREENS.map((s) => {
+      const m = frameOf(s); if (!m) return missing(`${SCREEN_NAME[s]} · утверждено`, `scene_${s}_${THEME}_${AP}.png`);
+      const html = row(`${m.file}#approved`, m, [approvedVariant(m)], `${SCREEN_NAME[s]} · утверждено 29.10`);
+      if (lightDialogs(m)) { const j = JOBS[`${m.file}#approved`]; j.ink = C.hx(THEMES[THEME][AP].text); j.cta = C.hx(THEMES[THEME][AP].cta); } // надписи → белые, кнопки → как в тёмном
+      return html;
+    }).join('');
+    const inkNote = AP === 'light' ? ' Светлые Диалоги: сцена становится тёмной, тёмные надписи кадра переведены в белые приближённо (по доле краски) — цвета текста и кнопок на тёмной сцене решают Темы.' : '';
+    return `<section class="block" id="dt-approved"><h2>Утверждено владельцем 29.10 — тёмное: «Глубокое небо», светлое: «А — тон темы ярче и глубже»</h2><p class="sp-note">Слово владельца дословно: «Тёмная тема везде должна стать глубокое небо!!! а светлая — тон темы ярче и глубже! Это всех экранов касается». На каждом экране — ровно выбранный вариант; формулы для переноса в код — scene-approved.js и scene-approved-2026-10-29.md, эталонные кадры — assets/approved/scene/. Стили сцен, вечер и карточки не выбраны — ниже остаются как варианты.${inkNote}</p>${rows}</section>`;
+  };
+  /* сверка макета со спецификацией scene-approved.js: светлое — числа задания страницы после стража против чисел функции; тёмное — картинка
+     «Глубокого неба» перерисована функцией спецификации и сравнена по пикселям с картинкой стиля (должно быть 0) */
+  const checkApproved = () => {
+    const SA = window.SceneApproved; if (!SA) { console.log('[DT-APPROVED] нет scene-approved.js'); return [{ error: 'нет scene-approved.js' }]; }
+    const out = []; const premium = !!THEMES[THEME].premium;
+    for (const s of SCREENS) {
+      const m = frameOf(s); if (!m) continue; const job = JOBS[`${m.file}#approved`]; if (!job) continue;
+      const a = SA.approved(THEMES[THEME][AP], AP, s, W, m.sceneH, { premium }); const spec = job.strats[0].spec;
+      if (AP === 'light') {
+        const flat = (x) => [].concat(x.top, x.bot, ...x.lights.map((l) => [l.cx, l.cy, l.rx, l.ry].concat(l.color, [l.a, l.fade])), x.scrim ? [x.scrim.a, x.scrim.h] : [0, 0]);
+        const p = flat(spec); const q = flat(a.spec); let mx = 0; for (let i = 0; i < Math.max(p.length, q.length); i += 1) mx = Math.max(mx, Math.abs((p[i] || 0) - (q[i] || 0)));
+        out.push({ screen: s, mode: 'light-A', maxDiff: +mx.toFixed(4), n: p.length, guard: a.guard, scrim: a.scrim && a.scrim.a });
+      } else {
+        const img = spec.image; const c = document.createElement('canvas'); c.width = W; c.height = m.sceneH; const g = c.getContext('2d', { willReadFrequently: true }); const gd = SA.drawSky(g, a, W, m.sceneH);
+        const d = g.getImageData(0, 0, W, m.sceneH).data; let mx = 0; let bad = 0; for (let i = 0; i < d.length; i += 4) { const e = Math.max(Math.abs(d[i] - img.data[i]), Math.abs(d[i + 1] - img.data[i + 1]), Math.abs(d[i + 2] - img.data[i + 2])); if (e > mx) mx = e; if (e > 2) bad += 1; }
+        out.push({ screen: s, mode: 'dark-sky', maxDiff: mx, badPixels: bad, guard: { bottom: +gd.aBottom.toFixed(3), top: +gd.aTop.toFixed(3) } });
+      }
+    }
+    console.log('[DT-APPROVED] сверка', THEME, AP, JSON.stringify(out)); // guard-ok: одна строка на проверку
+    return out;
+  };
+
   const controls = () => {
     const el = document.getElementById('dtThemes'); if (el) el.innerHTML = THEME_LIST.map((id) => `<span class="chp${THEME === id ? ' on' : ''}${hasFrame(id, AP) ? '' : ' off'}" data-dt-th="${id}" title="${hasFrame(id, AP) ? '' : 'кадр снимается'}">${THEMES[id].name}</span>`).join('');
     const ap = document.getElementById('dtAp'); if (ap) ap.innerHTML = [['dark', 'Тёмное'], ['light', 'Светлое']].map(([k, n]) => `<span class="chp${AP === k ? ' on' : ''}" data-dt-ap="${k}">${n}</span>`).join('');
@@ -147,7 +187,7 @@
   const render = () => {
     const root = document.getElementById('dt'); if (!root) return; release(root); JOBS = {};
     const t0 = performance.now();
-    root.innerHTML = sectionColors() + sectionLight() + sectionArt() + sectionEvening() + sectionCards();
+    root.innerHTML = sectionApproved() + sectionColors() + sectionLight() + sectionArt() + sectionEvening() + sectionCards();
     controls();
     const u = new URL(location.href); u.searchParams.set('th', THEME); u.searchParams.set('ap', AP); history.replaceState(null, '', u);
     console.log(LOG, 'render', JSON.stringify({ theme: THEME, ap: AP, frames: (byTheme[THEME] || []).filter((m) => m.ap === AP).map((m) => m.file), jobs: Object.keys(JOBS).length, ms: Math.round(performance.now() - t0) })); // guard-ok: одна строка на перерисовку
@@ -158,5 +198,5 @@
     const a = e.target.closest('.chp[data-dt-ap]'); if (a) { AP = a.dataset.dtAp; render(); }
   });
   render();
-  window.__dt = { THEME_LIST, byTheme, paletteOf, homeOld, dialogsOld, bPlusSpec, ensureContrast, render, setTheme: (id, ap) => { THEME = id; if (ap) AP = ap; render(); }, jobs: () => JOBS };
+  window.__dt = { THEME_LIST, byTheme, paletteOf, homeOld, dialogsOld, bPlusSpec, ensureContrast, checkApproved, render, setTheme: (id, ap) => { THEME = id; if (ap) AP = ap; render(); }, jobs: () => JOBS };
 })();

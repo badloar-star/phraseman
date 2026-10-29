@@ -38,10 +38,16 @@
     };
   }
   /** Перекраска на месте. o = { data (RGBA), W, H (высота буфера), sceneH, oldSpec, newSpec, radius (скругление низа сцены, px),
-   *  hero: { alpha: Float32Array (w*h, 0..1 с учётом opacity героя), x, y, w, h } | null, stats: {} (счётчики классов — для журнала) } */
+   *  hero: { alpha: Float32Array (w*h, 0..1 с учётом opacity героя), x, y, w, h } | null, stats: {} (счётчики классов — для журнала),
+   *  ink: rgb цвета тёмной надписи кадра | null — тогда затемнение считается краской и кладётся БЕЛЫМ с той же долей (светлые Диалоги
+   *  на утверждённой тёмной сцене; владелец 29.10: «всех экранов касается»),
+   *  swap: [{ x0, y0, x1, y1, fill (rgb), mode: 'cta' | 'control' }] | null — кнопки кадра, которые рисуются как в тёмном оформлении:
+   *  'cta' (тёмная плашка, белая надпись) → белая плашка, надпись цветом ink; 'control' (светлый круг, тёмный значок) → стекло 16 % белого
+   *  над новым фоном, значок белый. Внутренность скруглённой плашки — с отступом 4 px от края, край идёт обычной классификацией } */
   function recolor(o) {
     const data = o.data; const W = o.W; const sceneH = o.sceneH; const paintOld = painter(o.oldSpec, W, sceneH); const paintNew = painter(o.newSpec, W, sceneH);
-    const R = o.radius || 0; const hero = o.hero || null; const st = o.stats || {}; st.bg = st.bg || 0; st.white = st.white || 0; st.dark = st.dark || 0; st.keep = st.keep || 0; st.hero = st.hero || 0; st.out = st.out || 0;
+    const R = o.radius || 0; const hero = o.hero || null; const st = o.stats || {}; const swap = o.swap && o.swap.length ? o.swap : null; const ink = o.ink || null;
+    const inPill = (r, x, y) => { const m = 4; if (x < r.x0 + m || x >= r.x1 - m || y < r.y0 + m || y >= r.y1 - m) return false; const rad = Math.min(r.x1 - r.x0, r.y1 - r.y0) / 2; const cx = x < r.x0 + rad ? r.x0 + rad : x >= r.x1 - rad ? r.x1 - rad : x; const cy = y < r.y0 + rad ? r.y0 + rad : y >= r.y1 - rad ? r.y1 - rad : y; return Math.hypot(x - cx, y - cy) <= rad - m; }; st.bg = st.bg || 0; st.white = st.white || 0; st.dark = st.dark || 0; st.keep = st.keep || 0; st.hero = st.hero || 0; st.out = st.out || 0;
     for (let y = 0; y < sceneH; y += 1) {
       for (let x = 0; x < W; x += 1) {
         if (R > 0 && y > sceneH - R && (x < R || x >= W - R)) { // снаружи скруглённого угла сцены — фон страницы, не трогаем
@@ -52,6 +58,15 @@
         if (hero && x >= hero.x && y >= hero.y && x < hero.x + hero.w && y < hero.y + hero.h) {
           const a = hero.alpha[(y - hero.y) * hero.w + (x - hero.x)];
           if (a > 0.004) { const k = 1 - a; data[i] = clamp(pr + (nc[0] - oc[0]) * k); data[i + 1] = clamp(pg + (nc[1] - oc[1]) * k); data[i + 2] = clamp(pb + (nc[2] - oc[2]) * k); st.hero += 1; continue; }
+        }
+        if (swap && ink) { // кнопка кадра: внутри плашки — как в тёмном оформлении
+          let r = null; for (let k = 0; k < swap.length; k += 1) if (inPill(swap[k], x, y)) { r = swap[k]; break; }
+          if (r) {
+            const px = [pr, pg, pb]; let sum = 0; let n = 0;
+            if (r.mode === 'cta') { for (let ch = 0; ch < 3; ch += 1) { const den = 255 - r.fill[ch]; if (den >= 10) { sum += (px[ch] - r.fill[ch]) / den; n += 1; } } const a = n ? Math.min(1, Math.max(0, sum / n)) : 0; data[i] = clamp(ink[0] * a + 255 * (1 - a)); data[i + 1] = clamp(ink[1] * a + 255 * (1 - a)); data[i + 2] = clamp(ink[2] * a + 255 * (1 - a)); }
+            else { for (let ch = 0; ch < 3; ch += 1) { const den = r.fill[ch] - ink[ch]; if (den >= 10) { sum += (r.fill[ch] - px[ch]) / den; n += 1; } } const a = n ? Math.min(1, Math.max(0, sum / n)) : 0; const gl = [nc[0] * 0.84 + 255 * 0.16, nc[1] * 0.84 + 255 * 0.16, nc[2] * 0.84 + 255 * 0.16]; data[i] = clamp(255 * a + gl[0] * (1 - a)); data[i + 1] = clamp(255 * a + gl[1] * (1 - a)); data[i + 2] = clamp(255 * a + gl[2] * (1 - a)); }
+            st.swap = (st.swap || 0) + 1; continue;
+          }
         }
         const dr = pr - oc[0]; const dg = pg - oc[1]; const db = pb - oc[2]; const md = Math.max(Math.abs(dr), Math.abs(dg), Math.abs(db));
         if (md <= 6) { data[i] = clamp(nc[0]); data[i + 1] = clamp(nc[1]); data[i + 2] = clamp(nc[2]); st.bg += 1; continue; }
@@ -64,6 +79,10 @@
         }
         const lp = lum(pr, pg, pb); const lo = lum(oc[0], oc[1], oc[2]);
         if (dr <= 3 && dg <= 3 && db <= 3) { // затемнение (тень карточки, тёмная подпись): та же доля яркости от нового фона
+          if (o.ink) { // доля краски по каналам, где фон заметно светлее краски; та же доля белого над новым фоном
+            const px = [pr, pg, pb]; let sum = 0; let n = 0; for (let ch = 0; ch < 3; ch += 1) { const den = oc[ch] - o.ink[ch]; if (den >= 10) { sum += (oc[ch] - px[ch]) / den; n += 1; } }
+            if (n) { const a = Math.min(1, Math.max(0, sum / n)); data[i] = clamp(nc[0] * (1 - a) + 255 * a); data[i + 1] = clamp(nc[1] * (1 - a) + 255 * a); data[i + 2] = clamp(nc[2] * (1 - a) + 255 * a); st.ink = (st.ink || 0) + 1; continue; }
+          }
           const k = (lp + 1) / (lo + 1); data[i] = clamp(nc[0] * k); data[i + 1] = clamp(nc[1] * k); data[i + 2] = clamp(nc[2] * k); st.dark += 1; continue;
         }
         // цветность кадра и модели в одном направлении (тот же оттенок, другая сила света — расхождение модели света, напр. насыщенные

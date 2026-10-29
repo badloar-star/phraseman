@@ -26,6 +26,32 @@ window.SceneReal = (() => {
       return { alpha: a, x: h.x, y: h.y, w: h.size, h: h.size };
     } catch (e) { console.log(LOG, 'альфа героя недоступна (' + e.name + '), под ним — классификатор'); return null; }
   };
+  /* светлые Диалоги на тёмной сцене (job.ink + job.cta): кнопки кадра — плашка «Начать» цвета cta (сплошное пятно 80…600 px в нижней
+     половине сцены, шире высоты) и круг микрофона справа от неё (пиксели, не совпавшие с моделью фона, в полосе высоты плашки);
+     перекраска рисует их как в тёмном оформлении (scene-recolor.js, swap). Нет плашки — список пуст, кнопки идут обычной классификацией */
+  const findBlobs = (scene, W, y0, y1, color, tol) => {
+    const d = scene.data; const step = 4; const gw = Math.ceil(W / step); const gh = Math.ceil((y1 - y0) / step); const m = new Uint8Array(gw * gh);
+    for (let gy = 0; gy < gh; gy += 1) for (let gx = 0; gx < gw; gx += 1) { const i = ((y0 + gy * step) * W + gx * step) * 4; if (Math.abs(d[i] - color[0]) <= tol && Math.abs(d[i + 1] - color[1]) <= tol && Math.abs(d[i + 2] - color[2]) <= tol) m[gy * gw + gx] = 1; }
+    const seen = new Uint8Array(gw * gh); const out = [];
+    for (let s = 0; s < m.length; s += 1) {
+      if (!m[s] || seen[s]) continue; const st = [s]; seen[s] = 1; let x0 = gw; let x1 = 0; let yy0 = gh; let yy1 = 0; let n = 0;
+      while (st.length) { const k = st.pop(); const kx = k % gw; const ky = (k - kx) / gw; n += 1; if (kx < x0) x0 = kx; if (kx > x1) x1 = kx; if (ky < yy0) yy0 = ky; if (ky > yy1) yy1 = ky; for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { const nx = kx + dx; const ny = ky + dy; if (nx < 0 || ny < 0 || nx >= gw || ny >= gh) continue; const q = ny * gw + nx; if (m[q] && !seen[q]) { seen[q] = 1; st.push(q); } } }
+      const w = (x1 - x0 + 1) * step; const h = (yy1 - yy0 + 1) * step; if (w < 80 || h < 80 || w > 600 || h > 300 || n * step * step < w * h * 0.6) continue;
+      out.push({ x0: x0 * step, y0: y0 + yy0 * step, x1: (x1 + 1) * step, y1: y0 + (yy1 + 1) * step });
+    }
+    return out;
+  };
+  const buttonsOf = (scene, W, sceneH, job) => {
+    const paintOld = SR.painter(job.old, W, sceneH);
+    const pills = findBlobs(scene, W, Math.round(sceneH * 0.4), sceneH, job.cta, 12).filter((r) => r.x1 - r.x0 > r.y1 - r.y0);
+    if (!pills.length) { console.log(LOG, 'плашка cta не найдена на', job.file); return []; }
+    const p = pills.sort((a, b) => (b.x1 - b.x0) * (b.y1 - b.y0) - (a.x1 - a.x0) * (a.y1 - a.y0))[0]; const h = p.y1 - p.y0; const out = [Object.assign({ fill: job.cta, mode: 'cta' }, p)];
+    const d = scene.data; let x0 = W; let x1 = 0; let y0 = sceneH; let y1 = 0;
+    for (let y = p.y0; y < p.y1; y += 2) for (let x = p.x1 + 8; x < Math.min(W, p.x1 + h + 120); x += 2) { const i = (y * W + x) * 4; const oc = paintOld(x, y); if (Math.max(Math.abs(d[i] - oc[0]), Math.abs(d[i + 1] - oc[1]), Math.abs(d[i + 2] - oc[2])) > 6) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; } }
+    if (x1 > x0 && x1 - x0 > h * 0.7 && y1 - y0 > h * 0.7) { const i = (Math.round((y0 + y1) / 2) * W + Math.round(x0 + (x1 - x0) * 0.25)) * 4; out.push({ x0, y0, x1: x1 + 1, y1: y1 + 1, fill: [d[i], d[i + 1], d[i + 2]], mode: 'control' }); }
+    console.log(LOG, 'кнопки кадра', job.file, JSON.stringify(out.map((r) => [r.mode, r.x0, r.y0, r.x1 - r.x0, r.y1 - r.y0]))); // guard-ok: одна строка на кадр
+    return out;
+  };
   const fallback = (row, job, why) => {
     willPhones(row).forEach((ph) => {
       const s = job.strats.find((x) => x.key === ph.dataset.strat); const body = ph.querySelector('.rf-body');
@@ -42,12 +68,12 @@ window.SceneReal = (() => {
     // область работы: сцена (перекраска фона) или полоса карточек под сценой (job.cards — новые стили карточек, scene-cards.js)
     const ry0 = job.cards ? job.cards.y0 : 0; const ry1 = job.cards ? job.cards.y1 : job.sceneH;
     let scene; try { scene = g.getImageData(0, ry0, W, ry1 - ry0); } catch (e) { return fallback(row, job, 'пиксели недоступны: ' + e.name); }
-    const hero = job.cards ? null : await heroAlpha(job);
+    const hero = job.cards ? null : await heroAlpha(job); const swap = !job.cards && job.ink && job.cta ? buttonsOf(scene, W, job.sceneH, job) : null;
     const bgRow = job.cards ? ((y) => { const i = ((y - ry0) * W + 8) * 4; return [scene.data[i], scene.data[i + 1], scene.data[i + 2]]; }) : null;
     for (const s of job.strats) {
       const ph = phones.find((p) => p.dataset.strat === s.key); if (!ph) continue;
       const data = new Uint8ClampedArray(scene.data);
-      const st = job.cards ? window.SceneCards.restyle({ data, W, y0: ry0, cards: job.cards.rects, fill: job.cards.fill, bgRow, accent: job.cards.accent, dark: job.ap === 'dark', v: s.spec.v }) : SR.recolor({ data, W, H: job.sceneH, sceneH: job.sceneH, oldSpec: job.old, newSpec: s.spec, radius: job.radius, hero });
+      const st = job.cards ? window.SceneCards.restyle({ data, W, y0: ry0, cards: job.cards.rects, fill: job.cards.fill, bgRow, accent: job.cards.accent, dark: job.ap === 'dark', v: s.spec.v }) : SR.recolor({ data, W, H: job.sceneH, sceneH: job.sceneH, oldSpec: job.old, newSpec: s.spec, radius: job.radius, hero, ink: job.ink || null, swap });
       // страж: если кадр не совпал с моделью сцены (много «цветных» пикселей вне героя — другое состояние или тема), говорим об этом на телефоне
       const total = job.cards ? 1 : st.bg + st.white + st.dark + st.keep + st.hero; const keepShare = job.cards ? 0 : (total ? st.keep / total : 0);
       const keepMax = job.keepMax || 0.12;
@@ -63,13 +89,16 @@ window.SceneReal = (() => {
     console.log(LOG, 'готово', job.file, 'герой', hero ? 'по альфе' : 'классификатор', Math.round(performance.now() - t0), 'мс');
   };
   const buildAll = async (root, jobs) => {
+    const gen = (state.gen = (state.gen || 0) + 1); // зачем: смена темы во время сборки — старая сборка на оторванных строках прекращается и не объявляет «готово» за новую
     state.done = false; const rows = [...root.querySelectorAll('.sp-real-row')]; state.rows = rows.length; state.built = 0; state.mode = {};
     for (const row of rows) {
+      if (gen !== state.gen) { console.log(LOG, 'сборка', gen, 'прервана: началась новая', state.gen); return; }
       const job = jobs[row.dataset.frame];
       if (!job) { console.log(LOG, 'нет задания для строки', row.dataset.frame); continue; }
       try { await build(row, job); } catch (e) { console.log(LOG, 'ошибка сборки', row.dataset.frame, e && e.message); fallback(row, job, 'ошибка: ' + (e && e.message)); }
       state.built += 1;
     }
+    if (gen !== state.gen) return;
     state.done = true;
     console.log(LOG, 'строк готово', state.built, 'из', state.rows, JSON.stringify(state.mode)); // guard-ok: одна строка на сборку
   };

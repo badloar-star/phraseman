@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 /** Native counterpart of community-scene-v3; geometry follows the approved 430 dp reference. */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import React, { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import React, { memo, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { AppState, Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
@@ -23,6 +23,7 @@ import { DebugLogger } from '../../app/debug-logger';
 // зачем (координатор 29.10, Переводчик): LP раньше отдавал украинцу и испанцу английский — теперь 9 языков по словарю
 import { communitySceneText } from './community_scene_strings';
 import { communityContestMonthStore, monthlyContestPlace } from './community_scene_shared';
+import { communityTilePropsEqual } from './community_tile_props_equal';
 
 export type CommunitySceneAuthor = Readonly<{ name: string; coinRank: number; isPremium: boolean }>;
 export const communityScenePanelStyle = StyleSheet.create({ panel: {
@@ -79,7 +80,7 @@ function AuthorCoin({ pack, lang, size = 22, authorOverride }: Readonly<{ pack: 
   return <Image source={coinRankRowForDisplay(author.coinRank ?? 0).source} style={{ width: size, height: size }} contentFit="contain" accessibilityElementsHidden />;
 }
 
-export function CommunitySceneTile({ pack, lang, likes, onOpen, onLongPress, authorOverride, heart, referencePlace }: Readonly<{
+function CommunitySceneTileImpl({ pack, lang, likes, onOpen, onLongPress, authorOverride, heart, referencePlace }: Readonly<{
   pack: FlashcardMarketPack; lang: Lang; likes: number; onOpen: () => void; onLongPress?: () => void; authorOverride?: CommunitySceneAuthor; heart?: React.ReactNode;
   /** Visual fixtures only; ignored without an explicit fixture author. */
   referencePlace?: number;
@@ -106,6 +107,9 @@ export function CommunitySceneTile({ pack, lang, likes, onOpen, onLongPress, aut
     <View style={s.author}><AuthorCoin pack={pack} lang={lang} authorOverride={authorOverride} /><Text style={s.authorName}>{author.name}</Text>{heart ?? <><Ionicons name="heart-outline" size={14} color={WHITE} /><Text style={s.count}>{likes}</Text></>}</View>
   </KitTouchable>;
 }
+
+// зачем (шаг B, координатор 29.10): родитель каждый рендер собирает новые heart/onOpen/onLongPress — сравниваем только то, что меняет вид плитки; сердечко подписано на хранилище само, оптимистичное +1 не теряется
+export const CommunitySceneTile = memo(CommunitySceneTileImpl, communityTilePropsEqual);
 
 export function CommunityContestRules({ visible, lang, onClose }: Readonly<{ visible: boolean; lang: Lang; onClose: () => void }>): React.JSX.Element {
   const { liquidGlassThemeId } = useTheme();

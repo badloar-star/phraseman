@@ -2,6 +2,14 @@
    Стиль снят с кадра: стекло 16 % белого на обложке, карточка-плашка в тоне карточек экрана, кегли 16/21 и 13/17 (D145).
    Движение: тряска замка 320 мс как в приложении (±4 px), плашка выезжает 260 мс ease-out и уходит сама через 4 с. */
 :root { --pe-out: cubic-bezier(.23, 1, .32, 1); }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); } /* тот же шрифт значков приложения, что в эталоне peak-scene-v2 */
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+/* вставка ломтём на чистой полоске кадра; кнопка — по центру вставки */
+.pe-ins-over { position: absolute; inset: 0; display: flex; align-items: center; padding: 0 20px; }
+.pe-ins-over .pe-glass { position: static; width: 100%; }
+/* дрожащая копия закрытой карты поверх кадра (замок 22.10: та же тряска ±4 px, 320 мс); под ней кадр остаётся на месте */
+.pe-card-shake { position: absolute; z-index: 5; cursor: pointer; border-radius: 14px; }
+.pe-card-shake.shake { animation: pe-shake .32s var(--pe-out); }
 .pe-pair { display: flex; gap: 28px; flex-wrap: wrap; }
 .pe-note { color: #8E8E96; font-size: 14px; line-height: 20px; margin: -6px 0 14px; max-width: 900px; }
 /* кнопка на обложке — ровно styles.glass обложки Сезона (SeasonCourseView.tsx:404): высота 50, r25, поля 22, зазор 10, стекло 16 % белого;

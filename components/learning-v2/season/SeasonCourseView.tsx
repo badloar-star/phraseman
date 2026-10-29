@@ -27,6 +27,8 @@ import SeasonCarousel from './SeasonCarousel';
 import SeasonNavTiles from './SeasonNavTiles';
 import SeasonCardFace from './SeasonCardFace';
 import { hexChroma, hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
+import SceneBackdropFill from '../../scene/SceneBackdropFill';
+import { scenePaletteCached, sceneTopHex } from '../../scene/scene_palette';
 import { seasonStarTones } from './season_star_tones';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText } from './season_copy_card';
@@ -49,7 +51,6 @@ const PILL = 'rgba(255,255,255,0.16)'; // theme-exempt: «стеклянная»
 // зачем (аудит контраста светлой темы 22.10, координатор): белый «Урок N» на светлой подложке-пилюле (белый 16 % поверх from) давал 3,69–4,26:1 при норме 4,5 на всех 224 оттенках глав;
 // в светлой теме пилюля — тёмное стекло (чёрный 18 %), белый текст на ней ≥ 4,92:1; в тёмной оформление прежнее (5,73:1)
 const PILL_ON_LIGHT = 'rgba(0,0,0,0.18)'; // theme-exempt: тёмное стекло пилюли «Урок N» на светлой обложке
-const SCRIM = ['rgba(0,0,0,0)', 'rgba(0,0,0,0.36)'] as const; // theme-exempt: затемнение низа обложки, эталон `.c1hero .scrim`
 const BTN_INK = '#121318'; // theme-exempt: текст белой кнопки на обложке, эталон `.qbtn.white`
 const HUD_ROW_HEIGHT = 44; // высота самой высокой кнопки HUD (книга слов 44) — ниже неё начинаются кикер и заголовок
 const BAR = 'rgba(255,255,255,0.28)'; // theme-exempt: дорожка прогресса на обложке, эталон `.c1res .bar`
@@ -146,10 +147,9 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   const themeHue = hexHue(g.accent);
   // зачем (баг владельца 28.10, серая тема — яркая сцена): насыщенность палитры сцены от насыщенности ТЕКУЩЕЙ темы, не эталонная
   const themeChroma = hexChroma(g.accent);
-  const heroArt = seasonThemedArt(themeHue, heroChapter, 0, theme, false, themeChroma);
-  useEffect(() => {
-    logSceneTheme('lessons:season-cover', liquidGlassThemeId, theme, 'seasonThemedArt(themeHue, themeChroma)', { accent: g.accent, from: heroArt.from, to: heroArt.to, glow: heroArt.glow, tintChroma: Math.round(themeChroma * 1000) / 1000 });
-  }, [g.accent, liquidGlassThemeId, heroArt.from, heroArt.to, heroArt.glow, theme, themeChroma]);
+  // зачем (вердикт владельца 29.10, scenePalette): обложка Сезона — утверждённая сцена (тёмное «Глубокое небо», светлое «А»); верх для кнопки «назад» — из той же палитры.
+  // Лог [SCENE-THEME] lessons:season-cover пишет сам слой SceneBackdropFill. Цвета карточек эпизодов (seasonThemedArt) остаются как были — владелец их не выбирал.
+  const heroSceneTop = sceneTopHex(scenePaletteCached(liquidGlassThemeId, theme, 'season', 1080, 1029, 2.625));
   // зачем (владелец 22.10, 4 · ТЕМЫ 17a7af053): звёзды результата на карточках — оттенки текущей темы, цвета только из seasonStarTones
   const starTones = useMemo(() => seasonStarTones(themeHue), [themeHue]);
 
@@ -272,9 +272,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
       onContentSizeChange={(_w, h) => { scrollInfo.current.contentH = h; logCaption('content_size'); }}
       onMomentumScrollEnd={() => logCaption('scroll_end')} onScrollEndDrag={() => logCaption('drag_end')}>
       <View ref={heroRef} onLayout={onHeroLayout} style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
-        <LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
-        <LinearGradient colors={[heroArt.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
-        <LinearGradient colors={SCRIM} style={styles.scrim} pointerEvents="none" />
+        <SceneBackdropFill screen="season" logName="lessons:season-cover" idPrefix="seasonHero" fallback={[heroSceneTop, heroSceneTop]} />
         <View style={[styles.heroTop, props.pushBack
           // зачем: строка шапки по центру круга «Назад» (48) и справа от него — не под ним и не на 16 dp ниже
           ? { top: screenBackTop(topInsets.top) + (SCREEN_BACK_SIZE - HUD_ROW_HEIGHT) / 2, left: SCREEN_BACK_RESERVED }
@@ -373,7 +371,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
     </ScrollView>
     {/* зачем: «Назад» вне прокрутки — место не уезжает с обложкой (замок владельца 22.10 «назад в одном месте»); цвет круга — по обложке */}
-    {props.pushBack ? <ScreenBackButton screen="season_course_push" fallback="/(tabs)/home" sceneTop={heroArt.from} testID="season-push-back" /> : null}
+    {props.pushBack ? <ScreenBackButton screen="season_course_push" fallback="/(tabs)/home" sceneTop={heroSceneTop} testID="season-push-back" /> : null}
     </>
   );
 }

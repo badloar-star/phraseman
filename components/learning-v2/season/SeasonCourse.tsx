@@ -17,6 +17,8 @@ import { SeasonChapterEpisodesScreen, SeasonChaptersScreen } from './SeasonPickS
 import SeasonCourseView, { type SeasonCourseViewProps } from './SeasonCourseView';
 import SeasonExpandedCard, { type SeasonExamPanel, type SeasonExpandedAction } from './SeasonExpandedCard';
 import { hexChroma, hexHue, seasonThemedArt } from './season_art';
+import { scenePaletteCached, sceneTopHex } from '../../scene/scene_palette';
+import { useTheme } from '../../ThemeContext';
 import { useLv2Glass } from '../LearningV2Glass';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
@@ -69,6 +71,7 @@ function SeasonCourse(props: SeasonCourseProps) {
   // зачем (закон владельца 22.10): цвет карточек — оттенок текущей темы, а не свой оттенок главы
   const themeAccent = useLv2Glass().accent;
   const themeHue = hexHue(themeAccent);
+  const { liquidGlassThemeId } = useTheme();
   // зачем (баг владельца 28.10, серая тема — яркая сцена): насыщенность палитры сцены от насыщенности ТЕКУЩЕЙ темы, не эталонная
   const themeChroma = hexChroma(themeAccent);
   // зачем (владелец 22.10: «ПРАВИЛО НАРУШЕНО» — под часами светлая полоса над обложкой; закон «сейф-зона — часть общей композиции»): страховка. Обложка рисуется от верха экрана, когда страница вкладки полноэкранная
@@ -95,7 +98,8 @@ function SeasonCourse(props: SeasonCourseProps) {
     measureRoot(x, y, width, height);
   }, [measureRoot]);
   const topBand = isTabPage && !(props.topBleed !== undefined && props.topBleed > 0) && insetsTop > 0 ? insetsTop : 0;
-  const topBandColor = useMemo(() => seasonThemedArt(themeHue, deck.cards[deck.currentIndex]?.chapterOrdinal ?? 1, 0, theme, false, themeChroma).from, [deck.cards, deck.currentIndex, theme, themeHue, themeChroma]);
+  // зачем (вердикт владельца 29.10, scenePalette): полоса под часами закрашена верхним цветом обложки — он теперь из единой палитры сцены (тот же, что рисует обложка)
+  const topBandColor = useMemo(() => sceneTopHex(scenePaletteCached(liquidGlassThemeId, theme, 'season', 1080, 1029, 2.625)), [liquidGlassThemeId, theme]);
   useEffect(() => {
     if (topBand > 0) console.warn(`${LOG} [SEASON-TOP] страховка включена: страница вкладки без bleed — зона часов закрашена цветом обложки`, JSON.stringify({ topBleed: props.topBleed ?? null, insetsTop, topBand, color: topBandColor })); // guard-ok: ветка и значения, которые её решили
   }, [insetsTop, props.topBleed, topBand, topBandColor]);

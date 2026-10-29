@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть рухи під час прогулянки й подію, яка їх перервала.
 
-**Що ви опануєте:** when + past event; while + ongoing past action
+**Що ви опануєте:** сказати, що відбувалося, коли раптом щось сталося: while I was cooking, the phone rang
 **Нові слова:** turn around, look up, look down, bend down
 
 ## Інтро 1

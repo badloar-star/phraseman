@@ -2,7 +2,7 @@
 
 **Ситуация.** Опишите птиц, которых вы рассматривали на прогулке.
 
-**Что вы освоите:** review: while + ongoing past action; when + past event
+**Что вы освоите:** повторить: что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** duckling, chick, goose, turkey
 
 ## Интро 1

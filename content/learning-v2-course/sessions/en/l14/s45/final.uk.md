@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви робили паперові прикраси вдома; опишіть роботу до дзвінка.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** glue stick, hole punch, paperweight, masking tape
 
 ## Інтро 1

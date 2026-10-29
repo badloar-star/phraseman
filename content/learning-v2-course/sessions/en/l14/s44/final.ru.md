@@ -2,7 +2,7 @@
 
 **Ситуация.** Опишите, во что играла семья вечером и что происходило рядом.
 
-**Что вы освоите:** review: when and while in past stories
+**Что вы освоите:** повторить: рассказать, что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** chessboard, dice, draughts, word search
 
 ## Интро 1

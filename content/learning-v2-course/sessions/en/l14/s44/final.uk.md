@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть, у що грала сім’я ввечері й що відбувалося поруч.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** chessboard, dice, draughts, word search
 
 ## Інтро 1

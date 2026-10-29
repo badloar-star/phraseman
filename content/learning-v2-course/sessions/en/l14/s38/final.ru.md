@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о детёнышах, которых вы видели на ферме.
 
-**Что вы освоите:** review: while + ongoing past action; when + past event
+**Что вы освоите:** повторить: что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** lamb, calf, foal, piglet
 
 ## Интро 1

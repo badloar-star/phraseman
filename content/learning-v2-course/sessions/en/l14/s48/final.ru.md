@@ -2,7 +2,7 @@
 
 **Ситуация.** Опишите игры и занятия семьи после обеда.
 
-**Что вы освоите:** review: when and while in past stories
+**Что вы освоите:** повторить: рассказать, что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** hula hoop, roller skates, yo-yo, table tennis
 
 ## Интро 1

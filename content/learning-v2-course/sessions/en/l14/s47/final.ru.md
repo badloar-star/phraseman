@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о готовке с обычными кухонными принадлежностями.
 
-**Что вы освоите:** review: when and while in past stories
+**Что вы освоите:** повторить: рассказать, что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** garlic press, slotted spoon, colander, potato masher
 
 ## Интро 1

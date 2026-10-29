@@ -2,7 +2,7 @@
 
 **Ситуація.** Пригадайте сімейну поїздку на ферму й тварин, за якими ви спостерігали.
 
-**Що ви опануєте:** review: while + ongoing past action; when + past event
+**Що ви опануєте:** повторити: що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** sheep, goat, donkey, hen
 
 ## Інтро 1

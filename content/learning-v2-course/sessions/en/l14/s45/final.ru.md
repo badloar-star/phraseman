@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делали бумажные украшения дома; опишите работу до звонка.
 
-**Что вы освоите:** review: when and while in past stories
+**Что вы освоите:** повторить: рассказать, что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** glue stick, hole punch, paperweight, masking tape
 
 ## Интро 1

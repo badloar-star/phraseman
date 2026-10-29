@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть птахів, яких ви розглядали на прогулянці.
 
-**Що ви опануєте:** review: while + ongoing past action; when + past event
+**Що ви опануєте:** повторити: що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** duckling, chick, goose, turkey
 
 ## Інтро 1

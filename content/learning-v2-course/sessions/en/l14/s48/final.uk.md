@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть ігри й заняття сім’ї після обіду.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** hula hoop, roller skates, yo-yo, table tennis
 
 ## Інтро 1

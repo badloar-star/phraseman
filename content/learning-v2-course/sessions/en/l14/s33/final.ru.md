@@ -2,7 +2,7 @@
 
 **Ситуация.** Опишите движения во время прогулки и событие, которое их прервало.
 
-**Что вы освоите:** when + past event; while + ongoing past action
+**Что вы освоите:** сказать, что шло, когда вдруг что-то случилось: while I was cooking, the phone rang
 **Новые слова:** turn around, look up, look down, bend down
 
 ## Интро 1

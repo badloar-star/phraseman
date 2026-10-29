@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть спокійний вечір за шиттям і в’язанням.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** safety pin, sewing machine, pincushion, knitting needles
 
 ## Інтро 1

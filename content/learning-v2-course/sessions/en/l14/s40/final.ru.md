@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что происходило во дворе фермы во время вашей прогулки.
 
-**Что вы освоите:** review: while + ongoing past action; when + past event
+**Что вы освоите:** повторить: что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** barn, stable, henhouse, hay
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, які гарячі страви готували вдома.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** stew, casserole, broth, dumplings
 
 ## Інтро 1

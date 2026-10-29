@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви робили прикраси й вибирали фарбу різних кольорів.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** gold, silver, bronze, turquoise
 
 ## Інтро 1

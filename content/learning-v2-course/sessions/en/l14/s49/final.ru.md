@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делали украшения и выбирали краску разных цветов.
 
-**Что вы освоите:** review: when and while in past stories
+**Что вы освоите:** повторить: рассказать, что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** gold, silver, bronze, turquoise
 
 ## Интро 1

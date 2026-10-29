@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть приготування до рибної вечері.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** salmon, cod, haddock, sardines
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть позу й рух у той момент розмови.
 
-**Що ви опануєте:** review: when and while
+**Що ви опануєте:** повторити: when і while у розповіді про минуле
 **Нові слова:** lean back, lean forward, stretch out, stand still
 
 ## Інтро 1

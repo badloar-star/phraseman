@@ -2,7 +2,7 @@
 
 **Ситуація.** Пригадайте, що ви готували й куштували перед дзвінком.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** taco, burrito, falafel, hummus
 
 ## Інтро 1

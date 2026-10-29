@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы смотрели фильм о животных у воды и делали рисунки.
 
-**Что вы освоите:** review: when and while in past stories
+**Что вы освоите:** повторить: рассказать, что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** otter, beaver, frog, tadpole
 
 ## Интро 1

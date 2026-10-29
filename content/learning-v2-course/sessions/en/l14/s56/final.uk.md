@@ -2,7 +2,7 @@
 
 **Ситуація.** Завершіть урок розповіддю про спільне готування й дзвінок.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** feta, mozzarella, cheddar, parmesan
 
 ## Інтро 1

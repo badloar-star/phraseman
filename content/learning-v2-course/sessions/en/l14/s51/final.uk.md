@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибирали й розкладали тканини для домашнього шиття.
 
-**Що ви опануєте:** review: when and while in past stories
+**Що ви опануєте:** повторити: розповісти, що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** linen, velvet, nylon, polyester
 
 ## Інтро 1

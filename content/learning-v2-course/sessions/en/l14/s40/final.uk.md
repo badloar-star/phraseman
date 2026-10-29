@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що відбувалося на подвір’ї ферми під час вашої прогулянки.
 
-**Що ви опануєте:** review: while + ongoing past action; when + past event
+**Що ви опануєте:** повторити: що відбувалося, коли раптом щось сталося — while I was cooking, the phone rang
 **Нові слова:** barn, stable, henhouse, hay
 
 ## Інтро 1

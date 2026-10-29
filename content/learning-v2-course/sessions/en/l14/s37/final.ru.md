@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните семейную поездку на ферму и животных, которых вы наблюдали.
 
-**Что вы освоите:** review: while + ongoing past action; when + past event
+**Что вы освоите:** повторить: что шло, когда вдруг что-то случилось — while I was cooking, the phone rang
 **Новые слова:** sheep, goat, donkey, hen
 
 ## Интро 1

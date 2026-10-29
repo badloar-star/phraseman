@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-08",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно выбрать mi или mis.",
-    "uk": "самостійно вибрати mi або mis."
+    "ru": "выбирать «мой» или «мои» по числу: Mis libros son nuevos.",
+    "uk": "вибирати «мій» чи «мої» за кількістю: Mis libros son nuevos."
   },
   "pages": [
     {
@@ -124,7 +124,7 @@
       },
       "bodyByLocale": {
         "ru": "Друг протягивает чужие ключи. Скажите `No son mis llaves` — «Это не мои ключи». Соберите `no` + `son` + `mis llaves`. No ставится перед son. С женским множественным llaves используем mis без изменения по роду.",
-        "uk": "Друг простягає чужі ключі. Скажіть `No son mis llaves` — «Це не мої ключі». Зберіть `no` + `son` + `mis llaves`. No ставиться перед son. З жіночою множиною llaves використовуємо mis без зміни за родом."
+        "uk": "Друг простягає чужі ключі. Скажіть `No son mis llaves` — «Це не мої ключі». Зберіть `no` + `son` + `mis llaves`. No ставиться перед son. Коли llaves жіночого роду й їх кілька, використовуємо mis без зміни за родом."
       },
       "question": {
         "interactionId": "es:lesson-04:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9c1704fb1621853ce5903d8bf20576164c688b2b81cc0e39dc443987df54f4a7"
+  "introFingerprint": "078870f8fcec8c3045fcc0de63a93f19f9167c29adcc5ced194cb767bc75e2ae"
 }

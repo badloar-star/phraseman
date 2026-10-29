@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-39",
   "learningOutcomeByLocale": {
-    "ru": "назвать возраст с diez и quince в знакомой конструкции tener.",
-    "uk": "назвати вік із diez і quince у знайомій конструкції tener."
+    "ru": "сказать, сколько лет подростку: Ella tiene quince años.",
+    "uk": "сказати, скільки років підлітку: Ella tiene quince años."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "П’ятнадцятирічна дівчинка"
       },
       "bodyByLocale": {
-        "ru": "Представляете знакомому девочку: `Ella tiene quince años` — «Ей пятнадцать лет». Соберите `Ella` + `tiene` + `quince años`. Quince — «пятнадцать», одно слово. В знакомой конструкции меняется только число; años остаётся во множественном числе. Для возраста используем tiene.",
-        "uk": "Представляєте знайомому дівчинку: `Ella tiene quince años` — «Їй п’ятнадцять років». Зберіть `Ella` + `tiene` + `quince años`. Quince — «п’ятнадцять», одне слово. У знайомій конструкції змінюється лише число; años залишається у множині. Для віку використовуємо tiene."
+        "ru": "Представляете знакомому девочку: `Ella tiene quince años` — «Ей пятнадцать лет». Соберите `Ella` + `tiene` + `quince años`. Quince — «пятнадцать», одно слово. В знакомой конструкции меняется только число; años остаётся в форме для нескольких. Для возраста используем tiene.",
+        "uk": "Представляєте знайомому дівчинку: `Ella tiene quince años` — «Їй п’ятнадцять років». Зберіть `Ella` + `tiene` + `quince años`. Quince — «п’ятнадцять», одне слово. У знайомій конструкції змінюється лише число; años залишається у формі для кількох. Для віку використовуємо tiene."
       },
       "question": {
         "interactionId": "es:lesson-05:session-39:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Підліток Педро"
       },
       "bodyByLocale": {
-        "ru": "На другой встрече рассказываете о пятнадцатилетнем Педро: `Pedro tiene quince años` — «Педро пятнадцать лет». Соберите `Pedro` + `tiene` + `quince años`. Имя заменяет местоимение, но форма tiene сохраняется. Quince не меняется в зависимости от пола человека.",
-        "uk": "На іншій зустрічі розповідаєте про п’ятнадцятирічного Педро: `Pedro tiene quince años` — «Педро п’ятнадцять років». Зберіть `Pedro` + `tiene` + `quince años`. Ім’я замінює займенник, але форма tiene зберігається. Quince не змінюється залежно від статі людини."
+        "ru": "На другой встрече рассказываете о пятнадцатилетнем Педро: `Pedro tiene quince años` — «Педро пятнадцать лет». Соберите `Pedro` + `tiene` + `quince años`. Имя заменяет слово «он», но форма tiene сохраняется. Quince не меняется в зависимости от пола человека.",
+        "uk": "На іншій зустрічі розповідаєте про п’ятнадцятирічного Педро: `Pedro tiene quince años` — «Педро п’ятнадцять років». Зберіть `Pedro` + `tiene` + `quince años`. Ім’я замінює слово «він», але форма tiene зберігається. Quince не змінюється залежно від статі людини."
       },
       "question": {
         "interactionId": "es:lesson-05:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "df0e5f6d4f06a86a4917a603286a10879e09e3921be7385efabdc8c601bbce7c"
+  "introFingerprint": "9282b8212f05858e10ffd3dd8cef04a48b503664c27e74d382643d7357ffb19b"
 }

@@ -24,7 +24,7 @@
         },
         "es:lesson-04:session-16:intro2:r3": {
           "ru": "Перед единственным bolsa нужно tu.",
-          "uk": "Перед одниною bolsa потрібне tu."
+          "uk": "Для однієї bolsa потрібне tu."
         }
       }
     },
@@ -36,11 +36,11 @@
           "uk": "Кілька ключів: son."
         },
         "es:lesson-04:session-16:intro3:r3": {
-          "ru": "Множественное число вещей требует tus.",
-          "uk": "Множина речей потребує tus."
+          "ru": "Несколько вещей требуют tus.",
+          "uk": "Кілька речей потребують tus."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0f339a7742bbddf5ad35ce38c36240c5aa7dd45bca6365ddd3392c3aa3cc9d22"
+  "auxiliaryFingerprint": "3019c7388fdcfb644ef85db62ad75afcc244a6b455cb1024056c267fe31f2a0e"
 }

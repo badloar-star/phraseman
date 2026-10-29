@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-53",
   "learningOutcomeByLocale": {
-    "ru": "соединить tenemos с количеством членов семьи.",
-    "uk": "поєднати tenemos з кількістю членів сім’ї."
+    "ru": "сказать, сколько у вас детей: Tenemos dos hijas.",
+    "uk": "сказати, скільки у вас дітей: Tenemos dos hijas."
   },
   "pages": [
     {
@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Вы с партнёром знакомитесь с соседями. У вас сын и дочь. Скажите `Tenemos dos hijos` — «У нас двое детей». Соберите `Tenemos` + `dos` + `hijos`. Tenemos означает «у нас есть». После dos нужно множественное hijos; это слово может обозначать детей обоих полов вместе. Артикль перед dos здесь не добавляем.",
-        "uk": "Ви з партнером знайомитеся із сусідами. У вас син і дочка. Скажіть `Tenemos dos hijos` — «У нас двоє дітей». Складіть `Tenemos` + `dos` + `hijos`. Tenemos означає «у нас є». Після dos потрібна множина hijos; це слово може позначати дітей обох статей разом. Артикль перед dos тут не додаємо."
+        "uk": "Ви з партнером знайомитеся із сусідами. У вас син і дочка. Скажіть `Tenemos dos hijos` — «У нас двоє дітей». Складіть `Tenemos` + `dos` + `hijos`. Tenemos означає «у нас є». Після dos потрібна форма для кількох — hijos; це слово може позначати дітей обох статей разом. Артикль перед dos тут не додаємо."
       },
       "question": {
         "interactionId": "es:lesson-05:session-53:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "76b7033a31f79cc8a4880e76a9cf315c75b561188294ed2c0b482c75e4370512"
+  "introFingerprint": "4dd5bdf50d1965944c2267f8c8473133ef85cee67bd9ddcaab87c0edb875953f"
 }

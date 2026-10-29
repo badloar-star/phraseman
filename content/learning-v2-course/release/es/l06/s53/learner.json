@@ -522,8 +522,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — впервые сообщаете: есть туалет",
             "feedbackByLocale": {
-              "ru": "Baño единственного числа, мужского рода: un.",
-              "uk": "Baño в однині, чоловічого роду: un."
+              "ru": "Baño — один предмет, мужского рода: un.",
+              "uk": "Baño — одна річ, чоловічого роду: un."
             }
           }
         ]
@@ -669,5 +669,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a1860de08dd34d0a77443b861aec2ab269bb0122276dc3aa743b1a0de374faa4"
+  "learnerFingerprint": "10ca86f199ddd53d7a9fce71eb73a8fb533d3433b51b5d958f445964f470fc95"
 }

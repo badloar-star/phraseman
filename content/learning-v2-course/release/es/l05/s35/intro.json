@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-35",
   "learningOutcomeByLocale": {
-    "ru": "выразить возраст через tener + число + años.",
-    "uk": "виразити вік через tener + число + años."
+    "ru": "назвать свой возраст: Tengo veinte años.",
+    "uk": "назвати свій вік: Tengo veinte años."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Назвати свій вік"
       },
       "bodyByLocale": {
-        "ru": "При знакомстве вы хотите сказать, что вам двадцать лет: `Tengo veinte años`. Соберите `Tengo` + `veinte` + `años`. Veinte означает «двадцать», año — «год», а años — «годы». Испанский возраст выражаем через tener: буквально «имею двадцать лет». Поэтому здесь tengo, а не soy. После veinte используем множественное число años, без артикля.",
-        "uk": "При знайомстві ви хочете сказати, що вам двадцять років: `Tengo veinte años`. Зберіть `Tengo` + `veinte` + `años`. Veinte означає «двадцять», año — «рік», а años — «роки». Іспанською вік виражаємо через tener: буквально «маю двадцять років». Тому тут tengo, а не soy. Після veinte використовуємо множину años, без артикля."
+        "ru": "При знакомстве вы хотите сказать, что вам двадцать лет: `Tengo veinte años`. Соберите `Tengo` + `veinte` + `años`. Veinte означает «двадцать», año — «год», а años — «годы». Испанский возраст выражаем через tener: буквально «имею двадцать лет». Поэтому здесь tengo, а не soy. После veinte используем форму для нескольких — años, без артикля.",
+        "uk": "При знайомстві ви хочете сказати, що вам двадцять років: `Tengo veinte años`. Зберіть `Tengo` + `veinte` + `años`. Veinte означає «двадцять», año — «рік», а años — «роки». Іспанською вік виражаємо через tener: буквально «маю двадцять років». Тому тут tengo, а не soy. Після veinte використовуємо форму для кількох — años, без артикля."
       },
       "question": {
         "interactionId": "es:lesson-05:session-35:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "720d6c5ce2b99a297f138fe471a747d7d6a5bb4217619e9e6e5920c8cbdf21b3"
+  "introFingerprint": "46a86b0f5c306502f0414bad617e166538e4d65d5b41f372d9fe66d0ff3c4b88"
 }

@@ -36,11 +36,11 @@
           "uk": "Потрібно кілька столів: mesas."
         },
         "es:lesson-06:session-05:intro3:r3": {
-          "ru": "Una не сочетается с mesas во множественном числе.",
-          "uk": "Una не поєднується з mesas у множині."
+          "ru": "Una не сочетается с mesas, когда их несколько.",
+          "uk": "Una не поєднується з mesas, коли їх кілька."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "059885d5d353867a4555d2488bac581d7870a686bcdaeb180a5a1568869fd0ef"
+  "auxiliaryFingerprint": "9b673b066106769e91ea07057ac09f7b5cbf4b0f142bd7a02be90afb00c3f89e"
 }

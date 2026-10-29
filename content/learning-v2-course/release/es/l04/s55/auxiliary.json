@@ -32,8 +32,8 @@
       "interactionId": "es:lesson-04:session-55:intro3:q",
       "responseFeedbackById": {
         "es:lesson-04:session-55:intro3:r2": {
-          "ru": "Llaves во множественном числе: son.",
-          "uk": "Llaves у множині: son."
+          "ru": "Llaves — их несколько: son.",
+          "uk": "Llaves — їх кілька: son."
         },
         "es:lesson-04:session-55:intro3:r3": {
           "ru": "Перед llaves нужна форма las.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "cde1512d7509721660eefb9fce52da576465c2c800ab2effe7d6f2e2b2459e9a"
+  "auxiliaryFingerprint": "26ba11fc95e01bf9dcd4ac15b9bca9e01245e9b5940dce77e0143204f49fd570"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-38",
   "learningOutcomeByLocale": {
-    "ru": "использовать tiene с небольшими числами и años.",
-    "uk": "використовувати tiene з невеликими числами та años."
+    "ru": "сказать, сколько лет ребёнку: Él tiene cuatro años.",
+    "uk": "сказати, скільки років дитині: Él tiene cuatro años."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Вік хлопчика"
       },
       "bodyByLocale": {
-        "ru": "Показываете знакомому на мальчика и говорите `Él tiene cuatro años` — «Ему четыре года». Соберите `Él` + `tiene` + `cuatro años`. Cuatro — знакомое «четыре». Возраст ребёнка выражается так же, как возраст взрослого: tiene + число + años. Здесь años во множественном числе.",
-        "uk": "Показуєте знайомому на хлопчика й кажете `Él tiene cuatro años` — «Йому чотири роки». Зберіть `Él` + `tiene` + `cuatro años`. Cuatro — знайоме «чотири». Вік дитини виражається так само, як вік дорослого: tiene + число + años. Тут años у множині."
+        "ru": "Показываете знакомому на мальчика и говорите `Él tiene cuatro años` — «Ему четыре года». Соберите `Él` + `tiene` + `cuatro años`. Cuatro — знакомое «четыре». Возраст ребёнка выражается так же, как возраст взрослого: tiene + число + años. Здесь años — форма для нескольких.",
+        "uk": "Показуєте знайомому на хлопчика й кажете `Él tiene cuatro años` — «Йому чотири роки». Зберіть `Él` + `tiene` + `cuatro años`. Cuatro — знайоме «чотири». Вік дитини виражається так само, як вік дорослого: tiene + число + años. Тут años — форма для кількох."
       },
       "question": {
         "interactionId": "es:lesson-05:session-38:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ba0011715a8dbca655baa69798b5d35e14683936fd9941e866225e0b6fa7c7fd"
+  "introFingerprint": "33471dc65e41f26399f7346280fcc4c18e5f6628c182c88028610f3db408e508"
 }

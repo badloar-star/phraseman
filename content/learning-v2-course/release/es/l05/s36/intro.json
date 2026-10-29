@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-36",
   "learningOutcomeByLocale": {
-    "ru": "построить вопрос с cuántos años перед формой tener.",
-    "uk": "побудувати запитання з cuántos años перед формою tener."
+    "ru": "спросить, сколько человеку лет: ¿Cuántos años tienes?",
+    "uk": "запитати, скільки людині років: ¿Cuántos años tienes?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Запитання новому другові"
       },
       "bodyByLocale": {
-        "ru": "С новым другом вы уже на «ты». Спросите `¿Cuántos años tienes?` — «Сколько тебе лет?» Соберите `¿Cuántos años` + `tienes?`. Cuántos означает «сколько» перед años. Выбираем окончание -os, потому что años — мужской род, множественное число. Сначала спрашиваем количество лет, потом ставим tienes для обращения на «ты». Ударение в cuántos отмечаем знаком над á.",
-        "uk": "З новим другом ви вже на «ти». Запитайте `¿Cuántos años tienes?` — «Скільки тобі років?» Зберіть `¿Cuántos años` + `tienes?`. Cuántos означає «скільки» перед años. Обираємо закінчення -os, бо años — чоловічий рід, множина. Спочатку питаємо кількість років, потім ставимо tienes для звернення на «ти». Наголос у cuántos позначаємо знаком над á."
+        "ru": "С новым другом вы уже на «ты». Спросите `¿Cuántos años tienes?` — «Сколько тебе лет?» Соберите `¿Cuántos años` + `tienes?`. Cuántos означает «сколько» перед años. Выбираем окончание -os, потому что años — мужской род, форма для нескольких. Сначала спрашиваем количество лет, потом ставим tienes для обращения на «ты». Ударение в cuántos отмечаем знаком над á.",
+        "uk": "З новим другом ви вже на «ти». Запитайте `¿Cuántos años tienes?` — «Скільки тобі років?» Зберіть `¿Cuántos años` + `tienes?`. Cuántos означає «скільки» перед años. Обираємо закінчення -os, бо años — чоловічий рід, форма для кількох. Спочатку питаємо кількість років, потім ставимо tienes для звернення на «ти». Наголос у cuántos позначаємо знаком над á."
       },
       "question": {
         "interactionId": "es:lesson-05:session-36:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "184cd5c19c8d4c32a2f476327850e934661f4d8f537c1afaa189318a2fb1d06d"
+  "introFingerprint": "4ad9b664b7a92d8e1e55a5fb7194dd58cf0fdd3dad30621c44722f9565e9d662"
 }

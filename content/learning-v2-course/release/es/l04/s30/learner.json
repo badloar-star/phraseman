@@ -52,7 +52,7 @@
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
               "ru": "Звучит единственное grande, без конечного s.",
-              "uk": "Звучить однина grande, без кінцевого s."
+              "uk": "Звучить форма для одного: grande, без кінцевого s."
             }
           }
         ],
@@ -684,5 +684,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ea50c106fd9088cec86c9fca43970b535ff68a9d332b296f59fb8dab3c560a3d"
+  "learnerFingerprint": "5f607e78dc6c8ddb73143534f0d50d74d5ad14b1c63bda39899b3278f597b5ff"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-38",
   "learningOutcomeByLocale": {
-    "ru": "ставить estas перед несколькими предметами женского рода.",
-    "uk": "ставити estas перед кількома предметами жіночого роду."
+    "ru": "сказать «эти» о нескольких стульях: Estas sillas son cómodas.",
+    "uk": "сказати «ці» про кілька стільців: Estas sillas son cómodas."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Нові стільці"
       },
       "bodyByLocale": {
-        "ru": "Друг замечает стулья, которые вы недавно купили. Скажите `Estas sillas son nuevas` — «Эти стулья новые». Соберите `estas sillas` + `son` + `nuevas`. Замените cómodas на nuevas. Это знакомое nuevo в женском роде и множественном числе: новые именно sillas.",
-        "uk": "Друг помічає стільці, які ви нещодавно купили. Скажіть `Estas sillas son nuevas` — «Ці стільці нові». Складіть `estas sillas` + `son` + `nuevas`. Замініть cómodas на nuevas. Це знайоме nuevo в жіночому роді й множині: нові саме sillas."
+        "ru": "Друг замечает стулья, которые вы недавно купили. Скажите `Estas sillas son nuevas` — «Эти стулья новые». Соберите `estas sillas` + `son` + `nuevas`. Замените cómodas на nuevas. Это знакомое nuevo в женском роде для нескольких: новые именно sillas.",
+        "uk": "Друг помічає стільці, які ви нещодавно купили. Скажіть `Estas sillas son nuevas` — «Ці стільці нові». Складіть `estas sillas` + `son` + `nuevas`. Замініть cómodas на nuevas. Це знайоме nuevo в жіночому роді для кількох: нові саме sillas."
       },
       "question": {
         "interactionId": "es:lesson-04:session-38:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7e1d7d14403b1dd2b5907895dfac8d32e19c379065aa6b2bc4302446bb4a6425"
+  "introFingerprint": "017e4ab1c055cb148a8a4de96678908761dba786145a3b0357835b7cafa3cd00"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-06:session-11",
   "learningOutcomeByLocale": {
-    "ru": "превратить сообщение с hay в вопрос о наличии одного предмета или помещения.",
-    "uk": "перетворити повідомлення з hay на запитання про наявність одного предмета чи приміщення."
+    "ru": "спросить, есть ли здесь туалет: ¿Hay un baño aquí?",
+    "uk": "запитати, чи є тут туалет: ¿Hay un baño aquí?"
   },
   "pages": [
     {

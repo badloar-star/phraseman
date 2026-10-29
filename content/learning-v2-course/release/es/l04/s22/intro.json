@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-22",
   "learningOutcomeByLocale": {
-    "ru": "использовать su и sus, говоря о вещах нескольких людей.",
-    "uk": "використовувати su та sus, говорячи про речі кількох людей."
+    "ru": "описать их ключи: Sus llaves son nuevas.",
+    "uk": "описати їхні ключі: Sus llaves son nuevas."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Нові ключі"
       },
       "bodyByLocale": {
-        "ru": "Ана и Педро недавно сделали новые ключи. Скажите подруге `Sus llaves son nuevas` — «Их ключи новые». Соберите `sus llaves` + `son` + `nuevas`. Испанское llave женского рода; во множественном числе llaves требует nuevas. Описание согласуется с ключами, а не с их владельцами.",
-        "uk": "Ана й Педро нещодавно зробили нові ключі. Скажіть подрузі `Sus llaves son nuevas` — «Їхні ключі нові». Зберіть `sus llaves` + `son` + `nuevas`. Іспанське llave жіночого роду; у множині llaves потребує nuevas. Опис узгоджується з ключами, а не з їхніми власниками."
+        "ru": "Ана и Педро недавно сделали новые ключи. Скажите подруге `Sus llaves son nuevas` — «Их ключи новые». Соберите `sus llaves` + `son` + `nuevas`. Испанское llave женского рода; когда ключей несколько, llaves требует nuevas. Описание согласуется с ключами, а не с их владельцами.",
+        "uk": "Ана й Педро нещодавно зробили нові ключі. Скажіть подрузі `Sus llaves son nuevas` — «Їхні ключі нові». Зберіть `sus llaves` + `son` + `nuevas`. Іспанське llave жіночого роду; коли ключів кілька, llaves потребує nuevas. Опис узгоджується з ключами, а не з їхніми власниками."
       },
       "question": {
         "interactionId": "es:lesson-04:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3d10f9e16b1a45cc6e98aec366ac2086133bb919d2c85e4eccf20433ea0c45a0"
+  "introFingerprint": "e4f7c6760d763dfdb075d5cd8b4f3a6f6cd6d5260e3bedd2851a124319fb504c"
 }

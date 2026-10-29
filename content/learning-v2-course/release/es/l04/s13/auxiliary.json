@@ -7,7 +7,7 @@
       "responseFeedbackById": {
         "es:lesson-04:session-13:intro1:r2": {
           "ru": "С единственным zapato нужно tu.",
-          "uk": "З одниною zapato потрібне tu."
+          "uk": "Для одного zapato потрібне tu."
         },
         "es:lesson-04:session-13:intro1:r3": {
           "ru": "Перед tu здесь нет артикля.",
@@ -20,7 +20,7 @@
       "responseFeedbackById": {
         "es:lesson-04:session-13:intro2:r2": {
           "ru": "Перед множественным zapatos нужно tus.",
-          "uk": "Перед множиною zapatos потрібне tus."
+          "uk": "Перед zapatos, коли їх кілька, потрібне tus."
         },
         "es:lesson-04:session-13:intro2:r3": {
           "ru": "Для нескольких предметов нужно son.",
@@ -33,7 +33,7 @@
       "responseFeedbackById": {
         "es:lesson-04:session-13:intro3:r2": {
           "ru": "Нужно множественное negros.",
-          "uk": "Потрібна множина negros."
+          "uk": "Потрібна форма для кількох: negros."
         },
         "es:lesson-04:session-13:intro3:r3": {
           "ru": "Zapatos мужского рода.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "46bba6fdbbc7cf54e176406d72dfde1c792222057e5c130de24c46215302215a"
+  "auxiliaryFingerprint": "bf31583104dde50a0f1593a300a9649d2a76bdeeffb412f8fb7792be4198da16"
 }

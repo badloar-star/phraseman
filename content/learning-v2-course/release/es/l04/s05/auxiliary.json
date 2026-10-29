@@ -11,7 +11,7 @@
         },
         "es:lesson-04:session-05:intro1:r3": {
           "ru": "С единственным libro нужна форма mi.",
-          "uk": "З одниною libro потрібна форма mi."
+          "uk": "Для одного libro потрібна форма mi."
         }
       }
     },
@@ -20,11 +20,11 @@
       "responseFeedbackById": {
         "es:lesson-04:session-05:intro2:r2": {
           "ru": "Перед множественным libros нужно mis.",
-          "uk": "Перед множиною libros потрібне mis."
+          "uk": "Перед libros, коли їх кілька, потрібне mis."
         },
         "es:lesson-04:session-05:intro2:r3": {
           "ru": "Нужно множественное libros.",
-          "uk": "Потрібна множина libros."
+          "uk": "Потрібна форма для кількох: libros."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "71878868d1fb4d45ced37ae015d523922f0649b2a90fce4c51a0fa6fa5a96dce"
+  "auxiliaryFingerprint": "22d6b785ad02dc1cfaa422e0a081b8f983d8913495ec88ae95d525fe2d9838c2"
 }

@@ -122,8 +122,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — много стульев?",
             "feedbackByLocale": {
-              "ru": "Sillas во множественном числе: muchas.",
-              "uk": "Sillas у множині: muchas."
+              "ru": "Sillas — это несколько: muchas.",
+              "uk": "Sillas — це кілька: muchas."
             }
           }
         ]
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e991cc62b86fb0b75d4b93c9d005028f8928b6094df8b6b6c06cdfb1ce1c2fc2"
+  "learnerFingerprint": "780f1a7f191b9ea8e5588e791fdc6304f8a4fd3ee51ce19cad85657aff8ac59a"
 }

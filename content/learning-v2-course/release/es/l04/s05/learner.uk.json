@@ -244,7 +244,7 @@
             "testedDimension": "Вставте слово — це мої книжки",
             "feedbackByLocale": {
               "ru": "Перед множественным libros нужна форма mis.",
-              "uk": "Перед множиною libros потрібна форма mis."
+              "uk": "Перед libros, коли їх кілька, потрібна форма mis."
             }
           },
           {
@@ -314,8 +314,8 @@
             "correct": false,
             "testedDimension": "Зберіть фразу — мої книжки нові",
             "feedbackByLocale": {
-              "ru": "libros во множественном числе.",
-              "uk": "libros у множині."
+              "ru": "libros — о нескольких.",
+              "uk": "libros — їх кілька."
             }
           }
         ],
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "181e4e010898df3a2d059e82ee8ae196ead1f3cad9797bd9d498157246d724c9"
+  "learnerFingerprint": "deb5eeefaf1915e2dce961160c2061c3d4fd075ac464ef8e129f03cd788a70f1"
 }

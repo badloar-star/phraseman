@@ -122,8 +122,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — мало книжок",
             "feedbackByLocale": {
-              "ru": "Libros во множественном числе: pocos.",
-              "uk": "Libros у множині: pocos."
+              "ru": "Libros — это несколько: pocos.",
+              "uk": "Libros — це кілька: pocos."
             }
           }
         ]
@@ -314,8 +314,8 @@
             "correct": false,
             "testedDimension": "Зберіть фразу — тут мало книжок; почніть з Hay, кількість поставте перед libros, місце — наприкінці",
             "feedbackByLocale": {
-              "ru": "libros требует множественного числа pocos.",
-              "uk": "libros потребує множини pocos."
+              "ru": "libros требует формы для нескольких pocos.",
+              "uk": "libros потребує форми для кількох pocos."
             }
           }
         ],
@@ -669,5 +669,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b6399ceb4c340014b3916a25e6f476e07f93fdececbee29857b9c8e08ddd5ad3"
+  "learnerFingerprint": "f30c68eee0014471004b91571b2af208e40273ac1aea3d2c20190dbb20db0ef3"
 }

@@ -7,7 +7,7 @@
       "responseFeedbackById": {
         "es:lesson-04:session-08:intro1:r2": {
           "ru": "С единственным hermana нужно mi.",
-          "uk": "З одниною hermana потрібне mi."
+          "uk": "Для однієї hermana потрібне mi."
         },
         "es:lesson-04:session-08:intro1:r3": {
           "ru": "Перед mi здесь нет la.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f30df204048da7cc7e75a3551b24aea7f73e67d9a5f74de35b1a627f7655e240"
+  "auxiliaryFingerprint": "c5a66c464c57be6702869f8049875095ca1496670d88a1033a53d5a550a11ec9"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-34",
   "learningOutcomeByLocale": {
-    "ru": "использовать знакомое tres после tener с существительным во множественном числе.",
-    "uk": "використовувати знайоме tres після tener з іменником у множині."
+    "ru": "сказать, что у вас три предмета: Tengo tres llaves.",
+    "uk": "сказати, що у вас три предмети: Tengo tres llaves."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Три книжки в дорогу"
       },
       "bodyByLocale": {
-        "ru": "Выбрали три книги и говорите `Tengo tres libros` — «У меня три книги». Соберите `Tengo` + `tres` + `libros`. Знакомое tres означает «три». Как после dos, ставим существительное во множественном числе: libros. Перед числом un не добавляем. Tengo остаётся, потому что говорите о себе.",
-        "uk": "Вибрали три книжки й кажете `Tengo tres libros` — «Я маю три книжки». Зберіть `Tengo` + `tres` + `libros`. Знайоме tres означає «три». Як після dos, ставимо іменник у множині: libros. Перед числом un не додаємо. Tengo залишається, бо кажете про себе."
+        "ru": "Выбрали три книги и говорите `Tengo tres libros` — «У меня три книги». Соберите `Tengo` + `tres` + `libros`. Знакомое tres означает «три». Как после dos, ставим существительное в форме для нескольких: libros. Перед числом un не добавляем. Tengo остаётся, потому что говорите о себе.",
+        "uk": "Вибрали три книжки й кажете `Tengo tres libros` — «Я маю три книжки». Зберіть `Tengo` + `tres` + `libros`. Знайоме tres означає «три». Як після dos, ставимо іменник у формі для кількох: libros. Перед числом un не додаємо. Tengo залишається, бо кажете про себе."
       },
       "question": {
         "interactionId": "es:lesson-05:session-34:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a31d41ffe346974847a33db8d2edbac03bcc6dbea67955a0f602c97164b36961"
+  "introFingerprint": "d90275fb2571a294c498fea3e6cbaaed4804587a0c578c4b28033cc4455a1c81"
 }

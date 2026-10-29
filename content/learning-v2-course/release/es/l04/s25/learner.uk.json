@@ -28,8 +28,8 @@
             "responseId": "es:lesson-04:session-25:i01:r1",
             "targetText": "nuestro",
             "meaningByLocale": {
-              "ru": "наш; здесь перед мужским carro в единственном числе. 🔊 *nuestro*",
-              "uk": "наш; тут перед чоловічим carro в однині. 🔊 *nuestro*"
+              "ru": "наш; здесь перед мужским carro, когда он один. 🔊 *nuestro*",
+              "uk": "наш; тут перед чоловічим carro, коли він один. 🔊 *nuestro*"
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "nuestro",
           "definitionByLocale": {
-            "ru": "наш; здесь перед мужским carro в единственном числе. 🔊 *nuestro*",
-            "uk": "наш; тут перед чоловічим carro в однині. 🔊 *nuestro*"
+            "ru": "наш; здесь перед мужским carro, когда он один. 🔊 *nuestro*",
+            "uk": "наш; тут перед чоловічим carro, коли він один. 🔊 *nuestro*"
           }
         }
       },
@@ -638,5 +638,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "62a75112d7337dec54cf5016db102d6b89ad7becc994338092692afd4632edee"
+  "learnerFingerprint": "bc3e633e4773e88aa88e27c0f530b94006876855ff18d45c508593966d8a9ff1"
 }

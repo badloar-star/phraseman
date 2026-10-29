@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-21",
   "learningOutcomeByLocale": {
-    "ru": "задать вопрос с именем и tiene.",
-    "uk": "поставити запитання з ім’ям і tiene."
+    "ru": "спросить, есть ли вещь у человека по имени: ¿Pedro tiene un libro?",
+    "uk": "запитати, чи є річ у людини на ім’я: ¿Pedro tiene un libro?"
   },
   "pages": [
     {

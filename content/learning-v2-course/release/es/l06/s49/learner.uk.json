@@ -165,8 +165,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — тут є магазин",
             "feedbackByLocale": {
-              "ru": "Tienda — единственное число, женский род: una.",
-              "uk": "Tienda — однина, жіночий рід: una."
+              "ru": "Tienda — один предмет, женский род: una.",
+              "uk": "Tienda — одна річ, жіночий рід: una."
             }
           }
         ]
@@ -717,5 +717,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e0d1bfca5df331fc0044df858c07f2bcd4e1d7f64cc15bc373b7bbf4b4ed442f"
+  "learnerFingerprint": "4bc01e9c960a48813d5d93b9b1fefe19b148285519e6c1ed23701a0ea26c7559"
 }

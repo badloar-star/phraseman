@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-28",
   "learningOutcomeByLocale": {
-    "ru": "выбирать nuestras перед женским существительным во множественном числе.",
-    "uk": "вибирати nuestras перед іменником жіночого роду в множині."
+    "ru": "говорить о ваших общих подругах: Son nuestras amigas.",
+    "uk": "говорити про ваших спільних подруг: Son nuestras amigas."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Кілька подруг"
       },
       "bodyByLocale": {
-        "ru": "Теперь подошли несколько ваших общих подруг. Скажите `Son nuestras amigas` — «Это наши подруги». Соберите `son` + `nuestras amigas`. Добавьте -s к nuestra и amiga; es замените на son. Nuestras показывает женский род и множественное число слова amigas.",
-        "uk": "Тепер підійшли кілька ваших спільних подруг. Скажіть `Son nuestras amigas` — «Це наші подруги». Зберіть `son` + `nuestras amigas`. Додайте -s до nuestra й amiga; es замініть на son. Nuestras показує жіночий рід і множину слова amigas."
+        "ru": "Теперь подошли несколько ваших общих подруг. Скажите `Son nuestras amigas` — «Это наши подруги». Соберите `son` + `nuestras amigas`. Добавьте -s к nuestra и amiga; es замените на son. Nuestras показывает женский род слова amigas и то, что подруг несколько.",
+        "uk": "Тепер підійшли кілька ваших спільних подруг. Скажіть `Son nuestras amigas` — «Це наші подруги». Зберіть `son` + `nuestras amigas`. Додайте -s до nuestra й amiga; es замініть на son. Nuestras показує жіночий рід слова amigas і те, що подруг кілька."
       },
       "question": {
         "interactionId": "es:lesson-04:session-28:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "112c061d7075a1ca073be5077e5dc19bfc343c84e05eb1c0dd94ec3be10bd71f"
+  "introFingerprint": "5bc84c6ff49b4fd84462875c1b2cbc8a7bec9d808c93449dc4e4cdb220ab6713"
 }

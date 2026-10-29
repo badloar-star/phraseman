@@ -122,8 +122,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — мало стільців",
             "feedbackByLocale": {
-              "ru": "Sillas во множественном числе: pocas.",
-              "uk": "Sillas у множині: pocas."
+              "ru": "Sillas — это несколько: pocas.",
+              "uk": "Sillas — це кілька: pocas."
             }
           }
         ]
@@ -669,5 +669,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4410fbe4855619b6dcf2bea84247c5798fbea46f145ce28e7a9d8b43001127f4"
+  "learnerFingerprint": "6b68608c98b7ee3beb7358aa1502e92b11c5987f0c3de3fd2811723961447ce0"
 }

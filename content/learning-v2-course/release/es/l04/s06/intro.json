@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-06",
   "learningOutcomeByLocale": {
-    "ru": "использовать mis с женским множественным числом.",
-    "uk": "використовувати mis із жіночою множиною."
+    "ru": "описать свои маленькие ключи: Mis llaves son pequeñas.",
+    "uk": "описати свої маленькі ключі: Mis llaves son pequeñas."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Маленькі ключі"
       },
       "bodyByLocale": {
-        "ru": "Объясните, какие ключи ищете: `Mis llaves son pequeñas` — «Мои ключи маленькие». Соберите `mis llaves` + `son` + `pequeñas`. Llaves женского рода и множественного числа, поэтому pequeñas. Форма mis показывает число вещей, а окончание pequeñas — ещё и их испанский род.",
-        "uk": "Поясніть, які ключі шукаєте: `Mis llaves son pequeñas` — «Мої ключі маленькі». Зберіть `mis llaves` + `son` + `pequeñas`. Llaves жіночого роду й у множині, тому pequeñas. Форма mis показує число речей, а закінчення pequeñas — ще й їхній іспанський рід."
+        "ru": "Объясните, какие ключи ищете: `Mis llaves son pequeñas` — «Мои ключи маленькие». Соберите `mis llaves` + `son` + `pequeñas`. Llaves женского рода, и ключей несколько, поэтому pequeñas. Форма mis показывает число вещей, а окончание pequeñas — ещё и их испанский род.",
+        "uk": "Поясніть, які ключі шукаєте: `Mis llaves son pequeñas` — «Мої ключі маленькі». Зберіть `mis llaves` + `son` + `pequeñas`. Llaves жіночого роду, і ключів кілька, тому pequeñas. Форма mis показує число речей, а закінчення pequeñas — ще й їхній іспанський рід."
       },
       "question": {
         "interactionId": "es:lesson-04:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7785c1c4b32fe72121d2ef4fd3b395c150e5cce9a242fc7208b7b1e74e57f29a"
+  "introFingerprint": "cf7baa226a9a6598cf2551f048da8b19bb289b1b6cb6dafaf8c535a5c762037b"
 }

@@ -51,8 +51,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи множественное число: bolsas.",
-              "uk": "У записі множина: bolsas."
+              "ru": "В записи форма для нескольких: bolsas.",
+              "uk": "У записі форма для кількох: bolsas."
             }
           }
         ],
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "daffdd841f94d8591dbc1dfa6fd2fe533b758d7cdfbd47b54bcd37de207b0c0c"
+  "learnerFingerprint": "7127091d167b2ec5256fc5ebd6cec116694e0d6b49724c96115c6a3f943a8308"
 }

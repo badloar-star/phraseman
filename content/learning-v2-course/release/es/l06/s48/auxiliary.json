@@ -10,8 +10,8 @@
           "uk": "Agua жіночого роду: mucha."
         },
         "es:lesson-06:session-48:intro1:r3": {
-          "ru": "Здесь agua не во множественном числе: mucha.",
-          "uk": "Тут agua не в множині: mucha."
+          "ru": "Здесь agua не в форме для нескольких: mucha.",
+          "uk": "Тут agua не у формі для кількох: mucha."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "00d7a9eadc657242eeeb05869fe21262bbea42f7fcef94f794a837baefc3c27b"
+  "auxiliaryFingerprint": "f9b5a85ff24c30451a6dad4781546e8d1b78d089a7c380aa990eeaa3a0909bcb"
 }

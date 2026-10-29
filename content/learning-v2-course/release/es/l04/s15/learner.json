@@ -52,7 +52,7 @@
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
               "ru": "Звучит множественное llaves.",
-              "uk": "Звучить множина llaves."
+              "uk": "Звучить форма для кількох: llaves."
             }
           }
         ],
@@ -669,5 +669,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f10035712c502423232c4892faa10ecaf4c236e5ec85f2db363d977e33ea81e1"
+  "learnerFingerprint": "5f56e49aff7ea3e6a5b2080a1ca172dbb87811de4294ac8eff6421b25d68c428"
 }

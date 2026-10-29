@@ -20,7 +20,7 @@
       "responseFeedbackById": {
         "es:lesson-04:session-06:intro2:r2": {
           "ru": "Перед множественным llaves нужно mis.",
-          "uk": "Перед множиною llaves потрібне mis."
+          "uk": "Перед llaves, коли їх кілька, потрібне mis."
         },
         "es:lesson-04:session-06:intro2:r3": {
           "ru": "Перед mis здесь не ставим las.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a9cffbce9563330c2f35098986dffe031be4f0257d35f2b257c420caf654ee57"
+  "auxiliaryFingerprint": "016e58c6822d10162fd37fff38e90d18469c73a656327665ddfc2812ad9733c3"
 }

@@ -552,8 +552,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — у кімнаті є два ліжка?",
             "feedbackByLocale": {
-              "ru": "Habitación — единственное число, женский род: la.",
-              "uk": "Habitación — однина, жіночий рід: la."
+              "ru": "Habitación — один предмет, женский род: la.",
+              "uk": "Habitación — одна річ, жіночий рід: la."
             }
           }
         ]
@@ -699,5 +699,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e6e89f2160240d374f3ca8bdec3785e511b31ef43197d6550b0cfdb28dbd3d94"
+  "learnerFingerprint": "a77443ed679675fc9ddd1988f5554f5e4ff2350300449ab054a330d6ccc2873b"
 }

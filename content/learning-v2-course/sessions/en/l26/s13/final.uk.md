@@ -3,7 +3,7 @@
 **Ситуація.** Ви готуєте сніданок, домовляєтеся про покупки й збираєте їжу на прогулянку.
 
 **Що ви опануєте:** сказати, що ви щойно приготували: I have just made oatmeal.
-**Нові слова:** oatmeal, raisin, marmalade, tortilla
+**Нові слова:** oatmeal, raisins, marmalade, tortilla
 
 ## Інтро 1
 

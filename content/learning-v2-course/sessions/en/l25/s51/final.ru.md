@@ -3,7 +3,7 @@
 **Ситуация.** Вы рассказываете о восстановлении сил, дороге и поиске ключей.
 
 **Что вы освоите:** сказать, что вы восстановили силы: I slowly regained my strength.
-**Новые слова:** regain, reconsider, endure, retrieve
+**Новые слова:** regained, reconsidered, endured, retrieved
 
 ## Интро 1
 

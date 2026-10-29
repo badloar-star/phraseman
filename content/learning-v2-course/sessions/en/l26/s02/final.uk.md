@@ -3,7 +3,7 @@
 **Ситуація.** Ви пояснюєте, коли чуєте знайомі звуки.
 
 **Що ви опануєте:** сказати, що ви робите, почувши звук: I jump when the door slams.
-**Нові слова:** squeak, rustle, squeal, roar
+**Нові слова:** squeak, rustle, squeal, roars
 
 ## Інтро 1
 

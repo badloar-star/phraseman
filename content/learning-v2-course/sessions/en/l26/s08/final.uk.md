@@ -3,7 +3,7 @@
 **Ситуація.** Ви розповідаєте, як вибираєте продукти й готуєте їжу.
 
 **Що ви опануєте:** сказати, що ви додаєте, якщо не вистачає смаку: I add pepper if the soup lacks flavour.
-**Нові слова:** shortage, excess, chunk, lack
+**Нові слова:** shortage, excess, chunks, lacks
 
 ## Інтро 1
 

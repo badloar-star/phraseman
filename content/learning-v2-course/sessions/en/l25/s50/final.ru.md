@@ -3,7 +3,7 @@
 **Ситуация.** Вы вспоминаете время еды, возвращение домой и привычку отвечать сразу.
 
 **Что вы освоите:** сказать, во сколько вы раньше завтракали: I used to have breakfast at seven.
-**Новые слова:** midday, mealtime, nightfall, instantly
+**Новые слова:** midday, mealtimes, nightfall, instantly
 
 ## Интро 1
 

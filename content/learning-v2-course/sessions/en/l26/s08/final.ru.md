@@ -3,7 +3,7 @@
 **Ситуация.** Вы рассказываете, как выбираете продукты и готовите еду.
 
 **Что вы освоите:** сказать, что вы добавляете, если не хватает вкуса: I add pepper if the soup lacks flavour.
-**Новые слова:** shortage, excess, chunk, lack
+**Новые слова:** shortage, excess, chunks, lacks
 
 ## Интро 1
 

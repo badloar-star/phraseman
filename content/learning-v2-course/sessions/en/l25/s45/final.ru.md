@@ -3,7 +3,7 @@
 **Ситуация.** Вы вспоминаете встречу, визит к врачу и разговор перед выходом.
 
 **Что вы освоите:** сказать, что вы вдруг вспомнили: I suddenly recalled his name.
-**Новые слова:** recall, predict, examine, insist
+**Новые слова:** recalled, predicted, examined, insisted
 
 ## Интро 1
 

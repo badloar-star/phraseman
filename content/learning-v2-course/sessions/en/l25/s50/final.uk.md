@@ -3,7 +3,7 @@
 **Ситуація.** Ви згадуєте час їжі, повернення додому й звичку відповідати одразу.
 
 **Що ви опануєте:** сказати, о котрій ви раніше снідали: I used to have breakfast at seven.
-**Нові слова:** midday, mealtime, nightfall, instantly
+**Нові слова:** midday, mealtimes, nightfall, instantly
 
 ## Інтро 1
 

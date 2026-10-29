@@ -3,7 +3,7 @@
 **Ситуація.** Ви згадуєте зустріч, візит до лікаря й розмову перед виходом.
 
 **Що ви опануєте:** сказати, що ви раптом згадали: I suddenly recalled his name.
-**Нові слова:** recall, predict, examine, insist
+**Нові слова:** recalled, predicted, examined, insisted
 
 ## Інтро 1
 

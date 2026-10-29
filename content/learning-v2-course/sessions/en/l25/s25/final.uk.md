@@ -3,7 +3,7 @@
 **Ситуація.** Ви описуєте послідовність подій на дорозі.
 
 **Що ви опануєте:** сказати, що ви зробили після чогось: We ate after we arrived.
-**Нові слова:** reverse, overtake, skid, collide
+**Нові слова:** reversed, overtook, skidded, collided
 
 ## Інтро 1
 

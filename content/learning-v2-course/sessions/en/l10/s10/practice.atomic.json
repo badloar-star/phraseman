@@ -383,7 +383,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с you",
+        "prompt": "Выберите форму be с you",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-10:i06:r1",
@@ -400,11 +400,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с you",
+        "accessibilityLabel": "Выберите форму be с you",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с you",
+            "ru": "Выберите форму be с you",
             "uk": "Виберіть зв’язку з you"
           },
           "gappedTargetPhrase": "I hope you ___ well.",
@@ -1483,7 +1483,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з you",
+        "prompt": "Виберіть форму be з you",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-10:i06:r1",
@@ -1500,12 +1500,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з you",
+        "accessibilityLabel": "Виберіть форму be з you",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку с you",
-            "uk": "Виберіть зв’язку з you"
+            "uk": "Виберіть форму be з you"
           },
           "gappedTargetPhrase": "I hope you ___ well.",
           "gapOptions": [

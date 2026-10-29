@@ -829,7 +829,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите вспомогательный глагол для she перед wearing",
+        "prompt": "Выберите do или does для she перед wearing",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-44:i12:r1",
@@ -846,11 +846,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите вспомогательный глагол для she перед wearing",
+        "accessibilityLabel": "Выберите do или does для she перед wearing",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите вспомогательный глагол для she перед wearing",
+            "ru": "Выберите do или does для she перед wearing",
             "uk": "Виберіть допоміжне дієслово для she перед wearing"
           },
           "gappedTargetPhrase": "She ___ wearing a flowery dress.",
@@ -1935,7 +1935,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть допоміжне дієслово для she перед wearing",
+        "prompt": "Виберіть do або does для she перед wearing",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-44:i12:r1",
@@ -1952,12 +1952,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть допоміжне дієслово для she перед wearing",
+        "accessibilityLabel": "Виберіть do або does для she перед wearing",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите вспомогательный глагол для she перед wearing",
-            "uk": "Виберіть допоміжне дієслово для she перед wearing"
+            "uk": "Виберіть do або does для she перед wearing"
           },
           "gappedTargetPhrase": "She ___ wearing a flowery dress.",
           "gapOptions": [

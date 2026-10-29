@@ -163,7 +163,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку: ключи во множественном числе",
+        "prompt": "Выберите форму be: ключи: их несколько",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i03:r1",
@@ -180,11 +180,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку: ключи во множественном числе",
+        "accessibilityLabel": "Выберите форму be: ключи: их несколько",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку: ключи во множественном числе",
+            "ru": "Выберите форму be: ключи: их несколько",
             "uk": "Виберіть зв’язку: ключі у множині"
           },
           "gappedTargetPhrase": "The keys ___ underneath the chair.",
@@ -209,7 +209,7 @@
               "correct": false,
               "testedDimension": "Выберите связку: ключи во множественном числе",
               "feedbackByLocale": {
-                "ru": "Keys во множественном числе: are.",
+                "ru": "Keys в форме для нескольких: are.",
                 "uk": "Keys у множині: are."
               }
             },
@@ -386,7 +386,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку: одна лестница",
+        "prompt": "Выберите форму be: одна лестница",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i06:r1",
@@ -403,11 +403,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку: одна лестница",
+        "accessibilityLabel": "Выберите форму be: одна лестница",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку: одна лестница",
+            "ru": "Выберите форму be: одна лестница",
             "uk": "Виберіть зв’язку: одна драбина"
           },
           "gappedTargetPhrase": "The ladder ___ against the wall.",
@@ -1264,7 +1264,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку: ключі у множині",
+        "prompt": "Виберіть форму be: ключі: їх кілька",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i03:r1",
@@ -1281,12 +1281,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку: ключі у множині",
+        "accessibilityLabel": "Виберіть форму be: ключі: їх кілька",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку: ключи во множественном числе",
-            "uk": "Виберіть зв’язку: ключі у множині"
+            "uk": "Виберіть форму be: ключі: їх кілька"
           },
           "gappedTargetPhrase": "The keys ___ underneath the chair.",
           "gapOptions": [
@@ -1311,7 +1311,7 @@
               "testedDimension": "Виберіть зв’язку: ключі у множині",
               "feedbackByLocale": {
                 "ru": "Keys во множественном числе: are.",
-                "uk": "Keys у множині: are."
+                "uk": "Keys у формі для кількох: are."
               }
             },
             {
@@ -1487,7 +1487,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку: одна драбина",
+        "prompt": "Виберіть форму be: одна драбина",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i06:r1",
@@ -1504,12 +1504,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку: одна драбина",
+        "accessibilityLabel": "Виберіть форму be: одна драбина",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку: одна лестница",
-            "uk": "Виберіть зв’язку: одна драбина"
+            "uk": "Виберіть форму be: одна драбина"
           },
           "gappedTargetPhrase": "The ladder ___ against the wall.",
           "gapOptions": [

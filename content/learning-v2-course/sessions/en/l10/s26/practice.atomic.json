@@ -828,7 +828,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одной порции",
+        "prompt": "Выберите is или are: одна порция",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i12:r1",
@@ -845,11 +845,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одной порции",
+        "accessibilityLabel": "Выберите is или are: одна порция",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одной порции",
+            "ru": "Выберите is или are: одна порция",
             "uk": "Виберіть зв’язку для однієї порції"
           },
           "gappedTargetPhrase": "This portion ___ small.",
@@ -1931,7 +1931,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для однієї порції",
+        "prompt": "Виберіть is або are: одна порція",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i12:r1",
@@ -1948,12 +1948,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для однієї порції",
+        "accessibilityLabel": "Виберіть is або are: одна порція",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку для одной порции",
-            "uk": "Виберіть зв’язку для однієї порції"
+            "uk": "Виберіть is або are: одна порція"
           },
           "gappedTargetPhrase": "This portion ___ small.",
           "gapOptions": [

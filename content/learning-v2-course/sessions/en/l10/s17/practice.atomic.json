@@ -606,7 +606,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите вспомогательный глагол с you",
+        "prompt": "Выберите do или does с you",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-17:i09:r1",
@@ -623,11 +623,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите вспомогательный глагол с you",
+        "accessibilityLabel": "Выберите do или does с you",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите вспомогательный глагол с you",
+            "ru": "Выберите do или does с you",
             "uk": "Виберіть допоміжне дієслово з you"
           },
           "gappedTargetPhrase": "What else ___ you need?",
@@ -1708,7 +1708,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть допоміжне дієслово з you",
+        "prompt": "Виберіть do або does з you",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-17:i09:r1",
@@ -1725,12 +1725,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть допоміжне дієслово з you",
+        "accessibilityLabel": "Виберіть do або does з you",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите вспомогательный глагол с you",
-            "uk": "Виберіть допоміжне дієслово з you"
+            "uk": "Виберіть do або does з you"
           },
           "gappedTargetPhrase": "What else ___ you need?",
           "gapOptions": [

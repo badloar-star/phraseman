@@ -750,7 +750,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед eddy",
+        "prompt": "Выберите слово перед eddy",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-41:i12:r1",
@@ -767,11 +767,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед eddy",
+        "accessibilityLabel": "Выберите слово перед eddy",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед eddy",
+            "ru": "Выберите слово перед eddy",
             "uk": "Виберіть артикль перед eddy"
           },
           "gappedTargetPhrase": "This is ___ eddy.",
@@ -805,7 +805,7 @@
               "correct": false,
               "testedDimension": "Выберите артикль перед eddy",
               "feedbackByLocale": {
-                "ru": "Are — глагол, не артикль перед eddy.",
+                "ru": "Are — глагол, не a / the перед eddy.",
                 "uk": "Are — дієслово, не артикль перед eddy."
               }
             }
@@ -1855,7 +1855,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед eddy",
+        "prompt": "Виберіть слово перед eddy",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-41:i12:r1",
@@ -1872,12 +1872,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед eddy",
+        "accessibilityLabel": "Виберіть слово перед eddy",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите артикль перед eddy",
-            "uk": "Виберіть артикль перед eddy"
+            "uk": "Виберіть слово перед eddy"
           },
           "gappedTargetPhrase": "This is ___ eddy.",
           "gapOptions": [
@@ -1911,7 +1911,7 @@
               "testedDimension": "Виберіть артикль перед eddy",
               "feedbackByLocale": {
                 "ru": "Are — глагол, не артикль перед eddy.",
-                "uk": "Are — дієслово, не артикль перед eddy."
+                "uk": "Are — дієслово, не a / the перед eddy."
               }
             }
           ]

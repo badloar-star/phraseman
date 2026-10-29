@@ -382,7 +382,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Опишите овощ. Выберите связку",
+        "prompt": "Опишите овощ. Выберите форму be",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i06:r1",
@@ -399,11 +399,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Опишите овощ. Выберите связку",
+        "accessibilityLabel": "Опишите овощ. Выберите форму be",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Опишите овощ. Выберите связку",
+            "ru": "Опишите овощ. Выберите форму be",
             "uk": "Опишіть овоч. Виберіть зв’язку"
           },
           "gappedTargetPhrase": "The leek ___ fresh.",
@@ -824,7 +824,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с множественным radishes",
+        "prompt": "Выберите форму be с radishes (их несколько)",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i12:r1",
@@ -841,11 +841,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с множественным radishes",
+        "accessibilityLabel": "Выберите форму be с radishes (их несколько)",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с множественным radishes",
+            "ru": "Выберите форму be с radishes (их несколько)",
             "uk": "Виберіть зв’язку з множиною radishes"
           },
           "gappedTargetPhrase": "The radishes ___ clean.",
@@ -870,7 +870,7 @@
               "correct": false,
               "testedDimension": "Выберите связку с множественным radishes",
               "feedbackByLocale": {
-                "ru": "Radishes — множественное число: are.",
+                "ru": "Radishes — форма для нескольких: are.",
                 "uk": "Radishes — множина: are."
               }
             },
@@ -1484,7 +1484,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Опишіть овоч. Виберіть зв’язку",
+        "prompt": "Опишіть овоч. Виберіть форму be",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i06:r1",
@@ -1501,12 +1501,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Опишіть овоч. Виберіть зв’язку",
+        "accessibilityLabel": "Опишіть овоч. Виберіть форму be",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Опишите овощ. Выберите связку",
-            "uk": "Опишіть овоч. Виберіть зв’язку"
+            "uk": "Опишіть овоч. Виберіть форму be"
           },
           "gappedTargetPhrase": "The leek ___ fresh.",
           "gapOptions": [
@@ -1926,7 +1926,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з множиною radishes",
+        "prompt": "Виберіть форму be з radishes (їх кілька)",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-47:i12:r1",
@@ -1943,12 +1943,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з множиною radishes",
+        "accessibilityLabel": "Виберіть форму be з radishes (їх кілька)",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку с множественным radishes",
-            "uk": "Виберіть зв’язку з множиною radishes"
+            "uk": "Виберіть форму be з radishes (їх кілька)"
           },
           "gappedTargetPhrase": "The radishes ___ clean.",
           "gapOptions": [
@@ -1973,7 +1973,7 @@
               "testedDimension": "Виберіть зв’язку з множиною radishes",
               "feedbackByLocale": {
                 "ru": "Radishes — множественное число: are.",
-                "uk": "Radishes — множина: are."
+                "uk": "Radishes — форма для кількох: are."
               }
             },
             {

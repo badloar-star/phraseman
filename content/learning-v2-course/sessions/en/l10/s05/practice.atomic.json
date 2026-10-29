@@ -609,7 +609,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку: несколько коробок",
+        "prompt": "Выберите форму be: несколько коробок",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-05:i09:r1",
@@ -626,11 +626,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку: несколько коробок",
+        "accessibilityLabel": "Выберите форму be: несколько коробок",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку: несколько коробок",
+            "ru": "Выберите форму be: несколько коробок",
             "uk": "Виберіть зв’язку: кілька коробок"
           },
           "gappedTargetPhrase": "The boxes ___ in the attic.",
@@ -655,7 +655,7 @@
               "correct": false,
               "testedDimension": "Выберите связку: несколько коробок",
               "feedbackByLocale": {
-                "ru": "Boxes во множественном числе: are.",
+                "ru": "Boxes в форме для нескольких: are.",
                 "uk": "Boxes у множині: are."
               }
             },
@@ -832,7 +832,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку: несколько бутылок",
+        "prompt": "Выберите форму be: несколько бутылок",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-05:i12:r1",
@@ -849,11 +849,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку: несколько бутылок",
+        "accessibilityLabel": "Выберите форму be: несколько бутылок",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку: несколько бутылок",
+            "ru": "Выберите форму be: несколько бутылок",
             "uk": "Виберіть зв’язку: кілька пляшок"
           },
           "gappedTargetPhrase": "The bottles ___ in the cellar.",
@@ -878,7 +878,7 @@
               "correct": false,
               "testedDimension": "Выберите связку: несколько бутылок",
               "feedbackByLocale": {
-                "ru": "Bottles во множественном числе: are.",
+                "ru": "Bottles в форме для нескольких: are.",
                 "uk": "Bottles у множині: are."
               }
             },
@@ -1718,7 +1718,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку: кілька коробок",
+        "prompt": "Виберіть форму be: кілька коробок",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-05:i09:r1",
@@ -1735,12 +1735,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку: кілька коробок",
+        "accessibilityLabel": "Виберіть форму be: кілька коробок",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку: несколько коробок",
-            "uk": "Виберіть зв’язку: кілька коробок"
+            "uk": "Виберіть форму be: кілька коробок"
           },
           "gappedTargetPhrase": "The boxes ___ in the attic.",
           "gapOptions": [
@@ -1765,7 +1765,7 @@
               "testedDimension": "Виберіть зв’язку: кілька коробок",
               "feedbackByLocale": {
                 "ru": "Boxes во множественном числе: are.",
-                "uk": "Boxes у множині: are."
+                "uk": "Boxes у формі для кількох: are."
               }
             },
             {
@@ -1941,7 +1941,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку: кілька пляшок",
+        "prompt": "Виберіть форму be: кілька пляшок",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-05:i12:r1",
@@ -1958,12 +1958,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку: кілька пляшок",
+        "accessibilityLabel": "Виберіть форму be: кілька пляшок",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку: несколько бутылок",
-            "uk": "Виберіть зв’язку: кілька пляшок"
+            "uk": "Виберіть форму be: кілька пляшок"
           },
           "gappedTargetPhrase": "The bottles ___ in the cellar.",
           "gapOptions": [
@@ -1988,7 +1988,7 @@
               "testedDimension": "Виберіть зв’язку: кілька пляшок",
               "feedbackByLocale": {
                 "ru": "Bottles во множественном числе: are.",
-                "uk": "Bottles у множині: are."
+                "uk": "Bottles у формі для кількох: are."
               }
             },
             {

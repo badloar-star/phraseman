@@ -382,7 +382,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Опишите овощ. Выберите связку",
+        "prompt": "Опишите овощ. Выберите форму be",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-46:i06:r1",
@@ -399,11 +399,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Опишите овощ. Выберите связку",
+        "accessibilityLabel": "Опишите овощ. Выберите форму be",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Опишите овощ. Выберите связку",
+            "ru": "Опишите овощ. Выберите форму be",
             "uk": "Опишіть овоч. Виберіть зв’язку"
           },
           "gappedTargetPhrase": "The cauliflower ___ fresh.",
@@ -824,7 +824,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с множественным lentils",
+        "prompt": "Выберите форму be с lentils (их несколько)",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-46:i12:r1",
@@ -841,11 +841,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с множественным lentils",
+        "accessibilityLabel": "Выберите форму be с lentils (их несколько)",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с множественным lentils",
+            "ru": "Выберите форму be с lentils (их несколько)",
             "uk": "Виберіть зв’язку з множиною lentils"
           },
           "gappedTargetPhrase": "The lentils ___ ready.",
@@ -870,7 +870,7 @@
               "correct": false,
               "testedDimension": "Выберите связку с множественным lentils",
               "feedbackByLocale": {
-                "ru": "Lentils — множественное число: are.",
+                "ru": "Lentils — форма для нескольких: are.",
                 "uk": "Lentils — множина: are."
               }
             },
@@ -1484,7 +1484,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Опишіть овоч. Виберіть зв’язку",
+        "prompt": "Опишіть овоч. Виберіть форму be",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-46:i06:r1",
@@ -1501,12 +1501,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Опишіть овоч. Виберіть зв’язку",
+        "accessibilityLabel": "Опишіть овоч. Виберіть форму be",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Опишите овощ. Выберите связку",
-            "uk": "Опишіть овоч. Виберіть зв’язку"
+            "uk": "Опишіть овоч. Виберіть форму be"
           },
           "gappedTargetPhrase": "The cauliflower ___ fresh.",
           "gapOptions": [
@@ -1926,7 +1926,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з множиною lentils",
+        "prompt": "Виберіть форму be з lentils (їх кілька)",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-46:i12:r1",
@@ -1943,12 +1943,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з множиною lentils",
+        "accessibilityLabel": "Виберіть форму be з lentils (їх кілька)",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку с множественным lentils",
-            "uk": "Виберіть зв’язку з множиною lentils"
+            "uk": "Виберіть форму be з lentils (їх кілька)"
           },
           "gappedTargetPhrase": "The lentils ___ ready.",
           "gapOptions": [
@@ -1973,7 +1973,7 @@
               "testedDimension": "Виберіть зв’язку з множиною lentils",
               "feedbackByLocale": {
                 "ru": "Lentils — множественное число: are.",
-                "uk": "Lentils — множина: are."
+                "uk": "Lentils — форма для кількох: are."
               }
             },
             {

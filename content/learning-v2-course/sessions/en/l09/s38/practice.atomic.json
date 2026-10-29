@@ -711,7 +711,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед одним сбоем",
+        "prompt": "Выберите слово перед одним сбоем",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-38:i11:r1",
@@ -728,11 +728,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед одним сбоем",
+        "accessibilityLabel": "Выберите слово перед одним сбоем",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед одним сбоем",
+            "ru": "Выберите слово перед одним сбоем",
             "uk": "Виберіть артикль перед одним збоєм"
           },
           "gappedTargetPhrase": "It is ___ glitch.",
@@ -766,7 +766,7 @@
               "correct": false,
               "testedDimension": "Выберите артикль перед одним сбоем",
               "feedbackByLocale": {
-                "ru": "Are — форма глагола, не артикль перед существительным.",
+                "ru": "Are — форма глагола, не a / the перед существительным.",
                 "uk": "Are — форма дієслова, не артикль перед іменником."
               }
             }
@@ -1817,7 +1817,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед одним збоєм",
+        "prompt": "Виберіть слово перед одним збоєм",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-38:i11:r1",
@@ -1834,12 +1834,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед одним збоєм",
+        "accessibilityLabel": "Виберіть слово перед одним збоєм",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите артикль перед одним сбоем",
-            "uk": "Виберіть артикль перед одним збоєм"
+            "uk": "Виберіть слово перед одним збоєм"
           },
           "gappedTargetPhrase": "It is ___ glitch.",
           "gapOptions": [
@@ -1873,7 +1873,7 @@
               "testedDimension": "Виберіть артикль перед одним збоєм",
               "feedbackByLocale": {
                 "ru": "Are — форма глагола, не артикль перед существительным.",
-                "uk": "Are — форма дієслова, не артикль перед іменником."
+                "uk": "Are — форма дієслова, не a / the перед іменником."
               }
             }
           ]

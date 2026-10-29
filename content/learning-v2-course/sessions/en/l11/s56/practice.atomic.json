@@ -873,7 +873,7 @@
               "correct": false,
               "testedDimension": "Вчера дверь была открыта. Выберите форму",
               "feedbackByLocale": {
-                "ru": "Door — единственное число: was.",
+                "ru": "Door — форма для одного: was.",
                 "uk": "Door — однина: was."
               }
             }
@@ -1966,7 +1966,7 @@
               "testedDimension": "Учора двері були відчинені. Виберіть форму",
               "feedbackByLocale": {
                 "ru": "Door — единственное число: was.",
-                "uk": "Door — однина: was."
+                "uk": "Door — форма для одного: was."
               }
             }
           ]

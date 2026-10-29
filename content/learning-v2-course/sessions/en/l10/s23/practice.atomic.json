@@ -381,7 +381,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите местоимение для «скажи мне»",
+        "prompt": "Выберите слово для «скажи мне»",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-23:i06:r1",
@@ -398,11 +398,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите местоимение для «скажи мне»",
+        "accessibilityLabel": "Выберите слово для «скажи мне»",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите местоимение для «скажи мне»",
+            "ru": "Выберите слово для «скажи мне»",
             "uk": "Виберіть займенник для «скажи мені»"
           },
           "gappedTargetPhrase": "Tell ___ the truth.",
@@ -603,7 +603,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму advice: здесь это неисчисляемое слово",
+        "prompt": "Выберите форму advice: здесь его не считают поштучно",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-23:i09:r1",
@@ -620,11 +620,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму advice: здесь это неисчисляемое слово",
+        "accessibilityLabel": "Выберите форму advice: здесь его не считают поштучно",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму advice: здесь это неисчисляемое слово",
+            "ru": "Выберите форму advice: здесь его не считают поштучно",
             "uk": "Виберіть форму advice: тут це незлічуване слово"
           },
           "gappedTargetPhrase": "I need ___.",
@@ -649,7 +649,7 @@
               "correct": false,
               "testedDimension": "Выберите форму advice: здесь это неисчисляемое слово",
               "feedbackByLocale": {
-                "ru": "Advice здесь без неопределённого артикля.",
+                "ru": "Advice здесь без a.",
                 "uk": "Advice тут без неозначеного артикля."
               }
             },
@@ -1479,7 +1479,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть займенник для «скажи мені»",
+        "prompt": "Виберіть слово для «скажи мені»",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-23:i06:r1",
@@ -1496,12 +1496,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть займенник для «скажи мені»",
+        "accessibilityLabel": "Виберіть слово для «скажи мені»",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите местоимение для «скажи мне»",
-            "uk": "Виберіть займенник для «скажи мені»"
+            "uk": "Виберіть слово для «скажи мені»"
           },
           "gappedTargetPhrase": "Tell ___ the truth.",
           "gapOptions": [
@@ -1701,7 +1701,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму advice: тут це незлічуване слово",
+        "prompt": "Виберіть форму advice: тут його не рахують поштучно",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-23:i09:r1",
@@ -1718,12 +1718,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму advice: тут це незлічуване слово",
+        "accessibilityLabel": "Виберіть форму advice: тут його не рахують поштучно",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите форму advice: здесь это неисчисляемое слово",
-            "uk": "Виберіть форму advice: тут це незлічуване слово"
+            "uk": "Виберіть форму advice: тут його не рахують поштучно"
           },
           "gappedTargetPhrase": "I need ___.",
           "gapOptions": [
@@ -1748,7 +1748,7 @@
               "testedDimension": "Виберіть форму advice: тут це незлічуване слово",
               "feedbackByLocale": {
                 "ru": "Advice здесь без неопределённого артикля.",
-                "uk": "Advice тут без неозначеного артикля."
+                "uk": "Advice тут без a."
               }
             },
             {

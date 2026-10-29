@@ -601,7 +601,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите вспомогательный глагол для отрицания с I",
+        "prompt": "Выберите do или does для «не» с I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i09:r1",
@@ -618,11 +618,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите вспомогательный глагол для отрицания с I",
+        "accessibilityLabel": "Выберите do или does для «не» с I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите вспомогательный глагол для отрицания с I",
+            "ru": "Выберите do или does для «не» с I",
             "uk": "Виберіть допоміжне дієслово для заперечення з I"
           },
           "gappedTargetPhrase": "I ___ not mind.",
@@ -1696,7 +1696,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть допоміжне дієслово для заперечення з I",
+        "prompt": "Виберіть do або does для «не» з I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i09:r1",
@@ -1713,12 +1713,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть допоміжне дієслово для заперечення з I",
+        "accessibilityLabel": "Виберіть do або does для «не» з I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите вспомогательный глагол для отрицания с I",
-            "uk": "Виберіть допоміжне дієслово для заперечення з I"
+            "uk": "Виберіть do або does для «не» з I"
           },
           "gappedTargetPhrase": "I ___ not mind.",
           "gapOptions": [

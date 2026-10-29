@@ -829,7 +829,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку после this",
+        "prompt": "Выберите форму be после this",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-02:i12:r1",
@@ -846,11 +846,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку после this",
+        "accessibilityLabel": "Выберите форму be после this",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку после this",
+            "ru": "Выберите форму be после this",
             "uk": "Виберіть зв’язку після this"
           },
           "gappedTargetPhrase": "This ___ my hand luggage.",
@@ -1933,7 +1933,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку після this",
+        "prompt": "Виберіть форму be після this",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-02:i12:r1",
@@ -1950,12 +1950,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку після this",
+        "accessibilityLabel": "Виберіть форму be після this",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку после this",
-            "uk": "Виберіть зв’язку після this"
+            "uk": "Виберіть форму be після this"
           },
           "gappedTargetPhrase": "This ___ my hand luggage.",
           "gapOptions": [

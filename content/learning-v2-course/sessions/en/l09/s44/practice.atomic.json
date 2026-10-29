@@ -383,7 +383,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одного рекламного щита",
+        "prompt": "Выберите is или are: один рекламный щит",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-44:i06:r1",
@@ -400,11 +400,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одного рекламного щита",
+        "accessibilityLabel": "Выберите is или are: один рекламный щит",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одного рекламного щита",
+            "ru": "Выберите is или are: один рекламный щит",
             "uk": "Виберіть зв’язку для одного рекламного щита"
           },
           "gappedTargetPhrase": "The billboard ___ large.",
@@ -1493,7 +1493,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для одного рекламного щита",
+        "prompt": "Виберіть is або are: один рекламний щит",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-44:i06:r1",
@@ -1510,12 +1510,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для одного рекламного щита",
+        "accessibilityLabel": "Виберіть is або are: один рекламний щит",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку для одного рекламного щита",
-            "uk": "Виберіть зв’язку для одного рекламного щита"
+            "uk": "Виберіть is або are: один рекламний щит"
           },
           "gappedTargetPhrase": "The billboard ___ large.",
           "gapOptions": [

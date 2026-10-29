@@ -161,7 +161,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму для наблюдения за одной медузой",
+        "prompt": "Вы смотрите на одну медузу. Выберите форму",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-32:i03:r1",
@@ -178,11 +178,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму для наблюдения за одной медузой",
+        "accessibilityLabel": "Вы смотрите на одну медузу. Выберите форму",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму для наблюдения за одной медузой",
+            "ru": "Вы смотрите на одну медузу. Выберите форму",
             "uk": "Виберіть форму для спостереження за однією медузою"
           },
           "gappedTargetPhrase": "The jellyfish ___ floating.",
@@ -1260,7 +1260,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму для спостереження за однією медузою",
+        "prompt": "Ви дивитеся на одну медузу. Виберіть форму",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-32:i03:r1",
@@ -1277,12 +1277,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму для спостереження за однією медузою",
+        "accessibilityLabel": "Ви дивитеся на одну медузу. Виберіть форму",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите форму для наблюдения за одной медузой",
-            "uk": "Виберіть форму для спостереження за однією медузою"
+            "uk": "Ви дивитеся на одну медузу. Виберіть форму"
           },
           "gappedTargetPhrase": "The jellyfish ___ floating.",
           "gapOptions": [

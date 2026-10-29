@@ -790,7 +790,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для нескольких камней",
+        "prompt": "Выберите is или are: несколько камней",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-46:i12:r1",
@@ -807,11 +807,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для нескольких камней",
+        "accessibilityLabel": "Выберите is или are: несколько камней",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для нескольких камней",
+            "ru": "Выберите is или are: несколько камней",
             "uk": "Виберіть зв’язку для кількох каменів"
           },
           "gappedTargetPhrase": "The cobblestones ___ wet.",
@@ -836,7 +836,7 @@
               "correct": false,
               "testedDimension": "Выберите связку для нескольких камней",
               "feedbackByLocale": {
-                "ru": "Cobblestones во множественном числе: are.",
+                "ru": "Cobblestones в форме для нескольких: are.",
                 "uk": "Cobblestones у множині: are."
               }
             },
@@ -1896,7 +1896,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для кількох каменів",
+        "prompt": "Виберіть is або are: кілька каменів",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-46:i12:r1",
@@ -1913,12 +1913,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для кількох каменів",
+        "accessibilityLabel": "Виберіть is або are: кілька каменів",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку для нескольких камней",
-            "uk": "Виберіть зв’язку для кількох каменів"
+            "uk": "Виберіть is або are: кілька каменів"
           },
           "gappedTargetPhrase": "The cobblestones ___ wet.",
           "gapOptions": [
@@ -1943,7 +1943,7 @@
               "testedDimension": "Виберіть зв’язку для кількох каменів",
               "feedbackByLocale": {
                 "ru": "Cobblestones во множественном числе: are.",
-                "uk": "Cobblestones у множині: are."
+                "uk": "Cobblestones у формі для кількох: are."
               }
             },
             {

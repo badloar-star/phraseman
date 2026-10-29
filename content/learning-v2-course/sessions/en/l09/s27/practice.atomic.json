@@ -208,7 +208,7 @@
               "correct": false,
               "testedDimension": "Выберите форму для одних санок",
               "feedbackByLocale": {
-                "ru": "В английском sled — единственное число: is.",
+                "ru": "В английском sled — форма для одного: is.",
                 "uk": "В англійській sled — однина: is."
               }
             },
@@ -947,7 +947,7 @@
               "correct": false,
               "testedDimension": "Выберите начало вопроса о санках",
               "feedbackByLocale": {
-                "ru": "Sled в единственном числе: is.",
+                "ru": "Sled в форме для одного: is.",
                 "uk": "Sled в однині: is."
               }
             },
@@ -970,11 +970,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Санки остановились. Соберите отрицание",
+        "prompt": "Санки остановились. Соберите фразу с «не»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Санки остановились. Соберите отрицание",
+        "accessibilityLabel": "Санки остановились. Соберите фразу с «не»",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "The sled is not sliding.",
@@ -1320,7 +1320,7 @@
               "testedDimension": "Виберіть форму для одних санок",
               "feedbackByLocale": {
                 "ru": "В английском sled — единственное число: is.",
-                "uk": "В англійській sled — однина: is."
+                "uk": "В англійській sled — форма для одного: is."
               }
             },
             {
@@ -2059,7 +2059,7 @@
               "testedDimension": "Виберіть початок запитання про санки",
               "feedbackByLocale": {
                 "ru": "Sled в единственном числе: is.",
-                "uk": "Sled в однині: is."
+                "uk": "Sled у формі для одного: is."
               }
             },
             {
@@ -2081,11 +2081,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Санки зупинилися. Складіть заперечення",
+        "prompt": "Санки зупинилися. Складіть фразу з «не»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Санки зупинилися. Складіть заперечення",
+        "accessibilityLabel": "Санки зупинилися. Складіть фразу з «не»",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "The sled is not sliding.",

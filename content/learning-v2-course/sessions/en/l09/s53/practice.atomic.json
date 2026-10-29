@@ -605,7 +605,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для acoustics в значении звучания помещения",
+        "prompt": "Выберите is или are: acoustics — как звучит помещение",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-53:i09:r1",
@@ -622,11 +622,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для acoustics в значении звучания помещения",
+        "accessibilityLabel": "Выберите is или are: acoustics — как звучит помещение",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для acoustics в значении звучания помещения",
+            "ru": "Выберите is или are: acoustics — как звучит помещение",
             "uk": "Виберіть зв’язку для acoustics у значенні звучання приміщення"
           },
           "gappedTargetPhrase": "The acoustics ___ good.",
@@ -651,7 +651,7 @@
               "correct": false,
               "testedDimension": "Выберите связку для acoustics в значении звучания помещения",
               "feedbackByLocale": {
-                "ru": "В этом значении acoustics во множественном числе: are.",
+                "ru": "В этом значении acoustics в форме для нескольких: are.",
                 "uk": "У цьому значенні acoustics у множині: are."
               }
             },
@@ -1714,7 +1714,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для acoustics у значенні звучання приміщення",
+        "prompt": "Виберіть is або are: acoustics — як звучить приміщення",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-53:i09:r1",
@@ -1731,12 +1731,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для acoustics у значенні звучання приміщення",
+        "accessibilityLabel": "Виберіть is або are: acoustics — як звучить приміщення",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку для acoustics в значении звучания помещения",
-            "uk": "Виберіть зв’язку для acoustics у значенні звучання приміщення"
+            "uk": "Виберіть is або are: acoustics — як звучить приміщення"
           },
           "gappedTargetPhrase": "The acoustics ___ good.",
           "gapOptions": [
@@ -1761,7 +1761,7 @@
               "testedDimension": "Виберіть зв’язку для acoustics у значенні звучання приміщення",
               "feedbackByLocale": {
                 "ru": "В этом значении acoustics во множественном числе: are.",
-                "uk": "У цьому значенні acoustics у множині: are."
+                "uk": "У цьому значенні acoustics у формі для кількох: are."
               }
             },
             {

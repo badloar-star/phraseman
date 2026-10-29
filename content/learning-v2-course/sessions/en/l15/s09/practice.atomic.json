@@ -163,7 +163,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "prompt": "Это видно уже сейчас. Выберите is или are",
         "responseOptions": [
           {
             "responseId": "en:lesson-15:session-09:i03:r1",
@@ -180,11 +180,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "accessibilityLabel": "Это видно уже сейчас. Выберите is или are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "ru": "Это видно уже сейчас. Выберите is или are",
             "uk": "Прогноз за видимою ознакою. Виберіть is або are"
           },
           "gappedTargetPhrase": "The sink ___ going to overflow.",
@@ -209,7 +209,7 @@
               "correct": false,
               "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
               "feedbackByLocale": {
-                "ru": "С этим подлежащим нужна форма is.",
+                "ru": "С этим словом нужна форма is.",
                 "uk": "З цим підметом потрібна форма is."
               }
             },
@@ -218,7 +218,7 @@
               "correct": false,
               "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
               "feedbackByLocale": {
-                "ru": "Для этого подлежащего нужна is.",
+                "ru": "Для этого слова нужна is.",
                 "uk": "Для цього підмета потрібна is."
               }
             }
@@ -386,7 +386,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "prompt": "Это видно уже сейчас. Выберите is или are",
         "responseOptions": [
           {
             "responseId": "en:lesson-15:session-09:i06:r1",
@@ -403,11 +403,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "accessibilityLabel": "Это видно уже сейчас. Выберите is или are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "ru": "Это видно уже сейчас. Выберите is или are",
             "uk": "Прогноз за видимою ознакою. Виберіть is або are"
           },
           "gappedTargetPhrase": "The tower ___ going to topple.",
@@ -432,7 +432,7 @@
               "correct": false,
               "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
               "feedbackByLocale": {
-                "ru": "С этим подлежащим нужна форма is.",
+                "ru": "С этим словом нужна форма is.",
                 "uk": "З цим підметом потрібна форма is."
               }
             },
@@ -441,7 +441,7 @@
               "correct": false,
               "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
               "feedbackByLocale": {
-                "ru": "Для этого подлежащего нужна is.",
+                "ru": "Для этого слова нужна is.",
                 "uk": "Для цього підмета потрібна is."
               }
             }
@@ -609,7 +609,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "prompt": "Это видно уже сейчас. Выберите is или are",
         "responseOptions": [
           {
             "responseId": "en:lesson-15:session-09:i09:r1",
@@ -626,11 +626,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "accessibilityLabel": "Это видно уже сейчас. Выберите is или are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "ru": "Это видно уже сейчас. Выберите is или are",
             "uk": "Прогноз за видимою ознакою. Виберіть is або are"
           },
           "gappedTargetPhrase": "The balloons ___ going to burst.",
@@ -655,7 +655,7 @@
               "correct": false,
               "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
               "feedbackByLocale": {
-                "ru": "С этим подлежащим нужна форма are.",
+                "ru": "С этим словом нужна форма are.",
                 "uk": "З цим підметом потрібна форма are."
               }
             },
@@ -664,7 +664,7 @@
               "correct": false,
               "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
               "feedbackByLocale": {
-                "ru": "Для этого подлежащего нужна are.",
+                "ru": "Для этого слова нужна are.",
                 "uk": "Для цього підмета потрібна are."
               }
             }
@@ -832,7 +832,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "prompt": "Это видно уже сейчас. Выберите is или are",
         "responseOptions": [
           {
             "responseId": "en:lesson-15:session-09:i12:r1",
@@ -849,11 +849,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "accessibilityLabel": "Это видно уже сейчас. Выберите is или are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "ru": "Это видно уже сейчас. Выберите is или are",
             "uk": "Прогноз за видимою ознакою. Виберіть is або are"
           },
           "gappedTargetPhrase": "The shelf ___ going to collapse.",
@@ -878,7 +878,7 @@
               "correct": false,
               "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
               "feedbackByLocale": {
-                "ru": "С этим подлежащим нужна форма is.",
+                "ru": "С этим словом нужна форма is.",
                 "uk": "З цим підметом потрібна форма is."
               }
             },
@@ -887,7 +887,7 @@
               "correct": false,
               "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
               "feedbackByLocale": {
-                "ru": "Для этого подлежащего нужна is.",
+                "ru": "Для этого слова нужна is.",
                 "uk": "Для цього підмета потрібна is."
               }
             }
@@ -1272,7 +1272,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "prompt": "Це видно вже зараз. Виберіть is або are",
         "responseOptions": [
           {
             "responseId": "en:lesson-15:session-09:i03:r1",
@@ -1289,12 +1289,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "accessibilityLabel": "Це видно вже зараз. Виберіть is або are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Прогноз по видимому признаку. Выберите is или are",
-            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+            "uk": "Це видно вже зараз. Виберіть is або are"
           },
           "gappedTargetPhrase": "The sink ___ going to overflow.",
           "gapOptions": [
@@ -1319,7 +1319,7 @@
               "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
               "feedbackByLocale": {
                 "ru": "С этим подлежащим нужна форма is.",
-                "uk": "З цим підметом потрібна форма is."
+                "uk": "З цим словом потрібна форма is."
               }
             },
             {
@@ -1328,7 +1328,7 @@
               "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
               "feedbackByLocale": {
                 "ru": "Для этого подлежащего нужна is.",
-                "uk": "Для цього підмета потрібна is."
+                "uk": "Для цього слова потрібна is."
               }
             }
           ]
@@ -1495,7 +1495,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "prompt": "Це видно вже зараз. Виберіть is або are",
         "responseOptions": [
           {
             "responseId": "en:lesson-15:session-09:i06:r1",
@@ -1512,12 +1512,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "accessibilityLabel": "Це видно вже зараз. Виберіть is або are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Прогноз по видимому признаку. Выберите is или are",
-            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+            "uk": "Це видно вже зараз. Виберіть is або are"
           },
           "gappedTargetPhrase": "The tower ___ going to topple.",
           "gapOptions": [
@@ -1542,7 +1542,7 @@
               "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
               "feedbackByLocale": {
                 "ru": "С этим подлежащим нужна форма is.",
-                "uk": "З цим підметом потрібна форма is."
+                "uk": "З цим словом потрібна форма is."
               }
             },
             {
@@ -1551,7 +1551,7 @@
               "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
               "feedbackByLocale": {
                 "ru": "Для этого подлежащего нужна is.",
-                "uk": "Для цього підмета потрібна is."
+                "uk": "Для цього слова потрібна is."
               }
             }
           ]
@@ -1718,7 +1718,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "prompt": "Це видно вже зараз. Виберіть is або are",
         "responseOptions": [
           {
             "responseId": "en:lesson-15:session-09:i09:r1",
@@ -1735,12 +1735,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "accessibilityLabel": "Це видно вже зараз. Виберіть is або are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Прогноз по видимому признаку. Выберите is или are",
-            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+            "uk": "Це видно вже зараз. Виберіть is або are"
           },
           "gappedTargetPhrase": "The balloons ___ going to burst.",
           "gapOptions": [
@@ -1765,7 +1765,7 @@
               "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
               "feedbackByLocale": {
                 "ru": "С этим подлежащим нужна форма are.",
-                "uk": "З цим підметом потрібна форма are."
+                "uk": "З цим словом потрібна форма are."
               }
             },
             {
@@ -1774,7 +1774,7 @@
               "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
               "feedbackByLocale": {
                 "ru": "Для этого подлежащего нужна are.",
-                "uk": "Для цього підмета потрібна are."
+                "uk": "Для цього слова потрібна are."
               }
             }
           ]
@@ -1941,7 +1941,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "prompt": "Це видно вже зараз. Виберіть is або are",
         "responseOptions": [
           {
             "responseId": "en:lesson-15:session-09:i12:r1",
@@ -1958,12 +1958,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "accessibilityLabel": "Це видно вже зараз. Виберіть is або are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Прогноз по видимому признаку. Выберите is или are",
-            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+            "uk": "Це видно вже зараз. Виберіть is або are"
           },
           "gappedTargetPhrase": "The shelf ___ going to collapse.",
           "gapOptions": [
@@ -1988,7 +1988,7 @@
               "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
               "feedbackByLocale": {
                 "ru": "С этим подлежащим нужна форма is.",
-                "uk": "З цим підметом потрібна форма is."
+                "uk": "З цим словом потрібна форма is."
               }
             },
             {
@@ -1997,7 +1997,7 @@
               "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
               "feedbackByLocale": {
                 "ru": "Для этого подлежащего нужна is.",
-                "uk": "Для цього підмета потрібна is."
+                "uk": "Для цього слова потрібна is."
               }
             }
           ]

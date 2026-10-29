@@ -383,7 +383,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одной книги",
+        "prompt": "Выберите is или are: одна книга",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-45:i06:r1",
@@ -400,11 +400,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одной книги",
+        "accessibilityLabel": "Выберите is или are: одна книга",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одной книги",
+            "ru": "Выберите is или are: одна книга",
             "uk": "Виберіть зв’язку для однієї книжки"
           },
           "gappedTargetPhrase": "The book ___ on the lectern.",
@@ -1489,7 +1489,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для однієї книжки",
+        "prompt": "Виберіть is або are: одна книжка",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-45:i06:r1",
@@ -1506,12 +1506,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для однієї книжки",
+        "accessibilityLabel": "Виберіть is або are: одна книжка",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку для одной книги",
-            "uk": "Виберіть зв’язку для однієї книжки"
+            "uk": "Виберіть is або are: одна книжка"
           },
           "gappedTargetPhrase": "The book ___ on the lectern.",
           "gapOptions": [

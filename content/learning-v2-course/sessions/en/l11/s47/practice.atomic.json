@@ -867,7 +867,7 @@
               "correct": false,
               "testedDimension": "Перед отъездом вспоминаете: вчера билеты были в сумке. Выберите форму",
               "feedbackByLocale": {
-                "ru": "Tickets — множественное число: were.",
+                "ru": "Tickets — форма для нескольких: were.",
                 "uk": "Tickets — множина: were."
               }
             },
@@ -1966,7 +1966,7 @@
               "testedDimension": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму",
               "feedbackByLocale": {
                 "ru": "Tickets — множественное число: were.",
-                "uk": "Tickets — множина: were."
+                "uk": "Tickets — форма для кількох: were."
               }
             },
             {

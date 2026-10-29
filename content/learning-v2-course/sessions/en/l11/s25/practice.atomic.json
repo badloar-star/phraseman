@@ -443,7 +443,7 @@
               "correct": false,
               "testedDimension": "Сейчас крем на столе. Выберите форму",
               "feedbackByLocale": {
-                "ru": "Sun cream неисчисляемое: is.",
+                "ru": "Sun cream не считается поштучно: is.",
                 "uk": "Sun cream незлічуване: is."
               }
             }
@@ -890,7 +890,7 @@
               "correct": false,
               "testedDimension": "Вчера вьетнамки были в сумке. Выберите форму",
               "feedbackByLocale": {
-                "ru": "Множественное число: were.",
+                "ru": "Форма для нескольких: were.",
                 "uk": "Множина: were."
               }
             }
@@ -1560,7 +1560,7 @@
               "testedDimension": "Зараз крем на столі. Виберіть форму",
               "feedbackByLocale": {
                 "ru": "Sun cream неисчисляемое: is.",
-                "uk": "Sun cream незлічуване: is."
+                "uk": "Sun cream не рахується поштучно: is."
               }
             }
           ]
@@ -2007,7 +2007,7 @@
               "testedDimension": "Учора в’єтнамки були в сумці. Виберіть форму",
               "feedbackByLocale": {
                 "ru": "Множественное число: were.",
-                "uk": "Множина: were."
+                "uk": "Форма для кількох: were."
               }
             }
           ]

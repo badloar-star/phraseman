@@ -964,7 +964,7 @@
               "correct": false,
               "testedDimension": "Скажите подруге, что ваучера нет. Выберите слово",
               "feedbackByLocale": {
-                "ru": "Слово voucher стоит в единственном числе: нужно `There is no`.",
+                "ru": "Слово voucher стоит в форме для одного: нужно `There is no`.",
                 "uk": "Слово voucher стоїть в однині: потрібно `There is no`."
               }
             },
@@ -2135,7 +2135,7 @@
               "testedDimension": "Скажіть подрузі, що ваучера немає. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Слово voucher стоит в единственном числе: нужно `There is no`.",
-                "uk": "Слово voucher стоїть в однині: потрібно `There is no`."
+                "uk": "Слово voucher стоїть у формі для одного: потрібно `There is no`."
               }
             },
             {

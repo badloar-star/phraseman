@@ -442,7 +442,7 @@
               "correct": false,
               "testedDimension": "Сейчас апельсиновый сок тёплый. Выберите форму",
               "feedbackByLocale": {
-                "ru": "Juice неисчисляемое: is.",
+                "ru": "Juice не считается поштучно: is.",
                 "uk": "Juice незлічуване: is."
               }
             }
@@ -1551,7 +1551,7 @@
               "testedDimension": "Зараз апельсиновий сік теплий. Виберіть форму",
               "feedbackByLocale": {
                 "ru": "Juice неисчисляемое: is.",
-                "uk": "Juice незлічуване: is."
+                "uk": "Juice не рахується поштучно: is."
               }
             }
           ]

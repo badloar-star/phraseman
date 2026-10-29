@@ -452,13 +452,13 @@
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите отрицание",
+        "prompt": "Послушайте и соберите фразу с «не»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-09:session-40:i07:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите отрицание",
+        "accessibilityLabel": "Послушайте и соберите фразу с «не»",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
@@ -612,7 +612,7 @@
               "correct": false,
               "testedDimension": "Выберите форму для castanets",
               "feedbackByLocale": {
-                "ru": "Castanets — множественное число, поэтому are.",
+                "ru": "Castanets — форма для нескольких, поэтому are.",
                 "uk": "Castanets — множина, тому are."
               }
             },
@@ -1594,13 +1594,13 @@
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть заперечення",
+        "prompt": "Послухайте й складіть фразу з «не»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-09:session-40:i07:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть заперечення",
+        "accessibilityLabel": "Послухайте й складіть фразу з «не»",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
@@ -1755,7 +1755,7 @@
               "testedDimension": "Виберіть форму для castanets",
               "feedbackByLocale": {
                 "ru": "Castanets — множественное число, поэтому are.",
-                "uk": "Castanets — множина, тому are."
+                "uk": "Castanets — форма для кількох, тому are."
               }
             },
             {

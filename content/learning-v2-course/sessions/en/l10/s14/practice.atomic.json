@@ -385,7 +385,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед aisle seat",
+        "prompt": "Выберите слово перед aisle seat",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-14:i06:r1",
@@ -402,11 +402,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед aisle seat",
+        "accessibilityLabel": "Выберите слово перед aisle seat",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед aisle seat",
+            "ru": "Выберите слово перед aisle seat",
             "uk": "Виберіть артикль перед aisle seat"
           },
           "gappedTargetPhrase": "I would like ___ aisle seat.",
@@ -607,7 +607,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы спрашиваете об одном выходе. Выберите связку",
+        "prompt": "Вы спрашиваете об одном выходе. Выберите форму be",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-14:i09:r1",
@@ -624,11 +624,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы спрашиваете об одном выходе. Выберите связку",
+        "accessibilityLabel": "Вы спрашиваете об одном выходе. Выберите форму be",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы спрашиваете об одном выходе. Выберите связку",
+            "ru": "Вы спрашиваете об одном выходе. Выберите форму be",
             "uk": "Ви запитуєте про один вихід. Виберіть зв’язку"
           },
           "gappedTargetPhrase": "Where ___ the boarding gate?",
@@ -1491,7 +1491,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед aisle seat",
+        "prompt": "Виберіть слово перед aisle seat",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-14:i06:r1",
@@ -1508,12 +1508,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед aisle seat",
+        "accessibilityLabel": "Виберіть слово перед aisle seat",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите артикль перед aisle seat",
-            "uk": "Виберіть артикль перед aisle seat"
+            "uk": "Виберіть слово перед aisle seat"
           },
           "gappedTargetPhrase": "I would like ___ aisle seat.",
           "gapOptions": [
@@ -1713,7 +1713,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви запитуєте про один вихід. Виберіть зв’язку",
+        "prompt": "Ви запитуєте про один вихід. Виберіть форму be",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-14:i09:r1",
@@ -1730,12 +1730,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви запитуєте про один вихід. Виберіть зв’язку",
+        "accessibilityLabel": "Ви запитуєте про один вихід. Виберіть форму be",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы спрашиваете об одном выходе. Выберите связку",
-            "uk": "Ви запитуєте про один вихід. Виберіть зв’язку"
+            "uk": "Ви запитуєте про один вихід. Виберіть форму be"
           },
           "gappedTargetPhrase": "Where ___ the boarding gate?",
           "gapOptions": [

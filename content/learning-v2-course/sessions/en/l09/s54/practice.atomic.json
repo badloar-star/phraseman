@@ -381,7 +381,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед washer",
+        "prompt": "Выберите слово перед washer",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-54:i06:r1",
@@ -398,11 +398,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед washer",
+        "accessibilityLabel": "Выберите слово перед washer",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед washer",
+            "ru": "Выберите слово перед washer",
             "uk": "Виберіть артикль перед washer"
           },
           "gappedTargetPhrase": "This is ___ washer.",
@@ -436,7 +436,7 @@
               "correct": false,
               "testedDimension": "Выберите артикль перед washer",
               "feedbackByLocale": {
-                "ru": "Are не артикль, здесь нужен a.",
+                "ru": "Здесь нужно a, а не are.",
                 "uk": "Are не артикль, тут потрібне a."
               }
             }
@@ -1483,7 +1483,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед washer",
+        "prompt": "Виберіть слово перед washer",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-54:i06:r1",
@@ -1500,12 +1500,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед washer",
+        "accessibilityLabel": "Виберіть слово перед washer",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите артикль перед washer",
-            "uk": "Виберіть артикль перед washer"
+            "uk": "Виберіть слово перед washer"
           },
           "gappedTargetPhrase": "This is ___ washer.",
           "gapOptions": [
@@ -1539,7 +1539,7 @@
               "testedDimension": "Виберіть артикль перед washer",
               "feedbackByLocale": {
                 "ru": "Are не артикль, здесь нужен a.",
-                "uk": "Are не артикль, тут потрібне a."
+                "uk": "Тут потрібне a, а не are."
               }
             }
           ]

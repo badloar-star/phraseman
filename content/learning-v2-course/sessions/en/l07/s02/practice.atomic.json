@@ -962,7 +962,7 @@
               "correct": false,
               "testedDimension": "Скажите, что весов нет. Выберите слово",
               "feedbackByLocale": {
-                "ru": "Слово scale стоит в единственном числе: нужно `There is no`.",
+                "ru": "Слово scale стоит в форме для одного: нужно `There is no`.",
                 "uk": "Слово scale стоїть в однині: потрібно `There is no`."
               }
             },
@@ -2131,7 +2131,7 @@
               "testedDimension": "Скажіть, що ваг немає. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Слово scale стоит в единственном числе: нужно `There is no`.",
-                "uk": "Слово scale стоїть в однині: потрібно `There is no`."
+                "uk": "Слово scale стоїть у формі для одного: потрібно `There is no`."
               }
             },
             {

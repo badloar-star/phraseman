@@ -185,7 +185,7 @@
               "correct": false,
               "testedDimension": "Продавец показывает на коробку вдали. Дополните его фразу",
               "feedbackByLocale": {
-                "ru": "После That артикль a не ставим: That box is heavy.",
+                "ru": "После That a не ставим: That box is heavy.",
                 "uk": "Після That артикль a не ставимо: That box is heavy."
               }
             }
@@ -1352,7 +1352,7 @@
               "testedDimension": "Продавець показує на коробку вдалині. Доповніть його фразу",
               "feedbackByLocale": {
                 "ru": "После That артикль a не ставим: That box is heavy.",
-                "uk": "Після That артикль a не ставимо: That box is heavy."
+                "uk": "Після That a не ставимо: That box is heavy."
               }
             }
           ]

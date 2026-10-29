@@ -160,7 +160,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Стук слышен сейчас. Выберите вспомогательный глагол",
+        "prompt": "Стук слышен сейчас. Выберите do или does",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i03:r1",
@@ -177,11 +177,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Стук слышен сейчас. Выберите вспомогательный глагол",
+        "accessibilityLabel": "Стук слышен сейчас. Выберите do или does",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Стук слышен сейчас. Выберите вспомогательный глагол",
+            "ru": "Стук слышен сейчас. Выберите do или does",
             "uk": "Стукіт чути зараз. Виберіть допоміжне дієслово"
           },
           "gappedTargetPhrase": "Somebody ___ knocking.",
@@ -381,7 +381,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку после nobody",
+        "prompt": "Выберите форму be после nobody",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i06:r1",
@@ -398,11 +398,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку после nobody",
+        "accessibilityLabel": "Выберите форму be после nobody",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку после nobody",
+            "ru": "Выберите форму be после nobody",
             "uk": "Виберіть зв’язку після nobody"
           },
           "gappedTargetPhrase": "Nobody ___ at home.",
@@ -1262,7 +1262,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Стукіт чути зараз. Виберіть допоміжне дієслово",
+        "prompt": "Стукіт чути зараз. Виберіть do або does",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i03:r1",
@@ -1279,12 +1279,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Стукіт чути зараз. Виберіть допоміжне дієслово",
+        "accessibilityLabel": "Стукіт чути зараз. Виберіть do або does",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Стук слышен сейчас. Выберите вспомогательный глагол",
-            "uk": "Стукіт чути зараз. Виберіть допоміжне дієслово"
+            "uk": "Стукіт чути зараз. Виберіть do або does"
           },
           "gappedTargetPhrase": "Somebody ___ knocking.",
           "gapOptions": [
@@ -1483,7 +1483,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку після nobody",
+        "prompt": "Виберіть форму be після nobody",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-52:i06:r1",
@@ -1500,12 +1500,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку після nobody",
+        "accessibilityLabel": "Виберіть форму be після nobody",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку после nobody",
-            "uk": "Виберіть зв’язку після nobody"
+            "uk": "Виберіть форму be після nobody"
           },
           "gappedTargetPhrase": "Nobody ___ at home.",
           "gapOptions": [

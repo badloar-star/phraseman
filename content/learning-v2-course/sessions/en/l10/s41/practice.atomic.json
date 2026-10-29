@@ -163,7 +163,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку после he",
+        "prompt": "Выберите форму be после he",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-41:i03:r1",
@@ -180,11 +180,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку после he",
+        "accessibilityLabel": "Выберите форму be после he",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку после he",
+            "ru": "Выберите форму be после he",
             "uk": "Виберіть зв’язку після he"
           },
           "gappedTargetPhrase": "Perhaps he ___ on the bus.",
@@ -385,7 +385,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку после he",
+        "prompt": "Выберите форму be после he",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-41:i06:r1",
@@ -402,11 +402,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку после he",
+        "accessibilityLabel": "Выберите форму be после he",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку после he",
+            "ru": "Выберите форму be после he",
             "uk": "Виберіть зв’язку після he"
           },
           "gappedTargetPhrase": "He ___ probably at home.",
@@ -606,7 +606,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку в описании погоды",
+        "prompt": "Выберите форму be в описании погоды",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-41:i09:r1",
@@ -623,11 +623,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку в описании погоды",
+        "accessibilityLabel": "Выберите форму be в описании погоды",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку в описании погоды",
+            "ru": "Выберите форму be в описании погоды",
             "uk": "Виберіть зв’язку в описі погоди"
           },
           "gappedTargetPhrase": "It ___ quite cold.",
@@ -1264,7 +1264,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку після he",
+        "prompt": "Виберіть форму be після he",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-41:i03:r1",
@@ -1281,12 +1281,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку після he",
+        "accessibilityLabel": "Виберіть форму be після he",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку после he",
-            "uk": "Виберіть зв’язку після he"
+            "uk": "Виберіть форму be після he"
           },
           "gappedTargetPhrase": "Perhaps he ___ on the bus.",
           "gapOptions": [
@@ -1486,7 +1486,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку після he",
+        "prompt": "Виберіть форму be після he",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-41:i06:r1",
@@ -1503,12 +1503,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку після he",
+        "accessibilityLabel": "Виберіть форму be після he",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку после he",
-            "uk": "Виберіть зв’язку після he"
+            "uk": "Виберіть форму be після he"
           },
           "gappedTargetPhrase": "He ___ probably at home.",
           "gapOptions": [
@@ -1707,7 +1707,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку в описі погоди",
+        "prompt": "Виберіть форму be в описі погоди",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-41:i09:r1",
@@ -1724,12 +1724,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку в описі погоди",
+        "accessibilityLabel": "Виберіть форму be в описі погоди",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку в описании погоды",
-            "uk": "Виберіть зв’язку в описі погоди"
+            "uk": "Виберіть форму be в описі погоди"
           },
           "gappedTargetPhrase": "It ___ quite cold.",
           "gapOptions": [

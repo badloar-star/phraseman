@@ -828,7 +828,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед одной ложкой",
+        "prompt": "Выберите слово перед одной ложкой",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-06:i12:r1",
@@ -845,11 +845,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед одной ложкой",
+        "accessibilityLabel": "Выберите слово перед одной ложкой",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед одной ложкой",
+            "ru": "Выберите слово перед одной ложкой",
             "uk": "Виберіть артикль перед однією ложкою"
           },
           "gappedTargetPhrase": "I need ___ teaspoon.",
@@ -883,7 +883,7 @@
               "correct": false,
               "testedDimension": "Выберите артикль перед одной ложкой",
               "feedbackByLocale": {
-                "ru": "Одна исчисляемая ложка: a teaspoon.",
+                "ru": "Ложка одна: a teaspoon.",
                 "uk": "Одна злічувана ложка: a teaspoon."
               }
             }
@@ -1930,7 +1930,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед однією ложкою",
+        "prompt": "Виберіть слово перед однією ложкою",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-06:i12:r1",
@@ -1947,12 +1947,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед однією ложкою",
+        "accessibilityLabel": "Виберіть слово перед однією ложкою",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите артикль перед одной ложкой",
-            "uk": "Виберіть артикль перед однією ложкою"
+            "uk": "Виберіть слово перед однією ложкою"
           },
           "gappedTargetPhrase": "I need ___ teaspoon.",
           "gapOptions": [
@@ -1986,7 +1986,7 @@
               "testedDimension": "Виберіть артикль перед однією ложкою",
               "feedbackByLocale": {
                 "ru": "Одна исчисляемая ложка: a teaspoon.",
-                "uk": "Одна злічувана ложка: a teaspoon."
+                "uk": "Ложка одна: a teaspoon."
               }
             }
           ]

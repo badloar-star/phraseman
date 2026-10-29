@@ -606,7 +606,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните отрицание: это был не будний день",
+        "prompt": "Дополните фразу с «не»: это был не будний день",
         "responseOptions": [
           {
             "responseId": "en:lesson-11:session-09:i09:r1",
@@ -623,11 +623,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните отрицание: это был не будний день",
+        "accessibilityLabel": "Дополните фразу с «не»: это был не будний день",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните отрицание: это был не будний день",
+            "ru": "Дополните фразу с «не»: это был не будний день",
             "uk": "Доповніть заперечення: це був не будній день"
           },
           "gappedTargetPhrase": "It ___ not a weekday.",
@@ -1008,13 +1008,13 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите услышанное отрицание",
+        "prompt": "Соберите услышанную фразу с «не»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-11:session-09:i15:audio"
         ],
-        "accessibilityLabel": "Соберите услышанное отрицание",
+        "accessibilityLabel": "Соберите услышанную фразу с «не»",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
@@ -1711,7 +1711,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть заперечення: це був не будній день",
+        "prompt": "Доповніть фразу з «не»: це був не будній день",
         "responseOptions": [
           {
             "responseId": "en:lesson-11:session-09:i09:r1",
@@ -1728,12 +1728,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть заперечення: це був не будній день",
+        "accessibilityLabel": "Доповніть фразу з «не»: це був не будній день",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Дополните отрицание: это был не будний день",
-            "uk": "Доповніть заперечення: це був не будній день"
+            "uk": "Доповніть фразу з «не»: це був не будній день"
           },
           "gappedTargetPhrase": "It ___ not a weekday.",
           "gapOptions": [
@@ -2113,13 +2113,13 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть почуте заперечення",
+        "prompt": "Складіть почуту фразу з «не»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-11:session-09:i15:audio"
         ],
-        "accessibilityLabel": "Складіть почуте заперечення",
+        "accessibilityLabel": "Складіть почуту фразу з «не»",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {

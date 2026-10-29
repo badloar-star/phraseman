@@ -964,7 +964,7 @@
               "correct": false,
               "testedDimension": "Скажите соседу, что охранника нет. Выберите слово",
               "feedbackByLocale": {
-                "ru": "Слово guard стоит в единственном числе: нужно `There is no`.",
+                "ru": "Слово guard стоит в форме для одного: нужно `There is no`.",
                 "uk": "Слово guard стоїть в однині: потрібно `There is no`."
               }
             },
@@ -2135,7 +2135,7 @@
               "testedDimension": "Скажіть сусіду, що охоронця немає. Виберіть слово",
               "feedbackByLocale": {
                 "ru": "Слово guard стоит в единственном числе: нужно `There is no`.",
-                "uk": "Слово guard стоїть в однині: потрібно `There is no`."
+                "uk": "Слово guard стоїть у формі для одного: потрібно `There is no`."
               }
             },
             {

@@ -428,7 +428,7 @@
               "correct": false,
               "testedDimension": "Скажите, что несколько крекеров были не свежими",
               "feedbackByLocale": {
-                "ru": "Crackers — множественное число: were.",
+                "ru": "Crackers — форма для нескольких: were.",
                 "uk": "Crackers — множина: were."
               }
             },
@@ -1527,7 +1527,7 @@
               "testedDimension": "Скажіть, що кілька крекерів були не свіжі",
               "feedbackByLocale": {
                 "ru": "Crackers — множественное число: were.",
-                "uk": "Crackers — множина: were."
+                "uk": "Crackers — форма для кількох: were."
               }
             },
             {

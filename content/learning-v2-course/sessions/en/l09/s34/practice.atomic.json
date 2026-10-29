@@ -825,7 +825,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одной петли",
+        "prompt": "Выберите is или are: одна петля",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-34:i13:r1",
@@ -842,11 +842,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одной петли",
+        "accessibilityLabel": "Выберите is или are: одна петля",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одной петли",
+            "ru": "Выберите is или are: одна петля",
             "uk": "Виберіть зв’язку для однієї петлі"
           },
           "gappedTargetPhrase": "The loop ___ small.",
@@ -1896,7 +1896,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для однієї петлі",
+        "prompt": "Виберіть is або are: одна петля",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-34:i13:r1",
@@ -1913,12 +1913,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для однієї петлі",
+        "accessibilityLabel": "Виберіть is або are: одна петля",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку для одной петли",
-            "uk": "Виберіть зв’язку для однієї петлі"
+            "uk": "Виберіть is або are: одна петля"
           },
           "gappedTargetPhrase": "The loop ___ small.",
           "gapOptions": [

@@ -570,7 +570,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одного окуляра",
+        "prompt": "Выберите is или are: один окуляр",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-51:i09:r1",
@@ -587,11 +587,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одного окуляра",
+        "accessibilityLabel": "Выберите is или are: один окуляр",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одного окуляра",
+            "ru": "Выберите is или are: один окуляр",
             "uk": "Виберіть зв’язку для одного окуляра"
           },
           "gappedTargetPhrase": "The eyepiece ___ small.",
@@ -1681,7 +1681,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для одного окуляра",
+        "prompt": "Виберіть is або are: один окуляр",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-51:i09:r1",
@@ -1698,12 +1698,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для одного окуляра",
+        "accessibilityLabel": "Виберіть is або are: один окуляр",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку для одного окуляра",
-            "uk": "Виберіть зв’язку для одного окуляра"
+            "uk": "Виберіть is або are: один окуляр"
           },
           "gappedTargetPhrase": "The eyepiece ___ small.",
           "gapOptions": [

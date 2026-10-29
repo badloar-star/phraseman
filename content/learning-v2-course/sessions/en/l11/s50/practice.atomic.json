@@ -430,7 +430,7 @@
               "correct": false,
               "testedDimension": "В прошлом году мои родители уже были на пенсии. Выберите форму",
               "feedbackByLocale": {
-                "ru": "Parents — множественное число: were.",
+                "ru": "Parents — форма для нескольких: were.",
                 "uk": "Parents — множина: were."
               }
             },
@@ -1536,7 +1536,7 @@
               "testedDimension": "Торік мої батьки вже були на пенсії. Виберіть форму",
               "feedbackByLocale": {
                 "ru": "Parents — множественное число: were.",
-                "uk": "Parents — множина: were."
+                "uk": "Parents — форма для кількох: were."
               }
             },
             {

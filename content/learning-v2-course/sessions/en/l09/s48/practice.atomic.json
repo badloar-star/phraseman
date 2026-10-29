@@ -385,7 +385,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед marsh",
+        "prompt": "Выберите слово перед marsh",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-48:i06:r1",
@@ -402,11 +402,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед marsh",
+        "accessibilityLabel": "Выберите слово перед marsh",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед marsh",
+            "ru": "Выберите слово перед marsh",
             "uk": "Виберіть артикль перед marsh"
           },
           "gappedTargetPhrase": "This is ___ marsh.",
@@ -440,7 +440,7 @@
               "correct": false,
               "testedDimension": "Выберите артикль перед marsh",
               "feedbackByLocale": {
-                "ru": "Are не артикль; здесь нужен a.",
+                "ru": "Здесь нужно a, а не are.",
                 "uk": "Are не артикль; тут потрібне a."
               }
             }
@@ -1492,7 +1492,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед marsh",
+        "prompt": "Виберіть слово перед marsh",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-48:i06:r1",
@@ -1509,12 +1509,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед marsh",
+        "accessibilityLabel": "Виберіть слово перед marsh",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите артикль перед marsh",
-            "uk": "Виберіть артикль перед marsh"
+            "uk": "Виберіть слово перед marsh"
           },
           "gappedTargetPhrase": "This is ___ marsh.",
           "gapOptions": [
@@ -1548,7 +1548,7 @@
               "testedDimension": "Виберіть артикль перед marsh",
               "feedbackByLocale": {
                 "ru": "Are не артикль; здесь нужен a.",
-                "uk": "Are не артикль; тут потрібне a."
+                "uk": "Тут потрібне a, а не are."
               }
             }
           ]

@@ -207,7 +207,7 @@
               "correct": false,
               "testedDimension": "Спросите о нескольких блинчиках",
               "feedbackByLocale": {
-                "ru": "Pancakes — множественное число: were.",
+                "ru": "Pancakes — форма для нескольких: were.",
                 "uk": "Pancakes — множина: were."
               }
             },
@@ -1310,7 +1310,7 @@
               "testedDimension": "Запитайте про кілька млинців",
               "feedbackByLocale": {
                 "ru": "Pancakes — множественное число: were.",
-                "uk": "Pancakes — множина: were."
+                "uk": "Pancakes — форма для кількох: were."
               }
             },
             {

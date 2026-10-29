@@ -161,7 +161,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму для отрицания с I",
+        "prompt": "Выберите, как сказать «не» с I",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-09:i03:r1",
@@ -178,11 +178,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму для отрицания с I",
+        "accessibilityLabel": "Выберите, как сказать «не» с I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму для отрицания с I",
+            "ru": "Выберите, как сказать «не» с I",
             "uk": "Виберіть форму для заперечення з I"
           },
           "gappedTargetPhrase": "I ___ not guessing.",
@@ -896,7 +896,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму отрицания с they",
+        "prompt": "Выберите, как сказать «не» с they",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-09:i14:r1",
@@ -913,11 +913,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму отрицания с they",
+        "accessibilityLabel": "Выберите, как сказать «не» с they",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму отрицания с they",
+            "ru": "Выберите, как сказать «не» с they",
             "uk": "Виберіть форму заперечення з they"
           },
           "gappedTargetPhrase": "They ___ not looking.",
@@ -1309,7 +1309,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму для заперечення з I",
+        "prompt": "Виберіть, як сказати «не» з I",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-09:i03:r1",
@@ -1326,12 +1326,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму для заперечення з I",
+        "accessibilityLabel": "Виберіть, як сказати «не» з I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите форму для отрицания с I",
-            "uk": "Виберіть форму для заперечення з I"
+            "uk": "Виберіть, як сказати «не» з I"
           },
           "gappedTargetPhrase": "I ___ not guessing.",
           "gapOptions": [
@@ -2044,7 +2044,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму заперечення з they",
+        "prompt": "Виберіть, як сказати «не» з they",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-09:i14:r1",
@@ -2061,12 +2061,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму заперечення з they",
+        "accessibilityLabel": "Виберіть, як сказати «не» з they",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите форму отрицания с they",
-            "uk": "Виберіть форму заперечення з they"
+            "uk": "Виберіть, як сказати «не» з they"
           },
           "gappedTargetPhrase": "They ___ not looking.",
           "gapOptions": [

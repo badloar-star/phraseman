@@ -606,7 +606,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку в there is для одной ситуации",
+        "prompt": "Выберите форму be в there is для одной ситуации",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i09:r1",
@@ -623,11 +623,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку в there is для одной ситуации",
+        "accessibilityLabel": "Выберите форму be в there is для одной ситуации",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку в there is для одной ситуации",
+            "ru": "Выберите форму be в there is для одной ситуации",
             "uk": "Виберіть зв’язку в there is для однієї ситуації"
           },
           "gappedTargetPhrase": "There ___ a power cut.",
@@ -1710,7 +1710,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку в there is для однієї ситуації",
+        "prompt": "Виберіть форму be в there is для однієї ситуації",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-04:i09:r1",
@@ -1727,12 +1727,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку в there is для однієї ситуації",
+        "accessibilityLabel": "Виберіть форму be в there is для однієї ситуації",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку в there is для одной ситуации",
-            "uk": "Виберіть зв’язку в there is для однієї ситуації"
+            "uk": "Виберіть форму be в there is для однієї ситуації"
           },
           "gappedTargetPhrase": "There ___ a power cut.",
           "gapOptions": [

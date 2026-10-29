@@ -185,7 +185,7 @@
               "correct": false,
               "testedDimension": "Брат показывает на часы на стене перед вами. Дополните его фразу",
               "feedbackByLocale": {
-                "ru": "После This артикль a не ставим: This clock is old.",
+                "ru": "После This a не ставим: This clock is old.",
                 "uk": "Після This артикль a не ставимо: This clock is old."
               }
             }
@@ -1352,7 +1352,7 @@
               "testedDimension": "Брат показує на годинник на стіні перед вами. Доповніть його фразу",
               "feedbackByLocale": {
                 "ru": "После This артикль a не ставим: This clock is old.",
-                "uk": "Після This артикль a не ставимо: This clock is old."
+                "uk": "Після This a не ставимо: This clock is old."
               }
             }
           ]

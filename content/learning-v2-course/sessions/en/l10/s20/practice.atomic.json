@@ -600,7 +600,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с delivery в сообщении о дате",
+        "prompt": "Выберите форму be с delivery в сообщении о дате",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-20:i09:r1",
@@ -617,11 +617,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с delivery в сообщении о дате",
+        "accessibilityLabel": "Выберите форму be с delivery в сообщении о дате",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с delivery в сообщении о дате",
+            "ru": "Выберите форму be с delivery в сообщении о дате",
             "uk": "Виберіть зв’язку з delivery у повідомленні про дату"
           },
           "gappedTargetPhrase": "Delivery ___ today.",
@@ -1706,7 +1706,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з delivery у повідомленні про дату",
+        "prompt": "Виберіть форму be з delivery у повідомленні про дату",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-20:i09:r1",
@@ -1723,12 +1723,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з delivery у повідомленні про дату",
+        "accessibilityLabel": "Виберіть форму be з delivery у повідомленні про дату",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку с delivery в сообщении о дате",
-            "uk": "Виберіть зв’язку з delivery у повідомленні про дату"
+            "uk": "Виберіть форму be з delivery у повідомленні про дату"
           },
           "gappedTargetPhrase": "Delivery ___ today.",
           "gapOptions": [

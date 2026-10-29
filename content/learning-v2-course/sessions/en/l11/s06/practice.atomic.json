@@ -878,7 +878,7 @@
               "correct": false,
               "testedDimension": "Расскажите, как дети чувствовали себя в субботу",
               "feedbackByLocale": {
-                "ru": "Children — множественное число: were.",
+                "ru": "Children — форма для нескольких: were.",
                 "uk": "Children — множина: were."
               }
             },
@@ -1985,7 +1985,7 @@
               "testedDimension": "Розкажіть, як діти почувалися в суботу",
               "feedbackByLocale": {
                 "ru": "Children — множественное число: were.",
-                "uk": "Children — множина: were."
+                "uk": "Children — форма для кількох: were."
               }
             },
             {

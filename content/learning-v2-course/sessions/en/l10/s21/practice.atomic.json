@@ -382,7 +382,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с одним человеком, Tom",
+        "prompt": "Выберите форму be с одним человеком, Tom",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i06:r1",
@@ -399,11 +399,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с одним человеком, Tom",
+        "accessibilityLabel": "Выберите форму be с одним человеком, Tom",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с одним человеком, Tom",
+            "ru": "Выберите форму be с одним человеком, Tom",
             "uk": "Виберіть зв’язку з однією людиною, Tom"
           },
           "gappedTargetPhrase": "Even Tom ___ here.",
@@ -824,7 +824,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с it",
+        "prompt": "Выберите форму be с it",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i12:r1",
@@ -841,11 +841,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с it",
+        "accessibilityLabel": "Выберите форму be с it",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с it",
+            "ru": "Выберите форму be с it",
             "uk": "Виберіть зв’язку з it"
           },
           "gappedTargetPhrase": "It ___ almost ready.",
@@ -1479,7 +1479,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з однією людиною, Tom",
+        "prompt": "Виберіть форму be з однією людиною, Tom",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i06:r1",
@@ -1496,12 +1496,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з однією людиною, Tom",
+        "accessibilityLabel": "Виберіть форму be з однією людиною, Tom",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку с одним человеком, Tom",
-            "uk": "Виберіть зв’язку з однією людиною, Tom"
+            "uk": "Виберіть форму be з однією людиною, Tom"
           },
           "gappedTargetPhrase": "Even Tom ___ here.",
           "gapOptions": [
@@ -1921,7 +1921,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з it",
+        "prompt": "Виберіть форму be з it",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i12:r1",
@@ -1938,12 +1938,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з it",
+        "accessibilityLabel": "Виберіть форму be з it",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку с it",
-            "uk": "Виберіть зв’язку з it"
+            "uk": "Виберіть форму be з it"
           },
           "gappedTargetPhrase": "It ___ almost ready.",
           "gapOptions": [

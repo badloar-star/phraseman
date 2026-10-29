@@ -385,7 +385,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одной пустышки",
+        "prompt": "Выберите is или are: одна пустышка",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-49:i06:r1",
@@ -402,11 +402,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одной пустышки",
+        "accessibilityLabel": "Выберите is или are: одна пустышка",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одной пустышки",
+            "ru": "Выберите is или are: одна пустышка",
             "uk": "Виберіть зв’язку для однієї пустушки"
           },
           "gappedTargetPhrase": "The pacifier ___ in the bag.",
@@ -606,7 +606,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль по первому звуку onesie",
+        "prompt": "Выберите слово по первому звуку onesie",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-49:i09:r1",
@@ -623,11 +623,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль по первому звуку onesie",
+        "accessibilityLabel": "Выберите слово по первому звуку onesie",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль по первому звуку onesie",
+            "ru": "Выберите слово по первому звуку onesie",
             "uk": "Виберіть артикль за першим звуком onesie"
           },
           "gappedTargetPhrase": "This is ___ onesie.",
@@ -661,7 +661,7 @@
               "correct": false,
               "testedDimension": "Выберите артикль по первому звуку onesie",
               "feedbackByLocale": {
-                "ru": "Are не артикль, здесь нужен a.",
+                "ru": "Здесь нужно a, а не are.",
                 "uk": "Are не артикль, тут потрібне a."
               }
             }
@@ -1492,7 +1492,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для однієї пустушки",
+        "prompt": "Виберіть is або are: одна пустушка",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-49:i06:r1",
@@ -1509,12 +1509,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для однієї пустушки",
+        "accessibilityLabel": "Виберіть is або are: одна пустушка",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите связку для одной пустышки",
-            "uk": "Виберіть зв’язку для однієї пустушки"
+            "uk": "Виберіть is або are: одна пустушка"
           },
           "gappedTargetPhrase": "The pacifier ___ in the bag.",
           "gapOptions": [
@@ -1713,7 +1713,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль за першим звуком onesie",
+        "prompt": "Виберіть слово за першим звуком onesie",
         "responseOptions": [
           {
             "responseId": "en:lesson-09:session-49:i09:r1",
@@ -1730,12 +1730,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль за першим звуком onesie",
+        "accessibilityLabel": "Виберіть слово за першим звуком onesie",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите артикль по первому звуку onesie",
-            "uk": "Виберіть артикль за першим звуком onesie"
+            "uk": "Виберіть слово за першим звуком onesie"
           },
           "gappedTargetPhrase": "This is ___ onesie.",
           "gapOptions": [
@@ -1769,7 +1769,7 @@
               "testedDimension": "Виберіть артикль за першим звуком onesie",
               "feedbackByLocale": {
                 "ru": "Are не артикль, здесь нужен a.",
-                "uk": "Are не артикль, тут потрібне a."
+                "uk": "Тут потрібне a, а не are."
               }
             }
           ]

@@ -19,7 +19,7 @@ const KNOWN_HOLES = new Set<string>([]);
 type Payload = Readonly<{
   family?: string;
   isWordCard?: boolean;
-  wordCard?: Readonly<{ word?: string }> | null;
+  wordCard?: Readonly<{ word?: string; definitionByLocale?: Readonly<Record<string, string>> | null }> | null;
   orderedTokens?: readonly string[];
   referenceAudio?: Readonly<{ transcript?: string }> | null;
   targetPhrase?: string;
@@ -53,18 +53,23 @@ function scan(): Readonly<{ sessions: number; declared: number; holes: string[];
       declaredTotal += declared.length;
       const learner = JSON.parse(fs.readFileSync(learnerFile, 'utf8')) as { interactions: { ordinal: number; modePayload?: Payload | null }[] };
       const cardAt = new Map<string, number>();
+      // зачем (Теория 29.10): заголовок карточки — тренируемая форма (redone, fled), а исходное слово из «Новые слова»
+      // (redo, flee) названо в тексте самой карточки. Слово объявлено, если стоит в заголовке ИЛИ целым словом в тексте карточки.
+      const cardTexts: { at: number; text: string }[] = [];
       const phrases: { at: number; text: string }[] = [];
       for (const it of learner.interactions) {
         const p = it.modePayload ?? {};
         if (p.isWordCard && p.wordCard?.word) {
           const word = tokens(p.wordCard.word).join(' ');
           if (!cardAt.has(word)) cardAt.set(word, it.ordinal);
+          const definition = Object.values(p.wordCard.definitionByLocale ?? {}).join(' ');
+          cardTexts.push({ at: it.ordinal, text: ` ${tokens(definition.replace(/[—;:,.()«»"!?]/gu, ' ')).join(' ')} ` });
         }
         const answer = tokens(answerOf(p));
         if (answer.length >= 2) phrases.push({ at: it.ordinal, text: ` ${answer.join(' ')} ` });
       }
       for (const word of declared) {
-        const card = cardAt.get(word);
+        const card = cardAt.get(word) ?? cardTexts.find((c) => c.text.includes(` ${word} `))?.at;
         const firstPhrase = phrases.find((ph) => ph.text.includes(` ${word} `))?.at;
         if (card === undefined) missingCards.push(`${lesson}/${s}:${word}`);
         else if (firstPhrase !== undefined && firstPhrase < card) holes.push(`${lesson}/${s}:${word}`);

@@ -28,7 +28,11 @@ const DAY_MS = 24 * 60 * 60 * 1000;
  */
 export const LADDER_TRUSTED_COURSE_HEADS_V1: Readonly<Record<'en' | 'es', readonly string[]>> = Object.freeze({
   // 2.0.3-OTA1 (HEAD 526bc42ea, курс №2 после пересборки 29.10)
-  en: Object.freeze(['67341e0e2d2b8bf8cd240b10d384d6493eff91ce2f673400b16bc4b230fc8077']),
+  en: Object.freeze([
+    '67341e0e2d2b8bf8cd240b10d384d6493eff91ce2f673400b16bc4b230fc8077',
+    // правка «хвоста после ;» в l01/s07, l01/s09 (Learning V2, 29.10) — финальный курс 2.0.3-OTA1
+    'a024e5af4ebaf24156309515caaa319e36fff0881440bd47d9a94ec52fc5c424',
+  ]),
   es: Object.freeze([
     'e44d06caf8bcfb23c5a271d808124b6b7a4dfcb1e5c067a9a135ad304eb982db',
     // пересборка испанского 29.10 (Learning V2: 364 занятия от c1b650542)

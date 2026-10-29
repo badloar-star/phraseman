@@ -22,6 +22,10 @@ const T0 = Date.UTC(2026, 10, 2, 10, 0);
 describe('лесенка C — метки серверных дней', () => {
   it('голова курса: только из списка и только для en/es', () => {
     expect(isTrustedLadderCourseHead('en', EN_HEAD)).toBe(true);
+    // зачем (29.10): после правки курса старая голова остаётся доверенной — люди с прошлым обновлением не теряют дни
+    for (const head of LADDER_TRUSTED_COURSE_HEADS_V1.en) expect(isTrustedLadderCourseHead('en', head)).toBe(true);
+    for (const head of LADDER_TRUSTED_COURSE_HEADS_V1.es) expect(isTrustedLadderCourseHead('es', head)).toBe(true);
+    expect(LADDER_TRUSTED_COURSE_HEADS_V1.en.length).toBeGreaterThanOrEqual(2);
     expect(isTrustedLadderCourseHead('en', 'a'.repeat(64))).toBe(false);
     expect(isTrustedLadderCourseHead('fr', EN_HEAD)).toBe(false);
     expect(isTrustedLadderCourseHead('es', EN_HEAD)).toBe(false);

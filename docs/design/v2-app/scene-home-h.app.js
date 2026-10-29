@@ -147,15 +147,21 @@
     const key = lessonsKey(); if (CACHE[key]) return CACHE[key];
     const t0 = performance.now(); const m = LESSONS; const edge = edgeOf(); const gapL = m.tilesTop - m.sceneH; const R = Math.round(m.radiusDp * DPX);
     const frame = await loadImg(m.file); const { c, g } = canvasOf(W, H); g.drawImage(frame, 0, 0, W, H); const { c: out, g: og } = canvasOf(W, H);
-    const sky = skyRaster('season', ap, edge, BOTTOM); const skyData = sky.g.getImageData(0, 0, W, edge).data; const scene = g.getImageData(0, 0, W, m.sceneH); const st = {};
-    SR.recolor({ data: scene.data, W, H: m.sceneH, sceneH: m.sceneH, oldSpec: { image: { data: oldSky('season', ap, m.sceneH), width: W } }, newSpec: { image: { data: skyData, width: W } }, radius: R, fillCorners: true, stats: st });
-    og.putImageData(scene, 0, 0); if (edge > m.sceneH) og.putImageData(new ImageData(skyData.slice(m.sceneH * W * 4, edge * W * 4), W, edge - m.sceneH), 0, m.sceneH);
+    let sky = null; let st = null;
+    if (ap === 'dark') { // тёмное: небо по формуле «Сезона» (звёзды / низ как у Главной), перекраска кадра HEAD, рост вниз новым небом
+      sky = skyRaster('season', ap, edge, BOTTOM); const skyData = sky.g.getImageData(0, 0, W, edge).data; const scene = g.getImageData(0, 0, W, m.sceneH); st = {};
+      SR.recolor({ data: scene.data, W, H: m.sceneH, sceneH: m.sceneH, oldSpec: { image: { data: oldSky('season', ap, m.sceneH), width: W } }, newSpec: { image: { data: skyData, width: W } }, radius: R, fillCorners: true, stats: st });
+      og.putImageData(scene, 0, 0); if (edge > m.sceneH) og.putImageData(new ImageData(skyData.slice(m.sceneH * W * 4, edge * W * 4), W, edge - m.sceneH), 0, m.sceneH);
+    } else { // светлое: кадр 28.10 нарисован не формулой «А» — не перекрашиваем; рост вниз продолжением его же градиента, старые углы 32 dp залиты сценой
+      og.drawImage(c, 0, 0, W, m.sceneH, 0, 0, W, m.sceneH);
+      if (edge > m.sceneH) { const y0 = m.sceneH - R; const z = og.getImageData(0, y0, W, R); const zd = z.data; for (let yy = 0; yy < R; yy += 1) { const inset = R - Math.sqrt(Math.max(0, R * R - yy * yy)); const xl = Math.ceil(inset) + 2; for (let x = 0; x < xl; x += 1) { const i = (yy * W + x) * 4; const q = (yy * W + xl) * 4; zd[i] = zd[q]; zd[i + 1] = zd[q + 1]; zd[i + 2] = zd[q + 2]; } for (let x = W - xl; x < W; x += 1) { const i = (yy * W + x) * 4; const q = (yy * W + (W - xl - 1)) * 4; zd[i] = zd[q]; zd[i + 1] = zd[q + 1]; zd[i + 2] = zd[q + 2]; } } og.putImageData(z, 0, y0); extendRows(og, m.sceneH, edge, 24); }
+    }
     og.drawImage(c, 0, m.sceneH, W, gapL, 0, edge, W, gapL); og.drawImage(c, 0, m.tilesTop, W, V.tab - m.tilesTop, 0, edge + gapL, W, V.tab - m.tilesTop); og.drawImage(c, 0, V.tab, W, H - V.tab, 0, V.tab, W, H - V.tab);
     const bgAt = (x) => Array.from(g.getImageData(x, m.bgRow, 1, 1).data).slice(0, 3);
     { const zone = og.getImageData(0, edge - R, W, R); const zd = zone.data; for (let yy = 0; yy < R; yy += 1) { const y = edge - R + yy; for (let x = 0; x < W; x += 1) { if (x >= R && x < W - R) continue; const cx = x < W / 2 ? R : W - R; if (Math.hypot(x - cx, y - (edge - R)) <= R) continue; const i = (yy * W + x) * 4; const col = bgAt(x); zd[i] = col[0]; zd[i + 1] = col[1]; zd[i + 2] = col[2]; } } og.putImageData(zone, 0, edge - R); }
     const url = await new Promise((res, rej) => out.toBlob((b) => (b ? res(URL.createObjectURL(b)) : rej(new Error('toBlob пуст'))), 'image/png'));
-    const result = { url, edge, stars: sky.stars, tilesY: edge + gapL, st };
-    console.log(LOG, 'Уроки собраны', JSON.stringify({ ap, h: HGT, bottom: BOTTOM, sceneH: m.sceneH, edge, tilesY: edge + gapL, radius: R, ms: Math.round(performance.now() - t0), classes: st })); // guard-ok
+    const result = { url, edge, stars: sky ? sky.stars : [], tilesY: edge + gapL, st };
+    console.log(LOG, 'Уроки собраны', JSON.stringify({ ap, h: HGT, bottom: BOTTOM, file: m.file, way: ap === 'dark' ? 'перекраска формулой' : 'кадр + продолжение градиента', sceneH: m.sceneH, edge, tilesY: edge + gapL, radius: R, ms: Math.round(performance.now() - t0), classes: st })); // guard-ok
     CACHE[key] = result; return result;
   };
   const col = (label, html) => `<div class="col"><div class="lbl">${label}</div>${html}</div>`;

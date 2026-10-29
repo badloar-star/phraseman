@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы посетили три школы и сравниваете транспорт, входы и помещения.
 
-**Что вы освоите:** the + superlative adjective
+**Что вы освоите:** выбрать лучшее или худшее из многих: the biggest, the cheapest
 **Новые слова:** school bus, school gate, school entrance, school office
 
 ## Интро 1

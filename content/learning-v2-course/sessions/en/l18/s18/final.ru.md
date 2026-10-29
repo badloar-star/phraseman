@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете выбранные вещи и замечаете одинаковые качества.
 
-**Что вы освоите:** as + adjective + as
+**Что вы освоите:** сказать, что две вещи одинаковые в чём-то: as tall as my brother
 **Новые слова:** fabric softener, stain remover, laundry detergent, cleaning spray
 
 ## Интро 1

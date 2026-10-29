@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** so + adjective; such + noun phrase
+**Що ви опануєте:** сказати «так / такий» з почуттям: so cold, such a cold day
 **Нові слова:** heavy rain, strong wind, thick fog, deep snow
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете несколько стульев и столов перед покупкой.
 
-**Что вы освоите:** the + superlative adjective
+**Что вы освоите:** выбрать лучшее или худшее из многих: the biggest, the cheapest
 **Новые слова:** dining chair, office chair, kitchen table, dining table
 
 ## Интро 1

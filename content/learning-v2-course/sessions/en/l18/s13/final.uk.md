@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відвідали три школи й порівнюєте транспорт, входи та приміщення.
 
-**Що ви опануєте:** the + superlative adjective
+**Що ви опануєте:** вибрати найкраще чи найгірше з багатьох: the biggest, the cheapest
 **Нові слова:** school bus, school gate, school entrance, school office
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете номер, ванную и жилое пространство с тем, что уже знаете.
 
-**Что вы освоите:** comparative adjective + than
+**Что вы освоите:** сравнить две вещи: bigger than, cheaper than
 **Новые слова:** hotel room, shared bathroom, private bathroom, living space
 
 ## Интро 1

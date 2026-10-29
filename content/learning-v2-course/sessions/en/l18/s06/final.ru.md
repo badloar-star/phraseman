@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** comparative adjective + than
+**Что вы освоите:** сравнить две вещи: bigger than, cheaper than
 **Новые слова:** cotton shirt, wool jumper, winter coat, summer dress
 
 ## Интро 1

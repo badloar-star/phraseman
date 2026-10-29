@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете выбранные вещи и замечаете одинаковые качества.
 
-**Что вы освоите:** as + adjective + as
+**Что вы освоите:** сказать, что две вещи одинаковые в чём-то: as tall as my brother
 **Новые слова:** lunch menu, vegetarian option, daily special, takeaway meal
 
 ## Интро 1

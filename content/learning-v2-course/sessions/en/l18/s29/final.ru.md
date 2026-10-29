@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы проверяете, подходит ли вещь для конкретной задачи.
 
-**Что вы освоите:** too + adjective; adjective + enough
+**Что вы освоите:** объяснить, почему что-то не подходит или подходит: too hot, warm enough
 **Новые слова:** passport photo, middle seat, exit row, boarding time
 
 ## Интро 1

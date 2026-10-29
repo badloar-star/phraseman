@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте кілька стільців і столів перед купівлею.
 
-**Що ви опануєте:** the + superlative adjective
+**Що ви опануєте:** вибрати найкраще чи найгірше з багатьох: the biggest, the cheapest
 **Нові слова:** dining chair, office chair, kitchen table, dining table
 
 ## Інтро 1

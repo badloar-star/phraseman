@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы проверяете, подходит ли вещь для конкретной задачи.
 
-**Что вы освоите:** too + adjective; adjective + enough
+**Что вы освоите:** объяснить, почему что-то не подходит или подходит: too hot, warm enough
 **Новые слова:** waist size, chest size, sleeve length, leg length
 
 ## Интро 1

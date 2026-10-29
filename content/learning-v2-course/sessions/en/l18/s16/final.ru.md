@@ -2,7 +2,7 @@
 
 **Ситуация.** Вам предложили по три времени или варианта приёма. Вы сравниваете расписание и длительность.
 
-**Что вы освоите:** the + superlative adjective
+**Что вы освоите:** выбрать лучшее или худшее из многих: the biggest, the cheapest
 **Новые слова:** home visit, phone appointment, dental appointment, appointment time
 
 ## Интро 1

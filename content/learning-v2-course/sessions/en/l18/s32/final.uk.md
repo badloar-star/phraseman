@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте, чи підходить річ для конкретного завдання.
 
-**Що ви опануєте:** too + adjective; adjective + enough
+**Що ви опануєте:** пояснити, чому щось не підходить або підходить: too hot, warm enough
 **Нові слова:** child seat, booster seat, seat cover, headrest
 
 ## Інтро 1

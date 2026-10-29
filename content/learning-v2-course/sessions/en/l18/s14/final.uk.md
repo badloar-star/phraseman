@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви дивитеся умови трьох магазинів і порівнюєте варіанти отримання замовлення.
 
-**Що ви опануєте:** the + superlative adjective
+**Що ви опануєте:** вибрати найкраще чи найгірше з багатьох: the biggest, the cheapest
 **Нові слова:** standard delivery, express delivery, next-day delivery, free collection
 
 ## Інтро 1

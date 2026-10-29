@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** comparative adjective + than
+**Что вы освоите:** сравнить две вещи: bigger than, cheaper than
 **Новые слова:** hot meal, cold drink, soft drink, still water
 
 ## Интро 1

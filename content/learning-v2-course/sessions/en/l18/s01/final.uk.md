@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте номер, ванну й житловий простір із тим, що вже знаєте.
 
-**Що ви опануєте:** comparative adjective + than
+**Що ви опануєте:** порівняти дві речі: bigger than, cheaper than
 **Нові слова:** hotel room, shared bathroom, private bathroom, living space
 
 ## Інтро 1

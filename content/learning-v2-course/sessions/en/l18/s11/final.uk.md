@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви оглянули три будинки й порівнюєте ділянки та ворота.
 
-**Що ви опануєте:** the + superlative adjective
+**Що ви опануєте:** вибрати найкраще чи найгірше з багатьох: the biggest, the cheapest
 **Нові слова:** front garden, back garden, front gate, back gate
 
 ## Інтро 1

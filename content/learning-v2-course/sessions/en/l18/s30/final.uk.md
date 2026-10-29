@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте, чи підходить річ для конкретного завдання.
 
-**Що ви опануєте:** too + adjective; adjective + enough
+**Що ви опануєте:** пояснити, чому щось не підходить або підходить: too hot, warm enough
 **Нові слова:** driveway, garage door, side gate, garden wall
 
 ## Інтро 1

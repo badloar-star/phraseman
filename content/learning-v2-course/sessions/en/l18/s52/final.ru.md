@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** so + adjective; such + noun phrase
+**Что вы освоите:** сказать «так / такой» с чувством: so cold, such a cold day
 **Новые слова:** benefit, advantage, disadvantage, difference
 
 ## Интро 1

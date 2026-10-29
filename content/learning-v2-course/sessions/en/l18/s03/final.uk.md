@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте доступні варіанти й обговорюєте плани.
 
-**Що ви опануєте:** comparative adjective + than
+**Що ви опануєте:** порівняти дві речі: bigger than, cheaper than
 **Нові слова:** train journey, bus journey, car journey, walking route
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте вибрані речі й помічаєте однакові якості.
 
-**Що ви опануєте:** as + adjective + as
+**Що ви опануєте:** сказати, що дві речі однакові в чомусь: as tall as my brother
 **Нові слова:** lunch menu, vegetarian option, daily special, takeaway meal
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибираєте перекуси в різних магазинах, порівнюючи ціни, смак і розмір паковань.
 
-**Що ви опануєте:** the + superlative adjective
+**Що ви опануєте:** вибрати найкраще чи найгірше з багатьох: the biggest, the cheapest
 **Нові слова:** fresh fruit, dried fruit, mixed nuts, plain yoghurt
 
 ## Інтро 1

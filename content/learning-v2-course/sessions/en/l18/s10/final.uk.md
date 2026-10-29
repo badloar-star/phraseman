@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте магазини й майстерні поруч із домом: відстань, ціни, розмір і вік.
 
-**Що ви опануєте:** the + superlative adjective
+**Що ви опануєте:** вибрати найкраще чи найгірше з багатьох: the biggest, the cheapest
 **Нові слова:** local shop, online shop, chain store, repair shop
 
 ## Інтро 1

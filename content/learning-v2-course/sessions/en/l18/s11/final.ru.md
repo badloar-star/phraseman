@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы посмотрели три дома и сравниваете участки и ворота.
 
-**Что вы освоите:** the + superlative adjective
+**Что вы освоите:** выбрать лучшее или худшее из многих: the biggest, the cheapest
 **Новые слова:** front garden, back garden, front gate, back gate
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете перекусы в разных магазинах, сравнивая цены, вкус и размер упаковок.
 
-**Что вы освоите:** the + superlative adjective
+**Что вы освоите:** выбрать лучшее или худшее из многих: the biggest, the cheapest
 **Новые слова:** fresh fruit, dried fruit, mixed nuts, plain yoghurt
 
 ## Интро 1

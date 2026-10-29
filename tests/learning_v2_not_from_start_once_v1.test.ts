@@ -46,6 +46,8 @@ describe('«Не хочу с начала» — один раз на аккау�
     const season = fs.readFileSync(path.join(__dirname, '..', 'components', 'learning-v2', 'season', 'SeasonCourseConnected.tsx'), 'utf8');
     expect(season).toContain('onNotFromStart={notFromStartAvailable ? onNotFromStart : undefined}');
     expect(season).toContain("void markLearningV2NotFromStartUsedV1('season_cover')");
-    expect(season).toContain('const notFromStartAvailable = notFromStartUsed === false;');
+    // 29.10 (владелец, жалоба №8): кнопка не только у новичка — показ решает learningV2PlacementEntryV1, где «использован» → скрыта
+    expect(season).toContain('learningV2PlacementEntryV1({ used: notFromStartUsed, currentLessonOrdinal: canonical');
+    expect(season).toContain('const notFromStartAvailable = placementEntry.show;');
   });
 });

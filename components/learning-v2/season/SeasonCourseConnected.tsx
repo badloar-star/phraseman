@@ -23,6 +23,8 @@ import { learningV2ChapterExamHrefV1, learningV2PassedChaptersV1 } from '../../.
 import { loadLearningV2ChapterExamRecordsV1, peekLearningV2ChapterExamRecordsV1 } from '../../../app/learning_v2_chapter_exam_store_v1';
 import { pickInitialLessonOrdinal } from '../../../app/learning_v2_last_lesson';
 import { markLearningV2NotFromStartUsedV1, readLearningV2NotFromStartUsedV1, subscribeLearningV2NotFromStartUsedV1 } from '../../../app/learning_v2_not_from_start_once_v1';
+import { learningV2PlacementEntryV1 } from '../../../app/learning_v2_placement_entry_v1';
+import { notePlacementEntryDecision, notePlacementEntryTap } from '../../../app/learning_v2_placement_entry_diagnostics';
 import { isLearningV2SessionStarResultsHydrated, subscribeLearningV2SessionStarResults } from '../../../app/learning_v2_session_star_results_store';
 import { getStableId, peekStableId } from '../../../app/stable_id';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../../../modules/learning-v2/content/course_topology_v1';
@@ -345,16 +347,23 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     const off = subscribeLearningV2NotFromStartUsedV1((used) => setNotFromStartUsed(used));
     return () => { alive = false; off(); };
   }, []);
-  const onNotFromStart = useCallback(() => {
+  const onNotFromStart = useCallback((from: 'cover' | 'plaque' = 'cover') => {
+    notePlacementEntryTap(from);
     // зачем (координатор 24.10, макет chapter-exam-season.html раздел 6; Learning V2 24.10): с включённым флагом кнопка ведёт на тест, а флаг «использовано» ставится ТОЛЬКО на экране итога (applyLearningV2PlacementResultV1) — выход из теста кнопку не гасит; выключен — как раньше: флаг сразу и «Все уроки»
     if (LEARNING_V2_PLACEMENT_UI_ENABLED) { router.push(LEARNING_V2_PLACEMENT_HREF as never); return; }
     void markLearningV2NotFromStartUsedV1('season_cover');
     openLessonsList('not_from_start');
   }, [openLessonsList, router]);
-  const notFromStartAvailable = notFromStartUsed === false;
+  // зачем (жалоба №8; владелец 28.10 вариант А + 29.10 макет одобрен): «Не хочу с начала» видна не только новичку — пока тест на аккаунте
+  // не использован и текущий урок < 10 (дальше тест старт не поднимет). Решение одно — learningV2PlacementEntryV1; причина — в журнал.
+  const placementEntry = useMemo(
+    () => learningV2PlacementEntryV1({ used: notFromStartUsed, currentLessonOrdinal: canonical, where: 'season_cover' }),
+    [canonical, notFromStartUsed],
+  );
+  const notFromStartAvailable = placementEntry.show;
   useEffect(() => {
-    if (newcomer) console.log('[PLACEMENT-ONCE] button', JSON.stringify({ newcomer, used: notFromStartUsed, shown: notFromStartAvailable })); // guard-ok: почему кнопка видна или нет
-  }, [newcomer, notFromStartAvailable, notFromStartUsed]);
+    notePlacementEntryDecision('cover', placementEntry.reason, canonical);
+  }, [canonical, placementEntry.reason]);
   const onLessonPicker = useCallback(() => openLessonsList('lesson_pill'), [openLessonsList]);
   const onAllLessonsButton = useCallback(() => openLessonsList('tile_all_lessons'), [openLessonsList]);
 

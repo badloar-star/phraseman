@@ -63,7 +63,14 @@ describe('Замки владельца 22.10: хаб урока', () => {
   });
   it('в модале нет «закрытой» ветки: ни «просмотр», ни «Откроется после эпизода N», ни «К эпизоду N»', () => {
     expect(expanded).not.toMatch(/locked|lockLine|lock-closed/u);
-    expect(course).not.toMatch(/seasonUnlockAfter|'preview'|'toEpisode'|'openByExam'|lockLine/u);
+    expect(course).not.toMatch(/'preview'|'toEpisode'|'openByExam'|lockLine/u);
+    // ЗАМОК ВЛАДЕЛЬЦА 29.10 (жалоба №8, макет VCtfXrJuZn37rcsTvnLDMm одобрен): «Откроется после занятия N» — НЕ в модале, а в не модальной
+    // плашке на тапе по закрытой карте (SeasonLockHint). Номер считается только в shakeLocked; в раскрытой карте его по-прежнему нет.
+    const modalBlock = course.slice(course.indexOf('// ── раскрытая карта ──'), course.indexOf('const [lockShake, setLockShake]'));
+    expect(modalBlock.length).toBeGreaterThan(0);
+    expect(modalBlock).not.toMatch(/seasonUnlockAfter|placementOpensAfterText|SeasonLockHint/u);
+    expect(course.match(/seasonUnlockAfter\(/gu)?.length).toBe(1);
+    expect(course).toMatch(/const shakeLocked = useCallback\(\(index: number, from: string\) => \{\s*const after = seasonUnlockAfter\(deck, index\);/u);
   });
 
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: «убери эту иконку» — в шапке хаба урока нет книжки со счётчиком слов

@@ -7,7 +7,7 @@
 // логики экзамена в коде ещё нет, её сделает Learning V2).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { BackHandler, StyleSheet, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { BackHandler, StyleSheet, View, useWindowDimensions, type GestureResponderEvent, type LayoutChangeEvent } from 'react-native';
 
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { useIsTabPage } from '../../tab_top_bleed';
@@ -22,7 +22,11 @@ import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
 import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
 import { SEASON_CHAPTER_EXAM_ENABLED, SEASON_EPISODE_WINDOW_ENABLED } from './season_flags';
-import type { SeasonCard, SeasonEpisodeCard } from './season_course_model';
+import { seasonUnlockAfter, type SeasonCard, type SeasonEpisodeCard } from './season_course_model';
+import SeasonLockHint, { type SeasonLockHintFrame, type SeasonLockHintRequest } from './SeasonLockHint';
+import { placementOpensAfterText } from '../../../app/learning_v2_placement_entry_copy';
+import { notePlacementLockHint } from '../../../app/learning_v2_placement_entry_diagnostics';
+import { useTabContentBottomPad } from '../../../hooks/use-tab-content-bottom-pad';
 import { seasonEpisodeCtaV1 } from './season_episode_cta';
 import { seasonExamCaption, type SeasonExamStatus } from './season_exam_caption';
 import type { SeasonExamCaptionView } from './SeasonCourseView';
@@ -166,11 +170,32 @@ function SeasonCourse(props: SeasonCourseProps) {
 
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: «просто пусть вибрирует и замочек трясется! не надо открыть вот этот модал его не должно быть!» — тап по закрытому эпизоду НЕ раскрывает карту: вибрация + тряска плашки с замком
   const [lockShake, setLockShake] = useState<Readonly<{ index: number; seq: number }> | null>(null);
+  // зачем (жалоба №8; владелец 29.10, макет VCtfXrJuZn37rcsTvnLDMm одобрен): к тряске добавлена НЕ модальная плашка внизу «Откроется после
+  // занятия N» и, пока тест не использован (onNotFromStart есть), кнопка «Не хочу с начала». Окна по-прежнему нет (замок 22.10).
+  const [lockHint, setLockHint] = useState<SeasonLockHintRequest | null>(null);
+  const [lockHintDismissSeq, setLockHintDismissSeq] = useState(0);
+  const lockHintFrame = useRef<SeasonLockHintFrame | null>(null);
   const shakeLocked = useCallback((index: number, from: string) => {
-    console.log(`${LOG} нажатие → закрытая карта: вибрация и тряска замка, модала нет`, JSON.stringify({ index, from, state: deck.cards[index]?.state ?? null })); // guard-ok: ветка и значение, которое её решило
+    const after = seasonUnlockAfter(deck, index);
+    const withButton = !!props.onNotFromStart;
+    console.log(`${LOG} нажатие → закрытая карта: вибрация и тряска замка, модала нет`, JSON.stringify({ index, from, state: deck.cards[index]?.state ?? null, unlockAfter: after, hint: after === null ? 'нет: перед картой нет непройденного занятия' : withButton ? 'плашка с кнопкой' : 'плашка: только текст' })); // guard-ok: ветка и значение, которое её решило
     void hapticWarning();
     setLockShake((cur) => ({ index, seq: (cur ? cur.seq : 0) + 1 }));
-  }, [deck.cards]);
+    if (after === null) return;
+    setLockHint((cur) => ({ seq: (cur ? cur.seq : 0) + 1, text: placementOpensAfterText(lang, 'session', after), withButton }));
+    notePlacementLockHint(withButton, after);
+  }, [deck, lang, props.onNotFromStart]);
+  // «до любого тапа»: касание вне плашки прячет её, а сам тап идёт дальше (onTouchStart не перехватывает касание)
+  const onRootTouchStart = useCallback((e: GestureResponderEvent) => {
+    const frame = lockHintFrame.current;
+    if (!frame) return;
+    const { pageX, pageY } = e.nativeEvent;
+    const inside = pageX >= frame.x && pageX <= frame.x + frame.width && pageY >= frame.y && pageY <= frame.y + frame.height;
+    if (!inside) setLockHintDismissSeq((n) => n + 1);
+  }, []);
+  const onLockHintButton = useCallback(() => props.onNotFromStart?.('plaque'), [props]);
+  const tabBottomPad = useTabContentBottomPad();
+  const lockHintBottom = isTabPage ? tabBottomPad : Math.max(props.bottomPadding, 24);
   // зачем (жалоба владельца, iPhone 2.0.2: окно эпизода «иногда» съезжает вправо; СПЕРВА ЛОГИ): условие «иногда» — тап сразу после броска карусели, повторный тап, открытие не той карты, что в центре
   const lastSettleAt = useRef(0);
   const lastOpenAt = useRef(0);
@@ -312,7 +337,7 @@ function SeasonCourse(props: SeasonCourseProps) {
   } : undefined;
 
   return (
-    <View ref={rootRef} onLayout={onRootLayout} style={styles.root}>
+    <View ref={rootRef} onLayout={onRootLayout} onTouchStart={onRootTouchStart} style={styles.root}>
       {topBand > 0 ? <View pointerEvents="none" testID="season-top-cover" style={[styles.topCover, { top: -topBand, height: topBand, backgroundColor: topBandColor }]} /> : null}
       <SeasonCourseView
         {...props}
@@ -324,6 +349,15 @@ function SeasonCourse(props: SeasonCourseProps) {
         examCaption={examCaption}
       />
       {expandedProps ? <SeasonExpandedCard {...expandedProps} /> : null}
+      <SeasonLockHint
+        request={lockHint}
+        dismissSeq={lockHintDismissSeq}
+        buttonLabel={seasonText(lang, 'notFromStart')}
+        onButton={onLockHintButton}
+        bottom={lockHintBottom}
+        reducedMotion={props.reducedMotion}
+        frameRef={lockHintFrame}
+      />
     </View>
   );
 }

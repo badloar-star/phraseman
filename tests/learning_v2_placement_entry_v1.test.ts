@@ -34,16 +34,13 @@ describe('тексты входа и плашки (Переводчик 28.10)',
   const copy = require('../app/learning_v2_placement_entry_copy') as typeof import('../app/learning_v2_placement_entry_copy');
   const langs = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 
-  it('9 языков, кнопка короткая, номер подставляется', () => {
+  it('9 языков, номер подставляется; отдельной подписи «Проверить уровень» нет (владелец 29.10)', () => {
+    expect((copy as Record<string, unknown>).placementCheckLevelLabel).toBeUndefined();
     for (const lang of langs) {
-      const label = copy.placementCheckLevelLabel(lang);
-      expect(label.length).toBeGreaterThan(0);
-      expect(label.length).toBeLessThanOrEqual(20);
       expect(copy.placementOpensAfterText(lang, 'lesson', 4)).toContain('4');
       expect(copy.placementOpensAfterText(lang, 'session', 7)).toContain('7');
       expect(copy.placementOpensAfterText(lang, 'session', 7)).not.toContain('{n}');
     }
-    expect(copy.placementCheckLevelLabel('ru')).toBe('Проверить уровень');
     expect(copy.placementOpensAfterText('ru', 'lesson', 4)).toBe('Откроется после урока 4');
     expect(copy.placementOpensAfterText('ru', 'session', 7)).toBe('Откроется после занятия 7');
   });

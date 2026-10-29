@@ -95,7 +95,8 @@ export type SeasonCourseViewProps = Readonly<{
   avatarSlot?: React.ReactNode;
   reducedMotion: boolean;
   onPrimary: (card: SeasonEpisodeCard) => void;
-  onNotFromStart?: () => void;
+  /** «Не хочу с начала» (тест уровня). Есть — кнопку показываем: новичку на месте строки прогресса, остальным под ней. `from` — для журнала. */
+  onNotFromStart?: (from?: 'cover' | 'plaque') => void;
   onCardOpen: (index: number) => void;
   /** Подпись под каруселью у карты экзамена по её состоянию (эталон chapter-exam-season.html); нет — «Экзамен главы» без кнопки. */
   examCaption?: (card: SeasonCard) => SeasonExamCaptionView | null;
@@ -257,6 +258,13 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   }, [coverAtTop]);
   useEffect(() => () => reportSeasonCoverTop({ mounted: false, atTop: true }), []);
 
+  const resumeRow = props.resumeLine ? (
+    <View style={styles.resume}>
+      <View style={styles.bar}><View style={[styles.barFill, { width: `${Math.round((currentEpisode ? props.episodeInfo(currentEpisode).progress ?? 0 : 0) * 100)}%` }]} /></View>
+      <Text style={styles.resumeText} numberOfLines={2}>{props.resumeLine}</Text>
+    </View>
+  ) : null;
+
   return (
     <>
     <ScrollView contentContainerStyle={{ paddingBottom: contentBottomPad }} showsVerticalScrollIndicator={false} testID="season-course" onScroll={onPageScroll} scrollEventThrottle={32}
@@ -293,16 +301,15 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
             <HeroTile icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} dark={dark} testID="season-words" />
             <HeroTile icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} dark={dark} testID="season-theory" />
           </View>
-          {props.newcomer && props.onNotFromStart ? (
-            <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onNotFromStart} style={styles.glass} testID="season-not-from-start">
+          {/* зачем (жалоба №8; владелец 29.10, макет VCtfXrJuZn37rcsTvnLDMm одобрен: «это же кнопка "Не хочу с начала" — пусть так и называется»):
+              у новичка кнопка на месте строки прогресса (как было), у не-новичка — под строкой прогресса; видна, пока тест не использован и урок < 10 */}
+          {/* у новичка строки прогресса нет (resumeLine = null) — кнопка встаёт на её место */}
+          {resumeRow}
+          {props.onNotFromStart ? (
+            <V2Pressable hitSlop={8} accessibilityRole="button" onPress={() => props.onNotFromStart?.('cover')} style={styles.glass} testID="season-not-from-start">
               <Ionicons name="school-outline" size={18} color={WHITE} />
-              <Text style={styles.glassText}>{seasonText(lang, 'notFromStart')}</Text>
+              <Text style={styles.glassText} numberOfLines={1}>{seasonText(lang, 'notFromStart')}</Text>
             </V2Pressable>
-          ) : props.resumeLine ? (
-            <View style={styles.resume}>
-              <View style={styles.bar}><View style={[styles.barFill, { width: `${Math.round((currentEpisode ? props.episodeInfo(currentEpisode).progress ?? 0 : 0) * 100)}%` }]} /></View>
-              <Text style={styles.resumeText} numberOfLines={2}>{props.resumeLine}</Text>
-            </View>
           ) : null}
         </View>
       </View>

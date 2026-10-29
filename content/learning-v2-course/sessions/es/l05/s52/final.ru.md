@@ -15,7 +15,7 @@
 
 - ✅ **¿Cuántos años tiene Ana?** — *¿Cuántos años + tiene + Ana?*
 - ❌ ¿Cuántos años tienes Ana? — *О другом человеке используем tiene.*
-- ❌ ¿Cuántas años tiene Ana? — *Años — мужской род, множественное число: cuántos.*
+- ❌ ¿Cuántas años tiene Ana? — *Años — мужской род, форма для нескольких: cuántos.*
 
 ## Интро 2
 
@@ -88,7 +88,7 @@
 → **Cuántos** · Cuántas · Cuánto
 Полная фраза: **¿Cuántos años tiene Ana?**
 - Cuántas — *Años — мужской род: cuántos.*
-- Cuánto — *Años во множественном числе: cuántos.*
+- Cuánto — *Años в форме для нескольких: cuántos.*
 
 **9 · Скажите вслух — сколько лет Ане?; начните с ¿Cuántos años tiene, имя поставьте в конце**
 🎙 **¿Cuántos años tiene Ana?**

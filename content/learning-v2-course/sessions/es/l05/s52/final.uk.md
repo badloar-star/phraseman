@@ -15,7 +15,7 @@
 
 - ✅ **¿Cuántos años tiene Ana?** — *¿Cuántos años + tiene + Ana?*
 - ❌ ¿Cuántos años tienes Ana? — *Про іншу людину використовуємо tiene.*
-- ❌ ¿Cuántas años tiene Ana? — *Años — чоловічий рід, множина: cuántos.*
+- ❌ ¿Cuántas años tiene Ana? — *Años — чоловічий рід, форма для кількох: cuántos.*
 
 ## Інтро 2
 
@@ -27,7 +27,7 @@
 
 - ✅ **Ana tiene treinta años.** — *Ana + tiene + treinta años.*
 - ❌ Ana es treinta años. — *Вік виражаємо через tiene.*
-- ❌ Ana tiene treinta año. — *Після treinta потрібна множина años.*
+- ❌ Ana tiene treinta año. — *Після treinta потрібна форма для кількох: años.*
 
 ## Інтро 3
 
@@ -88,7 +88,7 @@
 → **Cuántos** · Cuántas · Cuánto
 Повна фраза: **¿Cuántos años tiene Ana?**
 - Cuántas — *Años — чоловічий рід: cuántos.*
-- Cuánto — *Años у множині: cuántos.*
+- Cuánto — *Años у формі для кількох: cuántos.*
 
 **9 · Скажіть уголос — скільки років Ані?; почніть з ¿Cuántos años tiene, ім’я поставте в кінці**
 🎙 **¿Cuántos años tiene Ana?**

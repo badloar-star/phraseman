@@ -91,7 +91,7 @@
 `Pedro tiene treinta ___.`
 → **años** · año · libros
 Повна фраза: **Pedro tiene treinta años.**
-- año — *Після treinta потрібна множина años.*
+- año — *Після treinta потрібна форма для кількох: años.*
 - libros — *Називаємо вік, не книжки.*
 
 **10 · Скажіть уголос — Ані тридцять років; почніть з Ana tiene**

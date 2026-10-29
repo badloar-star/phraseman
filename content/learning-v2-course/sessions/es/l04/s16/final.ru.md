@@ -39,7 +39,7 @@
 
 - ✅ **No son tus llaves.** — *Отрицание: no перед son.*
 - ❌ No es tus llaves. — *Несколько ключей: son.*
-- ❌ No son tu llaves. — *Множественное число вещей требует tus.*
+- ❌ No son tu llaves. — *Несколько вещей требуют tus.*
 
 ## Практика · 18 заданий
 

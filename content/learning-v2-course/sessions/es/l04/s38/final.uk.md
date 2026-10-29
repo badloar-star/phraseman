@@ -21,11 +21,11 @@
 
 ### Нові стільці
 
-Друг помічає стільці, які ви нещодавно купили. Скажіть `Estas sillas son nuevas` — «Ці стільці нові». Складіть `estas sillas` + `son` + `nuevas`. Замініть cómodas на nuevas. Це знайоме nuevo в жіночому роді й множині: нові саме sillas.
+Друг помічає стільці, які ви нещодавно купили. Скажіть `Estas sillas son nuevas` — «Ці стільці нові». Складіть `estas sillas` + `son` + `nuevas`. Замініть cómodas на nuevas. Це знайоме nuevo в жіночому роді для кількох: нові саме sillas.
 
 **Скажіть про стільці поруч: «Ці стільці нові». Почніть з Estas sillas.**
 
-- ✅ **Estas sillas son nuevas.** — *Жіноче множинне sillas: nuevas.*
+- ✅ **Estas sillas son nuevas.** — *Жіночий рід, їх кілька: sillas — nuevas.*
 - ❌ Estas sillas son nuevos. — *Узгодьте ознаку з sillas: nuevas.*
 - ❌ Estas sillas son nueva. — *Стільців кілька: nuevas.*
 

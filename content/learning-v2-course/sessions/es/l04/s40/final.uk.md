@@ -25,7 +25,7 @@
 
 **Скажіть про книжки поруч: «Ці книжки нові». Почніть з Estos libros.**
 
-- ✅ **Estos libros son nuevos.** — *Libros: чоловічий рід, множина.*
+- ✅ **Estos libros son nuevos.** — *Libros: чоловічий рід, їх кілька.*
 - ❌ Estas libros son nuevos. — *Libros чоловічого роду: estos.*
 - ❌ Este libros son nuevos. — *Книжок кілька: estos.*
 

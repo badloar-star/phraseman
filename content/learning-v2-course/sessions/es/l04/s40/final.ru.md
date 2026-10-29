@@ -25,7 +25,7 @@
 
 **Скажите о книгах рядом: «Эти книги новые». Начните с Estos libros.**
 
-- ✅ **Estos libros son nuevos.** — *Libros: мужской род, множественное число.*
+- ✅ **Estos libros son nuevos.** — *Libros: мужской род, их несколько.*
 - ❌ Estas libros son nuevos. — *Libros мужского рода: estos.*
 - ❌ Este libros son nuevos. — *Книг несколько: estos.*
 

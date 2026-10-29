@@ -39,7 +39,7 @@
 
 - ✅ **No son sus libros.** — *Кілька книжок: son sus libros.*
 - ❌ No es sus libros. — *Для кількох книжок потрібне son.*
-- ❌ No son su libros. — *Перед множиною libros потрібне sus.*
+- ❌ No son su libros. — *Перед libros, коли їх кілька, потрібне sus.*
 
 ## Практика · 12 завдань
 

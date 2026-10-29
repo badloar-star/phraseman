@@ -38,7 +38,7 @@
 **Спросите «Чьи это ключи?». Начните с De quién.**
 
 - ✅ **¿De quién son las llaves?** — *Несколько ключей: son las llaves.*
-- ❌ ¿De quién es las llaves? — *Llaves во множественном числе: son.*
+- ❌ ¿De quién es las llaves? — *Llaves — их несколько: son.*
 - ❌ ¿De quién son la llaves? — *Перед llaves нужна форма las.*
 
 ## Практика · 12 заданий

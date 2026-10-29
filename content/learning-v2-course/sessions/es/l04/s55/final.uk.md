@@ -38,7 +38,7 @@
 **Запитайте «Чиї це ключі?». Почніть з De quién.**
 
 - ✅ **¿De quién son las llaves?** — *Кілька ключів: son las llaves.*
-- ❌ ¿De quién es las llaves? — *Llaves у множині: son.*
+- ❌ ¿De quién es las llaves? — *Llaves — їх кілька: son.*
 - ❌ ¿De quién son la llaves? — *Перед llaves потрібна форма las.*
 
 ## Практика · 12 завдань

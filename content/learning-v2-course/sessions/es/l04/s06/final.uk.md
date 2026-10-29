@@ -26,18 +26,18 @@
 **Назвіть кілька своїх ключів, почавши з Son.**
 
 - ✅ **Son mis llaves.** — *Кілька предметів: mis llaves.*
-- ❌ Son mi llaves. — *Перед множиною llaves потрібне mis.*
+- ❌ Son mi llaves. — *Перед llaves, коли їх кілька, потрібне mis.*
 - ❌ Son las mis llaves. — *Перед mis тут не ставимо las.*
 
 ## Інтро 3
 
 ### Маленькі ключі
 
-Поясніть, які ключі шукаєте: `Mis llaves son pequeñas` — «Мої ключі маленькі». Зберіть `mis llaves` + `son` + `pequeñas`. Llaves жіночого роду й у множині, тому pequeñas. Форма mis показує число речей, а закінчення pequeñas — ще й їхній іспанський рід.
+Поясніть, які ключі шукаєте: `Mis llaves son pequeñas` — «Мої ключі маленькі». Зберіть `mis llaves` + `son` + `pequeñas`. Llaves жіночого роду, і ключів кілька, тому pequeñas. Форма mis показує число речей, а закінчення pequeñas — ще й їхній іспанський рід.
 
 **Опишіть свої маленькі ключі, почавши з Mis llaves.**
 
-- ✅ **Mis llaves son pequeñas.** — *Жіноча множина llaves: pequeñas.*
+- ✅ **Mis llaves son pequeñas.** — *Жіноче llaves, коли їх кілька: pequeñas.*
 - ❌ Mis llaves son pequeños. — *Llaves жіночого роду.*
 - ❌ Mis llaves son pequeña. — *Ключів кілька: pequeñas.*
 

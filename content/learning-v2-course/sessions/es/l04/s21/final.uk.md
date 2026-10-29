@@ -26,18 +26,18 @@
 **Йдеться про Ану. Скажіть: «Це її книжки». Почніть з Son.**
 
 - ✅ **Son sus libros.** — *Кілька книжок: son sus libros.*
-- ❌ Son su libros. — *Перед множиною libros потрібне sus.*
+- ❌ Son su libros. — *Перед libros, коли їх кілька, потрібне sus.*
 - ❌ Es sus libros. — *Для кількох книжок потрібне son.*
 
 ## Інтро 3
 
 ### Нові книжки
 
-Щоб друг упізнав книжки Ани, скажіть `Sus libros son nuevos` — «Її книжки нові». Зберіть `sus libros` + `son` + `nuevos`. Libros чоловічого роду й у множині, тому nuevos. Опис узгоджується з книжками, а не з Аною.
+Щоб друг упізнав книжки Ани, скажіть `Sus libros son nuevos` — «Її книжки нові». Зберіть `sus libros` + `son` + `nuevos`. Libros чоловічого роду, і книжок кілька, тому nuevos. Опис узгоджується з книжками, а не з Аною.
 
 **Йдеться про Ану. Скажіть: «Її книжки нові». Почніть з Sus libros.**
 
-- ✅ **Sus libros son nuevos.** — *Libros — чоловіча множина: nuevos.*
+- ✅ **Sus libros son nuevos.** — *Libros — чоловічий рід, їх кілька: nuevos.*
 - ❌ Sus libros son nuevo. — *Книжок кілька: nuevos.*
 - ❌ Sus libros son nuevas. — *Libros чоловічого роду.*
 

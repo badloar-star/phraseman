@@ -14,7 +14,7 @@
 **Скажіть другу, що це його туфля: «Це твоя туфля». Почніть з Es.**
 
 - ✅ **Es tu zapato.** — *Одна річ: tu zapato.*
-- ❌ Es tus zapato. — *З одниною zapato потрібне tu.*
+- ❌ Es tus zapato. — *Для одного zapato потрібне tu.*
 - ❌ Es el tu zapato. — *Перед tu тут немає артикля.*
 
 ## Інтро 2
@@ -26,19 +26,19 @@
 **Скажіть другу: «Це твої туфлі». Почніть з Son.**
 
 - ✅ **Son tus zapatos.** — *Кілька речей: tus zapatos.*
-- ❌ Son tu zapatos. — *Перед множиною zapatos потрібне tus.*
+- ❌ Son tu zapatos. — *Перед zapatos, коли їх кілька, потрібне tus.*
 - ❌ Es tus zapatos. — *Для кількох предметів потрібне son.*
 
 ## Інтро 3
 
 ### Упізнати за кольором
 
-У друга чорні туфлі. Нагадайте йому `Tus zapatos son negros` — «Твої туфлі чорні». Зберіть `tus zapatos` + `son` + `negros`. Zapatos чоловічого роду й у множині, тому negros. Tus також показує, що речей кілька.
+У друга чорні туфлі. Нагадайте йому `Tus zapatos son negros` — «Твої туфлі чорні». Зберіть `tus zapatos` + `son` + `negros`. Zapatos чоловічого роду, і туфель кілька, тому negros. Tus також показує, що речей кілька.
 
 **Скажіть другу, що його туфлі чорні, почавши з Tus zapatos.**
 
-- ✅ **Tus zapatos son negros.** — *Чоловіча множина: zapatos — negros.*
-- ❌ Tus zapatos son negro. — *Потрібна множина negros.*
+- ✅ **Tus zapatos son negros.** — *Чоловічий рід, їх кілька: zapatos — negros.*
+- ❌ Tus zapatos son negro. — *Потрібна форма для кількох: negros.*
 - ❌ Tus zapatos son negras. — *Zapatos чоловічого роду.*
 
 ## Практика · 12 завдань

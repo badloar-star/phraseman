@@ -9,7 +9,7 @@
 
 ### Один спільний друг
 
-До вас підійшов друг, якого знаєте і ви, і сестра. Представте його гостю: `Es nuestro amigo` — «Це наш друг». Зберіть `es` + `nuestro amigo`. Чоловіче amigo в однині потребує nuestro, як знайоме carro. Ви говорите від себе й сестри, але представляєте одну людину: тому es.
+До вас підійшов друг, якого знаєте і ви, і сестра. Представте його гостю: `Es nuestro amigo` — «Це наш друг». Зберіть `es` + `nuestro amigo`. Чоловіче amigo для однієї людини потребує nuestro, як знайоме carro. Ви говорите від себе й сестри, але представляєте одну людину: тому es.
 
 **Представте спільного друга: «Це наш друг». Почніть з Es.**
 
@@ -25,7 +25,7 @@
 
 **Представте спільних друзів-чоловіків: «Це наші друзі». Почніть з Son.**
 
-- ✅ **Son nuestros amigos.** — *Чоловіча множина: nuestros amigos.*
+- ✅ **Son nuestros amigos.** — *Чоловічий рід, їх кілька: nuestros amigos.*
 - ❌ Son nuestro amigos. — *Перед amigos потрібне nuestros.*
 - ❌ Es nuestros amigos. — *Друзів кілька: son.*
 
@@ -39,7 +39,7 @@
 
 - ✅ **Nuestros amigos son amables.** — *Кілька друзів: son amables.*
 - ❌ Nuestros amigos son amable. — *Друзів кілька: amables.*
-- ❌ Nuestros amigos es amables. — *Множина amigos потребує son.*
+- ❌ Nuestros amigos es amables. — *Кілька amigos потребують son.*
 
 ## Практика · 12 завдань
 
@@ -65,7 +65,7 @@
 → **nuestros** · nuestro · su
 Повна фраза: **Son nuestros amigos.**
 - nuestro — *Друзів кілька: nuestros.*
-- su — *Потрібно «наші» перед множиною amigos: nuestros.*
+- su — *Потрібно «наші» перед amigos, коли їх кілька: nuestros.*
 
 **5 · Зберіть фразу — це наші друзі-чоловіки**
 Плитки: `amigos` · `nuestros` · `son` · `nuestro`.

@@ -53,7 +53,7 @@
 → **Estos** · Este · Esta
 Повна фраза: **Estos libros son nuevos.**
 - Este — *Книжок кілька: estos.*
-- Esta — *Libros — чоловічий рід, множина: estos.*
+- Esta — *Libros — чоловічий рід, їх кілька: estos.*
 
 **3 · Зберіть фразу — ці книжки поруч нові; почніть з Estos libros**
 Плитки: `nuevos` · `libros` · `son` · `estos` · `los`.

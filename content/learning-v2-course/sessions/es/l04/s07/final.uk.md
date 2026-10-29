@@ -15,7 +15,7 @@
 
 - ✅ **No es mi bolso.** — *Одна річ: no es mi bolso.*
 - ❌ No son mi bolso. — *Сумка одна: es.*
-- ❌ No es mis bolso. — *З одниною bolso потрібне mi.*
+- ❌ No es mis bolso. — *Для одного bolso потрібне mi.*
 
 ## Інтро 2
 
@@ -27,7 +27,7 @@
 
 - ✅ **No son mis libros.** — *Кілька речей: son mis libros.*
 - ❌ No es mis libros. — *Для кількох книжок потрібне son.*
-- ❌ No son mi libros. — *Перед множиною libros потрібне mis.*
+- ❌ No son mi libros. — *Перед libros, коли їх кілька, потрібне mis.*
 
 ## Інтро 3
 

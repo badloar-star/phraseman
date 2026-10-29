@@ -21,11 +21,11 @@
 
 ### Кілька подруг
 
-Тепер підійшли кілька ваших спільних подруг. Скажіть `Son nuestras amigas` — «Це наші подруги». Зберіть `son` + `nuestras amigas`. Додайте -s до nuestra й amiga; es замініть на son. Nuestras показує жіночий рід і множину слова amigas.
+Тепер підійшли кілька ваших спільних подруг. Скажіть `Son nuestras amigas` — «Це наші подруги». Зберіть `son` + `nuestras amigas`. Додайте -s до nuestra й amiga; es замініть на son. Nuestras показує жіночий рід слова amigas і те, що подруг кілька.
 
 **Представте спільних подруг: «Це наші подруги». Почніть з Son.**
 
-- ✅ **Son nuestras amigas.** — *Жіноча множина: nuestras amigas.*
+- ✅ **Son nuestras amigas.** — *Жіночий рід, їх кілька: nuestras amigas.*
 - ❌ Son nuestros amigas. — *Amigas жіночого роду: nuestras.*
 - ❌ Son nuestra amigas. — *Подруг кілька: nuestras.*
 
@@ -39,7 +39,7 @@
 
 - ✅ **Nuestras amigas son amables.** — *Кілька подруг: son amables.*
 - ❌ Nuestras amigas son amable. — *Подруг кілька: amables.*
-- ❌ Nuestras amigas es amables. — *Множина amigas потребує son.*
+- ❌ Nuestras amigas es amables. — *Кілька amigas потребують son.*
 
 ## Практика · 12 завдань
 

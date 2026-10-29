@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: so cold, such a cold day
+**Что вы освоите:** сказать «так / такой» с чувством: The train delay is so long.
 **Новые слова:** train delay, flight delay, traffic noise, background noise
 
 ## Интро 1

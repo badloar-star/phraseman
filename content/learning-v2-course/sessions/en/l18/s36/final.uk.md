@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: so cold, such a cold day
+**Що ви опануєте:** сказати «так / такий» з почуттям: The live music is so loud.
 **Нові слова:** live music, live concert, street performance, music festival
 
 ## Інтро 1

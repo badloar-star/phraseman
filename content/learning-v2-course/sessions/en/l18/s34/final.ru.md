@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: so cold, such a cold day
+**Что вы освоите:** сказать «так / такой» с чувством: The birthday party is so noisy.
 **Новые слова:** birthday party, wedding anniversary, family dinner, family reunion
 
 ## Интро 1

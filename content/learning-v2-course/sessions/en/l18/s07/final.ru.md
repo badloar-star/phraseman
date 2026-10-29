@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** сравнить две вещи: bigger than, cheaper than
+**Что вы освоите:** сравнить две вещи: wider than mine
 **Новые слова:** sports shoes, running shoes, leather shoes, flat shoes
 
 ## Интро 1

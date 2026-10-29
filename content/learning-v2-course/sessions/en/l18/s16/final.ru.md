@@ -2,7 +2,7 @@
 
 **Ситуация.** Вам предложили по три времени или варианта приёма. Вы сравниваете расписание и длительность.
 
-**Что вы освоите:** выбрать лучшее или худшее из многих: the biggest, the cheapest
+**Что вы освоите:** назвать самый лучший или худший вариант: This phone appointment is the shortest.
 **Новые слова:** home visit, phone appointment, dental appointment, appointment time
 
 ## Интро 1

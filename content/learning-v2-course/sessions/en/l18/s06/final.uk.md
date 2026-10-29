@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте доступні варіанти й обговорюєте плани.
 
-**Що ви опануєте:** порівняти дві речі: bigger than, cheaper than
+**Що ви опануєте:** порівняти дві речі: lighter than mine
 **Нові слова:** cotton shirt, wool jumper, winter coat, summer dress
 
 ## Інтро 1

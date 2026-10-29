@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы смотрите условия трёх магазинов и сравниваете варианты получения заказа.
 
-**Что вы освоите:** выбрать лучшее или худшее из многих: the biggest, the cheapest
+**Что вы освоите:** назвать самый лучший или худший вариант: the fastest option here
 **Новые слова:** standard delivery, express delivery, next-day delivery, free collection
 
 ## Интро 1

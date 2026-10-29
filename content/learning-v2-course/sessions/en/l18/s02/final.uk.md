@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте доступні варіанти й обговорюєте плани.
 
-**Що ви опануєте:** порівняти дві речі: bigger than, cheaper than
+**Що ви опануєте:** порівняти дві речі: nicer than ours
 **Нові слова:** top floor, ground-floor flat, garden view, city view
 
 ## Інтро 1

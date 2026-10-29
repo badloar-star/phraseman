@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте доступні варіанти й обговорюєте плани.
 
-**Що ви опануєте:** порівняти дві речі: bigger than, cheaper than
+**Що ви опануєте:** порівняти дві речі: wider than mine
 **Нові слова:** sports shoes, running shoes, leather shoes, flat shoes
 
 ## Інтро 1

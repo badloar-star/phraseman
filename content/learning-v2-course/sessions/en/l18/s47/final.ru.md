@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: so cold, such a cold day
+**Что вы освоите:** сказать «так / такой» с чувством: The food poisoning was so bad.
 **Новые слова:** food poisoning, hay fever, travel sickness, chest pain
 
 ## Интро 1

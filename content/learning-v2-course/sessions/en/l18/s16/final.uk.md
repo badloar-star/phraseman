@@ -2,7 +2,7 @@
 
 **Ситуація.** Вам запропонували по три часи або варіанти прийому. Ви порівнюєте розклад і тривалість.
 
-**Що ви опануєте:** вибрати найкраще чи найгірше з багатьох: the biggest, the cheapest
+**Що ви опануєте:** назвати найкращий чи найгірший варіант: This phone appointment is the shortest.
 **Нові слова:** home visit, phone appointment, dental appointment, appointment time
 
 ## Інтро 1

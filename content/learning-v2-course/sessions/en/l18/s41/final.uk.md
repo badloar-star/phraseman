@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: so cold, such a cold day
+**Що ви опануєте:** сказати «так / такий» з почуттям: This short break is so welcome.
 **Нові слова:** short break, quick shower, early start, late night
 
 ## Інтро 1

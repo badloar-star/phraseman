@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: so cold, such a cold day
+**Що ви опануєте:** сказати «так / такий» з почуттям: My close friend is so kind.
 **Нові слова:** close friend, mutual friend, childhood friend, next-door neighbour
 
 ## Інтро 1

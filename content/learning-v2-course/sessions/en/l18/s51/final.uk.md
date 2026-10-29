@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: so cold, such a cold day
+**Що ви опануєте:** сказати «так / такий» з почуттям: This needs such careful attention.
 **Нові слова:** opportunity, attention, interest, opinion
 
 ## Інтро 1

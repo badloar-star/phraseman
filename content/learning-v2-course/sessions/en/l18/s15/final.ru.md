@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете несколько стульев и столов перед покупкой.
 
-**Что вы освоите:** выбрать лучшее или худшее из многих: the biggest, the cheapest
+**Что вы освоите:** назвать самый лучший или худший вариант: This dining chair is the lightest.
 **Новые слова:** dining chair, office chair, kitchen table, dining table
 
 ## Интро 1

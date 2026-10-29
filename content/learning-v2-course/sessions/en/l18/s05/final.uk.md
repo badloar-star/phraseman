@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте доступні варіанти й обговорюєте плани.
 
-**Що ви опануєте:** порівняти дві речі: bigger than, cheaper than
+**Що ви опануєте:** порівняти дві речі: lower than before
 **Нові слова:** sale price, regular price, total cost, unit price
 
 ## Інтро 1

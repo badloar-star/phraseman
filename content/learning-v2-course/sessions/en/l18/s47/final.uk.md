@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: so cold, such a cold day
+**Що ви опануєте:** сказати «так / такий» з почуттям: The food poisoning was so bad.
 **Нові слова:** food poisoning, hay fever, travel sickness, chest pain
 
 ## Інтро 1

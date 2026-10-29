@@ -74,7 +74,7 @@ export const EditorialFrame = memo(function EditorialFrame({ content, lang }: An
           <Plane width={w} height={210} radius={28} angle={135}>
             <SheenLoop width={w} height={210} periodMs={5000} d={1400} />
             <View style={f.panelIn}>
-              <Text style={[f.panelOv, { color: pal.accInk }]}>{content.badge}</Text>
+              <Text testID="story-ann-badge" style={[f.panelOv, { color: pal.accInk }]}>{content.badge}</Text>
               <Text style={[f.mark, { color: pal.accInk }]}>{mark}</Text>
             </View>
           </Plane>
@@ -95,7 +95,8 @@ export const QuoteFrame = memo(function QuoteFrame({ content }: AnnFrameProps) {
   const pal = useAnnPalette();
   const [tb, onTitle] = useBox();
   const size = announcementTitleSize(content.title);
-  const title = <Text style={titleTextStyle(size, pal.tx, 'left')}>{content.title}</Text>;
+  // зачем (гейт, критерий (а)): заголовок цитаты рисуется одним Text под маской, а не AnnTitle — тот же testID, что у .h1 макета (ST.rects)
+  const title = <Text testID="story-ann-title" style={titleTextStyle(size, pal.tx, 'left')}>{content.title}</Text>;
   return (
     <AnnRoot
       testID="story-ann-quote"

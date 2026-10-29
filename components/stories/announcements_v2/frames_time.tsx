@@ -201,21 +201,22 @@ const INK_SIZE: Readonly<Record<14 | 16 | 20, TextStyle>> = { 14: { fontSize: 14
 
 /** Блок на занавесе (.onink .p / .blk): цвет accentInk у всех стилей. opacity .82 у .onink .p макета перекрыта входом .a (анимация держит
  *  opacity 1), поэтому итог — 1. Ширина — как блок макета: по колонке .onink, не шире 320, от её левого края, текст по центру. */
-const OnInkBlock = memo(function OnInkBlock({ block, d }: Readonly<{ block: AnnouncementV2Block; d: number }>) {
+const OnInkBlock = memo(function OnInkBlock({ block, d, testID }: Readonly<{ block: AnnouncementV2Block; d: number; testID?: string }>) {
   const pal = useAnnPalette();
   const size = INK_SIZE[block.size] ?? INK_SIZE[16];
+  // testID — как у AnnBlock (story-ann-block-<i>): гейт сверяет рамку с .p/.blk макета (критерий (а), ±2 dp)
   if (block.style === 'accent') {
-    return <Enter d={d} style={[s.inkBlk, s.inkAcc, { backgroundColor: mix(pal.tx, 0.1) }]}><Text style={[size, s.inkAccT, { color: pal.accInk }]}>{block.text}</Text></Enter>;
+    return <Enter d={d} testID={testID} style={[s.inkBlk, s.inkAcc, { backgroundColor: mix(pal.tx, 0.1) }]}><Text style={[size, s.inkAccT, { color: pal.accInk }]}>{block.text}</Text></Enter>;
   }
   if (block.style === 'quote') {
     return (
-      <Enter d={d} style={[s.inkBlk, s.inkQ]}>
+      <Enter d={d} testID={testID} style={[s.inkBlk, s.inkQ]}>
         <View style={[s.inkQBar, { backgroundColor: pal.accG }]} />
         <Text style={[size, s.inkQT, { color: pal.accInk }]}>{block.text}</Text>
       </Enter>
     );
   }
-  return <Enter d={d} style={s.inkP}><Text style={[size, s.inkPT, { color: pal.accInk }]}>{block.text}</Text></Enter>;
+  return <Enter d={d} testID={testID} style={s.inkP}><Text style={[size, s.inkPT, { color: pal.accInk }]}>{block.text}</Text></Enter>;
 });
 
 export const SoonFrame = memo(function SoonFrame({ content, lang }: AnnFrameProps) {
@@ -237,7 +238,7 @@ export const SoonFrame = memo(function SoonFrame({ content, lang }: AnnFrameProp
           <Keyframed keys={FADE_IN} d={1700} dur={700} ease={EASE_CSS} style={s.soonLayer}><SoonWord text={word} color={pal.accInk} outline={false} /></Keyframed>
         </View>
         <AnnTitle text={content.title} d0={1900} color={pal.accInk} />
-        {first ? <OnInkBlock block={first} d={2300} /> : null}
+        {first ? <OnInkBlock block={first} d={2300} testID="story-ann-block-0" /> : null}
       </View>
     </AnnRoot>
   );

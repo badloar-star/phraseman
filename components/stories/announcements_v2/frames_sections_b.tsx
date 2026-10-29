@@ -24,6 +24,7 @@ import { resolveThemedArt } from '../../theme/themed_art_registry';
 import { frameMs, phase, pingPong, useStoryFrameClock } from '../templates/story_frame_clock';
 import { Enter } from '../templates/story_template_motion';
 import { mix } from '../templates/story_template_palette';
+import { colorWithAlpha } from '../../v2/plateAlpha';
 import { AnnRoot, EASE_CSS, EASE_CSS_IN_OUT, EASE_CSS_OUT, EASE_OUT, EASE_SPRING, Keyframed, Loop, type Key, type KeyStyle } from './announcement_v2_motion';
 import { useAnnPalette, type AnnPalette } from './announcement_v2_palette';
 import { Disc, Rays, Wave } from './announcement_v2_parts';
@@ -228,8 +229,9 @@ export const VideoFrame = memo(function VideoFrame({ content }: AnnFrameProps) {
           <Loop keys={BREATHE} periodMs={2400} style={[f.pb, { backgroundColor: pal.cta }]}>
             <Ionicons name="play" size={22} color={pal.ctaInk} style={f.pbIcon} />
           </Loop>
-          {/* зачем: rgba(0,0,0,.55) + #fff макета → роль «подложка поверх видео» темы на 55 % и белый mediaInk (светлые темы — ровно макет) */}
-          <View style={[f.dur, { backgroundColor: mix(pal.mediaScrim, 0.55) }]}>
+          {/* зачем: rgba(0,0,0,.55) + #fff макета → роль «подложка поверх видео» темы ровно на 55 % (colorWithAlpha ЗАМЕНЯЕТ альфу токена;
+              mix после фикса Моментов 29.10 её умножает — у mediaScrim своя альфа .45/.58, вышло бы .25) и белый mediaInk (светлые темы — ровно макет) */}
+          <View style={[f.dur, { backgroundColor: colorWithAlpha(pal.mediaScrim, 0.55) }]}>
             <Text style={[f.durT, { color: pal.mediaInk }]}>{VIDEO_DURATION}</Text>
           </View>
         </View>

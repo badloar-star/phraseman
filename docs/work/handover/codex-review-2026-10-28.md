@@ -340,3 +340,11 @@ const currentPath = currentNavigationHref() ?? navigationPathSignature ?? pathna
   (`app/learning-v2/course.tsx`), который с b9773b2ca ждёт `scheduleAfterRootNavigationReady` (InteractionManager): пока на Главной идёт
   Animated-анимация (пульс подсказки, `home.tsx:1765`, до ~7,5 с), переход стоит. Логи `[HOME-LESSONS-BTN]` уже ставятся — по ним
   видно, застревает ли переход между строками `course_route` и `course_route decide`. Данные переданы Дизайну.
+
+## 28. Непереведённые строки в незакоммиченных файлах (Переводчик 29.10)
+
+Сторож перевода считает 82 строки без 9 языков. Все они в четырёх новых неотслеживаемых файлах:
+- **Пик, «рекорд этажа» — 47 строк:** `components/spire/SpireFloorRecord.tsx` (37) и `components/spire/SpireRecordAttempt.tsx` (10). Созданы 28.10 08:54–08:55, подключены незакоммиченной правкой `components/spire/SpireHomeScreen.tsx` (строки 66 и 303). Тексты только ru/uk (`uk ? 'Рекорд поверху' : 'Рекорд этажа'`), поэтому 7 языков видят русский.
+- **Сообщество, проверка набора — 35 строк:** `components/packs/CommunityPackCheckScene.tsx` (3) и `app/dev_community_scene_preview.tsx` (32, дев-превью). Созданы 26.10, подключены незакоммиченной правкой `app/community_pack_create.tsx:1200`. Новая строка triLang «Добавь слово или фразу» есть только на ru/uk/es/en: нет pt-BR, vi, id, tr, pl, и сторож её не ловит.
+
+Что сделать: вынести строки в файл текстов, закоммитить и прислать хэш. 9 языков сделает Переводчик. Дев-превью можно внести в исключения сторожа.

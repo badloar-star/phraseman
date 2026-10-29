@@ -262,6 +262,9 @@ describe('рубежи серии — флаг, подключение, исхо
     'components/feedback/ComboMomentLayer.tsx',
     // зачем (координатор 15.10, кадры Сверки): dev_state `moments=v3|off|inherit` — dev-переключатель флага (только __DEV__), импорт ленивый
     'app/dev_state_fixtures.ts',
+    // зачем (координатор 29.10, решение за Ядро): кадр «Серия» по утверждённому макету историй рисует то же пламя и те же рубежи, что момент
+    // серии (StreakMomentFlame, streak_milestones, тексты рубежей); событие → кадр берёт следующий рубеж — дубль кода хуже
+    'components/stories/templates/frames_streak.tsx', 'components/stories/templates/story_template_from_event.ts',
   ];
   it('components/streak/moments импортируют только перечисленные места; новый импортёр — осознанное решение Ядра', () => {
     const offenders: string[] = [];

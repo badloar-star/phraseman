@@ -42,7 +42,7 @@ window.CK = (() => {
   const toast = (ph, text, icon = 'checkmark-circle') => { const t = el(`<div class="ck-toast"><span class="tile">${io(icon)}</span>${text}</div>`); ph.appendChild(t); after(2200, () => { t.classList.add('off'); after(300, () => t.remove()); }); };
   /* страница: разделы с состояниями; chips переключают состояние раздела и перерисовывают только его */
   const state = {}; let SECTIONS = []; let onAct = () => false; let onChip = () => false;
-  const section = (s) => { const st = state[s.id] || (state[s.id] = s.states ? s.states[0][0] : null); return `<section class="block" id="${s.id}"><h2>${s.title}</h2><p>${s.lead}</p>${s.costs ? cost(s.costs) : ''}${s.extra ? s.extra() : ''}${s.states ? chips(s.id, s.states, st) : ''}<div class="phones">${s.body(st).join('')}</div></section>`; };
+  const section = (s) => { const st = state[s.id] || (state[s.id] = s.states ? s.states[0][0] : null); return `<section class="block" id="${s.id}"><h2>${s.title}</h2>${s.lead ? `<p>${s.lead}</p>` : ''}${s.costs ? cost(s.costs) : ''}${s.extra ? s.extra() : ''}${s.states ? chips(s.id, s.states, st) : ''}<div class="phones">${s.body(st).join('')}</div></section>`; };
   const renderSection = (id) => { const s = SECTIONS.find((x) => x.id === id); const node = document.getElementById(id); if (!s || !node) return; node.outerHTML = section(s); const n = document.getElementById(id); n.querySelectorAll('.ph[data-open]').forEach((ph) => after(650, () => openSheet(ph, ph.dataset.open))); };
   const act = (ph, node) => {
     const [name, arg] = node.dataset.act.split(':');

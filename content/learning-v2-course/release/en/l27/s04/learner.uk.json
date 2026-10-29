@@ -833,7 +833,7 @@
             "correct": false,
             "testedDimension": "Розкажіть про вчорашнє складання ліжка.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -1044,5 +1044,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5a195ea2255e050c2463b0b720f896034ed067f476a0d6bded95eeffe82c4764"
+  "learnerFingerprint": "8cfe3f1a3c83f574d1a6724c89112e01231aa921949b4a0d0c590a4b34bcc19b"
 }

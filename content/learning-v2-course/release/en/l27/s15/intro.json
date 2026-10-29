@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-15",
   "learningOutcomeByLocale": {
-    "ru": "if I were you; if + past simple, would + base verb; past simple / present perfect",
-    "uk": "if I were you; if + past simple, would + base verb; past simple / present perfect"
+    "ru": "пригласить сыграть в боулинг: Would you like to go bowling?",
+    "uk": "запросити зіграти в боулінг: Would you like to go bowling?"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Коли грали разом"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы в последний раз играли вместе. Ответьте: We played last Friday — мы играли в прошлую пятницу. Played — прошедшая форма play с окончанием -ed. Last Friday называет законченное время, поэтому have не нужен. Собираем предложение: We + played + last Friday — кто, действие в прошлом, когда. Playing без вспомогательного глагола здесь не подходит.",
-        "uk": "Друг запитує, коли ви востаннє грали разом. Дайте відповідь: We played last Friday — ми грали минулої п’ятниці. Played — минула форма play із закінченням -ed. Last Friday називає завершений час, тому have не потрібне. Складаємо речення: We + played + last Friday — хто, дія в минулому, коли. Playing без допоміжного дієслова тут не підходить."
+        "ru": "Друг спрашивает, когда вы в последний раз играли вместе. Ответьте: We played last Friday — мы играли в прошлую пятницу. Played — прошедшая форма play с окончанием -ed. Last Friday называет законченное время, поэтому have не нужен. Собираем предложение: We + played + last Friday — кто, действие в прошлом, когда. Одной формы Playing здесь мало.",
+        "uk": "Друг запитує, коли ви востаннє грали разом. Дайте відповідь: We played last Friday — ми грали минулої п’ятниці. Played — минула форма play із закінченням -ed. Last Friday називає завершений час, тому have не потрібне. Складаємо речення: We + played + last Friday — хто, дія в минулому, коли. Однієї форми Playing тут замало."
       },
       "question": {
         "interactionId": "en:lesson-27:session-15:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4354232828e81cb4b65586b05f7dc042bc9d69b7f4d3b6db57ce7c5847f4f7a2"
+  "introFingerprint": "f84e63760f43cf841095718b4826a014ca3759ab8d549cf20113cec2da6c93c8"
 }

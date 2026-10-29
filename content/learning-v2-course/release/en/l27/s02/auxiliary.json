@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-27:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-02:intro2:r2": {
-          "ru": "С законченным yesterday здесь past simple.",
-          "uk": "Із завершеним yesterday тут past simple."
+          "ru": "С законченным yesterday здесь форма прошлого.",
+          "uk": "Із завершеним yesterday тут форма минулого."
         },
         "en:lesson-27:session-02:intro2:r3": {
           "ru": "Для вчерашнего события нужно called.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a0a0e42562900c1575fc822576a42f69fb9dde28ab2913b029fa62dea66e348f"
+  "auxiliaryFingerprint": "926504c422a468545f2350d4e95ef53f538feceb53ca410d017e1e008bcf5bba"
 }

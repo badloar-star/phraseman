@@ -389,7 +389,7 @@
             "correct": false,
             "testedDimension": "Назвіть конкретний завершений час: учора.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -398,7 +398,7 @@
             "correct": false,
             "testedDimension": "Назвіть конкретний завершений час: учора.",
             "feedbackByLocale": {
-              "ru": "Calling само по себе не образует сказуемое.",
+              "ru": "Calling само по себе здесь не подходит.",
               "uk": "Calling саме по собі не утворює присудок."
             }
           }
@@ -643,7 +643,7 @@
             "correct": false,
             "testedDimension": "Друг не чує дзвінка. Він відчинив би двері, якби почув його.",
             "feedbackByLocale": {
-              "ru": "В условии past simple без would.",
+              "ru": "В условии форма прошлого без would.",
               "uk": "В умові past simple без would."
             }
           },
@@ -1074,5 +1074,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "55b1e73ddfbc3d56386193f85a7d14ae1c3e5027af97015590cae6595efe66c7"
+  "learnerFingerprint": "91f86e31553e7d29d909c5816d0e56604e22d94145883b5d4f9da2fd21799101"
 }

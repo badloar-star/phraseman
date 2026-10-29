@@ -653,7 +653,7 @@
             "correct": false,
             "testedDimension": "Ви познайомилися з нею минулого року.",
             "feedbackByLocale": {
-              "ru": "С last year здесь past simple.",
+              "ru": "С last year здесь форма прошлого.",
               "uk": "Із last year тут past simple."
             }
           },
@@ -1037,5 +1037,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fd5ee067427f84f42b3b01742c0733041190c55d5fafeccd878abda495ab8025"
+  "learnerFingerprint": "f74a29e5dbabb4a1bf6e95584625183ac4c3537e5d4abd21d4d69a0f036be95f"
 }

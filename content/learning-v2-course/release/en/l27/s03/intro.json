@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-03",
   "learningOutcomeByLocale": {
-    "ru": "if + past simple, would + base verb; past simple / present perfect",
-    "uk": "if + past simple, would + base verb; past simple / present perfect"
+    "ru": "сказать, куда бы вы пошли с собакой: I would take him to the park.",
+    "uk": "сказати, куди б ви пішли з собакою: I would take him to the park."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Коли гуляли із собакою"
       },
       "bodyByLocale": {
-        "ru": "Сейчас вечер. Хозяин спрашивает, когда вы выводили собаку. Ответьте: I took him out this morning — я выводил его сегодня утром. Собираем: I + took + him + out + this morning — кто, took, кого, out, когда. Took out означает вывел на улицу; местоимение him ставим между took и out. Утро уже закончилось, поэтому используем past simple: took — прошедшую форму take.",
-        "uk": "Зараз вечір. Господар запитує, коли ви виводили собаку. Дайте відповідь: I took him out this morning — я виводив його сьогодні вранці. Складаємо: I + took + him + out + this morning — хто, took, кого, out, коли. Took out означає вивів надвір; займенник him ставимо між took та out. Ранок уже закінчився, тому використовуємо past simple: took — минулу форму take."
+        "ru": "Сейчас вечер. Хозяин спрашивает, когда вы выводили собаку. Ответьте: I took him out this morning — я выводил его сегодня утром. Собираем: I + took + him + out + this morning — кто, took, кого, out, когда. Took out означает вывел на улицу; слово him ставим между took и out. Утро уже закончилось, поэтому используем форму прошлого: took — прошедшую форму take.",
+        "uk": "Зараз вечір. Господар запитує, коли ви виводили собаку. Дайте відповідь: I took him out this morning — я виводив його сьогодні вранці. Складаємо: I + took + him + out + this morning — хто, took, кого, out, коли. Took out означає вивів надвір; слово him ставимо між took та out. Ранок уже закінчився, тому використовуємо форму минулого: took — минулу форму take."
       },
       "question": {
         "interactionId": "en:lesson-27:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e697da88cab8645fb2fcb09b4b89d4bcd08ce95441e99de8c1149870727c4f4"
+  "introFingerprint": "2b5acfdb0672d981c33736bda15e150b6a9661ebeda516f36d29035ab03dd88f"
 }

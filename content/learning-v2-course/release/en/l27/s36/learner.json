@@ -324,7 +324,7 @@
             "correct": false,
             "testedDimension": "Расскажите о прошлой поездке сюда.",
             "feedbackByLocale": {
-              "ru": "Last summer — законченное время: stayed.",
+              "ru": "Last summer — это уже прошлое: stayed.",
               "uk": "Last summer — завершений час: stayed."
             }
           },
@@ -1001,5 +1001,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "60f1c7c9fd13398eb3255aaa58b8e8c45cd373113a658c88727e84195b730370"
+  "learnerFingerprint": "871de90750909fd55e05630de44de98f57fc04639f2066d7da71dd77a62c1b55"
 }

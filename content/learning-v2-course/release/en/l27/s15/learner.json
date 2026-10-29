@@ -570,7 +570,7 @@
             "correct": false,
             "testedDimension": "Вы играли в прошлую пятницу. Назовите законченное время.",
             "feedbackByLocale": {
-              "ru": "С last Friday здесь past simple.",
+              "ru": "С last Friday здесь форма прошлого.",
               "uk": "Із last Friday тут past simple."
             }
           },
@@ -1037,5 +1037,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "faa4b393af91c1e2374a4ebb7811e090bebcf2091355cdfdde8947d8dfdabe4e"
+  "learnerFingerprint": "ba6a1fcc87761e5185d6f2673cefa24e132d3750df6ddfcb8cb1d298f4682848"
 }

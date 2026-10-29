@@ -833,7 +833,7 @@
             "correct": false,
             "testedDimension": "Расскажите о вчерашней сборке кровати.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -1044,5 +1044,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ef475c3684390cd8a22310cb24915c38817f3a2a87508ed24cb2c4a44ccacea5"
+  "learnerFingerprint": "427a61d82b0563e04a017bbf2ac3f84d04e90709d6c5047bd866db4a9337aa57"
 }

@@ -799,7 +799,7 @@
             "correct": false,
             "testedDimension": "Вы помыли посуду час назад. Назовите это время.",
             "feedbackByLocale": {
-              "ru": "С an hour ago нужен past simple.",
+              "ru": "С an hour ago нужна форма прошлого.",
               "uk": "Із an hour ago потрібен past simple."
             }
           },
@@ -1038,5 +1038,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "10ab0a8de9e82dbedd36b6d4e305d84e130ee6f2e1a2ded3533bf84055c0f524"
+  "learnerFingerprint": "ba89b73cb2b5962253d338d30d90fa24e6880d83dab48a489900508c782a77d6"
 }

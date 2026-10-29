@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-28:session-36",
   "learningOutcomeByLocale": {
-    "ru": "как уточнить сведения о книге и условия её выдачи.",
-    "uk": "як уточнити відомості про книжку й умови її видачі."
+    "ru": "спросить, новое ли это издание: Is this the new edition?",
+    "uk": "запитати, чи це нове видання: Is this the new edition?"
   },
   "pages": [
     {

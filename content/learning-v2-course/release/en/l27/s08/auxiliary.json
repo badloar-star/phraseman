@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-27:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-08:intro2:r2": {
-          "ru": "С last week здесь past simple.",
-          "uk": "Із last week тут past simple."
+          "ru": "С last week здесь форма прошлого.",
+          "uk": "Із last week тут форма минулого."
         },
         "en:lesson-27:session-08:intro2:r3": {
           "ru": "Прошедшая форма buy — bought.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "0b345d6f4d3546728b01eb2848011d4824e19dbfcf0ddbe4cb0f71ed8b3bd533"
+  "auxiliaryFingerprint": "446f12cf0b6de3b80f3e90fcd0ee03dfa230581c0a564bd246bce6bd5d56b674"
 }

@@ -585,8 +585,8 @@
             "correct": false,
             "testedDimension": "Уточните время ухода из кафе.",
             "feedbackByLocale": {
-              "ru": "Нужен Past Simple: left.",
-              "uk": "Потрібен Past Simple: left."
+              "ru": "Нужна форма прошлого: left.",
+              "uk": "Потрібна форма минулого: left."
             }
           }
         ]
@@ -965,5 +965,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "640cbe9fbf7dfa3817b7a1269cec83af20b52e756c1d889f1613f24b07f14d7c"
+  "learnerFingerprint": "2f64b8c2dd56fb6d85d0edf594202ce4061dd1a3acc2b13c83d157b93e09444b"
 }

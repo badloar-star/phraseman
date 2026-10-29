@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-29:session-02",
   "learningOutcomeByLocale": {
-    "ru": "как уточнить состав блюда, спросить о приготовлении и предложить заказ.",
-    "uk": "як уточнити склад страви, запитати про приготування й запропонувати замовлення."
+    "ru": "сказать, кто приготовил блюдо: The bread was made by our chef.",
+    "uk": "сказати, хто приготував страву: The bread was made by our chef."
   },
   "pages": [
     {

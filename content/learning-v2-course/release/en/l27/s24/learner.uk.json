@@ -802,7 +802,7 @@
             "correct": false,
             "testedDimension": "Уточніть, що телефонували вчора.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -1000,5 +1000,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ae1103e74e0f01b36b9386ab299da19a3ed3c556588c92e83f55704ce55f9125"
+  "learnerFingerprint": "747a0d5502d8e08293878f31ca2587caf9297c03c7cab1a8dc0375063838526d"
 }

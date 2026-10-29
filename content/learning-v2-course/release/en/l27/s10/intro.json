@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-10",
   "learningOutcomeByLocale": {
-    "ru": "if I were you; if + past simple, would + base verb; past simple / present perfect",
-    "uk": "if I were you; if + past simple, would + base verb; past simple / present perfect"
+    "ru": "посоветовать сохранить чек: I would keep the receipt.",
+    "uk": "порадити зберегти чек: I would keep the receipt."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Коли оплатили сніданок"
       },
       "bodyByLocale": {
-        "ru": "В гостинице уточняют, когда вы оплатили завтрак. Ответьте: I paid yesterday — я заплатил вчера. Собираем: I + paid + yesterday — кто, действие в прошлом, когда. Paid — прошедшая форма pay в значении платить; не payed. Yesterday называет законченное время, поэтому здесь нужен past simple: paid без have. О завтраке уже спросили, поэтому в коротком ответе его можно не повторять.",
-        "uk": "У готелі уточнюють, коли ви оплатили сніданок. Дайте відповідь: I paid yesterday — я заплатив учора. Складаємо: I + paid + yesterday — хто, дія в минулому, коли. Paid — минула форма pay у значенні платити; не payed. Yesterday називає завершений час, тому тут потрібен past simple: paid без have. Про сніданок уже запитали, тому в короткій відповіді його можна не повторювати."
+        "ru": "В гостинице уточняют, когда вы оплатили завтрак. Ответьте: I paid yesterday — я заплатил вчера. Собираем: I + paid + yesterday — кто, действие в прошлом, когда. Paid — прошедшая форма pay в значении платить; не payed. Yesterday называет законченное время, поэтому здесь нужна форма прошлого: paid без have. О завтраке уже спросили, поэтому в коротком ответе его можно не повторять.",
+        "uk": "У готелі уточнюють, коли ви оплатили сніданок. Дайте відповідь: I paid yesterday — я заплатив учора. Складаємо: I + paid + yesterday — хто, дія в минулому, коли. Paid — минула форма pay у значенні платити; не payed. Yesterday називає завершений час, тому тут потрібна форма минулого: paid без have. Про сніданок уже запитали, тому в короткій відповіді його можна не повторювати."
       },
       "question": {
         "interactionId": "en:lesson-27:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "34959fc1607d57c564a4a4714711f48b1b4c040578aa2d29eb2e722669a0488f"
+  "introFingerprint": "f7d895276f1452cb404c86bff8e3425606975dc4a78db84cbde53ed22fa80e5b"
 }

@@ -284,7 +284,7 @@
             "correct": false,
             "testedDimension": "Фотографии пока нет. Вы узнали бы её, если бы увидели фото.",
             "feedbackByLocale": {
-              "ru": "В условии past simple: saw без would.",
+              "ru": "В условии форма прошлого: saw без would.",
               "uk": "В умові past simple: saw без would."
             }
           },
@@ -621,7 +621,7 @@
             "correct": false,
             "testedDimension": "Назовите законченное время: прошлым летом.",
             "feedbackByLocale": {
-              "ru": "С last summer здесь past simple.",
+              "ru": "С last summer здесь форма прошлого.",
               "uk": "Із last summer тут past simple."
             }
           },
@@ -835,7 +835,7 @@
             "correct": false,
             "testedDimension": "Вы нашли столик десять минут назад.",
             "feedbackByLocale": {
-              "ru": "С ago здесь past simple.",
+              "ru": "С ago здесь форма прошлого.",
               "uk": "Із ago тут past simple."
             }
           },
@@ -844,7 +844,7 @@
             "correct": false,
             "testedDimension": "Вы нашли столик десять минут назад.",
             "feedbackByLocale": {
-              "ru": "Finding само по себе не образует сказуемое.",
+              "ru": "Finding само по себе здесь не подходит.",
               "uk": "Finding саме по собі не утворює присудок."
             }
           }
@@ -1041,5 +1041,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5a1d9a6af8d130a97649afb2723123d15bc3e314b1cafc533c499ba7ea443280"
+  "learnerFingerprint": "ba43bba235345aa041035ce7aab79bfb8ad3b0e4b040030a73dd2d86fa07deb1"
 }

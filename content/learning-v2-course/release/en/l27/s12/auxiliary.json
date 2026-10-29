@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-27:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-12:intro2:r2": {
-          "ru": "С yesterday здесь past simple.",
-          "uk": "Із yesterday тут past simple."
+          "ru": "С yesterday здесь форма прошлого.",
+          "uk": "Із yesterday тут форма минулого."
         },
         "en:lesson-27:session-12:intro2:r3": {
           "ru": "Прошедшая форма write — wrote.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "e71ea177e7617e6b5a1ffcdbc56e123d6b0bc6159a0862f3433a6cfda963310a"
+  "auxiliaryFingerprint": "eca7d05e64a4f93f056fb892cbb505557d795810f61079fd3c1e63fd270b02cf"
 }

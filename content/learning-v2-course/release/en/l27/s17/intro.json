@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-17",
   "learningOutcomeByLocale": {
-    "ru": "if-clause without would; result with would",
-    "uk": "if-clause without would; result with would"
+    "ru": "предложить позвать друзей в поездку: Let us invite our friends.",
+    "uk": "запропонувати покликати друзів у подорож: Let us invite our friends."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Якби вийшли зараз"
       },
       "bodyByLocale": {
-        "ru": "Вы ещё дома и обсуждаете с другом, когда выйти. Представьте результат немедленного выхода: We would arrive early if we left now — мы бы приехали рано, если бы вышли сейчас. В этом воображаемом условии would относится к результату arrive, а после if ставим past simple left без would. Left здесь не означает, что вы уже вышли. Собираем предложение: We + would arrive + early + if we left now — кто, возможный результат, насколько рано, при каком условии. После would нужна начальная форма arrive.",
-        "uk": "Ви ще вдома й обговорюєте з другом, коли вийти. Уявіть результат негайного виходу: We would arrive early if we left now — ми б приїхали рано, якби вийшли зараз. У цій уявній умові would стосується результату arrive, а після if ставимо past simple left без would. Left тут не означає, що ви вже вийшли. Складаємо речення: We + would arrive + early + if we left now — хто, можливий результат, наскільки рано, за якої умови. Після would потрібна початкова форма arrive."
+        "ru": "Вы ещё дома и обсуждаете с другом, когда выйти. Представьте результат немедленного выхода: We would arrive early if we left now — мы бы приехали рано, если бы вышли сейчас. В этом воображаемом условии would относится к результату arrive, а после if ставим форму прошлого left без would. Left здесь не означает, что вы уже вышли. Собираем предложение: We + would arrive + early + if we left now — кто, возможный результат, насколько рано, при каком условии. После would нужна начальная форма arrive.",
+        "uk": "Ви ще вдома й обговорюєте з другом, коли вийти. Уявіть результат негайного виходу: We would arrive early if we left now — ми б приїхали рано, якби вийшли зараз. У цій уявній умові would стосується результату arrive, а після if ставимо форму минулого left без would. Left тут не означає, що ви вже вийшли. Складаємо речення: We + would arrive + early + if we left now — хто, можливий результат, наскільки рано, за якої умови. Після would потрібна початкова форма arrive."
       },
       "question": {
         "interactionId": "en:lesson-27:session-17:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "63dd1fe19d832d35dbbf30d439bf285ee38c05bb155617ddbc49a17eea8f68d8"
+  "introFingerprint": "ec7801d4f8eb2e492fc034423aae33ef26c63b25f4b95318dabcfbac6a3bc797"
 }

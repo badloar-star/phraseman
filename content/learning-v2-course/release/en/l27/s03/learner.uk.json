@@ -579,7 +579,7 @@
             "correct": false,
             "testedDimension": "Зараз вечір. Розкажіть про завершену ранкову прогулянку.",
             "feedbackByLocale": {
-              "ru": "Утро закончилось: здесь past simple.",
+              "ru": "Утро закончилось: здесь форма прошлого.",
               "uk": "Ранок закінчився: тут past simple."
             }
           },
@@ -588,7 +588,7 @@
             "correct": false,
             "testedDimension": "Зараз вечір. Розкажіть про завершену ранкову прогулянку.",
             "feedbackByLocale": {
-              "ru": "Taking само по себе не образует сказуемое.",
+              "ru": "Taking само по себе здесь не подходит.",
               "uk": "Taking саме по собі не утворює присудок."
             }
           }
@@ -1041,5 +1041,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4af2efc31ef622b7749a95f2b19cb76b32ed26e463342cc196f06720c86efd28"
+  "learnerFingerprint": "ada3717f1a6320693690820dbb5d08a11301e9af6c25b48804bb38c2e306f9ae"
 }

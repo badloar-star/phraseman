@@ -389,7 +389,7 @@
             "correct": false,
             "testedDimension": "Назовите конкретное законченное время: вчера.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -398,7 +398,7 @@
             "correct": false,
             "testedDimension": "Назовите конкретное законченное время: вчера.",
             "feedbackByLocale": {
-              "ru": "Calling само по себе не образует сказуемое.",
+              "ru": "Calling само по себе здесь не подходит.",
               "uk": "Calling саме по собі не утворює присудок."
             }
           }
@@ -643,7 +643,7 @@
             "correct": false,
             "testedDimension": "Друг не слышит звонок. Он открыл бы дверь, если бы услышал его.",
             "feedbackByLocale": {
-              "ru": "В условии past simple без would.",
+              "ru": "В условии форма прошлого без would.",
               "uk": "В умові past simple без would."
             }
           },
@@ -1074,5 +1074,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "68ea8b80a7fb29826e54af21b497d63db16c5ee42cbe3363f408346cb3d1762c"
+  "learnerFingerprint": "a74ab3c320db378e370f89a35e4a719abd96e89d54f81d4d842f788c6f061bdf"
 }

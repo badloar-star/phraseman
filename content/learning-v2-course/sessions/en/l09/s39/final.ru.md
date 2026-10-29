@@ -115,7 +115,7 @@ I am referring ___ the appendix. → **to** · at · on
 <!-- interaction_id: en:lesson-09:session-39:i11; family: context_gap_grammar -->
 It is ___ footnote. → **a** · an · are
 - an — *Footnote начинается с согласного звука: a.*
-- are — *Are — глагол, не слово a / the перед названием предмета.*
+- are — *Are — глагол, не a / the перед названием предмета.*
 
 **15 · Карточка слова — index**
 <!-- interaction_id: en:lesson-09:session-39:word:index; family: word_card -->

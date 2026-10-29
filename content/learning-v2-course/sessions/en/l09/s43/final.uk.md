@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-09:session-43:i03; family: context_gap_grammar -->
 This is ___ thumbnail. → **a** · an · are
 - an — *Thumbnail починається з приголосного звука, потрібне a.*
-- are — *Are — дієслово, не слово a / the перед thumbnail.*
+- are — *Are — дієслово, не a / the перед thumbnail.*
 
 **5 · Картка слова — preview**
 <!-- interaction_id: en:lesson-09:session-43:word:preview; family: word_card -->

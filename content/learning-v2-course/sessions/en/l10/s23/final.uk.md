@@ -106,7 +106,7 @@ Tell ___ the truth. → **me** · I · my
 **12 · Виберіть форму advice: тут його не рахують поштучно**
 <!-- interaction_id: en:lesson-10:session-23:i09; family: context_gap_grammar -->
 I need ___. → **advice** · an advice · advices
-- an advice — *Advice тут без неозначеного слова a / the.*
+- an advice — *Advice тут без a.*
 - advices — *У advice тут немає закінчення s.*
 
 **13 · Картка слова — permission**

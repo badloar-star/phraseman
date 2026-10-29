@@ -37,7 +37,7 @@
 
 ### Тепло відгукнутися про сусіда
 
-Сусід із квартири поруч поливав ваші рослини, поки ви були у від’їзді. My next-door neighbour is such a kind person — мій сусід — така добра людина. Спочатку назвіть сусіда: My next-door neighbour. Потім is та оцінка such a kind person. Порядок оцінки: such + a + kind + person; such стоїть перед словом a / the, а не після нього.
+Сусід із квартири поруч поливав ваші рослини, поки ви були у від’їзді. My next-door neighbour is such a kind person — мій сусід — така добра людина. Спочатку назвіть сусіда: My next-door neighbour. Потім is та оцінка such a kind person. Порядок оцінки: such + a + kind + person; such стоїть перед a, а не після нього.
 
 **Виберіть фразу для цієї ситуації.**
 

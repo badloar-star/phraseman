@@ -123,7 +123,7 @@ I ___ near the carousel. → **am** · is · are
 <!-- interaction_id: en:lesson-09:session-41:i12; family: context_gap_grammar -->
 This is ___ eddy. → **an** · a · are
 - a — *Перед гласным звуком в eddy нужен an.*
-- are — *Are — глагол, не слово a / the перед eddy.*
+- are — *Are — глагол, не a / the перед eddy.*
 
 **17 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-09:session-41:i13; family: listen_choose -->

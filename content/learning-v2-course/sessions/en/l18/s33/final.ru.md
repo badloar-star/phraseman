@@ -37,7 +37,7 @@
 
 ### Тепло отозваться о соседе
 
-Сосед из квартиры рядом поливал ваши растения, пока вы были в отъезде. My next-door neighbour is such a kind person — мой сосед — такой добрый человек. Сначала назовите соседа: My next-door neighbour. Затем is и оценка such a kind person. Порядок оценки: such + a + kind + person; such стоит перед словом a / the, а не после него.
+Сосед из квартиры рядом поливал ваши растения, пока вы были в отъезде. My next-door neighbour is such a kind person — мой сосед — такой добрый человек. Сначала назовите соседа: My next-door neighbour. Затем is и оценка such a kind person. Порядок оценки: such + a + kind + person; such стоит перед a, а не после него.
 
 **Выберите фразу для этой ситуации.**
 

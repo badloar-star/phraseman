@@ -115,7 +115,7 @@ There ___ a power outage. → **is** · are · am
 <!-- interaction_id: en:lesson-09:session-38:i11; family: context_gap_grammar -->
 It is ___ glitch. → **a** · an · are
 - an — *Glitch починається з приголосного звука, тому a.*
-- are — *Are — форма дієслова, не слово a / the перед іменником.*
+- are — *Are — форма дієслова, не a / the перед іменником.*
 
 **15 · Картка слова — eclipse**
 <!-- interaction_id: en:lesson-09:session-38:word:eclipse; family: word_card -->

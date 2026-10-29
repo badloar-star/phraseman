@@ -41,3 +41,6 @@
 .pe-var { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
 .pe-var .chp { font-size: 13px; }
 @media (prefers-reduced-motion: reduce) { .rf-slice.pe-card.shake, .pe-plate { animation: none !important; transition: none !important; } }
+
+/* пометка одобрения владельца (29.10): зелёная плашка в заголовке */
+.pe-ok { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 3px 10px; border-radius: 999px; background: rgba(52, 199, 89, .18); color: #1E8E3E; font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: .01em; }

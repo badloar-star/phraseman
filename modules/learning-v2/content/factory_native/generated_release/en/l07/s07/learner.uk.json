@@ -964,7 +964,7 @@
             "correct": false,
             "testedDimension": "Скажіть подрузі, що ваучера немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Слово voucher стоит в единственном числе: нужно `There is no`.",
+              "ru": "Слово voucher стоит в форме для одного: нужно `There is no`.",
               "uk": "Слово voucher стоїть в однині: потрібно `There is no`."
             }
           },
@@ -1178,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ecb8de07b0fa2f312c3ec3d8ab562b14c0367c7bf69faf794295d954cec7c6ba"
+  "learnerFingerprint": "2c7f40c57f31ce8c2b78ab9ec1e338442110271dbe13e64dbc9211864fd80aea"
 }

@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для отрицания с I",
+      "prompt": "Выберите, как сказать «не» с I",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-09:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для отрицания с I",
+      "accessibilityLabel": "Выберите, как сказать «не» с I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для отрицания с I",
+          "ru": "Выберите, как сказать «не» с I",
           "uk": "Виберіть форму для заперечення з I"
         },
         "gappedTargetPhrase": "I ___ not guessing.",
@@ -896,7 +896,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму отрицания с they",
+      "prompt": "Выберите, как сказать «не» с they",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-09:i14:r1",
@@ -913,11 +913,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму отрицания с they",
+      "accessibilityLabel": "Выберите, как сказать «не» с they",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму отрицания с they",
+          "ru": "Выберите, как сказать «не» с they",
           "uk": "Виберіть форму заперечення з they"
         },
         "gappedTargetPhrase": "They ___ not looking.",
@@ -1156,5 +1156,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bfccf47e2311ef0484d2877eb6b698ad332cf761b2adee936cc55e393e300674"
+  "learnerFingerprint": "877d9b6a01823e0e44bb2573e344158355fb6ee0d08a1612ecfbea30f3a4a9c8"
 }

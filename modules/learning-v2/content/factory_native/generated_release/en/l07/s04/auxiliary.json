@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-07:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-04:intro3:r2": {
-          "ru": "Слово bill стоит в единственном числе: нужно There is no.",
-          "uk": "Слово bill стоїть в однині: потрібно There is no."
+          "ru": "Слово bill стоит в форме для одного: нужно There is no.",
+          "uk": "Слово bill стоїть у формі для одного: потрібно There is no."
         },
         "en:lesson-07:session-04:intro3:r3": {
           "ru": "После not здесь не хватает a. В нашем ответе используем no bill.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "2b9a080e281146f29099a37531c692c307b524926f30e3116d1ef100d01f8edc"
+  "auxiliaryFingerprint": "7e41a4b25aa14878f0ebff588c14d3540db7e10f1325bba8b7f464aa0b551e29"
 }

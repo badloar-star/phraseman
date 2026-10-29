@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-09:session-52",
   "learningOutcomeByLocale": {
-    "ru": "She is gazing at the sunset; The horizon is clear; Please don’t block the view",
-    "uk": "She is gazing at the sunset; The horizon is clear; Please don’t block the view"
+    "ru": "сказать, что человек любуется видом: She is gazing at the sunset.",
+    "uk": "сказати, що людина милується краєвидом: She is gazing at the sunset."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Горизонт добре видно"
       },
       "bodyByLocale": {
-        "ru": "Туман рассеялся, и с набережной хорошо видна линия между морем и небом. The horizon is clear — «Горизонт хорошо виден». Horizon — «горизонт», clear здесь — «ясный, ничем не скрытый». Сначала называем то, что описываем: the horizon. Затем is и признак clear. Horizon в единственном числе, поэтому нужна is; без неё английское предложение будет неполным.",
-        "uk": "Туман розсіявся, і з набережної добре видно лінію між морем і небом. The horizon is clear — «Горизонт добре видно». Horizon — «горизонт», clear тут — «ясний, нічим не прихований». Спочатку називаємо те, що описуємо: the horizon. Потім is та ознаку clear. Horizon в однині, тому потрібна is; без неї англійське речення буде неповним."
+        "ru": "Туман рассеялся, и с набережной хорошо видна линия между морем и небом. The horizon is clear — «Горизонт хорошо виден». Horizon — «горизонт», clear здесь — «ясный, ничем не скрытый». Сначала называем то, что описываем: the horizon. Затем is и признак clear. Horizon в форме для одного, поэтому нужна is; без неё английское предложение будет неполным.",
+        "uk": "Туман розсіявся, і з набережної добре видно лінію між морем і небом. The horizon is clear — «Горизонт добре видно». Horizon — «горизонт», clear тут — «ясний, нічим не прихований». Спочатку називаємо те, що описуємо: the horizon. Потім is та ознаку clear. Horizon у формі для одного, тому потрібна is; без неї англійське речення буде неповним."
       },
       "question": {
         "interactionId": "en:lesson-09:session-52:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0ec2203a6559e32cd1d7a2def1d1892626ab384bd5b8f56d0df1f4180c433008"
+  "introFingerprint": "43d6b8430b70f5549d86ae7cd63e26851f4ea811be02443568ecbe5e4852718f"
 }

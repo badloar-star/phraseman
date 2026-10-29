@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает о вашей тёте. Скажите: «Она носит шляпу»",
+      "prompt": "Друг спрашивает о вашей тёте. Скажите: «Каждый день она носит шляпу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает о вашей тёте. Скажите: «Она носит шляпу»",
+      "accessibilityLabel": "Друг спрашивает о вашей тёте. Скажите: «Каждый день она носит шляпу»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She wears a hat.",
+        "targetPhrase": "She wears a hat every day.",
         "localizedMeaning": {
-          "ru": "Друг спрашивает о вашей тёте. Скажите: «Она носит шляпу»",
-          "uk": "Друг питає про вашу тітку. Скажіть: «Вона носить капелюх»"
+          "ru": "Друг спрашивает о вашей тёте. Скажите: «Каждый день она носит шляпу»",
+          "uk": "Друг питає про вашу тітку. Скажіть: «Щодня вона носить капелюх»"
         },
         "orderedTokens": [
           "She",
           "wears",
           "a",
-          "hat"
+          "hat",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "wear"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-52:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Друг спрашивает о вашей тёте. Скажите: «Она носит шляпу»",
+            "testedDimension": "Друг спрашивает о вашей тёте. Скажите: «Каждый день она носит шляпу»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `wears` — `She wears a hat.`",
-              "uk": "тут потрібно `wears` — `She wears a hat.`"
+              "ru": "здесь нужно `wears` — `She wears a hat every day.`",
+              "uk": "тут потрібно `wears` — `She wears a hat every day.`"
             }
           }
         ],
@@ -259,7 +261,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о дяде: «Он носит костюм». Выберите слово",
+      "prompt": "Скажите о дяде: «Каждый день он носит костюм». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-52:i03:r1",
@@ -276,14 +278,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о дяде: «Он носит костюм». Выберите слово",
+      "accessibilityLabel": "Скажите о дяде: «Каждый день он носит костюм». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о дяде: «Он носит костюм». Выберите слово",
-          "uk": "Скажіть про дядька: «Він носить костюм». Виберіть слово"
+          "ru": "Скажите о дяде: «Каждый день он носит костюм». Выберите слово",
+          "uk": "Скажіть про дядька: «Щодня він носить костюм». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ a suit.",
+        "gappedTargetPhrase": "He ___ a suit every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-52:i03:r1",
@@ -298,12 +300,12 @@
             "text": "is wears"
           }
         ],
-        "testedDimension": "Скажите о дяде: «Он носит костюм». Выберите слово",
+        "testedDimension": "Скажите о дяде: «Каждый день он носит костюм». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-52:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о дяде: «Он носит костюм». Выберите слово",
+            "testedDimension": "Скажите о дяде: «Каждый день он носит костюм». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `he` нужно `wears`, с `s`.",
               "uk": "Після `he` потрібно `wears`, з `s`."
@@ -312,7 +314,7 @@
           {
             "responseId": "en:lesson-06:session-52:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о дяде: «Он носит костюм». Выберите слово",
+            "testedDimension": "Скажите о дяде: «Каждый день он носит костюм». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `He wears`, без `is`.",
               "uk": "Кажемо `He wears`, без `is`."
@@ -491,23 +493,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает о вашей сестре. Скажите: «Она носит юбку»",
+      "prompt": "Друг спрашивает о вашей сестре. Скажите: «Каждый день она носит юбку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает о вашей сестре. Скажите: «Она носит юбку»",
+      "accessibilityLabel": "Друг спрашивает о вашей сестре. Скажите: «Каждый день она носит юбку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She wears a skirt.",
+        "targetPhrase": "She wears a skirt every day.",
         "localizedMeaning": {
-          "ru": "Друг спрашивает о вашей сестре. Скажите: «Она носит юбку»",
-          "uk": "Друг питає про вашу сестру. Скажіть: «Вона носить спідницю»"
+          "ru": "Друг спрашивает о вашей сестре. Скажите: «Каждый день она носит юбку»",
+          "uk": "Друг питає про вашу сестру. Скажіть: «Щодня вона носить спідницю»"
         },
         "orderedTokens": [
           "She",
           "wears",
           "a",
-          "skirt"
+          "skirt",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "wear"
@@ -516,10 +520,10 @@
           {
             "responseId": "en:lesson-06:session-52:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Друг спрашивает о вашей сестре. Скажите: «Она носит юбку»",
+            "testedDimension": "Друг спрашивает о вашей сестре. Скажите: «Каждый день она носит юбку»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `wears` — `She wears a skirt.`",
-              "uk": "тут потрібно `wears` — `She wears a skirt.`"
+              "ru": "здесь нужно `wears` — `She wears a skirt every day.`",
+              "uk": "тут потрібно `wears` — `She wears a skirt every day.`"
             }
           }
         ],
@@ -569,7 +573,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
+      "prompt": "Скажите о ребятах под дождём: «Каждый день они носят капюшоны». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-52:i08:r1",
@@ -586,14 +590,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
+      "accessibilityLabel": "Скажите о ребятах под дождём: «Каждый день они носят капюшоны». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
-          "uk": "Скажіть про хлопців під дощем: «Вони носять каптури». Виберіть слово"
+          "ru": "Скажите о ребятах под дождём: «Каждый день они носят капюшоны». Выберите слово",
+          "uk": "Скажіть про хлопців під дощем: «Щодня вони носять каптури». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ hoods.",
+        "gappedTargetPhrase": "They ___ hoods every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-52:i08:r1",
@@ -608,12 +612,12 @@
             "text": "are wear"
           }
         ],
-        "testedDimension": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
+        "testedDimension": "Скажите о ребятах под дождём: «Каждый день они носят капюшоны». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-52:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
+            "testedDimension": "Скажите о ребятах под дождём: «Каждый день они носят капюшоны». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `they` нужно `wear`, без `s`.",
               "uk": "Після `they` потрібно `wear`, без `s`."
@@ -622,7 +626,7 @@
           {
             "responseId": "en:lesson-06:session-52:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о ребятах под дождём: «Они носят капюшоны». Выберите слово",
+            "testedDimension": "Скажите о ребятах под дождём: «Каждый день они носят капюшоны». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `They wear`, без `are`.",
               "uk": "Кажемо `They wear`, без `are`."
@@ -1173,5 +1177,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e3ebabdbd5afd309bb5ebd7cef8c036380d0c5db4c2cfde1b3b6ec0a4b9748b1"
+  "learnerFingerprint": "90e29d65fd75b044c4e2b2202b349793b4a34ef01e3be92a9fc4847cec3c3e05"
 }

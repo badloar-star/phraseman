@@ -23,8 +23,8 @@
           "uk": "З однією плямою потрібне is."
         },
         "en:lesson-08:session-31:intro2:r3": {
-          "ru": "Перед исчисляемым smudge в единственном числе нужно a.",
-          "uk": "Перед злічуваним smudge в однині потрібне a."
+          "ru": "Перед smudge нужно a: пятно одно.",
+          "uk": "Перед smudge потрібне a: пляма одна."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "ed7ccacb2ffb5253e74c378e40561e65e83efc542873e9898b5c7dc4f728ac6b"
+  "auxiliaryFingerprint": "f2c27cc3dca003ff7ebb08ae403d242e5794276bf5e1b50dfd3e5dafff5c32f1"
 }

@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль перед одним образцом",
+      "prompt": "Выберите слово перед одним образцом",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-47:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль перед одним образцом",
+      "accessibilityLabel": "Выберите слово перед одним образцом",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед одним образцом",
+          "ru": "Выберите слово перед одним образцом",
           "uk": "Виберіть артикль перед одним зразком"
         },
         "gappedTargetPhrase": "This is ___ swatch.",
@@ -216,7 +216,7 @@
             "correct": false,
             "testedDimension": "Выберите артикль перед одним образцом",
             "feedbackByLocale": {
-              "ru": "Are не артикль; здесь нужен a.",
+              "ru": "Здесь нужно a, а не are.",
               "uk": "Are не артикль; тут потрібне a."
             }
           }
@@ -382,7 +382,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для wallpaper как материала",
+      "prompt": "Выберите is или are: wallpaper — это материал",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-47:i06:r1",
@@ -399,11 +399,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для wallpaper как материала",
+      "accessibilityLabel": "Выберите is или are: wallpaper — это материал",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для wallpaper как материала",
+          "ru": "Выберите is или are: wallpaper — это материал",
           "uk": "Виберіть зв’язку для wallpaper як матеріалу"
         },
         "gappedTargetPhrase": "The wallpaper ___ wet.",
@@ -428,7 +428,7 @@
             "correct": false,
             "testedDimension": "Выберите связку для wallpaper как материала",
             "feedbackByLocale": {
-              "ru": "Wallpaper здесь неисчисляемое, используем is.",
+              "ru": "Wallpaper здесь не считается поштучно, используем is.",
               "uk": "Wallpaper тут незлічуване, використовуємо is."
             }
           },
@@ -789,7 +789,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для adhesive как вещества",
+      "prompt": "Выберите is или are: adhesive — это вещество",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-47:i12:r1",
@@ -806,11 +806,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для adhesive как вещества",
+      "accessibilityLabel": "Выберите is или are: adhesive — это вещество",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для adhesive как вещества",
+          "ru": "Выберите is или are: adhesive — это вещество",
           "uk": "Виберіть зв’язку для adhesive як речовини"
         },
         "gappedTargetPhrase": "The adhesive ___ dry.",
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "62ac85637ec2c082d3305bd2a5e26175ecf72cf4fddf42cd58cfb9a23fcbb851"
+  "learnerFingerprint": "8a7246033ae2694c9f722f7bf6573812000540ac5fc6a9ca2adebc9ee0c08dfe"
 }

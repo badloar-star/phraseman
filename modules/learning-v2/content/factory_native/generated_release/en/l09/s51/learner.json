@@ -570,7 +570,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для одного окуляра",
+      "prompt": "Выберите is или are: один окуляр",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-51:i09:r1",
@@ -587,11 +587,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для одного окуляра",
+      "accessibilityLabel": "Выберите is или are: один окуляр",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одного окуляра",
+          "ru": "Выберите is или are: один окуляр",
           "uk": "Виберіть зв’язку для одного окуляра"
         },
         "gappedTargetPhrase": "The eyepiece ___ small.",
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3123ad13c7fe02c84a62da034f17ae85b2618817fe90b6b38267301a8ffad334"
+  "learnerFingerprint": "7d7b40ffc6ba6b43e2fa88e9e7e5b262f1dcf7e59c839dcc14265db4123edae0"
 }

@@ -383,7 +383,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для horizon",
+      "prompt": "Виберіть is або are: horizon",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-52:i06:r1",
@@ -400,12 +400,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для horizon",
+      "accessibilityLabel": "Виберіть is або are: horizon",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для horizon",
-          "uk": "Виберіть зв’язку для horizon"
+          "uk": "Виберіть is або are: horizon"
         },
         "gappedTargetPhrase": "The horizon ___ clear.",
         "gapOptions": [
@@ -604,7 +604,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед silhouette",
+      "prompt": "Виберіть слово перед silhouette",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-52:i09:r1",
@@ -621,12 +621,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед silhouette",
+      "accessibilityLabel": "Виберіть слово перед silhouette",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите артикль перед silhouette",
-          "uk": "Виберіть артикль перед silhouette"
+          "uk": "Виберіть слово перед silhouette"
         },
         "gappedTargetPhrase": "This is ___ silhouette.",
         "gapOptions": [
@@ -659,7 +659,7 @@
             "correct": false,
             "testedDimension": "Виберіть артикль перед silhouette",
             "feedbackByLocale": {
-              "ru": "Are не артикль, здесь нужен a.",
+              "ru": "Здесь нужно a, а не are.",
               "uk": "Are не артикль, тут потрібне a."
             }
           }
@@ -1117,5 +1117,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a31fda7d0e1ae70bf5d0f81edf038e935cf82f47ee464d802013327163e12218"
+  "learnerFingerprint": "1c14450628e770948e005aaf60e9543948a4242304781f6166aee0e0123ff777"
 }

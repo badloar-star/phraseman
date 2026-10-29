@@ -964,7 +964,7 @@
             "correct": false,
             "testedDimension": "Скажіть сусіду, що охоронця немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Слово guard стоит в единственном числе: нужно `There is no`.",
+              "ru": "Слово guard стоит в форме для одного: нужно `There is no`.",
               "uk": "Слово guard стоїть в однині: потрібно `There is no`."
             }
           },
@@ -1178,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "81708aeec22fc133fbbe3f5b5b10ab87ea8b210dbb491095a8b39f470deb4386"
+  "learnerFingerprint": "3897c53edba472ad3e523860ca43a1deb71a3e714b9bb4b823676a7d157f5155"
 }

@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для заперечення з I",
+      "prompt": "Виберіть, як сказати «не» з I",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-09:i03:r1",
@@ -178,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для заперечення з I",
+      "accessibilityLabel": "Виберіть, як сказати «не» з I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для отрицания с I",
-          "uk": "Виберіть форму для заперечення з I"
+          "uk": "Виберіть, як сказати «не» з I"
         },
         "gappedTargetPhrase": "I ___ not guessing.",
         "gapOptions": [
@@ -896,7 +896,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму заперечення з they",
+      "prompt": "Виберіть, як сказати «не» з they",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-09:i14:r1",
@@ -913,12 +913,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму заперечення з they",
+      "accessibilityLabel": "Виберіть, як сказати «не» з they",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму отрицания с they",
-          "uk": "Виберіть форму заперечення з they"
+          "uk": "Виберіть, як сказати «не» з they"
         },
         "gappedTargetPhrase": "They ___ not looking.",
         "gapOptions": [
@@ -1156,5 +1156,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fd60ceca39995c90b1fa9378f04e9a01428e53115a637fbe7e090a9a2964fc65"
+  "learnerFingerprint": "fe3d35ce4e633e31898a02224d733f5772df2f148e835498ac2d3ae1cbdbe7df"
 }

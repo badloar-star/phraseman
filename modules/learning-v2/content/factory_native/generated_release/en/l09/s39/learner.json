@@ -718,7 +718,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль для одной сноски",
+      "prompt": "Выберите слово для одной сноски",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-39:i11:r1",
@@ -735,11 +735,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль для одной сноски",
+      "accessibilityLabel": "Выберите слово для одной сноски",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль для одной сноски",
+          "ru": "Выберите слово для одной сноски",
           "uk": "Виберіть артикль для однієї виноски"
         },
         "gappedTargetPhrase": "It is ___ footnote.",
@@ -773,7 +773,7 @@
             "correct": false,
             "testedDimension": "Выберите артикль для одной сноски",
             "feedbackByLocale": {
-              "ru": "Are — глагол, не артикль перед названием предмета.",
+              "ru": "Are — глагол, не a / the перед названием предмета.",
               "uk": "Are — дієслово, не артикль перед назвою предмета."
             }
           }
@@ -1124,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0818d5ca3f75050a121100bb9cfe00a3c9fa845873372443577d0b78cd231c2f"
+  "learnerFingerprint": "4f21b354fdeb87b814f903168ed37f97d7542467ed284ffbe4f09730fd4c80d3"
 }

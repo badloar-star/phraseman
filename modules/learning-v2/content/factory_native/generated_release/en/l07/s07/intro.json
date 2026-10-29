@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-07",
   "learningOutcomeByLocale": {
-    "ru": "спросить в студии о расписании, мольбертах и занятиях и сказать, что талона нет",
-    "uk": "спитати в студії про розклад, мольберти й заняття та сказати, що талона немає"
+    "ru": "спросить в студии о расписании: Do you have a schedule?",
+    "uk": "запитати в студії про розклад: Do you have a schedule?"
   },
   "pages": [
     {

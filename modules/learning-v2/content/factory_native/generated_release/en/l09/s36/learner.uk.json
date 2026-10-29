@@ -160,7 +160,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку в назві матеріалу",
+      "prompt": "Виберіть форму be в назві матеріалу",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-36:i03:r1",
@@ -177,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку в назві матеріалу",
+      "accessibilityLabel": "Виберіть форму be в назві матеріалу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку в названии материала",
-          "uk": "Виберіть зв’язку в назві матеріалу"
+          "uk": "Виберіть форму be в назві матеріалу"
         },
         "gappedTargetPhrase": "This ___ brass.",
         "gapOptions": [
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "601a3caeb64d592d6586c2cb6869fb4bb8d4cb49ecfcfcbb5a4d24731583dd7b"
+  "learnerFingerprint": "02a4e8d63d9ffd4e6db3a26ca2914b9af584fb204c0ac6b94f5d90d747a9cefc"
 }

@@ -604,7 +604,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль перед illusion",
+      "prompt": "Выберите слово перед illusion",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-50:i09:r1",
@@ -621,11 +621,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль перед illusion",
+      "accessibilityLabel": "Выберите слово перед illusion",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед illusion",
+          "ru": "Выберите слово перед illusion",
           "uk": "Виберіть артикль перед illusion"
         },
         "gappedTargetPhrase": "This is ___ illusion.",
@@ -659,7 +659,7 @@
             "correct": false,
             "testedDimension": "Выберите артикль перед illusion",
             "feedbackByLocale": {
-              "ru": "Are не артикль; здесь нужен an.",
+              "ru": "Здесь нужно an, а не are.",
               "uk": "Are не артикль; тут потрібне an."
             }
           }
@@ -971,7 +971,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму be в отрицании движения",
+      "prompt": "Выберите форму be с «не» о движении",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-50:i15:r1",
@@ -988,11 +988,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму be в отрицании движения",
+      "accessibilityLabel": "Выберите форму be с «не» о движении",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму be в отрицании движения",
+          "ru": "Выберите форму be с «не» о движении",
           "uk": "Виберіть форму be в запереченні руху"
         },
         "gappedTargetPhrase": "The picture ___ not moving.",
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d222cd37e623e1f54e2a29c609514c6ceecff05f06f2bc2f41efe04d09b6bd3f"
+  "learnerFingerprint": "cb6bbfdc7beab056427e5bcc46fba087aca935661cce74b354992c6ee23b530c"
 }

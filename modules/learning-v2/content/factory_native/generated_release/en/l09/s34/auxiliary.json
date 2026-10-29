@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-09:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-09:session-34:intro2:r2": {
-          "ru": "Перед одним исчисляемым предметом здесь нужно a.",
-          "uk": "Перед одним злічуваним предметом тут потрібне a."
+          "ru": "Предмет один, и его можно посчитать: нужно a.",
+          "uk": "Предмет один, і його можна порахувати: потрібне a."
         },
         "en:lesson-09:session-34:intro2:r3": {
           "ru": "С it используем is.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "ab7b8f03fec0609b11f038c38c9b7903b9cad926aee4c99ac469363a8f1d5221"
+  "auxiliaryFingerprint": "e698094460f900ccebd58711f97c7d465c1d6974d82088510475d7cd14620322"
 }

@@ -208,7 +208,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для одних санок",
             "feedbackByLocale": {
-              "ru": "В английском sled — единственное число: is.",
+              "ru": "В английском sled — форма для одного: is.",
               "uk": "В англійській sled — однина: is."
             }
           },
@@ -947,7 +947,7 @@
             "correct": false,
             "testedDimension": "Выберите начало вопроса о санках",
             "feedbackByLocale": {
-              "ru": "Sled в единственном числе: is.",
+              "ru": "Sled в форме для одного: is.",
               "uk": "Sled в однині: is."
             }
           },
@@ -970,11 +970,11 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Санки остановились. Соберите отрицание",
+      "prompt": "Санки остановились. Соберите фразу с «не»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Санки остановились. Соберите отрицание",
+      "accessibilityLabel": "Санки остановились. Соберите фразу с «не»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "The sled is not sliding.",
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "17fb9647f740ed83d34f9741cd8a1c72c9a1764edd34f8c9f994132a25b86c85"
+  "learnerFingerprint": "eba2b4dccdf22f027e4dc1c266b17c045a2bbaf4fe80964ae2902db6e3b8dbb3"
 }

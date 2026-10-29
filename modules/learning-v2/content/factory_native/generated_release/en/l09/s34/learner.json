@@ -825,7 +825,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для одной петли",
+      "prompt": "Выберите is или are: одна петля",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-34:i13:r1",
@@ -842,11 +842,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для одной петли",
+      "accessibilityLabel": "Выберите is или are: одна петля",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одной петли",
+          "ru": "Выберите is или are: одна петля",
           "uk": "Виберіть зв’язку для однієї петлі"
         },
         "gappedTargetPhrase": "The loop ___ small.",
@@ -1079,5 +1079,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "810b77cd03e5138ec1031c1a92c177ba8b87463d75a94023cd694011e5db699c"
+  "learnerFingerprint": "05b23e55e19cd127c0b9ae194e01e78deb66baf26b17a5182c65a606926e3873"
 }

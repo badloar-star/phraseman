@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-09:session-50",
   "learningOutcomeByLocale": {
-    "ru": "He is staring at the hologram; The picture is not moving; I am looking at my reflection",
-    "uk": "He is staring at the hologram; The picture is not moving; I am looking at my reflection"
+    "ru": "сказать, на что кто-то смотрит: He is staring at the picture.",
+    "uk": "сказати, на що хтось дивиться: He is staring at the picture."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Роздивитися своє відображення"
       },
       "bodyByLocale": {
-        "ru": "Перед изогнутым зеркалом вы рассматриваете своё вытянутое лицо. I am looking at my reflection — «Я смотрю на своё отражение». Reflection здесь — изображение в зеркале. Для действия сейчас ставим I + am + looking, затем at my reflection — на что смотрим. После look перед предметом взгляда нужен at. My означает «моё» и стоит перед reflection; артикль перед my не добавляем.",
-        "uk": "Перед вигнутим дзеркалом ви розглядаєте своє видовжене обличчя. I am looking at my reflection — «Я дивлюся на своє відображення». Reflection тут — зображення в дзеркалі. Для дії зараз ставимо I + am + looking, потім at my reflection — на що дивимося. Після look перед предметом погляду потрібне at. My означає «моє» і стоїть перед reflection; артикль перед my не додаємо."
+        "ru": "Перед изогнутым зеркалом вы рассматриваете своё вытянутое лицо. I am looking at my reflection — «Я смотрю на своё отражение». Reflection здесь — изображение в зеркале. Для действия сейчас ставим I + am + looking, затем at my reflection — на что смотрим. После look перед предметом взгляда нужен at. My означает «моё» и стоит перед reflection; a / the перед my не добавляем.",
+        "uk": "Перед вигнутим дзеркалом ви розглядаєте своє видовжене обличчя. I am looking at my reflection — «Я дивлюся на своє відображення». Reflection тут — зображення в дзеркалі. Для дії зараз ставимо I + am + looking, потім at my reflection — на що дивимося. Після look перед предметом погляду потрібне at. My означає «моє» і стоїть перед reflection; a / the перед my не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-09:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4ec9e584115ab5820ae9fcaf83ae44cd8c4b3ad0e32156d37a2e46deeb0be20b"
+  "introFingerprint": "696faab28c185854d78b083c8c84f1dc7a91616e7fd14eee18db6b623aad9cea"
 }

@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для спостереження за однією медузою",
+      "prompt": "Ви дивитеся на одну медузу. Виберіть форму",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-32:i03:r1",
@@ -178,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для спостереження за однією медузою",
+      "accessibilityLabel": "Ви дивитеся на одну медузу. Виберіть форму",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для наблюдения за одной медузой",
-          "uk": "Виберіть форму для спостереження за однією медузою"
+          "uk": "Ви дивитеся на одну медузу. Виберіть форму"
         },
         "gappedTargetPhrase": "The jellyfish ___ floating.",
         "gapOptions": [
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "08a87ce478e1c959ee9c0575ebb1a18f3cd73bc25619bd6b4ce9a4b03515ca48"
+  "learnerFingerprint": "d3047c0b0abd3fac79b21df5c6cb787e97fd5168ad2c648a2ddfaf1bd44626f0"
 }

@@ -383,7 +383,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для horizon",
+      "prompt": "Выберите is или are: horizon",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-52:i06:r1",
@@ -400,11 +400,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для horizon",
+      "accessibilityLabel": "Выберите is или are: horizon",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для horizon",
+          "ru": "Выберите is или are: horizon",
           "uk": "Виберіть зв’язку для horizon"
         },
         "gappedTargetPhrase": "The horizon ___ clear.",
@@ -604,7 +604,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль перед silhouette",
+      "prompt": "Выберите слово перед silhouette",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-52:i09:r1",
@@ -621,11 +621,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль перед silhouette",
+      "accessibilityLabel": "Выберите слово перед silhouette",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед silhouette",
+          "ru": "Выберите слово перед silhouette",
           "uk": "Виберіть артикль перед silhouette"
         },
         "gappedTargetPhrase": "This is ___ silhouette.",
@@ -659,7 +659,7 @@
             "correct": false,
             "testedDimension": "Выберите артикль перед silhouette",
             "feedbackByLocale": {
-              "ru": "Are не артикль, здесь нужен a.",
+              "ru": "Здесь нужно a, а не are.",
               "uk": "Are не артикль, тут потрібне a."
             }
           }
@@ -1117,5 +1117,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "576473e07930a4e787c14152a0eba6b1a7dfc5f0082c22aafcaee970f445310f"
+  "learnerFingerprint": "795ea64b27b88a9166d11f2ed5e9290a67c9647f636c73a1b9e7b5dd6247a760"
 }

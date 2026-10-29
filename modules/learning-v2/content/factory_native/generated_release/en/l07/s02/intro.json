@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-02",
   "learningOutcomeByLocale": {
-    "ru": "спросить на почте о посылке и о том, что там делают, и сказать, что вещи нет",
-    "uk": "спитати на пошті про посилку й про те, що там роблять, та сказати, що речі немає"
+    "ru": "спросить на почте о посылке: Do you have a package?",
+    "uk": "запитати на пошті про посилку: Do you have a package?"
   },
   "pages": [
     {

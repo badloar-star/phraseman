@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед marsh",
+      "prompt": "Виберіть слово перед marsh",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-48:i06:r1",
@@ -402,12 +402,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед marsh",
+      "accessibilityLabel": "Виберіть слово перед marsh",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите артикль перед marsh",
-          "uk": "Виберіть артикль перед marsh"
+          "uk": "Виберіть слово перед marsh"
         },
         "gappedTargetPhrase": "This is ___ marsh.",
         "gapOptions": [
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Виберіть артикль перед marsh",
             "feedbackByLocale": {
-              "ru": "Are не артикль; здесь нужен a.",
+              "ru": "Здесь нужно a, а не are.",
               "uk": "Are не артикль; тут потрібне a."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fe016f8e18438f90740fab75577bc52b19cb41f8cb8ec8b96f7ea58840856695"
+  "learnerFingerprint": "72fdd562b39050dbf95c25625bfaa9c635e10491570e23aa67b0223252b716b0"
 }

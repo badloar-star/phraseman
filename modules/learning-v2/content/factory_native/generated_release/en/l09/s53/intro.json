@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-09:session-53",
   "learningOutcomeByLocale": {
-    "ru": "He is gesturing towards the door; The acoustics are good; Please don’t touch the amplifier",
-    "uk": "He is gesturing towards the door; The acoustics are good; Please don’t touch the amplifier"
+    "ru": "сказать, что человек показывает жестом: He is gesturing towards the door.",
+    "uk": "сказати, що людина показує жестом: He is gesturing towards the door."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Голос чути в задньому ряду"
       },
       "bodyByLocale": {
-        "ru": "Перед лекцией вы слушаете речь со сцены из разных рядов. Слова звучат отчётливо, сильное эхо не мешает. The acoustics are good — «Акустика хорошая». Acoustics здесь — то, как звук распространяется и воспринимается в помещении. В этом значении слово во множественном числе: are good, хотя по-русски «акустика» одна.",
-        "uk": "Перед лекцією ви слухаєте промову зі сцени з різних рядів. Слова звучать виразно, сильне відлуння не заважає. The acoustics are good — «Акустика хороша». Acoustics тут — те, як звук поширюється й сприймається в приміщенні. У цьому значенні слово в множині: are good, хоча українською «акустика» одна."
+        "ru": "Перед лекцией вы слушаете речь со сцены из разных рядов. Слова звучат отчётливо, сильное эхо не мешает. The acoustics are good — «Акустика хорошая». Acoustics здесь — то, как звук распространяется и воспринимается в помещении. В этом значении слово в форме для нескольких: are good, хотя по-русски «акустика» одна.",
+        "uk": "Перед лекцією ви слухаєте промову зі сцени з різних рядів. Слова звучать виразно, сильне відлуння не заважає. The acoustics are good — «Акустика хороша». Acoustics тут — те, як звук поширюється й сприймається в приміщенні. У цьому значенні слово у формі для кількох: are good, хоча українською «акустика» одна."
       },
       "question": {
         "interactionId": "en:lesson-09:session-53:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "58e9a6b0724be5cc607c8f3015f09e48010672e48a7caf31960cdb64867fa0ef"
+  "introFingerprint": "5af516973761165f98778d5f493ec00b0eb0d6948c5c5b263d118a6b2f507dc4"
 }

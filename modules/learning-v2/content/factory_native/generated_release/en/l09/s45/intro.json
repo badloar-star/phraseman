@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-09:session-45",
   "learningOutcomeByLocale": {
-    "ru": "My hands are trembling; on the lectern; Please don’t move the spotlight",
-    "uk": "My hands are trembling; on the lectern; Please don’t move the spotlight"
+    "ru": "сказать, что у вас дрожат руки: My hands are trembling.",
+    "uk": "сказати, що у вас тремтять руки: My hands are trembling."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Де лежить текст промови"
       },
       "bodyByLocale": {
-        "ru": "Организатор ищет листы с вашей речью. Они лежат на стойке с наклонной поверхностью перед выступающим: The speech is on the lectern — «Речь лежит на кафедре». Lectern здесь — такая стойка для заметок. Сначала the speech — текст вашей речи, затем is и место on the lectern. Speech в единственном числе, поэтому нужна is. On показывает, что листы находятся на поверхности стойки; отдельное слово «лежит» в этой фразе не требуется.",
-        "uk": "Організатор шукає аркуші з вашою промовою. Вони лежать на стійці з похилою поверхнею перед промовцем: The speech is on the lectern — «Промова лежить на кафедрі». Lectern тут — така стійка для нотаток. Спочатку the speech — текст вашої промови, потім is і місце on the lectern. Speech в однині, тому потрібна is. On показує, що аркуші розташовані на поверхні стійки; окреме слово «лежить» у цій фразі не потрібне."
+        "ru": "Организатор ищет листы с вашей речью. Они лежат на стойке с наклонной поверхностью перед выступающим: The speech is on the lectern — «Речь лежит на кафедре». Lectern здесь — такая стойка для заметок. Сначала the speech — текст вашей речи, затем is и место on the lectern. Speech в форме для одного, поэтому нужна is. On показывает, что листы находятся на поверхности стойки; отдельное слово «лежит» в этой фразе не требуется.",
+        "uk": "Організатор шукає аркуші з вашою промовою. Вони лежать на стійці з похилою поверхнею перед промовцем: The speech is on the lectern — «Промова лежить на кафедрі». Lectern тут — така стійка для нотаток. Спочатку the speech — текст вашої промови, потім is і місце on the lectern. Speech у формі для одного, тому потрібна is. On показує, що аркуші розташовані на поверхні стійки; окреме слово «лежить» у цій фразі не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-09:session-45:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7c39c75cd90ef2fee0e46840821a7058de3ab0434ed6e6064fd58605911a4368"
+  "introFingerprint": "d173d99b5870ad67a80c4af967a78f9043bc4ec1a474347eb80cfe54bce1292a"
 }

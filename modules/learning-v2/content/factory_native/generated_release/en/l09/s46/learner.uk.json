@@ -790,7 +790,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для кількох каменів",
+      "prompt": "Виберіть is або are: кілька каменів",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-46:i12:r1",
@@ -807,12 +807,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для кількох каменів",
+      "accessibilityLabel": "Виберіть is або are: кілька каменів",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для нескольких камней",
-          "uk": "Виберіть зв’язку для кількох каменів"
+          "uk": "Виберіть is або are: кілька каменів"
         },
         "gappedTargetPhrase": "The cobblestones ___ wet.",
         "gapOptions": [
@@ -836,7 +836,7 @@
             "correct": false,
             "testedDimension": "Виберіть зв’язку для кількох каменів",
             "feedbackByLocale": {
-              "ru": "Cobblestones во множественном числе: are.",
+              "ru": "Cobblestones в форме для нескольких: are.",
               "uk": "Cobblestones у множині: are."
             }
           },
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "865cb961d1e3dbb99983460ba61a051c678d1cd8b8007d9640552a6cc72f4314"
+  "learnerFingerprint": "1ff5e6d3ba0d5282f81f9301ca14ca9f0cdf956133126c3e8e136a433e5e4189"
 }

@@ -962,7 +962,7 @@
             "correct": false,
             "testedDimension": "Скажіть, що ваг немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Слово scale стоит в единственном числе: нужно `There is no`.",
+              "ru": "Слово scale стоит в форме для одного: нужно `There is no`.",
               "uk": "Слово scale стоїть в однині: потрібно `There is no`."
             }
           },
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "29097b359578c0c3a6a21ffcac529b31306e1e0d0cf48a92f438fd6b77918877"
+  "learnerFingerprint": "8df5076f6cfbe83897633e4408c0a68417fe387c0ce7ca45130a1a4b078dff09"
 }

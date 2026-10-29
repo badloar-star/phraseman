@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-09:session-38",
   "learningOutcomeByLocale": {
-    "ru": "occur → occurring; Errors are occurring; There is a power outage",
-    "uk": "occur → occurring; Errors are occurring; There is a power outage"
+    "ru": "сказать, что происходит что-то необычное: A glitch is occurring.",
+    "uk": "сказати, що відбувається щось незвичне: A glitch is occurring."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Пояснити відсутність світла"
       },
       "bodyByLocale": {
-        "ru": "В мастерской погас свет: управляющий сообщил, что электричества нет во всём здании. Вы объясняете посетителю: There is a power outage — «Сейчас отключено электричество». Power outage означает «отключение электричества». Чтобы сообщить о происходящем, начинаем с there is, затем называем событие: a power outage. Outage здесь в единственном числе, поэтому нужна is и артикль a перед всем сочетанием. There в этой конструкции не переводим как «там».",
-        "uk": "У майстерні згасло світло: керівник повідомив, що електрики немає в усій будівлі. Ви пояснюєте відвідувачу: There is a power outage — «Зараз відключено електрику». Power outage означає «відключення електрики». Щоб повідомити про те, що відбувається, починаємо з there is, потім називаємо подію: a power outage. Outage тут в однині, тому потрібна is та артикль a перед усім сполученням. There у цій конструкції не перекладаємо як «там»."
+        "ru": "В мастерской погас свет: управляющий сообщил, что электричества нет во всём здании. Вы объясняете посетителю: There is a power outage — «Сейчас отключено электричество». Power outage означает «отключение электричества». Чтобы сообщить о происходящем, начинаем с there is, затем называем событие: a power outage. Outage здесь в форме для одного, поэтому нужна is и a перед всем сочетанием. There в этой конструкции не переводим как «там».",
+        "uk": "У майстерні згасло світло: керівник повідомив, що електрики немає в усій будівлі. Ви пояснюєте відвідувачу: There is a power outage — «Зараз відключено електрику». Power outage означає «відключення електрики». Щоб повідомити про те, що відбувається, починаємо з there is, потім називаємо подію: a power outage. Outage тут у формі для одного, тому потрібна is та a перед усім сполученням. There у цій конструкції не перекладаємо як «там»."
       },
       "question": {
         "interactionId": "en:lesson-09:session-38:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c3eae9f76ff4733c36825c913192ee385fda34f05fc5e52e3a197f54e2b67137"
+  "introFingerprint": "555a7e5c235e18caa8c414e47513186dafe5248e8311253de3d79ba26ad3e97f"
 }

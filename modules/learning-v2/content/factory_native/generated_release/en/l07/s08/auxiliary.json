@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-07:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-08:intro3:r2": {
-          "ru": "Слово guard стоит в единственном числе: нужно There is no.",
-          "uk": "Слово guard стоїть в однині: потрібно There is no."
+          "ru": "Слово guard стоит в форме для одного: нужно There is no.",
+          "uk": "Слово guard стоїть у формі для одного: потрібно There is no."
         },
         "en:lesson-07:session-08:intro3:r3": {
           "ru": "После not здесь не хватает a. В нашем ответе используем no guard.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "aa7b697ebeb74ca76f363934d91f2c2b3ee4bedf35ae5d5b040a4d58054ee4f5"
+  "auxiliaryFingerprint": "78042b8f1014a61200bfd46d2f7e6f3fb4191af17b1c2448069f8ade3a8d8c6d"
 }

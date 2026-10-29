@@ -956,9 +956,12 @@ const PREMIUM_THEME_ENTITLEMENTS_PREFIX = 'premium_theme_entitlements_v1';
 // аккаунта стираются, чтобы чужие объявления не остались. Ключи = modules/story_events/use_announcement_stories.ts.
 const STORY_ANNOUNCEMENTS_CACHE_PREFIX = 'story_announcements_cache_v1';
 const STORY_ANNOUNCEMENTS_SEEN_PREFIX = 'story_announcements_seen_v1';
+// зачем (сторож account_wipe_owner_keys_guard, 29.10): метка «облако подтвердило Plus на этом телефоне» лежит по владельцу
+// (app/plus_cloud_confirmed_marker.ts, 'plus_cloud_confirmed_v1:<stableId>') — это данные аккаунта, при выходе и удалении стираются.
+const PLUS_CLOUD_CONFIRMED_PREFIX = 'plus_cloud_confirmed_v1';
 const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
   ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, STORY_EVENTS_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
-  PREMIUM_THEME_ENTITLEMENTS_PREFIX, STORY_ANNOUNCEMENTS_CACHE_PREFIX, STORY_ANNOUNCEMENTS_SEEN_PREFIX,
+  PREMIUM_THEME_ENTITLEMENTS_PREFIX, STORY_ANNOUNCEMENTS_CACHE_PREFIX, STORY_ANNOUNCEMENTS_SEEN_PREFIX, PLUS_CLOUD_CONFIRMED_PREFIX,
 ];
 // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): ключи-утечки (список и смысл — app/account_switch_leak_keys.ts) стираются шагом
 // «только стирание»; реэкспорт — для сторожей и журнала.

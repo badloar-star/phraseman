@@ -7,6 +7,7 @@ Governance-ID: TG-625963B8934F
 Governance-ID: TG-D4D582425336
 Governance-ID: TG-42527716E70B
 Governance-ID: TG-68D0F7FA8C67
+Governance-ID: TG-0F5B54A0041F
 Status: Done — план 5ba0dd567 + разделы 7 (бандл 146 101 МБ → HEAD 122 МБ) и 8 (красные тесты: поломок нет)
 Owner: 1 · ЯДРО
 

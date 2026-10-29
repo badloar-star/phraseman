@@ -260,7 +260,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
+      "prompt": "Вы стоите у раковины после ужина. Скажите, что каждый вечер вы моете тарелки. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-01:i03:r1",
@@ -277,14 +277,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
+      "accessibilityLabel": "Вы стоите у раковины после ужина. Скажите, что каждый вечер вы моете тарелки. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
-          "uk": "Ви стоїте біля раковини після вечері. Скажіть, що ви миєте тарілки. Виберіть слово"
+          "ru": "Вы стоите у раковины после ужина. Скажите, что каждый вечер вы моете тарелки. Выберите слово",
+          "uk": "Ви стоїте біля раковини після вечері. Скажіть, що щовечора ви миєте тарілки. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ the plates.",
+        "gappedTargetPhrase": "I ___ the plates every evening.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-01:i03:r1",
@@ -299,12 +299,12 @@
             "text": "is wash"
           }
         ],
-        "testedDimension": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
+        "testedDimension": "Вы стоите у раковины после ужина. Скажите, что каждый вечер вы моете тарелки. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-01:i03:r2",
             "correct": false,
-            "testedDimension": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
+            "testedDimension": "Вы стоите у раковины после ужина. Скажите, что каждый вечер вы моете тарелки. Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` сразу ставим `wash`, без `am`.",
               "uk": "Після `I` одразу ставимо `wash`, без `am`."
@@ -313,7 +313,7 @@
           {
             "responseId": "en:lesson-06:session-01:i03:r3",
             "correct": false,
-            "testedDimension": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
+            "testedDimension": "Вы стоите у раковины после ужина. Скажите, что каждый вечер вы моете тарелки. Выберите слово",
             "feedbackByLocale": {
               "ru": "С `I` слово `is` не используется; нужно `I wash`.",
               "uk": "З `I` слово `is` не вживається; потрібно `I wash`."
@@ -838,17 +838,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»",
+      "prompt": "Вы пекарь. Скажите соседке полной фразой: «Каждый день я пеку хлеб в пекарне»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»",
+      "accessibilityLabel": "Вы пекарь. Скажите соседке полной фразой: «Каждый день я пеку хлеб в пекарне»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I bake bread in a bakery.",
+        "targetPhrase": "I bake bread in a bakery every day.",
         "localizedMeaning": {
-          "ru": "Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»",
-          "uk": "Ви пекар. Скажіть сусідці повною фразою: «Я печу хліб у пекарні»"
+          "ru": "Вы пекарь. Скажите соседке полной фразой: «Каждый день я пеку хлеб в пекарне»",
+          "uk": "Ви пекар. Скажіть сусідці повною фразою: «Щодня я печу хліб у пекарні»"
         },
         "orderedTokens": [
           "I",
@@ -856,7 +856,9 @@
           "bread",
           "in",
           "a",
-          "bakery"
+          "bakery",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "am"
@@ -865,10 +867,10 @@
           {
             "responseId": "en:lesson-06:session-01:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»",
+            "testedDimension": "Вы пекарь. Скажите соседке полной фразой: «Каждый день я пеку хлеб в пекарне»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `bake` — `I bake bread in a bakery.`",
-              "uk": "тут потрібно `bake` — `I bake bread in a bakery.`"
+              "ru": "здесь нужно `bake` — `I bake bread in a bakery every day.`",
+              "uk": "тут потрібно `bake` — `I bake bread in a bakery every day.`"
             }
           }
         ],
@@ -918,7 +920,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
+      "prompt": "Вы достали из духовки хлеб. Скажите соседке, что каждый день вы его печёте. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-01:i14:r1",
@@ -935,14 +937,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
+      "accessibilityLabel": "Вы достали из духовки хлеб. Скажите соседке, что каждый день вы его печёте. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
-          "uk": "Ви дістали з духовки хліб. Скажіть сусідці, що ви його печете. Виберіть слово"
+          "ru": "Вы достали из духовки хлеб. Скажите соседке, что каждый день вы его печёте. Выберите слово",
+          "uk": "Ви дістали з духовки хліб. Скажіть сусідці, що щодня ви його печете. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ bread.",
+        "gappedTargetPhrase": "I ___ bread every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-01:i14:r1",
@@ -957,12 +959,12 @@
             "text": "is bake"
           }
         ],
-        "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
+        "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что каждый день вы его печёте. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-01:i14:r2",
             "correct": false,
-            "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
+            "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что каждый день вы его печёте. Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` сразу ставим `bake`, без `am`.",
               "uk": "Після `I` одразу ставимо `bake`, без `am`."
@@ -971,7 +973,7 @@
           {
             "responseId": "en:lesson-06:session-01:i14:r3",
             "correct": false,
-            "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
+            "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что каждый день вы его печёте. Выберите слово",
             "feedbackByLocale": {
               "ru": "С `I` слово `is` не используется; нужно `I bake`.",
               "uk": "З `I` слово `is` не вживається; потрібно `I bake`."
@@ -1178,5 +1180,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "21306aa76f5ffa5f625f26158f122cc29697aee49d0ab42f3e7481ea7e2a08fd"
+  "learnerFingerprint": "5baaa12b4ae465f65be8cd29a17079b35c70ae0624fa926d432a3d2f5ac2dacf"
 }

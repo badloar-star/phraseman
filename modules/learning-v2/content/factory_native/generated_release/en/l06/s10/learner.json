@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
+      "prompt": "Вы рассказываете гостю о коллегах. Скажите: «Каждый день они практикуют английский»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
+      "accessibilityLabel": "Вы рассказываете гостю о коллегах. Скажите: «Каждый день они практикуют английский»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They practice English.",
+        "targetPhrase": "They practice English every day.",
         "localizedMeaning": {
-          "ru": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
-          "uk": "Ви розповідаєте гостю про колег. Скажіть: «Вони практикують англійську»"
+          "ru": "Вы рассказываете гостю о коллегах. Скажите: «Каждый день они практикуют английский»",
+          "uk": "Ви розповідаєте гостю про колег. Скажіть: «Щодня вони практикують англійську»"
         },
         "orderedTokens": [
           "They",
           "practice",
-          "English"
+          "English",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-10:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»",
+            "testedDimension": "Вы рассказываете гостю о коллегах. Скажите: «Каждый день они практикуют английский»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `practice` — `They practice English.`",
-              "uk": "тут потрібно `practice` — `They practice English.`"
+              "ru": "здесь нужно `practice` — `They practice English every day.`",
+              "uk": "тут потрібно `practice` — `They practice English every day.`"
             }
           }
         ],
@@ -215,7 +217,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+      "prompt": "Скажите о коллегах: «Каждый день они тренируют фразу здесь». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-10:i03:r1",
@@ -232,14 +234,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+      "accessibilityLabel": "Скажите о коллегах: «Каждый день они тренируют фразу здесь». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
-          "uk": "Скажіть про колег: «Вони тренують фразу тут». Виберіть слово"
+          "ru": "Скажите о коллегах: «Каждый день они тренируют фразу здесь». Выберите слово",
+          "uk": "Скажіть про колег: «Щодня вони тренують фразу тут». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ a phrase here.",
+        "gappedTargetPhrase": "They ___ a phrase here every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-10:i03:r1",
@@ -254,12 +256,12 @@
             "text": "are practice"
           }
         ],
-        "testedDimension": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+        "testedDimension": "Скажите о коллегах: «Каждый день они тренируют фразу здесь». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-10:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+            "testedDimension": "Скажите о коллегах: «Каждый день они тренируют фразу здесь». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `they` — `practice`, без `s`.",
               "uk": "Після `they` — `practice`, без `s`."
@@ -268,7 +270,7 @@
           {
             "responseId": "en:lesson-06:session-10:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово",
+            "testedDimension": "Скажите о коллегах: «Каждый день они тренируют фразу здесь». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `They practice`, без `are`.",
               "uk": "Кажемо `They practice`, без `are`."
@@ -916,7 +918,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+      "prompt": "Скажите коллеге: «Каждый день ты тренируешь новую фразу». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-10:i14:r1",
@@ -933,14 +935,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+      "accessibilityLabel": "Скажите коллеге: «Каждый день ты тренируешь новую фразу». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
-          "uk": "Скажіть колезі: «Ти тренуєш нову фразу». Виберіть слово"
+          "ru": "Скажите коллеге: «Каждый день ты тренируешь новую фразу». Выберите слово",
+          "uk": "Скажіть колезі: «Щодня ти тренуєш нову фразу». Виберіть слово"
         },
-        "gappedTargetPhrase": "You ___ a new phrase.",
+        "gappedTargetPhrase": "You ___ a new phrase every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-10:i14:r1",
@@ -955,12 +957,12 @@
             "text": "are practice"
           }
         ],
-        "testedDimension": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+        "testedDimension": "Скажите коллеге: «Каждый день ты тренируешь новую фразу». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-10:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+            "testedDimension": "Скажите коллеге: «Каждый день ты тренируешь новую фразу». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `you` — `practice`, без `s`.",
               "uk": "Після `you` — `practice`, без `s`."
@@ -969,7 +971,7 @@
           {
             "responseId": "en:lesson-06:session-10:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово",
+            "testedDimension": "Скажите коллеге: «Каждый день ты тренируешь новую фразу». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `You practice`, без `are`.",
               "uk": "Кажемо `You practice`, без `are`."
@@ -1176,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b47bcc7cbf3b2bfd72ed6ab52b4205201e23f5ae6cd0a38daa44ccba401838e0"
+  "learnerFingerprint": "288f16c9f8d95587e347a3e04622bcf980abf3b61000012de8159919817472b0"
 }

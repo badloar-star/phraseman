@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»",
+      "prompt": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Щодня вона їздить на роботу за кермом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»",
+      "accessibilityLabel": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Щодня вона їздить на роботу за кермом»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She drives to work.",
+        "targetPhrase": "She drives to work every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает, как ездит на работу ваша сестра. Скажите: «Она ездит на работу за рулём»",
-          "uk": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»"
+          "ru": "Подруга спрашивает, как ездит на работу ваша сестра. Скажите: «Каждый день она ездит на работу за рулём»",
+          "uk": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Щодня вона їздить на роботу за кермом»"
         },
         "orderedTokens": [
           "She",
           "drives",
           "to",
-          "work"
+          "work",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "drive"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-17:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»",
+            "testedDimension": "Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Щодня вона їздить на роботу за кермом»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `drives` — `She drives to work.`",
-              "uk": "тут потрібно `drives` — `She drives to work.`"
+              "ru": "здесь нужно `drives` — `She drives to work every day.`",
+              "uk": "тут потрібно `drives` — `She drives to work every day.`"
             }
           }
         ],
@@ -492,23 +494,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»",
+      "prompt": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Щодня вона починає о четвертій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»",
+      "accessibilityLabel": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Щодня вона починає о четвертій»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She starts at four.",
+        "targetPhrase": "She starts at four every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает, когда начинает работу ваша сестра. Скажите: «Она начинает в четыре»",
-          "uk": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»"
+          "ru": "Подруга спрашивает, когда начинает работу ваша сестра. Скажите: «Каждый день она начинает в четыре»",
+          "uk": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Щодня вона починає о четвертій»"
         },
         "orderedTokens": [
           "She",
           "starts",
           "at",
-          "four"
+          "four",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "start"
@@ -517,10 +521,10 @@
           {
             "responseId": "en:lesson-06:session-17:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»",
+            "testedDimension": "Подруга питає, коли починає роботу ваша сестра. Скажіть: «Щодня вона починає о четвертій»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `starts` — `She starts at four.`",
-              "uk": "тут потрібно `starts` — `She starts at four.`"
+              "ru": "здесь нужно `starts` — `She starts at four every day.`",
+              "uk": "тут потрібно `starts` — `She starts at four every day.`"
             }
           }
         ],
@@ -915,7 +919,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
+      "prompt": "Скажіть про сестру на зупинці: «Щодня вона чекає на зупинці». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-17:i14:r1",
@@ -932,14 +936,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
+      "accessibilityLabel": "Скажіть про сестру на зупинці: «Щодня вона чекає на зупинці». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о сестре на остановке: «Она ждёт на остановке». Выберите слово",
-          "uk": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово"
+          "ru": "Скажите о сестре на остановке: «Каждый день она ждёт на остановке». Выберите слово",
+          "uk": "Скажіть про сестру на зупинці: «Щодня вона чекає на зупинці». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ at the bus stop.",
+        "gappedTargetPhrase": "She ___ at the bus stop every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-17:i14:r1",
@@ -954,12 +958,12 @@
             "text": "is waits"
           }
         ],
-        "testedDimension": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
+        "testedDimension": "Скажіть про сестру на зупинці: «Щодня вона чекає на зупинці». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-17:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
+            "testedDimension": "Скажіть про сестру на зупинці: «Щодня вона чекає на зупинці». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `she` — `waits`, с `s`.",
               "uk": "Після `she` — `waits`, з `s`."
@@ -968,7 +972,7 @@
           {
             "responseId": "en:lesson-06:session-17:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово",
+            "testedDimension": "Скажіть про сестру на зупинці: «Щодня вона чекає на зупинці». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `She waits`, без `is`.",
               "uk": "Кажемо `She waits`, без `is`."
@@ -1175,5 +1179,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7559b45999ad106d1fdedee0f4db83a7e5321b07df4130095fe10d5a6504c3f5"
+  "learnerFingerprint": "21e0021d33bdd2d44f1f619c632a7ecf8d10466b05d20d19ffc723bcb9911f2f"
 }

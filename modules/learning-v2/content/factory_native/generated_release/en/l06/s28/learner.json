@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
+      "prompt": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы делаем растяжку дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
+      "accessibilityLabel": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы делаем растяжку дома»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We stretch at home.",
+        "targetPhrase": "We stretch at home every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
-          "uk": "Подруга питає про вас із братом. Скажіть: «Ми робимо розтяжку вдома»"
+          "ru": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы делаем растяжку дома»",
+          "uk": "Подруга питає про вас із братом. Скажіть: «Щодня ми робимо розтяжку вдома»"
         },
         "orderedTokens": [
           "We",
           "stretch",
           "at",
-          "home"
+          "home",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "stretches"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-28:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает о вас с братом. Скажите: «Мы делаем растяжку дома»",
+            "testedDimension": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы делаем растяжку дома»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `stretch` — `We stretch at home.`",
-              "uk": "тут потрібно `stretch` — `We stretch at home.`"
+              "ru": "здесь нужно `stretch` — `We stretch at home every day.`",
+              "uk": "тут потрібно `stretch` — `We stretch at home every day.`"
             }
           }
         ],
@@ -173,7 +175,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+      "prompt": "Скажите о брате: «Каждый день мой брат делает растяжку дома». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-28:i03:r1",
@@ -190,14 +192,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+      "accessibilityLabel": "Скажите о брате: «Каждый день мой брат делает растяжку дома». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
-          "uk": "Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день мой брат делает растяжку дома». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня мій брат робить розтяжку вдома». Виберіть слово"
         },
-        "gappedTargetPhrase": "My brother ___ at home.",
+        "gappedTargetPhrase": "My brother ___ at home every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-28:i03:r1",
@@ -212,12 +214,12 @@
             "text": "is stretches"
           }
         ],
-        "testedDimension": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+        "testedDimension": "Скажите о брате: «Каждый день мой брат делает растяжку дома». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-28:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день мой брат делает растяжку дома». Выберите слово",
             "feedbackByLocale": {
               "ru": "Брат — это `he`, поэтому нужно `stretches`, с `es`.",
               "uk": "Брат — це `he`, тому потрібно `stretches`, з `es`."
@@ -226,7 +228,7 @@
           {
             "responseId": "en:lesson-06:session-28:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Мой брат делает растяжку дома». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день мой брат делает растяжку дома». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `My brother stretches`, без `is`.",
               "uk": "Кажемо `My brother stretches`, без `is`."
@@ -527,7 +529,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я делаю растяжку дома». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-28:i08:r1",
@@ -544,14 +546,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я делаю растяжку дома». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
-          "uk": "Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я делаю растяжку дома». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я роблю розтяжку вдома». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ at home.",
+        "gappedTargetPhrase": "I ___ at home every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-28:i08:r1",
@@ -566,12 +568,12 @@
             "text": "am stretch"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я делаю растяжку дома». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-28:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я делаю растяжку дома». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `stretch`, без окончания.",
               "uk": "Після `I` потрібно `stretch`, без закінчення."
@@ -580,7 +582,7 @@
           {
             "responseId": "en:lesson-06:session-28:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я делаю растяжку дома». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я делаю растяжку дома». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I stretch`, без `am`.",
               "uk": "Кажемо `I stretch`, без `am`."
@@ -1176,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5b027223f9e8925d4b91810d21d55f37063fe81af598e1431464c348e1d7e221"
+  "learnerFingerprint": "44e3a2b413975292b776c67a7a61ec3548d5eed619728b1e9e49836a737e1bdb"
 }

@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сосед спрашивает о вас с братом. Скажите: «Мы жарим сосиски на гриле»",
+      "prompt": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы жарим сосиски на гриле»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сосед спрашивает о вас с братом. Скажите: «Мы жарим сосиски на гриле»",
+      "accessibilityLabel": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы жарим сосиски на гриле»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We grill sausages.",
+        "targetPhrase": "We grill sausages every day.",
         "localizedMeaning": {
-          "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы жарим сосиски на гриле»",
-          "uk": "Сусід питає про вас із братом. Скажіть: «Ми смажимо сосиски на грилі»"
+          "ru": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы жарим сосиски на гриле»",
+          "uk": "Сусід питає про вас із братом. Скажіть: «Щодня ми смажимо сосиски на грилі»"
         },
         "orderedTokens": [
           "We",
           "grill",
-          "sausages"
+          "sausages",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "grills"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-46:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Сосед спрашивает о вас с братом. Скажите: «Мы жарим сосиски на гриле»",
+            "testedDimension": "Сосед спрашивает о вас с братом. Скажите: «Каждый день мы жарим сосиски на гриле»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `grill` — `We grill sausages.`",
-              "uk": "тут потрібно `grill` — `We grill sausages.`"
+              "ru": "здесь нужно `grill` — `We grill sausages every day.`",
+              "uk": "тут потрібно `grill` — `We grill sausages every day.`"
             }
           }
         ],
@@ -172,7 +174,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о брате: «Он жарит сосиски на гриле». Выберите слово",
+      "prompt": "Скажите о брате: «Каждый день он жарит сосиски на гриле». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-46:i03:r1",
@@ -189,14 +191,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о брате: «Он жарит сосиски на гриле». Выберите слово",
+      "accessibilityLabel": "Скажите о брате: «Каждый день он жарит сосиски на гриле». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Он жарит сосиски на гриле». Выберите слово",
-          "uk": "Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день он жарит сосиски на гриле». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня він смажить сосиски на грилі». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ sausages.",
+        "gappedTargetPhrase": "He ___ sausages every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-46:i03:r1",
@@ -211,12 +213,12 @@
             "text": "is grills"
           }
         ],
-        "testedDimension": "Скажите о брате: «Он жарит сосиски на гриле». Выберите слово",
+        "testedDimension": "Скажите о брате: «Каждый день он жарит сосиски на гриле». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-46:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Он жарит сосиски на гриле». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день он жарит сосиски на гриле». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `he` нужно `grills`, с `s`.",
               "uk": "Після `he` потрібно `grills`, з `s`."
@@ -225,7 +227,7 @@
           {
             "responseId": "en:lesson-06:session-46:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Он жарит сосиски на гриле». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день он жарит сосиски на гриле». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `He grills`, без `is`.",
               "uk": "Кажемо `He grills`, без `is`."
@@ -528,7 +530,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я жарю сосиски на гриле». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я жарю сосиски на гриле». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-46:i08:r1",
@@ -545,14 +547,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я жарю сосиски на гриле». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я жарю сосиски на гриле». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я жарю сосиски на гриле». Выберите слово",
-          "uk": "Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я жарю сосиски на гриле». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я смажу сосиски на грилі». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ sausages.",
+        "gappedTargetPhrase": "I ___ sausages every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-46:i08:r1",
@@ -567,12 +569,12 @@
             "text": "am grill"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я жарю сосиски на гриле». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я жарю сосиски на гриле». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-46:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я жарю сосиски на гриле». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я жарю сосиски на гриле». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `grill`, без `s`.",
               "uk": "Після `I` потрібно `grill`, без `s`."
@@ -581,7 +583,7 @@
           {
             "responseId": "en:lesson-06:session-46:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я жарю сосиски на гриле». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я жарю сосиски на гриле». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I grill`, без `am`.",
               "uk": "Кажемо `I grill`, без `am`."
@@ -1178,5 +1180,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a0258ba2553ddda0a1a65d8d47c2c92218cfd662ca189910bf887beaead532ef"
+  "learnerFingerprint": "89f4f458ec4ff8952fb335ff097f01258e7db67666578d6a75f3fc4b18be99bf"
 }

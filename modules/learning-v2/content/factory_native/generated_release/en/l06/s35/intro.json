@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-35",
   "learningOutcomeByLocale": {
-    "ru": "рассказать, кто где спит, и спросить, чьи это вещи",
-    "uk": "розповісти, хто де спить, і спитати, чиї це речі"
+    "ru": "рассказать, кто где спит: It sleeps on the sofa.",
+    "uk": "розповісти, хто де спить: It sleeps on the sofa."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Піжама біля ванної"
       },
       "bodyByLocale": {
-        "ru": "После ночёвки гостей у ванной осталась пижама в полоску. Гости собирают вещи в соседней комнате, и вы хотите узнать, кому её отдать. pyjamas — «пижама». В английском pyjamas имеет форму множественного числа даже для одной пижамы. Поэтому после Whose pyjamas ставим are these: Whose pyjamas are these? — «Чья это пижама?»",
-        "uk": "Після ночівлі гостей біля ванної залишилася піжама у смужку. Гості збирають речі в сусідній кімнаті, і ви хочете дізнатися, кому її віддати. pyjamas — «піжама». В англійській pyjamas має форму множини навіть для однієї піжами. Тому після Whose pyjamas ставимо are these: Whose pyjamas are these? — «Чия це піжама?»"
+        "ru": "После ночёвки гостей у ванной осталась пижама в полоску. Гости собирают вещи в соседней комнате, и вы хотите узнать, кому её отдать. pyjamas — «пижама». В английском pyjamas имеет форму для нескольких даже для одной пижамы. Поэтому после Whose pyjamas ставим are these: Whose pyjamas are these? — «Чья это пижама?»",
+        "uk": "Після ночівлі гостей біля ванної залишилася піжама у смужку. Гості збирають речі в сусідній кімнаті, і ви хочете дізнатися, кому її віддати. pyjamas — «піжама». В англійській pyjamas має форму для кількох навіть для однієї піжами. Тому після Whose pyjamas ставимо are these: Whose pyjamas are these? — «Чия це піжама?»"
       },
       "question": {
         "interactionId": "en:lesson-06:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "42982077dcb4c2d538303bcd47eef687d6b951cb3956a47694783a8e64af131f"
+  "introFingerprint": "339bbbc34b05727d02597c74275d7edb2e35c11c73995ea8b009c15d9b523d9b"
 }

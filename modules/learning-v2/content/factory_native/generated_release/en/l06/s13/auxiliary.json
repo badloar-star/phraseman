@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-06:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-13:intro3:r2": {
-          "ru": "trunks в значении «плавки» имеет форму множественного числа даже для одной пары, поэтому нужно These и are.",
-          "uk": "trunks у значенні «плавки» має форму множини навіть для однієї пари, тому потрібно These і are."
+          "ru": "trunks в значении «плавки» имеет форму для нескольких даже для одной пары, поэтому нужно These и are.",
+          "uk": "trunks у значенні «плавки» має форму для кількох навіть для однієї пари, тому потрібно These і are."
         },
         "en:lesson-06:session-13:intro3:r3": {
           "ru": "После These нужно are, а не is.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "e9bf34a7fc12d89880bc8710f89554b85547d479bc6852e0315c3c92ca054946"
+  "auxiliaryFingerprint": "a00c12879f0321116c7e8137bdddb079072b433d6e7d3a4abf6c4e0d1a4c269a"
 }

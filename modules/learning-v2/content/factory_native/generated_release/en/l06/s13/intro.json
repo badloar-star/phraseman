@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-13",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о плавании и спросить, чья вещь",
-    "uk": "розповісти про плавання й спитати, чия це річ"
+    "ru": "рассказать, где вы плаваете: I swim in the pool.",
+    "uk": "розповісти, де ви плаваєте: I swim in the pool."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Плавки в роздягальні"
       },
       "bodyByLocale": {
-        "ru": "В раздевалке брат достаёт из сумки плавки и спрашивает, чьи они. Он протягивает одну пару. trunks — «плавки»: слово всегда во множественном числе, как и по-русски. Даже одна пара — это trunks. Поэтому говорим These trunks are mine — «Эти плавки мои». Не This и не is.",
-        "uk": "У роздягальні брат дістає з сумки плавки й питає, чиї вони. Він простягає одну пару. trunks — «плавки»: слово завжди у множині, як і в українській. Навіть одна пара — це trunks. Тому кажемо These trunks are mine — «Ці плавки мої». Не This і не is."
+        "ru": "В раздевалке брат достаёт из сумки плавки и спрашивает, чьи они. Он протягивает одну пару. trunks — «плавки»: слово всегда в форме для нескольких, как и по-русски. Даже одна пара — это trunks. Поэтому говорим These trunks are mine — «Эти плавки мои». Не This и не is.",
+        "uk": "У роздягальні брат дістає з сумки плавки й питає, чиї вони. Він простягає одну пару. trunks — «плавки»: слово завжди у формі для кількох, як і в українській. Навіть одна пара — це trunks. Тому кажемо These trunks are mine — «Ці плавки мої». Не This і не is."
       },
       "question": {
         "interactionId": "en:lesson-06:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "83a159cbd3ce9c3135da30f5bf172500de64d0bb18f113e9aad5bcc6efceb141"
+  "introFingerprint": "e2f063e6f0d77009995fe9c113bed0a8cdd9f177e13d8db6bbf34f6339b22a58"
 }

@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга питає про сусідів по хору. Скажіть: «Вони співають тут»",
+      "prompt": "Подруга питає про сусідів по хору. Скажіть: «Щодня вони співають тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга питає про сусідів по хору. Скажіть: «Вони співають тут»",
+      "accessibilityLabel": "Подруга питає про сусідів по хору. Скажіть: «Щодня вони співають тут»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They sing here.",
+        "targetPhrase": "They sing here every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает о соседях по хору. Скажите: «Они поют здесь»",
-          "uk": "Подруга питає про сусідів по хору. Скажіть: «Вони співають тут»"
+          "ru": "Подруга спрашивает о соседях по хору. Скажите: «Каждый день они поют здесь»",
+          "uk": "Подруга питає про сусідів по хору. Скажіть: «Щодня вони співають тут»"
         },
         "orderedTokens": [
           "They",
           "sing",
-          "here"
+          "here",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-15:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга питає про сусідів по хору. Скажіть: «Вони співають тут»",
+            "testedDimension": "Подруга питає про сусідів по хору. Скажіть: «Щодня вони співають тут»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `sing` — `They sing here.`",
-              "uk": "тут потрібно `sing` — `They sing here.`"
+              "ru": "здесь нужно `sing` — `They sing here every day.`",
+              "uk": "тут потрібно `sing` — `They sing here every day.`"
             }
           }
         ],
@@ -172,7 +174,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про себе й подругу: «Ми співаємо тут». Виберіть слово",
+      "prompt": "Скажіть про себе й подругу: «Щодня ми співаємо тут». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-15:i03:r1",
@@ -189,14 +191,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про себе й подругу: «Ми співаємо тут». Виберіть слово",
+      "accessibilityLabel": "Скажіть про себе й подругу: «Щодня ми співаємо тут». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе и подруге: «Мы поём здесь». Выберите слово",
-          "uk": "Скажіть про себе й подругу: «Ми співаємо тут». Виберіть слово"
+          "ru": "Скажите о себе и подруге: «Каждый день мы поём здесь». Выберите слово",
+          "uk": "Скажіть про себе й подругу: «Щодня ми співаємо тут». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ here.",
+        "gappedTargetPhrase": "We ___ here every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-15:i03:r1",
@@ -211,12 +213,12 @@
             "text": "are sing"
           }
         ],
-        "testedDimension": "Скажіть про себе й подругу: «Ми співаємо тут». Виберіть слово",
+        "testedDimension": "Скажіть про себе й подругу: «Щодня ми співаємо тут». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-15:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть про себе й подругу: «Ми співаємо тут». Виберіть слово",
+            "testedDimension": "Скажіть про себе й подругу: «Щодня ми співаємо тут». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `we` — `sing`, без `s`.",
               "uk": "Після `we` — `sing`, без `s`."
@@ -225,7 +227,7 @@
           {
             "responseId": "en:lesson-06:session-15:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть про себе й подругу: «Ми співаємо тут». Виберіть слово",
+            "testedDimension": "Скажіть про себе й подругу: «Щодня ми співаємо тут». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `We sing`, без `are`.",
               "uk": "Кажемо `We sing`, без `are`."
@@ -547,8 +549,8 @@
             "responseId": "en:lesson-06:session-15:word:lyrics:r1",
             "targetText": "lyrics",
             "meaningByLocale": {
-              "ru": "слова песни. Whose lyrics are these? — «Чьи это слова песни?» Слово всегда во множественном числе: are, а не is.",
-              "uk": "слова пісні. Whose lyrics are these? — «Чиї це слова пісні?» Слово завжди в множині: are, а не is."
+              "ru": "слова песни. Whose lyrics are these? — «Чьи это слова песни?» Слово всегда в форме для нескольких: are, а не is.",
+              "uk": "слова пісні. Whose lyrics are these? — «Чиї це слова пісні?» Слово завжди у формі для кількох: are, а не is."
             }
           }
         ],
@@ -558,8 +560,8 @@
         "wordCard": {
           "word": "lyrics",
           "definitionByLocale": {
-            "ru": "слова песни. Whose lyrics are these? — «Чьи это слова песни?» Слово всегда во множественном числе: are, а не is.",
-            "uk": "слова пісні. Whose lyrics are these? — «Чиї це слова пісні?» Слово завжди в множині: are, а не is."
+            "ru": "слова песни. Whose lyrics are these? — «Чьи это слова песни?» Слово всегда в форме для нескольких: are, а не is.",
+            "uk": "слова пісні. Whose lyrics are these? — «Чиї це слова пісні?» Слово завжди у формі для кількох: are, а не is."
           }
         }
       },
@@ -916,7 +918,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть подрузі: «Ти співаєш пісню». Виберіть слово",
+      "prompt": "Скажіть подрузі: «Щодня ти співаєш пісню». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-15:i14:r1",
@@ -933,14 +935,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть подрузі: «Ти співаєш пісню». Виберіть слово",
+      "accessibilityLabel": "Скажіть подрузі: «Щодня ти співаєш пісню». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите подруге: «Ты поёшь песню». Выберите слово",
-          "uk": "Скажіть подрузі: «Ти співаєш пісню». Виберіть слово"
+          "ru": "Скажите подруге: «Каждый день ты поёшь песню». Выберите слово",
+          "uk": "Скажіть подрузі: «Щодня ти співаєш пісню». Виберіть слово"
         },
-        "gappedTargetPhrase": "You ___ a song.",
+        "gappedTargetPhrase": "You ___ a song every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-15:i14:r1",
@@ -955,12 +957,12 @@
             "text": "are sing"
           }
         ],
-        "testedDimension": "Скажіть подрузі: «Ти співаєш пісню». Виберіть слово",
+        "testedDimension": "Скажіть подрузі: «Щодня ти співаєш пісню». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-15:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть подрузі: «Ти співаєш пісню». Виберіть слово",
+            "testedDimension": "Скажіть подрузі: «Щодня ти співаєш пісню». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `you` — `sing`, без `s`.",
               "uk": "Після `you` — `sing`, без `s`."
@@ -969,7 +971,7 @@
           {
             "responseId": "en:lesson-06:session-15:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть подрузі: «Ти співаєш пісню». Виберіть слово",
+            "testedDimension": "Скажіть подрузі: «Щодня ти співаєш пісню». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `You sing`, без `are`.",
               "uk": "Кажемо `You sing`, без `are`."
@@ -1176,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e727523335b02e6ac670d6df763b894a42ba65dff0d12dc845c68cc17b3bfa3a"
+  "learnerFingerprint": "112f286e70eb69216c2a4d2762bfdf0ad245500b689125c3e91e8a3131ad9d79"
 }

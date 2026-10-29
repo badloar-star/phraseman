@@ -52,24 +52,26 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»",
+      "prompt": "Подруга спрашивает о соседях. Скажите: «Каждый день они бегают трусцой в парке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»",
+      "accessibilityLabel": "Подруга спрашивает о соседях. Скажите: «Каждый день они бегают трусцой в парке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They jog in the park.",
+        "targetPhrase": "They jog in the park every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»",
-          "uk": "Подруга питає про сусідів. Скажіть: «Вони бігають підтюпцем у парку»"
+          "ru": "Подруга спрашивает о соседях. Скажите: «Каждый день они бегают трусцой в парке»",
+          "uk": "Подруга питає про сусідів. Скажіть: «Щодня вони бігають підтюпцем у парку»"
         },
         "orderedTokens": [
           "They",
           "jog",
           "in",
           "the",
-          "park"
+          "park",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "jogs"
@@ -78,10 +80,10 @@
           {
             "responseId": "en:lesson-06:session-26:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»",
+            "testedDimension": "Подруга спрашивает о соседях. Скажите: «Каждый день они бегают трусцой в парке»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `jog` — `They jog in the park.`",
-              "uk": "тут потрібно `jog` — `They jog in the park.`"
+              "ru": "здесь нужно `jog` — `They jog in the park every day.`",
+              "uk": "тут потрібно `jog` — `They jog in the park every day.`"
             }
           }
         ],
@@ -217,7 +219,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
+      "prompt": "Скажите о сестре: «Каждый день моя сестра бегает трусцой на дорожке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-26:i03:r1",
@@ -234,14 +236,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
+      "accessibilityLabel": "Скажите о сестре: «Каждый день моя сестра бегает трусцой на дорожке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
-          "uk": "Скажіть про сестру: «Моя сестра бігає підтюпцем на доріжці». Виберіть слово"
+          "ru": "Скажите о сестре: «Каждый день моя сестра бегает трусцой на дорожке». Выберите слово",
+          "uk": "Скажіть про сестру: «Щодня моя сестра бігає підтюпцем на доріжці». Виберіть слово"
         },
-        "gappedTargetPhrase": "My sister ___ on the track.",
+        "gappedTargetPhrase": "My sister ___ on the track every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-26:i03:r1",
@@ -256,12 +258,12 @@
             "text": "is jogs"
           }
         ],
-        "testedDimension": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
+        "testedDimension": "Скажите о сестре: «Каждый день моя сестра бегает трусцой на дорожке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-26:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
+            "testedDimension": "Скажите о сестре: «Каждый день моя сестра бегает трусцой на дорожке». Выберите слово",
             "feedbackByLocale": {
               "ru": "Сестра — это `she`, поэтому нужно `jogs`, с `s`.",
               "uk": "Сестра — це `she`, тому потрібно `jogs`, з `s`."
@@ -270,7 +272,7 @@
           {
             "responseId": "en:lesson-06:session-26:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово",
+            "testedDimension": "Скажите о сестре: «Каждый день моя сестра бегает трусцой на дорожке». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `My sister jogs`, без `is`.",
               "uk": "Кажемо `My sister jogs`, без `is`."
@@ -530,7 +532,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я бегаю трусцой в парке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-26:i08:r1",
@@ -547,14 +549,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я бегаю трусцой в парке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
-          "uk": "Скажіть про себе: «Я бігаю підтюпцем у парку». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я бегаю трусцой в парке». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я бігаю підтюпцем у парку». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ in the park.",
+        "gappedTargetPhrase": "I ___ in the park every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-26:i08:r1",
@@ -569,12 +571,12 @@
             "text": "am jog"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я бегаю трусцой в парке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-26:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я бегаю трусцой в парке». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `jog`, без `s`.",
               "uk": "Після `I` потрібно `jog`, без `s`."
@@ -583,7 +585,7 @@
           {
             "responseId": "en:lesson-06:session-26:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я бегаю трусцой в парке». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я бегаю трусцой в парке». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I jog`, без `am`.",
               "uk": "Кажемо `I jog`, без `am`."
@@ -1178,5 +1180,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "546d083f1086102aa36e61e609657f612937c1a6fa829b1e36dae1def755c582"
+  "learnerFingerprint": "a8b3da11ce0824b2240ffa0e474a32e78b097fe3a6773b7c0debfdacfa629177"
 }

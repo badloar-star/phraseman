@@ -194,7 +194,7 @@
             "correct": false,
             "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи `are these` — руль, слово во множественном числе, а в этом варианте `is this` — как про одну вещь.",
+              "ru": "В записи `are these` — руль, слово в форме для нескольких, а в этом варианте `is this` — как про одну вещь.",
               "uk": "У записі `are these` — кермо, слово у множині, а в цьому варіанті `is this` — як про одну річ."
             }
           },
@@ -620,7 +620,7 @@
             "correct": false,
             "testedDimension": "Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`handlebars` — слово во множественном числе, поэтому нужно `are these`.",
+              "ru": "`handlebars` — слово в форме для нескольких, поэтому нужно `are these`.",
               "uk": "`handlebars` — слово у множині, тому потрібно `are these`."
             }
           },
@@ -1181,5 +1181,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "afebd8753e431477201acd23ab18eee09aa174a498a37a3b467a12eac1db1807"
+  "learnerFingerprint": "988018cbb49d2c1a719c646864edade9c2e71019e400e23b97f00e15c913cba9"
 }

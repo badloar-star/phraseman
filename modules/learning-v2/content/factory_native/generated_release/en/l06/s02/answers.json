@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-02:i01",
-    "correctText": "You sweep the floor.",
+    "correctText": "You sweep the floor every day.",
     "correctResponseId": null
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-02:i12",
-    "correctText": "You sweep the floor in the cafe.",
+    "correctText": "You sweep the floor in the cafe every day.",
     "correctResponseId": null
   },
   {

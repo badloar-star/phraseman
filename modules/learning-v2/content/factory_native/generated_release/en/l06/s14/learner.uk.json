@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»",
+      "prompt": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Щодня вони сміються разом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»",
+      "accessibilityLabel": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Щодня вони сміються разом»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They laugh together.",
+        "targetPhrase": "They laugh together every day.",
         "localizedMeaning": {
-          "ru": "Вы рассказываете о посетителях, которые слушают шутки. Скажите: «Они смеются вместе»",
-          "uk": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»"
+          "ru": "Вы рассказываете о посетителях, которые слушают шутки. Скажите: «Каждый день они смеются вместе»",
+          "uk": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Щодня вони сміються разом»"
         },
         "orderedTokens": [
           "They",
           "laugh",
-          "together"
+          "together",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-14:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»",
+            "testedDimension": "Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Щодня вони сміються разом»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `laugh` — `They laugh together.`",
-              "uk": "тут потрібно `laugh` — `They laugh together.`"
+              "ru": "здесь нужно `laugh` — `They laugh together every day.`",
+              "uk": "тут потрібно `laugh` — `They laugh together every day.`"
             }
           }
         ],
@@ -215,7 +217,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+      "prompt": "Скажіть про себе й сусідку: «Щодня ми сміємося разом». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-14:i03:r1",
@@ -232,14 +234,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+      "accessibilityLabel": "Скажіть про себе й сусідку: «Щодня ми сміємося разом». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе и соседке: «Мы смеёмся вместе». Выберите слово",
-          "uk": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово"
+          "ru": "Скажите о себе и соседке: «Каждый день мы смеёмся вместе». Выберите слово",
+          "uk": "Скажіть про себе й сусідку: «Щодня ми сміємося разом». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ together.",
+        "gappedTargetPhrase": "We ___ together every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-14:i03:r1",
@@ -254,12 +256,12 @@
             "text": "are laugh"
           }
         ],
-        "testedDimension": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+        "testedDimension": "Скажіть про себе й сусідку: «Щодня ми сміємося разом». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-14:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+            "testedDimension": "Скажіть про себе й сусідку: «Щодня ми сміємося разом». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `we` — `laugh`, без `s`.",
               "uk": "Після `we` — `laugh`, без `s`."
@@ -268,7 +270,7 @@
           {
             "responseId": "en:lesson-06:session-14:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово",
+            "testedDimension": "Скажіть про себе й сусідку: «Щодня ми сміємося разом». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `We laugh`, без `are`.",
               "uk": "Кажемо `We laugh`, без `are`."
@@ -915,7 +917,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+      "prompt": "Скажіть сусідці: «Щодня ти смієшся з мого жарту». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-14:i14:r1",
@@ -932,14 +934,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+      "accessibilityLabel": "Скажіть сусідці: «Щодня ти смієшся з мого жарту». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите соседке: «Ты смеёшься над моей шуткой». Выберите слово",
-          "uk": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово"
+          "ru": "Скажите соседке: «Каждый день ты смеёшься над моей шуткой». Выберите слово",
+          "uk": "Скажіть сусідці: «Щодня ти смієшся з мого жарту». Виберіть слово"
         },
-        "gappedTargetPhrase": "You ___ at my joke.",
+        "gappedTargetPhrase": "You ___ at my joke every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-14:i14:r1",
@@ -954,12 +956,12 @@
             "text": "are laugh"
           }
         ],
-        "testedDimension": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+        "testedDimension": "Скажіть сусідці: «Щодня ти смієшся з мого жарту». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-14:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+            "testedDimension": "Скажіть сусідці: «Щодня ти смієшся з мого жарту». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `you` — `laugh`, без `s`.",
               "uk": "Після `you` — `laugh`, без `s`."
@@ -968,7 +970,7 @@
           {
             "responseId": "en:lesson-06:session-14:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово",
+            "testedDimension": "Скажіть сусідці: «Щодня ти смієшся з мого жарту». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `You laugh`, без `are`.",
               "uk": "Кажемо `You laugh`, без `are`."
@@ -1035,8 +1037,8 @@
             "correct": false,
             "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи `laundry is this` — всё сказано в единственном числе, а в этом варианте `laundry are these` — во множественном.",
-              "uk": "У записі `laundry is this` — все сказано в однині, а в цьому варіанті `laundry are these` — у множині."
+              "ru": "В записи `laundry is this` — всё сказано в форме для одного, а в этом варианте `laundry are these` — во множественном.",
+              "uk": "У записі `laundry is this` — все сказано у формі для одного, а в цьому варіанті `laundry are these` — у формі для кількох."
             }
           },
           {
@@ -1175,5 +1177,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "39033da95f03732e213d30cfad0524f40c9ec82fe07f50f0eaddd00cc357e37d"
+  "learnerFingerprint": "bcf44190d34dd67b4f41a7abb096cd9cb55398210e51671d3c0a4b9da5dceee5"
 }

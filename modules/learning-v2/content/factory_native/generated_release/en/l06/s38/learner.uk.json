@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега кличе вас із сестрою до бару. Скажіть: «Ми відпочиваємо тут»",
+      "prompt": "Колега кличе вас із сестрою до бару. Скажіть: «Щодня ми відпочиваємо тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега кличе вас із сестрою до бару. Скажіть: «Ми відпочиваємо тут»",
+      "accessibilityLabel": "Колега кличе вас із сестрою до бару. Скажіть: «Щодня ми відпочиваємо тут»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We rest here.",
+        "targetPhrase": "We rest here every day.",
         "localizedMeaning": {
-          "ru": "Коллега зовёт вас с сестрой в бар. Скажите: «Мы отдыхаем здесь»",
-          "uk": "Колега кличе вас із сестрою до бару. Скажіть: «Ми відпочиваємо тут»"
+          "ru": "Коллега зовёт вас с сестрой в бар. Скажите: «Каждый день мы отдыхаем здесь»",
+          "uk": "Колега кличе вас із сестрою до бару. Скажіть: «Щодня ми відпочиваємо тут»"
         },
         "orderedTokens": [
           "We",
           "rest",
-          "here"
+          "here",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "rests"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-38:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Колега кличе вас із сестрою до бару. Скажіть: «Ми відпочиваємо тут»",
+            "testedDimension": "Колега кличе вас із сестрою до бару. Скажіть: «Щодня ми відпочиваємо тут»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `rest` — `We rest here.`",
-              "uk": "тут потрібно `rest` — `We rest here.`"
+              "ru": "здесь нужно `rest` — `We rest here every day.`",
+              "uk": "тут потрібно `rest` — `We rest here every day.`"
             }
           }
         ],
@@ -215,7 +217,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
+      "prompt": "Скажіть про брата: «Щодня мій брат відпочиває на лавці». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-38:i03:r1",
@@ -232,14 +234,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
+      "accessibilityLabel": "Скажіть про брата: «Щодня мій брат відпочиває на лавці». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Мой брат отдыхает на скамейке». Выберите слово",
-          "uk": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день мой брат отдыхает на скамейке». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня мій брат відпочиває на лавці». Виберіть слово"
         },
-        "gappedTargetPhrase": "My brother ___ on the bench.",
+        "gappedTargetPhrase": "My brother ___ on the bench every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-38:i03:r1",
@@ -254,12 +256,12 @@
             "text": "is rests"
           }
         ],
-        "testedDimension": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
+        "testedDimension": "Скажіть про брата: «Щодня мій брат відпочиває на лавці». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-38:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня мій брат відпочиває на лавці». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Брат — это `he`, поэтому нужно `rests`, с `s`.",
               "uk": "Брат — це `he`, тому потрібно `rests`, з `s`."
@@ -268,7 +270,7 @@
           {
             "responseId": "en:lesson-06:session-38:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Мій брат відпочиває на лавці». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня мій брат відпочиває на лавці». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `rests`, без `is`.",
               "uk": "Кажемо `rests`, без `is`."
@@ -573,7 +575,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
+      "prompt": "Скажіть про себе: «Щодня я відпочиваю на лавці». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-38:i08:r1",
@@ -590,14 +592,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
+      "accessibilityLabel": "Скажіть про себе: «Щодня я відпочиваю на лавці». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я отдыхаю на скамейке». Выберите слово",
-          "uk": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я отдыхаю на скамейке». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я відпочиваю на лавці». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ on the bench.",
+        "gappedTargetPhrase": "I ___ on the bench every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-38:i08:r1",
@@ -612,12 +614,12 @@
             "text": "am rest"
           }
         ],
-        "testedDimension": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
+        "testedDimension": "Скажіть про себе: «Щодня я відпочиваю на лавці». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-38:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
+            "testedDimension": "Скажіть про себе: «Щодня я відпочиваю на лавці». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `rest`, без `s`.",
               "uk": "Після `I` потрібно `rest`, без `s`."
@@ -626,7 +628,7 @@
           {
             "responseId": "en:lesson-06:session-38:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть про себе: «Я відпочиваю на лавці». Виберіть слово",
+            "testedDimension": "Скажіть про себе: «Щодня я відпочиваю на лавці». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `I rest`, без `am`.",
               "uk": "Кажемо `I rest`, без `am`."
@@ -1178,5 +1180,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5cd50c159f91644016a5a9a9ad023d29d6f3f85c1479fa2e5c81c69306d4944b"
+  "learnerFingerprint": "d7e39ffdfdd91a12cf200656dc5a887fec33f764697c657d9c5d2038c29e672c"
 }

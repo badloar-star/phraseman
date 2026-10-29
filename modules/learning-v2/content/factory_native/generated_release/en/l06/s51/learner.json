@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг ищет лампу. Подскажите: «Они продают лампы»",
+      "prompt": "Друг ищет лампу. Подскажите: «Каждый день они продают лампы»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг ищет лампу. Подскажите: «Они продают лампы»",
+      "accessibilityLabel": "Друг ищет лампу. Подскажите: «Каждый день они продают лампы»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They sell lamps.",
+        "targetPhrase": "They sell lamps every day.",
         "localizedMeaning": {
-          "ru": "Друг ищет лампу. Подскажите: «Они продают лампы»",
-          "uk": "Друг шукає лампу. Підкажіть: «Вони продають лампи»"
+          "ru": "Друг ищет лампу. Подскажите: «Каждый день они продают лампы»",
+          "uk": "Друг шукає лампу. Підкажіть: «Щодня вони продають лампи»"
         },
         "orderedTokens": [
           "They",
           "sell",
-          "lamps"
+          "lamps",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "sells"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-51:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Друг ищет лампу. Подскажите: «Они продают лампы»",
+            "testedDimension": "Друг ищет лампу. Подскажите: «Каждый день они продают лампы»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `sell` — `They sell lamps.`",
-              "uk": "тут потрібно `sell` — `They sell lamps.`"
+              "ru": "здесь нужно `sell` — `They sell lamps every day.`",
+              "uk": "тут потрібно `sell` — `They sell lamps every day.`"
             }
           }
         ],
@@ -215,7 +217,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+      "prompt": "Скажите о женщине у дороги: «Каждый день она продаёт тыквы». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-51:i03:r1",
@@ -232,14 +234,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+      "accessibilityLabel": "Скажите о женщине у дороги: «Каждый день она продаёт тыквы». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
-          "uk": "Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово"
+          "ru": "Скажите о женщине у дороги: «Каждый день она продаёт тыквы». Выберите слово",
+          "uk": "Скажіть про жінку край дороги: «Щодня вона продає гарбузи». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ pumpkins.",
+        "gappedTargetPhrase": "She ___ pumpkins every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-51:i03:r1",
@@ -254,12 +256,12 @@
             "text": "is sells"
           }
         ],
-        "testedDimension": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+        "testedDimension": "Скажите о женщине у дороги: «Каждый день она продаёт тыквы». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-51:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+            "testedDimension": "Скажите о женщине у дороги: «Каждый день она продаёт тыквы». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `she` нужно `sells`, с `s`.",
               "uk": "Після `she` потрібно `sells`, з `s`."
@@ -268,7 +270,7 @@
           {
             "responseId": "en:lesson-06:session-51:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о женщине у дороги: «Она продаёт тыквы». Выберите слово",
+            "testedDimension": "Скажите о женщине у дороги: «Каждый день она продаёт тыквы». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `She sells`, без `is`.",
               "uk": "Кажемо `She sells`, без `is`."
@@ -569,7 +571,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+      "prompt": "Скажите о хозяине магазина: «Каждый день он продаёт лампы». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-51:i08:r1",
@@ -586,14 +588,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+      "accessibilityLabel": "Скажите о хозяине магазина: «Каждый день он продаёт лампы». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
-          "uk": "Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово"
+          "ru": "Скажите о хозяине магазина: «Каждый день он продаёт лампы». Выберите слово",
+          "uk": "Скажіть про господаря крамниці: «Щодня він продає лампи». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ lamps.",
+        "gappedTargetPhrase": "He ___ lamps every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-51:i08:r1",
@@ -608,12 +610,12 @@
             "text": "is sells"
           }
         ],
-        "testedDimension": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+        "testedDimension": "Скажите о хозяине магазина: «Каждый день он продаёт лампы». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-51:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+            "testedDimension": "Скажите о хозяине магазина: «Каждый день он продаёт лампы». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `he` нужно `sells`, с `s`.",
               "uk": "Після `he` потрібно `sells`, з `s`."
@@ -622,7 +624,7 @@
           {
             "responseId": "en:lesson-06:session-51:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о хозяине магазина: «Он продаёт лампы». Выберите слово",
+            "testedDimension": "Скажите о хозяине магазина: «Каждый день он продаёт лампы». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `He sells`, без `is`.",
               "uk": "Кажемо `He sells`, без `is`."
@@ -912,7 +914,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+      "prompt": "Скажите о соседке: «Каждый день она продаёт маффины». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-51:i14:r1",
@@ -929,14 +931,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+      "accessibilityLabel": "Скажите о соседке: «Каждый день она продаёт маффины». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
-          "uk": "Скажіть про сусідку: «Вона продає маффіни». Виберіть слово"
+          "ru": "Скажите о соседке: «Каждый день она продаёт маффины». Выберите слово",
+          "uk": "Скажіть про сусідку: «Щодня вона продає маффіни». Виберіть слово"
         },
-        "gappedTargetPhrase": "My neighbour ___ muffins.",
+        "gappedTargetPhrase": "My neighbour ___ muffins every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-51:i14:r1",
@@ -951,12 +953,12 @@
             "text": "is sells"
           }
         ],
-        "testedDimension": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+        "testedDimension": "Скажите о соседке: «Каждый день она продаёт маффины». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-51:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+            "testedDimension": "Скажите о соседке: «Каждый день она продаёт маффины». Выберите слово",
             "feedbackByLocale": {
               "ru": "Соседка — она: `My neighbour sells`.",
               "uk": "Сусідка — вона: `My neighbour sells`."
@@ -965,7 +967,7 @@
           {
             "responseId": "en:lesson-06:session-51:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите о соседке: «Она продаёт маффины». Выберите слово",
+            "testedDimension": "Скажите о соседке: «Каждый день она продаёт маффины». Выберите слово",
             "feedbackByLocale": {
               "ru": "Нужно `My neighbour sells`, без `is`.",
               "uk": "Потрібно `My neighbour sells`, без `is`."
@@ -1172,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dca1b25f576603f9f155346d77a13c3a156f8eacdc196f68d427c2d012164662"
+  "learnerFingerprint": "c4bc2863d8f9aa4cb9aa84d3937f3a64bc92a52d8972283712735d68d3e6743d"
 }

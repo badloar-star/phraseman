@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»",
+      "prompt": "Сусідка питає про вас із братом. Скажіть: «Щодня ми годуємо цуценя»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»",
+      "accessibilityLabel": "Сусідка питає про вас із братом. Скажіть: «Щодня ми годуємо цуценя»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We feed the puppy.",
+        "targetPhrase": "We feed the puppy every day.",
         "localizedMeaning": {
-          "ru": "Соседка спрашивает о вас с братом. Скажите: «Мы кормим щенка»",
-          "uk": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»"
+          "ru": "Соседка спрашивает о вас с братом. Скажите: «Каждый день мы кормим щенка»",
+          "uk": "Сусідка питає про вас із братом. Скажіть: «Щодня ми годуємо цуценя»"
         },
         "orderedTokens": [
           "We",
           "feed",
           "the",
-          "puppy"
+          "puppy",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "feeds"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-44:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»",
+            "testedDimension": "Сусідка питає про вас із братом. Скажіть: «Щодня ми годуємо цуценя»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `feed` — `We feed the puppy.`",
-              "uk": "тут потрібно `feed` — `We feed the puppy.`"
+              "ru": "здесь нужно `feed` — `We feed the puppy every day.`",
+              "uk": "тут потрібно `feed` — `We feed the puppy every day.`"
             }
           }
         ],
@@ -173,7 +175,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+      "prompt": "Скажіть про брата: «Щодня він годує собаку». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-44:i03:r1",
@@ -190,14 +192,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+      "accessibilityLabel": "Скажіть про брата: «Щодня він годує собаку». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Он кормит собаку». Выберите слово",
-          "uk": "Скажіть про брата: «Він годує собаку». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день он кормит собаку». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня він годує собаку». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ the dog.",
+        "gappedTargetPhrase": "He ___ the dog every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-44:i03:r1",
@@ -212,12 +214,12 @@
             "text": "is feeds"
           }
         ],
-        "testedDimension": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+        "testedDimension": "Скажіть про брата: «Щодня він годує собаку». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-44:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня він годує собаку». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `he` нужно `feeds`, с `s`.",
               "uk": "Після `he` потрібно `feeds`, з `s`."
@@ -226,7 +228,7 @@
           {
             "responseId": "en:lesson-06:session-44:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня він годує собаку». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `He feeds`, без `is`.",
               "uk": "Кажемо `He feeds`, без `is`."
@@ -529,7 +531,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+      "prompt": "Скажіть про себе: «Щодня я годую цуценя». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-44:i08:r1",
@@ -546,14 +548,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+      "accessibilityLabel": "Скажіть про себе: «Щодня я годую цуценя». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я кормлю щенка». Выберите слово",
-          "uk": "Скажіть про себе: «Я годую цуценя». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я кормлю щенка». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я годую цуценя». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ the puppy.",
+        "gappedTargetPhrase": "I ___ the puppy every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-44:i08:r1",
@@ -568,12 +570,12 @@
             "text": "am feed"
           }
         ],
-        "testedDimension": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+        "testedDimension": "Скажіть про себе: «Щодня я годую цуценя». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-44:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+            "testedDimension": "Скажіть про себе: «Щодня я годую цуценя». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `feed`, без `s`.",
               "uk": "Після `I` потрібно `feed`, без `s`."
@@ -582,7 +584,7 @@
           {
             "responseId": "en:lesson-06:session-44:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+            "testedDimension": "Скажіть про себе: «Щодня я годую цуценя». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `I feed`, без `am`.",
               "uk": "Кажемо `I feed`, без `am`."
@@ -1177,5 +1179,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f282848aa0b2b50cce5253ac9ac8b465157c4c96abaa8e22197e33982477c05b"
+  "learnerFingerprint": "2a30cd07adf8a0333bc0ce20d9579b018dcb2a764085f09ce257b76b9dac028f"
 }

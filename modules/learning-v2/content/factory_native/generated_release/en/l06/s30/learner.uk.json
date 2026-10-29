@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»",
+      "prompt": "Сусід питає про вас із сестрою. Скажіть: «Щодня ми трем підлогу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»",
+      "accessibilityLabel": "Сусід питає про вас із сестрою. Скажіть: «Щодня ми трем підлогу»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We scrub the floor.",
+        "targetPhrase": "We scrub the floor every day.",
         "localizedMeaning": {
-          "ru": "Сосед спрашивает о вас с сестрой. Скажите: «Мы трём пол»",
-          "uk": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»"
+          "ru": "Сосед спрашивает о вас с сестрой. Скажите: «Каждый день мы трём пол»",
+          "uk": "Сусід питає про вас із сестрою. Скажіть: «Щодня ми трем підлогу»"
         },
         "orderedTokens": [
           "We",
           "scrub",
           "the",
-          "floor"
+          "floor",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "scrubs"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-30:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Сусід питає про вас із сестрою. Скажіть: «Ми трем підлогу»",
+            "testedDimension": "Сусід питає про вас із сестрою. Скажіть: «Щодня ми трем підлогу»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `scrub` — `We scrub the floor.`",
-              "uk": "тут потрібно `scrub` — `We scrub the floor.`"
+              "ru": "здесь нужно `scrub` — `We scrub the floor every day.`",
+              "uk": "тут потрібно `scrub` — `We scrub the floor every day.`"
             }
           }
         ],
@@ -173,7 +175,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+      "prompt": "Скажіть про брата: «Щодня мій брат тре підлогу». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-30:i03:r1",
@@ -190,14 +192,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+      "accessibilityLabel": "Скажіть про брата: «Щодня мій брат тре підлогу». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Мой брат трёт пол». Выберите слово",
-          "uk": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день мой брат трёт пол». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня мій брат тре підлогу». Виберіть слово"
         },
-        "gappedTargetPhrase": "My brother ___ the floor.",
+        "gappedTargetPhrase": "My brother ___ the floor every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-30:i03:r1",
@@ -212,12 +214,12 @@
             "text": "is scrubs"
           }
         ],
-        "testedDimension": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+        "testedDimension": "Скажіть про брата: «Щодня мій брат тре підлогу». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-30:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня мій брат тре підлогу». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Брат — это `he`, поэтому нужно `scrubs`, с `s`.",
               "uk": "Брат — це `he`, тому потрібно `scrubs`, з `s`."
@@ -226,7 +228,7 @@
           {
             "responseId": "en:lesson-06:session-30:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Мій брат тре підлогу». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня мій брат тре підлогу». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `My brother scrubs`, без `is`.",
               "uk": "Кажемо `My brother scrubs`, без `is`."
@@ -529,7 +531,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+      "prompt": "Скажіть про себе: «Щодня я тру стіл». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-30:i08:r1",
@@ -546,14 +548,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+      "accessibilityLabel": "Скажіть про себе: «Щодня я тру стіл». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я тру стол». Выберите слово",
-          "uk": "Скажіть про себе: «Я тру стіл». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я тру стол». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я тру стіл». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ the table.",
+        "gappedTargetPhrase": "I ___ the table every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-30:i08:r1",
@@ -568,12 +570,12 @@
             "text": "am scrub"
           }
         ],
-        "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+        "testedDimension": "Скажіть про себе: «Щодня я тру стіл». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+            "testedDimension": "Скажіть про себе: «Щодня я тру стіл». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `scrub`, без `s`.",
               "uk": "Після `I` потрібно `scrub`, без `s`."
@@ -582,7 +584,7 @@
           {
             "responseId": "en:lesson-06:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть про себе: «Я тру стіл». Виберіть слово",
+            "testedDimension": "Скажіть про себе: «Щодня я тру стіл». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `I scrub`, без `am`.",
               "uk": "Кажемо `I scrub`, без `am`."
@@ -1178,5 +1180,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "18b7273cf2a733ba4f9566246508a694464796970ce722e687473cc4f83f8c1e"
+  "learnerFingerprint": "9fb47ba3a1939ae8862b76a407899d6b03059cfcf296530df1e08c3bdd29448b"
 }

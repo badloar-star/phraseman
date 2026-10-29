@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Охоронець питає, що робить ваш брат у центрі. Скажіть: «Він викладає англійську»",
+      "prompt": "Охоронець питає, що робить ваш брат у центрі. Скажіть: «Щодня він викладає англійську»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Охоронець питає, що робить ваш брат у центрі. Скажіть: «Він викладає англійську»",
+      "accessibilityLabel": "Охоронець питає, що робить ваш брат у центрі. Скажіть: «Щодня він викладає англійську»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He teaches English.",
+        "targetPhrase": "He teaches English every day.",
         "localizedMeaning": {
-          "ru": "Охранник спрашивает, что делает ваш брат в центре. Скажите: «Он преподаёт английский»",
-          "uk": "Охоронець питає, що робить ваш брат у центрі. Скажіть: «Він викладає англійську»"
+          "ru": "Охранник спрашивает, что делает ваш брат в центре. Скажите: «Каждый день он преподаёт английский»",
+          "uk": "Охоронець питає, що робить ваш брат у центрі. Скажіть: «Щодня він викладає англійську»"
         },
         "orderedTokens": [
           "He",
           "teaches",
-          "English"
+          "English",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "teach"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-23:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Охоронець питає, що робить ваш брат у центрі. Скажіть: «Він викладає англійську»",
+            "testedDimension": "Охоронець питає, що робить ваш брат у центрі. Скажіть: «Щодня він викладає англійську»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `teaches` — `He teaches English.`",
-              "uk": "тут потрібно `teaches` — `He teaches English.`"
+              "ru": "здесь нужно `teaches` — `He teaches English every day.`",
+              "uk": "тут потрібно `teaches` — `He teaches English every day.`"
             }
           }
         ],
@@ -491,22 +493,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга питає, що робить ваш брат удома. Скажіть: «Він вивчає англійську»",
+      "prompt": "Подруга питає, що робить ваш брат удома. Скажіть: «Щодня він вивчає англійську»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга питає, що робить ваш брат удома. Скажіть: «Він вивчає англійську»",
+      "accessibilityLabel": "Подруга питає, що робить ваш брат удома. Скажіть: «Щодня він вивчає англійську»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He learns English.",
+        "targetPhrase": "He learns English every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает, что делает ваш брат дома. Скажите: «Он изучает английский»",
-          "uk": "Подруга питає, що робить ваш брат удома. Скажіть: «Він вивчає англійську»"
+          "ru": "Подруга спрашивает, что делает ваш брат дома. Скажите: «Каждый день он изучает английский»",
+          "uk": "Подруга питає, що робить ваш брат удома. Скажіть: «Щодня він вивчає англійську»"
         },
         "orderedTokens": [
           "He",
           "learns",
-          "English"
+          "English",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "learn"
@@ -515,10 +519,10 @@
           {
             "responseId": "en:lesson-06:session-23:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга питає, що робить ваш брат удома. Скажіть: «Він вивчає англійську»",
+            "testedDimension": "Подруга питає, що робить ваш брат удома. Скажіть: «Щодня він вивчає англійську»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `learns` — `He learns English.`",
-              "uk": "тут потрібно `learns` — `He learns English.`"
+              "ru": "здесь нужно `learns` — `He learns English every day.`",
+              "uk": "тут потрібно `learns` — `He learns English every day.`"
             }
           }
         ],
@@ -568,7 +572,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про сестру: «Вона встигає на автобус». Виберіть слово",
+      "prompt": "Скажіть про сестру: «Щодня вона встигає на автобус». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-23:i08:r1",
@@ -585,14 +589,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про сестру: «Вона встигає на автобус». Виберіть слово",
+      "accessibilityLabel": "Скажіть про сестру: «Щодня вона встигає на автобус». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о сестре: «Она успевает на автобус». Выберите слово",
-          "uk": "Скажіть про сестру: «Вона встигає на автобус». Виберіть слово"
+          "ru": "Скажите о сестре: «Каждый день она успевает на автобус». Выберите слово",
+          "uk": "Скажіть про сестру: «Щодня вона встигає на автобус». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ the bus.",
+        "gappedTargetPhrase": "She ___ the bus every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-23:i08:r1",
@@ -607,12 +611,12 @@
             "text": "catchs"
           }
         ],
-        "testedDimension": "Скажіть про сестру: «Вона встигає на автобус». Виберіть слово",
+        "testedDimension": "Скажіть про сестру: «Щодня вона встигає на автобус». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-23:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть про сестру: «Вона встигає на автобус». Виберіть слово",
+            "testedDimension": "Скажіть про сестру: «Щодня вона встигає на автобус». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `she` — `catches`, с `es`.",
               "uk": "Після `she` — `catches`, з `es`."
@@ -621,7 +625,7 @@
           {
             "responseId": "en:lesson-06:session-23:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть про сестру: «Вона встигає на автобус». Виберіть слово",
+            "testedDimension": "Скажіть про сестру: «Щодня вона встигає на автобус». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `ch` нужно `es`: `catches`.",
               "uk": "Після `ch` потрібно `es`: `catches`."
@@ -912,7 +916,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про брата: «Він відповідає вчителеві». Виберіть слово",
+      "prompt": "Скажіть про брата: «Щодня він відповідає вчителеві». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-23:i14:r1",
@@ -929,14 +933,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про брата: «Він відповідає вчителеві». Виберіть слово",
+      "accessibilityLabel": "Скажіть про брата: «Щодня він відповідає вчителеві». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Он отвечает учителю». Выберите слово",
-          "uk": "Скажіть про брата: «Він відповідає вчителеві». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день он отвечает учителю». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня він відповідає вчителеві». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ the teacher.",
+        "gappedTargetPhrase": "He ___ the teacher every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-23:i14:r1",
@@ -951,12 +955,12 @@
             "text": "is answers"
           }
         ],
-        "testedDimension": "Скажіть про брата: «Він відповідає вчителеві». Виберіть слово",
+        "testedDimension": "Скажіть про брата: «Щодня він відповідає вчителеві». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-23:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Він відповідає вчителеві». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня він відповідає вчителеві». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `he` — `answers`, с `s`.",
               "uk": "Після `he` — `answers`, з `s`."
@@ -965,7 +969,7 @@
           {
             "responseId": "en:lesson-06:session-23:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Він відповідає вчителеві». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня він відповідає вчителеві». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `He answers`, без `is`.",
               "uk": "Кажемо `He answers`, без `is`."
@@ -1172,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c4404f2b5345570d2961f09274167cea4a8f9c56e29b54bde1c3e42731d1e566"
+  "learnerFingerprint": "c83e8139d35b03c97133501d3dfe32c9adefeaaeeafd33ce01177fb68d9600ff"
 }

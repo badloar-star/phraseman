@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-06:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-14:intro3:r2": {
-          "ru": "laundry здесь неисчисляемое, поэтому нужно is, а не are.",
-          "uk": "laundry тут незлічуване, тому потрібно is, а не are."
+          "ru": "laundry здесь не считается поштучно, поэтому нужно is, а не are.",
+          "uk": "laundry тут не рахується поштучно, тому потрібно is, а не are."
         },
         "en:lesson-06:session-14:intro3:r3": {
           "ru": "Вещи внутри сушилки, поэтому нужно in, а не on.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d2e3b4994462e557189e83a4e5f1ce9c738c6d53c6f536243db847eac0219b43"
+  "auxiliaryFingerprint": "ecf2b3563d27c1111c83fa1db68f32176afc90c43b94ebb19fae6237cfeb62eb"
 }

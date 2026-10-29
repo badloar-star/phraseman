@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-44",
   "learningOutcomeByLocale": {
-    "ru": "спросить, где вещь и чья она, сказать, что у велосипеда сломана деталь, и выбрать is или are",
-    "uk": "спитати, де річ і чия вона, сказати, що у велосипеда зламана деталь, і вибрати is чи are"
+    "ru": "спросить, чья деталь велосипеда: Whose pedal is this?",
+    "uk": "запитати, чия деталь велосипеда: Whose pedal is this?"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Чиє кермо?"
       },
       "bodyByLocale": {
-        "ru": "Сосед выкатил из сарая во двор два велосипеда. Рядом на траве лежит ещё один чёрный руль, и вы спрашиваете подругу, чей он. handlebars — «руль»: в английском это слово всегда во множественном числе, поэтому нужно are these: Whose handlebars are these?",
-        "uk": "Сусід викотив із сараю у двір два велосипеди. Поруч на зеленій траві лежить ще одне чорне кермо, і ви питаєте подругу, чиє воно. handlebars — «кермо»: в англійській це слово завжди у множині, тому потрібно are these: Whose handlebars are these?"
+        "ru": "Сосед выкатил из сарая во двор два велосипеда. Рядом на траве лежит ещё один чёрный руль, и вы спрашиваете подругу, чей он. handlebars — «руль»: в английском это слово всегда в форме для нескольких, поэтому нужно are these: Whose handlebars are these?",
+        "uk": "Сусід викотив із сараю у двір два велосипеди. Поруч на зеленій траві лежить ще одне чорне кермо, і ви питаєте подругу, чиє воно. handlebars — «кермо»: в англійській це слово завжди у формі для кількох, тому потрібно are these: Whose handlebars are these?"
       },
       "question": {
         "interactionId": "en:lesson-05:session-44:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1165c257771fee4104fbdf1f226b2982b8be380e303db847a1584c3b6a33155f"
+  "introFingerprint": "5b00aa05e6ec05f5de1adad59b7b265683691aa2d49145975bb90ed3cbedd5f1"
 }

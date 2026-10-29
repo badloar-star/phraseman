@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-06:i01",
-    "correctText": "We play football.",
+    "correctText": "We play football every day.",
     "correctResponseId": null
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-06:i12",
-    "correctText": "I ride a bicycle in the park.",
+    "correctText": "I ride a bicycle in the park every day.",
     "correctResponseId": null
   },
   {

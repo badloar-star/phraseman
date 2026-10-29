@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+      "prompt": "Повар спрашивает, что вы делаете. Скажите: «Каждый день я режу лук»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+      "accessibilityLabel": "Повар спрашивает, что вы делаете. Скажите: «Каждый день я режу лук»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I chop onions.",
+        "targetPhrase": "I chop onions every day.",
         "localizedMeaning": {
-          "ru": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
-          "uk": "Кухар питає, що ви робите. Скажіть: «Я ріжу цибулю»"
+          "ru": "Повар спрашивает, что вы делаете. Скажите: «Каждый день я режу лук»",
+          "uk": "Кухар питає, що ви робите. Скажіть: «Щодня я ріжу цибулю»"
         },
         "orderedTokens": [
           "I",
           "chop",
-          "onions"
+          "onions",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "am"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-07:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+            "testedDimension": "Повар спрашивает, что вы делаете. Скажите: «Каждый день я режу лук»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `chop` — `I chop onions.`",
-              "uk": "тут потрібно `chop` — `I chop onions.`"
+              "ru": "здесь нужно `chop` — `I chop onions every day.`",
+              "uk": "тут потрібно `chop` — `I chop onions every day.`"
             }
           }
         ],
@@ -258,7 +260,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+      "prompt": "Суп готов. Скажите новому официанту, что каждый день он подаёт суп гостям. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i03:r1",
@@ -275,14 +277,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+      "accessibilityLabel": "Суп готов. Скажите новому официанту, что каждый день он подаёт суп гостям. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
-          "uk": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово"
+          "ru": "Суп готов. Скажите новому официанту, что каждый день он подаёт суп гостям. Выберите слово",
+          "uk": "Суп готовий. Скажіть новому офіціантові, що щодня він подає суп гостям. Виберіть слово"
         },
-        "gappedTargetPhrase": "You ___ the soup.",
+        "gappedTargetPhrase": "You ___ the soup every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-07:i03:r1",
@@ -297,12 +299,12 @@
             "text": "is serve"
           }
         ],
-        "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+        "testedDimension": "Суп готов. Скажите новому официанту, что каждый день он подаёт суп гостям. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-07:i03:r2",
             "correct": false,
-            "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+            "testedDimension": "Суп готов. Скажите новому официанту, что каждый день он подаёт суп гостям. Выберите слово",
             "feedbackByLocale": {
               "ru": "После `You` сразу ставим `serve`, без `are`.",
               "uk": "Після `You` одразу ставимо `serve`, без `are`."
@@ -311,7 +313,7 @@
           {
             "responseId": "en:lesson-06:session-07:i03:r3",
             "correct": false,
-            "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+            "testedDimension": "Суп готов. Скажите новому официанту, что каждый день он подаёт суп гостям. Выберите слово",
             "feedbackByLocale": {
               "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `You serve`.",
               "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `You serve`."
@@ -571,7 +573,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Двое поваров стоят у большой кастрюли. Выберите слово",
+      "prompt": "Каждый день двое поваров стоят у большой кастрюли. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i08:r1",
@@ -588,14 +590,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двое поваров стоят у большой кастрюли. Выберите слово",
+      "accessibilityLabel": "Каждый день двое поваров стоят у большой кастрюли. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Двое поваров стоят у большой кастрюли. Выберите слово",
-          "uk": "Двоє кухарів стоять біля великої каструлі. Виберіть слово"
+          "ru": "Каждый день двое поваров стоят у большой кастрюли. Выберите слово",
+          "uk": "Щодня двоє кухарів стоять біля великої каструлі. Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ the soup.",
+        "gappedTargetPhrase": "They ___ the soup every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-07:i08:r1",
@@ -610,12 +612,12 @@
             "text": "is stir"
           }
         ],
-        "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
+        "testedDimension": "Каждый день двое поваров стоят у большой кастрюли. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
+            "testedDimension": "Каждый день двое поваров стоят у большой кастрюли. Выберите слово",
             "feedbackByLocale": {
               "ru": "После `They` сразу ставим `stir`, без `are`.",
               "uk": "Після `They` одразу ставимо `stir`, без `are`."
@@ -624,7 +626,7 @@
           {
             "responseId": "en:lesson-06:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
+            "testedDimension": "Каждый день двое поваров стоят у большой кастрюли. Выберите слово",
             "feedbackByLocale": {
               "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They stir`.",
               "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They stir`."
@@ -841,17 +843,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+      "prompt": "Двое поваров готовят суп. Расскажите помощнице: «Каждый день они режут лук и они помешивают суп»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+      "accessibilityLabel": "Двое поваров готовят суп. Расскажите помощнице: «Каждый день они режут лук и они помешивают суп»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They chop onions and they stir the soup.",
+        "targetPhrase": "They chop onions and they stir the soup every day.",
         "localizedMeaning": {
-          "ru": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
-          "uk": "Двоє кухарів готують суп. Розкажіть помічниці: «Вони ріжуть цибулю і вони помішують суп»"
+          "ru": "Двое поваров готовят суп. Расскажите помощнице: «Каждый день они режут лук и они помешивают суп»",
+          "uk": "Двоє кухарів готують суп. Розкажіть помічниці: «Щодня вони ріжуть цибулю і вони помішують суп»"
         },
         "orderedTokens": [
           "They",
@@ -861,7 +863,9 @@
           "they",
           "stir",
           "the",
-          "soup"
+          "soup",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -870,10 +874,10 @@
           {
             "responseId": "en:lesson-06:session-07:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+            "testedDimension": "Двое поваров готовят суп. Расскажите помощнице: «Каждый день они режут лук и они помешивают суп»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `chop` — `They chop onions and they stir the soup.`",
-              "uk": "тут потрібно `chop` — `They chop onions and they stir the soup.`"
+              "ru": "здесь нужно `chop` — `They chop onions and they stir the soup every day.`",
+              "uk": "тут потрібно `chop` — `They chop onions and they stir the soup every day.`"
             }
           }
         ],
@@ -923,7 +927,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+      "prompt": "Перед вами гора лука. Скажите повару, что каждый день вы его режете. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-07:i14:r1",
@@ -940,14 +944,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+      "accessibilityLabel": "Перед вами гора лука. Скажите повару, что каждый день вы его режете. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
-          "uk": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово"
+          "ru": "Перед вами гора лука. Скажите повару, что каждый день вы его режете. Выберите слово",
+          "uk": "Перед вами гора цибулі. Скажіть кухареві, що щодня ви її ріжете. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ onions.",
+        "gappedTargetPhrase": "I ___ onions every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-07:i14:r1",
@@ -962,12 +966,12 @@
             "text": "are chop"
           }
         ],
-        "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+        "testedDimension": "Перед вами гора лука. Скажите повару, что каждый день вы его режете. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-07:i14:r2",
             "correct": false,
-            "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+            "testedDimension": "Перед вами гора лука. Скажите повару, что каждый день вы его режете. Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` сразу ставим `chop`, без `am`.",
               "uk": "Після `I` одразу ставимо `chop`, без `am`."
@@ -976,7 +980,7 @@
           {
             "responseId": "en:lesson-06:session-07:i14:r3",
             "correct": false,
-            "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+            "testedDimension": "Перед вами гора лука. Скажите повару, что каждый день вы его режете. Выберите слово",
             "feedbackByLocale": {
               "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I chop`.",
               "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I chop`."
@@ -1183,5 +1187,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "80b303704ee523163f81ed14e4f43924ca7802eb1457dcc4baf2b4fb356351e7"
+  "learnerFingerprint": "4cd3d9d68907fa15be1ac9d7a85df8dd4fe281be7ae89dafed616f24e4d52f29"
 }

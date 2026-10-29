@@ -13,7 +13,7 @@
 .pt-bar .pt-hi { position: absolute; display: block; }
 .pt-bar .pt-ic { position: absolute; display: block; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; cursor: pointer; }
 /* страница Plus: поверх тела кадра (ниже статус-бара), панель остаётся снизу */
-.pt-page { position: absolute; left: 0; right: 0; top: 40px; bottom: 0; z-index: 20; padding: 10px 18px 113px; /* низ — под плавающую панель (854…924 px тела) */ font-family: Inter, 'Inter Variable', system-ui, sans-serif; display: flex; flex-direction: column; }
+.pt-page { position: absolute; left: 0; right: 0; top: 40px; height: 915px; /* ровно до низа видимого кадра: тело .rf-body выше видимой области на 92 px, bottom:0 уводил кнопку под панель */ z-index: 20; padding: 10px 18px 113px; /* низ — под плавающую панель (854…924 px тела) */ font-family: Inter, 'Inter Variable', system-ui, sans-serif; display: flex; flex-direction: column; }
 .pt-head { display: flex; align-items: center; justify-content: space-between; height: 34px; }
 .pt-brand { font-size: 11px; font-weight: 800; letter-spacing: .12em; }
 .pt-close { width: 32px; height: 32px; border-radius: 50%; border: 0; font: 400 20px/32px Inter, system-ui, sans-serif; cursor: pointer; padding: 0; }

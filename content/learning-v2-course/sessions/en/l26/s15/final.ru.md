@@ -9,12 +9,12 @@
 
 ### Только что ударили голень
 
-Вы задели ногой край стола. Друг спрашивает, что случилось. Ответьте: I have just hit my shin — я только что ударил голень. Собираем: I + have + just + hit + my shin — кто, have, только что, действие, что ударил. Just стоит между have и третьей формой hit. У hit все формы пишутся одинаково; hitted не нужно. С I используем have, а вся фраза сообщает о недавнем событии сейчас.
+Вы задели ногой край стола. Друг спрашивает, что случилось. Ответьте: I have just hit my shin — я только что ударил голень. Собираем: I + have + just + hit + my shin — кто, have, только что, действие, что ударил. Just стоит между have и формой после have hit. У hit все формы пишутся одинаково; hitted не нужно. С I используем have, а вся фраза сообщает о недавнем событии сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have just hit my shin.**
-- ❌ I have just hitted my shin. — *Третья форма hit — тоже hit.*
+- ❌ I have just hitted my shin. — *Форма после have hit — тоже hit.*
 - ❌ I has just hit my shin. — *С I нужен have.*
 
 ---
@@ -74,8 +74,8 @@
 **6 · Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.**
 <!-- interaction_id: en:lesson-26:session-15:i04; family: context_gap_grammar -->
 I have just ___ my shin. → **hit** · hitted · hitting
-- hitted — *У hit третья форма hit, не hitted.*
-- hitting — *После have здесь нужна третья форма hit.*
+- hitted — *У hit форма hit, не hitted.*
+- hitting — *После have здесь нужна форма hit.*
 
 **7 · Карточка слова — armpit**
 <!-- interaction_id: en:lesson-26:session-15:word:armpit; family: word_card -->

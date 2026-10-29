@@ -9,13 +9,13 @@
 
 ### Описати оніміння
 
-Numb — онімілий, той, що втратив звичайну чутливість. My fingers feel numb when they get very cold — мої пальці німіють, коли сильно мерзнуть. Так мовець описує своє відчуття. Fingers — множина, тому feel без -s; they get теж без -s. When пов’язує відчуття із ситуацією, у якій воно в цієї людини повторюється.
+Numb — онімілий, той, що втратив звичайну чутливість. My fingers feel numb when they get very cold — мої пальці німіють, коли сильно мерзнуть. Так мовець описує своє відчуття. Fingers — форма для кількох, тому feel без -s; they get теж без -s. When пов’язує відчуття із ситуацією, у якій воно в цієї людини повторюється.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My fingers feel numb when they get very cold.**
-- ❌ My fingers feels numb when they get very cold. — *Із цим підметом потрібна форма feel.*
-- ❌ My fingers feeling numb when they get very cold. — *Повторюване відчуття: Present Simple в обох частинах.*
+- ❌ My fingers feels numb when they get very cold. — *Із цим словом потрібна форма feel.*
+- ❌ My fingers feeling numb when they get very cold. — *Повторюване відчуття: форма work / works в обох частинах.*
 
 ---
 
@@ -23,13 +23,13 @@ Numb — онімілий, той, що втратив звичайну чутл
 
 ### Чому не читаєте в машині
 
-Друг пропонує вам книжку в дорозі, а ви пояснюєте свою звичайну реакцію на читання в машині: I feel nauseous when I read in a car — мене нудить, коли я читаю в машині. Складаємо: I + feel nauseous + when I read in a car — хто, яке відчуття має, у якій ситуації. Після I ставимо feel, потім слово nauseous, що описує відчуття. У частині з when знову I та read без -s. Обидві частини в present simple: йдеться про те, що з вами зазвичай відбувається, а не з усіма людьми.
+Друг пропонує вам книжку в дорозі, а ви пояснюєте свою звичайну реакцію на читання в машині: I feel nauseous when I read in a car — мене нудить, коли я читаю в машині. Складаємо: I + feel nauseous + when I read in a car — хто, яке відчуття має, у якій ситуації. Після I ставимо feel, потім слово nauseous, що описує відчуття. У частині з when знову I та read без -s. Обидві частини в формі work / works: йдеться про те, що з вами зазвичай відбувається, а не з усіма людьми.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I feel nauseous when I read in a car.**
-- ❌ I feels nauseous when I read in a car. — *Із цим підметом потрібна форма feel.*
-- ❌ I feeling nauseous when I read in a car. — *Повторюване відчуття: Present Simple в обох частинах.*
+- ❌ I feels nauseous when I read in a car. — *Із цим словом потрібна форма feel.*
+- ❌ I feeling nauseous when I read in a car. — *Повторюване відчуття: форма work / works в обох частинах.*
 
 ---
 
@@ -37,13 +37,13 @@ Numb — онімілий, той, що втратив звичайну чутл
 
 ### Як саме болить
 
-Throb — пульсувати, боліти ритмічними поштовхами. My head throbs when I have a headache — голова пульсує, коли в мене головний біль. Тут людина уточнює характер свого болю. Head — однина, тому throbs; після I — have. Для опису того, що в мовця зазвичай відбувається за такої умови, використовуємо Present Simple в обох частинах.
+Throb — пульсувати, боліти ритмічними поштовхами. My head throbs when I have a headache — голова пульсує, коли в мене головний біль. Тут людина уточнює характер свого болю. Head — форма для одного, тому throbs; після I — have. Для опису того, що в мовця зазвичай відбувається за такої умови, використовуємо форму work / works в обох частинах.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My head throbs when I have a headache.**
-- ❌ My head throb when I have a headache. — *Із цим підметом потрібна форма throbs.*
-- ❌ My head throbbing when I have a headache. — *Повторюване відчуття: Present Simple в обох частинах.*
+- ❌ My head throb when I have a headache. — *Із цим словом потрібна форма throbs.*
+- ❌ My head throbbing when I have a headache. — *Повторюване відчуття: форма work / works в обох частинах.*
 
 ---
 
@@ -67,7 +67,7 @@ Throb — пульсувати, боліти ритмічними поштовх
 <!-- interaction_id: en:lesson-26:session-06:i03; family: context_gap_grammar -->
 My hands ___ cold when I wait outside. → **feel** · feels · feeling
 - feels — *Після hands потрібна форма feel без -s.*
-- feeling — *Тут потрібен Present Simple: feel, не feeling без are.*
+- feeling — *Тут потрібна форма work / works: feel, не feeling без are.*
 
 **5 · Картка слова — nauseous**
 <!-- interaction_id: en:lesson-26:session-06:word:nauseous; family: word_card -->

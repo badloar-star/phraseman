@@ -9,12 +9,12 @@
 
 ### Если не случится исключение
 
-Unless — если не, если только не. We will eat outside unless it rains — мы поедим на улице, если не пойдёт дождь. Обычный план — есть на улице; дождь — исключение, которое его меняет. Это можно передать как We will eat outside if it does not rain. После unless здесь rains: Present Simple без will и без дополнительного not. Слово unless уже содержит смысл «если не».
+Unless — если не, если только не. We will eat outside unless it rains — мы поедим на улице, если не пойдёт дождь. Обычный план — есть на улице; дождь — исключение, которое его меняет. Это можно передать как We will eat outside if it does not rain. После unless здесь rains: форма work / works без will и без дополнительного not. Слово unless уже содержит смысл «если не».
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We will eat outside unless it rains.**
-- ❌ We will eat outside unless it will rain. — *После unless в этом будущем условии нужен Present Simple: rains.*
+- ❌ We will eat outside unless it will rain. — *После unless в этом будущем условии нужна форма work / works: rains.*
 - ❌ We will eat outside unless it does not rain. — *Дополнительное not меняет смысл: получится исключение, когда дождя нет.*
 
 ---

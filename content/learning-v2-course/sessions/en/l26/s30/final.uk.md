@@ -23,7 +23,7 @@
 
 ### Чи куплено цукерки
 
-Ви з другом збираєте частування до чаю й хочете дізнатися, чи куплено цукерки. Запитайте: Have you bought any candy yet? — ти вже купив цукерки? Складаємо запитання: Have + you + bought + any candy + yet? Have ставимо перед you; після підмета потрібна третя форма buy — bought. Any candy називає покупку, yet у кінці уточнює, чи зроблено це до теперішнього моменту.
+Ви з другом збираєте частування до чаю й хочете дізнатися, чи куплено цукерки. Запитайте: Have you bought any candy yet? — ти вже купив цукерки? Складаємо запитання: Have + you + bought + any candy + yet? Have ставимо перед you; після того, хто діє, потрібна форма buy — bought. Any candy називає покупку, yet у кінці уточнює, чи зроблено це до теперішнього моменту.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -79,7 +79,7 @@ I will call when I ___ your building. → **reach** · will reach · reaches
 
 **7 · Картка слова — cookie**
 <!-- interaction_id: en:lesson-26:session-30:word:cookie; family: word_card -->
-> **cookie** — Печиво, окрема печивина. У множині cookies.
+> **cookie** — Печиво, окрема печивина. У формі для кількох cookies.
 
 **8 · Запропонуйте другові одне печиво.**
 <!-- interaction_id: en:lesson-26:session-30:i05; family: phrase_builder -->

@@ -9,13 +9,13 @@
 
 ### Что происходит с водой
 
-Оставленная в комнате вода постепенно уходит в воздух. Evaporate — испаряться. Water evaporates when you leave it in an open bowl — вода испаряется, когда её оставляют в открытой миске. Так мы описываем обычную закономерность, а не одну будущую ситуацию. Это zero conditional: when или if + Present Simple, и результат тоже в Present Simple. В нашем примере результат стоит первым: Water evaporates; условие — when you leave it in an open bowl.
+Оставленная в комнате вода постепенно уходит в воздух. Evaporate — испаряться. Water evaporates when you leave it in an open bowl — вода испаряется, когда её оставляют в открытой миске. Так мы описываем обычную закономерность, а не одну будущую ситуацию. Это правило «всегда так бывает»: when или if + форма work / works, и результат тоже в форме work / works. В нашем примере результат стоит первым: Water evaporates; условие — when you leave it in an open bowl.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Water evaporates when you leave it in an open bowl.**
-- ❌ Water evaporate when you leave it in an open bowl. — *Для этого подлежащего в Present Simple нужна форма evaporates.*
-- ❌ Water evaporating when you leave it in an open bowl. — *Обычная закономерность: Present Simple в обеих частях.*
+- ❌ Water evaporate when you leave it in an open bowl. — *Для этого слова в форме work / works нужна форма evaporates.*
+- ❌ Water evaporating when you leave it in an open bowl. — *Обычная закономерность: форма work / works в обеих частях.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Откуда капли на холодной поверхности
 
-На кухне вы замечаете капли на холодной поверхности и объясняете, как они появляются: Steam condenses when it touches a cold surface — пар конденсируется, когда соприкасается с холодной поверхностью. Собираем: Steam + condenses + when it touches a cold surface — что, что происходит, при каком условии. Обе части в present simple, потому что описываем закономерность. Steam согласуется как it, поэтому condenses с -s. В условии it заменяет пар; после it нужна touches с -es.
+На кухне вы замечаете капли на холодной поверхности и объясняете, как они появляются: Steam condenses when it touches a cold surface — пар конденсируется, когда соприкасается с холодной поверхностью. Собираем: Steam + condenses + when it touches a cold surface — что, что происходит, при каком условии. Обе части в форме work / works, потому что описываем закономерность. Steam согласуется как it, поэтому condenses с -s. В условии it заменяет пар; после it нужна touches с -es.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Steam condenses when it touches a cold surface.**
-- ❌ Steam condense when it touches a cold surface. — *Для этого подлежащего в Present Simple нужна форма condenses.*
-- ❌ Steam condensing when it touches a cold surface. — *Обычная закономерность: Present Simple в обеих частях.*
+- ❌ Steam condense when it touches a cold surface. — *Для этого слова в форме work / works нужна форма condenses.*
+- ❌ Steam condensing when it touches a cold surface. — *Обычная закономерность: форма work / works в обеих частях.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Обычная реакция на холод
 
-Stiffen — становиться жёстче, терять гибкость. My hands stiffen when they get cold — мои руки деревенеют, когда мёрзнут. Это моя обычная реакция, не утверждение обо всех людях. Hands — множественное число, поэтому stiffen без -s; they get тоже без -s. Zero conditional подходит и для таких личных привычных реакций. If подчёркивает условие «если», when — «когда это происходит». Для этой обычной закономерности will не нужен.
+Stiffen — становиться жёстче, терять гибкость. My hands stiffen when they get cold — мои руки деревенеют, когда мёрзнут. Это моя обычная реакция, не утверждение обо всех людях. Hands — форма для нескольких, поэтому stiffen без -s; they get тоже без -s. Та же схема подходит и для личных привычных реакций. If подчёркивает условие «если», when — «когда это происходит». Для этой обычной закономерности will не нужен.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My hands stiffen when they get cold.**
-- ❌ My hands stiffens when they get cold. — *Для этого подлежащего в Present Simple нужна форма stiffen.*
-- ❌ My hands stiffening when they get cold. — *Обычная закономерность: Present Simple в обеих частях.*
+- ❌ My hands stiffens when they get cold. — *Для этого слова в форме work / works нужна форма stiffen.*
+- ❌ My hands stiffening when they get cold. — *Обычная закономерность: форма work / works в обеих частях.*
 
 ---
 
@@ -60,8 +60,8 @@ Stiffen — становиться жёстче, терять гибкость. 
 **3 · Вы говорите о привычке, а не о завтрашнем плане. Дополните обычный результат.**
 <!-- interaction_id: en:lesson-26:session-01:i02; family: context_gap_grammar -->
 I ___ a towel when my hands are wet. → **use** · uses · using
-- uses — *После I в Present Simple нужно use без -s.*
-- using — *Для привычки здесь нужна форма use; using без вспомогательного глагола не подходит.*
+- uses — *После I в форме work / works нужно use без -s.*
+- using — *Для привычки здесь нужна форма use; using без do / does не подходит.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-01:i03; family: listen_choose -->
@@ -86,7 +86,7 @@ I ___ a towel when my hands are wet. → **use** · uses · using
 **8 · Каждый раз при дожде вы берёте зонт. В обеих частях описывается обычная привычка.**
 <!-- interaction_id: en:lesson-26:session-01:i06; family: context_gap_grammar -->
 I take an umbrella when it ___. → **rains** · rain · raining
-- rain — *После it в Present Simple нужна форма rains.*
+- rain — *После it в форме work / works нужна форма rains.*
 - raining — *Здесь нужен личный глагол rains, а не raining без is.*
 
 **9 · Карточка слова — splatters**
@@ -111,7 +111,7 @@ I take an umbrella when it ___. → **rains** · rain · raining
 <!-- interaction_id: en:lesson-26:session-01:i09; family: context_gap_grammar -->
 My fingers ___ when I work outside in winter. → **stiffen** · stiffens · stiffening
 - stiffens — *После fingers нужна форма stiffen без -s.*
-- stiffening — *Здесь нужен Present Simple: stiffen.*
+- stiffening — *Здесь нужна форма work / works: stiffen.*
 
 **14 · Вспомните четыре действия**
 <!-- interaction_id: en:lesson-26:session-01:i10; family: speed_match -->

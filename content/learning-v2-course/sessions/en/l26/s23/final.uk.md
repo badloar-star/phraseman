@@ -23,12 +23,12 @@
 
 ### Смужку паперу вже відрізано
 
-Для листівки потрібна смужка паперу, і друг пропонує її відрізати. Дайте відповідь: I have already cut a strip — я вже відрізав смужку. Складаємо: I + have + already + cut + a strip — хто, have, уже, дія, що відрізав. Already стоїть між have і cut. Після I потрібна have; після неї — третя форма cut, не cutted. Present perfect повідомляє про готовий результат зараз.
+Для листівки потрібна смужка паперу, і друг пропонує її відрізати. Дайте відповідь: I have already cut a strip — я вже відрізав смужку. Складаємо: I + have + already + cut + a strip — хто, have, уже, дія, що відрізав. Already стоїть між have і cut. Після I потрібна have; після неї — форма cut, не cutted. Форма have / has + done повідомляє про готовий результат зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have already cut a strip.**
-- ❌ I have already cutted a strip. — *Третя форма cut — cut, не cutted.*
+- ❌ I have already cutted a strip. — *Форма після have cut — cut, не cutted.*
 - ❌ I has already cut a strip. — *З I вживаємо have.*
 
 ---

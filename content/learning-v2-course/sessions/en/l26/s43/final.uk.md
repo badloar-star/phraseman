@@ -23,7 +23,7 @@
 
 ### Якщо стільці сухі
 
-Після дощу ви хочете посидіти у дворі. Запропонуйте: We can sit outside if the chairs are dry — ми можемо посидіти надворі, якщо стільці сухі. Складаємо: We + can sit + outside + if the chairs are dry — хто, що може зробити, де, за якої умови. Після can потрібна sit без to. В умові після if використовуємо теперішню форму are без will; chairs — множина.
+Після дощу ви хочете посидіти у дворі. Запропонуйте: We can sit outside if the chairs are dry — ми можемо посидіти надворі, якщо стільці сухі. Складаємо: We + can sit + outside + if the chairs are dry — хто, що може зробити, де, за якої умови. Після can потрібна sit без to. В умові після if використовуємо теперішню форму are без will; chairs — форма для кількох.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -37,7 +37,7 @@
 
 ### Прибрали інструменти до дощу
 
-Учора ви закінчили роботу у дворі до початку дощу. Розкажіть: We had put the tools away by the time it started raining — ми прибрали інструменти до того часу, як почався дощ. Складаємо: We + had put + the tools + away + by the time it started raining. Put the tools away означає прибрати інструменти на місце. Had put позначає дію раніше за початок дощу. Після had потрібна третя форма put, не putting.
+Учора ви закінчили роботу у дворі до початку дощу. Розкажіть: We had put the tools away by the time it started raining — ми прибрали інструменти до того часу, як почався дощ. Складаємо: We + had put + the tools + away + by the time it started raining. Put the tools away означає прибрати інструменти на місце. Had put позначає дію раніше за початок дощу. Після had потрібна форма put, не putting.
 
 **Виберіть фразу для цієї ситуації.**
 

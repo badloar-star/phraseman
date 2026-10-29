@@ -65,7 +65,7 @@
 
 **4 · Картка слова — gasoline**
 <!-- interaction_id: en:lesson-26:session-31:word:gasoline; family: word_card -->
-> **gasoline** — Бензин; незлічуване слово, як petrol у цьому значенні.
+> **gasoline** — Бензин; слово, яке не рахують поштучно, як petrol у цьому значенні.
 
 **5 · Перед поїздкою повідомте: «Нам потрібно більше бензину».**
 <!-- interaction_id: en:lesson-26:session-31:i03; family: scripted_repeat_compare -->

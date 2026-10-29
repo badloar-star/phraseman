@@ -23,13 +23,13 @@
 
 ### Що робите з нудним фільмом
 
-Друг запитує, чи додивляєтеся ви нецікаві фільми. Поясніть звичку: If a film is dull, I stop watching — якщо фільм нудний, я перестаю дивитися. Складаємо: If + a film + is + dull, + I + stop + watching — умова, потім звичайна реакція. Обидві частини стоять у present simple. З I потрібна stop без -s; після stop дія називається формою watching. Після початкової умови ставимо кому.
+Друг запитує, чи додивляєтеся ви нецікаві фільми. Поясніть звичку: If a film is dull, I stop watching — якщо фільм нудний, я перестаю дивитися. Складаємо: If + a film + is + dull, + I + stop + watching — умова, потім звичайна реакція. Обидві частини стоять у формі work / works. З I потрібна stop без -s; після stop дія називається формою watching. Після початкової умови ставимо кому.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **If a film is dull, I stop watching.**
 - ❌ If a film is dull, I stops watching. — *З I потрібно stop без -s.*
-- ❌ If a film is dull, I stopping watching. — *Потрібен присудок stop, а не stopping без допоміжного дієслова.*
+- ❌ If a film is dull, I stopping watching. — *Потрібна повна форма stop, а не stopping без do / does.*
 
 ---
 
@@ -37,12 +37,12 @@
 
 ### Свою частину вже оплатили
 
-Друзі збирають гроші за спільну вечерю. Ви вже переказали свою частину й кажете: I have already paid my share — я вже заплатив свою частину. Складаємо: I + have + already + paid + my share — хто, have, уже, дія, що оплатив. З I використовуємо have. Already стоїть перед третьою формою pay — paid. Present perfect повідомляє про результат зараз: вашу частину оплачено.
+Друзі збирають гроші за спільну вечерю. Ви вже переказали свою частину й кажете: I have already paid my share — я вже заплатив свою частину. Складаємо: I + have + already + paid + my share — хто, have, уже, дія, що оплатив. З I використовуємо have. Already стоїть перед формою після have pay — paid. Форма have / has + done повідомляє про результат зараз: вашу частину оплачено.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have already paid my share.**
-- ❌ I have already pay my share. — *Після have потрібна третя форма paid.*
+- ❌ I have already pay my share. — *Після have потрібна форма paid.*
 - ❌ I has already paid my share. — *З I вживаємо have.*
 
 ---
@@ -91,7 +91,7 @@ It looks very ___. → **posh** · empty · broken
 <!-- interaction_id: en:lesson-26:session-18:i06; family: context_gap_grammar -->
 If a film is dull, I ___ watching. → **stop** · stops · stopping
 - stops — *З I дієслово stop без -s.*
-- stopping — *Потрібен присудок stop, а не окреме stopping.*
+- stopping — *Потрібна повна форма stop, а не окреме stopping.*
 
 **10 · Картка слова — stingy**
 <!-- interaction_id: en:lesson-26:session-18:word:stingy; family: word_card -->

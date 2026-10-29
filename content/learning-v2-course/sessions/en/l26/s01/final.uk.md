@@ -9,13 +9,13 @@
 
 ### Що відбувається з водою
 
-Залишена в кімнаті вода поступово переходить у повітря. Evaporate — випаровуватися. Water evaporates when you leave it in an open bowl — вода випаровується, коли її залишають у відкритій мисці. Так ми описуємо звичайну закономірність, а не одну майбутню ситуацію. Це zero conditional: when або if + Present Simple, і результат теж у Present Simple. У нашому прикладі результат стоїть першим: Water evaporates; умова — when you leave it in an open bowl.
+Залишена в кімнаті вода поступово переходить у повітря. Evaporate — випаровуватися. Water evaporates when you leave it in an open bowl — вода випаровується, коли її залишають у відкритій мисці. Так ми описуємо звичайну закономірність, а не одну майбутню ситуацію. Це правило «завжди так буває»: when або if + форма work / works, і результат теж у формі work / works. У нашому прикладі результат стоїть першим: Water evaporates; умова — when you leave it in an open bowl.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Water evaporates when you leave it in an open bowl.**
-- ❌ Water evaporate when you leave it in an open bowl. — *Для цього підмета в Present Simple потрібна форма evaporates.*
-- ❌ Water evaporating when you leave it in an open bowl. — *Звичайна закономірність: Present Simple в обох частинах.*
+- ❌ Water evaporate when you leave it in an open bowl. — *Для цього слова в формі work / works потрібна форма evaporates.*
+- ❌ Water evaporating when you leave it in an open bowl. — *Звичайна закономірність: форма work / works в обох частинах.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Звідки краплі на холодній поверхні
 
-На кухні ви помічаєте краплі на холодній поверхні й пояснюєте, як вони з’являються: Steam condenses when it touches a cold surface — пара конденсується, коли торкається холодної поверхні. Складаємо: Steam + condenses + when it touches a cold surface — що, що відбувається, за якої умови. Обидві частини в present simple, бо описуємо закономірність. Steam узгоджується як it, тому condenses із -s. В умові it замінює пару; після it потрібна touches із -es.
+На кухні ви помічаєте краплі на холодній поверхні й пояснюєте, як вони з’являються: Steam condenses when it touches a cold surface — пара конденсується, коли торкається холодної поверхні. Складаємо: Steam + condenses + when it touches a cold surface — що, що відбувається, за якої умови. Обидві частини в формі work / works, бо описуємо закономірність. Steam узгоджується як it, тому condenses із -s. В умові it замінює пару; після it потрібна touches із -es.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Steam condenses when it touches a cold surface.**
-- ❌ Steam condense when it touches a cold surface. — *Для цього підмета в Present Simple потрібна форма condenses.*
-- ❌ Steam condensing when it touches a cold surface. — *Звичайна закономірність: Present Simple в обох частинах.*
+- ❌ Steam condense when it touches a cold surface. — *Для цього слова в формі work / works потрібна форма condenses.*
+- ❌ Steam condensing when it touches a cold surface. — *Звичайна закономірність: форма work / works в обох частинах.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Звичайна реакція на холод
 
-Stiffen — ставати жорсткішими, втрачати гнучкість. My hands stiffen when they get cold — мої руки дерев’яніють, коли мерзнуть. Це моя звичайна реакція, а не твердження про всіх людей. Hands — множина, тому stiffen без -s; they get теж без -s. Zero conditional підходить і для таких особистих звичних реакцій. If підкреслює умову «якщо», when — «коли це відбувається». Для цієї звичайної закономірності will не потрібне.
+Stiffen — ставати жорсткішими, втрачати гнучкість. My hands stiffen when they get cold — мої руки дерев’яніють, коли мерзнуть. Це моя звичайна реакція, а не твердження про всіх людей. Hands — форма для кількох, тому stiffen без -s; they get теж без -s. Та сама схема підходить і для особистих звичних реакцій. If підкреслює умову «якщо», when — «коли це відбувається». Для цієї звичайної закономірності will не потрібне.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My hands stiffen when they get cold.**
-- ❌ My hands stiffens when they get cold. — *Для цього підмета в Present Simple потрібна форма stiffen.*
-- ❌ My hands stiffening when they get cold. — *Звичайна закономірність: Present Simple в обох частинах.*
+- ❌ My hands stiffens when they get cold. — *Для цього слова в формі work / works потрібна форма stiffen.*
+- ❌ My hands stiffening when they get cold. — *Звичайна закономірність: форма work / works в обох частинах.*
 
 ---
 
@@ -60,8 +60,8 @@ Stiffen — ставати жорсткішими, втрачати гнучкі
 **3 · Ви говорите про звичку, а не про завтрашній план. Доповніть звичайний результат.**
 <!-- interaction_id: en:lesson-26:session-01:i02; family: context_gap_grammar -->
 I ___ a towel when my hands are wet. → **use** · uses · using
-- uses — *Після I у Present Simple потрібно use без -s.*
-- using — *Для звички тут потрібна форма use; using без допоміжного дієслова не підходить.*
+- uses — *Після I у формі work / works потрібно use без -s.*
+- using — *Для звички тут потрібна форма use; using без do / does не підходить.*
 
 **4 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-01:i03; family: listen_choose -->
@@ -86,7 +86,7 @@ I ___ a towel when my hands are wet. → **use** · uses · using
 **8 · Щоразу під час дощу ви берете парасолю. В обох частинах описано звичайну звичку.**
 <!-- interaction_id: en:lesson-26:session-01:i06; family: context_gap_grammar -->
 I take an umbrella when it ___. → **rains** · rain · raining
-- rain — *Після it у Present Simple потрібна форма rains.*
+- rain — *Після it у формі work / works потрібна форма rains.*
 - raining — *Тут потрібне дієслово rains, а не raining без is.*
 
 **9 · Картка слова — splatters**
@@ -111,7 +111,7 @@ I take an umbrella when it ___. → **rains** · rain · raining
 <!-- interaction_id: en:lesson-26:session-01:i09; family: context_gap_grammar -->
 My fingers ___ when I work outside in winter. → **stiffen** · stiffens · stiffening
 - stiffens — *Після fingers потрібна форма stiffen без -s.*
-- stiffening — *Тут потрібен Present Simple: stiffen.*
+- stiffening — *Тут потрібна форма work / works: stiffen.*
 
 **14 · Пригадайте чотири дії**
 <!-- interaction_id: en:lesson-26:session-01:i10; family: speed_match -->

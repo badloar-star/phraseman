@@ -23,7 +23,7 @@
 
 ### Работа уже закончена
 
-Друг спрашивает, закончили ли вы дело, перед тем как выйти вместе. Ответьте: I have already finished — я уже закончил. Собираем: I + have + already + finished — кто, have, уже, действие. После I нужна have, не has. Already ставим между have и третьей формой finished с -ed. Present perfect показывает готовый результат сейчас; название дела можно не повторять, поскольку оно известно из вопроса.
+Друг спрашивает, закончили ли вы дело, перед тем как выйти вместе. Ответьте: I have already finished — я уже закончил. Собираем: I + have + already + finished — кто, have, уже, действие. После I нужна have, не has. Already ставим между have и формой после have finished с -ed. Форма have / has + done показывает готовый результат сейчас; название дела можно не повторять, поскольку оно известно из вопроса.
 
 **Выберите фразу для этой ситуации.**
 
@@ -113,7 +113,7 @@ I will leave when she ___ ready. → **is** · will be · be
 <!-- interaction_id: en:lesson-26:session-19:i10; family: context_gap_grammar -->
 If I do not hear someone, I ___ them to repeat it. → **ask** · asks · asking
 - asks — *С I глагол ask без -s.*
-- asking — *Для привычки нужно сказуемое ask.*
+- asking — *Для привычки нужна полная форма ask.*
 
 **15 · Друг говорит слишком тихо. Попросите: «Можешь говорить немного громче?»**
 <!-- interaction_id: en:lesson-26:session-19:i11; family: phrase_builder -->

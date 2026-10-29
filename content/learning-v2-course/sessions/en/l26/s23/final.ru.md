@@ -23,12 +23,12 @@
 
 ### Полоска бумаги уже отрезана
 
-Для открытки нужна полоска бумаги, и друг предлагает её отрезать. Ответьте: I have already cut a strip — я уже отрезал полоску. Собираем: I + have + already + cut + a strip — кто, have, уже, действие, что отрезал. Already стоит между have и cut. После I нужна have; после неё — третья форма cut, не cutted. Present perfect сообщает о готовом результате сейчас.
+Для открытки нужна полоска бумаги, и друг предлагает её отрезать. Ответьте: I have already cut a strip — я уже отрезал полоску. Собираем: I + have + already + cut + a strip — кто, have, уже, действие, что отрезал. Already стоит между have и cut. После I нужна have; после неё — форма cut, не cutted. Форма have / has + done сообщает о готовом результате сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have already cut a strip.**
-- ❌ I have already cutted a strip. — *Третья форма cut — cut, не cutted.*
+- ❌ I have already cutted a strip. — *Форма после have cut — cut, не cutted.*
 - ❌ I has already cut a strip. — *С I используем have.*
 
 ---

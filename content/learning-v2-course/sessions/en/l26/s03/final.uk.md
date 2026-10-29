@@ -9,13 +9,13 @@
 
 ### Телефон подає сигнал
 
-Телефон налаштовано на вібрацію. My phone vibrates when someone calls — мій телефон вібрує, коли хтось телефонує. Vibrate — швидко й дрібно тремтіти. Тут описуємо звичайну реакцію мого телефона, а не всіх телефонів. Phone — однина, тому vibrates. Someone також потребує форми з -s: calls. Обидві частини в Present Simple.
+Телефон налаштовано на вібрацію. My phone vibrates when someone calls — мій телефон вібрує, коли хтось телефонує. Vibrate — швидко й дрібно тремтіти. Тут описуємо звичайну реакцію мого телефона, а не всіх телефонів. Phone — форма для одного, тому vibrates. Someone також потребує форми з -s: calls. Обидві частини в формі work / works.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My phone vibrates when someone calls.**
-- ❌ My phone vibrate when someone calls. — *У Present Simple із цим підметом потрібна форма vibrates.*
-- ❌ My phone vibrating when someone calls. — *Звичайна реакція: Present Simple в обох частинах.*
+- ❌ My phone vibrate when someone calls. — *У формі work / works із цим словом потрібна форма vibrates.*
+- ❌ My phone vibrating when someone calls. — *Звичайна реакція: форма work / works в обох частинах.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Що відбувається при запуску прання
 
-Друг запитує, що починає рухатися в пральній машині. Поясніть: The drum rotates when I start the washing machine — барабан обертається, коли я вмикаю пральну машину. Складаємо: The drum + rotates + when I start the washing machine — що, як рухається, за якої дії. В обох частинах present simple: описуємо звичайну роботу машини. The drum — один барабан, тому rotates із -s. Після I використовуємо start без -s. When указує, що запускає цей рух.
+Друг запитує, що починає рухатися в пральній машині. Поясніть: The drum rotates when I start the washing machine — барабан обертається, коли я вмикаю пральну машину. Складаємо: The drum + rotates + when I start the washing machine — що, як рухається, за якої дії. В обох частинах форма work / works: описуємо звичайну роботу машини. The drum — один барабан, тому rotates із -s. Після I використовуємо start без -s. When указує, що запускає цей рух.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The drum rotates when I start the washing machine.**
-- ❌ The drum rotate when I start the washing machine. — *У Present Simple із цим підметом потрібна форма rotates.*
-- ❌ The drum rotating when I start the washing machine. — *Звичайна реакція: Present Simple в обох частинах.*
+- ❌ The drum rotate when I start the washing machine. — *У формі work / works із цим словом потрібна форма rotates.*
+- ❌ The drum rotating when I start the washing machine. — *Звичайна реакція: форма work / works в обох частинах.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Штори біля вікна
 
-Flutter — легко колихатися або тріпотіти. The curtains flutter when I open the window — штори колишуться, коли я відчиняю вікно. Уявіть легкі штори, які рухає протяг. Curtains — множина, тому flutter без -s; після I — open без -s. When показує, за якої умови це зазвичай відбувається. Це zero conditional, а не розповідь про одне майбутнє відчинення вікна.
+Flutter — легко колихатися або тріпотіти. The curtains flutter when I open the window — штори колишуться, коли я відчиняю вікно. Уявіть легкі штори, які рухає протяг. Curtains — форма для кількох, тому flutter без -s; після I — open без -s. When показує, за якої умови це зазвичай відбувається. Це те, що буває завжди, а не розповідь про одне майбутнє відчинення вікна.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The curtains flutter when I open the window.**
-- ❌ The curtains flutters when I open the window. — *У Present Simple із цим підметом потрібна форма flutter.*
-- ❌ The curtains fluttering when I open the window. — *Звичайна реакція: Present Simple в обох частинах.*
+- ❌ The curtains flutters when I open the window. — *У формі work / works із цим словом потрібна форма flutter.*
+- ❌ The curtains fluttering when I open the window. — *Звичайна реакція: форма work / works в обох частинах.*
 
 ---
 
@@ -112,8 +112,8 @@ I check my phone if I ___ hear it. → **cannot** · does not · not
 **14 · Штори легко рухаються від протягу. Доповніть дію: їх кілька.**
 <!-- interaction_id: en:lesson-26:session-03:i10; family: context_gap_grammar -->
 The curtains ___ when air comes through the door. → **flutter** · flutters · fluttering
-- flutters — *Curtains — множина: flutter без -s.*
-- fluttering — *Тут потрібен Present Simple: flutter.*
+- flutters — *Curtains — форма для кількох: flutter без -s.*
+- fluttering — *Тут потрібна форма work / works: flutter.*
 
 **15 · Розрізніть види руху**
 <!-- interaction_id: en:lesson-26:session-03:i11; family: speed_match -->

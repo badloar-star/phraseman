@@ -9,12 +9,12 @@
 
 ### Сообщить о готовом завтраке
 
-Друг заходит на кухню и спрашивает про завтрак. Вы только что закончили готовить: I have just made oatmeal — я только что приготовил овсянку. Собираем: I + have + just + made + oatmeal — кто, have, только что, действие, что приготовил. С I ставим have. После have нужна третья форма made, а не make; just помещаем между have и made. Так сообщаем о совсем недавнем действии, важном сейчас.
+Друг заходит на кухню и спрашивает про завтрак. Вы только что закончили готовить: I have just made oatmeal — я только что приготовил овсянку. Собираем: I + have + just + made + oatmeal — кто, have, только что, действие, что приготовил. С I ставим have. После have нужна форма made, а не make; just помещаем между have и made. Так сообщаем о совсем недавнем действии, важном сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have just made oatmeal.**
-- ❌ I have just make oatmeal. — *После have нужна третья форма made.*
+- ❌ I have just make oatmeal. — *После have нужна форма made.*
 - ❌ I has just made oatmeal. — *С I используем have.*
 
 ---
@@ -23,7 +23,7 @@
 
 ### Купить джем по дороге
 
-Вы с другом идёте мимо магазина и договариваетесь купить цитрусовый джем, если магазин открыт: We will buy marmalade if the shop is open. Собираем: We + will buy + marmalade + if the shop is open — кто, что сделает, что купит, при каком условии. После will используем buy без -s. После if условие выражаем через is open: с единственным числом the shop нужна is, а will в этой части не ставим.
+Вы с другом идёте мимо магазина и договариваетесь купить цитрусовый джем, если магазин открыт: We will buy marmalade if the shop is open. Собираем: We + will buy + marmalade + if the shop is open — кто, что сделает, что купит, при каком условии. После will используем buy без -s. После if условие выражаем через is open: с the shop (магазин один) нужна is, а will в этой части не ставим.
 
 **Выберите фразу для этой ситуации.**
 
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — oatmeal**
 <!-- interaction_id: en:lesson-26:session-13:word:oatmeal; family: word_card -->
-> **oatmeal** — Овсяная каша; обычное американское название. Неисчисляемое: some oatmeal.
+> **oatmeal** — Овсяная каша; обычное американское название. Не считается поштучно: some oatmeal.
 
 **2 · Брат спрашивает, что на завтрак. Ответьте: «Я только что приготовил овсянку».**
 <!-- interaction_id: en:lesson-26:session-13:i01; family: scripted_repeat_compare -->
@@ -65,7 +65,7 @@
 
 **4 · Карточка слова — raisins**
 <!-- interaction_id: en:lesson-26:session-13:word:raisins; family: word_card -->
-> **raisins** — Изюм, изюминки. Единственное число raisin — одна изюминка; dried grapes — сушёный виноград.
+> **raisins** — Изюм, изюминки. Raisin — одна изюминка; dried grapes — сушёный виноград.
 
 **5 · Вы обычно добавляете изюм в овсянку. Дополните описание привычки.**
 <!-- interaction_id: en:lesson-26:session-13:i03; family: context_gap_grammar -->
@@ -102,8 +102,8 @@ If I make oatmeal, I ___ raisins. → **add** · adds · adding
 **12 · Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.**
 <!-- interaction_id: en:lesson-26:session-13:i08; family: context_gap_grammar -->
 I will buy some marmalade if the shop ___ open. → **is** · will be · being
-- will be — *После if в этом условии нужен Present Simple: is.*
-- being — *Being не образует здесь сказуемое.*
+- will be — *После if в этом условии нужна форма work / works: is.*
+- being — *Being здесь не может стоять один.*
 
 **13 · Подруга спрашивает, закончена ли упаковка еды. Ответьте: «Я уже упаковал обед».**
 <!-- interaction_id: en:lesson-26:session-13:i09; family: scripted_repeat_compare -->

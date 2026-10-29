@@ -9,13 +9,13 @@
 
 ### Скрип обуви
 
-Вы замечаете, что обувь издаёт высокий скрип на мокром полу. My shoes squeak when the floor is wet — мои туфли скрипят, когда пол мокрый. Squeak — пищать или скрипеть высоким звуком. Это повторяющаяся ситуация с моей обувью: Present Simple в обеих частях. Shoes — множественное число, поэтому squeak без -s. Floor — единственное, поэтому is.
+Вы замечаете, что обувь издаёт высокий скрип на мокром полу. My shoes squeak when the floor is wet — мои туфли скрипят, когда пол мокрый. Squeak — пищать или скрипеть высоким звуком. Это повторяющаяся ситуация с моей обувью: форма work / works в обеих частях. Shoes — форма для нескольких, поэтому squeak без -s. Floor — один, поэтому is.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My shoes squeak when the floor is wet.**
-- ❌ My shoes squeaks when the floor is wet. — *В Present Simple с этим подлежащим нужна форма squeak.*
-- ❌ My shoes squeaking when the floor is wet. — *Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола.*
+- ❌ My shoes squeaks when the floor is wet. — *С этим словом нужна форма squeak.*
+- ❌ My shoes squeaking when the floor is wet. — *Обычный результат: форма work / works, не форма с -ing без do / does.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Когда шелестят листья
 
-Вы слышите шелест за окном и объясняете другу, когда он появляется: The leaves rustle when the wind blows — листья шелестят, когда дует ветер. Собираем: The leaves + rustle + when the wind blows — что, какой звук издаёт, когда. В обеих частях present simple: это обычное явление. Leaves — множественное число, поэтому rustle без -s. The wind согласуется как it, поэтому blows с -s. When связывает шелест с ветром.
+Вы слышите шелест за окном и объясняете другу, когда он появляется: The leaves rustle when the wind blows — листья шелестят, когда дует ветер. Собираем: The leaves + rustle + when the wind blows — что, какой звук издаёт, когда. В обеих частях форма work / works: это обычное явление. Leaves — форма для нескольких, поэтому rustle без -s. The wind согласуется как it, поэтому blows с -s. When связывает шелест с ветром.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The leaves rustle when the wind blows.**
-- ❌ The leaves rustles when the wind blows. — *В Present Simple с этим подлежащим нужна форма rustle.*
-- ❌ The leaves rustling when the wind blows. — *Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола.*
+- ❌ The leaves rustles when the wind blows. — *С этим словом нужна форма rustle.*
+- ❌ The leaves rustling when the wind blows. — *Обычный результат: форма work / works, не форма с -ing без do / does.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Звук двигателя при нажатии на педаль
 
-Вы объясняете пассажиру, откуда берётся громкий звук в машине: The engine roars when I press the pedal — двигатель ревёт, когда я нажимаю на педаль. Собираем: The engine + roars + when I press the pedal — что, какой звук издаёт, при каком действии. В обеих частях present simple: описываем обычную реакцию двигателя. The engine — единственное число, поэтому roars с -s; после I нужна press без -s. When связывает звук с нажатием на педаль.
+Вы объясняете пассажиру, откуда берётся громкий звук в машине: The engine roars when I press the pedal — двигатель ревёт, когда я нажимаю на педаль. Собираем: The engine + roars + when I press the pedal — что, какой звук издаёт, при каком действии. В обеих частях форма work / works: описываем обычную реакцию двигателя. The engine — одна вещь, поэтому roars с -s; после I нужна press без -s. When связывает звук с нажатием на педаль.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The engine roars when I press the pedal.**
-- ❌ The engine roar when I press the pedal. — *В Present Simple с этим подлежащим нужна форма roars.*
-- ❌ The engine roaring when I press the pedal. — *Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола.*
+- ❌ The engine roar when I press the pedal. — *С этим словом нужна форма roars.*
+- ❌ The engine roaring when I press the pedal. — *Обычный результат: форма work / works, не форма с -ing без do / does.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Вы описываете звук своей двери. Дополните результат.**
 <!-- interaction_id: en:lesson-26:session-02:i03; family: context_gap_grammar -->
 The door ___ when I open it. → **squeaks** · squeak · squeaking
-- squeak — *The door — единственное число, поэтому squeaks.*
-- squeaking — *В Present Simple здесь нужно squeaks, не squeaking.*
+- squeak — *The door — одна вещь, поэтому squeaks.*
+- squeaking — *В форме work / works здесь нужно squeaks, не squeaking.*
 
 **5 · Карточка слова — rustle**
 <!-- interaction_id: en:lesson-26:session-02:word:rustle; family: word_card -->
@@ -94,8 +94,8 @@ The door ___ when I open it. → **squeaks** · squeak · squeaking
 **10 · Вы не будите ребёнка. Дополните привычное отрицательное действие.**
 <!-- interaction_id: en:lesson-26:session-02:i07; family: context_gap_grammar -->
 I ___ make a noise when the baby is asleep. → **do not** · does not · am not
-- does not — *С I отрицание в Present Simple строится через do not.*
-- am not — *Перед make здесь нужен вспомогательный do not, не am not.*
+- does not — *С I отрицание в форме work / works строится через do not.*
+- am not — *Перед make здесь нужно do not, не am not.*
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-02:i08; family: listen_choose -->
@@ -118,7 +118,7 @@ squeak — пищат, скрипят · rustle — шелестят · squeal �
 **15 · Листья шуршат в ветреную погоду. Дополните условие.**
 <!-- interaction_id: en:lesson-26:session-02:i11; family: context_gap_grammar -->
 The leaves rustle when the wind ___. → **blows** · blow · blowing
-- blow — *The wind — единственное число: blows.*
+- blow — *The wind — форма для одного: blows.*
 - blowing — *Нужна личная форма blows; blowing без is здесь не подходит.*
 
 **16 · Спросите собеседника: «Что ты делаешь, когда слышишь громкий звук?»**

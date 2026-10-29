@@ -9,12 +9,12 @@
 
 ### Якщо не станеться виняток
 
-Unless — якщо не, якщо тільки не. We will eat outside unless it rains — ми поїмо надворі, якщо не піде дощ. Звичайний план — їсти надворі; дощ — виняток, який його змінює. Це можна передати як We will eat outside if it does not rain. Після unless тут rains: Present Simple без will і без додаткового not. Слово unless уже містить значення «якщо не».
+Unless — якщо не, якщо тільки не. We will eat outside unless it rains — ми поїмо надворі, якщо не піде дощ. Звичайний план — їсти надворі; дощ — виняток, який його змінює. Це можна передати як We will eat outside if it does not rain. Після unless тут rains: форма work / works без will і без додаткового not. Слово unless уже містить значення «якщо не».
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We will eat outside unless it rains.**
-- ❌ We will eat outside unless it will rain. — *Після unless у цій майбутній умові потрібен Present Simple: rains.*
+- ❌ We will eat outside unless it will rain. — *Після unless у цій майбутній умові потрібна форма work / works: rains.*
 - ❌ We will eat outside unless it does not rain. — *Додаткове not змінює зміст: вийде виняток, коли дощу немає.*
 
 ---

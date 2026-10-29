@@ -9,13 +9,13 @@
 
 ### Двері відчиняються самі
 
-Біля входу до магазину двері відчиняються самі. The doors open automatically when I approach — двері відчиняються автоматично, коли я підходжу. Automatically показує, що цієї миті мені не потрібно відчиняти їх руками. Це звичайна робота цих дверей: open і approach в Present Simple. Doors — множина, тому open без -s.
+Біля входу до магазину двері відчиняються самі. The doors open automatically when I approach — двері відчиняються автоматично, коли я підходжу. Automatically показує, що цієї миті мені не потрібно відчиняти їх руками. Це звичайна робота цих дверей: open і approach в формі work / works. Doors — форма для кількох, тому open без -s.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The doors open automatically when I approach.**
-- ❌ The doors opens automatically when I approach. — *Для цього підмета в Present Simple потрібна форма open.*
-- ❌ The doors opening automatically when I approach. — *Звичний результат: Present Simple в обох частинах.*
+- ❌ The doors opens automatically when I approach. — *Для цього слова в формі work / works потрібна форма open.*
+- ❌ The doors opening automatically when I approach. — *Звичний результат: форма work / works в обох частинах.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Чому говорите швидко
 
-Перед виступом друг помічає, що ви поспішаєте говорити. Поясніть свою звичайну реакцію: I speak rapidly when I get nervous — я говорю швидко, коли нервую. Складаємо: I + speak + rapidly + when I get nervous — хто, що робить, як, у якій ситуації. Rapidly стоїть після speak і описує швидкість мовлення. В обох частинах present simple, бо ви розповідаєте про повторювану реакцію. Після I використовуємо speak і get без -s. When пов’язує швидке мовлення із хвилюванням.
+Перед виступом друг помічає, що ви поспішаєте говорити. Поясніть свою звичайну реакцію: I speak rapidly when I get nervous — я говорю швидко, коли нервую. Складаємо: I + speak + rapidly + when I get nervous — хто, що робить, як, у якій ситуації. Rapidly стоїть після speak і описує швидкість мовлення. В обох частинах форма work / works, бо ви розповідаєте про повторювану реакцію. Після I використовуємо speak і get без -s. When пов’язує швидке мовлення із хвилюванням.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I speak rapidly when I get nervous.**
-- ❌ I speaks rapidly when I get nervous. — *Для цього підмета в Present Simple потрібна форма speak.*
-- ❌ I speaking rapidly when I get nervous. — *Звичний результат: Present Simple в обох частинах.*
+- ❌ I speaks rapidly when I get nervous. — *Для цього слова в формі work / works потрібна форма speak.*
+- ❌ I speaking rapidly when I get nervous. — *Звичний результат: форма work / works в обох частинах.*
 
 ---
 
@@ -42,8 +42,8 @@ Instinctively — інстинктивно, без попереднього об
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I step back instinctively when something comes towards me.**
-- ❌ I steps back instinctively when something comes towards me. — *Для цього підмета в Present Simple потрібна форма step.*
-- ❌ I stepping back instinctively when something comes towards me. — *Звичний результат: Present Simple в обох частинах.*
+- ❌ I steps back instinctively when something comes towards me. — *Для цього слова в формі work / works потрібна форма step.*
+- ❌ I stepping back instinctively when something comes towards me. — *Звичний результат: форма work / works в обох частинах.*
 
 ---
 

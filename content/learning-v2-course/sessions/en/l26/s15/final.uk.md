@@ -9,12 +9,12 @@
 
 ### Щойно вдарили гомілку
 
-Ви зачепили ногою край столу. Друг запитує, що сталося. Дайте відповідь: I have just hit my shin — я щойно вдарив гомілку. Складаємо: I + have + just + hit + my shin — хто, have, щойно, дія, що вдарив. Just стоїть між have і третьою формою hit. У hit усі форми пишуться однаково; hitted не потрібне. З I використовуємо have, а вся фраза повідомляє про недавню подію зараз.
+Ви зачепили ногою край столу. Друг запитує, що сталося. Дайте відповідь: I have just hit my shin — я щойно вдарив гомілку. Складаємо: I + have + just + hit + my shin — хто, have, щойно, дія, що вдарив. Just стоїть між have і формою після have hit. У hit усі форми пишуться однаково; hitted не потрібне. З I використовуємо have, а вся фраза повідомляє про недавню подію зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have just hit my shin.**
-- ❌ I have just hitted my shin. — *Третя форма hit — теж hit.*
+- ❌ I have just hitted my shin. — *Форма після have hit — теж hit.*
 - ❌ I has just hit my shin. — *З I потрібне have.*
 
 ---
@@ -74,8 +74,8 @@
 **6 · Сестра запитує, що сталося. Ви щойно вдарили гомілку. Доповніть недавню дію.**
 <!-- interaction_id: en:lesson-26:session-15:i04; family: context_gap_grammar -->
 I have just ___ my shin. → **hit** · hitted · hitting
-- hitted — *У hit третя форма hit, не hitted.*
-- hitting — *Після have тут потрібна третя форма hit.*
+- hitted — *У hit форма hit, не hitted.*
+- hitting — *Після have тут потрібна форма hit.*
 
 **7 · Картка слова — armpit**
 <!-- interaction_id: en:lesson-26:session-15:word:armpit; family: word_card -->

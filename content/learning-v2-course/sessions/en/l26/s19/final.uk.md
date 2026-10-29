@@ -23,7 +23,7 @@
 
 ### Роботу вже закінчено
 
-Друг запитує, чи закінчили ви справу, перш ніж вийти разом. Дайте відповідь: I have already finished — я вже закінчив. Складаємо: I + have + already + finished — хто, have, уже, дія. Після I потрібна have, не has. Already ставимо між have і третьою формою finished із -ed. Present perfect показує готовий результат зараз; назву справи можна не повторювати, бо вона відома із запитання.
+Друг запитує, чи закінчили ви справу, перш ніж вийти разом. Дайте відповідь: I have already finished — я вже закінчив. Складаємо: I + have + already + finished — хто, have, уже, дія. Після I потрібна have, не has. Already ставимо між have і формою після have finished із -ed. Форма have / has + done показує готовий результат зараз; назву справи можна не повторювати, бо вона відома із запитання.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -113,7 +113,7 @@ I will leave when she ___ ready. → **is** · will be · be
 <!-- interaction_id: en:lesson-26:session-19:i10; family: context_gap_grammar -->
 If I do not hear someone, I ___ them to repeat it. → **ask** · asks · asking
 - asks — *З I дієслово ask без -s.*
-- asking — *Для звички потрібен присудок ask.*
+- asking — *Для звички потрібна повна форма ask.*
 
 **15 · Друг говорить надто тихо. Попросіть: «Можеш говорити трохи голосніше?»**
 <!-- interaction_id: en:lesson-26:session-19:i11; family: phrase_builder -->

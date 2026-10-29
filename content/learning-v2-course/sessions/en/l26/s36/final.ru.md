@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — swimwear**
 <!-- interaction_id: en:lesson-26:session-36:word:swimwear; family: word_card -->
-> **swimwear** — Одежда для плавания; общее неисчисляемое слово.
+> **swimwear** — Одежда для плавания; общее слово, которое не считают поштучно.
 
 **2 · Спросите продавца, где одежда для плавания.**
 <!-- interaction_id: en:lesson-26:session-36:i01; family: scripted_repeat_compare -->
@@ -87,7 +87,7 @@ I will try the pullover on if you ___ my size. → **have** · will have · has
 
 **9 · Карточка слова — earmuffs**
 <!-- interaction_id: en:lesson-26:session-36:word:earmuffs; family: word_card -->
-> **earmuffs** — Тёплые наушники для защиты ушей от холода; множественное число.
+> **earmuffs** — Тёплые наушники для защиты ушей от холода; форма для нескольких.
 
 **10 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-36:i07; family: listen_choose -->
@@ -107,7 +107,7 @@ I ___ them when it is cold. → **wear** · wears · wearing
 
 **13 · Карточка слова — briefs**
 <!-- interaction_id: en:lesson-26:session-36:word:briefs; family: word_card -->
-> **briefs** — Трусы, обычно короткие и облегающие; множественное число.
+> **briefs** — Трусы, обычно короткие и облегающие; форма для нескольких.
 
 **14 · Скажите, что вам нужны трусы.**
 <!-- interaction_id: en:lesson-26:session-36:i10; family: scripted_repeat_compare -->

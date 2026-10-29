@@ -23,13 +23,13 @@
 
 ### Добавить крем после остывания
 
-Печенье ещё горячее, и вы ждёте, чтобы добавить крем. Объясните: I will add the cream when the biscuits cool — я добавлю крем, когда печенье остынет. Собираем: I + will add + the cream + when the biscuits cool — кто, что сделает, что добавит, когда. Будущее выражаем через will add. После when, задающего время, используем cool без will. Biscuits — множественное число, поэтому cool без -s.
+Печенье ещё горячее, и вы ждёте, чтобы добавить крем. Объясните: I will add the cream when the biscuits cool — я добавлю крем, когда печенье остынет. Собираем: I + will add + the cream + when the biscuits cool — кто, что сделает, что добавит, когда. Будущее выражаем через will add. После when, задающего время, используем cool без will. Biscuits — форма для нескольких, поэтому cool без -s.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I will add the cream when the biscuits cool.**
 - ❌ I will add the cream when the biscuits will cool. — *В придаточном времени после when cool без will.*
-- ❌ I will add the cream when the biscuits cools. — *The biscuits — множественное число, поэтому cool без -s.*
+- ❌ I will add the cream when the biscuits cools. — *The biscuits — форма для нескольких, поэтому cool без -s.*
 
 ---
 

@@ -23,12 +23,12 @@
 
 ### Чашки вже наповнені
 
-Друг збирається налити чай, але ви вже наповнили чашки. Скажіть: I have already filled the cups — я вже наповнив чашки. Складаємо: I + have + already + filled + the cups — хто, have, уже, дія, що наповнив. З I використовуємо have. Already ставимо між have і третьою формою filled із -ed. Present perfect повідомляє про результат зараз: чай уже в чашках.
+Друг збирається налити чай, але ви вже наповнили чашки. Скажіть: I have already filled the cups — я вже наповнив чашки. Складаємо: I + have + already + filled + the cups — хто, have, уже, дія, що наповнив. З I використовуємо have. Already ставимо між have і формою після have filled із -ed. Форма have / has + done повідомляє про результат зараз: чай уже в чашках.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have already filled the cups.**
-- ❌ I have already fill the cups. — *Після have потрібна третя форма filled.*
+- ❌ I have already fill the cups. — *Після have потрібна форма filled.*
 - ❌ I has already filled the cups. — *З I вживаємо have.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Як дієте після помилки
 
-Друг запитує, що ви зазвичай робите, якщо помилилися. Дайте відповідь: If I make a mistake, I say sorry — якщо я помиляюся, я перепрошую. Складаємо: If + I + make + a mistake, + I + say + sorry — умова, потім звичайна реакція. Обидві частини стоять у present simple, бо це звична поведінка. Після I використовуємо make і say без -s. Після умови на початку ставимо кому.
+Друг запитує, що ви зазвичай робите, якщо помилилися. Дайте відповідь: If I make a mistake, I say sorry — якщо я помиляюся, я перепрошую. Складаємо: If + I + make + a mistake, + I + say + sorry — умова, потім звичайна реакція. Обидві частини стоять у формі work / works, бо це звична поведінка. Після I використовуємо make і say без -s. Після умови на початку ставимо кому.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **If I make a mistake, I say sorry.**
 - ❌ If I makes a mistake, I say sorry. — *З I вживаємо make без -s.*
-- ❌ If I make a mistake, I saying sorry. — *Потрібен присудок say, а не saying без допоміжного дієслова.*
+- ❌ If I make a mistake, I saying sorry. — *Потрібна повна форма say, а не saying без do / does.*
 
 ---
 
@@ -133,7 +133,7 @@ I ___ taken the wrong bag by the time I noticed. → **had** · have · was
 <!-- interaction_id: en:lesson-26:session-16:i14; family: context_gap_grammar -->
 If I make a mistake, I ___ sorry. → **say** · says · saying
 - says — *З I потрібне say без -s.*
-- saying — *Для звички потрібен присудок say, а не окреме saying.*
+- saying — *Для звички потрібна повна форма say, а не окреме saying.*
 
 **19 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-16:i15; family: listen_choose -->

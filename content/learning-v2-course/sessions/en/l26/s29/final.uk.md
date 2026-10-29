@@ -9,13 +9,13 @@
 
 ### Чи винесено сміття
 
-Перед виходом ви уточнюєте в друга, чи виконано хатню справу. Запитайте: Have you taken out the garbage yet? — ти вже виніс сміття? Складаємо: Have + you + taken out + the garbage + yet? Have ставимо перед you, потім використовуємо третю форму take — taken, не took. Yet у кінці запитує про результат до теперішнього моменту. The garbage позначає те сміття, яке потрібно було винести; garbage тут незлічуване, тому a не ставимо.
+Перед виходом ви уточнюєте в друга, чи виконано хатню справу. Запитайте: Have you taken out the garbage yet? — ти вже виніс сміття? Складаємо: Have + you + taken out + the garbage + yet? Have ставимо перед you, потім використовуємо форму take — taken, не took. Yet у кінці запитує про результат до теперішнього моменту. The garbage позначає те сміття, яке потрібно було винести; garbage тут не рахується поштучно, тому a не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Have you taken out the garbage yet?**
 - ❌ Have you took out the garbage yet? — *Після have потрібна форма taken, не took.*
-- ❌ Have you taken out a garbage yet? — *Garbage у цьому значенні незлічуване; a не потрібне.*
+- ❌ Have you taken out a garbage yet? — *Garbage у цьому значенні не рахується поштучно; a не потрібне.*
 
 ---
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — garbage**
 <!-- interaction_id: en:lesson-26:session-29:word:garbage; family: word_card -->
-> **garbage** — Сміття, побутові відходи; незлічуване слово.
+> **garbage** — Сміття, побутові відходи; слово, яке не рахують поштучно.
 
 **2 · Попросіть брата: «Будь ласка, винеси сміття».**
 <!-- interaction_id: en:lesson-26:session-29:i01; family: phrase_builder -->

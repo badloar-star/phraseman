@@ -29,7 +29,7 @@
 
 - ✅ **I will get mushrooms if there is no eggplant.**
 - ❌ I will get mushrooms if there will be no eggplant. — *После if в этом условии is без will.*
-- ❌ I will get mushrooms if there are no eggplant. — *Здесь eggplant в единственном числе; нужно is.*
+- ❌ I will get mushrooms if there are no eggplant. — *Здесь eggplant один, поэтому is.*
 
 ---
 
@@ -37,7 +37,7 @@
 
 ### Заплатили до закрытия
 
-Вы рассказываете о вчерашней покупке: к закрытию магазина вы уже расплатились. Скажите: I had paid by the time the shop closed — я заплатил к тому времени, как магазин закрылся. Собираем: I + had paid + by the time the shop closed — кто, что сделал раньше, к какому моменту в прошлом. Had paid показывает оплату до закрытия. После had нужна третья форма pay — paid. Подлежащее I обозначает того, кто заплатил.
+Вы рассказываете о вчерашней покупке: к закрытию магазина вы уже расплатились. Скажите: I had paid by the time the shop closed — я заплатил к тому времени, как магазин закрылся. Собираем: I + had paid + by the time the shop closed — кто, что сделал раньше, к какому моменту в прошлом. Had paid показывает оплату до закрытия. После had нужна форма pay — paid. I обозначает того, кто заплатил.
 
 **Выберите фразу для этой ситуации.**
 
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — trash**
 <!-- interaction_id: en:lesson-26:session-32:word:trash; family: word_card -->
-> **trash** — Мусор; в этом значении неисчисляемое слово.
+> **trash** — Мусор; в этом значении слово, которое не считают поштучно.
 
 **2 · Попросите брата перед выходом: «Пожалуйста, вынеси мусор».**
 <!-- interaction_id: en:lesson-26:session-32:i01; family: scripted_repeat_compare -->
@@ -103,7 +103,7 @@ I will meet you when you ___. → **finish** · will finish · finishes
 <!-- interaction_id: en:lesson-26:session-32:i08; family: context_gap_grammar -->
 I will get mushrooms if there ___ no eggplant. → **is** · will be · are
 - will be — *После if здесь is без will.*
-- are — *Eggplant здесь в единственном числе: is.*
+- are — *Eggplant здесь один: is.*
 
 **13 · По телефону сообщите, что хлеб уже куплен.**
 <!-- interaction_id: en:lesson-26:session-32:i09; family: phrase_builder -->

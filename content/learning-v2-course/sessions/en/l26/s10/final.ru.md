@@ -9,12 +9,12 @@
 
 ### Хлам уже разобран
 
-Друг предлагает помочь с кладовкой, но вы уже закончили разбирать ненужные вещи. Скажите: I have already sorted out the junk — я уже разобрал хлам. Собираем: I + have + already + sorted out + the junk — кто, have, уже, действие, что разобрал. С I используем have, затем already и третью форму sorted с -ed. Out остаётся после sorted: sort out здесь означает разобрать. Эта форма сообщает о готовом результате сейчас.
+Друг предлагает помочь с кладовкой, но вы уже закончили разбирать ненужные вещи. Скажите: I have already sorted out the junk — я уже разобрал хлам. Собираем: I + have + already + sorted out + the junk — кто, have, уже, действие, что разобрал. С I используем have, затем already и форму sorted с -ed. Out остаётся после sorted: sort out здесь означает разобрать. Эта форма сообщает о готовом результате сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have already sorted out the junk.**
-- ❌ I have already sort out the junk. — *После have нужна третья форма sorted.*
+- ❌ I have already sort out the junk. — *После have нужна форма sorted.*
 - ❌ I has already sorted out the junk. — *С I используем have.*
 
 ---
@@ -23,7 +23,7 @@
 
 ### Проверять странные истории
 
-Друг спрашивает, доверяете ли вы необычным историям. Вы описываете свою привычку: If I hear a strange story, I check it — если я слышу странную историю, я её проверяю. Собираем: If I hear a strange story, + I check it — условие, затем обычная реакция. В обеих частях present simple, потому что речь о привычном поведении. После I ставим hear и check без -s. It заменяет историю; после условия в начале ставим запятую.
+Друг спрашивает, доверяете ли вы необычным историям. Вы описываете свою привычку: If I hear a strange story, I check it — если я слышу странную историю, я её проверяю. Собираем: If I hear a strange story, + I check it — условие, затем обычная реакция. В обеих частях форма work / works, потому что речь о привычном поведении. После I ставим hear и check без -s. It заменяет историю; после условия в начале ставим запятую.
 
 **Выберите фразу для этой ситуации.**
 
@@ -37,12 +37,12 @@
 
 ### Кафе закрылось до нашего прихода
 
-Вы рассказываете, почему вчера не попали в кафе: It had closed by the time we arrived — оно закрылось к тому времени, как мы пришли. Собираем: It + had closed + by the time we arrived — что, что случилось раньше, к какому прошлому моменту. It обозначает кафе. Had closed показывает, что закрытие произошло до нашего прихода. После had нужна третья форма closed: к close добавляем -d. Arrived обозначает более позднее событие.
+Вы рассказываете, почему вчера не попали в кафе: It had closed by the time we arrived — оно закрылось к тому времени, как мы пришли. Собираем: It + had closed + by the time we arrived — что, что случилось раньше, к какому прошлому моменту. It обозначает кафе. Had closed показывает, что закрытие произошло до нашего прихода. После had нужна форма closed: к close добавляем -d. Arrived обозначает более позднее событие.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **It had closed by the time we arrived.**
-- ❌ It had close by the time we arrived. — *После had нужна третья форма closed.*
+- ❌ It had close by the time we arrived. — *После had нужна форма closed.*
 - ❌ It have closed by the time we arrived. — *Для события до другого прошлого события нужно had closed.*
 
 ---
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — junk**
 <!-- interaction_id: en:lesson-26:session-10:word:junk; family: word_card -->
-> **junk** — Хлам, ненужные вещи. Неисчисляемое: this junk; не a junk.
+> **junk** — Хлам, ненужные вещи. Не считается поштучно: this junk; не a junk.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-10:i01; family: listen_choose -->
@@ -89,7 +89,7 @@ That is ___. → **nonsense** · advice · permission
 <!-- interaction_id: en:lesson-26:session-10:i06; family: context_gap_grammar -->
 If I hear a strange story, I ___ it. → **check** · checks · checking
 - checks — *С I нужно check без -s.*
-- checking — *Checking без вспомогательного глагола не образует сказуемое.*
+- checking — *Checking без do / does не может стоять один.*
 
 **10 · Карточка слова — pity**
 <!-- interaction_id: en:lesson-26:session-10:word:pity; family: word_card -->
@@ -108,8 +108,8 @@ If I hear a strange story, I ___ it. → **check** · checks · checking
 **13 · Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.**
 <!-- interaction_id: en:lesson-26:session-10:i09; family: context_gap_grammar -->
 I will stay at home if it ___. → **rains** · will rain · raining
-- will rain — *В будущем условии после if нужен Present Simple: rains.*
-- raining — *Нужно сказуемое rains, не отдельная форма raining.*
+- will rain — *В будущем условии после if нужна форма work / works: rains.*
+- raining — *Нужна полная форма rains, не отдельная форма raining.*
 
 **14 · Спросите сестру, закончила ли она уборку: «Ты уже закончила?» Используйте yet.**
 <!-- interaction_id: en:lesson-26:session-10:i10; family: phrase_builder -->

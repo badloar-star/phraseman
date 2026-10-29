@@ -9,12 +9,12 @@
 
 ### План на випадок раннього виїзду
 
-Поки невідомо, чи поїдемо ми рано. I will pack my stuff if we leave early — я зберу речі, якщо ми поїдемо рано. Це first conditional: говоримо про можливу майбутню ситуацію та свою дію за цієї умови. Після if ставимо Present Simple: if we leave, без will. У результаті — will + початкова форма: will pack. Stuff — розмовне «речі»; my stuff, не my stuffs.
+Поки невідомо, чи поїдемо ми рано. I will pack my stuff if we leave early — я зберу речі, якщо ми поїдемо рано. Це умова про майбутнє: говоримо про можливу майбутню ситуацію та свою дію за цієї умови. Після if ставимо форму work / works: if we leave, без will. У результаті — will + початкова форма: will pack. Stuff — розмовне «речі»; my stuff, не my stuffs.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I will pack my stuff if we leave early.**
-- ❌ I will pack my stuff if we will leave early. — *В умові про майбутнє після if тут потрібен Present Simple: if we leave.*
+- ❌ I will pack my stuff if we will leave early. — *В умові про майбутнє після if тут потрібна форма work / works: if we leave.*
 - ❌ I will packs my stuff if we leave early. — *Після will потрібна початкова форма pack без -s.*
 
 ---
@@ -23,7 +23,7 @@
 
 ### Якщо розіллється сік
 
-Ви несете сік і обіцяєте прибрати за собою, якщо розіллєте його. I will clean up the mess if I spill the juice. Mess тут — безлад і бруд від розлитого соку. Якщо умова стоїть після результату, кома між ними не потрібна. Можна почати з умови: If I spill the juice, I will clean up the mess. Тоді ставимо кому. В обох порядках spill — Present Simple, will clean — майбутній результат.
+Ви несете сік і обіцяєте прибрати за собою, якщо розіллєте його. I will clean up the mess if I spill the juice. Mess тут — безлад і бруд від розлитого соку. Якщо умова стоїть після результату, кома між ними не потрібна. Можна почати з умови: If I spill the juice, I will clean up the mess. Тоді ставимо кому. В обох порядках spill — форма work / works, will clean — майбутній результат.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -37,7 +37,7 @@
 
 ### Узяти гру для дітей
 
-Ви збираєтеся до друзів, але ще не знаєте, чи будуть там діти. Запропонуйте: I will bring a game if the kids come — я принесу гру, якщо прийдуть діти. Складаємо: I + will bring + a game + if the kids come — хто, що зробить, що принесе, за якої умови. Після will потрібна початкова форма bring без -s. Після if використовуємо come без will: умова стосується майбутнього, але виражається через present simple. The kids — множина, тому до come не додаємо -s.
+Ви збираєтеся до друзів, але ще не знаєте, чи будуть там діти. Запропонуйте: I will bring a game if the kids come — я принесу гру, якщо прийдуть діти. Складаємо: I + will bring + a game + if the kids come — хто, що зробить, що принесе, за якої умови. Після will потрібна початкова форма bring без -s. Після if використовуємо come без will: умова стосується майбутнього, але виражається через форма work / works. The kids — форма для кількох, тому до come не додаємо -s.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — stuff**
 <!-- interaction_id: en:lesson-26:session-09:word:stuff; family: word_card -->
-> **stuff** — Речі. Stuff — розмовна загальна назва речей; тут незлічуване: my stuff, без закінчення -s.
+> **stuff** — Речі. Stuff — розмовна загальна назва речей; тут не рахується поштучно: my stuff, без закінчення -s.
 
 **2 · Умова: сумка виявиться малою. Скажіть: «Я залишу свої речі тут, якщо сумка буде замалою».**
 <!-- interaction_id: en:lesson-26:session-09:i01; family: phrase_builder -->
@@ -60,8 +60,8 @@
 **3 · Ви обіцяєте прибрати за собою, якщо розіллєте сік. Доповніть умову.**
 <!-- interaction_id: en:lesson-26:session-09:i02; family: context_gap_grammar -->
 I will get a cloth if I ___ the juice. → **spill** · will spill · spilling
-- will spill — *Майбутню умову після if виражаємо через Present Simple: spill.*
-- spilling — *Тут потрібне дієслово spill; spilling не утворює присудок.*
+- will spill — *Майбутню умову після if виражаємо через форма work / works: spill.*
+- spilling — *Тут потрібне дієслово spill; spilling не може стояти сама.*
 
 **4 · Картка слова — mess**
 <!-- interaction_id: en:lesson-26:session-09:word:mess; family: word_card -->
@@ -88,7 +88,7 @@ I will get a cloth if I ___ the juice. → **spill** · will spill · spilling
 **9 · Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок.**
 <!-- interaction_id: en:lesson-26:session-09:i06; family: context_gap_grammar -->
 We ___ more food if our friends come. → **will buy** · buying · will buying
-- buying — *Для майбутнього рішення потрібно will buy; buying без допоміжного дієслова не підходить.*
+- buying — *Для майбутнього рішення потрібно will buy; buying без do / does не підходить.*
 - will buying — *Після will ставимо buy, не buying.*
 
 **10 · Картка слова — guy**
@@ -112,8 +112,8 @@ stuff — речі · mess — безлад · kids — діти · guy — хл
 **14 · Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть фразу з «не».**
 <!-- interaction_id: en:lesson-26:session-09:i10; family: context_gap_grammar -->
 We will walk if the bus ___ come. → **does not** · will not · do not
-- will not — *У цій умові після if потрібен Present Simple: does not come.*
-- do not — *The bus — однина: does not, не do not.*
+- will not — *У цій умові після if потрібна форма work / works: does not come.*
+- do not — *The bus — форма для одного: does not, не do not.*
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-09:i11; family: listen_choose -->

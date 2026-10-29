@@ -23,13 +23,13 @@
 
 ### Только что повредили бедро
 
-Вы неудачно повернулись во время игры и объясняете другу, почему остановились: I have just hurt my thigh — я только что повредил бедро. Собираем: I + have + just + hurt + my thigh — кто, have, только что, действие, что повредил. С I нужна have. Just ставим между have и третьей формой hurt. У hurt все три формы одинаковые, поэтому hurting здесь не подходит. Так сообщаем о совсем недавнем событии сейчас.
+Вы неудачно повернулись во время игры и объясняете другу, почему остановились: I have just hurt my thigh — я только что повредил бедро. Собираем: I + have + just + hurt + my thigh — кто, have, только что, действие, что повредил. С I нужна have. Just ставим между have и формой после have hurt. У hurt все три формы одинаковые, поэтому hurting здесь не подходит. Так сообщаем о совсем недавнем событии сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have just hurt my thigh.**
 - ❌ I has just hurt my thigh. — *С I нужно have.*
-- ❌ I have just hurting my thigh. — *После have нужна третья форма hurt, не hurting.*
+- ❌ I have just hurting my thigh. — *После have нужна форма hurt, не hurting.*
 
 ---
 
@@ -91,7 +91,7 @@ If my shoes hurt, I ___ them. → **change** · changes · changing
 
 **10 · Карточка слова — gums**
 <!-- interaction_id: en:lesson-26:session-11:word:gums; family: word_card -->
-> **gums** — Дёсны. Единственное число gum — десна; my gums hurt — у меня болят дёсны.
+> **gums** — Дёсны. Gum — одна десна; my gums hurt — у меня болят дёсны.
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-11:i07; family: listen_choose -->

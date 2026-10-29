@@ -29,7 +29,7 @@
 
 - ✅ **I will get mushrooms if there is no eggplant.**
 - ❌ I will get mushrooms if there will be no eggplant. — *Після if у цій умові is без will.*
-- ❌ I will get mushrooms if there are no eggplant. — *Тут eggplant в однині; потрібно is.*
+- ❌ I will get mushrooms if there are no eggplant. — *Тут eggplant один, тому is.*
 
 ---
 
@@ -37,7 +37,7 @@
 
 ### Заплатили до закриття
 
-Ви розповідаєте про вчорашню покупку: до закриття магазину ви вже розрахувалися. Скажіть: I had paid by the time the shop closed — я заплатив до того часу, як магазин закрився. Складаємо: I + had paid + by the time the shop closed — хто, що зробив раніше, до якого моменту в минулому. Had paid показує оплату до закриття. Після had потрібна третя форма pay — paid. Підмет I позначає того, хто заплатив.
+Ви розповідаєте про вчорашню покупку: до закриття магазину ви вже розрахувалися. Скажіть: I had paid by the time the shop closed — я заплатив до того часу, як магазин закрився. Складаємо: I + had paid + by the time the shop closed — хто, що зробив раніше, до якого моменту в минулому. Had paid показує оплату до закриття. Після had потрібна форма pay — paid. I позначає того, хто заплатив.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — trash**
 <!-- interaction_id: en:lesson-26:session-32:word:trash; family: word_card -->
-> **trash** — Сміття; у цьому значенні незлічуване слово.
+> **trash** — Сміття; у цьому значенні слово, яке не рахують поштучно.
 
 **2 · Попросіть брата перед виходом: «Будь ласка, винеси сміття».**
 <!-- interaction_id: en:lesson-26:session-32:i01; family: scripted_repeat_compare -->
@@ -103,7 +103,7 @@ I will meet you when you ___. → **finish** · will finish · finishes
 <!-- interaction_id: en:lesson-26:session-32:i08; family: context_gap_grammar -->
 I will get mushrooms if there ___ no eggplant. → **is** · will be · are
 - will be — *Після if тут is без will.*
-- are — *Eggplant тут в однині: is.*
+- are — *Eggplant тут один: is.*
 
 **13 · Телефоном повідомте, що хліб уже куплено.**
 <!-- interaction_id: en:lesson-26:session-32:i09; family: phrase_builder -->

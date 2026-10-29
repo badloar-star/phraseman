@@ -9,13 +9,13 @@
 
 ### Телефон подаёт сигнал
 
-Телефон настроен на вибрацию. My phone vibrates when someone calls — мой телефон вибрирует, когда кто-нибудь звонит. Vibrate — быстро и мелко дрожать. Здесь описываем обычную реакцию моего телефона, не всех телефонов. Phone — единственное число, поэтому vibrates. Someone тоже требует форму с -s: calls. Обе части в Present Simple.
+Телефон настроен на вибрацию. My phone vibrates when someone calls — мой телефон вибрирует, когда кто-нибудь звонит. Vibrate — быстро и мелко дрожать. Здесь описываем обычную реакцию моего телефона, не всех телефонов. Phone — форма для одного, поэтому vibrates. Someone тоже требует форму с -s: calls. Обе части в форме work / works.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My phone vibrates when someone calls.**
-- ❌ My phone vibrate when someone calls. — *В Present Simple с этим подлежащим нужна форма vibrates.*
-- ❌ My phone vibrating when someone calls. — *Обычная реакция: Present Simple в обеих частях.*
+- ❌ My phone vibrate when someone calls. — *С этим словом нужна форма vibrates.*
+- ❌ My phone vibrating when someone calls. — *Обычная реакция: форма work / works в обеих частях.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Что происходит при запуске стирки
 
-Друг спрашивает, что начинает двигаться в стиральной машине. Объясните: The drum rotates when I start the washing machine — барабан вращается, когда я включаю стиральную машину. Собираем: The drum + rotates + when I start the washing machine — что, как движется, при каком действии. В обеих частях present simple: описываем обычную работу машины. The drum — один барабан, поэтому rotates с -s. После I используем start без -s. When указывает, что запускает это движение.
+Друг спрашивает, что начинает двигаться в стиральной машине. Объясните: The drum rotates when I start the washing machine — барабан вращается, когда я включаю стиральную машину. Собираем: The drum + rotates + when I start the washing machine — что, как движется, при каком действии. В обеих частях форма work / works: описываем обычную работу машины. The drum — один барабан, поэтому rotates с -s. После I используем start без -s. When указывает, что запускает это движение.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The drum rotates when I start the washing machine.**
-- ❌ The drum rotate when I start the washing machine. — *В Present Simple с этим подлежащим нужна форма rotates.*
-- ❌ The drum rotating when I start the washing machine. — *Обычная реакция: Present Simple в обеих частях.*
+- ❌ The drum rotate when I start the washing machine. — *С этим словом нужна форма rotates.*
+- ❌ The drum rotating when I start the washing machine. — *Обычная реакция: форма work / works в обеих частях.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Шторы у окна
 
-Flutter — легко колыхаться или трепетать. The curtains flutter when I open the window — шторы колышутся, когда я открываю окно. Представьте лёгкие шторы, которые двигает сквозняк. Curtains — множественное число, поэтому flutter без -s; после I — open без -s. When показывает, при каком условии это обычно происходит. Это zero conditional, а не рассказ об одном будущем открытии окна.
+Flutter — легко колыхаться или трепетать. The curtains flutter when I open the window — шторы колышутся, когда я открываю окно. Представьте лёгкие шторы, которые двигает сквозняк. Curtains — форма для нескольких, поэтому flutter без -s; после I — open без -s. When показывает, при каком условии это обычно происходит. Это то, что бывает всегда, а не рассказ об одном будущем открытии окна.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The curtains flutter when I open the window.**
-- ❌ The curtains flutters when I open the window. — *В Present Simple с этим подлежащим нужна форма flutter.*
-- ❌ The curtains fluttering when I open the window. — *Обычная реакция: Present Simple в обеих частях.*
+- ❌ The curtains flutters when I open the window. — *С этим словом нужна форма flutter.*
+- ❌ The curtains fluttering when I open the window. — *Обычная реакция: форма work / works в обеих частях.*
 
 ---
 
@@ -112,8 +112,8 @@ I check my phone if I ___ hear it. → **cannot** · does not · not
 **14 · Шторы легко двигаются от сквозняка. Дополните действие: их несколько.**
 <!-- interaction_id: en:lesson-26:session-03:i10; family: context_gap_grammar -->
 The curtains ___ when air comes through the door. → **flutter** · flutters · fluttering
-- flutters — *Curtains — множественное число: flutter без -s.*
-- fluttering — *Здесь нужен Present Simple: flutter.*
+- flutters — *Curtains — форма для нескольких: flutter без -s.*
+- fluttering — *Здесь нужна форма work / works: flutter.*
 
 **15 · Различите виды движения**
 <!-- interaction_id: en:lesson-26:session-03:i11; family: speed_match -->

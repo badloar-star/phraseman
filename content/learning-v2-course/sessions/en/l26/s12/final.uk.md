@@ -23,7 +23,7 @@
 
 ### Перевірити сумку малюка
 
-Перед виходом ви уточнюєте, чи поклав партнер пустушку в сумку: Have you packed the dummy yet? — ти вже поклав пустушку? Складаємо запитання: Have + you + packed + the dummy + yet? Спочатку have, потім хто, третя форма дієслова, предмет і yet. З you потрібне have; у pack третя форма packed із -ed. Yet наприкінці показує, що ви очікуєте виконання цієї дії до теперішнього моменту.
+Перед виходом ви уточнюєте, чи поклав партнер пустушку в сумку: Have you packed the dummy yet? — ти вже поклав пустушку? Складаємо запитання: Have + you + packed + the dummy + yet? Спочатку have, потім хто, форма після have (done, seen), предмет і yet. З you потрібне have; у pack форма packed із -ed. Yet наприкінці показує, що ви очікуєте виконання цієї дії до теперішнього моменту.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -102,8 +102,8 @@ The ___ is in the bag. → **dummy** · cot · table
 **12 · Мама пропонує взяти запасний одяг на випадок холоду. Доповніть умову.**
 <!-- interaction_id: en:lesson-26:session-12:i08; family: context_gap_grammar -->
 We will bring a jacket if it ___ cold. → **gets** · will get · getting
-- will get — *Після if у цій умові потрібен Present Simple: gets.*
-- getting — *Потрібен присудок gets, а не окрема форма getting.*
+- will get — *Після if у цій умові потрібна форма work / works: gets.*
+- getting — *Потрібна повна форма gets, а не окрема форма getting.*
 
 **13 · Сестра просить передати пустушку. Дайте відповідь: «Ось вона».**
 <!-- interaction_id: en:lesson-26:session-12:i09; family: scripted_repeat_compare -->

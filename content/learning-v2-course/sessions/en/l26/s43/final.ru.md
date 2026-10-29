@@ -23,7 +23,7 @@
 
 ### Если стулья сухие
 
-После дождя вы хотите посидеть во дворе. Предложите: We can sit outside if the chairs are dry — мы можем посидеть снаружи, если стулья сухие. Собираем: We + can sit + outside + if the chairs are dry — кто, что может сделать, где, при каком условии. После can нужна sit без to. В условии после if используем настоящее are без will; chairs — множественное число.
+После дождя вы хотите посидеть во дворе. Предложите: We can sit outside if the chairs are dry — мы можем посидеть снаружи, если стулья сухие. Собираем: We + can sit + outside + if the chairs are dry — кто, что может сделать, где, при каком условии. После can нужна sit без to. В условии после if используем настоящее are без will; chairs — форма для нескольких.
 
 **Выберите фразу для этой ситуации.**
 
@@ -37,7 +37,7 @@
 
 ### Убрали инструменты до дождя
 
-Вчера вы закончили работу во дворе до начала дождя. Расскажите: We had put the tools away by the time it started raining — мы убрали инструменты к тому времени, как начался дождь. Собираем: We + had put + the tools + away + by the time it started raining. Put the tools away означает убрать инструменты на место. Had put отмечает действие раньше начала дождя. После had нужна третья форма put, не putting.
+Вчера вы закончили работу во дворе до начала дождя. Расскажите: We had put the tools away by the time it started raining — мы убрали инструменты к тому времени, как начался дождь. Собираем: We + had put + the tools + away + by the time it started raining. Put the tools away означает убрать инструменты на место. Had put отмечает действие раньше начала дождя. После had нужна форма put, не putting.
 
 **Выберите фразу для этой ситуации.**
 

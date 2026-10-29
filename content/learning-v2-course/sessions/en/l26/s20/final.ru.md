@@ -9,13 +9,13 @@
 
 ### Встать по сигналу будильника
 
-Вы ещё лежите в кровати и говорите, когда встанете: I will get up when the alarm rings — я встану, когда зазвонит будильник. Собираем: I + will get up + when the alarm rings — кто, что сделает, когда. Will get up выражает намерение. После when, задающего будущий момент подъёма, используем rings без will. The alarm — единственное число, поэтому к ring добавляем -s.
+Вы ещё лежите в кровати и говорите, когда встанете: I will get up when the alarm rings — я встану, когда зазвонит будильник. Собираем: I + will get up + when the alarm rings — кто, что сделает, когда. Will get up выражает намерение. После when, задающего будущий момент подъёма, используем rings без will. The alarm — одна вещь, поэтому к ring добавляем -s.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I will get up when the alarm rings.**
 - ❌ I will get up when the alarm will ring. — *После when в придаточном времени о будущем rings без will.*
-- ❌ I will get up when the alarm ring. — *The alarm — единственное число: rings.*
+- ❌ I will get up when the alarm ring. — *The alarm — форма для одного: rings.*
 
 ---
 
@@ -63,7 +63,7 @@
 <!-- interaction_id: en:lesson-26:session-20:i02; family: context_gap_grammar -->
 I will get up when the alarm ___. → **rings** · will ring · ring
 - will ring — *После when в придаточном времени о будущем rings без will.*
-- ring — *The alarm — единственное число: rings.*
+- ring — *The alarm — форма для одного: rings.*
 
 **4 · Карточка слова — stash**
 <!-- interaction_id: en:lesson-26:session-20:word:stash; family: word_card -->

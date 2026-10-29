@@ -23,13 +23,13 @@
 
 ### Додати крем після охолодження
 
-Печиво ще гаряче, і ви чекаєте, щоб додати крем. Поясніть: I will add the cream when the biscuits cool — я додам крем, коли печиво охолоне. Складаємо: I + will add + the cream + when the biscuits cool — хто, що зробить, що додасть, коли. Майбутнє виражаємо через will add. Після when, яке задає час, використовуємо cool без will. Biscuits — множина, тому cool без -s.
+Печиво ще гаряче, і ви чекаєте, щоб додати крем. Поясніть: I will add the cream when the biscuits cool — я додам крем, коли печиво охолоне. Складаємо: I + will add + the cream + when the biscuits cool — хто, що зробить, що додасть, коли. Майбутнє виражаємо через will add. Після when, яке задає час, використовуємо cool без will. Biscuits — форма для кількох, тому cool без -s.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I will add the cream when the biscuits cool.**
 - ❌ I will add the cream when the biscuits will cool. — *У підрядному часу після when cool без will.*
-- ❌ I will add the cream when the biscuits cools. — *The biscuits — множина, тому cool без -s.*
+- ❌ I will add the cream when the biscuits cools. — *The biscuits — форма для кількох, тому cool без -s.*
 
 ---
 

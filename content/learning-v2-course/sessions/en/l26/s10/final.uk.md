@@ -9,12 +9,12 @@
 
 ### Мотлох уже розібраний
 
-Друг пропонує допомогти з коморою, але ви вже закінчили розбирати непотрібні речі. Скажіть: I have already sorted out the junk — я вже розібрав мотлох. Складаємо: I + have + already + sorted out + the junk — хто, have, уже, дія, що розібрав. З I використовуємо have, потім already і третю форму sorted із -ed. Out залишається після sorted: sort out тут означає розібрати. Ця форма повідомляє про готовий результат зараз.
+Друг пропонує допомогти з коморою, але ви вже закінчили розбирати непотрібні речі. Скажіть: I have already sorted out the junk — я вже розібрав мотлох. Складаємо: I + have + already + sorted out + the junk — хто, have, уже, дія, що розібрав. З I використовуємо have, потім already і форму sorted із -ed. Out залишається після sorted: sort out тут означає розібрати. Ця форма повідомляє про готовий результат зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have already sorted out the junk.**
-- ❌ I have already sort out the junk. — *Після have потрібна третя форма sorted.*
+- ❌ I have already sort out the junk. — *Після have потрібна форма sorted.*
 - ❌ I has already sorted out the junk. — *З I вживаємо have.*
 
 ---
@@ -23,7 +23,7 @@
 
 ### Перевіряти дивні історії
 
-Друг запитує, чи довіряєте ви незвичайним історіям. Ви описуєте свою звичку: If I hear a strange story, I check it — якщо я чую дивну історію, я її перевіряю. Складаємо: If I hear a strange story, + I check it — умова, потім звичайна реакція. В обох частинах present simple, бо йдеться про звичну поведінку. Після I ставимо hear і check без -s. It замінює історію; після умови на початку ставимо кому.
+Друг запитує, чи довіряєте ви незвичайним історіям. Ви описуєте свою звичку: If I hear a strange story, I check it — якщо я чую дивну історію, я її перевіряю. Складаємо: If I hear a strange story, + I check it — умова, потім звичайна реакція. В обох частинах форма work / works, бо йдеться про звичну поведінку. Після I ставимо hear і check без -s. It замінює історію; після умови на початку ставимо кому.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -37,12 +37,12 @@
 
 ### Кафе зачинилося до нашого приходу
 
-Ви розповідаєте, чому вчора не потрапили до кафе: It had closed by the time we arrived — воно зачинилося до того часу, як ми прийшли. Складаємо: It + had closed + by the time we arrived — що, що сталося раніше, до якого минулого моменту. It позначає кафе. Had closed показує, що закриття відбулося до нашого приходу. Після had потрібна третя форма closed: до close додаємо -d. Arrived позначає пізнішу подію.
+Ви розповідаєте, чому вчора не потрапили до кафе: It had closed by the time we arrived — воно зачинилося до того часу, як ми прийшли. Складаємо: It + had closed + by the time we arrived — що, що сталося раніше, до якого минулого моменту. It позначає кафе. Had closed показує, що закриття відбулося до нашого приходу. Після had потрібна форма closed: до close додаємо -d. Arrived позначає пізнішу подію.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **It had closed by the time we arrived.**
-- ❌ It had close by the time we arrived. — *Після had потрібна третя форма closed.*
+- ❌ It had close by the time we arrived. — *Після had потрібна форма closed.*
 - ❌ It have closed by the time we arrived. — *Для події до іншої минулої події потрібно had closed.*
 
 ---
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — junk**
 <!-- interaction_id: en:lesson-26:session-10:word:junk; family: word_card -->
-> **junk** — Мотлох, непотрібні речі. Незлічуване: this junk; не a junk.
+> **junk** — Мотлох, непотрібні речі. Не рахується поштучно: this junk; не a junk.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-10:i01; family: listen_choose -->
@@ -89,7 +89,7 @@ That is ___. → **nonsense** · advice · permission
 <!-- interaction_id: en:lesson-26:session-10:i06; family: context_gap_grammar -->
 If I hear a strange story, I ___ it. → **check** · checks · checking
 - checks — *З I потрібно check без -s.*
-- checking — *Checking без допоміжного дієслова не утворює присудок.*
+- checking — *Checking без do / does не може стояти сама.*
 
 **10 · Картка слова — pity**
 <!-- interaction_id: en:lesson-26:session-10:word:pity; family: word_card -->
@@ -108,8 +108,8 @@ If I hear a strange story, I ___ it. → **check** · checks · checking
 **13 · Сусід запитує, що ви робитимете завтра, якщо буде дощ. Доповніть свій план.**
 <!-- interaction_id: en:lesson-26:session-10:i09; family: context_gap_grammar -->
 I will stay at home if it ___. → **rains** · will rain · raining
-- will rain — *У майбутній умові після if потрібен Present Simple: rains.*
-- raining — *Потрібен присудок rains, а не окрема форма raining.*
+- will rain — *У майбутній умові після if потрібна форма work / works: rains.*
+- raining — *Потрібна повна форма rains, а не окрема форма raining.*
 
 **14 · Запитайте сестру, чи закінчила вона прибирання: «Ти вже закінчила?» Використайте yet.**
 <!-- interaction_id: en:lesson-26:session-10:i10; family: phrase_builder -->

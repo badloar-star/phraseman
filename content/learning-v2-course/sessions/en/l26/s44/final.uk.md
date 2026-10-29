@@ -37,7 +37,7 @@
 
 ### Записка була готова до того, як друг пішов
 
-Учора ви встигли написати другові записку до того, як він пішов. Розкажіть: I had written the note by the time he left — я написав записку до того часу, як він пішов. Складаємо: I + had written + the note + by the time he left — хто, що зробив раніше, що написав, до якого моменту в минулому. Had written показує написання до виходу друга. Після had потрібна третя форма write — written, не wrote.
+Учора ви встигли написати другові записку до того, як він пішов. Розкажіть: I had written the note by the time he left — я написав записку до того часу, як він пішов. Складаємо: I + had written + the note + by the time he left — хто, що зробив раніше, що написав, до якого моменту в минулому. Had written показує написання до виходу друга. Після had потрібна форма write — written, не wrote.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — stationery**
 <!-- interaction_id: en:lesson-26:session-44:word:stationery; family: word_card -->
-> **stationery** — Канцелярське приладдя; незлічуване слово.
+> **stationery** — Канцелярське приладдя; слово, яке не рахують поштучно.
 
 **2 · Запитайте, де канцелярське приладдя.**
 <!-- interaction_id: en:lesson-26:session-44:i01; family: scripted_repeat_compare -->

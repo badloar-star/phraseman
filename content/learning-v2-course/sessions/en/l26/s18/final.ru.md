@@ -23,13 +23,13 @@
 
 ### Что делаете со скучным фильмом
 
-Друг спрашивает, досматриваете ли вы неинтересные фильмы. Объясните привычку: If a film is dull, I stop watching — если фильм скучный, я перестаю смотреть. Собираем: If + a film + is + dull, + I + stop + watching — условие, затем обычная реакция. Обе части стоят в present simple. С I нужна stop без -s; после stop действие называется формой watching. После начального условия ставим запятую.
+Друг спрашивает, досматриваете ли вы неинтересные фильмы. Объясните привычку: If a film is dull, I stop watching — если фильм скучный, я перестаю смотреть. Собираем: If + a film + is + dull, + I + stop + watching — условие, затем обычная реакция. Обе части стоят в форме work / works. С I нужна stop без -s; после stop действие называется формой watching. После начального условия ставим запятую.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **If a film is dull, I stop watching.**
 - ❌ If a film is dull, I stops watching. — *С I нужно stop без -s.*
-- ❌ If a film is dull, I stopping watching. — *Нужно сказуемое stop, а не stopping без вспомогательного глагола.*
+- ❌ If a film is dull, I stopping watching. — *Нужна полная форма stop, а не stopping без do / does.*
 
 ---
 
@@ -37,12 +37,12 @@
 
 ### Свою часть уже оплатили
 
-Друзья собирают деньги за общий ужин. Вы уже перевели свою часть и говорите: I have already paid my share — я уже заплатил свою часть. Собираем: I + have + already + paid + my share — кто, have, уже, действие, что оплатил. С I используем have. Already стоит перед третьей формой pay — paid. Present perfect сообщает о результате сейчас: ваша часть оплачена.
+Друзья собирают деньги за общий ужин. Вы уже перевели свою часть и говорите: I have already paid my share — я уже заплатил свою часть. Собираем: I + have + already + paid + my share — кто, have, уже, действие, что оплатил. С I используем have. Already стоит перед формой после have pay — paid. Форма have / has + done сообщает о результате сейчас: ваша часть оплачена.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have already paid my share.**
-- ❌ I have already pay my share. — *После have нужна третья форма paid.*
+- ❌ I have already pay my share. — *После have нужна форма paid.*
 - ❌ I has already paid my share. — *С I употребляем have.*
 
 ---
@@ -91,7 +91,7 @@ It looks very ___. → **posh** · empty · broken
 <!-- interaction_id: en:lesson-26:session-18:i06; family: context_gap_grammar -->
 If a film is dull, I ___ watching. → **stop** · stops · stopping
 - stops — *С I глагол stop без -s.*
-- stopping — *Нужно сказуемое stop, не отдельное stopping.*
+- stopping — *Нужна полная форма stop, не отдельное stopping.*
 
 **10 · Карточка слова — stingy**
 <!-- interaction_id: en:lesson-26:session-18:word:stingy; family: word_card -->

@@ -23,7 +23,7 @@
 
 ### Проверить сумку малыша
 
-Перед выходом вы уточняете, положил ли партнёр пустышку в сумку: Have you packed the dummy yet? — ты уже положил пустышку? Собираем вопрос: Have + you + packed + the dummy + yet? Сначала have, затем кто, третья форма глагола, предмет и yet. С you нужно have; у pack третья форма packed с -ed. Yet в конце показывает, что вы ожидаете выполнения этого действия к настоящему моменту.
+Перед выходом вы уточняете, положил ли партнёр пустышку в сумку: Have you packed the dummy yet? — ты уже положил пустышку? Собираем вопрос: Have + you + packed + the dummy + yet? Сначала have, затем кто, форма после have (done, seen), предмет и yet. С you нужно have; у pack форма packed с -ed. Yet в конце показывает, что вы ожидаете выполнения этого действия к настоящему моменту.
 
 **Выберите фразу для этой ситуации.**
 
@@ -102,8 +102,8 @@ The ___ is in the bag. → **dummy** · cot · table
 **12 · Мама предлагает взять запасную одежду на случай холода. Дополните условие.**
 <!-- interaction_id: en:lesson-26:session-12:i08; family: context_gap_grammar -->
 We will bring a jacket if it ___ cold. → **gets** · will get · getting
-- will get — *После if в этом условии нужен Present Simple: gets.*
-- getting — *Нужно сказуемое gets, а не отдельная форма getting.*
+- will get — *После if в этом условии нужна форма work / works: gets.*
+- getting — *Нужна полная форма gets, а не отдельная форма getting.*
 
 **13 · Сестра просит передать пустышку. Ответьте: «Вот она».**
 <!-- interaction_id: en:lesson-26:session-12:i09; family: scripted_repeat_compare -->

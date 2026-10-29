@@ -23,7 +23,7 @@
 
 ### Куплены ли конфеты
 
-Вы с другом собираете угощение к чаю и хотите узнать, куплены ли конфеты. Спросите: Have you bought any candy yet? — ты уже купил конфеты? Собираем вопрос: Have + you + bought + any candy + yet? Have ставим перед you; после подлежащего нужна третья форма buy — bought. Any candy называет покупку, yet в конце уточняет, сделано ли это к настоящему моменту.
+Вы с другом собираете угощение к чаю и хотите узнать, куплены ли конфеты. Спросите: Have you bought any candy yet? — ты уже купил конфеты? Собираем вопрос: Have + you + bought + any candy + yet? Have ставим перед you; после того, кто действует, нужна форма buy — bought. Any candy называет покупку, yet в конце уточняет, сделано ли это к настоящему моменту.
 
 **Выберите фразу для этой ситуации.**
 
@@ -79,7 +79,7 @@ I will call when I ___ your building. → **reach** · will reach · reaches
 
 **7 · Карточка слова — cookie**
 <!-- interaction_id: en:lesson-26:session-30:word:cookie; family: word_card -->
-> **cookie** — Печенье, отдельная печенюшка. Во множественном числе cookies.
+> **cookie** — Печенье, отдельная печенюшка. Для нескольких cookies.
 
 **8 · Предложите другу одно печенье.**
 <!-- interaction_id: en:lesson-26:session-30:i05; family: phrase_builder -->

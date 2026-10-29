@@ -65,7 +65,7 @@
 
 **4 · Карточка слова — gasoline**
 <!-- interaction_id: en:lesson-26:session-31:word:gasoline; family: word_card -->
-> **gasoline** — Бензин; неисчисляемое слово, как petrol в этом значении.
+> **gasoline** — Бензин; слово, которое не считают поштучно, как petrol в этом значении.
 
 **5 · Перед поездкой сообщите: «Нам нужно больше бензина».**
 <!-- interaction_id: en:lesson-26:session-31:i03; family: scripted_repeat_compare -->

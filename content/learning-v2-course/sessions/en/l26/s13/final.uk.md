@@ -9,12 +9,12 @@
 
 ### Повідомити про готовий сніданок
 
-Друг заходить на кухню й запитує про сніданок. Ви щойно закінчили готувати: I have just made oatmeal — я щойно приготував вівсянку. Складаємо: I + have + just + made + oatmeal — хто, have, щойно, дія, що приготував. З I ставимо have. Після have потрібна третя форма made, а не make; just розміщуємо між have і made. Так повідомляємо про зовсім недавню дію, важливу зараз.
+Друг заходить на кухню й запитує про сніданок. Ви щойно закінчили готувати: I have just made oatmeal — я щойно приготував вівсянку. Складаємо: I + have + just + made + oatmeal — хто, have, щойно, дія, що приготував. З I ставимо have. Після have потрібна форма made, а не make; just розміщуємо між have і made. Так повідомляємо про зовсім недавню дію, важливу зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have just made oatmeal.**
-- ❌ I have just make oatmeal. — *Після have потрібна третя форма made.*
+- ❌ I have just make oatmeal. — *Після have потрібна форма made.*
 - ❌ I has just made oatmeal. — *З I вживаємо have.*
 
 ---
@@ -23,7 +23,7 @@
 
 ### Купити джем дорогою
 
-Ви з другом ідете повз крамницю й домовляєтеся купити цитрусовий джем, якщо вона відчинена: We will buy marmalade if the shop is open. Складаємо: We + will buy + marmalade + if the shop is open — хто, що зробить, що купить, за якої умови. Після will використовуємо buy без -s. Після if умову виражаємо через is open: з одниною the shop потрібна is, а will у цій частині не ставимо.
+Ви з другом ідете повз крамницю й домовляєтеся купити цитрусовий джем, якщо вона відчинена: We will buy marmalade if the shop is open. Складаємо: We + will buy + marmalade + if the shop is open — хто, що зробить, що купить, за якої умови. Після will використовуємо buy без -s. Після if умову виражаємо через is open: з the shop (магазин один) потрібна is, а will у цій частині не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — oatmeal**
 <!-- interaction_id: en:lesson-26:session-13:word:oatmeal; family: word_card -->
-> **oatmeal** — Вівсяна каша; звичайна американська назва. Незлічуване: some oatmeal.
+> **oatmeal** — Вівсяна каша; звичайна американська назва. Не рахується поштучно: some oatmeal.
 
 **2 · Брат запитує, що на сніданок. Дайте відповідь: «Я щойно приготував вівсянку».**
 <!-- interaction_id: en:lesson-26:session-13:i01; family: scripted_repeat_compare -->
@@ -65,7 +65,7 @@
 
 **4 · Картка слова — raisins**
 <!-- interaction_id: en:lesson-26:session-13:word:raisins; family: word_card -->
-> **raisins** — Родзинки. Однина raisin — одна родзинка; dried grapes — сушений виноград.
+> **raisins** — Родзинки. Raisin — одна родзинка; dried grapes — сушений виноград.
 
 **5 · Ви зазвичай додаєте родзинки у вівсянку. Доповніть опис звички.**
 <!-- interaction_id: en:lesson-26:session-13:i03; family: context_gap_grammar -->
@@ -102,8 +102,8 @@ If I make oatmeal, I ___ raisins. → **add** · adds · adding
 **12 · Ви ще не вирішили, чи йти до магазину. Покупка залежить від того, чи він відчинений. Доповніть умову.**
 <!-- interaction_id: en:lesson-26:session-13:i08; family: context_gap_grammar -->
 I will buy some marmalade if the shop ___ open. → **is** · will be · being
-- will be — *Після if у цій умові потрібен Present Simple: is.*
-- being — *Being не утворює тут присудка.*
+- will be — *Після if у цій умові потрібна форма work / works: is.*
+- being — *Being тут не може стояти сама.*
 
 **13 · Подруга запитує, чи закінчено пакування їжі. Дайте відповідь: «Я вже спакував обід».**
 <!-- interaction_id: en:lesson-26:session-13:i09; family: scripted_repeat_compare -->

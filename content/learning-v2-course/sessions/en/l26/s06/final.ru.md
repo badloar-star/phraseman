@@ -9,13 +9,13 @@
 
 ### Описать онемение
 
-Numb — онемевший, потерявший обычную чувствительность. My fingers feel numb when they get very cold — мои пальцы немеют, когда сильно мёрзнут. Так говорящий описывает своё ощущение. Fingers — множественное число, поэтому feel без -s; they get тоже без -s. When связывает ощущение с ситуацией, в которой оно у этого человека повторяется.
+Numb — онемевший, потерявший обычную чувствительность. My fingers feel numb when they get very cold — мои пальцы немеют, когда сильно мёрзнут. Так говорящий описывает своё ощущение. Fingers — форма для нескольких, поэтому feel без -s; they get тоже без -s. When связывает ощущение с ситуацией, в которой оно у этого человека повторяется.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My fingers feel numb when they get very cold.**
-- ❌ My fingers feels numb when they get very cold. — *С этим подлежащим нужна форма feel.*
-- ❌ My fingers feeling numb when they get very cold. — *Повторяющееся ощущение: Present Simple в обеих частях.*
+- ❌ My fingers feels numb when they get very cold. — *С этим словом нужна форма feel.*
+- ❌ My fingers feeling numb when they get very cold. — *Повторяющееся ощущение: форма work / works в обеих частях.*
 
 ---
 
@@ -23,13 +23,13 @@ Numb — онемевший, потерявший обычную чувстви�
 
 ### Почему не читаете в машине
 
-Друг предлагает вам книгу в дороге, а вы объясняете свою обычную реакцию на чтение в машине: I feel nauseous when I read in a car — меня тошнит, когда я читаю в машине. Собираем: I + feel nauseous + when I read in a car — кто, какое ощущение испытывает, в какой ситуации. После I ставим feel, затем слово nauseous, описывающее ощущение. В части с when снова I и read без -s. Обе части в present simple: речь о том, что с вами обычно происходит, а не со всеми людьми.
+Друг предлагает вам книгу в дороге, а вы объясняете свою обычную реакцию на чтение в машине: I feel nauseous when I read in a car — меня тошнит, когда я читаю в машине. Собираем: I + feel nauseous + when I read in a car — кто, какое ощущение испытывает, в какой ситуации. После I ставим feel, затем слово nauseous, описывающее ощущение. В части с when снова I и read без -s. Обе части в форме work / works: речь о том, что с вами обычно происходит, а не со всеми людьми.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I feel nauseous when I read in a car.**
-- ❌ I feels nauseous when I read in a car. — *С этим подлежащим нужна форма feel.*
-- ❌ I feeling nauseous when I read in a car. — *Повторяющееся ощущение: Present Simple в обеих частях.*
+- ❌ I feels nauseous when I read in a car. — *С этим словом нужна форма feel.*
+- ❌ I feeling nauseous when I read in a car. — *Повторяющееся ощущение: форма work / works в обеих частях.*
 
 ---
 
@@ -37,13 +37,13 @@ Numb — онемевший, потерявший обычную чувстви�
 
 ### Как именно болит
 
-Throb — пульсировать, болеть ритмичными толчками. My head throbs when I have a headache — голова пульсирует, когда у меня головная боль. Здесь человек уточняет характер своей боли. Head — единственное число, поэтому throbs; после I — have. Для описания того, что у говорящего обычно происходит при таком условии, используем Present Simple в обеих частях.
+Throb — пульсировать, болеть ритмичными толчками. My head throbs when I have a headache — голова пульсирует, когда у меня головная боль. Здесь человек уточняет характер своей боли. Head — форма для одного, поэтому throbs; после I — have. Для описания того, что у говорящего обычно происходит при таком условии, используем форму work / works в обеих частях.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My head throbs when I have a headache.**
-- ❌ My head throb when I have a headache. — *С этим подлежащим нужна форма throbs.*
-- ❌ My head throbbing when I have a headache. — *Повторяющееся ощущение: Present Simple в обеих частях.*
+- ❌ My head throb when I have a headache. — *С этим словом нужна форма throbs.*
+- ❌ My head throbbing when I have a headache. — *Повторяющееся ощущение: форма work / works в обеих частях.*
 
 ---
 
@@ -67,7 +67,7 @@ Throb — пульсировать, болеть ритмичными толчк
 <!-- interaction_id: en:lesson-26:session-06:i03; family: context_gap_grammar -->
 My hands ___ cold when I wait outside. → **feel** · feels · feeling
 - feels — *После hands нужна форма feel без -s.*
-- feeling — *Здесь нужен Present Simple: feel, не feeling без are.*
+- feeling — *Здесь нужна форма work / works: feel, не feeling без are.*
 
 **5 · Карточка слова — nauseous**
 <!-- interaction_id: en:lesson-26:session-06:word:nauseous; family: word_card -->

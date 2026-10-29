@@ -23,12 +23,12 @@
 
 ### Чашки уже наполнены
 
-Друг собирается налить чай, но вы уже наполнили чашки. Скажите: I have already filled the cups — я уже наполнил чашки. Собираем: I + have + already + filled + the cups — кто, have, уже, действие, что наполнил. С I используем have. Already ставим между have и третьей формой filled с -ed. Present perfect сообщает о результате сейчас: чай уже в чашках.
+Друг собирается налить чай, но вы уже наполнили чашки. Скажите: I have already filled the cups — я уже наполнил чашки. Собираем: I + have + already + filled + the cups — кто, have, уже, действие, что наполнил. С I используем have. Already ставим между have и формой после have filled с -ed. Форма have / has + done сообщает о результате сейчас: чай уже в чашках.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have already filled the cups.**
-- ❌ I have already fill the cups. — *После have нужна третья форма filled.*
+- ❌ I have already fill the cups. — *После have нужна форма filled.*
 - ❌ I has already filled the cups. — *С I используем have.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Как поступаете после ошибки
 
-Друг спрашивает, что вы обычно делаете, если ошиблись. Ответьте: If I make a mistake, I say sorry — если я ошибаюсь, я извиняюсь. Собираем: If + I + make + a mistake, + I + say + sorry — условие, затем обычная реакция. Обе части стоят в present simple, потому что это привычное поведение. После I используем make и say без -s. После условия в начале ставим запятую.
+Друг спрашивает, что вы обычно делаете, если ошиблись. Ответьте: If I make a mistake, I say sorry — если я ошибаюсь, я извиняюсь. Собираем: If + I + make + a mistake, + I + say + sorry — условие, затем обычная реакция. Обе части стоят в форме work / works, потому что это привычное поведение. После I используем make и say без -s. После условия в начале ставим запятую.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **If I make a mistake, I say sorry.**
 - ❌ If I makes a mistake, I say sorry. — *С I используем make без -s.*
-- ❌ If I make a mistake, I saying sorry. — *Нужно сказуемое say, не saying без вспомогательного глагола.*
+- ❌ If I make a mistake, I saying sorry. — *Нужна полная форма say, не saying без do / does.*
 
 ---
 
@@ -133,7 +133,7 @@ I ___ taken the wrong bag by the time I noticed. → **had** · have · was
 <!-- interaction_id: en:lesson-26:session-16:i14; family: context_gap_grammar -->
 If I make a mistake, I ___ sorry. → **say** · says · saying
 - says — *С I нужен say без -s.*
-- saying — *Для привычки нужно сказуемое say, не отдельное saying.*
+- saying — *Для привычки нужна полная форма say, не отдельное saying.*
 
 **19 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-16:i15; family: listen_choose -->

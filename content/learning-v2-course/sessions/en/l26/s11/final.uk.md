@@ -23,13 +23,13 @@
 
 ### Щойно пошкодили стегно
 
-Ви невдало повернулися під час гри й пояснюєте другові, чому зупинилися: I have just hurt my thigh — я щойно пошкодив стегно. Складаємо: I + have + just + hurt + my thigh — хто, have, щойно, дія, що пошкодив. З I потрібна have. Just ставимо між have і третьою формою hurt. У hurt усі три форми однакові, тому hurting тут не підходить. Так повідомляємо про зовсім недавню подію зараз.
+Ви невдало повернулися під час гри й пояснюєте другові, чому зупинилися: I have just hurt my thigh — я щойно пошкодив стегно. Складаємо: I + have + just + hurt + my thigh — хто, have, щойно, дія, що пошкодив. З I потрібна have. Just ставимо між have і формою після have hurt. У hurt усі три форми однакові, тому hurting тут не підходить. Так повідомляємо про зовсім недавню подію зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have just hurt my thigh.**
 - ❌ I has just hurt my thigh. — *З I потрібно have.*
-- ❌ I have just hurting my thigh. — *Після have потрібна третя форма hurt, не hurting.*
+- ❌ I have just hurting my thigh. — *Після have потрібна форма hurt, не hurting.*
 
 ---
 
@@ -91,7 +91,7 @@ If my shoes hurt, I ___ them. → **change** · changes · changing
 
 **10 · Картка слова — gums**
 <!-- interaction_id: en:lesson-26:session-11:word:gums; family: word_card -->
-> **gums** — Ясна. Gums — форма множини від gum; my gums hurt — у мене болять ясна.
+> **gums** — Ясна. Gums — форма для кількох від gum; my gums hurt — у мене болять ясна.
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-11:i07; family: listen_choose -->

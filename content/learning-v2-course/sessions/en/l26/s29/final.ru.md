@@ -9,13 +9,13 @@
 
 ### Вынесен ли мусор
 
-Перед выходом вы уточняете у друга, выполнено ли домашнее дело. Спросите: Have you taken out the garbage yet? — ты уже вынес мусор? Собираем: Have + you + taken out + the garbage + yet? Have ставим перед you, затем используем третью форму take — taken, не took. Yet в конце спрашивает о результате к настоящему моменту. The garbage обозначает тот мусор, который нужно было вынести; garbage здесь неисчисляемое, поэтому a не ставим.
+Перед выходом вы уточняете у друга, выполнено ли домашнее дело. Спросите: Have you taken out the garbage yet? — ты уже вынес мусор? Собираем: Have + you + taken out + the garbage + yet? Have ставим перед you, затем используем форму take — taken, не took. Yet в конце спрашивает о результате к настоящему моменту. The garbage обозначает тот мусор, который нужно было вынести; garbage здесь не считается поштучно, поэтому a не ставим.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Have you taken out the garbage yet?**
 - ❌ Have you took out the garbage yet? — *После have нужна форма taken, не took.*
-- ❌ Have you taken out a garbage yet? — *Garbage в этом значении неисчисляемое; a не нужно.*
+- ❌ Have you taken out a garbage yet? — *Garbage в этом значении не считается поштучно; a не нужно.*
 
 ---
 
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — garbage**
 <!-- interaction_id: en:lesson-26:session-29:word:garbage; family: word_card -->
-> **garbage** — Мусор, бытовые отходы; неисчисляемое слово.
+> **garbage** — Мусор, бытовые отходы; слово, которое не считают поштучно.
 
 **2 · Попросите брата: «Пожалуйста, вынеси мусор».**
 <!-- interaction_id: en:lesson-26:session-29:i01; family: phrase_builder -->

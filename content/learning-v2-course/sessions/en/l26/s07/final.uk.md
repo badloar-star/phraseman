@@ -14,8 +14,8 @@ Rigid — жорсткий, той, що майже не гнеться. I choos
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I choose a rigid box when I pack glasses.**
-- ❌ I chooses a rigid box when I pack glasses. — *У Present Simple потрібна форма choose.*
-- ❌ I choosing a rigid box when I pack glasses. — *Звичайна властивість або звичка: Present Simple в обох частинах.*
+- ❌ I chooses a rigid box when I pack glasses. — *У формі work / works потрібна форма choose.*
+- ❌ I choosing a rigid box when I pack glasses. — *Звичайна властивість або звичка: форма work / works в обох частинах.*
 
 ---
 
@@ -23,13 +23,13 @@ Rigid — жорсткий, той, що майже не гнеться. I choos
 
 ### Чому пластик ламається
 
-Друг намагається зігнути стару пластикову деталь, а ви попереджаєте про властивість матеріалу: Brittle plastic breaks if you bend it — ламкий пластик ламається, якщо його зігнути. Складаємо: Brittle plastic + breaks + if you bend it — матеріал, що з ним відбувається, за якої умови. Обидві частини в present simple, бо описуємо властивість, а не окремий майбутній випадок. Plastic узгоджується як it, тому breaks із -s. Після you потрібна bend без -s; it наприкінці замінює пластик.
+Друг намагається зігнути стару пластикову деталь, а ви попереджаєте про властивість матеріалу: Brittle plastic breaks if you bend it — ламкий пластик ламається, якщо його зігнути. Складаємо: Brittle plastic + breaks + if you bend it — матеріал, що з ним відбувається, за якої умови. Обидві частини в формі work / works, бо описуємо властивість, а не окремий майбутній випадок. Plastic узгоджується як it, тому breaks із -s. Після you потрібна bend без -s; it наприкінці замінює пластик.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Brittle plastic breaks if you bend it.**
-- ❌ Brittle plastic break if you bend it. — *У Present Simple потрібна форма breaks.*
-- ❌ Brittle plastic breaking if you bend it. — *Звичайна властивість або звичка: Present Simple в обох частинах.*
+- ❌ Brittle plastic break if you bend it. — *У формі work / works потрібна форма breaks.*
+- ❌ Brittle plastic breaking if you bend it. — *Звичайна властивість або звичка: форма work / works в обох частинах.*
 
 ---
 
@@ -37,13 +37,13 @@ Rigid — жорсткий, той, що майже не гнеться. I choos
 
 ### Вибрати штори для темної кімнати
 
-Друг запитує, як ви вибираєте штори для затемнення кімнати. Дайте відповідь: I choose opaque curtains when I want a dark room — я вибираю непрозорі штори, коли хочу темну кімнату. Складаємо: I + choose + opaque curtains + when I want a dark room — хто, що робить, що вибирає, у якій ситуації. В обох частинах present simple: це ваш звичайний вибір. Після I використовуємо choose і want без -s. When пов’язує вибір штор із вашою потребою затемнити кімнату.
+Друг запитує, як ви вибираєте штори для затемнення кімнати. Дайте відповідь: I choose opaque curtains when I want a dark room — я вибираю непрозорі штори, коли хочу темну кімнату. Складаємо: I + choose + opaque curtains + when I want a dark room — хто, що робить, що вибирає, у якій ситуації. В обох частинах форма work / works: це ваш звичайний вибір. Після I використовуємо choose і want без -s. When пов’язує вибір штор із вашою потребою затемнити кімнату.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I choose opaque curtains when I want a dark room.**
-- ❌ I chooses opaque curtains when I want a dark room. — *У Present Simple потрібна форма choose.*
-- ❌ I choosing opaque curtains when I want a dark room. — *Звичайна властивість або звичка: Present Simple в обох частинах.*
+- ❌ I chooses opaque curtains when I want a dark room. — *У формі work / works потрібна форма choose.*
+- ❌ I choosing opaque curtains when I want a dark room. — *Звичайна властивість або звичка: форма work / works в обох частинах.*
 
 ---
 
@@ -90,8 +90,8 @@ I choose another box if this one ___ dry. → **is not** · are not · not be
 **9 · Йдеться про властивість ламкого пластику, а не будь-якого пластику. Виберіть результат.**
 <!-- interaction_id: en:lesson-26:session-07:i06; family: context_gap_grammar -->
 Brittle plastic ___ if you bend it. → **breaks** · break · breaking
-- break — *Plastic — незлічуване; потрібна форма breaks, як з it.*
-- breaking — *Для властивості у Present Simple потрібно breaks; breaking не утворює присудок.*
+- break — *Plastic не рахують поштучно; потрібна форма breaks, як з it.*
+- breaking — *Для властивості у формі work / works потрібно breaks; breaking не може стояти сама.*
 
 **10 · Поясніть звичку: «Я прошу допомоги, коли коробка заважка».**
 <!-- interaction_id: en:lesson-26:session-07:i07; family: scripted_repeat_compare -->
@@ -123,7 +123,7 @@ rigid — жорсткий · brittle — ламкий · transparent — про
 <!-- interaction_id: en:lesson-26:session-07:i12; family: context_gap_grammar -->
 I ___ the lid if a jar is empty. → **close** · closes · closing
 - closes — *Після I потрібна форма close без -s.*
-- closing — *Тут потрібен Present Simple: close, а не closing без допоміжного дієслова.*
+- closing — *Тут потрібна форма work / works: close, а не closing без do / does.*
 
 **17 · Відновіть почуту умову вибору.**
 <!-- interaction_id: en:lesson-26:session-07:i13; family: listen_build_dictation -->
@@ -142,7 +142,7 @@ I ___ the lid if a jar is empty. → **close** · closes · closing
 **20 · Це звичний вибір вашої сестри. Доповніть умову із she.**
 <!-- interaction_id: en:lesson-26:session-07:i16; family: context_gap_grammar -->
 She uses opaque curtains when she ___ a dark room. → **wants** · want · wanting
-- want — *Після she у Present Simple потрібно wants із -s.*
+- want — *Після she у формі work / works потрібно wants із -s.*
 - wanting — *Потрібна особова форма wants, не wanting.*
 
 **21 · Поясніть, коли потрібна нова кришка: «Ми купуємо нову кришку, якщо стара не підходить».**

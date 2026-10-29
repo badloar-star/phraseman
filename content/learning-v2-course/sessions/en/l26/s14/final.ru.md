@@ -9,13 +9,13 @@
 
 ### Только что надели халат
 
-Вы вышли из душа и говорите партнёру, что уже одеты: I have just put on my bathrobe — я только что надел банный халат. Собираем: I + have + just + put on + my bathrobe — кто, have, только что, надел, что именно. С I нужна have. После неё используем третью форму put; у этого глагола она совпадает с начальной. On остаётся рядом с put: вместе put on означает надеть. Just ставим перед put on.
+Вы вышли из душа и говорите партнёру, что уже одеты: I have just put on my bathrobe — я только что надел банный халат. Собираем: I + have + just + put on + my bathrobe — кто, have, только что, надел, что именно. С I нужна have. После неё используем форму put; у этого глагола она совпадает с начальной. On остаётся рядом с put: вместе put on означает надеть. Just ставим перед put on.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have just put on my bathrobe.**
 - ❌ I has just put on my bathrobe. — *С I нужно have.*
-- ❌ I have just putting on my bathrobe. — *После have нужна третья форма put.*
+- ❌ I have just putting on my bathrobe. — *После have нужна форма put.*
 
 ---
 
@@ -23,7 +23,7 @@
 
 ### Проверить вещи для ночёвки
 
-Перед поездкой вы спрашиваете партнёршу, положила ли она ночную рубашку в сумку: Have you packed your nightie yet? — ты уже положила свою ночную рубашку? Собираем: Have + you + packed + your nightie + yet? В вопросе have идёт перед you, затем третья форма packed и то, что нужно собрать. У pack добавляем -ed. Yet в конце спрашивает, выполнено ли ожидаемое действие к этому моменту.
+Перед поездкой вы спрашиваете партнёршу, положила ли она ночную рубашку в сумку: Have you packed your nightie yet? — ты уже положила свою ночную рубашку? Собираем: Have + you + packed + your nightie + yet? В вопросе have идёт перед you, затем форма packed и то, что нужно собрать. У pack добавляем -ed. Yet в конце спрашивает, выполнено ли ожидаемое действие к этому моменту.
 
 **Выберите фразу для этой ситуации.**
 
@@ -37,7 +37,7 @@
 
 ### Сменить подгузник до приезда такси
 
-Вы рассказываете, как вчера собирали малыша: подгузник успели сменить до приезда такси. Скажите: I had changed the diaper by the time the taxi arrived — я сменил подгузник к тому времени, как приехало такси. Собираем: I + had changed + the diaper + by the time the taxi arrived — кто, что сделал раньше, что сменил, к какому прошлому моменту. Had changed отмечает действие до приезда. После had нужна третья форма changed; к change добавляем -d. Arrived обозначает последующий приезд.
+Вы рассказываете, как вчера собирали малыша: подгузник успели сменить до приезда такси. Скажите: I had changed the diaper by the time the taxi arrived — я сменил подгузник к тому времени, как приехало такси. Собираем: I + had changed + the diaper + by the time the taxi arrived — кто, что сделал раньше, что сменил, к какому прошлому моменту. Had changed отмечает действие до приезда. После had нужна форма changed; к change добавляем -d. Arrived обозначает последующий приезд.
 
 **Выберите фразу для этой ситуации.**
 
@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-26:session-14:i02; family: context_gap_grammar -->
 If I ___ cold, I put on my bathrobe. → **feel** · feels · feeling
 - feels — *С I используется feel без -s.*
-- feeling — *Нужно сказуемое feel, не отдельная форма feeling.*
+- feeling — *Нужна полная форма feel, не отдельная форма feeling.*
 
 **4 · Карточка слова — nightie**
 <!-- interaction_id: en:lesson-26:session-14:word:nightie; family: word_card -->
@@ -88,8 +88,8 @@ If I ___ cold, I put on my bathrobe. → **feel** · feels · feeling
 **9 · Выберите план на случай холода во время поездки.**
 <!-- interaction_id: en:lesson-26:session-14:i06; family: context_gap_grammar -->
 I will wear an undershirt if it ___ cold. → **gets** · will get · getting
-- will get — *В условии после if нужен Present Simple: gets.*
-- getting — *Getting не образует здесь сказуемое.*
+- will get — *В условии после if нужна форма work / works: gets.*
+- getting — *Getting здесь не может стоять один.*
 
 **10 · Карточка слова — diaper**
 <!-- interaction_id: en:lesson-26:session-14:word:diaper; family: word_card -->
@@ -128,7 +128,7 @@ I have ___ packed my nightie. → **already** · yet · tomorrow
 **17 · Подгузник сменили до приезда машины. Дополните более раннее действие.**
 <!-- interaction_id: en:lesson-26:session-14:i13; family: context_gap_grammar -->
 I ___ changed the diaper by the time the car arrived. → **had** · have · was
-- have — *Arrived обозначает прошлый момент; нужен Past Perfect: had changed.*
+- have — *Arrived обозначает прошлый момент; нужна форма had + done: had changed.*
 - was — *Was changed означало бы другую конструкцию; здесь человек сам сменил подгузник.*
 
 **18 · Услышьте просьбу проверить дверь перед выходом.**

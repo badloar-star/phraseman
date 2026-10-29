@@ -9,12 +9,12 @@
 
 ### План на случай раннего выезда
 
-Пока неизвестно, уедем ли мы рано. I will pack my stuff if we leave early — я соберу вещи, если мы уедем рано. Это first conditional: говорим о возможной будущей ситуации и своём действии при этом условии. После if ставим Present Simple: if we leave, без will. В результате — will + начальная форма: will pack. Stuff — разговорное «вещи»; my stuff, не my stuffs.
+Пока неизвестно, уедем ли мы рано. I will pack my stuff if we leave early — я соберу вещи, если мы уедем рано. Это условие о будущем: говорим о возможной будущей ситуации и своём действии при этом условии. После if ставим форму work / works: if we leave, без will. В результате — will + начальная форма: will pack. Stuff — разговорное «вещи»; my stuff, не my stuffs.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I will pack my stuff if we leave early.**
-- ❌ I will pack my stuff if we will leave early. — *В условии о будущем после if здесь нужен Present Simple: if we leave.*
+- ❌ I will pack my stuff if we will leave early. — *В условии о будущем после if здесь нужна форма work / works: if we leave.*
 - ❌ I will packs my stuff if we leave early. — *После will нужна начальная форма pack без -s.*
 
 ---
@@ -23,7 +23,7 @@
 
 ### Если прольётся сок
 
-Вы несёте сок и обещаете убрать за собой, если прольёте его. I will clean up the mess if I spill the juice. Mess здесь — беспорядок и грязь от разлитого сока. Если условие стоит после результата, запятая между ними не нужна. Можно начать с условия: If I spill the juice, I will clean up the mess. Тогда ставим запятую. В обоих порядках spill — Present Simple, will clean — будущий результат.
+Вы несёте сок и обещаете убрать за собой, если прольёте его. I will clean up the mess if I spill the juice. Mess здесь — беспорядок и грязь от разлитого сока. Если условие стоит после результата, запятая между ними не нужна. Можно начать с условия: If I spill the juice, I will clean up the mess. Тогда ставим запятую. В обоих порядках spill — форма work / works, will clean — будущий результат.
 
 **Выберите фразу для этой ситуации.**
 
@@ -37,7 +37,7 @@
 
 ### Взять игру для детей
 
-Вы собираетесь к друзьям, но ещё не знаете, будут ли там дети. Предложите: I will bring a game if the kids come — я принесу игру, если придут дети. Собираем: I + will bring + a game + if the kids come — кто, что сделает, что принесёт, при каком условии. После will нужна начальная форма bring без -s. После if используем come без will: условие относится к будущему, но выражается через present simple. The kids — множественное число, поэтому к come не добавляем -s.
+Вы собираетесь к друзьям, но ещё не знаете, будут ли там дети. Предложите: I will bring a game if the kids come — я принесу игру, если придут дети. Собираем: I + will bring + a game + if the kids come — кто, что сделает, что принесёт, при каком условии. После will нужна начальная форма bring без -s. После if используем come без will: условие относится к будущему, но выражается через форма work / works. The kids — форма для нескольких, поэтому к come не добавляем -s.
 
 **Выберите фразу для этой ситуации.**
 
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — stuff**
 <!-- interaction_id: en:lesson-26:session-09:word:stuff; family: word_card -->
-> **stuff** — Вещи. Stuff — разговорное общее название вещей; здесь неисчисляемое: my stuff, без окончания -s.
+> **stuff** — Вещи. Stuff — разговорное общее название вещей; здесь не считается поштучно: my stuff, без окончания -s.
 
 **2 · Условие: сумка окажется маленькой. Скажите: «Я оставлю свои вещи здесь, если сумка будет слишком маленькой».**
 <!-- interaction_id: en:lesson-26:session-09:i01; family: phrase_builder -->
@@ -60,8 +60,8 @@
 **3 · Вы обещаете убрать за собой, если прольёте сок. Дополните условие.**
 <!-- interaction_id: en:lesson-26:session-09:i02; family: context_gap_grammar -->
 I will get a cloth if I ___ the juice. → **spill** · will spill · spilling
-- will spill — *Будущее условие после if выражаем через Present Simple: spill.*
-- spilling — *Здесь нужен личный глагол spill; spilling не образует сказуемое.*
+- will spill — *Будущее условие после if выражаем через форма work / works: spill.*
+- spilling — *Здесь нужен личный глагол spill; spilling не может стоять один.*
 
 **4 · Карточка слова — mess**
 <!-- interaction_id: en:lesson-26:session-09:word:mess; family: word_card -->
@@ -88,7 +88,7 @@ I will get a cloth if I ___ the juice. → **spill** · will spill · spilling
 **9 · Вы ещё не знаете, придут ли гости. Дополните решение на этот случай.**
 <!-- interaction_id: en:lesson-26:session-09:i06; family: context_gap_grammar -->
 We ___ more food if our friends come. → **will buy** · buying · will buying
-- buying — *Для будущего решения нужно will buy; buying без вспомогательного глагола не подходит.*
+- buying — *Для будущего решения нужно will buy; buying без do / does не подходит.*
 - will buying — *После will ставим buy, не buying.*
 
 **10 · Карточка слова — guy**
@@ -112,8 +112,8 @@ stuff — вещи · mess — беспорядок · kids — дети · guy 
 **14 · Договорились ждать только десять минут. Если автобус не придёт, пойдём пешком. Дополните фразу с «не».**
 <!-- interaction_id: en:lesson-26:session-09:i10; family: context_gap_grammar -->
 We will walk if the bus ___ come. → **does not** · will not · do not
-- will not — *В этом условии после if нужен Present Simple: does not come.*
-- do not — *The bus — единственное число: does not, не do not.*
+- will not — *В этом условии после if нужна форма work / works: does not come.*
+- do not — *The bus — форма для одного: does not, не do not.*
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-09:i11; family: listen_choose -->

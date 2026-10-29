@@ -9,13 +9,13 @@
 
 ### Рухатися в ритм
 
-Rhythm — ритм. I follow the rhythm when I dance — я дотримуюся ритму, коли танцюю. Тут follow the rhythm означає рухатися відповідно до ритму музики. Розповідаємо про звичайну дію: follow і dance в Present Simple. Після I не додаємо -s. Коли йдеться про звичну реакцію на умову, підходить zero conditional.
+Rhythm — ритм. I follow the rhythm when I dance — я дотримуюся ритму, коли танцюю. Тут follow the rhythm означає рухатися відповідно до ритму музики. Розповідаємо про звичайну дію: follow і dance в формі work / works. Після I не додаємо -s. Коли йдеться про звичну реакцію на умову, підходить схема «if + форма work / works, і результат у тій самій формі».
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I follow the rhythm when I dance.**
-- ❌ I follows the rhythm when I dance. — *У Present Simple із цим підметом потрібна форма follow.*
-- ❌ I following the rhythm when I dance. — *Звична реакція: Present Simple в обох частинах.*
+- ❌ I follows the rhythm when I dance. — *У формі work / works із цим словом потрібна форма follow.*
+- ❌ I following the rhythm when I dance. — *Звична реакція: форма work / works в обох частинах.*
 
 ---
 
@@ -23,13 +23,13 @@ Rhythm — ритм. I follow the rhythm when I dance — я дотримуюс�
 
 ### Перевірити, як тримаєте спину
 
-Друг запитує, що ви зазвичай робите, відчувши втому в спині. Дайте відповідь: I check my posture when my back feels tired — я перевіряю свою поставу, коли відчуваю втому в спині. Складаємо: I + check + my posture + when my back feels tired — хто, що робить, що перевіряє, у якій ситуації. Обидві частини в present simple: це ваша звичка. Після I потрібна check без -s. My back — однина, тому feels із -s; tired описує відчуття.
+Друг запитує, що ви зазвичай робите, відчувши втому в спині. Дайте відповідь: I check my posture when my back feels tired — я перевіряю свою поставу, коли відчуваю втому в спині. Складаємо: I + check + my posture + when my back feels tired — хто, що робить, що перевіряє, у якій ситуації. Обидві частини в формі work / works: це ваша звичка. Після I потрібна check без -s. My back — форма для одного, тому feels із -s; tired описує відчуття.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I check my posture when my back feels tired.**
-- ❌ I checks my posture when my back feels tired. — *У Present Simple із цим підметом потрібна форма check.*
-- ❌ I checking my posture when my back feels tired. — *Звична реакція: Present Simple в обох частинах.*
+- ❌ I checks my posture when my back feels tired. — *У формі work / works із цим словом потрібна форма check.*
+- ❌ I checking my posture when my back feels tired. — *Звична реакція: форма work / works в обох частинах.*
 
 ---
 
@@ -37,13 +37,13 @@ Rhythm — ритм. I follow the rhythm when I dance — я дотримуюс�
 
 ### Помічати серцебиття в тиші
 
-Ви розповідаєте другові, у який момент зазвичай помічаєте биття свого серця: I notice my heartbeat when I lie quietly — я помічаю своє серцебиття, коли тихо лежу. Складаємо: I + notice + my heartbeat + when I lie quietly — хто, що робить, що помічає, коли. В обох частинах present simple, бо ситуація повторюється. Після I використовуємо notice і lie без -s. Quietly стоїть після lie та уточнює, як ви лежите.
+Ви розповідаєте другові, у який момент зазвичай помічаєте биття свого серця: I notice my heartbeat when I lie quietly — я помічаю своє серцебиття, коли тихо лежу. Складаємо: I + notice + my heartbeat + when I lie quietly — хто, що робить, що помічає, коли. В обох частинах форма work / works, бо ситуація повторюється. Після I використовуємо notice і lie без -s. Quietly стоїть після lie та уточнює, як ви лежите.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I notice my heartbeat when I lie quietly.**
-- ❌ I notices my heartbeat when I lie quietly. — *У Present Simple із цим підметом потрібна форма notice.*
-- ❌ I noticing my heartbeat when I lie quietly. — *Звична реакція: Present Simple в обох частинах.*
+- ❌ I notices my heartbeat when I lie quietly. — *У формі work / works із цим словом потрібна форма notice.*
+- ❌ I noticing my heartbeat when I lie quietly. — *Звична реакція: форма work / works в обох частинах.*
 
 ---
 
@@ -67,7 +67,7 @@ Rhythm — ритм. I follow the rhythm when I dance — я дотримуюс�
 <!-- interaction_id: en:lesson-26:session-04:i03; family: context_gap_grammar -->
 I ___ carefully when the teacher shows a new step. → **watch** · watches · watching
 - watches — *Після I потрібна форма watch без -s.*
-- watching — *Для звички потрібен Present Simple: watch, не watching без допоміжного дієслова.*
+- watching — *Для звички потрібна форма work / works: watch, не watching без do / does.*
 
 **5 · Почуйте, коли мовець робить паузу.**
 <!-- interaction_id: en:lesson-26:session-04:i04; family: listen_build_dictation -->
@@ -95,7 +95,7 @@ I ___ carefully when the teacher shows a new step. → **watch** · watches · w
 <!-- interaction_id: en:lesson-26:session-04:i07; family: context_gap_grammar -->
 My pulse gets faster when I ___. → **exercise** · exercises · exercising
 - exercises — *Після I потрібна форма exercise без -s.*
-- exercising — *В умові тут потрібен Present Simple: exercise.*
+- exercising — *В умові тут потрібна форма work / works: exercise.*
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-04:i08; family: listen_choose -->

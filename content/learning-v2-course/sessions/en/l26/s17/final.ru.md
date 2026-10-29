@@ -9,13 +9,13 @@
 
 ### Написать, когда приедет такси
 
-Вы ждёте такси и обещаете сообщить другу о его приезде: I will text you when the cab arrives — я напишу тебе, когда приедет такси. Собираем: I + will text + you + when the cab arrives — кто, что сделает, кому, когда. Всё относится к будущему, но формы частей различаются: в главной части will text, после when — present simple arrives без will. When называет ожидаемый момент сообщения. The cab — единственное число, поэтому arrive получает -s.
+Вы ждёте такси и обещаете сообщить другу о его приезде: I will text you when the cab arrives — я напишу тебе, когда приедет такси. Собираем: I + will text + you + when the cab arrives — кто, что сделает, кому, когда. Всё относится к будущему, но формы частей различаются: в главной части will text, после when — форма work / works arrives без will. When называет ожидаемый момент сообщения. The cab — одна вещь, поэтому arrive получает -s.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I will text you when the cab arrives.**
 - ❌ I will text you when the cab will arrive. — *В придаточном времени о будущем после when здесь arrives без will.*
-- ❌ I will text you when the cab arrive. — *The cab — единственное число: arrives с -s.*
+- ❌ I will text you when the cab arrive. — *The cab — форма для одного: arrives с -s.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Позвонить после отпуска
 
-Вы договариваетесь созвониться с другом после отдыха. Скажите: I will call you after my vacation ends — я позвоню тебе после окончания отпуска. Собираем: I + will call + you + after my vacation ends — кто, что сделает, кому, после какого события. Will call выражает будущее обещание. В части с after, указывающей время звонка, используем present simple: ends без will. My vacation — единственное число, поэтому end получает -s.
+Вы договариваетесь созвониться с другом после отдыха. Скажите: I will call you after my vacation ends — я позвоню тебе после окончания отпуска. Собираем: I + will call + you + after my vacation ends — кто, что сделает, кому, после какого события. Will call выражает будущее обещание. В части с after, указывающей время звонка, используем форму work / works: ends без will. My vacation — форма для одного, поэтому end получает -s.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I will call you after my vacation ends.**
 - ❌ I will call you after my vacation will end. — *После after в придаточном времени о будущем используем ends без will.*
-- ❌ I will call you after my vacation end. — *My vacation — единственное число: ends.*
+- ❌ I will call you after my vacation end. — *My vacation — форма для одного: ends.*
 
 ---
 
@@ -63,7 +63,7 @@
 <!-- interaction_id: en:lesson-26:session-17:i02; family: context_gap_grammar -->
 I will come outside when the cab ___. → **arrives** · will arrive · arrive
 - will arrive — *После when в придаточном времени о будущем нужна форма arrives без will.*
-- arrive — *The cab — единственное число, поэтому arrives.*
+- arrive — *The cab — одна вещь, поэтому arrives.*
 
 **4 · Карточка слова — vacation**
 <!-- interaction_id: en:lesson-26:session-17:word:vacation; family: word_card -->
@@ -125,7 +125,7 @@ We will eat after she ___. → **comes** · will come · come
 <!-- interaction_id: en:lesson-26:session-17:i12; family: context_gap_grammar -->
 I will call after my vacation ___. → **ends** · will end · end
 - will end — *После after в этом придаточном времени ends без will.*
-- end — *My vacation — единственное число: ends.*
+- end — *My vacation — форма для одного: ends.*
 
 **17 · Друг предлагает встретиться прямо у гостиницы. Скажите: «Так меньше хлопот».**
 <!-- interaction_id: en:lesson-26:session-17:i13; family: scripted_repeat_compare -->

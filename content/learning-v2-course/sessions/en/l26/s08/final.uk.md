@@ -9,13 +9,13 @@
 
 ### Коли продукту бракує
 
-Shortage — нестача. I use frozen fruit when there is a shortage of fresh fruit — я використовую заморожені фрукти, коли бракує свіжих. A shortage of показує, чого саме бракує. Це мій звичайний спосіб замінити продукт, тому use в Present Simple. When there is a shortage описує умову, за якої я так роблю.
+Shortage — нестача. I use frozen fruit when there is a shortage of fresh fruit — я використовую заморожені фрукти, коли бракує свіжих. A shortage of показує, чого саме бракує. Це мій звичайний спосіб замінити продукт, тому use в формі work / works. When there is a shortage описує умову, за якої я так роблю.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I use frozen fruit when there is a shortage of fresh fruit.**
-- ❌ I uses frozen fruit when there is a shortage of fresh fruit. — *Після I в Present Simple потрібна форма use.*
-- ❌ I using frozen fruit when there is a shortage of fresh fruit. — *Звичайний вибір за умови: Present Simple в обох частинах.*
+- ❌ I uses frozen fruit when there is a shortage of fresh fruit. — *Після I в формі work / works потрібна форма use.*
+- ❌ I using frozen fruit when there is a shortage of fresh fruit. — *Звичайний вибір за умови: форма work / works в обох частинах.*
 
 ---
 
@@ -23,13 +23,13 @@ Shortage — нестача. I use frozen fruit when there is a shortage of fres
 
 ### Як готуєте м’ясо
 
-Друг запитує, як ви готуєте м’ясо. Опишіть звичайну дію: I remove excess fat when I cook meat — я видаляю зайвий жир, коли готую м’ясо. Складаємо: I + remove + excess fat + when I cook meat — хто, що робить, що прибирає, коли. В обох частинах present simple: ви розповідаєте про звичку. Після I використовуємо remove і cook без -s. When пов’язує дію із ситуацією, у якій ви зазвичай так робите.
+Друг запитує, як ви готуєте м’ясо. Опишіть звичайну дію: I remove excess fat when I cook meat — я видаляю зайвий жир, коли готую м’ясо. Складаємо: I + remove + excess fat + when I cook meat — хто, що робить, що прибирає, коли. В обох частинах форма work / works: ви розповідаєте про звичку. Після I використовуємо remove і cook без -s. When пов’язує дію із ситуацією, у якій ви зазвичай так робите.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I remove excess fat when I cook meat.**
-- ❌ I removes excess fat when I cook meat. — *Після I в Present Simple потрібна форма remove.*
-- ❌ I removing excess fat when I cook meat. — *Звичайний вибір за умови: Present Simple в обох частинах.*
+- ❌ I removes excess fat when I cook meat. — *Після I в формі work / works потрібна форма remove.*
+- ❌ I removing excess fat when I cook meat. — *Звичайний вибір за умови: форма work / works в обох частинах.*
 
 ---
 
@@ -37,13 +37,13 @@ Shortage — нестача. I use frozen fruit when there is a shortage of fres
 
 ### Коли додаєте сіль
 
-Ви куштуєте суп і пояснюєте другові свій звичайний спосіб приправляти його: I add salt if the soup lacks flavour — я додаю сіль, якщо супу бракує смаку. Складаємо: I + add + salt + if the soup lacks flavour — хто, що робить, що додає, за якої умови. Обидві частини в present simple: це звична реакція. Після I потрібне add без -s; the soup — однина, тому lacks із -s. Після lacks одразу ставимо flavour без of.
+Ви куштуєте суп і пояснюєте другові свій звичайний спосіб приправляти його: I add salt if the soup lacks flavour — я додаю сіль, якщо супу бракує смаку. Складаємо: I + add + salt + if the soup lacks flavour — хто, що робить, що додає, за якої умови. Обидві частини в формі work / works: це звична реакція. Після I потрібне add без -s; the soup — форма для одного, тому lacks із -s. Після lacks одразу ставимо flavour без of.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I add salt if the soup lacks flavour.**
-- ❌ I adds salt if the soup lacks flavour. — *Після I в Present Simple потрібна форма add.*
-- ❌ I adding salt if the soup lacks flavour. — *Звичайний вибір за умови: Present Simple в обох частинах.*
+- ❌ I adds salt if the soup lacks flavour. — *Після I в формі work / works потрібна форма add.*
+- ❌ I adding salt if the soup lacks flavour. — *Звичайний вибір за умови: форма work / works в обох частинах.*
 
 ---
 
@@ -70,8 +70,8 @@ Shortage — нестача. I use frozen fruit when there is a shortage of fres
 **5 · Ви завжди прибираєте зайвий жир перед смаженням. Доповніть звичну дію.**
 <!-- interaction_id: en:lesson-26:session-08:i03; family: context_gap_grammar -->
 I ___ excess fat when I prepare meat. → **remove** · removes · removing
-- removes — *Після I у Present Simple потрібна форма remove без -s.*
-- removing — *Для звичної дії тут потрібно remove; removing без допоміжного дієслова не підходить.*
+- removes — *Після I у формі work / works потрібна форма remove без -s.*
+- removing — *Для звичної дії тут потрібно remove; removing без do / does не підходить.*
 
 **6 · Відновіть почуте пояснення зберігання.**
 <!-- interaction_id: en:lesson-26:session-08:i04; family: listen_build_dictation -->
@@ -79,7 +79,7 @@ I ___ excess fat when I prepare meat. → **remove** · removes · removing
 
 **7 · Картка слова — chunks**
 <!-- interaction_id: en:lesson-26:session-08:word:chunks; family: word_card -->
-> **chunks** — Шматочки. Chunk — щільний шматок; chunks — множина.
+> **chunks** — Шматочки. Chunk — щільний шматок; chunks — форма для кількох.
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-08:i05; family: listen_choose -->
@@ -106,7 +106,7 @@ shortage — нестача · excess — зайвий · chunks — шмато�
 **13 · Ви описуєте свою звичайну звичку, а не разовий план. Доповніть умову.**
 <!-- interaction_id: en:lesson-26:session-08:i09; family: context_gap_grammar -->
 I add water if the sauce ___ too thick. → **is** · are · be
-- are — *The sauce — однина: is.*
+- are — *The sauce — форма для одного: is.*
 - be — *Тут потрібна особова форма is, а не початкова be.*
 
 **14 · Коли свіжого молока немає, ви використовуєте сухе. Виберіть заперечну форму.**
@@ -147,5 +147,5 @@ I use powdered milk when I ___ have fresh milk. → **do not** · does not · am
 <!-- interaction_id: en:lesson-26:session-08:i17; family: context_gap_grammar -->
 I add salt if the soup ___ flavour. → **lacks** · lack · lacking
 - lack — *Після the soup потрібна форма lacks із -s.*
-- lacking — *Потрібна особова форма lacks; lacking тут не утворює присудок.*
+- lacking — *Потрібна особова форма lacks; lacking тут не може стояти сама.*
 

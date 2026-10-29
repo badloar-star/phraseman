@@ -9,12 +9,12 @@
 
 ### Що відбувається з волоссям під дощем
 
-Перукар запитує, як ваше волосся поводиться у вологу погоду. Поясніть: My hair gets frizzy in the rain — моє волосся пушиться під дощем. Складаємо: My hair + gets + frizzy + in the rain — що, стає, яким, за яких обставин. Hair тут позначає волосся як ціле й потребує gets із -s. Frizzy описує результат зміни. Це звичайна повторювана реакція, тому використовуємо present simple.
+Перукар запитує, як ваше волосся поводиться у вологу погоду. Поясніть: My hair gets frizzy in the rain — моє волосся пушиться під дощем. Складаємо: My hair + gets + frizzy + in the rain — що, стає, яким, за яких обставин. Hair тут позначає волосся як ціле й потребує gets із -s. Frizzy описує результат зміни. Це звичайна повторювана реакція, тому використовуємо форму work / works.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My hair gets frizzy in the rain.**
-- ❌ My hair get frizzy in the rain. — *З незлічуваним hair тут потрібно gets.*
+- ❌ My hair get frizzy in the rain. — *З тим, що не рахують поштучно, hair тут потрібно gets.*
 - ❌ My hair getting frizzy in the rain. — *Для звичного результату тут потрібно gets.*
 
 ---
@@ -37,7 +37,7 @@
 
 ### Пішли із салону до дзвінка
 
-Подруга вчора зателефонувала, коли ви вже вийшли із салону. Поясніть: I had left the salon by the time she called — я пішов із салону до того часу, як вона зателефонувала. Складаємо: I + had left + the salon + by the time she called — хто, що зробив раніше, звідки пішов, до якого моменту в минулому. Had left показує вихід раніше за дзвінок. Після had потрібна третя форма leave — left; called називає подальшу подію.
+Подруга вчора зателефонувала, коли ви вже вийшли із салону. Поясніть: I had left the salon by the time she called — я пішов із салону до того часу, як вона зателефонувала. Складаємо: I + had left + the salon + by the time she called — хто, що зробив раніше, звідки пішов, до якого моменту в минулому. Had left показує вихід раніше за дзвінок. Після had потрібна форма leave — left; called називає подальшу подію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — bangs**
 <!-- interaction_id: en:lesson-26:session-53:word:bangs; family: word_card -->
-> **bangs** — Чубчик; американське слово, тут у множині.
+> **bangs** — Чубчик; американське слово, тут у формі для кількох.
 
 **2 · Скажіть майстру, що чубчик задовгий.**
 <!-- interaction_id: en:lesson-26:session-53:i01; family: phrase_builder -->
@@ -80,12 +80,12 @@
 **7 · Опишіть звичний результат: волосся пушиться під дощем.**
 <!-- interaction_id: en:lesson-26:session-53:i05; family: context_gap_grammar -->
 My hair ___ frizzy in the rain. → **gets** · get · getting
-- get — *Hair тут незлічуване: gets.*
+- get — *Hair тут не рахується поштучно: gets.*
 - getting — *Тут потрібна форма gets.*
 
 **8 · Картка слова — stubble**
 <!-- interaction_id: en:lesson-26:session-53:word:stubble; family: word_card -->
-> **stubble** — Коротка щетина; тут незлічуване слово.
+> **stubble** — Коротка щетина; тут слово, яке не рахують поштучно.
 
 **9 · Скажіть, що у вас щетина на підборідді.**
 <!-- interaction_id: en:lesson-26:session-53:i06; family: scripted_repeat_compare -->

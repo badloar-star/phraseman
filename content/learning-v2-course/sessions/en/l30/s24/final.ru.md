@@ -10,7 +10,7 @@
 
 ### Что друг сказал о погоде
 
-Вы собираетесь на пикник. Друг сообщил, что в парке ветрено. Передайте это сестре: He said it was windy — он сказал, что было ветрено. Соберите He + said + it was windy. После said передаём сообщение целиком: it — подлежащее, was — связка, windy — описание погоды. В этой фразе можно обойтись без that.
+Вы собираетесь на пикник. Друг сообщил, что в парке ветрено. Передайте это сестре: He said it was windy — он сказал, что было ветрено. Соберите He + said + it was windy. После said передаём сообщение целиком: it — о чём речь, was — связка, windy — описание погоды. В этой фразе можно обойтись без that.
 
 **Выберите фразу для этой ситуации.**
 
@@ -143,7 +143,7 @@ She asked me ___ on the wet grass. → **not to sit** · not sit · not sitting
 <!-- interaction_id: en:lesson-30:session-24:i20; family: context_gap_grammar -->
 She asked if ___ cold. → **we were** · were we · us were
 - were we — *В пересказе после if идёт we, затем were.*
-- us were — *Кому холодно, здесь обозначаем подлежащим we.*
+- us were — *Кому холодно, здесь ставим we.*
 
 **21 · Дождь снова начинается. Друг сказал всем вам идти домой. Передайте указание.**
 <!-- interaction_id: en:lesson-30:session-24:i21; family: scripted_repeat_compare -->

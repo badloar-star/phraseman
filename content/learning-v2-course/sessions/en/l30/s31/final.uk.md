@@ -44,7 +44,7 @@
 
 - ✅ **I wish I had a better seat.**
 - ❌ I wish I have a better seat. — *У цьому бажанні про ситуацію зараз потрібна форма had.*
-- ❌ I wish me had a better seat. — *Того, у кого місце, тут позначаємо підметом I.*
+- ❌ I wish me had a better seat. — *Того, у кого місце, тут ставимо I.*
 
 ---
 

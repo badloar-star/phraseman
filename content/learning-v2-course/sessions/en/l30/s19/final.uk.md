@@ -44,7 +44,7 @@
 
 - ✅ **She asked where the keys were.**
 - ❌ She asked where were the keys. — *У переказі порядок the keys were, без переставляння як у запитанні.*
-- ❌ She asked where the keys was. — *Keys — множина; тут потрібне were.*
+- ❌ She asked where the keys was. — *Keys — форма для кількох; тут потрібне were.*
 
 ---
 
@@ -143,7 +143,7 @@ I asked him ___ in. → **not to go** · not go · not going
 <!-- interaction_id: en:lesson-30:session-19:i20; family: context_gap_grammar -->
 She asked if ___ ready. → **we were** · were we · us were
 - were we — *У переказі після if йде we, потім were.*
-- us were — *Хто готовий — we; us не ставимо на місце підмета.*
+- us were — *Хто готовий — we; us на це місце не ставимо.*
 
 **21 · Сестра попросила вас залишитися на чай. Перекажіть запрошення.**
 <!-- interaction_id: en:lesson-30:session-19:i21; family: scripted_repeat_compare -->

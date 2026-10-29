@@ -103,7 +103,7 @@ The cottage we ___ was small. → **visited** · visiting · visits
 
 **12 · Карточка слова — misgiving**
 <!-- interaction_id: en:lesson-30:session-06:i12; family: word_card -->
-> **misgiving** — Сомнение, опасение. Чувство, что решение или план может оказаться неудачным. Часто употребляется во множественном числе.
+> **misgiving** — Сомнение, опасение. Чувство, что решение или план может оказаться неудачным. Часто употребляется в форме для нескольких.
 
 **13 · Скажите другу, что у вас есть одно опасение насчёт этой поездки.**
 <!-- interaction_id: en:lesson-30:session-06:i13; family: scripted_repeat_compare -->

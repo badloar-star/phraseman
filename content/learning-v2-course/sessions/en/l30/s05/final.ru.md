@@ -103,7 +103,7 @@ She said she ___ devastated. → **was** · were · being
 
 **12 · Карточка слова — condolences**
 <!-- interaction_id: en:lesson-30:session-05:i12; family: word_card -->
-> **condolences** — Соболезнования. Слова сочувствия человеку, у которого умер кто-то близкий. Обычно используется во множественном числе.
+> **condolences** — Соболезнования. Слова сочувствия человеку, у которого умер кто-то близкий. Обычно используется в форме для нескольких.
 
 **13 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-30:session-05:i13; family: listen_choose -->

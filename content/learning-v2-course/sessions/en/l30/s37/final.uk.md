@@ -16,7 +16,7 @@
 
 - ✅ **He said his hair was too long.**
 - ❌ He said his hair is too long. — *У заданому переказі зсуваємо is у was.*
-- ❌ He said his hair were too long. — *Hair тут не множина; потрібна форма was.*
+- ❌ He said his hair were too long. — *Hair тут не про кілька волосин; потрібна форма was.*
 
 ---
 

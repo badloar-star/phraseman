@@ -30,7 +30,7 @@
 
 - ✅ **He said he needed help.**
 - ❌ He said he needs help. — *Needs не выполняет заданный сдвиг в прошлое; здесь нужно needed.*
-- ❌ He said he needing help. — *Нужна форма needed; needing без вспомогательного глагола здесь не подходит.*
+- ❌ He said he needing help. — *Нужна форма needed; одной формы needing здесь мало.*
 
 ---
 

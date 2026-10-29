@@ -135,7 +135,7 @@ I wish I ___ more patience. → **had** · have · having
 **19 · Передайте слова сестры о сильном раздражении в тот момент.**
 <!-- interaction_id: en:lesson-30:session-03:i19; family: context_gap_grammar -->
 She said she ___ exasperated. → **felt** · feeling · feel
-- feeling — *Здесь нужно she felt; feeling без вспомогательного глагола не подходит.*
+- feeling — *Здесь нужно she felt; одного feeling здесь мало.*
 - feel — *Feel не сочетается с she; в этой фразе о прошлом состоянии нужно felt.*
 
 **20 · Передайте слова брата: он сказал, что ему нужна помощь.**

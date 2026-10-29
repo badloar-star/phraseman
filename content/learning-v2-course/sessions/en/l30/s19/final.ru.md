@@ -44,7 +44,7 @@
 
 - ✅ **She asked where the keys were.**
 - ❌ She asked where were the keys. — *В пересказе порядок the keys were, без перестановки как в вопросе.*
-- ❌ She asked where the keys was. — *Keys — множественное число; здесь нужно were.*
+- ❌ She asked where the keys was. — *Keys — форма для нескольких; здесь нужно were.*
 
 ---
 
@@ -143,7 +143,7 @@ I asked him ___ in. → **not to go** · not go · not going
 <!-- interaction_id: en:lesson-30:session-19:i20; family: context_gap_grammar -->
 She asked if ___ ready. → **we were** · were we · us were
 - were we — *В пересказе после if идёт we, затем were.*
-- us were — *Кто готов — we; us не ставим на место подлежащего.*
+- us were — *Кто готов — we; us на это место не ставим.*
 
 **21 · Сестра попросила вас остаться на чай. Перескажите приглашение.**
 <!-- interaction_id: en:lesson-30:session-19:i21; family: scripted_repeat_compare -->

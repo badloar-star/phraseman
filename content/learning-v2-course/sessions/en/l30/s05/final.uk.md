@@ -103,7 +103,7 @@ She said she ___ devastated. → **was** · were · being
 
 **12 · Картка слова — condolences**
 <!-- interaction_id: en:lesson-30:session-05:i12; family: word_card -->
-> **condolences** — Співчуття. Слова підтримки людині, у якої помер хтось близький. Зазвичай уживається у множині.
+> **condolences** — Співчуття. Слова підтримки людині, у якої помер хтось близький. Зазвичай уживається у формі для кількох.
 
 **13 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-30:session-05:i13; family: listen_choose -->

@@ -44,7 +44,7 @@
 
 - ✅ **She asked if I needed help.**
 - ❌ She asked if did I need help. — *В пересказе используем I needed, без did перед I.*
-- ❌ She asked if me needed help. — *Кому нужна помощь, здесь обозначаем подлежащим I.*
+- ❌ She asked if me needed help. — *Кому нужна помощь, здесь ставим I.*
 
 ---
 

@@ -30,7 +30,7 @@
 
 - ✅ **He asked where my keys were.**
 - ❌ He asked where were my keys. — *У переказі потрібен порядок my keys were.*
-- ❌ He asked where my keys was. — *Множина keys потребує were.*
+- ❌ He asked where my keys was. — *Keys (їх кілька) потребують were.*
 
 ---
 

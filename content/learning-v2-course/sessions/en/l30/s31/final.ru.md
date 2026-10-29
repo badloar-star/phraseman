@@ -44,7 +44,7 @@
 
 - ✅ **I wish I had a better seat.**
 - ❌ I wish I have a better seat. — *В этом желании о ситуации сейчас нужна форма had.*
-- ❌ I wish me had a better seat. — *Того, у кого место, здесь обозначаем подлежащим I.*
+- ❌ I wish me had a better seat. — *Того, у кого место, здесь ставим I.*
 
 ---
 

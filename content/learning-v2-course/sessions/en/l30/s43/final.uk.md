@@ -16,7 +16,7 @@
 
 - ✅ **The shoes I bought are too small.**
 - ❌ The shoes bought I are too small. — *В уточненні ставимо I перед bought.*
-- ❌ The shoes I bought is too small. — *Множина shoes потребує are.*
+- ❌ The shoes I bought is too small. — *Shoes (їх кілька) потребують are.*
 
 ---
 

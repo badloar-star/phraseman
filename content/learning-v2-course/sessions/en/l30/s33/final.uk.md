@@ -30,7 +30,7 @@
 
 - ✅ **He said he needed help.**
 - ❌ He said he needs help. — *Needs не виконує заданий зсув у минуле; тут потрібне needed.*
-- ❌ He said he needing help. — *Потрібна форма needed; needing без допоміжного дієслова тут не підходить.*
+- ❌ He said he needing help. — *Потрібна форма needed; однієї форми needing тут замало.*
 
 ---
 

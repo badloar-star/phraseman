@@ -10,7 +10,7 @@
 
 ### Що друг сказав про погоду
 
-Ви збираєтеся на пікнік. Друг повідомив, що в парку вітряно. Передайте це сестрі: He said it was windy — він сказав, що було вітряно. Складіть He + said + it was windy. Після said передаємо повідомлення цілком: it — підмет, was — зв’язка, windy — опис погоди. У цій фразі можна обійтися без that.
+Ви збираєтеся на пікнік. Друг повідомив, що в парку вітряно. Передайте це сестрі: He said it was windy — він сказав, що було вітряно. Складіть He + said + it was windy. Після said передаємо повідомлення цілком: it — про що йдеться, was — зв’язка, windy — опис погоди. У цій фразі можна обійтися без that.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -143,7 +143,7 @@ She asked me ___ on the wet grass. → **not to sit** · not sit · not sitting
 <!-- interaction_id: en:lesson-30:session-24:i20; family: context_gap_grammar -->
 She asked if ___ cold. → **we were** · were we · us were
 - were we — *У переказі після if йде we, потім were.*
-- us were — *Кому холодно, тут позначаємо підметом we.*
+- us were — *Кому холодно, тут ставимо we.*
 
 **21 · Дощ знову починається. Друг сказав усім вам іти додому. Передайте вказівку.**
 <!-- interaction_id: en:lesson-30:session-24:i21; family: scripted_repeat_compare -->

@@ -103,7 +103,7 @@ The cottage we ___ was small. → **visited** · visiting · visits
 
 **12 · Картка слова — misgiving**
 <!-- interaction_id: en:lesson-30:session-06:i12; family: word_card -->
-> **misgiving** — Сумнів, побоювання. Відчуття, що рішення або план може виявитися невдалим. Часто вживається у множині.
+> **misgiving** — Сумнів, побоювання. Відчуття, що рішення або план може виявитися невдалим. Часто вживається у формі для кількох.
 
 **13 · Скажіть другові, що у вас є одне побоювання щодо цієї поїздки.**
 <!-- interaction_id: en:lesson-30:session-06:i13; family: scripted_repeat_compare -->

@@ -44,7 +44,7 @@
 
 - ✅ **The apples I bought are sweet.**
 - ❌ The apples bought I are sweet. — *В уточненні потрібен порядок I bought.*
-- ❌ The apples I bought is sweet. — *Множина apples потребує are.*
+- ❌ The apples I bought is sweet. — *Apples (їх кілька) потребують are.*
 
 ---
 

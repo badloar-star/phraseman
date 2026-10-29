@@ -44,7 +44,7 @@
 
 - ✅ **She asked if I needed help.**
 - ❌ She asked if did I need help. — *У переказі використовуємо I needed, без did перед I.*
-- ❌ She asked if me needed help. — *Кому потрібна допомога, тут позначаємо підметом I.*
+- ❌ She asked if me needed help. — *Кому потрібна допомога, тут ставимо I.*
 
 ---
 

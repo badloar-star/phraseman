@@ -967,7 +967,7 @@
             "correct": false,
             "testedDimension": "Скажіть, що зранку автобуса немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Слово bus стоит в единственном числе: нужно `There is no`.",
+              "ru": "Слово bus стоит в форме для одного: нужно `There is no`.",
               "uk": "Слово bus стоїть в однині: потрібно `There is no`."
             }
           },
@@ -1181,5 +1181,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "98bfd8c522394a4f0cf93c6baea3d672e1c3e2b6cf92c6819dcba373c43f8aea"
+  "learnerFingerprint": "1b2f9e5b37b53076c5eabc8f3fdaf01ac032db728f7fae418e2b790d61f08995"
 }

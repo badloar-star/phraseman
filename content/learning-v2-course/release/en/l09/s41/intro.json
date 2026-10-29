@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-09:session-41",
   "learningOutcomeByLocale": {
-    "ru": "The leaves are whirling; I am near the carousel; This is an eddy",
-    "uk": "The leaves are whirling; I am near the carousel; This is an eddy"
+    "ru": "описать движение листьев: The leaves are whirling.",
+    "uk": "описати рух листя: The leaves are whirling."
   },
   "pages": [
     {
@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Во дворе порыв ветра поднимает сухие листья под аркой. Друг смотрит в другую сторону, и вы описываете движение: The leaves are whirling — «Листья кружатся». Whirl — «кружиться, быстро двигаться по кругу». Здесь листья не закреплены на оси, как пропеллер: ветер гоняет их по кругу. Для leaves используем are; форма действия — whirling.",
-        "uk": "У дворі порив вітру піднімає сухе листя під аркою. Друг дивиться в інший бік, і ви описуєте рух: The leaves are whirling — «Листя кружляє». Whirl — «кружляти, швидко рухатися по колу». Тут листя не закріплене на осі, як пропелер: вітер ганяє його по колу. Англійське leaves — множина, тому are; форма дії — whirling."
+        "uk": "У дворі порив вітру піднімає сухе листя під аркою. Друг дивиться в інший бік, і ви описуєте рух: The leaves are whirling — «Листя кружляє». Whirl — «кружляти, швидко рухатися по колу». Тут листя не закріплене на осі, як пропелер: вітер ганяє його по колу. Англійське leaves — форма для кількох, тому are; форма дії — whirling."
       },
       "question": {
         "interactionId": "en:lesson-09:session-41:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f4fb862eb8ca839f6de2fc775c8cdc27f16bf540cf2d73e275b3e898f5d6eea6"
+  "introFingerprint": "a878361e4ad877126ddbe54783aee28fdf4a487524ff098c193a227c25980cce"
 }

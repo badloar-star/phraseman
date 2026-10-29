@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для однієї пустушки",
+      "prompt": "Виберіть is або are: одна пустушка",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-49:i06:r1",
@@ -402,12 +402,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для однієї пустушки",
+      "accessibilityLabel": "Виберіть is або are: одна пустушка",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для одной пустышки",
-          "uk": "Виберіть зв’язку для однієї пустушки"
+          "uk": "Виберіть is або are: одна пустушка"
         },
         "gappedTargetPhrase": "The pacifier ___ in the bag.",
         "gapOptions": [
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль за першим звуком onesie",
+      "prompt": "Виберіть слово за першим звуком onesie",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-49:i09:r1",
@@ -623,12 +623,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль за першим звуком onesie",
+      "accessibilityLabel": "Виберіть слово за першим звуком onesie",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите артикль по первому звуку onesie",
-          "uk": "Виберіть артикль за першим звуком onesie"
+          "uk": "Виберіть слово за першим звуком onesie"
         },
         "gappedTargetPhrase": "This is ___ onesie.",
         "gapOptions": [
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Виберіть артикль за першим звуком onesie",
             "feedbackByLocale": {
-              "ru": "Are не артикль, здесь нужен a.",
+              "ru": "Здесь нужно a, а не are.",
               "uk": "Are не артикль, тут потрібне a."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "642fb9c7e1d775c04238f9baaf1af3fa17bf526ee8d49e81d1368438510019d6"
+  "learnerFingerprint": "815b2ad0e8c7cc13d0eddffcc8379bb9a1f52af119a3412329859cd570d8a669"
 }

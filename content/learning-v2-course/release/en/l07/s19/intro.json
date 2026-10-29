@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-19",
   "learningOutcomeByLocale": {
-    "ru": "сказать, что вы не жалуетесь, спросить, есть ли батарея в устройстве, и сообщить, что чего-то нет",
-    "uk": "сказати, що ви не скаржитеся, спитати, чи є батарея у пристрої, і повідомити, що чогось немає"
+    "ru": "сказать, что вы не жалуетесь: I don't complain.",
+    "uk": "сказати, що ви не скаржитеся: I don't complain."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Заноза в пальці"
       },
       "bodyByLocale": {
-        "ru": "Соседскому ребёнку в палец попала заноза, и вы хотите осторожно её вытащить. Вы открыли аптечку и перебрали всё по очереди: пинцета там нет. tweezers — «пинцет». There are no tweezers here — «Здесь нет пинцета». Слово tweezers всегда во множественном числе, поэтому are no.",
-        "uk": "Сусідській дитині в палець потрапила заноза, і ви хочете обережно її витягти. Ви відкрили аптечку й перебрали все по черзі: пінцета там немає. tweezers — «пінцет». There are no tweezers here — «Тут немає пінцета». Слово tweezers завжди у множині, тому are no."
+        "ru": "Соседскому ребёнку в палец попала заноза, и вы хотите осторожно её вытащить. Вы открыли аптечку и перебрали всё по очереди: пинцета там нет. tweezers — «пинцет». There are no tweezers here — «Здесь нет пинцета». Слово tweezers всегда в форме для нескольких, поэтому are no.",
+        "uk": "Сусідській дитині в палець потрапила заноза, і ви хочете обережно її витягти. Ви відкрили аптечку й перебрали все по черзі: пінцета там немає. tweezers — «пінцет». There are no tweezers here — «Тут немає пінцета». Слово tweezers завжди у формі для кількох, тому are no."
       },
       "question": {
         "interactionId": "en:lesson-07:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "63a2b35a7822a4cce03248243c3eb311542bb11dab79e274420ab49574323dc8"
+  "introFingerprint": "130d37bdff9a91d3ea9218ce887e9d366ae1d9bf9603c3a9ef261081f3d5a192"
 }

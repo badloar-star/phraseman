@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-07:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-01:intro3:r2": {
-          "ru": "Слово courier стоит в единственном числе: нужно There is no.",
-          "uk": "Слово courier стоїть в однині: потрібно There is no."
+          "ru": "Слово courier стоит в форме для одного: нужно There is no.",
+          "uk": "Слово courier стоїть у формі для одного: потрібно There is no."
         },
         "en:lesson-07:session-01:intro3:r3": {
           "ru": "После not здесь не хватает a. В выбранной конструкции используем no courier.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "3d41fcb11363b960a780dfec4a2d1b486681408c2c2790049b33677e9860a7a9"
+  "auxiliaryFingerprint": "d2f181ea118e464d255c7ecc75790637723f77034907a28cac0b5d79193563ba"
 }

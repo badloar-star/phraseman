@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-09:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-09:session-38:intro1:r2": {
-          "ru": "С errors во множественном числе нужно are.",
-          "uk": "З errors у множині потрібне are."
+          "ru": "С errors в форме для нескольких нужно are.",
+          "uk": "З errors у формі для кількох потрібне are."
         },
         "en:lesson-09:session-38:intro1:r3": {
           "ru": "В occurring две r.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "7802770689dcae7234ec734201f1ec8081998d1b6754f2b0fb05ce1dfa25e214"
+  "auxiliaryFingerprint": "19262f3d981186001309407b5cea2acf4b3519c9e5600bf6297e9113906dafcc"
 }

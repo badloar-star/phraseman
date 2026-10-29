@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-09:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-09:session-41:intro1:r2": {
-          "ru": "Leaves — множественное число, нужно are.",
-          "uk": "Leaves — множина, потрібне are."
+          "ru": "Leaves — форма для нескольких, нужно are.",
+          "uk": "Leaves — форма для кількох, потрібне are."
         },
         "en:lesson-09:session-41:intro1:r3": {
           "ru": "После are для действия сейчас нужна форма whirling.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9d6b3bd6d44344d64dd4f4fbebd945c5b8d0d9cc865feebe004ab4bdaa25b54c"
+  "auxiliaryFingerprint": "5b3df0272023713f07bf3726c7fe8ee669514f9dcf3f91c7f89d7ce7f86731bf"
 }

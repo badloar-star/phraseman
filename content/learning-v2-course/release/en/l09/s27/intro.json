@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-09:session-27",
   "learningOutcomeByLocale": {
-    "ru": "is sliding / is not sliding; вопрос о движении сейчас",
-    "uk": "is sliding / is not sliding; запитання про рух зараз"
+    "ru": "спросить, движется ли предмет сейчас: Is the sled sliding?",
+    "uk": "запитати, чи рухається предмет зараз: Is the sled sliding?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Санки виїхали з кадру"
       },
       "bodyByLocale": {
-        "ru": "Вы фотографируете пустые санки на небольшом снежном склоне. Они медленно съезжают, пока друг выбирает ракурс. Sled — «санки», slope — «склон». The sled is sliding down the slope — «Санки скользят вниз по склону». В английском a sled — один предмет, поэтому is, хотя по-русски «санки» стоят во множественном числе. Slide здесь значит «скользить»; в sliding конечная e исчезает. Модель решила не ждать фотографа.",
-        "uk": "Ви фотографуєте порожні санки на невеликому сніговому схилі. Вони повільно з’їжджають, поки друг обирає ракурс. Sled — «санки», slope — «схил». The sled is sliding down the slope — «Санки ковзають униз схилом». В англійській a sled — один предмет, тому is, хоча українською «санки» стоять у множині. Slide тут означає «ковзати»; у sliding кінцева e зникає. Модель вирішила не чекати фотографа."
+        "ru": "Вы фотографируете пустые санки на небольшом снежном склоне. Они медленно съезжают, пока друг выбирает ракурс. Sled — «санки», slope — «склон». The sled is sliding down the slope — «Санки скользят вниз по склону». В английском a sled — один предмет, поэтому is, хотя по-русски «санки» стоят в форме для нескольких. Slide здесь значит «скользить»; в sliding конечная e исчезает. Модель решила не ждать фотографа.",
+        "uk": "Ви фотографуєте порожні санки на невеликому сніговому схилі. Вони повільно з’їжджають, поки друг обирає ракурс. Sled — «санки», slope — «схил». The sled is sliding down the slope — «Санки ковзають униз схилом». В англійській a sled — один предмет, тому is, хоча українською «санки» стоять у формі для кількох. Slide тут означає «ковзати»; у sliding кінцева e зникає. Модель вирішила не чекати фотографа."
       },
       "question": {
         "interactionId": "en:lesson-09:session-27:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b1b60bf6ef98bb93dcd6c309f335e5385a02e56229a1b858df1c9e96bb2ccab6"
+  "introFingerprint": "9db82c15a823116d2bbe7d0a6e51027753a164afa59734ee848eaaab0fdf47fb"
 }

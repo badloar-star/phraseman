@@ -259,7 +259,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+      "prompt": "Скажите о смотрителе дома: «Каждый день он носит форму». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-56:i03:r1",
@@ -276,14 +276,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+      "accessibilityLabel": "Скажите о смотрителе дома: «Каждый день он носит форму». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
-          "uk": "Скажіть про доглядача будинку: «Він носить форму». Виберіть слово"
+          "ru": "Скажите о смотрителе дома: «Каждый день он носит форму». Выберите слово",
+          "uk": "Скажіть про доглядача будинку: «Щодня він носить форму». Виберіть слово"
         },
-        "gappedTargetPhrase": "The caretaker ___ a uniform.",
+        "gappedTargetPhrase": "The caretaker ___ a uniform every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-56:i03:r1",
@@ -298,12 +298,12 @@
             "text": "is wears"
           }
         ],
-        "testedDimension": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+        "testedDimension": "Скажите о смотрителе дома: «Каждый день он носит форму». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-56:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+            "testedDimension": "Скажите о смотрителе дома: «Каждый день он носит форму». Выберите слово",
             "feedbackByLocale": {
               "ru": "Смотритель один: нужно `wears`, с `s`.",
               "uk": "Доглядач один: потрібно `wears`, з `s`."
@@ -312,7 +312,7 @@
           {
             "responseId": "en:lesson-06:session-56:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о смотрителе дома: «Он носит форму». Выберите слово",
+            "testedDimension": "Скажите о смотрителе дома: «Каждый день он носит форму». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `The caretaker wears`, без `is`.",
               "uk": "Кажемо `The caretaker wears`, без `is`."
@@ -492,22 +492,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
+      "prompt": "Сосед спрашивает о вашем брате. Скажите: «Каждый день он доставляет газеты»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
+      "accessibilityLabel": "Сосед спрашивает о вашем брате. Скажите: «Каждый день он доставляет газеты»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He delivers newspapers.",
+        "targetPhrase": "He delivers newspapers every day.",
         "localizedMeaning": {
-          "ru": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
-          "uk": "Сусід питає про вашого брата. Скажіть: «Він доставляє газети»"
+          "ru": "Сосед спрашивает о вашем брате. Скажите: «Каждый день он доставляет газеты»",
+          "uk": "Сусід питає про вашого брата. Скажіть: «Щодня він доставляє газети»"
         },
         "orderedTokens": [
           "He",
           "delivers",
-          "newspapers"
+          "newspapers",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "deliver"
@@ -516,10 +518,10 @@
           {
             "responseId": "en:lesson-06:session-56:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Сосед спрашивает о вашем брате. Скажите: «Он доставляет газеты»",
+            "testedDimension": "Сосед спрашивает о вашем брате. Скажите: «Каждый день он доставляет газеты»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `delivers` — `He delivers newspapers.`",
-              "uk": "тут потрібно `delivers` — `He delivers newspapers.`"
+              "ru": "здесь нужно `delivers` — `He delivers newspapers every day.`",
+              "uk": "тут потрібно `delivers` — `He delivers newspapers every day.`"
             }
           }
         ],
@@ -569,7 +571,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+      "prompt": "Скажите о себе и коллегах: «Каждый день мы носим форму». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-56:i08:r1",
@@ -586,14 +588,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+      "accessibilityLabel": "Скажите о себе и коллегах: «Каждый день мы носим форму». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
-          "uk": "Скажіть про себе й колег: «Ми носимо форму». Виберіть слово"
+          "ru": "Скажите о себе и коллегах: «Каждый день мы носим форму». Выберите слово",
+          "uk": "Скажіть про себе й колег: «Щодня ми носимо форму». Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ uniforms.",
+        "gappedTargetPhrase": "We ___ uniforms every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-56:i08:r1",
@@ -608,12 +610,12 @@
             "text": "are wear"
           }
         ],
-        "testedDimension": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+        "testedDimension": "Скажите о себе и коллегах: «Каждый день мы носим форму». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-56:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+            "testedDimension": "Скажите о себе и коллегах: «Каждый день мы носим форму». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `we` нужно `wear`, без `s`.",
               "uk": "Після `we` потрібно `wear`, без `s`."
@@ -622,7 +624,7 @@
           {
             "responseId": "en:lesson-06:session-56:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе и коллегах: «Мы носим форму». Выберите слово",
+            "testedDimension": "Скажите о себе и коллегах: «Каждый день мы носим форму». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `We wear`, без `are`.",
               "uk": "Кажемо `We wear`, без `are`."
@@ -1172,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d26c228801d7565b6b604fa1d8322c905c9a1a805ce007587633e2f1316f63c2"
+  "learnerFingerprint": "ea5197f2ead5505a49aac6bb1ed115610e0f8e9ae912a328b99a6f448ddcee54"
 }

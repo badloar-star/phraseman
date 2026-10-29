@@ -208,7 +208,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для вещества ice",
             "feedbackByLocale": {
-              "ru": "Ice здесь не множественное число: is.",
+              "ru": "Ice здесь не про несколько предметов: is.",
               "uk": "Ice тут не множина: is."
             }
           },
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b1cbdd46f12f115a4048e86e0b7f067d9999fecf8f5b08ab2340f40660365e64"
+  "learnerFingerprint": "3dac5d930d3e3386f7c0cd142c6547f1666c78e8605a57aa69612172223ac4ab"
 }

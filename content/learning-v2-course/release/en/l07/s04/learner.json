@@ -963,7 +963,7 @@
             "correct": false,
             "testedDimension": "Скажите подруге, что счёта нет. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Слово bill стоит в единственном числе: нужно `There is no`.",
+              "ru": "Слово bill стоит в форме для одного: нужно `There is no`.",
               "uk": "Слово bill стоїть в однині: потрібно `There is no`."
             }
           },
@@ -1177,5 +1177,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cc8b3a59ab15dc42efadecdb8e1287ebb11405e015347c04edbe6cfca34ec543"
+  "learnerFingerprint": "badf3e145460306423361a7281110690944c69917a032673a5f115eb85a84ced"
 }

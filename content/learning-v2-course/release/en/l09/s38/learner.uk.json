@@ -711,7 +711,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед одним збоєм",
+      "prompt": "Виберіть слово перед одним збоєм",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-38:i11:r1",
@@ -728,12 +728,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед одним збоєм",
+      "accessibilityLabel": "Виберіть слово перед одним збоєм",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите артикль перед одним сбоем",
-          "uk": "Виберіть артикль перед одним збоєм"
+          "uk": "Виберіть слово перед одним збоєм"
         },
         "gappedTargetPhrase": "It is ___ glitch.",
         "gapOptions": [
@@ -766,7 +766,7 @@
             "correct": false,
             "testedDimension": "Виберіть артикль перед одним збоєм",
             "feedbackByLocale": {
-              "ru": "Are — форма глагола, не артикль перед существительным.",
+              "ru": "Are — форма глагола, не a / the перед существительным.",
               "uk": "Are — форма дієслова, не артикль перед іменником."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e1d7abc82711590d810ce3d21d7e9ea0d261f5d1b90da280c3cb88a99738d383"
+  "learnerFingerprint": "6bd44a7517b53c40d4720110b55f73d0251764adea5b86b41a76633e83cd35ce"
 }

@@ -963,7 +963,7 @@
             "correct": false,
             "testedDimension": "Скажите соседу, что пинцета нет. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Слово `tweezers` всегда во множественном числе: нужно `are`.",
+              "ru": "Слово `tweezers` всегда в форме для нескольких: нужно `are`.",
               "uk": "Слово `tweezers` завжди у множині: потрібно `are`."
             }
           },
@@ -1177,5 +1177,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1c46966388a55da8ff1a36ed56e05001327489d977f40898dae8697902d41b02"
+  "learnerFingerprint": "3ed33ce8c561f4b768fbf2c866b7d982d2a81c2c0778549cb50c92a61633d657"
 }

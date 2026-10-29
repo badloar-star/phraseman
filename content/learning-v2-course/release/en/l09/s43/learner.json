@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль для одной миниатюры",
+      "prompt": "Выберите слово для одной миниатюры",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-43:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль для одной миниатюры",
+      "accessibilityLabel": "Выберите слово для одной миниатюры",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль для одной миниатюры",
+          "ru": "Выберите слово для одной миниатюры",
           "uk": "Виберіть артикль для однієї мініатюри"
         },
         "gappedTargetPhrase": "This is ___ thumbnail.",
@@ -216,7 +216,7 @@
             "correct": false,
             "testedDimension": "Выберите артикль для одной миниатюры",
             "feedbackByLocale": {
-              "ru": "Are — глагол, не артикль перед thumbnail.",
+              "ru": "Are — глагол, не a / the перед thumbnail.",
               "uk": "Are — дієслово, не артикль перед thumbnail."
             }
           }
@@ -568,7 +568,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для resolution",
+      "prompt": "Выберите is или are: resolution",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-43:i09:r1",
@@ -585,11 +585,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для resolution",
+      "accessibilityLabel": "Выберите is или are: resolution",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для resolution",
+          "ru": "Выберите is или are: resolution",
           "uk": "Виберіть зв’язку для resolution"
         },
         "gappedTargetPhrase": "The resolution ___ low.",
@@ -614,7 +614,7 @@
             "correct": false,
             "testedDimension": "Выберите связку для resolution",
             "feedbackByLocale": {
-              "ru": "Resolution здесь в единственном числе, нужно is.",
+              "ru": "Resolution здесь в форме для одного, нужно is.",
               "uk": "Resolution тут в однині, потрібне is."
             }
           },
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b6eea39b544ab2a4cda780d49417f7c8883cccb9a34e60432684504cb683d71a"
+  "learnerFingerprint": "789fd861b1f75517e8e263f55d175dff7d5a2e446a3e522249e285dc75ff6552"
 }

@@ -750,7 +750,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль перед eddy",
+      "prompt": "Выберите слово перед eddy",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-41:i12:r1",
@@ -767,11 +767,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль перед eddy",
+      "accessibilityLabel": "Выберите слово перед eddy",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед eddy",
+          "ru": "Выберите слово перед eddy",
           "uk": "Виберіть артикль перед eddy"
         },
         "gappedTargetPhrase": "This is ___ eddy.",
@@ -805,7 +805,7 @@
             "correct": false,
             "testedDimension": "Выберите артикль перед eddy",
             "feedbackByLocale": {
-              "ru": "Are — глагол, не артикль перед eddy.",
+              "ru": "Are — глагол, не a / the перед eddy.",
               "uk": "Are — дієслово, не артикль перед eddy."
             }
           }
@@ -1113,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b95dbddf64e3dc0cc5608db544e4b51e01e2f4fce0bc4da5efc9d7c2fc2cf335"
+  "learnerFingerprint": "4abed46275096109d563851a2c8d1bd061c332c1a63d367951cab16a31dd06b8"
 }

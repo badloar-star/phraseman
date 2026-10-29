@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-07:session-19:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-19:intro3:r2": {
-          "ru": "Слово tweezers всегда во множественном числе: нужно are.",
-          "uk": "Слово tweezers завжди у множині: потрібно are."
+          "ru": "Слово tweezers всегда в форме для нескольких: нужно are.",
+          "uk": "Слово tweezers завжди у формі для кількох: потрібно are."
         },
         "en:lesson-07:session-19:intro3:r3": {
           "ru": "Без no фраза говорит, что пинцет есть.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "580b0e65876965ac69fc9e3cc5fa9e207000ac39b21649b6cd4b114c80c33d97"
+  "auxiliaryFingerprint": "1f3c09b03f6e8f74e4b463f09e3b55a9bfff308848175d104102ff78d631f591"
 }

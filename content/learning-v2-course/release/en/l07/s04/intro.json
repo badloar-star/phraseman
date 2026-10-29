@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-04",
   "learningOutcomeByLocale": {
-    "ru": "спросить в кафе о меню, официантах и наличных и сказать, что счёта нет",
-    "uk": "спитати в кафе про меню, офіціантів і готівку та сказати, що рахунку немає"
+    "ru": "спросить в кафе, есть ли меню: Do you have a menu?",
+    "uk": "запитати в кафе, чи є меню: Do you have a menu?"
   },
   "pages": [
     {

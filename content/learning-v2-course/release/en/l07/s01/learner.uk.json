@@ -967,7 +967,7 @@
             "correct": false,
             "testedDimension": "Скажіть сусіду, що кур’єра немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Слово courier стоит в единственном числе: нужно `There is no`.",
+              "ru": "Слово courier стоит в форме для одного: нужно `There is no`.",
               "uk": "Слово courier стоїть в однині: потрібно `There is no`."
             }
           },
@@ -1181,5 +1181,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3ea177b739bc1ccc8bfb752ffef92ac94b2751e8b0dda62b8dc37f70ff47b1d2"
+  "learnerFingerprint": "ff5a3f6753f121c341a67fd6646488df9261fb8dbe2f57504b9d5a14e7ec393e"
 }

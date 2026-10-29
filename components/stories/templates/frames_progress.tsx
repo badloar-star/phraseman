@@ -4,7 +4,7 @@
 // зачем (владелец 28.10: шаблоны «именно так», пиксель в пиксель): разметка, задержки и кегли — из `render()` TPL макета построчно
 // (lesson: три звезды пружиной 200/340/480, три плитки 760/860/960; exam: кольцо 11 из 12 + счёт за 1,2 с, конфетти 20 с 1200;
 // summit: башня раскрывается снизу за 1,5 с, конфетти 18 с 1400; peakweek: пьедестал 2 · 1 · 3, столбики растут 1 → 2 → 3, свой — в акценте).
-// Башня — тот же SpireTowerSvg, что на экране Пика (наряд лиги, сцена темы).
+// Башня — тот же SpireTowerSvg, что на экране Пика (наряд лиги, сцена темы), через SpireTowerDeferred: встаёт через два кадра после кадра.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
@@ -12,7 +12,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { spireTierName } from '../../../modules/spire/tier_names';
 import { spireSkinForTier } from '../../../modules/spire/tower_skins';
 import SpireRankCoin from '../../spire/SpireRankCoin';
-import SpireTowerSvg from '../../spire/SpireTowerSvg';
+import SpireTowerDeferred from '../../spire/SpireTowerDeferred';
 import { useSpireScene } from '../../spire/useSpireScene';
 import { momentLeagueIn, momentText } from '../../spire/moments/moments_strings';
 import { storyText, storyThousands } from '../story_strings';
@@ -83,7 +83,9 @@ export const SummitFrame = memo(function SummitFrame({ tpl, lang }: StoryFramePr
     <FrameRoot testID="story-tpl-summit" layer={<Confetti n={18} d0={1400} />}>
       <Art>
         <TowerReveal width={size.width} height={size.height}>
-          <SpireTowerSvg lang={lang} myFloor={tpl.floor} selected={tpl.floor} onSelect={noopSelect} width={size.width} skin={skin} scene={scene} />
+          {/* зачем (Дизайн и координатор 29.10, c2bc33c7b): ~500 узлов SVG в кадре появления давали всплеск сборок мусора; до башни — рамка того же
+              размера, башня встаёт через ~32 мс — раньше, чем раскрытие начнётся (200 мс), так что кадр «пиксель в пиксель» прежний */}
+          <SpireTowerDeferred source="story_summit" lang={lang} myFloor={tpl.floor} selected={tpl.floor} onSelect={noopSelect} width={size.width} skin={skin} scene={scene} />
         </TowerReveal>
       </Art>
       <Ov text={tplText(lang, 'peakOverline', { league: spireTierName(tpl.tier, lang) })} d={1200} />

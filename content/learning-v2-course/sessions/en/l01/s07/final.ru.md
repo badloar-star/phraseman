@@ -89,7 +89,7 @@ Full здесь означает «сыт / сыта»: вы уже наелис
 <!-- interaction_id: en:lesson-01:session-07:i07; family: word_card -->
 > **bored** — «скучно». Дело идёт, а вам нечем занять голову.
 
-**8 · Вставьте слово — презентация идёт уже второй час; вы смотрите на часы**
+**8 · Вставьте слово — презентация идёт уже второй час, вы смотрите на часы**
 <!-- interaction_id: en:lesson-01:session-07:i08; family: context_gap_grammar -->
 I am ___ . → **bored** · scared · full
 - scared — *В этой сцене нет опасности: вы не боитесь, вам скучно.*
@@ -139,7 +139,7 @@ I ___ full. → **am** · is · are
 <!-- interaction_id: en:lesson-01:session-07:i17; family: speed_match -->
 hungry — хочется есть · tired — нужен отдых · done — работа завершена · fine — всё хорошо
 
-**18 · Скажите вслух — вы устали после длинного дня; сообщите об этом брату**
+**18 · Скажите вслух: вы устали после длинного дня.**
 <!-- interaction_id: en:lesson-01:session-07:i18; family: scripted_repeat_compare -->
 🎙 Ответьте: **I am tired.**
 

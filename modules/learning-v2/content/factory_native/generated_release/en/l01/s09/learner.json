@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — брат высокий; подпишите его портрет",
+      "prompt": "Соберите фразу: брат высокий.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — брат высокий; подпишите его портрет",
+      "accessibilityLabel": "Соберите фразу: брат высокий.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is tall.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — брат высокий; подпишите его портрет",
-          "uk": "Складіть фразу — брат високий; підпишіть його портрет"
+          "ru": "Соберите фразу: брат высокий.",
+          "uk": "Складіть фразу: брат високий."
         },
         "orderedTokens": [
           "He",
@@ -76,7 +76,7 @@
           {
             "responseId": "en:lesson-01:session-09:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — брат высокий; подпишите его портрет",
+            "testedDimension": "Соберите фразу: брат высокий.",
             "feedbackByLocale": {
               "ru": "после `He` в этой фразе нужно `is`.",
               "uk": "після `He` у цій фразі потрібно `is`."
@@ -258,7 +258,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Племяннику восемь лет; он самый юный участник фотосъёмки",
+      "prompt": "Племяннику восемь лет, он самый юный участник фотосъёмки",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i03:r1",
@@ -275,12 +275,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Племяннику восемь лет; он самый юный участник фотосъёмки",
+      "accessibilityLabel": "Племяннику восемь лет, он самый юный участник фотосъёмки",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Племяннику восемь лет; он самый юный участник фотосъёмки",
-          "uk": "Племінникові вісім років; він наймолодший учасник фотозйомки"
+          "ru": "Племяннику восемь лет, он самый юный участник фотосъёмки",
+          "uk": "Племінникові вісім років, він наймолодший учасник фотозйомки"
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -297,12 +297,12 @@
             "text": "short"
           }
         ],
-        "testedDimension": "Племяннику восемь лет; он самый юный участник фотосъёмки",
+        "testedDimension": "Племяннику восемь лет, он самый юный участник фотосъёмки",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-09:i03:r2",
             "correct": false,
-            "testedDimension": "Племяннику восемь лет; он самый юный участник фотосъёмки",
+            "testedDimension": "Племяннику восемь лет, он самый юный участник фотосъёмки",
             "feedbackByLocale": {
               "ru": "`tall` описывает рост; здесь важен возраст племянника.",
               "uk": "`tall` описує зріст; тут важливий вік племінника."
@@ -311,7 +311,7 @@
           {
             "responseId": "en:lesson-01:session-09:i03:r3",
             "correct": false,
-            "testedDimension": "Племяннику восемь лет; он самый юный участник фотосъёмки",
+            "testedDimension": "Племяннику восемь лет, он самый юный участник фотосъёмки",
             "feedbackByLocale": {
               "ru": "`short` описывает рост; здесь важен возраст племянника.",
               "uk": "`short` описує зріст; тут важливий вік племінника."
@@ -1127,13 +1127,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — соседка сердится; сообщите об этом фотографу",
+      "prompt": "Скажите вслух: соседка сердится.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i17:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — соседка сердится; сообщите об этом фотографу",
+      "accessibilityLabel": "Скажите вслух: соседка сердится.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cc38720b797fcf4555c4e865278244fd224f7bd32e60aa619f59a00eb5a6f443"
+  "learnerFingerprint": "b756744d35f2c9a7e500437335ad9f61f3e477cd76fce1372667e22aa91ed409"
 }

@@ -377,7 +377,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — презентація триває вже другу годину; ви дивитеся на годинник",
+      "prompt": "Вставте слово — презентація триває вже другу годину, ви дивитеся на годинник",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-07:i08:r1",
@@ -394,12 +394,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — презентація триває вже другу годину; ви дивитеся на годинник",
+      "accessibilityLabel": "Вставте слово — презентація триває вже другу годину, ви дивитеся на годинник",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — презентация идёт уже второй час; вы смотрите на часы",
-          "uk": "Вставте слово — презентація триває вже другу годину; ви дивитеся на годинник"
+          "ru": "Вставьте слово — презентация идёт уже второй час, вы смотрите на часы",
+          "uk": "Вставте слово — презентація триває вже другу годину, ви дивитеся на годинник"
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -416,12 +416,12 @@
             "text": "full"
           }
         ],
-        "testedDimension": "Вставте слово — презентація триває вже другу годину; ви дивитеся на годинник",
+        "testedDimension": "Вставте слово — презентація триває вже другу годину, ви дивитеся на годинник",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — презентація триває вже другу годину; ви дивитеся на годинник",
+            "testedDimension": "Вставте слово — презентація триває вже другу годину, ви дивитеся на годинник",
             "feedbackByLocale": {
               "ru": "В этой сцене нет опасности: вы не боитесь, вам скучно.",
               "uk": "У цій сцені немає небезпеки: вам не страшно, вам нудно."
@@ -430,7 +430,7 @@
           {
             "responseId": "en:lesson-01:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — презентація триває вже другу годину; ви дивитеся на годинник",
+            "testedDimension": "Вставте слово — презентація триває вже другу годину, ви дивитеся на годинник",
             "feedbackByLocale": {
               "ru": "`full` — про еду, а здесь речь о том, что презентация вам наскучила.",
               "uk": "`full` — про їжу, а тут ідеться про нудну презентацію."
@@ -949,13 +949,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви втомилися після довгого дня; повідомте про це братові",
+      "prompt": "Скажіть уголос: ви втомилися після довгого дня.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-07:i18:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви втомилися після довгого дня; повідомте про це братові",
+      "accessibilityLabel": "Скажіть уголос: ви втомилися після довгого дня.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -983,5 +983,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9fca56b875f38276c59725add05f9f452f25a1fb5e8631821766f0e93006d760"
+  "learnerFingerprint": "adc86e53054ec8bd3568a8311a5a953ce4d92d4f8e48f4293ff854a92fb244c5"
 }

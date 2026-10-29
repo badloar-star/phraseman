@@ -51,7 +51,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 7,
-    sourceFingerprint: "ae075a9fa700f78a6575ee79d9ae68f239193de7e312cdb345341c3a4b7b7434",
+    sourceFingerprint: "192227432b9af772b5986b5e0a34ea288e473ff678a4bd423a9eb25425c2181e",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, что вам не страшно: I am not scared.","uk":"сказати, що вам не страшно: I am not scared."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 1","uk":"Англійська · Урок 1"}),
@@ -65,7 +65,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 9,
-    sourceFingerprint: "5266fa75ce70fef8f0bedb1665a9f314a01eca340a6bbbb7caa30189a9206f1a",
+    sourceFingerprint: "85ce21d11dc2aa382285bdc36a6c6e8c1ac72998170a5a998ea94c9acf3be717",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, какой человек: высокий или низкий: He is tall.","uk":"сказати, який чоловік: високий чи низький: He is tall."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 1","uk":"Англійська · Урок 1"}),

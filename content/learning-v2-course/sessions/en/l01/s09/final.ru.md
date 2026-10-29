@@ -56,7 +56,7 @@
 <!-- interaction_id: en:lesson-01:session-09:word:tall; family: word_card -->
 > **tall** — «высокий / высокая»: о росте человека.
 
-**2 · Соберите фразу — брат высокий; подпишите его портрет**
+**2 · Соберите фразу: брат высокий.**
 <!-- interaction_id: en:lesson-01:session-09:i01; family: phrase_builder -->
 Плитки: `He` `is` `tall` `are` → **He is tall.**
 Плитка `are` лишняя: после `He` в этой фразе нужно `is`.
@@ -76,7 +76,7 @@
 <!-- interaction_id: en:lesson-01:session-09:word:young; family: word_card -->
 > **young** — «молодой / юный»: о возрасте, а не о росте.
 
-**6 · Племяннику восемь лет; он самый юный участник фотосъёмки**
+**6 · Племяннику восемь лет, он самый юный участник фотосъёмки**
 <!-- interaction_id: en:lesson-01:session-09:i03; family: context_gap_grammar -->
 He is ___ . → **young** · tall · short
 - tall — *`tall` описывает рост; здесь важен возраст племянника.*
@@ -154,7 +154,7 @@ She is ___ . → **happy** · ready · calm
 <!-- interaction_id: en:lesson-01:session-09:i16; family: speed_match; purpose: independent_check -->
 Пары: `here` — «здесь» · `ready` — «готов» · `fine` — «чувствует себя хорошо» · `happy` — «счастлив»
 
-**21 · Скажите вслух — соседка сердится; сообщите об этом фотографу**
+**21 · Скажите вслух: соседка сердится.**
 <!-- interaction_id: en:lesson-01:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 Скажите: **She is angry.**
 

@@ -3,6 +3,7 @@
 Governance-ID: TG-306CC945F402
 Governance-ID: TG-37A115F561A4
 Governance-ID: TG-F7F5A7E997F4
+Governance-ID: TG-2A20D93BB592
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: разбор JS-стопа на «Пике» (улика Сайта js_stall_peak_2026-10-29.log), решение координатора 29.10

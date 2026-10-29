@@ -345,14 +345,16 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
   const b = geom.floors[0];
   const skyY = geom.top - 250;
   const summit = myFloor === SPIRE_FLOOR_COUNT;
-  const visibleH = cropHeight !== undefined ? Math.min(geom.height, cropHeight) : geom.height;
+  const visibleH = cropHeight !== undefined ? Math.min(geom.height, cropHeight) : geom.height; // для viewBox башни (единицы SVG), высота на экране — svgH
+  // зачем (Ревизор 29.10): высота Svg считается ОДНОЙ функцией — той же, по которой SpireTowerDeferred рисует рамку до башни; поменяли формулу в одном месте — рамка и башня не разойдутся.
+  const svgH = spireTowerSvgHeight({ width, myFloor, variant, cropHeight, skin });
   if (variant === 'weekTop') {
     // зачем (закон владельца 14.10, скрин «ИТОГ НЕДЕЛИ»): viewBox считается из границы башни (острие, навершие, древко, ореол ×2.6) — всё внутри с полем;
     // маска гасит только низ (срез этажей): верх и бока — в абсолютных координатах viewBox, а не радиальным овалом (он гасил острие и свет).
     const vb = spireWeekTopViewBox(skin, summit);
     const topFloors = geom.floors.slice(SPIRE_FLOOR_COUNT - 2); // этаж 14 и Страж-15
     return (
-      <Svg width={width} height={(width * vb.h) / vb.w} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}>
+      <Svg width={width} height={svgH} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}>
         <Defs>
           {defs}
           <LinearGradient id="spireWeekFadeG" x1="0" y1="0" x2="0" y2="1">
@@ -375,7 +377,7 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
     );
   }
   return (
-    <Svg width={width} height={visibleH * scale} viewBox={`0 0 ${SPIRE_TW} ${visibleH}`}>
+    <Svg width={width} height={svgH} viewBox={`0 0 ${SPIRE_TW} ${visibleH}`}>
       <Defs>{defs}</Defs>
       {/* зачем (владелец 13.10): со сценой темы небо не рисуем — окно остаётся плитой темы (SpireTower.window), башня стоит на ней */}
       {scene ? null : <Rect width={SPIRE_TW} height={geom.height} fill="url(#spireSky)" />}

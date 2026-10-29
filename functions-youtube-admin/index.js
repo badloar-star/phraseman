@@ -1,0 +1,1 @@
+const admin=require('firebase-admin');if(!admin.apps.length)admin.initializeApp();exports.adminYoutubeComments=require('./lib/functions/src/youtube_comments').adminYoutubeComments;exports.youtubeOAuthCallback=require('./lib/functions/src/youtube_oauth').youtubeOAuthCallback;

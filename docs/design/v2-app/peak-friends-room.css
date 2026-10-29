@@ -1,7 +1,10 @@
 /* peak-friends-room.css — панель друзей в левой колонке Пика (см. peak-friends-room.app.js). Ширина блока 206 px телефона — как у
    панели комнаты на кадре; сегмент вместо заголовка «Комната недели 29» (кегль 15/600 как у заголовка кадра). */
-.pfr-seg { height: 42px; display: flex; align-items: center; margin: 0 0 6px 2px; }
-.pfr-seg .ck-seg span { height: 28px; padding: 0 10px; font-size: 12.5px; }
+/* заголовок «Друзья» — как «Комната недели» на кадре: 15 dp / 600, белый, строка 64 px кадра */
+.pfr-head { height: 25px; display: flex; align-items: center; margin: 0 0 6px 4px; font-size: 15.5px; font-weight: 600; color: var(--tx); }
+/* круглая кнопка 44 dp: стекло .14 как у круглых кнопок приложения (звонок на Главной), активная — тон cta; значок 20 dp */
+.pfr-round { position: absolute; z-index: 26; border-radius: 50%; background: rgba(255, 255, 255, .14); color: var(--tx); display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; }
+.pfr-round.on { background: var(--solid); color: var(--on-solid); }
 .ck-over .ck-panel { padding: 8px 10px 6px; }
 .ck-over .ck-row { padding: 6px 0; gap: 8px; }
 .ck-over .ck-row.pfr-compact { padding: 3px 0; }
@@ -15,9 +18,6 @@
 .ck-over .ck-empty p { font-size: 11.5px; line-height: 15px; }
 .ck-over .ck-btn.sm { height: 36px; font-size: 13px; }
 .pfr-hidden { opacity: 0; pointer-events: none; transition: opacity .2s var(--ck-out); }
-/* подсказка-возврат, когда показан кадр как есть: маленькая стеклянная плашка на месте сегмента «Друзья» */
-.pfr-peek { position: absolute; left: 150px; top: 262px; height: 28px; padding: 0 10px; border-radius: 13px; background: rgba(255, 255, 255, .14); color: var(--tx); font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; z-index: 25; animation: ck-fade .3s var(--ck-out); }
-.pfr-peek .io { font-size: 14px; }
 .pfr-acts { display: flex; gap: 8px; margin-top: 6px; }
 .ck-row.pfr-sel { background: rgba(255, 255, 255, .08); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 12px; }
 .ck-row.pfr-sel .tx b::after { content: " ✓"; color: var(--acc); }

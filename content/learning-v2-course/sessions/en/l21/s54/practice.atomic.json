@@ -665,7 +665,7 @@
               "correct": false,
               "testedDimension": "Выберите усиление.",
               "feedbackByLocale": {
-                "ru": "News здесь неисчисляемое: перед good news не ставим a.",
+                "ru": "News здесь не считается поштучно: перед good news не ставим a.",
                 "uk": "News тут незлічуване: перед good news не ставимо a."
               }
             }
@@ -1778,7 +1778,7 @@
               "testedDimension": "Виберіть підсилення.",
               "feedbackByLocale": {
                 "ru": "News здесь неисчисляемое: перед good news не ставим a.",
-                "uk": "News тут незлічуване: перед good news не ставимо a."
+                "uk": "News тут не рахується поштучно: перед good news не ставимо a."
               }
             }
           ]

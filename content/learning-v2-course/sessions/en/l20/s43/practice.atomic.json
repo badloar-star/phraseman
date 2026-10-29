@@ -210,7 +210,7 @@
               "correct": false,
               "testedDimension": "Скажите, что это необязательно.",
               "feedbackByLocale": {
-                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
                 "uk": "Узгодьте don’t або doesn’t з підметом."
               }
             },
@@ -434,7 +434,7 @@
               "correct": false,
               "testedDimension": "Скажите, что это необязательно.",
               "feedbackByLocale": {
-                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
                 "uk": "Узгодьте don’t або doesn’t з підметом."
               }
             },
@@ -659,7 +659,7 @@
               "correct": false,
               "testedDimension": "Скажите, что это необязательно.",
               "feedbackByLocale": {
-                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
                 "uk": "Узгодьте don’t або doesn’t з підметом."
               }
             },
@@ -883,7 +883,7 @@
               "correct": false,
               "testedDimension": "Скажите, что это необязательно.",
               "feedbackByLocale": {
-                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
                 "uk": "Узгодьте don’t або doesn’t з підметом."
               }
             },
@@ -1323,7 +1323,7 @@
               "testedDimension": "Скажіть, що це необовʼязково.",
               "feedbackByLocale": {
                 "ru": "Согласуйте don’t или doesn’t с подлежащим.",
-                "uk": "Узгодьте don’t або doesn’t з підметом."
+                "uk": "Узгодьте don’t або doesn’t з тим, хто діє."
               }
             },
             {
@@ -1547,7 +1547,7 @@
               "testedDimension": "Скажіть, що це необовʼязково.",
               "feedbackByLocale": {
                 "ru": "Согласуйте don’t или doesn’t с подлежащим.",
-                "uk": "Узгодьте don’t або doesn’t з підметом."
+                "uk": "Узгодьте don’t або doesn’t з тим, хто діє."
               }
             },
             {
@@ -1772,7 +1772,7 @@
               "testedDimension": "Скажіть, що це необовʼязково.",
               "feedbackByLocale": {
                 "ru": "Согласуйте don’t или doesn’t с подлежащим.",
-                "uk": "Узгодьте don’t або doesn’t з підметом."
+                "uk": "Узгодьте don’t або doesn’t з тим, хто діє."
               }
             },
             {
@@ -1996,7 +1996,7 @@
               "testedDimension": "Скажіть, що це необовʼязково.",
               "feedbackByLocale": {
                 "ru": "Согласуйте don’t или doesn’t с подлежащим.",
-                "uk": "Узгодьте don’t або doesn’t з підметом."
+                "uk": "Узгодьте don’t або doesn’t з тим, хто діє."
               }
             },
             {

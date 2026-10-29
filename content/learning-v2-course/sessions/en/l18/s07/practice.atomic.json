@@ -164,7 +164,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-07:i03:r1",
@@ -181,11 +181,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "These sports shoes are ___ than mine.",
@@ -388,7 +388,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-07:i06:r1",
@@ -405,11 +405,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "These running shoes are ___ than mine.",
@@ -613,7 +613,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-07:i09:r1",
@@ -630,11 +630,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "These leather shoes are ___ than that pair.",
@@ -838,7 +838,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-07:i12:r1",
@@ -855,11 +855,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "These flat shoes are ___ than that pair.",
@@ -1282,7 +1282,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-07:i03:r1",
@@ -1299,12 +1299,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "These sports shoes are ___ than mine.",
           "gapOptions": [
@@ -1506,7 +1506,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-07:i06:r1",
@@ -1523,12 +1523,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "These running shoes are ___ than mine.",
           "gapOptions": [
@@ -1731,7 +1731,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-07:i09:r1",
@@ -1748,12 +1748,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "These leather shoes are ___ than that pair.",
           "gapOptions": [
@@ -1956,7 +1956,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-07:i12:r1",
@@ -1973,12 +1973,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "These flat shoes are ___ than that pair.",
           "gapOptions": [

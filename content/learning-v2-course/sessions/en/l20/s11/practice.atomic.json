@@ -209,7 +209,7 @@
               "correct": false,
               "testedDimension": "Дополните фразу о необходимости.",
               "feedbackByLocale": {
-                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "ru": "Выберите форму по тому, кто действует: I/we — have to, she/he — has to.",
                 "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
               }
             },
@@ -432,7 +432,7 @@
               "correct": false,
               "testedDimension": "Дополните фразу о необходимости.",
               "feedbackByLocale": {
-                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "ru": "Выберите форму по тому, кто действует: I/we — have to, she/he — has to.",
                 "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
               }
             },
@@ -655,7 +655,7 @@
               "correct": false,
               "testedDimension": "Дополните фразу о необходимости.",
               "feedbackByLocale": {
-                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "ru": "Выберите форму по тому, кто действует: I/we — have to, she/he — has to.",
                 "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
               }
             },
@@ -880,7 +880,7 @@
               "correct": false,
               "testedDimension": "Дополните фразу о необходимости.",
               "feedbackByLocale": {
-                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "ru": "Выберите форму по тому, кто действует: I/we — have to, she/he — has to.",
                 "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
               }
             },
@@ -1321,7 +1321,7 @@
               "testedDimension": "Доповніть фразу про необхідність.",
               "feedbackByLocale": {
                 "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
-                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+                "uk": "Виберіть форму за тим, хто діє: I/we — have to, she/he — has to."
               }
             },
             {
@@ -1544,7 +1544,7 @@
               "testedDimension": "Доповніть фразу про необхідність.",
               "feedbackByLocale": {
                 "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
-                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+                "uk": "Виберіть форму за тим, хто діє: I/we — have to, she/he — has to."
               }
             },
             {
@@ -1767,7 +1767,7 @@
               "testedDimension": "Доповніть фразу про необхідність.",
               "feedbackByLocale": {
                 "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
-                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+                "uk": "Виберіть форму за тим, хто діє: I/we — have to, she/he — has to."
               }
             },
             {
@@ -1992,7 +1992,7 @@
               "testedDimension": "Доповніть фразу про необхідність.",
               "feedbackByLocale": {
                 "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
-                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+                "uk": "Виберіть форму за тим, хто діє: I/we — have to, she/he — has to."
               }
             },
             {

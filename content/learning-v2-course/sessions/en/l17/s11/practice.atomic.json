@@ -163,7 +163,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "prompt": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
         "responseOptions": [
           {
             "responseId": "en:lesson-17:session-11:i03:r1",
@@ -180,11 +180,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "accessibilityLabel": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "ru": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
             "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
           },
           "gappedTargetPhrase": "How ___ commuters use this train?",
@@ -209,7 +209,7 @@
               "correct": false,
               "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
               "feedbackByLocale": {
-                "ru": "commuter можно посчитать: many + commuters во множественном числе.",
+                "ru": "commuter можно посчитать: many + commuters в форме для нескольких.",
                 "uk": "commuter можна порахувати: many + commuters у множині."
               }
             },
@@ -386,7 +386,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "prompt": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
         "responseOptions": [
           {
             "responseId": "en:lesson-17:session-11:i06:r1",
@@ -403,11 +403,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "accessibilityLabel": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "ru": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
             "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
           },
           "gappedTargetPhrase": "We don't see ___ motorists here.",
@@ -432,7 +432,7 @@
               "correct": false,
               "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
               "feedbackByLocale": {
-                "ru": "motorist можно посчитать: many + motorists во множественном числе.",
+                "ru": "motorist можно посчитать: many + motorists в форме для нескольких.",
                 "uk": "motorist можна порахувати: many + motorists у множині."
               }
             },
@@ -609,7 +609,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "prompt": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
         "responseOptions": [
           {
             "responseId": "en:lesson-17:session-11:i09:r1",
@@ -626,11 +626,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "accessibilityLabel": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "ru": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
             "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
           },
           "gappedTargetPhrase": "How ___ congestion is there today?",
@@ -655,7 +655,7 @@
               "correct": false,
               "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
               "feedbackByLocale": {
-                "ru": "congestion в этом значении — неисчисляемое слово: much.",
+                "ru": "congestion в этом значении не считают поштучно: much.",
                 "uk": "congestion у цьому значенні — незлічуване слово: much."
               }
             },
@@ -831,7 +831,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "prompt": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
         "responseOptions": [
           {
             "responseId": "en:lesson-17:session-11:i12:r1",
@@ -848,11 +848,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+        "accessibilityLabel": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
+            "ru": "Выберите many — то, что считают поштучно, или much — то, что не считают.",
             "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
           },
           "gappedTargetPhrase": "There isn't ___ pollution here.",
@@ -877,7 +877,7 @@
               "correct": false,
               "testedDimension": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
               "feedbackByLocale": {
-                "ru": "pollution в этом значении — неисчисляемое слово: much.",
+                "ru": "pollution в этом значении не считают поштучно: much.",
                 "uk": "pollution у цьому значенні — незлічуване слово: much."
               }
             },
@@ -1271,7 +1271,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
         "responseOptions": [
           {
             "responseId": "en:lesson-17:session-11:i03:r1",
@@ -1288,12 +1288,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+            "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
           },
           "gappedTargetPhrase": "How ___ commuters use this train?",
           "gapOptions": [
@@ -1318,7 +1318,7 @@
               "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
               "feedbackByLocale": {
                 "ru": "commuter можно посчитать: many + commuters во множественном числе.",
-                "uk": "commuter можна порахувати: many + commuters у множині."
+                "uk": "commuter можна порахувати: many + commuters у формі для кількох."
               }
             },
             {
@@ -1494,7 +1494,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
         "responseOptions": [
           {
             "responseId": "en:lesson-17:session-11:i06:r1",
@@ -1511,12 +1511,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+            "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
           },
           "gappedTargetPhrase": "We don't see ___ motorists here.",
           "gapOptions": [
@@ -1541,7 +1541,7 @@
               "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
               "feedbackByLocale": {
                 "ru": "motorist можно посчитать: many + motorists во множественном числе.",
-                "uk": "motorist можна порахувати: many + motorists у множині."
+                "uk": "motorist можна порахувати: many + motorists у формі для кількох."
               }
             },
             {
@@ -1717,7 +1717,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
         "responseOptions": [
           {
             "responseId": "en:lesson-17:session-11:i09:r1",
@@ -1734,12 +1734,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+            "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
           },
           "gappedTargetPhrase": "How ___ congestion is there today?",
           "gapOptions": [
@@ -1764,7 +1764,7 @@
               "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
               "feedbackByLocale": {
                 "ru": "congestion в этом значении — неисчисляемое слово: much.",
-                "uk": "congestion у цьому значенні — незлічуване слово: much."
+                "uk": "congestion у цьому значенні не рахують поштучно: much."
               }
             },
             {
@@ -1939,7 +1939,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
         "responseOptions": [
           {
             "responseId": "en:lesson-17:session-11:i12:r1",
@@ -1956,12 +1956,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+        "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-            "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+            "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
           },
           "gappedTargetPhrase": "There isn't ___ pollution here.",
           "gapOptions": [
@@ -1986,7 +1986,7 @@
               "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
               "feedbackByLocale": {
                 "ru": "pollution в этом значении — неисчисляемое слово: much.",
-                "uk": "pollution у цьому значенні — незлічуване слово: much."
+                "uk": "pollution у цьому значенні не рахують поштучно: much."
               }
             },
             {

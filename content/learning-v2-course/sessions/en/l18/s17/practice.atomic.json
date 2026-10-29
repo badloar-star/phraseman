@@ -165,7 +165,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выразите одинаковое качество.",
+        "prompt": "Скажите, что они одинаковые.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-17:i03:r1",
@@ -182,11 +182,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выразите одинаковое качество.",
+        "accessibilityLabel": "Скажите, что они одинаковые.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выразите одинаковое качество.",
+            "ru": "Скажите, что они одинаковые.",
             "uk": "Висловіть однакову якість."
           },
           "gappedTargetPhrase": "This instant coffee is ___ yours.",
@@ -390,7 +390,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выразите одинаковое качество.",
+        "prompt": "Скажите, что они одинаковые.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-17:i06:r1",
@@ -407,11 +407,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выразите одинаковое качество.",
+        "accessibilityLabel": "Скажите, что они одинаковые.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выразите одинаковое качество.",
+            "ru": "Скажите, что они одинаковые.",
             "uk": "Висловіть однакову якість."
           },
           "gappedTargetPhrase": "This ground coffee is ___ yours.",
@@ -615,7 +615,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выразите одинаковое качество.",
+        "prompt": "Скажите, что они одинаковые.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-17:i09:r1",
@@ -632,11 +632,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выразите одинаковое качество.",
+        "accessibilityLabel": "Скажите, что они одинаковые.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выразите одинаковое качество.",
+            "ru": "Скажите, что они одинаковые.",
             "uk": "Висловіть однакову якість."
           },
           "gappedTargetPhrase": "This black tea is ___ yours.",
@@ -841,7 +841,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выразите одинаковое качество.",
+        "prompt": "Скажите, что они одинаковые.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-17:i12:r1",
@@ -858,11 +858,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выразите одинаковое качество.",
+        "accessibilityLabel": "Скажите, что они одинаковые.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выразите одинаковое качество.",
+            "ru": "Скажите, что они одинаковые.",
             "uk": "Висловіть однакову якість."
           },
           "gappedTargetPhrase": "This green tea is ___ that one.",
@@ -1288,7 +1288,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Висловіть однакову якість.",
+        "prompt": "Скажіть, що вони однакові.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-17:i03:r1",
@@ -1305,12 +1305,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Висловіть однакову якість.",
+        "accessibilityLabel": "Скажіть, що вони однакові.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выразите одинаковое качество.",
-            "uk": "Висловіть однакову якість."
+            "uk": "Скажіть, що вони однакові."
           },
           "gappedTargetPhrase": "This instant coffee is ___ yours.",
           "gapOptions": [
@@ -1513,7 +1513,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Висловіть однакову якість.",
+        "prompt": "Скажіть, що вони однакові.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-17:i06:r1",
@@ -1530,12 +1530,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Висловіть однакову якість.",
+        "accessibilityLabel": "Скажіть, що вони однакові.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выразите одинаковое качество.",
-            "uk": "Висловіть однакову якість."
+            "uk": "Скажіть, що вони однакові."
           },
           "gappedTargetPhrase": "This ground coffee is ___ yours.",
           "gapOptions": [
@@ -1738,7 +1738,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Висловіть однакову якість.",
+        "prompt": "Скажіть, що вони однакові.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-17:i09:r1",
@@ -1755,12 +1755,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Висловіть однакову якість.",
+        "accessibilityLabel": "Скажіть, що вони однакові.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выразите одинаковое качество.",
-            "uk": "Висловіть однакову якість."
+            "uk": "Скажіть, що вони однакові."
           },
           "gappedTargetPhrase": "This black tea is ___ yours.",
           "gapOptions": [
@@ -1964,7 +1964,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Висловіть однакову якість.",
+        "prompt": "Скажіть, що вони однакові.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-17:i12:r1",
@@ -1981,12 +1981,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Висловіть однакову якість.",
+        "accessibilityLabel": "Скажіть, що вони однакові.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выразите одинаковое качество.",
-            "uk": "Висловіть однакову якість."
+            "uk": "Скажіть, що вони однакові."
           },
           "gappedTargetPhrase": "This green tea is ___ that one.",
           "gapOptions": [

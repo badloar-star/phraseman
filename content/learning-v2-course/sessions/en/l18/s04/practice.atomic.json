@@ -165,7 +165,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-04:i03:r1",
@@ -182,11 +182,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "This hot meal is ___ than that one.",
@@ -389,7 +389,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-04:i06:r1",
@@ -406,11 +406,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "Your cold drink is ___ than mine.",
@@ -614,7 +614,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-04:i09:r1",
@@ -631,11 +631,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "This soft drink is ___ than the juice.",
@@ -839,7 +839,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-04:i12:r1",
@@ -856,11 +856,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "The still water is ___ than the juice.",
@@ -1286,7 +1286,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-04:i03:r1",
@@ -1303,12 +1303,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "This hot meal is ___ than that one.",
           "gapOptions": [
@@ -1510,7 +1510,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-04:i06:r1",
@@ -1527,12 +1527,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "Your cold drink is ___ than mine.",
           "gapOptions": [
@@ -1735,7 +1735,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-04:i09:r1",
@@ -1752,12 +1752,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "This soft drink is ___ than the juice.",
           "gapOptions": [
@@ -1960,7 +1960,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-04:i12:r1",
@@ -1977,12 +1977,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "The still water is ___ than the juice.",
           "gapOptions": [

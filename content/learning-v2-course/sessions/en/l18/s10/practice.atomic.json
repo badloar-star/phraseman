@@ -163,7 +163,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите значение «самый» в этой группе.",
+        "prompt": "Выберите, как сказать «самый».",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-10:i03:r1",
@@ -180,11 +180,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+        "accessibilityLabel": "Выберите, как сказать «самый».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите значение «самый» в этой группе.",
+            "ru": "Выберите, как сказать «самый».",
             "uk": "Виберіть значення «най-» у цій групі."
           },
           "gappedTargetPhrase": "This local shop is ___.",
@@ -387,7 +387,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите значение «самый» в этой группе.",
+        "prompt": "Выберите, как сказать «самый».",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-10:i06:r1",
@@ -404,11 +404,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+        "accessibilityLabel": "Выберите, как сказать «самый».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите значение «самый» в этой группе.",
+            "ru": "Выберите, как сказать «самый».",
             "uk": "Виберіть значення «най-» у цій групі."
           },
           "gappedTargetPhrase": "This online shop is ___ option.",
@@ -610,7 +610,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите значение «самый» в этой группе.",
+        "prompt": "Выберите, как сказать «самый».",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-10:i09:r1",
@@ -627,11 +627,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+        "accessibilityLabel": "Выберите, как сказать «самый».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите значение «самый» в этой группе.",
+            "ru": "Выберите, как сказать «самый».",
             "uk": "Виберіть значення «най-» у цій групі."
           },
           "gappedTargetPhrase": "This chain store is ___.",
@@ -833,7 +833,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите значение «самый» в этой группе.",
+        "prompt": "Выберите, как сказать «самый».",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-10:i12:r1",
@@ -850,11 +850,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+        "accessibilityLabel": "Выберите, как сказать «самый».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите значение «самый» в этой группе.",
+            "ru": "Выберите, как сказать «самый».",
             "uk": "Виберіть значення «най-» у цій групі."
           },
           "gappedTargetPhrase": "This repair shop is ___.",
@@ -1277,7 +1277,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть значення «най-» у цій групі.",
+        "prompt": "Виберіть, як сказати «най-».",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-10:i03:r1",
@@ -1294,12 +1294,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+        "accessibilityLabel": "Виберіть, як сказати «най-».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите значение «самый» в этой группе.",
-            "uk": "Виберіть значення «най-» у цій групі."
+            "uk": "Виберіть, як сказати «най-»."
           },
           "gappedTargetPhrase": "This local shop is ___.",
           "gapOptions": [
@@ -1501,7 +1501,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть значення «най-» у цій групі.",
+        "prompt": "Виберіть, як сказати «най-».",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-10:i06:r1",
@@ -1518,12 +1518,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+        "accessibilityLabel": "Виберіть, як сказати «най-».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите значение «самый» в этой группе.",
-            "uk": "Виберіть значення «най-» у цій групі."
+            "uk": "Виберіть, як сказати «най-»."
           },
           "gappedTargetPhrase": "This online shop is ___ option.",
           "gapOptions": [
@@ -1724,7 +1724,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть значення «най-» у цій групі.",
+        "prompt": "Виберіть, як сказати «най-».",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-10:i09:r1",
@@ -1741,12 +1741,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+        "accessibilityLabel": "Виберіть, як сказати «най-».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите значение «самый» в этой группе.",
-            "uk": "Виберіть значення «най-» у цій групі."
+            "uk": "Виберіть, як сказати «най-»."
           },
           "gappedTargetPhrase": "This chain store is ___.",
           "gapOptions": [
@@ -1947,7 +1947,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть значення «най-» у цій групі.",
+        "prompt": "Виберіть, як сказати «най-».",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-10:i12:r1",
@@ -1964,12 +1964,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+        "accessibilityLabel": "Виберіть, як сказати «най-».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите значение «самый» в этой группе.",
-            "uk": "Виберіть значення «най-» у цій групі."
+            "uk": "Виберіть, як сказати «най-»."
           },
           "gappedTargetPhrase": "This repair shop is ___.",
           "gapOptions": [

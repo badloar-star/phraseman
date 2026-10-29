@@ -166,7 +166,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите слово, которое вводит цель.",
+        "prompt": "Выберите слово, после которого идёт цель.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-38:i03:r1",
@@ -183,11 +183,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "accessibilityLabel": "Выберите слово, после которого идёт цель.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово, которое вводит цель.",
+            "ru": "Выберите слово, после которого идёт цель.",
             "uk": "Виберіть слово, яке вводить мету."
           },
           "gappedTargetPhrase": "I call the shop ___ sort out a problem.",
@@ -391,7 +391,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите слово, которое вводит цель.",
+        "prompt": "Выберите слово, после которого идёт цель.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-38:i06:r1",
@@ -408,11 +408,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "accessibilityLabel": "Выберите слово, после которого идёт цель.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово, которое вводит цель.",
+            "ru": "Выберите слово, после которого идёт цель.",
             "uk": "Виберіть слово, яке вводить мету."
           },
           "gappedTargetPhrase": "I read the instructions ___ find a solution.",
@@ -617,7 +617,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите слово, которое вводит цель.",
+        "prompt": "Выберите слово, после которого идёт цель.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-38:i09:r1",
@@ -634,11 +634,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "accessibilityLabel": "Выберите слово, после которого идёт цель.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово, которое вводит цель.",
+            "ru": "Выберите слово, после которого идёт цель.",
             "uk": "Виберіть слово, яке вводить мету."
           },
           "gappedTargetPhrase": "I talk to my neighbour ___ reach an agreement.",
@@ -842,7 +842,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите слово, которое вводит цель.",
+        "prompt": "Выберите слово, после которого идёт цель.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-38:i12:r1",
@@ -859,11 +859,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "accessibilityLabel": "Выберите слово, после которого идёт цель.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите слово, которое вводит цель.",
+            "ru": "Выберите слово, после которого идёт цель.",
             "uk": "Виберіть слово, яке вводить мету."
           },
           "gappedTargetPhrase": "I compare the options ___ make a decision.",
@@ -1285,7 +1285,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть слово, яке вводить мету.",
+        "prompt": "Виберіть слово, після якого йде мета.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-38:i03:r1",
@@ -1302,12 +1302,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "accessibilityLabel": "Виберіть слово, після якого йде мета.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите слово, которое вводит цель.",
-            "uk": "Виберіть слово, яке вводить мету."
+            "uk": "Виберіть слово, після якого йде мета."
           },
           "gappedTargetPhrase": "I call the shop ___ sort out a problem.",
           "gapOptions": [
@@ -1510,7 +1510,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть слово, яке вводить мету.",
+        "prompt": "Виберіть слово, після якого йде мета.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-38:i06:r1",
@@ -1527,12 +1527,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "accessibilityLabel": "Виберіть слово, після якого йде мета.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите слово, которое вводит цель.",
-            "uk": "Виберіть слово, яке вводить мету."
+            "uk": "Виберіть слово, після якого йде мета."
           },
           "gappedTargetPhrase": "I read the instructions ___ find a solution.",
           "gapOptions": [
@@ -1736,7 +1736,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть слово, яке вводить мету.",
+        "prompt": "Виберіть слово, після якого йде мета.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-38:i09:r1",
@@ -1753,12 +1753,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "accessibilityLabel": "Виберіть слово, після якого йде мета.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите слово, которое вводит цель.",
-            "uk": "Виберіть слово, яке вводить мету."
+            "uk": "Виберіть слово, після якого йде мета."
           },
           "gappedTargetPhrase": "I talk to my neighbour ___ reach an agreement.",
           "gapOptions": [
@@ -1961,7 +1961,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть слово, яке вводить мету.",
+        "prompt": "Виберіть слово, після якого йде мета.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-38:i12:r1",
@@ -1978,12 +1978,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "accessibilityLabel": "Виберіть слово, після якого йде мета.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите слово, которое вводит цель.",
-            "uk": "Виберіть слово, яке вводить мету."
+            "uk": "Виберіть слово, після якого йде мета."
           },
           "gappedTargetPhrase": "I compare the options ___ make a decision.",
           "gapOptions": [

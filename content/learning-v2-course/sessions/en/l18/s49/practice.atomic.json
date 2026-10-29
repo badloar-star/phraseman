@@ -163,7 +163,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Подчеркните качество с so или such.",
+        "prompt": "Усильте описание словом so или such.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-49:i03:r1",
@@ -180,11 +180,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "accessibilityLabel": "Усильте описание словом so или such.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Подчеркните качество с so или such.",
+            "ru": "Усильте описание словом so или such.",
             "uk": "Підкресліть якість із so або such."
           },
           "gappedTargetPhrase": "You made ___ a great effort.",
@@ -209,7 +209,7 @@
               "correct": false,
               "testedDimension": "Подчеркните качество с so или such.",
               "feedbackByLocale": {
-                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.",
                 "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
               }
             },
@@ -386,7 +386,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Подчеркните качество с so или such.",
+        "prompt": "Усильте описание словом so или such.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-49:i06:r1",
@@ -403,11 +403,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "accessibilityLabel": "Усильте описание словом so или such.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Подчеркните качество с so или such.",
+            "ru": "Усильте описание словом so или such.",
             "uk": "Підкресліть якість із so або such."
           },
           "gappedTargetPhrase": "This is ___ a great success.",
@@ -432,7 +432,7 @@
               "correct": false,
               "testedDimension": "Подчеркните качество с so или such.",
               "feedbackByLocale": {
-                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.",
                 "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
               }
             },
@@ -608,7 +608,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Подчеркните качество с so или such.",
+        "prompt": "Усильте описание словом so или such.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-49:i09:r1",
@@ -625,11 +625,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "accessibilityLabel": "Усильте описание словом so или such.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Подчеркните качество с so или such.",
+            "ru": "Усильте описание словом so или such.",
             "uk": "Підкресліть якість із so або such."
           },
           "gappedTargetPhrase": "This failure is ___ serious.",
@@ -831,7 +831,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Подчеркните качество с so или such.",
+        "prompt": "Усильте описание словом so или such.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-49:i12:r1",
@@ -848,11 +848,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "accessibilityLabel": "Усильте описание словом so или such.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Подчеркните качество с so или such.",
+            "ru": "Усильте описание словом so или such.",
             "uk": "Підкресліть якість із so або such."
           },
           "gappedTargetPhrase": "This is ___ a big improvement.",
@@ -877,7 +877,7 @@
               "correct": false,
               "testedDimension": "Подчеркните качество с so или such.",
               "feedbackByLocale": {
-                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.",
                 "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
               }
             },
@@ -1271,7 +1271,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Підкресліть якість із so або such.",
+        "prompt": "Посильте опис словом so або such.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-49:i03:r1",
@@ -1288,12 +1288,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "accessibilityLabel": "Посильте опис словом so або such.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Подчеркните качество с so или such.",
-            "uk": "Підкресліть якість із so або such."
+            "uk": "Посильте опис словом so або such."
           },
           "gappedTargetPhrase": "You made ___ a great effort.",
           "gapOptions": [
@@ -1318,7 +1318,7 @@
               "testedDimension": "Підкресліть якість із so або such.",
               "feedbackByLocale": {
                 "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
-                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+                "uk": "Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an."
               }
             },
             {
@@ -1494,7 +1494,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Підкресліть якість із so або such.",
+        "prompt": "Посильте опис словом so або such.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-49:i06:r1",
@@ -1511,12 +1511,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "accessibilityLabel": "Посильте опис словом so або such.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Подчеркните качество с so или such.",
-            "uk": "Підкресліть якість із so або such."
+            "uk": "Посильте опис словом so або such."
           },
           "gappedTargetPhrase": "This is ___ a great success.",
           "gapOptions": [
@@ -1541,7 +1541,7 @@
               "testedDimension": "Підкресліть якість із so або such.",
               "feedbackByLocale": {
                 "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
-                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+                "uk": "Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an."
               }
             },
             {
@@ -1716,7 +1716,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Підкресліть якість із so або such.",
+        "prompt": "Посильте опис словом so або such.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-49:i09:r1",
@@ -1733,12 +1733,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "accessibilityLabel": "Посильте опис словом so або such.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Подчеркните качество с so или such.",
-            "uk": "Підкресліть якість із so або such."
+            "uk": "Посильте опис словом so або such."
           },
           "gappedTargetPhrase": "This failure is ___ serious.",
           "gapOptions": [
@@ -1939,7 +1939,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Підкресліть якість із so або such.",
+        "prompt": "Посильте опис словом so або such.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-49:i12:r1",
@@ -1956,12 +1956,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "accessibilityLabel": "Посильте опис словом so або such.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Подчеркните качество с so или such.",
-            "uk": "Підкресліть якість із so або such."
+            "uk": "Посильте опис словом so або such."
           },
           "gappedTargetPhrase": "This is ___ a big improvement.",
           "gapOptions": [
@@ -1986,7 +1986,7 @@
               "testedDimension": "Підкресліть якість із so або such.",
               "feedbackByLocale": {
                 "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
-                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+                "uk": "Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an."
               }
             },
             {

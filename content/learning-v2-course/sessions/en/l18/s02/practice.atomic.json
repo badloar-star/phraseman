@@ -165,7 +165,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-02:i03:r1",
@@ -182,11 +182,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "The top floor is ___ than this floor.",
@@ -389,7 +389,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-02:i06:r1",
@@ -406,11 +406,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "This ground-floor flat is ___ than ours.",
@@ -613,7 +613,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-02:i09:r1",
@@ -630,11 +630,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "This garden view is ___ than ours.",
@@ -837,7 +837,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите сравнительную форму.",
+        "prompt": "Выберите форму для сравнения.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-02:i12:r1",
@@ -854,11 +854,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите сравнительную форму.",
+        "accessibilityLabel": "Выберите форму для сравнения.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите сравнительную форму.",
+            "ru": "Выберите форму для сравнения.",
             "uk": "Виберіть порівняльну форму."
           },
           "gappedTargetPhrase": "The city view is ___ than before.",
@@ -1281,7 +1281,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-02:i03:r1",
@@ -1298,12 +1298,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "The top floor is ___ than this floor.",
           "gapOptions": [
@@ -1505,7 +1505,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-02:i06:r1",
@@ -1522,12 +1522,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "This ground-floor flat is ___ than ours.",
           "gapOptions": [
@@ -1729,7 +1729,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-02:i09:r1",
@@ -1746,12 +1746,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "This garden view is ___ than ours.",
           "gapOptions": [
@@ -1953,7 +1953,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть порівняльну форму.",
+        "prompt": "Виберіть форму для порівняння.",
         "responseOptions": [
           {
             "responseId": "en:lesson-18:session-02:i12:r1",
@@ -1970,12 +1970,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть порівняльну форму.",
+        "accessibilityLabel": "Виберіть форму для порівняння.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите сравнительную форму.",
-            "uk": "Виберіть порівняльну форму."
+            "uk": "Виберіть форму для порівняння."
           },
           "gappedTargetPhrase": "The city view is ___ than before.",
           "gapOptions": [

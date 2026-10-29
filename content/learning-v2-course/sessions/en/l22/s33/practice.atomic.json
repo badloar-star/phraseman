@@ -162,7 +162,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Попросите один другой вариант.",
+        "prompt": "Попросите ещё один вариант.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-33:i03:r1",
@@ -179,11 +179,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Попросите один другой вариант.",
+        "accessibilityLabel": "Попросите ещё один вариант.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Попросите один другой вариант.",
+            "ru": "Попросите ещё один вариант.",
             "uk": "Попросіть один інший варіант."
           },
           "gappedTargetPhrase": "I need ___ payment method.",
@@ -208,7 +208,7 @@
               "correct": false,
               "testedDimension": "Попросите один другой вариант.",
               "feedbackByLocale": {
-                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "ru": "Здесь один новый вариант: another + название одного предмета.",
                 "uk": "Тут один новий варіант: another + іменник в однині."
               }
             },
@@ -217,7 +217,7 @@
               "correct": false,
               "testedDimension": "Попросите один другой вариант.",
               "feedbackByLocale": {
-                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "ru": "Здесь один новый вариант: another + название одного предмета.",
                 "uk": "Тут один новий варіант: another + іменник в однині."
               }
             }
@@ -384,7 +384,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Попросите один другой вариант.",
+        "prompt": "Попросите ещё один вариант.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-33:i06:r1",
@@ -401,11 +401,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Попросите один другой вариант.",
+        "accessibilityLabel": "Попросите ещё один вариант.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Попросите один другой вариант.",
+            "ru": "Попросите ещё один вариант.",
             "uk": "Попросіть один інший варіант."
           },
           "gappedTargetPhrase": "I need ___ meeting place.",
@@ -430,7 +430,7 @@
               "correct": false,
               "testedDimension": "Попросите один другой вариант.",
               "feedbackByLocale": {
-                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "ru": "Здесь один новый вариант: another + название одного предмета.",
                 "uk": "Тут один новий варіант: another + іменник в однині."
               }
             },
@@ -439,7 +439,7 @@
               "correct": false,
               "testedDimension": "Попросите один другой вариант.",
               "feedbackByLocale": {
-                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "ru": "Здесь один новый вариант: another + название одного предмета.",
                 "uk": "Тут один новий варіант: another + іменник в однині."
               }
             }
@@ -606,7 +606,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Попросите один другой вариант.",
+        "prompt": "Попросите ещё один вариант.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-33:i09:r1",
@@ -623,11 +623,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Попросите один другой вариант.",
+        "accessibilityLabel": "Попросите ещё один вариант.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Попросите один другой вариант.",
+            "ru": "Попросите ещё один вариант.",
             "uk": "Попросіть один інший варіант."
           },
           "gappedTargetPhrase": "I need ___ delivery date.",
@@ -652,7 +652,7 @@
               "correct": false,
               "testedDimension": "Попросите один другой вариант.",
               "feedbackByLocale": {
-                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "ru": "Здесь один новый вариант: another + название одного предмета.",
                 "uk": "Тут один новий варіант: another + іменник в однині."
               }
             },
@@ -661,7 +661,7 @@
               "correct": false,
               "testedDimension": "Попросите один другой вариант.",
               "feedbackByLocale": {
-                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "ru": "Здесь один новый вариант: another + название одного предмета.",
                 "uk": "Тут один новий варіант: another + іменник в однині."
               }
             }
@@ -828,7 +828,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Попросите один другой вариант.",
+        "prompt": "Попросите ещё один вариант.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-33:i12:r1",
@@ -845,11 +845,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Попросите один другой вариант.",
+        "accessibilityLabel": "Попросите ещё один вариант.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Попросите один другой вариант.",
+            "ru": "Попросите ещё один вариант.",
             "uk": "Попросіть один інший варіант."
           },
           "gappedTargetPhrase": "I need ___ collection time.",
@@ -874,7 +874,7 @@
               "correct": false,
               "testedDimension": "Попросите один другой вариант.",
               "feedbackByLocale": {
-                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "ru": "Здесь один новый вариант: another + название одного предмета.",
                 "uk": "Тут один новий варіант: another + іменник в однині."
               }
             },
@@ -883,7 +883,7 @@
               "correct": false,
               "testedDimension": "Попросите один другой вариант.",
               "feedbackByLocale": {
-                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "ru": "Здесь один новый вариант: another + название одного предмета.",
                 "uk": "Тут один новий варіант: another + іменник в однині."
               }
             }
@@ -1265,7 +1265,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Попросіть один інший варіант.",
+        "prompt": "Попросіть ще один варіант.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-33:i03:r1",
@@ -1282,12 +1282,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Попросіть один інший варіант.",
+        "accessibilityLabel": "Попросіть ще один варіант.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Попросите один другой вариант.",
-            "uk": "Попросіть один інший варіант."
+            "uk": "Попросіть ще один варіант."
           },
           "gappedTargetPhrase": "I need ___ payment method.",
           "gapOptions": [
@@ -1312,7 +1312,7 @@
               "testedDimension": "Попросіть один інший варіант.",
               "feedbackByLocale": {
                 "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
-                "uk": "Тут один новий варіант: another + іменник в однині."
+                "uk": "Тут один новий варіант: another + назва одного предмета."
               }
             },
             {
@@ -1321,7 +1321,7 @@
               "testedDimension": "Попросіть один інший варіант.",
               "feedbackByLocale": {
                 "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
-                "uk": "Тут один новий варіант: another + іменник в однині."
+                "uk": "Тут один новий варіант: another + назва одного предмета."
               }
             }
           ]
@@ -1487,7 +1487,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Попросіть один інший варіант.",
+        "prompt": "Попросіть ще один варіант.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-33:i06:r1",
@@ -1504,12 +1504,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Попросіть один інший варіант.",
+        "accessibilityLabel": "Попросіть ще один варіант.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Попросите один другой вариант.",
-            "uk": "Попросіть один інший варіант."
+            "uk": "Попросіть ще один варіант."
           },
           "gappedTargetPhrase": "I need ___ meeting place.",
           "gapOptions": [
@@ -1534,7 +1534,7 @@
               "testedDimension": "Попросіть один інший варіант.",
               "feedbackByLocale": {
                 "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
-                "uk": "Тут один новий варіант: another + іменник в однині."
+                "uk": "Тут один новий варіант: another + назва одного предмета."
               }
             },
             {
@@ -1543,7 +1543,7 @@
               "testedDimension": "Попросіть один інший варіант.",
               "feedbackByLocale": {
                 "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
-                "uk": "Тут один новий варіант: another + іменник в однині."
+                "uk": "Тут один новий варіант: another + назва одного предмета."
               }
             }
           ]
@@ -1709,7 +1709,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Попросіть один інший варіант.",
+        "prompt": "Попросіть ще один варіант.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-33:i09:r1",
@@ -1726,12 +1726,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Попросіть один інший варіант.",
+        "accessibilityLabel": "Попросіть ще один варіант.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Попросите один другой вариант.",
-            "uk": "Попросіть один інший варіант."
+            "uk": "Попросіть ще один варіант."
           },
           "gappedTargetPhrase": "I need ___ delivery date.",
           "gapOptions": [
@@ -1756,7 +1756,7 @@
               "testedDimension": "Попросіть один інший варіант.",
               "feedbackByLocale": {
                 "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
-                "uk": "Тут один новий варіант: another + іменник в однині."
+                "uk": "Тут один новий варіант: another + назва одного предмета."
               }
             },
             {
@@ -1765,7 +1765,7 @@
               "testedDimension": "Попросіть один інший варіант.",
               "feedbackByLocale": {
                 "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
-                "uk": "Тут один новий варіант: another + іменник в однині."
+                "uk": "Тут один новий варіант: another + назва одного предмета."
               }
             }
           ]
@@ -1931,7 +1931,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Попросіть один інший варіант.",
+        "prompt": "Попросіть ще один варіант.",
         "responseOptions": [
           {
             "responseId": "en:lesson-22:session-33:i12:r1",
@@ -1948,12 +1948,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Попросіть один інший варіант.",
+        "accessibilityLabel": "Попросіть ще один варіант.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Попросите один другой вариант.",
-            "uk": "Попросіть один інший варіант."
+            "uk": "Попросіть ще один варіант."
           },
           "gappedTargetPhrase": "I need ___ collection time.",
           "gapOptions": [
@@ -1978,7 +1978,7 @@
               "testedDimension": "Попросіть один інший варіант.",
               "feedbackByLocale": {
                 "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
-                "uk": "Тут один новий варіант: another + іменник в однині."
+                "uk": "Тут один новий варіант: another + назва одного предмета."
               }
             },
             {
@@ -1987,7 +1987,7 @@
               "testedDimension": "Попросіть один інший варіант.",
               "feedbackByLocale": {
                 "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
-                "uk": "Тут один новий варіант: another + іменник в однині."
+                "uk": "Тут один новий варіант: another + назва одного предмета."
               }
             }
           ]

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы завтракаете с гостями и обсуждаете еду и напитки.
 
-**Что вы освоите:** уточнить, чей это заказ: guest whose coffee is cold
+**Что вы освоите:** уточнить, чей это заказ: The guest whose coffee is cold is waiting.
 **Новые слова:** flaky, frothy, pulp, underripe
 
 ## Интро 1

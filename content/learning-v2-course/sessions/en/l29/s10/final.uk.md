@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви снідаєте з гостями й обговорюєте їжу та напої.
 
-**Що ви опануєте:** уточнити, чиє це замовлення: guest whose coffee is cold
+**Що ви опануєте:** уточнити, чиє це замовлення: The guest whose coffee is cold is waiting.
 **Нові слова:** flaky, frothy, pulp, underripe
 
 ## Інтро 1

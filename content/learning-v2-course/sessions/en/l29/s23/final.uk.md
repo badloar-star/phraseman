@@ -2,7 +2,7 @@
 
 **Ситуація.** Друг показує вам зелень у саду й на підвіконні перед приготуванням салату.
 
-**Що ви опануєте:** пояснити, де що росте: the garden where we grow herbs
+**Що ви опануєте:** пояснити, де що росте: This is the garden where we grow herbs.
 **Нові слова:** chives, cress, watercress, chard
 
 ## Інтро 1

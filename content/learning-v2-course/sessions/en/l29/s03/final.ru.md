@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете средства для ухода и просите помощь в магазине.
 
-**Что вы освоите:** сказать, кто упаковал подарок: gift was wrapped by the assistant
+**Что вы освоите:** сказать, кто упаковал подарок: The gift was wrapped by the assistant.
 **Новые слова:** antiperspirant, exfoliator, toner, serum
 
 ## Интро 1

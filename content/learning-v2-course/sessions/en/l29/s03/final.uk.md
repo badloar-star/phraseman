@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибираєте засоби для догляду й просите допомоги в магазині.
 
-**Що ви опануєте:** сказати, хто запакував подарунок: gift was wrapped by the assistant
+**Що ви опануєте:** сказати, хто запакував подарунок: The gift was wrapped by the assistant.
 **Нові слова:** antiperspirant, exfoliator, toner, serum
 
 ## Інтро 1

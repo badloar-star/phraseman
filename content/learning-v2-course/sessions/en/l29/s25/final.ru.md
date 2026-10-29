@@ -2,7 +2,7 @@
 
 **Ситуация.** После переезда вы рассказываете другу о людях, к которым обращались за помощью.
 
-**Что вы освоите:** сказать, кто вам помог: person who helped me
+**Что вы освоите:** сказать, кто вам помог: The person who helped me was kind.
 **Новые слова:** dependable, approachable, compassionate, impulsive
 
 ## Интро 1

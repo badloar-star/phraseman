@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете еду для нескольких человек и уточняете доставку по телефону.
 
-**Что вы освоите:** сказать, кто привёз заказ: order was delivered by a courier
+**Что вы освоите:** сказать, кто привёз заказ: The order was delivered by a courier.
 **Новые слова:** nachos, quesadilla, sashimi, ramen
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Після переїзду ви розповідаєте другові про людей, до яких зверталися по допомогу.
 
-**Що ви опануєте:** сказати, хто вам допоміг: person who helped me
+**Що ви опануєте:** сказати, хто вам допоміг: The person who helped me was kind.
 **Нові слова:** dependable, approachable, compassionate, impulsive
 
 ## Інтро 1

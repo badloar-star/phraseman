@@ -87,7 +87,7 @@ The heron ___ standing in the water. → **is** · are · am
 <!-- interaction_id: en:lesson-09:session-48:i06; family: context_gap_grammar -->
 This is ___ marsh. → **a** · an · are
 - an — *Marsh начинается с согласного звука, нужен a.*
-- are — *Are не слово a / the; здесь нужен a.*
+- are — *Здесь нужно a, а не are.*
 
 **9 · Карточка слова — causeway**
 <!-- interaction_id: en:lesson-09:session-48:word:causeway; family: word_card -->

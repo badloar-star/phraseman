@@ -107,7 +107,7 @@ The horizon ___ clear. → **is** · are · am
 <!-- interaction_id: en:lesson-09:session-52:i09; family: context_gap_grammar -->
 This is ___ silhouette. → **a** · an · are
 - an — *Первый звук согласный, нужен a.*
-- are — *Are не слово a / the, здесь нужен a.*
+- are — *Здесь нужно a, а не are.*
 
 **13 · Карточка слова — sunset**
 <!-- interaction_id: en:lesson-09:session-52:word:sunset; family: word_card -->

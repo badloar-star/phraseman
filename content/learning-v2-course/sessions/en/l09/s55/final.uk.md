@@ -140,7 +140,7 @@ agenda — порядок денний зустрічі · briefing — коро
 <!-- interaction_id: en:lesson-09:session-55:i15; family: context_gap_grammar -->
 ___ attendee is nodding. → **An** · A · Are
 - A — *Перший звук голосний: an attendee.*
-- Are — *Are не слово a / the; тут потрібне an.*
+- Are — *Тут потрібне an, а не are.*
 
 **20 · Колега думає, що ви ведете протокол, але сьогодні ви лише слухаєте. Скажіть: «Я не веду протокол»**
 <!-- interaction_id: en:lesson-09:session-55:i16; family: phrase_builder -->

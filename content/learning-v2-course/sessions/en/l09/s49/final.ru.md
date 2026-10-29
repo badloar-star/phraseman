@@ -107,7 +107,7 @@ The pacifier ___ in the bag. → **is** · are · am
 <!-- interaction_id: en:lesson-09:session-49:i09; family: context_gap_grammar -->
 This is ___ onesie. → **a** · an · are
 - an — *Первый звук /w/ согласный: a onesie.*
-- are — *Are не слово a / the, здесь нужен a.*
+- are — *Здесь нужно a, а не are.*
 
 **13 · Карточка слова — cradle**
 <!-- interaction_id: en:lesson-09:session-49:word:cradle; family: word_card -->

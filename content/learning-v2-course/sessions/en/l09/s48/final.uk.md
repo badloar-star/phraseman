@@ -87,7 +87,7 @@ The heron ___ standing in the water. → **is** · are · am
 <!-- interaction_id: en:lesson-09:session-48:i06; family: context_gap_grammar -->
 This is ___ marsh. → **a** · an · are
 - an — *Marsh починається з приголосного звука, потрібне a.*
-- are — *Are не слово a / the; тут потрібне a.*
+- are — *Тут потрібне a, а не are.*
 
 **9 · Картка слова — causeway**
 <!-- interaction_id: en:lesson-09:session-48:word:causeway; family: word_card -->

@@ -107,7 +107,7 @@ He is ___ at the hologram. → **staring** · stareing · stare
 <!-- interaction_id: en:lesson-09:session-50:i09; family: context_gap_grammar -->
 This is ___ illusion. → **an** · a · are
 - a — *Illusion починається з голосного звука, потрібне an.*
-- are — *Are не слово a / the; тут потрібне an.*
+- are — *Тут потрібне an, а не are.*
 
 **13 · Картка слова — reflection**
 <!-- interaction_id: en:lesson-09:session-50:word:reflection; family: word_card -->

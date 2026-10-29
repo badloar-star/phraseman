@@ -140,7 +140,7 @@ agenda — повестка встречи · briefing — краткий инс
 <!-- interaction_id: en:lesson-09:session-55:i15; family: context_gap_grammar -->
 ___ attendee is nodding. → **An** · A · Are
 - A — *Первый звук гласный: an attendee.*
-- Are — *Are не слово a / the; здесь нужен an.*
+- Are — *Здесь нужно an, а не are.*
 
 **20 · Коллега думает, что вы ведёте протокол, но сегодня вы только слушаете. Скажите: «Я не веду протокол»**
 <!-- interaction_id: en:lesson-09:session-55:i16; family: phrase_builder -->

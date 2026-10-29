@@ -68,7 +68,7 @@
 <!-- interaction_id: en:lesson-09:session-47:i03; family: context_gap_grammar -->
 This is ___ swatch. → **a** · an · are
 - an — *Swatch начинается с согласного звука, нужен a.*
-- are — *Are не слово a / the; здесь нужен a.*
+- are — *Здесь нужно a, а не are.*
 
 **5 · Карточка слова — wallpaper**
 <!-- interaction_id: en:lesson-09:session-47:word:wallpaper; family: word_card -->

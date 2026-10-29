@@ -87,7 +87,7 @@ He is ___. → **muttering** · mutter · mutters
 <!-- interaction_id: en:lesson-09:session-54:i06; family: context_gap_grammar -->
 This is ___ washer. → **a** · an · are
 - an — *Перший звук приголосний: a washer.*
-- are — *Are не слово a / the, тут потрібне a.*
+- are — *Тут потрібне a, а не are.*
 
 **9 · Картка слова — hinge**
 <!-- interaction_id: en:lesson-09:session-54:word:hinge; family: word_card -->

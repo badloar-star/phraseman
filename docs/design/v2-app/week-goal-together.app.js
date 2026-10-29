@@ -34,19 +34,20 @@ const H_CARD = { none: 300, active: 440, lag: 470, done: 470 }; // высота 
 const homeWill = (st) => phone(HOME, { inserts: [insOn(HOME, Y_HOME, H_CARD[st], card(st), 1740)] });
 /* «Друзья»: на месте пустого состояния — карточка цели и список друзей (строки как в приложении: монета, имя, что делал) */
 const friendsList = () => `<div class="wg-list">${FRIENDS.map(([n, r, s, w]) => row(ci(r, 40), n, '', w, `friend:${n}`)).join('')}</div>`;
-const frWill = (st) => phone(FR, { cut: FR_CUT, inserts: [{ y: FR_CUT[0], html: `<div class="wg-fr">${card(st)}${friendsList()}</div>` }] }).replace('data-ph="ck-ph"', `data-ph="ck-ph"${st === 'active' ? ' data-open="friend"' : ''}`);
+const H_FR = { none: 820, active: 1080, lag: 1120, done: 1120 }; // высота вставки в px кадра
+const frWill = (st) => phone(FR, { cut: FR_CUT, inserts: [insOn(FR, FR_CUT[0], H_FR[st], `<div class="wg-fr">${card(st)}${friendsList()}</div>`, 924)] }); // карточка друга — только по тапу (координатор 29.10: не всплывать поверх тоста)
+const sectionOf = (ph) => ph.closest('section.block').id;
 const pickRows = () => FRIENDS.map(([n, r, s]) => row(ci(r, 36), n, '', s, `choose:${n}`, n === PICK ? 'wg-sel' : '')).join('');
 const SHEETS = {
   pick: () => sheet('Цель недели вдвоём', `${pickRows()}<div class="wg-days"><span class="t${PICK_DAYS === 5 ? ' on' : ''}" data-act="days:5">5 дней</span><span class="t${PICK_DAYS === 7 ? ' on' : ''}" data-act="days:7">7 дней</span></div>${btn(`Предложить ${dat(PICK)}`, 'solid', 'propose', 'paper-plane-outline').replace('class="ck-btn', 'data-propose class="ck-btn')}`),
-  friend: (ph) => { const name = ph.dataset.friend || FRIEND[0]; const f = FRIENDS.find((x) => x[0] === name) || FRIENDS[0]; const d = DATA[K.state['wg-home'] === 'none' ? 'active' : (K.state['wg-home'] || 'active')] || DATA.active; const mine = name === FRIEND[0]; return sheet(name, `${row(ci(f[1], 44), f[2][0].toUpperCase() + f[2].slice(1), '', '')}${mine ? row(`<span class="ic">${io('flag-outline')}</span>`, d.left ? `Цель недели: ${d.fr} из ${d.goal}, ещё ${days(d.left)}` : `Цель недели выполнена: ${d.fr} из ${d.goal}`, '', '') : row(`<span class="ic">${io('flag-outline')}</span>`, 'Цели недели вдвоём пока нет', '', '')}${mine ? `<div class="wg-sheet-bars">${line('Ты', 5, d.me, d.goal)}${line(name, f[1], d.fr, d.goal)}</div>` : ''}<div class="wg-acts">${mine ? btn('Напомнить', 'tonal sm', 'nudge', 'notifications-outline') : btn('Предложить цель', 'tonal sm', 'open:pick', 'flag-outline')}${btn('Дать пять', 'tonal sm', 'toast:Дал пять', 'hand-right')}</div>`); },
+  friend: (ph) => { const name = ph.dataset.friend || FRIEND[0]; const f = FRIENDS.find((x) => x[0] === name) || FRIENDS[0]; const st = K.state[sectionOf(ph)] || 'active'; const d = DATA[st]; const mine = name === FRIEND[0] && !!d; /* зачем: карточка друга показывает то же, что карточка цели на этом экране */ return sheet(name, `${row(ci(f[1], 44), f[2][0].toUpperCase() + f[2].slice(1), '', '')}${mine ? row(`<span class="ic">${io('flag-outline')}</span>`, d.left ? `Цель недели: ${d.fr} из ${d.goal}, ещё ${days(d.left)}` : `Цель недели выполнена: ${d.fr} из ${d.goal}`, '', '') : row(`<span class="ic">${io('flag-outline')}</span>`, 'Цели недели вдвоём пока нет', '', '')}${mine ? `<div class="wg-sheet-bars">${line('Ты', 5, d.me, d.goal)}${line(name, f[1], d.fr, d.goal)}</div>` : ''}<div class="wg-acts">${mine ? (d.left ? btn('Напомнить', 'tonal sm', 'nudge', 'notifications-outline') : '') : btn('Предложить цель', 'tonal sm', 'open:pick', 'flag-outline')}${btn('Дать пять', 'tonal sm', 'toast:Дал пять', 'hand-right')}</div>`); },
 };
-const sectionOf = (ph) => ph.closest('section.block').id;
 const onAct = (name, arg, node, ph) => {
   if (name === 'choose') { PICK = arg; node.parentElement.querySelectorAll('.ck-row').forEach((r) => r.classList.toggle('wg-sel', r === node)); const b = ph.querySelector('[data-propose]'); if (b) b.lastChild.textContent = `Предложить ${dat(PICK)}`; K.once(node, 'pop'); return true; }
   if (name === 'days') { PICK_DAYS = Number(arg); node.parentElement.querySelectorAll('span').forEach((s) => s.classList.toggle('on', s === node)); K.once(node, 'pop'); return true; }
   if (name === 'propose') { // мгновенно: цель появляется в карточке (друг и дни из шторки), сеть догоняет; друг подтвердит позже
     const f = FRIENDS.find((x) => x[0] === PICK) || FRIENDS[0]; FRIEND = [f[0], f[1]]; DATA.active = { goal: PICK_DAYS, me: Math.min(4, PICK_DAYS - 1), fr: Math.min(4, PICK_DAYS - 1), left: 3 }; DATA.done = { goal: PICK_DAYS, me: PICK_DAYS, fr: PICK_DAYS, left: 0 };
-    K.closeSheet(ph); const id = sectionOf(ph); K.after(360, () => { K.setState(id, 'active'); const nph = document.querySelector(`#${id} .ph[data-ph="ck-ph"]:nth-of-type(2), #${id} .col:nth-child(2) .ph`); if (nph) K.toast(nph, `Предложение отправлено ${dat(FRIEND[0])}`, 'paper-plane-outline'); }); return true;
+    K.closeSheet(ph); const id = sectionOf(ph); K.after(360, () => { K.setState(id, 'active'); const nph = document.querySelector(`#${id} .col:nth-child(2) .ph`); /* зачем: правый телефон — «как будет»; .lbl тоже div, поэтому nth-of-type ловил левый */ if (nph) K.toast(nph, `Предложение отправлено ${dat(FRIEND[0])}`, 'paper-plane-outline'); }); return true;
   }
   if (name === 'friend') { ph.dataset.friend = arg; K.openSheet(ph, 'friend'); return true; }
   if (name === 'nudge') { K.closeSheet(ph); K.after(ph.querySelector('.ck-ov') ? 380 : 0, () => K.toast(ph, `Напомнил ${dat(FRIEND[0])}`, 'notifications-outline')); return true; }
@@ -62,8 +63,8 @@ const SECTIONS = [
   { id: 'wg-friends', title: 'В «Друзьях» — та же карточка над списком и цель в карточке друга',
     lead: 'На вкладке «Друзья» карточка цели стоит над списком друзей (на кадре пустое состояние заменено списком из трёх друзей — кадр со списком Сверка снимет позже). Тап по другу открывает его карточку: прогресс обоих, «Напомнить», «Дать пять»; у друга без цели — «Предложить цель».',
     costs: [['Чтения', '0 — то же состояние, что на Главной'], ['Записи', 'напоминание — 1 запись (friendsNudge), не чаще раза в день на друга']],
-    states: [['active', 'Идёт · карточка друга'], ['none', 'Нет цели'], ['done', 'Выполнена']],
-    body: (st) => [col('Сейчас · «Друзья», кадр приложения', phone(FR)), col({ none: 'Как будет · предложить цель', active: 'Как будет · цель над списком + карточка друга', done: 'Как будет · выполнена' }[st], frWill(st))] },
+    states: [['active', 'Идёт'], ['none', 'Нет цели'], ['done', 'Выполнена']],
+    body: (st) => [col('Сейчас · «Друзья», кадр приложения', phone(FR)), col({ none: 'Как будет · предложить цель', active: 'Как будет · цель над списком (тап по другу — его карточка)', done: 'Как будет · выполнена' }[st], frWill(st))] },
 ];
 K.mount({ sections: SECTIONS, sheets: SHEETS, onAct });
 console.log(LOG, 'готово', JSON.stringify({ home: K.have(HOME), friends: K.have(FR) })); // guard-ok: одна строка на страницу

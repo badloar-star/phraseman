@@ -18,16 +18,17 @@
 .ck-chip.on { background: #E8ECF2; color: #0B0D10; }
 /* сегмент внутри телефона (как вкладки «Пик · Друзья · Наборы», но плашкой) */
 .ck-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 16px; background: rgba(255, 255, 255, .10); }
-.ck-seg span { height: 30px; padding: 0 10px; border-radius: 13px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, .78); cursor: pointer; white-space: nowrap; }
+.ck-seg span { height: 30px; padding: 0 10px; border-radius: 13px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--tx); opacity: .78; cursor: pointer; white-space: nowrap; }
+.ck-seg span.on { opacity: 1; }
 .ck-seg span.on { background: var(--solid); color: var(--on-solid); } /* токены cta/ctaInk темы, не белый */
 .ck-seg span small { font-weight: 600; opacity: .7; font-size: 12px; }
 /* панель и строки */
 .ck-panel { margin: 0 0 12px; padding: 12px 14px 8px; border-radius: 22px; background: var(--card); color: var(--tx); width: 100%; }
-.ck-panel.glass { background: rgba(255, 255, 255, .12); }
+.ck-panel.glass { background: rgba(255, 255, 255, .14); } /* .14 — как стеклянная строка Главной на кадре */
 .ck-panel .hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
 .ck-panel .hd b { font-size: 16px; font-weight: 700; }
 .ck-panel .hd span { font-size: 13px; color: var(--sec); display: inline-flex; align-items: center; gap: 2px; cursor: pointer; }
-.ck-panel.glass .hd span, .ck-panel.glass .ck-row .tx small, .ck-panel.glass .ck-row .rt { color: rgba(255, 255, 255, .72); }
+.ck-panel.glass .hd span, .ck-panel.glass .ck-row .tx small, .ck-panel.glass .ck-row .rt { color: var(--tx); opacity: .72; }
 .ck-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
 .ck-row + .ck-row { border-top: 1px solid rgba(255, 255, 255, .07); }
 .ck-row.me { background: rgba(255, 255, 255, .08); /* стекло как у плашек сцены приложения */ margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 12px; border-top: 0; }
@@ -45,7 +46,7 @@
 .ck-btn.sm { height: 40px; border-radius: 20px; font-size: 14px; margin-top: 8px; }
 .ck-btn.solid { background: var(--solid); color: var(--on-solid); }
 .ck-btn.tonal { background: var(--ctl); color: var(--tx); }
-.ck-btn.glass { background: rgba(255, 255, 255, .16); color: #fff; }
+.ck-btn.glass { background: rgba(255, 255, 255, .16); color: var(--tx); } /* стекло .16 — как styles.glass обложки; текст — токен темы */
 .ck-btn .io { font-size: 18px; }
 .ck-btn.sm .io { font-size: 16px; }
 /* полоса прогресса */
@@ -54,11 +55,10 @@
 .ck-bar.live i { width: var(--w); }
 /* пустое состояние внутри панели */
 .ck-empty { text-align: center; padding: 8px 4px 6px; color: var(--tx); }
+.ck-panel.glass, .ck-panel.glass .hd b, .ck-panel.glass .ck-row .tx b, .ck-panel.glass .ck-row .pl { color: var(--tx); }
 .ck-empty .ck-ic { display: inline-flex; width: 44px; height: 44px; border-radius: 14px; align-items: center; justify-content: center; background: rgba(255, 255, 255, .12); font-size: 22px; margin-bottom: 10px; }
 .ck-empty b { display: block; font-size: 15px; font-weight: 700; line-height: 20px; }
-.ck-empty p { margin: 4px 0 10px; font-size: 12px; line-height: 16px; color: rgba(255, 255, 255, .75); }
 .ck-note { font-size: 12px; line-height: 16px; color: var(--sec); margin: 8px 0 0; }
-.ck-panel.glass .ck-note { color: rgba(255, 255, 255, .7); }
 /* шторка и затемнение на телефоне */
 .ck-ov { position: absolute; inset: 0; z-index: 80; overflow: hidden; border-radius: inherit; }
 .ck-ov .ck-scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .45); opacity: 0; transition: opacity .3s var(--ck-out); }
@@ -66,7 +66,7 @@
 .ck-sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 20px 28px; border-radius: 28px 28px 0 0; background: var(--card); color: var(--tx); transform: translateY(100%); transition: transform .34s var(--ck-out); max-height: 86%; overflow-y: auto; scrollbar-width: none; }
 .ck-ov.on .ck-sheet { transform: none; }
 .ck-ov.off .ck-scrim { opacity: 0; } .ck-ov.off .ck-sheet { transform: translateY(100%); }
-.ck-sheet .grab { width: 36px; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .25); margin: 0 auto 14px; }
+.ck-sheet .grab { width: 36px; height: 5px; border-radius: 3px; background: var(--sec); opacity: .5; margin: 0 auto 14px; }
 .ck-sheet .hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .ck-sheet .hd b { font-size: 20px; font-weight: 700; }
 .ck-sheet .x { width: 32px; height: 32px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; background: var(--ctl); font-size: 16px; cursor: pointer; }

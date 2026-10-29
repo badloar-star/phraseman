@@ -185,6 +185,23 @@ describe('[V2-STACK] журнал смены заданий', () => {
     expect(reported()).toEqual([]);
   });
 
+  it('тот же слой переподключён в том же коммите (пришёл id задания, ref вызван заново) — не смена: ни одной записи о сбое (Ревизор 29.10)', () => {
+    appear('practice-4-active', null);
+    jest.advanceTimersByTime(50);
+    leave('practice-4-active', null);
+    appear('practice-4-active', 'i4');
+    jest.advanceTimersByTime(60);
+    noteV2LayerDone('enter', 'practice-4-active', true);
+    jest.advanceTimersByTime(V2_STUCK_LAYER_MS * 2);
+    expect(reported()).toEqual([]);
+    expect(console.log).toHaveBeenCalledWith('[V2-STACK]', expect.stringContaining('переподключён в том же коммите'));
+    // настоящая смена после этого считается как обычно: следующее задание, а выход висит — тревога
+    swap('practice-4-active', 'i4', 'practice-5-active', 'i5');
+    noteV2LayerDone('enter', 'practice-5-active', true);
+    jest.advanceTimersByTime(V2_STUCK_LAYER_MS + 1);
+    expect(reported()).toEqual([expect.objectContaining({ code: 'v2_stack_layer_stuck', context: expect.objectContaining({ key: 'practice-4-active', next: 'practice-5-active' }) })]);
+  });
+
   it('системный Reduce Motion: анимаций нет — таймеров «висит» нет', () => {
     appear('practice-3-active', 'i3', true);
     swap('practice-3-active', 'i3', 'practice-4-active', 'i4', true);

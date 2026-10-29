@@ -127,6 +127,17 @@ function noteLayerLeft(key: string, info: V2LayerInfo, nowMs: number): void {
 
 function noteLayerAppeared(key: string, info: V2LayerInfo, nowMs: number): void {
   onScreen.add(key); // guard-ok: Set в памяти — слои на экране
+  const sameExitId = pendingId('exit', key);
+  const sameExit = pending.get(sameExitId);
+  if (sameExit && nowMs - sameExit.startedAtMs <= V2_TASK_SWAP_MS) {
+    // зачем (Ревизор 29.10): тот же ключ снят и поставлен в одном коммите — это не смена задания (ref вызван заново при смене функции
+    // или вид задания сменился при том же ключе). Колбэка выхода может не быть вовсе — ждать его значит дать ложную тревогу владельцу
+    if (sameExit.timer) clearTimeout(sameExit.timer);
+    pending.delete(sameExitId);
+    lastLeft = null;
+    console.log(LOG, `слой ${key} переподключён в том же коммите — не смена задания, выход и новый вход не ждём · задание ${info.task ?? '—'}`); // guard-ok: ветка без тревоги
+    return;
+  }
   // зачем: React снимает старый слой и ставит новый в одном коммите — ушедший только что слой и есть «откуда» смены
   const from: Peer | null = lastLeft !== null && nowMs - lastLeft.atMs <= V2_TASK_SWAP_MS ? { key: lastLeft.key, task: lastLeft.task } : null;
   const exits = [...pending.values()].filter((p) => p.kind === 'exit');

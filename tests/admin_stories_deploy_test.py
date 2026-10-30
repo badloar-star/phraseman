@@ -1,4 +1,4 @@
-"""Offline safety tests for the two-file Stories Hosting release. No network."""
+"""Offline safety tests for the pinned Stories Hosting assets. No network."""
 import gzip
 import hashlib
 import importlib.util
@@ -106,13 +106,13 @@ class StoriesDeploySafetyTests(unittest.TestCase):
                     self.assertEqual(result['status'], 'verified-live')
                     self.assertTrue(fixture.released)
                     self.assertEqual(set(fixture.desired), set(fixture.files))
-                    self.assertEqual(len(fixture.uploads), 2)
+                    self.assertEqual(len(fixture.uploads), len(m.PAYLOADS))
                     for path in fixture.files:
                         if path not in payloads:
                             self.assertEqual(fixture.files[path], fixture.desired[path])
                     self.assertEqual(json.loads((root / 'report.json').read_text())['status'], 'verified-live')
 
-    def test_only_two_files_and_existing_config_change(self):
+    def test_only_pinned_files_and_existing_config_change(self):
         self.run_fixture()
 
     def test_unknown_live_version_never_writes(self):

@@ -501,7 +501,7 @@ body.preview #preview { display: block; }
 </style>
 </head>
 <body>
-<script>if (/[?&]preview=1/.test(location.search)) document.body.classList.add('preview');</script>
+<script>if (/[?&](?:preview|gallery)=1/.test(location.search)) document.body.classList.add('preview'); if (/[?&]gallery=1/.test(location.search)) { document.body.classList.add('ann-gallery-mode'); document.documentElement.classList.add('ann-gallery-root'); }</script>
 <div class="st-page">
   <div id="preview"></div>
   <h1>Шаблоны объявлений v2 · 36 кадров</h1>
@@ -568,7 +568,43 @@ const confetti = (n = 18, d0 = 700) => `<div class="fx conf tz" data-fx>${Array.
 const sparks = (n = 7) => `<div class="fx sparks tz" data-fx>${Array.from({ length: n }, (_, i) => `<span class="io" style="--x:${8 + (i * 13) % 84}%;--y:${10 + (i * 29) % 70}%;--s:${14 + (i % 3) * 8}px;--d:${i * 330}ms">${I.sparkles}</span>`).join('')}</div>`;
 const tower = (ph, tier, myFloor, width, forceTheme) => { if (!T) return ''; const lite = ph.classList.contains('lt'); const w = Math.min(width || 200, Math.floor(380 * T.TW / T.GEOM.height)); const h = Math.round(T.GEOM.height * w / T.TW); return `<div class="twr" style="width:${w}px;height:${h}px">${T.svg({ tier, myFloor, selected: myFloor, width: w, theme: forceTheme || (lite ? 'light' : 'dark'), variant: 'tower' })}</div>`; };
 // зачем: строки манифеста собираются по ширине (оценка 0,72 em на букву капсом, 0,3 em на пробел; лимит 316 px, чтобы дрейф ±8 px не упирался в маску), чтобы ни одна строка не вылезла за кадр при любом заголовке
-const kinLines = (text, maxW = 316) => { const sizes = [56, 50, 44, 40, 36, 32, 28, 24]; const ws = text.split(' '); const wl = (s, fs) => fs * (s.replace(/ /g, '').length * .72 + (s.split(' ').length - 1) * .3); for (const fs of sizes) { const lines = []; let cur = ''; let ok = true; for (const w of ws) { if (wl(w, fs) > maxW) { ok = false; break; } const t = cur ? cur + ' ' + w : w; if (wl(t, fs) <= maxW) cur = t; else { lines.push(cur); cur = w; } } if (!ok) continue; if (cur) lines.push(cur); if (lines.length <= 8) return { fs, lines }; } return { fs: 24, lines: ws }; };
+// Measure the actual uppercase font; split a long word without dropping graphemes.
+const kinContext = document.createElement('canvas').getContext('2d');
+const kinSegmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter('ru', { granularity: 'grapheme' }) : null;
+const kinParts = (text) => kinSegmenter ? Array.from(kinSegmenter.segment(text), (part) => part.segment) : Array.from(text);
+const kinLines = (text, maxW = 316) => {
+  const value = String(text || '').replace(/\s+/gu, ' ').trim();
+  if (!value) return { fs: 56, lines: [] };
+  const words = value.split(' '), limit = Math.max(40, maxW - 2);
+  const sizes = [56, 50, 44, 40, 36, 32, 28, 24, 22, 20];
+  let fallback = { fs: 20, lines: [] };
+  // Try every size with whole words first; only a truly long word needs splitting.
+  for (const splitWords of [false, true]) for (const fs of sizes) {
+    if (kinContext) kinContext.font = '800 ' + fs + 'px Inter, system-ui, sans-serif';
+    const width = (line) => {
+      const upper = line.toUpperCase();
+      const measured = kinContext ? kinContext.measureText(upper).width : kinParts(upper).length * fs * 1.4;
+      return Math.max(0, measured - Math.max(0, kinParts(upper).length - 1) * fs * .02);
+    };
+    if (!splitWords && words.some((word) => width(word) > limit)) continue;
+    const lines = []; let current = '';
+    for (const word of words) {
+      const candidate = current ? current + ' ' + word : word;
+      if (width(candidate) <= limit) { current = candidate; continue; }
+      if (current) { lines.push(current); current = ''; }
+      if (width(word) <= limit) { current = word; continue; }
+      for (const grapheme of kinParts(word)) {
+        if (current && width(current + grapheme) > limit) { lines.push(current); current = ''; }
+        current += grapheme;
+      }
+    }
+    if (current) lines.push(current);
+    fallback = { fs, lines };
+    // The poster has 372px before its footer; retain room for the moving lines.
+    if (lines.every((line) => width(line) <= limit) && fs * (lines.length * 1.12 + .1) <= 350) return fallback;
+  }
+  return fallback;
+};
 const odometer = (n, d0 = 200) => { const s = fmt(n); const m = s.replace(/ /g, '').length > 5; return `<div class="odo ${m ? 'm' : ''}">${[...s].map((ch, i) => ch === ' ' ? '<i class="sp"></i>' : `<div class="dg"><div class="strip" style="--dy:${-(+ch) * (m ? 72 : 96)}px;--d:${d0 + i * 120}ms">${Array.from({ length: 10 }, (_, k) => `<b>${k}</b>`).join('')}</div></div>`).join('')}</div>`; };
 
 /* ── токены темы ── */
@@ -834,30 +870,46 @@ const geo = (k) => {
 };
 
 /* ── предпросмотр редактора админки (?preview=1): один телефон, содержимое из формы через postMessage ── */
-const PREVIEW = { ph: null, player: null };
+const PREVIEW = { ph: null, player: null, last: null };
 // зачем (владелец 28.10: «добавить в админку… точно так же, как на макете»): редактор показывает тот же движок, что и макет — те же CSS и render()
-const previewEntry = (content) => {
+const previewEntry = (value) => {
+  const content = value && typeof value === 'object' ? value : {};
   const base = TPL.find((t) => t.id === content.design) || TPL[0];
-  const blocks = (content.blocks || []).map((b) => ({ text: String(b.text || ''), size: [14, 16, 20].includes(Number(b.size)) ? Number(b.size) : 16, style: ['normal', 'accent', 'quote'].includes(b.style) ? b.style : 'normal' })).filter((b) => b.text);
+  const blocks = (Array.isArray(content.blocks) ? content.blocks : []).slice(0, 4).map((b) => ({ text: String(b?.text || ''), size: [14, 16, 20].includes(Number(b?.size)) ? Number(b.size) : 16, style: ['normal', 'accent', 'quote'].includes(b?.style) ? b.style : 'normal' })).filter((b) => b.text);
   const title = String(content.title || '');
   const cta = base.cta && content.cta ? base.cta : null;
   return { ...base, preview: true, cta, s: { badge: String(content.badge || ''), short: title, long: title, blocks }, render: (ph, s, c) => base.render(ph, s, c) };
 };
-const previewRender = (content, id, ap) => {
+const previewRender = (content, id, ap, options = {}) => {
   const root = document.getElementById('preview'); if (!root) return false;
+  PREVIEW.last = { content, id, ap, options };
   if (!PREVIEW.ph) { const ph = document.createElement('div'); ph.className = 'ph dk'; ph.dataset.ph = 'preview'; ph.innerHTML = sbHtml('9:41') + '<div class="hi"></div>'; root.appendChild(ph); PREVIEW.ph = ph; }
   const themeId = THEMES[id] ? id : 'ink'; const mode = ap === 'light' ? 'light' : 'dark';
   applyTheme(PREVIEW.ph, themeId, mode);
+  PREVIEW.ph.classList.toggle('ann-static', options.animate === false);
   const entry = previewEntry(content || {});
   if (PREVIEW.player) { PREVIEW.player.alive = false; clearTimeout(PREVIEW.player.timer); cancelAnimationFrame(PREVIEW.player.raf); PREVIEW.player.st.remove(); }
-  PREVIEW.player = new Player(PREVIEW.ph, { start: 0, mode: 'restart', list: [entry] });
+  const wasInstant = INSTANT.on; INSTANT.on = options.animate === false;
+  try { PREVIEW.player = new Player(PREVIEW.ph, { start: 0, mode: 'restart', list: [entry] }); } finally { INSTANT.on = wasInstant; }
+  if (options.animate === false) PREVIEW.player.frozen = true;
+  PREVIEW.player.setVisible(options.enabled !== false && !document.hidden);
   return true;
 };
-if (document.body.classList.contains('preview')) {
+if (document.body.classList.contains('preview') && !document.body.classList.contains('ann-gallery-mode')) {
   // зачем (Ревизор 29.10): содержимое превью принимаем только от родительского окна админки — чужое окно не подсунет свой текст, даже экранированный
-  window.addEventListener('message', (e) => { if (e.source !== window.parent) return; const m = e.data; if (!m || m.channel !== 'pm-ann-preview') return; previewRender(m.content, m.theme, m.ap); });
+  let previewEnabled = true;
+  window.addEventListener('message', (e) => {
+    if (e.source !== window.parent || e.origin !== location.origin) return;
+    const m = e.data; if (!m || m.channel !== 'pm-ann-preview') return;
+    previewEnabled = m.enabled !== false;
+    if (Object.prototype.hasOwnProperty.call(m, 'content')) previewRender(m.content, m.theme, m.ap, { animate: m.animate, enabled: previewEnabled });
+    else PREVIEW.player?.setVisible(previewEnabled && !document.hidden);
+  });
+  document.addEventListener('visibilitychange', () => PREVIEW.player?.setVisible(previewEnabled && !document.hidden));
+  document.fonts?.ready.then(() => { const last = PREVIEW.last; if (last) previewRender(last.content, last.id, last.ap, { ...last.options, enabled: previewEnabled }); }).catch(() => {});
+  window.addEventListener('pagehide', () => { if (PREVIEW.player) { PREVIEW.player.alive = false; clearTimeout(PREVIEW.player.timer); cancelAnimationFrame(PREVIEW.player.raf); } });
   previewRender({ design: 'manifest', ...TPL[0].s, title: TPL[0].s.short }, state.theme, state.ap);
-  window.parent.postMessage({ channel: 'pm-ann-preview-ready', designs: TPL.map((t) => ({ id: t.id, name: t.name, group: t.group, comp: t.comp, fields: t.fields, ext: t.ext, motion: t.motion, cta: !!t.cta, left: !!t.left })), themes: IDS.map((id) => ({ id, name: THEMES[id].name, gradient: !!THEMES[id].gradient })) }, '*');
+  window.parent.postMessage({ channel: 'pm-ann-preview-ready', designs: TPL.map((t) => ({ id: t.id, name: t.name, group: t.group, comp: t.comp, fields: t.fields, ext: t.ext, motion: t.motion, cta: !!t.cta, left: !!t.left })), themes: IDS.map((id) => ({ id, name: THEMES[id].name, gradient: !!THEMES[id].gradient })) }, location.origin === 'null' ? '*' : location.origin);
 }
 
 /* ── критерий (а) гейта (координатор 28.10): геометрия по testID ±2 dp при 390 × 844. rects(k) отдаёт прямоугольники метки (.ov),
@@ -879,10 +931,142 @@ const rects = (k) => {
   return out;
 };
 
-window.ST = { TPL, players, IDS, THEMES, geo, rects, preview: previewRender, setTheme: (id, ap) => { state.theme = id; state.ap = ap; sel.value = id; document.querySelectorAll('[data-ap]').forEach((x) => x.classList.toggle('on', x.dataset.ap === ap)); applyAll(); },
+window.ST = { TPL, players, IDS, THEMES, geo, rects, preview: previewRender, gallerySupport: { applyTheme, previewEntry, sbHtml, io, fmt }, setTheme: (id, ap) => { state.theme = id; state.ap = ap; sel.value = id; document.querySelectorAll('[data-ap]').forEach((x) => x.classList.toggle('on', x.dataset.ap === ap)); applyAll(); },
   phone: (k, id, ap) => { const p = players[k]; if (p) p.setTheme(id, ap); return !!p; }, freeze: (k, ms = 6000) => { const p = players[k]; return p ? p.freeze(ms) : -1; }, setLong: (v) => { LONG = !!v; document.querySelectorAll('[data-len]').forEach((x) => x.classList.toggle('on', (x.dataset.len === 'long') === LONG)); players.forEach((p) => p.restart()); setHint(); },
   settle: (on) => { INSTANT.on = !!on; document.documentElement.classList.toggle('settle', !!on); players.forEach((p) => p.restart()); }, speed: (ms) => { SPEED = ms; }, ready: true };
 })();
 </script>
+<!-- Admin gallery uses the same 36 renderers without creating 36 live Players. -->
+<style id="ann-admin-gallery-style">
+html.ann-gallery-root, body.ann-gallery-mode { margin: 0; padding: 0; background: transparent; overflow-x: hidden; }
+body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
+#ann-gallery { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); align-items: start; gap: 12px; padding: 3px; box-sizing: border-box; width: 100%; }
+.ann-gallery-card { appearance: none; display: flex; flex-direction: column; gap: 7px; width: 100%; min-width: 0; margin: 0; padding: 6px; border: 2px solid #344b43; border-radius: 12px; background: #12271f; color: #ecf4f0; font: 600 13px/1.3 system-ui, sans-serif; text-align: left; cursor: pointer; box-sizing: border-box; }
+.ann-gallery-card:hover { border-color: #8ab49f; background: #19352a; }
+.ann-gallery-card[aria-pressed="true"] { border-color: #a8e1be; background: #213e30; box-shadow: 0 0 0 1px #a8e1be; }
+.ann-gallery-card:focus-visible { outline: 3px solid #e1f6e9; outline-offset: 2px; }
+.ann-gallery-card:disabled { cursor: default; opacity: .75; }
+.ann-gallery-thumb { position: relative; display: block; width: 100%; min-width: 0; aspect-ratio: 390 / 844; border-radius: 8px; overflow: hidden; background: #0b1512; pointer-events: none; }
+.st-page .ann-gallery-thumb .ph { position: absolute; left: 0; top: 0; width: 390px !important; min-width: 390px !important; max-width: none !important; height: 844px !important; min-height: 844px !important; margin: 0; box-shadow: none; transform: scale(var(--ann-thumb-scale, .2)); transform-origin: left top; pointer-events: none; }
+.ann-gallery-label { display: block; min-height: 2.6em; overflow-wrap: break-word; word-break: normal; }
+.ann-gallery-index { color: #b1c9bc; font-variant-numeric: tabular-nums; margin-right: 4px; }
+.ann-gallery-card[aria-pressed="true"] .ann-gallery-index { color: #d5f2df; }
+@media (max-width: 1099px) { #ann-gallery { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; } }
+@media (max-width: 719px) { #ann-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; } }
+@media (max-width: 479px) { #ann-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ann-gallery-card { padding: 4px; } }
+@media (max-width: 309px) { #ann-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Static final frames keep every thumbnail readable while the owner types. */
+.ann-static .story, .ann-static .story *, .ann-static .story *::before, .ann-static .story *::after { animation: none !important; transition: none !important; will-change: auto !important; }
+.ann-static .story { pointer-events: none; }
+.ann-static :is(.a, .pop, .fade, .rise, .fromL, .fromR, .fromT), .ann-static .story .scta, .ann-static .mani .ln span, .ann-static .edit .epanel, .ann-static .tl .it, .ann-static .chat .qb, .ann-static .chat .ab, .ann-static .leaf3 .leaf, .ann-static .hl .stp, .ann-static .story .sl > .bg.curt, .ann-static .soonw b, .ann-static .stamp .cen, .ann-static .g4 .gt, .ann-static .fly .fc, .ann-static .vsbg i, .ann-static .vs2 .cL, .ann-static .vs2 .cR, .ann-static .vs2 .vsw, .ann-static .letters .ch, .ann-static .tilt, .ann-static .vk, .ann-static .chips .chip, .ann-static .pz2, .ann-static .podium .pc .bar, .ann-static .lnk .cL, .ann-static .lnk .cR, .ann-static .codecard, .ann-static .pb2 .op, .ann-static .pb2 .op b, .ann-static .ribbon, .ann-static .yr b, .ann-static .gift, .ann-static .bento .bt, .ann-static .notes .nt { opacity: 1 !important; transform: none !important; }
+.ann-static .wipe, .ann-static .twr, .ann-static .story .sl > .bg.wipebg { clip-path: none !important; }
+.ann-static .tl .line, .ann-static .tl .line i, .ann-static .hl .ln, .ann-static .hl .ln i, .ann-static .path .ln i, .ann-static .pb2 .op i, .ann-static .win .tr i, .ann-static .tilt .wrong i { transform: none !important; }
+.ann-static .ring7 .seg.on { stroke-dasharray: 60 443 !important; }
+.ann-static .lnk svg path { stroke-dashoffset: 0 !important; }
+.ann-static .poster .plane { clip-path: inset(0 0 0 0 round 32px) !important; }
+.ann-static .story .sl > .bg.qdisc, .ann-static .bg .disc2, .ann-static .story .sl > .bg.hplane, .ann-static .bdisc .bnum { opacity: 1 !important; transform: none !important; }
+.ann-static .notes .bplane { opacity: 1 !important; transform: rotate(-3deg) !important; }
+.ann-static .chat .dots, .ann-static .bigring, .ann-static .snow, .ann-static .conf, .ann-static .sparks, .ann-static .hp, .ann-static .bl { display: none !important; }
+.ann-static .odo .dg .strip { transform: translateY(var(--dy)) !important; }
+.ann-static .soonw b:not(.fill) { opacity: 0 !important; }
+.ann-static .fly .flipw { transform: rotateY(180deg) !important; }
+.ann-static .bulb .ray { opacity: 1 !important; transform: none !important; }
+.ann-static .notes .nt { transform: rotate(var(--r)) !important; }
+.ann-static .fly .fc { transform: translate(0, var(--ty)) rotateZ(var(--rz)) !important; }
+.ann-static .path .run { transform: translateX(var(--dx)) !important; }
+.story.offscreen, .story.offscreen *, .story.offscreen *::before, .story.offscreen *::after { animation-play-state: paused !important; }
+</style>
+<script id="ann-admin-gallery-runtime">
+(() => {
+  'use strict';
+  if (!document.body.classList.contains('ann-gallery-mode')) return;
+  const engine = window.ST;
+  const support = engine?.gallerySupport;
+  if (!support || engine.TPL.length !== 36) throw new Error('Stories gallery requires all 36 templates.');
+  const origin = location.origin;
+  const targetOrigin = origin === 'null' ? '*' : origin;
+  const send = (message) => { if (window.parent !== window) window.parent.postMessage(message, targetOrigin); };
+  const root = document.createElement('div'); root.id = 'ann-gallery'; root.setAttribute('role', 'group'); root.setAttribute('aria-label', 'Все 36 шаблонов историй');
+  document.getElementById('preview').replaceChildren(root);
+  const cards = [];
+  let enabled = true, selected = 'manifest', lastSignature = '', lastMessage = null, lastHeight = 0, layoutFrame = 0, renderFrame = 0, pending = null;
+  const updateSelection = () => {
+    for (const card of cards) {
+      card.button.setAttribute('aria-pressed', String(card.template.id === selected));
+      card.button.disabled = !enabled;
+    }
+  };
+  const layout = () => {
+    layoutFrame = 0;
+    for (const card of cards) {
+      if (card.thumb.clientWidth > 0) card.thumb.style.setProperty('--ann-thumb-scale', String(card.thumb.clientWidth / 390));
+    }
+    const height = Math.ceil(root.getBoundingClientRect().height) + 4;
+    if (height > 4 && height !== lastHeight) { lastHeight = height; send({ channel: 'pm-ann-gallery-size', height }); }
+  };
+  const scheduleLayout = () => { if (!layoutFrame) layoutFrame = requestAnimationFrame(layout); };
+  const shell = () => support.sbHtml('9:41') + '<div class="hi"></div><div class="story"><div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div><div class="wash"></div><div class="sbars"><i><b style="width:100%"></b></i></div><div class="shead"><span class="pm">P</span><div><div class="nm">PhraseMan</div><div class="tm">объявление</div></div><span class="x">' + support.io('close', 22) + '</span></div><div class="sl"></div></div>';
+  for (const [index, template] of engine.TPL.entries()) {
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'ann-gallery-card'; button.dataset.design = template.id;
+    button.setAttribute('aria-label', 'Выбрать шаблон «' + template.name + '»'); button.title = 'Выбрать «' + template.name + '» для этой истории. Текст сохранится.';
+    const thumb = document.createElement('span'); thumb.className = 'ann-gallery-thumb'; thumb.setAttribute('aria-hidden', 'true');
+    const phone = document.createElement('div'); phone.className = 'ph dk ann-static'; phone.dataset.ph = 'gallery-' + template.id; phone.innerHTML = shell(); thumb.appendChild(phone);
+    const label = document.createElement('span'); label.className = 'ann-gallery-label';
+    const number = document.createElement('span'); number.className = 'ann-gallery-index'; number.textContent = String(index + 1).padStart(2, '0') + '.';
+    label.append(number, document.createTextNode(' ' + template.name)); button.append(thumb, label); root.appendChild(button);
+    const card = { button, thumb, phone, template, slide: phone.querySelector('.sl') }; cards.push(card);
+    button.addEventListener('click', () => {
+      if (!enabled) return;
+      selected = template.id; updateSelection(); send({ channel: 'pm-ann-gallery-select', design: selected });
+    });
+    button.addEventListener('keydown', (event) => {
+      const columns = getComputedStyle(root).gridTemplateColumns.split(' ').filter(Boolean).length;
+      const next = { ArrowRight: index + 1, ArrowLeft: index - 1, ArrowDown: index + columns, ArrowUp: index - columns, Home: 0, End: cards.length - 1 }[event.key];
+      if (next === undefined) return;
+      event.preventDefault(); cards[Math.max(0, Math.min(cards.length - 1, next))].button.focus();
+    });
+  }
+  const render = (message) => {
+    lastMessage = message;
+    enabled = message.enabled !== false;
+    if (engine.TPL.some((template) => template.id === message.selectedDesign)) selected = message.selectedDesign;
+    updateSelection();
+    const theme = engine.THEMES[message.theme] ? message.theme : 'ink';
+    const ap = message.ap === 'light' ? 'light' : 'dark';
+    const content = message.content && typeof message.content === 'object' ? message.content : {};
+    const signature = JSON.stringify([content, theme, ap]);
+    if (signature === lastSignature) { scheduleLayout(); return; }
+    lastSignature = signature;
+    for (const card of cards) {
+      const entry = support.previewEntry({ ...content, design: card.template.id });
+      support.applyTheme(card.phone, theme, ap);
+      card.slide.className = 'sl' + (entry.cta ? ' hascta' : '') + (entry.left ? ' left' : '');
+      card.slide.innerHTML = entry.render(card.phone, entry.s, { title: entry.s.short, long: false });
+      card.phone.querySelector('.scta')?.remove();
+      if (entry.cta) {
+        const cta = document.createElement('div'); cta.className = 'scta t'; cta.innerHTML = support.io(entry.cta.icon, 18);
+        const text = document.createElement('span'); text.textContent = entry.cta.label; cta.appendChild(text); card.phone.querySelector('.story').appendChild(cta);
+      }
+      for (const counter of card.slide.querySelectorAll('[data-cnt]')) counter.textContent = support.fmt(Number(counter.dataset.cnt)) + (counter.dataset.suf || '');
+      for (const text of card.slide.querySelectorAll('[data-type]')) text.textContent = text.dataset.type || '';
+    }
+    scheduleLayout();
+  };
+  window.addEventListener('message', (event) => {
+    if (event.source !== window.parent || event.origin !== origin || event.data?.channel !== 'pm-ann-gallery') return;
+    pending = event.data;
+    if (!renderFrame) renderFrame = requestAnimationFrame(() => { renderFrame = 0; const next = pending; pending = null; render(next); });
+  });
+  if (typeof ResizeObserver === 'function') new ResizeObserver(scheduleLayout).observe(root);
+  else window.addEventListener('resize', scheduleLayout);
+  document.fonts?.ready.then(() => { lastSignature = ''; if (lastMessage) render(lastMessage); else scheduleLayout(); }).catch(() => {});
+  root.addEventListener('load', scheduleLayout, true);
+  window.addEventListener('pagehide', () => { cancelAnimationFrame(layoutFrame); cancelAnimationFrame(renderFrame); });
+  render({ content: { title: 'Ваш заголовок', badge: 'Новая история', blocks: [{ text: 'Текст истории', size: 16, style: 'normal' }] }, theme: 'ink', ap: 'dark', selectedDesign: selected });
+  send({ channel: 'pm-ann-gallery-ready', count: cards.length, designs: engine.TPL.map(({ id, name, group }) => ({ id, name, group })), themes: engine.IDS.map((id) => ({ id, name: engine.THEMES[id].name, gradient: !!engine.THEMES[id].gradient })) });
+})();
+</script>
+
 </body>
 </html>

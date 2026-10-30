@@ -100,7 +100,9 @@ async function load() {
   say('Загружаем объявления…');
   const request = (async () => {
     try {
-      const fn = await callable('adminStoryAnnouncementsList'); const r = await fn({});
+      const fn = await callable('adminStoryAnnouncementsList');
+      if (!current()) return false;
+      const r = await fn({});
       if (!current()) return false;
       const items = r?.data?.items ?? r?.items;
       if (!Array.isArray(items)) throw new Error('Сервер не вернул список объявлений. Сохранённые данные не изменены.');
@@ -130,7 +132,9 @@ async function command(action) {
   S.busy = true; renderForm(); renderList(); say(`${verb}…`);
   log('команда →', { action, id: f.id, expectedRevision: f.revision, design: f.design });
   try {
-    const fn = await callable('adminStoryAnnouncementCommand'); const r = await fn(payload);
+    const fn = await callable('adminStoryAnnouncementCommand');
+    if (!current()) return;
+    const r = await fn(payload);
     if (!current()) return;
     const data = r?.data || r;
     if (data?.ok === false || !Number.isSafeInteger(data?.revision) || data.revision <= payload.expectedRevision) {

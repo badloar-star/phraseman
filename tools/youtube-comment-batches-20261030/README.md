@@ -86,3 +86,11 @@ node tools/youtube-comment-batches-20261030/tests/clear_drafts.test.cjs
 ### Deployment
 
 Use `deploy_clear_backend.py` and `deploy_clear_hosting.py` in the authenticated Cloud Shell checkpoint directory `/tmp/admin-repair-20261030`. The backend script starts from the currently deployed module SHA256 `38d97bbe799efac3b25d9381dfc23ff0eda36c39ac9ae2640606e48f6105a3b8`; only `buildConfig.source` changes. The hosting script replaces only `/scripts/pages/youtube-comments.js`, preserving every other live path/hash and all configuration. Deployment leases fail closed on concurrent updates. The older scripts above target the earlier batch rollout and are retained only as historical evidence.
+
+### Verified follow-up deployment
+
+- Backend ACTIVE: `adminYoutubeComments`, updateTime `2026-10-30T10:48:01.483721876Z`. Deployed `youtube_comments.js` SHA256: `0ee1ce1a45f97f143833a02014867e5b428e34fa78de9d4ee05467d1671c5f32`. Runtime, secrets, limits and service settings match the prior deployment.
+- Hosting release: `sites/phraseman-ea0b3/releases/1793358623267000`; version `sites/phraseman-ea0b3/versions/059504e187bbb020`. 99 existing paths and complete config preserved; only `/scripts/pages/youtube-comments.js` changed (SHA256 `55048f7b11b03480d52f36a333a9308c306a98f73468d40059c8c6ae920badb8`).
+- Live browser: 50 rendered rows, batch choices 10/20/30/40/50/100, enabled clear control for 33 prepared replies. Real replies were not deleted or sent during QA.
+- Concurrent Stories commit `248a97c5de90ffc44c80da77b7f8c4515dfb618d` was preserved when advancing the existing branch. No Stories code was included in this release.
+- The deployment helper compares the immutable source generation with the successful operation response: Cloud Functions finalization advanced `updateTime` after the response while keeping the same source. The deployed module hash was independently verified before release.

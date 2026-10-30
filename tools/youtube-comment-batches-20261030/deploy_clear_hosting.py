@@ -62,7 +62,9 @@ elif sys.argv[1] == 'publish':
     function_before = json.loads((ROOT / 'function-before.json').read_text())
     function_after = api(function_before['name'], host=FUNCTIONS)
     assert function_after['state'] == 'ACTIVE'
-    assert function_after['updateTime'] == result['response']['updateTime'], 'Concurrent backend update; rebase first'
+    # Finalization can advance updateTime after the operation response. The immutable
+    # source generation is the deployment lease; runtime/service settings are checked below.
+    assert function_after['buildConfig']['source'] == result['response']['buildConfig']['source'], 'Concurrent backend source update; rebase first'
     service_fields = ['availableMemory', 'availableCpu', 'timeoutSeconds', 'minInstanceCount', 'maxInstanceCount', 'maxInstanceRequestConcurrency', 'serviceAccountEmail', 'ingressSettings', 'environmentVariables', 'secretEnvironmentVariables', 'vpcConnector']
     assert all(function_before['serviceConfig'].get(k) == function_after['serviceConfig'].get(k) for k in service_fields), 'Unexpected function setting change'
     assert all(function_before['buildConfig'].get(k) == function_after['buildConfig'].get(k) for k in ['runtime', 'entryPoint', 'environmentVariables', 'serviceAccount', 'workerPool'])

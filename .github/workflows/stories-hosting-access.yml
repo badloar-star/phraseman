@@ -1,0 +1,76 @@
+name: Verify Stories Hosting access
+
+on:
+  push:
+    branches: [feature/referral-roulette]
+    paths: [.github/workflows/stories-hosting-access.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-hosting-access:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Locate existing Google deployment credential without logging secrets
+        env:
+          CLOUD_SECRETS: ${{ toJSON(secrets) }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, json, os, re
+          from pathlib import Path
+          values = json.loads(os.environ.get('CLOUD_SECRETS', '{}'))
+          found = None
+          for key, value in values.items():
+              if not re.search(r'FIREBASE|GOOGLE|GCLOUD|GCP|SERVICE_ACCOUNT', key, re.I) or not value:
+                  continue
+              candidates = [str(value)]
+              try:
+                  candidates.append(base64.b64decode(value, validate=True).decode())
+              except Exception:
+                  pass
+              for candidate in candidates:
+                  try:
+                      data = json.loads(candidate)
+                  except Exception:
+                      continue
+                  if isinstance(data, dict) and data.get('type') in ('service_account', 'authorized_user') and data.get('project_id', 'phraseman-ea0b3') == 'phraseman-ea0b3':
+                      found = candidate
+                      break
+              if found:
+                  break
+          if not found:
+              raise SystemExit('STORIES_DEPLOY_BLOCKED: no existing Google deployment credential for phraseman-ea0b3 was found in cloud-named repository secrets. No Hosting changes were made.')
+          target = Path(os.environ['RUNNER_TEMP']) / 'stories-hosting-credential.json'
+          target.write_text(found)
+          target.chmod(0o600)
+          with open(os.environ['GITHUB_ENV'], 'a') as output:
+              output.write('GOOGLE_APPLICATION_CREDENTIALS=' + str(target) + '\n')
+          print('Existing project credential located. Its contents are not logged or uploaded.')
+          PY
+      - name: Install Google authentication client
+        run: python3 -m pip install --disable-pip-version-check google-auth requests
+      - name: Read current admin Hosting release only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import google.auth
+          from google.auth.transport.requests import AuthorizedSession
+          credentials, _ = google.auth.default(scopes=['https://www.googleapis.com/auth/firebase.hosting'])
+          session = AuthorizedSession(credentials)
+          response = session.get('https://firebasehosting.googleapis.com/v1beta1/sites/phraseman-ea0b3/releases', params={'pageSize': 1}, timeout=30)
+          if response.status_code != 200:
+              raise SystemExit('STORIES_DEPLOY_BLOCKED: admin Hosting release read failed with HTTP ' + str(response.status_code) + '. No Hosting changes were made.')
+          release = response.json().get('releases', [None])[0]
+          if not release or not release.get('version', {}).get('name'):
+              raise SystemExit('STORIES_DEPLOY_BLOCKED: current live version not found. No Hosting changes were made.')
+          print('Hosting read verified:', release['version']['name'])
+          print('This preflight is read-only. The production site has not been modified.')
+          PY
+      - name: Remove temporary credential
+        if: always()
+        shell: bash
+        run: rm -f "$RUNNER_TEMP/stories-hosting-credential.json"

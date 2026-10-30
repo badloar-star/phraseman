@@ -2,7 +2,7 @@
 import json, os, tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from admin_stories_regression import Harness, chromium
+from admin_stories_regression import Harness, chromium, open_template_picker, close_template_picker
 
 OUT=Path(os.environ.get('STORIES_TEST_OUTPUT',tempfile.gettempdir()))
 OUT.mkdir(parents=True,exist_ok=True)
@@ -15,7 +15,9 @@ TITLE_GEOMETRY=r'''(selector)=>{
 TITLE_SAME=r'''({selector,title})=>[...document.querySelectorAll(selector+' .mani .ln span')].map(el=>el.textContent).join('').replace(/\s+/gu,'')===title.replace(/\s+/gu,'')'''
 TITLE_ORDINARY='Один текст во всех 36 шаблонах'
 def title_measure(h,title,label):
+ close_template_picker(h)
  h.page.get_by_role('textbox',name='Заголовок',exact=True).fill(title)
+ open_template_picker(h)
  metric={'case':label,'title':title}
  for key,frame,selector in [('main',h.preview(),'#preview'),('gallery',h.gallery(),'.ann-gallery-card[data-design="manifest"]')]:
   frame.wait_for_function(TITLE_SAME,arg={'selector':selector,'title':title})
@@ -31,6 +33,7 @@ with sync_playwright() as pw:
   h=Harness(browser,width=width);p=h.page
   p.get_by_role('textbox',name='Заголовок',exact=True).fill('Один текст во всех 36 шаблонах')
   p.get_by_role('textbox',name='Текст истории',exact=True).fill('Меняем текст и сразу видим результат')
+  open_template_picker(h)
   f=h.gallery();preview=h.preview()
   f.evaluate('async()=>{await document.fonts.ready}');preview.evaluate('async()=>{await document.fonts.ready}')
   f.wait_for_function('[...document.images].every(img=>img.complete && img.naturalWidth>0)')
@@ -56,6 +59,7 @@ with sync_playwright() as pw:
   h.close()
  for font_mode in ['real','blocked']:
   h=Harness(browser,font_assets=font_mode)
+  open_template_picker(h)
   h.preview().evaluate('async()=>{await document.fonts.ready}');h.gallery().evaluate('async()=>{await document.fonts.ready}')
   titles=[('ordinary',TITLE_ORDINARY)]+[(f'{kind}-{n}',(token*n)[:n]) for kind,token in [('wide','Ш'),('cjk','漢'),('mixed','Ж漢ЙÉ')] for n in [30,80,110]]
   for label,title in titles:

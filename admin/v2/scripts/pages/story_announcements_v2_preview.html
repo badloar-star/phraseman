@@ -1059,6 +1059,9 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
   else window.addEventListener('resize', scheduleLayout);
   document.fonts?.ready.then(() => { lastSignature = ''; if (lastMessage) render(lastMessage); else scheduleLayout(); }).catch(() => {});
   root.addEventListener('load', scheduleLayout, true);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') { event.preventDefault(); send({ channel: 'pm-ann-gallery-close' }); }
+  });
   window.addEventListener('pagehide', () => { cancelAnimationFrame(layoutFrame); cancelAnimationFrame(renderFrame); });
   render({ content: { title: 'Ваш заголовок', badge: 'Новая история', blocks: [{ text: 'Текст истории', size: 16, style: 'normal' }] }, theme: 'ink', ap: 'dark', selectedDesign: selected });
   send({ channel: 'pm-ann-gallery-ready', count: cards.length, designs: engine.TPL.map(({ id, name, group }) => ({ id, name, group })), themes: engine.IDS.map((id) => ({ id, name: engine.THEMES[id].name, gradient: !!engine.THEMES[id].gradient })) });

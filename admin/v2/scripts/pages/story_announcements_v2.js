@@ -2,7 +2,7 @@
    Uses existing callable, revision and account boundaries; no automatic writes. */
 (() => { 'use strict';
 const LOG = '[ANN2-ADMIN]';
-const STORIES_BUILD = '2026.10.30.6';
+const STORIES_BUILD = '2026.10.30.7';
 const PREVIEW_URL = 'scripts/pages/story_announcements_v2_preview.html?preview=1&build=' + STORIES_BUILD;
 const SIZES = [14, 16, 20]; const STYLES = [['normal', 'Обычный'], ['accent', 'Акцент'], ['quote', 'Цитата']];
 const GROUPS = { text: 'Текст', time: 'Срок', sections: 'Разделы', promo: 'Акции', community: 'Сообщество', holiday: 'Праздник', service: 'Служебные' };
@@ -18,13 +18,15 @@ const POLL_PUBLISH_ENABLED = false;
 // Keep the editor usable when the independent preview frame fails to load.
 const FALLBACK_DESIGNS = [{"id":"manifest","name":"Манифест","group":"Текст"},{"id":"editorial","name":"Редакция","group":"Текст"},{"id":"quote","name":"Цитата","group":"Текст"},{"id":"list3","name":"Три пункта","group":"Текст"},{"id":"qa","name":"Вопрос и ответ","group":"Текст"},{"id":"number","name":"Большая цифра","group":"Текст"},{"id":"countdown","name":"Обратный отсчёт","group":"Срок"},{"id":"date","name":"Дата","group":"Срок"},{"id":"schedule","name":"Расписание","group":"Срок"},{"id":"soon","name":"Скоро","group":"Срок"},{"id":"today24","name":"Только сегодня","group":"Срок"},{"id":"lessons","name":"Новые уроки","group":"Разделы"},{"id":"dialogs","name":"Диалоги","group":"Разделы"},{"id":"cards","name":"Карточки","group":"Разделы"},{"id":"peak","name":"Пик","group":"Разделы"},{"id":"duels","name":"Дуэли","group":"Разделы"},{"id":"phrase","name":"Фраза дня","group":"Разделы"},{"id":"mistakes","name":"Ошибки","group":"Разделы"},{"id":"video","name":"Видео","group":"Разделы"},{"id":"exam","name":"Экзамен","group":"Разделы"},{"id":"ai","name":"Разговор с ИИ","group":"Разделы"},{"id":"plus","name":"Plus","group":"Акции"},{"id":"contest","name":"Набор месяца","group":"Акции"},{"id":"challenge","name":"Челлендж недели","group":"Акции"},{"id":"invite","name":"Пригласи друзей","group":"Акции"},{"id":"thanks","name":"Спасибо","group":"Сообщество"},{"id":"poll","name":"Опрос","group":"Сообщество"},{"id":"author","name":"Автор недели","group":"Сообщество"},{"id":"newyear","name":"Новый год","group":"Праздник"},{"id":"holiday","name":"Праздник","group":"Праздник"},{"id":"birthday","name":"День рождения","group":"Праздник"},{"id":"theme","name":"Новая тема","group":"Праздник"},{"id":"version","name":"Обновление","group":"Праздник"},{"id":"maintenance","name":"Техработы","group":"Служебные"},{"id":"feedback","name":"Мы прочитали","group":"Служебные"},{"id":"tip","name":"Совет","group":"Служебные"}];
 const GALLERY_URL = 'scripts/pages/story_announcements_v2_preview.html?gallery=1&build=' + STORIES_BUILD;
-const S = { designs: FALLBACK_DESIGNS, themes: [], rows: [], loaded: false, loading: null, busy: false,
+const S = { designs: FALLBACK_DESIGNS, themes: [], rows: [], loaded: false, loading: null, listError: false, busy: false,
   current: null, dirty: false, clean: '', message: '', error: false, scope: null, epoch: 0,
   view: new URL(location.href).searchParams.get('stories') === 'published' ? 'published' : 'builder',
   theme: 'ink', ap: 'dark', previewReady: false, galleryReady: false, pending: null, listGeneration: 0 };
 window.__ann2 = S;
 let panel, formEl, listEl, archiveEl, draftPicker, actionBar, noticeEl, navEl, builderEl, publishedEl;
 let frame, gallery, fallback, previewBar, previewNotice, galleryNotice, selectedLabel, draftState;
+let picker, pickerButton, pickerClose, restorePickerFocus = true;
+let resizeMainPreview = () => {};
 let debounce = 0, previewTimer = 0, galleryTimer = 0, expiryTimer = 0;
 let authUnsubscribe = null, resizeObserver = null, childObserver = null;
 const origin = location.origin;
@@ -126,6 +128,7 @@ async function callable(name) {
 }
 function human(error) {
   const text = String(error?.message || error);
+  const keyText = String(error?.code || '') + ' ' + text;
   const map = { revision_conflict: 'Эту историю изменили в другом окне. Обновите список и откройте сохранённую версию.',
     published_edit_requires_stop: 'Сначала верните опубликованную историю в черновики.',
     field_not_for_design: 'Проверьте настройки выбранного шаблона.', invalid_cta: 'У этого шаблона нет выбранной кнопки.',
@@ -134,13 +137,19 @@ function human(error) {
     unauthenticated: 'Войдите в админку и повторите действие.', 'permission-denied': 'У текущего аккаунта нет права на это действие.',
     active_limit: 'Достигнут лимит активных историй. Сначала снимите одну с показа.',
     resource_exhausted: 'Достигнут лимит активных историй. Сначала снимите одну с показа.',
-    unavailable: 'Не удалось связаться с сервером. Текст сохранён в открытой форме; повторите действие.' };
-  for (const [key, value] of Object.entries(map)) if (text.includes(key)) return value;
+    unavailable: 'Не удалось связаться с сервером. Текст остаётся в открытой форме; повторите действие.',
+    'deadline-exceeded': 'Сервер не ответил вовремя. Введённый текст остаётся в форме.' };
+  for (const [key, value] of Object.entries(map)) if (keyText.includes(key)) return value;
   return text;
 }
-function say(message, error = false) {
+function say(message, error = false, retryList = false) {
   S.message = message; S.error = error;
-  if (noticeEl) { noticeEl.textContent = message; noticeEl.dataset.error = String(error); noticeEl.hidden = !message; }
+  if (noticeEl) {
+    noticeEl.replaceChildren(h('span', {}, message));
+    if (retryList) noticeEl.append(button('Повторить загрузку', 'Загрузить сохранённые истории ещё раз. Текст в форме останется.', () => {if (!S.busy) void load();}, {class:'ann2-btn ann2-btn--quiet'}));
+    noticeEl.dataset.error = String(error); noticeEl.hidden = !message;
+    requestAnimationFrame(resizeMainPreview);
+  }
 }
 function accountScope() {
   const c = window.__pmAdminCore;
@@ -149,7 +158,9 @@ function accountScope() {
 function ensureAccount() {
   const scope = accountScope();
   if (S.scope !== scope) {
+    closePicker(false);
     S.scope = scope; S.epoch++; S.listGeneration++; S.loading = null; S.loaded = false; S.busy = false;
+    S.listError = false;
     S.rows = []; S.current = scope ? blank() : null; S.pending = null;
     S.clean = fingerprint(S.current); S.dirty = false;
     clearTimeout(expiryTimer);
@@ -163,7 +174,8 @@ async function load() {
   if (S.loading) return S.loading;
   const epoch = S.epoch, generation = S.listGeneration;
   const current = () => epoch === S.epoch && generation === S.listGeneration && scope === accountScope();
-  if (!S.loaded) say('Загружаем истории…');
+  if (!S.loaded || S.listError) say('Загружаем истории…');
+  S.listError = false;
   const request = (async () => {
     try {
       const fn = await callable('adminStoryAnnouncementsList'); if (!current()) return false;
@@ -176,7 +188,14 @@ async function load() {
       if (!S.busy) say('');
       renderList(); renderDraftPicker(); scheduleExpiry();
       return true;
-    } catch (error) { if (current()) say(human(error), true); return false; }
+    } catch (error) {
+      if (current()) {
+        S.listError = true;
+        say('Не удалось загрузить сохранённые истории. ' + human(error), true, true);
+        renderList(); renderDraftPicker();
+      }
+      return false;
+    }
   })();
   S.loading = request;
   try { return await request; } finally { if (S.loading === request) S.loading = null; }
@@ -212,10 +231,28 @@ function openRow(row, copy = false) {
   setView('builder'); renderForm(); renderActions(); renderDraftPicker(); updateSelection(); pushPreview();
 }
 function chooseDesign(id) {
-  if (!editable() || !knownDesign(id)) return;
+  if (!editable() || !knownDesign(id)) return false;
   const f = S.current; f.design = id; f.legacy = false;
   if (ART_DEFAULT[id] && !ARTS.includes(f.art)) f.art = ART_DEFAULT[id];
   f.cta = !!CTA_BY_DESIGN[id]; changed(); renderForm(); renderActions(); updateSelection(); pushPreview();
+  return true;
+}
+function openPicker() {
+  if (!picker || picker.open || !editable() || S.view !== 'builder' || !isStoriesActive()) return;
+  restorePickerFocus = true;
+  picker.showModal(); pickerButton.setAttribute('aria-expanded', 'true');
+  pickerClose.focus({preventScroll:true});
+  clearTimeout(debounce); pushPreview();
+}
+function closePicker(restoreFocus = true) {
+  if (!picker?.open) return;
+  restorePickerFocus = restoreFocus;
+  picker.close();
+  pickerButton?.setAttribute('aria-expanded', 'false');
+  pushPreview();
+}
+function pickDesign(id) {
+  if (picker?.open && chooseDesign(id)) closePicker();
 }
 async function command(action, target = S.current) {
   const previousScope = S.scope, previousEpoch = S.epoch;
@@ -376,6 +413,7 @@ function renderActions() {
   if (!actionBar) return; actionBar.replaceChildren();
   const newButton = panel?.querySelector('.ann2-btn--new');
   if (newButton) newButton.disabled = S.busy || !accountScope();
+  if (pickerButton) pickerButton.disabled = !editable();
   const f = S.current;
   if (!f) return;
   if (f.status === 'published') {
@@ -394,7 +432,7 @@ function renderList() {
   const active = S.rows.filter(row => ['active', 'scheduled'].includes(stateOf(row.form)));
   const rest = S.rows.filter(row => !['active', 'scheduled'].includes(stateOf(row.form)));
   if (!active.length) listEl.append(h('div', {class: 'ann2-empty'},
-    h('h3', {}, S.loaded ? 'Сейчас ничего не опубликовано' : 'Загружаем истории…'),
+    h('h3', {}, S.loaded ? 'Сейчас ничего не опубликовано' : S.listError ? 'Список историй не загрузился' : 'Загружаем истории…'),
     S.loaded ? h('p', {}, 'Создайте историю в конструкторе и проверьте её перед публикацией.') : null));
   function card(row) {
     const f = row.form; const state = stateOf(f);
@@ -438,7 +476,7 @@ function pushPreview(animate = false) {
   const visible = isStoriesActive() && S.view === 'builder';
   const content = previewContent();
   if (S.previewReady && frame?.contentWindow) frame.contentWindow.postMessage({channel:'pm-ann-preview', content, theme:S.theme, ap:S.ap, animate, enabled:visible}, targetOrigin);
-  if (S.galleryReady && gallery?.contentWindow) gallery.contentWindow.postMessage({channel:'pm-ann-gallery', content, theme:S.theme, ap:S.ap, selectedDesign:S.current?.design || '', enabled:editable() && visible}, targetOrigin);
+  if (S.galleryReady && gallery?.contentWindow) gallery.contentWindow.postMessage({channel:'pm-ann-gallery', content, theme:S.theme, ap:S.ap, selectedDesign:S.current?.design || '', enabled:editable() && visible && !!picker?.open}, targetOrigin);
 }
 function schedulePreview() { clearTimeout(debounce); debounce = setTimeout(() => pushPreview(false), 45); }
 function updateSelection() {
@@ -448,7 +486,7 @@ function updateSelection() {
   renderDraftState();
 }
 function fallbackTemplates() {
-  fallback.replaceChildren(...FALLBACK_DESIGNS.map(d => button(d.name, 'Выбрать шаблон «' + d.name + '».', () => chooseDesign(d.id), {
+  fallback.replaceChildren(...FALLBACK_DESIGNS.map(d => button(d.name, 'Выбрать шаблон «' + d.name + '».', () => pickDesign(d.id), {
     'data-design':d.id, 'aria-pressed':String(d.id===S.current?.design), disabled:!editable(), class:'ann2-btn ann2-template-button'
   })));
   fallback.hidden = S.galleryReady;
@@ -485,9 +523,11 @@ window.addEventListener('message', event => {
   } else if (fromGallery && data.channel === 'pm-ann-gallery-size' && Number.isFinite(data.height)) {
     // One column of all 36 full-size phones exceeds 32,000px.
     gallery.style.setProperty('height', Math.ceil(Math.max(120, Math.min(50000, data.height))) + 'px', 'important');
-  } else if (fromGallery && data.channel === 'pm-ann-gallery-select') chooseDesign(data.design);
+  } else if (fromGallery && data.channel === 'pm-ann-gallery-select') pickDesign(data.design);
+  else if (fromGallery && data.channel === 'pm-ann-gallery-close') closePicker();
 });
 function setView(view, updateUrl = true) {
+  if (view !== 'builder') closePicker(false);
   S.view = view === 'published' ? 'published' : 'builder';
   if (builderEl) builderEl.hidden = S.view !== 'builder';
   if (publishedEl) publishedEl.hidden = S.view !== 'published';
@@ -498,7 +538,7 @@ function setView(view, updateUrl = true) {
     const url = new URL(location.href);
     if (url.searchParams.get('stories') !== S.view) {url.searchParams.set('stories', S.view);history.pushState({...history.state, storiesView:S.view}, '', url);}
   }
-  updateSelection(); pushPreview();
+  updateSelection(); pushPreview(); requestAnimationFrame(resizeMainPreview);
 }
 function renderAll() {
   if (!panel) return;
@@ -548,7 +588,7 @@ function mount() {
     event.preventDefault(); const next=event.key==='Home'?'published':event.key==='End'?'builder':S.view==='builder'?'published':'builder';setView(next);
     navEl.querySelector('[data-view="'+next+'"]').focus();
   });
-  noticeEl=h('p',{class:'ann2-notice',role:'status','aria-live':'polite',hidden:true});
+  noticeEl=h('div',{class:'ann2-notice',role:'status','aria-live':'polite',hidden:true});
   const header=h('header',{class:'ann2-head',style:'background:transparent!important;padding:0 0 14px!important;box-shadow:none!important'},h('h2',{},'Истории'),navEl,
     button('Новая история','Открыть пустой конструктор.',newStory,{class:'ann2-btn ann2-btn--new'}));
   listEl=h('div',{class:'ann2-list'});archiveEl=h('div',{class:'ann2-archive-list'});
@@ -562,24 +602,45 @@ function mount() {
   formEl=h('div',{class:'ann2-form'});
   previewBar=h('div',{class:'ann2-previewbar'});previewNotice=h('div',{class:'ann2-preview-notice',role:'status'});
   selectedLabel=h('span',{class:'ann2-selected-label'});
+  pickerButton=button('Выбрать шаблон','Открывает все 36 шаблонов с вашим текстом на весь экран.',openPicker,
+    {class:'ann2-btn ann2-picker-open','aria-haspopup':'dialog','aria-expanded':'false','aria-controls':'ann2-template-picker'});
   frame=h('iframe',{class:'ann2-frame',title:'Предпросмотр истории',sandbox:'allow-scripts allow-same-origin'});
   const phone=h('div',{class:'ann2-phone'},frame);
   const preview=h('aside',{class:'ann2-preview','aria-label':'Предпросмотр выбранного шаблона'},
-    h('div',{class:'ann2-preview-title'},h('h3',{},'Предпросмотр'),selectedLabel),phone,previewNotice,previewBar,
-    button('Показать анимацию','Проиграть анимацию выбранного макета.',()=>pushPreview(true),{class:'ann2-btn ann2-btn--quiet'}));
-  const editor=h('div',{class:'ann2-composer'},formEl,preview);
+    h('div',{class:'ann2-preview-title'},h('div',{class:'ann2-preview-label'},h('h3',{},'Предпросмотр'),selectedLabel),pickerButton),phone,previewNotice);
+  const editor=h('div',{class:'ann2-composer'},h('div',{class:'ann2-edit-fields'},formEl,
+    h('div',{class:'ann2-preview-settings'},previewBar,button('Показать анимацию','Проиграть анимацию выбранного макета.',()=>pushPreview(true),{class:'ann2-btn ann2-btn--quiet'}))),preview);
   galleryNotice=h('div',{class:'ann2-gallery-notice',role:'status'});
   fallback=h('div',{class:'ann2-template-fallback','aria-label':'Все 36 шаблонов по названию'});
   gallery=h('iframe',{class:'ann2-gallery-frame',title:'Все 36 шаблонов истории',sandbox:'allow-scripts allow-same-origin',scrolling:'no',hidden:true});
-  const galleryWrap=h('section',{class:'ann2-gallery','aria-label':'Все шаблоны'},
-    h('div',{class:'ann2-gallery-heading'},h('h3',{},'Все шаблоны'),h('span',{class:'ann2-count-badge'},'36'),h('span',{class:'ann2-hint'},'Нажмите на макет')),galleryNotice,fallback,gallery);
+  const galleryWrap=h('div',{class:'ann2-gallery','aria-label':'Все шаблоны'},galleryNotice,fallback,gallery);
+  pickerClose=button('Закрыть','Закрывает выбор и возвращает к редактированию текста.',()=>closePicker(),{'aria-label':'Закрыть выбор шаблона'});
+  picker=h('dialog',{id:'ann2-template-picker',class:'ann2-picker','aria-labelledby':'ann2-picker-title','aria-describedby':'ann2-picker-hint'},
+    h('div',{class:'ann2-picker-head'},h('div',{},h('h2',{id:'ann2-picker-title'},'Выберите шаблон'),h('p',{id:'ann2-picker-hint'},'36 шаблонов с вашим текстом. Нажмите на нужный.')),pickerClose),
+    h('div',{class:'ann2-picker-body'},galleryWrap));
+  picker.addEventListener('cancel',event=>{event.preventDefault();closePicker();});
+  picker.addEventListener('close',()=>{
+    pickerButton.setAttribute('aria-expanded','false');pushPreview();
+    if(restorePickerFocus&&S.view==='builder'&&isStoriesActive()&&!pickerButton.disabled)pickerButton.focus({preventScroll:true});
+  });
   builderEl=h('section',{id:'ann2-builder',role:'tabpanel','aria-labelledby':'ann2-builder-tab'},toolbar,
-    h('div',{class:'ann2-builder-layout'},editor,galleryWrap));
-  panel.append(header,noticeEl,publishedEl,builderEl);tab.prepend(panel);ownWorkspace(tab);
+    h('div',{class:'ann2-builder-layout'},editor));
+  panel.append(header,noticeEl,publishedEl,builderEl,picker);tab.prepend(panel);ownWorkspace(tab);
   childObserver=new MutationObserver(()=>ownWorkspace(tab));childObserver.observe(tab,{childList:true});
-  function sizePreview(){if(phone.clientWidth>0)phone.style.setProperty('--ann2-preview-scale',String(phone.clientWidth/412));sizeWorkspace();}
+  function sizePreview(){
+    if(S.view==='builder'&&preview.clientWidth>0){
+      // Fit the selected phone beside the text without resizing it as the page scrolls.
+      const top=phone.getBoundingClientRect().top+tab.scrollTop;
+      const height=Math.max(280,window.innerHeight-top-24);
+      const width=Math.floor(Math.min(412,preview.clientWidth,height*412/866));
+      if(phone.style.width!==width+'px')phone.style.width=width+'px';
+      phone.style.setProperty('--ann2-preview-scale',String(width/412));
+    }
+    sizeWorkspace();
+  }
+  resizeMainPreview=sizePreview;
   if(typeof ResizeObserver==='function'){
-    resizeObserver=new ResizeObserver(sizePreview);resizeObserver.observe(phone);
+    resizeObserver=new ResizeObserver(sizePreview);resizeObserver.observe(preview);
     const shellHeader=tab.parentElement?.querySelector(':scope > header');if(shellHeader)resizeObserver.observe(shellHeader);
   }sizePreview();
   ensureAccount();fallbackTemplates();renderPreviewBar();renderAll();restartPreview();
@@ -593,10 +654,10 @@ function enterWorkspace(){if(mount()&&isStoriesActive()){sizeWorkspace();void lo
 window.loadStoryWorkspace = enterWorkspace;
 window.__ann2Refresh = () => {if(mount())return load();return Promise.resolve(false);};
 window.addEventListener('popstate',()=>{if(mount())setView(new URL(location.href).searchParams.get('stories')==='published'?'published':'builder',false);});
-window.addEventListener('hashchange',()=>{if(isStoriesActive())enterWorkspace();else{clearTimeout(expiryTimer);pushPreview();}});
-window.addEventListener('resize',sizeWorkspace);
+window.addEventListener('hashchange',()=>{if(isStoriesActive())enterWorkspace();else{closePicker(false);clearTimeout(expiryTimer);pushPreview();}});
+window.addEventListener('resize',()=>{sizeWorkspace();resizeMainPreview();});
 document.addEventListener('visibilitychange',()=>{pushPreview();if(isStoriesActive())scheduleExpiry();else clearTimeout(expiryTimer);});
-document.addEventListener('pm:section-opened',event=>{if(['stories','tab-stories'].includes(event.detail?.tab))enterWorkspace();else pushPreview();});
+document.addEventListener('pm:section-opened',event=>{if(['stories','tab-stories'].includes(event.detail?.tab))enterWorkspace();else{closePicker(false);pushPreview();}});
 window.addEventListener('beforeunload',event=>{if(S.dirty||S.busy){event.preventDefault();event.returnValue='';}});
 if(!mount()){
   const timer=setInterval(()=>{if(mount()){clearInterval(timer);window.loadStoryWorkspace=enterWorkspace;}},500);

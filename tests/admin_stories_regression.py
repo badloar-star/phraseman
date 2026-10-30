@@ -132,9 +132,21 @@ def open_record(h,story_id='story-a'):
  p.locator('#ann2-builder').wait_for(state='visible')
  return row
 
+def open_template_picker(h):
+ picker=h.page.locator('#ann2-template-picker')
+ if not picker.is_visible():h.page.get_by_role('button',name='Выбрать шаблон',exact=True).click()
+ picker.wait_for(state='visible')
+
+def close_template_picker(h):
+ picker=h.page.locator('#ann2-template-picker')
+ if picker.is_visible():h.page.get_by_role('button',name='Закрыть выбор шаблона',exact=True).click()
+ picker.wait_for(state='hidden')
+
 def select_design(h,design):
+ open_template_picker(h)
  h.gallery().locator(f'.ann-gallery-card[data-design="{design}"]').click()
  h.page.wait_for_function('(id)=>window.__ann2.current?.design===id',arg=design)
+ h.page.locator('#ann2-template-picker').wait_for(state='hidden')
 
 def command_calls(p):
  return p.evaluate("calls.filter(c=>c.name==='adminStoryAnnouncementCommand')")
@@ -162,7 +174,7 @@ def main():
    finally:
     if h:h.close()
   def catalogue(h):
-   p=h.page;f=h.gallery()
+   p=h.page;open_template_picker(h);f=h.gallery()
    f.evaluate('async()=>{await document.fonts.ready}')
    f.wait_for_function('[...document.images].every(img=>img.complete && img.naturalWidth>0)')
    assert f.evaluate("document.fonts.check('800 16px Inter')")
@@ -175,7 +187,7 @@ def main():
    assert len(command_calls(p))==0
   check('all 36 real templates are visible together without nested players',catalogue)
   def fallback(h):
-   p=h.page;buttons=p.locator('.ann2-template-fallback button[data-design]')
+   p=h.page;open_template_picker(h);buttons=p.locator('.ann2-template-fallback button[data-design]')
    assert buttons.count()==36 and buttons.nth(35).is_visible()
    p.locator('.ann2-template-fallback button[data-design="quote"]').click()
    p.get_by_role('textbox',name='Заголовок',exact=True).fill('Offline preview still saves')
@@ -184,9 +196,10 @@ def main():
    assert command_calls(p)[0]['data']['content']['design']=='quote'
   check('all 36 fallback choices and draft saving work without renderer',fallback,renderer=False)
   def live_text(h):
-   p=h.page;f=h.gallery();p.get_by_role('textbox',name='Заголовок',exact=True).fill('QA Marker 482')
+   p=h.page;p.get_by_role('textbox',name='Заголовок',exact=True).fill('QA Marker 482')
    p.get_by_role('textbox',name='Метка',exact=True).fill('QA badge')
    p.get_by_role('textbox',name='Текст истории',exact=True).fill('QA body live')
+   open_template_picker(h);f=h.gallery()
    f.wait_for_function("[...document.querySelectorAll('.ann-gallery-card')].filter(c=>!['number','thanks'].includes(c.dataset.design)).every(c=>c.innerText.replace(/\\s+/g,' ').toLowerCase().includes('qa marker 482'))")
    preview=h.preview();preview.wait_for_function("document.querySelector('#preview').innerText.replace(/\\s+/g,' ').toLowerCase().includes('qa marker 482')")
    assert not command_calls(p)
@@ -251,7 +264,13 @@ def main():
    assert p.get_by_role('button',name='Новая история',exact=True).is_disabled()
    p.get_by_role('button',name='Новая история',exact=True).evaluate('(button)=>button.click()')
    assert p.evaluate('__ann2.current.id')==before
-   selected=p.evaluate('__ann2.current.design');h.gallery().locator('.ann-gallery-card[data-design="quote"]').click(force=True)
+   selected=p.evaluate('__ann2.current.design')
+   picker_button=p.get_by_role('button',name='Выбрать шаблон',exact=True)
+   assert picker_button.is_disabled()
+   picker_button.evaluate('(button)=>button.click()')
+   assert not p.locator('#ann2-template-picker').is_visible()
+   h.gallery().evaluate("parent.postMessage({channel:'pm-ann-gallery-select',design:'quote'},location.origin)")
+   p.wait_for_timeout(30)
    assert p.evaluate('__ann2.current.design')==selected
   check('in-flight save locks edits and template changes',busy)
   def published_lock(h):
@@ -327,7 +346,7 @@ def main():
    assert not command_calls(p)
   check('refresh and page switching never replace unsaved changes',refresh_dirty)
   def forged_message(h):
-   p=h.page;h.gallery();before=p.evaluate('__ann2.current.design')
+   p=h.page;open_template_picker(h);h.gallery();before=p.evaluate('__ann2.current.design')
    p.evaluate("window.postMessage({channel:'pm-ann-gallery-select',design:'quote'},location.origin)")
    p.wait_for_timeout(30);assert p.evaluate('__ann2.current.design')==before
   check('parent ignores a forged template selection from another window',forged_message)
@@ -347,8 +366,9 @@ def main():
    assert not command_calls(p)
   check('copy creates a fresh editable draft without mutating the publication',copy_published,extra="items[0].status='published';items[0].publishedAtMs=now-10000;items[0].expiresAtMs=now+86400000;")
   def leave_stories(h):
-   p=h.page;h.gallery()
+   p=h.page;open_template_picker(h);h.gallery()
    p.evaluate("document.querySelector('#tab-stories').classList.remove('active');location.hash='control-panel';document.dispatchEvent(new CustomEvent('pm:section-opened',{detail:{tab:'control-panel'}}));")
+   p.locator('#ann2-template-picker').wait_for(state='hidden')
    assert not p.locator('#tab-stories').is_visible()
    assert p.locator('#tab-stories').evaluate('(el)=>getComputedStyle(el).display')=='none'
    p.evaluate("document.querySelector('#tab-stories').classList.add('active');location.hash='stories';document.dispatchEvent(new CustomEvent('pm:section-opened',{detail:{tab:'stories'}}));")

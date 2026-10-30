@@ -6,7 +6,8 @@
    Модуль встаёт в начало #tab-stories, прежний редактор (iframe #pm-story-editor) остаётся ниже. Логи: [ANN2-ADMIN]. */
 (() => { 'use strict';
 const LOG = '[ANN2-ADMIN]';
-const PREVIEW_URL = 'scripts/pages/story_announcements_v2_preview.html?preview=1';
+const STORIES_BUILD = '2026.10.30.2';
+const PREVIEW_URL = 'scripts/pages/story_announcements_v2_preview.html?preview=1&build=' + STORIES_BUILD;
 const SIZES = [14, 16, 20]; const STYLES = [['normal', 'Обычный'], ['accent', 'Акцент'], ['quote', 'Цитата']];
 const GROUPS = { text: 'Текст', time: 'Срок', sections: 'Разделы', promo: 'Акции', community: 'Сообщество', holiday: 'Праздник', service: 'Служебные' };
 /** Поля сверх общих — по design (контракт story_announcements_contract.ts, Моменты 28.10). */
@@ -23,7 +24,7 @@ const FALLBACK_DESIGNS = [{"id":"manifest","name":"Манифест","group":"Т
 const S = { designs: FALLBACK_DESIGNS, themes: [], rows: [], loaded: false, busy: false, message: '', error: false, current: null, theme: 'ink', ap: 'dark', previewReady: false, loading: null, scope: null, epoch: 0 };
 window.__ann2 = S; // зачем: состояние видно из консоли и из headless-проверки (scratchpad admin_test.cjs)
 let panel = null, frame = null, formEl = null, listEl = null, noticeEl = null, descEl = null, debounce = 0, previewTimer = 0, previewBar = null, previewNotice = null;
-let authUnsubscribe = null;
+let authUnsubscribe = null, previewResizeObserver = null;
 
 const h = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k === 'text') e.textContent = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else if (v !== undefined && v !== null) e.setAttribute(k, String(v)); } for (const k of kids.flat()) if (k !== null && k !== undefined) e.append(k); return e; };
 const log = (...a) => console.log(LOG, ...a);
@@ -109,6 +110,12 @@ async function load() {
       S.rows = items.filter((row) => row && typeof row.id === 'string').map((row) => ({ ...row, form: fromRow(row) })); S.loaded = true;
       say(`${S.rows.length} объявлений · шаблонов 2.0: ${S.rows.filter((x) => x.form.design).length}`);
       log('список', { rows: S.rows.length, v2: S.rows.filter((x) => x.form.design).length });
+      // Only select on first load; a refresh must not replace unsaved form edits.
+      if (!S.current && S.rows.length) {
+        const first = S.rows[0].form;
+        S.current = { ...first, blocks: first.blocks.map((block) => ({ ...block })) };
+        renderForm(); pushPreview();
+      }
       renderList(); return true;
     } catch (e) { if (current()) { say(human(e), true); log('список: ошибка', String(e)); } return false; }
   })();
@@ -194,7 +201,7 @@ function renderForm() {
   const d = S.designs.find((x) => x.id === f.design);
   const designOptions = [['', '— шаблон —', null], ...S.designs.map((x) => [x.id, x.name, GROUPS[x.group] || x.group])];
   formEl.append(field('Шаблон', select(designOptions, f.design, (v) => { f.design = v; if (ART_DEFAULT[v] && !ARTS.includes(f.art)) f.art = ART_DEFAULT[v]; f.cta = !!CTA_BY_DESIGN[v]; })));
-  if (descEl) descEl.textContent = d ? [d.comp || d.name, d.motion, d.ext ? `нужно: ${d.ext}` : ''].filter(Boolean).join(' · ') : '';
+  if (descEl) descEl.textContent = d ? [d.comp || d.name, d.motion, d.ext ? `нужно: ${d.ext}` : ''].filter(Boolean).join(' · ') : 'Старое объявление: предпросмотр показывает его текст в базовом шаблоне. Существующее оформление не изменено. Для перехода на новый шаблон сначала снимите объявление с показа.';
   const badge = field('Метка', input(f.badge, LIMITS.badge, (v) => { f.badge = v; })); badge.append(h('span', { class: 'ann2-count', 'data-count': `0/${LIMITS.badge}` })); formEl.append(badge);
   const title = field('Заголовок', input(f.title, LIMITS.title, (v) => { f.title = v; })); title.append(h('span', { class: 'ann2-count', 'data-count': `0/${LIMITS.title}` })); formEl.append(title);
   const blocks = h('div', { class: 'ann2-blocks' }, h('span', { class: 'ann2-field__label' }, f.design === 'poll' ? 'Варианты опроса (2–4)' : f.design === 'schedule' ? 'Остановки «время · событие»' : 'Блоки текста (до 4)'));
@@ -260,16 +267,30 @@ function mount() {
   const tab = document.getElementById('tab-stories'); if (!tab || !window.__pmAdminCore) return false;
   if (panel?.isConnected) return true;
   authUnsubscribe?.(); authUnsubscribe = null;
-  if (!document.querySelector('link[data-ann2-style]')) document.head.append(h('link', { rel: 'stylesheet', href: 'scripts/pages/story_announcements_v2.css', 'data-ann2-style': 'true' }));
-  panel = h('section', { class: 'ann2', 'aria-label': 'Объявления 2.0' });
+  previewResizeObserver?.disconnect(); previewResizeObserver = null;
+  const styleHref = 'scripts/pages/story_announcements_v2.css?build=' + STORIES_BUILD;
+  const style = document.querySelector('link[data-ann2-style]');
+  if (style) style.setAttribute('href', styleHref);
+  else document.head.append(h('link', { rel: 'stylesheet', href: styleHref, 'data-ann2-style': 'true' }));
+  panel = h('section', { class: 'ann2', 'aria-label': 'Объявления 2.0', 'data-stories-build': STORIES_BUILD });
   noticeEl = h('p', { class: 'ann2-notice', role: 'status', 'aria-live': 'polite' });
   descEl = h('p', { class: 'ann2-desc' }); listEl = h('div', { class: 'ann2-list' }); formEl = h('div', { class: 'ann2-form' });
   frame = h('iframe', { class: 'ann2-frame', title: 'Предпросмотр объявления', sandbox: 'allow-scripts allow-same-origin' });
   previewBar = h('div', { class: 'ann2-previewbar' }); previewNotice = h('p', { class: 'ann2-notice', role: 'status' });
+  const phone = h('div', { class: 'ann2-phone' }, frame);
+  // Keep the iframe's viewport at 412x866; only scale its outer presentation.
+  const resizePreview = () => {
+    if (phone.clientWidth > 0) phone.style.setProperty('--ann2-preview-scale', String(phone.clientWidth / 412));
+  };
   panel.append(
-    h('div', { class: 'ann2-head' }, h('h3', { class: 'ann2-title' }, 'Объявления 2.0 · 36 шаблонов макета'), h('button', { class: 'ann2-btn ann2-btn--ghost', type: 'button', onclick: () => { if (!S.busy) void load(); } }, 'Обновить список'), noticeEl),
-    h('div', { class: 'ann2-grid' }, h('div', { class: 'ann2-col ann2-col--list' }, listEl), h('div', { class: 'ann2-col ann2-col--form' }, descEl, formEl), h('div', { class: 'ann2-col ann2-col--preview' }, previewBar, previewNotice, h('div', { class: 'ann2-phone' }, frame))));
+    h('div', { class: 'ann2-head' }, h('h3', { class: 'ann2-title' }, 'Объявления 2.0 · 36 шаблонов макета'), h('span', { class: 'ann2-build' }, 'Редактор ' + STORIES_BUILD), h('button', { class: 'ann2-btn ann2-btn--ghost', type: 'button', onclick: () => { if (!S.busy) void load(); } }, 'Обновить список'), noticeEl),
+    h('div', { class: 'ann2-grid' }, h('div', { class: 'ann2-col ann2-col--list' }, listEl), h('div', { class: 'ann2-col ann2-col--form' }, descEl, formEl), h('div', { class: 'ann2-col ann2-col--preview' }, previewBar, previewNotice, phone)));
   tab.prepend(panel);
+  resizePreview();
+  if (typeof ResizeObserver === 'function') {
+    previewResizeObserver = new ResizeObserver(resizePreview);
+    previewResizeObserver.observe(phone);
+  }
   renderPreviewBar(previewBar); renderList(); renderForm(); restartPreview();
   const auth = window.__pmAdminCore.auth;
   const observe = auth?.onIdTokenChanged || auth?.onAuthStateChanged;

@@ -1,11 +1,22 @@
 /* Scoped Stories workspace. The shell and other admin sections retain their own styles. */
 #tab-stories.ann2-owned {
-  height: auto !important;
-  max-height: none !important;
+  box-sizing: border-box;
+  height: var(--ann2-viewport-height, calc(100dvh - 68px)) !important;
+  max-height: var(--ann2-viewport-height, calc(100dvh - 68px)) !important;
   min-height: 0 !important;
-  overflow: visible !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: auto;
+  scrollbar-color: #719b87 transparent;
   padding: 0 !important;
 }
+#tab-stories.ann2-owned.active { display: block !important; }
+#tab-stories.ann2-owned:not(.active) { display: none !important; }
+#tab-stories.ann2-owned::-webkit-scrollbar { display: block !important; width: 12px !important; }
+#tab-stories.ann2-owned::-webkit-scrollbar-track { background: transparent; }
+#tab-stories.ann2-owned::-webkit-scrollbar-thumb { background: #719b87; border: 3px solid transparent; background-clip: padding-box; border-radius: 8px; }
 #tab-stories.ann2-owned > :not(.ann2) { display: none !important; }
 #tab-stories .ann2, #tab-stories .ann2 * { box-sizing: border-box; }
 #tab-stories .ann2 {
@@ -14,7 +25,7 @@
   --ann2-surface: var(--pm-surface, rgba(129, 164, 149, .055));
   --ann2-field: var(--pm-card, rgba(129, 164, 149, .075));
   --ann2-accent: #9bd6b7;
-  width: 100%; min-width: 0; margin: 0; padding: 0;
+  width: 100%; min-width: 0; min-height: max-content; max-height: none; flex: none; margin: 0; padding: 0;
   color: inherit; background: transparent; border: 0; border-radius: 0;
   font: 14px/1.45 system-ui, -apple-system, 'Segoe UI', sans-serif;
   container-type: inline-size; container-name: stories-workspace;
@@ -71,7 +82,7 @@
 #tab-stories .ann2-draft-state[data-dirty="true"] { color: inherit; }
 #tab-stories .ann2-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 #tab-stories .ann2-builder-layout {
-  display: grid; grid-template-columns: minmax(0, 1fr) 490px; align-items: start; gap: 24px;
+  display: grid; grid-template-columns: minmax(0, 1fr) 470px; align-items: start; gap: 24px;
 }
 #tab-stories .ann2-composer {
   grid-column: 2; grid-row: 1; display: grid; grid-template-columns: minmax(0,1fr) 200px;
@@ -175,6 +186,7 @@
   #tab-stories .ann2-row-actions { max-width: 100%; justify-content: flex-start; }
 }
 @container stories-workspace (max-width: 410px) {
+  #tab-stories .ann2-tabs { display: grid; grid-template-columns: minmax(0,1fr); width: 100%; min-width: 0; }
   #tab-stories .ann2-composer { grid-template-columns: minmax(0,1fr); }
   #tab-stories .ann2-preview { width: 240px; max-width: 100%; justify-self: center; }
   #tab-stories .ann2-gallery-heading .ann2-hint { display: none; }

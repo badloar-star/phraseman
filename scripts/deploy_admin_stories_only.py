@@ -15,11 +15,11 @@ from typing import Callable, Any
 
 SITE = 'phraseman-ea0b3'
 API = 'https://firebasehosting.googleapis.com/v1beta1/'
-BUILD = '2026.10.30.4'
+BUILD = '2026.10.30.5'
 PAYLOADS = {
-    '/scripts/pages/story_announcements_v2.js': '4f1b03709d7139416a3e221463cba372405aca5b',
-    '/scripts/pages/story_announcements_v2.css': 'c2ecfb3b42a0c753204bfcdf34d57e69b68e5a5d',
-    '/scripts/pages/story_announcements_v2_preview.html': 'd171018f436041bf7f08fe09eec3d3ba2995a3b8',
+    '/scripts/pages/story_announcements_v2.js': 'c3e9753f4e77f6482049fcfbd35d4b5a3066d657',
+    '/scripts/pages/story_announcements_v2.css': '08cd75ca1602950556799fe7fb18042ad41f2fe9',
+    '/scripts/pages/story_announcements_v2_preview.html': '9b71e884b59eb3531780e834cc74efcac5849fa0',
 }
 BASE_BLOBS = {
     '/scripts/pages/story_announcements_v2.js': {
@@ -30,6 +30,7 @@ BASE_BLOBS = {
         '5851bb68b9f19321eb0bb3f01269fde08042eb9f',
         '03bc8596d95a27e7c7f7dba05322573fcff2f0f3',
         'ab87461f8c3320a8302a356bddc0fd656d02c11f',
+        '4f1b03709d7139416a3e221463cba372405aca5b',
     },
     '/scripts/pages/story_announcements_v2.css': {
         '80d07bb45d0a9e5c01c2746a51234a028f4154fe',
@@ -42,6 +43,7 @@ BASE_BLOBS = {
         'b71bedd26198a1853a35cadc1c5d6fbc573c63cf',
         # Exact CRLF bytes served by the reviewed prior Hosting release.
         '5ee2434ddee06eb6a1a33055dfbf789ec2e834e0',
+        'd171018f436041bf7f08fe09eec3d3ba2995a3b8',
     },
 }
 REQUIRED = {'/legacy.html', '/scripts/pages/youtube-comments.js',

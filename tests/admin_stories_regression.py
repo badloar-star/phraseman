@@ -43,13 +43,38 @@ body.pm-phase6-ready #admin-app #tab-stories > .pm-manual-load{display:flex!impo
 @media(max-width:800px){#admin-app{margin-left:0;padding:16px}}
 </style></head><body class="pm-phase6-ready"><main id="admin-app"><section id="tab-stories" class="reports-tab active"><div class="pm-v5-sync pm-story-status" id="legacy-test-status">Редактор открыт · результат загрузки показан внутри редактора</div><button class="pm-manual-load" data-pm-manual-load="stories" id="legacy-test-refresh">Обновить</button><div class="pm-v4-section-header" id="legacy-test-header">Истории старого редактора</div><iframe id="pm-story-editor" title="Старый редактор" style="display:block" src="about:blank"></iframe></section></main><script>BOOT_SCRIPT</script><script src="/scripts/pages/story_announcements_v2.js"></script></body></html>'''
 
+# Relevant conflicting rules from legacy.html's v4/v9/Knowly shell. The header is
+# actually 68px although the older --pm9-header token still says 48px.
+FIXED_SHELL_STYLE='''<style>
+:root{--pm9-sidebar:250px;--pm9-header:48px;--pm-v4-stats-h:0px}
+#admin-app{margin:0;padding:0;width:100%}#admin-app>header{display:flex;align-items:center;font-weight:700}
+body.pm-v9-ready{max-width:100vw!important}body.pm-v9-ready #admin-app{max-width:100vw!important;min-width:0!important}
+body.pm-v9-ready .pm-v4-page.pm-v9-embedded-page.active{display:flex!important;flex-direction:column!important;overflow:hidden!important}
+@media(min-width:769px){
+ body.pm-v4-ready.pm-admin-authenticated,body.pm-v4-ready.pm-admin-authenticated #admin-app{height:100dvh!important;overflow:hidden!important}
+ body.pm-v9-ready.pm-admin-authenticated,body.pm-v9-ready.pm-admin-authenticated #admin-app{width:100vw!important;height:100dvh!important;overflow:hidden!important}
+ body.pm-v4-ready .pm-v4-page.active{min-height:0!important;overscroll-behavior:contain;scrollbar-gutter:stable}
+ body.pm-v9-ready .pm-v4-page.active{height:calc(100dvh - var(--pm9-header))!important;max-height:calc(100dvh - var(--pm9-header))!important;overflow-x:hidden!important;overflow-y:auto!important}
+ body.pm-v9-ready .pm-v4-page.pm-v9-embedded-page.active{overflow-y:hidden!important;scrollbar-gutter:auto}
+}
+html:root body.kn-admin.pm-owner-redesign #admin-app>header{margin-left:254px!important;width:calc(100% - 254px)!important;padding:0 32px!important;min-height:68px!important;height:68px!important}
+html:root body.kn-admin.pm-owner-redesign #admin-app [data-kn-section]{margin-left:254px!important;width:calc(100% - 254px)!important;max-width:calc(100% - 254px)!important;padding:26px 32px 40px!important;box-sizing:border-box!important}
+@media(max-width:960px){html:root body.kn-admin.pm-owner-redesign #admin-app>header,html:root body.kn-admin.pm-owner-redesign #admin-app [data-kn-section]{margin-left:210px!important;width:calc(100% - 210px)!important;max-width:calc(100% - 210px)!important}html:root body.kn-admin.pm-owner-redesign #admin-app [data-kn-section]{padding:24px 20px!important}}
+@media(max-width:650px){html:root body.kn-admin.pm-owner-redesign #admin-app>header,html:root body.kn-admin.pm-owner-redesign #admin-app [data-kn-section]{margin-left:165px!important;width:calc(100% - 165px)!important;max-width:calc(100% - 165px)!important}html:root body.kn-admin.pm-owner-redesign #admin-app [data-kn-section]{padding:20px 12px!important}}
+</style>'''
+
 class Harness:
- def __init__(self,browser,uid='user-a',extra='',width=1562,route='builder',renderer=True,wait_loaded=True,font_assets='real'):
-  self.page=browser.new_page(viewport={'width':width,'height':1100},reduced_motion='no-preference')
+ def __init__(self,browser,uid='user-a',extra='',width=1562,height=1100,route='builder',renderer=True,wait_loaded=True,font_assets='real',shell_mode='document'):
+  self.page=browser.new_page(viewport={'width':width,'height':height},reduced_motion='no-preference')
   self.page.set_default_timeout(3000)
   self.errors=[];self.requested=[];self.blocked=[];self.font_requests=[];self.font_assets=font_assets
   self.page.on('pageerror',lambda err:self.errors.append(str(err)))
-  html=SHELL.replace('BOOT_SCRIPT',BOOT.replace('BOOT_USER',json.dumps({'uid':uid}) if uid else 'null')+'\n'+extra)
+  shell=SHELL
+  if shell_mode=='fixed':
+   shell=shell.replace('</head>',FIXED_SHELL_STYLE+'</head>').replace('class="pm-phase6-ready"','class="pm-phase6-ready pm-v4-ready pm-v9-ready pm-admin-authenticated kn-admin pm-owner-redesign"')
+   shell=shell.replace('<main id="admin-app">','<div id="admin-app"><header>PhraseMan Admin</header>').replace('</section></main>','</section></div>')
+   shell=shell.replace('class="reports-tab active"','class="reports-tab pm-v4-page pm-v9-embedded-page active" data-kn-section="stories"')
+  html=shell.replace('BOOT_SCRIPT',BOOT.replace('BOOT_USER',json.dumps({'uid':uid}) if uid else 'null')+'\n'+extra)
   assets={'/scripts/pages/story_announcements_v2.js':SOURCE_PATH,'/scripts/pages/story_announcements_v2.css':ROOT/'admin/v2/scripts/pages/story_announcements_v2.css'}
   if renderer:
    assets.update({p:ROOT/'admin/v2'/p.lstrip('/') for p in ['/scripts/pages/story_announcements_v2_preview.html','/assets/stories_v2/kit.css','/assets/stories_v2/spire-tower-render.js']})

@@ -2,7 +2,7 @@
    Uses existing callable, revision and account boundaries; no automatic writes. */
 (() => { 'use strict';
 const LOG = '[ANN2-ADMIN]';
-const STORIES_BUILD = '2026.10.30.4';
+const STORIES_BUILD = '2026.10.30.5';
 const PREVIEW_URL = 'scripts/pages/story_announcements_v2_preview.html?preview=1&build=' + STORIES_BUILD;
 const SIZES = [14, 16, 20]; const STYLES = [['normal', 'Обычный'], ['accent', 'Акцент'], ['quote', 'Цитата']];
 const GROUPS = { text: 'Текст', time: 'Срок', sections: 'Разделы', promo: 'Акции', community: 'Сообщество', holiday: 'Праздник', service: 'Служебные' };
@@ -483,7 +483,8 @@ window.addEventListener('message', event => {
     }
     pushPreview();
   } else if (fromGallery && data.channel === 'pm-ann-gallery-size' && Number.isFinite(data.height)) {
-    gallery.style.setProperty('height', Math.ceil(Math.max(120, Math.min(22000, data.height))) + 'px', 'important');
+    // One column of all 36 full-size phones exceeds 32,000px.
+    gallery.style.setProperty('height', Math.ceil(Math.max(120, Math.min(50000, data.height))) + 'px', 'important');
   } else if (fromGallery && data.channel === 'pm-ann-gallery-select') chooseDesign(data.design);
 });
 function setView(view, updateUrl = true) {
@@ -504,6 +505,16 @@ function renderAll() {
   renderForm(); renderList(); renderDraftPicker(); renderActions(); updateSelection();
   setView(S.view, false);
 }
+function sizeWorkspace() {
+  const tab = panel?.parentElement;
+  if (!tab?.classList.contains('active') || !isStoriesActive()) return;
+  // The shell header is 68px today, while its old layout variable still says 48px.
+  // Measure the actual available viewport so the bottom scrollbar remains reachable.
+  const top = Math.max(0, tab.getBoundingClientRect().top);
+  const height = Math.max(120, Math.floor(window.innerHeight - top));
+  const value = height + 'px';
+  if (tab.style.getPropertyValue('--ann2-viewport-height') !== value) tab.style.setProperty('--ann2-viewport-height', value);
+}
 function ownWorkspace(tab) {
   tab.classList.add('ann2-owned');
   const old = document.getElementById('pm-story-editor');
@@ -516,6 +527,7 @@ function ownWorkspace(tab) {
   for (const child of tab.children) if (child !== panel) {
     child.hidden=true;child.setAttribute('aria-hidden','true');child.style.setProperty('display','none','important');
   }
+  sizeWorkspace();
 }
 function mount() {
   const tab = document.getElementById('tab-stories');
@@ -524,7 +536,7 @@ function mount() {
   authUnsubscribe?.();resizeObserver?.disconnect();childObserver?.disconnect();
   const styleHref = 'scripts/pages/story_announcements_v2.css?build=' + STORIES_BUILD;
   let style = document.querySelector('link[data-ann2-style]');
-  if (!style) {style=h('link',{rel:'stylesheet','data-ann2-style':'true'});document.head.append(style);} style.href=styleHref;
+  if (!style) {style=h('link',{rel:'stylesheet','data-ann2-style':'true'});document.head.append(style);} style.onload=sizeWorkspace;style.href=styleHref;
   // Shell decorators add owner-panel styling after mount. Keep this workspace flat.
   panel = h('section', {class:'ann2','aria-label':'Истории: публикации и конструктор','data-stories-build':STORIES_BUILD,
     style:'padding:0!important;margin:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important'});
@@ -565,20 +577,24 @@ function mount() {
     h('div',{class:'ann2-builder-layout'},editor,galleryWrap));
   panel.append(header,noticeEl,publishedEl,builderEl);tab.prepend(panel);ownWorkspace(tab);
   childObserver=new MutationObserver(()=>ownWorkspace(tab));childObserver.observe(tab,{childList:true});
-  function sizePreview(){if(phone.clientWidth>0)phone.style.setProperty('--ann2-preview-scale',String(phone.clientWidth/412));}
-  if(typeof ResizeObserver==='function'){resizeObserver=new ResizeObserver(sizePreview);resizeObserver.observe(phone);}sizePreview();
+  function sizePreview(){if(phone.clientWidth>0)phone.style.setProperty('--ann2-preview-scale',String(phone.clientWidth/412));sizeWorkspace();}
+  if(typeof ResizeObserver==='function'){
+    resizeObserver=new ResizeObserver(sizePreview);resizeObserver.observe(phone);
+    const shellHeader=tab.parentElement?.querySelector(':scope > header');if(shellHeader)resizeObserver.observe(shellHeader);
+  }sizePreview();
   ensureAccount();fallbackTemplates();renderPreviewBar();renderAll();restartPreview();
   const auth=window.__pmAdminCore.auth;const observe=auth?.onIdTokenChanged||auth?.onAuthStateChanged;
   if(typeof observe==='function')authUnsubscribe=observe.call(auth,()=>{ensureAccount();if(isStoriesActive()&&!S.loaded)void load();});
   if(isStoriesActive())void load();
   return true;
 }
-function enterWorkspace(){if(mount()&&isStoriesActive()){void load();pushPreview();scheduleExpiry();}}
+function enterWorkspace(){if(mount()&&isStoriesActive()){sizeWorkspace();void load();pushPreview();scheduleExpiry();}}
 // The shell's existing route and refresh entry now target this one workspace.
 window.loadStoryWorkspace = enterWorkspace;
 window.__ann2Refresh = () => {if(mount())return load();return Promise.resolve(false);};
 window.addEventListener('popstate',()=>{if(mount())setView(new URL(location.href).searchParams.get('stories')==='published'?'published':'builder',false);});
 window.addEventListener('hashchange',()=>{if(isStoriesActive())enterWorkspace();else{clearTimeout(expiryTimer);pushPreview();}});
+window.addEventListener('resize',sizeWorkspace);
 document.addEventListener('visibilitychange',()=>{pushPreview();if(isStoriesActive())scheduleExpiry();else clearTimeout(expiryTimer);});
 document.addEventListener('pm:section-opened',event=>{if(['stories','tab-stories'].includes(event.detail?.tab))enterWorkspace();else pushPreview();});
 window.addEventListener('beforeunload',event=>{if(S.dirty||S.busy){event.preventDefault();event.returnValue='';}});

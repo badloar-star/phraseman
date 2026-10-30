@@ -182,10 +182,10 @@ def main():
    assert f.locator('.ann-gallery-card:visible').count()==36
    assert len(set(f.locator('.ann-gallery-card').evaluate_all('(cards)=>cards.map(c=>c.dataset.design)')))==36
    assert f.locator('iframe').count()==0
-   assert f.evaluate("document.getAnimations().filter(a=>a.playState==='running').length")==0
-   assert f.evaluate('ST.players.length')==0
+   f.wait_for_function("document.querySelector('[data-design=manifest] .sl').getAnimations({subtree:true}).some(a=>a.playState==='running')")
+   assert f.locator('.ann-gallery-card .ph.ann-static').count()==0
    assert len(command_calls(p))==0
-  check('all 36 real templates are visible together without nested players',catalogue)
+  check('all 36 animated templates are available without nested frames',catalogue)
   def fallback(h):
    p=h.page;open_template_picker(h);buttons=p.locator('.ann2-template-fallback button[data-design]')
    assert buttons.count()==36 and buttons.nth(35).is_visible()

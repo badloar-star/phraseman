@@ -2,7 +2,7 @@
    Uses existing callable, revision and account boundaries; no automatic writes. */
 (() => { 'use strict';
 const LOG = '[ANN2-ADMIN]';
-const STORIES_BUILD = '2026.10.30.7';
+const STORIES_BUILD = '2026.10.30.8';
 const PREVIEW_URL = 'scripts/pages/story_announcements_v2_preview.html?preview=1&build=' + STORIES_BUILD;
 const SIZES = [14, 16, 20]; const STYLES = [['normal', 'Обычный'], ['accent', 'Акцент'], ['quote', 'Цитата']];
 const GROUPS = { text: 'Текст', time: 'Срок', sections: 'Разделы', promo: 'Акции', community: 'Сообщество', holiday: 'Праздник', service: 'Служебные' };
@@ -471,14 +471,14 @@ function previewContent() {
   return content;
 }
 function isStoriesActive() { return location.hash.replace(/^#/, '').split(/[/?]/)[0] === 'stories' && !document.hidden; }
-function pushPreview(animate = false) {
+function pushPreview(animate = true) {
   if (!panel) return;
   const visible = isStoriesActive() && S.view === 'builder';
   const content = previewContent();
-  if (S.previewReady && frame?.contentWindow) frame.contentWindow.postMessage({channel:'pm-ann-preview', content, theme:S.theme, ap:S.ap, animate, enabled:visible}, targetOrigin);
+  if (S.previewReady && frame?.contentWindow) frame.contentWindow.postMessage({channel:'pm-ann-preview', content, theme:S.theme, ap:S.ap, animate, enabled:visible && !picker?.open}, targetOrigin);
   if (S.galleryReady && gallery?.contentWindow) gallery.contentWindow.postMessage({channel:'pm-ann-gallery', content, theme:S.theme, ap:S.ap, selectedDesign:S.current?.design || '', enabled:editable() && visible && !!picker?.open}, targetOrigin);
 }
-function schedulePreview() { clearTimeout(debounce); debounce = setTimeout(() => pushPreview(false), 45); }
+function schedulePreview() { clearTimeout(debounce); debounce = setTimeout(() => pushPreview(), 45); }
 function updateSelection() {
   const selected = S.designs.find(d => d.id === S.current?.design);
   if (selectedLabel) selectedLabel.textContent = selected ? selected.name : 'Выберите шаблон';
@@ -609,7 +609,7 @@ function mount() {
   const preview=h('aside',{class:'ann2-preview','aria-label':'Предпросмотр выбранного шаблона'},
     h('div',{class:'ann2-preview-title'},h('div',{class:'ann2-preview-label'},h('h3',{},'Предпросмотр'),selectedLabel),pickerButton),phone,previewNotice);
   const editor=h('div',{class:'ann2-composer'},h('div',{class:'ann2-edit-fields'},formEl,
-    h('div',{class:'ann2-preview-settings'},previewBar,button('Показать анимацию','Проиграть анимацию выбранного макета.',()=>pushPreview(true),{class:'ann2-btn ann2-btn--quiet'}))),preview);
+    h('div',{class:'ann2-preview-settings'},previewBar,button('Повторить анимацию','Проиграть анимацию выбранного макета с начала.',()=>pushPreview(true),{class:'ann2-btn ann2-btn--quiet'}))),preview);
   galleryNotice=h('div',{class:'ann2-gallery-notice',role:'status'});
   fallback=h('div',{class:'ann2-template-fallback','aria-label':'Все 36 шаблонов по названию'});
   gallery=h('iframe',{class:'ann2-gallery-frame',title:'Все 36 шаблонов истории',sandbox:'allow-scripts allow-same-origin',scrolling:'no',hidden:true});

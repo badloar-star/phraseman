@@ -1,4 +1,4 @@
-<!-- Admin gallery uses the same 36 renderers without creating 36 live Players. -->
+<!-- Each gallery card uses the original animated Player, paused outside the viewport. -->
 <style id="ann-admin-gallery-style">
 html.ann-gallery-root, body.ann-gallery-mode { margin: 0; padding: 0; background: transparent; overflow-x: hidden; }
 body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
@@ -15,7 +15,7 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
 .ann-gallery-index { color: #b1c9bc; font-variant-numeric: tabular-nums; margin-right: 4px; }
 .ann-gallery-card[aria-pressed="true"] .ann-gallery-index { color: #d5f2df; }
 
-/* Static final frames keep every thumbnail readable while the owner types. */
+/* Keep an explicit still-frame mode for preview snapshots; gallery cards animate. */
 .ann-static .story, .ann-static .story *, .ann-static .story *::before, .ann-static .story *::after { animation: none !important; transition: none !important; will-change: auto !important; }
 .ann-static .story { pointer-events: none; }
 .ann-static :is(.a, .pop, .fade, .rise, .fromL, .fromR, .fromT), .ann-static .story .scta, .ann-static .mani .ln span, .ann-static .edit .epanel, .ann-static .tl .it, .ann-static .chat .qb, .ann-static .chat .ab, .ann-static .leaf3 .leaf, .ann-static .hl .stp, .ann-static .story .sl > .bg.curt, .ann-static .soonw b, .ann-static .stamp .cen, .ann-static .g4 .gt, .ann-static .fly .fc, .ann-static .vsbg i, .ann-static .vs2 .cL, .ann-static .vs2 .cR, .ann-static .vs2 .vsw, .ann-static .letters .ch, .ann-static .tilt, .ann-static .vk, .ann-static .chips .chip, .ann-static .pz2, .ann-static .podium .pc .bar, .ann-static .lnk .cL, .ann-static .lnk .cR, .ann-static .codecard, .ann-static .pb2 .op, .ann-static .pb2 .op b, .ann-static .ribbon, .ann-static .yr b, .ann-static .gift, .ann-static .bento .bt, .ann-static .notes .nt { opacity: 1 !important; transform: none !important; }
@@ -42,14 +42,31 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
   if (!document.body.classList.contains('ann-gallery-mode')) return;
   const engine = window.ST;
   const support = engine?.gallerySupport;
-  if (!support || engine.TPL.length !== 36) throw new Error('Stories gallery requires all 36 templates.');
+  if (!support?.Player || engine.TPL.length !== 36) throw new Error('Stories gallery requires all 36 animated templates.');
   const origin = location.origin;
   const targetOrigin = origin === 'null' ? '*' : origin;
   const send = (message) => { if (window.parent !== window) window.parent.postMessage(message, targetOrigin); };
   const root = document.createElement('div'); root.id = 'ann-gallery'; root.setAttribute('role', 'group'); root.setAttribute('aria-label', 'Все 36 шаблонов историй');
   document.getElementById('preview').replaceChildren(root);
   const cards = [];
-  let enabled = true, selected = 'manifest', lastSignature = '', lastMessage = null, lastHeight = 0, layoutFrame = 0, renderFrame = 0, pending = null;
+  let enabled = false, selected = 'manifest', lastSignature = '', lastMessage = null, lastHeight = 0, layoutFrame = 0, renderFrame = 0, pending = null;
+  const syncPlayback = () => {
+    for (const card of cards) card.player?.setVisible(enabled && card.inView && !document.hidden);
+  };
+  const destroyPlayer = (card) => {
+    if (!card.player) return;
+    card.player.alive = false;
+    clearTimeout(card.player.timer); cancelAnimationFrame(card.player.raf);
+    card.player.st.remove(); card.player = null;
+  };
+  const byPhone = new WeakMap();
+  const visibility = typeof IntersectionObserver === 'function' ? new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      const card = byPhone.get(entry.target);
+      if (card) card.inView = entry.isIntersecting;
+    }
+    syncPlayback();
+  }, { threshold: 0 }) : null;
   const updateSelection = () => {
     for (const card of cards) {
       card.button.setAttribute('aria-pressed', String(card.template.id === selected));
@@ -65,16 +82,17 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
     if (height > 4 && height !== lastHeight) { lastHeight = height; send({ channel: 'pm-ann-gallery-size', height }); }
   };
   const scheduleLayout = () => { if (!layoutFrame) layoutFrame = requestAnimationFrame(layout); };
-  const shell = () => support.sbHtml('9:41') + '<div class="hi"></div><div class="story"><div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div><div class="wash"></div><div class="sbars"><i><b style="width:100%"></b></i></div><div class="shead"><span class="pm">P</span><div><div class="nm">PhraseMan</div><div class="tm">объявление</div></div><span class="x">' + support.io('close', 22) + '</span></div><div class="sl"></div></div>';
+  const shell = () => support.sbHtml('9:41') + '<div class="hi"></div>';
   for (const [index, template] of engine.TPL.entries()) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'ann-gallery-card'; button.dataset.design = template.id;
     button.setAttribute('aria-label', 'Выбрать шаблон «' + template.name + '»'); button.title = 'Выбрать «' + template.name + '» для этой истории. Текст сохранится.';
     const thumb = document.createElement('span'); thumb.className = 'ann-gallery-thumb'; thumb.setAttribute('aria-hidden', 'true');
-    const phone = document.createElement('div'); phone.className = 'ph dk ann-static'; phone.dataset.ph = 'gallery-' + template.id; phone.innerHTML = shell(); thumb.appendChild(phone);
+    const phone = document.createElement('div'); phone.className = 'ph dk'; phone.dataset.ph = 'gallery-' + template.id; phone.innerHTML = shell(); thumb.appendChild(phone);
     const label = document.createElement('span'); label.className = 'ann-gallery-label';
     const number = document.createElement('span'); number.className = 'ann-gallery-index'; number.textContent = String(index + 1).padStart(2, '0') + '.';
     label.append(number, document.createTextNode(' ' + template.name)); button.append(thumb, label); root.appendChild(button);
-    const card = { button, thumb, phone, template, slide: phone.querySelector('.sl') }; cards.push(card);
+    const card = { button, thumb, phone, template, player: null, inView: !visibility }; cards.push(card);
+    byPhone.set(phone, card); visibility?.observe(phone);
     button.addEventListener('click', () => {
       if (!enabled) return;
       selected = template.id; updateSelection(); send({ channel: 'pm-ann-gallery-select', design: selected });
@@ -95,22 +113,23 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
     const ap = message.ap === 'light' ? 'light' : 'dark';
     const content = message.content && typeof message.content === 'object' ? message.content : {};
     const signature = JSON.stringify([content, theme, ap]);
-    if (signature === lastSignature) { scheduleLayout(); return; }
-    lastSignature = signature;
-    for (const card of cards) {
-      const entry = support.previewEntry({ ...content, design: card.template.id });
-      support.applyTheme(card.phone, theme, ap);
-      card.slide.className = 'sl' + (entry.cta ? ' hascta' : '') + (entry.left ? ' left' : '');
-      card.slide.innerHTML = entry.render(card.phone, entry.s, { title: entry.s.short, long: false });
-      card.phone.querySelector('.scta')?.remove();
-      if (entry.cta) {
-        const cta = document.createElement('div'); cta.className = 'scta t'; cta.innerHTML = support.io(entry.cta.icon, 18);
-        const text = document.createElement('span'); text.textContent = entry.cta.label; cta.appendChild(text); card.phone.querySelector('.story').appendChild(cta);
+    if (signature !== lastSignature) {
+      // Clear stale content immediately, including on account changes. While the
+      // picker is closed, wait until opening before rebuilding 36 animated scenes.
+      for (const card of cards) destroyPlayer(card);
+      lastSignature = '';
+      if (enabled) {
+        for (const card of cards) {
+          const entry = support.previewEntry({ ...content, design: card.template.id });
+          support.applyTheme(card.phone, theme, ap);
+          card.player = new support.Player(card.phone, { start: 0, mode: 'restart', list: [entry] });
+          card.player.setVisible(false);
+        }
+        lastSignature = signature;
       }
-      for (const counter of card.slide.querySelectorAll('[data-cnt]')) counter.textContent = support.fmt(Number(counter.dataset.cnt)) + (counter.dataset.suf || '');
-      for (const text of card.slide.querySelectorAll('[data-type]')) text.textContent = text.dataset.type || '';
     }
-    scheduleLayout();
+    // Always apply visibility even when the text did not change on close/reopen.
+    syncPlayback(); scheduleLayout();
   };
   window.addEventListener('message', (event) => {
     if (event.source !== window.parent || event.origin !== origin || event.data?.channel !== 'pm-ann-gallery') return;
@@ -121,11 +140,18 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
   else window.addEventListener('resize', scheduleLayout);
   document.fonts?.ready.then(() => { lastSignature = ''; if (lastMessage) render(lastMessage); else scheduleLayout(); }).catch(() => {});
   root.addEventListener('load', scheduleLayout, true);
+  document.addEventListener('visibilitychange', syncPlayback);
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') { event.preventDefault(); send({ channel: 'pm-ann-gallery-close' }); }
   });
-  window.addEventListener('pagehide', () => { cancelAnimationFrame(layoutFrame); cancelAnimationFrame(renderFrame); });
-  render({ content: { title: 'Ваш заголовок', badge: 'Новая история', blocks: [{ text: 'Текст истории', size: 16, style: 'normal' }] }, theme: 'ink', ap: 'dark', selectedDesign: selected });
+  window.addEventListener('pagehide', () => {
+    enabled = false; syncPlayback();
+    cancelAnimationFrame(layoutFrame); cancelAnimationFrame(renderFrame);
+    if (pending) lastMessage = pending;
+    layoutFrame = 0; renderFrame = 0; pending = null;
+  });
+  window.addEventListener('pageshow', () => { if (lastMessage) render(lastMessage); });
+  render({ content: { title: 'Ваш заголовок', badge: 'Новая история', blocks: [{ text: 'Текст истории', size: 16, style: 'normal' }] }, theme: 'ink', ap: 'dark', selectedDesign: selected, enabled: false });
   send({ channel: 'pm-ann-gallery-ready', count: cards.length, designs: engine.TPL.map(({ id, name, group }) => ({ id, name, group })), themes: engine.IDS.map((id) => ({ id, name: engine.THEMES[id].name, gradient: !!engine.THEMES[id].gradient })) });
 })();
 </script>

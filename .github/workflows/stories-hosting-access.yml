@@ -1,4 +1,4 @@
-name: Verify Stories Hosting access
+name: Deploy Stories only
 
 on:
   push:
@@ -8,18 +8,61 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: admin-hosting-stories-production
+  cancel-in-progress: false
+
 jobs:
-  verify-hosting-access:
+  deploy-stories-only:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
+    env:
+      STORIES_TEST_OUTPUT: ${{ runner.temp }}/stories-test-output
     steps:
-      - name: Locate existing Google deployment credential without logging secrets
+      - name: Check out this immutable release
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /admin/v2/
+            /scripts/deploy_admin_stories_only.py
+            /tests/admin_stories_regression.py
+            /tests/admin_stories_layout_regression.py
+            /tests/admin_stories_deploy_test.py
+
+      - name: Use Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install test and deployment clients
+        run: |
+          python -m pip install --disable-pip-version-check 'playwright==1.57.0' 'google-auth>=2.40,<3' 'requests==2.32.5'
+          python -m playwright install --with-deps chromium
+
+      - name: Verify Stories lifecycle, preview layout and deployment isolation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check admin/v2/scripts/pages/story_announcements_v2.js
+          python tests/admin_stories_regression.py
+          python tests/admin_stories_layout_regression.py
+          python tests/admin_stories_deploy_test.py
+
+      - name: Locate existing project credential without logging secrets
         env:
           CLOUD_SECRETS: ${{ toJSON(secrets) }}
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
+          python - <<'PY'
           import base64, json, os, re
           from pathlib import Path
           values = json.loads(os.environ.get('CLOUD_SECRETS', '{}'))
@@ -51,25 +94,23 @@ jobs:
               output.write('GOOGLE_APPLICATION_CREDENTIALS=' + str(target) + '\n')
           print('Existing project credential located. Its contents are not logged or uploaded.')
           PY
-      - name: Install Google authentication client
-        run: python3 -m pip install --disable-pip-version-check google-auth requests
-      - name: Read current admin Hosting release only
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          import google.auth
-          from google.auth.transport.requests import AuthorizedSession
-          credentials, _ = google.auth.default(scopes=['https://www.googleapis.com/auth/firebase.hosting'])
-          session = AuthorizedSession(credentials)
-          response = session.get('https://firebasehosting.googleapis.com/v1beta1/sites/phraseman-ea0b3/releases', params={'pageSize': 1}, timeout=30)
-          if response.status_code != 200:
-              raise SystemExit('STORIES_DEPLOY_BLOCKED: admin Hosting release read failed with HTTP ' + str(response.status_code) + '. No Hosting changes were made.')
-          release = response.json().get('releases', [None])[0]
-          if not release or not release.get('version', {}).get('name'):
-              raise SystemExit('STORIES_DEPLOY_BLOCKED: current live version not found. No Hosting changes were made.')
-          print('Hosting read verified:', release['version']['name'])
-          print('This preflight is read-only. The production site has not been modified.')
-          PY
+
+      - name: Replace only the two tested Stories files and verify live bytes
+        run: python scripts/deploy_admin_stories_only.py --apply
+
+      - name: Retain non-sensitive release verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stories-release-verification
+          path: |
+            stories-release-result.json
+            ${{ runner.temp }}/stories-test-output/layout-results.json
+            ${{ runner.temp }}/stories-test-output/stories-after.png
+            /tmp/story_announcements_v2-regression-results.json
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Remove temporary credential
         if: always()
         shell: bash

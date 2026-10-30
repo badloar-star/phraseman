@@ -17,6 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
+      # Select exactly one deployment credential. Never enumerate repository secrets.
+      # The optional variable names an existing secret; its value is not a credential.
+      - name: Check explicitly named Hosting credential is configured
+        env:
+          HAS_HOSTING_CREDENTIAL: ${{ secrets[vars.FIREBASE_HOSTING_CREDENTIAL_SECRET || 'FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3'] != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$HAS_HOSTING_CREDENTIAL" != "true" ]]; then
+            echo '::error::STORIES_DEPLOY_BLOCKED: the named Firebase Hosting credential is not configured. Configure FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3 or set the repository variable FIREBASE_HOSTING_CREDENTIAL_SECRET to the name of the existing project service-account secret. No Hosting changes were made.'
+            exit 31
+          fi
+
       - name: Check out this immutable release
         uses: actions/checkout@v4
         with:
@@ -55,47 +68,39 @@ jobs:
           python tests/admin_stories_layout_regression.py
           python tests/admin_stories_deploy_test.py
 
-      - name: Locate existing project credential without logging secrets
+      - name: Deploy only the tested Stories assets with the named project credential
         env:
-          CLOUD_SECRETS: ${{ toJSON(secrets) }}
+          HOSTING_CREDENTIAL_JSON: ${{ secrets[vars.FIREBASE_HOSTING_CREDENTIAL_SECRET || 'FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3'] }}
         shell: bash
         run: |
           set -euo pipefail
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/stories-hosting-credential.json"
+          trap 'rm -f "$GOOGLE_APPLICATION_CREDENTIALS"' EXIT
           python - <<'PY'
-          import base64, json, os, re
-          from pathlib import Path
-          values = json.loads(os.environ.get('CLOUD_SECRETS', '{}'))
-          found = None
-          for key, value in values.items():
-              if not re.search(r'FIREBASE|GOOGLE|GCLOUD|GCP|SERVICE_ACCOUNT', key, re.I) or not value:
-                  continue
-              candidates = [str(value)]
-              try:
-                  candidates.append(base64.b64decode(value, validate=True).decode())
-              except Exception:
-                  pass
-              for candidate in candidates:
-                  try:
-                      data = json.loads(candidate)
-                  except Exception:
-                      continue
-                  if isinstance(data, dict) and data.get('type') in ('service_account', 'authorized_user') and data.get('project_id', 'phraseman-ea0b3') == 'phraseman-ea0b3':
-                      found = candidate
-                      break
-              if found:
-                  break
-          if not found:
-              raise SystemExit('STORIES_DEPLOY_BLOCKED: no existing Google deployment credential for phraseman-ea0b3 was found in cloud-named repository secrets. No Hosting changes were made.')
-          target = Path(os.environ['RUNNER_TEMP']) / 'stories-hosting-credential.json'
-          target.write_text(found)
-          target.chmod(0o600)
-          with open(os.environ['GITHUB_ENV'], 'a') as output:
-              output.write('GOOGLE_APPLICATION_CREDENTIALS=' + str(target) + '\n')
-          print('Existing project credential located. Its contents are not logged or uploaded.')
+          import json, os
+          raw = os.environ.get('HOSTING_CREDENTIAL_JSON', '')
+          try:
+              data = json.loads(raw)
+          except (TypeError, ValueError):
+              raise SystemExit('STORIES_DEPLOY_BLOCKED: the named credential must contain service-account JSON. No Hosting changes were made.') from None
+          valid = (
+              isinstance(data, dict)
+              and data.get('type') == 'service_account'
+              and data.get('project_id') == 'phraseman-ea0b3'
+              and isinstance(data.get('client_email'), str)
+              and data['client_email'].endswith('@phraseman-ea0b3.iam.gserviceaccount.com')
+              and isinstance(data.get('private_key'), str)
+              and bool(data['private_key'].strip())
+              and data.get('token_uri') == 'https://oauth2.googleapis.com/token'
+          )
+          if not valid:
+              raise SystemExit('STORIES_DEPLOY_BLOCKED: credential is not a valid service-account configuration for phraseman-ea0b3. No Hosting changes were made.')
+          fd = os.open(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+          with os.fdopen(fd, 'w', encoding='utf-8') as output:
+              output.write(raw)
           PY
-
-      - name: Replace only the two tested Stories files and verify live bytes
-        run: python scripts/deploy_admin_stories_only.py --apply
+          unset HOSTING_CREDENTIAL_JSON
+          python scripts/deploy_admin_stories_only.py --apply
 
       - name: Retain non-sensitive release verification
         if: always()

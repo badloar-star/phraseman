@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+from clear_drafts_patch import patch_backend, patch_front
 
 ROOT = Path(__file__).parent
 BASE = ROOT / 'base'
@@ -38,7 +39,7 @@ for op, key in [('sync', "'threads:' + page"), ('syncReplies', "'replies:' + par
     backend = backend[:start] + section + backend[end:]
 backend = replace_once(backend, "            if (text.includes('NEEDS_REVIEW')) {", """            // Never save a cut-off or overlong AI draft as ready for approval.
             if (text.includes('NEEDS_REVIEW') || output.choices?.[0]?.finish_reason === 'length' || Array.from(text).length > 320) {""")
-(OUT / 'youtube_comments.js').write_text(backend)
+(OUT / 'youtube_comments.js').write_text(patch_backend(backend))
 
 instructions = '''Ты готовишь короткий ответ зрителю каналов «Профессор Лингман» от моего лица. Если нужно личное местоимение — «я», не «мы» и не «команда». Это обычный автор в комментариях: живо, дружески, без официоза и рекламного тона. Отвечай на языке комментария; в смешанном тексте выбери основной язык вопроса. Если обращение «ты» или «вы» неясно, обойдись без него.
 
@@ -177,5 +178,5 @@ start=front.index(" root.append(tools);const pages=");end=front.index('\nfunctio
 front=front[:start]+" root.append(tools);if(!rows.length){root.append(n('div',S.rows.length?'В этой порции нет комментариев по выбранному фильтру. Измените фильтр или откройте следующую порцию.':'В этой порции комментариев нет. Вернитесь к предыдущей или обновите комментарии с YouTube.','yt-empty'));return;}const list=n('div',undefined,'yt-inline-list');for(const r of rows)list.append(replyCard(r));root.append(list);}\n"+front[end:]
 front=replace_once(front,"S.active=r.id;S.filter='';replyFilter='all';S.query='';S.page=Math.max(0,Math.floor(visible().findIndex(item=>item.id===r.id)/50));", "S.active=r.id;replyFilter='all';S.query='';")
 front=replace_once(front,"'По одному ответу, с паузой и чередованием каналов. Вкладка должна оставаться открытой.'", "'Только одобренные ответы из этой порции: по одному, с паузой и чередованием каналов. Вкладка должна оставаться открытой.'")
-(OUT / 'youtube-comments.js').write_text(front)
+(OUT / 'youtube-comments.js').write_text(patch_front(front))
 print('Prepared bounded frontend, backend, and creator reply instructions.')

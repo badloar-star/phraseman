@@ -57,3 +57,32 @@ node --check tools/youtube-comment-batches-20261030/changed/youtube_reply_instru
 Это датированный воспроизводимый патч. Повторное применение к уже изменённой функции останавливается на проверке базового SHA; нельзя удалять эти проверки, чтобы протолкнуть устаревший архив.
 
 Checkpoint исходных function/source/Hosting metadata остаётся в авторизованном Cloud Shell: `/tmp/youtube-batches-20261030`. Для восстановления можно опубликовать указанную исходную Hosting version и вернуть `buildConfig.source.storageSource` к исходному bucket/object/generation. Перед восстановлением проверить, что после этой версии не появились другие изменения; пользовательские комментарии и черновики не удалять. Ключи и access tokens не включены в файлы или репозиторий.
+
+
+## Follow-up: clear prepared replies (2026-10-30)
+
+The same builder now applies `clear_drafts_patch.py`: owner-only bounded clear/undo, durable restore receipts, local-edit recovery, expected-revision send checks and generation-lock ownership.
+
+The user narrowed this follow-up to YouTube comments; Stories changes are excluded from this release.
+
+### Behavior
+
+- One click clears every prepared, unsent draft in the loaded batch (maximum 100). Search filters and individual selection do not silently restrict the scope. Viewer comments and published replies are preserved.
+- Undo restores replies as drafts requiring fresh approval. Sending/uncertain/in-flight and actively generating rows remain protected; partial results explain what was skipped.
+- `replyDiscard` keeps one backup/receipt per comment, keyed by operation ID and monotonic revision. Existing comment TTL applies. No new collection or cron is created.
+- Unsaved local edits are account-scoped, backed up before clearing and recovered after Undo, including lost responses. Storage failure stops clearing dirty drafts. A newer unsaved edit cannot be overwritten.
+- Send verifies the expected revision both before channel verification and inside the final transaction. A stale generation cannot set review state or remove another generation's lock.
+
+### Focused checks
+
+```sh
+python3 tools/youtube-comment-batches-20261030/prepare_change.py
+node tools/youtube-comment-batches-20261030/tests/bounded_batches.test.cjs
+node tools/youtube-comment-batches-20261030/tests/clear_drafts.test.cjs
+```
+
+26 batch/prompt checks and 20 clear/undo/concurrency checks pass on actual modules with mocked Firestore/callables. No paid OpenAI requests, no real YouTube sends, and no user replies are cleared during verification. The Jarvis guard keeps this owner workflow state outside its readers; all 8 fetchers and their actual callable/cron wiring were reviewed.
+
+### Deployment
+
+Use `deploy_clear_backend.py` and `deploy_clear_hosting.py` in the authenticated Cloud Shell checkpoint directory `/tmp/admin-repair-20261030`. The backend script starts from the currently deployed module SHA256 `38d97bbe799efac3b25d9381dfc23ff0eda36c39ac9ae2640606e48f6105a3b8`; only `buildConfig.source` changes. The hosting script replaces only `/scripts/pages/youtube-comments.js`, preserving every other live path/hash and all configuration. Deployment leases fail closed on concurrent updates. The older scripts above target the earlier batch rollout and are retained only as historical evidence.

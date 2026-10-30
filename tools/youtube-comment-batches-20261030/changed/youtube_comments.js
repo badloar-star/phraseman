@@ -164,7 +164,7 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
     const db = admin.firestore();
     const input = request.data ?? {};
     const op = bounded(input.op, 32);
-    if (['approve', 'start', 'send', 'reconcile', 'guidance', 'knowledge', 'feedback', 'feedbackAllowReply'].includes(op) && uid !== exports.YOUTUBE_REPLY_OWNER_UID)
+    if (['approve', 'start', 'send', 'reconcile', 'guidance', 'knowledge', 'feedback', 'feedbackAllowReply', 'clearDrafts', 'restoreDrafts'].includes(op) && uid !== exports.YOUTUBE_REPLY_OWNER_UID)
         throw new https_1.HttpsError('permission-denied', 'owner_approval_required');
     const settings = db.collection(exports.YOUTUBE_COMMENTS_SETTINGS);
     const queue = settings.doc('queue');
@@ -348,6 +348,74 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
         await read.ref.set({ at: Date.now(), until: 0, result: summary, expireAt: admin.firestore.Timestamp.fromMillis(Date.now() + 86400000) });
         return summary;
     }
+
+    if (op === 'clearDrafts' || op === 'restoreDrafts') {
+        if (!Array.isArray(input.items) || !input.items.length || input.items.length > 100)
+            throw new https_1.HttpsError('invalid-argument', 'invalid_batch_size');
+        const operationId = op === 'clearDrafts' ? identifier(input.operationId) : null;
+        const items = input.items.map(item => {
+            const id = identifier(item?.id), revision = item?.revision;
+            if (!Number.isSafeInteger(revision) || revision < 0)
+                throw new https_1.HttpsError('invalid-argument', 'invalid_revision');
+            return { id, revision, operationId: operationId ?? identifier(item.operationId) };
+        });
+        if (new Set(items.map(item => item.id)).size !== items.length)
+            throw new https_1.HttpsError('invalid-argument', 'duplicate_comment_id');
+        return db.runTransaction(async (tx) => {
+            const refs = items.map(item => db.collection(exports.YOUTUBE_COMMENTS_ROOT).doc(item.id));
+            // Every read precedes every write, including uniqueness reservations for undo.
+            const [queueSnapshot, ...snapshots] = await Promise.all([tx.get(queue), ...refs.map(ref => tx.get(ref))]);
+            const rows = snapshots.map(snapshot => snapshot.data());
+            const restoreRefs = op === 'restoreDrafts' ? rows.map(row => row?.replyDiscard?.reply?.text ? settings.doc((0, youtube_comment_topics_1.uniqueReplyKey)(row.replyDiscard.reply.text)) : null) : [];
+            const reservations = await Promise.all(restoreRefs.map(ref => ref ? tx.get(ref) : Promise.resolve(null)));
+            const recentRef = settings.doc('recentReplies');
+            let recent = op === 'restoreDrafts' ? ((await tx.get(recentRef)).data()?.items ?? []) : [];
+            let restored = false;
+            const restoredKeys = new Map();
+            const result = [];
+            for (let index = 0; index < items.length; index++) {
+                const item = items[index], row = rows[index], ref = refs[index];
+                const skip = reason => result.push({ id: item.id, status: 'skipped', reason });
+                if (!row) { skip('missing'); continue; }
+                const reply = row.reply, revision = reply?.revision ?? 0, backup = row.replyDiscard;
+                if (['sending', 'sent', 'uncertain'].includes(reply?.status) || row.sentId || row.sentAt || queueSnapshot.data()?.inFlightId === item.id) { skip('delivery_locked'); continue; }
+                if (Number(row.generatingUntil) > Date.now()) { skip('generation_in_progress'); continue; }
+                if (op === 'clearDrafts' && backup?.operationId === item.operationId && backup.clearedRevision === revision && reply?.status === 'draft' && !reply.text?.trim()) {
+                    result.push({ id: item.id, status: 'alreadyCleared', reply, needsReview: !!row.needsReview, replyDiscard: { operationId: backup.operationId, clearedRevision: backup.clearedRevision, at: backup.at } });
+                    continue;
+                }
+                if (op === 'restoreDrafts' && backup?.operationId === item.operationId && backup.restoredRevision === revision && reply?.status === 'draft') {
+                    result.push({ id: item.id, status: 'alreadyRestored', reply, needsReview: !!row.needsReview, replyDiscard: { operationId: backup.operationId, clearedRevision: backup.clearedRevision, restoredRevision: revision, at: backup.at } });
+                    continue;
+                }
+                if (revision !== item.revision) { skip('draft_changed_reload'); continue; }
+                if (op === 'clearDrafts') {
+                    if (!reply?.text?.trim() || !['draft', 'approved'].includes(reply.status)) { skip('no_draft'); continue; }
+                    const cleared = { id: item.id, channelId: row.channelId, parentId: row.parentId, text: '', revision: revision + 1, status: 'draft', createdAt: reply.createdAt ?? Date.now() };
+                    // Retain the monotonically increasing revision: a stale approval/send
+                    // can never become valid again after clear -> regenerate -> approve.
+                    const discarded = { reply, needsReview: !!row.needsReview, operationId: item.operationId, clearedRevision: cleared.revision, at: Date.now(), by: uid };
+                    tx.update(ref, { reply: cleared, replyDiscard: discarded, needsReview: false });
+                    result.push({ id: item.id, status: 'cleared', reply: cleared, needsReview: false, replyDiscard: { operationId: discarded.operationId, clearedRevision: discarded.clearedRevision, at: discarded.at } });
+                } else {
+                    if (!backup || backup.operationId !== item.operationId || backup.clearedRevision !== revision || reply?.status !== 'draft' || reply.text?.trim() || !backup.reply?.text?.trim()) { skip('undo_expired'); continue; }
+                    const reservation = reservations[index]?.data();
+                    const reservationKey = restoreRefs[index].path;
+                    if ((reservation && reservation.rowId !== item.id) || (restoredKeys.has(reservationKey) && restoredKeys.get(reservationKey) !== item.id)) { skip('duplicate_reply_rewrite'); continue; }
+                    const restoredReply = { id: item.id, channelId: row.channelId, parentId: row.parentId, text: backup.reply.text, revision: revision + 1, status: 'draft', createdAt: backup.reply.createdAt ?? Date.now() };
+                    const needsReview = !!row.needsReview || !!backup.needsReview;
+                    tx.update(ref, { reply: restoredReply, needsReview, replyDiscard: { ...backup, restoredRevision: restoredReply.revision } });
+                    tx.set(restoreRefs[index], { rowId: item.id, channelId: row.channelId, createdAt: Date.now() }, { merge: true });
+                    recent = [{ rowId: item.id, text: restoredReply.text.slice(0, 600) }, ...recent.filter(entry => entry.rowId !== item.id)].slice(0, 30);
+                    restored = true;
+                    restoredKeys.set(reservationKey, item.id);
+                    result.push({ id: item.id, status: 'restored', reply: restoredReply, needsReview, replyDiscard: { operationId: backup.operationId, clearedRevision: backup.clearedRevision, restoredRevision: restoredReply.revision, at: backup.at } });
+                }
+            }
+            if (restored) tx.set(recentRef, { items: recent });
+            return { items: result };
+        });
+    }
     const id = identifier(input.id);
     const ref = db.collection(exports.YOUTUBE_COMMENTS_ROOT).doc(id);
     if (op === 'feedbackAllowReply') {
@@ -385,7 +453,7 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
                 throw new https_1.HttpsError('aborted', 'draft_changed_reload');
             const reply = op === 'save' ? (0, youtube_comment_policy_1.editReply)(before, bounded(input.text, 4000)) : (0, youtube_comment_policy_1.approveReply)(before, uid, Date.now());
             await reserveReplyText(tx, settings, reply);
-            tx.update(ref, { reply });
+            tx.update(ref, { reply, replyDiscard: admin.firestore.FieldValue.delete() });
             return { reply };
         });
     }
@@ -419,7 +487,7 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
                 throw new https_1.HttpsError('failed-precondition', 'delivery_locked');
             const revision = (current.reply?.revision ?? 0) + 1;
             const reply = { id, channelId: current.channelId, parentId: current.parentId, text: current.reply?.text ?? '', revision, status: 'draft', createdAt: current.reply?.createdAt ?? Date.now() };
-            tx.update(ref, { reply, generatingUntil: Date.now() + 180000 });
+            tx.update(ref, { reply, generatingUntil: Date.now() + 180000, replyDiscard: admin.firestore.FieldValue.delete() });
             return revision;
         });
         try {
@@ -449,8 +517,13 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
                 });
             // Never save a cut-off or overlong AI draft as ready for approval.
             if (text.includes('NEEDS_REVIEW') || output.choices?.[0]?.finish_reason === 'length' || Array.from(text).length > 320) {
-                await ref.update({ needsReview: true });
-                return { needsReview: true };
+                return await db.runTransaction(async (tx) => {
+                    const current = (await tx.get(ref)).data();
+                    if (!current || current.reply?.revision !== generationRevision)
+                        throw new https_1.HttpsError('aborted', 'draft_changed_reload');
+                    tx.update(ref, { needsReview: true });
+                    return { needsReview: true };
+                });
             }
             return await db.runTransaction(async (tx) => {
                 const current = (await tx.get(ref)).data();
@@ -461,18 +534,24 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
                 const before = current.reply ?? { id, channelId: data.channelId, parentId: data.parentId, text: '', revision: 0, status: 'draft', createdAt: Date.now() };
                 const reply = (0, youtube_comment_policy_1.editReply)(before, text);
                 await reserveReplyText(tx, settings, reply);
-                tx.update(ref, { reply, needsReview: false });
+                tx.update(ref, { reply, needsReview: false, generatingUntil: admin.firestore.FieldValue.delete() });
                 return { reply };
             });
         }
         finally {
-            await ref.update({ generatingUntil: admin.firestore.FieldValue.delete() });
+            await db.runTransaction(async (tx) => {
+                const current = (await tx.get(ref)).data();
+                if (current?.reply?.revision === generationRevision)
+                    tx.update(ref, { generatingUntil: admin.firestore.FieldValue.delete() });
+            });
         }
     }
     if (op !== 'send' && op !== 'reconcile')
         throw new https_1.HttpsError('invalid-argument', 'unknown_operation');
     if (op === 'send' && data.skipReply)
         throw new https_1.HttpsError('failed-precondition', 'reply_skipped_by_owner_rules');
+    if (op === 'send' && (!Number.isSafeInteger(input.revision) || input.revision < 1 || data.reply?.revision !== input.revision))
+        throw new https_1.HttpsError('aborted', 'draft_changed_reload');
     const token = bounded(input.token, 8192);
     const channelId = await verifiedChannel(db, identifier(data.configId), token);
     let reply = data.reply;
@@ -523,6 +602,10 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
             throw new https_1.HttpsError('resource-exhausted', 'queue_wait');
         if (!r)
             throw new https_1.HttpsError('failed-precondition', 'approval_required');
+        if (r.revision !== input.revision)
+            throw new https_1.HttpsError('aborted', 'draft_changed_reload');
+        if (Number(row.data()?.generatingUntil) > Date.now())
+            throw new https_1.HttpsError('failed-precondition', 'generation_in_progress');
         const sending = (0, youtube_comment_policy_1.beginReply)(r, uid, channelId);
         await reserveReplyText(tx, settings, sending);
         tx.update(ref, { reply: sending, deliveryStartedAt: Date.now(), deliveryBaselineIds: admin.firestore.FieldValue.delete() });

@@ -1126,3 +1126,23 @@ describe('Arena friend invite and notification isolation', () => {
     expect(jarvisReaders).not.toContain("collection('voice_call_reviews')");
   });
 });
+
+
+// YouTube reply backups are owner workflow state, intentionally unread by Jarvis.
+describe('YouTube draft discard isolation', () => {
+  test('keeps replyDiscard out of fetchers and their production wiring', () => {
+    const dir = path.join(functionsSrc, 'jarvis');
+    const sources = fs.readdirSync(dir)
+      .filter((file) => file.endsWith('.ts') && !file.includes('.test.'))
+      .map((file) => fs.readFileSync(path.join(dir, file), 'utf8'))
+      .join('\n');
+    // Include callables/crons: most fetchers receive a collection argument.
+    expect(sources).not.toContain('admin_youtube_comments');
+    expect(sources).not.toContain('admin_youtube_comment_settings');
+    expect(sources).not.toContain('replyDiscard');
+    const writer = fs.readFileSync(path.join(root, 'tools', 'youtube-comment-batches-20261030', 'changed', 'youtube_comments.js'), 'utf8');
+    expect(writer).toContain('replyDiscard: discarded');
+    expect(writer).toContain('restoredRevision: restoredReply.revision');
+    expect(writer).toContain("uid !== exports.YOUTUBE_REPLY_OWNER_UID");
+  });
+});

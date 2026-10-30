@@ -23,10 +23,16 @@ PAYLOADS = {
 BASE_BLOBS = {
     '/scripts/pages/story_announcements_v2.js': {
         '0200a3a2acf6f62954cfc73badf12ea9ffd048fa',
+        # Same reviewed baseline with CRLF line endings, as served by Hosting.
+        '8c43ed2a0fda3691f48f718812ddf59dbdbcca3b',
         'ba66281630f28f2b66ff5504f6ef2de5146bc6d4',
         '5851bb68b9f19321eb0bb3f01269fde08042eb9f',
     },
-    '/scripts/pages/story_announcements_v2.css': {'80d07bb45d0a9e5c01c2746a51234a028f4154fe'},
+    '/scripts/pages/story_announcements_v2.css': {
+        '80d07bb45d0a9e5c01c2746a51234a028f4154fe',
+        # Same reviewed baseline with CRLF line endings, as served by Hosting.
+        '9d37379e9d61d8868cdccd1cfb3c455b9c15ce09',
+    },
 }
 REQUIRED = {'/legacy.html', '/scripts/pages/youtube-comments.js',
             '/scripts/pages/story_announcements_v2_preview.html', *PAYLOADS}

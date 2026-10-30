@@ -2,8 +2,8 @@
 <style id="ann-admin-gallery-style">
 html.ann-gallery-root, body.ann-gallery-mode { margin: 0; padding: 0; background: transparent; overflow-x: hidden; }
 body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
-/* Keep each phone at its natural size; narrow screens scale one card to fit. */
-#ann-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); align-items: start; justify-items: start; gap: 20px; padding: 3px; box-sizing: border-box; width: 100%; max-width: 826px; }
+/* Show three natural-size phones per row when space permits; narrow screens wrap. */
+#ann-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); align-items: start; justify-items: start; gap: 20px; padding: 3px; box-sizing: border-box; width: 100%; max-width: 1246px; }
 .ann-gallery-card { appearance: none; display: flex; flex-direction: column; gap: 7px; width: 100%; max-width: 400px; min-width: 0; margin: 0; padding: 3px; border: 2px solid #344b43; border-radius: 12px; background: #12271f; color: #ecf4f0; font: 600 15px/1.3 system-ui, sans-serif; text-align: left; cursor: pointer; box-sizing: border-box; }
 .ann-gallery-card:hover { border-color: #8ab49f; background: #19352a; }
 .ann-gallery-card[aria-pressed="true"] { border-color: #a8e1be; background: #213e30; box-shadow: 0 0 0 1px #a8e1be; }

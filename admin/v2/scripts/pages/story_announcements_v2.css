@@ -158,11 +158,12 @@
 #tab-stories .ann2-archive > summary { padding: 12px 0; cursor: pointer; font-size: 14px; color: var(--ann2-muted); }
 #tab-stories .ann2-empty { padding: 28px 0; color: var(--ann2-muted); }
 #tab-stories .ann2-empty p { margin-top: 6px; }
-@container stories-workspace (min-width: 1500px) {
+@container stories-workspace (min-width: 1900px) {
   #tab-stories .ann2-builder-layout { grid-template-columns: minmax(0,1fr) 560px; gap: 28px; }
   #tab-stories .ann2-composer { grid-template-columns: minmax(0,1fr) 240px; }
 }
-@container stories-workspace (max-width: 1120px) {
+/* Give three 400px cards the full row before reserving space for a sidebar. */
+@container stories-workspace (max-width: 1779px) {
   #tab-stories .ann2-builder-layout { grid-template-columns: minmax(0,1fr); }
   #tab-stories .ann2-composer { grid-column: 1; grid-row: 1; grid-template-columns: minmax(0,1fr) 240px; position: static; padding: 0; border: 0; gap: 24px; }
   #tab-stories .ann2-gallery { grid-column: 1; grid-row: 2; margin-top: 12px; }

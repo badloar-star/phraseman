@@ -61,7 +61,7 @@ with sync_playwright() as pw:
     assert all(abs(phone['width']-390)<=1 and abs(phone['height']-844)<=1 and abs(phone['scale']-1)<.01 for phone in geometry['phones']),geometry
    else:
     assert all(0<phone['width']<=390 and phone['scale']<=1.001 for phone in geometry['phones']),geometry
-   if width==1662:assert geometry['columns']==2,geometry
+   if width==1662:assert geometry['columns']==3,geometry
    if width==1024:assert geometry['columns']==1 and geometry['height']>22000,geometry
    initial=scroll_metrics(p)
    assert initial['viewportHeight']==850 and initial['bottom']<=851 and initial['clientHeight']>200,initial
@@ -73,7 +73,7 @@ with sync_playwright() as pw:
    phone_point=visible_point(p,first);phone_delta=wheel(p,*phone_point,500)
    box1=cards.nth(0).bounding_box();box2=cards.nth(1).bounding_box()
    iframe_box=p.locator('iframe.ann2-gallery-frame').bounding_box();clip=scroll_metrics(p)
-   gap_x=(box1['x']+box1['width']+box2['x'])/2 if geometry['columns']==2 else iframe_box['x']+1
+   gap_x=(box1['x']+box1['width']+box2['x'])/2 if geometry['columns']>=2 else iframe_box['x']+1
    gap_delta=wheel(p,gap_x,(clip['top']+min(clip['bottom'],850))/2,400)
    last=cards.nth(35);last_design=last.get_attribute('data-design')
    last_steps=reach_by_wheel(p,last,x=phone_point[0])

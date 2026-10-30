@@ -2,7 +2,7 @@
    Uses existing callable, revision and account boundaries; no automatic writes. */
 (() => { 'use strict';
 const LOG = '[ANN2-ADMIN]';
-const STORIES_BUILD = '2026.10.30.5';
+const STORIES_BUILD = '2026.10.30.6';
 const PREVIEW_URL = 'scripts/pages/story_announcements_v2_preview.html?preview=1&build=' + STORIES_BUILD;
 const SIZES = [14, 16, 20]; const STYLES = [['normal', 'Обычный'], ['accent', 'Акцент'], ['quote', 'Цитата']];
 const GROUPS = { text: 'Текст', time: 'Срок', sections: 'Разделы', promo: 'Акции', community: 'Сообщество', holiday: 'Праздник', service: 'Служебные' };

@@ -16,8 +16,6 @@ jobs:
   deploy-stories-only:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    env:
-      STORIES_TEST_OUTPUT: ${{ runner.temp }}/stories-test-output
     steps:
       - name: Check out this immutable release
         uses: actions/checkout@v4
@@ -51,6 +49,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          export STORIES_TEST_OUTPUT="$RUNNER_TEMP/stories-test-output"
           node --check admin/v2/scripts/pages/story_announcements_v2.js
           python tests/admin_stories_regression.py
           python tests/admin_stories_layout_regression.py

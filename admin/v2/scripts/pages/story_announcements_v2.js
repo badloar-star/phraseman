@@ -2,7 +2,7 @@
    Uses existing callable, revision and account boundaries; no automatic writes. */
 (() => { 'use strict';
 const LOG = '[ANN2-ADMIN]';
-const STORIES_BUILD = '2026.10.30.3';
+const STORIES_BUILD = '2026.10.30.4';
 const PREVIEW_URL = 'scripts/pages/story_announcements_v2_preview.html?preview=1&build=' + STORIES_BUILD;
 const SIZES = [14, 16, 20]; const STYLES = [['normal', 'Обычный'], ['accent', 'Акцент'], ['quote', 'Цитата']];
 const GROUPS = { text: 'Текст', time: 'Срок', sections: 'Разделы', promo: 'Акции', community: 'Сообщество', holiday: 'Праздник', service: 'Служебные' };
@@ -512,7 +512,10 @@ function ownWorkspace(tab) {
     if (!old.dataset.ann2Retired) {old.removeAttribute('srcdoc');old.removeAttribute('src');old.dataset.ann2Retired='true';}
     old.dataset.loaded='true'; old.dataset.ready='true';
   }
-  for (const child of tab.children) if (child !== panel) {child.hidden=true;child.setAttribute('aria-hidden','true');}
+  // The shell forces its legacy refresh controls to display with !important.
+  for (const child of tab.children) if (child !== panel) {
+    child.hidden=true;child.setAttribute('aria-hidden','true');child.style.setProperty('display','none','important');
+  }
 }
 function mount() {
   const tab = document.getElementById('tab-stories');
@@ -522,7 +525,9 @@ function mount() {
   const styleHref = 'scripts/pages/story_announcements_v2.css?build=' + STORIES_BUILD;
   let style = document.querySelector('link[data-ann2-style]');
   if (!style) {style=h('link',{rel:'stylesheet','data-ann2-style':'true'});document.head.append(style);} style.href=styleHref;
-  panel = h('section', {class:'ann2','aria-label':'Истории: публикации и конструктор','data-stories-build':STORIES_BUILD});
+  // Shell decorators add owner-panel styling after mount. Keep this workspace flat.
+  panel = h('section', {class:'ann2','aria-label':'Истории: публикации и конструктор','data-stories-build':STORIES_BUILD,
+    style:'padding:0!important;margin:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important'});
   const publishedTab = button('Опубликовано', 'Истории, которые сейчас показываются пользователям.', () => setView('published'), {id:'ann2-published-tab',role:'tab','data-view':'published','aria-controls':'ann2-published'});
   const builderTab = button('Конструктор', 'Текст, все 36 шаблонов и предпросмотр.', () => setView('builder'), {id:'ann2-builder-tab',role:'tab','data-view':'builder','aria-controls':'ann2-builder'});
   navEl = h('div',{class:'ann2-tabs',role:'tablist','aria-label':'Страницы историй'}, publishedTab,builderTab);
@@ -532,7 +537,7 @@ function mount() {
     navEl.querySelector('[data-view="'+next+'"]').focus();
   });
   noticeEl=h('p',{class:'ann2-notice',role:'status','aria-live':'polite',hidden:true});
-  const header=h('header',{class:'ann2-head'},h('h2',{},'Истории'),navEl,
+  const header=h('header',{class:'ann2-head',style:'background:transparent!important;padding:0 0 14px!important;box-shadow:none!important'},h('h2',{},'Истории'),navEl,
     button('Новая история','Открыть пустой конструктор.',newStory,{class:'ann2-btn ann2-btn--new'}));
   listEl=h('div',{class:'ann2-list'});archiveEl=h('div',{class:'ann2-archive-list'});
   const archive=h('details',{class:'ann2-archive'},h('summary',{},'Черновики и завершённые'),archiveEl);

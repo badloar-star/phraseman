@@ -15,9 +15,9 @@ from typing import Callable, Any
 
 SITE = 'phraseman-ea0b3'
 API = 'https://firebasehosting.googleapis.com/v1beta1/'
-BUILD = '2026.10.30.3'
+BUILD = '2026.10.30.4'
 PAYLOADS = {
-    '/scripts/pages/story_announcements_v2.js': 'ab87461f8c3320a8302a356bddc0fd656d02c11f',
+    '/scripts/pages/story_announcements_v2.js': '4f1b03709d7139416a3e221463cba372405aca5b',
     '/scripts/pages/story_announcements_v2.css': 'c2ecfb3b42a0c753204bfcdf34d57e69b68e5a5d',
     '/scripts/pages/story_announcements_v2_preview.html': 'd171018f436041bf7f08fe09eec3d3ba2995a3b8',
 }
@@ -29,12 +29,14 @@ BASE_BLOBS = {
         'ba66281630f28f2b66ff5504f6ef2de5146bc6d4',
         '5851bb68b9f19321eb0bb3f01269fde08042eb9f',
         '03bc8596d95a27e7c7f7dba05322573fcff2f0f3',
+        'ab87461f8c3320a8302a356bddc0fd656d02c11f',
     },
     '/scripts/pages/story_announcements_v2.css': {
         '80d07bb45d0a9e5c01c2746a51234a028f4154fe',
         # Same reviewed baseline with CRLF line endings, as served by Hosting.
         '9d37379e9d61d8868cdccd1cfb3c455b9c15ce09',
         'c466b0ddee7db666f42837279a6af8aa37ce93d1',
+        'c2ecfb3b42a0c753204bfcdf34d57e69b68e5a5d',
     },
     '/scripts/pages/story_announcements_v2_preview.html': {
         'b71bedd26198a1853a35cadc1c5d6fbc573c63cf',

@@ -39,6 +39,7 @@ SHELL='''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" 
 *{box-sizing:border-box}html{color-scheme:dark}body{margin:0;background:#0b1915;color:#e3efeb;font:14px/1.5 system-ui,sans-serif;--pm-surface:#152b25;--pm-card:#1b382e;--pm-muted:#a2bdb2;--pm-accent:#8fd3a8;--pm-text:#e3efeb}#admin-app{margin-left:168px;padding:32px}.reports-tab{display:none;width:100%;min-width:0}.reports-tab.active{display:block}input,select,textarea{max-width:100%}
 img,canvas,svg,video,iframe{max-width:100%;height:auto}
 body.pm-phase6-ready [id^="tab-"] :where(canvas,svg,img,video,iframe){max-width:100%}
+body.pm-phase6-ready #admin-app #tab-stories > .pm-manual-load{display:flex!important}
 @media(max-width:800px){#admin-app{margin-left:0;padding:16px}}
 </style></head><body class="pm-phase6-ready"><main id="admin-app"><section id="tab-stories" class="reports-tab active"><div class="pm-v5-sync pm-story-status" id="legacy-test-status">Редактор открыт · результат загрузки показан внутри редактора</div><button class="pm-manual-load" data-pm-manual-load="stories" id="legacy-test-refresh">Обновить</button><div class="pm-v4-section-header" id="legacy-test-header">Истории старого редактора</div><iframe id="pm-story-editor" title="Старый редактор" style="display:block" src="about:blank"></iframe></section></main><script>BOOT_SCRIPT</script><script src="/scripts/pages/story_announcements_v2.js"></script></body></html>'''
 
@@ -122,6 +123,7 @@ def main():
  with sync_playwright() as pw:
   browser=chromium(pw)
   def check(name,fn,**options):
+   if os.environ.get('STORIES_TEST_FILTER') and not re.search(os.environ['STORIES_TEST_FILTER'],name):return
    h=None
    try:
     h=Harness(browser,**options);fn(h);assert not h.errors,h.errors
@@ -188,6 +190,9 @@ def main():
    p=h.page
    for selector in ['#legacy-test-status','#legacy-test-refresh','#legacy-test-header','#pm-story-editor']:
     assert not p.locator(selector).is_visible(),selector
+    assert p.locator(selector).evaluate('(el)=>el.hidden && getComputedStyle(el).display===\'none\''),selector
+   p.evaluate("const late=document.createElement('button');late.className='pm-manual-load';late.id='legacy-test-late-refresh';late.textContent='Обновить';document.querySelector('#tab-stories').append(late)")
+   p.wait_for_function("document.querySelector('#legacy-test-late-refresh').hidden && getComputedStyle(document.querySelector('#legacy-test-late-refresh')).display==='none'")
    p.evaluate('async()=>{await Promise.all([loadStoryWorkspace(),loadStoryWorkspace(),loadStoryWorkspace(),loadStoryWorkspace()]);}')
    assert not any('old-editor-must-not-load' in url for url in h.requested)
    assert not p.locator('#pm-story-editor').get_attribute('srcdoc')
@@ -321,6 +326,9 @@ def main():
    p.evaluate("document.querySelector('#tab-stories').classList.remove('active');location.hash='control-panel';document.dispatchEvent(new CustomEvent('pm:section-opened',{detail:{tab:'control-panel'}}));")
    assert not p.locator('#tab-stories').is_visible()
    assert p.locator('#tab-stories').evaluate('(el)=>getComputedStyle(el).display')=='none'
+   p.evaluate("document.querySelector('#tab-stories').classList.add('active');location.hash='stories';document.dispatchEvent(new CustomEvent('pm:section-opened',{detail:{tab:'stories'}}));")
+   p.locator('section.ann2').wait_for(state='visible')
+   assert not p.locator('#legacy-test-refresh').is_visible()
    assert not command_calls(p)
   check('leaving Stories lets the admin shell hide the entire workspace',leave_stories)
   def auth_without_observer(h):

@@ -20,7 +20,7 @@ function harness(){
  const firestore=()=>db;firestore.FieldValue={delete:()=>DEL};
  class HttpsError extends Error{constructor(code,message){super(message);this.code=code;}}
  const uniqueReplyKey=text=>'unique_'+crypto.createHash('sha256').update(text).digest('hex');
- const deps={'firebase-admin':{firestore},'firebase-functions/v2/https':{HttpsError,onCall:(_o,fn)=>fn},'firebase-functions/params':{defineSecret:()=>({value:()=> 'mock-only'})},'./admin/permissions':{hasVerifiedCallablePermission:auth=>auth?.token?.admin===true},'./youtube_comment_topics':{uniqueReplyKey,topicReady:()=>false},'./youtube_comment_policy':{editReply:(r,text)=>({...r,text,revision:r.revision+1,status:'draft'}),beginReply:(r)=>{assert.equal(r.status,'approved');return{...r,status:'sending'};}},'./openai_jobs_config':{resolveJobConfig:async()=>({model:'mock'}),assertJobEnabled(){}},'./spend_cap':{reserveDailySpend:async()=>{}},'./ai_operation_billing':{recordAiOperationUsage:async()=>{}},'./youtube_reply_instructions':{OWNER_REPLY_INSTRUCTIONS:'Mock factual instructions'}};
+ const deps={'firebase-admin':{firestore},'firebase-functions/v2/https':{HttpsError,onCall:(_o,fn)=>fn},'firebase-functions/params':{defineSecret:()=>({value:()=> 'mock-only'})},'./admin/permissions':{hasVerifiedCallablePermission:auth=>auth?.token?.admin===true},'./youtube_comment_topics':{uniqueReplyKey,topicReady:()=>false},'./youtube_comment_policy':require('./fixtures/youtube_comment_policy.js'),'./openai_jobs_config':{resolveJobConfig:async()=>({model:'mock'}),assertJobEnabled(){}},'./spend_cap':{reserveDailySpend:async()=>{}},'./ai_operation_billing':{recordAiOperationUsage:async()=>{}},'./youtube_reply_instructions':require(path.join(root,'youtube_reply_instructions.js'))};
  const context={exports:{},require:n=>n==='node:crypto'?crypto:(deps[n]||{}),Date,Promise,URLSearchParams,AbortSignal,fetch:async(...args)=>{fetches.push(args);return fetchHandler(...args);}};
  vm.runInNewContext(backend,context);
  const owner=context.exports.YOUTUBE_REPLY_OWNER_UID;
@@ -63,8 +63,8 @@ function frontHarness(h,options={}){
  const storageMap=options.storageMap||new Map(),calls=[];const storage={get length(){return storageMap.size;},key:i=>[...storageMap.keys()][i],getItem:k=>storageMap.get(k)??null,setItem:(k,v)=>{if(options.storageFails)throw Error('Storage unavailable');storageMap.set(k,v);},removeItem:k=>storageMap.delete(k)};
  class Element{constructor(tag){this.tagName=tag;this.children=[];this.dataset={};}append(...children){this.children.push(...children);}setAttribute(k,v){this[k]=v;}add(child){this.children.push(child);}}
  const core={app:{options:{projectId:'test'}},auth:{currentUser:{uid:h.owner}},httpsCallable:()=>async payload=>{calls.push(copy(payload));if(payload.op==='workspace'&&options.workspaceFails)throw Error('Offline');let result;if(payload.op==='workspace')result={rows:[...h.documents].filter(([p])=>p.startsWith(ROOT)).map(([,r])=>copy(r)).slice(0,payload.limit),channels:[],queue:{},knowledge:{},topics:[]};else result=await h.call(payload,core.auth.currentUser.uid);if(options.loseResponse===payload.op)throw Error('Connection lost after commit');return{data:result};}};
- const context={console,crypto,URLSearchParams,Map,Set,Date,Error,Promise,Option:class{},CSS:{escape:x=>x},setTimeout,clearTimeout,document:{createElement:t=>new Element(t),activeElement:null},window:{location:{origin:'https://test.invalid',search:''},localStorage:storage,__pmAdminCore:core}};
- const cut=frontend.indexOf('if(!mount()){');vm.runInNewContext(frontend.slice(0,cut)+'window.api={S,load,bulkDrafts,clearDraftControls,ensureAccount,persistDrafts};})();',context);context.window.api.ensureAccount();return{...context.window.api,core,calls,storageMap};
+ const context={console,crypto,URLSearchParams,Map,Set,Date,Error,Promise,Option:class{},CSS:{escape:x=>x},setTimeout,clearTimeout,document:{createElement:t=>new Element(t),activeElement:null},window:{location:{origin:'https://test.invalid',search:''},localStorage:storage,confirm:()=>true,__pmAdminCore:core,pmYoutubeAuth:{getToken:async()=> 'mock'}}};
+ const cut=frontend.indexOf('if(!mount()){');vm.runInNewContext(frontend.slice(0,cut)+'window.api={S,load,bulkDrafts,clearDraftControls,ensureAccount,persistDrafts,replyCard,saveDraft,approve,run};})();',context);context.window.api.ensureAccount();return{...context.window.api,core,calls,storageMap};
 }
 test('One-click clear ignores the search/selection and only clears the loaded batch',async()=>{
  const h=harness();for(let i=0;i<60;i++)h.seed('c'+i);const f=frontHarness(h);await f.load();f.S.query='hidden';f.S.selected.add('c0');await f.bulkDrafts();const request=f.calls.find(c=>c.op==='clearDrafts');assert.equal(request.items.length,50);assert.equal(h.documents.get(ROOT+'c50').reply.text,'Reply c50');assert.equal(f.S.rows.filter(r=>r.reply.text).length,0);assert.equal(f.S.busy,false);
@@ -78,3 +78,103 @@ test('A lost clear response reconciles the committed empty draft and enables und
 test('Switching accounts clears all undo/local state',async()=>{const h=harness();h.seed('a');const f=frontHarness(h);await f.load();f.S.edits.set('a',{text:'Private local',revision:4});await f.bulkDrafts();f.core.auth.currentUser={uid:'other'};f.ensureAccount();assert.equal(f.S.discardedEdits.size,0);assert.equal(f.S.edits.size,0);assert.equal(f.S.rows.length,0);});
 test('Backups are not silently truncated when clearing an older Map entry',async()=>{const h=harness();h.seed('a');const f=frontHarness(h);await f.load();f.S.discardedEdits.set('a',{operationId:'old',edit:{text:'old',revision:1}});for(let i=0;i<100;i++)f.S.discardedEdits.set('old'+i,{operationId:'old',edit:{text:'prior',revision:1}});f.S.edits.set('a',{text:'Current valuable edit',revision:4});await f.bulkDrafts();const persisted=[...f.storageMap].filter(([k])=>k.endsWith(':drafts')).map(([,v])=>JSON.parse(v))[0];assert.equal(new Map(persisted.discardedEdits).get('a').edit.text,'Current valuable edit');});
 test('After lost clear and reload, another clear cannot replace the unresolved backup',async()=>{const h=harness();h.seed('a');const options={};const f=frontHarness(h,options);await f.load();f.S.edits.set('a',{text:'Valuable',revision:4});options.loseResponse='clearDrafts';options.workspaceFails=true;await f.bulkDrafts();const operationId=f.S.discardedEdits.get('a').operationId;await f.bulkDrafts();assert.equal(f.calls.filter(c=>c.op==='clearDrafts').length,1);assert.equal(f.S.discardedEdits.get('a').operationId,operationId);options.workspaceFails=false;options.loseResponse=null;await f.load();assert.equal(f.S.edits.has('a'),false);await f.bulkDrafts(true);assert.equal(f.S.edits.get('a').text,'Valuable');});
+
+// Exact unchanged dependency captured from the live source bundle on 2026-10-30.
+// Exercise the real approval digest/revision rules, not a permissive policy mock.
+const policy=require('./fixtures/youtube_comment_policy.js');
+const replyInstructions=require(path.join(root,'youtube_reply_instructions.js'));
+test('Punctuation: prompt/examples and all Unicode dash variants use ASCII hyphens',()=>{
+ const {OWNER_REPLY_INSTRUCTIONS:prompt,normalizeReplyDashes:normalize}=replyInstructions;
+ assert.doesNotMatch(prompt,/[\u2010-\u2015\u2212]/u);
+ assert.match(prompt,/ASCII U\+002D/);
+ for(const code of [0x2010,0x2011,0x2012,0x2013,0x2014,0x2015,0x2212,0x2e3a,0x2e3b,0xfe31,0xfe32,0xfe58,0xfe63,0xff0d,0x10ead]){
+  assert.equal(normalize('До'+String.fromCodePoint(code)+'после'),'До-после');
+ }
+ const unchanged='SKIP_REPLY NEEDS_REVIEW 3-20 café 😄 https://knowlyapps.com/a-b';
+ assert.equal(normalize(unchanged),unchanged);
+ assert.equal(normalize(normalize('Спасибо\u2014понятно')),normalize('Спасибо\u2014понятно'));
+});
+test('Punctuation: generated reply is normalized before storage, uniqueness and recent examples',async()=>{
+ const h=harness(),row=h.seed('a');row.text='Viewer\u2014original';
+ h.setFetch(async(url,options)=>{assert.match(url,/api\.openai\.com/);const request=JSON.parse(options.body);assert.match(request.messages[0].content,/ASCII U\+002D/);return{ok:true,json:async()=>({choices:[{message:{content:'Понял\u2014спасибо! 3\u201320'}}]})};});
+ const result=await h.call({op:'generate',id:'a'});
+ assert.equal(result.reply.text,'Понял-спасибо! 3-20');
+ assert.equal(h.documents.get(ROOT+'a').text,'Viewer\u2014original');
+ assert.equal(h.documents.get(SETTINGS+h.uniqueReplyKey(result.reply.text)).rowId,'a');
+ assert.equal(h.documents.get(SETTINGS+'recentReplies').items[0].text,result.reply.text);
+});
+test('Punctuation: manual save normalizes and revokes the previous approval',async()=>{
+ const h=harness(),row=h.seed('a');row.reply=policy.approveReply(row.reply,h.owner,1);
+ const {reply}=await h.call({op:'save',id:'a',revision:4,text:'Спасибо \u2014 понял'});
+ assert.equal(reply.text,'Спасибо - понял');assert.equal(reply.revision,5);
+ assert.equal(reply.status,'draft');assert.equal(reply.approval,undefined);
+});
+test('Punctuation: legacy draft approval hashes canonical text and its new revision',async()=>{
+ const h=harness(),row=h.seed('a');row.reply.text='Спасибо \u2014 полезно';
+ const {reply}=await h.call({op:'approve',id:'a',revision:4});
+ assert.equal(reply.text,'Спасибо - полезно');assert.equal(reply.revision,5);
+ assert.equal(reply.approval.digest,policy.replyDigest(reply));
+ assert.equal(policy.beginReply(reply,h.owner,'youtube').status,'sending');
+ await assert.rejects(h.call({op:'approve',id:'a',revision:4}),/draft_changed_reload/);
+ assert.equal(h.fetches.length,0);
+});
+test('Punctuation: canonical approval keeps revision and locked delivery states remain locked',async()=>{
+ const h=harness();h.seed('a');assert.equal((await h.call({op:'approve',id:'a',revision:4})).reply.revision,4);
+ for(const status of ['sending','sent','uncertain'])for(const op of ['save','approve']){
+  const locked=harness(),row=locked.seed('a');row.reply.text='Old\u2014text';row.reply.status=status;
+  await assert.rejects(locked.call({op,id:'a',revision:4,text:'New\u2014text'}),/delivery_locked/);
+  assert.equal(locked.documents.get(ROOT+'a').reply.text,'Old\u2014text');assert.equal(locked.writes.length,0);
+ }
+});
+test('Punctuation: approval still rejects replies that become duplicates after normalization',async()=>{
+ const h=harness(),row=h.seed('a');row.reply.text='Same\u2014reply';
+ h.documents.set(SETTINGS+h.uniqueReplyKey('Same-reply'),{rowId:'other'});
+ await assert.rejects(h.call({op:'approve',id:'a',revision:4}),/duplicate_reply_rewrite/);
+ assert.equal(h.documents.get(ROOT+'a').reply.status,'draft');assert.equal(h.documents.get(ROOT+'a').reply.revision,4);
+});
+test('Punctuation: undo normalizes text and reservations together and keeps duplicate protection',async()=>{
+ const h=harness();h.seed('a').reply.text='Same\u2014reply';h.seed('b').reply.text='Same\u2013reply';
+ await h.clear(['a','b']);const result=await h.undo(['a','b']);
+ assert.equal(result.items[0].reply.text,'Same-reply');assert.equal(result.items[0].reply.status,'draft');
+ assert.equal(result.items[1].reason,'duplicate_reply_rewrite');
+ assert.equal(h.documents.get(SETTINGS+h.uniqueReplyKey('Same-reply')).rowId,'a');
+ assert.equal(h.documents.get(SETTINGS+'recentReplies').items[0].text,'Same-reply');
+ assert.equal((await h.undo(['a'])).items[0].status,'alreadyRestored');
+});
+test('Punctuation: legacy approved text is blocked before any YouTube request',async()=>{
+ const h=harness(),row=h.seed('a');row.reply.text='Old\u2014approved';row.reply=policy.approveReply(row.reply,h.owner,1);
+ await assert.rejects(h.call({op:'send',id:'a',revision:4,token:'mock'}),/reply_dashes_require_save/);
+ assert.equal(h.fetches.length,0);assert.equal(h.writes.length,0);assert.equal(row.reply.text,'Old\u2014approved');
+});
+test('Punctuation: final send transaction closes the race after channel verification',async()=>{
+ const h=harness(),row=h.seed('a');row.reply=policy.approveReply(row.reply,h.owner,1);
+ h.documents.set('admin_youtube_connections/state',{channels:{channel:{youtubeChannelId:'youtube'}}});
+ h.documents.set(SETTINGS+'queue',{owner:h.owner,paused:false});
+ h.setFetch(async url=>{assert.match(url,/youtube\/v3\/channels/);const current=h.documents.get(ROOT+'a');current.reply.text='Concurrent\u2014text';current.reply=policy.approveReply(current.reply,h.owner,2);return{ok:true,json:async()=>({items:[{id:'youtube'}]})};});
+ await assert.rejects(h.call({op:'send',id:'a',revision:4,token:'mock'}),/reply_dashes_require_save/);
+ assert.equal(h.fetches.length,1);assert.equal(h.writes.length,0);
+});
+test('Punctuation: reconciliation preserves historical text and matches the real posted reply',async()=>{
+ const h=harness(),row=h.seed('a');row.reply.text='Historical\u2014reply';row.reply=policy.approveReply(row.reply,h.owner,1);row.reply.status='uncertain';row.deliveryBaselineIds=[];
+ h.documents.set('admin_youtube_connections/state',{channels:{channel:{youtubeChannelId:'youtube'}}});
+ h.documents.set(SETTINGS+'queue',{owner:h.owner,paused:true,inFlightId:'a'});
+ h.setFetch(async url=>({ok:true,json:async()=>url.includes('/channels?')?{items:[{id:'youtube'}]}:{items:[{id:'posted',snippet:{authorChannelId:{value:'youtube'},textOriginal:'Historical\u2014reply'}}]}}));
+ assert.equal((await h.call({op:'reconcile',id:'a',token:'mock'})).status,'sent');
+ assert.equal(h.documents.get(ROOT+'a').reply.text,'Historical\u2014reply');
+});
+function descendants(element){return[element,...(element.children||[]).flatMap(descendants)];}
+test('Punctuation: editable preview, pasted input and manual save agree on canonical text',async()=>{
+ const h=harness();h.seed('a').reply.text='Draft\u2014text';const f=frontHarness(h);await f.load();
+ const input=descendants(f.replyCard(f.S.rows[0])).find(e=>e.tagName==='textarea');
+ assert.equal(input.value,'Draft-text');assert.equal(h.documents.get(ROOT+'a').reply.text,'Draft\u2014text');
+ input.value='A\u2014B';input.selectionStart=2;input.selectionEnd=2;input.setSelectionRange=(a,b)=>{input.selectionStart=a;input.selectionEnd=b;};input.oninput();
+ assert.equal(input.value,'A-B');assert.equal(input.selectionStart,2);assert.equal(f.S.edits.get('a').text,'A-B');
+ await f.saveDraft('a','Saved\u2014reply',4);assert.equal(f.calls.find(c=>c.op==='save').text,'Saved-reply');
+ assert.equal(h.documents.get(ROOT+'a').reply.text,'Saved-reply');
+});
+test('Punctuation: frontend leaves historical locked text exact and blocks legacy approved sending',async()=>{
+ const h=harness(),row=h.seed('a');row.reply.text='Approved\u2014text';row.reply=policy.approveReply(row.reply,h.owner,1);const f=frontHarness(h);await f.load();
+ const input=descendants(f.replyCard(f.S.rows[0])).find(e=>e.tagName==='textarea');assert.equal(input.value,'Approved\u2014text');assert.equal(input.disabled,true);
+ await assert.rejects(f.run(),/reply_dashes_require_save/);assert.equal(f.calls.filter(c=>c.op==='send').length,0);assert.equal(h.fetches.length,0);
+});
+

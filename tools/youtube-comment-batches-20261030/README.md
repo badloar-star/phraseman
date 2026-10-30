@@ -94,3 +94,29 @@ Use `deploy_clear_backend.py` and `deploy_clear_hosting.py` in the authenticated
 - Live browser: 50 rendered rows, batch choices 10/20/30/40/50/100, enabled clear control for 33 prepared replies. Real replies were not deleted or sent during QA.
 - Concurrent Stories commit `248a97c5de90ffc44c80da77b7f8c4515dfb618d` was preserved when advancing the existing branch. No Stories code was included in this release.
 - The deployment helper compares the immutable source generation with the successful operation response: Cloud Functions finalization advanced `updateTime` after the response while keeping the same source. The deployed module hash was independently verified before release.
+
+
+
+## Follow-up: ASCII hyphens in YouTube replies (2026-10-30)
+
+Owner request: replies must never contain typographic/long dashes; use only `-`.
+
+- The system prompt and all its examples use ASCII hyphens. The mandatory rule covers quotations, numeric ranges, old knowledge instructions and previous replies.
+- `reply_hyphens_patch.py` is part of the reproducible builder. It canonicalizes Unicode Dash_Punctuation plus U+2212 to U+002D before storing generated/manual/restored replies and before their uniqueness reservations.
+- Existing draft approval first verifies the original revision, edits only when punctuation changes, then approves the canonical text and new revision. The real policy's editable-state and approval-digest checks remain intact.
+- Sending rejects a legacy approved reply containing forbidden dashes before external lookup and again in the final transaction. The existing revoke/edit/save/approve flow handles it. Sent/sending/uncertain history and reconciliation remain exact.
+- The frontend normalizes editable previews, typed/pasted text and saves while preserving the input selection. It previews the substitution and explains it in the existing approval confirmation. Its own static dash punctuation uses ASCII as well.
+- Current batch sizes, cache, clear/undo, auth/permissions and other sections are preserved.
+
+Verification: 26 batch tests plus 32 draft/punctuation/concurrency tests pass locally and in Cloud Shell. The 12 added punctuation checks exercise the real unchanged policy fixture from the live archive (SHA256 `9772db94addab2b12cbaf0a7a4da1a688bb90d4468e5e90a1c06a0760b139813`). All AI and YouTube requests are mocked; no paid model calls or public replies are made by tests.
+
+Deployment helpers: `deploy_hyphen_backend.py` and `deploy_hyphen_hosting.py`. The new checkpoint is `/tmp/youtube-hyphens-20261030-da8814`. Both pre-deployment compiled module hashes are pinned. Only two function modules and one Hosting asset are replaced; complete current function settings and all other live Hosting files/configuration are retained. Historical deployment scripts are left unchanged.
+
+
+### Verified punctuation deployment
+
+- Backend ACTIVE: `adminYoutubeComments`, updateTime `2026-10-30T11:38:08.832149990Z`.
+- Function modules: `youtube_comments.js` SHA256 `24a7b5a1bd77622fb2c0fee572c8a5408294e2c2010509a17b7635d13a74a816`; `youtube_reply_instructions.js` SHA256 `93123639de0d5aa74c923465949010059608157a877e763061586277c5a39454`.
+- Hosting release: `sites/phraseman-ea0b3/releases/1793360536292000`; version `sites/phraseman-ea0b3/versions/3717ea684df9461a`. All 99 existing paths and full config preserved; only `/scripts/pages/youtube-comments.js` replaced (SHA256 `aa117e4d1fcded6866385b40d7b55eb0bc670b8328ecfd87aacf5d2abf06e782`).
+- Existing browser settings save returned `owner_approval_required`. That separate settings permission was not bypassed or changed; the attempted local settings edit was cancelled. The permanent rule is in the deployed system prompt and server normalization, independent of optional saved knowledge.
+- Concurrent Stories changes through `6ab9cd089c2d6c30f0e96130562d63403134817f` are preserved in the Git parent and are excluded from this narrow production deployment.

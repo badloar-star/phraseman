@@ -49,6 +49,7 @@ const youtube_oauth_1 = require("./youtube_oauth");
 const youtube_feedback_store_1 = require("./youtube_feedback_store");
 const youtube_feedback_1 = require("./youtube_feedback");
 const youtube_reply_instructions_1 = require("./youtube_reply_instructions");
+const normalizeReplyDashes = youtube_reply_instructions_1.normalizeReplyDashes;
 exports.YOUTUBE_COMMENTS_ROOT = 'admin_youtube_comments';
 exports.YOUTUBE_COMMENTS_SETTINGS = 'admin_youtube_comment_settings';
 // Existing owner identity documented in admin/v2/OWNER_ACCESS.md. This does
@@ -366,7 +367,7 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
             // Every read precedes every write, including uniqueness reservations for undo.
             const [queueSnapshot, ...snapshots] = await Promise.all([tx.get(queue), ...refs.map(ref => tx.get(ref))]);
             const rows = snapshots.map(snapshot => snapshot.data());
-            const restoreRefs = op === 'restoreDrafts' ? rows.map(row => row?.replyDiscard?.reply?.text ? settings.doc((0, youtube_comment_topics_1.uniqueReplyKey)(row.replyDiscard.reply.text)) : null) : [];
+            const restoreRefs = op === 'restoreDrafts' ? rows.map(row => row?.replyDiscard?.reply?.text ? settings.doc((0, youtube_comment_topics_1.uniqueReplyKey)(normalizeReplyDashes(row.replyDiscard.reply.text))) : null) : [];
             const reservations = await Promise.all(restoreRefs.map(ref => ref ? tx.get(ref) : Promise.resolve(null)));
             const recentRef = settings.doc('recentReplies');
             let recent = op === 'restoreDrafts' ? ((await tx.get(recentRef)).data()?.items ?? []) : [];
@@ -402,7 +403,7 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
                     const reservation = reservations[index]?.data();
                     const reservationKey = restoreRefs[index].path;
                     if ((reservation && reservation.rowId !== item.id) || (restoredKeys.has(reservationKey) && restoredKeys.get(reservationKey) !== item.id)) { skip('duplicate_reply_rewrite'); continue; }
-                    const restoredReply = { id: item.id, channelId: row.channelId, parentId: row.parentId, text: backup.reply.text, revision: revision + 1, status: 'draft', createdAt: backup.reply.createdAt ?? Date.now() };
+                    const restoredReply = { id: item.id, channelId: row.channelId, parentId: row.parentId, text: normalizeReplyDashes(backup.reply.text), revision: revision + 1, status: 'draft', createdAt: backup.reply.createdAt ?? Date.now() };
                     const needsReview = !!row.needsReview || !!backup.needsReview;
                     tx.update(ref, { reply: restoredReply, needsReview, replyDiscard: { ...backup, restoredRevision: restoredReply.revision } });
                     tx.set(restoreRefs[index], { rowId: item.id, channelId: row.channelId, createdAt: Date.now() }, { merge: true });
@@ -428,7 +429,7 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
                 throw new https_1.HttpsError('failed-precondition', 'delivery_locked');
             const updates = { skipReply: false, replySkipOverride: true };
             if (row.reply)
-                updates.reply = { id, channelId: row.channelId, parentId: row.parentId, text: row.reply.text, revision: row.reply.revision + 1, status: 'draft', createdAt: row.reply.createdAt };
+                updates.reply = { id, channelId: row.channelId, parentId: row.parentId, text: normalizeReplyDashes(row.reply.text), revision: row.reply.revision + 1, status: 'draft', createdAt: row.reply.createdAt };
             tx.update(ref, updates);
             if (existingReceipt.exists)
                 tx.set(receipt, { skipReply: false, replySkipOverride: true, skipReason: null, skipEvidence: '', correctedBy: uid, correctedAt: Date.now() }, { merge: true });
@@ -451,7 +452,11 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
             const before = data.reply ?? { id, channelId: data.channelId, parentId: data.parentId, text: '', revision: 0, status: 'draft', createdAt: Date.now() };
             if (Number(input.revision) !== before.revision)
                 throw new https_1.HttpsError('aborted', 'draft_changed_reload');
-            const reply = op === 'save' ? (0, youtube_comment_policy_1.editReply)(before, bounded(input.text, 4000)) : (0, youtube_comment_policy_1.approveReply)(before, uid, Date.now());
+            // editReply and approveReply share the same editable-status guard.
+            // Check the original revision above, then approve/hash the canonical text.
+            const text = normalizeReplyDashes(op === 'save' ? bounded(input.text, 4000) : before.text);
+            const draft = op === 'save' || text !== before.text ? (0, youtube_comment_policy_1.editReply)(before, text) : before;
+            const reply = op === 'approve' ? (0, youtube_comment_policy_1.approveReply)(draft, uid, Date.now()) : draft;
             await reserveReplyText(tx, settings, reply);
             tx.update(ref, { reply, replyDiscard: admin.firestore.FieldValue.delete() });
             return { reply };
@@ -486,7 +491,7 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
             if (current.reply && !['draft', 'approved'].includes(current.reply.status))
                 throw new https_1.HttpsError('failed-precondition', 'delivery_locked');
             const revision = (current.reply?.revision ?? 0) + 1;
-            const reply = { id, channelId: current.channelId, parentId: current.parentId, text: current.reply?.text ?? '', revision, status: 'draft', createdAt: current.reply?.createdAt ?? Date.now() };
+            const reply = { id, channelId: current.channelId, parentId: current.parentId, text: normalizeReplyDashes(current.reply?.text ?? ''), revision, status: 'draft', createdAt: current.reply?.createdAt ?? Date.now() };
             tx.update(ref, { reply, generatingUntil: Date.now() + 180000, replyDiscard: admin.firestore.FieldValue.delete() });
             return revision;
         });
@@ -502,7 +507,7 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
                 throw new https_1.HttpsError('unavailable', 'generation_failed');
             const output = await response.json();
             void (0, ai_operation_billing_1.recordAiOperationUsage)('admin_youtube_comment_draft', { model: config.model, promptTokens: output.usage?.prompt_tokens, completionTokens: output.usage?.completion_tokens }, uid);
-            const text = bounded(output.choices?.[0]?.message?.content, 4000);
+            const text = normalizeReplyDashes(bounded(output.choices?.[0]?.message?.content, 4000));
             if (text === 'SKIP_REPLY')
                 return await db.runTransaction(async (tx) => {
                     const current = (await tx.get(ref)).data();
@@ -552,6 +557,8 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
         throw new https_1.HttpsError('failed-precondition', 'reply_skipped_by_owner_rules');
     if (op === 'send' && (!Number.isSafeInteger(input.revision) || input.revision < 1 || data.reply?.revision !== input.revision))
         throw new https_1.HttpsError('aborted', 'draft_changed_reload');
+    if (op === 'send' && data.reply && normalizeReplyDashes(data.reply.text) !== data.reply.text)
+        throw new https_1.HttpsError('failed-precondition', 'reply_dashes_require_save');
     const token = bounded(input.token, 8192);
     const channelId = await verifiedChannel(db, identifier(data.configId), token);
     let reply = data.reply;
@@ -606,6 +613,9 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
             throw new https_1.HttpsError('aborted', 'draft_changed_reload');
         if (Number(row.data()?.generatingUntil) > Date.now())
             throw new https_1.HttpsError('failed-precondition', 'generation_in_progress');
+        // Never change text after approval or during delivery/reconciliation.
+        if (normalizeReplyDashes(r.text) !== r.text)
+            throw new https_1.HttpsError('failed-precondition', 'reply_dashes_require_save');
         const sending = (0, youtube_comment_policy_1.beginReply)(r, uid, channelId);
         await reserveReplyText(tx, settings, sending);
         tx.update(ref, { reply: sending, deliveryStartedAt: Date.now(), deliveryBaselineIds: admin.firestore.FieldValue.delete() });
@@ -650,3 +660,4 @@ exports.adminYoutubeComments = (0, https_1.onCall)({ region: 'us-central1', enfo
     }
 });
 //# sourceMappingURL=youtube_comments.js.map
+

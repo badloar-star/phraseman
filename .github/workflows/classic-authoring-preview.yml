@@ -21,9 +21,12 @@ jobs:
           fetch-depth: 1
           sparse-checkout: content/classic-authoring
       - name: Authoring regression tests
-        run: python3 -B -m unittest discover -s content/classic-authoring -p test_build.py -v
-      - name: Compile Spanish editorial draft
-        run: python3 -B content/classic-authoring/build.py --target es --out "$RUNNER_TEMP/classic-es"
+        run: python3 -B -m unittest discover -s content/classic-authoring -p 'test_*.py' -v
+      - name: Compile twice and verify identical bytes
+        run: |
+          PYTHONHASHSEED=101 python3 -B content/classic-authoring/build.py --target es --out "$RUNNER_TEMP/classic-es"
+          PYTHONHASHSEED=202 python3 -B content/classic-authoring/build.py --target es --out "$RUNNER_TEMP/classic-es-replay"
+          diff -qr "$RUNNER_TEMP/classic-es" "$RUNNER_TEMP/classic-es-replay"
       - name: Save complete source copy alongside review output
         run: cp -R content/classic-authoring "$RUNNER_TEMP/classic-es/source"
       - name: Offline lesson, lexicon and next assignment

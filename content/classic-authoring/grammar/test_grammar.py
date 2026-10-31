@@ -6,13 +6,15 @@ class GrammarTests(unittest.TestCase):
   td=tempfile.TemporaryDirectory();self.addCleanup(td.cleanup);self.root=Path(td.name)/'g';shutil.copytree(b.ROOT,self.root);self.lesson=self.root/'es/01.lesson'
  def result(self):return b.compile_course(self.root)
  def change(self,a,c,p=None):
-  p=p or self.lesson;s=p.read_text();self.assertIn(a,s);p.write_text(s.replace(a,c,1))
+  p=p or self.lesson;text=p.read_text();head='';body=text
+  if p==self.lesson:head,sep,body=text.partition('[phrases]\n');head+=sep;self.assertTrue(sep)
+  self.assertIn(a,body);p.write_text(head+body.replace(a,c,1))
  def test_spine(self):
   d=self.result();self.assertEqual(len(d['programme']),32);self.assertEqual(d['nextTopic'][0],'02');self.assertIn('No перед',d['nextTopic'][1]);self.assertFalse(d['productionReady'])
  def test_fifty_and_assembly(self):
   rows=self.result()['lessons'][0]['phrases'];self.assertEqual(len(rows),50);self.assertEqual(len(set(p['targetText'] for p in rows)),50)
   for p in rows:
-   self.assertEqual(' '.join(w['correct'] for w in p['practiceWords'])+'.',p['targetText']);self.assertTrue(p['ru'] and p['uk']);
+   self.assertEqual(' '.join(w['correct'] for w in p['practiceWords'])+'.',p['targetText']);self.assertTrue(p['ru'] and p['uk'])
    for w in p['practiceWords']:
     self.assertEqual(len(set(map(b.key,w['choices']))),6);self.assertEqual(w['choices'].count(w['correct']),1);self.assertEqual(len(w['distractors']),5)
  def test_all_verb_choices_contrast_person(self):

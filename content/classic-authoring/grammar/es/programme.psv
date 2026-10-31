@@ -1,0 +1,34 @@
+# Draft grammar spine. ID | one assessed operation | Spanish model | prerequisite IDs or -
+01|Estar: утвердительно сказать, где находится человек или предмет|Estoy aquí.|-
+02|No перед спрягаемым глаголом: отрицание на знакомом estar|No estoy aquí.|01
+03|Общий вопрос: спросить о том же месте|¿Estás en casa?|01,02
+04|Ser: назвать человека по имени, роли или профессии|Soy médico.|01
+05|Специальный вопрос: поставить вопросительное слово в начало|¿Dónde está Ana?|01,03,04
+06|Определённый артикль: согласовать el/la/los/las с существительным|Los libros están aquí.|01
+07|Hay: сообщить, что в каком-то месте что-то есть|Hay un libro en la mesa.|01,06
+08|Притяжательные mi, tu, su: согласовать число с предметом|Mis llaves están aquí.|01,06
+09|Presente глаголов на -ar: выбрать личное окончание|Trabajo en casa.|01,02,03
+10|Presente глаголов на -er/-ir: выбрать окончание по лицу и группе|Vivimos aquí.|09
+11|Tener: выразить наличие у человека|Tengo una pregunta.|07,10
+12|Согласование прилагательного с существительным в роде и числе|Las mochilas son pequeñas.|04,06
+13|Estar с прилагательным: описать состояние|Hoy estoy cansada.|01,12
+14|Возвратный глагол: соотнести me/te/se/nos/os с лицом|Me levanto temprano.|09,10
+15|Poder + инфинитив: выразить возможность|Puedo entrar.|09,10
+16|Ir a + инфинитив: назвать предстоящее действие|Voy a llamar.|09,10
+17|Gustar: выбрать gusta или gustan по тому, что нравится|Me gustan estos libros.|06,12,14
+18|Прямое дополнение: заменить названный предмет на lo/la/los/las|La tengo aquí.|06,11
+19|Estar + gerundio: сказать, что происходит сейчас|Estoy trabajando.|01,09,10
+20|Pretérito perfecto compuesto: haber + причастие|Hoy he trabajado en casa.|09,10
+21|Pretérito indefinido: законченный факт, правильные окончания|Ayer trabajé en casa.|09,10
+22|Pretérito indefinido: формы частотных неправильных глаголов|Ayer fui al médico.|11,16,21
+23|Imperfecto: описать привычное действие в прошлом|Antes vivía aquí.|10,21
+24|Indefinido или imperfecto: отделить событие от фона|Dormía cuando llamaste.|21,22,23
+25|Утвердительное повелительное наклонение tú|Abre la puerta.|09,10
+26|Косвенное дополнение: заменить адресата на le/les|Le escribí ayer.|10,18,21
+27|Относительное que: связать определение с предметом|El libro que compré es corto.|04,06,21
+28|Futuro simple: выразить будущее одной глагольной формой|Te llamaré mañana.|09,16,26
+29|Condicional simple: описать возможное действие|Yo viviría aquí.|10,23,28
+30|Querer que + presente de subjuntivo: пожелание другому человеку|Quiero que vengas.|09,10,14
+31|Cuando + subjuntivo: ещё не наступившее событие|Te llamaré cuando llegue.|24,28,30
+32|Si + imperfecto de subjuntivo и condicional: нереальное условие|Si tuviera tiempo, iría.|11,22,29,30
+# 01–32: авторский порядок, не таблица эквивалентов CEFR. 30–32: углубление, не обещание уровня B2. Темы, формы и цели подростков/взрослых сверять с PCIC A1–A2 и B1–B2. К экзамену приложения ничего не добавляется автоматически.

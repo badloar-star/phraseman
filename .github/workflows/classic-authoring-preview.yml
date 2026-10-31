@@ -20,19 +20,19 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
           sparse-checkout: content/classic-authoring
-      - name: Authoring regression tests
-        run: python3 -B -m unittest discover -s content/classic-authoring -p 'test_*.py' -v
-      - name: Compile twice and verify identical bytes
+      - name: Test Classic grammar invariants on ES-01
+        working-directory: content/classic-authoring/grammar
+        run: python3 -B -m unittest -v test_grammar
+      - name: Build twice and compare every byte
         run: |
-          PYTHONHASHSEED=101 python3 -B content/classic-authoring/build.py --target es --out "$RUNNER_TEMP/classic-es"
-          PYTHONHASHSEED=202 python3 -B content/classic-authoring/build.py --target es --out "$RUNNER_TEMP/classic-es-replay"
-          diff -qr "$RUNNER_TEMP/classic-es" "$RUNNER_TEMP/classic-es-replay"
-      - name: Save complete source copy alongside review output
-        run: cp -R content/classic-authoring "$RUNNER_TEMP/classic-es/source"
-      - name: Offline lesson, lexicon and next assignment
+          PYTHONHASHSEED=101 python3 -B content/classic-authoring/grammar/build.py --target es --out "$RUNNER_TEMP/es-grammar"
+          PYTHONHASHSEED=202 python3 -B content/classic-authoring/grammar/build.py --target es --out "$RUNNER_TEMP/es-replay"
+          diff -qr "$RUNNER_TEMP/es-grammar" "$RUNNER_TEMP/es-replay"
+          cp -R content/classic-authoring/grammar "$RUNNER_TEMP/es-grammar/source"
+      - name: Save offline grammar preview and editable sources
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: PhraseMan-Classic-ES
-          path: ${{ runner.temp }}/classic-es
+          name: PhraseMan-Classic-Grammar-ES
+          path: ${{ runner.temp }}/es-grammar
           if-no-files-found: error
           retention-days: 14

@@ -1,0 +1,42 @@
+name: Classic Spanish 04-06 editorial build
+on:
+  pull_request:
+    branches: [feature/referral-roulette]
+    paths: ['content/classic-authoring/grammar/batch02/**', '.github/workflows/classic-authoring-batch02.yml']
+permissions:
+  contents: read
+concurrency:
+  group: classic-authoring-batch02-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: content/classic-authoring/grammar
+      - name: Snapshot editable lessons (also available when a draft fails validation)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: Classic-ES-source-04-06
+          path: content/classic-authoring/grammar/batch02
+          retention-days: 14
+      - name: Build portable package twice, validate incremental dictionary, exercise real browser
+        working-directory: content/classic-authoring/grammar/batch02
+        run: |
+          set -euo pipefail
+          PYTHONHASHSEED=7 python3 -B compile.py "$RUNNER_TEMP/es-0406"
+          PYTHONHASHSEED=19 python3 -B compile.py "$RUNNER_TEMP/es-repeat"
+          diff -qr "$RUNNER_TEMP/es-0406" "$RUNNER_TEMP/es-repeat"
+          python3 -B qa.py "$RUNNER_TEMP/es-0406"
+          python3 -B smoke.py "$RUNNER_TEMP/es-0406/START.html" > "$RUNNER_TEMP/es-0406/browser-receipt.txt"
+          cp -R .. "$RUNNER_TEMP/es-0406/source"
+      - name: Save review-ready portable lessons, no deployment
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: PhraseMan-ES-04-06
+          path: ${{ runner.temp }}/es-0406
+          retention-days: 14
+          if-no-files-found: error

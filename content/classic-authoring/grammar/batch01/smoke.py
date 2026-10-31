@@ -1,4 +1,4 @@
-"""Run against the actual offline document, 300 complete user journeys. No online calls."""
+"""Exercise the exact generated offline reader in Chrome, not a mocked JS model."""
 import shutil,subprocess,sys,tempfile
 from pathlib import Path
 JS=r'''<script>try{
@@ -16,7 +16,7 @@ for(const lg of ['ru','uk']){tap('[data-lang="'+lg+'"]'); for(let h=0;h<3;h++){
 must(count===300&&answers===expected,'wrong totals');document.body.setAttribute('data-proof',count+':'+answers);
 }catch(e){document.body.setAttribute('data-err',e.message)}</script>'''
 def main():
- p=Path(sys.argv[1]);src=p.read_text('utf8');ck='</body>';assert ck in src;exe=next((v for n in ('google-chrome','chromium','chromium-browser') if (v:=shutil.which(n))),None)
+ p=Path(sys.argv[1]);src=p.read_text('utf8');ck='</html>';assert ck in src;exe=next((v for n in ('google-chrome','chromium','chromium-browser') if (v:=shutil.which(n))),None)
  if not exe:raise SystemExit('Chromium is required')
  with tempfile.TemporaryDirectory() as td:
   path=Path(td)/'fixture.html';path.write_text(src.replace(ck,JS+ck,1),'utf8');r=subprocess.run([exe,'--headless','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--disable-background-networking',f'--user-data-dir={td}/profile','--dump-dom',path.as_uri()],capture_output=True,timeout=150);body=r.stdout.split(b'<body',1)[-1].split(b'>',1)[0]

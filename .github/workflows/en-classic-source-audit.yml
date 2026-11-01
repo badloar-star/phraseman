@@ -1,0 +1,37 @@
+name: English classic source audit
+on:
+  pull_request:
+    branches: [feature/referral-roulette]
+    paths: ['.github/workflows/en-classic-source-audit.yml', 'content/en-classic-redraft/**']
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    if: github.head_ref == 'work/en-classic-rewrite-audit-20261101'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /app/lesson_data_*phrases*.ts
+            /app/lesson_data_17_24.ts
+            /app/lesson_data_25_32.ts
+            /app/lesson1_smart_options.ts
+            /constants/lessons.ts
+            /constants/contractions.ts
+      - name: Export only classic curriculum records
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: english-classic-teaching-banks
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            app/lesson_data_*phrases*.ts
+            app/lesson_data_17_24.ts
+            app/lesson_data_25_32.ts
+            constants/lessons.ts
+            constants/contractions.ts
+            app/lesson1_smart_options.ts

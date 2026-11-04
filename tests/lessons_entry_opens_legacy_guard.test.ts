@@ -38,9 +38,9 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
 
   test('ручное открытие курса выражено одной константой (открыт с 2026-09-19)', () => {
     // зачем (R92, 17.10): внутри вкладки условие — learningV2CanOpen = константа + язык интерфейса с пояснениями курса (ru/uk)
-    expect(lessons).toContain('const learningV2CanOpen = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY && isLearningV2OpenForUiLangV1(lang, "lessons_tab");');
+    expect(lessons).toContain('const learningV2CanOpen = learningV2CourseCanBeOpenedManually() && isLearningV2OpenForUiLangV1(lang, "lessons_tab");');
     // зачем (владелец 11.10: «столько, сколько доступно»): вход есть, только если хоть одно занятие реально открывается.
-    expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = (true|ENABLE_DEV_TOOLS|!IS_STORE_RELEASE|LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS|!LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\));$/m);
+    expect(lessons).toMatch(/^const learningV2CourseCanBeOpenedManually = \(\): boolean => (true|ENABLE_DEV_TOOLS|!IS_STORE_RELEASE|LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS|!LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\));$/m);
     // зачем (10.10, релизный пол): в стор-сборке маршруты V2 вырезаны из роутера, чип «Новые уроки» там скрыт — иначе тупик «неизвестный маршрут».
   });
 
@@ -51,7 +51,7 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
     // Первая попытка привязала вход к дев-флагу — у владельца в деве
     // по-прежнему открывался курс. Вход НЕ смеет зависеть от сборки.
     expect(lessons).not.toMatch(
-      /initialPage\s*=\s*LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY/,
+      /initialPage\s*=\s*learningV2CourseCanBeOpenedManually/,
     );
     expect(lessons).not.toMatch(/initialPage\s*=\s*ENABLE_DEV_TOOLS/);
   });

@@ -34,7 +34,7 @@ export function readBundleCeiling(source) {
 
 /** Положение рубильника «V2 скрыт»: true / false, или null, если строка не найдена (тогда рубильник не засчитывается). */
 export function readVisibilitySwitch(source) {
-  const match = /export const LEARNING_V2_HIDDEN(?::\s*boolean)?\s*=\s*(true|false)\s*;/.exec(source);
+  const match = /export (?:const|let) LEARNING_V2_HIDDEN(?::\s*boolean)?\s*=\s*(true|false)\s*;/.exec(source);
   return match ? match[1] === 'true' : null;
 }
 

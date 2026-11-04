@@ -156,6 +156,7 @@ import {
 } from './account_generation';
 import { isLevelUpAccountTokenCurrent } from './level_up_account_guard';
 import { isCurrentAccountGeneration } from './account_generation';
+import { peekLearningV2ProgressFootprint, refreshLearningV2ProgressGate } from './learning_v2_progress_gate';
 import { getStableId } from './stable_id';
 import type { Props as OnboardingProps } from '../components/onboarding';
 import { PremiumProvider, usePremium } from '../components/PremiumContext';
@@ -1177,7 +1178,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     let cancelled = false;
     const cancelDeferred = runAfterHomeFirstFrame('lv2_completion_scheduler_install', () => new Promise<void>((resolve) => {
       setTimeout(resolve, LV2_COMPLETION_SCHEDULER_INSTALL_DELAY_MS);
-    }).then(() => (cancelled ? undefined : import('./learning_v2_completion_background_scheduler')))
+    }).then(() => (cancelled ? undefined : refreshLearningV2ProgressGate(captureAccountGeneration().stableId, 'scheduler_install')))
+      // зачем (владелец 04.11, заморозка V2): без единого пройденного занятия V2 досылать нечего — планировщик не ставим и модуль не грузим
+      .then((footprint) => {
+        if (cancelled || !footprint) return undefined;
+        if (footprint.completedSessions === 0) {
+          console.log('[V2-GATE] lv2_completion_scheduler_install: skip — у аккаунта нет следа V2'); // guard-ok: ранний выход называет причину
+          return undefined;
+        }
+        return import('./learning_v2_completion_background_scheduler');
+      })
       .then((scheduler) => {
         if (cancelled || !scheduler) {
           console.log('[FIRST-FRAME] lv2_completion_scheduler_install: skip — эффект снят до установки');
@@ -1437,6 +1447,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     void import('./support_report_outbox')
       .then(({ resumePendingSupportReports }) => resumePendingSupportReports(stableId))
       .catch(noteSwallowedHandler('_layout:useEffect.call_5'));
+  }, [accountGeneration.phase, accountGeneration.stableId, appIsActive]);
+
+  useEffect(() => {
+    // зачем (владелец 04.11, заморозка V2): V2 виден только при пройденном уроке целиком; проверка — один локальный multiGet без сети,
+    // на входе в аккаунт, при смене аккаунта и при возврате в приложение (подхватывает восстановление прогресса из облака).
+    if (!appIsActive) return;
+    void refreshLearningV2ProgressGate(accountGeneration.phase === 'active' ? accountGeneration.stableId : null, 'root_account_generation');
   }, [accountGeneration.phase, accountGeneration.stableId, appIsActive]);
 
   useEffect(() => {

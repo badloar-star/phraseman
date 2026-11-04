@@ -151,7 +151,7 @@ import {
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
-import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
+import { isHomeContinueV2Enabled, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { LEARNING_V2_HIDDEN, isLearningV2Hidden, isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
 import { peekResolvedUiLang } from '../ui_lang_resolved';
@@ -930,7 +930,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         [continueMarks.dialog, continueMarks.cards, homeDialoguesVisible, homeFlashcardsVisible, lang], // eslint-disable-line react-hooks/exhaustive-deps -- зачем: нужны только эти две метки
     );
     // зачем (R92): карточка «Продолжить» не ведёт в курс V2, если у курса нет пояснений на языке интерфейса (есть только ru/uk)
-    const continueInput = { hasLegacyLesson: lastLesson !== null, legacyAtMs: continueMarks.legacyAtMs, v2: homeLearnVisible && HOME_CONTINUE_V2_ENABLED && isLearningV2OpenForUiLangV1(lang, 'home_continue') ? continueMarks.v2 : null, dialog: continuePlaces.dialog, cards: continuePlaces.cards };
+    const continueInput = { hasLegacyLesson: lastLesson !== null, legacyAtMs: continueMarks.legacyAtMs, v2: homeLearnVisible && isHomeContinueV2Enabled() && isLearningV2OpenForUiLangV1(lang, 'home_continue') ? continueMarks.v2 : null, dialog: continuePlaces.dialog, cards: continuePlaces.cards };
     const continueChoice = pickHomeContinue(continueInput);
     const continueV2 = continueChoice.kind === 'v2' ? continueInput.v2 : null;
     const continuePlace = continueChoice.kind === 'dialog' ? continuePlaces.dialog : continueChoice.kind === 'cards' ? continuePlaces.cards : null;

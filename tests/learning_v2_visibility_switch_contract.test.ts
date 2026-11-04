@@ -1,6 +1,5 @@
-// зачем (план Б к сборке 16.10, координатор 14.10): владелец 15.10 решает судьбу Learning V2; решение исполняется ОДНОЙ
-// строкой app/learning_v2_visibility_switch.ts. Сторож держит контракт в обоих положениях рубильника: при «скрыт» ни один
-// вход в V2 не виден, старые ссылки ведут на Главную с [V2-HIDDEN]; при «открыт» поведение прежнее.
+// Решение владельца 04.11 (заморозка): Learning V2 скрыт по умолчанию и открывается только проверкой прогресса
+// (завершено хотя бы одно занятие V2, app/learning_v2_progress_gate.ts); старые ссылки ведут в классический Курс, а DEV/локаль не открывают V2.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -20,19 +19,22 @@ afterEach(() => {
   mockHidden = false;
 });
 
-describe('рубильник «Learning V2 скрыт»', () => {
-  it('по умолчанию выключен — решение владельца ещё не принято', () => {
-    expect(read('app/learning_v2_visibility_switch.ts')).toMatch(/export const LEARNING_V2_HIDDEN: boolean = (false|true);/);
+describe('заморозка Learning V2 решением владельца (04.11)', () => {
+  it('в исходнике V2 по умолчанию скрыт, значение — живая привязка, открывает только проверка прогресса', () => {
+    const source = read('app/learning_v2_visibility_switch.ts');
+    expect(source).toContain('export let LEARNING_V2_HIDDEN: boolean = true;');
+    expect(source).toContain('export function setLearningV2Unlocked(unlocked: boolean, from: string): boolean {');
+    expect(read('app/learning_v2_progress_gate.ts')).toContain('setLearningV2Unlocked(unlocked, from);');
   });
 
-  it('внешние ссылки в V2 при «скрыт» ведут на Главную и пишут [V2-HIDDEN]', () => {
+  it('внешние ссылки в V2 при «скрыт» ведут в классический Курс и пишут [V2-HIDDEN]', () => {
     mockHidden = true;
     const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
     const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
     for (const link of ['/learning-v2/session/es-s1', '/learning-v2/course', '/learning_v2_direct_session_player_v1', 'learning-v2/course?x=1']) {
-      expect(redirect(link)).toBe('/home');
+      expect(redirect(link)).toBe('/lessons_list');
     }
-    expect(warn.mock.calls.some(([line]) => String(line).includes('[V2-HIDDEN] entry=deep_link redirect=/home'))).toBe(true);
+    expect(warn.mock.calls.some(([line]) => String(line).includes('[V2-HIDDEN] entry=deep_link redirect=/lessons_list'))).toBe(true);
     warn.mockRestore();
     log.mockRestore();
   });
@@ -46,15 +48,15 @@ describe('рубильник «Learning V2 скрыт»', () => {
 
   it('вкладка «Обучение»: кнопка V2, чип «Новые уроки», вкладка из памяти и initialPage="v2" — под одной константой с рубильником', () => {
     const lessons = read('app/(tabs)/lessons.tsx');
-    expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);$/m);
+    expect(lessons).toMatch(/^const learningV2CourseCanBeOpenedManually = \(\): boolean => !LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);$/m);
     // кнопка «V2» и чип «Новые уроки» рендерятся только под константой (чип — ещё и только в push-маршруте старого списка, владелец 17.10)
     // зачем (R92, 17.10): внутри вкладки константа дополнена языком интерфейса — learningV2CanOpen
-    expect(lessons).toContain('const learningV2CanOpen = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY && isLearningV2OpenForUiLangV1(lang, "lessons_tab");');
+    expect(lessons).toContain('const learningV2CanOpen = learningV2CourseCanBeOpenedManually() && isLearningV2OpenForUiLangV1(lang, "lessons_tab");');
+    expect(lessons).toContain('useLearningV2Visibility();');
     expect(lessons.match(/\{learningV2CanOpen \? \(/g)?.length ?? 0).toBeGreaterThanOrEqual(1);
     expect(lessons).toContain('{!isRetainedTab && learningV2CanOpen ? (');
-    // прямой маршрут курса (initialPage="v2") и старт вкладки на карте — только при доступном курсе (памяти выбора больше нет)
+    // Решение владельца 04.11: вход «v2» из памяти или ссылки разрешён только когда проверка прогресса открыла V2 (learningV2CanOpen).
     expect(lessons).toContain('if (initial === "v2" && !learningV2CanOpen) {');
-    expect(lessons).toContain('initial === "lessons" && presentation === "tab" && learningV2CanOpen ? "v2" : initial');
     // прогрев каталога V2 при скрытом V2 не взводится
     // зачем (работа 19.10, закоммичена 22.10 в 72f72a94e): прогрев ждёт паузы в касаниях и на списке, и на карте V2 —
     // исключена только страница диалогов; главное правило сторожа (скрытый V2 → без прогрева) прежнее.
@@ -65,12 +67,13 @@ describe('рубильник «Learning V2 скрыт»', () => {
     const course = read('app/learning-v2/course.tsx');
     expect(course).toContain('if (isLearningV2Hidden()) {');
     expect(course).toContain('logLearningV2Hidden("route_learning_v2_course", LEARNING_V2_HIDDEN_REDIRECT);');
-    expect(course).toContain('<Redirect href={LEARNING_V2_HIDDEN_REDIRECT} />');
+    expect(course).toContain('if (!rootNavigationReady) return;');
+    expect(course).toContain('scheduleAfterRootNavigationReady(() => {');
+    expect(course).toContain('router.replace(LEARNING_V2_HIDDEN_REDIRECT);');
 
     const session = read('app/learning-v2/session/[id].tsx');
-    expect(session).toContain('export default function LearningV2SessionRoute() {');
+    expect(session).toContain('if (isLearningV2Hidden()) {');
     expect(session).toContain('logLearningV2Hidden("route_learning_v2_session", LEARNING_V2_HIDDEN_REDIRECT');
-    expect(session).not.toContain('export default function LearningV2SessionScreen()');
   });
 
   it('других входов в маршруты V2 вне самого V2 нет (новый вход — сначала под рубильник)', () => {
@@ -84,6 +87,7 @@ describe('рубильник «Learning V2 скрыт»', () => {
       'app/+native-intent.tsx',
       'app/navigation_back.ts',
       'app/native_runtime_capability.ts',
+      'app/lessons_access_diagnostics.ts',
       'app/session_attempts/session_attempts_registry.ts',
       'components/appArtBackdropRegistry.ts',
       'constants/devRoutes.ts',

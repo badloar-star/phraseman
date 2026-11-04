@@ -230,6 +230,7 @@ import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/c
 import { learningV2LessonIsAccessible } from "../learning_v2_access_policy";
 import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } from "../learning_v2_session_availability_v1";
 import { LEARNING_V2_HIDDEN, isLearningV2OpenForUiLangV1, logLearningV2Hidden } from "../learning_v2_visibility_switch";
+import { useLearningV2Visibility } from "../learning_v2_progress_gate";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
 import { rememberLearningV2LastLesson, useLearningV2LastLesson } from "../learning_v2_last_lesson";
 import { noteBackArrived, noteBackDecision, noteBackTap } from "../back_tap_probe";
@@ -1375,7 +1376,8 @@ type LessonsTabProps = {
 // входит всегда: там проверяют невыпущенные занятия кнопкой массовой разблокировки.
 // зачем (план Б 16.10, координатор 14.10): рубильник «V2 скрыт» — одна строка в learning_v2_visibility_switch.ts закрывает
 // кнопку «V2», чип «Новые уроки», запомненную вкладку V2 и initialPage="v2" маршрута курса, в том числе в дев-сборке.
-const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && (LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS);
+// зачем (владелец 04.11, заморозка V2): LEARNING_V2_HIDDEN теперь меняется после проверки прогресса, поэтому константа при импорте стала функцией.
+const learningV2CourseCanBeOpenedManually = (): boolean => !LEARNING_V2_HIDDEN && (LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS);
 if (LEARNING_V2_HIDDEN) logLearningV2Hidden("lessons_tab_v2_entries", "lessons", "hidden=v2_button,new_lessons_chip,remembered_tab");
 
 // зачем (владелец 17.10: «вкладка Обучения будет открывать конкретно именно новые уроки, а не старые, а старые уроки будут открываться отдельной кнопочкой»;
@@ -1390,11 +1392,11 @@ function startLessonsPage(initial: LessonsTabsPage, presentation: "tab" | "push"
   // зачем (координатор 13.10, план Б R1): маршрут learning-v2/course в стор-сборке не вырезан и передаёт initialPage="v2" — без
   // выпущенных занятий (потолок бандла 0) раздел V2 не открывается и по прямой ссылке: человек попадает в список уроков.
   if (initial === "v2" && !learningV2CanOpen) {
-    console.warn(`[V2-ROUTE] reason=${LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? "ui_lang_without_v2" : "ceiling0"} — курс V2 недоступен, открываю список уроков`); // guard-ok: ранний выход
+    console.warn(`[V2-ROUTE] reason=${learningV2CourseCanBeOpenedManually() ? "ui_lang_without_v2" : "ceiling0"} — курс V2 недоступен, открываю список уроков`); // guard-ok: ранний выход
     return "lessons";
   }
   const start: LessonsTabsPage = initial === "lessons" && presentation === "tab" && learningV2CanOpen ? "v2" : initial;
-  console.log(`[LESSONS-TABS] вход: presentation=${presentation} initialPage=${initial} v2Доступен=${String(learningV2CanOpen)} (рубильник+выпуск=${String(LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY)}) → старт=${start}`); // guard-ok: итог выбора стартовой страницы
+  console.log(`[LESSONS-TABS] вход: presentation=${presentation} initialPage=${initial} v2Доступен=${String(learningV2CanOpen)} (рубильник+выпуск=${String(learningV2CourseCanBeOpenedManually())}) → старт=${start}`); // guard-ok: итог выбора стартовой страницы
   return start;
 }
 
@@ -2599,7 +2601,8 @@ export default function LessonsTab({
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
   // зачем (R92): курс V2 — только при языке интерфейса с пояснениями курса (ru/uk); [V2-LOCALE-GATE] пишет решение при смене языка.
-  const learningV2CanOpen = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY && isLearningV2OpenForUiLangV1(lang, "lessons_tab");
+  useLearningV2Visibility(); // зачем: проверка прогресса может открыть V2 уже после первого кадра — вкладка перерисуется
+  const learningV2CanOpen = learningV2CourseCanBeOpenedManually() && isLearningV2OpenForUiLangV1(lang, "lessons_tab");
   const [pageRaw, setPageRaw] = useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage, presentation, learningV2CanOpen));
   // зачем (владелец 22.09, «открываю урок — секунда — назад в раздел уроки»):
   // лог владения экраном лестницы. Карта V2 гаснет и открывается заново через

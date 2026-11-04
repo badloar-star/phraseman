@@ -5,6 +5,7 @@ import type { Lang } from '../constants/i18n';
 import { getCanonicalUserId } from './user_id_policy';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { submitClientReport } from './client_reports';
+import { isLearningV2ReportSource } from './learning_v2_report_filter';
 import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -165,6 +166,11 @@ export const submitErrorReport = async (
     return 'invalid_comment';
   }
   const category = payload.category?.trim() || ERROR_REPORT_FREE_TEXT_CATEGORY;
+  // зачем (владелец 04.11, заморозка V2): жалобы из Learning V2 не отправляются владельцу (Telegram). Человеку отвечаем как об отправленном, в журнал — причина.
+  if (isLearningV2ReportSource({ screen: payload.screen, dataId: payload.dataId })) {
+    console.warn(`[V2-REPORT] жалоба не отправлена (заморозка V2) screen=${payload.screen} dataId=${String(payload.dataId ?? '')}`); // guard-ok: ранний выход называет причину
+    return 'sent';
+  }
 
   const now = Date.now();
   if (await isErrorReportThrottled(now)) {

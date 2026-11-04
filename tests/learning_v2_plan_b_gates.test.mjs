@@ -47,5 +47,5 @@ test('release precheck and the EAS post-install both go through the wrapper, pla
 test('lessons tab never opens V2 without released sessions, even from the direct route', () => {
   const lessons = read('app/(tabs)/lessons.tsx');
   // зачем (R92, 17.10): условие входа учитывает и язык интерфейса; причина ceiling0 остаётся для потолка 0
-  assert.match(lessons, /if \(initial === "v2" && !learningV2CanOpen\) \{\s*console\.warn\(`\[V2-ROUTE\] reason=\$\{LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY \? "ui_lang_without_v2" : "ceiling0"\}[^`]*`\);[^\n]*\n\s*return "lessons";/);
+  assert.match(lessons, /if \(initial === "v2" && !learningV2CanOpen\) \{\s*console\.warn\(`\[V2-ROUTE\] reason=\$\{learningV2CourseCanBeOpenedManually\(\) \? "ui_lang_without_v2" : "ceiling0"\}[^`]*`\);[^\n]*\n\s*return "lessons";/);
 });

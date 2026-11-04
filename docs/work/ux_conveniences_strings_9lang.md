@@ -20,3 +20,8 @@
 | reviewWords | Повторить слова | Повторити слова | Review words | Repasar palabras | Revisar palavras | Ôn từ | Ulas kata | Kelimeleri tekrarla | Powtórz słowa |
 | newCard | Новая карточка | Нова картка | New card | Nueva tarjeta | Novo cartão | Thẻ mới | Kartu baru | Yeni kart | Nowa karta |
 | added {n} | Добавлено: {n} | Додано: {n} | Added: {n} | Añadido: {n} | Adicionado: {n} | Đã thêm: {n} | Ditambahkan: {n} | Eklendi: {n} | Dodano: {n} |
+
+## Отклонено владельцем (не переводить)
+
+- «Быстрая смена языка» — отклонено владельцем 04.11, строки не нужны.
+- «Поделиться и перенести слова» (Ссылка / Экспорт / Импорт) — отклонено владельцем 04.11, строки не нужны.

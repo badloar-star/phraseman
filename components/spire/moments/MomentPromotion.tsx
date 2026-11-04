@@ -332,6 +332,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
             >
                 <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hXl, { color: p.text }]}>{league}</Text>
                 {bonusCoins > 0 ? <Text style={[s.pBonus, { color: p.textSecondary }]}>{momentText(lang, 'promoBonus', { n: bonusCoins })}</Text> : null}
+                <Text style={[s.pBonus, { color: p.textSecondary }]} testID={`${testID}-energy`}>{momentText(lang, 'promoEnergy')}</Text>
                 <View style={s.playWrap}>
                   <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={onPlay} testID={phase.final ? `${testID}-play` : `${testID}-play-pending`} />
                 </View>

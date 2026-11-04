@@ -94,6 +94,7 @@ function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, we
           <Animated.Text entering={beat(T.overline)} style={[s.ov, { color: p.accentTextSafe }]} testID={`${testID}-overline`}>{momentText(lang, 'promoShortOverline', { league }).toUpperCase()}</Animated.Text>
           <Animated.Text entering={beat(T.title)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{momentText(lang, 'promoShortTitle')}</Animated.Text>
           <Animated.Text entering={beat(T.body)} style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{promotionShortBody(lang, myPlace, weekCoins, bonusCoins, weekSteps)}</Animated.Text>
+          <Animated.Text entering={beat(T.body)} style={[s.body, { color: p.textSecondary }]} testID={`${testID}-energy`}>{momentText(lang, 'promoEnergy')}</Animated.Text>
         </View>
         <Animated.View entering={beat(T.buttons)} style={[s.dock, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>
           <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={() => fire(onPlay, 'play')} testID={`${testID}-play`} />

@@ -15,6 +15,7 @@ import { openPremiumPaywall } from './paywall_navigation';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { notePlusLessonsDecision, type PlusLessonsBranch } from './plus_lessons_diagnostics';
+import { isCourseLanguageLockedSync, resolveCourseLanguageLock } from './course_language_access';
 
 export type LessonRuntimeGate = 'available' | 'entitlement_pending' | 'premium_required' | 'level_required' | 'progress_required';
 
@@ -30,6 +31,16 @@ export async function resolveLessonRuntimeGate(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<LessonRuntimeGate> {
   try {
+    // зачем (владелец 04.11): у НОВОГО пользователя дополнительный (не первый) язык курса — только Plus, включая уроки 1–3; первый язык и старые
+    // пользователи идут прежним путём. Стоит ПЕРЕД «урок 1 открыт всегда», иначе первый урок второго языка остался бы бесплатным.
+    const languageLock = await resolveCourseLanguageLock(studyTarget);
+    if (languageLock.locked && !(await isTesterNoLimitsActive())) {
+      const premiumForLanguage = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_premium_gate:language_lock', false));
+      if (!premiumForLanguage) {
+        if (!isPremiumAccessDecisionConfirmedForCurrentAccount()) return decided(lessonId, 'entitlement_pending', 'pending', null);
+        return decided(lessonId, 'premium_required', 'language_lock', false);
+      }
+    }
     // Урок 1 открыт всегда. Уроки 2–3 без пейвола, но за замком прогресса:
     // бронзу/покупку проверяет isLessonUnlockedByEarnedProgress ниже, и при отказе
     // они дают 'progress_required' (не пейвол) — requiresPremiumForLesson их не считает платными.
@@ -114,10 +125,12 @@ export function openLessonAccessGate(
 export function openLessonPremiumPaywall(
   router: any,
   lessonId: number,
+  studyTarget?: RuntimeStudyTarget,
 ): void {
   markNextNavigationAsReplace();
   openPremiumPaywall(router, {
-    context: lessonPaywallContext(lessonId),
+    // зачем (владелец 04.11): замок дополнительного языка ведёт на пейвол «Ещё один язык» (language_add), а не на «продолжение после урока 3».
+    context: isCourseLanguageLockedSync(studyTarget) ? 'language_add' : lessonPaywallContext(lessonId),
     lessons_done: Math.max(0, lessonId - 1),
     ...lessonPurchaseContinuationParams(lessonId),
   }, 'replace');
@@ -138,7 +151,7 @@ export async function openLessonGateByRuntime(
   if (gate === 'available') return;
   if (gate === 'entitlement_pending') return;
   if (gate === 'premium_required') {
-    openLessonPremiumPaywall(router, lessonId);
+    openLessonPremiumPaywall(router, lessonId, studyTarget);
     return;
   }
   openLessonAccessGate(router, lessonId);

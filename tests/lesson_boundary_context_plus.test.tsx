@@ -43,7 +43,7 @@ test('Free — решение прежнее: пейвол урока, конт�
   const { result } = await renderHook(() => useLessonRuntimeAccessAuthorization(router, 7, 'en'));
   await act(async () => { await Promise.resolve(); });
   expect(result.current).toBe(false);
-  expect(mockOpenPaywall).toHaveBeenCalledWith(router, 7);
+  expect(mockOpenPaywall).toHaveBeenCalledWith(router, 7, 'en');
 });
 
 test('unresolved positive boot snapshot neither mounts paid content nor opens paywall', async () => {

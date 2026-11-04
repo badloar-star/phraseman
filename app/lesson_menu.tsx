@@ -52,6 +52,7 @@ import { perfScreenMount } from './perf-monitor';
 import { GlassAlertDialog } from '../components/v2/GlassAlertDialog';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { lessonListJustOpened, peekLessonGateDecision } from './lesson_premium_gate';
+import { isCourseLanguageLockedSync, resolveCourseLanguageLock } from './course_language_access';
 import { noteLessonMenuBounce, noteLessonMenuLock, noteLessonMenuTrustedList } from './lessons_access_diagnostics';
 import { isLessonFinishedOnce } from './mastery';
 import {
@@ -478,13 +479,14 @@ function LessonMenu() {
     router.replace({
       pathname: '/premium_modal',
       params: {
-        context: lessonPaywallContext(lessonId),
+        // зачем (владелец 04.11): замок дополнительного языка — пейвол «Ещё один язык», не «продолжение после урока 3».
+        context: isCourseLanguageLockedSync(studyTarget) ? 'language_add' : lessonPaywallContext(lessonId),
         source: 'lesson_menu',
         lessons_done: String(Math.max(0, lessonId - 1)),
         ...lessonPurchaseContinuationParams(lessonId),
       },
     } as any);
-  }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, router]);
+  }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, router, studyTarget]);
 
   // Замок по уровню/прогрессу: экран НЕ открываем — уходим назад в список,
   // где тап по закрытому уроку показывает модал (gateModal). Владелец 2026-09-21:
@@ -674,6 +676,20 @@ function LessonMenu() {
     };
     (async () => {
       try {
+        // зачем (владелец 04.11): у нового пользователя дополнительный язык — только Plus, включая урок 1. Меню считает замок само (не через
+        // охранника lesson1), поэтому правило стоит и здесь — первым шагом, как в охраннике.
+        const languageLock = await resolveCourseLanguageLock(studyTarget);
+        if (languageLock.locked && !(await isTesterNoLimitsActive())) {
+          const premiumForLanguage = await getVerifiedPremiumStatus();
+          if (!premiumForLanguage) {
+            const confirmed = isPremiumAccessDecisionConfirmedForCurrentAccount();
+            console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: confirmed ? 'language_lock' : 'language_lock_pending', premiumNow: false })}`); // guard-ok: ветка решения замка
+            gatedSetLocked(true);
+            gatedSetReason(confirmed ? 'premium' : 'pending');
+            gatedSetInfo(null);
+            return;
+          }
+        }
         // `isAlwaysOpenLesson` хранит системное исключение урока 1; Free 1–3 и
         // точные покупки проверяются следующим шагом единой access-логики.
         const noLimits = isAlwaysOpenLesson(lessonId) || await isTesterNoLimitsActive();

@@ -76,6 +76,7 @@ import { trackEvent, type AnalyticsEvent } from '../app/analytics';
 import { usePaywallPurchase, type PaywallPlan } from '../app/paywall_purchase';
 import { buildSubscriptionDisclosure } from '../app/paywall_subscription_disclosure';
 import { ONBOARDING_COMPLETED_AT_KEY } from '../app/fresh_install_gate';
+import { recordPrimaryCourseLanguageAtOnboarding } from '../app/course_language_access';
 import { fill, onboardingCopy, OnboardingCopyProvider, useOnboardingCopy, useOnboardingLang, type OnboardingCopyKey } from './onboarding/clean_onboarding_copy';
 import { formatOnboardingDateLong, formatOnboardingLockDate, onboardingDaysWord } from './onboarding/clean_onboarding_dates';
 import { languageNameOf, languageSentenceName, levelReaction, levelTitleOf, sourceTitle } from './onboarding/clean_onboarding_options';
@@ -3836,6 +3837,9 @@ function CleanOnboarding({
         // зачем (координатор 12.10): время завершения — по нему новичку суткам не показываем объявления о новинках (app/fresh_install_gate.ts).
         [ONBOARDING_COMPLETED_AT_KEY, String(Date.now())],
       ]);
+      // зачем (владелец 04.11): язык, выбранный в онбординге, — бесплатный «первый» язык курса; дополнительные языки новому пользователю — Plus.
+      // Фиксируем его и вердикт «новый» ровно один раз, в момент завершения (app/course_language_access.ts). Не бросает и не ждёт сети.
+      await recordPrimaryCourseLanguageAtOnboarding();
       // Completion is emitted only after the validated finish path persisted
       // DONE_KEY. It is intentionally non-blocking: telemetry cannot hold the UI.
       // зачем: решение о согласии едет счётчиком на сервер, потому что отказ раньше

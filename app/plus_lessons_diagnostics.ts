@@ -15,7 +15,7 @@ const lastAt = new Map<string, number>();
 
 export type PlusLessonsSite = 'unlock' | 'gate' | 'continue';
 export type PlusLessonsDecision = 'available' | 'entitlement_pending' | 'premium_required' | 'level_required' | 'progress_required';
-export type PlusLessonsBranch = 'plus_all' | 'plus_matrix' | 'free_matrix' | 'pending' | 'earned' | 'tester' | 'error';
+export type PlusLessonsBranch = 'plus_all' | 'plus_matrix' | 'free_matrix' | 'pending' | 'earned' | 'tester' | 'error' | 'language_lock';
 
 export function plusLessonsAction(site: PlusLessonsSite, decision: PlusLessonsDecision, branch: PlusLessonsBranch, lessonId: number): string {
   return `plus:lessons:${site}:${decision}:${branch}:l${Math.trunc(lessonId)}`.slice(0, 80);

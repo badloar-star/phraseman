@@ -56,7 +56,7 @@ export function useLessonRuntimeAccessAuthorization(
             setAuthorizedRouteKey(routeKey);
             return;
           }
-          openLessonPremiumPaywall(router, lessonId);
+          openLessonPremiumPaywall(router, lessonId, studyTarget);
           return;
         }
         openLessonAccessGate(router, lessonId, String(gate), Date.now() - startedAt);

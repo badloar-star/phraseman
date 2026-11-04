@@ -9,8 +9,8 @@ const count = (needle: string) => source.split(needle).length - 1;
 
 describe('lesson_menu: трассировка [LESSON-MENU]', () => {
   test('решение о замке пишется в каждой ветке (включая ошибку)', () => {
-    expect(count('[LESSON-MENU] lock:resolved')).toBe(7);
-    for (const by of ['always_open_lesson', 'free_or_purchased', 'access_pending', 'premium_required', 'premium_course', 'earned_progress', 'error_fail_closed']) {
+    expect(count('[LESSON-MENU] lock:resolved')).toBe(8); // зачем (владелец 04.11): +1 ветка — замок дополнительного языка (language_lock)
+    for (const by of ['language_lock', 'always_open_lesson', 'free_or_purchased', 'access_pending', 'premium_required', 'premium_course', 'earned_progress', 'error_fail_closed']) {
       expect(source).toContain(by);
     }
     expect(source).toContain('isPremiumAccessDecisionConfirmedForCurrentAccount()');

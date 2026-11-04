@@ -1,0 +1,322 @@
+// Конвертер классических курсов: архив Classic (zip) → рантайм-JSON modules/classic-courses/<lang>/.
+//
+// зачем (Координатор 04.11, контракт Ядра): владелец вносит в сборку 5 классических курсов — EN (редакция v3), ES, FR, DE, IT,
+// по 32 урока × 50 фраз. В рантайм идёт только рабочая часть: фразы с плитками, вступления, теория, словарь, ключи подсказок.
+// START.html / BANK / qa / source / runtime / student-locales / locales / lessons (редакторская проекция) / hangul — не рантайм.
+// Архивы не распаковываются на диск: читаем напрямую минимальным zip-ридером на node:zlib (без зависимостей), каждый исходный
+// файл сверяем с SHA256SUMS архива. Вывод детерминирован: стабильный порядок ключей, без времени, минифицированный UTF-8.
+//
+// Запуск: node scripts/classic_course_pack.mjs [en es fr de it] [--big <zip>] [--en <zip>] [--out <dir>] [--check] [--sample]
+//   --check — только проверки, ничего не пишет; --sample — вывести по 3 записи словаря и 2 фразы на язык.
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { inflateRawSync } from 'node:zlib';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const argv = process.argv.slice(2);
+const flag = (name, dflt) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : dflt; };
+const BIG = flag('--big', 'C:\\Users\\badlo\\Downloads\\PhraseMan_Classic_EN_ES_DE_FR_IT_PL_PTBR_CS_KO.zip');
+const EN_V3 = flag('--en', 'C:\\Users\\badlo\\Documents\\Codex\\2026-11-02\\x20\\outputs\\Classic-EN-reviewed-candidate-v3.zip');
+const OUT = flag('--out', join(ROOT, 'modules', 'classic-courses'));
+const CHECK_ONLY = argv.includes('--check');
+const SAMPLE = argv.includes('--sample');
+const skipValues = new Set(['--big', '--en', '--out']);
+const wanted = argv.filter((a, i) => !a.startsWith('--') && !skipValues.has(argv[i - 1]));
+const LANGS = wanted.length ? wanted : ['en', 'es', 'fr', 'de', 'it'];
+
+const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+const INTRO_SUFFIX = { ru: 'RU', uk: 'UK', en: ['EN', 'En'], es: 'ES', 'pt-BR': 'PtBr', vi: 'Vi', id: 'Id', tr: 'Tr', pl: 'Pl' };
+
+// ── минимальный zip-ридер (stored + deflate; архивы < 4 ГБ, записей < 65535) ──────────────────────────────────────────
+function openZip(path) {
+  const buf = readFileSync(path);
+  let eocd = -1;
+  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 70000); i--) {
+    if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+  }
+  if (eocd < 0) throw new Error(`${path}: нет EOCD — не zip`);
+  const total = buf.readUInt16LE(eocd + 10);
+  let p = buf.readUInt32LE(eocd + 16);
+  const entries = new Map();
+  for (let n = 0; n < total; n++) {
+    if (buf.readUInt32LE(p) !== 0x02014b50) throw new Error(`${path}: битая центральная директория`);
+    const method = buf.readUInt16LE(p + 10);
+    const csize = buf.readUInt32LE(p + 20);
+    const usize = buf.readUInt32LE(p + 24);
+    const nameLen = buf.readUInt16LE(p + 28);
+    const extraLen = buf.readUInt16LE(p + 30);
+    const commentLen = buf.readUInt16LE(p + 32);
+    const local = buf.readUInt32LE(p + 42);
+    entries.set(buf.toString('utf8', p + 46, p + 46 + nameLen), { method, csize, usize, local });
+    p += 46 + nameLen + extraLen + commentLen;
+  }
+  const read = (name) => {
+    const e = entries.get(name);
+    if (!e) throw new Error(`${path}: нет файла ${name}`);
+    const start = e.local + 30 + buf.readUInt16LE(e.local + 26) + buf.readUInt16LE(e.local + 28);
+    const raw = buf.subarray(start, start + e.csize);
+    if (e.method === 0) return Buffer.from(raw);
+    if (e.method === 8) return inflateRawSync(raw);
+    throw new Error(`${name}: метод сжатия ${e.method} не поддержан`);
+  };
+  return { path, entries, read, sha: createHash('sha256').update(buf).digest('hex') };
+}
+
+const sha256 = (b) => createHash('sha256').update(b).digest('hex');
+const pad2 = (n) => String(n).padStart(2, '0');
+const nonEmpty = (s) => typeof s === 'string' && s.trim().length > 0;
+const errors = [];
+const fail = (lang, msg) => { errors.push(`[${lang}] ${msg}`); };
+const warnings = [];
+const warn = (lang, msg) => { warnings.push(`[${lang}] ${msg}`); };
+
+// ── профили языков: имена файлов и полей различаются по курсам ──────────────────────────────────────────────────────────
+// tiles/alternatives/accepted/rev — откуда брать поле; hintKeys — где лежат ключи подсказок (словарь ui курса)
+const PROFILES = {
+  en: { dir: 'EN', zip: 'en', adapter: (n) => `classic-adapter/EN-${pad2(n)}.json`, intro: (n) => `classic-intro/EN-${pad2(n)}.json`,
+    theory: (n) => `classic-theory/EN-${pad2(n)}.json`, idRe: /^en-classic-r1:\d\d\.\d\d$/, target: 'english', fmt: 'studio2',
+    tiles: 'words', alternatives: 'alternatives', accepted: null, answers: null, rev: null, sums: null },
+  es: { dir: 'ES', zip: 'big', adapter: (n) => `classic-adapter/ES-${pad2(n)}.phrases.json`, intro: (n) => `classic-intro/ES-${pad2(n)}.intro.json`,
+    theory: (n) => `classic-theory/ES-${pad2(n)}.theory.json`, idRe: /^es:\d\d:\d\d$/, target: 'spanish', fmt: 'studio2',
+    tiles: 'words', alternatives: 'alternativesEs', accepted: null, answers: 'answerPathsEs', rev: 'contentRevision', sums: 'SHA256SUMS.txt' },
+  fr: { dir: 'FR', zip: 'big', adapter: (n) => `classic-adapter/FR-${pad2(n)}.json`, intro: (n) => `classic-intro/FR-${pad2(n)}.json`,
+    theory: (n) => `classic-theory/FR-${pad2(n)}.json`, idRe: /^fr:\d\d:\d\d$/, target: 'french', fmt: 'chapters',
+    tiles: 'wordsFr', alternatives: 'alternativesFr', accepted: 'acceptedTokenPaths', answers: null, rev: 'contentFingerprint', sums: 'FR/SHA256SUMS.txt' },
+  de: { dir: 'DE', zip: 'big', adapter: (n) => `classic-adapter/DE-${pad2(n)}.json`, intro: (n) => `classic-intro/DE-${pad2(n)}.json`,
+    theory: (n) => `classic-theory/DE-${pad2(n)}.json`, idRe: /^de:\d\d:\d\d$/, target: 'german', fmt: 'chapters',
+    tiles: 'wordsDe', alternatives: 'alternativesDe', accepted: 'acceptedTokenPaths', answers: null, rev: 'revision', sums: 'DE/SHA256SUMS.txt' },
+  it: { dir: 'IT', zip: 'big', adapter: (n) => `classic-adapter/IT-${pad2(n)}.json`, intro: (n) => `classic-intro/IT-${pad2(n)}.json`,
+    theory: (n) => `classic-theory/IT-${pad2(n)}.json`, idRe: /^it:\d\d:\d\d$/, target: 'italian', fmt: 'chapters',
+    tiles: 'wordsIt', alternatives: 'alternativesIt', accepted: 'acceptedTokenPaths', answers: null, rev: 'contentFingerprint', sums: 'IT/SHA256SUMS.txt' },
+};
+
+function introText(block, loc, key) {
+  const byLocale = block[`${key}ByLocale`];
+  const v = byLocale?.[loc];
+  // FR/DE/IT: textByLocale[loc] — список абзацев, titleByLocale[loc] — строка
+  if (nonEmpty(v) || (Array.isArray(v) && v.length && v.every(nonEmpty))) return v;
+  for (const s of [].concat(INTRO_SUFFIX[loc])) if (nonEmpty(block[`${key}${s}`])) return block[`${key}${s}`];
+  return null;
+}
+
+function loadSums(zip, file) {
+  const map = new Map();
+  if (!file) return map;
+  const prefix = file.includes('/') ? file.slice(0, file.lastIndexOf('/') + 1) : '';
+  for (const line of zip.read(file).toString('utf8').split(/\r?\n/)) {
+    const m = /^([0-9a-f]{64})\s+\*?(.+)$/.exec(line.trim());
+    if (m) map.set(prefix + m[2], m[1]);
+  }
+  return map;
+}
+
+// Испанский: answerPathsEs — строки; токены = слова без ¿ ¡ и знаков препинания (как acceptedTokenPaths у FR/DE/IT)
+const esTokens = (s) => s.replace(/[¿¡?!.,;:«»"]/g, ' ').split(/\s+/).filter(Boolean);
+
+function buildPhrase(lang, prof, r, where) {
+  const tiles = (r[prof.tiles] ?? []).map((w) => ({ text: w.text, correct: w.correct, distractors: w.distractors ?? [] }));
+  if (!tiles.length || tiles.some((t) => !nonEmpty(t.text) || !nonEmpty(t.correct))) fail(lang, `${where}: пустые плитки`);
+  const target = r[prof.target];
+  if (!nonEmpty(target)) fail(lang, `${where}: пустая цель`);
+  // sourceLocales: все 9 языков интерфейса; у EN часть лежит в верхних полях (english/russian/ukrainian/spanish)
+  const src = { ...(r.sourceLocales ?? {}) };
+  if (!src.en && nonEmpty(r.english) && lang !== 'en') src.en = r.english;
+  if (lang === 'en') { src.en = r.english; src.ru = r.russian; src.uk = r.ukrainian; src.es = r.spanish; }
+  const sourceLocales = {};
+  for (const l of LOCALES) {
+    if (!nonEmpty(src[l])) fail(lang, `${where}: нет подсказки ${l}`);
+    sourceLocales[l] = src[l];
+  }
+  const out = { id: r.id, target, tiles, alternatives: r[prof.alternatives] ?? [] };
+  if (prof.accepted) {
+    out.accepted = r[prof.accepted];
+    if (!Array.isArray(out.accepted) || !out.accepted.length || out.accepted.some((p) => !Array.isArray(p) || !p.length || p.some((t) => !nonEmpty(t)))) fail(lang, `${where}: пустые ${prof.accepted}`);
+  }
+  if (prof.answers) {
+    const a = r[prof.answers];
+    if (!Array.isArray(a) || !a.length || a.some((x) => !nonEmpty(x))) fail(lang, `${where}: пустые ${prof.answers}`);
+    out.answers = a;
+    out.accepted = a.map(esTokens);
+    // страховка: первый (канонический) путь должен совпасть с плитками в порядке
+    if (JSON.stringify(out.accepted[0]) !== JSON.stringify(tiles.map((t) => t.correct))) fail(lang, `${where}: канонический ответ не равен плиткам`);
+  }
+  out.sourceLocales = sourceLocales;
+  const keys = [].concat(r.clarifierKeys ?? r.contextCueKeys ?? (nonEmpty(r.clarifierKey) ? [r.clarifierKey] : []));
+  out.clarifierKeys = keys;
+  out.wordNoteKeys = r.wordNoteKeys ?? [];
+  if (out.wordNoteKeys.length && out.wordNoteKeys.length !== tiles.length) fail(lang, `${where}: wordNoteKeys ${out.wordNoteKeys.length} ≠ плиток ${tiles.length}`);
+  out.rev = prof.rev ? r[prof.rev] : sha256(JSON.stringify([target, tiles, out.alternatives])).slice(0, 20);
+  if (!nonEmpty(out.rev)) fail(lang, `${where}: нет rev`);
+  // ES: подсказки контекста (кто говорит и кому) — только непустые
+  if (lang === 'es') {
+    if (r.context && (nonEmpty(r.context.ru) || nonEmpty(r.context.uk))) out.context = r.context;
+    if (r.contextCue) out.contextCue = r.contextCue;
+  }
+  return out;
+}
+
+function buildGlossary(lang, prof, take, zips) {
+  const lemmas = [];
+  if (lang === 'en') {
+    const g = take('glossary.json');
+    const copy = take('copy.json');
+    for (const [key, e] of Object.entries(g)) {
+      // v3: у 45 глосс (формы вроде leads, spoons, boots) нет переводов ни в copy.json, ни где-либо ещё в архиве — кладём только en
+      // и предупреждаем (не ошибка): решение о запасном тексте — за Ядром
+      let meaning = copy[e.gloss];
+      if (!meaning || LOCALES.some((l) => !nonEmpty(meaning[l]))) { warn(lang, `словарь ${key}: «${e.gloss}» только на английском`); meaning = { en: e.gloss }; }
+      lemmas.push({ lemma: e.head, meaning: Object.fromEntries(LOCALES.filter((l) => nonEmpty(meaning[l])).map((l) => [l, meaning[l]])), firstLesson: e.first, phraseIds: e.refs.map((x) => `en-classic-r1:${x}`) });
+    }
+  } else if (lang === 'es') {
+    const led = take('ledger.json');
+    for (const [key, e] of Object.entries(led)) {
+      if (LOCALES.some((l) => !nonEmpty(e.glosses?.[l]))) fail(lang, `словарь ${key}: глосса не на 9 языках`);
+      lemmas.push({ lemma: e.lemma, meaning: Object.fromEntries(LOCALES.map((l) => [l, e.glosses?.[l]])), firstLesson: Number(String(e.firstLesson).split(':')[1]), phraseIds: e.examples });
+    }
+  } else {
+    const led = take('ledger.json');
+    const texts = take('course.json').texts;
+    for (const e of led) {
+      const m = texts[e.gloss];
+      if (!m || LOCALES.some((l) => !nonEmpty(m[l]))) { fail(lang, `словарь ${e.id}: глосса «${e.gloss}» не на 9 языках`); continue; }
+      // DE: в ledger нет firstLesson — номер урока берём из id первой фразы (de:01:01 → 1)
+      const firstLesson = e.firstLesson ?? Number(String(e.first).split(':')[1]);
+      if (!Number.isInteger(firstLesson) || firstLesson < 1 || firstLesson > 32) fail(lang, `словарь ${e.id}: нет первого урока`);
+      lemmas.push({ lemma: e.term, meaning: Object.fromEntries(LOCALES.map((l) => [l, m[l]])), firstLesson, phraseIds: e.examples });
+    }
+  }
+  return { lemmas };
+}
+
+// зачем (Ядро 04.11, решение владельца): в классических курсах пока ТОЛЬКО системный TTS телефона — никаких полей озвучки,
+// ссылок на предзаписанный голос и http-ссылок в lessons/intro/theory/glossary/ui. Находки считаем ошибкой, а не вычищаем молча.
+const FORBIDDEN_KEY = /^(audio|voice|tts)/i;
+const FORBIDDEN_VALUE = /\.(mp3|ogg|m4a)|https?:\/\//i;
+function scanForbidden(lang, name, node, path = '') {
+  if (Array.isArray(node)) { node.forEach((v, i) => scanForbidden(lang, name, v, `${path}[${i}]`)); return; }
+  if (node && typeof node === 'object') {
+    for (const [k, v] of Object.entries(node)) {
+      if (FORBIDDEN_KEY.test(k)) fail(lang, `${name}${path}.${k}: ключ озвучки`);
+      scanForbidden(lang, name, v, `${path}.${k}`);
+    }
+  } else if (typeof node === 'string' && FORBIDDEN_VALUE.test(node)) fail(lang, `${name}${path}: аудио/http-ссылка «${node.slice(0, 60)}»`);
+}
+
+function convert(lang, zips) {
+  const prof = PROFILES[lang];
+  if (!prof) throw new Error(`неизвестный язык ${lang}`);
+  const zip = zips[prof.zip];
+  const sums = loadSums(zips.big, prof.sums);
+  const srcHash = {};
+  const rawBytes = [...zip.entries].filter(([n]) => n.startsWith(`${prof.dir}/`)).reduce((s, [, e]) => s + e.usize, 0);
+  const take = (rel) => {
+    const name = `${prof.dir}/${rel}`;
+    const buf = zip.read(name);
+    const h = sha256(buf);
+    srcHash[name] = h;
+    const want = sums.get(name);
+    if (want && want !== h) fail(lang, `sha256 не совпал: ${name}`);
+    if (!want && prof.sums) fail(lang, `нет суммы в ${prof.sums}: ${name}`);
+    return JSON.parse(buf.toString('utf8'));
+  };
+
+  const files = {};
+  const intro = {};
+  const theory = {};
+  const ids = new Set();
+  let phrases = 0;
+  const hintKeys = new Set();
+  for (let n = 1; n <= 32; n++) {
+    const rows = take(prof.adapter(n));
+    if (!Array.isArray(rows) || rows.length !== 50) fail(lang, `урок ${n}: ${rows?.length} фраз вместо 50`);
+    const built = rows.map((r, i) => {
+      const where = `урок ${n} фраза ${i + 1}`;
+      if (!prof.idRe.test(r.id)) fail(lang, `${where}: id «${r.id}»`);
+      if (ids.has(r.id)) fail(lang, `${where}: повтор id ${r.id}`);
+      ids.add(r.id);
+      const p = buildPhrase(lang, prof, r, where);
+      for (const k of [...p.clarifierKeys, ...p.wordNoteKeys]) if (k) hintKeys.add(k);
+      return p;
+    });
+    phrases += built.length;
+    files[`lessons-${pad2(n)}.json`] = { schema: 'phraseman.classic.lesson/1', lang, lesson: n, phrases: built };
+
+    const blocks = take(prof.intro(n));
+    if (!Array.isArray(blocks) || blocks.map((b) => b.kind).join() !== 'concept,formula,practice') fail(lang, `урок ${n}: вступление не concept/formula/practice`);
+    for (const b of blocks ?? []) for (const loc of LOCALES) if (!introText(b, loc, 'title') || !introText(b, loc, 'text')) fail(lang, `урок ${n} вступление ${b.kind}: нет ${loc}`);
+    intro[n] = blocks;
+
+    const th = take(prof.theory(n));
+    if (prof.fmt === 'studio2') {
+      for (const loc of LOCALES) if (!th.localized?.[loc]) fail(lang, `урок ${n}: теория без ${loc}`);
+    } else {
+      if (!Array.isArray(th.chapters) || !th.chapters.length) fail(lang, `урок ${n}: теория без глав`);
+      for (const ch of th.chapters ?? []) for (const loc of LOCALES) if (!nonEmpty(ch.textByLocale?.[loc])) fail(lang, `урок ${n}: глава без ${loc}`);
+      for (const loc of LOCALES) if (!nonEmpty(th.title?.[loc])) fail(lang, `урок ${n}: заголовок теории без ${loc}`);
+    }
+    theory[n] = th;
+  }
+  if (phrases !== 1600) fail(lang, `всего ${phrases} фраз вместо 1600`);
+  files['intro.json'] = intro;
+  files['theory.json'] = { format: prof.fmt, data: theory };
+  files['glossary.json'] = buildGlossary(lang, prof, take, zips);
+  if (!files['glossary.json'].lemmas.length) fail(lang, 'пустой словарь');
+
+  // ключи подсказок (род, «друг/вы», связка…) резолвятся в ui курса: кладём только используемые, на 9 языках
+  if (lang !== 'en' && hintKeys.size) {
+    const ui = lang === 'es' ? { ...take('ui.json'), ...take('ui-extra.json') } : take('course.json').ui;
+    const sub = {};
+    for (const k of [...hintKeys].sort()) {
+      if (!ui[k]) { fail(lang, `ключ подсказки «${k}» не найден в ui`); continue; }
+      for (const l of LOCALES) if (!nonEmpty(ui[k][l])) fail(lang, `ключ подсказки «${k}» без ${l}`);
+      sub[k] = ui[k];
+    }
+    files['ui.json'] = { ui: sub };
+  }
+  for (const [name, data] of Object.entries(files)) scanForbidden(lang, name, data);
+  return { files, phrases, rawBytes, srcHash, sourceZipSha256: zip.sha };
+}
+
+const zips = { big: openZip(BIG), en: LANGS.includes('en') ? openZip(EN_V3) : null };
+const manifestPath = join(OUT, 'manifest.json');
+const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : { schema: 'phraseman.classic.manifest/1', languages: {} };
+const table = [];
+for (const lang of LANGS) {
+  const res = convert(lang, zips);
+  const dir = join(OUT, lang);
+  const fileInfo = {};
+  const lessonHash = createHash('sha256');
+  for (const [name, data] of Object.entries(res.files)) {
+    const text = JSON.stringify(data) + '\n';
+    const bytes = Buffer.byteLength(text);
+    const h = sha256(text);
+    fileInfo[name] = { bytes, sha256: h };
+    if (name.startsWith('lessons-')) lessonHash.update(text);
+    if (!CHECK_ONLY) { mkdirSync(dir, { recursive: true }); writeFileSync(join(dir, name), text); }
+  }
+  const index = { lang, lessons: 32, phrases: res.phrases, rev: lessonHash.digest('hex'), sourceZipSha256: res.sourceZipSha256 };
+  const indexText = JSON.stringify(index) + '\n';
+  fileInfo['index.json'] = { bytes: Buffer.byteLength(indexText), sha256: sha256(indexText) };
+  if (!CHECK_ONLY) writeFileSync(join(dir, 'index.json'), indexText);
+  manifest.languages[lang] = { ...index, files: fileInfo };
+  const sum = (f) => Object.entries(fileInfo).filter(([n]) => f(n)).reduce((s, [, i]) => s + i.bytes, 0);
+  const mb = (b) => +(b / 1048576).toFixed(2);
+  table.push({ lang, phrases: res.phrases, rawArchiveMB: mb(res.rawBytes), totalMB: mb(sum(() => true)), lessonsMB: mb(sum((n) => n.startsWith('lessons-'))),
+    introMB: mb(sum((n) => n === 'intro.json')), theoryMB: mb(sum((n) => n === 'theory.json')), glossaryMB: mb(sum((n) => n === 'glossary.json')),
+    uiMB: mb(sum((n) => n === 'ui.json')) });
+  if (SAMPLE) {
+    console.log(`--- ${lang} glossary sample`, JSON.stringify(res.files['glossary.json'].lemmas.slice(0, 3)));
+    console.log(`--- ${lang} phrase sample`, JSON.stringify(res.files['lessons-01.json'].phrases.slice(0, 2)));
+  }
+}
+manifest.languages = Object.fromEntries(Object.keys(manifest.languages).sort().map((k) => [k, manifest.languages[k]]));
+if (!CHECK_ONLY && !errors.length) { mkdirSync(OUT, { recursive: true }); writeFileSync(manifestPath, JSON.stringify(manifest) + '\n'); }
+console.log(JSON.stringify(table));
+if (warnings.length) console.log(`ПРЕДУПРЕЖДЕНИЯ (${warnings.length}): ` + warnings.slice(0, 3).join(' | ') + ' …');
+if (errors.length) {
+  console.error(`ОШИБКИ (${errors.length}):\n` + errors.slice(0, 60).join('\n'));
+  if (!CHECK_ONLY) console.error('Файлы записаны, но проверки не прошли — не коммитить.');
+  process.exitCode = 1;
+}

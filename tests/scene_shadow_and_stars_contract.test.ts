@@ -41,7 +41,8 @@ describe('Сцена: резкий край, тень блока, мерцающ
     expect(tw).toContain('animate={active && !reduce}');
     const bd = read('components/scene/SceneBackdrop.tsx');
     expect(bd).toContain('<SceneStarTwinkle stars={ALL_STARS(p.stars.list)} active={active} />');
-    expect(bd).toContain('i % SCENE_TWINKLE_EVERY === 0 ? null');
+    // зачем (координатор 04.11): статичные звёзды — группами Path; пропуск мерцающих (каждая N-я) теперь внутри groupStarsByAlpha
+    expect(bd).toContain('groupStarsByAlpha(ALL_STARS(palette.stars.list), palette.size.W, palette.size.H, SCENE_TWINKLE_EVERY)');
     const home = read('components/home/v2/scene/HomeScene.tsx');
     expect(home).toContain('active={p.active}');
   });

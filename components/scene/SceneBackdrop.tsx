@@ -7,12 +7,13 @@
 // Порядок слоёв — как у эталона: небо → солнце → дымка → звёзды → виньетка → страж; светлое: градиент → свет 1 → свет 2 → затемнение низа.
 // Касаний не ловит, заполняет родителя (absoluteFill).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import Svg, { Circle, Defs, G, LinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
+import Svg, { Defs, G, LinearGradient, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { isSkyPalette, SCENE_SKY_TONE_MIX, type ScenePaletteResult } from './scene_palette';
 import SceneStarTwinkle, { SCENE_TWINKLE_EVERY } from './SceneStarTwinkle';
+import { groupStarsByAlpha } from './scene_star_paths';
 
 type Props = Readonly<{ palette: ScenePaletteResult; idPrefix: string; active?: boolean }>;
 
@@ -42,6 +43,8 @@ const GUARD_TOP_H = 110; // px эталонной канвы: затемнени
 function SceneBackdrop({ palette, idPrefix, active = true }: Props) {
   const { W, H } = palette.size;
   const id = (n: string): string => `${idPrefix}${n}`;
+  // зачем (координатор 04.11, дамп Главной: Circle 312 из 1 334 View): статичные звёзды — ≤5 Path по ступеням прозрачности вместо ~150 Circle; считается один раз на палитру
+  const starGroups = useMemo(() => (isSkyPalette(palette) ? groupStarsByAlpha(ALL_STARS(palette.stars.list), palette.size.W, palette.size.H, SCENE_TWINKLE_EVERY) : []), [palette]);
   if (isSkyPalette(palette)) {
     const p = palette;
     const stops = p.gradient.stops;
@@ -103,7 +106,7 @@ function SceneBackdrop({ palette, idPrefix, active = true }: Props) {
         {p.warmEdge ? <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Warm')})`} /> : null}
         <G>
           {/* зачем (владелец 29.10): каждая 5-я звезда мерцает отдельным слоем SceneStarTwinkle (UI-тред), остальные статичны здесь */}
-          {ALL_STARS(p.stars.list).map((s, i) => (i % SCENE_TWINKLE_EVERY === 0 ? null : <Circle key={i} cx={s.x * W} cy={s.y * H} r={s.r} fill="#FFFFFF" fillOpacity={s.a} />))}
+          {starGroups.map((g) => <Path key={g.a} d={g.d} fill="#FFFFFF" fillOpacity={g.a} />)}
         </G>
         {SCENE_VIGNETTE ? <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Vig')})`} /> : null}
         {SCENE_DARK_BOTTOM_GUARD && p.guard.aBottom > 0 ? <Rect x="0" y={H * 0.42} width={W} height={H * 0.58} fill={`url(#${id('GuardB')})`} /> : null}

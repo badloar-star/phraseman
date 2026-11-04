@@ -37,6 +37,7 @@ jest.mock('react-native', () => {
       create: (styles: object) => styles,
       flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style,
     },
+    Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default }, // зачем (чистка красных 05.11): constants/theme.ts читает Platform.OS при импорте — заглушка react-native должна его иметь
     AppState: { currentState: 'active', addEventListener: jest.fn(() => ({ remove: jest.fn() })) },
     Animated: {
       Value,

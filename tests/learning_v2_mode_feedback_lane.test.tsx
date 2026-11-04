@@ -18,6 +18,7 @@ jest.mock("react-native", () => ({
   Pressable: "Pressable",
   AccessibilityInfo: { announceForAccessibility: jest.fn() },
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {} },
+  Platform: { OS: "android", select: (o: Record<string, unknown>) => o.android ?? o.default }, // зачем (чистка красных 05.11): constants/theme.ts читает Platform.OS при импорте
 }));
 jest.mock("@expo/vector-icons/Ionicons", () => "Ionicons");
 jest.mock("react-native-svg", () => ({ __esModule: true, default: "Svg", Circle: "Circle" }));
@@ -42,7 +43,7 @@ jest.mock("../components/learning-v2/LearningV2Glass", () => ({
   Lv2Chip: "Text",
   Lv2Cta: "Text",
   Lv2Explain: "Lv2Explain",
-  useLv2Glass: () => ({ secondary: "#555", text: "#111", mutedText: "#777", glassEdge: "#ccc", opaqueControl: "#ddd", opaqueCard: "#fff", good: "#080" }),
+  useLv2Glass: () => ({ secondary: "#555", text: "#111", mutedText: "#777", glassEdge: "#ccc", opaqueControl: "#ddd", opaqueCard: "#fff", good: "#080", accent: "#08a", plateFillFrom: "#eeeeee", plateFillTo: "#dddddd" }),
 }));
 jest.mock("../hooks/use-haptics", () => ({ hapticError: jest.fn(), hapticLightImpact: jest.fn(), hapticSuccess: jest.fn() }));
 jest.mock("../hooks/useLineScale", () => ({ useScaledTextStyles: (styles: unknown) => styles }));

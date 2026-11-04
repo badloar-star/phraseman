@@ -2792,7 +2792,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     value: homeV2DaysLabel,
                     label: homeV2StreakWord,
                     accessibilityLabel: streakToday === 'pending' ? `${homeV2StreakWord}: ${homeV2DaysLabel}. ${homeV2StreakPendingA11y}` : `${homeV2StreakWord}: ${homeV2DaysLabel}`,
-                    onPress: () => { nav.push('/streak_stats'); },
+                    onPress: () => { nav.push('/streak_stats?focus=series'); }, // зачем (владелец одобрил 04.11, «Главная»): тап по серии открывает статистику сразу с раскрытым блоком «Серия» (параметр focus=series принимает streak_stats, Темы)
                   },
                   {
                     testID: 'home-v2-coins',

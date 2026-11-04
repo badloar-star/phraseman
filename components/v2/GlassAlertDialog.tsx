@@ -11,7 +11,7 @@
 // оболочке HybridAlertShell (по центру, затемнение .62 как `.or-dim`).
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect, useRef } from 'react';
-import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { hapticTap, hapticWarning } from '../../hooks/use-haptics';
@@ -19,6 +19,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import HybridAlertShell from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
 import { KitGlassLayer } from './KitLiquidGlass';
+import V2Pressable from './V2Pressable';
 import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from './ShadowSurface';
 import { ThemeAccentFill } from './ThemeAccentFill';
 
@@ -81,8 +82,11 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
       {actions.length > 0 ? (
         <View style={[styles.actions, stack ? styles.actionsStack : null]}>
           {actions.map((a, i) => (
-            <Pressable
+            // зачем (владелец 04.11, UX-приятности, волна 1): кнопки окна — на общем V2Pressable (вдавливание по эталону кита, при «Уменьшить движение» — затемнение);
+            // раскладка (flex в ряду) живёт на внешнем слое, вид кнопки — на сжимающемся. Вибрацию по-прежнему ставит onPress (предупреждение для разрушающего действия).
+            <V2Pressable
               key={`${i}:${a.label}`}
+              outerStyle={stack ? null : styles.ctaRow}
               // зачем (координатор 12.10, английский проход): нажатие по номеру кнопки, а не по тексту — работает на любом языке
               testID={`glass-alert-action-${i}`}
               accessibilityRole="button"
@@ -93,9 +97,8 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
                 if (a.destructive) hapticWarning(); else hapticTap();
                 a.onPress();
               }}
-              style={({ pressed }) => [
+              style={[
                 styles.cta,
-                stack ? null : styles.ctaRow,
                 // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»): заливки кнопок — токены кнопок темы: вторичная buttonFill (≥ 1,6 : 1 к шторке), опасная dangerFill
                 // со своей подписью dangerInk (≥ 4,5 : 1), главная ctaFill; прежняя вторичная на opaqueControl давала 1,18–1,3 : 1 к шторке.
                 a.destructive && !a.ghost
@@ -104,12 +107,11 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
                   // зачем (стиль «Тень»): второстепенная кнопка `.cta.gh` — плашка с малой тенью вместо контура.
                   ? { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) }
                   : { backgroundColor: glass.ctaFill, boxShadow: actionBoxShadow(glass) },
-                { opacity: pressed ? 0.88 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] },
               ]}
             >
               {a.ghost || a.destructive ? null : <ThemeAccentFill glass={glass} radius={22} ink={glass.ctaFillInk} />}
               <Text numberOfLines={2} style={[styles.ctaText, { color: a.destructive && !a.ghost ? glass.dangerInk : a.ghost ? glass.text : glass.ctaFillInk }]}>{a.label}</Text>
-            </Pressable>
+            </V2Pressable>
           ))}
         </View>
       ) : null}

@@ -48,4 +48,12 @@ describe('волна 1 UI-кита', () => {
     expect((action.match(/accessibilityLiveRegion="polite"/g) ?? []).length).toBeGreaterThanOrEqual(2);
     expect((game.match(/accessibilityLiveRegion="polite"/g) ?? []).length).toBeGreaterThanOrEqual(2);
   });
+
+  it('кнопки GlassAlertDialog — на V2Pressable, а не на голом Pressable', () => {
+    const dialog = read('components/v2/GlassAlertDialog.tsx');
+    expect(dialog).toContain("import V2Pressable from './V2Pressable'");
+    expect(dialog).toContain('<V2Pressable');
+    expect(dialog).not.toMatch(/<Pressable[\s>]/);
+    expect(dialog).toContain('testID={`glass-alert-action-${i}`}');
+  });
 });

@@ -245,8 +245,7 @@ describe('progress_events engine', () => {
     expect(patch[`lesson_progress_v2::${target}::lesson3_best_score`]).toBe('4');
     expect(patch[`lesson_progress_v2::${target}::3`]).toBe(JSON.stringify(['correct']));
     expect(patch['lesson3_best_score']).toBeUndefined();
-    // зачем: статический список серверных ключей не расширяли (фильтр снимков существующих пользователей прежний);
-    // динамически applyProgressEvent сам добавляет ключи урока в набор процесса — это прежнее поведение, его не проверяем.
+    // зачем: es|de|it — серверные ключи, как fr (пара с клиентским cloud_sync); проверка статического правила — в 'recognizes server-owned'.
   });
 
   it('keeps unknown or missing study targets on the legacy English keys', () => {
@@ -454,6 +453,11 @@ describe('progress_events engine', () => {
     expect(isServerOwnedProgressKey('week_points')).toBe(true);
     expect(isServerOwnedProgressKey('streak_count')).toBe(true);
     expect(isServerOwnedProgressKey('user_total_xp')).toBe(false);
+    // классические курсы 04.11: es|de|it — серверные ключи, как fr
+    for (const t of ['es', 'de', 'it']) {
+      expect(isServerOwnedProgressKey(`lesson_progress_v2::${t}::lesson12_best_score`)).toBe(true);
+      expect(isServerOwnedProgressKey(`level_exams_v2::${t}::level_exam_A1_best_pct`)).toBe(true);
+    }
     expect(isServerOwnedProgressKey('lesson12_best_score')).toBe(true);
     expect(isServerOwnedProgressKey('level_exam_a1_best_pct')).toBe(true);
     expect(isServerOwnedProgressKey('level_exam_A1_best_pct')).toBe(true);

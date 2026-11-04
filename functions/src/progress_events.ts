@@ -499,10 +499,10 @@ export function isServerOwnedProgressKey(key: string): boolean {
   if (SERVER_OWNED_PROGRESS_KEYS.has(key)) return true;
   if (/^lesson\d+_(?:best_score|pass_count|progress|cellIndex)$/.test(key)) return true;
   if (/^level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
-  // зачем (владелец 04.11: прогресс не пропадает): список серверных ключей НЕ расширяем на es|de|it —
-  // это поменяло бы фильтр миграционных снимков для существующих пользователей. Только fr, как было.
-  if (/^lesson_progress_v2::fr::.+/.test(key)) return true;
-  if (/^level_exams_v2::fr::level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
+  // зачем (классические курсы 04.11, «прогресс не пропадает»): es|de|it — серверные ключи так же, как fr; пара с клиентской
+  // cloud_sync.isServerOwnedProgressKey. Существующего es/de/it-прогресса у людей нет (классики этих языков не было) → миграции нет.
+  if (/^lesson_progress_v2::(?:es|fr|de|it)::.+/.test(key)) return true;
+  if (/^level_exams_v2::(?:es|fr|de|it)::level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
   if (/^(?:achievement|bonus_chest|wager)_.*(?:claimed|rewarded|at)$/.test(key)) return true;
   return false;
 }

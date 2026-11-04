@@ -422,6 +422,64 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   ...FRENCH_SYNC_PERFECT_MILESTONES.map((count) => lessonPerfectMilestoneKey(count, 'fr')),
 ] as const;
 
+// зачем (классические курсы 04.11, «прогресс не пропадает»): у es/de/it в облако шли только карточки; прогресс уроков, экзаменов, последний урок,
+// статистика и достижения не восстанавливались бы на новом телефоне. Те же ключи, что у французского, по схеме targetKey (<домен>_v2::<язык>::id).
+// Новых документов нет — поля в том же документе progress; пользователей с прогрессом es/de/it до выхода курсов нет (миграции нет).
+export function buildTargetCourseOnlySyncKeys(target: Exclude<LearningLanguageTarget, 'en' | 'fr'>): readonly string[] {
+  return [
+  unlockedLessonsKey(target),
+  legacyFreeLessonCapKey(target),
+  legacyFreeLessonMigrationKey(target),
+  premiumCourseLevelKey(target),
+  lessonUnlockRepairKey(target),
+  lastOpenedLessonKey(target),
+  lingmanExamAvailableKey(target),
+  lingmanCertificateKey(target),
+  diagnosticLastKey(target),
+  achievementStateKey(target),
+  comboAchievementCounterKey(target),
+  dailyPhraseAchievementReadCountKey(target),
+  dailyPhraseAchievementSaveCountKey(target),
+  shareAchievementCounterKey(target),
+  userStatsKey(target),
+  statsDailyBreakdownKey(target),
+  irregularVerbsGlobalKey(target),
+  posMasteryKey(target),
+  ...FRENCH_SYNC_SOURCE_LOCALES.flatMap((sourceLocale) => [
+    personalPracticeFreeAccessKey(target, sourceLocale),
+    resolvedPersonalTrainingsKey(target, sourceLocale),
+    ...DIAGNOSIS_TRAINING_IDS.map((id) => personalPracticeTrainingProgressKey(id, target, sourceLocale)),
+  ]),
+  ...FRENCH_SYNC_LESSON_IDS.flatMap((lessonId) => [
+    lessonBestScoreKey(lessonId, target),
+    lessonPassCountKey(lessonId, target),
+    lessonProgressKey(lessonId, target),
+    lessonListeningProgressKey(lessonId, target),
+    lessonWordsKey(lessonId, target),
+    lessonWordsShardsGrantedKey(lessonId, target),
+    lessonIrregularShardsGrantedKey(lessonId, target),
+    lessonPrepositionProgressKey(lessonId, target),
+    lessonTheorySectionsSeenKey(lessonId, target),
+    prepositionDrillPerfectKey(lessonId, target),
+    lessonBonusGrantedKey(lessonId, target),
+    masteryFinishedOnceKey(lessonId, target),
+    masteryReplayCountKey(lessonId, target),
+    achievementLessonPerfectPassesKey(lessonId, target),
+  ]),
+  ...FRENCH_SYNC_EXAM_LEVELS.flatMap((level) => [
+    levelExamKey(level, 'passed', target),
+    levelExamKey(level, 'available', target),
+    levelExamKey(level, 'pct', target),
+    levelExamKey(level, 'best_pct', target),
+    levelExamKey(level, 'pass_count', target),
+    levelExamKey(level, 'attempt_count', target),
+    levelExamKey(level, 'medal_tier', target),
+    lessonTopicShardGrantedKey(level, target),
+  ]),
+  ...FRENCH_SYNC_PERFECT_MILESTONES.map((count) => lessonPerfectMilestoneKey(count, target)),
+] as const;
+}
+
 function buildTargetFlashcardSyncKeys(target: Exclude<LearningLanguageTarget, 'en' | 'fr'>): readonly string[] {
   return [
     flashcardsSavedKey(target),
@@ -442,7 +500,7 @@ function buildTargetFlashcardSyncKeys(target: Exclude<LearningLanguageTarget, 'e
 
 const OTHER_NON_ENGLISH_TARGET_SYNC_KEYS = SYNC_STUDY_TARGETS
   .filter((target): target is Exclude<LearningLanguageTarget, 'en' | 'fr'> => target !== 'en' && target !== 'fr')
-  .flatMap((target) => buildTargetFlashcardSyncKeys(target));
+  .flatMap((target) => [...buildTargetFlashcardSyncKeys(target), ...buildTargetCourseOnlySyncKeys(target)]);
 const NON_ENGLISH_TARGET_SYNC_KEYS = [
   ...FRENCH_TARGET_SYNC_KEYS,
   ...OTHER_NON_ENGLISH_TARGET_SYNC_KEYS,
@@ -1515,6 +1573,7 @@ const RULES_BLOCKED_PROGRESS_KEYS: ReadonlySet<string> = new Set([
   'loyalty_gift_until_ms', 'loyalty_gift_granted_at_ms',
   'referral_vip_last_source', 'promo_vip_last_code',
   'lesson1_pass_live', 'lesson_progress_v2::fr::lesson1_pass_live',
+  'lesson_progress_v2::es::lesson1_pass_live', 'lesson_progress_v2::de::lesson1_pass_live', 'lesson_progress_v2::it::lesson1_pass_live',
   // лесенка C (29.10): серверные дни итогов Learning V2 — пишет только сервер, правила режут клиенту
   'lv2_srv_day1', 'lv2_srv_day2',
   'collectibles_owned_v1', 'collectibles_state_v1',
@@ -1541,8 +1600,9 @@ export const isServerOwnedProgressKey = (key: string): boolean => {
   if (SERVER_OWNED_PROGRESS_KEYS.has(key)) return true;
   if (/^lesson\d+_(?:best_score|pass_count|progress|cellIndex)$/.test(key)) return true;
   if (/^level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
-  if (/^lesson_progress_v2::fr::(?:\d+|lesson\d+_(?:best_score|pass_count|progress|cellIndex)|unlocked_lessons)$/.test(key)) return true;
-  if (/^level_exams_v2::fr::level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
+  // зачем (классические курсы 04.11): те же серверные ключи для es|de|it — пара с серверной progress_events.isServerOwnedProgressKey
+  if (/^lesson_progress_v2::(?:es|fr|de|it)::(?:\d+|lesson\d+_(?:best_score|pass_count|progress|cellIndex)|unlocked_lessons)$/.test(key)) return true;
+  if (/^level_exams_v2::(?:es|fr|de|it)::level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
   return false;
 };
 

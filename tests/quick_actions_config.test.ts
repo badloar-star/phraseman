@@ -64,4 +64,17 @@ describe('ярлыки на значке', () => {
     const tabs = fs.readFileSync(path.join(root, 'app', '(tabs)', '_layout.tsx'), 'utf8');
     expect(tabs).toMatch(/<QuickActionsBridge \/>/);
   });
+
+  // правки Ревизора 04.11: онбординг и один initial за запуск
+  it('ярлыки и действия ждут конец онбординга', () => {
+    const bridge = fs.readFileSync(path.join(root, 'app', 'quick_actions_bridge.tsx'), 'utf8');
+    expect(bridge).toMatch(/whenOnboardingSettled\('quick_actions_items'\)/);
+    expect(bridge).toMatch(/whenOnboardingSettled\(`quick_action_\$\{source\}`\)/);
+  });
+
+  it('флаг начального действия — на уровне модуля, не useRef', () => {
+    const bridge = fs.readFileSync(path.join(root, 'app', 'quick_actions_bridge.tsx'), 'utf8');
+    expect(bridge).toMatch(/^let initialQuickActionHandled = false;/m);
+    expect(bridge).not.toMatch(/handledInitialRef/);
+  });
 });

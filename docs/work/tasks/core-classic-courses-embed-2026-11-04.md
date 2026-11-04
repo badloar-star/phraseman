@@ -1,6 +1,8 @@
 # Ядро · классические курсы EN/ES/FR/DE/IT вшиваются в сборку (04.11)
 
 Governance-ID: TG-D0259739868D
+Governance-ID: TG-97D9304FA903
+Governance-ID: TG-D05D64BC2611
 Governance-ID: TG-B83802AA895D
 Governance-ID: TG-608D3C8C6FC3
 Governance-ID: TG-FC7F06CB6E92
@@ -39,3 +41,8 @@ git revert коммита; деплой функции по имени отка�
 Scope: lesson1/lesson_complete передают studyTarget в getLessonData и не используют французскую удалённую подгрузку для фраз курса;
 ярлыки на значке (expo-quick-actions): конфиг, слушатель → существующие маршруты, 9 языков, сторож «конфиг ↔ маршруты».
 Прогресс пользователей не трогается (сторож 58fddbadd). Флаг CLASSIC_COURSES_RUNTIME_ENABLED остаётся false до слова координатора.
+
+## Хвост среза 1 и энергия от Пика (04.11)
+- Ярлыки: правки Ревизора (открывать действие только после онбординга; флаг initial на уровне модуля).
+- Синхронизация es/de/it: buildTargetLessonSyncKeys, isServerOwnedProgressKey es|fr|de|it парой клиент+сервер, блок pass_live в firestore.rules.
+- Энергия от Пика: spireEnergyBonus (+1/−1 за повышение/понижение, 0..11) в leaderboard/{uid}, потолок 5+max по языкам; замок 28.10 отменён владельцем.

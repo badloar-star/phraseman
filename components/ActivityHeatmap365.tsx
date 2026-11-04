@@ -568,6 +568,7 @@ export function MonthExplorerModal({
             accessibilityLabel={copy(lang, { ru: 'Предыдущий месяц', uk: 'Попередній місяць', es: 'Mes anterior', 'pt-BR': 'Mês anterior', vi: 'Tháng trước', id: 'Bulan sebelumnya', tr: 'Önceki ay', pl: 'Poprzedni miesiąc', en: 'Previous month' })}
             disabled={currentIndex <= 0}
             onPress={() => currentIndex > 0 && onMonthChange(monthKeys[currentIndex - 1]!)}
+            hitSlop={10} // зачем (раунд 2, 04.11): зона пальца ≥ 44 у стрелки месяца
             style={[styles.iconButton, { opacity: currentIndex > 0 ? 1 : 0.28 }]}
           >
             <BackGlyph size={20} color={monthGlass.text} />
@@ -584,6 +585,7 @@ export function MonthExplorerModal({
             accessibilityLabel={copy(lang, { ru: 'Следующий месяц', uk: 'Наступний місяць', es: 'Mes siguiente', 'pt-BR': 'Próximo mês', vi: 'Tháng sau', id: 'Bulan berikutnya', tr: 'Sonraki ay', pl: 'Następny miesiąc', en: 'Next month' })}
             disabled={currentIndex < 0 || currentIndex >= monthKeys.length - 1}
             onPress={() => currentIndex >= 0 && currentIndex < monthKeys.length - 1 && onMonthChange(monthKeys[currentIndex + 1]!)}
+            hitSlop={10} // зачем (раунд 2, 04.11): зона пальца ≥ 44 у стрелки месяца
             style={[styles.iconButton, { opacity: currentIndex >= 0 && currentIndex < monthKeys.length - 1 ? 1 : 0.28 }]}
           >
             <Ionicons name="chevron-forward" size={20} color={monthGlass.text} />
@@ -592,6 +594,7 @@ export function MonthExplorerModal({
             accessibilityRole="button"
             accessibilityLabel={copy(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij', en: 'Close' })}
             onPress={onClose}
+            hitSlop={10} // зачем (раунд 2, 04.11): зона пальца ≥ 44 у «закрыть»
             style={styles.iconButton}
           >
             <Ionicons name="close" size={20} color={monthGlass.text} />

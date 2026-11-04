@@ -99,7 +99,7 @@ test('without a start claim (builds before the 04.10 fix): the record stays prep
   const first = await prepareRound(1);
   if (first.status !== 'prepared') throw new Error('expected prepared');
   const firstQuota = await quota.consume({ token, receiptId: first.record.receiptId, mode: 'blitz' });
-  expect(firstQuota.used).toBe(1);
+  expect(firstQuota.used).toBe(0);
 
   // Как делали Блиц/«Вспомни»/«Устно» до починки 04.10 (см. flashcard_training_round_claim.test.ts): без claim переходы отвергаются…
   expect((await markFlashcardTrainingQuotaCommitted(account, first.record.fingerprint, 150, null)).status).toBe('claim_required');
@@ -115,6 +115,6 @@ test('without a start claim (builds before the 04.10 fix): the record stays prep
   // Новый раунд несёт квитанцию первого — списание считается повтором, остаток не меняется («28 из 30» до и после).
   expect(second.record.receiptId).toBe('blitz:attempt-1');
   const secondQuota = await quota.consume({ token, receiptId: second.record.receiptId, mode: 'blitz' });
-  expect(secondQuota.used).toBe(1);
-  expect(secondQuota.bypass).toBe('idempotent');
+  expect(secondQuota.used).toBe(0);
+  expect(secondQuota.bypass).toBe('unlimited');
 });

@@ -44,7 +44,9 @@ function allIntroText(screens: LessonIntroScreen[]): string {
 }
 
 describe('lesson 1 intro screen contract', () => {
-  const screens = getLessonIntroScreens(1);
+  // зачем (05.11): с включёнными классическими курсами getLessonIntroScreens(1) для языков курса отдаёт НОВЫЕ вступления (intro.json); этот контракт охраняет
+  // прежнее вступление урока 1 (LESSON_DATA[1]) — оно остаётся для языков без классического курса. 'ru' — не язык курса, поэтому идёт прежний путь.
+  const screens = getLessonIntroScreens(1, 'ru' as never);
   const text = allIntroText(screens);
 
   it('is wired to the dedicated lesson 1 intro content', () => {

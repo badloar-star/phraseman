@@ -114,28 +114,28 @@ beforeEach(() => {
 });
 afterEach(() => jest.restoreAllMocks());
 
-test.each(['blitz', 'recall', 'speaking'] as const)('%s: two rounds in a row on the same deck spend the monthly allowance twice', async (mode) => {
+test.each(['blitz', 'recall', 'speaking'] as const)('%s: two rounds in a row on the same deck keep distinct receipts without a monthly debit', async (mode) => {
   const quota = makeQuota();
   const first = await playRound(mode, 1, quota);
   expect(first).toMatchObject({ prepared: 'prepared', cleared: 'cleared' });
-  expect(first.quotaResult?.used).toBe(1);
+  expect(first.quotaResult?.used).toBe(0);
 
   const second = await playRound(mode, 2, quota);
   // Запись первого раунда очищена → второй раунд готовит СВОЮ запись с новой квитанцией.
   expect(second.prepared).toBe('prepared');
   expect(second.receiptId).not.toBe(first.receiptId);
-  expect(second.quotaResult?.used).toBe(2);
-  expect(second.quotaResult?.bypass).toBeNull();
+  expect(second.quotaResult?.used).toBe(0);
+  expect(second.quotaResult?.bypass).toBe('unlimited');
 });
 
-test('a double tap on «Start» with the same receipt spends the allowance once', async () => {
+test('a double tap on «Start» with the same receipt does not create a monthly debit', async () => {
   const quota = makeQuota();
   const [a, b] = await Promise.all([
     quota.consume({ token, receiptId: 'blitz:double-tap', mode: 'blitz' }),
     quota.consume({ token, receiptId: 'blitz:double-tap', mode: 'blitz' }),
   ]);
-  expect([a.used, b.used].sort()).toEqual([1, 1]);
-  expect((await quota.preview({ token })).used).toBe(1);
+  expect([a.used, b.used].sort()).toEqual([0, 0]);
+  expect((await quota.preview({ token })).used).toBe(0);
 });
 
 test('leaving before the first card refunds the energy exactly once', async () => {

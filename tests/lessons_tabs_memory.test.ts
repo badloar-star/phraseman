@@ -16,9 +16,10 @@ describe('вкладка «Обучение»: карта V2 по умолчан
     expect(src).not.toContain('userPickedTabRef');
   });
 
-  it('стартовая страница: вкладка + курс доступен → V2; отдельный маршрут старого списка остаётся старым; журнал [LESSONS-TABS]', () => {
+  it('стартовая страница всегда Classic после решения владельца; журнал [LESSONS-TABS] сохраняет причину', () => {
     expect(src).toContain('useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage, presentation, learningV2CanOpen))');
-    expect(src).toContain('initial === "lessons" && presentation === "tab" && learningV2CanOpen ? "v2" : initial');
+    expect(src).toContain('→ старт=lessons reason=owner_disabled');
+    expect(src).toContain('return "lessons";');
     expect(src).toContain('[LESSONS-TABS] вход: presentation=');
   });
 

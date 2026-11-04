@@ -744,7 +744,10 @@ function SessionContent() {
     }
     // зачем (жалоба Надежды 29.10, координатор: «чини сразу»): собеседник уже закончил разговор (coaching.ended), а человек закрыл итог
     // через «Ещё → Завершить» — это прохождение, а не остановка. Иначе тема оставалась 0 при засчитанной серии и заданиях дня.
-    const endedBy: 'bot' | 'manual' | 'limit' = requestedEndedBy === 'manual' && coaching.ended === true ? 'bot' : requestedEndedBy;
+    // зачем (тестер 30.10, 6/6 «Готово», счётчик диалогов 0): все цели выполнены, но собеседник ещё не закончил разговор
+    // (coaching.ended=false, allObjectivesComplete=true) — это тоже прохождение, а не остановка вручную.
+    const finishedByGoals = coaching.allObjectivesComplete === true && (model?.objectives.length ?? 0) > 0;
+    const endedBy: 'bot' | 'manual' | 'limit' = requestedEndedBy === 'manual' && (coaching.ended === true || finishedByGoals) ? 'bot' : requestedEndedBy;
     const learnerMessages = messages.filter((message) => message.author === 'learner' && !message.offLanguage);
     const learnerTurns = learnerMessages.length;
     if (learnerTurns === 0) refundEmptyDialogue('summary');

@@ -69,11 +69,12 @@ export function CommunityNotice({ lang }: Readonly<{ lang: Lang }>): React.JSX.E
 }
 
 const styles = StyleSheet.create({
-  box: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 52, paddingVertical: 8, paddingLeft: 10, paddingRight: 40, borderRadius: 16 },
+  box: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 52, paddingVertical: 8, paddingLeft: 10, paddingRight: 0, borderRadius: 16 },
   icon: { width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   iconText: { fontSize: 17, lineHeight: 20, fontWeight: '800' },
   text: { flex: 1, minWidth: 0, fontSize: 15, lineHeight: 20, fontWeight: '500' },
-  close: { position: 'absolute', right: -2, top: '50%', marginTop: -22, width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  // зачем (вердикт Макетов 04.11): крестик по центру высоты плашки в зоне 44×44 — обычный элемент строки (align-items:center), а не абсолютный; отрицательные поля не раздувают плашку
+  close: { width: 44, height: 44, borderRadius: 22, marginVertical: -8, marginRight: 0, alignItems: 'center', justifyContent: 'center' },
 });
 
 export default CommunityNotice;

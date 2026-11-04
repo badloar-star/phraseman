@@ -83,6 +83,7 @@ describe('плашка «Сообщество»: компонент и мест�
   it('крестик ≥44 px через KitTouchable, текст 15 px, без красной иконки, скрытие мгновенное', () => {
     expect(component).toContain('KitTouchable');
     expect(component).toMatch(/close: \{[^}]*width: 44, height: 44/);
+    expect(component).not.toMatch(/close: \{[^}]*position: 'absolute'/); // крестик по центру высоты плашки (вердикт Макетов 04.11), не прижат к верху
     expect(component).toMatch(/text: \{[^}]*fontSize: 15/);
     expect(component).toContain("setPhase('closing');"); // интерфейс реагирует до записи флага
     expect(component).toContain('closeCommunityNoticeForever');

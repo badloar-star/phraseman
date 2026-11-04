@@ -20,7 +20,8 @@
    "la"
   ],
   "it:11:17": [
-   "Tornate"
+   "Tornate",
+   "in"
   ],
   "it:12:50": [
    "poco"
@@ -243,7 +244,26 @@
   ],
   "it:30:05": [
    "partiata",
-   "partiato"
+   "partiato",
+   "parta"
+  ],
+  "it:01:13": [
+   "in"
+  ],
+  "it:03:37": [
+   "in"
+  ],
+  "it:05:09": [
+   "piantina"
+  ],
+  "fr:10:13": [
+   "billet"
+  ],
+  "en:02:23": [
+   "it"
+  ],
+  "de:09:33": [
+   "einen"
   ]
  },
  "answers": {
@@ -327,6 +347,22 @@
    "alternatives": [
     "Je ne suis pas ici."
    ]
+  },
+  "it:23:06": {
+   "target": "Parlate con loro.",
+   "tiles": [
+    "Parlate",
+    "con",
+    "loro"
+   ],
+   "accepted": [
+    [
+     "Parlate",
+     "con",
+     "loro"
+    ]
+   ],
+   "alternatives": []
   }
  }
 }

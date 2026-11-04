@@ -82,6 +82,7 @@ for (const f of readdirSync(join(ROOT, 'docs', 'work')).filter((n) => /^classic_
   }
 }
 const usedTranslationFixes = new Set();
+const translationNormalized = { n: 0 };
 const errors = [];
 const fail = (lang, msg) => { errors.push(`[${lang}] ${msg}`); };
 const warnings = [];
@@ -153,6 +154,14 @@ function buildPhrase(lang, prof, r, where) {
   const tfix = TRANSLATION_FIXES.get(fixKey);
   if (tfix) { usedTranslationFixes.add(fixKey); for (const l of ['ru', 'uk']) if (nonEmpty(tfix[l])) src[l] = tfix[l]; }
   if (tp) for (const l of ['ru', 'uk']) if (nonEmpty(tp[l])) src[l] = tp[l];
+  // ru/uk: убираем невидимые символы нулевой ширины и добавляем конечный знак, если его нет (Координатор 04.11, EN 07.21/07.46/08.19)
+  for (const l of ['ru', 'uk']) {
+    if (typeof src[l] !== 'string') continue;
+    let t = src[l].replace(/[​‌‍⁠﻿]/g, '').replace(/\s+/g, ' ').trim();
+    if (t && !/[.?!…»"”)]$/.test(t)) t += /[?!]$/.test(target.trim()) ? target.trim().slice(-1) : '.';
+    if (t !== src[l]) translationNormalized.n++;
+    src[l] = t;
+  }
   const sourceLocales = {};
   for (const l of LOCALES) {
     if (!nonEmpty(src[l])) fail(lang, `${where}: нет подсказки ${l}`);
@@ -180,6 +189,15 @@ function buildPhrase(lang, prof, r, where) {
     out.accepted = a.map(esTokens);
     // страховка: первый (канонический) путь должен совпасть с плитками в порядке
     if (JSON.stringify(out.accepted[0]) !== JSON.stringify(tiles.map((t) => t.correct))) fail(lang, `${where}: канонический ответ не равен плиткам`);
+  }
+  // сторож фрагментов: ru/uk — полная фраза (≥2 слов при целевой фразе ≥2 слов, знак конца, длина соизмерима с целью)
+  for (const l of ['ru', 'uk']) {
+    const t = sourceLocales[l];
+    const tw = target.trim().split(/\s+/).length;
+    const ratio = t.length / Math.max(1, target.trim().length);
+    if (tw >= 4 && t.split(/\s+/).length < 2) fail(lang, `${where}: перевод ${l} — фрагмент «${t}»`);
+    else if (ratio < 0.3 || ratio > 4) fail(lang, `${where}: перевод ${l} несоизмерим с целью (${t.length}/${target.trim().length}) «${t}»`);
+    if (!/[.?!…»"”)]$/.test(t)) fail(lang, `${where}: перевод ${l} без знака конца «${t}»`);
   }
   out.sourceLocales = sourceLocales;
   const keys = [].concat(r.clarifierKeys ?? r.contextCueKeys ?? (nonEmpty(r.clarifierKey) ? [r.clarifierKey] : []));
@@ -307,6 +325,11 @@ function badReason(lang, ctx, ph, i, d, mine) {
   if (ctx.articles.has(c) && ctx.articles.has(dd)) return 'article';
   if (sameGroup(ctx.synonyms, c, dd)) return 'synonym';
   if (youApplies(ph) && (sameGroup(ctx.youGroups, c, dd) || sibling(ctx.tails, c, dd))) return 'youForm';
+  // DE, уроки Perfekt (16–17): hatte/war на месте вспомогательного habe/ist — плюсквамперфект/претерит тоже верны (Координатор 04.11)
+  const pa = LISTS.perfektAux?.[lang];
+  if (pa && pa.lessons.includes(lesson) && pa.correct.includes(c) && pa.forbid.includes(dd)) return 'pos';
+  // регистр соблазна внутри фразы должен совпадать с плиткой (Hängt, Wartest, Kisten выдают себя): исключение — «I» и первая плитка
+  if (i > 0 && tile.correct !== 'I' && upperFirst(d) !== upperFirst(tile.correct)) return 'caseMismatch';
   if (lang === 'de' && ctx.timeAdv.has(dd) && !ctx.timeAdv.has(c)) return 'pos';
   if (lang === 'es' && c === 'fuera' && ctx.serForms.has(dd) && !/^(si|que|como|aunque)$/i.test(corrects[i - 1] ?? '')) return 'pos';
   if (ctx.numbers.has(dd) !== isNum || (CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
@@ -410,7 +433,8 @@ function fixDistractors(lang, all) {
       }
       if (kept.length < want) {
         // английские соблазны в архиве строчные даже у первой плитки (You → he, they); в остальных языках первая плитка с заглавной
-        const upperWanted = kept.length ? kept.filter(upperFirst).length * 2 > kept.length : (lang === 'en' ? ctx.nameTile.get(tile) === true : upperFirst(tile.correct));
+        // внутри фразы регистр соблазна обязан совпасть с плиткой (правило caseMismatch); первая плитка EN — строчные соблазны, остальные языки — как плитка
+        const upperWanted = i > 0 && tile.correct !== 'I' ? upperFirst(tile.correct) : kept.length ? kept.filter(upperFirst).length * 2 > kept.length : (lang === 'en' ? ctx.nameTile.get(tile) === true : upperFirst(tile.correct));
         const tried = new Set();
         // тайл-артикль: вместо чужих артиклей — притяжательные/указательные слова (грамматически неверная замена)
         if (ctx.articles.has(stripP(tile.correct))) for (const sub of LISTS.articleSubstitutes?.[lang] ?? []) {
@@ -418,12 +442,17 @@ function fixDistractors(lang, all) {
           const c = upperFirst(tile.correct) && upperWanted ? sub[0].toUpperCase() + sub.slice(1) : sub;
           if (!tried.has(c) && !badReason(lang, ctx, ph, i, c, kept)) { tried.add(c); kept.push(c); removed.refilled++; }
         }
+        // собственные имена из закрытых наборов (дни, месяцы, языки): замена только из того же набора
+        for (const set of LISTS.nameSets?.[lang] ?? []) if (set.includes(tile.correct)) for (const m of set) {
+          if (kept.length >= want) break;
+          if (m !== tile.correct && !tried.has(m) && !badReason(lang, ctx, ph, i, m, kept)) { tried.add(m); kept.push(m); removed.refilled++; }
+        }
         const anchors = [tile.correct, ...kept];
         const near = new Map();
         for (const a of anchors) for (const [c, k] of cooc.get(a) ?? []) near.set(c, (near.get(c) ?? 0) + k);
         const nearRanked = [...near.entries()].sort((a, b) => b[1] - a[1] || (everything.get(b[0]) ?? 0) - (everything.get(a[0]) ?? 0) || (a[0] < b[0] ? -1 : 1));
         // кандидат в нужном регистре: строчное имя собственное (wednesday) → Wednesday, если имя известно
-        const asWanted = (c) => (upperWanted && !upperFirst(c) && ctx.names.has(c[0].toUpperCase() + c.slice(1)) ? c[0].toUpperCase() + c.slice(1) : c);
+        const asWanted = (c) => (upperWanted && !upperFirst(c) && /^[\p{L}]/u.test(c) ? c[0].toUpperCase() + c.slice(1) : c);
         for (const [c0] of nearRanked) {
           const c = asWanted(c0);
           if (kept.length >= want) break;
@@ -569,6 +598,7 @@ for (const lang of LANGS) {
 checkTranslationFixesUsed();
 manifest.languages = Object.fromEntries(Object.keys(manifest.languages).sort().map((k) => [k, manifest.languages[k]]));
 if (!CHECK_ONLY && !errors.length) { mkdirSync(OUT, { recursive: true }); writeFileSync(manifestPath, JSON.stringify(manifest) + '\n'); }
+console.log(`переводы ru/uk: исправлено невидимых символов/знаков конца: ${translationNormalized.n}`);
 console.log(JSON.stringify(table));
 if (warnings.length) console.log(`ПРЕДУПРЕЖДЕНИЯ (${warnings.length}): ` + warnings.slice(0, 3).join(' | ') + ' …');
 if (errors.length) {

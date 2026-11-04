@@ -766,6 +766,34 @@
    [
     "maybe",
     "perhaps"
+   ],
+   [
+    "can",
+    "could",
+    "may"
+   ],
+   [
+    "fee",
+    "charge",
+    "price",
+    "cost",
+    "fare"
+   ],
+   [
+    "have",
+    "get"
+   ],
+   [
+    "at",
+    "by"
+   ],
+   [
+    "what",
+    "which"
+   ],
+   [
+    "in",
+    "into"
    ]
   ],
   "es": [
@@ -1238,6 +1266,73 @@
    "dass",
    "zu",
    "bei"
+  ]
+ },
+ "perfektAux": {
+  "de": {
+   "lessons": [
+    16,
+    17
+   ],
+   "correct": [
+    "habe",
+    "hast",
+    "hat",
+    "haben",
+    "habt",
+    "bin",
+    "bist",
+    "ist",
+    "sind",
+    "seid"
+   ],
+   "forbid": [
+    "hatte",
+    "hattest",
+    "hatten",
+    "hattet",
+    "war",
+    "warst",
+    "waren",
+    "wart"
+   ]
+  }
+ },
+ "nameSets": {
+  "en": [
+   [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+   ],
+   [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+   ],
+   [
+    "English",
+    "French",
+    "Spanish",
+    "German",
+    "Italian",
+    "Russian",
+    "Chinese",
+    "Polish"
+   ]
   ]
  }
 }

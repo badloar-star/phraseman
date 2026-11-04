@@ -177,6 +177,24 @@ describe('классические курсы: рантайм-данные', () 
       expect(counts).toEqual({ article: 0, synonym: 0, youForm: 0, pos: 0, nonWord: 0, unseen: 0, patch: 0, answers: 0 });
     });
 
+    // Переводы ru/uk — полные фразы: Переводчик однажды записал в fixes только слово из колонки «исправление» («рано», «Ваша»)
+    it('переводы ru/uk: полная фраза, знак конца, без невидимых символов', () => {
+      type P = { id: string; target: string; sourceLocales: { ru: string; uk: string } };
+      const bad: string[] = [];
+      for (const f of lessonFiles) for (const p of JSON.parse(read(lang, f)).phrases as P[]) {
+        const tw = p.target.trim().split(/\s+/).length;
+        for (const l of ['ru', 'uk'] as const) {
+          const t = p.sourceLocales[l];
+          const ratio = t.length / Math.max(1, p.target.trim().length);
+          if (/[​‌‍⁠﻿]/.test(t)) bad.push(`${p.id} ${l}: невидимый символ`);
+          if (!/[.?!…»"”)]$/.test(t)) bad.push(`${p.id} ${l}: нет знака конца «${t}»`);
+          if (tw >= 4 && t.split(/\s+/).length < 2) bad.push(`${p.id} ${l}: фрагмент «${t}»`);
+          if (ratio < 0.3 || ratio > 4) bad.push(`${p.id} ${l}: длина ${t.length}/${p.target.length} «${t}»`);
+        }
+      }
+      expect(bad).toEqual([]);
+    });
+
     it('в lessons-NN нет «жира» архива', () => {
       const fat: string[] = [];
       for (const f of lessonFiles) {
@@ -217,5 +235,25 @@ describe('классические курсы: рантайм-данные', () 
       const total = files.reduce((s, f) => s + fs.statSync(path.join(ROOT, lang, f)).size, 0);
       expect(total / 1048576).toBeLessThanOrEqual(BUDGET_MB[lang] ?? 5);
     });
+  });
+});
+
+describe('классические курсы: файлы правок переводов', () => {
+  const dir = path.join(__dirname, '..', 'docs', 'work');
+  const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((n) => /^classic_translation_fixes_.*\.json$/.test(n)) : [];
+  it.each(files)('%s: правки — полные фразы', (name) => {
+    const fixes = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8')) as Record<string, Record<string, string>>;
+    const bad: string[] = [];
+    for (const [k, v] of Object.entries(fixes)) {
+      if (k.startsWith('_')) continue;
+      for (const l of ['ru', 'uk']) {
+        const t = v[l];
+        if (t === undefined) continue;
+        if (/[​‌‍⁠﻿]/.test(t)) bad.push(`${k} ${l}: невидимый символ`);
+        if (t.trim().split(/\s+/).length < 2 && !/^(Да|Нет|Так|Ні)[.!?]$/.test(t)) bad.push(`${k} ${l}: фрагмент «${t}»`);
+        if (!/[.?!…»"”)]$/.test(t.trim())) bad.push(`${k} ${l}: нет знака конца «${t}»`);
+      }
+    }
+    expect(bad).toEqual([]);
   });
 });

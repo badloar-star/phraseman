@@ -481,6 +481,64 @@ function fixDistractors(lang, all) {
   return { removed, left: auditDistractors(lang, all, ctx), shortSamples };
 }
 
+
+// ── допустимые формы «вы» (Координатор 04.11): для фраз, где в ru «вы» или нет указания лица, верные формы 2-го лица/вежливые/множественные
+// того же глагола принимаются как ответ (accepted/alternatives/answers). Только внутри пары по числу (2sg↔3sg, 2pl↔3pl), чтобы не менялось
+// согласование прилагательных; в DE (предикатив не согласуется) — любая из четырёх. Форма должна быть реальным словом курса (vocab).
+// Фразы с явными местоимениями, притяжательными и клитиками пропускаем (там замена тянет за собой согласование).
+const capLike = (orig, w) => (orig[0] !== orig[0].toLowerCase() ? w[0].toUpperCase() + w.slice(1) : w);
+function youVariantsOf(lang, token, vocab) {
+  const low = token.toLowerCase();
+  const out = new Set();
+  const pairs = lang === 'de' ? [[0, 1, 2, 3]] : [[0, 1], [2, 3]];
+  const consider = (group, k) => {
+    const mates = pairs.find((p) => p.includes(k));
+    if (!mates) return;
+    for (const j of mates) if (j !== k && group[j] && group[j].toLowerCase() !== low) out.add(group[j]);
+  };
+  for (const g of LISTS.youVerbParadigms?.[lang] ?? []) { const k = g.indexOf(low); if (k >= 0) consider(g, k); }
+  for (const q of LISTS.youRegularTails?.[lang] ?? []) {
+    for (let k = 0; k < q.length; k++) {
+      if (!low.endsWith(q[k]) || low.length - q[k].length < 3) continue;
+      const stem = low.slice(0, low.length - q[k].length);
+      const group = q.map((t) => stem + t);
+      consider(group, k);
+    }
+  }
+  return [...out].filter((w) => vocab.has(stripP(w))).map((w) => capLike(token, w));
+}
+function addYouVariants(lang, all) {
+  const stat = { phrases: 0, variants: 0 };
+  if (!['es', 'fr', 'it', 'de'].includes(lang)) return stat;
+  const skip = new Set(LISTS.youSkipTokens?.[lang] ?? []);
+  const vocab = new Map();
+  for (const ph of all) for (const t of [...ph.tiles.map((x) => x.correct), ...(ph.accepted ?? []).flat(), ...ph.alternatives.flatMap((a) => a.split(/\s+/))]) vocab.set(stripP(t), 1);
+  for (const ph of all) {
+    // «Вы (вежл.)» — явная вежливая форма: принимать tu/voi нельзя
+    if (!youApplies(ph) || /вежл|ввічл/i.test(`${ph.sourceLocales?.ru ?? ''} ${ph.sourceLocales?.uk ?? ''}`)) continue;
+    const toks = ph.tiles.map((t) => t.correct);
+    if (toks.some((t) => skip.has(stripP(t)))) continue;
+    const baseStrings = [ph.target, ...ph.alternatives].filter((x, i, a) => a.indexOf(x) === i);
+    const newAccepted = [];
+    const newStrings = [];
+    toks.forEach((tok, i) => {
+      for (const v of youVariantsOf(lang, tok, vocab)) {
+        const path = toks.map((x, j) => (j === i ? v : x));
+        if (!(ph.accepted ?? []).some((p) => keyOf(p) === keyOf(path)) && !newAccepted.some((p) => keyOf(p) === keyOf(path))) newAccepted.push(path);
+        const re = new RegExp('(?<![\\p{L}])' + tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![\\p{L}])', 'u');
+        for (const b of baseStrings) if (re.test(b)) { const s = b.replace(re, v); if (!ph.alternatives.includes(s) && s !== ph.target && !newStrings.includes(s)) newStrings.push(s); }
+      }
+    });
+    if (!newAccepted.length) continue;
+    if (ph.accepted) ph.accepted.push(...newAccepted);
+    ph.alternatives.push(...newStrings);
+    if (ph.answers) ph.answers.push(...[ph.target, ...newStrings].filter((s) => !ph.answers.includes(s)));
+    stat.phrases++;
+    stat.variants += newAccepted.length;
+  }
+  return stat;
+}
+
 function convert(lang, zips) {
   const prof = PROFILES[lang];
   if (!prof) throw new Error(`неизвестный язык ${lang}`);
@@ -536,7 +594,11 @@ function convert(lang, zips) {
     theory[n] = th;
   }
   if (phrases !== 1600) fail(lang, `всего ${phrases} фраз вместо 1600`);
-  const dstat = fixDistractors(lang, Object.values(files).filter((f) => f.phrases).flatMap((f) => f.phrases));
+  const allPhrases = Object.values(files).filter((f) => f.phrases).flatMap((f) => f.phrases);
+  const ystat = addYouVariants(lang, allPhrases);
+  const dstat = fixDistractors(lang, allPhrases);
+  dstat.removed.youVariantPhrases = ystat.phrases;
+  dstat.removed.youVariants = ystat.variants;
   for (const [rule, n] of Object.entries(dstat.left)) if (n) fail(lang, `соблазны: правило ${rule} — осталось ${n}`);
   if (dstat.removed.short) fail(lang, `соблазны: ${dstat.removed.short} плиток с недобором соблазнов`);
   files['intro.json'] = intro;

@@ -195,6 +195,21 @@ describe('классические курсы: рантайм-данные', () 
       expect(bad).toEqual([]);
     });
 
+    it('допустимые ответы: без дублей, каждый путь непустой, канонический первым', () => {
+      type P = { id: string; target: string; tiles: { correct: string }[]; accepted?: string[][]; alternatives: string[]; answers?: string[] };
+      const bad: string[] = [];
+      const norm = (a: string[]) => a.join(' ').toLowerCase();
+      for (const f of lessonFiles) for (const p of JSON.parse(read(lang, f)).phrases as P[]) {
+        const acc = (p.accepted ?? []).map(norm);
+        if (new Set(acc).size !== acc.length) bad.push(`${p.id}: дубли accepted`);
+        if (new Set(p.alternatives).size !== p.alternatives.length) bad.push(`${p.id}: дубли alternatives`);
+        if (p.alternatives.includes(p.target)) bad.push(`${p.id}: target в alternatives`);
+        if (p.answers && new Set(p.answers).size !== p.answers.length) bad.push(`${p.id}: дубли answers`);
+        if (p.accepted && acc[0] !== norm(p.tiles.map((t) => t.correct))) bad.push(`${p.id}: первым не канонический путь`);
+      }
+      expect(bad).toEqual([]);
+    });
+
     it('в lessons-NN нет «жира» архива', () => {
       const fat: string[] = [];
       for (const f of lessonFiles) {

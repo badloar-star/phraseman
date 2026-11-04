@@ -102,6 +102,7 @@ function Inner() {
     if (params.appearance === 'light' || params.appearance === 'dark') setDevAppearance(params.appearance);
     return () => setDevAppearance(previous);
   }, [params.appearance]);
+  console.log('[PEAK-B] параметры превью', JSON.stringify({ peakB: params.peakB ?? null, state: params.state ?? null, dev: typeof __DEV__ !== 'undefined' ? __DEV__ : 'нет' })); // guard-ok: диагностика 05.11 (одна строка на рендер превью)
   setPeakScreenV2DevOverride(params.peakB === '1' ? true : null); // зачем (Сверка 05.11): ?peakB=1 — живой экран Пика сразу в варианте B, только dev
   const model = useMemo(() => spirePreviewModel(state, overrides), [state, overrides]);
   const step = isSpireStepPreviewState(state);

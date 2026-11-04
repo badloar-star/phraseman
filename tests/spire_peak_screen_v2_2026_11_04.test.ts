@@ -54,20 +54,14 @@ describe('экран Пика, вариант B', () => {
     expect(dev).toContain("__DEV__ && params.state === 'peak_screen'");
   });
 
-  it('dev-override ?peakB=1 включает B только в dev; без него — константа (по умолчанию выключена)', () => {
-    const prevDev = (globalThis as { __DEV__?: boolean }).__DEV__;
-    expect(peakScreenV2On()).toBe(false);
-    (globalThis as { __DEV__?: boolean }).__DEV__ = true;
+  it('dev-override ?peakB=1 включает B независимо от __DEV__ (маршрут превью сам закрыт в релизе); без него — константа', () => {
+    expect(peakScreenV2On()).toBe(PEAK_SCREEN_V2_ENABLED);
     setPeakScreenV2DevOverride(true);
     expect(peakScreenV2On()).toBe(true);
     setPeakScreenV2DevOverride(null);
     expect(peakScreenV2On()).toBe(PEAK_SCREEN_V2_ENABLED);
-    (globalThis as { __DEV__?: boolean }).__DEV__ = false;
-    setPeakScreenV2DevOverride(true);
-    expect(peakScreenV2On()).toBe(PEAK_SCREEN_V2_ENABLED);
-    setPeakScreenV2DevOverride(null);
-    (globalThis as { __DEV__?: boolean }).__DEV__ = prevDev;
     expect(fs.readFileSync(path.join(root, 'app/dev_spire_preview.tsx'), 'utf8')).toContain("setPeakScreenV2DevOverride(params.peakB === '1' ? true : null)");
+    expect(read('components/spire/peak/peak_screen_flag.ts')).not.toMatch(/__DEV__\s*\?\s*value/);
   });
 
   it('превью Шпиля понимает ?appearance=light|dark и вход в «Все участники» только в состоянии all', () => {

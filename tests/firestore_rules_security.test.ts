@@ -727,10 +727,10 @@ ${indent}}`,
       expect(rules).toContain(`'${key}'`);
     }
     expect(cloudSync).toMatch(
-      /lesson_progress_v2::fr::\(\?:\\d\+\|lesson\\d\+_\(\?:best_score\|pass_count\|progress\|cellIndex\)\|unlocked_lessons\)/,
+      /lesson_progress_v2::\(\?:es\|fr\|de\|it\)::\(\?:\\d\+\|lesson\\d\+_\(\?:best_score\|pass_count\|progress\|cellIndex\)\|unlocked_lessons\)/,
     );
     expect(cloudSync).toMatch(
-      /level_exams_v2::fr::level_exam_\[A-Za-z0-9_-\]\+_\(\?:pct\|best_pct\|passed\|pass_count\|completed_at\)/,
+      /level_exams_v2::\(\?:es\|fr\|de\|it\)::level_exam_\[A-Za-z0-9_-\]\+_\(\?:pct\|best_pct\|passed\|pass_count\|completed_at\)/,
     );
     expect(cloudSync).toMatch(
       /SERVER_OWNED_PROGRESS_KEYS[\s\S]*?'shard_survey_last_at_ms'/,

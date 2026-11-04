@@ -6,6 +6,7 @@ import React from 'react';
 type SlotProps = React.ComponentProps<typeof import('./PeakScreenV2').default>;
 
 export default function PeakScreenSlot(props: SlotProps): React.JSX.Element {
+  console.log('[PEAK-B] PeakScreenSlot отрисован: B подгружается', JSON.stringify({ members: props.members === null ? null : props.members.length, rankBy: props.rankBy, floor: props.floor })); // guard-ok: диагностика 05.11, кадры Пика B
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { default: PeakScreenV2 } = require('./PeakScreenV2') as typeof import('./PeakScreenV2');
   return <PeakScreenV2 {...props} />;

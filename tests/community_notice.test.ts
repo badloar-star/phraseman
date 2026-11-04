@@ -46,6 +46,35 @@ describe('плашка «Сообщество»: выбор текста по н
   });
 });
 
+describe('плашка «Сообщество»: тексты точно по таблице Переводчика', () => {
+  const table = read('docs/work/community_notices_9lang.md').split('\n').filter((line) => /^\| communityNotice[1-5] /.test(line));
+  const LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+  it('5 строк × 9 языков совпадают с docs/work/community_notices_9lang.md, ≤65 знаков, не пусты', () => {
+    expect(table).toHaveLength(5);
+    table.forEach((line, index) => {
+      const cells = line.split('|').slice(2, 11).map((cell) => cell.trim());
+      LANGS.forEach((lang, langIndex) => {
+        expect(COMMUNITY_NOTICE_TEXTS[index][lang]).toBe(cells[langIndex]);
+        expect(cells[langIndex].length).toBeGreaterThan(10);
+        expect(cells[langIndex].length).toBeLessThanOrEqual(65);
+      });
+    });
+  });
+  it('нигде нет русской копии в чужом языке (кроме совпадающих по смыслу ключей)', () => {
+    for (const row of COMMUNITY_NOTICE_TEXTS) {
+      for (const lang of LANGS.filter((item) => item !== 'ru')) expect(row[lang]).not.toBe(row.ru);
+    }
+  });
+  it('«Оставить отклик» (leaveResponse) и «Понял» (gotItClose) — все 9 языков из таблицы подключены в коде', () => {
+    const doc = read('docs/work/community_notices_9lang.md').split('\n');
+    const cellsOf = (key: string) => doc.find((line) => line.startsWith(`| ${key} `))!.split('|').slice(2, 11).map((cell) => cell.trim());
+    const scene = read('components/packs/CommunityPackScene.tsx');
+    const notice = read('components/packs/CommunityNotice.tsx');
+    for (const value of cellsOf('leaveResponse')) expect(scene).toContain(value);
+    for (const value of cellsOf('gotItClose')) expect(notice).toContain(value);
+  });
+});
+
 describe('плашка «Сообщество»: закрыл — навсегда', () => {
   it('до крестика читается «не закрыта», после — «закрыта» и не зависит от недели', async () => {
     const store = memoryStore();

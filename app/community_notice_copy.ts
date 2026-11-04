@@ -1,6 +1,6 @@
 /**
- * Тексты плашки «Наборы от пользователей» в разделе Сообщество: 5 вариантов × 9 языков (Переводчик, docs/work/community_notices_9lang.md, коммит 22283708a).
- * зачем (макет утверждён владельцем 04.11): честное предупреждение с юмором; вариант выбирается номером ISO-недели mod 5 (community_notice.ts).
+ * Тексты плашки «Наборы от пользователей» в разделе Сообщество: 5 вариантов × 9 языков (Переводчик, docs/work/community_notices_9lang.md, коммит 23bb9af3b).
+ * зачем (макет утверждён владельцем 04.11): честное предупреждение с юмором; вариант выбирается номером ISO-недели mod 5 (community_notice.ts). Сверка с таблицей — tests/community_notice.test.ts.
  */
 import type { Lang } from '../constants/i18n';
 
@@ -22,7 +22,7 @@ export const COMMUNITY_NOTICE_TEXTS: ReadonlyArray<Readonly<Record<Lang, string>
     en: "Community sets: free, made with love, no guarantees.",
     es: "Sets de la comunidad: gratis, con cariño y sin garantías.",
     'pt-BR': "Conjuntos da comunidade: de graça, com carinho e sem garantias.",
-    vi: "Bộ thẻ cộng đồng: miễn phí, làm bằng cả tấm lòng, không đảm bảo gì cả.",
+    vi: "Bộ thẻ cộng đồng: miễn phí, từ cả tấm lòng, không bảo đảm.",
     id: "Set komunitas: gratis, dibuat dengan sepenuh hati, tanpa jaminan.",
     tr: "Topluluk setleri: ücretsiz, içtenlikle hazırlanmış, garantisiz.",
     pl: "Zestawy społeczności: za darmo, od serca i bez gwarancji.",

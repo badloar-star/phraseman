@@ -6,7 +6,6 @@ export type OverlayKey =
   | 'legacyBonusWelcome'
   | 'coinRankEnough'
   | 'sectionOpening'
-  | 'arenaOpponentFound'
   | 'update'
   | 'releaseNotes'
   | 'broadcast'
@@ -44,11 +43,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   // (welcome) схлопывался («мелькнул и пропал»), стек презентаций зависал (фриз). Через
   // арбитр welcome держит единственный слот первым, остальные ждут очереди.
   'onboardingWelcome',
-  // arenaOpponentFound — предложение найденного матча. Живёт всего 12 секунд
-  // (серверное окно согласия) и ждать очереди за наградами и обновлениями не
-  // может: пока оно стоит в очереди, срок истечёт и человек увидит пустой
-  // экран вместо соперника. Пропускает вперёд только приветствие новичка.
-  'arenaOpponentFound',
+  // зачем (координатор 04.11): ключ Арены arenaOpponentFound удалён — Арена снята в 2.0 (D83), владельца у окна нет.
   'update',
   'authRecovery',
   // spireWeekMoment — окно итога недели Пика (D191, владелец 14.10): «при первом открытии после закрытия недели, раньше всех
@@ -204,7 +199,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   legacyBonusWelcome: false,
   coinRankEnough: false,
   sectionOpening: false,
-  arenaOpponentFound: false,
   update: false,
   releaseNotes: false,
   broadcast: false,

@@ -48,6 +48,16 @@ export function shouldShowWelcome(input: Readonly<{ isNew: boolean; alreadyShown
   return input.isNew && !input.alreadyShown;
 }
 
+// зачем (риск Ревизора, координатор 04.11): время создания аккаунта Auth может быть ещё неизвестно в момент показа (первый запуск, сеть/Auth не успели) —
+// вердикт 'account_age_unknown' НЕ фиксируется, и приветствие не должно потеряться: перепроверяем через 3, 8 и 20 с (максимум 3 раза), без записи «не новый».
+export const WELCOME_RETRY_DELAYS_MS: readonly number[] = [3_000, 8_000, 20_000];
+
+/** Через сколько мс перепроверить вердикт (null — не нужно). Только 'account_age_unknown' и только до исчерпания попыток. */
+export function nextWelcomeRetryDelayMs(reason: string, attempt: number): number | null {
+  if (reason !== 'account_age_unknown') return null;
+  return attempt >= 0 && attempt < WELCOME_RETRY_DELAYS_MS.length ? WELCOME_RETRY_DELAYS_MS[attempt]! : null;
+}
+
 /** force — только dev-съёмка (превью Шпиля ?state=welcome): показать без проверки «новый» и без ключа «показано», ничего не писать и не переходить. */
 export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {}): React.JSX.Element | null {
   const router = useRouter();
@@ -71,15 +81,25 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
       return undefined;
     }
     let cancelled = false;
-    void (async () => {
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    const check = async (attempt: number): Promise<void> => {
       const [verdict, shown] = await Promise.all([readRankGateUserVerdict(), AsyncStorage.getItem(welcomeB3ShownKey(owner))]);
       const show = shouldShowWelcome({ isNew: verdict.isNew, alreadyShown: shown !== null });
-      console.log('[WELCOME-B3]', JSON.stringify({ show, isNew: verdict.isNew, reason: verdict.reason, alreadyShown: shown !== null })); // guard-ok: одна строка на запуск
-      if (!cancelled && show) setWants(true);
-    })().catch((error: unknown) => {
+      const retryInMs = show ? null : nextWelcomeRetryDelayMs(verdict.reason, attempt);
+      console.log('[WELCOME-B3]', JSON.stringify({ show, isNew: verdict.isNew, reason: verdict.reason, alreadyShown: shown !== null, attempt, retryInMs })); // guard-ok: одна строка на проверку
+      if (cancelled) return;
+      if (show) { setWants(true); return; }
+      if (retryInMs !== null) {
+        retryTimer = setTimeout(() => {
+          retryTimer = null;
+          void check(attempt + 1).catch((error: unknown) => console.warn('[WELCOME-B3] gate retry failed', error instanceof Error ? error.message : String(error)));
+        }, retryInMs);
+      }
+    };
+    void check(0).catch((error: unknown) => {
       console.warn('[WELCOME-B3] gate read failed', error instanceof Error ? error.message : String(error));
     });
-    return () => { cancelled = true; };
+    return () => { cancelled = true; if (retryTimer) clearTimeout(retryTimer); };
   }, [force, owner]);
 
   // «показано» отмечаем сразу при закрытии любым способом — повтор не нужен

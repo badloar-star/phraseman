@@ -227,9 +227,6 @@ describe('OverlayArbiter: исчерпывающая классификация 
     // friendPairMilestone — веха «Серия вдвоём» (идея 1): закрывает человек («Отлично» / свайп), таймера нет — выселять нельзя.
     'friendPairMilestone',
     'devHub', 'compassBriefing',
-    // зачем (11.10): ключ Арены (D83) ещё живёт в overlay_arbiter_core — удалить его решает владелец (см.
-    // app_events_overlay_registry). Пока он там, классифицируем как в ядре: не force-evictable.
-    'arenaOpponentFound',
     // coinsMigration — одноразовый информ-модал «Осколки → Монеты»: награды нет,
     // но окно закрывает юзер — выселять таймером нельзя.
     'coinsMigration',

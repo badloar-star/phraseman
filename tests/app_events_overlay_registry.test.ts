@@ -67,7 +67,6 @@ const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([
   'matchFoundToastScreen',
   // зачем (04.10, разбор по git): ключи снятых в 2.0 поверхностей — владельцы удалены, ключ ждёт решения
   // владельца об удалении из overlay_arbiter_core (в утреннем списке координатора).
-  'arenaOpponentFound', // Арена удалена (D83), тост находки соперника — b3fe5ef75 → снят в efe19ae9d
   'coachToast', // хост коуч-тоста снят (b47eb0e01)
   'friendGift', // подарок другу снят в снимке 2.0 (efe19ae9d)
   'levelUp', // модалка уровня удалена, повышение играется на Главной (1b0ee9d52)

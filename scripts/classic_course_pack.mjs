@@ -67,6 +67,11 @@ function openZip(path) {
 const sha256 = (b) => createHash('sha256').update(b).digest('hex');
 const pad2 = (n) => String(n).padStart(2, '0');
 const nonEmpty = (s) => typeof s === 'string' && s.trim().length > 0;
+// зачем (Координатор 04.11): пробелы и ошибки словарей архива закрывает Переводчик в docs/work/classic_gloss_overrides.json —
+// {"en": {"<ключ глоссы>": {локаль: значение}}, "es": {"<лемма>": {локаль: значение}}}. pl пока HOLD: оставляем как в архиве.
+const OVERRIDES_PATH = join(ROOT, 'docs', 'work', 'classic_gloss_overrides.json');
+const OVERRIDES = existsSync(OVERRIDES_PATH) ? JSON.parse(readFileSync(OVERRIDES_PATH, 'utf8')) : {};
+const overrideLocales = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr'];
 const errors = [];
 const fail = (lang, msg) => { errors.push(`[${lang}] ${msg}`); };
 const warnings = [];
@@ -159,6 +164,7 @@ function buildPhrase(lang, prof, r, where) {
 
 function buildGlossary(lang, prof, take, zips) {
   const lemmas = [];
+  const usedEsOverrides = new Set();
   if (lang === 'en') {
     const g = take('glossary.json');
     const copy = take('copy.json');
@@ -166,14 +172,20 @@ function buildGlossary(lang, prof, take, zips) {
       // v3: у 45 глосс (формы вроде leads, spoons, boots) нет переводов ни в copy.json, ни где-либо ещё в архиве — кладём только en
       // и предупреждаем (не ошибка): решение о запасном тексте — за Ядром
       let meaning = copy[e.gloss];
-      if (!meaning || LOCALES.some((l) => !nonEmpty(meaning[l]))) { warn(lang, `словарь ${key}: «${e.gloss}» только на английском`); meaning = { en: e.gloss }; }
+      const ov = OVERRIDES.en?.[key];
+      if (ov) {
+        for (const l of overrideLocales) if (!nonEmpty(ov[l])) fail(lang, `правка словаря ${key}: нет ${l}`);
+        meaning = { ...(meaning ?? {}), en: e.gloss, ...ov };
+      } else if (!meaning || LOCALES.some((l) => !nonEmpty(meaning[l]))) { warn(lang, `словарь ${key}: «${e.gloss}» только на английском`); meaning = { en: e.gloss }; }
       lemmas.push({ lemma: e.head, meaning: Object.fromEntries(LOCALES.filter((l) => nonEmpty(meaning[l])).map((l) => [l, meaning[l]])), firstLesson: e.first, phraseIds: e.refs.map((x) => `en-classic-r1:${x}`) });
     }
   } else if (lang === 'es') {
     const led = take('ledger.json');
     for (const [key, e] of Object.entries(led)) {
       if (LOCALES.some((l) => !nonEmpty(e.glosses?.[l]))) fail(lang, `словарь ${key}: глосса не на 9 языках`);
-      lemmas.push({ lemma: e.lemma, meaning: Object.fromEntries(LOCALES.map((l) => [l, e.glosses?.[l]])), firstLesson: Number(String(e.firstLesson).split(':')[1]), phraseIds: e.examples });
+      const ov = OVERRIDES.es?.[e.lemma];
+      if (ov) { usedEsOverrides.add(e.lemma); for (const [l, v] of Object.entries(ov)) { if (!nonEmpty(v) || l === 'pl') fail(lang, `правка словаря ${e.lemma}: ${l}`); } }
+      lemmas.push({ lemma: e.lemma, meaning: Object.fromEntries(LOCALES.map((l) => [l, ov?.[l] ?? e.glosses?.[l]])), firstLesson: Number(String(e.firstLesson).split(':')[1]), phraseIds: e.examples });
     }
   } else {
     const led = take('ledger.json');
@@ -187,6 +199,8 @@ function buildGlossary(lang, prof, take, zips) {
       lemmas.push({ lemma: e.term, meaning: Object.fromEntries(LOCALES.map((l) => [l, m[l]])), firstLesson, phraseIds: e.examples });
     }
   }
+  if (lang === 'es') for (const k of Object.keys(OVERRIDES.es ?? {})) if (!usedEsOverrides.has(k)) fail(lang, `правка словаря: лемма «${k}» не найдена`);
+  if (lang === 'en') for (const k of Object.keys(OVERRIDES.en ?? {})) if (!lemmas.length || !Object.hasOwn(take('glossary.json'), k)) fail(lang, `правка словаря: ключ «${k}» не найден`);
   return { lemmas };
 }
 

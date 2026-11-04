@@ -35,7 +35,7 @@ describe('светлая строка состояния на тёмных сц�
     const tabs = readSource('app/(tabs)/_layout.tsx');
     // 25.10 (срочно, «скролл дёрганый»): хуки — в листьях SceneStatusBarControllers, корень оболочки не перерисовывается от прокрутки; в самом корне хуков порога больше нет
     expect(tabs).toContain('<HomeSceneStatusBarController scrollY={topFadeScroll?.scrollY} enabled={tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0} />');
-    expect(tabs).toContain('<SeasonStatusBarController enabled={tabsFocused && SEASON_SCENE_V2_ENABLED && visualIdx === 1} />');
+    expect(tabs).toContain('<SeasonStatusBarController enabled={tabsFocused && !LEARNING_V2_HIDDEN && SEASON_SCENE_V2_ENABLED && visualIdx === 1} />');
     expect(tabs).not.toContain('useAnimatedAtTop(');
     expect(tabs).not.toContain('useSeasonCoverTop(');
     const leaves = readSource('components/home/v2/scene/SceneStatusBarControllers.tsx');

@@ -2,6 +2,7 @@
 
 Governance-ID: TG-16FB8FA53FF9
 Governance-ID: TG-E3E231B1E229
+Governance-ID: TG-9692DD06D17A
 Status: В работе
 Owner: «5 · ВХОД» (поручение координатора 04.11)
 
@@ -47,3 +48,10 @@ V2_UNLOCK_MIN_COMPLETED_EPISODES (=1) бит.
 ## Rollback
 
 Откат коммита. Данные не мигрируются; ключи прогресса не меняются.
+
+## Продолжение 04.11 (TG-9692DD06D17A): страница Season и ленивые импорты
+
+- Scope: `app/(tabs)/_layout.tsx` — полноэкранность страницы «Сезон» привязана к живому флагу V2 (хук `useLearningV2Visibility`, флаг в зависимостях `useMemo`, условие на `SeasonStatusBarController`). В HEAD условия по флагу там не было вовсе.
+- Architecture: тот же механизм, что в основном коммите; правка патчем от HEAD, чужие правки в файле (вынос `TABS` в `constants/mainTabs`) не берутся.
+- Security and privacy: данных нет. Technical debt: ленивые V2-импорты в `lessons.tsx` не делаются — экран «Обучение» уже грузится отложенно (`require('./lessons')` по требованию), выигрыш мал, а риск высок (десятки сторожей читают исходник); решение вернуть, если замер старта покажет вклад модуля.
+- Verification: тест в чистой копии HEAD + мои файлы (`safe_top_one_canvas_contract`, `scene_light_status_bar_2026_10_24`). Rollback: откат коммита.

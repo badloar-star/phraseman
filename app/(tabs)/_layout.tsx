@@ -15,6 +15,8 @@ import TopFadeMask from '../../components/TopFadeMask';
 import HomeSceneStatusStrip from '../../components/home/v2/scene/HomeSceneStatusStrip';
 import { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/home_scene_flag';
 import { SEASON_SCENE_V2_ENABLED } from '../../components/learning-v2/season/season_flags';
+import { LEARNING_V2_HIDDEN } from '../learning_v2_visibility_switch';
+import { useLearningV2Visibility } from '../learning_v2_progress_gate';
 import { useIsFocused } from '@react-navigation/native';
 import { HomeSceneStatusBarController, SeasonStatusBarController } from '../../components/home/v2/scene/SceneStatusBarControllers';
 import { noteHomeRender } from '../home_scroll_probe';
@@ -656,13 +658,15 @@ function TabScaffold({
   const insets = useStableSafeAreaInsets();
   // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ… НЕ ОТЛИЧАЕТСЯ ПО ЦВЕТУ»): со «Сценой» страница Главной
   // полноэкранная — сцена рисует фон от верха экрана, шапка отступает сама; без сцены отступ под часы прежний, как у всех вкладок.
+  // зачем (владелец 04.11, заморозка V2): полноэкранность «Сезона» зависит от живого флага V2 — хук перерисовывает, когда проверка прогресса его открыла
+  const v2VisibilityVersion = useLearningV2Visibility();
   const homeFullBleedPages = useMemo<readonly number[]>(
     () => [
       ...(HOME_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(0, pageLayout)] : []),
       // зачем (владелец 22.10: высота сцен 46 % для всех, фон до самого верха): «Сезон» во вкладке «Уроки» — полноэкранная страница; шапка Уроков и обложка отступают сами (TabTopBleedContext)
-      ...(SEASON_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(1, pageLayout)] : []),
+      ...(!LEARNING_V2_HIDDEN && SEASON_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(1, pageLayout)] : []),
     ],
-    [pageLayout],
+    [pageLayout, v2VisibilityVersion],
   );
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const [devOverlayVisible, setDevOverlayVisible] = useState(false);
@@ -835,7 +839,7 @@ function TabScaffold({
       {/* зачем (Пик v2, эталон peak-scene-v2.html): «Сцена» Пика уходит под часы — полоса цветом верха сцены, только на «Сообществе» */}
       <HomeSceneStatusStrip height={insets.top} scrollY={topFadeScroll?.scrollY} visible={visualIdx === communityLogicalIdx} source="spire" />
       <HomeSceneStatusBarController scrollY={topFadeScroll?.scrollY} enabled={tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0} />
-      <SeasonStatusBarController enabled={tabsFocused && SEASON_SCENE_V2_ENABLED && visualIdx === 1} />
+      <SeasonStatusBarController enabled={tabsFocused && !LEARNING_V2_HIDDEN && SEASON_SCENE_V2_ENABLED && visualIdx === 1} />
       {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10: «нигде верхняя часть не должна отличаться, она должна быть цельной»): на Главной и Пике (страницы со «Сценой») маска-копия полотна не рисуется — сцена сама идёт до верха */}
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} suppressed={tabFullBleedPages.includes(physicalPageIdx)} screen={`tab:${visualIdx}`} />
       <View

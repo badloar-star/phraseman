@@ -137,6 +137,7 @@ function LearningV2WordsList({ mode, words, hydrated, emptyText, tailLine, botto
     speak(word.encounter.save.targetText, undefined, {
       language: ttsLocaleForStudyTarget(word.targetLanguage as StudyTargetLang),
       systemTtsOnly: true,
+      slowRepeat: true, // зачем (удобство №2, 04.11): второе нажатие того же слова за ~3 с — медленнее 0,7×
       onStart: () => { if (guardRef.current.isCurrent(request)) setSpeakingKey(key); },
       onDone: clear,
       onStopped: clear,

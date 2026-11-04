@@ -25,6 +25,7 @@ import {
 } from '../app/flashcards/card_tts_audio';
 import { getVoicesOnce } from '../app/flashcards/tts_voices';
 import { getNetStatus } from '../app/net_status';
+import { SLOW_REPEAT_RATE, emitSlowRepeatToast, isSlowRepeat } from '../app/slow_repeat'; // зачем (удобство №2, 04.11): повтор той же фразы за ~3 с — медленнее 0,7×
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export function preloadAudio() {}
@@ -82,6 +83,11 @@ export type SpeakOpts = {
   cardAudio?: boolean;
   /** Skip every prerecorded/corpus route and speak through the device engine. */
   systemTtsOnly?: boolean;
+  /**
+   * Удобство №2 (04.11): вызов по нажатию кнопки звука — второе нажатие той же фразы в течение ~3 с играет её медленнее 0,7× через системный голос
+   * и показывает метку «Медленнее 0,7×». Не ставить на автозапуск озвучки (иначе авто-повтор замедлится сам).
+   */
+  slowRepeat?: boolean;
   /** Learning V2 may play only an already-verified durable local recording. */
   learningV2Recorded?: Readonly<{
     studyTarget: 'en' | 'es';
@@ -250,6 +256,16 @@ export function useAudio() {
       return;
     }
 
+    // зачем (удобство №2, 04.11): осознанный повтор по кнопке в окне ~3 с — медленнее; готовые клипы играют в оригинальной длине, поэтому идём через системный голос.
+    // Явно заданную скорость и записи Learning V2 не трогаем.
+    const slowRepeatActive = opts?.slowRepeat === true && rate === undefined && !opts.learningV2Recorded
+      && isSlowRepeat({ sameText: dedupeKey === lastTextRef.current, sinceLastMs: now - lastSpeakAtRef.current });
+    if (slowRepeatActive) {
+      opts = { ...opts, systemTtsOnly: true };
+      console.log(`[SLOW-REPEAT] on text=${JSON.stringify(normalized.slice(0, 40))} sinceLastMs=${now - lastSpeakAtRef.current} rate=${SLOW_REPEAT_RATE}`);
+      emitSlowRepeatToast();
+    }
+
     speechGenerationRef.current += 1;
     const generation = speechGenerationRef.current;
     if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
@@ -270,7 +286,7 @@ export function useAudio() {
     // зачем: скорость применяется ТОЛЬКО к системному TTS. Готовые клипы озвучки
     // играют в оригинальной длине (решение владельца 2026-08-24) — им safeRate
     // не передаётся, см. playPhraseByText ниже и phrase_audio_player.ts.
-    const safeRate = normalizeSpeechRate(rate ?? settings.speechRate);
+    const safeRate = slowRepeatActive ? SLOW_REPEAT_RATE : normalizeSpeechRate(rate ?? settings.speechRate);
     const language = opts?.language?.trim() || inferExpoSpeechLanguage(spokenText);
     // cards-2.0 (E13): voiceId — алиас voice для voice picker карточек. Явный
     // opts (в т.ч. null = «системный») всегда сильнее; иначе для en берём голос

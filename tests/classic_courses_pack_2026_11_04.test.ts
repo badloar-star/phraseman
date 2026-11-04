@@ -10,6 +10,7 @@ const ROOT = path.join(__dirname, '..', 'modules', 'classic-courses');
 const LANGS = fs.existsSync(ROOT) ? fs.readdirSync(ROOT, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : [];
 // зачем: лимит из контракта Ядра — ≤ 5 МБ сырого JSON на язык (EN допускается до 6,5)
 const BUDGET_MB: Record<string, number> = { en: 6.5, es: 5, fr: 5, de: 5, it: 5 };
+const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]> };
 const LESSON_FAT = ['english', 'russian', 'ukrainian', 'teachingNote', 'category', 'gradingMethod'];
 const FORBIDDEN_KEY = /^(audio|voice|tts)/i;
 const FORBIDDEN_VALUE = /\.(mp3|ogg|m4a)|https?:\/\//i;
@@ -60,6 +61,46 @@ describe('классические курсы: рантайм-данные', () 
         }
       });
       expect(ids.size).toBe(1600);
+    });
+
+    // Плитки-соблазны (Координатор 04.11): правила проверяются по данным, а не по коду генератора
+    it('соблазны: регистр, чужие правильные слова, числительные/имена, принимаемая фраза, дубли', () => {
+      type Tile = { text: string; correct: string; distractors: string[] };
+      type Phrase = { id: string; tiles: Tile[]; accepted?: string[][]; alternatives: string[] };
+      const phrases: Phrase[] = lessonFiles.flatMap((f) => JSON.parse(read(lang, f)).phrases);
+      const numbers = new Set<string>(LISTS.numbers[lang] ?? []);
+      const strip = (t: string) => t.toLowerCase().replace(/[.,!?;:¿¡]/g, '');
+      const keyOf = (tokens: string[]) => tokens.map(strip).join(' ');
+      const upper = (t: string) => t[0] !== t[0].toLowerCase();
+      // известные имена: с заглавной в середине фразы и никогда строчными (только es/fr/it — в EN/DE регистр не различает имён)
+      const lower = new Set<string>();
+      for (const p of phrases) for (const t of p.tiles) if (!upper(t.correct)) lower.add(t.correct);
+      const names = new Set<string>();
+      if (['es', 'fr', 'it'].includes(lang)) {
+        for (const p of phrases) p.tiles.forEach((t, i) => { if (i > 0 && upper(t.correct) && !lower.has(t.correct.toLowerCase())) names.add(t.correct); });
+      }
+      const bad: Record<string, string[]> = { selfCase: [], otherCorrect: [], number: [], name: [], acceptedPhrase: [], duplicate: [], count: [], lowerI: [] };
+      for (const p of phrases) {
+        const corrects = p.tiles.map((t) => t.correct);
+        const acc = new Set([keyOf(corrects), ...(p.accepted ?? []).map(keyOf), ...p.alternatives.map((a) => keyOf(a.split(/\s+/)))]);
+        p.tiles.forEach((tile, i) => {
+          const seen = new Set<string>();
+          if (tile.distractors.length !== 5) bad.count.push(`${p.id}#${i}`);
+          for (const d of tile.distractors) {
+            const where = `${p.id}#${i}:${d}`;
+            if (strip(d) === strip(tile.correct)) bad.selfCase.push(where);
+            if (corrects.some((c, j) => j !== i && strip(c) === strip(d))) bad.otherCorrect.push(where);
+            if (numbers.has(strip(d)) && !numbers.has(strip(tile.correct))) bad.number.push(where);
+            if (names.has(d) && !names.has(tile.correct) && i > 0 && !upper(tile.correct)) bad.name.push(where);
+            if (acc.has(keyOf(corrects.map((c, j) => (j === i ? d : c))))) bad.acceptedPhrase.push(where);
+            if (seen.has(strip(d))) bad.duplicate.push(where);
+            seen.add(strip(d));
+            if (lang === 'en' && /^i(['’]|$)/.test(d)) bad.lowerI.push(where);
+          }
+        });
+      }
+      const counts = Object.fromEntries(Object.entries(bad).map(([k, v]) => [k, v.length]));
+      expect(counts).toEqual({ selfCase: 0, otherCorrect: 0, number: 0, name: 0, acceptedPhrase: 0, duplicate: 0, count: 0, lowerI: 0 });
     });
 
     it('в lessons-NN нет «жира» архива', () => {

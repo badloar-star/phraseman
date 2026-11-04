@@ -218,6 +218,137 @@ function scanForbidden(lang, name, node, path = '') {
   } else if (typeof node === 'string' && FORBIDDEN_VALUE.test(node)) fail(lang, `${name}${path}: аудио/http-ссылка «${node.slice(0, 60)}»`);
 }
 
+// ── плитки-соблазны (Координатор 04.11, аудит выборки): правим только distractors, позиции фраз и число плиток не меняем ──────────
+// Правила: (1) регистр: одинокое «i» → «I», соблазн = правильному слову без учёта регистра — убрать; (2) соблазн, равный ДРУГОМУ
+// правильному слову той же фразы — убрать; (3) числительные и имена вместо слова другого типа — убрать; (4) подстановка соблазна на
+// свою позицию даёт принимаемую фразу (accepted / alternatives) — убрать. Замена берётся из пула: соблазны других плиток с тем же
+// окончанием правильного слова (3 → 2 → 1 знака), того же регистра, по убыванию частоты. Результат детерминирован.
+const LISTS = JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_distractor_lists.json'), 'utf8'));
+const NAME_LANGS = new Set(['es', 'fr', 'it']); // в немецком существительные с заглавной, в EN соблазны в архиве все строчные (English, Fridays) — имён по регистру не выделить
+const upperFirst = (t) => t[0] !== t[0].toLowerCase();
+const stripP = (t) => t.toLowerCase().replace(/[.,!?;:¿¡]/g, '');
+const keyOf = (tokens) => tokens.map(stripP).join(' ');
+const suffixKey = (t, n) => stripP(t).slice(-n);
+
+function phraseKeys(ph) {
+  const corrects = ph.tiles.map((t) => t.correct);
+  const acc = new Set([keyOf(corrects), ...(ph.accepted ?? []).map(keyOf), ...ph.alternatives.map((a) => keyOf(a.split(/\s+/)))]);
+  return { corrects, acc };
+}
+
+// Причина, по которой соблазн d на плитке i недопустим (null — допустим)
+function badReason(lang, ctx, ph, i, d, mine) {
+  const { corrects, acc } = phraseKeys(ph);
+  const tile = ph.tiles[i];
+  const isNum = ctx.numbers.has(stripP(tile.correct));
+  const isName = ctx.nameTile.get(tile) === true;
+  if (stripP(d) === stripP(tile.correct)) return 'selfCase';
+  if (corrects.some((c, j) => j !== i && stripP(c) === stripP(d))) return 'otherCorrect';
+  if (ctx.numbers.has(stripP(d)) !== isNum || (NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
+  if (acc.has(keyOf(corrects.map((c, j) => (j === i ? d : c))))) return 'acceptedPhrase';
+  if (mine.some((x) => stripP(x) === stripP(d))) return 'duplicate';
+  return null;
+}
+
+function buildContext(lang, all) {
+  const numbers = new Set(LISTS.numbers[lang] ?? []);
+  const names = new Set();
+  if (NAME_LANGS.has(lang)) {
+    const lower = new Set();
+    for (const ph of all) for (const t of ph.tiles) if (!upperFirst(t.correct)) lower.add(t.correct);
+    for (const ph of all) ph.tiles.forEach((t, i) => { if (i > 0 && upperFirst(t.correct) && t.correct !== 'I' && !lower.has(t.correct.toLowerCase())) names.add(t.correct); });
+  }
+  // плитка-имя: правильное слово — известное имя, либо с заглавной и большинство соблазнов — известные имена (имя в начале фразы)
+  const nameTile = new Map();
+  if (NAME_LANGS.has(lang)) {
+    for (let round = 0; round < 2; round++) {
+      for (const ph of all) for (const t of ph.tiles) {
+        const isN = names.has(t.correct) || (upperFirst(t.correct) && t.distractors.length && t.distractors.filter((d) => names.has(d)).length * 2 >= t.distractors.length);
+        nameTile.set(t, isN);
+        if (isN) { names.add(t.correct); for (const d of t.distractors) if (d !== 'I' && /^[\p{L}]+$/u.test(d)) names.add(d[0].toUpperCase() + d.slice(1)); }
+      }
+    }
+  }
+  return { numbers, names, nameTile };
+}
+
+function auditDistractors(lang, all, ctxIn) {
+  const ctx = ctxIn ?? buildContext(lang, all);
+  const found = { selfCase: 0, otherCorrect: 0, category: 0, acceptedPhrase: 0, duplicate: 0 };
+  for (const ph of all) ph.tiles.forEach((tile, i) => {
+    const seen = [];
+    for (const d of tile.distractors) {
+      const why = badReason(lang, ctx, ph, i, d, seen);
+      if (why) found[why]++;
+      seen.push(d);
+    }
+    if (lang === 'en' && tile.distractors.some((d) => /^i(['’]|$)/.test(d))) found.selfCase++;
+  });
+  return found;
+}
+
+function fixDistractors(lang, all) {
+  const ctx = buildContext(lang, all);
+  // пул замен: слово → сколько раз встречалось как соблазн в плитках с окончанием n
+  const pool = { 3: new Map(), 2: new Map(), 1: new Map() };
+  for (const ph of all) for (const t of ph.tiles) for (const d of t.distractors) for (const n of [3, 2, 1]) {
+    const k = suffixKey(t.correct, n);
+    if (!pool[n].has(k)) pool[n].set(k, new Map());
+    const m = pool[n].get(k);
+    m.set(d, (m.get(d) ?? 0) + 1);
+  }
+  // соседство: слова, встречавшиеся в одной плитке (правильное + соблазны) — так замена остаётся «того же типа» (формы глагола к глаголу)
+  const cooc = new Map();
+  for (const ph of all) for (const t of ph.tiles) {
+    const set = [t.correct, ...t.distractors];
+    for (const a of set) { if (!cooc.has(a)) cooc.set(a, new Map()); const m = cooc.get(a); for (const b of set) if (a !== b) m.set(b, (m.get(b) ?? 0) + 1); }
+  }
+  const everything = new Map();
+  for (const m of pool[1].values()) for (const [d, c] of m) everything.set(d, (everything.get(d) ?? 0) + c);
+  const removed = { selfCase: 0, otherCorrect: 0, category: 0, acceptedPhrase: 0, duplicate: 0, caseFixed: 0, refilled: 0, short: 0 };
+  const shortSamples = [];
+  for (const ph of all) {
+    ph.tiles.forEach((tile, i) => {
+      const want = tile.distractors.length;
+      const kept = [];
+      for (let d of tile.distractors) {
+        if (lang === 'en' && /^i(['’]|$)/.test(d)) { d = 'I' + d.slice(1); removed.caseFixed++; }
+        if (ctx.nameTile.get(tile) === true && !upperFirst(d) && ctx.names.has(d[0].toUpperCase() + d.slice(1))) { d = d[0].toUpperCase() + d.slice(1); removed.caseFixed++; }
+        const why = badReason(lang, ctx, ph, i, d, kept);
+        if (why) removed[why]++; else kept.push(d);
+      }
+      if (kept.length < want) {
+        const upperWanted = kept.length ? kept.filter(upperFirst).length * 2 > kept.length : upperFirst(tile.correct);
+        const tried = new Set();
+        const anchors = [tile.correct, ...kept];
+        const near = new Map();
+        for (const a of anchors) for (const [c, k] of cooc.get(a) ?? []) near.set(c, (near.get(c) ?? 0) + k);
+        const nearRanked = [...near.entries()].sort((a, b) => b[1] - a[1] || (everything.get(b[0]) ?? 0) - (everything.get(a[0]) ?? 0) || (a[0] < b[0] ? -1 : 1));
+        for (const [c] of nearRanked) {
+          if (kept.length >= want) break;
+          if (tried.has(c) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
+          tried.add(c);
+          if (!badReason(lang, ctx, ph, i, c, kept)) { kept.push(c); removed.refilled++; }
+        }
+        for (const n of kept.length >= want ? [] : [3, 2, 1, 0]) {
+          const cands = n ? pool[n].get(suffixKey(tile.correct, n)) ?? new Map() : everything;
+          const ranked = [...cands.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));
+          for (const [c] of ranked) {
+            if (kept.length >= want) break;
+            if (tried.has(c) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
+            tried.add(c);
+            if (!badReason(lang, ctx, ph, i, c, kept)) { kept.push(c); removed.refilled++; }
+          }
+          if (kept.length >= want) break;
+        }
+        if (kept.length < want) { removed.short++; if (shortSamples.length < 6) shortSamples.push(`${ph.id}#${i} ${tile.correct} ${kept.length}/${want}`); }
+      }
+      tile.distractors = kept;
+    });
+  }
+  return { removed, left: auditDistractors(lang, all, ctx), shortSamples };
+}
+
 function convert(lang, zips) {
   const prof = PROFILES[lang];
   if (!prof) throw new Error(`неизвестный язык ${lang}`);
@@ -273,6 +404,9 @@ function convert(lang, zips) {
     theory[n] = th;
   }
   if (phrases !== 1600) fail(lang, `всего ${phrases} фраз вместо 1600`);
+  const dstat = fixDistractors(lang, Object.values(files).filter((f) => f.phrases).flatMap((f) => f.phrases));
+  for (const [rule, n] of Object.entries(dstat.left)) if (n) fail(lang, `соблазны: правило ${rule} — осталось ${n}`);
+  if (dstat.removed.short) fail(lang, `соблазны: ${dstat.removed.short} плиток с недобором соблазнов`);
   files['intro.json'] = intro;
   files['theory.json'] = { format: prof.fmt, data: theory };
   files['glossary.json'] = buildGlossary(lang, prof, take, zips);
@@ -290,7 +424,7 @@ function convert(lang, zips) {
     files['ui.json'] = { ui: sub };
   }
   for (const [name, data] of Object.entries(files)) scanForbidden(lang, name, data);
-  return { files, phrases, rawBytes, srcHash, sourceZipSha256: zip.sha };
+  return { files, phrases, rawBytes, srcHash, sourceZipSha256: zip.sha, dstat };
 }
 
 const zips = { big: openZip(BIG), en: LANGS.includes('en') ? openZip(EN_V3) : null };
@@ -315,6 +449,7 @@ for (const lang of LANGS) {
   fileInfo['index.json'] = { bytes: Buffer.byteLength(indexText), sha256: sha256(indexText) };
   if (!CHECK_ONLY) writeFileSync(join(dir, 'index.json'), indexText);
   manifest.languages[lang] = { ...index, files: fileInfo };
+  console.log(`соблазны ${lang}: ` + JSON.stringify(res.dstat.removed) + ' осталось ' + JSON.stringify(res.dstat.left) + (res.dstat.shortSamples.length ? ' недобор: ' + res.dstat.shortSamples.join('; ') : ''));
   const sum = (f) => Object.entries(fileInfo).filter(([n]) => f(n)).reduce((s, [, i]) => s + i.bytes, 0);
   const mb = (b) => +(b / 1048576).toFixed(2);
   table.push({ lang, phrases: res.phrases, rawArchiveMB: mb(res.rawBytes), totalMB: mb(sum(() => true)), lessonsMB: mb(sum((n) => n.startsWith('lessons-'))),

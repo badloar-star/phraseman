@@ -1,0 +1,10 @@
+{
+  "_comment": "Числительные по языкам (без неоднозначных: en one, es un/uno/una, fr un/une, it uno/una/sei, de ein/eine). Нужны правилу «соблазн из чужой категории» (Координатор 04.11).",
+  "numbers": {
+    "en": ["zero","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety","hundred","thousand"],
+    "es": ["cero","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","once","doce","trece","catorce","quince","dieciséis","diecisiete","dieciocho","diecinueve","veinte","veintiuno","veintiún","veintiuna","veintidós","veintitrés","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","cien","ciento","mil"],
+    "fr": ["zéro","deux","trois","quatre","cinq","six","sept","huit","neuf","dix","onze","douze","treize","quatorze","quinze","seize","vingt","trente","quarante","cinquante","soixante","cent","mille"],
+    "it": ["zero","due","tre","quattro","cinque","sette","otto","nove","dieci","undici","dodici","tredici","quattordici","quindici","sedici","venti","trenta","quaranta","cinquanta","sessanta","settanta","ottanta","novanta","cento","mille"],
+    "de": ["null","zwei","drei","vier","fünf","sechs","sieben","acht","neun","zehn","elf","zwölf","zwanzig","dreißig","vierzig","fünfzig","sechzig","siebzig","achtzig","neunzig","hundert","tausend"]
+  }
+}

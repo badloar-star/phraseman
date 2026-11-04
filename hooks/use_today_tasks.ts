@@ -8,7 +8,7 @@
 // Обновляется сразу по событию активности (подписка на store), при возврате
 // приложения на передний план и в локальную полночь — новый набор.
 // ═══════════════════════════════════════════════════════════════════════════
-import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { AppState } from 'react-native';
 
 import type { Lang } from '../constants/i18n';
@@ -32,6 +32,7 @@ import {
 import { peekTodayTasks, refreshTodayTasks, subscribeTodayTasks } from '../modules/today-tasks/today_tasks_store';
 import { todayTasksToView } from '../modules/today-tasks/today_tasks_view';
 import { getDevTodayTaskSpire, subscribeDevTodayTasks } from '../app/dev_today_tasks';
+import { isSurfaceLocked, useRankAccess } from './use_rank_access';
 
 /**
  * Живая выполнимость типов, которую нельзя знать синхронно.
@@ -39,7 +40,8 @@ import { getDevTodayTaskSpire, subscribeDevTodayTasks } from '../app/dev_today_t
  * config/spire_v1 («откроется чуть позже»), а «Ошибки 0/5» — при пустом журнале ошибок.
  * Оба — тупики: задание видно, а выполнить нельзя.
  */
-export type TodayTaskLiveness = Readonly<{ spireLive?: boolean; mistakesReady?: number; mistakesActive?: number }>;
+// rankLocked — типы, закрытые рангом для нового пользователя (владелец 30.10: на ранге 0 в «Сегодня» только «Пройди урок»)
+export type TodayTaskLiveness = Readonly<{ spireLive?: boolean; mistakesReady?: number; mistakesActive?: number; rankLocked?: readonly TodayTaskKindCore[] }>;
 
 export function availableTodayTaskKinds(
   target: LearningLanguageTarget,
@@ -47,6 +49,7 @@ export function availableTodayTaskKinds(
   live: TodayTaskLiveness = {},
 ): TodayTaskKindCore[] {
   return TODAY_TASK_POOL.filter((kind) => {
+    if (live.rankLocked?.includes(kind)) return false;
     if (kind === 'spire_steps' && (!spireEnabled || live.spireLive === false)) return false;
     // Ошибок для повтора должно хватать на цель задания, иначе задание не выполнить.
     if (kind === 'mistakes' && typeof live.mistakesReady === 'number'
@@ -102,6 +105,17 @@ function msUntilNextLocalMidnight(nowMs: number): number {
 
 export function useTodayTasks(lang: Lang, studyTarget: LearningLanguageTarget): Readonly<{ dayKey: string; tasks: TodayTask[] }> {
   const spireEnabled = useSpireTabEnabled();
+  // зачем (владелец 30.10, «Главная Free по рангам»): «Сегодня» без недоступного. Закрытые рангом типы читаются при КАЖДОМ обновлении набора из ref:
+  // новые виды появляются со следующего обновления дня, выполненное не сбрасывается (replaceUnavailableTodayTasks трогает только нетронутые)
+  const lockedDialogues = isSurfaceLocked(useRankAccess('dialogues'));
+  const lockedVideo = isSurfaceLocked(useRankAccess('video'));
+  const lockedPeak = isSurfaceLocked(useRankAccess('peak'));
+  const rankLockedRef = useRef<readonly TodayTaskKindCore[]>([]);
+  const lockedKinds: TodayTaskKindCore[] = [];
+  if (lockedDialogues) lockedKinds.push('dialog', 'cards', 'mistakes');
+  if (lockedVideo) lockedKinds.push('video');
+  if (lockedPeak) lockedKinds.push('spire_steps');
+  rankLockedRef.current = lockedKinds;
   const [state, setState] = useState<TodayTasksDayState>(() => firstFrameState(studyTarget));
 
   useEffect(() => subscribeTodayTasks((next) => {
@@ -118,7 +132,9 @@ export function useTodayTasks(lang: Lang, studyTarget: LearningLanguageTarget): 
         .catch((error: unknown) => console.warn(`[TODAY-TASKS] hook:spire_flag_prime_failed ${String(error)}`))
         .then(() => readTodayTaskLiveness(studyTarget))
         .then((live) => {
-          const kinds = availableTodayTaskKinds(studyTarget, isSpireTabEnabled(), live);
+          const rankLocked = rankLockedRef.current;
+          const kinds = availableTodayTaskKinds(studyTarget, isSpireTabEnabled(), { ...live, rankLocked });
+          if (rankLocked.length) console.log(`[RANK-GATE] today rank_locked ${JSON.stringify(rankLocked)}`);
           const pinned = pinnedTodayTaskKinds(kinds);
           console.log(`[TODAY-TASKS] hook:refresh ${JSON.stringify({ reason, studyTarget, kinds, pinned, live })}`);
           return refreshTodayTasks(kinds, pinned);

@@ -49,6 +49,7 @@ import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActiveSettled } from '../../hooks/use_runtime_active_settled';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
+import { isSurfaceLocked, useRankAccess } from '../../hooks/use_rank_access';
 import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
 import { isValidCoinRank } from '../coin_rank_table_v1';
 import { coinRankDisplaySource } from '../../components/coins/coin_rank_display';
@@ -624,6 +625,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (расходы, координатор 17.10): прогрев Диалогов с Главной выключен — греем только при переходе в Диалоги (DialogsTabContent), не чаще раза в 30 мин
     useDialogueV2Warmup(false, 'home_tile');
     const homeFlashcardsVisible = isLearningSurfaceReady(studyTarget, 'flashcards');
+    // зачем (владелец 30.10, «Главная Free по рангам»): плитки недоступных новичку разделов не показываем вовсе (Видео/Диалоги — ранг 1, Пик — 2, хаб Карточек — 3);
+    // «Сохранённые» открыты всегда; старым и неопределённым всё открыто (use_rank_access)
+    const rankLockedVideo = isSurfaceLocked(useRankAccess('video'));
+    const rankLockedDialogues = isSurfaceLocked(useRankAccess('dialogues'));
+    const rankLockedPeak = isSurfaceLocked(useRankAccess('peak'));
+    const rankLockedCardsHub = isSurfaceLocked(useRankAccess('cards_hub'));
     const homeVideosVisible = isLearningSurfaceReady(studyTarget, 'videos');
     const homeDailyPhraseVisible = isLearningSurfaceReady(studyTarget, 'daily_phrase');
     const topFadeScroll = useTopFadeScroll();
@@ -2615,8 +2622,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         ];
         const homeV2TileVisible: Record<string, boolean> = {
             lessons: homeLearnVisible,
-            dialogs: homeDialoguesVisible,
-            cards: homeFlashcardsVisible,
+            dialogs: homeDialoguesVisible && !rankLockedDialogues,
+            cards: homeFlashcardsVisible && !rankLockedCardsHub,
         };
         const homeV2BaseTiles = homeV2AllTiles.filter((tile) => homeV2TileVisible[tile.key] === true);
         // зачем (D143, владелец 01.10): ряд из трёх плиток утверждён и не меняется. Раздела у языка нет —
@@ -2626,7 +2633,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeV2FillerTiles: (HomeFeatureTile & { available: boolean })[] = [
             {
                 key: 'spire',
-                available: isLearningSurfaceReady(studyTarget, 'spire') && spireTabEnabled,
+                available: isLearningSurfaceReady(studyTarget, 'spire') && spireTabEnabled && !rankLockedPeak,
                 title: triLang(lang, { ru: 'Пик', uk: 'Пік', en: 'Peak', es: 'Pico', 'pt-BR': 'Pico', vi: 'Đỉnh', id: 'Puncak', tr: 'Zirve', pl: 'Szczyt' }),
                 subtitle: triLang(lang, { ru: 'Поднимайся выше всех', uk: 'Піднімайся вище за всіх', en: 'Climb above everyone', es: 'Sube más alto que nadie', 'pt-BR': 'Suba mais alto que todos', vi: 'Leo cao hơn mọi người', id: 'Naik lebih tinggi dari semua', tr: 'Herkesten yükseğe çık', pl: 'Wspinaj się najwyżej' }),
                 onPress: () => { nav.push('/(tabs)/community?section=spire' as never); },
@@ -2636,7 +2643,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             },
             {
                 key: 'video_packs',
-                available: isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible,
+                available: isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible && !rankLockedVideo,
                 title: triLang(lang, { ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Video packs', es: 'Packs de vídeos', 'pt-BR': 'Pacotes de vídeos', vi: 'Bộ từ video', id: 'Paket video', tr: 'Video paketleri', pl: 'Zestawy z filmów' }),
                 subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Вислови з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
                 onPress: () => { nav.push('/flashcards_video_packs' as never); },
@@ -2644,7 +2651,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             },
             {
                 key: 'mistakes',
-                available: homeMistakesButtonState(mistakeActiveCount) === 'ready',
+                available: homeMistakesButtonState(mistakeActiveCount) === 'ready' && !rankLockedDialogues,
                 title: triLang(lang, { ru: 'Мои ошибки', uk: 'Мої помилки', en: 'My mistakes', es: 'Mis errores', 'pt-BR': 'Meus erros', vi: 'Lỗi của tôi', id: 'Kesalahanku', tr: 'Hatalarım', pl: 'Moje błędy' }),
                 subtitle: triLang(lang, { ru: 'Разбор и повтор', uk: 'Розбір і повтор', en: 'Review and retry', es: 'Repasa y repite', 'pt-BR': 'Revise e repita', vi: 'Xem lại và làm lại', id: 'Tinjau dan ulangi', tr: 'Gözden geçir, tekrarla', pl: 'Przegląd i powtórka' }),
                 // зачем: единая точка входа в «Мои ошибки» (лог + аналитика) — карточка «Продолжить» больше не ведёт в ошибки.

@@ -2,7 +2,7 @@
 // мои монеты и место, топ-5 строками, вершинники сверх топ-5, широкая кнопка «Все участники». Тап по этажу — шторка рекорда ступени.
 // зачем: чисто презентационный — все данные приходят пропсами из SpireHomeScreen (0 новых чтений); башня — прежний SpireTower (интерактивна и локализована),
 // только в узкой левой колонке. Включается флагом PEAK_SCREEN_V2_ENABLED (по умолчанию выключен), старый экран остаётся.
-import React, { memo, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
 import { buildPeakModel, peakStepRecord, type PeakRankBy, type PeakStepRecord } from '../../../modules/spire/peak_model';
@@ -17,6 +17,9 @@ import PeakTopRow from './PeakTopRow';
 import PeakStepSheet from './PeakStepSheet';
 import PeakFloorStepper from './PeakFloorStepper';
 import PeakStepChips from './PeakStepChips';
+import PeakTour from './PeakTour'; // зачем (тур утверждён владельцем 04.11): оверлей первого входа поверх этого экрана
+import { usePeakTourGate } from './use_peak_tour_gate';
+import type { PeakTourRect, PeakTourRects } from './peak_tour_core';
 import { PEAK_TAP_TARGET, peakMaxStep } from './peak_text';
 
 type TowerProps = React.ComponentProps<typeof SpireTower>;
@@ -35,16 +38,48 @@ type Props = Readonly<{
   records?: Readonly<Record<string, PeakStepRecord>> | null;
   /** Высота колонки башни; нет — 72 % высоты окна в пределах 420–640 dp. */
   railHeight?: number;
+  /** Тур первого входа: 'auto' — один раз на аккаунт; 'off' — нет; { page } — dev-съёмка: показать сразу с этой страницы (флаг «показан» не трогаем). */
+  tour?: 'auto' | 'off' | Readonly<{ page: number }>;
 }>;
 
 export const PEAK_RAIL_WIDTH = 150;
 
-function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records = null, railHeight }: Props) {
+function measureBlock(ref: React.RefObject<View | null>): Promise<PeakTourRect | null> {
+  return new Promise((resolve) => {
+    const node = ref.current;
+    if (!node) { console.warn('[PEAK-TOUR] measure: блока нет'); resolve(null); return; }
+    const timer = setTimeout(() => { console.warn('[PEAK-TOUR] measure: таймаут'); resolve(null); }, 400);
+    node.measureInWindow((x, y, width, height) => { clearTimeout(timer); resolve(width > 0 && height > 0 ? { x, y, width, height } : null); });
+  });
+}
+
+function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records = null, railHeight, tour = 'auto' }: Props) {
   const p = useSpirePalette();
   const { height } = useWindowDimensions();
   const rail = railHeight ?? Math.max(420, Math.min(640, Math.round(height * 0.72)));
   // зачем: участники приходят порядком комнаты (уже по рубильнику); weekCoins в документе может отсутствовать — считаем 0
   const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0 })), rankBy), [members, rankBy]);
+  // зачем (тур первого входа): окна затемнения считаются от измеренных блоков; меряем только когда тур показывается (в обычной жизни — ноль работы)
+  const headRef = useRef<View>(null);
+  const pillRef = useRef<View>(null);
+  const railRef = useRef<View>(null);
+  const topRef = useRef<View>(null);
+  const forcedPage = typeof tour === 'object' ? tour.page : null;
+  const gate = usePeakTourGate(tour === 'auto' && model.top.length > 0);
+  const tourOn = forcedPage !== null || gate.visible;
+  const [tourRects, setTourRects] = useState<PeakTourRects | null>(null);
+  useEffect(() => {
+    if (!tourOn) { setTourRects(null); return undefined; }
+    let alive = true;
+    const timer = setTimeout(() => {
+      void Promise.all([measureBlock(headRef), measureBlock(pillRef), measureBlock(railRef), measureBlock(topRef)]).then(([head, pill, rail, top]) => {
+        console.log('[PEAK-TOUR]', 'measured', JSON.stringify({ head: head !== null, pill: pill !== null, rail: rail !== null, top: top !== null })); // guard-ok: итог замера
+        if (alive) setTourRects({ head, pill, rail, top });
+      });
+    }, 60); // зачем: один кадр на раскладку, потом замер
+    return () => { alive = false; clearTimeout(timer); };
+  }, [tourOn]);
+  const finishTour = useCallback(() => { if (forcedPage === null) gate.finish(); else setTourRects(null); }, [forcedPage, gate]);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [sheetFloor, setSheetFloor] = useState(floor);
   const [sheetStep, setSheetStep] = useState(1);
@@ -60,16 +95,18 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   );
   return (
     <View style={s.root} testID="peak-screen-v2">
-      <View style={[s.rail, { width: PEAK_RAIL_WIDTH }]}>
+      <View ref={railRef} collapsable={false} style={[s.rail, { width: PEAK_RAIL_WIDTH }]}>
         <SpireTower {...towerProps} lang={lang} selected={floor} onSelect={onSelectFloor} windowHeight={rail} />
       </View>
       <View style={s.panel}>
+        <View ref={headRef} collapsable={false} style={s.head}>
         <V2Pressable accessibilityRole="button" onPress={openSheet} style={s.floorBtn} testID="peak-floor-title">
           <Text style={[s.floor, { color: p.text }]}>{`${floorWord} ${floor}`}</Text>
         </V2Pressable>
-        <View style={[s.pill, { backgroundColor: p.cardRaised }]}><Text numberOfLines={1} style={[s.pillText, { color: p.text }]}>{pillText}</Text></View>
+        <View ref={pillRef} collapsable={false} style={[s.pill, { backgroundColor: p.cardRaised }]}><Text numberOfLines={1} style={[s.pillText, { color: p.text }]}>{pillText}</Text></View>
+        </View>
         <View style={s.counter}><PeakMyCounter lang={lang} me={model.me} rankBy={rankBy} /></View>
-        <View testID="peak-top">{model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} />)}</View>
+        <View ref={topRef} collapsable={false} testID="peak-top">{model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} />)}</View>
         {model.summiters.length > 0 ? (
           <View testID="peak-summiters">
             <Text style={[s.group, { color: p.textSecondary }]}>{spireGameText(lang, 'peakReachedTop')}</Text>
@@ -80,6 +117,9 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
           <Text style={[s.allText, { color: p.ctaText }]}>{spireGameText(lang, 'peakAllParticipants')}</Text>
         </V2Pressable>
       </View>
+      {tourOn && tourRects ? (
+        <PeakTour lang={lang} rankBy={rankBy} rects={tourRects} topCount={model.top.length} upCount={model.top.filter((r) => r.zone === 'up').length} initialPage={forcedPage ?? 0} onDone={finishTour} />
+      ) : null}
       <PeakStepSheet lang={lang} visible={sheetOpen} title={`${floorWord} ${sheetFloor} · ${sheetStep}`} record={record} onClose={() => setSheetOpen(false)} stepper={stepper} />
     </View>
   );
@@ -89,6 +129,7 @@ const s = StyleSheet.create({
   root: { flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
   rail: { marginLeft: -8 },
   panel: { flex: 1, minWidth: 0 },
+  head: { alignSelf: 'flex-start' },
   floorBtn: { minHeight: PEAK_TAP_TARGET, justifyContent: 'center', alignSelf: 'flex-start' },
   floor: { fontSize: 30, lineHeight: 36, fontWeight: '800', letterSpacing: -0.4 },
   pill: { alignSelf: 'flex-start', minHeight: 36, borderRadius: 18, paddingHorizontal: 14, justifyContent: 'center', marginTop: 2 },

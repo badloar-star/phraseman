@@ -1,0 +1,140 @@
+// PeakTour — тур первого входа в Пик поверх экрана B «Рельса»: 3 страницы, затемнение с «окнами» над нужными блоками, карточка с точками,
+// «Пропустить»/«Далее», на 3-й — «Начать»; на 3-й стрелки «поднимаются» у топ-5. Утверждён владельцем 04.11 (макет peak-tour-2026-11-04/peak_tour_B.html).
+// зачем: рассказать правила недели на самом экране, а не отдельной картинкой. Окна — от измеренных блоков (peak_tour_core), цвета — токены темы,
+// текст ≥ 15 px, Reduce Motion — без анимации (карточка и стрелки статичны). Движение только transform/opacity на UI-потоке.
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Modal, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import Animated, { Easing, FadeIn, FadeInDown, cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
+import Svg, { Defs, Mask, Rect } from 'react-native-svg';
+import type { Lang } from '../../../constants/i18n';
+import { spireTierName } from '../../../modules/spire/tier_names';
+import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
+import { useShadowGlass } from '../../v2/ShadowSurface';
+import V2Pressable from '../../v2/V2Pressable';
+import { useSpirePalette } from '../useSpirePalette';
+import { spireGameText } from '../spire_game_strings';
+import { PEAK_TOUR_ARROW_SIZE, PEAK_TOUR_PAGES, peakTourArrows, peakTourHoles, peakTourKeys, peakTourPage, type PeakTourPage, type PeakTourRects } from './peak_tour_core';
+
+type Props = Readonly<{
+  lang: Lang;
+  rankBy: 'steps' | 'coins';
+  rects: PeakTourRects;
+  /** Сколько строк в топ-5 сейчас на экране (для стрелок). */
+  topCount: number;
+  /** Сколько из них «поднимаются» (в режиме монет — все пять). */
+  upCount: number;
+  /** Только dev-съёмка: с какой страницы начать, 0…2. */
+  initialPage?: number;
+  onDone: () => void;
+}>;
+
+const ARROW_RISE = 6;
+
+function RisingArrow({ x, y, delay, color, still }: Readonly<{ x: number; y: number; delay: number; color: string; still: boolean }>) {
+  const lift = useSharedValue(0);
+  useEffect(() => {
+    if (still) { lift.value = 0; return undefined; }
+    // зачем (макет: стрелки «поднимаются»): мягкий подъём вверх и возврат, со сдвигом по строкам; только transform на UI-потоке
+    lift.value = withDelay(delay, withRepeat(withSequence(withTiming(-ARROW_RISE, { duration: 700, easing: Easing.out(Easing.cubic) }), withTiming(0, { duration: 700, easing: Easing.inOut(Easing.cubic) })), -1));
+    return () => cancelAnimation(lift);
+  }, [still, delay, lift]);
+  const style = useAnimatedStyle(() => ({ transform: [{ translateY: lift.value }] }));
+  return (
+    <Animated.View pointerEvents="none" style={[s.arrow, { left: x, top: y }, style]}>
+      <Ionicons name="arrow-up" size={PEAK_TOUR_ARROW_SIZE} color={color} />
+    </Animated.View>
+  );
+}
+
+function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onDone }: Props) {
+  const p = useSpirePalette();
+  const g = useShadowGlass();
+  const insets = useStableSafeAreaInsets();
+  const reduceMotion = useReducedMotion();
+  const [page, setPage] = useState<PeakTourPage>(peakTourPage(initialPage));
+  const [origin, setOrigin] = useState({ x: 0, y: 0 });
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const rootRef = useRef<View>(null);
+  const last = page === PEAK_TOUR_PAGES - 1;
+
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
+    const { width, height } = event.nativeEvent.layout;
+    setSize({ width, height });
+    // зачем: координаты блоков экрана — в системе окна; оверлей-окно может начинаться не с нуля (полупрозрачная строка состояния Android)
+    rootRef.current?.measureInWindow((x, y) => setOrigin({ x, y }));
+  }, []);
+
+  const next = useCallback(() => {
+    if (last) { console.log('[PEAK-TOUR]', 'done', JSON.stringify({ via: 'start' })); onDone(); return; } // guard-ok: итог тура
+    setPage((n) => peakTourPage(n + 1));
+  }, [last, onDone]);
+  const skip = useCallback(() => { console.log('[PEAK-TOUR]', 'done', JSON.stringify({ via: 'skip', page })); onDone(); }, [onDone, page]); // guard-ok: итог тура
+
+  const keys = peakTourKeys(page, rankBy);
+  const title = spireGameText(lang, keys.title);
+  const text = spireGameText(lang, keys.text, { a: spireTierName(0, lang), b: spireTierName(1, lang), c: spireTierName(2, lang), z: spireTierName(11, lang) });
+  const holes = peakTourHoles(page, rects, origin);
+  const arrows = page === 2 ? peakTourArrows(rects, topCount, upCount, origin) : [];
+
+  return (
+    <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={skip}>
+      <View ref={rootRef} collapsable={false} style={s.root} onLayout={onLayout} testID="peak-tour" accessibilityViewIsModal>
+        <Animated.View entering={reduceMotion ? undefined : FadeIn.duration(200)} style={StyleSheet.absoluteFill} pointerEvents="auto">
+          {size.width > 0 ? (
+            <Svg width={size.width} height={size.height}>
+              <Defs>
+                <Mask id="peak-tour-mask" maskUnits="userSpaceOnUse" x={0} y={0} width={size.width} height={size.height}>
+                  <Rect x={0} y={0} width={size.width} height={size.height} fill="white" />
+                  {holes.map((h, i) => <Rect key={`hole-${i}`} x={h.x} y={h.y} width={h.width} height={h.height} rx={h.radius} ry={h.radius} fill="black" />)}
+                </Mask>
+              </Defs>
+              <Rect x={0} y={0} width={size.width} height={size.height} fill={g.scrim} mask="url(#peak-tour-mask)" />
+            </Svg>
+          ) : null}
+        </Animated.View>
+        {arrows.map((a, i) => <RisingArrow key={`arrow-${i}`} x={a.x} y={a.y} delay={i * 120} color={p.correct} still={Boolean(reduceMotion)} />)}
+        <Animated.View
+          key={`card-${page}`}
+          entering={reduceMotion ? undefined : FadeInDown.duration(260).easing(Easing.out(Easing.cubic))}
+          style={[s.card, { backgroundColor: g.opaqueCard, bottom: Math.max(insets.bottom, 12) + 16 }]}
+          testID={`peak-tour-card-${page + 1}`}
+        >
+          <View style={s.dots} accessible accessibilityLabel={`${page + 1} / ${PEAK_TOUR_PAGES}`}>
+            {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, i === page && s.dotOn, { backgroundColor: i === page ? p.text : p.control }]} />)}
+          </View>
+          <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
+          <Text style={[s.text, { color: p.textSecondary }]}>{text}</Text>
+          <View style={s.buttons}>
+            {last ? null : (
+              <V2Pressable onPress={skip} accessibilityRole="button" style={[s.btn, s.ghost, { backgroundColor: p.control }]} testID="peak-tour-skip">
+                <Text style={[s.btnText, { color: p.text }]}>{spireGameText(lang, 'skip')}</Text>
+              </V2Pressable>
+            )}
+            <V2Pressable onPress={next} accessibilityRole="button" style={[s.btn, s.main, { backgroundColor: p.cta }]} testID="peak-tour-next">
+              <Text style={[s.btnText, { color: p.ctaText }]}>{spireGameText(lang, last ? 'start' : 'next')}</Text>
+            </V2Pressable>
+          </View>
+        </Animated.View>
+      </View>
+    </Modal>
+  );
+}
+
+const s = StyleSheet.create({
+  root: { flex: 1 },
+  arrow: { position: 'absolute', width: PEAK_TOUR_ARROW_SIZE, height: PEAK_TOUR_ARROW_SIZE },
+  card: { position: 'absolute', left: 12, right: 12, borderRadius: 28, paddingTop: 22, paddingBottom: 18, paddingHorizontal: 20, gap: 12 },
+  dots: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7 },
+  dot: { width: 8, height: 8, borderRadius: 4 },
+  dotOn: { width: 24 },
+  title: { fontSize: 24, lineHeight: 29, fontWeight: '800', letterSpacing: -0.4 },
+  text: { fontSize: 16, lineHeight: 22, fontWeight: '500' },
+  buttons: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  btn: { minHeight: 50, borderRadius: 25, alignItems: 'center', justifyContent: 'center' },
+  ghost: { paddingHorizontal: 18 },
+  main: { flex: 1 },
+  btnText: { fontSize: 17, fontWeight: '700' },
+});
+
+export default memo(PeakTour);

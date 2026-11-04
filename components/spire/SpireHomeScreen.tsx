@@ -380,7 +380,7 @@ export default function SpireHomeScreen() {
           onAbort={game.onStepAbort}
         />
       ) : null}
-      <SpireTour lang={lang} visible={game.live && tourSeen === false} onDone={finishTour} />
+      <SpireTour lang={lang} visible={game.live && tourSeen === false && !PEAK_SCREEN_V2_ENABLED} onDone={finishTour} />{/* зачем (тур Пика, владелец 04.11): при новом экране B вместо этой картинки-тура — оверлей PeakTour поверх самого экрана (один раз на аккаунт) */}
       {showAll && members ? <SpireAllMembers lang={lang} members={members} subtitle={allSubtitle} onBack={closeAll} rankBy={game.rankBy} /> : null}{/* зачем (вариант А 22.10): окно поверх вкладки, Пик под ним не размонтируется */}
     </View>
   );

@@ -13,7 +13,8 @@ const MEMBERS: readonly SpireMemberRow[] = NAMES.map((name, i) => ({
   uid: 'p' + i, name, steps: i === 8 ? 135 : 120 - i * 7, isMe: i === 6, weekCoins: (NAMES.length - i) * 130, coinRank: i % 20,
 }));
 
-export default function PeakScreenPreview({ lang, rankBy }: Readonly<{ lang: Lang; rankBy: 'steps' | 'coins' }>) {
+// зачем (тур Пика, координатор 04.11): tourPage 0…2 — сразу показать тур с этой страницы (для Сверки); без него тура в превью нет, флаг «показан» не трогаем
+export default function PeakScreenPreview({ lang, rankBy, tourPage }: Readonly<{ lang: Lang; rankBy: 'steps' | 'coins'; tourPage?: number }>) {
   const p = useSpirePalette();
   const insets = useStableSafeAreaInsets();
   const [floor, setFloor] = useState(7);
@@ -30,6 +31,7 @@ export default function PeakScreenPreview({ lang, rankBy }: Readonly<{ lang: Lan
           towerProps={{ myFloor: 7, myCoinRank: 6, tier: 3 }}
           onOpenAll={() => undefined}
           records={{ '7:2': { uid: 'p1', name: 'Max', durationMs: 18_340 } }}
+          tour={tourPage === undefined ? 'off' : { page: tourPage }}
         />
       </ScrollView>
     </View>

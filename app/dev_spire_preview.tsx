@@ -114,7 +114,9 @@ function Inner() {
       {/* ?state=peak_kit — каркас экрана Пика (общие под-компоненты вариантов A/B) на моках, только dev */}
       {__DEV__ && params.state === 'peak_kit' ? <PeakKitPreview lang={lang} /> : null}
       {/* ?state=peak_screen[&mode=steps] — экран Пика, вариант B «Рельса», на моках для кадров «до/после» (флаг не нужен) */}
+      {/* ?state=peak_tour[&page=1|2|3][&mode=steps] — тот же экран с туром первого входа поверх (утверждён владельцем 04.11); флаг «показан» не трогается */}
       {__DEV__ && params.state === 'peak_screen' ? <PeakScreenPreview lang={lang} rankBy={params.mode === 'steps' ? 'steps' : 'coins'} /> : null}
+      {__DEV__ && params.state === 'peak_tour' ? <PeakScreenPreview lang={lang} rankBy={params.mode === 'steps' ? 'steps' : 'coins'} tourPage={params.page === '3' ? 2 : params.page === '2' ? 1 : 0} /> : null}
       {__DEV__ && state === 'tour' ? <SpireTour lang={lang} visible initialPage={params.page === '3' ? 2 : params.page === '2' ? 1 : 0} onDone={() => undefined} /> : null}
       {step ? (
         <StepPreview state={state} exitOpen={exitOpen} overrides={overrides} />

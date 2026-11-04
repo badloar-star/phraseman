@@ -2021,11 +2021,17 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const lifetimeChartScrollRef = useRef<any>(null);
     const params = useLocalSearchParams<{
         qa365?: string;
+        // зачем (запрос Моментов, 04.11): ?focus=series раскрывает блок «Серия» сразу при открытии (шапка Главной)
+        focus?: string;
     }>();
     useEffect(() => {
         if (params.qa365 === '1')
             setPrimaryMetric('year');
     }, [params.qa365]);
+    useEffect(() => {
+        if (params.focus === 'series')
+            setSeriesOpen(true);
+    }, [params.focus]);
     useEffect(() => {
         if (devLifetimeAllCharts)
             return;

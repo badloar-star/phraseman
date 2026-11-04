@@ -5,6 +5,7 @@
 //   node scripts/release_cut_2_1_0.mjs                 — сухой прогон: что изменится
 //   node scripts/release_cut_2_1_0.mjs --apply         — применить (метка среза = сейчас)
 //   node scripts/release_cut_2_1_0.mjs --apply --since 1793836800000   — своя метка среза (мс)
+//   --versions-only — только версии, метку среза не трогать (по умолчанию метка тоже не перезаписывается, если уже не заглушка)
 //   --root <папка>  — работать в копии дерева (проверка до 02:15), по умолчанию корень репозитория
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,6 +16,7 @@ const flag = (n) => args.includes(n);
 const val = (n) => { const i = args.indexOf(n); return i >= 0 ? args[i + 1] : undefined; };
 const root = val('--root') ? path.resolve(val('--root')) : path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const apply = flag('--apply');
+const versionsOnly = flag('--versions-only');
 const sinceMs = Number(val('--since') ?? Date.now());
 const TARGET = { version: '2.1.0', code: 149 };
 if (!Number.isFinite(sinceMs) || sinceMs < Date.UTC(2026, 0, 1)) {
@@ -38,20 +40,25 @@ app = replaceOnce(app, /"versionCode": \d+/, `"versionCode": ${TARGET.code}`, 'a
 app = replaceOnce(app, /"buildNumber": "\d+"/, `"buildNumber": "${TARGET.code}"`, 'app.json ios.buildNumber');
 JSON.parse(app); // не сломали JSON
 
+// зачем (координатор 05.11 00:03): метку среза Вход ставит сам в 01:25 (до E2E) — в 02:15 её нельзя перезаписать.
+// Метка трогается только если это ещё заглушка MAX_SAFE_INTEGER и не задан --versions-only; явный --since перезаписывает.
 const rankPath = path.join(root, 'app/rank_gates_new_user.ts');
 let rank = fs.readFileSync(rankPath, 'utf8');
-rank = replaceOnce(
-  rank,
-  /export const RANK_GATES_NEW_USERS_SINCE_MS = [^;]+;/,
-  `export const RANK_GATES_NEW_USERS_SINCE_MS = ${sinceMs};`,
-  'rank_gates_new_user.ts RANK_GATES_NEW_USERS_SINCE_MS',
-);
+const rankMatch = /export const RANK_GATES_NEW_USERS_SINCE_MS = ([^;]+);/.exec(rank);
+if (!rankMatch) throw new Error('не найдено: RANK_GATES_NEW_USERS_SINCE_MS');
+const markIsStub = /MAX_SAFE_INTEGER/.test(rankMatch[1]);
+const touchMark = !versionsOnly && (markIsStub || val('--since') !== undefined);
+if (touchMark) {
+  rank = replaceOnce(rank, /export const RANK_GATES_NEW_USERS_SINCE_MS = [^;]+;/, `export const RANK_GATES_NEW_USERS_SINCE_MS = ${sinceMs};`, 'rank_gates_new_user.ts RANK_GATES_NEW_USERS_SINCE_MS');
+} else {
+  console.log(`[RELEASE-CUT]   метка среза НЕ тронута (${rankMatch[1].trim()}): ${versionsOnly ? '--versions-only' : 'уже не заглушка'}`);
+}
 
 if (!apply) {
   console.log('[RELEASE-CUT] сухой прогон: файлы НЕ изменены. Применить: node scripts/release_cut_2_1_0.mjs --apply');
   process.exit(0);
 }
 fs.writeFileSync(appJsonPath, app);
-fs.writeFileSync(rankPath, rank);
-console.log(`[RELEASE-CUT] ✔ применено (версия ${TARGET.version}/${TARGET.code}, метка среза ${sinceMs} = ${new Date(sinceMs).toISOString()})`);
+if (touchMark) fs.writeFileSync(rankPath, rank);
+console.log(`[RELEASE-CUT] ✔ применено (версия ${TARGET.version}/${TARGET.code}${touchMark ? `, метка среза ${sinceMs} = ${new Date(sinceMs).toISOString()}` : ', метка среза без изменений'})`);
 console.log('[RELEASE-CUT] дальше: RELEASE_CUT=1 node --test tests/rank_gates_since_release_cut_guard.test.mjs; npm run test:one -- tests/release_version_consistency_2026_11_05.test.ts; коммит app.json + app/rank_gates_new_user.ts через safe_commit');

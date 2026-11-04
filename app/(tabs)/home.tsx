@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium } from '../../components/PremiumContext';
 import { useHomeTrialRow } from '../../hooks/use_home_trial_row';
+import { WelcomeGate } from '../../components/onboarding/WelcomeGate';
 import { useTabFocusTick, useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -3240,6 +3241,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           однажды всплыл бы не вовремя. Сам компонент в проекте сохранён. */}
       {/* Сохранённые карточки слетаются в плитку «Карточки». Оверлей поверх всего:
           места не занимает, поэтому первый кадр главной остаётся стабильным. */}
+      {/* зачем (владелец 04.11): приветствие B-3 один раз новому пользователю — шлюз сам решает, показывать ли */}
+      <WelcomeGate />
       {savedCardsFlightMounted ? (<Suspense fallback={null}><SavedCardsFlight
         count={cardArrivals}
         target={cardsTileCenter}

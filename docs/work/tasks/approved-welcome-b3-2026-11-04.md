@@ -1,6 +1,7 @@
 # Task packet: приветствие B-3 (три экрана с персонажем) — перенос в приложение
 
 Governance-ID: TG-F59EE44C8885
+Governance-ID: TG-0DED21F90AB5
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: none
@@ -32,3 +33,5 @@ Accept temporarily: экран 1 и подписи кнопок на 8 язык�
 ## Rollback
 
 Удалить новые файлы: подключения нет, на приложение не влияют.
+
+Шлюз 04.11: components/onboarding/WelcomeGate.tsx показывает приветствие один раз новому пользователю (метка онбординга после RANK_GATES_NEW_USERS_SINCE_MS, ключ welcome_b3_shown_v1); Главная монтирует одной строкой.

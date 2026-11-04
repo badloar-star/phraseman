@@ -13,8 +13,9 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { QuietEmptyState } from '../../components/cards-grid/QuietEmptyState';
-import { PackCatalogRow } from '../../components/packs/PackRow';
+import { PackCatalogRow, PackDeckPlayButton } from '../../components/packs/PackRow';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
+import { hapticTap } from '../../hooks/use-haptics';
 import { packDeckLevel, packDeckSkeletonHeight } from '../../components/packs/packDeckModel';
 import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
@@ -146,6 +147,8 @@ function MyPacksV2Inner(props: Props) {
         onPress={() => onOpen(pack)}
         onLongPress={() => setActionsFor(pack)}
         trailing={<CommunityPackSocialBar pack={pack} lang={lang} t={t} owned variant="rowHeart" />}
+        // зачем (аудит Ревизора, владелец 04.11): круглая ▶ «Тренировать» прямо в строке — быстрый вход в тренировку, как до rev8
+        action={<PackDeckPlayButton g={g} label={copy.train} testID={`fc-my-packs-pack-play-${pack.id}`} disabled={openingPackId !== null} onPress={() => { void hapticTap(); onTrain(pack); }} />}
       />
     );
   };

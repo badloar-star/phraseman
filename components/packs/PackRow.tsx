@@ -18,7 +18,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import React, { memo, useMemo } from 'react';
-import { Pressable, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import { CountPill, KitCheck, KitIconTile, KitSurface } from '../cards-grid/CardsKit';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
@@ -232,28 +232,58 @@ export const PackRow = memo(PackRowBase);
 export default PackRow;
 
 /** Rev8 catalog row: one accessible target with live metadata and themed existing artwork. */
-export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, count, testID, onPress, onLongPress, disabled, author, level, note, duration, showArrow = true, a11yActions, trailing }: Readonly<{
+export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, count, testID, onPress, onLongPress, disabled, author, authorMeta, level, note, duration, showArrow = true, a11yActions, trailing, action, opening = false, highlight, emphasis = 'normal' }: Readonly<{
   g: GlassTokens; lang: Lang; title: string; count: number; testID: string;
   onPress: () => void; onLongPress?: () => void; disabled?: boolean;
   author?: string | null; level?: string | null; note?: string | null; duration?: string | null; showArrow?: boolean;
+  /** Монета ранга автора и кольцо Plus (владелец 21.10) — рядом с ником. */
+  authorMeta?: Readonly<{ coinRank?: number | null; isPremium?: boolean }> | null;
   a11yActions?: readonly Readonly<{ name: string; label: string; run: () => void }>[];
-  /** Живые цифры справа (сердце, число лайков, 💬 N) — отдельная цель касания, не ломает высоту строки. */
+  /** Живые цифры справа внизу (♥ число, 💬 N) — отдельная цель касания, не меняет высоту строки (эталон rev8-pack-row-likes). */
   trailing?: React.ReactNode;
+  /** Кнопка справа по центру строки (▶ «Тренировать» в «Мои наборы»). */
+  action?: React.ReactNode;
+  /** Набор открывается — спиннер вместо цифр, тап даёт видимый отклик. */
+  opening?: boolean;
+  /** Совпадение поиска в названии — цветом акцента. */
+  highlight?: string;
+  /** Долгое нажатие: выбранная строка поднята, остальные приглушены. */
+  emphasis?: PackRowEmphasis;
 }>) {
   const { isDark } = useTheme();
+  const lh = useLineScale();
   const shown = formatPackTitleForDisplay(title);
-  const meta = [`${count} ${packCardsWord(lang, count)}`, level, author, duration, note].filter(Boolean).join(' · ');
+  const parts = splitTitleHighlight(shown, highlight);
+  const countText = [`${count} ${packCardsWord(lang, count)}`, level, duration, note].filter(Boolean).join(' · ');
+  const a11yMeta = [countText, author].filter(Boolean).join(' · ');
+  // зачем (владелец 04.11: «я разве просил что-то убирать?»; аудит Ревизора): rev8-строка обязана держать все слоты прежней — ♥/💬, монету и Plus автора, спиннер «открывается», подсветку и приглушение; сторож tests/pack_rows_likes_comments_visible
+  const hasSide = !!trailing || opening || !!action;
   return (
-    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={`${shown}, ${meta}`} accessibilityState={{ disabled: !!disabled }} disabled={disabled} onPress={onPress} onLongPress={onLongPress} accessibilityActions={a11yActions?.map(({ name, label }) => ({ name, label }))} onAccessibilityAction={a11yActions ? (event) => a11yActions.find((a) => a.name === event.nativeEvent.actionName)?.run() : undefined} style={({ pressed }) => ({ minHeight: 86, flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 18, backgroundColor: g.opaqueCard, opacity: disabled ? 0.55 : pressed ? 0.8 : 1 })}>
-      <Image accessible={false} source={isDark ? require('../../assets/images/v2art/dark/cards.webp') : require('../../assets/images/v2art/light/cards.webp')} style={{ width: 54, height: 54 }} contentFit="contain" />
-      <View style={{ flex: 1, minWidth: 0 }}>
-        <ClampedText maxLines={2} style={{ color: g.text, fontSize: 16, fontWeight: '700' }}>{shown}</ClampedText>
-        {!showArrow && author ? <Text style={{ color: g.text, fontSize: 13, marginTop: 4 }}>{author}</Text> : null}
-        <Text style={{ color: g.secondary, fontSize: 13, marginTop: 4 }}>{!showArrow && author ? `${count} ${packCardsWord(lang, count)}` : meta}</Text>
-      </View>
-      {trailing}
-      {showArrow ? <Ionicons name="chevron-forward" size={20} color={g.secondary} /> : null}
-    </Pressable>
+    <View style={[{ borderRadius: 18 }, emphasis === 'dimmed' ? styles.dimmed : null, emphasis === 'lifted' ? [styles.lifted, { boxShadow: raisedBoxShadow(g) }] : null]}>
+      <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={`${shown}, ${a11yMeta}`} accessibilityState={{ disabled: !!disabled, busy: opening }} disabled={disabled} onPress={onPress} onLongPress={onLongPress} accessibilityActions={a11yActions?.map(({ name, label }) => ({ name, label }))} onAccessibilityAction={a11yActions ? (event) => a11yActions.find((a) => a.name === event.nativeEvent.actionName)?.run() : undefined} style={({ pressed }) => ({ minHeight: 86, flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 18, backgroundColor: g.opaqueCard, opacity: disabled ? 0.55 : pressed ? 0.8 : 1 })}>
+        <Image accessible={false} source={isDark ? require('../../assets/images/v2art/dark/cards.webp') : require('../../assets/images/v2art/light/cards.webp')} style={{ width: 54, height: 54 }} contentFit="contain" />
+        <View style={{ flex: 1, minWidth: 0 }}>
+          <ClampedText maxLines={2} style={{ color: g.text, fontSize: 17, lineHeight: lh(22), fontWeight: '700' }}>
+            {parts.before}
+            {parts.match ? <Text style={{ color: g.accentText }}>{parts.match}</Text> : null}
+            {parts.after}
+          </ClampedText>
+          {author ? (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4 }}>
+              {authorMeta ? <DeckAvatar g={g} coinRank={authorMeta.coinRank} plus={authorMeta.isPremium} /> : null}
+              <ClampedText maxLines={1} style={{ flexShrink: 1, color: g.secondary, fontSize: 15, lineHeight: lh(20) }}>{author}</ClampedText>
+            </View>
+          ) : null}
+          <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 8, marginTop: 4 }}>
+            <Text style={{ flexShrink: 1, color: g.secondary, fontSize: 15, lineHeight: lh(20) }}>{countText}</Text>
+            {/* зачем: цель касания сердца 44 dp перекрывает соседние строки текста, а не раздувает высоту строки (минус по вертикали) */}
+            {opening ? <ActivityIndicator size="small" color={g.secondary} /> : trailing ? <View style={{ marginVertical: -12 }}>{trailing}</View> : null}
+          </View>
+        </View>
+        {action}
+        {showArrow && !hasSide ? <Ionicons name="chevron-forward" size={20} color={g.secondary} /> : null}
+      </Pressable>
+    </View>
   );
 });
 

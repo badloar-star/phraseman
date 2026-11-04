@@ -35,6 +35,7 @@ import { useEffectiveStudyTarget } from '../section_language';
 import { getCanonicalUserId } from '../user_id_policy';
 import { communityPackPriceRunes, type FlashcardMarketPack } from '../flashcards/marketplace';
 import { addCommunityPackToLibrary, toggleCommunityPackLike } from './communityPackActions';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 import { hapticTap } from '../../hooks/use-haptics';
 import {
   addToLibraryOptimistic,
@@ -664,10 +665,10 @@ export default function CommunityPackSocialBar({
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <TouchableOpacity testID={`pack-like-${pack.id}`} accessibilityRole="button" accessibilityLabel={likeLabel} accessibilityState={{ selected: snapshot.liked }} onPress={(event) => { event.stopPropagation(); void onLikePress(); }} activeOpacity={0.85} hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }} style={{ minHeight: 44, minWidth: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-          <Animated.View style={{ transform: [{ scale: likePop }] }}><Ionicons name={snapshot.liked ? 'heart' : 'heart-outline'} size={18} color={snapshot.liked ? g.text : g.secondary} /></Animated.View>
-          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: lh(18), fontWeight: '600', fontVariant: ['tabular-nums'] }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
+          <Animated.View style={{ transform: [{ scale: likePop }] }}><Ionicons name={snapshot.liked ? 'heart' : 'heart-outline'} size={20} color={snapshot.liked ? semanticInk(g).badText : g.secondary} /></Animated.View>
+          <Text style={{ color: snapshot.liked ? semanticInk(g).badText : g.secondary, fontSize: 15, lineHeight: lh(20), fontWeight: '600', fontVariant: ['tabular-nums'] }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </TouchableOpacity>
-        {renderCommentsCount(16, 13, 4)}
+        {renderCommentsCount(20, 15, 5)}
       </View>
     );
   }

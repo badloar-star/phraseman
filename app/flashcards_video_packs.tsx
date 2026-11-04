@@ -438,7 +438,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
       opening={openingPackId === item.id}
       disabled={openingPackId !== null && openingPackId !== item.id}
       onOpen={openPack}
-      variant={embedded ? 'plain' : 'catalog'}
+      variant={embedded ? 'plain' : 'card'}
     />
   ), [embedded, lang, openingPackId, openPack, t]);
 
@@ -657,8 +657,8 @@ const styles = StyleSheet.create({
   headBlock: { paddingHorizontal: 20 },
   langRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 4 },
   searchWrap: { marginTop: 16 },
-  // Rev8 catalog: the shared compact rows use a 12 dp gap.
-  listContent: { paddingHorizontal: 20, paddingTop: 20, paddingBottom: 32, gap: 12 },
+  // зачем (cards-v2 videoAll()): `margin-bottom: 22` между карточками роликов, 20 от заголовка; владелец 04.11 «я разве просил что-то убирать?» — крупные карточки «Из видео» возвращены (кадр 16:9, полоса просмотра, «Добавить +»)
+  listContent: { paddingHorizontal: 20, paddingTop: 20, paddingBottom: 32, gap: 22 },
   // зачем (video-redesign #c1, экран 4): во вкладке поля задаёт сам экран «Видео», строки без карточек — без зазора, разделяет линия.
   embedded: { flex: 1, minHeight: 0 },
   listContentEmbedded: { paddingHorizontal: 0, paddingTop: 4, gap: 0 },

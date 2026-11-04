@@ -90,7 +90,8 @@ describe('PackRow: фиксированная высота, две строки 
     for (const m of row.matchAll(/fontSize:\s*(\d+)/g)) {
       const size = Number(m[1]);
       // 21 — название стопки (cards-v2 `.dt1`, заголовочный размер ≥ 19)
-      expect([13, 16, 21, 23]).toContain(size);
+      // 15 и 17 — строка каталога по эталону rev8-pack-row-likes (владелец 04.11): текст 15, название 17
+      expect([13, 15, 16, 17, 21, 23]).toContain(size);
     }
   });
 });
@@ -282,7 +283,7 @@ describe('ClampedText — одно видимое исключение стор�
     expect(read('components/text-integrity/index.ts')).not.toContain('ClampedText');
   });
 
-  it('трещотка потребителей: ClampedText импортируют ТОЛЬКО PackRow.tsx и VideoPackRow.tsx (решение координатора 11.10)', () => {
+  it('трещотка потребителей: только утверждённые компактные строки', () => {
     const importers: string[] = [];
     const walk = (dir: string): void => {
       for (const name of fs.readdirSync(path.join(ROOT, dir))) {
@@ -299,7 +300,8 @@ describe('ClampedText — одно видимое исключение стор�
     }
     // Новый потребитель — только по решению владельца или координатора (журнал п.9).
     // зачем (координатор 11.10, ночная задача Карточек п.5): строка ролика «Из видео» — название до 2 строк с «…» (app/flashcards/VideoPackRow.tsx).
-    expect(importers.sort()).toEqual(['app/flashcards/VideoPackRow.tsx', 'components/packs/PackRow.tsx']);
+    // Owner 28.10: record replaces the personal-place row without growing it; full text is in its sheet.
+    expect(importers.sort()).toEqual(['app/flashcards/VideoPackRow.tsx', 'components/packs/PackRow.tsx', 'components/spire/SpireFloorRecord.tsx']);
   });
 
   it('в остальных файлах наборов — ни одного eslint-disable сторожа обрезки', () => {

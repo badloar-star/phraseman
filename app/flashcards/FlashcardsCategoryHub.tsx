@@ -302,7 +302,7 @@ function logPackDeckRowOnce(pack: FlashcardMarketPack, drawn: readonly string[])
  * долгое нажатие на чужой набор — «Пожаловаться» / «Не показывать мне».
  */
 function CommunityPackRowBase({
-  pack, uiLang, titleLang, g, owned, onOpen, onLongPress, onAdd, opening, disabled, sceneMode,
+  pack, uiLang, titleLang, g, owned, emphasis, highlight, onOpen, onLongPress, onAdd, opening, disabled, sceneMode,
 }: CommunityPackRowProps) {
   const { theme: rowTheme } = useTheme();
   cardsPerfCount('catalog-row-render'); // зачем: [CARDS-PERF] сколько строк каталога перерисовано (memo держит строки при наборе в поиске / долгом нажатии)
@@ -329,6 +329,10 @@ function CommunityPackRowBase({
       count={pack.cardCount}
       level={packDeckLevel(pack)}
       author={author.name}
+      authorMeta={{ coinRank: author.coinRank, isPremium: author.isPremium }}
+      emphasis={emphasis}
+      highlight={highlight}
+      opening={opening}
       showArrow={!sceneMode}
       onPress={onOpen}
       onLongPress={onLongPress}

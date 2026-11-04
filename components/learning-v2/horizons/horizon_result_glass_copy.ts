@@ -94,9 +94,10 @@ export function horizonResultGlassCopy(lang: Lang): HorizonResultGlassCopy {
       ru: "Следующий урок ещё в работе", uk: "Наступний урок ще в роботі", en: "The next lesson is still in progress", es: "La siguiente lección aún está en preparación",
       "pt-BR": "A próxima lição ainda está em preparação", vi: "Bài tiếp theo vẫn đang được hoàn thiện", id: "Pelajaran berikutnya masih disiapkan", tr: "Sonraki ders hâlâ hazırlanıyor", pl: "Następna lekcja jest jeszcze przygotowywana",
     }),
+    // зачем (удобство №7, владелец одобрил 04.11; строки Переводчика): главная кнопка итога урока — «Дальше: урок N»
     toLesson: (lesson) => triLang(lang, {
-      ru: `К уроку ${lesson}`, uk: `До уроку ${lesson}`, en: `To lesson ${lesson}`, es: `A la lección ${lesson}`,
-      "pt-BR": `Para a lição ${lesson}`, vi: `Tới bài ${lesson}`, id: `Ke pelajaran ${lesson}`, tr: `${lesson}. derse`, pl: `Do lekcji ${lesson}`,
+      ru: `Дальше: урок ${lesson}`, uk: `Далі: урок ${lesson}`, en: `Next: lesson ${lesson}`, es: `Siguiente: lección ${lesson}`,
+      "pt-BR": `Próxima: lição ${lesson}`, vi: `Tiếp theo: bài ${lesson}`, id: `Berikutnya: pelajaran ${lesson}`, tr: `Sonraki: ders ${lesson}`, pl: `Dalej: lekcja ${lesson}`,
     }),
     toMap: triLang(lang, {
       ru: "На карту", uk: "На карту", en: "Back to map", es: "Al mapa", "pt-BR": "Para o mapa",

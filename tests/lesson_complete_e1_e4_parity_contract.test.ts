@@ -27,7 +27,7 @@ describe('итог урока: паритет с learn.html E1–E4', () => {
     expect(complete).toContain("params: { mistakeIds: ids.join(','), length: 'all', ...receipt }");
     expect(complete).toContain('onRepeatErrors={runMistakeIds.length > 0 ? finishMistakes : ('); // R69/Макеты: при ошибках без id — хаб «Мои ошибки» (openMistakesHub)
     expect(complete).toContain('runMistakeIds.length > 0 ? finishMistakes : handleRepeatLesson');
-    expect(complete).toContain('Добить: Ещё учу (${n})');
+    expect(complete).toContain('Повторить мои ошибки · ${n}'); // удобство №7 (04.11): вторая кнопка итога
   });
 
   it('ошибка последнего вопроса не теряется: переход ждёт записи ошибок до 300 мс, новый проход сбрасывает сборщик (ревью Авторизации 13.10)', () => {

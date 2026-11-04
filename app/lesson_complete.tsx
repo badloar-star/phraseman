@@ -144,10 +144,14 @@ const EMPTY_MISTAKE_IDS: readonly string[] = [];
 // «Добить: Ещё учу (N)» — подпись под главной кнопкой итога урока (learn.html E; 9 языков, число — в скобках).
 // зачем (координатор 17.10): «Добить: Ещё учу» не говорило, что N — ошибки; на языках кроме ru — «Исправить ошибки (N)». ru — как в макете, решает владелец.
 const finishMistakesLabels = (n: number) => ({
-  ru: `Добить: Ещё учу (${n})`, uk: `Виправити помилки (${n})`, en: `Fix mistakes (${n})`, es: `Corregir errores (${n})`,
-  'pt-BR': `Corrigir erros (${n})`, vi: `Sửa lỗi (${n})`, id: `Perbaiki kesalahan (${n})`,
-  // зачем (Сверка, R1_LONG_TRANSLATIONS 13.10): pt-BR/pl/id/tr были длиннее en (30–34 знака) — кнопка переносилась; теперь ≤ en.
-  tr: `Hataları düzelt (${n})`, pl: `Popraw błędy (${n})`,
+  // зачем (удобство №7, владелец одобрил 04.11; строки Переводчика docs/work/ux_conveniences_strings_9lang.md): вторая кнопка итога — «Повторить мои ошибки · N»
+  ru: `Повторить мои ошибки · ${n}`, uk: `Повторити мої помилки · ${n}`, en: `Review my mistakes · ${n}`, es: `Repasar mis errores · ${n}`,
+  'pt-BR': `Revisar meus erros · ${n}`, vi: `Ôn lại lỗi của tôi · ${n}`, id: `Ulas kesalahanku · ${n}`, tr: `Hatalarımı tekrarla · ${n}`, pl: `Powtórz moje błędy · ${n}`,
+});
+// зачем (удобство №7): главная кнопка итога — «Дальше: урок N» вместо безымянного «Следующий урок».
+const nextLessonLabels = (n: number) => ({
+  ru: `Дальше: урок ${n}`, uk: `Далі: урок ${n}`, en: `Next: lesson ${n}`, es: `Siguiente: lección ${n}`,
+  'pt-BR': `Próxima: lição ${n}`, vi: `Tiếp theo: bài ${n}`, id: `Berikutnya: pelajaran ${n}`, tr: `Sonraki: ders ${n}`, pl: `Dalej: lekcja ${n}`,
 });
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -1662,7 +1666,7 @@ export default function LessonComplete() {
                     : lessonId >= 32
                       // зачем (аудит R58 #35, 15.10): после урока 32 «Следующий урок» нет — кнопка ведёт на Главную, подпись честная
                       ? triLang(lang, { ru: 'Завершить', en: 'Finish', uk: 'Завершити', es: 'Terminar', 'pt-BR': 'Concluir', vi: 'Hoàn thành', id: 'Selesai', tr: 'Bitir', pl: 'Zakończ' })
-                      : triLang(lang, { ru: 'Следующий урок', en: 'Next lesson', uk: 'Наступний урок', es: 'Siguiente lección', 'pt-BR': 'Próxima lição', vi: 'Bài tiếp theo', id: 'Pelajaran berikutnya', tr: 'Sonraki ders', pl: 'Następna lekcja' })}
+                      : triLang(lang, nextLessonLabels(lessonId + 1))}
               primaryBusy={nextOpening}
               onPrimary={() => {
                 if (!completionRequiresPremium && !isComboCompletion && resultStars === 1) {

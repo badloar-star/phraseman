@@ -96,9 +96,10 @@ export default function HorizonMistakeReview({
     tr: `${shownTotal} takılma`,
     pl: shownTotal === 1 ? "Jedno potknięcie" : `Potknięcia: ${shownTotal}`,
   });
+  // зачем (удобство №7, владелец одобрил 04.11; строки Переводчика docs/work/ux_conveniences_strings_9lang.md): «Повторить мои ошибки · N», N — число ошибок на экране итога
   const retryLabel = triLang(lang, {
-    ru: "Повторить ошибки", uk: "Повторити помилки", en: "Practise mistakes", es: "Repasar errores",
-    "pt-BR": "Revisar erros", vi: "Ôn lại lỗi", id: "Ulangi kesalahan", tr: "Hataları tekrarla", pl: "Powtórz błędy",
+    ru: `Повторить мои ошибки · ${shownTotal}`, uk: `Повторити мої помилки · ${shownTotal}`, en: `Review my mistakes · ${shownTotal}`, es: `Repasar mis errores · ${shownTotal}`,
+    "pt-BR": `Revisar meus erros · ${shownTotal}`, vi: `Ôn lại lỗi của tôi · ${shownTotal}`, id: `Ulas kesalahanku · ${shownTotal}`, tr: `Hatalarımı tekrarla · ${shownTotal}`, pl: `Powtórz moje błędy · ${shownTotal}`,
   });
 
   return (

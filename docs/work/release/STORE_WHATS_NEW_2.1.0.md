@@ -1,0 +1,15 @@
+# «Что нового» — версия 2.1.0 (9 языков)
+
+Только текст для App Store Connect и Google Play. Лимит — 500 знаков на язык. Не входит: ранги, замки, Пик B, обучение V2, реферальная лесенка.
+
+| язык | текст | знаков |
+|---|---|---|
+| ru | Классические курсы английского, испанского, французского, немецкого и итальянского: по 1600 фраз в каждом. Энергия: каждое повышение в Пике даёт запас энергии для занятий. Сообщество вернулось: ставьте лайки, пишите комментарии и создавайте свои наборы. Новые ярлыки на значке приложения. Приложение стало быстрее. | 314 |
+| uk | Класичні курси англійської, іспанської, французької, німецької та італійської: по 1600 фраз у кожному. Енергія: кожне підвищення в Піку дає запас енергії для занять. Спільнота повернулася: ставте лайки, пишіть коментарі й створюйте свої набори. Нові ярлики на значку застосунку. Застосунок став швидшим. | 303 |
+| en | Classic courses in English, Spanish, French, German and Italian: 1600 phrases in each. Energy: every level-up in Peak adds to your energy stock for lessons. Community is back: like, comment and create your own sets. New shortcuts on the app icon. The app is faster. | 265 |
+| es | Cursos clásicos de inglés, español, francés, alemán e italiano: 1600 frases en cada uno. Energía: cada subida en el Pico suma a tu reserva de energía para las lecciones. La comunidad vuelve: da me gusta, comenta y crea tus propios sets. Nuevos accesos directos en el icono de la app. La app va más rápida. | 305 |
+| pt-BR | Cursos clássicos de inglês, espanhol, francês, alemão e italiano: 1600 frases em cada um. Energia: cada subida no Pico soma à sua reserva de energia para as lições. A comunidade voltou: curta, comente e crie seus próprios conjuntos. Novos atalhos no ícone do app. O app está mais rápido. | 287 |
+| vi | Khóa học cổ điển tiếng Anh, Tây Ban Nha, Pháp, Đức và Ý: mỗi khóa 1600 cụm từ. Năng lượng: mỗi lần lên hạng trong Đỉnh được cộng thêm năng lượng để học. Cộng đồng đã trở lại: thích, bình luận và tạo bộ thẻ riêng. Lối tắt mới trên biểu tượng ứng dụng. Ứng dụng nhanh hơn. | 270 |
+| id | Kursus klasik bahasa Inggris, Spanyol, Prancis, Jerman dan Italia: masing-masing 1600 frasa. Energi: setiap naik peringkat di Puncak menambah cadangan energi untuk pelajaran. Komunitas kembali: suka, komentari, dan buat set sendiri. Pintasan baru di ikon aplikasi. Aplikasi jadi lebih cepat. | 291 |
+| tr | İngilizce, İspanyolca, Fransızca, Almanca ve İtalyanca klasik kurslar: her birinde 1600 cümle. Enerji: Zirve'de her seviye atlayışı derslere ayırabileceğin enerji rezervine ekler. Topluluk geri döndü: beğen, yorum yap ve kendi setlerini oluştur. Uygulama simgesinde yeni kısayollar. Uygulama daha hızlı. | 303 |
+| pl | Klasyczne kursy angielskiego, hiszpańskiego, francuskiego, niemieckiego i włoskiego: po 1600 fraz w każdym. Energia: każde awansowanie w Szczycie dodaje zapas energii na lekcje. Społeczność wróciła: polub, skomentuj i twórz własne zestawy. Nowe skróty na ikonie aplikacji. Aplikacja działa szybciej. | 299 |

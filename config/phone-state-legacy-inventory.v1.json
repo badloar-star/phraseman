@@ -2,6 +2,15 @@
   "schemaVersion": "phone-state-legacy-inventory.v1",
   "rows": [
     {
+      "key": "spire_energy_bonus_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": ["async_storage", "last_sync_snapshot", "cloud_progress"],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
       "key": "account_switch_emergency_backup_latest_v1",
       "domain": "account",
       "scope": "portable",

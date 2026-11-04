@@ -14,7 +14,7 @@ export function welcomeReplies(language: string, lang: Lang = 'ru'): readonly We
   const title1 = pick(lang, { ru: 'Привет! Я рядом.', uk: 'Привіт! Я поруч.', en: 'Hi! I’m here.', es: '¡Hola! Estoy contigo.', 'pt-BR': 'Oi! Estou aqui.', vi: 'Chào bạn! Mình ở đây.', id: 'Hai! Aku di sini.', tr: 'Merhaba! Yanındayım.', pl: 'Cześć! Jestem obok.' });
   const first = pick(lang, {
     ru: `Спасибо за скачивание PhraseMan. Давай учить языки вместе! Сейчас у тебя выбран ${language}.`,
-    uk: `Дякуємо, що завантажив PhraseMan. Давай вчити мови разом! Зараз у тебе обрано ${language}.`,
+    uk: `Дякуємо за завантаження PhraseMan. Давай вчити мови разом! Зараз у тебе обрано ${language}.`,
     en: `Thanks for downloading PhraseMan. Let’s learn languages together! You have ${language} selected.`,
     es: `Gracias por descargar PhraseMan. ¡Aprendamos idiomas juntos! Ahora tienes elegido ${language}.`,
     'pt-BR': `Obrigado por baixar o PhraseMan. Vamos aprender idiomas juntos! Agora você escolheu ${language}.`,

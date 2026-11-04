@@ -13,7 +13,7 @@ jest.mock('react-native', () => {
   return {
     View: host('View'),
     Text: host('Text'),
-    Pressable: (props: Record<string, unknown>) => R.createElement('Pressable', props, typeof props.children === 'function' ? (props.children as (s: { pressed: boolean }) => React.ReactNode)({ pressed: false }) : props.children),
+    Pressable: (props: Record<string, unknown>) => R.createElement('Pressable', props, typeof props.children === 'function' ? (props.children as (mockPressState: { pressed: boolean }) => React.ReactNode)({ pressed: false }) : props.children),
     ScrollView: host('ScrollView'),
     StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {}, absoluteFillObject: {}, hairlineWidth: 1 },
     Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },

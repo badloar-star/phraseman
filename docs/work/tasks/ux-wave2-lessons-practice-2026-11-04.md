@@ -24,3 +24,8 @@ Governance-ID: TG-D39AB2CEDC1D
 Каждый пункт — отдельный коммит; откат `git revert` по пункту. Полоса возвращается к `width: %` без влияния на данные.
 
 Governance-ID: TG-1D63C99F799A (PracticeCta на V2Pressable; правка TS18048 в use-audio после удобства №2)
+
+Governance-ID: TG-F6FE486B93A0 (ночной выпуск: проверка заморозки V2)
+Governance-ID: TG-2192D37358FB (чистка красных тестов: done_chain_m10, flashcards_swipe, pressable_primitives; referral_ladder_how_sheet)
+
+Governance-ID: TG-1D3856D2ADE3 (сторожа: прогресс старых пользователей при CLASSIC_COURSES_RUNTIME_ENABLED=true)

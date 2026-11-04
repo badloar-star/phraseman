@@ -30,6 +30,8 @@ const LOG = '[COURSE-LANG]';
  * зачем (Ревизор 04.11, блокер): общий ключ переносил первичный язык прежнего владельца на следующий аккаунт того же телефона.
  */
 export const PRIMARY_COURSE_LANGUAGE_KEY = 'primary_course_language_v1';
+/** Метка вместо удаления прежнего ключа: не запись, поэтому parsePrimaryCourseLanguageRecord вернёт null. */
+export const LEGACY_KEY_MIGRATED_MARK = 'migrated_v1';
 
 /**
  * Ключ записи { v, primary, newUser, atMs } ПО ВЛАДЕЛЬЦУ аккаунта: `story_events_v1:primary_course_language:<stableId>` — стираемое семейство
@@ -173,7 +175,8 @@ async function readRecord(nowMs: number): Promise<PrimaryCourseLanguageRecord | 
 }
 
 /**
- * Разовый перенос старого общего ключа: переносим ТОЛЬКО запись с вердиктом «новый» (иначе игнорируем), прежний ключ удаляем в любом случае.
+ * Разовый перенос старого общего ключа: переносим ТОЛЬКО запись с вердиктом «новый» (иначе игнорируем); прежний ключ гасим меткой (НЕ удаляем: замок владельца 04.11 —
+ * число удалений ключей хранилища в коде не растёт).
  * Запись с таким вердиктом могла появиться только у сборки с включённым правилом; до выхода версии она всегда «не новый».
  */
 async function migrateLegacyRecord(owner: string, key: string): Promise<PrimaryCourseLanguageRecord | null> {
@@ -183,7 +186,7 @@ async function migrateLegacyRecord(owner: string, key: string): Promise<PrimaryC
   const migrate = legacy !== null && legacy.newUser === true && activeOwner() === owner;
   console.log(`${LOG} legacy_key`, JSON.stringify({ migrate, legacyNew: legacy?.newUser ?? null, primary: legacy?.primary ?? null }));
   if (migrate && legacy) await AsyncStorage.setItem(key, JSON.stringify(legacy));
-  await AsyncStorage.removeItem(PRIMARY_COURSE_LANGUAGE_KEY);
+  await AsyncStorage.setItem(PRIMARY_COURSE_LANGUAGE_KEY, LEGACY_KEY_MIGRATED_MARK); // метка не разбирается как запись → дальше игнорируется
   return migrate ? legacy : null;
 }
 

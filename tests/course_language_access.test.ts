@@ -185,13 +185,17 @@ describe('запись по владельцу аккаунта (Ревизор 
     await AsyncStorage.setItem(PRIMARY_COURSE_LANGUAGE_KEY, JSON.stringify(record({ primary: 'en' })));
     await expect(resolveCourseLanguageLock('es', 7)).resolves.toMatchObject({ locked: true });
     expect(parsePrimaryCourseLanguageRecord(await AsyncStorage.getItem(KEY_A))).toMatchObject({ primary: 'en', newUser: true });
-    expect(await AsyncStorage.getItem(PRIMARY_COURSE_LANGUAGE_KEY)).toBeNull();
+    expect(await AsyncStorage.getItem(PRIMARY_COURSE_LANGUAGE_KEY)).toBe('migrated_v1'); // погашен меткой, не удалён (замок: удалений не прибавляем)
+    // другой аккаунт на том же телефоне уже не получит эту запись
+    mockOwner = 'owner-b';
+    __resetCourseLanguageAccessForTests();
+    await expect(resolveCourseLanguageLock('es', 70)).resolves.toMatchObject({ locked: false, reason: 'no_record' });
   });
   it('прежний общий ключ с «не новый» игнорируется и удаляется', async () => {
     await AsyncStorage.setItem(PRIMARY_COURSE_LANGUAGE_KEY, JSON.stringify(record({ newUser: false })));
     await expect(resolveCourseLanguageLock('es', 8)).resolves.toMatchObject({ locked: false });
     expect(await AsyncStorage.getItem(KEY_A)).toBeNull();
-    expect(await AsyncStorage.getItem(PRIMARY_COURSE_LANGUAGE_KEY)).toBeNull();
+    expect(await AsyncStorage.getItem(PRIMARY_COURSE_LANGUAGE_KEY)).toBe('migrated_v1');
   });
   it('язык с прогрессом по-прежнему не запирается и при записи по владельцу', async () => {
     await AsyncStorage.setItem(KEY_A, JSON.stringify(record({ primary: 'en' })));

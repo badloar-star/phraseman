@@ -40,7 +40,9 @@ export function v2PressableStyleOpacity(style: StyleProp<ViewStyle>): number {
  * сжимается, а отклик — масштаб и мягкое затемнение до .86 (kit `.t.down`; не 0.6, которое
  * на больших карточках выглядит как мигание) на нативном драйвере.
  */
-function V2Pressable({ style, outerStyle, children, scaleTo = KIT_PRESS_SCALE, withHaptic = true, disabled, ...rest }: Props) {
+function V2Pressable({ style, outerStyle, children, scaleTo = KIT_PRESS_SCALE, withHaptic = false, disabled, ...rest }: Props) {
+  // зачем (владелец 04.11, UX-приятности, волна 1): вибрация по умолчанию ВЫКЛ — строки, карточки и плитки не дребезжат при прокрутке;
+  // включается явно только на управляющих кнопках (V2Button, V2IconButton).
   const reduceMotion = useReduceMotion();
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
@@ -48,8 +50,13 @@ function V2Pressable({ style, outerStyle, children, scaleTo = KIT_PRESS_SCALE, w
   // зачем (координатор 10.10, гейт «приложение = макет»): нажатие — как у всех обёрток: kit.css `.t` — вдавливание 90 мс до scaleTo и
   // opacity .86, отпускание 240 мс cubic-bezier(.3,1.4,.5,1) (раньше здесь была своя пружина 520/34 без прозрачности).
   const animateTo = useCallback((toValue: number) => {
-    if (reduceMotion) { scale.setValue(1); return; }
     const pressed = toValue !== 1;
+    // зачем (волна 1, «Уменьшить движение»): без масштаба, но отклик есть — мягкое затемнение, как у PressableHybrid; раньше нажатие было немым.
+    if (reduceMotion) {
+      scale.setValue(1);
+      Animated.timing(opacity, { ...(pressed ? KIT_PRESS_OPACITY_DOWN : KIT_PRESS_OPACITY_UP), useNativeDriver: true }).start();
+      return;
+    }
     Animated.parallel([
       Animated.timing(scale, { toValue, ...(pressed ? KIT_PRESS_DOWN : KIT_PRESS_UP), useNativeDriver: true }),
       Animated.timing(opacity, { ...(pressed ? KIT_PRESS_OPACITY_DOWN : KIT_PRESS_OPACITY_UP), useNativeDriver: true }),

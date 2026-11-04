@@ -22,7 +22,6 @@
  */
 import React, { memo } from 'react';
 import {
-  ActivityIndicator,
   StyleSheet,
   Text,
   TextInput,
@@ -39,6 +38,7 @@ import { actionBoxShadow, nestedBoxShadow, useShadowGlass } from './ShadowSurfac
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { NavIcon } from './BackGlyph';
+import KitSpinner from './KitSpinner';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -101,6 +101,7 @@ export const V2IconButton = memo(function V2IconButton({ icon, onPress, accessib
       accessibilityLabel={accessibilityLabel}
       onPress={onPress}
       disabled={disabled}
+      withHaptic
       scaleTo={0.92}
       hitSlop={8}
       style={[
@@ -269,6 +270,7 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
       accessibilityState={{ busy: !!loading }}
       onPress={loading ? undefined : onPress}
       disabled={disabled}
+      withHaptic
       scaleTo={0.97}
       style={[
         s.button,
@@ -280,7 +282,7 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
         style,
       ]}
     >
-      {loading ? <ActivityIndicator color={fg} /> : (
+      {loading ? <KitSpinner color={fg} /> : (
         <>
           {iconPosition === 'leading' ? iconNode : null}
           {/* зачем (text-integrity, 01.10): подписи не обрезаем многоточием — длинные de/fr/es переносятся. */}

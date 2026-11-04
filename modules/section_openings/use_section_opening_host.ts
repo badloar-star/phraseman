@@ -11,6 +11,7 @@ import { readRankGateUserVerdict, type RankGateUserVerdict } from '../../app/ran
 import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { usePremium } from '../../components/PremiumContext';
 import { useRankAccess } from '../../hooks/use_rank_access';
+import { useActiveAccountOwner } from '../../hooks/use_active_account_owner';
 import {
   SECTION_OPENING_ROUTES, type SectionOpeningFacts, type SectionOpeningId, type SectionOpeningSurface,
 } from './section_opening_core';
@@ -53,9 +54,13 @@ export function useSectionOpeningHost(active: boolean): SectionOpeningHost {
   const peak = useRankAccess('peak');
   const cardsHub = useRankAccess('cards_hub');
   const [verdict, setVerdict] = useState<RankGateUserVerdict | null>(null);
+  const owner = useActiveAccountOwner();
+
+  // зачем (владелец 04.11, дыры новичка/восстановления): вердикт принадлежит аккаунту — при смене аккаунта (выход, удаление, второй человек) он читается заново
+  useEffect(() => { setVerdict(null); }, [owner]);
 
   useEffect(() => {
-    if (!enabled || verdict) return;
+    if (!enabled || verdict || !owner) return;
     let alive = true;
     readRankGateUserVerdict()
       .then((v) => { if (alive) setVerdict(v); })
@@ -64,7 +69,7 @@ export function useSectionOpeningHost(active: boolean): SectionOpeningHost {
         console.warn(LOG, 'verdict_read_failed — окон не будет', error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
       });
     return () => { alive = false; };
-  }, [enabled, verdict]);
+  }, [enabled, verdict, owner]);
 
   const gatesOn = getRemoteBool('rank_gates_enabled') !== false;
   const decisions: readonly (readonly [SectionOpeningSurface, ReturnType<typeof useRankAccess>])[] = [

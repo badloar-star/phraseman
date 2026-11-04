@@ -6,7 +6,7 @@
  * НЕ запираем. Точка подключения праздничных окон открытия: onRankSectionOpened (шаг «Моменты», не здесь).
  * Лог: [RANK-GATE].
  */
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { usePremium } from '../components/PremiumContext';
 import { getRemoteBool } from '../app/remote_flags';
 import { readRankGateUserVerdict, type RankGateUserVerdict } from '../app/rank_gates_new_user';
@@ -14,14 +14,37 @@ import { useMyCoinRank } from './use_my_coin_rank';
 import type { RankAccessDecision, RankAccessSurface } from '../shared/rank_access_contract';
 import { setDialogueRankShiftActive } from '../app/dialogue_rank_shift';
 import { decideForUser, isSurfaceLocked } from '../app/rank_gate_decision';
+import { subscribeAccountGeneration } from '../app/account_generation';
 
 export { decideForUser, isSurfaceLocked };
 export type { RankAccessDecision };
 
 let verdictCache: RankGateUserVerdict | null = null;
 let verdictPromise: Promise<RankGateUserVerdict> | null = null;
+// зачем (владелец 04.11, дыры новичка/восстановления): вердикт принадлежит АККАУНТУ — при смене аккаунта (выход, удаление, второй человек на телефоне)
+// кэш процесса сбрасывается и хуки читают вердикт заново; «нет владельца» не кэшируется (прочитаем, когда аккаунт станет активным).
+let verdictEpoch = 0;
+const verdictEpochListeners = new Set<() => void>();
+subscribeAccountGeneration(() => {
+  verdictCache = null;
+  verdictPromise = null;
+  verdictEpoch += 1;
+  verdictEpochListeners.forEach((listener) => listener());
+});
+const subscribeVerdictEpoch = (listener: () => void): (() => void) => {
+  verdictEpochListeners.add(listener);
+  return () => { verdictEpochListeners.delete(listener); };
+};
+const getVerdictEpoch = (): number => verdictEpoch;
 function loadVerdict(): Promise<RankGateUserVerdict> {
-  if (!verdictPromise) verdictPromise = readRankGateUserVerdict().then((v) => { verdictCache = v; return v; });
+  if (!verdictPromise) {
+    const promise: Promise<RankGateUserVerdict> = readRankGateUserVerdict().then((v) => {
+      if (verdictPromise !== promise) return v; // зачем: за время чтения аккаунт сменился — чужой вердикт в кэш не кладём
+      if (v.reason === 'no_owner' || v.reason === 'owner_changed') verdictPromise = null; else verdictCache = v;
+      return v;
+    });
+    verdictPromise = promise;
+  }
   return verdictPromise;
 }
 
@@ -38,7 +61,14 @@ export function useRankAccess(surface: RankAccessSurface): RankAccessDecision {
   const rank = useMyCoinRank();
   const premium = usePremium();
   const [verdict, setVerdict] = useState<RankGateUserVerdict | null>(verdictCache);
-  useEffect(() => { if (!verdictCache) void loadVerdict().then(setVerdict); }, []);
+  const epoch = useSyncExternalStore(subscribeVerdictEpoch, getVerdictEpoch, getVerdictEpoch);
+  useEffect(() => {
+    if (verdictCache) { setVerdict(verdictCache); return undefined; }
+    setVerdict(null); // зачем: прежний вердикт принадлежал другому аккаунту; пока читаем — «неопределённое не запираем»
+    let alive = true;
+    void loadVerdict().then((v) => { if (alive) setVerdict(v); });
+    return () => { alive = false; };
+  }, [epoch]);
   const gatesEnabled = getRemoteBool('rank_gates_enabled') !== false;
   // зачем (владелец 30.10): сдвиг требований диалогов «+1, потолок 19» включён только для нового пользователя при включённых гейтах
   setDialogueRankShiftActive(gatesEnabled && verdict?.isNew === true);

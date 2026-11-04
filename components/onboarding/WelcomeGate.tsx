@@ -13,11 +13,17 @@ import { useLang } from '../LangContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { useActiveAccountOwner } from '../../hooks/use_active_account_owner';
 import { useOverlayVisible } from '../OverlayArbiter';
 import type { Lang } from '../../constants/i18n';
 import { ApprovedWelcome } from './ApprovedWelcome';
 
-export const WELCOME_B3_SHOWN_KEY = 'welcome_b3_shown_v1';
+/**
+ * Отметка «приветствие показано» — НА АККАУНТ (владелец 04.11): удаление аккаунта, выход и второй человек на том же телефоне не наследуют чужую отметку.
+ * Лежит в уже стираемом семействе `story_events_v1:` (app/cloud_sync WIPE_ONLY_ACCOUNT_KEY_PREFIXES) — стирается при выходе и удалении аккаунта.
+ */
+export const WELCOME_B3_KEY_PREFIX = 'story_events_v1:welcome_b3';
+export const welcomeB3ShownKey = (owner: string): string => `${WELCOME_B3_KEY_PREFIX}:${owner}`;
 
 type Names = Readonly<Record<string, Readonly<Record<string, string>>>>;
 // Название выбранного языка обучения на языке интерфейса (для реплики экрана 1).
@@ -54,12 +60,19 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
   const [wants, setWants] = useState(force);
   const granted = useOverlayVisible('onboardingWelcome', wants && !force);
   const visible = force ? wants : granted;
+  const owner = useActiveAccountOwner();
 
   useEffect(() => {
     if (force) return undefined;
+    // зачем (владелец 04.11): решение принадлежит аккаунту — при смене аккаунта (выход, удаление, второй человек) приветствие пересчитывается; без аккаунта не показываем
+    setWants(false);
+    if (!owner) {
+      console.log('[WELCOME-B3]', JSON.stringify({ show: false, reason: 'no_owner' })); // guard-ok: ранний выход называет причину
+      return undefined;
+    }
     let cancelled = false;
     void (async () => {
-      const [verdict, shown] = await Promise.all([readRankGateUserVerdict(), AsyncStorage.getItem(WELCOME_B3_SHOWN_KEY)]);
+      const [verdict, shown] = await Promise.all([readRankGateUserVerdict(), AsyncStorage.getItem(welcomeB3ShownKey(owner))]);
       const show = shouldShowWelcome({ isNew: verdict.isNew, alreadyShown: shown !== null });
       console.log('[WELCOME-B3]', JSON.stringify({ show, isNew: verdict.isNew, reason: verdict.reason, alreadyShown: shown !== null })); // guard-ok: одна строка на запуск
       if (!cancelled && show) setWants(true);
@@ -67,17 +80,21 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
       console.warn('[WELCOME-B3] gate read failed', error instanceof Error ? error.message : String(error));
     });
     return () => { cancelled = true; };
-  }, [force]);
+  }, [force, owner]);
 
   // «показано» отмечаем сразу при закрытии любым способом — повтор не нужен
   const close = useCallback((how: 'skip' | 'start') => {
     console.log('[WELCOME-B3]', JSON.stringify({ event: how, slot: 'released' })); // guard-ok: одна строка на выход
     setWants(false);
     if (force) return;
-    void AsyncStorage.setItem(WELCOME_B3_SHOWN_KEY, String(Date.now())).catch((error: unknown) => {
+    if (!owner) {
+      console.warn('[WELCOME-B3] shown mark skipped — нет активного аккаунта'); // guard-ok: ранний выход называет причину
+      return;
+    }
+    void AsyncStorage.setItem(welcomeB3ShownKey(owner), String(Date.now())).catch((error: unknown) => {
       console.warn('[WELCOME-B3] shown mark failed', error instanceof Error ? error.message : String(error));
     });
-  }, [force]);
+  }, [force, owner]);
   const onSkip = useCallback(() => close('skip'), [close]);
   const onStart = useCallback(() => {
     close('start');

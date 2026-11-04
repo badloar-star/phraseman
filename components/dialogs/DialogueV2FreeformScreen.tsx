@@ -11,6 +11,7 @@ import type { Lang } from '../../constants/i18n';
 import { DialogueGlassSysError, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
 import { hapticTap } from '../../hooks/use-haptics';
+import { DialogueReplyMenu, type DialogueReplyMenuTarget } from './DialogueReplyMenu';
 import { glassTone } from './glass/glassTone';
 import { DialogSayHints } from './hints/DialogSayHints';
 import { useDialogKeyboardLog } from './use_dialog_keyboard_log';
@@ -172,6 +173,9 @@ export function DialogueV2FreeformScreen({
   // зачем (жалоба владельца 25.10 «нет кнопки Перевести»; координатор: сперва логи [DIALOG-BUBBLE]): у ответов свободного разговора
   // перевода нет — ответ хода несёт только текст; пишем это по каждой реплике собеседника один раз.
   const bubbleLoggedRef = React.useRef(new Set<string>());
+  // зачем (удобство №6, 04.11): долгое нажатие на реплику открывает меню «Скопировать · Поделиться · Медленнее · В карточки»
+  const [replyMenu, setReplyMenu] = React.useState<DialogueReplyMenuTarget | null>(null);
+  const closeReplyMenu = React.useCallback(() => setReplyMenu(null), []);
   // зачем (UX-волна 2, 04.11): реплики, бывшие на экране при открытии (история/восстановление), не анимируем — плавно появляются только новые
   const initialMessageIdsRef = React.useRef<Set<string> | null>(null);
   if (initialMessageIdsRef.current === null) initialMessageIdsRef.current = new Set(messages.map((m) => m.id));
@@ -257,6 +261,7 @@ export function DialogueV2FreeformScreen({
                 glass={glass}
                 author={author}
                 appear={!initialMessageIdsRef.current?.has(message.id)}
+                onLongPress={message.text ? () => { hapticTap(); setReplyMenu({ id: message.id, text: message.text, translation }); } : undefined}
                 actions={canTranslate && translateLabels || (author === 'assistant' && report && message.text) ? (
                   <>
                     {canTranslate && translateLabels ? (
@@ -306,6 +311,7 @@ export function DialogueV2FreeformScreen({
               </DialogueGlassBubble>
             );
           })}
+          <DialogueReplyMenu target={replyMenu} onClose={closeReplyMenu} />
           {sending ? <DialogueGlassTyping glass={glass} testID="dialogue-v2-freeform-typing" /> : null}
           {turnError && !sending ? (
             <DialogueGlassSysError glass={glass} testID="dialogue-v2-freeform-turn-error" message={turnError.message} retryLabel={turnError.retryLabel} onRetry={turnError.onRetry} />

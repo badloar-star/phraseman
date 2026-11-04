@@ -1,6 +1,8 @@
 import EnergyBar from '../EnergyBar';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
+import { DialogueReplyMenu, type DialogueReplyMenuTarget } from './DialogueReplyMenu';
+import { hapticTap } from '../../hooks/use-haptics';
 import { ActivityIndicator, BackHandler, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -287,6 +289,9 @@ export function DialogueV2SessionScreen({
   const [hintOpen, setHintOpen] = React.useState(false);
   const [exitOpen, setExitOpen] = React.useState(false);
   const scrollRef = React.useRef<ScrollView>(null);
+  // зачем (удобство №6, 04.11): долгое нажатие на реплику открывает меню «Скопировать · Поделиться · Медленнее · В карточки»
+  const [replyMenu, setReplyMenu] = React.useState<DialogueReplyMenuTarget | null>(null);
+  const closeReplyMenu = React.useCallback(() => setReplyMenu(null), []);
   // зачем (UX-волна 2, 04.11): реплики, бывшие на экране при открытии (история/восстановление), не анимируем — плавно появляются только новые
   const initialMessageIdsRef = React.useRef<Set<string> | null>(null);
   if (initialMessageIdsRef.current === null) initialMessageIdsRef.current = new Set(messages.map((m) => m.id));
@@ -663,6 +668,7 @@ export function DialogueV2SessionScreen({
                   glass={glass}
                   author={author}
                   appear={!initialMessageIdsRef.current?.has(message.id)}
+                  onLongPress={message.text ? () => { hapticTap(); setReplyMenu({ id: message.id, text: message.text, translation: message.translation ?? null }); } : undefined}
                   avatar={!learner}
                   avatarIcon={personaIcon}
                   who={learner ? labels.you : message.authorLabel}
@@ -701,6 +707,7 @@ export function DialogueV2SessionScreen({
                 </DialogueGlassBubble>
               );
             })}
+            <DialogueReplyMenu target={replyMenu} onClose={closeReplyMenu} />
             {sending ? <DialogueGlassTyping glass={glass} avatar avatarIcon={personaIcon} testID="dialogue-v2-session-typing" caption={typingCaption} /> : null}
             {turnError && !sending ? (
               <DialogueGlassSysError

@@ -88,6 +88,8 @@ export type SpeakOpts = {
    * и показывает метку «Медленнее 0,7×». Не ставить на автозапуск озвучки (иначе авто-повтор замедлится сам).
    */
   slowRepeat?: boolean;
+  /** Удобство №6 (04.11): явная команда «Послушать медленно» — сразу 0,7× через системный голос (без ожидания повтора и без тоста). */
+  slowNow?: boolean;
   /** Learning V2 may play only an already-verified durable local recording. */
   learningV2Recorded?: Readonly<{
     studyTarget: 'en' | 'es';
@@ -258,12 +260,14 @@ export function useAudio() {
 
     // зачем (удобство №2, 04.11): осознанный повтор по кнопке в окне ~3 с — медленнее; готовые клипы играют в оригинальной длине, поэтому идём через системный голос.
     // Явно заданную скорость и записи Learning V2 не трогаем.
-    const slowRepeatActive = opts?.slowRepeat === true && rate === undefined && !opts.learningV2Recorded
+    const slowNow = opts?.slowNow === true && !opts.learningV2Recorded;
+    const slowByRepeat = !slowNow && opts?.slowRepeat === true && rate === undefined && !opts.learningV2Recorded
       && isSlowRepeat({ sameText: dedupeKey === lastTextRef.current, sinceLastMs: now - lastSpeakAtRef.current });
+    const slowRepeatActive = slowNow || slowByRepeat;
     if (slowRepeatActive) {
       opts = { ...opts, systemTtsOnly: true };
-      console.log(`[SLOW-REPEAT] on text=${JSON.stringify(normalized.slice(0, 40))} sinceLastMs=${now - lastSpeakAtRef.current} rate=${SLOW_REPEAT_RATE}`);
-      emitSlowRepeatToast();
+      console.log(`[SLOW-REPEAT] on mode=${slowNow ? 'now' : 'repeat'} text=${JSON.stringify(normalized.slice(0, 40))} sinceLastMs=${now - lastSpeakAtRef.current} rate=${SLOW_REPEAT_RATE}`);
+      if (slowByRepeat) emitSlowRepeatToast();
     }
 
     speechGenerationRef.current += 1;

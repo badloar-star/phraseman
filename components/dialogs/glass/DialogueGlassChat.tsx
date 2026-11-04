@@ -1,5 +1,5 @@
 import React from 'react';
-import { AccessibilityInfo, Animated, Easing, StyleSheet, Text, View, type TextStyle, type ViewStyle } from 'react-native';
+import { AccessibilityInfo, Animated, Easing, Pressable, StyleSheet, Text, View, type TextStyle, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { nestedBoxShadow, plateBoxShadow } from '../../v2/ShadowSurface';
@@ -54,10 +54,12 @@ export interface DialogueGlassBubbleProps {
   testID?: string;
   /** Плавное появление (opacity + сдвиг 8): только для НОВЫХ реплик, пришедших после открытия экрана; история и восстановление — без анимации. */
   appear?: boolean;
+  /** Удобство №6 (04.11): долгое нажатие на пузырь — меню «Скопировать · Поделиться · Медленнее · В карточки». Тот же слот (View → Pressable), новых View нет. */
+  onLongPress?: () => void;
 }
 
 /** Реплика `.msg`: ширина пузыря ≤ 78%, радиус 20, поля 14/18. */
-export function DialogueGlassBubble({ glass, author, who, avatar, avatarIcon, children, actions, note, testID, appear }: DialogueGlassBubbleProps) {
+export function DialogueGlassBubble({ glass, author, who, avatar, avatarIcon, children, actions, note, testID, appear, onLongPress }: DialogueGlassBubbleProps) {
   const learner = author === 'learner';
   // зачем (UX-волна 2, 04.11, владелец одобрил): новые реплики появляются плавно (220 мс, нативный драйвер), без новых View в ленте; Reduce Motion — сразу
   const reduceMotion = useReduceMotion();
@@ -84,7 +86,11 @@ export function DialogueGlassBubble({ glass, author, who, avatar, avatarIcon, ch
         {who ? (
           <Text maxFontSizeMultiplier={1.3} style={[styles.who, { color: glass.secondary }]}>{who}</Text>
         ) : null}
-        <View style={[styles.bubble, bubble]}>{children}</View>
+        {onLongPress ? (
+          <Pressable accessibilityRole="text" delayLongPress={380} onLongPress={onLongPress} style={[styles.bubble, bubble]}>{children}</Pressable>
+        ) : (
+          <View style={[styles.bubble, bubble]}>{children}</View>
+        )}
         {note ? (
           <View testID={testID ? `${testID}-note` : undefined} style={[styles.note, learner ? styles.noteEnd : null]}>
             <Ionicons name="alert-circle-outline" size={14} color={glass.secondary} />

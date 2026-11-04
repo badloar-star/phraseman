@@ -3,7 +3,7 @@
 // зачем: рассказать правила недели на самом экране, а не отдельной картинкой. Окна — от измеренных блоков (peak_tour_core), цвета — токены темы,
 // текст ≥ 15 px, Reduce Motion — без анимации (карточка и стрелки статичны). Движение только transform/opacity на UI-потоке.
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { Modal, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, { Easing, FadeIn, FadeInDown, cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import Svg, { Defs, Mask, Rect } from 'react-native-svg';
@@ -113,15 +113,18 @@ function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onD
           <View style={s.dots} accessible accessibilityLabel={`${page + 1} / ${PEAK_TOUR_PAGES}`}>
             {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, i === page && s.dotOn, { backgroundColor: i === page ? p.text : p.control }]} />)}
           </View>
-          {title ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{title}</Text> : null}
-          <Text style={[title ? s.text : s.textOnly, { color: title ? p.textSecondary : p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{text}</Text>
+          {/* зачем (контракт reachable_action_buttons, ночь 05.11): текст — в прокручиваемой области с потолком высоты, кнопки «Пропустить»/«Далее»/«Начать» ниже и всегда достижимы, даже на самом низком экране или при очень длинном языке */}
+          <ScrollView style={{ maxHeight: Math.max(120, Math.round(size.height * 0.4)) }} showsVerticalScrollIndicator={false} bounces={false}>
+            {title ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{title}</Text> : null}
+            <Text style={[title ? s.text : s.textOnly, { color: title ? p.textSecondary : p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{text}</Text>
+          </ScrollView>
           <View style={s.buttons}>
             {last ? null : (
-              <V2Pressable onPress={skip} accessibilityRole="button" style={[s.btn, s.ghost, { backgroundColor: p.control }]} testID="peak-tour-skip">
+              <V2Pressable onPress={skip} accessibilityRole="button" accessibilityLabel={spireGameText(lang, 'skip')} style={[s.btn, s.ghost, { backgroundColor: p.control }]} testID="peak-tour-skip">
                 <Text style={[s.btnText, { color: p.text }]}>{spireGameText(lang, 'skip')}</Text>
               </V2Pressable>
             )}
-            <V2Pressable onPress={next} accessibilityRole="button" style={[s.btn, s.main, { backgroundColor: p.cta }]} testID="peak-tour-next">
+            <V2Pressable onPress={next} accessibilityRole="button" accessibilityLabel={spireGameText(lang, last ? 'start' : 'next')} style={[s.btn, s.main, { backgroundColor: p.cta }]} testID="peak-tour-next">
               <Text style={[s.btnText, { color: p.ctaText }]}>{spireGameText(lang, last ? 'start' : 'next')}</Text>
             </V2Pressable>
           </View>

@@ -8,6 +8,7 @@ jest.mock('react-native', () => ({
   View: 'View',
   Text: 'Text',
   Modal: 'Modal',
+  ScrollView: 'ScrollView',
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {}, absoluteFillObject: {} },
   Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },
   Dimensions: { get: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }) },

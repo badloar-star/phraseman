@@ -196,6 +196,12 @@ describe('проводка и правила вёрстки', () => {
     expect(tour).toContain('g.scrim');
     expect(tour).toContain('peakTourCardPlacement(');
   });
+  it('кнопки тура достижимы: текст в ScrollView, кнопки с ролью, подписью и зоной ≥ 44 dp (контракт reachable_action_buttons)', () => {
+    const tour = read('components/spire/peak/PeakTour.tsx');
+    expect(tour).toContain('<ScrollView');
+    expect((tour.match(/accessibilityRole="button"/g) ?? []).length).toBeGreaterThanOrEqual(2);
+    expect(tour).toMatch(/btn: \{ minHeight: (4[4-9]|[5-9]\d)/);
+  });
   it('оверлей: без обводок, без зашитых цветов, текст не мельче 15 px', () => {
     const tour = read('components/spire/peak/PeakTour.tsx').replace(/\/\/.*$/gm, '');
     expect(tour).not.toMatch(/borderWidth|borderColor/);

@@ -4,8 +4,8 @@
 import type { SpireGameStringKey } from '../spire_game_strings';
 
 export type PeakTourRect = Readonly<{ x: number; y: number; width: number; height: number }>;
-/** Измеренные в координатах окна блоки экрана: шапка (этаж + пилюля), пилюля, башня, строки топ-5. null — блок не измерился. */
-export type PeakTourRects = Readonly<{ head: PeakTourRect | null; pill: PeakTourRect | null; rail: PeakTourRect | null; top: PeakTourRect | null }>;
+/** Измеренные в координатах окна блоки экрана: шапка (этаж + пилюля), пилюля, башня, строки топ-5, мои монеты и место (counter). null — блок не измерился. */
+export type PeakTourRects = Readonly<{ head: PeakTourRect | null; pill: PeakTourRect | null; rail: PeakTourRect | null; top: PeakTourRect | null; counter?: PeakTourRect | null }>;
 /** soft — окно большое/декоративное (башня): карточке можно его перекрыть; hard — то, о чём говорит текст (строки топ-5, шапка, пилюля): карточка не должна его закрывать. */
 export type PeakTourHole = PeakTourRect & Readonly<{ radius: number; soft?: boolean }>;
 export type PeakTourPage = 0 | 1 | 2;
@@ -33,8 +33,18 @@ function hole(rect: PeakTourRect | null, origin: Origin, radius: number, soft = 
  * Окна затемнения страницы тура (макет): 1 — этаж и пилюля; 2 — вся башня и пилюля; 3 — строки топ-5 и верхушка башни.
  * origin — левый верхний угол окна-оверлея в координатах окна (на Android с полупрозрачной строкой состояния он может отличаться от нуля).
  */
-export function peakTourHoles(page: PeakTourPage, rects: PeakTourRects, origin: Origin): readonly PeakTourHole[] {
+export function peakTourHoles(page: PeakTourPage, rects: PeakTourRects, origin: Origin, rankBy: 'steps' | 'coins' = 'steps'): readonly PeakTourHole[] {
   const railTop = rects.rail ? { ...rects.rail, height: Math.min(rects.rail.height, PEAK_TOUR_RAIL_TOP_HEIGHT) } : null;
+  if (rankBy === 'coins') {
+    // зачем (владелец утвердил тексты 04.11): 1 — «игра, монеты» → мои монеты и место + пилюля лиги; 2 — «5 лучших переходят» → строки топ-5; 3 — «последний этаж» → верхушка башни
+    const mine = rects.counter ?? rects.head;
+    const coinList = page === 0
+      ? [hole(mine, origin, 22), hole(rects.pill, origin, 14)]
+      : page === 1
+        ? [hole(rects.top, origin, 22)]
+        : [hole(railTop, origin, 26)];
+    return coinList.filter((h): h is PeakTourHole => h !== null);
+  }
   const list = page === 0
     ? [hole(rects.head, origin, 22)]
     : page === 1
@@ -42,6 +52,9 @@ export function peakTourHoles(page: PeakTourPage, rects: PeakTourRects, origin: 
       : [hole(rects.top, origin, 22), hole(railTop, origin, 26, true)];
   return list.filter((h): h is PeakTourHole => h !== null);
 }
+
+/** На какой странице стрелки «поднимаются» у топ-5: режим монет — на 2-й («5 лучших переходят»), ступеней — на 3-й (прежний тур). */
+export const peakTourArrowPage = (rankBy: 'steps' | 'coins'): PeakTourPage => (rankBy === 'coins' ? 1 : 2);
 
 /** Стрелки «поднимаются» (3-я страница): по одной слева от каждой из первых `upCount` строк топ-5, по центру строки. */
 export function peakTourArrows(rects: PeakTourRects, rowCount: number, upCount: number, origin: Origin): readonly Origin[] {
@@ -55,12 +68,12 @@ export function peakTourArrows(rects: PeakTourRects, rowCount: number, upCount: 
   return out;
 }
 
-/** Ключи заголовка и текста страницы: в режиме монет — «…Coins» (макет), в режиме ступеней — прежние. */
-export function peakTourKeys(page: PeakTourPage, rankBy: 'steps' | 'coins'): Readonly<{ title: SpireGameStringKey; text: SpireGameStringKey }> {
-  const coins = rankBy === 'coins';
-  if (page === 0) return { title: 'tour1Title', text: coins ? 'tour1TextCoins' : 'tour1Text' };
+/** Ключи заголовка и текста страницы. Режим монет — утверждённые владельцем тексты БЕЗ заголовков (title: null); ступеней — прежние. */
+export function peakTourKeys(page: PeakTourPage, rankBy: 'steps' | 'coins'): Readonly<{ title: SpireGameStringKey | null; text: SpireGameStringKey }> {
+  if (rankBy === 'coins') return { title: null, text: page === 0 ? 'peakTour1' : page === 1 ? 'peakTour2' : 'peakTour3' };
+  if (page === 0) return { title: 'tour1Title', text: 'tour1Text' };
   if (page === 1) return { title: 'tour2Title', text: 'tour2Text' };
-  return { title: coins ? 'tour3TitleCoins' : 'tour3Title', text: coins ? 'tour3TextCoins' : 'tour3Text' };
+  return { title: 'tour3Title', text: 'tour3Text' };
 }
 
 /** Ключ флага «тур показан»: стираемое семейство story_events_v1: (cloud_sync WIPE_ONLY_ACCOUNT_KEY_PREFIXES), по аккаунту. */

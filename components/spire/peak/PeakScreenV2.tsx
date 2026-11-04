@@ -64,6 +64,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   const pillRef = useRef<View>(null);
   const railRef = useRef<View>(null);
   const topRef = useRef<View>(null);
+  const counterRef = useRef<View>(null);
   const forcedPage = typeof tour === 'object' ? tour.page : null;
   const gate = usePeakTourGate(tour === 'auto' && model.top.length > 0);
   const tourOn = forcedPage !== null || gate.visible;
@@ -72,9 +73,9 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
     if (!tourOn) { setTourRects(null); return undefined; }
     let alive = true;
     const timer = setTimeout(() => {
-      void Promise.all([measureBlock(headRef), measureBlock(pillRef), measureBlock(railRef), measureBlock(topRef)]).then(([head, pill, rail, top]) => {
-        console.log('[PEAK-TOUR]', 'measured', JSON.stringify({ head: head !== null, pill: pill !== null, rail: rail !== null, top: top !== null })); // guard-ok: итог замера
-        if (alive) setTourRects({ head, pill, rail, top });
+      void Promise.all([measureBlock(headRef), measureBlock(pillRef), measureBlock(railRef), measureBlock(topRef), measureBlock(counterRef)]).then(([head, pill, rail, top, counter]) => {
+        console.log('[PEAK-TOUR]', 'measured', JSON.stringify({ head: head !== null, pill: pill !== null, rail: rail !== null, top: top !== null, counter: counter !== null })); // guard-ok: итог замера
+        if (alive) setTourRects({ head, pill, rail, top, counter });
       });
     }, 60); // зачем: один кадр на раскладку, потом замер
     return () => { alive = false; clearTimeout(timer); };
@@ -105,7 +106,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
         </V2Pressable>
         <View ref={pillRef} collapsable={false} style={[s.pill, { backgroundColor: p.cardRaised }]}><Text numberOfLines={1} style={[s.pillText, { color: p.text }]}>{pillText}</Text></View>
         </View>
-        <View style={s.counter}><PeakMyCounter lang={lang} me={model.me} rankBy={rankBy} /></View>
+        <View ref={counterRef} collapsable={false} style={s.counter}><PeakMyCounter lang={lang} me={model.me} rankBy={rankBy} /></View>
         <View ref={topRef} collapsable={false} testID="peak-top">{model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} />)}</View>
         {model.summiters.length > 0 ? (
           <View testID="peak-summiters">

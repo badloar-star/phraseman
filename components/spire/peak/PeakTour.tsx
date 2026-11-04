@@ -14,7 +14,7 @@ import { useShadowGlass } from '../../v2/ShadowSurface';
 import V2Pressable from '../../v2/V2Pressable';
 import { useSpirePalette } from '../useSpirePalette';
 import { spireGameText } from '../spire_game_strings';
-import { PEAK_TOUR_ARROW_SIZE, PEAK_TOUR_PAGES, peakTourArrows, peakTourCardPlacement, peakTourHoles, peakTourKeys, peakTourPage, type PeakTourPage, type PeakTourRects } from './peak_tour_core';
+import { PEAK_TOUR_ARROW_SIZE, PEAK_TOUR_PAGES, peakTourArrows, peakTourArrowPage, peakTourCardPlacement, peakTourHoles, peakTourKeys, peakTourPage, type PeakTourPage, type PeakTourRects } from './peak_tour_core';
 
 type Props = Readonly<{
   lang: Lang;
@@ -76,10 +76,10 @@ function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onD
   const skip = useCallback(() => { console.log('[PEAK-TOUR]', 'done', JSON.stringify({ via: 'skip', page })); onDone(); }, [onDone, page]); // guard-ok: итог тура
 
   const keys = peakTourKeys(page, rankBy);
-  const title = spireGameText(lang, keys.title);
+  const title = keys.title ? spireGameText(lang, keys.title) : null; // зачем: в режиме монет заголовков нет (владелец дал только тексты)
   const text = spireGameText(lang, keys.text, { a: spireTierName(0, lang), b: spireTierName(1, lang), c: spireTierName(2, lang), z: spireTierName(11, lang) });
-  const holes = peakTourHoles(page, rects, origin);
-  const arrows = page === 2 ? peakTourArrows(rects, topCount, upCount, origin) : [];
+  const holes = peakTourHoles(page, rects, origin, rankBy);
+  const arrows = page === peakTourArrowPage(rankBy) ? peakTourArrows(rects, topCount, upCount, origin) : [];
   const measured = card !== null && card.page === page && size.height > 0;
   const placement = measured ? peakTourCardPlacement({ holes, screenHeight: size.height, cardHeight: card.height, insetTop: insets.top, insetBottom: insets.bottom }) : null;
   useEffect(() => {
@@ -113,8 +113,8 @@ function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onD
           <View style={s.dots} accessible accessibilityLabel={`${page + 1} / ${PEAK_TOUR_PAGES}`}>
             {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, i === page && s.dotOn, { backgroundColor: i === page ? p.text : p.control }]} />)}
           </View>
-          <Text accessibilityRole="header" style={[s.title, { color: p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{title}</Text>
-          <Text style={[s.text, { color: p.textSecondary }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{text}</Text>
+          {title ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{title}</Text> : null}
+          <Text style={[title ? s.text : s.textOnly, { color: title ? p.textSecondary : p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{text}</Text>
           <View style={s.buttons}>
             {last ? null : (
               <V2Pressable onPress={skip} accessibilityRole="button" style={[s.btn, s.ghost, { backgroundColor: p.control }]} testID="peak-tour-skip">
@@ -140,6 +140,7 @@ const s = StyleSheet.create({
   dotOn: { width: 24 },
   title: { fontSize: 24, lineHeight: 29, fontWeight: '800', letterSpacing: -0.4 },
   text: { fontSize: 16, lineHeight: 22, fontWeight: '500' },
+  textOnly: { fontSize: 19, lineHeight: 26, fontWeight: '600' }, // зачем: карточка только с текстом (заголовков владелец не давал) — текст главный, крупнее и ярче
   buttons: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   btn: { minHeight: 50, borderRadius: 25, alignItems: 'center', justifyContent: 'center' },
   ghost: { paddingHorizontal: 18 },

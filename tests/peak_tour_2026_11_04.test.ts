@@ -10,18 +10,34 @@ import fs from 'node:fs';
 import path from 'node:path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
-  PEAK_TOUR_KEY_PREFIX, peakTourArrows, peakTourCardPlacement, peakTourHoles, peakTourKey, peakTourKeys, peakTourPage, type PeakTourRects,
+  PEAK_TOUR_KEY_PREFIX, peakTourArrowPage, peakTourArrows, peakTourCardPlacement, peakTourHoles, peakTourKey, peakTourKeys, peakTourPage, type PeakTourRects,
 } from '../components/spire/peak/peak_tour_core';
 import { __resetPeakTourStoreForTests, markPeakTourSeen, peekPeakTourSeen, readPeakTourSeen } from '../components/spire/peak/peak_tour_store';
-import { spireGameText } from '../components/spire/spire_game_strings';
+import { SPIRE_GAME_STRINGS, spireGameText } from '../components/spire/spire_game_strings';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 const flush = () => new Promise((resolve) => setTimeout(resolve, 0));
 const R = (x: number, y: number, width: number, height: number) => ({ x, y, width, height });
-const RECTS: PeakTourRects = { head: R(166, 110, 190, 80), pill: R(166, 150, 190, 40), rail: R(2, 120, 150, 600), top: R(154, 300, 240, 250) };
+const RECTS: PeakTourRects = { head: R(166, 110, 190, 80), pill: R(166, 150, 190, 40), rail: R(2, 120, 150, 600), top: R(154, 300, 240, 250), counter: R(166, 200, 220, 70) };
 
 describe('окна затемнения', () => {
-  it('страница 1 — шапка; 2 — башня и пилюля; 3 — строки топ-5 и верхушка башни (120 dp)', () => {
+  it('режим монет (тексты владельца 04.11): 1 — мои монеты и место + пилюля; 2 — строки топ-5; 3 — верхушка башни (последний этаж)', () => {
+    const o = { x: 0, y: 0 };
+    const first = peakTourHoles(0, RECTS, o, 'coins');
+    expect(first).toHaveLength(2);
+    expect(first[0]).toMatchObject({ x: 158, y: 192, width: 236, height: 86 }); // мои монеты и место: 166/200/220/70 + запас 8
+    const second = peakTourHoles(1, RECTS, o, 'coins');
+    expect(second).toHaveLength(1);
+    expect(second[0]).toMatchObject({ x: 146, y: 292, width: 256, height: 266 }); // строки топ-5
+    const third = peakTourHoles(2, RECTS, o, 'coins');
+    expect(third).toHaveLength(1);
+    expect(third[0].height).toBe(120 + 16); // верхушка башни
+    expect(third[0].soft).toBeFalsy(); // последний этаж — то, о чём текст: карточка его не закрывает
+  });
+  it('режим монет без замеренного counter берёт шапку', () => {
+    expect(peakTourHoles(0, { ...RECTS, counter: null }, { x: 0, y: 0 }, 'coins')[0]).toMatchObject({ x: 158, y: 102 });
+  });
+  it('режим ступеней: страница 1 — шапка; 2 — башня и пилюля; 3 — строки топ-5 и верхушка башни (120 dp)', () => {
     const o = { x: 0, y: 0 };
     expect(peakTourHoles(0, RECTS, o)).toHaveLength(1);
     expect(peakTourHoles(1, RECTS, o)).toHaveLength(2);
@@ -40,6 +56,10 @@ describe('окна затемнения', () => {
 });
 
 describe('стрелки «поднимаются»', () => {
+  it('режим монет — стрелки на 2-й странице («5 лучших переходят»), ступеней — на 3-й', () => {
+    expect(peakTourArrowPage('coins')).toBe(1);
+    expect(peakTourArrowPage('steps')).toBe(2);
+  });
   it('по одной у каждой из первых строк, по центру строки, не левее края', () => {
     const arrows = peakTourArrows(RECTS, 5, 5, { x: 0, y: 0 });
     expect(arrows).toHaveLength(5);
@@ -83,9 +103,23 @@ describe('положение карточки (ревизор 04.11): не за�
 });
 
 describe('тексты', () => {
-  it('режим монет — ключи «…Coins» из макета; режим ступеней — прежние', () => {
-    expect(peakTourKeys(0, 'coins')).toEqual({ title: 'tour1Title', text: 'tour1TextCoins' });
-    expect(peakTourKeys(2, 'coins')).toEqual({ title: 'tour3TitleCoins', text: 'tour3TextCoins' });
+  const RU_COINS = [
+    'Пик — игра для тех, кто любит соревноваться. А ещё это отдельный способ попрактиковаться и заработать монеты.',
+    '5 учеников, которые заработали больше всех монет за неделю, переходят в следующую лигу, увеличивают запас энергии для занятий и получают +1000 монет.',
+    'Если дошёл до последнего этажа Пика, переходишь в новую лигу в любом случае, независимо от количества монет.',
+  ];
+  it('режим монет: тексты владельца дословно (ru), без заголовков и без {a}{b}{c}', () => {
+    expect(SPIRE_GAME_STRINGS.peakTour1[0]).toBe(RU_COINS[0]);
+    expect(SPIRE_GAME_STRINGS.peakTour2[0]).toBe(RU_COINS[1]);
+    expect(SPIRE_GAME_STRINGS.peakTour3[0]).toBe(RU_COINS[2]);
+    for (const page of [0, 1, 2] as const) {
+      const k = peakTourKeys(page, 'coins');
+      expect(k.title).toBeNull();
+      expect(spireGameText('ru', k.text)).toBe(RU_COINS[page]);
+    }
+  });
+  it('режим ступеней — прежние ключи с заголовками', () => {
+    expect(peakTourKeys(0, 'steps')).toEqual({ title: 'tour1Title', text: 'tour1Text' });
     expect(peakTourKeys(2, 'steps')).toEqual({ title: 'tour3Title', text: 'tour3Text' });
   });
   it('все страницы × 9 языков × 2 режима — непустые, без нераскрытых {a}{b}{c}', () => {
@@ -93,7 +127,7 @@ describe('тексты', () => {
       for (const rankBy of ['coins', 'steps'] as const) {
         for (const page of [0, 1, 2] as const) {
           const k = peakTourKeys(page, rankBy);
-          expect(spireGameText(lang, k.title).length).toBeGreaterThan(3);
+          if (k.title) expect(spireGameText(lang, k.title).length).toBeGreaterThan(3);
           const text = spireGameText(lang, k.text, { a: 'A', b: 'B', c: 'C', z: 'Z' });
           expect(text.length).toBeGreaterThan(10);
           expect(text).not.toMatch(/\{[a-z]\}/);
@@ -103,6 +137,9 @@ describe('тексты', () => {
       expect(spireGameText(lang, 'next').length).toBeGreaterThan(1);
       expect(spireGameText(lang, 'start').length).toBeGreaterThan(1);
     }
+  });
+  it('цифры в тексте страницы 2 одинаковы во всех языках (5 лучших и +1000)', () => {
+    for (const v of SPIRE_GAME_STRINGS.peakTour2) expect((v.match(/\d+/g) ?? []).sort()).toEqual(['1000', '5']);
   });
 });
 

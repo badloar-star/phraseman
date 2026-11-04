@@ -26,6 +26,7 @@ const EXPECTED_NUMBERS: Readonly<Record<string, readonly number[]>> = {
   tour3Text: [PERCENT, 1], // «…начинают с 1 этажа»
   tour3TextCoins: [5, 5, 1], // Пик 04.11 (Переводчик): «5 лучших поднимаются, 5 последних спускаются… с 1 этажа»
   tour1TextCoins: [SPIRE_FLOOR_COUNT, SPIRE_ROOM_SIZE],
+  peakTour2: [5, 1000], // тур Пика (владелец 04.11): «5 учеников … +1000 монет» — число переходящих и награда
   summitDock: [SPIRE_FLOOR_COUNT, SPIRE_FLOOR_COUNT], // «Ты на вершине: 15 из 15»
   hearts: [SPIRE_STEP_MAX_HEARTS],
   failSub: [SPIRE_STEP_TASK_COUNT],

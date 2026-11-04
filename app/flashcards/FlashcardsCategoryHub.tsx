@@ -101,6 +101,7 @@ import { NO_PACK_LANGUAGE, noPackLanguageLabel, PACK_LANGUAGE_META, normalizePac
 import { formatPackLangTrace } from './pack_lang_trace';
 import { packSocialLive } from '../community_packs/packSocialLive';
 import { CommunityContestStage, communityScenePanelStyle } from '../../components/packs/CommunityScene';
+import { SoftAppear } from '../../components/SoftAppear';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -1055,7 +1056,7 @@ export default function FlashcardsCategoryHub({
             </View>
           ) : visibleCommunityPacks.length === 0 ? (
             // зачем (packs-simple.html кадр 3): пустой каталог — плитка 61 со значком и фраза 20/700 по центру, без карточки.
-            <View testID="flashcards-community-empty" style={{ width: hubBarW, alignItems: 'center', paddingTop: 96, paddingHorizontal: 24 }}>
+            <SoftAppear testID="flashcards-community-empty" style={{ width: hubBarW, alignItems: 'center', paddingTop: 96, paddingHorizontal: 24 }}>
               <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name={catalogCommunityPacks.length === 0 ? 'people-outline' : 'search-outline'} size={26} color={g.text} />
               </View>
@@ -1121,7 +1122,7 @@ export default function FlashcardsCategoryHub({
                   ) : null}
                 </>
               ) : null}
-            </View>
+            </SoftAppear>
           ) : null}
           {/* зачем (community-redesign.html #c1, экран «Поиск»): при поиске над плашками — «Найдено N» (`.lab`). */}
           {highlightQuery.length > 0 && visibleCommunityPacks.length > 0 ? (

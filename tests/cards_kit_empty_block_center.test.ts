@@ -16,7 +16,8 @@ describe('KitEmpty: centred as a whole block, re-measured after the entrance ani
     expect(source).toMatch(/InteractionManager\.runAfterInteractions\(\(\) => measure\(true\)\)/);
     expect(source).toMatch(/setTimeout\(\(\) => measure\(true\), 800\)/);
     expect(source).toContain('const settled = final || Math.abs(y) < 1;');
-    expect(source).toContain('opacity: pageTop === null || !ready ? 0 : 1');
+    // зачем (Волна 2, пункт 8): скрытие до готовности замера теперь делает мягкое появление (opacity 0 → 1), условие то же
+    expect(source).toContain('useSoftAppear(inline ? true : pageTop !== null && ready)');
   });
 
   // зачем (R1_DIFF_ONE_FIX, 4 строки: блок ниже образца на ≈70 px): холдер занимает весь экран — верх окна известен без замера, а замер в конце входной анимации (y=-50) сдвигал блок вниз

@@ -11,11 +11,12 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useRef, useState } from 'react';
-import { Dimensions, InteractionManager, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import { Animated, Dimensions, InteractionManager, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import { useLineScale } from '../../hooks/useLineScale';
+import { useSoftAppear } from '../../hooks/use_soft_appear';
 
 /** «.card» макета: плашка стиля «Тень» — градиент 180° и тень вниз, без обводки и кромки. */
 export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress, testID, accessibilityLabel, disabled, style, solid, radius = 14 }: Readonly<{
@@ -257,6 +258,8 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
   const [ready, setReady] = useState(false);
   // зачем (координатор 12.10, cards-009): блок центрируется по ЭКРАНУ целиком — плитка, заголовок, подпись И кнопка; высоту меряем, а не берём константу 217 (кнопка/шрифт её меняют)
   const [blockH, setBlockH] = useState(EMPTY_BLOCK_H);
+  // зачем (Волна 2, пункт 8): пустой блок появляется мягко (opacity+сдвиг), а не вспыхивает; в потоке — сразу, по центру — когда замер готов
+  const appear = useSoftAppear(inline ? true : pageTop !== null && ready);
   // зачем (журнал [CARDS-EMPTY] 12.10: pageTop(y)=-50 при высоте родителя = высоте окна): первый замер шёл ВО ВРЕМЯ анимации входа экрана — родитель был сдвинут на 50 dp, поправка вычиталась зря,
   // и после конца анимации блок оказывался на ≈50 dp ниже образца (центр 56–57 % вместо 50,5 %). Поэтому ненулевой замер считаем промежуточным и повторяем после анимаций (InteractionManager)
   // и по таймеру; блок показываем, когда замер финальный или родитель стоит у верха окна (y≈0).
@@ -297,7 +300,7 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
   }, [hideAction, testID]);
   if (inline) {
     return (
-      <View testID={testID} style={styles.emptyInline}>
+      <Animated.View testID={testID} style={[styles.emptyInline, { opacity: appear.opacity, transform: appear.transform }]}>
         <View style={[styles.emptyTile, { backgroundColor: g.opaqueControl }]}>
           <Ionicons name={icon} size={28} color={g.text} />
         </View>
@@ -308,12 +311,12 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
             {actionNode ?? <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />}
           </View>
         )}
-      </View>
+      </Animated.View>
     );
   }
   return (
     <View ref={holder} onLayout={onHolderLayout} testID={testID} pointerEvents="box-none" style={StyleSheet.absoluteFill}>
-      <View ref={block} collapsable={false} onLayout={onBlockLayout} pointerEvents="box-none" style={[styles.emptyBlock, { top: Math.round(height / 2 - EMPTY_CENTER_SHIFT * blockH - (pageTop ?? 0)), opacity: pageTop === null || !ready ? 0 : 1 }]}>
+      <Animated.View ref={block as never} collapsable={false} onLayout={onBlockLayout} pointerEvents="box-none" style={[styles.emptyBlock, { top: Math.round(height / 2 - EMPTY_CENTER_SHIFT * blockH - (pageTop ?? 0)), opacity: appear.opacity, transform: appear.transform }]}>
         <View style={[styles.emptyTile, { backgroundColor: g.opaqueControl }]}>
           <Ionicons name={icon} size={28} color={g.text} />
         </View>
@@ -324,7 +327,7 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
             {actionNode ?? <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />}
           </View>
         )}
-      </View>
+      </Animated.View>
     </View>
   );
 });

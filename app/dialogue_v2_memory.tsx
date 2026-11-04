@@ -26,6 +26,7 @@ import {
 import { triLang } from '../constants/i18n';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useLang } from '../components/LangContext';
+import { SoftAppear } from '../components/SoftAppear';
 import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -383,7 +384,7 @@ export default function DialogueV2MemoryRoute() {
         <ScrollView contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: 32, gap: V2.gap }} decelerationRate="fast">
           <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.intro}</Text>
 
-          {memory && !hasMemory ? <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.empty}</Text> : null}
+          {memory && !hasMemory ? <SoftAppear><Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.empty}</Text></SoftAppear> : null}
 
           {memory?.sharedSummary ? (
             <View style={{ borderRadius: V2.radius.card, boxShadow: plateBoxShadow(g), padding: 14, gap: V2.gapTight }}>

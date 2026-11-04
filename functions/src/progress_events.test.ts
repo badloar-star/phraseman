@@ -234,6 +234,32 @@ describe('progress_events engine', () => {
     expect(examResult.progressPatch['lesson_progress_v2::fr::unlocked_lessons']).toBe('[8,9]');
   });
 
+  it.each(['es', 'de', 'it'])('writes %s lesson progress to its own scoped keys (classic courses 04.11)', (target) => {
+    const event = normalizeProgressEvent({
+      eventId: `lesson:${target}:3:complete:1`,
+      type: 'lesson_complete',
+      clientLocalDate: '2026-06-13',
+      payload: { studyTarget: target, lessonId: 3, score: 4, passed: true, progress: ['correct'], xpDelta: 0 },
+    });
+    const patch = applyProgressEvent({}, event, now).progressPatch;
+    expect(patch[`lesson_progress_v2::${target}::lesson3_best_score`]).toBe('4');
+    expect(patch[`lesson_progress_v2::${target}::3`]).toBe(JSON.stringify(['correct']));
+    expect(patch['lesson3_best_score']).toBeUndefined();
+    expect(isServerOwnedProgressKey(`lesson_progress_v2::${target}::lesson3_best_score`)).toBe(true);
+  });
+
+  it('keeps unknown or missing study targets on the legacy English keys', () => {
+    const event = normalizeProgressEvent({
+      eventId: 'lesson:xx:3:complete:1',
+      type: 'lesson_complete',
+      clientLocalDate: '2026-06-13',
+      payload: { studyTarget: 'ko', lessonId: 3, score: 4, passed: true, progress: ['correct'], xpDelta: 0 },
+    });
+    const patch = applyProgressEvent({}, event, now).progressPatch;
+    expect(patch['lesson3_progress']).toBe(JSON.stringify(['correct']));
+    expect(Object.keys(patch).some((k) => k.includes('_v2::ko'))).toBe(false);
+  });
+
   it('qualifies referral only from a live passed first lesson event', () => {
     expect(shouldQualifyReferralFromProgressEvent(normalizeProgressEvent({
       eventId: 'lesson:1:complete:ref-ok',

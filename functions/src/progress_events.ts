@@ -453,18 +453,22 @@ function safeDocId(value: string): string {
   return value.replace(/[^\w.:-]/g, '_').slice(0, 180);
 }
 
-type ServerStudyTarget = 'en' | 'fr';
+// зачем (владелец 04.11, классические курсы EN/ES/FR/DE/IT): сервер раньше знал только en|fr, и прогресс es/de/it
+// молча писался в английские ключи. Ключи не-EN целей совпадают с клиентскими (targetKey: `<domain>_v2::<target>::<id>`).
+type ServerStudyTarget = 'en' | 'es' | 'fr' | 'de' | 'it';
+const SERVER_STUDY_TARGETS: ReadonlySet<string> = new Set(['en', 'es', 'fr', 'de', 'it']);
 
-function normalizeStudyTarget(raw: unknown): ServerStudyTarget {
-  return cleanString(raw, 12).toLowerCase() === 'fr' ? 'fr' : 'en';
+export function normalizeStudyTarget(raw: unknown): ServerStudyTarget {
+  const value = cleanString(raw, 12).toLowerCase();
+  return SERVER_STUDY_TARGETS.has(value) ? (value as ServerStudyTarget) : 'en';
 }
 
 function scopedTargetKey(domain: 'lesson_progress' | 'level_exams', target: ServerStudyTarget, id: string | number): string {
-  return target === 'fr' ? `${domain}_v2::fr::${encodeURIComponent(String(id))}` : String(id);
+  return target !== 'en' ? `${domain}_v2::${target}::${encodeURIComponent(String(id))}` : String(id);
 }
 
 function lessonProgressKey(lessonId: number, target: ServerStudyTarget): string {
-  return target === 'fr' ? scopedTargetKey('lesson_progress', target, lessonId) : `lesson${lessonId}_progress`;
+  return target !== 'en' ? scopedTargetKey('lesson_progress', target, lessonId) : `lesson${lessonId}_progress`;
 }
 
 function lessonFieldKey(lessonId: number, field: 'best_score' | 'pass_count' | 'pass_live' | 'cellIndex', target: ServerStudyTarget): string {
@@ -495,8 +499,9 @@ export function isServerOwnedProgressKey(key: string): boolean {
   if (SERVER_OWNED_PROGRESS_KEYS.has(key)) return true;
   if (/^lesson\d+_(?:best_score|pass_count|progress|cellIndex)$/.test(key)) return true;
   if (/^level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
-  if (/^lesson_progress_v2::fr::.+/.test(key)) return true;
-  if (/^level_exams_v2::fr::level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
+  // зачем (классические курсы 04.11): те же серверные ключи для es|de|it, что давно были для fr
+  if (/^lesson_progress_v2::(?:es|fr|de|it)::.+/.test(key)) return true;
+  if (/^level_exams_v2::(?:es|fr|de|it)::level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
   if (/^(?:achievement|bonus_chest|wager)_.*(?:claimed|rewarded|at)$/.test(key)) return true;
   return false;
 }

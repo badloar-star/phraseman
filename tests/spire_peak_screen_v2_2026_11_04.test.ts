@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { PEAK_SCREEN_V2_ENABLED } from '../components/spire/peak/peak_screen_flag';
+import { PEAK_SCREEN_V2_ENABLED, peakScreenV2On, setPeakScreenV2DevOverride } from '../components/spire/peak/peak_screen_flag';
 import { peakMaxStep } from '../components/spire/peak/peak_text';
 
 const root = path.join(__dirname, '..');
@@ -14,11 +14,11 @@ describe('экран Пика, вариант B', () => {
   it('флаг выключен по умолчанию, старый экран остаётся', () => {
     expect(PEAK_SCREEN_V2_ENABLED).toBe(false);
     const home = read('components/spire/SpireHomeScreen.tsx');
-    expect(home).toContain('PEAK_SCREEN_V2_ENABLED ? <PeakScreenSlot');
+    expect(home).toContain('peakScreenV2On() ? <PeakScreenSlot');
     // зачем (Ревизор 04.11): экран B подгружается лениво, статического импорта в SpireHomeScreen нет
     expect(home).not.toMatch(/import PeakScreenV2 from/);
     expect(fs.readFileSync(path.join(root, 'components/spire/peak/PeakScreenSlot.tsx'), 'utf8')).toContain("require('./PeakScreenV2')");
-    expect(home).toContain('scene || PEAK_SCREEN_V2_ENABLED ? null');
+    expect(home).toContain('scene || peakScreenV2On() ? null');
   });
 
   it('башня — прежний SpireTower, не перерисована', () => {
@@ -52,5 +52,21 @@ describe('экран Пика, вариант B', () => {
   it('dev-вход ?state=peak_screen есть и только в dev', () => {
     const dev = read('app/dev_spire_preview.tsx');
     expect(dev).toContain("__DEV__ && params.state === 'peak_screen'");
+  });
+
+  it('dev-override ?peakB=1 включает B только в dev; без него — константа (по умолчанию выключена)', () => {
+    const prevDev = (globalThis as { __DEV__?: boolean }).__DEV__;
+    expect(peakScreenV2On()).toBe(false);
+    (globalThis as { __DEV__?: boolean }).__DEV__ = true;
+    setPeakScreenV2DevOverride(true);
+    expect(peakScreenV2On()).toBe(true);
+    setPeakScreenV2DevOverride(null);
+    expect(peakScreenV2On()).toBe(PEAK_SCREEN_V2_ENABLED);
+    (globalThis as { __DEV__?: boolean }).__DEV__ = false;
+    setPeakScreenV2DevOverride(true);
+    expect(peakScreenV2On()).toBe(PEAK_SCREEN_V2_ENABLED);
+    setPeakScreenV2DevOverride(null);
+    (globalThis as { __DEV__?: boolean }).__DEV__ = prevDev;
+    expect(fs.readFileSync(path.join(root, 'app/dev_spire_preview.tsx'), 'utf8')).toContain("setPeakScreenV2DevOverride(params.peakB === '1' ? true : null)");
   });
 });

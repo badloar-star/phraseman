@@ -28,6 +28,7 @@ import SpireHomeScreen from '../components/spire/SpireHomeScreen';
 import SpireTour from '../components/spire/SpireTour';
 import PeakKitPreview from '../components/spire/peak/PeakKitPreview';
 import PeakScreenPreview from '../components/spire/peak/PeakScreenPreview';
+import { setPeakScreenV2DevOverride } from '../components/spire/peak/peak_screen_flag';
 import { WelcomeGate } from '../components/onboarding/WelcomeGate';
 import { SpireStepLayout } from '../components/spire/SpireStepScreen';
 import { SpirePreviewProvider } from '../components/spire/spire_preview_context';
@@ -87,13 +88,14 @@ function StepPreview({ state, exitOpen, overrides }: Readonly<{ state: SpirePrev
 }
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string; nicks?: string; page?: string; mode?: string }>();
+  const params = useLocalSearchParams<{ peakB?: string; state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string; nicks?: string; page?: string; mode?: string }>();
   const { lang } = useLang();
   const fromParam = isSpirePreviewState(params.state) ? params.state : 'room';
   const [state, setState] = useState<SpirePreviewState>(fromParam);
   useEffect(() => { setState(fromParam); }, [fromParam]);
   // зачем (координатор 15.10): tier= (0…11, 0 = Гранит) и floor= (1…15) — данные кадров Макетов = образцу; без них прежние tier 3 / этаж 7
   const overrides = useMemo(() => parseSpirePreviewOverrides(params.tier, params.floor, params.steps, params.nicks), [params.tier, params.floor, params.steps, params.nicks]);
+  setPeakScreenV2DevOverride(params.peakB === '1' ? true : null); // зачем (Сверка 05.11): ?peakB=1 — живой экран Пика сразу в варианте B, только dev
   const model = useMemo(() => spirePreviewModel(state, overrides), [state, overrides]);
   const step = isSpireStepPreviewState(state);
   const exitOpen = params.exit === '1';

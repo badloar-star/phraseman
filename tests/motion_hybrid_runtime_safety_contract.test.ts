@@ -55,8 +55,9 @@ describe('motion hybrid runtime safety', () => {
   test('in-game toast keeps screen geometry off the transformed node', () => {
     const source = read('components/InGameToast.tsx');
     expect(source).toContain('styles.toastAnchor');
-    expect(source).toContain('<Reanimated.View style={[styles.toastCard');
-    expect(source).toMatch(/<Animated\.View[\s\S]{0,160}styles\.toastCard/);
+    // зачем (волна 1, 04.11): карточка тоста получила accessibilityLiveRegion="polite" — диктор объявляет появление; геометрия по-прежнему вне анимируемого узла
+    expect(source).toContain('<Reanimated.View accessibilityLiveRegion="polite" style={[styles.toastCard');
+    expect(source).toMatch(/<Animated\.View[\s\S]{0,240}styles\.toastCard/);
   });
 
   test('medal toast keeps screen geometry off the hybrid transformed node', () => {

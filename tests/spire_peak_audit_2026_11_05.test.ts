@@ -18,4 +18,16 @@ describe('аудит экрана Пика B', () => {
     expect(sheet).toContain('KIT_MOTION.dimOpacity');
     expect(sheet).not.toMatch(/rgba\(0,0,0,0\.\d+\)/);
   });
+
+  it('пока комната не прочитана (members === null) — скелет топа и «—» вместо цифр', () => {
+    const screen = read('components/spire/peak/PeakScreenV2.tsx');
+    expect(screen).toContain('members === null ? <PeakTopSkeleton />');
+    expect(screen).toContain('loading={members === null}');
+    const counter = read('components/spire/peak/PeakMyCounter.tsx');
+    expect(counter).toContain("loading ? '—' : spireGroupThousands(me.value)");
+    const skeleton = read('components/spire/peak/PeakTopSkeleton.tsx');
+    expect(skeleton).toContain('SkeletonPulse');
+    expect(skeleton).toContain('PEAK_SKELETON_ROW_HEIGHT = 56');
+    expect(skeleton).not.toMatch(/borderWidth|borderColor/);
+  });
 });

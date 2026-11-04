@@ -9,19 +9,20 @@ import { spireGroupThousands } from '../spire_plurals';
 import { spireStepsShort } from '../spire_plurals';
 import type { PeakMe, PeakRankBy } from '../../../modules/spire/peak_model';
 
-type Props = Readonly<{ lang: Lang; me: PeakMe; rankBy?: PeakRankBy }>;
+// loading — комната ещё не прочитана: вместо нулей «—» (владелец: не показывать выдуманные цифры)
+type Props = Readonly<{ lang: Lang; me: PeakMe; rankBy?: PeakRankBy; loading?: boolean }>;
 
-function PeakMyCounter({ lang, me, rankBy = 'coins' }: Props) {
+function PeakMyCounter({ lang, me, rankBy = 'coins', loading = false }: Props) {
   const p = useSpirePalette();
   return (
     <View style={s.row} testID="peak-my-counter">
       <View style={s.cell}>
         <Text style={[s.label, { color: p.textSecondary }]}>{rankBy === 'coins' ? spireGameText(lang, 'peakMyCoins') : spireStepsShort(lang, me.value)}</Text>
-        <Text style={[s.value, { color: p.text }]} testID="peak-my-coins">{spireGroupThousands(me.value)}</Text>
+        <Text style={[s.value, { color: p.text }]} testID="peak-my-coins">{loading ? '—' : spireGroupThousands(me.value)}</Text>
       </View>
       <View style={s.cell}>
         <Text style={[s.label, { color: p.textSecondary }]}>{spireGameText(lang, 'peakMyPlace')}</Text>
-        <Text style={[s.value, { color: p.text }]} testID="peak-my-place">{me.place === null ? '—' : String(me.place)}</Text>
+        <Text style={[s.value, { color: p.text }]} testID="peak-my-place">{loading || me.place === null ? '—' : String(me.place)}</Text>
       </View>
     </View>
   );

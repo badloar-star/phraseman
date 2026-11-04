@@ -14,6 +14,7 @@ import { spireText } from '../spire_strings';
 import { spireGameText } from '../spire_game_strings';
 import PeakMyCounter from './PeakMyCounter';
 import PeakTopRow from './PeakTopRow';
+import PeakTopSkeleton from './PeakTopSkeleton';
 import PeakStepSheet from './PeakStepSheet';
 import PeakFloorStepper from './PeakFloorStepper';
 import PeakStepChips from './PeakStepChips';
@@ -111,8 +112,8 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
         </V2Pressable>
         <View ref={pillRef} collapsable={false} style={[s.pill, { backgroundColor: p.cardRaised }]}><Text numberOfLines={1} style={[s.pillText, { color: p.text }]}>{pillText}</Text></View>
         </View>
-        <View ref={counterRef} collapsable={false} style={s.counter}><PeakMyCounter lang={lang} me={model.me} rankBy={rankBy} /></View>
-        <View ref={topRef} collapsable={false} testID="peak-top">{model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} />)}</View>
+        <View ref={counterRef} collapsable={false} style={s.counter}><PeakMyCounter lang={lang} me={model.me} rankBy={rankBy} loading={members === null} /></View>
+        <View ref={topRef} collapsable={false} testID="peak-top">{members === null ? <PeakTopSkeleton /> : model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} />)}</View>
         {model.summiters.length > 0 ? (
           <View testID="peak-summiters">
             <Text style={[s.group, { color: p.textSecondary }]}>{spireGameText(lang, 'peakReachedTop')}</Text>

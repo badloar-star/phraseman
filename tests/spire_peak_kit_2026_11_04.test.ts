@@ -37,6 +37,6 @@ describe('каркас экрана Пика', () => {
 
   it('на боевом экране каркас включается только флагом (по умолчанию выключен)', () => {
     const home = fs.readFileSync(path.join(__dirname, '..', 'components/spire/SpireHomeScreen.tsx'), 'utf8');
-    expect(home).toContain('PEAK_SCREEN_V2_ENABLED');
+    expect(home).toContain('peakScreenV2On');
   });
 });

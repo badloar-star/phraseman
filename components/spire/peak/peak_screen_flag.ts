@@ -2,3 +2,13 @@
 // зачем (владелец 04.11 выбрал вариант B; координатор: «за флагом peak_screen_v2_enabled, старый экран остаётся до решения»):
 // пока константа в коде — подключение к Пульту делает координатор. В dev-превью ?state=peak_screen экран показывается независимо от флага.
 export const PEAK_SCREEN_V2_ENABLED: boolean = false;
+
+// зачем (Сверка 05.11): кадры живого экрана Пика B без правки константы — ?peakB=1 в превью Шпиля (только __DEV__); в релизе override всегда null.
+let devOverride: boolean | null = null;
+export function setPeakScreenV2DevOverride(value: boolean | null): void {
+  devOverride = typeof __DEV__ !== 'undefined' && __DEV__ ? value : null;
+}
+/** Включён ли экран Пика B: dev-override, иначе константа PEAK_SCREEN_V2_ENABLED. */
+export function peakScreenV2On(): boolean {
+  return devOverride ?? PEAK_SCREEN_V2_ENABLED;
+}

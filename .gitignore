@@ -417,3 +417,5 @@ docs/phraseman-2.0/registries/copy_inventory_full.json
 # (factory_native en/l01, 168 JSON) рядом со скомпилированным модулем для сторожа
 # публикации. Источник правды — modules/learning-v2/content/factory_native; копию не храним.
 /functions-content/lib/modules/learning-v2/content/factory_native/generated_release/
+# E2E: данные локальных эмуляторов Firebase (scripts/e2e)
+.e2e-emulator-data/

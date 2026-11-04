@@ -37,3 +37,4 @@ Governance-ID: TG-685DC15686C0 (заморозка V2: тесты native_intent_
 Governance-ID: TG-72845B249B8E (аудио-WIP audio_activity/audio_session_coordinator: не мой, решение — не коммитить)
 
 Governance-ID: TG-A193CDA9D7E4 (запасное «Урок N» вместо старых названий для fr/es/de/it)
+Governance-ID: TG-C0CCF6B542CC (E2E-сценарий классики для Сверки: docs/work/release/E2E_CLASSIC_STEPS_2026-11-05.md)

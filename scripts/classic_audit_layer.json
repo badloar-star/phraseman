@@ -1669,6 +1669,69 @@
     "from": "à",
     "with": "par"
    }
+  ],
+  "en:31:50": [
+   {
+    "position": 4,
+    "from": "and",
+    "with": "so"
+   }
+  ],
+  "fr:01:14": [
+   {
+    "position": 2,
+    "from": "dans",
+    "with": "vers"
+   }
+  ],
+  "fr:11:49": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:14:45": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:15:22": [
+   {
+    "position": 2,
+    "from": "on",
+    "with": "vous"
+   }
+  ],
+  "fr:24:17": [
+   {
+    "position": 5,
+    "from": "la",
+    "with": "lui"
+   }
+  ],
+  "fr:26:04": [
+   {
+    "position": 4,
+    "from": "légère",
+    "with": "lourds"
+   }
+  ],
+  "fr:28:36": [
+   {
+    "position": 0,
+    "from": "Nous",
+    "with": "Il"
+   }
+  ],
+  "it:31:27": [
+   {
+    "position": 4,
+    "from": "andata",
+    "with": "rimasta"
+   }
   ]
  },
  "alt": {
@@ -2623,6 +2686,55 @@
    "add": [
     "Antes vivías aquí.",
     "Tú antes vivías aquí."
+   ],
+   "remove": []
+  },
+  "fr:20:11": {
+   "add": [],
+   "remove": [
+    "Je travaillais le samedi avant."
+   ]
+  },
+  "de:24:39": {
+   "add": [
+    "Es war fast Mitternacht, als wir das Hotel fanden."
+   ],
+   "remove": []
+  },
+  "de:14:48": {
+   "add": [
+    "Heute kann ich das Paket nicht abholen."
+   ],
+   "remove": []
+  },
+  "de:23:28": {
+   "add": [
+    "Schalte das Licht aus, wenn du gehst!"
+   ],
+   "remove": []
+  },
+  "de:31:10": {
+   "add": [
+    "Die Kinder waren schon gegangen, als Tom aufstand."
+   ],
+   "remove": []
+  },
+  "it:08:26": {
+   "add": [
+    "Quando Lea torna a casa?",
+    "Quando torna Lea a casa?"
+   ],
+   "remove": []
+  },
+  "it:13:48": {
+   "add": [
+    "Le sedie nuove sono robuste."
+   ],
+   "remove": []
+  },
+  "it:21:45": {
+   "add": [
+    "La radio stava trasmettendo una canzone quando la corrente è andata via."
    ],
    "remove": []
   }

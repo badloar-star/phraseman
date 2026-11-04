@@ -55,11 +55,10 @@ describe('Сцена: нет затемнения низа', () => {
     expect(n).toBeGreaterThan(20);
   });
 
-  it('герой Главной без окраски (tintAccent=false) и без ореола; шапка, рамка и верх/низ сцены — единый тон неба', () => {
+  it('compact HomeScene без hero-art и ореола; шапка, рамка и верх/низ сцены — единый тон неба', () => {
     const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
-    expect((stage.match(/tintAccent={false}/g) ?? []).length).toBe(2);
+    expect(stage).not.toMatch(/ThemedArtLayers|tintAccent|MaskedView/);
     expect(stage).not.toContain('sceneHalo');
-    expect(read('components/theme/ThemedArtLayers.tsx')).toContain('tintColor={tintAccent ? tint : undefined}');
     const pal = read('components/scene/scene_palette.ts');
     expect(pal).toContain('return isSkyPalette(p) ? skyToneHex(p) : p.gradient.top.hex;');
     expect(pal).toContain('return isSkyPalette(p) ? skyToneHex(p) : p.gradient.bottom.hex;');

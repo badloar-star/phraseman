@@ -1,38 +1,34 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// HomeSceneStage.tsx — «Сцена» Главной: свет и глубина, герой справа, крупный следующий шаг.
+// HomeSceneStage.tsx — «Сцена» Главной: свет и глубина, текстовый следующий шаг.
 //
 // зачем (владелец 21.10 ~23:40: «ВАРИАНТ 1 СЦЕНА! ОТЛИЧНО, МНЕ ОЧЕНЬ НРАВИТСЯ!»; эталон docs/design/v2-app/home-new-concepts.html,
 // раздел A, под замком 9e9e23b0b): сцена — градиент из токенов темы (homeSceneThemeTokens по эталону home-scene-states.html), свет
-// в левом верхнем углу, мягкий ореол за героем, затемнение снизу под текстом; шапка (серия, монеты | энергия, колокол, аватар)
+// в левом верхнем углу и текстовый следующий шаг; шапка (серия, монеты | энергия, колокол, аватар)
 // лежит на сцене стеклом; внизу — место, крупный заголовок, строка прогресса, белая главная кнопка и стеклянные чипы.
 // Вид — только из пропсов: что показывать, решают pickHomeSceneState и buildHomeSceneCopy. Перерисовка — по данным:
 // обработчики берутся из ref (как у HomeV2ContinueCard), иначе каждый рендер Главной перерисовывал бы сцену.
-// Движение: смена героя — мягкое появление 280 мс на UI-потоке, с «Уменьшить движение» — сразу; нажатие — 0.97.
+// Движение: специальный текст входит мягко на UI-потоке, с «Уменьшить движение» — сразу; нажатие — 0.97.
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { msSinceJsEntry } from '../../../../app/cold_start_entry_mark';
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import MaskedView from '@react-native-masked-view/masked-view';
-import { PixelRatio, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { PixelRatio, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import SceneBackdrop from '../../../scene/SceneBackdrop';
 import SceneBlockShadow from '../../../scene/SceneBlockShadow';
 import { isPremiumSceneTheme, scenePaletteCached } from '../../../scene/scene_palette';
 import { logSceneEdge, logSceneLayers, logSceneTheme } from './scene_theme_log';
-import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
+import Animated, { Easing, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { renderWindowEpoch, useRenderCause } from '../../../../app/render_cause_probe';
 import { useScaledTextStyles } from '../../../../hooks/useLineScale';
 import { useEnergyCountdown } from '../../../EnergyContext';
-import { ThemedArtLayers } from '../../../theme/ThemedArtLayers';
 import V2Pressable from '../../../v2/V2Pressable';
 import { colorWithAlpha } from '../../../v2/plateAlpha';
 import { useTabPillTop } from '../../../../hooks/use-tab-content-bottom-pad';
-import { useAfterFirstFrame } from '../../../../hooks/use-after-first-frame';
 import type { HomeSceneChipKind, HomeSceneCopy } from './home_scene_copy';
 import { homeSceneStageHeight } from './home_scene_fit';
-import { homeSceneHeroFade } from './home_scene_hero_fade';
 import { homeSceneWarmTone } from './home_scene_warm_tone';
 import { useShadowGlass } from '../../../v2/ShadowSurface';
 import type { HomeSceneState } from './home_scene_state';
@@ -47,33 +43,14 @@ import { HOME_SCENE_INK } from './home_scene_ink';
 const LOG = '[HOME-SCENE]';
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
 export const HOME_SCENE_SCREEN_SHARE = 392 / 844;
-/** Заголовок героя длиннее этого числа знаков набирается кеглем 26/32, иначе на 360–390 он переносится в две строки. */
+/** Длинный заголовок набирается кеглем 26/32, иначе на 360–390 он переносится в две строки. */
 const TITLE_LONG_CHARS = 18;
 /** Высота сцены варианта 2 на экране 844; на крупном шрифте сцена растёт, а не режет текст. */
-export const HOME_SCENE_STAGE_MIN_HEIGHT = 392;
+export const HOME_SCENE_STAGE_MIN_HEIGHT = 280;
 /** Панель «Сегодня» наезжает на сцену (вариант 2: −22). */
 export const HOME_SCENE_PANEL_OVERLAP = 44; // зачем (слово владельца 29.10): край сцены заходит под карточку «Сегодня», под её заголовок (карточка поверх сцены)
-/** Герой варианта 2: 160 × 160, справа −14, на 52 ниже часов. */
-const HERO = 200; // слово владельца 29.10 (после макета): 200 dp на прежнем месте, как на 2.0.3 (не 280, не мелко в углу)
-/** Правый отступ героя: эталон approved/scene (HERO_HOME.rightDp). Раньше было −14 — герой уходил за край. */
-const HERO_RIGHT = -14;
-/** Герой на месте 2.0.3 (под шапкой, справа −14), а не по центру сцены. */
-const HERO_CENTERED = false;
-/**
- * зачем (слово владельца 29.10: «иконки поверх сцены громадные, а не крохотные»; «текст не спорит с иконками, он может ложиться поверх»): герой не ужимается под текст — слои фон → герой → текст,
- * читаемость держит тень текста. Размер и место — как у утверждённого эталона (160 dp, справа 20, по центру сцены); прежнее вписывание над текстом (heroBounded/маска) отключено этим флагом.
- */
-const HERO_OVER_TEXT = true;
-/** Верх шапки внутри сцены (HomeScene: paddingTop 12). */
-const HEADER_TOP = 8;
-/** Эталон: шапка на 56, герой на 92 — между ними 36. */
-const HERO_BELOW_HEADER = 52 - 8;
-const HERO_TOP = HEADER_TOP + HERO_BELOW_HEADER;
-/** Высота места под шапку внутри сцены (topSpace): герой в слоте свободного места начинается ниже неё, поэтому поднимается на разницу. */
+/** Резерв под наложенную шапку внутри компактной сцены. */
 const TOP_SPACE = 52;
-/** Системный шрифт крупнее этого: текст сцены вырастает, и герой вписывается в свободное место над ним (а не наезжает на текст). */
-const HERO_BOUND_FONT_SCALE = 1.15;
-const HERO_PAD = 0; // зачем: эталон — 160 dp занимает сама картинка; прежнее поле 10 съедало её до 140
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 /**
  * Особая сцена (владелец 25.10): текст входит один раз — 300 мс, снизу на 10, ease-out, на UI-потоке; «Уменьшить движение» — сразу.
@@ -93,21 +70,16 @@ type Props = {
   /** Текст с живыми минутами (null — минуты неизвестны). */
   buildLiveText: (minutes: number | null) => string;
   chips: readonly HomeSceneChip[];
-  art: ImageSourcePropType | null;
-  artAccent: ImageSourcePropType | null;
-  /** 0 энергии: герой приглушён. */
-  artDim: boolean;
   /** Место продолжения ещё читается с диска — та же геометрия, вместо текста заготовка (первый кадр = финальная геометрия). */
   pending: boolean;
   /** Занятие курса готовится — кнопка приглушена и помечена занятой. */
   busy: boolean;
-  /** Сцена на экране: звёзды мигают только когда активна. */
   active: boolean;
   onCta: () => void;
   onChip: (kind: HomeSceneChipKind) => void;
   /** Высота зоны часов, если сцена рисуется от верха экрана: фон заходит под часы, раскладка отступает (0 — как раньше). */
   topInset?: number;
-  /** Измеренная высота шапки поверх сцены; резерв под неё = max(52, headerHeight − topInset). */
+  /** Измеренная высота абсолютной шапки: Stage резервирует её, чтобы крупный системный текст не наложился на copy. */
   headerHeight?: number;
   /** Особая сцена (`состояние:ключ`); смена ключа — текст входит заново один раз. null — обычный герой. */
   specialKey?: string | null;
@@ -124,13 +96,12 @@ export default function HomeSceneStage(props: Props) {
   return <HomeSceneStageView {...props} onCta={cta} onChip={chip} buildLiveText={live} />;
 }
 
-const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, active, onCta, onChip, topInset = 0, headerHeight = 0, specialKey = null }: Props) {
-  useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, pending, busy, active, onCta, onChip, topInset = 0, headerHeight = 0, specialKey = null }: Props) {
+  useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
   const { lang } = useLang();
   const { liquidGlassThemeId, liquidGlassAppearance, isDark } = useTheme();
   const isPremium = isPremiumSceneTheme(liquidGlassThemeId);
-  const heroReady = useAfterFirstFrame('home:hero'); // зачем (ускорение первого кадра; координатор 22.10): герой — со 2-го кадра тем же FadeIn
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
   const pillTop = useTabPillTop();
@@ -140,9 +111,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   // зачем (Сверка 22.10, «Фраза дня» уходила под таб-бар): сцена сжимается ровно настолько, чтобы вся Главная до «Фразы дня» была видна над капсулой (home_scene_fit); остальное не сжимается
   const firstLayoutLoggedRef = useRef(false); // [HOME-SCENE-FIRST]: первая раскладка сцены — одна строка
   const glowLoggedRef = useRef(false);
-  // Header начинается в координате сцены, а Stage уже добавляет topInset как padding. Поэтому резервируем только часть измеренной шапки ниже safe area; 52dp остаётся baseline.
-  const reservedTopSpace = Math.max(TOP_SPACE, headerHeight - topInset);
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
+  // Header начинается в координате сцены, а Stage уже добавляет topInset как padding.
+  // Поэтому резервируем только часть измеренной шапки ниже safe area; 52dp остаётся baseline.
+  const reservedTopSpace = Math.max(TOP_SPACE, headerHeight - topInset);
   // зачем (вердикт владельца 29.10, scenePalette; координатор: «палитра и звёзды — один раз на (тема, оформление, экран, размер), замер первого кадра в [SCENE-THEME]»):
   // цвет фона Главной — из единой функции; кэш модуля, поэтому на следующих кадрах/перерисовках расчёта нет. Размер — в px эталонной канвы (dp × PixelRatio).
   const dpr = PixelRatio.get();
@@ -152,40 +124,19 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
     logSceneTheme('home:stage', liquidGlassThemeId, liquidGlassAppearance, 'scenePalette(' + pal.mode + ')', { mode: pal.mode, ms: Date.now() - t0, evening: evening ? 1 : 0, guard: JSON.stringify(pal.guard) });
     return pal;
   }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, dpr, evening]);
-  // зачем (координатор 25.10 по замеру Тем 8bd8aea17: правило о герое поверх текста отменено — текст обязан читаться): высота места под героя
-  // известна после раскладки; герой рисуется со 2-го кадра (heroReady), так что маска встаёт вместе с ним, без мигания
-  const [heroSpaceH, setHeroSpaceH] = useState<number | null>(null);
-  const fade = HERO_OVER_TEXT
-    ? { bounded: false, masked: false, fadeFrom: 1, fadeTo: 1, why: 'over_text' }
-    : homeSceneHeroFade({ heroTop: HERO_TOP - TOP_SPACE, spaceH: heroSpaceH, heroH: HERO, fontBounded: fontScale > HERO_BOUND_FONT_SCALE });
-  const heroTopInSpace = Math.round((stageH - HERO) / 2 - TOP_SPACE - topInset); // центр сцены по вертикали, как в эталоне
-  const heroBounded = fade.bounded;
-  useEffect(() => {
-    // [HERO-SIZE]: размер героя сейчас / эталон approved/scene (160, справа 20, по центру) / 2.0.3 (160 с полем 10 = 140, справа −14)
-    console.log('[HERO-SIZE]', JSON.stringify({ heroDp: HERO, imageDp: HERO - 2 * HERO_PAD, rightDp: HERO_RIGHT, topDp: Math.round(topInset + (HERO_CENTERED ? heroTopInSpace + TOP_SPACE : HERO_TOP)), stageH: Math.round(stageH), shareOfSceneH: Math.round((HERO / stageH) * 100), shareOfSceneW: Math.round((HERO / windowW) * 100), overText: HERO_OVER_TEXT ? 1 : 0, etalon: { sizeDp: 160, rightDp: 20, vertical: 'center' }, v203: { frameDp: 160, padDp: 10, imageDp: 140, rightDp: -14 } })); // guard-ok: одна строка на смену размера сцены
-  }, [stageH, windowW, topInset, heroTopInSpace]);
-  // зачем (слово владельца 29.10: «иконки на сцене Главной маленькие, в самом верху, вкраю»; сперва логи): где и какого размера герой на сцене — один поиск [SCENE-THEME] home:icons
-  useEffect(() => {
-    logSceneTheme('home:icons', liquidGlassThemeId, liquidGlassAppearance, 'HomeSceneStage.styles.hero (HERO, right, top)', {
-      x: Math.round(windowW - HERO + 14), y: TOP_SPACE + (HERO_TOP - TOP_SPACE) + Math.round(topInset), size: HERO, sceneW: Math.round(windowW), sceneH: Math.round(stageH),
-      rightOffset: -14, heroSpaceH: heroSpaceH === null ? -1 : heroSpaceH, bounded: heroBounded ? 1 : 0, shareOfSceneW: Math.round((HERO / windowW) * 100), shareOfSceneH: Math.round((HERO / stageH) * 100),
-    });
-  }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, topInset, heroSpaceH, heroBounded]);
   // зачем (слово владельца 29.10, [SCENE-EDGE]): блок сцены Главной — высота, доля окна, нижний край (радиус 32, без плавного ухода в фон), источник палитры
   useEffect(() => {
     logSceneEdge('home', { sceneH: Math.round(stageH), sceneW: Math.round(windowW), windowH: Math.round(windowH), shareOfWindow: Math.round((stageH / windowH) * 100), bottomRadius: 28, fadeToBg: false, panelOverlap: HOME_SCENE_PANEL_OVERLAP, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: scenePal.mode, source: isPremium ? 'premiumThemeVisualSpec' : 'scenePalette', evening });
     // зачем ([SCENE-SOURCE], слово владельца 29.10: «темы за достижения сломаны»; сперва логи): откуда сцена и иконки у темы сейчас
-    console.log('[SCENE-SOURCE]', JSON.stringify({ screen: 'home', themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, scene: isPremium ? 'premiumThemeVisualSpec(как 2.0.3)' : 'scenePalette', motion: isPremium ? 'PremiumThemeMotion' : 'none', stars: isPremium ? 'свои' : 'общие', icons: 'themed_art_registry (не менялись)' })); // guard-ok: одна строка на смену темы/оформления
+    console.log('[SCENE-SOURCE]', JSON.stringify({ screen: 'home', themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, scene: isPremium ? 'premiumThemeVisualSpec(как 2.0.3)' : 'scenePalette', motion: isPremium ? 'PremiumThemeMotion' : 'none', stars: isPremium ? 'свои' : 'общие', art: 'off:approved_compact_upper' })); // guard-ok: одна строка на смену темы/оформления
   }, [stageH, windowW, windowH, liquidGlassThemeId, liquidGlassAppearance, scenePal.mode, evening, isPremium]);
-  // зачем (слово владельца 29.10, [SCENE-LAYERS]): порядок слоёв сцены Главной снизу вверх — слои цвета лежат ПОД героем-иконкой, герой и текст рисуются последними
+  // Верхняя сцена одобрена без иллюстрации: остаются только фон, движение темы и текстовый слой.
   useEffect(() => {
     logSceneLayers('home', [
       { name: 'SceneBackdrop(' + scenePal.mode + ')', kind: 'paint', opacity: 1 }, { name: 'PremiumThemeMotion', kind: 'paint' },
-      { name: 'hero', kind: 'icon', opacity: artDim ? 0.6 : 1 }, { name: 'body', kind: 'text' },
-    ], { heroMasked: fade.masked ? 1 : 0, heroBounded: heroBounded ? 1 : 0, hasAccentLayer: artAccent ? 1 : 0, evening });
-  }, [scenePal.mode, artDim, fade.masked, heroBounded, artAccent, evening]);
-  const heroMask = useMemo(() => <LinearGradient colors={['black', 'black', 'transparent']} locations={[0, fade.fadeFrom, fade.fadeTo]} style={StyleSheet.absoluteFill} />, [fade.fadeFrom, fade.fadeTo]);
-  useEffect(() => { console.log(LOG, 'hero_fade', JSON.stringify({ why: fade.why, bounded: fade.bounded, masked: fade.masked, fadeFrom: Number(fade.fadeFrom.toFixed(2)), fadeTo: Number(fade.fadeTo.toFixed(2)), fontScale, spaceH: heroSpaceH })); }, [fade.why, fade.bounded, fade.masked, fade.fadeFrom, fade.fadeTo, fontScale, heroSpaceH]); // guard-ok: одна строка на смену геометрии героя
+      { name: 'body', kind: 'text' },
+    ], { evening });
+  }, [scenePal.mode, evening]);
   // зачем (Сверка home7, [HOME-FIT]): заголовок «Продолжим с эпизода 1» на 390 переносился на 2 строки (+42 dp) и уводил «Фразу дня» под панель; длинный заголовок — кегль 26/32 (как long у обложки Сезона), первый кадр без измерения, без ужатия
   const titleStyle = copy.title.length > TITLE_LONG_CHARS ? s.titleLong : s.title;
   const pressCta = () => {
@@ -203,7 +154,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}
       onLayout={(e) => {
         // зачем (Сверка home5, «Фраза дня» срезана на 390): цифры вместо догадки — расчётная и фактическая высота сцены, окно, верх капсулы; временно, [HOME-FIT]
-        console.log('[HOME-FIT]', JSON.stringify({ planned: stageH, actual: Math.round(e.nativeEvent.layout.height), windowH, windowW, pillTop, fontScale, title: copy.title })); // guard-ok: одна строка на смену высоты
+        console.log('[HOME-FIT]', JSON.stringify({ planned: stageH, actual: Math.round(e.nativeEvent.layout.height), headerHeight: Math.round(headerHeight), reservedTopSpace: Math.round(reservedTopSpace), windowH, windowW, pillTop, fontScale, title: copy.title })); // guard-ok: одна строка на смену высоты
         // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, «верх цельный»; координатор: полоса у владельца на Главной в 7:56 — первый кадр или возврат на вкладку?): когда сцена встала,
         // от какой высоты экрана она красит верх, каким цветом и готова ли (pending — скелет). Мс — от загрузки модуля сцены.
         // зачем (координатор 25.10, 2.0.3: «фон без пустоты на холодном старте»; сперва логи): когда сцена впервые встала и чем нарисован её фон
@@ -230,26 +181,6 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
       <View style={[s.topSpace, { height: reservedTopSpace }]} />
-      {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота; правило: под текстом герой ≤ 16 % в светлом и ≤ 9 % в тёмном — над текстом он плавно гаснет к 0, home_scene_hero_fade), крупный или «маска съела бы героя» — не выше свободного места */}
-      <View style={s.heroSpace} pointerEvents="none" onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setHeroSpaceH((prev) => (prev === h ? prev : h)); }}>
-        {art && heroReady ? (fade.masked ? (
-          // зачем (координатор 25.10, скорость): маска — СНАРУЖИ анимированного слоя и статична (градиент считается от раскладки, не от кадров):
-          // на Android MaskedView рисуется во внешний буфер — его не перерисовываем на каждом кадре появления героя. Маска — только альфа.
-          <MaskedView pointerEvents="none" style={s.hero} maskElement={heroMask}>
-            <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={StyleSheet.absoluteFill}>
-              <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
-                <ThemedArtLayers source={art} accent={artAccent} tintAccent={false} style={s.heroImage} contentFit="contain" contentPosition="center" />
-              </View>
-            </Animated.View>
-          </MaskedView>
-        ) : (
-          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={heroBounded ? s.heroBounded : [s.hero, HERO_CENTERED ? { top: heroTopInSpace } : null]}>
-            <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
-              <ThemedArtLayers source={art} accent={artAccent} tintAccent={false} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
-            </View>
-          </Animated.View>
-        )) : null}
-      </View>
       <View style={s.body}>
         {pending ? (
           <>
@@ -319,19 +250,12 @@ function LiveEnergyText({ build, style, testID, header = false }: Readonly<{ bui
   return <Text testID={testID} accessibilityRole={header ? 'header' : undefined} style={style}>{build(minutes)}</Text>;
 }
 
-/** Тень текста сцены: текст лежит поверх крупного героя, читаемость держит она (тон — чёрный, мягко). */
+/** Тень текста сцены на фоне палитры (тон — чёрный, мягко). */
 const TEXT_OVER_HERO_SHADOW = { textShadowColor: 'rgba(0,0,0,0.38)', textShadowRadius: 10, textShadowOffset: { width: 0, height: 1 } } as const; // theme-exempt: тень текста сцены
 
 const baseStyles = StyleSheet.create({
   // зачем: сцена во всю ширину экрана, скругление только снизу — как .a-stage (0 0 36 36)
   stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden', justifyContent: 'space-between' },
-  // зачем (проверка картинок 9 · САЙТ 22.10: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя — 13 из 214
-  heroSpace: { flex: 1 },
-  hero: { position: 'absolute', right: HERO_RIGHT, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO },
-  heroBounded: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, bottom: 4, width: HERO, maxHeight: HERO },
-  heroVisual: { width: '100%', height: '100%', padding: HERO_PAD, opacity: 0.96 },
-  heroDim: { opacity: 0.55 },
-  heroImage: { width: '100%', height: '100%' },
   // зачем: место под шапку — сама шапка лежит поверх сцены из контейнера HomeScene
   topSpace: { height: TOP_SPACE },
   // зачем: текст сцены у нижнего края (.a-body bottom 58) — место под панель «Сегодня», которая наезжает на 38

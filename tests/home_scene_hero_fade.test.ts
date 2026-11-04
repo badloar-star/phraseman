@@ -48,11 +48,8 @@ describe('герой сцены Главной не ложится под тек
     expect(homeSceneHeroFade({ heroTop: HERO_TOP, spaceH: 200, heroH: HERO, fontBounded: false })).toMatchObject({ masked: false, bounded: false });
   });
 
-  it('сцена: маска на герое и правило «поверх текста допустимо» снято', () => {
+  it('утверждённый compact HomeScene не подключает legacy fade к верхней сцене', () => {
     const src = fs.readFileSync(path.resolve(__dirname, '..', 'components/home/v2/scene/HomeSceneStage.tsx'), 'utf8');
-    expect(src).toContain('homeSceneHeroFade({ heroTop: HERO_TOP - TOP_SPACE, spaceH: heroSpaceH, heroH: HERO');
-    expect(src).toContain('<MaskedView');
-    expect(src).not.toContain('поверх текста допустимо');
-    expect(src).toContain('под текстом герой ≤ 16 % в светлом и ≤ 9 % в тёмном');
+    expect(src).not.toMatch(/homeSceneHeroFade|<MaskedView|ThemedArtLayers/);
   });
 });

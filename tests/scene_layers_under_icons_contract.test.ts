@@ -10,16 +10,14 @@ const at = (src: string, needle: string): number => {
   return i;
 };
 
-describe('Сцена: слои цвета лежат под иконками, иконки — последними', () => {
-  it('Главная: SceneBackdrop → свет-ореол → герой → текст; после текста нет заливок на весь блок', () => {
+describe('Сцена: слои цвета лежат под контентом', () => {
+  it('Главная: approved compact SceneBackdrop → текст; после текста нет заливок на весь блок', () => {
     const src = read('components/home/v2/scene/HomeSceneStage.tsx');
     const backdrop = at(src, '<SceneBackdrop palette={scenePal}');
     expect(src).not.toContain('sceneHalo'); // слово владельца 29.10: вокруг героя нет свечения
-    const hero = at(src, '<View style={s.heroSpace}');
     const body = at(src, '<View style={s.body}>');
-    expect(backdrop).toBeLessThan(hero);
-    expect(hero).toBeLessThan(body);
-    // после начала слоя героя в JSX сцены нет StyleSheet.absoluteFill вне его маски (маска героя лежит внутри блока героя до тела)
+    expect(backdrop).toBeLessThan(body);
+    expect(src).not.toMatch(/ThemedArtLayers|MaskedView|heroSpace/);
     expect(src.slice(body)).not.toMatch(/StyleSheet\.absoluteFill\b/);
     // затемнения низа / свечения-угольков поверх героя нет
     expect(src).not.toContain('sceneEmber');

@@ -1,4 +1,3 @@
-import { SCENE_HERO_HEIGHT_DP } from '../../../scene/scene_hero_height';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // home_scene_fit.ts — высота «Сцены» Главной так, чтобы ВСЯ Главная до «Фразы дня» включительно была видна над таб-баром без прокрутки.
@@ -30,5 +29,5 @@ export function homeBelowSceneHeight(_windowW: number): number {
 /** Высота сцены: доля экрана (46 %), но не больше, чем остаётся над таб-баром после всего, что под сценой. */
 export function homeSceneStageHeight(_input: Readonly<{ windowH: number; windowW: number; pillTop: number; fontScale: number; share: number }>): number {
   // зачем (слово владельца 29.10: «сцена на главной такая же высота как в разделе уроки»): высота сцены Главной = высота обложки «Уроков» на любом окне и шрифте; под неё не ужимаем — карточки уходят ниже, экран прокручивается
-  return SCENE_HERO_HEIGHT_DP;
+  return 280;
 }

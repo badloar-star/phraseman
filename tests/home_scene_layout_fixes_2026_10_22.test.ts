@@ -53,18 +53,14 @@ describe('чипы шапки на сцене', () => {
   });
 });
 
-describe('герой сцены', () => {
+describe('утверждённый compact верх сцены', () => {
   const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
 
-  it('привязан к шапке: верх героя = верх шапки + 36 из эталона, а не 92 от верха сцены', () => {
-    expect(stage).toContain('const HEADER_TOP = 8;'); // вариант 2 scenes-compact: шапка на 8 под часами (владелец 22.10)
-    expect(stage).toContain('const HERO_BELOW_HEADER = 52 - 8;');
-    expect(stage).toContain('const HERO_TOP = HEADER_TOP + HERO_BELOW_HEADER;');
-    // герой лежит в слоте свободного места под шапкой (heroSpace): относительно слота верх = HERO_TOP минус высота места под шапку (TOP_SPACE) — в координатах сцены те же 48
+  it('держит только резерв под шапку, без legacy hero-art', () => {
     expect(stage).toContain('const TOP_SPACE = 52;');
-    // зачем (слово владельца 29.10: «иконки громадные»): герой как в эталоне approved/scene — справа 20, по центру сцены (top считается из высоты сцены, HERO_TOP — запасной путь без HERO_OVER_TEXT)
-    expect(stage).toMatch(/hero: \{ position: 'absolute', right: HERO_RIGHT, top: HERO_TOP - TOP_SPACE,/);
-    expect(stage).toContain('const HERO_OVER_TEXT = true;');
+    expect(stage).not.toContain('const HERO =');
+    expect(stage).not.toContain("import { ThemedArtLayers }");
+    expect(stage).not.toContain("import MaskedView");
   });
 
   it('верх шапки в HomeScene совпадает с HEADER_TOP', () => {

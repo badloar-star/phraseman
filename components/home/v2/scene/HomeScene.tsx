@@ -16,13 +16,11 @@ import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExtern
 import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 
 import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
-import { premiumThemePackRevision, subscribePremiumThemePackCache } from '../../../../app/premium_theme_pack_cache';
 import type { Lang } from '../../../../constants/i18n';
 import { V2 } from '../../../../constants/v2Style';
 import { useTheme } from '../../../ThemeContext';
 import type { ThemedArtBrightness } from '../../../theme/themed_art_registry';
 import HomeSceneStage, { HOME_SCENE_PANEL_OVERLAP, type HomeSceneChip } from './HomeSceneStage';
-import { resolveHomeSceneArt } from './home_scene_art';
 import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput, type HomeSceneCtaTarget } from './home_scene_copy';
 import { homeSceneAllReleasedDone, homeSceneDaysAwayByVisits, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
 import { useAppVisitGap } from '../../../../modules/welcome_back/use_app_visit_gap';
@@ -282,7 +280,6 @@ export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens 
 /** «Сцена» по готовому решению: цвета, картинка, тексты, шапка и строка «Нет сети» поверх. */
 export function HomeSceneView(p: HomeSceneViewProps) {
   const { decision } = p;
-  const { liquidGlassThemeId } = useTheme();
   const [minuteTick, setMinuteTick] = useState(0);
   const evening = decision.state === 'streak_risk';
   const fixedClock = p.minutesToMidnight !== undefined;
@@ -295,7 +292,8 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   const toMidnight = p.minutesToMidnight ?? minutesUntilMidnight(new Date());
   const tokens = useHomeSceneStageTokens(evening);
   const topInset = p.topInset ?? 0;
-  // Шапка лежит поверх сцены, поэтому её фактическая высота (а не макетные 52dp) резервируется в Stage. При увеличенном системном тексте сцена растёт вниз.
+  // Шапка лежит поверх сцены, поэтому её фактическая высота (а не макетные 52dp)
+  // резервируется в Stage. При увеличенном системном тексте сцена растёт вниз.
   const [headerHeight, setHeaderHeight] = useState(0);
   const handleHeaderLayout = useCallback((event: LayoutChangeEvent) => {
     const nextHeight = Math.ceil(event.nativeEvent.layout.height);
@@ -307,17 +305,6 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     setHomeSceneStatusTint(tokens.sceneTop);
     return () => setHomeSceneStatusTint(null);
   }, [tokens.sceneTop, p.statusTint]);
-  const premiumArtRevision = useSyncExternalStore(subscribePremiumThemePackCache, premiumThemePackRevision, premiumThemePackRevision);
-  // The active premium pack is selected by theme id. Its cache revision does not
-  // change when switching between two packs that are already installed, so the
-  // theme id itself must invalidate this memo or the previous theme's hero leaks.
-  const art = useMemo(
-    () => resolveHomeSceneArt(decision.state, p.artTone),
-    [decision.state, p.artTone, premiumArtRevision, liquidGlassThemeId],
-  );
-  useEffect(() => {
-    console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, hero512: art.hero512, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)), seam: Number(tokens.seam.toFixed(2)), scrim: tokens.scrim })); // guard-ok: одна строка на смену героя
-  }, [art, decision.state, p.artTone, tokens.whiteContrastTop, tokens.seam, tokens.scrim]);
   const copyInput = useMemo<HomeSceneCopyInput>(() => ({
     lang: p.lang, state: decision.state, zeroEnergyNote: decision.zeroEnergyNote, badge: p.place.badge, episode: p.place.episode, title: p.place.title,
     progress: p.place.done !== null && p.place.total !== null ? { done: p.place.done, total: p.place.total } : null,
@@ -377,17 +364,13 @@ export function HomeSceneView(p: HomeSceneViewProps) {
         liveEnergy={liveEnergy}
         buildLiveText={buildLiveText}
         chips={chips}
-        art={art.base}
-        artAccent={art.accent}
-        // зачем: приглушаем только заглушку — своя картинка «0 энергии» (батарейка) сама говорит о состоянии
-        artDim={decision.state === 'no_energy' && art.origin.startsWith('placeholder')}
         pending={p.pending}
         busy={p.busy}
+        active={p.active}
         onCta={onCta}
         onChip={p.onChip}
         topInset={topInset}
         headerHeight={headerHeight}
-        active={p.active}
       />
       {/* зачем (владелец 22.10): фон сцены заходит под часы, шапка — ниже зоны часов на прежние 12 */}
       <View onLayout={handleHeaderLayout} style={[s.top, topInset > 0 ? { paddingTop: HEADER_TOP + topInset } : null]} pointerEvents="box-none">

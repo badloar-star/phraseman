@@ -38,9 +38,12 @@ describe('Сцена: резкий край, тень блока, мерцающ
     expect(tw).toContain('useReduceMotion');
     expect(tw).toContain('withRepeat');
     expect(tw).not.toMatch(/useState|setInterval|requestAnimationFrame/);
+    expect(tw).toContain('animate={active && !reduce}');
     const bd = read('components/scene/SceneBackdrop.tsx');
     expect(bd).toContain('<SceneStarTwinkle stars={ALL_STARS(p.stars.list)} active={active} />');
     expect(bd).toContain('i % SCENE_TWINKLE_EVERY === 0 ? null');
+    const home = read('components/home/v2/scene/HomeScene.tsx');
+    expect(home).toContain('active={p.active}');
   });
 
   it('тёмное небо: звёзды по всей сцене (нижние добавлены), затемнение низа не рисуется', () => {

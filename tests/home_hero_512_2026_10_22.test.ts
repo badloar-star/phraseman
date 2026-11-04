@@ -80,19 +80,18 @@ describe('герой «Сцены»: копии 512 рядом с оригина
     expect([...script.matchAll(/fs\.rmSync\((path\.join\([^)]*\))/g)].map((m) => m[1])).toEqual(['path.join(outDir, key)']);
   });
 
-  it('копии 512 хватает: герой не крупнее 160 dp (≈ 480 px на экране 3×)', () => {
+  it('утверждённый compact HomeScene не монтирует копии hero512', () => {
     const stage = readSource('components/home/v2/scene/HomeSceneStage.tsx');
-    const hero = Number(/const HERO = (\d+);/.exec(stage)?.[1]);
-    expect(hero).toBeGreaterThan(0);
-    // зачем (выбор владельца на макете 29.10: герой 200 dp): 200 × 3 = 600 px из копии 512 растягивается ≈1,2× — на экранах 3× картинка мягче; пересборка копий на 768/1024 — отдельным шагом (риск памяти [MEM-HOME])
-    expect(hero <= 200 || hero * 3 <= 512).toBe(true);
+    const scene = readSource('components/home/v2/scene/HomeScene.tsx');
+    expect(stage).not.toMatch(/ThemedArtLayers|homeSceneHeroFade|MaskedView/);
+    expect(scene).not.toMatch(/resolveHomeSceneArt|home_scene_art/);
   });
 
-  it('сцена берёт копию 512 только для своего героя; флаг hero512 в журнале', () => {
+  it('реестр сохраняет выбор копии для других поверхностей, но HomeScene не подписывается на него', () => {
     const art = readSource('components/home/v2/scene/home_scene_art.ts');
     expect(art).toContain('const pick = own ? pickHomeHero512(HOME_HERO_512, name, resolved) : null;');
     expect(art).toContain('hero512: small !== null,');
-    expect(readSource('components/home/v2/scene/HomeScene.tsx')).toContain('origin: art.origin, hero512: art.hero512,');
+    expect(readSource('components/home/v2/scene/HomeScene.tsx')).not.toContain('hero512: art.hero512');
   });
 });
 

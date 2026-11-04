@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { isSurfaceLocked, useRankAccess } from '../../hooks/use_rank_access';
 import { useAccentGraphics } from '../../hooks/use_accent_graphics';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, usePathname, useRouter } from 'expo-router';
@@ -61,7 +62,8 @@ export default function CommunityTabRoute() {
   const pathname = usePathname();
   const { section: sectionParam } = useLocalSearchParams<{ section?: string }>();
   const { runtimeOwnerId } = useTabNav();
-  const spireVisible = useSpireTabEnabled();
+  // зачем (владелец 30.10): раздел «Пик» новичку до ранга 2 скрыт (сегмент и deep link → прежний откат на Друзей/Главную); комнат и уведомлений до допуска нет
+  const spireVisible = useSpireTabEnabled() && !isSurfaceLocked(useRankAccess('peak'));
   const [section, setSection] = useState<Section>(() => sectionFromParam(sectionParam) ?? sectionFromPath(pathname) ?? 'friends');
   const [visited, setVisited] = useState<ReadonlySet<Section>>(() => new Set([section]));
   // зачем: кнопки справа (лупа, язык) и раскрытый поиск отдаёт сам раздел «Наборы» — их состояние живёт там.

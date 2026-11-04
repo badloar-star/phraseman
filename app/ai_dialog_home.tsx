@@ -1,4 +1,6 @@
 import React from 'react';
+import RankLockedSection from '../components/home/v2/RankLockedSection';
+import { useRankAccess } from '../hooks/use_rank_access';
 import { useWindowDimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -20,7 +22,7 @@ import { useDialogsSceneTheme } from '../components/dialogs/scene/use_dialogs_sc
 import { DIALOGS_SCENE_V2_ENABLED } from '../components/dialogs/scene/dialogs_scene_flags';
 
 // зачем (dialogs-003, координатор 13.10): состояние «шапка схлопнута, пока открыта категория» живёт в провайдере над экраном — перерисовывается только шапка, список миров нет.
-export default function AiDialogHome() {
+function AiDialogHomeInner() {
   return (
     <HubHeaderCollapseProvider>
       <AiDialogHomeBody />
@@ -131,4 +133,12 @@ function AiDialogHomeBody() {
       </SafeAreaView>
     </ScreenGradient>
   );
+}
+
+// зачем (владелец 30.10, «Главная Free по рангам»): недоступный новичку раздел по прямой ссылке — краткое «откроется с ранга N» + «К занятиям»;
+// старым и неопределённым всё открыто (use_rank_access)
+export default function AiDialogHome() {
+  const access = useRankAccess('dialogues');
+  if (access.status === 'locked') return <RankLockedSection surface="dialogues" minimumRank={access.minimumRank} />;
+  return <AiDialogHomeInner />;
 }

@@ -58,8 +58,15 @@ export type TabPageLayout = Readonly<{ hiddenLogicalTabs: readonly LogicalTabInd
 export const FULL_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([]) as readonly LogicalTabIndex[] });
 const LESSONS_HIDDEN_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([1]) as readonly LogicalTabIndex[] });
 
-export function tabPageLayoutFor(options: { learnTabVisible: boolean }): TabPageLayout {
-  return options.learnTabVisible ? FULL_TAB_PAGE_LAYOUT : LESSONS_HIDDEN_TAB_PAGE_LAYOUT;
+// зачем (владелец 30.10, «Главная Free по рангам»): вкладка «Видео» (логический индекс 2) скрыта у новичка до ранга 1 — как и «Обучение»,
+// исчезает и из таббара, и из свайп-ленты. Раскладки кэшируются: одинаковые флаги дают ТОТ ЖЕ объект (ссылки в ref/deps не прыгают).
+const VIDEO_HIDDEN_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([2]) as readonly LogicalTabIndex[] });
+const LESSONS_AND_VIDEO_HIDDEN_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([1, 2]) as readonly LogicalTabIndex[] });
+
+export function tabPageLayoutFor(options: { learnTabVisible: boolean; videoTabVisible?: boolean }): TabPageLayout {
+  const videoVisible = options.videoTabVisible !== false;
+  if (options.learnTabVisible) return videoVisible ? FULL_TAB_PAGE_LAYOUT : VIDEO_HIDDEN_TAB_PAGE_LAYOUT;
+  return videoVisible ? LESSONS_HIDDEN_TAB_PAGE_LAYOUT : LESSONS_AND_VIDEO_HIDDEN_TAB_PAGE_LAYOUT;
 }
 
 /** Логические индексы, у которых есть физическая страница, в порядке свайпа. */

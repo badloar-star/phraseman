@@ -1,4 +1,6 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import RankLockedSection from '../../components/home/v2/RankLockedSection';
+import { useRankAccess } from '../../hooks/use_rank_access';
 import { consumePendingTrainIntent } from './train_intent';
 import { trainNavMark } from '../train_nav_trace';
 import type { PaywallSource } from '../paywall_entry_contract';
@@ -144,7 +146,7 @@ function logHubTopCardOutcome(word: string | null, trainingLocked: boolean, ipaF
   console.log('[HUB-TOPCARD] shown', JSON.stringify({ outcome, word, ipaFrom, contour: peekSelectedSavedContourDiagnostics() }));
 }
 
-export default function FlashcardsHubScreen() {
+function FlashcardsHubScreenInner() {
   // зачем (координатор 12.10, утечка памяти в хабе; сперва логи): mount/unmount хаба с размерами кэшей и слушателей — по нему видно, что растёт с каждым заходом.
   useHubLifecycle('FlashcardsHubScreen');
   usePerfR1Probe('cards_hub'); // зачем (координатор 12.10, R1_PERF_FIRST_FRAME): первый кадр и число коммитов корня за 3 с; в релизе — пустая функция
@@ -930,3 +932,11 @@ const styles = StyleSheet.create({
   screen: { flex: 1 },
   safe: { flex: 1, minHeight: 0 },
 });
+
+// зачем (владелец 30.10, «Главная Free по рангам»): недоступный новичку раздел по прямой ссылке — краткое «откроется с ранга N» + «К занятиям»;
+// старым и неопределённым всё открыто (use_rank_access)
+export default function FlashcardsHubScreen() {
+  const access = useRankAccess('cards_hub');
+  if (access.status === 'locked') return <RankLockedSection surface="cards_hub" minimumRank={access.minimumRank} />;
+  return <FlashcardsHubScreenInner />;
+}

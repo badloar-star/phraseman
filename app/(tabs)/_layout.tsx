@@ -107,6 +107,7 @@ import { noteTabActivated } from '../../components/tab_activation_trace';
 import { whenOnboardingSettled } from '../onboarding_defer_gate';
 import { scheduleAfterRootNavigationReady } from '../paywall_navigation';
 import { planHiddenTabRedirect } from '../tabs_hidden_route_redirect';
+import { isSurfaceLocked, useRankAccess } from '../../hooks/use_rank_access';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -946,7 +947,9 @@ function ReleasedTabLayout() {
   // без вспышки вкладки, которая потом исчезает.
   const { studyTarget } = useStudyTarget();
   const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
-  const pageLayout = tabPageLayoutFor({ learnTabVisible });
+  // зачем (владелец 30.10): «Видео» в таббаре и свайп-ленте скрыта у новичка до ранга 1 (use_rank_access; неопределённое = видно)
+  const videoTabVisible = !isSurfaceLocked(useRankAccess('video'));
+  const pageLayout = tabPageLayoutFor({ learnTabVisible, videoTabVisible });
   const rootNavigationReady = Boolean(useRootNavigationState()?.key);
   const rawRouteTabIdx = tabIdxFromRouter(pathname, segments);
   const hiddenTabRedirect = planHiddenTabRedirect({

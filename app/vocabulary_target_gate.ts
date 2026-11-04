@@ -36,8 +36,11 @@ export function vocabularyContentAvailableForTarget(
   studyTarget?: RuntimeStudyTarget,
   surface: VocabularyGateSurface = 'lesson_words',
 ): boolean {
-  if (storageStudyTarget(studyTarget) !== 'fr') return true;
-  return surface === 'lesson_words';
+  // зачем (классические курсы 04.11): банки слов, неправильные глаголы и предлоги — ТОЛЬКО английские; в уроках es/fr/de/it они показали бы
+  // английские слова под чужим курсом. Пока словарь курса не подключён к этим экранам — для не-английских целей закрыто (тихий возврат).
+  if (storageStudyTarget(studyTarget) !== 'en') return false;
+  void surface;
+  return true;
 }
 
 export function vocabularyContentGateForTarget(

@@ -12,7 +12,10 @@ import type { RankGateUserVerdict } from './rank_gates_new_user';
 
 export const FIRST_LESSON_BONUS_COINS = 500;
 export const FIRST_LESSON_BONUS_GIFT_ID = 'stars_500';
-export const FIRST_LESSON_BONUS_FLAG_KEY = 'first_lesson_bonus_granted_v1';
+// зачем (координатор 04.11, Ревизор): флаг был ОБЩИМ на устройство и вне списка стирания — после выхода второй новый аккаунт на том же телефоне бонус не получал.
+// Теперь флаг на владельца и в стираемом семействе story_events_v1: (чистится вместе с остальным при выходе/удалении). Сервер идемпотентен по владельцу — дубля не будет.
+export const FIRST_LESSON_BONUS_FLAG_KEY_PREFIX = 'story_events_v1:first_lesson_bonus_granted';
+export const firstLessonBonusFlagKey = (owner: string): string => `${FIRST_LESSON_BONUS_FLAG_KEY_PREFIX}:${owner}`;
 
 export type FirstLessonBonusDecision =
   | Readonly<{ grant: true }>
@@ -39,8 +42,8 @@ export type FirstLessonBonusDeps = Readonly<{
   ownerStableId: () => Promise<string | null>;
   sha256Hex: (input: string) => Promise<string>;
   grant: (request: Readonly<{ requestId: string; giftId: string }>) => Promise<void>;
-  readFlag: () => Promise<boolean>;
-  writeFlag: () => Promise<void>;
+  readFlag: (owner: string) => Promise<boolean>;
+  writeFlag: (owner: string) => Promise<void>;
   onGranted?: (coins: number) => void;
 }>;
 
@@ -58,20 +61,21 @@ export function maybeGrantFirstLessonBonus(deps: FirstLessonBonusDeps): Promise<
   if (inFlight) return inFlight; // защита от двойного вызова
   inFlight = (async () => {
     try {
-      const [verdict, alreadyGranted] = await Promise.all([deps.verdict(), deps.readFlag()]);
-      const decision = decideFirstLessonBonus({ gatesEnabled: deps.gatesEnabled(), verdict, alreadyGranted });
-      if (!decision.grant) {
-        console.log('[RANK-GATE] first_lesson_bonus skip', JSON.stringify({ reason: decision.reason })); // guard-ok: ранний выход с причиной
-        return false;
-      }
+      // зачем: владелец определяется ПЕРВЫМ — флаг «выдан» читается и пишется по нему (а не общий на телефон)
       const owner = await deps.ownerStableId();
       if (!owner) {
         console.warn('[RANK-GATE] first_lesson_bonus skip', JSON.stringify({ reason: 'no_owner' })); // guard-ok: ранний выход с причиной
         return false;
       }
+      const [verdict, alreadyGranted] = await Promise.all([deps.verdict(), deps.readFlag(owner)]);
+      const decision = decideFirstLessonBonus({ gatesEnabled: deps.gatesEnabled(), verdict, alreadyGranted });
+      if (!decision.grant) {
+        console.log('[RANK-GATE] first_lesson_bonus skip', JSON.stringify({ reason: decision.reason })); // guard-ok: ранний выход с причиной
+        return false;
+      }
       const requestId = await firstLessonBonusRequestId(owner, deps.sha256Hex);
       await deps.grant({ requestId, giftId: FIRST_LESSON_BONUS_GIFT_ID });
-      await deps.writeFlag();
+      await deps.writeFlag(owner); // зачем: флаг тому владельцу, кому начислили, даже если аккаунт сменился во время await
       console.log('[RANK-GATE] first_lesson_bonus granted', JSON.stringify({ coins: FIRST_LESSON_BONUS_COINS })); // guard-ok: разовое событие
       deps.onGranted?.(FIRST_LESSON_BONUS_COINS);
       return true;
@@ -110,8 +114,8 @@ export function defaultFirstLessonBonusDeps(readFlagOn: () => boolean): FirstLes
       const [{ captureAccountGeneration }, { enqueueLevelSpinStarGrant }] = await Promise.all([import('./account_generation'), import('./level_spin_star_grants')]);
       await enqueueLevelSpinStarGrant({ token: captureAccountGeneration(), requestId, lane: 'base', giftId, promotionEligibility: 'gameplay' });
     },
-    readFlag: async () => (await AsyncStorage.getItem(FIRST_LESSON_BONUS_FLAG_KEY)) === '1',
-    writeFlag: async () => { await AsyncStorage.setItem(FIRST_LESSON_BONUS_FLAG_KEY, '1'); },
+    readFlag: async (owner) => (await AsyncStorage.getItem(firstLessonBonusFlagKey(owner))) === '1',
+    writeFlag: async (owner) => { await AsyncStorage.setItem(firstLessonBonusFlagKey(owner), '1'); },
     onGranted: (coins) => { recentGrant = { coins, atMs: Date.now() }; listeners.forEach((l) => l(coins)); },
   };
 }

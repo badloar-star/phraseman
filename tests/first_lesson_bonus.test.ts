@@ -1,7 +1,7 @@
 // Бонус +500 монет новичку за первое завершённое занятие (владелец 30.10): один раз, только новый, флаг, откат, ключ.
 import { createHash } from 'node:crypto';
 import { judgeRankGateUser } from '../app/rank_gates_new_user';
-import { decideFirstLessonBonus, firstLessonBonusRequestId, maybeGrantFirstLessonBonus, FIRST_LESSON_BONUS_COINS, type FirstLessonBonusDeps } from '../app/first_lesson_bonus';
+import { decideFirstLessonBonus, firstLessonBonusFlagKey, firstLessonBonusRequestId, maybeGrantFirstLessonBonus, FIRST_LESSON_BONUS_COINS, type FirstLessonBonusDeps } from '../app/first_lesson_bonus';
 
 const NEW = { isNew: true, reason: 'new' } as const;
 const OLD = { isNew: false, reason: 'prior_progress' } as const;
@@ -74,6 +74,28 @@ describe('maybeGrantFirstLessonBonus', () => {
     const { d, grants } = deps();
     await Promise.all([maybeGrantFirstLessonBonus(d), maybeGrantFirstLessonBonus(d)]);
     expect(grants).toHaveLength(1);
+  });
+});
+
+describe('флаг «выдан» — на владельца (координатор 04.11)', () => {
+  it('второй новый аккаунт на том же телефоне получает свой бонус ровно один раз', async () => {
+    const store = new Set<string>(); const grants: string[] = []; let owner = 'owner-A';
+    const base = (): FirstLessonBonusDeps => ({
+      gatesEnabled: () => true, verdict: async () => NEW, ownerStableId: async () => owner, sha256Hex: sha,
+      grant: async ({ requestId }) => { grants.push(requestId); },
+      readFlag: async (o) => store.has(firstLessonBonusFlagKey(o)), writeFlag: async (o) => { store.add(firstLessonBonusFlagKey(o)); },
+    });
+    expect(await maybeGrantFirstLessonBonus(base())).toBe(true);   // аккаунт A
+    expect(await maybeGrantFirstLessonBonus(base())).toBe(false);  // A повторно — нет
+    owner = 'owner-B';                                            // выход, второй новый аккаунт на том же телефоне
+    expect(await maybeGrantFirstLessonBonus(base())).toBe(true);   // B получает свой бонус
+    expect(await maybeGrantFirstLessonBonus(base())).toBe(false);  // и только один раз
+    expect(grants).toHaveLength(2);
+    expect(new Set(grants).size).toBe(2);
+  });
+  it('ключ флага — в стираемом семействе story_events_v1: и разный у разных владельцев', () => {
+    expect(firstLessonBonusFlagKey('a')).toMatch(/^story_events_v1:first_lesson_bonus_granted:a$/);
+    expect(firstLessonBonusFlagKey('a')).not.toBe(firstLessonBonusFlagKey('b'));
   });
 });
 

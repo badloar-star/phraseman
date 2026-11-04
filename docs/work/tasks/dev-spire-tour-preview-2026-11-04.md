@@ -2,6 +2,7 @@
 
 Governance-ID: TG-569CA6183CFA
 Governance-ID: TG-A01C799DD81C
+Governance-ID: TG-3B947DD0715E
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: none
@@ -33,3 +34,5 @@ No architecture change: dev-экран монтирует существующи
 ## Rollback
 
 Откатить коммит: dev-состояние пропадёт.
+
+Дополнение 04.11: ?state=welcome в dev_spire_preview показывает WelcomeGate (проп force, только __DEV__) без проверки «новый» и без ключа welcome_b3_shown_v1.

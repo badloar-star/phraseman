@@ -41,15 +41,17 @@ export function shouldShowWelcome(input: Readonly<{ isNew: boolean; alreadyShown
   return input.isNew && !input.alreadyShown;
 }
 
-export function WelcomeGate(): React.JSX.Element | null {
+/** force — только dev-съёмка (dev_spire_preview?state=welcome): показать без проверки «новый» и без ключа «показано», ничего не писать и не переходить. */
+export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {}): React.JSX.Element | null {
   const router = useRouter();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const reducedMotion = useReduceMotion();
   const insets = useStableSafeAreaInsets();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(force);
 
   useEffect(() => {
+    if (force) return undefined;
     let cancelled = false;
     void (async () => {
       const [verdict, shown] = await Promise.all([readRankGateUserVerdict(), AsyncStorage.getItem(WELCOME_B3_SHOWN_KEY)]);
@@ -60,21 +62,22 @@ export function WelcomeGate(): React.JSX.Element | null {
       console.warn('[WELCOME-B3] gate read failed', error instanceof Error ? error.message : String(error));
     });
     return () => { cancelled = true; };
-  }, []);
+  }, [force]);
 
   // «показано» отмечаем сразу при закрытии любым способом — повтор не нужен
   const close = useCallback((how: 'skip' | 'start') => {
     console.log('[WELCOME-B3]', JSON.stringify({ event: how })); // guard-ok: одна строка на выход
     setVisible(false);
+    if (force) return;
     void AsyncStorage.setItem(WELCOME_B3_SHOWN_KEY, String(Date.now())).catch((error: unknown) => {
       console.warn('[WELCOME-B3] shown mark failed', error instanceof Error ? error.message : String(error));
     });
-  }, []);
+  }, [force]);
   const onSkip = useCallback(() => close('skip'), [close]);
   const onStart = useCallback(() => {
     close('start');
-    router.push('/(tabs)/lessons' as never);
-  }, [close, router]);
+    if (!force) router.push('/(tabs)/lessons' as never);
+  }, [close, router, force]);
 
   if (!visible) return null;
   return (

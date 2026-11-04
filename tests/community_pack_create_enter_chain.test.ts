@@ -17,8 +17,15 @@ describe('форма карточки набора: Enter-цепочка и ав
   });
   it('автофокус: после открытия формы и после «Ещё одну», с причиной при раннем выходе', () => {
     expect(source).toMatch(/setAddCardFormOpen\(true\);\n\s*focusDraftFront\(SHEET_OPEN_FOCUS_DELAY_MS\);/);
-    expect(source).toMatch(/saveDraftCard\(\);\n\s*setAddCardFormOpen\(true\);\n\s*focusDraftFront\(SAVE_ANOTHER_FOCUS_DELAY_MS\);/);
+    expect(source).toMatch(/setAddedInSheet\(\(n\) => n \+ 1\);\n\s*setAddCardFormOpen\(true\);\n\s*focusDraftFront\(SAVE_ANOTHER_FOCUS_DELAY_MS\);/);
     expect(source).toContain("автофокус: поле «Слово» не смонтировано — пропуск");
+  });
+  it('«Сохранить и ещё одну»: строки на 9 языках, счётчик «Добавлено: n» за открытую шторку, сброс при закрытии', () => {
+    expect(source).toContain("'Сохранить и ещё одну', 'Зберегти й ще одну', 'Save and add another', 'Guardar y añadir otra', 'Salvar e adicionar outra', 'Lưu và thêm cái khác', 'Simpan dan tambah lagi', 'Kaydet ve bir tane daha ekle', 'Zapisz i dodaj kolejną'");
+    expect(source).toContain('`Добавлено: ${n}`');
+    expect(source).toMatch(/saveDraftCard\(\);\n\s*setAddedInSheet\(\(n\) => n \+ 1\);/);
+    expect(source).toContain('if (!addCardFormOpen) setAddedInSheet(0)');
+    expect(source).toContain('testID="ugc-pack-draft-added-count"');
   });
   it('автофокус не стоит в восстановлении черновика и открытии правки (клавиатура не прыгает при входе на экран)', () => {
     const restore = source.slice(source.indexOf('setAddCardFormOpen(d.addCardFormOpen)'), source.indexOf('setAddCardFormOpen(d.addCardFormOpen)') + 200);

@@ -322,6 +322,9 @@ export default function CommunityPackCreateScreen() {
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
   const [addCardFormOpen, setAddCardFormOpen] = useState(false);
+  // зачем (удобство №4): сколько карточек добавлено кнопкой «Сохранить и ещё одну» за открытую шторку; закрылась шторка — счёт с нуля
+  const [addedInSheet, setAddedInSheet] = useState(0);
+  useEffect(() => { if (!addCardFormOpen) setAddedInSheet(0); }, [addCardFormOpen]);
   const [draftEn, setDraftEn] = useState('');
   const [draftRu, setDraftRu] = useState('');
   const [draftEs, setDraftEs] = useState('');
@@ -1200,11 +1203,14 @@ export default function CommunityPackCreateScreen() {
   };
   const wordLabel = L('Слово или фраза', 'Слово або вислів', 'Word or phrase', 'Palabra o frase', 'Palavra ou frase', 'Từ hoặc cụm từ', 'Kata atau frasa', 'Kelime veya ifade', 'Słowo lub fraza');
   const translationLabel = L('Перевод', 'Переклад', 'Translation', 'Traducción', 'Tradução', 'Bản dịch', 'Terjemahan', 'Çeviri', 'Tłumaczenie');
-  const anotherLabel = L('Ещё одну', 'Ще одну', 'Add another', 'Otra más', 'Mais um', 'Thêm nữa', 'Satu lagi', 'Bir tane daha', 'Jeszcze jedną');
+  // зачем (удобство №4, владелец одобрил 04.11; строки — Переводчик): «Сохранить и ещё одну» вместо голого «Ещё одну» + счётчик добавленного за этот заход
+  const anotherLabel = L('Сохранить и ещё одну', 'Зберегти й ще одну', 'Save and add another', 'Guardar y añadir otra', 'Salvar e adicionar outra', 'Lưu và thêm cái khác', 'Simpan dan tambah lagi', 'Kaydet ve bir tane daha ekle', 'Zapisz i dodaj kolejną');
+  const addedCountLabel = (n: number) => L(`Добавлено: ${n}`, `Додано: ${n}`, `Added: ${n}`, `Añadido: ${n}`, `Adicionado: ${n}`, `Đã thêm: ${n}`, `Ditambahkan: ${n}`, `Eklendi: ${n}`, `Dodano: ${n}`);
   const addLabel = L('Добавить', 'Додати', 'Add', 'Añadir', 'Adicionar', 'Thêm', 'Tambah', 'Ekle', 'Dodaj');
   // зачем: «Ещё одну» — сохранить эту карточку и сразу открыть пустую форму (шторка остаётся)
   const saveAndAnother = () => {
     saveDraftCard();
+    setAddedInSheet((n) => n + 1);
     setAddCardFormOpen(true);
     focusDraftFront(SAVE_ANOTHER_FOCUS_DELAY_MS); // зачем: «Ещё одну» — пустая форма сразу готова к набору
   };
@@ -1445,6 +1451,9 @@ export default function CommunityPackCreateScreen() {
               />
             </EditorField>
           </View>
+          {addedInSheet > 0 && !isEditingCard ? (
+            <Text testID="ugc-pack-draft-added-count" accessibilityLiveRegion="polite" style={{ color: kg.mutedText, fontSize: 15, lineHeight: 20, fontWeight: '600', textAlign: 'center', marginTop: 16 }}>{addedCountLabel(addedInSheet)}</Text>
+          ) : null}
           <View style={{ flexDirection: 'row', gap: 12, marginTop: 24 }}>
             <View style={{ flex: 1 }}>
               <CardsGlassPrimaryButton

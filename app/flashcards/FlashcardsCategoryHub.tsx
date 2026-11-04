@@ -86,6 +86,7 @@ import { useCommunityAuthor } from '../community_packs/packAuthorNames';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
 import { PackCatalogRow, type PackRowEmphasis } from '../../components/packs/PackRow';
+import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
 import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { useLang } from '../../components/LangContext';
@@ -302,6 +303,7 @@ function logPackDeckRowOnce(pack: FlashcardMarketPack, drawn: readonly string[])
 function CommunityPackRowBase({
   pack, uiLang, titleLang, g, owned, onOpen, onLongPress, onAdd, opening, disabled, sceneMode,
 }: CommunityPackRowProps) {
+  const { theme: rowTheme } = useTheme();
   cardsPerfCount('catalog-row-render'); // зачем: [CARDS-PERF] сколько строк каталога перерисовано (memo держит строки при наборе в поиске / долгом нажатии)
   // зачем (журнал 4–5): официальный набор ролика → «Professor Lingman» без чтения public_profiles; иначе ник и монета ранга.
   const author = useCommunityAuthor(pack, uiLang);
@@ -331,6 +333,7 @@ function CommunityPackRowBase({
       onLongPress={onLongPress}
       disabled={disabled}
       a11yActions={owned || opening ? undefined : [{ name: 'add-pack', label: addLabel, run: onAdd }]}
+      trailing={<CommunityPackSocialBar pack={pack} lang={uiLang} t={rowTheme} owned={owned} variant="rowHeart" />}
     />
   );
 }

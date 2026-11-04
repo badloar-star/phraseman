@@ -54,7 +54,7 @@ import { isCommunityPackLikedLocally, setCommunityPackLikedLocally } from './pac
 import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd' | 'videoAddRound' | 'setAdd' | 'setHeart' | 'sceneAdd' | 'sceneHeart' | 'sceneTileHeart';
+export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd' | 'videoAddRound' | 'setAdd' | 'setHeart' | 'sceneAdd' | 'sceneHeart' | 'sceneTileHeart' | 'rowHeart';
 
 subscribeAccountGeneration(() => packSocialLive.reset());
 
@@ -129,7 +129,7 @@ export default function CommunityPackSocialBar({
   const isSetHeart = mode === 'setHeart' || mode === 'sceneHeart' || mode === 'sceneTileHeart';
   // зачем: строки каталога, как и плитки, — без чтения членства (2 чтения Firestore на КАЖДЫЙ набор).
   // Экран просмотра тоже: набор ещё не добавлен, лайк закрыт — членство читать незачем.
-  const isCatalog = isTile || isList || isPreviewMeta || isSetAdd || isSetHeart;
+  const isCatalog = isTile || isList || isPreviewMeta || isSetAdd || isSetHeart || mode === 'rowHeart';
   const isScreen = mode === 'screen';
 
   /** Изоляция целей обучения: «Добавить себе» пишет владение по ТЕКУЩЕЙ цели. */
@@ -178,7 +178,7 @@ export default function CommunityPackSocialBar({
     // зачем: на экране просмотра цифры читает соседний `previewMeta`; кнопке второе чтение того же документа не нужно.
     // зачем (аудит кнопок Карточек #14/#15, 15.10, 💸): набор ролика клиент знает как `video:<id>`, а документ сообщества — `video_<id>`; чтение шло по неверному id и давало 3 пустых чтения Firestore на КАЖДУЮ строку.
     // Кнопки «Добавить» у видео-наборов ни лайков, ни цифр не показывают — читать нечего.
-    if (isPreviewCta || isSetAdd || mode === 'sceneTileHeart' || isVideoAdd || isVideoAddRound) return undefined;
+    if (isPreviewCta || isSetAdd || mode === 'sceneTileHeart' || mode === 'rowHeart' || isVideoAdd || isVideoAddRound) return undefined;
     let cancelled = false;
     const account = captureAccountGeneration();
     const seqAtStart = opSeqRef.current;
@@ -656,6 +656,19 @@ export default function CommunityPackSocialBar({
           {shownLabel}
         </Text>
       </TouchableOpacity>
+    );
+  }
+
+  if (mode === 'rowHeart') {
+    // зачем (владелец 04.11: «зачем убрали из строк сердце и число лайков?»; координатор): rev8-строка не должна терять живые цифры — сердце (тап = лайк, оптимистично с откатом и защитой от двойного тапа в onLikePress), число лайков и 💬 N при N>0; без новых чтений Firestore (как sceneTileHeart)
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+        <TouchableOpacity testID={`pack-like-${pack.id}`} accessibilityRole="button" accessibilityLabel={likeLabel} accessibilityState={{ selected: snapshot.liked }} onPress={(event) => { event.stopPropagation(); void onLikePress(); }} activeOpacity={0.85} hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }} style={{ minHeight: 44, minWidth: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+          <Animated.View style={{ transform: [{ scale: likePop }] }}><Ionicons name={snapshot.liked ? 'heart' : 'heart-outline'} size={18} color={snapshot.liked ? g.text : g.secondary} /></Animated.View>
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: lh(18), fontWeight: '600', fontVariant: ['tabular-nums'] }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
+        </TouchableOpacity>
+        {renderCommentsCount(16, 13, 4)}
+      </View>
     );
   }
 

@@ -232,11 +232,13 @@ export const PackRow = memo(PackRowBase);
 export default PackRow;
 
 /** Rev8 catalog row: one accessible target with live metadata and themed existing artwork. */
-export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, count, testID, onPress, onLongPress, disabled, author, level, note, duration, showArrow = true, a11yActions }: Readonly<{
+export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, count, testID, onPress, onLongPress, disabled, author, level, note, duration, showArrow = true, a11yActions, trailing }: Readonly<{
   g: GlassTokens; lang: Lang; title: string; count: number; testID: string;
   onPress: () => void; onLongPress?: () => void; disabled?: boolean;
   author?: string | null; level?: string | null; note?: string | null; duration?: string | null; showArrow?: boolean;
   a11yActions?: readonly Readonly<{ name: string; label: string; run: () => void }>[];
+  /** Живые цифры справа (сердце, число лайков, 💬 N) — отдельная цель касания, не ломает высоту строки. */
+  trailing?: React.ReactNode;
 }>) {
   const { isDark } = useTheme();
   const shown = formatPackTitleForDisplay(title);
@@ -249,6 +251,7 @@ export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, cou
         {!showArrow && author ? <Text style={{ color: g.text, fontSize: 13, marginTop: 4 }}>{author}</Text> : null}
         <Text style={{ color: g.secondary, fontSize: 13, marginTop: 4 }}>{!showArrow && author ? `${count} ${packCardsWord(lang, count)}` : meta}</Text>
       </View>
+      {trailing}
       {showArrow ? <Ionicons name="chevron-forward" size={20} color={g.secondary} /> : null}
     </Pressable>
   );

@@ -1,0 +1,33 @@
+// зачем (владелец 04.11: «зачем убрали из строк сердце и число лайков?»; OWNER_LOCKS «лайки и комментарии в строках наборов видимы»):
+// rev8-строка PackCatalogRow обязана нести сердце (тап = лайк), число лайков и «💬 N» при N>0 — в «Сообщество», «Из видео» (пользовательские), «Мои наборы».
+// Живые цифры без новых чтений Firestore: вариант rowHeart пропускает fetchCommunityPackSocialState, как sceneTileHeart.
+import * as fs from 'fs';
+import * as path from 'path';
+
+const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
+
+describe('в строках наборов есть сердце, лайки и комментарии', () => {
+  const bar = read('app/community_packs/CommunityPackSocialBar.tsx');
+  const row = read('components/packs/PackRow.tsx');
+  it('PackCatalogRow принимает trailing и рисует его справа до стрелки', () => {
+    expect(row).toContain('trailing?: React.ReactNode;');
+    expect(row).toMatch(/\{trailing\}\n\s*\{showArrow \?/);
+  });
+  it('вариант rowHeart: сердце-кнопка ≥44 dp, число лайков, счётчик комментариев, остановка всплытия тапа', () => {
+    const branch = bar.slice(bar.indexOf("if (mode === 'rowHeart') {"), bar.indexOf("if (isList) {"));
+    expect(branch).toContain('minHeight: 44');
+    expect(branch).toContain('event.stopPropagation(); void onLikePress();');
+    expect(branch).toContain('snapshot.likesCount');
+    expect(branch).toContain('renderCommentsCount(16, 13, 4)');
+    expect(branch).toContain('likePop');
+  });
+  it('rowHeart не читает Firestore на каждую строку (💸): в списке пропуска и в каталожных вариантах', () => {
+    expect(bar).toContain("mode === 'sceneTileHeart' || mode === 'rowHeart'");
+    expect(bar).toContain("isSetHeart || mode === 'rowHeart'");
+  });
+  it('три списка передают trailing с rowHeart', () => {
+    expect(read('app/flashcards/FlashcardsCategoryHub.tsx')).toContain('variant="rowHeart"');
+    expect(read('app/flashcards/MyPacksV2.tsx')).toContain('variant="rowHeart"');
+    expect(read('app/flashcards/VideoPackRow.tsx')).toContain('variant="rowHeart"');
+  });
+});

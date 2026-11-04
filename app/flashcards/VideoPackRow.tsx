@@ -176,7 +176,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
       pl: pluralWord(lang, pack.cardCount, { one: 'fraza', few: 'frazy', many: 'fraz' }),
     })}`;
   if (variant === 'catalog') {
-    return <PackCatalogRow g={g} lang={lang} title={title} count={pack.cardCount} duration={duration} testID={`video-pack-open-row-${pack.id}`} disabled={disabled || opening} onPress={() => { void hapticTap(); onOpen(pack); }} />;
+    return <PackCatalogRow g={g} lang={lang} title={title} count={pack.cardCount} duration={duration} testID={`video-pack-open-row-${pack.id}`} disabled={disabled || opening} onPress={() => { void hapticTap(); onOpen(pack); }} trailing={pack.isCommunityUgc ? <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="rowHeart" /> : undefined} />;
   }
   if (!plain) {
     // зачем (владелец 12.10, cards-v2 videoAll()): раздел «Из видео» — крупные карточки роликов: кадр 16:9 r18 на всю ширину, длительность,

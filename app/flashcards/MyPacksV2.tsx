@@ -14,6 +14,7 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { QuietEmptyState } from '../../components/cards-grid/QuietEmptyState';
 import { PackCatalogRow } from '../../components/packs/PackRow';
+import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { packDeckLevel, packDeckSkeletonHeight } from '../../components/packs/packDeckModel';
 import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
@@ -144,6 +145,7 @@ function MyPacksV2Inner(props: Props) {
         disabled={openingPackId !== null}
         onPress={() => onOpen(pack)}
         onLongPress={() => setActionsFor(pack)}
+        trailing={<CommunityPackSocialBar pack={pack} lang={lang} t={t} owned variant="rowHeart" />}
       />
     );
   };

@@ -44,6 +44,10 @@ describe('пейвол C: именованные сценарии', () => {
     expect(resolvePremiumModalEntry({ ...FREE_RESOLVED, params: {} })).toMatchObject({ decision: 'show', entry: { context: 'generic' } });
     expect(resolvePremiumModalEntry({ ...FREE_RESOLVED, params: { context: 'generic', source: 'settings_premium' } })).toMatchObject({ decision: 'show', entry: { context: 'generic' } });
   });
+  it('замок раздела по рангу: generic-пейвол с источником rank_locked (отдельных текстов нет)', () => {
+    const r = resolvePremiumModalEntry({ ...FREE_RESOLVED, params: { context: 'generic', source: 'rank_locked' } });
+    expect(r).toMatchObject({ decision: 'show', entry: { context: 'generic', source: 'rank_locked' } });
+  });
   it('облако не подтвердило статус → окно «Восстановить / Оформить» (plus_server_refused), источник входа сохранён', () => {
     const r = resolvePremiumModalEntry({ ...FREE_RESOLVED, cloudConfirmedOnDevice: false, params: { context: 'language_add', source: 'direct' } });
     expect(r).toMatchObject({ decision: 'show', entry: { context: 'plus_server_refused', source: 'direct' } });

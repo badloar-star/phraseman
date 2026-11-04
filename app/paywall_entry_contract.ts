@@ -22,6 +22,8 @@ export const PAYWALL_SOURCE_VALUES = [
   'energy_stop_sheet',
   // зачем: окно "Последний шанс" Пика (моменты v3) — отдельный источник в воронке пейвола
   'spire_last_chance',
+  // зачем (координатор 04.11): CTA «Открыть с Plus» на экране закрытого по рангу раздела ведёт на обычный generic-пейвол; отдельный источник нужен только воронке
+  'rank_locked',
   'card_editor_create',
   'flashcards_hub_speaking',
   'flashcards_hub_training_mode',

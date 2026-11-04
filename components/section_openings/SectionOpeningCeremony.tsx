@@ -187,7 +187,7 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
         </View>
         <Animated.View style={[styles.copy, copyStyle]}>
           <Text style={[styles.title, { color: p.text }]} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.title}</Text>
-          <Text style={[styles.body, { color: p.textSecondary }]}>{copy.body}</Text>
+          <Text style={[styles.body, { color: p.textSecondary }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{copy.body}</Text>
           <View pointerEvents={ctaReady ? 'auto' : 'none'} importantForAccessibility={ctaReady ? 'yes' : 'no-hide-descendants'}>
             <V2Button label={copy.cta} variant="primary" disabled={!ctaReady} onPress={() => { void hapticSuccess(); onCta(); }} testID="section-opening-cta" />
           </View>
@@ -196,6 +196,9 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
     </MomentFullScreen>
   );
 });
+
+// зачем (проверка длинных текстов 9 языков, 04.11): окно без прокрутки; крупный системный шрифт раздувал абзац (до 84 знаков) и сжимал сцену. 1,3 — читаемо и вмещается на малых экранах.
+const BODY_MAX_FONT_SCALE = 1.3;
 
 const styles = StyleSheet.create({
   root: { flex: 1, paddingHorizontal: 20, paddingTop: 12, paddingBottom: 24 },

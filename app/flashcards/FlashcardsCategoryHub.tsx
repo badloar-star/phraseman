@@ -87,6 +87,7 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
 import { PackCatalogRow, type PackRowEmphasis } from '../../components/packs/PackRow';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
+import { CommunityNotice } from '../../components/packs/CommunityNotice';
 import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
 import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { useLang } from '../../components/LangContext';
@@ -1139,6 +1140,8 @@ export default function FlashcardsCategoryHub({
               })}
             </Text>
           ) : null}
+          {/* зачем (владелец 04.11, макет community_notice.html): предупреждение о пользовательских наборах над списком вкладки «Наборы»; крестик — навсегда */}
+          {sceneMode ? <View style={{ paddingTop: 10 }}><CommunityNotice lang={lang} /></View> : null}
           {/* зачем (community-redesign.html #c1, `.pl { margin-top: 10px }`): плашки столбиком через 10. */}
           <View style={sceneMode ? { width: '100%', gap: 10, paddingTop: 10 } : { width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
             {visibleCommunityPacks.map(renderCommunityPackRow)}

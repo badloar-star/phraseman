@@ -1154,6 +1154,17 @@ export default function CommunityPackCreateScreen() {
       : '';
     return planned || (lang === 'es' ? (row.es?.trim() || row.ru.trim()) : row.ru.trim());
   };
+  // зачем (Волна 2, пункт 4): форма новой карточки открывается сразу с курсором в поле «Слово» — человек печатает без лишнего тапа;
+  // Enter ведёт по цепочке слово → перевод → пример → сохранить. Фокус ставим после въезда шторки (иначе клавиатура дёргает анимацию).
+  const SHEET_OPEN_FOCUS_DELAY_MS = 320;
+  const SAVE_ANOTHER_FOCUS_DELAY_MS = 80;
+  const focusDraftFront = (delayMs: number) => {
+    setTimeout(() => {
+      const input = draftEnInputRef.current;
+      if (!input) { console.log('[PACK-CREATE] автофокус: поле «Слово» не смонтировано — пропуск'); return; } // guard-ok: ранний выход называет причину
+      input.focus();
+    }, delayMs);
+  };
   const openAddCard = () => {
     Keyboard.dismiss();
     if (cardLimitReached) {
@@ -1164,6 +1175,7 @@ export default function CommunityPackCreateScreen() {
     }
     if (isEditingCard) return;
     setAddCardFormOpen(true);
+    focusDraftFront(SHEET_OPEN_FOCUS_DELAY_MS);
   };
   const editLabel = L('Редактировать', 'Редагувати', 'Edit', 'Editar', 'Editar', 'Chỉnh sửa', 'Edit', 'Düzenle', 'Edytuj');
   const deleteLabel = L('Удалить', 'Видалити', 'Delete', 'Eliminar', 'Excluir', 'Xóa', 'Hapus', 'Sil', 'Usuń');
@@ -1194,6 +1206,7 @@ export default function CommunityPackCreateScreen() {
   const saveAndAnother = () => {
     saveDraftCard();
     setAddCardFormOpen(true);
+    focusDraftFront(SAVE_ANOTHER_FOCUS_DELAY_MS); // зачем: «Ещё одну» — пустая форма сразу готова к набору
   };
   const fieldInput = { color: kg.text, fontSize: 16, lineHeight: 24, paddingHorizontal: 0, paddingVertical: 0 } as const;
 
@@ -1392,6 +1405,9 @@ export default function CommunityPackCreateScreen() {
               {...getTextInputSystemEditMenuProps()}
               value={draftEn}
               onChangeText={setDraftEn}
+              returnKeyType="next"
+              submitBehavior="submit"
+              onSubmitEditing={() => draftTranslationInputRef.current?.focus()}
               placeholderTextColor={kg.mutedText}
               style={fieldInput}
             />
@@ -1405,6 +1421,9 @@ export default function CommunityPackCreateScreen() {
                 {...getTextInputSystemEditMenuProps()}
                 value={draftTranslation}
                 onChangeText={setDraftTranslation}
+                returnKeyType="next"
+                submitBehavior="submit"
+                onSubmitEditing={() => draftNoteInputRef.current?.focus()}
                 placeholderTextColor={kg.mutedText}
                 style={fieldInput}
               />
@@ -1418,6 +1437,9 @@ export default function CommunityPackCreateScreen() {
                 {...getTextInputSystemEditMenuProps()}
                 value={draftNote}
                 onChangeText={setDraftNote}
+                returnKeyType="done"
+                submitBehavior="blurAndSubmit"
+                onSubmitEditing={() => { if (draftValid && !cardLimitReached) saveDraftCard(); else Keyboard.dismiss(); }}
                 placeholderTextColor={kg.mutedText}
                 style={fieldInput}
               />

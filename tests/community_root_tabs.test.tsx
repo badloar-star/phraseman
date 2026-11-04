@@ -16,6 +16,8 @@ jest.mock('../app/coin_rank_table_v1', () => ({ coinRankRowForDisplay: () => ({ 
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 24, bottom: 16, left: 0, right: 0 }) }));
 jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => ({ studyTarget: mockTarget }) }));
 jest.mock('../app/learning_language_surface_readiness', () => ({ isLearnTabVisibleForTarget: (target: string) => target === 'en' }));
+// зачем (владелец 30.10, ранговые гейты): таббар сообщества берёт видимость «Видео» из use_rank_access (тянет PremiumContext) — здесь всё открыто
+jest.mock('../hooks/use_rank_access', () => ({ useRankAccess: () => ({ status: 'allowed', basis: 'grandfather' }), isSurfaceLocked: () => false }));
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
 jest.mock('../constants/i18n', () => ({ triLang: (lang: string, copy: Record<string, string>) => copy[lang] ?? copy.en }));
 jest.mock('../components/v2/V2TabBar', () => {

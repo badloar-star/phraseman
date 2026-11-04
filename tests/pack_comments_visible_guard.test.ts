@@ -15,6 +15,10 @@ describe('комментарии наборов видимы', () => {
     expect(line).toContain('commentsCount > 0');
     expect(line).not.toContain('g.secondary');
   });
+  it('при нуле отзывов кнопка не прячется и зовёт «Оставить отклик» на 9 языках (строки Переводчика)', () => {
+    expect(scene).toContain("commentsCount > 0 ? triLang(lang, { ru: 'Обсуждение набора'");
+    expect(scene).toContain("ru: 'Оставить отклик', uk: 'Залишити відгук', en: 'Leave feedback', es: 'Dejar un comentario', 'pt-BR': 'Deixar um comentário', vi: 'Để lại phản hồi', id: 'Beri tanggapan', tr: 'Yorum bırak', pl: 'Zostaw opinię'");
+  });
   it('превью передаёт и обработчик, и живой счётчик в сцену', () => {
     expect(preview).toContain('onComments={onOpenComments} commentsCount={liveComments}');
   });

@@ -105,3 +105,59 @@ export function getClassicLessonPhrases(lessonId: number, lang: ClassicCourseLan
 export function classicCourseActiveFor(target: unknown): target is ClassicCourseLang {
   return CLASSIC_COURSES_RUNTIME_ENABLED && isClassicCourseLang(target);
 }
+
+// ─── Вступления урока (intro.json курса) ─────────────────────────────────────────────────────────────────────────────
+// зачем (классические курсы 04.11): intro.json уже в форме LessonIntroScreen (titleRU/textRU/linesRU…); добавляем `examples` из фраз
+// самого курса (иначе у es/de/fr/it примеры не показываются), остальное — как есть. Нет файла/урока → null (прежний путь).
+import { CLASSIC_INTRO_LOADERS } from './classic_course_registry.gen';
+import type { LessonIntroScreen } from './lesson_data_types';
+
+type RawIntroBlock = Record<string, unknown> & { exampleIds?: unknown; examplesById?: unknown; exampleRefs?: unknown };
+const introCache = new Map<ClassicCourseLang, Record<string, unknown>>();
+
+function loadIntroFile(lang: ClassicCourseLang): Record<string, unknown> | null {
+  const cached = introCache.get(lang);
+  if (cached) return cached;
+  const loader = CLASSIC_INTRO_LOADERS[lang];
+  if (!loader) return null;
+  try {
+    const file = loader() as Record<string, unknown>;
+    introCache.set(lang, file);
+    return file;
+  } catch (error) {
+    console.warn('[CLASSIC-COURSE] intro:load_failed', lang, error instanceof Error ? error.message : String(error));
+    return null;
+  }
+}
+
+function introExampleIds(block: RawIntroBlock): string[] {
+  const ids: string[] = [];
+  if (Array.isArray(block.exampleIds)) ids.push(...strList(block.exampleIds));
+  if (Array.isArray(block.examplesById)) ids.push(...strList(block.examplesById));
+  if (Array.isArray(block.exampleRefs)) {
+    for (const ref of block.exampleRefs as Array<{ phraseId?: unknown }>) if (typeof ref?.phraseId === 'string') ids.push(ref.phraseId);
+  }
+  return ids;
+}
+
+export function getClassicIntroScreens(lessonId: number, lang: ClassicCourseLang): LessonIntroScreen[] | null {
+  const file = loadIntroFile(lang);
+  const blocks = file?.[String(lessonId)];
+  if (!Array.isArray(blocks) || blocks.length === 0) return null;
+  const phrases = getClassicLessonPhrases(lessonId, lang);
+  const find = (id: string): LessonPhrase | undefined => phrases.find((p) => String(p.id) === id || String(p.id).endsWith(`:${id}`) || String(p.id).endsWith(id));
+  return (blocks as RawIntroBlock[]).map((block) => {
+    const examples = introExampleIds(block).map(find).filter((p): p is LessonPhrase => !!p).map((p) => ({
+      en: p.english,
+      trRU: p.russian,
+      trUK: p.ukrainian,
+      trES: p.sourceLocales?.es,
+      trPtBr: p.sourceLocales?.['pt-BR'],
+      trVi: p.sourceLocales?.vi,
+      trId: p.sourceLocales?.id,
+      trTr: p.sourceLocales?.tr,
+      trPl: p.sourceLocales?.pl,
+    }));
+    return { ...(block as unknown as LessonIntroScreen), examples };
+  });
+}

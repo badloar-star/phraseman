@@ -1,6 +1,7 @@
 // Сторож (классические курсы 04.11): данные EN/ES/FR/DE/IT превращаются в обычные LessonPhrase без потерь и работают
 // через общие функции фраз (phrase_target_utils). Мастер-выключатель пока выключен — старый курс не заменяется.
 import {
+  getClassicIntroScreens,
   CLASSIC_COURSES_RUNTIME_ENABLED,
   CLASSIC_COURSE_LANGS,
   CLASSIC_TTS_LOCALE,
@@ -30,6 +31,27 @@ describe('классические курсы: адаптер данных', () 
     const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
     expect(src).toMatch(/frenchLessonSourceGateBlocked = (frenchStudyActive(studyTarget) || classicCourseActiveFor(studyTarget))/);
   });
+
+  for (const lang of CLASSIC_COURSE_LANGS) {
+    it(`${lang}: вступления — 3 блока на урок, заголовки/тексты есть, примеры собраны из фраз курса`, () => {
+      let withExamples = 0;
+      for (let lessonId = 1; lessonId <= 32; lessonId += 1) {
+        const screens = getClassicIntroScreens(lessonId, lang);
+        expect(screens).not.toBeNull();
+        expect(screens).toHaveLength(3);
+        for (const s of screens!) {
+          expect(String(s.titleRU ?? '').length).toBeGreaterThan(0);
+          expect(String(s.textRU ?? '').length).toBeGreaterThan(0);
+          if ((s.examples ?? []).length > 0) withExamples += 1;
+        }
+      }
+      expect(withExamples).toBeGreaterThan(32);
+    });
+    it(`${lang}: getLessonIntroScreens отдаёт вступления курса`, () => {
+      const { getLessonIntroScreens } = require('../app/lesson_data_all') as typeof import('../app/lesson_data_all');
+      expect(getLessonIntroScreens(1, lang)).toHaveLength(3);
+    });
+  }
 
   it('TTS только системный по языку курса', () => {
     expect(CLASSIC_TTS_LOCALE).toEqual({ en: 'en-US', es: 'es-ES', fr: 'fr-FR', de: 'de-DE', it: 'it-IT' });

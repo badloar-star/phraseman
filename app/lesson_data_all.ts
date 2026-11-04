@@ -9,7 +9,7 @@ import { frenchStudyActive, spanishStudyActive } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { storageStudyTarget } from './target_storage_keys';
 import { applyFrenchSeedToPhrase } from './lesson_data_fr_seed';
-import { classicCourseActiveFor, getClassicLessonPhrases } from './classic_course_phrases';
+import { classicCourseActiveFor, getClassicIntroScreens, getClassicLessonPhrases } from './classic_course_phrases';
 import {
   LESSON_NAMES_ES,
   LESSON_NAMES_ID,
@@ -312,6 +312,11 @@ export function getLessonIntroScreens(
   lessonId: number,
   studyTarget: StudyTargetLang = 'en',
 ): LessonIntroScreen[] {
+  // зачем (классические курсы 04.11): вступления курса выбранного языка (intro.json) вместо вступлений старого английского/французского
+  if (classicCourseActiveFor(studyTarget)) {
+    const classicScreens = getClassicIntroScreens(lessonId, studyTarget);
+    if (classicScreens && classicScreens.length > 0) return withSpanishIntroFallback(classicScreens);
+  }
   if (storageStudyTarget(studyTarget) === 'fr') {
     if (!frenchStudyActive(studyTarget)) return [];
     const frL2 = getFrenchLessonIntroScreens(lessonId);

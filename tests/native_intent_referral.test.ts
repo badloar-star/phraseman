@@ -1,4 +1,5 @@
 import { redirectSystemPath } from '../app/+native-intent';
+import { LEARNING_V2_HIDDEN_REDIRECT } from '../app/learning_v2_visibility_switch';
 
 const redirect = (path: string) => redirectSystemPath({ path, initial: true });
 
@@ -63,15 +64,15 @@ test('redirectSystemPath приводит ссылки на вкладки к в
   expect(redirect('phraseman://friends')).toBe('/(tabs)/friends');
 });
 
-// зачем (координатор 10.10 21:05): в стор-сборке Learning V2 вырезан — внешние ссылки ведут на обычные уроки,
-// во внутренних сборках маршрут остаётся как есть (V2 там жив).
-test('store build sends Learning V2 deep links to the regular lessons tab', () => {
+// зачем (владелец 04.11, заморозка V2): внешняя ссылка в V2 в ЛЮБОЙ сборке открывает обычный курс (подмена адреса, не второй экран поверх стека);
+// вход в V2 — только явной кнопкой во вкладке «Уроки» у тех, у кого есть законченное занятие.
+test('store build sends Learning V2 deep links to the classic course', () => {
   const previous = process.env.EXPO_PUBLIC_STORE_RELEASE;
   process.env.EXPO_PUBLIC_STORE_RELEASE = '1';
   try {
-    expect(redirect('phraseman://learning-v2/course')).toBe('/(tabs)/lessons');
-    expect(redirect('phraseman://learning-v2/session/en-l01-s01')).toBe('/(tabs)/lessons');
-    expect(redirect('/learning_v2_direct_session_player_v1?id=x')).toBe('/(tabs)/lessons');
+    expect(redirect('phraseman://learning-v2/course')).toBe(LEARNING_V2_HIDDEN_REDIRECT);
+    expect(redirect('phraseman://learning-v2/session/en-l01-s01')).toBe(LEARNING_V2_HIDDEN_REDIRECT);
+    expect(redirect('/learning_v2_direct_session_player_v1?id=x')).toBe(LEARNING_V2_HIDDEN_REDIRECT);
     expect(redirect('phraseman://lessons')).not.toBe('/(tabs)/lessons-v2');
   } finally {
     if (previous === undefined) delete process.env.EXPO_PUBLIC_STORE_RELEASE;
@@ -79,11 +80,12 @@ test('store build sends Learning V2 deep links to the regular lessons tab', () =
   }
 });
 
-test('non-store builds keep Learning V2 deep links untouched', () => {
+test('non-store builds also send Learning V2 deep links to the classic course (freeze)', () => {
   const previous = process.env.EXPO_PUBLIC_STORE_RELEASE;
   delete process.env.EXPO_PUBLIC_STORE_RELEASE;
   try {
-    expect(redirect('phraseman://learning-v2/course')).toBe('/learning-v2/course');
+    expect(redirect('phraseman://learning-v2/course')).toBe(LEARNING_V2_HIDDEN_REDIRECT);
+    expect(redirect('phraseman://dev_learning_v2_theory')).toBe(LEARNING_V2_HIDDEN_REDIRECT); // служебные и dev-алиасы закрыты тоже
   } finally {
     if (previous !== undefined) process.env.EXPO_PUBLIC_STORE_RELEASE = previous;
   }

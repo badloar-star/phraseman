@@ -29,3 +29,9 @@ Governance-ID: TG-F6FE486B93A0 (ночной выпуск: проверка за
 Governance-ID: TG-2192D37358FB (чистка красных тестов: done_chain_m10, flashcards_swipe, pressable_primitives; referral_ladder_how_sheet)
 
 Governance-ID: TG-1D3856D2ADE3 (сторожа: прогресс старых пользователей при CLASSIC_COURSES_RUNTIME_ENABLED=true)
+
+Governance-ID: TG-C5CE0A0B7C28 (красные тесты зон Learning V2 и Звук/голос, ночной выпуск 05.11)
+
+Governance-ID: TG-12E54F8C6B22 (заморозка V2: чужие правки +native-intent и lessons.tsx — согласовать с правилом владельца)
+Governance-ID: TG-685DC15686C0 (заморозка V2: тесты native_intent_referral и visibility_switch_contract под правило владельца 04.11)
+Governance-ID: TG-72845B249B8E (аудио-WIP audio_activity/audio_session_coordinator: не мой, решение — не коммитить)

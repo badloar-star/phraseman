@@ -13,6 +13,7 @@ import { useLang } from '../LangContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { useOverlayVisible } from '../OverlayArbiter';
 import type { Lang } from '../../constants/i18n';
 import { ApprovedWelcome } from './ApprovedWelcome';
 
@@ -48,7 +49,11 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
   const { studyTarget } = useStudyTarget();
   const reducedMotion = useReduceMotion();
   const insets = useStableSafeAreaInsets();
-  const [visible, setVisible] = useState(force);
+  // зачем (координатор 04.11): приветствие показывается ТОЛЬКО через арбитр окон (ключ 'onboardingWelcome', приоритет выше «Открытий разделов» и праздников) —
+  // wants = «хочу показать», visible = «арбитр выдал слот». force (dev-съёмка) идёт мимо арбитра.
+  const [wants, setWants] = useState(force);
+  const granted = useOverlayVisible('onboardingWelcome', wants && !force);
+  const visible = force ? wants : granted;
 
   useEffect(() => {
     if (force) return undefined;
@@ -57,7 +62,7 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
       const [verdict, shown] = await Promise.all([readRankGateUserVerdict(), AsyncStorage.getItem(WELCOME_B3_SHOWN_KEY)]);
       const show = shouldShowWelcome({ isNew: verdict.isNew, alreadyShown: shown !== null });
       console.log('[WELCOME-B3]', JSON.stringify({ show, isNew: verdict.isNew, reason: verdict.reason, alreadyShown: shown !== null })); // guard-ok: одна строка на запуск
-      if (!cancelled && show) setVisible(true);
+      if (!cancelled && show) setWants(true);
     })().catch((error: unknown) => {
       console.warn('[WELCOME-B3] gate read failed', error instanceof Error ? error.message : String(error));
     });
@@ -66,8 +71,8 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
 
   // «показано» отмечаем сразу при закрытии любым способом — повтор не нужен
   const close = useCallback((how: 'skip' | 'start') => {
-    console.log('[WELCOME-B3]', JSON.stringify({ event: how })); // guard-ok: одна строка на выход
-    setVisible(false);
+    console.log('[WELCOME-B3]', JSON.stringify({ event: how, slot: 'released' })); // guard-ok: одна строка на выход
+    setWants(false);
     if (force) return;
     void AsyncStorage.setItem(WELCOME_B3_SHOWN_KEY, String(Date.now())).catch((error: unknown) => {
       console.warn('[WELCOME-B3] shown mark failed', error instanceof Error ? error.message : String(error));

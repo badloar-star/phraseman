@@ -35,3 +35,5 @@ Accept temporarily: экран 1 и подписи кнопок на 8 язык�
 Удалить новые файлы: подключения нет, на приложение не влияют.
 
 Шлюз 04.11: components/onboarding/WelcomeGate.tsx показывает приветствие один раз новому пользователю (метка онбординга после RANK_GATES_NEW_USERS_SINCE_MS, ключ welcome_b3_shown_v1); Главная монтирует одной строкой.
+
+Governance-ID: TG-3FA398BE067D

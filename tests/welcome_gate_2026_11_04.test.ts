@@ -33,3 +33,17 @@ test('Главная монтирует шлюз, шлюз использует 
   expect(gate).toContain('readRankGateUserVerdict()');
   expect(gate).toContain('AsyncStorage.setItem(WELCOME_B3_SHOWN_KEY');
 });
+
+test('приветствие идёт только через арбитр окон и выигрывает очередь у разделов, праздников и обновлений', () => {
+  const gate = fs.readFileSync(path.join(__dirname, '..', 'components/onboarding/WelcomeGate.tsx'), 'utf8');
+  expect(gate).toContain("useOverlayVisible('onboardingWelcome'");
+  expect(gate).not.toContain('setVisible(');
+  const core = require('../components/overlay_arbiter_core');
+  const queue = ['sectionOpening', 'levelUp', 'premiumCelebration', 'update', 'welcomeBack', 'referralWelcome'];
+  const all = Object.fromEntries([...queue, 'onboardingWelcome'].map((k) => [k, true]));
+  expect(core.resolveNextOverlay(null, all)).toBe('onboardingWelcome');
+  const waiting = Object.fromEntries(queue.map((k) => [k, true]));
+  expect(core.OVERLAY_PRIORITY.indexOf('onboardingWelcome')).toBeLessThan(core.OVERLAY_PRIORITY.indexOf('sectionOpening'));
+  // после закрытия приветствия слот идёт следующему по приоритету, а не пропадает
+  expect(core.resolveNextOverlay('onboardingWelcome', { ...waiting, onboardingWelcome: false })).not.toBeNull();
+});

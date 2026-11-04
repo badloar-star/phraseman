@@ -63,7 +63,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     spire: ready('D133'),
   }),
   es: Object.freeze({
-    lessons: hidden('D129'),
+    lessons: ready('D202'),
     learning_v2: ready('D201'),
     daily_phrase: ready('D163'),
     dialogues: ready('D129'),
@@ -74,7 +74,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     spire: ready('D155'),
   }),
   fr: Object.freeze({
-    lessons: hidden('D129'),
+    lessons: ready('D202'),
     learning_v2: hidden('D129'),
     daily_phrase: ready('D129'),
     dialogues: ready('D129'),
@@ -85,7 +85,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     spire: ready('D156'),
   }),
   de: Object.freeze({
-    lessons: hidden('D129'),
+    lessons: ready('D202'),
     learning_v2: hidden('D129'),
     daily_phrase: ready('D163'),
     dialogues: ready('D129'),
@@ -96,7 +96,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     spire: ready('D157'),
   }),
   it: Object.freeze({
-    lessons: hidden('D130'),
+    lessons: ready('D202'),
     learning_v2: hidden('D130'),
     daily_phrase: ready('D163'),
     dialogues: hidden('D130'),

@@ -16,8 +16,8 @@ export const CLASSIC_TTS_LOCALE: Readonly<Record<ClassicCourseLang, string>> = {
   en: 'en-US', es: 'es-ES', fr: 'fr-FR', de: 'de-DE', it: 'it-IT',
 };
 
-/** Мастер-выключатель замены курсов; включается ТОЛЬКО после закрытия срезов и по слову координатора. */
-export const CLASSIC_COURSES_RUNTIME_ENABLED = false;
+/** Мастер-выключатель замены курсов. ВКЛЮЧЁН 04.11 (владелец: «включить курсы в любом случае», D202). Выключатель аварийный: false возвращает старые курсы. */
+export const CLASSIC_COURSES_RUNTIME_ENABLED = true;
 
 type RawTile = { text?: unknown; correct?: unknown; distractors?: unknown };
 type RawPhrase = {

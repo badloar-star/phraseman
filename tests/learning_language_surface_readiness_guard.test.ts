@@ -31,10 +31,10 @@ function askOwner(target: string, surface: string): string {
 // Снимок решений владельца. Менять ТОЛЬКО вместе с новой строкой в 03_DECISIONS.md.
 const OWNER_APPROVED_SNAPSHOT: Record<string, Record<string, string>> = {
   en: { lessons: 'ready', learning_v2: 'ready', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'ready', spire: 'ready' },
-  es: { lessons: 'hidden', learning_v2: 'ready', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
-  fr: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
-  de: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
-  it: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'hidden', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
+  es: { lessons: 'ready', learning_v2: 'ready', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
+  fr: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
+  de: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
+  it: { lessons: 'ready', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'hidden', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
 };
 
 describe('D129 guard: language × surface readiness', () => {
@@ -72,9 +72,11 @@ describe('D129 guard: language × surface readiness', () => {
   });
 
   test('the course entry is available for English and owner-approved Spanish V2 (D201)', () => {
-    expect(LEARNING_LANGUAGE_TARGETS.filter(isLearnTabVisibleForTarget)).toEqual(['en', 'es']);
+    // D202 (владелец 04.11): классические курсы es/fr/de/it включены — вкладка «Обучение» видна для всех пяти языков
+    expect(LEARNING_LANGUAGE_TARGETS.filter(isLearnTabVisibleForTarget)).toEqual(['en', 'es', 'fr', 'de', 'it']);
     expect(LEARNING_LANGUAGE_SURFACE_READINESS.es.learning_v2.decidedBy).toBe('D201');
-    expect(LEARNING_LANGUAGE_SURFACE_READINESS.es.lessons.status).toBe('hidden');
+    expect(LEARNING_LANGUAGE_SURFACE_READINESS.es.lessons.status).toBe('ready');
+    expect(LEARNING_LANGUAGE_SURFACE_READINESS.es.lessons.decidedBy).toBe('D202');
   });
 
   test('non-English Spire readiness is fail-closed to the signed local release manifest', () => {
@@ -96,7 +98,7 @@ describe('D129 guard: language × surface readiness', () => {
   // зачем D155/D134: задания дня читают клетки таблицы, а не свои списки языков.
   test('daily tasks follow the table: receipt-gated spire (D155) and mistakes only with the course (D134)', () => {
     expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('spire_steps', t))).toEqual(['en', 'es', 'fr', 'de', 'it']);
-    expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('mistakes', t))).toEqual(['en']);
+    expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('mistakes', t))).toEqual([...LEARNING_LANGUAGE_TARGETS]); // D202: уроки включены для всех пяти языков
     expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('cards', t))).toEqual([...LEARNING_LANGUAGE_TARGETS]);
   });
 });

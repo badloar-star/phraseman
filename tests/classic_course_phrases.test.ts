@@ -13,10 +13,14 @@ import { phraseAnswerAlternatives, phraseCanonicalAnswer, phraseHasStudyTargetCo
 const strip = (s: string) => s.replace(/[.!?¿¡,;:—–«»"“”]+/g, ' ').replace(/\s+/g, ' ').trim();
 
 describe('классические курсы: адаптер данных', () => {
-  it('мастер-выключатель пока выключен: старый курс не заменён, getLessonData без изменений', () => {
-    expect(CLASSIC_COURSES_RUNTIME_ENABLED).toBe(false);
-    expect(classicCourseActiveFor('fr')).toBe(false);
-    expect(getLessonData(1, 'fr')).toEqual(getLessonData(1));
+  it('мастер-выключатель включён (D202): язык курса берёт фразы курса, без языка — прежний путь', () => {
+    expect(CLASSIC_COURSES_RUNTIME_ENABLED).toBe(true);
+    expect(classicCourseActiveFor('fr')).toBe(true);
+    expect(classicCourseActiveFor('ko')).toBe(false);
+    const fr = getLessonData(1, 'fr');
+    expect(fr).toHaveLength(50);
+    expect(fr.every((p) => p.classic?.lang === 'fr')).toBe(true);
+    expect(getLessonData(1).every((p) => !p.classic)).toBe(true);
   });
 
   it('TTS только системный по языку курса', () => {

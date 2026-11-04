@@ -24,6 +24,7 @@
  * transform/opacity, деградация при reduceMotion / lowPower.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { SkeletonPulse } from '../../components/feedback/SkeletonPulse';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
@@ -1057,11 +1058,11 @@ export default function FlashcardsCategoryHub({
             </TouchableOpacity>
           ) : null}
           {visibleCommunityPacks.length === 0 && catalogCommunityPacks.length === 0 && (!communityLoaded || isDevCardsHeld('catalog_loading')) ? (
-            <View testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
+            <SkeletonPulse testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
               {[0, 1, 2, 3].map((i) => (
                 <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ onLayout={i === 0 ? (event) => noteSkeletonGeom('cards_hub', 'skeleton', event.nativeEvent.layout.height) : undefined} style={{ height: skeletonRowH, borderRadius: 20, backgroundColor: g.hairlineSoft }} /* зачем: заглушка той же высоты, что плашка — без прыжка при появлении данных */ />
               ))}
-            </View>
+            </SkeletonPulse>
           ) : visibleCommunityPacks.length === 0 ? (
             // зачем (packs-simple.html кадр 3): пустой каталог — плитка 61 со значком и фраза 20/700 по центру, без карточки.
             <SoftAppear testID="flashcards-community-empty" style={{ width: hubBarW, alignItems: 'center', paddingTop: 96, paddingHorizontal: 24 }}>

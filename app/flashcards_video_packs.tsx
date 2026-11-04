@@ -21,6 +21,7 @@
  * живёт по TTL загрузчика. Кнопки повтора нет: сеть обновляет данные молча.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { SkeletonPulse } from '../components/feedback/SkeletonPulse';
 import { BlurView } from 'expo-blur';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -541,7 +542,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
                  * геометрии с готовым списком, иначе экран «прыгает», когда данные
                  * приезжают (инвариант layout-stability проекта).
                  */
-                <View style={embedded ? [styles.listContent, styles.listContentEmbedded] : styles.listContent}>
+                <SkeletonPulse style={embedded ? [styles.listContent, styles.listContentEmbedded] : styles.listContent}>
                   {[0, 1, 2].map((i) => (
                     <View key={`sk${i}`} style={[styles.skeletonRow, { backgroundColor: g.hairlineSoft }]}>
                       <View style={[styles.skeletonThumb, { backgroundColor: g.opaqueControl }]} />
@@ -551,7 +552,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
                       </View>
                     </View>
                   ))}
-                </View>
+                </SkeletonPulse>
               ) : branch === 'empty' || branch === 'error' ? (
                 // зачем (владелец, журнал п.85(2); макет cards-states «Наборы из видео — Пока пусто»): наборов из видео нет — спокойное «Пока пусто» вместо скелета и «Сейчас недоступно»; кнопки в макете нет
                 <KitEmpty

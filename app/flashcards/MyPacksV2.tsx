@@ -7,6 +7,7 @@
  * как на списке «Сохранённые». Логика экрана (загрузка, открытие, удаление, оптимистичный откат) остаётся в flashcards_my_packs.tsx.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { SkeletonPulse } from '../../components/feedback/SkeletonPulse';
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
@@ -196,9 +197,9 @@ function MyPacksV2Inner(props: Props) {
         ) : null}
 
         {status === 'loading' ? (
-          <View testID="fc-my-packs-loading" style={styles.loading}>
+          <SkeletonPulse testID="fc-my-packs-loading" style={styles.loading}>
             {[0, 1, 2].map((index) => <View key={index} /* guard-ok: три статичные заглушки */ onLayout={index === 0 ? (event) => noteSkeletonGeom('my_packs', 'skeleton', event.nativeEvent.layout.height) : undefined} style={[styles.skeleton, { height: skeletonH }]} />)}
-          </View>
+          </SkeletonPulse>
         ) : null}
 
         {(status === 'list' || status === 'empty') && otherLanguages.length > 0 && onSwitchSectionLanguage ? (

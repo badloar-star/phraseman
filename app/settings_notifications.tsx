@@ -34,6 +34,7 @@ import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { GlassSwitch } from '../components/settings/GlassSwitch';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 
@@ -168,30 +169,8 @@ type LocalSwitchProps = {
 };
 
 function LocalSwitch({ value, onValueChange, accessibilityLabel, disabled = false, glass, testID }: LocalSwitchProps) {
-  // зачем (координатор 13.10, Темы 4801981d8; образец settings-gap-013/014/015/034 `.gs-sw.on`): включённый — дорожка цвета акцента
-  // и «чернильный» бегунок из общего токена switchOnTone, а не тёмная дорожка glass.selected с белым бегунком.
-  const onTone = switchOnTone(glass);
-  return (
-    <PressableHybrid
-      testID={testID}
-      accessibilityLabel={accessibilityLabel}
-      accessibilityRole="switch"
-      accessibilityState={{ checked: value, disabled }}
-      disabled={disabled}
-      onPress={() => { hapticTap(); onValueChange(!value); }}
-      withHaptic={false}
-      withSound={false}
-      variant="chip"
-      // зачем (R1_DIFF_ONE_FIX, settings-gap-011, решение координатора 12.10): переключатель 36 + hitSlop (зона нажатия ≥ 44 dp: 36 + 8 + 8 = 52 по высоте) — минимум 48 раздувал строку до 68 dp против 64 в макете (`.gs-pl2` min-height 64; с переключателем 36 строка ровно 64)
-      hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-      style={{ width: 48, minWidth: 48, minHeight: 36, alignSelf: 'center' }}
-      contentStyle={{ width: 48, minHeight: 36, justifyContent: 'center', alignItems: 'center' }}
-    >
-      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? onTone.track : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
-        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? onTone.knob : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
-      </View>
-    </PressableHybrid>
-  );
+  // зачем (волна UX 2, 04.11): общий GlassSwitch — хаптик, Reduce Motion, анимация бегунка и дорожки на UI-потоке; тот же вид
+  return <GlassSwitch {...{ value, onValueChange, accessibilityLabel, disabled, glass, testID }} />;
 }
 
 function RowIcon({ name, glass }: { name: keyof typeof Ionicons.glyphMap; glass: ReturnType<typeof liquidGlassTokens> }) {

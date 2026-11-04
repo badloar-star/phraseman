@@ -9,6 +9,7 @@
  * документы — мелким шрифтом в подвале, удаление — голой серой строкой. Теперь
  * общий экран настроек показывает один ряд «Приватность и данные» → сюда.
  */
+import { GlassSwitch } from '../components/settings/GlassSwitch';
 import { switchOffTrackTone, switchOnTone } from '../components/settings/switch_chrome';
 import React, { useCallback, useRef, useState } from 'react';
 import { Text, View, type ViewStyle } from 'react-native';
@@ -64,29 +65,8 @@ interface LocalSwitchProps {
 }
 
 function LocalSwitch({ value, onValueChange, accessibilityLabel, glass, testID }: LocalSwitchProps) {
-  const offTone = switchOffTrackTone(glass);
-  // зачем (координатор 13.10, Темы 4801981d8; образец settings-gap-013/014/015/034 `.gs-sw.on`): включённый — дорожка цвета акцента
-  // и «чернильный» бегунок из общего токена switchOnTone, а не тёмная дорожка glass.selected с белым бегунком.
-  const onTone = switchOnTone(glass);
-  return (
-    <PressableHybrid
-      testID={testID}
-      accessibilityLabel={accessibilityLabel}
-      accessibilityRole="switch"
-      accessibilityState={{ checked: value }}
-      onPress={() => onValueChange(!value)}
-      withHaptic={false}
-      withSound={false}
-      variant="chip"
-      style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
-      contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
-    >
-      {/* зачем (координатор 12.10, стиль «Тень»): без обводки — дорожка выключенного отделяется тоном, как в «Настройках обучения» */}
-      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? onTone.track : offTone.track }}>
-        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? onTone.knob : offTone.knob, transform: [{ translateX: value ? 19 : 0 }] }} />
-      </View>
-    </PressableHybrid>
-  );
+  // зачем (волна UX 2, 04.11): общий GlassSwitch — хаптик, Reduce Motion, анимация бегунка и дорожки на UI-потоке; тот же вид
+  return <GlassSwitch {...{ value, onValueChange, accessibilityLabel, glass, testID }} />;
 }
 
 interface PrivacyRowProps {

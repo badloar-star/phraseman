@@ -39,7 +39,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { actionBoxShadow } from '../components/v2/ShadowSurface';
 import { KitSearchField } from '../components/cards-grid/CardsKit';
-import { PackChips, PackRoundButton } from '../components/packs/PackScreenKit';
+import { PackChips, PackRoundButton, PackScreenTitle } from '../components/packs/PackScreenKit';
 import { packDeckLevel } from '../components/packs/packDeckModel';
 import { hapticTap } from '../hooks/use-haptics';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -191,6 +191,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
     ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un pack',
     'pt-BR': 'Criar um pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
   });
+  const communityTitleCount = useMemo(() => communityPacks.filter((p) => !isLocalAuthorPackId(p.id)).length, [communityPacks]);
   const newPacksLabel = communitySortLabel('new', lang);
   const topPacksLabel = communitySortLabel('popular', lang);
   /** Уровни, которые реально встречаются в каталоге (A1…C2 по порядку); нет данных — пусто, чипы уровней скрыты. */
@@ -489,6 +490,17 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
           <View style={{ flex: 1 }} />
 
           {headerActions}
+          {/* зачем (макет 133): «создать набор» — круглая серая плашка 42 в шапке справа от языка (как PackRoundButton в «Моих наборах»), не залитая кнопка с тенью в строке заголовка */}
+          <PackRoundButton
+            g={g}
+            icon="add"
+            testID="flashcards-packs-create"
+            label={createPackLabel}
+            onPress={() => {
+              void hapticTap();
+              router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
+            }}
+          />
         </View>
         )}
 
@@ -511,21 +523,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 капсула поиска «Наборы и авторы», чипы «Популярные / Новые / A1…B2» (чипы уровней — только когда в каталоге есть уровни). */}
             {!embedded ? <View style={styles.listHead}>
               <View style={styles.titleRow}>
-                <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" testID={embedded ? 'flashcards-packs-title-embedded' : 'flashcards-packs-title'} style={[styles.embeddedTitle, { color: g.text }]}>
-                  {screenTitle}
-                </Text>
-                <KitTouchable
-                  testID="flashcards-packs-create"
-                  accessibilityRole="button"
-                  accessibilityLabel={createPackLabel}
-                  onPress={() => {
-                    void hapticTap();
-                    router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
-                  }}
-                  style={[styles.createBtn, { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }]}
-                >
-                  <Ionicons name="add" size={22} color={g.ctaFillInk} />
-                </KitTouchable>
+                {/* зачем (макет 133 «Сообщество 5»): заголовок со счётчиком наборов, как в «Видео» и «Моих наборах» */}
+                <PackScreenTitle g={g} title={screenTitle} count={communityTitleCount > 0 ? communityTitleCount : null} testID={'flashcards-packs-title'} />
               </View>
               <View style={styles.searchWrap}>
                 <KitSearchField g={g} value={communityQuery} onChangeText={setCommunityQuery} placeholder={searchLabel} clearLabel={clearSearchLabel} testID="flashcards-packs-search" />

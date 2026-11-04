@@ -19,11 +19,11 @@
 {
 "correct": "seid",
 "distractors": [
-"sind",
-"ist",
-"bist",
 "bin",
-"offen"
+"offen",
+"fertig",
+"früher",
+"finde"
 ]
 },
 {
@@ -151,11 +151,11 @@
 {
 "correct": "ist",
 "distractors": [
-"bist",
-"sind",
-"seid",
 "bin",
-"viel"
+"viel",
+"hat",
+"haben",
+"habt"
 ]
 },
 {
@@ -272,10 +272,10 @@
 "correct": "ist",
 "distractors": [
 "bin",
-"seid",
-"sind",
-"bist",
-"viel"
+"viel",
+"hat",
+"haben",
+"habt"
 ]
 },
 {
@@ -333,11 +333,11 @@
 {
 "correct": "ist",
 "distractors": [
-"seid",
-"sind",
-"bist",
 "bin",
-"viel"
+"viel",
+"hat",
+"haben",
+"habt"
 ]
 },
 {
@@ -383,11 +383,11 @@
 {
 "correct": "ist",
 "distractors": [
-"bist",
 "bin",
-"seid",
-"sind",
-"viel"
+"viel",
+"hat",
+"haben",
+"habt"
 ]
 },
 {
@@ -433,11 +433,11 @@
 {
 "correct": "ist",
 "distractors": [
-"bist",
-"seid",
 "bin",
-"sind",
-"viel"
+"viel",
+"hat",
+"haben",
+"habt"
 ]
 },
 {
@@ -483,11 +483,11 @@
 {
 "correct": "ist",
 "distractors": [
-"bist",
 "bin",
-"sind",
-"seid",
-"viel"
+"viel",
+"hat",
+"haben",
+"habt"
 ]
 },
 {
@@ -533,11 +533,11 @@
 {
 "correct": "sind",
 "distractors": [
-"bist",
-"seid",
-"ist",
 "bin",
-"fertig"
+"fertig",
+"offen",
+"finde",
+"warten"
 ]
 },
 {
@@ -583,11 +583,11 @@
 {
 "correct": "ist",
 "distractors": [
-"sind",
-"bist",
-"seid",
 "bin",
-"viel"
+"viel",
+"hat",
+"haben",
+"habt"
 ]
 },
 {
@@ -613,21 +613,21 @@
 {
 "correct": "Du",
 "distractors": [
+"Sie",
 "Es",
+"Ihr",
 "Ich",
-"Wir",
-"Bahn",
-"Balkon"
+"Wir"
 ]
 },
 {
 "correct": "wohnst",
 "distractors": [
-"brauche",
-"lerne",
-"lernen",
-"lernt",
-"wartet"
+"wohnen",
+"wohne",
+"wohnt",
+"kaufen",
+"machen"
 ]
 },
 {
@@ -663,11 +663,11 @@
 {
 "correct": "mache",
 "distractors": [
-"suchen",
-"suchst",
-"sucht",
-"bezahlen",
-"braucht"
+"machen",
+"macht",
+"machst",
+"warten",
+"kaufen"
 ]
 },
 {
@@ -744,20 +744,20 @@
 "correct": "Du",
 "distractors": [
 "Es",
+"Ihr",
+"Sie",
 "Wir",
-"Ich",
-"Bahn",
-"Balkon"
+"Ich"
 ]
 },
 {
 "correct": "hörst",
 "distractors": [
+"hören",
 "wartest",
 "bezahlt",
-"kochst",
-"wartet",
-"warte"
+"höre",
+"kochst"
 ]
 },
 {
@@ -1067,11 +1067,11 @@
 {
 "correct": "trinke",
 "distractors": [
-"beginnt",
-"holen",
-"warten",
-"das",
-"den"
+"trinken",
+"arbeiten",
+"draußen",
+"kochen",
+"hören"
 ]
 },
 {
@@ -1139,11 +1139,11 @@
 {
 "correct": "trinken",
 "distractors": [
+"trinke",
 "arbeiten",
 "draußen",
 "kochen",
-"hören",
-"warten"
+"hören"
 ]
 },
 {
@@ -1191,11 +1191,11 @@
 {
 "correct": "ist",
 "distractors": [
-"bist",
-"seid",
 "bin",
-"sind",
-"viel"
+"viel",
+"hat",
+"haben",
+"habt"
 ]
 },
 {
@@ -1241,11 +1241,11 @@
 {
 "correct": "Seid",
 "distractors": [
-"Bist",
-"Sind",
-"Ist",
 "Bin",
-"Anna"
+"Anna",
+"Aufzug",
+"Bahn",
+"Laden"
 ]
 },
 {
@@ -1371,11 +1371,11 @@
 {
 "correct": "Sind",
 "distractors": [
-"Bist",
-"Seid",
-"Ist",
 "Bin",
-"Kinder"
+"Kinder",
+"Montag",
+"Anna",
+"Tom"
 ]
 },
 {
@@ -1462,10 +1462,10 @@
 "correct": "Ist",
 "distractors": [
 "Bin",
-"Sind",
-"Seid",
-"Bist",
-"Habe"
+"Habe",
+"Hat",
+"Habt",
+"Haben"
 ]
 },
 {
@@ -1641,11 +1641,11 @@
 {
 "correct": "Ticket",
 "distractors": [
-"Tickets",
 "Gäste",
+"Bus",
 "Kinder",
-"Anna",
-"Bus"
+"Tom",
+"Anna"
 ]
 }
 ],
@@ -1753,11 +1753,11 @@
 {
 "correct": "suchen",
 "distractors": [
+"suchst",
+"suche",
+"sucht",
 "brauchen",
-"spielen",
-"holen",
-"wohnen",
-"öffnen"
+"spielen"
 ]
 },
 {
@@ -1803,10 +1803,10 @@
 {
 "correct": "nimmt",
 "distractors": [
-"nehmen",
 "nehme",
-"bleiben",
-"einen",
+"komme",
+"kommen",
+"kommst",
 "offen"
 ]
 },
@@ -1853,11 +1853,11 @@
 {
 "correct": "nehmen",
 "distractors": [
+"nehme",
 "nimmt",
 "nimmst",
 "bleiben",
-"einen",
-"offen"
+"einen"
 ]
 },
 {
@@ -1953,11 +1953,11 @@
 {
 "correct": "finde",
 "distractors": [
+"findet",
 "bereit",
 "leise",
 "allein",
-"ruhig",
-"krank"
+"ruhig"
 ]
 },
 {
@@ -2023,11 +2023,11 @@
 {
 "correct": "hat",
 "distractors": [
-"haben",
-"habt",
 "habe",
-"hast",
-"draußen"
+"bin",
+"sind",
+"seid",
+"sein"
 ]
 },
 {
@@ -2175,11 +2175,11 @@
 {
 "correct": "ist",
 "distractors": [
-"bist",
-"sind",
-"seid",
 "bin",
-"sein"
+"sein",
+"viel",
+"hat",
+"haben"
 ]
 },
 {
@@ -2225,11 +2225,11 @@
 {
 "correct": "ist",
 "distractors": [
-"sind",
 "bin",
 "sein",
-"seid",
-"bist"
+"seinen",
+"seinem",
+"seine"
 ]
 },
 {
@@ -2365,11 +2365,11 @@
 {
 "correct": "sind",
 "distractors": [
-"ist",
-"seid",
-"bist",
 "bin",
-"sein"
+"sein",
+"fertig",
+"offen",
+"stehen"
 ]
 },
 {
@@ -2415,21 +2415,21 @@
 {
 "correct": "du",
 "distractors": [
+"ihr",
+"sie",
 "es",
 "wir",
-"er",
-"ich",
-"aus"
+"er"
 ]
 },
 {
 "correct": "deinen",
 "distractors": [
+"deine",
+"dein",
 "einen",
 "offen",
-"euren",
-"draußen",
-"warten"
+"euren"
 ]
 },
 {
@@ -2465,21 +2465,21 @@
 {
 "correct": "du",
 "distractors": [
+"ihr",
 "es",
+"sie",
 "er",
-"ich",
-"wir",
-"aus"
+"ich"
 ]
 },
 {
 "correct": "deine",
 "distractors": [
-"ein",
-"einem",
+"dein",
+"deinen",
 "einen",
-"einer",
-"kein"
+"offen",
+"euren"
 ]
 },
 {
@@ -2635,11 +2635,11 @@
 {
 "correct": "fahre",
 "distractors": [
+"fahren",
 "fährt",
-"ihr",
-"ihren",
-"ihrer",
-"bin"
+"warten",
+"einen",
+"nehmen"
 ]
 },
 {
@@ -2655,11 +2655,11 @@
 {
 "correct": "Arbeit",
 "distractors": [
+"Arbeiten",
 "Fahrrad",
 "See",
 "Kinder",
-"Tom",
-"Anna"
+"Arbeite"
 ]
 }
 ],
@@ -2678,8 +2678,8 @@
 "Ich",
 "Es",
 "Er",
-"Wir",
-"Bahn"
+"Sie",
+"Wir"
 ]
 },
 {
@@ -2745,11 +2745,11 @@
 {
 "correct": "komme",
 "distractors": [
-"dauert",
-"nehmen",
-"nimmst",
-"nimmt",
-"hole"
+"kommt",
+"kommen",
+"kommst",
+"bleiben",
+"trinken"
 ]
 },
 {
@@ -2825,11 +2825,11 @@
 {
 "correct": "lerne",
 "distractors": [
-"draußen",
-"drinnen",
-"ein",
-"einem",
-"einen"
+"lernst",
+"lernen",
+"lernt",
+"kochen",
+"kaufen"
 ]
 },
 {
@@ -2937,11 +2937,11 @@
 {
 "correct": "ist",
 "distractors": [
-"sind",
 "sein",
-"bist",
 "bin",
-"seid"
+"seinen",
+"seinem",
+"seine"
 ]
 },
 {
@@ -2998,10 +2998,10 @@
 "correct": "seid",
 "distractors": [
 "bin",
-"bist",
-"ist",
-"sind",
-"sein"
+"sein",
+"offen",
+"fertig",
+"früher"
 ]
 },
 {
@@ -3061,9 +3061,9 @@
 "distractors": [
 "bin",
 "sein",
-"ist",
-"bist",
-"seid"
+"seinen",
+"seinem",
+"seine"
 ]
 },
 {
@@ -3242,18 +3242,18 @@
 "Es",
 "Wir",
 "Er",
-"Ich",
-"Bahn"
+"Sie",
+"Ich"
 ]
 },
 {
 "correct": "hängst",
 "distractors": [
 "trägt",
+"hängen",
+"hängt",
 "rollt",
-"springt",
-"läuft",
-"laufen"
+"springt"
 ]
 },
 {
@@ -3321,19 +3321,19 @@
 "distractors": [
 "Ihr",
 "Wir",
+"Es",
 "Du",
-"Ich",
-"Dem"
+"Ich"
 ]
 },
 {
 "correct": "steckt",
 "distractors": [
 "packe",
+"stecke",
 "hänge",
 "hängen",
-"springt",
-"laufen"
+"springt"
 ]
 },
 {
@@ -3379,11 +3379,11 @@
 {
 "correct": "Tasche",
 "distractors": [
-"Schlüssel",
+"Taschen",
 "Wasser",
+"Schlüssel",
 "Anna",
-"Kinder",
-"Hause"
+"Kinder"
 ]
 }
 ],
@@ -3459,21 +3459,21 @@
 {
 "correct": "Stellst",
 "distractors": [
+"Stelle",
+"Stellen",
+"Stellt",
 "Gut",
-"Hole",
-"Schalte",
-"Schalten",
-"Steigt"
+"Hole"
 ]
 },
 {
 "correct": "du",
 "distractors": [
+"ihr",
 "er",
 "es",
 "ich",
-"wir",
-"aus"
+"wir"
 ]
 },
 {
@@ -3539,11 +3539,11 @@
 {
 "correct": "Fahren",
 "distractors": [
-"Fährt",
 "Beginnt",
 "Ist",
 "Montag",
-"Musik"
+"Musik",
+"Sein"
 ]
 },
 {
@@ -3595,17 +3595,17 @@
 "Ich",
 "Du",
 "Wir",
-"Dem"
+"Es"
 ]
 },
 {
 "correct": "stellt",
 "distractors": [
-"hält",
-"passt",
-"beginnt",
-"bestellen",
-"bezahlen"
+"stelle",
+"stellen",
+"stellst",
+"neben",
+"bringen"
 ]
 },
 {
@@ -3672,20 +3672,20 @@
 "correct": "Du",
 "distractors": [
 "Ich",
+"Ihr",
 "Wir",
 "Er",
-"Es",
-"Bahn"
+"Es"
 ]
 },
 {
 "correct": "stehst",
 "distractors": [
-"gehe",
-"gehen",
-"geht",
-"suche",
-"suchen"
+"steht",
+"stehe",
+"stehen",
+"steigen",
+"füllen"
 ]
 },
 {
@@ -3871,11 +3871,11 @@
 {
 "correct": "fährt",
 "distractors": [
-"fahren",
-"fahre",
-"abholen",
-"warten",
-"steigen"
+"anprobieren",
+"brauche",
+"brauchst",
+"schläft",
+"spielen"
 ]
 },
 {
@@ -3931,11 +3931,11 @@
 {
 "correct": "fährt",
 "distractors": [
-"fahren",
-"fahre",
-"abholen",
-"warten",
-"steigen"
+"anprobieren",
+"brauche",
+"brauchst",
+"schläft",
+"spielen"
 ]
 },
 {
@@ -3995,7 +3995,7 @@
 "steige",
 "steigen",
 "schaltest",
-"bringe"
+"holen"
 ]
 },
 {
@@ -4081,10 +4081,10 @@
 {
 "correct": "Tisch",
 "distractors": [
+"Tische",
 "Termin",
-"Café",
 "Gäste",
-"Anna",
+"Café",
 "Bus"
 ]
 },
@@ -4114,8 +4114,8 @@
 "Ich",
 "Es",
 "Er",
-"Wir",
-"Bahn"
+"Ihr",
+"Sie"
 ]
 },
 {
@@ -4124,8 +4124,8 @@
 "können",
 "müssen",
 "könnt",
-"darf",
-"musst"
+"kann",
+"darf"
 ]
 },
 {
@@ -4161,21 +4161,21 @@
 {
 "correct": "Kannst",
 "distractors": [
+"Kann",
 "Müssen",
 "Könnt",
 "Können",
-"Darf",
-"Muss"
+"Darf"
 ]
 },
 {
 "correct": "du",
 "distractors": [
 "er",
+"sie",
 "ich",
-"es",
-"wir",
-"aus"
+"ihr",
+"es"
 ]
 },
 {
@@ -4214,8 +4214,8 @@
 "Wir",
 "Ich",
 "Er",
-"Es",
-"Bahn"
+"Sie",
+"Ihr"
 ]
 },
 {
@@ -4225,7 +4225,7 @@
 "müssen",
 "darf",
 "müsst",
-"kann"
+"muss"
 ]
 },
 {
@@ -4322,10 +4322,10 @@
 "correct": "Darf",
 "distractors": [
 "Kannst",
-"Dürft",
 "Muss",
-"Dürfen",
-"Müssen"
+"Müssen",
+"Müsst",
+"Soll"
 ]
 },
 {
@@ -4395,7 +4395,7 @@
 "Müssen",
 "Können",
 "Könnt",
-"Dürft"
+"Muss"
 ]
 },
 {
@@ -4703,9 +4703,9 @@
 "distractors": [
 "hat",
 "hast",
-"hatte",
-"hatten",
-"hattest"
+"habt",
+"haben",
+"hatte"
 ]
 },
 {
@@ -4764,8 +4764,8 @@
 "hatte",
 "hast",
 "hat",
-"hatten",
-"hattest"
+"haben",
+"habt"
 ]
 },
 {
@@ -4781,11 +4781,11 @@
 {
 "correct": "Tür",
 "distractors": [
+"Türen",
 "Kinder",
 "Gäste",
 "Hause",
-"Zimmer",
-"Taxi"
+"Zimmer"
 ]
 },
 {
@@ -4814,8 +4814,8 @@
 "Ich",
 "Er",
 "Wir",
-"Es",
-"Bahn"
+"Sie",
+"Es"
 ]
 },
 {
@@ -4881,11 +4881,11 @@
 {
 "correct": "hat",
 "distractors": [
-"hast",
 "habe",
-"habt",
-"haben",
-"draußen"
+"bin",
+"war",
+"sind",
+"seid"
 ]
 },
 {
@@ -4944,8 +4944,8 @@
 "hatte",
 "hat",
 "hast",
-"hatten",
-"hattest"
+"haben",
+"habt"
 ]
 },
 {
@@ -5013,11 +5013,11 @@
 {
 "correct": "ist",
 "distractors": [
-"seid",
-"bist",
-"sind",
 "war",
-"bin"
+"bin",
+"sein",
+"waren",
+"warst"
 ]
 },
 {
@@ -5083,11 +5083,11 @@
 {
 "correct": "sind",
 "distractors": [
-"ist",
-"bist",
 "war",
 "sein",
-"bin"
+"bin",
+"waren",
+"warst"
 ]
 },
 {
@@ -5133,11 +5133,11 @@
 {
 "correct": "Sind",
 "distractors": [
-"Bist",
-"Ist",
 "Bin",
 "War",
-"Sein"
+"Sein",
+"Waren",
+"Warst"
 ]
 },
 {
@@ -5462,10 +5462,10 @@
 "correct": "muss",
 "distractors": [
 "darf",
-"müsst",
-"müssen",
 "kann",
-"möchte"
+"möchte",
+"will",
+"wollen"
 ]
 },
 {
@@ -5501,11 +5501,11 @@
 {
 "correct": "werden",
 "distractors": [
-"wird",
 "wurde",
 "wäre",
 "ist",
-"war"
+"war",
+"sind"
 ]
 }
 ],
@@ -5525,7 +5525,7 @@
 "Sein",
 "Bin",
 "Sind",
-"War"
+"Seid"
 ]
 },
 {

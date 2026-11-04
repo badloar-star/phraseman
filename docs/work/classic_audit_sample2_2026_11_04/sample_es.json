@@ -11,9 +11,9 @@
 "distractors": [
 "Están",
 "Estoy",
+"Estamos",
 "Está",
-"Estáis",
-"Es"
+"Estáis"
 ]
 },
 {
@@ -53,9 +53,9 @@
 "distractors": [
 "Ellas",
 "Ellos",
-"Ustedes",
-"Están",
-"Estamos"
+"Usted",
+"Ella",
+"Ustedes"
 ]
 },
 {
@@ -63,9 +63,9 @@
 "distractors": [
 "están",
 "estoy",
+"estamos",
 "estáis",
-"estás",
-"fuera"
+"estás"
 ]
 },
 {
@@ -103,11 +103,11 @@
 {
 "correct": "Estamos",
 "distractors": [
+"Está",
 "Están",
+"Estás",
 "Estoy",
-"Es",
-"Soy",
-"Eres"
+"Estáis"
 ]
 },
 {
@@ -156,11 +156,11 @@
 {
 "correct": "está",
 "distractors": [
-"estoy",
-"están",
-"estáis",
-"estás",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -208,11 +208,11 @@
 {
 "correct": "están",
 "distractors": [
-"está",
 "estamos",
-"estás",
-"estáis",
-"estoy"
+"fuera",
+"somos",
+"es",
+"la"
 ]
 },
 {
@@ -234,8 +234,8 @@
 "lesson": 1,
 "id": "es:01:49",
 "target": "La estación está cerca.",
-"ru": "Станция рядом.",
-"uk": "Станція поруч.",
+"ru": "Вокзал рядом.",
+"uk": "Вокзал поруч.",
 "tiles": [
 {
 "correct": "La",
@@ -260,11 +260,11 @@
 {
 "correct": "está",
 "distractors": [
-"estáis",
-"están",
-"estoy",
-"estás",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -362,11 +362,11 @@
 {
 "correct": "está",
 "distractors": [
-"estás",
-"estáis",
-"estoy",
-"están",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -442,11 +442,11 @@
 {
 "correct": "están",
 "distractors": [
-"estoy",
-"estáis",
 "estamos",
-"estás",
-"está"
+"fuera",
+"somos",
+"es",
+"la"
 ]
 },
 {
@@ -508,8 +508,8 @@
 "lesson": 2,
 "id": "es:02:22",
 "target": "No está en la estación.",
-"ru": "Вы не на станции.",
-"uk": "Ви не на станції.",
+"ru": "Вы не на вокзале.",
+"uk": "Ви не на вокзалі.",
 "tiles": [
 {
 "correct": "No",
@@ -524,11 +524,11 @@
 {
 "correct": "está",
 "distractors": [
-"estás",
-"están",
-"estoy",
-"estáis",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -570,7 +570,7 @@
 "lesson": 2,
 "id": "es:02:49",
 "target": "El coche no está en la puerta.",
-"ru": "Машина не у входа.",
+"ru": "Машина не у двери.",
 "uk": "Машина не біля входу.",
 "tiles": [
 {
@@ -606,11 +606,11 @@
 {
 "correct": "está",
 "distractors": [
-"estás",
-"están",
-"estáis",
-"estoy",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -656,11 +656,11 @@
 {
 "correct": "Está",
 "distractors": [
-"Están",
-"Estoy",
-"Estáis",
-"Estás",
-"Es"
+"Estamos",
+"Es",
+"Son",
+"Somos",
+"Sois"
 ]
 },
 {
@@ -708,11 +708,11 @@
 {
 "correct": "Están",
 "distractors": [
-"Estás",
-"Está",
-"Estoy",
 "Estamos",
-"Estáis"
+"Es",
+"Somos",
+"Soy",
+"Eres"
 ]
 },
 {
@@ -744,17 +744,17 @@
 "lesson": 3,
 "id": "es:03:24",
 "target": "¿Estáis en la puerta?",
-"ru": "Вы у входа?",
+"ru": "Вы у двери?",
 "uk": "Ви біля входу?",
 "tiles": [
 {
 "correct": "Estáis",
 "distractors": [
-"Están",
-"Está",
-"Estás",
-"Estoy",
-"Es"
+"Estamos",
+"Es",
+"Hay",
+"Soy",
+"Somos"
 ]
 },
 {
@@ -803,11 +803,11 @@
 {
 "correct": "Está",
 "distractors": [
-"Están",
-"Estoy",
-"Estáis",
-"Estás",
-"Es"
+"Estamos",
+"Es",
+"Son",
+"Somos",
+"Sois"
 ]
 },
 {
@@ -823,11 +823,11 @@
 {
 "correct": "llave",
 "distractors": [
-"llaves",
 "foto",
-"coche",
+"libro",
 "hotel",
-"puerta"
+"hermanas",
+"hermanos"
 ]
 },
 {
@@ -865,11 +865,11 @@
 {
 "correct": "Está",
 "distractors": [
-"Estás",
-"Estáis",
-"Están",
-"Estoy",
-"Es"
+"Estamos",
+"Es",
+"Son",
+"Somos",
+"Sois"
 ]
 },
 {
@@ -937,11 +937,11 @@
 {
 "correct": "Están",
 "distractors": [
-"Estoy",
-"Está",
 "Estamos",
-"Estás",
-"Estáis"
+"Es",
+"Somos",
+"Soy",
+"Eres"
 ]
 },
 {
@@ -1003,7 +1003,7 @@
 "lesson": 4,
 "id": "es:04:06",
 "target": "Eres médica.",
-"ru": "Ты врач.",
+"ru": "Ты врач (жен.).",
 "uk": "Ти лікарка.",
 "tiles": [
 {
@@ -1051,21 +1051,21 @@
 {
 "correct": "es",
 "distractors": [
-"son",
 "somos",
-"eres",
 "soy",
-"sois"
+"fuera",
+"aquí",
+"lejos"
 ]
 },
 {
 "correct": "guía",
 "distractors": [
-"guías",
 "profesor",
 "médico",
 "profesores",
-"médica"
+"médica",
+"profesora"
 ]
 }
 ],
@@ -1082,10 +1082,10 @@
 "correct": "Ellas",
 "distractors": [
 "Usted",
+"Ellos",
+"Ustedes",
 "Ella",
-"Él",
-"Hay",
-"Está"
+"Él"
 ]
 },
 {
@@ -1143,11 +1143,11 @@
 {
 "correct": "médico",
 "distractors": [
+"médica",
 "estudiante",
 "profesor",
-"profesora",
-"estudiantes",
-"guía"
+"médicas",
+"profesora"
 ]
 }
 ],
@@ -1209,9 +1209,9 @@
 "distractors": [
 "Fuera",
 "Somos",
-"Es",
 "Soy",
-"Eres"
+"Aquí",
+"Allí"
 ]
 },
 {
@@ -1250,11 +1250,11 @@
 {
 "correct": "está",
 "distractors": [
-"están",
-"estoy",
-"estás",
-"estáis",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -1290,11 +1290,11 @@
 {
 "correct": "está",
 "distractors": [
-"estás",
-"están",
-"estoy",
-"estáis",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -1332,23 +1332,25 @@
 "distractors": [
 "soy",
 "somos",
-"son",
 "fuera",
-"eres"
+"aquí",
+"lejos"
 ]
 },
 {
 "correct": "eso",
 "distractors": [
-"esto",
 "allí",
 "aquí",
 "fuera",
-"lejos"
+"lejos",
+"dentro"
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"¿Qué es esto?"
+]
 },
 {
 "lesson": 5,
@@ -1370,21 +1372,21 @@
 {
 "correct": "billetes",
 "distractors": [
-"billete",
 "casa",
 "farmacia",
 "hotel",
-"mochila"
+"mochila",
+"hermanas"
 ]
 },
 {
 "correct": "están",
 "distractors": [
-"está",
-"estás",
-"estáis",
 "estamos",
-"estoy"
+"fuera",
+"somos",
+"es",
+"la"
 ]
 },
 {
@@ -1440,11 +1442,11 @@
 {
 "correct": "está",
 "distractors": [
-"estás",
-"están",
-"estoy",
-"estáis",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -1500,11 +1502,11 @@
 {
 "correct": "están",
 "distractors": [
-"estoy",
 "estamos",
-"estáis",
-"estás",
-"está"
+"fuera",
+"somos",
+"es",
+"la"
 ]
 },
 {
@@ -1552,11 +1554,11 @@
 {
 "correct": "está",
 "distractors": [
-"están",
-"estás",
-"estoy",
-"estáis",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -1604,11 +1606,11 @@
 {
 "correct": "está",
 "distractors": [
-"están",
-"estáis",
-"estás",
-"estoy",
-"fuera"
+"estamos",
+"fuera",
+"cuesta",
+"los",
+"una"
 ]
 },
 {
@@ -1656,11 +1658,11 @@
 {
 "correct": "están",
 "distractors": [
-"estás",
-"está",
-"estáis",
 "estamos",
-"estoy"
+"fuera",
+"somos",
+"es",
+"la"
 ]
 },
 {
@@ -1709,10 +1711,10 @@
 "correct": "están",
 "distractors": [
 "estamos",
-"estás",
-"está",
-"estoy",
-"estáis"
+"fuera",
+"somos",
+"es",
+"los"
 ]
 },
 {
@@ -1924,11 +1926,11 @@
 {
 "correct": "salidas",
 "distractors": [
-"salida",
 "madre",
 "billete",
 "casa",
-"coche"
+"mapa",
+"hotel"
 ]
 },
 {
@@ -2120,11 +2122,11 @@
 {
 "correct": "está",
 "distractors": [
-"están",
-"estás",
-"estoy",
-"estáis",
-"escribimos"
+"estamos",
+"fuera",
+"escribimos",
+"buscamos",
+"estudias"
 ]
 },
 {
@@ -2242,11 +2244,11 @@
 {
 "correct": "están",
 "distractors": [
-"está",
-"estoy",
 "estamos",
-"estás",
-"estáis"
+"fuera",
+"somos",
+"es",
+"trabaja"
 ]
 },
 {
@@ -2392,11 +2394,11 @@
 {
 "correct": "está",
 "distractors": [
-"estoy",
-"están",
-"estáis",
-"estás",
-"escribimos"
+"estamos",
+"fuera",
+"escribimos",
+"buscamos",
+"estudias"
 ]
 },
 {
@@ -2424,11 +2426,11 @@
 {
 "correct": "Está",
 "distractors": [
-"Estás",
-"Estáis",
-"Están",
-"Estoy",
-"Es"
+"Estamos",
+"Es",
+"Busca",
+"Escribe",
+"Viven"
 ]
 },
 {
@@ -2489,8 +2491,8 @@
 "Trabaja",
 "Trabajas",
 "Trabajan",
-"Está",
-"Están"
+"Trabajo",
+"Trabajáis"
 ]
 },
 {
@@ -2539,11 +2541,11 @@
 {
 "correct": "Trabajáis",
 "distractors": [
+"Trabajamos",
 "Estoy",
 "Está",
 "Estamos",
-"Están",
-"Estás"
+"Están"
 ]
 },
 {
@@ -2583,10 +2585,10 @@
 "correct": "Buscamos",
 "distractors": [
 "Busca",
+"Buscáis",
 "Buscas",
 "Buscan",
-"Escribe",
-"Estamos"
+"Busco"
 ]
 },
 {
@@ -2656,10 +2658,10 @@
 "correct": "buscan",
 "distractors": [
 "buscamos",
-"buscas",
-"busca",
 "está",
-"hablan"
+"trabaja",
+"hay",
+"lee"
 ]
 },
 {
@@ -2695,11 +2697,11 @@
 {
 "correct": "Estudiamos",
 "distractors": [
+"Estudio",
 "Estudia",
 "Estudian",
 "Estudias",
-"Está",
-"Están"
+"Estudiáis"
 ]
 },
 {
@@ -2748,11 +2750,11 @@
 {
 "correct": "Bebemos",
 "distractors": [
+"Bebo",
 "Bebes",
 "Bebe",
 "Beben",
-"Son",
-"Hay"
+"Son"
 ]
 },
 {
@@ -2824,11 +2826,11 @@
 {
 "correct": "Escribimos",
 "distractors": [
-"Está",
-"Están",
-"Estás",
-"Estoy",
-"Estáis"
+"Escribís",
+"Escribo",
+"Escribe",
+"Escribes",
+"Es"
 ]
 },
 {
@@ -2887,11 +2889,11 @@
 {
 "correct": "beben",
 "distractors": [
-"bebes",
 "bebemos",
-"bebe",
 "están",
-"abre"
+"de",
+"con",
+"del"
 ]
 },
 {
@@ -2917,11 +2919,11 @@
 {
 "correct": "Vivís",
 "distractors": [
+"Vivimos",
 "Escribe",
 "Escribo",
 "Escribes",
-"Está",
-"Están"
+"Está"
 ]
 },
 {
@@ -3007,11 +3009,11 @@
 {
 "correct": "viven",
 "distractors": [
-"vives",
-"están",
 "con",
 "del",
-"mochila"
+"mochila",
+"café",
+"libro"
 ]
 },
 {
@@ -3089,9 +3091,9 @@
 "distractors": [
 "tengo",
 "tenemos",
-"tienes",
-"tienen",
-"tenéis"
+"vivimos",
+"fuera",
+"estáis"
 ]
 },
 {
@@ -3131,7 +3133,7 @@
 "Tiene",
 "Tuvimos",
 "Tuviste",
-"Tengo"
+"Tenéis"
 ]
 },
 {
@@ -3215,9 +3217,9 @@
 "distractors": [
 "tiene",
 "tienes",
+"tenéis",
 "tengo",
-"tienen",
-"están"
+"tienen"
 ]
 },
 {
@@ -3257,10 +3259,10 @@
 "correct": "tenéis",
 "distractors": [
 "tengo",
-"tienes",
+"tenemos",
 "vivimos",
-"están",
-"abre"
+"mi",
+"su"
 ]
 },
 {
@@ -3287,7 +3289,7 @@
 "lesson": 12,
 "id": "es:12:03",
 "target": "El móvil es nuevo.",
-"ru": "Мобильный телефон новый.",
+"ru": "Телефон новый.",
 "uk": "Мобільний телефон новий.",
 "tiles": [
 {
@@ -3313,11 +3315,11 @@
 {
 "correct": "es",
 "distractors": [
-"eres",
 "fuera",
-"sois",
 "soy",
-"son"
+"aquí",
+"somos",
+"lejos"
 ]
 },
 {
@@ -3363,11 +3365,11 @@
 {
 "correct": "son",
 "distractors": [
-"es",
 "somos",
 "soy",
-"eres",
-"sois"
+"fuera",
+"están",
+"tiene"
 ]
 },
 {
@@ -3413,11 +3415,11 @@
 {
 "correct": "son",
 "distractors": [
-"eres",
 "fuera",
-"sois",
 "soy",
-"es"
+"somos",
+"aquí",
+"lejos"
 ]
 },
 {
@@ -3463,11 +3465,11 @@
 {
 "correct": "es",
 "distractors": [
-"son",
-"eres",
 "soy",
 "somos",
-"sois"
+"fuera",
+"aquí",
+"lejos"
 ]
 },
 {
@@ -3526,8 +3528,8 @@
 "contento",
 "contentas",
 "listo",
-"grandes",
-"roja"
+"roja",
+"lista"
 ]
 },
 {
@@ -3573,11 +3575,11 @@
 {
 "correct": "está",
 "distractors": [
-"estás",
-"están",
-"estoy",
-"estáis",
-"fuera"
+"estamos",
+"fuera",
+"prepara",
+"escribimos",
+"buscamos"
 ]
 },
 {
@@ -3603,11 +3605,11 @@
 {
 "correct": "Estáis",
 "distractors": [
-"Están",
-"Está",
-"Estás",
-"Estoy",
-"Es"
+"Estamos",
+"Busca",
+"Es",
+"Comprar",
+"Buscamos"
 ]
 },
 {
@@ -3653,11 +3655,11 @@
 {
 "correct": "está",
 "distractors": [
-"están",
-"estoy",
-"estás",
-"estáis",
-"fuera"
+"estamos",
+"fuera",
+"prepara",
+"escribimos",
+"buscamos"
 ]
 },
 {
@@ -3703,11 +3705,11 @@
 {
 "correct": "está",
 "distractors": [
-"estás",
-"están",
-"estoy",
-"estáis",
-"escribimos"
+"estamos",
+"fuera",
+"prepara",
+"escribimos",
+"buscamos"
 ]
 },
 {
@@ -3753,11 +3755,11 @@
 {
 "correct": "está",
 "distractors": [
-"estás",
-"están",
-"estáis",
-"estoy",
-"fuera"
+"estamos",
+"fuera",
+"prepara",
+"escribimos",
+"buscamos"
 ]
 },
 {
@@ -3795,9 +3797,9 @@
 "distractors": [
 "levantan",
 "levanta",
-"levantas",
-"hay",
-"llamar"
+"levanto",
+"levantáis",
+"levantas"
 ]
 },
 {
@@ -3856,11 +3858,11 @@
 {
 "correct": "ducho",
 "distractors": [
-"prepara",
-"escribe",
-"llevar",
-"bebe",
-"pasar"
+"ducha",
+"duchas",
+"duchan",
+"duchamos",
+"escribe"
 ]
 },
 {
@@ -3928,11 +3930,11 @@
 {
 "correct": "sienta",
 "distractors": [
-"sientan",
-"sientas",
 "sentamos",
 "sentáis",
-"están"
+"está",
+"llamar",
+"comprar"
 ]
 },
 {
@@ -3978,11 +3980,11 @@
 {
 "correct": "siento",
 "distractors": [
+"sientan",
 "sentáis",
+"sientas",
 "sentamos",
-"está",
-"llamar",
-"vamos"
+"sienta"
 ]
 },
 {
@@ -4030,11 +4032,11 @@
 {
 "correct": "prepara",
 "distractors": [
-"preparas",
 "preparamos",
-"preparan",
 "preparar",
-"fuera"
+"fuera",
+"bebemos",
+"estamos"
 ]
 },
 {
@@ -4090,11 +4092,11 @@
 {
 "correct": "puede",
 "distractors": [
-"puedes",
 "podemos",
-"podéis",
-"pueden",
-"gustan"
+"gustan",
+"gusta",
+"llamar",
+"va"
 ]
 },
 {
@@ -4132,9 +4134,9 @@
 "distractors": [
 "Pueden",
 "Podemos",
+"Puedo",
 "Puede",
-"Podéis",
-"Estoy"
+"Podéis"
 ]
 },
 {
@@ -4183,10 +4185,10 @@
 "correct": "puede",
 "distractors": [
 "podemos",
-"puedes",
-"podéis",
-"pueden",
-"gustan"
+"gustan",
+"gusta",
+"llamar",
+"va"
 ]
 },
 {
@@ -4232,11 +4234,11 @@
 {
 "correct": "Puedes",
 "distractors": [
+"Puedo",
 "Podemos",
 "Pueden",
 "Podéis",
-"Puede",
-"Hay"
+"Puede"
 ]
 },
 {
@@ -4304,11 +4306,11 @@
 {
 "correct": "puede",
 "distractors": [
-"puedes",
-"pueden",
-"podéis",
 "podemos",
-"gustan"
+"gustan",
+"gusta",
+"llamar",
+"va"
 ]
 },
 {
@@ -4374,11 +4376,11 @@
 {
 "correct": "puede",
 "distractors": [
-"podéis",
-"puedes",
 "podemos",
-"pueden",
-"gustan"
+"gustan",
+"gusta",
+"llamar",
+"va"
 ]
 },
 {
@@ -4424,11 +4426,11 @@
 {
 "correct": "Puedes",
 "distractors": [
+"Puedo",
 "Puede",
 "Pueden",
 "Podemos",
-"Podéis",
-"Abrimos"
+"Podéis"
 ]
 },
 {
@@ -4594,8 +4596,8 @@
 "lesson": 16,
 "id": "es:16:20",
 "target": "Vamos a preparar la mochila más tarde.",
-"ru": "Мы позже собираемся приготовить рюкзак.",
-"uk": "Ми пізніше збираємося приготувати рюкзак.",
+"ru": "Мы позже собираемся собрать рюкзак.",
+"uk": "Ми пізніше збираємося зібрати рюкзак.",
 "tiles": [
 {
 "correct": "Vamos",
@@ -4839,10 +4841,10 @@
 "correct": "va",
 "distractors": [
 "vamos",
-"vais",
-"vas",
 "voy",
-"van"
+"gustan",
+"gusta",
+"buscas"
 ]
 },
 {
@@ -5194,7 +5196,7 @@
 "lesson": 18,
 "id": "es:18:19",
 "target": "Ana no la busca.",
-"ru": "Ана его не ищет.",
+"ru": "Ана её не ищет.",
 "uk": "Ана її не шукає.",
 "tiles": [
 {
@@ -5230,11 +5232,11 @@
 {
 "correct": "busca",
 "distractors": [
+"busco",
 "buscamos",
 "buscas",
 "buscan",
-"buscando",
-"gustan"
+"buscáis"
 ]
 }
 ],
@@ -5250,11 +5252,11 @@
 {
 "correct": "Habéis",
 "distractors": [
-"Ha",
 "Hay",
-"Has",
 "He",
-"Hemos"
+"Hemos",
+"Pude",
+"Leído"
 ]
 },
 {
@@ -5321,10 +5323,10 @@
 "correct": "Mandé",
 "distractors": [
 "Mandado",
+"Mandamos",
 "Mandasteis",
 "Ha",
-"Hemos",
-"Han"
+"Hemos"
 ]
 },
 {
@@ -5385,11 +5387,11 @@
 {
 "correct": "mandaría",
 "distractors": [
-"mandarás",
-"mandar",
-"mandé",
-"mandaré",
-"pagaréis"
+"pagaréis",
+"mandamos",
+"mandando",
+"mandado",
+"mandaste"
 ]
 },
 {
@@ -5419,7 +5421,7 @@
 "lesson": 32,
 "id": "es:32:10",
 "target": "Si tuviera un balcón, pondría la mesa fuera.",
-"ru": "Будь у меня балкон, я бы поставил стол на улице.",
+"ru": "Будь у меня балкон, я бы поставил стол снаружи.",
 "uk": "Якби в мене був балкон, я б поставив стіл надворі.",
 "tiles": [
 {

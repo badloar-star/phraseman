@@ -19,11 +19,11 @@
 {
 "correct": "êtes",
 "distractors": [
-"es",
 "sommes",
 "suis",
-"sont",
-"est"
+"clés",
+"fenêtre",
+"fermés"
 ]
 },
 {
@@ -120,10 +120,10 @@
 "correct": "êtes",
 "distractors": [
 "sommes",
-"sont",
-"est",
 "suis",
-"es"
+"clés",
+"fenêtre",
+"fermés"
 ]
 },
 {
@@ -230,10 +230,10 @@
 "correct": "est",
 "distractors": [
 "suis",
-"êtes",
 "sommes",
-"es",
-"sont"
+"bus",
+"fenêtre",
+"clé"
 ]
 },
 {
@@ -269,11 +269,11 @@
 {
 "correct": "est",
 "distractors": [
-"êtes",
-"sont",
-"es",
 "suis",
-"sommes"
+"sommes",
+"bus",
+"fenêtre",
+"clé"
 ]
 },
 {
@@ -331,9 +331,9 @@
 "distractors": [
 "sommes",
 "suis",
-"es",
-"êtes",
-"sont"
+"bus",
+"fenêtre",
+"à"
 ]
 },
 {
@@ -752,10 +752,10 @@
 "correct": "sont",
 "distractors": [
 "sommes",
-"es",
-"est",
 "suis",
-"êtes"
+"porte",
+"bureau",
+"fenêtre"
 ]
 },
 {
@@ -902,10 +902,10 @@
 "correct": "Elle",
 "distractors": [
 "Tu",
+"Elles",
 "Je",
-"Ils",
-"Vous",
-"Nous"
+"Il",
+"Ils"
 ]
 },
 {
@@ -922,10 +922,10 @@
 "correct": "prête",
 "distractors": [
 "calme",
+"prêts",
+"prêt",
 "libre",
-"bureau",
-"fenêtre",
-"loin"
+"prêtes"
 ]
 }
 ],
@@ -955,10 +955,10 @@
 "correct": "êtes",
 "distractors": [
 "suis",
-"es",
 "sommes",
-"sont",
-"est"
+"clés",
+"fenêtre",
+"fermés"
 ]
 },
 {
@@ -1019,9 +1019,9 @@
 "distractors": [
 "sommes",
 "suis",
-"êtes",
-"es",
-"sont"
+"bus",
+"fenêtre",
+"clé"
 ]
 },
 {
@@ -1089,11 +1089,11 @@
 {
 "correct": "est",
 "distractors": [
-"sont",
-"êtes",
 "sommes",
 "suis",
-"es"
+"bus",
+"fenêtre",
+"clé"
 ]
 },
 {
@@ -1181,11 +1181,11 @@
 {
 "correct": "est",
 "distractors": [
-"sont",
-"es",
-"êtes",
 "suis",
-"sommes"
+"sommes",
+"bus",
+"fenêtre",
+"clé"
 ]
 },
 {
@@ -1254,11 +1254,11 @@
 {
 "correct": "est",
 "distractors": [
-"es",
-"êtes",
 "sommes",
 "suis",
-"sont"
+"bus",
+"fenêtre",
+"à"
 ]
 },
 {
@@ -1486,11 +1486,11 @@
 {
 "correct": "cadeau",
 "distractors": [
-"cadeaux",
 "tour",
 "billet",
 "chaussures",
-"frère"
+"frère",
+"ticket"
 ]
 }
 ],
@@ -1526,11 +1526,11 @@
 {
 "correct": "cadeau",
 "distractors": [
-"cadeaux",
 "notre",
 "sont",
 "dernier",
-"amie"
+"amie",
+"est"
 ]
 },
 {
@@ -1576,11 +1576,11 @@
 {
 "correct": "avez",
 "distractors": [
-"ont",
-"a",
 "avons",
-"as",
-"nous"
+"nous",
+"besoin",
+"réservation",
+"instant"
 ]
 },
 {
@@ -1626,11 +1626,11 @@
 {
 "correct": "avez",
 "distractors": [
-"ont",
-"a",
 "avons",
-"as",
-"nous"
+"nous",
+"besoin",
+"réservation",
+"instant"
 ]
 },
 {
@@ -1792,10 +1792,10 @@
 {
 "correct": "ont",
 "distractors": [
-"avez",
-"a",
 "avons",
-"as",
+"une",
+"lui",
+"mon",
 "le"
 ]
 },
@@ -1885,11 +1885,11 @@
 {
 "correct": "avez",
 "distractors": [
-"as",
 "avons",
-"a",
-"ont",
-"nous"
+"nous",
+"encore",
+"porte",
+"enfants"
 ]
 },
 {
@@ -1998,11 +1998,11 @@
 {
 "correct": "est",
 "distractors": [
-"êtes",
-"sont",
 "suis",
 "sommes",
-"es"
+"bus",
+"à",
+"je"
 ]
 },
 {
@@ -2059,10 +2059,10 @@
 "correct": "est",
 "distractors": [
 "suis",
-"sont",
 "sommes",
-"êtes",
-"es"
+"bus",
+"à",
+"clé"
 ]
 },
 {
@@ -2119,10 +2119,10 @@
 "correct": "est",
 "distractors": [
 "suis",
-"sont",
-"êtes",
 "sommes",
-"es"
+"bus",
+"à",
+"clé"
 ]
 },
 {
@@ -2179,10 +2179,10 @@
 "correct": "est",
 "distractors": [
 "suis",
-"es",
-"sont",
-"êtes",
-"sommes"
+"sommes",
+"bus",
+"à",
+"clé"
 ]
 },
 {
@@ -2259,10 +2259,10 @@
 "correct": "est",
 "distractors": [
 "sommes",
-"es",
-"sont",
 "suis",
-"êtes"
+"bus",
+"à",
+"radio"
 ]
 },
 {
@@ -2299,10 +2299,10 @@
 "correct": "travaille",
 "distractors": [
 "travaillent",
+"travaillons",
+"travailles",
 "travaillez",
-"soir",
-"fenêtre",
-"habitons"
+"soir"
 ]
 },
 {
@@ -2328,21 +2328,21 @@
 {
 "correct": "Elle",
 "distractors": [
+"Il",
 "Ils",
 "On",
 "Tu",
-"Je",
-"Vous"
+"Elles"
 ]
 },
 {
 "correct": "cherche",
 "distractors": [
+"cherches",
+"cherchons",
 "cherchez",
 "cherchent",
-"voisins",
-"adresse",
-"valises"
+"voisins"
 ]
 },
 {
@@ -2378,21 +2378,21 @@
 {
 "correct": "Ils",
 "distractors": [
+"Elles",
 "Tu",
 "Nous",
 "Elle",
-"Vous",
-"Je"
+"Vous"
 ]
 },
 {
 "correct": "cherchent",
 "distractors": [
 "cherche",
+"cherchons",
 "cherchez",
 "cherches",
-"voisins",
-"adresse"
+"sœur"
 ]
 },
 {
@@ -2432,17 +2432,17 @@
 "Elle",
 "Nous",
 "Il",
-"Je"
+"Vous"
 ]
 },
 {
 "correct": "prépares",
 "distractors": [
 "préparez",
+"prépare",
+"préparons",
 "travaillent",
-"parles",
-"travaille",
-"parle"
+"parles"
 ]
 },
 {
@@ -2529,10 +2529,10 @@
 "correct": "est",
 "distractors": [
 "suis",
-"sont",
-"êtes",
 "sommes",
-"es"
+"bus",
+"à",
+"clé"
 ]
 },
 {
@@ -2579,10 +2579,10 @@
 "correct": "sont",
 "distractors": [
 "sommes",
-"est",
 "suis",
-"es",
-"êtes"
+"porte",
+"bureau",
+"pharmacie"
 ]
 },
 {
@@ -2760,11 +2760,11 @@
 {
 "correct": "sont",
 "distractors": [
-"êtes",
 "suis",
-"est",
 "sommes",
-"es"
+"porte",
+"notre",
+"bureau"
 ]
 },
 {
@@ -2860,11 +2860,11 @@
 {
 "correct": "est",
 "distractors": [
-"êtes",
 "sommes",
-"es",
-"sont",
-"suis"
+"suis",
+"bus",
+"à",
+"radio"
 ]
 },
 {
@@ -2940,11 +2940,11 @@
 {
 "correct": "sont",
 "distractors": [
-"est",
 "suis",
-"êtes",
 "sommes",
-"es"
+"porte",
+"notre",
+"bureau"
 ]
 },
 {
@@ -3040,11 +3040,11 @@
 {
 "correct": "est",
 "distractors": [
-"es",
-"sont",
 "suis",
-"êtes",
-"sommes"
+"sommes",
+"bus",
+"à",
+"en"
 ]
 },
 {
@@ -3120,11 +3120,11 @@
 {
 "correct": "a",
 "distractors": [
-"as",
 "avons",
-"ont",
-"avez",
-"mal"
+"encore",
+"nous",
+"tu",
+"porte"
 ]
 },
 {
@@ -3212,11 +3212,11 @@
 {
 "correct": "a",
 "distractors": [
-"avez",
-"ont",
 "avons",
-"as",
-"clés"
+"le",
+"tu",
+"clés",
+"clé"
 ]
 },
 {
@@ -3304,11 +3304,11 @@
 {
 "correct": "a",
 "distractors": [
-"ont",
 "avons",
-"as",
-"avez",
-"une"
+"tu",
+"clés",
+"clé",
+"mal"
 ]
 },
 {
@@ -3366,10 +3366,10 @@
 {
 "correct": "a",
 "distractors": [
-"as",
 "avons",
-"ont",
-"avez",
+"tu",
+"clés",
+"clé",
 "mal"
 ]
 },
@@ -3449,11 +3449,11 @@
 {
 "correct": "a",
 "distractors": [
-"as",
-"ont",
 "avons",
-"avez",
-"le"
+"le",
+"tu",
+"clés",
+"clé"
 ]
 },
 {
@@ -3515,8 +3515,8 @@
 "Je",
 "Elles",
 "Nous",
-"On",
-"Ils"
+"Vous",
+"On"
 ]
 },
 {
@@ -3573,10 +3573,10 @@
 "correct": "Tu",
 "distractors": [
 "Nous",
+"Vous",
 "Ils",
 "Il",
-"On",
-"Je"
+"On"
 ]
 },
 {
@@ -3682,11 +3682,11 @@
 {
 "correct": "Elle",
 "distractors": [
+"Elles",
 "Nous",
 "Tu",
 "Je",
-"Ils",
-"Vous"
+"Il"
 ]
 },
 {
@@ -3736,7 +3736,7 @@
 "Je",
 "Tu",
 "Vous",
-"Elle"
+"Elles"
 ]
 },
 {
@@ -3802,11 +3802,11 @@
 {
 "correct": "prenez",
 "distractors": [
-"prennent",
-"prends",
-"prend",
-"voudrais",
-"nous"
+"nous",
+"sœur",
+"reste",
+"poisson",
+"suis"
 ]
 },
 {
@@ -3843,20 +3843,20 @@
 "correct": "Tu",
 "distractors": [
 "Nous",
+"Vous",
 "On",
 "Il",
-"Elles",
-"Je"
+"Elles"
 ]
 },
 {
 "correct": "manges",
 "distractors": [
+"mange",
+"mangeons",
 "mangent",
 "beurre",
-"frites",
-"lait",
-"soupe"
+"frites"
 ]
 },
 {
@@ -3962,11 +3962,11 @@
 {
 "correct": "ajoute",
 "distractors": [
+"ajoutes",
 "soupe",
 "boit",
 "crème",
-"fromage",
-"lait"
+"fromage"
 ]
 },
 {
@@ -4082,21 +4082,21 @@
 {
 "correct": "est",
 "distractors": [
-"êtes",
-"sont",
 "suis",
 "sommes",
-"es"
+"bus",
+"à",
+"en"
 ]
 },
 {
 "correct": "léger",
 "distractors": [
 "lourd",
-"légère",
 "lourde",
 "chaud",
-"veste"
+"veste",
+"soupe"
 ]
 }
 ],
@@ -4133,10 +4133,10 @@
 "correct": "est",
 "distractors": [
 "suis",
-"sont",
-"êtes",
 "sommes",
-"es"
+"bus",
+"à",
+"clé"
 ]
 },
 {
@@ -4183,10 +4183,10 @@
 "correct": "sont",
 "distractors": [
 "suis",
-"est",
 "sommes",
-"êtes",
-"es"
+"porte",
+"notre",
+"bureau"
 ]
 },
 {
@@ -4222,11 +4222,11 @@
 {
 "correct": "cherche",
 "distractors": [
+"cherches",
 "chercher",
+"cherchons",
 "cherchent",
-"cherchez",
-"porte",
-"valises"
+"cherchez"
 ]
 },
 {
@@ -4252,11 +4252,11 @@
 {
 "correct": "noir",
 "distractors": [
+"noires",
+"noire",
 "pull",
 "nouveau",
-"grande",
-"veste",
-"boîte"
+"grande"
 ]
 }
 ],
@@ -4276,17 +4276,17 @@
 "Ils",
 "Elles",
 "Nous",
-"Je"
+"Elle"
 ]
 },
 {
 "correct": "habite",
 "distractors": [
+"habites",
 "habitez",
+"habitons",
 "habitent",
-"parle",
-"gare",
-"combien"
+"parle"
 ]
 },
 {
@@ -4313,9 +4313,9 @@
 "correct": "grand",
 "distractors": [
 "petit",
+"grande",
 "petite",
 "faut",
-"banque",
 "nous"
 ]
 },
@@ -4345,8 +4345,8 @@
 "Elle",
 "Nous",
 "On",
-"Il",
-"Je"
+"Vous",
+"Il"
 ]
 },
 {
@@ -4385,18 +4385,18 @@
 "Elle",
 "Elles",
 "Il",
-"Je",
-"Ils"
+"Vous",
+"Je"
 ]
 },
 {
 "correct": "dois",
 "distractors": [
+"doit",
 "devons",
 "devez",
 "doivent",
-"faut",
-"rester"
+"faut"
 ]
 },
 {
@@ -4462,11 +4462,11 @@
 {
 "correct": "place",
 "distractors": [
+"places",
 "sortie",
 "peux",
 "partager",
-"pouvons",
-"peut"
+"pouvons"
 ]
 }
 ],
@@ -4494,9 +4494,9 @@
 "distractors": [
 "devons",
 "devez",
+"doit",
 "doivent",
-"faut",
-"pouvons"
+"faut"
 ]
 },
 {
@@ -4643,10 +4643,10 @@
 "correct": "peut",
 "distractors": [
 "pouvons",
-"peux",
-"pouvez",
-"peuvent",
-"place"
+"place",
+"déjeuner",
+"pied",
+"passer"
 ]
 },
 {
@@ -4714,9 +4714,9 @@
 "distractors": [
 "on",
 "elle",
+"vous",
 "nous",
-"elles",
-"je"
+"elles"
 ]
 },
 {
@@ -4812,11 +4812,11 @@
 {
 "correct": "vont",
 "distractors": [
-"vas",
 "vais",
 "allons",
-"va",
-"allez"
+"veste",
+"avant",
+"musée"
 ]
 },
 {
@@ -4884,9 +4884,9 @@
 "distractors": [
 "vais",
 "vas",
+"allez",
 "va",
-"vont",
-"musée"
+"vont"
 ]
 },
 {
@@ -5344,11 +5344,11 @@
 {
 "correct": "lève",
 "distractors": [
+"lèves",
 "lèvent",
 "prépare",
 "devant",
-"matin",
-"ici"
+"matin"
 ]
 }
 ],
@@ -5384,11 +5384,11 @@
 {
 "correct": "prépare",
 "distractors": [
+"prépares",
 "préparer",
 "musée",
 "vais",
-"habillez",
-"allez"
+"habillez"
 ]
 }
 ],

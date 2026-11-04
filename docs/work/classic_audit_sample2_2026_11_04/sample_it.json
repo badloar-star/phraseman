@@ -53,11 +53,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "siamo",
-"siete",
-"chiave"
+"chiave",
+"stazione",
+"scarpe",
+"ci"
 ]
 },
 {
@@ -95,11 +95,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
-"siete",
 "siamo",
-"negozio"
+"negozio",
+"ci",
+"c’è",
+"ufficio"
 ]
 },
 {
@@ -145,11 +145,11 @@
 {
 "correct": "pronto",
 "distractors": [
+"pronti",
+"pronta",
 "stanco",
 "stanca",
-"stanchi",
-"ufficio",
-"ritardo"
+"stanchi"
 ]
 }
 ],
@@ -177,11 +177,11 @@
 {
 "correct": "pronti",
 "distractors": [
+"pronto",
+"pronta",
 "stanco",
 "stanchi",
-"stanca",
-"bambini",
-"chiavi"
+"stanca"
 ]
 }
 ],
@@ -219,11 +219,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "siamo",
 "libero",
-"siete"
+"ci",
+"c’è",
+"libera"
 ]
 },
 {
@@ -311,11 +311,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "lontani",
-"siete",
-"siamo"
+"siamo",
+"ci",
+"c’è",
+"chiavi"
 ]
 },
 {
@@ -371,11 +371,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "stazione",
-"sei",
 "siamo",
-"siete"
+"insieme",
+"ci",
+"chiave"
 ]
 },
 {
@@ -431,11 +431,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "ufficio",
-"sei",
 "siamo",
-"siete"
+"ci",
+"c’è",
+"fondo"
 ]
 },
 {
@@ -543,11 +543,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "siamo",
-"siete",
-"sala"
+"sala",
+"ci",
+"c’è",
+"alla"
 ]
 },
 {
@@ -593,11 +593,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
-"siete",
 "siamo",
-"stanza"
+"stanza",
+"ci",
+"c’è",
+"alla"
 ]
 },
 {
@@ -653,11 +653,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
-"siete",
 "siamo",
-"l’ingresso"
+"l’ingresso",
+"ci",
+"c’è",
+"stazione"
 ]
 },
 {
@@ -713,11 +713,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
-"siete",
 "nella",
-"siamo"
+"siamo",
+"ci",
+"c’è",
+"casa"
 ]
 },
 {
@@ -763,11 +763,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "siamo",
-"siete",
-"fronte"
+"fronte",
+"ci",
+"c’è",
+"stazione"
 ]
 },
 {
@@ -813,11 +813,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "siamo",
-"siete",
-"miei"
+"miei",
+"mia",
+"suo",
+"sua"
 ]
 },
 {
@@ -863,11 +863,11 @@
 {
 "correct": "sono",
 "distractors": [
-"è",
-"sei",
 "siamo",
-"siete",
-"ci"
+"c’è",
+"ci",
+"loro",
+"stazione"
 ]
 },
 {
@@ -923,11 +923,11 @@
 {
 "correct": "sono",
 "distractors": [
-"è",
-"sei",
 "siamo",
-"siete",
-"ci"
+"c’è",
+"ci",
+"loro",
+"stazione"
 ]
 },
 {
@@ -983,11 +983,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "borsa",
-"sei",
 "siamo",
-"siete"
+"casa",
+"ci",
+"c’è"
 ]
 },
 {
@@ -1053,11 +1053,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "borsa",
-"sei",
-"siete",
-"siamo"
+"siamo",
+"casa",
+"ci",
+"c’è"
 ]
 },
 {
@@ -1123,11 +1123,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
-"siete",
 "dei",
-"siamo"
+"siamo",
+"delle",
+"della",
+"del"
 ]
 },
 {
@@ -1195,9 +1195,9 @@
 "distractors": [
 "abbiamo",
 "ho",
-"hai",
-"hanno",
-"avete"
+"prima",
+"biglietto",
+"questo"
 ]
 },
 {
@@ -1305,9 +1305,9 @@
 "distractors": [
 "ho",
 "abbiamo",
-"hai",
-"hanno",
-"avete"
+"prima",
+"questo",
+"bambini"
 ]
 },
 {
@@ -1495,11 +1495,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "cassetto",
 "siamo",
-"siete"
+"ci",
+"c’è",
+"stazione"
 ]
 },
 {
@@ -1555,11 +1555,11 @@
 {
 "correct": "sono",
 "distractors": [
-"è",
-"sei",
 "zuppa",
 "siamo",
-"siete"
+"c’è",
+"ci",
+"borsa"
 ]
 },
 {
@@ -1635,11 +1635,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "formaggio",
-"sei",
 "siamo",
-"siete"
+"ci",
+"c’è",
+"stazione"
 ]
 },
 {
@@ -1705,11 +1705,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "sinistra",
-"siete",
-"siamo"
+"siamo",
+"ci",
+"c’è",
+"nella"
 ]
 },
 {
@@ -1745,11 +1745,11 @@
 {
 "correct": "Lavori",
 "distractors": [
-"Biglietti",
-"Chiudi",
-"Compro",
-"Domani",
-"Guanti"
+"Lavora",
+"Lavoro",
+"Lavoriamo",
+"Lavorano",
+"Lavorate"
 ]
 },
 {
@@ -1781,19 +1781,19 @@
 "distractors": [
 "Lui",
 "Io",
-"Noi",
-"Suo",
-"Sua"
+"Tu",
+"Loro",
+"Noi"
 ]
 },
 {
 "correct": "parla",
 "distractors": [
+"parliamo",
+"parlo",
+"parli",
 "casa",
-"finestra",
-"zuppa",
-"musica",
-"borsa"
+"finestra"
 ]
 },
 {
@@ -1821,11 +1821,11 @@
 {
 "correct": "Ascolto",
 "distractors": [
+"Ascolti",
+"Ascolta",
+"Ascoltiamo",
 "Questa",
-"Qui",
-"Questi",
-"Queste",
-"Sta"
+"Lavoriamo"
 ]
 },
 {
@@ -1863,11 +1863,11 @@
 {
 "correct": "Ordino",
 "distractors": [
+"Ordiniamo",
 "Camminiamo",
 "Fuori",
 "Lì",
-"Qui",
-"Sopra"
+"Qui"
 ]
 },
 {
@@ -1987,11 +1987,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "banca",
-"sei",
 "siamo",
-"siete"
+"ci",
+"c’è",
+"casa"
 ]
 },
 {
@@ -2107,11 +2107,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "siamo",
 "desidera",
-"siete"
+"ci",
+"c’è",
+"stazione"
 ]
 },
 {
@@ -2237,11 +2237,11 @@
 {
 "correct": "loro",
 "distractors": [
+"lei",
 "suo",
 "nostro",
 "tua",
-"mio",
-"mia"
+"mio"
 ]
 },
 {
@@ -2267,11 +2267,11 @@
 {
 "correct": "libere",
 "distractors": [
-"stazione",
-"chiave",
-"insieme",
-"scarpe",
-"te"
+"libero",
+"libera",
+"liberi",
+"borsa",
+"ufficio"
 ]
 }
 ],
@@ -2317,11 +2317,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "siamo",
 "suoi",
-"siete"
+"ci",
+"c’è",
+"mio"
 ]
 },
 {
@@ -2367,11 +2367,11 @@
 {
 "correct": "Prepara",
 "distractors": [
+"Prepari",
+"Preparo",
 "Preparate",
-"Stiamo",
-"Caffè",
-"Accanto",
-"Chiavi"
+"Prepariamo",
+"Stiamo"
 ]
 },
 {
@@ -2427,11 +2427,11 @@
 {
 "correct": "sono",
 "distractors": [
-"è",
 "indirizzo",
-"sei",
 "siamo",
-"siete"
+"c’è",
+"ci",
+"ufficio"
 ]
 },
 {
@@ -2547,11 +2547,11 @@
 {
 "correct": "sono",
 "distractors": [
-"è",
-"sei",
 "siamo",
-"siete",
-"fronte"
+"fronte",
+"c’è",
+"stazione",
+"chiave"
 ]
 },
 {
@@ -2855,7 +2855,7 @@
 "vado",
 "vai",
 "vanno",
-"ufficio"
+"andate"
 ]
 },
 {
@@ -3023,11 +3023,11 @@
 {
 "correct": "Prendiamo",
 "distractors": [
-"Andiamo",
-"Ha",
-"Hai",
-"Ho",
-"Hanno"
+"Prendi",
+"Prendo",
+"Prendono",
+"Prendete",
+"Prende"
 ]
 },
 {
@@ -3055,11 +3055,11 @@
 {
 "correct": "Compro",
 "distractors": [
-"Lavora",
-"Lavorano",
-"Lavorate",
-"Lavori",
-"Lavoriamo"
+"Compriamo",
+"Compri",
+"Compra",
+"Prende",
+"Prendi"
 ]
 },
 {
@@ -3099,19 +3099,19 @@
 "distractors": [
 "Mangiamo",
 "Mangia",
-"Lavoriamo",
-"Abita",
-"Abitate"
+"Mangio",
+"Mangi",
+"Prende"
 ]
 },
 {
 "correct": "delle",
 "distractors": [
 "del",
+"della",
+"dello",
 "che",
-"e",
-"per",
-"con"
+"e"
 ]
 },
 {
@@ -3139,11 +3139,11 @@
 {
 "correct": "È",
 "distractors": [
-"Sono",
-"Sei",
-"Siete",
 "Siamo",
-"Ci"
+"Ci",
+"C’è",
+"La",
+"Una"
 ]
 },
 {
@@ -3189,11 +3189,11 @@
 {
 "correct": "Metto",
 "distractors": [
+"Metti",
 "Questa",
 "Qui",
 "Questi",
-"Queste",
-"Sta"
+"Queste"
 ]
 },
 {
@@ -3291,11 +3291,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "stanza",
-"siete",
-"sei",
-"siamo"
+"siamo",
+"ci",
+"c’è",
+"alla"
 ]
 },
 {
@@ -3341,11 +3341,11 @@
 {
 "correct": "sono",
 "distractors": [
-"è",
 "caldo",
-"sei",
-"siete",
-"siamo"
+"siamo",
+"c’è",
+"ci",
+"ufficio"
 ]
 },
 {
@@ -3431,11 +3431,11 @@
 {
 "correct": "È",
 "distractors": [
-"Sono",
-"Sei",
-"Siete",
 "Siamo",
-"Ci"
+"Ci",
+"C’è",
+"La",
+"Una"
 ]
 },
 {
@@ -3521,11 +3521,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "calzini",
-"sei",
 "siamo",
-"siete"
+"ci",
+"c’è",
+"stazione"
 ]
 },
 {
@@ -3551,11 +3551,11 @@
 {
 "correct": "Prendo",
 "distractors": [
+"Prendi",
+"Prendiamo",
+"Prende",
 "Prendono",
-"Andate",
-"Andiamo",
-"Va",
-"Vai"
+"Prendete"
 ]
 },
 {
@@ -3643,11 +3643,11 @@
 {
 "correct": "Vuoi",
 "distractors": [
-"Vuole",
 "Voglio",
 "Vogliamo",
-"Vogliono",
-"Deve"
+"La",
+"Il",
+"Le"
 ]
 },
 {
@@ -3676,10 +3676,10 @@
 "correct": "Devono",
 "distractors": [
 "Devo",
+"Deve",
 "Dobbiamo",
-"Sei",
-"Siamo",
-"Siete"
+"Devi",
+"Vuole"
 ]
 },
 {
@@ -3717,11 +3717,11 @@
 {
 "correct": "Può",
 "distractors": [
-"Puoi",
 "Posso",
 "Possiamo",
-"Possono",
-"Potremmo"
+"Potremmo",
+"Potrei",
+"Potresti"
 ]
 },
 {
@@ -3777,11 +3777,11 @@
 {
 "correct": "può",
 "distractors": [
-"puoi",
 "posso",
 "possiamo",
-"possono",
-"pane"
+"pane",
+"museo",
+"posto"
 ]
 },
 {
@@ -3837,11 +3837,11 @@
 {
 "correct": "Deve",
 "distractors": [
+"Devo",
 "Dobbiamo",
-"Vuole",
-"Vorrei",
-"Beviamo",
-"Bevo"
+"Devi",
+"Devono",
+"Vuole"
 ]
 },
 {
@@ -3949,11 +3949,11 @@
 {
 "correct": "Stai",
 "distractors": [
+"Sta",
 "Stiamo",
 "Sto",
 "Stanno",
-"State",
-"Prepara"
+"State"
 ]
 },
 {
@@ -4013,9 +4013,9 @@
 "distractors": [
 "stiamo",
 "sto",
-"stanno",
-"state",
-"mangiando"
+"mangiando",
+"aspettando",
+"cercando"
 ]
 },
 {
@@ -4061,11 +4061,11 @@
 {
 "correct": "Stai",
 "distractors": [
+"Sta",
 "Stiamo",
 "Sto",
 "State",
-"Stanno",
-"Prepara"
+"Stanno"
 ]
 },
 {
@@ -4144,10 +4144,10 @@
 "correct": "stanno",
 "distractors": [
 "stiamo",
-"sta",
-"stai",
 "sto",
-"state"
+"mangiando",
+"cercando",
+"aprendo"
 ]
 },
 {
@@ -4183,11 +4183,11 @@
 {
 "correct": "Stai",
 "distractors": [
+"Sta",
 "Stiamo",
 "Sto",
 "State",
-"Stanno",
-"Prepara"
+"Stanno"
 ]
 },
 {
@@ -4255,11 +4255,11 @@
 {
 "correct": "porti",
 "distractors": [
-"vorrei",
-"aperta",
-"aperto",
-"chiusa",
-"chiusi"
+"porta",
+"casa",
+"borsa",
+"strada",
+"cena"
 ]
 },
 {
@@ -4575,11 +4575,11 @@
 {
 "correct": "faccio",
 "distractors": [
+"facciamo",
 "fa",
 "fai",
-"museo",
-"cercando",
-"ora"
+"faccia",
+"biglietto"
 ]
 },
 {
@@ -4637,11 +4637,11 @@
 {
 "correct": "Lei",
 "distractors": [
+"Loro",
 "Lui",
+"Tu",
 "Io",
-"Noi",
-"Suo",
-"Sua"
+"Voi"
 ]
 },
 {
@@ -4657,11 +4657,11 @@
 {
 "correct": "lava",
 "distractors": [
+"lavo",
 "lavano",
 "ora",
-"mia",
-"alla",
-"finestra"
+"mattino",
+"mia"
 ]
 },
 {
@@ -4722,8 +4722,8 @@
 "svegliano",
 "vesto",
 "svegliamo",
-"qui",
-"vicino"
+"questa",
+"qui"
 ]
 },
 {
@@ -4864,10 +4864,10 @@
 "correct": "sulla",
 "distractors": [
 "sul",
+"sullo",
 "borsa",
 "giacca",
-"mappa",
-"sorella"
+"mappa"
 ]
 },
 {
@@ -4906,10 +4906,10 @@
 "correct": "arrivati",
 "distractors": [
 "che",
+"arrivato",
+"arrivata",
 "tornati",
-"di",
-"se",
-"quando"
+"di"
 ]
 }
 ],
@@ -4947,11 +4947,11 @@
 {
 "correct": "era",
 "distractors": [
-"erano",
 "ero",
 "eravamo",
 "siamo",
-"casa"
+"casa",
+"nella"
 ]
 },
 {
@@ -4977,11 +4977,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
-"sei",
 "siamo",
-"siete",
-"stavano"
+"stavano",
+"ci",
+"c’è",
+"stazione"
 ]
 },
 {
@@ -5077,11 +5077,11 @@
 {
 "correct": "stavo",
 "distractors": [
-"suonato",
-"treno",
-"numero",
-"tempo",
-"trovato"
+"stavamo",
+"stava",
+"stavi",
+"stavano",
+"scrivendo"
 ]
 },
 {
@@ -5301,11 +5301,11 @@
 {
 "correct": "è",
 "distractors": [
-"sono",
 "mano",
-"sei",
 "siamo",
-"siete"
+"ci",
+"sia",
+"c’è"
 ]
 },
 {
@@ -5413,11 +5413,11 @@
 {
 "correct": "serve",
 "distractors": [
+"servono",
 "te",
 "piace",
 "prendere",
-"codice",
-"buone"
+"codice"
 ]
 },
 {
@@ -5434,10 +5434,10 @@
 "correct": "alla",
 "distractors": [
 "al",
+"allo",
+"alle",
 "ai",
-"casa",
-"borsa",
-"stanza"
+"casa"
 ]
 },
 {
@@ -5536,10 +5536,10 @@
 "correct": "stato",
 "distractors": [
 "arrivo",
+"stati",
+"stata",
 "nuovo",
-"prendo",
-"treno",
-"cappotto"
+"amici"
 ]
 },
 {
@@ -5555,11 +5555,11 @@
 {
 "correct": "questo",
 "distractors": [
+"questa",
 "ritrovato",
 "steso",
 "dovuto",
-"mangiato",
-"qui"
+"mangiato"
 ]
 },
 {

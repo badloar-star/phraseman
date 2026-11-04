@@ -240,7 +240,7 @@
 "id": "en-classic-r1:02.02",
 "target": "You are not late.",
 "ru": "Вы не опоздали.",
-"uk": "не запізнилися",
+"uk": "Ви не запізнилися.",
 "tiles": [
 {
 "correct": "You",
@@ -355,8 +355,8 @@
 "lesson": 2,
 "id": "en-classic-r1:02.23",
 "target": "Yes, she is.",
-"ru": "Да.",
-"uk": "Так.",
+"ru": "Да, она здесь.",
+"uk": "Так, вона тут.",
 "tiles": [
 {
 "correct": "Yes",
@@ -685,7 +685,7 @@
 "lesson": 3,
 "id": "en-classic-r1:03.25",
 "target": "The cafe closes early.",
-"ru": "рано",
+"ru": "Кафе закрывается рано.",
 "uk": "Кафе закривається рано.",
 "tiles": [
 {
@@ -1645,8 +1645,8 @@
 "lesson": 6,
 "id": "en-classic-r1:06.11",
 "target": "Where do I sign?",
-"ru": "расписаться",
-"uk": "розписатися",
+"ru": "Где мне расписаться?",
+"uk": "Де мені розписатися?",
 "tiles": [
 {
 "correct": "Where",
@@ -3458,7 +3458,7 @@
 "lesson": 12,
 "id": "en-classic-r1:12.47",
 "target": "She knew the street name.",
-"ru": "положила",
+"ru": "Она знала название улицы.",
 "uk": "Вона знала назву вулиці.",
 "tiles": [
 {
@@ -4103,7 +4103,7 @@
 "id": "en-classic-r1:14.44",
 "target": "The return journey was shorter.",
 "ru": "Обратный путь был короче.",
-"uk": "Зворотний",
+"uk": "Зворотний шлях був коротшим.",
 "tiles": [
 {
 "correct": "The",
@@ -4263,7 +4263,7 @@
 "id": "en-classic-r1:15.32",
 "target": "Your bag is heavier than mine.",
 "ru": "Ваша сумка тяжелее моей.",
-"uk": "Ваша",
+"uk": "Ваша сумка важча за мою.",
 "tiles": [
 {
 "correct": "Your",
@@ -4613,7 +4613,7 @@
 "id": "en-classic-r1:16.23",
 "target": "We looked up the address.",
 "ru": "Мы поискали адрес.",
-"uk": "подивилися",
+"uk": "Ми пошукали адресу.",
 "tiles": [
 {
 "correct": "We",
@@ -5444,7 +5444,7 @@
 "lesson": 25,
 "id": "en-classic-r1:25.17",
 "target": "The rain was dripping through the ceiling.",
-"ru": "сквозь потолок",
+"ru": "Дождь капал сквозь потолок.",
 "uk": "Дощ капав крізь стелю.",
 "tiles": [
 {
@@ -5524,8 +5524,8 @@
 "lesson": 26,
 "id": "en-classic-r1:26.06",
 "target": "If he comes early, we will have coffee.",
-"ru": "Если он придет рано, мы выпьем кофе.",
-"uk": "рано",
+"ru": "Если он придёт рано, мы выпьем кофе.",
+"uk": "Якщо він прийде рано, ми вип'ємо кави.",
 "tiles": [
 {
 "correct": "If",
@@ -5915,7 +5915,7 @@
 "id": "en-classic-r1:28.49",
 "target": "I enjoyed myself at the concert.",
 "ru": "Мне понравилось на концерте.",
-"uk": "сподобалося на концерті",
+"uk": "Мені сподобалося на концерті.",
 "tiles": [
 {
 "correct": "I",
@@ -5984,8 +5984,8 @@
 "lesson": 29,
 "id": "en-classic-r1:29.07",
 "target": "She used to take the bus.",
-"ru": "Раньше она ездила…",
-"uk": "Раніше вона їздила…",
+"ru": "Раньше она ездила на автобусе.",
+"uk": "Раніше вона їздила автобусом.",
 "tiles": [
 {
 "correct": "She",
@@ -6055,7 +6055,7 @@
 "id": "en-classic-r1:30.15",
 "target": "The friend that you met is my colleague.",
 "ru": "Друг, с которым вы познакомились, — мой коллега.",
-"uk": "— мій колега",
+"uk": "Друг, з яким ви познайомилися, — мій колега.",
 "tiles": [
 {
 "correct": "The",

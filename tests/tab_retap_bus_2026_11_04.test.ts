@@ -38,4 +38,9 @@ describe('повторный тап по вкладке', () => {
     const settings = read('app/(tabs)/settings.tsx');
     expect(settings).toContain('useTabRetapScrollTop(4,');
   });
+
+  it('Главная (0) и Уроки (1) тоже прокручиваются в начало по повторному тапу', () => {
+    expect(read('app/(tabs)/home.tsx')).toContain('useTabRetapScrollTop(0,');
+    expect(read('app/(tabs)/lessons.tsx')).toContain('useTabRetapScrollTop(1,');
+  });
 });

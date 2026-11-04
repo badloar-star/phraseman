@@ -125,6 +125,7 @@ import {
 import { hapticSoftImpact, hapticTap } from "../../hooks/use-haptics";
 import { useReduceMotionPreference } from "../../hooks/use_reduce_motion";
 import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
+import { useTabRetapScrollTop } from "../../hooks/use_tab_retap_scroll_top"; // зачем (удобство №1): повторный тап по вкладке «Уроки» — наверх
 import { useRuntimeActive } from "../../hooks/use_runtime_active";
 import { useMyCoinRankBinding } from "../../hooks/use_my_coin_rank";
 import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
@@ -2585,6 +2586,7 @@ export default function LessonsTab({
     >
   >(() => boot?.examResults ?? {});
   const scrollRef = useRef<any>(null);
+  useTabRetapScrollTop(1, (animated) => scrollRef.current?.scrollToOffset?.({ offset: 0, animated }));
   const learningV2CoinTargetRefHolder = useRef<View>(null);
   const {
     GestureWrap: BouncyWrap,

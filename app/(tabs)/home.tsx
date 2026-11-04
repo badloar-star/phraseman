@@ -108,6 +108,7 @@ import HomeV2ContinueCardBase from '../../components/home/v2/HomeV2ContinueCard'
 import HomeV2FeatureTilesBase from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRailBase from '../../components/home/v2/HomeV2VideoRail';
 import HomeV2TodayCardBase from '../../components/home/v2/HomeV2TodayCard';
+import { useTabRetapScrollTop } from '../../hooks/use_tab_retap_scroll_top'; // зачем (удобство №1): повторный тап по вкладке «Главная» — наверх
 import HomeReviewHint from '../../components/home/HomeReviewHint'; // зачем (удобство №8, владелец 04.11): «Повторить N слов · M мин» одной строкой под «Сегодня»
 import { ofLine as todayOfLine } from '../../components/home/v2/today_scene/today_scene_copy';
 // зачем (владелец 21.10 ~23:40, Главная A «Сцена»): шапка и «Продолжить» сведены в сцену — components/home/v2/scene
@@ -638,6 +639,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     noteHomeRender('home'); // [HOME-SCROLL]: счётчик рендеров Главной за окно прокрутки (срочно 25.10, «скролл дёрганый»)
     // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
     const homeScrollRef = useRef<ScrollView | null>(null);
+    useTabRetapScrollTop(0, (animated) => homeScrollRef.current?.scrollTo({ y: 0, animated }));
     // зачем: владелец попросил, чтобы сохранённые карточки на главной собирались
     // в кучку и улетали в раздел «Карточки». Держим здесь только координату плитки
     // и число прилетевших — сама анимация живёт оверлеем и вёрстку не двигает.

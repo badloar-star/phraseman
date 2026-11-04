@@ -99,6 +99,19 @@ describe('флаг «выдан» — на владельца (координа�
   });
 });
 
+describe('старый общий флаг (принято координатором 04.11)', () => {
+  it('у владельца, получившего бонус по прежнему общему флагу, повторный показ возможен, но ключ операции тот же — монеты не задваиваются', async () => {
+    const ids: string[] = [];
+    const run = () => maybeGrantFirstLessonBonus({
+      gatesEnabled: () => true, verdict: async () => NEW, ownerStableId: async () => 'owner-legacy', sha256Hex: sha,
+      grant: async ({ requestId }) => { ids.push(requestId); }, readFlag: async () => false, writeFlag: async () => undefined, // флаг по uid ещё пуст
+    });
+    expect(await run()).toBe(true);
+    expect(await run()).toBe(true); // повторный показ у единиц допустим…
+    expect(ids[0]).toBe(ids[1]);    // …но ключ операции один: сервер и локальный кошелёк схлопывают повтор
+  });
+});
+
 describe('ключ операции', () => {
   it('один владелец — один ключ, разные владельцы — разные, форма из белого списка сервера', async () => {
     const a = await firstLessonBonusRequestId('a', sha); const a2 = await firstLessonBonusRequestId('a', sha); const b = await firstLessonBonusRequestId('b', sha);

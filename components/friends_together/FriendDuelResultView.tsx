@@ -20,6 +20,7 @@ import FriendSheetButton from './FriendSheetButton';
 import DuelVersus, { type DuelSide } from './DuelVersus';
 import type { DuelOutcome } from '../../app/friends_together/duel_core';
 import { duelCopy, duelReviewLabel } from '../../app/friends_together/duel_copy';
+import { PopIn } from '../DoneTick';
 import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 /** Строка таблицы: фраза, её смысл (если курс его даёт) и отметки — свою и друга (null — друг ещё не ходил). */
@@ -64,9 +65,12 @@ function FriendDuelResultView({ mode, me, friend, outcome, outcomeLine, rows, on
   return (
     <View testID="friend-duel-result" style={styles.root}>
       <DuelVersus me={me} friend={friend} mid={duelCopy(lang, isResult ? 'resultMid' : 'sentMid')} glass={glass} textScale={textScale} coin={56} />
-      <FlowText testID="friend-duel-result-title" provenance="authored" accessibilityRole="header" style={[styles.center, styles.title, { color: glass.text, fontSize: 22 * textScale, lineHeight: 28 * textScale }]}>
-        {title}
-      </FlowText>
+      {/* зачем (волна 3 UX, владелец 04.11): победа — заголовок появляется пружиной с лёгким хаптиком; поражение, ничья и «ход отправлен» без поп-эффекта */}
+      <PopIn play={isResult && outcome === 'win'} haptic={isResult && outcome === 'win'}>
+        <FlowText testID="friend-duel-result-title" provenance="authored" accessibilityRole="header" style={[styles.center, styles.title, { color: glass.text, fontSize: 22 * textScale, lineHeight: 28 * textScale }]}>
+          {title}
+        </FlowText>
+      </PopIn>
       {body ? (
         <FlowText testID="friend-duel-result-body" provenance="authored" style={[styles.center, styles.para, { color: glass.secondary, fontSize: 16 * textScale, lineHeight: 22 * textScale }]}>
           {body}

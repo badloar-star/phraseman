@@ -62,6 +62,7 @@ import HomeSheetTextGuard from '../../components/home/HomeSheetTextGuard';
 import { useHomePollV2 } from '../../hooks/use_home_poll_v2';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
+import { noteHomeIdleRender } from '../home_idle_probe'; // зачем (координатор 04.11, рост View в покое): [HOME-IDLE] — таймеры и циклы по месту вызова; в релизе пусто
 import { noteHomeRender, noteHomeScrollHop, startHomeScrollWindow } from '../home_scroll_probe';
 import { sameSnapshotSection } from '../home_snapshot_equal';
 import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
@@ -3071,6 +3072,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем ([HOME-SETSTATE] 18.10): опрос, окно недели и «С возвращением» отдают НОВЫЙ объект на каждый рендер, и в журнале они значились «изменившимися» всегда — настоящую причину не было видно (14 из 23 рендеров окна). Теперь в снимке их значимые поля.
     // зачем (координатор 15.10, «перерисовки Главной»): [HOME-RENDERS] — сколько раз и ПОЧЕМУ рендерится Главная за 10 с после холодного старта и после возврата на вкладку (окно открывает смена homeRuntimeActive).
     // Перечислены состояния и контексты корня; рендер без изменений в списке пишется как parent_or_unlisted (родитель или хук, которого здесь нет). В релизе — пустая функция, снимок не строится.
+    noteHomeIdleRender();
     useRenderCause('home', () => ({
         t, f, themeMode, liquidGlassAppearance, myCoinRank, lang, studyTarget, streakToday, cloudProfileRefreshing, todayTasks, homeRuntimeActive, tabContentBottomPad, nav, router,
         cardsTileCenter, cardArrivals, dailyPhraseCardVisible, homeOnboardingDone, userName, streak, displayStreak, homeStatsReady, weekDone, weekDotAnimationToken, weekMarkers, weekPoints,

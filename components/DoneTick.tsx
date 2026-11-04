@@ -5,7 +5,7 @@
 // Без «движения»: при системной настройке «уменьшить движение» значок появляется сразу, хаптик остаётся (это обратная связь, а не анимация).
 // `play` = false — значок уже был показан раньше (повторное открытие экрана): рисуем сразу, без пружины и без хаптика.
 import React, { useEffect, useRef } from 'react';
-import { Animated, type StyleProp, type ViewStyle } from 'react-native';
+import { Animated, View, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SUITE } from '../constants/motionHybrid';
 import { hapticSuccess } from '../hooks/use-haptics';
@@ -20,10 +20,9 @@ type PopInProps = Readonly<{
   play?: boolean;
   /** Лёгкий хаптик успеха в момент появления (по умолчанию да). */
   haptic?: boolean;
-  style?: StyleProp<ViewStyle>;
 }>;
 
-export function PopIn({ children, play = true, haptic = true, style }: PopInProps): React.JSX.Element {
+export function PopIn({ children, play = true, haptic = true }: PopInProps): React.JSX.Element {
   const reduceMotion = useSystemReduceMotion();
   const animate = play && !reduceMotion;
   const scale = useRef(new Animated.Value(animate ? POP_FROM_SCALE : 1)).current;
@@ -39,7 +38,8 @@ export function PopIn({ children, play = true, haptic = true, style }: PopInProp
     // зачем: один раз на появление; смена play/haptic после показа ничего не должна перезапускать
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return <Animated.View style={[style, { opacity, transform: [{ scale }] }]}>{children}</Animated.View>;
+  // зачем (контракт pressable_primitives_disabled_contract): анимированный стиль — отдельным объектом, без массива [style, {opacity, transform}]; раскладка живёт во внутреннем View
+  return <Animated.View style={{ opacity, transform: [{ scale }] }}>{children}</Animated.View>;
 }
 
 type DoneTickProps = Readonly<{
@@ -55,8 +55,10 @@ type DoneTickProps = Readonly<{
 /** Галочка «готово»: PopIn вокруг Ionicons. Скрыта от скринридера — состояние называет родитель. */
 export function DoneTick({ size = 18, color, name = 'checkmark', play = true, haptic = true, testID }: DoneTickProps): React.JSX.Element {
   return (
-    <PopIn play={play} haptic={haptic} style={styles.box}>
-      <Ionicons testID={testID} name={name} size={size} color={color} accessible={false} />
+    <PopIn play={play} haptic={haptic}>
+      <View style={styles.box}>
+        <Ionicons testID={testID} name={name} size={size} color={color} accessible={false} />
+      </View>
     </PopIn>
   );
 }

@@ -19,6 +19,7 @@ jest.mock('react-native', () => {
   const mockReact = jest.requireActual('react') as typeof React;
   const anim = () => ({ start: () => undefined, stop: () => undefined });
   return {
+    View: (props: Record<string, unknown>) => mockReact.createElement('View', props),
     StyleSheet: {
       create: (styles: unknown) => styles,
       flatten: (style: unknown) => Object.assign({}, ...([style] as unknown[]).flat(9).filter(Boolean)),

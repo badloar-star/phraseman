@@ -25,7 +25,7 @@ describe('вкладка «Видео»: каталог роликов вирт�
   test('Главная показывает все ролики канала страницами по 20 (источник Ядра), а счётчики сохранений читаются только для показанных страниц', () => {
     expect(source).toContain("useAllChannelVideos(catalog?.channel.id ?? pendingChannel?.id ?? '', undefined, catalog)");
     expect(source).toContain('onEndReached={loadMoreVideos}');
-    expect(source).toContain('allVideos.slice(0, pages * ALL_VIDEOS_PAGE_SIZE)');
+    expect(source).toContain('homeListAll.slice(0, pages * ALL_VIDEOS_PAGE_SIZE)'); // зачем (актуализация 05.11): переменная переименована в homeListAll (страницы только для «paged»)
     expect(source).toContain('allChannel.refresh()');
   });
 
@@ -34,7 +34,7 @@ describe('вкладка «Видео»: каталог роликов вирт�
     expect(start).toBeGreaterThan(0);
     const header = source.slice(start, source.indexOf('ListEmptyComponent=', start));
     expect(header).toContain('<YoutubePremiereHero');
-    expect(header).toContain('savedRow');
+    expect(header).not.toContain('savedRow'); // зачем (актуализация 05.11): строки «Сохранённые видео» нет с 1458fd3a7 (звёзды вместо закладок)
     expect(header).not.toContain('packsRow');
     expect(source).toContain("tab === 'packs'");
     expect(source).toContain('<FlashcardsVideoPacksScreen embedded');

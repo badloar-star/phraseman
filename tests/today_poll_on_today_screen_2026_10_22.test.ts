@@ -10,8 +10,8 @@ describe('опрос дня на экране «Сегодня»', () => {
     expect(src).toContain('const poll = useHomePollV2({ lang, active: pollOn });');
     expect(src).toContain('<HomePollV2Card model={poll} lang={lang} onFinished={closePoll} />');
     expect(src).toContain('testID="today-poll-v2-sheet"');
-    expect(src).toContain('pollRow={pollRow}');
-    expect(src).toContain('surveyRow={pollRow} />');
+    expect(src).toContain('pollRow={todayRow}');
+    expect(src).toContain('surveyRow={todayRow} />'); // зачем (актуализация 05.11): строка = trial.row ?? pollRow, 99adcd778
     expect(src).toContain("console.log('[TODAY-POLL] row'");
     expect(src.match(/\{pollSheet\}/g)).toHaveLength(2);
   });

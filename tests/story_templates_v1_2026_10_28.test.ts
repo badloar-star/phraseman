@@ -282,7 +282,7 @@ describe('шаблоны историй v1 — стиль и связи', () => 
     expect(viewer).toContain('if (studioSettle) { progress.value = Math.min(1, STORY_SETTLE_MS / duration);');
     expect(viewer).toContain('if (reduceMotion) { progress.value = 1;');
     const route = read('app/dev_moments_preview.tsx');
-    expect(route).toContain("'stories', 'announcements'] as const");
+    expect(route).toContain("'stories', 'announcements', 'openings'] as const"); // зачем (актуализация 05.11, Моменты): в конец списка состояний добавлено 'openings' (праздничные окна «Открытие разделов»)
     expect(route).toContain("<StoryTemplateStudio key={key} lang={lang} frame={params.frame} settle={params.settle === '1'} />");
     expect(route).toContain("<AnnouncementV2Studio key={key} lang={lang} frame={params.frame} long={params.long === '1'} settle={params.settle === '1'} />");
   });

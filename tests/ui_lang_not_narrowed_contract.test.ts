@@ -22,7 +22,8 @@ describe('язык интерфейса не урезается до ru/uk/es (�
   it('каталог сообщества: FlashcardsCategoryHub получает lang={lang}, урезанного hubCategoryLang нет', () => {
     const src = read('app/flashcards_packs.tsx');
     expect(src).not.toContain('hubCategoryLang');
-    expect(src).toMatch(/<FlashcardsCategoryHub\s+lang=\{lang\}/);
+    // зачем (актуализация 05.11): после перестройки каталога lang={lang} — не первый проп хаба; проверяем, что он есть внутри элемента
+    expect(src).toMatch(/<FlashcardsCategoryHub\b[\s\S]{0,1200}?\blang=\{lang\}/);
   });
 
   it('Сохранённое: пустое состояние, колода, список и плашки «Удалено · Вернуть» получают strLang', () => {

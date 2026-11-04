@@ -36,6 +36,7 @@ describe('«Сегодня»: цвета сцены не зависят от п�
     expect(code).toContain('homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening)');
     expect(code).not.toMatch(/homeSceneTokens\(/);
     expect(code).toContain('tokens.eveningGlow');
-    expect(code).toContain('tokens.scrim');
+    // зачем (актуализация 05.11): слой затемнения низа сцены убран по слову владельца 29.10 — токен scrim экрану больше не нужен
+    expect(code).not.toContain('tokens.scrim');
   });
 });

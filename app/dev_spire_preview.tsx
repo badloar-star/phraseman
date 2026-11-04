@@ -26,6 +26,7 @@ import { useLang } from '../components/LangContext';
 import SpireExitSheet from '../components/spire/SpireExitSheet';
 import SpireHomeScreen from '../components/spire/SpireHomeScreen';
 import SpireTour from '../components/spire/SpireTour';
+import PeakKitPreview from '../components/spire/peak/PeakKitPreview';
 import { WelcomeGate } from '../components/onboarding/WelcomeGate';
 import { SpireStepLayout } from '../components/spire/SpireStepScreen';
 import { SpirePreviewProvider } from '../components/spire/spire_preview_context';
@@ -109,6 +110,8 @@ function Inner() {
       {/* зачем (координатор 04.11, съёмка тура Сверкой): ?state=tour&page=1|2|3[&mode=coins] монтирует тур напрямую, ключ «видел» (spire_tour_seen_v1) игнорируется и не пишется; только __DEV__ */}
       {/* ?state=welcome — приветствие B-3 для съёмки: без проверки «новый» и без ключа welcome_b3_shown_v1 */}
       {__DEV__ && params.state === 'welcome' ? <WelcomeGate force /> : null}
+      {/* ?state=peak_kit — каркас экрана Пика (общие под-компоненты вариантов A/B) на моках, только dev */}
+      {__DEV__ && params.state === 'peak_kit' ? <PeakKitPreview lang={lang} /> : null}
       {__DEV__ && state === 'tour' ? <SpireTour lang={lang} visible initialPage={params.page === '3' ? 2 : params.page === '2' ? 1 : 0} onDone={() => undefined} /> : null}
       {step ? (
         <StepPreview state={state} exitOpen={exitOpen} overrides={overrides} />

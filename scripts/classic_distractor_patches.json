@@ -260,5 +260,68 @@
     "mesa fuese": "mesa fuera"
    }
   }
+ },
+ "targets": {
+  "it:13:50": {
+   "target": "Prendo la piccola scatola blu.",
+   "tiles": [
+    "Prendo",
+    "la",
+    "piccola",
+    "scatola",
+    "blu"
+   ],
+   "accepted": [
+    [
+     "Prendo",
+     "la",
+     "piccola",
+     "scatola",
+     "blu"
+    ],
+    [
+     "Io",
+     "prendo",
+     "la",
+     "piccola",
+     "scatola",
+     "blu"
+    ]
+   ],
+   "alternatives": [
+    "Io prendo la piccola scatola blu."
+   ],
+   "ru": "Я возьму маленькую синюю коробку.",
+   "uk": "Я візьму маленьку синю коробку."
+  },
+  "fr:02:01": {
+   "target": "Je ne suis pas là.",
+   "tiles": [
+    "Je",
+    "ne",
+    "suis",
+    "pas",
+    "là"
+   ],
+   "accepted": [
+    [
+     "Je",
+     "ne",
+     "suis",
+     "pas",
+     "là"
+    ],
+    [
+     "Je",
+     "ne",
+     "suis",
+     "pas",
+     "ici"
+    ]
+   ],
+   "alternatives": [
+    "Je ne suis pas ici."
+   ]
+  }
  }
 }

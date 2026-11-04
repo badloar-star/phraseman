@@ -131,9 +131,19 @@ function loadSums(zip, file) {
 const esTokens = (s) => s.replace(/[¿¡?!.,;:«»"]/g, ' ').split(/\s+/).filter(Boolean);
 
 function buildPhrase(lang, prof, r, where) {
-  const tiles = (r[prof.tiles] ?? []).map((w) => ({ text: w.text, correct: w.correct, distractors: w.distractors ?? [] }));
+  let tiles = (r[prof.tiles] ?? []).map((w) => ({ text: w.text, correct: w.correct, distractors: w.distractors ?? [] }));
+  // зачем (Координатор 04.11): точечные правки target по блокерам аудита (it:13:50 порядок слов, fr:02:01 «ici» → «là»); число плиток и их
+  // позиции сохраняются, допустимые ответы и прежний target уходят в alternatives/accepted. Соблазны перепроверит fixDistractors.
+  const tp = PATCHES.targets?.[(() => { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); return m ? `${lang}:${m[1]}:${m[2]}` : ''; })()];
+  if (tp) {
+    if (tp.tiles.length !== tiles.length) fail(lang, `${where}: правка target меняет число плиток`);
+    tiles = tp.tiles.map((correct, i) => {
+      const same = tiles.find((t) => t.correct === correct);
+      return same ? { ...same } : { text: correct, correct, distractors: [...tiles[i].distractors] };
+    });
+  }
   if (!tiles.length || tiles.some((t) => !nonEmpty(t.text) || !nonEmpty(t.correct))) fail(lang, `${where}: пустые плитки`);
-  const target = r[prof.target];
+  const target = tp ? tp.target : r[prof.target];
   if (!nonEmpty(target)) fail(lang, `${where}: пустая цель`);
   // sourceLocales: все 9 языков интерфейса; у EN часть лежит в верхних полях (english/russian/ukrainian/spanish)
   const src = { ...(r.sourceLocales ?? {}) };
@@ -142,6 +152,7 @@ function buildPhrase(lang, prof, r, where) {
   const fixKey = (() => { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); return m ? `${lang}:${m[1]}:${m[2]}` : ''; })();
   const tfix = TRANSLATION_FIXES.get(fixKey);
   if (tfix) { usedTranslationFixes.add(fixKey); for (const l of ['ru', 'uk']) if (nonEmpty(tfix[l])) src[l] = tfix[l]; }
+  if (tp) for (const l of ['ru', 'uk']) if (nonEmpty(tp[l])) src[l] = tp[l];
   const sourceLocales = {};
   for (const l of LOCALES) {
     if (!nonEmpty(src[l])) fail(lang, `${where}: нет подсказки ${l}`);
@@ -150,9 +161,10 @@ function buildPhrase(lang, prof, r, where) {
   let alts = r[prof.alternatives] ?? [];
   const ap0 = PATCHES.answers?.[r.id];
   if (ap0) alts = [...new Set(alts.filter((x) => !(ap0.remove ?? []).includes(x)).map((x) => Object.entries(ap0.replace ?? {}).reduce((acc, [from, to]) => acc.split(from).join(to), x)).concat(ap0.add ?? []))];
+  if (tp?.alternatives) alts = tp.alternatives;
   const out = { id: r.id, target, tiles, alternatives: alts };
   if (prof.accepted) {
-    out.accepted = r[prof.accepted];
+    out.accepted = tp?.accepted ?? r[prof.accepted];
     if (!Array.isArray(out.accepted) || !out.accepted.length || out.accepted.some((p) => !Array.isArray(p) || !p.length || p.some((t) => !nonEmpty(t)))) fail(lang, `${where}: пустые ${prof.accepted}`);
   }
   if (prof.answers) {

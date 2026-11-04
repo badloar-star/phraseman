@@ -34,6 +34,7 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_registry';
 import { normalizeStars, starsWeekEarned } from './stars_ledger';
 import { isRealPlusActive } from './premium_status';
+import { spireEnergyBonusFromDeltas } from '../../shared/spire_energy_bonus';
 import {
   SPIRE_ROOM_SIZE,
   spireCohortDay,
@@ -249,6 +250,8 @@ type JoinResult = {
   tier: number;
   cohortDay: number;
   status: 'existing' | 'joined' | 'created';
+  /** Бонус к запасу энергии от Пика (0..11), максимум по языкам; нет карты → 0. Уже прочитанный leaderboard — 0 лишних чтений. */
+  energyBonus: number;
 };
 
 export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promise<JoinResult> => {
@@ -314,7 +317,7 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
           console.warn(LOG, JSON.stringify({ event: 'week_coins_snapshot_failed', groupId: savedId, reason: String((error as Error)?.message ?? error).slice(0, 160) }));
         }
       }
-      return { ok: true, groupId: savedId, weekId, lang, tier: clampSpireTier(saved.tier), cohortDay: Number(saved.cohortDay) || 0, status: 'existing' };
+      return { ok: true, groupId: savedId, weekId, lang, tier: clampSpireTier(saved.tier), cohortDay: Number(saved.cohortDay) || 0, status: 'existing', energyBonus: spireEnergyBonusFromDeltas(lbData?.spireEnergyDeltas) };
     }
     console.warn(LOG, JSON.stringify({ event: 'saved_room_invalid', groupId: savedId, exists: savedSnap.exists, weekId: saved?.weekId ?? null, lang: saved?.lang ?? null }));
   }
@@ -370,7 +373,7 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
     });
     if (joined) {
       console.log(LOG, JSON.stringify({ event: 'joined', groupId: target, lang, tier, cohortDay, attempt, liveBefore: candidates[0].n }));
-      return { ok: true, groupId: target, weekId, lang, tier, cohortDay, status: 'joined' };
+      return { ok: true, groupId: target, weekId, lang, tier, cohortDay, status: 'joined', energyBonus: spireEnergyBonusFromDeltas(lbData?.spireEnergyDeltas) };
     }
     console.warn(LOG, JSON.stringify({ event: 'join_race_lost', groupId: target, attempt }));
   }
@@ -396,5 +399,5 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
     tx.set(lbRef, leaderboardPatch(groupId), { merge: true });
   });
   console.log(LOG, JSON.stringify({ event: 'created', groupId, lang, tier, cohortDay, reason: 'no_open_room_of_tier_after_attempts' }));
-  return { ok: true, groupId, weekId, lang, tier, cohortDay, status: 'created' };
+  return { ok: true, groupId, weekId, lang, tier, cohortDay, status: 'created', energyBonus: spireEnergyBonusFromDeltas(lbData?.spireEnergyDeltas) };
 });

@@ -16,12 +16,12 @@ describe('numeric energy contract', () => {
   // PM-081 (BIBLE «Энергия: 5, −1 за начавшееся учебное занятие, +1 за 10
   // минут, Plus не расходует»; D06/D07): запас 5, без прибавок сверху.
   // Прежние 100/260/460 — отменённое правило.
-  it('uses a capacity of exactly 5 and no permanent expansion', () => {
+  it('base capacity is 5; absolute storage limit is 5 + Spire bonus cap 11 (owner 04.11 cancelled the 28.10 lock)', () => {
     expect(ENERGY_BASE_CAPACITY).toBe(5);
-    expect(ENERGY_PERMANENT_CAPACITY_LIMIT).toBe(5);
+    expect(ENERGY_PERMANENT_CAPACITY_LIMIT).toBe(16);
     // PM-088: дополнительные ускорители и бонусная ёмкость удалены.
     expect(ENERGY_BONUS_CAPACITY_LIMIT).toBe(0);
-    expect(ENERGY_ACTIVE_CAPACITY_LIMIT).toBe(5);
+    expect(ENERGY_ACTIVE_CAPACITY_LIMIT).toBe(16);
     expect(ENERGY_VIDEO_UNIT_MS).toBe(36_000);
     expect(ENERGY_MICRO_UNITS_PER_UNIT).toBe(1_000_000);
     // PM-083 (BIBLE «+1 за 10 минут»; D06): прежние 6 минут отменены.
@@ -35,6 +35,12 @@ describe('numeric energy contract', () => {
       expect(permanentEnergyCapacity({ profileCardLevel: 5 } as { base?: number })).toBe(5);
       expect(permanentEnergyCapacity({ base: 100 })).toBe(5);
       expect(permanentEnergyCapacity({})).toBe(5);
+      // энергия от Пика (владелец 04.11): 5 + бонус 0..11; мусор и отрицательное → 5
+      expect(permanentEnergyCapacity({ spireBonus: 3 })).toBe(8);
+      expect(permanentEnergyCapacity({ spireBonus: 11 })).toBe(16);
+      expect(permanentEnergyCapacity({ spireBonus: 99 })).toBe(16);
+      expect(permanentEnergyCapacity({ spireBonus: -4 })).toBe(5);
+      expect(permanentEnergyCapacity({ spireBonus: Number.NaN })).toBe(5);
       expect(profileCardEnergyCapacity(0)).toBe(5);
       expect(profileCardEnergyCapacity(5)).toBe(5);
     });

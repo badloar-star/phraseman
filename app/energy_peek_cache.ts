@@ -120,7 +120,10 @@ export async function primeEnergyPeekFromBoot(): Promise<void> {
     // зачем (PM-081, D06/D07): потолок ровно 5 — оформление его не меняет,
     // поэтому чтение profile_card_level на холодном старте убрано.
     // Формула та же, что в readDynMax EnergyContext: знаменатель не прыгнет.
-    const dynMax = permanentEnergyCapacity({ base: 5 });
+    // зачем (энергия от Пика 04.11): знаменатель первого кадра = тот же 5 + бонус, что и в EnergyContext (иначе «прыжок» 5→N)
+    const { hydrateSpireEnergyBonus, getSpireEnergyBonus } = await import('./spire_energy_bonus_store');
+    await hydrateSpireEnergyBonus();
+    const dynMax = permanentEnergyCapacity({ base: 5, spireBonus: getSpireEnergyBonus() });
     if (!Number.isFinite(dynMax) || dynMax <= 0 || peekEnergyState) {
       chipLog(peekEnergyState ? 'skip_primed_meanwhile' : 'skip_invalid_capacity', { dynMax });
       return;

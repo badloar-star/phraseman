@@ -4,7 +4,7 @@ import {
   expireEnergyGift,
   fillEnergyToActiveCap,
 } from '../app/energy_gift_effects';
-import { ENERGY_PERMANENT_CAPACITY_LIMIT } from '../app/energy_contract';
+import { ENERGY_BASE_CAPACITY } from '../app/energy_contract';
 
 const MIDNIGHT = 1_800_028_800_000;
 
@@ -28,10 +28,10 @@ describe('numeric energy gifts', () => {
     // поднимает постоянную базу выше законного потолка». Зашитое 150 протухло,
     // когда лиги добавили +10 за ярус (потолок стал 260), и тест падал не по делу.
     expect(applyEnergyCapacityGift(
-      { base: ENERGY_PERMANENT_CAPACITY_LIMIT, bonus: 200, capacity: 200, expiresAt: MIDNIGHT, maxEnergy: 999 },
+      { base: ENERGY_BASE_CAPACITY, bonus: 200, capacity: 200, expiresAt: MIDNIGHT, maxEnergy: 999 },
       60,
       MIDNIGHT,
-    )).toEqual({ base: ENERGY_PERMANENT_CAPACITY_LIMIT, bonus: 0, capacity: 0, expiresAt: 0 });
+    )).toEqual({ base: ENERGY_BASE_CAPACITY, bonus: 0, capacity: 0, expiresAt: 0 });
   });
 
   it('full charge fills the active cap and expiry preserves only base', () => {

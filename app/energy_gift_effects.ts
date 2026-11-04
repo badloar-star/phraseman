@@ -1,8 +1,12 @@
 import {
   ENERGY_BASE_CAPACITY,
   ENERGY_BONUS_CAPACITY_LIMIT,
-  ENERGY_PERMANENT_CAPACITY_LIMIT,
+  permanentEnergyCapacity,
 } from './energy_contract';
+import { getSpireEnergyBonus } from './spire_energy_bonus_store';
+
+// зачем (энергия от Пика 04.11): потолок подарочных функций — рабочий запас игрока (5 + бонус Пика), не абсолютный предел хранения
+const effectiveEnergyLimit = (): number => permanentEnergyCapacity({ spireBonus: getSpireEnergyBonus() });
 
 export type EnergyPools = Readonly<{
   base: number;
@@ -44,7 +48,7 @@ export function fillEnergyToActiveCap(pools: EnergyPools): EnergyPools {
   const maxEnergy = clampInteger(
     pools.maxEnergy ?? ENERGY_BASE_CAPACITY,
     ENERGY_BASE_CAPACITY,
-    ENERGY_PERMANENT_CAPACITY_LIMIT,
+    effectiveEnergyLimit(),
   );
   return {
     base: maxEnergy,
@@ -68,7 +72,7 @@ export function expireEnergyGift(pools: EnergyPools): EnergyPools {
   const maxEnergy = clampInteger(
     pools.maxEnergy ?? ENERGY_BASE_CAPACITY,
     ENERGY_BASE_CAPACITY,
-    ENERGY_PERMANENT_CAPACITY_LIMIT,
+    effectiveEnergyLimit(),
   );
   return {
     base: clampInteger(pools.base, 0, maxEnergy),

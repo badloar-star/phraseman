@@ -10,6 +10,7 @@ import {
   type EnergyStateV2,
 } from './energy_state_v2';
 import { ENERGY_PASSIVE_UNIT_MS, permanentEnergyCapacity } from './energy_contract';
+import { getSpireEnergyBonus, hydrateSpireEnergyBonus } from './spire_energy_bonus_store';
 import { BONUS_ENERGY_KEY, readBonusEnergyForMutation } from './bonus_energy_store';
 import { requireGiftAccountStorageKey } from './gift_account_storage';
 import {
@@ -26,7 +27,7 @@ export const ENERGY_STORAGE_KEY = 'energy_state'; // зачем: экспорт 
 export const ENERGY_RECOVERY_INTERVAL_MS = ENERGY_PASSIVE_UNIT_MS;
 
 /** Fixed local max-energy value; remote/admin changes are not consulted. */
-function MAX_ENERGY_VALUE(): number { return permanentEnergyCapacity({ base: 5 }); }
+function MAX_ENERGY_VALUE(): number { return permanentEnergyCapacity({ base: 5, spireBonus: getSpireEnergyBonus() }); }
 
 /**
  * Постоянный потолок энергии — тот же, что в EnergyContext.
@@ -37,7 +38,9 @@ function MAX_ENERGY_VALUE(): number { return permanentEnergyCapacity({ base: 5 }
  * Функция осталась async, чтобы не трогать сигнатуры вызывающих.
  */
 async function readLevelAwareBaseMaxEnergy(): Promise<number> {
-  return permanentEnergyCapacity({ base: MAX_ENERGY_VALUE() });
+  // зачем (энергия от Пика 04.11): до первого расчёта потолка локальная копия бонуса уже прочитана
+  await hydrateSpireEnergyBonus();
+  return permanentEnergyCapacity({ base: 5, spireBonus: getSpireEnergyBonus() });
 }
 
 /**

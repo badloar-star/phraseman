@@ -12,7 +12,7 @@ describe('D98: energy above the cap is clamped to 5 on update', () => {
   });
   afterEach(() => warnSpy.mockRestore());
 
-  it.each([6, 100, 260])('stored %i becomes exactly 5 and is logged', (stored) => {
+  it.each([17, 100, 260])('stored %i (above the absolute limit 16) becomes exactly 5 and is logged', (stored) => {
     const migrated = coerceEnergyStateV2({
       schemaVersion: 2,
       current: stored,

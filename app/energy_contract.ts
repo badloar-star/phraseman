@@ -21,7 +21,10 @@ export const ENERGY_BASE_CAPACITY = 5 as const;
  */
 export const PROFILE_CARD_MAX_LEVEL = 5 as const;
 /** Постоянный потолок = базовый запас: прибавок сверху больше нет (замок владельца 28.10). */
-export const ENERGY_PERMANENT_CAPACITY_LIMIT: number = ENERGY_BASE_CAPACITY;
+// зачем (владелец 04.11, «энергия от Пика»; замок 28.10 «ровно 5» ОТМЕНЁН): жёсткий предел хранения = база 5 + максимум бонуса Пика 11.
+// Рабочий потолок игрока — permanentEnergyCapacity({ spireBonus }) = 5 + его бонус; этот предел лишь страхует проверки сохранённого состояния.
+export const SPIRE_ENERGY_BONUS_CAP = 11 as const;
+export const ENERGY_PERMANENT_CAPACITY_LIMIT: number = ENERGY_BASE_CAPACITY + SPIRE_ENERGY_BONUS_CAP;
 /** Retired energy gifts/boosters cannot add capacity or refill units. */
 export const ENERGY_BONUS_CAPACITY_LIMIT = 0 as const;
 export const ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT;
@@ -45,10 +48,14 @@ export const ENERGY_MICRO_UNITS_PER_UNIT = 1_000_000 as const;
  * ни пульт не меняют потолок. Держим одну точку правды, чтобы знаменатель на
  * Главной и в прогреве не разошёлся.
  */
-export function permanentEnergyCapacity(_input: {
+export function permanentEnergyCapacity(input: {
   base?: number;
+  /** Бонус Пика (лиги, набранные после выхода правила), 0..11; Plus ∞ обрабатывается отдельно (isUnlimited). */
+  spireBonus?: number;
 } = {}): number {
-  return ENERGY_BASE_CAPACITY;
+  const raw = Number(input.spireBonus);
+  const bonus = Number.isFinite(raw) ? Math.max(0, Math.min(SPIRE_ENERGY_BONUS_CAP, Math.trunc(raw))) : 0;
+  return ENERGY_BASE_CAPACITY + bonus;
 }
 
 /** Обёртка прежней сигнатуры: ярус карточки больше не влияет на потолок (PM-081). */

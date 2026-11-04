@@ -58,6 +58,7 @@ import {
   permanentEnergyCapacity,
   type EnergyActivityKey,
 } from '../app/energy_contract';
+import { getSpireEnergyBonus, hydrateSpireEnergyBonus, subscribeSpireEnergyBonus } from '../app/spire_energy_bonus_store';
 import {
   coerceEnergyStateV2,
   createFullEnergyState,
@@ -547,7 +548,9 @@ async function readAndRecoverState(
  * чтобы не трогать Promise.all в runLoad/refillToMax.
  */
 async function readDynMax(): Promise<number> {
-  return permanentEnergyCapacity({ base: 5 });
+  // зачем (владелец 04.11, энергия от Пика): запас = 5 + бонус Пика; локальная копия бонуса читается один раз (память дальше), сети нет
+  await hydrateSpireEnergyBonus();
+  return permanentEnergyCapacity({ base: 5, spireBonus: getSpireEnergyBonus() });
 }
 
 /** Язык интерфейса для текста уведомления (тот же источник, что в _layout). */
@@ -1235,6 +1238,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
   // ── Force reload (call after tester toggle in settings) ────────────────────
   const reload = useCallback(async () => { await load(); }, [load]);
+  // зачем (энергия от Пика): бонус сменился (итог недели / ответ spireJoinRoom) — пересчитать потолок и знаменатель сразу, без перезапуска
+  useEffect(() => subscribeSpireEnergyBonus(() => { void reload(); }), [reload]);
 
   // Confirmed Premium must feel immediate: update refs/UI/peek first, then persist
   // the same full state locally. No Firebase work and no animation timer is added.

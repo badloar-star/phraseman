@@ -81,8 +81,8 @@ describe('home counters: real numbers on the first frame', () => {
     // 30.09: PM-081 (D06/D07) — ёмкость ровно 5, опыт в потолке больше не участвует.
     // Инвариант прежний: прогрев и readDynMax в EnergyContext считают ОДНОЙ формулой.
     const context = readProjectFile('components', 'EnergyContext.tsx');
-    expect(cache).toContain('permanentEnergyCapacity({ base: 5 })');
-    expect(context).toContain('return permanentEnergyCapacity({ base: 5 });');
+    expect(cache).toContain('permanentEnergyCapacity({ base: 5, spireBonus: getSpireEnergyBonus() })');
+    expect(context).toContain('return permanentEnergyCapacity({ base: 5, spireBonus: getSpireEnergyBonus() });');
     expect(cache).not.toContain("getItem('user_total_xp')");
     expect(cache).toContain('getRecoveryIntervalMs');
   });

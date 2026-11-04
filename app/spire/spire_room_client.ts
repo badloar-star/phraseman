@@ -14,6 +14,7 @@
 // выход и каждая ошибка с причиной.
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setSpireEnergyBonus } from '../spire_energy_bonus_store';
 
 import {
   spireDecodeRoomMembers,
@@ -62,7 +63,7 @@ export type SpireRoomLoad = Readonly<{
   reason: string;
 }>;
 
-type JoinResponse = Readonly<{ ok?: boolean; groupId?: unknown; weekId?: unknown; tier?: unknown; cohortDay?: unknown }>;
+type JoinResponse = Readonly<{ ok?: boolean; groupId?: unknown; weekId?: unknown; tier?: unknown; cohortDay?: unknown; energyBonus?: unknown }>;
 
 const memory = new Map<string, SpireRoomSnapshot>();
 const inFlight = new Map<string, Promise<SpireRoomLoad>>();
@@ -163,6 +164,8 @@ async function joinRoom(gate: SpireLiveGate, input: Readonly<{ stableId: string;
     throw new Error(`spire_join_bad_response:${JSON.stringify(res ?? null).slice(0, 120)}`);
   }
   if (res.weekId !== input.weekId) throw new Error(`stale_week:${String(res.weekId)}`);
+  // зачем (энергия от Пика, владелец 04.11): бонус к запасу приходит в уже идущем вызове входа в комнату — 0 новых запросов; нет поля (старый сервер) → бонус не трогаем
+  if (res.energyBonus !== undefined) setSpireEnergyBonus(res.energyBonus, 'spireJoinRoom');
   return { groupId: res.groupId, tier: Math.max(0, Math.trunc(Number(res.tier)) || 0), cohortDay: Math.trunc(Number(res.cohortDay)) || 0 };
 }
 

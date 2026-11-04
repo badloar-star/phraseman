@@ -6,7 +6,8 @@ import {
 import { flashcardsOwnedPacksKey, storageStudyTarget } from '../target_storage_keys';
 import type { ClientShardGrant, ClientShardLocalWrite } from './client_shard_operation_ledger';
 import { coerceEnergyStateV2, createFullEnergyState } from '../energy_state_v2';
-import { ENERGY_PERMANENT_CAPACITY_LIMIT } from '../energy_contract';
+import { permanentEnergyCapacity } from '../energy_contract';
+import { getSpireEnergyBonus, hydrateSpireEnergyBonus } from '../spire_energy_bonus_store';
 
 export const CLIENT_SHARD_SEMANTIC_PAID_PREFIX = 'client_shard_semantic_paid_v1:';
 
@@ -192,8 +193,10 @@ export async function reduceClientShardGrant(
       // зачем (PM-081): покупка, записанная до обновления, несёт желаемый запас
       // 100–260. Потолок теперь 5, и без среза «5 >= 100» никогда не выполнилось
       // бы — повтор операции списал бы жемчуг второй раз за уже полный бак.
+      // зачем (энергия от Пика 04.11): «полный бак» = рабочий потолок игрока (5 + бонус Пика), а не абсолютный предел хранения 16
+      await hydrateSpireEnergyBonus();
       const desired = Math.min(
-        ENERGY_PERMANENT_CAPACITY_LIMIT,
+        permanentEnergyCapacity({ spireBonus: getSpireEnergyBonus() }),
         Math.max(0, Math.floor(Number(payload.current) || 0)),
       );
       const raw = await AsyncStorage.getItem('energy_state');

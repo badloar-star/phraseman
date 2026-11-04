@@ -287,6 +287,9 @@ export function DialogueV2SessionScreen({
   const [hintOpen, setHintOpen] = React.useState(false);
   const [exitOpen, setExitOpen] = React.useState(false);
   const scrollRef = React.useRef<ScrollView>(null);
+  // зачем (UX-волна 2, 04.11): реплики, бывшие на экране при открытии (история/восстановление), не анимируем — плавно появляются только новые
+  const initialMessageIdsRef = React.useRef<Set<string> | null>(null);
+  if (initialMessageIdsRef.current === null) initialMessageIdsRef.current = new Set(messages.map((m) => m.id));
   const markKeyboardCause = useDialogKeyboardLog('scenario');
   const voiceBusy = voiceStatus !== 'idle';
   // зачем: пока висит плашка ошибки, путь один — «Повторить» (раньше экран целиком
@@ -659,6 +662,7 @@ export function DialogueV2SessionScreen({
                   key={message.id}
                   glass={glass}
                   author={author}
+                  appear={!initialMessageIdsRef.current?.has(message.id)}
                   avatar={!learner}
                   avatarIcon={personaIcon}
                   who={learner ? labels.you : message.authorLabel}

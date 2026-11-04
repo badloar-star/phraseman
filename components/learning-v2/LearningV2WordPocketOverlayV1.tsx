@@ -1,6 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { BackHandler, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Animated, BackHandler, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
 import CollectionDeckView from "../../app/flashcards/CollectionDeckView";
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from "../../app/flashcards/types";
@@ -15,6 +15,7 @@ import { useTheme } from "../ThemeContext";
 import { lv2CardStyle, useLv2Glass } from "./LearningV2Glass";
 import { nestedBoxShadow } from "../v2/ShadowSurface";
 import { useScaledTextStyles } from "../../hooks/useLineScale";
+import { useReduceMotion } from "../../hooks/use_reduce_motion";
 
 type Props = Readonly<{
   words: readonly LearningV2UnlockedLessonWordV1[];
@@ -34,6 +35,18 @@ export default function LearningV2WordPocketOverlayV1({
   const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
   const [deckIndex, setDeckIndex] = useState<number | null>(null);
+  // зачем (UX-волна 2, 04.11, владелец одобрил): оверлей кармана открывался мгновенным условным рендером; теперь проявляется за 180 мс (opacity, нативный драйвер), при Reduce Motion — сразу
+  const reduceMotion = useReduceMotion();
+  const fade = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;
+  useEffect(() => {
+    if (reduceMotion) {
+      fade.setValue(1);
+      return undefined;
+    }
+    const anim = Animated.timing(fade, { toValue: 1, duration: 180, useNativeDriver: true });
+    anim.start();
+    return () => anim.stop();
+  }, [fade, reduceMotion]);
   const cards = useMemo(
     () => [...projectLearningV2UnlockedWordsToCardsV1({ unlocked: words })],
     [words],
@@ -79,11 +92,11 @@ export default function LearningV2WordPocketOverlayV1({
   return (
     // зачем (сверка с learning-v2.html pocket, 05.10): шапка как у словаря (.dh: 8 под статус-баром, линия 1 px в полях 20,
     // крестик .rb.sq 36), список .stack.g13 в 18, строка r16 от 88 с полями 0/16/0/20, звук 38, пустое — сверху в 120.
-    <View
+    <Animated.View
       testID="learning-v2-word-pocket-overlay"
       accessibilityViewIsModal
       importantForAccessibility="yes"
-      style={[styles.overlay, { backgroundColor: g.bg }]}
+      style={[styles.overlay, { backgroundColor: g.bg, opacity: fade }]}
     >
       <View
         style={[
@@ -167,7 +180,7 @@ export default function LearningV2WordPocketOverlayV1({
           <Text style={[sx.emptyText, { color: g.secondary }]}>{copy.empty}</Text>
         </View>
       )}
-    </View>
+    </Animated.View>
   );
 }
 

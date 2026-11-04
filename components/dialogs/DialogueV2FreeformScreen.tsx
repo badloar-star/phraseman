@@ -172,6 +172,9 @@ export function DialogueV2FreeformScreen({
   // зачем (жалоба владельца 25.10 «нет кнопки Перевести»; координатор: сперва логи [DIALOG-BUBBLE]): у ответов свободного разговора
   // перевода нет — ответ хода несёт только текст; пишем это по каждой реплике собеседника один раз.
   const bubbleLoggedRef = React.useRef(new Set<string>());
+  // зачем (UX-волна 2, 04.11): реплики, бывшие на экране при открытии (история/восстановление), не анимируем — плавно появляются только новые
+  const initialMessageIdsRef = React.useRef<Set<string> | null>(null);
+  if (initialMessageIdsRef.current === null) initialMessageIdsRef.current = new Set(messages.map((m) => m.id));
   React.useEffect(() => {
     messages.forEach((message, index) => {
       if (message.author !== 'assistant' || bubbleLoggedRef.current.has(message.id)) return; // guard-ok: только новые реплики собеседника
@@ -253,6 +256,7 @@ export function DialogueV2FreeformScreen({
                 key={message.id}
                 glass={glass}
                 author={author}
+                appear={!initialMessageIdsRef.current?.has(message.id)}
                 actions={canTranslate && translateLabels || (author === 'assistant' && report && message.text) ? (
                   <>
                     {canTranslate && translateLabels ? (

@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { nestedBoxShadow, plateBoxShadow } from '../../v2/ShadowSurface';
 import { colorContrast } from '../../../constants/color_contrast';
+import { useReduceMotion } from '../../../hooks/use_reduce_motion';
 import type { DialogueGlass } from './DialogueGlassKit';
 
 // зачем (владелец 2026-09-30, макет dialogs.html C1–C17/F2): лента диалога — реплика
@@ -51,11 +52,24 @@ export interface DialogueGlassBubbleProps {
   /** Короткая отметка под пузырём («Не отправлено», dialogs-035). */
   note?: string;
   testID?: string;
+  /** Плавное появление (opacity + сдвиг 8): только для НОВЫХ реплик, пришедших после открытия экрана; история и восстановление — без анимации. */
+  appear?: boolean;
 }
 
 /** Реплика `.msg`: ширина пузыря ≤ 78%, радиус 20, поля 14/18. */
-export function DialogueGlassBubble({ glass, author, who, avatar, avatarIcon, children, actions, note, testID }: DialogueGlassBubbleProps) {
+export function DialogueGlassBubble({ glass, author, who, avatar, avatarIcon, children, actions, note, testID, appear }: DialogueGlassBubbleProps) {
   const learner = author === 'learner';
+  // зачем (UX-волна 2, 04.11, владелец одобрил): новые реплики появляются плавно (220 мс, нативный драйвер), без новых View в ленте; Reduce Motion — сразу
+  const reduceMotion = useReduceMotion();
+  const animate = appear === true && !reduceMotion;
+  const enter = React.useRef(new Animated.Value(animate ? 0 : 1)).current;
+  React.useEffect(() => {
+    if (!animate) return undefined;
+    const anim = Animated.timing(enter, { toValue: 1, duration: 220, easing: Easing.out(Easing.cubic), useNativeDriver: true });
+    anim.start();
+    return () => anim.stop();
+  }, [animate, enter]);
+  const enterStyle = animate ? { opacity: enter, transform: [{ translateY: enter.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }] } : null;
   const bubble: ViewStyle = learner
     ? { backgroundColor: glass.lightTint }
     : {
@@ -64,7 +78,7 @@ export function DialogueGlassBubble({ glass, author, who, avatar, avatarIcon, ch
       boxShadow: plateBoxShadow(glass),
     };
   return (
-    <View testID={testID} style={[styles.row, learner ? styles.rowEnd : styles.rowStart]}>
+    <Animated.View testID={testID} style={[styles.row, learner ? styles.rowEnd : styles.rowStart, enterStyle]}>
       {avatar && !learner ? <DialogueGlassAvatar glass={glass} compact={!who} icon={avatarIcon} /> : null}
       <View style={[styles.column, learner ? styles.columnEnd : null]}>
         {who ? (
@@ -79,7 +93,7 @@ export function DialogueGlassBubble({ glass, author, who, avatar, avatarIcon, ch
         ) : null}
         {actions ? <View style={[styles.actions, learner ? styles.actionsEnd : null]}>{actions}</View> : null}
       </View>
-    </View>
+    </Animated.View>
   );
 }
 

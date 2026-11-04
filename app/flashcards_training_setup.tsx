@@ -48,6 +48,7 @@ import {
   type FcDeckId,
 } from './flashcards/deck_selection';
 import { fcTrainOptionPresetMode } from './flashcards/tabbar_state';
+import { readTrainingSetupPrefs, writeTrainingSetupPrefs } from './flashcards/training_setup_prefs';
 import {
   FC_DEFAULT_SESSION_SIZE,
   getLastPreset,
@@ -301,6 +302,19 @@ export default function FlashcardsTrainingSetupScreen() {
     tr: 'Bu mod şu anda kullanılamıyor. Geri dönüp başka bir mod seç.',
     pl: 'Ten tryb jest teraz niedostępny. Wróć i wybierz inny tryb.',
   });
+
+  // зачем (удобство №5, владелец одобрил 04.11): размер, время блица и направление помнятся по режиму — «Начать» одним тапом; подставляем только если человек ещё ничего не менял (значения по умолчанию)
+  useEffect(() => {
+    if (!mode) return undefined;
+    let live = true;
+    void readTrainingSetupPrefs(mode).then((saved) => {
+      if (!live || !saved) return;
+      setSizeId((prev) => (prev === '20' ? saved.size : prev));
+      setSecId((prev) => (prev === '60' ? saved.sec : prev));
+      setDirId((prev) => (prev === 'to_target' ? saved.dir : prev));
+    });
+    return () => { live = false; };
+  }, [mode]);
 
   const loadDecks = useCallback(async () => {
     if (!mode) {
@@ -609,6 +623,7 @@ export default function FlashcardsTrainingSetupScreen() {
     console.log(`[FLASHCARDS-SESSION] setup:push ${JSON.stringify({ pathname: route.pathname, params: route.params, mode })}`); // guard-ok: журнал цепочки старта
     startInFlightRef.current = true;
     setStarting(true);
+    void writeTrainingSetupPrefs(mode, { size: sizeId, sec: secId, dir: dirId }); // зачем (удобство №5): запоминаем выбор в фоне, не задерживая переход
     // зачем (координатор 18.10, Optimistic UI): «Начать» на экране выбора → кадр кнопки → переход → первый кадр сессии.
     markCardsOptimisticTap('train_tap', 'setup', { mode, decks: selectedDeckIds.length });
     logCardsOptimisticFrame('train_tap', 'button_frame');

@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useReduceMotion } from '../hooks/use_reduce_motion'; // зачем (UX-волна 2, 04.11): окно медали не въезжает пружиной при Reduce Motion
 import Ionicons from '@expo/vector-icons/Ionicons';
 import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -369,13 +370,20 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const notifInsets = useStableSafeAreaInsets();
+  const reduceMotion = useReduceMotion();
 
   useEffect(() => {
+    // зачем: при «Уменьшении движения» — только короткое проявление, без пружинного подъезда окна
+    if (reduceMotion) {
+      translateY.setValue(0);
+      Animated.timing(opacity, { toValue: 1, duration: 160, useNativeDriver: true }).start();
+      return;
+    }
     Animated.parallel([
       Animated.timing(opacity,    { toValue: 1, duration: 300, useNativeDriver: true }),
       Animated.spring(translateY, { toValue: 0, friction: 6, useNativeDriver: true }),
     ]).start();
-  }, [opacity, translateY]);
+  }, [opacity, translateY, reduceMotion]);
 
   // зачем (координатор 10.10, Optimistic UI): окна «открыто/медаль» идут очередью — двойной тап по скриму/«Отлично!» вызвал бы onDismiss
   // дважды и пропустил следующее окно очереди; замок синхронный.

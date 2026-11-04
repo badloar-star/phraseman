@@ -28,6 +28,7 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion'; // зачем (UX-волна 2, 04.11): покачивание подсказки и «дыхание» кнопки — декор, при Reduce Motion не играют
 import { soundDirector } from '../modules/audio/sound_director';
 import { MOTION_SCALE } from '../constants/motion';
 import type { LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
@@ -405,6 +406,7 @@ export default function LessonIntroScreens({
   showEnergyCost = false,
 }: LessonIntroScreensProps) {
   const lessonIntroRuntimeActive = useRuntimeActive();
+  const reduceMotion = useReduceMotion();
   const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
   const introGlass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
@@ -527,12 +529,12 @@ export default function LessonIntroScreens({
       // зачем (PM-032, allowlist движения): вечная пульсация запрещена — декоративный цикл стал разовой реакцией.
       { iterations: 3 },
     );
-    bob.start();
+    if (!reduceMotion) bob.start();
     return () => {
       bob.stop();
       appear.stop();
     };
-  }, [revealedCount, allRevealed, hintFade, hintBob, lessonIntroRuntimeActive]);
+  }, [revealedCount, allRevealed, hintFade, hintBob, lessonIntroRuntimeActive, reduceMotion]);
 
   // CTA «Начать тренировку» — длинный плавный fade-in + долгий expo-out scale + breathing pulse
   useEffect(() => {
@@ -576,9 +578,9 @@ export default function LessonIntroScreens({
       // зачем (PM-032, allowlist движения): вечная пульсация запрещена — декоративный цикл стал разовой реакцией.
       { iterations: 3 },
     );
-    pulse.start();
+    if (!reduceMotion) pulse.start();
     return () => pulse.stop();
-  }, [ctaReady, fadeBtn, btnScale, btnPulse, lessonIntroRuntimeActive]);
+  }, [ctaReady, fadeBtn, btnScale, btnPulse, lessonIntroRuntimeActive, reduceMotion]);
 
   const handleTapAnywhere = () => {
     if (revealedCount < totalBlocks) {

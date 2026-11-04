@@ -450,7 +450,10 @@ describe('progress_events engine', () => {
   });
 
   it('recognizes server-owned progress keys for rules and sync filtering', () => {
-    expect(isServerOwnedProgressKey('user_total_xp')).toBe(true);
+    // зачем: user_total_xp убран из серверных ключей давно (21556140d); тест сверяется с актуальным набором
+    expect(isServerOwnedProgressKey('week_points')).toBe(true);
+    expect(isServerOwnedProgressKey('streak_count')).toBe(true);
+    expect(isServerOwnedProgressKey('user_total_xp')).toBe(false);
     expect(isServerOwnedProgressKey('lesson12_best_score')).toBe(true);
     expect(isServerOwnedProgressKey('level_exam_a1_best_pct')).toBe(true);
     expect(isServerOwnedProgressKey('level_exam_A1_best_pct')).toBe(true);

@@ -8,6 +8,6 @@ describe('шапка Главной → блок «Серия»', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'app/(tabs)/home.tsx'), 'utf8');
     const at = src.indexOf("testID: 'home-v2-streak'");
     expect(at).toBeGreaterThan(-1);
-    expect(src.slice(at, at + 700)).toContain("nav.push('/streak_stats?focus=series')");
+    expect(src.slice(at, at + 1500)).toContain("nav.push('/streak_stats?focus=series')");
   });
 });

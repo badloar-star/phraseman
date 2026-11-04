@@ -36,6 +36,9 @@ import { spireGhostEnabled } from '../spire_ghost_flag';
 import { spireGhostMarginMs } from '../../../modules/spire/ghost';
 import { spireGhostShortName, spireGhostText } from '../spire_ghost_strings';
 
+// зачем (UX-приятности 04.11): «м:сс» из миллисекунд считает UI-поток (формат — описание, а не функция spireClock)
+const CLOCK_FORMAT = { clock: true } as const;
+
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 /** В ступени 10 заданий (spire_game_strings.failSub: «Новый набор из 10 заданий»). */
 const TASKS_PER_STEP = 10;
@@ -121,7 +124,7 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, onLater, busy, test
               <AnimatedCircle cx={RING / 2} cy={RING / 2} r={RING_R} fill="none" stroke={p.cta} strokeWidth={9} strokeLinecap="round" strokeDasharray={RING_LEN} animatedProps={ringProps} rotation={-90} origin={`${RING / 2}, ${RING / 2}`} />
             </Svg>
             <View style={s.timerText} pointerEvents="none">
-              <CountText to={outcome.usedMs} delayMs={STEP_MOMENT_TIMELINE.ring} durationMs={STEP_MOMENT_TIMELINE.ringMs} reduceMotion={reduceMotion} format={spireClock} style={[s.timerValue, { color: p.text }]} testID={`${testID}-time`} />
+              <CountText to={outcome.usedMs} delayMs={STEP_MOMENT_TIMELINE.ring} durationMs={STEP_MOMENT_TIMELINE.ringMs} reduceMotion={reduceMotion} format={CLOCK_FORMAT} style={[s.timerValue, { color: p.text }]} testID={`${testID}-time`} />
               <Text style={[s.timerSmall, { color: p.textSecondary }]}>{stepMomentText(lang, 'ofBudget', { t: spireClock(outcome.budgetMs) })}</Text>
             </View>
           </View>

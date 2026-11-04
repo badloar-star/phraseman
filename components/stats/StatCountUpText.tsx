@@ -44,8 +44,13 @@ export function StatCountUpText({
   const counter = useSharedValue(0);
   const [display, setDisplay] = React.useState(0);
 
+  // зачем (UX-приятности 04.11): число при обновлении растёт от прежнего (41 → 42), а не «перезапускается» с нуля; с нуля — только первый показ
+  const startedRef = React.useRef(false);
   useEffect(() => {
-    counter.value = 0;
+    if (!startedRef.current) {
+      startedRef.current = true;
+      counter.value = 0;
+    }
     counter.value = withDelay(delayMs, withTiming(safeValue, { duration: durationMs, easing: Easing.out(Easing.cubic) }));
     return () => cancelAnimation(counter);
   // eslint-disable-next-line react-hooks/exhaustive-deps

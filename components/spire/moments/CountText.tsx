@@ -1,8 +1,12 @@
 // CountText.tsx — число, которое «досчитывается» до цели (монеты за этаж, время шага).
-// зачем (координатор 15.10, аудит скорости окон моментов): раньше счётчик жил в состоянии родителя (setInterval 40 мс -> setState) и перерисовывал целое окно ~25 раз/с;
-// теперь интервал и состояние живут здесь, перерисовывается только это число. Кривая прежняя: 1 - (1 - t)^3. reduceMotion — сразу финальное число.
-import React, { memo, useEffect, useState } from 'react';
-import { Text, type StyleProp, type TextStyle } from 'react-native';
+// зачем (координатор 15.10, аудит скорости окон моментов; UX-приятности 04.11): сначала счётчик жил в родителе (setInterval 40 мс → setState, окно
+// перерисовывалось ~25 раз/с), потом в самом CountText (всё равно JS в кадрах); теперь число рисует UI-поток (AnimatedCountUpText: TextInput +
+// useAnimatedProps), JS в кадрах ноль. Кривая прежняя: 1 − (1 − t)³. reduceMotion — сразу финальное число. Формат — описание (префикс, «м:сс»), не функция.
+// Ширину держит скрытый Text с ФИНАЛЬНЫМ числом: TextInput не пересчитывает раскладку, пока цифры меняются на UI-потоке, — без этого «+120» обрезалось бы по ширине «+0».
+import React, { memo } from 'react';
+import { StyleSheet, Text, View, type StyleProp, type TextStyle } from 'react-native';
+import { AnimatedCountUpText } from '../../AnimatedCountUpText';
+import { formatCountValue, type CountFormat } from '../../count_format';
 
 export type CountTextProps = Readonly<{
   to: number;
@@ -10,30 +14,34 @@ export type CountTextProps = Readonly<{
   delayMs: number;
   durationMs: number;
   reduceMotion: boolean;
-  format: (value: number) => string;
+  /** Описание формата: `{ prefix: '+' }` для монет, `{ clock: true }` для времени шага (значение — мс). */
+  format: CountFormat;
   style?: StyleProp<TextStyle>;
   testID?: string;
 }>;
 
-const TICK_MS = 40;
-
 function CountText({ to, delayMs, durationMs, reduceMotion, format, style, testID }: CountTextProps) {
-  const [value, setValue] = useState(reduceMotion ? to : 0);
-  useEffect(() => {
-    if (reduceMotion) { setValue(to); return undefined; }
-    let interval: ReturnType<typeof setInterval> | null = null;
-    const start = setTimeout(() => {
-      const started = Date.now();
-      interval = setInterval(() => {
-        const t = Math.min(1, (Date.now() - started) / durationMs);
-        const next = Math.round(to * (1 - Math.pow(1 - t, 3)));
-        setValue((prev) => (prev === next ? prev : next)); // то же число — без перерисовки
-        if (t >= 1 && interval) { clearInterval(interval); interval = null; }
-      }, TICK_MS);
-    }, delayMs);
-    return () => { clearTimeout(start); if (interval) clearInterval(interval); };
-  }, [to, delayMs, durationMs, reduceMotion]);
-  return <Text style={style} testID={testID}>{format(value)}</Text>;
+  return (
+    <View>
+      <Text style={[style, styles.sizer]} accessible={false} importantForAccessibility="no-hide-descendants">{formatCountValue(to, format)}</Text>
+      <View style={StyleSheet.absoluteFill} pointerEvents="none">
+        <AnimatedCountUpText
+          value={to}
+          delayMs={delayMs}
+          durationMs={durationMs}
+          format={format}
+          easeOut
+          reduceMotion={reduceMotion}
+          style={style}
+          testID={testID}
+        />
+      </View>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  sizer: { opacity: 0 },
+});
 
 export default memo(CountText);

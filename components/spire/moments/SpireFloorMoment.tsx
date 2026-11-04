@@ -42,7 +42,8 @@ const TOWER_W = 280;
 const TOWER_H = 240;
 /** Тайминги образца, мс: башня перерисовывается 600, счётчик 1100 (900 мс), монета выглядывает 1300 / вершина: радость 500, залпы 900, 1300, 1700. */
 export const FLOOR_MOMENT_TIMELINE = { relight: 600, count: 1100, countMs: 900, peek: 1300, cheer: 500, volley1: 900, volley2: 1300, volley3: 1700 } as const;
-const plusFormat = (value: number): string => `+${value}`;
+// зачем (UX-приятности 04.11): формат числа — описание для UI-потока (AnimatedCountUpText), не JS-функция
+const plusFormat = { prefix: '+' } as const;
 
 export type SpireFloorMomentProps = Readonly<{
   lang: Lang;

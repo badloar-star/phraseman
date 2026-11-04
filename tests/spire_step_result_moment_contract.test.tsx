@@ -20,6 +20,14 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Circle: 'Circle', Defs: 'Defs', RadialGradient: 'RadialGradient', Stop: 'Stop', Rect: 'Rect' })); // Defs…Rect — свечение .glowspot в MomentFullScreen
 jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: 'Ionicons' }));
+// зачем (UX-приятности 04.11): число окон рисует UI-счётчик; в тесте — заглушка с тем же финальным числом (формат — настоящий, из count_format)
+jest.mock('../components/AnimatedCountUpText', () => {
+  const ReactStub = require('react');
+  const { Text: TextStub } = require('react-native');
+  const { formatCountValue: fmt } = require('../components/count_format');
+  const Stub = ({ value, format, testID, style }: { value: number; format?: unknown; testID?: string; style?: unknown }) => ReactStub.createElement(TextStub, { testID, style }, fmt(value, format));
+  return { __esModule: true, AnimatedCountUpText: Stub, default: Stub };
+});
 jest.mock('react-native-reanimated', () => {
   const R = jest.requireActual('react');
   const View = (props: Record<string, unknown>) => R.createElement('View', props, props.children);

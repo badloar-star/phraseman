@@ -8,7 +8,9 @@ const OUT = 'docs/work/classic_translation_fixes_2026_11_04.json';
 const out = JSON.parse(readFileSync(OUT, 'utf8'));
 const stats = { files: 0, records: 0, applied: 0, skippedField: 0, skippedFragment: 0, skippedEmpty: 0, badShape: 0 };
 const isFragment = (s) => s.trim().split(/\s+/).length < 3 || s.trim().length < 12;
-const files = readdirSync(DIR).filter((f) => /^results_.*\.json$/.test(f)).sort();
+// зачем: по одному языку за прогон — каждый языковой коммит читаем отдельно (координатор: коммит по языкам)
+const LANG = process.argv[2] ?? '';
+const files = readdirSync(DIR).filter((f) => /^results_.*\.json$/.test(f) && (!LANG || f.startsWith(`results_${LANG}_`))).sort();
 for (const f of files) {
   stats.files++;
   const arr = JSON.parse(readFileSync(join(DIR, f), 'utf8'));

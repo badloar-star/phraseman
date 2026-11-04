@@ -105,12 +105,12 @@ function TourTop({ lang }: Readonly<{ lang: Lang }>) {
   );
 }
 
-type Props = Readonly<{ lang: Lang; visible: boolean; onDone: () => void }>;
+type Props = Readonly<{ lang: Lang; visible: boolean; onDone: () => void; /** Только dev-съёмка (dev_spire_preview): с какой страницы начать, 0…2. */ initialPage?: 0 | 1 | 2 }>;
 
-function SpireTour({ lang, visible, onDone }: Props) {
+function SpireTour({ lang, visible, onDone, initialPage = 0 }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const insets = useStableSafeAreaInsets();
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState<number>(initialPage);
   const last = page === 2;
   const next = useCallback(() => {
     if (last) { onDone(); return; }

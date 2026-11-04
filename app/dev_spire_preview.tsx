@@ -25,6 +25,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import SpireExitSheet from '../components/spire/SpireExitSheet';
 import SpireHomeScreen from '../components/spire/SpireHomeScreen';
+import SpireTour from '../components/spire/SpireTour';
 import { SpireStepLayout } from '../components/spire/SpireStepScreen';
 import { SpirePreviewProvider } from '../components/spire/spire_preview_context';
 import {
@@ -83,7 +84,8 @@ function StepPreview({ state, exitOpen, overrides }: Readonly<{ state: SpirePrev
 }
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string; nicks?: string }>();
+  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string; nicks?: string; page?: string; mode?: string }>();
+  const { lang } = useLang();
   const fromParam = isSpirePreviewState(params.state) ? params.state : 'room';
   const [state, setState] = useState<SpirePreviewState>(fromParam);
   useEffect(() => { setState(fromParam); }, [fromParam]);
@@ -103,6 +105,8 @@ function Inner() {
   }, [state, params.state, params.selector, step, exitOpen, panelMode, showStrip, showDot]);
   return (
     <View style={s.root} testID="dev-spire-preview">
+      {/* зачем (координатор 04.11, съёмка тура Сверкой): ?state=tour&page=1|2|3[&mode=coins] монтирует тур напрямую, ключ «видел» (spire_tour_seen_v1) игнорируется и не пишется; только __DEV__ */}
+      {__DEV__ && state === 'tour' ? <SpireTour lang={lang} visible initialPage={params.page === '3' ? 2 : params.page === '2' ? 1 : 0} onDone={() => undefined} /> : null}
       {step ? (
         <StepPreview state={state} exitOpen={exitOpen} overrides={overrides} />
       ) : (

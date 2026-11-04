@@ -6,7 +6,8 @@ import type { SpireGameStringKey } from '../spire_game_strings';
 export type PeakTourRect = Readonly<{ x: number; y: number; width: number; height: number }>;
 /** Измеренные в координатах окна блоки экрана: шапка (этаж + пилюля), пилюля, башня, строки топ-5. null — блок не измерился. */
 export type PeakTourRects = Readonly<{ head: PeakTourRect | null; pill: PeakTourRect | null; rail: PeakTourRect | null; top: PeakTourRect | null }>;
-export type PeakTourHole = PeakTourRect & Readonly<{ radius: number }>;
+/** soft — окно большое/декоративное (башня): карточке можно его перекрыть; hard — то, о чём говорит текст (строки топ-5, шапка, пилюля): карточка не должна его закрывать. */
+export type PeakTourHole = PeakTourRect & Readonly<{ radius: number; soft?: boolean }>;
 export type PeakTourPage = 0 | 1 | 2;
 export const PEAK_TOUR_PAGES = 3;
 /** Запас окна вокруг блока, dp (макет: окно чуть шире блока). */
@@ -22,10 +23,10 @@ export const peakTourPage = (n: number): PeakTourPage => {
 
 type Origin = Readonly<{ x: number; y: number }>;
 
-function hole(rect: PeakTourRect | null, origin: Origin, radius: number): PeakTourHole | null {
+function hole(rect: PeakTourRect | null, origin: Origin, radius: number, soft = false): PeakTourHole | null {
   if (!rect || !(rect.width > 0) || !(rect.height > 0)) return null;
   const pad = PEAK_TOUR_HOLE_PAD;
-  return { x: rect.x - origin.x - pad, y: rect.y - origin.y - pad, width: rect.width + pad * 2, height: rect.height + pad * 2, radius };
+  return { x: rect.x - origin.x - pad, y: rect.y - origin.y - pad, width: rect.width + pad * 2, height: rect.height + pad * 2, radius, soft };
 }
 
 /**
@@ -37,8 +38,8 @@ export function peakTourHoles(page: PeakTourPage, rects: PeakTourRects, origin: 
   const list = page === 0
     ? [hole(rects.head, origin, 22)]
     : page === 1
-      ? [hole(rects.rail, origin, 26), hole(rects.pill, origin, 14)]
-      : [hole(rects.top, origin, 22), hole(railTop, origin, 26)];
+      ? [hole(rects.rail, origin, 26, true), hole(rects.pill, origin, 14)]
+      : [hole(rects.top, origin, 22), hole(railTop, origin, 26, true)];
   return list.filter((h): h is PeakTourHole => h !== null);
 }
 
@@ -65,3 +66,24 @@ export function peakTourKeys(page: PeakTourPage, rankBy: 'steps' | 'coins'): Rea
 /** Ключ флага «тур показан»: стираемое семейство story_events_v1: (cloud_sync WIPE_ONLY_ACCOUNT_KEY_PREFIXES), по аккаунту. */
 export const PEAK_TOUR_KEY_PREFIX = 'story_events_v1:peak_tour';
 export const peakTourKey = (owner: string): string => `${PEAK_TOUR_KEY_PREFIX}:${owner}`;
+
+export const PEAK_TOUR_CARD_GAP = 12;
+export const PEAK_TOUR_CARD_EDGE = 16;
+export type PeakTourCardPlacement = Readonly<{ top: number; where: 'bottom' | 'below' | 'above' | 'overlap' }>;
+
+/**
+ * Где поставить карточку тура (ревизор 04.11: на 375×667 / крупном шрифте / длинном языке карточка закрывала подсвеченные строки топ-5).
+ * Правило: у нижнего края экрана, если она не закрывает «жёсткие» окна; иначе НАД самым верхним жёстким окном, если там хватает места;
+ * иначе остаётся внизу (перекрытие неизбежно — where: 'overlap', экран пишет в журнал). «Мягкие» окна (башня) карточка может перекрывать.
+ */
+export function peakTourCardPlacement(i: Readonly<{ holes: readonly PeakTourHole[]; screenHeight: number; cardHeight: number; insetTop: number; insetBottom: number }>): PeakTourCardPlacement {
+  const bottomTop = i.screenHeight - Math.max(i.insetBottom, 12) - PEAK_TOUR_CARD_EDGE - i.cardHeight;
+  const hard = i.holes.filter((h) => !h.soft);
+  if (hard.length === 0) return { top: bottomTop, where: 'bottom' };
+  const lowest = Math.max(...hard.map((h) => h.y + h.height));
+  const highest = Math.min(...hard.map((h) => h.y));
+  if (bottomTop >= lowest + PEAK_TOUR_CARD_GAP) return { top: bottomTop, where: 'bottom' };
+  const aboveTop = highest - PEAK_TOUR_CARD_GAP - i.cardHeight;
+  if (aboveTop >= i.insetTop + PEAK_TOUR_CARD_EDGE) return { top: aboveTop, where: 'above' };
+  return { top: bottomTop, where: 'overlap' };
+}

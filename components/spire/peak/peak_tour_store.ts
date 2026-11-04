@@ -2,17 +2,28 @@
 // зачем (владелец 04.11): тур показывается один раз на аккаунт; ключ лежит в стираемом семействе story_events_v1: — исчезает при выходе/удалении аккаунта.
 // Ошибка чтения → тур НЕ показываем (лучше пропустить подсказку, чем показывать каждый раз); ошибка записи логируется, показ уже учтён в памяти.
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { subscribeAccountGeneration } from '../../../app/account_generation';
 import { peakTourKey } from './peak_tour_core';
 
 const LOG = '[PEAK-TOUR]';
 const memory = new Map<string, boolean>();
+// зачем (ревизор 04.11): память процесса не должна переживать выход/смену аккаунта — ключи в хранилище стираются при выходе, а память помнила бы «видел».
+// Любое событие смены аккаунта сбрасывает память; значение тут же читается из хранилища заново (запись фоном уже там).
+let watching = false;
+function watchAccountChanges(): void {
+  if (watching) return;
+  watching = true;
+  subscribeAccountGeneration(() => { memory.clear(); console.log(LOG, 'memory_reset account_changed'); }); // guard-ok: смена аккаунта
+}
 
 export function peekPeakTourSeen(owner: string): boolean | null {
+  watchAccountChanges();
   const known = memory.get(owner);
   return known === undefined ? null : known;
 }
 
 export async function readPeakTourSeen(owner: string): Promise<boolean> {
+  watchAccountChanges();
   const known = memory.get(owner);
   if (known !== undefined) return known;
   try {
@@ -29,6 +40,7 @@ export async function readPeakTourSeen(owner: string): Promise<boolean> {
 }
 
 export function markPeakTourSeen(owner: string): void {
+  watchAccountChanges();
   memory.set(owner, true); // мгновенно: повторного показа в этой сессии не будет, запись догонит фоном
   void AsyncStorage.setItem(peakTourKey(owner), '1').catch((error: unknown) => {
     console.warn(LOG, 'flag_write_failed', String((error as Error)?.message ?? error).slice(0, 120));

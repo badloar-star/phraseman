@@ -16,7 +16,9 @@ describe('lingman YouTube quality gate', () => {
     const combined = [catalogSource(), inlinePlayerSource()].join('\n');
 
     expect(combined).not.toMatch(/#E11D48|#EF4444/);
-    expect(combined).toContain('getLingmanYoutubeChrome');
+    // зачем (чистка старых красных, координатор 04.11): хелпер getLingmanYoutubeChrome ушёл с редизайна b76003bb9; цвета теперь — токены текущей темы (liquidGlassTokens)
+    expect(catalogSource()).toContain('liquidGlassTokens');
+    expect(inlinePlayerSource()).toContain('liquidGlassTokens');
     expect(combined).toContain('accent');
   });
 

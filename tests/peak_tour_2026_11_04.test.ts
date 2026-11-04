@@ -1,10 +1,16 @@
 // зачем (тур первого входа в Пик утверждён владельцем 04.11; координатор: «один раз на аккаунт, за флагом, Reduce Motion, токены, ≥15 px, dev-вход»).
 // Сторож: геометрия окон и стрелок, тексты на 9 языках, флаг «показан» по аккаунту в стираемом семействе, проводка в экран и dev, правила вёрстки.
+const mockAccountListeners: Array<() => void> = [];
+jest.mock('../app/account_generation', () => ({
+  subscribeAccountGeneration: (cb: () => void) => { mockAccountListeners.push(cb); return { remove: () => undefined }; },
+  captureAccountGeneration: () => ({ phase: 'active', stableId: 'a', generation: 1 }),
+}));
+
 import fs from 'node:fs';
 import path from 'node:path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
-  PEAK_TOUR_KEY_PREFIX, peakTourArrows, peakTourHoles, peakTourKey, peakTourKeys, peakTourPage, type PeakTourRects,
+  PEAK_TOUR_KEY_PREFIX, peakTourArrows, peakTourCardPlacement, peakTourHoles, peakTourKey, peakTourKeys, peakTourPage, type PeakTourRects,
 } from '../components/spire/peak/peak_tour_core';
 import { __resetPeakTourStoreForTests, markPeakTourSeen, peekPeakTourSeen, readPeakTourSeen } from '../components/spire/peak/peak_tour_store';
 import { spireGameText } from '../components/spire/spire_game_strings';
@@ -45,6 +51,34 @@ describe('стрелки «поднимаются»', () => {
     expect(peakTourArrows({ ...RECTS, top: null }, 5, 5, { x: 0, y: 0 })).toEqual([]);
     expect(peakTourArrows(RECTS, 5, 0, { x: 0, y: 0 })).toEqual([]);
     expect(peakTourArrows(RECTS, 3, 9, { x: 0, y: 0 })).toHaveLength(3);
+  });
+});
+
+describe('положение карточки (ревизор 04.11): не закрывает подсвеченные строки топ-5', () => {
+  const top = (y: number, h: number) => ({ x: 154, y, width: 240, height: h, radius: 22 });
+  const rail = { x: 2, y: 120, width: 150, height: 600, radius: 26, soft: true };
+  it('390×844, карточка 210: места внизу хватает → у нижнего края', () => {
+    const r = peakTourCardPlacement({ holes: [top(292, 266), rail], screenHeight: 844, cardHeight: 210, insetTop: 47, insetBottom: 34 });
+    expect(r.where).toBe('bottom');
+    expect(r.top).toBe(844 - 34 - 16 - 210);
+  });
+  it('360×740, строки топ-5 ниже, карточка 220: внизу не помещается → НАД верхним окном строк, не на них', () => {
+    const r = peakTourCardPlacement({ holes: [top(330, 266), rail], screenHeight: 740, cardHeight: 220, insetTop: 24, insetBottom: 0 });
+    expect(r.where).toBe('above');
+    expect(r.top + 220).toBeLessThanOrEqual(330 - 12);
+    expect(r.top).toBeGreaterThanOrEqual(24);
+  });
+  it('375×667, карточка 230: ни снизу, ни сверху места нет (шапка 200 + 5 строк 250 + карточка > экрана) — внизу, честно overlap', () => {
+    const r = peakTourCardPlacement({ holes: [top(250, 266), rail], screenHeight: 667, cardHeight: 230, insetTop: 24, insetBottom: 0 });
+    expect(r.where).toBe('overlap');
+    expect(r.top).toBe(667 - 12 - 16 - 230);
+  });
+  it('только «мягкие» окна (башня) — карточку можно ставить внизу поверх них', () => {
+    expect(peakTourCardPlacement({ holes: [rail], screenHeight: 667, cardHeight: 300, insetTop: 24, insetBottom: 0 }).where).toBe('bottom');
+  });
+  it('геометрия: окна башни помечены soft, строки топ-5 и шапка — нет', () => {
+    expect(peakTourHoles(2, RECTS, { x: 0, y: 0 }).map((h) => Boolean(h.soft))).toEqual([false, true]);
+    expect(peakTourHoles(0, RECTS, { x: 0, y: 0 }).map((h) => Boolean(h.soft))).toEqual([false]);
   });
 });
 
@@ -91,6 +125,15 @@ describe('флаг «тур показан» — один раз на аккау
     __resetPeakTourStoreForTests();
     await expect(readPeakTourSeen('a')).resolves.toBe(true);
   });
+  it('смена аккаунта в одном процессе сбрасывает память: «видел» берётся из хранилища заново (после выхода ключ стёрт → снова не видел)', async () => {
+    markPeakTourSeen('a');
+    await flush();
+    expect(peekPeakTourSeen('a')).toBe(true);
+    await AsyncStorage.clear(); // зачем: выход из аккаунта стирает семейство story_events_v1:
+    mockAccountListeners.forEach((cb) => cb());
+    expect(peekPeakTourSeen('a')).toBeNull();
+    await expect(readPeakTourSeen('a')).resolves.toBe(false);
+  });
   it('сбой чтения — тур не показываем (лучше пропустить подсказку, чем крутить каждый раз)', async () => {
     const spy = jest.spyOn(AsyncStorage, 'getItem').mockRejectedValueOnce(new Error('disk'));
     const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
@@ -111,6 +154,7 @@ describe('проводка и правила вёрстки', () => {
     expect(tour).toContain('reduceMotion ? undefined');
     expect(tour).toContain('<Mask');
     expect(tour).toContain('g.scrim');
+    expect(tour).toContain('peakTourCardPlacement(');
   });
   it('оверлей: без обводок, без зашитых цветов, текст не мельче 15 px', () => {
     const tour = read('components/spire/peak/PeakTour.tsx').replace(/\/\/.*$/gm, '');

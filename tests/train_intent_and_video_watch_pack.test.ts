@@ -137,9 +137,10 @@ describe('плеер: пауза и возврат на ту же секунду
 });
 
 describe('R59 «Видео» (координатор 15.10)', () => {
-  it('закладка: сетка остаётся на месте и у верхнего края; чип канала без запасного названия; журнал [VIDEO-OPEN-TRACE]', () => {
+  it('сетка не сдвигается под строку закладок (её нет); чип канала без запасного названия; журнал [VIDEO-OPEN-TRACE]', () => {
     const videos = read('app/lingman_videos.tsx');
-    expect(videos).toContain('if (prev === 0 && h > 0) homeListRef.current?.scrollToOffset({ offset: Math.max(0, scrollYRef.current) + h + SAVED_ROW_MARGIN, animated: false });');
+    // зачем (чистка старых красных, координатор 04.11): после 1458fd3a7 (звёзды вместо закладок) сдвиг сетки под строку закладок убран — его в экране больше нет
+    expect(videos).not.toContain('SAVED_ROW_MARGIN');
     expect(videos).toContain("channel={!catalog && !pendingChannel ? { ...activeChannel, displayName: '', avatarUrl: undefined } : activeChannel}");
     expect(videos).toContain("videoOpenTraceStart('home_grid_tap');");
     const watch = read('app/lingman_video_watch.tsx');

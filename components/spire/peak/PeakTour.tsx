@@ -14,7 +14,7 @@ import { useShadowGlass } from '../../v2/ShadowSurface';
 import V2Pressable from '../../v2/V2Pressable';
 import { useSpirePalette } from '../useSpirePalette';
 import { spireGameText } from '../spire_game_strings';
-import { PEAK_TOUR_ARROW_SIZE, PEAK_TOUR_PAGES, peakTourArrows, peakTourHoles, peakTourKeys, peakTourPage, type PeakTourPage, type PeakTourRects } from './peak_tour_core';
+import { PEAK_TOUR_ARROW_SIZE, PEAK_TOUR_PAGES, peakTourArrows, peakTourCardPlacement, peakTourHoles, peakTourKeys, peakTourPage, type PeakTourPage, type PeakTourRects } from './peak_tour_core';
 
 type Props = Readonly<{
   lang: Lang;
@@ -30,6 +30,8 @@ type Props = Readonly<{
 }>;
 
 const ARROW_RISE = 6;
+// зачем (ревизор 04.11): крупный системный шрифт раздувал карточку и закрывал подсвеченные строки; потолок 1,15 держит её компактной (читаемо, как заголовки окон моментов)
+const CARD_MAX_FONT_SCALE = 1.15;
 
 function RisingArrow({ x, y, delay, color, still }: Readonly<{ x: number; y: number; delay: number; color: string; still: boolean }>) {
   const lift = useSharedValue(0);
@@ -56,6 +58,8 @@ function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onD
   const [origin, setOrigin] = useState({ x: 0, y: 0 });
   const [size, setSize] = useState({ width: 0, height: 0 });
   const rootRef = useRef<View>(null);
+  // зачем (ревизор 04.11): высота карточки зависит от шрифта и языка — меряем и ставим её так, чтобы она не закрывала подсвеченные строки
+  const [card, setCard] = useState<Readonly<{ page: number; height: number }> | null>(null);
   const last = page === PEAK_TOUR_PAGES - 1;
 
   const onLayout = useCallback((event: LayoutChangeEvent) => {
@@ -76,6 +80,11 @@ function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onD
   const text = spireGameText(lang, keys.text, { a: spireTierName(0, lang), b: spireTierName(1, lang), c: spireTierName(2, lang), z: spireTierName(11, lang) });
   const holes = peakTourHoles(page, rects, origin);
   const arrows = page === 2 ? peakTourArrows(rects, topCount, upCount, origin) : [];
+  const measured = card !== null && card.page === page && size.height > 0;
+  const placement = measured ? peakTourCardPlacement({ holes, screenHeight: size.height, cardHeight: card.height, insetTop: insets.top, insetBottom: insets.bottom }) : null;
+  useEffect(() => {
+    if (placement?.where === 'overlap') console.warn('[PEAK-TOUR]', 'card_overlap', JSON.stringify({ page, screen: size.height, card: card?.height })); // guard-ok: карточка не поместилась вне окон — нужен кадр Сверки
+  }, [placement?.where, page, size.height, card?.height]);
 
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={skip}>
@@ -97,14 +106,15 @@ function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onD
         <Animated.View
           key={`card-${page}`}
           entering={reduceMotion ? undefined : FadeInDown.duration(260).easing(Easing.out(Easing.cubic))}
-          style={[s.card, { backgroundColor: g.opaqueCard, bottom: Math.max(insets.bottom, 12) + 16 }]}
+          onLayout={(e: LayoutChangeEvent) => setCard({ page, height: e.nativeEvent.layout.height })}
+          style={[s.card, { backgroundColor: g.opaqueCard, top: placement ? placement.top : 0, opacity: placement ? 1 : 0 }]}
           testID={`peak-tour-card-${page + 1}`}
         >
           <View style={s.dots} accessible accessibilityLabel={`${page + 1} / ${PEAK_TOUR_PAGES}`}>
             {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, i === page && s.dotOn, { backgroundColor: i === page ? p.text : p.control }]} />)}
           </View>
-          <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
-          <Text style={[s.text, { color: p.textSecondary }]}>{text}</Text>
+          <Text accessibilityRole="header" style={[s.title, { color: p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{title}</Text>
+          <Text style={[s.text, { color: p.textSecondary }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{text}</Text>
           <View style={s.buttons}>
             {last ? null : (
               <V2Pressable onPress={skip} accessibilityRole="button" style={[s.btn, s.ghost, { backgroundColor: p.control }]} testID="peak-tour-skip">

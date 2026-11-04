@@ -36,7 +36,6 @@ const L = Object.freeze({
   voice: REVENUE_DAILY_LIMITS.speaking_attempts,
   speaking: REVENUE_DAILY_LIMITS.speaking_attempts,
   explain: FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT,
-  languages: 1,
   courseLessonsAfterFree: 29,
 });
 
@@ -89,7 +88,6 @@ const VOICE_COUNT: Forms = { ru: ['реплика', 'реплики', 'репл�
 const VOICE_OF: Forms = { ru: ['реплики', 'реплик'], uk: ['репліки', 'реплік'], en: ['voice reply', 'voice replies'], es: ['respuesta por voz', 'respuestas por voz'], 'pt-BR': ['resposta por voz', 'respostas por voz'], vi: ['câu nói'], id: ['balasan suara'], tr: ['sesli yanıt'], pl: ['wypowiedzi', 'wypowiedzi'] };
 const ATTEMPT_COUNT: Forms = { ru: ['попытка', 'попытки', 'попыток'], uk: ['спроба', 'спроби', 'спроб'], en: ['attempt', 'attempts'], es: ['intento', 'intentos'], 'pt-BR': ['tentativa', 'tentativas'], vi: ['lượt thử'], id: ['percobaan'], tr: ['deneme'], pl: ['próba', 'próby', 'prób'] };
 const ATTEMPT_OF: Forms = { ru: ['попытки', 'попыток'], uk: ['спроби', 'спроб'], en: ['attempt', 'attempts'], es: ['intento', 'intentos'], 'pt-BR': ['tentativa', 'tentativas'], vi: ['lượt thử'], id: ['percobaan'], tr: ['deneme'], pl: ['próby', 'prób'] };
-const LANGUAGE_OF: Forms = { ru: ['языка', 'языков'], uk: ['мови', 'мов'], en: ['language', 'languages'], es: ['idioma', 'idiomas'], 'pt-BR': ['idioma', 'idiomas'], vi: ['ngôn ngữ'], id: ['bahasa'], tr: ['dil'], pl: ['języka', 'języków'] };
 const DAY_COUNT: Forms = { ru: ['день', 'дня', 'дней'], uk: ['день', 'дні', 'днів'], en: ['day', 'days'], es: ['día', 'días'], 'pt-BR': ['dia', 'dias'], vi: ['ngày'], id: ['hari'], tr: ['gün'], pl: ['dzień', 'dni', 'dni'] };
 
 const n = (lang: PaywallTextLang, count: number, forms: Forms) => `${count} ${pluralWord(lang, count, forms)}`;
@@ -404,15 +402,16 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
       pl: t('Podsumowanie tygodnia na jednej stronie', 'Co się utrwaliło, co kuleje i od czego zacząć nowy tydzień.', 'Osobiste podsumowanie tygodnia'),
     },
     language_add: {
-      ru: t('Учи несколько языков сразу', 'Бесплатно — один язык. С Plus у каждого свой прогресс.', 'Несколько языков в одном аккаунте'),
-      uk: t('Вивчай кілька мов одразу', 'Безкоштовно — одна мова. З Plus у кожної свій прогрес.', 'Кілька мов в одному акаунті'),
-      en: t('Learn several languages at once', 'Free: one language. With Plus, each one keeps its own progress.', 'Several languages in one account'),
-      es: t('Aprende varios idiomas a la vez', 'Gratis: un idioma. Con Plus, cada uno tiene su progreso.', 'Varios idiomas en una cuenta'),
-      'pt-BR': t('Aprenda vários idiomas ao mesmo tempo', 'Grátis: um idioma. Com o Plus, cada um tem seu progresso.', 'Vários idiomas em uma conta'),
-      vi: t('Học nhiều ngôn ngữ cùng lúc', 'Miễn phí: một ngôn ngữ. Với Plus, mỗi ngôn ngữ có tiến độ riêng.', 'Nhiều ngôn ngữ trong một tài khoản'),
-      id: t('Belajar beberapa bahasa sekaligus', 'Gratis: satu bahasa. Dengan Plus, tiap bahasa punya progres sendiri.', 'Beberapa bahasa dalam satu akun'),
-      tr: t('Aynı anda birkaç dil öğren', 'Ücretsiz: tek dil. Plus ile her dilin kendi ilerlemesi olur.', 'Tek hesapta birden çok dil'),
-      pl: t('Ucz się kilku języków naraz', 'Za darmo — jeden język. Z Plus każdy ma własny postęp.', 'Kilka języków na jednym koncie'),
+      // Курс-only: видео и карточки не являются языковым гейтом; условия grandfather/expiry определяет отдельный контракт.
+      ru: t('Ещё один язык для занятий', 'Подключи Plus, чтобы начать курс на другом языке', 'Новый курс на другом языке'),
+      uk: t('Ще одна мова для занять', 'Підключи Plus, щоб почати курс іншою мовою', 'Новий курс іншою мовою'),
+      en: t('Another language to learn', 'Get Plus to start a course in another language', 'A new course in another language'),
+      es: t('Otro idioma para aprender', 'Activa Plus para empezar un curso en otro idioma', 'Un curso nuevo en otro idioma'),
+      'pt-BR': t('Outro idioma para estudar', 'Ative o Plus para começar um curso em outro idioma', 'Um novo curso em outro idioma'),
+      vi: t('Thêm một ngôn ngữ để học', 'Bật Plus để bắt đầu khóa học bằng ngôn ngữ khác', 'Khóa học mới bằng ngôn ngữ khác'),
+      id: t('Satu bahasa lagi untuk dipelajari', 'Aktifkan Plus untuk memulai kursus dalam bahasa lain', 'Kursus baru dalam bahasa lain'),
+      tr: t('Çalışmak için bir dil daha', "Başka bir dilde kursa başlamak için Plus'ı aç", 'Başka bir dilde yeni kurs'),
+      pl: t('Jeszcze jeden język do nauki', 'Włącz Plus, aby rozpocząć kurs w innym języku', 'Nowy kurs w innym języku'),
     },
     avatar_aura: {
       ru: t('Добавь аватару свечение', 'Аура видна у друзей и в списках — тебя заметят сразу.', 'Аура вокруг аватара'),
@@ -573,7 +572,7 @@ export function paywallContextPill(ctx: PaywallTextContext, lang: PaywallTextLan
     case 'speaking':
       return usedOf(lang, L.speaking, ATTEMPT_OF);
     case 'language_add':
-      return usedOf(lang, L.languages, LANGUAGE_OF);
+      return '';
     case 'intro_ended':
     case 'vip_expired':
     case 'referral_ended':

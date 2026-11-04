@@ -23,7 +23,7 @@ describe('Plus paywall yearly monthly equivalent display', () => {
     const rows = fs.readFileSync(path.join(process.cwd(), 'components', 'paywall', 'PaywallPlanRows.tsx'), 'utf8');
     expect(rows).toContain('priceTestID="paywall-year-price"');
     expect(rows).toContain('<Text testID={priceTestID} style={[S.big, { color: g.text }]}>{shown}</Text>');
-    expect(rows).toContain('<Text style={[S.per, { color: paint.secondaryInk }]}>{subPrice}</Text>');
+    expect(rows).toContain('<Text style={[S.per, { color: g.text }]}>{subPrice}</Text>');
     expect(rows).toContain('subPrice={yearlyPerMonth ? yearPerMonthApprox(lang, yearlyPerMonth) : pick(lang, COPY.perYear)}');
     const bigSize = Number(/big: \{ fontSize: (\d+)/u.exec(rows)?.[1]);
     const perSize = Number(/per: \{ marginTop: \d+, fontSize: (\d+)/u.exec(rows)?.[1]);

@@ -1989,8 +1989,9 @@ const BenefitGlyph = memo(function BenefitGlyph({ id, size = 24, color }: { id: 
 
 // Строка выгоды: плитка-иконка + заголовок + подпись (подпись — часть макета
 // Bevel, владелец разрешил именно здесь). Каскадный вход, native driver.
-function PaywallBenefitRow({ glyph, title, caption, index = 0 }: { glyph: BenefitGlyphId; title: string; caption: string; index?: number }) {
-  const styles = createStyles(useOnboardingPalette());
+function PaywallBenefitRow({ glyph: _glyph, title, caption, index = 0 }: { glyph: BenefitGlyphId; title: string; caption: string; index?: number }) {
+  const P = useOnboardingPalette();
+  const styles = createStyles(P);
   const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -2006,7 +2007,7 @@ function PaywallBenefitRow({ glyph, title, caption, index = 0 }: { glyph: Benefi
   return (
     <Animated.View style={[styles.benefitRow, { opacity: enter, transform: [{ translateY }] }]}>
       <View style={styles.benefitTile}>
-        <BenefitGlyph id={glyph} />
+        <Ionicons name="checkmark" size={20} color={P.text} />
       </View>
       <View style={styles.benefitCopy}>
         <Text style={styles.benefitTitle}>{title}</Text>
@@ -4471,7 +4472,6 @@ function CleanOnboarding({
     return (
       <ScreenFrame
         step="onboardingPaywall"
-        title={oc.paywallHeadline}
         // Крестик СЛЕВА (владелец, паттерн Bevel): закрыть цены = продолжить
         // бесплатно = онбординг окончен (согласия собраны шагом «name» раньше).
         onClose={() => { void completeOnboarding(); }}
@@ -4515,9 +4515,10 @@ function CleanOnboarding({
           </>
         }
       >
-        {/* Bevel, кадр 11: список выгод «плитка-иконка + заголовок + подпись». */}
-        <View style={styles.benefitList}>
-          {PAYWALL_BENEFITS.map((b, i) => (
+        <Text style={styles.paywallCBrand}>PhraseMan Plus</Text>
+        <Text accessibilityRole="header" style={styles.paywallCTitle}>{oc.paywallHeadline}</Text>
+        <View testID="onboarding-paywall-c-benefits" style={styles.benefitList}>
+          {PAYWALL_BENEFITS.slice(0, 3).map((b, i) => (
             <PaywallBenefitRow
               key={b.id}
               index={i}
@@ -5517,21 +5518,20 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
   // ── paywall (Bevel, кадр 11): выгоды, тарифы, ссылки ───────────────────────
   // Ритм ужат (владелец: пейвол обязан влезать без скролла на 844pt).
   benefitList: {
-    paddingTop: 8,
+    paddingTop: 18,
     paddingBottom: 6,
-    gap: 10,
   },
   benefitRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    minHeight: 40,
+    minHeight: 68,
+    paddingVertical: 16,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: P.line,
   },
   benefitTile: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
-    backgroundColor: P.soft,
+    width: 26,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -5540,15 +5540,15 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
   },
   benefitTitle: {
     color: P.text,
-    fontSize: 16,
-    lineHeight: 20,
+    fontSize: 17,
+    lineHeight: 25,
     fontWeight: '700',
     letterSpacing: -0.2,
   },
   benefitCaption: {
     color: P.secondary,
     fontSize: 13,
-    lineHeight: 17,
+    lineHeight: 19,
     fontWeight: '400',
     marginTop: 2,
   },
@@ -5556,7 +5556,7 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
   planRow: {
     flexDirection: 'row',
     gap: 10,
-    marginTop: 10,
+    marginTop: 18,
     paddingTop: 12,
   },
   // Обводка 1.5 ВСЕГДА (прозрачная у невыбранной) — единственное разрешённое
@@ -5572,6 +5572,21 @@ const createStyles = memoStylesByPalette((P: OnboardingPalette) => StyleSheet.cr
     borderWidth: 1.5,
     borderColor: 'transparent',
     ...noAndroidOutline,
+  },
+  paywallCBrand: {
+    color: P.text,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '700',
+    marginTop: 18,
+  },
+  paywallCTitle: {
+    color: P.text,
+    fontSize: 32,
+    lineHeight: 35,
+    fontWeight: '800',
+    letterSpacing: -0.7,
+    marginTop: 18,
   },
   planTileSelected: {
     borderColor: P.text,

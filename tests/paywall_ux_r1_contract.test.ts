@@ -20,7 +20,7 @@ describe('R1_PAYWALL_UX: окно Plus', () => {
     expect(plus).toContain('const PAYWALL_DISABLED_OPACITY = 0.4;');
     expect(plus).toContain('opacity: closeDisabled ? PAYWALL_DISABLED_OPACITY : 1');
     expect(plus).toContain('opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1');
-    expect(plus).toContain('{restoring ? <ActivityIndicator size="small" color={g.mutedText} /> : null}');
+    expect(plus).toContain('{restoring ? <ActivityIndicator size="small" color={g.text} /> : null}');
   });
 });
 

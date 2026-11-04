@@ -1,19 +1,16 @@
 // ════════════════════════════════════════════════════════════════════════════
-// PaywallPlanRows — тарифы окна Plus, вариант A «Строки, цена справа»
-// (владелец 18.10, макет docs/design/v2-app/paywall-redesign-1018.html, блок `.A`).
+// PaywallPlanRows — две плоские плитки тарифа варианта C.
 //
-//  • две строки одна под другой: слева кружок выбора, «Год/Месяц», под ним акцентом «N дней бесплатно»
+//  • две плитки рядом: кружок выбора, «Год/Месяц», под ним честное «N дней бесплатно»
 //    (пробный — свой у каждой строки, из своего пакета магазина);
 //  • справа цена КРУПНО (Inter 800, 26, табличные цифры — новый шрифт ради одной цифры не тащим), под ней мелко
 //    «≈ X в месяц» у года и «в месяц» у месяца. Правило магазинов: крупнее всего — сумма списания;
-//  • выбранная: градиент акцента внутри, тонкая кромка акцента 1,5 и мягкое свечение (`.plan.on`); невыбранная — плашка темы;
+//  • выбранная: тонкая рамка текста активной темы, без градиента, свечения и 3D;
 //  • «−N%» — золотой бейдж на правом верхнем крае строки года; процент — из цен магазина (computeSavingsPct), не хардкод;
-//  • выбор: хаптик, перелив выбранного слоя на UI-потоке 240 мс, «уменьшить движение» — сразу.
+//  • выбор: хаптик; геометрия не меняется.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Animated, { cancelAnimation, Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
-import { KIT_MOTION } from '../../constants/motionHybrid';
 
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -21,10 +18,8 @@ import type { PaywallPlan } from '../../app/paywall_purchase';
 import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 import type { PaywallPriceSource } from '../../app/paywall_reference_prices';
 import SkeletonBlock from '../SkeletonShimmer';
-import { LinearGradient } from '../SafeLinearGradient';
 import V2Pressable from '../v2/V2Pressable';
 import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
-import { planRowSelectedPaint } from './paywallPlanRowPaint';
 export { planRowSelectedPaint } from './paywallPlanRowPaint';
 import { COPY, pick, trialFreeLabel, yearPerMonthApprox } from './PaywallPlusCopy';
 
@@ -32,9 +27,8 @@ type GlassTokens = ReturnType<typeof liquidGlassTokens>;
 
 /** Высота строки тарифа (и скелета на её месте): первый кадр без прыжка, когда придут цены. */
 export const PLAN_ROW_MIN_HEIGHT = 96;
-const PLAN_ROW_GAP = 12;
-const PLAN_ROW_RADIUS = 22;
-const SELECT_MS = KIT_MOTION.pressMs;
+const PLAN_ROW_GAP = 10;
+const PLAN_ROW_RADIUS = 18;
 const DISABLED_OPACITY = 0.4;
 
 /** Золото бейджа скидки — смысловой цвет «выгода», темой не красится (макет `--gold` / `#3a2700`). */
@@ -61,15 +55,6 @@ type RowProps = {
 };
 
 const PlanRow = memo(function PlanRow({ lang, g, on, disabled, onPress, testID, priceTestID, name, trialDays, price, promo, approx, subPrice, savingsPct }: RowProps) {
-  const reduceMotion = useReducedMotion();
-  const sel = useSharedValue(on ? 1 : 0);
-  useEffect(() => {
-    // зачем (макет: переход выбора плавный): перелив выбранного слоя на UI-потоке; «уменьшить движение» — сразу
-    sel.value = reduceMotion ? (on ? 1 : 0) : withTiming(on ? 1 : 0, { duration: SELECT_MS, easing: Easing.bezier(0.2, 1, 0.3, 1) });
-    return () => cancelAnimation(sel);
-  }, [on, reduceMotion, sel]);
-  const selStyle = useAnimatedStyle(() => ({ opacity: sel.value }));
-  const paint = planRowSelectedPaint(g);
   const shown = promo?.promoPriceString || `${approx ? '≈ ' : ''}${price}`;
   return (
     <V2Pressable
@@ -81,13 +66,9 @@ const PlanRow = memo(function PlanRow({ lang, g, on, disabled, onPress, testID, 
       // зачем (координатор 18.10): хаптик при выборе тарифа — управляющий элемент
       withHaptic
       scaleTo={0.985}
-      style={[S.row, { backgroundColor: paywallPlateBg(g) }, on ? { boxShadow: [{ offsetX: 0, offsetY: 12, blurRadius: 30, color: paint.glow }] } : null, disabled ? S.disabled : null]}
+      outerStyle={S.planCell}
+      style={[S.row, { backgroundColor: paywallPlateBg(g), borderColor: on ? g.text : 'transparent' }, disabled ? S.disabled : null]}
     >
-      {/* выбранный слой: градиент + кромка; сам слой скруглён, контейнер без overflow — свечение не режется */}
-      {/* guard-ok: тонкая кромка 1,5 выбранной строки — по макету варианта A (утверждён владельцем 18.10) */}
-      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, S.selLayer, { borderColor: paint.edge }, selStyle]}>
-        <LinearGradient pointerEvents="none" colors={[...paint.gradient]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} locations={[0, 0.6]} style={[StyleSheet.absoluteFill, { borderRadius: PLAN_ROW_RADIUS }]} />
-      </Animated.View>
       {savingsPct ? (
         <View testID="paywall-savings-badge" style={S.tag}>
           <Text style={S.tagText}>{`−${savingsPct}%`}</Text>
@@ -96,13 +77,13 @@ const PlanRow = memo(function PlanRow({ lang, g, on, disabled, onPress, testID, 
       <View style={S.inner}>
         <PlanRadio g={g} on={on} />
         <View style={S.nameCol}>
-          <Text style={[S.name, { color: paint.ink }]}>{name}</Text>
-          {trialDays ? <Text testID={`${testID}-trial`} style={[S.trial, { color: paint.trialInk }]}>{trialFreeLabel(lang, trialDays)}</Text> : null}
+          <Text style={[S.name, { color: g.text }]}>{name}</Text>
+          {trialDays ? <Text testID={`${testID}-trial`} style={[S.trial, { color: g.text }]}>{trialFreeLabel(lang, trialDays)}</Text> : null}
         </View>
         <View style={S.priceCol}>
-          {promo ? <Text style={[S.strike, { color: paint.mutedInk }]}>{promo.standardPriceString}</Text> : null}
+          {promo ? <Text style={[S.strike, { color: g.text }]}>{promo.standardPriceString}</Text> : null}
           <Text testID={priceTestID} style={[S.big, { color: g.text }]}>{shown}</Text>
-          {subPrice ? <Text style={[S.per, { color: paint.secondaryInk }]}>{subPrice}</Text> : null}
+          {subPrice ? <Text style={[S.per, { color: g.text }]}>{subPrice}</Text> : null}
         </View>
       </View>
     </V2Pressable>
@@ -147,31 +128,31 @@ export const PaywallPlanRowsSkeleton = memo(function PaywallPlanRowsSkeleton({ g
   const highlightColor = g.isLight ? g.opaqueSheet : `${g.text.slice(0, 7)}24`;
   return (
     <View testID="paywall-plans-skeleton" accessibilityRole="progressbar" style={S.list}>
-      <SkeletonBlock width="100%" height={PLAN_ROW_MIN_HEIGHT} borderRadius={PLAN_ROW_RADIUS} baseColor={baseColor} highlightColor={highlightColor} />
-      <SkeletonBlock width="100%" height={PLAN_ROW_MIN_HEIGHT} borderRadius={PLAN_ROW_RADIUS} baseColor={baseColor} highlightColor={highlightColor} />
+      <View style={S.skeletonCell}><SkeletonBlock width="100%" height={124} borderRadius={PLAN_ROW_RADIUS} baseColor={baseColor} highlightColor={highlightColor} /></View>
+      <View style={S.skeletonCell}><SkeletonBlock width="100%" height={124} borderRadius={PLAN_ROW_RADIUS} baseColor={baseColor} highlightColor={highlightColor} /></View>
     </View>
   );
 });
 
 /** Высота блока двух строк — для «цен нет» на том же месте. */
-export const PLAN_ROWS_BLOCK_HEIGHT = PLAN_ROW_MIN_HEIGHT * 2 + PLAN_ROW_GAP;
+export const PLAN_ROWS_BLOCK_HEIGHT = 124;
 
 const S = StyleSheet.create({
-  list: { gap: PLAN_ROW_GAP, marginTop: 16 },
-  row: { minHeight: PLAN_ROW_MIN_HEIGHT, borderRadius: PLAN_ROW_RADIUS, paddingVertical: 14, paddingHorizontal: 16, justifyContent: 'center' },
-  // зачем: кромка выбранной строки 1,5 по макету варианта A (`0 0 0 1.5px var(--acc)`), утверждена владельцем 18.10; typo-exempt — сторож типографики D145 допускает размеченное исключение (внутренняя inset-тень не проходит тип стиля RN)
-  selLayer: { borderRadius: PLAN_ROW_RADIUS, borderWidth: 1.5 }, // shadow-ok: guard-ok: typo-exempt: кромка выбранного тарифа 1,5, утверждена 18.10
+  list: { flexDirection: 'row', gap: PLAN_ROW_GAP, marginTop: 18 },
+  planCell: { flex: 1, minWidth: 0 },
+  skeletonCell: { flex: 1, minWidth: 0 },
+  row: { flexGrow: 1, minHeight: 124, borderRadius: PLAN_ROW_RADIUS, borderWidth: 1.5, paddingVertical: 14, paddingHorizontal: 14, justifyContent: 'center' }, // shadow-ok: guard-ok: selection-control outline
   disabled: { opacity: DISABLED_OPACITY },
-  inner: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  inner: { flex: 1, alignItems: 'flex-start', gap: 8 },
   radio: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   radioRing: { borderWidth: 2 }, // shadow-ok: guard-ok: typo-exempt: кольцо радио — индикатор выбора, не контейнер
   radioDot: { width: 12, height: 12, borderRadius: 6 },
   nameCol: { flex: 1, minWidth: 0 },
   name: { fontSize: 16, lineHeight: 22, fontWeight: '800' },
   trial: { marginTop: 2, fontSize: 13, lineHeight: 17, fontWeight: '700' },
-  priceCol: { alignItems: 'flex-end', flexShrink: 0 },
+  priceCol: { alignItems: 'flex-start', flexShrink: 1, minWidth: 0 },
   // зачем (правило магазинов): сумма списания — самая крупная цифра строки; «≈ в месяц» — мелко под ней
-  big: { fontSize: 26, lineHeight: 30, fontWeight: '800', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
+  big: { fontSize: 22, lineHeight: 27, fontWeight: '800', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
   per: { marginTop: 4, fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
   strike: { fontSize: 13, lineHeight: 17, textDecorationLine: 'line-through', fontVariant: ['tabular-nums'] },
   tag: { position: 'absolute', top: -10, right: 16, zIndex: 3, minHeight: 22, borderRadius: 11, paddingHorizontal: 9, justifyContent: 'center', backgroundColor: PAYWALL_SAVINGS_GOLD },

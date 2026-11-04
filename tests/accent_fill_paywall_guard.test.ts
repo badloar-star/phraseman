@@ -13,9 +13,10 @@ describe('paywall: заливка под accentInk', () => {
     expect(src).not.toMatch(/colors=\{\[\s*\w+\.accentBright\s*,\s*\w+\.accent\s*\]\}/);
   });
 
-  it('обе кнопки используют ctaFillGradient (обёртка accentFillGradient: №35, главная кнопка не сливается с фоном)', () => {
-    for (const f of ['PaywallPlus.tsx', 'PaywallTrialReminderPrompt.tsx']) {
-      expect(fs.readFileSync(path.join(DIR, f), 'utf8')).toContain('ctaFillGradient(g)');
-    }
+  it('C uses its approved flat theme CTA; the separate reminder prompt retains its contrast-safe gradient', () => {
+    const plus = fs.readFileSync(path.join(DIR, 'PaywallPlus.tsx'), 'utf8');
+    expect(plus).toContain('style={[S.cta, { backgroundColor: g.ctaFill }]}');
+    expect(plus).not.toContain('ctaFillGradient(g)');
+    expect(fs.readFileSync(path.join(DIR, 'PaywallTrialReminderPrompt.tsx'), 'utf8')).toContain('ctaFillGradient(g)');
   });
 });

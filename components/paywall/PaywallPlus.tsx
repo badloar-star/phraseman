@@ -16,23 +16,19 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { ctaFillGradient } from '../../constants/accentFill';
 import type { PaywallPlan } from '../../app/paywall_purchase';
 import type { StorePromoPricing } from '../../app/premium_store_promo_display';
-import { canPromiseTrialReminder, trialReminderDayNumber } from '../../app/trial_end_reminder_schedule';
+import { canPromiseTrialReminder } from '../../app/trial_end_reminder_schedule';
 import { DebugLogger } from '../../app/debug-logger';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../../app/config';
 import { openLegalLink } from '../../app/open_legal_link';
 import { PaywallPlanRows, PaywallPlanRowsSkeleton, PLAN_ROWS_BLOCK_HEIGHT } from './PaywallPlanRows';
-import { LinearGradient } from '../SafeLinearGradient';
 import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
 import V2Pressable from '../v2/V2Pressable';
-import { PlateFill } from '../v2/ShadowSurface';
 import type { PaywallPriceSource } from '../../app/paywall_reference_prices';
-import { PaywallPlusBenefits, PaywallPlusComparison } from './PaywallBenefitComparison';
+import { PaywallCBenefits, PAYWALL_C_BENEFIT_COUNT } from './PaywallCBenefits';
 import {
-  COPY, chargeLine, ctaBuyMonth, ctaBuyYear, ctaStartTrial, fineAfterTrial, fineThenMonth, heroTrialTitle,
-  pick, reminderDayTitle,
+  COPY, ctaBuyMonth, ctaBuyYear, ctaStartTrial, fineAfterTrial, fineThenMonth, heroTrialTitle, pick,
 } from './PaywallPlusCopy';
 
 export type GlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -45,9 +41,7 @@ export type GlassTokens = ReturnType<typeof liquidGlassTokens>;
 // зачем (paywall-gap-001, координатор 13.10): поверхности листа и плашек живут в paywall_surfaces.ts (нейтраль «Тени» в тёмном); здесь реэкспорт для прежних импортов.
 export { paywallSheetBg, paywallPlateBg };
 export type PaywallPlusState = 'ready' | 'loading' | 'error';
-
-/** Высота плашек тарифов (и скелета/«недоступно» на их месте) — первый кадр без прыжка, когда придут цены. */
-const PLAN_CARD_HEIGHT = 160;
+export { PAYWALL_C_BENEFIT_COUNT };
 
 /** Приглушение недоступной управляющей кнопки (закрыть / восстановить на время оплаты). */
 const PAYWALL_DISABLED_OPACITY = 0.4;
@@ -57,22 +51,14 @@ const PAYWALL_DISABLED_OPACITY = 0.4;
 const TERMS_URL = KNOWLY_LEGAL_TERMS_URL;
 const PRIVACY_URL = KNOWLY_LEGAL_PRIVACY_URL;
 
-// зачем (темы 2.0, проверка в эмуляторе 30.09): выбор тарифа, плашка «Выгоднее всего» и значок
-// пробного периода красятся в цвет темы в «Акценте/Максимуме» — иначе в светлом режиме они
-// оставались чёрными рядом с синей кнопкой. В «Спокойно» — прежние g.text / g.bg.
-function markFill(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accent : g.text; } // light-accent-ok: диск с галкой чернилами markInk (accentInk на accent ≥ 4,98:1)
-function markInk(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accentInk : g.bg; }
-
 // зачем (R58 #53): одна функция открытия юридических ссылок на всё приложение (тост при сбое) — app/open_legal_link.ts
 function openLegal(url: string): void { openLegalLink(url, 'paywall_plus'); }
 
 // ── шапка ───────────────────────────────────────────────────────────────────
-export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeVisible, closeDisabled, onClose, contextTitle, contextSubtitle, contextIcon, contextPill }: {
+export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeVisible, closeDisabled, onClose, contextTitle, contextSubtitle }: {
   lang: Lang; g: GlassTokens; trialDays: number | null; closeVisible: boolean; closeDisabled: boolean; onClose: () => void;
   /** Заголовок/подзаголовок КОНТЕКСТА входа (paywallContextHeadline). Нет — прежняя шапка пробного периода. */
   contextTitle?: string; contextSubtitle?: string;
-  /** Значок входа в плитке слева (PaywallContextIcon) и пилюля «что закончилось» рядом с ним (макет paywall-context-redesign #c1). */
-  contextIcon?: React.ReactNode; contextPill?: string;
 }) {
   // зачем (владелец 11.10: «Я НЕ ВИЖУ КОНТЕКСТА! ВСЕ ПЕЙВОЛЫ ДОЛЖНЫ БЫТЬ КОНТЕКСТНЫМИ»; решение 1 «Шторка»): окно говорит про место, откуда
   // человек пришёл — значок входа и пилюля «что закончилось» наверху, ниже заголовок и одна фраза.
@@ -95,63 +81,13 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
     </V2Pressable>
   ) : null;
   return (
-    <View>
-      <View style={[S.handle, { backgroundColor: g.glassEdge }]} />
-      {contextTitle ? (
-        <View style={S.ctxRow}>
-          <View testID="paywall-context-icon" style={[S.ctxTile, { backgroundColor: `${g.accent}2E` }]}>{contextIcon}</View>
-          {contextPill ? (
-            <View testID="paywall-context-pill" style={[S.ctxPill, { backgroundColor: paywallPlateBg(g) }]}>
-              <Text style={[S.ctxPillText, { color: g.text }]}>{contextPill}</Text>
-            </View>
-          ) : null}
-          <View style={S.ctxSpacer} />
-          {close}
-        </View>
-      ) : (
-        <View style={S.topRow}>
-          <Text style={[S.kicker, { color: g.secondary }]}>{pick(lang, COPY.kicker)}</Text>
-          {close}
-        </View>
-      )}
-      <Text testID="paywall-title" accessibilityRole="header" style={[S.h1, contextTitle && S.h1Sheet, { color: g.text }]}>{title}</Text>
-      {subtitle ? <Text testID="paywall-subtitle" style={[S.sub, { color: g.secondary }]}>{subtitle}</Text> : null}
-    </View>
-  );
-});
-
-// ── лента пробного: Сегодня → День N−2 → День N ────────────────────────────
-export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({ lang, g, trialDays, yearlyPrice }: {
-  lang: Lang; g: GlassTokens; trialDays: number; yearlyPrice: string;
-}) {
-  // зачем (Сверка 11.10, светлая тема): на шторке поверхности сплошные (g.opaqueControl), полупрозрачное стекло там было белым по белому.
-  const surface = { backgroundColor: paywallPlateBg(g) };
-  const reminderDay = trialReminderDayNumber(trialDays);
-  const steps: { icon: keyof typeof Ionicons.glyphMap; title: string; detail: string }[] = [
-    { icon: 'gift-outline', title: pick(lang, COPY.today), detail: pick(lang, COPY.todayDetail) },
-    ...(reminderDay ? [{ icon: 'notifications-outline' as const, title: reminderDayTitle(lang, reminderDay), detail: pick(lang, COPY.reminderDetail) }] : []),
-    { icon: 'card-outline', title: reminderDayTitle(lang, trialDays), detail: chargeLine(lang, yearlyPrice) },
-  ];
-  return (
-    <View testID="paywall-trial-timeline" style={[S.card, S.timeline, surface]}>
-      {steps.map((step, index) => {
-        const first = index === 0;
-        const last = index === steps.length - 1;
-        return (
-          <View key={step.icon} style={S.tlRow}>
-            <View style={S.tlRail}>
-              <View style={[S.tlDot, { backgroundColor: first ? markFill(g) : paywallSheetBg(g) /* зачем (paywall-gaps-states): диски 2 и 3 цвета шторки, иначе сливаются с карточкой ленты */ }]}>
-                <Ionicons name={step.icon} size={16} color={first ? markInk(g) : g.text} />
-              </View>
-              {last ? null : <View style={[S.tlLine, { backgroundColor: g.glassEdge }]} />}
-            </View>
-            <View style={[S.tlCopy, !last && S.tlCopyGap]}>
-              <Text style={[S.tlTitle, { color: g.text }]}>{step.title}</Text>
-              <Text style={[S.tlDetail, { color: g.secondary }]}>{step.detail}</Text>
-            </View>
-          </View>
-        );
-      })}
+    <View style={S.cHeader}>
+      <View style={S.topRow}>
+        <Text style={[S.kicker, { color: g.text }]}>{pick(lang, COPY.kicker)}</Text>
+        {close}
+      </View>
+      <Text testID="paywall-title" accessibilityRole="header" style={[S.h1, { color: g.text }]}>{title}</Text>
+      {subtitle ? <Text testID="paywall-subtitle" style={[S.sub, { color: g.text }]}>{subtitle}</Text> : null}
     </View>
   );
 });
@@ -177,15 +113,15 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
     <View>
       {promo ? (
         <View testID="paywall-promo-plate" style={[S.promo, { backgroundColor: paywallPlateBg(g) }]}>
-          <Text style={[S.promoKicker, { color: g.mutedText }]}>{pick(lang, COPY.promoNow)}</Text>
+          <Text style={[S.promoKicker, { color: g.text }]}>{pick(lang, COPY.promoNow)}</Text>
           <View style={S.promoRow}>
             <View style={[S.promoPill, { backgroundColor: paywallSheetBg(g) }]}>
               <Text style={[S.promoPct, { color: g.text }]}>{`−${promo.discountPercent}%`}</Text>
             </View>
             <Text style={[S.promoPrice, { color: g.text }]}>{promo.promoPriceString}</Text>
-            <Text style={[S.promoStandard, { color: g.mutedText }]}>{promo.standardPriceString}</Text>
+            <Text style={[S.promoStandard, { color: g.text }]}>{promo.standardPriceString}</Text>
           </View>
-          <Text style={[S.promoThen, { color: g.secondary }]}>{`${pick(lang, COPY.promoThen)} ${promo.standardPriceString}`}</Text>
+          <Text style={[S.promoThen, { color: g.text }]}>{`${pick(lang, COPY.promoThen)} ${promo.standardPriceString}`}</Text>
         </View>
       ) : null}
       <PaywallPlanRows lang={lang} g={g} selected={selected} onSelect={onSelect} disabled={disabled}
@@ -215,35 +151,16 @@ export const PaywallPlusPriceNote = memo(function PaywallPlusPriceNote({ lang, g
   const storeMissing = reason === 'billing_unavailable';
   return (
     <View testID="paywall-plans-note" style={[S.noteBox, S.planRowTop, { minHeight: PLAN_ROWS_BLOCK_HEIGHT }]}>
-      <Text style={[S.unavailableSub, { color: g.mutedText }]}>{pick(lang, storeMissing ? COPY.storeUnavailable : COPY.priceWillConfirm)}</Text>
+      <Text style={[S.unavailableSub, { color: g.text }]}>{pick(lang, storeMissing ? COPY.storeUnavailable : COPY.priceWillConfirm)}</Text>
     </View>
   );
 });
 
 // ── тело: «Что входит», «Free и Plus», ссылки ──────────────────────────────
-export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, leadBenefit }: {
-  lang: Lang; g: GlassTokens; leadBenefit?: string;
+export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, leadBenefit, leadCaption, factCaption }: {
+  lang: Lang; g: GlassTokens; leadBenefit?: string; leadCaption?: string; factCaption?: string;
 }) {
-  // зачем (владелец 11.10, макет paywall-context-redesign #c1): у контекстного окна ровно ОДНА выгода — та, что про этот момент
-  // (`.ben.glass`); общие «Что входит» и «Free и Plus» остаются только у входа без своего текста.
-  if (leadBenefit) {
-    return (
-      <View testID="paywall-lead-benefit" style={[S.card, S.leadRow, { backgroundColor: paywallPlateBg(g) }]}>
-        <View style={[S.leadCheck, { backgroundColor: g.accent }]}>
-          <Ionicons name="checkmark" size={16} color={g.accentInk} />
-        </View>
-        <Text style={[S.leadText, { color: g.text }]}>{leadBenefit}</Text>
-      </View>
-    );
-  }
-  return (
-    <View>
-      <Text style={[S.sectionLabel, { color: g.mutedText }]}>{pick(lang, COPY.whatsIncluded)}</Text>
-      <PaywallPlusBenefits lang={lang} g={g} />
-      <Text style={[S.sectionLabel, { color: g.mutedText }]}>{pick(lang, COPY.freeVsPlus)}</Text>
-      <PaywallPlusComparison lang={lang} g={g} />
-    </View>
-  );
+  return <PaywallCBenefits lang={lang} g={g} leadBenefit={leadBenefit} leadCaption={leadCaption} factCaption={factCaption} />;
 });
 
 // ── закреплённая кнопка ─────────────────────────────────────────────────────
@@ -286,7 +203,7 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
   const fineText = notice ? pick(lang, COPY.tryInMinute) : ready ? fine : pick(lang, COPY.fineNoPrices);
   return (
     <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]}>
-      {/* зачем (макет `.cta`): кнопка 58 с лёгким переливом тона и свечением цвета темы. */}
+      {/* Вариант C: плоская кнопка активной темы, без декоративного свечения/3D. */}
       <V2Pressable
         testID="paywall-cta"
         accessibilityLabel={label}
@@ -296,37 +213,35 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
         withHaptic={false}
         scaleTo={0.97}
         // зачем (владелец 13.10, №35): основная кнопка пейвола — ctaFill (>= 1,8 к поверхностям, >= 1,3 к вторичной, подпись >= 4,5 во всех 23 темах)
-        style={[S.cta, { backgroundColor: g.ctaFill, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 26, color: `${g.ctaFill}4D` }] }]}
+        style={[S.cta, { backgroundColor: g.ctaFill }]}
       >
-        {/* зачем (Дизайн 12.10): заливка под accentInk — только с гарантией контраста ≥ 4,5 (accentFillGradient), accentBright в светлых градиентных темах слишком тёмный */}
-        <LinearGradient pointerEvents="none" colors={[...ctaFillGradient(g)]} style={StyleSheet.absoluteFill} />
         {purchasing
           ? <ActivityIndicator color={g.ctaFillInk} />
           : <Text style={[S.ctaText, { color: g.ctaFillInk }]}>{label}</Text>}
       </V2Pressable>
-      <Text testID="paywall-fine" style={[S.fine, { color: g.mutedText }]}>{fineText}</Text>
+      <Text testID="paywall-fine" style={[S.fine, { color: g.text }]}>{fineText}</Text>
       {restoreVisible || promoVisible ? <View style={S.secondaryActions}>
         {/* зачем (R1_PAYWALL_UX): восстановление видно — крутилка рядом с «Восстанавливаем…»; недоступная ссылка приглушена (раньше не отличалась от активной). */}
         {restoreVisible ? <V2Pressable testID="paywall-restore" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.restore)} withHaptic={false} scaleTo={0.95} disabled={restoreDisabled} outerStyle={S.secondaryOuter}
           accessibilityState={{ disabled: restoreDisabled, busy: restoring }} onPress={onRestore}
-          style={[S.secondaryAction, { backgroundColor: paywallPlateBg(g), opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1 }]}>
-          {restoring ? <ActivityIndicator size="small" color={g.mutedText} /> : null}
-          {!restoring ? <Ionicons name="refresh-outline" size={17} color={g.secondary} /> : null}
-          <Text style={[S.secondaryActionText, { color: g.secondary }]}>{pick(lang, restoring ? COPY.restoring : COPY.restore)}</Text>
+          style={[S.secondaryAction, { opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1 }]}>
+          {restoring ? <ActivityIndicator size="small" color={g.text} /> : null}
+          {!restoring ? <Ionicons name="refresh-outline" size={17} color={g.text} /> : null}
+          <Text style={[S.secondaryActionText, { color: g.text }]}>{pick(lang, restoring ? COPY.restoring : COPY.restore)}</Text>
         </V2Pressable> : null}
         {promoVisible ? <V2Pressable testID="paywall-promo-code" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.enterPromo)}
           accessibilityState={{ disabled: promoDisabled }} withHaptic={false} scaleTo={0.95} disabled={promoDisabled} outerStyle={S.secondaryOuter} onPress={onPromo}
-          style={[S.secondaryAction, { backgroundColor: paywallPlateBg(g), opacity: promoDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}>
-          <Ionicons name="pricetag-outline" size={17} color={g.secondary} />
-          <Text style={[S.secondaryActionText, { color: g.secondary }]}>{pick(lang, COPY.enterPromo)}</Text>
+          style={[S.secondaryAction, { opacity: promoDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}>
+          <Ionicons name="pricetag-outline" size={17} color={g.text} />
+          <Text style={[S.secondaryActionText, { color: g.text }]}>{pick(lang, COPY.enterPromo)}</Text>
         </V2Pressable> : null}
       </View> : null}
       <View style={S.links}>
         <V2Pressable accessibilityRole="link" scaleTo={0.95} onPress={() => openLegal(TERMS_URL)} style={S.linkHit}>
-          <Text style={[S.link, { color: g.mutedText }]}>{pick(lang, COPY.terms)}</Text>
+          <Text style={[S.link, { color: g.text }]}>{pick(lang, COPY.terms)}</Text>
         </V2Pressable>
         <V2Pressable accessibilityRole="link" scaleTo={0.95} onPress={() => openLegal(PRIVACY_URL)} style={S.linkHit}>
-          <Text style={[S.link, { color: g.mutedText }]}>{pick(lang, COPY.privacy)}</Text>
+          <Text style={[S.link, { color: g.text }]}>{pick(lang, COPY.privacy)}</Text>
         </V2Pressable>
       </View>
     </View>
@@ -343,41 +258,14 @@ export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
 }
 
 const S = StyleSheet.create({
-  handle: { width: 40, height: 5, borderRadius: 3, alignSelf: 'center', marginTop: 8 },
-  topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 20, paddingRight: 14, marginTop: 6 },
-  kicker: { fontSize: 13, fontWeight: '700', letterSpacing: 2.4 },
+  cHeader: { paddingTop: 18, paddingHorizontal: 24 },
+  topRow: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  kicker: { fontSize: 14, lineHeight: 20, fontWeight: '700', letterSpacing: 0.2 },
   close: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  // `.ctx` макета: плитка входа 52 (r16), пилюля «что закончилось» 32 (r16, 14/700 → 13/700 по шкале D145), закрыть справа.
-  ctxRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingLeft: 20, paddingRight: 14, marginTop: 14 },
-  ctxTile: { width: 52, height: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  ctxPill: { minHeight: 32, borderRadius: 16, paddingHorizontal: 13, justifyContent: 'center', flexShrink: 1 },
-  ctxPillText: { fontSize: 13, lineHeight: 18, fontWeight: '700' },
-  ctxSpacer: { flex: 1 },
-  h1: { marginTop: 8, marginHorizontal: 20, fontSize: 31, lineHeight: 36, fontWeight: '800', letterSpacing: -0.7 },
-  // макет: заголовок шторки 27/32, 700, трекинг -.5
-  h1Sheet: { marginTop: 16, fontSize: 27, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5 },
-  sub: { marginTop: 6, marginHorizontal: 20, fontSize: 16, lineHeight: 22 },
+  h1: { marginTop: 18, fontSize: 32, lineHeight: 35, fontWeight: '800', letterSpacing: -0.7 },
+  sub: { marginTop: 8, fontSize: 17, lineHeight: 25 },
   scroll: { flexGrow: 0, flexShrink: 1 },
-  scrollContent: { paddingTop: 14, paddingHorizontal: 16, paddingBottom: 18 },
-  card: { borderRadius: 22 },
-  timeline: { paddingTop: 16, paddingHorizontal: 16, paddingBottom: 4, marginTop: 12, marginBottom: 12 },
-  tlRow: { flexDirection: 'row', gap: 12 },
-  tlRail: { width: 36, alignItems: 'center' },
-  tlDot: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  tlLine: { flex: 1, width: 2, borderRadius: 1, marginVertical: 2 },
-  tlCopy: { flex: 1, minWidth: 0, paddingTop: 2, paddingBottom: 12 },
-  tlCopyGap: { paddingBottom: 16 },
-  tlTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  tlDetail: { marginTop: 2, fontSize: 13, lineHeight: 17 },
-  planRow: { flexDirection: 'row', gap: 10, marginTop: 14 },
-  planCell: { flex: 1, minWidth: 0 },
-  planCol: { paddingVertical: 14, paddingHorizontal: 14, minHeight: PLAN_CARD_HEIGHT },
-  trialLine: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 10, paddingTop: 10 },
-  trialLineText: { flex: 1, fontSize: 13, lineHeight: 18, fontWeight: '700' },
-  leadRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, paddingHorizontal: 16 },
-  leadCheck: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  leadText: { flex: 1, minWidth: 0, fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  planDisabled: { opacity: PAYWALL_DISABLED_OPACITY },
+  scrollContent: { paddingTop: 18, paddingHorizontal: 24, paddingBottom: 30 },
   // overlay-more.css `.om-promo`: поля 14, r18; `.om-kicker` 11/800 по центру; цена 21/800; обычная 13/700 зачёркнута; «далее» 14/21
   promo: { padding: 14, borderRadius: 18, marginBottom: 12, alignItems: 'center' },
   promoKicker: { fontSize: 13, fontWeight: '800', letterSpacing: 1.2, textTransform: 'uppercase', textAlign: 'center' },
@@ -411,13 +299,13 @@ const S = StyleSheet.create({
   // базу высоты 0 — плашка занимала только minHeight 44, текст в 2–3 строки (крупный шрифт, длинный перевод) вылезал вниз на ссылки.
   // Место в ряду (flex) — на внешний слой (outerStyle), внутренний слой растёт по содержимому и тянется до высоты соседней плашки.
   secondaryOuter: { flex: 1, minWidth: 0 },
-  secondaryAction: { flexGrow: 1, minHeight: 44, borderRadius: 16, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  secondaryActionText: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
+  secondaryAction: { flexGrow: 1, minHeight: 44, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
+  secondaryActionText: { flexShrink: 1, fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center' },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },
   restoreRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  link: { fontSize: 13, lineHeight: 18 },
-  dock: { paddingTop: 14, paddingHorizontal: 16 },
-  cta: { minHeight: 58, borderRadius: 29, paddingHorizontal: 20, paddingVertical: 12, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  link: { fontSize: 12, lineHeight: 17 },
+  dock: { paddingTop: 14, paddingHorizontal: 24 },
+  cta: { minHeight: 54, borderRadius: 28, paddingHorizontal: 20, paddingVertical: 12, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   fine: { marginTop: 9, fontSize: 13, lineHeight: 18, textAlign: 'center', fontVariant: ['tabular-nums'] },
 });

@@ -32,20 +32,19 @@ import { useLoadGate } from '../../app/use_load_gate';
 import { PaywallScrim, usePaywallScreenStackOptions } from './paywallShared';
 import {
   PaywallPlusDetails, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPriceNote,
-   PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy, paywallSheetBg,
+   PaywallPlusScroll, paywallPlusCtaCopy,
   type PaywallPlusState,
 } from './PaywallPlus';
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
 import { COPY, pick } from './PaywallPlusCopy';
-import { paywallContextHeadline, paywallEntryFactsFromParams, type PaywallContextHeadline } from '../../app/paywall_context_headline';
-import { PaywallContextIcon } from './PaywallContextIcons';
+import { paywallContextHeadline, paywallEntryFactsFromParams } from '../../app/paywall_context_headline';
 import { onAppEvent } from '../../app/events';
 import { getPaywallControlVisibility } from '../../app/paywall_control_visibility';
-import { PaywallMSheet } from './m/PaywallMSheet';
 import { isPaywallMEnabled } from './m/paywall_m_flag';
-import { paywallMChartKindFor, paywallMHeadFor, paywallMHeadKindForContext } from './m/paywall_m_head';
+import { paywallMHeadKindForContext } from './m/paywall_m_head';
 import { usePaywallMPerson } from './m/use_paywall_m_person';
 import { openPromoCodeFromPaywall } from '../../app/paywall_promo_navigation';
+import { paywallCFactCaption } from './paywall_c_fact_caption';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -74,8 +73,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const [controlVisibility, setControlVisibility] = useState(getPaywallControlVisibility);
   // зачем (владелец «Да, так», координатор 25.10): пейвол «Вариант М» — за флагом «Пульта» paywall_m_enabled, по умолчанию выключен; вход «Не видим твой Plus» остаётся на своём доке
   const [mFlag, setMFlag] = useState(isPaywallMEnabled);
-  const showM = mFlag;
-  const mPerson = usePaywallMPerson(showM);
+  const mPerson = usePaywallMPerson(mFlag);
   // зачем (макет М, окна по месту): факты места входа — из параметров маршрута (урок и число фраз Мастерской от кнопки урока; закрытый урок замка — lessons_done + 1)
   const wsLessonParam = firstParam((params as Record<string, string | string[] | undefined>).workshop_lesson);
   const wsPhrasesParam = firstParam((params as Record<string, string | string[] | undefined>).workshop_phrases);
@@ -97,6 +95,13 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
       correctionWas: was && now ? was : null, correctionNow: was && now ? now : null,
     };
   }, [lessonsDoneFact, wsLessonParam, wsPhrasesParam, dialogMinutesParam, dialogTurnsParam, dialogWasParam, dialogNowParam]);
+  // C остаётся единым визуальным экраном, а подтверждённые факты прежнего М не теряются:
+  // при включённом флаге они становятся подписью первой плоской строки выгоды.
+  // Общая строка прогресса М сюда не попадает: она не относится к flashcards/language_add/другим контекстам C.
+  const mFactCaption = useMemo(
+    () => paywallCFactCaption(mFlag, paywallMHeadKindForContext(ctx), lang, mPerson, mFacts),
+    [ctx, lang, mFacts, mFlag, mPerson],
+  );
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
       setControlVisibility(getPaywallControlVisibility());
@@ -129,7 +134,6 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const contextual = headline.copyContext !== 'generic' && !!headline.title;
   // зачем (макет paywall-context-redesign #c1): пилюля «что закончилось» рядом со значком входа. Поле `pill` в контракт вносит Ядро;
   // пока его нет — пилюли нет (ничего не выдумываем).
-  const contextPill = (headline as PaywallContextHeadline & { pill?: string }).pill || undefined;
   useEffect(() => {
     DebugLogger.info('[PAYWALL-OPEN]', `шапка: ctx=${ctx} source=${source} текст=${headline.copyContext} контекстная=${contextual} выгода=${headline.firstBenefit ? 'есть' : 'нет'} lang=${lang}`);
   }, [contextual, ctx, headline.copyContext, headline.firstBenefit, lang, source]);
@@ -283,37 +287,21 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
           {/* зачем (решение владельца 11.10, вариант 1 «Шторка»): окно выезжает поверх того экрана, где человек был, — за ним затемнённый
               прежний экран, тап по затемнению закрывает (кроме времени оплаты). */}
           <PaywallScrim onPress={closeWindow} />
-          {showM ? (
-            <PaywallMSheet
-              g={g} lang={lang} maxHeight={windowHeight - insets.top - 8} windowHeight={windowHeight} swipeEnabled={swipeEnabled} onSwipeClose={onSwipeClose}
-              onLater={() => p.handleClose('close', 'x')} laterDisabled={checkoutInFlight} bottomInset={insets.bottom}
-              person={mPerson} placeKind={paywallMHeadKindForContext(ctx)} facts={mFacts} head={paywallMHeadFor(paywallMHeadKindForContext(ctx), lang, mPerson, mFacts)} chartKind={paywallMChartKindFor(paywallMHeadKindForContext(ctx))}
-              plansReady={plansShown === 'ready'} selected={p.selected} onSelect={selectPlan}
-              yearlyPrice={p.yearlyPrice || null} monthlyPrice={p.monthlyPrice || null} yearlyPerMonth={p.yearlyPerMonth || null} savingsPct={p.savingsPct ?? null}
-              yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
-              purchasing={p.purchasing} ctaBusy={ctaBusy} restoring={p.restoring} onPurchase={() => { void p.handlePurchase(); }} onRestore={() => { void p.handleRestore(); }}
-              promoVisible={controlVisibility.promoVisible}
-              onPromo={() => { if (ctaBusy) return; openPromoCodeFromPaywall(router, { context: ctx, source }); }}
-              tapNotice={p.tapNotice ? pick(lang, COPY.tryInMinute) : null}
-            />
-          ) : (
-          <PaywallSwipeSheet testID="paywall-sheet" style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: windowHeight - insets.top - 8 }]}
+          <PaywallSwipeSheet testID="paywall-sheet" style={[S.sheet, { backgroundColor: g.bg, maxHeight: windowHeight - insets.top - 8 }]}
             enabled={swipeEnabled} travel={windowHeight} onSwipeClose={onSwipeClose}
             header={<PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeVisible={controlVisibility.closeVisible} closeDisabled={checkoutInFlight}
               onClose={() => { console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet close_button`); p.handleClose('close', 'x'); }}
               contextTitle={contextual ? headline.title : undefined}
-              contextSubtitle={contextual ? headline.subtitle : undefined}
-              contextIcon={contextual ? <PaywallContextIcon ctx={ctx} size={26} color={g.accentText} /> : undefined}
-              contextPill={contextual ? contextPill : undefined} />}
+              contextSubtitle={contextual ? headline.subtitle : undefined} />}
           >
             <PaywallPlusScroll>
               {/* зачем: выгода этого входа стоит над тарифами (`.ben.glass` макета). */}
               <PaywallPlusDetails lang={lang} g={g}
-                leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined} />
+                leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined}
+                leadCaption={contextual ? headline.subtitle : undefined}
+                factCaption={mFactCaption} />
               {/* зачем (paywall-gaps-states «Лента пробного периода»): порядок образца — выгода, лента, тарифы */}
-              {showTimeline && yearlyTrialDays
-                ? <PaywallPlusTrialTimeline lang={lang} g={g} trialDays={yearlyTrialDays} yearlyPrice={yearlyPromo?.promoPriceString || p.yearlyPrice} />
-                : null}
+              {/* C keeps trial truth compact: each plan shows its own trial; CTA fine shows charge/renewal. */}
               {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
                   «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
               {plansShown === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
@@ -346,7 +334,6 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 openPromoCodeFromPaywall(router, { context: ctx, source });
               }} />
           </PaywallSwipeSheet>
-          )}
         </>
       )}
     </View>

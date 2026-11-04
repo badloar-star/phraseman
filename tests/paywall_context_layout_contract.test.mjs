@@ -1,5 +1,5 @@
 // зачем (владелец 11.10: «все пейволы должны быть контекстными всегда»; журнал 10–11): окно Plus показывает контекст места входа
-// (заголовок, подзаголовок, подсвеченная первая выгода со значком контекста), а на месте цен без загрузки — «Цены сейчас недоступны» + «Повторить»,
+// (заголовок, подзаголовок и первая плоская строка выгоды), а на месте цен без загрузки — тихая честная строка,
 // а не пустые плашки. Сторож смотрит на разметку и тексты (9 языков), чтобы это не откатилось.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -15,10 +15,13 @@ test('plus window header and benefits are contextual', () => {
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /contextTitle=\{contextual \? headline\.title : undefined\}/);
   assert.match(screen, /leadBenefit=\{contextual && headline\.firstBenefit/);
-  assert.match(screen, /<PaywallContextIcon ctx=\{ctx\}/);
+  assert.match(screen, /factCaption=\{mFactCaption\}/);
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  assert.match(plus, /testID="paywall-lead-benefit"/);
-  assert.match(plus, /testID="paywall-context-icon"/);
+  assert.match(plus, /<PaywallCBenefits lang=\{lang\} g=\{g\} leadBenefit=\{leadBenefit\} leadCaption=\{leadCaption\} factCaption=\{factCaption\} \/>/);
+  const benefits = read('components', 'paywall', 'PaywallCBenefits.tsx');
+  assert.match(benefits, /testID="paywall-c-benefits"/);
+  assert.match(benefits, /index === 0 && leadBenefit \? leadBenefit/);
+  assert.match(benefits, /factCaption \|\| leadCaption \|\| ''/);
 });
 
 test('plus window is a sheet over the previous screen with plans side by side (владелец 11.10, вариант 1 «Шторка»)', () => {
@@ -31,12 +34,12 @@ test('plus window is a sheet over the previous screen with plans side by side (�
   assert.match(nav, /PAYWALL_SHEET_STACK_OPTIONS[\s\S]{0,80}presentation: 'transparentModal'/);
   assert.match(read('app', '_layout.tsx'), /name="premium_modal" options=\{PAYWALL_SHEET_STACK_OPTIONS\}/);
   assert.match(read('components', 'paywall', 'paywallShared.tsx'), /presentation: 'transparentModal'/);
-  // тест устарел структурно после 1359f5244 (тарифы переехали в PaywallPlanRows, вариант A «Строки, цена справа»), поведение не менялось:
-  // тарифы идут строками одного блока, выбранный тариф выделен тенью-свечением, а не кольцом/рамкой контейнера.
+  // Вариант C: две плоские плитки рядом; выбранный тариф отмечен тонкой рамкой текста темы, без свечения/3D.
   const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
-  assert.match(rows, /row: \{ minHeight: PLAN_ROW_MIN_HEIGHT/);
+  assert.match(rows, /list: \{ flexDirection: 'row', gap: PLAN_ROW_GAP/);
+  assert.match(rows, /row: \{ flex: 1, minWidth: 0, minHeight: 124/);
   assert.match(rows, /testID="paywall-plan-yearly"/);
-  assert.match(rows, /on \? \{ boxShadow: \[\{ offsetX: 0, offsetY: 12/);
+  assert.match(rows, /borderColor: on \? g\.text : 'transparent'/);
 });
 
 // зачем (владелец 11.10: «цены должны показываться все равно, везде»; приказ «пейволы все сделать»): блока «Цены не загрузились» с кнопкой «Ещё раз» больше нет.
@@ -58,17 +61,16 @@ test('sheet surfaces are solid so they stay visible on the light sheet (Свер
   assert.match(plus, /backgroundColor: paywallPlateBg\(g\)/);
 });
 
-test('sheet and its tiles differ in every theme: graphite dark had opaqueSheet == opaqueControl (Сверка 11.10)', () => {
+test('C uses the plain active-theme background while plan tiles keep a distinct solid surface', () => {
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  // зачем (координатор 13.10, paywall-gap-001): в тёмном лист и плашки — нейтраль «Тени» (paywall_surfaces.ts), светлое прежнее; PaywallPlus реэкспортирует paywallSheetBg
+  // Plan/radio helpers retain their solid surface roles; the selected C sheet itself is the plain active theme background.
   const surfaces = read('components', 'paywall', 'paywall_surfaces.ts');
-  // зачем (владелец 13.10, №35): лист пейвола — opaqueSheet текущей темы в обоих оформлениях (нейтральная тёмная шторка отменена)
   assert.match(surfaces, /export function paywallSheetBg\(g: GlassTokens\): string \{ return g\.opaqueSheet; \}/);
   assert.match(surfaces, /export function paywallPlateBg\(g: GlassTokens\): string \{ return g\.isLight \? g\.opaqueControl : shadowSheetPlateTokens\(g\)\.plateFillFrom; \}/);
   assert.match(plus, /export \{ paywallSheetBg, paywallPlateBg \};/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
-  assert.match(screen, /backgroundColor: paywallSheetBg\(g\)/);
-  assert.ok(!/backgroundColor: g\.opaqueSheet/.test(screen), 'шторка не на opaqueSheet (в графите он равен плиткам)');
+  assert.match(screen, /backgroundColor: g\.bg/);
+  assert.ok(!/backgroundColor: paywallSheetBg\(g\)/.test(screen), 'вариант C не возвращается к старой подложке шторки');
 });
 
 test('plan tiles are never empty: shimmer skeleton, or the quiet price note that stays through silent retries (Сверка 11.10)', () => {
@@ -76,7 +78,8 @@ test('plan tiles are never empty: shimmer skeleton, or the quiet price note that
   // тест устарел структурно после 1359f5244: скелет тарифов живёт в PaywallPlanRows.tsx, PaywallPlus лишь выбирает его
   const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
   assert.match(rows, /import SkeletonBlock from '\.\.\/SkeletonShimmer';/);
-  assert.match(rows, /<SkeletonBlock width="100%" height=\{PLAN_ROW_MIN_HEIGHT\}/);
+  assert.match(rows, /skeletonCell: \{ flex: 1, minWidth: 0 \}/);
+  assert.equal((rows.match(/<SkeletonBlock width="100%" height=\{124\}/g) ?? []).length, 2);
   assert.match(plus, /<PaywallPlanRowsSkeleton g=\{g\} \/>/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /const plansShown: PaywallPlusState = state === 'loading' && sawPricesError \? 'error' : state;/);

@@ -22,6 +22,8 @@ import { spireWeekTopViewBox } from './spire_tower_bounds';
 import { SPIRE_FLOOR_COUNT } from './spire_tower_model';
 import { spireText } from './spire_strings';
 import { spireCoinsCount, spireStepsCount } from './spire_plurals';
+import { getSpireEnergyBonus } from '../../app/spire_energy_bonus_store';
+import { spireWeekEnergyLine } from './spire_week_energy';
 import { spireGameText } from './spire_game_strings';
 import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
 import { hapticSuccess } from '../../hooks/use-haptics';
@@ -30,7 +32,7 @@ type Props = Readonly<{ lang: Lang; result: SpireWeekResultView; myCoinRank: num
 
 const noop = (): void => undefined;
 
-export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView): Readonly<{ title: string; sub: string }> {
+export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView, energyBonus: number = getSpireEnergyBonus()): Readonly<{ title: string; sub: string }> {
   const stone = spireTierName(r.newTier, lang);
   const title = r.promoted ? spireGameText(lang, 'weekUp', { stone }) // guard-ok: показ решения сервера
     : r.demoted ? spireGameText(lang, 'weekDown', { stone }) : spireGameText(lang, 'weekStay', { stone }); // guard-ok: показ решения сервера
@@ -42,6 +44,8 @@ export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView): Readon
   const coins = [r.placeCoins, r.promotionCoins].filter((c) => c > 0);
   if (coins.length > 0) parts.push(`${coins.map((c) => `+${c}`).join(' · ')} ${spireGameText(lang, 'coins')}`);
   else parts.push(spireGameText(lang, 'newWeekFromOne'));
+  const energy = spireWeekEnergyLine(lang, r, energyBonus); // зачем (энергия от Пика): одна строка рядом со строкой монет
+  if (energy) parts.push(energy);
   return { title, sub: parts.join(' · ') };
 }
 

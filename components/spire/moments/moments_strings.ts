@@ -38,6 +38,8 @@ const S = {
   promoBonus: ['+{n} {nw} за повышение', '+{n} {nw} за підвищення', '+{n} {nw} for moving up', '+{n} {nw} por subir', '+{n} {nw} por subir', '+{n} {nw} vì thăng hạng', '+{n} {nw} karena naik', 'Yükseldiğin için +{n} {nw}', '+{n} {nw} za awans'],
   // зачем (ночной выпуск 05.11, «энергия от Пика»): каждое повышение даёт +1 к запасу энергии (сервер пишет в той же транзакции, что и награду) — строка в существующих окнах повышения; 9 языков — Переводчик (peakEnergyPlus, docs/work/peak_energy_strings_9lang.md, 1336993b7).
   promoEnergy: ['+1 к запасу энергии', '+1 до запасу енергії', '+1 to energy', '+1 a la energía', '+1 na energia', '+1 năng lượng', '+1 energi', 'Enerjiye +1', '+1 do energii'],
+  // зачем (энергия от Пика, строки Переводчика peakEnergyMinus): понижение снимает −1 к запасу энергии — одна строка в «Итоге недели», только если было что снимать
+  demoEnergy: ['−1 к запасу энергии', '−1 до запасу енергії', '−1 to energy', '−1 a la energía', '−1 na energia', '−1 năng lượng', '−1 energi', 'Enerjiden −1', '−1 do energii'],
   // зачем (m01 вариант B «Короткая», лист приёмки CHECKLIST_m01): надпись, заголовок, строка итога и текст «Поделиться»; нейтральные по роду формулировки
   promoShortOverline: ['Топ-5 · {league}', 'Топ-5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', '5 besar · {league}', 'İlk 5 · {league}', 'Top 5 · {league}'],
   promoShortTitle: ['Поднимаешься', 'Піднімаєшся', 'You’re moving up', 'Subes de liga', 'Você sobe de liga', 'Bạn thăng hạng', 'Kamu naik liga', 'Yükseliyorsun', 'Awansujesz'],

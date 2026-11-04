@@ -97,6 +97,21 @@ function firstFrameState(target: LearningLanguageTarget): TodayTasksDayState {
   return createTodayTasksDay(owner, dayKey, availableTodayTaskKinds(target, isSpireTabEnabled()));
 }
 
+// зачем (координатор 04.11, «шторм» при навигации: refresh(foreground) 42 за 5 мин): каждый возврат AppState 'active' и каждая копия хука (при нескольких (tabs) в стеке)
+// запускали полное обновление набора дня. Всё локально, но это лишняя работа JS-потока. Возврат раньше FOREGROUND_REFRESH_MIN_MS после прошлого запуска для той же пары
+// (язык, флаг Шпиля) пропускается; вход, полночь и смена пары обновляют всегда. Метка модульная — общая для всех копий хука.
+export const FOREGROUND_REFRESH_MIN_MS = 20_000;
+let lastRefreshStartedAtMs = 0;
+let lastRefreshPairKey = '';
+
+/** Чистое решение: пропустить ли возврат в приложение (проверяется тестом). */
+export function shouldSkipForegroundRefresh(input: Readonly<{ reason: string; pairKey: string; lastPairKey: string; lastStartedAtMs: number; nowMs: number }>): boolean {
+  if (input.reason !== 'foreground') return false;
+  if (input.pairKey !== input.lastPairKey) return false;
+  const age = input.nowMs - input.lastStartedAtMs;
+  return age >= 0 && age < FOREGROUND_REFRESH_MIN_MS;
+}
+
 function msUntilNextLocalMidnight(nowMs: number): number {
   const next = new Date(nowMs);
   next.setHours(24, 0, 1, 0);
@@ -125,7 +140,15 @@ export function useTodayTasks(lang: Lang, studyTarget: LearningLanguageTarget): 
   useEffect(() => {
     let alive = true;
     let midnightTimer: ReturnType<typeof setTimeout> | null = null;
+    const pairKey = `${studyTarget}|${spireEnabled ? 1 : 0}`;
     const refresh = (reason: string) => {
+      const nowMs = Date.now();
+      if (shouldSkipForegroundRefresh({ reason, pairKey, lastPairKey: lastRefreshPairKey, lastStartedAtMs: lastRefreshStartedAtMs, nowMs })) {
+        console.log(`[NAV-STORM] today:refresh_skipped ${JSON.stringify({ reason, pairKey, sinceLastMs: nowMs - lastRefreshStartedAtMs, minMs: FOREGROUND_REFRESH_MIN_MS })}`); // guard-ok: ранний выход с причиной
+        return;
+      }
+      lastRefreshStartedAtMs = nowMs;
+      lastRefreshPairKey = pairKey;
       // Флаг Шпиля сначала догружается из кэша: иначе набор дня, созданный до
       // гидратации, никогда не включил бы Шпиль.
       void primeSpireTabFlag()

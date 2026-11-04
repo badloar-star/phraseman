@@ -10,7 +10,7 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, {
-  Easing, interpolate, runOnJS, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming, type SharedValue,
+  Easing, interpolate, runOnJS, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming,
 } from 'react-native-reanimated';
 import type { Lang } from '../../constants/i18n';
 import { hapticMediumImpact, hapticSuccess } from '../../hooks/use-haptics';
@@ -55,15 +55,23 @@ export type SectionOpeningCeremonyProps = Readonly<{
   onSkip: () => void;
   /** Тест / скриншот Сверки: показать окно уже в этой точке таймлайна (0…1) без анимации. */
   freezeAt?: number;
+  /** Dev-превью / Сверка: показать «уменьшенное движение» (финальный кадр сразу), не трогая настройку системы. */
+  forceReduced?: boolean;
 }>;
 
-function useRange(progress: SharedValue<number>, from: number, to: number) {
-  return useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [from, to], [0, 1], 'clamp') }));
+function BubbleDots({ color }: Readonly<{ color: string }>) {
+  return (
+    <>
+      <View style={[styles.dot, { backgroundColor: color }]} />
+      <View style={[styles.dot, { backgroundColor: color }]} />
+      <View style={[styles.dot, { backgroundColor: color }]} />
+    </>
+  );
 }
 
-export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id, lang, onCta, onSkip, freezeAt }: SectionOpeningCeremonyProps) {
+export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id, lang, onCta, onSkip, freezeAt, forceReduced }: SectionOpeningCeremonyProps) {
   const p = useSpirePalette();
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotion() || forceReduced === true;
   const copy = sectionOpeningCopy(lang, id);
   const progress = useSharedValue(reduced ? 1 : freezeAt ?? 0);
   const [ctaReady, setCtaReady] = useState(reduced || (freezeAt ?? 0) >= COPY_FULL);
@@ -103,15 +111,61 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
     transform: [{ translateY: interpolate(progress.value, [COPY_FROM, COPY_FULL], [18, 0], 'clamp') }],
   }));
   const barStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: progress.value }] }));
-  const motifA = useRange(progress, 0.2, 0.5);
-  const motifB = useRange(progress, 0.32, 0.62);
-  const motifC = useRange(progress, 0.44, 0.74);
+  // зачем (макет openings.js): апертура «Видео» раскрывается по горизонтали (scaleX .05→1 со сдвигом ±15), пузыри «Диалогов» подъезжают с двух сторон
+  // (±65), ступени «Пика» растут снизу по очереди, веер «Карточек» раскладывается на −18°/0°/18° от нижнего центра — всё на UI-потоке
+  const apertureA = useAnimatedStyle(() => ({
+    opacity: interpolate(progress.value, [0.2, 0.5], [0, 1], 'clamp'),
+    transform: [{ translateX: interpolate(progress.value, [0.2, 0.62], [-15, 0], 'clamp') }, { scaleX: interpolate(progress.value, [0.2, 0.62], [0.05, 1], 'clamp') }],
+  }));
+  const apertureB = useAnimatedStyle(() => ({
+    opacity: interpolate(progress.value, [0.2, 0.62], [0, 0.25], 'clamp'),
+    transform: [{ translateX: interpolate(progress.value, [0.2, 0.62], [15, 0], 'clamp') }, { scaleX: interpolate(progress.value, [0.2, 0.62], [0.05, 1], 'clamp') }],
+  }));
+  const bubbleOne = useAnimatedStyle(() => ({
+    opacity: interpolate(progress.value, [0.24, 0.55], [0, 1], 'clamp'),
+    transform: [{ translateX: interpolate(progress.value, [0.24, 0.55], [-65, 0], 'clamp') }, { scale: interpolate(progress.value, [0.24, 0.55], [0.94, 1], 'clamp') }],
+  }));
+  const bubbleTwo = useAnimatedStyle(() => ({
+    opacity: interpolate(progress.value, [0.34, 0.65], [0, 1], 'clamp'),
+    transform: [{ translateX: interpolate(progress.value, [0.34, 0.65], [65, 0], 'clamp') }, { scale: interpolate(progress.value, [0.34, 0.65], [0.94, 1], 'clamp') }],
+  }));
+  const step1 = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [0.28, 0.5], [0, 0.85], 'clamp'), transform: [{ scaleY: interpolate(progress.value, [0.28, 0.5], [0.05, 1], 'clamp') }] }));
+  const step2 = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [0.4, 0.62], [0, 0.85], 'clamp'), transform: [{ scaleY: interpolate(progress.value, [0.4, 0.62], [0.05, 1], 'clamp') }] }));
+  const step3 = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [0.52, 0.74], [0, 0.85], 'clamp'), transform: [{ scaleY: interpolate(progress.value, [0.52, 0.74], [0.05, 1], 'clamp') }] }));
+  const fan1 = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [0.3, 0.6], [0, 1], 'clamp'), transform: [{ translateY: interpolate(progress.value, [0.3, 0.6], [25, 0], 'clamp') }, { rotate: `${interpolate(progress.value, [0.3, 0.6], [0, -18], 'clamp')}deg` }] }));
+  const fan2 = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [0.36, 0.66], [0, 1], 'clamp'), transform: [{ translateY: interpolate(progress.value, [0.36, 0.66], [25, 0], 'clamp') }] }));
+  const fan3 = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [0.42, 0.72], [0, 1], 'clamp'), transform: [{ translateY: interpolate(progress.value, [0.42, 0.72], [25, 0], 'clamp') }, { rotate: `${interpolate(progress.value, [0.42, 0.72], [0, 18], 'clamp')}deg` }] }));
 
   const art = ART[id];
+  // зачем (макет openings.css): размеры и места мотивов — доли сцены, как в макете; без обводок — тон карточки (правило владельца)
   const motif = (
     <View style={styles.motif} pointerEvents="none">
-      {id === 'peak' ? [motifA, motifB, motifC].map((style, i) => <Animated.View key={i} /* guard-ok: три статичных элемента, порядок постоянный */ style={[styles.step, { height: 40 + i * 28, backgroundColor: p.accentGraphic }, style]} />) : null}
-      {id === 'cards' ? [motifA, motifB, motifC].map((style, i) => <Animated.View key={i} /* guard-ok: три статичных элемента, порядок постоянный */ style={[styles.fanCard, { backgroundColor: p.accentGraphic, transform: [{ rotate: `${(i - 1) * 14}deg` }] }, style]} />) : null}
+      {id === 'video' ? (
+        <View style={styles.aperture}>
+          <Animated.View style={[styles.apertureLayer, { backgroundColor: p.cardRaised, transformOrigin: 'left' }, apertureA]} />
+          <Animated.View style={[styles.apertureLayerBack, { backgroundColor: p.accentGraphic, transformOrigin: 'right' }, apertureB]} />
+        </View>
+      ) : null}
+      {id === 'dialogs' ? (
+        <>
+          <Animated.View style={[styles.bubble, styles.bubbleOne, { backgroundColor: p.cardRaised }, bubbleOne]}><BubbleDots color={p.accentGraphic} /></Animated.View>
+          <Animated.View style={[styles.bubble, styles.bubbleTwo, { backgroundColor: p.cardRaised }, bubbleTwo]}><BubbleDots color={p.accentGraphic} /></Animated.View>
+        </>
+      ) : null}
+      {id === 'peak' ? (
+        <View style={styles.steps}>
+          <Animated.View style={[styles.stepBar, { height: '30%', backgroundColor: p.accentGraphic, transformOrigin: 'bottom' }, step1]} />
+          <Animated.View style={[styles.stepBar, { height: '65%', backgroundColor: p.accentGraphic, transformOrigin: 'bottom' }, step2]} />
+          <Animated.View style={[styles.stepBar, { height: '100%', backgroundColor: p.accentGraphic, transformOrigin: 'bottom' }, step3]} />
+        </View>
+      ) : null}
+      {id === 'cards' ? (
+        <View style={styles.fanBox}>
+          <Animated.View style={[styles.fanCard, { backgroundColor: p.cardRaised, transformOrigin: 'bottom' }, fan1]} />
+          <Animated.View style={[styles.fanCard, { backgroundColor: p.cardRaised, transformOrigin: 'bottom' }, fan2]} />
+          <Animated.View style={[styles.fanCard, { backgroundColor: p.cardRaised, transformOrigin: 'bottom' }, fan3]} />
+        </View>
+      ) : null}
     </View>
   );
 
@@ -126,9 +180,9 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
         <View style={styles.stage}>
           <Animated.View style={[styles.halo, { backgroundColor: p.accentGraphic }, haloStyle]} pointerEvents="none" />
           {motif}
-          {art ? <Animated.View style={[styles.art, artStyle]}><Image source={art} style={styles.artImage} contentFit="contain" accessible={false} /></Animated.View> : null}
+          {art ? <Animated.View style={[styles.art, artStyle]}><Image source={art} style={styles.artImage} contentFit="contain" cachePolicy="none" accessible={false} /></Animated.View> : null}
           <Animated.View style={[styles.hero, heroStyle]}>
-            <Image source={HERO[id]} style={styles.heroImage} contentFit="contain" accessible={false} />
+            <Image source={HERO[id]} style={styles.heroImage} contentFit="contain" cachePolicy="none" accessible={false} />
           </Animated.View>
         </View>
         <Animated.View style={[styles.copy, copyStyle]}>
@@ -154,9 +208,18 @@ const styles = StyleSheet.create({
   heroImage: { width: '100%', height: '100%' },
   art: { position: 'absolute', right: 0, bottom: 8, width: '42%', aspectRatio: 1 },
   artImage: { width: '100%', height: '100%' },
-  motif: { ...StyleSheet.absoluteFillObject, alignItems: 'flex-start', justifyContent: 'flex-end', flexDirection: 'row', gap: 10, opacity: 0.55 },
-  step: { width: 22, borderRadius: 6 },
-  fanCard: { position: 'absolute', left: '12%', bottom: 12, width: 54, height: 78, borderRadius: 8 },
+  motif: { ...StyleSheet.absoluteFillObject },
+  aperture: { position: 'absolute', right: '2%', top: '22%', width: '60%', height: '48%' },
+  apertureLayer: { ...StyleSheet.absoluteFillObject, borderRadius: 24 },
+  apertureLayerBack: { position: 'absolute', top: '10%', bottom: '-10%', left: '4%', right: '-4%', borderRadius: 24 },
+  bubble: { position: 'absolute', height: '17%', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 9 },
+  bubbleOne: { left: '7%', top: '20%', width: '37%', borderRadius: 24, borderBottomLeftRadius: 4 },
+  bubbleTwo: { left: '19%', top: '56%', width: '34%', borderRadius: 24, borderBottomRightRadius: 4 },
+  dot: { width: 7, height: 7, borderRadius: 4 },
+  steps: { position: 'absolute', bottom: 0, left: '8%', right: '8%', height: '40%', flexDirection: 'row', alignItems: 'flex-end', gap: 9 },
+  stepBar: { flex: 1, borderTopLeftRadius: 14, borderTopRightRadius: 14 },
+  fanBox: { position: 'absolute', right: '4%', top: '27%', width: '40%', height: '53%' },
+  fanCard: { ...StyleSheet.absoluteFillObject, borderRadius: 20 },
   copy: { gap: 10, paddingTop: 16 },
   title: { fontSize: 28, lineHeight: 34, fontWeight: '800' },
   body: { fontSize: 16, lineHeight: 23 },

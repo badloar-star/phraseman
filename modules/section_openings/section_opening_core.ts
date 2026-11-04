@@ -108,3 +108,10 @@ export function markShown(marks: SectionOpeningMarks, id: SectionOpeningId): Sec
   const add: SectionOpeningId[] = id === 'plus' ? [...SECTION_OPENING_IDS] : [id];
   return { seeded: true, seen: ordered([...marks.seen, ...add]) };
 }
+
+/** DEV/Сверка: phase 1…4 → точка таймлайна (якорь фазы); нет или неверно → undefined (живой проигрыш с начала). */
+export function sectionOpeningFreezeAt(phase: string | undefined): number | undefined {
+  const n = Number(phase);
+  if (!Number.isInteger(n) || n < 1 || n > SECTION_OPENING_PHASES.length) return undefined;
+  return SECTION_OPENING_PHASE_ANCHORS[SECTION_OPENING_PHASES[n - 1]!];
+}

@@ -25,7 +25,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import {
   EMPTY_MARKS, SECTION_OPENING_IDS, SECTION_OPENING_ROUTES, SECTION_OPENING_STATE_COUNT, SURFACE_TO_OPENING,
-  decideSectionOpenings, deservedOpenings, markShown, parseMarks, serializeMarks, type SectionOpeningFacts,
+  decideSectionOpenings, deservedOpenings, markShown, parseMarks, sectionOpeningFreezeAt, serializeMarks, type SectionOpeningFacts,
 } from '../modules/section_openings/section_opening_core';
 import {
   __resetSectionOpeningForTests, dismissSectionOpening, noteSectionOpeningShown, peekSectionOpening, reconcileSectionOpenings, sectionOpeningKey,
@@ -212,5 +212,33 @@ describe('подключение и запреты', () => {
     expect(src).toContain('useAnimatedStyle');
     expect(src.match(/borderWidth|borderColor|numberOfLines|adjustsFontSizeToFit|requestAnimationFrame|setInterval/gu) ?? []).toEqual([]);
     expect(src).toContain("pointerEvents={ctaReady ? 'auto' : 'none'}");
+  });
+});
+
+describe('dev-вход для Сверки и память', () => {
+  it('phase 1…4 = якоря макета 15 / 43 / 60 / 100 %; без phase или с мусором — живой проигрыш', () => {
+    expect([1, 2, 3, 4].map((n) => sectionOpeningFreezeAt(String(n)))).toEqual([0.15, 0.43, 0.6, 1]);
+    for (const bad of [undefined, '', '0', '5', 'x', '1.5']) expect(sectionOpeningFreezeAt(bad)).toBeUndefined();
+  });
+  it('dev_moments_preview: state=openings&section&phase&reduce; ничего не пишет и не трогает хост, хранилище и арбитр', () => {
+    const route = read('app/dev_moments_preview.tsx');
+    expect(route).toContain("'announcements', 'openings'] as const;");
+    expect(route).toContain("{state === 'openings' ? <SectionOpeningStudio key={key} lang={lang} section={params.section} phase={params.phase} reduce={params.reduce} /> : null}");
+    expect(route).toContain('if (!ENABLE_DEV_TOOLS || IS_STORE_RELEASE) return <Redirect href="/" />;');
+    const studio = read('components/section_openings/SectionOpeningStudio.tsx');
+    expect(studio).not.toMatch(/section_opening_store|use_section_opening_host|OverlayArbiter|AsyncStorage|noteSectionOpeningShown/u);
+    expect(studio).toContain('forceReduced={forceReduced}');
+  });
+  it('память: окно монтируется только по показу (слот без окна = null), картинки не копятся в кэше, Reduce Motion можно форсировать', () => {
+    const slots = read('components/home/home_moment_slots.tsx');
+    expect(slots).toContain('if (!sectionOpening.current) return null;');
+    expect(slots).toContain("lazy(() => import('../section_openings/SectionOpeningCeremony')");
+    const ceremony = read('components/section_openings/SectionOpeningCeremony.tsx');
+    expect(ceremony.match(/cachePolicy="none"/gu)?.length).toBe(2);
+    expect(ceremony).toContain('useReducedMotion() || forceReduced === true');
+  });
+  it('мотивы макета: апертура «Видео», пузыри «Диалогов», ступени «Пика», веер «Карточек»', () => {
+    const ceremony = read('components/section_openings/SectionOpeningCeremony.tsx');
+    for (const marker of ["id === 'video'", "id === 'dialogs'", "id === 'peak'", "id === 'cards'", 'apertureA', 'bubbleTwo', 'step3', 'fan3']) expect(ceremony).toContain(marker);
   });
 });

@@ -283,7 +283,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   spire_streak_heart: false,
   ghost_friend_ab: false, // зачем: проба «призрака друга» 29.10 — ВЫКЛ, пока владелец не включит в «Пульте»; корзина — spireGhostBucket (components/spire/spire_ghost_flag.ts)
   section_openings_enabled: false, // зачем: окна «Открытие разделов» 04.11 — ВЫКЛ до слова владельца (Пульт)
-  rank_gates_enabled: true, // зачем: ранговые гейты Главной (новые пользователи); kill-switch в Пульте
+  rank_gates_enabled: false, // зачем (координатор 05.11): в ПЕРВОЙ версии 2.1.0 ранговые гейты Главной ВЫКЛ; включает Пульт в момент «сборка в сторе». Бонус +500 от флага не зависит
   referral_ladder_enabled: false, // зачем (владелец 29.10): «Лесенка приглашений» вместо рулетки Plus — ВЫКЛ, пока сервер/Пульт не включат; выключен = экран /referrals прежний
   spire_gold: true, // зачем: владелец 26.10 — ВКЛ в 2.0.3 (146); сервер выложен (36938fd46, spireReportSteps с goldRule)
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
@@ -504,7 +504,16 @@ export function getRemoteNumber(key: RemoteNumberKey): number {
 }
 
 /** Resolve a boolean flag (override → default). */
+// зачем (координатор 05.11, E2E Сверки): ранговые гейты в первой версии выключены по умолчанию, а проверять их на эмуляторе нужно без записи в боевой «Пульт».
+// Только dev-сборка и не стор-релиз: EXPO_PUBLIC_DEV_FORCE_FLAGS="rank_gates_enabled,section_openings_enabled" принудительно включает перечисленные флаги. В релизе множество пустое.
+const DEV_FORCED_ON: ReadonlySet<string> = (() => {
+  const devBuild = typeof __DEV__ !== 'undefined' && __DEV__ === true && process.env.EXPO_PUBLIC_STORE_RELEASE !== '1';
+  const raw: string = devBuild ? String(process.env.EXPO_PUBLIC_DEV_FORCE_FLAGS ?? '') : '';
+  return new Set<string>(raw.split(',').map((item: string) => item.trim()).filter((item: string) => item.length > 0));
+})();
+
 export function getRemoteBool(key: RemoteBoolKey): boolean {
+  if (DEV_FORCED_ON.size > 0 && DEV_FORCED_ON.has(key)) return true;
   const override = _boolOverrides[key];
   if (typeof override === 'boolean') return override;
   return DEFAULT_FLAGS[key];

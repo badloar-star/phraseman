@@ -151,7 +151,6 @@ import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountG
 import { clearSessionAttemptsState } from "./session_attempts/session_attempt_recovery";
 import { creditLearningV2SessionRunesToUnifiedWallet } from "./learning_v2_unified_rune_bridge";
 import { defaultFirstLessonBonusDeps, maybeGrantFirstLessonBonus } from "./first_lesson_bonus";
-import { getRemoteBool } from "./remote_flags";
 import { captureCurrentAccountObjectiveAttempt } from "./mistake_practice_capture";
 import { markNextNavigationAsReplace, safeRouterBack } from "./navigation_back";
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from "./pronunciation_scoring_client";
@@ -2485,7 +2484,7 @@ function LearningV2DirectSessionPlayerV1() {
             });
             if (commit.status === "applied") {
               // зачем (владелец 30.10): +500 монет новичку за ПЕРВОЕ завершённое занятие — один раз, только «новый», за флагом rank_gates_enabled (first_lesson_bonus.ts)
-              void maybeGrantFirstLessonBonus(defaultFirstLessonBonusDeps(() => getRemoteBool("rank_gates_enabled") !== false)).catch((error: unknown) => {
+              void maybeGrantFirstLessonBonus(defaultFirstLessonBonusDeps(() => true /* зачем (координатор 05.11): бонус +500 от ранговых гейтов НЕ зависит — гейты в первой версии выключены, бонус включён; «новый» решает когорта, один раз на владельца */)).catch((error: unknown) => {
                 console.warn("[RANK-GATE] first_lesson_bonus:hook_failed", error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
               });
               void creditLearningV2SessionRunesToUnifiedWallet({

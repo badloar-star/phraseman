@@ -28,7 +28,6 @@ import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { useLang } from '../components/LangContext';
 import { useFirstLessonBonusNote } from '../hooks/use_first_lesson_bonus_note';
 import { defaultFirstLessonBonusDeps, maybeGrantFirstLessonBonus } from './first_lesson_bonus';
-import { getRemoteBool } from './remote_flags';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
@@ -670,7 +669,7 @@ export default function LessonComplete() {
     practiceRunesSettleOnceRef.current = true;
     // зачем (владелец 30.10; координатор: новичок проходит КЛАССИЧЕСКИЙ курс, V2 заморожен): +500 монет за ПЕРВОЕ завершённое занятие — основной путь здесь;
     // один раз на владельца (флаг на устройстве + ключ операции), только «новый», за флагом rank_gates_enabled (first_lesson_bonus.ts)
-    void maybeGrantFirstLessonBonus(defaultFirstLessonBonusDeps(() => getRemoteBool('rank_gates_enabled') !== false)).catch((error: unknown) => {
+    void maybeGrantFirstLessonBonus(defaultFirstLessonBonusDeps(() => true /* зачем (координатор 05.11): бонус +500 от ранговых гейтов НЕ зависит — гейты в первой версии выключены, бонус включён; «новый» решает когорта, один раз на владельца */)).catch((error: unknown) => {
       console.warn('[RANK-GATE] first_lesson_bonus:classic_hook_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
     });
     // зачем (аудит кнопок R58 #33, 15.10): отказ зачёта монет терялся без следа (void без catch); копилка повторит при следующем запуске

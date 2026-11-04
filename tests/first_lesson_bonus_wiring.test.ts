@@ -8,7 +8,9 @@ const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), '
 describe('подключение бонуса', () => {
   it('классический lesson_complete зовёт бонус рядом с зачётом монет, за флагом', () => {
     const src = read('app/lesson_complete.tsx');
-    expect(src).toContain("maybeGrantFirstLessonBonus(defaultFirstLessonBonusDeps(() => getRemoteBool('rank_gates_enabled') !== false))");
+    // зачем (координатор 05.11): в первой версии ранговые гейты ВЫКЛ по умолчанию, а бонус от них НЕ зависит — флаг гейтов бонус не выключает
+    expect(src).toContain('maybeGrantFirstLessonBonus(defaultFirstLessonBonusDeps(() => true');
+    expect(src).not.toContain('defaultFirstLessonBonusDeps(() => getRemoteBool');
     expect(src.indexOf('practiceRunesSettleOnceRef.current = true;')).toBeLessThan(src.indexOf('maybeGrantFirstLessonBonus('));
   });
   it('V2-плеер тоже зовёт (один раз на владельца — ключ общий)', () => {

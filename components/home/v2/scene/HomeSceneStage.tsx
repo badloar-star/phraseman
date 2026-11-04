@@ -101,10 +101,14 @@ type Props = {
   pending: boolean;
   /** Занятие курса готовится — кнопка приглушена и помечена занятой. */
   busy: boolean;
+  /** Сцена на экране: звёзды мигают только когда активна. */
+  active: boolean;
   onCta: () => void;
   onChip: (kind: HomeSceneChipKind) => void;
   /** Высота зоны часов, если сцена рисуется от верха экрана: фон заходит под часы, раскладка отступает (0 — как раньше). */
   topInset?: number;
+  /** Измеренная высота шапки поверх сцены; резерв под неё = max(52, headerHeight − topInset). */
+  headerHeight?: number;
   /** Особая сцена (`состояние:ключ`); смена ключа — текст входит заново один раз. null — обычный герой. */
   specialKey?: string | null;
 };
@@ -120,7 +124,7 @@ export default function HomeSceneStage(props: Props) {
   return <HomeSceneStageView {...props} onCta={cta} onChip={chip} buildLiveText={live} />;
 }
 
-const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip, topInset = 0, specialKey = null }: Props) {
+const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, active, onCta, onChip, topInset = 0, headerHeight = 0, specialKey = null }: Props) {
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
   const { lang } = useLang();
@@ -136,6 +140,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   // зачем (Сверка 22.10, «Фраза дня» уходила под таб-бар): сцена сжимается ровно настолько, чтобы вся Главная до «Фразы дня» была видна над капсулой (home_scene_fit); остальное не сжимается
   const firstLayoutLoggedRef = useRef(false); // [HOME-SCENE-FIRST]: первая раскладка сцены — одна строка
   const glowLoggedRef = useRef(false);
+  // Header начинается в координате сцены, а Stage уже добавляет topInset как padding. Поэтому резервируем только часть измеренной шапки ниже safe area; 52dp остаётся baseline.
+  const reservedTopSpace = Math.max(TOP_SPACE, headerHeight - topInset);
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
   // зачем (вердикт владельца 29.10, scenePalette; координатор: «палитра и звёзды — один раз на (тема, оформление, экран, размер), замер первого кадра в [SCENE-THEME]»):
   // цвет фона Главной — из единой функции; кэш модуля, поэтому на следующих кадрах/перерисовках расчёта нет. Размер — в px эталонной канвы (dp × PixelRatio).
@@ -207,7 +213,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
     >
       {/* зачем (вердикт владельца 29.10, scenePalette): фон Главной — утверждённая сцена; тёмное «Глубокое небо», светлое «А»; вечер — «Небо + тёплый край» (справа внизу тёплый отсвет оттенка темы, без красного света и углей) */}
       {/* зачем (слово владельца 29.10: «темы за достижения сломаны, там были свои уникальные сцены, не надо было трогать»): у 6 тем за награды фон сцены свой — градиент из premiumThemeVisualSpec и свет края, как на da0a435e3; общего неба и звёзд у них нет */}
-      {isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} /> : <SceneBackdrop palette={scenePal} idPrefix="homeSc" />}
+      {isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} /> : <SceneBackdrop palette={scenePal} idPrefix="homeSc" active={active} />}
       <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={stageH} />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" onLayout={() => { if (!glowLoggedRef.current) { glowLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'glow_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'svg_glow' })); } /* guard-ok: одна строка на монтирование */ }}>
         <Defs>
@@ -223,7 +229,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         {isPremium ? <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" /> : null}
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
-      <View style={s.topSpace} />
+      <View style={[s.topSpace, { height: reservedTopSpace }]} />
       {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота; правило: под текстом герой ≤ 16 % в светлом и ≤ 9 % в тёмном — над текстом он плавно гаснет к 0, home_scene_hero_fade), крупный или «маска съела бы героя» — не выше свободного места */}
       <View style={s.heroSpace} pointerEvents="none" onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setHeroSpaceH((prev) => (prev === h ? prev : h)); }}>
         {art && heroReady ? (fade.masked ? (

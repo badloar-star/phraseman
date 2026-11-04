@@ -45,12 +45,13 @@ export const HomeSceneEnergyView = memo(function HomeSceneEnergyView({ value, ze
   return (
     <View style={s.row} accessible accessibilityLabel={`⚡ ${value}`}>
       <Ionicons name="flash" size={16} color={color} />
-      <Text maxFontSizeMultiplier={1.1} style={[s.value, { color }]}>{value}</Text>
+      <Text style={[s.value, { color }]}>{value}</Text>
     </View>
   );
 });
 
 const s = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 2 },
-  value: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  // Не задаём lineHeight: Android масштабирует кегль для accessibility, а фиксированные 17dp резали ∞ по вертикали.
+  value: { fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

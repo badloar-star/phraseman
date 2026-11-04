@@ -866,6 +866,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (владелец 01.10: «никаких не загрузилось»): первая загрузка Главной упала и показать
     // нечего — вместо плашки «Проверь соединение» тихо повторяем загрузку в фоне (до 5 раз по 20 с).
     const homeSilentRetryRef = useRef(0);
+    const homeSilentRetryDirtyRef = useRef(false);
+    const homeSilentRetryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const clearHomeSilentRetry = useCallback(() => {
+        if (homeSilentRetryTimerRef.current === null) return;
+        clearTimeout(homeSilentRetryTimerRef.current);
+        homeSilentRetryTimerRef.current = null;
+    }, []);
     const [weekDone, setWeekDone] = useState<boolean[]>(() => {
         const w = hh?.weekDone;
         return w && w.length === 7 ? [...w] : new Array(7).fill(false);
@@ -1706,6 +1713,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
         return () => {
             mountedRef.current = false;
+            clearHomeSilentRetry();
             sub.remove();
             if (resumeTimer)
                 clearTimeout(resumeTimer);
@@ -1727,7 +1735,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             if (streakTimerRef.current)
                 clearTimeout(streakTimerRef.current);
         };
-    }, []);
+    }, [clearHomeSilentRetry]);
     // Домашние подсказки: finite-серия карточек вместо старого CTA плана.
     useEffect(() => {
         let cancelled = false;
@@ -1925,6 +1933,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             needsReloadRef.current = true;
             return;
         }
+        if (homeSilentRetryDirtyRef.current) {
+            homeSilentRetryDirtyRef.current = false;
+            if (homeRefreshTimerRef.current) {
+                clearTimeout(homeRefreshTimerRef.current);
+                homeRefreshTimerRef.current = null;
+            }
+        }
+        clearHomeSilentRetry();
         loadingRef.current = true;
         needsReloadRef.current = false;
         const homeHydrationAccount = captureAccountGeneration();
@@ -2301,7 +2317,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 if (homeSilentRetryRef.current < 5) {
                     homeSilentRetryRef.current += 1;
                     console.warn('[HOME] first load failed, silent retry', { attempt: homeSilentRetryRef.current });
-                    setTimeout(() => { if (mountedRef.current) void loadDataRef.current?.(); }, 20_000);
+                    clearHomeSilentRetry();
+                    homeSilentRetryTimerRef.current = setTimeout(() => {
+                        homeSilentRetryTimerRef.current = null;
+                        if (!mountedRef.current) return;
+                        if (!homeRuntimeActiveRef.current) {
+                            homeSilentRetryDirtyRef.current = true;
+                            homeDataDirtyRef.current = true;
+                            return;
+                        }
+                        void loadDataRef.current?.();
+                    }, 20_000);
                 } else {
                     console.warn('[HOME] first load failed, silent retries exhausted', { attempts: homeSilentRetryRef.current });
                 }

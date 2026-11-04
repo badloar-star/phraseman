@@ -14,7 +14,7 @@ import Svg, { Circle, Defs, G, LinearGradient, RadialGradient, Rect, Stop } from
 import { isSkyPalette, SCENE_SKY_TONE_MIX, type ScenePaletteResult } from './scene_palette';
 import SceneStarTwinkle, { SCENE_TWINKLE_EVERY } from './SceneStarTwinkle';
 
-type Props = Readonly<{ palette: ScenePaletteResult; idPrefix: string }>;
+type Props = Readonly<{ palette: ScenePaletteResult; idPrefix: string; active?: boolean }>;
 
 const rgb = (c: ReadonlyArray<number>): string => `rgb(${Math.round(c[0]!)},${Math.round(c[1]!)},${Math.round(c[2]!)})`;
 /**
@@ -39,7 +39,7 @@ const LOWER_STARS: ReadonlyArray<{ x: number; y: number; r: number; a: number }>
 const ALL_STARS = (top: ReadonlyArray<{ x: number; y: number; r: number; a: number }>): ReadonlyArray<{ x: number; y: number; r: number; a: number }> => [...top, ...LOWER_STARS];
 const GUARD_TOP_H = 110; // px эталонной канвы: затемнение верха стража
 
-function SceneBackdrop({ palette, idPrefix }: Props) {
+function SceneBackdrop({ palette, idPrefix, active = true }: Props) {
   const { W, H } = palette.size;
   const id = (n: string): string => `${idPrefix}${n}`;
   if (isSkyPalette(palette)) {
@@ -109,7 +109,7 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
         {SCENE_DARK_BOTTOM_GUARD && p.guard.aBottom > 0 ? <Rect x="0" y={H * 0.42} width={W} height={H * 0.58} fill={`url(#${id('GuardB')})`} /> : null}
         {p.guard.aTop > 0 ? <Rect x="0" y="0" width={W} height={GUARD_TOP_H} fill={`url(#${id('GuardT')})`} /> : null}
       </Svg>
-      <SceneStarTwinkle stars={ALL_STARS(p.stars.list)} />
+      <SceneStarTwinkle stars={ALL_STARS(p.stars.list)} active={active} />
       </>
     );
   }

@@ -7,6 +7,7 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { useHomePlateLog, useHomePlateStyle } from './homePlate';
 import KitSpinner from '../../v2/KitSpinner';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
+import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { PlusAvatarRing } from '../../plus/PlusAvatarRing';
 import { STORY_RING_SLOT } from '../../stories/story_ring_constants';
 // зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
@@ -99,6 +100,10 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   useHomePlateLog(); // [HOME-PLATE]: один раз на показ Главной
   const scene = tone === 'scene';
+  // На сцене lineHeight растёт вместе с accessibility-кеглем. Обычная шапка
+  // сохраняет прежний точный 13/17 и свой лимит 1.1 без изменений геометрии.
+  const scaledSceneText = useScaledTextStyles(HEADER_TEXT_STYLES);
+  const headerText = scene ? scaledSceneText : HEADER_TEXT_STYLES;
   const plate = scene ? s.scenePlate : glass;
   const textColor = scene ? HOME_SCENE_INK.text : p.text;
   const subColor = scene ? HOME_SCENE_INK.muted : p.textSecondary;
@@ -111,10 +116,11 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
             const keep = scene && stat.testID === 'home-v2-coins';
             const content = <>
               <View style={s.statIcon}>{refreshing ? <KitSpinner testID={`${stat.testID}-refreshing`} color={textColor} /> : stat.icon}</View>
-              {/* зачем (Сверка font13, координатор 18.10): при системном шрифте 1,3 «Hoy aún no» (es/pt-BR/vi/id) уходило в 3 строки плашки (значение + 2 строки подписи); потолок роста кегля 1,1 держит 2 строки (значение + подпись), не ужатие. Расчёт по кадру: подпись ≈65 dp при 1,0 в колонке ≈72 dp */}
+              {/* В абсолютной шапке сцены текст не ограничиваем: Stage измеряет её высоту и растёт вниз.
+                  В обычной шапке сохраняем прежний лимит для длинных локализованных плашек. */}
               <View style={keep ? s.statCopyKeep : s.statCopy}>
-                <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statValue, { color: textColor }]}>{stat.value}</FlowText>
-                {stat.testID !== 'home-v2-coins' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statLabel, { color: subColor }]}>{stat.label}</FlowText> : null}
+                <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={scene ? undefined : 1.1} style={[headerText.statValue, { color: textColor }]}>{stat.value}</FlowText>
+                {stat.testID !== 'home-v2-coins' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={scene ? undefined : 1.1} style={[headerText.statLabel, { color: subColor }]}>{stat.label}</FlowText> : null}
               </View>
               {stat.trailing ? <><View style={[s.divider, { backgroundColor: textColor }]} />{stat.trailing}</> : null}
             </>;
@@ -126,12 +132,12 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
                 accessibilityLabel={stat.accessibilityLabel}
                 onPress={() => latestRef.current.stats.find((x) => x.testID === stat.testID)?.onPress?.()}
                 scaleTo={0.96}
-                outerStyle={keep ? s.statSlotKeep : s.statSlot}
-                style={[s.stat, scene ? s.statScene : null, plate, keep ? s.statKeep : null]}
+                outerStyle={keep ? s.statSlotKeep : scene ? s.statSlotScene : s.statSlot}
+                style={[s.stat, scene ? s.statScene : null, plate, scene ? s.statSceneFlow : null, keep ? s.statKeep : null]}
               >{content}</V2Pressable>
             ) : (
               <View key={stat.testID} testID={stat.testID} accessible accessibilityRole="text"
-                accessibilityLabel={stat.accessibilityLabel} style={[keep ? s.statSlotKeep : s.statSlot, s.stat, scene ? s.statScene : null, plate, keep ? s.statKeep : null]}>
+                accessibilityLabel={stat.accessibilityLabel} style={[keep ? s.statSlotKeep : scene ? s.statSlotScene : s.statSlot, s.stat, scene ? s.statScene : null, plate, scene ? s.statSceneFlow : null, keep ? s.statKeep : null]}>
                 {content}
               </View>
             );
@@ -157,9 +163,12 @@ const s = StyleSheet.create({
   statSlot: { flexGrow: 0, flexShrink: 1, minWidth: 0 },
   // зачем (Сверка 22.10): на сцене зазоры 8 — подписи серии нужны эти dp, чтобы «Сегодня ещё нет» не переносилась на 411 dp
   topRowScene: { gap: 8 },
-  statsScene: { gap: 8 },
+  statsScene: { gap: 8, flexWrap: 'wrap' },
   statSlotKeep: { flexGrow: 0, flexShrink: 0 },
+  // На узкой сцене переносится целая читаемая плашка, а не слова внутри неё.
+  statSlotScene: { flexGrow: 0, flexShrink: 0, maxWidth: '100%' },
   statKeep: { flexShrink: 0 },
+  statSceneFlow: { flexShrink: 0 },
   // зачем (владелец 22.10: «перенеси 1:1 плашки шапки (36)»; эталон .hm-pill): на сцене плашка 36, радиус 18, поле 12 — две строки 13/17 входят
   statScene: { minHeight: 36, borderRadius: 18, paddingHorizontal: 12 },
   statCopyKeep: { flexShrink: 0 },
@@ -176,10 +185,13 @@ const s = StyleSheet.create({
   },
   statIcon: { width: 20, height: 20, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
   statCopy: { flexShrink: 1, minWidth: 0 },
-  statValue: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
-  statLabel: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17 },
   // зачем (эталон .hm-pill.glass): на сцене плашка — белый 16 %, без тени и без кромки
   scenePlate: { backgroundColor: HOME_SCENE_INK.headerPlate },
   // зачем (эталон .hm-pill i.dv): черта между монетами и энергией — 1 × 18, прозрачность 22 %
   divider: { width: 1, height: 18, opacity: 0.22, marginHorizontal: 4 },
+});
+
+const HEADER_TEXT_STYLES = StyleSheet.create({
+  statValue: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
+  statLabel: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17 },
 });

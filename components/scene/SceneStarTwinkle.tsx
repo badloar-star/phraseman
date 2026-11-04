@@ -17,7 +17,7 @@ export const SCENE_TWINKLE_EVERY = 8;
 const DOT = 3;
 
 type Star = Readonly<{ x: number; y: number; r: number; a: number }>;
-type Props = Readonly<{ stars: ReadonlyArray<Star> }>;
+type Props = Readonly<{ stars: ReadonlyArray<Star>; active?: boolean }>;
 
 function Dot({ star, index, animate }: { star: Star; index: number; animate: boolean }) {
   const o = useSharedValue(star.a);
@@ -50,12 +50,12 @@ function Dot({ star, index, animate }: { star: Star; index: number; animate: boo
   );
 }
 
-function SceneStarTwinkle({ stars }: Props) {
+function SceneStarTwinkle({ stars, active = true }: Props) {
   const reduce = useReduceMotion();
   const picked = useMemo(() => stars.filter((_, i) => i % SCENE_TWINKLE_EVERY === 0), [stars]);
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      {picked.map((s, i) => <Dot key={i} star={s} index={i} animate={!reduce} />)}
+      {picked.map((s, i) => <Dot key={i} star={s} index={i} animate={active && !reduce} />)}
     </View>
   );
 }

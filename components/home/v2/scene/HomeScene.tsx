@@ -13,7 +13,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 
 import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
 import { premiumThemePackRevision, subscribePremiumThemePackCache } from '../../../../app/premium_theme_pack_cache';
@@ -295,6 +295,12 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   const toMidnight = p.minutesToMidnight ?? minutesUntilMidnight(new Date());
   const tokens = useHomeSceneStageTokens(evening);
   const topInset = p.topInset ?? 0;
+  // Шапка лежит поверх сцены, поэтому её фактическая высота (а не макетные 52dp) резервируется в Stage. При увеличенном системном тексте сцена растёт вниз.
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const handleHeaderLayout = useCallback((event: LayoutChangeEvent) => {
+    const nextHeight = Math.ceil(event.nativeEvent.layout.height);
+    setHeaderHeight((current) => current === nextHeight ? current : nextHeight);
+  }, []);
   // зачем (координатор 22.10): верхний цвет сцены — полосе под часами над Главной (HomeSceneStatusStrip в оболочке вкладок); сцены нет — полосы нет
   useEffect(() => {
     if (!p.statusTint) return undefined;
@@ -380,9 +386,11 @@ export function HomeSceneView(p: HomeSceneViewProps) {
         onCta={onCta}
         onChip={p.onChip}
         topInset={topInset}
+        headerHeight={headerHeight}
+        active={p.active}
       />
       {/* зачем (владелец 22.10): фон сцены заходит под часы, шапка — ниже зоны часов на прежние 12 */}
-      <View style={[s.top, topInset > 0 ? { paddingTop: HEADER_TOP + topInset } : null]} pointerEvents="box-none">
+      <View onLayout={handleHeaderLayout} style={[s.top, topInset > 0 ? { paddingTop: HEADER_TOP + topInset } : null]} pointerEvents="box-none">
         {p.header(tokens.sceneTop)}
         {offlineLine ? (
           <View testID="home-scene-offline" style={s.offline} accessibilityLiveRegion="polite">

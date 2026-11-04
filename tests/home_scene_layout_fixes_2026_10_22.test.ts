@@ -48,7 +48,7 @@ describe('чипы шапки на сцене', () => {
 
   it('сжимается только плашка серии; зазоры на сцене 8; ужатия шрифта и обрезки нет', () => {
     expect(header).toContain('topRowScene: { gap: 8 }');
-    expect(header).toContain('statsScene: { gap: 8 }');
+    expect(header).toContain("statsScene: { gap: 8, flexWrap: 'wrap' }");
     expect(header.replace(/\/\/.*$/gm, '')).not.toMatch(/adjustsFontSizeToFit|numberOfLines/);
   });
 });

@@ -39,7 +39,7 @@ describe('Сцена: резкий край, тень блока, мерцающ
     expect(tw).toContain('withRepeat');
     expect(tw).not.toMatch(/useState|setInterval|requestAnimationFrame/);
     const bd = read('components/scene/SceneBackdrop.tsx');
-    expect(bd).toContain('<SceneStarTwinkle stars={ALL_STARS(p.stars.list)} />');
+    expect(bd).toContain('<SceneStarTwinkle stars={ALL_STARS(p.stars.list)} active={active} />');
     expect(bd).toContain('i % SCENE_TWINKLE_EVERY === 0 ? null');
   });
 
@@ -54,7 +54,7 @@ describe('Сцена: резкий край, тень блока, мерцающ
   it('6 тем за награды: у Главной фон свой (premiumThemeVisualSpec), без общего неба, PremiumThemeMotion на месте', () => {
     const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
     expect(stage).toContain('isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}');
-    expect(stage).toContain(': <SceneBackdrop palette={scenePal} idPrefix="homeSc" />');
+    expect(stage).toContain(': <SceneBackdrop palette={scenePal} idPrefix="homeSc" active={active} />');
     expect(stage).toContain('<PremiumThemeMotion themeId={liquidGlassThemeId}');
     expect(read('components/home/v2/scene/HomeScene.tsx')).toContain('if (isPremiumSceneTheme(liquidGlassThemeId)) return base;');
   });

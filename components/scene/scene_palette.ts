@@ -423,6 +423,15 @@ export function scenePaletteCached(themeId: string, appearance: SceneAppearance,
 }
 
 /**
+ * Канонический верх Пика для общей шапки «Сообщества». Это та же эталонная
+ * канва, что и у SpireScene; функция чистая и не зависит от mount/cleanup
+ * сцены, поэтому «Друзья» и «Наборы» не откатываются к обычному фону.
+ */
+export function peakSceneTopHex(themeId: string, appearance: SceneAppearance): string {
+  return sceneTopHex(scenePaletteCached(themeId, appearance, 'peak', 1080, 1950, 2.625));
+}
+
+/**
  * Доля горизонта в едином тоне тёмного неба (0 — середина, 1 — горизонт); 0,25 у графита даёт ≈ #516583 (слово владельца 29.10: «вся сцена такого цвета целиком»).
  */
 export const SCENE_SKY_TONE_MIX = 0.25;

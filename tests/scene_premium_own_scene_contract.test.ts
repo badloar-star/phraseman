@@ -23,7 +23,7 @@ describe('Темы за награды: своя сцена Главной', () 
   it('Главная: у премиум-тем фон — градиент токенов + свет края, без SceneBackdrop; PremiumThemeMotion на месте; токены не перезаписываются небом', () => {
     const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
     expect(stage).toContain('{isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}');
-    expect(stage).toContain(': <SceneBackdrop palette={scenePal} idPrefix="homeSc" />}');
+    expect(stage).toContain(': <SceneBackdrop palette={scenePal} idPrefix="homeSc" active={active} />}');
     expect(stage).toContain('<PremiumThemeMotion themeId={liquidGlassThemeId}');
     expect(stage).toContain("console.log('[SCENE-SOURCE]'");
     expect(read('components/home/v2/scene/HomeScene.tsx')).toContain('if (isPremiumSceneTheme(liquidGlassThemeId)) return base;');

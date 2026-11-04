@@ -70,3 +70,8 @@
 - Снятие: следующая обнова — довести компактный вид по макету вкладки «Друзья», сверить кадр, закоммитить вместе с `friends.tsx`.
 - Владелец зоны: Вход (рефералы/Paywall).
 
+
+## Тест запускателя Account V2 (Вход, 05.11)
+- Что: `tests/account_provision_lock_android_runtime_entrypoint.test.ts`, один набор «aggregate cleanup attempts…» красный в точечном прогоне (строка 1206: `capture.status` 1 вместо 0, ~130 с).
+- Природа: тест хост-запускателя Android-проверки Account V2 (PowerShell-библиотека `ActivatedNativeProvenance`), не код приложения; автор — сессия Account V2 (коммит a91e96a31, test(account-v2)).
+- Снятие: следующая обнова, владелец Account V2 / Ядро; на пользователей не влияет.

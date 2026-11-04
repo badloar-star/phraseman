@@ -63,8 +63,9 @@ export function useHomeTrialRow(lang: Lang, runtimeActive: boolean): Readonly<{ 
     void saveHomeTrialRowDismissedAt(accountId, at);
   }, [accountId]);
   const onPress = useCallback(() => {
-    console.log('[TRIAL-ROW]', JSON.stringify({ event: 'tap', opened: true, context: 'home_trial_row' })); // guard-ok: одна строка на тап
-    openPremiumPaywall(router, { context: 'home_trial_row' });
+    console.log('[TRIAL-ROW]', JSON.stringify({ event: 'tap', opened: true, context: 'generic', source: 'home_trial_row' })); // guard-ok: одна строка на тап
+    // зачем (координатор 04.11): 'home_trial_row' не контекст пейвола — в релизе неизвестный контекст закрывал окно и тап не открывал ничего; теперь generic + источник строки
+    openPremiumPaywall(router, { context: 'generic', source: 'home_trial_row' });
   }, [router]);
 
   return { show: decision.show, reason: decision.reason, row: decision.show ? { ...homeTrialRowCopy(lang), onPress, onDismiss, dismissLabel: homeTrialRowDismissLabel(lang), plus: true } : null };

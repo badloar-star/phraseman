@@ -57,7 +57,7 @@ describe('Главная: приоритет и охрана', () => {
 
   it('тап открывает то же окно подписки', () => {
     const hook = fs.readFileSync(path.join(__dirname, '..', 'hooks/use_home_trial_row.ts'), 'utf8');
-    expect(hook).toContain("openPremiumPaywall(router, { context: 'home_trial_row' });");
+    expect(hook).toContain("openPremiumPaywall(router, { context: 'generic', source: 'home_trial_row' });");
     expect(home).toContain("homeTodayRowSource === 'trial' && homeTrial.row ? homeTrial.row");
     // экран «Сегодня» решает так же: строка триала вместо опроса, тот же хук
     const today = fs.readFileSync(path.join(__dirname, '..', 'app/today_tasks.tsx'), 'utf8');

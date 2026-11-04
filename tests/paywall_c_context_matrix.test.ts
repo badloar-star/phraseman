@@ -48,6 +48,10 @@ describe('пейвол C: именованные сценарии', () => {
     const r = resolvePremiumModalEntry({ ...FREE_RESOLVED, params: { context: 'generic', source: 'rank_locked' } });
     expect(r).toMatchObject({ decision: 'show', entry: { context: 'generic', source: 'rank_locked' } });
   });
+  it('строка «Попробуй Plus бесплатно»: generic + источник home_trial_row (тексты и триал-оффер общие)', () => {
+    const r = resolvePremiumModalEntry({ ...FREE_RESOLVED, params: { context: 'generic', source: 'home_trial_row' } });
+    expect(r).toMatchObject({ decision: 'show', entry: { context: 'generic', source: 'home_trial_row' } });
+  });
   it('облако не подтвердило статус → окно «Восстановить / Оформить» (plus_server_refused), источник входа сохранён', () => {
     const r = resolvePremiumModalEntry({ ...FREE_RESOLVED, cloudConfirmedOnDevice: false, params: { context: 'language_add', source: 'direct' } });
     expect(r).toMatchObject({ decision: 'show', entry: { context: 'plus_server_refused', source: 'direct' } });

@@ -25,4 +25,9 @@ describe('закрытые разделы показывают RankLockedSection
     for (const lang of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) expect(src).toContain(`${lang}:`);
     expect(src).toContain("router.replace('/(tabs)/lessons'");
   });
+  it('вторая кнопка «Открыть все с Plus» ведёт в существующий пейвол generic с источником rank_locked', () => {
+    const src = read('components/home/v2/RankLockedSection.tsx');
+    expect(src).toContain("openPremiumPaywall(router as never, { context: 'generic', source: 'rank_locked' })");
+    expect(read('app/paywall_entry_contract.ts')).toContain("'rank_locked'");
+  });
 });

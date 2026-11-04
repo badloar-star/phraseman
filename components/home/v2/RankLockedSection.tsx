@@ -11,6 +11,7 @@ import { triLang } from '../../../constants/i18n';
 import { V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import V2Pressable from '../../v2/V2Pressable';
+import { openPremiumPaywall } from '../../../app/paywall_navigation';
 import type { RankAccessSurface } from '../../../shared/rank_access_contract';
 
 type Props = Readonly<{ surface: RankAccessSurface; minimumRank: number }>;
@@ -25,6 +26,8 @@ export default function RankLockedSection({ surface, minimumRank }: Props) {
     'pt-BR': `Abre no rank ${minimumRank}`, vi: `Mở ở hạng ${minimumRank}`, id: `Terbuka di peringkat ${minimumRank}`, tr: `${minimumRank}. rütbede açılır`, pl: `Otworzy się na randze ${minimumRank}`,
   });
   const cta = triLang(lang, { ru: 'К занятиям', uk: 'До занять', en: 'To lessons', es: 'A las lecciones', 'pt-BR': 'Às lições', vi: 'Đến bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji' });
+  // зачем (Learning V2 по поручению координатора 30.10): «Открыть с Plus» — существующий пейвол generic, источник rank_locked разрешён контрактом (f3eb13570); тексты как в списке наборов
+  const plus = triLang(lang, { ru: 'Открыть все с Plus', uk: 'Відкрити все з Plus', en: 'Unlock all with Plus', es: 'Desbloquear todo con Plus', 'pt-BR': 'Desbloquear tudo com Plus', vi: 'Mở tất cả với Plus', id: 'Buka semua dengan Plus', tr: 'Plus ile tümünü aç', pl: 'Odblokuj wszystko z Plus' });
   return (
     <View style={[styles.root, { backgroundColor: palette.bg }]} accessibilityRole="summary">
       <Text style={[V2_TYPE.title, styles.title, { color: palette.text }]}>{title}</Text>
@@ -36,6 +39,14 @@ export default function RankLockedSection({ surface, minimumRank }: Props) {
       >
         <Text style={[styles.ctaText, { color: palette.ctaText }]}>{cta}</Text>
       </V2Pressable>
+      <V2Pressable
+        accessibilityRole="button"
+        accessibilityLabel={plus}
+        onPress={() => { console.log('[RANK-GATE] locked_screen cta plus', JSON.stringify({ surface })); /* guard-ok: тап */ openPremiumPaywall(router as never, { context: 'generic', source: 'rank_locked' }); }}
+        style={[styles.plus, { backgroundColor: palette.card }]}
+      >
+        <Text style={[styles.ctaText, { color: palette.text }]}>{plus}</Text>
+      </V2Pressable>
     </View>
   );
 }
@@ -44,5 +55,6 @@ const styles = StyleSheet.create({
   root: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, gap: 20 },
   title: { textAlign: 'center' },
   cta: { paddingHorizontal: 28, paddingVertical: 14, borderRadius: 999 },
+  plus: { paddingHorizontal: 28, paddingVertical: 14, borderRadius: 999 },
   ctaText: { fontSize: 16, fontWeight: '700' },
 });

@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import KitProgressFill from '../components/KitProgressFill';
 import { describeDevCardsState, getDevAnswerTarget, getDevTrainGate, isDevCardsHeld } from './dev_cards_state';
 import { isAttemptsInputBlocked, isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -4110,7 +4111,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         </PracticeSessionHeader>
 
         <View style={[styles.progressTrack, isCompactFlashcardsTask && styles.compactProgressTrack, { backgroundColor: t.bgSurface2 }]}>
-          <View style={[styles.progressFill, { width: `${progressPct}%` as `${number}%`, backgroundColor: swipeGlass.accentGraphic }]} />
+          {/* зачем (Волна 2, пункт 18): заливка прогресса едет плавно (KitProgressFill: scaleX на нативном драйвере, 800 мс), а не прыгает на каждый шаг; радиус 0 — трек обрезает края */}
+          <KitProgressFill ratio={progressPct / 100} style={{ backgroundColor: swipeGlass.accentGraphic, borderRadius: 0 }} testID="flashcards-swipe-progress-fill" />
         </View>
 
         {/* Первое знакомство с экраном — одноразовая подсказка, схема как flashcardsDeleteHintSeenKey */}

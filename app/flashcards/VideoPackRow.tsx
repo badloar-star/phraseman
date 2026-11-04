@@ -11,6 +11,7 @@
  * Поэтому кадр и кнопка — отдельные Pressable поверх строки, а не её части.
  */
 import React, { useMemo } from 'react';
+import KitProgressFill from '../../components/KitProgressFill';
 import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitCard } from '../../components/cards-grid/CardsKit';
@@ -198,7 +199,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
               {/* зачем (Темы 25.10): дорожка прогресса на кадре — сильный скрим темы, белая заливка читается на светлом кадре */}
               {progress > 0 ? (
                 <View style={[styles.largeProgress, { backgroundColor: g.scrimStrong }]} pointerEvents="none">
-                  <View style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${Math.round(progress * 100)}%`, backgroundColor: g.mediaInk }} />
+                  <KitProgressFill ratio={progress} style={{ backgroundColor: g.mediaInk, borderRadius: 0 }} />
                 </View>
               ) : null}
               {opening ? (

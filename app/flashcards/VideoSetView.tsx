@@ -8,6 +8,7 @@
  * Данных пока нет (ждём от Ядра): уровень набора (`level`) — чип скрыт; доля просмотра ролика (`watchProgress` 0…1) — полосы нет.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import KitProgressFill from '../../components/KitProgressFill';
 import { Image } from 'expo-image';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -147,7 +148,7 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onMore, 
             {thumbUrl ? <Image accessible={false} source={{ uri: thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={videoId} cachePolicy="memory-disk" /> : null}
             <View style={styles.play}><Ionicons name="play" size={24} color={g.mediaInk} /></View>
             {duration ? <View style={styles.duration} pointerEvents="none"><Text style={[styles.durationText, { color: g.mediaInk }]}>{duration}</Text></View> : null}
-            {progress > 0 ? <View style={styles.progressTrack} pointerEvents="none"><View style={[styles.progressFill, { width: `${Math.round(progress * 100)}%`, backgroundColor: g.mediaInk }]} /></View> : null}
+            {progress > 0 ? <View style={styles.progressTrack} pointerEvents="none"><KitProgressFill ratio={progress} style={{ backgroundColor: g.mediaInk, borderRadius: 0 }} /></View> : null}
           </Pressable>
         </View>
 

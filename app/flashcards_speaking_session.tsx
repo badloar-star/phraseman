@@ -29,6 +29,7 @@
 // внутри `SpeakMicButton` (без доступа → пейвол context='speaking').
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import KitProgressFill from '../components/KitProgressFill';
 import { getDevTrainGate } from './dev_cards_state';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -1606,12 +1607,13 @@ RU: ${card.translation}`}
           {header(true)}
 
           <View style={[styles.progressTrack, { backgroundColor: speakingGlass.opaqueControl }]}>
-            <View
+            <KitProgressFill
+              ratio={progress.total > 0 ? progress.position / progress.total : 0}
               style={[
                 styles.progressFill,
                 // зачем (PM-130, practice.html `.trk > i`): заливка светлая, как у Блица, — цвет режима
                 // не спорит с карточкой и микрофоном.
-                { backgroundColor: mixDark(speakingGlass.text, '#000000', 0.91), width: `${(progress.position / progress.total) * 100}%` }, // theme-exempt: бирюза режима «Устно» — идентичность режима (значок на ней тёмный) и смешение с чёрным для тени дорожки
+                { backgroundColor: mixDark(speakingGlass.text, '#000000', 0.91), borderRadius: 0 }, // theme-exempt: бирюза режима «Устно» — идентичность режима (значок на ней тёмный) и смешение с чёрным для тени дорожки
               ]}
             />
           </View>

@@ -50,6 +50,7 @@ import CustomSwitch from '../../components/CustomSwitch';
 import { setLiteModeOverride, useLiteMode } from '../lite_mode';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
+import { useTabRetapScrollTop } from '../../hooks/use_tab_retap_scroll_top';
 import { type StudyTarget } from '../study_target';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { triLang } from '../../constants/i18n';
@@ -359,6 +360,8 @@ export default function SettingsMain() {
 
 
   const scrollRef = useRef<any>(null);
+  // зачем (удобство №1, владелец 04.11): повторный тап по открытой вкладке «Настройки» (4) — прокрутка в начало
+  useTabRetapScrollTop(4, (animated) => { settingsScrollYRef.current = 0; scrollRef.current?.scrollTo({ y: 0, animated }); });
   const settingsScrollYRef = useRef(0);
   const insets = useStableSafeAreaInsets();
   // зачем: монета текущего ранга вместо аватара-гексагона (PRF-18) — ранг из кэша в памяти, без сети.

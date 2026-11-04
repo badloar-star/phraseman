@@ -109,6 +109,7 @@ import { whenOnboardingSettled } from '../onboarding_defer_gate';
 import { scheduleAfterRootNavigationReady } from '../paywall_navigation';
 import { planHiddenTabRedirect } from '../tabs_hidden_route_redirect';
 import { isSurfaceLocked, useRankAccess } from '../../hooks/use_rank_access';
+import { emitTabRetap } from '../tab_retap_bus'; // зачем (удобство №1, владелец 04.11): повторный тап по открытой вкладке
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -1426,7 +1427,11 @@ function ReleasedTabLayout() {
     setVisualIdx(idx);
     const physical = logicalTabToPhysicalPage(idx, pageLayoutRef.current);
     setPhysicalPageIdx(physical);
-    if (idx === activeIdxRef.current && physicalPageIdxRef.current === physical) return;
+    if (idx === activeIdxRef.current && physicalPageIdxRef.current === physical) {
+      // зачем: раньше выход был немым — теперь вкладка сообщает шине, а её экран прокручивается в начало (переходы не затронуты)
+      console.log('[TAB-RETAP]', JSON.stringify({ idx, heard: emitTabRetap(idx) })); // guard-ok: одна строка на повторный тап
+      return;
+    }
     setActiveIdx(idx);
     rememberVisitedTab(idx);
     // зачем: тап — пользователь уже смотрит на панель, ждать idle нельзя.

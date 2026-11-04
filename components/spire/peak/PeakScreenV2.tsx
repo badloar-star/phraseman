@@ -1,0 +1,103 @@
+// PeakScreenV2 — экран Пика, вариант B «Рельса» (выбор владельца 04.11): башня слева на всю высоту, справа этаж, пилюля «Гранит · время»,
+// мои монеты и место, топ-5 строками, вершинники сверх топ-5, широкая кнопка «Все участники». Тап по этажу — шторка рекорда ступени.
+// зачем: чисто презентационный — все данные приходят пропсами из SpireHomeScreen (0 новых чтений); башня — прежний SpireTower (интерактивна и локализована),
+// только в узкой левой колонке. Включается флагом PEAK_SCREEN_V2_ENABLED (по умолчанию выключен), старый экран остаётся.
+import React, { memo, useMemo, useState } from 'react';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import type { Lang } from '../../../constants/i18n';
+import { buildPeakModel, peakStepRecord, type PeakRankBy, type PeakStepRecord } from '../../../modules/spire/peak_model';
+import { useSpirePalette } from '../useSpirePalette';
+import SpireTower from '../SpireTower';
+import V2Pressable from '../../v2/V2Pressable';
+import type { SpireMemberRow } from '../spire_room_types';
+import { spireText } from '../spire_strings';
+import { spireGameText } from '../spire_game_strings';
+import PeakMyCounter from './PeakMyCounter';
+import PeakTopRow from './PeakTopRow';
+import PeakStepSheet from './PeakStepSheet';
+import PeakFloorStepper from './PeakFloorStepper';
+import PeakStepChips from './PeakStepChips';
+import { PEAK_TAP_TARGET, peakMaxStep } from './peak_text';
+
+type TowerProps = React.ComponentProps<typeof SpireTower>;
+
+type Props = Readonly<{
+  lang: Lang;
+  members: readonly SpireMemberRow[] | null;
+  rankBy: PeakRankBy;
+  /** Этаж, выбранный на башне. */
+  floor: number;
+  onSelectFloor: (floor: number) => void;
+  /** «Гранит · 3 д 4 ч» — одной пилюлей. */
+  pillText: string;
+  towerProps: Omit<TowerProps, 'lang' | 'selected' | 'onSelect' | 'windowHeight'>;
+  onOpenAll: () => void;
+  records?: Readonly<Record<string, PeakStepRecord>> | null;
+  /** Высота колонки башни; нет — 72 % высоты окна в пределах 420–640 dp. */
+  railHeight?: number;
+}>;
+
+export const PEAK_RAIL_WIDTH = 150;
+
+function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records = null, railHeight }: Props) {
+  const p = useSpirePalette();
+  const { height } = useWindowDimensions();
+  const rail = railHeight ?? Math.max(420, Math.min(640, Math.round(height * 0.72)));
+  // зачем: участники приходят порядком комнаты (уже по рубильнику); weekCoins в документе может отсутствовать — считаем 0
+  const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0 })), rankBy), [members, rankBy]);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [sheetFloor, setSheetFloor] = useState(floor);
+  const [sheetStep, setSheetStep] = useState(1);
+  const floorWord = spireText(lang, 'floor');
+  const openSheet = () => { setSheetFloor(floor); setSheetStep(1); setSheetOpen(true); };
+  const moveFloor = (next: number) => { const f = Math.max(1, Math.min(15, next)); setSheetFloor(f); setSheetStep((st) => Math.min(st, peakMaxStep(f))); };
+  const record = peakStepRecord(records, sheetFloor, sheetStep);
+  const stepper = (
+    <View style={s.sheetControls}>
+      <PeakFloorStepper label={`${floorWord} ${sheetFloor}`} canDown={sheetFloor > 1} canUp={sheetFloor < 15} onDown={() => moveFloor(sheetFloor - 1)} onUp={() => moveFloor(sheetFloor + 1)} downLabel={`${floorWord} ${sheetFloor - 1}`} upLabel={`${floorWord} ${sheetFloor + 1}`} />
+      <PeakStepChips max={peakMaxStep(sheetFloor)} selected={sheetStep} onSelect={setSheetStep} />
+    </View>
+  );
+  return (
+    <View style={s.root} testID="peak-screen-v2">
+      <View style={[s.rail, { width: PEAK_RAIL_WIDTH }]}>
+        <SpireTower {...towerProps} lang={lang} selected={floor} onSelect={onSelectFloor} windowHeight={rail} />
+      </View>
+      <View style={s.panel}>
+        <V2Pressable accessibilityRole="button" onPress={openSheet} style={s.floorBtn} testID="peak-floor-title">
+          <Text style={[s.floor, { color: p.text }]}>{`${floorWord} ${floor}`}</Text>
+        </V2Pressable>
+        <View style={[s.pill, { backgroundColor: p.cardRaised }]}><Text numberOfLines={1} style={[s.pillText, { color: p.text }]}>{pillText}</Text></View>
+        <View style={s.counter}><PeakMyCounter lang={lang} me={model.me} rankBy={rankBy} /></View>
+        <View testID="peak-top">{model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} />)}</View>
+        {model.summiters.length > 0 ? (
+          <View testID="peak-summiters">
+            <Text style={[s.group, { color: p.textSecondary }]}>{spireGameText(lang, 'peakReachedTop')}</Text>
+            {model.summiters.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} />)}
+          </View>
+        ) : null}
+        <V2Pressable accessibilityRole="button" onPress={onOpenAll} style={[s.all, { backgroundColor: p.cta }]} testID="peak-all-button">
+          <Text style={[s.allText, { color: p.ctaText }]}>{spireGameText(lang, 'peakAllParticipants')}</Text>
+        </V2Pressable>
+      </View>
+      <PeakStepSheet lang={lang} visible={sheetOpen} title={`${floorWord} ${sheetFloor} · ${sheetStep}`} record={record} onClose={() => setSheetOpen(false)} stepper={stepper} />
+    </View>
+  );
+}
+
+const s = StyleSheet.create({
+  root: { flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  rail: { marginLeft: -8 },
+  panel: { flex: 1, minWidth: 0 },
+  floorBtn: { minHeight: PEAK_TAP_TARGET, justifyContent: 'center', alignSelf: 'flex-start' },
+  floor: { fontSize: 30, lineHeight: 36, fontWeight: '800', letterSpacing: -0.4 },
+  pill: { alignSelf: 'flex-start', minHeight: 36, borderRadius: 18, paddingHorizontal: 14, justifyContent: 'center', marginTop: 2 },
+  pillText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
+  counter: { marginTop: 18, marginBottom: 14 },
+  group: { fontSize: 15, lineHeight: 20, fontWeight: '700', marginTop: 14, marginBottom: 4, marginLeft: 12 },
+  all: { minHeight: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', marginTop: 18 },
+  allText: { fontSize: 17, fontWeight: '800' },
+  sheetControls: { gap: 14, alignItems: 'center' },
+});
+
+export default memo(PeakScreenV2);

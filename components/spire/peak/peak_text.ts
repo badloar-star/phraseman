@@ -7,6 +7,11 @@ import { formatPeakTime, type PeakStepRecord } from '../../../modules/spire/peak
 /** Минимальная тап-цель (dp) стрелок «этаж ниже/выше». */
 export const PEAK_TAP_TARGET = 44;
 
+/** Сколько ступеней на этаже: до 5-го этажа floor+4, дальше 10 (схема адресов рекордов этаж:ступень). */
+export function peakMaxStep(floor: number): number {
+  return floor <= 5 ? floor + 4 : 10;
+}
+
 /** Текст рекорда: «Рекорд: имя — мм:сс.сс» или «—», если данных нет (в приложении никаких «нужны данные»). */
 export function peakRecordLine(lang: Lang, record: PeakStepRecord | null): string {
   const time = record ? formatPeakTime(record.durationMs) : null;

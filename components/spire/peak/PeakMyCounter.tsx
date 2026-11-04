@@ -6,17 +6,18 @@ import type { Lang } from '../../../constants/i18n';
 import { useSpirePalette } from '../useSpirePalette';
 import { spireGameText } from '../spire_game_strings';
 import { spireGroupThousands } from '../spire_plurals';
-import type { PeakMe } from '../../../modules/spire/peak_model';
+import { spireStepsShort } from '../spire_plurals';
+import type { PeakMe, PeakRankBy } from '../../../modules/spire/peak_model';
 
-type Props = Readonly<{ lang: Lang; me: PeakMe }>;
+type Props = Readonly<{ lang: Lang; me: PeakMe; rankBy?: PeakRankBy }>;
 
-function PeakMyCounter({ lang, me }: Props) {
+function PeakMyCounter({ lang, me, rankBy = 'coins' }: Props) {
   const p = useSpirePalette();
   return (
     <View style={s.row} testID="peak-my-counter">
       <View style={s.cell}>
-        <Text style={[s.label, { color: p.textSecondary }]}>{spireGameText(lang, 'peakMyCoins')}</Text>
-        <Text style={[s.value, { color: p.text }]} testID="peak-my-coins">{spireGroupThousands(me.weekCoins)}</Text>
+        <Text style={[s.label, { color: p.textSecondary }]}>{rankBy === 'coins' ? spireGameText(lang, 'peakMyCoins') : spireStepsShort(lang, me.value)}</Text>
+        <Text style={[s.value, { color: p.text }]} testID="peak-my-coins">{spireGroupThousands(me.value)}</Text>
       </View>
       <View style={s.cell}>
         <Text style={[s.label, { color: p.textSecondary }]}>{spireGameText(lang, 'peakMyPlace')}</Text>

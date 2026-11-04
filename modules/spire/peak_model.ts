@@ -9,6 +9,10 @@ import type { SpireMemberRow } from '../../components/spire/spire_room_types';
 import { SPIRE_TOP_STEPS, spireReachedTop } from '../../shared/spire_top_steps';
 import type { SpireRoomRow } from './room_rows';
 
+/** Нужные модели поля строки комнаты (экран подаёт участников без reachedAtMs). */
+export type PeakInputRow = Pick<SpireRoomRow, 'uid' | 'name' | 'steps' | 'isMe' | 'weekCoins'> & Readonly<{ coinRank?: number | null; isPremium?: boolean }>;
+export type PeakRankBy = 'steps' | 'coins';
+
 export const PEAK_TOP_COUNT = 5;
 
 export type PeakRow = Readonly<{
@@ -16,6 +20,8 @@ export type PeakRow = Readonly<{
   name: string;
   place: number;
   weekCoins: number;
+  /** Что показывать в строке: монеты недели при 'coins', ступени при 'steps'. */
+  value: number;
   steps: number;
   isMe: boolean;
   isPremium: boolean;
@@ -27,6 +33,7 @@ export type PeakRow = Readonly<{
 export type PeakMe = Readonly<{
   place: number | null;
   weekCoins: number;
+  value: number;
   zone: SpireZone | null;
   inTop: boolean;
   reachedTop: boolean;
@@ -45,16 +52,18 @@ export type PeakModel = Readonly<{
 }>;
 
 /** rows — уже отсортированные по монетам (spireBuildRoomRows с rankBy='coins'); порядок не пересчитываем. */
-export function buildPeakModel(rows: readonly SpireRoomRow[]): PeakModel {
+export function buildPeakModel(rows: readonly PeakInputRow[], rankBy: PeakRankBy = 'coins'): PeakModel {
   const members: SpireMemberRow[] = rows.map((r) => ({
     uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe, coinRank: r.coinRank ?? null, weekCoins: r.weekCoins, isPremium: r.isPremium === true,
   }));
-  const zones = spireZonesFor(members, 'coins');
+  // зачем (Пик B): зоны по тому же рубильнику, что и итог недели — в режиме ступеней считаются по ступеням
+  const zones = spireZonesFor(members, rankBy);
   const all: PeakRow[] = rows.map((r, i) => ({
     uid: r.uid,
     name: r.name,
     place: i + 1,
     weekCoins: r.weekCoins,
+    value: rankBy === 'coins' ? r.weekCoins : r.steps,
     steps: r.steps,
     isMe: r.isMe,
     isPremium: r.isPremium === true,
@@ -74,6 +83,7 @@ export function buildPeakModel(rows: readonly SpireRoomRow[]): PeakModel {
     me: {
       place: mine?.place ?? null,
       weekCoins: mine?.weekCoins ?? 0,
+      value: mine?.value ?? 0,
       zone: mine?.zone ?? null,
       inTop: !!mine && mine.place <= PEAK_TOP_COUNT,
       reachedTop: mine?.reachedTop ?? false,

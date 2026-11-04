@@ -21,7 +21,7 @@ function PeakTopRow({ lang, row, coinSize = 40, onPress }: Props) {
       <Text numberOfLines={1} style={[s.name, { color: p.text }]}>{row.name}</Text>
       {row.zone === 'up' ? <Ionicons name="arrow-up" size={18} color={p.correct} /> : null}
       {row.zone === 'down' ? <Ionicons name="arrow-down" size={18} color={p.wrong} /> : null}
-      <Text style={[s.coins, { color: p.text }]}>{spireGroupThousands(row.weekCoins)}</Text>
+      <Text style={[s.coins, { color: p.text }]}>{spireGroupThousands(row.value)}</Text>
     </>
   );
   const bg = row.isMe ? { backgroundColor: p.cardRaised } : null;

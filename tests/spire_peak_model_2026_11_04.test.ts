@@ -33,7 +33,7 @@ describe('модель экрана Пика', () => {
     expect(m.me.inTop).toBe(false);
     expect(['up', 'stay', 'down']).toContain(m.me.zone);
     const none = buildPeakModel(rows.map((r) => ({ ...r, isMe: false })));
-    expect(none.me).toEqual({ place: null, weekCoins: 0, zone: null, inTop: false, reachedTop: false });
+    expect(none.me).toEqual({ place: null, weekCoins: 0, value: 0, zone: null, inTop: false, reachedTop: false });
   });
 
   it('зоны: лучшие — вверх, худшие — вниз, списки согласованы с зонами строк', () => {
@@ -72,5 +72,13 @@ describe('модель экрана Пика', () => {
     expect(formatPeakTime(0)).toBeNull();
     expect(formatPeakTime(Number.NaN)).toBeNull();
     expect(formatPeakTime(-5)).toBeNull();
+  });
+
+  it('режим ступеней: значение строки — ступени, зоны считаются по ступеням', () => {
+    const bySteps: SpireRoomRow[] = Array.from({ length: 12 }, (_, i) => row('s' + i, 0, 100 - i * 5, i === 3));
+    const m = buildPeakModel(bySteps, 'steps');
+    expect(m.top[0].value).toBe(100);
+    expect(m.me.value).toBe(85);
+    expect(m.promotion.length).toBeGreaterThan(0);
   });
 });

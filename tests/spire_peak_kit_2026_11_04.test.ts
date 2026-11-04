@@ -35,8 +35,8 @@ describe('каркас экрана Пика', () => {
     expect(PEAK_TAP_TARGET).toBeGreaterThanOrEqual(44);
   });
 
-  it('каркас не подключён к боевому экрану Пика', () => {
+  it('на боевом экране каркас включается только флагом (по умолчанию выключен)', () => {
     const home = fs.readFileSync(path.join(__dirname, '..', 'components/spire/SpireHomeScreen.tsx'), 'utf8');
-    expect(home).not.toContain('/peak/');
+    expect(home).toContain('PEAK_SCREEN_V2_ENABLED');
   });
 });

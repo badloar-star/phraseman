@@ -105,7 +105,7 @@ function TourTop({ lang }: Readonly<{ lang: Lang }>) {
   );
 }
 
-type Props = Readonly<{ lang: Lang; visible: boolean; onDone: () => void; /** Только dev-съёмка (dev_spire_preview): с какой страницы начать, 0…2. */ initialPage?: 0 | 1 | 2 }>;
+type Props = Readonly<{ lang: Lang; visible: boolean; onDone: () => void; /** Только dev-съёмка (превью Шпиля): с какой страницы начать, 0…2. */ initialPage?: 0 | 1 | 2 }>;
 
 function SpireTour({ lang, visible, onDone, initialPage = 0 }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();

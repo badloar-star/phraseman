@@ -48,7 +48,7 @@ export function shouldShowWelcome(input: Readonly<{ isNew: boolean; alreadyShown
   return input.isNew && !input.alreadyShown;
 }
 
-/** force — только dev-съёмка (dev_spire_preview?state=welcome): показать без проверки «новый» и без ключа «показано», ничего не писать и не переходить. */
+/** force — только dev-съёмка (превью Шпиля ?state=welcome): показать без проверки «новый» и без ключа «показано», ничего не писать и не переходить. */
 export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {}): React.JSX.Element | null {
   const router = useRouter();
   const { lang } = useLang();

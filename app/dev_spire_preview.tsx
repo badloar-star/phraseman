@@ -27,6 +27,7 @@ import SpireExitSheet from '../components/spire/SpireExitSheet';
 import SpireHomeScreen from '../components/spire/SpireHomeScreen';
 import SpireTour from '../components/spire/SpireTour';
 import PeakKitPreview from '../components/spire/peak/PeakKitPreview';
+import PeakScreenPreview from '../components/spire/peak/PeakScreenPreview';
 import { WelcomeGate } from '../components/onboarding/WelcomeGate';
 import { SpireStepLayout } from '../components/spire/SpireStepScreen';
 import { SpirePreviewProvider } from '../components/spire/spire_preview_context';
@@ -112,6 +113,8 @@ function Inner() {
       {__DEV__ && params.state === 'welcome' ? <WelcomeGate force /> : null}
       {/* ?state=peak_kit — каркас экрана Пика (общие под-компоненты вариантов A/B) на моках, только dev */}
       {__DEV__ && params.state === 'peak_kit' ? <PeakKitPreview lang={lang} /> : null}
+      {/* ?state=peak_screen[&mode=steps] — экран Пика, вариант B «Рельса», на моках для кадров «до/после» (флаг не нужен) */}
+      {__DEV__ && params.state === 'peak_screen' ? <PeakScreenPreview lang={lang} rankBy={params.mode === 'steps' ? 'steps' : 'coins'} /> : null}
       {__DEV__ && state === 'tour' ? <SpireTour lang={lang} visible initialPage={params.page === '3' ? 2 : params.page === '2' ? 1 : 0} onDone={() => undefined} /> : null}
       {step ? (
         <StepPreview state={state} exitOpen={exitOpen} overrides={overrides} />

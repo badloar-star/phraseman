@@ -116,7 +116,7 @@ describe('входы в Шпиль за тем же замком (контрак
   const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
 
   it('плитка Главной', () => {
-    expect(read('app/(tabs)/home.tsx')).toContain("available: isLearningSurfaceReady(studyTarget, 'spire') && spireTabEnabled,");
+    expect(read('app/(tabs)/home.tsx')).toContain("available: isLearningSurfaceReady(studyTarget, 'spire') && spireTabEnabled && !rankLockedPeak,"); // зачем (30.10, ранговые гейты): к замку добавилось «Пик с ранга 2»
   });
   it('тап по пушу Шпиля проверяет замок и ведёт на Главную', () => {
     const src = read('app/notification_tap_handler.ts');

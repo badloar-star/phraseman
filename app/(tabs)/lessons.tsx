@@ -173,7 +173,8 @@ import { featureIntroById } from "../feature_intro_registry";
 import { featureIntroLater } from "../feature_intro_copy";
 import { lessonNamesForStudyTarget } from "../lesson_titles_for_study_target";
 import { noteClassicLessonsShown, noteClassicTap } from "../lessons_access_diagnostics";
-import { rememberLessonListDecision } from "../lesson_premium_gate";
+import { rememberLessonListDecision, openLessonPremiumPaywall } from "../lesson_premium_gate";
+import { useCourseLanguageLocked } from "../use_course_language_locked";
 import {
   examContentAvailableForTarget,
   frenchExamGateCopy,
@@ -2508,6 +2509,8 @@ export default function LessonsTab({
   perfR1BodyMark('lessons', 'c_lang', perfBodyStart);
   const { lang, s } = useLang();
   const { studyTarget, refresh: refreshStudyTarget } = useStudyTarget();
+  // зачем (владелец 04.11): язык без прогресса у нового пользователя — Plus; список показывает замок сразу, а не пейвол на тапе (вердикт из course_language_access)
+  const courseLanguageLocked = useCourseLanguageLocked(studyTarget);
   const lessonCacheTarget = storageStudyTarget(studyTarget);
   const lessonCacheTargetRef = useRef(lessonCacheTarget);
   lessonCacheTargetRef.current = lessonCacheTarget;
@@ -4476,6 +4479,12 @@ export default function LessonsTab({
         void reloadPremiumAccess();
         return;
       }
+      // зачем (владелец 04.11): замок дополнительного языка — сразу пейвол «Ещё один язык»; Plus/тестер/dev замок снимают
+      if (courseLanguageLocked && !accessInput.isPremium && !accessInput.noLimits && !accessInput.devMode) {
+        console.log('[COURSE-LANG-LOCK] list:tap_locked', JSON.stringify({ lesson: num, studyTarget })); // guard-ok: тап по запертому языку
+        void openLessonPremiumPaywall(router, num, studyTarget);
+        return;
+      }
       const access = resolveLessonAccess(accessInput);
       logLessonGateDecision('list', {
         lesson: num, access, isPremium: accessInput.isPremium, devMode: accessInput.devMode ?? false, noLimits: effectiveNoLimits,
@@ -4501,6 +4510,7 @@ export default function LessonsTab({
       effectiveLegacyFreeLessonCap,
       effectiveNoLimits,
       accessResolved,
+      courseLanguageLocked,
       isPremium,
       openLessonPaywall,
       purchasedLessons,
@@ -4760,10 +4770,13 @@ export default function LessonsTab({
         noLimits: effectiveNoLimits,
         legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
       });
+      // зачем (владелец 04.11): запертый язык рисуется Plus-замком, даже если урок «открыт» по прогрессу другого языка
+      const legacyLanguageLocked = courseLanguageLocked && !isPremium && !effectiveNoLimits && !effectiveDevContentUnlock;
       const legacyPremiumRequired =
-        legacyEntitlementReadiness === 'premium_required' &&
+        legacyLanguageLocked ||
+        (legacyEntitlementReadiness === 'premium_required' &&
         !legacyUnlocked &&
-        !effectiveNoLimits;
+        !effectiveNoLimits);
       const legacyState: LessonsListCardState = legacyEntitlementReadiness === 'pending'
         ? { kind: "pending" }
         : legacyPremiumRequired

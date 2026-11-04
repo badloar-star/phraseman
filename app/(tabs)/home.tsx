@@ -77,7 +77,7 @@ import { useOverlayActiveKey, useOverlayVisible } from '../../components/Overlay
 import { spirePendingCoinsTotal } from '../spire/spire_pending_coins';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 // зачем (Моменты №4, координатор 26.10): окна «итог недели» и «С возвращением» держат своё состояние в своих хостах — Главная от них не перерисовывается
-import { HomeWeekMomentSlot, HomeWelcomeBackSlot } from '../../components/home/home_moment_slots';
+import { HomeSectionOpeningSlot, HomeWeekMomentSlot, HomeWelcomeBackSlot } from '../../components/home/home_moment_slots';
 import { useCoinRankEnoughMoment } from '../use_coin_rank_enough_moment';
 import { peekEnergy } from '../energy_peek_cache';
 import { SheetSwipeRoot } from '../../components/modal_fx/SheetSwipeClose';
@@ -794,6 +794,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (D193, Авторизация 14.10): «С возвращением» стоит в той же очереди окон сразу после итога недели; энергия — из памяти (peek), без чтений
     const energyPeekNow = peekEnergy();
     // «К карточкам» из «С возвращением» — тот же путь, что у плитки «Сохранённые» на Главной; стабильный колбэк, чтобы хост окна не перерисовывался зря
+    // зачем (владелец 04.11, «Открытие разделов»): CTA праздничного окна ведёт тем же маршрутом, что плитка раздела; колбэк стабильный (слот в memo)
+    const homeOpenSectionRoute = useCallback((route: string) => { nav.push(route as never); }, [nav]);
     const homeOpenSavedCards = useCallback(() => { nav.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'welcome_back' } } as never); }, [nav]);
     const rankEnough = useCoinRankEnoughMoment({ active: homeRuntimeActive });
     const overlayActiveKey = useOverlayActiveKey();
@@ -3235,6 +3237,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }}/></Suspense>) : null}
       <HomeWeekMomentSlot lang={lang} studyTarget={String(studyTarget)} spireTabEnabled={spireTabEnabled} active={homeRuntimeActive} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} onPlay={weekMomentPlay} />
       <HomeWelcomeBackSlot lang={lang} studyTarget={String(studyTarget)} active={homeRuntimeActive} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} energyCurrent={energyPeekNow ? energyPeekNow.energy : null} energyMax={energyPeekNow ? energyPeekNow.maxEnergy : null} onOpenSavedCards={homeOpenSavedCards} />
+      <HomeSectionOpeningSlot lang={lang} active={homeRuntimeActive} onNavigate={homeOpenSectionRoute} />
       <LegacyBonusWelcomeHost lang={lang} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} active={homeRuntimeActive} />
       {rankEnough.visible && rankEnough.offer ? (
         <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={rankEnough.close}>

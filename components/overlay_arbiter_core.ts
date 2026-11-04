@@ -5,6 +5,7 @@ export type OverlayKey =
   | 'welcomeBack'
   | 'legacyBonusWelcome'
   | 'coinRankEnough'
+  | 'sectionOpening'
   | 'arenaOpponentFound'
   | 'update'
   | 'releaseNotes'
@@ -67,6 +68,9 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'personalAdminMessage',
   'notifNudge',
   'introFullAccess',
+  // sectionOpening — праздничное окно «Открытие раздела» (владелец 04.11, макет одобрен): закрывает человек (CTA / «Пропустить»), выселять нельзя;
+  // после запусковых и информационных окон, перед наградами уровня. Нативный <Modal> (NATIVE_MODAL_KEYS).
+  'sectionOpening',
   'levelUp',
   'themedAlert',
   'premiumCelebration',
@@ -151,6 +155,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'personalAdminMessage',
   'notifNudge',
   'introFullAccess',
+  'sectionOpening',
   'levelUp',
   'premiumCelebration',
   'vipCelebration',
@@ -198,6 +203,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   welcomeBack: false,
   legacyBonusWelcome: false,
   coinRankEnough: false,
+  sectionOpening: false,
   arenaOpponentFound: false,
   update: false,
   releaseNotes: false,

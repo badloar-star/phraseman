@@ -15,6 +15,7 @@ const HOOK_DRIVEN_MODAL_HOSTS: { key: OverlayKey; host: string; anchor: RegExp }
   { key: 'spireWeekMoment', host: 'components/spire/moments/SpireWeekMomentHost.tsx', anchor: /<Modal\b/ },
   // перепин 26.10 (Моменты №4): «С возвращением» рисует свой хост рядом с Главной, не сама Главная
   { key: 'welcomeBack', host: 'components/home/home_moment_slots.tsx', anchor: /<Modal\b[^>]*onRequestClose=\{welcomeBack\.close\}/ },
+  { key: 'sectionOpening', host: 'components/home/home_moment_slots.tsx', anchor: /<Modal\b[^>]*onRequestClose=\{sectionOpening\.dismiss\}/ },
   { key: 'coinRankEnough', host: 'app/(tabs)/home.tsx', anchor: /<Modal\b[^>]*onRequestClose=\{rankEnough\.close\}/ },
 ];
 

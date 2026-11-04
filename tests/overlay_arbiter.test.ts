@@ -210,6 +210,8 @@ describe('OverlayArbiter: исчерпывающая классификация 
   // Выселять по таймеру нельзя — потеряется награда или окно, которое юзер читает.
   const PROTECTED_REGISTRY: readonly OverlayKey[] = [
     'onboardingWelcome', 'authRecovery',
+    // sectionOpening — «Открытие раздела» (04.11): закрывает человек, выселять нельзя
+    'sectionOpening',
     // spireWeekMoment — окно итога недели Пика (D191): закрывает человек («Играть» / крестик), выселять таймером нельзя.
     'spireWeekMoment',
     // welcomeBack — «С возвращением» (D193): закрывает человек («N карточек» / «На Главную»), таймера нет — выселять нельзя.

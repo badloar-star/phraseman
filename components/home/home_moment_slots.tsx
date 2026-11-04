@@ -13,12 +13,16 @@ import { Modal } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { useSpireWeekMoment } from '../../app/spire/use_spire_week_moment';
 import { useWelcomeBackMoment } from '../../hooks/use_welcome_back_moment';
+import { useSectionOpeningHost } from '../../modules/section_openings/use_section_opening_host';
 import { SheetSwipeRoot } from '../modal_fx/SheetSwipeClose';
 
 // зачем (D191, владелец 14.10): окно итога недели (m01–m03) тяжёлое (башня, SVG, фейерверк) и нужно раз в неделю — грузится лениво и только когда хук Ядра дал слот
 const SpireWeekMomentHost = lazy(() => import('../spire/moments/SpireWeekMomentHost'));
 // зачем (D193, владелец 14.10): «С возвращением» (m21) — раз после долгой отлучки; грузится лениво, когда хук дал слот
 const WelcomeBackMoment = lazy(() => import('../moments/WelcomeBackMoment'));
+
+// зачем (владелец 04.11, «Открытие разделов»): праздничное окно открытия раздела — тяжёлое только по слоту, грузится лениво
+const SectionOpeningCeremony = lazy(() => import('../section_openings/SectionOpeningCeremony').then((m) => ({ default: m.SectionOpeningCeremony })));
 
 const LOG = '[HOME-MOMENT-SLOT]';
 
@@ -80,6 +84,32 @@ export const HomeWelcomeBackSlot = memo(function HomeWelcomeBackSlot({ lang, stu
             decision={welcomeBack.decision}
             onCards={() => { welcomeBack.close(); onOpenSavedCards(); }}
             onHome={welcomeBack.close}
+          />
+        </Suspense>
+      </SheetSwipeRoot>
+    </Modal>
+  );
+});
+
+type SectionOpeningSlotProps = Readonly<{
+  lang: Lang;
+  active: boolean;
+  /** CTA раздела: тот же переход, что у плитки Главной (маршрут из section_opening_core). */
+  onNavigate: (route: string) => void;
+}>;
+
+export const HomeSectionOpeningSlot = memo(function HomeSectionOpeningSlot({ lang, active, onNavigate }: SectionOpeningSlotProps) {
+  const sectionOpening = useSectionOpeningHost(active);
+  if (!sectionOpening.current) return null;
+  return (
+    <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={sectionOpening.dismiss}>
+      <SheetSwipeRoot>
+        <Suspense fallback={null}>
+          <SectionOpeningCeremony
+            id={sectionOpening.current}
+            lang={lang}
+            onSkip={sectionOpening.dismiss}
+            onCta={() => { const route = sectionOpening.accept(); if (route) onNavigate(route); }}
           />
         </Suspense>
       </SheetSwipeRoot>

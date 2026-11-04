@@ -579,7 +579,7 @@ export const PackRowAddButton = memo(function PackRowAddButton({ g, added, label
         backgroundColor: added ? `${g.accent}1F` : `${g.accent}38`, // без кольца (стиль «Тень»): «добавлено» — бледнее заливка + галочка
       }]}
     >
-      <Ionicons name={added ? 'checkmark' : 'add'} size={22} color={g.accentText} />
+      <Ionicons name={added ? 'checkmark' : 'add'} size={22} color={g.accentGraphic} />
     </KitTouchable>
   );
 });

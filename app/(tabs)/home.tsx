@@ -108,6 +108,7 @@ import HomeV2ContinueCardBase from '../../components/home/v2/HomeV2ContinueCard'
 import HomeV2FeatureTilesBase from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRailBase from '../../components/home/v2/HomeV2VideoRail';
 import HomeV2TodayCardBase from '../../components/home/v2/HomeV2TodayCard';
+import HomeReviewHint from '../../components/home/HomeReviewHint'; // зачем (удобство №8, владелец 04.11): «Повторить N слов · M мин» одной строкой под «Сегодня»
 import { ofLine as todayOfLine } from '../../components/home/v2/today_scene/today_scene_copy';
 // зачем (владелец 21.10 ~23:40, Главная A «Сцена»): шапка и «Продолжить» сведены в сцену — components/home/v2/scene
 import HomeScene, { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/HomeScene';
@@ -2995,6 +2996,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 },
               }}
             />
+            <HomeReviewHint lang={lang} active={homeRuntimeActive} />
             {HOME_SCENE_V2_ENABLED && homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2TilesInOrder} reason={`${homeV2TilesReason};lang=${studyTarget};row`} spireLang={String(studyTarget)} uiLang={lang} row /> : null}
             {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}
             {homeDailyPhraseVisible ? (

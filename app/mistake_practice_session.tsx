@@ -1699,6 +1699,14 @@ function MistakePracticeSessionScreen() {
                 <TextInput
                   value={input}
                   onChangeText={setInput}
+                  // зачем (UX-волна 2, 04.11, владелец одобрил): Enter на клавиатуре проверяет ответ, как кнопка «Проверить»; фокус сразу в поле печатного задания
+                  returnKeyType="done"
+                  blurOnSubmit={false}
+                  autoFocus={renderer === 'typing'}
+                  onSubmitEditing={() => {
+                    if (!canCheck) return;
+                    void submitVerdict(matchesMistakePracticeAnswer(answerValue, entry.exercise.correctAnswer, studyTarget));
+                  }}
                   autoCapitalize="none"
                   autoCorrect={false}
                   accessibilityLabel={copy.answerPlaceholder}

@@ -17,6 +17,7 @@ import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import { useLineScale } from '../../hooks/useLineScale';
 import { useSoftAppear } from '../../hooks/use_soft_appear';
+import { KitTouchable } from '../KitTouchable';
 
 /** «.card» макета: плашка стиля «Тень» — градиент 180° и тень вниз, без обводки и кромки. */
 export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress, testID, accessibilityLabel, disabled, style, solid, radius = 14 }: Readonly<{
@@ -34,7 +35,7 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
   radius?: number;
 }>) {
   return (
-    <Pressable
+    <KitTouchable
       testID={testID}
       accessibilityRole={onPress ? 'button' : undefined}
       accessibilityLabel={accessibilityLabel}
@@ -42,10 +43,10 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
       accessibilityState={{ disabled: !!(disabled || !onPress) }}
       onPress={onPress}
       onLongPress={onLongPress}
-      style={({ pressed }) => [styles.card, { borderRadius: radius, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed, style]}>
+      style={[styles.card, { borderRadius: radius, boxShadow: plateBoxShadow(g) }, style]}>
       {solid ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, backgroundColor: solid }]} /> : <PlateFill g={g} radius={radius} />}
       {children}
-    </Pressable>
+    </KitTouchable>
   );
 });
 
@@ -120,23 +121,22 @@ export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPre
 }>) {
   const ink = disabled ? g.mutedText : g.ctaFillInk;
   return (
-    <Pressable
+    <KitTouchable
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? label}
       accessibilityState={disabled ? { disabled: true } : undefined}
       onPress={onPress}
-      style={({ pressed }) => [
+      style={[
         styles.cta,
         disabled
           ? { backgroundColor: g.buttonFill }
           : { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) },
-        pressed && styles.pressed,
       ]}>
       {icon ? <Ionicons name={icon} size={20} color={ink} /> : null}
       <Text style={[styles.ctaText, { color: ink }]}>{label}</Text>
       {trailingIcon ? <Ionicons name={trailingIcon} size={20} color={ink} /> : null}
-    </Pressable>
+    </KitTouchable>
   );
 });
 
@@ -194,7 +194,7 @@ export const KitSegment = memo(function KitSegment({ g, options, value, onChange
       {options.map((option) => {
         const on = option.id === value;
         return (
-          <Pressable
+          <KitTouchable
             key={option.id}
             testID={testIDPrefix ? `${testIDPrefix}-${option.id}` : undefined}
             accessibilityRole="radio"
@@ -203,7 +203,7 @@ export const KitSegment = memo(function KitSegment({ g, options, value, onChange
             style={[styles.seg, on && { boxShadow: nestedBoxShadow(g) }]}>
             {on ? <PlateFill g={g} radius={10} raised /> : null}
             <Text style={[styles.segText, { color: on ? g.text : g.secondary, fontWeight: on ? '700' : '600', lineHeight: lh(20) }]}>{option.label}</Text>
-          </Pressable>
+          </KitTouchable>
         );
       })}
     </KitSurface>

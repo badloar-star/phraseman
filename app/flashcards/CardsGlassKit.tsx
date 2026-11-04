@@ -12,8 +12,9 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import { KitTouchable } from '../../components/KitTouchable';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
@@ -89,7 +90,7 @@ export function CardsGlassRoundButton({
   label: string;
 }) {
   return (
-    <TouchableOpacity
+    <KitTouchable
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={label}
@@ -111,7 +112,7 @@ export function CardsGlassRoundButton({
       }}
     >
       <NavIcon name={icon} size={iconSize} color={g.text} />
-    </TouchableOpacity>
+    </KitTouchable>
   );
 }
 
@@ -135,7 +136,7 @@ export function CardsGlassPrimaryButton({
 }) {
   const ghost = variant === 'ghost';
   return (
-    <TouchableOpacity
+    <KitTouchable
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={label}
@@ -172,7 +173,7 @@ export function CardsGlassPrimaryButton({
       >
         {label}
       </Text>
-    </TouchableOpacity>
+    </KitTouchable>
   );
 }
 

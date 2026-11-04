@@ -13,6 +13,7 @@ import Svg, { Circle } from 'react-native-svg';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { DebugLogger } from '../../app/debug-logger';
 import { useTheme } from '../ThemeContext';
+import { KitTouchable } from '../KitTouchable';
 
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
@@ -158,24 +159,23 @@ export const PanelCta = memo(function PanelCta({ g, label, onPress, testID, disa
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   return (
-    <Pressable
+    <KitTouchable
       testID={testID}
       accessibilityRole="button"
       accessibilityState={{ disabled: !!disabled }}
       disabled={disabled}
       onPress={onPress}
-      style={({ pressed }) => [
+      style={[
         styles.cta,
         flex && styles.ctaFlex,
         ghost
           ? { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }
           : { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) },
         disabled && styles.ctaDisabled,
-        pressed && styles.pressed,
       ]}>
       <Text style={[styles.ctaText, { color: ghost ? g.text : g.ctaFillInk }]}>{label}</Text>
       {trailing}
-    </Pressable>
+    </KitTouchable>
   );
 });
 
@@ -226,13 +226,13 @@ export function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   return (
-    <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, { boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
+    <KitTouchable testID={testID} accessibilityRole="button" onPress={onPress} style={[styles.menuRow, { boxShadow: plateBoxShadow(g) }]}>
       <PlateFill g={shadowSheetPlateTokens(g)} radius={20} />
       <View style={[styles.menuTile, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
         <Ionicons name={icon} size={20} color={danger ? mpColors(g).bad : g.text} />
       </View>
       <Text style={[styles.menuText, { color: danger ? mpColors(g).bad : g.text }]}>{title}</Text>
-    </Pressable>
+    </KitTouchable>
   );
 }
 

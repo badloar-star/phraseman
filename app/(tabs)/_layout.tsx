@@ -542,8 +542,9 @@ const FOREGROUND_TAB_PREMOUNT_HOLD_MS = 3000;
 /** Запас после коммита выбранной вкладки: её первые кадры и эффекты без фоновых соседей. */
 const FOREGROUND_TAB_SETTLE_MS = 800;
 const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS + 4000;
-/** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
-const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
+/** Фоново прогреваем только вкладку «Уроки» (логический индекс 1); остальные отложенные вкладки монтируются по первому тапу.
+ *  зачем (владелец 04.11, Android-лаги): премаунт четырёх вкладок через 500 мс после кадра Главной давал паузы JS 1–3 с, пока человек смотрит на Главную. */
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1] as const;
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп).
  *  journal — legacy-якорь вкладки «Все уроки». */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {

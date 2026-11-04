@@ -22,8 +22,8 @@ describe('tab background pre-mount contract', () => {
     const source = readLayout();
 
     expect(source).toContain('const ENABLE_BACKGROUND_TAB_PREMOUNT = true');
-    // Текущие четыре deferred-панели прогреваются по одной, не одним блоком.
-    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const');
+    // зачем (владелец 04.11, Android-лаги): фоново прогревается только «Уроки»; остальные deferred-панели монтируются по первому тапу (tests/tabs_premount_order_2026_11_04.test.ts).
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1] as const');
     expect(source).toContain('scheduleIdleTask');
     expect(source).toContain('requestIdleCallback');
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 400');

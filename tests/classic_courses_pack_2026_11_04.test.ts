@@ -10,7 +10,8 @@ const ROOT = path.join(__dirname, '..', 'modules', 'classic-courses');
 const LANGS = fs.existsSync(ROOT) ? fs.readdirSync(ROOT, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : [];
 // зачем: лимит из контракта Ядра — ≤ 5 МБ сырого JSON на язык (EN допускается до 6,5)
 const BUDGET_MB: Record<string, number> = { en: 6.5, es: 5, fr: 5, de: 5, it: 5 };
-const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]> };
+const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]> };
+const PATCHES = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_patches.json'), 'utf8')) as { remove: Record<string, string[]>; answers?: Record<string, { remove?: string[] }> };
 const LESSON_FAT = ['english', 'russian', 'ukrainian', 'teachingNote', 'category', 'gradingMethod'];
 const FORBIDDEN_KEY = /^(audio|voice|tts)/i;
 const FORBIDDEN_VALUE = /\.(mp3|ogg|m4a)|https?:\/\//i;
@@ -101,6 +102,72 @@ describe('классические курсы: рантайм-данные', () 
       }
       const counts = Object.fromEntries(Object.entries(bad).map(([k, v]) => [k, v.length]));
       expect(counts).toEqual({ selfCase: 0, otherCorrect: 0, number: 0, name: 0, acceptedPhrase: 0, duplicate: 0, count: 0, lowerI: 0 });
+    });
+
+    // Системные причины неоднозначных плиток по аудиту сильной модели (Координатор 04.11, второй проход)
+    it('соблазны: артикли, синонимы, «вы/они», части речи, непройденные слова, точечные правки', () => {
+      type Tile = { correct: string; distractors: string[] };
+      type Phrase = { id: string; tiles: Tile[]; accepted?: string[][]; alternatives: string[]; answers?: string[] };
+      const phrases: Phrase[] = lessonFiles.flatMap((f) => JSON.parse(read(lang, f)).phrases);
+      const strip = (t: string) => t.toLowerCase().replace(/[.,!?;:¿¡]/g, '');
+      const lessonOf = (id: string) => { const m = /(\d\d)[.:](\d\d)$/.exec(id)!; return { lesson: Number(m[1]), key: `${m[1]}:${m[2]}` }; };
+      const articles = new Set<string>(LISTS.articles?.[lang] ?? []);
+      const groupHit = (groups: string[][] | undefined, a: string, b: string) => (groups ?? []).some((g) => g.includes(a) && g.includes(b));
+      const tails: string[] = LISTS.siblingTails?.[lang] ?? [];
+      const sibling = (a: string, b: string) => {
+        if (!tails.length || a === b) return false;
+        let p = 0;
+        while (p < a.length && p < b.length && a[p] === b[p]) p++;
+        return p >= 3 && tails.includes(a.slice(p)) && tails.includes(b.slice(p)) && a.length - p <= 4 && b.length - p <= 4;
+      };
+      const timeAdv = new Set<string>(LISTS.timeAdverbs?.[lang] ?? []);
+      const numbers = new Set<string>(LISTS.numbers[lang] ?? []);
+      const vocab = new Map<string, number>();
+      for (const p of phrases) {
+        const { lesson } = lessonOf(p.id);
+        for (const t of [...p.tiles.map((x) => x.correct), ...(p.accepted ?? []).flat(), ...p.alternatives.flatMap((a) => a.split(/\s+/))]) {
+          const k = strip(t);
+          if (k && (!vocab.has(k) || vocab.get(k)! > lesson)) vocab.set(k, lesson);
+        }
+      }
+      // имена: с заглавной в середине фразы и никогда строчными среди правильных слов; плитка-имя в начале фразы — большинство соблазнов из имён
+      const lowerSeen = new Set<string>();
+      for (const p of phrases) for (const t of p.tiles) if (t.correct[0] === t.correct[0].toLowerCase()) lowerSeen.add(t.correct);
+      const baseNames = new Set<string>();
+      for (const p of phrases) p.tiles.forEach((t, i) => { if (i > 0 && t.correct[0] !== t.correct[0].toLowerCase() && !lowerSeen.has(t.correct.toLowerCase())) baseNames.add(t.correct); });
+      const cap = (w: string) => w[0].toUpperCase() + w.slice(1);
+      const isNameTile = (t: Tile, i: number) => t.correct[0] !== t.correct[0].toLowerCase() && (i > 0 || baseNames.has(t.correct) || t.distractors.filter((d) => baseNames.has(cap(d))).length >= 3);
+      const bad: Record<string, string[]> = { article: [], synonym: [], youForm: [], pos: [], nonWord: [], unseen: [], patch: [], answers: [] };
+      for (const p of phrases) {
+        const { lesson, key } = lessonOf(p.id);
+        const removed = new Set<string>((PATCHES.remove[`${lang}:${key}`] ?? []).map(strip));
+        p.tiles.forEach((tile, i) => {
+          const c = strip(tile.correct);
+          for (const d of tile.distractors) {
+            const dd = strip(d);
+            const where = `${p.id}#${i}:${d}`;
+            if (!/^[\p{L}][\p{L}'’-]*$/u.test(d)) bad.nonWord.push(where);
+            if (removed.has(dd)) bad.patch.push(where);
+            if (articles.has(c) && articles.has(dd)) bad.article.push(where);
+            if (groupHit(LISTS.synonyms?.[lang], c, dd)) bad.synonym.push(where);
+            if (groupHit(LISTS.youGroups?.[lang], c, dd) || sibling(c, dd)) bad.youForm.push(where);
+            if (lang === 'de' && timeAdv.has(dd) && !timeAdv.has(c)) bad.pos.push(where);
+            if (!numbers.has(c)) {
+              const seen = vocab.get(dd);
+              // зачем: имена и первые плитки (регистр не различает слова и имена) проверяет генератор; тест — для обычных слов внутри фразы
+              if (i > 0 && tile.correct[0] === tile.correct[0].toLowerCase() && (seen === undefined || seen > lesson + Math.max(2, 8 - lesson))) bad.unseen.push(where);
+            }
+          }
+        });
+        if (lang === 'es') {
+          const ap = PATCHES.answers?.[p.id];
+          if (ap) for (const a of ap.remove ?? []) if ((p.answers ?? []).includes(a)) bad.answers.push(`${p.id}:${a}`);
+          if ((p.answers ?? []).some((a) => /\bno[.?!]?$/.test(a) && a !== (p.answers ?? [])[0])) bad.answers.push(`${p.id}:final-no`);
+          if ((p.answers ?? []).some((a) => /mesa fuese/.test(a))) bad.answers.push(`${p.id}:fuese`);
+        }
+      }
+      const counts = Object.fromEntries(Object.entries(bad).map(([k, v]) => [k, v.length]));
+      expect(counts).toEqual({ article: 0, synonym: 0, youForm: 0, pos: 0, nonWord: 0, unseen: 0, patch: 0, answers: 0 });
     });
 
     it('в lessons-NN нет «жира» архива', () => {

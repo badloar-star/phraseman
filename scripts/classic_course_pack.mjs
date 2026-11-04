@@ -8,7 +8,7 @@
 //
 // Запуск: node scripts/classic_course_pack.mjs [en es fr de it] [--big <zip>] [--en <zip>] [--out <dir>] [--check] [--sample]
 //   --check — только проверки, ничего не пишет; --sample — вывести по 3 записи словаря и 2 фразы на язык.
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { inflateRawSync } from 'node:zlib';
 import { join, dirname } from 'node:path';
@@ -72,6 +72,16 @@ const nonEmpty = (s) => typeof s === 'string' && s.trim().length > 0;
 const OVERRIDES_PATH = join(ROOT, 'docs', 'work', 'classic_gloss_overrides.json');
 const OVERRIDES = existsSync(OVERRIDES_PATH) ? JSON.parse(readFileSync(OVERRIDES_PATH, 'utf8')) : {};
 const overrideLocales = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr'];
+// зачем (Координатор 04.11): исправления ru/uk из аудита вносит Переводчик в docs/work/classic_translation_fixes_*.json —
+// {"<lang>:<LL>.<PP>": {"ru": …, "uk": …, "reason": …}}; здесь они накладываются на sourceLocales фразы (числа и порядок фраз не меняются)
+const TRANSLATION_FIXES = new Map();
+for (const f of readdirSync(join(ROOT, 'docs', 'work')).filter((n) => /^classic_translation_fixes_.*\.json$/.test(n)).sort()) {
+  for (const [k, v] of Object.entries(JSON.parse(readFileSync(join(ROOT, 'docs', 'work', f), 'utf8')))) {
+    const m = /^([a-z]{2}):(\d\d)[.:](\d\d)$/.exec(k);
+    if (m) TRANSLATION_FIXES.set(`${m[1]}:${m[2]}:${m[3]}`, v);
+  }
+}
+const usedTranslationFixes = new Set();
 const errors = [];
 const fail = (lang, msg) => { errors.push(`[${lang}] ${msg}`); };
 const warnings = [];
@@ -129,18 +139,30 @@ function buildPhrase(lang, prof, r, where) {
   const src = { ...(r.sourceLocales ?? {}) };
   if (!src.en && nonEmpty(r.english) && lang !== 'en') src.en = r.english;
   if (lang === 'en') { src.en = r.english; src.ru = r.russian; src.uk = r.ukrainian; src.es = r.spanish; }
+  const fixKey = (() => { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); return m ? `${lang}:${m[1]}:${m[2]}` : ''; })();
+  const tfix = TRANSLATION_FIXES.get(fixKey);
+  if (tfix) { usedTranslationFixes.add(fixKey); for (const l of ['ru', 'uk']) if (nonEmpty(tfix[l])) src[l] = tfix[l]; }
   const sourceLocales = {};
   for (const l of LOCALES) {
     if (!nonEmpty(src[l])) fail(lang, `${where}: нет подсказки ${l}`);
     sourceLocales[l] = src[l];
   }
-  const out = { id: r.id, target, tiles, alternatives: r[prof.alternatives] ?? [] };
+  let alts = r[prof.alternatives] ?? [];
+  const ap0 = PATCHES.answers?.[r.id];
+  if (ap0) alts = [...new Set(alts.filter((x) => !(ap0.remove ?? []).includes(x)).map((x) => Object.entries(ap0.replace ?? {}).reduce((acc, [from, to]) => acc.split(from).join(to), x)).concat(ap0.add ?? []))];
+  const out = { id: r.id, target, tiles, alternatives: alts };
   if (prof.accepted) {
     out.accepted = r[prof.accepted];
     if (!Array.isArray(out.accepted) || !out.accepted.length || out.accepted.some((p) => !Array.isArray(p) || !p.length || p.some((t) => !nonEmpty(t)))) fail(lang, `${where}: пустые ${prof.accepted}`);
   }
   if (prof.answers) {
-    const a = r[prof.answers];
+    let a = r[prof.answers];
+    const ap = PATCHES.answers?.[r.id];
+    if (ap && Array.isArray(a)) {
+      a = a.filter((x) => !(ap.remove ?? []).includes(x)).map((x) => Object.entries(ap.replace ?? {}).reduce((acc, [from, to]) => acc.split(from).join(to), x));
+      for (const x of ap.add ?? []) if (!a.includes(x)) a.push(x);
+      a = [...new Set(a)];
+    }
     if (!Array.isArray(a) || !a.length || a.some((x) => !nonEmpty(x))) fail(lang, `${where}: пустые ${prof.answers}`);
     out.answers = a;
     out.accepted = a.map(esTokens);
@@ -224,7 +246,9 @@ function scanForbidden(lang, name, node, path = '') {
 // свою позицию даёт принимаемую фразу (accepted / alternatives) — убрать. Замена берётся из пула: соблазны других плиток с тем же
 // окончанием правильного слова (3 → 2 → 1 знака), того же регистра, по убыванию частоты. Результат детерминирован.
 const LISTS = JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_distractor_lists.json'), 'utf8'));
-const NAME_LANGS = new Set(['es', 'fr', 'it']); // в немецком существительные с заглавной, в EN соблазны в архиве все строчные (English, Fridays) — имён по регистру не выделить
+const PATCHES = JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_distractor_patches.json'), 'utf8'));
+const NAME_LANGS = new Set(['en', 'es', 'fr', 'it']);
+const CAT_NAME_LANGS = new Set(['es', 'fr', 'it']); // «имя вместо слова другого типа» — только там, где соблазны-имена не строчные как в EN // в немецком существительные с заглавной, в EN соблазны в архиве все строчные (English, Fridays) — имён по регистру не выделить
 const upperFirst = (t) => t[0] !== t[0].toLowerCase();
 const stripP = (t) => t.toLowerCase().replace(/[.,!?;:¿¡]/g, '');
 const keyOf = (tokens) => tokens.map(stripP).join(' ');
@@ -236,17 +260,38 @@ function phraseKeys(ph) {
   return { corrects, acc };
 }
 
-// Причина, по которой соблазн d на плитке i недопустим (null — допустим)
+// Причина, по которой соблазн d на плитке i недопустим (null — допустим). Порядок = приоритет учёта в статистике.
+function phraseNumbers(id) { const m = /(\d\d)[.:](\d\d)$/.exec(id); return m ? { lesson: Number(m[1]), key: `${m[1]}:${m[2]}` } : { lesson: 99, key: id }; }
+const sameGroup = (groups, a, b) => groups.some((g) => g.includes(a) && g.includes(b));
+function sibling(tails, a, b) {
+  if (!tails.length || a === b) return false;
+  let p = 0;
+  while (p < a.length && p < b.length && a[p] === b[p]) p++;
+  return p >= 3 && tails.includes(a.slice(p)) && tails.includes(b.slice(p)) && a.length - p <= 4 && b.length - p <= 4;
+}
 function badReason(lang, ctx, ph, i, d, mine) {
   const { corrects, acc } = phraseKeys(ph);
   const tile = ph.tiles[i];
-  const isNum = ctx.numbers.has(stripP(tile.correct));
+  const c = stripP(tile.correct);
+  const dd = stripP(d);
+  const isNum = ctx.numbers.has(c);
   const isName = ctx.nameTile.get(tile) === true;
-  if (stripP(d) === stripP(tile.correct)) return 'selfCase';
-  if (corrects.some((c, j) => j !== i && stripP(c) === stripP(d))) return 'otherCorrect';
-  if (ctx.numbers.has(stripP(d)) !== isNum || (NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
-  if (acc.has(keyOf(corrects.map((c, j) => (j === i ? d : c))))) return 'acceptedPhrase';
-  if (mine.some((x) => stripP(x) === stripP(d))) return 'duplicate';
+  const { lesson, key } = phraseNumbers(ph.id);
+  if (!/^[\p{L}][\p{L}'’-]*$/u.test(d)) return 'nonWord';
+  if (dd === c) return 'selfCase';
+  if (corrects.some((x, j) => j !== i && stripP(x) === dd)) return 'otherCorrect';
+  if (ctx.patch.get(`${lang}:${key}`)?.has(dd)) return 'patch';
+  if (ctx.articles.has(c) && ctx.articles.has(dd)) return 'article';
+  if (sameGroup(ctx.synonyms, c, dd)) return 'synonym';
+  if (sameGroup(ctx.youGroups, c, dd) || sibling(ctx.tails, c, dd)) return 'youForm';
+  if (lang === 'de' && ctx.timeAdv.has(dd) && !ctx.timeAdv.has(c)) return 'pos';
+  if (lang === 'es' && c === 'fuera' && ctx.serForms.has(dd) && !/^(si|que|como|aunque)$/i.test(corrects[i - 1] ?? '')) return 'pos';
+  if (ctx.numbers.has(dd) !== isNum || (CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
+  const seen = ctx.vocab.get(dd);
+  // зачем: «без форм из ещё не пройденных уроков» (Координатор 04.11); допуск +2 урока, иначе в уроках 1–3 не из чего выбирать; числительные не режем
+  if (!isNum && !isName && (seen === undefined || seen > lesson + Math.max(2, 8 - lesson))) return 'unseen';
+  if (acc.has(keyOf(corrects.map((x, j) => (j === i ? d : x))))) return 'acceptedPhrase';
+  if (mine.some((x) => stripP(x) === dd)) return 'duplicate';
   return null;
 }
 
@@ -259,30 +304,50 @@ function buildContext(lang, all) {
     for (const ph of all) ph.tiles.forEach((t, i) => { if (i > 0 && upperFirst(t.correct) && t.correct !== 'I' && !lower.has(t.correct.toLowerCase())) names.add(t.correct); });
   }
   // плитка-имя: правильное слово — известное имя, либо с заглавной и большинство соблазнов — известные имена (имя в начале фразы)
+  // EN: слова начала фразы (She, The, There…) попадают в «имена» из-за реплик с точкой внутри фразы — убираем служебные слова
+  // EN: дни недели и месяцы — собственные имена, даже если стоят первым словом фразы
+  if (lang === 'en') for (const w of 'Monday Tuesday Wednesday Thursday Friday Saturday Sunday January February March April May June July August September October November December'.split(' ')) names.add(w);
+  if (lang === 'en') for (const w of 'he she they we you it i the a an this that these those there here what who whom whose when where how why which is are am was were do does did can could will would should may might must have has had not no yes please thanks'.split(' ')) names.delete(w[0].toUpperCase() + w.slice(1));
   const nameTile = new Map();
   if (NAME_LANGS.has(lang)) {
     for (let round = 0; round < 2; round++) {
       for (const ph of all) for (const t of ph.tiles) {
-        const isN = names.has(t.correct) || (upperFirst(t.correct) && t.distractors.length && t.distractors.filter((d) => names.has(d)).length * 2 >= t.distractors.length);
+        const isN = names.has(t.correct) || (lang !== 'en' && upperFirst(t.correct) && t.distractors.length && t.distractors.filter((d) => names.has(d)).length * 2 >= t.distractors.length);
         nameTile.set(t, isN);
-        if (isN) { names.add(t.correct); for (const d of t.distractors) if (d !== 'I' && /^[\p{L}]+$/u.test(d)) names.add(d[0].toUpperCase() + d.slice(1)); }
+        // EN: имена не расширяем соблазнами (иначе в «имена» попадают You/We/They) — берём только имена из правильных ответов
+        if (isN && lang !== 'en') { names.add(t.correct); for (const d of t.distractors) if (d !== 'I' && /^[\p{L}]+$/u.test(d)) names.add(d[0].toUpperCase() + d.slice(1)); }
       }
     }
   }
-  return { numbers, names, nameTile };
+  const sets = (arr) => new Set(arr ?? []);
+  // словарь «что уже пройдено»: слово → первый урок, где оно встречается в правильном ответе, допустимых путях или альтернативах
+  const vocab = new Map();
+  for (const ph of all) {
+    const { lesson } = phraseNumbers(ph.id);
+    const toks = [...ph.tiles.map((t) => t.correct), ...(ph.accepted ?? []).flat(), ...ph.alternatives.flatMap((a) => a.split(/\s+/))];
+    for (const t of toks) { const k = stripP(t); if (k && (!vocab.has(k) || vocab.get(k) > lesson)) vocab.set(k, lesson); }
+  }
+  const patch = new Map();
+  for (const [k, toks] of Object.entries(PATCHES.remove ?? {})) patch.set(k, new Set(toks.map(stripP)));
+  if (process.env.DEBUG_NAMES) console.log(`имена ${lang}: ${[...names].filter((n) => /^(He|She|They|We|You|It|The|A|There|This)$/.test(n)).join(',')} всего ${names.size}`);
+  return {
+    numbers, names, nameTile, vocab, patch,
+    articles: sets(LISTS.articles?.[lang]), synonyms: LISTS.synonyms?.[lang] ?? [], youGroups: LISTS.youGroups?.[lang] ?? [],
+    tails: LISTS.siblingTails?.[lang] ?? [], timeAdv: sets(LISTS.timeAdverbs?.[lang]), serForms: sets(LISTS.serForms?.[lang]),
+  };
 }
 
 function auditDistractors(lang, all, ctxIn) {
   const ctx = ctxIn ?? buildContext(lang, all);
-  const found = { selfCase: 0, otherCorrect: 0, category: 0, acceptedPhrase: 0, duplicate: 0 };
+  const found = {};
   for (const ph of all) ph.tiles.forEach((tile, i) => {
     const seen = [];
     for (const d of tile.distractors) {
       const why = badReason(lang, ctx, ph, i, d, seen);
-      if (why) found[why]++;
+      if (why) found[why] = (found[why] ?? 0) + 1;
       seen.push(d);
     }
-    if (lang === 'en' && tile.distractors.some((d) => /^i(['’]|$)/.test(d))) found.selfCase++;
+    if (lang === 'en' && tile.distractors.some((d) => /^i(['’]|$)/.test(d))) found.lowerI = (found.lowerI ?? 0) + 1;
   });
   return found;
 }
@@ -305,7 +370,7 @@ function fixDistractors(lang, all) {
   }
   const everything = new Map();
   for (const m of pool[1].values()) for (const [d, c] of m) everything.set(d, (everything.get(d) ?? 0) + c);
-  const removed = { selfCase: 0, otherCorrect: 0, category: 0, acceptedPhrase: 0, duplicate: 0, caseFixed: 0, refilled: 0, short: 0 };
+  const removed = { caseFixed: 0, refilled: 0, short: 0 };
   const shortSamples = [];
   for (const ph of all) {
     ph.tiles.forEach((tile, i) => {
@@ -315,16 +380,27 @@ function fixDistractors(lang, all) {
         if (lang === 'en' && /^i(['’]|$)/.test(d)) { d = 'I' + d.slice(1); removed.caseFixed++; }
         if (ctx.nameTile.get(tile) === true && !upperFirst(d) && ctx.names.has(d[0].toUpperCase() + d.slice(1))) { d = d[0].toUpperCase() + d.slice(1); removed.caseFixed++; }
         const why = badReason(lang, ctx, ph, i, d, kept);
-        if (why) removed[why]++; else kept.push(d);
+        if (process.env.DEBUG_TILE === `${ph.id}#${i}`) console.log('tile', d, why);
+        if (why) removed[why] = (removed[why] ?? 0) + 1; else kept.push(d);
       }
       if (kept.length < want) {
-        const upperWanted = kept.length ? kept.filter(upperFirst).length * 2 > kept.length : upperFirst(tile.correct);
+        // английские соблазны в архиве строчные даже у первой плитки (You → he, they); в остальных языках первая плитка с заглавной
+        const upperWanted = kept.length ? kept.filter(upperFirst).length * 2 > kept.length : (lang === 'en' ? ctx.nameTile.get(tile) === true : upperFirst(tile.correct));
         const tried = new Set();
+        // тайл-артикль: вместо чужих артиклей — притяжательные/указательные слова (грамматически неверная замена)
+        if (ctx.articles.has(stripP(tile.correct))) for (const sub of LISTS.articleSubstitutes?.[lang] ?? []) {
+          if (kept.length >= want) break;
+          const c = upperFirst(tile.correct) && upperWanted ? sub[0].toUpperCase() + sub.slice(1) : sub;
+          if (!tried.has(c) && !badReason(lang, ctx, ph, i, c, kept)) { tried.add(c); kept.push(c); removed.refilled++; }
+        }
         const anchors = [tile.correct, ...kept];
         const near = new Map();
         for (const a of anchors) for (const [c, k] of cooc.get(a) ?? []) near.set(c, (near.get(c) ?? 0) + k);
         const nearRanked = [...near.entries()].sort((a, b) => b[1] - a[1] || (everything.get(b[0]) ?? 0) - (everything.get(a[0]) ?? 0) || (a[0] < b[0] ? -1 : 1));
-        for (const [c] of nearRanked) {
+        // кандидат в нужном регистре: строчное имя собственное (wednesday) → Wednesday, если имя известно
+        const asWanted = (c) => (upperWanted && !upperFirst(c) && ctx.names.has(c[0].toUpperCase() + c.slice(1)) ? c[0].toUpperCase() + c.slice(1) : c);
+        for (const [c0] of nearRanked) {
+          const c = asWanted(c0);
           if (kept.length >= want) break;
           if (tried.has(c) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
           tried.add(c);
@@ -333,7 +409,8 @@ function fixDistractors(lang, all) {
         for (const n of kept.length >= want ? [] : [3, 2, 1, 0]) {
           const cands = n ? pool[n].get(suffixKey(tile.correct, n)) ?? new Map() : everything;
           const ranked = [...cands.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));
-          for (const [c] of ranked) {
+          for (const [c0] of ranked) {
+            const c = asWanted(c0);
             if (kept.length >= want) break;
             if (tried.has(c) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
             tried.add(c);
@@ -427,6 +504,9 @@ function convert(lang, zips) {
   return { files, phrases, rawBytes, srcHash, sourceZipSha256: zip.sha, dstat };
 }
 
+function checkTranslationFixesUsed() {
+  for (const k of TRANSLATION_FIXES.keys()) if (LANGS.includes(k.split(':')[0]) && !usedTranslationFixes.has(k)) fail(k.split(':')[0], `правка перевода ${k}: фраза не найдена`);
+}
 const zips = { big: openZip(BIG), en: LANGS.includes('en') ? openZip(EN_V3) : null };
 const manifestPath = join(OUT, 'manifest.json');
 const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : { schema: 'phraseman.classic.manifest/1', languages: {} };
@@ -460,6 +540,7 @@ for (const lang of LANGS) {
     console.log(`--- ${lang} phrase sample`, JSON.stringify(res.files['lessons-01.json'].phrases.slice(0, 2)));
   }
 }
+checkTranslationFixesUsed();
 manifest.languages = Object.fromEntries(Object.keys(manifest.languages).sort().map((k) => [k, manifest.languages[k]]));
 if (!CHECK_ONLY && !errors.length) { mkdirSync(OUT, { recursive: true }); writeFileSync(manifestPath, JSON.stringify(manifest) + '\n'); }
 console.log(JSON.stringify(table));

@@ -1,4 +1,5 @@
 import React, { useEffect, useImperativeHandle, useRef, forwardRef } from 'react';
+import { useReduceMotion } from '../hooks/use_reduce_motion'; // зачем (UX-волна 2, 04.11): бесконечный idle-цикл 13 столбиков без Reduce Motion
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 
 import {
@@ -78,6 +79,7 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
   owner,
 }, ref) {
   const count = Math.max(3, barCount);
+  const reduceMotion = useReduceMotion();
   // scaleY покоя = MIN_BAR_H / MAX_BAR_H (бар не схлопывается в ноль).
   const bars = useRef(
     Array.from({ length: count }, () => new Animated.Value(MIN_BAR_H / MAX_BAR_H)),
@@ -207,7 +209,7 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
   // замирал бы «в ноль» при любой паузе данных. Всё на ref'ах и таймере,
   // ни одного setState — рендеров этот механизм не порождает.
   useEffect(() => {
-    if (levelDriven || !active) return; // prop-путь: как раньше, без idle-лупа
+    if (levelDriven || !active || reduceMotion) return; // prop-путь: как раньше, без idle-лупа; Reduce Motion — статичные столбики (реальные сэмплы голоса по-прежнему двигают их)
     startIdle();
     const watchdogId = setInterval(() => {
       if (idleLoopsRef.current) return; // уже в idle
@@ -217,7 +219,7 @@ export const VoiceEqualizer = forwardRef<VoiceEqualizerRef, VoiceEqualizerProps>
       clearInterval(watchdogId);
       stopIdle();
     };
-  }, [levelDriven, active, startIdle, stopIdle]);
+  }, [levelDriven, active, reduceMotion, startIdle, stopIdle]);
 
   // Выбор цвета: legacy-режим (owner не задан) — как раньше, от active;
   // duplex-режим — от владельца хода, чтобы смена цвета не требовала гасить

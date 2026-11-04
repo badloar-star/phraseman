@@ -12,6 +12,7 @@
  * Никаких вечных циклов → в allowlist perf_freeze_contract НЕ попадает.
  */
 import React, { useEffect, useMemo } from 'react';
+import { useReduceMotion } from '../../hooks/use_reduce_motion'; // зачем (UX-волна 2, 04.11): один гейт Reduce Motion на все конфетти (VictoryBurst, онбординг, награды)
 import { PixelRatio, StyleSheet, useWindowDimensions, View } from 'react-native';
 import Animated, {
   cancelAnimation,
@@ -108,6 +109,7 @@ export function ConfettiBurst({
   onDone,
 }: ConfettiBurstProps) {
   const { width } = useWindowDimensions();
+  const reduceMotion = useReduceMotion();
 
   // Слабые устройства: половина частиц (эвристика по плотности пикселей).
   const effectiveCount = useMemo(() => {
@@ -132,6 +134,9 @@ export function ConfettiBurst({
     () => Array.from({ length: effectiveCount }, (_, i) => i),
     [effectiveCount],
   );
+
+  // зачем: при «Уменьшении движения» частицы не рисуем; таймер onDone выше остаётся, поэтому вызывающий код (закрытие окна, следующий шаг) не зависает
+  if (reduceMotion) return null;
 
   return (
     <View pointerEvents="none" style={styles.layer}>

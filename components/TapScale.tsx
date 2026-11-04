@@ -1,6 +1,7 @@
 import React, { memo, useRef, useCallback } from 'react';
 import { Animated, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { hapticTap } from '../hooks/use-haptics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { KIT_PRESS_DOWN, KIT_PRESS_OPACITY_DOWN, KIT_PRESS_OPACITY_UP, KIT_PRESS_SCALE, KIT_PRESS_UP } from '../constants/kitPress';
 import { mergeAccessibilityDisabled } from './a11y_state';
 
@@ -44,11 +45,14 @@ function TapScale({
 }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
+  // зачем (UX-волна 2, 04.11): единственная из обёрток нажатия не знала про Reduce Motion — масштаб не играем, отклик остаётся прозрачностью
+  const reduceMotion = useReduceMotion();
+  const pressScale = reduceMotion ? 1 : scaleTo;
 
   const pressIn = useCallback(() => {
     Animated.parallel([
       Animated.timing(scale, {
-        toValue: scaleTo,
+        toValue: pressScale,
         ...KIT_PRESS_DOWN,
         useNativeDriver: true,
       }),
@@ -58,7 +62,7 @@ function TapScale({
       }),
     ]).start();
     if (withHaptic && !disabled) hapticTap();
-  }, [scale, opacity, scaleTo, withHaptic, disabled]);
+  }, [scale, opacity, pressScale, withHaptic, disabled]);
 
   const pressOut = useCallback(() => {
     Animated.parallel([

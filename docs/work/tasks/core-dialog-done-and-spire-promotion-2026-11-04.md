@@ -1,6 +1,7 @@
 # Ядро · диалог не засчитывается при 6/6 + правило повышения в Пике (04.11)
 
 Governance-ID: TG-552784B9AD02
+Governance-ID: TG-2381E007AEBE
 Governance-ID: TG-A412EEB20A58
 Status: In progress
 Owner: 1 · ЯДРО (поручение координатора, ошибки из Telegram)
@@ -14,6 +15,7 @@ Owner: 1 · ЯДРО (поручение координатора, ошибки 
 
 ## Scope
 + Telegram: серверный фильтр алертов — ошибки категории learning_v2 (feature learning_v2 или context learning_v2* / learning-v2*) не попадают в админ-алерты (adminAlertOnCriticalError); работает для уже выпущенных версий приложения. Деплой — отдельно.
++ Пик (владелец 04.11): повышаются топ-5 по монетам (D190, k как раньше) И ЛЮБОЙ, кто дошёл до высшей ступени (steps >= SPIRE_TOP_STEPS = 135), сверх топ-5, независимо от монет; флаг topReached в spire_week_result; заготовка records[ключ] в spire_groups за флагом floorRecordsEnabled=false. rankBy=coins не включается, деплоя нет.
 Только app/dialogue_v2_session.tsx (условие endedBy) и расчёт повышения в spire_*; недельные циклы не переписываем.
 
 ## Architecture

@@ -31,6 +31,7 @@
 import { createHash } from 'crypto';
 import type { SpireCoinsConfig, SpireRankBy } from './spire_config_contract';
 import { spireCoinsZoneK, spireCoinsZonesFor } from '../../shared/spire_coins_zones';
+import { spireReachedTop } from '../../shared/spire_top_steps';
 import {
   isSpireResidentMember,
   spireLiveZoneSize,
@@ -113,6 +114,8 @@ export type SpireMemberWeekResult = Readonly<{
   zoneSize: number;
   promoted: boolean;
   demoted: boolean;
+  /** Владелец 04.11: дошёл до высшей ступени башни (steps >= SPIRE_TOP_STEPS) — повышен независимо от монет, сверх топ-5. */
+  topReached: boolean;
   /** D61: вошёл в последние 10 минут недели без ступеней — понижение снято. */
   lateJoinProtected: boolean;
   prevTier: number;
@@ -301,14 +304,19 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
     // выше них — только игравшие) попадали бы в «топ» и гасили себе понижение
     // — ровно баг лиги 2026-08-17.
     const coinsZone = coinsZoneByUid.get(me.uid);
-    const promotionEligible = coinsZone !== undefined
+    // зачем (владелец 04.11): дошедший до высшей ступени башни переходит ВЫШЕ независимо от монет и места.
+    // Зоны (k, «вверх»/«вниз») посчитаны выше без него и не меняются: вершинник идёт СВЕРХ топ-5, пятёрку не вытесняет.
+    const topReached = spireReachedTop(me.steps);
+    const promotionEligible = topReached || (coinsZone !== undefined
       ? coinsZone === 'up'
-      : scored && zoneSize > 0 && liveRank <= zoneSize;
+      : scored && zoneSize > 0 && liveRank <= zoneSize);
     const promoted = promotionEligible && tier < SPIRE_FINAL_MAX_TIER;
     const inZeroZone = !scored && hasAnyScorer;
     const lateJoinProtected = !scored && (me.joinedAtMs ?? 0) >= lateJoinCutoffMs;
     // D190: в режиме монет понижение решает только зона «k последних»; нижняя лига никого не спускает (tier > 0).
-    const demoted = coinsZone !== undefined
+    const demoted = topReached
+      ? false
+      : coinsZone !== undefined
       ? coinsZone === 'down' && tier > 0
       : hasAnyScorer
         && !promotionEligible
@@ -329,6 +337,7 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
       zoneSize,
       promoted,
       demoted,
+      topReached,
       lateJoinProtected,
       prevTier: tier,
       newTier: promoted ? tier + 1 : demoted ? tier - 1 : tier,

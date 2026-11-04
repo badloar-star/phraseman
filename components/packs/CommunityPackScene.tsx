@@ -19,12 +19,12 @@ type Props = Readonly<{
   title: string; subtitle: string; author: string; coinRank: number; count: number; lang: Lang;
   cards: readonly CommunitySceneCard[]; actions: React.ReactNode; loading?: boolean;
   onBack?: () => void; onTrain?: () => void;
-  onSpeak: (id: string) => void; onMore: () => void; onComments?: () => void;
+  onSpeak: (id: string) => void; onMore: () => void; onComments?: () => void; commentsCount?: number;
   onSelectRoute?: (route: string) => void;
 }>;
 
 /** The approved scene uses compact speech rows; actual audio and ownership stay with the caller. */
-export function CommunityPackScene({ title, subtitle, author, coinRank, count, lang, cards, actions, loading, onBack, onTrain, onSpeak, onMore, onComments, onSelectRoute }: Props): React.JSX.Element {
+export function CommunityPackScene({ title, subtitle, author, coinRank, count, lang, cards, actions, loading, onBack, onTrain, onSpeak, onMore, onComments, commentsCount = 0, onSelectRoute }: Props): React.JSX.Element {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const insets = useStableSafeAreaInsets();
   const backTop = useScreenBackContentTop() - SCREEN_BACK_ZONE;
@@ -43,7 +43,8 @@ export function CommunityPackScene({ title, subtitle, author, coinRank, count, l
     ListEmptyComponent={<View style={{ padding: 24, marginHorizontal: 16, backgroundColor: g.opaqueCard }}><Text style={{ color: g.secondary }}>{loading ? triLang(lang, { ru: 'Загружаем карточки…', uk: 'Завантажуємо картки…', en: 'Loading cards…', es: 'Cargando tarjetas…' , 'pt-BR': 'Carregando cartões…', vi: 'Đang tải thẻ…', id: 'Memuat kartu…', tr: 'Kartlar yükleniyor…', pl: 'Ładujemy karty…' }) : triLang(lang, { ru: 'В наборе пока нет карточек', uk: 'У наборі ще немає карток', en: 'No cards yet', es: 'Aún no hay tarjetas' , 'pt-BR': 'Ainda não há cartões', vi: 'Chưa có thẻ nào', id: 'Belum ada kartu', tr: 'Henüz kart yok', pl: 'Na razie brak kart' })}</Text></View>}
     ListFooterComponent={<View style={{ backgroundColor: g.opaqueCard, marginHorizontal: 16, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, padding: 16, gap: 10 }}>
       {onTrain ? <KitTouchable onPress={onTrain} accessibilityRole="button" style={{ minHeight: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', backgroundColor: g.cta }}><Text style={{ color: g.ctaInk, fontSize: 17, fontWeight: '700' }}>{triLang(lang, { ru: 'Тренировать', uk: 'Тренувати', en: 'Practise', es: 'Practicar' , 'pt-BR': 'Praticar', vi: 'Luyện tập', id: 'Latihan', tr: 'Çalış', pl: 'Ćwicz' })}</Text></KitTouchable> : null}
-      {onComments ? <KitTouchable onPress={onComments} accessibilityRole="button" style={{ minHeight: 48, alignItems: 'center', justifyContent: 'center' }}><Text style={{ color: g.secondary }}>{triLang(lang, { ru: 'Обсуждение набора', uk: 'Обговорення набору', en: 'Pack discussion', es: 'Comentarios del pack' , 'pt-BR': 'Comentários do pacote', vi: 'Thảo luận về bộ thẻ', id: 'Diskusi paket', tr: 'Paket yorumları', pl: 'Dyskusja o zestawie' })}</Text></KitTouchable> : null}
+      {/* зачем (владелец 04.11: «убрали комментарии»): код не удалялся, но вход был серой ссылкой без значка и числа — не читался как кнопка; теперь значок 💬, основной цвет текста и счётчик отзывов (при N>0), цель ≥48 dp, без обводки */}
+      {onComments ? <KitTouchable testID="pack-scene-comments" onPress={onComments} accessibilityRole="button" style={{ minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}><Ionicons name="chatbubble-outline" size={20} color={g.text} />{commentsCount > 0 ? <Text testID="pack-scene-comments-count" style={{ color: g.text, fontWeight: '700', fontVariant: ['tabular-nums'] }}>{commentsCount}</Text> : null}<Text style={{ color: g.text, fontWeight: '600' }}>{triLang(lang, { ru: 'Обсуждение набора', uk: 'Обговорення набору', en: 'Pack discussion', es: 'Comentarios del pack' , 'pt-BR': 'Comentários do pacote', vi: 'Thảo luận về bộ thẻ', id: 'Diskusi paket', tr: 'Paket yorumları', pl: 'Dyskusja o zestawie' })}</Text></KitTouchable> : null}
     </View>}
 
   />{onSelectRoute ? <CommunityRootTabs lang={lang} bottomInset={insets.bottom} onSelectRoute={onSelectRoute} /> : null}{onBack ? <ScreenBackButton screen="community_pack_scene" testID="community-pack-back" onPress={onBack} sceneTop={scene.sceneTop} /> : null}</View>;

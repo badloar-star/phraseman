@@ -4191,7 +4191,8 @@ function LessonScreen() {
 
   const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');
   const frenchLessonRemoteFailed = frenchRemoteLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows;
-  const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
+  // зачем (классические курсы 04.11): у ES в данных уроки 1–16 — пустой урок любого языка курса тихо возвращает к списку, а не остаётся пустым экраном
+  const frenchLessonSourceGateBlocked = (frenchStudyActive(studyTarget) || classicCourseActiveFor(studyTarget)) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
   // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»; координатор 08:11): французский урок не загрузился или пакет
   // закрыт — тихо назад к урокам вместо «Не удалось загрузить» / «Французский пакет не загружен». Повторная загрузка —
   // при следующем открытии урока.

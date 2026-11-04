@@ -23,6 +23,14 @@ describe('классические курсы: адаптер данных', () 
     expect(getLessonData(1).every((p) => !p.classic)).toBe(true);
   });
 
+  it('ES: все 32 урока есть в данных; пустой урок любого языка курса тихо возвращает к списку', () => {
+    expect(getLessonData(17, 'es')).toHaveLength(50);
+    expect(getLessonData(32, 'es')).toHaveLength(50);
+    expect(getLessonData(16, 'es')).toHaveLength(50);
+    const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+    expect(src).toMatch(/frenchLessonSourceGateBlocked = (frenchStudyActive(studyTarget) || classicCourseActiveFor(studyTarget))/);
+  });
+
   it('TTS только системный по языку курса', () => {
     expect(CLASSIC_TTS_LOCALE).toEqual({ en: 'en-US', es: 'es-ES', fr: 'fr-FR', de: 'de-DE', it: 'it-IT' });
   });
@@ -49,7 +57,7 @@ describe('классические курсы: адаптер данных', () 
         }
       }
       // ES в данных — уроки 1–16 (старый перевод был только для них), остальные языки — все 32
-      expect(lessons).toBeGreaterThanOrEqual(lang === 'es' ? 16 : 32);
+      expect(lessons).toBe(32);
     });
   }
 });

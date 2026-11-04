@@ -71,7 +71,7 @@ describe('значок «назад»: один контур — как в ма�
     for (const rel of [
       'components/v2/V2Kit.tsx',
       'components/practice/PracticeChrome.tsx',
-      'components/dialogs/glass/DialogueGlassKit.tsx',
+      // DialogueGlassKit убран из списка: с 25.10 (ad277b66a) «назад» экрана-гейта диалогов — общая ScreenBackButton, значок «назад» кит диалогов больше не рисует (сторож tests/dialogs_gate_back_48_2026_10_26)
       'components/results/ResultsGlass.tsx',
       'components/lessons/LessonMenuGlass.tsx',
       'components/packs/PackScreenKit.tsx',

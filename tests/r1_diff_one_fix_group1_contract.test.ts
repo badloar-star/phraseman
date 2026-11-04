@@ -45,8 +45,11 @@ describe('R1_DIFF_ONE_FIX, группа 3', () => {
   it('settings-gap-011: строки уведомлений 64 dp как в макете (.gs-pl2), переключатель 36 + hitSlop (зона нажатия не меньше 44)', () => {
     const src = read('app/settings_notifications.tsx');
     expect(src).toContain('const rowStyle = { minHeight: 64,');
-    expect(src).toContain('hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}');
-    expect(src).toContain("style={{ width: 48, minWidth: 48, minHeight: 36, alignSelf: 'center' }}");
+    // зачем: с 04.11 (2b683c3d9) переключатель — общий GlassSwitch; зона нажатия и размер 36/48 проверяются в нём
+    const sw = read('components/settings/GlassSwitch.tsx');
+    expect(src).toContain('<GlassSwitch');
+    expect(sw).toContain('hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}');
+    expect(sw).toContain("style={{ width: 48, minWidth: 48, minHeight: 36, alignSelf: 'center' }}");
   });
 });
 
@@ -63,7 +66,7 @@ describe('R1_DIFF_ONE_FIX, группа 4', () => {
 describe('R1_DIFF_ONE_FIX, корзина a2', () => {
   it('cards-section-023 / cards-v2-025 / cards-v2-026: «назад» в каталоге — круглая плашка (PackRoundButton), а не голая стрелка', () => {
     const src = read('app/flashcards_packs.tsx');
-    expect(src).toContain("import { PackChips, PackRoundButton } from '../components/packs/PackScreenKit';");
+    expect(src).toMatch(/import \{[^}]*PackRoundButton[^}]*\} from '\.\.\/components\/packs\/PackScreenKit';/); // зачем: к импорту добавился PackScreenTitle (rev8) — проверяем наличие PackRoundButton, а не точный список
     expect(src).toMatch(/<PackRoundButton\s+g=\{g\}\s+icon="arrow-back"\s+testID="flashcards-header-back"/);
     expect(src).not.toContain('TouchableOpacity');
   });

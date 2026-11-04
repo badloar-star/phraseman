@@ -1,5 +1,6 @@
 import {
   isAuthFailureErrorDoc,
+  isLearningV2ErrorDoc,
   nextAuthFailureSpikeState,
 } from './admin_alerts';
 
@@ -101,5 +102,19 @@ describe('nextAuthFailureSpikeState', () => {
     });
     expect(res).toMatchObject({ shouldAlert: false, count: 1 });
     expect(res.window.stages).toEqual({});
+  });
+});
+
+describe('isLearningV2ErrorDoc (фильтр шума Telegram 04.11)', () => {
+  it('ловит feature и context категории learning_v2 в любом написании', () => {
+    expect(isLearningV2ErrorDoc({ feature: 'learning_v2' })).toBe(true);
+    expect(isLearningV2ErrorDoc({ feature: 'Learning-V2' })).toBe(true);
+    expect(isLearningV2ErrorDoc({ context: 'learning_v2:session_load' })).toBe(true);
+    expect(isLearningV2ErrorDoc({ context: 'learningV2_sync_failed' })).toBe(true);
+  });
+  it('другие ошибки не трогает', () => {
+    expect(isLearningV2ErrorDoc({ feature: 'payments', context: 'payment_webhook' })).toBe(false);
+    expect(isLearningV2ErrorDoc({ feature: 'auth', context: 'auth:signin_failure' })).toBe(false);
+    expect(isLearningV2ErrorDoc({})).toBe(false);
   });
 });

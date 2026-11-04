@@ -170,6 +170,11 @@ export const adminAlertOnCriticalError = onDocumentCreated(
     const severity = String(data.severity || '').toLowerCase();
     const nowMs = Date.now();
     const eventOccurredAtMs = persistedEventTimeMs(data, event.time);
+    // зачем (04.11): категория learning_v2 в админ-алерты не идёт ни дайджестом, ни critical; запись в app_errors остаётся для разбора.
+    if (isLearningV2ErrorDoc(data)) {
+      console.log(`[adminAlerts] skip learning_v2 id=${String(event.params.id)} severity=${severity || 'none'} feature=${String(data.feature ?? '')} context=${String(data.context ?? '').slice(0, 60)}`);
+      return;
+    }
     if (severity !== 'critical') {
       await enqueueAdminAlert(db(), {
         eventType: 'appErrorDigest',
@@ -378,6 +383,18 @@ async function alertIfSerialRefunder(purchase: Record<string, unknown>, receiptI
 // cooldown-полем (authFailureAlertedAt); существующий спайк отмен/рефандов не
 // затронут.
 const AUTH_FAILURE_MAX_STAGES = 8; // кап на карту stage→count, чтобы теги не раздували док
+
+/**
+ * зачем (координатор 04.11, шум в Telegram): ошибки Learning V2 с телефонов не должны идти в админ-алерты. Закрываем на сервере —
+ * срабатывает и для уже выпущенных версий приложения. Признак: feature learning_v2 / learning-v2 / learningv2 или context с таким началом.
+ */
+export function isLearningV2ErrorDoc(data: Record<string, unknown>): boolean {
+  const norm = (v: unknown) => String(v ?? '').trim().toLowerCase().replace(/[-\s]/g, '_');
+  const feature = norm(data?.feature);
+  const context = norm(data?.context);
+  const is = (s: string) => s === 'learning_v2' || s === 'learningv2' || s.startsWith('learning_v2:') || s.startsWith('learning_v2_') || s.startsWith('learningv2');
+  return is(feature) || is(context);
+}
 
 /** Чистый предикат фильтра auth-фейлов в app_errors. Экспортирован для тестов. */
 export function isAuthFailureErrorDoc(data: Record<string, unknown>): boolean {

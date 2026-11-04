@@ -41,4 +41,11 @@ describe('волна 1 UI-кита', () => {
     expect(kit).toContain('<KitSpinner color={fg} />');
     expect(kit).not.toContain('ActivityIndicator');
   });
+
+  it('тосты объявляются диктором сами (accessibilityLiveRegion=polite)', () => {
+    const action = read('components/ActionToast.tsx');
+    const game = read('components/InGameToast.tsx');
+    expect((action.match(/accessibilityLiveRegion="polite"/g) ?? []).length).toBeGreaterThanOrEqual(2);
+    expect((game.match(/accessibilityLiveRegion="polite"/g) ?? []).length).toBeGreaterThanOrEqual(2);
+  });
 });

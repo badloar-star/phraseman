@@ -146,7 +146,7 @@ function InGameToastHybrid({
 
   return (
     <View style={[styles.toastAnchor, { top: safeTop }]} pointerEvents="none">
-    <Reanimated.View style={[styles.toastCard, { shadowColor: chrome.shadowColor }, cardStyle]}>
+    <Reanimated.View accessibilityLiveRegion="polite" style={[styles.toastCard, { shadowColor: chrome.shadowColor }, cardStyle]}>
       <InGameToastSurface chrome={chrome} />
       <View style={styles.hybridRow}>
         <View style={[styles.tile, { backgroundColor: chrome.tile }]}>
@@ -208,6 +208,7 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
     <View style={[styles.toastAnchor, { top: safeTop }]} pointerEvents="none">
       <Animated.View
         pointerEvents="none"
+        accessibilityLiveRegion="polite"
         style={[
         styles.toastCard,
         // зачем: обводка контейнера запрещена стилем владельца — разделяем тоном

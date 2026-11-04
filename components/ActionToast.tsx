@@ -225,7 +225,7 @@ export function ActionToastHybridCard({
         <Reanimated.View style={[styles.iconBare, iconStyle]}>
           <Ionicons name={icon} size={24} color={chrome.title} />
         </Reanimated.View>
-        <View style={styles.copy} accessible accessibilityLabel={`${toneLabel}. ${message}`}>
+        <View style={styles.copy} accessible accessibilityLiveRegion="polite" accessibilityLabel={`${toneLabel}. ${message}`}>
           <Text style={[styles.message, { color: chrome.title }]}>
             {message}
           </Text>
@@ -558,6 +558,7 @@ function ActionToast() {
           testID="action-toast-top-line"
           style={[styles.line, { backgroundColor: actionToastGlass.opaqueControl, shadowColor: chrome.shadowColor, opacity, transform: [{ translateY: Animated.multiply(y, -1) }] }]}
           accessible
+          accessibilityLiveRegion="polite"
           accessibilityLabel={`${toneLabel}. ${message}`}
         >
           <View style={[styles.lineTile, { backgroundColor: actionToastGlass.opaqueCard }]}>

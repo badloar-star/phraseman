@@ -210,7 +210,7 @@ describe('проводка и правила вёрстки', () => {
     expect(tour).not.toContain('adjustsFontSizeToFit');
   });
   it('старый тур-картинка не показывается при новом экране; dev-вход ?state=peak_tour', () => {
-    expect(read('components/spire/SpireHomeScreen.tsx')).toContain('tourSeen === false && !PEAK_SCREEN_V2_ENABLED');
+    expect(read('components/spire/SpireHomeScreen.tsx')).toContain('tourSeen === false && !peakScreenV2On()');
     expect(read('app/dev_spire_preview.tsx')).toContain("params.state === 'peak_tour'");
     expect(read('components/spire/peak/PeakScreenPreview.tsx')).toContain("tour={tourPage === undefined ? 'off' : { page: tourPage }}");
   });

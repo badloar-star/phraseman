@@ -74,3 +74,10 @@
 - Почему не правим: смена заливки кнопок меняет вид экранов; без кадра владельца — риск.
 - Условие снятия: кадр владельца → токен buttonFill; потом CEILING = 0 в tests/button_fill_sweep_guard.test.ts.
 - Владелец: сессия «Дизайн» / «Темы» (сцены).
+
+## 4. Обрезка длинных строк при крупном шрифте (проверка по коду, 05.11, ночь; fontScale 1.3, 9 языков)
+
+- components/learning-v2/workshop/PhraseWorkshopRowButton.tsx:58 — подпись строки: numberOfLines=1 и maxFontSizeMultiplier=1.2. При длинном переводе (немецкий, польский) текст обрезается многоточием на крупном шрифте. Правка переносом (не сжатием) меняет высоту строки — решение владельца/Learning V2.
+- components/learning-v2/workshop/PhraseWorkshopTheorySheet.tsx:84 — подпись кнопки-пилюли: numberOfLines=1 и maxFontSizeMultiplier=1.2, та же судьба.
+- Тур Пика (components/spire/peak/PeakTour.tsx:118–119): без numberOfLines — текст переносится, не обрезается. Плашка сообщества и окна энергии без numberOfLines/adjustsFontSizeToFit — по коду не обрезаются.
+- Условие снятия: кадр 1.3 в 9 языках от Сверки; перенос подписи в две строки или увеличение высоты строки по макету.

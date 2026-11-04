@@ -45,6 +45,13 @@ export type FirstLessonBonusDeps = Readonly<{
 }>;
 
 let inFlight: Promise<boolean> | null = null;
+let recentGrant: { coins: number; atMs: number } | null = null;
+const RECENT_GRANT_WINDOW_MS = 10 * 60 * 1000;
+
+/** Выдан ли бонус только что (для экрана результата, открывшегося после начисления). */
+export function peekFirstLessonBonusRecentCoins(nowMs: number = Date.now()): number | null {
+  return recentGrant && nowMs - recentGrant.atMs < RECENT_GRANT_WINDOW_MS ? recentGrant.coins : null;
+}
 
 /** Выдать бонус, если положен. true — выдан сейчас. Ошибка начисления → флаг НЕ ставится (откат: следующее завершение занятия повторит, ключ тот же). */
 export function maybeGrantFirstLessonBonus(deps: FirstLessonBonusDeps): Promise<boolean> {
@@ -105,6 +112,6 @@ export function defaultFirstLessonBonusDeps(readFlagOn: () => boolean): FirstLes
     },
     readFlag: async () => (await AsyncStorage.getItem(FIRST_LESSON_BONUS_FLAG_KEY)) === '1',
     writeFlag: async () => { await AsyncStorage.setItem(FIRST_LESSON_BONUS_FLAG_KEY, '1'); },
-    onGranted: (coins) => listeners.forEach((l) => l(coins)),
+    onGranted: (coins) => { recentGrant = { coins, atMs: Date.now() }; listeners.forEach((l) => l(coins)); },
   };
 }

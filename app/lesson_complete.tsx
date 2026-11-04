@@ -25,6 +25,7 @@ import { glassFill } from '../components/GlassSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { useLang } from '../components/LangContext';
+import { useFirstLessonBonusNote } from '../hooks/use_first_lesson_bonus_note';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
@@ -569,6 +570,8 @@ export default function LessonComplete() {
   const insets = useStableSafeAreaInsets();
   const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
   const { s, lang } = useLang();
+  // зачем (владелец 30.10): подтверждение стартового бонуса «+500 монет за первое занятие» в окне результата
+  const firstLessonBonusNote = useFirstLessonBonusNote(lang);
   const { studyTarget } = useStudyTarget();
   const softUpsellStudyTarget: SoftUpsellStudyTarget = studyTarget === 'fr' ? 'fr' : 'en';
   const { hasPremiumAccess, accessResolved } = usePremium();
@@ -1556,7 +1559,7 @@ export default function LessonComplete() {
                 ? triLang(lang, { ru: 'Ещё одна ★ — и следующий урок откроется', en: 'One more ★ and the next lesson opens', uk: 'Ще одна ★ — і наступний урок відкриється', es: 'Una ★ más y se abre la siguiente lección', 'pt-BR': 'Mais uma ★ e a próxima lição abre', vi: 'Thêm một ★ là mở bài tiếp theo', id: 'Satu ★ lagi dan pelajaran berikutnya terbuka', tr: 'Bir ★ daha ve sonraki ders açılır', pl: 'Jeszcze jedna ★ i następna lekcja się otworzy' })
                 : nextLessonUnlockHint
                   ? triLang(lang, { ru: 'Следующий урок открыт', en: 'The next lesson is open', uk: 'Наступний урок відкрито', es: 'La siguiente lección está abierta', 'pt-BR': 'A próxima lição está aberta', vi: 'Bài tiếp theo đã mở', id: 'Pelajaran berikutnya terbuka', tr: 'Sonraki ders açıldı', pl: 'Następna lekcja jest otwarta' })
-                  : undefined, examUnlockNote ? examUnlockNoteText(lang, examUnlockNote) : undefined)}
+                  : undefined, [examUnlockNote ? examUnlockNoteText(lang, examUnlockNote) : undefined, firstLessonBonusNote].filter(Boolean).join(' · ') || undefined)}
               correct={lessonCounts?.correct ?? null}
               wrong={lessonCounts?.wrong ?? null}
               // зачем (владелец 13.10): список «Ошибки» из макета practice.html#done — промахи только что пройденного урока (память процесса, см. lesson_run_errors_memory); у комбо и без промахов блока нет.

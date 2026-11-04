@@ -111,7 +111,7 @@ import ResultsSequence from '../components/feedback/ResultsSequence';
 import V2DoneScreen from '../components/completion/V2DoneScreen';
 import { parseDevLessonResult, parseRouteLessonResult, peekLessonRunErrors, peekLessonRunMissCount, peekLessonRunMistakeIds, rememberLessonRunErrors } from './lesson_run_errors_memory';
 import { lessonFirstTryCountsFromProgress, lessonFirstTryCountsFromTotals } from './lesson_first_try_counts';
-import { lessonNamesForLang } from '../constants/lessons';
+import { lessonNameForStudyTarget } from './lesson_titles_for_study_target'; // зачем (05.11): название урока по языку курса — для fr/es/de/it запасное «Урок N», а не старые названия
 import CombinedLessonBreakdown from '../components/CombinedLessonBreakdown';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
@@ -1563,7 +1563,7 @@ export default function LessonComplete() {
               testID="lesson-complete-done"
               title={triLang(lang, { ru: 'Урок пройден', en: 'Lesson complete', uk: 'Урок пройдено', es: 'Lección completada', 'pt-BR': 'Lição concluída', vi: 'Đã hoàn thành bài học', id: 'Pelajaran selesai', tr: 'Ders tamamlandı', pl: 'Lekcja ukończona' })}
               // зачем (координатор 15.10, Макеты: в эталоне m10 под «Урок пройден» стоит только тема урока, без «Урок N ·»): номер остаётся лишь запасным вариантом, когда названия урока нет
-              subtitle={isComboCompletion ? undefined : (lessonNamesForLang(lang)[lessonId - 1]
+              subtitle={isComboCompletion ? undefined : (lessonNameForStudyTarget(lang, studyTarget, lessonId)
                 || triLang(lang, { ru: `Урок\u00A0${lessonId}`, en: `Lesson\u00A0${lessonId}`, uk: `Урок\u00A0${lessonId}`, es: `Lección\u00A0${lessonId}`, 'pt-BR': `Lição\u00A0${lessonId}`, vi: `Bài\u00A0${lessonId}`, id: `Pelajaran\u00A0${lessonId}`, tr: `Ders\u00A0${lessonId}`, pl: `Lekcja\u00A0${lessonId}` }))}
               stars={isComboCompletion ? null : resultStars}
               noteAction={guestSignInInvite ? {

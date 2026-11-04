@@ -202,10 +202,11 @@ describe('каталог сообщества: строки и тексты', ()
   // 11.10 (владелец, журнал 29): плашка набора — Вариант 1 «Плитка-счётчик» community-redesign.html #c1,
   // общий компонент PackRow (фиксированная высота под 2 строки названия) вместо строк packs-simple.html.
   // 12.10 (владелец, cards-v2 catalog()): плашка «Плитка-счётчик» заменена общей «стопкой» PackDeck; круглая «+» ушла в меню долгого нажатия
-  it('наборы рисуются столбиком стопок через общий PackDeck', () => {
+  // зачем (владелец 04.11, rev8): каталог — вертикальный список компактных строк PackCatalogRow (название + количество), «+» создаёт набор; плитки и стопки PackDeck сняты
+  it('наборы рисуются столбиком компактных строк через общий PackCatalogRow', () => {
     expect(hub).toContain('renderCommunityPackRow');
-    expect(hub).toContain('<PackDeck');
-    expect(hub).toContain('<PackDeckLikes');
+    expect(hub).toContain('<PackCatalogRow');
+    expect(hub).not.toContain('<PackDeck');
     expect(hub).not.toContain('<PackRowAddButton');
     expect(hub).toContain("actionRow('flashcards-pack-add'"); // быстрое «Добавить себе» живёт в меню долгого нажатия
     expect(hub).not.toContain('renderCommunityPackTile');

@@ -18,7 +18,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import React, { memo, useMemo } from 'react';
-import { StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import { CountPill, KitCheck, KitIconTile, KitSurface } from '../cards-grid/CardsKit';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
@@ -45,6 +45,7 @@ import {
 } from './packRowModel';
 import { PACK_DECK_METRICS, noteDeckHadChips, packDeckCountLevel } from './packDeckModel';
 import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
+import { useTheme } from '../ThemeContext';
 
 type IonName = keyof typeof Ionicons.glyphMap;
 
@@ -229,6 +230,29 @@ function PackRowBase({
 
 export const PackRow = memo(PackRowBase);
 export default PackRow;
+
+/** Rev8 catalog row: one accessible target with live metadata and themed existing artwork. */
+export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, count, testID, onPress, onLongPress, disabled, author, level, note, duration, showArrow = true, a11yActions }: Readonly<{
+  g: GlassTokens; lang: Lang; title: string; count: number; testID: string;
+  onPress: () => void; onLongPress?: () => void; disabled?: boolean;
+  author?: string | null; level?: string | null; note?: string | null; duration?: string | null; showArrow?: boolean;
+  a11yActions?: readonly Readonly<{ name: string; label: string; run: () => void }>[];
+}>) {
+  const { isDark } = useTheme();
+  const shown = formatPackTitleForDisplay(title);
+  const meta = [`${count} ${packCardsWord(lang, count)}`, level, author, duration, note].filter(Boolean).join(' · ');
+  return (
+    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={`${shown}, ${meta}`} accessibilityState={{ disabled: !!disabled }} disabled={disabled} onPress={onPress} onLongPress={onLongPress} accessibilityActions={a11yActions?.map(({ name, label }) => ({ name, label }))} onAccessibilityAction={a11yActions ? (event) => a11yActions.find((a) => a.name === event.nativeEvent.actionName)?.run() : undefined} style={({ pressed }) => ({ minHeight: 86, flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 18, backgroundColor: g.opaqueCard, opacity: disabled ? 0.55 : pressed ? 0.8 : 1 })}>
+      <Image accessible={false} source={isDark ? require('../../assets/images/v2art/dark/cards.webp') : require('../../assets/images/v2art/light/cards.webp')} style={{ width: 54, height: 54 }} contentFit="contain" />
+      <View style={{ flex: 1, minWidth: 0 }}>
+        <ClampedText maxLines={2} style={{ color: g.text, fontSize: 16, fontWeight: '700' }}>{shown}</ClampedText>
+        {!showArrow && author ? <Text style={{ color: g.text, fontSize: 13, marginTop: 4 }}>{author}</Text> : null}
+        <Text style={{ color: g.secondary, fontSize: 13, marginTop: 4 }}>{!showArrow && author ? `${count} ${packCardsWord(lang, count)}` : meta}</Text>
+      </View>
+      {showArrow ? <Ionicons name="chevron-forward" size={20} color={g.secondary} /> : null}
+    </Pressable>
+  );
+});
 
 // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 // «КОЛОДА» — Карточки 2.0 (docs/design/v2-app/cards-v2.html: deck(), mySets(), catalog()).

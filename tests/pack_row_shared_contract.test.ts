@@ -18,8 +18,8 @@ const MODEL = 'components/packs/packRowModel.ts';
 // зачем (Карточки 2.0, cards-v2 12.10): каталог сообщества и «Мои наборы» рисуют общую «стопку» PackDeck (тот же файл PackRow.tsx — там же единственный
 // ClampedText), тренировка — PackRow variant="row". Экран набора до добавления плашку набора больше не рисует: у него шапка по макету setOther().
 const CONSUMERS: readonly (readonly [string, string, string])[] = [
-  ['app/flashcards/FlashcardsCategoryHub.tsx', '<PackDeck', 'testID={`flashcards-pack-card-'],
-  ['app/flashcards/MyPacksV2.tsx', '<PackDeck', 'testID={`fc-my-packs-pack-'],
+  ['app/flashcards/FlashcardsCategoryHub.tsx', '<PackCatalogRow', 'testID={`flashcards-pack-card-'],
+  ['app/flashcards/MyPacksV2.tsx', '<PackCatalogRow', 'testID={`fc-my-packs-pack-'],
   // TrainingSetupV2 (cards-v2 `pk`: плитки-наборы 2 колонки) больше не использует строку набора — запись снята вместе с её переделкой исполнителем «Тренировки».
 ];
 
@@ -170,7 +170,9 @@ describe('живые счётчики (жалоба владельца «пли�
     expect(hub).toContain('const counts = livePackCounts(countsOverlay, pack.id, packBaseCounts(pack));');
     expect(hub).toContain("bumpCounts(pack.id, { added: 1 }, 'quick-add');");
     expect(hub).toContain("bumpCounts(pack.id, { added: -1 }, 'quick-add-rollback');");
-    expect(hub).toContain('likes={counts.likes}');
+    expect(hub).toContain('count={pack.cardCount}');
+    expect(hub).toContain('author={author.name}');
+    expect(hub).toContain('onOpen={() => openRowRef.current(pack)}');
   });
 
   it('экран набора показывает живые цифры, а не голый pack.commentsCount', () => {

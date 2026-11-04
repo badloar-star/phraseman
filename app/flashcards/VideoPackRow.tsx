@@ -34,6 +34,7 @@ import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingm
 import { DebugLogger } from '../debug-logger';
 import { isDevCardsFail } from '../dev_cards_state';
 import VideoThumb from './VideoThumb';
+import { PackCatalogRow } from '../../components/packs/PackRow';
 
 
 /** Превью 16:9 — те же числа, что в макете. */
@@ -53,7 +54,7 @@ type Props = {
    * 'card' — строка-карточка раздела «Карточки → Из видео»; 'plain' — строка вкладки «Наборы» в «Видео»
    * (макет video-redesign #c1, экран 4): без карточки, обложка 132, «N карточек», справа круглая «+».
    */
-  variant?: 'card' | 'plain';
+  variant?: 'card' | 'plain' | 'catalog';
 };
 
 /**
@@ -173,6 +174,9 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
       en: 'phrases', es: 'frases', 'pt-BR': 'frases', vi: 'cụm từ', id: 'frasa', tr: 'ifade',
       pl: pluralWord(lang, pack.cardCount, { one: 'fraza', few: 'frazy', many: 'fraz' }),
     })}`;
+  if (variant === 'catalog') {
+    return <PackCatalogRow g={g} lang={lang} title={title} count={pack.cardCount} duration={duration} testID={`video-pack-open-row-${pack.id}`} disabled={disabled || opening} onPress={() => { void hapticTap(); onOpen(pack); }} />;
+  }
   if (!plain) {
     // зачем (владелец 12.10, cards-v2 videoAll()): раздел «Из видео» — крупные карточки роликов: кадр 16:9 r18 на всю ширину, длительность,
     // полоса просмотра, под ним название 19/700 и «N фраз» слева и «Добавить +» справа. Вся карточка открывает набор (экран набора из видео);

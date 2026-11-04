@@ -13,12 +13,11 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { QuietEmptyState } from '../../components/cards-grid/QuietEmptyState';
-import { PackDeck, PackDeckPlayButton } from '../../components/packs/PackRow';
-import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
+import { PackCatalogRow } from '../../components/packs/PackRow';
+import { packDeckLevel, packDeckSkeletonHeight } from '../../components/packs/packDeckModel';
 import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
 import { communityAuthorLabel, officialPackAuthorName } from '../community_packs/packAuthorNames';
-import { formatPackTitleForDisplay } from './marketplace';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
@@ -26,7 +25,6 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
-import { hapticTap } from '../../hooks/use-haptics';
 import PackLanguagePicker from './PackLanguagePicker';
 import type { PackLanguage } from './pack_languages';
 import type { FlashcardMarketPack } from './marketplace';
@@ -132,19 +130,16 @@ function MyPacksV2Inner(props: Props) {
     const title = labelFor(pack);
     const authorName = own ? null : (officialPackAuthorName(pack) ?? communityAuthorLabel(pack.authorName ?? '', lang));
     return (
-      <PackDeck
+      <PackCatalogRow
         key={pack.id}
-        geomScreen="my_packs"
         g={g}
         lang={lang}
         title={title}
         count={pack.cardCount}
         level={packDeckLevel(pack)}
-        words={packDeckWords(pack)}
-        author={authorName ? { name: authorName } : null}
+        author={authorName}
         note={pack.isPendingUpdateReview ? reviewNote : null}
-        trailing={<PackDeckPlayButton g={g} label={copy.train} testID={`fc-my-packs-pack-play-${pack.id}`} disabled={openingPackId !== null} onPress={() => { void hapticTap(); onTrain(pack); }} />}
-        accessibilityLabel={`${formatPackTitleForDisplay(title)}${authorName ? `, ${authorName}` : ''}, ${pack.cardCount}${pack.isPendingUpdateReview ? `, ${reviewNote}` : ''}`}
+        a11yActions={[{ name: 'train', label: copy.train, run: () => onTrain(pack) }]}
         testID={`fc-my-packs-pack-${pack.id}`}
         disabled={openingPackId !== null}
         onPress={() => onOpen(pack)}

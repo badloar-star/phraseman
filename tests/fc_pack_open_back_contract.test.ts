@@ -126,11 +126,12 @@ describe('«Мои наборы»: иконки и два раздела', () =>
   const view = read('flashcards', 'MyPacksV2.tsx');
 
   // зачем (Карточки 2.0, cards-v2 mySets(), 12.10): строка набора — «стопка» PackDeck с названием, «40 · A2», кнопкой «играть»; у добавленных — автор
-  it('набор: стопка с названием, числом карточек, автором добавленного и кнопкой «играть»', () => {
-    expect(view).toContain('<PackDeck');
+  // зачем (владелец 04.11, rev8): строка «Мои наборы» — компактная PackCatalogRow (название + количество, автор у добавленных); «играть» — действие доступности, не кнопка
+  it('набор: компактная строка с названием, числом карточек, автором добавленного и действием «тренировать»', () => {
+    expect(view).toContain('<PackCatalogRow');
     expect(view).toContain('count={pack.cardCount}');
-    expect(view).toContain('author={authorName ? { name: authorName } : null}');
-    expect(view).toContain('<PackDeckPlayButton');
+    expect(view).toContain('author={authorName}');
+    expect(view).toContain("a11yActions={[{ name: 'train'");
   });
 
   it('добавленные из сообщества и созданные мной — разные разделы, пустой не рисуется', () => {

@@ -562,7 +562,6 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             />
             {embedded && cloudCommunityEnabled ? <CommunityMonthRewardHost userId={hubAuthorStableId} /> : null}
           </Animated.ScrollView>
-          {embedded ? <KitTouchable testID="community-scene-create" accessibilityRole="button" accessibilityLabel={createPackLabel} onPress={() => router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never)} style={{ position: 'absolute', left: 16, right: 16, bottom: tabContentBottomPad + 12, height: 54, borderRadius: 27, backgroundColor: g.ctaFill, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 10 }}><Ionicons name="add" size={22} color={g.ctaFillInk} /><Text style={{ color: g.ctaFillInk, fontSize: 17, fontWeight: '700' }}>{createPackLabel}</Text></KitTouchable> : null}
         </View>
       </SafeAreaView>
     </ScreenGradient>

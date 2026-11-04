@@ -32,7 +32,6 @@ import { logNoErrorScreen } from '../no_error_screen_log';
 import { useLoadGate } from '../use_load_gate';
 import {
   AccessibilityInfo,
-  ActivityIndicator,
   Pressable,
   Platform,
   StyleSheet,
@@ -86,7 +85,7 @@ import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons
 import { useCommunityAuthor } from '../community_packs/packAuthorNames';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
-import { PackDeck, PackDeckLikes, packCardsWord, type PackRowEmphasis } from '../../components/packs/PackRow';
+import { PackCatalogRow, type PackRowEmphasis } from '../../components/packs/PackRow';
 import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
 import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { useLang } from '../../components/LangContext';
@@ -101,8 +100,7 @@ import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
 import { NO_PACK_LANGUAGE, noPackLanguageLabel, PACK_LANGUAGE_META, normalizePackLanguage, type PackLanguage } from './pack_languages';
 import { formatPackLangTrace } from './pack_lang_trace';
 import { packSocialLive } from '../community_packs/packSocialLive';
-import { CommunityContestStage, CommunitySceneTile, communityScenePanelStyle } from '../../components/packs/CommunityScene';
-import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
+import { CommunityContestStage, communityScenePanelStyle } from '../../components/packs/CommunityScene';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -248,6 +246,7 @@ function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMoti
 }
 
 type CommunityPackRowProps = {
+  sceneMode?: boolean;
   pack: FlashcardMarketPack;
   /** Язык подписей интерфейса (полный, 9 языков) — «карточек», «Добавить себе», «Топ». */
   uiLang: Lang;
@@ -300,7 +299,7 @@ function logPackDeckRowOnce(pack: FlashcardMarketPack, drawn: readonly string[])
  * долгое нажатие на чужой набор — «Пожаловаться» / «Не показывать мне».
  */
 function CommunityPackRowBase({
-  pack, uiLang, titleLang, g, owned, emphasis, highlight, likes, liked, onOpen, onLongPress, onAdd, opening, disabled,
+  pack, uiLang, titleLang, g, owned, onOpen, onLongPress, onAdd, opening, disabled, sceneMode,
 }: CommunityPackRowProps) {
   cardsPerfCount('catalog-row-render'); // зачем: [CARDS-PERF] сколько строк каталога перерисовано (memo держит строки при наборе в поиске / долгом нажатии)
   // зачем (журнал 4–5): официальный набор ролика → «Professor Lingman» без чтения public_profiles; иначе ник и монета ранга.
@@ -318,30 +317,19 @@ function CommunityPackRowBase({
   // справа ♥. Быстрое «+ добавить себе» с плашки убрано (в макете его нет) — оно живёт в меню долгого нажатия и в действиях доступности,
   // а экран набора по тапу даёт «Добавить себе +». Уровень и первые слова читаются из полей набора, пока их нет — скрыты (ждём от Ядра).
   return (
-    <PackDeck
+    <PackCatalogRow
       g={g}
       lang={uiLang}
       title={title}
-      geomScreen="cards_hub"
       testID={`flashcards-pack-card-${pack.id}`}
-      titleTestID={`flashcards-pack-title-${pack.id}`}
-      authorTestID={`flashcards-pack-author-${pack.id}`}
-      accessibilityLabel={`${title}, ${author.name}, ${pack.cardCount} ${packCardsWord(uiLang, pack.cardCount)}`}
       count={pack.cardCount}
       level={packDeckLevel(pack)}
-      words={deckWords}
-      author={{ name: author.name, coinRank: author.coinRank, isPremium: author.isPremium }}
-      highlight={highlight}
-      emphasis={emphasis}
+      author={author.name}
+      showArrow={!sceneMode}
       onPress={onOpen}
       onLongPress={onLongPress}
       disabled={disabled}
       a11yActions={owned || opening ? undefined : [{ name: 'add-pack', label: addLabel, run: onAdd }]}
-      trailing={opening ? (
-        <View style={{ width: 24, height: 24, alignItems: 'center', justifyContent: 'center' }}>
-          <ActivityIndicator size="small" color={g.secondary} />
-        </View>
-      ) : <PackDeckLikes g={g} value={likes} liked={liked} />}
     />
   );
 }
@@ -364,6 +352,7 @@ const CommunityPackRow = React.memo(CommunityPackRowBase, (prev, next) => (
   && prev.likes === next.likes
   && prev.opening === next.opening
   && prev.disabled === next.disabled
+  && prev.sceneMode === next.sceneMode
   // Наличие/отсутствие long-press меняет поведение, ссылка — нет. onOpen/onAdd/onLongPress зовут свежие обработчики
   // хаба через ref (openRowRef/addRowRef — ревью 11.10, п.10): устаревшее замыкание не унесёт старый studyTarget.
   && (prev.onLongPress == null) === (next.onLongPress == null)
@@ -395,6 +384,7 @@ export default function FlashcardsCategoryHub({
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const menuStyles = useScaledTextStyles(baseMenuStyles);
+  const [sceneSearchOpen, setSceneSearchOpen] = useState(false);
   // зачем: подписи строки («карточек», «Добавить себе») — на языке интерфейса (9 языков), а не на суженном языке каталога.
   const { lang: uiLang } = useLang();
   // зачем: заглушка той же высоты, что стопка с рядом чипов слов (12 + 16 + название 26 + подпись 21 + 16 + 14 + чипы 38) — без прыжка
@@ -405,7 +395,6 @@ export default function FlashcardsCategoryHub({
   const g = liquidGlassTokens(liquidGlassThemeId);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [hasUnfinishedPackDraft, setHasUnfinishedPackDraft] = useState(false);
-  const [sceneSearchOpen, setSceneSearchOpen] = useState(false);
   const [hiddenCommunityPackIds, setHiddenCommunityPackIds] = useState<Set<string>>(() => new Set());
   const [ugcReportHintPackId, setUgcReportHintPackId] = useState<string | null>(null);
   const [reportModalPack, setReportModalPack] = useState<FlashcardMarketPack | null>(null);
@@ -877,12 +866,11 @@ export default function FlashcardsCategoryHub({
     const emphasis: PackRowEmphasis = menuPackId === null ? 'normal' : menuPackId === pack.id ? 'lifted' : 'dimmed';
     const counts = livePackCounts(countsOverlay, pack.id, packBaseCounts(pack));
 
-    if (sceneMode) return <View key={pack.id} style={{ width: '48.5%' }}><CommunitySceneTile pack={pack} lang={lang} likes={counts.likes} heart={<CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="sceneTileHeart" />} onOpen={() => openRowRef.current(pack)} onLongPress={showReportShortcut ? () => setMenuPack(cur => cur === pack.id ? null : pack.id) : undefined} />{menuPackId === pack.id ? renderPackActionsMenu(pack) : null}</View>;
-
     return (
       <React.Fragment key={`ugc_${pack.id}`}>
         <CommunityPackRow
           pack={pack}
+          sceneMode={sceneMode}
           uiLang={uiLang}
           titleLang={lang}
           g={g}
@@ -1012,7 +1000,7 @@ export default function FlashcardsCategoryHub({
       {/* ── 3. Каталог сообщества ── */}
       {cloudCommunityEnabled ? (
         <Reanimated.View {...enterProps(2)} style={[sectionGapStyle, sceneMode ? [communityScenePanelStyle, { backgroundColor: g.opaqueCard }] : null]}>
-          {sceneMode ? <><View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><Text style={{ color: g.text, fontSize: 22, fontWeight: '700', flex: 1 }}>{triLang(lang, { ru: 'Наборы', uk: 'Набори', es: 'Packs', en: 'Packs' })}</Text><KitTouchable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Поиск наборов', uk: 'Пошук наборів', es: 'Buscar packs', en: 'Search packs' })} onPress={() => setSceneSearchOpen(v => !v)} style={{ padding: 10 }}><Ionicons name="search" size={18} color={g.secondary} /></KitTouchable><View style={{ flexDirection: 'row', backgroundColor: g.opaqueControl, borderRadius: 20, padding: 3 }}>{(['popular', 'new'] as const).map(sort => <KitTouchable key={sort} onPress={() => onSceneSort?.(sort)} accessibilityRole="tab" accessibilityState={{ selected: communitySort === sort }} style={{ paddingHorizontal: 14, minHeight: 34, justifyContent: 'center', borderRadius: 18, backgroundColor: communitySort === sort ? g.accent : 'transparent' }}><Text style={{ fontSize: 13, fontWeight: '700', color: communitySort === sort ? g.accentInk : g.secondary }}>{sort === 'popular' ? triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top', en: 'Top' }) : triLang(lang, { ru: 'Новые', uk: 'Нові', es: 'Nuevos', en: 'New' })}</Text></KitTouchable>)}</View></View>{sceneSearchOpen ? sceneTools : null}</> : null}
+          {sceneMode ? <><View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><Text style={{ color: g.text, fontSize: 22, fontWeight: '700', flex: 1 }}>{triLang(lang, { ru: 'Наборы', uk: 'Набори', es: 'Packs', en: 'Packs' })}</Text><KitTouchable testID="social-catalog-create" accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Создать набор', uk: 'Створити набір', es: 'Crear pack', en: 'Create pack' })} accessibilityHint={triLang(lang, { ru: 'Удерживай для поиска и сортировки', uk: 'Утримуй для пошуку та сортування', es: 'Mantén pulsado para buscar y ordenar', en: 'Hold for search and sorting' })} accessibilityActions={[{ name: 'filters', label: triLang(lang, { ru: 'Поиск и сортировка', uk: 'Пошук і сортування', es: 'Buscar y ordenar', en: 'Search and sort' }) }]} onAccessibilityAction={() => setSceneSearchOpen(v => !v)} onLongPress={() => setSceneSearchOpen(v => !v)} onPress={() => { void hapticTap(); router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never); }} style={{ width: 48, height: 48, alignItems: 'center', justifyContent: 'center' }}><View style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: g.opaqueControl, alignItems: 'center', justifyContent: 'center' }}><Ionicons name="add" size={22} color={g.text} /></View></KitTouchable></View>{sceneSearchOpen ? <>{sceneTools}<View style={{ flexDirection: 'row', gap: 8 }}>{(['popular', 'new'] as const).map(sort => <KitTouchable key={sort} onPress={() => onSceneSort?.(sort)} accessibilityRole="tab" accessibilityState={{ selected: communitySort === sort }} style={{ paddingHorizontal: 14, minHeight: 48, justifyContent: 'center' }}><Text style={{ color: g.text }}>{sort === 'popular' ? triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top', en: 'Top' }) : triLang(lang, { ru: 'Новые', uk: 'Нові', es: 'Nuevos', en: 'New' })}</Text></KitTouchable>)}</View></> : null}</> : null}
           {/* Подзаголовок «Наборы сообщества» убран: он дублировал заголовок экрана
               и теперь стоит в шапке, справа от стрелки «назад». */}
           {/* зачем (packs-simple.html, замок 04.10): строки-описания под заголовком в утверждённом макете нет —
@@ -1148,7 +1136,7 @@ export default function FlashcardsCategoryHub({
             </Text>
           ) : null}
           {/* зачем (community-redesign.html #c1, `.pl { margin-top: 10px }`): плашки столбиком через 10. */}
-          <View style={sceneMode ? { flexDirection: 'row', flexWrap: 'wrap', gap: 10, paddingTop: 10 } : { width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
+          <View style={sceneMode ? { width: '100%', gap: 10, paddingTop: 10 } : { width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
             {visibleCommunityPacks.map(renderCommunityPackRow)}
           </View>
         </Reanimated.View>

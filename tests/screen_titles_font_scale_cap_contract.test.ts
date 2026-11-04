@@ -19,7 +19,9 @@ const TITLES: ReadonlyArray<readonly [string, string]> = [
   ['app/coin_rank_catalog.tsx', 'style={[styles.headerTitle,'],
   ['app/runes_wallet.tsx', 'style={[styles.headerTitle,'],
   ['app/settings_themes.tsx', 'style={[styles.title, { color: glass.text,'],
-  ['app/flashcards_packs.tsx', "testID={embedded ? 'flashcards-packs-title-embedded'"],
+  // зачем: с rev8 заголовок «Сообщество» рисует общий PackScreenTitle, колпак 1,15 лежит в нём (строка PackScreenKit выше)
+  // зачем (05.11, ночь): заголовок экрана наборов рисуется общим PackScreenTitle, ограничение шрифта — в нём (components/packs/PackScreenKit.tsx); проверяем там
+  ['components/packs/PackScreenKit.tsx', 'accessibilityRole="header" style={[styles.title'],
   ['app/(tabs)/settings.tsx', 'fontSize: 40, lineHeight: 46'],
   ['app/account_details.tsx', 'fontSize: 34, lineHeight: 40'],
   ['app/settings_edu.tsx', 'fontSize: 34, lineHeight: 40'],

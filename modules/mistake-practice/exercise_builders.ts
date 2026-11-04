@@ -58,13 +58,36 @@ const rendererFor = (mode: MistakeExerciseMode): MistakeExerciseRenderer => {
   return 'choices';
 };
 
+/** Сборка из плиток: фраза длиннее этого числа слов печатается, а не собирается. */
+export const MISTAKE_BUILDER_MAX_TARGET_TOKENS = 14;
+export const MISTAKE_BUILDER_MAX_DISTRACTORS = 3;
+
+/** Отвлекающие плитки: без повторов, без слов самой фразы (иначе «a a»), не больше трёх. */
+export function boundedBuilderDistractors(distractors: readonly string[] | undefined, targetTokens: readonly string[]): string[] {
+  const seen = new Set(targetTokens.map((token) => token.trim().toLowerCase()));
+  const out: string[] = [];
+  for (const raw of distractors ?? []) {
+    const word = raw.trim();
+    const key = word.toLowerCase();
+    if (!word || /\s/.test(word) || seen.has(key)) continue;
+    seen.add(key);
+    out.push(word);
+    if (out.length >= MISTAKE_BUILDER_MAX_DISTRACTORS) break;
+  }
+  return out;
+}
+
 export function buildMistakeExercise(
   material: MistakeExerciseMaterial,
 ): MistakeExercise {
   const canonicalTarget = material.canonicalTarget.trim();
   if (!canonicalTarget) throw new Error('mistake_practice_exercise_answer_required');
-  const renderer = rendererFor(material.mode);
   const targetTokens = material.tokens ?? canonicalTarget.split(/\s+/);
+  // зачем (жалоба тестеров 04.11: «Собери фразу» из ~30 плиток с дублями, пройти невозможно): эталон сборки — одна короткая фраза.
+  // Длинная склейка (диалог целиком) не собирается из плиток — такое задание печатается, причина в журнал; отвлекающих максимум 3.
+  const builderTooLong = rendererFor(material.mode) === 'builder' && targetTokens.length > MISTAKE_BUILDER_MAX_TARGET_TOKENS;
+  if (builderTooLong) console.warn('[MISTAKE-BUILDER] target_too_long → typing', JSON.stringify({ mistakeId: material.mistakeId, targetTokens: targetTokens.length, max: MISTAKE_BUILDER_MAX_TARGET_TOKENS }));
+  const renderer: MistakeExerciseRenderer = builderTooLong ? 'typing' : rendererFor(material.mode);
   const gapIndex = Number.isSafeInteger(material.tokenIndex)
     && Number(material.tokenIndex) >= 0
     && Number(material.tokenIndex) < targetTokens.length
@@ -88,7 +111,7 @@ export function buildMistakeExercise(
   const tokens = renderer === 'builder'
     ? Object.freeze([
         ...targetTokens,
-        ...(material.distractors ?? []),
+        ...boundedBuilderDistractors(material.distractors, targetTokens),
       ])
     : undefined;
   const options = renderer === 'fill_gap'

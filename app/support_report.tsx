@@ -163,6 +163,10 @@ export default function SupportReportScreen() {
                 <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', textAlign: 'center', marginTop: 8 }}>
                   {L('Спасибо! Команда всё проверит и ответит в приложении.', 'Дякуємо! Команда все перевірить і відповість у застосунку.', 'Thank you! The team will review it and reply in the app.', '¡Gracias! El equipo lo revisará y responderá en la app.', 'Obrigado! A equipe vai verificar e responder no app.', 'Cảm ơn! Đội ngũ sẽ kiểm tra và trả lời trong ứng dụng.', 'Terima kasih! Tim akan memeriksa dan membalas di aplikasi.', 'Teşekkürler! Ekip inceleyip uygulamada yanıtlayacak.', 'Dziękujemy! Zespół sprawdzi zgłoszenie i odpowie w aplikacji.')}
                 </Text>
+                {/* зачем (раунд 2 UX, 05.11): «Ответим в течение 1–2 дней» — честный срок ответа; ≥15 px, цвет из токенов */}
+                <Text testID="support-sent-eta" style={{ color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21), fontWeight: '400', textAlign: 'center', marginTop: 6 }}>
+                  {L('Ответим в течение 1–2 дней', 'Відповімо протягом 1–2 днів', "We'll reply within 1–2 days", 'Responderemos en 1–2 días', 'Responderemos em 1–2 dias', 'Chúng tôi sẽ phản hồi trong 1–2 ngày', 'Kami akan membalas dalam 1–2 hari', '1–2 gün içinde yanıt vereceğiz', 'Odpowiemy w ciągu 1–2 dni')}
+                </Text>
               </View>
               <PressableHybrid
                 testID="support-report-done"

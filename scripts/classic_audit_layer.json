@@ -1391,6 +1391,11 @@
     "position": 0,
     "from": "C’è",
     "with": "Sono"
+   },
+   {
+    "position": 0,
+    "from": "C’è",
+    "with": "Sei"
    }
   ],
   "it:15:09": [
@@ -1578,6 +1583,91 @@
     "position": 7,
     "from": "vi",
     "with": "mi"
+   }
+  ],
+  "de:31:14": [
+   {
+    "position": 1,
+    "from": "haben",
+    "with": "habt"
+   }
+  ],
+  "de:31:39": [
+   {
+    "position": 5,
+    "from": "habe",
+    "with": "hattet"
+   }
+  ],
+  "en:10:44": [
+   {
+    "position": 1,
+    "from": "should",
+    "with": "did"
+   },
+   {
+    "position": 1,
+    "from": "can",
+    "with": "does"
+   }
+  ],
+  "en:19:17": [
+   {
+    "position": 2,
+    "from": "in",
+    "with": "of"
+   }
+  ],
+  "en:27:08": [
+   {
+    "position": 3,
+    "from": "knows",
+    "with": "knowing"
+   }
+  ],
+  "en:27:46": [
+   {
+    "position": 3,
+    "from": "has",
+    "with": "having"
+   }
+  ],
+  "en:28:07": [
+   {
+    "position": 3,
+    "from": "herself",
+    "with": "yourselves"
+   },
+   {
+    "position": 3,
+    "from": "himself",
+    "with": "themselves"
+   }
+  ],
+  "en:29:32": [
+   {
+    "position": 5,
+    "from": "in",
+    "with": "into"
+   },
+   {
+    "position": 5,
+    "from": "on",
+    "with": "under"
+   }
+  ],
+  "fr:07:24": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:10:20": [
+   {
+    "position": 5,
+    "from": "à",
+    "with": "par"
    }
   ]
  },
@@ -2134,7 +2224,9 @@
   },
   "es:23:30": {
    "add": [
-    "Comían en casa a menudo."
+    "Comían en casa a menudo.",
+    "A menudo comíais en casa.",
+    "A menudo comían en casa."
    ],
    "remove": []
   },
@@ -2500,6 +2592,39 @@
    "remove": [
     "Avevi già letto il messaggio?"
    ]
+  },
+  "es:12:50": {
+   "add": [
+    "Aquí hay una ventana grande."
+   ],
+   "remove": []
+  },
+  "es:16:14": {
+   "add": [
+    "Más tarde voy a leer el mensaje."
+   ],
+   "remove": []
+  },
+  "es:21:48": {
+   "add": [
+    "¿Abrió Luis la ventana ayer?",
+    "¿Ayer Luis abrió la ventana?"
+   ],
+   "remove": []
+  },
+  "es:27:49": {
+   "add": [
+    "¿El bolso que compró Luis es tuyo?",
+    "¿Es tuyo el bolso que Luis compró?"
+   ],
+   "remove": []
+  },
+  "es:23:02": {
+   "add": [
+    "Antes vivías aquí.",
+    "Tú antes vivías aquí."
+   ],
+   "remove": []
   }
  },
  "target": {

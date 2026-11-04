@@ -8,17 +8,18 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const DIR = join(ROOT, 'docs', 'work', 'classic_audit_full_2026_11_04');
+// зачем: результаты полного прохода + контрольного аудита (sample4) — один формат, одни проверки
+const DIRS = ['classic_audit_full_2026_11_04', 'classic_audit_sample4_2026_11_04'].map((d) => join(ROOT, 'docs', 'work', d));
 const LAYER = join(ROOT, 'scripts', 'classic_audit_layer.json');
 const layer = existsSync(LAYER) ? JSON.parse(readFileSync(LAYER, 'utf8')) : { tiles: {}, alt: {}, target: {} };
 const stats = { files: 0, records: 0, tiles: 0, altAdd: 0, altRemove: 0, target: 0, skippedField: 0, badShape: 0 };
 // id в слое: "<lang>:<LL>:<PP>" независимо от формата ("en-classic-r1:01.03", "en:01:03", "es:11:49")
 const keyOf = (id) => { const m = /^([a-z]{2})(?:-classic-r1)?[:.](\d\d)[:.](\d\d)$/.exec(id); return m ? `${m[1]}:${m[2]}:${m[3]}` : null; };
-const files = readdirSync(DIR).filter((f) => /^results_.*\.json$/.test(f)).sort();
+const files = DIRS.flatMap((d) => existsSync(d) ? readdirSync(d).filter((f) => /^results_.*\.json$/.test(f)).sort().map((f) => join(d, f)) : []);
 for (const f of files) {
   stats.files++;
   let arr;
-  try { arr = JSON.parse(readFileSync(join(DIR, f), 'utf8')); } catch (e) { console.error(`не читается ${f}: ${e.message}`); stats.badShape++; continue; }
+  try { arr = JSON.parse(readFileSync(f, 'utf8')); } catch (e) { console.error(`не читается ${f}: ${e.message}`); stats.badShape++; continue; }
   if (!Array.isArray(arr)) { stats.badShape++; continue; }
   for (const rec of arr) {
     stats.records++;

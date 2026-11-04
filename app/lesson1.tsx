@@ -3044,7 +3044,7 @@ function LessonScreen() {
       const restoredLessonProgress = restoreLessonProgressPreserving(sp, effectiveTotal);
       const restoredProgress = restoredLessonProgress.view;
       progressTailRef.current = restoredLessonProgress.tail;
-      console.log('[CLASSIC-PROGRESS] restore', JSON.stringify({ lessonId, studyTarget: originTarget, reason: restoredLessonProgress.reason, storedLength: restoredLessonProgress.storedLength, total: effectiveTotal, tail: restoredLessonProgress.tail.length })); // guard-ok: ветвление восстановления
+      console.log('[CLASSIC-PROGRESS] restore', JSON.stringify({ lessonId, studyTarget, reason: restoredLessonProgress.reason, storedLength: restoredLessonProgress.storedLength, total: effectiveTotal, tail: restoredLessonProgress.tail.length })); // guard-ok: ветвление восстановления
       setProgress(restoredProgress);
 
       // Очередь «повтори ошибку через один» — только в памяти → терялась после модалки энергии / remount.

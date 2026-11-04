@@ -137,10 +137,10 @@ function buildPhrase(lang, prof, r, where) {
   // позиции сохраняются, допустимые ответы и прежний target уходят в alternatives/accepted. Соблазны перепроверит fixDistractors.
   const tp = PATCHES.targets?.[(() => { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); return m ? `${lang}:${m[1]}:${m[2]}` : ''; })()];
   if (tp) {
-    if (tp.tiles.length !== tiles.length) fail(lang, `${where}: правка target меняет число плиток`);
+    if (tp.tiles.length !== tiles.length && !tp.allowTileCountChange) fail(lang, `${where}: правка target меняет число плиток`);
     tiles = tp.tiles.map((correct, i) => {
       const same = tiles.find((t) => t.correct === correct);
-      return same ? { ...same } : { text: correct, correct, distractors: [...tiles[i].distractors] };
+      return same ? { ...same } : { text: correct, correct, distractors: [...(tiles[i] ?? tiles[tiles.length - 1]).distractors] };
     });
   }
   if (!tiles.length || tiles.some((t) => !nonEmpty(t.text) || !nonEmpty(t.correct))) fail(lang, `${where}: пустые плитки`);
@@ -177,7 +177,7 @@ function buildPhrase(lang, prof, r, where) {
     if (!Array.isArray(out.accepted) || !out.accepted.length || out.accepted.some((p) => !Array.isArray(p) || !p.length || p.some((t) => !nonEmpty(t)))) fail(lang, `${where}: пустые ${prof.accepted}`);
   }
   if (prof.answers) {
-    let a = r[prof.answers];
+    let a = tp?.answers ?? r[prof.answers];
     const ap = PATCHES.answers?.[r.id];
     if (ap && Array.isArray(a)) {
       a = a.filter((x) => !(ap.remove ?? []).includes(x)).map((x) => Object.entries(ap.replace ?? {}).reduce((acc, [from, to]) => acc.split(from).join(to), x));
@@ -335,7 +335,8 @@ function badReason(lang, ctx, ph, i, d, mine) {
   if (dd === c) return 'selfCase';
   if (corrects.some((x, j) => j !== i && stripP(x) === dd)) return 'otherCorrect';
   if (ctx.patch.get(`${lang}:${key}`)?.has(dd)) return 'patch';
-  if (ctx.articles.has(c) && ctx.articles.has(dd)) return 'article';
+  // артикль: где язык различает род/число, запрещена только пара «тот же род и число, другая определённость» (el↔un, la↔una), прочие артикли — заведомо неверные соблазны
+  if (ctx.articles.has(c) && ctx.articles.has(dd) && (!ctx.artPairs || ctx.artPairs.some(([a, b]) => (a === c && b === dd) || (a === dd && b === c)))) return 'article';
   if (sameGroup(ctx.synonyms, c, dd)) return 'synonym';
   if (genderPair(lang, c, dd)) return 'genderPair';
   if (youApplies(ph) && (sameGroup(ctx.youGroups, c, dd) || sibling(ctx.tails, c, dd))) return 'youForm';
@@ -392,6 +393,7 @@ function buildContext(lang, all) {
       }
     }
   }
+  for (const w of LISTS.properNouns?.[lang] ?? []) names.add(w);
   // служебные слова (предлоги, союзы, артикли) не имена, даже если стоят с заглавной в начале фразы
   const fn = [...(LISTS.closedClasses?.[lang]?.prep ?? []), ...(LISTS.closedClasses?.[lang]?.conj ?? []), ...(LISTS.articles?.[lang] ?? [])];
   for (const w of fn) names.delete(w[0].toUpperCase() + w.slice(1));
@@ -409,6 +411,7 @@ function buildContext(lang, all) {
   return {
     numbers, names, nameTile, vocab, patch,
     articles: sets(LISTS.articles?.[lang]), synonyms: LISTS.synonyms?.[lang] ?? [], youGroups: LISTS.youGroups?.[lang] ?? [],
+    replace: new Map(Object.entries(PATCHES.replace ?? {})), artPairs: LISTS.articlePairs?.[lang] ?? null,
     closed: LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }, adverbOnly: LISTS.adverbOnly?.[lang] ?? null,
     tails: LISTS.siblingTails?.[lang] ?? [], timeAdv: sets(LISTS.timeAdverbs?.[lang]), serForms: sets(LISTS.serForms?.[lang]),
   };
@@ -454,7 +457,10 @@ function fixDistractors(lang, all) {
     ph.tiles.forEach((tile, i) => {
       const want = tile.distractors.length;
       const kept = [];
+      const rep = ctx.replace.get(`${lang}:${phraseNumbers(ph.id).key}`) ?? [];
       for (let d of tile.distractors) {
+        const forced = rep.find((r) => stripP(r.from) === stripP(d));
+        if (forced) { kept.push(upperFirst(d) ? forced.to[0].toUpperCase() + forced.to.slice(1) : forced.to); removed.patchReplaced = (removed.patchReplaced ?? 0) + 1; continue; }
         if (lang === 'en' && /^i(['’]|$)/.test(d)) { d = 'I' + d.slice(1); removed.caseFixed++; }
         if (ctx.nameTile.get(tile) === true && !upperFirst(d) && ctx.names.has(d[0].toUpperCase() + d.slice(1))) { d = d[0].toUpperCase() + d.slice(1); removed.caseFixed++; }
         const why = badReason(lang, ctx, ph, i, d, kept);
@@ -471,6 +477,12 @@ function fixDistractors(lang, all) {
         if (ctx.articles.has(stripP(tile.correct))) for (const sub of LISTS.articleSubstitutes?.[lang] ?? []) {
           if (kept.length >= want) break;
           const c = upperFirst(tile.correct) && upperWanted ? sub[0].toUpperCase() + sub.slice(1) : sub;
+          if (!tried.has(c) && !badReason(lang, ctx, ph, i, c, kept)) { tried.add(c); kept.push(c); removed.refilled++; }
+        }
+        // артикль: сначала артикли другого рода/числа (el → la/los/unas — заведомо неверно), потом служебные слова
+        if (ctx.articles.has(stripP(tile.correct)) && ctx.artPairs) for (const a of [...ctx.articles]) {
+          if (kept.length >= want) break;
+          const c = upperFirst(tile.correct) && upperWanted ? a[0].toUpperCase() + a.slice(1) : a;
           if (!tried.has(c) && !badReason(lang, ctx, ph, i, c, kept)) { tried.add(c); kept.push(c); removed.refilled++; }
         }
         // собственные имена из закрытых наборов (дни, месяцы, языки): замена только из того же набора

@@ -10,7 +10,7 @@ const ROOT = path.join(__dirname, '..', 'modules', 'classic-courses');
 const LANGS = fs.existsSync(ROOT) ? fs.readdirSync(ROOT, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : [];
 // зачем: лимит из контракта Ядра — ≤ 5 МБ сырого JSON на язык (EN допускается до 6,5)
 const BUDGET_MB: Record<string, number> = { en: 6.5, es: 5, fr: 5, de: 5, it: 5 };
-const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]>; adverbOnly?: Record<string, { words: string[]; allowedFor: string[] }>; closedClasses?: Record<string, { prep: string[]; conj: string[] }> };
+const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]>; adverbOnly?: Record<string, { words: string[]; allowedFor: string[] }>; closedClasses?: Record<string, { prep: string[]; conj: string[] }>; articlePairs?: Record<string, string[][]> };
 const PATCHES = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_patches.json'), 'utf8')) as { remove: Record<string, string[]>; answers?: Record<string, { remove?: string[] }> };
 const LESSON_FAT = ['english', 'russian', 'ukrainian', 'teachingNote', 'category', 'gradingMethod'];
 const FORBIDDEN_KEY = /^(audio|voice|tts)/i;
@@ -112,6 +112,7 @@ describe('классические курсы: рантайм-данные', () 
       const strip = (t: string) => t.toLowerCase().replace(/[.,!?;:¿¡]/g, '');
       const lessonOf = (id: string) => { const m = /(\d\d)[.:](\d\d)$/.exec(id)!; return { lesson: Number(m[1]), key: `${m[1]}:${m[2]}` }; };
       const articles = new Set<string>(LISTS.articles?.[lang] ?? []);
+      const artPairs = LISTS.articlePairs?.[lang] ?? null;
       const groupHit = (groups: string[][] | undefined, a: string, b: string) => (groups ?? []).some((g) => g.includes(a) && g.includes(b));
       const tails: string[] = LISTS.siblingTails?.[lang] ?? [];
       const noAccent = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -155,7 +156,7 @@ describe('классические курсы: рантайм-данные', () 
             const where = `${p.id}#${i}:${d}`;
             if (!/^[\p{L}][\p{L}'’-]*$/u.test(d)) bad.nonWord.push(where);
             if (removed.has(dd)) bad.patch.push(where);
-            if (articles.has(c) && articles.has(dd)) bad.article.push(where);
+            if (articles.has(c) && articles.has(dd) && (!artPairs || artPairs.some(([a, b]) => (a === c && b === dd) || (a === dd && b === c)))) bad.article.push(where);
             if (groupHit(LISTS.synonyms?.[lang], c, dd)) bad.synonym.push(where);
             if (youApplies(p.sourceLocales.ru) && (groupHit(LISTS.youGroups?.[lang], c, dd) || sibling(c, dd))) bad.youForm.push(where);
             if (lang === 'de' && timeAdv.has(dd) && !timeAdv.has(c)) bad.pos.push(where);

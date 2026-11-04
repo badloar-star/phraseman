@@ -121,13 +121,15 @@
    "normally"
   ],
   "en:32:34": [
-   "out"
+   "out",
+   "down"
   ],
   "en:09:44": [
    "on"
   ],
   "en:11:35": [
-   "in"
+   "in",
+   "come"
   ],
   "en:11:50": [
    "cost"
@@ -140,7 +142,8 @@
    "that"
   ],
   "en:15:47": [
-   "while"
+   "while",
+   "and"
   ],
   "en:32:40": [
    "for"
@@ -333,6 +336,19 @@
   "en:25:37": [
    "take",
    "keep"
+  ],
+  "es:14:11": [
+   "en",
+   "a"
+  ],
+  "de:13:36": [
+   "vom"
+  ],
+  "it:12:29": [
+   "C’è"
+  ],
+  "it:16:32": [
+   "porta"
   ]
  },
  "answers": {
@@ -437,6 +453,28 @@
     ]
    ],
    "alternatives": []
+  },
+  "en:15:08": {
+   "target": "These seats are ours.",
+   "tiles": [
+    "These",
+    "seats",
+    "are",
+    "ours"
+   ],
+   "alternatives": []
+  },
+  "es:04:36": {
+   "target": "Soy guía.",
+   "tiles": [
+    "Soy",
+    "guía"
+   ],
+   "answers": [
+    "Soy guía.",
+    "Soy el guía."
+   ],
+   "allowTileCountChange": true
   }
  }
 }

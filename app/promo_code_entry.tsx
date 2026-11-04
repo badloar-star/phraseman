@@ -15,6 +15,7 @@ import KitTouchable from '../components/KitTouchable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { DoneTick } from '../components/DoneTick';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import SectionSheetHeader from '../components/SectionSheetHeader';
@@ -496,7 +497,10 @@ export default function PromoCodeEntryScreen() {
                   accessibilityRole="alert"
                   style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, padding: 12, borderRadius: 14, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }}
                 >
-                  <Ionicons name={feedback.kind === 'ok' ? 'checkmark-circle-outline' : 'close-circle-outline'} size={20} color={g.text} />
+                  {/* зачем (волна 3 UX, владелец 04.11): принятый код — значок пружиной и лёгкий хаптик; отказ без поп-эффекта */}
+                  {feedback.kind === 'ok'
+                    ? <DoneTick key={feedback.text} name="checkmark-circle-outline" size={20} color={g.text} />
+                    : <Ionicons name="close-circle-outline" size={20} color={g.text} />}
                   <Text style={{ flex: 1, color: g.text, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700' }}>
                     {feedback.text}
                   </Text>

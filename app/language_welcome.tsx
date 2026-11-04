@@ -41,6 +41,7 @@ import { useLocalSearchParams, useRootNavigationState, useRouter } from 'expo-ro
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
+import KitTouchable from '../components/KitTouchable';
 import { safeRouterBack } from './navigation_back';
 import {
   scheduleAfterRootNavigationReady,
@@ -273,35 +274,35 @@ export default function LanguageWelcomeScreen() {
       {options.map((item) => {
         const isSelected = selected === item.id;
         return (
-          <Pressable
+          <KitTouchable
             key={item.id}
             testID={`language-welcome-option-${item.id}`}
             onPressIn={() => { void hapticTap(); }}
             onPress={() => onPick(item.id)}
             accessibilityRole="button"
             accessibilityState={{ selected: isSelected }}
-            style={({ pressed }) => [styles.optionCard, isSelected && styles.optionCardSelected, pressed && styles.pressed]}
+            style={[styles.optionCard, isSelected && styles.optionCardSelected]}
           >
             <Ionicons name={item.icon} size={32} color={isSelected ? p.text : p.soft} />
             <Text style={styles.optionTitle} numberOfLines={2}>{lc[item.labelKey]}</Text>
             <View style={[styles.radio, isSelected && styles.radioSelected]}>
               {isSelected ? <Ionicons name="checkmark" size={18} color={p.ink} /> : null}
             </View>
-          </Pressable>
+          </KitTouchable>
         );
       })}
     </View>
   );
 
   const primaryButton = (label: string, onPress: () => void, disabled?: boolean) => (
-    <Pressable
+    <KitTouchable
       testID="language-welcome-primary"
       onPressIn={() => { if (!disabled && !busy) void hapticTap(); }}
       onPress={onPress}
       disabled={disabled || busy}
       accessibilityRole="button"
       accessibilityState={{ disabled: !!disabled, busy }}
-      style={({ pressed }) => [styles.primaryButtonOuter, pressed && styles.pressed, (disabled || busy) && styles.disabled]}
+      style={[styles.primaryButtonOuter, (disabled || busy) && styles.disabled]}
     >
       <LinearGradient
         colors={disabled ? p.ctaDisabled : p.cta}
@@ -311,7 +312,7 @@ export default function LanguageWelcomeScreen() {
       >
         {busy ? <ActivityIndicator size="small" color={p.ink} /> : <Text style={styles.primaryButtonText}>{label}</Text>}
       </LinearGradient>
-    </Pressable>
+    </KitTouchable>
   );
 
   return (
@@ -319,7 +320,7 @@ export default function LanguageWelcomeScreen() {
       <SceneBackdropFill screen="home" logName="language_welcome" idPrefix="langWelcome" fallback={[p.top, p.bottom]} />
       <StatusBar barStyle="light-content" />
       <View style={styles.header}>
-        <Pressable
+        <KitTouchable
           testID="language-welcome-back"
           onPressIn={() => { void hapticTap(); }}
           onPress={() => {
@@ -329,10 +330,10 @@ export default function LanguageWelcomeScreen() {
           }}
           hitSlop={10}
           accessibilityRole="button"
-          style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}
+          style={styles.backButton}
         >
           <BackGlyph size={30} color={p.text} />
-        </Pressable>
+        </KitTouchable>
         <View style={styles.dotsRow}>
           {[0, 1, 2].map((i) => (
             <View key={i} style={[styles.dot, i <= stepIndex && styles.dotActive]} />

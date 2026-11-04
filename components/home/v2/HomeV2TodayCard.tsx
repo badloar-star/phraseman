@@ -1,6 +1,7 @@
-import React, { memo, useMemo, useRef } from 'react';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { DoneTick } from '../../DoneTick';
 import V2Pressable from '../../v2/V2Pressable';
 import { LinearGradient } from 'expo-linear-gradient';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
@@ -79,6 +80,20 @@ function sameTodayCardData(a: ViewProps, b: ViewProps): boolean {
 
 type ViewProps = Props & Readonly<{ latestRef: React.MutableRefObject<Props> }>;
 
+// зачем (волна 3 UX, владелец 04.11): галочка задачи, ставшей выполненной НА ЭТОМ экране, появляется пружиной с лёгким хаптиком; уже выполненные при открытии
+// Главной рисуются сразу (иначе каждый вход проигрывал бы пружину). Только список видов, без состояния в родителе.
+function useJustDoneKinds(tasks: readonly TodayTask[]): ReadonlySet<TodayTaskKind> {
+  const previous = useRef<Map<TodayTaskKind, boolean> | null>(null);
+  const just = new Set<TodayTaskKind>();
+  if (previous.current) {
+    for (const task of tasks) if (task.done && previous.current.get(task.kind) === false) just.add(task.kind);
+  }
+  useEffect(() => {
+    previous.current = new Map(tasks.map((task) => [task.kind, task.done] as const));
+  });
+  return just;
+}
+
 const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, surveyRow, seeAll, doneColors, scene, pairRow, latestRef }: ViewProps) {
   useRenderCause('home:today', () => ({ title, tasks, surveyRow, seeAll, doneColors, pairRow }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
@@ -91,6 +106,7 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
   // (≥ 3:1 к плашке), как на экране «Сегодня»; свои doneColors (экран «Сегодня») и ветка без «Сцены» — как прежде
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const sceneTicks = useMemo(() => todayRingsOnCard(homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance).todayRing, g), [liquidGlassThemeId, liquidGlassAppearance, g]);
+  const justDone = useJustDoneKinds(tasks);
   if (scene && title !== null) {
     return (
       <View testID="home-v2-today" style={s.sceneCard}>
@@ -150,7 +166,7 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
                 <Text style={[s.taskTitle, { color: g.text }]}>{task.title}</Text>
                 {task.subtitle ? <Text style={[s.taskSubtitle, { color: g.secondary }]}>{task.subtitle}</Text> : null}
               </View>
-              {task.done ? <Ionicons name="checkmark" size={18} color={doneColor} /> : <Text style={[s.counter, { color: g.secondary }]}>{counter}</Text>}
+              {task.done ? <DoneTick size={18} color={doneColor} play={justDone.has(task.kind)} haptic={justDone.has(task.kind)} /> : <Text style={[s.counter, { color: g.secondary }]}>{counter}</Text>}
             </V2Pressable>
           );
         })}
@@ -237,7 +253,7 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
               <View
                 style={[s.check, task.done ? { backgroundColor: doneColor, borderColor: doneColor } : { borderColor: p.textMuted }]} // guard-ok: D43 отметка-кружок
               >
-                {task.done ? <Ionicons name="checkmark" size={14} color={p.card} /> : null}
+                {task.done ? <DoneTick size={14} color={p.card} play={justDone.has(task.kind)} haptic={justDone.has(task.kind)} /> : null}
               </View>
               <V2IconTile name={KIND_ICON[task.kind]} size={36} iconSize={19} bgAlpha={HOME_PLATE_ALPHA} />
               <View style={s.copy}>

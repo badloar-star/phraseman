@@ -1,5 +1,6 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { PopIn } from '../components/DoneTick';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -1535,9 +1536,12 @@ export default function DiagnosticTest() {
       <ContentWrap>
       <BouncyScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 44, paddingBottom: 24 }}>
         <View style={{ alignItems: 'center' }}>
-          <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
-            <Ionicons name="school-outline" size={30} color={glass.text} />
-          </View>
+          {/* зачем (волна 3 UX, владелец 04.11): итог теста — значок появляется пружиной и лёгким хаптиком */}
+          <PopIn>
+            <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+              <Ionicons name="school-outline" size={30} color={glass.text} />
+            </View>
+          </PopIn>
           <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, letterSpacing: 1.6, textTransform: 'uppercase', marginTop: 22 }}>
             {s.diagnostic.yourLevel}
           </Text>

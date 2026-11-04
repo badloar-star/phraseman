@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { DoneTick } from '../components/DoneTick';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Keyboard, Text, TextInput, View } from 'react-native';
@@ -154,7 +155,7 @@ export default function SupportReportScreen() {
               <View style={{ borderRadius: 18, boxShadow: plateBoxShadow(glass), paddingVertical: 26, paddingHorizontal: 20, alignItems: 'center' }}>
                 <PlateFill g={glass} radius={18} />
                 <View style={{ width: 52, height: 52, borderRadius: 26, backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass), alignItems: 'center', justifyContent: 'center' }}>
-                  <Ionicons name="checkmark" size={28} color={glass.lightTint} />
+                  <DoneTick size={28} color={glass.lightTint} />
                 </View>
                 <Text accessibilityLiveRegion="polite" style={{ color: t.textPrimary, fontSize: scaled(22), lineHeight: scaled(28), fontWeight: '700', textAlign: 'center', marginTop: 18 }}>
                   {L('Обращение отправлено', 'Звернення надіслано', 'Request sent', 'Solicitud enviada', 'Solicitação enviada', 'Đã gửi yêu cầu', 'Laporan terkirim', 'Talep gönderildi', 'Zgłoszenie wysłane')}

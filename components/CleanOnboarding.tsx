@@ -55,6 +55,7 @@ import { googleButtonPaintForSurface } from './auth_google_button_style';
 import { GoogleSignInButton, AppleSignInButton, AuthProviderButtonPlaceholder } from './AuthProviderButtons';
 import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
+import KitTouchable from './KitTouchable';
 import { soundDirector } from '../modules/audio/sound_director';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -980,7 +981,7 @@ function PrimaryButton({
   const P = useOnboardingPalette();
   const styles = createStyles(P);
   return (
-    <Pressable
+    <KitTouchable
       testID={testID}
       // зачем (прогон Сверки 12.10: «Продолжить» на «Приятно познакомиться» → переход через 15 с без JS-STALL): дошло ли
       // касание до JS и сработало ли нажатие — по каждой основной кнопке онбординга. Сперва логи, без починки.
@@ -993,7 +994,7 @@ function PrimaryButton({
         onbStall(`button:${testID ?? 'none'}`, onPress);
       }}
       disabled={disabled || loading}
-      style={({ pressed }) => [styles.primaryButtonOuter, (pressed || loading) && styles.pressed, loading && styles.disabled]}
+      style={[styles.primaryButtonOuter, loading && styles.pressed, loading && styles.disabled]}
       accessibilityRole="button"
       accessibilityState={{ disabled: !!disabled, busy: !!loading }}
     >
@@ -1008,22 +1009,22 @@ function PrimaryButton({
         {loading ? <ActivityIndicator size="small" color={P.ctaInk} /> : <Text style={[styles.primaryButtonText, disabled ? { color: P.ctaInkDisabled } : null]}>{label}</Text>}
       </LinearGradient>
       {flat ? null : <View style={styles.primaryButtonShadow} />}
-    </Pressable>
+    </KitTouchable>
   );
 }
 
 function SecondaryButton({ label, onPress, testID }: { label: string; onPress: () => void; testID?: string }) {
   const styles = createStyles(useOnboardingPalette());
   return (
-    <Pressable
+    <KitTouchable
       testID={testID}
       onPressIn={() => { void hapticTap(); }}
       onPress={onPress}
-      style={({ pressed }) => [styles.secondaryButton, pressed && styles.pressed]}
+      style={styles.secondaryButton}
       accessibilityRole="button"
     >
       <Text style={styles.secondaryButtonText}>{label}</Text>
-    </Pressable>
+    </KitTouchable>
   );
 }
 
@@ -1055,11 +1056,11 @@ function OptionCard<T extends string | number>({
     return () => a.stop();
   }, [check, reduceMotion, selected]);
   return (
-    <Pressable
+    <KitTouchable
       testID={testID}
       onPressIn={() => { void hapticTap(); }}
       onPress={onPress}
-      style={({ pressed }) => [styles.optionCard, pressed && styles.pressed]}
+      style={styles.optionCard}
       accessibilityRole="button"
       accessibilityState={{ selected: !!selected }}
     >
@@ -1082,7 +1083,7 @@ function OptionCard<T extends string | number>({
           </Animated.View>
         ) : null}
       </View>
-    </Pressable>
+    </KitTouchable>
   );
 }
 

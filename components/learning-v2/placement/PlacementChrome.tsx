@@ -2,6 +2,7 @@
 // зачем (координатор 24.10, «1 в 1 по макету»): размеры — из CSS макета (.extop, .tvx, .tvtrk, .tvn, .topic, .exfoot, .tcta).
 // Обводок нет — плита темы + тень «Тень»; заливки — токены темы (useLv2Glass / lv2TaskTokens). Тап по кнопкам — хаптик только у управляющих (V2Pressable).
 import React, { memo } from 'react';
+import KitProgressFill from '../../KitProgressFill'; // зачем (UX-волна 2, 04.11): плавный прогресс теста места
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -41,7 +42,7 @@ export const PlacementTopBar = memo(function PlacementTopBar({ closeLabel, onClo
       {progress ? (
         <View style={styles.progressColumn}>
           <View style={[styles.track, { backgroundColor: t.controlSoft }]}>
-            <View testID="placement-progress-fill" style={[styles.fill, { backgroundColor: g.accent, width: `${Math.round(Math.max(0, Math.min(1, progress.fraction)) * 100)}%` }]} />
+            <KitProgressFill testID="placement-progress-fill" ratio={progress.fraction} style={[styles.fill, { backgroundColor: g.accent }]} />
           </View>
           <Text testID="placement-progress-label" style={[styles.progressText, { color: g.secondary }]}>{progress.label}</Text>
         </View>

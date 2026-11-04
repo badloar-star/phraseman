@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import KitProgressFill from "../components/KitProgressFill"; // зачем (UX-волна 2, 04.11): плавный прогресс плеера вместо прыжка width: %
 import { actionToastTri, emitAppEvent } from "./events";
 import { isAttemptsStopEffect, isAttemptsInputBlocked } from "./session_attempts/session_attempts_stop";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -3548,14 +3549,10 @@ function LearningV2DirectSessionPlayerV1() {
           <View
             style={[styles.progressTrack, { backgroundColor: lv2TaskTrackColor(g) }]}
           >
-            <View
-              style={[
-                styles.progressFill,
-                {
-                  backgroundColor: g.accentGraphic,
-                  width: `${Math.max(4, Math.round((progressOrdinal / totalInteractions) * 100))}%`,
-                },
-              ]}
+            <KitProgressFill
+              testID="lv2-player-progress-fill"
+              ratio={Math.max(0.04, progressOrdinal / totalInteractions)}
+              style={[styles.progressFill, { backgroundColor: g.accentGraphic }]}
             />
           </View>
           <Text style={[styles.progressText, { color: g.secondary }]}>

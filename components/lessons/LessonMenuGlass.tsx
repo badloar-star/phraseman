@@ -1,4 +1,5 @@
 import React from 'react';
+import KitProgressFill from '../KitProgressFill'; // зачем (UX-волна 2, 04.11): плавный прогресс меню урока (минимум 3 % — точка на нуле, как раньше minWidth 7)
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
@@ -296,7 +297,7 @@ export function LessonMenuSummary({
         </View>
       ) : (
         <View style={{ flex: 1, height: 7, borderRadius: 4, overflow: 'hidden', backgroundColor: glass.line }}>
-          <View style={{ width: `${ratio * 100}%`, minWidth: 7, height: 7, borderRadius: 4, backgroundColor: glass.accentGraphic }} />
+          <KitProgressFill ratio={Math.max(0.03, ratio)} style={{ borderRadius: 4, backgroundColor: glass.accentGraphic }} />
         </View>
       )}
       <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: lh(21), fontWeight: '600', fontVariant: ['tabular-nums'] }}>{`${progress} / 50${showStars && unitLabel ? ` ${unitLabel}` : ''}`}</Text>

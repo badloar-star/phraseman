@@ -2,6 +2,7 @@
 // зачем (владелец утвердил прототип 25.10, координатор): глава с банком v2 сдаётся здесь; данные и запись — app/learning_v2_chapter_exam_v2.ts
 // (без сети). Энергия — как у прежнего экзамена: 1 при показе первого вопроса, Plus бесплатно, повторный вход ту же попытку не списывает.
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import KitProgressFill from '../../KitProgressFill'; // зачем (UX-волна 2, 04.11): плавный прогресс экзамена главы
 import { BackHandler, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useNavigation, useRouter } from 'expo-router';
@@ -216,7 +217,7 @@ export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source
         {showProgress && attempt ? (
           <>
             <View style={[styles.track, { backgroundColor: c.track }]}>
-              <View style={[styles.fill, { backgroundColor: c.trackFill, width: `${Math.round(progress * 100)}%` }]} />
+              <KitProgressFill ratio={progress} style={[styles.fill, { backgroundColor: c.trackFill }]} />
             </View>
             <Text style={[styles.cnt, { color: c.counter }]}>{chapterExamV2Copy(lang, 'progress', { i: index + 1, n: attempt.items.length })}</Text>
           </>

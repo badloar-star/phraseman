@@ -37,13 +37,14 @@ function StreakConfetti({ fire, n = 60 }: StreakConfettiProps) {
   // вскоре после показа; на залпе только стартует прогресс. Вид и тайминг падения прежние. Если fire пришёл сразу — монтируем сразу.
   const [armed, setArmed] = useState(fire);
   useEffect(() => {
-    if (armed || reduceMotion) return undefined;
+    // зачем (храповик moments_effect_restart_guard): эффект не зависит от собственного состояния armed — повторный setArmed(true) безвреден, перезапуска на каждом такте нет
+    if (reduceMotion) return undefined;
     const id = setTimeout(() => {
       if (__DEV__) console.log(`[MOMENT-CONFETTI] частицы n=${n} поставлены заранее, невидимыми`); // guard-ok: замер только в разработке
       setArmed(true);
     }, ARM_AFTER_MS);
     return () => clearTimeout(id);
-  }, [armed, reduceMotion, n]);
+  }, [reduceMotion, n]);
   useEffect(() => {
     if (fire && !reduceMotion) progress.value = withTiming(1, { duration: TOTAL_MS, easing: Easing.linear });
   }, [fire, reduceMotion, progress]);

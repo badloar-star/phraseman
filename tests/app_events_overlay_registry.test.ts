@@ -50,6 +50,8 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
 const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([
   // Reserved welcome slot is documented in overlay_arbiter_core but has no mounted host yet.
   'onboardingWelcome',
+  // зачем (Моменты 04.11, праздничные окна «Открытие разделов»): ключ запрашивает use_section_opening_host (modules/section_openings), а не файл из app/ или components/ — сканер реестра его не видит; владелец — Моменты, показ за флагом section_openings_enabled.
+  'sectionOpening',
   // Current runtime path converts shards_earned -> action_toast in GlobalShardsEarnedHost.
   // Keep this key documented until an owner approves removal from overlay_arbiter_core.
   'shardsEarned',

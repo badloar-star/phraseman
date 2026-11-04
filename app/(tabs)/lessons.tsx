@@ -1397,7 +1397,8 @@ function startLessonsPage(initial: LessonsTabsPage, presentation: "tab" | "push"
     console.warn(`[V2-ROUTE] reason=${learningV2CourseCanBeOpenedManually() ? "ui_lang_without_v2" : "ceiling0"} — курс V2 недоступен, открываю список уроков`); // guard-ok: ранний выход
     return "lessons";
   }
-  const start: LessonsTabsPage = initial === "lessons" && presentation === "tab" && learningV2CanOpen ? "v2" : initial;
+  // зачем (владелец 04.11, заморозка V2): таб «Уроки» открывает ОБЫЧНЫЙ курс у всех, в том числе с прогрессом V2; V2 — только явной кнопкой вкладки
+  const start: LessonsTabsPage = initial;
   console.log(`[LESSONS-TABS] вход: presentation=${presentation} initialPage=${initial} v2Доступен=${String(learningV2CanOpen)} (рубильник+выпуск=${String(learningV2CourseCanBeOpenedManually())}) → старт=${start}`); // guard-ok: итог выбора стартовой страницы
   return start;
 }

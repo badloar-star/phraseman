@@ -15,12 +15,11 @@ import {
   type TodayTasksDayState,
   type TodayTaskState,
 } from './today_tasks_core';
-import { SEASON_SCENE_V2_ENABLED } from '../../components/learning-v2/season/season_flags';
-import { LEARNING_V2_HIDDEN } from '../../app/learning_v2_visibility_switch';
 
 // зачем (Сверка 24.10, flags/ht_l.png; координатор): при включённом Сезоне «Пройти урок» ведёт в хаб Сезона — вкладку «Уроки»
 // (как «Видео» и Пик, dismissTo), а не в старый классический список «Обучение · A1»; Сезон выключен или курс V2 скрыт — прежний список
-export const TODAY_LESSON_ROUTE: string = SEASON_SCENE_V2_ENABLED && !LEARNING_V2_HIDDEN ? '/(tabs)/lessons' : '/lessons_list';
+// зачем (владелец 04.11, заморозка V2): «Пройди урок» и любые входы из «Сегодня» ВСЕГДА открывают обычный курс текущего языка изучения.
+export const TODAY_LESSON_ROUTE: string = '/lessons_list';
 
 /** Куда ведёт тап по задаче. Источник правды для «Дизайна» (см. evidence-таблицу). */
 export const TODAY_TASK_ROUTES: Readonly<Record<TodayTaskKindCore, string>> = Object.freeze({

@@ -155,9 +155,7 @@ import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
 import { isHomeContinueV2Enabled, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
-import { LEARNING_V2_HIDDEN, isLearningV2Hidden, isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
-import { peekResolvedUiLang } from '../ui_lang_resolved';
-import { requestLessonsV2Page } from '../lessons_open_v2_request';
+import { isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
 import { noteLessonsOpenStart } from '../lessons_tab_diagnostics';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
@@ -2535,11 +2533,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // зачем (координатор 29.10): «Начать урок 1» без истории шёл тем же старым маршрутом (первый и самый важный тап нового человека) — теперь тот же быстрый путь; source различает вход в журнале.
         const openLessonsTabFromHome = (source: 'home_tile' | 'home_continue_first') => {
             const startedAt = Date.now();
-            const v2Hidden = isLearningV2Hidden();
             const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
             console.log('[HOME-LESSONS-BTN] press', JSON.stringify({ // guard-ok: одна строка на тап по плитке
-                source, v2Hidden, v2SwitchHidden: LEARNING_V2_HIDDEN, uiLang: peekResolvedUiLang() ?? null, studyTarget: String(studyTarget), learnTabVisible, activeIdx,
-                branch: !learnTabVisible ? 'tab_hidden_toast' : v2Hidden ? 'goToTab(1) classic' : 'goToTab(1) + request v2 map',
+                source, studyTarget: String(studyTarget), learnTabVisible, activeIdx,
+                branch: !learnTabVisible ? 'tab_hidden_toast' : 'goToTab(1) classic',
             }));
             if (!learnTabVisible) {
                 emitAppEvent('action_toast', actionToastTri('info', {
@@ -2550,7 +2547,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 return;
             }
             noteLessonsOpenStart(source);
-            if (!v2Hidden) requestLessonsV2Page(source);
+            // зачем (владелец 04.11, заморозка V2): плитка «Уроки» всегда ведёт в обычный курс — карту V2 здесь не запрашиваем
             goToTab(1);
             void hapticTap();
             console.log('[HOME-LESSONS-BTN] switched', JSON.stringify({ source, ms: Date.now() - startedAt })); // guard-ok: сколько заняло переключение вкладки (JS-часть)
@@ -2753,8 +2750,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             return;
           }
           // зачем: меток нет вовсе — «Начать урок 1» ведёт в новые уроки (карта V2); при рубильнике «V2 скрыт» — в меню урока 1 старого курса
-          console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'start_lesson_1', v2Hidden: isLearningV2Hidden() }));
-          if (isLearningV2Hidden()) {
+          console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'start_lesson_1' }));
+          // зачем (владелец 04.11, заморозка V2): «Начать урок 1» всегда ведёт в меню урока 1 обычного курса
+          {
             nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);
             return;
           }

@@ -54,7 +54,8 @@ const LOG = '[HOME-CONTINUE]';
 
 /** Можно ли показывать занятие V2 в карточке «Продолжить». */
 // зачем (владелец 04.11): значение зависит от проверки прогресса, поэтому функция, а не константа при импорте.
-export const isHomeContinueV2Enabled = (): boolean => !LEARNING_V2_HIDDEN;
+// зачем (владелец 04.11, заморозка V2): «Продолжить» на Главной никогда не ведёт в V2 — V2 открывается только явной кнопкой на вкладке «Уроки».
+export const isHomeContinueV2Enabled = (): boolean => false;
 if (LEARNING_V2_HIDDEN) logLearningV2Hidden('home_continue_card', 'home', 'hidden=v2_continue_card');
 
 // зачем (Ревизор f2401f6f6, координатор 15.10, R09): раньше здесь был голый маршрут из метки — без sessionRunId и без передачи

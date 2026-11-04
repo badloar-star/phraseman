@@ -56,17 +56,16 @@ describe('home learning CTA contract', () => {
   // зачем: плитка быстрого старта «Уроки» открывает полный список уроков —
   // push-маршрут /lessons_list, заменивший убранный таб с книжкой.
   it('opens the full lessons list from the quick-start tile', () => {
-    // зачем (владелец 17.10): плитка «Уроки» открывает карту V2; прежний список — только при рубильнике «V2 скрыт»
-    // перепин 26.10 (координатор, запрет петель): при скрытом V2 — сама вкладка «Уроки» (индекс 1), не копия /lessons_list поверх стека
-    // перепин 28.10 (владелец «кнопка Уроки не работает»; Сверка: двойная навигация + 8 с пустого экрана): плитка сразу переключает вкладку,
-    // а «выбери карту V2» передаёт тихим запросом, который вкладка «Уроки» забирает при фокусе; прежний push /learning-v2/course с плитки убран
+    // Решение владельца 02.11: плитка открывает только классический Курс;
+    // тихий запрос страницы V2 удалён, retained-вкладка остаётся быстрым путём.
     expect(source).toContain('onPress: openLessonsFromHome');
     // перепин 29.10 (координатор): обработчик принимает источник — плитка и «Начать урок 1» идут одним путём
     expect(source).toContain("const openLessonsFromHome = () => openLessonsTabFromHome('home_tile');");
-    expect(source).toContain('if (!v2Hidden) requestLessonsV2Page(source);');
-    expect(source).toMatch(/requestLessonsV2Page\(source\);\s*goToTab\(1\);/);
     const handlerBody = source.slice(source.indexOf('const openLessonsTabFromHome = ('), source.indexOf('const quickItems = ['));
     expect(handlerBody.length).toBeGreaterThan(200);
+    expect(handlerBody).toContain('goToTab(1);');
+    expect(handlerBody).not.toContain('requestLessonsV2Page');
+    expect(source).not.toContain("import { requestLessonsV2Page } from '../lessons_open_v2_request';");
     expect(handlerBody).not.toContain("go('/learning-v2/course')");
     // скрытая вкладка (fr/de/it): не молчим — тост и журнал, а не немой goToTab на Главную
     expect(source).toMatch(/!learnTabVisible[\s\S]{0,900}action_toast/);
@@ -91,7 +90,7 @@ describe('home learning CTA contract', () => {
     expect(body).toContain("nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);");
     expect(body.indexOf('isLearningV2Hidden()')).toBeLessThan(body.indexOf("openLessonsTabFromHome('home_continue_first')"));
     // журнал различает вход: источник в press и switched, и в замере вкладки
-    expect(source).toMatch(/\[HOME-LESSONS-BTN\] press[\s\S]{0,300}source, v2Hidden/);
+    expect(source).toMatch(/\[HOME-LESSONS-BTN\] press[\s\S]{0,300}source, studyTarget/);
     expect(source).toContain("'[HOME-LESSONS-BTN] switched', JSON.stringify({ source, ms:");
     expect(source).toContain('noteLessonsOpenStart(source);');
   });

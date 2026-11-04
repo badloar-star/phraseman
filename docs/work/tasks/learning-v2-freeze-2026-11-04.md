@@ -3,6 +3,9 @@
 Governance-ID: TG-16FB8FA53FF9
 Governance-ID: TG-E3E231B1E229
 Governance-ID: TG-9692DD06D17A
+Governance-ID: TG-562331384CB9
+Governance-ID: TG-6FADC38C776B
+Governance-ID: TG-F39B7D510280
 Status: В работе
 Owner: «5 · ВХОД» (поручение координатора 04.11)
 
@@ -55,3 +58,11 @@ V2_UNLOCK_MIN_COMPLETED_EPISODES (=1) бит.
 - Architecture: тот же механизм, что в основном коммите; правка патчем от HEAD, чужие правки в файле (вынос `TABS` в `constants/mainTabs`) не берутся.
 - Security and privacy: данных нет. Technical debt: ленивые V2-импорты в `lessons.tsx` не делаются — экран «Обучение» уже грузится отложенно (`require('./lessons')` по требованию), выигрыш мал, а риск высок (десятки сторожей читают исходник); решение вернуть, если замер старта покажет вклад модуля.
 - Verification: тест в чистой копии HEAD + мои файлы (`safe_top_one_canvas_contract`, `scene_light_status_bar_2026_10_24`). Rollback: откат коммита.
+
+## Уточнение владельца 04.11 (TG-562331384CB9, TG-6FADC38C776B): V2 только явной кнопкой
+
+- Outcome: таб «Уроки», плитка «Уроки» и «Начать урок 1» на Главной, карточка «Продолжить», «Сегодня» (TODAY_LESSON_ROUTE) ВСЕГДА открывают обычный курс — у всех, в том числе с прогрессом V2. V2 открывается только явной кнопкой (вкладка V2 рядом с комбинированным уроком) и только при ≥1 завершённом занятии.
+- Scope: `app/(tabs)/lessons.tsx` (старт таба не уходит в v2 автоматически), `app/(tabs)/home.tsx` (плитка и «Начать урок 1» не просят карту V2), `app/learning_v2_home_continue_route.ts` (карточка V2 выключена), `modules/today-tasks/today_tasks_view.ts` (маршрут «Сегодня» всегда `/lessons_list`).
+- Architecture: правки патчем от HEAD; охранный тест `tests/learning_v2_entries_classic_2026_11_04.test.ts`.
+- Security and privacy: данных нет. Technical debt: внешние ссылки на сами занятия V2 у людей с прогрессом остаются рабочими (явный вход), у новых ведут в обычный курс. Verification: чистая копия HEAD + мои файлы. Rollback: откат коммита.
+- TG-F39B7D510280 — работа по лагам Android (отдельные коммиты по диагнозу).

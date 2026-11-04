@@ -91,7 +91,7 @@ const rng = (seed: number): (() => number) => {
 /** 1. Палитра «А — тон темы ярче и глубже» (общая для обоих оформлений). */
 export function paletteA(t: SceneTokens, appearance: SceneAppearance) {
   const dark = appearance === 'dark';
-  const [, C, H] = oklchOf(hx(t.accent));
+  const [, C, H] = oklchOf(hx(t.accent)); // light-accent-ok: из акцента берётся только оттенок и насыщенность для расчёта цвета сцены, сама графика не красится им
   const Ct = clamp(C * 1.6, 0.07, 0.17);
   const Cb = Ct * 0.7;
   const Lt0 = dark ? 0.5 : 0.52;
@@ -220,7 +220,7 @@ const WARM: Record<SceneWarm, (H: number) => number> = {
   band: (H) => 40 + ((H % 60) / 60) * 40,
 };
 export function warmEdge(t: SceneTokens, mode?: SceneWarm) {
-  const [, , H] = oklchOf(hx(t.accent));
+  const [, , H] = oklchOf(hx(t.accent)); // light-accent-ok: берётся только оттенок (H) для тёплого края сцены, не графика
   const m: SceneWarm = mode && WARM[mode] ? mode : 'band';
   const hue = WARM[m](H);
   const L = m === 'band' ? 0.78 : m === 'theme' ? 0.72 : 0.74;

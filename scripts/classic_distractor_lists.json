@@ -222,6 +222,198 @@
     "ellos",
     "ellas",
     "ustedes"
+   ],
+   [
+    "eres",
+    "es",
+    "sois",
+    "son"
+   ],
+   [
+    "fuiste",
+    "fue",
+    "fuisteis",
+    "fueron"
+   ],
+   [
+    "eras",
+    "era",
+    "erais",
+    "eran"
+   ],
+   [
+    "serás",
+    "será",
+    "seréis",
+    "serán"
+   ],
+   [
+    "serías",
+    "sería",
+    "seríais",
+    "serían"
+   ],
+   [
+    "seas",
+    "sea",
+    "seáis",
+    "sean"
+   ],
+   [
+    "estás",
+    "está",
+    "estáis",
+    "están"
+   ],
+   [
+    "estuviste",
+    "estuvo",
+    "estuvisteis",
+    "estuvieron"
+   ],
+   [
+    "estabas",
+    "estaba",
+    "estabais",
+    "estaban"
+   ],
+   [
+    "estarás",
+    "estará",
+    "estaréis",
+    "estarán"
+   ],
+   [
+    "estés",
+    "esté",
+    "estéis",
+    "estén"
+   ],
+   [
+    "has",
+    "ha",
+    "habéis",
+    "han"
+   ],
+   [
+    "habías",
+    "había",
+    "habíais",
+    "habían"
+   ],
+   [
+    "hubiste",
+    "hubo",
+    "hubisteis",
+    "hubieron"
+   ],
+   [
+    "habrás",
+    "habrá",
+    "habréis",
+    "habrán"
+   ],
+   [
+    "vas",
+    "va",
+    "vais",
+    "van"
+   ],
+   [
+    "ibas",
+    "iba",
+    "ibais",
+    "iban"
+   ],
+   [
+    "irás",
+    "irá",
+    "iréis",
+    "irán"
+   ],
+   [
+    "tienes",
+    "tiene",
+    "tenéis",
+    "tienen"
+   ],
+   [
+    "tuviste",
+    "tuvo",
+    "tuvisteis",
+    "tuvieron"
+   ],
+   [
+    "tenías",
+    "tenía",
+    "teníais",
+    "tenían"
+   ],
+   [
+    "puedes",
+    "puede",
+    "podéis",
+    "pueden"
+   ],
+   [
+    "quieres",
+    "quiere",
+    "queréis",
+    "quieren"
+   ],
+   [
+    "haces",
+    "hace",
+    "hacéis",
+    "hacen"
+   ],
+   [
+    "hiciste",
+    "hizo",
+    "hicisteis",
+    "hicieron"
+   ],
+   [
+    "dices",
+    "dice",
+    "decís",
+    "dicen"
+   ],
+   [
+    "sabes",
+    "sabe",
+    "sabéis",
+    "saben"
+   ],
+   [
+    "ves",
+    "ve",
+    "veis",
+    "ven"
+   ],
+   [
+    "das",
+    "da",
+    "dais",
+    "dan"
+   ],
+   [
+    "vienes",
+    "viene",
+    "venís",
+    "vienen"
+   ],
+   [
+    "pones",
+    "pone",
+    "ponéis",
+    "ponen"
+   ],
+   [
+    "sales",
+    "sale",
+    "salís",
+    "salen"
    ]
   ],
   "fr": [
@@ -236,6 +428,78 @@
    [
     "il",
     "elle"
+   ],
+   [
+    "es",
+    "est",
+    "êtes",
+    "sont"
+   ],
+   [
+    "as",
+    "a",
+    "avez",
+    "ont"
+   ],
+   [
+    "vas",
+    "va",
+    "allez",
+    "vont"
+   ],
+   [
+    "fais",
+    "fait",
+    "faites",
+    "font"
+   ],
+   [
+    "peux",
+    "peut",
+    "pouvez",
+    "peuvent"
+   ],
+   [
+    "veux",
+    "veut",
+    "voulez",
+    "veulent"
+   ],
+   [
+    "dois",
+    "doit",
+    "devez",
+    "doivent"
+   ],
+   [
+    "sais",
+    "sait",
+    "savez",
+    "savent"
+   ],
+   [
+    "viens",
+    "vient",
+    "venez",
+    "viennent"
+   ],
+   [
+    "prends",
+    "prend",
+    "prenez",
+    "prennent"
+   ],
+   [
+    "dis",
+    "dit",
+    "dites",
+    "disent"
+   ],
+   [
+    "vois",
+    "voit",
+    "voyez",
+    "voient"
    ]
   ],
   "it": [
@@ -244,6 +508,102 @@
     "lei",
     "voi",
     "loro"
+   ],
+   [
+    "sei",
+    "è",
+    "siete",
+    "sono"
+   ],
+   [
+    "hai",
+    "ha",
+    "avete",
+    "hanno"
+   ],
+   [
+    "vai",
+    "va",
+    "andate",
+    "vanno"
+   ],
+   [
+    "fai",
+    "fa",
+    "fate",
+    "fanno"
+   ],
+   [
+    "puoi",
+    "può",
+    "potete",
+    "possono"
+   ],
+   [
+    "vuoi",
+    "vuole",
+    "volete",
+    "vogliono"
+   ],
+   [
+    "devi",
+    "deve",
+    "dovete",
+    "devono"
+   ],
+   [
+    "sai",
+    "sa",
+    "sapete",
+    "sanno"
+   ],
+   [
+    "stai",
+    "sta",
+    "state",
+    "stanno"
+   ],
+   [
+    "vieni",
+    "viene",
+    "venite",
+    "vengono"
+   ],
+   [
+    "dici",
+    "dice",
+    "dite",
+    "dicono"
+   ],
+   [
+    "dai",
+    "dà",
+    "date",
+    "danno"
+   ],
+   [
+    "esci",
+    "esce",
+    "uscite",
+    "escono"
+   ],
+   [
+    "sarai",
+    "sarà",
+    "sarete",
+    "saranno"
+   ],
+   [
+    "avrai",
+    "avrà",
+    "avrete",
+    "avranno"
+   ],
+   [
+    "eri",
+    "era",
+    "eravate",
+    "erano"
    ]
   ],
   "de": [
@@ -256,6 +616,95 @@
     "er",
     "sie",
     "es"
+   ],
+   [
+    "bist",
+    "ist",
+    "seid",
+    "sind"
+   ],
+   [
+    "hast",
+    "hat",
+    "habt",
+    "haben"
+   ],
+   [
+    "wirst",
+    "wird",
+    "werdet",
+    "werden"
+   ],
+   [
+    "kannst",
+    "kann",
+    "könnt",
+    "können"
+   ],
+   [
+    "willst",
+    "will",
+    "wollt",
+    "wollen"
+   ],
+   [
+    "musst",
+    "muss",
+    "müsst",
+    "müssen"
+   ],
+   [
+    "darfst",
+    "darf",
+    "dürft",
+    "dürfen"
+   ],
+   [
+    "sollst",
+    "soll",
+    "sollt",
+    "sollen"
+   ],
+   [
+    "weißt",
+    "weiß",
+    "wisst",
+    "wissen"
+   ],
+   [
+    "fährst",
+    "fährt",
+    "fahrt",
+    "fahren"
+   ],
+   [
+    "nimmst",
+    "nimmt",
+    "nehmt",
+    "nehmen"
+   ],
+   [
+    "siehst",
+    "sieht",
+    "seht",
+    "sehen"
+   ],
+   [
+    "gibst",
+    "gibt",
+    "gebt",
+    "geben"
+   ],
+   [
+    "sprichst",
+    "spricht",
+    "sprecht",
+    "sprechen"
+   ],
+   [
+    "liest",
+    "lest",
+    "lesen"
    ]
   ],
   "en": []
@@ -339,6 +788,11 @@
    [
     "grande",
     "gran"
+   ],
+   [
+    "esto",
+    "eso",
+    "aquello"
    ]
   ],
   "fr": [
@@ -357,6 +811,11 @@
    [
     "petit",
     "peu"
+   ],
+   [
+    "ceci",
+    "cela",
+    "ça"
    ]
   ],
   "de": [
@@ -399,6 +858,11 @@
    [
     "von",
     "aus"
+   ],
+   [
+    "das",
+    "dies",
+    "dieses"
    ]
   ],
   "it": [
@@ -549,10 +1013,69 @@
    [
     "con",
     "coi"
+   ],
+   [
+    "questo",
+    "quello"
    ]
   ]
  },
  "siblingTails": {
+  "es": [
+   "",
+   "a",
+   "as",
+   "an",
+   "ais",
+   "amos",
+   "e",
+   "es",
+   "en",
+   "eis",
+   "emos",
+   "is",
+   "imos",
+   "o",
+   "oy",
+   "os",
+   "s",
+   "n",
+   "aste",
+   "asteis",
+   "aron",
+   "iste",
+   "isteis",
+   "ieron",
+   "io",
+   "ia",
+   "ias",
+   "ian",
+   "iais",
+   "aba",
+   "abas",
+   "aban",
+   "abais",
+   "ara",
+   "aras",
+   "aran",
+   "arais",
+   "iera",
+   "ieras",
+   "ieran",
+   "ierais",
+   "aria",
+   "arias",
+   "arian",
+   "eria",
+   "erias",
+   "erian",
+   "ira",
+   "iras",
+   "iran",
+   "era",
+   "eras",
+   "eran"
+  ],
   "it": [
    "",
    "o",
@@ -567,31 +1090,29 @@
    "iamo",
    "amo",
    "emo",
+   "isci",
+   "isce",
+   "iscono",
+   "erai",
+   "era",
+   "erete",
+   "eranno",
+   "irai",
+   "ira",
    "irete",
-   "erete"
-  ],
-  "es": [
-   "",
-   "a",
-   "as",
-   "an",
-   "e",
-   "es",
-   "en",
-   "o",
-   "os",
-   "amos",
-   "emos",
-   "imos",
-   "áis",
-   "éis",
-   "ís",
-   "ás",
-   "á",
-   "é",
-   "ó",
-   "aron",
-   "ieron"
+   "iranno",
+   "avi",
+   "ava",
+   "avate",
+   "avano",
+   "evi",
+   "eva",
+   "evate",
+   "evano",
+   "ivi",
+   "iva",
+   "ivate",
+   "ivano"
   ],
   "fr": [
    "",
@@ -609,7 +1130,9 @@
    "ais",
    "aient",
    "iez",
-   "ions"
+   "ions",
+   "x",
+   "ent"
   ],
   "de": [
    "",
@@ -622,7 +1145,9 @@
    "ten",
    "test",
    "tet",
-   "n"
+   "n",
+   "est",
+   "s"
   ],
   "en": []
  },

@@ -259,6 +259,11 @@
    "replace": {
     "mesa fuese": "mesa fuera"
    }
+  },
+  "es:05:32": {
+   "add": [
+    "¿Qué es esto?"
+   ]
   }
  },
  "targets": {

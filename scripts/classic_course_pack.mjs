@@ -275,11 +275,22 @@ function phraseKeys(ph) {
 // Причина, по которой соблазн d на плитке i недопустим (null — допустим). Порядок = приоритет учёта в статистике.
 function phraseNumbers(id) { const m = /(\d\d)[.:](\d\d)$/.exec(id); return m ? { lesson: Number(m[1]), key: `${m[1]}:${m[2]}` } : { lesson: 99, key: id }; }
 const sameGroup = (groups, a, b) => groups.some((g) => g.includes(a) && g.includes(b));
-function sibling(tails, a, b) {
+const noAccent = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '');
+function sibling(tails, a0, b0) {
+  const a = noAccent(a0);
+  const b = noAccent(b0);
   if (!tails.length || a === b) return false;
   let p = 0;
   while (p < a.length && p < b.length && a[p] === b[p]) p++;
   return p >= 3 && tails.includes(a.slice(p)) && tails.includes(b.slice(p)) && a.length - p <= 4 && b.length - p <= 4;
+}
+// зачем (Координатор 04.11, повторная проверка ES): русское «вы» (или фраза без указания лица) не различает 2-е лицо, вежливое и множественное —
+// все такие формы того же глагола/местоимения нельзя ставить соблазнами; там, где в переводе явно «я/ты/он/она/мы/они», контраст форм оставляем
+const RU_VY = /(^|[^а-яё])(вы|вас|вам|вами|ваш[а-яё]*)(?![а-яё])/i;
+const RU_OTHER = /(^|[^а-яё])(я|мы|ты|он|она|оно|они|меня|мне|нас|нам|тебя|тебе|его|её|ее|им|ей|ему|их|ним|ней|ними)(?![а-яё])/i;
+function youApplies(ph) {
+  const ru = ph.sourceLocales?.ru ?? '';
+  return RU_VY.test(ru) || !RU_OTHER.test(ru);
 }
 function badReason(lang, ctx, ph, i, d, mine) {
   const { corrects, acc } = phraseKeys(ph);
@@ -295,7 +306,7 @@ function badReason(lang, ctx, ph, i, d, mine) {
   if (ctx.patch.get(`${lang}:${key}`)?.has(dd)) return 'patch';
   if (ctx.articles.has(c) && ctx.articles.has(dd)) return 'article';
   if (sameGroup(ctx.synonyms, c, dd)) return 'synonym';
-  if (sameGroup(ctx.youGroups, c, dd) || sibling(ctx.tails, c, dd)) return 'youForm';
+  if (youApplies(ph) && (sameGroup(ctx.youGroups, c, dd) || sibling(ctx.tails, c, dd))) return 'youForm';
   if (lang === 'de' && ctx.timeAdv.has(dd) && !ctx.timeAdv.has(c)) return 'pos';
   if (lang === 'es' && c === 'fuera' && ctx.serForms.has(dd) && !/^(si|que|como|aunque)$/i.test(corrects[i - 1] ?? '')) return 'pos';
   if (ctx.numbers.has(dd) !== isNum || (CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
@@ -383,6 +394,7 @@ function fixDistractors(lang, all) {
   const everything = new Map();
   for (const m of pool[1].values()) for (const [d, c] of m) everything.set(d, (everything.get(d) ?? 0) + c);
   const removed = { caseFixed: 0, refilled: 0, short: 0 };
+  const youPhrases = new Set();
   const shortSamples = [];
   for (const ph of all) {
     ph.tiles.forEach((tile, i) => {
@@ -393,6 +405,7 @@ function fixDistractors(lang, all) {
         if (ctx.nameTile.get(tile) === true && !upperFirst(d) && ctx.names.has(d[0].toUpperCase() + d.slice(1))) { d = d[0].toUpperCase() + d.slice(1); removed.caseFixed++; }
         const why = badReason(lang, ctx, ph, i, d, kept);
         if (process.env.DEBUG_TILE === `${ph.id}#${i}`) console.log('tile', d, why);
+        if (why === 'youForm') youPhrases.add(ph.id);
         if (why) removed[why] = (removed[why] ?? 0) + 1; else kept.push(d);
       }
       if (kept.length < want) {
@@ -435,6 +448,7 @@ function fixDistractors(lang, all) {
       tile.distractors = kept;
     });
   }
+  removed.youFormPhrases = youPhrases.size;
   return { removed, left: auditDistractors(lang, all, ctx), shortSamples };
 }
 

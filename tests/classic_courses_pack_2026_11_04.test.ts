@@ -107,14 +107,21 @@ describe('классические курсы: рантайм-данные', () 
     // Системные причины неоднозначных плиток по аудиту сильной модели (Координатор 04.11, второй проход)
     it('соблазны: артикли, синонимы, «вы/они», части речи, непройденные слова, точечные правки', () => {
       type Tile = { correct: string; distractors: string[] };
-      type Phrase = { id: string; tiles: Tile[]; accepted?: string[][]; alternatives: string[]; answers?: string[] };
+      type Phrase = { id: string; tiles: Tile[]; accepted?: string[][]; alternatives: string[]; answers?: string[]; sourceLocales: { ru: string } };
       const phrases: Phrase[] = lessonFiles.flatMap((f) => JSON.parse(read(lang, f)).phrases);
       const strip = (t: string) => t.toLowerCase().replace(/[.,!?;:¿¡]/g, '');
       const lessonOf = (id: string) => { const m = /(\d\d)[.:](\d\d)$/.exec(id)!; return { lesson: Number(m[1]), key: `${m[1]}:${m[2]}` }; };
       const articles = new Set<string>(LISTS.articles?.[lang] ?? []);
       const groupHit = (groups: string[][] | undefined, a: string, b: string) => (groups ?? []).some((g) => g.includes(a) && g.includes(b));
       const tails: string[] = LISTS.siblingTails?.[lang] ?? [];
-      const sibling = (a: string, b: string) => {
+      const noAccent = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '');
+      // «вы» в русском (или нет указания лица) не различает 2-е лицо/вежливую/множественную форму — такие формы не соблазны
+      const RU_VY = /(^|[^а-яё])(вы|вас|вам|вами|ваш[а-яё]*)(?![а-яё])/i;
+      const RU_OTHER = /(^|[^а-яё])(я|мы|ты|он|она|оно|они|меня|мне|нас|нам|тебя|тебе|его|её|ее|им|ей|ему|их|ним|ней|ними)(?![а-яё])/i;
+      const youApplies = (ru: string) => RU_VY.test(ru) || !RU_OTHER.test(ru);
+      const sibling = (a0: string, b0: string) => {
+        const a = noAccent(a0);
+        const b = noAccent(b0);
         if (!tails.length || a === b) return false;
         let p = 0;
         while (p < a.length && p < b.length && a[p] === b[p]) p++;
@@ -150,7 +157,7 @@ describe('классические курсы: рантайм-данные', () 
             if (removed.has(dd)) bad.patch.push(where);
             if (articles.has(c) && articles.has(dd)) bad.article.push(where);
             if (groupHit(LISTS.synonyms?.[lang], c, dd)) bad.synonym.push(where);
-            if (groupHit(LISTS.youGroups?.[lang], c, dd) || sibling(c, dd)) bad.youForm.push(where);
+            if (youApplies(p.sourceLocales.ru) && (groupHit(LISTS.youGroups?.[lang], c, dd) || sibling(c, dd))) bad.youForm.push(where);
             if (lang === 'de' && timeAdv.has(dd) && !timeAdv.has(c)) bad.pos.push(where);
             if (!numbers.has(c)) {
               const seen = vocab.get(dd);

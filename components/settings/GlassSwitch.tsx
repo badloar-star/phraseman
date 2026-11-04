@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { PressableHybrid } from '../PressableHybrid';
+import PressableHybrid from '../PressableHybrid';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';

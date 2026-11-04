@@ -83,6 +83,12 @@ for (const f of readdirSync(join(ROOT, 'docs', 'work')).filter((n) => /^classic_
 }
 const usedTranslationFixes = new Set();
 const translationNormalized = { n: 0 };
+// слой правок полного прохода (scripts/classic_audit_apply.mjs): соблазны (tiles), допустимые ответы (alt), целевые фразы (target)
+const AUDIT_PATH = join(ROOT, 'scripts', 'classic_audit_layer.json');
+const AUDIT = existsSync(AUDIT_PATH) ? JSON.parse(readFileSync(AUDIT_PATH, 'utf8')) : { tiles: {}, alt: {}, target: {} };
+const auditForced = new Set(); // 'id#позиция:слово' — соблазны, поставленные аудитором (на них не действуют классовые правила генератора)
+const auditStats = { tileApplied: 0, tileAbsent: 0, tileInvalid: 0, altAdded: 0, altRemoved: 0, targetApplied: 0, targetSkipped: 0, invalidReasons: {} };
+const tokenizeLine = (str) => str.replace(/[¿¡?!.,;:«»"]/g, ' ').split(/\s+/).filter(Boolean);
 const errors = [];
 const fail = (lang, msg) => { errors.push(`[${lang}] ${msg}`); };
 const warnings = [];
@@ -135,7 +141,25 @@ function buildPhrase(lang, prof, r, where) {
   let tiles = (r[prof.tiles] ?? []).map((w) => ({ text: w.text, correct: w.correct, distractors: w.distractors ?? [] }));
   // зачем (Координатор 04.11): точечные правки target по блокерам аудита (it:13:50 порядок слов, fr:02:01 «ici» → «là»); число плиток и их
   // позиции сохраняются, допустимые ответы и прежний target уходят в alternatives/accepted. Соблазны перепроверит fixDistractors.
-  const tp = PATCHES.targets?.[(() => { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); return m ? `${lang}:${m[1]}:${m[2]}` : ''; })()];
+  const auditKey = (() => { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); return m ? `${lang}:${m[1]}:${m[2]}` : ''; })();
+  let tp = PATCHES.targets?.[auditKey];
+  // целевая фраза из полного прохода: только если число слов совпадает с числом плиток (позиции и число плиток не меняем); прежняя уходит в допустимые
+  const auditTarget = !tp ? AUDIT.target?.[auditKey] : null;
+  if (auditTarget) {
+    const toks = tokenizeLine(auditTarget);
+    if (toks.length !== tiles.length) auditStats.targetSkipped++;
+    else {
+      const oldTarget = r[prof.target];
+      const oldPaths = prof.accepted ? (r[prof.accepted] ?? []) : (r[prof.answers] ?? []).map(tokenizeLine);
+      tp = {
+        target: auditTarget, tiles: toks,
+        accepted: [toks, ...oldPaths.filter((pth) => pth.join(' ').toLowerCase() !== toks.join(' ').toLowerCase())],
+        alternatives: [...new Set([oldTarget, ...(r[prof.alternatives] ?? [])])].filter((x) => x !== auditTarget),
+        answers: prof.answers ? [...new Set([auditTarget, oldTarget, ...(r[prof.answers] ?? [])])] : undefined,
+      };
+      auditStats.targetApplied++;
+    }
+  }
   if (tp) {
     if (tp.tiles.length !== tiles.length && !tp.allowTileCountChange) fail(lang, `${where}: правка target меняет число плиток`);
     tiles = tp.tiles.map((correct, i) => {
@@ -189,6 +213,27 @@ function buildPhrase(lang, prof, r, where) {
     out.accepted = a.map(esTokens);
     // страховка: первый (канонический) путь должен совпасть с плитками в порядке
     if (JSON.stringify(out.accepted[0]) !== JSON.stringify(tiles.map((t) => t.correct))) fail(lang, `${where}: канонический ответ не равен плиткам`);
+  }
+  // допустимые ответы из полного прохода: remove — только из текущего списка, канонический путь не трогаем; add — новый путь + строка
+  const al = AUDIT.alt?.[auditKey];
+  if (al) {
+    for (const rem of al.remove ?? []) {
+      const had = out.alternatives.includes(rem) || (out.answers ?? []).includes(rem);
+      if (!had) continue;
+      out.alternatives = out.alternatives.filter((x) => x !== rem);
+      if (out.answers) out.answers = out.answers.filter((x, idx) => idx === 0 || x !== rem);
+      if (out.accepted) out.accepted = out.accepted.filter((pth, idx) => idx === 0 || keyOf(pth) !== keyOf(tokenizeLine(rem)));
+      auditStats.altRemoved++;
+    }
+    for (const add of al.add ?? []) {
+      if (add === target || out.alternatives.includes(add)) continue;
+      const path = tokenizeLine(add);
+      if (!path.length) continue;
+      out.alternatives.push(add);
+      if (out.answers && !out.answers.includes(add)) out.answers.push(add);
+      if (out.accepted && !out.accepted.some((pth) => keyOf(pth) === keyOf(path))) out.accepted.push(path);
+      auditStats.altAdded++;
+    }
   }
   // сторож фрагментов: ru/uk — полная фраза (≥2 слов при целевой фразе ≥2 слов, знак конца, длина соизмерима с целью)
   for (const l of ['ru', 'uk']) {
@@ -405,11 +450,18 @@ function buildContext(lang, all) {
     const toks = [...ph.tiles.map((t) => t.correct), ...(ph.accepted ?? []).flat(), ...ph.alternatives.flatMap((a) => a.split(/\s+/))];
     for (const t of toks) { const k = stripP(t); if (k && (!vocab.has(k) || vocab.get(k) > lesson)) vocab.set(k, lesson); }
   }
+  // словарь «вторых верных фраз» курса: все целевые фразы, допустимые пути и альтернативы (для проверки новых соблазнов из полного прохода)
+  const globalKeys = new Set();
+  for (const ph of all) {
+    globalKeys.add(keyOf(ph.tiles.map((t) => t.correct)));
+    for (const pth of ph.accepted ?? []) globalKeys.add(keyOf(pth));
+    for (const a of ph.alternatives) globalKeys.add(keyOf(tokenizeLine(a)));
+  }
   const patch = new Map();
   for (const [k, toks] of Object.entries(PATCHES.remove ?? {})) patch.set(k, new Set(toks.map(stripP)));
   if (process.env.DEBUG_NAMES) console.log(`имена ${lang}: ${[...names].filter((n) => /^(He|She|They|We|You|It|The|A|There|This)$/.test(n)).join(',')} всего ${names.size}`);
   return {
-    numbers, names, nameTile, vocab, patch,
+    numbers, names, nameTile, vocab, patch, globalKeys,
     articles: sets(LISTS.articles?.[lang]), synonyms: LISTS.synonyms?.[lang] ?? [], youGroups: LISTS.youGroups?.[lang] ?? [],
     replace: new Map(Object.entries(PATCHES.replace ?? {})), artPairs: LISTS.articlePairs?.[lang] ?? null,
     closed: LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }, adverbOnly: LISTS.adverbOnly?.[lang] ?? null,
@@ -423,6 +475,7 @@ function auditDistractors(lang, all, ctxIn) {
   for (const ph of all) ph.tiles.forEach((tile, i) => {
     const seen = [];
     for (const d of tile.distractors) {
+      if (auditForced.has(`${ph.id}#${i}:${d}`)) { seen.push(d); continue; }
       const why = badReason(lang, ctx, ph, i, d, seen);
       if (why) found[why] = (found[why] ?? 0) + 1;
       seen.push(d);
@@ -548,6 +601,19 @@ function fixDistractors(lang, all) {
         }
         if (kept.length < want) { removed.short++; if (shortSamples.length < 6) shortSamples.push(`${ph.id}#${i} ${tile.correct} ${kept.length}/${want}`); }
       }
+      // правки соблазнов полного прохода: старый соблазн реально стоит → заменяем новым, который не даёт второй верной фразы (ни у этой фразы, ни в словаре курса)
+      for (const op of AUDIT.tiles?.[`${lang}:${phraseNumbers(ph.id).key}`] ?? []) {
+        if (op.position !== i) continue;
+        const at = kept.findIndex((x) => stripP(x) === stripP(op.from));
+        if (at < 0) { auditStats.tileAbsent++; continue; }
+        const others = kept.filter((_, j) => j !== at);
+        const cand = upperFirst(kept[at]) && !upperFirst(op.with) ? op.with[0].toUpperCase() + op.with.slice(1) : !upperFirst(kept[at]) && upperFirst(op.with) && !ctx.names.has(op.with) ? op.with[0].toLowerCase() + op.with.slice(1) : op.with;
+        const why = badReason(lang, { ...ctx, relax: true }, ph, i, cand, others) ?? (ctx.globalKeys.has(keyOf(ph.tiles.map((t, j) => (j === i ? cand : t.correct)))) ? 'globalPhrase' : null);
+        if (why) { auditStats.tileInvalid++; auditStats.invalidReasons[why] = (auditStats.invalidReasons[why] ?? 0) + 1; continue; }
+        kept[at] = cand;
+        auditForced.add(`${ph.id}#${i}:${cand}`);
+        auditStats.tileApplied++;
+      }
       tile.distractors = kept;
     });
   }
@@ -583,6 +649,19 @@ function youVariantsOf(lang, token, vocab, afterDet = false) {
     }
   }
   return [...out].filter((w) => vocab.has(stripP(w))).map((w) => capLike(token, w));
+}
+// «У вас (мн.)» — допустимы только формы множественного числа: убираем из alternatives/answers/accepted usted и формы 2/3-го лица ед.ч. того же глагола
+function pruneSingularYouForms(lang, all) {
+  const sg = new Set(['usted', 'tú']);
+  for (const g of LISTS.youVerbParadigms?.[lang] ?? []) { sg.add(g[0].toLowerCase()); sg.add(g[1].toLowerCase()); }
+  for (const ph of all) {
+    if (!/\(мн\.?\)|\(мн\)|\(мн\.\)/i.test(ph.sourceLocales?.ru ?? '')) continue;
+    const base = new Set(ph.tiles.map((t) => stripP(t.correct)));
+    const bad = (str) => tokenizeLine(str).some((w) => sg.has(stripP(w)) && !base.has(stripP(w)));
+    ph.alternatives = ph.alternatives.filter((a) => !bad(a));
+    if (ph.answers) ph.answers = ph.answers.filter((a, i) => i === 0 || !bad(a));
+    if (ph.accepted) ph.accepted = ph.accepted.filter((pth, i) => i === 0 || !pth.some((w) => sg.has(stripP(w)) && !base.has(stripP(w))));
+  }
 }
 function addYouVariants(lang, all) {
   const stat = { phrases: 0, variants: 0 };
@@ -664,6 +743,11 @@ function convert(lang, zips) {
     const blocks = take(prof.intro(n));
     if (!Array.isArray(blocks) || blocks.map((b) => b.kind).join() !== 'concept,formula,practice') fail(lang, `урок ${n}: вступление не concept/formula/practice`);
     for (const b of blocks ?? []) for (const loc of LOCALES) if (!introText(b, loc, 'title') || !introText(b, loc, 'text')) fail(lang, `урок ${n} вступление ${b.kind}: нет ${loc}`);
+    // заголовки — обычный текст: обратные кавычки (`je suis`) без разметки показались бы ученику буквально; в текстах и lines* разметку не трогаем
+    for (const b of blocks ?? []) {
+      for (const k of Object.keys(b)) if (/^title[A-Za-z]*$/.test(k) && typeof b[k] === 'string') b[k] = b[k].replace(/`/g, '');
+      if (b.titleByLocale) for (const l of Object.keys(b.titleByLocale)) if (typeof b.titleByLocale[l] === 'string') b.titleByLocale[l] = b.titleByLocale[l].replace(/`/g, '');
+    }
     intro[n] = blocks;
 
     const th = take(prof.theory(n));
@@ -678,6 +762,7 @@ function convert(lang, zips) {
   }
   if (phrases !== 1600) fail(lang, `всего ${phrases} фраз вместо 1600`);
   const allPhrases = Object.values(files).filter((f) => f.phrases).flatMap((f) => f.phrases);
+  pruneSingularYouForms(lang, allPhrases);
   const ystat = addYouVariants(lang, allPhrases);
   const dstat = fixDistractors(lang, allPhrases);
   dstat.removed.youVariantPhrases = ystat.phrases;
@@ -743,6 +828,7 @@ for (const lang of LANGS) {
 checkTranslationFixesUsed();
 manifest.languages = Object.fromEntries(Object.keys(manifest.languages).sort().map((k) => [k, manifest.languages[k]]));
 if (!CHECK_ONLY && !errors.length) { mkdirSync(OUT, { recursive: true }); writeFileSync(manifestPath, JSON.stringify(manifest) + '\n'); }
+console.log('слой аудита: ' + JSON.stringify(auditStats));
 console.log(`переводы ru/uk: исправлено невидимых символов/знаков конца: ${translationNormalized.n}`);
 console.log(JSON.stringify(table));
 if (warnings.length) console.log(`ПРЕДУПРЕЖДЕНИЯ (${warnings.length}): ` + warnings.slice(0, 3).join(' | ') + ' …');

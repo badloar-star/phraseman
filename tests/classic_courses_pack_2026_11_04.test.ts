@@ -12,6 +12,11 @@ const LANGS = fs.existsSync(ROOT) ? fs.readdirSync(ROOT, { withFileTypes: true }
 const BUDGET_MB: Record<string, number> = { en: 6.5, es: 5, fr: 5, de: 5, it: 5 };
 const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]>; adverbOnly?: Record<string, { words: string[]; allowedFor: string[] }>; closedClasses?: Record<string, { prep: string[]; conj: string[] }>; articlePairs?: Record<string, string[][]> };
 const PATCHES = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_patches.json'), 'utf8')) as { remove: Record<string, string[]>; answers?: Record<string, { remove?: string[] }> };
+// зачем: соблазны, поставленные аудитором (scripts/classic_audit_layer.json), не подчиняются классовым правилам генератора — их проверяет генератор
+// (нет второй верной фразы у этой фразы и в словаре курса); тест оставляет для них только проверки «своё слово / чужое правильное / принимаемая фраза / дубль»
+const AUDIT_LAYER = fs.existsSync(path.join(__dirname, '..', 'scripts', 'classic_audit_layer.json'))
+  ? (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_audit_layer.json'), 'utf8')) as { tiles: Record<string, { position: number; with: string }[]> })
+  : { tiles: {} };
 const LESSON_FAT = ['english', 'russian', 'ukrainian', 'teachingNote', 'category', 'gradingMethod'];
 const FORBIDDEN_KEY = /^(audio|voice|tts)/i;
 const FORBIDDEN_VALUE = /\.(mp3|ogg|m4a)|https?:\/\//i;
@@ -154,6 +159,8 @@ describe('классические курсы: рантайм-данные', () 
           for (const d of tile.distractors) {
             const dd = strip(d);
             const where = `${p.id}#${i}:${d}`;
+            const mm = /(\d\d)[.:](\d\d)$/.exec(p.id)!;
+            if ((AUDIT_LAYER.tiles[`${lang}:${mm[1]}:${mm[2]}`] ?? []).some((o) => o.position === i && o.with.toLowerCase() === d.toLowerCase())) continue;
             if (!/^[\p{L}][\p{L}'’-]*$/u.test(d)) bad.nonWord.push(where);
             if (removed.has(dd)) bad.patch.push(where);
             if (articles.has(c) && articles.has(dd) && (!artPairs || artPairs.some(([a, b]) => (a === c && b === dd) || (a === dd && b === c)))) bad.article.push(where);
@@ -231,6 +238,8 @@ describe('классические курсы: рантайм-данные', () 
       for (const f of lessonFiles) for (const p of JSON.parse(read(lang, f)).phrases as P[]) {
         p.tiles.forEach((t, i) => {
           for (const d of t.distractors) {
+            const mm = /(\d\d)[.:](\d\d)$/.exec(p.id)!;
+            if ((AUDIT_LAYER.tiles[`${lang}:${mm[1]}:${mm[2]}`] ?? []).some((o) => o.position === i && o.with.toLowerCase() === d.toLowerCase())) continue;
             if (genderPair(t.correct, d)) bad.push(`${p.id}#${i}: род ${t.correct}/${d}`);
             if (only && only.words.includes(d.toLowerCase()) && !only.allowedFor.includes(t.correct.toLowerCase())) bad.push(`${p.id}#${i}: ${d} вне наречий`);
           }
@@ -239,6 +248,24 @@ describe('классические курсы: рантайм-данные', () 
         if (lang === 'es' && p.answers) {
           const re = /\b(un|una)\s+\p{L}+(as|os|es)\b/iu;
           if (p.answers.slice(1).some((a) => re.test(a)) && !re.test(p.answers[0])) bad.push(`${p.id}: мусорный ответ`);
+        }
+      }
+      expect(bad).toEqual([]);
+    });
+
+    it('вступления: 32 урока × 3 блока, заголовки без разметки, примеры из курса', () => {
+      const intro = JSON.parse(read(lang, 'intro.json')) as Record<string, Record<string, unknown>[]>;
+      const ids = new Set<string>();
+      for (const f of lessonFiles) for (const p of JSON.parse(read(lang, f)).phrases as { id: string }[]) ids.add(p.id);
+      const bad: string[] = [];
+      expect(Object.keys(intro)).toHaveLength(32);
+      for (const [n, blocks] of Object.entries(intro)) {
+        if (blocks.length !== 3) bad.push(`урок ${n}: блоков ${blocks.length}`);
+        for (const b of blocks) {
+          for (const [k, v] of Object.entries(b)) if (/^title/.test(k) && JSON.stringify(v).includes('`')) bad.push(`урок ${n} ${k}: разметка в заголовке`);
+          const exIds = ((b.exampleIds ?? b.examplesById) as string[] | undefined) ?? [];
+          if (!exIds.length) bad.push(`урок ${n}: нет примеров`);
+          for (const id of exIds) if (!ids.has(id) && !ids.has(`en-classic-r1:${id}`)) bad.push(`урок ${n}: пример ${id} не из курса`);
         }
       }
       expect(bad).toEqual([]);

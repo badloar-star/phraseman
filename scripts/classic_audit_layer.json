@@ -1,0 +1,2508 @@
+{
+ "tiles": {
+  "de:01:44": [
+   {
+    "position": 3,
+    "from": "ruhig",
+    "with": "wach"
+   }
+  ],
+  "de:11:12": [
+   {
+    "position": 2,
+    "from": "an",
+    "with": "hinter"
+   }
+  ],
+  "de:12:04": [
+   {
+    "position": 4,
+    "from": "aufs",
+    "with": "zur"
+   }
+  ],
+  "de:13:17": [
+   {
+    "position": 4,
+    "from": "an",
+    "with": "mit"
+   }
+  ],
+  "de:14:17": [
+   {
+    "position": 4,
+    "from": "reservieren",
+    "with": "schwimmen"
+   }
+  ],
+  "de:14:27": [
+   {
+    "position": 4,
+    "from": "mitbringen",
+    "with": "aufstehen"
+   }
+  ],
+  "de:14:36": [
+   {
+    "position": 4,
+    "from": "reservieren",
+    "with": "kochen"
+   }
+  ],
+  "de:16:14": [
+   {
+    "position": 4,
+    "from": "aufgeschrieben",
+    "with": "getrunken"
+   }
+  ],
+  "de:17:20": [
+   {
+    "position": 4,
+    "from": "losgefahren",
+    "with": "aufgestanden"
+   }
+  ],
+  "de:17:22": [
+   {
+    "position": 2,
+    "from": "beim",
+    "with": "vom"
+   }
+  ],
+  "de:17:26": [
+   {
+    "position": 4,
+    "from": "abgefahren",
+    "with": "aufgewacht"
+   }
+  ],
+  "de:18:19": [
+   {
+    "position": 3,
+    "from": "ruhig",
+    "with": "krank"
+   }
+  ],
+  "de:22:37": [
+   {
+    "position": 7,
+    "from": "müssen",
+    "with": "dürft"
+   }
+  ],
+  "de:24:09": [
+   {
+    "position": 3,
+    "from": "Türen",
+    "with": "Lampe"
+   }
+  ],
+  "de:24:31": [
+   {
+    "position": 3,
+    "from": "war",
+    "with": "bist"
+   }
+  ],
+  "de:25:33": [
+   {
+    "position": 4,
+    "from": "auf",
+    "with": "mit"
+   }
+  ],
+  "de:26:02": [
+   {
+    "position": 2,
+    "from": "ruhig",
+    "with": "nass"
+   }
+  ],
+  "de:26:12": [
+   {
+    "position": 4,
+    "from": "Türen",
+    "with": "Lampe"
+   }
+  ],
+  "de:27:18": [
+   {
+    "position": 7,
+    "from": "will",
+    "with": "darfst"
+   }
+  ],
+  "de:28:38": [
+   {
+    "position": 2,
+    "from": "sind",
+    "with": "seid"
+   }
+  ],
+  "de:28:44": [
+   {
+    "position": 0,
+    "from": "Ist",
+    "with": "Bist"
+   }
+  ],
+  "de:28:45": [
+   {
+    "position": 0,
+    "from": "Sind",
+    "with": "Seid"
+   }
+  ],
+  "de:29:05": [
+   {
+    "position": 0,
+    "from": "Haben",
+    "with": "Hättest"
+   }
+  ],
+  "de:29:15": [
+   {
+    "position": 0,
+    "from": "Kann",
+    "with": "Darfst"
+   }
+  ],
+  "de:29:33": [
+   {
+    "position": 0,
+    "from": "Kann",
+    "with": "Kannst"
+   },
+   {
+    "position": 0,
+    "from": "Könnte",
+    "with": "Könnt"
+   },
+   {
+    "position": 0,
+    "from": "Darf",
+    "with": "Dürft"
+   }
+  ],
+  "de:29:34": [
+   {
+    "position": 0,
+    "from": "Darf",
+    "with": "Musst"
+   }
+  ],
+  "de:29:49": [
+   {
+    "position": 0,
+    "from": "Haben",
+    "with": "Hättest"
+   }
+  ],
+  "en:04:15": [
+   {
+    "position": 3,
+    "from": "take",
+    "with": "open"
+   }
+  ],
+  "en:09:02": [
+   {
+    "position": 2,
+    "from": "steps",
+    "with": "cups"
+   }
+  ],
+  "en:09:33": [
+   {
+    "position": 4,
+    "from": "room",
+    "with": "bread"
+   }
+  ],
+  "en:11:27": [
+   {
+    "position": 6,
+    "from": "light",
+    "with": "lamp"
+   }
+  ],
+  "en:13:11": [
+   {
+    "position": 2,
+    "from": "bring",
+    "with": "tell"
+   }
+  ],
+  "en:15:26": [
+   {
+    "position": 3,
+    "from": "near",
+    "with": "from"
+   }
+  ],
+  "en:16:05": [
+   {
+    "position": 3,
+    "from": "to",
+    "with": "with"
+   }
+  ],
+  "en:18:23": [
+   {
+    "position": 4,
+    "from": "to",
+    "with": "of"
+   }
+  ],
+  "en:18:31": [
+   {
+    "position": 4,
+    "from": "light",
+    "with": "lit"
+   }
+  ],
+  "en:18:45": [
+   {
+    "position": 2,
+    "from": "by",
+    "with": "of"
+   }
+  ],
+  "en:19:18": [
+   {
+    "position": 3,
+    "from": "at",
+    "with": "after"
+   }
+  ],
+  "en:20:16": [
+   {
+    "position": 0,
+    "from": "I've",
+    "with": "they"
+   }
+  ],
+  "en:20:40": [
+   {
+    "position": 3,
+    "from": "in",
+    "with": "under"
+   }
+  ],
+  "en:20:47": [
+   {
+    "position": 3,
+    "from": "to",
+    "with": "by"
+   }
+  ],
+  "en:21:13": [
+   {
+    "position": 3,
+    "from": "something",
+    "with": "everything"
+   }
+  ],
+  "en:21:18": [
+   {
+    "position": 3,
+    "from": "somewhere",
+    "with": "everywhere"
+   }
+  ],
+  "en:21:20": [
+   {
+    "position": 4,
+    "from": "something",
+    "with": "nobody"
+   }
+  ],
+  "en:21:45": [
+   {
+    "position": 2,
+    "from": "something",
+    "with": "everyone"
+   }
+  ],
+  "en:23:40": [
+   {
+    "position": 2,
+    "from": "is",
+    "with": "been"
+   }
+  ],
+  "en:23:41": [
+   {
+    "position": 7,
+    "from": "entrance",
+    "with": "roof"
+   }
+  ],
+  "en:24:10": [
+   {
+    "position": 1,
+    "from": "package",
+    "with": "pillow"
+   }
+  ],
+  "en:25:14": [
+   {
+    "position": 3,
+    "from": "at",
+    "with": "of"
+   }
+  ],
+  "en:25:22": [
+   {
+    "position": 5,
+    "from": "light",
+    "with": "lit"
+   }
+  ],
+  "en:25:23": [
+   {
+    "position": 3,
+    "from": "and",
+    "with": "or"
+   }
+  ],
+  "en:25:26": [
+   {
+    "position": 4,
+    "from": "when",
+    "with": "than"
+   }
+  ],
+  "en:25:27": [
+   {
+    "position": 4,
+    "from": "when",
+    "with": "than"
+   }
+  ],
+  "en:25:28": [
+   {
+    "position": 4,
+    "from": "when",
+    "with": "than"
+   }
+  ],
+  "en:25:29": [
+   {
+    "position": 3,
+    "from": "when",
+    "with": "than"
+   }
+  ],
+  "en:25:30": [
+   {
+    "position": 4,
+    "from": "when",
+    "with": "than"
+   }
+  ],
+  "en:25:40": [
+   {
+    "position": 1,
+    "from": "light",
+    "with": "lit"
+   }
+  ],
+  "en:25:46": [
+   {
+    "position": 3,
+    "from": "when",
+    "with": "than"
+   }
+  ],
+  "en:26:44": [
+   {
+    "position": 3,
+    "from": "this",
+    "with": "my"
+   },
+   {
+    "position": 3,
+    "from": "that",
+    "with": "his"
+   }
+  ],
+  "en:26:50": [
+   {
+    "position": 6,
+    "from": "something",
+    "with": "somewhere"
+   }
+  ],
+  "en:27:23": [
+   {
+    "position": 3,
+    "from": "could",
+    "with": "did"
+   }
+  ],
+  "en:28:38": [
+   {
+    "position": 3,
+    "from": "the",
+    "with": "many"
+   }
+  ],
+  "en:30:09": [
+   {
+    "position": 6,
+    "from": "was",
+    "with": "be"
+   }
+  ],
+  "en:31:46": [
+   {
+    "position": 5,
+    "from": "when",
+    "with": "than"
+   }
+  ],
+  "en:32:09": [
+   {
+    "position": 3,
+    "from": "near",
+    "with": "from"
+   }
+  ],
+  "en:32:14": [
+   {
+    "position": 3,
+    "from": "in",
+    "with": "under"
+   }
+  ],
+  "en:32:24": [
+   {
+    "position": 3,
+    "from": "might",
+    "with": "won't"
+   }
+  ],
+  "es:04:35": [
+   {
+    "position": 1,
+    "from": "un",
+    "with": "mi"
+   }
+  ],
+  "es:05:27": [
+   {
+    "position": 2,
+    "from": "la",
+    "with": "mis"
+   }
+  ],
+  "es:06:45": [
+   {
+    "position": 0,
+    "from": "La",
+    "with": "Las"
+   }
+  ],
+  "es:14:13": [
+   {
+    "position": 3,
+    "from": "en",
+    "with": "sin"
+   },
+   {
+    "position": 3,
+    "from": "a",
+    "with": "tras"
+   }
+  ],
+  "es:14:15": [
+   {
+    "position": 3,
+    "from": "a",
+    "with": "sin"
+   }
+  ],
+  "es:14:19": [
+   {
+    "position": 3,
+    "from": "en",
+    "with": "sin"
+   },
+   {
+    "position": 3,
+    "from": "a",
+    "with": "tras"
+   }
+  ],
+  "es:15:10": [
+   {
+    "position": 2,
+    "from": "con",
+    "with": "sobre"
+   }
+  ],
+  "es:15:14": [
+   {
+    "position": 0,
+    "from": "Podemos",
+    "with": "Comprar"
+   }
+  ],
+  "es:15:34": [
+   {
+    "position": 3,
+    "from": "con",
+    "with": "sobre"
+   }
+  ],
+  "es:15:35": [
+   {
+    "position": 4,
+    "from": "con",
+    "with": "sobre"
+   }
+  ],
+  "es:15:42": [
+   {
+    "position": 0,
+    "from": "Podemos",
+    "with": "Comprar"
+   }
+  ],
+  "es:16:21": [
+   {
+    "position": 3,
+    "from": "con",
+    "with": "sobre"
+   }
+  ],
+  "es:17:32": [
+   {
+    "position": 3,
+    "from": "en",
+    "with": "sin"
+   }
+  ],
+  "es:18:01": [
+   {
+    "position": 0,
+    "from": "La",
+    "with": "Mi"
+   }
+  ],
+  "es:18:03": [
+   {
+    "position": 1,
+    "from": "las",
+    "with": "su"
+   }
+  ],
+  "es:18:05": [
+   {
+    "position": 2,
+    "from": "la",
+    "with": "mi"
+   }
+  ],
+  "es:18:08": [
+   {
+    "position": 2,
+    "from": "los",
+    "with": "mis"
+   }
+  ],
+  "es:18:11": [
+   {
+    "position": 0,
+    "from": "La",
+    "with": "Un"
+   }
+  ],
+  "es:18:12": [
+   {
+    "position": 1,
+    "from": "lo",
+    "with": "su"
+   }
+  ],
+  "es:18:15": [
+   {
+    "position": 1,
+    "from": "la",
+    "with": "tu"
+   }
+  ],
+  "es:18:17": [
+   {
+    "position": 0,
+    "from": "Lo",
+    "with": "Su"
+   }
+  ],
+  "es:18:21": [
+   {
+    "position": 1,
+    "from": "la",
+    "with": "mi"
+   }
+  ],
+  "es:18:22": [
+   {
+    "position": 0,
+    "from": "Lo",
+    "with": "Mi"
+   }
+  ],
+  "es:18:24": [
+   {
+    "position": 0,
+    "from": "Los",
+    "with": "Un"
+   }
+  ],
+  "es:18:26": [
+   {
+    "position": 0,
+    "from": "La",
+    "with": "Mi"
+   }
+  ],
+  "es:18:27": [
+   {
+    "position": 0,
+    "from": "Las",
+    "with": "Mis"
+   }
+  ],
+  "es:18:35": [
+   {
+    "position": 3,
+    "from": "la",
+    "with": "su"
+   }
+  ],
+  "es:18:36": [
+   {
+    "position": 0,
+    "from": "Lo",
+    "with": "Mi"
+   }
+  ],
+  "es:18:38": [
+   {
+    "position": 0,
+    "from": "Los",
+    "with": "Tus"
+   }
+  ],
+  "es:18:39": [
+   {
+    "position": 1,
+    "from": "lo",
+    "with": "mi"
+   }
+  ],
+  "es:18:45": [
+   {
+    "position": 1,
+    "from": "la",
+    "with": "tu"
+   }
+  ],
+  "es:18:50": [
+   {
+    "position": 0,
+    "from": "La",
+    "with": "Tu"
+   }
+  ],
+  "es:21:18": [
+   {
+    "position": 3,
+    "from": "a",
+    "with": "hasta"
+   }
+  ],
+  "es:21:21": [
+   {
+    "position": 1,
+    "from": "con",
+    "with": "sobre"
+   }
+  ],
+  "es:23:13": [
+   {
+    "position": 2,
+    "from": "fue",
+    "with": "vamos"
+   }
+  ],
+  "es:23:19": [
+   {
+    "position": 2,
+    "from": "fui",
+    "with": "vamos"
+   }
+  ],
+  "es:23:24": [
+   {
+    "position": 3,
+    "from": "en",
+    "with": "sin"
+   }
+  ],
+  "es:25:47": [
+   {
+    "position": 1,
+    "from": "con",
+    "with": "hasta"
+   }
+  ],
+  "es:28:45": [
+   {
+    "position": 4,
+    "from": "va",
+    "with": "empezamos"
+   }
+  ],
+  "es:30:23": [
+   {
+    "position": 6,
+    "from": "en",
+    "with": "hacia"
+   }
+  ],
+  "fr:01:26": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Vous"
+   }
+  ],
+  "fr:01:44": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Vous"
+   }
+  ],
+  "fr:04:40": [
+   {
+    "position": 3,
+    "from": "de",
+    "with": "par"
+   }
+  ],
+  "fr:11:23": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:11:33": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:11:39": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:12:19": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:12:32": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:13:36": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Ils"
+   }
+  ],
+  "fr:14:10": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Il"
+   }
+  ],
+  "fr:14:14": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:14:23": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:14:28": [
+   {
+    "position": 0,
+    "from": "Nous",
+    "with": "Ils"
+   }
+  ],
+  "fr:12:01": [
+   {
+    "position": 2,
+    "from": "le",
+    "with": "aux"
+   }
+  ],
+  "fr:12:21": [
+   {
+    "position": 2,
+    "from": "un",
+    "with": "aux"
+   }
+  ],
+  "fr:12:23": [
+   {
+    "position": 5,
+    "from": "pommes",
+    "with": "sucre"
+   }
+  ],
+  "fr:12:24": [
+   {
+    "position": 2,
+    "from": "un",
+    "with": "aux"
+   }
+  ],
+  "fr:15:11": [
+   {
+    "position": 3,
+    "from": "un",
+    "with": "aux"
+   }
+  ],
+  "fr:15:18": [
+   {
+    "position": 0,
+    "from": "Nous",
+    "with": "Tu"
+   }
+  ],
+  "fr:18:14": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:18:44": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Il"
+   }
+  ],
+  "fr:18:50": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:20:09": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Il"
+   }
+  ],
+  "fr:20:30": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Ils"
+   }
+  ],
+  "fr:21:09": [
+   {
+    "position": 0,
+    "from": "Nous",
+    "with": "Vous"
+   }
+  ],
+  "fr:21:24": [
+   {
+    "position": 3,
+    "from": "on",
+    "with": "vous"
+   },
+   {
+    "position": 6,
+    "from": "du",
+    "with": "des"
+   }
+  ],
+  "fr:22:36": [
+   {
+    "position": 0,
+    "from": "Nous",
+    "with": "Tu"
+   }
+  ],
+  "fr:23:12": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:23:42": [
+   {
+    "position": 0,
+    "from": "Nous",
+    "with": "Tu"
+   }
+  ],
+  "fr:24:10": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:24:14": [
+   {
+    "position": 5,
+    "from": "on",
+    "with": "tu"
+   }
+  ],
+  "fr:24:16": [
+   {
+    "position": 4,
+    "from": "nous",
+    "with": "vous"
+   }
+  ],
+  "fr:24:23": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:24:37": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:24:42": [
+   {
+    "position": 5,
+    "from": "on",
+    "with": "tu"
+   }
+  ],
+  "fr:24:45": [
+   {
+    "position": 6,
+    "from": "pouvons",
+    "with": "veux"
+   }
+  ],
+  "fr:24:50": [
+   {
+    "position": 4,
+    "from": "on",
+    "with": "tu"
+   }
+  ],
+  "fr:25:22": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:25:35": [
+   {
+    "position": 2,
+    "from": "avons",
+    "with": "avez"
+   }
+  ],
+  "fr:25:38": [
+   {
+    "position": 1,
+    "from": "avons",
+    "with": "avez"
+   }
+  ],
+  "fr:25:39": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Tu"
+   }
+  ],
+  "fr:25:49": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Elles"
+   }
+  ],
+  "fr:26:03": [
+   {
+    "position": 4,
+    "from": "léger",
+    "with": "rapide"
+   }
+  ],
+  "fr:27:04": [
+   {
+    "position": 0,
+    "from": "On",
+    "with": "Il"
+   }
+  ],
+  "fr:27:19": [
+   {
+    "position": 3,
+    "from": "ticket",
+    "with": "colis"
+   }
+  ],
+  "fr:28:01": [
+   {
+    "position": 2,
+    "from": "du",
+    "with": "aux"
+   }
+  ],
+  "fr:28:31": [
+   {
+    "position": 4,
+    "from": "ticket",
+    "with": "colis"
+   }
+  ],
+  "fr:29:47": [
+   {
+    "position": 4,
+    "from": "veux",
+    "with": "voulons"
+   }
+  ],
+  "fr:30:06": [
+   {
+    "position": 2,
+    "from": "qu’elles",
+    "with": "s’ils"
+   }
+  ],
+  "fr:30:14": [
+   {
+    "position": 6,
+    "from": "ticket",
+    "with": "dossier"
+   }
+  ],
+  "fr:30:15": [
+   {
+    "position": 2,
+    "from": "qu’elles",
+    "with": "s’ils"
+   }
+  ],
+  "fr:30:20": [
+   {
+    "position": 2,
+    "from": "qu’ils",
+    "with": "s’ils"
+   }
+  ],
+  "fr:30:26": [
+   {
+    "position": 2,
+    "from": "qu’ils",
+    "with": "s’ils"
+   }
+  ],
+  "fr:30:43": [
+   {
+    "position": 7,
+    "from": "ticket",
+    "with": "dossier"
+   }
+  ],
+  "fr:31:03": [
+   {
+    "position": 1,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:06": [
+   {
+    "position": 1,
+    "from": "ont",
+    "with": "aies"
+   }
+  ],
+  "fr:31:10": [
+   {
+    "position": 2,
+    "from": "sont",
+    "with": "soient"
+   }
+  ],
+  "fr:31:12": [
+   {
+    "position": 5,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:16": [
+   {
+    "position": 3,
+    "from": "j’ai",
+    "with": "n’avais"
+   }
+  ],
+  "fr:31:17": [
+   {
+    "position": 0,
+    "from": "J’ai",
+    "with": "N’avait"
+   }
+  ],
+  "fr:31:18": [
+   {
+    "position": 3,
+    "from": "j’ai",
+    "with": "n’avait"
+   }
+  ],
+  "fr:31:19": [
+   {
+    "position": 2,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:36": [
+   {
+    "position": 4,
+    "from": "j’ai",
+    "with": "n’avait"
+   }
+  ],
+  "fr:31:37": [
+   {
+    "position": 5,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:39": [
+   {
+    "position": 9,
+    "from": "est",
+    "with": "êtes"
+   }
+  ],
+  "fr:31:41": [
+   {
+    "position": 0,
+    "from": "J’ai",
+    "with": "N’avait"
+   }
+  ],
+  "fr:31:42": [
+   {
+    "position": 1,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:43": [
+   {
+    "position": 1,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:44": [
+   {
+    "position": 1,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:45": [
+   {
+    "position": 2,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:46": [
+   {
+    "position": 2,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "fr:31:48": [
+   {
+    "position": 1,
+    "from": "a",
+    "with": "aient"
+   },
+   {
+    "position": 9,
+    "from": "a",
+    "with": "aient"
+   }
+  ],
+  "it:01:11": [
+   {
+    "position": 1,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:01:47": [
+   {
+    "position": 3,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:02:08": [
+   {
+    "position": 2,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:02:41": [
+   {
+    "position": 3,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:03:07": [
+   {
+    "position": 1,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:03:29": [
+   {
+    "position": 3,
+    "from": "lì",
+    "with": "siete"
+   }
+  ],
+  "it:05:48": [
+   {
+    "position": 3,
+    "from": "per",
+    "with": "con"
+   }
+  ],
+  "it:07:15": [
+   {
+    "position": 0,
+    "from": "Abita",
+    "with": "Abito"
+   }
+  ],
+  "it:07:35": [
+   {
+    "position": 0,
+    "from": "Prepara",
+    "with": "Preparo"
+   }
+  ],
+  "it:08:05": [
+   {
+    "position": 1,
+    "from": "lavorate",
+    "with": "lavoro"
+   }
+  ],
+  "it:08:41": [
+   {
+    "position": 1,
+    "from": "parte",
+    "with": "parto"
+   }
+  ],
+  "it:08:47": [
+   {
+    "position": 2,
+    "from": "preparate",
+    "with": "preparo"
+   }
+  ],
+  "it:12:06": [
+   {
+    "position": 0,
+    "from": "Prende",
+    "with": "Prendono"
+   }
+  ],
+  "it:12:28": [
+   {
+    "position": 0,
+    "from": "C’è",
+    "with": "Sono"
+   }
+  ],
+  "it:12:30": [
+   {
+    "position": 0,
+    "from": "C’è",
+    "with": "Sono"
+   }
+  ],
+  "it:15:09": [
+   {
+    "position": 3,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:15:10": [
+   {
+    "position": 2,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:15:29": [
+   {
+    "position": 5,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:15:41": [
+   {
+    "position": 2,
+    "from": "da",
+    "with": "con"
+   },
+   {
+    "position": 2,
+    "from": "in",
+    "with": "su"
+   }
+  ],
+  "it:16:05": [
+   {
+    "position": 0,
+    "from": "Stai",
+    "with": "Sono"
+   }
+  ],
+  "it:18:12": [
+   {
+    "position": 3,
+    "from": "camera",
+    "with": "bottiglia"
+   }
+  ],
+  "it:19:42": [
+   {
+    "position": 4,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:22:03": [
+   {
+    "position": 0,
+    "from": "Le",
+    "with": "Gli"
+   }
+  ],
+  "it:22:06": [
+   {
+    "position": 0,
+    "from": "Le",
+    "with": "Gli"
+   }
+  ],
+  "it:22:09": [
+   {
+    "position": 1,
+    "from": "le",
+    "with": "gli"
+   }
+  ],
+  "it:22:10": [
+   {
+    "position": 0,
+    "from": "Le",
+    "with": "Gli"
+   }
+  ],
+  "it:22:38": [
+   {
+    "position": 0,
+    "from": "Potete",
+    "with": "Vuoi"
+   }
+  ],
+  "it:27:10": [
+   {
+    "position": 3,
+    "from": "pasto",
+    "with": "pacco"
+   }
+  ],
+  "it:27:11": [
+   {
+    "position": 1,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:27:18": [
+   {
+    "position": 1,
+    "from": "invierò",
+    "with": "comprerò"
+   }
+  ],
+  "it:27:19": [
+   {
+    "position": 1,
+    "from": "manderò",
+    "with": "comprerò"
+   }
+  ],
+  "it:27:20": [
+   {
+    "position": 0,
+    "from": "Arriverà",
+    "with": "Partirà"
+   }
+  ],
+  "de:30:38": [
+   {
+    "position": 6,
+    "from": "ist",
+    "with": "bist"
+   }
+  ],
+  "de:30:40": [
+   {
+    "position": 6,
+    "from": "ist",
+    "with": "bist"
+   }
+  ],
+  "de:30:42": [
+   {
+    "position": 7,
+    "from": "haben",
+    "with": "hättest"
+   }
+  ],
+  "de:31:48": [
+   {
+    "position": 3,
+    "from": "dass",
+    "with": "damit"
+   }
+  ],
+  "de:31:49": [
+   {
+    "position": 3,
+    "from": "dass",
+    "with": "ob"
+   }
+  ],
+  "de:31:50": [
+   {
+    "position": 3,
+    "from": "dass",
+    "with": "ob"
+   }
+  ],
+  "it:30:19": [
+   {
+    "position": 2,
+    "from": "faccia",
+    "with": "facevo"
+   }
+  ],
+  "it:32:38": [
+   {
+    "position": 7,
+    "from": "poco",
+    "with": "meno"
+   }
+  ],
+  "it:32:20": [
+   {
+    "position": 7,
+    "from": "vi",
+    "with": "mi"
+   }
+  ]
+ },
+ "alt": {
+  "de:04:18": {
+   "add": [
+    "Die Kinder spielen am Samstag draußen."
+   ],
+   "remove": []
+  },
+  "de:04:21": {
+   "add": [
+    "Der Kurs beginnt um acht."
+   ],
+   "remove": []
+  },
+  "de:04:23": {
+   "add": [
+    "Der Laden öffnet um zehn."
+   ],
+   "remove": []
+  },
+  "de:04:24": {
+   "add": [
+    "Die Küche schließt um sechs."
+   ],
+   "remove": []
+  },
+  "de:04:25": {
+   "add": [
+    "Der Bus kommt um sieben."
+   ],
+   "remove": []
+  },
+  "de:08:40": {
+   "add": [
+    "Heute fährt die Bahn nicht."
+   ],
+   "remove": []
+  },
+  "de:08:50": {
+   "add": [
+    "Leider habe ich kein Kleingeld."
+   ],
+   "remove": []
+  },
+  "de:10:42": {
+   "add": [
+    "Der Kurs beginnt nach der Pause."
+   ],
+   "remove": []
+  },
+  "de:10:44": {
+   "add": [
+    "Ich bin nach der Fahrt müde."
+   ],
+   "remove": []
+  },
+  "de:10:45": {
+   "add": [
+    "Ich wohne seit dem Umzug hier."
+   ],
+   "remove": []
+  },
+  "de:10:47": {
+   "add": [
+    "Ich gehe mit einem Freund ins Kino."
+   ],
+   "remove": []
+  },
+  "de:10:48": {
+   "add": [
+    "Ich kaufe mit meiner Schwester ein."
+   ],
+   "remove": []
+  },
+  "de:10:50": {
+   "add": [
+    "Ich bleibe bei diesem Wetter zu Hause."
+   ],
+   "remove": []
+  },
+  "de:16:50": {
+   "add": [
+    "Wir haben leider die Nummer vergessen.",
+    "Leider haben wir die Nummer vergessen."
+   ],
+   "remove": []
+  },
+  "de:21:34": {
+   "add": [
+    "Weil wir den Zug verpasst haben, sind wir spät dran."
+   ],
+   "remove": [
+    "Weil wir den Zug verpasst haben, sind wir spät."
+   ]
+  },
+  "de:22:15": {
+   "add": [
+    "Ich hoffe, dass die Kinder sich am Wochenende gut erholen."
+   ],
+   "remove": []
+  },
+  "de:23:05": {
+   "add": [
+    "Anna kommt mit, wenn sie Zeit hat."
+   ],
+   "remove": [
+    "Sie kommt mit, wenn Anna Zeit hat."
+   ]
+  },
+  "de:23:13": {
+   "add": [
+    "Wenn du fragst, hilft dir Anna."
+   ],
+   "remove": []
+  },
+  "de:23:22": {
+   "add": [
+    "Wenn es klingelt, öffne die Tür bitte!",
+    "Wenn es klingelt, bitte öffne die Tür!"
+   ],
+   "remove": []
+  },
+  "de:23:24": {
+   "add": [
+    "Wenn Sie einsteigen, zeigen Sie Ihr Ticket bitte!",
+    "Wenn Sie einsteigen, bitte zeigen Sie Ihr Ticket!"
+   ],
+   "remove": []
+  },
+  "de:23:26": {
+   "add": [
+    "Wenn du ankommst, bitte schreib mir!"
+   ],
+   "remove": []
+  },
+  "de:23:42": {
+   "add": [
+    "Tom schläft tagsüber, wenn er Nachtschicht hat."
+   ],
+   "remove": [
+    "Er schläft tagsüber, wenn Tom Nachtschicht hat."
+   ]
+  },
+  "de:23:44": {
+   "add": [],
+   "remove": [
+    "Ich lege sie auf den Tisch, wenn ich Post bekomme."
+   ]
+  },
+  "de:23:45": {
+   "add": [],
+   "remove": [
+    "Ich lade ihn auf, wenn der Akku fast leer ist."
+   ]
+  },
+  "de:24:10": {
+   "add": [
+    "Anna hörte Musik, als sie das Fenster öffnete."
+   ],
+   "remove": [
+    "Sie hörte Musik, als Anna das Fenster öffnete."
+   ]
+  },
+  "de:24:12": {
+   "add": [
+    "Wir waren im Garten, als es zu regnen anfing.",
+    "Als es zu regnen anfing, waren wir im Garten."
+   ],
+   "remove": []
+  },
+  "de:24:21": {
+   "add": [
+    "Anna hatte ein rotes Fahrrad, als sie noch ein Kind war."
+   ],
+   "remove": [
+    "Sie hatte ein rotes Fahrrad, als Anna noch ein Kind war."
+   ]
+  },
+  "de:24:25": {
+   "add": [
+    "Anna lebte in Köln, als sie studierte."
+   ],
+   "remove": [
+    "Sie lebte in Köln, als Anna studierte."
+   ]
+  },
+  "de:24:26": {
+   "add": [
+    "Tom kannte niemanden, als er neu in der Stadt war."
+   ],
+   "remove": [
+    "Er kannte niemanden, als Tom neu in der Stadt war."
+   ]
+  },
+  "de:24:48": {
+   "add": [
+    "Tom war erleichtert, als er den Pass fand."
+   ],
+   "remove": [
+    "Er war erleichtert, als Tom den Pass fand."
+   ]
+  },
+  "es:03:23": {
+   "add": [],
+   "remove": [
+    "¿Estás en casa?"
+   ]
+  },
+  "es:08:50": {
+   "add": [
+    "¿Dónde están vuestras maletas?"
+   ],
+   "remove": []
+  },
+  "es:09:19": {
+   "add": [
+    "Trabajáis en la estación.",
+    "Vosotros trabajáis en la estación.",
+    "Vosotras trabajáis en la estación.",
+    "Ustedes trabajan en la estación.",
+    "Trabajan en la estación."
+   ],
+   "remove": []
+  },
+  "es:09:36": {
+   "add": [
+    "Buscan la parada.",
+    "Ustedes buscan la parada.",
+    "Usted busca la parada."
+   ],
+   "remove": []
+  },
+  "es:09:38": {
+   "add": [
+    "Hoy trabajo.",
+    "Hoy yo trabajo.",
+    "Yo hoy trabajo."
+   ],
+   "remove": []
+  },
+  "es:10:22": {
+   "add": [
+    "Vosotros coméis en casa.",
+    "Vosotras coméis en casa.",
+    "Comen en casa.",
+    "Ustedes comen en casa.",
+    "Usted come en casa."
+   ],
+   "remove": []
+  },
+  "es:10:27": {
+   "add": [
+    "Vosotros escribís una carta.",
+    "Vosotras escribís una carta.",
+    "Escriben una carta.",
+    "Ustedes escriben una carta.",
+    "Usted escribe una carta."
+   ],
+   "remove": []
+  },
+  "es:10:35": {
+   "add": [
+    "No escribo cartas hoy.",
+    "Yo no escribo cartas hoy.",
+    "Hoy yo no escribo cartas.",
+    "Yo hoy no escribo cartas."
+   ],
+   "remove": []
+  },
+  "es:10:50": {
+   "add": [
+    "¿Vosotros escribís una carta?",
+    "¿Vosotras escribís una carta?",
+    "¿Escriben una carta?",
+    "¿Ustedes escriben una carta?",
+    "¿Usted escribe una carta?"
+   ],
+   "remove": []
+  },
+  "es:11:34": {
+   "add": [
+    "No tengo aquí mi cargador."
+   ],
+   "remove": []
+  },
+  "es:11:36": {
+   "add": [
+    "¿Usted tiene una reserva?"
+   ],
+   "remove": []
+  },
+  "es:11:38": {
+   "add": [
+    "¿Ustedes tienen una reserva?"
+   ],
+   "remove": []
+  },
+  "es:11:40": {
+   "add": [
+    "¿Luis tiene una reserva?"
+   ],
+   "remove": []
+  },
+  "es:12:36": {
+   "add": [
+    "¿Las ventanas son grandes?",
+    "¿Son las ventanas grandes?"
+   ],
+   "remove": []
+  },
+  "es:12:37": {
+   "add": [
+    "¿Los bolsos son grandes?",
+    "¿Son los bolsos grandes?"
+   ],
+   "remove": []
+  },
+  "es:12:38": {
+   "add": [
+    "¿Las mochilas son grandes?",
+    "¿Son las mochilas grandes?"
+   ],
+   "remove": []
+  },
+  "es:12:39": {
+   "add": [
+    "¿Los libros son grandes?",
+    "¿Son los libros grandes?"
+   ],
+   "remove": []
+  },
+  "es:12:40": {
+   "add": [
+    "¿Las mesas son grandes?",
+    "¿Son las mesas grandes?"
+   ],
+   "remove": []
+  },
+  "es:12:46": {
+   "add": [
+    "Aquí hay un coche blanco."
+   ],
+   "remove": []
+  },
+  "es:12:49": {
+   "add": [
+    "Aquí hay dos libros nuevos."
+   ],
+   "remove": []
+  },
+  "es:13:11": {
+   "add": [
+    "Estoy ocupado hoy."
+   ],
+   "remove": []
+  },
+  "es:13:12": {
+   "add": [
+    "Estás ocupada hoy."
+   ],
+   "remove": []
+  },
+  "es:13:13": {
+   "add": [
+    "Luis está ocupado hoy.",
+    "Luis hoy está ocupado."
+   ],
+   "remove": []
+  },
+  "es:13:14": {
+   "add": [
+    "Estamos ocupados hoy."
+   ],
+   "remove": []
+  },
+  "es:13:15": {
+   "add": [
+    "Mis hermanas están ocupadas hoy.",
+    "Mis hermanas hoy están ocupadas."
+   ],
+   "remove": []
+  },
+  "es:13:17": {
+   "add": [
+    "¿Ana está lista?",
+    "¿Está lista Ana?"
+   ],
+   "remove": []
+  },
+  "es:13:18": {
+   "add": [
+    "¿Luis está listo?",
+    "¿Está listo Luis?"
+   ],
+   "remove": []
+  },
+  "es:13:20": {
+   "add": [
+    "¿Tus hermanas están listas?",
+    "¿Están listas tus hermanas?"
+   ],
+   "remove": []
+  },
+  "es:13:26": {
+   "add": [
+    "Hoy la tienda está cerrada."
+   ],
+   "remove": []
+  },
+  "es:13:28": {
+   "add": [
+    "Hoy la puerta está cerrada."
+   ],
+   "remove": []
+  },
+  "es:13:30": {
+   "add": [
+    "Hoy los hoteles están cerrados."
+   ],
+   "remove": []
+  },
+  "es:13:35": {
+   "add": [
+    "¿El baño está libre?"
+   ],
+   "remove": []
+  },
+  "es:13:36": {
+   "add": [
+    "¿La mesa está libre?"
+   ],
+   "remove": []
+  },
+  "es:13:37": {
+   "add": [
+    "¿El médico está libre?"
+   ],
+   "remove": []
+  },
+  "es:13:38": {
+   "add": [
+    "¿Las mesas están libres?"
+   ],
+   "remove": []
+  },
+  "es:13:39": {
+   "add": [
+    "¿La médica está libre?"
+   ],
+   "remove": []
+  },
+  "es:13:40": {
+   "add": [
+    "¿Los profesores están libres?"
+   ],
+   "remove": []
+  },
+  "es:13:41": {
+   "add": [
+    "Hoy estamos contentas."
+   ],
+   "remove": []
+  },
+  "es:13:42": {
+   "add": [
+    "Hoy están contentos."
+   ],
+   "remove": []
+  },
+  "es:13:43": {
+   "add": [
+    "Hoy estoy contento."
+   ],
+   "remove": []
+  },
+  "es:13:44": {
+   "add": [
+    "Hoy estáis contentas.",
+    "Hoy están contentas."
+   ],
+   "remove": []
+  },
+  "es:13:45": {
+   "add": [
+    "Hoy estás contenta."
+   ],
+   "remove": []
+  },
+  "es:14:37": {
+   "add": [
+    "Se sientan aquí."
+   ],
+   "remove": []
+  },
+  "es:14:47": {
+   "add": [
+    "Se preparan para la clase."
+   ],
+   "remove": []
+  },
+  "es:17:29": {
+   "add": [
+    "¿Les gusta esta canción?"
+   ],
+   "remove": []
+  },
+  "es:17:38": {
+   "add": [
+    "¿Les gusta estudiar aquí?",
+    "¿Le gusta estudiar aquí?"
+   ],
+   "remove": []
+  },
+  "es:17:40": {
+   "add": [
+    "¿Os gusta estudiar aquí?",
+    "¿Les gusta estudiar aquí?"
+   ],
+   "remove": []
+  },
+  "es:20:22": {
+   "add": [],
+   "remove": [
+    "Habéis leído el mensaje estas semana."
+   ]
+  },
+  "es:21:30": {
+   "add": [
+    "Mandaron el mapa ayer.",
+    "Ayer mandaron el mapa."
+   ],
+   "remove": []
+  },
+  "es:21:39": {
+   "add": [
+    "No llevaron la bolsa anoche.",
+    "Anoche no llevaron la bolsa."
+   ],
+   "remove": []
+  },
+  "es:21:50": {
+   "add": [
+    "¿Escribieron un mensaje ayer?"
+   ],
+   "remove": []
+  },
+  "es:23:22": {
+   "add": [
+    "Comían en la cocina a menudo."
+   ],
+   "remove": []
+  },
+  "es:23:30": {
+   "add": [
+    "Comían en casa a menudo."
+   ],
+   "remove": []
+  },
+  "es:23:35": {
+   "add": [
+    "Antes Luis no escribía cartas."
+   ],
+   "remove": []
+  },
+  "es:23:39": {
+   "add": [
+    "No volvían a la estación antes."
+   ],
+   "remove": []
+  },
+  "es:23:50": {
+   "add": [
+    "¿Leían juntos en clase?"
+   ],
+   "remove": []
+  },
+  "es:28:19": {
+   "add": [
+    "En el taller repararán mi bicicleta."
+   ],
+   "remove": []
+  },
+  "es:28:26": {
+   "add": [
+    "Después del colegio pasaré por el parque."
+   ],
+   "remove": []
+  },
+  "fr:11:41": {
+   "add": [
+    "Où est-ce que vous allez après le cours ?",
+    "Vous allez où après le cours ?"
+   ],
+   "remove": []
+  },
+  "fr:12:24": {
+   "add": [
+    "Buvez-vous du café ?"
+   ],
+   "remove": []
+  },
+  "fr:13:27": {
+   "add": [
+    "Préfères-tu le pull rouge ?"
+   ],
+   "remove": []
+  },
+  "fr:14:17": {
+   "add": [
+    "Puis-je vous aider ?"
+   ],
+   "remove": []
+  },
+  "fr:12:50": {
+   "add": [
+    "Je mets un peu de lait dans mon café."
+   ],
+   "remove": []
+  },
+  "fr:23:47": {
+   "add": [
+    "Quand est-ce que tu vas leur répondre ?"
+   ],
+   "remove": []
+  },
+  "fr:28:23": {
+   "add": [],
+   "remove": [
+    "Le matin, elle préférerait un rendez-vous."
+   ]
+  },
+  "fr:31:02": {
+   "add": [
+    "Quand je suis arrivé, tu avais déjà payé."
+   ],
+   "remove": []
+  },
+  "fr:31:07": {
+   "add": [
+    "Quand je suis entré, Paul était déjà parti."
+   ],
+   "remove": []
+  },
+  "fr:32:08": {
+   "add": [],
+   "remove": [
+    "Il viendrait si Paul avait une voiture."
+   ]
+  },
+  "it:03:10": {
+   "add": [],
+   "remove": [
+    "Sei libero?"
+   ]
+  },
+  "it:05:26": {
+   "add": [],
+   "remove": [
+    "Hai cinque minuti."
+   ]
+  },
+  "it:05:31": {
+   "add": [],
+   "remove": [
+    "Hai una penna?"
+   ]
+  },
+  "it:05:33": {
+   "add": [],
+   "remove": [
+    "Hai un momento?"
+   ]
+  },
+  "it:05:37": {
+   "add": [],
+   "remove": [
+    "Hai degli spiccioli?"
+   ]
+  },
+  "it:05:40": {
+   "add": [],
+   "remove": [
+    "Hai una prenotazione?"
+   ]
+  },
+  "it:05:46": {
+   "add": [],
+   "remove": [
+    "Hai la possibilità di scegliere."
+   ]
+  },
+  "it:08:05": {
+   "add": [],
+   "remove": [
+    "Dove lavori?"
+   ]
+  },
+  "it:08:42": {
+   "add": [],
+   "remove": [
+    "Perché sei in ritardo?"
+   ]
+  },
+  "it:08:43": {
+   "add": [],
+   "remove": [
+    "Come stai?"
+   ]
+  },
+  "it:08:47": {
+   "add": [],
+   "remove": [
+    "Che cosa prepari?"
+   ]
+  },
+  "it:09:45": {
+   "add": [],
+   "remove": [
+    "Tu metti i tuoi occhiali nella custodia."
+   ]
+  },
+  "it:10:06": {
+   "add": [
+    "Vicino alla stazione ferroviaria c’è un parco."
+   ],
+   "remove": []
+  },
+  "it:10:07": {
+   "add": [
+    "Sul tavolo ci sono dei libri."
+   ],
+   "remove": []
+  },
+  "it:10:15": {
+   "add": [
+    "In cucina c’è un orologio."
+   ],
+   "remove": []
+  },
+  "it:10:19": {
+   "add": [
+    "In fondo c’è un posto a sedere."
+   ],
+   "remove": []
+  },
+  "it:10:20": {
+   "add": [
+    "In hotel c’è un ascensore."
+   ],
+   "remove": []
+  },
+  "it:10:41": {
+   "add": [
+    "All’angolo c’è una panetteria."
+   ],
+   "remove": []
+  },
+  "it:10:43": {
+   "add": [
+    "Alla reception c’è un pacco."
+   ],
+   "remove": []
+  },
+  "it:10:44": {
+   "add": [
+    "Davanti al museo ci sono lavori in corso."
+   ],
+   "remove": []
+  },
+  "it:10:45": {
+   "add": [
+    "Sulla banchina ci sono dei posti liberi."
+   ],
+   "remove": []
+  },
+  "it:10:46": {
+   "add": [
+    "Nell’armadio c’è una coperta."
+   ],
+   "remove": []
+  },
+  "it:10:47": {
+   "add": [
+    "Sul retro della carta c’è un numero."
+   ],
+   "remove": []
+  },
+  "it:10:49": {
+   "add": [
+    "Davanti alla biglietteria c’è una fila."
+   ],
+   "remove": []
+  },
+  "it:14:33": {
+   "add": [
+    "Paolo ora non può rispondere."
+   ],
+   "remove": []
+  },
+  "it:14:35": {
+   "add": [],
+   "remove": [
+    "Non devi toccare quel pulsante."
+   ]
+  },
+  "it:22:27": {
+   "add": [],
+   "remove": [
+    "La vuoi?"
+   ]
+  },
+  "it:21:30": {
+   "add": [],
+   "remove": [
+    "Mentre dormiva, sei arrivato il postino."
+   ]
+  },
+  "it:25:07": {
+   "add": [],
+   "remove": [
+    "Ne vuoi cinque?"
+   ]
+  },
+  "it:25:28": {
+   "add": [],
+   "remove": [
+    "Non ne hai altri?"
+   ]
+  },
+  "it:27:41": {
+   "add": [],
+   "remove": [
+    "Stasera terrò la tua valigia fino a."
+   ]
+  },
+  "it:29:30": {
+   "add": [],
+   "remove": [
+    "Il piatto che serve sei delizioso."
+   ]
+  },
+  "de:31:03": {
+   "add": [
+    "Das Büro hatte schon geschlossen, als wir anriefen."
+   ],
+   "remove": []
+  },
+  "de:31:07": {
+   "add": [
+    "Das Eis war geschmolzen, als Anna zurückkam."
+   ],
+   "remove": []
+  },
+  "de:31:08": {
+   "add": [
+    "Das Fieber war schon gesunken, als der Arzt kam."
+   ],
+   "remove": []
+  },
+  "de:31:09": {
+   "add": [
+    "Der Regen hatte schon aufgehört, als wir losfuhren."
+   ],
+   "remove": []
+  },
+  "de:31:23": {
+   "add": [
+    "Anna nahm die Quittung, nachdem sie bezahlt hatte."
+   ],
+   "remove": [
+    "Sie nahm die Quittung, nachdem Anna bezahlt hatte."
+   ]
+  },
+  "de:31:27": {
+   "add": [
+    "Bevor ich den Termin bestätigte, hatte ich im Kalender nachgesehen."
+   ],
+   "remove": []
+  },
+  "de:31:47": {
+   "add": [
+    "Die letzte Schicht hatte schon begonnen, als wir den Laden erreichten."
+   ],
+   "remove": []
+  },
+  "de:32:05": {
+   "add": [
+    "Anna würde uns abholen, wenn sie ein Auto hätte."
+   ],
+   "remove": [
+    "Sie würde uns abholen, wenn Anna ein Auto hätte."
+   ]
+  },
+  "de:32:23": {
+   "add": [
+    "Die Lampe wäre ausgegangen, wenn ich den Stecker gezogen hätte."
+   ],
+   "remove": []
+  },
+  "de:32:24": {
+   "add": [
+    "Tom hätte einchecken können, wenn er seinen Pass mitgenommen hätte."
+   ],
+   "remove": [
+    "Er hätte einchecken können, wenn Tom seinen Pass mitgenommen hätte."
+   ]
+  },
+  "de:32:38": {
+   "add": [
+    "Wenn sie ihren Ausweis gefunden hätte, hätte sie das Paket abgeholt."
+   ],
+   "remove": []
+  },
+  "it:31:05": {
+   "add": [
+    "Avevate già letto il messaggio?"
+   ],
+   "remove": [
+    "Avevi già letto il messaggio?"
+   ]
+  }
+ },
+ "target": {
+  "de:21:34": "Wir sind spät dran, weil wir den Zug verpasst haben."
+ }
+}

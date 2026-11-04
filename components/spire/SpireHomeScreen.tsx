@@ -58,9 +58,7 @@ import { useSpireTowerBudget } from './use_spire_tower_budget'; import { useSpir
 import { useSpireTowerTouchLock } from './use_spire_tower_touch_lock'; import { spirePageScrollLogProps, useSpireScrollStateLog } from './spire_scroll_log'; // зачем (владелец 25.10, iPhone: «скролл Пика то не работает, то появляется»): журнал [SPIRE-SCROLL]
 import { SPIRE_THIN_HEADER_STYLES as thin } from './spire_thin_header';
 import SpireStepScreen from './SpireStepScreen';
-import SpireTour from './SpireTour';
-import SpireTower from './SpireTower';
-import PeakScreenV2 from './peak/PeakScreenV2'; import { PEAK_SCREEN_V2_ENABLED } from './peak/peak_screen_flag'; // зачем (владелец 04.11, вариант B «Рельса»): новый экран за флагом, по умолчанию выключен
+import SpireTour from './SpireTour'; import SpireTower from './SpireTower'; import PeakScreenSlot from './peak/PeakScreenSlot'; import { PEAK_SCREEN_V2_ENABLED } from './peak/peak_screen_flag'; // зачем (владелец 04.11, вариант B «Рельса»): новый экран за флагом, по умолчанию выключен
 import SpireWeekResultCard from './SpireWeekResultCard';
 import { useSpirePreview } from './spire_preview_context';
 import SpireScene from './scene/SpireScene'; import { useSpireSceneTop } from './scene/use_spire_scene_top';
@@ -297,7 +295,7 @@ export default function SpireHomeScreen() {
         onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + tailPad) })}
         onContentSizeChange={(_w, ch) => logSpireLayout('scroll.content', { contentH: roundLayout(ch) })}
       >
-        {PEAK_SCREEN_V2_ENABLED ? <PeakScreenV2 lang={lang} members={members} rankBy={game.rankBy} floor={shownFloor} onSelectFloor={onSelect} pillText={subtitle} onOpenAll={openAll} towerProps={{ myFloor, myCoinRank, rivalsByFloor: rivals, dimRivals: offline, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, onTouchActive: towerTouch.onTouchActive }} /> : scene ? <View style={s.bleed}><SpireScene lang={lang} {...scene} rankBy={game.rankBy} myCoinRank={myCoinRank} myPlus={myIsPlus} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} rivalsByFloor={rivals} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} onTouchActive={towerTouch.onTouchActive} onOpenAll={openAll} headerTint={runtimeOwnerId === 'spire'} members={members} dockClear={dockBottom + V2.cta.height} /></View> : <>
+        {PEAK_SCREEN_V2_ENABLED ? <PeakScreenSlot lang={lang} members={members} rankBy={game.rankBy} floor={shownFloor} onSelectFloor={onSelect} pillText={subtitle} onOpenAll={openAll} towerProps={{ myFloor, myCoinRank, rivalsByFloor: rivals, dimRivals: offline, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, onTouchActive: towerTouch.onTouchActive }} /> : scene ? <View style={s.bleed}><SpireScene lang={lang} {...scene} rankBy={game.rankBy} myCoinRank={myCoinRank} myPlus={myIsPlus} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} rivalsByFloor={rivals} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} onTouchActive={towerTouch.onTouchActive} onOpenAll={openAll} headerTint={runtimeOwnerId === 'spire'} members={members} dockClear={dockBottom + V2.cta.height} /></View> : <>
         <View style={[s.head, budget.headerThin ? thin.head : null]}>
           <SpireHomeTitle lang={lang} spireLang={spireLang} subtitle={subtitle} tier={game.tier !== null ? (devWeekResult?.newTier ?? game.tier ?? week?.tier) : null} titleStyle={budget.headerThin ? thin.title : null} />
           <SpireEnergyPill ownerActive={runtimeOwnerId === 'spire'} />

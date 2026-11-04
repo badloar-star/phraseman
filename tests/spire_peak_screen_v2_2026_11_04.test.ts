@@ -14,7 +14,10 @@ describe('экран Пика, вариант B', () => {
   it('флаг выключен по умолчанию, старый экран остаётся', () => {
     expect(PEAK_SCREEN_V2_ENABLED).toBe(false);
     const home = read('components/spire/SpireHomeScreen.tsx');
-    expect(home).toContain('PEAK_SCREEN_V2_ENABLED ? <PeakScreenV2');
+    expect(home).toContain('PEAK_SCREEN_V2_ENABLED ? <PeakScreenSlot');
+    // зачем (Ревизор 04.11): экран B подгружается лениво, статического импорта в SpireHomeScreen нет
+    expect(home).not.toMatch(/import PeakScreenV2 from/);
+    expect(fs.readFileSync(path.join(root, 'components/spire/peak/PeakScreenSlot.tsx'), 'utf8')).toContain("require('./PeakScreenV2')");
     expect(home).toContain('scene || PEAK_SCREEN_V2_ENABLED ? null');
   });
 

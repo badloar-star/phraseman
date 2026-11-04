@@ -3,6 +3,7 @@ import type { LessonPhrase, LessonWord } from './lesson_data_types';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
 import { frenchStudyActive, spanishStudyActive } from './spanish_content_gate';
+import { CLASSIC_TTS_LOCALE, classicCourseActiveFor } from './classic_course_phrases';
 
 const PUNCTUATION_SOURCE_BY_LANG: Partial<Record<Lang, 'russian' | 'ukrainian'>> = {
   uk: 'ukrainian',
@@ -46,6 +47,8 @@ export function phraseWordRowsForStudyTarget(
   studyTarget: StudyTargetLang,
 ): LessonWord[] {
   if (!phrase) return [];
+  // зачем (классические курсы 04.11): фраза курса несёт плитки целевого языка в `words` — без веток по языкам
+  if (phrase.classic) return phrase.words || [];
   if (ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es') {
     return phrase?.words?.length ? phrase.words : [];
   }
@@ -75,11 +78,11 @@ export function phraseCanonicalAnswer(phrase: LessonPhrase | null | undefined, s
 /** Текст цели: английская фраза или испанский перевод (если выбрано изучение ES и spanish заполнен). */
 export function phrasePrimarySurface(phrase: LessonPhrase | null | undefined, studyTarget: StudyTargetLang): string {
   if (!phrase) return '';
-  if (ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es') {
+  if (ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es' && !phrase.classic) {
     const s = phrase.spanish?.trim();
     if (s) return s;
   }
-  if (frenchStudyActive(studyTarget)) {
+  if (frenchStudyActive(studyTarget) && !phrase.classic) {
     const s = phrase.french?.trim();
     if (s) return s;
   }
@@ -100,6 +103,7 @@ export function phraseAnswerAlternatives(
   studyTarget: StudyTargetLang,
 ): string[] | undefined {
   if (!phrase) return undefined;
+  if (phrase.classic) return phrase.alternatives;
   if (ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es') {
     return phrase.alternativesEs;
   }
@@ -111,6 +115,7 @@ export function phraseAnswerAlternatives(
 
 export function phraseHasStudyTargetContent(phrase: LessonPhrase | null | undefined, studyTarget: StudyTargetLang): boolean {
   if (!phrase) return false;
+  if (phrase.classic) return (phrase.words?.length ?? 0) > 0;
   if (frenchStudyActive(studyTarget)) {
     return !!phrase?.french?.trim() && !!phrase?.wordsFr?.length;
   }
@@ -129,6 +134,13 @@ export function phraseAnswerDisplayLine(
   uiLang: Lang,
 ): string {
   if (!phrase) return '';
+  if (phrase.classic) {
+    // зачем: целевая строка курса = плитки по порядку + знак конца из самой строки курса (с французским пробелом перед ?!)
+    const canonical = phraseCanonicalAnswer(phrase, studyTarget);
+    if (/[.?!]$/.test(canonical)) return canonical;
+    const terminal = phrase.english.trim().match(/\s?[.?!]$/)?.[0] ?? '';
+    return canonical + terminal;
+  }
   const useEsSurface =
     spanishStudyActive(studyTarget) && !!phrase.spanish?.trim();
   const useFrSurface =
@@ -159,7 +171,9 @@ export function phraseAnswerDisplayLine(
   return clean;
 }
 
-export function ttsLocaleForStudyTarget(studyTarget: StudyTargetLang): 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' {
+export function ttsLocaleForStudyTarget(studyTarget: StudyTargetLang): 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' | 'it-IT' {
+  // зачем (классические курсы 04.11, владелец: звук пока только системный TTS): язык курса → locale телефона
+  if (classicCourseActiveFor(studyTarget)) return CLASSIC_TTS_LOCALE[studyTarget] as 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' | 'it-IT';
   const devTargetLocales: Partial<Record<StudyTargetLang, 'es-ES'>> = {
     es: 'es-ES',
   };

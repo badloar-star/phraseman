@@ -9,6 +9,7 @@ import { frenchStudyActive, spanishStudyActive } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { storageStudyTarget } from './target_storage_keys';
 import { applyFrenchSeedToPhrase } from './lesson_data_fr_seed';
+import { classicCourseActiveFor, getClassicLessonPhrases } from './classic_course_phrases';
 import {
   LESSON_NAMES_ES,
   LESSON_NAMES_ID,
@@ -213,21 +214,28 @@ export const LESSON_ENCOURAGEMENT_SCREENS: Record<number, LessonIntroScreen[]> =
 ) as Record<number, LessonIntroScreen[]>;
 
 // === Helper functions ===
-export function getLessonData(lessonId: number): LessonPhrase[] {
+export function getLessonData(lessonId: number, studyTarget?: StudyTargetLang): LessonPhrase[] {
   const meta = LESSON_DATA[lessonId];
-  const raw = meta?.phrases;
+  // зачем (классические курсы 04.11): для языка с вшитым классическим курсом фразы берутся из него (замена старого основного курса);
+  // пока мастер-выключатель выключен или цель не передана — прежний путь без изменений (остальные вызовы не ломаются).
+  const classicLang = classicCourseActiveFor(studyTarget) ? studyTarget : null;
+  const raw = classicLang ? getClassicLessonPhrases(lessonId, classicLang) : meta?.phrases;
   if (!raw || raw.length === 0) return [];
   const { titleRU, titleUK, titleES, titlePtBr, titleVi, titleId, titleTr, titlePl } = meta;
-  return raw.map((p) => applyFrenchSeedToPhrase({
-    ...p,
-    lessonTitleRU: titleRU,
-    lessonTitleUK: titleUK,
-    lessonTitleES: titleES,
-    lessonTitlePtBr: titlePtBr,
-    lessonTitleVi: titleVi,
-    lessonTitleId: titleId,
-    lessonTitleTr: titleTr,
-    lessonTitlePl: titlePl }));
+  return raw.map((p) => {
+    const withTitles: LessonPhrase = {
+      ...p,
+      lessonTitleRU: titleRU,
+      lessonTitleUK: titleUK,
+      lessonTitleES: titleES,
+      lessonTitlePtBr: titlePtBr,
+      lessonTitleVi: titleVi,
+      lessonTitleId: titleId,
+      lessonTitleTr: titleTr,
+      lessonTitlePl: titlePl };
+    // старый французский «сид» к фразам нового курса не применяется
+    return classicLang ? withTitles : applyFrenchSeedToPhrase(withTitles);
+  });
 }
 
 /** Три слайда по умолчанию, если в данных урока ещё нет готового интро (ур. 17–32 и черновики). */

@@ -67,6 +67,20 @@ export interface LessonPhrase {
   wordsEn?: LessonWord[];
   /** Французские токены для режима learnTarget=fr. */
   wordsFr?: LessonWord[];
+  /**
+   * Классический курс 2.0 (EN/ES/FR/DE/IT, вшит в сборку, владелец 04.11): фраза пришла из modules/classic-courses.
+   * Её целевая строка лежит в `english`, плитки в `words` (как у английского) для ЛЮБОГО языка курса — поэтому все
+   * экраны работают без веток по языкам. `lang` — язык курса (озвучка, ключи прогресса).
+   */
+  classic?: {
+    lang: 'en' | 'es' | 'fr' | 'de' | 'it';
+    rev: string;
+    /** Допустимые последовательности плиток (если в данных курса есть). */
+    accepted?: string[][];
+    clarifierKeys?: string[];
+    wordNoteKeys?: string[];
+    contextCue?: string;
+  };
   /** Легитимные альтернативы на французском (режим learnTarget=fr). */
   alternativesFr?: string[];
   /** Копия названия урока из LESSON_DATA (добавляется в getLessonData) */

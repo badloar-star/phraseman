@@ -390,7 +390,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ana no estás en casa."
+]
 },
 {
 "lesson": 2,
@@ -460,7 +462,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ana y Luis no estáis aquí."
+]
 },
 {
 "lesson": 2,
@@ -577,10 +581,10 @@
 "correct": "El",
 "distractors": [
 "Y",
-"Ella",
-"Ellas",
-"Ellos",
-"Usted"
+"Mochila",
+"Mapa",
+"Botella",
+"Casa"
 ]
 },
 {
@@ -658,9 +662,9 @@
 "distractors": [
 "Estamos",
 "Es",
-"Son",
-"Somos",
-"Sois"
+"Cuesta",
+"Fuera",
+"Casa"
 ]
 },
 {
@@ -695,7 +699,8 @@
 }
 ],
 "alternatives": [
-"¿Ana está en clase?"
+"¿Ana está en clase?",
+"¿Estás Ana en clase?"
 ]
 },
 {
@@ -710,9 +715,9 @@
 "distractors": [
 "Estamos",
 "Es",
-"Somos",
+"Eres",
 "Soy",
-"Eres"
+"Somos"
 ]
 },
 {
@@ -737,7 +742,8 @@
 }
 ],
 "alternatives": [
-"¿Ustedes están en casa?"
+"¿Ustedes están en casa?",
+"¿Estáis en casa?"
 ]
 },
 {
@@ -805,9 +811,9 @@
 "distractors": [
 "Estamos",
 "Es",
-"Son",
-"Somos",
-"Sois"
+"Cuesta",
+"Fuera",
+"Dentro"
 ]
 },
 {
@@ -867,9 +873,9 @@
 "distractors": [
 "Estamos",
 "Es",
-"Son",
-"Somos",
-"Sois"
+"Cuesta",
+"Fuera",
+"Casa"
 ]
 },
 {
@@ -924,7 +930,10 @@
 }
 ],
 "alternatives": [
-"¿El billete está en el bolsillo?"
+"¿El billete está en el bolsillo?",
+"¿Estás el billete en el bolsillo?",
+"¿Está el billetes en el bolsillo?",
+"¿El billetes está en el bolsillo?"
 ]
 },
 {
@@ -939,9 +948,9 @@
 "distractors": [
 "Estamos",
 "Es",
-"Somos",
+"Eres",
 "Soy",
-"Eres"
+"Somos"
 ]
 },
 {
@@ -1069,7 +1078,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ana eres guía.",
+"Ana es guías."
+]
 },
 {
 "lesson": 4,
@@ -1227,7 +1239,11 @@
 ],
 "alternatives": [
 "Vosotros sois guías.",
-"Vosotras sois guías."
+"Vosotras sois guías.",
+"Son guías.",
+"Sois guía.",
+"Vosotros sois guía.",
+"Vosotras sois guía."
 ]
 },
 {
@@ -1268,7 +1284,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"¿Quién estás aquí?"
+]
 },
 {
 "lesson": 5,
@@ -1308,7 +1326,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"¿Quién estás dentro?"
+]
 },
 {
 "lesson": 5,
@@ -1349,7 +1369,9 @@
 }
 ],
 "alternatives": [
-"¿Qué es esto?"
+"¿Qué es esto?",
+"¿Qué eres eso?",
+"¿Qué eres esto?"
 ]
 },
 {
@@ -1420,7 +1442,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"¿Qué billete están en el bolsillo?",
+"¿Qué billetes estáis en el bolsillo?"
+]
 },
 {
 "lesson": 5,
@@ -1470,7 +1495,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"¿Dónde estás el pasaporte?",
+"¿Dónde está el pasaportes?"
+]
 },
 {
 "lesson": 6,
@@ -1535,10 +1563,10 @@
 "correct": "El",
 "distractors": [
 "Y",
-"Ella",
-"Ellas",
-"Ellos",
-"Usted"
+"En",
+"Mochila",
+"Mapa",
+"Botella"
 ]
 },
 {
@@ -1573,7 +1601,11 @@
 }
 ],
 "alternatives": [
-"Allí está el billete."
+"Allí está el billete.",
+"El billetes está allí.",
+"Allí está el billetes.",
+"El billete estás allí.",
+"Allí estás el billete."
 ]
 },
 {
@@ -1587,10 +1619,10 @@
 "correct": "El",
 "distractors": [
 "Y",
-"Ella",
-"Ellas",
-"Ellos",
-"Usted"
+"En",
+"Mochila",
+"Mapa",
+"Botella"
 ]
 },
 {
@@ -1625,7 +1657,9 @@
 }
 ],
 "alternatives": [
-"Dentro está el bolso."
+"Dentro está el bolso.",
+"El bolso estás dentro.",
+"Dentro estás el bolso."
 ]
 },
 {
@@ -1763,10 +1797,10 @@
 "correct": "Hay",
 "distractors": [
 "Buscas",
+"Estáis",
 "Está",
 "Están",
-"Es",
-"Son"
+"Es"
 ]
 },
 {
@@ -1835,10 +1869,10 @@
 "correct": "Hay",
 "distractors": [
 "Buscas",
+"Estáis",
 "Está",
 "Están",
-"Es",
-"Son"
+"Es"
 ]
 },
 {
@@ -1907,10 +1941,10 @@
 "correct": "Hay",
 "distractors": [
 "Buscas",
+"Estáis",
 "Está",
 "Están",
-"Es",
-"Son"
+"Es"
 ]
 },
 {
@@ -1979,10 +2013,10 @@
 "correct": "Hay",
 "distractors": [
 "Buscas",
+"Estáis",
 "Está",
 "Están",
-"Es",
-"Son"
+"Es"
 ]
 },
 {
@@ -2041,10 +2075,10 @@
 "correct": "Hay",
 "distractors": [
 "Buscas",
+"Estáis",
 "Está",
 "Están",
-"Es",
-"Son"
+"Es"
 ]
 },
 {
@@ -2160,7 +2194,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mi cargador estás en el coche.",
+"Mi cargador está en el coches."
+]
 },
 {
 "lesson": 8,
@@ -2413,7 +2450,9 @@
 }
 ],
 "alternatives": [
-"Aquí no está mi móvil."
+"Aquí no está mi móvil.",
+"Mi móvil no estás aquí.",
+"Aquí no estás mi móvil."
 ]
 },
 {
@@ -2571,7 +2610,8 @@
 ],
 "alternatives": [
 "Vosotros trabajáis en casa.",
-"Vosotras trabajáis en casa."
+"Vosotras trabajáis en casa.",
+"Trabajan en casa."
 ]
 },
 {
@@ -2923,7 +2963,7 @@
 "Escribe",
 "Escribo",
 "Escribes",
-"Está"
+"Son"
 ]
 },
 {
@@ -3117,7 +3157,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mi madre tienes una cita."
+]
 },
 {
 "lesson": 11,
@@ -3333,7 +3375,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"El móvil eres nuevo."
+]
 },
 {
 "lesson": 12,
@@ -3483,7 +3527,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mi coches es rojo.",
+"Mi coche eres rojo."
+]
 },
 {
 "lesson": 12,
@@ -3543,7 +3590,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Hay una ventanas grande aquí.",
+"Hay una ventana grandes aquí."
+]
 },
 {
 "lesson": 13,
@@ -3593,7 +3643,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mi madre estás cansada."
+]
 },
 {
 "lesson": 13,
@@ -3623,7 +3675,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"¿Están listos?"
+]
 },
 {
 "lesson": 13,
@@ -3723,7 +3777,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"El agua estás fría."
+]
 },
 {
 "lesson": 13,
@@ -4120,7 +4176,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ana puedes esperar aquí."
+]
 },
 {
 "lesson": 15,
@@ -4222,7 +4280,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Luis puedes pagar en efectivo."
+]
 },
 {
 "lesson": 15,
@@ -4879,7 +4939,8 @@
 }
 ],
 "alternatives": [
-"¿Va a esperar Luis fuera?"
+"¿Va a esperar Luis fuera?",
+"¿Luis vas a esperar fuera?"
 ]
 },
 {

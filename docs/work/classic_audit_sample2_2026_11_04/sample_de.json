@@ -12,8 +12,8 @@
 "Es",
 "Ich",
 "Wir",
-"Bahn",
-"Bank"
+"Essen",
+"Offen"
 ]
 },
 {
@@ -169,7 +169,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Anna bist drinnen.",
+"Anna seid drinnen.",
+"Anna sind drinnen."
+]
 },
 {
 "lesson": 1,
@@ -300,7 +304,13 @@
 }
 ],
 "alternatives": [
-"Der Schlüssel ist hier."
+"Der Schlüssel ist hier.",
+"Hier bist der Schlüssel.",
+"Der Schlüssel bist hier.",
+"Hier seid der Schlüssel.",
+"Der Schlüssel seid hier.",
+"Hier sind der Schlüssel.",
+"Der Schlüssel sind hier."
 ]
 },
 {
@@ -351,7 +361,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Tasche bist neu.",
+"Die Tasche seid neu.",
+"Die Tasche sind neu."
+]
 },
 {
 "lesson": 2,
@@ -401,7 +415,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Bahn bist da.",
+"Die Bahn seid da.",
+"Die Bahn sind da."
+]
 },
 {
 "lesson": 2,
@@ -451,7 +469,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Der Bahnhof bist hier.",
+"Der Bahnhof seid hier.",
+"Der Bahnhof sind hier."
+]
 },
 {
 "lesson": 2,
@@ -501,7 +523,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Das Zimmer bist frei.",
+"Das Zimmer seid frei.",
+"Das Zimmer sind frei."
+]
 },
 {
 "lesson": 2,
@@ -551,7 +577,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Zimmer bist frei.",
+"Die Zimmer ist frei.",
+"Die Zimmer seid frei."
+]
 },
 {
 "lesson": 2,
@@ -601,7 +631,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Lampe bist kaputt.",
+"Die Lampe seid kaputt.",
+"Die Lampe sind kaputt."
+]
 },
 {
 "lesson": 3,
@@ -731,7 +765,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Gästen kaufen Tickets.",
+"Die Gäste kaufst Tickets.",
+"Die Gäste kauft Tickets."
+]
 },
 {
 "lesson": 3,
@@ -821,7 +859,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Tom hörst die Kinder.",
+"Tom hören die Kinder."
+]
 },
 {
 "lesson": 3,
@@ -836,8 +877,8 @@
 "Es",
 "Wir",
 "Ich",
-"Bahn",
-"Bank"
+"Essen",
+"Offen"
 ]
 },
 {
@@ -876,8 +917,8 @@
 "Heute",
 "Früher",
 "Bald",
-"Kisten",
-"Taxi"
+"Nehmen",
+"Einen"
 ]
 },
 {
@@ -902,7 +943,11 @@
 }
 ],
 "alternatives": [
-"Anna lernt morgen."
+"Anna lernt morgen.",
+"Morgen lernst Anna.",
+"Anna lernst morgen.",
+"Morgen lernen Anna.",
+"Anna lernen morgen."
 ]
 },
 {
@@ -917,9 +962,9 @@
 "distractors": [
 "Im",
 "Zum",
-"Anna",
-"Auf",
-"Zu"
+"Komme",
+"Kommen",
+"Kommst"
 ]
 },
 {
@@ -964,7 +1009,11 @@
 }
 ],
 "alternatives": [
-"Tom macht am Sonntag Frühstück."
+"Tom macht am Sonntag Frühstück.",
+"Am Sonntag machst Tom Frühstück.",
+"Tom machst am Sonntag Frühstück.",
+"Am Sonntag machen Tom Frühstück.",
+"Tom machen am Sonntag Frühstück."
 ]
 },
 {
@@ -1067,11 +1116,11 @@
 {
 "correct": "trinke",
 "distractors": [
+"trinkt",
 "trinken",
 "arbeiten",
 "draußen",
-"kochen",
-"hören"
+"kochen"
 ]
 },
 {
@@ -1139,11 +1188,11 @@
 {
 "correct": "trinken",
 "distractors": [
+"trinkt",
 "trinke",
 "arbeiten",
 "draußen",
-"kochen",
-"hören"
+"kochen"
 ]
 },
 {
@@ -1184,8 +1233,8 @@
 "Morgen",
 "Bald",
 "Früher",
-"Karten",
-"Bus"
+"Dort",
+"Hier"
 ]
 },
 {
@@ -1229,7 +1278,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Heute bist der Laden offen.",
+"Heute seid der Laden offen.",
+"Heute sind der Laden offen."
+]
 },
 {
 "lesson": 5,
@@ -1281,11 +1334,11 @@
 {
 "correct": "Arbeitet",
 "distractors": [
-"Warten",
+"Beginnt",
 "Haben",
 "Hat",
-"Offen",
-"Warte"
+"Brauchen",
+"Viel"
 ]
 },
 {
@@ -1331,21 +1384,21 @@
 {
 "correct": "Wohnen",
 "distractors": [
-"Lerne",
-"Lernst",
-"Lernt",
-"Zug",
-"Anna"
+"Ein",
+"Eine",
+"Kein",
+"Keine",
+"Mein"
 ]
 },
 {
 "correct": "Sie",
 "distractors": [
-"wir",
-"ich",
-"das",
-"dem",
-"den"
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
 ]
 },
 {
@@ -1381,11 +1434,11 @@
 {
 "correct": "Sie",
 "distractors": [
-"wir",
-"ich",
-"das",
-"dem",
-"den"
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
 ]
 },
 {
@@ -1449,7 +1502,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Hörst Tom Musik?",
+"Hören Tom Musik?"
+]
 },
 {
 "lesson": 5,
@@ -1462,10 +1518,10 @@
 "correct": "Ist",
 "distractors": [
 "Bin",
-"Habe",
+"Viel",
 "Hat",
-"Habt",
-"Haben"
+"Haben",
+"Habt"
 ]
 },
 {
@@ -1650,7 +1706,9 @@
 }
 ],
 "alternatives": [
-"Wie viel kostet das Ticket?"
+"Wie viel kostet das Ticket?",
+"Was kosten das Ticket?",
+"Wie viel kosten das Ticket?"
 ]
 },
 {
@@ -1683,11 +1741,11 @@
 {
 "correct": "Sie",
 "distractors": [
-"ich",
-"wir",
-"das",
-"dem",
-"den"
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
 ]
 }
 ],
@@ -1831,7 +1889,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Anna nimmst die Bahn.",
+"Anna nehmt die Bahn.",
+"Anna nehmen die Bahn."
+]
 },
 {
 "lesson": 7,
@@ -2051,7 +2113,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Der Laden hast keine Kasse.",
+"Der Laden habt keine Kasse.",
+"Der Laden haben keine Kasse."
+]
 },
 {
 "lesson": 8,
@@ -2102,7 +2168,11 @@
 }
 ],
 "alternatives": [
-"Morgen kommt Anna nicht."
+"Morgen kommt Anna nicht.",
+"Anna kommst morgen nicht.",
+"Morgen kommst Anna nicht.",
+"Anna kommen morgen nicht.",
+"Morgen kommen Anna nicht."
 ]
 },
 {
@@ -2153,7 +2223,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Tom wartest nicht draußen.",
+"Tom warten nicht draußen.",
+"Tom warte nicht draußen."
+]
 },
 {
 "lesson": 8,
@@ -2203,7 +2277,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Das bist kein Eingang.",
+"Das seid kein Eingang.",
+"Das sind kein Eingang."
+]
 },
 {
 "lesson": 8,
@@ -2275,11 +2353,11 @@
 {
 "correct": "Unsere",
 "distractors": [
-"Euer",
-"Euren",
+"Frage",
+"Öffnest",
 "Bin",
-"Ist",
-"Bist"
+"Bist",
+"Ist"
 ]
 },
 {
@@ -2303,7 +2381,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Unsere Bahn kommst.",
+"Unsere Bahn kommen."
+]
 },
 {
 "lesson": 9,
@@ -2317,8 +2398,8 @@
 "distractors": [
 "Euer",
 "Bin",
-"Ist",
 "Bist",
+"Ist",
 "Seid"
 ]
 },
@@ -2393,7 +2474,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Wo bist meine Schuhe?",
+"Wo ist meine Schuhe?",
+"Wo seid meine Schuhe?"
+]
 },
 {
 "lesson": 9,
@@ -2409,7 +2494,7 @@
 "Haben",
 "Habe",
 "Hat",
-"Sind"
+"Koche"
 ]
 },
 {
@@ -2427,9 +2512,9 @@
 "distractors": [
 "deine",
 "dein",
-"einen",
 "offen",
-"euren"
+"euren",
+"draußen"
 ]
 },
 {
@@ -2459,7 +2544,7 @@
 "Habt",
 "Habe",
 "Haben",
-"Sind"
+"Koche"
 ]
 },
 {
@@ -2553,7 +2638,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Tom kommst mit dem Fahrrad.",
+"Tom kommen mit dem Fahrrad."
+]
 },
 {
 "lesson": 10,
@@ -2569,7 +2657,7 @@
 "Er",
 "Es",
 "Ich",
-"Bahn"
+"Essen"
 ]
 },
 {
@@ -2635,11 +2723,11 @@
 {
 "correct": "fahre",
 "distractors": [
+"fährst",
 "fahren",
 "fährt",
 "warten",
-"einen",
-"nehmen"
+"steigen"
 ]
 },
 {
@@ -2914,7 +3002,9 @@
 }
 ],
 "alternatives": [
-"Die Brille liegt in dem Auto."
+"Die Brille liegt in dem Auto.",
+"Die Brille liegen im Auto.",
+"Die Brille liegen in dem Auto."
 ]
 },
 {
@@ -2975,7 +3065,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Tom bist in der Schule.",
+"Tom seid in der Schule.",
+"Tom sind in der Schule."
+]
 },
 {
 "lesson": 11,
@@ -2991,7 +3085,7 @@
 "Wir",
 "Es",
 "Ich",
-"Bahn"
+"Essen"
 ]
 },
 {
@@ -3087,7 +3181,12 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Gästen sind im Café.",
+"Die Gäste bist im Café.",
+"Die Gäste ist im Café.",
+"Die Gäste seid im Café."
+]
 },
 {
 "lesson": 11,
@@ -3157,7 +3256,12 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Gästen warten vor der Halle.",
+"Die Gäste wartest vor der Halle.",
+"Die Gäste wartet vor der Halle.",
+"Die Gäste warte vor der Halle."
+]
 },
 {
 "lesson": 11,
@@ -3403,7 +3507,7 @@
 "Er",
 "Wir",
 "Es",
-"Bahn"
+"Essen"
 ]
 },
 {
@@ -3539,11 +3643,11 @@
 {
 "correct": "Fahren",
 "distractors": [
-"Beginnt",
 "Ist",
-"Montag",
-"Musik",
-"Sein"
+"Sind",
+"Ihr",
+"Ihre",
+"Ihrer"
 ]
 },
 {
@@ -3839,7 +3943,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Anna rufst im Hotel an.",
+"Anna rufen im Hotel an."
+]
 },
 {
 "lesson": 13,
@@ -3909,7 +4016,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Der Zug fährst um elf ab.",
+"Der Zug fahrt um elf ab.",
+"Der Zug fahren um elf ab."
+]
 },
 {
 "lesson": 13,
@@ -3969,7 +4080,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Wann fährst der Bus ab?",
+"Wann fahrt der Bus ab?",
+"Wann fahren der Bus ab?"
+]
 },
 {
 "lesson": 13,
@@ -4309,7 +4424,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Hier darfst man nicht rauchen.",
+"Hier dürft man nicht rauchen.",
+"Hier dürfen man nicht rauchen."
+]
 },
 {
 "lesson": 14,
@@ -4341,11 +4460,11 @@
 {
 "correct": "Ihnen",
 "distractors": [
-"mir",
-"ihr",
-"mich",
-"dir",
-"du"
+"Dir",
+"Mich",
+"Mir",
+"Ihr",
+"Dich"
 ]
 },
 {
@@ -4429,7 +4548,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Darfst der Hund mitkommen?",
+"Dürft der Hund mitkommen?",
+"Dürfen der Hund mitkommen?"
+]
 },
 {
 "lesson": 15,
@@ -4549,7 +4672,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Wartest am Eingang!",
+"Warten am Eingang!",
+"Warte am Eingang!"
+]
 },
 {
 "lesson": 15,
@@ -4571,11 +4698,11 @@
 {
 "correct": "Sie",
 "distractors": [
-"wir",
-"ich",
-"das",
-"dem",
-"den"
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
 ]
 },
 {
@@ -4601,11 +4728,11 @@
 {
 "correct": "Ihren",
 "distractors": [
-"ihrer",
-"fahre",
-"fährt",
-"ist",
-"sind"
+"Ihrer",
+"Fahre",
+"Fährst",
+"Fährt",
+"Ist"
 ]
 },
 {
@@ -4641,11 +4768,11 @@
 {
 "correct": "Sie",
 "distractors": [
-"wir",
-"ich",
-"das",
-"dem",
-"den"
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
 ]
 },
 {
@@ -4705,7 +4832,7 @@
 "hast",
 "habt",
 "haben",
-"hatte"
+"draußen"
 ]
 },
 {
@@ -4761,11 +4888,11 @@
 {
 "correct": "habe",
 "distractors": [
-"hatte",
 "hast",
 "hat",
 "haben",
-"habt"
+"habt",
+"draußen"
 ]
 },
 {
@@ -4823,9 +4950,9 @@
 "distractors": [
 "haben",
 "habt",
-"hatte",
 "hat",
-"habe"
+"habe",
+"draußen"
 ]
 },
 {
@@ -4883,9 +5010,9 @@
 "distractors": [
 "habe",
 "bin",
-"war",
 "sind",
-"seid"
+"seid",
+"sein"
 ]
 },
 {
@@ -4919,7 +5046,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Tom hast die Schlüssel verloren.",
+"Tom habt die Schlüssel verloren.",
+"Tom haben die Schlüssel verloren."
+]
 },
 {
 "lesson": 16,
@@ -4935,17 +5066,17 @@
 "Bald",
 "Morgen",
 "Gestern",
-"Karten"
+"Dort"
 ]
 },
 {
 "correct": "habe",
 "distractors": [
-"hatte",
 "hat",
 "hast",
 "haben",
-"habt"
+"habt",
+"draußen"
 ]
 },
 {
@@ -5013,11 +5144,11 @@
 {
 "correct": "ist",
 "distractors": [
-"war",
 "bin",
 "sein",
-"waren",
-"warst"
+"abgefahren",
+"angekommen",
+"ausgestiegen"
 ]
 },
 {
@@ -5051,7 +5182,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mein Bruder bist aus Wien zurückgekommen.",
+"Mein Bruder seid aus Wien zurückgekommen.",
+"Mein Bruder sind aus Wien zurückgekommen."
+]
 },
 {
 "lesson": 17,
@@ -5083,11 +5218,11 @@
 {
 "correct": "sind",
 "distractors": [
-"war",
 "sein",
 "bin",
-"waren",
-"warst"
+"seinen",
+"seinem",
+"seine"
 ]
 },
 {
@@ -5121,7 +5256,12 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Nachbarn bist letzte Woche ausgezogen.",
+"Die Nachbarn ist letzte Woche ausgezogen.",
+"Die Nachbarn seid letzte Woche ausgezogen.",
+"Die Nachbarn sind letzten Woche ausgezogen."
+]
 },
 {
 "lesson": 17,
@@ -5134,10 +5274,10 @@
 "correct": "Sind",
 "distractors": [
 "Bin",
-"War",
 "Sein",
-"Waren",
-"Warst"
+"Montag",
+"Anna",
+"Tom"
 ]
 },
 {
@@ -5181,7 +5321,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Bist die Kinder gut eingeschlafen?",
+"Ist die Kinder gut eingeschlafen?",
+"Seid die Kinder gut eingeschlafen?"
+]
 },
 {
 "lesson": 17,
@@ -5207,7 +5351,7 @@
 "ist",
 "bist",
 "sind",
-"war"
+"sein"
 ]
 },
 {
@@ -5300,8 +5444,8 @@
 "bist",
 "seid",
 "ist",
-"war",
-"sein"
+"sein",
+"sind"
 ]
 },
 {
@@ -5509,7 +5653,12 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Der Ausweis musst am Eingang gezeigt werden.",
+"Der Ausweis müsst am Eingang gezeigt werden.",
+"Der Ausweis müssen am Eingang gezeigt werden.",
+"Der Ausweis muss am Eingang gezeigt wird."
+]
 },
 {
 "lesson": 29,

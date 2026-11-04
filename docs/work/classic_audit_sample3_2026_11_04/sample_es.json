@@ -225,7 +225,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ana no estás aquí."
+]
 },
 {
 "lesson": 2,
@@ -764,7 +766,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ana y Luis sois estudiantes.",
+"Ana y Luis son estudiante."
+]
 },
 {
 "lesson": 5,
@@ -1257,7 +1262,9 @@
 }
 ],
 "alternatives": [
-"¿Cerca hay una tienda?"
+"¿Cerca hay una tienda?",
+"¿Hay una tiendas cerca?",
+"¿Cerca hay una tiendas?"
 ]
 },
 {
@@ -1309,7 +1316,9 @@
 }
 ],
 "alternatives": [
-"Aquí está mi libro."
+"Aquí está mi libro.",
+"Mi libro estás aquí.",
+"Aquí estás mi libro."
 ]
 },
 {
@@ -1438,8 +1447,8 @@
 "lesson": 9,
 "id": "es:09:26",
 "target": "Estudiáis aquí.",
-"ru": "Вы учитесь здесь.",
-"uk": "Ви навчаєтеся тут.",
+"ru": "Вы (мн.) учитесь здесь.",
+"uk": "Ви (мн.) навчаєтеся тут.",
 "tiles": [
 {
 "correct": "Estudiáis",
@@ -1464,7 +1473,8 @@
 ],
 "alternatives": [
 "Vosotros estudiáis aquí.",
-"Vosotras estudiáis aquí."
+"Vosotras estudiáis aquí.",
+"Estudian aquí."
 ]
 },
 {
@@ -1558,7 +1568,9 @@
 }
 ],
 "alternatives": [
-"Hoy mi madre trabaja."
+"Hoy mi madre trabaja.",
+"Mi madre trabajas hoy.",
+"Hoy mi madre trabajas."
 ]
 },
 {
@@ -1702,7 +1714,9 @@
 }
 ],
 "alternatives": [
-"¿Beben mis hermanas café?"
+"¿Beben mis hermanas café?",
+"¿Mis hermana beben café?",
+"¿Beben mis hermana café?"
 ]
 },
 {
@@ -1761,8 +1775,8 @@
 "lesson": 11,
 "id": "es:11:49",
 "target": "Tenéis las llaves de casa.",
-"ru": "У вас ключи от дома.",
-"uk": "У вас ключі від дому.",
+"ru": "У вас (мн.) ключи от дома.",
+"uk": "У вас (мн.) ключі від дому.",
 "tiles": [
 {
 "correct": "Tenéis",
@@ -1952,7 +1966,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"El mapas es nuevo.",
+"El mapa eres nuevo."
+]
 },
 {
 "lesson": 12,
@@ -2062,7 +2079,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Hay dos mochila negras aquí.",
+"Hay dos mochilas negra aquí."
+]
 },
 {
 "lesson": 13,
@@ -2556,8 +2576,8 @@
 "lesson": 15,
 "id": "es:15:39",
 "target": "No podéis entrar en la oficina.",
-"ru": "Вы не можете войти в офис.",
-"uk": "Ви не можете зайти до офісу.",
+"ru": "Вы (мн.) не можете войти в офис.",
+"uk": "Ви (мн.) не можете зайти до офісу.",
 "tiles": [
 {
 "correct": "No",
@@ -2726,8 +2746,8 @@
 "lesson": 16,
 "id": "es:16:25",
 "target": "¿Vais a comprar arroz en el supermercado?",
-"ru": "Вы собираетесь купить рис в супермаркете?",
-"uk": "Ви збираєтеся купити рис у супермаркеті?",
+"ru": "Вы (мн.) собираетесь купить рис в супермаркете?",
+"uk": "Ви (мн.) збираєтеся купити рис у супермаркеті?",
 "tiles": [
 {
 "correct": "Vais",
@@ -2800,7 +2820,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"¿Van a comprar arroz en el supermercado?"
+]
 },
 {
 "lesson": 16,
@@ -3166,8 +3188,8 @@
 "lesson": 18,
 "id": "es:18:46",
 "target": "Ana la deja en casa.",
-"ru": "Ана его оставляет дома.",
-"uk": "Ана його залишає вдома.",
+"ru": "Ана её оставляет дома.",
+"uk": "Ана її залишає вдома.",
 "tiles": [
 {
 "correct": "Ana",
@@ -3342,14 +3364,16 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mis hermanos estáis esperando fuera ahora."
+]
 },
 {
 "lesson": 19,
 "id": "es:19:30",
 "target": "Estáis comiendo en la cocina ahora.",
-"ru": "Вы сейчас едите на кухне.",
-"uk": "Ви зараз їсте на кухні.",
+"ru": "Вы (мн.) сейчас едите на кухне.",
+"uk": "Ви (мн.) зараз їсте на кухні.",
 "tiles": [
 {
 "correct": "Estáis",
@@ -3662,15 +3686,19 @@
 }
 ],
 "alternatives": [
-"Ayer Ana compró un billete."
+"Ayer Ana compró un billete.",
+"Ana compraste un billete ayer.",
+"Ayer Ana compraste un billete.",
+"Ana compró un billetes ayer.",
+"Ayer Ana compró un billetes."
 ]
 },
 {
 "lesson": 21,
 "id": "es:21:26",
 "target": "Mis hermanos prepararon la mochila ayer.",
-"ru": "Мои братья вчера приготовили рюкзак.",
-"uk": "Мої брати вчора приготували рюкзак.",
+"ru": "Мои братья вчера собрали рюкзак.",
+"uk": "Мої брати вчора зібрали рюкзак.",
 "tiles": [
 {
 "correct": "Mis",
@@ -3907,8 +3935,8 @@
 "lesson": 22,
 "id": "es:22:47",
 "target": "Pudisteis volver a casa ayer.",
-"ru": "Вы вчера смогли вернуться домой.",
-"uk": "Ви вчора змогли повернутися додому.",
+"ru": "Вы (мн.) вчера смогли вернуться домой.",
+"uk": "Ви (мн.) вчора змогли повернутися додому.",
 "tiles": [
 {
 "correct": "Pudisteis",
@@ -4469,8 +4497,8 @@
 "lesson": 25,
 "id": "es:25:40",
 "target": "Prepara la mochila más tarde.",
-"ru": "Приготовь рюкзак позже.",
-"uk": "Приготуй рюкзак пізніше.",
+"ru": "Собери рюкзак позже.",
+"uk": "Збери рюкзак пізніше.",
 "tiles": [
 {
 "correct": "Prepara",
@@ -5084,8 +5112,8 @@
 "lesson": 28,
 "id": "es:28:17",
 "target": "Ana preparará la mochila más tarde.",
-"ru": "Ана позже приготовит рюкзак.",
-"uk": "Ана пізніше приготує рюкзак.",
+"ru": "Ана позже соберёт рюкзак.",
+"uk": "Ана пізніше збере рюкзак.",
 "tiles": [
 {
 "correct": "Ana",
@@ -5230,14 +5258,18 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Luis no mandarás el mapa esta noche.",
+"Luis no mandará el mapas esta noche.",
+"Luis no mandará el mapa estas noche."
+]
 },
 {
 "lesson": 29,
 "id": "es:29:02",
 "target": "Llamarías al hotel.",
-"ru": "Ты позвонил бы в отель.",
-"uk": "Ти зателефонував би до готелю.",
+"ru": "Ты бы позвонил в отель.",
+"uk": "Ти б зателефонував до готелю.",
 "tiles": [
 {
 "correct": "Llamarías",
@@ -5278,8 +5310,8 @@
 "lesson": 29,
 "id": "es:29:23",
 "target": "Mis hermanos volverían a casa.",
-"ru": "Мои братья вернулись бы домой.",
-"uk": "Мої брати повернулися б додому.",
+"ru": "Мои братья бы вернулись домой.",
+"uk": "Мої брати б повернулися додому.",
 "tiles": [
 {
 "correct": "Mis",
@@ -5702,8 +5734,8 @@
 "lesson": 31,
 "id": "es:31:09",
 "target": "Te mandaré la foto cuando termine de trabajar.",
-"ru": "Я отправлю тебе фотографию, когда я закончу работать.",
-"uk": "Я надішлю тобі фотографію, коли я закінчу працювати.",
+"ru": "Я отправлю тебе фотографию, когда закончу работать.",
+"uk": "Я надішлю тобі фотографію, коли закінчу працювати.",
 "tiles": [
 {
 "correct": "Te",

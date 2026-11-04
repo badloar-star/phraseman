@@ -371,11 +371,11 @@
 {
 "correct": "she",
 "distractors": [
-"I",
 "you",
 "we",
-"it",
-"we're"
+"we're",
+"he",
+"they"
 ]
 },
 {
@@ -411,11 +411,11 @@
 {
 "correct": "she",
 "distractors": [
-"I",
 "he",
 "they",
 "we",
-"you"
+"you",
+"it"
 ]
 },
 {
@@ -662,8 +662,8 @@
 "to",
 "on",
 "in",
-"by",
-"for"
+"for",
+"of"
 ]
 },
 {
@@ -874,8 +874,8 @@
 "to",
 "on",
 "in",
-"by",
-"of"
+"of",
+"for"
 ]
 },
 {
@@ -1169,11 +1169,11 @@
 {
 "correct": "you",
 "distractors": [
-"I",
 "she",
 "we",
 "you're",
-"he"
+"he",
+"they"
 ]
 },
 {
@@ -1351,11 +1351,11 @@
 {
 "correct": "you",
 "distractors": [
-"I",
 "she",
 "he",
 "it",
-"we"
+"we",
+"they"
 ]
 },
 {
@@ -1411,11 +1411,11 @@
 {
 "correct": "you",
 "distractors": [
-"I",
 "we",
 "she",
 "it",
-"he"
+"he",
+"they"
 ]
 },
 {
@@ -1424,8 +1424,8 @@
 "got",
 "gets",
 "is",
-"have",
-"the"
+"the",
+"an"
 ]
 },
 {
@@ -1481,11 +1481,11 @@
 {
 "correct": "you",
 "distractors": [
-"I",
 "we",
 "she",
 "it",
-"they've"
+"they've",
+"he"
 ]
 },
 {
@@ -1541,11 +1541,11 @@
 {
 "correct": "What",
 "distractors": [
-"which",
 "who",
 "when",
 "where",
-"why"
+"why",
+"how"
 ]
 },
 {
@@ -1561,11 +1561,11 @@
 {
 "correct": "you",
 "distractors": [
-"I",
 "we",
 "he",
 "she",
-"I'm"
+"they",
+"it"
 ]
 },
 {
@@ -1611,11 +1611,11 @@
 {
 "correct": "they",
 "distractors": [
-"I",
 "he",
 "we",
 "she",
-"I've"
+"you",
+"it"
 ]
 },
 {
@@ -1827,8 +1827,8 @@
 "lesson": 7,
 "id": "en-classic-r1:07.21",
 "target": "Do you have a charger?",
-"ru": "​​У вас есть зарядное устройство?",
-"uk": "​​У вас є зарядний пристрій?",
+"ru": "У вас есть зарядное устройство?",
+"uk": "У вас є зарядний пристрій?",
 "tiles": [
 {
 "correct": "Do",
@@ -1843,11 +1843,11 @@
 {
 "correct": "you",
 "distractors": [
-"I",
 "we",
 "she",
 "they",
-"she's"
+"she's",
+"he"
 ]
 },
 {
@@ -1952,7 +1952,7 @@
 "id": "en-classic-r1:07.46",
 "target": "She has a free afternoon.",
 "ru": "У неё свободна вторая половина дня.",
-"uk": "Після обіду вона вільна",
+"uk": "Після обіду вона вільна.",
 "tiles": [
 {
 "correct": "She",
@@ -2064,7 +2064,7 @@
 "lesson": 8,
 "id": "en-classic-r1:08.19",
 "target": "The shift changes at ten.",
-"ru": "Пересменка в десять",
+"ru": "Пересменка в десять.",
 "uk": "Зміна змінюється о десятій.",
 "tiles": [
 {
@@ -2104,7 +2104,7 @@
 "on",
 "for",
 "after",
-"by"
+"in"
 ]
 },
 {
@@ -2182,9 +2182,9 @@
 "distractors": [
 "Monday",
 "Thursday",
-"address",
-"card",
-"receipt"
+"Tuesday",
+"Wednesday",
+"Saturday"
 ]
 }
 ],
@@ -2253,8 +2253,8 @@
 "Monday",
 "Sunday",
 "Tuesday",
-"email",
-"driver"
+"Wednesday",
+"Thursday"
 ]
 },
 {
@@ -2578,9 +2578,9 @@
 "distractors": [
 "to",
 "on",
-"by",
 "for",
-"in"
+"in",
+"of"
 ]
 },
 {
@@ -2616,11 +2616,11 @@
 {
 "correct": "Can",
 "distractors": [
-"could",
 "should",
 "must",
 "cannot",
-"may"
+"don't",
+"there's"
 ]
 },
 {
@@ -2677,20 +2677,20 @@
 "correct": "Can",
 "distractors": [
 "cannot",
-"could",
 "must",
 "should",
-"may"
+"train",
+"there's"
 ]
 },
 {
 "correct": "you",
 "distractors": [
-"I",
 "they",
 "he",
 "she's",
-"we"
+"we",
+"she"
 ]
 },
 {
@@ -2738,21 +2738,21 @@
 {
 "correct": "Can",
 "distractors": [
-"could",
 "should",
 "cannot",
 "must",
-"may"
+"train",
+"don't"
 ]
 },
 {
 "correct": "you",
 "distractors": [
-"I",
 "we",
-"I'm",
 "him",
-"she"
+"she",
+"he",
+"they"
 ]
 },
 {
@@ -2930,9 +2930,9 @@
 "distractors": [
 "got",
 "chose",
-"have",
 "is",
-"are"
+"are",
+"was"
 ]
 },
 {
@@ -3331,10 +3331,10 @@
 "correct": "charge",
 "distractors": [
 "rent",
-"fee",
-"price",
 "is",
-"receipt"
+"receipt",
+"driver",
+"machine"
 ]
 }
 ],
@@ -3372,11 +3372,11 @@
 {
 "correct": "me",
 "distractors": [
-"I",
 "you",
 "we",
 "they're",
-"we're"
+"we're",
+"she"
 ]
 },
 {
@@ -3707,10 +3707,10 @@
 "correct": "fee",
 "distractors": [
 "rent",
-"cost",
-"charge",
-"price",
-"is"
+"is",
+"driver",
+"machine",
+"anyone"
 ]
 },
 {
@@ -3979,10 +3979,10 @@
 "correct": "Which",
 "distractors": [
 "where",
-"what",
 "how",
 "who",
-"whose"
+"whose",
+"when"
 ]
 },
 {
@@ -4200,9 +4200,9 @@
 "distractors": [
 "my",
 "your",
-"I",
 "our",
-"her"
+"her",
+"his"
 ]
 }
 ],
@@ -4510,9 +4510,9 @@
 "distractors": [
 "your",
 "her",
-"I",
 "his",
-"our"
+"our",
+"their"
 ]
 },
 {
@@ -4579,10 +4579,10 @@
 "correct": "at",
 "distractors": [
 "to",
-"by",
 "in",
 "for",
-"of"
+"of",
+"with"
 ]
 },
 {
@@ -4800,11 +4800,11 @@
 {
 "correct": "fare",
 "distractors": [
-"cost",
-"charge",
 "list",
 "rent",
-"fee"
+"charging",
+"driver",
+"is"
 ]
 }
 ],
@@ -4922,11 +4922,11 @@
 {
 "correct": "you",
 "distractors": [
-"I",
 "he",
 "she",
 "they",
-"it"
+"it",
+"we"
 ]
 }
 ],
@@ -5014,11 +5014,11 @@
 {
 "correct": "you",
 "distractors": [
-"I",
 "we",
 "he",
 "they",
-"him"
+"him",
+"she"
 ]
 },
 {
@@ -5058,8 +5058,8 @@
 "lesson": 18,
 "id": "en-classic-r1:18.43",
 "target": "Let's share a taxi.",
-"ru": "Давай возьмём одно такси на двоих",
-"uk": "Давай візьмемо одне таксі на двох",
+"ru": "Давай возьмём одно такси на двоих.",
+"uk": "Давай візьмемо одне таксі на двох.",
 "tiles": [
 {
 "correct": "Let's",
@@ -5147,8 +5147,8 @@
 "to",
 "in",
 "on",
-"at",
-"beside"
+"beside",
+"for"
 ]
 },
 {
@@ -5188,9 +5188,9 @@
 "distractors": [
 "will",
 "would",
-"could",
 "should",
-"cannot"
+"cannot",
+"must"
 ]
 },
 {
@@ -5313,7 +5313,7 @@
 "id": "en-classic-r1:24.35",
 "target": "They have been away for a week.",
 "ru": "Их нет уже неделю.",
-"uk": "Їх немає вже тиждень",
+"uk": "Їх немає вже тиждень.",
 "tiles": [
 {
 "correct": "They",
@@ -5410,11 +5410,11 @@
 {
 "correct": "he",
 "distractors": [
-"I",
 "we",
 "she",
 "you",
-"we'll"
+"we'll",
+"they"
 ]
 },
 {
@@ -5540,11 +5540,11 @@
 {
 "correct": "he",
 "distractors": [
-"I",
 "you",
-"I'll",
 "we'll",
-"she"
+"she",
+"they",
+"me"
 ]
 },
 {
@@ -5570,11 +5570,11 @@
 {
 "correct": "we",
 "distractors": [
-"I",
 "she",
 "they",
 "you",
-"me"
+"me",
+"it"
 ]
 },
 {
@@ -5842,21 +5842,21 @@
 {
 "correct": "us",
 "distractors": [
-"I",
 "we",
 "she",
-"I've",
-"you"
+"you",
+"they",
+"me"
 ]
 },
 {
 "correct": "he",
 "distractors": [
-"I",
 "she",
 "the",
 "you",
-"we"
+"we",
+"they"
 ]
 },
 {
@@ -5953,8 +5953,8 @@
 "to",
 "on",
 "in",
-"by",
-"after"
+"after",
+"for"
 ]
 },
 {
@@ -6080,21 +6080,21 @@
 {
 "correct": "that",
 "distractors": [
-"I",
 "she",
 "whose",
 "which",
-"where"
+"where",
+"a"
 ]
 },
 {
 "correct": "you",
 "distractors": [
-"I",
 "we",
 "me",
 "she",
-"we'd"
+"we'd",
+"he"
 ]
 },
 {
@@ -6149,7 +6149,7 @@
 "id": "en-classic-r1:31.39",
 "target": "The smell made her feel sick.",
 "ru": "От запаха ей стало плохо.",
-"uk": "Від запаху їй стало погано",
+"uk": "Від запаху їй стало погано.",
 "tiles": [
 {
 "correct": "The",
@@ -6184,11 +6184,11 @@
 {
 "correct": "her",
 "distractors": [
-"I",
 "we",
 "she",
 "they",
-"we'd"
+"we'd",
+"you"
 ]
 },
 {
@@ -6356,9 +6356,9 @@
 "distractors": [
 "will",
 "would",
-"could",
 "must",
-"should"
+"should",
+"cannot"
 ]
 },
 {
@@ -6535,10 +6535,10 @@
 "correct": "fare",
 "distractors": [
 "deposit",
-"cost",
 "rent",
-"charge",
-"sundays"
+"sundays",
+"costs",
+"charging"
 ]
 },
 {

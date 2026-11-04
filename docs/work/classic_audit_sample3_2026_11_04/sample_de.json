@@ -117,7 +117,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Tom bist allein.",
+"Tom seid allein.",
+"Tom sind allein."
+]
 },
 {
 "lesson": 1,
@@ -167,7 +171,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Das Zimmer bist ruhig.",
+"Das Zimmer seid ruhig.",
+"Das Zimmer sind ruhig."
+]
 },
 {
 "lesson": 2,
@@ -217,7 +225,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Das Handy bist neu.",
+"Das Handy seid neu.",
+"Das Handy sind neu."
+]
 },
 {
 "lesson": 2,
@@ -267,7 +279,12 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Gästen sind da.",
+"Die Gäste bist da.",
+"Die Gäste ist da.",
+"Die Gäste seid da."
+]
 },
 {
 "lesson": 2,
@@ -317,7 +334,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Kasse bist hier.",
+"Die Kasse seid hier.",
+"Die Kasse sind hier."
+]
 },
 {
 "lesson": 2,
@@ -367,7 +388,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Das bist der Plan.",
+"Das seid der Plan.",
+"Das sind der Plan."
+]
 },
 {
 "lesson": 3,
@@ -467,7 +492,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Anna arbeitest im Hotel.",
+"Anna arbeiten im Hotel.",
+"Anna arbeite im Hotel."
+]
 },
 {
 "lesson": 3,
@@ -517,7 +546,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Anna bezahlst das Frühstück.",
+"Anna bezahlen das Frühstück."
+]
 },
 {
 "lesson": 3,
@@ -567,7 +599,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Kinder spielt draußen."
+]
 },
 {
 "lesson": 4,
@@ -915,7 +949,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Schließen der Laden heute früher?"
+]
 },
 {
 "lesson": 5,
@@ -1126,7 +1162,9 @@
 }
 ],
 "alternatives": [
-"Was kostet ein Zimmer?"
+"Was kostet ein Zimmer?",
+"Wie viel kosten ein Zimmer?",
+"Was kosten ein Zimmer?"
 ]
 },
 {
@@ -1187,7 +1225,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Kinder hast einen Ball.",
+"Die Kinder hat einen Ball.",
+"Die Kinder habt einen Ball."
+]
 },
 {
 "lesson": 7,
@@ -1337,7 +1379,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Anna bist nicht krank.",
+"Anna seid nicht krank.",
+"Anna sind nicht krank."
+]
 },
 {
 "lesson": 8,
@@ -1437,7 +1483,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Das bist kein Hotel.",
+"Das seid kein Hotel.",
+"Das sind kein Hotel."
+]
 },
 {
 "lesson": 9,
@@ -1527,7 +1577,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Unsere Gästen kommen.",
+"Unsere Gäste kommst.",
+"Unsere Gäste kommt."
+]
 },
 {
 "lesson": 9,
@@ -1809,7 +1863,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Jacke hängst im Flur.",
+"Die Jacke hängen im Flur."
+]
 },
 {
 "lesson": 11,
@@ -1859,7 +1916,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Wo liegen der Ausweis?"
+]
 },
 {
 "lesson": 11,
@@ -1999,7 +2058,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Tom hängst den Spiegel über das Waschbecken.",
+"Tom hängen den Spiegel über das Waschbecken."
+]
 },
 {
 "lesson": 12,
@@ -2050,7 +2112,11 @@
 }
 ],
 "alternatives": [
-"Anna geht in das Bad."
+"Anna geht in das Bad.",
+"Anna gehst ins Bad.",
+"Anna gehst in das Bad.",
+"Anna gehen ins Bad.",
+"Anna gehen in das Bad."
 ]
 },
 {
@@ -2182,7 +2248,11 @@
 }
 ],
 "alternatives": [
-"Heute steht Anna spät auf."
+"Heute steht Anna spät auf.",
+"Anna stehst heute spät auf.",
+"Heute stehst Anna spät auf.",
+"Anna stehen heute spät auf.",
+"Heute stehen Anna spät auf."
 ]
 },
 {
@@ -2615,7 +2685,12 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Kommst bitte rein!",
+"Kommen bitte rein!",
+"Kommt bittet rein!",
+"Kommt bitten rein!"
+]
 },
 {
 "lesson": 15,
@@ -2835,7 +2910,12 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Anna hast das Radio repariert.",
+"Anna habt das Radio repariert.",
+"Anna haben das Radio repariert.",
+"Anna hat das Radio reparieren."
+]
 },
 {
 "lesson": 17,
@@ -2895,7 +2975,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Tom bist zur Arbeit gelaufen.",
+"Tom seid zur Arbeit gelaufen.",
+"Tom sind zur Arbeit gelaufen."
+]
 },
 {
 "lesson": 17,
@@ -2965,7 +3049,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Meine Schwester bist nach Hamburg gezogen.",
+"Meine Schwester seid nach Hamburg gezogen.",
+"Meine Schwester sind nach Hamburg gezogen."
+]
 },
 {
 "lesson": 17,
@@ -3137,7 +3225,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Der Bus hattest Verspätung.",
+"Der Bus hattet Verspätung.",
+"Der Bus hatten Verspätung."
+]
 },
 {
 "lesson": 18,
@@ -3417,7 +3509,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Das Bad bist kleiner.",
+"Das Bad seid kleiner.",
+"Das Bad sind kleiner."
+]
 },
 {
 "lesson": 20,
@@ -3557,7 +3653,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Der rote Eimer bist größer als der blaue.",
+"Der rote Eimer seid größer als der blaue.",
+"Der rote Eimer sind größer als der blaue."
+]
 },
 {
 "lesson": 21,
@@ -3805,9 +3905,9 @@
 "distractors": [
 "ihrer",
 "fahren",
+"fährst",
 "fährt",
-"gefahren",
-"bin"
+"gefahren"
 ]
 },
 {
@@ -4761,7 +4861,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Anna kaufst das rote Kleid.",
+"Anna kaufen das rote Kleid."
+]
 },
 {
 "lesson": 25,
@@ -4841,7 +4944,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Neben dem großen Schrank stehst ein Stuhl.",
+"Neben dem großen Schrank stehen ein Stuhl."
+]
 },
 {
 "lesson": 26,
@@ -5143,7 +5249,13 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Das bist die Frau, die hier wohnt.",
+"Das seid die Frau, die hier wohnt.",
+"Das sind die Frau, die hier wohnt.",
+"Das ist die Frau, die hier wohnst.",
+"Das ist die Frau, die hier wohnen."
+]
 },
 {
 "lesson": 27,
@@ -5233,7 +5345,14 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Der Zug, der nach Köln fährst, ist voll.",
+"Der Zug, der nach Köln fahrt, ist voll.",
+"Der Zug, der nach Köln fahren, ist voll.",
+"Der Zug, der nach Köln fährt, bist voll.",
+"Der Zug, der nach Köln fährt, seid voll.",
+"Der Zug, der nach Köln fährt, sind voll."
+]
 },
 {
 "lesson": 27,
@@ -5353,7 +5472,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Kiste werden gepackt.",
+"Die Kisten wird gepackt."
+]
 },
 {
 "lesson": 28,
@@ -5403,7 +5525,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Die Gästen werden begrüßt.",
+"Die Gäste wird begrüßt."
+]
 },
 {
 "lesson": 28,
@@ -5473,7 +5598,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Im Bus wird die Haltestellen angesagt."
+]
 },
 {
 "lesson": 29,
@@ -6095,7 +6222,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Als Tom aufstand, warst die Kinder schon gegangen.",
+"Als Tom aufstand, wart die Kinder schon gegangen."
+]
 },
 {
 "lesson": 31,

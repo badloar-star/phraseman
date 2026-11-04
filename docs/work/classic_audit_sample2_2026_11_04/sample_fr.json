@@ -193,7 +193,7 @@
 "calme",
 "prêt",
 "prêts",
-"prêtes"
+"libres"
 ]
 }
 ],
@@ -247,7 +247,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le bureau es calme."
+]
 },
 {
 "lesson": 1,
@@ -297,7 +299,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Léa es déjà là."
+]
 },
 {
 "lesson": 1,
@@ -347,7 +351,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La clé es ici."
+]
 },
 {
 "lesson": 2,
@@ -459,7 +465,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Paul n’est pas libres."
+]
 },
 {
 "lesson": 2,
@@ -589,7 +597,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La salle n’est pas vides."
+]
 },
 {
 "lesson": 2,
@@ -799,7 +809,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Les enfants ne êtes pas dans la salle."
+]
 },
 {
 "lesson": 2,
@@ -923,9 +935,9 @@
 "distractors": [
 "calme",
 "prêts",
+"libres",
 "prêt",
-"libre",
-"prêtes"
+"libre"
 ]
 }
 ],
@@ -1036,7 +1048,9 @@
 }
 ],
 "alternatives": [
-"Est-ce que l’arrêt est loin ?"
+"Est-ce que l’arrêt est loin ?",
+"L’arrêt es loin ?",
+"Est-ce que l’arrêt es loin ?"
 ]
 },
 {
@@ -1128,7 +1142,9 @@
 }
 ],
 "alternatives": [
-"Le vélo est à la maison ?"
+"Le vélo est à la maison ?",
+"Est-ce que le vélo es à la maison ?",
+"Le vélo es à la maison ?"
 ]
 },
 {
@@ -1221,7 +1237,10 @@
 ],
 "alternatives": [
 "Le téléphone est sur la table ?",
-"Le téléphone est-il sur la table ?"
+"Le téléphone est-il sur la table ?",
+"Est-ce que le téléphone es sur la table ?",
+"Le téléphone es sur la table ?",
+"Le téléphone es-il sur la table ?"
 ]
 },
 {
@@ -1293,7 +1312,9 @@
 }
 ],
 "alternatives": [
-"Est-ce que la clé est dans la serrure ?"
+"Est-ce que la clé est dans la serrure ?",
+"La clé es dans la serrure ?",
+"Est-ce que la clé es dans la serrure ?"
 ]
 },
 {
@@ -1374,7 +1395,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"C’est une voisines."
+]
 },
 {
 "lesson": 4,
@@ -1477,10 +1500,10 @@
 "correct": "un",
 "distractors": [
 "ces",
-"Ce",
 "que",
 "pour",
-"avec"
+"avec",
+"chez"
 ]
 },
 {
@@ -1516,11 +1539,11 @@
 {
 "correct": "un",
 "distractors": [
-"Ce",
 "que",
 "avec",
 "chez",
-"dans"
+"dans",
+"à"
 ]
 },
 {
@@ -1587,10 +1610,10 @@
 "correct": "un",
 "distractors": [
 "au",
-"Avez-vous",
 "que",
 "pour",
-"avec"
+"avec",
+"chez"
 ]
 },
 {
@@ -1824,9 +1847,9 @@
 "distractors": [
 "cette",
 "à",
-"Avez-vous",
 "que",
-"pour"
+"pour",
+"avec"
 ]
 },
 {
@@ -2026,7 +2049,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La réception es en bas."
+]
 },
 {
 "lesson": 6,
@@ -2096,7 +2121,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le manteau es sur la chaise.",
+"Le manteau est sur la chaises."
+]
 },
 {
 "lesson": 6,
@@ -2146,7 +2174,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"L’ordinateur es au bureau."
+]
 },
 {
 "lesson": 6,
@@ -2216,7 +2246,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le chargeur es dans la chambre.",
+"Le chargeur est dans la chambres."
+]
 },
 {
 "lesson": 6,
@@ -2276,7 +2309,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La première portes est fermée.",
+"La première porte es fermée.",
+"La première porte est fermées."
+]
 },
 {
 "lesson": 7,
@@ -2556,7 +2593,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Où es la sortie ?",
+"Où est la sorties ?"
+]
 },
 {
 "lesson": 8,
@@ -2606,7 +2646,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Où êtes les toilettes ?"
+]
 },
 {
 "lesson": 8,
@@ -2728,7 +2770,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Que fais Paul ?"
+]
 },
 {
 "lesson": 9,
@@ -2778,7 +2822,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mes clés êtes ici."
+]
 },
 {
 "lesson": 9,
@@ -2908,7 +2954,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Notre table es près de la fenêtre.",
+"Notre table est près de la fenêtres."
+]
 },
 {
 "lesson": 9,
@@ -2958,7 +3007,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mes chaussures êtes mouillées."
+]
 },
 {
 "lesson": 9,
@@ -3164,9 +3215,9 @@
 "distractors": [
 "En",
 "Pour",
-"Le",
 "De",
-"Les"
+"Du",
+"Le"
 ]
 },
 {
@@ -3234,9 +3285,9 @@
 "distractors": [
 "badge",
 "reçu",
-"billet",
 "passeport",
-"vous"
+"vous",
+"téléphone"
 ]
 }
 ],
@@ -3378,9 +3429,9 @@
 "distractors": [
 "ce",
 "cette",
-"Dans",
 "que",
-"et"
+"et",
+"pour"
 ]
 },
 {
@@ -3397,10 +3448,10 @@
 "correct": "le",
 "distractors": [
 "ce",
-"Dans",
 "que",
 "et",
-"pour"
+"pour",
+"avec"
 ]
 },
 {
@@ -3461,9 +3512,9 @@
 "distractors": [
 "ce",
 "aux",
-"Dans",
 "que",
-"et"
+"et",
+"pour"
 ]
 },
 {
@@ -4023,10 +4074,10 @@
 "correct": "de",
 "distractors": [
 "ce",
-"Dans",
 "que",
 "et",
-"pour"
+"pour",
+"avec"
 ]
 },
 {
@@ -4100,7 +4151,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le sac es léger."
+]
 },
 {
 "lesson": 13,
@@ -4150,7 +4203,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La chemises est blanche.",
+"La chemise es blanche.",
+"La chemise est blanches."
+]
 },
 {
 "lesson": 13,
@@ -4200,7 +4257,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Les boîte sont pleines.",
+"Les boîtes êtes pleines.",
+"Les boîtes sont pleine."
+]
 },
 {
 "lesson": 13,
@@ -4233,10 +4294,10 @@
 "correct": "un",
 "distractors": [
 "ce",
-"Cette",
 "que",
 "et",
-"pour"
+"pour",
+"avec"
 ]
 },
 {
@@ -4680,7 +4741,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Paul ne peux pas répondre maintenant."
+]
 },
 {
 "lesson": 15,
@@ -4860,7 +4923,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Les enfants allez jouer dans la cour."
+]
 },
 {
 "lesson": 15,
@@ -5215,10 +5280,10 @@
 "correct": "Faisons",
 "distractors": [
 "Fait",
-"Ceinture",
-"Cherche",
-"Cherchent",
-"Cherches"
+"Ont",
+"A",
+"Avez",
+"As"
 ]
 },
 {

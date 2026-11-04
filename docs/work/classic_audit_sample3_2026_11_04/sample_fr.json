@@ -57,7 +57,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Léa es à la gare."
+]
 },
 {
 "lesson": 1,
@@ -92,8 +94,8 @@
 "prêts",
 "prête",
 "libre",
-"calme",
-"prêtes"
+"libres",
+"calme"
 ]
 }
 ],
@@ -147,7 +149,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La fenêtres est fermée.",
+"La fenêtre es fermée.",
+"La fenêtre est fermées."
+]
 },
 {
 "lesson": 1,
@@ -518,7 +524,9 @@
 }
 ],
 "alternatives": [
-"Paul est fatigué ?"
+"Paul est fatigué ?",
+"Est-ce que Paul es fatigué ?",
+"Paul es fatigué ?"
 ]
 },
 {
@@ -682,7 +690,9 @@
 }
 ],
 "alternatives": [
-"Est-ce que le train est sur ce quai ?"
+"Est-ce que le train est sur ce quai ?",
+"Le train es sur ce quai ?",
+"Est-ce que le train es sur ce quai ?"
 ]
 },
 {
@@ -727,15 +737,18 @@
 "distractors": [
 "calme",
 "libre",
+"libres",
 "bureau",
-"fenêtre",
-"magasins"
+"fenêtre"
 ]
 }
 ],
 "alternatives": [
 "Est-ce que le déjeuner est prêt ?",
-"Le déjeuner est-il prêt ?"
+"Le déjeuner est-il prêt ?",
+"Le déjeuner es prêt ?",
+"Est-ce que le déjeuner es prêt ?",
+"Le déjeuner es-il prêt ?"
 ]
 },
 {
@@ -786,7 +799,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ce êtes mes clés."
+]
 },
 {
 "lesson": 4,
@@ -956,7 +971,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ce ne êtes pas mes lunettes."
+]
 },
 {
 "lesson": 5,
@@ -1146,7 +1163,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La banque es fermée.",
+"La banque est fermées."
+]
 },
 {
 "lesson": 6,
@@ -1206,7 +1226,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"L’amie de Léa es ici."
+]
 },
 {
 "lesson": 6,
@@ -1266,7 +1288,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le nom es sur l’enveloppe."
+]
 },
 {
 "lesson": 7,
@@ -1436,7 +1460,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Qui cherches un appartement ?"
+]
 },
 {
 "lesson": 8,
@@ -1486,7 +1512,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Quelle chambres est libre ?",
+"Quelle chambre es libre ?",
+"Quelle chambre est libres ?"
+]
 },
 {
 "lesson": 8,
@@ -1708,7 +1738,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Mon enveloppe es vide.",
+"Mon enveloppe est vides."
+]
 },
 {
 "lesson": 10,
@@ -2330,7 +2363,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La veste es légère."
+]
 },
 {
 "lesson": 13,
@@ -2400,7 +2435,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La portes du garage est haute.",
+"La porte du garage es haute."
+]
 },
 {
 "lesson": 13,
@@ -3419,7 +3457,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Paul as réparé la serrure."
+]
 },
 {
 "lesson": 19,
@@ -3455,7 +3495,7 @@
 "sommes",
 "suis",
 "était",
-"étiez"
+"étais"
 ]
 },
 {
@@ -3499,7 +3539,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Les enfants êtes sortis dans la cour."
+]
 },
 {
 "lesson": 19,
@@ -3545,7 +3587,7 @@
 "suis",
 "sommes",
 "était",
-"étiez"
+"étais"
 ]
 },
 {
@@ -3569,7 +3611,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Les clientes ne êtes pas entrées.",
+"Les clientes ne sont pas entrée."
+]
 },
 {
 "lesson": 19,
@@ -3601,11 +3646,11 @@
 {
 "correct": "est",
 "distractors": [
+"étais",
 "étiez",
 "suis",
 "sommes",
-"était",
-"étaient"
+"était"
 ]
 },
 {
@@ -3649,7 +3694,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La voisines est descendue chercher le courrier.",
+"La voisine es descendue chercher le courrier."
+]
 },
 {
 "lesson": 20,
@@ -3761,7 +3809,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Les fenêtre étaient ouvertes.",
+"Les fenêtres étaient ouverte."
+]
 },
 {
 "lesson": 20,
@@ -4053,7 +4104,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La salle étais pleine quand le concert a commencé.",
+"La salle était pleines quand le concert a commencé.",
+"La salle était pleine quand le concert as commencé."
+]
 },
 {
 "lesson": 21,
@@ -4717,11 +4772,11 @@
 {
 "correct": "est",
 "distractors": [
+"étais",
 "suis",
 "sommes",
 "était",
-"étiez",
-"étaient"
+"étiez"
 ]
 },
 {
@@ -4785,7 +4840,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La cour es calme et les enfants y lisent."
+]
 },
 {
 "lesson": 25,
@@ -4905,7 +4962,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Des pomme, j’en achète un kilo.",
+"Des pommes, j’en achètes un kilo."
+]
 },
 {
 "lesson": 25,
@@ -5045,7 +5105,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Cette valises est moins lourde que l’autre.",
+"Cette valise es moins lourde que l’autre."
+]
 },
 {
 "lesson": 26,
@@ -5135,7 +5198,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La rue es moins large que la place.",
+"La rue est moins large que la places."
+]
 },
 {
 "lesson": 26,
@@ -5679,7 +5745,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Voilà le médecin qui travailles ici."
+]
 },
 {
 "lesson": 29,
@@ -5869,7 +5937,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La fenêtres qui ferme mal donne sur la rue.",
+"La fenêtre qui fermes mal donne sur la rue."
+]
 },
 {
 "lesson": 30,
@@ -6179,7 +6250,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La banque avais fermé avant mon arrivée.",
+"La banque avait fermé avant mon arrivées."
+]
 },
 {
 "lesson": 31,

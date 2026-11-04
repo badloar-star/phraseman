@@ -72,7 +72,9 @@
 }
 ],
 "alternatives": [
-"Paolo è là."
+"Paolo è là.",
+"Paolo sei lì.",
+"Paolo sei là."
 ]
 },
 {
@@ -80,7 +82,7 @@
 "id": "it:01:13",
 "target": "Paolo è a casa.",
 "ru": "Паоло дома.",
-"uk": "Паоло будинку.",
+"uk": "Паоло вдома.",
 "tiles": [
 {
 "correct": "Paolo",
@@ -105,11 +107,11 @@
 {
 "correct": "a",
 "distractors": [
-"in",
 "di",
 "per",
 "da",
-"che"
+"che",
+"su"
 ]
 },
 {
@@ -123,7 +125,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Paolo sei a casa."
+]
 },
 {
 "lesson": 1,
@@ -194,7 +198,7 @@
 "id": "it:01:33",
 "target": "Il negozio è aperto.",
 "ru": "Магазин открыт.",
-"uk": "Магазин відкрито.",
+"uk": "Магазин відкритий.",
 "tiles": [
 {
 "correct": "Il",
@@ -203,7 +207,7 @@
 "Si",
 "Mi",
 "Ti",
-"Nella"
+"Del"
 ]
 },
 {
@@ -237,7 +241,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il negozio sei aperto."
+]
 },
 {
 "lesson": 2,
@@ -251,9 +257,9 @@
 "distractors": [
 "Già",
 "Ancora",
-"Gli",
-"I",
-"Il"
+"Lavora",
+"Posto",
+"Alla"
 ]
 },
 {
@@ -329,14 +335,16 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Paolo non sei libero."
+]
 },
 {
 "lesson": 2,
 "id": "it:02:30",
 "target": "Il bicchiere non è sporco.",
 "ru": "Стакан не грязный.",
-"uk": "Скло не брудне.",
+"uk": "Склянка не брудна.",
 "tiles": [
 {
 "correct": "Il",
@@ -345,7 +353,7 @@
 "Si",
 "Mi",
 "Ti",
-"Nella"
+"Del"
 ]
 },
 {
@@ -389,7 +397,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il bicchieri non è sporco.",
+"Il bicchiere non sei sporco."
+]
 },
 {
 "lesson": 2,
@@ -449,7 +460,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La camera non sei libera.",
+"La camera non è liberi."
+]
 },
 {
 "lesson": 2,
@@ -463,9 +477,9 @@
 "distractors": [
 "Già",
 "Ancora",
-"Gli",
-"I",
-"Il"
+"Lavora",
+"Posto",
+"Alla"
 ]
 },
 {
@@ -527,7 +541,7 @@
 "Ti",
 "Ci",
 "Si",
-"Nel"
+"Ai"
 ]
 },
 {
@@ -561,14 +575,17 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La biglietteria sei aperta?",
+"La biglietteria è aperti?"
+]
 },
 {
 "lesson": 3,
 "id": "it:03:24",
 "target": "La banchina è di fronte?",
 "ru": "Перрон напротив?",
-"uk": "Перон навпаки?",
+"uk": "Перон навпроти?",
 "tiles": [
 {
 "correct": "La",
@@ -577,7 +594,7 @@
 "Mi",
 "Si",
 "Ti",
-"Nel"
+"Ai"
 ]
 },
 {
@@ -621,7 +638,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La banchina sei di fronte?"
+]
 },
 {
 "lesson": 3,
@@ -637,7 +656,7 @@
 "Si",
 "Mi",
 "Ti",
-"Nella"
+"Del"
 ]
 },
 {
@@ -681,7 +700,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il museo sei aperto oggi?"
+]
 },
 {
 "lesson": 3,
@@ -697,7 +718,7 @@
 "Si",
 "Mi",
 "Ti",
-"Nella"
+"Del"
 ]
 },
 {
@@ -731,7 +752,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il corridoio sei buio?"
+]
 },
 {
 "lesson": 3,
@@ -747,7 +770,7 @@
 "Mi",
 "Ci",
 "Ti",
-"Nel"
+"Ai"
 ]
 },
 {
@@ -773,11 +796,11 @@
 {
 "correct": "a",
 "distractors": [
-"in",
 "di",
 "per",
 "da",
-"che"
+"che",
+"su"
 ]
 },
 {
@@ -791,7 +814,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La bicicletta sei a casa?"
+]
 },
 {
 "lesson": 4,
@@ -841,7 +866,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questo sei mio fratello."
+]
 },
 {
 "lesson": 4,
@@ -877,7 +904,7 @@
 "per",
 "con",
 "di",
-"a"
+"in"
 ]
 },
 {
@@ -901,7 +928,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questi sono le mie chiavi.",
+"Queste siete le mie chiavi.",
+"Queste sono le mie chiave."
+]
 },
 {
 "lesson": 4,
@@ -937,7 +968,7 @@
 "per",
 "con",
 "di",
-"a"
+"in"
 ]
 },
 {
@@ -961,7 +992,13 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questa sono i nostri biglietti.",
+"Queste sono i nostri biglietti.",
+"Questi siete i nostri biglietti.",
+"Questi sono i nostra biglietti.",
+"Questi sono i nostre biglietti."
+]
 },
 {
 "lesson": 4,
@@ -1031,7 +1068,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questi è la mia prima visita.",
+"Questa sei la mia prima visita."
+]
 },
 {
 "lesson": 4,
@@ -1066,8 +1106,8 @@
 "che",
 "per",
 "con",
-"a",
-"in"
+"in",
+"a"
 ]
 },
 {
@@ -1101,7 +1141,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questi è una foto di famiglia.",
+"Questa sei una foto di famiglia."
+]
 },
 {
 "lesson": 4,
@@ -1136,8 +1179,8 @@
 "che",
 "con",
 "di",
-"a",
-"in"
+"in",
+"a"
 ]
 },
 {
@@ -1171,14 +1214,16 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questo sei un biglietto per domani."
+]
 },
 {
 "lesson": 5,
 "id": "it:05:09",
 "target": "Lea ha una carta.",
-"ru": "У Леа есть карта.",
-"uk": "Леа має мапу.",
+"ru": "У Леа есть карточка.",
+"uk": "Леа має картку.",
 "tiles": [
 {
 "correct": "Lea",
@@ -1207,27 +1252,29 @@
 "per",
 "con",
 "di",
-"a"
+"in"
 ]
 },
 {
 "correct": "carta",
 "distractors": [
-"piantina",
 "domanda",
 "gola",
 "pausa",
-"testa"
+"testa",
+"borsa"
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Lea hai una carta."
+]
 },
 {
 "lesson": 5,
 "id": "it:05:35",
 "target": "Ha con sé il passaporto?",
-"ru": "Его паспорт при нём?",
+"ru": "Паспорт у него с собой?",
 "uk": "Його паспорт при ньому?",
 "tiles": [
 {
@@ -1235,9 +1282,9 @@
 "distractors": [
 "Ho",
 "Abbiamo",
-"Hai",
-"Hanno",
-"Avete"
+"Un",
+"I",
+"Le"
 ]
 },
 {
@@ -1266,8 +1313,8 @@
 "che",
 "per",
 "di",
-"a",
-"in"
+"in",
+"a"
 ]
 },
 {
@@ -1316,8 +1363,8 @@
 "che",
 "per",
 "con",
-"a",
-"in"
+"in",
+"a"
 ]
 },
 {
@@ -1351,7 +1398,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Lea hai il biglietto di ritorno?"
+]
 },
 {
 "lesson": 5,
@@ -1396,8 +1445,8 @@
 "che",
 "per",
 "con",
-"a",
-"in"
+"in",
+"a"
 ]
 },
 {
@@ -1523,7 +1572,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"L’ascensore sei a sinistra."
+]
 },
 {
 "lesson": 6,
@@ -1593,7 +1644,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le scarpe siete sotto la sedia."
+]
 },
 {
 "lesson": 6,
@@ -1609,7 +1662,7 @@
 "Mi",
 "Si",
 "Ti",
-"Nel"
+"Ai"
 ]
 },
 {
@@ -1653,7 +1706,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La prima porti è chiusa.",
+"La prima porta sei chiusa.",
+"La prima porta è chiusi."
+]
 },
 {
 "lesson": 6,
@@ -1669,7 +1726,7 @@
 "Si",
 "Mi",
 "Ti",
-"Nella"
+"Del"
 ]
 },
 {
@@ -1733,7 +1790,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il fratello di Paolo sei al mercato."
+]
 },
 {
 "lesson": 7,
@@ -1864,10 +1923,10 @@
 "correct": "Ordino",
 "distractors": [
 "Ordiniamo",
-"Camminiamo",
 "Fuori",
 "Lì",
-"Qui"
+"Qui",
+"Sotto"
 ]
 },
 {
@@ -1877,7 +1936,7 @@
 "per",
 "con",
 "di",
-"a"
+"in"
 ]
 },
 {
@@ -1899,17 +1958,17 @@
 "lesson": 7,
 "id": "it:07:45",
 "target": "Prenota per stasera?",
-"ru": "Вы бронируете на сегодняшний вечер?",
-"uk": "Ви забронюєте на сьогоднішній вечір?",
+"ru": "Вы (вежл.) бронируете на сегодняшний вечер?",
+"uk": "Ви (ввіч.) бронюєте на сьогоднішній вечір?",
 "tiles": [
 {
 "correct": "Prenota",
 "distractors": [
-"Questo",
-"Qui",
-"Queste",
-"Questi",
-"Destra"
+"Borsa",
+"Camera",
+"Carta",
+"Giacca",
+"Lontana"
 ]
 },
 {
@@ -2001,7 +2060,7 @@
 "per",
 "con",
 "di",
-"a"
+"in"
 ]
 },
 {
@@ -2015,7 +2074,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Quando sei il concerto?"
+]
 },
 {
 "lesson": 8,
@@ -2065,7 +2126,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Quando chiudi la banca?"
+]
 },
 {
 "lesson": 8,
@@ -2125,7 +2188,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"A che ora sei l’appuntamento?"
+]
 },
 {
 "lesson": 8,
@@ -2181,8 +2246,8 @@
 "lesson": 8,
 "id": "it:08:38",
 "target": "Quale autobus prenderete?",
-"ru": "На каком автобусе вы (вежл.) поедете?",
-"uk": "Яким автобусом ви (ввіч.) поїдете?",
+"ru": "На каком автобусе вы (мн.) поедете?",
+"uk": "Яким автобусом ви (мн.) поїдете?",
 "tiles": [
 {
 "correct": "Quale",
@@ -2291,7 +2356,7 @@
 "Si",
 "Mi",
 "Ti",
-"Negli"
+"Del"
 ]
 },
 {
@@ -2355,7 +2420,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il nostro tavolo sei vicino alla finestra."
+]
 },
 {
 "lesson": 9,
@@ -2411,8 +2478,8 @@
 "lesson": 9,
 "id": "it:09:42",
 "target": "Dove sono le vostre valigie?",
-"ru": "Где ваши чемоданы?",
-"uk": "Де твої валізи?",
+"ru": "Где ваши (мн.) чемоданы?",
+"uk": "Де ваші (мн.) валізи?",
 "tiles": [
 {
 "correct": "Dove",
@@ -2441,7 +2508,7 @@
 "per",
 "con",
 "di",
-"a"
+"in"
 ]
 },
 {
@@ -2520,8 +2587,8 @@
 "Nella",
 "Negli",
 "Nei",
-"La",
-"Un"
+"Degli",
+"Della"
 ]
 },
 {
@@ -2635,14 +2702,16 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"C’è un errore sulla ricevuti?"
+]
 },
 {
 "lesson": 10,
 "id": "it:10:27",
 "target": "C’è una camera libera?",
 "ru": "Есть ли свободная комната?",
-"uk": "Чи є вільне місце?",
+"uk": "Чи є вільна кімната?",
 "tiles": [
 {
 "correct": "C’è",
@@ -2685,7 +2754,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"C’è una camera liberi?"
+]
 },
 {
 "lesson": 10,
@@ -2769,11 +2840,11 @@
 {
 "correct": "a",
 "distractors": [
-"in",
 "di",
 "per",
 "da",
-"che"
+"che",
+"su"
 ]
 },
 {
@@ -3177,7 +3248,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Sei rimasta della marmellata.",
+"È rimasti della marmellata."
+]
 },
 {
 "lesson": 12,
@@ -3190,10 +3264,10 @@
 "correct": "Metto",
 "distractors": [
 "Metti",
-"Questa",
-"Qui",
-"Questi",
-"Queste"
+"Vicino",
+"Fuori",
+"Lì",
+"Qui"
 ]
 },
 {
@@ -3203,7 +3277,7 @@
 "e",
 "per",
 "con",
-"a"
+"in"
 ]
 },
 {
@@ -3309,7 +3383,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La camicia sei bianca."
+]
 },
 {
 "lesson": 13,
@@ -3359,7 +3435,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"I bicchiere sono vuoti.",
+"I bicchieri siete vuoti.",
+"I bicchieri sono vuota."
+]
 },
 {
 "lesson": 13,
@@ -3375,7 +3455,7 @@
 "Devo",
 "Devono",
 "Dobbiamo",
-"Beviamo"
+"Scarpe"
 ]
 },
 {
@@ -3469,13 +3549,15 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Sei un vecchio edificio."
+]
 },
 {
 "lesson": 13,
 "id": "it:13:46",
 "target": "La parete della cucina è bianca.",
-"ru": "Кухонная стена белая.",
+"ru": "Стена на кухне белая.",
 "uk": "Стіна на кухні біла.",
 "tiles": [
 {
@@ -3539,7 +3621,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La parete della cucini è bianca.",
+"La parete della cucina sei bianca."
+]
 },
 {
 "lesson": 13,
@@ -3662,7 +3747,8 @@
 }
 ],
 "alternatives": [
-"Tu vuoi sederti?"
+"Tu vuoi sederti?",
+"Vuole sederti?"
 ]
 },
 {
@@ -4049,7 +4135,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Ana stai bevendo un caffè."
+]
 },
 {
 "lesson": 15,
@@ -4171,7 +4259,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"I miei fratelli state aspettando fuori."
+]
 },
 {
 "lesson": 15,
@@ -4239,8 +4329,8 @@
 "lesson": 16,
 "id": "it:16:32",
 "target": "Mi porti il modulo firmato, per favore.",
-"ru": "Принесите мне подписанный бланк, пожалуйста.",
-"uk": "Будь ласка, принесіть мені підписаний бланк.",
+"ru": "Принесите (вежл.) мне подписанный бланк, пожалуйста.",
+"uk": "Принесіть (ввіч.) мені підписаний бланк, будь ласка.",
 "tiles": [
 {
 "correct": "Mi",
@@ -4269,7 +4359,7 @@
 "e",
 "con",
 "di",
-"a"
+"in"
 ]
 },
 {
@@ -4499,8 +4589,8 @@
 "lesson": 17,
 "id": "it:17:15",
 "target": "Si sveglia spesso di notte?",
-"ru": "Вы часто просыпаетесь ночью?",
-"uk": "Ви часто прокидаєтеся вночі?",
+"ru": "Вы (вежл.) часто просыпаетесь ночью?",
+"uk": "Ви (ввіч.) часто прокидаєтеся вночі?",
 "tiles": [
 {
 "correct": "Si",
@@ -4694,7 +4784,7 @@
 "id": "it:17:44",
 "target": "Ti ricordi questo indirizzo?",
 "ru": "Ты помнишь этот адрес?",
-"uk": "Ви пам’ятаєте цю адресу?",
+"uk": "Ти пам’ятаєш цю адресу?",
 "tiles": [
 {
 "correct": "Ti",
@@ -5015,7 +5105,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il tempo era bello quando sei arrivato il treno."
+]
 },
 {
 "lesson": 21,
@@ -5100,22 +5192,22 @@
 {
 "lesson": 23,
 "id": "it:23:06",
-"target": "Parlate a loro.",
-"ru": "Вы (вежл.) разговариваете с ними.",
-"uk": "Ви (ввіч.) розмовляєте з ними.",
+"target": "Parlate con loro.",
+"ru": "Вы (мн.) разговариваете с ними.",
+"uk": "Ви (мн.) розмовляєте з ними.",
 "tiles": [
 {
 "correct": "Parlate",
 "distractors": [
-"Sta",
-"Stai",
-"Stanno",
-"Stiamo",
-"Sto"
+"Andiamo",
+"Va",
+"Vado",
+"Vai",
+"Vanno"
 ]
 },
 {
-"correct": "a",
+"correct": "con",
 "distractors": [
 "in",
 "per",
@@ -5360,7 +5452,11 @@
 }
 ],
 "alternatives": [
-"Questo è il dottore che lavora qua."
+"Questo è il dottore che lavora qua.",
+"Questo sei il dottore che lavora qui.",
+"Questo sei il dottore che lavora qua.",
+"Questo è il dottore che lavori qui.",
+"Questo è il dottore che lavori qua."
 ]
 },
 {
@@ -5457,8 +5553,8 @@
 "lesson": 30,
 "id": "it:30:05",
 "target": "Bisogna che partiate.",
-"ru": "Вам нужно уйти.",
-"uk": "Ви повинні піти.",
+"ru": "Вам (мн.) нужно уехать.",
+"uk": "Вам (мн.) треба поїхати.",
 "tiles": [
 {
 "correct": "Bisogna",
@@ -5483,11 +5579,11 @@
 {
 "correct": "partiate",
 "distractors": [
-"parta",
 "partano",
 "partiamo",
 "partite",
-"parte"
+"parte",
+"necessario"
 ]
 }
 ],
@@ -5509,7 +5605,7 @@
 "Già",
 "Sempre",
 "Anche",
-"Gli"
+"Lavora"
 ]
 },
 {

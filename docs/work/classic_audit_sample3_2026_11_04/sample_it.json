@@ -141,7 +141,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le porti sono aperte.",
+"Le porte siete aperte.",
+"Le porte sono aperti."
+]
 },
 {
 "lesson": 1,
@@ -183,11 +187,11 @@
 {
 "correct": "porta",
 "distractors": [
+"porti",
 "casa",
 "borsa",
 "strada",
-"cena",
-"zuppa"
+"cena"
 ]
 }
 ],
@@ -286,7 +290,9 @@
 }
 ],
 "alternatives": [
-"Voi non siete in ritardo."
+"Voi non siete in ritardo.",
+"Non sono in ritardo.",
+"Voi non sono in ritardo."
 ]
 },
 {
@@ -357,7 +363,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"I bagni non siete in fondo."
+]
 },
 {
 "lesson": 2,
@@ -417,7 +425,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La bicicletta non sei fuori."
+]
 },
 {
 "lesson": 3,
@@ -467,7 +477,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La porti è aperta?",
+"La porta sei aperta?",
+"La porta è aperti?"
+]
 },
 {
 "lesson": 3,
@@ -517,7 +531,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La camera sei pulita?",
+"La camera è puliti?"
+]
 },
 {
 "lesson": 3,
@@ -567,7 +584,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La borsa sei sull’autobus?"
+]
 },
 {
 "lesson": 3,
@@ -637,7 +656,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il treno sei su questo binario?"
+]
 },
 {
 "lesson": 4,
@@ -687,7 +708,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questi è mia sorella.",
+"Questa sei mia sorella."
+]
 },
 {
 "lesson": 4,
@@ -737,7 +761,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questi sono delle foto.",
+"Queste siete delle foto."
+]
 },
 {
 "lesson": 4,
@@ -787,7 +814,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questo sei l’indirizzo giusto."
+]
 },
 {
 "lesson": 4,
@@ -857,7 +886,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questi non è la mia borsa.",
+"Questa non sei la mia borsa."
+]
 },
 {
 "lesson": 5,
@@ -897,7 +929,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Paolo hai paura."
+]
 },
 {
 "lesson": 5,
@@ -1061,7 +1095,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Lo zaino sei sulla sedia."
+]
 },
 {
 "lesson": 6,
@@ -1121,7 +1157,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"I guanti siete nella borsa."
+]
 },
 {
 "lesson": 6,
@@ -1181,7 +1219,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"L’ultimo treno sei al binario."
+]
 },
 {
 "lesson": 7,
@@ -1397,7 +1437,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Quando torni a casa Lea?"
+]
 },
 {
 "lesson": 8,
@@ -2221,7 +2263,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Il lenzuolo sei bianco."
+]
 },
 {
 "lesson": 13,
@@ -2341,7 +2385,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le nuove sedie siete robuste."
+]
 },
 {
 "lesson": 14,
@@ -2597,7 +2643,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Luis non stai aprendo la porta.",
+"Luis non sta aprendo la porti."
+]
 },
 {
 "lesson": 15,
@@ -2657,7 +2706,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Luis stai portando il sacchetto?"
+]
 },
 {
 "lesson": 16,
@@ -2688,7 +2739,9 @@
 }
 ],
 "alternatives": [
-"Resti qua!"
+"Resti qua!",
+"Resta qui!",
+"Resta qua!"
 ]
 },
 {
@@ -2759,7 +2812,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Prendi la seconda strada a destra."
+]
 },
 {
 "lesson": 16,
@@ -2809,7 +2864,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Non aspetta vicino all’uscita!"
+]
 },
 {
 "lesson": 17,
@@ -3156,7 +3213,8 @@
 }
 ],
 "alternatives": [
-"Voi avete scelto la camera blu."
+"Voi avete scelto la camera blu.",
+"Hanno scelto la camera blu."
 ]
 },
 {
@@ -3237,7 +3295,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Le mie sorelle siete andate al concerto.",
+"Le mie sorelle sono vanno al concerto.",
+"Le mie sorelle sono andati al concerto."
+]
 },
 {
 "lesson": 19,
@@ -3297,7 +3359,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Paolo sei entrato in garage."
+]
 },
 {
 "lesson": 19,
@@ -3357,7 +3421,10 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"I clienti non siete entrati.",
+"I clienti non sono entrata."
+]
 },
 {
 "lesson": 20,
@@ -3769,7 +3836,11 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"La radio stavi trasmettendo una canzone quando è andata via la corrente.",
+"La radio stava trasmettendo una canzone quando sei andata via la corrente.",
+"La radio stava trasmettendo una canzone quando è andati via la corrente."
+]
 },
 {
 "lesson": 21,
@@ -4728,7 +4799,14 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questa asciugamani sono puliti: puoi prenderne uno.",
+"Queste asciugamani sono puliti: puoi prenderne uno.",
+"Questi asciugamani siete puliti: puoi prenderne uno.",
+"Questi asciugamani sono pulita: puoi prenderne uno.",
+"Questi asciugamani sono pulite: puoi prenderne uno.",
+"Questi asciugamani sono puliti: può prenderne uno."
+]
 },
 {
 "lesson": 26,
@@ -4878,7 +4956,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Questo maglione sei più economico del cappotto."
+]
 },
 {
 "lesson": 26,
@@ -5180,7 +5260,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Desideri del latte?"
+]
 },
 {
 "lesson": 28,
@@ -5240,7 +5322,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Potrebbe passare dopo la lezioni."
+]
 },
 {
 "lesson": 28,
@@ -5828,7 +5912,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"I clienti erano già uscita."
+]
 },
 {
 "lesson": 31,
@@ -5970,7 +6056,9 @@
 ]
 }
 ],
-"alternatives": []
+"alternatives": [
+"Lea non era mai scesi in cantina."
+]
 },
 {
 "lesson": 32,

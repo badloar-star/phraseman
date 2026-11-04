@@ -63,15 +63,14 @@
   - Окружение тестов (заглушки react-native без `Platform`/`StyleSheet`/`Animated`): чинится заглушкой в самом тесте. Сделано точечно: `speech_beat_audioend_session_lifecycle` (зелёный), `learning_v2_mode_feedback_lane` (7 из 9 зелёные, 2 ждут токены темы `accent`/`plateFill*` в заглушке — Learning V2). Не сделано (требует расширения заглушки, не одна строка): `flashcards_recall_pending_start_behavior`, `flashcards_training_target_language_behavior` (нужны `Animated.multiply` и др.), `spire_all_members_profile`, `season_shared_modal`, `paywall_c_native_render` (парсинг файла).
 - ⚠ **Осиротевший WIP аудио — не коммитить до доведения** (решение координатора 05.11): незакоммиченные `app/audio_session_coordinator.ts` и `modules/audio/audio_activity.ts` (+ неотслеживаемый `app/audio_mode_outcome_diagnostics.ts`): `setManagedAudioMode` стал возвращать `{ outcome }`, вызывающие и заглушки в тестах не обновлены, автор неизвестен. В выпуск НЕ идёт. `kimi_voice_capture_session_lifecycle` красный из-за него (на HEAD зелёный по коду, в дереве — `Cannot destructure property 'outcome' of undefined`). Чтобы не попасть в случайный `git add -A`, эти файлы никто не добавляет. Снятие: автор аудио-работы доводит вызывающих и заглушки, затем коммитит вместе с тестом.
 
-## Лесенка рефералов — незаконченная работа вне сборки (Вход, 05.11)
-- Что: незакоммиченные правки `components/referral_ladder.tsx`, `components/referral_ladder_how_sheet.tsx`, `app/(tabs)/friends.tsx` (хунок `compactFriends`) и расширенный `tests/referral_ladder_2026_10_29.test.tsx` (компактный вид вкладки «Друзья», пять строк «Как это работает», вход «Ввести код друга»). Зависит от чужих незакоммиченных правок `friends.tsx`.
-- Почему не в сборке: работа осиротела (Codex), экран не проверен на эмуляторе, флаг `referral_ladder_enabled` по умолчанию ВЫКЛ — пользователи лесенку в 2.1.0 не видят.
-- Красные из-за неё: `referral_ladder_2026_10_29` (расширенная версия), `light_accent_graphics_ratchet` (4, читает эти два файла). В HEAD закоммичена только правка устаревшей строки флагов (регулярка вместо жёсткой пары).
-- Снятие: следующая обнова — довести компактный вид по макету вкладки «Друзья», сверить кадр, закоммитить вместе с `friends.tsx`.
-- Владелец зоны: Вход (рефералы/Paywall).
-
-
 ## Тест запускателя Account V2 (Вход, 05.11)
 - Что: `tests/account_provision_lock_android_runtime_entrypoint.test.ts`, один набор «aggregate cleanup attempts…» красный в точечном прогоне (строка 1206: `capture.status` 1 вместо 0, ~130 с).
 - Природа: тест хост-запускателя Android-проверки Account V2 (PowerShell-библиотека `ActivatedNativeProvenance`), не код приложения; автор — сессия Account V2 (коммит a91e96a31, test(account-v2)).
 - Снятие: следующая обнова, владелец Account V2 / Ядро; на пользователей не влияет.
+
+## 3. Кнопки на opaqueControl (ratchet button_fill_sweep_guard, 05.11 ночь)
+
+- Что: 7 кнопок с заливкой opaqueControl (слабая заливка контрола): app/_layout.tsx (1), components/dialogs/scene/DialogsScenePanel.tsx (3), components/learning-v2/season/SeasonNavTiles.tsx (1), components/learning-v2/workshop/PhraseWorkshopTheorySheet.tsx (2).
+- Почему не правим: смена заливки кнопок меняет вид экранов; без кадра владельца — риск.
+- Условие снятия: кадр владельца → токен buttonFill; потом CEILING = 0 в tests/button_fill_sweep_guard.test.ts.
+- Владелец: сессия «Дизайн» / «Темы» (сцены).

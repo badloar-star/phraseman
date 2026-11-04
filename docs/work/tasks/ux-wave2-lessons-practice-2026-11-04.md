@@ -22,3 +22,5 @@ Governance-ID: TG-D39AB2CEDC1D
 
 ## Rollback
 Каждый пункт — отдельный коммит; откат `git revert` по пункту. Полоса возвращается к `width: %` без влияния на данные.
+
+Governance-ID: TG-1D63C99F799A (PracticeCta на V2Pressable; правка TS18048 в use-audio после удобства №2)

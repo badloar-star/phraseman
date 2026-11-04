@@ -301,7 +301,7 @@ export function useAudio() {
         Object.prototype.hasOwnProperty.call(opts, 'voiceId'));
     const settingsVoice = settings.speechVoiceId.trim();
     const requestedVoice = hasVoiceOverride
-      ? (opts.voice ?? opts.voiceId ?? '').trim()
+      ? (opts?.voice ?? opts?.voiceId ?? '').trim() // зачем: после переприсваивания opts (медленный повтор) TS теряет сужение через hasVoiceOverride — TS18048
       // зачем (Ревизор 15.10): у es/fr/de/it теперь свой выбранный голос (voice_prefs, отдельный ключ); английский — как раньше
       : (language.toLowerCase().startsWith('en')
         ? settingsVoice || (peekEnVoiceId() ?? '').trim()

@@ -212,6 +212,7 @@ export async function mergePhoneStatePracticeFacts<T>(
   factType: PhoneStatePracticeFactType,
   legacy: Readonly<Record<string, T>>,
   expectedStableUid?: string,
+  onLoadProgress?: (stage: string) => void,
 ): Promise<Record<string, T>> {
   const active = runtime;
   if (
@@ -228,23 +229,30 @@ export async function mergePhoneStatePracticeFacts<T>(
   const startedAt = Date.now();
   let known: Readonly<Record<string, T>> = {};
   try {
+    onLoadProgress?.('phone_state:read_before');
     const before = stateFrom(active, await active.store.readProjection("practice"));
     known = (before?.facts?.[factType] as Readonly<Record<string, T>> | undefined) ?? {};
   } catch (error: unknown) {
     console.warn("[MISTAKES-LOAD] facts:read_before_failed → коммитим все", error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
   }
   const fresh = Object.entries(legacy).filter(([entityId]) => !Object.prototype.hasOwnProperty.call(known, entityId));
+  let committed = 0;
+  let failed = 0;
   for (const [entityId, value] of fresh) {
-    await commitPhoneStatePracticeFact(
+    onLoadProgress?.(`phone_state:import:${committed + failed + 1}/${fresh.length}`);
+    const saved = await commitPhoneStatePracticeFact(
       factType,
       entityId,
       value,
       expectedStableUid,
     );
+    if (saved) committed += 1;
+    else failed += 1;
   }
   let remote: Readonly<Record<string, T>> | undefined = known;
   if (fresh.length > 0) {
     try {
+      onLoadProgress?.('phone_state:read_after');
       const state = stateFrom(
         active,
         await active.store.readProjection("practice"),
@@ -257,7 +265,8 @@ export async function mergePhoneStatePracticeFacts<T>(
       return { ...legacy };
     }
   }
-  console.log("[MISTAKES-LOAD] facts", JSON.stringify({ factType, local: Object.keys(legacy).length, known: Object.keys(known).length, committed: fresh.length, ms: Date.now() - startedAt })); // guard-ok: одна строка на чтение
+  onLoadProgress?.('phone_state:merge');
+  console.log("[MISTAKES-LOAD] facts", JSON.stringify({ factType, local: Object.keys(legacy).length, known: Object.keys(known).length, committed, failed, ms: Date.now() - startedAt })); // guard-ok: считаем успешные записи, а не попытки
   return { ...legacy, ...(remote ?? {}) };
 }
 

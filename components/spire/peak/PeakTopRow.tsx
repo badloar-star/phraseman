@@ -35,7 +35,7 @@ function PeakTopRow({ lang, row, coinSize = 40, onPress }: Props) {
 }
 
 const s = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 56, paddingVertical: 6, paddingHorizontal: 12, borderRadius: 14 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 56, paddingVertical: 6, paddingHorizontal: 8, borderRadius: 14 },
   place: { minWidth: 24, textAlign: 'center', fontSize: 16, fontWeight: '700' },
   name: { flex: 1, minWidth: 0, fontSize: 16, fontWeight: '700' },
   coins: { fontSize: 16, fontWeight: '800', fontVariant: ['tabular-nums'] },

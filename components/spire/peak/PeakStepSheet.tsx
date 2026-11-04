@@ -10,6 +10,7 @@ import V2Pressable from '../../v2/V2Pressable';
 import type { PeakStepRecord } from '../../../modules/spire/peak_model';
 import { peakRecordLine } from './peak_text';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
+import { KIT_MOTION } from '../../../constants/motionHybrid';
 
 type Props = Readonly<{ lang: Lang; visible: boolean; title: string; record: PeakStepRecord | null; onClose: () => void; stepper?: React.ReactNode }>;
 
@@ -33,7 +34,8 @@ function PeakStepSheet({ lang, visible, title, record, onClose, stepper }: Props
 }
 
 const s = StyleSheet.create({
-  scrim: { flex: 1, backgroundColor: 'rgba(0,0,0,0.45)' },
+  // зачем (аудит 05.11): затемнение — токен кита, как у KitSheetModal, а не литерал цвета
+  scrim: { flex: 1, backgroundColor: `rgba(0,0,0,${KIT_MOTION.dimOpacity})` },
   sheet: { paddingHorizontal: 20, paddingTop: 20, borderTopLeftRadius: 24, borderTopRightRadius: 24 },
   title: { fontSize: 20, lineHeight: 26, fontWeight: '800' },
   sub: { fontSize: 15, lineHeight: 20, marginTop: 2 },

@@ -43,6 +43,9 @@ type Props = Readonly<{
 }>;
 
 export const PEAK_RAIL_WIDTH = 150;
+/** Узкая колонка башни: крупный шрифт системы или узкий экран — панели справа нужно место для имён (аудит дизайна 05.11). */
+export const PEAK_RAIL_WIDTH_NARROW = 112;
+export const PEAK_ROW_COIN_SIZE = 36;
 
 function measureBlock(ref: React.RefObject<View | null>): Promise<PeakTourRect | null> {
   return new Promise((resolve) => {
@@ -55,7 +58,9 @@ function measureBlock(ref: React.RefObject<View | null>): Promise<PeakTourRect |
 
 function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records = null, railHeight, tour = 'auto' }: Props) {
   const p = useSpirePalette();
-  const { height } = useWindowDimensions();
+  const { height, width, fontScale } = useWindowDimensions();
+  // зачем (аудит 05.11, экран 375×667 при шрифте ×1,3): в панели справа оставалось ~180 dp, имя сжималось до 2–3 букв — рельса уже, строки крупнее
+  const railWidth = fontScale > 1.15 || width < 360 ? PEAK_RAIL_WIDTH_NARROW : PEAK_RAIL_WIDTH;
   const rail = railHeight ?? Math.max(420, Math.min(640, Math.round(height * 0.72)));
   // зачем: участники приходят порядком комнаты (уже по рубильнику); weekCoins в документе может отсутствовать — считаем 0
   const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0 })), rankBy), [members, rankBy]);
@@ -96,7 +101,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   );
   return (
     <View style={s.root} testID="peak-screen-v2">
-      <View ref={railRef} collapsable={false} style={[s.rail, { width: PEAK_RAIL_WIDTH }]}>
+      <View ref={railRef} collapsable={false} style={[s.rail, { width: railWidth }]}>
         <SpireTower {...towerProps} lang={lang} selected={floor} onSelect={onSelectFloor} windowHeight={rail} />
       </View>
       <View style={s.panel}>
@@ -107,11 +112,11 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
         <View ref={pillRef} collapsable={false} style={[s.pill, { backgroundColor: p.cardRaised }]}><Text numberOfLines={1} style={[s.pillText, { color: p.text }]}>{pillText}</Text></View>
         </View>
         <View ref={counterRef} collapsable={false} style={s.counter}><PeakMyCounter lang={lang} me={model.me} rankBy={rankBy} /></View>
-        <View ref={topRef} collapsable={false} testID="peak-top">{model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} />)}</View>
+        <View ref={topRef} collapsable={false} testID="peak-top">{model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} />)}</View>
         {model.summiters.length > 0 ? (
           <View testID="peak-summiters">
             <Text style={[s.group, { color: p.textSecondary }]}>{spireGameText(lang, 'peakReachedTop')}</Text>
-            {model.summiters.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} />)}
+            {model.summiters.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} coinSize={PEAK_ROW_COIN_SIZE} />)}
           </View>
         ) : null}
         <V2Pressable accessibilityRole="button" onPress={onOpenAll} style={[s.all, { backgroundColor: p.cta }]} testID="peak-all-button">

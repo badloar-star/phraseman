@@ -14,6 +14,7 @@ jest.mock("../app/stable_id", () => ({ peekStableId: jest.fn(() => "stable-1") }
 import fs from "node:fs";
 import path from "node:path";
 import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
+import { setLearningV2Unlocked } from "../app/learning_v2_visibility_switch";
 import { FACTORY_NATIVE_MANIFEST_V1 } from "../modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated";
 import {
   LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1,
@@ -37,6 +38,12 @@ const locatorFor = (lessonOrdinal: number, sessionOrdinal: number) => ({
   seasonId: "learning-v2",
   lessonOrdinal,
   sessionOrdinal,
+});
+
+// зачем (ночной выпуск 05.11): сервер-гейт learning_v2_audio_coverage_gate проверяет СОДЕРЖИМОЕ бандла, а не видимость V2. Публичная функция материала при скрытом V2
+// (заморозка владельца 04.11) возвращает null — тест не должен зависеть от того, скрыт ли V2 в этот момент, поэтому открывает его на время прогона.
+beforeAll(() => {
+  setLearningV2Unlocked(true, "test:bundle_availability");
 });
 
 function buildVerdict(lessonOrdinal: number, sessionOrdinal: number): Verdict {

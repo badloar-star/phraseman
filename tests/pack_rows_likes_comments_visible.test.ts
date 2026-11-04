@@ -44,6 +44,20 @@ describe('в строках наборов есть сердце, лайки и 
     expect(hub).toContain('authorMeta={{ coinRank: author.coinRank, isPremium: author.isPremium }}');
     expect(hub).toContain('opening={opening}');
   });
+  it('чипы слов вторым рядом: два чипа и «+N» (решение владельца 04.11 «ничего не терять»); Сообщество и «Мои наборы» их передают', () => {
+    expect(row).toContain('words?: readonly string[];');
+    expect(row).toContain('words.slice(0, 2).map((word, index) => <DeckWordChip');
+    expect(row).toContain('`+${words.length - 2}`');
+    expect(read('app/flashcards/FlashcardsCategoryHub.tsx')).toContain('words={deckWords}');
+    expect(read('app/flashcards/MyPacksV2.tsx')).toContain('words={packDeckWords(pack)}');
+  });
+  it('на embedded-вкладке «Сообщество» есть вход «Создать набор»: «+» в шапке сцены ведёт на /community_pack_create', () => {
+    const hub = read('app/flashcards/FlashcardsCategoryHub.tsx');
+    const header = hub.slice(hub.indexOf('{sceneMode ? <><View style={{ flexDirection'), hub.indexOf('</View>{sceneSearchOpen ? <>'));
+    expect(header).toContain('testID="social-catalog-create"');
+    expect(header).toContain("pathname: '/community_pack_create'");
+    expect(read('app/flashcards_packs.tsx')).toContain('sceneMode={embedded}');
+  });
   it('три списка передают trailing с rowHeart', () => {
     expect(read('app/flashcards/FlashcardsCategoryHub.tsx')).toContain('variant="rowHeart"');
     expect(read('app/flashcards/MyPacksV2.tsx')).toContain('variant="rowHeart"');

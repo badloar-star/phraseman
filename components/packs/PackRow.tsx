@@ -232,7 +232,7 @@ export const PackRow = memo(PackRowBase);
 export default PackRow;
 
 /** Rev8 catalog row: one accessible target with live metadata and themed existing artwork. */
-export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, count, testID, onPress, onLongPress, disabled, author, authorMeta, level, note, duration, showArrow = true, a11yActions, trailing, action, opening = false, highlight, emphasis = 'normal' }: Readonly<{
+export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, count, testID, onPress, onLongPress, disabled, author, authorMeta, level, note, duration, showArrow = true, a11yActions, trailing, action, opening = false, highlight, emphasis = 'normal', words }: Readonly<{
   g: GlassTokens; lang: Lang; title: string; count: number; testID: string;
   onPress: () => void; onLongPress?: () => void; disabled?: boolean;
   author?: string | null; level?: string | null; note?: string | null; duration?: string | null; showArrow?: boolean;
@@ -249,6 +249,8 @@ export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, cou
   highlight?: string;
   /** Долгое нажатие: выбранная строка поднята, остальные приглушены. */
   emphasis?: PackRowEmphasis;
+  /** Первые слова набора — вторым рядом: два чипа и «+N» (владелец 04.11: ничего не терять из того, что было). */
+  words?: readonly string[];
 }>) {
   const { isDark } = useTheme();
   const lh = useLineScale();
@@ -279,6 +281,12 @@ export const PackCatalogRow = memo(function PackCatalogRow({ g, lang, title, cou
             {/* зачем: цель касания сердца 44 dp перекрывает соседние строки текста, а не раздувает высоту строки (минус по вертикали) */}
             {opening ? <ActivityIndicator size="small" color={g.secondary} /> : trailing ? <View style={{ marginVertical: -12 }}>{trailing}</View> : null}
           </View>
+          {words && words.length > 0 ? (
+            <View testID={`${testID}-words`} style={{ flexDirection: 'row', gap: 6, marginTop: 8 }}>
+              {words.slice(0, 2).map((word, index) => <DeckWordChip key={`${index}:${word}`} g={g} word={word} lineHeight={lh(18)} />)}
+              {words.length > 2 ? <View style={[styles.deckChip, { flex: 0, minWidth: 44, alignItems: 'center', backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}><Text style={[styles.deckChipText, { color: g.secondary, lineHeight: lh(18) }]}>{`+${words.length - 2}`}</Text></View> : null}
+            </View>
+          ) : null}
         </View>
         {action}
         {showArrow && !hasSide ? <Ionicons name="chevron-forward" size={20} color={g.secondary} /> : null}

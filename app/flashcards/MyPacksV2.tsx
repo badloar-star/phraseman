@@ -17,7 +17,7 @@ import { QuietEmptyState } from '../../components/cards-grid/QuietEmptyState';
 import { PackCatalogRow, PackDeckPlayButton } from '../../components/packs/PackRow';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { hapticTap } from '../../hooks/use-haptics';
-import { packDeckLevel, packDeckSkeletonHeight } from '../../components/packs/packDeckModel';
+import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
 import { noteSkeletonGeom } from '../skeleton_geom_log';
 import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
 import { communityAuthorLabel, officialPackAuthorName } from '../community_packs/packAuthorNames';
@@ -141,6 +141,7 @@ function MyPacksV2Inner(props: Props) {
         count={pack.cardCount}
         level={packDeckLevel(pack)}
         author={authorName}
+        words={packDeckWords(pack)}
         note={pack.isPendingUpdateReview ? reviewNote : null}
         a11yActions={[{ name: 'train', label: copy.train, run: () => onTrain(pack) }]}
         testID={`fc-my-packs-pack-${pack.id}`}

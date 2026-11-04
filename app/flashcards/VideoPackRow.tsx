@@ -176,14 +176,15 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
       pl: pluralWord(lang, pack.cardCount, { one: 'fraza', few: 'frazy', many: 'fraz' }),
     })}`;
   if (variant === 'catalog') {
-    return <PackCatalogRow g={g} lang={lang} title={title} count={pack.cardCount} duration={duration} testID={`video-pack-open-row-${pack.id}`} disabled={disabled || opening} onPress={() => { void hapticTap(); onOpen(pack); }} trailing={pack.isCommunityUgc ? <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="rowHeart" /> : undefined} />;
+    return <PackCatalogRow g={g} lang={lang} title={title} count={pack.cardCount} duration={duration} testID={`video-pack-open-row-${pack.id}`} disabled={disabled || opening} onPress={() => onOpen(pack)} trailing={pack.isCommunityUgc ? <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="rowHeart" /> : undefined} />;
   }
   if (!plain) {
     // зачем (владелец 12.10, cards-v2 videoAll()): раздел «Из видео» — крупные карточки роликов: кадр 16:9 r18 на всю ширину, длительность,
     // полоса просмотра, под ним название 19/700 и «N фраз» слева и «Добавить +» справа. Вся карточка открывает набор (экран набора из видео);
     // сам ролик открывается ▶ на экране набора. Полоса просмотра скрыта, пока поля нет (packVideoProgress).
     const progress = packVideoProgress(pack);
-    const open = () => { void hapticTap(); onOpen(pack); };
+    // зачем (владелец: вибрация только на управляющих кнопках, не на строках и плитках; координатор 05.11): открытие строки набора — без вибрации
+    const open = () => onOpen(pack);
     return (
       <View testID={`video-pack-row-${pack.id}`} style={{ opacity: disabled ? 0.55 : 1 }}>
         <KitTouchable testID={`video-pack-open-row-${pack.id}`} accessibilityRole="button" accessibilityLabel={`${title}. ${phrasesText}`} accessibilityState={{ disabled }} disabled={disabled} onPress={open}>
@@ -224,7 +225,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
   return (
     <View testID={`video-pack-row-${pack.id}`} style={{ opacity: disabled ? 0.55 : 1 }}>
       <Wrapper g={g} plain={plain} style={styles.card}>
-        <RowShell plain={plain} disabled={disabled} onPress={() => { void hapticTap(); onOpen(pack); }} label={`${title}. ${phrasesText}`} testID={`video-pack-open-row-${pack.id}`}>
+        <RowShell plain={plain} disabled={disabled} onPress={() => onOpen(pack)} label={`${title}. ${phrasesText}`} testID={`video-pack-open-row-${pack.id}`}>
           {/* Кадр ролика — СВОЯ цель тапа: открывает видео, а не набор. */}
           <Pressable
             testID={`video-pack-play-${pack.id}`}
@@ -233,10 +234,10 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
             accessibilityState={{ disabled }}
             disabled={disabled}
             onPress={() => {
-              void hapticTap();
               // зачем (владелец 11.10, «при нажатии на сам блок должен открываться набор фраз»): во вкладке «Наборы» обложка — часть блока и
               // открывает страницу набора; во внешний YouTube кадр ведёт только в разделе «Карточки» (прежнее поведение).
               if (plain) { onOpen(pack); return; }
+              void hapticTap(); // зачем: ▶ на кадре — управляющая кнопка (внешний ролик), вибрация остаётся; открытие строки (plain) — без неё
               void openVideo(pack.videoId, () => emitAppEvent('action_toast', videoFailed));
             }}
             style={({ pressed }) => [plain ? styles.thumbPlain : styles.thumb, { backgroundColor: g.buttonFill, opacity: pressed ? 0.8 : 1 }]}
@@ -267,7 +268,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
               accessibilityLabel={`${title}. ${phrasesText}`}
               accessibilityState={{ disabled }}
               disabled={disabled}
-              onPress={() => { void hapticTap(); onOpen(pack); }}
+              onPress={() => onOpen(pack)}
               style={StyleSheet.absoluteFill}
             />
             {/* зачем (Сверка cards-section-024, координатор 12.10): в узкой колонке строки вкладки «Наборы» длинное название («…500 фраз.docx») переносилось на 8–10 строк;

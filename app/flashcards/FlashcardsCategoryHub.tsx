@@ -334,6 +334,7 @@ function CommunityPackRowBase({
       emphasis={emphasis}
       highlight={highlight}
       opening={opening}
+      words={deckWords}
       showArrow={!sceneMode}
       onPress={onOpen}
       onLongPress={onLongPress}
@@ -895,8 +896,7 @@ export default function FlashcardsCategoryHub({
           onLongPress={
             showReportShortcut
               ? () => {
-                  void hapticTap();
-                  setMenuPack((cur) => (cur === pack.id ? null : pack.id));
+                  setMenuPack((cur) => (cur === pack.id ? null : pack.id)); // зачем (владелец): долгое нажатие по строке — без вибрации
                 }
               : undefined
           }

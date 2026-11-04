@@ -69,4 +69,13 @@ describe('экран Пика, вариант B', () => {
     (globalThis as { __DEV__?: boolean }).__DEV__ = prevDev;
     expect(fs.readFileSync(path.join(root, 'app/dev_spire_preview.tsx'), 'utf8')).toContain("setPeakScreenV2DevOverride(params.peakB === '1' ? true : null)");
   });
+
+  it('превью Шпиля понимает ?appearance=light|dark и вход в «Все участники» только в состоянии all', () => {
+    const dev = fs.readFileSync(path.join(root, 'app/dev_spire_preview.tsx'), 'utf8');
+    expect(dev).toContain("params.appearance === 'light' || params.appearance === 'dark'");
+    expect(dev).toContain('return () => setDevAppearance(previous);');
+    const fixtures = fs.readFileSync(path.join(root, 'components/spire/spire_preview_fixtures.ts'), 'utf8');
+    expect((fixtures.match(/showAll: true/g) ?? []).length).toBe(1);
+    expect(fixtures).toMatch(/case 'all':\s*\n\s*return \{ \.\.\.base, showAll: true/);
+  });
 });

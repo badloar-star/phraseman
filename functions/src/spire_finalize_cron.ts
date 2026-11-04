@@ -50,6 +50,7 @@ import { payoutSpireWeekReward } from './spire_week_payout';
 import { SPIRE_GROUPS_COLLECTION, spireWeekId } from './spire_groups';
 import { isSpireResidentMember, spireWeekStartMs } from './spire_residents';
 import { runSpireWeekResultPush, type SpireWeekResultPushInput } from './spire_week_result_push';
+import { spireEnergyDeltaForWeek } from '../../shared/spire_energy_bonus';
 
 const LOG = '[SPIRE-FINALIZE]';
 // зачем 200 комнат на страницу при выплатах: каждая комната теперь ещё и
@@ -242,8 +243,10 @@ export const spireFinalizeCron = onSchedule(
           });
           if (result.newTier !== result.prevTier) {
             // merge: карта spireTiers сливается по ключам — другие языки не трогаем.
+            // зачем (энергия от Пика, владелец 04.11): дельта запаса лежит по КЛЮЧУ НЕДЕЛИ — повтор финализа перезаписывает ту же запись, не удваивая
             await add((b) => b.set(db.collection('leaderboard').doc(uid), {
               spireTiers: { [lang]: result.newTier },
+              spireEnergyDeltas: { [lang]: { [weekId]: spireEnergyDeltaForWeek(result.prevTier, result.newTier) } },
             }, { merge: true }));
             tierWrites++;
           }

@@ -104,7 +104,8 @@ describe('first real assets (adfaa8c34) and set choice', () => {
     for (const brightness of ['dark', 'light'] as const) {
       const spire = resolveThemedArt('spire_tile', brightness);
       expect(spire.origin).toBe('v2art');
-      expect(spire.accent).not.toBeNull();
+      // зачем (владелец 04.11): плитка Пика — одна готовая корона (графит/платина), без слоя .accent и без перекраски по слоям — иначе окрас «рваный» в светлой теме
+      expect(spire.accent).toBeNull();
     }
   });
 

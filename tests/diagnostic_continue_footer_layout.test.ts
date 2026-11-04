@@ -21,7 +21,9 @@ describe('diagnostic continue button layout', () => {
     const parts = fs.readFileSync(path.join(__dirname, '..', 'components', 'level-exam', 'ExamGlassParts.tsx'), 'utf8');
     expect(parts).toContain('paddingBottom: Math.max(16, bottomInset + 8)');
     const cta = fs.readFileSync(path.join(__dirname, '..', 'components', 'practice', 'PracticeStates.tsx'), 'utf8');
-    expect(cta).toContain('accessibilityRole="button"');
+    // роль «кнопка» даёт V2Pressable (UX-волна 2, 04.11): PracticeCta собрана на нём
+    expect(cta).toContain('<V2Pressable');
+    expect(fs.readFileSync(path.join(__dirname, '..', 'components', 'v2', 'V2Pressable.tsx'), 'utf8')).toContain('accessibilityRole="button"');
     expect(cta).toContain('minHeight: 48');
   });
 });

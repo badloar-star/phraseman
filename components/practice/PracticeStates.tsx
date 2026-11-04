@@ -1,11 +1,12 @@
 import KitProgressFill from '../KitProgressFill';
 import React from 'react';
-import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { PracticeGlass } from './PracticeChrome';
 import { KitCtaGloss, KitGlassLayer } from '../v2/KitLiquidGlass';
 import { plateBoxShadow } from '../v2/ShadowSurface';
+import V2Pressable from '../v2/V2Pressable';
 
 // зачем (владелец 2026-09-30, второй проход practice.html): служебные состояния тренировок
 // (пусто / мало карточек / ошибка загрузки / данные тренировки не открылись), строка
@@ -37,22 +38,23 @@ export function PracticeCta({
 }: PracticeCtaProps) {
   const small = size === 'small';
   const ink = disabled ? glass.mutedText : glass.ctaInk;
+  // зачем (UX-волна 2, 04.11, владелец одобрил; Дизайн 840df7249): все кнопки практики идут через V2Pressable — единый отклик (масштаб + затемнение,
+  // при Reduce Motion только затемнение) вместо собственного scale без анимации. Вибрация включена явно: это управляющая кнопка (CTA), а не строка/плитка.
+  const inactive = !!disabled || !onPress;
   return (
-    <Pressable
+    <V2Pressable
       testID={testID}
-      accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? label}
-      accessibilityState={{ disabled: !!disabled }}
-      disabled={disabled || !onPress}
+      disabled={inactive}
       onPress={onPress}
-      style={({ pressed }) => [
+      withHaptic
+      outerStyle={[small ? styles.ctaOuterSmall : styles.ctaOuter, style]}
+      style={[
         small ? styles.ctaSmall : styles.cta,
         {
           backgroundColor: disabled ? glass.buttonFill : glass.cta,
           opacity: disabled ? 0.72 : 1,
-          transform: [{ scale: pressed && !disabled ? 0.98 : 1 }],
         },
-        style,
       ]}
     >
       {/* зачем (координатор 05.10): кнопка всегда цвета cta — глянец .cta макета в тёмных темах; в светлых cta тёмная, глянец не нужен. */}
@@ -64,7 +66,7 @@ export function PracticeCta({
           <Ionicons name="arrow-forward" size={20} color={ink} />
         </View>
       ) : null}
-    </Pressable>
+    </V2Pressable>
   );
 }
 
@@ -196,13 +198,16 @@ export function PracticeQuestionCard({
 }
 
 const styles = StyleSheet.create({
+  // место кнопки в родителе (ширина/выравнивание) живёт на внешней зоне нажатия, вид — на сжимающемся слое V2Pressable
+  ctaOuter: { width: '100%' },
+  ctaOuterSmall: { alignSelf: 'center' },
   cta: {
-    minHeight: 48, borderRadius: 24, width: '100%', paddingHorizontal: 52,
+    minHeight: 48, borderRadius: 24, paddingHorizontal: 52,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12,
   },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   ctaSmall: {
-    minHeight: 44, borderRadius: 22, paddingHorizontal: 18, alignSelf: 'center',
+    minHeight: 44, borderRadius: 22, paddingHorizontal: 18,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10,
   },
   ctaSmallText: { fontSize: 16, lineHeight: 21, fontWeight: '600', textAlign: 'center' },

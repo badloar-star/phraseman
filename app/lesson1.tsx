@@ -144,6 +144,7 @@ import { isDevLessonIntroSkip } from './dev_cards_state';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { withComboPlusGate } from './combo_lesson_gate';
 import { MOTION_DURATION } from '../constants/motion';
+import { mergeLessonProgressForSave, restoreLessonProgressPreserving } from './classic_progress_preserve';
 import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { recordHomeContinueLegacy } from './home_continue_mark';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
@@ -2312,6 +2313,10 @@ function LessonScreen() {
   // Тему текущей фразы нельзя брать из маршрута — её определяет сама фраза
   // (см. comboLessonIdByPhraseId ниже), иначе «Теория» открывала бы чужую тему.
   const phraseOrderRef = useRef<number[]>(initialOrderFromPrime);
+  // зачем (владелец 04.11, прогресс начатого курса не пропадает): хвост сохранённых отметок за границей длины НОВОГО урока
+  // и «порядок фраз ждёт записи» — оба хранятся как есть и пишутся обратно только вместе с новым ответом.
+  const progressTailRef = useRef<string[]>([]);
+  const orderPersistPendingRef = useRef(false);
   const getPhraseForCell = (cell: number): any => {
     if (!LESSON_DATA || LESSON_DATA.length === 0) return null;
     const order = phraseOrderRef.current;
@@ -3032,11 +3037,12 @@ function LessonScreen() {
         AsyncStorage.setItem(SERVER_ATTEMPT_KEY, serverAttemptId).catch(noteSwallowedHandler('lesson1:loadData.setItem_2'));
       }
 
-      let restoredProgress = new Array(effectiveTotal).fill('empty');
-      if (sp) {
-        const p: string[] = JSON.parse(sp);
-        if (p.length === effectiveTotal) restoredProgress = p;
-      }
+      // зачем: раньше при несовпадении длины брался пустой массив и затем перезаписывал сохранённый прогресс. Теперь отметки
+      // приводятся к длине урока без потерь (короче — пустые ячейки в конце; длиннее — хвост хранится как есть).
+      const restoredLessonProgress = restoreLessonProgressPreserving(sp, effectiveTotal);
+      const restoredProgress = restoredLessonProgress.view;
+      progressTailRef.current = restoredLessonProgress.tail;
+      console.log('[CLASSIC-PROGRESS] restore', JSON.stringify({ lessonId, studyTarget: originTarget, reason: restoredLessonProgress.reason, storedLength: restoredLessonProgress.storedLength, total: effectiveTotal, tail: restoredLessonProgress.tail.length })); // guard-ok: ветвление восстановления
       setProgress(restoredProgress);
 
       // Очередь «повтори ошибку через один» — только в памяти → терялась после модалки энергии / remount.
@@ -3133,22 +3139,29 @@ function LessonScreen() {
             if (isValidLessonPhraseOrder(parsed, n)) {
               restoredOrder = parsed;
             } else {
-              AsyncStorage.removeItem(ORDER_KEY).catch(noteSwallowedHandler('lesson1:loadData.removeItem'));
+              // зачем (прогресс не пропадает): сохранённый порядок не подошёл новому уроку — НЕ удаляем, порядок на этот заход в памяти
+              console.log('[CLASSIC-PROGRESS] order:invalid_kept', JSON.stringify({ lessonId, n, savedLength: Array.isArray(parsed) ? parsed.length : null })); // guard-ok: ранний выход с причиной
             }
-          } catch {
-            AsyncStorage.removeItem(ORDER_KEY).catch(noteSwallowedHandler('lesson1:loadData.removeItem_2'));
+          } catch (orderError) {
+            console.warn('[CLASSIC-PROGRESS] order:unreadable_kept', orderError instanceof Error ? orderError.message : String(orderError));
           }
         }
         if (restoredOrder) {
           phraseOrderRef.current = restoredOrder;
         } else {
           phraseOrderRef.current = shuffleLessonPhraseOrder(n);
-          // Сохраняем новый порядок сразу
-          AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(noteSwallowedHandler('lesson1:loadData.setItem_3'));
+          if (savedOrder) {
+            // зачем: старый порядок лежит в хранилище нетронутым; новый запишется вместе с первым ответом
+            orderPersistPendingRef.current = true;
+          } else {
+            // Сохраняем новый порядок сразу (сохранённого не было — терять нечего)
+            AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(noteSwallowedHandler('lesson1:loadData.setItem_3'));
+          }
         }
       } else if (LESSON_DATA.length > 0 && !hasUsableLessonPhraseOrder(phraseOrderRef.current, LESSON_DATA.length)) {
         phraseOrderRef.current = shuffleLessonPhraseOrder(LESSON_DATA.length);
-        AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(noteSwallowedHandler('lesson1:loadData.setItem_4'));
+        // зачем (прогресс не пропадает): запись откладывается до ответа
+        orderPersistPendingRef.current = true;
       }
 
       setCellIndex(startCell);
@@ -3460,7 +3473,13 @@ function LessonScreen() {
     }
 
     const nextCell = (cellIndex + 1) % effectiveTotal;
-    void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_3'));
+    // зачем (прогресс не пропадает): хвост старых отметок дописывается обратно, число пройденного не уменьшается
+    const npForStorage = mergeLessonProgressForSave(np, progressTailRef.current);
+    if (orderPersistPendingRef.current) {
+      orderPersistPendingRef.current = false;
+      AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(noteSwallowedHandler('lesson1:orderPersistAfterAnswer'));
+    }
+    void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(npForStorage)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_3'));
     void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_4'));
     touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress: np, override: overridePhraseCell }, studyTargetRef.current);
 

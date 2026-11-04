@@ -1,6 +1,9 @@
 # Ядро · классические курсы EN/ES/FR/DE/IT вшиваются в сборку (04.11)
 
 Governance-ID: TG-D0259739868D
+Governance-ID: TG-FC7F06CB6E92
+Governance-ID: TG-CF0E49B1D658
+Governance-ID: TG-F35005AB28FE
 Status: In progress
 Owner: 1 · ЯДРО (поручение координатора, решение владельца 04.11)
 

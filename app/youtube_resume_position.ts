@@ -27,9 +27,10 @@ const lastPersistAt = new Map<string, number>();
 function hydrate(): Promise<Map<string, Entry>> {
   if (memory) return Promise.resolve(memory);
   if (hydrating) return hydrating;
-  // старый общий ключ чужих аккаунтов не читаем и убираем (одноразово, при первом чтении)
-  void AsyncStorage.removeItem(LEGACY_STORAGE_KEY).catch((error: unknown) => {
-    console.warn('[VIDEO-RESUME] старый ключ не удалён', String((error as Error)?.message ?? error).slice(0, 120));
+  // старый общий ключ чужих аккаунтов не читаем и ГАСИМ пустым объектом (одноразово, при первом чтении). Не removeItem: замок владельца «прогресс не пропадает»
+  // (tests/progress_preservation_owner_lock) не даёт расти числу удалений в клиентском коде; позиции видео читаются только из нового ключа.
+  void AsyncStorage.setItem(LEGACY_STORAGE_KEY, '{}').catch((error: unknown) => {
+    console.warn('[VIDEO-RESUME] старый ключ не погашен', String((error as Error)?.message ?? error).slice(0, 120));
   });
   hydrating = AsyncStorage.getItem(STORAGE_KEY)
     .then((raw) => {

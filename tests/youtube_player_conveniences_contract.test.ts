@@ -29,7 +29,7 @@ describe('проводка', () => {
   it('позиция ролика — в стираемом семействе story_events_v1:, старый общий ключ убирается', () => {
     const src = read('app/youtube_resume_position.ts');
     expect(src).toContain("'story_events_v1:youtube_resume'");
-    expect(src).toContain("removeItem(LEGACY_STORAGE_KEY)");
+    expect(src).toContain("setItem(LEGACY_STORAGE_KEY, '{}')"); // гасим, а не удаляем — замок владельца на removeItem
   });
   it('мост скорости в странице плеера; плеер подключает ряд кнопок', () => {
     expect(read('app/lingman_youtube.ts')).toContain('window.__lingmanRate');

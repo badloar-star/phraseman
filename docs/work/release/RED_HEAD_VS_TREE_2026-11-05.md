@@ -1,0 +1,112 @@
+# Красные тесты ночи 05.11: HEAD против рабочего дерева
+
+Метод. (1) Полный jest на рабочем дереве (3443 файла, 27544 теста): красных 110 файлов / 155 тестов. (2) Те же 110 файлов на экспорте HEAD (`git archive`, срез ~21:05, HEAD 3fd4a0068; worktree/stash запрещены хуком). Экспорт ЧАСТИЧНЫЙ (код, tests, docs/design, config) — тесты, которым нужны другие каталоги (runtime-probes, store_release_stubs, lib, jest.sunday-sheet.config), на экспорте красные из-за экспорта, а не кода — они вынесены в «артефакт экспорта».
+
+## Красные в дереве, на HEAD ЗЕЛЁНЫЕ — 22: ломает чужой незакоммиченный WIP (исчезнет с коммитом/исправлением автора WIP)
+- `a4_decisions_contract.test.ts` — Error: expect(received).toBeLessThanOrEqual(expected) Expected: <= 400 Received: 401 at Object.<anonymous> (C:\appsprojects\phraseman\tests\a4_decisio
+- `achievements.test.ts` — Error: expect(received).toBe(expected) // Object.is equality Expected: 41 Received: 131 at Object.<anonymous> (C:\appsprojects\phraseman\tests\achieve
+- `audio_player_arbiter_guard.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 3 - Array [] + Array [ + "modules/classic-course-v1/classic_sta
+- `learning_v2_accepted_green_prefix_runtime.test.ts` — Error: expect(received).not.toBeNull() Received: null at C:\appsprojects\phraseman\tests\learning_v2_accepted_green_prefix_runtime.test.ts:85:26 at Ob
+- `learning_v2_bundle_availability.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 1794 Object { - "brokenReleased": Array [], + "brokenReleased":
+- `learning_v2_bundled_session_material.test.ts` — Error: expect(received).toMatchObject(expected) Matcher error: received value must be a non-null object Received has value: null at Object.<anonymous>
+- `learning_v2_course_released_session_client_v3.test.ts` — Error: expect(received).toBe(expected) // Object.is equality Expected: "learning_v2_factory_session_unavailable" Received: "learning_v2_disabled_by_ow
+- `learning_v2_sessions_without_word_cards_contract.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 43 - Array [] + Array [ + "s16: материал не собирается", + "s17
+- `learning_v2_visibility_switch_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "if (initial === \"v2\" && !learningV2CanOpen) {" Received string: "import 
+- `lesson1_energy_gate_close_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "if (energyGateBlockedRef.current) {" Received string: "const checkAnswer =
+- `lesson_first_try_counts.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "const firstTry = lessonFirstTryCountsFromProgress(p, peekLessonRunMissCoun
+- `lesson_was_perfect_first_try.test.ts` — Error: expect(received).toMatch(expected) Expected pattern: /const firstTry = lessonFirstTryCountsFromProgress\(p, peekLessonRunMissCount\(lessonId\)\
+- `moments_effect_restart_guard.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 3 - Array [] + Array [ + "components/streak/moments/StreakConfe
+- `onboarding_aha_theme_palette.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 22 - Array [] + Array [ + "graphite/dark кнопка записи: 2.43 < 
+- `pack_rows_likes_comments_visible.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "testID=\"social-catalog-create\"" Received string: "{sceneMode ? <><View s
+- `phrase_workshop_wiring_2026_10_25.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "const didUnlock = workshopActive ? false : await tryUnlockNextLesson(" Rec
+- `scene_theme_single_source_guard.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 18 - Array [] + Array [ + "rose/dark: кнопка #E1A4B2 на фоне < 
+- `spire_home_week_module.test.ts` — Error: expect(received).toBeLessThanOrEqual(expected) Expected: <= 400 Received: 401 at Object.<anonymous> (C:\appsprojects\phraseman\tests\spire_home
+- `spire_moments_v3_contract.test.tsx` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 3 - Array [] + Array [ + "components/spire/spire_week_energy.ts
+- `spire_tower_window_height.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "scrollEnabled={!towerTouch.locked}" Received string: "// ═════════════════
+- `text_integrity_probe.test.ts` — Error: expect(received).not.toThrow() Error name: "Error" Error message: "crypto initialized" 322 | }); 323 | jest.doMock('expo-crypto', () => { > 324
+- `today_tasks_week_2026_10_22.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "if (previous) void recordTodayWeekDay(ownerKey, previous);" Received strin
+
+## Красные и на HEAD (без признаков артефакта экспорта) — 62: реально красные в закоммиченном коде/тестах
+- `android_clipping_crash_guard.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 8 - Array [] + Array [ + "components/dialogs/hub/DialogueV2Them
+- `app_messages_read_persistence_ui_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "{message.unread ? <View pointerEvents=\"none\" style={styles.unreadDot} />
+- `audio_completion_ceremony_not_cut_contract.test.ts` — Error: expect(received).toBeGreaterThanOrEqual(expected) Expected: >= 0 Received: -1 at Object.<anonymous> (C:\Temp\claude\headx\tests\audio_completio
+- `back_glyph_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "NavIcon" Received string: "import React from 'react'; import { StyleSheet,
+- `button_audit_design_fixes_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "const hasSavedRow = !savedOnly && savedVideos.length > 0;" Received string
+- `button_fill_sweep_guard.test.ts` — Error: кнопок с opaqueControl: 7 > 0 app/_layout.tsx:4065 components/dialogs/scene/DialogsScenePanel.tsx:69 components/dialogs/scene/DialogsScenePanel
+- `button_row_gap_guard.test.ts` — Error: узких рядов кнопок: 1 > 0 components/youtube/YoutubePlayerConveniences.tsx:59 gap=8 at Object.<anonymous> (C:\Temp\claude\headx\tests\button_ro
+- `cards_pack_opt_ui_gaps_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "[OPT-UI] pack_like ignored reason=add_in_flight" Received string: "const o
+- `cards_set_header_safe_area_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.
+- `daily_poll_card_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "fallback={dailyPollCard}" Received string: "import React, { useState, useE
+- `dialogue_v2_plus_tools.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "t.plus.bg" Received string: "import { PlusMark } from '../plus/PlusMark';·
+- `energy_state_v2.test.ts` — Error: expect(received).toBe(expected) // Object.is equality Expected: 5 Received: 15 at Object.<anonymous> (C:\Temp\claude\headx\tests\energy_state_v
+- `english_ui_enable_preflight.test.ts` — Error: Command failed: C:\Program Files\nodejs\node.exe C:\Temp\claude\headx\scripts\scan_missing_en_dictionaries.mjs fatal: not a git repository (or 
+- `firestore_rules_security.test.ts` — Error: expect(received).toMatch(expected) Expected pattern: /lesson_progress_v2::fr::\(\?:\\d\+\|lesson\\d\+_\(\?:best_score\|pass_count\|progress\|ce
+- `flashcards_entry_fail_open_contract.test.ts` — Error: expect(received).toMatch(expected) Expected pattern: /let swipeLocalStart[\s\S]{0,200}try \{/ Received string: "import { useStableSafeAreaInset
+- `flashcards_recall_pending_start_behavior.test.ts` — ● Test suite failed to run TypeError: Cannot read properties of undefined (reading 'OS') 265 | export const STORE_URL_IOS = 'https://apps.apple.com/ap
+- `flashcards_training_target_language_behavior.test.ts` — ● Test suite failed to run TypeError: Cannot read properties of undefined (reading 'OS') 265 | export const STORE_URL_IOS = 'https://apps.apple.com/ap
+- `home_continue_mark_p23.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, ho
+- `home_first_frame_defer_2026_10_22.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "const heroReady = useAfterFirstFrame('home:hero');" Received string: "impo
+- `i18n_missing_en_fallback.test.ts` — Error: Command failed: C:\Program Files\nodejs\node.exe C:\Temp\claude\headx\scripts\scan_direct_lang_index.mjs fatal: not a git repository (or any of
+- `learning_v2_mode_feedback_lane.test.tsx` — ● Test suite failed to run TypeError: Cannot read properties of undefined (reading 'OS') 457 | (() => { 458 | const p = STRINGS.premium; > 459 | if (P
+- `learning_v2_session_intro_feedback_behavior.test.tsx` — Error: Unable to find an element with testID: learning-v2-intro-answer-0 at Object.<anonymous> (C:\Temp\claude\headx\tests\learning_v2_session_intro_f
+- `learning_v2_system_tts_only.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "systemTtsOnly: true" Received string: "import AsyncStorage from \"@react-n
+- `legacy_free_lesson_wiring_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "requiresPremiumForLesson(to, effectiveLegacyFreeLessonCap)" Received strin
+- `lesson_exit_sheet_contract.test.tsx` — Error: expect(received).toContain(expected) // indexOf Expected substring: "void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np))" Received string
+- `lesson_gate_first_frame_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "openLessonPremiumPaywall(router, lessonId);" Received string: "import Reac
+- `lesson_result_exam_unlock_note_r58.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: ": undefined, examUnlockNote ? examUnlockNoteText(lang, examUnlockNote) : u
+- `lessons_list_copy_ratchet_2026_10_26.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 10 - Array [] + Array [ + Array [ + "app/learning_v2_visibility
+- `level_exam_v2_route_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "const { hasPremiumAccess } = usePremium()" Received string: "import React,
+- `modal_theme_hardcode_guard.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 4 - Array [] + Array [ + "components/dialogs/scene/use_dialogs_
+- `motion_hybrid_runtime_safety_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "<Reanimated.View style={[styles.toastCard" Received string: "import React,
+- `native_intent_referral.test.ts` — Error: expect(received).toBe(expected) // Object.is equality Expected: "/(tabs)/lessons" Received: "/lessons_list" at Object.<anonymous> (C:\Temp\clau
+- `number_noun_pairs_guard.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 15 - Array [] + Array [ + "app/(tabs)/home.tsx:2989 subtitle: t
+- `owner_locks_announcements_2026_10_28.test.ts` — Error: expect(received).toBe(expected) // Object.is equality Expected: true Received: false at Object.<anonymous> (C:\Temp\claude\headx\tests\owner_lo
+- `paywall_c_native_render.test.tsx` — ● Test suite failed to run Jest encountered an unexpected token Jest failed to parse a file. This happens e.g. when your code or its dependencies use 
+- `paywall_context_headline_contract.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 11 - Array [] + Array [ + "language_add/ru", + "language_add/uk
+- `perf_freeze_contract.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 4 - Array [] + Array [ + "components/scene/SceneStarTwinkle.tsx
+- `phone_state_legacy_inventory.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 1 Object { - "status": 0, + "status": 1, "stderr": "", } at Obj
+- `phrase_clip_original_rate_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "const safeRate = normalizeSpeechRate(" Received string: "import { useCallb
+- `pm230_firestore_rules_least_privilege.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 5 Object { - "extra": Array [], + "extra": Array [ + "/communit
+- `progress_preservation_owner_lock_2026_11_04.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 3 - Array [] + Array [ + "app/youtube_resume_position.ts: 1 > 0
+- `r1_diff_one_fix_group1_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}" Received string: "// Э
+- `referral_ladder_2026_10_29.test.tsx` — Error: expect(received).toContain(expected) // indexOf Expected substring: "'ghost_friend_ab', 'referral_ladder_enabled'" Received string: "// ═══════
+- `registration_prompt_responsive_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "if (loadingProvider !== null && !signInSlow) return;" Received string: "co
+- `render_test_registry_contract.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 3 - Array [] + Array [ + "tests/paywall_admin_controls_render.t
+- `screen_back_content_below_contract.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 4 - Array [] + Array [ + "app/dev_community_scene_preview.tsx",
+- `screen_titles_font_scale_cap_contract.test.ts` — Error: expect(received).toBeGreaterThan(expected) Expected: > 0 Received: -1 at C:\Temp\claude\headx\tests\screen_titles_font_scale_cap_contract.test.
+- `scroll_inertia_contract.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 10 - Array [] + Array [ + "app\\dev_community_scene_preview.tsx
+- `season_shared_modal.test.tsx` — Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You lik
+- `skeleton_geom_log.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "geomScreen=\"cards_hub\"" Received string: "/** * Cards 2.1 §1–§3 — КАТАЛО
+- `source_guard_eol_normalized_contract.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 18 - Array [] + Array [ + "tests/admin_account_delete_variant_b
+- `speech_beat_audioend_session_lifecycle.test.ts` — ● Test suite failed to run TypeError: Cannot read properties of undefined (reading 'OS') 457 | (() => { 458 | const p = STRINGS.premium; > 459 | if (P
+- `spire_all_members_profile.test.tsx` — ● Test suite failed to run TypeError: Cannot read properties of undefined (reading 'create') 109 | } 110 | > 111 | const s = StyleSheet.create({ | ^ 1
+- `spire_d190_client.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "5 последних по монетам за неделю спускаются" Received string: "A, B, C… и 
+- `story_templates_v1_2026_10_28.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "'stories', 'announcements'] as const" Received string: "// ═══════════════
+- `themed_art_guard.test.ts` — Error: expect(received).toEqual(expected) // deep equality - Expected - 1 + Received + 6 - Array [] + Array [ + Array [ + "dark/cards.accent.webp", + 
+- `today_poll_on_today_screen_2026_10_22.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "pollRow={pollRow}" Received string: "// ══════════════════════════════════
+- `today_scene_theme_level.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "tokens.scrim" Received string: "import Ionicons from '@expo/vector-icons/I
+- `today_scene_wiring_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "<LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}" Received s
+- `today_tasks_ring_screen.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "<HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColo
+- `ui_lang_not_narrowed_contract.test.ts` — Error: expect(received).toMatch(expected) Expected pattern: /<FlashcardsCategoryHub\s+lang=\{lang\}/ Received string: "/** * Cards 2.1 §5.3 — каталог 
+- `video_tab_virtualized_list_contract.test.ts` — Error: expect(received).toContain(expected) // indexOf Expected substring: "allVideos.slice(0, pages * ALL_VIDEOS_PAGE_SIZE)" Received string: "import
+
+## Красные на экспорте из-за недостающих каталогов (не оценены) — 19
+- `account_provision_lock_android_runtime_entrypoint.test.ts`
+- `admin_legacy_detailed_analytics_contract.test.ts`
+- `admin_revenue_analytics_contract.test.ts`
+- `app_events_overlay_registry.test.ts`
+- `audio_never_permanently_silent_contract.test.ts`
+- `dev_dialog_feedback_fixture.test.ts`
+- `dialogs_chain7_fixes_contract.test.ts`
+- `flashcards_speaking_quota_unavailable_behavior.test.ts`
+- `kimi_voice_capture_session_lifecycle.test.ts`
+- `learning_v2_locale_gate.test.ts`
+- `learning_v2_scripted_repeat_player_lifecycle.test.tsx`
+- `learning_v2_theory_v1.test.ts`
+- `light_accent_graphics_ratchet.test.ts`
+- `max_removed_contract.test.ts`
+- `owner_locks_exam_episode_words_2026_10_25.test.ts`
+- `paywall_m_flag_fork_2026_10_25.test.ts`
+- `spire_scene_contract.test.ts`
+- `test_runner_coverage_contract.test.ts`
+- `video_pack_owned_from_local_ids.test.ts`

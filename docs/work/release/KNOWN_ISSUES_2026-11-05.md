@@ -36,3 +36,19 @@
 - components/paywall/PaywallPlanRows.tsx: золото скидки `#FFD27A` и чернила `#3A2700` — смысловой цвет «выгода», решение владельца (помечено theme-exempt).
 - Тёмный градиент низа сцены сообщества УДАЛЁН (коммит этого аудита), сторож tests/community_scene_no_bottom_scrim_contract.test.ts.
 - Контраст по активным темам не перепроверен полностью: снимать на Сверке.
+
+## Красные тесты ночи: что не блокирует выпуск (сессия «Моменты», 05.11)
+
+Полный разбор — `docs/work/release/RED_HEAD_VS_TREE_2026-11-05.md` (HEAD против рабочего дерева) и `RED_TESTS_2026-11-05.md` (по зонам). Полный jest на дереве: 3443 файла / 27544 теста, красных 110 файлов / 155 тестов (до моих правок); из них 22 зелёные на чистом HEAD (ломает чужой незакоммиченный WIP) и около 62 красные и на HEAD.
+
+- **Сторожа-исходники, отставшие от кода (около 44):** тесты читают текст файла и ждут старую строку/структуру после ночных рефакторингов (сцена «Сегодня», каталог видео, пейвол, экзамены, лесенка). Поведение приложения не меняют. Не блокирует; владельцы — по зонам из `RED_TESTS_2026-11-05.md`. Часть уже актуализирована (коммит 723c84038).
+- **Тесты без окружения react-native (`reading 'OS'`, `StyleSheet.create` of undefined):** `flashcards_recall_pending_start_behavior`, `flashcards_training_target_language_behavior`, `learning_v2_mode_feedback_lane`, `speech_beat_audioend_session_lifecycle`, `spire_all_members_profile`, `season_shared_modal`, `paywall_c_native_render` (разбор файла). Падают на импорте общих модулей без моков — проблема тестов, не приложения. Не блокирует. Владелец — автор теста / Ревизор.
+- **Красные, которые стоит посмотреть владельцу зоны (возможна смысловая правка, но не потеря прогресса):**
+  - `energy_state_v2` (ожидает потолок 5, получает 15) — Ядро: после «энергии от Пика» правило запаса изменилось, тест или код выровнять.
+  - `native_intent_referral` (`/lessons_list` вместо `/(tabs)/lessons`) — Вход.
+  - `firestore_rules_security` (шаблон `lesson_progress_v2::fr`) — Ядро: правила для курса fr.
+  - `learning_v2_session_intro_feedback_behavior`, `legacy_free_lesson_wiring_contract`, `owner_locks_announcements_2026_10_28` — Learning V2 / Сайт.
+  - `button_fill_sweep_guard` (7 кнопок на `opaqueControl`: `app/_layout.tsx`, `DialogsScenePanel.tsx`, `SeasonNavTiles.tsx`, `PhraseWorkshopTheorySheet.tsx`) и `screen_titles_font_scale_cap_contract` — Дизайн.
+- **Красные только в рабочем дереве (на HEAD зелёные):** `learning_v2_*`, `lesson_*`, `phrase_workshop_wiring_2026_10_25`, `audio_player_arbiter_guard`, `spire_tower_window_height`, `spire_home_week_module`, `achievements`, `today_tasks_week_2026_10_22` и др. — причина в незакоммиченных правках соседних сессий; пропадут/проявятся вместе с их коммитами. Перед заморозкой Ревизору прогнать эти файлы ещё раз на финальном HEAD.
+- **Моё закрыто:** реестр оверлеев, охранник изоляции моментов, конфетти стрика (27e9088ad); замок «прогресс не пропадает» (a468f92b1); зазор кнопок в ряду >= 12 у плеера и тура.
+- **Ограничение метода:** на «чистом HEAD» нельзя (worktree/stash запрещены хуком); экспорт `git archive` частичный (код, tests, docs/design, config) — тесты, читающие другие каталоги, помечены «артефакт экспорта» и не оценены.

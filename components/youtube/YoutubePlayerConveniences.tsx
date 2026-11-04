@@ -73,7 +73,7 @@ export default function YoutubePlayerConveniences({ videoId, lang, getPositionSe
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, paddingHorizontal: 12, paddingBottom: 12 },
+  row: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, paddingHorizontal: 12, paddingBottom: 12 }, // зачем (закон владельца 13.10 №35): зазор между кнопками >= 12
   chip: { minHeight: 44, borderRadius: 14, paddingHorizontal: 14, alignItems: 'center', justifyContent: 'center' },
   grow: { flexGrow: 1 },
   label: { fontSize: 14, lineHeight: 18, fontWeight: '600' },

@@ -144,7 +144,7 @@ const s = StyleSheet.create({
   title: { fontSize: 24, lineHeight: 29, fontWeight: '800', letterSpacing: -0.4 },
   text: { fontSize: 16, lineHeight: 22, fontWeight: '500' },
   textOnly: { fontSize: 19, lineHeight: 26, fontWeight: '600' }, // зачем: карточка только с текстом (заголовков владелец не давал) — текст главный, крупнее и ярче
-  buttons: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  buttons: { flexDirection: 'row', alignItems: 'center', gap: 12 }, // зачем (закон владельца 13.10 №35): зазор между кнопками >= 12
   btn: { minHeight: 50, borderRadius: 25, alignItems: 'center', justifyContent: 'center' },
   ghost: { paddingHorizontal: 18 },
   main: { flex: 1 },

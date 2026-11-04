@@ -32,12 +32,14 @@ const assertCurrentAccount = (
 async function loadCurrentMistakeJournal(
   studyTarget: MistakeStudyTarget,
   reconcileMutableContent = false,
+  onLoadProgress?: (stage: string) => void,
 ): Promise<MistakeEventJournal> {
   // зачем (жалобы 24.10 «Мои ошибки — Загружаем… весь день»): шаги чтения были немыми — по зависанию нельзя было сказать,
   // где оно. Каждый шаг пишет [MISTAKES-LOAD] со временем; последний шаг виден хабу, когда он сдаётся по потолку.
   const startedAt = Date.now();
   const step = (stage: string, extra: Record<string, unknown> = {}) => {
     mistakeJournalLoadStage = stage;
+    onLoadProgress?.(stage);
     console.log('[MISTAKES-LOAD]', stage, JSON.stringify({ studyTarget, ms: Date.now() - startedAt, ...extra })); // guard-ok: шаг чтения
   };
   step('identity:start');
@@ -45,10 +47,11 @@ async function loadCurrentMistakeJournal(
   const generation = captureAccountGeneration();
   assertCurrentAccount(generation, accountScope);
   step('journal:start', { phase: generation.phase });
-  const loadedJournal = await loadMistakeEventJournal({ accountScope, studyTarget });
+  const loadedJournal = await loadMistakeEventJournal({ accountScope, studyTarget, onLoadProgress });
   assertCurrentAccount(generation, accountScope);
   step('journal:done', { events: loadedJournal.events.length, reconcile: reconcileMutableContent });
   if (!reconcileMutableContent) return loadedJournal;
+  onLoadProgress?.('reconcile:start');
   const reconciled = await reconcileMutableMistakeContent({
     accountScope,
     studyTarget,
@@ -343,6 +346,7 @@ export function buildMistakePracticeHubSnapshot(
 export async function loadMistakePracticeHubSnapshot(
   studyTarget: MistakeStudyTarget,
   nowMs = Date.now(),
+  onLoadProgress?: (stage: string) => void,
 ): Promise<MistakePracticeHubSnapshot> {
   const startedAt = Date.now();
   // зачем (координатор 12.10, mistakes-panel-002): dev `mistakes=demo` подсовывает хабу готовый снимок (только память, журнал не трогаем; в сторе isDevMistakesDemoOn() всегда false)
@@ -351,7 +355,8 @@ export async function loadMistakePracticeHubSnapshot(
     console.log('[MISTAKES-HUB] snapshot', JSON.stringify({ studyTarget, source: 'dev_demo', active: demo.insights.active, ready: demo.readyCount, corrected: demo.insights.corrected, ms: Date.now() - startedAt })); // guard-ok: источник снимка назван
     return demo;
   }
-  const journal = await loadCurrentMistakeJournal(studyTarget, true);
+  const journal = await loadCurrentMistakeJournal(studyTarget, true, onLoadProgress);
+  onLoadProgress?.('snapshot:build');
   const snapshot = buildMistakePracticeHubSnapshot(journal.events, nowMs);
   console.log('[MISTAKES-HUB] snapshot', JSON.stringify({
     studyTarget,

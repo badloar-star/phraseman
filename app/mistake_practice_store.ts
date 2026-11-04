@@ -43,6 +43,7 @@ interface JournalScope {
   readonly accountScope: string;
   readonly studyTarget: MistakeStudyTarget;
   readonly storage?: MistakePracticeStorage;
+  readonly onLoadProgress?: (stage: string) => void;
 }
 
 const locks = new Map<string, Promise<void>>();
@@ -52,6 +53,15 @@ const locks = new Map<string, Promise<void>>();
 // результат безопасно. Любая запись по этому ключу сбрасывает склейку ДО и ПОСЛЕ, поэтому читатель, пришедший после
 // записи, никогда не получит чтение, начатое до неё. Склейка только для хранилища по умолчанию (тестовые подмены — как раньше).
 const inflightLoads = new Map<string, Promise<MistakeEventJournal>>();
+// зачем (load_ceiling): живая сводка последнего чтения журнала для записи о медленной загрузке хаба
+type LiveReadStats = { pagesRead: number; chunksRead: number; bytesRead: number; hashMs: number; startedAt: number; done: boolean };
+let liveReadStats: LiveReadStats | null = null;
+export function mistakeJournalReadSummary(): string {
+  const s = liveReadStats;
+  if (!s) return 'read=none';
+  return `read=pages${s.pagesRead}/chunks${s.chunksRead}/bytes${s.bytesRead}/hashMs${s.hashMs}/runMs${Date.now() - s.startedAt}/done${s.done ? 1 : 0}`;
+}
+const loadProgress = new WeakMap<Promise<MistakeEventJournal>, { stage: string; startedAt: number; observers: Set<(stage: string) => void> }>();
 const readStats = { started: 0, shared: 0 };
 // Счётчик записей по журналу ошибок: кэши производных данных (счётчики Главной) сверяют его и сбрасываются на любой записи.
 let journalWriteEpoch = 0;
@@ -128,12 +138,14 @@ const emptyJournal = (
   events: Object.freeze([]),
 });
 
-async function mergePhoneStateJournal(journal: MistakeEventJournal): Promise<MistakeEventJournal> {
+async function mergePhoneStateJournal(journal: MistakeEventJournal, onLoadProgress?: (stage: string) => void): Promise<MistakeEventJournal> {
   const facts = await mergePhoneStatePracticeFacts(
     'mistake',
     Object.fromEntries(journal.events.map((event) => [event.eventId, event])),
     journal.accountScope,
+    onLoadProgress,
   );
+  onLoadProgress?.('journal:merge');
   const merged = mergeMistakeEventJournals(journal, {
     version: 1,
     accountScope: journal.accountScope,
@@ -342,8 +354,32 @@ async function loadMistakeEventJournalFresh(
   const getRaw = input.storage && input.storage !== AsyncStorage
     ? (rawKey: string): Promise<string | null> => storage.getItem(rawKey)
     : readStoredItem;
+  const progress = input.onLoadProgress;
+  // зачем (load_ceiling 417 за 7 дней, координатор 04.11: «сперва логи»): время каждой фазы, размер журнала и источник.
+  // Лог [MISTAKES-HUB] journal:read показывает, ГДЕ уходят секунды (корень/страницы/куски/хеш/слияние), без догадок.
+  const readStartedAt = Date.now();
+  // зачем: в релизе console.log вырезан — сводку чтения (в т.ч. НЕЗАВЕРШЁННОГО) отдаём функцией для записи о потолке хаба
+  const live = { pagesRead: 0, chunksRead: 0, bytesRead: 0, hashMs: 0, startedAt: readStartedAt, done: false };
+  liveReadStats = live;
+  let pagesRead = 0;
+  let chunksRead = 0;
+  let bytesRead = 0;
+  let hashMs = 0;
+  let lastYieldAt = Date.now();
+  const readSource0 = getRaw === readStoredItem ? 'snapshot' : 'storage';
+  const finishRead = (journal: Promise<MistakeEventJournal>, kind: string): Promise<MistakeEventJournal> => {
+    const readyAt = Date.now();
+    return journal.then((result) => {
+      live.pagesRead = pagesRead; live.chunksRead = chunksRead; live.bytesRead = bytesRead; live.hashMs = hashMs; live.done = true;
+      console.log('[MISTAKES-HUB] journal:read', JSON.stringify({ studyTarget: input.studyTarget, kind, source: readSource0, events: result.events.length, pages: pagesRead, chunks: chunksRead, bytes: bytesRead, hashMs, readMs: readyAt - readStartedAt, mergeMs: Date.now() - readyAt, totalMs: Date.now() - readStartedAt })); // guard-ok: итог чтения с фазами
+      return result;
+    });
+  };
+  progress?.('journal:root_read');
   const raw = await getRaw(mistakePracticeEventsKey(accountScope, input.studyTarget));
-  if (!raw) return mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget));
+  bytesRead += raw ? raw.length : 0;
+  if (!raw) return finishRead(mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget), progress), 'empty');
+  progress?.('journal:root_parse');
   // зачем (§126 п.5, 04.10): «Мои ошибки» не открывались с mistake_practice_events_corrupt, но восемь проверок
   // бросали одну и ту же ошибку молча — неизвестно, какая сработала и не виноват ли снапшот чтения (§122).
   const readSource = getRaw === readStoredItem ? 'snapshot' : 'storage';
@@ -375,7 +411,7 @@ async function loadMistakeEventJournalFresh(
     const cacheKey = mistakePracticeEventsKey(accountScope, input.studyTarget);
     const cachedGraph = graphCache?.get(cacheKey);
     if (cachedGraph && cachedGraph.rootRaw === raw) {
-      return mergePhoneStateJournal(cachedGraph.base);
+      return finishRead(mergePhoneStateJournal(cachedGraph.base, progress), 'graph_cache_hit');
     }
     const reversedPages: JournalManifestPageV1[] = [];
     const visited = new Set<string>();
@@ -383,7 +419,12 @@ async function loadMistakeEventJournalFresh(
     while (pageId) {
       if (visited.has(pageId) || visited.size > 10_000) corruptJournal('page_cycle', { page: short(pageId), visited: visited.size });
       visited.add(pageId);
+      progress?.(`journal:page_read:${visited.size}`);
       const pageRaw = await getRaw(mistakePracticeManifestPageKey(accountScope, input.studyTarget, pageId));
+      progress?.('journal:page_validate');
+      pagesRead += 1;
+      bytesRead += pageRaw ? (pageRaw as string).length : 0;
+      live.pagesRead = pagesRead; live.bytesRead = bytesRead;
       if (!pageRaw) corruptJournal('page_missing', { page: short(pageId), pagesRead: visited.size });
       let page: JournalManifestPageV1;
       try { page = JSON.parse(pageRaw as string) as JournalManifestPageV1; } catch { corruptJournal('page_parse', { page: short(pageId), length: (pageRaw as string).length }); }
@@ -408,12 +449,26 @@ async function loadMistakeEventJournalFresh(
     for (const page of reversedPages.reverse()) {
       for (const chunkId of page.chunkIds) {
         const chunkKey = mistakePracticeEventChunkKey(accountScope, input.studyTarget, chunkId);
+        progress?.(`journal:chunk_read:${graphChunks.length + 1}`);
         const chunkRaw = await getRaw(chunkKey);
+        progress?.('journal:chunk_validate');
+        chunksRead += 1;
+        bytesRead += chunkRaw ? (chunkRaw as string).length : 0;
         if (!chunkRaw) corruptJournal('chunk_missing', { chunk: short(chunkId), page: short(page.previousPageId) });
-        if (sha256Utf8(chunkRaw as string) !== chunkId) corruptJournal('chunk_hash', { chunk: short(chunkId), length: (chunkRaw as string).length });
+        const hashStartedAt = Date.now();
+        const chunkHashOk = sha256Utf8(chunkRaw as string) === chunkId;
+        hashMs += Date.now() - hashStartedAt;
+        if (!chunkHashOk) corruptJournal('chunk_hash', { chunk: short(chunkId), length: (chunkRaw as string).length });
         journal = mergeMistakeEventJournals(journal, parseMistakeEventJournal(chunkRaw));
         graphKeys.add(chunkKey);
         graphChunks.push({ encoded: chunkRaw as string, id: chunkId });
+        // зачем (load_ceiling): хеш/разбор/слияние кусков идут на JS-потоке; на слабом телефоне длинный журнал держал его секундами,
+        // и таймер потолка срабатывал с опозданием. Порядок и проверки те же — только уступаем поток каждые ~12 мс работы.
+        live.pagesRead = pagesRead; live.chunksRead = chunksRead; live.bytesRead = bytesRead; live.hashMs = hashMs;
+        if (Date.now() - lastYieldAt > 12) {
+          await new Promise<void>((resolve) => setTimeout(resolve, 0));
+          lastYieldAt = Date.now();
+        }
       }
     }
     if (journal.events.length !== root.eventCount) {
@@ -421,16 +476,16 @@ async function loadMistakeEventJournalFresh(
     }
     // кэш графа кладём только для боевого/явного хранилища и только после полной проверки хешей и счёта событий
     graphCache?.set(cacheKey, { rootRaw: raw, base: journal, reachable: graphKeys, chunks: graphChunks });
-    return mergePhoneStateJournal(journal);
+    return finishRead(mergePhoneStateJournal(journal, progress), 'graph_full_read');
   }
   const parsed = parseMistakeEventJournal(raw);
   if (
     parsed.accountScope !== accountScope
     || parsed.studyTarget !== input.studyTarget
   ) {
-    return mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget));
+    return finishRead(mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget), progress), 'legacy_scope_mismatch');
   }
-  return mergePhoneStateJournal(parsed);
+  return finishRead(mergePhoneStateJournal(parsed, progress), 'legacy_single_root');
 }
 
 export function loadMistakeEventJournal(
@@ -441,12 +496,27 @@ export function loadMistakeEventJournal(
   const running = inflightLoads.get(key);
   if (running) {
     readStats.shared += 1;
+    const trace = loadProgress.get(running);
+    // зачем (load_ceiling): второе чтение садится на уже идущее — видно, сколько оно идёт и на каком шаге
+    console.log('[MISTAKES-HUB] journal:shared', JSON.stringify({ studyTarget: input.studyTarget, stage: trace?.stage ?? null, runningMs: trace ? Date.now() - trace.startedAt : null, shared: readStats.shared })); // guard-ok: ветвление shared
+    if (trace && input.onLoadProgress) {
+      trace.observers.add(input.onLoadProgress);
+      input.onLoadProgress(trace.stage);
+    }
     return running;
   }
   readStats.started += 1;
-  const started = loadMistakeEventJournalFresh(input);
+  const trace = { stage: 'journal:root_read', startedAt: Date.now(), observers: new Set<(stage: string) => void>() };
+  console.log('[MISTAKES-HUB] journal:started', JSON.stringify({ studyTarget: input.studyTarget, started: readStats.started })); // guard-ok: ветвление started
+  if (input.onLoadProgress) trace.observers.add(input.onLoadProgress);
+  const started = loadMistakeEventJournalFresh({ ...input, onLoadProgress: (stage) => {
+    trace.stage = stage;
+    trace.observers.forEach((observer) => observer(stage));
+  } });
+  loadProgress.set(started, trace);
   inflightLoads.set(key, started);
   const clear = (): void => {
+    trace.observers.clear();
     if (inflightLoads.get(key) === started) inflightLoads.delete(key);
   };
   started.then(clear, clear);

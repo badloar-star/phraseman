@@ -23,7 +23,8 @@ import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGat
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { MISTAKE_PRACTICE_MAX_SESSION, mistakePracticeSessionCostsEnergy } from '../modules/mistake-practice/session';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
-import { currentMistakeJournalLoadStage, loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
+import { loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
+import { mistakeJournalReadSummary } from './mistake_practice_store';
 import { DebugLogger } from './debug-logger';
 import { isDevMistakesDemoOn } from './dev_mistakes_demo';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
@@ -76,7 +77,11 @@ const SECONDS_PER_MISTAKE = 20;
 
 type HubMode = 'loading' | 'failed' | 'fresh' | 'allFixed' | 'todayDone' | 'normal';
 /** Сколько ждём локальный журнал до спокойного вида с «Попробовать снова» (чтение без сети обычно < 1 с). */
-const HUB_LOAD_CEILING_MS = 8_000;
+// зачем (координатор 04.11): на слабых телефонах длинный журнал читается дольше 8 с — потолок 20 с; до него хаб показывает снимок из памяти.
+export const HUB_LOAD_CEILING_MS = 20_000;
+/** Одна запись о медленной загрузке на запуск приложения не чаще раза в 30 минут (раньше до 4 записей на заход). */
+const CEILING_REPORT_COOLDOWN_MS = 30 * 60_000;
+let lastCeilingReportAtMs = 0;
 
 export default function MistakesHubScreen() {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
@@ -107,15 +112,24 @@ export default function MistakesHubScreen() {
     // успехом, ни ошибкой — экран вечно «Загружаем…». Потолок переводит в спокойный вид с «Попробовать снова»; поздний ответ
     // всё равно подставит снимок. Шаг, на котором застряли, уходит в прод-журнал сбоев (одна запись, дедуп по шагу).
     let settled = false;
+    let stage = 'identity:start';
     const ceiling = setTimeout(() => {
       if (settled || isCancelled()) return;
-      const stage = currentMistakeJournalLoadStage();
-      console.warn('[MISTAKES-LOAD] hub:ceiling → failed', JSON.stringify({ reason, stage, ceilingMs: HUB_LOAD_CEILING_MS })); // guard-ok: потолок с причиной
-      DebugLogger.error('mistakes_hub:load_ceiling', new Error(`stage=${stage} reason=${reason}`), 'critical');
+      // зачем (load_ceiling 417 записей за 7 дней, жалобы 04.11): lateMs = насколько позже срока сработал таймер (занят JS-поток),
+      // appState — не ушло ли приложение в фон. Потолок — это МЕДЛЕННО, а не отказ: запись в журнал сбоев — warning и не чаще раза
+      // в 30 минут на запуск приложения (повторы 2/5/10 с и тапы больше не плодят записи; critical — только реальный отказ чтения ниже).
+      const lateMs = Date.now() - startedAt - HUB_LOAD_CEILING_MS;
+      console.warn('[MISTAKES-HUB] ceiling → failed', JSON.stringify({ reason, stage, ceilingMs: HUB_LOAD_CEILING_MS, lateMs, appState: AppState.currentState, waitedMs: Date.now() - startedAt })); // guard-ok: потолок с причиной
+      if (Date.now() - lastCeilingReportAtMs > CEILING_REPORT_COOLDOWN_MS) {
+        lastCeilingReportAtMs = Date.now();
+        DebugLogger.error('mistakes_hub:load_ceiling', new Error(`stage=${stage} reason=${reason} lateMs=${lateMs} appState=${AppState.currentState} ${mistakeJournalReadSummary()}`), 'warning');
+      } else {
+        console.log('[MISTAKES-HUB] ceiling:report_skipped_cooldown', JSON.stringify({ reason, stage })); // guard-ok: запись не плодим
+      }
       setFailed(true);
       setFailNonce((value) => value + 1);
     }, HUB_LOAD_CEILING_MS);
-    return loadMistakePracticeHubSnapshot(target)
+    return loadMistakePracticeHubSnapshot(target, Date.now(), (nextStage) => { stage = nextStage; })
       .then((next) => {
         settled = true;
         clearTimeout(ceiling);
@@ -130,7 +144,9 @@ export default function MistakesHubScreen() {
         settled = true;
         clearTimeout(ceiling);
         // guard-ok: лог в catch обязателен; журнал локальный, отказ почти невозможен — но причина должна быть видна.
-        console.warn('[MISTAKES-HUB] open:catch', reason, error instanceof Error ? error.message : String(error));
+        console.warn('[MISTAKES-HUB] open:catch', reason, error instanceof Error ? error.message : String(error), JSON.stringify({ stage, waitedMs: Date.now() - startedAt, appState: AppState.currentState }));
+        // зачем: реальный отказ чтения (не медленно, а ошибка) — единственный случай critical для хаба
+        DebugLogger.error('mistakes_hub:load_failed', error instanceof Error ? error : new Error(String(error)), 'critical');
         if (!isCancelled()) {
           setFailed(true);
           setFailNonce((value) => value + 1);

@@ -138,6 +138,9 @@ describe('тексты', () => {
       expect(spireGameText(lang, 'start').length).toBeGreaterThan(1);
     }
   });
+  it('тексты Переводчика на месте: на каждой странице 9 разных строк (не временный английский во всех языках)', () => {
+    for (const key of ['peakTour1', 'peakTour2', 'peakTour3'] as const) expect(new Set(SPIRE_GAME_STRINGS[key]).size).toBe(9);
+  });
   it('цифры в тексте страницы 2 одинаковы во всех языках (5 лучших и +1000)', () => {
     for (const v of SPIRE_GAME_STRINGS.peakTour2) expect((v.match(/\d+/g) ?? []).sort()).toEqual(['1000', '5']);
   });

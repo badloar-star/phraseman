@@ -328,7 +328,7 @@ describe('классические курсы: файлы правок пере�
         const t = v[l];
         if (t === undefined) continue;
         if (/[​‌‍⁠﻿]/.test(t)) bad.push(`${k} ${l}: невидимый символ`);
-        if (t.trim().split(/\s+/).length < 2 && !/^(Да|Нет|Так|Ні)[.!?]$/.test(t)) bad.push(`${k} ${l}: фрагмент «${t}»`);
+        if (t.trim().split(/\s+/).length < 2 && !/^(Да|Нет|Так|Ні|Открыто|Відчинено)[.!?]$/.test(t)) bad.push(`${k} ${l}: фрагмент «${t}»`);
         if (!/[.?!…»"”)]$/.test(t.trim())) bad.push(`${k} ${l}: нет знака конца «${t}»`);
       }
     }

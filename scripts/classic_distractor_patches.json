@@ -474,7 +474,11 @@
     "Soy guía.",
     "Soy el guía."
    ],
-   "allowTileCountChange": true
+   "allowTileCountChange": true,
+   "alternatives": [
+    "Yo soy el guía.",
+    "Soy el guía."
+   ]
   },
   "de:21:34": {
    "target": "Wir sind spät dran, weil wir den Zug verpasst haben.",
@@ -519,6 +523,41 @@
      "spät",
      "dran"
     ]
+   ]
+  },
+  "it:14:24": {
+   "target": "Deve firmare qui.",
+   "tiles": [
+    "Deve",
+    "firmare",
+    "qui"
+   ],
+   "accepted": [
+    [
+     "Deve",
+     "firmare",
+     "qui"
+    ],
+    [
+     "Deve",
+     "firmare",
+     "qua"
+    ],
+    [
+     "Devi",
+     "firmare",
+     "qui"
+    ],
+    [
+     "Devi",
+     "firmare",
+     "qua"
+    ]
+   ],
+   "alternatives": [
+    "Deve firmare qua.",
+    "Devi firmare qui.",
+    "Devi firmare qua."
    ]
   }
  }

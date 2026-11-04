@@ -8,7 +8,12 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const STORAGE_KEY = 'youtube_resume_positions_v1';
+// зачем (координатор 04.11, удобство №9): позиция ролика — личные данные аккаунта. Раньше лежала в общем ключе, который не стирался
+// при выходе/смене аккаунта. Теперь — в стираемом семействе `story_events_v1:` (app/cloud_sync WIPE_ONLY_ACCOUNT_KEY_PREFIXES): уходит вместе с аккаунтом.
+// Только на устройстве, Firebase не читается и не пишется.
+export const YOUTUBE_RESUME_STORAGE_KEY = 'story_events_v1:youtube_resume';
+const STORAGE_KEY = YOUTUBE_RESUME_STORAGE_KEY;
+const LEGACY_STORAGE_KEY = 'youtube_resume_positions_v1';
 const MAX_VIDEOS = 50;
 const PERSIST_EVERY_MS = 10_000;
 /** Меньше этого — продолжать нечего, открываем с начала. */
@@ -22,6 +27,10 @@ const lastPersistAt = new Map<string, number>();
 function hydrate(): Promise<Map<string, Entry>> {
   if (memory) return Promise.resolve(memory);
   if (hydrating) return hydrating;
+  // старый общий ключ чужих аккаунтов не читаем и убираем (одноразово, при первом чтении)
+  void AsyncStorage.removeItem(LEGACY_STORAGE_KEY).catch((error: unknown) => {
+    console.warn('[VIDEO-RESUME] старый ключ не удалён', String((error as Error)?.message ?? error).slice(0, 120));
+  });
   hydrating = AsyncStorage.getItem(STORAGE_KEY)
     .then((raw) => {
       const map = new Map<string, Entry>();

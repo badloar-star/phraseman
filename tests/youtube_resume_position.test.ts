@@ -49,7 +49,7 @@ test('keeps at most 50 videos — the oldest are dropped', async () => {
   }
   spy.mockRestore();
   await flush();
-  const raw = await AsyncStorage.getItem('youtube_resume_positions_v1');
+  const raw = await AsyncStorage.getItem('story_events_v1:youtube_resume');
   const stored = JSON.parse(String(raw)) as Record<string, unknown>;
   expect(Object.keys(stored)).toHaveLength(50);
   expect(stored['vid-0']).toBeUndefined();

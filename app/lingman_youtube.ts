@@ -755,6 +755,14 @@ export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boo
             return true;
           } catch (e) { return false; }
         };
+        // зачем (удобство №9, «Медленнее»): скорость 0,75× / 1× из RN; YouTube сам округлит до допустимой.
+        window.__lingmanRate = function (rate) {
+          try {
+            if (!player || typeof player.setPlaybackRate !== 'function') return false;
+            player.setPlaybackRate(Number(rate));
+            return true;
+          } catch (e) { return false; }
+        };
         function stopSamples() {
           if (sampleTimer !== null) clearInterval(sampleTimer);
           sampleTimer = null;

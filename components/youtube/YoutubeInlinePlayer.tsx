@@ -25,6 +25,7 @@ import { plateBoxShadow } from '../v2/ShadowSurface';
 import { trainNavMark } from '../../app/train_nav_trace';
 import { videoOpenMark } from '../../app/video_open_trace';
 import { FlowText } from '../text-integrity';
+import YoutubePlayerConveniences from './YoutubePlayerConveniences';
 
 
 const LINGMAN_WEBVIEW_ORIGIN_WHITELIST = [
@@ -96,6 +97,22 @@ export default function YoutubeInlinePlayer({
   const [playerKey, setPlayerKey] = useState(0);
   const webViewRef = useRef<WebView>(null);
   const pauseRequestedAtRef = useRef<number | null>(null);
+  // зачем (удобство №9): кнопка «Продолжить с m:ss» — только когда ролик открыт с явного момента (startSec) и есть брошенная позиция;
+  // обычный вход и так продолжает сам (ниже). Позиция локальная, Firebase не трогаем.
+  const [resumeSec, setResumeSec] = useState<number | null>(null);
+  useEffect(() => {
+    if (!active || startSec === undefined) { setResumeSec(null); return undefined; }
+    let cancelled = false;
+    void readYoutubeResumeSec(videoId).then((sec) => {
+      console.log('[VIDEO-CONVENIENCE]', JSON.stringify({ videoId, resumeButton: sec })); // guard-ok: решение показать кнопку
+      if (!cancelled) setResumeSec(sec);
+    });
+    return () => { cancelled = true; };
+  }, [active, startSec, videoId]);
+  const getPositionSec = useCallback(() => lastPositionSecRef.current, []);
+  const sendRate = useCallback((rate: number) => {
+    webViewRef.current?.injectJavaScript(`(function(){try{window.__lingmanRate&&window.__lingmanRate(${Number(rate)});}catch(e){console.warn('[VIDEO-RATE] '+String(e));}})();true;`);
+  }, []);
   // зачем (Q9, координатор 01.10; D07, PM-080-A3): видео не даёт ни монет, ни рун, ни
   // ускорения энергии. Отсчёт просмотра под награду (use_video_watch_energy_boost) снят
   // целиком; мост плеер→экран остаётся только ради подсветки фразы и перемотки.
@@ -352,6 +369,19 @@ export default function YoutubeInlinePlayer({
         ) : null}
       </View>
       {playerSurface}
+      {!playerError ? (
+        <YoutubePlayerConveniences
+          key={`${videoId}:${playerKey}`}
+          videoId={videoId}
+          lang={lang}
+          getPositionSec={getPositionSec}
+          onSeek={seekController.requestSeek}
+          onRate={sendRate}
+          resumeSec={resumeSec}
+          fill={glass.buttonFill}
+          ink={glass.text}
+        />
+      ) : null}
     </View>
   );
 }

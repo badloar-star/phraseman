@@ -1,11 +1,10 @@
 import { peekLearningV2DevUnlockAll, rememberLearningV2DevUnlockAll } from "../learning_v2_dev_unlock_memory";
 import { LEARNING_V2_OWNER_EN_TITLES_RU } from "../../components/learning-v2/learningV2OwnerLayout";
-import LearningV2ChaptersCourse from "../../components/learning-v2/LearningV2ChaptersCourse";
+import { LessonsCourseSurface, prewarmLearningV2CourseSurface, loadLearningV2ActiveCourseCatalogV1, peekLearningV2ActiveCourseCatalogV1, factoryNativeLearningV2AvailabilityV1, factoryNativeLearningV2NewWordCountV1 } from "../learning_v2_lessons_lazy"; // зачем (владелец 04.11, Android-лаги): тяжёлый V2 (компонент курса, каталог занятий) подключается лениво — см. learning_v2_lessons_lazy.ts
 import { useTabTopBleedInset } from "../../components/tab_top_bleed";
-import SeasonCourseConnected from "../../components/learning-v2/season/SeasonCourseConnected";
 import { LEARNING_V2_START_SHEET_ENABLED, SEASON_SCENE_V2_ENABLED } from "../../components/learning-v2/season/season_flags";
 // зачем (Ф4, владелец 22.10 «ПОЧЕМУ РАЗДЕЛ УРОКИ ЕЩЁ НЕ СДЕЛАН?»): под флагом вместо старой карты глав — «Обучение, способ 2» (Сезон + карусель) на тех же данных и пропсах; выпуск — старая карта
-const LessonsCourseSurface: typeof LearningV2ChaptersCourse = SEASON_SCENE_V2_ENABLED ? (SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse) : LearningV2ChaptersCourse;
+// LessonsCourseSurface (Сезон или карта глав) — ленивый компонент из learning_v2_lessons_lazy.ts
 import React, {
   useState,
   useEffect,
@@ -202,10 +201,6 @@ import {
 } from "../../modules/learning-v2/map/course_accordion_map_model_v1";
 import { createLearningV2CourseLocalProgressStoreV1 } from "../../modules/learning-v2/progress/course_local_progress_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../../modules/learning-v2/progress/progress_account_scope";
-import {
-  loadLearningV2ActiveCourseCatalogV1,
-  peekLearningV2ActiveCourseCatalogV1,
-} from "../learning_v2_active_course_catalog_client_v1";
 // зачем: клиент сессии тянет манифест на 1,17 МБ (аудит 20.09, замер по логам:
 // открытие раздела держало JS-тред 2612 мс и тапы не доходили). Он нужен только
 // при подготовке занятия — грузим лениво, тип импортируем отдельно (тип
@@ -239,10 +234,6 @@ import { noteBackArrived, noteBackDecision, noteBackTap } from "../back_tap_prob
 import { learningV2SessionHrefV1, peekLearningV2SessionClientV3, prepareLearningV2SessionRunV1, prewarmLearningV2SessionRunV1, stageLearningV2ReadyHandoffV1 } from "../learning_v2_session_launch_v1";
 import { beginLessonPrep, endLessonPrep, markLessonPrepFinishing } from "../lesson_prep_store";
 import { PREP_BUSY_SHOW_MS, PREP_FINISH_BEAT_MS } from "../../components/lesson_prep/prep_cta_model";
-import {
-  factoryNativeLearningV2AvailabilityV1,
-  factoryNativeLearningV2NewWordCountV1,
-} from "../../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { DebugLogger } from '../debug-logger';
 import NetInfo from '@react-native-community/netinfo';
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -2607,8 +2598,12 @@ export default function LessonsTab({
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
   // зачем (R92): курс V2 — только при языке интерфейса с пояснениями курса (ru/uk); [V2-LOCALE-GATE] пишет решение при смене языка.
-  useLearningV2Visibility(); // зачем: проверка прогресса может открыть V2 уже после первого кадра — вкладка перерисуется
+  const learningV2VisibilityVersion = useLearningV2Visibility(); // зачем: проверка прогресса может открыть V2 уже после первого кадра — вкладка перерисуется
   const learningV2CanOpen = learningV2CourseCanBeOpenedManually() && isLearningV2OpenForUiLangV1(lang, "lessons_tab");
+  useEffect(() => {
+    // зачем (владелец 04.11, Android-лаги): компонент курса V2 грузится лениво — прогреваем, только когда V2 реально открыт (≥1 завершённое занятие)
+    if (learningV2CanOpen) prewarmLearningV2CourseSurface();
+  }, [learningV2CanOpen]);
   const [pageRaw, setPageRaw] = useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage, presentation, learningV2CanOpen));
   // зачем (владелец 22.09, «открываю урок — секунда — назад в раздел уроки»):
   // лог владения экраном лестницы. Карта V2 гаснет и открывается заново через
@@ -3062,6 +3057,8 @@ export default function LessonsTab({
   // прогрев и вход в занятие — одно правило на всех. Кнопка массовой разблокировки (только дев) показывает все написанные.
   const learningV2FactoryNativeSessionIds = useMemo(() => {
     const factoryTarget = studyTarget === "es" ? "es" : "en";
+    // зачем (владелец 04.11, Android-лаги): пока V2 заморожен, каталог занятий (таблицы ~1,3 МБ) не загружается вовсе
+    if (LEARNING_V2_HIDDEN) return new Set<string>();
     const authored = factoryNativeLearningV2AvailabilityV1(factoryTarget).sessions;
     const shown = learningV2DevUnlockAllActive || factoryTarget === "es"
       ? authored
@@ -3070,7 +3067,7 @@ export default function LessonsTab({
       console.log('[V2-AVAILABILITY] shown', JSON.stringify({ authored: authored.length, shown: shown.length, devUnlockAll: learningV2DevUnlockAllActive }));
     }
     return new Set(shown.map((session) => session.courseSessionId));
-  }, [learningV2DevUnlockAllActive, studyTarget]);
+  }, [learningV2DevUnlockAllActive, studyTarget, learningV2VisibilityVersion]);
   type LearningV2PreparedSessionLaunch = Readonly<{
     key: string;
     sessionRunId: string;

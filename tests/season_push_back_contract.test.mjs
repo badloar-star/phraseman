@@ -36,7 +36,8 @@ test('push: Сезон рисует штатную «Назад» (ScreenBackBut
 });
 
 test('флаг Сезона выключен: старая карта по-прежнему рисует «Назад» из navigationControl', () => {
-  assert.match(lessons, /SEASON_SCENE_V2_ENABLED \? \(SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse\) : LearningV2ChaptersCourse/);
+  // зачем (владелец 04.11, Android-лаги): выбор Сезона или карты глав — в ленивом модуле
+  assert.match(read('app/learning_v2_lessons_lazy.ts'), /SEASON_SCENE_V2_ENABLED\s*\?\s*import\('\.\.\/components\/learning-v2\/season\/SeasonCourseConnected'\)\s*:\s*import\('\.\.\/components\/learning-v2\/LearningV2ChaptersCourse'\)/);
   assert.match(lessons, /navigationControl=\{\n\s+<PressableHybrid\n\s+testID="learning-v2-back-home"/);
   assert.match(oldMap, /\{props\.navigationControl\}/);
 });

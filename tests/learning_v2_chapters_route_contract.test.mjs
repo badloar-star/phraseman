@@ -8,9 +8,11 @@ assert.notEqual(v2BranchStart, -1, "V2 lessons branch must exist");
 assert.notEqual(legacyBranchStart, -1, "legacy lessons branch must exist");
 
 const v2Branch = lessons.slice(v2BranchStart, legacyBranchStart);
-assert.match(lessons, /import LearningV2ChaptersCourse from/);
+// зачем (владелец 04.11, Android-лаги): карта глав подключается лениво через app/learning_v2_lessons_lazy.ts
+const lazySurface = readFileSync("app/learning_v2_lessons_lazy.ts", "utf8");
+assert.match(lazySurface, /import\('\.\.\/components\/learning-v2\/LearningV2ChaptersCourse'\)/);
 // зачем (перепин 28.10): с 22.10 (cf21076f9, Ф4) ветка V2 рисует LessonsCourseSurface — Сезон или карта глав по флагу SEASON_SCENE_V2_ENABLED
-assert.match(lessons, /const LessonsCourseSurface: typeof LearningV2ChaptersCourse = SEASON_SCENE_V2_ENABLED \? \(SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse\) : LearningV2ChaptersCourse;/);
+assert.match(lazySurface, /SEASON_SCENE_V2_ENABLED\s*\?\s*import\('\.\.\/components\/learning-v2\/season\/SeasonCourseConnected'\)\s*:\s*import\('\.\.\/components\/learning-v2\/LearningV2ChaptersCourse'\)/);
 assert.match(v2Branch, /<LessonsCourseSurface/);
 assert.doesNotMatch(
   v2Branch,

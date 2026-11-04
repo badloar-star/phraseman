@@ -14,7 +14,10 @@ describe('Сезон во вкладке «Уроки»', () => {
     expect(flags).toMatch(/SEASON_SCENE_V2_ENABLED: boolean = true;/);
   });
   it('вкладка подставляет Сезон под флагом, старая карта остаётся запасной', () => {
-    expect(lessons).toContain('SEASON_SCENE_V2_ENABLED ? (SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse) : LearningV2ChaptersCourse');
+    // зачем (владелец 04.11, Android-лаги): выбор Сезона или карты глав — в ленивом модуле, чтобы тяжёлый компонент не исполнялся при старте
+    const lazy = readSource('app/learning_v2_lessons_lazy.ts');
+    expect(lazy).toMatch(/SEASON_SCENE_V2_ENABLED\s*\?\s*import\('\.\.\/components\/learning-v2\/season\/SeasonCourseConnected'\)\s*:\s*import\('\.\.\/components\/learning-v2\/LearningV2ChaptersCourse'\)/);
+    expect(lessons).toContain('LessonsCourseSurface');
     expect(lessons).toContain('<LessonsCourseSurface');
     expect(lessons).not.toMatch(/<LearningV2ChaptersCourse\b/);
   });

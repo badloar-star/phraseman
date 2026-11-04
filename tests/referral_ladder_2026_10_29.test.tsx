@@ -159,7 +159,8 @@ describe('подключение', () => {
     const flags = read('app/remote_flags.ts');
     expect(flags).toContain("  | 'referral_ladder_enabled'\n");
     expect(flags).toContain('  referral_ladder_enabled: false,');
-    expect(flags).toContain("'ghost_friend_ab', 'referral_ladder_enabled'");
+    // зачем (устаревшая жёсткая пара, 05.11): между ними в списке серверных bools появились другие ключи — проверяем присутствие в списке, а не соседство
+    expect(flags).toMatch(/'ghost_friend_ab'[^\]]*'referral_ladder_enabled'/);
     expect(JSON.parse(read('docs/work/release/ota_flag_baseline_2026-10-25.json')).defaults.referral_ladder_enabled).toBe(false);
   });
   it('лесенка едет в уже существующем кэше приглашений: тип, нормализация и передача из ответа сервера', () => {

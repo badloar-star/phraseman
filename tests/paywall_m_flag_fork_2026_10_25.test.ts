@@ -21,10 +21,10 @@ describe('пейвол «Вариант М»: флаг и развилка', () 
 
   it('экран: М только при флаге (вход «Не видим твой Plus» получает свою панель М); прежнее окно остаётся веткой else', () => {
     const screen = read('components/paywall/PaywallPlusScreen.tsx');
-    expect(screen).toContain('const showM = mFlag;');
-    expect(screen).toContain('{showM ? (');
+    // зачем (нативный пейвол C, 05.11): развилка «const showM / {showM ? (» ушла вместе с прежним окном — теперь один путь рендера; флаг М по-прежнему читается живым значением и ведёт человека и подпись
+    expect(screen).toContain('const [mFlag, setMFlag] = useState(isPaywallMEnabled);');
     expect(screen).toContain('<PaywallSwipeSheet testID="paywall-sheet"');
-    expect(screen).toContain('usePaywallMPerson(showM)');
+    expect(screen).toContain('usePaywallMPerson(mFlag)');
     expect(screen).toContain('setMFlag(isPaywallMEnabled());');
   });
 

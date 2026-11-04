@@ -95,7 +95,7 @@ describe('контракт контекста окна Plus (утверждён�
   it('входы-лимиты имеют пилюлю на всех 9 языках', () => {
     const limitContexts = ['no_energy', 'ai_explain', 'course_after_lesson3', 'mistake_practice', 'flashcard_limit',
       'streak', 'dialog_limit', 'ai_voice_input', 'speaking', 'free_lessons_complete',
-      'intro_ended', 'premium_expired', 'vip_expired', 'referral_ended', 'language_add', 'dialog_locked_level', 'lesson_b1'];
+      'intro_ended', 'premium_expired', 'vip_expired', 'referral_ended', 'dialog_locked_level', 'lesson_b1'];
     const missing: string[] = [];
     for (const ctx of limitContexts) {
       for (const lang of PAYWALL_TEXT_LANGS) {
@@ -103,5 +103,10 @@ describe('контракт контекста окна Plus (утверждён�
       }
     }
     expect(missing).toEqual([]);
+  });
+
+  // зачем (нативный пейвол C 32e96110a + таблица docs/design/v2-app/paywall-context-texts.md, строка 27): у входа «второй язык» пилюли нет — «лимита языков» больше нет, текст про курс
+  it('language_add: пилюли нет ни на одном языке (по таблице макета колонка пилюли пуста)', () => {
+    for (const lang of PAYWALL_TEXT_LANGS) expect(paywallContextHeadline('language_add' as never, lang as never).pill || '').toBe('');
   });
 });

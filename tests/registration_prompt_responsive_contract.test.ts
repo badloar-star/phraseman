@@ -67,7 +67,9 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     const laterStart = src.indexOf('const handleLater = useCallback');
     expect(laterStart).toBeGreaterThan(-1);
     const laterBody = src.slice(laterStart, src.indexOf('return (', laterStart));
-    expect(laterBody).toContain('if (loadingProvider !== null && !signInSlow) return;');
+    // зачем (правило «логи на ранних выходах»): отбитый «Позже» пишет причину — ветка стала блоком с логом, условие и выход те же
+    expect(laterBody).toContain('if (loadingProvider !== null && !signInSlow) {');
+    expect(laterBody).toContain('reason=in_flight');
     expect(laterBody).toContain('attemptLifecycle.invalidateActiveAttempt()');
     expect(laterBody).toContain('clearSlowTimer()');
     expect(src).toContain('disabled={(loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed}');

@@ -22,7 +22,7 @@
     "components/ReviewPromptModal.tsx": 1,
     "components/StatsPremiumBlur.tsx": 1
   },
-  "deepTotal": 308,
+  "deepTotal": 307,
   "deepCounts": {
     "app/(tabs)/home.tsx": 4,
     "app/(tabs)/lessons.tsx": 5,
@@ -91,7 +91,6 @@
     "components/NotificationCenterButton.tsx": 1,
     "components/NotificationPermissionModal.tsx": 2,
     "components/packs/PackRow.tsx": 3,
-    "components/paywall/PaywallPlusScreen.tsx": 1,
     "components/prize_arc.tsx": 1,
     "components/ReferralInviteBannerArt.tsx": 1,
     "components/RegistrationPromptModal.tsx": 1,

@@ -61,7 +61,7 @@ jest.mock('react-native', () => {
   AppState: { currentState: 'active', addEventListener: jest.fn(() => ({ remove: jest.fn() })) },
   // зачем: 17fbb3d32 — шапка тренировки по practice.html (PracticeChrome) собрана на Pressable.
   Pressable: 'Pressable',
-  Easing: { cubic: 'cubic', in: (value: unknown) => value, out: (value: unknown) => value },
+  Easing: { cubic: 'cubic', in: (value: unknown) => value, out: (value: unknown) => value, bezier: () => (t: number) => t }, // зачем: KitProgressFill строит кривую через Easing.bezier
   PanResponder: { create: jest.fn(() => ({ panHandlers: {} })) },
   Platform: { OS: 'ios', select: (values: Record<string, unknown>) => values.ios ?? values.default },
   ScrollView: 'ScrollView',

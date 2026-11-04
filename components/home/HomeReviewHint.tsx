@@ -26,7 +26,7 @@ function HomeReviewHint({ lang, active }: Props) {
       accessibilityLabel={label}
       onPress={() => {
         console.log('[HOME-REVIEW-HINT]', JSON.stringify({ event: 'tap', words: hint.words, size: hint.sessionSize })); // guard-ok: одна строка на тап
-        router.push({ pathname: '/flashcards_swipe', params: { size: String(hint.sessionSize) } } as never);
+        router.push({ pathname: '/flashcards_swipe', params: { size: String(hint.sessionSize), due: '1' } } as never);
       }}
       style={[s.row, { backgroundColor: p.control }]}
     >

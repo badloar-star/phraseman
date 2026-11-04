@@ -1108,6 +1108,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     size?: string | string[];
     devRunesSeed?: string | string[];
     devJumpToFinale?: string | string[];
+    /** due=1 — тренировка только из слов, которым пора повторение (подсказка на Главной «Повторить N слов»). */
+    due?: string | string[];
   }>();
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
   // экран, но счётчик стартует со случайного числа вместо реальной копилки.
@@ -1151,6 +1153,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     const raw = Array.isArray(params.filter) ? params.filter[0] : params.filter;
     return typeof raw === 'string' ? raw.trim() : '';
   }, [params.filter]);
+  // зачем (удобство №8, владелец 04.11): подсказка на Главной обещает «N слов», поэтому открывается тренировка ТОЛЬКО из просроченных слов, а не общий умный порядок
+  const dueOnlyRef = useRef(routeParamString(params.due).trim() === '1');
+  dueOnlyRef.current = routeParamString(params.due).trim() === '1';
   const requestedOfficialOwnedIds = useMemo(() => parseRouteIdList(params.owned), [params.owned]);
   /**
    * §6 (FIX владельца, 2026-08-13): «Тренировка» приходит сюда из таббара с
@@ -2407,7 +2412,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       const byKey = new Map<string, TrainingCard>();
       for (const card of chunks.flat()) byKey.set(card.trainingKey, card);
       const now = Date.now();
-      const ranked = smartSortCards([...byKey.values()], memory, now);
+      const sorted = smartSortCards([...byKey.values()], memory, now);
+      const dueOnly = dueOnlyRef.current ? sorted.filter((card) => isDueMemory(card.memory ?? defaultMemory(), now)) : sorted;
+      // зачем: если просроченных не нашлось (память успела измениться), экран не остаётся пустым — берём обычный порядок и пишем причину
+      if (dueOnlyRef.current) console.log('[HOME-REVIEW-HINT]', JSON.stringify({ event: 'due_filter', pool: sorted.length, due: dueOnly.length, fallback: dueOnly.length === 0 })); // guard-ok: одна строка на сборку сессии
+      const ranked = dueOnly.length > 0 ? dueOnly : sorted;
       const info = sessionInfoFor(ranked, now);
       return { cards: ranked, info };
     },

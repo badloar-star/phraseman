@@ -35,6 +35,7 @@ import { useEffectiveStudyTarget } from '../section_language';
 import { getCanonicalUserId } from '../user_id_policy';
 import { communityPackPriceRunes, type FlashcardMarketPack } from '../flashcards/marketplace';
 import { addCommunityPackToLibrary, toggleCommunityPackLike } from './communityPackActions';
+import { hapticTap } from '../../hooks/use-haptics';
 import {
   addToLibraryOptimistic,
   mergeServerCounts,
@@ -288,6 +289,8 @@ export default function CommunityPackSocialBar({
     }
     likeInFlightRef.current = true;
     const account = captureAccountGeneration();
+    // зачем (Волна 2, пункт 17): лайк набора — управляющая кнопка, отклик в руке вместе с попом сердца; тап в полёте и по своему набору сюда не доходит
+    hapticTap();
     runLikePop();
     /** Оптимистично: цифра меняется сразу, сервер догоняет. */
     const expectedLiked = !snapshot.liked;

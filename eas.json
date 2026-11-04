@@ -27,7 +27,8 @@
       "env": {
         "EXPO_PUBLIC_STORE_RELEASE": "1",
         "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
-        "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
+        "EXPO_PUBLIC_EXPLAIN_ENABLED": "true",
+        "PHRASEMAN_R1_HIDE_V2": "1"
       }
     },
     "ios-account-v2-proof": {

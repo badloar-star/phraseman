@@ -1,4 +1,5 @@
 import { isValidCoinRank } from './coin_rank_table_v1';
+import { shiftDialogueRankRequired } from './dialogue_rank_shift';
 import {
   decideDialogueV2ScenarioAccess,
   type DialogueV2ScenarioAccess,
@@ -24,12 +25,15 @@ export function getDialogueV2LocalRankAccess(
   const entry = getDialogueV2CatalogueEntry(scenarioId);
   if (!entry) return null;
 
+  // зачем (владелец 30.10, ранговые гейты): новому пользователю ранг открытия +1 (потолок 19), только на клиенте; в entry уходит сдвинутый unlockRank,
+  // чтобы подпись «Откроется на ранге N» и решение совпадали. Shared-таблица и сервер не меняются.
+  const shiftedRank = shiftDialogueRankRequired(entry.unlockRank) as number;
   return {
-    entry,
+    entry: shiftedRank === entry.unlockRank ? entry : { ...entry, unlockRank: shiftedRank },
     access: decideDialogueV2ScenarioAccess({
       achievedRank: isValidCoinRank(localCoinRank) ? localCoinRank : null,
       // зачем (правило владельца 13.10): замок берёт ранг открытия из таблицы (unlockRank), а не номер сценария в разделе (rankRequired структурный, для пакетов)
-      rankRequired: entry.unlockRank,
+      rankRequired: shiftedRank,
     }),
   };
 }

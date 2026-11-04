@@ -170,14 +170,14 @@ export function projectAuthorizedDialogueV2Catalogue(
       const isDone = doneIds?.has(entry.id) === true;
       const status: DialogueV2CatalogueLearnerItem['status'] = isDone ? 'done' : unlocked ? 'available' : 'locked';
       if (isDone || !unlocked) statusLog.push(`${entry.id}:${status}(${isDone ? 'в_хранилище_прохождений' : `ранг_${entry.unlockRank}_закрыт`})`); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
-      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: entry.unlockRank, decision: isDone ? 'пройден' : unlocked ? 'открыт' : 'закрыт' }); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: rankAccess.entry.unlockRank, decision: isDone ? 'пройден' : unlocked ? 'открыт' : 'закрыт' }); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
       items.push(Object.freeze({
         id: entry.id,
         worldId: entry.worldId,
         title,
         cefr: entry.cefr,
         // зачем (правило владельца 13.10): в подписи «Откроется на ранге N» и в брифинге — ранг открытия из таблицы, не номер в разделе
-        rankRequired: entry.unlockRank,
+        rankRequired: rankAccess.entry.unlockRank, // зачем (30.10): с учётом клиентского сдвига для новых
         status,
       }));
     }

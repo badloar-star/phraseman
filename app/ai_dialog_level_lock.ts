@@ -21,6 +21,7 @@ import {
   decideDialogueV2ScenarioAccess,
   type DialogueV2ScenarioAccess,
 } from '../shared/dialogue_v2_access_contract';
+import { shiftDialogueRankRequired } from './dialogue_rank_shift';
 
 /**
  * Достигнутый уровень курса = уровень самого старшего открытого урока.
@@ -93,7 +94,8 @@ export function dialogScenarioRankAccess(
     // Контракт сам отбрасывает не-целые и ранги < 1; таблицу монет (с картинками)
     // сюда не тянем — модуль остаётся чистым и лёгким.
     achievedRank: coinRank,
-    rankRequired: legacyDialogScenarioRankRequired(scenario.cefr),
+    // зачем (владелец 30.10): новому пользователю ранг +1 (потолок 19) — только клиент
+    rankRequired: shiftDialogueRankRequired(legacyDialogScenarioRankRequired(scenario.cefr)),
   });
 }
 

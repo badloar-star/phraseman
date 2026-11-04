@@ -12,6 +12,7 @@ import { getRemoteBool } from '../app/remote_flags';
 import { readRankGateUserVerdict, type RankGateUserVerdict } from '../app/rank_gates_new_user';
 import { useMyCoinRank } from './use_my_coin_rank';
 import type { RankAccessDecision, RankAccessSurface } from '../shared/rank_access_contract';
+import { setDialogueRankShiftActive } from '../app/dialogue_rank_shift';
 import { decideForUser, isSurfaceLocked } from '../app/rank_gate_decision';
 
 export { decideForUser, isSurfaceLocked };
@@ -39,6 +40,8 @@ export function useRankAccess(surface: RankAccessSurface): RankAccessDecision {
   const [verdict, setVerdict] = useState<RankGateUserVerdict | null>(verdictCache);
   useEffect(() => { if (!verdictCache) void loadVerdict().then(setVerdict); }, []);
   const gatesEnabled = getRemoteBool('rank_gates_enabled') !== false;
+  // зачем (владелец 30.10): сдвиг требований диалогов «+1, потолок 19» включён только для нового пользователя при включённых гейтах
+  setDialogueRankShiftActive(gatesEnabled && verdict?.isNew === true);
   const decision = useMemo(
     () => decideForUser(surface, { gatesEnabled, verdict, rank, plusActive: premium.isPremium, plusResolved: premium.accessResolved }),
     [surface, gatesEnabled, verdict, rank, premium.isPremium, premium.accessResolved],

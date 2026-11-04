@@ -117,10 +117,10 @@ export function projectReleasedDialogueV2Catalogue(
         title: packet.content.title,
         cefr: entry.cefr,
         // зачем (правило владельца 13.10): ранг открытия из таблицы, не номер сценария в разделе
-        rankRequired: entry.unlockRank,
+        rankRequired: rankAccess.entry.unlockRank, // зачем (30.10): с учётом клиентского сдвига для новых
         status: rankAccess.access.status === 'unlocked' ? 'available' : 'locked',
       }));
-      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: entry.unlockRank, decision: rankAccess.access.status === 'unlocked' ? 'открыт' : 'закрыт' }); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: rankAccess.entry.unlockRank, decision: rankAccess.access.status === 'unlocked' ? 'открыт' : 'закрыт' }); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
     }
     logDialogueV2RankGate('released', input.studyTarget, input.localCoinRank, gateRows);
     return Object.freeze({ worlds, items: Object.freeze(items) });

@@ -73,8 +73,9 @@ describe('таблица рангов открытия диалогов', () => 
     expect(getDialogueV2LocalRankAccess('work_06', 5)?.access).toEqual({ status: 'locked_by_rank', rankRequired: 6 });
     const proj = read('app/dialogue_v2_authorized_catalogue_projection.ts');
     const rel = read('app/dialogue_v2_released_catalogue_projection.ts');
-    expect(proj).toContain('rankRequired: entry.unlockRank,');
-    expect(rel).toContain('rankRequired: entry.unlockRank,');
+    // зачем (30.10, сдвиг для новых): проекции берут ранг из rankAccess.entry — там тот же unlockRank из таблицы, сдвинутый только для новых
+    expect(proj).toContain('rankRequired: rankAccess.entry.unlockRank,');
+    expect(rel).toContain('rankRequired: rankAccess.entry.unlockRank,');
     expect(proj).not.toContain('rankRequired: entry.rankRequired,');
     expect(rel).not.toContain('rankRequired: entry.rankRequired,');
   });

@@ -971,7 +971,8 @@ export default function LessonComplete() {
 
   const canApplyCompletionRewards = useCallback(async (): Promise<boolean> => {
     if (!frenchStudyActive(studyTarget)) return true;
-    const hasFrenchRows = getLessonData(lessonId).some(phrase => phraseHasStudyTargetContent(phrase, studyTarget));
+    // зачем (классические курсы 04.11): строки берутся из курса выбранного языка
+    const hasFrenchRows = getLessonData(lessonId, studyTarget).some(phrase => phraseHasStudyTargetContent(phrase, studyTarget));
     if (!hasFrenchRows) return false;
     try {
       const progressRaw = await AsyncStorage.getItem(lessonProgressKey(lessonId, studyTarget));

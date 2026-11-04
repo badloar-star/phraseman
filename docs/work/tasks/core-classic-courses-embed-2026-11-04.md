@@ -1,6 +1,8 @@
 # Ядро · классические курсы EN/ES/FR/DE/IT вшиваются в сборку (04.11)
 
 Governance-ID: TG-D0259739868D
+Governance-ID: TG-B83802AA895D
+Governance-ID: TG-608D3C8C6FC3
 Governance-ID: TG-FC7F06CB6E92
 Governance-ID: TG-CF0E49B1D658
 Governance-ID: TG-F35005AB28FE
@@ -32,3 +34,8 @@ jest точечно через светофор (functions progress_events.test.
 
 ## Rollback
 git revert коммита; деплой функции по имени откатывается трафиком на прежнюю ревизию.
+
+## Срез 1, часть B (04.11): вызовы и ярлыки
+Scope: lesson1/lesson_complete передают studyTarget в getLessonData и не используют французскую удалённую подгрузку для фраз курса;
+ярлыки на значке (expo-quick-actions): конфиг, слушатель → существующие маршруты, 9 языков, сторож «конфиг ↔ маршруты».
+Прогресс пользователей не трогается (сторож 58fddbadd). Флаг CLASSIC_COURSES_RUNTIME_ENABLED остаётся false до слова координатора.

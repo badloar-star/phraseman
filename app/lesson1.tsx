@@ -109,6 +109,7 @@ const NATIVE_LESSON_DISMISS_ENABLED =
   typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
 import { isCorrectLessonHardModeTypedAnswer } from './lesson_hard_mode_answer_tolerance';
 import { frenchStudyActive, spanishLessonUiStringsActive, spanishStudyActive, spanishSurfacesEnabled } from './spanish_content_gate';
+import { classicCourseActiveFor } from './classic_course_phrases';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import BouncyScrollView from '../components/BouncyScrollView';
 import LessonIntroScreens from './lesson_intro_screens';
@@ -2076,7 +2077,8 @@ function LessonScreen() {
     if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
   }, []);
   const frenchRemoteSourceLocale = lang === 'uk' ? 'uk' : 'ru';
-  const frenchRemoteLessonRequired = frenchStudyActive(studyTarget);
+  // зачем (классические курсы 04.11): фразы французского курса вшиты в сборку — удалённая подгрузка старых французских строк не нужна
+  const frenchRemoteLessonRequired = frenchStudyActive(studyTarget) && !classicCourseActiveFor(studyTarget);
   const [remoteFrenchLessonRows, setRemoteFrenchLessonRows] = useState<LessonPhrase[] | null>(null);
   const [remoteFrenchLessonLoadState, setRemoteFrenchLessonLoadState] = useState<'idle' | 'loading' | 'ready' | 'failed'>('idle');
   const [remoteFrenchLessonReloadNonce, setRemoteFrenchLessonReloadNonce] = useState(0);
@@ -2144,7 +2146,7 @@ function LessonScreen() {
         ? workshop.rows
         : comboPlan
           ? comboPlan.entries.map((entry) => entry.phrase)
-          : (remoteFrenchLessonRows ?? getLessonData(lessonId));
+          : (remoteFrenchLessonRows ?? getLessonData(lessonId, studyTarget));
       return rows.filter(p => {
         if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
         return p.words && p.words.length > 0;

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, {
   Easing,
@@ -25,7 +25,7 @@ import { lessonsListCardPropsEqual } from './lessonsListCardEquality';
 
 // зачем (владелец 2026-09-30): карточка урока `.lc` из learn.html — круг 44 с номером слева,
 // название 17/22, строка состояния (звёзды D36 / полоска прогресса / «Открыт» / замок), шеврон.
-// Пять состояний макета и только они: пройден, в процессе, открыт, Plus, замок прогресса.
+// Состояния макета: пройден, в процессе, открыт, проверка доступа, Plus, замок прогресса.
 // Цен и кнопок покупки в карточке нет (в 2.0 отметка покупки урока снята). Нажатие только
 // сообщает номер урока наверх: доступ решает прежний обработчик в app/(tabs)/lessons.tsx.
 
@@ -33,6 +33,7 @@ export type LessonsListCardState =
   | { kind: 'done'; stars: 0 | 1 | 2 | 3 }
   | { kind: 'progress'; pct: number }
   | { kind: 'open' }
+  | { kind: 'pending' }
   | { kind: 'plus' }
   | { kind: 'locked'; prevNum: number };
 
@@ -127,6 +128,7 @@ function statusText(lang: Lang, state: LessonsListCardState): string {
       : lessonsListCopy.done(lang);
     case 'progress': return `${state.pct}%`;
     case 'open': return lessonsListCopy.open(lang);
+    case 'pending': return lessonsListCopy.checkingAccess(lang);
     case 'plus': return lessonsListCopy.plus(lang);
     case 'locked': return lessonsListCopy.lockPrev(lang, state.prevNum);
   }
@@ -139,6 +141,7 @@ function NumberCircle({ glass, num, state, current }: {
   current: boolean;
 }) {
   const locked = state.kind === 'plus' || state.kind === 'locked';
+  const pending = state.kind === 'pending';
   const done = state.kind === 'done';
   return (
     <View
@@ -155,6 +158,8 @@ function NumberCircle({ glass, num, state, current }: {
     >
       {done ? (
         <Ionicons name="checkmark" size={20} color={glass.ctaInk} />
+      ) : pending ? (
+        <ActivityIndicator size="small" color={glass.secondary} />
       ) : locked ? (
         // зачем (сверка learn-002 п.3, learn.html `.num.lk` + kit lockF): замок маленький и залитый, тон --sec;
         // глиф lockF занимает 14 из 24 — Ionicons 14 даёт ту же видимую величину.
@@ -199,6 +204,9 @@ function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang
       </View>
     );
   }
+  if (state.kind === 'pending') {
+    return <Text style={[lkt, { flexShrink: 1 }]}>{lessonsListCopy.checkingAccess(lang)}</Text>;
+  }
   const text = state.kind === 'open' ? lessonsListCopy.open(lang) : lessonsListCopy.lockPrev(lang, state.prevNum);
   return <Text style={[lkt, { flexShrink: 1 }]}>{text}</Text>;
 }
@@ -236,6 +244,7 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
       testID={`lessons-row-${num}`}
       accessibilityRole="button"
       accessibilityLabel={`${lessonsListCopy.lesson(lang, num)}. ${name}. ${statusText(lang, state)}`}
+      accessibilityState={{ busy: state.kind === 'pending' }}
       onPress={press}
       // зачем: вибрацию даёт прежний обработчик урока (hapticTap в onPress) — не дублируем.
       withHaptic={false}

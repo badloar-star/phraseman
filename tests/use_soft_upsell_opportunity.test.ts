@@ -43,6 +43,10 @@ const storage = jest.requireMock('../app/soft_upsell_state') as {
 const candidate = { trigger: 'first_lesson' as const, value: 1, studyTarget: 'en' as const };
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 type HookProps = { candidates: typeof candidate[]; accountScope: string; studyTarget: 'en'; hasPremiumAccess: boolean };
+type HookInput = Parameters<typeof useSoftUpsellOpportunity>[0];
+const useTestSoftUpsellOpportunity = (
+  input: Omit<HookInput, 'accessResolved'> & { accessResolved?: boolean },
+) => useSoftUpsellOpportunity({ accessResolved: true, ...input });
 
 describe('useSoftUpsellOpportunity', () => {
   beforeEach(() => {
@@ -62,13 +66,39 @@ describe('useSoftUpsellOpportunity', () => {
     await Promise.resolve();
   });
 
+  it('suppresses unknown false and stale-positive without claiming; resolved Free is eligible and resolved Plus is suppressed', async () => {
+    type AccessProps = { accessResolved: boolean; hasPremiumAccess: boolean };
+    const hook = await renderHook((access: AccessProps) => useTestSoftUpsellOpportunity({
+      candidates: [candidate],
+      accountScope: 'entitlement',
+      studyTarget: 'en',
+      ...access,
+    }), { initialProps: { accessResolved: false, hasPremiumAccess: false } });
+
+    await act(async () => { await Promise.resolve(); });
+    expect(hook.result.current.opportunity).toBeNull();
+    expect(storage.claimSoftUpsell).not.toHaveBeenCalled();
+
+    await hook.rerender({ accessResolved: false, hasPremiumAccess: true });
+    await act(async () => { await Promise.resolve(); });
+    expect(hook.result.current.opportunity).toBeNull();
+    expect(storage.claimSoftUpsell).not.toHaveBeenCalled();
+
+    await hook.rerender({ accessResolved: true, hasPremiumAccess: false });
+    await waitFor(() => expect(hook.result.current.opportunity?.trigger).toBe('first_lesson'));
+    expect(storage.claimSoftUpsell).toHaveBeenCalledTimes(1);
+
+    await hook.rerender({ accessResolved: true, hasPremiumAccess: true });
+    await waitFor(() => expect(hook.result.current.opportunity).toBeNull());
+  });
+
   it('does not consume a queued claim after props become stale, allowing the current run to claim', async () => {
     let release!: () => void;
     storage.claimSoftUpsell.mockImplementationOnce(async (args: { canClaim?: () => boolean }) => {
       await new Promise<void>((resolve) => { release = resolve; });
       return args.canClaim?.() !== false;
     });
-    const hook = await renderHook((accountScope: string) => useSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'old' });
+    const hook = await renderHook((accountScope: string) => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'old' });
     await waitFor(() => expect(storage.claimSoftUpsell).toHaveBeenCalledTimes(1));
     await hook.rerender('current');
     await act(async () => { release(); await Promise.resolve(); });
@@ -82,7 +112,7 @@ describe('useSoftUpsellOpportunity', () => {
     ['overlay_occupied', {}, () => { occupied.value = true; }],
   ])('suppresses %s without claiming a session', async (reason, overrides, setup) => {
     setup?.();
-    const { result } = await renderHook(() => useSoftUpsellOpportunity({
+    const { result } = await renderHook(() => useTestSoftUpsellOpportunity({
       candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false, ...overrides,
     }));
     await waitFor(() => expect(analytics).toHaveBeenCalledWith('soft_upsell_suppressed', expect.objectContaining({ suppressionReason: reason })));
@@ -96,14 +126,14 @@ describe('useSoftUpsellOpportunity', () => {
     ['milestone_consumed', () => { state.consumedMilestones = ['first_lesson:1:en']; }],
   ])('does not claim for persisted %s suppression', async (reason, setup) => {
     setup();
-    const { result } = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
+    const { result } = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(analytics).toHaveBeenCalledWith('soft_upsell_suppressed', expect.objectContaining({ suppressionReason: reason })));
     expect(result.current.opportunity).toBeNull();
     expect(storage.claimSoftUpsell).not.toHaveBeenCalled();
   });
 
   it('claims once only for an eligible decision and does not repeat analytics on rerender', async () => {
-    const { result, rerender } = await renderHook((props: HookProps) => useSoftUpsellOpportunity(props), { initialProps: {
+    const { result, rerender } = await renderHook((props: HookProps) => useTestSoftUpsellOpportunity(props), { initialProps: {
       candidates: [candidate], accountScope: 'u1', studyTarget: 'en' as const, hasPremiumAccess: false,
     } });
     await waitFor(() => expect(result.current.opportunity?.trigger).toBe('first_lesson'));
@@ -114,16 +144,16 @@ describe('useSoftUpsellOpportunity', () => {
   });
 
   it('reports session cap after another eligible hook has claimed', async () => {
-    const first = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
+    const first = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(first.result.current.opportunity).not.toBeNull());
-    const second = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
+    const second = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(analytics).toHaveBeenCalledWith('soft_upsell_suppressed', expect.objectContaining({ suppressionReason: 'session_cap' })));
     expect(second.result.current.opportunity).toBeNull();
     expect(storage.claimSoftUpsell).toHaveBeenCalledTimes(2);
   });
 
   it('persists an explicit impression once before tracking it, and fails closed on storage failure', async () => {
-    const { result } = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
+    const { result } = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(result.current.opportunity).not.toBeNull());
     await act(async () => { await result.current.onImpression(); await result.current.onImpression(); });
     expect(storage.markSoftUpsellImpression).toHaveBeenCalledTimes(1);
@@ -131,7 +161,7 @@ describe('useSoftUpsellOpportunity', () => {
 
     storage.markSoftUpsellImpression.mockRejectedValueOnce(new Error('disk'));
     resetSoftUpsellSessionForTests();
-    const second = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
+    const second = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(second.result.current.opportunity).not.toBeNull());
     await expect(second.result.current.onImpression()).resolves.toBeUndefined();
     await expect(second.result.current.onImpression()).resolves.toBeUndefined();
@@ -142,7 +172,7 @@ describe('useSoftUpsellOpportunity', () => {
   it('coalesces concurrent impression calls into one persistence operation', async () => {
     let release!: () => void;
     storage.markSoftUpsellImpression.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
-    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'concurrent', studyTarget: 'en', hasPremiumAccess: false }));
+    const hook = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'concurrent', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
     const first = hook.result.current.onImpression();
     const second = hook.result.current.onImpression();
@@ -155,7 +185,7 @@ describe('useSoftUpsellOpportunity', () => {
   it('uses deterministic value signatures and never polls or navigates', async () => {
     flags.weekly_review = true;
     const weekly = { trigger: 'weekly_review' as const, value: 1, studyTarget: 'en' as const };
-    const hook = await renderHook((items: (typeof candidate | typeof weekly)[]) => useSoftUpsellOpportunity({ candidates: items, accountScope: 'order', studyTarget: 'en', hasPremiumAccess: false }), { initialProps: [candidate, weekly] });
+    const hook = await renderHook((items: (typeof candidate | typeof weekly)[]) => useTestSoftUpsellOpportunity({ candidates: items, accountScope: 'order', studyTarget: 'en', hasPremiumAccess: false }), { initialProps: [candidate, weekly] });
     await waitFor(() => expect(hook.result.current.opportunity?.trigger).toBe('weekly_review'));
     await hook.rerender([weekly, candidate]);
     expect(storage.readSoftUpsellState).toHaveBeenCalledTimes(1);
@@ -166,14 +196,14 @@ describe('useSoftUpsellOpportunity', () => {
   it('keeps dismiss and CTA distinct and ignores stale async reads after candidates change/unmount', async () => {
     let resolve!: (value: typeof state) => void;
     storage.readSoftUpsellState.mockImplementationOnce(() => new Promise((r) => { resolve = r; }));
-    const hook = await renderHook((candidates: typeof candidate[]) => useSoftUpsellOpportunity({ candidates, accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }), { initialProps: [candidate] });
+    const hook = await renderHook((candidates: typeof candidate[]) => useTestSoftUpsellOpportunity({ candidates, accountScope: 'u1', studyTarget: 'en', hasPremiumAccess: false }), { initialProps: [candidate] });
     await hook.rerender([]);
     await act(async () => { resolve(state); await Promise.resolve(); });
     await waitFor(() => expect(hook.result.current.opportunity).toBeNull());
     await hook.unmount();
 
     resetSoftUpsellSessionForTests();
-    const active = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
+    const active = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'u2', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(active.result.current.opportunity).not.toBeNull());
     await act(async () => { await active.result.current.onCta(); await active.result.current.onDismiss(); });
     await waitFor(() => expect(active.result.current.opportunity).toBeNull());
@@ -185,7 +215,7 @@ describe('useSoftUpsellOpportunity', () => {
   it('hides immediately on dismiss, retries transient persistence, and tracks only success', async () => {
     let rejectPersist!: (error: Error) => void;
     storage.markSoftUpsellDismissed.mockImplementationOnce(() => new Promise<void>((_resolve, reject) => { rejectPersist = reject; }));
-    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'dismiss-retry', studyTarget: 'en', hasPremiumAccess: false }));
+    const hook = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'dismiss-retry', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
     let failed!: Promise<void>;
     await act(async () => { failed = hook.result.current.onDismiss(); await Promise.resolve(); });
@@ -198,7 +228,7 @@ describe('useSoftUpsellOpportunity', () => {
 
   it('contains two dismiss persistence failures without analytics or an unhandled rejection', async () => {
     storage.markSoftUpsellDismissed.mockRejectedValueOnce(new Error('disk-1')).mockRejectedValueOnce(new Error('disk-2'));
-    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'dismiss-fail', studyTarget: 'en', hasPremiumAccess: false }));
+    const hook = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope: 'dismiss-fail', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
     await act(async () => { await hook.result.current.onDismiss(); });
     expect(hook.result.current.opportunity).toBeNull();
@@ -208,7 +238,7 @@ describe('useSoftUpsellOpportunity', () => {
 
   it('filters candidates to the requested study target before deciding or claiming', async () => {
     const french = { ...candidate, studyTarget: 'fr' as const };
-    const hook = await renderHook(() => useSoftUpsellOpportunity({ candidates: [french], accountScope: 'target', studyTarget: 'en', hasPremiumAccess: false }));
+    const hook = await renderHook(() => useTestSoftUpsellOpportunity({ candidates: [french], accountScope: 'target', studyTarget: 'en', hasPremiumAccess: false }));
     await waitFor(() => expect(storage.readSoftUpsellState).toHaveBeenCalled());
     expect(hook.result.current.opportunity).toBeNull();
     expect(storage.claimSoftUpsell).not.toHaveBeenCalled();
@@ -218,7 +248,7 @@ describe('useSoftUpsellOpportunity', () => {
   it('synchronously hides stale identity and makes callbacks from the prior identity no-op', async () => {
     const french = { ...candidate, studyTarget: 'fr' as const };
     type Props = { accountScope: string; studyTarget: 'en' | 'fr'; candidates: typeof candidate[] | typeof french[] };
-    const hook = await renderHook((props: Props) => useSoftUpsellOpportunity({ ...props, hasPremiumAccess: false }), {
+    const hook = await renderHook((props: Props) => useTestSoftUpsellOpportunity({ ...props, hasPremiumAccess: false }), {
       initialProps: { accountScope: 'A', studyTarget: 'en', candidates: [candidate] },
     });
     await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
@@ -242,7 +272,7 @@ describe('useSoftUpsellOpportunity', () => {
   it('writes captured impression scope but skips analytics if identity changes during persistence', async () => {
     let release!: () => void;
     storage.markSoftUpsellImpression.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
-    const hook = await renderHook((accountScope: string) => useSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
+    const hook = await renderHook((accountScope: string) => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
     await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
     const pending = hook.result.current.onImpression();
     await hook.rerender('B');
@@ -255,7 +285,7 @@ describe('useSoftUpsellOpportunity', () => {
   it('writes captured dismiss scope but skips analytics if identity changes during persistence', async () => {
     let release!: () => void;
     storage.markSoftUpsellDismissed.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
-    const hook = await renderHook((accountScope: string) => useSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
+    const hook = await renderHook((accountScope: string) => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
     await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
     let pending!: Promise<void>;
     await act(async () => { pending = hook.result.current.onDismiss(); await Promise.resolve(); });
@@ -268,11 +298,32 @@ describe('useSoftUpsellOpportunity', () => {
 
   it('returns false when identity changes while CTA analytics is awaiting', async () => {
     let release!: () => void;
-    const hook = await renderHook((accountScope: string) => useSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
+    const hook = await renderHook((accountScope: string) => useTestSoftUpsellOpportunity({ candidates: [candidate], accountScope, studyTarget: 'en', hasPremiumAccess: false }), { initialProps: 'A' });
     await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
     analytics.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
     const pending = hook.result.current.onCta();
     await hook.rerender('B');
+    release();
+    await expect(pending).resolves.toBe(false);
+  });
+
+  it.each([
+    ['unresolved', { accessResolved: false, hasPremiumAccess: false }],
+    ['Plus', { accessResolved: true, hasPremiumAccess: true }],
+  ])('returns false when entitlement becomes %s while CTA analytics is awaiting', async (_label, nextAccess) => {
+    let release!: () => void;
+    type AccessProps = { accessResolved: boolean; hasPremiumAccess: boolean };
+    const hook = await renderHook((access: AccessProps) => useTestSoftUpsellOpportunity({
+      candidates: [candidate],
+      accountScope: `cta-${_label}`,
+      studyTarget: 'en',
+      ...access,
+    }), { initialProps: { accessResolved: true, hasPremiumAccess: false } });
+    await waitFor(() => expect(hook.result.current.opportunity).not.toBeNull());
+    analytics.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
+    const pending = hook.result.current.onCta();
+    await hook.rerender(nextAccess);
+    expect(hook.result.current.opportunity).toBeNull();
     release();
     await expect(pending).resolves.toBe(false);
   });

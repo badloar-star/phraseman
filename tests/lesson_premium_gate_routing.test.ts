@@ -1,5 +1,6 @@
 jest.mock('../app/premium_guard', () => ({
   getVerifiedPremiumStatus: jest.fn(),
+  isPremiumAccessDecisionConfirmedForCurrentAccount: jest.fn(),
   isTesterNoLimitsActive: jest.fn(),
 }));
 jest.mock('../app/monetization_policy', () => ({
@@ -14,7 +15,11 @@ jest.mock('../app/navigation_back', () => ({
   markNextNavigationAsReplace: jest.fn(),
 }));
 
-import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from '../app/premium_guard';
+import {
+  getVerifiedPremiumStatus,
+  isPremiumAccessDecisionConfirmedForCurrentAccount,
+  isTesterNoLimitsActive,
+} from '../app/premium_guard';
 import {
   requiresPremiumForLesson,
 } from '../app/monetization_policy';
@@ -26,6 +31,7 @@ import { markNextNavigationAsReplace } from '../app/navigation_back';
 import { openLessonGateByRuntime, resolveLessonRuntimeGate } from '../app/lesson_premium_gate';
 
 const mockPremium = getVerifiedPremiumStatus as jest.Mock;
+const mockDecisionConfirmed = isPremiumAccessDecisionConfirmedForCurrentAccount as jest.Mock;
 const mockNoLimits = isTesterNoLimitsActive as jest.Mock;
 const mockRequiresPremium = requiresPremiumForLesson as jest.Mock;
 const mockEarned = isLessonUnlockedByEarnedProgress as jest.Mock;
@@ -40,6 +46,7 @@ describe('openLessonGateByRuntime — Free/Plus/pearl policy', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockNoLimits.mockResolvedValue(false);
+    mockDecisionConfirmed.mockReturnValue(true);
     mockEarned.mockResolvedValue(false);
     mockRequiresPremium.mockImplementation((lessonId: number) => lessonId >= 4);
   });
@@ -52,6 +59,18 @@ describe('openLessonGateByRuntime — Free/Plus/pearl policy', () => {
 
     expect(mockMarkReplace).toHaveBeenCalled();
     expect(router.replace).toHaveBeenCalled();
+  });
+
+  it('unconfirmed cloud timeout remains pending and never opens paywall or lesson content', async () => {
+    mockPremium.mockResolvedValue(false);
+    mockDecisionConfirmed.mockReturnValue(false);
+
+    await expect(resolveLessonRuntimeGate(20)).resolves.toBe('entitlement_pending');
+    const router = makeRouter();
+    await openLessonGateByRuntime(router, 20);
+
+    expect(mockMarkReplace).not.toHaveBeenCalled();
+    expect(router.replace).not.toHaveBeenCalled();
   });
 
   it('точная жемчужная покупка доступна без Plus', async () => {

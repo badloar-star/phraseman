@@ -4,11 +4,11 @@ export type ComboGateDecision = 'allow' | 'pending' | 'deny';
 /** Потолок ожидания статуса Plus / активации после покупки на пейволе. */
 export const COMBO_GATE_CAP_MS = 5000;
 
-/** Не комбо — пускаем; Plus — пускаем; статус неизвестен — ждём (контент закрыт); Free — отказ. */
+/** Не комбо — пускаем; статус неизвестен — ждём; только подтверждённый Plus пускаем, подтверждённый Free отклоняем. */
 export function comboGateDecision(input: Readonly<{ comboActive: boolean; hasPremiumAccess: boolean; accessResolved: boolean }>): ComboGateDecision {
   if (!input.comboActive) return 'allow';
-  if (input.hasPremiumAccess) return 'allow';
-  return input.accessResolved ? 'deny' : 'pending';
+  if (!input.accessResolved) return 'pending';
+  return input.hasPremiumAccess ? 'allow' : 'deny';
 }
 
 /* expo-router route shim */

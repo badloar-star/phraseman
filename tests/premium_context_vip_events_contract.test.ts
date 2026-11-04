@@ -163,4 +163,27 @@ describe('PremiumContext VIP event contract', () => {
     expect(publicReloadBody).toContain('resolvedReloadEpochRef.current === requestedEpoch');
     expect(publicReloadBody).toContain('setAccessResolved(true)');
   });
+
+  it('reruns verification for a late cloud completion only in the matching account generation', () => {
+    const start = source.indexOf("onAppEvent('premium_cloud_refresh_completed'");
+    expect(start).toBeGreaterThan(-1);
+    const body = source.slice(start, source.indexOf('return () =>', start));
+
+    expect(body).toContain('captureAccountGeneration()');
+    expect(body).toContain("account.phase !== 'active'");
+    expect(body).toContain('account.generation !== accountGeneration');
+    expect(body).toContain('isCurrentAccountGeneration(account, account.stableId)');
+    expect(body).toContain('invalidatePremiumCache()');
+    expect(body).toContain('void reload()');
+  });
+
+  it('does not resolve an unconfirmed cloud timeout as confirmed Free', () => {
+    const reloadStart = source.indexOf('const runReload = useCallback');
+    const reloadBody = source.slice(reloadStart, source.indexOf('const reload = useCallback', reloadStart));
+
+    expect(reloadBody).toContain('isPremiumAccessDecisionConfirmedForCurrentAccount()');
+    expect(reloadBody).toContain('const accessDecisionSettled =');
+    expect(reloadBody).toContain('if (accessDecisionSettled)');
+    expect(reloadBody).toContain('setAccessResolved(false)');
+  });
 });

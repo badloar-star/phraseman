@@ -4,7 +4,7 @@
 // пишется ещё и событием журнала обращений (recordSupportDiagnostic → «Поддержка» → админка): feature_action, экран /lessons,
 //   action plus:lessons:<site>:<decision>:<branch>:l<id>
 //   site: unlock (общая функция замка Plus: меню, охранник) | gate (охранник lesson1, ветки не-Plus) | continue (карточка «Продолжить» на Главной)
-//   decision: available | premium_required | level_required | progress_required;  branch: plus_all | plus_matrix | free_matrix | earned | tester | error
+//   decision: available | entitlement_pending | premium_required | level_required | progress_required;  branch: plus_all | plus_matrix | free_matrix | pending | earned | tester | error
 // Без идентификаторов человека: только номер урока, тариф (true/false) и ветка. Белый список сервера (safeDiagnosticAction) формат пропускает
 // (≤ 80 знаков, нет «слова» из 20+ знаков) — замок в tests/plus_lessons_all_open_owner_lock_2026_10_28.test.ts. Повтор одного решения в 10 с не пишется.
 import { recordSupportDiagnostic } from './support_diagnostics';
@@ -14,8 +14,8 @@ const DEDUPE_MS = 10_000;
 const lastAt = new Map<string, number>();
 
 export type PlusLessonsSite = 'unlock' | 'gate' | 'continue';
-export type PlusLessonsDecision = 'available' | 'premium_required' | 'level_required' | 'progress_required';
-export type PlusLessonsBranch = 'plus_all' | 'plus_matrix' | 'free_matrix' | 'earned' | 'tester' | 'error';
+export type PlusLessonsDecision = 'available' | 'entitlement_pending' | 'premium_required' | 'level_required' | 'progress_required';
+export type PlusLessonsBranch = 'plus_all' | 'plus_matrix' | 'free_matrix' | 'pending' | 'earned' | 'tester' | 'error';
 
 export function plusLessonsAction(site: PlusLessonsSite, decision: PlusLessonsDecision, branch: PlusLessonsBranch, lessonId: number): string {
   return `plus:lessons:${site}:${decision}:${branch}:l${Math.trunc(lessonId)}`.slice(0, 80);

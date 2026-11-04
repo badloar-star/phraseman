@@ -1,4 +1,8 @@
-import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
+import {
+  getVerifiedPremiumStatus,
+  isPremiumAccessDecisionConfirmedForCurrentAccount,
+  isTesterNoLimitsActive,
+} from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
 import {
   lessonPaywallContext,
@@ -12,7 +16,7 @@ import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation'
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { notePlusLessonsDecision, type PlusLessonsBranch } from './plus_lessons_diagnostics';
 
-export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required' | 'progress_required';
+export type LessonRuntimeGate = 'available' | 'entitlement_pending' | 'premium_required' | 'level_required' | 'progress_required';
 
 // зачем (владелец 28.10 ~21:05, [PLUS-LESSONS]): каждое решение охранника уходит в журнал обращений с веткой, которая его приняла. Решения Plus («все 32
 // открыты») пишет общая функция isLessonUnlockedByPremiumCourse — здесь только остальные ветки.
@@ -37,6 +41,9 @@ export async function resolveLessonRuntimeGate(
 
     const premium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_premium_gate:promise_1', false));
     if (!premium) {
+      if (!isPremiumAccessDecisionConfirmedForCurrentAccount()) {
+        return decided(lessonId, 'entitlement_pending', 'pending', null);
+      }
       return decided(lessonId, requiresPremiumForLesson(lessonId) ? 'premium_required' : 'progress_required', 'free_matrix', false);
     }
     // Plus: решение общей функции замка (все 32 открыты; откат — PLUS_OPENS_ALL_LESSONS), её же зовёт меню — охранник и меню не расходятся.
@@ -129,6 +136,7 @@ export async function openLessonGateByRuntime(
 ): Promise<void> {
   const gate = await resolveLessonRuntimeGate(lessonId, studyTarget).catch(noteSwallowedAs('lesson_premium_gate:promise_2', 'progress_required' as LessonRuntimeGate));
   if (gate === 'available') return;
+  if (gate === 'entitlement_pending') return;
   if (gate === 'premium_required') {
     openLessonPremiumPaywall(router, lessonId);
     return;

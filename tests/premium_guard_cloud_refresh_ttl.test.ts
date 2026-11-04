@@ -11,6 +11,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 
 const restoreFromCloud = jest.fn<Promise<boolean>, []>(async () => false);
 const getCustomerInfo = jest.fn(async () => ({ entitlements: { active: {} }, activeSubscriptions: [] }));
+const emitAppEvent = jest.fn();
 
 jest.mock('react-native-purchases', () => ({
   __esModule: true,
@@ -26,6 +27,7 @@ jest.mock('../app/debug-logger', () => ({
   reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { error: jest.fn() },
 }));
+jest.mock('../app/events', () => ({ emitAppEvent }));
 
 const MIN = 60 * 1000;
 
@@ -123,4 +125,57 @@ test('зависший restore не держит проверку дольше �
   await pending;
   expect(settled).toBe(false);
   expect(restoreFromCloud).toHaveBeenCalledTimes(1);
+});
+
+test('поздний успех restore после потолка просит нейтрально пересчитать entitlement', async () => {
+  jest.useFakeTimers();
+  let finishRestore!: (value: boolean) => void;
+  restoreFromCloud.mockImplementation(() => new Promise<boolean>((resolve) => { finishRestore = resolve; }));
+  const guard = require('../app/premium_guard');
+
+  const pending = guard.getVerifiedPremiumStatus();
+  await jest.advanceTimersByTimeAsync(5_500);
+  await expect(pending).resolves.toBe(false);
+  expect(emitAppEvent).not.toHaveBeenCalled();
+
+  finishRestore(true);
+  await Promise.resolve();
+  await Promise.resolve();
+
+  expect(emitAppEvent).toHaveBeenCalledWith('premium_cloud_refresh_completed', {
+    accountGeneration: 1,
+  });
+});
+
+test('поздний restore старого аккаунта не трогает новую генерацию', async () => {
+  jest.useFakeTimers();
+  let finishRestore!: (value: boolean) => void;
+  restoreFromCloud.mockImplementation(() => new Promise<boolean>((resolve) => { finishRestore = resolve; }));
+  const guard = require('../app/premium_guard');
+
+  const pending = guard.getVerifiedPremiumStatus();
+  await jest.advanceTimersByTimeAsync(5_500);
+  await pending;
+  require('../app/account_generation').beginAccountGeneration('next-account');
+  finishRestore(true);
+  await Promise.resolve();
+  await Promise.resolve();
+
+  expect(emitAppEvent).not.toHaveBeenCalled();
+});
+
+test('поздняя ошибка restore не сигналит о завершённой облачной сверке', async () => {
+  jest.useFakeTimers();
+  let failRestore!: (error: Error) => void;
+  restoreFromCloud.mockImplementation(() => new Promise<boolean>((_resolve, reject) => { failRestore = reject; }));
+  const guard = require('../app/premium_guard');
+
+  const pending = guard.getVerifiedPremiumStatus();
+  await jest.advanceTimersByTimeAsync(5_500);
+  await pending;
+  failRestore(new Error('offline'));
+  await Promise.resolve();
+  await Promise.resolve();
+
+  expect(emitAppEvent).not.toHaveBeenCalled();
 });

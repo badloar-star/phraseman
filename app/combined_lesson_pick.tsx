@@ -29,6 +29,7 @@ import {
   COMBINED_LESSON_MAX_TOPICS,
   COMBINED_LESSON_MIN_TOPICS,
 } from './combined_lesson_pool';
+import { comboGateDecision } from './combo_gate_decision';
 import { getCourseLevelForLesson } from './course_levels';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
@@ -51,7 +52,11 @@ export default function CombinedLessonPickScreen() {
   const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const router = useRouter();
-  const { hasPremiumAccess: isPremium } = usePremium();
+  const {
+    hasPremiumAccess: isPremium,
+    accessResolved,
+    reload: reloadPremiumAccess,
+  } = usePremium();
   const names = useMemo(() => lessonNamesForLang(lang), [lang]);
 
   // зачем: порядок выбора сохраняем — он же будет порядком чипов, и человек
@@ -85,8 +90,18 @@ export default function CombinedLessonPickScreen() {
     }
     hapticTap();
     // зачем (аудит R58 #24, 15.10): выбор тем — платная механика; на экран можно попасть по прямой ссылке мимо входа в «Обучении», поэтому Plus проверяем и на старте.
-    if (!isPremium) {
-      console.log('[COMBO-PICK] start:denied', JSON.stringify({ isPremium, topics: picked })); // guard-ok: отказ называет причину
+    const decision = comboGateDecision({
+      comboActive: true,
+      hasPremiumAccess: isPremium,
+      accessResolved,
+    });
+    if (decision === 'pending') {
+      console.log('[COMBO-PICK] start:pending', JSON.stringify({ isPremium, accessResolved, topics: picked })); // guard-ok: неизвестный entitlement не превращается в Free или Plus
+      void reloadPremiumAccess();
+      return;
+    }
+    if (decision === 'deny') {
+      console.log('[COMBO-PICK] start:denied', JSON.stringify({ isPremium, accessResolved, topics: picked })); // guard-ok: отказ называет причину
       openPremiumPaywall(router, { context: 'combined_lesson' });
       return;
     }
@@ -96,7 +111,7 @@ export default function CombinedLessonPickScreen() {
       pathname: '/lesson1',
       params: { combo: picked.join(','), from: 'combined_lesson' },
     });
-  }, [enough, isPremium, picked, router]);
+  }, [accessResolved, enough, isPremium, picked, reloadPremiumAccess, router]);
 
   // зачем (владелец 2026-09-17): на кнопке ПРОСТО «Начать» — без числа и без
   // слова «вопросов». Слово было моей отсебятиной из макета: в уроках это не

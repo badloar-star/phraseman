@@ -48,6 +48,7 @@ import TapScale from "../../components/TapScale";
 import { useFocusEffect, useGlobalSearchParams, useRouter } from "expo-router";
 import { useIsFocused } from "@react-navigation/native";
 import { useFeatureAccess, usePremium } from "../../components/PremiumContext";
+import { comboGateDecision } from "../combo_gate_decision";
 import {
   FREE_LESSON_LIMIT,
   buildPremiumLessonUnlocks,
@@ -55,6 +56,7 @@ import {
   lessonPaywallContext,
   requiresPremiumForLesson,
   resolveLessonAccess,
+  resolveLessonEntitlementReadiness,
 } from "../monetization_policy";
 import { applyDevAsFreeToLessonAccess } from "../dev_as_free_flag";
 import {
@@ -2529,7 +2531,10 @@ export default function LessonsTab({
   const {
     hasPremiumAccess: isPremium,
     devLocalPlusOverride,
+    accessResolved,
+    reload: reloadPremiumAccess,
   } = usePremium();
+  const premiumCourseActive = accessResolved && isPremium;
   const {
     devContentUnlock: effectiveDevContentUnlock,
     noLimits: effectiveNoLimits,
@@ -4049,7 +4054,7 @@ export default function LessonsTab({
     }
     // зачем (D121/D122): Plus-проекция тоже получает сохранённый список открытых
     // (grandfathering уроков, открытых по старому порогу 40%) и legacy-потолок.
-    if (isPremium) {
+    if (premiumCourseActive) {
       return buildPremiumLessonUnlocks({
         scores,
         purchasedLessons,
@@ -4070,7 +4075,7 @@ export default function LessonsTab({
     effectiveLegacyFreeLessonCap,
     effectiveNoLimits,
     examResults,
-    isPremium,
+    premiumCourseActive,
     persistedUnlocked,
     purchasedLessons,
     scores,
@@ -4344,20 +4349,30 @@ export default function LessonsTab({
   // зачем (владелец 2026-09-17): вход в «комбинированный урок» — несколько тем
   // вперемешку. Гейт Plus/Pro стоит ЗДЕСЬ, до перехода: выбор тем — платная
   // механика, и показывать экран, с которого нельзя стартовать, значит обмануть.
-  // Переход мгновенный, без ожидания сети: isPremium уже разрешён в этом экране
-  // (usePremium), поэтому кнопка отвечает в том же кадре.
+  // Решение берём из общей tri-state границы: unknown не является ни Plus, ни
+  // Free — остаёмся на месте и просим PremiumContext повторить проверку.
   const openCombinedLesson = useCallback(() => {
     hapticTap();
-    if (!isPremium) {
+    const decision = comboGateDecision({
+      comboActive: true,
+      hasPremiumAccess: isPremium,
+      accessResolved,
+    });
+    if (decision === 'pending') {
+      if (__DEV__) console.log('[COMBO-ENTRY] press:pending', JSON.stringify({ isPremium, accessResolved }));
+      void reloadPremiumAccess();
+      return;
+    }
+    if (decision === 'deny') {
       // зачем: ранний выход обязан называть причину (правило «сперва логи»).
-      if (__DEV__) console.log('[COMBO-ENTRY] press:denied', JSON.stringify({ isPremium }));
+      if (__DEV__) console.log('[COMBO-ENTRY] press:denied', JSON.stringify({ isPremium, accessResolved }));
       openPremiumPaywall(router, { context: "combined_lesson" });
       return;
     }
     if (__DEV__) console.log('[COMBO-ENTRY] press:ok → /combined_lesson_pick');
     if (!navOnce('lessons:combined_pick')) return; // зачем (аудит R58 #17, 15.10): двойной тап — один экран выбора
     router.push('/combined_lesson_pick');
-  }, [isPremium, router]);
+  }, [accessResolved, isPremium, reloadPremiumAccess, router]);
   // зачем: затухание справа у ряда кнопок нужно, только если ряд реально листается
   // (крупный шрифт/узкий экран). Два замера на монтаж — дёшево, без работы в кадрах.
   const [legacyRailWidth, setLegacyRailWidth] = useState(0);
@@ -4450,6 +4465,19 @@ export default function LessonsTab({
         noLimits: effectiveNoLimits,
         legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
       }, 'lessons_list');
+      const entitlementReadiness = resolveLessonEntitlementReadiness({
+        lessonId: num,
+        isPremium: accessInput.isPremium,
+        accessResolved,
+        purchased: accessInput.purchased,
+        devMode: accessInput.devMode,
+        noLimits: accessInput.noLimits,
+        legacyFreeLessonCap: accessInput.legacyFreeLessonCap,
+      });
+      if (entitlementReadiness === 'pending') {
+        void reloadPremiumAccess();
+        return;
+      }
       const access = resolveLessonAccess(accessInput);
       logLessonGateDecision('list', {
         lesson: num, access, isPremium: accessInput.isPremium, devMode: accessInput.devMode ?? false, noLimits: effectiveNoLimits,
@@ -4474,10 +4502,12 @@ export default function LessonsTab({
       effectiveDevContentUnlock,
       effectiveLegacyFreeLessonCap,
       effectiveNoLimits,
+      accessResolved,
       isPremium,
       openLessonPaywall,
       purchasedLessons,
       router,
+      reloadPremiumAccess,
       studyTarget,
       unlockedLessons,
     ],
@@ -4514,16 +4544,22 @@ export default function LessonsTab({
     );
     const examLevel = lvl as CourseLevel;
     const examLevelIdx = getCourseLevelIndex(examLevel);
+    const examEntitlementReadiness = resolveLessonEntitlementReadiness({
+      lessonId: to,
+      isPremium,
+      accessResolved,
+      devMode: effectiveDevContentUnlock,
+      noLimits: effectiveNoLimits,
+      legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
+    });
+    const examEntitlementPending = examEntitlementReadiness === 'pending';
     const premiumExamAvailable =
-      isPremium && examLevelIdx <= premiumReachableLevelIndex;
-    const examPremiumRequired =
-      !isPremium &&
-      !effectiveDevContentUnlock &&
-      !effectiveNoLimits &&
-      requiresPremiumForLesson(to, effectiveLegacyFreeLessonCap);
+      premiumCourseActive && examLevelIdx <= premiumReachableLevelIndex;
+    const examPremiumRequired = examEntitlementReadiness === 'premium_required';
     const examSourceAvailable = examContentAvailableForTarget(studyTarget);
     const allDone =
       examSourceAvailable &&
+      !examEntitlementPending &&
       !examPremiumRequired &&
       (effectiveDevContentUnlock ||
         effectiveNoLimits ||
@@ -4557,9 +4593,11 @@ export default function LessonsTab({
     // зачем (learn-4/8, координатор 05.10): порядок статусов — в pickLessonsExamStatus (сданный → нужен Plus →
     // «Почти» только при pct > 0 → прежняя цепочка). Тексты прежние.
     const examStatusKind = pickLessonsExamStatus({
-      result, examPremiumRequired, examSourceAvailable, allDone, isPremium, prevExamLevel,
+      result, examPremiumRequired, examSourceAvailable, allDone, isPremium: premiumCourseActive, prevExamLevel,
     });
-    const subLine = examStatusKind === "passed" || examStatusKind === "almost"
+    const subLine = examEntitlementPending
+      ? lessonsListCopy.checkingAccess(lang)
+      : examStatusKind === "passed" || examStatusKind === "almost"
       ? examStatusKind === "passed" && result
         ? triLang(lang, {
             // зачем: макет learn.html A5 — «Сдан — 92%» без эмодзи-галочки.
@@ -4636,7 +4674,7 @@ export default function LessonsTab({
     // зачем (learn-4/8, Сверка: Free видит «Почти — 0%» вместо «Откроется с Plus»): какие входы решили статус экзамена.
     logOncePerKey('[LESSONS-EXAM] status', `${lvl}|${subLine}`, {
       level: lvl, hasResult: Boolean(result), resultPct: result?.pct ?? null, passed: result?.passed ?? null,
-      examSourceAvailable, allDone, examPremiumRequired, isPremium, kind: examStatusKind, chosen: subLine,
+      examSourceAvailable, allDone, examEntitlementPending, examPremiumRequired, isPremium: premiumCourseActive, kind: examStatusKind, chosen: subLine,
     });
     // зачем (R1 L1): свежий обработчик кладём в ref, а в плашку отдаём стабильную обёртку — ссылка пропса не меняется между коммитами.
     examPressImplRef.current[lvl] = () => {
@@ -4644,7 +4682,9 @@ export default function LessonsTab({
       hapticTap();
       const firstLessonByLevel =
         lvl === "A1" ? 1 : lvl === "A2" ? 9 : lvl === "B1" ? 19 : 29;
-      if (examPremiumRequired) {
+      if (examEntitlementReadiness === 'pending') {
+        void reloadPremiumAccess();
+      } else if (examPremiumRequired) {
         openLessonPaywall(
           requiresPremiumForLesson(
             firstLessonByLevel,
@@ -4658,7 +4698,7 @@ export default function LessonsTab({
       } else if (allDone) {
         if (!navOnce(`lessons:level_exam:${lvl}`)) return; // зачем (аудит R58 #17, 15.10): двойной тап — один экзамен уровня
         router.push({ pathname: "/level_exam", params: { level: lvl } });
-      } else if (isPremium && prevExamLevel) {
+      } else if (premiumCourseActive && prevExamLevel) {
         setGateModal({
           kind: "levelGate",
           level: lvl,
@@ -4713,13 +4753,23 @@ export default function LessonsTab({
       // (unlockedLessons, progCounts, requiresPremiumForLesson), — доступ не меняется.
       const legacyUnlocked = Boolean(unlockedLessons[index]);
       const legacyPct = Math.min(100, Math.round(((progCounts[index] ?? 0) / 50) * 100));
+      const legacyEntitlementReadiness = resolveLessonEntitlementReadiness({
+        lessonId: num,
+        isPremium,
+        accessResolved,
+        purchased: purchasedLessons.includes(num),
+        devMode: effectiveDevContentUnlock,
+        noLimits: effectiveNoLimits,
+        legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
+      });
       const legacyPremiumRequired =
-        !isPremium &&
+        legacyEntitlementReadiness === 'premium_required' &&
         !legacyUnlocked &&
-        !effectiveNoLimits &&
-        requiresPremiumForLesson(num, effectiveLegacyFreeLessonCap);
-      const legacyState: LessonsListCardState = legacyPremiumRequired
-        ? { kind: "plus" }
+        !effectiveNoLimits;
+      const legacyState: LessonsListCardState = legacyEntitlementReadiness === 'pending'
+        ? { kind: "pending" }
+        : legacyPremiumRequired
+          ? { kind: "plus" }
         : !legacyUnlocked
           ? { kind: "locked", prevNum: Math.max(1, num - 1) }
           : legacyPct >= 100
@@ -5860,6 +5910,7 @@ export default function LessonsTab({
                 }
                 if (item.kind === "header") {
                   const premiumLocked =
+                    accessResolved &&
                     !isPremium &&
                     !effectiveDevContentUnlock &&
                     !effectiveNoLimits &&

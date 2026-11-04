@@ -69,7 +69,12 @@ import { openStoreReviewPage } from './store_review';
 import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
 import { logAppWarning } from './app_health';
 import { markLessonFinishedOnce } from './mastery';
-import { getVerifiedPremiumAccessStatus, getVerifiedPremiumStatus, invalidatePremiumCache } from './premium_guard';
+import {
+  getVerifiedPremiumAccessStatus,
+  getVerifiedPremiumStatus,
+  invalidatePremiumCache,
+  isPremiumAccessDecisionConfirmedForCurrentAccount,
+} from './premium_guard';
 import { resolveNextLessonAccess } from './lesson_next_access';
 import { FREE_LESSON_LIMIT, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
@@ -566,10 +571,12 @@ export default function LessonComplete() {
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const softUpsellStudyTarget: SoftUpsellStudyTarget = studyTarget === 'fr' ? 'fr' : 'en';
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, accessResolved } = usePremium();
   // зачем (Ревизор по 31029c044, 15.10, 🔴): «Следующий урок» читает Plus из контекста В МОМЕНТ решения, а не на тапе — холодный кэш не должен показать платящему пейвол
   const hasPremiumRef = useRef(hasPremiumAccess);
   hasPremiumRef.current = hasPremiumAccess;
+  const accessResolvedRef = useRef(accessResolved);
+  accessResolvedRef.current = accessResolved;
   const [softUpsellAccountToken, setSoftUpsellAccountToken] = useState(() => captureAccountGeneration());
   const softUpsellAccountScope = studyTarget === 'es'
     ? ''
@@ -735,6 +742,7 @@ export default function LessonComplete() {
     candidates: softUpsellAccountScope ? softUpsellCandidates : [],
     accountScope: softUpsellAccountScope,
     studyTarget: softUpsellStudyTarget,
+    accessResolved,
     hasPremiumAccess,
   });
   // зачем (Авторизация 12.10, paywalls-009/010): dev `upsell=first_lesson|three_lessons` — предложение Plus на итоге урока
@@ -1348,8 +1356,10 @@ export default function LessonComplete() {
           const accessDecision = await resolveNextLessonAccess({
             needsPremium: requiresPremiumForLesson(next, legacyFreeLessonCap),
             contextPremium: () => hasPremiumRef.current,
+            contextResolved: () => accessResolvedRef.current,
             prepare: invalidatePremiumCache,
             verify: () => getVerifiedPremiumStatus(),
+            decisionConfirmed: isPremiumAccessDecisionConfirmedForCurrentAccount,
             log: (message) => DebugLogger.info('[LESSON-NEXT]', `lesson=${lessonId}→${next}: доступ — ${message}`),
           });
           if (accessDecision === 'paywall') {

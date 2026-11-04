@@ -11,10 +11,14 @@ export type NextLessonAccessInput = Readonly<{
   needsPremium: boolean;
   /** Что сейчас говорит контекст приложения (PremiumContext.hasPremiumAccess) — читается в момент решения, не на тапе. */
   contextPremium: () => boolean;
+  /** Контекст уже относится к подтверждённому решению текущего аккаунта, а не к boot snapshot. */
+  contextResolved: () => boolean;
   /** Сбросить кэш доступа в памяти перед полной проверкой (холодный `false` не должен попасть в запасной вызов). */
   prepare: () => void;
   /** Полная проверка с облаком: true — Plus, false — подтверждённое «нет»; бросает при сбое. */
   verify: () => Promise<boolean>;
+  /** После false подтверждает, что guard действительно закэшировал решение текущего аккаунта. */
+  decisionConfirmed: () => boolean;
   /** Потолок ожидания ответа, мс. */
   timeoutMs?: number;
   /** Журнал решения (значение, а не голое true/false). */
@@ -29,7 +33,8 @@ export async function resolveNextLessonAccess(input: NextLessonAccessInput): Pro
     log('needsPremium=false → open');
     return 'open';
   }
-  if (input.contextPremium()) {
+  const contextPlus = () => input.contextResolved() && input.contextPremium();
+  if (contextPlus()) {
     log('context=Plus → open без проверки');
     return 'open';
   }
@@ -38,14 +43,16 @@ export async function resolveNextLessonAccess(input: NextLessonAccessInput): Pro
   type Answer = 'plus' | 'free' | 'unconfirmed';
   let timer: ReturnType<typeof setTimeout> | null = null;
   const answer = await Promise.race<Answer>([
-    input.verify().then((plus): Answer => (plus ? 'plus' : 'free')).catch((error: unknown): Answer => {
+    input.verify().then((plus): Answer => (
+      plus ? 'plus' : input.decisionConfirmed() ? 'free' : 'unconfirmed'
+    )).catch((error: unknown): Answer => {
       log(`verify упала: ${error instanceof Error ? error.message : String(error)} → не подтверждено`);
       return 'unconfirmed';
     }),
     new Promise<Answer>((resolve) => { timer = setTimeout(() => resolve('unconfirmed'), timeoutMs); }),
   ]);
   if (timer) clearTimeout(timer);
-  const contextNow = input.contextPremium();
+  const contextNow = contextPlus();
   const decision: NextLessonAccessDecision = answer === 'free' && !contextNow ? 'paywall' : 'open';
   log(`answer=${answer} context=${String(contextNow)} → ${decision}`);
   return decision;

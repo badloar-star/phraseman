@@ -9,7 +9,7 @@ describe('«Следующий урок»: холодный кэш, платящ
     let cache: boolean | null = false; // холодный false, пришедший из проверки без облака
     const prepare = jest.fn(() => { cache = null; });
     const verify = jest.fn(() => new Promise<boolean>(() => undefined)); // сеть не отвечает
-    const pending = resolveNextLessonAccess({ needsPremium: true, contextPremium: () => false, prepare, verify });
+    const pending = resolveNextLessonAccess({ needsPremium: true, contextPremium: () => false, contextResolved: () => true, prepare, verify, decisionConfirmed: () => false });
     jest.advanceTimersByTime(NEXT_LESSON_ACCESS_TIMEOUT_MS + 1);
     await expect(pending).resolves.toBe('open');
     expect(prepare).toHaveBeenCalledTimes(1);
@@ -18,7 +18,7 @@ describe('«Следующий урок»: холодный кэш, платящ
 
   it('то же, но за время ожидания подписка в контексте подтвердилась → открыт', async () => {
     let context = false;
-    const pending = resolveNextLessonAccess({ needsPremium: true, contextPremium: () => context, prepare: jest.fn(), verify: () => new Promise<boolean>(() => undefined) });
+    const pending = resolveNextLessonAccess({ needsPremium: true, contextPremium: () => context, contextResolved: () => true, prepare: jest.fn(), verify: () => new Promise<boolean>(() => undefined), decisionConfirmed: () => false });
     jest.advanceTimersByTime(NEXT_LESSON_ACCESS_TIMEOUT_MS - 100);
     context = true;
     jest.advanceTimersByTime(200);
@@ -27,7 +27,7 @@ describe('«Следующий урок»: холодный кэш, платящ
 
   it('поздний ответ «нет» после таймаута принятое решение не меняет (урок уже открыт)', async () => {
     let late: (value: boolean) => void = () => undefined;
-    const pending = resolveNextLessonAccess({ needsPremium: true, contextPremium: () => false, prepare: jest.fn(), verify: () => new Promise<boolean>((resolve) => { late = resolve; }) });
+    const pending = resolveNextLessonAccess({ needsPremium: true, contextPremium: () => false, contextResolved: () => true, prepare: jest.fn(), verify: () => new Promise<boolean>((resolve) => { late = resolve; }), decisionConfirmed: () => false });
     jest.advanceTimersByTime(NEXT_LESSON_ACCESS_TIMEOUT_MS + 1);
     await expect(pending).resolves.toBe('open');
     late(false);

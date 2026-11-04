@@ -28,6 +28,7 @@ import EnergyBar from '../components/EnergyBar';
 import { useEnergy } from '../components/EnergyContext';
 import PremiumCard from '../components/PremiumCard';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { usePremium } from '../components/PremiumContext';
 import { theoryEntryFor, triLang } from '../constants/i18n';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { hapticTap } from '../hooks/use-haptics';
@@ -53,7 +54,11 @@ import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { lessonListJustOpened, peekLessonGateDecision } from './lesson_premium_gate';
 import { noteLessonMenuBounce, noteLessonMenuLock, noteLessonMenuTrustedList } from './lessons_access_diagnostics';
 import { isLessonFinishedOnce } from './mastery';
-import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
+import {
+  getVerifiedPremiumStatus,
+  isPremiumAccessDecisionConfirmedForCurrentAccount,
+  isTesterNoLimitsActive,
+} from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
 import {
   lessonPaywallContext,
@@ -359,6 +364,7 @@ function LessonMenu() {
   const isGoldTheme = themeMode === 'gold';
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { accessResolved: premiumAccessResolved } = usePremium();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
   const {
     id: idParam,
@@ -453,7 +459,7 @@ function LessonMenu() {
   const lockGenerationRef = useRef(0);
   // зачем (координатор 13.10): сколько мс длится проверка доступа, пока на экране скелет, и чем она кончилась. Только журнал: решения гейта это не касается.
   const lockCheckStartedAtRef = useRef(Date.now());
-  const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
+  const [lockReason, setLockReason] = useState<'pending' | 'premium' | 'level' | 'progress'>('progress');
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   // showLockModal удалён вместе со своим модалом: при закрытом уроке этот экран
   // больше не рисуется, показывать поверх него было нечего.
@@ -503,7 +509,7 @@ function LessonMenu() {
   }, [lessonId, navigation, router]);
   useEffect(() => {
     if (!lockStateLoaded || !isLessonLocked) return;
-    if (lockReason === 'premium') return; // им занимается эффект выше (пейвол)
+    if (lockReason === 'premium' || lockReason === 'pending') return; // premium ведёт пейвол; pending остаётся на нейтральном скелете
     if (lockedBackDispatchedRef.current) return;
     lockedBackDispatchedRef.current = true;
     // Ранний выход с экрана обязан логироваться и в релизе — без этого
@@ -643,12 +649,13 @@ function LessonMenu() {
     // зачем (Ревизор 7d564d137): две проверки при быстром blur→focus шли внахлёст — ранняя снимала флаг и записывала устаревший результат. Поколение: результат и снятие флага — только у последней.
     // stableId в ключе подтверждения: подтверждение одного аккаунта не переносится на другой.
     const generation = ++lockGenerationRef.current;
+    let entitlementPending = false;
     const lockKey = `${captureAccountGeneration()?.stableId ?? 'anon'}|${lessonId}|${String(studyTarget)}`;
     const gatedSetLocked = (value: boolean) => { if (lockGenerationRef.current === generation) setIsLessonLocked(value); };
-    const gatedSetReason = (value: 'premium' | 'level' | 'progress') => { if (lockGenerationRef.current === generation) setLockReason(value); };
+    const gatedSetReason = (value: 'pending' | 'premium' | 'level' | 'progress') => { if (lockGenerationRef.current === generation) setLockReason(value); };
     const gatedSetInfo = (next: Awaited<ReturnType<typeof getLessonLockInfo>> | null) => { if (lockGenerationRef.current === generation) setLockInfoQuiet(next); };
     const silent = lockConfirmedKeyRef.current === lockKey;
-    console.log(`[LESSON-MENU] lock:check ${JSON.stringify({ lessonId, studyTarget, silent })}`); // guard-ok: тихая ли перепроверка
+    console.log(`[LESSON-MENU] lock:check ${JSON.stringify({ lessonId, studyTarget, silent, premiumAccessResolved })}`); // guard-ok: тихая ли перепроверка и завершена ли проверка entitlement
     if (silent) {
       setLockRevalidating(true);
     } else {
@@ -690,6 +697,15 @@ function LessonMenu() {
         }
 
         const premiumNow = await getVerifiedPremiumStatus();
+
+        if (!premiumNow && !isPremiumAccessDecisionConfirmedForCurrentAccount()) {
+          entitlementPending = true;
+          console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: 'access_pending', premiumNow })}`);
+          gatedSetLocked(true);
+          gatedSetReason('pending');
+          gatedSetInfo(null);
+          return;
+        }
 
         if (!premiumNow && requiresPremiumForLesson(lessonId)) {
           console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: 'premium_required', premiumNow })}`);
@@ -771,15 +787,20 @@ function LessonMenu() {
         );
       } finally {
         if (lockGenerationRef.current === generation) {
-          lockConfirmedKeyRef.current = lockKey;
           setLockRevalidating(false);
-          setLockStateLoaded(true);
+          if (entitlementPending) {
+            lockConfirmedKeyRef.current = null;
+            setLockStateLoaded(false);
+          } else {
+            lockConfirmedKeyRef.current = lockKey;
+            setLockStateLoaded(true);
+          }
         } else {
           console.log(`[LESSON-MENU] lock:stale_result_dropped ${JSON.stringify({ lessonId, generation, latest: lockGenerationRef.current })}`); // guard-ok: устаревшая проверка отброшена
         }
       }
     })();
-  }, [lessonId, studyTarget]);
+  }, [lessonId, premiumAccessResolved, studyTarget]);
 
   // зачем (координатор 13.10; сперва логи): начало и конец ожидания проверки доступа — пока `lockStateLoaded` ложно, на экране скелет, а не пустой фон. Итог проверки (закрыто/открыто, причина) читается из состояния, решение не принимается здесь.
   useEffect(() => {

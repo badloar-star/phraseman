@@ -73,6 +73,11 @@ export const lessonsListCopy = {
     ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluida en Plus',
     'pt-BR': 'Incluída no Plus', vi: 'Có trong Plus', id: 'Termasuk dalam Plus', tr: "Plus'a dahil", pl: 'W ramach Plus',
   }),
+  checkingAccess: (lang: Lang): string => triLang(lang, {
+    ru: 'Проверяем доступ…', uk: 'Перевіряємо доступ…', en: 'Checking access…', es: 'Comprobando acceso…',
+    'pt-BR': 'Verificando acesso…', vi: 'Đang kiểm tra quyền truy cập…', id: 'Memeriksa akses…',
+    tr: 'Erişim kontrol ediliyor…', pl: 'Sprawdzamy dostęp…',
+  }),
   lockPrev: (lang: Lang, prev: number): string => triLang(lang, {
     ru: `Пройди урок\u00A0${prev}\u00A0на 2★`, uk: `Пройди урок\u00A0${prev}\u00A0на 2★`, en: `Complete lesson\u00A0${prev}\u00A0with 2★`,
     es: `Completa la lección\u00A0${prev}\u00A0con 2★`, 'pt-BR': `Conclua a lição\u00A0${prev}\u00A0com 2★`,

@@ -20,6 +20,7 @@
 jest.mock('../app/premium_guard', () => ({
   getVerifiedPremiumAccessStatus: jest.fn(async () => false),
   getVerifiedPremiumStatus: jest.fn(async () => (globalThis as Record<string, unknown>).__PLUS__ === true),
+  isPremiumAccessDecisionConfirmedForCurrentAccount: jest.fn(() => true),
   isTesterNoLimitsActive: jest.fn(async () => false),
 }));
 jest.mock('../app/legacy_free_lesson_access', () => ({ readLegacyFreeLessonCap: jest.fn(async () => 0) }));

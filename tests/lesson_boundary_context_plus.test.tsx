@@ -5,13 +5,14 @@
 import { act, renderHook } from '@testing-library/react-native';
 
 let mockHasPremiumAccess = false;
+let mockAccessResolved = true;
 const mockOpenPaywall = jest.fn();
 const mockOpenGate = jest.fn();
 
 jest.mock('../modules/lesson_first_frame', () => ({ __esModule: true, default: () => null }));
 jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => ({ studyTarget: 'en' }) }));
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: {} }) }));
-jest.mock('../components/PremiumContext', () => ({ usePremium: () => ({ hasPremiumAccess: mockHasPremiumAccess, accessResolved: true }) }));
+jest.mock('../components/PremiumContext', () => ({ usePremium: () => ({ hasPremiumAccess: mockHasPremiumAccess, accessResolved: mockAccessResolved }) }));
 jest.mock('../app/lesson_premium_gate', () => ({
   resolveLessonRuntimeGate: jest.fn(async () => 'premium_required'),
   openLessonPremiumPaywall: (...args: unknown[]) => mockOpenPaywall(...args),
@@ -24,6 +25,7 @@ const router = { push: jest.fn(), replace: jest.fn() } as never;
 
 beforeEach(() => {
   jest.clearAllMocks();
+  mockAccessResolved = true;
   jest.spyOn(console, 'log').mockImplementation(() => undefined);
 });
 afterEach(() => jest.restoreAllMocks());
@@ -42,4 +44,14 @@ test('Free — решение прежнее: пейвол урока, конт�
   await act(async () => { await Promise.resolve(); });
   expect(result.current).toBe(false);
   expect(mockOpenPaywall).toHaveBeenCalledWith(router, 7);
+});
+
+test('unresolved positive boot snapshot neither mounts paid content nor opens paywall', async () => {
+  mockHasPremiumAccess = true;
+  mockAccessResolved = false;
+  const { result } = await renderHook(() => useLessonRuntimeAccessAuthorization(router, 32, 'en'));
+  await act(async () => { await Promise.resolve(); });
+  expect(result.current).toBe(false);
+  expect(mockOpenPaywall).not.toHaveBeenCalled();
+  expect(mockOpenGate).not.toHaveBeenCalled();
 });

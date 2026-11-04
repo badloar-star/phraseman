@@ -11,6 +11,7 @@ import {
   beginPremiumAccountTransition,
   getPremiumAccountTransitionEpoch,
   invalidatePremiumCache,
+  isPremiumAccessDecisionConfirmedForCurrentAccount,
   onPremiumAccountTransition,
   runPremiumAccountScopedWork,
 } from '../app/premium_guard';
@@ -382,7 +383,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     } else {
       void reloadTrialEligible(isReloadCurrent);
     }
-    resolvedReloadEpochRef.current = reloadEpoch;
+    const accessDecisionSettled = projectedEntitlement.hasPremiumAccess
+      || isPremiumAccessDecisionConfirmedForCurrentAccount();
+    if (accessDecisionSettled) {
+      resolvedReloadEpochRef.current = reloadEpoch;
+    } else {
+      // A cloud timeout/error is not a Free verdict. Keep paid surfaces in a
+      // neutral pending state until a conclusive retry or late completion.
+      resolvedReloadEpochRef.current = null;
+      setAccessResolved(false);
+    }
     // зачем (координатор 25.10, свободный диалог владельца): телефон давал Plus, сервер — нет, а журнал печатал только итог.
     // Теперь видно, КАКОЙ источник дал «да» (без идентификаторов): стор-покупка, VIP, облачная проверка, вводные 3 дня, dev-выдача.
     const accessSources = {
@@ -913,6 +923,22 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const sub = onAppEvent('premium_server_recheck_done', ({ surface, accessAfter }) => {
       console.log(`[PLUS-RECHECK] PremiumContext: пересчёт доступа surface=${surface} accessAfter=${String(accessAfter)}`);
+      invalidatePremiumCache();
+      void reload();
+    });
+    return () => sub.remove();
+  }, [reload]);
+
+  useEffect(() => {
+    const sub = onAppEvent('premium_cloud_refresh_completed', ({ accountGeneration }) => {
+      const account = captureAccountGeneration();
+      if (
+        account.phase !== 'active'
+        || account.generation !== accountGeneration
+        || !account.stableId
+        || !isCurrentAccountGeneration(account, account.stableId)
+        || premiumAccountTransitionActiveRef.current
+      ) return;
       invalidatePremiumCache();
       void reload();
     });

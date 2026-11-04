@@ -6,7 +6,11 @@ import path from 'node:path';
 
 jest.mock('../app/lesson_lock_system', () => ({}));
 jest.mock('../app/navigation_back', () => ({ markNextNavigationAsReplace: jest.fn() }));
-jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn(), isTesterNoLimitsActive: jest.fn() }));
+jest.mock('../app/premium_guard', () => ({
+  getVerifiedPremiumStatus: jest.fn(),
+  isPremiumAccessDecisionConfirmedForCurrentAccount: jest.fn(() => true),
+  isTesterNoLimitsActive: jest.fn(),
+}));
 jest.mock('../app/paywall_navigation', () => ({ openPremiumPaywall: jest.fn() }));
 
 const read = (file: string) => fs.readFileSync(path.join(__dirname, '..', file), 'utf8').replace(/\r\n/g, '\n');

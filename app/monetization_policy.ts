@@ -35,6 +35,11 @@ export type LessonAccessState =
   | 'premium_required'
   | 'progress_required';
 
+export type LessonEntitlementReadiness =
+  | 'ready'
+  | 'pending'
+  | 'premium_required';
+
 /**
  * The main course is deliberately fail-closed: the three-lesson Free sample
  * is a local product contract.
@@ -78,6 +83,42 @@ export function requiresPremiumForLesson(
   if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) return false;
   if (isMainCourseLesson(lessonId)) return lessonId > FREE_LESSON_LIMIT;
   return !isFreeLesson(lessonId);
+}
+
+/**
+ * Separates entitlement uncertainty from a confirmed Free decision.
+ *
+ * An unresolved paid lesson is neither granted nor sent to the paywall. The
+ * caller keeps the card in a neutral pending state and asks PremiumContext to
+ * verify again. Product-level bypasses remain usable without waiting because
+ * they do not depend on the subscription result.
+ */
+export function resolveLessonEntitlementReadiness(params: {
+  lessonId: number;
+  isPremium: boolean;
+  accessResolved: boolean;
+  purchased?: boolean;
+  devMode?: boolean;
+  noLimits?: boolean;
+  legacyFreeLessonCap?: number;
+}): LessonEntitlementReadiness {
+  const {
+    lessonId,
+    isPremium,
+    accessResolved,
+    purchased = false,
+    devMode = false,
+    noLimits = false,
+    legacyFreeLessonCap,
+  } = params;
+  if (
+    purchased
+    || devMode
+    || noLimits
+    || !requiresPremiumForLesson(lessonId, legacyFreeLessonCap)
+  ) return 'ready';
+  if (!accessResolved) return 'pending';
+  return isPremium ? 'ready' : 'premium_required';
 }
 
 /**

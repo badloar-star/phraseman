@@ -25,6 +25,7 @@ const mockRecord = jest.fn(async (_event: unknown) => undefined);
 jest.mock('../app/support_diagnostics', () => ({ recordSupportDiagnostic: (event: unknown) => mockRecord(event) }));
 jest.mock('../app/premium_guard', () => ({
   getVerifiedPremiumStatus: jest.fn(async () => true),
+  isPremiumAccessDecisionConfirmedForCurrentAccount: jest.fn(() => true),
   isTesterNoLimitsActive: jest.fn(async () => false),
 }));
 

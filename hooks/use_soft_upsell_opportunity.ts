@@ -22,6 +22,7 @@ type Input = {
   candidates: readonly SoftUpsellCandidate[];
   accountScope: string;
   studyTarget: SoftUpsellStudyTarget;
+  accessResolved: boolean;
   hasPremiumAccess: boolean;
 };
 
@@ -74,11 +75,14 @@ export function useSoftUpsellOpportunity({
   candidates,
   accountScope,
   studyTarget,
+  accessResolved,
   hasPremiumAccess,
 }: Input): Result {
   const currentIdentityKey = identityKey({ accountScope, studyTarget });
   const currentIdentityKeyRef = useRef(currentIdentityKey);
   currentIdentityKeyRef.current = currentIdentityKey;
+  const entitlementAllowsUpsellRef = useRef(accessResolved && !hasPremiumAccess);
+  entitlementAllowsUpsellRef.current = accessResolved && !hasPremiumAccess;
   const overlayOccupied = useOverlayOccupied();
   const targetCandidates = candidates.filter((candidate) => candidate.studyTarget === studyTarget);
   const candidateSignature = signature(targetCandidates);
@@ -106,6 +110,7 @@ export function useSoftUpsellOpportunity({
       setBoundOpportunity(null);
       opportunityRef.current = null;
       pendingDismissRef.current = null;
+      if (!accessResolved) return;
       const persisted = await readSoftUpsellState(accountScope, studyTarget);
       if (!active) return;
       const decision = decideSoftUpsell({
@@ -150,7 +155,7 @@ export function useSoftUpsellOpportunity({
     };
     void run().catch(noteSwallowedHandler('use_soft_upsell_opportunity:promise_1'));
     return () => { active = false; };
-  }, [accountScope, candidateSignature, currentIdentityKey, hasPremiumAccess, overlayOccupied, stableCandidates, studyTarget]);
+  }, [accessResolved, accountScope, candidateSignature, currentIdentityKey, hasPremiumAccess, overlayOccupied, stableCandidates, studyTarget]);
 
   const basePayload = useCallback((item: SoftUpsellOpportunity) => ({
     context: item.context,
@@ -163,7 +168,7 @@ export function useSoftUpsellOpportunity({
 
   const onImpression = useCallback(async () => {
     const bound = opportunityRef.current;
-    if (!bound || bound.identityKey !== currentIdentityKey
+    if (!entitlementAllowsUpsellRef.current || !bound || bound.identityKey !== currentIdentityKey
       || currentIdentityKeyRef.current !== currentIdentityKey) return;
     const item = bound.item;
     if (impressionCompletedRef.current.has(item.milestoneId)) return;
@@ -187,7 +192,7 @@ export function useSoftUpsellOpportunity({
 
   const onDismiss = useCallback(async () => {
     const bound = opportunityRef.current ?? pendingDismissRef.current;
-    if (!bound || bound.identityKey !== currentIdentityKey
+    if (!entitlementAllowsUpsellRef.current || !bound || bound.identityKey !== currentIdentityKey
       || currentIdentityKeyRef.current !== currentIdentityKey) return;
     const item = bound.item;
     if (dismissCompletedRef.current.has(item.milestoneId)) return;
@@ -220,13 +225,16 @@ export function useSoftUpsellOpportunity({
 
   const onCta = useCallback(async () => {
     const bound = opportunityRef.current;
-    if (!bound || bound.identityKey !== currentIdentityKey
+    if (!entitlementAllowsUpsellRef.current || !bound || bound.identityKey !== currentIdentityKey
       || currentIdentityKeyRef.current !== currentIdentityKey) return false;
     const item = bound.item;
     await trackSoftUpsellEvent('soft_upsell_cta', { ...basePayload(item), destination: item.destination });
-    return currentIdentityKeyRef.current === currentIdentityKey;
+    return entitlementAllowsUpsellRef.current
+      && currentIdentityKeyRef.current === currentIdentityKey;
   }, [basePayload, currentIdentityKey]);
 
-  const opportunity = boundOpportunity?.identityKey === currentIdentityKey ? boundOpportunity.item : null;
+  const opportunity = accessResolved && !hasPremiumAccess && boundOpportunity?.identityKey === currentIdentityKey
+    ? boundOpportunity.item
+    : null;
   return { opportunity, onImpression, onDismiss, onCta };
 }

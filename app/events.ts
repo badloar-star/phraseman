@@ -52,6 +52,8 @@ export type AppEventMap = {
   loyalty_gift_changed: undefined;
   /** Сервер отказал «нужен Plus», телефон перечитал доступ из облака (plus_server_recheck) — пересчитать доступ. */
   premium_server_recheck_done: { surface: string; accessAfter: boolean };
+  /** A capped background restore later completed; consumers must re-verify, not grant access from this signal. */
+  premium_cloud_refresh_completed: { accountGeneration: number };
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   account_deleted: undefined;

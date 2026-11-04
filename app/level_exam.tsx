@@ -32,7 +32,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { getCourseLevelIndex, getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
-import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
+import { isTesterNoLimitsActive } from './premium_guard';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { usePremium } from '../components/PremiumContext';
@@ -604,7 +604,7 @@ export default function LevelExam() {
     lvl,
     `${examEnergyMountIdRef.current}:${examEnergyAttemptRevision}`,
   );
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, accessResolved, reload: reloadPremiumAccess } = usePremium();
   const examEnergyUnlimited = energyUnlimited || hasPremiumAccess;
   const [noEnergy, setNoEnergy] = useState(false);
 
@@ -664,10 +664,15 @@ export default function LevelExam() {
         return;
       }
 
+      if (!accessResolved) {
+        void reloadPremiumAccess();
+        return;
+      }
+
       const examLevel = lvl as CourseLevel;
       const lastLessonForLevel = getLastLessonForLevel(examLevel);
       const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
-      const premiumNow = await getVerifiedPremiumStatus();
+      const premiumNow = hasPremiumAccess;
       if (!premiumNow && requiresPremiumForLesson(lastLessonForLevel, legacyFreeLessonCap)) {
         if (!cancelled) {
           setAccessBlockKind('premium');
@@ -758,7 +763,7 @@ export default function LevelExam() {
       cancelled = true;
       if (accessTimeout) clearTimeout(accessTimeout);
     };
-  }, [frenchExamBlocked, lang, lvl, studyTarget]);
+  }, [accessResolved, frenchExamBlocked, hasPremiumAccess, lang, lvl, reloadPremiumAccess, studyTarget]);
 
   const levelLabel = LEVEL_LABELS[lvl];
   const title = levelLabel

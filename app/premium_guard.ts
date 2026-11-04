@@ -71,6 +71,7 @@ function restoreAttemptConfirmed(attempt: unknown): boolean | null {
   return null;
 }
 let _cloudAccessRefreshInFlight: Promise<boolean> | null = null;
+const _lateCloudRefreshSignals = new WeakSet<Promise<boolean>>();
 const _realPremiumBackgroundRefreshes = new Map<number, Promise<void>>();
 let _premiumAccountTransitionEpoch = 0;
 let _premiumAccountDrainEpoch = 0;
@@ -91,6 +92,14 @@ export function invalidatePremiumCache(): void {
   _cachedAccessResult = null;
   _accessCacheTime = 0;
   _accessCacheGeneration = -1;
+}
+
+/** True only when the current account has a cache entry produced by a conclusive access decision. */
+export function isPremiumAccessDecisionConfirmedForCurrentAccount(): boolean {
+  const generation = captureAccountGeneration();
+  return accountGenerationIsCurrent(generation)
+    && _cachedAccessResult !== null
+    && _accessCacheGeneration === generation.generation;
 }
 
 /**
@@ -1019,7 +1028,7 @@ function cacheAccess(result: boolean, generation: AccountGenerationToken): boole
 async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerationToken): Promise<CloudRefreshOutcome> {
   if (!accountGenerationIsCurrent(generation)) return 'unconfirmed';
   const now = Date.now();
-  if (_cloudAccessRefreshInFlight) return waitCloudAccessRefreshWithCeiling(_cloudAccessRefreshInFlight, 'joined_in_flight');
+  if (_cloudAccessRefreshInFlight) return waitCloudAccessRefreshWithCeiling(_cloudAccessRefreshInFlight, 'joined_in_flight', generation);
   const sinceLastMs = now - _lastCloudAccessRefreshTime;
   if (sinceLastMs < CLOUD_ACCESS_REFRESH_TTL_MS) {
     const confirmedSkip = _cloudRefreshConfirmedGeneration === generation.generation;
@@ -1081,15 +1090,28 @@ async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerati
       _cloudAccessRefreshInFlight = null;
     }
   })();
-  return waitCloudAccessRefreshWithCeiling(_cloudAccessRefreshInFlight, 'started');
+  return waitCloudAccessRefreshWithCeiling(_cloudAccessRefreshInFlight, 'started', generation);
 }
 
 /** Ждать охранный restore не дольше потолка; по потолку — «облако не обновило» (fail-closed: доступ не выдаётся), restore идёт дальше фоном. */
-function waitCloudAccessRefreshWithCeiling(inFlight: Promise<boolean>, origin: 'started' | 'joined_in_flight'): Promise<CloudRefreshOutcome> {
+function waitCloudAccessRefreshWithCeiling(
+  inFlight: Promise<boolean>,
+  origin: 'started' | 'joined_in_flight',
+  generation: AccountGenerationToken,
+): Promise<CloudRefreshOutcome> {
   let timer: ReturnType<typeof setTimeout> | null = null;
   const ceiling = new Promise<CloudRefreshOutcome>((resolve) => {
     timer = setTimeout(() => {
       console.warn(`[PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=${CLOUD_ACCESS_REFRESH_WAIT_CEILING_MS} origin=${origin} — решаем по локальным данным, restore доезжает фоном`); // guard-ok: потолок
+      if (!_lateCloudRefreshSignals.has(inFlight)) {
+        _lateCloudRefreshSignals.add(inFlight);
+        void inFlight.then((confirmed) => {
+          if (!confirmed || !accountGenerationIsCurrent(generation)) return;
+          emitAppEvent('premium_cloud_refresh_completed', {
+            accountGeneration: generation.generation,
+          });
+        }).catch(noteSwallowedHandler('premium_guard:late_cloud_refresh_signal'));
+      }
       resolve('unconfirmed');
     }, CLOUD_ACCESS_REFRESH_WAIT_CEILING_MS);
   });

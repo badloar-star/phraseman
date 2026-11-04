@@ -19,6 +19,8 @@ describe('direct lesson screens wait for verified runtime access', () => {
 
     expect(source).toContain("useState<string | null>(null)");
     expect(source).toContain("gate === 'available'");
+    expect(source).toContain("gate === 'entitlement_pending'");
+    expect(source).toContain('accessResolvedRef.current');
     expect(source).toContain('setAuthorizedRouteKey(routeKey)');
     expect(source).toContain('return authorizedRouteKey === routeKey;');
     expect(source).toContain('pointerEvents="none"');

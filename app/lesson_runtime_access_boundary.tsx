@@ -27,9 +27,11 @@ export function useLessonRuntimeAccessAuthorization(
   // зачем (координатор/Ревизор d0de15329, 15.10): у платящего загрузочное восстановление может идти дольше 5 с, и полная
   // проверка урока отвечает premium_required по ещё не доехавшим данным — Plus один раз упирался в замок. Как в
   // lesson_next_access (7293bbe1e): решение сверяется с PremiumContext в момент ответа (ref — свежее значение без перезапуска).
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, accessResolved } = usePremium();
   const contextPremiumRef = useRef(hasPremiumAccess);
   contextPremiumRef.current = hasPremiumAccess;
+  const accessResolvedRef = useRef(accessResolved);
+  accessResolvedRef.current = accessResolved;
 
   useEffect(() => {
     let cancelled = false;
@@ -46,7 +48,9 @@ export function useLessonRuntimeAccessAuthorization(
           setAuthorizedRouteKey(routeKey);
           return;
         }
+        if (gate === 'entitlement_pending') return;
         if (gate === 'premium_required') {
+          if (!accessResolvedRef.current) return;
           if (contextPremiumRef.current) {
             console.log(`[LESSON-GATE-FIRSTFRAME] boundary ${routeKey}: проверка сказала premium_required, контекст=Plus → урок открыт`); // guard-ok: ветка решения
             setAuthorizedRouteKey(routeKey);
@@ -65,7 +69,7 @@ export function useLessonRuntimeAccessAuthorization(
       });
 
     return () => { cancelled = true; };
-  }, [lessonId, routeKey, router, studyTarget]);
+  }, [accessResolved, hasPremiumAccess, lessonId, routeKey, router, studyTarget]);
 
   return authorizedRouteKey === routeKey;
 }

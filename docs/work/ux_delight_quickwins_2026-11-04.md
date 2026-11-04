@@ -543,3 +543,27 @@ Learning V2
 | Онбординг/вход (WelcomeGate) | Нет onPress в файле: кнопки в дочерних компонентах (CleanOnboarding — исключение) | — | — | components/onboarding/WelcomeGate.tsx | не трогать, зона Входа |
 
 Итог: в группе мало «дешёвых» дыр — основная находка одна: отклик на кнопку покупки Plus (S, низкий риск). Остальное — проверки, которые ничего не меняют.
+
+## 8. План реализации по сессиям (владелец одобрил демо 04.11: «отлично, да, делать!»)
+
+**Решения владельца.** Хаптик на ответ в Пике — ДА, лёгкий. Вибрация ТОЛЬКО на управляющих кнопках: строки, карточки, плитки, варианты ответов — без вибрации. Pull-to-refresh в каталоге — НЕТ. Демо: `docs/work/mockups/ux-delight-2026-11-04/ux_delight_demo.html` (эталон поведения: «Как будет»).
+
+**Правила для всех.** Только transform/opacity на UI-потоке (Reanimated), без `setState` в кадрах; без новых View в строках списков; цвета только токены темы; без обводок и мелких подписей; логику начислений и прогресс пользователей не трогать; на каждый пункт — тест-сторож и проверка Reduce Motion; коммиты `safe_commit --patch` в окна :00/:15/:30/:45, чужие хунки не брать; если пункт рискует магазинной сборкой — пропустить и отметить здесь. Холодный старт и первый кадр не должны стать медленнее.
+
+**Волны и владельцы файлов** (общие файлы — один владелец, остальные только заменяют импорт):
+
+| Волна | Сессия | Пункты (ТОП-20 / находки) | Файлы | Риск |
+|---|---|---|---|---|
+| 1 | Дизайн (UI-кит) | `V2Pressable`: отклик при Reduce Motion (:51) и `withHaptic` по умолчанию ВЫКЛ для строк/карточек/плиток, вибрация остаётся на `V2Button`/CTA; `GlassAlertDialog` кнопки → `V2Pressable`; `KitSheetModal` затемнение за пальцем; `V2PillSwitch` скользящая пластина; `V2Button.loading` → `KitSpinner`. Строки: `ActionToast`/`InGameToast` `accessibilityLiveRegion`, `TapScale` Reduce Motion | `components/v2/*`, `ActionToast.tsx`, `InGameToast.tsx`, `TapScale` | `V2Pressable` в 59 файлах — менять дефолт и ветку RM, не вёрстку; сторож на `withHaptic` |
+| 2 | Темы | Один `GlassSwitch` вместо 4 копий (≈25 тумблеров) + лёгкий хаптик; кнопка Plus (`PaywallPlusScreen.tsx:325`) хаптик и «идёт покупка»; переключатель темы | `components/settings/*`, `settings_notifications`, `privacy_settings`, `settings_edu`, `CustomSwitch`, paywall | экраны только меняют импорт |
+| 2 | Learning V2 | `KitProgressFill` (плеер, placement, экзамен главы, меню урока); `PracticeCta` → `V2Pressable`; Reduce Motion для конфетти/введения/медали/эквалайзера; «Карман слов» и новые реплики диалога; Enter и клавиатура в вводе ошибок | `learning_v2_direct_session_player_v1.tsx` (патчами), `PracticeStates.tsx`, `ConfettiBurst`, `VictoryBurst`, `lesson_intro_screens`, `lesson_complete`, `voice_equalizer`, `DialogueGlassChat`, `mistake_practice_session` | плеер — самый горячий файл; логику энергии и резюме не трогать |
+| 2 | Сайт (карточки) | `KitEmpty` fade + один следующий шаг; `KitCta`/`KitCard`/`KitSegment`/`PanelKit`/`CardsGlass*` → `KitTouchable`; `KitProgressFill` в swipe/speaking/видео-наборах; цепочка Enter и автофокус в создании набора; хаптик лайка; общий пульс скелетонов | `CardsKit.tsx`, `CardsGlassKit.tsx`, `PanelKit.tsx`, `flashcards_swipe`, `flashcards_speaking_session`, `VideoPackRow`, `community_pack_create` | строки длинных списков (`FlashcardListItem`, голоса) не трогать |
+| 2 | Моменты | Счёт чисел: `AnimatedCountUpText` (+`format`/`prefix`/`suffix`) → `CountText` Пика, `StatCountUpText` (не с нуля), тик числа шапки Главной и кошелька; `SpireFloorRecord` прокрутка; `MomentFullScreen` выход (последним). Пик-экран (хаптик ответа, панель «Правильно…», сердца, fade задания) — ПОСЛЕ выбора владельцем варианта экрана | `components/AnimatedCountUpText.tsx`, `components/spire/moments/*`, `SpireFloorRecord.tsx`, `HomeV2Header.tsx`, `runes_wallet.tsx` | числа — только отображение, начисления не трогать; `MomentFullScreen` закрывается размонтированием `Modal` |
+| 3 | Вход и аккаунт | Онбординг и `language_welcome`: `KitTouchable`, fade шагов, пружина галочки; успех: хаптик + pop (`DoneTick`) — диагностика, поддержка, промокод, дуэль | `CleanOnboarding.tsx`, `language_welcome.tsx`, `diagnostic_test`, `support_report`, `promo_code_entry` | первый запуск: проверка на чистой установке |
+| — | Сверка | Снимки до/после (Reduce Motion, крупный шрифт, светлая тема), Android на слабом телефоне — после волны 1 и после волны 2 | — | — |
+
+**Порядок.** Волна 1 (Дизайн) — первой, остальные ждут её коммитов по общим файлам. Волна 2 — параллельно, файлы не пересекаются. Волна 3 — после волны 2. Конфликты файлов решает Моменты: сессия сообщает «этот файл занят», обход — править другой файл или ждать коммита владельца.
+
+**Перед релизом.** Холодный старт и первый кадр не медленнее; Android на слабом устройстве без лагов; память: ничего не держится после закрытия экрана; Reduce Motion — сразу финальный кадр везде, где есть анимация.
+
+**Статус пунктов** (заполняют сессии, когда сделано): —

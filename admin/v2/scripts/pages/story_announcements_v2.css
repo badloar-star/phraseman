@@ -37,3 +37,11 @@
 /* телефон макета 390 × 844 (+ рамка 11) уменьшен до 0,62 — помещается рядом с формой */
 .ann2-phone { width: 258px; height: 540px; overflow: hidden; }
 .ann2-frame { width: 412px; height: 866px; border: 0; transform: scale(.62); transform-origin: 0 0; background: transparent; }
+/* выбор шаблона (владелец 30.10): плитки без рамок, разделение тоном */
+.ann2-grp { margin: 10px 0 4px; font-size: 12px; font-weight: 700; color: var(--pm-muted, #9aa); }
+.ann2-tpls { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+.ann2-tpl { display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 9px 10px; border: 0; border-radius: 10px; background: var(--pm-card, rgba(255,255,255,.06)); color: inherit; font: inherit; cursor: pointer; }
+.ann2-tpl:hover, .ann2-tpl:focus-visible { background: var(--pm-accent-soft, rgba(143,211,168,.25)); outline: 0; }
+.ann2-tpl__name { font-weight: 600; }
+.ann2-tpl__meta { font-size: 11px; color: var(--pm-muted, #9aa); }
+.ann2-back { align-self: flex-start; padding-left: 0; }

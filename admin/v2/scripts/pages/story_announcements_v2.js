@@ -18,7 +18,10 @@ const DURATIONS = [5000, 8000, 12000, 15000];
 /** зачем (Ревизор 28.10): опрос нельзя публиковать, пока серверная функция storyPollVote не выложена — иначе люди увидят опрос без голосования. Включить после выкладки (Моменты). */
 const POLL_PUBLISH_ENABLED = false;
 
-const S = { designs: [], themes: [], rows: [], loaded: false, busy: false, message: '', error: false, current: null, theme: 'ink', ap: 'dark', previewReady: false };
+const S = { designs: [], themes: [], rows: [], loaded: false, busy: false, message: '', error: false, current: null, theme: 'ink', ap: 'dark', previewReady: false, picking: false };
+// зачем (владелец 30.10, кадр «Объявления 2.0»): новое объявление начинается с ВЫБОРА шаблона из 36, а не с пустой карточки;
+// образец текста нужен, чтобы превью не было пустым, — его нельзя опубликовать как есть (problems)
+const SAMPLE = { badge: 'От команды', title: 'Заголовок объявления', block: 'Короткий текст объявления' };
 window.__ann2 = S; // зачем: состояние видно из консоли и из headless-проверки (scratchpad admin_test.cjs)
 let panel = null, frame = null, formEl = null, listEl = null, noticeEl = null, descEl = null, debounce = 0;
 
@@ -29,7 +32,7 @@ const newId = () => `ann2-${Date.now().toString(36)}-${Math.random().toString(36
 
 /** Пустое объявление: шаблон из списка (первый — Манифест), 1 блок, 7 дней, 12 с. */
 function blank(design = 'manifest') {
-  return { id: newId(), revision: 0, status: 'draft', design, badge: '', title: '', blocks: [{ text: '', size: 16, style: 'normal' }], lifetime: 7, unit: 'days', durationMs: 12000, eventAtMs: null, art: ART_DEFAULT[design] || null, videoId: '', cta: !!CTA_BY_DESIGN[design], themeId: '' };
+  return { id: newId(), revision: 0, status: 'draft', design, badge: SAMPLE.badge, title: SAMPLE.title, blocks: [{ text: SAMPLE.block, size: 16, style: 'normal' }], lifetime: 7, unit: 'days', durationMs: 12000, eventAtMs: null, art: ART_DEFAULT[design] || null, videoId: '', cta: !!CTA_BY_DESIGN[design], themeId: '' };
 }
 
 /** Из строки сервера — в состояние формы (старые объявления без design открываются как design 'manifest' только по явному выбору). */
@@ -56,6 +59,7 @@ function problems(f, action = 'publish') {
   if (action === 'publish' && f.design === 'poll' && !POLL_PUBLISH_ENABLED) out.push('Опрос пока нельзя публиковать: серверная функция голосования (storyPollVote) ещё не выложена. Черновик сохранить можно.');
   if (!f.design) out.push('Выберите шаблон.');
   if (!f.title.trim() && !f.badge.trim() && !f.blocks.some((b) => b.text.trim())) out.push('Нужен заголовок, метка или хотя бы один блок.');
+  if (action === 'publish' && (f.title.trim() === SAMPLE.title || f.blocks.some((b) => b.text.trim() === SAMPLE.block))) out.push('Замените образец текста («Заголовок объявления», «Короткий текст объявления») на свой.');
   if (f.title.length > LIMITS.title) out.push(`Заголовок длиннее ${LIMITS.title} знаков.`);
   if (f.badge.length > LIMITS.badge) out.push(`Метка длиннее ${LIMITS.badge} знаков.`);
   if (f.blocks.length > 4) out.push('Блоков не больше четырёх.');
@@ -77,10 +81,16 @@ async function load() {
   try {
     const fn = await callable('adminStoryAnnouncementsList'); const r = await fn({}); const items = r?.data?.items || r?.items || [];
     S.rows = items.map((row) => ({ ...row, form: fromRow(row) })); S.loaded = true;
-    say(`${S.rows.length} объявлений · шаблонов 2.0: ${S.rows.filter((x) => x.form.design).length}`);
-    log('список', { rows: S.rows.length, v2: S.rows.filter((x) => x.form.design).length });
+    log('список', { rows: S.rows.length, v2: S.rows.filter((x) => x.form.design).length, designsLoaded: S.designs.length, previewReady: S.previewReady });
+    summary();
   } catch (e) { say(human(e), true); log('список: ошибка', String(e)); }
   renderList();
+}
+// зачем: раньше «шаблонов 2.0» считало объявления с design (у старых всегда 0) и выглядело как «шаблонов нет»; теперь — сколько шаблонов макета загружено
+function summary() {
+  if (S.error && !S.loaded) return;
+  const v2 = S.rows.filter((x) => x.form.design).length;
+  say(`Объявлений: ${S.rows.length} (по новым шаблонам: ${v2}) · шаблонов макета загружено: ${S.designs.length || '… ждём предпросмотр'}`);
 }
 
 async function command(action) {
@@ -115,16 +125,17 @@ window.addEventListener('message', (e) => {
   if (!frame || e.source !== frame.contentWindow || e.data?.channel !== 'pm-ann-preview-ready') return;
   S.designs = e.data.designs || []; S.themes = e.data.themes || []; S.previewReady = true;
   log('предпросмотр готов', { designs: S.designs.length, themes: S.themes.length });
+  if (S.loaded) summary();
   renderForm(); pushPreview();
 });
 
 // ── отрисовка ─────────────────────────────────────────────────────────────────────────────────────────────────────
 function renderList() {
   if (!listEl) return; listEl.replaceChildren();
-  listEl.append(h('button', { class: 'ann2-btn ann2-btn--primary', type: 'button', onclick: () => { S.current = blank(); renderForm(); pushPreview(); } }, 'Новое объявление'));
+  listEl.append(h('button', { class: 'ann2-btn ann2-btn--primary', type: 'button', onclick: () => { S.current = null; S.picking = true; log('новое объявление: выбор шаблона', { designs: S.designs.length }); renderForm(); renderList(); } }, 'Новое объявление'));
   for (const row of S.rows) {
     const f = row.form; const d = S.designs.find((x) => x.id === f.design);
-    const item = h('button', { class: 'ann2-row' + (S.current?.id === f.id ? ' ann2-row--on' : ''), type: 'button', onclick: () => { S.current = { ...f, blocks: f.blocks.map((b) => ({ ...b })) }; renderForm(); pushPreview(); } },
+    const item = h('button', { class: 'ann2-row' + (S.current?.id === f.id ? ' ann2-row--on' : ''), type: 'button', onclick: () => { S.picking = false; S.current = { ...f, blocks: f.blocks.map((b) => ({ ...b })) }; log('выбрано объявление', { id: f.id, design: f.design || '(старый шаблон)' }); renderForm(); renderList(); pushPreview(); } },
       h('span', { class: 'ann2-row__status', 'data-status': f.status }, f.status === 'published' ? 'в показе' : 'черновик'),
       h('span', { class: 'ann2-row__title' }, f.title || f.badge || '(без заголовка)'),
       h('span', { class: 'ann2-row__meta' }, d ? d.name : f.design ? f.design : `старый шаблон · ${row.content?.templateId || row.templateId || ''}`));
@@ -137,10 +148,28 @@ function input(value, max, on, attrs = {}) { const e = h('input', { class: 'ann2
 function select(options, value, on, attrs = {}) { const e = h('select', { class: 'ann2-input', ...attrs }); for (const [v, t, group] of options) { const o = h('option', { value: v }, t); if (group) { let g = [...e.children].find((x) => x.tagName === 'OPTGROUP' && x.label === group); if (!g) { g = h('optgroup', { label: group }); e.append(g); } g.append(o); } else e.append(o); } e.value = value; e.addEventListener('change', () => { on(e.value); schedulePreview(); renderForm(); }); return e; }
 function renderCounters() { panel?.querySelectorAll('[data-count]').forEach((el) => { const [cur, max] = el.dataset.count.split('/'); const inp = el.previousElementSibling; if (inp) el.textContent = `${inp.value.length} / ${max}`; }); }
 
+// ── выбор шаблона: все шаблоны макета, по группам; наведение показывает образец в превью, клик — создаёт объявление ──
+function previewDesign(id) { S.hover = id; if (!S.previewReady) return; const g = blank(id); const prev = S.current; S.current = g; pushPreview(); S.current = prev; }
+function renderGallery() {
+  formEl.append(h('p', { class: 'ann2-desc' }, 'Выберите шаблон нового объявления. Наведите курсор — образец появится в телефоне справа.'));
+  if (!S.designs.length) { formEl.append(h('p', { class: 'ann2-empty' }, 'Шаблоны загружаются из предпросмотра… если список не появился за несколько секунд — нажмите «Повторить» справа или «Обновить список».')); log('галерея: шаблонов ещё нет', { previewReady: S.previewReady }); return; }
+  const groups = [...new Set(S.designs.map((d) => d.group))];
+  for (const g of groups) {
+    const cards = S.designs.filter((d) => d.group === g).map((d) => h('button', { class: 'ann2-tpl', type: 'button', title: `${d.comp} · ${d.motion}`,
+      onmouseenter: () => previewDesign(d.id), onfocus: () => previewDesign(d.id),
+      onclick: () => { S.picking = false; S.current = blank(d.id); log('выбран шаблон', { design: d.id }); renderForm(); renderList(); pushPreview(); } },
+      h('span', { class: 'ann2-tpl__name' }, d.name), h('span', { class: 'ann2-tpl__meta' }, d.ext ? `нужно: ${d.ext}` : (GROUPS[g] || g))));
+    formEl.append(h('h4', { class: 'ann2-grp' }, `${GROUPS[g] || g} · ${cards.length}`), h('div', { class: 'ann2-tpls' }, cards));
+  }
+  log('галерея показана', { designs: S.designs.length, groups: groups.length });
+}
+
 function renderForm() {
   if (!formEl) return; formEl.replaceChildren();
   const f = S.current;
-  if (!f) { formEl.append(h('p', { class: 'ann2-empty' }, 'Выберите объявление слева или создайте новое.')); return; }
+  if (!f && S.picking) { renderGallery(); return; }
+  if (!f) { formEl.append(h('p', { class: 'ann2-empty' }, 'Выберите объявление слева или нажмите «Новое объявление» — откроется выбор из 36 шаблонов.')); return; }
+  formEl.append(h('button', { class: 'ann2-btn ann2-btn--ghost ann2-back', type: 'button', onclick: () => { S.picking = true; S.current = null; renderForm(); renderList(); } }, '← Выбор шаблона'));
   const d = S.designs.find((x) => x.id === f.design);
   const designOptions = [['', '— шаблон —', null], ...S.designs.map((x) => [x.id, x.name, GROUPS[x.group] || x.group])];
   formEl.append(field('Шаблон', select(designOptions, f.design, (v) => { f.design = v; if (ART_DEFAULT[v] && !ARTS.includes(f.art)) f.art = ART_DEFAULT[v]; f.cta = !!CTA_BY_DESIGN[v]; })));

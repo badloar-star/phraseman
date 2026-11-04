@@ -88,7 +88,7 @@ const S = {
   // зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10: «16 — всё, это потолок»): док на вершине вместо кнопки подъёма; черновик — на сверку 10 · ПЕРЕВОДЧИКУ
   // зачем (голос PhraseMan, VOICE.md, владелец 25.10): подпись кнопки-дока ≤ 32 знаков на всех 9 языках (просьба Моментов), живо
   // зачем (жалоба тестера 04.11: «Вершина недели — твоя!» звучит странно): плоский текст с числом, без метафор — все 15 этажей пройдены
-  summitDock: ['Все 15 этажей пройдены', 'Усі 15 поверхів пройдено', 'All 15 floors cleared', 'Los 15 pisos superados', 'Todos os 15 andares concluídos', 'Đã qua cả 15 tầng', 'Semua 15 lantai selesai', '15 katın hepsi geçildi', 'Wszystkie 15 pięter ukończone'],
+  summitDock: ['Ты на вершине: 15 из 15', 'Ти на вершині: 15 із 15', 'You’re at the top: 15 of 15', 'Estás en la cima: 15 de 15', 'Você está no topo: 15 de 15', 'Bạn ở đỉnh: 15 trên 15', 'Kamu di puncak: 15 dari 15', 'Zirvedesin: 15/15', 'Jesteś na szczycie: 15 z 15'],
   aboveCloudsCta: ['Выше — над облаками', 'Вище — над хмарами', 'Higher — above the clouds', 'Más arriba, sobre las nubes', 'Mais alto, acima das nuvens', 'Lên nữa — trên mây', 'Lebih tinggi — di atas awan', 'Daha yukarı — bulutların üstü', 'Wyżej — nad chmury'],
   saveFailed: ['Ступень не сохранилась. Попробуй ещё раз', 'Сходинка не збереглась. Спробуй ще раз', 'The step wasn’t saved. Try again', 'El escalón no se guardó. Inténtalo de nuevo', 'O degrau não foi salvo. Tente de novo', 'Chưa lưu được bậc. Thử lại nhé', 'Anak tangga tidak tersimpan. Coba lagi', 'Basamak kaydedilmedi. Tekrar dene', 'Stopień się nie zapisał. Spróbuj ponownie'],
   // зачем (координатор 13.10, Дизайн 497a2535d): сервер не засчитал ступень и маркер откатился — точная причина, а не общее «не сохранилась».

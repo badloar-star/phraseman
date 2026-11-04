@@ -264,6 +264,75 @@
   ],
   "de:09:33": [
    "einen"
+  ],
+  "es:15:21": [
+   "con"
+  ],
+  "es:11:49": [
+   "tuviera",
+   "tuviste",
+   "tenga"
+  ],
+  "de:13:11": [
+   "Türen"
+  ],
+  "it:01:12": [
+   "in"
+  ],
+  "it:05:24": [
+   "bambini"
+  ],
+  "it:07:50": [
+   "a"
+  ],
+  "it:28:48": [
+   "Potreste"
+  ],
+  "it:03:44": [
+   "a"
+  ],
+  "en:15:40": [
+   "table"
+  ],
+  "en:19:20": [
+   "on",
+   "at"
+  ],
+  "en:21:12": [
+   "someone"
+  ],
+  "en:27:02": [
+   "is",
+   "are",
+   "am",
+   "will",
+   "can"
+  ],
+  "en:27:13": [
+   "am",
+   "is",
+   "are",
+   "will",
+   "can"
+  ],
+  "en:27:22": [
+   "will",
+   "is",
+   "are",
+   "am",
+   "can"
+  ],
+  "en:32:04": [
+   "would",
+   "will"
+  ],
+  "en:03:36": [
+   "take",
+   "keep"
+  ],
+  "en:25:37": [
+   "take",
+   "keep"
   ]
  },
  "answers": {
@@ -283,6 +352,11 @@
   "es:05:32": {
    "add": [
     "¿Qué es esto?"
+   ]
+  },
+  "es:07:39": {
+   "remove": [
+    "¿Cerca hay una tienda?"
    ]
   }
  },

@@ -310,6 +310,19 @@ function youApplies(ph) {
   const ru = ph.sourceLocales?.ru ?? '';
   return RU_VY.test(ru) || !RU_OTHER.test(ru);
 }
+// род без признака в ru: «они/мы/вы» не различает ils/elles, prêts/prêtes, stanchi/stanche — пары только по роду не соблазны друг для друга
+function genderPair(lang, a0, b0) {
+  const a = noAccent(a0);
+  const b = noAccent(b0);
+  if (a === b || a.length < 3 || b.length < 3) return false;
+  if (lang === 'fr') return a + 'e' === b || b + 'e' === a || (a.endsWith('s') && b.endsWith('es') && a.slice(0, -1) + 'es' === b) || (b.endsWith('s') && a.endsWith('es') && b.slice(0, -1) + 'es' === a);
+  const stem = a.slice(0, -1);
+  if (stem !== b.slice(0, -1)) return false;
+  const e = a.slice(-1) + b.slice(-1);
+  if (lang === 'es') return e === 'oa' || e === 'ao';
+  if (lang === 'it') return e === 'oa' || e === 'ao' || e === 'ie' || e === 'ei';
+  return false;
+}
 function badReason(lang, ctx, ph, i, d, mine) {
   const { corrects, acc } = phraseKeys(ph);
   const tile = ph.tiles[i];
@@ -324,6 +337,7 @@ function badReason(lang, ctx, ph, i, d, mine) {
   if (ctx.patch.get(`${lang}:${key}`)?.has(dd)) return 'patch';
   if (ctx.articles.has(c) && ctx.articles.has(dd)) return 'article';
   if (sameGroup(ctx.synonyms, c, dd)) return 'synonym';
+  if (genderPair(lang, c, dd)) return 'genderPair';
   if (youApplies(ph) && (sameGroup(ctx.youGroups, c, dd) || sibling(ctx.tails, c, dd))) return 'youForm';
   // DE, уроки Perfekt (16–17): hatte/war на месте вспомогательного habe/ist — плюсквамперфект/претерит тоже верны (Координатор 04.11)
   const pa = LISTS.perfektAux?.[lang];
@@ -331,11 +345,21 @@ function badReason(lang, ctx, ph, i, d, mine) {
   // регистр соблазна внутри фразы должен совпадать с плиткой (Hängt, Wartest, Kisten выдают себя): исключение — «I» и первая плитка
   if (i > 0 && tile.correct !== 'I' && upperFirst(d) !== upperFirst(tile.correct)) return 'caseMismatch';
   if (lang === 'de' && ctx.timeAdv.has(dd) && !ctx.timeAdv.has(c)) return 'pos';
+  // зачем (Координатор 04.11, аудит №3 ES): предлог заменяем предлогом, союз — союзом; предлог/союз на месте существительного или глагола недопустим;
+  // «fuera» — только к наречиям места, в глагольной позиции его принимают за форму ser
+  const classOf = (w) => (ctx.closed.prep.includes(w) ? 'prep' : ctx.closed.conj.includes(w) ? 'conj' : null);
+  const cc = classOf(c);
+  const dc = classOf(dd);
+  if (!ctx.relax) {
+    if (cc && dc !== cc) return 'posClass';
+    if (!cc && dc && !ctx.articles.has(c) && !isNum && !isName) return 'posClass';
+  }
+  if (ctx.adverbOnly && ctx.adverbOnly.words.includes(dd) && !ctx.adverbOnly.allowedFor.includes(c)) return 'posClass';
   if (lang === 'es' && c === 'fuera' && ctx.serForms.has(dd) && !/^(si|que|como|aunque)$/i.test(corrects[i - 1] ?? '')) return 'pos';
-  if (ctx.numbers.has(dd) !== isNum || (CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
+  if (ctx.numbers.has(dd) !== isNum || (!ctx.relax && CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
   const seen = ctx.vocab.get(dd);
   // зачем: «без форм из ещё не пройденных уроков» (Координатор 04.11); допуск +2 урока, иначе в уроках 1–3 не из чего выбирать; числительные не режем
-  if (!isNum && !isName && (seen === undefined || seen > lesson + Math.max(2, 8 - lesson))) return 'unseen';
+  if (!isNum && !isName && !dc && !ctx.relax && (seen === undefined || seen > lesson + Math.max(1, 8 - lesson))) return 'unseen';
   if (acc.has(keyOf(corrects.map((x, j) => (j === i ? d : x))))) return 'acceptedPhrase';
   if (mine.some((x) => stripP(x) === dd)) return 'duplicate';
   return null;
@@ -355,16 +379,22 @@ function buildContext(lang, all) {
   if (lang === 'en') for (const w of 'Monday Tuesday Wednesday Thursday Friday Saturday Sunday January February March April May June July August September October November December'.split(' ')) names.add(w);
   if (lang === 'en') for (const w of 'he she they we you it i the a an this that these those there here what who whom whose when where how why which is are am was were do does did can could will would should may might must have has had not no yes please thanks'.split(' ')) names.delete(w[0].toUpperCase() + w.slice(1));
   const nameTile = new Map();
+  const baseNames = new Set(names);
+  const fnWords = new Set([...(LISTS.closedClasses?.[lang]?.prep ?? []), ...(LISTS.closedClasses?.[lang]?.conj ?? []), ...(LISTS.articles?.[lang] ?? [])]);
   if (NAME_LANGS.has(lang)) {
     for (let round = 0; round < 2; round++) {
       for (const ph of all) for (const t of ph.tiles) {
-        const isN = names.has(t.correct) || (lang !== 'en' && upperFirst(t.correct) && t.distractors.length && t.distractors.filter((d) => names.has(d)).length * 2 >= t.distractors.length);
+        // имя — только по известным именам из ответов; служебные слова и вопросительные слова с заглавной в начале фразы именами не считаются
+        const isN = !fnWords.has(stripP(t.correct)) && (baseNames.has(t.correct) || (lang !== 'en' && upperFirst(t.correct) && t.distractors.length && t.distractors.filter((d) => baseNames.has(d)).length * 2 >= t.distractors.length));
         nameTile.set(t, isN);
         // EN: имена не расширяем соблазнами (иначе в «имена» попадают You/We/They) — берём только имена из правильных ответов
         if (isN && lang !== 'en') { names.add(t.correct); for (const d of t.distractors) if (d !== 'I' && /^[\p{L}]+$/u.test(d)) names.add(d[0].toUpperCase() + d.slice(1)); }
       }
     }
   }
+  // служебные слова (предлоги, союзы, артикли) не имена, даже если стоят с заглавной в начале фразы
+  const fn = [...(LISTS.closedClasses?.[lang]?.prep ?? []), ...(LISTS.closedClasses?.[lang]?.conj ?? []), ...(LISTS.articles?.[lang] ?? [])];
+  for (const w of fn) names.delete(w[0].toUpperCase() + w.slice(1));
   const sets = (arr) => new Set(arr ?? []);
   // словарь «что уже пройдено»: слово → первый урок, где оно встречается в правильном ответе, допустимых путях или альтернативах
   const vocab = new Map();
@@ -379,6 +409,7 @@ function buildContext(lang, all) {
   return {
     numbers, names, nameTile, vocab, patch,
     articles: sets(LISTS.articles?.[lang]), synonyms: LISTS.synonyms?.[lang] ?? [], youGroups: LISTS.youGroups?.[lang] ?? [],
+    closed: LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }, adverbOnly: LISTS.adverbOnly?.[lang] ?? null,
     tails: LISTS.siblingTails?.[lang] ?? [], timeAdv: sets(LISTS.timeAdverbs?.[lang]), serForms: sets(LISTS.serForms?.[lang]),
   };
 }
@@ -447,6 +478,25 @@ function fixDistractors(lang, all) {
           if (kept.length >= want) break;
           if (m !== tile.correct && !tried.has(m) && !badReason(lang, ctx, ph, i, m, kept)) { tried.add(m); kept.push(m); removed.refilled++; }
         }
+        // плитка-имя: замены из известных имён (по частоте)
+        if (ctx.nameTile.get(tile) === true && CAT_NAME_LANGS.has(lang)) {
+          const nm = [...ctx.names].sort((a, b) => (everything.get(b) ?? 0) - (everything.get(a) ?? 0) || (a < b ? -1 : 1));
+          for (const c of nm) {
+            if (kept.length >= want) break;
+            if (!tried.has(c) && !badReason(lang, ctx, ph, i, c, kept)) { tried.add(c); kept.push(c); removed.refilled++; }
+          }
+        }
+        // предлог → предлоги, союз → союзы (по частоте в курсе)
+        {
+          const cl = ctx.closed.prep.includes(stripP(tile.correct)) ? ctx.closed.prep : ctx.closed.conj.includes(stripP(tile.correct)) ? ctx.closed.conj : null;
+          if (cl) for (const w of [...cl].sort((a, b) => (everything.get(b) ?? 0) - (everything.get(a) ?? 0) || (a < b ? -1 : 1))) {
+            if (kept.length >= want) break;
+            const c = upperWanted && /^[\p{L}]/u.test(w) ? w[0].toUpperCase() + w.slice(1) : w;
+            const why = tried.has(c) ? 'tried' : badReason(lang, ctx, ph, i, c, kept);
+            if (process.env.DEBUG_TILE === `${ph.id}#${i}`) console.log('class-cand', c, why);
+            if (!why) { tried.add(c); kept.push(c); removed.refilled++; }
+          }
+        }
         const anchors = [tile.correct, ...kept];
         const near = new Map();
         for (const a of anchors) for (const [c, k] of cooc.get(a) ?? []) near.set(c, (near.get(c) ?? 0) + k);
@@ -472,6 +522,18 @@ function fixDistractors(lang, all) {
           }
           if (kept.length >= want) break;
         }
+        // запас: если по правилам класса/непройденного не набралось 5 — берём любые допустимые слова нужного регистра (всё остальное правим по-прежнему)
+        if (kept.length < want) {
+          const ctxR = { ...ctx, relax: true };
+          const rankedAll = [...everything.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));
+          for (const [c0] of rankedAll) {
+            if (kept.length >= want) break;
+            const c = asWanted(c0);
+            if (tried.has(c) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
+            tried.add(c);
+            if (!badReason(lang, ctxR, ph, i, c, kept)) { kept.push(c); removed.refilled++; removed.relaxed = (removed.relaxed ?? 0) + 1; }
+          }
+        }
         if (kept.length < want) { removed.short++; if (shortSamples.length < 6) shortSamples.push(`${ph.id}#${i} ${tile.correct} ${kept.length}/${want}`); }
       }
       tile.distractors = kept;
@@ -487,21 +549,24 @@ function fixDistractors(lang, all) {
 // согласование прилагательных; в DE (предикатив не согласуется) — любая из четырёх. Форма должна быть реальным словом курса (vocab).
 // Фразы с явными местоимениями, притяжательными и клитиками пропускаем (там замена тянет за собой согласование).
 const capLike = (orig, w) => (orig[0] !== orig[0].toLowerCase() ? w[0].toUpperCase() + w.slice(1) : w);
-function youVariantsOf(lang, token, vocab) {
+function youVariantsOf(lang, token, vocab, afterDet = false) {
   const low = token.toLowerCase();
   const out = new Set();
-  const pairs = lang === 'de' ? [[0, 1, 2, 3]] : [[0, 1], [2, 3]];
+  // пары форм, обе из которых годятся для «вы» без смены согласования: ES tú↔usted, vosotros↔ustedes; IT tu↔Lei; DE ihr↔Sie; FR — нет
+  const pairs = { es: [[0, 1], [2, 3]], it: [[0, 1]], de: [[2, 3]], fr: [] }[lang] ?? [];
   const consider = (group, k) => {
     const mates = pairs.find((p) => p.includes(k));
     if (!mates) return;
     for (const j of mates) if (j !== k && group[j] && group[j].toLowerCase() !== low) out.add(group[j]);
   };
   for (const g of LISTS.youVerbParadigms?.[lang] ?? []) { const k = g.indexOf(low); if (k >= 0) consider(g, k); }
-  for (const q of LISTS.youRegularTails?.[lang] ?? []) {
+  for (const q of afterDet ? [] : LISTS.youRegularTails?.[lang] ?? []) {
     for (let k = 0; k < q.length; k++) {
       if (!low.endsWith(q[k]) || low.length - q[k].length < 3) continue;
       const stem = low.slice(0, low.length - q[k].length);
       const group = q.map((t) => stem + t);
+      // глагол, а не существительное: в курсе встречается ≥ 3 из 4 форм этой парадигмы (llave/llaves — всего 2, это не спряжение)
+      if (group.filter((w) => vocab.has(stripP(w))).length < 3) continue;
       consider(group, k);
     }
   }
@@ -511,18 +576,24 @@ function addYouVariants(lang, all) {
   const stat = { phrases: 0, variants: 0 };
   if (!['es', 'fr', 'it', 'de'].includes(lang)) return stat;
   const skip = new Set(LISTS.youSkipTokens?.[lang] ?? []);
+  const detSet = new Set([...(LISTS.articles?.[lang] ?? []), ...(LISTS.closedClasses?.[lang]?.prep ?? []), ...(LISTS.determiners?.[lang] ?? [])]);
   const vocab = new Map();
   for (const ph of all) for (const t of [...ph.tiles.map((x) => x.correct), ...(ph.accepted ?? []).flat(), ...ph.alternatives.flatMap((a) => a.split(/\s+/))]) vocab.set(stripP(t), 1);
   for (const ph of all) {
     // «Вы (вежл.)» — явная вежливая форма: принимать tu/voi нельзя
-    if (!youApplies(ph) || /вежл|ввічл/i.test(`${ph.sourceLocales?.ru ?? ''} ${ph.sourceLocales?.uk ?? ''}`)) continue;
+    // допустимые формы «вы» — только когда «вы» явно в ru (с подлежащим-существительным или без лица форма менять нельзя: «Anna bist hier»)
+    if (!RU_VY.test(ph.sourceLocales?.ru ?? '') || /вежл|ввічл/i.test(`${ph.sourceLocales?.ru ?? ''} ${ph.sourceLocales?.uk ?? ''}`)) continue;
     const toks = ph.tiles.map((t) => t.correct);
     if (toks.some((t) => skip.has(stripP(t)))) continue;
-    const baseStrings = [ph.target, ...ph.alternatives].filter((x, i, a) => a.indexOf(x) === i);
+    // строки-основы без явных местоимений («Voi siete…» + замена глагола даёт «Voi sono…»)
+    const baseStrings = [ph.target, ...ph.alternatives].filter((x, i, a) => a.indexOf(x) === i && !x.split(/[\s¿?¡!.,]+/).some((w) => skip.has(w.toLowerCase())));
     const newAccepted = [];
     const newStrings = [];
     toks.forEach((tok, i) => {
-      for (const v of youVariantsOf(lang, tok, vocab)) {
+      // после артикля/предлога/притяжательного стоит существительное, а не глагол — замены по окончаниям не делаем (только таблицы неправильных глаголов)
+      const prev = i > 0 ? stripP(toks[i - 1]) : '';
+      const afterDet = detSet.has(prev);
+      for (const v of youVariantsOf(lang, tok, vocab, afterDet)) {
         const path = toks.map((x, j) => (j === i ? v : x));
         if (!(ph.accepted ?? []).some((p) => keyOf(p) === keyOf(path)) && !newAccepted.some((p) => keyOf(p) === keyOf(path))) newAccepted.push(path);
         const re = new RegExp('(?<![\\p{L}])' + tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![\\p{L}])', 'u');

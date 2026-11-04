@@ -794,6 +794,22 @@
    [
     "in",
     "into"
+   ],
+   [
+    "desk",
+    "table"
+   ],
+   [
+    "someone",
+    "anyone",
+    "somebody",
+    "anybody"
+   ],
+   [
+    "can",
+    "could",
+    "would",
+    "will"
    ]
   ],
   "es": [
@@ -821,6 +837,30 @@
     "esto",
     "eso",
     "aquello"
+   ],
+   [
+    "ellos",
+    "ellas"
+   ],
+   [
+    "nosotros",
+    "nosotras"
+   ],
+   [
+    "vosotros",
+    "vosotras"
+   ],
+   [
+    "lo",
+    "le"
+   ],
+   [
+    "los",
+    "les"
+   ],
+   [
+    "le",
+    "les"
    ]
   ],
   "fr": [
@@ -844,6 +884,18 @@
     "ceci",
     "cela",
     "ça"
+   ],
+   [
+    "ils",
+    "elles"
+   ],
+   [
+    "ticket",
+    "billet"
+   ],
+   [
+    "voici",
+    "voilà"
    ]
   ],
   "de": [
@@ -891,6 +943,18 @@
     "das",
     "dies",
     "dieses"
+   ],
+   [
+    "will",
+    "möchte"
+   ],
+   [
+    "will",
+    "möchtest"
+   ],
+   [
+    "wollen",
+    "möchten"
    ]
   ],
   "it": [
@@ -2094,6 +2158,415 @@
    "seinen",
    "seinem",
    "seiner"
+  ]
+ },
+ "closedClasses": {
+  "es": {
+   "prep": [
+    "a",
+    "ante",
+    "bajo",
+    "con",
+    "contra",
+    "de",
+    "desde",
+    "durante",
+    "en",
+    "entre",
+    "hacia",
+    "hasta",
+    "para",
+    "por",
+    "según",
+    "sin",
+    "sobre",
+    "tras"
+   ],
+   "conj": [
+    "y",
+    "e",
+    "o",
+    "u",
+    "pero",
+    "sino",
+    "porque",
+    "aunque",
+    "que",
+    "si",
+    "cuando",
+    "mientras",
+    "pues",
+    "ni"
+   ]
+  },
+  "fr": {
+   "prep": [
+    "à",
+    "de",
+    "dans",
+    "en",
+    "sur",
+    "sous",
+    "avec",
+    "sans",
+    "pour",
+    "par",
+    "chez",
+    "vers",
+    "entre",
+    "devant",
+    "derrière",
+    "après",
+    "avant",
+    "depuis",
+    "pendant",
+    "contre"
+   ],
+   "conj": [
+    "et",
+    "ou",
+    "mais",
+    "donc",
+    "car",
+    "que",
+    "si",
+    "quand",
+    "lorsque",
+    "puisque",
+    "comme"
+   ]
+  },
+  "it": {
+   "prep": [
+    "a",
+    "di",
+    "da",
+    "in",
+    "con",
+    "su",
+    "per",
+    "tra",
+    "fra",
+    "senza",
+    "verso",
+    "sotto",
+    "sopra",
+    "dopo",
+    "contro",
+    "durante",
+    "presso"
+   ],
+   "conj": [
+    "e",
+    "o",
+    "ma",
+    "però",
+    "perché",
+    "che",
+    "se",
+    "quando",
+    "mentre",
+    "come",
+    "né"
+   ]
+  },
+  "de": {
+   "prep": [
+    "in",
+    "an",
+    "auf",
+    "aus",
+    "bei",
+    "mit",
+    "nach",
+    "von",
+    "zu",
+    "für",
+    "über",
+    "unter",
+    "vor",
+    "hinter",
+    "neben",
+    "zwischen",
+    "durch",
+    "ohne",
+    "gegen",
+    "um",
+    "bis",
+    "seit",
+    "außer"
+   ],
+   "conj": [
+    "und",
+    "oder",
+    "aber",
+    "denn",
+    "weil",
+    "dass",
+    "wenn",
+    "ob",
+    "als",
+    "sondern",
+    "damit",
+    "obwohl",
+    "während",
+    "bevor",
+    "nachdem"
+   ]
+  },
+  "en": {
+   "prep": [
+    "in",
+    "on",
+    "at",
+    "by",
+    "for",
+    "with",
+    "from",
+    "to",
+    "of",
+    "about",
+    "into",
+    "onto",
+    "over",
+    "under",
+    "after",
+    "before",
+    "between",
+    "through",
+    "without",
+    "during",
+    "near",
+    "behind",
+    "across",
+    "around",
+    "along"
+   ],
+   "conj": [
+    "and",
+    "but",
+    "or",
+    "so",
+    "because",
+    "if",
+    "when",
+    "while",
+    "although",
+    "unless"
+   ]
+  }
+ },
+ "adverbOnly": {
+  "es": {
+   "words": [
+    "fuera"
+   ],
+   "allowedFor": [
+    "dentro",
+    "cerca",
+    "lejos",
+    "aquí",
+    "allí",
+    "ahí",
+    "fuera",
+    "arriba",
+    "abajo",
+    "delante",
+    "detrás",
+    "afuera",
+    "adentro"
+   ]
+  }
+ },
+ "determiners": {
+  "es": [
+   "mi",
+   "mis",
+   "tu",
+   "tus",
+   "su",
+   "sus",
+   "nuestro",
+   "nuestra",
+   "nuestros",
+   "nuestras",
+   "vuestro",
+   "vuestra",
+   "este",
+   "esta",
+   "estos",
+   "estas",
+   "ese",
+   "esa",
+   "esos",
+   "esas",
+   "aquel",
+   "aquella",
+   "cada",
+   "otro",
+   "otra",
+   "otros",
+   "otras",
+   "mucho",
+   "mucha",
+   "muchos",
+   "muchas",
+   "poco",
+   "poca",
+   "pocos",
+   "pocas",
+   "todo",
+   "toda",
+   "todos",
+   "todas",
+   "algún",
+   "alguna",
+   "algunos",
+   "algunas",
+   "ningún",
+   "ninguna",
+   "dos",
+   "tres",
+   "cuatro",
+   "cinco",
+   "seis",
+   "siete",
+   "ocho",
+   "nueve",
+   "diez"
+  ],
+  "fr": [
+   "mon",
+   "ma",
+   "mes",
+   "ton",
+   "ta",
+   "tes",
+   "son",
+   "sa",
+   "ses",
+   "notre",
+   "nos",
+   "votre",
+   "vos",
+   "leur",
+   "leurs",
+   "ce",
+   "cet",
+   "cette",
+   "ces",
+   "chaque",
+   "autre",
+   "plusieurs",
+   "quelques",
+   "tout",
+   "toute",
+   "tous",
+   "toutes",
+   "aucun",
+   "aucune"
+  ],
+  "it": [
+   "mio",
+   "mia",
+   "miei",
+   "mie",
+   "tuo",
+   "tua",
+   "tuoi",
+   "tue",
+   "suo",
+   "sua",
+   "suoi",
+   "sue",
+   "nostro",
+   "nostra",
+   "nostri",
+   "nostre",
+   "vostro",
+   "vostra",
+   "vostri",
+   "vostre",
+   "questo",
+   "questa",
+   "questi",
+   "queste",
+   "quello",
+   "quella",
+   "quelli",
+   "quelle",
+   "ogni",
+   "altro",
+   "altra",
+   "altri",
+   "altre",
+   "molto",
+   "molta",
+   "molti",
+   "molte",
+   "poco",
+   "poca",
+   "pochi",
+   "poche",
+   "tutto",
+   "tutta",
+   "tutti",
+   "tutte",
+   "alcuni",
+   "alcune",
+   "nessun",
+   "nessuna"
+  ],
+  "de": [
+   "mein",
+   "meine",
+   "meinen",
+   "meinem",
+   "meiner",
+   "dein",
+   "deine",
+   "deinen",
+   "deinem",
+   "deiner",
+   "sein",
+   "seine",
+   "seinen",
+   "seinem",
+   "seiner",
+   "ihr",
+   "ihre",
+   "ihren",
+   "ihrem",
+   "ihrer",
+   "unser",
+   "unsere",
+   "unseren",
+   "unserem",
+   "unserer",
+   "euer",
+   "eure",
+   "euren",
+   "eurem",
+   "eurer",
+   "dieser",
+   "diese",
+   "dieses",
+   "diesen",
+   "diesem",
+   "jeder",
+   "jede",
+   "jedes",
+   "jeden",
+   "jedem",
+   "kein",
+   "keine",
+   "keinen",
+   "keinem",
+   "keiner",
+   "viele",
+   "alle",
+   "einige",
+   "manche"
   ]
  }
 }

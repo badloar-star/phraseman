@@ -10,7 +10,7 @@ const ROOT = path.join(__dirname, '..', 'modules', 'classic-courses');
 const LANGS = fs.existsSync(ROOT) ? fs.readdirSync(ROOT, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : [];
 // зачем: лимит из контракта Ядра — ≤ 5 МБ сырого JSON на язык (EN допускается до 6,5)
 const BUDGET_MB: Record<string, number> = { en: 6.5, es: 5, fr: 5, de: 5, it: 5 };
-const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]> };
+const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]>; adverbOnly?: Record<string, { words: string[]; allowedFor: string[] }>; closedClasses?: Record<string, { prep: string[]; conj: string[] }> };
 const PATCHES = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_patches.json'), 'utf8')) as { remove: Record<string, string[]>; answers?: Record<string, { remove?: string[] }> };
 const LESSON_FAT = ['english', 'russian', 'ukrainian', 'teachingNote', 'category', 'gradingMethod'];
 const FORBIDDEN_KEY = /^(audio|voice|tts)/i;
@@ -162,7 +162,8 @@ describe('классические курсы: рантайм-данные', () 
             if (!numbers.has(c)) {
               const seen = vocab.get(dd);
               // зачем: имена и первые плитки (регистр не различает слова и имена) проверяет генератор; тест — для обычных слов внутри фразы
-              if (i > 0 && tile.correct[0] === tile.correct[0].toLowerCase() && (seen === undefined || seen > lesson + Math.max(2, 8 - lesson))) bad.unseen.push(where);
+              const closed = new Set<string>([...(LISTS.closedClasses?.[lang]?.prep ?? []), ...(LISTS.closedClasses?.[lang]?.conj ?? [])]);
+              if (i > 0 && tile.correct[0] === tile.correct[0].toLowerCase() && !closed.has(dd) && (seen === undefined || seen > lesson + Math.max(1, 8 - lesson))) bad.unseen.push(where);
             }
           }
         });
@@ -206,6 +207,38 @@ describe('классические курсы: рантайм-данные', () 
         if (p.alternatives.includes(p.target)) bad.push(`${p.id}: target в alternatives`);
         if (p.answers && new Set(p.answers).size !== p.answers.length) bad.push(`${p.id}: дубли answers`);
         if (p.accepted && acc[0] !== norm(p.tiles.map((t) => t.correct))) bad.push(`${p.id}: первым не канонический путь`);
+      }
+      expect(bad).toEqual([]);
+    });
+
+    it('соблазны: род без признака, «fuera» только к наречиям места, нет мусорных ответов с существительным', () => {
+      type P = { id: string; tiles: { correct: string; distractors: string[] }[]; answers?: string[] };
+      const noAccent = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '');
+      const genderPair = (a0: string, b0: string) => {
+        const a = noAccent(a0.toLowerCase());
+        const b = noAccent(b0.toLowerCase());
+        if (a === b || a.length < 3 || b.length < 3) return false;
+        if (lang === 'fr') return a + 'e' === b || b + 'e' === a || (a.endsWith('s') && b.endsWith('es') && a.slice(0, -1) + 'es' === b) || (b.endsWith('s') && a.endsWith('es') && b.slice(0, -1) + 'es' === a);
+        if (a.slice(0, -1) !== b.slice(0, -1)) return false;
+        const e = a.slice(-1) + b.slice(-1);
+        if (lang === 'es') return e === 'oa' || e === 'ao';
+        if (lang === 'it') return ['oa', 'ao', 'ie', 'ei'].includes(e);
+        return false;
+      };
+      const only = LISTS.adverbOnly?.[lang];
+      const bad: string[] = [];
+      for (const f of lessonFiles) for (const p of JSON.parse(read(lang, f)).phrases as P[]) {
+        p.tiles.forEach((t, i) => {
+          for (const d of t.distractors) {
+            if (genderPair(t.correct, d)) bad.push(`${p.id}#${i}: род ${t.correct}/${d}`);
+            if (only && only.words.includes(d.toLowerCase()) && !only.allowedFor.includes(t.correct.toLowerCase())) bad.push(`${p.id}#${i}: ${d} вне наречий`);
+          }
+        });
+        // «Hay una llaves»: допустимые ответы ES не содержат un/una + мн.ч., которого нет в основном ответе
+        if (lang === 'es' && p.answers) {
+          const re = /\b(un|una)\s+\p{L}+(as|os|es)\b/iu;
+          if (p.answers.slice(1).some((a) => re.test(a)) && !re.test(p.answers[0])) bad.push(`${p.id}: мусорный ответ`);
+        }
       }
       expect(bad).toEqual([]);
     });

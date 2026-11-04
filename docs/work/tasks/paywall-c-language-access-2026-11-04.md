@@ -39,3 +39,5 @@ PA02 даёт нейтральное состояние ожидания в less
 Governance-ID: TG-7D4A557FDC93 (замок языка с прогрессом: строка в OWNER_LOCKS.md; значки замка в lessons.tsx — только после плана и перечитывания файла)
 
 Governance-ID: TG-9B34AA14CB7C (перевод use_home_trial_row на generic + source home_trial_row; починка реестра входов пейвола)
+
+Governance-ID: TG-8AD961A837C5 (ключ первого языка по владельцу аккаунта — блокер Ревизора; затем удобства №2/№6/№7)

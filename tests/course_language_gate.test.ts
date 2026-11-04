@@ -3,6 +3,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+let mockOwner: string | null = 'owner-a';
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => ({ phase: mockOwner ? 'active' : 'signed_out', stableId: mockOwner }),
+}));
+jest.mock('../app/account_created_at', () => ({ peekCurrentAccountCreatedAtMs: () => 2_000_000 }));
 jest.mock('../app/premium_guard', () => ({
   getVerifiedPremiumStatus: jest.fn(),
   isPremiumAccessDecisionConfirmedForCurrentAccount: jest.fn(),
@@ -23,7 +28,7 @@ jest.mock('../app/paywall_navigation', () => ({ openPremiumPaywall: (...args: un
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus, isPremiumAccessDecisionConfirmedForCurrentAccount, isTesterNoLimitsActive } from '../app/premium_guard';
 import { isLessonUnlockedByEarnedProgress, isLessonUnlockedByPremiumCourse } from '../app/lesson_lock_system';
-import { PRIMARY_COURSE_LANGUAGE_KEY, __resetCourseLanguageAccessForTests } from '../app/course_language_access';
+import { primaryCourseLanguageKey, __resetCourseLanguageAccessForTests } from '../app/course_language_access';
 import { lessonProgressKey } from '../app/target_storage_keys';
 import { openLessonGateByRuntime, resolveLessonRuntimeGate } from '../app/lesson_premium_gate';
 
@@ -35,9 +40,10 @@ const plusCourse = isLessonUnlockedByPremiumCourse as jest.Mock;
 const storage = AsyncStorage as unknown as { __reset: () => void };
 
 const writeRecord = (over: Partial<{ primary: string; newUser: boolean }> = {}) =>
-  AsyncStorage.setItem(PRIMARY_COURSE_LANGUAGE_KEY, JSON.stringify({ v: 1, primary: 'en', newUser: true, atMs: 1, ...over }));
+  AsyncStorage.setItem(primaryCourseLanguageKey('owner-a'), JSON.stringify({ v: 1, primary: 'en', newUser: true, atMs: 1, ...over }));
 
 beforeEach(() => {
+  mockOwner = 'owner-a';
   storage.__reset();
   __resetCourseLanguageAccessForTests();
   jest.clearAllMocks();

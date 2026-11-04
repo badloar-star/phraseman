@@ -15,6 +15,8 @@
  * Журнал: [COURSE-LANG].
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { captureAccountGeneration } from './account_generation';
+import { peekCurrentAccountCreatedAtMs } from './account_created_at';
 import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { RANK_GATES_PRIOR_PROGRESS_KEYS, judgeRankGateUser, type RankGateUserVerdict } from './rank_gates_new_user';
 import { MAIN_COURSE_LESSON_COUNT } from './main_course_access';
@@ -23,8 +25,24 @@ import { lessonBestScoreKey, lessonProgressKey, storageStudyTarget, type Runtime
 
 const LOG = '[COURSE-LANG]';
 
-/** Ключ устройства: { v, primary, newUser, atMs }. Не входит в SYNC_KEYS. */
+/**
+ * Прежний ключ УСТРОЙСТВА (один на телефон, без владельца) — оставлен только для разового переноса и для тестов. Новые записи сюда не пишутся.
+ * зачем (Ревизор 04.11, блокер): общий ключ переносил первичный язык прежнего владельца на следующий аккаунт того же телефона.
+ */
 export const PRIMARY_COURSE_LANGUAGE_KEY = 'primary_course_language_v1';
+
+/**
+ * Ключ записи { v, primary, newUser, atMs } ПО ВЛАДЕЛЬЦУ аккаунта: `story_events_v1:primary_course_language:<stableId>` — стираемое семейство
+ * (app/cloud_sync WIPE_ONLY_ACCOUNT_KEY_PREFIXES): стирается при выходе и удалении аккаунта, не в SYNC_KEYS, на сервер не уходит.
+ */
+export const PRIMARY_COURSE_LANGUAGE_KEY_PREFIX = 'story_events_v1:primary_course_language';
+export const primaryCourseLanguageKey = (owner: string): string => `${PRIMARY_COURSE_LANGUAGE_KEY_PREFIX}:${owner}`;
+
+/** Владелец сейчас: активный аккаунт со stableId, иначе null (тогда записи нет и замок не работает). */
+function activeOwner(): string | null {
+  const token = captureAccountGeneration();
+  return token.phase === 'active' && token.stableId ? token.stableId : null;
+}
 
 export type PrimaryCourseLanguageRecord = Readonly<{ v: 1; primary: string; newUser: boolean; atMs: number }>;
 
@@ -93,8 +111,13 @@ export function parsePrimaryCourseLanguageRecord(raw: string | null | undefined)
 export async function recordPrimaryCourseLanguageAtOnboarding(
   nowMs: number = Date.now(),
   sinceMs?: number,
-): Promise<'recorded' | 'no_language' | 'failed'> {
+): Promise<'recorded' | 'no_language' | 'no_owner' | 'failed'> {
   try {
+    const owner = activeOwner();
+    if (!owner) {
+      console.log(`${LOG} onboarding:no_owner`, JSON.stringify({ reason: 'нет активного аккаунта со stableId — запись не делаем, замок не работает' }));
+      return 'no_owner';
+    }
     const keys = [STUDY_TARGET_STORAGE_KEY, ONBOARDING_COMPLETED_AT_KEY, ...RANK_GATES_PRIOR_PROGRESS_KEYS];
     const map = new Map(await AsyncStorage.multiGet(keys));
     const target = map.get(STUDY_TARGET_STORAGE_KEY);
@@ -109,10 +132,16 @@ export async function recordPrimaryCourseLanguageAtOnboarding(
       priorProgress,
       nowMs,
       sinceMs,
+      accountCreatedAtMs: peekCurrentAccountCreatedAtMs(), // зачем: ветеран на втором устройстве (старый аккаунт Auth) не «новый» — то же правило, что у ранговых гейтов
     });
     const record: PrimaryCourseLanguageRecord = { v: 1, primary: target, newUser: verdict.isNew, atMs: nowMs };
-    await AsyncStorage.setItem(PRIMARY_COURSE_LANGUAGE_KEY, JSON.stringify(record));
+    if (activeOwner() !== owner) {
+      console.log(`${LOG} onboarding:owner_changed`, JSON.stringify({ reason: 'аккаунт сменился во время записи — не пишем чужому' }));
+      return 'failed';
+    }
+    await AsyncStorage.setItem(primaryCourseLanguageKey(owner), JSON.stringify(record));
     memo = null;
+    lockedTargets.clear();
     console.log(`${LOG} onboarding:recorded`, JSON.stringify({ primary: target, newUser: verdict.isNew, reason: verdict.reason, priorProgress }));
     return 'recorded';
   } catch (error) {
@@ -123,15 +152,39 @@ export async function recordPrimaryCourseLanguageAtOnboarding(
 
 // Короткая память на процесс: охранник урока зовут часто, а запись меняется только при онбординге.
 const MEMO_TTL_MS = 20_000;
-let memo: { atMs: number; record: PrimaryCourseLanguageRecord | null } | null = null;
+let memo: { owner: string; atMs: number; record: PrimaryCourseLanguageRecord | null } | null = null;
 const lockedTargets = new Set<string>();
 
 async function readRecord(nowMs: number): Promise<PrimaryCourseLanguageRecord | null> {
-  if (memo && nowMs - memo.atMs < MEMO_TTL_MS) return memo.record;
-  const raw = await AsyncStorage.getItem(PRIMARY_COURSE_LANGUAGE_KEY);
-  const record = parsePrimaryCourseLanguageRecord(raw);
-  memo = { atMs: nowMs, record };
+  const owner = activeOwner();
+  if (!owner) {
+    memo = null;
+    lockedTargets.clear();
+    return null;
+  }
+  if (memo && memo.owner === owner && nowMs - memo.atMs < MEMO_TTL_MS) return memo.record;
+  if (memo && memo.owner !== owner) lockedTargets.clear(); // другой аккаунт на том же телефоне — чужие решения не переносим
+  const key = primaryCourseLanguageKey(owner);
+  let record = parsePrimaryCourseLanguageRecord(await AsyncStorage.getItem(key));
+  if (!record) record = await migrateLegacyRecord(owner, key);
+  if (activeOwner() !== owner) return null; // владелец сменился во время чтения
+  memo = { owner, atMs: nowMs, record };
   return record;
+}
+
+/**
+ * Разовый перенос старого общего ключа: переносим ТОЛЬКО запись с вердиктом «новый» (иначе игнорируем), прежний ключ удаляем в любом случае.
+ * Запись с таким вердиктом могла появиться только у сборки с включённым правилом; до выхода версии она всегда «не новый».
+ */
+async function migrateLegacyRecord(owner: string, key: string): Promise<PrimaryCourseLanguageRecord | null> {
+  const legacyRaw = await AsyncStorage.getItem(PRIMARY_COURSE_LANGUAGE_KEY);
+  if (legacyRaw === null) return null;
+  const legacy = parsePrimaryCourseLanguageRecord(legacyRaw);
+  const migrate = legacy !== null && legacy.newUser === true && activeOwner() === owner;
+  console.log(`${LOG} legacy_key`, JSON.stringify({ migrate, legacyNew: legacy?.newUser ?? null, primary: legacy?.primary ?? null }));
+  if (migrate && legacy) await AsyncStorage.setItem(key, JSON.stringify(legacy));
+  await AsyncStorage.removeItem(PRIMARY_COURSE_LANGUAGE_KEY);
+  return migrate ? legacy : null;
 }
 
 /** Решение для языка курса. Любая ошибка чтения = не запирать (с причиной в журнале). */
@@ -154,6 +207,7 @@ export async function resolveCourseLanguageLock(studyTarget?: RuntimeStudyTarget
 
 /** Синхронно: запирал ли последний ответ охранника этот язык (чтобы пейвол открылся с контекстом language_add). */
 export function isCourseLanguageLockedSync(studyTarget?: RuntimeStudyTarget): boolean {
+  if (!memo || memo.owner !== activeOwner()) return false; // ответ охранника относится к другому аккаунту — не запираем
   return lockedTargets.has(storageStudyTarget(studyTarget));
 }
 

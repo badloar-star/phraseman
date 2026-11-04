@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { isSurfaceLocked, useRankAccess } from '../../hooks/use_rank_access';
+import RankLockedSection from '../../components/home/v2/RankLockedSection';
 import { useAccentGraphics } from '../../hooks/use_accent_graphics';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, usePathname, useRouter } from 'expo-router';
@@ -63,7 +64,10 @@ export default function CommunityTabRoute() {
   const { section: sectionParam } = useLocalSearchParams<{ section?: string }>();
   const { runtimeOwnerId } = useTabNav();
   // зачем (владелец 30.10): раздел «Пик» новичку до ранга 2 скрыт (сегмент и deep link → прежний откат на Друзей/Главную); комнат и уведомлений до допуска нет
-  const spireVisible = useSpireTabEnabled() && !isSurfaceLocked(useRankAccess('peak'));
+  const spireVisible = useSpireTabEnabled();
+  // зачем (владелец 30.10; макет Entry08): «Пик» новичку до ранга 2 — сегмент скрыт, а прямая ссылка ?section=spire показывает «Откроется с ранга 2» + «К занятиям»
+  const peakAccess = useRankAccess('peak');
+  const peakLocked = isSurfaceLocked(peakAccess);
   const [section, setSection] = useState<Section>(() => sectionFromParam(sectionParam) ?? sectionFromPath(pathname) ?? 'friends');
   const [visited, setVisited] = useState<ReadonlySet<Section>>(() => new Set([section]));
   // зачем: кнопки справа (лупа, язык) и раскрытый поиск отдаёт сам раздел «Наборы» — их состояние живёт там.
@@ -112,11 +116,11 @@ export default function CommunityTabRoute() {
   }, [spireVisible, section]);
 
   const segments = useMemo<readonly { key: Section; label: string }[]>(() => [
-    ...(spireVisible ? [{ key: 'spire' as const, label: triLang(lang, { ru: 'Пик', uk: 'Пік', en: 'Peak', es: 'Pico', 'pt-BR': 'Pico', vi: 'Đỉnh', id: 'Puncak', tr: 'Zirve', pl: 'Szczyt' }) }] : []),
+    ...(spireVisible && !peakLocked ? [{ key: 'spire' as const, label: triLang(lang, { ru: 'Пик', uk: 'Пік', en: 'Peak', es: 'Pico', 'pt-BR': 'Pico', vi: 'Đỉnh', id: 'Puncak', tr: 'Zirve', pl: 'Szczyt' }) }] : []),
     // зачем: паритет с макетом community.html COM-01 — порядок «Шпиль · Друзья · Наборы».
     { key: 'friends', label: triLang(lang, { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' }) },
     { key: 'packs', label: triLang(lang, { ru: 'Наборы', uk: 'Набори', en: 'Packs', es: 'Packs', 'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy' }) },
-  ], [lang, spireVisible]);
+  ], [lang, spireVisible, peakLocked]);
 
   const tabVisible = runtimeOwnerId === 'community' || segments.some((s) => s.key === runtimeOwnerId);
   const screenFocused = useIsFocused();
@@ -152,7 +156,10 @@ export default function CommunityTabRoute() {
     const owner = tabVisible && shown ? key : 'community';
     let body: React.ReactNode;
     if (key === 'friends') { const Screen = loadFriends(); body = <Screen />; }
-    else if (key === 'spire') { const Screen = loadSpire(); body = <Screen />; }
+    else if (key === 'spire') {
+      if (peakAccess.status === 'locked') body = <RankLockedSection surface="peak" minimumRank={peakAccess.minimumRank} />;
+      else { const Screen = loadSpire(); body = <Screen />; }
+    }
     else { const Screen = loadPacks(); body = <CommunityHeaderSlotProvider value={setPacksSlot}><Screen presentation="embedded" /></CommunityHeaderSlotProvider>; }
     return (
       <View

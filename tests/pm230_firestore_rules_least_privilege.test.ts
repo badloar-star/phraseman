@@ -60,6 +60,11 @@ const AUTHED_READ_NO_OWNER_ALLOWED = new Set([
   '/entries/{uid}',
   '/tournamentBank/{docId}',
   '/botProfiles/{botId}',
+  // зачем (координатор 05.11, ночной выпуск): конкурс сообщества уже в бою с 26.10 (a82a3b220). Осознанно, сузить read в следующем
+  // обновлении: в contest_votes виден userId голосующего (voter uid читает любой вошедший). Сегодня правила не сужаем — риск сломать конкурс.
+  '/community_contest_config/{configId}',
+  '/contest_votes/{voteId}',
+  '/community_contest_winners/{packId}',
 ]);
 
 interface Allow { path: string; ops: string; expr: string }

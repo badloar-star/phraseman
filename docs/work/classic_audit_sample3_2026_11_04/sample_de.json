@@ -1,0 +1,6576 @@
+[
+{
+"lesson": 1,
+"id": "de:01:03",
+"target": "Du bist müde.",
+"ru": "Ты устал.",
+"uk": "Ти втомився.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Ihr",
+"Es",
+"Sie",
+"Wir",
+"Ich"
+]
+},
+{
+"correct": "bist",
+"distractors": [
+"sind",
+"bin",
+"ist",
+"seid",
+"viel"
+]
+},
+{
+"correct": "müde",
+"distractors": [
+"allein",
+"leise",
+"ruhig",
+"bereit",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:19",
+"target": "Ihr seid bereit.",
+"ru": "Вы готовы.",
+"uk": "Ви готові.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Wir",
+"Ich",
+"Es",
+"Essen",
+"Offen"
+]
+},
+{
+"correct": "seid",
+"distractors": [
+"bin",
+"offen",
+"fertig",
+"früher",
+"finde"
+]
+},
+{
+"correct": "bereit",
+"distractors": [
+"ruhig",
+"allein",
+"frei",
+"müde",
+"wach"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:23",
+"target": "Tom ist allein.",
+"ru": "Том один.",
+"uk": "Том один.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "allein",
+"distractors": [
+"bereit",
+"ruhig",
+"leise",
+"frei",
+"müde"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 1,
+"id": "de:01:45",
+"target": "Das Zimmer ist ruhig.",
+"ru": "В комнате тихо.",
+"uk": "У кімнаті тихо.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Nach",
+"Um"
+]
+},
+{
+"correct": "Zimmer",
+"distractors": [
+"Schlüssel",
+"Anna",
+"Bus",
+"Gäste",
+"Taxi"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "ruhig",
+"distractors": [
+"müde",
+"allein",
+"leise",
+"wach",
+"krank"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:09",
+"target": "Das Handy ist neu.",
+"ru": "Телефон новый.",
+"uk": "Телефон новий.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Nach",
+"Um"
+]
+},
+{
+"correct": "Handy",
+"distractors": [
+"Kinder",
+"Tasche",
+"Gäste",
+"Laden",
+"Eingang"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "neu",
+"distractors": [
+"ich",
+"es",
+"wir",
+"sie",
+"ihr"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:14",
+"target": "Die Gäste sind da.",
+"ru": "Гости уже здесь.",
+"uk": "Гості вже тут.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Nach",
+"Um"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Tisch",
+"Stuhl",
+"Bank",
+"Schlüssel",
+"Aufzug"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"fertig",
+"offen",
+"finde",
+"warten"
+]
+},
+{
+"correct": "da",
+"distractors": [
+"kaputt",
+"schwer",
+"offen",
+"draußen",
+"bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:19",
+"target": "Die Kasse ist hier.",
+"ru": "Касса здесь.",
+"uk": "Каса тут.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Nach",
+"Um"
+]
+},
+{
+"correct": "Kasse",
+"distractors": [
+"Paket",
+"Karte",
+"Kiste",
+"Stuhl",
+"Brief"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"dort",
+"draußen",
+"drinnen",
+"heute",
+"morgen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 2,
+"id": "de:02:31",
+"target": "Das ist der Plan.",
+"ru": "Это план.",
+"uk": "Це план.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Nach",
+"Um"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"viel",
+"hat",
+"haben",
+"habt"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Plan",
+"distractors": [
+"Ticket",
+"Treppe",
+"Karte",
+"Briefe",
+"Bänke"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:22",
+"target": "Du suchst die Tasche.",
+"ru": "Ты ищешь сумку.",
+"uk": "Ти шукаєш сумку.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Sie",
+"Ihr",
+"Wir",
+"Ich",
+"Es"
+]
+},
+{
+"correct": "suchst",
+"distractors": [
+"sucht",
+"suche",
+"suchen",
+"brauchen",
+"einen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Tasche",
+"distractors": [
+"Schlüssel",
+"Wasser",
+"Anna",
+"Kinder",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:33",
+"target": "Anna arbeitet im Hotel.",
+"ru": "Анна работает в гостинице.",
+"uk": "Анна працює у готелі.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "arbeitet",
+"distractors": [
+"beginnt",
+"haben",
+"hat",
+"brauchen",
+"viel"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"am",
+"zum",
+"das",
+"den",
+"der"
+]
+},
+{
+"correct": "Hotel",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tom",
+"Bus",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:43",
+"target": "Anna bezahlt das Frühstück.",
+"ru": "Анна оплачивает завтрак.",
+"uk": "Анна оплачує сніданок.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "bezahlt",
+"distractors": [
+"warte",
+"zusammen",
+"kochen",
+"höre",
+"draußen"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Frühstück",
+"distractors": [
+"Pause",
+"Hotel",
+"Gäste",
+"Ticket",
+"Gemüse"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 3,
+"id": "de:03:50",
+"target": "Die Kinder spielen draußen.",
+"ru": "Дети играют на улице.",
+"uk": "Діти грають на вулиці.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Nach",
+"Um"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Eingang",
+"Handy",
+"Anna",
+"Milch",
+"Kaffee"
+]
+},
+{
+"correct": "spielen",
+"distractors": [
+"machen",
+"warten",
+"wohnen",
+"drinnen",
+"bezahlen"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"haben",
+"hören"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 4,
+"id": "de:04:11",
+"target": "Heute kaufe ich Brot.",
+"ru": "Сегодня я покупаю хлеб.",
+"uk": "Сьогодні я купую хліб.",
+"tiles": [
+{
+"correct": "Heute",
+"distractors": [
+"Bald",
+"Früher",
+"Morgen",
+"Dort",
+"Hier"
+]
+},
+{
+"correct": "kaufe",
+"distractors": [
+"kaufen",
+"kauft",
+"kaufst",
+"kochen",
+"offen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"es",
+"ihr",
+"sie",
+"wir"
+]
+},
+{
+"correct": "Brot",
+"distractors": [
+"Kinder",
+"Rechnung",
+"Samstag",
+"Durst",
+"Tom"
+]
+}
+],
+"alternatives": [
+"Ich kaufe heute Brot."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:16",
+"target": "Am Dienstag kochen wir Suppe.",
+"ru": "Во вторник мы варим суп.",
+"uk": "У вівторок ми варимо суп.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Dienstag",
+"distractors": [
+"Freitag",
+"Essen",
+"Wasser",
+"Bus",
+"Schlüssel"
+]
+},
+{
+"correct": "kochen",
+"distractors": [
+"trinken",
+"offen",
+"kaufen",
+"arbeiten",
+"machen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ihr",
+"sie",
+"ich",
+"du",
+"es"
+]
+},
+{
+"correct": "Suppe",
+"distractors": [
+"Essen",
+"Hause",
+"Wasser",
+"Tee",
+"Bus"
+]
+}
+],
+"alternatives": [
+"Wir kochen am Dienstag Suppe."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:33",
+"target": "Nach dem Essen hören wir Musik.",
+"ru": "После еды мы слушаем музыку.",
+"uk": "Після їди ми слухаємо музику.",
+"tiles": [
+{
+"correct": "Nach",
+"distractors": [
+"Zu",
+"Mit",
+"Um",
+"Auf",
+"Ein"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"und",
+"mit",
+"zu",
+"um",
+"auf"
+]
+},
+{
+"correct": "Essen",
+"distractors": [
+"Eingang",
+"Suppe",
+"Frühstück",
+"Sonntag",
+"Deutsch"
+]
+},
+{
+"correct": "hören",
+"distractors": [
+"trinken",
+"arbeiten",
+"machen",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"ich",
+"ihr",
+"sie",
+"es",
+"du"
+]
+},
+{
+"correct": "Musik",
+"distractors": [
+"Abend",
+"Bus",
+"Eingang",
+"Wochenende",
+"Wasser"
+]
+}
+],
+"alternatives": [
+"Wir hören nach dem Essen Musik."
+]
+},
+{
+"lesson": 4,
+"id": "de:04:40",
+"target": "Am Wochenende arbeiten wir draußen.",
+"ru": "В выходные мы работаем на улице.",
+"uk": "У вихідні ми працюємо на вулиці.",
+"tiles": [
+{
+"correct": "Am",
+"distractors": [
+"Zum",
+"Im",
+"Komme",
+"Kommen",
+"Kommst"
+]
+},
+{
+"correct": "Wochenende",
+"distractors": [
+"Abend",
+"Anna",
+"Bus",
+"Gäste",
+"Fenster"
+]
+},
+{
+"correct": "arbeiten",
+"distractors": [
+"arbeite",
+"arbeitest",
+"arbeitet",
+"lernen",
+"kochen"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"es",
+"ich",
+"ihr",
+"sie"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"drinnen",
+"offen",
+"zusammen",
+"spielen",
+"haben"
+]
+}
+],
+"alternatives": [
+"Wir arbeiten am Wochenende draußen."
+]
+},
+{
+"lesson": 5,
+"id": "de:05:18",
+"target": "Arbeitest du morgen?",
+"ru": "Ты завтра работаешь?",
+"uk": "Ти завтра працюєш?",
+"tiles": [
+{
+"correct": "Arbeitest",
+"distractors": [
+"Arbeite",
+"Arbeiten",
+"Arbeitet",
+"Arbeit",
+"Hat"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"sie",
+"wir",
+"es",
+"ihr",
+"ich"
+]
+},
+{
+"correct": "morgen",
+"distractors": [
+"bald",
+"früher",
+"heute",
+"dort",
+"hier"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 5,
+"id": "de:05:26",
+"target": "Schließt der Laden heute früher?",
+"ru": "Сегодня магазин закрывается раньше?",
+"uk": "Сьогодні магазин закривається раніше?",
+"tiles": [
+{
+"correct": "Schließt",
+"distractors": [
+"Zusammen",
+"Offen",
+"Hört",
+"Kocht",
+"Tee"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Laden",
+"distractors": [
+"Beginnt",
+"Café",
+"Wartet",
+"Musik",
+"Frau"
+]
+},
+{
+"correct": "heute",
+"distractors": [
+"morgen",
+"bald",
+"dort",
+"hier",
+"offen"
+]
+},
+{
+"correct": "früher",
+"distractors": [
+"bezahlt",
+"essen",
+"kochen",
+"offen",
+"und"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 5,
+"id": "de:05:39",
+"target": "Möchten Sie Tee?",
+"ru": "Хотите чаю?",
+"uk": "Бажаєте чаю?",
+"tiles": [
+{
+"correct": "Möchten",
+"distractors": [
+"Haben",
+"Hat",
+"Bezahlen",
+"Draußen",
+"Kochen"
+]
+},
+{
+"correct": "Sie",
+"distractors": [
+"Wir",
+"Ich",
+"Das",
+"Dem",
+"Den"
+]
+},
+{
+"correct": "Tee",
+"distractors": [
+"Hört",
+"Platz",
+"Deutsch",
+"Gäste",
+"Bezahlen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 6,
+"id": "de:06:14",
+"target": "Wann beginnt die Pause?",
+"ru": "Когда начинается перерыв?",
+"uk": "Коли починається перерва?",
+"tiles": [
+{
+"correct": "Wann",
+"distractors": [
+"Wohin",
+"Wer",
+"Wo",
+"Was",
+"Wie"
+]
+},
+{
+"correct": "beginnt",
+"distractors": [
+"viel",
+"schließt",
+"kocht",
+"diese",
+"heißen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Pause",
+"distractors": [
+"Hause",
+"Bus",
+"Eingang",
+"Kurs",
+"Deutsch"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 6,
+"id": "de:06:27",
+"target": "Wie komme ich zum Bahnhof?",
+"ru": "Как мне добраться до вокзала?",
+"uk": "Як мені дістатися вокзалу?",
+"tiles": [
+{
+"correct": "Wie",
+"distractors": [
+"Wo",
+"Wer",
+"Was",
+"Woher",
+"Wohin"
+]
+},
+{
+"correct": "komme",
+"distractors": [
+"kommt",
+"kommst",
+"kommen",
+"bleiben",
+"trinken"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"sie",
+"ihr",
+"wir",
+"es"
+]
+},
+{
+"correct": "zum",
+"distractors": [
+"am",
+"im",
+"mit",
+"vor",
+"ein"
+]
+},
+{
+"correct": "Bahnhof",
+"distractors": [
+"Zug",
+"Bus",
+"Gäste",
+"Paket",
+"Kinder"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 6,
+"id": "de:06:49",
+"target": "Wie viel kostet ein Zimmer?",
+"ru": "Сколько стоит комната?",
+"uk": "Скільки коштує кімната?",
+"tiles": [
+{
+"correct": "Wie",
+"distractors": [
+"Wann",
+"Wohin",
+"Woher",
+"Was",
+"Wer"
+]
+},
+{
+"correct": "viel",
+"distractors": [
+"dauert",
+"schließt",
+"bezahle",
+"diese",
+"beginnt"
+]
+},
+{
+"correct": "kostet",
+"distractors": [
+"brauchen",
+"heißt",
+"beginnt",
+"fahrt",
+"diese"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Zimmer",
+"distractors": [
+"Schlüssel",
+"Anna",
+"Bus",
+"Gäste",
+"Taxi"
+]
+}
+],
+"alternatives": [
+"Was kostet ein Zimmer?"
+]
+},
+{
+"lesson": 7,
+"id": "de:07:10",
+"target": "Die Kinder haben einen Ball.",
+"ru": "У детей есть мяч.",
+"uk": "Діти мають м'яч.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Nach",
+"Um"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Bank",
+"Jacke",
+"Termin",
+"Fahrkarte",
+"Apotheke"
+]
+},
+{
+"correct": "haben",
+"distractors": [
+"draußen",
+"offen",
+"brauchen",
+"bleiben",
+"meinen"
+]
+},
+{
+"correct": "einen",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Ball",
+"distractors": [
+"Aufzug",
+"Gäste",
+"Fahrkarte",
+"Ticket",
+"Parkplatz"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "de:07:32",
+"target": "Anna liest die Rechnung.",
+"ru": "Анна читает счёт.",
+"uk": "Анна читає рахунок.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "liest",
+"distractors": [
+"lese",
+"hat",
+"haben",
+"frage",
+"wartet"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Rechnung",
+"distractors": [
+"Schlüssel",
+"Tom",
+"Kinder",
+"Deutsch",
+"Eingang"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 7,
+"id": "de:07:48",
+"target": "Ich hole den Koffer.",
+"ru": "Я забираю чемодан.",
+"uk": "Я забираю валізу.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Wir",
+"Ihr",
+"Sie",
+"Du"
+]
+},
+{
+"correct": "hole",
+"distractors": [
+"öffne",
+"holen",
+"trägst",
+"braucht",
+"bestellen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"zu",
+"nach",
+"um"
+]
+},
+{
+"correct": "Koffer",
+"distractors": [
+"Wasser",
+"Schrank",
+"Kiste",
+"Jacke",
+"Ladegerät"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "de:08:03",
+"target": "Anna ist nicht krank.",
+"ru": "Анна не болеет.",
+"uk": "Ганна не хворіє.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sein",
+"bin",
+"seinen",
+"seinem",
+"seine"
+]
+},
+{
+"correct": "nicht",
+"distractors": [
+"auch",
+"machen",
+"suche",
+"suchen",
+"suchst"
+]
+},
+{
+"correct": "krank",
+"distractors": [
+"ruhig",
+"allein",
+"frei",
+"bereit",
+"leise"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "de:08:38",
+"target": "Das Radio funktioniert nicht.",
+"ru": "Радио не работает.",
+"uk": "Радіо не працює.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Bei",
+"Nach"
+]
+},
+{
+"correct": "Radio",
+"distractors": [
+"Hunger",
+"Fenster",
+"Parkplatz",
+"Anna",
+"Tür"
+]
+},
+{
+"correct": "funktioniert",
+"distractors": [
+"passt",
+"offen",
+"bezahlen",
+"bestellt",
+"isst"
+]
+},
+{
+"correct": "nicht",
+"distractors": [
+"auch",
+"machen",
+"suche",
+"suchen",
+"suchst"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 8,
+"id": "de:08:43",
+"target": "Das ist kein Hotel.",
+"ru": "Это не гостиница.",
+"uk": "Це не готель.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Bei",
+"Nach"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"sein",
+"viel",
+"hat",
+"haben"
+]
+},
+{
+"correct": "kein",
+"distractors": [
+"eine",
+"einem",
+"einen",
+"einer",
+"meinem"
+]
+},
+{
+"correct": "Hotel",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tom",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 9,
+"id": "de:09:12",
+"target": "Tom hat seinen Pass.",
+"ru": "У Тома его паспорт.",
+"uk": "У Тома його паспорт.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "hat",
+"distractors": [
+"habt",
+"hast",
+"haben",
+"habe",
+"draußen"
+]
+},
+{
+"correct": "seinen",
+"distractors": [
+"seinem",
+"sein",
+"seine",
+"ist",
+"bin"
+]
+},
+{
+"correct": "Pass",
+"distractors": [
+"Tisch",
+"Tasche",
+"Handy",
+"Kisten",
+"Küche"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 9,
+"id": "de:09:24",
+"target": "Unsere Gäste kommen.",
+"ru": "Наши гости приходят.",
+"uk": "Наші гості приходять.",
+"tiles": [
+{
+"correct": "Unsere",
+"distractors": [
+"Frage",
+"Öffnest",
+"Bin",
+"Bist",
+"Ist"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Fahrrad",
+"Anna",
+"Namen",
+"Schlüssel",
+"Kind"
+]
+},
+{
+"correct": "kommen",
+"distractors": [
+"bleiben",
+"trinken",
+"sprechen",
+"haben",
+"draußen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 9,
+"id": "de:09:37",
+"target": "Ist das Ihr Mantel?",
+"ru": "Это ваше пальто?",
+"uk": "Це ваше пальто?",
+"tiles": [
+{
+"correct": "Ist",
+"distractors": [
+"Bin",
+"Sein",
+"Viel",
+"Hat",
+"Haben"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"zu",
+"bei",
+"aus"
+]
+},
+{
+"correct": "Ihr",
+"distractors": [
+"Wir",
+"Ich",
+"Es",
+"Er",
+"Essen"
+]
+},
+{
+"correct": "Mantel",
+"distractors": [
+"Gäste",
+"Freundin",
+"Gepäck",
+"Ladegerät",
+"Tom"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 10,
+"id": "de:10:01",
+"target": "Ich komme mit dem Bus.",
+"ru": "Я приезжаю на автобусе.",
+"uk": "Я приїжджаю автобусом.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Er",
+"Sie",
+"Ihr",
+"Du",
+"Wir"
+]
+},
+{
+"correct": "komme",
+"distractors": [
+"kommt",
+"kommst",
+"kommen",
+"bleiben",
+"trinken"
+]
+},
+{
+"correct": "mit",
+"distractors": [
+"aus",
+"nach",
+"zu",
+"von",
+"seit"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"und",
+"zu",
+"bei",
+"aus",
+"von"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+}
+],
+"alternatives": [
+"Ich fahre mit dem Bus hierher."
+]
+},
+{
+"lesson": 10,
+"id": "de:10:12",
+"target": "Du gehst zur Schule.",
+"ru": "Ты идёшь в школу.",
+"uk": "Ти йдеш до школи.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Sie",
+"Ihr",
+"Er",
+"Wir",
+"Ich"
+]
+},
+{
+"correct": "gehst",
+"distractors": [
+"gehe",
+"geht",
+"gehen",
+"bleiben",
+"sprechen"
+]
+},
+{
+"correct": "zur",
+"distractors": [
+"vom",
+"ins",
+"am",
+"aufs",
+"beim"
+]
+},
+{
+"correct": "Schule",
+"distractors": [
+"Bahnhof",
+"Fahrrad",
+"Umzug",
+"Woche",
+"Zug"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 10,
+"id": "de:10:27",
+"target": "Der Ausweis ist bei dir.",
+"ru": "Удостоверение у тебя.",
+"uk": "Посвідчення у тебе.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Und",
+"Mit",
+"Zu",
+"Nach",
+"Aus"
+]
+},
+{
+"correct": "Ausweis",
+"distractors": [
+"Tasche",
+"Bank",
+"Tom",
+"Schlüssel",
+"Gäste"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"bist",
+"sein",
+"sind",
+"seid"
+]
+},
+{
+"correct": "bei",
+"distractors": [
+"zu",
+"mit",
+"nach",
+"von",
+"aus"
+]
+},
+{
+"correct": "dir",
+"distractors": [
+"mir",
+"dich",
+"mich",
+"sich",
+"uns"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:06",
+"target": "Die Jacke hängt im Flur.",
+"ru": "Куртка висит в прихожей.",
+"uk": "Куртка висить у передпокої.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Zu",
+"Bei"
+]
+},
+{
+"correct": "Jacke",
+"distractors": [
+"Bank",
+"Schuhe",
+"Tom",
+"Kinder",
+"Hause"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"und",
+"hält",
+"warten",
+"läuft",
+"schläft"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"aufs",
+"zum",
+"am",
+"vom",
+"ins"
+]
+},
+{
+"correct": "Flur",
+"distractors": [
+"Bahn",
+"Tisch",
+"Bahnhof",
+"Paket",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:31",
+"target": "Wo liegt der Ausweis?",
+"ru": "Где лежит удостоверение?",
+"uk": "Де лежить посвідчення?",
+"tiles": [
+{
+"correct": "Wo",
+"distractors": [
+"Wann",
+"Wohin",
+"Wie",
+"Woher",
+"Was"
+]
+},
+{
+"correct": "liegt",
+"distractors": [
+"lege",
+"legen",
+"legst",
+"warten",
+"läuft"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Ausweis",
+"distractors": [
+"Tasche",
+"Bank",
+"Tom",
+"Schlüssel",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 11,
+"id": "de:11:32",
+"target": "Liegt dein Schal im Flur?",
+"ru": "Твой шарф лежит в прихожей?",
+"uk": "Твій шарф лежить у передпокої?",
+"tiles": [
+{
+"correct": "Liegt",
+"distractors": [
+"Lege",
+"Legen",
+"Legst",
+"Warten",
+"Läuft"
+]
+},
+{
+"correct": "dein",
+"distractors": [
+"eine",
+"einem",
+"einen",
+"einer",
+"meinem"
+]
+},
+{
+"correct": "Schal",
+"distractors": [
+"See",
+"Ball",
+"Auto",
+"Bus",
+"Hause"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"aufs",
+"vom",
+"ins",
+"zum",
+"ans"
+]
+},
+{
+"correct": "Flur",
+"distractors": [
+"Bahn",
+"Tisch",
+"Bahnhof",
+"Paket",
+"Taxi"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:14",
+"target": "Tom hängt den Spiegel über das Waschbecken.",
+"ru": "Том вешает зеркало над раковиной.",
+"uk": "Том вішає дзеркало над раковиною.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "hängt",
+"distractors": [
+"stecke",
+"setzen",
+"steckst",
+"bringen",
+"läuft"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Spiegel",
+"distractors": [
+"Gäste",
+"Kasse",
+"Bank",
+"Schuhe",
+"Heizung"
+]
+},
+{
+"correct": "über",
+"distractors": [
+"in",
+"hinter",
+"auf",
+"an",
+"zwischen"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Waschbecken",
+"distractors": [
+"Schrank",
+"Kinder",
+"Umschlag",
+"Ausweis",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 12,
+"id": "de:12:23",
+"target": "Anna geht ins Bad.",
+"ru": "Анна идёт в ванную.",
+"uk": "Анна йде у ванну кімнату.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "geht",
+"distractors": [
+"haben",
+"kommen",
+"nehmen",
+"bleiben",
+"stehe"
+]
+},
+{
+"correct": "ins",
+"distractors": [
+"im",
+"beim",
+"aufs",
+"am",
+"ans"
+]
+},
+{
+"correct": "Bad",
+"distractors": [
+"Keller",
+"Brille",
+"Ausweis",
+"Kinder",
+"Tasse"
+]
+}
+],
+"alternatives": [
+"Anna geht in das Bad."
+]
+},
+{
+"lesson": 12,
+"id": "de:12:28",
+"target": "Der Hund läuft unter den Tisch.",
+"ru": "Собака забегает под стол.",
+"uk": "Собака забігає під стіл.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Zu",
+"Bei"
+]
+},
+{
+"correct": "Hund",
+"distractors": [
+"Koffer",
+"Wagen",
+"Tasche",
+"Schublade",
+"Briefkasten"
+]
+},
+{
+"correct": "läuft",
+"distractors": [
+"steckst",
+"packe",
+"stecke",
+"trägt",
+"bringen"
+]
+},
+{
+"correct": "unter",
+"distractors": [
+"neben",
+"über",
+"hinter",
+"in",
+"auf"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 13,
+"id": "de:13:03",
+"target": "Anna steht heute spät auf.",
+"ru": "Анна сегодня встаёт поздно.",
+"uk": "Анна сьогодні встає пізно.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "steht",
+"distractors": [
+"gehe",
+"gehen",
+"gehst",
+"bestellt",
+"brauche"
+]
+},
+{
+"correct": "heute",
+"distractors": [
+"morgen",
+"früher",
+"bald",
+"dort",
+"hier"
+]
+},
+{
+"correct": "spät",
+"distractors": [
+"steigt",
+"hole",
+"rufe",
+"holen",
+"bringen"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"aus",
+"vor",
+"zu",
+"mit",
+"von"
+]
+}
+],
+"alternatives": [
+"Heute steht Anna spät auf."
+]
+},
+{
+"lesson": 13,
+"id": "de:13:11",
+"target": "Ich mache die Tür auf.",
+"ru": "Я открываю дверь.",
+"uk": "Я відчиняю двері.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Er",
+"Wir",
+"Es",
+"Sie",
+"Du"
+]
+},
+{
+"correct": "mache",
+"distractors": [
+"macht",
+"machen",
+"machst",
+"warten",
+"kaufen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Tür",
+"distractors": [
+"Türen",
+"Kinder",
+"Gäste",
+"Hause",
+"Zimmer"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"mit",
+"aus",
+"vor",
+"ein",
+"zu"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 13,
+"id": "de:13:18",
+"target": "Du schaltest den Ofen aus.",
+"ru": "Ты выключаешь духовку.",
+"uk": "Ти вимикаєш духовку.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Wir",
+"Sie",
+"Ich",
+"Es",
+"Er"
+]
+},
+{
+"correct": "schaltest",
+"distractors": [
+"schaltet",
+"bringen",
+"zusammen",
+"schalten",
+"draußen"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Ofen",
+"distractors": [
+"Bringst",
+"Feier",
+"Küche",
+"Tisch",
+"Bus"
+]
+},
+{
+"correct": "aus",
+"distractors": [
+"auf",
+"ab",
+"ein",
+"zu",
+"mit"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 14,
+"id": "de:14:44",
+"target": "Soll ich das Licht ausschalten?",
+"ru": "Мне выключить свет?",
+"uk": "Мені вимкнути світло?",
+"tiles": [
+{
+"correct": "Soll",
+"distractors": [
+"Musst",
+"Darf",
+"Müssen",
+"Müsst",
+"Kann"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"er",
+"sie",
+"ihr",
+"es",
+"du"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Licht",
+"distractors": [
+"Pässe",
+"Aufzug",
+"Deutsch",
+"Adresse",
+"Schuhe"
+]
+},
+{
+"correct": "ausschalten",
+"distractors": [
+"dürfen",
+"parken",
+"schwimmen",
+"zeigen",
+"arbeiten"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 14,
+"id": "de:14:48",
+"target": "Ich kann das Paket heute nicht abholen.",
+"ru": "Я не могу забрать посылку сегодня.",
+"uk": "Я не можу забрати посилку сьогодні.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Wir",
+"Es",
+"Sie",
+"Ihr",
+"Er"
+]
+},
+{
+"correct": "kann",
+"distractors": [
+"müssen",
+"können",
+"kannst",
+"könnt",
+"muss"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Paket",
+"distractors": [
+"Anna",
+"Bus",
+"Zimmer",
+"Tom",
+"Karte"
+]
+},
+{
+"correct": "heute",
+"distractors": [
+"bald",
+"gestern",
+"morgen",
+"dort",
+"hier"
+]
+},
+{
+"correct": "nicht",
+"distractors": [
+"wieder",
+"auch",
+"gesprochen",
+"gekocht",
+"gemacht"
+]
+},
+{
+"correct": "abholen",
+"distractors": [
+"müssen",
+"zahlen",
+"warten",
+"kochen",
+"sitzen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 14,
+"id": "de:14:50",
+"target": "Wir müssen morgen nicht arbeiten.",
+"ru": "Завтра нам не надо работать.",
+"uk": "Завтра нам не треба працювати.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Ihr",
+"Ich",
+"Er",
+"Es"
+]
+},
+{
+"correct": "müssen",
+"distractors": [
+"kannst",
+"könnt",
+"kann",
+"können",
+"darf"
+]
+},
+{
+"correct": "morgen",
+"distractors": [
+"bald",
+"gestern",
+"heute",
+"dort",
+"hier"
+]
+},
+{
+"correct": "nicht",
+"distractors": [
+"wieder",
+"auch",
+"gesprochen",
+"gekocht",
+"gemacht"
+]
+},
+{
+"correct": "arbeiten",
+"distractors": [
+"arbeitest",
+"arbeitet",
+"arbeite",
+"gearbeitet",
+"lernen"
+]
+}
+],
+"alternatives": [
+"Morgen müssen wir nicht arbeiten."
+]
+},
+{
+"lesson": 15,
+"id": "de:15:13",
+"target": "Steck den Brief in den Briefkasten!",
+"ru": "Опусти письмо в почтовый ящик!",
+"uk": "Поклади листа в поштову скриньку!",
+"tiles": [
+{
+"correct": "Steck",
+"distractors": [
+"Vorsichtig",
+"Etwas",
+"Pünktlich",
+"Gut",
+"Rein"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Brief",
+"distractors": [
+"Essen",
+"Hause",
+"Bahn",
+"Adresse",
+"Post"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"neben",
+"unter",
+"über",
+"vor",
+"hinter"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Briefkasten",
+"distractors": [
+"Platz",
+"Hund",
+"Tom",
+"Bus",
+"Fenster"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "de:15:21",
+"target": "Kommt bitte rein!",
+"ru": "Заходите, пожалуйста!",
+"uk": "Заходьте, будь ласка!",
+"tiles": [
+{
+"correct": "Kommt",
+"distractors": [
+"Gekommen",
+"Genommen",
+"Nehme",
+"Nehmen",
+"Nimmst"
+]
+},
+{
+"correct": "bitte",
+"distractors": [
+"nächste",
+"bis",
+"kurz",
+"zusammen",
+"gut"
+]
+},
+{
+"correct": "rein",
+"distractors": [
+"rechts",
+"bis",
+"gut",
+"zusammen",
+"kurz"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 15,
+"id": "de:15:24",
+"target": "Nehmt eure Jacken mit!",
+"ru": "Возьмите с собой куртки!",
+"uk": "Візьміть із собою куртки!",
+"tiles": [
+{
+"correct": "Nehmt",
+"distractors": [
+"Hierhin",
+"Bitte",
+"Etwas",
+"Rechts",
+"Früh"
+]
+},
+{
+"correct": "eure",
+"distractors": [
+"euer",
+"bin",
+"bist",
+"ist",
+"seid"
+]
+},
+{
+"correct": "Jacken",
+"distractors": [
+"Hilf",
+"Platz",
+"Warte",
+"Schließ",
+"Setzt"
+]
+},
+{
+"correct": "mit",
+"distractors": [
+"zu",
+"aus",
+"seit",
+"für",
+"nach"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "de:16:06",
+"target": "Ihr habt draußen gespielt.",
+"ru": "Вы играли на улице.",
+"uk": "Ви грали на вулиці.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Ich",
+"Wir",
+"Er",
+"Es",
+"Essen"
+]
+},
+{
+"correct": "habt",
+"distractors": [
+"abgeholt",
+"bezahlt",
+"getragen",
+"mehr",
+"reserviert"
+]
+},
+{
+"correct": "draußen",
+"distractors": [
+"vorne",
+"drinnen",
+"offen",
+"zusammen",
+"haben"
+]
+},
+{
+"correct": "gespielt",
+"distractors": [
+"bezahlt",
+"gesehen",
+"bestellt",
+"gegessen",
+"zusammen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "de:16:32",
+"target": "Du hast die Frage verstanden.",
+"ru": "Ты понял вопрос.",
+"uk": "Ти зрозумів питання.",
+"tiles": [
+{
+"correct": "Du",
+"distractors": [
+"Sie",
+"Es",
+"Wir",
+"Er",
+"Ich"
+]
+},
+{
+"correct": "hast",
+"distractors": [
+"haben",
+"habt",
+"habe",
+"hat",
+"draußen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Frage",
+"distractors": [
+"Frühstück",
+"Nachbarn",
+"Adresse",
+"Namen",
+"Formular"
+]
+},
+{
+"correct": "verstanden",
+"distractors": [
+"draußen",
+"getrunken",
+"geschlossen",
+"genommen",
+"zusammen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 16,
+"id": "de:16:37",
+"target": "Anna hat das Radio repariert.",
+"ru": "Анна починила радио.",
+"uk": "Анна полагодила радіо.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "hat",
+"distractors": [
+"habe",
+"bin",
+"sind",
+"seid",
+"sein"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Radio",
+"distractors": [
+"Schlüssel",
+"Paket",
+"Zimmer",
+"Formular",
+"Bus"
+]
+},
+{
+"correct": "repariert",
+"distractors": [
+"gesehen",
+"gehört",
+"ihren",
+"getrunken",
+"draußen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "de:17:12",
+"target": "Tom ist zur Arbeit gelaufen.",
+"ru": "Том отправился на работу пешком.",
+"uk": "Том вирушив на роботу пішки.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"sein",
+"seinen",
+"seinem",
+"seine"
+]
+},
+{
+"correct": "zur",
+"distractors": [
+"vom",
+"am",
+"aufs",
+"im",
+"ans"
+]
+},
+{
+"correct": "Arbeit",
+"distractors": [
+"Fahrrad",
+"See",
+"Kinder",
+"Licht",
+"Anna"
+]
+},
+{
+"correct": "gelaufen",
+"distractors": [
+"falschen",
+"ausgezogen",
+"eingeschlafen",
+"gezogen",
+"eingezogen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "de:17:28",
+"target": "Meine Schwester ist nach Hamburg gezogen.",
+"ru": "Сестра переехала в Гамбург.",
+"uk": "Сестра переїхала до Гамбургу.",
+"tiles": [
+{
+"correct": "Meine",
+"distractors": [
+"Meinem",
+"Meiner",
+"Ein",
+"Einem",
+"Einen"
+]
+},
+{
+"correct": "Schwester",
+"distractors": [
+"Wasser",
+"Bruder",
+"Kinder",
+"Zug",
+"Gäste"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sein",
+"bin",
+"seinen",
+"seinem",
+"seine"
+]
+},
+{
+"correct": "nach",
+"distractors": [
+"seit",
+"aus",
+"bei",
+"für",
+"zu"
+]
+},
+{
+"correct": "Hamburg",
+"distractors": [
+"Bahnhof",
+"Kurs",
+"Kind",
+"Hund",
+"Fuß"
+]
+},
+{
+"correct": "gezogen",
+"distractors": [
+"eingezogen",
+"geblieben",
+"umgestiegen",
+"ausgezogen",
+"hingefallen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 17,
+"id": "de:17:29",
+"target": "Wir sind in die neue Wohnung eingezogen.",
+"ru": "Мы въехали в новую квартиру.",
+"uk": "Ми в'їхали до нової квартири.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Ich",
+"Es",
+"Du",
+"Er",
+"Sie"
+]
+},
+{
+"correct": "sind",
+"distractors": [
+"bin",
+"bist",
+"sein",
+"seid",
+"ist"
+]
+},
+{
+"correct": "in",
+"distractors": [
+"über",
+"auf",
+"zwischen",
+"vor",
+"hinter"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "neue",
+"distractors": [
+"neu",
+"bedanke",
+"getroffen",
+"kämmt",
+"meldet"
+]
+},
+{
+"correct": "Wohnung",
+"distractors": [
+"Fenster",
+"Anna",
+"Gäste",
+"Kurs",
+"Erinnerst"
+]
+},
+{
+"correct": "eingezogen",
+"distractors": [
+"aufgestanden",
+"gestiegen",
+"abgefahren",
+"eingeschlafen",
+"ausgestiegen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "de:18:10",
+"target": "Wir hatten Glück.",
+"ru": "Нам повезло.",
+"uk": "Нам пощастило.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Er",
+"Es",
+"Ihr",
+"Sie",
+"Ich"
+]
+},
+{
+"correct": "hatten",
+"distractors": [
+"hattet",
+"haben",
+"hat",
+"hatte",
+"hattest"
+]
+},
+{
+"correct": "Glück",
+"distractors": [
+"Kino",
+"Mai",
+"Fenster",
+"Wohnung",
+"Meer"
+]
+}
+],
+"alternatives": [
+"Glück hatten wir."
+]
+},
+{
+"lesson": 18,
+"id": "de:18:30",
+"target": "Der Bus hatte Verspätung.",
+"ru": "Автобус опаздывал.",
+"uk": "Автобус запізнювався.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Zu",
+"Bei"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "hatte",
+"distractors": [
+"habt",
+"haben",
+"hast",
+"habe",
+"draußen"
+]
+},
+{
+"correct": "Verspätung",
+"distractors": [
+"Kinder",
+"Fenster",
+"Mai",
+"Gäste",
+"Nummer"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 18,
+"id": "de:18:38",
+"target": "Hattet ihr Probleme?",
+"ru": "У вас были проблемы?",
+"uk": "У вас були проблеми?",
+"tiles": [
+{
+"correct": "Hattet",
+"distractors": [
+"Haben",
+"Hast",
+"Habe",
+"Habt",
+"Arbeite"
+]
+},
+{
+"correct": "ihr",
+"distractors": [
+"er",
+"es",
+"ich",
+"wir",
+"ihrer"
+]
+},
+{
+"correct": "Probleme",
+"distractors": [
+"Fenster",
+"Wohnungsschlüssel",
+"Mai",
+"Verspätung",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "de:19:10",
+"target": "Wir ziehen uns warm an.",
+"ru": "Мы тепло одеваемся.",
+"uk": "Ми тепло одягаємось.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Ich",
+"Es",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "ziehen",
+"distractors": [
+"meinen",
+"waschen",
+"müssen",
+"neben",
+"treffen"
+]
+},
+{
+"correct": "uns",
+"distractors": [
+"mir",
+"euch",
+"mich",
+"dir",
+"dich"
+]
+},
+{
+"correct": "warm",
+"distractors": [
+"nass",
+"kalt",
+"dunkel",
+"heiß",
+"sollen"
+]
+},
+{
+"correct": "an",
+"distractors": [
+"neben",
+"vor",
+"hinter",
+"unter",
+"über"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "de:19:14",
+"target": "Wir setzen uns ins Café.",
+"ru": "Мы садимся в кафе.",
+"uk": "Ми сідаємо у кафе.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Es",
+"Ich",
+"Sie",
+"Er"
+]
+},
+{
+"correct": "setzen",
+"distractors": [
+"verabschieden",
+"neben",
+"treffen",
+"beeilen",
+"waschen"
+]
+},
+{
+"correct": "uns",
+"distractors": [
+"dir",
+"dich",
+"sich",
+"euch",
+"mir"
+]
+},
+{
+"correct": "ins",
+"distractors": [
+"beim",
+"zum",
+"ans",
+"zur",
+"am"
+]
+},
+{
+"correct": "Café",
+"distractors": [
+"Bruder",
+"Geschenk",
+"Nummer",
+"Kinder",
+"Verspätung"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 19,
+"id": "de:19:27",
+"target": "Tom freut sich auf die Fahrt.",
+"ru": "Том предвкушает поездку.",
+"uk": "Том відчуває подорож.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "freut",
+"distractors": [
+"ziehen",
+"ziehst",
+"kämmt",
+"merken",
+"verspätet"
+]
+},
+{
+"correct": "sich",
+"distractors": [
+"uns",
+"euch",
+"mir",
+"dir",
+"mich"
+]
+},
+{
+"correct": "auf",
+"distractors": [
+"neben",
+"in",
+"unter",
+"hinter",
+"über"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Fahrt",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Kasse",
+"Plätze",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "de:20:07",
+"target": "Das Bad ist kleiner.",
+"ru": "Ванная меньше.",
+"uk": "Ванна менша.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Zu",
+"Bei"
+]
+},
+{
+"correct": "Bad",
+"distractors": [
+"Handy",
+"Tasche",
+"Koffer",
+"Tickets",
+"Küche"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bin",
+"war",
+"sein",
+"waren",
+"warst"
+]
+},
+{
+"correct": "kleiner",
+"distractors": [
+"klein",
+"dein",
+"deine",
+"deinen",
+"ein"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "de:20:21",
+"target": "Ich trinke lieber Tee.",
+"ru": "Я предпочитаю чай.",
+"uk": "Я віддаю перевагу чаю.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Ihr",
+"Es",
+"Wir",
+"Sie",
+"Du"
+]
+},
+{
+"correct": "trinke",
+"distractors": [
+"getrunken",
+"trinkt",
+"trinken",
+"draußen",
+"arbeiten"
+]
+},
+{
+"correct": "lieber",
+"distractors": [
+"kosten",
+"schwimme",
+"funktioniert",
+"wärmer",
+"stärker"
+]
+},
+{
+"correct": "Tee",
+"distractors": [
+"Eimer",
+"Koffer",
+"Welcher",
+"See",
+"Hause"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 20,
+"id": "de:20:40",
+"target": "Der rote Eimer ist größer als der blaue.",
+"ru": "Красное ведро больше синего.",
+"uk": "Червоне відро більше за синє.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Dass",
+"Zu"
+]
+},
+{
+"correct": "rote",
+"distractors": [
+"hast",
+"habe",
+"haben",
+"habt",
+"hat"
+]
+},
+{
+"correct": "Eimer",
+"distractors": [
+"Jacke",
+"Tee",
+"Kisten",
+"Lampe",
+"Ofen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"war",
+"sein",
+"bin",
+"waren",
+"warst"
+]
+},
+{
+"correct": "größer",
+"distractors": [
+"groß",
+"das",
+"dem",
+"den",
+"die"
+]
+},
+{
+"correct": "als",
+"distractors": [
+"weil",
+"dass",
+"dem",
+"den",
+"die"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "blaue",
+"distractors": [
+"besser",
+"wärmer",
+"laut",
+"leichter",
+"ruhigsten"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 21,
+"id": "de:21:22",
+"target": "Wir gehen, weil wir arbeiten müssen.",
+"ru": "Мы уходим, потому что нам надо работать.",
+"uk": "Ми йдемо, тому що нам треба працювати.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Sie",
+"Es",
+"Ich",
+"Du",
+"Er"
+]
+},
+{
+"correct": "gehen",
+"distractors": [
+"gehst",
+"gehe",
+"geht",
+"gegangen",
+"abholen"
+]
+},
+{
+"correct": "weil",
+"distractors": [
+"wenn",
+"dass",
+"als",
+"muss",
+"möchte"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"er",
+"es",
+"ihr",
+"ich"
+]
+},
+{
+"correct": "arbeiten",
+"distractors": [
+"arbeitet",
+"arbeite",
+"gearbeitet",
+"arbeitest",
+"lernen"
+]
+},
+{
+"correct": "müssen",
+"distractors": [
+"können",
+"könnt",
+"kann",
+"kannst",
+"muss"
+]
+}
+],
+"alternatives": [
+"Weil wir arbeiten müssen, gehen wir."
+]
+},
+{
+"lesson": 21,
+"id": "de:21:38",
+"target": "Wir gehen zur Post, weil ein Paket angekommen ist.",
+"ru": "Мы идём на почту, потому что пришла посылка.",
+"uk": "Ми йдемо на пошту, тому що надійшла посилка.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Sie",
+"Ich",
+"Es",
+"Du",
+"Ihr"
+]
+},
+{
+"correct": "gehen",
+"distractors": [
+"gegangen",
+"geht",
+"gehst",
+"gehe",
+"abholen"
+]
+},
+{
+"correct": "zur",
+"distractors": [
+"zum",
+"ins",
+"im",
+"beim",
+"ans"
+]
+},
+{
+"correct": "Post",
+"distractors": [
+"Hause",
+"Brief",
+"Schwester",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "weil",
+"distractors": [
+"als",
+"dass",
+"wenn",
+"muss",
+"möchte"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Paket",
+"distractors": [
+"Anna",
+"Bus",
+"Zimmer",
+"Tom",
+"Karte"
+]
+},
+{
+"correct": "angekommen",
+"distractors": [
+"umsteigen",
+"verloren",
+"lachen",
+"umziehen",
+"möchten"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bist",
+"war",
+"seid",
+"bin",
+"sind"
+]
+}
+],
+"alternatives": [
+"Weil ein Paket angekommen ist, gehen wir zur Post."
+]
+},
+{
+"lesson": 21,
+"id": "de:21:39",
+"target": "Anna trägt eine Brille, weil sie ihre Linsen vergessen hat.",
+"ru": "Анна носит очки, потому что забыла линзы.",
+"uk": "Анна носить окуляри, бо забула лінзи.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "trägt",
+"distractors": [
+"beeile",
+"drehen",
+"verloren",
+"umziehen",
+"spät"
+]
+},
+{
+"correct": "eine",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Brille",
+"distractors": [
+"Rechnung",
+"Kisten",
+"Fenster",
+"Tasche",
+"Jacke"
+]
+},
+{
+"correct": "weil",
+"distractors": [
+"als",
+"wenn",
+"dass",
+"muss",
+"möchte"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"ich",
+"wir",
+"das",
+"dem",
+"den"
+]
+},
+{
+"correct": "ihre",
+"distractors": [
+"ihrer",
+"fahren",
+"fährt",
+"gefahren",
+"bin"
+]
+},
+{
+"correct": "Linsen",
+"distractors": [
+"Zug",
+"Ampel",
+"Hunger",
+"Sonne",
+"Frühstück"
+]
+},
+{
+"correct": "vergessen",
+"distractors": [
+"umziehen",
+"zahlen",
+"helfen",
+"angekommen",
+"gehen"
+]
+},
+{
+"correct": "hat",
+"distractors": [
+"habe",
+"bin",
+"war",
+"sind",
+"seid"
+]
+}
+],
+"alternatives": [
+"Weil sie ihre Linsen vergessen hat, trägt Anna eine Brille."
+]
+},
+{
+"lesson": 22,
+"id": "de:22:06",
+"target": "Tom sagt, dass er müde ist.",
+"ru": "Том говорит, что он устал.",
+"uk": "Том каже, що він втомився.",
+"tiles": [
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "sagt",
+"distractors": [
+"bar",
+"merkt",
+"erholen",
+"hoffe",
+"sollten"
+]
+},
+{
+"correct": "dass",
+"distractors": [
+"als",
+"weil",
+"wenn",
+"trocken",
+"warm"
+]
+},
+{
+"correct": "er",
+"distractors": [
+"ihr",
+"du",
+"sie",
+"es",
+"ich"
+]
+},
+{
+"correct": "müde",
+"distractors": [
+"frei",
+"krank",
+"ruhig",
+"leise",
+"bereit"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"bist",
+"sein",
+"seid",
+"war",
+"bin"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "de:22:26",
+"target": "Ich lese, dass der Kurs am Freitag beginnt.",
+"ru": "Я читаю, что курс начинается в пятницу.",
+"uk": "Я читаю, що курс починається у п'ятницю.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Du",
+"Es",
+"Er",
+"Sie",
+"Ihr"
+]
+},
+{
+"correct": "lese",
+"distractors": [
+"liest",
+"lesen",
+"las",
+"draußen",
+"offen"
+]
+},
+{
+"correct": "dass",
+"distractors": [
+"weil",
+"wenn",
+"als",
+"trocken",
+"warm"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Kurs",
+"distractors": [
+"Eingang",
+"Kinder",
+"Gäste",
+"Fenster",
+"Hause"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"zum",
+"vom",
+"im",
+"aufs",
+"ins"
+]
+},
+{
+"correct": "Freitag",
+"distractors": [
+"Hunger",
+"Bus",
+"Keller",
+"Pause",
+"Hause"
+]
+},
+{
+"correct": "beginnt",
+"distractors": [
+"trocken",
+"kommen",
+"können",
+"angekommen",
+"gekommen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 22,
+"id": "de:22:27",
+"target": "Sie verspricht, dass sie morgen anruft.",
+"ru": "Она обещает, что позвонит завтра.",
+"uk": "Вона обіцяє, що подзвонить завтра.",
+"tiles": [
+{
+"correct": "Sie",
+"distractors": [
+"Wir",
+"Ich",
+"Es",
+"Du",
+"Ihr"
+]
+},
+{
+"correct": "verspricht",
+"distractors": [
+"meldet",
+"umsteigen",
+"angekommen",
+"erholen",
+"pünktlich"
+]
+},
+{
+"correct": "dass",
+"distractors": [
+"als",
+"wenn",
+"weil",
+"trocken",
+"warm"
+]
+},
+{
+"correct": "sie",
+"distractors": [
+"du",
+"er",
+"ihr",
+"wir",
+"es"
+]
+},
+{
+"correct": "morgen",
+"distractors": [
+"später",
+"jetzt",
+"heute",
+"bald",
+"gestern"
+]
+},
+{
+"correct": "anruft",
+"distractors": [
+"bedanken",
+"erholen",
+"umsteigen",
+"mitkommen",
+"kommen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:15",
+"target": "Ich kaufe Milch, wenn der Laden offen ist.",
+"ru": "Я куплю молоко, если магазин открыт.",
+"uk": "Я куплю молоко, якщо магазин відкритий.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Ihr",
+"Wir",
+"Du",
+"Er"
+]
+},
+{
+"correct": "kaufe",
+"distractors": [
+"kauft",
+"kaufen",
+"gekauft",
+"kaufst",
+"kochen"
+]
+},
+{
+"correct": "Milch",
+"distractors": [
+"Kinder",
+"Termin",
+"Eingang",
+"Tom",
+"Rechnung"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"weil",
+"als",
+"dass",
+"kannst",
+"können"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Laden",
+"distractors": [
+"Hause",
+"Rad",
+"Akku",
+"Zug",
+"Tom"
+]
+},
+{
+"correct": "offen",
+"distractors": [
+"kochen",
+"abholen",
+"lüften",
+"können",
+"fahren"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sind",
+"war",
+"bin",
+"sein",
+"bist"
+]
+}
+],
+"alternatives": [
+"Wenn der Laden offen ist, kaufe ich Milch."
+]
+},
+{
+"lesson": 23,
+"id": "de:23:28",
+"target": "Wenn du gehst, schalte das Licht aus!",
+"ru": "Когда будешь уходить, выключи свет!",
+"uk": "Коли йтимеш, вимкни світло!",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Dass",
+"Weil",
+"Als",
+"Was",
+"Wie"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"er",
+"es",
+"wir",
+"ich",
+"seit"
+]
+},
+{
+"correct": "gehst",
+"distractors": [
+"ging",
+"gegangen",
+"kaputtgegangen",
+"gesprungen",
+"umgestiegen"
+]
+},
+{
+"correct": "schalte",
+"distractors": [
+"ruf",
+"klappt",
+"schläft",
+"lüften",
+"tagsüber"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "Licht",
+"distractors": [
+"Hause",
+"Schwester",
+"Laden",
+"Meer",
+"Kind"
+]
+},
+{
+"correct": "aus",
+"distractors": [
+"für",
+"nach",
+"zu",
+"mit",
+"bei"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 23,
+"id": "de:23:31",
+"target": "Wenn der Zug ausfällt, können wir den Bus nehmen.",
+"ru": "Если поезд отменят, мы можем поехать на автобусе.",
+"uk": "Якщо потяг скасують, ми можемо поїхати автобусом.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Weil",
+"Dass",
+"Was",
+"Wie"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Zug",
+"distractors": [
+"Tom",
+"Gäste",
+"Kinder",
+"Anna",
+"Hause"
+]
+},
+{
+"correct": "ausfällt",
+"distractors": [
+"sage",
+"öfter",
+"rufe",
+"ruf",
+"fehlt"
+]
+},
+{
+"correct": "können",
+"distractors": [
+"könnt",
+"kannst",
+"müssen",
+"kann",
+"darf"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"du",
+"er",
+"es",
+"ihr",
+"sie"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "nehmen",
+"distractors": [
+"nehme",
+"nimmt",
+"genommen",
+"nimmst",
+"angerufen"
+]
+}
+],
+"alternatives": [
+"Wir können den Bus nehmen, wenn der Zug ausfällt."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:03",
+"target": "Als Tom anrief, war ich im Bus.",
+"ru": "Когда позвонил Том, я был в автобусе.",
+"uk": "Коли зателефонував Том, я був у автобусі.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Weil",
+"Wenn",
+"Dass",
+"Anschluss",
+"Beleg"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Anna",
+"Hause",
+"Kinder",
+"Gäste",
+"Schlüssel"
+]
+},
+{
+"correct": "anrief",
+"distractors": [
+"feucht",
+"sahen",
+"ausgestiegen",
+"fertig",
+"schlief"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sein",
+"bist",
+"ist",
+"sind",
+"bin"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"wir",
+"sie",
+"es",
+"er"
+]
+},
+{
+"correct": "im",
+"distractors": [
+"ins",
+"vom",
+"zur",
+"zum",
+"am"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+}
+],
+"alternatives": [
+"Ich war im Bus, als Tom anrief."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:24",
+"target": "Als ich Schüler war, ging ich zu Fuß zur Schule.",
+"ru": "Когда я был школьником, я ходил в школу пешком.",
+"uk": "Коли я був школярем, я ходив до школи пішки.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Dass",
+"Weil",
+"Wenn",
+"Anschluss",
+"Beleg"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"ihr",
+"es",
+"du",
+"wir",
+"sie"
+]
+},
+{
+"correct": "Schüler",
+"distractors": [
+"Licht",
+"Flur",
+"Strand",
+"Nachbarn",
+"Glas"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"bist",
+"sein",
+"sind",
+"ist",
+"seid"
+]
+},
+{
+"correct": "ging",
+"distractors": [
+"gegangen",
+"gehst",
+"geht",
+"gehen",
+"gehe"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"sie",
+"es",
+"wir",
+"du",
+"ihr"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"für",
+"aus",
+"von",
+"nach",
+"mit"
+]
+},
+{
+"correct": "Fuß",
+"distractors": [
+"Nachbarn",
+"Brief",
+"Film",
+"Paket",
+"Strand"
+]
+},
+{
+"correct": "zur",
+"distractors": [
+"am",
+"ins",
+"vom",
+"ans",
+"beim"
+]
+},
+{
+"correct": "Schule",
+"distractors": [
+"Hause",
+"Sonne",
+"Tür",
+"Schnee",
+"Türen"
+]
+}
+],
+"alternatives": [
+"Ich ging zu Fuß zur Schule, als ich Schüler war."
+]
+},
+{
+"lesson": 24,
+"id": "de:24:39",
+"target": "Als wir das Hotel fanden, war es fast Mitternacht.",
+"ru": "Когда мы нашли гостиницу, была почти полночь.",
+"uk": "Коли ми знайшли готель, майже опівночі.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Wenn",
+"Dass",
+"Weil",
+"Anschluss",
+"Beleg"
+]
+},
+{
+"correct": "wir",
+"distractors": [
+"sie",
+"er",
+"ich",
+"du",
+"ihr"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Hotel",
+"distractors": [
+"Schlüssel",
+"Kinder",
+"Tom",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "fanden",
+"distractors": [
+"nahmen",
+"niemanden",
+"ankamen",
+"hielten",
+"ausgestiegen"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"sind",
+"seid",
+"bin",
+"bist",
+"ist"
+]
+},
+{
+"correct": "es",
+"distractors": [
+"er",
+"ich",
+"sie",
+"ihr",
+"du"
+]
+},
+{
+"correct": "fast",
+"distractors": [
+"roch",
+"früh",
+"sahen",
+"hielten",
+"verließen"
+]
+},
+{
+"correct": "Mitternacht",
+"distractors": [
+"Tom",
+"Platz",
+"Auto",
+"Fenster",
+"Paket"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 25,
+"id": "de:25:12",
+"target": "Ich nehme die rote Jacke.",
+"ru": "Я беру красную куртку.",
+"uk": "Я беру червону куртку.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Es",
+"Er",
+"Du",
+"Ihr",
+"Wir"
+]
+},
+{
+"correct": "nehme",
+"distractors": [
+"nehmen",
+"nimmst",
+"nimmt",
+"genommen",
+"angerufen"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "rote",
+"distractors": [
+"rot",
+"rotes",
+"roten",
+"gesehen",
+"langen"
+]
+},
+{
+"correct": "Jacke",
+"distractors": [
+"Jacken",
+"Platz",
+"Bank",
+"Schuhe",
+"Tom"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 25,
+"id": "de:25:13",
+"target": "Anna kauft das rote Kleid.",
+"ru": "Анна покупает красное платье.",
+"uk": "Анна купує червону сукню.",
+"tiles": [
+{
+"correct": "Anna",
+"distractors": [
+"Tom",
+"Paul",
+"Hause",
+"Kinder",
+"Gäste"
+]
+},
+{
+"correct": "kauft",
+"distractors": [
+"gekauft",
+"draußen",
+"zusammen",
+"vergessen",
+"gegessen"
+]
+},
+{
+"correct": "das",
+"distractors": [
+"und",
+"mit",
+"für",
+"zu",
+"bei"
+]
+},
+{
+"correct": "rote",
+"distractors": [
+"hast",
+"habe",
+"haben",
+"habt",
+"hat"
+]
+},
+{
+"correct": "Kleid",
+"distractors": [
+"Hotel",
+"Umschlag",
+"Frau",
+"Paul",
+"Gäste"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 25,
+"id": "de:25:25",
+"target": "Neben dem großen Schrank steht ein Stuhl.",
+"ru": "Рядом с большим шкафом стоит стул.",
+"uk": "Поруч із великою шафою стоїть стілець.",
+"tiles": [
+{
+"correct": "Neben",
+"distractors": [
+"Auf",
+"Unter",
+"Zwischen",
+"Hinter",
+"Über"
+]
+},
+{
+"correct": "dem",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "großen",
+"distractors": [
+"größer",
+"holen",
+"liegen",
+"frischen",
+"runden"
+]
+},
+{
+"correct": "Schrank",
+"distractors": [
+"Tom",
+"Fenster",
+"Jacke",
+"Auto",
+"Kinder"
+]
+},
+{
+"correct": "steht",
+"distractors": [
+"stand",
+"gegangen",
+"gehe",
+"gehen",
+"gehst"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Stuhl",
+"distractors": [
+"Kisten",
+"Bank",
+"Buch",
+"Gäste",
+"Tisch"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 26,
+"id": "de:26:06",
+"target": "Ich hoffe, bald zu Hause zu sein.",
+"ru": "Я надеюсь скоро оказаться дома.",
+"uk": "Я сподіваюся скоро опинитися вдома.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Du",
+"Es",
+"Er",
+"Ihr",
+"Wir"
+]
+},
+{
+"correct": "hoffe",
+"distractors": [
+"bittet",
+"bitten",
+"denke",
+"buchen",
+"lohnt"
+]
+},
+{
+"correct": "bald",
+"distractors": [
+"morgen",
+"heute",
+"früher",
+"später",
+"jetzt"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"mit",
+"seit",
+"für",
+"bei",
+"aus"
+]
+},
+{
+"correct": "Hause",
+"distractors": [
+"Luft",
+"Nachbarn",
+"Spaß",
+"Lust",
+"Tom"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"für",
+"von",
+"aus",
+"mit",
+"bei"
+]
+},
+{
+"correct": "sein",
+"distractors": [
+"bist",
+"ist",
+"bin",
+"seid",
+"war"
+]
+}
+],
+"alternatives": [
+"Ich hoffe, bald zuhause zu sein."
+]
+},
+{
+"lesson": 26,
+"id": "de:26:08",
+"target": "Wir hoffen, ein Zimmer zu finden.",
+"ru": "Мы надеемся найти комнату.",
+"uk": "Ми сподіваємося знайти кімнату.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Sie",
+"Du",
+"Ihr",
+"Er",
+"Es"
+]
+},
+{
+"correct": "hoffen",
+"distractors": [
+"lernen",
+"abzuholen",
+"buchen",
+"warten",
+"decken"
+]
+},
+{
+"correct": "ein",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"bei"
+]
+},
+{
+"correct": "Zimmer",
+"distractors": [
+"Schlüssel",
+"Anna",
+"Bus",
+"Gäste",
+"Taxi"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"nach",
+"von",
+"für",
+"seit",
+"mit"
+]
+},
+{
+"correct": "finden",
+"distractors": [
+"findest",
+"fand",
+"findet",
+"finde",
+"gefunden"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 26,
+"id": "de:26:24",
+"target": "Es ist schön, dich zu sehen.",
+"ru": "Приятно тебя видеть.",
+"uk": "Приємно тебе бачити.",
+"tiles": [
+{
+"correct": "Es",
+"distractors": [
+"Ihr",
+"Ich",
+"Wir",
+"Sie",
+"Du"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"sind",
+"war",
+"bist",
+"bin",
+"seid"
+]
+},
+{
+"correct": "schön",
+"distractors": [
+"kurz",
+"empfiehlt",
+"ruft",
+"unterschreiben",
+"wichtig"
+]
+},
+{
+"correct": "dich",
+"distractors": [
+"uns",
+"dir",
+"mich",
+"euch",
+"mir"
+]
+},
+{
+"correct": "zu",
+"distractors": [
+"aus",
+"mit",
+"für",
+"bei",
+"nach"
+]
+},
+{
+"correct": "sehen",
+"distractors": [
+"sehe",
+"gesehen",
+"siehst",
+"sah",
+"zusammen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "de:27:02",
+"target": "Das ist die Frau, die hier wohnt.",
+"ru": "Это женщина, которая здесь живёт.",
+"uk": "Це жінка, яка тут мешкає.",
+"tiles": [
+{
+"correct": "Das",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Zu",
+"Bei"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"war",
+"bin",
+"sein",
+"waren",
+"warst"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Frau",
+"distractors": [
+"Balkon",
+"Bahn",
+"Kleid",
+"Milch",
+"Schwester"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "hier",
+"distractors": [
+"draußen",
+"oben",
+"drinnen",
+"vorne",
+"dort"
+]
+},
+{
+"correct": "wohnt",
+"distractors": [
+"gewohnt",
+"erreichen",
+"kurz",
+"los",
+"morgens"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "de:27:21",
+"target": "Der Zug, der nach Köln fährt, ist voll.",
+"ru": "Поезд, который едет в Кёльн, переполнен.",
+"uk": "Поїзд, що їде Кельном, переповнений.",
+"tiles": [
+{
+"correct": "Der",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Dass",
+"Zu"
+]
+},
+{
+"correct": "Zug",
+"distractors": [
+"Tom",
+"Gäste",
+"Kinder",
+"Anna",
+"Hause"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "nach",
+"distractors": [
+"mit",
+"für",
+"seit",
+"zu",
+"aus"
+]
+},
+{
+"correct": "Köln",
+"distractors": [
+"Paket",
+"Bücher",
+"Tisch",
+"Lärm",
+"Hof"
+]
+},
+{
+"correct": "fährt",
+"distractors": [
+"gefahren",
+"ausgestiegen",
+"abgefahren",
+"umgestiegen",
+"gekommen"
+]
+},
+{
+"correct": "ist",
+"distractors": [
+"war",
+"bin",
+"sein",
+"waren",
+"warst"
+]
+},
+{
+"correct": "voll",
+"distractors": [
+"offen",
+"brauchen",
+"passen",
+"vergessen",
+"draußen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 27,
+"id": "de:27:34",
+"target": "Er braucht Schuhe, die gut passen.",
+"ru": "Ему нужна обувь, которая хорошо сидит.",
+"uk": "Йому потрібне взуття, яке добре сидить.",
+"tiles": [
+{
+"correct": "Er",
+"distractors": [
+"Du",
+"Wir",
+"Ich",
+"Sie",
+"Es"
+]
+},
+{
+"correct": "braucht",
+"distractors": [
+"gehört",
+"anprobieren",
+"wenig",
+"brauchst",
+"hört"
+]
+},
+{
+"correct": "Schuhe",
+"distractors": [
+"Gäste",
+"Mantel",
+"Hof",
+"Bücher",
+"Markt"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "gut",
+"distractors": [
+"heißt",
+"gerade",
+"offen",
+"hält",
+"kaputt"
+]
+},
+{
+"correct": "passen",
+"distractors": [
+"wohnen",
+"offen",
+"spielen",
+"vergessen",
+"suchen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "de:28:09",
+"target": "Die Kisten werden gepackt.",
+"ru": "Ящики упаковывают.",
+"uk": "Ящики пакують.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Dass",
+"Zu"
+]
+},
+{
+"correct": "Kisten",
+"distractors": [
+"Fahrräder",
+"Kollegen",
+"Dienstag",
+"Rechnung",
+"Gang"
+]
+},
+{
+"correct": "werden",
+"distractors": [
+"wäre",
+"ist",
+"war",
+"sind",
+"bin"
+]
+},
+{
+"correct": "gepackt",
+"distractors": [
+"wurden",
+"unterschrieben",
+"gedeckt",
+"geschrieben",
+"gebacken"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "de:28:10",
+"target": "Die Gäste werden begrüßt.",
+"ru": "Гостей приветствуют.",
+"uk": "Гостей вітають.",
+"tiles": [
+{
+"correct": "Die",
+"distractors": [
+"Und",
+"Mit",
+"Für",
+"Dass",
+"Zu"
+]
+},
+{
+"correct": "Gäste",
+"distractors": [
+"Tische",
+"Gedränge",
+"Gang",
+"Kollegen",
+"Fenster"
+]
+},
+{
+"correct": "werden",
+"distractors": [
+"wurde",
+"wäre",
+"ist",
+"war",
+"sind"
+]
+},
+{
+"correct": "begrüßt",
+"distractors": [
+"gesprochen",
+"gefunden",
+"geschrieben",
+"wurden",
+"diesen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 28,
+"id": "de:28:28",
+"target": "Im Bus werden die Haltestellen angesagt.",
+"ru": "В автобусе объявляют остановки.",
+"uk": "В автобусі оголошують зупинки.",
+"tiles": [
+{
+"correct": "Im",
+"distractors": [
+"Zur",
+"Aufs",
+"Ans",
+"Vom",
+"Am"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "werden",
+"distractors": [
+"wäre",
+"wurde",
+"ist",
+"war",
+"sind"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"dass",
+"zu"
+]
+},
+{
+"correct": "Haltestellen",
+"distractors": [
+"Tisch",
+"Aufzug",
+"Unterlagen",
+"Adresse",
+"Kasse"
+]
+},
+{
+"correct": "angesagt",
+"distractors": [
+"gestrichen",
+"gefunden",
+"abgegeben",
+"geschrieben",
+"gebacken"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 29,
+"id": "de:29:12",
+"target": "Könntest du kurz warten?",
+"ru": "Не мог бы ты немного подождать?",
+"uk": "Не міг би ти трохи зачекати?",
+"tiles": [
+{
+"correct": "Könntest",
+"distractors": [
+"Kann",
+"Könntet",
+"Könnte",
+"Kannst",
+"Darf"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"wir",
+"sie",
+"er",
+"es",
+"ich"
+]
+},
+{
+"correct": "kurz",
+"distractors": [
+"behalten",
+"schließen",
+"vergleichen",
+"besser",
+"bitte"
+]
+},
+{
+"correct": "warten",
+"distractors": [
+"anrufen",
+"sagen",
+"bezahlen",
+"lassen",
+"sitzen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 29,
+"id": "de:29:24",
+"target": "Würden Sie mir eine Quittung geben?",
+"ru": "Не дадите мне квитанцию?",
+"uk": "Чи не дасте мені квитанцію?",
+"tiles": [
+{
+"correct": "Würden",
+"distractors": [
+"Wurde",
+"Würde",
+"Werden",
+"Würdest",
+"Würdet"
+]
+},
+{
+"correct": "Sie",
+"distractors": [
+"Wir",
+"Ich",
+"Es",
+"Du",
+"Er"
+]
+},
+{
+"correct": "mir",
+"distractors": [
+"uns",
+"dir",
+"euch",
+"mich",
+"sich"
+]
+},
+{
+"correct": "eine",
+"distractors": [
+"und",
+"mit",
+"für",
+"aber",
+"dass"
+]
+},
+{
+"correct": "Quittung",
+"distractors": [
+"Koffer",
+"Zeit",
+"Arzt",
+"Bus",
+"Taxi"
+]
+},
+{
+"correct": "geben",
+"distractors": [
+"gibt",
+"gab",
+"sagen",
+"hinsetzen",
+"offen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 29,
+"id": "de:29:37",
+"target": "Es wäre schön, wenn du mitkommen könntest.",
+"ru": "Было бы здорово, если бы ты мог пойти с нами.",
+"uk": "Було б чудово, якби ти міг піти з нами.",
+"tiles": [
+{
+"correct": "Es",
+"distractors": [
+"Wir",
+"Sie",
+"Ich",
+"Er",
+"Ihr"
+]
+},
+{
+"correct": "wäre",
+"distractors": [
+"bist",
+"sein",
+"bin",
+"seid",
+"war"
+]
+},
+{
+"correct": "schön",
+"distractors": [
+"behalten",
+"sagen",
+"anderen",
+"vergleichen",
+"bezahlen"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"weil",
+"nachdem",
+"dass",
+"ob",
+"als"
+]
+},
+{
+"correct": "du",
+"distractors": [
+"ich",
+"wir",
+"er",
+"ihr",
+"sie"
+]
+},
+{
+"correct": "mitkommen",
+"distractors": [
+"bleiben",
+"auschecken",
+"vergleichen",
+"nehmen",
+"abstellen"
+]
+},
+{
+"correct": "könntest",
+"distractors": [
+"kannst",
+"könnte",
+"kann",
+"könnten",
+"könntet"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 30,
+"id": "de:30:14",
+"target": "Ich möchte wissen, ob die Miete steigt.",
+"ru": "Я хочу узнать, повысится ли арендная плата.",
+"uk": "Я хочу знати, чи зросте орендна плата.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Sie",
+"Er",
+"Wir",
+"Ihr",
+"Es"
+]
+},
+{
+"correct": "möchte",
+"distractors": [
+"wollen",
+"will",
+"muss",
+"kann",
+"wollt"
+]
+},
+{
+"correct": "wissen",
+"distractors": [
+"hätten",
+"wiederholen",
+"umsteigen",
+"angerufen",
+"sagen"
+]
+},
+{
+"correct": "ob",
+"distractors": [
+"weil",
+"nachdem",
+"wenn",
+"dass",
+"als"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "Miete",
+"distractors": [
+"Bus",
+"Kinder",
+"Hause",
+"Zug",
+"Rechnung"
+]
+},
+{
+"correct": "steigt",
+"distractors": [
+"fragt",
+"dieser",
+"welchen",
+"gesperrt",
+"aussteigen"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 30,
+"id": "de:30:45",
+"target": "Ich weiß nicht, welche Größe mir passt.",
+"ru": "Я не знаю, какой размер мне подходит.",
+"uk": "Я не знаю, який розмір мені підходить.",
+"tiles": [
+{
+"correct": "Ich",
+"distractors": [
+"Wir",
+"Ihr",
+"Es",
+"Er",
+"Du"
+]
+},
+{
+"correct": "weiß",
+"distractors": [
+"gehört",
+"diesen",
+"gültig",
+"bestätigt",
+"gesperrt"
+]
+},
+{
+"correct": "nicht",
+"distractors": [
+"wieder",
+"auch",
+"werden",
+"gesprochen",
+"gestrichen"
+]
+},
+{
+"correct": "welche",
+"distractors": [
+"gesperrt",
+"viel",
+"welchen",
+"diesen",
+"dieser"
+]
+},
+{
+"correct": "Größe",
+"distractors": [
+"Gäste",
+"Adresse",
+"Bücher",
+"Fieber",
+"Foto"
+]
+},
+{
+"correct": "mir",
+"distractors": [
+"sich",
+"dich",
+"euch",
+"dir",
+"mich"
+]
+},
+{
+"correct": "passt",
+"distractors": [
+"fragen",
+"erstattet",
+"geparkt",
+"ausfülle",
+"bestätigt"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 30,
+"id": "de:30:46",
+"target": "Sie fragt, ob die Kosten erstattet werden.",
+"ru": "Она спрашивает, возмещают ли расходы.",
+"uk": "Вона запитує, чи відшкодовують витрати.",
+"tiles": [
+{
+"correct": "Sie",
+"distractors": [
+"Ich",
+"Du",
+"Wir",
+"Es",
+"Ihr"
+]
+},
+{
+"correct": "fragt",
+"distractors": [
+"gültig",
+"geöffnet",
+"welcher",
+"kostet",
+"wartest"
+]
+},
+{
+"correct": "ob",
+"distractors": [
+"weil",
+"als",
+"dass",
+"wenn",
+"nachdem"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "Kosten",
+"distractors": [
+"Paket",
+"Anna",
+"System",
+"Ticket",
+"Straße"
+]
+},
+{
+"correct": "erstattet",
+"distractors": [
+"gültig",
+"wissen",
+"man",
+"nachsehen",
+"wollte"
+]
+},
+{
+"correct": "werden",
+"distractors": [
+"wird",
+"wäre",
+"wurde",
+"ist",
+"war"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "de:31:01",
+"target": "Als ich ankam, war der Bus schon abgefahren.",
+"ru": "Когда я приехал, автобус уже ушёл.",
+"uk": "Коли я приїхав, автобус уже пішов.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Weil",
+"Ob",
+"Nachdem",
+"Wenn",
+"Dass"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"er",
+"es",
+"ihr",
+"wir"
+]
+},
+{
+"correct": "ankam",
+"distractors": [
+"bevor",
+"gingen",
+"fragte",
+"anriefen",
+"erkannte"
+]
+},
+{
+"correct": "war",
+"distractors": [
+"bist",
+"wäre",
+"seid",
+"bin",
+"sind"
+]
+},
+{
+"correct": "der",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "Bus",
+"distractors": [
+"Gäste",
+"Schlüssel",
+"Taxi",
+"Anna",
+"Wasser"
+]
+},
+{
+"correct": "schon",
+"distractors": [
+"immer",
+"noch",
+"wieder",
+"nicht",
+"auch"
+]
+},
+{
+"correct": "abgefahren",
+"distractors": [
+"waren",
+"nachgesehen",
+"kamen",
+"abgelaufen",
+"warten"
+]
+}
+],
+"alternatives": [
+"Der Bus war schon abgefahren, als ich ankam."
+]
+},
+{
+"lesson": 31,
+"id": "de:31:10",
+"target": "Als Tom aufstand, waren die Kinder schon gegangen.",
+"ru": "Когда Том встал, дети уже ушли.",
+"uk": "Коли Том підвівся, діти вже пішли.",
+"tiles": [
+{
+"correct": "Als",
+"distractors": [
+"Dass",
+"Wenn",
+"Nachdem",
+"Weil",
+"Ob"
+]
+},
+{
+"correct": "Tom",
+"distractors": [
+"Paul",
+"Anna",
+"Gäste",
+"Hause",
+"Zug"
+]
+},
+{
+"correct": "aufstand",
+"distractors": [
+"anriefen",
+"ablief",
+"gespeichert",
+"trug",
+"angekommen"
+]
+},
+{
+"correct": "waren",
+"distractors": [
+"ist",
+"sind",
+"bin",
+"bist",
+"seid"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "Kinder",
+"distractors": [
+"Tür",
+"Büro",
+"Licht",
+"Foto",
+"Taxi"
+]
+},
+{
+"correct": "schon",
+"distractors": [
+"auch",
+"wieder",
+"nicht",
+"noch",
+"immer"
+]
+},
+{
+"correct": "gegangen",
+"distractors": [
+"geht",
+"gehe",
+"gehst",
+"gehen",
+"ging"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 31,
+"id": "de:31:15",
+"target": "Ihr hattet reserviert und bekamt einen Tisch am Fenster.",
+"ru": "Вы заранее забронировали столик и получили место у окна.",
+"uk": "Ви заздалегідь забронювали столик і отримали місце біля вікна.",
+"tiles": [
+{
+"correct": "Ihr",
+"distractors": [
+"Es",
+"Ich",
+"Er",
+"Wir",
+"Essen"
+]
+},
+{
+"correct": "hattet",
+"distractors": [
+"haben",
+"hast",
+"habe",
+"habt",
+"draußen"
+]
+},
+{
+"correct": "reserviert",
+"distractors": [
+"überrascht",
+"wusste",
+"ihn",
+"aber",
+"gewartet"
+]
+},
+{
+"correct": "und",
+"distractors": [
+"gespeichert",
+"viel",
+"angerufen",
+"gerade",
+"abgeholt"
+]
+},
+{
+"correct": "bekamt",
+"distractors": [
+"brauchte",
+"abgegeben",
+"jemand",
+"räumten",
+"brachte"
+]
+},
+{
+"correct": "einen",
+"distractors": [
+"mit",
+"für",
+"ohne",
+"aber",
+"dass"
+]
+},
+{
+"correct": "Tisch",
+"distractors": [
+"Termin",
+"Café",
+"Gäste",
+"Anna",
+"Bus"
+]
+},
+{
+"correct": "am",
+"distractors": [
+"vom",
+"ins",
+"zum",
+"aufs",
+"beim"
+]
+},
+{
+"correct": "Fenster",
+"distractors": [
+"Tom",
+"Gäste",
+"Kiste",
+"Anna",
+"Zug"
+]
+}
+],
+"alternatives": []
+},
+{
+"lesson": 32,
+"id": "de:32:13",
+"target": "Wir würden öfter kochen, wenn unsere Küche größer wäre.",
+"ru": "Мы бы чаще готовили, если бы кухня была больше.",
+"uk": "Ми б частіше готували, якби кухня була більшою.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Du",
+"Ihr",
+"Ich",
+"Es",
+"Sie"
+]
+},
+{
+"correct": "würden",
+"distractors": [
+"würdest",
+"würde",
+"würdet",
+"wurde",
+"werden"
+]
+},
+{
+"correct": "öfter",
+"distractors": [
+"anrufen",
+"geschafft",
+"losgehen",
+"bestätigen",
+"geschlafen"
+]
+},
+{
+"correct": "kochen",
+"distractors": [
+"könnten",
+"angerufen",
+"besseren",
+"essen",
+"mitkommen"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"dass",
+"als",
+"nachdem",
+"weil",
+"ob"
+]
+},
+{
+"correct": "unsere",
+"distractors": [
+"unseren",
+"unser",
+"warten",
+"meinen",
+"holen"
+]
+},
+{
+"correct": "Küche",
+"distractors": [
+"Bus",
+"Büro",
+"Tom",
+"Kinder",
+"Gäste"
+]
+},
+{
+"correct": "größer",
+"distractors": [
+"groß",
+"großen",
+"holen",
+"liegen",
+"frischen"
+]
+},
+{
+"correct": "wäre",
+"distractors": [
+"sein",
+"bin",
+"bist",
+"seid",
+"war"
+]
+}
+],
+"alternatives": [
+"Wenn unsere Küche größer wäre, würden wir öfter kochen."
+]
+},
+{
+"lesson": 32,
+"id": "de:32:15",
+"target": "Wenn ich die Gegend besser kennen würde, könnte ich dir den Weg zeigen.",
+"ru": "Если бы я лучше знал этот район, я мог бы показать тебе дорогу.",
+"uk": "Якби я краще знала цю місцевість, я могла б показати вам дорогу.",
+"tiles": [
+{
+"correct": "Wenn",
+"distractors": [
+"Als",
+"Weil",
+"Dass",
+"Ob",
+"Nachdem"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"du",
+"sie",
+"ihr",
+"es",
+"er"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "Gegend",
+"distractors": [
+"Bus",
+"Schlüssel",
+"Zimmer",
+"Paket",
+"Zeit"
+]
+},
+{
+"correct": "besser",
+"distractors": [
+"gebucht",
+"näher",
+"erreicht",
+"bemerkt",
+"funktioniert"
+]
+},
+{
+"correct": "kennen",
+"distractors": [
+"zurückbekommen",
+"offen",
+"hätten",
+"bestätigen",
+"anderen"
+]
+},
+{
+"correct": "würde",
+"distractors": [
+"wurden",
+"werden",
+"wird",
+"wäre",
+"wurde"
+]
+},
+{
+"correct": "könnte",
+"distractors": [
+"kann",
+"könnt",
+"können",
+"kannst",
+"müssen"
+]
+},
+{
+"correct": "ich",
+"distractors": [
+"er",
+"du",
+"ihr",
+"sie",
+"wir"
+]
+},
+{
+"correct": "dir",
+"distractors": [
+"uns",
+"sich",
+"mich",
+"euch",
+"dich"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "Weg",
+"distractors": [
+"Tisch",
+"Tom",
+"Werkzeug",
+"Stau",
+"Briefmarke"
+]
+},
+{
+"correct": "zeigen",
+"distractors": [
+"abholen",
+"könnten",
+"bleiben",
+"mitgekommen",
+"gewesen"
+]
+}
+],
+"alternatives": [
+"Ich könnte dir den Weg zeigen, wenn ich die Gegend besser kennen würde."
+]
+},
+{
+"lesson": 32,
+"id": "de:32:40",
+"target": "Wir hätten den anderen Weg genommen, wenn die Straße gesperrt gewesen wäre.",
+"ru": "Мы поехали бы другой дорогой, если бы та дорога была перекрыта.",
+"uk": "Ми поїхали б іншою дорогою, якби та дорога була перекрита.",
+"tiles": [
+{
+"correct": "Wir",
+"distractors": [
+"Er",
+"Sie",
+"Ihr",
+"Du",
+"Es"
+]
+},
+{
+"correct": "hätten",
+"distractors": [
+"hätte",
+"hättest",
+"hatte",
+"hättet",
+"hat"
+]
+},
+{
+"correct": "den",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "anderen",
+"distractors": [
+"geholfen",
+"kämen",
+"ihren",
+"gelesen",
+"bekommen"
+]
+},
+{
+"correct": "Weg",
+"distractors": [
+"Tür",
+"Brot",
+"Laden",
+"Tisch",
+"Termin"
+]
+},
+{
+"correct": "genommen",
+"distractors": [
+"nimmst",
+"nehme",
+"nimmt",
+"nehmen",
+"nahm"
+]
+},
+{
+"correct": "wenn",
+"distractors": [
+"als",
+"ob",
+"weil",
+"dass",
+"nachdem"
+]
+},
+{
+"correct": "die",
+"distractors": [
+"und",
+"mit",
+"für",
+"ohne",
+"aber"
+]
+},
+{
+"correct": "Straße",
+"distractors": [
+"Gäste",
+"Paket",
+"Bus",
+"Hause",
+"Zimmer"
+]
+},
+{
+"correct": "gesperrt",
+"distractors": [
+"kürzer",
+"gefragt",
+"einchecken",
+"angerufen",
+"repariert"
+]
+},
+{
+"correct": "gewesen",
+"distractors": [
+"abholen",
+"gesunken",
+"kennen",
+"kochen",
+"offen"
+]
+},
+{
+"correct": "wäre",
+"distractors": [
+"seid",
+"sein",
+"sind",
+"war",
+"bin"
+]
+}
+],
+"alternatives": [
+"Wenn die Straße gesperrt gewesen wäre, hätten wir den anderen Weg genommen."
+]
+}
+]

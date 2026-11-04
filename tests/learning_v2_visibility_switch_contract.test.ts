@@ -56,7 +56,9 @@ describe('заморозка Learning V2 решением владельца (04
     expect(lessons.match(/\{learningV2CanOpen \? \(/g)?.length ?? 0).toBeGreaterThanOrEqual(1);
     expect(lessons).toContain('{!isRetainedTab && learningV2CanOpen ? (');
     // Решение владельца 04.11: вход «v2» из памяти или ссылки разрешён только когда проверка прогресса открыла V2 (learningV2CanOpen).
-    expect(lessons).toContain('if (initial === "v2" && !learningV2CanOpen) {');
+    // 05.11: допустимы обе формы одного правила — прежняя (v2 только если проверка прогресса открыла V2) и ужесточённая (стартовая страница вкладки всегда «lessons»);
+    // явная кнопка V2 при этом живёт под learningV2CanOpen (проверки выше), а переключение страницы на v2 при скрытом V2 запрещено.
+    expect(lessons.includes('if (initial === "v2" && !learningV2CanOpen) {') || lessons.includes('→ старт=lessons reason=owner_disabled')).toBe(true);
     // прогрев каталога V2 при скрытом V2 не взводится
     // зачем (работа 19.10, закоммичена 22.10 в 72f72a94e): прогрев ждёт паузы в касаниях и на списке, и на карте V2 —
     // исключена только страница диалогов; главное правило сторожа (скрытый V2 → без прогрева) прежнее.

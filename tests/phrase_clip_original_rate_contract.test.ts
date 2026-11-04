@@ -66,7 +66,8 @@ describe('готовые клипы озвучки играют в оригин�
   it('слайдер скорости продолжает работать для системного TTS', () => {
     // Правило снимает скорость с клипов, но не ломает озвучку синтезатором:
     // без этого «фикс» превратился бы в отключение настройки целиком.
-    expect(audioSource).toContain('const safeRate = normalizeSpeechRate(');
+    // 04.11 (удобство №2): медленный повтор берёт 0,7× в обход нижней границы настроек; обычный путь по-прежнему normalizeSpeechRate(rate ?? настройка)
+    expect(audioSource).toContain('const safeRate = slowRepeatActive ? SLOW_REPEAT_RATE : normalizeSpeechRate(rate ?? settings.speechRate);');
     expect(audioSource).toContain('rate: safeRate,');
   });
 });

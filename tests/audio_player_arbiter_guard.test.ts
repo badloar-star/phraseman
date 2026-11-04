@@ -24,6 +24,9 @@ const ALLOWLIST: Readonly<Record<string, string>> = {
     'SFX V2: короткие эффекты интерфейса; гейт речи/записи/выключателя — в самом рантайме (проверяет audio_never_permanently_silent_contract)',
   'modules/audio/celebrationScenePlayer.ts':
     'празднование: сцена-звук, управляется sound_arbiter; не претендует на «голосовой» канал',
+  // 05.11: createAudioPlayer здесь — ТИП внедряемой фабрики портов нативной защищённой озвучки Learning V2 (заморожен); сам плеер создаёт и арендует вызывающий через арбитр
+  'modules/classic-course-v1/classic_starter_native_ports.ts':
+    'порты нативной озвучки V2: фабрика внедряется снаружи, аренда у вызывающего (арбитр)',
 };
 
 function walk(dir: string, out: string[]): void {

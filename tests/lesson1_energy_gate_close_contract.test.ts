@@ -18,9 +18,9 @@ describe('lesson1: отказ списания энергии не даёт бе
   });
 
   it('тап по слову и проверка ответа заблокированы, пока списание не прошло', () => {
-    const word = src.slice(src.indexOf('const handleWordPress = useCallback('), src.indexOf('const handleWordPress = useCallback(') + 600);
+    const word = src.slice(src.indexOf('const handleWordPress = useCallback('), src.indexOf('const handleWordPress = useCallback(') + 1800);
     expect(word).toContain('if (energyGateBlockedRef.current) {');
-    const check = src.slice(src.indexOf('const checkAnswer = useCallback('), src.indexOf('const checkAnswer = useCallback(') + 400);
+    const check = src.slice(src.indexOf('const checkAnswer = useCallback('), src.indexOf('const checkAnswer = useCallback(') + 1800);
     expect(check).toContain('if (energyGateBlockedRef.current) {');
   });
 

@@ -17,7 +17,7 @@ describe('legacy free lesson cap wiring', () => {
     expect(lessonsSource).toContain('const [legacyFreeLessonCap, setLegacyFreeLessonCap]');
     expect(lessonsSource).toContain('setLegacyFreeLessonCap(snapshot.legacyFreeLessonCap)');
     expect(lessonsSource).toContain('legacyFreeLessonCap: effectiveLegacyFreeLessonCap');
-    expect(lessonsSource).toContain('requiresPremiumForLesson(to, effectiveLegacyFreeLessonCap)');
+    expect(lessonsSource).toMatch(/requiresPremiumForLesson\(\s*firstLessonByLevel,\s*effectiveLegacyFreeLessonCap/); // вход в экзамен уровня: первый урок уровня с учётом бесплатного потолка
     expect(lessonsSource).toContain('requiresPremiumForLesson(num, effectiveLegacyFreeLessonCap)');
     expect(lessonsSource).toContain('lessonPaywallContext(lessonNum, effectiveLegacyFreeLessonCap)');
   });

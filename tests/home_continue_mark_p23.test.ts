@@ -85,7 +85,7 @@ describe('P23 · подключение экранов', () => {
     expect(home).toContain("v2: homeLearnVisible && isHomeContinueV2Enabled() && isLearningV2OpenForUiLangV1(lang, 'home_continue') ? continueMarks.v2 : null");
     expect(home).toContain('logHomeContinueChoice(continueChoice, continueInput, String(studyTarget));');
     // прогресс — при показе, на каждый возврат на Главную
-    expect(home).toContain('useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive)');
+    expect(home).toContain('useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive'); // 4-й аргумент — язык курса (en/es)
     expect(home).not.toMatch(/continueV2\.(done|total)\b/);
   });
   it('метка V2 появляется после входа в экран занятия, старые уроки пишут время', () => {

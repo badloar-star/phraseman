@@ -15,7 +15,7 @@ describe('R58 #3 · «экзамен открыт» — строкой в ито
 
   it('строка добавляется к заметке под звёздами, без окон поверх', () => {
     expect(src).toContain('starsNote={joinResultNotes(!isComboCompletion && resultStars === 1');
-    expect(src).toContain(': undefined, examUnlockNote ? examUnlockNoteText(lang, examUnlockNote) : undefined)}');
+    expect(src).toContain('examUnlockNote ? examUnlockNoteText(lang, examUnlockNote) : undefined');
     const v2Start = src.indexOf('<V2DoneScreen');
     const v2End = src.indexOf('</SafeAreaView>', v2Start);
     const v2Branch = src.slice(v2Start, v2End);

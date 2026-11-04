@@ -74,7 +74,7 @@ describe('level exam v2 route contract', () => {
     expect(intro).not.toContain('styles.costBadge');
     expect(intro).toContain('label={copy.startCta}');
     expect(legacyRoute).toContain("import { usePremium } from '../components/PremiumContext'");
-    expect(legacyRoute).toContain('const { hasPremiumAccess } = usePremium()');
+    expect(legacyRoute).toMatch(/const \{ hasPremiumAccess,[^}]*\} = usePremium\(\)/); // + accessResolved/reload для ожидания облака
     expect(legacyRoute).toContain('const examEnergyUnlimited = energyUnlimited || hasPremiumAccess');
   });
 

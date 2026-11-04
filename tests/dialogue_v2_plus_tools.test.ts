@@ -33,8 +33,8 @@ describe('Dialogue V2 Plus tools discovery', () => {
     // значок стоит ВНУТРИ ветки «нет Plus», а шеврон — в ветке «есть Plus»
     expect(toolsSource.indexOf('chevron-forward')).toBeGreaterThan(badge);
     expect(toolsSource.indexOf('lock-closed')).toBeGreaterThan(badge);
-    expect(toolsSource).toContain('t.plus.bg');
-    expect(toolsSource).toContain('t.plus.ink');
+    expect(toolsSource).toContain('<PlusMark'); // значок Plus — общий компонент PlusMark (05.11), не токен t.plus.bg
+    // 05.11: цвет значка задаёт сам PlusMark, токен t.plus.ink в плитке больше не нужен
   });
 
   test('keeps free conversation Plus-gated; memory route is reached from Privacy settings', () => {

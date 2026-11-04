@@ -44,9 +44,10 @@ describe('итог урока по первым попыткам', () => {
 
   it('экран итога берёт счёт из модуля первых попыток; балл и звёзды — по итоговому прогрессу', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson_complete.tsx'), 'utf8');
-    expect(src).toContain('const firstTry = lessonFirstTryCountsFromProgress(p, peekLessonRunMissCount(lessonId));');
-    expect(src).toContain('setLessonCounts({ correct: firstTry.correct, wrong: firstTry.wrong });');
-    expect(src).toContain("const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;"); // балл — как раньше
-    expect(src).toMatch(/firstTryMistakes: firstTry\.wrong/);
+    // без квитанции — счёт по прогрессу и всем промахам прохода; с квитанцией — из её снимка (итог не зависит от повторного чтения)
+    expect(src).toContain('lessonFirstTryCountsFromProgress(p, peekLessonRunMissCount(lessonId))');
+    expect(src).toContain('setLessonCounts(firstTry ? { correct: firstTry.correct, wrong: firstTry.wrong } : null);');
+    expect(src).toContain("p.filter(x => x === 'correct' || x === 'replay_correct').length"); // балл — как раньше
+    expect(src).toMatch(/firstTryMistakes: firstTry\?\.wrong/);
   });
 });

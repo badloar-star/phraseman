@@ -1,4 +1,4 @@
-import { ENERGY_PASSIVE_UNIT_MS } from '../app/energy_contract';
+import { ENERGY_BASE_CAPACITY, ENERGY_PASSIVE_UNIT_MS, ENERGY_PERMANENT_CAPACITY_LIMIT } from '../app/energy_contract';
 import {
   coerceEnergyStateV2,
   migrateLegacyEnergyState,
@@ -40,9 +40,9 @@ describe('energy state v2', () => {
     expect(settled.state.recoveryCreditMicrounits).toBe(0);
   });
 
-  // PM-081 (D07): карточка профиля и лига больше не расширяют запас — даже
-  // если вызывающий передаст старый потолок 110, он срезается до 5.
-  it('never recovers above 5 even if a caller passes a legacy expanded capacity', () => {
+  // PM-081 (D07) + владелец 04.11 («энергия от Пика», замок 28.10 «ровно 5» отменён): старый потолок 110 срезается до жёсткого предела хранения
+  // (5 + максимум бонуса Пика); без бонуса вызывающий передаёт maxEnergy = 5 и запас не растёт выше 5.
+  it('never recovers above the storage limit even if a caller passes a legacy expanded capacity', () => {
     const settled = settleEnergyState({
       schemaVersion: 2,
       current: 5,
@@ -50,9 +50,27 @@ describe('energy state v2', () => {
       recoveryCreditMicrounits: 0,
       recoveryDivisionRemainder: 0,
     }, {
-      nowMs: NOW + 10 * 10 * 60_000,
+      nowMs: NOW + 100 * 10 * 60_000,
       unitMs: 10 * 60_000,
       maxEnergy: 110,
+      bonusEnergy: 0,
+      bonusCapacity: 0,
+      bonusExpiresAt: 0,
+    });
+    expect(settled.state.current).toBe(ENERGY_PERMANENT_CAPACITY_LIMIT);
+  });
+
+  it('without a spire bonus the base capacity of 5 is the ceiling', () => {
+    const settled = settleEnergyState({
+      schemaVersion: 2,
+      current: 5,
+      lastSettledAt: NOW,
+      recoveryCreditMicrounits: 0,
+      recoveryDivisionRemainder: 0,
+    }, {
+      nowMs: NOW + 100 * 10 * 60_000,
+      unitMs: 10 * 60_000,
+      maxEnergy: ENERGY_BASE_CAPACITY,
       bonusEnergy: 0,
       bonusCapacity: 0,
       bonusExpiresAt: 0,

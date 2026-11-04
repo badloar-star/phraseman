@@ -291,6 +291,10 @@ describe('источники отказа звука объясняют прич
       'modules/audio/celebrationScenePlayer.ts',
       // Прогрев плееров на старте: ничего не воспроизводит.
       'app/_layout.tsx',
+      // 05.11: createAudioPlayer здесь — ТИП внедряемой фабрики (порты нативной защищённой озвучки Learning V2); сам плеер создаёт и арендует звук владелец-вызывающий через арбитр.
+      'modules/classic-course-v1/classic_starter_native_ports.ts',
+      // 05.11: dev-фикстура безопасного нативного аудио (только в DEV-меню, не пользовательский источник звука).
+      'modules/dev/native_audio_safe_fixture.ts',
     ]);
     const playbackApi = /createAudioPlayer\(|useAudioPlayer\(|Speech\.speak\(/;
     const ownershipApi = /claimSpokenAudio|claimAmbientAudio|claimRecordingAudio|useManagedSpokenAudioPlayer|useAudio\(\)/;
@@ -360,7 +364,7 @@ describe('источники отказа звука объясняют прич
           index += 1;
         }
         const call = source.slice(match.index, index);
-        if (!/,\s*'[^']+'\s*\)$/.test(call)) {
+        if (!/,\s*(?:'[^']+'|"[^"]+")\s*\)$/.test(call)) { // имя аренды — в одинарных или двойных кавычках (modules/learning-v2 пишет двойными)
           anonymous.push(`${path.relative(ROOT, file)}:${source.slice(0, match.index).split('\n').length}`);
         }
       }

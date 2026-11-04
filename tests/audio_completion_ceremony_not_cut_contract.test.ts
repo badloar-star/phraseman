@@ -53,7 +53,7 @@ describe('озвучка последней фразы не обрывается
 
       it('уходит в finish() РАНЬШЕ, чем глушит озвучку', () => {
         const finishIndex = body.indexOf('void finish()');
-        const stopIndex = body.indexOf('stopAudioAttempt()');
+        const stopIndex = body.indexOf('stopLessonAudio()');
 
         expect(finishIndex).toBeGreaterThanOrEqual(0);
         expect(stopIndex).toBeGreaterThanOrEqual(0);
@@ -66,7 +66,7 @@ describe('озвучка последней фразы не обрывается
         const finishIndex = body.indexOf('void finish()');
         const afterFinish = body.slice(finishIndex);
         const returnIndex = afterFinish.indexOf('return;');
-        const nextStopIndex = afterFinish.indexOf('stopAudioAttempt()');
+        const nextStopIndex = afterFinish.indexOf('stopLessonAudio()');
 
         expect(returnIndex).toBeGreaterThanOrEqual(0);
         // Между finish() и следующим стопом обязан стоять return, иначе стоп
@@ -77,7 +77,7 @@ describe('озвучка последней фразы не обрывается
       it('сохраняет стоп для перехода к СЛЕДУЮЩЕЙ карточке', () => {
         // Доигрывание между фразами отклонено владельцем: микрофон следующего
         // задания, глушение SFX, предохранитель аренды 90с.
-        const stopIndex = body.indexOf('stopAudioAttempt()');
+        const stopIndex = body.indexOf('stopLessonAudio()');
         const advanceIndex = body.indexOf('setCardIndex(');
 
         expect(advanceIndex).toBeGreaterThanOrEqual(0);
@@ -93,18 +93,19 @@ describe('озвучка последней фразы не обрывается
     const ceremonyBlock = source.slice(ceremonyStart);
     // Внутри разметки церемонии не должно появиться новых стопов озвучки:
     // обрыв разрешён только по нажатию кнопки (router.replace → unmount).
-    expect(ceremonyBlock).not.toContain('stopAudioAttempt()');
+    expect(ceremonyBlock).not.toContain('stopLessonAudio()');
     expect(ceremonyBlock).not.toContain('stopLocalAudioPlayback()');
   });
 
   it('аренда голоса по-прежнему освобождается по окончании клипа', () => {
     // Без этого пути отложенный стоп означал бы осиротевшую аренду — ровно тот
     // баг «озвучка пропала, лечит только перезапуск», что чинили 2026-09-15.
-    expect(source).toContain('localAudioStatus.didJustFinish');
-    expect(source).toMatch(/didJustFinish[\s\S]{0,200}spokenAudioClaimRef\.current\?\.release\(\)/);
+    // 05.11: озвучка экрана идёт через useAudio — арендой и её снятием по окончании клипа владеет арбитр (hooks/use-audio), а не экран.
+    expect(source).toContain('const { speak: speakLessonAudio, stop: stopLessonAudio } = useAudio();');
+    expect(source).not.toContain('localAudioStatus.didJustFinish');
   });
 
   it('уход с экрана по-прежнему снимает аренду (cleanup не потерян)', () => {
-    expect(source).toMatch(/useEffect\(\(\) => \{\s*stopAudioAttempt\(\);\s*return stopAudioAttempt;/);
+    expect(source).toMatch(/useEffect\(\(\) => \{\s*stopLessonAudio\(\);\s*return stopLessonAudio;/);
   });
 });

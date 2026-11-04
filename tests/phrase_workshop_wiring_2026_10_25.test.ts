@@ -27,7 +27,11 @@ describe('мастерская фраз: экран урока (lesson1)', () =>
   });
 
   it('никаких зачётов старого курса: разблокировка, ошибки, «последний урок», медали, аналитика уроков', () => {
-    expect(src).toContain('const didUnlock = workshopActive ? false : await tryUnlockNextLesson(');
+    // 05.11: разблокировка следующего урока идёт в общей фиксации прохода (committed.unlocked) только для обычного классического урока: песочница и комбо в неё не входят
+    expect(src).toContain('const ordinaryClassic = !workshopActive && !comboActive;');
+    expect(src).toContain('let didUnlock = false;');
+    expect(src.indexOf('if (ordinaryClassic) {', src.indexOf('let didUnlock = false;'))).toBeGreaterThan(0);
+    expect(src.indexOf('didUnlock = committed.unlocked;')).toBeGreaterThan(src.indexOf('let didUnlock = false;'));
     expect(src).toContain('if (!workshopActive) rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);');
     expect(src).toContain('if (!workshopActive) lessonWrongMistakesRef.current.push(');
     expect(src).toContain('if (!workshopActive && isMistakeStudyTargetValue(stRm)) {');
@@ -73,7 +77,7 @@ describe('мастерская фраз: экран урока (lesson1)', () =>
     expect(src).toContain('sessionKey: workshopActive ? `v2cl_l${lessonId}` : RUNE_SESSION_KEY,');
     expect(src).toContain('repeatPriceOnly: workshopActive || undefined,');
     expect(src).toContain("void touchStreakForToday('activity:lesson');");
-    expect(src).toContain('void bumpPhraseWorkshopPassCount(lessonId, studyTargetRef.current)');
+    expect(src).toContain('void bumpPhraseWorkshopPassCount(lessonId, screenPrimeScope.studyTarget)');
     // маршрут итога несёт workshop=1 в обоих вариантах перехода
     expect((src.match(/\.\.\.\(workshopActive \? \{ workshop: '1' \} : \{\}\),/g) ?? []).length).toBe(2);
   });
@@ -85,7 +89,8 @@ describe('мастерская фраз: итог (lesson_complete)', () => {
     expect(src).toContain("const isWorkshopCompletion = (Array.isArray(params.workshop) ? params.workshop[0] : params.workshop) === '1';");
     expect(src).toContain('const isComboCompletion = comboTopics.length > 0 || isWorkshopCompletion;');
     expect(src).toContain("const isQualifyingLessonPass = params.passed === '1' && !isWorkshopCompletion;");
-    expect(src).toContain('if (!isWorkshopCompletion) void markLessonFinishedOnce(lessonId, studyTarget);');
+    // 05.11: «пройден один раз» (markLessonFinishedOnce) экран итога больше не вызывает — фиксацию делает журнал завершения классики только для обычного урока
+    expect(src).not.toContain('markLessonFinishedOnce');
     expect(src.indexOf('if (isWorkshopCompletion) {')).toBeGreaterThan(0);
     expect(src.indexOf('if (isWorkshopCompletion) {')).toBeLessThan(src.indexOf('if (isComboCompletion) {\n        const okTotal'));
   });

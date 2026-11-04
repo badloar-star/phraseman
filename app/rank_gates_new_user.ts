@@ -18,9 +18,12 @@ export const RANK_GATES_NEW_USERS_SINCE_MS = Number.MAX_SAFE_INTEGER;
 /** Признаки прежнего прогресса (как в ui_lang_migration): любой из них делает пользователя «старым». */
 export const RANK_GATES_PRIOR_PROGRESS_KEYS = ['streak_count', 'user_total_xp'] as const;
 
+/** Липкая отметка когорты на устройстве: 'new' | 'old'. Решение принимается ОДИН раз и больше не пересчитывается. */
+export const RANK_GATE_COHORT_KEY = 'rank_gate_cohort_v1';
+
 export type RankGateUserVerdict = Readonly<{
   isNew: boolean;
-  reason: 'new' | 'no_timestamp' | 'before_release' | 'prior_progress' | 'clock_skew' | 'read_failed';
+  reason: 'new' | 'no_timestamp' | 'before_release' | 'prior_progress' | 'clock_skew' | 'read_failed' | 'sticky_new' | 'sticky_old';
 }>;
 
 const CLOCK_SKEW_TOLERANCE_MS = 5 * 60 * 1000;
@@ -39,6 +42,11 @@ export function judgeRankGateUser(input: Readonly<{ completedAtMs: number | null
 /** Читает локальные метки (один раз за запуск — результат кэшируется вызывающим). */
 export async function readRankGateUserVerdict(nowMs: number = Date.now()): Promise<RankGateUserVerdict> {
   try {
+    // зачем (владелец 30.10): новичок после первого занятия получает прогресс (серия/опыт) — без липкой отметки следующий запуск счёл бы его «старым» и
+    // открыл всё. Решение «новый/старый» принимается один раз и хранится на устройстве.
+    const stored = await AsyncStorage.getItem(RANK_GATE_COHORT_KEY);
+    if (stored === 'new') return { isNew: true, reason: 'sticky_new' };
+    if (stored === 'old') return { isNew: false, reason: 'sticky_old' };
     const keys = [ONBOARDING_COMPLETED_AT_KEY, ...RANK_GATES_PRIOR_PROGRESS_KEYS];
     const pairs = await AsyncStorage.multiGet(keys);
     const map = new Map(pairs);
@@ -46,6 +54,10 @@ export async function readRankGateUserVerdict(nowMs: number = Date.now()): Promi
     const priorProgress = RANK_GATES_PRIOR_PROGRESS_KEYS.some((k) => Number(map.get(k)) > 0);
     const verdict = judgeRankGateUser({ completedAtMs: Number.isFinite(raw) && raw > 0 ? raw : null, priorProgress, nowMs });
     console.log('[RANK-GATE] verdict', JSON.stringify({ ...verdict, completedAtMs: raw > 0 ? raw : null, priorProgress, sinceMs: RANK_GATES_NEW_USERS_SINCE_MS }));
+    // фиксируем только устойчивые решения: «новый» и «старый из-за прогресса/до релиза»; нет метки онбординга (ещё идёт онбординг) — не фиксируем
+    if (verdict.reason !== 'no_timestamp' && verdict.reason !== 'clock_skew') {
+      await AsyncStorage.setItem(RANK_GATE_COHORT_KEY, verdict.isNew ? 'new' : 'old').catch((error: unknown) => console.warn('[RANK-GATE] cohort_store_failed', error instanceof Error ? error.message : String(error)));
+    }
     return verdict;
   } catch (error) {
     console.warn('[RANK-GATE] read_failed — считаем «не новый» (всё открыто)', error instanceof Error ? error.message : String(error));

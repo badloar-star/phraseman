@@ -259,6 +259,8 @@ describe('классические курсы: рантайм-данные', () 
       for (const f of lessonFiles) for (const p of JSON.parse(read(lang, f)).phrases as { id: string }[]) ids.add(p.id);
       const bad: string[] = [];
       expect(Object.keys(intro)).toHaveLength(32);
+      // зачем: рендерер вступлений не поддерживает Markdown — обратные кавычки ученик увидел бы буквально
+      expect(read(lang, 'intro.json')).not.toContain('`');
       for (const [n, blocks] of Object.entries(intro)) {
         if (blocks.length !== 3) bad.push(`урок ${n}: блоков ${blocks.length}`);
         for (const b of blocks) {

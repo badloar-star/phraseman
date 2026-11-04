@@ -475,6 +475,51 @@
     "Soy el guía."
    ],
    "allowTileCountChange": true
+  },
+  "de:21:34": {
+   "target": "Wir sind spät dran, weil wir den Zug verpasst haben.",
+   "tiles": [
+    "Wir",
+    "sind",
+    "spät",
+    "dran",
+    "weil",
+    "wir",
+    "den",
+    "Zug",
+    "verpasst",
+    "haben"
+   ],
+   "alternatives": [
+    "Weil wir den Zug verpasst haben, sind wir spät dran."
+   ],
+   "allowTileCountChange": true,
+   "accepted": [
+    [
+     "Wir",
+     "sind",
+     "spät",
+     "dran",
+     "weil",
+     "wir",
+     "den",
+     "Zug",
+     "verpasst",
+     "haben"
+    ],
+    [
+     "Weil",
+     "wir",
+     "den",
+     "Zug",
+     "verpasst",
+     "haben",
+     "sind",
+     "wir",
+     "spät",
+     "dran"
+    ]
+   ]
   }
  }
 }

@@ -609,7 +609,7 @@ function fixDistractors(lang, all) {
         const others = kept.filter((_, j) => j !== at);
         const cand = upperFirst(kept[at]) && !upperFirst(op.with) ? op.with[0].toUpperCase() + op.with.slice(1) : !upperFirst(kept[at]) && upperFirst(op.with) && !ctx.names.has(op.with) ? op.with[0].toLowerCase() + op.with.slice(1) : op.with;
         const why = badReason(lang, { ...ctx, relax: true }, ph, i, cand, others) ?? (ctx.globalKeys.has(keyOf(ph.tiles.map((t, j) => (j === i ? cand : t.correct)))) ? 'globalPhrase' : null);
-        if (why) { auditStats.tileInvalid++; auditStats.invalidReasons[why] = (auditStats.invalidReasons[why] ?? 0) + 1; continue; }
+        if (why) { auditStats.tileInvalid++; auditStats.invalidReasons[why] = (auditStats.invalidReasons[why] ?? 0) + 1; (auditStats.rejected ??= []).push({ id: ph.id, lang, pos: i, from: op.from, with: cand, why, target: ph.tiles.map((t) => t.correct).join(' '), built: ph.tiles.map((t, j) => (j === i ? cand : t.correct)).join(' '), ru: ph.translations?.ru ?? ph.ru ?? null, alts: ph.alternatives }); continue; }
         kept[at] = cand;
         auditForced.add(`${ph.id}#${i}:${cand}`);
         auditStats.tileApplied++;
@@ -740,7 +740,7 @@ function convert(lang, zips) {
     phrases += built.length;
     files[`lessons-${pad2(n)}.json`] = { schema: 'phraseman.classic.lesson/1', lang, lesson: n, phrases: built };
 
-    const blocks = take(prof.intro(n));
+    let blocks = take(prof.intro(n));
     if (!Array.isArray(blocks) || blocks.map((b) => b.kind).join() !== 'concept,formula,practice') fail(lang, `урок ${n}: вступление не concept/formula/practice`);
     for (const b of blocks ?? []) for (const loc of LOCALES) if (!introText(b, loc, 'title') || !introText(b, loc, 'text')) fail(lang, `урок ${n} вступление ${b.kind}: нет ${loc}`);
     // заголовки — обычный текст: обратные кавычки (`je suis`) без разметки показались бы ученику буквально; в текстах и lines* разметку не трогаем
@@ -748,6 +748,9 @@ function convert(lang, zips) {
       for (const k of Object.keys(b)) if (/^title[A-Za-z]*$/.test(k) && typeof b[k] === 'string') b[k] = b[k].replace(/`/g, '');
       if (b.titleByLocale) for (const l of Object.keys(b.titleByLocale)) if (typeof b.titleByLocale[l] === 'string') b.titleByLocale[l] = b.titleByLocale[l].replace(/`/g, '');
     }
+    // зачем (Координатор 04.11): рендерер вступлений не понимает разметку — обратные кавычки ученик увидел бы буквально; `слово` → «слово», одиночные убираем
+    const unTick = (v) => typeof v === 'string' ? v.replace(/`([^`]+)`/g, '«$1»').replace(/`/g, '') : Array.isArray(v) ? v.map(unTick) : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, unTick(x)])) : v;
+    blocks = unTick(blocks);
     intro[n] = blocks;
 
     const th = take(prof.theory(n));
@@ -828,6 +831,8 @@ for (const lang of LANGS) {
 checkTranslationFixesUsed();
 manifest.languages = Object.fromEntries(Object.keys(manifest.languages).sort().map((k) => [k, manifest.languages[k]]));
 if (!CHECK_ONLY && !errors.length) { mkdirSync(OUT, { recursive: true }); writeFileSync(manifestPath, JSON.stringify(manifest) + '\n'); }
+if (auditStats.rejected && process.env.AUDIT_DUMP) writeFileSync(process.env.AUDIT_DUMP, JSON.stringify(auditStats.rejected, null, 1));
+delete auditStats.rejected;
 console.log('слой аудита: ' + JSON.stringify(auditStats));
 console.log(`переводы ru/uk: исправлено невидимых символов/знаков конца: ${translationNormalized.n}`);
 console.log(JSON.stringify(table));

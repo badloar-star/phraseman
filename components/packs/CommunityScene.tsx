@@ -70,7 +70,7 @@ export function CommunitySceneBackdrop(): React.JSX.Element {
       </RadialGradient></Defs>
       <Rect width="100%" height="100%" fill="url(#communitySceneLight)" />
     </Svg>
-    {c.scrim ? <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.4)']} style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 }} /> : null}
+    {/* зачем (приказ владельца 04–05.11: «убрать любое затемнение низа сцены везде»): тёмный градиент снизу сцены сообщества удалён */}
   </View>;
 }
 

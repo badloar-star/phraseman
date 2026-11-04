@@ -95,7 +95,8 @@ export function KitSheetModal({ visible, onRequestClose, closeLabel, header, chi
       }
     }), [drag, requestClose]);
 
-  const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropO.value }));
+  // зачем (владелец 04.11, волна 1): затемнение светлеет вслед за пальцем — формула HybridSheetShell (до −50 % на 600 dp протяжки вниз), шторка и фон двигаются вместе
+  const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropO.value * (1 - Math.min(Math.max(drag.value, 0) / 600, 0.5)) }));
   const sheetStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: slide.value * viewportHeight + drag.value }],
   }));

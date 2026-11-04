@@ -56,4 +56,21 @@ describe('волна 1 UI-кита', () => {
     expect(dialog).not.toMatch(/<Pressable[\s>]/);
     expect(dialog).toContain('testID={`glass-alert-action-${i}`}');
   });
+
+  it('KitSheetModal: затемнение светлеет вслед за пальцем по формуле HybridSheetShell', () => {
+    const modal = read('components/v2/KitSheetModal.tsx');
+    const shell = read('components/modal_fx/HybridSheetShell.tsx');
+    const formula = '1 - Math.min(Math.max(drag.value, 0) / 600, 0.5)';
+    expect(modal).toContain(formula);
+    expect(shell).toContain('1 - Math.min(Math.max(dragTranslateY.value, 0) / 600, 0.5)');
+  });
+
+  it('V2PillSwitch: скользящая пластина на transform с нативным драйвером; без скольжения при Reduce Motion', () => {
+    const sw = read('components/v2/V2PillSwitch.tsx');
+    expect(sw).toContain('translateX: x');
+    expect(sw).toContain('useNativeDriver: true');
+    expect(sw).toContain('useReduceMotion');
+    expect(sw).toContain('if (!placed.current || reduceMotion) { x.setValue(to)');
+    expect(sw).not.toMatch(/borderWidth|borderColor/);
+  });
 });

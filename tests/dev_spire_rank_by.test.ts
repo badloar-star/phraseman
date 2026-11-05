@@ -61,7 +61,9 @@ describe('dev_state?spireRankBy', () => {
     // зачем (сторож «use_spire_game ≤ 400 строк»): расчёт режима вынесен в app/spire/spire_rank_by_resolve.ts.
     expect(hook).toContain('const { rankBy, devRankBy } = spireResolveRankBy(config, room?.weekId ?? null);');
     const resolve = fs.readFileSync(path.join(__dirname, '..', 'app', 'spire', 'spire_rank_by_resolve.ts'), 'utf8');
-    expect(resolve).toMatch(/const rankBy: SpireRankBy = devRankBy \?\? \(config && weekId \? spireEffectiveRankBy\(config, weekId\) : 'steps'\)/);
+    // зачем (05.11): режим «по ступеням» в UI недостижим (решение владельца: ТОП-5 по монетам) — серверное/dev-значение считается для журнала, показ всегда 'coins'
+    expect(resolve).toMatch(/const serverRankBy: SpireRankBy = devRankBy \?\? \(config && weekId \? spireEffectiveRankBy\(config, weekId\) : 'coins'\)/);
+    expect(resolve).toContain("const rankBy: SpireRankBy = 'coins';");
     expect(hook).toContain("fillMissingWeekCoinsForPreview: devRankBy === 'coins'");
   });
 });

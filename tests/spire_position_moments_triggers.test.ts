@@ -123,10 +123,11 @@ describe('m05 разрыв в единицах места (оба режима)'
   });
 
   it('тексты: ступени склоняются, монеты — как было', () => {
-    expect(positionMomentText('ru', 'overtakeSubSteps', { steps: 1 })).toBe(glueNumbers('на 1 ступень'));
-    expect(positionMomentText('ru', 'overtakeSubSteps', { steps: 3 })).toBe(glueNumbers('на 3 ступени'));
-    expect(positionMomentText('ru', 'gapSteps', { steps: 5 })).toBe(glueNumbers('5 ступеней'));
-    expect(positionMomentText('en', 'overtakeSubSteps', { steps: 2 })).toBe(glueNumbers('by 2 steps'));
+    // зачем (05.11, слово владельца «упоминаний ступеней вообще не должно быть, только ЭТАЖЕЙ»): слово места склоняется как «этаж»
+    expect(positionMomentText('ru', 'overtakeSubSteps', { steps: 1 })).toBe(glueNumbers('на 1 этаж'));
+    expect(positionMomentText('ru', 'overtakeSubSteps', { steps: 3 })).toBe(glueNumbers('на 3 этажа'));
+    expect(positionMomentText('ru', 'gapSteps', { steps: 5 })).toBe(glueNumbers('5 этажей'));
+    expect(positionMomentText('en', 'overtakeSubSteps', { steps: 2 })).toBe(glueNumbers('by 2 floors'));
     expect(positionMomentText('ru', 'overtakeSub', { n: 5 })).toBe(glueNumbers('на 5 монет за неделю'));
     for (const lang of POSITION_MOMENT_LANGS) {
       for (const key of ['overtakeSubSteps', 'gapSteps'] as const) expect(positionMomentText(lang, key, { steps: 4 })).not.toMatch(/\{/);

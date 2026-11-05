@@ -87,7 +87,7 @@ describe('m05A · строка «Ты» едет вверх через лини�
     const onPlay = jest.fn();
     const onLater = jest.fn();
     await render(<SpirePositionRiseMoment lang="ru" rows={ROWS} fromIndex={5} toIndex={4} coinsGained={10} onPlay={onPlay} onLater={onLater} />);
-    expect(screen.getByText('ЭТАЖ ПРОЙДЕН · +10 МОНЕТ')).toBeTruthy();
+    expect(screen.getByText('ЭТАП ПРОЙДЕН · +10 МОНЕТ')).toBeTruthy();
     expect(screen.getByTestId('position-rise-heading').props.children).toBe('Ты в топ-5');
     expect(screen.getByTestId('position-rise-row-4').props.children).toBe('5.Ты');
     expect(screen.getByTestId('position-rise-row-5').props.children).toBe('6.Лена');

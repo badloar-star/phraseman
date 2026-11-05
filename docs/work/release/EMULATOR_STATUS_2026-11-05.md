@@ -60,3 +60,6 @@
 - Числа прежние: header h=239, scroll h=326, FIT contentH=381 overflow=55 action=scroll_to_end, dock h=291 (ожидание Входа: overflow ≈10).
 - Кадры dark_premium_expired_v2.png / light_premium_expired_v2.png: заголовок «Всё на месте — продолжим?» + подзаголовок «Серия, фразы и уроки никуда не делись. Подключи Ultra и продолжай.», под ним обрезок строки «Серия, фразы и уроки сохранены» (первая выгода наполовину под подзаголовком) — как в v1. Дубль подписи, скорее всего, не тот: обрезается заголовок/первая строка выгоды, а не подпись, совпадающая с подзаголовком (подписи различаются).
 - Файлы: sverka/7-final/1-paywalls/{dark,light}_premium_expired_v2.png, paywall_layout_log_expired_v2.txt.
+
+## Пересъёмка p4 (тёмная) после конца анимации (23:27, 5560)
+- Показы video, dialogs, plus, rank, фаза 4: кадр делался только после строки `[SECTION-OPENING] phase at:1 ctaReady:true` (+1,5 с); во всех 4 показах строка дождалась. Кадры перезаписаны: sverka/7-final/2-openings/dark_{video,dialogs,plus,rank}_p4.png; журналы показов: section_opening_dark_<раздел>_p4_retake.txt. Кнопка действия видна (проверен plus).

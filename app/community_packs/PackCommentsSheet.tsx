@@ -594,9 +594,18 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     setComments((prev) => prev.filter((c) => c.id !== commentId));
   }, []);
 
+  // зачем (ревью Сообщества 05.11): второй тап по 👍/🔥 в том же кадре брал устаревший `had` и ставил реакцию дважды (счётчик +2, дубль в myReactions);
+  // при отказе сервера поздний откат ломал свежее состояние. Замок по отклику и реакции — один запрос за раз.
+  const reactionLocksRef = useRef<Set<string>>(new Set());
   const handleReaction = useCallback((comment: PackComment, reaction: 'like' | 'fire') => {
     if (!myUserId) { notifyPackCommentsIdentityPending('reaction', packId); return; }
     if (comment.status !== 'published') return;
+    const lockKey = `${comment.id}:${reaction}`;
+    if (reactionLocksRef.current.has(lockKey)) {
+      console.log(`[OPT-UI] comment_reaction skipped reason=in_flight key=${lockKey}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    reactionLocksRef.current.add(lockKey);
     hapticTap();
     const had = comment.myReactions.includes(reaction);
     setComments((prev) => prev.map((c) => {
@@ -609,7 +618,10 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       };
     }));
     // зачем (координатор 12.10, аудит Optimistic UI R1): отказ записи реакции раньше молча оставлял «лайкнутый» отклик; теперь откат + сообщение.
-    void togglePackCommentReaction(packId, comment.id, myUserId, reaction, !had).then((ok) => {
+    void togglePackCommentReaction(packId, comment.id, myUserId, reaction, !had).catch((error: unknown) => {
+      console.warn(`[OPT-UI] comment_reaction threw packId=${packId} commentId=${comment.id}: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch называет причину
+      return false;
+    }).finally(() => { reactionLocksRef.current.delete(lockKey); }).then((ok) => {
       if (ok) return;
       console.warn(`[OPT-UI] comment_reaction rollback packId=${packId} commentId=${comment.id} reaction=${reaction}`); // guard-ok: откат называет причину
       setComments((prev) => prev.map((c) => {

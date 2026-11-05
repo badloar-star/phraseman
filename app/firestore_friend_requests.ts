@@ -592,6 +592,16 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
     requestRef.get(),
     readMyFriendRequestDisplayName(myUid, db),
   ]);
+  // зачем (админка 05.11, friends/accept_request_failed «permission-denied»; владелец: «все ошибки исправлены»): правило firestore.rules для обратной записи
+  // users/{fromUid}/friends/{myUid} требует, чтобы заявка users/{myUid}/friend_requests/{fromUid} ещё существовала (pending/accepted). Если её уже нет —
+  // принята повторным тапом/с другого устройства или отозвана отправителем — весь пакет падал. Заявки нет → писать нечего: выходим идемпотентно, без ошибки,
+  // кэши сбрасываем, чтобы список друзей и входящих перечитался с сервера (реальное состояние победит оптимистичное).
+  if (requestSnap.exists !== true) {
+    invalidateFriendReadCaches(myUid);
+    console.warn('[FRIENDS-ACCEPT]', 'request_gone', JSON.stringify({ from: friendTag(fromUid), me: friendTag(myUid), reason: 'friend_request_doc_missing', ms: Date.now() - acceptStartedAt })); // guard-ok: ранний выход называет причину
+    logFriendAdd('accept', { from: friendTag(fromUid), me: friendTag(myUid), ok: true, requestExisted: false, noop: true, ms: Date.now() - acceptStartedAt });
+    return;
+  }
   const fromName = cleanFriendRequestDisplayName(requestSnap.data?.()?.fromName);
   const batch = db.batch();
   const now = Date.now();

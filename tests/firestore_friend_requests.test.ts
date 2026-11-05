@@ -329,6 +329,35 @@ test('A04: acceptFriendRequest links stable auth through callable before batch w
   expect(mockDocs.has('users/my-uid-111')).toBe(false);
 });
 
+// зачем (админка 05.11, friends/accept_request_failed): заявки уже нет (повторный тап, второе устройство, отзыв отправителем) — правило базы запретило бы обратную запись и
+// уронило бы весь пакет «permission-denied». Теперь это идемпотентный выход: без записей, без ошибки, кэши сброшены.
+test('A05: acceptFriendRequest без заявки (уже принята/отозвана) — ничего не пишет и не бросает ошибку', async () => {
+  const { acceptFriendRequest } = require('../app/firestore_friend_requests');
+  await expect(acceptFriendRequest('from-uid-333')).resolves.toBeUndefined();
+  expect(mockDocs.has('users/my-uid-111/friends/from-uid-333')).toBe(false);
+  expect(mockDocs.has('users/from-uid-333/friends/my-uid-111')).toBe(false);
+});
+
+test('A06: повторное принятие после успешного — второй вызов идемпотентен, дружба остаётся одна', async () => {
+  mockDocs.set('users/my-uid-111/friend_requests/from-uid-333', { status: 'pending', createdAt: 500 });
+  const { acceptFriendRequest } = require('../app/firestore_friend_requests');
+  await acceptFriendRequest('from-uid-333');
+  const first = mockDocs.get('users/my-uid-111/friends/from-uid-333');
+  await expect(acceptFriendRequest('from-uid-333')).resolves.toBeUndefined();
+  expect(mockDocs.get('users/my-uid-111/friends/from-uid-333')).toBe(first);
+  expect(mockDocs.has('users/from-uid-333/friends/my-uid-111')).toBe(true);
+});
+
+test('A07: ранний выход пишет причину с префиксом [FRIENDS-ACCEPT]', async () => {
+  const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  const { acceptFriendRequest } = require('../app/firestore_friend_requests');
+  await acceptFriendRequest('from-uid-333');
+  const line = warn.mock.calls.map((c) => c.join(' ')).find((l) => l.includes('[FRIENDS-ACCEPT]'));
+  warn.mockRestore();
+  expect(line).toContain('request_gone');
+  expect(line).toContain('friend_request_doc_missing');
+});
+
 // ── declineFriendRequest tests ─────────────────────────────────────────────
 
 test('D01: declineFriendRequest DELETES users/myUid/friend_requests/fromUid doc', async () => {

@@ -25,3 +25,12 @@ describe('[ONBOARD-LANG] трассировка цепочки выбора яз
     expect(read('app/course_language_access.ts')).toContain('[ONBOARD-LANG] lock_decision');
   });
 });
+
+describe('[ONB-FLAGS] order — итоговый порядок шагов онбординга', () => {
+  it('онбординг пишет remote/final и наличие языка в обоих', () => {
+    const src = read('components/CleanOnboarding.tsx');
+    expect(src).toContain('[ONB-FLAGS] order: remote=');
+    expect(src).toContain('language_in_final=');
+    expect(src).toContain('language_in_remote=');
+  });
+});

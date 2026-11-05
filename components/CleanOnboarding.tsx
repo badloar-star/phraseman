@@ -2741,6 +2741,12 @@ function CleanOnboarding({
     [remoteEnabledSteps, lang],
   );
 
+  // зачем (вопрос владельца 06.11 «показываются экраны, которые я отключил в админке» + пропажа экрана языка на Pixel_8_fresh): итоговый порядок шагов
+  // и откуда он взялся — список Пульта, рубильники кода (язык/уровень) и QA-режим; пишется при каждом изменении, logcat -c перед тапом его больше не стирает.
+  useEffect(() => {
+    console.log(`[ONB-FLAGS] order: remote=${remoteEnabledSteps.join(',')} final=${enabledOrder.join(',')} language_in_final=${enabledOrder.includes('language') ? 1 : 0} language_in_remote=${remoteEnabledSteps.includes('language') ? 1 : 0} showLanguageCode=${SHOW_ONBOARDING_LANGUAGE_STEP ? 1 : 0} forceQa=${FORCE_ONBOARDING_QA ? 1 : 0} ui=${lang}`); // guard-ok: ветка и значения, которые её решили
+  }, [enabledOrder, remoteEnabledSteps, lang]);
+
   const persistStep = useCallback(async (next: CleanOnboardingStep) => {
     await AsyncStorage.multiSet([
       [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],

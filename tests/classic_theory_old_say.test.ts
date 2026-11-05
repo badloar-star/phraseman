@@ -64,6 +64,21 @@ describe('теория es (старый формат): «Читается» ru �
   });
 });
 
+describe.each(['fr', 'de', 'it'])('%s: счётчик пропусков чтений в теории старого формата', (lang) => {
+  // зачем (координатор 06.11): пока чтения наполняют сессии курсов, сторож не краснеет, но печатает, сколько фраз ещё без «Читается»; то, что уже есть, обязано быть чистым
+  it('печатает число пропусков; имеющиеся чтения — без латиницы и смеси алфавитов', () => {
+    const say = sayOf(lang);
+    const ids = oldFormatIds(lang);
+    const missing = ids.filter((id) => !say.ru[id] || !say.uk[id]);
+    // eslint-disable-next-line no-console -- счётчик для прогона
+    console.info(`[THEORY-SAY] ${lang}: фраз в старой теории ${ids.length}, без чтения ${missing.length}`);
+    const bad: string[] = [];
+    for (const [id, text] of Object.entries(say.ru)) if (/[A-Za-z]/.test(text) || /[іїєґ]/i.test(text)) bad.push(`ru ${id}: «${text}»`);
+    for (const [id, text] of Object.entries(say.uk)) if (/[A-Za-z]/.test(text) || /[ыэъё]/i.test(text)) bad.push(`uk ${id}: «${text}»`);
+    expect(bad.slice(0, 10)).toEqual([]);
+  });
+});
+
 describe('say.json есть у всех четырёх курсов и совпадает с manifest.json', () => {
   const manifest = JSON.parse(readText(path.join(DIR, 'manifest.json'))) as { languages: Record<string, { files: Record<string, { bytes: number; sha256: string }> }> };
   it.each(['es', 'fr', 'de', 'it'])('%s', (lang) => {

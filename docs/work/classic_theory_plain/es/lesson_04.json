@@ -15,7 +15,7 @@
         "en": "Who I am"
       },
       "text": {
-        "ru": "Смотрите, как сказать, кто вы.\nSoy Ana. — «Я Ана.»\nЧитается: сой А'на.\nСлово soy значит «я есть». Оно из слова ser — «быть кем-то».\nSoy estudiante. — «Я студент.»\nСлово estudiante значит «студент», médico — «врач».\nПро место говорят другим словом: estar — «находиться».",
+        "ru": "Смотрите, как сказать, кто вы.\nSoy Ana. — «Я Ана.»\nЧитается: сой А́на.\nСлово soy значит «я есть». Оно из слова ser — «быть кем-то».\nSoy estudiante. — «Я студент.»\nСлово estudiante значит «студент», médico — «врач».\nПро место говорят другим словом: estar — «находиться».",
         "uk": "Дивіться, як сказати, хто ви.\nSoy Ana. — «Я Ана.»\nЧитається: сой А́на.\nСлово soy означає «я є». Воно зі слова ser — «бути кимось».\nSoy estudiante. — «Я студент.»\nСлово estudiante означає «студент», médico — «лікар».\nПро місце кажуть іншим словом: estar — «перебувати».",
         "en": "Look at how to say who you are.\nSoy Ana. — “I am Ana.”\nThe word soy means “I am”. It comes from the word ser — “to be someone”.\nSoy estudiante. — “I am a student.”\nThe word estudiante means “student”, médico means “doctor”.\nFor a place we use another word: estar — “to be located”."
       },
@@ -23,7 +23,7 @@
         {
           "phraseId": "es:04:01",
           "say": {
-            "ru": "сой А'на",
+            "ru": "сой А́на",
             "uk": "сой А́на"
           }
         },
@@ -292,7 +292,7 @@
         "en": "He, she, Ana"
       },
       "text": {
-        "ru": "О другом человеке говорят es.\nAna es médica. — «Ана — врач.»\nЧитается: А'на эс ме́дика.\nСлово él значит «он», ella — «она». Их ставят перед es.\nÉl es estudiante. — «Он студент.»\nAna es guía. — «Ана — гид.» Слово guía значит «гид».\nСлово guía одно и для мужчины, и для женщины.",
+        "ru": "О другом человеке говорят es.\nAna es médica. — «Ана — врач.»\nЧитается: А́на эс ме́дика.\nСлово él значит «он», ella — «она». Их ставят перед es.\nÉl es estudiante. — «Он студент.»\nAna es guía. — «Ана — гид.» Слово guía значит «гид».\nСлово guía одно и для мужчины, и для женщины.",
         "uk": "Про іншу людину кажуть es.\nAna es médica. — «Ана — лікарка.»\nЧитається: А́на ес ме́діка.\nСлово él означає «він», ella — «вона». Їх ставлять перед es.\nÉl es estudiante. — «Він студент.»\nAna es guía. — «Ана — гід.» Слово guía означає «гід».\nСлово guía одне і для чоловіка, і для жінки.",
         "en": "About another person we say es.\nAna es médica. — “Ana is a doctor.”\nThe word él means “he”, ella means “she”. They go before es.\nÉl es estudiante. — “He is a student.”\nAna es guía. — “Ana is a guide.” The word guía means “guide”.\nThe word guía is the same for a man and a woman."
       },
@@ -300,7 +300,7 @@
         {
           "phraseId": "es:04:11",
           "say": {
-            "ru": "А'на эс ме́дика",
+            "ru": "А́на эс ме́дика",
             "uk": "А́на ес ме́діка"
           }
         },
@@ -328,7 +328,7 @@
         {
           "phraseId": "es:04:19",
           "say": {
-            "ru": "А'на эс ги́а",
+            "ru": "А́на эс ги́а",
             "uk": "А́на ес гі́а"
           }
         },
@@ -425,14 +425,14 @@
         {
           "phraseId": "es:04:49",
           "say": {
-            "ru": "А'на и Луи́с сон эстудья́нтес",
+            "ru": "А́на и Луи́с сон эстудья́нтес",
             "uk": "А́на і Луі́с сон естудья́нтес"
           }
         },
         {
           "phraseId": "es:04:50",
           "say": {
-            "ru": "со́мос А'на и Луи́с",
+            "ru": "со́мос А́на и Луи́с",
             "uk": "со́мос А́на і Луі́с"
           }
         },

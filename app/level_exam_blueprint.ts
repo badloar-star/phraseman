@@ -1,4 +1,5 @@
 import { COURSE_LEVEL_RANGES } from './course_levels';
+import { DebugLogger } from './debug-logger';
 import { getLessonData } from './lesson_data_all';
 import type { LessonPhrase, LessonWord } from './lesson_data_types';
 import { createLevelExamRng, shuffled } from './level_exam_rng';
@@ -14,6 +15,82 @@ import type {
 
 const EXAM_DURATION_MS = { A1: 12 * 60_000, A2: 13 * 60_000, B1: 14 * 60_000, B2: 15 * 60_000 } as const;
 const SINGLE_TASKS_PER_MODE = 6;
+const LOG = '[EXAM-VOCAB]';
+
+// зачем (слово владельца af62e0821 через координатора, 05.11): в экзамене уровня — только слова и фразы из ПРОЙДЕННЫХ уроков.
+// Соблазны плиток (word.distractors) — слова класса, их легко взять из будущих уроков (сторож Ревизора: en A1 1078, A2 205, B1 102, B2 5).
+// Словарь уровня = слова фраз и допустимых ответов уроков 1..последний урок уровня; соблазн вне словаря отбрасывается,
+// не хватает — добираем близким по классу (category) словом из того же словаря.
+type LevelVocab = { tokens: ReadonlySet<string>; byCategory: ReadonlyMap<string, readonly string[]> };
+type VocabStats = { filtered: number; backfilled: number };
+type VocabContext = { vocab: LevelVocab; stats: VocabStats };
+const GRAMMAR_CATEGORIES = ['article', 'articulo', 'to-be', 'verbo_ser', 'verbo_estar', 'pronoun', 'pronombre', 'verb', 'verbo', 'verbs'];
+
+function wordTokens(value: string): string[] {
+  return value.toLocaleLowerCase().replace(/[’`]/g, "'").split(/[\s/]+/u)
+    .map((token) => token.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, ''))
+    .filter(Boolean);
+}
+
+const vocabCache = new Map<number, LevelVocab>();
+
+/** Словарь уроков 1..toLesson; один раз на последний урок уровня. */
+function levelVocab(toLesson: number): LevelVocab {
+  const cached = vocabCache.get(toLesson);
+  if (cached) return cached;
+  const tokens = new Set<string>();
+  const byCategory = new Map<string, string[]>();
+  for (let lessonId = 1; lessonId <= toLesson; lessonId += 1) {
+    for (const phrase of getLessonData(lessonId)) {
+      wordTokens(phrase.english).forEach((token) => tokens.add(token));
+      for (const alt of phrase.alternatives || []) wordTokens(alt).forEach((token) => tokens.add(token));
+      for (const word of targetWords(phrase)) {
+        wordTokens(word.text).forEach((token) => tokens.add(token));
+        const category = String(word.category ?? '').trim().toLocaleLowerCase();
+        const text = word.text.trim();
+        if (category && /^[A-Za-z']+$/u.test(text)) {
+          const list = byCategory.get(category) || [];
+          if (!list.some((value) => normalized(value) === normalized(text))) list.push(text);
+          byCategory.set(category, list);
+        }
+      }
+    }
+  }
+  const vocab: LevelVocab = { tokens, byCategory };
+  vocabCache.set(toLesson, vocab);
+  return vocab;
+}
+
+function isKnownWord(ctx: VocabContext, value: string): boolean {
+  const parts = wordTokens(value);
+  return parts.length > 0 && parts.every((token) => ctx.vocab.tokens.has(token));
+}
+
+/** Оставляет только соблазны из словаря пройденных уроков; считает отброшенные. */
+function knownOnly(ctx: VocabContext, values: readonly string[]): string[] {
+  const kept = values.filter((value) => isKnownWord(ctx, value));
+  ctx.stats.filtered += values.length - kept.length;
+  return kept;
+}
+
+function stableIndex(seed: string, size: number): number {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i += 1) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+  return size > 0 ? hash % size : 0;
+}
+
+/** Добор близкими по классу словами из словаря уровня (детерминированно по слову-ответу). */
+function backfillByCategory(ctx: VocabContext, word: LessonWord, taken: readonly string[], need: number): string[] {
+  if (need <= 0) return [];
+  const category = String(word.category ?? '').trim().toLocaleLowerCase();
+  const pool = (ctx.vocab.byCategory.get(category) || []).filter((value) => !taken.some((used) => normalized(used) === normalized(value)));
+  if (pool.length === 0) return [];
+  const start = stableIndex(word.text, pool.length);
+  const picked: string[] = [];
+  for (let offset = 0; offset < pool.length && picked.length < need; offset += 1) picked.push(pool[(start + offset) % pool.length]);
+  ctx.stats.backfilled += picked.length;
+  return picked;
+}
 
 type PhraseReference = { lessonId: number; phraseId: string; phrase: LessonPhrase; sourceText: string };
 type GapCandidate = { reference: PhraseReference; word: LessonWord; gap: string; options: string[] };
@@ -72,14 +149,14 @@ function grammarCompatibleGapOptions(sentence: string, word: LessonWord, options
   });
 }
 
-function safeGapCandidate(reference: PhraseReference): GapCandidate | null {
+function safeGapCandidate(reference: PhraseReference, ctx: VocabContext): GapCandidate | null {
   for (const word of targetWords(reference.phrase)) {
     const answer = word.text.trim();
     if (!/^[A-Za-z']+$/u.test(answer)) continue;
-    const options = [answer, ...(word.distractors || [])]
-      .map((value) => value.trim())
-      .filter((value) => /^[A-Za-z']+$/u.test(value));
-    const unique = [...new Map(options.map((value) => [normalized(value), value])).values()];
+    const known = knownOnly(ctx, (word.distractors || []).map((value) => value.trim()).filter((value) => /^[A-Za-z']+$/u.test(value)));
+    const base = [answer, ...known];
+    const uniqueBase = [...new Map(base.map((value) => [normalized(value), value])).values()];
+    const unique = [...uniqueBase, ...backfillByCategory(ctx, word, uniqueBase, 4 - uniqueBase.length)];
     if (unique.length < 4) continue;
     const category = String(word.category ?? '').trim().toLocaleLowerCase();
     const grammarCategory = ['article', 'articulo', 'to-be', 'verbo_ser', 'verbo_estar', 'pronoun', 'pronombre', 'verb', 'verbo', 'verbs'].includes(category);
@@ -98,7 +175,7 @@ function safeGapCandidate(reference: PhraseReference): GapCandidate | null {
 /** Only make an oddity when the altered token has one unambiguous grammar rule.
  * This deliberately rejects lexical substitutions: they were the source of the
  * old nonsensical "tap the wrong word" tasks. */
-function safeOddityCandidate(reference: PhraseReference): OddityCandidate | null {
+function safeOddityCandidate(reference: PhraseReference, ctx: VocabContext): OddityCandidate | null {
   const sentence = reference.phrase.english.trim();
   const tokens = sentence.match(/[A-Za-z']+/g) || [];
   for (const word of targetWords(reference.phrase)) {
@@ -106,7 +183,7 @@ function safeOddityCandidate(reference: PhraseReference): OddityCandidate | null
     const tokenIndex = tokens.findIndex((token) => normalized(token) === normalized(original));
     if (tokenIndex < 0 || tokens.filter((token) => normalized(token) === normalized(original)).length !== 1) continue;
     const category = String(word.category ?? '').trim().toLocaleLowerCase();
-    const traps = (word.distractors || []).map((value) => value.trim());
+    const traps = knownOnly(ctx, (word.distractors || []).map((value) => value.trim()));
     let replacement = '';
     if (['article', 'articulo'].includes(category) && ['a', 'an'].includes(normalized(original))) {
       const next = normalized(tokens[tokenIndex + 1] || '');
@@ -172,7 +249,7 @@ function shuffledWithoutIdentity<T extends { id: string }>(values: readonly T[],
     : result;
 }
 
-function builderTokens(reference: PhraseReference, taskId: string, seed: string): {
+function builderTokens(reference: PhraseReference, taskId: string, seed: string, ctx: VocabContext): {
   tokens: { id: string; text: string; isDistractor?: boolean }[];
   correctTokenIds: string[];
 } {
@@ -181,11 +258,19 @@ function builderTokens(reference: PhraseReference, taskId: string, seed: string)
     text: word.text,
   }));
   const correctText = new Set(canonical.map((token) => normalized(token.text)));
-  const decoys = targetWords(reference.phrase)
+  const decoys = knownOnly(ctx, targetWords(reference.phrase)
     .flatMap((word) => word.distractors || [])
     .map((text) => text.trim())
-    .filter((text) => /^[A-Za-z']+$/u.test(text) && !correctText.has(normalized(text)));
+    .filter((text) => /^[A-Za-z']+$/u.test(text) && !correctText.has(normalized(text))));
   const uniqueDecoys = [...new Map(decoys.map((text) => [normalized(text), text])).values()].slice(0, 2);
+  if (uniqueDecoys.length < 2) {
+    // зачем: не хватило соблазнов из пройденных уроков — берём близкие по классу слова того же словаря (грамматические классы не трогаем: подмена даёт вторую верную фразу)
+    const wordForBackfill = targetWords(reference.phrase).find((word) => word.category && !GRAMMAR_CATEGORIES.includes(String(word.category).trim().toLocaleLowerCase()));
+    if (wordForBackfill) {
+      const taken = [...correctText, ...uniqueDecoys];
+      uniqueDecoys.push(...backfillByCategory(ctx, wordForBackfill, taken, 2 - uniqueDecoys.length));
+    }
+  }
   return {
     tokens: shuffledWithoutIdentity([
       ...canonical,
@@ -195,15 +280,19 @@ function builderTokens(reference: PhraseReference, taskId: string, seed: string)
   };
 }
 
-function hasBuilderDistractor(reference: PhraseReference): boolean {
+function hasBuilderDistractor(reference: PhraseReference, ctx: VocabContext): boolean {
   const correctText = new Set(targetWords(reference.phrase).map((word) => normalized(word.text)));
   return targetWords(reference.phrase).some((word) => (word.distractors || []).some((text) => (
-    /^[A-Za-z']+$/u.test(text.trim()) && !correctText.has(normalized(text))
+    /^[A-Za-z']+$/u.test(text.trim()) && !correctText.has(normalized(text)) && isKnownWord(ctx, text)
   )));
 }
 
 export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): LevelExamBlueprint {
   const [fromLesson, toLesson] = COURSE_LEVEL_RANGES[input.level];
+  // зачем: loud считает отброшенное/добранное только для РЕАЛЬНО выданных заданий; quiet — для проб кандидатов (иначе счёт раздувается)
+  const vocab = levelVocab(toLesson);
+  const loud: VocabContext = { vocab, stats: { filtered: 0, backfilled: 0 } };
+  const quiet: VocabContext = { vocab, stats: { filtered: 0, backfilled: 0 } };
   const references: PhraseReference[] = [];
   for (let lessonId = fromLesson; lessonId <= toLesson; lessonId += 1) {
     for (const phrase of getLessonData(lessonId)) {
@@ -252,8 +341,8 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   }
 
   for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
-    const reference = next((item) => safeGapCandidate(item) !== null);
-    const candidate = safeGapCandidate(reference)!;
+    const reference = next((item) => safeGapCandidate(item, quiet) !== null);
+    const candidate = safeGapCandidate(reference, loud)!;
     const id = `${input.level}:fill_gap:${reference.lessonId}:${reference.phraseId}`;
     const choices = choiceOptions(id, candidate.word.text.trim(), candidate.options.slice(1), input.seed);
     const category = String(candidate.word.category ?? '').trim().toLocaleLowerCase();
@@ -270,8 +359,8 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   }
 
   for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
-    const reference = next((item) => safeOddityCandidate(item) !== null);
-    const candidate = safeOddityCandidate(reference)!;
+    const reference = next((item) => safeOddityCandidate(item, quiet) !== null);
+    const candidate = safeOddityCandidate(reference, loud)!;
     const id = `${input.level}:find_oddity:${reference.lessonId}:${reference.phraseId}`;
     tasks.push({
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
@@ -283,9 +372,9 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   }
 
   for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
-    const reference = next((item) => targetWords(item.phrase).length >= 2 && hasBuilderDistractor(item));
+    const reference = next((item) => targetWords(item.phrase).length >= 2 && hasBuilderDistractor(item, quiet));
     const id = `${input.level}:translate_build:${reference.lessonId}:${reference.phraseId}`;
-    const tokenData = builderTokens(reference, id, input.seed);
+    const tokenData = builderTokens(reference, id, input.seed, loud);
     tasks.push({
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
       format: 'translate_build', prompt: reference.sourceText,
@@ -305,6 +394,8 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   tasks.push({ id: `${input.level}:speed_match`, format: 'speed_match', pairs: shuffled(pairs, createLevelExamRng(`${input.seed}:pairs`)) });
 
   const orderedTasks = shuffled(tasks, createLevelExamRng(`${input.seed}:tasks`));
+  // зачем (сперва логи): сколько соблазнов вне пройденных уроков отброшено и сколько добрано близкими по классу
+  DebugLogger.info(LOG, `lang=en level=${input.level} lessons=1-${toLesson} locale=${input.sourceLocale} vocab=${vocab.tokens.size} filtered=${loud.stats.filtered} backfilled=${loud.stats.backfilled} tasks=${tasks.length}`);
   return {
     version: 3, level: input.level, studyTarget: 'en', sourceLocale: input.sourceLocale, seed: input.seed,
     tasks: orderedTasks,

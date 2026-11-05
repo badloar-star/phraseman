@@ -16,6 +16,7 @@ import { DebugLogger } from '../../../app/debug-logger';
 import { openPremiumPaywall } from '../../../app/paywall_navigation';
 import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
 import { isPremiumThemeUnlocked } from '../../../app/premium_theme_entitlements';
+import { THEME_SLIDERS_V1_ENABLED } from '../../../constants/theme_sliders_flag';
 import { hapticTap } from '../../../hooks/use-haptics';
 import { useTheme } from '../../ThemeContext';
 import type { StoryTemplateCta } from './story_template_registry';
@@ -37,6 +38,8 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
     if (studio) { DebugLogger.info(LOG, `кнопка в фотостудии: только лог, действия нет (action=${cta.action})`); return; }
     if (cta.action === 'use_theme') {
       const themeId = ctx.themeId;
+      // зачем (владелец 05.11 ~20:55: все именные темы удалены, остались Светлая/Тёмная + ползунки): старые кадры «Новая тема» не включают именную тему
+      if (THEME_SLIDERS_V1_ENABLED) { DebugLogger.info(LOG, `[THEME-SLIDERS] тема: кадр=${ctx.source} themeId=${themeId ?? '—'} — именные темы убраны (ползунки), не включаем`); return; }
       if (!isPremiumThemeId(themeId)) { DebugLogger.info(LOG, `тема: кадр=${ctx.source} themeId=${themeId ?? '—'} не особая тема — выход`); return; }
       if (!isPremiumThemeUnlocked(themeId)) { DebugLogger.info(LOG, `тема ${themeId}: не открыта по entitlements — не включаем`); return; }
       if (liquidGlassThemeId === themeId) { DebugLogger.info(LOG, `тема ${themeId} уже включена — выход`); return; }

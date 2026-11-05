@@ -14,6 +14,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { alpha, oklchA, oklchToHex } from './liquidGlassColor';
+import { parseThemeTuneId, themeTuneVivid } from './theme_tune';
 
 export const LIQUID_GLASS_COLOR_LEVELS = ['calm', 'accent', 'max'] as const;
 export type LiquidGlassColorLevel = typeof LIQUID_GLASS_COLOR_LEVELS[number];
@@ -315,7 +316,10 @@ export function buildLiquidGlassVariant(
   calmDark: LiquidGlassBaseTokens,
   variant: LiquidGlassVariant,
 ): LiquidGlassBaseTokens & LiquidGlassAccentRoles {
-  const vivid = LIQUID_GLASS_VIVID[id] ?? LIQUID_GLASS_VIVID.graphite;
+  // зачем (theme_sliders_v1, найдено стражем 05.11): у настроенной темы tune:H:S яркий двойник считается из оттенка и насыщенности.
+  // Раньше он молча падал в графит — в светлом оформлении и в «Акценте/Максимуме» ползунки ничего не меняли (акцент всегда 250°).
+  const tune = parseThemeTuneId(id);
+  const vivid = tune ? themeTuneVivid(tune) : (LIQUID_GLASS_VIVID[id] ?? LIQUID_GLASS_VIVID.graphite);
   if (variant.appearance === 'light') {
     const base = lightBase(vivid, variant.level);
     return Object.freeze({ ...base, ...lightRoles(vivid, base, variant.level) });

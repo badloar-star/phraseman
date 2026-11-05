@@ -12,10 +12,11 @@ describe('theme_sliders_v1 выключен', () => {
     expect(resolveLiquidGlassTheme('slate')).toBe('slate');
     expect(resolveLiquidGlassTheme('marine')).toBe('marine');
   });
-  it('флаг в коде по умолчанию выключен', () => {
+  // зачем (владелец 05.11 ~20:55): флаг включён в коде; этот файл по-прежнему проверяет поведение палитры при выключенном флаге (откат одним коммитом безопасен)
+  it('флаг в коде включён (владелец 05.11)', () => {
     jest.unmock('../constants/theme_sliders_flag');
     jest.resetModules();
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    expect((require('../constants/theme_sliders_flag') as { THEME_SLIDERS_V1_ENABLED: boolean }).THEME_SLIDERS_V1_ENABLED).toBe(false);
+    expect((require('../constants/theme_sliders_flag') as { THEME_SLIDERS_V1_ENABLED: boolean }).THEME_SLIDERS_V1_ENABLED).toBe(true);
   });
 });

@@ -45,20 +45,15 @@ const RUSSIAN_LIQUID_GLASS_NAMES = {
   sage: 'Мята', eucalyptus: 'Лагуна', marine: 'Океан',
 };
 
-test('Settings theme row names the effective Liquid Glass theme', () => {
-  assert.match(source, /import \{ themeDisplayName \} from '\.\.\/theme_display_names';/);
-  assert.match(source, /const \{[^}]*liquidGlassThemeId[^}]*\} = useTheme\(\);/s);
-  assert.match(source, /const currentThemeLabel = themeDisplayName\(liquidGlassThemeId, lang\);/);
+// зачем (владелец 05.11 ~20:55 «ТЕМЫ ПОЛЗУНКИ ПРЯМО СЕЙЧАС»): именные темы удалены — строка Настроек называется «Оформление» и не показывает имя темы.
+test('Settings appearance row shows no named theme', () => {
+  assert.doesNotMatch(source, /themeDisplayName|currentThemeLabel/);
+  assert.match(source, /testID="settings-themes-row"[\s\S]*?title=\{L\('Оформление', 'Оформлення', 'Appearance'/);
 });
 
 test('Settings theme row has no legacy Forest fallback', () => {
-  const labelStart = source.indexOf('const currentThemeLabel');
-  const labelEnd = source.indexOf('const refreshSupplementalAccessState', labelStart);
-  const labelSource = source.slice(labelStart, labelEnd);
-
-  assert.ok(labelStart >= 0 && labelEnd > labelStart);
-  assert.doesNotMatch(labelSource, /names\[themeMode\]/);
-  assert.doesNotMatch(labelSource, /Форест|Forest|Bosque|Floresta/);
+  assert.doesNotMatch(source, /names\[themeMode\]/);
+  assert.doesNotMatch(source, /'Форест'|'Forest'|'Bosque'|'Floresta'/);
 });
 
 test('themeDisplayName has an explicit English label for every approved Liquid Glass theme', () => {

@@ -5,6 +5,8 @@ import React from 'react';
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import { getActiveLiquidGlassVariant, liquidGlassTokens, setActiveLiquidGlassVariant } from '../constants/liquidGlassThemePalette';
+import { migrateThemeIdToTune } from '../app/theme_tune_migration';
+import { THEME_TUNE_STANDARD, themeTuneId } from '../constants/theme_tune';
 
 const mockStore = new Map<string, string>();
 let mockMultiGetGate: Promise<void> | null = null;
@@ -49,7 +51,9 @@ describe('theme colour level and appearance', () => {
     await waitFor(() => expect(result.current.liquidGlassColorLevel).toBe('calm'));
     expect(result.current.liquidGlassAppearance).toBe('dark');
     expect(result.current.isDark).toBe(true);
-    expect(result.current.theme.bgPrimary).toBe(liquidGlassTokens('graphite', { level: 'calm', appearance: 'dark' }).bg);
+    // зачем (владелец 05.11 ~20:55, ползунки включены): тема ни разу не выбиралась → «Стандартный» tune:250:35
+    expect(result.current.appliedLiquidGlassThemeId).toBe(themeTuneId(THEME_TUNE_STANDARD));
+    expect(result.current.theme.bgPrimary).toBe(liquidGlassTokens(themeTuneId(THEME_TUNE_STANDARD), { level: 'calm', appearance: 'dark' }).bg);
   });
 
   it('applies a level and light appearance instantly and persists them locally', async () => {
@@ -77,7 +81,9 @@ describe('theme colour level and appearance', () => {
     mockStore.set('liquid_glass_appearance', 'sepia');
     const { result } = await renderHook(() => useTheme(), { wrapper });
     await waitFor(() => expect(result.current.liquidGlassColorLevel).toBe('max'));
-    expect(result.current.appliedLiquidGlassThemeId).toBe('slate');
+    // зачем (владелец 05.11, ползунки включены): выбранная старая тема переезжает в ближайшие оттенок/насыщенность — вид не прыгает
+    expect(result.current.appliedLiquidGlassThemeId).toBe(migrateThemeIdToTune({ resolvedId: 'slate', appearance: 'dark', isNewUser: false }).id);
+    expect(result.current.appliedLiquidGlassThemeId).toMatch(/^tune:26\d:\d+$/);
     expect(result.current.liquidGlassAppearance).toBe('dark');
   });
 

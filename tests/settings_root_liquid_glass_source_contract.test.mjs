@@ -125,10 +125,12 @@ test('rows, values and handlers of the old screen are preserved', () => {
   assert.match(body, /router\.push\('\/settings_language' as any\)/);
   assert.match(body, /router\.push\('\/settings_edu'\)/);
   assert.match(body, /router\.push\('\/settings_notifications'\)/);
-  assert.match(body, /router\.push\('\/settings_themes' as any\)/);
+  // зачем (владелец 05.11 ~20:55): именные темы удалены — строка ведёт в «Оформление» (ползунки), к старому списку тем маршрута нет
+  assert.match(body, /router\.push\('\/settings_appearance' as any\)/);
+  assert.doesNotMatch(source, /settings_themes/);
   assert.match(body, /router\.push\('\/privacy_settings' as never\)/);
   assert.match(body, /router\.push\('\/support_report' as never\)/);
-  assert.match(body, /value=\{currentThemeLabel\}/);
+  assert.doesNotMatch(body, /value=\{currentThemeLabel\}/);
   assert.match(body, /value=\{LANG_NATIVE\[lang\]\}/);
   assert.match(body, /value=\{accountProviderValue\}/);
   assert.match(source, /linkedAuth\.provider === 'apple' \? 'Apple' : 'Google'/);

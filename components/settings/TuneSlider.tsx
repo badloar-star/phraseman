@@ -9,9 +9,12 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { Easing, runOnJS, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 import { createTuneDragController } from './tune_slider_controller';
 
+// зачем (владелец 05.11 ~20:55 «КАК ПО МАКЕТУ»): размеры 1:1 с docs/work/mockups/theme_sliders_exact.html (.trk 34, .bar 20, .kn 32/22);
+// касание остаётся ≥ 44 за счёт hitSlop по вертикали — визуально 34, пальцу 46.
 const THUMB = 32;
 const TRACK_H = 20;
-const ROW_H = 40;
+const ROW_H = 34;
+const HIT_SLOP_V = 6;
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 const A11Y_STEP = 0.1;
 
@@ -23,6 +26,8 @@ type Props = Readonly<{
   max: number;
   /** Цвет серединки бегунка — цвет, который выбран сейчас. */
   thumbColor: string;
+  /** Тонкая полупрозрачная кромка дорожки (макет: inset 1px) — цвет из темы. */
+  edgeColor?: string;
   label: string;
   valueText: string;
   locked: boolean;
@@ -32,7 +37,7 @@ type Props = Readonly<{
   testID?: string;
 }>;
 
-function TuneSliderImpl({ gradient, value, max, thumbColor, label, valueText, locked, onLockedPress, onPreview, onCommit, testID }: Props) {
+function TuneSliderImpl({ gradient, value, max, thumbColor, edgeColor, label, valueText, locked, onLockedPress, onPreview, onCommit, testID }: Props) {
   const reduceMotion = useReducedMotion();
   const progress = useSharedValue(value / max);
   const width = useSharedValue(0);
@@ -75,6 +80,7 @@ function TuneSliderImpl({ gradient, value, max, thumbColor, label, valueText, lo
     };
     // зачем: перетаскивание включается только при горизонтальном сдвиге — вертикальный скролл экрана не двигает ползунок и ничего не сохраняет
     const pan = Gesture.Pan()
+      .hitSlop({ top: HIT_SLOP_V, bottom: HIT_SLOP_V })
       .maxPointers(1)
       .activeOffsetX([-4, 4])
       .failOffsetY([-10, 10])
@@ -103,6 +109,7 @@ function TuneSliderImpl({ gradient, value, max, thumbColor, label, valueText, lo
         runOnJS(end)(lastStep.value);
       });
     const tap = Gesture.Tap()
+      .hitSlop({ top: HIT_SLOP_V, bottom: HIT_SLOP_V })
       .maxDuration(300)
       .maxDistance(8)
       .onEnd((e, success) => {
@@ -132,6 +139,7 @@ function TuneSliderImpl({ gradient, value, max, thumbColor, label, valueText, lo
   const body = (
     <View style={styles.hit} onLayout={onLayout}>
       <LinearGradient colors={gradient as unknown as [string, string, ...string[]]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={styles.track} />
+      {edgeColor ? <View pointerEvents="none" style={[styles.trackEdge, { boxShadow: `inset 0 0 0 1px ${edgeColor}` }]} /> : null}
       <Animated.View style={[styles.thumb, thumbStyle]}>
         <View style={[styles.thumbCore, { backgroundColor: thumbColor }]} />
       </Animated.View>
@@ -149,7 +157,7 @@ function TuneSliderImpl({ gradient, value, max, thumbColor, label, valueText, lo
       onAccessibilityAction={onA11y}
       style={[styles.row, locked && styles.locked]}
     >
-      {locked ? <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={onLockedPress} style={styles.hit}>{body}</Pressable> : <GestureDetector gesture={gesture}>{body}</GestureDetector>}
+      {locked ? <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={onLockedPress} hitSlop={{ top: HIT_SLOP_V, bottom: HIT_SLOP_V }} style={styles.hit}>{body}</Pressable> : <GestureDetector gesture={gesture}>{body}</GestureDetector>}
     </View>
   );
 }
@@ -161,12 +169,13 @@ const styles = StyleSheet.create({
   locked: { opacity: 0.45 },
   hit: { flex: 1, height: ROW_H, justifyContent: 'center' },
   track: { height: TRACK_H, borderRadius: TRACK_H / 2 },
+  trackEdge: { position: 'absolute', left: 0, right: 0, top: (ROW_H - TRACK_H) / 2, height: TRACK_H, borderRadius: TRACK_H / 2 },
   thumb: {
     position: 'absolute', left: 0, top: (ROW_H - THUMB) / 2, width: THUMB, height: THUMB, borderRadius: THUMB / 2,
     alignItems: 'center', justifyContent: 'center',
     backgroundColor: '#FFFFFF', // theme-exempt: ручка по макету — белое кольцо, одинаковое во всех темах
     shadowColor: '#000000', // theme-exempt: тень ручки — чёрная по макету, одинаковая во всех темах
-    shadowOpacity: 0.35, shadowRadius: 5, shadowOffset: { width: 0, height: 3 }, elevation: 3,
+    shadowOpacity: 0.35, shadowRadius: 5, shadowOffset: { width: 0, height: 2 }, elevation: 3,
   },
   thumbCore: { width: 22, height: 22, borderRadius: 11 },
 });

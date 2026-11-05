@@ -10,7 +10,7 @@
 // Чистый модуль без React и сети. Код старых тем НЕ удалён: пока флаг выключен, идентификатор `tune:` не принимается и всё работает как раньше.
 // ═══════════════════════════════════════════════════════════════════════════
 import { alpha, oklchToHex } from './liquidGlassColor';
-import type { LiquidGlassBaseTokens } from './liquidGlassThemeVariants';
+import type { LiquidGlassBaseTokens, LiquidGlassVivid } from './liquidGlassThemeVariants';
 
 /** Идентификатор настроенной темы: `tune:<оттенок 0…359>:<насыщенность 0…100>`. */
 export type ThemeTuneId = `tune:${number}:${number}`;
@@ -78,6 +78,15 @@ export function tunedBaseTokens(tune: ThemeTune): LiquidGlassBaseTokens {
     secondary: tone(0.82, 0.016), mutedText: tone(0.78, 0.016),
     line: alpha(tone(0.92, 0.018), 0.10), selected: alpha(tint, 0.20),
   });
+}
+
+/**
+ * Яркий двойник настроенной темы — для светлого оформления и уровней «Акцент»/«Максимум» (buildLiquidGlassVariant).
+ * зачем (05.11): один оттенок (семейство gem, второй оттенок = первый — «цвет приложения» одним тоном, как в макете), цветность = S/100 · CMAX.
+ */
+export function themeTuneVivid(tune: ThemeTune): LiquidGlassVivid {
+  const { H, S } = normalizeThemeTune(tune);
+  return Object.freeze({ fam: 'gem', h: H, h2: H, c: (S / 100) * THEME_TUNE_CMAX });
 }
 
 /**

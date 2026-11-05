@@ -7,6 +7,7 @@
 // Журнал [THEME-SLIDERS]: что было, что стало, почему.
 // ═══════════════════════════════════════════════════════════════════════════
 import { liquidGlassTokens, type LiquidGlassAppearance } from '../constants/liquidGlassThemePalette';
+import { LIQUID_GLASS_VIVID } from '../constants/liquidGlassThemeVariants';
 import { THEME_SLIDERS_V1_ENABLED } from '../constants/theme_sliders_flag';
 import { THEME_TUNE_CMAX, THEME_TUNE_STANDARD, oklchOfHex, parseThemeTuneId, themeTuneFromAccentOklch, themeTuneId } from '../constants/theme_tune';
 
@@ -24,6 +25,10 @@ export function migrateThemeIdToTune(input: Readonly<{ resolvedId: string; appea
   if (!THEME_SLIDERS_V1_ENABLED) return { id: input.resolvedId, migrated: false, reason: 'flag_off' };
   if (parseThemeTuneId(input.resolvedId)) return done(input.resolvedId, false, 'already_tune');
   if (input.isNewUser) return done(themeTuneId(THEME_TUNE_STANDARD), true, 'new_user_standard');
+  // зачем (05.11): у 13 тонированных тем есть «яркий двойник» (оттенок h, цветность c) — из него tune берёт те же числа, что и у themeTuneVivid,
+  // поэтому акцент, кнопки и светлое оформление остаются того же цвета, а не «ближайшие» по пересчёту через уже обрезанный акцент.
+  const vivid = Object.prototype.hasOwnProperty.call(LIQUID_GLASS_VIVID, input.resolvedId) ? LIQUID_GLASS_VIVID[input.resolvedId] : undefined;
+  if (vivid) return done(themeTuneId({ H: vivid.h, S: (vivid.c / THEME_TUNE_CMAX) * 100 }), true, 'nearest_of_old_theme');
   const accent = oklchOfHex(liquidGlassTokens(input.resolvedId, { level: 'max', appearance: input.appearance }).accent); // light-accent-ok: из акцента старой темы берутся только оттенок и цветность для ближайших H/S
   if (!accent) return done(themeTuneId(THEME_TUNE_STANDARD), true, 'no_accent_standard');
   if (accent.C < NEUTRAL_CHROMA) return done(themeTuneId({ H: THEME_TUNE_STANDARD.H, S: Math.round((accent.C / THEME_TUNE_CMAX) * 100) }), true, 'nearest_of_old_theme');

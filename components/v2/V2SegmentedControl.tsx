@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Animated, Pressable, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -7,7 +8,8 @@ import { useV2Palette } from './useV2Palette';
 import { V2GlassSheen, useV2GlassStyle } from './V2Glass';
 import { nestedBoxShadow, useShadowGlass } from './ShadowSurface';
 
-export type V2Segment<K extends string> = Readonly<{ key: K; label: string }>;
+// зачем (макет «Оформление» 05.11: «☀ Светлая / ☾ Тёмная»): необязательный значок перед подписью; без него сегмент прежний байт-в-байт.
+export type V2Segment<K extends string> = Readonly<{ key: K; label: string; icon?: React.ComponentProps<typeof Ionicons>['name'] }>;
 
 type Props<K extends string> = {
   segments: readonly V2Segment<K>[];
@@ -79,9 +81,18 @@ export default function V2SegmentedControl<K extends string>({ segments, value, 
             onPress={() => { if (!selected) onChange(segment.key); }}
             style={s.segment}
           >
-            <Text style={[s.label, { color: selected ? p.text : p.textSecondary }]}>
-              {segment.label}
-            </Text>
+            {segment.icon ? (
+              <View style={s.iconRow}>
+                <Ionicons name={segment.icon} size={18} color={selected ? p.text : p.textSecondary} />
+                <Text style={[s.label, { color: selected ? p.text : p.textSecondary }]}>
+                  {segment.label}
+                </Text>
+              </View>
+            ) : (
+              <Text style={[s.label, { color: selected ? p.text : p.textSecondary }]}>
+                {segment.label}
+              </Text>
+            )}
           </Pressable>
         );
       })}
@@ -109,4 +120,5 @@ const s = StyleSheet.create({
   },
   segment: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6, paddingVertical: 4 },
   label: { ...V2_TYPE.subtitle, fontWeight: '700', textAlign: 'center' },
+  iconRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
 });

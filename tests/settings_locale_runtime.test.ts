@@ -18,8 +18,8 @@ describe('settings planned locale runtime copy', () => {
     const { THEME_DISPLAY_NAMES } = require('../app/theme_display_names');
     const { LIQUID_GLASS_THEME_IDS } = require('../constants/liquidGlassThemePalette');
     const { INTERFACE_LANGS } = require('../constants/i18n');
-    expect(SETTINGS_SOURCE).toContain("import { themeDisplayName } from '../theme_display_names'");
-    expect(SETTINGS_SOURCE).toContain('themeDisplayName(liquidGlassThemeId, lang)');
+    // зачем (владелец 05.11 ~20:55, ползунки включены): строка Настроек — «Оформление» без имени темы; словарь имён остаётся (подарки, истории)
+    expect(SETTINGS_SOURCE).not.toContain('themeDisplayName(liquidGlassThemeId, lang)');
     expect(SETTINGS_SOURCE).not.toMatch(/graphite: \{ ru: '/);
     for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
       const names = THEME_DISPLAY_NAMES[id] as Record<string, string | undefined> | undefined;

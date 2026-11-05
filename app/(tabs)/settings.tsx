@@ -34,7 +34,6 @@ import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../componen
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 // зачем (флаг theme_sliders_v1, слово владельца 05.11): при включённом флаге вместо списка тем — экран «Оформление» (Светлая/Тёмная + Оттенок + Насыщенность)
-import { THEME_SLIDERS_V1_ENABLED } from '../../constants/theme_sliders_flag';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useMyRankCoinRank } from '../../hooks/use_my_rank_coin';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
@@ -95,7 +94,6 @@ import { animateNextLayoutTransition } from '../smooth_layout';
 import { trackEvent } from '../analytics';
 import { normalizePaywallAttributionValue } from '../paywall_entry_contract';
 import { applyUserSettingsNow, getUserSettingsSnapshot } from '../user_settings_store';
-import { themeDisplayName } from '../theme_display_names';
 import StudyLanguageSheet from '../../components/settings/StudyLanguageSheet';
 import {
   uiSoundsLabel,
@@ -729,7 +727,6 @@ export default function SettingsMain() {
     if (!settingsRuntimeActive) return;
     void loadStudyTarget();
   }, [settingsRuntimeActive, focusTick, loadStudyTarget]);
-  const currentThemeLabel = themeDisplayName(liquidGlassThemeId, lang);
 
   const refreshSupplementalAccessState = useCallback(() => {
     const token = captureAccountGeneration();
@@ -1287,13 +1284,13 @@ export default function SettingsMain() {
               : L('Выкл', 'Вимк', 'Off', 'Desactivadas', 'Desativadas', 'Tắt', 'Nonaktif', 'Kapalı', 'Wył.')}
             onPress={() => router.push('/settings_notifications')}
           />
+          {/* зачем (владелец 05.11 ~20:55 «ТЕМЫ ПОЛЗУНКИ ПРЯМО СЕЙЧАС»): именных тем больше нет — строка всегда «Оформление» и ведёт только в ползунки; маршрута к старому списку тем из интерфейса нет */}
           <SettingsGlassRow
             glass={glass}
             testID="settings-themes-row"
             icon="layers-outline"
-            title={THEME_SLIDERS_V1_ENABLED ? L('Оформление', 'Оформлення', 'Appearance', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd') : L('Темы', 'Теми', 'Themes', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
-            value={THEME_SLIDERS_V1_ENABLED ? undefined : currentThemeLabel}
-            onPress={() => router.push((THEME_SLIDERS_V1_ENABLED ? '/settings_appearance' : '/settings_themes') as any)}
+            title={L('Оформление', 'Оформлення', 'Appearance', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')}
+            onPress={() => router.push('/settings_appearance' as any)}
           />
           {/* sound-settings-start */}
           {SHOW_SOUND_SETTINGS ? (

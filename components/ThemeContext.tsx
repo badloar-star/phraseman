@@ -645,7 +645,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const newUserPair = newUserApply ? pickSystemDefaultTheme(bootScheme) : null;
       const resolvedBefore = newUserPair ? resolveLiquidGlassTheme(newUserPair.themeId) : storedResolved;
       // зачем (theme_sliders_v1): флаг включён → прежняя тема становится tune:H:S (ближайшие оттенок и насыщенность; новичку — стандарт); выключен — ничего не меняется
-      const resolved = migrateThemeIdToTune({ resolvedId: resolvedBefore, appearance: resolveLiquidGlassAppearance(pairs[2]?.[1] ?? null), isNewUser: newUserApply !== null }).id as LiquidGlassThemeId;
+      // зачем (владелец 05.11 ~13:35: «кто уже менял цвет/тему — у них остаётся их вид, у всех остальных — стандартный»): тема в хранилище не записана
+      // (человек никогда не выбирал) → стандарт, как у новичка; выбранная тема → ближайшие оттенок и насыщенность
+      const resolved = migrateThemeIdToTune({ resolvedId: resolvedBefore, appearance: resolveLiquidGlassAppearance(pairs[2]?.[1] ?? null), isNewUser: newUserApply !== null || storedId === null }).id as LiquidGlassThemeId;
       console.log(`[DEFAULT-THEME] первый запуск=${String(firstRun.kind === 'new_user')} решение=${firstRun.kind}/${firstRun.reason} системный режим=${String(bootScheme)} → тема=${resolved} источник=${newUserPair ? 'по умолчанию (следует за системой)' : 'выбор человека / прежнее'}`); // guard-ok: итог выбора стартовой темы
       if (newUserPair) {
         followSystemInProcess = true;

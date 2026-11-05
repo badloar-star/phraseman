@@ -358,7 +358,29 @@ const one = (value: unknown): string | undefined => {
 };
 
 /** Разбор параметров ссылки. Неизвестные значения отбрасываются (и попадают в skipped с причиной). Чистая функция. */
-export function parseDevStateParams(params: Readonly<Record<string, unknown>>): { request: DevStateRequest; rejected: Record<string, string> } {
+/**
+ * Составная ссылка без «&» (Сверка 06.11): `set=newbie:1,onboarding:pending,plus:off` раскрывается в обычные пары.
+ * зачем: `adb shell am start -d "…?a=1&b=2"` теряет всё после «&» (оболочка устройства режет команду) — приходил только первый ключ.
+ * Явные параметры сильнее раскрытых. `,` и `:` безопасны для оболочки и URL.
+ */
+export function expandDevStateCompound(params: Readonly<Record<string, unknown>>): Readonly<Record<string, unknown>> {
+  const rawSet = Array.isArray(params.set) ? params.set[0] : params.set;
+  if (typeof rawSet !== 'string' || rawSet.trim() === '') return params;
+  const expanded: Record<string, unknown> = {};
+  for (const pair of rawSet.split(',')) {
+    const at = pair.indexOf(':');
+    if (at <= 0) continue;
+    const key = pair.slice(0, at).trim();
+    const value = pair.slice(at + 1).trim();
+    if (key !== '' && key !== 'set') expanded[key] = value;
+  }
+  return { ...expanded, ...params };
+}
+
+export function parseDevStateParams(paramsIn: Readonly<Record<string, unknown>>): { request: DevStateRequest; rejected: Record<string, string> } {
+  const params = expandDevStateCompound(paramsIn);
+  // зачем (Сверка 06.11, «сперва логи»): какие ключи реально дошли до разбора — видно, режет ли «&» оболочка устройства или разбор.
+  console.log(`[DEV-STATE] params keys=${Object.keys(paramsIn).join(',') || '—'} expanded=${Object.keys(params).join(',') || '—'}`); // guard-ok: вход разбора dev-ссылки
   const rejected: Record<string, string> = {};
   const request: { -readonly [K in keyof DevStateRequest]: DevStateRequest[K] } = {};
   const energy = one(params.energy);

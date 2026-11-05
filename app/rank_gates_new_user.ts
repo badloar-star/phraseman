@@ -65,8 +65,16 @@ export function judgeRankGateUser(input: Readonly<{
     if (created === null || !Number.isFinite(created) || created <= 0) return { isNew: false, reason: 'account_age_unknown' };
     if (created < since) return { isNew: false, reason: 'old_account' };
   }
-  if (input.priorProgress) return { isNew: false, reason: 'prior_progress' };
+  // зачем (🔴 P0 05.11, Pixel_8_fresh: чистый новичок видел ВСЁ открытым; лог `[RANK-GATE] verdict reason=prior_progress priorProgress=true`): серия (streak_count=1) и опыт появляются
+  // в день онбординга САМИ — у аккаунта, созданного после среза, «прежнего прогресса» быть не может (локальное состояние чужого аккаунта стирается при смене), поэтому для молодого
+  // аккаунта priorProgress НЕ считается. Для аккаунта с неизвестным возрастом (accountCreatedAtMs не передан) правило прежнее.
+  if (input.priorProgress && !isYoungAccount(input.accountCreatedAtMs, since)) return { isNew: false, reason: 'prior_progress' };
   return { isNew: true, reason: 'new' };
+}
+
+/** Аккаунт создан ПОСЛЕ среза «новых» — у него нет прежнего прогресса, серия и опыт первого дня — не признак старого. */
+export function isYoungAccount(createdAtMs: number | null | undefined, sinceMs: number): boolean {
+  return typeof createdAtMs === 'number' && Number.isFinite(createdAtMs) && createdAtMs > 0 && createdAtMs >= sinceMs;
 }
 
 /** Владелец сейчас: активный аккаунт со stableId, иначе null. */
@@ -89,7 +97,11 @@ export async function readRankGateUserVerdict(nowMs: number = Date.now(), sinceM
     const stored = await AsyncStorage.getItem(cohortKey);
     if (activeOwner() !== owner) return { isNew: false, reason: 'owner_changed' };
     if (stored === 'new') return { isNew: true, reason: 'sticky_new' };
-    if (stored === 'old') return { isNew: false, reason: 'sticky_old' };
+    // зачем (🔴 P0 05.11): прежняя ошибка (priorProgress от серии первого дня) записала молодым аккаунтам липкое 'old' — для аккаунта, созданного после среза, такая отметка пересчитывается
+    // (по новому правилу молодой аккаунт 'new'); у настоящих старых аккаунтов (создан до среза) липкое 'old' работает как раньше.
+    const youngAccount = isYoungAccount(peekCurrentAccountCreatedAtMs(), sinceMs);
+    if (stored === 'old' && !youngAccount) return { isNew: false, reason: 'sticky_old' };
+    if (stored === 'old') console.log('[RANK-GATE] sticky_old_recheck', JSON.stringify({ owner: `${owner.slice(0, 6)}…`, reason: 'young_account' })); // guard-ok: пересчёт ошибочной отметки
     const keys = [ONBOARDING_COMPLETED_AT_KEY, ...RANK_GATES_PRIOR_PROGRESS_KEYS];
     const pairs = await AsyncStorage.multiGet(keys);
     if (activeOwner() !== owner) return { isNew: false, reason: 'owner_changed' };

@@ -39,9 +39,32 @@ describe('когорта липкая и принадлежит аккаунту
     store.set('streak_count', '3'); store.set('user_total_xp', '120');
     expect(await readRankGateUserVerdict(NOW, SINCE)).toEqual({ isNew: true, reason: 'sticky_new' });
   });
-  it('залипший «старый» остаётся старым', async () => {
+  it('залипший «старый» у СТАРОГО аккаунта (создан до среза) остаётся старым', async () => {
+    mockCreatedAt = SINCE - 1;
     store.set(rankGateCohortKey('uid-A'), 'old');
     store.set('onboarding_completed_at_ms_v1', '9000');
+    expect((await readRankGateUserVerdict(NOW, SINCE)).reason).toBe('sticky_old');
+  });
+  // зачем (🔴 P0 05.11, Pixel_8_fresh: чистый новичок видел ВСЁ открытым; лог reason=prior_progress): серия первого дня (streak_count=1) не делает НОВЫЙ аккаунт «старым»
+  it('новый аккаунт (создан после среза) с серией/опытом первого дня — «новый», замки включены; отметка сохраняется', async () => {
+    store.set('onboarding_completed_at_ms_v1', '9000');
+    store.set('streak_count', '1');
+    store.set('user_total_xp', '5');
+    const verdict = await readRankGateUserVerdict(NOW, SINCE);
+    expect(verdict).toEqual({ isNew: true, reason: 'new' });
+    expect(store.get(rankGateCohortKey('uid-A'))).toBe('new');
+  });
+  it('ошибочное липкое «старый» у молодого аккаунта пересчитывается в «новый» (самолечение после бага prior_progress)', async () => {
+    store.set(rankGateCohortKey('uid-A'), 'old');
+    store.set('onboarding_completed_at_ms_v1', '9000');
+    store.set('streak_count', '1');
+    expect(await readRankGateUserVerdict(NOW, SINCE)).toEqual({ isNew: true, reason: 'new' });
+    expect(store.get(rankGateCohortKey('uid-A'))).toBe('new');
+  });
+  it('старый аккаунт с прогрессом остаётся «старым» (прежний прогресс считается, когда аккаунт не молодой)', async () => {
+    mockCreatedAt = SINCE - 1;
+    store.set('onboarding_completed_at_ms_v1', '9000');
+    store.set('streak_count', '3');
     expect((await readRankGateUserVerdict(NOW, SINCE)).isNew).toBe(false);
   });
   it('без метки онбординга решение не фиксируется', async () => {

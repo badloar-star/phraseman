@@ -31,6 +31,7 @@ import PeakFloorStepper from './PeakFloorStepper';
 import PeakStepChips from './PeakStepChips';
 import PeakTour from './PeakTour'; // зачем (тур утверждён владельцем 04.11): оверлей первого входа поверх этого экрана
 import { usePeakTourGate } from './use_peak_tour_gate';
+import { useOverlayBypassLog, useOverlayVisible } from '../../OverlayArbiter';
 import type { PeakTourRect, PeakTourRects } from './peak_tour_core';
 import { PEAK_TAP_TARGET, peakMaxStep } from './peak_text';
 
@@ -101,8 +102,12 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   const counterRef = useRef<View>(null);
   const forcedPage = typeof tour === 'object' ? tour.page : null;
   const gate = usePeakTourGate(tour === 'auto' && model.top.length > 0);
-  const tourOn = forcedPage !== null || gate.visible;
+  // зачем (владелец 05.11: приветствие и тур Пика на одном кадре — «такое нельзя допускать»): тур ждёт слот арбитра окон, пока держит приветствие/открытие раздела.
+  // Замер блоков и показ начинаются только после выдачи слота. Принудительная страница (dev-съёмка) идёт мимо арбитра.
+  const tourSlot = useOverlayVisible('peakTour', forcedPage === null && gate.visible);
+  const tourOn = forcedPage !== null || tourSlot;
   const [tourRects, setTourRects] = useState<PeakTourRects | null>(null);
+  useOverlayBypassLog('peakTour', forcedPage !== null && tourRects !== null); // зачем: принудительный показ (dev-съёмка) мимо арбитра виден в журнале как bypass
   useEffect(() => {
     if (!tourOn) { setTourRects(null); return undefined; }
     let alive = true;

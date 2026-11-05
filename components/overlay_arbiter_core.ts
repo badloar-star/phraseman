@@ -6,6 +6,7 @@ export type OverlayKey =
   | 'legacyBonusWelcome'
   | 'coinRankEnough'
   | 'sectionOpening'
+  | 'peakTour'
   | 'update'
   | 'releaseNotes'
   | 'broadcast'
@@ -67,6 +68,9 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   // sectionOpening — праздничное окно «Открытие раздела» (владелец 04.11, макет одобрен): закрывает человек (CTA / «Пропустить»), выселять нельзя;
   // после запусковых и информационных окон, перед наградами уровня. Нативный <Modal> (NATIVE_MODAL_KEYS).
   'sectionOpening',
+  // peakTour — тур первого входа в Пик (владелец 05.11: «такое нельзя допускать» — шторка тура встала поверх приветствия): порядок
+  // «приветствие > открытие раздела > тур Пика > праздники». Закрывает человек («Далее»/«Пропустить»/«Начать»), выселять нельзя; нативный <Modal> (NATIVE_MODAL_KEYS).
+  'peakTour',
   'levelUp',
   'themedAlert',
   'premiumCelebration',
@@ -155,6 +159,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'notifNudge',
   'introFullAccess',
   'sectionOpening',
+  'peakTour',
   'levelUp',
   'premiumCelebration',
   'vipCelebration',
@@ -199,6 +204,7 @@ export function isForceEvictable(key: OverlayKey | null): boolean {
 export const EMPTY_OVERLAY_WANTS: WantsMap = {
   onboardingWelcome: false,
   authRecovery: false,
+  peakTour: false,
   spireWeekMoment: false,
   welcomeBack: false,
   legacyBonusWelcome: false,

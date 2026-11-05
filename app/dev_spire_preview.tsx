@@ -103,7 +103,7 @@ function Inner() {
     return () => setDevAppearance(previous);
   }, [params.appearance]);
   console.log('[PEAK-B] параметры превью', JSON.stringify({ peakB: params.peakB ?? null, state: params.state ?? null, dev: typeof __DEV__ !== 'undefined' ? __DEV__ : 'нет' })); // guard-ok: диагностика 05.11 (одна строка на рендер превью)
-  setPeakTourDevOff(params.tour === 'off');
+  setPeakTourDevOff(params.tour === 'off' || params.state === 'welcome'); // зачем (владелец 05.11): в превью приветствия тур Пика выключен — кадр не должен показывать два окна сразу
   setPeakScreenV2DevOverride(params.peakB === '1' ? true : null); // зачем (Сверка 05.11): ?peakB=1 — живой экран Пика сразу в варианте B, только dev
   const model = useMemo(() => spirePreviewModel(state, overrides), [state, overrides]);
   const step = isSpireStepPreviewState(state);

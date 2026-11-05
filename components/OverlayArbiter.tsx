@@ -223,8 +223,26 @@ export function useOverlayVisible(key: OverlayKey, ownState: boolean): boolean {
     };
   }, [key, ownState, setWants]);
 
-  if (disabled) return ownState;
-  return ownState && active === key;
+  const shown = disabled ? ownState : ownState && active === key;
+  // зачем (владелец 05.11: приветствие и тур Пика на одном кадре): по каждому окну — просит ли слот, выдан ли он, кто держит сейчас.
+  // Пишем только при смене просьбы/показа (редко); «shown без слота» (disabled/нет провайдера) видно по hasSlot=false.
+  useEffect(() => {
+    if (!ownState && !shown) return;
+    console.log('[OVERLAY-STACK]', shown ? 'show' : 'wait', JSON.stringify({ key, wants: ownState, hasSlot: !disabled && active === key, holder: active, arbiter: disabled ? 'absent' : 'on' })); // guard-ok: трассировка очереди окон
+  }, [key, ownState, shown, active, disabled]);
+  return shown;
+}
+
+/**
+ * Для окон, которые идут МИМО арбитра осознанно (dev-превью force): пишет в тот же журнал, что окно показано без слота и кто слот держит.
+ * Видно в [OVERLAY-STACK] как bypass=true — по этой строке находят наложения.
+ */
+export function useOverlayBypassLog(key: string, shown: boolean): void {
+  const { active } = useOverlayArbiter();
+  useEffect(() => {
+    if (!shown) return;
+    console.log('[OVERLAY-STACK]', 'bypass', JSON.stringify({ key, bypass: true, holder: active })); // guard-ok: окно мимо арбитра
+  }, [key, shown, active]);
 }
 
 /** Кто сейчас держит слот арбитра (для логов хостов; без подписки на желающих). */

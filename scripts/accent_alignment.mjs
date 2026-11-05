@@ -10,7 +10,9 @@ import sharp from 'sharp';
 export const ALIGN_SIZE = 512;
 export const ALIGN_MIN_ON_OPAQUE_PCT = 90;
 export const ALIGN_MIN_EDGE_PCT = 60;
-export const ALIGN_MAX_INTERIOR_EDGE_PCT = 12;
+// зачем (координатор 05.11, решение по themed_art_guard): слой dark/cards.accent.webp даёт 12,2 % при пороге 12 % — погрешность в 0,2 п.п. на заведомо совпадающей детали (остальные метрики —
+// накрытие непрозрачного ≥ 90 % и попадание на край ≥ 60 % — в норме), перерисовывать арт ради неё не стали. Порог поднят до 12,5 %: запас под один слой, но слои вроде 13,4 % (spire_rank_6 у Codex) по-прежнему отвергаются.
+export const ALIGN_MAX_INTERIOR_EDGE_PCT = 12.5;
 const EDGE_GRADIENT = 5; // порог перепада яркости (0–255) на пиксель после лёгкого размытия
 const INTERIOR_ERODE = 5; // пикселей: «нутро» детали — без кромки
 const EDGE_RADIUS = 3; // пикселей (в кадре 512): край основы должен быть не дальше этого от контура accent

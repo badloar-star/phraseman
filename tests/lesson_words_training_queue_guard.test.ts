@@ -74,8 +74,9 @@ describe('lesson words training queue guard', () => {
   });
 
   it('waits for stored progress before mounting vocabulary training', () => {
-    expect(source).toContain('const [wordProgressReady, setWordProgressReady] = useState(false);');
-    expect(source).toContain('setWordProgressReady(false);');
+    // перепривязка 05.11 (правило владельца «каждый раздел открывается мгновенно»): готовность берётся из кэша сразу — прогретый кэш = без заглушки; пустой кэш по-прежнему ждёт хранилище
+    expect(source).toContain('const [wordProgressReady, setWordProgressReady] = useState(() => lessonWordsProgressCache.has(storageKey));');
+    expect(source).toContain('setWordProgressReady(primed);'); // при смене урока готовность = «прогресс уже в памяти» (а не безусловное false): значение решает, ждать ли чтения
     expect(source).toContain('setWordProgressReady(true);');
     expect(source).toContain('!wordProgressReady ? (');
     expect(source).toContain('testID="lesson-words-training-progress-loading"');

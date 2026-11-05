@@ -7,7 +7,37 @@ import { PaywallPlanRows, PaywallPlanRowsSkeleton } from '../components/paywall/
 import { PaywallPlusDock, PaywallPlusHeader } from '../components/paywall/PaywallPlus';
 import { PaywallServerRefusedDock } from '../components/paywall/PaywallServerRefusedDock';
 
-jest.mock('react-native', () => jest.requireActual('react-native/index.js'));
+// зачем (05.11, KNOWN_ISSUES_paywall_c_native_render): в jest этого репозитория нет пресета React Native, поэтому `requireActual('react-native/index.js')` падал на импорте
+// (SyntaxError: Cannot use import statement) ДО первого утверждения. Рисуем компоненты на ручной подмене react-native — тем же приёмом, что tests/community_podium_navigation.test.tsx.
+jest.mock('react-native', () => {
+  const flatten = (style: unknown): Record<string, unknown> => (Array.isArray(style)
+    ? Object.assign({}, ...(style as unknown[]).map(flatten))
+    : (style && typeof style === 'object' ? (style as Record<string, unknown>) : {}));
+  return {
+    View: 'View', Text: 'Text',
+    // Pressable ведёт себя как настоящий: при disabled нажатие не доходит (иначе тест «busy locks» не отличает заблокированную кнопку)
+    Pressable: ({ disabled, onPress, children, ...rest }: { disabled?: boolean; onPress?: () => void; children?: unknown }) =>
+      require('react').createElement('View', { ...rest, onPress: disabled ? undefined : onPress, onStartShouldSetResponder: () => !disabled }, children),
+    ScrollView: 'ScrollView', ActivityIndicator: 'ActivityIndicator', Image: 'Image',
+    Platform: { OS: 'ios', select: (o: Record<string, unknown>) => o.ios ?? o.default },
+    StyleSheet: { create: (s: unknown) => s, flatten, absoluteFill: {}, absoluteFillObject: {}, hairlineWidth: 1 },
+    useWindowDimensions: () => ({ width: 390, height: 844, scale: 2, fontScale: 1 }),
+    PixelRatio: { get: () => 2, getFontScale: () => 1 },
+    I18nManager: { isRTL: false },
+    AccessibilityInfo: { isReduceMotionEnabled: () => Promise.resolve(false), addEventListener: () => ({ remove: () => undefined }) },
+    Linking: { openURL: () => Promise.resolve() },
+    // Animated нужен PaywallCBenefits (Animated.Value/sequence/timing/View): значения мгновенно «закончены», анимации в этом тесте не предмет
+    Animated: {
+      Value: class { constructor(public v: number) {} setValue(n: number): void { this.v = n; } interpolate(): number { return this.v; } },
+      View: 'View', Text: 'Text',
+      timing: () => ({ start: (cb?: (r: { finished: boolean }) => void) => cb?.({ finished: true }), stop: () => undefined }),
+      delay: () => ({ start: (cb?: (r: { finished: boolean }) => void) => cb?.({ finished: true }), stop: () => undefined }),
+      sequence: () => ({ start: (cb?: (r: { finished: boolean }) => void) => cb?.({ finished: true }), stop: () => undefined }),
+      parallel: () => ({ start: (cb?: (r: { finished: boolean }) => void) => cb?.({ finished: true }), stop: () => undefined }),
+    },
+    AppState: { addEventListener: () => ({ remove: () => undefined }), currentState: 'active' },
+  };
+});
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
 jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: () => null }));
 jest.mock('../components/SkeletonShimmer', () => ({ __esModule: true, default: () => null }));
@@ -74,9 +104,10 @@ describe('native C component rendering', () => {
         monthlyPromo={null} yearlyPriceSource="store" monthlyPriceSource="cache" savingsPct={20}
       />,
     );
-    expect(view.getByText('R$ 999,99')).toBeTruthy();
+    // перепривязка 05.11 (макет «Все окна Plus», вариант 3, слово владельца «1 в 1»): сумма идёт с периодом в одной строке («R$ 999,99 per year»), поэтому ищем по началу строки; зачёркнутая стандартная цена — отдельным текстом
+    expect(view.getByText(/^R\$ 999,99/)).toBeTruthy();
     expect(view.getByText(longYear)).toBeTruthy();
-    expect(view.getByText(longMonth)).toBeTruthy();
+    expect(view.getByText(new RegExp(`^${longMonth}`))).toBeTruthy();
     expect(view.getByTestId('paywall-plan-yearly-trial')).toBeTruthy();
     expect(view.getByTestId('paywall-plan-monthly-trial')).toBeTruthy();
     expect(view.getByTestId('paywall-plan-yearly')).toHaveStyle({ flex: 1, minWidth: 0 });

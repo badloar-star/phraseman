@@ -84,7 +84,21 @@ function applyIntroOverrides(blocks, lang, n) {
     const ov = INTRO_OVERRIDES[key];
     if (!ov) return b;
     introOverrideUsed.add(key);
-    return { ...b, ...ov };
+    // зачем: у блоков архива заголовки и тексты могут лежать в titleByLocale/textByLocale (introText читает их первыми) — правим и их, иначе оверрайд не виден в сборке
+    const out = { ...b, ...ov };
+    for (const kind of ['title', 'text']) {
+      const byLoc = out[`${kind}ByLocale`];
+      if (!byLoc) continue;
+      const next = { ...byLoc };
+      for (const [field, val] of Object.entries(ov)) {
+        const m = new RegExp(`^${kind}([A-Za-z]+)$`).exec(field);
+        if (!m) continue;
+        const loc = LOCALES.find((l) => [].concat(INTRO_SUFFIX[l]).includes(m[1]));
+        if (loc) next[loc] = val;
+      }
+      out[`${kind}ByLocale`] = next;
+    }
+    return out;
   });
 }
 process.on('exit', () => {

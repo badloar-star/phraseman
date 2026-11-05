@@ -688,5 +688,649 @@
         ]
       }
     ]
+  },
+  "es:01:intro:1": {
+    "titleRU": "Правило",
+    "textRU": "В испанском есть два глагола «быть». Estar описывает место и временное состояние, ser — кто или что кто-то есть. Для того, где кто-то находится, выбираем estar: Estoy aquí. Русский переводит оба глагола одинаково («я здесь»), поэтому различие легко пропустить. Формы меняются по лицу: estoy — я, estás — ты, está — он, она или вы, estamos — мы, están — они. Слово aquí («здесь») не меняется. На первом уроке исключений нет: всё, что говорит о положении, — это estar.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Для места и состояния выбираем estar.",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Estoy aquí.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Я здесь.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:01:intro:2": {
+    "titleRU": "Как строится",
+    "textRU": "Сначала определи, о ком речь, и выбери форму estar по лицу. Затем добавь место или состояние. Если подлежащее названо именем, форма такая же, как для he, she: Ana está en casa. Во множественном числе для двух и более людей или предметов — están.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "(кто или что) + estoy / estás / está / estamos / están + место",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Estoy aquí.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Я здесь.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Estás en casa.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ты дома.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Ana y Luis están aquí.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ана и Луис здесь.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:01:intro:3": {
+    "titleRU": "Типичные ошибки и примеры",
+    "textRU": "Две ошибки встречаются чаще всего: ставить два глагола подряд и брать ser для места. Для места всегда estar, даже если русское «быть» звучит одинаково.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Неверно: Estoy es aquí. Верно: Estoy aquí. Два глагола подряд не нужны.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Неверно: Soy aquí. Верно: Estoy aquí. Soy — от ser, для места нужен estar.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Está en el trabajo.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Он на работе.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:02:intro:1": {
+    "titleRU": "Правило",
+    "textRU": "Отрицание с estar строится просто: no ставится перед глаголом. No estoy en casa — «я не дома». В отличие от английского, do не нужен совсем. Важно: no не делает фразу ответом «Нет, …». Для ответа нужна пауза и запятая, а в обычной фразе их нет. Ana no está aquí — «Аны здесь нет». Порядок слов тот же, что в утверждении, только добавляется no.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Отрицание: no перед формой estar.",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "No estoy en casa.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Я не дома.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:02:intro:2": {
+    "titleRU": "Как строится",
+    "textRU": "Схема: кто или что, затем no, затем форма estar, затем место. Не ставь no после глагола и не добавляй второй глагол.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "(кто или что) + no + форма estar + место",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "No estoy en casa.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Я не дома.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Ana no está aquí.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Аны здесь нет.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "No estamos en el hotel.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Мы не в отеле.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:02:intro:3": {
+    "titleRU": "Типичные ошибки и примеры",
+    "textRU": "Чаще всего no ставят не на то место. Ещё одна ошибка: no в начале фразы без паузы звучит как «Нет, …» и меняет смысл.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Неверно: Ana está no aquí. Верно: Ana no está aquí. No стоит перед глаголом.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Неверно: No, estoy en casa, если хотите сказать «я не дома». Верно: No estoy en casa. Первое — ответ «Нет, я дома».",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Ana no está aquí.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Аны здесь нет.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:03:intro:1": {
+    "titleRU": "Правило",
+    "textRU": "Вопрос в испанском строится почти так же, как утверждение: меняются знаки и интонация. Знак ¿ ставится в начале, ? — в конце. Слова могут остаться теми же: Estás en casa. → ¿Estás en casa? В речи важна вопросительная интонация. Русский в простом вопросе тоже не переставляет слова, поэтому переход здесь почти незаметен.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Вопрос: ¿ в начале, ? в конце.",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "¿Estás en casa?",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ты дома?",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:03:intro:2": {
+    "titleRU": "Как строится",
+    "textRU": "Схема: ¿ + форма estar + кто или что + место + ?. Знак ¿ обязателен в начале, даже если фраза короткая. После вопросительного знака точка не нужна.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "¿ + форма estar + (кто или что) + место + ?",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "¿Estás en casa?",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ты дома?",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "¿Está Ana en casa?",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ана дома?",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "¿Están aquí?",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Они здесь?",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:03:intro:3": {
+    "titleRU": "Типичные ошибки и примеры",
+    "textRU": "Две ошибки встречаются чаще всего: забыть ¿ в начале и поставить точку вместо знака вопроса. Без ¿ фраза читается как утверждение, даже если интонация вопросительная.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Неверно: Estás en casa? Верно: ¿Estás en casa? Знак ¿ нужен в начале.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Неверно: ¿Estás en casa. Верно: ¿Estás en casa? Точка вместо вопросительного знака не работает.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "¿Está Ana en casa?",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ана дома?",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:04:intro:1": {
+    "titleRU": "Правило",
+    "textRU": "Для того, кто ты такой, как тебя зовут и какая у тебя профессия, используется ser. Soy Ana — «Я Ана». Ser описывает постоянное: имя, происхождение, профессию. Estar описывает место и временное состояние. Русское «быть» здесь не различает эти глаголы, поэтому они легко путаются. Для профессии тоже ser: Ana es médica — «Ана врач».",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Имя, профессия, постоянный признак — ser.",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Soy Ana.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Я Ана.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:04:intro:2": {
+    "titleRU": "Как строится",
+    "textRU": "Схема: кто + форма ser + имя или профессия. Формы: soy — я, eres — ты, es — он, она или вы, somos — мы, son — они. Не ставь ещё один глагол после soy: форма уже является глаголом.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "(кто) + форма ser + имя или профессия",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Soy Ana.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Я Ана.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Ana es médica.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ана врач.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Somos estudiantes.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Мы студенты.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "es:04:intro:3": {
+    "titleRU": "Типичные ошибки и примеры",
+    "textRU": "Чаще всего ошибаются, ставя estar вместо ser для профессии или имени. Второй частый промах — два глагола подряд.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Неверно: Estoy médica. Верно: Soy médica. Профессия — с ser.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Неверно: Soy estoy Ana. Верно: Soy Ana. Два глагола подряд не нужны.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Soy estudiante.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Я студент.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "Eres muy amable.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ты очень добрый.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
   }
 }

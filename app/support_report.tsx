@@ -205,6 +205,23 @@ export default function SupportReportScreen() {
                 style={{ minHeight: 118, borderRadius: 14, boxShadow: plateBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */, paddingVertical: 12, paddingHorizontal: 14, backgroundColor: glass.plateFillFrom, color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(21), fontWeight: '400' }}
               />
 
+              {/* зачем (раунд 2 UX, Настройки п.7, одобрено владельцем 05.11): «Подставить шаблон» — три коротких строки-подсказки в пустое поле, чтобы человек сразу писал по делу; уже написанный текст не трогаем */}
+              {description.trim().length === 0 ? (
+                <PressableHybrid
+                  testID="support-report-template"
+                  accessibilityRole="button"
+                  onPress={() => setDescription(L('Что я делал(а):\nЧто ожидал(а):\nЧто произошло:\n', 'Що я робив(ла):\nЩо очікував(ла):\nЩо сталося:\n', 'What I did:\nWhat I expected:\nWhat happened:\n', 'Lo que hice:\nLo que esperaba:\nLo que pasó:\n', 'O que eu fiz:\nO que eu esperava:\nO que aconteceu:\n', 'Tôi đã làm:\nTôi mong đợi:\nĐiều đã xảy ra:\n', 'Yang saya lakukan:\nYang saya harapkan:\nYang terjadi:\n', 'Ne yaptım:\nNe bekliyordum:\nNe oldu:\n', 'Co zrobiłem(am):\nCo oczekiwałem(am):\nCo się stało:\n'))}
+                  withHaptic={false}
+                  withSound={false}
+                  style={{ marginTop: 10, alignSelf: 'flex-start' }}
+                  contentStyle={{ minHeight: 44, borderRadius: 22, backgroundColor: glass.buttonFill, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}
+                >
+                  <Text style={{ color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '700' }}>
+                    {L('Подставить шаблон', 'Підставити шаблон', 'Insert a template', 'Insertar plantilla', 'Inserir modelo', 'Chèn mẫu', 'Sisipkan templat', 'Şablon ekle', 'Wstaw szablon')}
+                  </Text>
+                </PressableHybrid>
+              ) : null}
+
               <View testID="support-diagnostics-disclosure" style={{ marginTop: 12, borderRadius: 14, boxShadow: plateBoxShadow(glass), paddingVertical: 14, paddingHorizontal: 16 }}>
                 <PlateFill g={glass} radius={14} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>

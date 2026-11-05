@@ -2951,6 +2951,14 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     () => currentItem ? buildCard(currentItem.word, currentItem.roundIndex, words, lang) : undefined,
     [currentItem, words, lang],
   );
+  const trainingMountedAtRef = useRef(Date.now());
+  const firstQuestionLoggedRef = useRef(false);
+  useEffect(() => {
+    if (firstQuestionLoggedRef.current) return;
+    // зачем (сперва логи): когда у тренировки появился первый вопрос — размер очереди и слов решают, из-за чего ждали «Готовим тренировку…»
+    console.log(`[LESSON-WORDS] training state ms=${Date.now() - trainingMountedAtRef.current} hasCurrent=${Boolean(current)} queue=${validQueue.length} words=${words.length} learned=${learnedCnt}`); // guard-ok: трасса ожидания экрана слов
+    if (current) firstQuestionLoggedRef.current = true;
+  }, [current, validQueue.length, words.length, learnedCnt]);
   useEffect(() => {
     if (!current) return;
     attempts.updateQuestion(`${current.word.en}:${current.roundIndex}:${current.roundType}`);
@@ -3693,9 +3701,13 @@ function LessonWords() {
 
   useEffect(() => {
     let cancelled = false;
+    // зачем (Макеты 05.11: «Vocabulary грузится 7 с, Preparing practice…»; сперва логи): сколько занимает чтение прогресса слов и что в нём
+    const progressReadStartedAt = Date.now();
+    console.log(`[LESSON-WORDS] progress read start key=${storageKey} lesson=${lessonId} cached=${lessonWordsProgressCache.has(storageKey)}`); // guard-ok: трасса ожидания экрана слов
     AsyncStorage.getItem(storageKey)
       .then(v => {
         if (cancelled) return;
+        console.log(`[LESSON-WORDS] progress read done ms=${Date.now() - progressReadStartedAt} bytes=${v ? v.length : 0}`); // guard-ok: трасса ожидания экрана слов
         const counts = parseLessonWordCounts(v, lessonId);
         lessonWordsProgressCache.set(storageKey, counts);
         if (v && JSON.stringify(counts) !== v) {

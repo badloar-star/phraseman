@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
-describe('закрытые разделы показывают RankLockedSection', () => {
+describe('закрытые разделы подключают RankLockedSection (тихий возврат на Главную)', () => {
   it.each([
     ['Видео', 'app/(tabs)/video.tsx', "surface=\"video\""],
     ['Диалоги', 'app/ai_dialog_home.tsx', "surface=\"dialogues\""],
@@ -20,14 +20,11 @@ describe('закрытые разделы показывают RankLockedSection
     expect(src).toContain('spireVisible && !peakLocked');
     expect(src).toContain("peakAccess.status === 'locked'");
   });
-  it('экран закрытого раздела: заголовок «Откроется с ранга N» на 9 языках и кнопка «К занятиям»', () => {
+  // зачем (СЛОВО ВЛАДЕЛЬЦА 05.11): экран-заглушка «Откроется с ранга N» убран — закрытый маршрут тихо возвращает на Главную (сторож — owner_locks_closed_sections_absent_2026_11_05)
+  it('закрытый маршрут ничего не рисует и тихо возвращает на Главную с логом [RANK-GATE] closed_route_redirect', () => {
     const src = read('components/home/v2/RankLockedSection.tsx');
-    for (const lang of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) expect(src).toContain(`${lang}:`);
-    expect(src).toContain("router.replace('/(tabs)/lessons'");
-  });
-  it('вторая кнопка «Открыть все с Plus» ведёт в существующий пейвол generic с источником rank_locked', () => {
-    const src = read('components/home/v2/RankLockedSection.tsx');
-    expect(src).toContain("openPremiumPaywall(router as never, { context: 'generic', source: 'rank_locked' })");
-    expect(read('app/paywall_entry_contract.ts')).toContain("'rank_locked'");
+    expect(src).toContain("router.replace('/(tabs)/home' as never)");
+    expect(src).toContain('[RANK-GATE] closed_route_redirect');
+    expect(src).toContain('return null;');
   });
 });

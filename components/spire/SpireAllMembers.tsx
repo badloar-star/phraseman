@@ -23,7 +23,7 @@ import V2Pressable from '../v2/V2Pressable';
 import type { PlayerInfo } from '../PlayerProfileModal';
 import SpirePlayerCard from './scene/SpirePlayerCard';
 import { spireText } from './spire_strings';
-import { spireCoinsCount, spireGroupThousands, spireStepsCount, spireStepsShort } from './spire_plurals';
+import { spireCoinsCount, spireGroupThousands } from './spire_plurals';
 import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
 import ScreenBackButton, { SCREEN_BACK_RESERVED, SCREEN_BACK_SIZE, ScreenOriginReset } from '../v2/ScreenBackButton';
 
@@ -35,7 +35,7 @@ type Zone = SpireZone;
 
 type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle?: string; onBack: () => void; rankBy?: SpireRankByView }>;
 
-function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: Props) {
+function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'coins' }: Props) {
   const p = useSpirePalette();
   const insets = useStableSafeAreaInsets();
   const [player, setPlayer] = useState<PlayerInfo | null>(null);
@@ -61,12 +61,12 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
             accessibilityRole="button"
             onPress={() => setPlayer({
               uid: m.uid, name: m.name, isMe: m.isMe,
-              points: rankBy === 'coins' ? (m.weekCoins ?? 0) : m.steps,
+              points: m.weekCoins ?? 0,
               coinRank: m.coinRank ?? null, isPremium: m.isPremium === true,
             })}
             style={[s.row, m.isMe ? { backgroundColor: p.cardRaised } : null]}
             accessible
-            accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : spireStepsCount(lang, m.steps)}`}
+            accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${spireCoinsCount(lang, m.weekCoins ?? 0)}`}
           >
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
             <SpireRankCoin rank={m.coinRank} size={40} plus={m.isPremium} />
@@ -76,7 +76,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
             </View>
             {zone === 'up' ? <Ionicons name="arrow-up" size={16} color={p.correct} /> : null}
             {zone === 'down' ? <Ionicons name="arrow-down" size={16} color={p.wrong} /> : null}
-            <Text style={[s.steps, { color: p.text }]}>{rankBy === 'coins' ? spireGroupThousands(m.weekCoins ?? 0) : m.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {rankBy === 'coins' ? runeWord(lang, m.weekCoins ?? 0) : spireStepsShort(lang, m.steps)}</Text></Text>
+            <Text style={[s.steps, { color: p.text }]}>{spireGroupThousands(m.weekCoins ?? 0)}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {runeWord(lang, m.weekCoins ?? 0)}</Text></Text>
           </V2Pressable>
         ))}
       </View>

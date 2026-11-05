@@ -56,7 +56,8 @@ describe('Пик: доступность (TalkBack)', () => {
     expect(podium).toContain('accessibilityRole="header"');
     expect(podium).toContain('accessibilityLabel={allLabel}');
     // зачем (D162): подпись подиума — монеты недели при rankBy='coins', иначе ступени; место и имя на месте
-    expect(podium).toContain("accessibilityLabel={`${place}. ${m.name}, ${rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : spireStepsCount(lang, m.steps)}`}");
+    // зачем (владелец 05.11: только монеты, ни слова про ступени): подпись места на подиуме — монеты недели
+    expect(podium).toContain("accessibilityLabel={`${place}. ${m.name}, ${spireCoinsCount(lang, m.weekCoins ?? 0)}`}");
     expect(read('components/spire/SpireAllMembers.tsx')).toContain("spireText(lang, 'you')");
     expect(read('components/spire/SpireWeekResultCard.tsx')).toContain("accessibilityLabel={`${spireGameText(lang, 'weekResult')}. ${title}. ${sub}`}");
     // V2Pressable сам даёт accessibilityRole="button"

@@ -21,7 +21,7 @@ import SpireTowerDeferred from './SpireTowerDeferred'; // зачем (коорд
 import { spireWeekTopViewBox } from './spire_tower_bounds';
 import { SPIRE_FLOOR_COUNT } from './spire_tower_model';
 import { spireText } from './spire_strings';
-import { spireCoinsCount, spireStepsCount } from './spire_plurals';
+import { spireCoinsCount } from './spire_plurals';
 import { getSpireEnergyBonus } from '../../app/spire_energy_bonus_store';
 import { spireWeekEnergyLine } from './spire_week_energy';
 import { spireGameText } from './spire_game_strings';
@@ -36,10 +36,10 @@ export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView, energyB
   const stone = spireTierName(r.newTier, lang);
   const title = r.promoted ? spireGameText(lang, 'weekUp', { stone }) // guard-ok: показ решения сервера
     : r.demoted ? spireGameText(lang, 'weekDown', { stone }) : spireGameText(lang, 'weekStay', { stone }); // guard-ok: показ решения сервера
+  // зачем (владелец 05.11: «упоминаний ступеней вообще не должно быть»): очки итога — только монеты недели; итог прошлой недели «по ступеням» (старый серверный режим) показывает одно место, без слова про ступени
   const parts = [
     r.roomRank > 0 ? spireGameText(lang, 'placeN', { n: r.roomRank }) : '—',
-    // зачем (D162): итог по монетам недели — показываем монеты, иначе ступени (как решал сервер)
-    r.rankBy === 'coins' ? spireCoinsCount(lang, r.weekCoins ?? 0) : spireStepsCount(lang, r.steps),
+    ...(r.rankBy === 'coins' ? [spireCoinsCount(lang, r.weekCoins ?? 0)] : []),
   ];
   const coins = [r.placeCoins, r.promotionCoins].filter((c) => c > 0);
   if (coins.length > 0) parts.push(`${coins.map((c) => `+${c}`).join(' · ')} ${spireGameText(lang, 'coins')}`);

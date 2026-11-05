@@ -273,7 +273,7 @@ export default function SpireHomeScreen() {
   const scene = useSpireSceneTop({ lang, members, rankBy: game.rankBy, roomSearching: podiumSkeleton, offline, plus: hasPremiumAccess, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, floor: myFloor, stepInFloor: shownStepInFloor, coins: config?.coins ?? null, active: runtimeOwnerId === 'spire' }); // зачем (Пик v2, владелец 22.10): «Сцена» за флагом SPIRE_SCENE_V2_ENABLED; null — прежний верх экрана
   const sceneScroll = useSpireSceneScroll(scene !== null, runtimeOwnerId === 'spire'); // зачем (3b-3): прокрутка гасит цвет шапки «Сообщества», как маска Главной
   useSpireScrollStateLog({ scrollEnabled: !towerTouch.locked, scene: scene !== null, config: config !== null, unlocked, roomLoad: game.roomLoad?.status ?? null, members: members?.length ?? null, owner: runtimeOwnerId, tailPad: roundLayout(tailPad) }); // [SPIRE-SCROLL]: что решает прокрутку страницы
-  const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, game.rankBy === 'coins' ? 'rankedByCoins' : 'rankedBySteps')}`;
+  const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)}`;
   const headerOverlayInset = useSpireHeaderOverlayInset(); // зачем: хук до ранних return (замок/скелет) — иначе число хуков меняется между рендерами и вкладка Пика падает «Rendered more hooks…»
 
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул

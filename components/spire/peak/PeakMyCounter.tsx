@@ -6,7 +6,6 @@ import type { Lang } from '../../../constants/i18n';
 import { useSpirePalette } from '../useSpirePalette';
 import { spireGameText } from '../spire_game_strings';
 import { spireGroupThousands } from '../spire_plurals';
-import { spireStepsCount } from '../spire_plurals';
 import type { PeakMe, PeakRankBy } from '../../../modules/spire/peak_model';
 
 // loading — комната ещё не прочитана: вместо нулей «—» (владелец: не показывать выдуманные цифры)
@@ -18,7 +17,7 @@ function PeakMyCounter({ lang, me, rankBy = 'coins', loading = false }: Props) {
     <View style={s.row} testID="peak-my-counter">
       {/* зачем (Макеты 05.11, макет B): крупные «744» и «12 место» без подписей над ними; подпись остаётся для диктора (accessibilityLabel) */}
       <View style={s.cell} accessible accessibilityLabel={`${spireGameText(lang, 'peakMyCoins')}: ${loading ? '—' : spireGroupThousands(me.value)}`}>
-        <Text style={[s.value, { color: p.text }]} testID="peak-my-coins">{loading ? '—' : rankBy === 'coins' ? spireGroupThousands(me.value) : spireStepsCount(lang, me.value)}</Text>
+        <Text style={[s.value, { color: p.text }]} testID="peak-my-coins">{loading ? '—' : spireGroupThousands(me.value)}</Text>
       </View>
       <View style={s.cell} accessible accessibilityLabel={`${spireGameText(lang, 'peakMyPlace')}: ${loading || me.place === null ? '—' : String(me.place)}`}>
         <Text style={[s.value, { color: p.text }]} testID="peak-my-place">{loading || me.place === null ? '—' : spireGameText(lang, 'placeN', { n: me.place })}</Text>

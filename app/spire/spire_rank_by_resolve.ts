@@ -10,13 +10,16 @@ let lastLogged: string | null = null;
 
 export function spireResolveRankBy(config: SpireConfigDoc | null, weekId: string | null): Readonly<{ rankBy: SpireRankBy; devRankBy: SpireRankBy | null }> {
   const devRankBy = getDevSpireRankByOverride();
-  const rankBy: SpireRankBy = devRankBy ?? (config && weekId ? spireEffectiveRankBy(config, weekId) : 'steps');
+  // зачем (владелец 05.11, скрины TestFlight 149: «упоминаний ступеней вообще не должно быть, только ЭТАЖЕЙ! Почему не монетки, а ступени?!»): в интерфейсе Пика место и очки — ТОЛЬКО монеты недели.
+  // Режим «по ступеням» в UI недостижим: что бы ни пришло в конфиге сервера или dev-подмене, клиент показывает и сортирует монеты; серверное значение остаётся в журнале.
+  const serverRankBy: SpireRankBy = devRankBy ?? (config && weekId ? spireEffectiveRankBy(config, weekId) : 'coins');
+  const rankBy: SpireRankBy = 'coins';
   // присваивание идемпотентно, сети нет
   setSpireTextRankBy(rankBy);
   const key = `${rankBy}:${devRankBy ?? 'none'}:${weekId ?? 'none'}`;
   if (key !== lastLogged) {
     lastLogged = key;
-    DebugLogger.info('[SPIRE]', `rankBy=${rankBy} dev=${devRankBy ?? 'none'} week=${weekId ?? 'none'} config=${config ? 'есть' : 'нет'} (смена решения)`);
+    DebugLogger.info('[SPIRE]', `rankBy=${rankBy} (сервер/dev: ${serverRankBy}) dev=${devRankBy ?? 'none'} week=${weekId ?? 'none'} config=${config ? 'есть' : 'нет'} (смена решения)`);
   }
   return { rankBy, devRankBy };
 }

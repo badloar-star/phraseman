@@ -39,8 +39,8 @@ assert.ok(player.includes('effect === "play_practice_audio_after_continue"'));
 assert.ok(player.includes("practiceAudioAutoplayToken"));
 
 const overlay = read("components/learning-v2/LearningV2NewWordEncounterOverlay.tsx");
-assert.ok(overlay.includes("ugcCardChrome"));
-assert.ok(overlay.includes("UGC_CARD_THEME_IDS"));
+// зачем (Learning V2, 05.11): карточка «Новое слово» с 22.10 (f3aae7168, закон владельца «цвета строго из текущей темы») берёт тона ТЕКУЩЕЙ темы, а не наборов UGC-тем —
+// прежние проверки ugcCardChrome / UGC_CARD_THEME_IDS устарели (темы наборов в карточке не используются) и роняли гейт; жёсткие цвета старого вида по-прежнему запрещены строками ниже.
 assert.ok(!overlay.includes('bgCard: "#211C36"'));
 assert.ok(!overlay.includes('backgroundColor: "rgba(16, 13, 29, 0.86)"'));
 assert.ok(!/cardBookmark:\s*\{[\s\S]{0,220}borderWidth:/u.test(overlay));

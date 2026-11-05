@@ -3,7 +3,7 @@
 // Начнём с эпизода E», «К главе N» и «Разбор ошибок»; не сдал — «Где споткнулся» (до 3 тем с эпизодами и числом ошибок), «Повторить эти
 // темы» и «Пересдать через N мин». «Повтори эти темы» — эпизоды слабых тем: повторил все — «Пересдать экзамен» сразу.
 import React from 'react';
-import { Image, PixelRatio, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 
@@ -14,8 +14,7 @@ import { lv2TaskTokens } from '../learning_v2_task_theme_tokens';
 import { learningV2ChapterIonIcon } from '../icons/learningV2IonIcons';
 import { learningV2ChapterExamFailedTitle, learningV2ChapterExamResultCopy } from '../learning_v2_chapter_exam_result_copy';
 import { learningV2ChapterSceneV1 } from '../../../modules/learning-v2/content/session_titles_v1.generated';
-import { useMyCoinRank } from '../../../hooks/use_my_coin_rank';
-import { coinRankSourceForSize } from '../../../app/coin_rank_table_v1';
+import MyRankCoin from '../../rank/MyRankCoin'; // зачем (владелец 05.11: «монета строго по рангу»): общая монета ранга — до чтения ранга показывает последний известный из кэша, без мелькания бронзы
 import type { ChapterExamV2Bank, ChapterExamV2Item, ChapterExamV2Result, ChapterExamV2WeakPoint } from '../../../modules/learning-v2/exam/chapter_exam_v2';
 import type { ChapterExamV2AnswerRecord } from './ChapterExamV2Question';
 import { chapterExamV2Copy, chapterExamV2EpisodesWord, chapterExamV2ErrorsWord } from './chapter_exam_v2_copy';
@@ -53,7 +52,6 @@ export function ChapterExamV2ResultView(p: ResultProps) {
   const c = useChapterExamV2Colors();
   const card = { backgroundColor: c.card, boxShadow: t.taskPlateShadow as never };
   const enter = useEnter();
-  const coinRank = useMyCoinRank();
   const { correct, total, passed, weakPoints } = p.result;
   const wrong = p.answers.filter((a) => !a.correct).length;
   const next = p.bank.chapterOrdinal < 7 ? p.bank.chapterOrdinal + 1 : null;
@@ -77,7 +75,7 @@ export function ChapterExamV2ResultView(p: ResultProps) {
         </View>
         {passed && p.reward !== null ? (
           <Animated.View entering={enter} style={[styles.rew, { backgroundColor: c.chip }]} testID="chapter-exam-v2-reward">
-            <Image source={coinRankSourceForSize(coinRank ?? 0, 22, PixelRatio.get()).source} style={styles.coin} accessible={false} />
+            <MyRankCoin style={styles.coin} accessible={false} />
             <Text style={[styles.rewText, { color: c.text }]}>{`+${p.reward}`}</Text>
           </Animated.View>
         ) : null}

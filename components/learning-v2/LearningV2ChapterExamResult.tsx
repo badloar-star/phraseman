@@ -3,7 +3,7 @@
 // «Глава N+1 открыта» с обложкой и сценой; не сдал — объяснение и пауза на час. Разбор — карточка на каждую ошибку. Награда «+40»
 // за первую сдачу (reward ≠ null) — сразу: монеты выдаёт телефон, сервер только сохраняет (закон владельца 22.10).
 import React from 'react';
-import { Image, PixelRatio, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import V2Pressable from '../v2/V2Pressable';
@@ -21,8 +21,7 @@ import {
 } from './learning_v2_chapter_exam_result_copy';
 import { learningV2ChapterSceneV1 } from '../../modules/learning-v2/content/session_titles_v1.generated';
 import { CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../modules/learning-v2/exam/chapter_exam_v1';
-import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
-import { coinRankSourceForSize } from '../../app/coin_rank_table_v1';
+import MyRankCoin from '../rank/MyRankCoin'; // зачем (владелец 05.11: «монета строго по рангу»): общая монета ранга — до чтения ранга показывает последний известный из кэша, без мелькания бронзы
 import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 const WHITE = '#FFFFFF'; // theme-exempt: значок на обложке главы, эталон `.minicard { color: #fff }`
@@ -70,7 +69,6 @@ export function LearningV2ChapterExamResultView(p: ResultProps) {
   const scene = next && p.lang === 'ru' ? learningV2ChapterSceneV1(p.lessonOrdinal, next) : null;
   const opened = p.openedRange ? learningV2ChapterExamResultCopy(p.lang, 'openedAlso', { a: p.openedRange.first, b: p.openedRange.last, n: p.chapterOrdinal }) : null;
   const toChapter = p.passed && next ? next : p.chapterOrdinal;
-  const coinRank = useMyCoinRank();
   return (
     <>
       <ScrollView style={styles.flex} contentContainerStyle={styles.res}>
@@ -89,7 +87,7 @@ export function LearningV2ChapterExamResultView(p: ResultProps) {
         </View>
         {p.passed && p.reward !== null ? (
           <View style={[styles.rew, { backgroundColor: t.controlSoft }]} testID="chapter-exam-reward">
-            <Image source={coinRankSourceForSize(coinRank ?? 0, 22, PixelRatio.get()).source} style={styles.coin} />
+            <MyRankCoin style={styles.coin} />
             <Text style={[styles.rewText, { color: g.text }]}>{`+${p.reward}`}</Text>
           </View>
         ) : null}

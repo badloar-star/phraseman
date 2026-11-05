@@ -81,7 +81,8 @@ export function annText(lang: Lang, key: AnnouncementV2StringKey): string {
 
 function leftWord(lang: Lang, days: number): string {
   const base = annText(lang, 'countdownLeft');
-  const one = LEFT_ONE[lang];
+  // зачем (предполётка английского): LEFT_ONE только для ru/uk (согласование «остался/залишився»); для остальных языков — без отдельной формы, чтение защищено
+  const one = LEFT_ONE[lang] ?? null;
   return one ? pluralWord(lang, days, { one, few: base, many: base }) : base;
 }
 

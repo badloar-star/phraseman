@@ -29,6 +29,10 @@ const MINUTE_FORMS: Partial<Record<Lang, Forms>> = {
   ru: ['минуту', 'минуты', 'минут'],
   uk: ['хвилину', 'хвилини', 'хвилин'],
   pl: ['minutę', 'minuty', 'minut'],
+  // зачем (предполётка английского: сторож scan_direct_lang_index): словарь с ru/uk без ключа en — чтение MINUTE_FORMS[lang] падает при включении en; en/es/pt-BR — как у WORD_FORMS
+  en: ['minute', 'minutes', 'minutes'],
+  es: ['minuto', 'minutos', 'minutos'],
+  'pt-BR': ['minuto', 'minutos', 'minutos'],
 };
 
 /** Индекс формы: 0 — один, 1 — «2–4», 2 — «5+». Для en/es/pt-BR 1 и «много» совпадают в таблице (две формы). */

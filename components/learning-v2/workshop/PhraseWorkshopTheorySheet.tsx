@@ -27,7 +27,8 @@ const KIND_LABEL: Readonly<Record<PhraseWorkshopTheoryKind, Readonly<{ ru: strin
   formula: { ru: 'Схема', uk: 'Схема' },
   trap: { ru: 'Ловушка', uk: 'Пастка' },
 };
-const CLOSE_LABEL = { ru: 'Закрыть', uk: 'Закрити' } as const;
+// зачем (предполётка английского): словарь без en ронял бы чтение CLOSE_LABEL[lang] при включении английского интерфейса
+const CLOSE_LABEL = { ru: 'Закрыть', uk: 'Закрити', en: 'Close' } as const;
 
 type Props = Readonly<{
   visible: boolean;

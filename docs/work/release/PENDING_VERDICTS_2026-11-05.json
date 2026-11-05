@@ -182,6 +182,15 @@
    "note": "Итальянский, урок 1, сборка фразы «Окно открыто.» → «La …»: среди плиток английские слова fires, finish, fired, find, favorite (и итальянское finestra). Английские дистракторы в итальянском курсе — дефект пула дистракторов (похоже на подбор по первой букве «fi»). Плашка «DEV: grammar hint» — только dev-сборка.",
    "proposed_by": "3-МАКЕТЫ",
    "confirmed_by": null
+  },
+  "lesson1-es-menu-theory-1017": {
+   "verdict": "match_candidate",
+   "frame": "docs/work/release/frames_2026-11-05/pending/lesson-es/lesson1-theory-es__REAL-viewed-1017-720x1600.png",
+   "viewed_by": "3-МАКЕТЫ 10:18 (Pixel_8_fresh, dev_state studyTarget=es&plus=on, глазами)",
+   "reference": "слово владельца: заглушек нет, названия и теория на месте",
+   "note": "Испанский: список A1 с названиями уроков («Where you and others are», «When someone or something is not there»…), меню урока 1 (Start / Vocabulary 0/28 / Theory), теория «Sections 1/6 · drills 0/12», раздел «I am here»: Estoy aquí — “I am here.”, пояснения, примеры lejos/dentro. Не заглушка. Расхождение с de/it: в es названия уроков есть, в de/it на кадрах 09:03–09:12 было «Lesson N» — перепроверить de/it после обновления данных. Слова урока (вкладка «Vocabulary») не сняты.",
+   "proposed_by": "3-МАКЕТЫ",
+   "confirmed_by": null
   }
  }
 }

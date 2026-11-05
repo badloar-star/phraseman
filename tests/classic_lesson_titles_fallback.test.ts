@@ -9,13 +9,15 @@ const LANGS: readonly Lang[] = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr
 const NUMBERED_TARGETS = ['fr', 'es', 'de', 'it'] as const;
 const WORD: Readonly<Record<string, string>> = { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' };
 
-describe('fr/es/de/it: вместо старых названий — «Урок N»', () => {
-  it.each(NUMBERED_TARGETS)('%s: 32 названия «слово + номер» на всех 9 языках интерфейса', (target) => {
+describe('fr/es/de/it: вместо старых названий — тема урока (запасной вариант «Урок N»)', () => {
+  // зачем (Макеты 05.11: «Lesson 1 без темы»): название урока — тема из theory.json курса на языке интерфейса; «Урок N» только если темы нет
+  it.each(NUMBERED_TARGETS)('%s: 32 названия на всех 9 языках интерфейса — это тема урока, не пустой номер', (target) => {
     for (const lang of LANGS) {
       const names = lessonNamesForStudyTarget(lang, target);
       expect(names).toHaveLength(32);
       names.forEach((name, index) => {
-        expect(name).toBe(`${WORD[lang]} ${index + 1}`);
+        expect(name.trim().length).toBeGreaterThan(0);
+        expect(name).not.toBe(`${WORD[lang]} ${index + 1}`); // тема есть у каждого урока
         expect(lessonNameForStudyTarget(lang, target, index + 1)).toBe(name);
       });
     }

@@ -1,6 +1,7 @@
 import { triLang, type Lang } from '../constants/i18n';
 import { lessonNamesForLang } from '../constants/lessons';
 import { classicCourseActiveFor } from './classic_course_phrases';
+import { CLASSIC_LESSON_TOPICS, type ClassicTopicLang } from './classic_lesson_topics.gen';
 import { FRENCH_LESSON_CURRICULUM, frenchLessonCefrStage, frenchLessonTitle } from './french_lesson_curriculum';
 import type { SourceLocale } from './study_target';
 import type { StudyTargetLang } from './study_target_lang_dev';
@@ -41,9 +42,20 @@ export function classicCourseUsesNumberedTitles(studyTarget: StudyTargetLang): b
   return classicCourseActiveFor(studyTarget) && storageStudyTarget(studyTarget) !== 'en';
 }
 
+/**
+ * зачем (владелец/Макеты 05.11: «в списке и меню уроков de/it «Lesson 1» без темы»): название урока fr/es/de/it — ТЕМА урока на языке интерфейса
+ * (из theory.json через app/classic_lesson_topics.gen.ts); «Урок N» остаётся только запасным вариантом, если темы нет.
+ */
+export function classicLessonTopic(lang: Lang, studyTarget: StudyTargetLang, lessonId: number): string | undefined {
+  const target = storageStudyTarget(studyTarget) as ClassicTopicLang;
+  const titles = CLASSIC_LESSON_TOPICS[target]?.[lessonId];
+  if (!titles) return undefined;
+  return titles[lang] || titles.en || titles.ru;
+}
+
 export function lessonNamesForStudyTarget(lang: Lang, studyTarget: StudyTargetLang): readonly string[] {
   if (classicCourseUsesNumberedTitles(studyTarget)) {
-    return Array.from({ length: CLASSIC_FALLBACK_TITLE_LESSON_COUNT }, (_, index) => classicLessonNumberTitle(lang, index + 1));
+    return Array.from({ length: CLASSIC_FALLBACK_TITLE_LESSON_COUNT }, (_, index) => classicLessonTopic(lang, studyTarget, index + 1) ?? classicLessonNumberTitle(lang, index + 1));
   }
   const sourceLocale = sourceLocaleFromLang(lang);
   if (storageStudyTarget(studyTarget) === 'fr' && sourceLocale) {
@@ -58,7 +70,7 @@ export function lessonNameForStudyTarget(
   lessonId: number,
 ): string | undefined {
   if (classicCourseUsesNumberedTitles(studyTarget)) {
-    return lessonId >= 1 && lessonId <= CLASSIC_FALLBACK_TITLE_LESSON_COUNT ? classicLessonNumberTitle(lang, lessonId) : undefined;
+    return lessonId >= 1 && lessonId <= CLASSIC_FALLBACK_TITLE_LESSON_COUNT ? (classicLessonTopic(lang, studyTarget, lessonId) ?? classicLessonNumberTitle(lang, lessonId)) : undefined;
   }
   const sourceLocale = sourceLocaleFromLang(lang);
   if (storageStudyTarget(studyTarget) === 'fr' && sourceLocale) {

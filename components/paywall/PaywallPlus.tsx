@@ -11,7 +11,7 @@
 //  • все цвета — токены АКТИВНОЙ темы (темы бесплатны), своих цветов нет.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useRef } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../constants/i18n';
@@ -57,9 +57,12 @@ const PRIVACY_URL = KNOWLY_LEGAL_PRIVACY_URL;
 function openLegal(url: string): void { openLegalLink(url, 'paywall_plus'); }
 
 // зачем (150, Сверка 05.11: на 10 кадрах окон оплаты нет плиток, цен и ссылок; сперва логи): положение и высота частей окна — шторка, шапка, окно прокрутки, нижняя панель
-export const logPaywallLayout = (part: string) => (e: LayoutChangeEvent): void => {
+// fix — метка версии правки: если её нет в логе устройства, там старый бандл (нужна полная перезагрузка JS с очисткой кэша). Стиль части — flex/flexGrow/flexShrink/height из её стилей.
+const PAYWALL_LAYOUT_FIX = 'noFlexGrow-406692e88+children';
+export const logPaywallLayout = (part: string, style?: StyleProp<ViewStyle>) => (e: LayoutChangeEvent): void => {
   const l = e.nativeEvent.layout;
-  console.log('[PAYWALL-LAYOUT]', JSON.stringify({ part, y: Math.round(l.y), h: Math.round(l.height), w: Math.round(l.width) })); // guard-ok: геометрия частей окна
+  const st = StyleSheet.flatten(style) ?? {};
+  console.log('[PAYWALL-LAYOUT]', JSON.stringify({ fix: PAYWALL_LAYOUT_FIX, part, y: Math.round(l.y), h: Math.round(l.height), w: Math.round(l.width), flex: st.flex ?? null, grow: st.flexGrow ?? null, shrink: st.flexShrink ?? null, styleH: st.height ?? null, minH: st.minHeight ?? null })); // guard-ok: геометрия частей окна
 };
 // ── шапка ───────────────────────────────────────────────────────────────────
 export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeVisible, closeDisabled, onClose, contextTitle, contextSubtitle, contextPill }: {
@@ -220,12 +223,13 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
   const tierText = useTierText();
   const fineText = tierText(notice ? pick(lang, COPY.tryInMinute) : ready ? fine : pick(lang, COPY.fineNoPrices));
   return (
-    <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]} onLayout={logPaywallLayout('dock')}>
+    <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]} onLayout={logPaywallLayout('dock', S.dock)}>
       {/* макет «Все окна Plus»: строка про автопродление — над кнопкой */}
-      <Text testID="paywall-fine" style={[S.fine, { color: g.text }]}>{fineText}</Text>
+      <Text testID="paywall-fine" onLayout={logPaywallLayout('dock_fine', S.fine)} style={[S.fine, { color: g.text }]}>{fineText}</Text>
       {/* Вариант C: плоская кнопка активной темы, без декоративного свечения/3D. */}
       <V2Pressable
         testID="paywall-cta"
+        onLayout={logPaywallLayout('dock_cta', S.cta)}
         accessibilityLabel={tierText(label)}
         accessibilityState={{ disabled: ctaDisabled, busy: purchasing }}
         disabled={ctaDisabled}
@@ -241,20 +245,21 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
       </V2Pressable>
       {restoreVisible || promoVisible ? <View style={S.secondaryActions}>
         {/* зачем (R1_PAYWALL_UX): восстановление видно — крутилка рядом с «Восстанавливаем…»; недоступная ссылка приглушена (раньше не отличалась от активной). */}
-        {restoreVisible ? <V2Pressable testID="paywall-restore" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.restore)} withHaptic={false} scaleTo={0.95} disabled={restoreDisabled} outerStyle={S.secondaryOuter}
+        {restoreVisible ? <V2Pressable testID="paywall-restore" accessibilityRole="button" onLayout={logPaywallLayout('dock_restore', S.secondaryAction)} accessibilityLabel={pick(lang, COPY.restore)} withHaptic={false} scaleTo={0.95} disabled={restoreDisabled} outerStyle={S.secondaryOuter}
           accessibilityState={{ disabled: restoreDisabled, busy: restoring }} onPress={onRestore}
           style={[S.secondaryAction, { opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1 }]}>
           {restoring ? <ActivityIndicator size="small" color={g.text} /> : null}
           <Text style={[S.secondaryActionText, { color: g.text }]}>{restoring ? pick(lang, COPY.restoring) : (PAYWALL_V3_RESTORE[lang] ?? PAYWALL_V3_RESTORE.en)}</Text>
         </V2Pressable> : null}
-        {promoVisible ? <V2Pressable testID="paywall-promo-code" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.enterPromo)}
+        {promoVisible ? <V2Pressable testID="paywall-promo-code" accessibilityRole="button" onLayout={logPaywallLayout('dock_promo', S.secondaryAction)} accessibilityLabel={pick(lang, COPY.enterPromo)}
           accessibilityState={{ disabled: promoDisabled }} withHaptic={false} scaleTo={0.95} disabled={promoDisabled} outerStyle={S.secondaryOuter} onPress={onPromo}
           style={[S.secondaryAction, { opacity: promoDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}>
           <Text style={[S.secondaryActionText, { color: g.text }]}>{pick(lang, COPY.enterPromo)}</Text>
         </V2Pressable> : null}
       </View> : null}
       <View style={S.links}>
-        <V2Pressable accessibilityRole="link" scaleTo={0.95} onPress={() => openLegal(TERMS_URL)} style={S.linkHit}>
+        {/* зачем (журнал геометрии): положение первой ссылки показывает, где кончается нижняя панель; сам ряд — закреплённый тестами фрагмент */}
+        <V2Pressable accessibilityRole="link" scaleTo={0.95} onPress={() => openLegal(TERMS_URL)} onLayout={logPaywallLayout('dock_link_terms', S.linkHit)} style={S.linkHit}>
           <Text style={[S.link, { color: g.text }]}>{pick(lang, COPY.terms)}</Text>
         </V2Pressable>
         <V2Pressable accessibilityRole="link" scaleTo={0.95} onPress={() => openLegal(PRIVACY_URL)} style={S.linkHit}>
@@ -293,7 +298,7 @@ export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
     if (overflow > 0) scrollRef.current?.scrollTo({ y: overflow, animated: false });
   }, []);
   // зачем: окно и содержимое измеряются в любом порядке — подгон считается, когда известны оба
-  const onLayout = useCallback((e: LayoutChangeEvent) => { logPaywallLayout('scroll')(e); viewportRef.current = e.nativeEvent.layout.height; fitToEnd(contentRef.current); }, [fitToEnd]);
+  const onLayout = useCallback((e: LayoutChangeEvent) => { logPaywallLayout('scroll', S.scroll)(e); viewportRef.current = e.nativeEvent.layout.height; fitToEnd(contentRef.current); }, [fitToEnd]);
   return (
     <ScrollView ref={scrollRef} style={S.scroll} contentContainerStyle={S.scrollContent} showsVerticalScrollIndicator={false} decelerationRate="fast"
       onLayout={onLayout} onContentSizeChange={(_w, h) => { contentRef.current = h; fitToEnd(h); }} onScrollBeginDrag={() => { touchedRef.current = true; }}>

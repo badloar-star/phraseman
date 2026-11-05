@@ -31,23 +31,30 @@ cmd //c "rmdir \"$WIN_D\\node_modules\"" >/dev/null 2>&1
 cmd //c "rmdir \"$WIN_D\\functions\\node_modules\"" >/dev/null 2>&1
 rm -rf "$D"; mkdir -p "$D"
 git -c core.autocrlf=false -c core.eol=lf archive "$SHA" | tar -x -C "$D" || { note "ARCHIVE_FAIL"; exit 2; }
-cmd //c "mklink /J \"$WIN_D\\node_modules\" \"$(cygpath -w "$REPO/node_modules")\"" >/dev/null
-cmd //c "mklink /J \"$WIN_D\\functions\\node_modules\" \"$(cygpath -w "$REPO/functions/node_modules")\"" >/dev/null
+REPO_WIN="$(cygpath -w "$REPO")"
+# зачем (Ревизор 05.11, сбой первого прогона): mklink через cmd с кавычками молча не создавал ссылку → tsc/jest не стартовали, а итог был «GREEN».
+# Теперь ссылки через PowerShell + явная проверка, что node_modules на месте; иначе выход с ошибкой.
+powershell -NoProfile -Command "New-Item -ItemType Junction -Path '$WIN_D\\node_modules' -Target '$REPO_WIN\\node_modules' | Out-Null"
+powershell -NoProfile -Command "New-Item -ItemType Junction -Path '$WIN_D\\functions\\node_modules' -Target '$REPO_WIN\\functions\\node_modules' | Out-Null"
+[ -d "$D/node_modules/jest" ] || { echo "JUNCTION_FAIL node_modules" | tee -a "$SUM"; exit 2; }
+[ -d "$D/functions/node_modules/typescript" ] || { echo "JUNCTION_FAIL functions/node_modules" | tee -a "$SUM"; exit 2; }
 ( cd "$D" && git init -q 2>/dev/null && git add -A >/dev/null 2>&1 )
 note "COPY_OK $(date +%H:%M)"
 cd "$D" || exit 2
 
 # 2. tsc приложения и functions
 $SLOT "Ревизор: tsc app $SHA" -- bash -c "NODE_OPTIONS=--max-old-space-size=8192 npx tsc --noEmit --pretty false > '$OUT/tsc_app.txt' 2>&1; echo EXIT=\$? >> '$OUT/tsc_app.txt'"
-E_APP=$(grep -c 'error TS' "$OUT/tsc_app.txt"); note "TSC_APP errors=$E_APP $(tail -1 "$OUT/tsc_app.txt")"; [ "$E_APP" != "0" ] && FAIL=1
+E_APP=$(grep -c 'error TS' "$OUT/tsc_app.txt"); note "TSC_APP errors=$E_APP $(tail -1 "$OUT/tsc_app.txt")"; { [ "$E_APP" != "0" ] || [ "$(tail -1 "$OUT/tsc_app.txt")" != "EXIT=0" ]; } && FAIL=1
 ( cd functions && $SLOT "Ревизор: tsc functions $SHA" -- bash -c "NODE_OPTIONS=--max-old-space-size=6144 npx tsc --noEmit --pretty false > '$OUT/tsc_fn.txt' 2>&1; echo EXIT=\$? >> '$OUT/tsc_fn.txt'" )
-E_FN=$(grep -c 'error TS' "$OUT/tsc_fn.txt"); note "TSC_FUNCTIONS errors=$E_FN $(tail -1 "$OUT/tsc_fn.txt")"; [ "$E_FN" != "0" ] && FAIL=1
+E_FN=$(grep -c 'error TS' "$OUT/tsc_fn.txt"); note "TSC_FUNCTIONS errors=$E_FN $(tail -1 "$OUT/tsc_fn.txt")"; { [ "$E_FN" != "0" ] || [ "$(tail -1 "$OUT/tsc_fn.txt")" != "EXIT=0" ]; } && FAIL=1
 
 # 3. сторожа сборки (+ прогресс классики, звёзды/монеты)
 GUARDS="tests/progress_preservation_owner_lock_2026_11_04.test.ts tests/firestore_rules_security.test.ts tests/pm230_firestore_rules_least_privilege.test.ts tests/energy_state_v2.test.ts tests/classic_courses_pack_2026_11_04.test.ts tests/classic_courses_progress_preserved.test.ts tests/rune_balance_snapshot_preservation_contract.test.ts"
 $SLOT "Ревизор: сторожа $SHA" -- bash -c "npx jest $GUARDS --maxWorkers=2 --no-coverage --no-watchman > '$OUT/guards.txt' 2>&1; echo EXIT=\$? >> '$OUT/guards.txt'"
 grep -E '^(PASS|FAIL)' "$OUT/guards.txt" | sed 's/ (.*//' | while read -r l; do note "GUARD $l"; done
 grep -q '^FAIL' "$OUT/guards.txt" && FAIL=1
+# зачем: сторожа должны реально выполниться — без строк PASS и с EXIT≠0 вердикт красный (раньше «Validation Error» давал GREEN)
+{ [ "$(grep -c '^PASS' "$OUT/guards.txt")" -ge 6 ] && [ "$(tail -1 "$OUT/guards.txt")" = "EXIT=0" ]; } || { note "GUARDS_NOT_GREEN (PASS<6 или EXIT≠0)"; FAIL=1; }
 node --test tests/rank_gates_since_release_cut_guard.test.mjs > "$OUT/rank_gates.txt" 2>&1; RC=$?; note "GUARD rank_gates (без RELEASE_CUT) exit=$RC"; [ "$RC" != "0" ] && FAIL=1
 RELEASE_CUT=1 node --test tests/rank_gates_since_release_cut_guard.test.mjs > "$OUT/rank_gates_cut.txt" 2>&1; RC=$?
 note "GUARD rank_gates (RELEASE_CUT=1) exit=$RC  (красный = срез RANK_GATES_NEW_USERS_SINCE_MS ещё не сделан; после среза 02:15 должен быть 0)"

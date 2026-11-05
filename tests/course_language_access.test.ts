@@ -4,7 +4,7 @@ let mockOwner: string | null = 'owner-a';
 jest.mock('../app/account_generation', () => ({
   captureAccountGeneration: () => ({ phase: mockOwner ? 'active' : 'signed_out', stableId: mockOwner }),
 }));
-let mockCreatedAt: number | null = 2_000_000;
+let mockCreatedAt: number | null | undefined = 2_000_000;
 jest.mock('../app/account_created_at', () => ({ peekCurrentAccountCreatedAtMs: () => mockCreatedAt }));
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -71,10 +71,19 @@ describe('recordPrimaryCourseLanguageAtOnboarding — вердикт фикси�
     await expect(recordPrimaryCourseLanguageAtOnboarding(AFTER, SINCE)).resolves.toBe('recorded');
     expect(parsePrimaryCourseLanguageRecord(await AsyncStorage.getItem(KEY_A))).toMatchObject({ primary: 'fr', newUser: true });
   });
-  it('повторное прохождение онбординга человеком с прогрессом → newUser=false', async () => {
+  // зачем (правило «молодой аккаунт», 9f84a4de4 / P0 05.11): у аккаунта, созданного ПОСЛЕ среза, серия и опыт первого дня — не прежний прогресс (иначе чистый новичок после первого занятия считался бы старым).
+  // Поэтому «человек с прогрессом» проверяется на аккаунте с НЕИЗВЕСТНЫМ возрастом (undefined → правило прежнее: прогресс = не новый).
+  it('повторное прохождение онбординга человеком с прогрессом (возраст аккаунта неизвестен) → newUser=false', async () => {
+    mockCreatedAt = undefined;
     await AsyncStorage.multiSet([['study_target_v1', 'es'], ['onboarding_completed_at_ms_v1', String(AFTER)], ['user_total_xp', '120']]);
     await recordPrimaryCourseLanguageAtOnboarding(AFTER, SINCE);
     expect(parsePrimaryCourseLanguageRecord(await AsyncStorage.getItem(KEY_A))).toMatchObject({ primary: 'es', newUser: false });
+  });
+  it('молодой аккаунт (создан после среза): опыт первого дня НЕ делает его «не новым» → newUser=true', async () => {
+    mockCreatedAt = 2_000_000;
+    await AsyncStorage.multiSet([['study_target_v1', 'es'], ['onboarding_completed_at_ms_v1', String(AFTER)], ['user_total_xp', '120']]);
+    await recordPrimaryCourseLanguageAtOnboarding(AFTER, SINCE);
+    expect(parsePrimaryCourseLanguageRecord(await AsyncStorage.getItem(KEY_A))).toMatchObject({ primary: 'es', newUser: true });
   });
   it('до выхода версии (заглушка максимум) никто не новый — замок выключен', async () => {
     await AsyncStorage.multiSet([['study_target_v1', 'en'], ['onboarding_completed_at_ms_v1', String(AFTER)]]);
@@ -83,6 +92,7 @@ describe('recordPrimaryCourseLanguageAtOnboarding — вердикт фикси�
     await expect(resolveCourseLanguageLock('es')).resolves.toMatchObject({ locked: false, reason: 'not_new_user' });
   });
   it('прогресс в любом языке при завершении онбординга → «не новый» (повторный онбординг старого пользователя не запирает)', async () => {
+    mockCreatedAt = undefined; // зачем: возраст аккаунта неизвестен — действует прежнее правило «прогресс = не новый»
     await AsyncStorage.multiSet([['study_target_v1', 'fr'], ['onboarding_completed_at_ms_v1', String(AFTER)], [lessonProgressKey(5, 'es'), '40']]);
     await recordPrimaryCourseLanguageAtOnboarding(AFTER, SINCE);
     expect(parsePrimaryCourseLanguageRecord(await AsyncStorage.getItem(KEY_A))).toMatchObject({ primary: 'fr', newUser: false });

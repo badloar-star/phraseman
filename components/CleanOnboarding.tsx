@@ -129,7 +129,7 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_delete_restore_client';
-import { accountRestoreChoiceView, accountRestoreFailedCopy, accountRestorePromptMessage, noticeAccountDeletedForever, type AccountRestorePromptOutcome } from '../app/account_delete_restore_prompt';
+import { accountRestoreChoiceView, accountRestoreFailedCopy, accountRestorePromptMessage, type AccountRestorePromptOutcome } from '../app/account_delete_restore_prompt';
 import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert } from '../app/themed_blocking_alert_queue';
 import { confirmAndSwitchAccountInOnboarding, onboardingAccountSwitchFailureText } from '../app/onboarding_account_switch_confirm';
 import { reportSwallowed, swallowError } from '../app/debug-logger';
@@ -3051,8 +3051,9 @@ function CleanOnboarding({
           setGreetName(null);
           setUnknownAccountEmail('');
           go('welcome');
-          // зачем (релизный пол 10.10): не молча на приветствие — объясняем, что аккаунт удалён навсегда.
-          noticeAccountDeletedForever(lang, 'onboarding');
+          // зачем (A11, владелец 05.11 «успех, без окон ошибки»; запрет 22.09 на уведомления об удалении): окна «аккаунт удалён навсегда» нет —
+          // auth_provider уже поднял свежую личность, человек на приветствии чистым новичком; повторный тап того же провайдера создаёт новый профиль (Q26).
+          console.log(`[AUTH-RETIRED] onboarding identity_retired → welcome quietly, no notice window lang=${lang}`); // guard-ok: ветка и значение, которое её решило
           return;
         }
         // Удаление аккаунта двухфазное (disabled → стирание через 2-3 минуты), вход в
@@ -3206,8 +3207,9 @@ function CleanOnboarding({
           setGreetName(null);
           setUnknownAccountEmail('');
           go('welcome');
-          // зачем (релизный пол 10.10): не молча на приветствие — объясняем, что аккаунт удалён навсегда.
-          noticeAccountDeletedForever(lang, 'onboarding');
+          // зачем (A11, владелец 05.11 «успех, без окон ошибки»; запрет 22.09 на уведомления об удалении): окна «аккаунт удалён навсегда» нет —
+          // auth_provider уже поднял свежую личность, человек на приветствии чистым новичком; повторный тап того же провайдера создаёт новый профиль (Q26).
+          console.log(`[AUTH-RETIRED] onboarding identity_retired → welcome quietly, no notice window lang=${lang}`); // guard-ok: ветка и значение, которое её решило
           return;
         }
         // зачем: раньше любой отказ схлопывался в «Не получилось войти» — владелец

@@ -80,13 +80,14 @@ describe('окончательно удалённый аккаунт — окн�
     expect(queued[0].message).toBe('Этот аккаунт удалён безвозвратно. Войди другим способом или начни заново.');
   });
 
-  it('оба пути онбординга зовут его на identity_retired; окно входа — нет (решение координатора 18.10, запрет владельца 22.09)', () => {
+  it('ни онбординг, ни окно входа не зовут его на identity_retired (A11: владелец 05.11, запрет 22.09); онбординг пишет [AUTH-RETIRED]', () => {
     const modal = read('components/RegistrationPromptModal.tsx');
     const at = modal.indexOf("result.error === 'identity_retired'");
     expect(modal).not.toContain('noticeAccountDeletedForever');
     expect(modal.slice(at, at + 900)).toContain('[AUTH-RETIRED] identity_retired → sheet closed quietly');
     const onboarding = read('components/CleanOnboarding.tsx');
-    expect(onboarding.match(/noticeAccountDeletedForever\(lang, 'onboarding'\)/g)).toHaveLength(2);
+    expect(onboarding).not.toContain('noticeAccountDeletedForever');
+    expect(onboarding.match(/\[AUTH-RETIRED\] onboarding identity_retired → welcome quietly/g)).toHaveLength(2);
   });
 });
 

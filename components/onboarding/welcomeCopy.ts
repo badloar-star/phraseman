@@ -27,22 +27,22 @@ export function welcomeReplies(language: string, lang: Lang = 'ru'): readonly We
     ru: 'Начинай с обычных уроков. За занятия получаешь монеты.',
     uk: 'Починай зі звичайних уроків. За заняття отримуєш монети.',
     en: 'Start with regular lessons. You earn coins for each lesson.',
-    es: 'Empieza con las lecciones normales. Por cada lección recibes monedas.',
+    es: 'Empiece con las lecciones normales. Por cada lección recibe monedas.',
     'pt-BR': 'Comece pelas lições normais. Por cada lição você ganha moedas.',
     vi: 'Bắt đầu từ các bài học thường. Học xong bạn nhận được xu.',
-    id: 'Mulai dari pelajaran biasa. Dari setiap pelajaran kamu dapat koin.',
-    tr: 'Normal derslerle başla. Derslerden koin kazanırsın.',
+    id: 'Mulai dari pelajaran biasa. Dari setiap pelajaran Anda mendapat koin.',
+    tr: 'Normal derslerle başlayın. Derslerden koin kazanırsınız.',
     pl: 'Zacznij od zwykłych lekcji. Za lekcje dostajesz monety.',
   });
   const third = pick(lang, {
     ru: 'За монеты можно повышать свой уровень. Попробуем первый урок?',
     uk: 'За монети можна підвищувати свій рівень. Спробуємо перший урок?',
     en: 'You can level up with coins. Shall we try the first lesson?',
-    es: 'Con monedas puedes subir de nivel. ¿Probamos la primera lección?',
+    es: 'Con monedas puede subir de nivel. ¿Probamos la primera lección?',
     'pt-BR': 'Com moedas você sobe de nível. Vamos tentar a primeira lição?',
     vi: 'Bạn có thể lên cấp bằng xu. Thử bài học đầu tiên nhé?',
-    id: 'Dengan koin kamu bisa naik level. Coba pelajaran pertama?',
-    tr: 'Koinlerle seviye atlayabilirsin. İlk dersi deneyelim mi?',
+    id: 'Dengan koin Anda bisa naik level. Coba pelajaran pertama?',
+    tr: 'Koinlerle seviye atlayabilirsiniz. İlk dersi deneyelim mi?',
     pl: 'Za monety możesz podnosić swój poziom. Spróbujemy pierwszej lekcji?',
   });
   const word = pick(lang, COIN_WORD);

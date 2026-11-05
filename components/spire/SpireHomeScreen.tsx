@@ -274,6 +274,7 @@ export default function SpireHomeScreen() {
   const sceneScroll = useSpireSceneScroll(scene !== null, runtimeOwnerId === 'spire'); // зачем (3b-3): прокрутка гасит цвет шапки «Сообщества», как маска Главной
   useSpireScrollStateLog({ scrollEnabled: !towerTouch.locked, scene: scene !== null, config: config !== null, unlocked, roomLoad: game.roomLoad?.status ?? null, members: members?.length ?? null, owner: runtimeOwnerId, tailPad: roundLayout(tailPad) }); // [SPIRE-SCROLL]: что решает прокрутку страницы
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, game.rankBy === 'coins' ? 'rankedByCoins' : 'rankedBySteps')}`;
+  const headerOverlayInset = useSpireHeaderOverlayInset(); // зачем: хук до ранних return (замок/скелет) — иначе число хуков меняется между рендерами и вкладка Пика падает «Rendered more hooks…»
 
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
   // зачем (правило 10г, координатор 13.10): пока конфиг не прочитан (холодный старт, память пуста) — не пустой View, а скелет по форме экрана (SpireHomeSkeleton, testID spire-loading).
@@ -285,7 +286,7 @@ export default function SpireHomeScreen() {
   return (
     <View style={s.root} testID="spire-home">
       <ScrollView
-        contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }, budget.headerThin ? thin.content : null, { paddingTop: (budget.headerThin ? 0 : 6) + useSpireHeaderOverlayInset() /* зачем (замок «верх цельный» 25.10): шапка «Сообщества» поверх сцены — лента отступает на её высоту, башня на месте */ }]}
+        contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }, budget.headerThin ? thin.content : null, { paddingTop: (budget.headerThin ? 0 : 6) + headerOverlayInset /* зачем (замок «верх цельный» 25.10): шапка «Сообщества» поверх сцены — лента отступает на её высоту, башня на месте */ }]}
         showsVerticalScrollIndicator={false}
         {...sceneScroll}
         decelerationRate="fast"

@@ -2,7 +2,7 @@
 
 Governance-ID: TG-F59EE44C8885
 Governance-ID: TG-0DED21F90AB5
-Status: In progress
+Status: Done (Дизайн 05.11: шлюз через арбитр окон 47e743270; два Governance-ID в пакете - один пакет, не дубль; E2E новичка ждёт Сверку)
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: none
 

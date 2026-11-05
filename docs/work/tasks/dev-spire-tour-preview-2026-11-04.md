@@ -3,7 +3,7 @@
 Governance-ID: TG-569CA6183CFA
 Governance-ID: TG-A01C799DD81C
 Governance-ID: TG-3B947DD0715E
-Status: In progress
+Status: Done (Дизайн 05.11: dev-страница тура вошла в коммиты Пика B; кадры tour-coins и tour-steps p1-p3 сняты Эмулятором)
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: none
 

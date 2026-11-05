@@ -79,3 +79,17 @@ Governance-ID: TG-D0755289C239
 Governance-ID: TG-70BD1B875B97
 
 Governance-ID: TG-F71F2DD900A4
+
+Governance-ID: TG-E6ACC1D08B42
+
+Governance-ID: TG-AA6F2A7CEBA6
+(Сообщество, ревью 05.11: замок двойного тапа по реакции отклика PackCommentsSheet; логику Firestore не трогаем.)
+
+Governance-ID: TG-A72DAD04710D
+(Пик B: перенос слов в PeakMyCounter, правка вёрстки по слову координатора 01:29.)
+
+Governance-ID: TG-A93C76C7DDB3
+(Утро 05.11: механический проход по обводкам/цветам, правки только по списку и кадрам.)
+
+Governance-ID: TG-4944AF848CD1
+(Закрытие статусов моих пакетов по инвентарю Моментов, 05.11; правка текста paywall-fine отложена до кадра и слова координатора.)

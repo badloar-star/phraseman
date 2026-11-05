@@ -1,7 +1,7 @@
 # Task packet: экран Пика, вариант B «Рельса», за флагом
 
 Governance-ID: TG-1DA879EBC39A
-Status: In progress
+Status: Done (Дизайн 05.11: включён 9d9073fed, правки b63d32609 и 0174c4989; кадры Эмулятора и Сверки получены)
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: none
 

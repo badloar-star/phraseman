@@ -1,7 +1,7 @@
 # Task packet: каталог «Сообщество» и «Мои наборы» — совпадение с макетом 133
 
 Governance-ID: TG-533333B2079F
-Status: In progress
+Status: Done (Дизайн 05.11: bcf5d4832; сверка кадром в очереди Сверки)
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: none
 

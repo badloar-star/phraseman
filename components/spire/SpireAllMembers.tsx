@@ -28,14 +28,13 @@ import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './s
 import ScreenBackButton, { SCREEN_BACK_RESERVED, SCREEN_BACK_SIZE, ScreenOriginReset } from '../v2/ScreenBackButton';
 
 export { spireZonesFor };
-import { runeWord } from '../../constants/runes';
 
 type Zone = SpireZone;
 
 
 type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle?: string; onBack: () => void; rankBy?: SpireRankByView }>;
 
-function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'coins' }: Props) {
+function SpireAllMembers({ lang, members, onBack, rankBy = 'coins' }: Props) {
   const p = useSpirePalette();
   const insets = useStableSafeAreaInsets();
   const [player, setPlayer] = useState<PlayerInfo | null>(null);
@@ -45,15 +44,13 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'coins' }: 
     return { rows: sorted, zones: spireZonesFor(sorted, rankBy) };
   }, [members, rankBy]);
 
-  const renderZone = (zone: Zone, label: string, color: string) => {
+  const renderZone = (zone: Zone) => {
     const items = rows.map((m, i) => ({ m, i })).filter(({ i }) => zones[i] === zone);
     if (items.length === 0) return null;
     return (
       <View key={zone}>
-        <View style={s.zone}>
-          <Text style={[s.zoneText, { color }]}>{label.toUpperCase()}</Text>
-          <View style={[s.zoneLine, { backgroundColor: p.hairline }]} />
-        </View>
+        {/* зачем (владелец 05.11, «1 в 1» с variant_A_all): зоны разделены тонкой линией БЕЗ заголовков «ЗОНА ПОВЫШЕНИЯ / ОСТАЮТСЯ…»; первая зона — без линии сверху */}
+        {zone !== 'up' && items.length > 0 && rows.length > 0 ? <View style={[s.zoneLine, { backgroundColor: p.hairline }]} testID={`spire-all-zone-line-${zone}`} /> : null}
         {items.map(({ m, i }) => (
           <V2Pressable
             key={m.uid}
@@ -68,15 +65,14 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'coins' }: 
             accessible
             accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${spireCoinsCount(lang, m.weekCoins ?? 0)}`}
           >
+            {/* зачем (макет): у зоны повышения слева зелёная вертикальная линия */}
+            {zone === 'up' ? <View pointerEvents="none" style={[s.upLine, { backgroundColor: p.correct }]} testID={`spire-all-up-line-${m.uid}`} /> : null}
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
-            <SpireRankCoin rank={m.coinRank} size={40} plus={m.isPremium} />
-            <View style={s.nameWrap}>
-              <Text style={[s.name, { color: p.text }]}>{m.name}</Text>
-              {m.isMe ? <View style={[s.you, { backgroundColor: p.cta }]}><Text style={[s.youText, { color: p.ctaText }]}>{spireText(lang, 'you')}</Text></View> : null}
-            </View>
-            {zone === 'up' ? <Ionicons name="arrow-up" size={16} color={p.correct} /> : null}
-            {zone === 'down' ? <Ionicons name="arrow-down" size={16} color={p.wrong} /> : null}
-            <Text style={[s.steps, { color: p.text }]}>{spireGroupThousands(m.weekCoins ?? 0)}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {runeWord(lang, m.weekCoins ?? 0)}</Text></Text>
+            <SpireRankCoin rank={m.coinRank} size={40} plus={false} />
+            {/* зачем (макет): у «я» вместо бейджа «Ты» — имя «Ты» на плашке; число — приглушённое, БЕЗ слов (монеты/ступени) */}
+            <Text style={[s.name, { color: p.text }]} numberOfLines={2}>{m.isMe ? spireText(lang, 'you') : m.name}</Text>
+            <Text style={[s.steps, { color: p.textSecondary }]}>{spireGroupThousands(m.weekCoins ?? 0)}</Text>
+            <View style={s.arrowSlot}>{zone === 'up' ? <Ionicons name="arrow-up" size={22} color={p.correct} /> : null}</View>
           </V2Pressable>
         ))}
       </View>
@@ -91,15 +87,14 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'coins' }: 
       <View style={s.header}>
         <View style={s.headText}>
           <Text accessibilityRole="header" style={[s.headTitle, { color: p.text }]}>{spireText(lang, 'allMembers')}</Text>
-          {subtitle ? <Text style={[s.headSub, { color: p.textSecondary }]}>{subtitle}</Text> : null}
         </View>
       </View>
       <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
         {/* зачем (координатор 05.11): пустой список без пояснения выглядел как поломка — короткая строка, без длинной расшифровки */}
         {rows.length === 0 ? <Text testID="spire-all-empty" style={[s.empty, { color: p.textSecondary }]}>{spireText(lang, 'allEmpty')}</Text> : null}
-        {renderZone('up', spireText(lang, 'zoneUp'), p.correct)}
-        {renderZone('stay', spireText(lang, 'zoneStay'), p.textSecondary)}
-        {renderZone('down', spireText(lang, 'zoneDown'), p.wrong)}
+        {renderZone('up')}
+        {renderZone('stay')}
+        {renderZone('down')}
       </ScrollView>
       <ScreenBackButton screen="spire_all" testID="spire-all-back" accessibilityLabel={spireText(lang, 'back')} onPress={onBack} />
       {/* Визитка внутри окна списка: поверх него и с возвратом к тем же участникам. */}
@@ -116,20 +111,15 @@ const s = StyleSheet.create({
   header: { paddingLeft: SCREEN_BACK_RESERVED, paddingRight: V2.screenPad, minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center' },
   headText: { flex: 1, minWidth: 0 },
   headTitle: { fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -0.3 },
-  headSub: { fontSize: 16, lineHeight: 20, marginTop: 2 },
   content: { paddingHorizontal: V2.screenPad, paddingBottom: 40 },
   empty: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 48 },
-  zone: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 22, marginBottom: 10, marginHorizontal: 2 },
-  zoneText: { fontSize: 13, fontWeight: '700', letterSpacing: 2 },
-  zoneLine: { flex: 1, height: 1 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 62, paddingVertical: 8, paddingLeft: 12, paddingRight: 14, borderRadius: 14 },
+  zoneLine: { height: 1, marginVertical: 10, marginHorizontal: 8 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 62, paddingVertical: 8, paddingLeft: 12, paddingRight: 14, borderRadius: 18 },
+  upLine: { position: 'absolute', left: -4, top: 8, bottom: 8, width: 3, borderRadius: 2 },
+  arrowSlot: { width: 22, alignItems: 'center' },
   place: { minWidth: 26, textAlign: 'center', fontSize: 16, fontWeight: '700' },
-  nameWrap: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  name: { flexShrink: 1, fontSize: 16, fontWeight: '700' },
-  you: { minHeight: 20, paddingHorizontal: 8, borderRadius: 10, justifyContent: 'center' },
-  youText: { fontSize: 13, fontWeight: '700' },
-  steps: { fontSize: 16, fontWeight: '700' },
-  stepsUnit: { fontSize: 13, fontWeight: '600' },
+  name: { flex: 1, minWidth: 0, fontSize: 18, fontWeight: '700' },
+  steps: { fontSize: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });
 
 export default memo(SpireAllMembers);

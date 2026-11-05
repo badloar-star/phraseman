@@ -6,31 +6,32 @@ import type { Lang } from '../../../constants/i18n';
 import { useSpirePalette } from '../useSpirePalette';
 import { spireGameText } from '../spire_game_strings';
 import { spireGroupThousands } from '../spire_plurals';
+import RuneGlyph from '../../RuneGlyph';
 import type { PeakMe, PeakRankBy } from '../../../modules/spire/peak_model';
 
 // loading — комната ещё не прочитана: вместо нулей «—» (владелец: не показывать выдуманные цифры)
 type Props = Readonly<{ lang: Lang; me: PeakMe; rankBy?: PeakRankBy; loading?: boolean }>;
 
-function PeakMyCounter({ lang, me, rankBy = 'coins', loading = false }: Props) {
+function PeakMyCounter({ lang, me, loading = false }: Props) {
   const p = useSpirePalette();
+  // зачем (владелец 05.11, «1 в 1» с variant_B_*): значок-монета + КРУПНОЕ число (~64 dp, акцентный тон) и ниже отдельной строкой «12 место» мельче и приглушённо; без слов про ступени
   return (
-    <View style={s.row} testID="peak-my-counter">
-      {/* зачем (Макеты 05.11, макет B): крупные «744» и «12 место» без подписей над ними; подпись остаётся для диктора (accessibilityLabel) */}
-      <View style={s.cell} accessible accessibilityLabel={`${spireGameText(lang, 'peakMyCoins')}: ${loading ? '—' : spireGroupThousands(me.value)}`}>
-        <Text style={[s.value, { color: p.text }]} testID="peak-my-coins">{loading ? '—' : spireGroupThousands(me.value)}</Text>
+    <View style={s.col} testID="peak-my-counter">
+      <View style={s.coinsRow} accessible accessibilityLabel={`${spireGameText(lang, 'peakMyCoins')}: ${loading ? '—' : spireGroupThousands(me.value)}`}>
+        <View style={s.glyph}><RuneGlyph size={34} /></View>
+        <Text style={[s.value, { color: p.accentTextSafe }]} testID="peak-my-coins">{loading ? '—' : spireGroupThousands(me.value)}</Text>
       </View>
-      <View style={s.cell} accessible accessibilityLabel={`${spireGameText(lang, 'peakMyPlace')}: ${loading || me.place === null ? '—' : String(me.place)}`}>
-        <Text style={[s.value, { color: p.text }]} testID="peak-my-place">{loading || me.place === null ? '—' : spireGameText(lang, 'placeN', { n: me.place })}</Text>
-      </View>
+      <Text style={[s.place, { color: p.textSecondary }]} accessible accessibilityLabel={`${spireGameText(lang, 'peakMyPlace')}: ${loading || me.place === null ? '—' : String(me.place)}`} testID="peak-my-place">{loading || me.place === null ? '—' : spireGameText(lang, 'placeN', { n: me.place })}</Text>
     </View>
   );
 }
 
 const s = StyleSheet.create({
-  // зачем (Сверка 05.11, живой кадр: «0 ступен/ей», «6/место» — слова рвались по символам в узкой колонке): блоки переносятся ЦЕЛИКОМ (flexWrap), слово внутри блока не рвётся; без сжатия шрифта и без обрезки
-  row: { flexDirection: 'row', flexWrap: 'wrap', columnGap: 24, rowGap: 2 },
-  cell: { flexShrink: 1 },
-  value: { fontSize: 28, lineHeight: 34, fontWeight: '800', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
+  col: { gap: 2 },
+  coinsRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  glyph: { opacity: 0.9 },
+  value: { fontSize: 60, lineHeight: 68, fontWeight: '800', letterSpacing: -1, fontVariant: ['tabular-nums'], flexShrink: 1 },
+  place: { fontSize: 20, lineHeight: 26, fontWeight: '600' },
 });
 
 export default memo(PeakMyCounter);

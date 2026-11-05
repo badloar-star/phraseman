@@ -9,7 +9,8 @@ describe('аудит экрана Пика B', () => {
   it('рельса башни уже при крупном шрифте и узком экране', () => {
     const screen = read('components/spire/peak/PeakScreenV2.tsx');
     expect(num(screen, 'PEAK_RAIL_WIDTH_NARROW')).toBeLessThan(num(screen, 'PEAK_RAIL_WIDTH'));
-    expect(screen).toContain('fontScale > 1.15 || width < 360 ? PEAK_RAIL_WIDTH_NARROW : PEAK_RAIL_WIDTH');
+    // зачем (владелец 05.11, «1 в 1» с макетом B): башня ~31 % ширины экрана, но не уже узкой рельсы
+    expect(screen).toContain('Math.max(PEAK_RAIL_WIDTH_NARROW, Math.round(width * 0.31))');
     expect(num(screen, 'PEAK_ROW_COIN_SIZE')).toBeLessThanOrEqual(36);
   });
 
@@ -36,7 +37,9 @@ describe('аудит экрана Пика B', () => {
     expect(tour).toMatch(/btn: \{[^}]*paddingHorizontal: 18/);
     expect(tour).toContain('main: { flex: 1, minWidth: 120 }');
     const screen = read('components/spire/peak/PeakScreenV2.tsx');
-    expect(screen).toContain('<Text numberOfLines={2} style={[s.pillText');
+    // макет: «Гранит • ⏱ 4 д 5 ч» одной короткой пилюлей (иконка часов, лига и срок в одну строку)
+    expect(screen).toContain('<Ionicons name="time-outline"');
+    expect(screen).toContain('<Text numberOfLines={1} style={[s.pillText');
     expect(screen).not.toMatch(/adjustsFontSizeToFit/);
   });
 
@@ -67,7 +70,8 @@ describe('аудит экрана Пика B', () => {
 
   it('счётчик «ступени / место» переносит блоки целиком и не сжимает шрифт (слова не рвутся)', () => {
     const counter = read('components/spire/peak/PeakMyCounter.tsx');
-    expect(counter).toContain("flexWrap: 'wrap'");
+    // макет: значок-монета + крупное число и ниже «12 место» отдельной строкой; шрифт не сжимается
+    expect(counter).toContain('<RuneGlyph size={34} />');
     expect(counter).not.toContain('adjustsFontSizeToFit');
     expect(counter).not.toContain('numberOfLines');
   });

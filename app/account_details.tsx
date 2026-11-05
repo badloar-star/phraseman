@@ -48,6 +48,7 @@ import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface'
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { PlusAvatarRing, PlusTag } from '../components/plus/PlusAvatarRing';
 import { useIsPlus } from '../components/plus/use_is_plus';
+import { useSubscriptionTier } from '../components/plus/use_subscription_tier';
 import { coinRankRowForDisplay, isValidCoinRank } from './coin_rank_table_v1';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import {
@@ -106,6 +107,8 @@ export default function AccountDetailsScreen() {
   const myCoinRank = useMyCoinRank();
   // зачем (владелец 21.10, реестр №6): в «Аккаунте» у Plus — кольцо и значок у монеты и метка «◆ Plus» у имени (эталон plus-ring-etalon.html)
   const isPlus = useIsPlus();
+  // зачем (владелец 06.11, Plus/Ultra): годовая подписка → «Ultra» (кольцо, значок, метка); иначе Plus.
+  const subTier = useSubscriptionTier() ?? 'plus';
   const coinRow = isValidCoinRank(myCoinRank) ? coinRankRowForDisplay(myCoinRank) : null;
   const { lang } = useLang();
   const L = (
@@ -312,7 +315,7 @@ export default function AccountDetailsScreen() {
 
             {/* Герой: монета ранга + имя + «Изменить имя». */}
             <View testID="account-hero" style={{ alignItems: 'center', marginTop: 26 }}>
-              <PlusAvatarRing plus={isPlus} size={COIN_SIZE} surface={glass.bg}>
+              <PlusAvatarRing plus={isPlus} tier={subTier} size={COIN_SIZE} surface={glass.bg}>
                 {coinRow ? (
                   <Image testID="account-coin" accessible={false} source={coinRow.source} style={{ width: COIN_SIZE, height: COIN_SIZE }} contentFit="contain" />
                 ) : (
@@ -331,7 +334,7 @@ export default function AccountDetailsScreen() {
                 >
                   {userName || namePlaceholder}
                 </FlowText>
-                {isPlus ? <PlusTag testID="account-plus-tag" isLight={glass.isLight} style={{ marginLeft: 8 }} /> : null}
+                {isPlus ? <PlusTag testID="account-plus-tag" isLight={glass.isLight} tier={subTier} style={{ marginLeft: 8 }} /> : null}
               </View>
               <PressableHybrid
                 testID="account-change-name"

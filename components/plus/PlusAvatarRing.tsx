@@ -8,19 +8,28 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo } from 'react';
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
-import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Path, Stop } from 'react-native-svg';
+import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Path, Polygon, Stop } from 'react-native-svg';
 
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
+import type { SubscriptionTier } from '../../app/subscription_tier';
 import {
   PLUS_PIN_COLORS,
   PLUS_PIN_GLYPH_COLOR,
+  pinColorsForTier,
+  pinGlyphColorForTier,
   plusRingArcs,
-  plusRingColors,
   plusRingSpec,
-  plusTagColors,
+  ringA11yForTier,
+  ringColorsForTier,
+  tagColorsForTier,
   type PlusRingKind,
 } from './plus_ring_spec';
+
+// зачем (владелец 06.11, Plus/Ultra): Ultra (годовая) — та же геометрия, но шестиугольный значок со звездой ✦ вместо круга с ромбом ◆ (макет docs/work/mockups/plus_vs_ultra.html).
+const ULTRA_STAR_PATH = 'M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z';
+const hexPoints = (box: number, offset: number): string => [[0.5, 0], [0.93, 0.25], [0.93, 0.75], [0.5, 1], [0.07, 0.75], [0.07, 0.25]]
+  .map(([x, y]) => `${(offset + x * box).toFixed(2)},${(offset + y * box).toFixed(2)}`).join(' ');
 
 type OverlayProps = Readonly<{
   /** Размер аватара (dp), вокруг которого рисуется кольцо. */
@@ -32,18 +41,20 @@ type OverlayProps = Readonly<{
   hidePin?: boolean;
   /** Скрыть кольцо (значок остаётся). */
   hideRing?: boolean;
+  /** Уровень подписки: plus (месячная) или ultra (годовая). По умолчанию plus. */
+  tier?: SubscriptionTier;
   testID?: string;
 }>;
 
-const RingGraphic = memo(function RingGraphic({ size, kind }: { size: number; kind: PlusRingKind }) {
+const RingGraphic = memo(function RingGraphic({ size, kind, tier }: { size: number; kind: PlusRingKind; tier: SubscriptionTier }) {
   // зачем (владелец 22.10, №17): в светлых темах кольцо затемнённое (≥ 3:1); isDark === false — только явно светлая тема, без темы остаётся прежнее
   const { isDark } = useTheme();
   const isLight = isDark === false;
-  const spec = plusRingSpec(size, kind, isLight);
+  const spec = plusRingSpec(size, kind, isLight, tier);
   const { outer, ring, inset } = spec;
   const center = outer / 2;
-  const arcs = spec.flatColor ? [] : plusRingArcs(outer, ring, 0.9, plusRingColors(isLight));
-  const idBase = `plr${Math.round(outer * 10)}${isLight ? 'l' : 'd'}`;
+  const arcs = spec.flatColor ? [] : plusRingArcs(outer, ring, 0.9, ringColorsForTier(tier, isLight));
+  const idBase = `plr${tier === 'ultra' ? 'u' : ''}${Math.round(outer * 10)}${isLight ? 'l' : 'd'}`;
   return (
     <Svg width={outer} height={outer} style={{ position: 'absolute', left: -inset, top: -inset }}>
       {spec.flatColor ? (
@@ -67,11 +78,37 @@ const RingGraphic = memo(function RingGraphic({ size, kind }: { size: number; ki
   );
 });
 
-const PinGraphic = memo(function PinGraphic({ size, kind, surface }: { size: number; kind: PlusRingKind; surface: string }) {
-  const pin = plusRingSpec(size, kind).pin;
+const PinGraphic = memo(function PinGraphic({ size, kind, surface, tier }: { size: number; kind: PlusRingKind; surface: string; tier: SubscriptionTier }) {
+  const { isDark } = useTheme();
+  const isLight = isDark === false;
+  const pin = plusRingSpec(size, kind, isLight, tier).pin;
   if (!pin) return null;
   const wrap = pin.size + 2 * pin.outline;
   const edge = -(pin.overhang + pin.outline);
+  if (tier === 'ultra') {
+    // шестиугольник: обводка цвета поверхности (больший шестиугольник) + градиентный шестиугольник + звезда ✦ (58 % значка, как ромб у Plus)
+    const colors = pinColorsForTier(tier, isLight);
+    const glyphColor = pinGlyphColorForTier(tier, isLight);
+    const gradId = `pinu${Math.round(pin.size * 10)}${isLight ? 'l' : 'd'}`;
+    const star = pin.glyph;
+    return (
+      <View style={{ position: 'absolute', right: edge, bottom: edge, width: wrap, height: wrap }}>
+        <Svg width={wrap} height={wrap}>
+          <Defs>
+            <SvgLinearGradient id={gradId} gradientUnits="userSpaceOnUse" x1={0} y1={0} x2={wrap} y2={wrap}>
+              <Stop offset="0" stopColor={colors[0]} />
+              <Stop offset="1" stopColor={colors[1]} />
+            </SvgLinearGradient>
+          </Defs>
+          <Polygon points={hexPoints(wrap, 0)} fill={surface} />
+          <Polygon points={hexPoints(pin.size, pin.outline)} fill={`url(#${gradId})`} />
+          <Svg x={(wrap - star) / 2} y={(wrap - star) / 2} width={star} height={star} viewBox="0 0 24 24">
+            <Path d={ULTRA_STAR_PATH} fill={glyphColor} />
+          </Svg>
+        </Svg>
+      </View>
+    );
+  }
   return (
     <View
       style={{
@@ -92,7 +129,7 @@ const PinGraphic = memo(function PinGraphic({ size, kind, surface }: { size: num
 });
 
 /** Оверлей поверх аватара: клади ВНУТРЬ контейнера размера `size` (последним ребёнком). */
-export const PlusRingOverlay = memo(function PlusRingOverlay({ size, kind = 'list', surface, hidePin = false, hideRing = false, testID = 'plus-ring' }: OverlayProps) {
+export const PlusRingOverlay = memo(function PlusRingOverlay({ size, kind = 'list', surface, hidePin = false, hideRing = false, tier = 'plus', testID = 'plus-ring' }: OverlayProps) {
   const { theme } = useTheme();
   const resolvedSurface = surface ?? theme.bgPrimary;
   return (
@@ -103,8 +140,8 @@ export const PlusRingOverlay = memo(function PlusRingOverlay({ size, kind = 'lis
       importantForAccessibility="no-hide-descendants"
       style={StyleSheet.absoluteFill}
     >
-      {hideRing ? null : <RingGraphic size={size} kind={kind} />}
-      {hidePin ? null : <PinGraphic size={size} kind={kind} surface={resolvedSurface} />}
+      {hideRing ? null : <RingGraphic size={size} kind={kind} tier={tier} />}
+      {hidePin ? null : <PinGraphic size={size} kind={kind} surface={resolvedSurface} tier={tier} />}
     </View>
   );
 });
@@ -117,34 +154,43 @@ type WrapperProps = Readonly<{
   surface?: string;
   hidePin?: boolean;
   hideRing?: boolean;
+  /** Уровень: plus (месячная) / ultra (годовая); по умолчанию plus. */
+  tier?: SubscriptionTier;
   style?: StyleProp<ViewStyle>;
   children: React.ReactNode;
 }>;
 
 /** Обёртка вокруг любого аватара: Plus → контейнер размера аватара + кольцо; нет Plus → дети как есть (нулевая цена в списках). */
-export const PlusAvatarRing = memo(function PlusAvatarRing({ plus, size, kind = 'list', surface, hidePin, hideRing, style, children }: WrapperProps) {
+export const PlusAvatarRing = memo(function PlusAvatarRing({ plus, size, kind = 'list', surface, hidePin, hideRing, tier = 'plus', style, children }: WrapperProps) {
   if (plus !== true) return <>{children}</>;
   return (
     <View style={[{ width: size, height: size }, style]}>
       {children}
-      <PlusRingOverlay size={size} kind={kind} surface={surface} hidePin={hidePin} hideRing={hideRing} />
+      <PlusRingOverlay size={size} kind={kind} surface={surface} hidePin={hidePin} hideRing={hideRing} tier={tier} />
     </View>
   );
 });
 
 type TagProps = Readonly<{
   isLight: boolean;
+  /** Уровень: plus → «◆ Plus», ultra → «✦ Ultra». По умолчанию plus. */
+  tier?: SubscriptionTier;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 }>;
 
-/** Метка «◆ Plus» у имени: высота 22, радиус 11, поля 8, 13/800. Только свой профиль, «Аккаунт», визитка. */
-export const PlusTag = memo(function PlusTag({ isLight, style, testID = 'plus-tag' }: TagProps) {
-  const colors = plusTagColors(isLight);
+/** Метка «◆ Plus» / «✦ Ultra» у имени: высота 22, радиус 11, поля 8, 13/800. Только свой профиль, «Аккаунт», визитка. */
+export const PlusTag = memo(function PlusTag({ isLight, tier = 'plus', style, testID = 'plus-tag' }: TagProps) {
+  const colors = tagColorsForTier(tier, isLight);
+  const label = ringA11yForTier(tier);
   return (
-    <View testID={testID} accessible accessibilityLabel="Plus" style={[styles.tag, { backgroundColor: colors.bg }, style]}>
-      <Ionicons name="diamond" size={11} color={colors.ink} />
-      <Text maxFontSizeMultiplier={1.15} style={[styles.tagText, { color: colors.ink }]}>Plus</Text>
+    <View testID={testID} accessible accessibilityLabel={label} style={[styles.tag, { backgroundColor: colors.bg }, style]}>
+      {tier === 'ultra' ? (
+        <Svg width={11} height={11} viewBox="0 0 24 24"><Path d={ULTRA_STAR_PATH} fill={colors.ink} /></Svg>
+      ) : (
+        <Ionicons name="diamond" size={11} color={colors.ink} />
+      )}
+      <Text maxFontSizeMultiplier={1.15} style={[styles.tagText, { color: colors.ink }]}>{label}</Text>
     </View>
   );
 });

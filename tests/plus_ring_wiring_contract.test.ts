@@ -44,15 +44,15 @@ describe('кольцо Plus: 7 мест эталона', () => {
   it('1 · Настройки: монета в шапке и в карточке профиля обёрнуты, метка «◆ Plus» у имени только при Plus', () => {
     const s = src('app/(tabs)/settings.tsx');
     expect(s).toContain('const isPlus = isPremium || isVip || isPro;');
-    expect(s).toContain("<PlusAvatarRing plus={isPlus} size={44} surface={glass.bg}>");
-    expect(s).toContain("<PlusAvatarRing plus={isPlus} size={52} surface={glass.plateFillFrom}>");
+    expect(s).toContain("<PlusAvatarRing plus={isPlus} tier={subTier} size={44} surface={glass.bg}>"); // зачем: Plus/Ultra 06.11 — уровень из useSubscriptionTier
+    expect(s).toContain("<PlusAvatarRing plus={isPlus} tier={subTier} size={52} surface={glass.plateFillFrom}>");
     expect(s).toContain('{isPlus ? <PlusTag testID="settings-plus-tag"');
   });
 
   it('2 · Аккаунт: монета 102 в кольце, метка рядом с именем', () => {
     const s = src('app/account_details.tsx');
     expect(s).toContain('const isPlus = useIsPlus();');
-    expect(s).toContain('<PlusAvatarRing plus={isPlus} size={COIN_SIZE} surface={glass.bg}>');
+    expect(s).toContain('<PlusAvatarRing plus={isPlus} tier={subTier} size={COIN_SIZE} surface={glass.bg}>');
     expect(s).toContain('{isPlus ? <PlusTag testID="account-plus-tag"');
   });
 

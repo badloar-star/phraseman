@@ -13,17 +13,20 @@ import { runeWord } from '../../constants/runes';
 const forms = (one: string, few: string, many: string): PluralForms => ({ one, few, many });
 const same = (word: string): PluralForms => forms(word, word, word);
 
-/** Ступень: 1 ступень · 2 ступени · 5 ступеней. */
+/**
+ * зачем (владелец 05.11: «упоминаний ступеней вообще не должно быть, только ЭТАЖЕЙ!»; координатор: единица в Пике — этаж на всех 9 языках; Переводчик, peak_no_steps_inventory):
+ * имя константы и функций прежнее (spireSteps*), слово — «этаж»: 1 этаж · 2 этажа · 5 этажей. Слово «ступень/step» из этого модуля больше не выводится.
+ */
 export const SPIRE_STEP_FORMS: Readonly<Record<Lang, PluralForms>> = {
-  ru: forms('ступень', 'ступени', 'ступеней'),
-  uk: forms('сходинка', 'сходинки', 'сходинок'),
-  en: forms('step', 'steps', 'steps'),
-  es: forms('escalón', 'escalones', 'escalones'),
-  'pt-BR': forms('degrau', 'degraus', 'degraus'),
-  vi: same('bậc'),
-  id: same('anak tangga'),
-  tr: same('basamak'),
-  pl: forms('stopień', 'stopnie', 'stopni'),
+  ru: forms('этаж', 'этажа', 'этажей'),
+  uk: forms('поверх', 'поверхи', 'поверхів'),
+  en: forms('floor', 'floors', 'floors'),
+  es: forms('piso', 'pisos', 'pisos'),
+  'pt-BR': forms('andar', 'andares', 'andares'),
+  vi: same('tầng'),
+  id: same('lantai'),
+  tr: same('kat'),
+  pl: forms('piętro', 'piętra', 'pięter'),
 };
 
 /** Человек: 1 человек · 2 человека · 5 человек. */
@@ -39,9 +42,9 @@ export const SPIRE_PEOPLE_FORMS: Readonly<Record<Lang, PluralForms>> = {
   pl: forms('osoba', 'osoby', 'osób'),
 };
 
-/** Сокращения «ступ.», «сход.» не склоняются; склоняется только английское «step(s)». */
+/** Сокращения «эт.», «пов.» не склоняются (значения — как stepsShort в spire_strings.ts, Переводчик 05.11); склоняется только английское «floor(s)». */
 const STEP_SHORT: Readonly<Record<Lang, string>> = {
-  ru: 'ступ.', uk: 'сход.', en: 'steps', es: 'esc.', 'pt-BR': 'deg.', vi: 'bậc', id: 'lgk', tr: 'bsm', pl: 'st.',
+  ru: 'эт.', uk: 'пов.', en: 'fl.', es: 'pis.', 'pt-BR': 'and.', vi: 'tầng', id: 'lt', tr: 'kat', pl: 'pięt.',
 };
 
 const SLAVIC: ReadonlySet<Lang> = new Set<Lang>(['ru', 'uk', 'pl']);
@@ -66,7 +69,7 @@ export function spireStepsWordAfterOf(lang: Lang, total: number): string {
 
 /** Короткая подпись рядом с числом в тесной строке: «12 ступ.», «1 step». */
 export function spireStepsShort(lang: Lang, n: number): string {
-  return lang === 'en' ? (pluralFormFor(lang, n) === 'one' ? 'step' : 'steps') : STEP_SHORT[lang];
+  return lang === 'en' ? 'fl.' : STEP_SHORT[lang];
 }
 
 /** D162: «1 240 монет» — монеты недели в комнате Пика; слово — общая валюта приложения (runeWord = «монета» на 9 языках). */

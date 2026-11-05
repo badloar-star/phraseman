@@ -227,15 +227,16 @@ import { LadderRow, momentLadderValue } from '../components/spire/moments/Moment
 describe('окна недели Пика: место — ступенями, монеты — награда', () => {
   const NB = (s: string): string => s.replace(/ | /g, ' ');
   it('повышение по ступеням: «5 место · 42 ступени за неделю · +100 монет»', () => {
-    expect(NB(promotionShortBody('ru', 5, 470, 100, 42))).toBe('5 место · 42 ступени за неделю · +100 монет');
-    expect(NB(promotionShortBody('ru', 5, 470, 0, 42))).toBe('5 место · 42 ступени за неделю');
+    expect(NB(promotionShortBody('ru', 5, 470, 100, 42))).toBe('5 место · 42 · +100 монет'); // зачем (владелец 05.11, «ни слова про ступени»): число без слова, {steps} — очки комнаты
+    expect(NB(promotionShortBody('ru', 5, 470, 0, 42))).toBe('5 место · 42');
   });
   it('режим монет — как было', () => {
     expect(NB(promotionShortBody('ru', 5, 470, 100))).toMatch(/^5 место · 470 монет за неделю · \+100$/);
   });
   it('удержался и «Поделиться» по ступеням', () => {
-    expect(NB(momentText('ru', 'stayBodyStepsNoGap', { place: 7, steps: 21 }))).toBe('7 место · 21 ступень за неделю.');
-    expect(NB(momentText('ru', 'promoShareTextSteps', { league: 'Бронза', place: 3, steps: 55 }))).toContain('3 место, 55 ступеней за неделю');
+    expect(NB(momentText('ru', 'stayBodyStepsNoGap', { place: 7, steps: 21 }))).toBe('7 место · 21.');
+    expect(NB(momentText('ru', 'promoShareTextSteps', { league: 'Бронза', place: 3, steps: 55 }))).toContain('3 место, 55');
+    expect(momentText('ru', 'promoShareTextSteps', { league: 'Бронза', place: 3, steps: 55 })).not.toMatch(/ступ/i);
   });
   it('9 языков у новых строк', () => {
     for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
@@ -264,7 +265,7 @@ describe('окна недели Пика: место — ступенями, м�
     expect(read('components/spire/moments/SpireWeekMomentHost.tsx')).toContain("rankBy={result.rankBy === 'coins' ? 'coins' : 'steps'}");
     expect(read('components/spire/moments/MomentPromotion.tsx')).toContain("metric === 'steps' ? 'promoCountingPlaces' : 'promoCounting'");
     expect(read('app/spire/spire_week_result_client.ts')).toContain("typeof r.steps === 'number' && Number.isFinite(r.steps)");
-    expect(momentText('ru', 'promoCountingPlaces')).toBe('Считаем ступени недели…');
+    expect(momentText('ru', 'promoCountingPlaces')).toBe('Считаем места недели…');
     // «позиция выросла»: строки окна меряют место тем же, чем комната
     expect(read('app/spire/use_spire_position_moments.ts')).toContain('spireDecideRise(prev, snapshot, rows, rankBy)');
   });
@@ -287,7 +288,7 @@ describe('спуск из лиги: строка без зашитых чисе�
   });
   it('MomentDown: 0 ступеней — своя строка, иначе нижняя зона; хост передаёт ступени итога', async () => {
     await render(<MomentDown lang="ru" newTier={0} coinRank={5} weekSteps={0} onPlay={jest.fn()} />);
-    expect(screen.getByText(/Неделя без единой ступени — спускаемся в /)).toBeTruthy();
+    expect(screen.getByText(/Неделя без единого этажа — спускаемся в /)).toBeTruthy();
     await render(<MomentDown lang="ru" newTier={0} coinRank={5} weekSteps={12} onPlay={jest.fn()} />);
     expect(screen.getByText(/Неделя в самом низу комнаты — спускаемся в /)).toBeTruthy();
     expect(read('components/spire/moments/SpireWeekMomentHost.tsx')).toContain('weekSteps={result.steps}');

@@ -87,7 +87,7 @@ describe('m05A · строка «Ты» едет вверх через лини�
     const onPlay = jest.fn();
     const onLater = jest.fn();
     await render(<SpirePositionRiseMoment lang="ru" rows={ROWS} fromIndex={5} toIndex={4} coinsGained={10} onPlay={onPlay} onLater={onLater} />);
-    expect(screen.getByText('СТУПЕНЬ ПРОЙДЕНА · +10 МОНЕТ')).toBeTruthy();
+    expect(screen.getByText('ЭТАЖ ПРОЙДЕН · +10 МОНЕТ')).toBeTruthy();
     expect(screen.getByTestId('position-rise-heading').props.children).toBe('Ты в топ-5');
     expect(screen.getByTestId('position-rise-row-4').props.children).toBe('5.Ты');
     expect(screen.getByTestId('position-rise-row-5').props.children).toBe('6.Лена');
@@ -139,7 +139,7 @@ describe('m05B · тост «обгоняет тебя»', () => {
 
   it('комната по ступеням: подпись «на N ступеней»; ничья по ступеням — подписи нет', async () => {
     await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} gapSteps={3} onPlay={jest.fn()} onDismiss={jest.fn()} />);
-    expect(screen.getByTestId('overtake-toast-sub').props.children).toBe(glueNumbers('на 3 ступени'));
+    expect(screen.getByTestId('overtake-toast-sub').props.children).toBe(glueNumbers('на 3 этажа')); // зачем (владелец 05.11): единица в Пике — этаж
     await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} gapSteps={0} onPlay={jest.fn()} onDismiss={jest.fn()} />);
     expect(screen.queryByTestId('overtake-toast-sub')).toBeNull();
   });
@@ -177,7 +177,7 @@ describe('m05C · последний шанс', () => {
   it('комната по ступеням: «До топ-5 — 4 ступени», монет в фразе нет', async () => {
     await render(<SpireLastChanceSheet lang="ru" visible weekEndsAtMs={now() + 3600_000} energyReadyAtMs={now() + 580_000} gapSteps={4} onPlus={jest.fn()} onClose={jest.fn()} />);
     expect(screen.getByText(/До топ-5 — /)).toBeTruthy();
-    expect(screen.getByText(glueNumbers('4 ступени'))).toBeTruthy();
+    expect(screen.getByText(glueNumbers('4 этажа'))).toBeTruthy();
     expect(screen.queryByText(/монет/)).toBeNull();
   });
 

@@ -51,6 +51,18 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 05.11 — в Пике только мо�
     expect(line).not.toMatch(/rankBy|rankedBy/);
   });
 
+  it('единица в Пике — этаж на 9 языках: spire_plurals (склонение и сокращения) не выводит слов про ступени', () => {
+    const { SPIRE_STEP_FORMS, spireStepsCount, spireStepsShort } = require('../components/spire/spire_plurals');
+    for (const lang of LANGS) {
+      for (const n of [1, 2, 5, 21]) {
+        expect(`${lang}.${n}: ${STEP_WORD.test(spireStepsCount(lang, n))}`).toBe(`${lang}.${n}: false`);
+        expect(`${lang}.${n}: ${STEP_WORD.test(spireStepsShort(lang, n))}`).toBe(`${lang}.${n}: false`);
+      }
+      expect(`${lang}: ${STEP_WORD.test(Object.values(SPIRE_STEP_FORMS[lang]).join(' '))}`).toBe(`${lang}: false`);
+    }
+    expect(spireStepsCount('ru', 5)).toBe('5 этажей');
+  });
+
   it('тексты рядов, счётчика, подписей и тура режима монет на 9 языках не содержат слов про ступени', () => {
     for (const lang of LANGS) {
       const texts: Array<[string, string]> = [

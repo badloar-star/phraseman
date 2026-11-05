@@ -99,14 +99,17 @@ describe('D162 клиент: пьедестал и «Все участники»
     expect(podium).not.toContain('adjustsFontSizeToFit');
     const all = fs.readFileSync(path.join(__dirname, '..', 'components', 'spire', 'SpireAllMembers.tsx'), 'utf8');
     expect(all).toContain('spireGroupThousands(m.weekCoins ?? 0)');
-    expect(all).toContain('runeWord(lang, m.weekCoins ?? 0)');
+    // зачем (владелец 05.11, «Все участники» 1:1 с макетом): число без слова — слово «монет» в строке убрано; подпись для диктора остаётся
+    expect(all).not.toContain('runeWord(lang, m.weekCoins ?? 0)');
+    expect(all).toContain('spireCoinsCount(lang, m.weekCoins ?? 0)');
   });
 
   it('экран передаёт рубильник в пьедестал и «Все участники»; подпись «место по монетам недели»', () => {
     const screen = fs.readFileSync(path.join(__dirname, '..', 'components', 'spire', 'SpireHomeScreen.tsx'), 'utf8');
     expect(screen).toMatch(/<SpirePodium [^>]*rankBy=\{game\.rankBy\}/);
     expect(screen).toMatch(/<SpireAllMembers [^>]*rankBy=\{game\.rankBy\}/);
-    expect(screen).toMatch(/game\.rankBy === 'coins' \? 'rankedByCoins' : 'rankedBySteps'/);
+    // зачем (владелец 05.11: «Убери слова "место по ступеням" и тд»): подзаголовок «Все участники» без способа подсчёта места
+    expect(screen).not.toMatch(/rankedByCoins|rankedBySteps/);
   });
 });
 

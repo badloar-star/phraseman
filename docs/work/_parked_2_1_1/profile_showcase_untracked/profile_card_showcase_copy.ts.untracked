@@ -1,0 +1,33 @@
+import type { Lang } from '../../constants/i18n';
+import { pluralWord } from '../../constants/plural';
+
+const en = {
+  settings: 'Your player card', visible: 'What others see', choose: 'Choose awards', hint: 'Choose up to three earned awards.',
+  showStreak: 'Show streak days', streak: 'days in a row', save: 'Save selection', close: 'Close', back: 'Back',
+  empty: 'Your earned awards will appear here.', limit: 'Three selected. Uncheck one to choose another.',
+  failed: 'Could not save. Try again.', loadFailed: 'Could not load awards.', retry: 'Try again', loading: 'Loading awards…',
+  selected: 'Selected', of: 'of', saved: 'Saved on this device. Other players will see changes after sync.',
+};
+type Copy = typeof en;
+const copies: Partial<Record<Lang, Copy>> = {
+  en,
+  'pt-BR': { ...en, settings: 'Seu cartão', visible: 'O que os outros veem', choose: 'Escolher conquistas', hint: 'Escolha até três conquistas obtidas.', showStreak: 'Mostrar dias da sequência', streak: 'dias seguidos', save: 'Salvar seleção', close: 'Fechar', back: 'Voltar', empty: 'Suas conquistas aparecerão aqui.', limit: 'Três selecionadas. Desmarque uma para escolher outra.', failed: 'Não foi possível salvar. Tente novamente.', loadFailed: 'Não foi possível carregar as conquistas.', retry: 'Tentar novamente', loading: 'Carregando conquistas…', selected: 'Selecionadas', of: 'de' },
+  vi: { ...en, settings: 'Thẻ của bạn', visible: 'Những gì người khác thấy', choose: 'Chọn thành tích', hint: 'Chọn tối đa ba thành tích đã đạt được.', showStreak: 'Hiện số ngày duy trì', streak: 'ngày liên tiếp', save: 'Lưu lựa chọn', close: 'Đóng', back: 'Quay lại', empty: 'Các thành tích của bạn sẽ xuất hiện ở đây.', limit: 'Đã chọn ba. Bỏ chọn một để chọn thành tích khác.', failed: 'Không thể lưu. Hãy thử lại.', loadFailed: 'Không thể tải thành tích.', retry: 'Thử lại', loading: 'Đang tải thành tích…', selected: 'Đã chọn', of: 'trên' },
+  id: { ...en, settings: 'Kartu kamu', visible: 'Yang dilihat orang lain', choose: 'Pilih pencapaian', hint: 'Pilih hingga tiga pencapaian yang diraih.', showStreak: 'Tampilkan hari beruntun', streak: 'hari beruntun', save: 'Simpan pilihan', close: 'Tutup', back: 'Kembali', empty: 'Pencapaianmu akan muncul di sini.', limit: 'Sudah tiga. Batalkan satu untuk memilih yang lain.', failed: 'Gagal menyimpan. Coba lagi.', loadFailed: 'Gagal memuat pencapaian.', retry: 'Coba lagi', loading: 'Memuat pencapaian…', selected: 'Dipilih', of: 'dari' },
+  tr: { ...en, settings: 'Oyuncu kartın', visible: 'Diğerlerinin gördükleri', choose: 'Başarıları seç', hint: 'Kazandığın en fazla üç başarıyı seç.', showStreak: 'Seri günlerini göster', streak: 'günlük seri', save: 'Seçimi kaydet', close: 'Kapat', back: 'Geri', empty: 'Kazandığın başarılar burada görünecek.', limit: 'Üç başarı seçili. Başkasını seçmek için birini kaldır.', failed: 'Kaydedilemedi. Tekrar dene.', loadFailed: 'Başarılar yüklenemedi.', retry: 'Tekrar dene', loading: 'Başarılar yükleniyor…', selected: 'Seçilen', of: '/' },
+  pl: { ...en, settings: 'Twoja wizytówka', visible: 'Co zobaczą inni', choose: 'Wybierz osiągnięcia', hint: 'Wybierz do trzech zdobytych osiągnięć.', showStreak: 'Pokazuj dni serii', streak: 'dni z rzędu', save: 'Zapisz wybór', close: 'Zamknij', back: 'Wstecz', empty: 'Tutaj pojawią się zdobyte osiągnięcia.', limit: 'Wybrano trzy. Odznacz jedno, aby wybrać inne.', failed: 'Nie udało się zapisać. Spróbuj ponownie.', loadFailed: 'Nie udało się wczytać osiągnięć.', retry: 'Spróbuj ponownie', loading: 'Wczytywanie osiągnięć…', selected: 'Wybrano', of: 'z' },
+  ru: { settings: 'Твоя визитка', visible: 'Что увидят другие', choose: 'Выбрать награды', hint: 'Отметь до трёх полученных наград.', showStreak: 'Показывать дни цепочки', streak: 'дней в цепочке', save: 'Сохранить выбор', close: 'Закрыть', back: 'Назад', empty: 'Здесь появятся твои полученные награды.', limit: 'Выбрано три. Сними отметку, чтобы выбрать другую.', failed: 'Не удалось сохранить. Попробуй ещё раз.', loadFailed: 'Не удалось загрузить награды.', retry: 'Повторить', loading: 'Загружаем награды…', selected: 'Выбрано', of: 'из', saved: 'Сохранено на устройстве. Другие увидят изменения после синхронизации.' },
+  uk: { settings: 'Твоя візитка', visible: 'Що побачать інші', choose: 'Вибрати нагороди', hint: 'Вибери до трьох отриманих нагород.', showStreak: 'Показувати дні серії', streak: 'днів у серії', save: 'Зберегти вибір', close: 'Закрити', back: 'Назад', empty: 'Тут з’являться отримані нагороди.', limit: 'Вибрано три. Зніми позначку, щоб вибрати іншу.', failed: 'Не вдалося зберегти. Спробуй ще раз.', loadFailed: 'Не вдалося завантажити нагороди.', retry: 'Повторити', loading: 'Завантажуємо нагороди…', selected: 'Вибрано', of: 'з', saved: 'Збережено на пристрої. Інші побачать зміни після синхронізації.' },
+  es: { settings: 'Tu tarjeta', visible: 'Lo que ven los demás', choose: 'Elegir premios', hint: 'Elige hasta tres premios obtenidos.', showStreak: 'Mostrar días de racha', streak: 'días de racha', save: 'Guardar selección', close: 'Cerrar', back: 'Volver', empty: 'Tus premios aparecerán aquí.', limit: 'Ya elegiste tres. Desmarca uno para elegir otro.', failed: 'No se pudo guardar. Inténtalo de nuevo.', loadFailed: 'No se pudieron cargar los premios.', retry: 'Reintentar', loading: 'Cargando premios…', selected: 'Elegidos', of: 'de', saved: 'Guardado en el dispositivo. Los demás verán los cambios tras sincronizar.' },
+};
+export function showcaseCopy(lang: Lang): Copy { return copies[lang] ?? en; }
+export function showcaseStreakLabel(lang: Lang, count: number): string {
+  const many = showcaseCopy(lang).streak;
+  const forms: Partial<Record<Lang, readonly [string, string]>> = {
+    ru: ['день в цепочке', 'дня в цепочке'], uk: ['день у серії', 'дні у серії'],
+    pl: ['dzień z rzędu', 'dni z rzędu'], en: ['day in a row', many],
+    es: ['día de racha', many], 'pt-BR': ['dia seguido', many],
+  };
+  const [one, few] = forms[lang] ?? [many, many];
+  return `${count} ${pluralWord(lang, count, { one, few, many })}`;
+}

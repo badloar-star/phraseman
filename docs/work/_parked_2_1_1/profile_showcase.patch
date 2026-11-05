@@ -1,0 +1,236 @@
+diff --git a/components/PlayerProfileModal.tsx b/components/PlayerProfileModal.tsx
+index 63d52ab3c..5bbc2ac23 100644
+--- a/components/PlayerProfileModal.tsx
++++ b/components/PlayerProfileModal.tsx
+@@ -19,6 +19,7 @@ import {
+   Platform,
+   Pressable,
+   Share,
++  ScrollView,
+   StyleSheet,
+   Text,
+   useWindowDimensions,
+@@ -45,11 +46,17 @@ import { resolveProfileCardLook } from '../app/profile_card_styles';
+ import InGameToast from './InGameToast';
+ import ThemedConfirmModal from './ThemedConfirmModal';
+ import ProfileCardBackdrop from './profile-card/ProfileCardBackdrop';
++import ProfileCardShowcase from './profile-card/ProfileCardShowcase';
++import ProfileCardShowcaseSheet from './profile-card/ProfileCardShowcaseSheet';
++import { showcaseCopy } from './profile-card/profile_card_showcase_copy';
++import { normalizeShowcase } from '../shared/profile_card_showcase';
++import { useProfileCardShowcase } from '../hooks/use_profile_card_showcase';
++import PressableHybrid from './PressableHybrid';
+ import ProfileCardBioSheet from './profile-card/ProfileCardBioSheet';
+ import ProfileCardBody from './profile-card/ProfileCardBody';
+ import ProfileCardCoin, { CoinImage, GoldRing } from './profile-card/ProfileCardCoin';
+ import { useIsPlus } from './plus/use_is_plus';
+ import { isPlusProfile } from './plus/plus_ring_spec';
+ import { ProfileCardOtherFooter, ProfileCardSelfFooter } from './profile-card/ProfileCardFooter';
+ import { ProBadge } from './profile-card/ProfileCardParts';
+ import ProfileCardProSheet from './profile-card/ProfileCardProSheet';
+@@ -128,7 +135,7 @@ interface Props {
+ const CARD_RADIUS = 38;
+ /** Окно защиты от двойного тапа «Повысить ранг» на визитке (после него кнопка снова ведёт на /coin_rank). */
+ const RANK_UPGRADE_TAP_GUARD_MS = 1000;
+-const CARD_CY = 0.36;
++const CARD_COIN_Y = 168;
+ 
+ type BodyProps = {
+   player: PlayerInfo;
+@@ -183,9 +190,10 @@ function PlayerProfileModalBody({
+   const cardBottom = Math.max(12, bottomInset - 4);
+   const cardHeight = Math.max(420, Math.min(640, windowHeight - topInset - bottomInset - 10));
+   const isMe = player.isMe;
++  const myShowcase = useProfileCardShowcase(isMe);
+   // зачем (владелец 21.10, реестр №6): Plus у человека на визитке — кольцо у монеты и метка «◆ Plus» у имени. Себе — живой статус, другим — публичный профиль
+   const myIsPlus = useIsPlus();
+   const plus = isMe ? myIsPlus : isPlusProfile(player);
+   const myCoinRank = useMyCoinRank();
+   const publicRank = player.coinRank ?? null;
+   const visibleRank = resolvePlayerProfileVisibleRank({
+@@ -225,11 +233,12 @@ function PlayerProfileModalBody({
+     if (!backInterceptRef) return undefined;
+     backInterceptRef.current = () => {
+       if (sheet === 'none') return false;
+-      setSheet('none');
++        setSheet(sheet === 'awards' ? 'showcase' : 'none');
+       return true;
+     };
+     return () => { backInterceptRef.current = null; };
+   }, [backInterceptRef, setSheet, sheet]);
++  useEffect(() => { setSheet('none'); }, [myShowcase.token.generation, setSheet]);
+ 
+   // ── Чужая визитка: «Про», стиль, свой текст из public_profiles ──
+   const targetUid = player.friendUid || player.uid || '';
+@@ -268,6 +277,7 @@ function PlayerProfileModalBody({
+   const bioText = isMe
+     ? (myProOwned ? self.myBio : '')
+     : (isPro ? (otherCard?.bio ?? player.profileCardBio ?? '') : '');
++  const showcase = isMe ? myShowcase.showcase : normalizeShowcase(otherCard?.showcase);
+ 
+   // ── Социальные действия: друзья, лайк, жалоба (components/profile-card/usePlayerProfileSocial) ──
+   const social = usePlayerProfileSocial(player, myInfo.name, L, onFriendRequestToast);
+@@ -299,6 +309,7 @@ function PlayerProfileModalBody({
+ 
+   // ── Геометрия сцены ──
+   const [stage, setStage] = useState({ width: 0, height: 0 });
++  const [contentHeight, setContentHeight] = useState(556);
+   const onStageLayout = useCallback((event: LayoutChangeEvent) => {
+     const { width, height } = event.nativeEvent.layout;
+     setStage((prev) => (prev.width === width && prev.height === height ? prev : { width, height }));
+@@ -306,7 +317,7 @@ function PlayerProfileModalBody({
+   const k = stage.width > 0 ? Math.max(0.82, Math.min(1.1, stage.width / 370)) : 1;
+   const coinSize = Math.round(tokens.coin * k);
+   const cx = stage.width / 2;
+-  const cy = stage.height * CARD_CY;
++  const cy = CARD_COIN_Y;
+   const animate = !reduceMotion && sheet === 'none';
+ 
+   const cardEnter = useMemo(() => ({
+@@ -346,9 +357,10 @@ function PlayerProfileModalBody({
+           accessibilityLabel={`${relationshipText}: ${player.name}`}
+           style={[styles.card, { height: cardHeight, bottom: cardBottom, backgroundColor: tokens.bg, shadowColor: overlay.shadow }, cardEnter]}
+         >
+-          <View style={styles.stage} onLayout={onStageLayout}>
++          <ScrollView style={styles.stage} onLayout={onStageLayout} showsVerticalScrollIndicator={false}
++            onContentSizeChange={(_width, height) => setContentHeight(height)} contentContainerStyle={styles.stageContent}>
+             {stage.width > 0 ? (
+-              <ProfileCardBackdrop look={look} width={stage.width} height={stage.height} cy={CARD_CY} animate={animate} k={k} />
++              <ProfileCardBackdrop look={look} width={stage.width} height={contentHeight} cy={CARD_COIN_Y / Math.max(1, contentHeight)} animate={animate} k={k} />
+             ) : null}
+             {visibleCeremony && stage.width > 0 ? (
+               <>
+@@ -385,6 +397,10 @@ function PlayerProfileModalBody({
+                 {isPro && tokens.badge ? <ProBadge fill={tokens.badge.fill} text={tokens.badge.text} radius={tokens.badge.radius} /> : null}
+               </View>
+               <View style={styles.topGroup}>
++                {isMe ? <PressableHybrid testID="profile-card-showcase-open" accessibilityRole="button" accessibilityLabel={showcaseCopy(L).settings}
++                  onPress={() => setSheet('showcase')} contentStyle={[styles.topIcon, overlay.icon]}>
++                  <Ionicons name="options-outline" size={20} color={overlay.ink} />
++                </PressableHybrid> : null}
+                 {isMe
+                   ? topIcon('profile-card-share', 'share-outline', t4(L, PC.share), handleShare)
+                   : friendRequestTargetUid
+@@ -417,7 +433,9 @@ function PlayerProfileModalBody({
+               </ReanimatedView.View>
+             ) : null}
+ 
++            <View style={styles.heroSpace} />
+             <ProfileCardBody
++              flow
+               lang={L}
+               tokens={tokens}
+               name={player.name}
+@@ -430,9 +448,10 @@ function PlayerProfileModalBody({
+               onEditBio={() => setSheet('bio')}
+               onOpenBuy={() => setSheet('buy')}
+               plus={plus}
+             />
++            <ProfileCardShowcase value={showcase} tokens={tokens} lang={L} />
+             {!isMe && player.pairStats ? <FriendCardStats stats={player.pairStats} tokens={tokens} lang={L} /> : null}
+-          </View>
++          </ScrollView>
+           {isMe ? (
+             <ProfileCardSelfFooter
+               lang={L}
+@@ -496,6 +515,12 @@ function PlayerProfileModalBody({
+           />
+         ) : null}
+         {/* Поле своего текста — ТОЛЬКО владельцу «Про» на своей визитке. */}
++        {isMe && (sheet === 'showcase' || sheet === 'awards') ? <ProfileCardShowcaseSheet
++          key={`${myShowcase.token.generation}:${sheet}`} mode={sheet === 'awards' ? 'awards' : 'settings'} lang={L}
++          preference={myShowcase.preference} earned={myShowcase.earned} loading={myShowcase.loading} loadFailed={myShowcase.failed}
++          saving={myShowcase.saving} bottomInset={bottomInset} onSave={myShowcase.save} onRetry={myShowcase.reload}
++          onChoose={() => setSheet('awards')} onClose={() => setSheet(sheet === 'awards' ? 'showcase' : 'none')}
++        /> : null}
+         {sheet === 'bio' && isMe && myProOwned ? (
+           <ProfileCardBioSheet
+             lang={L}
+@@ -706,6 +731,8 @@ const styles = StyleSheet.create({
+     elevation: 24,
+   },
+   stage: { flex: 1, minHeight: 0, overflow: 'hidden' },
++  stageContent: { minHeight: 420, paddingBottom: 8 },
++  heroSpace: { height: 280 },
+   edge: { ...StyleSheet.absoluteFillObject, borderRadius: CARD_RADIUS }, // guard-ok: кант визитки .vz-edge (1–1,5pt полупрозрачный, стиль 2.0)
+   top: {
+     position: 'absolute', top: 16, left: 16, right: 16, zIndex: 12,
+diff --git a/components/profile-card/ProfileCardBody.tsx b/components/profile-card/ProfileCardBody.tsx
+index 01cbcfea2..6f8bf3c88 100644
+--- a/components/profile-card/ProfileCardBody.tsx
++++ b/components/profile-card/ProfileCardBody.tsx
+@@ -35,6 +35,8 @@ type Props = Readonly<{
+   onOpenBuy: () => void;
+   /** У человека есть Plus: метка «◆ Plus» у имени (владелец 21.10, реестр №6). Карточка всегда тёмная — метка тёмного варианта. */
+   plus?: boolean;
++  /** Уровень подписки для метки у имени: plus → «◆ Plus», ultra → «✦ Ultra»; по умолчанию plus. */
++  flow?: boolean;
+ }>;
+ 
+ // зачем (Сверка 05.10 04:45: при rank=5 визитка писала «ранг 6», после повышения «ранг 7»): ранги 0…19 показываются
+@@ -44,7 +46,6 @@ export function profileCardRankLabel(rank: number, lang: Lang): string {
+ }
+ 
+ function ProfileCardBodyBase({
+-  lang, tokens, name, rank, ceremony, chipStyles, bioText, canEditBio, showLock, onEditBio, onOpenBuy, plus,
+ }: Props) {
+   const editable = canEditBio && !ceremony;
+   // зачем (закон владельца 22.10): белое поверх арта — mediaInk темы с прежними плотностями (profile_card_art_ink), не свои литералы
+@@ -129,7 +130,7 @@ function ProfileCardBodyBase({
+     </>
+   );
+   return (
+-    <View style={styles.body} pointerEvents="box-none">
++    <View style={[styles.body, flow && styles.flow]} pointerEvents="box-none">
+       {tokens.glassBody ? <View style={[styles.glass, tone.glass]}>{content}</View> : content}
+     </View>
+   );
+@@ -138,6 +139,7 @@ function ProfileCardBodyBase({
+ export default memo(ProfileCardBodyBase);
+ 
+ const styles = StyleSheet.create({
++  flow: { position: 'relative', bottom: 0, paddingBottom: 4 },
+   body: { position: 'absolute', left: 0, right: 0, bottom: 14, paddingHorizontal: 22, alignItems: 'center', zIndex: 6 },
+   glass: {
+     alignSelf: 'stretch', alignItems: 'center',
+diff --git a/components/profile-card/ProfileCardBackdrop.tsx b/components/profile-card/ProfileCardBackdrop.tsx
+index ce29e9f54..a7ca11c30 100644
+--- a/components/profile-card/ProfileCardBackdrop.tsx
++++ b/components/profile-card/ProfileCardBackdrop.tsx
+@@ -214,7 +214,6 @@ function ObsidianLayers({ center }: { center: Center }) {
+     for (let r = R * 0.51; r < R * 0.98; r += 7) out.push(r);
+     return out;
+   }, [R]);
+-  const beamHalf = 420 * Math.tan((20 * Math.PI) / 180);
+   return (
+     <>
+       <Svg pointerEvents="none" width={width} height={height} style={StyleSheet.absoluteFill}>
+@@ -223,14 +222,9 @@ function ObsidianLayers({ center }: { center: Center }) {
+             <Stop offset="0" stopColor="#231E14" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+             <Stop offset="0.72" stopColor="#0A0907" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+           </RadialGradient>
+-          <SvgLinearGradient id="obsBeam" x1={width / 2 - beamHalf} y1="0" x2={width / 2 + beamHalf} y2="0" gradientUnits="userSpaceOnUse">
+-            <Stop offset="0" stopColor="#FFE2A0" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+-            <Stop offset="0.5" stopColor="#FFE2A0" stopOpacity={0.26} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+-            <Stop offset="1" stopColor="#FFE2A0" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+-          </SvgLinearGradient>
++
+         </Defs>
+         <Rect x={0} y={0} width={width} height={height} fill="url(#obsBg)" />
+-        <Path d={`M${width / 2},-60L${width / 2 + beamHalf},360L${width / 2 - beamHalf},360Z`} fill="url(#obsBeam)" />
+       </Svg>
+       <Animated.View pointerEvents="none" style={[box(center, rosette), spinStyle]}>
+         <Svg width={rosette} height={rosette}>
+diff --git a/components/profile-card/useSelfProfileCard.ts b/components/profile-card/useSelfProfileCard.ts
+index c90cb46c7..6ecd0adb5 100644
+--- a/components/profile-card/useSelfProfileCard.ts
++++ b/components/profile-card/useSelfProfileCard.ts
+@@ -23,7 +23,7 @@ import { PC, t4 } from './profile_card_copy';
+ 
+ const LOG = '[PROFILE-CARD]';
+ 
+-export type SheetKind = 'none' | 'buy' | 'style' | 'bio';
++export type SheetKind = 'none' | 'buy' | 'style' | 'bio' | 'showcase' | 'awards';
+ type Toast = (message: string, type?: 'error' | 'info') => void;
+ 
+ export function useSelfProfileCard(isMe: boolean, lang: Lang, toast: Toast) {

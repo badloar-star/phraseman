@@ -31,6 +31,8 @@ import {
 } from '../../app/theory_progress';
 import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { pluralWithCount } from '../../constants/plural';
+// зачем (решение владельца 05.11, макет target_lang_one_color_approved): слова изучаемого языка — один жирный цвет из оттенка темы, «Читается» — say курсивом, ✗ серый без красного/зелёного
+import { LANG_WEIGHT, LearnLangSpans, ReadingLineSpans, splitReadingLine, useLearnLangPalette } from '../learn_lang_text';
 
 /**
  * TheoryLessonView — рендер-движок раздела «Теория» в стиле «дорогой минимализм».
@@ -247,6 +249,7 @@ export default function TheoryLessonView({
   const { theme: t, themeMode, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
+  const { roles: langRoles, splitLatin } = useLearnLangPalette();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   // зачем: акцент = светлая кнопка макета (glass.cta), а не цвет темы приложения.
@@ -479,9 +482,10 @@ export default function TheoryLessonView({
         case 'body':
         case 'note':
           if (!block.text) return null;
+          // строка «Читается: …» — метка обычным цветом, остальное say курсивом; в остальных — слова изучаемого языка одним цветом (интерфейс RU/UK)
           return (
             <Text key={key} style={[styles.bodyText, { color: glass.secondary }]}>
-              {block.text}
+              {splitReadingLine(block.text) ? <ReadingLineSpans text={block.text} roles={langRoles} labelColor={glass.secondary} /> : <LearnLangSpans text={block.text} roles={langRoles} splitLatin={splitLatin} />}
             </Text>
           );
 
@@ -492,7 +496,7 @@ export default function TheoryLessonView({
               key={key}
               style={[styles.tipBox, { backgroundColor: glass.selected }]}
             >
-              <Text style={[styles.bodyText, { color: glass.text }]}>{block.text}</Text>
+              <Text style={[styles.bodyText, { color: glass.text }]}><LearnLangSpans text={block.text} roles={langRoles} splitLatin={splitLatin} /></Text>
             </View>
           );
 
@@ -550,16 +554,16 @@ export default function TheoryLessonView({
                       },
                     ]}
                   >
-                    <Text style={[styles.exampleEn, { color: glass.text }]}>
+                    <Text style={[styles.exampleEn, { color: langRoles.lang, fontWeight: LANG_WEIGHT }]}>
                       {before}
                       {!!match && (
-                        <Text style={{ color: glass.text, fontWeight: '800' }}>{match}</Text>
+                        <Text style={{ color: langRoles.lang, fontWeight: '800' }}>{match}</Text>
                       )}
                       {after}
                     </Text>
                     <Text style={[styles.exampleTranslation, { color: glass.secondary }]}>{ex.translation}</Text>
                     {/* зачем (Теория 12, новый формат «как ребёнку»): как читается фраза — для людей, не знающих алфавита/звуков языка */}
-                    {!!ex.reading && <Text style={[styles.exampleTranslation, { color: glass.secondary }]}>{ex.reading}</Text>}
+                    {!!ex.reading && <Text style={[styles.exampleTranslation, { color: glass.secondary }]}><ReadingLineSpans text={ex.reading} roles={langRoles} labelColor={glass.secondary} /></Text>}
                   </View>
                 );
               })}
@@ -574,12 +578,10 @@ export default function TheoryLessonView({
             <View key={key} style={styles.fixWrap}>
               {fixes.map((fx, i) => (
                 <View key={`${key}-x${i}`} style={styles.fixRow}>
-                  <Text
-                    style={[
-                      styles.fixWrong,
-                      { color: t.wrong, textDecorationLine: 'line-through' },
-                    ]}
-                  >
+                  <View testID="theory-fix-mark" style={[styles.fixMark, { backgroundColor: glass.opaqueControl }]}>
+                    <Ionicons name="close" size={14} color={glass.secondary} />
+                  </View>
+                  <Text style={[styles.fixWrong, { color: langRoles.lang, fontWeight: LANG_WEIGHT }]}>
                     {fx.wrong}
                   </Text>
                   <Ionicons
@@ -588,7 +590,7 @@ export default function TheoryLessonView({
                     color={glass.secondary}
                     style={styles.fixArrow}
                   />
-                  <Text style={[styles.fixRight, { color: t.correct }]}>{fx.right}</Text>
+                  <Text style={[styles.fixRight, { color: langRoles.lang }]}>{fx.right}</Text>
                 </View>
               ))}
             </View>
@@ -612,7 +614,7 @@ export default function TheoryLessonView({
           return null;
       }
     },
-    [t, glass, renderDrill],
+    [t, glass, renderDrill, langRoles, splitLatin],
   );
 
   const progressLabel = triLang(lang, {
@@ -928,6 +930,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
+  },
+  fixMark: {
+    alignItems: 'center',
+    borderRadius: 11,
+    height: 22,
+    justifyContent: 'center',
+    marginRight: 8,
+    width: 22,
   },
   fixWrong: {
     fontSize: 16,

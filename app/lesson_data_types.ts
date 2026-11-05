@@ -141,6 +141,8 @@ export interface LessonIntroExample {
   trId?: string;
   trTr?: string;
   trPl?: string;
+  /** «Читается» (как читается фраза) для RU/UK; готовит Теория при сборке (копия say примера из теории). Нет поля — строка под фразой не рисуется. */
+  reading?: Readonly<{ ru?: string; uk?: string }>;
 }
 
 export interface LessonIntroScreen {

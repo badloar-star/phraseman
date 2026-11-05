@@ -6,6 +6,9 @@ import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, Lesso
 import type { Lang } from '../constants/i18n';
 import type { StudyTargetLang } from '../app/study_target_lang_dev';
 import { spanishLessonUiStringsActive, spanishStudyActive } from '../app/spanish_content_gate';
+// зачем (решение владельца 05.11, макет target_lang_one_color_approved): слова изучаемого языка — ОДИН жирный цвет из оттенка темы; частей речи, красного/зелёного и подложек нет
+import { LANG_WEIGHT, LearnLangSpans } from './learn_lang_text';
+import type { IntroTextRoles } from '../constants/liquidGlassIntroTextRoles';
 
 export type PlannedIntroLang = Extract<Lang, 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl'>;
 
@@ -80,18 +83,21 @@ export function splitEnglish(text: string): { value: string; isEn: boolean }[] {
 export function HighlightedText({
   text,
   style,
-  accentColor,
+  roles,
+  splitLatin,
 }: {
   text: string;
   style: any;
-  accentColor: string;
+  roles: IntroTextRoles;
+  /** true — интерфейс RU/UK: латиница в абзаце = изучаемый язык и красится; false — абзац остаётся обычным (нельзя покрасить пояснение). */
+  splitLatin: boolean;
 }) {
   const segments = splitEnglish(text);
   return (
     <Text style={style}>
       {segments.map((seg, i) =>
-        seg.isEn ? (
-          <Text key={i} style={{ color: accentColor, fontWeight: '600' }}>
+        seg.isEn && splitLatin ? (
+          <Text key={i} style={{ color: roles.lang, fontWeight: LANG_WEIGHT }}>
             {seg.value}
           </Text>
         ) : (
@@ -288,6 +294,16 @@ export function toneStyle(tone: IntroTextTone | undefined, t: any, accent: strin
   return { color: colorByTone[resolved], fontWeight: weightByTone[resolved] };
 }
 
+/**
+ * Тона частей текста вступления после решения 05.11: красного/зелёного/акцентного больше нет — «accent/success/danger» читаются обычным текстом, «strong» — жирным обычным;
+ * слова изучаемого языка красит роль lang (см. ниже), формулы и код остаются как были (цвета оттенка темы).
+ */
+function neutralToneStyle(tone: IntroTextTone | undefined, t: any, accent: string, isLight: boolean) {
+  const resolved = tone ?? 'normal';
+  if (resolved === 'success' || resolved === 'danger' || resolved === 'accent') return { color: t.textPrimary, fontWeight: '700' as const };
+  return toneStyle(resolved, t, accent, isLight);
+}
+
 export function RichTextParts({
   parts,
   text,
@@ -295,6 +311,9 @@ export function RichTextParts({
   accent,
   isLight,
   style,
+  roles,
+  splitLatin = false,
+  allLang = false,
 }: {
   parts?: IntroTextPart[];
   text?: string;
@@ -302,15 +321,29 @@ export function RichTextParts({
   accent: string;
   isLight: boolean;
   style: any;
+  /** Цвета роли «изучаемый язык»; без них части красятся как раньше (нейтральные тона). */
+  roles?: IntroTextRoles;
+  /** Интерфейс RU/UK: латиница внутри частей — изучаемый язык. */
+  splitLatin?: boolean;
+  /** Вся строка — изучаемый язык (английская строка примера). */
+  allLang?: boolean;
 }) {
   const source = parts?.length ? parts : [{ text: text ?? '', tone: 'normal' as IntroTextTone }];
   return (
     <Text style={style}>
-      {source.map((part, i) => (
-        <Text key={`${part.text}-${i}`} style={toneStyle(part.tone, t, accent, isLight)}>
-          {part.text}
-        </Text>
-      ))}
+      {source.map((part, i) => {
+        const base = neutralToneStyle(part.tone, t, accent, isLight);
+        if (roles && allLang && part.tone !== 'formula' && part.tone !== 'code') {
+          return <Text key={`${part.text}-${i}`} style={{ color: roles.lang, fontWeight: LANG_WEIGHT }}>{part.text}</Text>;
+        }
+        return (
+          <Text key={`${part.text}-${i}`} style={base}>
+            {roles && splitLatin && part.tone !== 'formula' && part.tone !== 'code'
+              ? <LearnLangSpans text={part.text} roles={roles} splitLatin />
+              : part.text}
+          </Text>
+        );
+      })}
     </Text>
   );
 }
@@ -321,20 +354,25 @@ export function RichIntroLineView({
   accent,
   isLight,
   f,
+  roles,
+  splitLatin = false,
 }: {
   line: IntroLine;
   t: any;
   accent: string;
   isLight: boolean;
   f: any;
+  roles?: IntroTextRoles;
+  splitLatin?: boolean;
 }) {
   if (line.type === 'spacer') return <View style={{ height: 8 }} />;
 
+  // зачем (решение владельца 05.11): неправильный пример — серый ✗, без красного; верный — без зелёного; полоса таких строк нейтральная (приглушённый текст темы)
   const semanticColor =
     line.type === 'wrong'
-      ? t.wrong
+      ? t.textMuted
       : line.type === 'correct'
-        ? t.correct
+        ? t.textMuted
         : line.type === 'formula'
           ? accent
           : line.type === 'step'
@@ -353,7 +391,7 @@ export function RichIntroLineView({
           backgroundColor: semanticLineBg,
           borderColor: `${semanticColor}40`,
           borderWidth: 0,
-          paddingLeft: 16,
+          paddingLeft: line.type === 'wrong' ? 44 : 16, // зачем: слева место под серый ✗ неправильного примера
           paddingRight: 12,
           paddingVertical: line.type === 'formula' ? 12 : 10,
         },
@@ -365,12 +403,19 @@ export function RichIntroLineView({
           style={[styles.richLineStripe, { backgroundColor: semanticColor }]}
         />
       )}
+      {line.type === 'wrong' ? (
+        <View testID="intro-wrong-mark" style={[styles.richWrongMark, { backgroundColor: 'rgba(128,128,128,0.22)' /* theme-exempt: нейтральный серый кружок ✗ — не красный и не цвет темы (макет «Станет») */ }]}>
+          <Ionicons name="close" size={14} color={t.textMuted} />
+        </View>
+      ) : null}
       <RichTextParts
         parts={line.parts}
         text={line.text}
         t={t}
         accent={accent}
         isLight={isLight}
+        roles={roles}
+        splitLatin={splitLatin}
         style={[
           styles.richLineText,
           {
@@ -513,5 +558,16 @@ const styles = StyleSheet.create({
   },
   richLineText: {
     fontWeight: '500',
+  },
+  // серый кружок с ✗ у неправильного примера (макет «Станет»): без красного, цвет — приглушённый текст темы
+  richWrongMark: {
+    alignItems: 'center',
+    borderRadius: 11,
+    height: 22,
+    justifyContent: 'center',
+    left: 14,
+    position: 'absolute',
+    top: 10,
+    width: 22,
   },
 });

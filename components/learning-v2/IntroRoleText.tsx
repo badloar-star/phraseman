@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// IntroRoleText.tsx — текст вступления и «Скажи так» в цветах ролей: английский / частица с подложкой / перевод / формула.
+// IntroRoleText.tsx — текст вступления и «Скажи так» в цветах ролей: изучаемый язык одним цветом / перевод / формула.
 //
 // зачем (владелец 25.10 утвердил «МАКСИМУМ И ПОДЛОЖКА»): частица — оттенок темы с «Максимума» на подложке accentSoft, жирная;
 // английский — langText жирный; русский — gloss; «+ →» — mutedText. Цвета ролей — только из активной темы (introTextRolesForTokens),
@@ -12,20 +12,19 @@ import { introTextRolesForTokens } from '../../constants/liquidGlassIntroTextRol
 import { useTheme } from '../ThemeContext';
 import type { Lv2Glass } from './LearningV2Glass';
 
-type Look = Readonly<{ color: string; fontWeight: '400' | '700'; backgroundColor?: string }>;
+type Look = Readonly<{ color: string; fontWeight: '400' | '700' }>;
 
-function IntroRoleText({ text, glass, particles = true, testID }: Readonly<{ text: string; glass: Lv2Glass; particles?: boolean; testID?: string }>) {
+function IntroRoleText({ text, glass, testID }: Readonly<{ text: string; glass: Lv2Glass; testID?: string }>) {
   const { liquidGlassThemeId } = useTheme();
   const roles = introTextRolesForTokens(liquidGlassThemeId, glass);
   const segments = splitIntroTextRoles(text);
   const looks = useMemo<Readonly<Record<IntroTextRole, Look>>>(() => ({
-    lang: { color: roles.langText, fontWeight: '700' },
-    // «Проверь себя» и подобные места — без подсветки частиц: частица там просто английское слово
-    particle: particles ? { color: roles.particle, fontWeight: '700', backgroundColor: glass.accentSoft } : { color: roles.langText, fontWeight: '700' },
+    // зачем (решение владельца 05.11): все слова изучаемого языка — один жирный цвет lang из оттенка темы; частицы и подложки нет
+    lang: { color: roles.lang, fontWeight: '700' },
     gloss: { color: roles.gloss, fontWeight: '400' },
     formula: { color: glass.mutedText, fontWeight: '700' },
     plain: { color: roles.gloss, fontWeight: '400' },
-  }), [roles, particles, glass.accentSoft, glass.mutedText]);
+  }), [roles, glass.mutedText]);
   return (
     <>
       {segments.map((seg, i) => (

@@ -63,6 +63,8 @@ import {
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { LessonIntroExampleRow, introExampleEnStyle } from '../components/lessons/LessonIntroGlass';
+// зачем (решение владельца 05.11, «интро тоже должны быть окрашены, не только теория»): слова изучаемого языка вступления — один жирный цвет из оттенка темы, «Читается» — say курсивом
+import { ReadingLineSpans, useLearnLangPalette } from '../components/learn_lang_text';
 import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import BackGlyph from '../components/v2/BackGlyph';
@@ -144,6 +146,7 @@ function IntroBlockCard({
   const translateY = useRef(new Animated.Value(SLIDE_DISTANCE_PX)).current;
   const scale = useRef(new Animated.Value(0.965)).current;
   const iconPulse = useRef(new Animated.Value(0)).current;
+  const { roles: langRoles, splitLatin } = useLearnLangPalette();
 
   const kind: LessonIntroBlockKind = richKindToLegacyKind(data.kind) ?? KIND_BY_INDEX[index] ?? 'tip';
   const km = KIND_MAP[kind];
@@ -327,13 +330,16 @@ function IntroBlockCard({
                   accent={accent}
                   isLight={isLight}
                   f={f}
+                  roles={langRoles}
+                  splitLatin={splitLatin}
                 />
               ))}
             </View>
           ) : (
             <HighlightedText
               text={text ?? ''}
-              accentColor={accent}
+              roles={langRoles}
+              splitLatin={splitLatin}
               style={[
                 styles.cardBody,
                 {
@@ -366,6 +372,11 @@ function IntroBlockCard({
                     ? plannedExampleMeta(ex, 'note', lang)
                     : legacyExampleMeta(ex, 'note', lang, studyTarget)
                   : undefined;
+                // «Читается» — только для интерфейса RU/UK и только если данные урока его содержат (готовит Теория при сборке); иначе строки нет
+                const readingRaw = splitLatin ? (ex as LessonIntroExample).reading?.[lang === 'uk' ? 'uk' : 'ru'] : undefined;
+                const reading = readingRaw
+                  ? <ReadingLineSpans text={`${triLang(lang, { ru: 'Читается', uk: 'Читається', en: 'Reads', es: 'Se lee', 'pt-BR': 'Lê-se', vi: 'Đọc là', id: 'Dibaca', tr: 'Okunuşu', pl: 'Czyta się' })}: ${readingRaw}`} roles={langRoles} labelColor={glass.secondary} />
+                  : undefined;
                 return (
                   <LessonIntroExampleRow
                     key={i}
@@ -374,16 +385,19 @@ function IntroBlockCard({
                     label={label}
                     note={note}
                     translation={secondary}
+                    reading={reading}
                     english={richExample ? (
                       <RichTextParts
                         parts={ex.en}
                         t={t}
                         accent={accent}
                         isLight={isLight}
-                        style={[styles.exampleEN, introExampleEnStyle(glass)]}
+                        roles={langRoles}
+                        allLang
+                        style={[styles.exampleEN, introExampleEnStyle(glass, langRoles)]}
                       />
                     ) : (
-                      <Text style={[styles.exampleEN, introExampleEnStyle(glass)]}>{primary}</Text>
+                      <Text style={[styles.exampleEN, introExampleEnStyle(glass, langRoles)]}>{primary}</Text>
                     )}
                   />
                 );

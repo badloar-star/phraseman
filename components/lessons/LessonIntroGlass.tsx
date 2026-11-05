@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, type StyleProp, type TextStyle } from 'react-native';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import type { IntroTextRoles } from '../../constants/liquidGlassIntroTextRoles';
 
 // зачем (владелец 2026-09-29): интро урока переносится «1 в 1» по learn.html C1–C3.
 // В макете примеры лежат не в цветной рамке с зелёным английским, а строками: английский 17/600
@@ -10,8 +11,9 @@ import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette'
 export type LessonIntroGlassTokens = ReturnType<typeof liquidGlassTokens>;
 
 /** Стиль английской строки примера (17/22, 600) — общий для простого и rich-варианта. */
-export function introExampleEnStyle(glass: LessonIntroGlassTokens): TextStyle {
-  return { color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' };
+// зачем (решение владельца 05.11, макет target_lang_one_color_approved): английская строка примера — слова изучаемого языка ОДНИМ цветом lang (жирный); без roles — прежний обычный цвет
+export function introExampleEnStyle(glass: LessonIntroGlassTokens, roles?: IntroTextRoles): TextStyle {
+  return { color: roles ? roles.lang : glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' };
 }
 
 /** Одна строка примера: английский слева, перевод справа, сверху тонкая разделительная линия. */
@@ -22,6 +24,7 @@ export function LessonIntroExampleRow({
   note,
   english,
   translation,
+  reading,
 }: {
   glass: LessonIntroGlassTokens;
   first: boolean;
@@ -29,6 +32,8 @@ export function LessonIntroExampleRow({
   note?: string;
   english: React.ReactNode;
   translation: string;
+  /** «Читается: …» под английской фразой (готовый элемент: метка обычным цветом, остальное say курсивом); нет данных — нет строки. */
+  reading?: React.ReactNode;
 }) {
   const translationStyle: StyleProp<TextStyle> = {
     color: glass.secondary,
@@ -56,6 +61,7 @@ export function LessonIntroExampleRow({
           <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 17, marginBottom: 2 }}>{label}</Text> // guard-ok: метка примера из данных урока, не расшифровка
         ) : null}
         {english}
+        {reading ? <Text style={{ fontSize: 15, lineHeight: 20, marginTop: 3 }}>{reading}</Text> : null}
         {note ? (
           <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 17, fontWeight: '700', marginTop: 3 }}>{note}</Text> // guard-ok: примечание примера из данных урока
         ) : null}

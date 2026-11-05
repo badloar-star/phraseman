@@ -1,36 +1,44 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// liquidGlassIntroTextRoles.ts — три цвета текста во вступлении занятия: английский, частицы, русский перевод.
+// liquidGlassIntroTextRoles.ts — цвета текста вступления и теории: ОДИН цвет для слов изучаемого языка и приглушённый тон для «Читается».
 //
-// зачем (владелец 25.10, координатор: «английский, русский и грамматические частицы (is/are, a/the, -s, «A + is + B») — РАЗНЫЕ цвета
-// во всех 29 темах»; эталон рисуют Макеты — intro-text-colors.html): роли из палитры текущей темы, каждая ≥ 4,55 на карточке
-// вступления (plateFillFrom → plateFillTo) в светлом и тёмном. Частицы — оттенок акцента самой темы (берётся с «Максимума», чтобы и в
-// «Спокойно» оставался цвет), с постоянной насыщенностью и светлотой, подобранной под контраст: доводка к тексту обесцвечивала их
-// до серого («Лёд» светлый: ΔE 0,02 к переводу). Пока НЕ подключено к экрану — подключение после утверждения макета владельцем.
+// зачем (решение владельца 05.11, утверждено макетом docs/work/release/mockups/target_lang_one_color_approved_2026-11-05.html — «да так отлично»; прежние
+// «английский / частицы / перевод» заменены): текст на языке интерфейса и заголовки — обычным цветом; ВСЕ слова и фразы изучаемого языка — один жирный цвет `lang`
+// из оттенка темы (с ползунками — из H, насыщенность S масштабирует цветность); строка «Читается» — `say`, приглушённый тон того же оттенка (курсив).
+// Частей речи и подложки частицы нет. Насыщенность утверждена: lang c = 0,24, say c = 0,05 — НЕ ослаблять (первая версия была бледной, владелец: «ничего не окрашено»).
+// Светлота подбирается шагами до контраста ≥ 4,6 на всех подложках, где стоит текст (карточка, стекло, плашка, шторка, подсказка).
 // ═══════════════════════════════════════════════════════════════════════════
 import { hueOfHex, toContrast } from './liquidGlassPaletteRoles';
 import { flattenOver, legibleOn } from './liquidGlassSurfaceRoles';
 import { liquidGlassTokens, type LiquidGlassThemeId } from './liquidGlassThemePalette';
+import { THEME_TUNE_S_STANDARD, parseThemeTuneId } from './theme_tune';
 
-/** particleSoft — подложка частицы (accentSoft темы, утверждено владельцем «МАКСИМУМ И ПОДЛОЖКА»); particle читается ≥ 4,55 и на ней, сведённой с карточкой. */
-export type IntroTextRoles = Readonly<{ langText: string; particle: string; gloss: string; particleSoft: string }>;
+/** lang — слова изучаемого языка (жирный); say — «Читается» (курсив); gloss — вторичный текст (перевод, пояснения). */
+export type IntroTextRoles = Readonly<{ lang: string; say: string; gloss: string }>;
 
-const PARTICLE_CHROMA = 0.15;
-const MIN = 4.55;
+/** Утверждено владельцем 05.11 (макет «да так отлично»): насыщенность lang и say и исходная светлота тёмная/светлая. */
+export const LANG_ROLE_CHROMA = 0.24;
+export const SAY_ROLE_CHROMA = 0.05;
+const LANG_L = { dark: 0.72, light: 0.5 } as const;
+const SAY_L = { dark: 0.64, light: 0.56 } as const;
+/** Контраст на каждой подложке (с запасом к 4,5 на разнице округления). */
+export const INTRO_ROLE_MIN_CONTRAST = 4.6;
+/** Предел роста цветности при насыщенности ползунка выше стандартной (дальше цвет упирается в охват sRGB). */
+const CHROMA_SCALE_MAX = 1.4;
 const cache = new Map<string, IntroTextRoles>();
 
 type RoleTokens = Readonly<{
   plateFillFrom: string; plateFillTo: string; text: string; secondary: string; opaqueControl: string; accentSoft: string; isLight: boolean;
   opaqueCard: string; opaqueSheet: string; accent: string;
+  /** Для подложек «стекло на фоне» и «подсказка»; без них считаются только пять основных. */
+  bg?: string; card?: string; selected?: string;
 }>;
 
 /** Плашка ситуации задания: акцент 9 % поверх карточки (lv2TaskTokens.accentWash9). */
 const SITUATION_ACCENT_ALPHA = 0.09;
 
 /**
- * Все подложки, на которых стоит IntroRoleText: карточка вступления (plateFillFrom → plateFillTo), плашка ситуации задания
- * (акцент 9 % на карточке), карточка «Скажи так» (opaqueCard), шторка теории Мастерской (opaqueSheet).
- * зачем (координатор 25.10, замер docs/work/learning-v2-session-contrast-2026-10-25.md): роли считались только под карточку вступления,
- * а частица на плашке ситуации давала 3,43 (68 из 174 сочетаний), в шторке теории 3,56, в карточке «Скажи так» 4,16.
+ * Основные подложки, на которых стоит текст вступления: карточка вступления (plateFillFrom → plateFillTo), плашка ситуации задания
+ * (акцент 9 % на карточке), карточка «Скажи так» (opaqueCard), шторка теории (opaqueSheet).
  */
 export function introTextRoleSurfaces(g: RoleTokens): string[] {
   const card = g.opaqueCard.slice(0, 7);
@@ -38,21 +46,39 @@ export function introTextRoleSurfaces(g: RoleTokens): string[] {
   return [g.plateFillFrom.slice(0, 7), g.plateFillTo.slice(0, 7), card, g.opaqueSheet.slice(0, 7), situation];
 }
 
+/** Все подложки макета: основные + стекло карточки на фоне + подсказка (selected) на карточке и на низе плашки. */
+export function introLangRoleSurfaces(g: RoleTokens): string[] {
+  const base = introTextRoleSurfaces(g);
+  const extra: string[] = [];
+  if (g.bg && g.card) extra.push(flattenOver(g.card, g.bg.slice(0, 7)).slice(0, 7));
+  if (g.selected) {
+    extra.push(flattenOver(g.selected, g.opaqueCard.slice(0, 7)).slice(0, 7));
+    extra.push(flattenOver(g.selected, g.plateFillTo.slice(0, 7)).slice(0, 7));
+  }
+  return [...base, ...extra];
+}
+
+/** Оттенок и множитель цветности роли: у настроенной темы — из tune:H:S (S / 35, не выше 1,4), у остальных — оттенок акцента темы на «Максимуме». */
+function hueAndScale(themeId: LiquidGlassThemeId, g: RoleTokens, dark: boolean): Readonly<{ hue: number; scale: number }> {
+  const tune = parseThemeTuneId(themeId);
+  if (tune) return { hue: tune.H, scale: Math.min(CHROMA_SCALE_MAX, tune.S / THEME_TUNE_S_STANDARD) };
+  const themeAccent = liquidGlassTokens(themeId, { level: 'max', appearance: dark ? 'dark' : 'light' } as never).accent;
+  return { hue: hueOfHex(themeAccent, hueOfHex(g.opaqueControl, 255)), scale: 1 };
+}
+
 /** Роли по уже посчитанным токенам темы (экран берёт токены активной темы); кэш по токенам — смена уровня/оформления даёт новый ключ. */
 export function introTextRolesForTokens(themeId: LiquidGlassThemeId, g: RoleTokens): IntroTextRoles {
-  const key = `${themeId}|${g.plateFillFrom}|${g.plateFillTo}|${g.text}|${g.secondary}|${g.accentSoft}|${g.opaqueCard}|${g.opaqueSheet}|${g.accent}|${g.isLight ? 'l' : 'd'}`;
+  const key = `${themeId}|${g.plateFillFrom}|${g.plateFillTo}|${g.text}|${g.secondary}|${g.opaqueCard}|${g.opaqueSheet}|${g.accent}|${g.bg ?? ''}|${g.card ?? ''}|${g.selected ?? ''}|${g.isLight ? 'l' : 'd'}`;
   const hit = cache.get(key);
   if (hit) return hit;
-  const surfaces = introTextRoleSurfaces(g);
+  const surfaces = introLangRoleSurfaces(g);
   const dark = !g.isLight;
-  const themeAccent = liquidGlassTokens(themeId, { level: 'max', appearance: dark ? 'dark' : 'light' } as never).accent;
-  const hue = hueOfHex(themeAccent, hueOfHex(g.opaqueControl, 255));
+  const { hue, scale } = hueAndScale(themeId, g, dark);
+  const dir = dark ? 1 : -1;
   const roles: IntroTextRoles = Object.freeze({
-    langText: legibleOn(g.text, g.text, surfaces, MIN),
-    // частица лежит и на подложке экрана, и на своей подложке accentSoft, сведённой с ней — читается на всех (карточка вступления, ситуация, «Скажи так», теория)
-    particle: toContrast(hue, PARTICLE_CHROMA, dark ? 0.72 : 0.5, dark ? 1 : -1, MIN, [...surfaces, ...surfaces.map((s) => flattenOver(g.accentSoft, s))]),
-    gloss: legibleOn(g.secondary, g.text, surfaces, MIN),
-    particleSoft: g.accentSoft,
+    lang: toContrast(hue, LANG_ROLE_CHROMA * scale, dark ? LANG_L.dark : LANG_L.light, dir, INTRO_ROLE_MIN_CONTRAST, surfaces),
+    say: toContrast(hue, SAY_ROLE_CHROMA * scale, dark ? SAY_L.dark : SAY_L.light, dir, INTRO_ROLE_MIN_CONTRAST, surfaces),
+    gloss: legibleOn(g.secondary, g.text, surfaces, INTRO_ROLE_MIN_CONTRAST),
   });
   cache.set(key, roles);
   return roles;

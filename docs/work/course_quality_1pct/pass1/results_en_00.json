@@ -1,0 +1,20 @@
+[
+  {"id": "en-classic-r1:01.24", "type": "B1", "field": "tiles", "problem": "соблазн-существительное на месте прилагательного (closed), отсеивается по грамматике без знания слова", "fix": {"position": 3, "replace_distractor": "smoke", "with": "late"}},
+  {"id": "en-classic-r1:01.24", "type": "B1", "field": "tiles", "problem": "соблазн-существительное/глагол на месте прилагательного (closed), явный мусор", "fix": {"position": 3, "replace_distractor": "break", "with": "cold"}},
+  {"id": "en-classic-r1:01.24", "type": "B1", "field": "tiles", "problem": "соблазн-существительное на месте прилагательного (closed), явный мусор", "fix": {"position": 3, "replace_distractor": "sign", "with": "warm"}},
+  {"id": "en-classic-r1:01.30", "type": "B1", "field": "tiles", "problem": "глагол is на месте наречия off — явный мусор, отсеивается по грамматике", "fix": {"position": 3, "replace_distractor": "is", "with": "on"}},
+  {"id": "en-classic-r1:01.30", "type": "B1", "field": "tiles", "problem": "местоимение that на месте off — явный мусор", "fix": {"position": 3, "replace_distractor": "that", "with": "down"}},
+  {"id": "en-classic-r1:01.30", "type": "B1", "field": "tiles", "problem": "местоимение this на месте off — явный мусор", "fix": {"position": 3, "replace_distractor": "this", "with": "at"}},
+  {"id": "en-classic-r1:01.31", "type": "M", "field": "ru", "problem": "ru «раньше» vs uk «рано» — разный оттенок смысла; также «пришел» без ё при «пришёл» в остальном курсе", "fix": "Я пришёл рано."},
+  {"id": "en-classic-r1:01.32", "type": "M", "field": "ru", "problem": "ru «раньше» vs uk «рано» — разный оттенок смысла; «пришел» без ё", "fix": "Ты пришёл рано."},
+  {"id": "en-classic-r1:02.15", "type": "M", "field": "uk", "problem": "«Це відчинено?» — калька с It is, неестественно; в ru и в 01.21 безличное «Відчинено»", "fix": "Відчинено?"},
+  {"id": "en-classic-r1:02.18", "type": "M", "field": "uk", "problem": "ru «Автобус приехал?» и uk «Автобус тут?» передают разный смысл; естественно «приїхав»", "fix": "Автобус приїхав?"},
+  {"id": "en-classic-r1:02.19", "type": "B1", "field": "tiles", "problem": "глагол was на месте прилагательного closed — явный мусор", "fix": {"position": 3, "replace_distractor": "was", "with": "cold"}},
+  {"id": "en-classic-r1:02.19", "type": "B1", "field": "tiles", "problem": "глагол am на месте прилагательного closed — явный мусор", "fix": {"position": 3, "replace_distractor": "am", "with": "warm"}},
+  {"id": "en-classic-r1:02.19", "type": "B1", "field": "tiles", "problem": "глагол were на месте прилагательного closed — явный мусор", "fix": {"position": 3, "replace_distractor": "were", "with": "free"}},
+  {"id": "en-classic-r1:02.31", "type": "B1", "field": "tiles", "problem": "itself на месте указательного this — нелепо, не правдоподобная ошибка", "fix": {"position": 1, "replace_distractor": "itself", "with": "these"}},
+  {"id": "en-classic-r1:02.31", "type": "B1", "field": "tiles", "problem": "anybody на месте указательного this — нелепо", "fix": {"position": 1, "replace_distractor": "anybody", "with": "those"}},
+  {"id": "en-classic-r1:02.47", "type": "B1", "field": "tiles", "problem": "местоимение we на месте off — явный мусор", "fix": {"position": 3, "replace_distractor": "we", "with": "on"}},
+  {"id": "en-classic-r1:02.47", "type": "B1", "field": "tiles", "problem": "местоимение this на месте off — явный мусор", "fix": {"position": 3, "replace_distractor": "this", "with": "down"}},
+  {"id": "en-classic-r1:02.47", "type": "B1", "field": "tiles", "problem": "местоимение that на месте off — явный мусор", "fix": {"position": 3, "replace_distractor": "that", "with": "at"}}
+]

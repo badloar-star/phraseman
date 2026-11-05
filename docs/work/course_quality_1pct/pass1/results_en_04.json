@@ -1,0 +1,4 @@
+[
+  {"id": "en-classic-r1:09.24", "type": "B1", "field": "tiles", "problem": "Соблазн 'in' даёт верную естественную фразу 'Are there lockers in the station?' (= на станции), которой нет в alternatives", "fix": {"position": 3, "replace_distractor": "in", "with": "under"}},
+  {"id": "en-classic-r1:10.41", "type": "M", "field": "uk", "problem": "«одягнути шолом» — ненормативно: одягнути вживається щодо одягу, шолом надівають (надіти/надягти)", "fix": "Ви повинні надіти шолом."}
+]

@@ -1,0 +1,17 @@
+[
+  {"id": "en-classic-r1:03.10", "type": "M", "field": "ru", "problem": "«иду» — действие сейчас; Present Simple «I walk home» про привычку, нужно «хожу» (как в 03.44)", "fix": "Я хожу домой пешком."},
+  {"id": "en-classic-r1:03.10", "type": "M", "field": "uk", "problem": "«йду» — дія зараз; для звички потрібно «ходжу»", "fix": "Я ходжу додому пішки."},
+  {"id": "en-classic-r1:03.31", "type": "M", "field": "ru", "problem": "«еду» — действие сейчас; «I take the bus» про привычку, нужно «езжу» (как в 03.47)", "fix": "Я езжу на автобусе."},
+  {"id": "en-classic-r1:03.31", "type": "M", "field": "uk", "problem": "«їду» — дія зараз; для звички потрібно «їжджу»", "fix": "Я їжджу автобусом."},
+  {"id": "en-classic-r1:03.32", "type": "M", "field": "ru", "problem": "«едет» — действие сейчас; Present Simple про привычку, нужно «ездит»", "fix": "Он ездит на поезде."},
+  {"id": "en-classic-r1:03.32", "type": "M", "field": "uk", "problem": "«їде» — дія зараз; для звички потрібно «їздить»", "fix": "Він їздить поїздом."},
+  {"id": "en-classic-r1:03.39", "type": "M", "field": "ru", "problem": "«идем» — действие сейчас; Present Simple про привычку, нужно «ходим»", "fix": "Мы ходим в магазин пешком."},
+  {"id": "en-classic-r1:03.39", "type": "M", "field": "uk", "problem": "«йдемо» — дія зараз; для звички потрібно «ходимо»", "fix": "Ми ходимо до магазину пішки."},
+  {"id": "en-classic-r1:03.40", "type": "M", "field": "ru", "problem": "«идет» — действие сейчас; Present Simple про привычку, нужно «ходит»", "fix": "Он ходит в магазин пешком."},
+  {"id": "en-classic-r1:03.40", "type": "M", "field": "uk", "problem": "«іде» — дія зараз; для звички потрібно «ходить»", "fix": "Він ходить до магазину пішки."},
+  {"id": "en-classic-r1:03.39", "type": "B1", "field": "tiles", "problem": "на месте артикля все соблазны — местоимения (anyone/everything/who/which/what), «the» угадывается без знаний", "fix": {"position": 3, "replace_distractor": "anyone", "with": "this"}},
+  {"id": "en-classic-r1:03.39", "type": "B1", "field": "tiles", "problem": "на месте артикля соблазны из другого класса слов — выдают себя", "fix": {"position": 3, "replace_distractor": "everything", "with": "that"}},
+  {"id": "en-classic-r1:03.40", "type": "B1", "field": "tiles", "problem": "на месте артикля все соблазны — местоимения (anyone/everything/who/which/what), «the» угадывается без знаний", "fix": {"position": 3, "replace_distractor": "anyone", "with": "this"}},
+  {"id": "en-classic-r1:03.40", "type": "B1", "field": "tiles", "problem": "на месте артикля соблазны из другого класса слов — выдают себя", "fix": {"position": 3, "replace_distractor": "everything", "with": "that"}},
+  {"id": "en-classic-r1:03.45", "type": "B3", "field": "alternatives", "problem": "из тех же плиток собирается естественный вариант с наречием в конце, подсказка его не исключает, в alternatives нет", "fix": {"add": ["I work at home sometimes."], "remove": []}}
+]

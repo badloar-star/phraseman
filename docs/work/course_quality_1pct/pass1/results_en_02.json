@@ -1,0 +1,7 @@
+[
+  {"id": "en-classic-r1:05.26", "type": "B1", "field": "tiles", "problem": "на позиции глагола work все 5 соблазнов — существительные (door, bus, room, seat, ticket): позиция отсеивается по грамматике без знания слова", "fix": {"position": 3, "replace_distractor": "door", "with": "works"}},
+  {"id": "en-classic-r1:05.27", "type": "B1", "field": "tiles", "problem": "соблазн Can даёт «Can you hear that noise?» — самый естественный английский вариант для «Вы слышите этот шум?», в alternatives нет", "fix": {"position": 0, "replace_distractor": "Can", "with": "Have"}},
+  {"id": "en-classic-r1:06.09", "type": "B1", "field": "tiles", "problem": "пара соблазнов are (поз.1) + waiting (поз.3) даёт «Why are they waiting here?» — верный перевод «Почему они ждут здесь?», в alternatives нет", "fix": {"position": 3, "replace_distractor": "waiting", "with": "waits"}},
+  {"id": "en-classic-r1:06.25", "type": "B1", "field": "tiles", "problem": "на позиции глагола end все соблазны — существительные (shop, street, room, bus, hotel): позиция угадывается по грамматике", "fix": {"position": 4, "replace_distractor": "street", "with": "ends"}},
+  {"id": "en-classic-r1:06.46", "type": "B1", "field": "tiles", "problem": "соблазн a даёт «How far do you walk a day?» — естественный верный вариант для «каждый день / щодня», в alternatives нет", "fix": {"position": 5, "replace_distractor": "a", "with": "those"}}
+]

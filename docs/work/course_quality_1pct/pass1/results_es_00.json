@@ -1,0 +1,8 @@
+[
+  {"id": "es:01:29", "type": "B1", "field": "tiles", "problem": "Соблазн 'Cuándo' на позиции имени — вопросительное слово с заглавной, очевидный мусор, отсеивается без знания слова", "fix": {"position": 0, "replace_distractor": "Cuándo", "with": "Sofía"}},
+  {"id": "es:01:29", "type": "B1", "field": "tiles", "problem": "Соблазн 'Cuándo' на позиции второго имени — очевидный мусор другой части речи", "fix": {"position": 2, "replace_distractor": "Cuándo", "with": "Carlos"}},
+  {"id": "es:02:10", "type": "B1", "field": "tiles", "problem": "Соблазн 'Cuándo' на позиции имени — очевидный мусор другой части речи", "fix": {"position": 0, "replace_distractor": "Cuándo", "with": "Sofía"}},
+  {"id": "es:02:10", "type": "B1", "field": "tiles", "problem": "Соблазн 'Cuándo' на позиции второго имени — очевидный мусор другой части речи", "fix": {"position": 2, "replace_distractor": "Cuándo", "with": "Carlos"}},
+  {"id": "es:02:26", "type": "B1", "field": "tiles", "problem": "Соблазн 'Cuándo' на позиции имени — очевидный мусор другой части речи", "fix": {"position": 0, "replace_distractor": "Cuándo", "with": "Sofía"}},
+  {"id": "es:02:26", "type": "B1", "field": "tiles", "problem": "Соблазн 'Cuándo' на позиции второго имени — очевидный мусор другой части речи", "fix": {"position": 2, "replace_distractor": "Cuándo", "with": "Carlos"}}
+]

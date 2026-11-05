@@ -1,0 +1,431 @@
+[
+ {
+  "id": "es:09:32",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Médica",
+   "with": "Buscan"
+  }
+ },
+ {
+  "id": "es:09:32",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Estudiante",
+   "with": "Buscamos"
+  }
+ },
+ {
+  "id": "es:09:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Médica",
+   "with": "Buscan"
+  }
+ },
+ {
+  "id": "es:09:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Estudiante",
+   "with": "Buscamos"
+  }
+ },
+ {
+  "id": "es:09:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "estudiante",
+   "with": "trabajas"
+  }
+ },
+ {
+  "id": "es:09:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "profesoras",
+   "with": "trabajamos"
+  }
+ },
+ {
+  "id": "es:09:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции вопросительного слова все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:09:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции вопросительного слова все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:09:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции вопросительного слова все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:10:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Estación",
+   "with": "Vivo"
+  }
+ },
+ {
+  "id": "es:10:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Puerta",
+   "with": "Vive"
+  }
+ },
+ {
+  "id": "es:10:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Reserva",
+   "with": "Vivimos"
+  }
+ },
+ {
+  "id": "es:10:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Puerta",
+   "with": "Vivo"
+  }
+ },
+ {
+  "id": "es:10:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Reserva",
+   "with": "Vive"
+  }
+ },
+ {
+  "id": "es:10:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Vivimos"
+  }
+ },
+ {
+  "id": "es:10:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Puerta",
+   "with": "Vivo"
+  }
+ },
+ {
+  "id": "es:10:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Reserva",
+   "with": "Vive"
+  }
+ },
+ {
+  "id": "es:10:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Vivimos"
+  }
+ },
+ {
+  "id": "es:10:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Comes"
+  }
+ },
+ {
+  "id": "es:10:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Una",
+   "with": "Come"
+  }
+ },
+ {
+  "id": "es:10:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Las",
+   "with": "Comemos"
+  }
+ },
+ {
+  "id": "es:10:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Comes"
+  }
+ },
+ {
+  "id": "es:10:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Una",
+   "with": "Come"
+  }
+ },
+ {
+  "id": "es:10:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Las",
+   "with": "Comemos"
+  }
+ },
+ {
+  "id": "es:10:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Comes"
+  }
+ },
+ {
+  "id": "es:10:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Una",
+   "with": "Come"
+  }
+ },
+ {
+  "id": "es:10:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Las",
+   "with": "Comemos"
+  }
+ },
+ {
+  "id": "es:10:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "los",
+   "with": "comes"
+  }
+ },
+ {
+  "id": "es:10:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "una",
+   "with": "come"
+  }
+ },
+ {
+  "id": "es:10:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "las",
+   "with": "comemos"
+  }
+ },
+ {
+  "id": "es:10:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "casa",
+   "with": "bebo"
+  }
+ },
+ {
+  "id": "es:10:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "foto",
+   "with": "bebes"
+  }
+ },
+ {
+  "id": "es:10:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "hotel",
+   "with": "bebemos"
+  }
+ },
+ {
+  "id": "es:10:15",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermana",
+   "with": "Lee"
+  }
+ },
+ {
+  "id": "es:10:15",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Banco",
+   "with": "Leemos"
+  }
+ },
+ {
+  "id": "es:10:27",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора) (Escribe не брать: для «Вы» = usted это верный ответ)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Escribes"
+  }
+ },
+ {
+  "id": "es:10:27",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора) (Escribe не брать: для «Вы» = usted это верный ответ)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Mensaje",
+   "with": "Escribimos"
+  }
+ },
+ {
+  "id": "es:10:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора) (Escribe не брать: для «Вы» = usted это верный ответ)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Escribes"
+  }
+ },
+ {
+  "id": "es:10:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора) (Escribe не брать: для «Вы» = usted это верный ответ)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Mensaje",
+   "with": "Escribimos"
+  }
+ }
+]

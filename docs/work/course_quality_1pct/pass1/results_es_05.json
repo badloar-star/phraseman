@@ -1,0 +1,12 @@
+[
+  {"id": "es:11:32", "type": "M", "field": "ru", "problem": "калька «У тебя есть мой рюкзак?»: про конкретную свою вещь по-русски спрашивают «Мой рюкзак у тебя?» (ср. 11:06 «У меня ключ.» без «есть»)", "fix": "Мой рюкзак у тебя?"},
+  {"id": "es:11:32", "type": "M", "field": "uk", "problem": "калька «У тебе є мій рюкзак?»: природно «Мій рюкзак у тебе?»", "fix": "Мій рюкзак у тебе?"},
+  {"id": "es:11:36", "type": "B1", "field": "tiles", "problem": "на месте артикля соблазн-местоимение «quién», ученик отсеет его по части речи, не зная правила", "fix": {"position": 2, "replace_distractor": "quién", "with": "un"}},
+  {"id": "es:11:36", "type": "B1", "field": "tiles", "problem": "на месте артикля соблазн-местоимение «eso», отсеивается по части речи", "fix": {"position": 2, "replace_distractor": "eso", "with": "unas"}},
+  {"id": "es:11:36", "type": "B1", "field": "tiles", "problem": "на месте артикля соблазн-местоимение «esto», отсеивается по части речи", "fix": {"position": 2, "replace_distractor": "esto", "with": "el"}},
+  {"id": "es:11:38", "type": "B1", "field": "tiles", "problem": "на месте артикля соблазн-местоимение «quién», отсеивается по части речи", "fix": {"position": 2, "replace_distractor": "quién", "with": "un"}},
+  {"id": "es:11:38", "type": "B1", "field": "tiles", "problem": "на месте артикля соблазн-местоимение «eso», отсеивается по части речи", "fix": {"position": 2, "replace_distractor": "eso", "with": "unas"}},
+  {"id": "es:11:38", "type": "B1", "field": "tiles", "problem": "на месте артикля соблазн-местоимение «esto», отсеивается по части речи", "fix": {"position": 2, "replace_distractor": "esto", "with": "el"}},
+  {"id": "es:12:21", "type": "B1", "field": "tiles", "problem": "на месте прилагательного цвета стоит глагол «bebes» — очевидный мусор", "fix": {"position": 3, "replace_distractor": "bebes", "with": "roja"}},
+  {"id": "es:12:21", "type": "B1", "field": "tiles", "problem": "на месте прилагательного цвета стоит существительное «casa» — очевидный мусор", "fix": {"position": 3, "replace_distractor": "casa", "with": "rojos"}}
+]

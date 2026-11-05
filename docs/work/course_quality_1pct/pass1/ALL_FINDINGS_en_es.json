@@ -1,0 +1,4238 @@
+[
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:01.24",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное на месте прилагательного (closed), отсеивается по грамматике без знания слова",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "smoke",
+   "with": "late"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:01.24",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное/глагол на месте прилагательного (closed), явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "break",
+   "with": "cold"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:01.24",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное на месте прилагательного (closed), явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "sign",
+   "with": "warm"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:01.30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "глагол is на месте наречия off — явный мусор, отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "is",
+   "with": "on"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:01.30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "местоимение that на месте off — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "that",
+   "with": "down"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:01.30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "местоимение this на месте off — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "this",
+   "with": "at"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:01.31",
+  "type": "M",
+  "field": "ru",
+  "problem": "ru «раньше» vs uk «рано» — разный оттенок смысла; также «пришел» без ё при «пришёл» в остальном курсе",
+  "fix": "Я пришёл рано."
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:01.32",
+  "type": "M",
+  "field": "ru",
+  "problem": "ru «раньше» vs uk «рано» — разный оттенок смысла; «пришел» без ё",
+  "fix": "Ты пришёл рано."
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.15",
+  "type": "M",
+  "field": "uk",
+  "problem": "«Це відчинено?» — калька с It is, неестественно; в ru и в 01.21 безличное «Відчинено»",
+  "fix": "Відчинено?"
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.18",
+  "type": "M",
+  "field": "uk",
+  "problem": "ru «Автобус приехал?» и uk «Автобус тут?» передают разный смысл; естественно «приїхав»",
+  "fix": "Автобус приїхав?"
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.19",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "глагол was на месте прилагательного closed — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "was",
+   "with": "cold"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.19",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "глагол am на месте прилагательного closed — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "am",
+   "with": "warm"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.19",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "глагол were на месте прилагательного closed — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "were",
+   "with": "free"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.31",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "itself на месте указательного this — нелепо, не правдоподобная ошибка",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "itself",
+   "with": "these"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.31",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "anybody на месте указательного this — нелепо",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "anybody",
+   "with": "those"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "местоимение we на месте off — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "we",
+   "with": "on"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "местоимение this на месте off — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "this",
+   "with": "down"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "00",
+  "id": "en-classic-r1:02.47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "местоимение that на месте off — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "that",
+   "with": "at"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.10",
+  "type": "M",
+  "field": "ru",
+  "problem": "«иду» — действие сейчас; Present Simple «I walk home» про привычку, нужно «хожу» (как в 03.44)",
+  "fix": "Я хожу домой пешком."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.10",
+  "type": "M",
+  "field": "uk",
+  "problem": "«йду» — дія зараз; для звички потрібно «ходжу»",
+  "fix": "Я ходжу додому пішки."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.31",
+  "type": "M",
+  "field": "ru",
+  "problem": "«еду» — действие сейчас; «I take the bus» про привычку, нужно «езжу» (как в 03.47)",
+  "fix": "Я езжу на автобусе."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.31",
+  "type": "M",
+  "field": "uk",
+  "problem": "«їду» — дія зараз; для звички потрібно «їжджу»",
+  "fix": "Я їжджу автобусом."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.32",
+  "type": "M",
+  "field": "ru",
+  "problem": "«едет» — действие сейчас; Present Simple про привычку, нужно «ездит»",
+  "fix": "Он ездит на поезде."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.32",
+  "type": "M",
+  "field": "uk",
+  "problem": "«їде» — дія зараз; для звички потрібно «їздить»",
+  "fix": "Він їздить поїздом."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.39",
+  "type": "M",
+  "field": "ru",
+  "problem": "«идем» — действие сейчас; Present Simple про привычку, нужно «ходим»",
+  "fix": "Мы ходим в магазин пешком."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.39",
+  "type": "M",
+  "field": "uk",
+  "problem": "«йдемо» — дія зараз; для звички потрібно «ходимо»",
+  "fix": "Ми ходимо до магазину пішки."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.40",
+  "type": "M",
+  "field": "ru",
+  "problem": "«идет» — действие сейчас; Present Simple про привычку, нужно «ходит»",
+  "fix": "Он ходит в магазин пешком."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.40",
+  "type": "M",
+  "field": "uk",
+  "problem": "«іде» — дія зараз; для звички потрібно «ходить»",
+  "fix": "Він ходить до магазину пішки."
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.39",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля все соблазны — местоимения (anyone/everything/who/which/what), «the» угадывается без знаний",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "anyone",
+   "with": "this"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.39",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазны из другого класса слов — выдают себя",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "everything",
+   "with": "that"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля все соблазны — местоимения (anyone/everything/who/which/what), «the» угадывается без знаний",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "anyone",
+   "with": "this"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазны из другого класса слов — выдают себя",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "everything",
+   "with": "that"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "01",
+  "id": "en-classic-r1:03.45",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "из тех же плиток собирается естественный вариант с наречием в конце, подсказка его не исключает, в alternatives нет",
+  "fix": {
+   "add": [
+    "I work at home sometimes."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "02",
+  "id": "en-classic-r1:05.26",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола work все 5 соблазнов — существительные (door, bus, room, seat, ticket): позиция отсеивается по грамматике без знания слова",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "door",
+   "with": "works"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "02",
+  "id": "en-classic-r1:05.27",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн Can даёт «Can you hear that noise?» — самый естественный английский вариант для «Вы слышите этот шум?», в alternatives нет",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Can",
+   "with": "Have"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "02",
+  "id": "en-classic-r1:06.09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "пара соблазнов are (поз.1) + waiting (поз.3) даёт «Why are they waiting here?» — верный перевод «Почему они ждут здесь?», в alternatives нет",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "waiting",
+   "with": "waits"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "02",
+  "id": "en-classic-r1:06.25",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола end все соблазны — существительные (shop, street, room, bus, hotel): позиция угадывается по грамматике",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "street",
+   "with": "ends"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "02",
+  "id": "en-classic-r1:06.46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн a даёт «How far do you walk a day?» — естественный верный вариант для «каждый день / щодня», в alternatives нет",
+  "fix": {
+   "position": 5,
+   "replace_distractor": "a",
+   "with": "those"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:07.16",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазны на месте прилагательного blocked — все существительные (gate, receipt...), отсеиваются по части речи; заменить хотя бы один на правдоподобное прилагательное",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "gate",
+   "with": "broken"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:07.22",
+  "type": "B2",
+  "field": "ru",
+  "problem": "target 'her passport' = паспорт с собой; 'У неё есть паспорт?' = есть ли паспорт вообще (Does she have a passport?) — потерян смысл притяжательного",
+  "fix": "Паспорт у неё с собой?"
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:07.22",
+  "type": "B2",
+  "field": "uk",
+  "problem": "то же: 'У неї є паспорт?' = чи має паспорт взагалі, а не чи взяла свій паспорт",
+  "fix": "Паспорт у неї з собою?"
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:07.32",
+  "type": "B2",
+  "field": "ru",
+  "problem": "'her glasses' = своих очков (с собой); 'У нее нет очков' = не носит/не имеет очков вообще",
+  "fix": "У неё нет с собой очков."
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:07.32",
+  "type": "B2",
+  "field": "uk",
+  "problem": "то же: 'У неї немає окулярів' = не має окулярів взагалі",
+  "fix": "У неї немає з собою окулярів."
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:07.34",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазны на месте driving — существительные из другой темы (gate, receipt, coat, lift, shift), явный мусор",
+  "fix": {
+   "position": 5,
+   "replace_distractor": "gate",
+   "with": "fishing"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:07.46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "'She has a spare afternoon' — естественная фраза с тем же смыслом (свободная половина дня), нет в alternatives",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "spare",
+   "with": "late"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн 'List' (и 'Bags') на месте дня недели — нелепое слово не по теме",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "List",
+   "with": "Thursdays"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.12",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазны на месте past: is/that/this — мусор; правдоподобная ловушка — to (a quarter to eight = 7:45, не совпадает с подсказкой)",
+  "fix": {
+   "position": 6,
+   "replace_distractor": "is",
+   "with": "to"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.13",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазны на месте числа one: is/that/this/a/we — мусор не того класса",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "is",
+   "with": "two"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.20",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазны на месте midday — транспорт/предметы (train, phone, bus...), отсеиваются без знания слова",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "bus",
+   "with": "midnight"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.25",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазны 'Driver', 'Card' на месте дня недели — нелепые слова не по теме",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "Driver",
+   "with": "Thursdays"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.27",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "May трактуется как модальный глагол: соблазны Shall/That/This/A/I вместо месяцев — явный мусор",
+  "fix": {
+   "position": 8,
+   "replace_distractor": "Shall",
+   "with": "June"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.28",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте притяжательного Her стоят личные местоимения (I, She, They...) — отсеиваются по грамматике",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "I",
+   "with": "His"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.28",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн 'Doesn't' на месте Year's — глагол среди существительных, явный мусор",
+  "fix": {
+   "position": 5,
+   "replace_distractor": "Doesn't",
+   "with": "Year"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "03",
+  "id": "en-classic-r1:08.30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазны 'Bill', 'Week' на месте дня недели во мн. ч. — мусор не по теме",
+  "fix": {
+   "position": 5,
+   "replace_distractor": "Bill",
+   "with": "Tuesdays"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "04",
+  "id": "en-classic-r1:09.24",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'in' даёт верную естественную фразу 'Are there lockers in the station?' (= на станции), которой нет в alternatives",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "in",
+   "with": "under"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "04",
+  "id": "en-classic-r1:10.41",
+  "type": "M",
+  "field": "uk",
+  "problem": "«одягнути шолом» — ненормативно: одягнути вживається щодо одягу, шолом надівають (надіти/надягти)",
+  "fix": "Ви повинні надіти шолом."
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи, отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "us",
+   "with": "this"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи, отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "anyone",
+   "with": "that"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи, отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "everything",
+   "with": "these"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи, отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "who",
+   "with": "each"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи, отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "which",
+   "with": "those"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.03",
+  "type": "M",
+  "field": "uk",
+  "problem": "калька порядка слов: «вчора» в конце неестественно",
+  "fix": "Ми вчора працювали допізна."
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога outside соблазн не-предлог (мусор)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "until",
+   "with": "inside"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога outside соблазн-мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "off",
+   "with": "behind"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога outside глагол is — отсеивается по грамматике",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "is",
+   "with": "opposite"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога outside местоимение that — отсеивается по грамматике",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "that",
+   "with": "above"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога outside местоимение this — отсеивается по грамматике",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "this",
+   "with": "into"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.35",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "us",
+   "with": "this"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.35",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "anyone",
+   "with": "that"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.35",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "everything",
+   "with": "these"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.35",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "who",
+   "with": "each"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.35",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "which",
+   "with": "those"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.49",
+  "type": "M",
+  "field": "uk",
+  "problem": "«розбиту» = разбитую (стекло), ru «сломанную»; для лампы точнее «зламану»",
+  "fix": "Ми повернули зламану лампу."
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "us",
+   "with": "this"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "anyone",
+   "with": "that"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "everything",
+   "with": "these"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "who",
+   "with": "each"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "which",
+   "with": "those"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после Did the shop связка are невозможна — отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "are",
+   "with": "cancel"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после Did the shop связка is невозможна",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "is",
+   "with": "add"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после Did the shop связка was невозможна",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "was",
+   "with": "raise"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:11.50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "после Did the shop связка am невозможна",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "am",
+   "with": "check"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "us",
+   "with": "this"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "anyone",
+   "with": "that"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "everything",
+   "with": "these"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "who",
+   "with": "each"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "which",
+   "with": "those"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля a соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "us",
+   "with": "this"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля a соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "anyone",
+   "with": "that"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля a соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "everything",
+   "with": "these"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля a соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "which",
+   "with": "each"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля a соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "who",
+   "with": "those"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.12",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте притяжательного her личное местоимение we — отсеивается по грамматике",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "we",
+   "with": "my"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.12",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте притяжательного her сокращение they're — мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "they're",
+   "with": "your"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.12",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте притяжательного her сокращение she's — мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "she's",
+   "with": "his"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.12",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте притяжательного her местоимение it — отсеивается по грамматике",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "it",
+   "with": "our"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.12",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте притяжательного her местоимение you — отсеивается по грамматике",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "you",
+   "with": "their"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.15",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте объекта me сокращение they're — мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "they're",
+   "with": "him"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.15",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте объекта me сокращение we're — мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "we're",
+   "with": "us"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.16",
+  "type": "M",
+  "field": "ru",
+  "problem": "калька порядка слов: «вчера» в конце неестественно",
+  "fix": "Я вчера встретил твою сестру."
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога off соблазн-мусор until",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "until",
+   "with": "onto"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога off сокращение he'll — мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "he'll",
+   "with": "into"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога off глагол is — отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "is",
+   "with": "under"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте предлога off местоимение that — отсеивается по грамматике",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "that",
+   "with": "over"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова сокращение He'll — мусор",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "He'll",
+   "with": "When"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова глагол Is — отсеивается по грамматике",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Is",
+   "with": "Who"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова That — отсеивается по грамматике",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "That",
+   "with": "Which"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного When союз If — все соблазны союзы, ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "If",
+   "with": "Where"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного When союз But",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "But",
+   "with": "Why"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного When союз While",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "While",
+   "with": "How"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного When союз Unless",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Unless",
+   "with": "What"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного When союз And",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "And",
+   "with": "Who"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте Who артикль A — мусор",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "A",
+   "with": "Where"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте Who That — отсеивается по грамматике",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "That",
+   "with": "How"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте Who артикль An — мусор",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "An",
+   "with": "Why"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте Who артикль A — мусор",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "A",
+   "with": "Where"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте Who That — отсеивается по грамматике",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "That",
+   "with": "Why"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте Who This — отсеивается по грамматике",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "This",
+   "with": "How"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте How сокращение He'll — мусор",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "He'll",
+   "with": "When"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте How глагол Is — отсеивается по грамматике",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Is",
+   "with": "Who"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте How That — отсеивается по грамматике",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "That",
+   "with": "Which"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "us",
+   "with": "this"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "anyone",
+   "with": "that"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "everything",
+   "with": "these"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "who",
+   "with": "each"
+  }
+ },
+ {
+  "course": "en",
+  "chunk": "05",
+  "id": "en-classic-r1:12.45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн другой части речи",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "which",
+   "with": "those"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "00",
+  "id": "es:01:29",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' на позиции имени — вопросительное слово с заглавной, очевидный мусор, отсеивается без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Cuándo",
+   "with": "Sofía"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "00",
+  "id": "es:01:29",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' на позиции второго имени — очевидный мусор другой части речи",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "Cuándo",
+   "with": "Carlos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "00",
+  "id": "es:02:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' на позиции имени — очевидный мусор другой части речи",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Cuándo",
+   "with": "Sofía"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "00",
+  "id": "es:02:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' на позиции второго имени — очевидный мусор другой части речи",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "Cuándo",
+   "with": "Carlos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "00",
+  "id": "es:02:26",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' на позиции имени — очевидный мусор другой части речи",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Cuándo",
+   "with": "Sofía"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "00",
+  "id": "es:02:26",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' на позиции второго имени — очевидный мусор другой части речи",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "Cuándo",
+   "with": "Carlos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:03:20",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — вопросительное слово, явный мусор, отсеивается без знания",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "Cuándo",
+   "with": "Sara"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:03:20",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — вопросительное слово, явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "Cuándo",
+   "with": "Rosa"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:03:23",
+  "type": "B4",
+  "field": "alternatives",
+  "problem": "'¿Estás en casa?' (ты) засчитывается для подсказки 'Вы дома?' (usted) — меняет лицо/вежливость",
+  "fix": {
+   "add": [],
+   "remove": [
+    "¿Estás en casa?"
+   ]
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:03:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — явный мусор",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "Cuándo",
+   "with": "Sara"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:03:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "Cuándo",
+   "with": "Rosa"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии — отсеивается по части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "los",
+   "with": "profesor"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии — отсеивается по части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "los",
+   "with": "profesora"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии — отсеивается по части речи",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "los",
+   "with": "profesor"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "На позиции глагола 'Eres' все соблазны — существительные (Estudiantes, Estudiante, Guía, Guías, Médico): верный ответ угадывается без знания",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Estudiantes",
+   "with": "Soy"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн-существительное на месте глагола 'Eres'",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Estudiante",
+   "with": "Es"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн-существительное на месте глагола 'Eres'",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Guía",
+   "with": "Somos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн-существительное на месте глагола 'Eres'",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Guías",
+   "with": "Son"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн-существительное на месте глагола 'Eres'",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Médico",
+   "with": "Sois"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "los",
+   "with": "profesora"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:11",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "los",
+   "with": "profesora"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:12",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "los",
+   "with": "profesor"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "los",
+   "with": "profesoras"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — явный мусор",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Cuándo",
+   "with": "Marta"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:30",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — явный мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "Cuándo",
+   "with": "Diego"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:32",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "los",
+   "with": "profesora"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:36",
+  "type": "B3",
+  "field": "alternatives",
+  "problem": "Нет варианта с местоимением 'Yo soy guía.', хотя во всех соседних фразах с 'Soy' он принимается",
+  "fix": {
+   "add": [
+    "Yo soy guía."
+   ],
+   "remove": []
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "los",
+   "with": "profesor"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "los",
+   "with": "profesor"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Los' (артикль) среди местоимений-подлежащих — отсеивается по части речи",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Ella"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "los",
+   "with": "profesora"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'los' (артикль) на месте существительного-профессии",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "los",
+   "with": "profesoras"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — явный мусор",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Cuándo",
+   "with": "Marta"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — явный мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "Cuándo",
+   "with": "Diego"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — явный мусор",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "Cuándo",
+   "with": "Marta"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "01",
+  "id": "es:04:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "Соблазн 'Cuándo' среди имён — явный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "Cuándo",
+   "with": "Diego"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "estudiantes",
+   "with": "son"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "estudiante",
+   "with": "es"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "guía",
+   "with": "soy"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "guías",
+   "with": "somos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "médica",
+   "with": "sois"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:39",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «es» даёт верную естественную фразу «¿Cuánto es el billete?» (= Сколько стоит билет?), которой нет в alternatives",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "es",
+   "with": "cuestan"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «Cuándo» (вопросительное слово) на месте имени — очевидный мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "Cuándo",
+   "with": "Marta"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "02",
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «Cuándo» (вопросительное слово) на месте имени — очевидный мусор",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "Cuándo",
+   "with": "Carlos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн 'salida' (выход) на месте профессии — нелепый, отсеивается без знания слова",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "salida",
+   "with": "profesor"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:33",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн 'parada' (остановка) на месте профессии — нелепый, отсеивается без знания слова",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "parada",
+   "with": "estudiante"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн 'salida' (выход) на месте профессии — нелепый, отсеивается без знания слова",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "salida",
+   "with": "profesoras"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:40",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн 'parada' (остановка) на месте профессии — нелепый, отсеивается без знания слова",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "parada",
+   "with": "enfermeras"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте притяжательного 'Tu' все соблазны — существительные (Casa/Hotel/Coche/Hermanas/Libro), отсеиваются по грамматике; урок про притяжательные",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Mi"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Hotel' на месте притяжательного",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Su"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Coche' на месте притяжательного",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Tus"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Hermanas' на месте притяжательного",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Mis"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Libro' на месте притяжательного",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Libro",
+   "with": "Sus"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного 'Dónde' все соблазны — существительные (Casa/Foto/Hotel/Hermanas/Coche), отсеиваются без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Foto' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Hotel' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Hermanas' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Coche' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного 'Dónde' все соблазны — существительные (Casa/Foto/Hotel/Hermanas/Coche), отсеиваются без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Foto' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Hotel' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Hermanas' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Coche' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного 'Dónde' все соблазны — существительные (Casa/Foto/Hotel/Hermanas/Coche), отсеиваются без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Foto' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Hotel' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Hermanas' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Quién"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "03",
+  "id": "es:08:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн-существительное 'Coche' на месте вопросительного слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:32",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Médica",
+   "with": "Buscan"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:32",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Estudiante",
+   "with": "Buscamos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Médica",
+   "with": "Buscan"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:47",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Estudiante",
+   "with": "Buscamos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "estudiante",
+   "with": "trabajas"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "profesoras",
+   "with": "trabajamos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции вопросительного слова все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции вопросительного слова все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cómo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:09:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции вопросительного слова все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Qué"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Estación",
+   "with": "Vivo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Puerta",
+   "with": "Vive"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Reserva",
+   "with": "Vivimos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Puerta",
+   "with": "Vivo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Reserva",
+   "with": "Vive"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Vivimos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Puerta",
+   "with": "Vivo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Reserva",
+   "with": "Vive"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Vivimos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Comes"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Una",
+   "with": "Come"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Las",
+   "with": "Comemos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Comes"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Una",
+   "with": "Come"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Las",
+   "with": "Comemos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Los",
+   "with": "Comes"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Una",
+   "with": "Come"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:42",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола 4 из 5 соблазнов — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Las",
+   "with": "Comemos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "los",
+   "with": "comes"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "una",
+   "with": "come"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:37",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — артикли, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "las",
+   "with": "comemos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "casa",
+   "with": "bebo"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "foto",
+   "with": "bebes"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола все соблазны — существительные, верный ответ очевиден",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "hotel",
+   "with": "bebemos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:15",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermana",
+   "with": "Lee"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:15",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Banco",
+   "with": "Leemos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:27",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора) (Escribe не брать: для «Вы» = usted это верный ответ)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Escribes"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:27",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора) (Escribe не брать: для «Вы» = usted это верный ответ)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Mensaje",
+   "with": "Escribimos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора) (Escribe не брать: для «Вы» = usted это верный ответ)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Escribes"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "04",
+  "id": "es:10:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на позиции глагола почти все соблазны — существительные/артикли, отсеиваются без знания слова (позиция без выбора) (Escribe не брать: для «Вы» = usted это верный ответ)",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Mensaje",
+   "with": "Escribimos"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:11:32",
+  "type": "M",
+  "field": "ru",
+  "problem": "калька «У тебя есть мой рюкзак?»: про конкретную свою вещь по-русски спрашивают «Мой рюкзак у тебя?» (ср. 11:06 «У меня ключ.» без «есть»)",
+  "fix": "Мой рюкзак у тебя?"
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:11:32",
+  "type": "M",
+  "field": "uk",
+  "problem": "калька «У тебе є мій рюкзак?»: природно «Мій рюкзак у тебе?»",
+  "fix": "Мій рюкзак у тебе?"
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:11:36",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн-местоимение «quién», ученик отсеет его по части речи, не зная правила",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "quién",
+   "with": "un"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:11:36",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн-местоимение «eso», отсеивается по части речи",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "eso",
+   "with": "unas"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:11:36",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн-местоимение «esto», отсеивается по части речи",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "esto",
+   "with": "el"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:11:38",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн-местоимение «quién», отсеивается по части речи",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "quién",
+   "with": "un"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:11:38",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн-местоимение «eso», отсеивается по части речи",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "eso",
+   "with": "unas"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:11:38",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте артикля соблазн-местоимение «esto», отсеивается по части речи",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "esto",
+   "with": "el"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:12:21",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте прилагательного цвета стоит глагол «bebes» — очевидный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "bebes",
+   "with": "roja"
+  }
+ },
+ {
+  "course": "es",
+  "chunk": "05",
+  "id": "es:12:21",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте прилагательного цвета стоит существительное «casa» — очевидный мусор",
+  "fix": {
+   "position": 3,
+   "replace_distractor": "casa",
+   "with": "rojos"
+  }
+ }
+]

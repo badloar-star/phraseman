@@ -1,0 +1,1080 @@
+[
+ {
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:01",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:02",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:03",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:04",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:05",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:06",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:07",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:08",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:09",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:10",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "estudiantes",
+   "with": "son"
+  }
+ },
+ {
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "estudiante",
+   "with": "es"
+  }
+ },
+ {
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "guía",
+   "with": "soy"
+  }
+ },
+ {
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "guías",
+   "with": "somos"
+  }
+ },
+ {
+  "id": "es:05:23",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте глагола все 5 соблазнов — существительные: eres выбирается по части речи без знания слова",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "médica",
+   "with": "sois"
+  }
+ },
+ {
+  "id": "es:05:39",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «es» даёт верную естественную фразу «¿Cuánto es el billete?» (= Сколько стоит билет?), которой нет в alternatives",
+  "fix": {
+   "position": 1,
+   "replace_distractor": "es",
+   "with": "cuestan"
+  }
+ },
+ {
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:41",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:43",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:44",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:45",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:46",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:48",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:49",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Casa",
+   "with": "Cómo"
+  }
+ },
+ {
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Foto",
+   "with": "Cuándo"
+  }
+ },
+ {
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hotel",
+   "with": "Quién"
+  }
+ },
+ {
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Hermanas",
+   "with": "Qué"
+  }
+ },
+ {
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "на месте вопросительного слова все 5 соблазнов — существительные (Casa/Foto/Hotel/Hermanas/Coche): Dónde выбирается по части речи без знания слова",
+  "fix": {
+   "position": 0,
+   "replace_distractor": "Coche",
+   "with": "Cuál"
+  }
+ },
+ {
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «Cuándo» (вопросительное слово) на месте имени — очевидный мусор",
+  "fix": {
+   "position": 2,
+   "replace_distractor": "Cuándo",
+   "with": "Marta"
+  }
+ },
+ {
+  "id": "es:05:50",
+  "type": "B1",
+  "field": "tiles",
+  "problem": "соблазн «Cuándo» (вопросительное слово) на месте имени — очевидный мусор",
+  "fix": {
+   "position": 4,
+   "replace_distractor": "Cuándo",
+   "with": "Carlos"
+  }
+ }
+]

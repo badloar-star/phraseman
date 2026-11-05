@@ -68,6 +68,10 @@ describe('аудит экрана Пика B', () => {
     expect(read('components/spire/spire_strings.ts')).toContain('allEmpty:');
   });
 
+  it('в новом экране Пика нет строки «Друзья на этой неделе» (макет B)', () => {
+    expect(read('components/spire/SpireHomeScreen.tsx')).toContain('{peakScreenV2On() ? null : <SpireFriendsRow');
+  });
+
   it('счётчик «ступени / место» переносит блоки целиком и не сжимает шрифт (слова не рвутся)', () => {
     const counter = read('components/spire/peak/PeakMyCounter.tsx');
     // макет: значок-монета + крупное число и ниже «12 место» отдельной строкой; шрифт не сжимается

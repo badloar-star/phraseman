@@ -335,7 +335,7 @@ export default function SpireHomeScreen() {
           style={offline ? s.dim : null}
           onLayout={(e) => logSpireLayout('friends+podium', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height), bottom: roundLayout(e.nativeEvent.layout.y + e.nativeEvent.layout.height), friends: game.friends.length, startBlock: game.startBlock ?? 'none' })}
         >
-          <SpireFriendsRow lang={lang} friends={game.friends} />
+          {peakScreenV2On() ? null : <SpireFriendsRow lang={lang} friends={game.friends} />}{/* зачем (макет Пик B + слово владельца 05.11): «Друзья на этой неделе» в новом экране Пика нет */}
         </View>
       </ScrollView>
       <View

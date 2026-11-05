@@ -2749,7 +2749,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // (хук уже строит набор из доступных типов; фильтр — страховка при смене языка днём).
         // Подпись урока — название последнего урока, как было в заглушке.
         const homeV2Tasks = filterTodayTasksForTarget(
-          todayTasks.tasks.map((task) => (task.kind === 'lesson' && lastLesson ? { ...task, subtitle: lastLessonName } : task)),
+          // зачем (слово владельца 05.11, эталон rev6-home-free-0): подпись строки «Пройди урок» — «Один шаг в обычном курсе» из copyFor, а не название последнего урока (оно уже в герое)
+          todayTasks.tasks,
           studyTarget,
         );
         // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): в карточке «Сегодня» всегда три строки набора дня (видео — задание дня, если выпало; владелец 22.10: «раздел видео никуда не девается»); анкета — 4-й строкой только при активной кампании из админки (Poll V2 на Главной не показываем)

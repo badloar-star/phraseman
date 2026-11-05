@@ -1,0 +1,204 @@
+{
+ "lang": "de",
+ "lesson": 4,
+ "words": {
+  "morgen": {
+   "ru": "завтра",
+   "uk": "завтра",
+   "en": "tomorrow",
+   "es": "mañana"
+  },
+  "montag": {
+   "ru": "понедельник",
+   "uk": "понеділок",
+   "en": "Monday",
+   "es": "lunes"
+  },
+  "dienstag": {
+   "ru": "вторник",
+   "uk": "вівторок",
+   "en": "Tuesday",
+   "es": "martes"
+  },
+  "freitag": {
+   "ru": "пятница",
+   "uk": "п'ятниця",
+   "en": "Friday",
+   "es": "viernes"
+  },
+  "samstag": {
+   "ru": "суббота",
+   "uk": "субота",
+   "en": "Saturday",
+   "es": "sábado"
+  },
+  "sonntag": {
+   "ru": "воскресенье",
+   "uk": "неділя",
+   "en": "Sunday",
+   "es": "domingo"
+  },
+  "um": {
+   "ru": "в (о часе: в восемь)",
+   "uk": "о (про годину: о восьмій)",
+   "en": "at (an hour)",
+   "es": "a (la hora)"
+  },
+  "acht": {
+   "ru": "восемь",
+   "uk": "вісім",
+   "en": "eight",
+   "es": "ocho"
+  },
+  "beginnt": {
+   "ru": "начинается",
+   "uk": "починається",
+   "en": "begins",
+   "es": "empieza"
+  },
+  "kurs": {
+   "ru": "занятие, курс",
+   "uk": "заняття, курс",
+   "en": "class, course",
+   "es": "clase, curso"
+  },
+  "neun": {
+   "ru": "девять",
+   "uk": "дев'ять",
+   "en": "nine",
+   "es": "nueve"
+  },
+  "arbeit": {
+   "ru": "работа",
+   "uk": "робота",
+   "en": "work",
+   "es": "trabajo"
+  },
+  "zehn": {
+   "ru": "десять",
+   "uk": "десять",
+   "en": "ten",
+   "es": "diez"
+  },
+  "öffnet": {
+   "ru": "открывается",
+   "uk": "відчиняється",
+   "en": "opens",
+   "es": "abre"
+  },
+  "sechs": {
+   "ru": "шесть",
+   "uk": "шість",
+   "en": "six",
+   "es": "seis"
+  },
+  "schließt": {
+   "ru": "закрывается",
+   "uk": "зачиняється",
+   "en": "closes",
+   "es": "cierra"
+  },
+  "sieben": {
+   "ru": "семь",
+   "uk": "сім",
+   "en": "seven",
+   "es": "siete"
+  },
+  "kommt": {
+   "ru": "приходит, приезжает",
+   "uk": "приходить, приїжджає",
+   "en": "comes",
+   "es": "viene, llega"
+  },
+  "zwölf": {
+   "ru": "двенадцать",
+   "uk": "дванадцять",
+   "en": "twelve",
+   "es": "doce"
+  },
+  "drei": {
+   "ru": "три",
+   "uk": "три",
+   "en": "three",
+   "es": "tres"
+  },
+  "vier": {
+   "ru": "четыре",
+   "uk": "чотири",
+   "en": "four",
+   "es": "cuatro"
+  },
+  "fünf": {
+   "ru": "пять",
+   "uk": "п'ять",
+   "en": "five",
+   "es": "cinco"
+  },
+  "nach": {
+   "ru": "после",
+   "uk": "після",
+   "en": "after",
+   "es": "después de"
+  },
+  "dem": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the",
+   "es": "el"
+  },
+  "vor": {
+   "ru": "перед, до",
+   "uk": "перед, до",
+   "en": "before",
+   "es": "antes de"
+  },
+  "trinke": {
+   "ru": "(я) пью",
+   "uk": "(я) п'ю",
+   "en": "(I) drink",
+   "es": "(yo) bebo"
+  },
+  "abend": {
+   "ru": "вечер",
+   "uk": "вечір",
+   "en": "evening",
+   "es": "tarde, noche"
+  },
+  "lesen": {
+   "ru": "(мы, они) читаем, читают",
+   "uk": "(ми, вони) читаємо, читають",
+   "en": "(we, they) read",
+   "es": "(nosotros) leemos"
+  },
+  "nachmittag": {
+   "ru": "вторая половина дня",
+   "uk": "друга половина дня",
+   "en": "afternoon",
+   "es": "tarde"
+  },
+  "in": {
+   "ru": "на, в (на перерыве)",
+   "uk": "на, в (на перерві)",
+   "en": "in, during",
+   "es": "en"
+  },
+  "trinken": {
+   "ru": "(мы, они) пьём, пьют",
+   "uk": "(ми, вони) п'ємо, п'ють",
+   "en": "(we, they) drink",
+   "es": "(nosotros) bebemos"
+  },
+  "wochenende": {
+   "ru": "выходные",
+   "uk": "вихідні",
+   "en": "weekend",
+   "es": "fin de semana"
+  },
+  "ende": {
+   "ru": "конец",
+   "uk": "кінець",
+   "en": "end",
+   "es": "fin"
+  }
+ }
+}

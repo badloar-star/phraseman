@@ -1,0 +1,127 @@
+{
+ "lang": "es",
+ "lesson": 3,
+ "words": [
+  {
+   "form": "parada",
+   "surface": "parada",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:03:26",
+     "target": "Estamos en la parada",
+     "ru": "Мы на остановке?",
+     "en": "Are we at the bus stop?"
+    },
+    {
+     "id": "es:03:27",
+     "target": "Estás en la parada",
+     "ru": "Ты на остановке?",
+     "en": "Are you at the bus stop?"
+    }
+   ]
+  },
+  {
+   "form": "hotel",
+   "surface": "hotel",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:03:30",
+     "target": "El hotel está cerca",
+     "ru": "Отель рядом?",
+     "en": "Is the hotel nearby?"
+    },
+    {
+     "id": "es:03:46",
+     "target": "El hotel está aquí",
+     "ru": "Отель здесь?",
+     "en": "Is the hotel here?"
+    }
+   ]
+  },
+  {
+   "form": "pasaporte",
+   "surface": "pasaporte",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:03:41",
+     "target": "Está el pasaporte en la mochila",
+     "ru": "Паспорт в рюкзаке?",
+     "en": "Is the passport in the backpack?"
+    },
+    {
+     "id": "es:03:42",
+     "target": "Está el pasaporte en el bolso",
+     "ru": "Паспорт в сумке?",
+     "en": "Is the passport in the bag?"
+    }
+   ]
+  },
+  {
+   "form": "billete",
+   "surface": "billete",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:03:43",
+     "target": "Está el billete en el bolsillo",
+     "ru": "Билет в кармане?",
+     "en": "Is the ticket in the pocket?"
+    }
+   ]
+  },
+  {
+   "form": "billetes",
+   "surface": "billetes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:03:44",
+     "target": "Están los billetes en el bolso",
+     "ru": "Билеты в сумке?",
+     "en": "Are the tickets in the bag?"
+    }
+   ]
+  },
+  {
+   "form": "pasaportes",
+   "surface": "pasaportes",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:03:45",
+     "target": "Están los pasaportes en el coche",
+     "ru": "Паспорта в машине?",
+     "en": "Are the passports in the car?"
+    },
+    {
+     "id": "es:03:50",
+     "target": "Los pasaportes están en la mochila",
+     "ru": "Паспорта в рюкзаке?",
+     "en": "Are the passports in the backpack?"
+    }
+   ]
+  },
+  {
+   "form": "salida",
+   "surface": "salida",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:03:47",
+     "target": "La salida está allí",
+     "ru": "Выход вон там?",
+     "en": "Is the exit over there?"
+    },
+    {
+     "id": "es:03:48",
+     "target": "Está Luis en la salida",
+     "ru": "Луис у выхода?",
+     "en": "Is Luis at the exit?"
+    }
+   ]
+  }
+ ]
+}

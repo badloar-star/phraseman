@@ -1,0 +1,324 @@
+{
+ "lang": "en",
+ "lesson": 6,
+ "words": {
+  "where": {
+   "ru": "где, куда",
+   "uk": "де, куди",
+   "en": "in what place",
+   "es": "dónde"
+  },
+  "when": {
+   "ru": "когда",
+   "uk": "коли",
+   "en": "at what moment",
+   "es": "cuándo"
+  },
+  "what": {
+   "ru": "что, какой",
+   "uk": "що, який",
+   "en": "which thing",
+   "es": "qué"
+  },
+  "how": {
+   "ru": "как",
+   "uk": "як",
+   "en": "in what way",
+   "es": "cómo"
+  },
+  "why": {
+   "ru": "почему, зачем",
+   "uk": "чому, навіщо",
+   "en": "for what reason",
+   "es": "por qué"
+  },
+  "wait": {
+   "ru": "ждать, ждут",
+   "uk": "чекати, чекають",
+   "en": "stay until something happens",
+   "es": "esperar"
+  },
+  "alarm": {
+   "ru": "сигнализация, сигнал",
+   "uk": "сигналізація, сигнал",
+   "en": "warning device",
+   "es": "alarma"
+  },
+  "beep": {
+   "ru": "пищать",
+   "uk": "пищати",
+   "en": "make a short sound",
+   "es": "pitar"
+  },
+  "leave": {
+   "ru": "отправляться, уходить",
+   "uk": "відправлятися, іти",
+   "en": "go away",
+   "es": "salir"
+  },
+  "much": {
+   "ru": "сколько (о количестве)",
+   "uk": "скільки (про кількість)",
+   "en": "what amount",
+   "es": "cuánto"
+  },
+  "cost": {
+   "ru": "стоить",
+   "uk": "коштувати",
+   "en": "have as price",
+   "es": "costar"
+  },
+  "which": {
+   "ru": "какой, который",
+   "uk": "який, котрий",
+   "en": "what one of several",
+   "es": "cuál"
+  },
+  "long": {
+   "ru": "как долго, долгий",
+   "uk": "як довго, довгий",
+   "en": "for a lot of time",
+   "es": "largo"
+  },
+  "journey": {
+   "ru": "путешествие, дорога",
+   "uk": "подорож, дорога",
+   "en": "trip from place to place",
+   "es": "viaje"
+  },
+  "gates": {
+   "ru": "ворота, выходы",
+   "uk": "ворота, виходи",
+   "en": "outdoor doors",
+   "es": "puertas"
+  },
+  "goes": {
+   "ru": "идёт, едет",
+   "uk": "йде, їде",
+   "en": "travels",
+   "es": "va"
+  },
+  "centre": {
+   "ru": "центр",
+   "uk": "центр",
+   "en": "middle of a town",
+   "es": "centro"
+  },
+  "often": {
+   "ru": "часто",
+   "uk": "часто",
+   "en": "many times",
+   "es": "a menudo"
+  },
+  "trains": {
+   "ru": "поезда",
+   "uk": "потяги",
+   "en": "vehicles on rails",
+   "es": "trenes"
+  },
+  "size": {
+   "ru": "размер",
+   "uk": "розмір",
+   "en": "how big something is",
+   "es": "talla"
+  },
+  "colour": {
+   "ru": "цвет",
+   "uk": "колір",
+   "en": "red, blue, green and so on",
+   "es": "color"
+  },
+  "prefer": {
+   "ru": "предпочитать, предпочитаете",
+   "uk": "віддавати перевагу, надаєте перевагу",
+   "en": "like better",
+   "es": "preferir"
+  },
+  "batteries": {
+   "ru": "батарейки",
+   "uk": "батарейки",
+   "en": "small power sources",
+   "es": "pilas"
+  },
+  "sale": {
+   "ru": "распродажа",
+   "uk": "розпродаж",
+   "en": "time of lower prices",
+   "es": "rebajas"
+  },
+  "end": {
+   "ru": "заканчиваться",
+   "uk": "закінчуватися",
+   "en": "finish",
+   "es": "terminar"
+  },
+  "label": {
+   "ru": "этикетка, ярлык",
+   "uk": "етикетка, ярлик",
+   "en": "tag with information",
+   "es": "etiqueta"
+  },
+  "say": {
+   "ru": "говорить, сказано",
+   "uk": "казати, написано",
+   "en": "show in words",
+   "es": "decir"
+  },
+  "one": {
+   "ru": "этот (вещь), один",
+   "uk": "цей (річ), один",
+   "en": "a single thing",
+   "es": "uno"
+  },
+  "more": {
+   "ru": "больше",
+   "uk": "більше",
+   "en": "a greater amount",
+   "es": "más"
+  },
+  "coat": {
+   "ru": "пальто, куртка",
+   "uk": "пальто, куртка",
+   "en": "warm outer clothing",
+   "es": "abrigo"
+  },
+  "restart": {
+   "ru": "перезапустить",
+   "uk": "перезапустити",
+   "en": "start again",
+   "es": "reiniciar"
+  },
+  "button": {
+   "ru": "кнопка",
+   "uk": "кнопка",
+   "en": "thing you press",
+   "es": "botón"
+  },
+  "screen": {
+   "ru": "экран",
+   "uk": "екран",
+   "en": "display of a device",
+   "es": "pantalla"
+  },
+  "dark": {
+   "ru": "тёмный",
+   "uk": "темний",
+   "en": "with no light",
+   "es": "oscuro"
+  },
+  "who": {
+   "ru": "кто",
+   "uk": "хто",
+   "en": "which person",
+   "es": "quién"
+  },
+  "orders": {
+   "ru": "заказы",
+   "uk": "замовлення",
+   "en": "requests for goods",
+   "es": "pedidos"
+  },
+  "call": {
+   "ru": "звонить, позвонить",
+   "uk": "телефонувати, подзвонити",
+   "en": "phone someone",
+   "es": "llamar"
+  },
+  "has": {
+   "ru": "имеет, у него есть",
+   "uk": "має, у нього є",
+   "en": "owns, holds",
+   "es": "tiene"
+  },
+  "leads": {
+   "ru": "ведёт",
+   "uk": "веде",
+   "en": "goes toward",
+   "es": "lleva"
+  },
+  "meet": {
+   "ru": "встречаться, встречаемся",
+   "uk": "зустрічатися, зустрічаємося",
+   "en": "come together",
+   "es": "encontrarse"
+  },
+  "after": {
+   "ru": "после",
+   "uk": "після",
+   "en": "later than",
+   "es": "después de"
+  },
+  "spell": {
+   "ru": "произносить по буквам",
+   "uk": "вимовляти по буквах",
+   "en": "say letter by letter",
+   "es": "deletrear"
+  },
+  "surname": {
+   "ru": "фамилия",
+   "uk": "прізвище",
+   "en": "family name",
+   "es": "apellido"
+  },
+  "mean": {
+   "ru": "значить, означать",
+   "uk": "значити, означати",
+   "en": "have the meaning of",
+   "es": "significar"
+  },
+  "many": {
+   "ru": "сколько (о людях, вещах)",
+   "uk": "скільки (про людей, речі)",
+   "en": "what number of",
+   "es": "cuántos"
+  },
+  "people": {
+   "ru": "люди",
+   "uk": "люди",
+   "en": "men and women",
+   "es": "gente"
+  },
+  "far": {
+   "ru": "далеко, какое расстояние",
+   "uk": "далеко, яка відстань",
+   "en": "a long way",
+   "es": "lejos"
+  },
+  "each": {
+   "ru": "каждый",
+   "uk": "кожний",
+   "en": "every one",
+   "es": "cada"
+  },
+  "day": {
+   "ru": "день",
+   "uk": "день",
+   "en": "24 hours",
+   "es": "día"
+  },
+  "teaches": {
+   "ru": "ведёт занятия, учит",
+   "uk": "веде заняття, вчить",
+   "en": "helps others learn",
+   "es": "enseña"
+  },
+  "evening": {
+   "ru": "вечерний, вечер",
+   "uk": "вечірній, вечір",
+   "en": "late part of the day",
+   "es": "tarde"
+  },
+  "belongs": {
+   "ru": "принадлежит",
+   "uk": "належить",
+   "en": "is owned by",
+   "es": "pertenece"
+  },
+  "foot": {
+   "ru": "пешком (on foot)",
+   "uk": "пішки",
+   "en": "walking",
+   "es": "a pie"
+  }
+ }
+}

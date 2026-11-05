@@ -1,0 +1,424 @@
+{
+ "lang": "fr",
+ "lesson": 3,
+ "words": [
+  {
+   "form": "est-ce",
+   "surface": "Est-ce",
+   "count": 20,
+   "examples": [
+    {
+     "id": "fr:03:11",
+     "target": "Est-ce que tu es à la gare",
+     "ru": "Ты на вокзале?",
+     "en": "Are you at the train station?"
+    },
+    {
+     "id": "fr:03:12",
+     "target": "Est-ce que la porte est ouverte",
+     "ru": "Дверь открыта?",
+     "en": "Is the door open?"
+    }
+   ]
+  },
+  {
+   "form": "que",
+   "surface": "que",
+   "count": 20,
+   "examples": [
+    {
+     "id": "fr:03:11",
+     "target": "Est-ce que tu es à la gare",
+     "ru": "Ты на вокзале?",
+     "en": "Are you at the train station?"
+    },
+    {
+     "id": "fr:03:12",
+     "target": "Est-ce que la porte est ouverte",
+     "ru": "Дверь открыта?",
+     "en": "Is the door open?"
+    }
+   ]
+  },
+  {
+   "form": "l’heure",
+   "surface": "l’heure",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:16",
+     "target": "Est-ce que le train est à l’heure",
+     "ru": "Поезд идёт по расписанию?",
+     "en": "Is the train running on schedule?"
+    }
+   ]
+  },
+  {
+   "form": "guichet",
+   "surface": "guichet",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:03:21",
+     "target": "Le guichet est ouvert",
+     "ru": "Касса открыта?",
+     "en": "Is the ticket office open?"
+    },
+    {
+     "id": "fr:03:45",
+     "target": "La sortie est près du guichet",
+     "ru": "Выход рядом с кассой?",
+     "en": "Is the exit near the ticket window?"
+    }
+   ]
+  },
+  {
+   "form": "l’entrée",
+   "surface": "L’entrée",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:03:22",
+     "target": "L’entrée est là",
+     "ru": "Вход там?",
+     "en": "Is the entrance there?"
+    },
+    {
+     "id": "fr:03:40",
+     "target": "Est-ce que vous êtes près de l’entrée",
+     "ru": "Вы рядом с входом?",
+     "en": "Are you near the entrance?"
+    }
+   ]
+  },
+  {
+   "form": "l’arrêt",
+   "surface": "L’arrêt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:23",
+     "target": "L’arrêt est loin",
+     "ru": "Остановка далеко?",
+     "en": "Is the bus stop far away?"
+    }
+   ]
+  },
+  {
+   "form": "quai",
+   "surface": "quai",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:03:24",
+     "target": "Le quai est en face",
+     "ru": "Перрон напротив?",
+     "en": "Is the platform opposite?"
+    },
+    {
+     "id": "fr:03:44",
+     "target": "Le train est sur ce quai",
+     "ru": "Поезд у этой платформы?",
+     "en": "Is the train at this platform?"
+    }
+   ]
+  },
+  {
+   "form": "face",
+   "surface": "face",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:24",
+     "target": "Le quai est en face",
+     "ru": "Перрон напротив?",
+     "en": "Is the platform opposite?"
+    }
+   ]
+  },
+  {
+   "form": "sortie",
+   "surface": "sortie",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:03:25",
+     "target": "La sortie est à gauche",
+     "ru": "Выход слева?",
+     "en": "Is the exit on the left?"
+    },
+    {
+     "id": "fr:03:45",
+     "target": "La sortie est près du guichet",
+     "ru": "Выход рядом с кассой?",
+     "en": "Is the exit near the ticket window?"
+    }
+   ]
+  },
+  {
+   "form": "gauche",
+   "surface": "gauche",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:25",
+     "target": "La sortie est à gauche",
+     "ru": "Выход слева?",
+     "en": "Is the exit on the left?"
+    }
+   ]
+  },
+  {
+   "form": "parking",
+   "surface": "parking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:26",
+     "target": "Le parking est à droite",
+     "ru": "Парковка справа?",
+     "en": "Is the parking lot on the right?"
+    }
+   ]
+  },
+  {
+   "form": "droite",
+   "surface": "droite",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:26",
+     "target": "Le parking est à droite",
+     "ru": "Парковка справа?",
+     "en": "Is the parking lot on the right?"
+    }
+   ]
+  },
+  {
+   "form": "aujourd’hui",
+   "surface": "aujourd’hui",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:27",
+     "target": "Le musée est ouvert aujourd’hui",
+     "ru": "Музей сегодня открыт?",
+     "en": "Is the museum open today?"
+    }
+   ]
+  },
+  {
+   "form": "d’ici",
+   "surface": "d’ici",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:29",
+     "target": "Le magasin est près d’ici",
+     "ru": "Магазин находится рядом?",
+     "en": "Is the store near here?"
+    }
+   ]
+  },
+  {
+   "form": "ce",
+   "surface": "ce",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:03:30",
+     "target": "La pharmacie est ouverte ce soir",
+     "ru": "Аптека открыта сегодня вечером?",
+     "en": "Is the pharmacy open tonight?"
+    },
+    {
+     "id": "fr:03:44",
+     "target": "Le train est sur ce quai",
+     "ru": "Поезд у этой платформы?",
+     "en": "Is the train at this platform?"
+    }
+   ]
+  },
+  {
+   "form": "soir",
+   "surface": "soir",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:03:30",
+     "target": "La pharmacie est ouverte ce soir",
+     "ru": "Аптека открыта сегодня вечером?",
+     "en": "Is the pharmacy open tonight?"
+    },
+    {
+     "id": "fr:03:46",
+     "target": "Tu es seul ce soir",
+     "ru": "Ты сегодня вечером один?",
+     "en": "Are you alone tonight?"
+    }
+   ]
+  },
+  {
+   "form": "avec",
+   "surface": "avec",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:03:31",
+     "target": "Est-ce que Léa est avec toi",
+     "ru": "Леа с тобой?",
+     "en": "Is Léa with you?"
+    },
+    {
+     "id": "fr:03:49",
+     "target": "Les enfants sont avec vous",
+     "ru": "Дети с вами?",
+     "en": "Are the children with you?"
+    }
+   ]
+  },
+  {
+   "form": "toi",
+   "surface": "toi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:31",
+     "target": "Est-ce que Léa est avec toi",
+     "ru": "Леа с тобой?",
+     "en": "Is Léa with you?"
+    }
+   ]
+  },
+  {
+   "form": "ta",
+   "surface": "ta",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:35",
+     "target": "Est-ce que les billets sont dans ta poche",
+     "ru": "Билеты у тебя в кармане?",
+     "en": "Do you have your tickets?"
+    }
+   ]
+  },
+  {
+   "form": "poche",
+   "surface": "poche",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:35",
+     "target": "Est-ce que les billets sont dans ta poche",
+     "ru": "Билеты у тебя в кармане?",
+     "en": "Do you have your tickets?"
+    }
+   ]
+  },
+  {
+   "form": "prochain",
+   "surface": "prochain",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:41",
+     "target": "Le prochain bus est déjà là",
+     "ru": "Следующий автобус уже здесь?",
+     "en": "Is the next bus already here?"
+    }
+   ]
+  },
+  {
+   "form": "deux",
+   "surface": "deux",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:42",
+     "target": "Les deux portes sont fermées",
+     "ru": "Обе двери закрыты?",
+     "en": "Are both doors closed?"
+    }
+   ]
+  },
+  {
+   "form": "fermées",
+   "surface": "fermées",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:42",
+     "target": "Les deux portes sont fermées",
+     "ru": "Обе двери закрыты?",
+     "en": "Are both doors closed?"
+    }
+   ]
+  },
+  {
+   "form": "serrure",
+   "surface": "serrure",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:43",
+     "target": "La clé est dans la serrure",
+     "ru": "Ключ в замке?",
+     "en": "Is the key in the lock?"
+    }
+   ]
+  },
+  {
+   "form": "pour",
+   "surface": "pour",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:47",
+     "target": "Vous êtes ici pour le concert",
+     "ru": "Вы пришли на концерт?",
+     "en": "Are you here for the concert?"
+    }
+   ]
+  },
+  {
+   "form": "concert",
+   "surface": "concert",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:47",
+     "target": "Vous êtes ici pour le concert",
+     "ru": "Вы пришли на концерт?",
+     "en": "Are you here for the concert?"
+    }
+   ]
+  },
+  {
+   "form": "premier",
+   "surface": "premier",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:48",
+     "target": "La chambre est au premier étage",
+     "ru": "Комната на втором этаже?",
+     "en": "Is the room on the first floor?"
+    }
+   ]
+  },
+  {
+   "form": "étage",
+   "surface": "étage",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:03:48",
+     "target": "La chambre est au premier étage",
+     "ru": "Комната на втором этаже?",
+     "en": "Is the room on the first floor?"
+    }
+   ]
+  }
+ ]
+}

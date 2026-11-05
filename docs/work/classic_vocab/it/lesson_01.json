@@ -1,0 +1,342 @@
+{
+ "lang": "it",
+ "lesson": 1,
+ "words": {
+  "sono": {
+   "ru": "(я) есть; (они) есть",
+   "uk": "(я) є; (вони) є",
+   "en": "(I) am; (they) are",
+   "es": "(yo) estoy; (ellos) están"
+  },
+  "qui": {
+   "ru": "здесь",
+   "uk": "тут",
+   "en": "here",
+   "es": "aquí"
+  },
+  "sei": {
+   "ru": "(ты) есть",
+   "uk": "(ти) є",
+   "en": "(you) are",
+   "es": "(tú) estás"
+  },
+  "lì": {
+   "ru": "там",
+   "uk": "там",
+   "en": "there",
+   "es": "allí"
+  },
+  "lea": {
+   "ru": "Леа (имя)",
+   "uk": "Леа (ім’я)",
+   "en": "Lea (a name)",
+   "es": "Lea (nombre)"
+  },
+  "è": {
+   "ru": "(он, она) есть",
+   "uk": "(він, вона) є",
+   "en": "(he, she) is",
+   "es": "(él, ella) está"
+  },
+  "paolo": {
+   "ru": "Паоло (имя)",
+   "uk": "Паоло (ім’я)",
+   "en": "Paolo (a name)",
+   "es": "Paolo (nombre)"
+  },
+  "siamo": {
+   "ru": "(мы) есть",
+   "uk": "(ми) є",
+   "en": "(we) are",
+   "es": "(nosotros) estamos"
+  },
+  "siete": {
+   "ru": "(вы) есть",
+   "uk": "(ви) є",
+   "en": "(you all) are",
+   "es": "(vosotros) estáis"
+  },
+  "loro": {
+   "ru": "они",
+   "uk": "вони",
+   "en": "they",
+   "es": "ellos"
+  },
+  "a": {
+   "ru": "в, на, у",
+   "uk": "в, на, у",
+   "en": "at, in, to",
+   "es": "en, a"
+  },
+  "casa": {
+   "ru": "дом, дома",
+   "uk": "дім, вдома",
+   "en": "home, house",
+   "es": "casa"
+  },
+  "alla": {
+   "ru": "в, на (слитно со словом перед ним)",
+   "uk": "в, на (злито зі словом перед ним)",
+   "en": "at the, in the",
+   "es": "en la, a la"
+  },
+  "stazione": {
+   "ru": "вокзал",
+   "uk": "вокзал",
+   "en": "station",
+   "es": "estación"
+  },
+  "in": {
+   "ru": "в",
+   "uk": "в",
+   "en": "in",
+   "es": "en"
+  },
+  "ufficio": {
+   "ru": "офис",
+   "uk": "офіс",
+   "en": "office",
+   "es": "oficina"
+  },
+  "lei": {
+   "ru": "она",
+   "uk": "вона",
+   "en": "she",
+   "es": "ella"
+  },
+  "pronto": {
+   "ru": "готов",
+   "uk": "готовий",
+   "en": "ready",
+   "es": "listo"
+  },
+  "pronta": {
+   "ru": "готова",
+   "uk": "готова",
+   "en": "ready",
+   "es": "lista"
+  },
+  "stanco": {
+   "ru": "усталый",
+   "uk": "втомлений",
+   "en": "tired",
+   "es": "cansado"
+  },
+  "stanca": {
+   "ru": "усталая",
+   "uk": "втомлена",
+   "en": "tired",
+   "es": "cansada"
+  },
+  "pronti": {
+   "ru": "готовы",
+   "uk": "готові",
+   "en": "ready",
+   "es": "listos"
+  },
+  "stanchi": {
+   "ru": "усталые",
+   "uk": "втомлені",
+   "en": "tired",
+   "es": "cansados"
+  },
+  "pronte": {
+   "ru": "готовы",
+   "uk": "готові",
+   "en": "ready",
+   "es": "listas"
+  },
+  "libero": {
+   "ru": "свободен",
+   "uk": "вільний",
+   "en": "free",
+   "es": "libre"
+  },
+  "la": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "word before a thing’s name",
+   "es": "palabra delante del nombre"
+  },
+  "porta": {
+   "ru": "дверь",
+   "uk": "двері",
+   "en": "door",
+   "es": "puerta"
+  },
+  "aperta": {
+   "ru": "открыта",
+   "uk": "відчинена",
+   "en": "open",
+   "es": "abierta"
+  },
+  "finestra": {
+   "ru": "окно",
+   "uk": "вікно",
+   "en": "window",
+   "es": "ventana"
+  },
+  "il": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "word before a thing’s name",
+   "es": "palabra delante del nombre"
+  },
+  "negozio": {
+   "ru": "магазин",
+   "uk": "магазин",
+   "en": "shop",
+   "es": "tienda"
+  },
+  "aperto": {
+   "ru": "открыт",
+   "uk": "відчинений",
+   "en": "open",
+   "es": "abierto"
+  },
+  "ferroviaria": {
+   "ru": "железнодорожная",
+   "uk": "залізнична",
+   "en": "of the railway",
+   "es": "ferroviaria"
+  },
+  "lontana": {
+   "ru": "далёкая, далеко",
+   "uk": "далека, далеко",
+   "en": "far",
+   "es": "lejana"
+  },
+  "vicina": {
+   "ru": "близкая, рядом",
+   "uk": "близька, поруч",
+   "en": "near",
+   "es": "cercana"
+  },
+  "bar": {
+   "ru": "кафе, бар",
+   "uk": "кафе, бар",
+   "en": "café, bar",
+   "es": "bar"
+  },
+  "chiuso": {
+   "ru": "закрыт",
+   "uk": "зачинений",
+   "en": "closed",
+   "es": "cerrado"
+  },
+  "chiusa": {
+   "ru": "закрыта",
+   "uk": "зачинена",
+   "en": "closed",
+   "es": "cerrada"
+  },
+  "le": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "word before a thing’s name",
+   "es": "palabra delante del nombre"
+  },
+  "porte": {
+   "ru": "двери",
+   "uk": "двері",
+   "en": "doors",
+   "es": "puertas"
+  },
+  "aperte": {
+   "ru": "открыты",
+   "uk": "відчинені",
+   "en": "open",
+   "es": "abiertas"
+  },
+  "i": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "word before a thing’s name",
+   "es": "palabra delante del nombre"
+  },
+  "negozi": {
+   "ru": "магазины",
+   "uk": "магазини",
+   "en": "shops",
+   "es": "tiendas"
+  },
+  "chiusi": {
+   "ru": "закрыты",
+   "uk": "зачинені",
+   "en": "closed",
+   "es": "cerrados"
+  },
+  "l’ufficio": {
+   "ru": "офис (слитно со словом перед ним)",
+   "uk": "офіс (злито зі словом перед ним)",
+   "en": "the office",
+   "es": "la oficina"
+  },
+  "silenzioso": {
+   "ru": "тихий",
+   "uk": "тихий",
+   "en": "quiet",
+   "es": "silencioso"
+  },
+  "già": {
+   "ru": "уже",
+   "uk": "вже",
+   "en": "already",
+   "es": "ya"
+  },
+  "ancora": {
+   "ru": "ещё, всё ещё",
+   "uk": "ще, досі",
+   "en": "still",
+   "es": "todavía"
+  },
+  "solo": {
+   "ru": "один",
+   "uk": "один, сам",
+   "en": "alone",
+   "es": "solo"
+  },
+  "insieme": {
+   "ru": "вместе",
+   "uk": "разом",
+   "en": "together",
+   "es": "juntos"
+  },
+  "chiave": {
+   "ru": "ключ",
+   "uk": "ключ",
+   "en": "key",
+   "es": "llave"
+  },
+  "chiavi": {
+   "ru": "ключи",
+   "uk": "ключі",
+   "en": "keys",
+   "es": "llaves"
+  },
+  "borsa": {
+   "ru": "сумка",
+   "uk": "сумка",
+   "en": "bag",
+   "es": "bolso"
+  },
+  "vicino": {
+   "ru": "рядом, возле",
+   "uk": "поруч, біля",
+   "en": "near, next to",
+   "es": "cerca de"
+  },
+  "bambini": {
+   "ru": "дети",
+   "uk": "діти",
+   "en": "children",
+   "es": "niños"
+  },
+  "fuori": {
+   "ru": "на улице, снаружи",
+   "uk": "надворі, ззовні",
+   "en": "outside",
+   "es": "fuera"
+  }
+ }
+}

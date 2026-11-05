@@ -1,0 +1,276 @@
+{
+ "lang": "en",
+ "lesson": 5,
+ "words": {
+  "sell": {
+   "ru": "продавать, продаёте",
+   "uk": "продавати, продаєте",
+   "en": "offer for money",
+   "es": "vender"
+  },
+  "stamps": {
+   "ru": "марки",
+   "uk": "марки",
+   "en": "small stickers for post",
+   "es": "sellos"
+  },
+  "sundays": {
+   "ru": "по воскресеньям",
+   "uk": "по неділях",
+   "en": "on every Sunday",
+   "es": "los domingos"
+  },
+  "down": {
+   "ru": "вниз",
+   "uk": "вниз",
+   "en": "to a lower place",
+   "es": "abajo"
+  },
+  "pay": {
+   "ru": "платить, платим",
+   "uk": "платити, платимо",
+   "en": "give money",
+   "es": "pagar"
+  },
+  "street": {
+   "ru": "улица",
+   "uk": "вулиця",
+   "en": "road in a town",
+   "es": "calle"
+  },
+  "balcony": {
+   "ru": "балкон",
+   "uk": "балкон",
+   "en": "small platform outside a flat",
+   "es": "balcón"
+  },
+  "oven": {
+   "ru": "духовка",
+   "uk": "духовка",
+   "en": "box for baking food",
+   "es": "horno"
+  },
+  "hear": {
+   "ru": "слышать, слышите",
+   "uk": "чути, чуєте",
+   "en": "notice by ear",
+   "es": "oír"
+  },
+  "noise": {
+   "ru": "шум",
+   "uk": "шум",
+   "en": "loud sound",
+   "es": "ruido"
+  },
+  "by": {
+   "ru": "сам (по себе)",
+   "uk": "сам (собою)",
+   "en": "part of \"by itself\"",
+   "es": "por"
+  },
+  "itself": {
+   "ru": "сам, сама, само",
+   "uk": "сам, сама, саме",
+   "en": "without help",
+   "es": "sí mismo"
+  },
+  "parking": {
+   "ru": "парковка",
+   "uk": "паркування",
+   "en": "leaving a car in a place",
+   "es": "aparcamiento"
+  },
+  "permit": {
+   "ru": "разрешение, пропуск",
+   "uk": "дозвіл, перепустка",
+   "en": "official paper allowing something",
+   "es": "permiso"
+  },
+  "landlord": {
+   "ru": "хозяин квартиры",
+   "uk": "власник житла",
+   "en": "person who rents out a home",
+   "es": "casero"
+  },
+  "new": {
+   "ru": "новый",
+   "uk": "новий",
+   "en": "recently made or got",
+   "es": "nuevo"
+  },
+  "team": {
+   "ru": "команда",
+   "uk": "команда",
+   "en": "group working together",
+   "es": "equipo"
+  },
+  "wear": {
+   "ru": "носить (одежду)",
+   "uk": "носити (одяг)",
+   "en": "have clothes on",
+   "es": "llevar puesto"
+  },
+  "uniform": {
+   "ru": "рабочая одежда, униформа",
+   "uk": "робочий одяг, уніформа",
+   "en": "work clothes",
+   "es": "uniforme"
+  },
+  "manager": {
+   "ru": "начальник, менеджер",
+   "uk": "начальник, менеджер",
+   "en": "person in charge",
+   "es": "jefe"
+  },
+  "rota": {
+   "ru": "график дежурств",
+   "uk": "графік чергувань",
+   "en": "work schedule",
+   "es": "turnos"
+  },
+  "get": {
+   "ru": "получать, получаете",
+   "uk": "отримувати, отримуєте",
+   "en": "receive",
+   "es": "recibir"
+  },
+  "break": {
+   "ru": "перерыв",
+   "uk": "перерва",
+   "en": "short rest",
+   "es": "descanso"
+  },
+  "printer": {
+   "ru": "принтер",
+   "uk": "принтер",
+   "en": "machine that prints",
+   "es": "impresora"
+  },
+  "paper": {
+   "ru": "бумага",
+   "uk": "папір",
+   "en": "material for writing",
+   "es": "papel"
+  },
+  "sign": {
+   "ru": "подписывать, подписываем",
+   "uk": "підписувати, підписуємо",
+   "en": "write your name on",
+   "es": "firmar"
+  },
+  "form": {
+   "ru": "бланк, анкета",
+   "uk": "бланк, анкета",
+   "en": "paper to fill in",
+   "es": "formulario"
+  },
+  "spare": {
+   "ru": "запасной",
+   "uk": "запасний",
+   "en": "extra",
+   "es": "de repuesto"
+  },
+  "keep": {
+   "ru": "хранить, оставлять у себя",
+   "uk": "зберігати, залишати в себе",
+   "en": "not throw away",
+   "es": "guardar"
+  },
+  "receipts": {
+   "ru": "чеки",
+   "uk": "чеки",
+   "en": "papers showing payments",
+   "es": "recibos"
+  },
+  "colleague": {
+   "ru": "коллега",
+   "uk": "колега",
+   "en": "person you work with",
+   "es": "compañero de trabajo"
+  },
+  "weekends": {
+   "ru": "выходные",
+   "uk": "вихідні",
+   "en": "Saturday and Sunday",
+   "es": "fines de semana"
+  },
+  "delivery": {
+   "ru": "доставка",
+   "uk": "доставка",
+   "en": "bringing things to you",
+   "es": "entrega"
+  },
+  "address": {
+   "ru": "адрес",
+   "uk": "адреса",
+   "en": "where someone lives",
+   "es": "dirección"
+  },
+  "parcel": {
+   "ru": "посылка",
+   "uk": "посилка",
+   "en": "package sent by post",
+   "es": "paquete"
+  },
+  "box": {
+   "ru": "коробка",
+   "uk": "коробка",
+   "en": "container with sides",
+   "es": "caja"
+  },
+  "send": {
+   "ru": "отправлять, отправляете",
+   "uk": "надсилати, надсилаєте",
+   "en": "make something go to someone",
+   "es": "enviar"
+  },
+  "confirmation": {
+   "ru": "подтверждение",
+   "uk": "підтвердження",
+   "en": "proof that something is agreed",
+   "es": "confirmación"
+  },
+  "anyone": {
+   "ru": "кто-нибудь",
+   "uk": "хтось, будь-хто",
+   "en": "any person",
+   "es": "alguien"
+  },
+  "post": {
+   "ru": "почта",
+   "uk": "пошта",
+   "en": "letters and parcels",
+   "es": "correo"
+  },
+  "collect": {
+   "ru": "забирать, забираю",
+   "uk": "забирати, забираю",
+   "en": "go and get",
+   "es": "recoger"
+  },
+  "quiet": {
+   "ru": "тихий",
+   "uk": "тихий",
+   "en": "with little noise",
+   "es": "tranquilo"
+  },
+  "carriage": {
+   "ru": "вагон",
+   "uk": "вагон",
+   "en": "part of a train",
+   "es": "vagón"
+  },
+  "left": {
+   "ru": "левый, слева",
+   "uk": "лівий, зліва",
+   "en": "opposite of right",
+   "es": "izquierda"
+  },
+  "next": {
+   "ru": "следующий",
+   "uk": "наступний",
+   "en": "coming after this",
+   "es": "siguiente"
+  }
+ }
+}

@@ -1,0 +1,607 @@
+{
+ "lang": "de",
+ "lesson": 2,
+ "words": [
+  {
+   "form": "handy",
+   "surface": "Handy",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:02:03",
+     "target": "Das ist das Handy",
+     "ru": "Это телефон.",
+     "en": "This is the cell phone."
+    },
+    {
+     "id": "de:02:06",
+     "target": "Hier ist das Handy",
+     "ru": "Вот телефон.",
+     "en": "Here is the cell phone."
+    }
+   ]
+  },
+  {
+   "form": "neu",
+   "surface": "neu",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:02:07",
+     "target": "Der Schlüssel ist neu",
+     "ru": "Ключ новый.",
+     "en": "The key is new."
+    },
+    {
+     "id": "de:02:08",
+     "target": "Die Tasche ist neu",
+     "ru": "Сумка новая.",
+     "en": "The bag is new."
+    }
+   ]
+  },
+  {
+   "form": "bus",
+   "surface": "Bus",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:11",
+     "target": "Der Bus ist da",
+     "ru": "Автобус уже здесь.",
+     "en": "The bus is here."
+    }
+   ]
+  },
+  {
+   "form": "da",
+   "surface": "da",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:02:11",
+     "target": "Der Bus ist da",
+     "ru": "Автобус уже здесь.",
+     "en": "The bus is here."
+    },
+    {
+     "id": "de:02:12",
+     "target": "Die Bahn ist da",
+     "ru": "Поезд здесь.",
+     "en": "The train is here."
+    }
+   ]
+  },
+  {
+   "form": "bahn",
+   "surface": "Bahn",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:12",
+     "target": "Die Bahn ist da",
+     "ru": "Поезд здесь.",
+     "en": "The train is here."
+    }
+   ]
+  },
+  {
+   "form": "taxi",
+   "surface": "Taxi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:13",
+     "target": "Das Taxi ist da",
+     "ru": "Такси уже здесь.",
+     "en": "The taxi is here."
+    }
+   ]
+  },
+  {
+   "form": "gäste",
+   "surface": "Gäste",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:02:14",
+     "target": "Die Gäste sind da",
+     "ru": "Гости уже здесь.",
+     "en": "The guests are here."
+    },
+    {
+     "id": "de:02:49",
+     "target": "Hier sind die Gäste",
+     "ru": "Вот гости.",
+     "en": "Here are the guests."
+    }
+   ]
+  },
+  {
+   "form": "bahnhof",
+   "surface": "Bahnhof",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:15",
+     "target": "Der Bahnhof ist hier",
+     "ru": "Вокзал здесь.",
+     "en": "The train station is here."
+    }
+   ]
+  },
+  {
+   "form": "haltestelle",
+   "surface": "Haltestelle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:16",
+     "target": "Die Haltestelle ist dort",
+     "ru": "Остановка там.",
+     "en": "The bus stop is there."
+    }
+   ]
+  },
+  {
+   "form": "dort",
+   "surface": "dort",
+   "count": 6,
+   "examples": [
+    {
+     "id": "de:02:16",
+     "target": "Die Haltestelle ist dort",
+     "ru": "Остановка там.",
+     "en": "The bus stop is there."
+    },
+    {
+     "id": "de:02:17",
+     "target": "Das Hotel ist dort",
+     "ru": "Гостиница там.",
+     "en": "The hotel is there."
+    }
+   ]
+  },
+  {
+   "form": "hotel",
+   "surface": "Hotel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:17",
+     "target": "Das Hotel ist dort",
+     "ru": "Гостиница там.",
+     "en": "The hotel is there."
+    }
+   ]
+  },
+  {
+   "form": "eingang",
+   "surface": "Eingang",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:18",
+     "target": "Der Eingang ist dort",
+     "ru": "Вход там.",
+     "en": "The entrance is there."
+    }
+   ]
+  },
+  {
+   "form": "kasse",
+   "surface": "Kasse",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:19",
+     "target": "Die Kasse ist hier",
+     "ru": "Касса здесь.",
+     "en": "The ticket office is here."
+    }
+   ]
+  },
+  {
+   "form": "büro",
+   "surface": "Büro",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:20",
+     "target": "Das Büro ist hier",
+     "ru": "Офис здесь.",
+     "en": "The office is here."
+    }
+   ]
+  },
+  {
+   "form": "tisch",
+   "surface": "Tisch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:21",
+     "target": "Der Tisch ist frei",
+     "ru": "Стол свободен.",
+     "en": "The table is free."
+    }
+   ]
+  },
+  {
+   "form": "bank",
+   "surface": "Bank",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:22",
+     "target": "Die Bank ist frei",
+     "ru": "Скамейка свободна.",
+     "en": "The bench is free."
+    }
+   ]
+  },
+  {
+   "form": "tische",
+   "surface": "Tische",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:24",
+     "target": "Die Tische sind frei",
+     "ru": "Столы свободны.",
+     "en": "The tables are free."
+    }
+   ]
+  },
+  {
+   "form": "bänke",
+   "surface": "Bänke",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:25",
+     "target": "Die Bänke sind frei",
+     "ru": "Скамейки свободны.",
+     "en": "The benches are free."
+    }
+   ]
+  },
+  {
+   "form": "stuhl",
+   "surface": "Stuhl",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:27",
+     "target": "Der Stuhl ist kaputt",
+     "ru": "Стул сломан.",
+     "en": "The chair is broken."
+    }
+   ]
+  },
+  {
+   "form": "kaputt",
+   "surface": "kaputt",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:02:27",
+     "target": "Der Stuhl ist kaputt",
+     "ru": "Стул сломан.",
+     "en": "The chair is broken."
+    },
+    {
+     "id": "de:02:28",
+     "target": "Die Lampe ist kaputt",
+     "ru": "Лампа сломана.",
+     "en": "The lamp is broken."
+    }
+   ]
+  },
+  {
+   "form": "lampe",
+   "surface": "Lampe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:28",
+     "target": "Die Lampe ist kaputt",
+     "ru": "Лампа сломана.",
+     "en": "The lamp is broken."
+    }
+   ]
+  },
+  {
+   "form": "radio",
+   "surface": "Radio",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:29",
+     "target": "Das Radio ist kaputt",
+     "ru": "Радио сломано.",
+     "en": "The radio is broken."
+    }
+   ]
+  },
+  {
+   "form": "stühle",
+   "surface": "Stühle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:30",
+     "target": "Die Stühle sind kaputt",
+     "ru": "Стулья сломаны.",
+     "en": "The chairs are broken."
+    }
+   ]
+  },
+  {
+   "form": "plan",
+   "surface": "Plan",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:31",
+     "target": "Das ist der Plan",
+     "ru": "Это план.",
+     "en": "This is the map."
+    }
+   ]
+  },
+  {
+   "form": "karte",
+   "surface": "Karte",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:32",
+     "target": "Das ist die Karte",
+     "ru": "Это карта.",
+     "en": "This is the map."
+    }
+   ]
+  },
+  {
+   "form": "ticket",
+   "surface": "Ticket",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:33",
+     "target": "Das ist das Ticket",
+     "ru": "Это билет.",
+     "en": "This is the ticket."
+    }
+   ]
+  },
+  {
+   "form": "karten",
+   "surface": "Karten",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:34",
+     "target": "Das sind die Karten",
+     "ru": "Это карты.",
+     "en": "These are the cards."
+    }
+   ]
+  },
+  {
+   "form": "brief",
+   "surface": "Brief",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:35",
+     "target": "Hier ist der Brief",
+     "ru": "Вот письмо.",
+     "en": "Here is the letter."
+    }
+   ]
+  },
+  {
+   "form": "rechnung",
+   "surface": "Rechnung",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:36",
+     "target": "Hier ist die Rechnung",
+     "ru": "Вот счёт.",
+     "en": "Here is the bill."
+    }
+   ]
+  },
+  {
+   "form": "paket",
+   "surface": "Paket",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:37",
+     "target": "Hier ist das Paket",
+     "ru": "Вот посылка.",
+     "en": "Here is the package."
+    }
+   ]
+  },
+  {
+   "form": "briefe",
+   "surface": "Briefe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:38",
+     "target": "Hier sind die Briefe",
+     "ru": "Вот письма.",
+     "en": "Here are the letters."
+    }
+   ]
+  },
+  {
+   "form": "aufzug",
+   "surface": "Aufzug",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:39",
+     "target": "Dort ist der Aufzug",
+     "ru": "Вон там лифт.",
+     "en": "There is the elevator."
+    }
+   ]
+  },
+  {
+   "form": "treppe",
+   "surface": "Treppe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:40",
+     "target": "Dort ist die Treppe",
+     "ru": "Вон там лестница.",
+     "en": "There are the stairs."
+    }
+   ]
+  },
+  {
+   "form": "laden",
+   "surface": "Laden",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:41",
+     "target": "Der Laden ist offen",
+     "ru": "Магазин открыт.",
+     "en": "The shop is open."
+    }
+   ]
+  },
+  {
+   "form": "küche",
+   "surface": "Küche",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:42",
+     "target": "Die Küche ist offen",
+     "ru": "Кухня открыта.",
+     "en": "The kitchen is open."
+    }
+   ]
+  },
+  {
+   "form": "café",
+   "surface": "Café",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:43",
+     "target": "Das Café ist offen",
+     "ru": "Кафе открыто.",
+     "en": "The café is open."
+    }
+   ]
+  },
+  {
+   "form": "läden",
+   "surface": "Läden",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:44",
+     "target": "Die Läden sind offen",
+     "ru": "Магазины открыты.",
+     "en": "The shops are open."
+    }
+   ]
+  },
+  {
+   "form": "mantel",
+   "surface": "Mantel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:45",
+     "target": "Der Mantel ist schwer",
+     "ru": "Пальто тяжёлое.",
+     "en": "The coat is heavy."
+    }
+   ]
+  },
+  {
+   "form": "schwer",
+   "surface": "schwer",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:02:45",
+     "target": "Der Mantel ist schwer",
+     "ru": "Пальто тяжёлое.",
+     "en": "The coat is heavy."
+    },
+    {
+     "id": "de:02:46",
+     "target": "Die Kiste ist schwer",
+     "ru": "Ящик тяжёлый.",
+     "en": "The box is heavy."
+    }
+   ]
+  },
+  {
+   "form": "kiste",
+   "surface": "Kiste",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:46",
+     "target": "Die Kiste ist schwer",
+     "ru": "Ящик тяжёлый.",
+     "en": "The box is heavy."
+    }
+   ]
+  },
+  {
+   "form": "buch",
+   "surface": "Buch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:47",
+     "target": "Das Buch ist schwer",
+     "ru": "Книга тяжёлая.",
+     "en": "The book is heavy."
+    }
+   ]
+  },
+  {
+   "form": "kisten",
+   "surface": "Kisten",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:48",
+     "target": "Die Kisten sind schwer",
+     "ru": "Ящики тяжёлые.",
+     "en": "The boxes are heavy."
+    }
+   ]
+  },
+  {
+   "form": "taxis",
+   "surface": "Taxis",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:02:50",
+     "target": "Dort sind die Taxis",
+     "ru": "Вон там такси.",
+     "en": "There are the taxis."
+    }
+   ]
+  }
+ ]
+}

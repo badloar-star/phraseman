@@ -1,0 +1,240 @@
+{
+ "lang": "fr",
+ "lesson": 2,
+ "words": {
+  "ne": {
+   "ru": "не",
+   "uk": "не",
+   "en": "not",
+   "es": "no"
+  },
+  "pas": {
+   "ru": "не (вторая часть отрицания)",
+   "uk": "не (друга частина заперечення)",
+   "en": "not (second part of the negation)",
+   "es": "no (segunda parte de la negación)"
+  },
+  "n’es": {
+   "ru": "не есть (ты)",
+   "uk": "не є (ти)",
+   "en": "(you) are not",
+   "es": "(tú) no estás"
+  },
+  "n’est": {
+   "ru": "не есть (он, она)",
+   "uk": "не є (він, вона)",
+   "en": "(he, she) is not",
+   "es": "(él, ella) no está"
+  },
+  "n’êtes": {
+   "ru": "не есть (вы)",
+   "uk": "не є (ви)",
+   "en": "(you) are not",
+   "es": "(usted) no está"
+  },
+  "seule": {
+   "ru": "одна, одинокая",
+   "uk": "сама, одна",
+   "en": "alone (she)",
+   "es": "sola"
+  },
+  "en": {
+   "ru": "в, на",
+   "uk": "в, на",
+   "en": "in, on",
+   "es": "en"
+  },
+  "retard": {
+   "ru": "опоздание; с опозданием",
+   "uk": "запізнення; із запізненням",
+   "en": "late",
+   "es": "retraso"
+  },
+  "avance": {
+   "ru": "заранее, с запасом",
+   "uk": "заздалегідь, із запасом",
+   "en": "early, ahead",
+   "es": "adelanto"
+  },
+  "ouverts": {
+   "ru": "открыты (о нескольких)",
+   "uk": "відчинені (про кілька)",
+   "en": "open (several)",
+   "es": "abiertos"
+  },
+  "salle": {
+   "ru": "зал, комната",
+   "uk": "зал, кімната",
+   "en": "room, hall",
+   "es": "sala"
+  },
+  "vide": {
+   "ru": "пустой",
+   "uk": "порожній",
+   "en": "empty",
+   "es": "vacío"
+  },
+  "couloir": {
+   "ru": "коридор",
+   "uk": "коридор",
+   "en": "corridor",
+   "es": "pasillo"
+  },
+  "sombre": {
+   "ru": "тёмный",
+   "uk": "темний",
+   "en": "dark",
+   "es": "oscuro"
+  },
+  "table": {
+   "ru": "стол",
+   "uk": "стіл",
+   "en": "table",
+   "es": "mesa"
+  },
+  "propre": {
+   "ru": "чистый",
+   "uk": "чистий",
+   "en": "clean",
+   "es": "limpio"
+  },
+  "verre": {
+   "ru": "стакан",
+   "uk": "склянка",
+   "en": "glass",
+   "es": "vaso"
+  },
+  "sale": {
+   "ru": "грязный",
+   "uk": "брудний",
+   "en": "dirty",
+   "es": "sucio"
+  },
+  "bus": {
+   "ru": "автобус",
+   "uk": "автобус",
+   "en": "bus",
+   "es": "autobús"
+  },
+  "toilettes": {
+   "ru": "туалет",
+   "uk": "туалет",
+   "en": "toilets",
+   "es": "baños"
+  },
+  "fond": {
+   "ru": "конец (в глубине)",
+   "uk": "кінець (у глибині)",
+   "en": "back, far end",
+   "es": "fondo"
+  },
+  "ticket": {
+   "ru": "билет",
+   "uk": "квиток",
+   "en": "ticket",
+   "es": "billete"
+  },
+  "dans": {
+   "ru": "в, внутри",
+   "uk": "в, всередині",
+   "en": "in, inside",
+   "es": "dentro de"
+  },
+  "vélo": {
+   "ru": "велосипед",
+   "uk": "велосипед",
+   "en": "bicycle",
+   "es": "bicicleta"
+  },
+  "mon": {
+   "ru": "мой",
+   "uk": "мій",
+   "en": "my",
+   "es": "mi"
+  },
+  "téléphone": {
+   "ru": "телефон",
+   "uk": "телефон",
+   "en": "phone",
+   "es": "teléfono"
+  },
+  "musée": {
+   "ru": "музей",
+   "uk": "музей",
+   "en": "museum",
+   "es": "museo"
+  },
+  "pharmacie": {
+   "ru": "аптека",
+   "uk": "аптека",
+   "en": "pharmacy",
+   "es": "farmacia"
+  },
+  "billets": {
+   "ru": "билеты",
+   "uk": "квитки",
+   "en": "tickets",
+   "es": "billetes"
+  },
+  "sur": {
+   "ru": "на",
+   "uk": "на",
+   "en": "on",
+   "es": "sobre"
+  },
+  "train": {
+   "ru": "поезд",
+   "uk": "поїзд",
+   "en": "train",
+   "es": "tren"
+  },
+  "déjeuner": {
+   "ru": "обед",
+   "uk": "обід",
+   "en": "lunch",
+   "es": "almuerzo"
+  },
+  "chambre": {
+   "ru": "комната, номер",
+   "uk": "кімната, номер",
+   "en": "room, bedroom",
+   "es": "habitación"
+  },
+  "du": {
+   "ru": "слитно «от» и слово перед вещью; рядом с",
+   "uk": "злито «від» і слово перед річчю; біля",
+   "en": "of the",
+   "es": "del"
+  },
+  "chaussures": {
+   "ru": "обувь, туфли",
+   "uk": "взуття, туфлі",
+   "en": "shoes",
+   "es": "zapatos"
+  },
+  "propres": {
+   "ru": "чистые",
+   "uk": "чисті",
+   "en": "clean (several)",
+   "es": "limpios"
+  },
+  "très": {
+   "ru": "очень",
+   "uk": "дуже",
+   "en": "very",
+   "es": "muy"
+  },
+  "large": {
+   "ru": "широкий",
+   "uk": "широкий",
+   "en": "wide",
+   "es": "ancho"
+  },
+  "seuls": {
+   "ru": "одни, одинокие",
+   "uk": "самі, одні",
+   "en": "alone (several)",
+   "es": "solos"
+  }
+ }
+}

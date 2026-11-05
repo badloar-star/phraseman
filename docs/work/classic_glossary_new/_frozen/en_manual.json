@@ -1,0 +1,10 @@
+{"forms":{
+"tell":["told"],"say":["said"],"see":["saw"],"find":["found"],"make":["made"],
+"go":["went","goes","going"],"buy":["bought"],"use":["used","using"],"take":["took"],
+"meet":["met"],"pay":["paid"],"write":["wrote"],"feel":["felt"],"try":["tried"],
+"get":["got"],"give":["gave"],"keep":["kept"],"bring":["brought"],"fall":["fell"],
+"know":["knew"],"teach":["taught"],"break":["broke"],"run":["ran"],"come":["came"],
+"ring":["rang"],"speak":["spoke"],"catch":["caught"],"eat":["ate"],"drink":["drank"],
+"think":["thought"],"stand":["stood"],"hold":["held"],"sell":["sold"],"win":["won"],
+"steal":["stolen"],"good":["better","best"],"bad":["worse"]
+},"new":[]}

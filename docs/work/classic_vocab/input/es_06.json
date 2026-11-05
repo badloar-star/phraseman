@@ -1,0 +1,275 @@
+{
+ "lang": "es",
+ "lesson": 6,
+ "words": [
+  {
+   "form": "maleta",
+   "surface": "maleta",
+   "count": 7,
+   "examples": [
+    {
+     "id": "es:06:03",
+     "target": "La maleta está aquí",
+     "ru": "Чемодан здесь.",
+     "en": "The suitcase is here."
+    },
+    {
+     "id": "es:06:17",
+     "target": "La maleta está fuera",
+     "ru": "Чемодан снаружи.",
+     "en": "The suitcase is outside."
+    }
+   ]
+  },
+  {
+   "form": "maletas",
+   "surface": "maletas",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:06:04",
+     "target": "Las maletas están aquí",
+     "ru": "Чемоданы здесь.",
+     "en": "The suitcases are here."
+    },
+    {
+     "id": "es:06:18",
+     "target": "Las maletas están fuera",
+     "ru": "Чемоданы снаружи.",
+     "en": "The suitcases are outside."
+    }
+   ]
+  },
+  {
+   "form": "abrigos",
+   "surface": "abrigos",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:10",
+     "target": "Los abrigos están dentro",
+     "ru": "Пальто внутри.",
+     "en": "The coats are inside."
+    }
+   ]
+  },
+  {
+   "form": "botella",
+   "surface": "botella",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:11",
+     "target": "La botella está allí",
+     "ru": "Бутылка вон там.",
+     "en": "The bottle is over there."
+    }
+   ]
+  },
+  {
+   "form": "botellas",
+   "surface": "botellas",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:12",
+     "target": "Las botellas están allí",
+     "ru": "Бутылки вон там.",
+     "en": "The bottles are over there."
+    }
+   ]
+  },
+  {
+   "form": "tren",
+   "surface": "tren",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:06:13",
+     "target": "El tren está cerca",
+     "ru": "Поезд близко.",
+     "en": "The train is nearby."
+    },
+    {
+     "id": "es:06:39",
+     "target": "El tren está en la estación",
+     "ru": "Поезд на станции.",
+     "en": "The train is at the station."
+    }
+   ]
+  },
+  {
+   "form": "tiendas",
+   "surface": "tiendas",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:16",
+     "target": "Las tiendas están cerca",
+     "ru": "Магазины рядом.",
+     "en": "The shops are nearby."
+    }
+   ]
+  },
+  {
+   "form": "móviles",
+   "surface": "móviles",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:19",
+     "target": "Los móviles están en casa",
+     "ru": "Телефоны дома.",
+     "en": "The phones are at home."
+    }
+   ]
+  },
+  {
+   "form": "mochilas",
+   "surface": "mochilas",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:06:20",
+     "target": "Las mochilas están en casa",
+     "ru": "Рюкзаки дома.",
+     "en": "The backpacks are at home."
+    },
+    {
+     "id": "es:06:47",
+     "target": "Las fotos están en las mochilas",
+     "ru": "Фотографии в рюкзаках.",
+     "en": "The photos are in the backpacks."
+    }
+   ]
+  },
+  {
+   "form": "mapa",
+   "surface": "mapa",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:06:21",
+     "target": "El mapa está en la mesa",
+     "ru": "Карта на столе.",
+     "en": "The map is on the table."
+    },
+    {
+     "id": "es:06:25",
+     "target": "El mapa está en la mochila",
+     "ru": "Карта в рюкзаке.",
+     "en": "The map is in the backpack."
+    }
+   ]
+  },
+  {
+   "form": "mapas",
+   "surface": "mapas",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:06:22",
+     "target": "Los mapas están en la mesa",
+     "ru": "Карты на столе.",
+     "en": "The maps are on the table."
+    },
+    {
+     "id": "es:06:27",
+     "target": "Los mapas están en el coche",
+     "ru": "Карты в машине.",
+     "en": "The maps are in the car."
+    }
+   ]
+  },
+  {
+   "form": "foto",
+   "surface": "foto",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:06:23",
+     "target": "La foto está en la mesa",
+     "ru": "Фотография на столе.",
+     "en": "The photo is on the table."
+    },
+    {
+     "id": "es:06:26",
+     "target": "La foto está en la mochila",
+     "ru": "Фотография в рюкзаке.",
+     "en": "The photo is in the backpack."
+    }
+   ]
+  },
+  {
+   "form": "fotos",
+   "surface": "fotos",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:06:24",
+     "target": "Las fotos están en la mesa",
+     "ru": "Фотографии на столе.",
+     "en": "The photos are on the table."
+    },
+    {
+     "id": "es:06:28",
+     "target": "Las fotos están en el bolso",
+     "ru": "Фотографии в сумке.",
+     "en": "The photos are in the bag."
+    }
+   ]
+  },
+  {
+   "form": "abrigo",
+   "surface": "abrigo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:35",
+     "target": "El abrigo está en la mesa",
+     "ru": "Пальто на столе.",
+     "en": "The coat is on the table."
+    }
+   ]
+  },
+  {
+   "form": "trenes",
+   "surface": "trenes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:40",
+     "target": "Los trenes están en la estación",
+     "ru": "Поезда на станции.",
+     "en": "The trains are at the station."
+    }
+   ]
+  },
+  {
+   "form": "bolsos",
+   "surface": "bolsos",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:48",
+     "target": "Los billetes están en los bolsos",
+     "ru": "Билеты в сумках.",
+     "en": "The tickets are in the bags."
+    }
+   ]
+  },
+  {
+   "form": "bolsillos",
+   "surface": "bolsillos",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:06:50",
+     "target": "Las llaves están en los bolsillos",
+     "ru": "Ключи в карманах.",
+     "en": "The keys are in the pockets."
+    }
+   ]
+  }
+ ]
+}

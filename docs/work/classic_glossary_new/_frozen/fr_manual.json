@@ -1,0 +1,437 @@
+{
+ "forms": {
+  "être": [
+   "est",
+   "sont",
+   "était",
+   "suis",
+   "es",
+   "êtes",
+   "sommes",
+   "étaient",
+   "étions",
+   "étiez",
+   "étais",
+   "été",
+   "soit",
+   "sois",
+   "soyons",
+   "serait",
+   "sera",
+   "seras",
+   "seront",
+   "serai",
+   "c’est",
+   "c’était",
+   "est-ce",
+   "qu’est-ce",
+   "n’est",
+   "n’es",
+   "n’êtes",
+   "n’était",
+   "n’étais",
+   "n’étions",
+   "s’est",
+   "s’était",
+   "es-tu",
+   "êtes-vous",
+   "sont-ils",
+   "est-il",
+   "j’étais"
+  ],
+  "avoir": [
+   "a",
+   "ont",
+   "avez",
+   "avait",
+   "avais",
+   "avaient",
+   "aviez",
+   "ai",
+   "avons",
+   "avions",
+   "aura",
+   "aurons",
+   "aurez",
+   "aies",
+   "ait",
+   "ayez",
+   "aient",
+   "j’ai",
+   "j’avais",
+   "j’aie",
+   "n’ai",
+   "n’avons",
+   "n’avait",
+   "n’avais",
+   "n’avions",
+   "n’avaient",
+   "n’a",
+   "n’ont",
+   "n’avez",
+   "n’as",
+   "m’avais",
+   "m’a",
+   "l’ai",
+   "avez-vous",
+   "auriez-vous"
+  ],
+  "aller": [
+   "n’allons",
+   "n’allez",
+   "j’irais",
+   "j’irai",
+   "j’aille",
+   "vas-tu"
+  ],
+  "à": [
+   "au"
+  ],
+  "il": [
+   "qu’il",
+   "qu’ils",
+   "s’il"
+  ],
+  "on": [
+   "qu’on"
+  ],
+  "y": [
+   "n’y",
+   "j’y"
+  ],
+  "en": [
+   "j’en",
+   "n’en",
+   "t’en"
+  ],
+  "aimer": [
+   "j’aime",
+   "j’aimerais"
+  ],
+  "acheter": [
+   "j’achète",
+   "n’achète"
+  ],
+  "écouter": [
+   "j’écoute",
+   "l’écoute",
+   "l’écouterais"
+  ],
+  "habiter": [
+   "j’habite",
+   "j’habitais",
+   "habité"
+  ],
+  "habiller": [
+   "m’habille",
+   "s’habille",
+   "t’habilles",
+   "m’habillais"
+  ],
+  "aider": [
+   "j’aide",
+   "m’aide",
+   "m’aideras",
+   "t’aiderais"
+  ],
+  "appeler": [
+   "s’appelle",
+   "m’appelle",
+   "m’appeler"
+  ],
+  "amuser": [
+   "s’amusent"
+  ],
+  "arrêter": [
+   "s’arrêtait"
+  ],
+  "ouvrir": [
+   "s’ouvrirait",
+   "n’ouvraient"
+  ],
+  "asseoir": [
+   "t’asseoir"
+  ],
+  "indiquer": [
+   "m’indiquer"
+  ],
+  "endormir": [
+   "m’endormais"
+  ],
+  "envoyer": [
+   "t’enverrai"
+  ],
+  "essayer": [
+   "l’essaie",
+   "l’essayer"
+  ],
+  "entendre": [
+   "l’entend"
+  ],
+  "utiliser": [
+   "l’utilise"
+  ],
+  "écrire": [
+   "j’écris"
+  ],
+  "éteindre": [
+   "j’éteigne"
+  ],
+  "oublier": [
+   "n’oublie",
+   "n’oublierons"
+  ],
+  "ajouter": [
+   "n’ajoutez"
+  ],
+  "attendre": [
+   "n’attendez"
+  ],
+  "entrer": [
+   "j’entrerais"
+  ],
+  "dîner": [
+   "dînions"
+  ],
+  "sortir": [
+   "sortions"
+  ],
+  "manger": [
+   "mangions"
+  ],
+  "répondre": [
+   "répondait"
+  ],
+  "préparer": [
+   "préparera"
+  ],
+  "un": [
+   "d’une",
+   "qu’un"
+  ],
+  "autre": [
+   "l’autre",
+   "d’autres"
+  ],
+  "ancien": [
+   "l’ancien"
+  ],
+  "eau": [
+   "d’eau"
+  ],
+  "ici": [
+   "d’ici"
+  ],
+  "accord": [
+   "d’accord"
+  ],
+  "aide": [
+   "d’aide"
+  ],
+  "effort": [
+   "d’efforts"
+  ],
+  "identité": [
+   "d’identité"
+  ],
+  "ascenseur": [
+   "d’ascenseur"
+  ],
+  "huile": [
+   "d’huile",
+   "l’huile"
+  ],
+  "école": [
+   "l’école"
+  ],
+  "adresse": [
+   "l’adresse"
+  ],
+  "accueil": [
+   "l’accueil"
+  ],
+  "heure": [
+   "l’heure"
+  ],
+  "hôtel": [
+   "l’hôtel"
+  ],
+  "arrêt": [
+   "l’arrêt"
+  ],
+  "ail": [
+   "l’ail"
+  ],
+  "enfant": [
+   "l’enfant"
+  ],
+  "odeur": [
+   "l’odeur"
+  ],
+  "étage": [
+   "l’étage"
+  ],
+  "écharpe": [
+   "l’écharpe"
+  ],
+  "ordinateur": [
+   "l’ordinateur"
+  ],
+  "amie": [
+   "l’amie"
+  ],
+  "hôpital": [
+   "l’hôpital"
+  ],
+  "époque": [
+   "l’époque"
+  ],
+  "année": [
+   "l’année"
+  ],
+  "équipe": [
+   "l’équipe"
+  ],
+  "écran": [
+   "l’écran"
+  ]
+ },
+ "new": [
+  {
+   "lemma": "le",
+   "pos": "DET",
+   "meaning": {
+    "ru": "слово перед названием вещи: не переводится",
+    "uk": "слово перед назвою речі: не перекладається",
+    "en": "the (word before a noun)",
+    "es": "el, la (palabra antes de un nombre)"
+   },
+   "forms": [
+    "la",
+    "les"
+   ]
+  },
+  {
+   "lemma": "elle",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "она",
+    "uk": "вона",
+    "en": "she, her",
+    "es": "ella"
+   },
+   "forms": [
+    "elles",
+    "qu’elle",
+    "qu’elles"
+   ]
+  },
+  {
+   "lemma": "eux",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "они (о них, с предлогом)",
+    "uk": "вони (про них, з прийменником)",
+    "en": "them",
+    "es": "ellos"
+   },
+   "forms": [
+    "qu’eux"
+   ]
+  },
+  {
+   "lemma": "se",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "себя, -ся",
+    "uk": "себе, -ся",
+    "en": "oneself (himself, herself)",
+    "es": "se (a sí mismo)"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "sous",
+   "pos": "PREP",
+   "meaning": {
+    "ru": "под",
+    "uk": "під",
+    "en": "under",
+    "es": "bajo, debajo de"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "aujourd’hui",
+   "pos": "ADV",
+   "meaning": {
+    "ru": "сегодня",
+    "uk": "сьогодні",
+    "en": "today",
+    "es": "hoy"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "tout",
+   "pos": "ADJ",
+   "meaning": {
+    "ru": "весь, всё",
+    "uk": "весь, все",
+    "en": "all, every",
+    "es": "todo"
+   },
+   "forms": [
+    "toute"
+   ]
+  },
+  {
+   "lemma": "cela",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "это",
+    "uk": "це",
+    "en": "that",
+    "es": "eso"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "quelqu’un",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "кто-то",
+    "uk": "хтось",
+    "en": "someone",
+    "es": "alguien"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "jusque",
+   "pos": "PREP",
+   "meaning": {
+    "ru": "до, вплоть до",
+    "uk": "до, аж до",
+    "en": "until, up to",
+    "es": "hasta"
+   },
+   "forms": [
+    "jusqu’à"
+   ]
+  },
+  {
+   "lemma": "tromper",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "обманывать, ошибаться",
+    "uk": "обманювати, помилятися",
+    "en": "to deceive, to be mistaken",
+    "es": "engañar, equivocarse"
+   },
+   "forms": [
+    "trompe"
+   ]
+  }
+ ]
+}

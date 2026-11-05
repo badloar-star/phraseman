@@ -1,0 +1,108 @@
+{
+ "lang": "es",
+ "lesson": 6,
+ "words": {
+  "maleta": {
+   "ru": "чемодан",
+   "uk": "валіза",
+   "en": "suitcase",
+   "es": "bolsa grande de viaje"
+  },
+  "maletas": {
+   "ru": "чемоданы",
+   "uk": "валізи",
+   "en": "suitcases",
+   "es": "varias maletas"
+  },
+  "abrigos": {
+   "ru": "пальто",
+   "uk": "пальта",
+   "en": "coats",
+   "es": "varios abrigos"
+  },
+  "botella": {
+   "ru": "бутылка",
+   "uk": "пляшка",
+   "en": "bottle",
+   "es": "recipiente para líquidos"
+  },
+  "botellas": {
+   "ru": "бутылки",
+   "uk": "пляшки",
+   "en": "bottles",
+   "es": "varias botellas"
+  },
+  "tren": {
+   "ru": "поезд",
+   "uk": "потяг",
+   "en": "train",
+   "es": "vehículo sobre raíles"
+  },
+  "tiendas": {
+   "ru": "магазины",
+   "uk": "магазини, крамниці",
+   "en": "shops, stores",
+   "es": "varias tiendas"
+  },
+  "móviles": {
+   "ru": "мобильные телефоны",
+   "uk": "мобільні телефони",
+   "en": "mobile phones",
+   "es": "varios móviles"
+  },
+  "mochilas": {
+   "ru": "рюкзаки",
+   "uk": "рюкзаки",
+   "en": "backpacks",
+   "es": "varias mochilas"
+  },
+  "mapa": {
+   "ru": "карта",
+   "uk": "мапа, карта",
+   "en": "map",
+   "es": "dibujo de un lugar"
+  },
+  "mapas": {
+   "ru": "карты",
+   "uk": "мапи, карти",
+   "en": "maps",
+   "es": "varios mapas"
+  },
+  "foto": {
+   "ru": "фотография",
+   "uk": "фотографія",
+   "en": "photo",
+   "es": "imagen hecha con cámara"
+  },
+  "fotos": {
+   "ru": "фотографии",
+   "uk": "фотографії",
+   "en": "photos",
+   "es": "varias fotos"
+  },
+  "abrigo": {
+   "ru": "пальто",
+   "uk": "пальто",
+   "en": "coat",
+   "es": "ropa para el frío"
+  },
+  "trenes": {
+   "ru": "поезда",
+   "uk": "потяги",
+   "en": "trains",
+   "es": "varios trenes"
+  },
+  "bolsos": {
+   "ru": "сумки",
+   "uk": "сумки",
+   "en": "bags, handbags",
+   "es": "varios bolsos"
+  },
+  "bolsillos": {
+   "ru": "карманы",
+   "uk": "кишені",
+   "en": "pockets",
+   "es": "varios bolsillos"
+  }
+ }
+}

@@ -1,0 +1,210 @@
+{
+ "lang": "it",
+ "lesson": 3,
+ "words": {
+  "orario": {
+   "ru": "расписание, по расписанию",
+   "uk": "розклад, за розкладом",
+   "en": "schedule, on time",
+   "es": "horario"
+  },
+  "pulita": {
+   "ru": "чистая",
+   "uk": "чиста",
+   "en": "clean",
+   "es": "limpia"
+  },
+  "biglietteria": {
+   "ru": "касса",
+   "uk": "каса",
+   "en": "ticket office",
+   "es": "taquilla"
+  },
+  "l’ingresso": {
+   "ru": "вход (слитно со словом перед ним)",
+   "uk": "вхід (злито зі словом перед ним)",
+   "en": "the entrance",
+   "es": "la entrada"
+  },
+  "fermata": {
+   "ru": "остановка",
+   "uk": "зупинка",
+   "en": "stop",
+   "es": "parada"
+  },
+  "dell’autobus": {
+   "ru": "автобуса",
+   "uk": "автобуса",
+   "en": "of the bus",
+   "es": "del autobús"
+  },
+  "banchina": {
+   "ru": "перрон",
+   "uk": "перон",
+   "en": "platform",
+   "es": "andén"
+  },
+  "di": {
+   "ru": "из, от (тут: напротив)",
+   "uk": "з, від (тут: навпроти)",
+   "en": "of, from",
+   "es": "de"
+  },
+  "fronte": {
+   "ru": "перед, напротив",
+   "uk": "перед, навпроти",
+   "en": "front, opposite",
+   "es": "frente"
+  },
+  "l’uscita": {
+   "ru": "выход (слитно со словом перед ним)",
+   "uk": "вихід (злито зі словом перед ним)",
+   "en": "the exit",
+   "es": "la salida"
+  },
+  "sinistra": {
+   "ru": "левая сторона, слева",
+   "uk": "ліва сторона, ліворуч",
+   "en": "left",
+   "es": "izquierda"
+  },
+  "parcheggio": {
+   "ru": "парковка",
+   "uk": "парковка",
+   "en": "car park",
+   "es": "aparcamiento"
+  },
+  "destra": {
+   "ru": "правая сторона, справа",
+   "uk": "права сторона, праворуч",
+   "en": "right",
+   "es": "derecha"
+  },
+  "oggi": {
+   "ru": "сегодня",
+   "uk": "сьогодні",
+   "en": "today",
+   "es": "hoy"
+  },
+  "stasera": {
+   "ru": "сегодня вечером",
+   "uk": "сьогодні ввечері",
+   "en": "this evening",
+   "es": "esta noche"
+  },
+  "con": {
+   "ru": "с",
+   "uk": "з",
+   "en": "with",
+   "es": "con"
+  },
+  "te": {
+   "ru": "тобой",
+   "uk": "тобою",
+   "en": "you",
+   "es": "ti"
+  },
+  "sull’autobus": {
+   "ru": "в автобусе",
+   "uk": "в автобусі",
+   "en": "on the bus",
+   "es": "en el autobús"
+  },
+  "tua": {
+   "ru": "твоя, твой",
+   "uk": "твоя, твій",
+   "en": "your",
+   "es": "tu"
+  },
+  "tasca": {
+   "ru": "карман",
+   "uk": "кишеня",
+   "en": "pocket",
+   "es": "bolsillo"
+  },
+  "all’ingresso": {
+   "ru": "у входа",
+   "uk": "біля входу",
+   "en": "at the entrance",
+   "es": "en la entrada"
+  },
+  "prossimo": {
+   "ru": "следующий",
+   "uk": "наступний",
+   "en": "next",
+   "es": "próximo"
+  },
+  "autobus": {
+   "ru": "автобус",
+   "uk": "автобус",
+   "en": "bus",
+   "es": "autobús"
+  },
+  "entrambe": {
+   "ru": "обе",
+   "uk": "обидві",
+   "en": "both",
+   "es": "ambas"
+  },
+  "chiuse": {
+   "ru": "закрыты",
+   "uk": "зачинені",
+   "en": "closed",
+   "es": "cerradas"
+  },
+  "serratura": {
+   "ru": "замок (дверной)",
+   "uk": "замок (дверний)",
+   "en": "lock",
+   "es": "cerradura"
+  },
+  "su": {
+   "ru": "на, у",
+   "uk": "на, біля",
+   "en": "on",
+   "es": "en"
+  },
+  "questo": {
+   "ru": "этот",
+   "uk": "цей",
+   "en": "this",
+   "es": "este"
+  },
+  "binario": {
+   "ru": "платформа, путь",
+   "uk": "платформа, колія",
+   "en": "platform, track",
+   "es": "vía"
+  },
+  "per": {
+   "ru": "для, на",
+   "uk": "для, на",
+   "en": "for",
+   "es": "para"
+  },
+  "concerto": {
+   "ru": "концерт",
+   "uk": "концерт",
+   "en": "concert",
+   "es": "concierto"
+  },
+  "primo": {
+   "ru": "первый",
+   "uk": "перший",
+   "en": "first",
+   "es": "primero"
+  },
+  "piano": {
+   "ru": "этаж",
+   "uk": "поверх",
+   "en": "floor",
+   "es": "piso"
+  },
+  "voi": {
+   "ru": "вы",
+   "uk": "ви",
+   "en": "you all",
+   "es": "vosotros"
+  }
+ }
+}

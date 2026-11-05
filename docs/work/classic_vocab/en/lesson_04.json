@@ -1,0 +1,372 @@
+{
+ "lang": "en",
+ "lesson": 4,
+ "words": {
+  "do": {
+   "ru": "слово для отрицания и вопроса; по-русски нет",
+   "uk": "слово для заперечення й питання; в українській немає",
+   "en": "helper word in questions and negatives",
+   "es": "verbo auxiliar (no se traduce)"
+  },
+  "drive": {
+   "ru": "водить машину, вожу",
+   "uk": "водити авто, вожу",
+   "en": "operate a car",
+   "es": "conducir"
+  },
+  "does": {
+   "ru": "слово для отрицания и вопроса; по-русски нет",
+   "uk": "слово для заперечення й питання; в українській немає",
+   "en": "helper word in questions and negatives",
+   "es": "verbo auxiliar (no se traduce)"
+  },
+  "smoke": {
+   "ru": "курить, курю",
+   "uk": "курити, курю",
+   "en": "breathe in tobacco",
+   "es": "fumar"
+  },
+  "eat": {
+   "ru": "есть (еду), ем",
+   "uk": "їсти, їм",
+   "en": "take in food",
+   "es": "comer"
+  },
+  "meat": {
+   "ru": "мясо",
+   "uk": "м'ясо",
+   "en": "food from animals",
+   "es": "carne"
+  },
+  "have": {
+   "ru": "иметь, у меня есть",
+   "uk": "мати, у мене є",
+   "en": "own, hold",
+   "es": "tener"
+  },
+  "entrance": {
+   "ru": "вход",
+   "uk": "вхід",
+   "en": "way in",
+   "es": "entrada"
+  },
+  "accept": {
+   "ru": "принимать, принимают",
+   "uk": "приймати, приймають",
+   "en": "take and allow",
+   "es": "aceptar"
+  },
+  "cards": {
+   "ru": "карты, карточки",
+   "uk": "картки",
+   "en": "small plastic or paper items",
+   "es": "tarjetas"
+  },
+  "machine": {
+   "ru": "автомат, аппарат",
+   "uk": "автомат, апарат",
+   "en": "device that works by itself",
+   "es": "máquina"
+  },
+  "coins": {
+   "ru": "монеты",
+   "uk": "монети",
+   "en": "small metal money",
+   "es": "monedas"
+  },
+  "know": {
+   "ru": "знать, знаю",
+   "uk": "знати, знаю",
+   "en": "have knowledge of",
+   "es": "saber"
+  },
+  "code": {
+   "ru": "код",
+   "uk": "код",
+   "en": "secret number or letters",
+   "es": "código"
+  },
+  "desk": {
+   "ru": "рабочий стол",
+   "uk": "робочий стіл",
+   "en": "table for work",
+   "es": "escritorio"
+  },
+  "carry": {
+   "ru": "носить с собой, несёт",
+   "uk": "носити з собою, несе",
+   "en": "hold and take along",
+   "es": "llevar"
+  },
+  "purse": {
+   "ru": "кошелёк, сумочка",
+   "uk": "гаманець, сумочка",
+   "en": "small bag for money",
+   "es": "monedero"
+  },
+  "lock": {
+   "ru": "запираться",
+   "uk": "замикатися",
+   "en": "become fastened with a key",
+   "es": "cerrar con llave"
+  },
+  "tap": {
+   "ru": "кран",
+   "uk": "кран",
+   "en": "water outlet",
+   "es": "grifo"
+  },
+  "stop": {
+   "ru": "останавливаться",
+   "uk": "зупинятися",
+   "en": "halt",
+   "es": "parar"
+  },
+  "charge": {
+   "ru": "заряжаться",
+   "uk": "заряджатися",
+   "en": "fill with power",
+   "es": "cargar"
+  },
+  "fit": {
+   "ru": "подходить, быть впору",
+   "uk": "пасувати, бути до міри",
+   "en": "be the right size",
+   "es": "encajar"
+  },
+  "shut": {
+   "ru": "закрываться",
+   "uk": "зачинятися",
+   "en": "close",
+   "es": "cerrar"
+  },
+  "shoes": {
+   "ru": "туфли, обувь",
+   "uk": "взуття, туфлі",
+   "en": "things worn on feet",
+   "es": "zapatos"
+  },
+  "headphones": {
+   "ru": "наушники",
+   "uk": "навушники",
+   "en": "speakers worn on ears",
+   "es": "auriculares"
+  },
+  "run": {
+   "ru": "ходить (о транспорте)",
+   "uk": "ходити (про транспорт)",
+   "en": "operate on a route",
+   "es": "circular"
+  },
+  "today": {
+   "ru": "сегодня",
+   "uk": "сьогодні",
+   "en": "this day",
+   "es": "hoy"
+  },
+  "drink": {
+   "ru": "пить, пью",
+   "uk": "пити, п'ю",
+   "en": "swallow a liquid",
+   "es": "beber"
+  },
+  "night": {
+   "ru": "ночь",
+   "uk": "ніч",
+   "en": "dark hours",
+   "es": "noche"
+  },
+  "until": {
+   "ru": "до, раньше чем",
+   "uk": "до, раніше ніж",
+   "en": "up to a time",
+   "es": "hasta"
+  },
+  "cook": {
+   "ru": "готовить еду, готовим",
+   "uk": "готувати їжу, готуємо",
+   "en": "make food hot",
+   "es": "cocinar"
+  },
+  "fridays": {
+   "ru": "по пятницам",
+   "uk": "по п'ятницях",
+   "en": "on every Friday",
+   "es": "los viernes"
+  },
+  "lunch": {
+   "ru": "обед",
+   "uk": "обід",
+   "en": "midday meal",
+   "es": "almuerzo"
+  },
+  "usually": {
+   "ru": "обычно",
+   "uk": "зазвичай",
+   "en": "most of the time",
+   "es": "normalmente"
+  },
+  "always": {
+   "ru": "всегда",
+   "uk": "завжди",
+   "en": "every time",
+   "es": "siempre"
+  },
+  "buy": {
+   "ru": "покупать, покупаем",
+   "uk": "купувати, купуємо",
+   "en": "pay to get",
+   "es": "comprar"
+  },
+  "bottled": {
+   "ru": "бутилированная",
+   "uk": "пляшкова",
+   "en": "sold in bottles",
+   "es": "embotellada"
+  },
+  "water": {
+   "ru": "вода",
+   "uk": "вода",
+   "en": "clear drink",
+   "es": "agua"
+  },
+  "messages": {
+   "ru": "сообщения",
+   "uk": "повідомлення",
+   "en": "written notes sent to you",
+   "es": "mensajes"
+  },
+  "feel": {
+   "ru": "чувствовать себя",
+   "uk": "почуватися",
+   "en": "have a sensation",
+   "es": "sentirse"
+  },
+  "price": {
+   "ru": "цена",
+   "uk": "ціна",
+   "en": "cost",
+   "es": "precio"
+  },
+  "include": {
+   "ru": "включать в себя",
+   "uk": "включати в себе",
+   "en": "have as a part",
+   "es": "incluir"
+  },
+  "breakfast": {
+   "ru": "завтрак",
+   "uk": "сніданок",
+   "en": "morning meal",
+   "es": "desayuno"
+  },
+  "cover": {
+   "ru": "покрывать, действовать на",
+   "uk": "покривати, діяти на",
+   "en": "be enough for",
+   "es": "cubrir"
+  },
+  "return": {
+   "ru": "обратный",
+   "uk": "зворотний",
+   "en": "going back",
+   "es": "regreso"
+  },
+  "trip": {
+   "ru": "поездка",
+   "uk": "поїздка",
+   "en": "journey",
+   "es": "viaje"
+  },
+  "receipt": {
+   "ru": "чек",
+   "uk": "чек",
+   "en": "paper showing a payment",
+   "es": "recibo"
+  },
+  "show": {
+   "ru": "показывать",
+   "uk": "показувати",
+   "en": "display",
+   "es": "mostrar"
+  },
+  "date": {
+   "ru": "дата",
+   "uk": "дата",
+   "en": "day, month, year",
+   "es": "fecha"
+  },
+  "rent": {
+   "ru": "арендная плата, аренда",
+   "uk": "орендна плата, оренда",
+   "en": "payment for a home",
+   "es": "alquiler"
+  },
+  "heating": {
+   "ru": "отопление",
+   "uk": "опалення",
+   "en": "system that warms a building",
+   "es": "calefacción"
+  },
+  "go": {
+   "ru": "ехать, идти",
+   "uk": "їхати, йти",
+   "en": "travel, move",
+   "es": "ir"
+  },
+  "cork": {
+   "ru": "Корк (город)",
+   "uk": "Корк (місто)",
+   "en": "a city in Ireland",
+   "es": "Cork (ciudad de Irlanda)"
+  },
+  "son": {
+   "ru": "сын",
+   "uk": "син",
+   "en": "male child",
+   "es": "hijo"
+  },
+  "milk": {
+   "ru": "молоко",
+   "uk": "молоко",
+   "en": "white drink from cows",
+   "es": "leche"
+  },
+  "that": {
+   "ru": "тот, та, то",
+   "uk": "той, та, те",
+   "en": "the one over there",
+   "es": "ese"
+  },
+  "near": {
+   "ru": "рядом с, около",
+   "uk": "поруч із, біля",
+   "en": "close to",
+   "es": "cerca de"
+  },
+  "understand": {
+   "ru": "понимать, понимаю",
+   "uk": "розуміти, розумію",
+   "en": "get the meaning",
+   "es": "entender"
+  },
+  "word": {
+   "ru": "слово",
+   "uk": "слово",
+   "en": "unit of language",
+   "es": "palabra"
+  },
+  "card": {
+   "ru": "карта, карточка",
+   "uk": "картка",
+   "en": "small plastic item for payment",
+   "es": "tarjeta"
+  },
+  "in": {
+   "ru": "в, внутри",
+   "uk": "в, усередині",
+   "en": "inside",
+   "es": "en"
+  }
+ }
+}

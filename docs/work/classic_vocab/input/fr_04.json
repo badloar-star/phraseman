@@ -1,0 +1,727 @@
+{
+ "lang": "fr",
+ "lesson": 4,
+ "words": [
+  {
+   "form": "c’est",
+   "surface": "C’est",
+   "count": 34,
+   "examples": [
+    {
+     "id": "fr:04:01",
+     "target": "C’est Paul",
+     "ru": "Это Поль.",
+     "en": "It's Paul."
+    },
+    {
+     "id": "fr:04:02",
+     "target": "C’est Léa",
+     "ru": "Это Леа.",
+     "en": "It's Léa."
+    }
+   ]
+  },
+  {
+   "form": "ma",
+   "surface": "ma",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:04:03",
+     "target": "C’est ma sœur",
+     "ru": "Это моя сестра.",
+     "en": "This is my sister."
+    },
+    {
+     "id": "fr:04:10",
+     "target": "C’est ma mère",
+     "ru": "Это моя мать.",
+     "en": "This is my mother."
+    }
+   ]
+  },
+  {
+   "form": "sœur",
+   "surface": "sœur",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:03",
+     "target": "C’est ma sœur",
+     "ru": "Это моя сестра.",
+     "en": "This is my sister."
+    }
+   ]
+  },
+  {
+   "form": "frère",
+   "surface": "frère",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:04:04",
+     "target": "C’est mon frère",
+     "ru": "Это мой брат.",
+     "en": "This is my brother."
+    },
+    {
+     "id": "fr:04:46",
+     "target": "C’est ton frère",
+     "ru": "Это твой брат?",
+     "en": "Is this your brother?"
+    }
+   ]
+  },
+  {
+   "form": "une",
+   "surface": "une",
+   "count": 8,
+   "examples": [
+    {
+     "id": "fr:04:05",
+     "target": "C’est une amie",
+     "ru": "Это подруга.",
+     "en": "This is a friend."
+    },
+    {
+     "id": "fr:04:08",
+     "target": "C’est une voisine",
+     "ru": "Это соседка.",
+     "en": "This is my neighbor."
+    }
+   ]
+  },
+  {
+   "form": "amie",
+   "surface": "amie",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:05",
+     "target": "C’est une amie",
+     "ru": "Это подруга.",
+     "en": "This is a friend."
+    }
+   ]
+  },
+  {
+   "form": "un",
+   "surface": "un",
+   "count": 9,
+   "examples": [
+    {
+     "id": "fr:04:06",
+     "target": "C’est un ami",
+     "ru": "Это друг.",
+     "en": "This is a friend."
+    },
+    {
+     "id": "fr:04:07",
+     "target": "C’est un voisin",
+     "ru": "Это сосед.",
+     "en": "This is my neighbor."
+    }
+   ]
+  },
+  {
+   "form": "ami",
+   "surface": "ami",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:06",
+     "target": "C’est un ami",
+     "ru": "Это друг.",
+     "en": "This is a friend."
+    }
+   ]
+  },
+  {
+   "form": "voisin",
+   "surface": "voisin",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:07",
+     "target": "C’est un voisin",
+     "ru": "Это сосед.",
+     "en": "This is my neighbor."
+    }
+   ]
+  },
+  {
+   "form": "voisine",
+   "surface": "voisine",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:08",
+     "target": "C’est une voisine",
+     "ru": "Это соседка.",
+     "en": "This is my neighbor."
+    }
+   ]
+  },
+  {
+   "form": "père",
+   "surface": "père",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:09",
+     "target": "C’est mon père",
+     "ru": "Это мой отец.",
+     "en": "This is my father."
+    }
+   ]
+  },
+  {
+   "form": "mère",
+   "surface": "mère",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:10",
+     "target": "C’est ma mère",
+     "ru": "Это моя мать.",
+     "en": "This is my mother."
+    }
+   ]
+  },
+  {
+   "form": "billet",
+   "surface": "billet",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:04:12",
+     "target": "C’est un billet",
+     "ru": "Это билет.",
+     "en": "It's a ticket."
+    },
+    {
+     "id": "fr:04:48",
+     "target": "C’est un billet pour demain",
+     "ru": "Это билет на завтра.",
+     "en": "This is a ticket for tomorrow."
+    }
+   ]
+  },
+  {
+   "form": "carte",
+   "surface": "carte",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:14",
+     "target": "C’est une carte",
+     "ru": "Это карта.",
+     "en": "This is a map."
+    }
+   ]
+  },
+  {
+   "form": "plan",
+   "surface": "plan",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:15",
+     "target": "C’est un plan",
+     "ru": "Это план.",
+     "en": "This is a plan."
+    }
+   ]
+  },
+  {
+   "form": "photo",
+   "surface": "photo",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:04:16",
+     "target": "C’est une photo",
+     "ru": "Это фотография.",
+     "en": "It's a photo."
+    },
+    {
+     "id": "fr:04:39",
+     "target": "C’est une photo de famille",
+     "ru": "Это семейная фотография.",
+     "en": "This is a family photo."
+    }
+   ]
+  },
+  {
+   "form": "cadeau",
+   "surface": "cadeau",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:04:17",
+     "target": "C’est un cadeau",
+     "ru": "Это подарок.",
+     "en": "It's a gift."
+    },
+    {
+     "id": "fr:04:38",
+     "target": "C’est un cadeau pour Léa",
+     "ru": "Это подарок для Леа.",
+     "en": "That's a present for Léa."
+    }
+   ]
+  },
+  {
+   "form": "adresse",
+   "surface": "adresse",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:04:18",
+     "target": "C’est une adresse",
+     "ru": "Это адрес.",
+     "en": "It's an address."
+    },
+    {
+     "id": "fr:04:36",
+     "target": "C’est la bonne adresse",
+     "ru": "Это правильный адрес.",
+     "en": "That's the right address."
+    }
+   ]
+  },
+  {
+   "form": "reçu",
+   "surface": "reçu",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:19",
+     "target": "C’est un reçu",
+     "ru": "Это чек.",
+     "en": "This is a check."
+    }
+   ]
+  },
+  {
+   "form": "facture",
+   "surface": "facture",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:20",
+     "target": "C’est une facture",
+     "ru": "Это счёт.",
+     "en": "This is an invoice."
+    }
+   ]
+  },
+  {
+   "form": "mes",
+   "surface": "mes",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:04:21",
+     "target": "Ce sont mes clés",
+     "ru": "Это мои ключи.",
+     "en": "These are my keys."
+    },
+    {
+     "id": "fr:04:22",
+     "target": "Ce sont mes amis",
+     "ru": "Это мои друзья.",
+     "en": "These are my friends."
+    }
+   ]
+  },
+  {
+   "form": "amis",
+   "surface": "amis",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:22",
+     "target": "Ce sont mes amis",
+     "ru": "Это мои друзья.",
+     "en": "These are my friends."
+    }
+   ]
+  },
+  {
+   "form": "nos",
+   "surface": "nos",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:04:23",
+     "target": "Ce sont nos billets",
+     "ru": "Это наши билеты.",
+     "en": "These are our tickets."
+    },
+    {
+     "id": "fr:04:30",
+     "target": "Ce sont nos places",
+     "ru": "Это наши места.",
+     "en": "These are our seats."
+    }
+   ]
+  },
+  {
+   "form": "des",
+   "surface": "des",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:04:24",
+     "target": "Ce sont des voisins",
+     "ru": "Это соседи.",
+     "en": "These are neighbors."
+    },
+    {
+     "id": "fr:04:25",
+     "target": "Ce sont des photos",
+     "ru": "Это фотографии.",
+     "en": "These are photos."
+    }
+   ]
+  },
+  {
+   "form": "voisins",
+   "surface": "voisins",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:24",
+     "target": "Ce sont des voisins",
+     "ru": "Это соседи.",
+     "en": "These are neighbors."
+    }
+   ]
+  },
+  {
+   "form": "photos",
+   "surface": "photos",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:25",
+     "target": "Ce sont des photos",
+     "ru": "Это фотографии.",
+     "en": "These are photos."
+    }
+   ]
+  },
+  {
+   "form": "tes",
+   "surface": "tes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:26",
+     "target": "Ce sont tes chaussures",
+     "ru": "Это твоя обувь.",
+     "en": "These are your shoes."
+    }
+   ]
+  },
+  {
+   "form": "cadeaux",
+   "surface": "cadeaux",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:27",
+     "target": "Ce sont des cadeaux",
+     "ru": "Это подарки.",
+     "en": "These are gifts."
+    }
+   ]
+  },
+  {
+   "form": "vos",
+   "surface": "vos",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:04:28",
+     "target": "Ce sont vos reçus",
+     "ru": "Это ваши квитанции.",
+     "en": "These are your receipts."
+    },
+    {
+     "id": "fr:04:47",
+     "target": "Ce sont vos bagages",
+     "ru": "Это ваш багаж?",
+     "en": "Is this your luggage?"
+    }
+   ]
+  },
+  {
+   "form": "reçus",
+   "surface": "reçus",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:28",
+     "target": "Ce sont vos reçus",
+     "ru": "Это ваши квитанции.",
+     "en": "These are your receipts."
+    }
+   ]
+  },
+  {
+   "form": "leurs",
+   "surface": "leurs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:29",
+     "target": "Ce sont leurs enfants",
+     "ru": "Это их дети.",
+     "en": "These are their children."
+    }
+   ]
+  },
+  {
+   "form": "places",
+   "surface": "places",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:30",
+     "target": "Ce sont nos places",
+     "ru": "Это наши места.",
+     "en": "These are our seats."
+    }
+   ]
+  },
+  {
+   "form": "première",
+   "surface": "première",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:31",
+     "target": "C’est ma première visite",
+     "ru": "Это мой первый визит.",
+     "en": "This is my first visit."
+    }
+   ]
+  },
+  {
+   "form": "visite",
+   "surface": "visite",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:31",
+     "target": "C’est ma première visite",
+     "ru": "Это мой первый визит.",
+     "en": "This is my first visit."
+    }
+   ]
+  },
+  {
+   "form": "votre",
+   "surface": "votre",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:04:32",
+     "target": "C’est votre chambre",
+     "ru": "Это ваша комната.",
+     "en": "This is your room."
+    },
+    {
+     "id": "fr:04:35",
+     "target": "C’est votre tour",
+     "ru": "Ваша очередь.",
+     "en": "It's your turn."
+    }
+   ]
+  },
+  {
+   "form": "notre",
+   "surface": "notre",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:33",
+     "target": "C’est notre arrêt",
+     "ru": "Это наша остановка.",
+     "en": "This is our stop."
+    }
+   ]
+  },
+  {
+   "form": "arrêt",
+   "surface": "arrêt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:33",
+     "target": "C’est notre arrêt",
+     "ru": "Это наша остановка.",
+     "en": "This is our stop."
+    }
+   ]
+  },
+  {
+   "form": "son",
+   "surface": "son",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:34",
+     "target": "C’est son vélo",
+     "ru": "Это его велосипед.",
+     "en": "This is his bike."
+    }
+   ]
+  },
+  {
+   "form": "tour",
+   "surface": "tour",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:35",
+     "target": "C’est votre tour",
+     "ru": "Ваша очередь.",
+     "en": "It's your turn."
+    }
+   ]
+  },
+  {
+   "form": "bonne",
+   "surface": "bonne",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:36",
+     "target": "C’est la bonne adresse",
+     "ru": "Это правильный адрес.",
+     "en": "That's the right address."
+    }
+   ]
+  },
+  {
+   "form": "dernier",
+   "surface": "dernier",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:37",
+     "target": "C’est le dernier bus",
+     "ru": "Это последний автобус.",
+     "en": "That's the last bus."
+    }
+   ]
+  },
+  {
+   "form": "famille",
+   "surface": "famille",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:39",
+     "target": "C’est une photo de famille",
+     "ru": "Это семейная фотография.",
+     "en": "This is a family photo."
+    }
+   ]
+  },
+  {
+   "form": "numéro",
+   "surface": "numéro",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:40",
+     "target": "C’est le numéro du bureau",
+     "ru": "Это номер офиса.",
+     "en": "That's the office number."
+    }
+   ]
+  },
+  {
+   "form": "place",
+   "surface": "place",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:42",
+     "target": "Ce n’est pas ta place",
+     "ru": "Это не твоё место.",
+     "en": "This isn't your place."
+    }
+   ]
+  },
+  {
+   "form": "bon",
+   "surface": "bon",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:43",
+     "target": "Ce n’est pas le bon quai",
+     "ru": "Это не та платформа.",
+     "en": "This isn't the right platform."
+    }
+   ]
+  },
+  {
+   "form": "lunettes",
+   "surface": "lunettes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:44",
+     "target": "Ce ne sont pas mes lunettes",
+     "ru": "Это не мои очки.",
+     "en": "These aren't my glasses."
+    }
+   ]
+  },
+  {
+   "form": "ton",
+   "surface": "ton",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:46",
+     "target": "C’est ton frère",
+     "ru": "Это твой брат?",
+     "en": "Is this your brother?"
+    }
+   ]
+  },
+  {
+   "form": "bagages",
+   "surface": "bagages",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:47",
+     "target": "Ce sont vos bagages",
+     "ru": "Это ваш багаж?",
+     "en": "Is this your luggage?"
+    }
+   ]
+  },
+  {
+   "form": "demain",
+   "surface": "demain",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:04:48",
+     "target": "C’est un billet pour demain",
+     "ru": "Это билет на завтра.",
+     "en": "This is a ticket for tomorrow."
+    }
+   ]
+  }
+ ]
+}

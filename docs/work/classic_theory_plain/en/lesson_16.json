@@ -1,0 +1,717 @@
+{
+  "lang": "en",
+  "lesson": 16,
+  "title": {
+    "ru": "Короткое слово меняет смысл",
+    "uk": "Коротке слово змінює зміст",
+    "en": "A short word changes the meaning"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Проснуться, отправиться, вернуться",
+        "uk": "Прокинутися, вирушити, повернутися",
+        "en": "Wake up, set off, come back"
+      },
+      "text": {
+        "ru": "В английском два слова часто значат одно.\nWake up, Tom. — Проснись, Том.\nЧитается: уэ́йк а́п то́м.\nСлово wake значит «будить, просыпаться».\nСлово up вы знаете: «вверх». Но wake up вместе значит «проснуться».\nTom — это имя.\nWe set off for the harbour before lunch. — Мы отправились в порт до обеда.\nЧитается: уи сэ́т оф фо́р зэ ха́рбер бифо́р ла́нч.\nСлово set значит «ставить, устанавливать».\nВместе set off — «отправиться в путь».\nСлово harbour значит «порт, где стоят корабли».\nThe train pulls in at noon. — Поезд прибывает в полдень.\nЧитается: зэ трэ́йн пу́лз ин эт ну́н.\nСлово pulls значит «тянет» (pull + s).\nВместе pulls in — «подъезжает и останавливается».\nCome back after the rehearsal. — Вернитесь после репетиции.\nЧитается: ка́м бэ́к э́фтер зэ рихэ́рсл.\nСлово rehearsal значит «репетиция».\nВместе come back — «вернуться».",
+        "uk": "В англійській два слова часто означають одне.\nWake up, Tom. — Прокидайся, Томе.\nЧитається: уе́йк а́п то́м.\nСлово wake означає «будити, прокидатися».\nСлово up ви знаєте: «вгору». Але wake up разом означає «прокинутися».\nTom — це ім’я.\nWe set off for the harbour before lunch. — Ми вирушили до гавані до обіду.\nЧитається: уи се́т оф фо́р зе ха́рбер біфо́р ла́нч.\nСлово set означає «ставити, встановлювати».\nРазом set off — «вирушити в дорогу».\nСлово harbour означає «порт, де стоять кораблі».\nThe train pulls in at noon. — Поїзд прибуває опівдні.\nЧитається: зе тре́йн пу́лз ін ет ну́н.\nСлово pulls означає «тягне» (pull + s).\nРазом pulls in — «під’їжджає і зупиняється».\nCome back after the rehearsal. — Повертайтеся після репетиції.\nЧитається: ка́м бе́к е́фтер зе ріхе́рсл.\nСлово rehearsal означає «репетиція».\nРазом come back — «повернутися».",
+        "en": "In English, two words together often mean one thing.\nWake up, Tom.\nThe word wake means “to stop sleeping”.\nYou know the word up. But wake up together means to stop sleeping.\nTom is a name.\nWe set off for the harbour before lunch.\nThe word set means “to put in place”.\nTogether, set off means to start a trip.\nThe word harbour means “a place where ships stop”.\nThe train pulls in at noon.\nThe word pulls means “moves something toward itself” (pull + s).\nTogether, pulls in means arrives and stops.\nCome back after the rehearsal.\nThe word rehearsal means “practice before a show”.\nTogether, come back means to return."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:16.01",
+          "say": {
+            "ru": "уэ́йк а́п то́м",
+            "uk": "уе́йк а́п то́м"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.05",
+          "say": {
+            "ru": "уи сэ́т оф фо́р зэ ха́рбер бифо́р ла́нч",
+            "uk": "уи се́т оф фо́р зе ха́рбер біфо́р ла́нч"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.06",
+          "say": {
+            "ru": "зэ трэ́йн пу́лз ин эт ну́н",
+            "uk": "зе тре́йн пу́лз ін ет ну́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.08",
+          "say": {
+            "ru": "ка́м бэ́к э́фтер зэ рихэ́рсл",
+            "uk": "ка́м бе́к е́фтер зе ріхе́рсл"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Проснись, Том»",
+            "uk": "Виберіть, як сказати: «Прокидайся, Томе»",
+            "en": "Choose how to say: “Wake up, Tom.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:16.01",
+          "options": [
+            "en-classic-r1:16.01",
+            "en-classic-r1:16.05",
+            "en-classic-r1:16.06"
+          ],
+          "answerId": "en-classic-r1:16.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы отправились в порт до обеда»",
+            "uk": "Виберіть, як сказати: «Ми вирушили до гавані до обіду»",
+            "en": "Choose how to say: “We set off for the harbour before lunch.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.05",
+          "options": [
+            "en-classic-r1:16.05",
+            "en-classic-r1:16.06",
+            "en-classic-r1:16.08"
+          ],
+          "answerId": "en-classic-r1:16.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вернитесь после репетиции»",
+            "uk": "Виберіть, як сказати: «Повертайтеся після репетиції»",
+            "en": "Choose how to say: “Come back after the rehearsal.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.08",
+          "options": [
+            "en-classic-r1:16.08",
+            "en-classic-r1:16.05",
+            "en-classic-r1:16.01"
+          ],
+          "answerId": "en-classic-r1:16.08"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Вставать, садиться, выходить",
+        "uk": "Вставати, сідати, виходити",
+        "en": "Get up, get on, get off"
+      },
+      "text": {
+        "ru": "Слово get вы уже видели. С другим словом оно значит другое.\nI get up at seven. — Я встаю в семь.\nЧитается: ай гэ́т а́п эт сэ́вен.\nВместе get up — «вставать».\nI get on at the station. — Я сажусь на станции.\nЧитается: ай гэ́т он эт зэ стэ́йшн.\nget on — «сесть в транспорт».\nShe gets off at the next stop. — Она выходит на следующей остановке.\nЧитается: ши гэ́тс оф эт зэ нэ́кст сто́п.\nget off — «выйти из транспорта».\nКогда речь о ней, к get добавляют s: She gets off.",
+        "uk": "Слово get ви вже бачили. З іншим словом воно означає інше.\nI get up at seven. — Я встаю о сьомій.\nЧитається: ай ге́т а́п ет се́вен.\nРазом get up — «вставати».\nI get on at the station. — Я сідаю на станції.\nЧитається: ай ге́т он ет зе сте́йшн.\nget on — «сісти в транспорт».\nShe gets off at the next stop. — Вона виходить на наступній зупинці.\nЧитається: ші ге́тс оф ет зе не́кст сто́п.\nget off — «вийти з транспорту».\nКоли мова про неї, до get додають s: She gets off.",
+        "en": "You have seen the word get. With another word, it means something else.\nI get up at seven.\nTogether, get up means to leave your bed.\nI get on at the station.\nget on means to step into a bus or train.\nShe gets off at the next stop.\nget off means to step out of a bus or train.\nWhen we talk about her, we add s to get: She gets off."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:16.02",
+          "say": {
+            "ru": "ай гэ́т а́п эт сэ́вен",
+            "uk": "ай ге́т а́п ет се́вен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.09",
+          "say": {
+            "ru": "ай гэ́т он эт зэ стэ́йшн",
+            "uk": "ай ге́т он ет зе сте́йшн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.10",
+          "say": {
+            "ru": "ши гэ́тс оф эт зэ нэ́кст сто́п",
+            "uk": "ші ге́тс оф ет зе не́кст сто́п"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я встаю в семь»",
+            "uk": "Виберіть, як сказати: «Я встаю о сьомій»",
+            "en": "Choose how to say: “I get up at seven.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:16.02",
+          "options": [
+            "en-classic-r1:16.02",
+            "en-classic-r1:16.09",
+            "en-classic-r1:16.10"
+          ],
+          "answerId": "en-classic-r1:16.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сажусь на станции»",
+            "uk": "Виберіть, як сказати: «Я сідаю на станції»",
+            "en": "Choose how to say: “I get on at the station.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.09",
+          "options": [
+            "en-classic-r1:16.09",
+            "en-classic-r1:16.10",
+            "en-classic-r1:16.02"
+          ],
+          "answerId": "en-classic-r1:16.09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она выходит на следующей остановке»",
+            "uk": "Виберіть, як сказати: «Вона виходить на наступній зупинці»",
+            "en": "Choose how to say: “She gets off at the next stop.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.10",
+          "options": [
+            "en-classic-r1:16.10",
+            "en-classic-r1:16.09",
+            "en-classic-r1:16.02"
+          ],
+          "answerId": "en-classic-r1:16.10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Включить и выключить",
+        "uk": "Увімкнути і вимкнути",
+        "en": "Turn on and turn off"
+      },
+      "text": {
+        "ru": "turn on значит «включить». turn off — «выключить».\nTurn on the lamp. — Включите лампу.\nЧитается: тэ́рн он зэ лэ́мп.\nTurn off the fan. — Выключите вентилятор.\nЧитается: тэ́рн оф зэ фэ́н.\nСлово fan значит «вентилятор».\nСлова on и off можно ставить и после вещи.\nTurn the oven on. — Включите духовку.\nЧитается: тэ́рн зи а́вен он.\nTurn the heater off. — Выключите обогреватель.\nЧитается: тэ́рн зэ хи́тер оф.\nСлово heater значит «обогреватель».\nСмысл тот же: Turn on the lamp и Turn the lamp on.",
+        "uk": "turn on означає «увімкнути». turn off — «вимкнути».\nTurn on the lamp. — Увімкніть лампу.\nЧитається: те́рн он зе ле́мп.\nTurn off the fan. — Вимкніть вентилятор.\nЧитається: те́рн оф зе фе́н.\nСлово fan означає «вентилятор».\nСлова on та off можна ставити й після речі.\nTurn the oven on. — Увімкніть духовку.\nЧитається: те́рн зі а́вен он.\nTurn the heater off. — Вимкніть обігрівач.\nЧитається: те́рн зе хі́тер оф.\nСлово heater означає «обігрівач».\nЗміст той самий: Turn on the lamp і Turn the lamp on.",
+        "en": "turn on means to start a machine. turn off means to stop it.\nTurn on the lamp.\nTurn off the fan.\nThe word fan means “a machine that moves air”.\nYou can also put on and off after the thing.\nTurn the oven on.\nTurn the heater off.\nThe word heater means “a machine that makes a room warm”.\nThe meaning is the same: Turn on the lamp and Turn the lamp on."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:16.11",
+          "say": {
+            "ru": "тэ́рн он зэ лэ́мп",
+            "uk": "те́рн он зе ле́мп"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.14",
+          "say": {
+            "ru": "тэ́рн оф зэ фэ́н",
+            "uk": "те́рн оф зе фе́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.12",
+          "say": {
+            "ru": "тэ́рн зи а́вен он",
+            "uk": "те́рн зі а́вен он"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.15",
+          "say": {
+            "ru": "тэ́рн зэ хи́тер оф",
+            "uk": "те́рн зе хі́тер оф"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Включите лампу»",
+            "uk": "Виберіть, як сказати: «Увімкніть лампу»",
+            "en": "Choose how to say: “Turn on the lamp.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:16.11",
+          "options": [
+            "en-classic-r1:16.11",
+            "en-classic-r1:16.14",
+            "en-classic-r1:16.12"
+          ],
+          "answerId": "en-classic-r1:16.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Выключите вентилятор»",
+            "uk": "Виберіть, як сказати: «Вимкніть вентилятор»",
+            "en": "Choose how to say: “Turn off the fan.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.14",
+          "options": [
+            "en-classic-r1:16.14",
+            "en-classic-r1:16.11",
+            "en-classic-r1:16.15"
+          ],
+          "answerId": "en-classic-r1:16.14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Выключите обогреватель»",
+            "uk": "Виберіть, як сказати: «Вимкніть обігрівач»",
+            "en": "Choose how to say: “Turn the heater off.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.15",
+          "options": [
+            "en-classic-r1:16.15",
+            "en-classic-r1:16.12",
+            "en-classic-r1:16.14"
+          ],
+          "answerId": "en-classic-r1:16.15"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вместо вещи — it",
+        "uk": "Замість речі — it",
+        "en": "It instead of a thing"
+      },
+      "text": {
+        "ru": "Вместо названия вещи можно сказать it — «его, её».\nTurn it on. — Включите её.\nЧитается: тэ́рн ит он.\nЗдесь on стоит после it. Turn on it — так не говорят.\nКороткое it всегда идёт сразу после первого слова.\nЕсли называете вещь полным словом, можно и так, и так.\nPick up the phone. — Поднимите трубку.\nЧитается: пи́к а́п зэ фо́ун.\nСлово pick значит «брать, поднимать».\nВместе pick up — «поднять, взять».\nPick it up. — Возьмите её.\nЧитается: пи́к ит а́п.\nPick up it — так не говорят. Только Pick it up.",
+        "uk": "Замість назви речі можна сказати it — «його, її».\nTurn it on. — Увімкніть її.\nЧитається: те́рн іт он.\nТут on стоїть після it. Turn on it — так не кажуть.\nКоротке it завжди йде одразу після першого слова.\nЯкщо називаєте річ повним словом, можна і так, і так.\nPick up the phone. — Візьміть слухавку.\nЧитається: пі́к а́п зе фо́ун.\nСлово pick означає «брати, піднімати».\nРазом pick up — «підняти, взяти».\nPick it up. — Візьміть її.\nЧитається: пі́к іт а́п.\nPick up it — так не кажуть. Тільки Pick it up.",
+        "en": "Instead of the name of a thing, you can say it.\nTurn it on.\nHere on comes after it. People do not say Turn on it.\nThe short word it always comes right after the first word.\nIf you say the full name of the thing, both ways are fine.\nPick up the phone.\nThe word pick means “to take with your hand”.\nTogether, pick up means to lift or take.\nPick it up.\nPeople do not say Pick up it. Only Pick it up."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:16.13",
+          "say": {
+            "ru": "тэ́рн ит он",
+            "uk": "те́рн іт он"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.17",
+          "say": {
+            "ru": "пи́к а́п зэ фо́ун",
+            "uk": "пі́к а́п зе фо́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.18",
+          "say": {
+            "ru": "пи́к ит а́п",
+            "uk": "пі́к іт а́п"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Включите её»",
+            "uk": "Виберіть, як сказати: «Увімкніть її»",
+            "en": "Choose how to say: “Turn it on.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:16.13",
+          "options": [
+            "en-classic-r1:16.13",
+            "en-classic-r1:16.18",
+            "en-classic-r1:16.17"
+          ],
+          "answerId": "en-classic-r1:16.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Возьмите её»",
+            "uk": "Виберіть, як сказати: «Візьміть її»",
+            "en": "Choose how to say: “Pick it up.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.18",
+          "options": [
+            "en-classic-r1:16.18",
+            "en-classic-r1:16.13",
+            "en-classic-r1:16.17"
+          ],
+          "answerId": "en-classic-r1:16.18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поднимите трубку»",
+            "uk": "Виберіть, як сказати: «Візьміть слухавку»",
+            "en": "Choose how to say: “Pick up the phone.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.17",
+          "options": [
+            "en-classic-r1:16.17",
+            "en-classic-r1:16.18",
+            "en-classic-r1:16.11"
+          ],
+          "answerId": "en-classic-r1:16.17"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Записать, поискать, заполнить",
+        "uk": "Записати, пошукати, заповнити",
+        "en": "Write down, look up, fill in"
+      },
+      "text": {
+        "ru": "I wrote down the number. — Я записал номер.\nЧитается: ай ро́ут да́ун зэ на́мбер.\nВместе write down — «записать».\nWe looked up the address. — Мы поискали адрес.\nЧитается: уи лу́кт а́п зи эдрэ́с.\nСлово look значит «смотреть».\nСлово looked значит «смотрели» (look + ed).\nВместе look up — «поискать» (адрес, слово, номер).\nI filled it in. — Я заполнил её.\nЧитается: ай фи́лд ит ин.\nСлово fill значит «наполнять».\nСлово filled значит «наполнил» (fill + ed).\nВместе fill in — «заполнить» (бланк, анкету).\nЗдесь it — это бланк. Оно стоит в середине, как в Turn it on.",
+        "uk": "I wrote down the number. — Я записав номер.\nЧитається: ай ро́ут да́ун зе на́мбер.\nРазом write down — «записати».\nWe looked up the address. — Ми пошукали адресу.\nЧитається: уи лу́кт а́п зі едре́с.\nСлово look означає «дивитися».\nСлово looked означає «дивилися» (look + ed).\nРазом look up — «пошукати» (адресу, слово, номер).\nI filled it in. — Я її заповнив.\nЧитається: ай фі́лд іт ін.\nСлово fill означає «наповнювати».\nСлово filled означає «наповнив» (fill + ed).\nРазом fill in — «заповнити» (бланк, анкету).\nТут it — це бланк. Воно стоїть посередині, як у Turn it on.",
+        "en": "I wrote down the number.\nTogether, write down means to put on paper.\nWe looked up the address.\nThe word look means “to use your eyes”.\nThe word looked means “used your eyes” (look + ed).\nTogether, look up means to search for it (an address, a word, a number).\nI filled it in.\nThe word fill means “to make full”.\nThe word filled means “made full” (fill + ed).\nTogether, fill in means to write the answers on a paper.\nHere it is the paper. It stands in the middle, like in Turn it on."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:16.21",
+          "say": {
+            "ru": "ай ро́ут да́ун зэ на́мбер",
+            "uk": "ай ро́ут да́ун зе на́мбер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.23",
+          "say": {
+            "ru": "уи лу́кт а́п зи эдрэ́с",
+            "uk": "уи лу́кт а́п зі едре́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.26",
+          "say": {
+            "ru": "ай фи́лд ит ин",
+            "uk": "ай фі́лд іт ін"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я записал номер»",
+            "uk": "Виберіть, як сказати: «Я записав номер»",
+            "en": "Choose how to say: “I wrote down the number.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:16.21",
+          "options": [
+            "en-classic-r1:16.21",
+            "en-classic-r1:16.23",
+            "en-classic-r1:16.26"
+          ],
+          "answerId": "en-classic-r1:16.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы поискали адрес»",
+            "uk": "Виберіть, як сказати: «Ми пошукали адресу»",
+            "en": "Choose how to say: “We looked up the address.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.23",
+          "options": [
+            "en-classic-r1:16.23",
+            "en-classic-r1:16.21",
+            "en-classic-r1:16.26"
+          ],
+          "answerId": "en-classic-r1:16.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я заполнил её»",
+            "uk": "Виберіть, як сказати: «Я її заповнив»",
+            "en": "Choose how to say: “I filled it in.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.26",
+          "options": [
+            "en-classic-r1:16.26",
+            "en-classic-r1:16.21",
+            "en-classic-r1:16.18"
+          ],
+          "answerId": "en-classic-r1:16.26"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Сдать и примерить",
+        "uk": "Здати і приміряти",
+        "en": "Hand in and try on"
+      },
+      "text": {
+        "ru": "She handed in the keys. — Она сдала ключи.\nЧитается: ши хэ́ндид ин зэ ки́з.\nСлово hand вы знаете как «рука». Здесь hand значит «передавать».\nСлово handed значит «передал, передала» (hand + ed).\nВместе hand in — «сдать» (отдать, чтобы приняли).\nHe handed them in. — Он сдал их.\nЧитается: хи хэ́ндид зэм ин.\nСлово them значит «их».\nСлово them тоже идёт в середину: handed them in.\nI tried on the jacket. — Я примерил куртку.\nЧитается: ай тра́йд он зэ джэ́кит.\nСлово tried — это try в прошлом: y меняется на i и добавляют ed.\nВместе try on — «примерить».",
+        "uk": "She handed in the keys. — Вона здала ключі.\nЧитається: ші хе́ндід ін зе кі́з.\nСлово hand ви знаєте як «рука». Тут hand означає «передавати».\nСлово handed означає «передав, передала» (hand + ed).\nРазом hand in — «здати» (віддати, щоб прийняли).\nHe handed them in. — Він їх здав.\nЧитається: хі хе́ндід зем ін.\nСлово them означає «їх».\nСлово them теж іде посередині: handed them in.\nI tried on the jacket. — Я приміряв куртку.\nЧитається: ай тра́йд он зе дже́кіт.\nСлово tried — це try в минулому: y змінюється на i і додають ed.\nРазом try on — «приміряти».",
+        "en": "She handed in the keys.\nYou know hand as a body part. Here hand means to pass something.\nThe word handed means “gave with the hand” (hand + ed).\nTogether, hand in means to give something to someone who takes it.\nHe handed them in.\nThe word them means “more than one thing or person”.\nThe word them also goes in the middle: handed them in.\nI tried on the jacket.\nThe word tried is try in the past: y changes to i, and we add ed.\nTogether, try on means to put on clothes to see if they fit."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:16.27",
+          "say": {
+            "ru": "ши хэ́ндид ин зэ ки́з",
+            "uk": "ші хе́ндід ін зе кі́з"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.28",
+          "say": {
+            "ru": "хи хэ́ндид зэм ин",
+            "uk": "хі хе́ндід зем ін"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.29",
+          "say": {
+            "ru": "ай тра́йд он зэ джэ́кит",
+            "uk": "ай тра́йд он зе дже́кіт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она сдала ключи»",
+            "uk": "Виберіть, як сказати: «Вона здала ключі»",
+            "en": "Choose how to say: “She handed in the keys.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:16.27",
+          "options": [
+            "en-classic-r1:16.27",
+            "en-classic-r1:16.29",
+            "en-classic-r1:16.28"
+          ],
+          "answerId": "en-classic-r1:16.27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он сдал их»",
+            "uk": "Виберіть, як сказати: «Він їх здав»",
+            "en": "Choose how to say: “He handed them in.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.28",
+          "options": [
+            "en-classic-r1:16.28",
+            "en-classic-r1:16.27",
+            "en-classic-r1:16.29"
+          ],
+          "answerId": "en-classic-r1:16.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я примерил куртку»",
+            "uk": "Виберіть, як сказати: «Я приміряв куртку»",
+            "en": "Choose how to say: “I tried on the jacket.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.29",
+          "options": [
+            "en-classic-r1:16.29",
+            "en-classic-r1:16.27",
+            "en-classic-r1:16.28"
+          ],
+          "answerId": "en-classic-r1:16.29"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Вернуть, убрать, высадить, узнать",
+        "uk": "Повернути, прибрати, висадити, дізнатися",
+        "en": "Give back, put away, drop off, find out"
+      },
+      "text": {
+        "ru": "She gave the book back. — Она вернула книгу.\nЧитается: ши гэ́йв зэ бу́к бэ́к.\ngave back — «вернула» (дала обратно). Слово back значит «назад».\nPlease put the milk away. — Пожалуйста, убери молоко.\nЧитается: пли́з пу́т зэ ми́лк эуэ́й.\nСлово away значит «прочь».\nВместе put away — «убрать на место».\nI will drop you off outside. — «Я высажу тебя у входа.»\nЧитается: ай уил дро́п ю оф аутса́йд.\nСлово drop значит «высадить, уронить».\nВместе drop off — «высадить из машины».\nWe need to find out the fare. — Нам нужно узнать стоимость проезда.\nЧитается: уи ни́д ту фа́йнд а́ут зэ фэ́р.\nСлово find вы знаете: «найти». find out — «узнать».\nСлово out значит «наружу, из».\nСлово fare значит «стоимость проезда».",
+        "uk": "She gave the book back. — Вона повернула книгу.\nЧитається: ші ге́йв зе бу́к бе́к.\ngave back — «повернула» (дала назад). Слово back означає «назад».\nPlease put the milk away. — Будь ласка, прибери молоко.\nЧитається: плі́з пу́т зе мі́лк еуе́й.\nСлово away означає «геть».\nРазом put away — «прибрати на місце».\nI will drop you off outside. — «Я висаджу тебе біля входу.»\nЧитається: ай уил дро́п ю оф аутса́йд.\nСлово drop означає «висадити, впустити».\nРазом drop off — «висадити з машини».\nWe need to find out the fare. — Нам потрібно дізнатися вартість проїзду.\nЧитається: уи ні́д ту фа́йнд а́ут зе фе́р.\nСлово find ви знаєте: «знайти». find out — «дізнатися».\nСлово out означає «назовні, з».\nСлово fare означає «вартість проїзду».",
+        "en": "She gave the book back.\ngave back means returned. The word back means “to the place it came from”.\nPlease put the milk away.\nThe word away means “to another place”.\nTogether, put away means to put in its place.\nI will drop you off outside.\nThe word drop means “to let someone out of a car”.\nTogether, drop off means to let someone out of a car.\nWe need to find out the fare.\nYou know the word find. find out means to learn a fact.\nThe word out means “not inside”.\nThe word fare means “money for a trip on a bus or train”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:16.46",
+          "say": {
+            "ru": "ши гэ́йв зэ бу́к бэ́к",
+            "uk": "ші ге́йв зе бу́к бе́к"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.50",
+          "say": {
+            "ru": "пли́з пу́т зэ ми́лк эуэ́й",
+            "uk": "плі́з пу́т зе мі́лк еуе́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.44",
+          "say": {
+            "ru": "ай уил дро́п ю оф аутса́йд",
+            "uk": "ай уил дро́п ю оф аутса́йд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.45",
+          "say": {
+            "ru": "уи ни́д ту фа́йнд а́ут зэ фэ́р",
+            "uk": "уи ні́д ту фа́йнд а́ут зе фе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она вернула книгу»",
+            "uk": "Виберіть, як сказати: «Вона повернула книгу»",
+            "en": "Choose how to say: “She gave the book back.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:16.46",
+          "options": [
+            "en-classic-r1:16.46",
+            "en-classic-r1:16.50",
+            "en-classic-r1:16.45"
+          ],
+          "answerId": "en-classic-r1:16.46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пожалуйста, убери молоко»",
+            "uk": "Виберіть, як сказати: «Будь ласка, прибери молоко»",
+            "en": "Choose how to say: “Please put the milk away.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.50",
+          "options": [
+            "en-classic-r1:16.50",
+            "en-classic-r1:16.46",
+            "en-classic-r1:16.44"
+          ],
+          "answerId": "en-classic-r1:16.50"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужно узнать стоимость проезда»",
+            "uk": "Виберіть, як сказати: «Нам потрібно дізнатися вартість проїзду»",
+            "en": "Choose how to say: “We need to find out the fare.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.45",
+          "options": [
+            "en-classic-r1:16.45",
+            "en-classic-r1:16.44",
+            "en-classic-r1:16.46"
+          ],
+          "answerId": "en-classic-r1:16.45"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Пары, которые не угадать",
+        "uk": "Пари, які не вгадати",
+        "en": "Pairs you cannot guess"
+      },
+      "text": {
+        "ru": "Здесь смысл пары не угадать по отдельным словам.\nI look after my nephew. — Я присматриваю за своим племянником.\nЧитается: ай лу́к э́фтер май нэ́фью.\nСлово nephew значит «племянник».\nlook after — «присматривать». Это не то же, что look — «смотреть».\nWe ran out of milk. — У нас закончилось молоко.\nЧитается: уи рэ́н а́ут ов ми́лк.\nСлово run значит «бежать». Слово ran — это run в прошлом.\nВместе run out of — «остаться без чего-то».\nI came across an old photo. — Я наткнулся на старую фотографию.\nЧитается: ай кэ́йм акро́с эн о́улд фо́уто.\nСлово came — это come в прошлом.\nСлово across значит «поперёк, через».\nВместе came across — «случайно найти».\nHe got over his cold. — Он оправился от простуды.\nЧитается: хи го́т о́вер хиз ко́улд.\nСлово over значит «над, через».\nВместе got over — «оправиться, пережить». Здесь cold — «простуда».\nThe meeting went on until lunch. — Встреча продолжалась до обеда.\nЧитается: зэ ми́тинг уэ́нт он анти́л ла́нч.\nСлово meeting значит «встреча».\nВместе went on — «продолжалась».\nThe alarm went off at five. — Будильник зазвонил в пять.\nЧитается: зи эла́рм уэ́нт оф эт фа́йв.\nСлово five значит «пять».\nВместе went off — «зазвонил, сработал».",
+        "uk": "Тут зміст пари не вгадати за окремими словами.\nI look after my nephew. — Я доглядаю за своїм племінником.\nЧитається: ай лу́к е́фтер май не́фью.\nСлово nephew означає «племінник».\nlook after — «наглядати». Це не те саме, що look — «дивитися».\nWe ran out of milk. — У нас закінчилося молоко.\nЧитається: уи ре́н а́ут ов мі́лк.\nСлово run означає «бігти». Слово ran — це run в минулому.\nРазом run out of — «лишитися чогось».\nI came across an old photo. — Я натрапив на стару фотографію.\nЧитається: ай ке́йм акро́с ен о́улд фо́уто.\nСлово came — це come в минулому.\nСлово across означає «поперек, через».\nРазом came across — «випадково знайти».\nHe got over his cold. — Він одужав від застуди.\nЧитається: хі го́т о́вер хіз ко́улд.\nСлово over означає «над, через».\nРазом got over — «одужати, пережити». Тут cold — «застуда».\nThe meeting went on until lunch. — Зустріч тривала до обіду.\nЧитається: зе мі́тінг уе́нт он анті́л ла́нч.\nСлово meeting означає «зустріч».\nРазом went on — «тривала».\nThe alarm went off at five. — Будильник задзвонив о п'ятій.\nЧитається: зі ела́рм уе́нт оф ет фа́йв.\nСлово five означає «п’ять».\nРазом went off — «задзвонив, спрацював».",
+        "en": "Here you cannot guess the meaning from the single words.\nI look after my nephew.\nThe word nephew means “the son of your brother or sister”.\nlook after means to take care of. It is not the same as look.\nWe ran out of milk.\nThe word run means to move fast. The word ran is run in the past.\nTogether, run out of means to have no more of something.\nI came across an old photo.\nThe word came is come in the past.\nThe word across means “from one side to the other”.\nTogether, came across means found by chance.\nHe got over his cold.\nThe word over means “above or past something”.\nTogether, got over means to feel well again. Here cold is an illness.\nThe meeting went on until lunch.\nThe word meeting means “people coming together to talk”.\nTogether, went on means kept going.\nThe alarm went off at five.\nThe word five means “the number 5”.\nTogether, went off means began to ring."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:16.31",
+          "say": {
+            "ru": "ай лу́к э́фтер май нэ́фью",
+            "uk": "ай лу́к е́фтер май не́фью"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.37",
+          "say": {
+            "ru": "уи рэ́н а́ут ов ми́лк",
+            "uk": "уи ре́н а́ут ов мі́лк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.39",
+          "say": {
+            "ru": "ай кэ́йм акро́с эн о́улд фо́уто",
+            "uk": "ай ке́йм акро́с ен о́улд фо́уто"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.40",
+          "say": {
+            "ru": "хи го́т о́вер хиз ко́улд",
+            "uk": "хі го́т о́вер хіз ко́улд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.48",
+          "say": {
+            "ru": "зэ ми́тинг уэ́нт он анти́л ла́нч",
+            "uk": "зе мі́тінг уе́нт он анті́л ла́нч"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:16.49",
+          "say": {
+            "ru": "зи эла́рм уэ́нт оф эт фа́йв",
+            "uk": "зі ела́рм уе́нт оф ет фа́йв"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я присматриваю за своим племянником»",
+            "uk": "Виберіть, як сказати: «Я доглядаю за своїм племінником»",
+            "en": "Choose how to say: “I look after my nephew.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:16.31",
+          "options": [
+            "en-classic-r1:16.31",
+            "en-classic-r1:16.37",
+            "en-classic-r1:16.40"
+          ],
+          "answerId": "en-classic-r1:16.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я наткнулся на старую фотографию»",
+            "uk": "Виберіть, як сказати: «Я натрапив на стару фотографію»",
+            "en": "Choose how to say: “I came across an old photo.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.39",
+          "options": [
+            "en-classic-r1:16.39",
+            "en-classic-r1:16.31",
+            "en-classic-r1:16.40"
+          ],
+          "answerId": "en-classic-r1:16.39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Будильник зазвонил в пять»",
+            "uk": "Виберіть, як сказати: «Будильник задзвонив о п'ятій»",
+            "en": "Choose how to say: “The alarm went off at five.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:16.49",
+          "options": [
+            "en-classic-r1:16.49",
+            "en-classic-r1:16.48",
+            "en-classic-r1:16.37"
+          ],
+          "answerId": "en-classic-r1:16.49"
+        }
+      ]
+    }
+  ]
+}

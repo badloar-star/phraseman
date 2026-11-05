@@ -1,0 +1,240 @@
+{
+ "lang": "it",
+ "lesson": 2,
+ "words": {
+  "non": {
+   "ru": "не",
+   "uk": "не",
+   "en": "not",
+   "es": "no"
+  },
+  "sola": {
+   "ru": "одна",
+   "uk": "сама, одна",
+   "en": "alone",
+   "es": "sola"
+  },
+  "ritardo": {
+   "ru": "опоздание",
+   "uk": "запізнення",
+   "en": "delay",
+   "es": "retraso"
+  },
+  "anticipo": {
+   "ru": "заранее",
+   "uk": "заздалегідь",
+   "en": "ahead of time",
+   "es": "con antelación"
+  },
+  "aperti": {
+   "ru": "открыты",
+   "uk": "відчинені",
+   "en": "open",
+   "es": "abiertos"
+  },
+  "stanza": {
+   "ru": "комната",
+   "uk": "кімната",
+   "en": "room",
+   "es": "habitación"
+  },
+  "vuota": {
+   "ru": "пустая",
+   "uk": "порожня",
+   "en": "empty",
+   "es": "vacía"
+  },
+  "corridoio": {
+   "ru": "коридор",
+   "uk": "коридор",
+   "en": "corridor",
+   "es": "pasillo"
+  },
+  "buio": {
+   "ru": "тёмный",
+   "uk": "темний",
+   "en": "dark",
+   "es": "oscuro"
+  },
+  "tavolo": {
+   "ru": "стол",
+   "uk": "стіл",
+   "en": "table",
+   "es": "mesa"
+  },
+  "pulito": {
+   "ru": "чистый",
+   "uk": "чистий",
+   "en": "clean",
+   "es": "limpio"
+  },
+  "bicchiere": {
+   "ru": "стакан",
+   "uk": "склянка",
+   "en": "glass",
+   "es": "vaso"
+  },
+  "sporco": {
+   "ru": "грязный",
+   "uk": "брудний",
+   "en": "dirty",
+   "es": "sucio"
+  },
+  "l’autobus": {
+   "ru": "автобус (слитно со словом перед ним)",
+   "uk": "автобус (злито зі словом перед ним)",
+   "en": "the bus",
+   "es": "el autobús"
+  },
+  "lontano": {
+   "ru": "далёкий, далеко",
+   "uk": "далекий, далеко",
+   "en": "far",
+   "es": "lejano"
+  },
+  "bagni": {
+   "ru": "туалеты",
+   "uk": "туалети",
+   "en": "toilets",
+   "es": "baños"
+  },
+  "fondo": {
+   "ru": "конец, дальний край",
+   "uk": "кінець, дальній край",
+   "en": "end, back",
+   "es": "fondo"
+  },
+  "biglietto": {
+   "ru": "билет",
+   "uk": "квиток",
+   "en": "ticket",
+   "es": "billete"
+  },
+  "nella": {
+   "ru": "в (слитно со словом перед ним)",
+   "uk": "у (злито зі словом перед ним)",
+   "en": "in the",
+   "es": "en la"
+  },
+  "sala": {
+   "ru": "зал, комната",
+   "uk": "зала, кімната",
+   "en": "hall, room",
+   "es": "sala"
+  },
+  "bicicletta": {
+   "ru": "велосипед",
+   "uk": "велосипед",
+   "en": "bicycle",
+   "es": "bicicleta"
+  },
+  "mio": {
+   "ru": "мой",
+   "uk": "мій",
+   "en": "my",
+   "es": "mi"
+  },
+  "telefono": {
+   "ru": "телефон",
+   "uk": "телефон",
+   "en": "phone",
+   "es": "teléfono"
+  },
+  "museo": {
+   "ru": "музей",
+   "uk": "музей",
+   "en": "museum",
+   "es": "museo"
+  },
+  "farmacia": {
+   "ru": "аптека",
+   "uk": "аптека",
+   "en": "pharmacy",
+   "es": "farmacia"
+  },
+  "biglietti": {
+   "ru": "билеты",
+   "uk": "квитки",
+   "en": "tickets",
+   "es": "billetes"
+  },
+  "sul": {
+   "ru": "на (слитно со словом перед ним)",
+   "uk": "на (злито зі словом перед ним)",
+   "en": "on the",
+   "es": "sobre el"
+  },
+  "treno": {
+   "ru": "поезд",
+   "uk": "потяг",
+   "en": "train",
+   "es": "tren"
+  },
+  "pranzo": {
+   "ru": "обед",
+   "uk": "обід",
+   "en": "lunch",
+   "es": "almuerzo"
+  },
+  "camera": {
+   "ru": "номер, комната",
+   "uk": "номер, кімната",
+   "en": "hotel room",
+   "es": "habitación"
+  },
+  "libera": {
+   "ru": "свободна",
+   "uk": "вільна",
+   "en": "free",
+   "es": "libre"
+  },
+  "al": {
+   "ru": "к, рядом с (слитно со словом перед ним)",
+   "uk": "до, поруч із (злито зі словом перед ним)",
+   "en": "to the, next to the",
+   "es": "al"
+  },
+  "scarpe": {
+   "ru": "обувь",
+   "uk": "взуття",
+   "en": "shoes",
+   "es": "zapatos"
+  },
+  "pulite": {
+   "ru": "чистые",
+   "uk": "чисті",
+   "en": "clean",
+   "es": "limpias"
+  },
+  "molto": {
+   "ru": "очень",
+   "uk": "дуже",
+   "en": "very",
+   "es": "muy"
+  },
+  "largo": {
+   "ru": "широкий",
+   "uk": "широкий",
+   "en": "wide",
+   "es": "ancho"
+  },
+  "soli": {
+   "ru": "одни",
+   "uk": "одні, самі",
+   "en": "alone",
+   "es": "solos"
+  },
+  "lontani": {
+   "ru": "далеко, далёкие",
+   "uk": "далеко, далекі",
+   "en": "far",
+   "es": "lejanos"
+  },
+  "dalla": {
+   "ru": "от, из (слитно со словом перед ним)",
+   "uk": "від, з (злито зі словом перед ним)",
+   "en": "from the",
+   "es": "desde la"
+  }
+ }
+}

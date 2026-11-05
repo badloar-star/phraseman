@@ -1,0 +1,174 @@
+{
+ "lang": "fr",
+ "lesson": 3,
+ "words": {
+  "est-ce": {
+   "ru": "вопрос: правда ли, что",
+   "uk": "питання: чи правда, що",
+   "en": "starts a yes/no question",
+   "es": "inicia una pregunta"
+  },
+  "que": {
+   "ru": "что (вопрос: правда ли, что)",
+   "uk": "що (питання: чи правда, що)",
+   "en": "that (in a question)",
+   "es": "que"
+  },
+  "l’heure": {
+   "ru": "час; по расписанию",
+   "uk": "година; за розкладом",
+   "en": "the hour; on time",
+   "es": "la hora; a tiempo"
+  },
+  "guichet": {
+   "ru": "окошко, касса",
+   "uk": "віконце, каса",
+   "en": "ticket window",
+   "es": "ventanilla"
+  },
+  "l’entrée": {
+   "ru": "вход",
+   "uk": "вхід",
+   "en": "the entrance",
+   "es": "la entrada"
+  },
+  "l’arrêt": {
+   "ru": "остановка",
+   "uk": "зупинка",
+   "en": "the stop",
+   "es": "la parada"
+  },
+  "quai": {
+   "ru": "платформа, перрон",
+   "uk": "платформа, перон",
+   "en": "platform",
+   "es": "andén"
+  },
+  "face": {
+   "ru": "напротив",
+   "uk": "навпроти",
+   "en": "opposite",
+   "es": "enfrente"
+  },
+  "sortie": {
+   "ru": "выход",
+   "uk": "вихід",
+   "en": "exit",
+   "es": "salida"
+  },
+  "gauche": {
+   "ru": "слева, левый",
+   "uk": "ліворуч, лівий",
+   "en": "left",
+   "es": "izquierda"
+  },
+  "parking": {
+   "ru": "парковка",
+   "uk": "парковка",
+   "en": "car park",
+   "es": "aparcamiento"
+  },
+  "droite": {
+   "ru": "справа, правый",
+   "uk": "праворуч, правий",
+   "en": "right",
+   "es": "derecha"
+  },
+  "aujourd’hui": {
+   "ru": "сегодня",
+   "uk": "сьогодні",
+   "en": "today",
+   "es": "hoy"
+  },
+  "d’ici": {
+   "ru": "отсюда",
+   "uk": "звідси",
+   "en": "from here",
+   "es": "de aquí"
+  },
+  "ce": {
+   "ru": "этот",
+   "uk": "цей",
+   "en": "this",
+   "es": "este"
+  },
+  "soir": {
+   "ru": "вечер",
+   "uk": "вечір",
+   "en": "evening",
+   "es": "tarde, noche"
+  },
+  "avec": {
+   "ru": "с",
+   "uk": "з",
+   "en": "with",
+   "es": "con"
+  },
+  "toi": {
+   "ru": "ты, тебя, тобой",
+   "uk": "ти, тебе, тобою",
+   "en": "you",
+   "es": "tú, ti"
+  },
+  "ta": {
+   "ru": "твоя",
+   "uk": "твоя",
+   "en": "your (her, it)",
+   "es": "tu"
+  },
+  "poche": {
+   "ru": "карман",
+   "uk": "кишеня",
+   "en": "pocket",
+   "es": "bolsillo"
+  },
+  "prochain": {
+   "ru": "следующий",
+   "uk": "наступний",
+   "en": "next",
+   "es": "próximo"
+  },
+  "deux": {
+   "ru": "два, две",
+   "uk": "два, дві",
+   "en": "two",
+   "es": "dos"
+  },
+  "fermées": {
+   "ru": "закрыты (о нескольких)",
+   "uk": "зачинені (про кілька)",
+   "en": "closed (several)",
+   "es": "cerradas"
+  },
+  "serrure": {
+   "ru": "замок (в двери)",
+   "uk": "замок (у дверях)",
+   "en": "lock",
+   "es": "cerradura"
+  },
+  "pour": {
+   "ru": "для, на",
+   "uk": "для, на",
+   "en": "for",
+   "es": "para"
+  },
+  "concert": {
+   "ru": "концерт",
+   "uk": "концерт",
+   "en": "concert",
+   "es": "concierto"
+  },
+  "premier": {
+   "ru": "первый",
+   "uk": "перший",
+   "en": "first",
+   "es": "primero"
+  },
+  "étage": {
+   "ru": "этаж",
+   "uk": "поверх",
+   "en": "floor, storey",
+   "es": "piso"
+  }
+ }
+}

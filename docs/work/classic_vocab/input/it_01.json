@@ -1,0 +1,896 @@
+{
+ "lang": "it",
+ "lesson": 1,
+ "words": [
+  {
+   "form": "sono",
+   "surface": "Sono",
+   "count": 17,
+   "examples": [
+    {
+     "id": "it:01:01",
+     "target": "Sono qui",
+     "ru": "Я здесь.",
+     "en": "I am here."
+    },
+    {
+     "id": "it:01:04",
+     "target": "Sono lì",
+     "ru": "Я там.",
+     "en": "I am there."
+    }
+   ]
+  },
+  {
+   "form": "qui",
+   "surface": "qui",
+   "count": 8,
+   "examples": [
+    {
+     "id": "it:01:01",
+     "target": "Sono qui",
+     "ru": "Я здесь.",
+     "en": "I am here."
+    },
+    {
+     "id": "it:01:02",
+     "target": "Sei qui",
+     "ru": "Ты здесь.",
+     "en": "You are here."
+    }
+   ]
+  },
+  {
+   "form": "sei",
+   "surface": "Sei",
+   "count": 5,
+   "examples": [
+    {
+     "id": "it:01:02",
+     "target": "Sei qui",
+     "ru": "Ты здесь.",
+     "en": "You are here."
+    },
+    {
+     "id": "it:01:03",
+     "target": "Sei lì",
+     "ru": "Ты там.",
+     "en": "You are there."
+    }
+   ]
+  },
+  {
+   "form": "lì",
+   "surface": "lì",
+   "count": 5,
+   "examples": [
+    {
+     "id": "it:01:03",
+     "target": "Sei lì",
+     "ru": "Ты там.",
+     "en": "You are there."
+    },
+    {
+     "id": "it:01:04",
+     "target": "Sono lì",
+     "ru": "Я там.",
+     "en": "I am there."
+    }
+   ]
+  },
+  {
+   "form": "lea",
+   "surface": "Lea",
+   "count": 4,
+   "examples": [
+    {
+     "id": "it:01:05",
+     "target": "Lea è qui",
+     "ru": "Леа здесь.",
+     "en": "Lea is here."
+    },
+    {
+     "id": "it:01:14",
+     "target": "Lea è alla stazione",
+     "ru": "Леа на вокзале.",
+     "en": "Lea’s at the station."
+    }
+   ]
+  },
+  {
+   "form": "è",
+   "surface": "è",
+   "count": 20,
+   "examples": [
+    {
+     "id": "it:01:05",
+     "target": "Lea è qui",
+     "ru": "Леа здесь.",
+     "en": "Lea is here."
+    },
+    {
+     "id": "it:01:06",
+     "target": "Paolo è lì",
+     "ru": "Паоло там.",
+     "en": "Paolo is there."
+    }
+   ]
+  },
+  {
+   "form": "paolo",
+   "surface": "Paolo",
+   "count": 4,
+   "examples": [
+    {
+     "id": "it:01:06",
+     "target": "Paolo è lì",
+     "ru": "Паоло там.",
+     "en": "Paolo is there."
+    },
+    {
+     "id": "it:01:13",
+     "target": "Paolo è a casa",
+     "ru": "Паоло дома.",
+     "en": "Paolo’s home."
+    }
+   ]
+  },
+  {
+   "form": "siamo",
+   "surface": "Siamo",
+   "count": 4,
+   "examples": [
+    {
+     "id": "it:01:07",
+     "target": "Siamo qui",
+     "ru": "Мы здесь.",
+     "en": "We are here."
+    },
+    {
+     "id": "it:01:15",
+     "target": "Siamo alla stazione",
+     "ru": "Мы на вокзале.",
+     "en": "We’re at the station."
+    }
+   ]
+  },
+  {
+   "form": "siete",
+   "surface": "Siete",
+   "count": 4,
+   "examples": [
+    {
+     "id": "it:01:08",
+     "target": "Siete qui",
+     "ru": "Вы здесь.",
+     "en": "You are here."
+    },
+    {
+     "id": "it:01:16",
+     "target": "Siete in stazione",
+     "ru": "Вы на вокзале.",
+     "en": "You’re at the train station."
+    }
+   ]
+  },
+  {
+   "form": "loro",
+   "surface": "Loro",
+   "count": 3,
+   "examples": [
+    {
+     "id": "it:01:09",
+     "target": "Loro sono lì",
+     "ru": "Они там.",
+     "en": "They are there."
+    },
+    {
+     "id": "it:01:10",
+     "target": "Loro sono qui",
+     "ru": "Они здесь.",
+     "en": "They are here."
+    }
+   ]
+  },
+  {
+   "form": "a",
+   "surface": "a",
+   "count": 4,
+   "examples": [
+    {
+     "id": "it:01:11",
+     "target": "Sono a casa",
+     "ru": "Я дома.",
+     "en": "I’m home."
+    },
+    {
+     "id": "it:01:12",
+     "target": "Sei a casa",
+     "ru": "Ты дома.",
+     "en": "You’re home."
+    }
+   ]
+  },
+  {
+   "form": "casa",
+   "surface": "casa",
+   "count": 5,
+   "examples": [
+    {
+     "id": "it:01:11",
+     "target": "Sono a casa",
+     "ru": "Я дома.",
+     "en": "I’m home."
+    },
+    {
+     "id": "it:01:12",
+     "target": "Sei a casa",
+     "ru": "Ты дома.",
+     "en": "You’re home."
+    }
+   ]
+  },
+  {
+   "form": "alla",
+   "surface": "alla",
+   "count": 4,
+   "examples": [
+    {
+     "id": "it:01:14",
+     "target": "Lea è alla stazione",
+     "ru": "Леа на вокзале.",
+     "en": "Lea’s at the station."
+    },
+    {
+     "id": "it:01:15",
+     "target": "Siamo alla stazione",
+     "ru": "Мы на вокзале.",
+     "en": "We’re at the station."
+    }
+   ]
+  },
+  {
+   "form": "stazione",
+   "surface": "stazione",
+   "count": 5,
+   "examples": [
+    {
+     "id": "it:01:14",
+     "target": "Lea è alla stazione",
+     "ru": "Леа на вокзале.",
+     "en": "Lea’s at the station."
+    },
+    {
+     "id": "it:01:15",
+     "target": "Siamo alla stazione",
+     "ru": "Мы на вокзале.",
+     "en": "We’re at the station."
+    }
+   ]
+  },
+  {
+   "form": "in",
+   "surface": "in",
+   "count": 6,
+   "examples": [
+    {
+     "id": "it:01:16",
+     "target": "Siete in stazione",
+     "ru": "Вы на вокзале.",
+     "en": "You’re at the train station."
+    },
+    {
+     "id": "it:01:17",
+     "target": "Loro sono in ufficio",
+     "ru": "Они в офисе.",
+     "en": "They’re in the office."
+    }
+   ]
+  },
+  {
+   "form": "ufficio",
+   "surface": "ufficio",
+   "count": 5,
+   "examples": [
+    {
+     "id": "it:01:17",
+     "target": "Loro sono in ufficio",
+     "ru": "Они в офисе.",
+     "en": "They’re in the office."
+    },
+    {
+     "id": "it:01:18",
+     "target": "Lei è in ufficio",
+     "ru": "Она в офисе.",
+     "en": "She’s in the office."
+    }
+   ]
+  },
+  {
+   "form": "lei",
+   "surface": "Lei",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:18",
+     "target": "Lei è in ufficio",
+     "ru": "Она в офисе.",
+     "en": "She’s in the office."
+    },
+    {
+     "id": "it:01:23",
+     "target": "Lei è pronta",
+     "ru": "Она готова.",
+     "en": "She’s ready."
+    }
+   ]
+  },
+  {
+   "form": "pronto",
+   "surface": "pronto",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:21",
+     "target": "Sono pronto",
+     "ru": "Я готов.",
+     "en": "I’m ready."
+    },
+    {
+     "id": "it:01:22",
+     "target": "Sei pronto",
+     "ru": "Ты готов.",
+     "en": "You’re ready."
+    }
+   ]
+  },
+  {
+   "form": "pronta",
+   "surface": "pronta",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:23",
+     "target": "Lei è pronta",
+     "ru": "Она готова.",
+     "en": "She’s ready."
+    }
+   ]
+  },
+  {
+   "form": "stanco",
+   "surface": "stanco",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:24",
+     "target": "Paolo è stanco",
+     "ru": "Паоло устал.",
+     "en": "Paolo’s tired."
+    }
+   ]
+  },
+  {
+   "form": "stanca",
+   "surface": "stanca",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:25",
+     "target": "Lea è stanca",
+     "ru": "Леа устала.",
+     "en": "Lea’s tired."
+    }
+   ]
+  },
+  {
+   "form": "pronti",
+   "surface": "pronti",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:26",
+     "target": "Siamo pronti",
+     "ru": "Мы готовы.",
+     "en": "We’re ready."
+    },
+    {
+     "id": "it:01:27",
+     "target": "Siete pronti",
+     "ru": "Вы готовы.",
+     "en": "You’re ready."
+    }
+   ]
+  },
+  {
+   "form": "stanchi",
+   "surface": "stanchi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:28",
+     "target": "Sono stanchi",
+     "ru": "Они устали.",
+     "en": "They are tired."
+    }
+   ]
+  },
+  {
+   "form": "pronte",
+   "surface": "pronte",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:29",
+     "target": "Sono pronte",
+     "ru": "Они готовы.",
+     "en": "They’re ready."
+    }
+   ]
+  },
+  {
+   "form": "libero",
+   "surface": "libero",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:30",
+     "target": "Sono libero",
+     "ru": "Я свободен.",
+     "en": "I’m free."
+    }
+   ]
+  },
+  {
+   "form": "la",
+   "surface": "La",
+   "count": 7,
+   "examples": [
+    {
+     "id": "it:01:31",
+     "target": "La porta è aperta",
+     "ru": "Дверь открыта.",
+     "en": "The door is open."
+    },
+    {
+     "id": "it:01:32",
+     "target": "La finestra è aperta",
+     "ru": "Окно открыто.",
+     "en": "The window is open."
+    }
+   ]
+  },
+  {
+   "form": "porta",
+   "surface": "porta",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:31",
+     "target": "La porta è aperta",
+     "ru": "Дверь открыта.",
+     "en": "The door is open."
+    },
+    {
+     "id": "it:01:50",
+     "target": "Sono vicino alla porta",
+     "ru": "Я возле двери.",
+     "en": "I’m at the door."
+    }
+   ]
+  },
+  {
+   "form": "aperta",
+   "surface": "aperta",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:31",
+     "target": "La porta è aperta",
+     "ru": "Дверь открыта.",
+     "en": "The door is open."
+    },
+    {
+     "id": "it:01:32",
+     "target": "La finestra è aperta",
+     "ru": "Окно открыто.",
+     "en": "The window is open."
+    }
+   ]
+  },
+  {
+   "form": "finestra",
+   "surface": "finestra",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:32",
+     "target": "La finestra è aperta",
+     "ru": "Окно открыто.",
+     "en": "The window is open."
+    },
+    {
+     "id": "it:01:37",
+     "target": "La finestra è chiusa",
+     "ru": "Окно закрыто.",
+     "en": "The window is closed."
+    }
+   ]
+  },
+  {
+   "form": "il",
+   "surface": "Il",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:33",
+     "target": "Il negozio è aperto",
+     "ru": "Магазин открыт.",
+     "en": "The store is open."
+    },
+    {
+     "id": "it:01:36",
+     "target": "Il bar è chiuso",
+     "ru": "Кафе закрыто.",
+     "en": "The cafe is closed."
+    }
+   ]
+  },
+  {
+   "form": "negozio",
+   "surface": "negozio",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:33",
+     "target": "Il negozio è aperto",
+     "ru": "Магазин открыт.",
+     "en": "The store is open."
+    }
+   ]
+  },
+  {
+   "form": "aperto",
+   "surface": "aperto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:33",
+     "target": "Il negozio è aperto",
+     "ru": "Магазин открыт.",
+     "en": "The store is open."
+    }
+   ]
+  },
+  {
+   "form": "ferroviaria",
+   "surface": "ferroviaria",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:34",
+     "target": "La stazione ferroviaria è lontana",
+     "ru": "Вокзал далеко.",
+     "en": "The train station is far away."
+    }
+   ]
+  },
+  {
+   "form": "lontana",
+   "surface": "lontana",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:34",
+     "target": "La stazione ferroviaria è lontana",
+     "ru": "Вокзал далеко.",
+     "en": "The train station is far away."
+    }
+   ]
+  },
+  {
+   "form": "vicina",
+   "surface": "vicina",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:35",
+     "target": "La casa è vicina",
+     "ru": "Дом рядом.",
+     "en": "The house is nearby."
+    }
+   ]
+  },
+  {
+   "form": "bar",
+   "surface": "bar",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:36",
+     "target": "Il bar è chiuso",
+     "ru": "Кафе закрыто.",
+     "en": "The cafe is closed."
+    }
+   ]
+  },
+  {
+   "form": "chiuso",
+   "surface": "chiuso",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:36",
+     "target": "Il bar è chiuso",
+     "ru": "Кафе закрыто.",
+     "en": "The cafe is closed."
+    }
+   ]
+  },
+  {
+   "form": "chiusa",
+   "surface": "chiusa",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:37",
+     "target": "La finestra è chiusa",
+     "ru": "Окно закрыто.",
+     "en": "The window is closed."
+    }
+   ]
+  },
+  {
+   "form": "le",
+   "surface": "Le",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:38",
+     "target": "Le porte sono aperte",
+     "ru": "Двери открыты.",
+     "en": "The doors are open."
+    },
+    {
+     "id": "it:01:46",
+     "target": "Le chiavi sono lì",
+     "ru": "Ключи там.",
+     "en": "The keys are there."
+    }
+   ]
+  },
+  {
+   "form": "porte",
+   "surface": "porte",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:38",
+     "target": "Le porte sono aperte",
+     "ru": "Двери открыты.",
+     "en": "The doors are open."
+    }
+   ]
+  },
+  {
+   "form": "aperte",
+   "surface": "aperte",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:38",
+     "target": "Le porte sono aperte",
+     "ru": "Двери открыты.",
+     "en": "The doors are open."
+    }
+   ]
+  },
+  {
+   "form": "i",
+   "surface": "I",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:39",
+     "target": "I negozi sono chiusi",
+     "ru": "Магазины закрыты.",
+     "en": "The shops are closed."
+    },
+    {
+     "id": "it:01:49",
+     "target": "I bambini sono fuori",
+     "ru": "Дети на улице.",
+     "en": "The children are outside."
+    }
+   ]
+  },
+  {
+   "form": "negozi",
+   "surface": "negozi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:39",
+     "target": "I negozi sono chiusi",
+     "ru": "Магазины закрыты.",
+     "en": "The shops are closed."
+    }
+   ]
+  },
+  {
+   "form": "chiusi",
+   "surface": "chiusi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:39",
+     "target": "I negozi sono chiusi",
+     "ru": "Магазины закрыты.",
+     "en": "The shops are closed."
+    }
+   ]
+  },
+  {
+   "form": "l’ufficio",
+   "surface": "L’ufficio",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:40",
+     "target": "L’ufficio è silenzioso",
+     "ru": "В офисе тихо.",
+     "en": "The office is quiet."
+    }
+   ]
+  },
+  {
+   "form": "silenzioso",
+   "surface": "silenzioso",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:40",
+     "target": "L’ufficio è silenzioso",
+     "ru": "В офисе тихо.",
+     "en": "The office is quiet."
+    }
+   ]
+  },
+  {
+   "form": "già",
+   "surface": "già",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:41",
+     "target": "Lea è già qui",
+     "ru": "Леа уже здесь.",
+     "en": "Lea is already here."
+    }
+   ]
+  },
+  {
+   "form": "ancora",
+   "surface": "ancora",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:42",
+     "target": "Sono ancora in ufficio",
+     "ru": "Я всё ещё в офисе.",
+     "en": "I’m still in the office."
+    }
+   ]
+  },
+  {
+   "form": "solo",
+   "surface": "solo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:43",
+     "target": "Paolo è solo",
+     "ru": "Паоло один.",
+     "en": "Paolo is alone."
+    }
+   ]
+  },
+  {
+   "form": "insieme",
+   "surface": "insieme",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:44",
+     "target": "Siamo insieme",
+     "ru": "Мы вместе.",
+     "en": "We are together."
+    }
+   ]
+  },
+  {
+   "form": "chiave",
+   "surface": "chiave",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:45",
+     "target": "La chiave è qui",
+     "ru": "Ключ здесь.",
+     "en": "The key is here."
+    }
+   ]
+  },
+  {
+   "form": "chiavi",
+   "surface": "chiavi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:46",
+     "target": "Le chiavi sono lì",
+     "ru": "Ключи там.",
+     "en": "The keys are there."
+    }
+   ]
+  },
+  {
+   "form": "borsa",
+   "surface": "borsa",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:47",
+     "target": "La borsa è a casa",
+     "ru": "Сумка дома.",
+     "en": "The bag is at home."
+    }
+   ]
+  },
+  {
+   "form": "vicino",
+   "surface": "vicino",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:01:48",
+     "target": "Siete vicino alla stazione",
+     "ru": "Вы рядом с вокзалом.",
+     "en": "You’re near the train station."
+    },
+    {
+     "id": "it:01:50",
+     "target": "Sono vicino alla porta",
+     "ru": "Я возле двери.",
+     "en": "I’m at the door."
+    }
+   ]
+  },
+  {
+   "form": "bambini",
+   "surface": "bambini",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:49",
+     "target": "I bambini sono fuori",
+     "ru": "Дети на улице.",
+     "en": "The children are outside."
+    }
+   ]
+  },
+  {
+   "form": "fuori",
+   "surface": "fuori",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:01:49",
+     "target": "I bambini sono fuori",
+     "ru": "Дети на улице.",
+     "en": "The children are outside."
+    }
+   ]
+  }
+ ]
+}

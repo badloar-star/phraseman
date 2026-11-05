@@ -1,0 +1,19 @@
+{"forms":{
+"el / la":["el","la","las","los"],
+"un / una":["un","una"],
+"lo/la":["lo"],
+"mi":["mis"],"tu":["tus"],"su":["sus"],
+"ser":["es","son","soy","somos","fui","fue","fuiste","fuimos","fueron"],
+"ir":["va","voy","vamos","van","iba","iríamos","fui","fue","fuiste","fuimos","fueron"],
+"haber":["hay","he","ha","hemos","han","hubiera"],
+"tener":["tiene","tienes","tienen","tuviera","tuve","tuvo","tuviste","tuvimos","tuvieron"],
+"querer":["quiere","quiero"],
+"poder":["puedes","puedo","puede","pueden","pude","pudiste","pudo","pudimos","pudiera","pudieras"],
+"leer":["leyendo","leído","leía","leían","leí","lea"],
+"venir":["vino","vine","vinimos","vinieron"],
+"volver":["vuelto","vuelve","vuelva"],
+"dar":["dimos","dio"],
+"hacer":["hiciste","hizo","hicimos","hice","hicieron"],
+"saber":["supiera","sepa"],
+"cerrar":["cierra"],"costar":["cuesta"],"probar":["prueba"],"sonar":["suena"],"ver":["vimos"]
+},"new":[]}

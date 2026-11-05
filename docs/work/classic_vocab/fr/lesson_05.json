@@ -1,0 +1,288 @@
+{
+ "lang": "fr",
+ "lesson": 5,
+ "words": {
+  "j’ai": {
+   "ru": "я имею, у меня есть",
+   "uk": "я маю, у мене є",
+   "en": "I have",
+   "es": "yo tengo"
+  },
+  "as": {
+   "ru": "(ты) имеешь, у тебя есть",
+   "uk": "(ти) маєш, у тебе є",
+   "en": "(you) have",
+   "es": "(tú) tienes"
+  },
+  "a": {
+   "ru": "(он, она) имеет, у него есть",
+   "uk": "(він, вона) має, у нього є",
+   "en": "(he, she) has",
+   "es": "(él, ella) tiene"
+  },
+  "il": {
+   "ru": "он",
+   "uk": "він",
+   "en": "he",
+   "es": "él"
+  },
+  "avons": {
+   "ru": "(мы) имеем, у нас есть",
+   "uk": "(ми) маємо, у нас є",
+   "en": "(we) have",
+   "es": "(nosotros) tenemos"
+  },
+  "avez": {
+   "ru": "(вы) имеете, у вас есть",
+   "uk": "(ви) маєте, у вас є",
+   "en": "(you) have",
+   "es": "(usted) tiene"
+  },
+  "ont": {
+   "ru": "(они) имеют, у них есть",
+   "uk": "(вони) мають, у них є",
+   "en": "(they) have",
+   "es": "(ellos) tienen"
+  },
+  "faim": {
+   "ru": "голод (хочу есть)",
+   "uk": "голод (хочу їсти)",
+   "en": "hunger",
+   "es": "hambre"
+  },
+  "soif": {
+   "ru": "жажда (хочу пить)",
+   "uk": "спрага (хочу пити)",
+   "en": "thirst",
+   "es": "sed"
+  },
+  "froid": {
+   "ru": "холод (мёрзнуть)",
+   "uk": "холод (мерзнути)",
+   "en": "cold",
+   "es": "frío"
+  },
+  "chaud": {
+   "ru": "жар (жарко)",
+   "uk": "жара (спекотно)",
+   "en": "hot",
+   "es": "calor"
+  },
+  "peur": {
+   "ru": "страх",
+   "uk": "страх",
+   "en": "fear",
+   "es": "miedo"
+  },
+  "sommeil": {
+   "ru": "сон (хочу спать)",
+   "uk": "сон (хочу спати)",
+   "en": "sleepiness",
+   "es": "sueño"
+  },
+  "mal": {
+   "ru": "боль",
+   "uk": "біль",
+   "en": "pain, ache",
+   "es": "dolor"
+  },
+  "dos": {
+   "ru": "спина",
+   "uk": "спина",
+   "en": "back",
+   "es": "espalda"
+  },
+  "tête": {
+   "ru": "голова",
+   "uk": "голова",
+   "en": "head",
+   "es": "cabeza"
+  },
+  "vingt": {
+   "ru": "двадцать",
+   "uk": "двадцять",
+   "en": "twenty",
+   "es": "veinte"
+  },
+  "ans": {
+   "ru": "годы (возраст)",
+   "uk": "роки (вік)",
+   "en": "years (age)",
+   "es": "años"
+  },
+  "trente": {
+   "ru": "тридцать",
+   "uk": "тридцять",
+   "en": "thirty",
+   "es": "treinta"
+  },
+  "dix": {
+   "ru": "десять",
+   "uk": "десять",
+   "en": "ten",
+   "es": "diez"
+  },
+  "trois": {
+   "ru": "три",
+   "uk": "три",
+   "en": "three",
+   "es": "tres"
+  },
+  "cinq": {
+   "ru": "пять",
+   "uk": "п'ять",
+   "en": "five",
+   "es": "cinco"
+  },
+  "minutes": {
+   "ru": "минуты",
+   "uk": "хвилини",
+   "en": "minutes",
+   "es": "minutos"
+  },
+  "rendez-vous": {
+   "ru": "встреча, договорённость",
+   "uk": "зустріч, домовленість",
+   "en": "appointment, meeting",
+   "es": "cita"
+  },
+  "question": {
+   "ru": "вопрос",
+   "uk": "питання",
+   "en": "question",
+   "es": "pregunta"
+  },
+  "idée": {
+   "ru": "идея",
+   "uk": "ідея",
+   "en": "idea",
+   "es": "idea"
+  },
+  "temps": {
+   "ru": "время",
+   "uk": "час",
+   "en": "time",
+   "es": "tiempo"
+  },
+  "avez-vous": {
+   "ru": "у вас есть ли (вопрос)",
+   "uk": "чи є у вас (питання)",
+   "en": "do you have…?",
+   "es": "¿tiene usted…?"
+  },
+  "stylo": {
+   "ru": "ручка",
+   "uk": "ручка",
+   "en": "pen",
+   "es": "bolígrafo"
+  },
+  "instant": {
+   "ru": "мгновение, минутка",
+   "uk": "мить, хвилинка",
+   "en": "moment",
+   "es": "momento"
+  },
+  "qu’elle": {
+   "ru": "что она (в вопросе)",
+   "uk": "що вона (у питанні)",
+   "en": "that she (in a question)",
+   "es": "que ella"
+  },
+  "ses": {
+   "ru": "его, её (о нескольких вещах)",
+   "uk": "його, її (про кілька речей)",
+   "en": "his, her (several things)",
+   "es": "sus"
+  },
+  "passeport": {
+   "ru": "паспорт",
+   "uk": "паспорт",
+   "en": "passport",
+   "es": "pasaporte"
+  },
+  "monnaie": {
+   "ru": "мелочь, сдача",
+   "uk": "дрібні гроші, решта",
+   "en": "change (coins)",
+   "es": "cambio, monedas"
+  },
+  "retour": {
+   "ru": "возвращение; обратный",
+   "uk": "повернення; зворотний",
+   "en": "return",
+   "es": "regreso, vuelta"
+  },
+  "réservation": {
+   "ru": "бронь, бронирование",
+   "uk": "бронь, бронювання",
+   "en": "reservation",
+   "es": "reserva"
+  },
+  "besoin": {
+   "ru": "нужда (нужно)",
+   "uk": "потреба (потрібно)",
+   "en": "need",
+   "es": "necesidad"
+  },
+  "d’aide": {
+   "ru": "помощи",
+   "uk": "допомоги",
+   "en": "of help",
+   "es": "de ayuda"
+  },
+  "d’une": {
+   "ru": "какой-то, одной (нужна)",
+   "uk": "якоїсь, однієї (потрібна)",
+   "en": "of a, of an",
+   "es": "de una"
+  },
+  "pause": {
+   "ru": "перерыв, пауза",
+   "uk": "перерва, пауза",
+   "en": "break, pause",
+   "es": "pausa"
+  },
+  "repos": {
+   "ru": "отдых",
+   "uk": "відпочинок",
+   "en": "rest",
+   "es": "descanso"
+  },
+  "d’eau": {
+   "ru": "воды",
+   "uk": "води",
+   "en": "of water",
+   "es": "de agua"
+  },
+  "peu": {
+   "ru": "немного",
+   "uk": "трохи",
+   "en": "a little",
+   "es": "poco"
+  },
+  "choix": {
+   "ru": "выбор",
+   "uk": "вибір",
+   "en": "choice",
+   "es": "elección"
+  },
+  "midi": {
+   "ru": "полдень, двенадцать часов",
+   "uk": "південь, дванадцята година",
+   "en": "noon",
+   "es": "mediodía"
+  },
+  "gorge": {
+   "ru": "горло",
+   "uk": "горло",
+   "en": "throat",
+   "es": "garganta"
+  },
+  "ordonnance": {
+   "ru": "рецепт (от врача)",
+   "uk": "рецепт (від лікаря)",
+   "en": "prescription",
+   "es": "receta médica"
+  }
+ }
+}

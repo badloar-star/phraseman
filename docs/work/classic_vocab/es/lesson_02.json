@@ -1,0 +1,42 @@
+{
+ "lang": "es",
+ "lesson": 2,
+ "words": {
+  "no": {
+   "ru": "не, нет",
+   "uk": "не, ні",
+   "en": "no, not",
+   "es": "palabra para negar"
+  },
+  "tienda": {
+   "ru": "магазин",
+   "uk": "магазин, крамниця",
+   "en": "shop, store",
+   "es": "lugar donde se compra"
+  },
+  "farmacia": {
+   "ru": "аптека",
+   "uk": "аптека",
+   "en": "pharmacy",
+   "es": "lugar donde se compran medicinas"
+  },
+  "oficina": {
+   "ru": "офис",
+   "uk": "офіс",
+   "en": "office",
+   "es": "lugar de trabajo"
+  },
+  "bolso": {
+   "ru": "сумка",
+   "uk": "сумка",
+   "en": "bag, handbag",
+   "es": "bolsa de mano"
+  },
+  "bolsillo": {
+   "ru": "карман",
+   "uk": "кишеня",
+   "en": "pocket",
+   "es": "bolsa pequeña en la ropa"
+  }
+ }
+}

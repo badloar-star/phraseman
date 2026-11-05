@@ -13,10 +13,10 @@ export const introPlainStats = { lessons: 0, blocks: 0, perLang: {} };
 // строки текста → линии интерфейса: строка «фраза курса = перевод» остаётся одной строкой-текстом; одиночные строки — text
 const toLines = (text) => String(text).split('\n').map((t) => t.trim()).filter(Boolean).map((t) => ({ type: 'text', parts: [{ text: t }] }));
 const readFiles = (lang, n) => {
-  const d = join(DIR, lang);
-  if (!existsSync(d)) return [];
-  const re = new RegExp(`^lesson_${String(n).padStart(2, '0')}(\.[A-Za-z-]+)?\.json$`);
-  return readdirSync(d).filter((f) => re.test(f)).sort().map((f) => JSON.parse(readFileSync(join(d, f), 'utf8')));
+  // зачем: файлы лежат и в <lang>/ (en — Теория), и в <локаль>/<lang>/ (ru — Темы, uk — Переводчик): читаем оба места
+  const dirs = [join(DIR, lang), ...Object.keys(SUF).map((loc) => join(DIR, loc, lang))].filter((d) => existsSync(d));
+  const re = new RegExp('^lesson_' + String(n).padStart(2, '0') + '(\\.[A-Za-z-]+)?\\.json$');
+  return dirs.flatMap((d) => readdirSync(d).filter((f) => re.test(f)).sort().map((f) => JSON.parse(readFileSync(join(d, f), 'utf8'))));
 };
 export function plainIntroFor(lang, n, blocks) {
   const files = readFiles(lang, n);

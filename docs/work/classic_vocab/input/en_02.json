@@ -1,0 +1,345 @@
+{
+ "lang": "en",
+ "lesson": 2,
+ "words": [
+  {
+   "form": "not",
+   "surface": "not",
+   "count": 22,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.01",
+     "target": "I am not late",
+     "ru": "Я не опоздал.",
+     "en": "I am not late."
+    },
+    {
+     "id": "en-classic-r1:02.02",
+     "target": "You are not late",
+     "ru": "Вы не опоздали.",
+     "en": "You are not late."
+    }
+   ]
+  },
+  {
+   "form": "yes",
+   "surface": "Yes",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.21",
+     "target": "Yes I am",
+     "ru": "Да, я здесь.",
+     "en": "Yes, I am."
+    },
+    {
+     "id": "en-classic-r1:02.23",
+     "target": "Yes she is",
+     "ru": "— Она здесь? — Да.",
+     "en": "Yes, she is."
+    }
+   ]
+  },
+  {
+   "form": "no",
+   "surface": "No",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.22",
+     "target": "No I am not",
+     "ru": "Нет, меня здесь нет.",
+     "en": "No, I am not."
+    },
+    {
+     "id": "en-classic-r1:02.24",
+     "target": "No she is not",
+     "ru": "— Она здесь? — Нет, её нет.",
+     "en": "No, she is not."
+    }
+   ]
+  },
+  {
+   "form": "this",
+   "surface": "this",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.31",
+     "target": "Is this seat free",
+     "ru": "Это место свободно?",
+     "en": "Is this seat free?"
+    }
+   ]
+  },
+  {
+   "form": "seat",
+   "surface": "seat",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.31",
+     "target": "Is this seat free",
+     "ru": "Это место свободно?",
+     "en": "Is this seat free?"
+    }
+   ]
+  },
+  {
+   "form": "lift",
+   "surface": "lift",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.32",
+     "target": "Is the lift here",
+     "ru": "Лифт здесь?",
+     "en": "Is the lift here?"
+    },
+    {
+     "id": "en-classic-r1:02.37",
+     "target": "The lift is not here",
+     "ru": "Лифта здесь нет.",
+     "en": "The lift is not here."
+    }
+   ]
+  },
+  {
+   "form": "stairs",
+   "surface": "stairs",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.33",
+     "target": "Are the stairs safe",
+     "ru": "Лестница безопасна?",
+     "en": "Are the stairs safe?"
+    },
+    {
+     "id": "en-classic-r1:02.39",
+     "target": "The stairs are not safe",
+     "ru": "Лестница небезопасна.",
+     "en": "The stairs are not safe."
+    }
+   ]
+  },
+  {
+   "form": "safe",
+   "surface": "safe",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.33",
+     "target": "Are the stairs safe",
+     "ru": "Лестница безопасна?",
+     "en": "Are the stairs safe?"
+    },
+    {
+     "id": "en-classic-r1:02.39",
+     "target": "The stairs are not safe",
+     "ru": "Лестница небезопасна.",
+     "en": "The stairs are not safe."
+    }
+   ]
+  },
+  {
+   "form": "ticket",
+   "surface": "ticket",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.34",
+     "target": "Is your ticket valid",
+     "ru": "Ваш билет действителен?",
+     "en": "Is your ticket valid?"
+    },
+    {
+     "id": "en-classic-r1:02.40",
+     "target": "My ticket is not valid",
+     "ru": "Мой билет недействителен.",
+     "en": "My ticket is not valid."
+    }
+   ]
+  },
+  {
+   "form": "valid",
+   "surface": "valid",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.34",
+     "target": "Is your ticket valid",
+     "ru": "Ваш билет действителен?",
+     "en": "Is your ticket valid?"
+    },
+    {
+     "id": "en-classic-r1:02.40",
+     "target": "My ticket is not valid",
+     "ru": "Мой билет недействителен.",
+     "en": "My ticket is not valid."
+    }
+   ]
+  },
+  {
+   "form": "platform",
+   "surface": "platform",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.35",
+     "target": "Is the platform empty",
+     "ru": "Платформа пуста?",
+     "en": "Is the platform empty?"
+    },
+    {
+     "id": "en-classic-r1:02.38",
+     "target": "The platform is not empty",
+     "ru": "Платформа не пуста.",
+     "en": "The platform is not empty."
+    }
+   ]
+  },
+  {
+   "form": "empty",
+   "surface": "empty",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.35",
+     "target": "Is the platform empty",
+     "ru": "Платформа пуста?",
+     "en": "Is the platform empty?"
+    },
+    {
+     "id": "en-classic-r1:02.38",
+     "target": "The platform is not empty",
+     "ru": "Платформа не пуста.",
+     "en": "The platform is not empty."
+    }
+   ]
+  },
+  {
+   "form": "these",
+   "surface": "these",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.36",
+     "target": "Are these seats free",
+     "ru": "Эти места свободны?",
+     "en": "Are these seats free?"
+    }
+   ]
+  },
+  {
+   "form": "station",
+   "surface": "station",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.41",
+     "target": "Are you at the station",
+     "ru": "Вы на вокзале?",
+     "en": "Are you at the station?"
+    },
+    {
+     "id": "en-classic-r1:02.49",
+     "target": "We are not at the station",
+     "ru": "Нас нет на вокзале.",
+     "en": "We are not at the station."
+    }
+   ]
+  },
+  {
+   "form": "last",
+   "surface": "last",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.42",
+     "target": "Is the last bus late",
+     "ru": "Последний автобус опаздывает?",
+     "en": "Is the last bus late?"
+    }
+   ]
+  },
+  {
+   "form": "tickets",
+   "surface": "tickets",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.43",
+     "target": "Are the tickets here",
+     "ru": "Билеты здесь?",
+     "en": "Are the tickets here?"
+    }
+   ]
+  },
+  {
+   "form": "waiting",
+   "surface": "waiting",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.44",
+     "target": "Is the waiting room warm",
+     "ru": "В зале ожидания тепло?",
+     "en": "Is the waiting room warm?"
+    }
+   ]
+  },
+  {
+   "form": "office",
+   "surface": "office",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.45",
+     "target": "The ticket office is not open",
+     "ru": "Касса не работает.",
+     "en": "The ticket office is not open."
+    }
+   ]
+  },
+  {
+   "form": "her",
+   "surface": "her",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.47",
+     "target": "Is her phone off",
+     "ru": "У нее выключен телефон?",
+     "en": "Is her phone off?"
+    }
+   ]
+  },
+  {
+   "form": "train",
+   "surface": "train",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.50",
+     "target": "Is your train on time",
+     "ru": "Ваш поезд прибывает вовремя?",
+     "en": "Is your train on time?"
+    }
+   ]
+  },
+  {
+   "form": "time",
+   "surface": "time",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:02.50",
+     "target": "Is your train on time",
+     "ru": "Ваш поезд прибывает вовремя?",
+     "en": "Is your train on time?"
+    }
+   ]
+  }
+ ]
+}

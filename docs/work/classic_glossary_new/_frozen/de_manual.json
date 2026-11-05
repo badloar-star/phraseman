@@ -1,0 +1,433 @@
+{
+ "forms": {
+  "sein": [
+   "ist",
+   "sind",
+   "war",
+   "waren",
+   "bin",
+   "wäre",
+   "gewesen",
+   "sei",
+   "seien"
+  ],
+  "haben": [
+   "hat",
+   "hatte",
+   "hätte",
+   "hätten",
+   "hättet",
+   "hättest",
+   "gehabt"
+  ],
+  "fahren": [
+   "fährt",
+   "gefahren",
+   "fuhr"
+  ],
+  "gehen": [
+   "geht",
+   "gegangen",
+   "ging",
+   "gingen"
+  ],
+  "kommen": [
+   "kam",
+   "kamen",
+   "gekommen",
+   "kämen"
+  ],
+  "anrufen": [
+   "angerufen",
+   "anzurufen",
+   "anrief",
+   "anrufe"
+  ],
+  "abholen": [
+   "abgeholt"
+  ],
+  "dürfen": [
+   "darf"
+  ],
+  "finden": [
+   "gefunden",
+   "fand",
+   "fanden"
+  ],
+  "warten": [
+   "gewartet"
+  ],
+  "hören": [
+   "gehört"
+  ],
+  "bleiben": [
+   "geblieben"
+  ],
+  "kaufen": [
+   "gekauft"
+  ],
+  "schreiben": [
+   "geschrieben"
+  ],
+  "lesen": [
+   "liest",
+   "las",
+   "lest",
+   "gelesen"
+  ],
+  "essen": [
+   "isst"
+  ],
+  "öffnen": [
+   "öffnest"
+  ],
+  "lernen": [
+   "gelernt"
+  ],
+  "arbeiten": [
+   "gearbeitet"
+  ],
+  "suchen": [
+   "gesucht"
+  ],
+  "schließen": [
+   "geschlossen"
+  ],
+  "helfen": [
+   "geholfen",
+   "hilft"
+  ],
+  "wohnen": [
+   "gewohnt"
+  ],
+  "absagen": [
+   "abgesagt"
+  ],
+  "speichern": [
+   "gespeichert"
+  ],
+  "ausweis": [
+   "ausweise"
+  ],
+  "umsteigen": [
+   "umgestiegen"
+  ],
+  "kalt": [
+   "kälter"
+  ],
+  "bekommen": [
+   "bekommst"
+  ],
+  "ankommen": [
+   "ankommst"
+  ],
+  "liefern": [
+   "geliefert"
+  ],
+  "erklären": [
+   "erklär"
+  ],
+  "parken": [
+   "geparkt"
+  ],
+  "brauchen": [
+   "brauchte",
+   "gebraucht"
+  ],
+  "bestätigen": [
+   "bestätigte"
+  ],
+  "mitkommen": [
+   "mitgekommen"
+  ],
+  "werden": [
+   "würdet"
+  ]
+ },
+ "new": [
+  {
+   "lemma": "ein",
+   "pos": "DET",
+   "meaning": {
+    "ru": "слово перед названием вещи; по-русски нет, запоминайте с вещью (один, какой-то)",
+    "uk": "слово перед назвою речі; українською немає, запам'ятовуйте з річчю (один, якийсь)",
+    "en": "a, an (goes before a noun)",
+    "es": "un, una (va antes del sustantivo)"
+   },
+   "forms": [
+    "eine",
+    "einen",
+    "einem",
+    "einer"
+   ]
+  },
+  {
+   "lemma": "kein",
+   "pos": "DET",
+   "meaning": {
+    "ru": "нет, ни один (не…)",
+    "uk": "немає, жодний (не…)",
+    "en": "no, not any",
+    "es": "ningún, ninguno"
+   },
+   "forms": [
+    "keine",
+    "keinen"
+   ]
+  },
+  {
+   "lemma": "seine",
+   "pos": "DET",
+   "meaning": {
+    "ru": "его, свой (о мужчине или предмете)",
+    "uk": "його, свій (про чоловіка чи предмет)",
+    "en": "his, its",
+    "es": "su (de él)"
+   },
+   "forms": [
+    "seinen",
+    "seinem"
+   ]
+  },
+  {
+   "lemma": "im",
+   "pos": "PREP",
+   "meaning": {
+    "ru": "в (внутри чего-то)",
+    "uk": "в (всередині чогось)",
+    "en": "in the",
+    "es": "en el"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "zum",
+   "pos": "PREP",
+   "meaning": {
+    "ru": "к, на, до (куда-то или для чего-то)",
+    "uk": "до, на (кудись чи для чогось)",
+    "en": "to the, for the",
+    "es": "al, hacia el"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "zur",
+   "pos": "PREP",
+   "meaning": {
+    "ru": "к, на (куда-то, для чего-то)",
+    "uk": "до, на (кудись, для чогось)",
+    "en": "to the, for the",
+    "es": "a la, hacia la"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "ins",
+   "pos": "PREP",
+   "meaning": {
+    "ru": "в (куда-то внутрь)",
+    "uk": "в (кудись усередину)",
+    "en": "into the",
+    "es": "al interior de"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "ans",
+   "pos": "PREP",
+   "meaning": {
+    "ru": "к, на (до края, вплотную)",
+    "uk": "до, на (до краю, упритул)",
+    "en": "to the, onto the",
+    "es": "a, hasta el"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "vom",
+   "pos": "PREP",
+   "meaning": {
+    "ru": "от, с (откуда-то)",
+    "uk": "від, з (звідкись)",
+    "en": "from the, of the",
+    "es": "del, desde el"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "schon",
+   "pos": "ADV",
+   "meaning": {
+    "ru": "уже",
+    "uk": "вже",
+    "en": "already",
+    "es": "ya"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "euch",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "вас, вам (о нескольких людях)",
+    "uk": "вас, вам (про кількох людей)",
+    "en": "you, to you (plural)",
+    "es": "os, a vosotros"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "alle",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "все",
+    "uk": "усі",
+    "en": "all, everyone",
+    "es": "todos"
+   },
+   "forms": [
+    "alles"
+   ]
+  },
+  {
+   "lemma": "melden",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "сообщать, давать знать",
+    "uk": "повідомляти, давати знати",
+    "en": "to report, to let know",
+    "es": "avisar, informar"
+   },
+   "forms": [
+    "melde",
+    "meldet",
+    "gemeldet"
+   ]
+  },
+  {
+   "lemma": "drücken",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "нажимать, давить",
+    "uk": "натискати, тиснути",
+    "en": "to press",
+    "es": "presionar"
+   },
+   "forms": [
+    "drück"
+   ]
+  },
+  {
+   "lemma": "passieren",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "случаться, происходить",
+    "uk": "траплятися, відбуватися",
+    "en": "to happen",
+    "es": "pasar, suceder"
+   },
+   "forms": [
+    "passiert"
+   ]
+  },
+  {
+   "lemma": "transportieren",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "перевозить",
+    "uk": "перевозити",
+    "en": "to transport",
+    "es": "transportar"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "schmelzen",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "таять, плавиться",
+    "uk": "танути, плавитися",
+    "en": "to melt",
+    "es": "derretirse"
+   },
+   "forms": [
+    "geschmolzen"
+   ]
+  },
+  {
+   "lemma": "schauen",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "смотреть",
+    "uk": "дивитися",
+    "en": "to look",
+    "es": "mirar"
+   },
+   "forms": [
+    "schaue"
+   ]
+  },
+  {
+   "lemma": "kämmen",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "расчёсывать",
+    "uk": "розчісувати",
+    "en": "to comb",
+    "es": "peinar"
+   },
+   "forms": [
+    "kämmt"
+   ]
+  },
+  {
+   "lemma": "hineingehen",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "заходить внутрь",
+    "uk": "заходити всередину",
+    "en": "to go in",
+    "es": "entrar"
+   },
+   "forms": [
+    "hineingegangen"
+   ]
+  },
+  {
+   "lemma": "danke",
+   "pos": "INTJ",
+   "meaning": {
+    "ru": "спасибо",
+    "uk": "дякую",
+    "en": "thanks",
+    "es": "gracias"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "zufrieden",
+   "pos": "ADJ",
+   "meaning": {
+    "ru": "довольный",
+    "uk": "задоволений",
+    "en": "satisfied, content",
+    "es": "satisfecho"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "lieb",
+   "pos": "ADJ",
+   "meaning": {
+    "ru": "милый, любимый",
+    "uk": "милий, улюблений",
+    "en": "dear, favorite",
+    "es": "querido"
+   },
+   "forms": [
+    "liebsten"
+   ]
+  }
+ ]
+}

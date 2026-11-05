@@ -1,0 +1,655 @@
+{
+  "lang": "en",
+  "lesson": 20,
+  "title": {
+    "ru": "Новая вещь и знакомая вещь",
+    "uk": "Нова річ і знайома річ",
+    "en": "A new thing and a known thing"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "A и an: одна вещь",
+        "uk": "A і an: одна річ",
+        "en": "A and an: one thing"
+      },
+      "text": {
+        "ru": "Перед названием одной вещи часто стоит a или an.\nОни значат «один, какой-то». По-русски их не говорят.\nI need a pen. — Мне нужна ручка.\nЧитается: ай ни́д э пэ́н.\nI need an envelope. — Мне нужен конверт.\nЧитается: ай ни́д эн э́нвелоуп.\nЗдесь стоит an, а не a: an envelope.\nHe has an appointment. — У него назначена встреча.\nЧитается: хи хэ́з эн эпо́йнтмент.\nОпять an: an appointment.\nI have an idea. — У меня есть идея.\nЧитается: ай хэ́в эн айди́э.\nСлово idea значит «идея».\nОпять an: an idea.\nСлово an стоит перед словом, которое начинается со звука «а», «э», «ай» или «о».\nТак легче говорить: «эн энвелоуп», а не «э энвелоуп».",
+        "uk": "Перед назвою однієї речі часто стоїть a або an.\nВони означають «один, якийсь». Українською їх не кажуть.\nI need a pen. — Мені потрібна ручка.\nЧитається: ай ні́д е пе́н.\nI need an envelope. — Мені потрібен конверт.\nЧитається: ай ні́д ен е́нвелоуп.\nТут стоїть an, а не a: an envelope.\nHe has an appointment. — У нього зустріч.\nЧитається: хі хе́з ен епо́йнтмент.\nЗнову an: an appointment.\nI have an idea. — У мене є ідея.\nЧитається: ай хе́в ен айді́е.\nСлово idea означає «ідея».\nЗнову an: an idea.\nСлово an стоїть перед словом, яке починається зі звуку «а», «е», «ай» або «о».\nТак легше говорити: «ен енвелоуп», а не «е енвелоуп».",
+        "en": "Before the name of one thing we often put a or an.\nThey mean “one of them”.\nI need a pen.\nI need an envelope.\nHere we say an, not a: an envelope.\nHe has an appointment.\nAgain an: an appointment.\nI have an idea.\nThe word idea means “a thought about what to do”.\nAgain an: an idea.\nWe say an before a word that starts with the sound “a”, “e”, “eye” or “o”.\nIt is easier to say: an envelope, not a envelope."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:20.01",
+          "say": {
+            "ru": "ай ни́д э пэ́н",
+            "uk": "ай ні́д е пе́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.02",
+          "say": {
+            "ru": "ай ни́д эн э́нвелоуп",
+            "uk": "ай ні́д ен е́нвелоуп"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.04",
+          "say": {
+            "ru": "хи хэ́з эн эпо́йнтмент",
+            "uk": "хі хе́з ен епо́йнтмент"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.06",
+          "say": {
+            "ru": "ай хэ́в эн айди́э",
+            "uk": "ай хе́в ен айді́е"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужна ручка»",
+            "uk": "Виберіть, як сказати: «Мені потрібна ручка»",
+            "en": "Choose how to say: “I need a pen.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:20.01",
+          "options": [
+            "en-classic-r1:20.01",
+            "en-classic-r1:20.02",
+            "en-classic-r1:20.04"
+          ],
+          "answerId": "en-classic-r1:20.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужен конверт»",
+            "uk": "Виберіть, як сказати: «Мені потрібен конверт»",
+            "en": "Choose how to say: “I need an envelope.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.02",
+          "options": [
+            "en-classic-r1:20.02",
+            "en-classic-r1:20.01",
+            "en-classic-r1:20.06"
+          ],
+          "answerId": "en-classic-r1:20.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня есть идея»",
+            "uk": "Виберіть, як сказати: «У мене є ідея»",
+            "en": "Choose how to say: “I have an idea.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.06",
+          "options": [
+            "en-classic-r1:20.06",
+            "en-classic-r1:20.04",
+            "en-classic-r1:20.01"
+          ],
+          "answerId": "en-classic-r1:20.06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Ещё a и an",
+        "uk": "Ще a і an",
+        "en": "More a and an"
+      },
+      "text": {
+        "ru": "Смотрите, какое слово стоит: a или an.\nShe wants a sandwich. — Она хочет сэндвич.\nЧитается: ши уо́нтс э сэ́ндуич.\nСлово sandwich значит «сэндвич».\nСлово sandwich начинается со звука «с», поэтому a.\nHe ordered an omelette. — Он заказал омлет.\nЧитается: хи о́рдерд эн о́млет.\nСлово ordered значит «заказал» (order + ed).\nСлово omelette значит «омлет».\nСлово omelette начинается со звука «о», поэтому an.\nThey rented a flat. — Они сняли квартиру.\nЧитается: зэй рэ́нтид э флэ́т.\nСлово rented значит «сняли, арендовали» (rent + ed).\nСлово flat начинается со звука «ф», поэтому a.",
+        "uk": "Дивіться, яке слово стоїть: a чи an.\nShe wants a sandwich. — Вона хоче сендвіч.\nЧитається: ші уо́нтс е се́ндуіч.\nСлово sandwich означає «сендвіч».\nСлово sandwich починається зі звуку «с», тому a.\nHe ordered an omelette. — Він замовив омлет.\nЧитається: хі о́рдерд ен о́млет.\nСлово ordered означає «замовив» (order + ed).\nСлово omelette означає «омлет».\nСлово omelette починається зі звуку «о», тому an.\nThey rented a flat. — Вони орендували квартиру.\nЧитається: зей ре́нтід е фле́т.\nСлово rented означає «зняли, орендували» (rent + ed).\nСлово flat починається зі звуку «ф», тому a.",
+        "en": "Look at which word we use: a or an.\nShe wants a sandwich.\nThe word sandwich means “bread with food inside”.\nThe word sandwich starts with the sound “s”, so we say a.\nHe ordered an omelette.\nThe word ordered means “asked for food or drink” (order + ed).\nThe word omelette means “eggs cooked in a pan”.\nThe word omelette starts with the sound “o”, so we say an.\nThey rented a flat.\nThe word rented means “paid to use a home” (rent + ed).\nThe word flat starts with the sound “f”, so we say a."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:20.07",
+          "say": {
+            "ru": "ши уо́нтс э сэ́ндуич",
+            "uk": "ші уо́нтс е се́ндуіч"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.08",
+          "say": {
+            "ru": "хи о́рдерд эн о́млет",
+            "uk": "хі о́рдерд ен о́млет"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.09",
+          "say": {
+            "ru": "зэй рэ́нтид э флэ́т",
+            "uk": "зей ре́нтід е фле́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она хочет сэндвич»",
+            "uk": "Виберіть, як сказати: «Вона хоче сендвіч»",
+            "en": "Choose how to say: “She wants a sandwich.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:20.07",
+          "options": [
+            "en-classic-r1:20.07",
+            "en-classic-r1:20.08",
+            "en-classic-r1:20.09"
+          ],
+          "answerId": "en-classic-r1:20.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он заказал омлет»",
+            "uk": "Виберіть, як сказати: «Він замовив омлет»",
+            "en": "Choose how to say: “He ordered an omelette.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.08",
+          "options": [
+            "en-classic-r1:20.08",
+            "en-classic-r1:20.09",
+            "en-classic-r1:20.07"
+          ],
+          "answerId": "en-classic-r1:20.08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они сняли квартиру»",
+            "uk": "Виберіть, як сказати: «Вони орендували квартиру»",
+            "en": "Choose how to say: “They rented a flat.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.09",
+          "options": [
+            "en-classic-r1:20.09",
+            "en-classic-r1:20.07",
+            "en-classic-r1:20.08"
+          ],
+          "answerId": "en-classic-r1:20.09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Сначала a, потом the",
+        "uk": "Спочатку a, потім the",
+        "en": "First a, then the"
+      },
+      "text": {
+        "ru": "Расскажем про одну вещь два раза.\nI bought a lamp. The lamp is broken. — Я купил лампу. Лампа сломана.\nЧитается: ай бо́т э лэ́мп. зэ лэ́мп из бро́укен.\nВ первый раз: a lamp — «какая-то лампа».\nВо второй раз: the lamp — «та самая лампа».\nI found a key. The key is rusty. — Я нашел ключ. Ключ ржавый.\nЧитается: ай фа́унд э ки́. зэ ки́ из ра́сти.\nСлово rusty значит «ржавый».\nСлово the значит «этот, тот самый». Сначала a key, потом the key.\nShe ordered a salad. The salad was cold. — Она заказала салат. Салат был холодным.\nЧитается: ши о́рдерд э сэ́лэд. зэ сэ́лэд уо́з ко́улд.\nСлово salad значит «салат».\nСлово was значит «был, была»: «салат был холодным».\nShe bought an alarm clock. The clock is loud. — Она купила будильник. Часы громко звенят.\nЧитается: ши бо́т эн ала́рм кло́к. зэ кло́к из ла́уд.\nСлово loud значит «громкий».\nСлова alarm clock вместе значат «будильник».\nВо второй раз можно сказать короче: the clock.\nHe found an envelope. The envelope was sealed. — Он нашел конверт. Конверт был запечатан.\nЧитается: хи фа́унд эн э́нвелоуп. зи э́нвелоуп уо́з си́лд.\nСлово sealed значит «запечатанный».\nСначала an envelope, потом the envelope.",
+        "uk": "Розкажемо про одну річ двічі.\nI bought a lamp. The lamp is broken. — Я купив лампу. Лампа зламана.\nЧитається: ай бо́т е ле́мп. зе ле́мп із бро́укен.\nПерший раз: a lamp — «якась лампа».\nДругий раз: the lamp — «та сама лампа».\nI found a key. The key is rusty. — Я знайшов ключ. Ключ іржавий.\nЧитається: ай фа́унд е кі́. зе кі́ із ра́сті.\nСлово rusty означає «іржавий».\nСлово the означає «цей, той самий». Спочатку a key, потім the key.\nShe ordered a salad. The salad was cold. — Вона замовила салат. Салат був холодний.\nЧитається: ші о́рдерд е се́лед. зе се́лед уо́з ко́улд.\nСлово salad означає «салат».\nСлово was означає «був, була»: «салат був холодний».\nShe bought an alarm clock. The clock is loud. — Вона купила будильник. Годинник гучний.\nЧитається: ші бо́т ен ала́рм кло́к. зе кло́к із ла́уд.\nСлово loud означає «гучний».\nСлова alarm clock разом означають «будильник».\nДругий раз можна сказати коротше: the clock.\nHe found an envelope. The envelope was sealed. — Він знайшов конверт. Конверт був запечатаний.\nЧитається: хі фа́унд ен е́нвелоуп. зі е́нвелоуп уо́з сі́лд.\nСлово sealed означає «запечатаний».\nСпочатку an envelope, потім the envelope.",
+        "en": "We talk about one thing two times.\nI bought a lamp. The lamp is broken.\nThe first time: a lamp, some lamp.\nThe second time: the lamp, the same lamp.\nI found a key. The key is rusty.\nThe word rusty means “old and brown from water”.\nThe word the points to the same thing. First a key, then the key.\nShe ordered a salad. The salad was cold.\nThe word salad means “cold food made of vegetables”.\nThe word was means “used to be”: the salad was cold.\nShe bought an alarm clock. The clock is loud.\nThe word loud means “making a lot of noise”.\nThe words alarm clock together mean a clock that wakes you up.\nThe second time we can say it shorter: the clock.\nHe found an envelope. The envelope was sealed.\nThe word sealed means “closed so that nothing can come out”.\nFirst an envelope, then the envelope."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:20.11",
+          "say": {
+            "ru": "ай бо́т э лэ́мп. зэ лэ́мп из бро́укен",
+            "uk": "ай бо́т е ле́мп. зе ле́мп із бро́укен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.12",
+          "say": {
+            "ru": "ай фа́унд э ки́. зэ ки́ из ра́сти",
+            "uk": "ай фа́унд е кі́. зе кі́ із ра́сті"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.13",
+          "say": {
+            "ru": "ши о́рдерд э сэ́лэд. зэ сэ́лэд уо́з ко́улд",
+            "uk": "ші о́рдерд е се́лед. зе се́лед уо́з ко́улд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.17",
+          "say": {
+            "ru": "ши бо́т эн ала́рм кло́к. зэ кло́к из ла́уд",
+            "uk": "ші бо́т ен ала́рм кло́к. зе кло́к із ла́уд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.20",
+          "say": {
+            "ru": "хи фа́унд эн э́нвелоуп. зи э́нвелоуп уо́з си́лд",
+            "uk": "хі фа́унд ен е́нвелоуп. зі е́нвелоуп уо́з сі́лд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я купил лампу. Лампа сломана»",
+            "uk": "Виберіть, як сказати: «Я купив лампу. Лампа зламана»",
+            "en": "Choose how to say: “I bought a lamp. The lamp is broken.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:20.11",
+          "options": [
+            "en-classic-r1:20.11",
+            "en-classic-r1:20.12",
+            "en-classic-r1:20.13"
+          ],
+          "answerId": "en-classic-r1:20.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я нашел ключ. Ключ ржавый»",
+            "uk": "Виберіть, як сказати: «Я знайшов ключ. Ключ іржавий»",
+            "en": "Choose how to say: “I found a key. The key is rusty.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.12",
+          "options": [
+            "en-classic-r1:20.12",
+            "en-classic-r1:20.11",
+            "en-classic-r1:20.17"
+          ],
+          "answerId": "en-classic-r1:20.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он нашел конверт. Конверт был запечатан»",
+            "uk": "Виберіть, як сказати: «Він знайшов конверт. Конверт був запечатаний»",
+            "en": "Choose how to say: “He found an envelope. The envelope was sealed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.20",
+          "options": [
+            "en-classic-r1:20.20",
+            "en-classic-r1:20.13",
+            "en-classic-r1:20.17"
+          ],
+          "answerId": "en-classic-r1:20.20"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "The: какая именно вещь",
+        "uk": "The: яка саме річ",
+        "en": "The: which one"
+      },
+      "text": {
+        "ru": "Иногда вещь ещё не называли, но сразу ясно, какая именно.\nThe lift in our building is slow. — Лифт в нашем здании работает медленно.\nЧитается: зэ ли́фт ин а́уэр би́лдинг из сло́у.\nСлово building значит «здание».\nСлово slow значит «медленный».\nСлова in our building говорят, какой лифт: тот, что в нашем здании.\nПоэтому перед lift стоит the.\nThe coffee you made is lovely. — Кофе, который вы приготовили, восхитителен.\nЧитается: зэ ко́фи ю мэ́йд из ла́вли.\nСлово lovely значит «прекрасный, очень приятный».\nСлова you made значат «который вы приготовили»: ясно, какой кофе.\nThe water in this bottle is cold. — Вода в этой бутылке холодная.\nЧитается: зэ уо́тер ин зис бо́тл из ко́улд.\nСлово bottle значит «бутылка».\nСлова in this bottle говорят, какая вода: та, что в бутылке.\nThe driver of our taxi was helpful. — Водитель нашего такси был любезен.\nЧитается: зэ дра́йвер ов а́уэр тэ́кси уо́з хэ́лпфул.\nСлово helpful значит «любезный, готовый помочь».\nСлова of our taxi значат «нашего такси»: ясно, какой водитель.\nDo you want the last slice? — Хотите последний кусок?\nЧитается: ду ю уо́нт зэ ла́ст сла́йс.\nСлово slice значит «кусок, ломтик».\nСлово last здесь значит «последний».\nThe last slice — «тот самый последний кусок».",
+        "uk": "Іноді річ ще не називали, але одразу ясно, яка саме.\nThe lift in our building is slow. — Ліфт у нашому будинку повільний.\nЧитається: зе лі́фт ін а́уер бі́лдінг із сло́у.\nСлово building означає «будівля».\nСлово slow означає «повільний».\nСлова in our building кажуть, який ліфт: той, що в нашому будинку.\nТому перед lift стоїть the.\nThe coffee you made is lovely. — Кава, яку ви приготували, чудова.\nЧитається: зе ко́фі ю ме́йд із ла́влі.\nСлово lovely означає «чудовий, дуже приємний».\nСлова you made означають «яку ви приготували»: ясно, яка кава.\nThe water in this bottle is cold. — Вода в цій пляшці холодна.\nЧитається: зе уо́тер ін зіс бо́тл із ко́улд.\nСлово bottle означає «пляшка».\nСлова in this bottle кажуть, яка вода: та, що в пляшці.\nThe driver of our taxi was helpful. — Водій нашого таксі був люб'язним.\nЧитається: зе дра́йвер ов а́уер те́ксі уо́з хе́лпфул.\nСлово helpful означає «люб’язний, готовий допомогти».\nСлова of our taxi означають «нашого таксі»: ясно, який водій.\nDo you want the last slice? — Хочете останній шматочок?\nЧитається: ду ю уо́нт зе ла́ст сла́йс.\nСлово slice означає «шматок, скибка».\nСлово last тут означає «останній».\nThe last slice — «той самий останній шматок».",
+        "en": "Sometimes we have not named a thing yet, but it is clear which one.\nThe lift in our building is slow.\nThe word building means “a big place with rooms, like a house or an office”.\nThe word slow means “not fast”.\nThe words in our building tell us which lift.\nSo we say the lift.\nThe coffee you made is lovely.\nThe word lovely means “very nice”.\nThe words you made tell us which coffee.\nThe water in this bottle is cold.\nThe word bottle means “a tall container for water”.\nThe words in this bottle tell us which water.\nThe driver of our taxi was helpful.\nThe word helpful means “ready to help”.\nThe words of our taxi tell us which driver.\nDo you want the last slice?\nThe word slice means “a thin piece cut from bread or cake”.\nThe word last here means “the one at the end”.\nThe last slice is only one piece, so we say the."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:20.21",
+          "say": {
+            "ru": "зэ ли́фт ин а́уэр би́лдинг из сло́у",
+            "uk": "зе лі́фт ін а́уер бі́лдінг із сло́у"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.23",
+          "say": {
+            "ru": "зэ ко́фи ю мэ́йд из ла́вли",
+            "uk": "зе ко́фі ю ме́йд із ла́влі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.24",
+          "say": {
+            "ru": "зэ уо́тер ин зис бо́тл из ко́улд",
+            "uk": "зе уо́тер ін зіс бо́тл із ко́улд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.26",
+          "say": {
+            "ru": "зэ дра́йвер ов а́уэр тэ́кси уо́з хэ́лпфул",
+            "uk": "зе дра́йвер ов а́уер те́ксі уо́з хе́лпфул"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.48",
+          "say": {
+            "ru": "ду ю уо́нт зэ ла́ст сла́йс",
+            "uk": "ду ю уо́нт зе ла́ст сла́йс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Лифт в нашем здании работает медленно»",
+            "uk": "Виберіть, як сказати: «Ліфт у нашому будинку повільний»",
+            "en": "Choose how to say: “The lift in our building is slow.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:20.21",
+          "options": [
+            "en-classic-r1:20.21",
+            "en-classic-r1:20.23",
+            "en-classic-r1:20.24"
+          ],
+          "answerId": "en-classic-r1:20.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вода в этой бутылке холодная»",
+            "uk": "Виберіть, як сказати: «Вода в цій пляшці холодна»",
+            "en": "Choose how to say: “The water in this bottle is cold.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.24",
+          "options": [
+            "en-classic-r1:20.24",
+            "en-classic-r1:20.21",
+            "en-classic-r1:20.26"
+          ],
+          "answerId": "en-classic-r1:20.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хотите последний кусок»",
+            "uk": "Виберіть, як сказати: «Хочете останній шматочок»",
+            "en": "Choose how to say: “Do you want the last slice?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.48",
+          "options": [
+            "en-classic-r1:20.48",
+            "en-classic-r1:20.26",
+            "en-classic-r1:20.23"
+          ],
+          "answerId": "en-classic-r1:20.48"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Когда ничего не нужно",
+        "uk": "Коли нічого не потрібно",
+        "en": "When no small word is needed"
+      },
+      "text": {
+        "ru": "Когда говорят про что-то вообще, a и the не ставят.\nI drink water with lunch. — Я пью воду во время обеда.\nЧитается: ай дри́нк уо́тер уи́з ла́нч.\nЗдесь water без the: это вода вообще.\nВ прошлой главе было the water in this bottle — «вода в бутылке».\nCoffee keeps me awake. — Кофе не дает мне уснуть.\nЧитается: ко́фи ки́пс ми эуэ́йк.\nСлово keeps значит «держит» (keep + s).\nСлово awake значит «не спящий, бодрый».\nСлова keeps me awake вместе значат «не даёт мне уснуть».\nСлово coffee тоже без the: это кофе вообще.\nChildren need sleep. — Детям нужен сон.\nЧитается: чи́лдрен ни́д сли́п.\nСлово sleep значит «сон».\nПро детей вообще — тоже без the.\nMy sister likes dogs. — Моей сестре нравятся собаки.\nЧитается: май си́стер ла́йкс до́гз.\nСлово dogs значит «собаки» (dog + s).\nПро собак вообще — тоже без слов.\nI buy fruit at the market. — Я покупаю фрукты на рынке.\nЧитается: ай ба́й фру́т эт зэ ма́ркет.\nСлово fruit значит «фрукты».\nСлово fruit — это фрукты вообще, поэтому без слов.\nПеред market стоит the: это один и тот же известный рынок.",
+        "uk": "Коли говорять про щось загалом, a і the не ставлять.\nI drink water with lunch. — Я п'ю воду під час обіду.\nЧитається: ай дрі́нк уо́тер уі́з ла́нч.\nТут water без the: це вода взагалі.\nУ попередньому розділі було the water in this bottle — «вода в пляшці».\nCoffee keeps me awake. — Кава не дає мені заснути.\nЧитається: ко́фі кі́пс мі еуе́йк.\nСлово keeps означає «тримає» (keep + s).\nСлово awake означає «той, що не спить, бадьорий».\nСлова keeps me awake разом означають «не дає мені заснути».\nСлово coffee теж без the: це кава взагалі.\nChildren need sleep. — Дітям потрібен сон.\nЧитається: чі́лдрен ні́д слі́п.\nСлово sleep означає «сон».\nПро дітей загалом — теж без the.\nMy sister likes dogs. — Моя сестра любить собак.\nЧитається: май сі́стер ла́йкс до́гз.\nСлово dogs означає «собаки» (dog + s).\nПро собак загалом — теж без слів.\nI buy fruit at the market. — Я купую фрукти на ринку.\nЧитається: ай ба́й фру́т ет зе ма́ркет.\nСлово fruit означає «фрукти».\nСлово fruit — це фрукти загалом, тому без слів.\nПеред market стоїть the: це один і той самий відомий ринок.",
+        "en": "When we talk about something in general, we do not use a or the.\nI drink water with lunch.\nHere water has no the: it is water in general.\nBefore we had the water in this bottle: one special water.\nCoffee keeps me awake.\nThe word keeps means “makes stay the same” (keep + s).\nThe word awake means “not asleep”.\nThe words keeps me awake together mean “stops me from sleeping”.\nThe word coffee has no the too: it is coffee in general.\nChildren need sleep.\nThe word sleep means “rest at night”.\nFor children in general we do not use the either.\nMy sister likes dogs.\nThe word dogs means “animals that bark” (dog + s).\nFor dogs in general we use no small word.\nI buy fruit at the market.\nThe word fruit means “sweet food that grows on trees”.\nThe word fruit means fruit in general, so no small word.\nBefore market we say the: it is one known market."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:20.31",
+          "say": {
+            "ru": "ай дри́нк уо́тер уи́з ла́нч",
+            "uk": "ай дрі́нк уо́тер уі́з ла́нч"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.32",
+          "say": {
+            "ru": "ко́фи ки́пс ми эуэ́йк",
+            "uk": "ко́фі кі́пс мі еуе́йк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.33",
+          "say": {
+            "ru": "чи́лдрен ни́д сли́п",
+            "uk": "чі́лдрен ні́д слі́п"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.34",
+          "say": {
+            "ru": "май си́стер ла́йкс до́гз",
+            "uk": "май сі́стер ла́йкс до́гз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.40",
+          "say": {
+            "ru": "ай ба́й фру́т эт зэ ма́ркет",
+            "uk": "ай ба́й фру́т ет зе ма́ркет"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я пью воду во время обеда»",
+            "uk": "Виберіть, як сказати: «Я п'ю воду під час обіду»",
+            "en": "Choose how to say: “I drink water with lunch.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:20.31",
+          "options": [
+            "en-classic-r1:20.31",
+            "en-classic-r1:20.32",
+            "en-classic-r1:20.33"
+          ],
+          "answerId": "en-classic-r1:20.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Детям нужен сон»",
+            "uk": "Виберіть, як сказати: «Дітям потрібен сон»",
+            "en": "Choose how to say: “Children need sleep.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.33",
+          "options": [
+            "en-classic-r1:20.33",
+            "en-classic-r1:20.34",
+            "en-classic-r1:20.31"
+          ],
+          "answerId": "en-classic-r1:20.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я покупаю фрукты на рынке»",
+            "uk": "Виберіть, як сказати: «Я купую фрукти на ринку»",
+            "en": "Choose how to say: “I buy fruit at the market.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.40",
+          "options": [
+            "en-classic-r1:20.40",
+            "en-classic-r1:20.32",
+            "en-classic-r1:20.34"
+          ],
+          "answerId": "en-classic-r1:20.40"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "На поезде, на работу, картой",
+        "uk": "Поїздом, на роботу, карткою",
+        "en": "By train, to work, by card"
+      },
+      "text": {
+        "ru": "В привычных сочетаниях a и the тоже не нужны.\nWe usually travel by train. — Обычно мы путешествуем на поезде.\nЧитается: уи ю́жуэли тра́вл бай трэ́йн.\nСлова by train вместе значат «на поезде».\nМежду by и train ничего не ставят.\nHe walks to work. — Он ходит на работу пешком.\nЧитается: хи уо́кс ту уо́рк.\nСлова to work значат «на работу»: перед work ничего нет.\nShe listens to music on the bus. — Она слушает музыку в автобусе.\nЧитается: ши ли́сенз ту мью́зик он зэ ба́с.\nСлово listens значит «слушает» (listen + s).\nСлово music значит «музыка».\nСлово music — это музыка вообще, поэтому без слов.\nShe speaks English with her customers. — Она говорит по-английски со своими клиентами.\nЧитается: ши спи́кс и́нглиш уи́з хэр ка́стомерз.\nСлово customers значит «клиенты» (customer + s).\nСлово English тоже без слов: это язык.\nI paid for the meal by card. — Я оплатил еду картой.\nЧитается: ай пэ́йд фо́р зэ ми́л бай ка́рд.\nСлово meal значит «приём пищи, еда».\nСлова by card вместе значат «картой»: перед card ничего нет.",
+        "uk": "У звичних сполученнях a і the теж не потрібні.\nWe usually travel by train. — Ми зазвичай подорожуємо поїздом.\nЧитається: уі ю́жуелі тра́вл бай тре́йн.\nСлова by train разом означають «поїздом».\nМіж by і train нічого не ставлять.\nHe walks to work. — Він ходить на роботу пішки.\nЧитається: хі уо́кс ту уо́рк.\nСлова to work означають «на роботу»: перед work нічого немає.\nShe listens to music on the bus. — Вона слухає музику в автобусі.\nЧитається: ші лі́сенз ту мью́зік он зе ба́с.\nСлово listens означає «слухає» (listen + s).\nСлово music означає «музика».\nСлово music — це музика загалом, тому без слів.\nShe speaks English with her customers. — Вона розмовляє англійською зі своїми клієнтами.\nЧитається: ші спі́кс і́нгліш уі́з хер ка́стомерз.\nСлово customers означає «клієнти» (customer + s).\nСлово English теж без слів: це мова.\nI paid for the meal by card. — Я заплатив за їжу карткою.\nЧитається: ай пе́йд фо́р зе мі́л бай ка́рд.\nСлово meal означає «прийом їжі, страва».\nСлова by card разом означають «карткою»: перед card нічого немає.",
+        "en": "In common word groups we do not need a or the either.\nWe usually travel by train.\nThe words by train together mean “using a train”.\nNothing goes between by and train.\nHe walks to work.\nThe words to work mean “to his job”: nothing before work.\nShe listens to music on the bus.\nThe word listens means “pays attention to sounds” (listen + s).\nThe word music means “songs and tunes”.\nThe word music means music in general, so no small word.\nShe speaks English with her customers.\nThe word customers means “people who buy things” (customer + s).\nThe word English has no small word: it is a language.\nI paid for the meal by card.\nThe word meal means “food that you eat at one time”.\nThe words by card mean “using a card”: nothing before card."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:20.36",
+          "say": {
+            "ru": "уи ю́жуэли тра́вл бай трэ́йн",
+            "uk": "уі ю́жуелі тра́вл бай тре́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.37",
+          "say": {
+            "ru": "хи уо́кс ту уо́рк",
+            "uk": "хі уо́кс ту уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.39",
+          "say": {
+            "ru": "ши ли́сенз ту мью́зик он зэ ба́с",
+            "uk": "ші лі́сенз ту мью́зік он зе ба́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.47",
+          "say": {
+            "ru": "ши спи́кс и́нглиш уи́з хэр ка́стомерз",
+            "uk": "ші спі́кс і́нгліш уі́з хер ка́стомерз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.49",
+          "say": {
+            "ru": "ай пэ́йд фо́р зэ ми́л бай ка́рд",
+            "uk": "ай пе́йд фо́р зе мі́л бай ка́рд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Обычно мы путешествуем на поезде»",
+            "uk": "Виберіть, як сказати: «Ми зазвичай подорожуємо поїздом»",
+            "en": "Choose how to say: “We usually travel by train.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:20.36",
+          "options": [
+            "en-classic-r1:20.36",
+            "en-classic-r1:20.37",
+            "en-classic-r1:20.39"
+          ],
+          "answerId": "en-classic-r1:20.36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она слушает музыку в автобусе»",
+            "uk": "Виберіть, як сказати: «Вона слухає музику в автобусі»",
+            "en": "Choose how to say: “She listens to music on the bus.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.39",
+          "options": [
+            "en-classic-r1:20.39",
+            "en-classic-r1:20.36",
+            "en-classic-r1:20.47"
+          ],
+          "answerId": "en-classic-r1:20.39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я оплатил еду картой»",
+            "uk": "Виберіть, як сказати: «Я заплатив за їжу карткою»",
+            "en": "Choose how to say: “I paid for the meal by card.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.49",
+          "options": [
+            "en-classic-r1:20.49",
+            "en-classic-r1:20.47",
+            "en-classic-r1:20.37"
+          ],
+          "answerId": "en-classic-r1:20.49"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Звук важнее буквы",
+        "uk": "Звук важливіший за літеру",
+        "en": "Sound matters more than the letter"
+      },
+      "text": {
+        "ru": "Смотрите не на букву, а на звук в начале слова.\nHe wears a uniform at work. — Он носит униформу на работе.\nЧитается: хи уэ́рз э ю́ниформ эт уо́рк.\nСлово wears значит «носит» (wear + s).\nСлово uniform начинается с буквы u, но читается «юниформ».\nЗвук «ю» начинается с «й», поэтому a, а не an.\nThe meeting lasts an hour. — Встреча длится час.\nЧитается: зэ ми́тинг ла́стс эн а́уэр.\nСлово hour значит «час (шестьдесят минут)».\nВ слове hour буква h не читается: «ауэр».\nСлово начинается со звука «а», поэтому an.\nI had an egg for breakfast. — Я съел яйцо на завтрак.\nЧитается: ай хэ́д эн э́г фо́р бре́кфаст.\nСлово had значит «съел» (have → had).\nСлово egg значит «яйцо».\nЗдесь I had an egg значит «я съел яйцо».\nСлова for breakfast значат «на завтрак».",
+        "uk": "Дивіться не на літеру, а на звук на початку слова.\nHe wears a uniform at work. — Він носить уніформу на роботі.\nЧитається: хі уе́рз е ю́ніформ ет уо́рк.\nСлово wears означає «носить» (wear + s).\nСлово uniform починається з літери u, але читається «юніформ».\nЗвук «ю» починається з «й», тому a, а не an.\nThe meeting lasts an hour. — Зустріч триває годину.\nЧитається: зе мі́тінг ла́стс ен а́уер.\nСлово hour означає «година (шістдесят хвилин)».\nУ слові hour літера h не читається: «ауер».\nСлово починається зі звуку «а», тому an.\nI had an egg for breakfast. — Я з'їв яйце на сніданок.\nЧитається: ай хе́д ен е́г фо́р бре́кфаст.\nСлово had означає «з’їв» (have → had).\nСлово egg означає «яйце».\nТут I had an egg означає «я з’їв яйце».\nСлова for breakfast означають «на сніданок».",
+        "en": "Look at the sound at the start of the word, not at the letter.\nHe wears a uniform at work.\nThe word wears means “has clothes on the body” (wear + s).\nThe word uniform starts with the letter u, but it sounds like “yoo”.\nThat sound starts like “y”, so we say a, not an.\nThe meeting lasts an hour.\nThe word hour means “sixty minutes”.\nIn hour the letter h is silent: it sounds like “our”.\nThe word starts with the sound “ow”, so we say an.\nI had an egg for breakfast.\nThe word had means “ate, from have” (have → had).\nThe word egg means “a round food from a hen”.\nHere I had an egg means “I ate an egg”.\nThe words for breakfast mean “as the first meal of the day”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:20.45",
+          "say": {
+            "ru": "хи уэ́рз э ю́ниформ эт уо́рк",
+            "uk": "хі уе́рз е ю́ніформ ет уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.46",
+          "say": {
+            "ru": "зэ ми́тинг ла́стс эн а́уэр",
+            "uk": "зе мі́тінг ла́стс ен а́уер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:20.43",
+          "say": {
+            "ru": "ай хэ́д эн э́г фо́р бре́кфаст",
+            "uk": "ай хе́д ен е́г фо́р бре́кфаст"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он носит униформу на работе»",
+            "uk": "Виберіть, як сказати: «Він носить уніформу на роботі»",
+            "en": "Choose how to say: “He wears a uniform at work.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:20.45",
+          "options": [
+            "en-classic-r1:20.45",
+            "en-classic-r1:20.46",
+            "en-classic-r1:20.43"
+          ],
+          "answerId": "en-classic-r1:20.45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Встреча длится час»",
+            "uk": "Виберіть, як сказати: «Зустріч триває годину»",
+            "en": "Choose how to say: “The meeting lasts an hour.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.46",
+          "options": [
+            "en-classic-r1:20.46",
+            "en-classic-r1:20.43",
+            "en-classic-r1:20.45"
+          ],
+          "answerId": "en-classic-r1:20.46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я съел яйцо на завтрак»",
+            "uk": "Виберіть, як сказати: «Я з'їв яйце на сніданок»",
+            "en": "Choose how to say: “I had an egg for breakfast.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:20.43",
+          "options": [
+            "en-classic-r1:20.43",
+            "en-classic-r1:20.45",
+            "en-classic-r1:20.46"
+          ],
+          "answerId": "en-classic-r1:20.43"
+        }
+      ]
+    }
+  ]
+}

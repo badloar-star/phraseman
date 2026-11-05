@@ -1,0 +1,717 @@
+{
+  "lang": "en",
+  "lesson": 21,
+  "title": {
+    "ru": "Кто-то, никто, все",
+    "uk": "Хтось, ніхто, усі",
+    "en": "Someone, nobody, everyone"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Кто-то и что-то",
+        "uk": "Хтось і щось",
+        "en": "Someone and something"
+      },
+      "text": {
+        "ru": "Бывает, что вы не знаете, кто это или что это.\nДля этого есть особые слова.\nSomeone is at the door. — Кто-то у двери.\nЧитается: са́муан из эт зэ до́р.\nСлово someone значит «кто-то».\nСлово someone говорит про человека.\nSomething is burning. — Что-то горит.\nЧитается: са́мсин из бэ́рнин.\nСлово something значит «что-то».\nСлово burning значит «горит» (burn + ing).\nСлово something говорит про вещь, а не про человека.\nSomething fell off the shelf. — Что-то упало с полки.\nЧитается: са́мсин фэ́л оф зэ шэ́лф.\nСлово off значит «с, вниз с»: упало с полки.",
+        "uk": "Буває, що ви не знаєте, хто це або що це.\nДля цього є особливі слова.\nSomeone is at the door. — Хтось біля дверей.\nЧитається: са́муан із ет зе до́р.\nСлово someone означає «хтось».\nСлово someone говорить про людину.\nSomething is burning. — Щось горить.\nЧитається: са́мсін із бе́рнін.\nСлово something означає «щось».\nСлово burning означає «горить» (burn + ing).\nСлово something говорить про річ, а не про людину.\nSomething fell off the shelf. — Щось впало з полиці.\nЧитається: са́мсін фе́л оф зе ше́лф.\nСлово off означає «з, вниз з»: упало з полиці.",
+        "en": "Sometimes you do not know who it is or what it is.\nThere are special words for this.\nSomeone is at the door.\nThe word someone means “a person we do not know”.\nThe word someone is about a person.\nSomething is burning.\nThe word something means “a thing we do not know”.\nThe word burning means “on fire” (burn + ing).\nThe word something is about a thing, not a person.\nSomething fell off the shelf.\nThe word off means “down from”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:21.01",
+          "say": {
+            "ru": "са́муан из эт зэ до́р",
+            "uk": "са́муан із ет зе до́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.02",
+          "say": {
+            "ru": "са́мсин из бэ́рнин",
+            "uk": "са́мсін із бе́рнін"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.04",
+          "say": {
+            "ru": "са́мсин фэ́л оф зэ шэ́лф",
+            "uk": "са́мсін фе́л оф зе ше́лф"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто-то у двери»",
+            "uk": "Виберіть, як сказати: «Хтось біля дверей»",
+            "en": "Choose how to say: “Someone is at the door.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:21.01",
+          "options": [
+            "en-classic-r1:21.01",
+            "en-classic-r1:21.02",
+            "en-classic-r1:21.04"
+          ],
+          "answerId": "en-classic-r1:21.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Что-то горит»",
+            "uk": "Виберіть, як сказати: «Щось горить»",
+            "en": "Choose how to say: “Something is burning.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.02",
+          "options": [
+            "en-classic-r1:21.02",
+            "en-classic-r1:21.04",
+            "en-classic-r1:21.01"
+          ],
+          "answerId": "en-classic-r1:21.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Что-то упало с полки»",
+            "uk": "Виберіть, як сказати: «Щось впало з полиці»",
+            "en": "Choose how to say: “Something fell off the shelf.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.04",
+          "options": [
+            "en-classic-r1:21.04",
+            "en-classic-r1:21.01",
+            "en-classic-r1:21.02"
+          ],
+          "answerId": "en-classic-r1:21.04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Нужен кто-то, что-то, где-то",
+        "uk": "Потрібен хтось, щось, десь",
+        "en": "Needing someone, something, somewhere"
+      },
+      "text": {
+        "ru": "Вы знаете, что вам нужно, но не знаете, кто или что именно.\nI need someone to help. — Мне нужен кто-то, кто поможет.\nЧитается: ай ни́д са́муан ту хэ́лп.\nСлова to help значат «чтобы помочь»: кто-то, кто поможет.\nThere is something in my shoe. — В моей туфле что-то есть.\nЧитается: зэр из са́мсин ин май шу́.\nСлово shoe значит «туфля, ботинок».\nСлова there is говорят, что что-то есть.\nWe need somewhere to sit. — Нам нужно где-нибудь сесть.\nЧитается: уи ни́д са́муэр ту си́т.\nСлово somewhere значит «где-нибудь, какое-то место».\nСлова to sit значат «чтобы сесть».\nСмотрите на конец слова: someone — человек, something — вещь, somewhere — место.",
+        "uk": "Ви знаєте, що вам потрібно, але не знаєте, хто чи що саме.\nI need someone to help. — Мені потрібен хтось, хто допоможе.\nЧитається: ай ні́д са́муан ту хе́лп.\nСлова to help означають «щоб допомогти»: хтось, хто допоможе.\nThere is something in my shoe. — Щось є в моєму черевику.\nЧитається: зер із са́мсін ін май шу́.\nСлово shoe означає «черевик, туфля».\nСлова there is кажуть, що щось є.\nWe need somewhere to sit. — Нам потрібно десь сісти.\nЧитається: уі ні́д са́муер ту сі́т.\nСлово somewhere означає «десь, якесь місце».\nСлова to sit означають «щоб сісти».\nДивіться на кінець слова: someone — людина, something — річ, somewhere — місце.",
+        "en": "You know what you need, but not exactly who or what.\nI need someone to help.\nThe words to help tell us what the person is needed for.\nThere is something in my shoe.\nThe word shoe means “a cover for the foot”.\nThe words there is tell us that something is there.\nWe need somewhere to sit.\nThe word somewhere means “a place we do not know”.\nThe words to sit tell us what the place is needed for.\nLast part: one is a person, thing is a thing, where is a place."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:21.05",
+          "say": {
+            "ru": "ай ни́д са́муан ту хэ́лп",
+            "uk": "ай ні́д са́муан ту хе́лп"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.08",
+          "say": {
+            "ru": "зэр из са́мсин ин май шу́",
+            "uk": "зер із са́мсін ін май шу́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.10",
+          "say": {
+            "ru": "уи ни́д са́муэр ту си́т",
+            "uk": "уі ні́д са́муер ту сі́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужен кто-то, кто поможет»",
+            "uk": "Виберіть, як сказати: «Мені потрібен хтось, хто допоможе»",
+            "en": "Choose how to say: “I need someone to help.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:21.05",
+          "options": [
+            "en-classic-r1:21.05",
+            "en-classic-r1:21.08",
+            "en-classic-r1:21.10"
+          ],
+          "answerId": "en-classic-r1:21.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В моей туфле что-то есть»",
+            "uk": "Виберіть, як сказати: «Щось є в моєму черевику»",
+            "en": "Choose how to say: “There is something in my shoe.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.08",
+          "options": [
+            "en-classic-r1:21.08",
+            "en-classic-r1:21.10",
+            "en-classic-r1:21.05"
+          ],
+          "answerId": "en-classic-r1:21.08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужно где-нибудь сесть»",
+            "uk": "Виберіть, як сказати: «Нам потрібно десь сісти»",
+            "en": "Choose how to say: “We need somewhere to sit.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.10",
+          "options": [
+            "en-classic-r1:21.10",
+            "en-classic-r1:21.05",
+            "en-classic-r1:21.08"
+          ],
+          "answerId": "en-classic-r1:21.10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вопросы: кто-нибудь, что-нибудь",
+        "uk": "Питання: хтось, щось",
+        "en": "Questions: anyone, anything, anywhere"
+      },
+      "text": {
+        "ru": "В вопросе вы не знаете, есть ли кто-то или что-то.\nТогда вместо some ставят any.\nIs anyone waiting here? — Кто-нибудь ждет здесь?\nЧитается: из э́ниуан уэ́йтин хи́р.\nСлово anyone значит «кто-нибудь».\nDid anyone see my keys? — Кто-нибудь видел мои ключи?\nЧитается: ди́д э́ниуан си́ май ки́з.\nСлово did в начале: так спрашивают о том, что было.\nDo you need anything else? — Вам что-нибудь еще нужно?\nЧитается: ду ю ни́д э́нисин э́лс.\nСлово anything значит «что-нибудь».\nСлово else значит «ещё, другое».\nСлова anything else вместе значат «что-нибудь ещё».\nIs there anywhere to park? — Есть ли где-нибудь припарковаться?\nЧитается: из зэр э́ниуэр ту па́рк.\nСлово anywhere значит «где-нибудь».\nСлова to park значат «чтобы припарковаться».\nОпять конец слова: anyone — человек, anything — вещь, anywhere — место.",
+        "uk": "У питанні ви не знаєте, чи є хтось або щось.\nТоді замість some ставлять any.\nIs anyone waiting here? — Хтось тут чекає?\nЧитається: із е́ніуан уе́йтін хі́р.\nСлово anyone означає «хто-небудь».\nDid anyone see my keys? — Хтось бачив мої ключі?\nЧитається: ді́д е́ніуан сі́ май кі́з.\nСлово did на початку: так питають про те, що було.\nDo you need anything else? — Вам ще щось потрібно?\nЧитається: ду ю ні́д е́нісін е́лс.\nСлово anything означає «що-небудь».\nСлово else означає «ще, інше».\nСлова anything else разом означають «щось ще».\nIs there anywhere to park? — Чи є де припаркуватися?\nЧитається: із зер е́ніуер ту па́рк.\nСлово anywhere означає «десь».\nСлова to park означають «щоб припаркуватися».\nЗнову кінець слова: anyone — людина, anything — річ, anywhere — місце.",
+        "en": "In a question you do not know if someone or something is there.\nThen we use any instead of some.\nIs anyone waiting here?\nThe word anyone means “any person at all”.\nDid anyone see my keys?\nWe put did first to ask about the past.\nDo you need anything else?\nThe word anything means “any thing at all”.\nThe word else means “more, other”.\nThe words anything else together mean “any other thing”.\nIs there anywhere to park?\nThe word anywhere means “any place at all”.\nThe words to park tell us what the place is for.\nAgain the end: one is a person, thing is a thing, where is a place."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:21.11",
+          "say": {
+            "ru": "из э́ниуан уэ́йтин хи́р",
+            "uk": "із е́ніуан уе́йтін хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.12",
+          "say": {
+            "ru": "ди́д э́ниуан си́ май ки́з",
+            "uk": "ді́д е́ніуан сі́ май кі́з"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.13",
+          "say": {
+            "ru": "ду ю ни́д э́нисин э́лс",
+            "uk": "ду ю ні́д е́нісін е́лс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.17",
+          "say": {
+            "ru": "из зэр э́ниуэр ту па́рк",
+            "uk": "із зер е́ніуер ту па́рк"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто-нибудь ждет здесь»",
+            "uk": "Виберіть, як сказати: «Хтось тут чекає»",
+            "en": "Choose how to say: “Is anyone waiting here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:21.11",
+          "options": [
+            "en-classic-r1:21.11",
+            "en-classic-r1:21.12",
+            "en-classic-r1:21.13"
+          ],
+          "answerId": "en-classic-r1:21.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вам что-нибудь еще нужно»",
+            "uk": "Виберіть, як сказати: «Вам ще щось потрібно»",
+            "en": "Choose how to say: “Do you need anything else?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.13",
+          "options": [
+            "en-classic-r1:21.13",
+            "en-classic-r1:21.11",
+            "en-classic-r1:21.17"
+          ],
+          "answerId": "en-classic-r1:21.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли где-нибудь припарковаться»",
+            "uk": "Виберіть, як сказати: «Чи є де припаркуватися»",
+            "en": "Choose how to say: “Is there anywhere to park?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.17",
+          "options": [
+            "en-classic-r1:21.17",
+            "en-classic-r1:21.12",
+            "en-classic-r1:21.13"
+          ],
+          "answerId": "en-classic-r1:21.17"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Никто, ничего, нигде",
+        "uk": "Ніхто, нічого, ніде",
+        "en": "Nobody, nothing, nowhere"
+      },
+      "text": {
+        "ru": "Слова, которые начинаются с no, говорят «нет».\nNobody answered the phone. — Никто не ответил на телефон.\nЧитается: но́убади а́нсерд зэ фо́ун.\nСлово nobody значит «никто».\nСлово answered значит «ответил» (answer + ed).\nСлово nobody уже значит «никто». Слово not не нужно.\nNothing is open yet. — Пока ничего не открыто.\nЧитается: на́син из о́упен йэ́т.\nСлово nothing значит «ничего».\nСлово yet здесь значит «пока».\nThere is nowhere to sit. — Сидеть негде.\nЧитается: зэр из но́уэр ту си́т.\nСлово nowhere значит «нигде».\nФраза значит «сидеть негде».\nNothing happened after lunch. — После обеда ничего не произошло.\nЧитается: на́син хэ́пенд а́фтер ла́нч.\nСлово happened значит «произошло, случилось» (happen + ed).\nСлово after значит «после».",
+        "uk": "Слова, які починаються з no, кажуть «ні».\nNobody answered the phone. — Ніхто не відповів на дзвінок.\nЧитається: но́убаді а́нсерд зе фо́ун.\nСлово nobody означає «ніхто».\nСлово answered означає «відповів» (answer + ed).\nСлово nobody вже означає «ніхто». Слово not не потрібне.\nNothing is open yet. — Ще нічого не відчинено.\nЧитається: на́сін із о́упен йе́т.\nСлово nothing означає «нічого».\nСлово yet тут означає «поки що».\nThere is nowhere to sit. — Немає де сісти.\nЧитається: зер із но́уер ту сі́т.\nСлово nowhere означає «ніде».\nФраза означає «сидіти ніде».\nNothing happened after lunch. — Нічого не сталося після обіду.\nЧитається: на́сін хе́пенд а́фтер ла́нч.\nСлово happened означає «сталося» (happen + ed).\nСлово after означає «після».",
+        "en": "Words that start with no say “none”.\nNobody answered the phone.\nThe word nobody means “not one person”.\nThe word answered means “gave an answer” (answer + ed).\nThe word nobody already says “no one”. We do not add not.\nNothing is open yet.\nThe word nothing means “not one thing”.\nThe word yet here means “up to now”.\nThere is nowhere to sit.\nThe word nowhere means “not in any place”.\nThe phrase means there is no place to sit.\nNothing happened after lunch.\nThe word happened means “came to be” (happen + ed).\nThe word after means “later than”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:21.21",
+          "say": {
+            "ru": "но́убади а́нсерд зэ фо́ун",
+            "uk": "но́убаді а́нсерд зе фо́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.22",
+          "say": {
+            "ru": "на́син из о́упен йэ́т",
+            "uk": "на́сін із о́упен йе́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.23",
+          "say": {
+            "ru": "зэр из но́уэр ту си́т",
+            "uk": "зер із но́уер ту сі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.25",
+          "say": {
+            "ru": "на́син хэ́пенд а́фтер ла́нч",
+            "uk": "на́сін хе́пенд а́фтер ла́нч"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Никто не ответил на телефон»",
+            "uk": "Виберіть, як сказати: «Ніхто не відповів на дзвінок»",
+            "en": "Choose how to say: “Nobody answered the phone.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:21.21",
+          "options": [
+            "en-classic-r1:21.21",
+            "en-classic-r1:21.22",
+            "en-classic-r1:21.23"
+          ],
+          "answerId": "en-classic-r1:21.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока ничего не открыто»",
+            "uk": "Виберіть, як сказати: «Ще нічого не відчинено»",
+            "en": "Choose how to say: “Nothing is open yet.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.22",
+          "options": [
+            "en-classic-r1:21.22",
+            "en-classic-r1:21.23",
+            "en-classic-r1:21.25"
+          ],
+          "answerId": "en-classic-r1:21.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «После обеда ничего не произошло»",
+            "uk": "Виберіть, як сказати: «Нічого не сталося після обіду»",
+            "en": "Choose how to say: “Nothing happened after lunch.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.25",
+          "options": [
+            "en-classic-r1:21.25",
+            "en-classic-r1:21.21",
+            "en-classic-r1:21.23"
+          ],
+          "answerId": "en-classic-r1:21.25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Только одно «нет»",
+        "uk": "Лише одне «ні»",
+        "en": "Only one “no”"
+      },
+      "text": {
+        "ru": "По-русски говорят «никто не ответил»: два слова «нет».\nПо-английски «нет» говорят один раз.\nI know nobody in this town. — Я никого не знаю в этом городе.\nЧитается: ай но́у но́убади ин зис та́ун.\nСлово town значит «город».\nСлово nobody уже значит «никого». Слово not не нужно.\nWe have nothing to declare. — Нам нечего декларировать.\nЧитается: уи хэ́в на́син ту дикле́р.\nСлово declare значит «заявить (например, на таможне)».\nСлова have nothing вместе значат «у нас ничего нет».\nI did not see anyone downstairs. — Я никого не увидел внизу.\nЧитается: ай ди́д но́т си́ э́ниуан даунсте́рз.\nЗдесь «нет» говорит did not. Поэтому дальше anyone, а не nobody.\nShe did not buy anything today. — Она сегодня ничего не купила.\nЧитается: ши ди́д но́т ба́й э́нисин тудэ́й.\nОпять did not, поэтому anything.\nWe did not go anywhere on Sunday. — Мы никуда не ходили в воскресенье.\nЧитается: уи ди́д но́т го́у э́ниуэр он са́ндэй.\nОпять did not, поэтому anywhere.",
+        "uk": "Українською кажуть «ніхто не відповів»: два слова «ні».\nАнглійською «ні» кажуть один раз.\nI know nobody in this town. — Я нікого не знаю в цьому місті.\nЧитається: ай но́у но́убаді ін зіс та́ун.\nСлово town означає «місто».\nСлово nobody вже означає «нікого». Слово not не потрібне.\nWe have nothing to declare. — Нам нема чого декларувати.\nЧитається: уі хе́в на́сін ту дікле́р.\nСлово declare означає «заявити (наприклад, на митниці)».\nСлова have nothing разом означають «у нас нічого немає».\nI did not see anyone downstairs. — Я нікого не бачив внизу.\nЧитається: ай ді́д но́т сі́ е́ніуан даунсте́рз.\nТут «ні» каже did not. Тому далі anyone, а не nobody.\nShe did not buy anything today. — Вона сьогодні нічого не купила.\nЧитається: ші ді́д но́т ба́й е́нісін туде́й.\nЗнову did not, тому anything.\nWe did not go anywhere on Sunday. — Ми нікуди не ходили в неділю.\nЧитається: уі ді́д но́т го́у е́ніуер он са́ндей.\nЗнову did not, тому anywhere.",
+        "en": "Some languages say “no” two times in a sentence.\nIn English we say “no” only one time.\nI know nobody in this town.\nThe word town means “a place smaller than a city”.\nThe word nobody already says “no one”. We do not add not.\nWe have nothing to declare.\nThe word declare means “tell officials what you carry”.\nThe words have nothing together mean “we have none”.\nI did not see anyone downstairs.\nHere did not already says “no”. So after it we use anyone, not nobody.\nShe did not buy anything today.\nAgain did not, so anything.\nWe did not go anywhere on Sunday.\nAgain did not, so anywhere."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:21.26",
+          "say": {
+            "ru": "ай но́у но́убади ин зис та́ун",
+            "uk": "ай но́у но́убаді ін зіс та́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.27",
+          "say": {
+            "ru": "уи хэ́в на́син ту дикле́р",
+            "uk": "уі хе́в на́сін ту дікле́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.41",
+          "say": {
+            "ru": "ай ди́д но́т си́ э́ниуан даунсте́рз",
+            "uk": "ай ді́д но́т сі́ е́ніуан даунсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.42",
+          "say": {
+            "ru": "ши ди́д но́т ба́й э́нисин тудэ́й",
+            "uk": "ші ді́д но́т ба́й е́нісін туде́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.43",
+          "say": {
+            "ru": "уи ди́д но́т го́у э́ниуэр он са́ндэй",
+            "uk": "уі ді́д но́т го́у е́ніуер он са́ндей"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я никого не знаю в этом городе»",
+            "uk": "Виберіть, як сказати: «Я нікого не знаю в цьому місті»",
+            "en": "Choose how to say: “I know nobody in this town.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:21.26",
+          "options": [
+            "en-classic-r1:21.26",
+            "en-classic-r1:21.27",
+            "en-classic-r1:21.41"
+          ],
+          "answerId": "en-classic-r1:21.26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она сегодня ничего не купила»",
+            "uk": "Виберіть, як сказати: «Вона сьогодні нічого не купила»",
+            "en": "Choose how to say: “She did not buy anything today.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.42",
+          "options": [
+            "en-classic-r1:21.42",
+            "en-classic-r1:21.41",
+            "en-classic-r1:21.43"
+          ],
+          "answerId": "en-classic-r1:21.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы никуда не ходили в воскресенье»",
+            "uk": "Виберіть, як сказати: «Ми нікуди не ходили в неділю»",
+            "en": "Choose how to say: “We did not go anywhere on Sunday.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.43",
+          "options": [
+            "en-classic-r1:21.43",
+            "en-classic-r1:21.27",
+            "en-classic-r1:21.42"
+          ],
+          "answerId": "en-classic-r1:21.43"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Все",
+        "uk": "Усі",
+        "en": "Everyone"
+      },
+      "text": {
+        "ru": "Есть слова, которые говорят про всех людей сразу.\nEverybody needs a ticket. — Всем нужен билет.\nЧитается: э́врибоди ни́дз э ти́кет.\nСлово everybody значит «все, каждый».\nСлово everybody говорят как про одного: «каждый». Поэтому needs, с s.\nEveryone has a seat. — У каждого есть место.\nЧитается: э́вриуан хэ́з э си́т.\nСлово everyone значит «все, каждый».\nСлово everyone значит то же, что everybody.\nТут has, а не have: everyone — это «каждый».\nI thanked everyone at the desk. — Я поблагодарил всех за стойкой.\nЧитается: ай тэ́нкт э́вриуан эт зэ дэ́ск.\nСлово thanked значит «поблагодарил» (thank + ed).\nСлова at the desk значат «за стойкой».\nEveryone is here except Tom. — Все здесь, кроме Тома.\nЧитается: э́вриуан из хи́р иксэ́пт то́м.\nСлово except значит «кроме».\nСлова except Tom значат «кроме Тома».",
+        "uk": "Є слова, які говорять про всіх людей одразу.\nEverybody needs a ticket. — Усім потрібен квиток.\nЧитається: е́врібоді ні́дз е ті́кет.\nСлово everybody означає «усі, кожен».\nСлово everybody кажуть як про одного: «кожен». Тому needs, з s.\nEveryone has a seat. — У кожного є місце.\nЧитається: е́вріуан хе́з е сі́т.\nСлово everyone означає «усі, кожен».\nСлово everyone означає те саме, що everybody.\nТут has, а не have: everyone — це «кожен».\nI thanked everyone at the desk. — Я подякував усім за стійкою.\nЧитається: ай те́нкт е́вріуан ет зе де́ск.\nСлово thanked означає «подякував» (thank + ed).\nСлова at the desk означають «за стійкою».\nEveryone is here except Tom. — Усі тут, крім Тома.\nЧитається: е́вріуан із хі́р іксе́пт то́м.\nСлово except означає «крім».\nСлова except Tom означають «крім Тома».",
+        "en": "Some words speak about all the people at once.\nEverybody needs a ticket.\nThe word everybody means “all the people”.\nWe treat everybody as one person: “each one”. So we say needs, with s.\nEveryone has a seat.\nThe word everyone means “all the people”.\nThe word everyone means the same as everybody.\nHere we say has, not have: everyone is “each one”.\nI thanked everyone at the desk.\nThe word thanked means “said thank you” (thank + ed).\nThe words at the desk mean “at the place where staff work”.\nEveryone is here except Tom.\nThe word except means “but not”.\nThe words except Tom mean “but not Tom”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:21.31",
+          "say": {
+            "ru": "э́врибоди ни́дз э ти́кет",
+            "uk": "е́врібоді ні́дз е ті́кет"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.33",
+          "say": {
+            "ru": "э́вриуан хэ́з э си́т",
+            "uk": "е́вріуан хе́з е сі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.40",
+          "say": {
+            "ru": "ай тэ́нкт э́вриуан эт зэ дэ́ск",
+            "uk": "ай те́нкт е́вріуан ет зе де́ск"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.47",
+          "say": {
+            "ru": "э́вриуан из хи́р иксэ́пт то́м",
+            "uk": "е́вріуан із хі́р іксе́пт то́м"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Всем нужен билет»",
+            "uk": "Виберіть, як сказати: «Усім потрібен квиток»",
+            "en": "Choose how to say: “Everybody needs a ticket.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:21.31",
+          "options": [
+            "en-classic-r1:21.31",
+            "en-classic-r1:21.33",
+            "en-classic-r1:21.40"
+          ],
+          "answerId": "en-classic-r1:21.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У каждого есть место»",
+            "uk": "Виберіть, як сказати: «У кожного є місце»",
+            "en": "Choose how to say: “Everyone has a seat.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.33",
+          "options": [
+            "en-classic-r1:21.33",
+            "en-classic-r1:21.47",
+            "en-classic-r1:21.31"
+          ],
+          "answerId": "en-classic-r1:21.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Все здесь, кроме Тома»",
+            "uk": "Виберіть, як сказати: «Усі тут, крім Тома»",
+            "en": "Choose how to say: “Everyone is here except Tom.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.47",
+          "options": [
+            "en-classic-r1:21.47",
+            "en-classic-r1:21.40",
+            "en-classic-r1:21.33"
+          ],
+          "answerId": "en-classic-r1:21.47"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Всё и везде",
+        "uk": "Усе і всюди",
+        "en": "Everything and everywhere"
+      },
+      "text": {
+        "ru": "А вот слова про все вещи и про все места.\nEverything is ready now. — Теперь всё готово.\nЧитается: э́врисин из рэ́ди на́у.\nСлово everything значит «всё».\nI checked everything twice. — Я всё проверил дважды.\nЧитается: ай чэ́кт э́врисин туа́йс.\nСлово checked значит «проверил» (check + ed).\nWe looked everywhere for the receipt. — Мы везде искали квитанцию.\nЧитается: уи лу́кт э́вриуэр фо́р зэ риси́т.\nСлово everywhere значит «везде».\nСлова looked for значат «искали».\nEverything fits in one bag. — Всё помещается в одну сумку.\nЧитается: э́врисин фи́тс ин уа́н бэ́г.\nСлово fits значит «помещается» (fit + s).\nОпять s: everything — как одна вещь, поэтому fits.",
+        "uk": "А ось слова про всі речі та про всі місця.\nEverything is ready now. — Тепер усе готове.\nЧитається: е́врісін із ре́ді на́у.\nСлово everything означає «усе».\nI checked everything twice. — Я все перевірив двічі.\nЧитається: ай че́кт е́врісін туа́йс.\nСлово checked означає «перевірив» (check + ed).\nWe looked everywhere for the receipt. — Ми всюди шукали квитанцію.\nЧитається: уі лу́кт е́вріуер фо́р зе рісі́т.\nСлово everywhere означає «всюди».\nСлова looked for означають «шукали».\nEverything fits in one bag. — Все поміщається в одну сумку.\nЧитається: е́врісін фі́тс ін уа́н бе́г.\nСлово fits означає «вміщається» (fit + s).\nЗнову s: everything — як одна річ, тому fits.",
+        "en": "Here are words for all things and all places.\nEverything is ready now.\nThe word everything means “all the things”.\nI checked everything twice.\nThe word checked means “looked to be sure” (check + ed).\nWe looked everywhere for the receipt.\nThe word everywhere means “in every place”.\nThe words looked for mean “tried to find”.\nEverything fits in one bag.\nThe word fits means “is the right size” (fit + s).\nAgain s: everything is like one thing, so fits."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:21.32",
+          "say": {
+            "ru": "э́врисин из рэ́ди на́у",
+            "uk": "е́врісін із ре́ді на́у"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.34",
+          "say": {
+            "ru": "ай чэ́кт э́врисин туа́йс",
+            "uk": "ай че́кт е́врісін туа́йс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.37",
+          "say": {
+            "ru": "уи лу́кт э́вриуэр фо́р зэ риси́т",
+            "uk": "уі лу́кт е́вріуер фо́р зе рісі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.36",
+          "say": {
+            "ru": "э́врисин фи́тс ин уа́н бэ́г",
+            "uk": "е́врісін фі́тс ін уа́н бе́г"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Теперь всё готово»",
+            "uk": "Виберіть, як сказати: «Тепер усе готове»",
+            "en": "Choose how to say: “Everything is ready now.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:21.32",
+          "options": [
+            "en-classic-r1:21.32",
+            "en-classic-r1:21.34",
+            "en-classic-r1:21.36"
+          ],
+          "answerId": "en-classic-r1:21.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы везде искали квитанцию»",
+            "uk": "Виберіть, як сказати: «Ми всюди шукали квитанцію»",
+            "en": "Choose how to say: “We looked everywhere for the receipt.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.37",
+          "options": [
+            "en-classic-r1:21.37",
+            "en-classic-r1:21.34",
+            "en-classic-r1:21.32"
+          ],
+          "answerId": "en-classic-r1:21.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Всё помещается в одну сумку»",
+            "uk": "Виберіть, як сказати: «Все поміщається в одну сумку»",
+            "en": "Choose how to say: “Everything fits in one bag.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.36",
+          "options": [
+            "en-classic-r1:21.36",
+            "en-classic-r1:21.32",
+            "en-classic-r1:21.34"
+          ],
+          "answerId": "en-classic-r1:21.36"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Любой",
+        "uk": "Будь-хто",
+        "en": "Any person"
+      },
+      "text": {
+        "ru": "Слово anyone бывает и в обычной фразе. Тогда оно значит «любой».\nAnyone can use the side entrance. — Любой может воспользоваться боковым входом.\nЧитается: э́ниуан кэ́н ю́з зэ са́йд э́нтрэнс.\nЗдесь anyone значит «любой»: любой человек.\nСлово side здесь значит «боковой»: боковой вход.\nSomeone called, but nobody left a message. — Кто-то звонил, но никто не оставил сообщения.\nЧитается: са́муан ко́лд ба́т но́убади лэ́фт э мэ́сидж.\nСлово but значит «но».\nВ одной фразе: someone — «кто-то», nobody — «никто».\nIs there anything I should bring? — Есть ли что-нибудь, что мне нужно взять с собой?\nЧитается: из зэр э́нисин ай шу́д бри́нг.\nСлова I should bring значат «что мне взять с собой».",
+        "uk": "Слово anyone буває й у звичайній фразі. Тоді воно означає «будь-хто».\nAnyone can use the side entrance. — Будь-хто може скористатися бічним входом.\nЧитається: е́ніуан ке́н ю́з зе са́йд е́нтренс.\nТут anyone означає «будь-хто»: будь-яка людина.\nСлово side тут означає «бічний»: бічний вхід.\nSomeone called, but nobody left a message. — Хтось дзвонив, але ніхто не залишив повідомлення.\nЧитається: са́муан ко́лд ба́т но́убаді ле́фт е ме́сідж.\nСлово but означає «але».\nВ одній фразі: someone — «хтось», nobody — «ніхто».\nIs there anything I should bring? — Чи є щось, що мені слід принести?\nЧитається: із зер е́нісін ай шу́д брі́нг.\nСлова I should bring означають «що мені взяти з собою».",
+        "en": "The word anyone also appears in a normal sentence. Then it means “any person”.\nAnyone can use the side entrance.\nHere anyone means “every person is allowed”.\nThe word side here means “at the side of the building”.\nSomeone called, but nobody left a message.\nThe word but joins two different ideas.\nBoth words are in one sentence: someone is a person, nobody is no person.\nIs there anything I should bring?\nThe words I should bring mean “what I ought to take with me”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:21.50",
+          "say": {
+            "ru": "э́ниуан кэ́н ю́з зэ са́йд э́нтрэнс",
+            "uk": "е́ніуан ке́н ю́з зе са́йд е́нтренс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.46",
+          "say": {
+            "ru": "са́муан ко́лд ба́т но́убади лэ́фт э мэ́сидж",
+            "uk": "са́муан ко́лд ба́т но́убаді ле́фт е ме́сідж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:21.45",
+          "say": {
+            "ru": "из зэр э́нисин ай шу́д бри́нг",
+            "uk": "із зер е́нісін ай шу́д брі́нг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Любой может воспользоваться боковым входом»",
+            "uk": "Виберіть, як сказати: «Будь-хто може скористатися бічним входом»",
+            "en": "Choose how to say: “Anyone can use the side entrance.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:21.50",
+          "options": [
+            "en-classic-r1:21.50",
+            "en-classic-r1:21.46",
+            "en-classic-r1:21.45"
+          ],
+          "answerId": "en-classic-r1:21.50"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто-то звонил, но никто не оставил сообщения»",
+            "uk": "Виберіть, як сказати: «Хтось дзвонив, але ніхто не залишив повідомлення»",
+            "en": "Choose how to say: “Someone called, but nobody left a message.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.46",
+          "options": [
+            "en-classic-r1:21.46",
+            "en-classic-r1:21.45",
+            "en-classic-r1:21.50"
+          ],
+          "answerId": "en-classic-r1:21.46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли что-нибудь, что мне нужно взять с собой»",
+            "uk": "Виберіть, як сказати: «Чи є щось, що мені слід принести»",
+            "en": "Choose how to say: “Is there anything I should bring?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:21.45",
+          "options": [
+            "en-classic-r1:21.45",
+            "en-classic-r1:21.50",
+            "en-classic-r1:21.46"
+          ],
+          "answerId": "en-classic-r1:21.45"
+        }
+      ]
+    }
+  ]
+}

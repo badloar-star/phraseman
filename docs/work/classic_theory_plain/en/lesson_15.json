@@ -1,0 +1,717 @@
+{
+  "lang": "en",
+  "lesson": 15,
+  "title": {
+    "ru": "Чья это вещь",
+    "uk": "Чия це річ",
+    "en": "Whose thing is it?"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Рядом с вещью и без неё",
+        "uk": "Поруч із річчю і без неї",
+        "en": "With a thing and alone"
+      },
+      "text": {
+        "ru": "Смотрите: слово my стоит прямо перед вещью.\nThis is my coat. — Это моё пальто.\nЧитается: зи́с из май ко́ут.\nСлово my значит «мой, моя, моё». После него сразу называют вещь.\nThis coat is mine. — Это пальто моё.\nЧитается: зи́с ко́ут из ма́йн.\nСлово mine вы видели в уроке 14. Оно тоже значит «мой».\nПосле mine вещь не называют: она уже названа раньше.\nThat bag is yours. — «Вон та сумка твоя.»\nЧитается: зэ́т бэ́г из ёрз.\nСлово your стоит перед вещью: your bag — «ваша сумка».\nСлово yours стоит без вещи: that bag is yours.",
+        "uk": "Дивіться: слово my стоїть прямо перед річчю.\nThis is my coat. — Це моє пальто.\nЧитається: зі́с із май ко́ут.\nСлово my означає «мій, моя, моє». Після нього одразу називають річ.\nThis coat is mine. — Це пальто моє.\nЧитається: зі́с ко́ут із ма́йн.\nСлово mine ви бачили в уроці 14. Воно теж означає «мій».\nПісля mine річ не називають: вона вже названа раніше.\nThat bag is yours. — «Он та сумка твоя.»\nЧитається: зе́т бе́г із йорз.\nСлово your стоїть перед річчю: your bag — «ваша сумка».\nСлово yours стоїть без речі: that bag is yours.",
+        "en": "Look: the word my stands right before the thing.\nThis is my coat.\nThe word my means “belonging to me”. The thing comes right after it.\nThis coat is mine.\nYou saw the word mine in lesson 14. It also means “belonging to me”.\nAfter mine we do not say the thing: we said it before.\nThat bag is yours.\nThe word your comes before the thing: your bag.\nThe word yours comes alone: that bag is yours."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:15.01",
+          "say": {
+            "ru": "зи́с из май ко́ут",
+            "uk": "зі́с із май ко́ут"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.02",
+          "say": {
+            "ru": "зи́с ко́ут из ма́йн",
+            "uk": "зі́с ко́ут із ма́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.04",
+          "say": {
+            "ru": "зэ́т бэ́г из ёрз",
+            "uk": "зе́т бе́г із йорз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это моё пальто»",
+            "uk": "Виберіть, як сказати: «Це моє пальто»",
+            "en": "Choose how to say: “This is my coat.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:15.01",
+          "options": [
+            "en-classic-r1:15.01",
+            "en-classic-r1:15.02",
+            "en-classic-r1:15.04"
+          ],
+          "answerId": "en-classic-r1:15.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это пальто моё»",
+            "uk": "Виберіть, як сказати: «Це пальто моє»",
+            "en": "Choose how to say: “This coat is mine.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.02",
+          "options": [
+            "en-classic-r1:15.02",
+            "en-classic-r1:15.01",
+            "en-classic-r1:15.04"
+          ],
+          "answerId": "en-classic-r1:15.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вон та сумка твоя»",
+            "uk": "Виберіть, як сказати: «Он та сумка твоя»",
+            "en": "Choose how to say: “That bag is yours.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.04",
+          "options": [
+            "en-classic-r1:15.04",
+            "en-classic-r1:15.02",
+            "en-classic-r1:15.01"
+          ],
+          "answerId": "en-classic-r1:15.04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Её, наш, их",
+        "uk": "Її, наш, їх",
+        "en": "Hers, ours, theirs"
+      },
+      "text": {
+        "ru": "У слов her, our и their тоже есть пара без вещи.\nThis key is hers. — Этот ключ её.\nЧитается: зи́с ки́ из хёрз.\nСлово hers значит «её».\nСлово her стоит перед вещью: her key. Слово hers стоит без вещи.\nThose are our seats. — Это наши места.\nЧитается: зо́уз ар а́ур си́тс.\nСлово those значит «те, вон те».\nОдна вещь вдалеке — that. Несколько вещей — those.\nThese seats are ours. — Эти места наши.\nЧитается: зи́з си́тс ар а́уэрз.\nСлово ours значит «наш, наши».\nСлово our стоит перед вещью, слово ours — без вещи.\nThese tickets are theirs. — Эти билеты принадлежат им.\nЧитается: зи́з ти́китс ар зэ́рз.\nСлово theirs значит «их».\nСлово their стоит перед вещью, слово theirs — без вещи.\nСлово his не меняется: his coat, the coat is his.",
+        "uk": "У слів her, our і their теж є пара без речі.\nThis key is hers. — Цей ключ її.\nЧитається: зі́с кі́ із хйорз.\nСлово hers означає «її».\nСлово her стоїть перед річчю: her key. Слово hers стоїть без речі.\nThose are our seats. — Це наші місця.\nЧитається: зо́уз ар а́ур сі́тс.\nСлово those означає «ті, он ті».\nОдна річ удалині — that. Кілька речей — those.\nThese seats are ours. — Ці місця наші.\nЧитається: зі́з сі́тс ар а́уерз.\nСлово ours означає «наш, наші».\nСлово our стоїть перед річчю, слово ours — без речі.\nThese tickets are theirs. — Ці квитки їхні.\nЧитається: зі́з ті́кітс ар зе́рз.\nСлово theirs означає «їх».\nСлово their стоїть перед річчю, слово theirs — без речі.\nСлово his не змінюється: his coat, the coat is his.",
+        "en": "The words her, our and their also have a partner without a thing.\nThis key is hers.\nThe word hers means “belonging to her”.\nThe word her comes before the thing: her key. The word hers comes alone.\nThose are our seats.\nThe word those means “the ones over there”.\nOne thing over there is that. Many things over there are those.\nThese seats are ours.\nThe word ours means “belonging to us”.\nThe word our comes before the thing, the word ours comes alone.\nThese tickets are theirs.\nThe word theirs means “belonging to them”.\nThe word their comes before the thing, the word theirs comes alone.\nThe word his does not change: his coat, the coat is his."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:15.06",
+          "say": {
+            "ru": "зи́с ки́ из хёрз",
+            "uk": "зі́с кі́ із хйорз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.07",
+          "say": {
+            "ru": "зо́уз ар а́ур си́тс",
+            "uk": "зо́уз ар а́ур сі́тс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.08",
+          "say": {
+            "ru": "зи́з си́тс ар а́уэрз",
+            "uk": "зі́з сі́тс ар а́уерз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.10",
+          "say": {
+            "ru": "зи́з ти́китс ар зэ́рз",
+            "uk": "зі́з ті́кітс ар зе́рз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Этот ключ её»",
+            "uk": "Виберіть, як сказати: «Цей ключ її»",
+            "en": "Choose how to say: “This key is hers.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:15.06",
+          "options": [
+            "en-classic-r1:15.06",
+            "en-classic-r1:15.07",
+            "en-classic-r1:15.08"
+          ],
+          "answerId": "en-classic-r1:15.06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эти места наши»",
+            "uk": "Виберіть, як сказати: «Ці місця наші»",
+            "en": "Choose how to say: “These seats are ours.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.08",
+          "options": [
+            "en-classic-r1:15.08",
+            "en-classic-r1:15.07",
+            "en-classic-r1:15.10"
+          ],
+          "answerId": "en-classic-r1:15.08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эти билеты принадлежат им»",
+            "uk": "Виберіть, як сказати: «Ці квитки їхні»",
+            "en": "Choose how to say: “These tickets are theirs.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.10",
+          "options": [
+            "en-classic-r1:15.10",
+            "en-classic-r1:15.06",
+            "en-classic-r1:15.08"
+          ],
+          "answerId": "en-classic-r1:15.10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Перчатки, шарф, куртка",
+        "uk": "Рукавички, шарф, куртка",
+        "en": "Gloves, scarf, jacket"
+      },
+      "text": {
+        "ru": "Перед вещью ставьте my, your, her, his, our или their.\nMy gloves are wet. — Мои перчатки мокрые.\nЧитается: май гла́вз ар уэ́т.\nСлово gloves значит «перчатки».\nСлово wet значит «мокрый».\nYour scarf is on the chair. — «Твой шарф лежит на стуле.»\nЧитается: йо́р ска́рф из он зэ чэ́р.\nСлово scarf значит «шарф».\nСлова is on the chair вместе значат «лежит на стуле».\nHis jacket is in the hall. — Его куртка в прихожей.\nЧитается: хи́з джэ́кит из ин зэ хо́л.\nСлово jacket значит «куртка».\nСлово hall значит «прихожая».\nOur towels are still damp. — Наши полотенца все еще влажные.\nЧитается: а́ур та́уэлз ар сти́л дэ́мп.\nСлово damp значит «влажный».\nTheir boots are outside. — Их ботинки снаружи.\nЧитается: зэ́р бу́тс ар аутса́йд.\nСлово boots значит «ботинки».",
+        "uk": "Перед річчю ставте my, your, her, his, our або their.\nMy gloves are wet. — Мої рукавички мокрі.\nЧитається: май гла́вз ар уе́т.\nСлово gloves означає «рукавички».\nСлово wet означає «мокрий».\nYour scarf is on the chair. — «Твій шарф на стільці.»\nЧитається: йо́р ска́рф із он зе че́р.\nСлово scarf означає «шарф».\nСлова is on the chair разом означають «лежить на стільці».\nHis jacket is in the hall. — Його куртка в коридорі.\nЧитається: хі́з дже́кіт із ін зе хо́л.\nСлово jacket означає «куртка».\nСлово hall означає «передпокій».\nOur towels are still damp. — Наші рушники ще вологі.\nЧитається: а́ур та́уелз ар сті́л де́мп.\nСлово damp означає «вологий».\nTheir boots are outside. — Їхні черевики надворі.\nЧитається: зе́р бу́тс ар аутса́йд.\nСлово boots означає «черевики».",
+        "en": "Put my, your, her, his, our or their before the thing.\nMy gloves are wet.\nThe word gloves means “warm covers for the hands”.\nThe word wet means “covered with water”.\nYour scarf is on the chair.\nThe word scarf means “a long piece of cloth for the neck”.\nThe words is on the chair together mean “is resting on the chair”.\nHis jacket is in the hall.\nThe word jacket means “a short coat”.\nThe word hall means “the room by the front door”.\nOur towels are still damp.\nThe word damp means “a little wet”.\nTheir boots are outside.\nThe word boots means “strong shoes that cover the ankle”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:15.11",
+          "say": {
+            "ru": "май гла́вз ар уэ́т",
+            "uk": "май гла́вз ар уе́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.12",
+          "say": {
+            "ru": "йо́р ска́рф из он зэ чэ́р",
+            "uk": "йо́р ска́рф із он зе че́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.14",
+          "say": {
+            "ru": "хи́з джэ́кит из ин зэ хо́л",
+            "uk": "хі́з дже́кіт із ін зе хо́л"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.15",
+          "say": {
+            "ru": "а́ур та́уэлз ар сти́л дэ́мп",
+            "uk": "а́ур та́уелз ар сті́л де́мп"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.16",
+          "say": {
+            "ru": "зэ́р бу́тс ар аутса́йд",
+            "uk": "зе́р бу́тс ар аутса́йд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои перчатки мокрые»",
+            "uk": "Виберіть, як сказати: «Мої рукавички мокрі»",
+            "en": "Choose how to say: “My gloves are wet.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:15.11",
+          "options": [
+            "en-classic-r1:15.11",
+            "en-classic-r1:15.12",
+            "en-classic-r1:15.16"
+          ],
+          "answerId": "en-classic-r1:15.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Его куртка в прихожей»",
+            "uk": "Виберіть, як сказати: «Його куртка в коридорі»",
+            "en": "Choose how to say: “His jacket is in the hall.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.14",
+          "options": [
+            "en-classic-r1:15.14",
+            "en-classic-r1:15.15",
+            "en-classic-r1:15.16"
+          ],
+          "answerId": "en-classic-r1:15.14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Наши полотенца все еще влажные»",
+            "uk": "Виберіть, як сказати: «Наші рушники ще вологі»",
+            "en": "Choose how to say: “Our towels are still damp.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.15",
+          "options": [
+            "en-classic-r1:15.15",
+            "en-classic-r1:15.11",
+            "en-classic-r1:15.12"
+          ],
+          "answerId": "en-classic-r1:15.15"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я нашёл свой…",
+        "uk": "Я знайшов свій…",
+        "en": "I found my…"
+      },
+      "text": {
+        "ru": "Про свою вещь по-русски говорят «свой». По-английски ставят my, her, his, our или their.\nI found my umbrella. — Я нашел свой зонтик.\nЧитается: ай фа́унд май амбрэ́ла.\nСлово umbrella значит «зонт».\nСлово my здесь значит «свой».\nShe lost her badge. — Она потеряла свой бейдж.\nЧитается: ши ло́ст хэ́р бэ́дж.\nСлово badge значит «бейдж».\nHe left his notebook here. — Он оставил здесь свой блокнот.\nЧитается: хи ле́фт хи́з но́утбук хи́р.\nСлово notebook значит «блокнот».\nСлово left здесь значит «оставил», как в уроке 12.",
+        "uk": "Про свою річ українською кажуть «свій». Англійською ставлять my, her, his, our або their.\nI found my umbrella. — Я знайшов свою парасольку.\nЧитається: ай фа́унд май амбре́ла.\nСлово umbrella означає «парасолька».\nСлово my тут означає «свій».\nShe lost her badge. — Вона загубила свій бейдж.\nЧитається: ші ло́ст хе́р бе́дж.\nСлово badge означає «бейдж».\nHe left his notebook here. — Він залишив тут свій блокнот.\nЧитається: хі ле́фт хі́з но́утбук хі́р.\nСлово notebook означає «блокнот».\nСлово left тут означає «залишив», як в уроці 12.",
+        "en": "About our own thing we say my, her, his, our or their.\nI found my umbrella.\nThe word umbrella means “a thing that keeps the rain off you”.\nHere my means the thing belongs to me.\nShe lost her badge.\nThe word badge means “a small card with your name”.\nHe left his notebook here.\nThe word notebook means “a small book for notes”.\nHere left means put down and went away, as in lesson 12."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:15.17",
+          "say": {
+            "ru": "ай фа́унд май амбрэ́ла",
+            "uk": "ай фа́унд май амбре́ла"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.18",
+          "say": {
+            "ru": "ши ло́ст хэ́р бэ́дж",
+            "uk": "ші ло́ст хе́р бе́дж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.19",
+          "say": {
+            "ru": "хи ле́фт хи́з но́утбук хи́р",
+            "uk": "хі ле́фт хі́з но́утбук хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я нашел свой зонтик»",
+            "uk": "Виберіть, як сказати: «Я знайшов свою парасольку»",
+            "en": "Choose how to say: “I found my umbrella.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:15.17",
+          "options": [
+            "en-classic-r1:15.17",
+            "en-classic-r1:15.18",
+            "en-classic-r1:15.19"
+          ],
+          "answerId": "en-classic-r1:15.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она потеряла свой бейдж»",
+            "uk": "Виберіть, як сказати: «Вона загубила свій бейдж»",
+            "en": "Choose how to say: “She lost her badge.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.18",
+          "options": [
+            "en-classic-r1:15.18",
+            "en-classic-r1:15.17",
+            "en-classic-r1:15.19"
+          ],
+          "answerId": "en-classic-r1:15.18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он оставил здесь свой блокнот»",
+            "uk": "Виберіть, як сказати: «Він залишив тут свій блокнот»",
+            "en": "Choose how to say: “He left his notebook here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.19",
+          "options": [
+            "en-classic-r1:15.19",
+            "en-classic-r1:15.17",
+            "en-classic-r1:15.18"
+          ],
+          "answerId": "en-classic-r1:15.19"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Чей?",
+        "uk": "Чий?",
+        "en": "Whose?"
+      },
+      "text": {
+        "ru": "Слово whose стоит в начале вопроса.\nWhose coat is this? — Чье это пальто?\nЧитается: ху́з ко́ут из зи́с.\nСлово whose значит «чей, чья, чьё, чьи».\nWhose keys are these? — Чьи это ключи?\nЧитается: ху́з ки́з ар зи́з.\nWhose keys — «чьи ключи».\nБез whose вопрос начинается с Is или Are.\nAre those gloves hers? — Эти перчатки ее?\nЧитается: ар зо́уз гла́вз хёрз.\nСлова hers и those вы видели выше.\nIs the blue bike his? — Синий велосипед его?\nЧитается: из зэ блу́ ба́йк хи́з.\nСлово his стоит без вещи, как hers.",
+        "uk": "Слово whose стоїть на початку питання.\nWhose coat is this? — Чиє це пальто?\nЧитається: ху́з ко́ут із зі́с.\nСлово whose означає «чий, чия, чиє, чиї».\nWhose keys are these? — Чиї це ключі?\nЧитається: ху́з кі́з ар зі́з.\nWhose keys — «чиї ключі».\nБез whose питання починається з Is або Are.\nAre those gloves hers? — Ці рукавички її?\nЧитається: ар зо́уз гла́вз хйорз.\nСлова hers і those ви бачили вище.\nIs the blue bike his? — Синій велосипед його?\nЧитається: із зе блу́ ба́йк хі́з.\nСлово his стоїть без речі, як hers.",
+        "en": "The word whose comes at the start of a question.\nWhose coat is this?\nThe word whose means “belonging to which person”.\nWhose keys are these?\nWhose keys asks about more than one key.\nWithout whose a question starts with Is or Are.\nAre those gloves hers?\nYou saw hers and those above.\nIs the blue bike his?\nThe word his comes alone, like hers."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:15.21",
+          "say": {
+            "ru": "ху́з ко́ут из зи́с",
+            "uk": "ху́з ко́ут із зі́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.22",
+          "say": {
+            "ru": "ху́з ки́з ар зи́з",
+            "uk": "ху́з кі́з ар зі́з"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.24",
+          "say": {
+            "ru": "ар зо́уз гла́вз хёрз",
+            "uk": "ар зо́уз гла́вз хйорз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.25",
+          "say": {
+            "ru": "из зэ блу́ ба́йк хи́з",
+            "uk": "із зе блу́ ба́йк хі́з"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чье это пальто?»",
+            "uk": "Виберіть, як сказати: «Чиє це пальто?»",
+            "en": "Choose how to say: “Whose coat is this?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:15.21",
+          "options": [
+            "en-classic-r1:15.21",
+            "en-classic-r1:15.22",
+            "en-classic-r1:15.24"
+          ],
+          "answerId": "en-classic-r1:15.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чьи это ключи?»",
+            "uk": "Виберіть, як сказати: «Чиї це ключі?»",
+            "en": "Choose how to say: “Whose keys are these?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.22",
+          "options": [
+            "en-classic-r1:15.22",
+            "en-classic-r1:15.21",
+            "en-classic-r1:15.25"
+          ],
+          "answerId": "en-classic-r1:15.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Синий велосипед его?»",
+            "uk": "Виберіть, як сказати: «Синій велосипед його?»",
+            "en": "Choose how to say: “Is the blue bike his?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.25",
+          "options": [
+            "en-classic-r1:15.25",
+            "en-classic-r1:15.24",
+            "en-classic-r1:15.22"
+          ],
+          "answerId": "en-classic-r1:15.25"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Моё и ваше рядом",
+        "uk": "Моє і ваше поруч",
+        "en": "Mine and yours together"
+      },
+      "text": {
+        "ru": "Вещь второй раз не называют. Вместо неё говорят mine, yours, hers, ours или theirs.\nI know my postcode, but not yours.\n— Я знаю свой почтовый индекс, но не ваш.\nЧитается: ай но́у май по́усткоуд ба́т но́т ёрз.\nСлово but значит «но, а».\nСлово postcode значит «почтовый индекс».\nOur door is blue; theirs is green. — Наша дверь синяя, их — зелёная.\nЧитается: а́ур до́р из блу́ зэ́рз из гри́н.\nСлово green вы видели в уроке 13.\nYour towel is dry; mine is wet. — Ваше полотенце сухое, моё мокрое.\nЧитается: йо́р та́уэл из дра́й ма́йн из уэ́т.\nСлово dry значит «сухой».\nСлово wet вы видели выше: «мокрый».\nHer bike is older than his. — Её велосипед старше его.\nЧитается: хэ́р ба́йк из о́улдер зэн хи́з.\nСлово older значит «старше».\nСлово old вы видели в уроке 14. Old + er — older.\nHis shift starts later than ours. — Его смена начинается позже нашей.\nЧитается: хи́з ши́фт ста́ртс лэ́йтер зэн а́уэрз.\nСлово later — «позже». Later than ours — «позже нашей».",
+        "uk": "Річ вдруге не називають. Замість неї кажуть mine, yours, hers, ours або theirs.\nI know my postcode, but not yours.\n— Я знаю свій поштовий індекс, але не ваш.\nЧитається: ай но́у май по́усткоуд ба́т но́т йорз.\nСлово but означає «але, а».\nСлово postcode означає «поштовий індекс».\nOur door is blue; theirs is green. — Наші двері сині; їхні – зелені.\nЧитається: а́ур до́р із блу́ зе́рз із грі́н.\nСлово green ви бачили в уроці 13.\nYour towel is dry; mine is wet. — Ваш рушник сухий; мій мокрий.\nЧитається: йо́р та́уел із дра́й ма́йн із уе́т.\nСлово dry означає «сухий».\nСлово wet ви бачили вище: «мокрий».\nHer bike is older than his. — Її велосипед старіший за його.\nЧитається: хе́р ба́йк із о́улдер зен хі́з.\nСлово older означає «старший».\nСлово old ви бачили в уроці 14. Old + er — older.\nHis shift starts later than ours. — Його зміна починається пізніше за нашу.\nЧитається: хі́з ші́фт ста́ртс ле́йтер зен а́уерз.\nСлово later — «пізніше». Later than ours — «пізніше за нашу».",
+        "en": "We do not say the thing twice. We say mine, yours, hers, ours or theirs instead.\nI know my postcode, but not yours.\nThe word but means “the word that shows a difference”.\nThe word postcode means “numbers and letters in an address”.\nOur door is blue; theirs is green.\nYou saw the word green in lesson 13.\nYour towel is dry; mine is wet.\nThe word dry means “not wet”.\nYou saw the word wet above.\nHer bike is older than his.\nThe word older means “having more years”.\nYou saw the word old in lesson 14. Old and er make older.\nHis shift starts later than ours.\nThe word later means after. Later than ours: after ours."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:15.35",
+          "say": {
+            "ru": "ай но́у май по́усткоуд ба́т но́т ёрз",
+            "uk": "ай но́у май по́усткоуд ба́т но́т йорз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.34",
+          "say": {
+            "ru": "а́ур до́р из блу́ зэ́рз из гри́н",
+            "uk": "а́ур до́р із блу́ зе́рз із грі́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.37",
+          "say": {
+            "ru": "йо́р та́уэл из дра́й ма́йн из уэ́т",
+            "uk": "йо́р та́уел із дра́й ма́йн із уе́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.36",
+          "say": {
+            "ru": "хэ́р ба́йк из о́улдер зэн хи́з",
+            "uk": "хе́р ба́йк із о́улдер зен хі́з"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.33",
+          "say": {
+            "ru": "хи́з ши́фт ста́ртс лэ́йтер зэн а́уэрз",
+            "uk": "хі́з ші́фт ста́ртс ле́йтер зен а́уерз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я знаю свой почтовый индекс, но не ваш»",
+            "uk": "Виберіть, як сказати: «Я знаю свій поштовий індекс, але не ваш»",
+            "en": "Choose how to say: “I know my postcode, but not yours.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:15.35",
+          "options": [
+            "en-classic-r1:15.35",
+            "en-classic-r1:15.34",
+            "en-classic-r1:15.37"
+          ],
+          "answerId": "en-classic-r1:15.35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваше полотенце сухое, моё мокрое»",
+            "uk": "Виберіть, як сказати: «Ваш рушник сухий; мій мокрий»",
+            "en": "Choose how to say: “Your towel is dry; mine is wet.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.37",
+          "options": [
+            "en-classic-r1:15.37",
+            "en-classic-r1:15.34",
+            "en-classic-r1:15.36"
+          ],
+          "answerId": "en-classic-r1:15.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Её велосипед старше его»",
+            "uk": "Виберіть, як сказати: «Її велосипед старіший за його»",
+            "en": "Choose how to say: “Her bike is older than his.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.36",
+          "options": [
+            "en-classic-r1:15.36",
+            "en-classic-r1:15.33",
+            "en-classic-r1:15.34"
+          ],
+          "answerId": "en-classic-r1:15.36"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Свой собственный",
+        "uk": "Свій власний",
+        "en": "My own, your own"
+      },
+      "text": {
+        "ru": "Слово own стоит между my, your, her, our, their и вещью.\nWe brought our own cups. — Мы принесли свои чашки.\nЧитается: уи бро́т а́ур о́ун ка́пс.\nСлово own значит «собственный, свой».\nСлова our own cups вместе значат «свои чашки».\nShe has her own desk. — У неё свой стол.\nЧитается: ши хэ́з хэ́р о́ун дэ́ск.\nСлова her own desk вместе значат «свой стол».\nPlease use your own charger. — Пожалуйста, используйте своё зарядное устройство.\nЧитается: пли́з ю́з йо́р о́ун ча́рджер.\nСлово please значит «пожалуйста».\nСлова your own charger вместе значат «своё зарядное устройство».",
+        "uk": "Слово own стоїть між my, your, her, our, their і річчю.\nWe brought our own cups. — Ми принесли свої власні чашки.\nЧитається: уи бро́т а́ур о́ун ка́пс.\nСлово own означає «власний, свій».\nСлова our own cups разом означають «свої чашки».\nShe has her own desk. — У неї свій власний стіл.\nЧитається: ші хе́з хе́р о́ун де́ск.\nСлова her own desk разом означають «свій стіл».\nPlease use your own charger. — Будь ласка, користуйтеся своїм власним зарядним пристроєм.\nЧитається: плі́з ю́з йо́р о́ун ча́рджер.\nСлово please означає «будь ласка».\nСлова your own charger разом означають «свій зарядний пристрій».",
+        "en": "The word own goes between my, your, her, our, their and the thing.\nWe brought our own cups.\nThe word own means “belonging only to you”.\nThe words our own cups together mean “cups that are ours, not borrowed”.\nShe has her own desk.\nThe words her own desk together mean “a desk that is only hers”.\nPlease use your own charger.\nThe word please means “a polite word when you ask”.\nThe words your own charger together mean “the charger that belongs to you”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:15.38",
+          "say": {
+            "ru": "уи бро́т а́ур о́ун ка́пс",
+            "uk": "уи бро́т а́ур о́ун ка́пс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.40",
+          "say": {
+            "ru": "ши хэ́з хэ́р о́ун дэ́ск",
+            "uk": "ші хе́з хе́р о́ун де́ск"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.41",
+          "say": {
+            "ru": "пли́з ю́з йо́р о́ун ча́рджер",
+            "uk": "плі́з ю́з йо́р о́ун ча́рджер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы принесли свои чашки»",
+            "uk": "Виберіть, як сказати: «Ми принесли свої власні чашки»",
+            "en": "Choose how to say: “We brought our own cups.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:15.38",
+          "options": [
+            "en-classic-r1:15.38",
+            "en-classic-r1:15.40",
+            "en-classic-r1:15.41"
+          ],
+          "answerId": "en-classic-r1:15.38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У неё свой стол»",
+            "uk": "Виберіть, як сказати: «У неї свій власний стіл»",
+            "en": "Choose how to say: “She has her own desk.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.40",
+          "options": [
+            "en-classic-r1:15.40",
+            "en-classic-r1:15.38",
+            "en-classic-r1:15.41"
+          ],
+          "answerId": "en-classic-r1:15.40"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пожалуйста, используйте своё зарядное устройство»",
+            "uk": "Виберіть, як сказати: «Будь ласка, користуйтеся своїм власним зарядним пристроєм»",
+            "en": "Choose how to say: “Please use your own charger.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.41",
+          "options": [
+            "en-classic-r1:15.41",
+            "en-classic-r1:15.40",
+            "en-classic-r1:15.38"
+          ],
+          "answerId": "en-classic-r1:15.41"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Чей-то: ’s",
+        "uk": "Чиєсь: ’s",
+        "en": "Whose it is: ’s"
+      },
+      "text": {
+        "ru": "Чтобы сказать «вещь брата», добавьте ’s к тому, кому она принадлежит.\nС ’s вы встречались в уроке 7: doctor’s number.\nThis is my brother's helmet. — Это шлем моего брата.\nЧитается: зи́с из май бра́зерз хэ́лмит.\nСлово brother вы видели в уроке 13: «брат».\nBrother + ’s — brother’s: «брата».\nThe children's boots are by the door. — Ботинки детей стоят у двери.\nЧитается: зэ чи́лдренз бу́тс ар бай зэ до́р.\nСлово children вы видели в уроке 14. Children’s boots — «ботинки детей».\nOur neighbour's gate is open. — Ворота нашего соседа открыты.\nЧитается: а́ур нэ́йберз гэ́йт из о́упен.\nСлово neighbour значит «сосед».\nNeighbour + ’s — neighbour’s: «соседа».",
+        "uk": "Щоб сказати «річ брата», додайте ’s до того, кому вона належить.\nЗ ’s ви зустрічалися в уроці 7: doctor’s number.\nThis is my brother's helmet. — Це шолом мого брата.\nЧитається: зі́с із май бра́зерз хе́лміт.\nСлово brother ви бачили в уроці 13: «брат».\nBrother + ’s — brother’s: «брата».\nThe children's boots are by the door. — Дитячі черевики біля дверей.\nЧитається: зе чі́лдренз бу́тс ар бай зе до́р.\nСлово children ви бачили в уроці 14. Children’s boots — «черевики дітей».\nOur neighbour's gate is open. — Ворота нашого сусіда відчинені.\nЧитається: а́ур не́йберз ге́йт із о́упен.\nСлово neighbour означає «сусід».\nNeighbour + ’s — neighbour’s: «сусіда».",
+        "en": "To say whose it is, add ’s to the person.\nYou met ’s in lesson 7: the doctor’s number.\nThis is my brother's helmet.\nYou saw the word brother in lesson 13.\nBrother and ’s make brother’s: the helmet of my brother.\nThe children's boots are by the door.\nYou saw children in lesson 14. Children’s boots: the boots of the children.\nOur neighbour's gate is open.\nThe word neighbour means “a person who lives next to you”.\nNeighbour and ’s make neighbour’s: the gate of the neighbour."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:15.43",
+          "say": {
+            "ru": "зи́с из май бра́зерз хэ́лмит",
+            "uk": "зі́с із май бра́зерз хе́лміт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.44",
+          "say": {
+            "ru": "зэ чи́лдренз бу́тс ар бай зэ до́р",
+            "uk": "зе чі́лдренз бу́тс ар бай зе до́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:15.45",
+          "say": {
+            "ru": "а́ур нэ́йберз гэ́йт из о́упен",
+            "uk": "а́ур не́йберз ге́йт із о́упен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это шлем моего брата»",
+            "uk": "Виберіть, як сказати: «Це шолом мого брата»",
+            "en": "Choose how to say: “This is my brother's helmet.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:15.43",
+          "options": [
+            "en-classic-r1:15.43",
+            "en-classic-r1:15.44",
+            "en-classic-r1:15.45"
+          ],
+          "answerId": "en-classic-r1:15.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ботинки детей стоят у двери»",
+            "uk": "Виберіть, як сказати: «Дитячі черевики біля дверей»",
+            "en": "Choose how to say: “The children's boots are by the door.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.44",
+          "options": [
+            "en-classic-r1:15.44",
+            "en-classic-r1:15.43",
+            "en-classic-r1:15.45"
+          ],
+          "answerId": "en-classic-r1:15.44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ворота нашего соседа открыты»",
+            "uk": "Виберіть, як сказати: «Ворота нашого сусіда відчинені»",
+            "en": "Choose how to say: “Our neighbour's gate is open.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:15.45",
+          "options": [
+            "en-classic-r1:15.45",
+            "en-classic-r1:15.44",
+            "en-classic-r1:15.43"
+          ],
+          "answerId": "en-classic-r1:15.45"
+        }
+      ]
+    }
+  ]
+}

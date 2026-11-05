@@ -1,0 +1,318 @@
+{
+ "lang": "it",
+ "lesson": 5,
+ "words": {
+  "ho": {
+   "ru": "(я) имею; у меня есть",
+   "uk": "(я) маю; у мене є",
+   "en": "(I) have",
+   "es": "(yo) tengo"
+  },
+  "hai": {
+   "ru": "(ты) имеешь; у тебя есть",
+   "uk": "(ти) маєш; у тебе є",
+   "en": "(you) have",
+   "es": "(tú) tienes"
+  },
+  "ha": {
+   "ru": "(он, она) имеет; у него есть",
+   "uk": "(він, вона) має; у нього є",
+   "en": "(he, she) has",
+   "es": "(él, ella) tiene"
+  },
+  "lui": {
+   "ru": "он",
+   "uk": "він",
+   "en": "he",
+   "es": "él"
+  },
+  "abbiamo": {
+   "ru": "(мы) имеем; у нас есть",
+   "uk": "(ми) маємо; у нас є",
+   "en": "(we) have",
+   "es": "(nosotros) tenemos"
+  },
+  "avete": {
+   "ru": "(вы) имеете; у вас есть",
+   "uk": "(ви) маєте; у вас є",
+   "en": "(you all) have",
+   "es": "(vosotros) tenéis"
+  },
+  "hanno": {
+   "ru": "(они) имеют; у них есть",
+   "uk": "(вони) мають; у них є",
+   "en": "(they) have",
+   "es": "(ellos) tienen"
+  },
+  "ragazze": {
+   "ru": "девушки",
+   "uk": "дівчата",
+   "en": "girls",
+   "es": "chicas"
+  },
+  "carta": {
+   "ru": "карточка",
+   "uk": "картка",
+   "en": "card",
+   "es": "tarjeta"
+  },
+  "me": {
+   "ru": "мной",
+   "uk": "мною",
+   "en": "me",
+   "es": "mí"
+  },
+  "fame": {
+   "ru": "голод",
+   "uk": "голод",
+   "en": "hunger",
+   "es": "hambre"
+  },
+  "sete": {
+   "ru": "жажда",
+   "uk": "спрага",
+   "en": "thirst",
+   "es": "sed"
+  },
+  "freddo": {
+   "ru": "холод",
+   "uk": "холод",
+   "en": "cold",
+   "es": "frío"
+  },
+  "caldo": {
+   "ru": "жара",
+   "uk": "спека",
+   "en": "heat",
+   "es": "calor"
+  },
+  "paura": {
+   "ru": "страх",
+   "uk": "страх",
+   "en": "fear",
+   "es": "miedo"
+  },
+  "sonno": {
+   "ru": "сон, желание спать",
+   "uk": "сон, бажання спати",
+   "en": "sleepiness",
+   "es": "sueño"
+  },
+  "mal": {
+   "ru": "боль",
+   "uk": "біль",
+   "en": "pain",
+   "es": "dolor"
+  },
+  "schiena": {
+   "ru": "спина",
+   "uk": "спина",
+   "en": "back",
+   "es": "espalda"
+  },
+  "testa": {
+   "ru": "голова",
+   "uk": "голова",
+   "en": "head",
+   "es": "cabeza"
+  },
+  "vent’anni": {
+   "ru": "двадцать лет",
+   "uk": "двадцять років",
+   "en": "twenty years",
+   "es": "veinte años"
+  },
+  "trent’anni": {
+   "ru": "тридцать лет",
+   "uk": "тридцять років",
+   "en": "thirty years",
+   "es": "treinta años"
+  },
+  "dieci": {
+   "ru": "десять",
+   "uk": "десять",
+   "en": "ten",
+   "es": "diez"
+  },
+  "anni": {
+   "ru": "годы, лет",
+   "uk": "роки, років",
+   "en": "years",
+   "es": "años"
+  },
+  "due": {
+   "ru": "два, двое",
+   "uk": "два, двоє",
+   "en": "two",
+   "es": "dos"
+  },
+  "tre": {
+   "ru": "три",
+   "uk": "три",
+   "en": "three",
+   "es": "tres"
+  },
+  "cinque": {
+   "ru": "пять",
+   "uk": "п’ять",
+   "en": "five",
+   "es": "cinco"
+  },
+  "minuti": {
+   "ru": "минуты",
+   "uk": "хвилини",
+   "en": "minutes",
+   "es": "minutos"
+  },
+  "appuntamento": {
+   "ru": "встреча, договорённость",
+   "uk": "зустріч, домовленість",
+   "en": "appointment",
+   "es": "cita"
+  },
+  "domanda": {
+   "ru": "вопрос",
+   "uk": "питання",
+   "en": "question",
+   "es": "pregunta"
+  },
+  "un’idea": {
+   "ru": "идея",
+   "uk": "ідея",
+   "en": "an idea",
+   "es": "una idea"
+  },
+  "tempo": {
+   "ru": "время",
+   "uk": "час",
+   "en": "time",
+   "es": "tiempo"
+  },
+  "penna": {
+   "ru": "ручка",
+   "uk": "ручка",
+   "en": "pen",
+   "es": "bolígrafo"
+  },
+  "momento": {
+   "ru": "минутка, момент",
+   "uk": "хвилинка, момент",
+   "en": "moment",
+   "es": "momento"
+  },
+  "sé": {
+   "ru": "собой",
+   "uk": "собою",
+   "en": "oneself",
+   "es": "sí"
+  },
+  "suoi": {
+   "ru": "её, его, ваши",
+   "uk": "її, його, ваші",
+   "en": "her, his, your",
+   "es": "sus"
+  },
+  "passaporto": {
+   "ru": "паспорт",
+   "uk": "паспорт",
+   "en": "passport",
+   "es": "pasaporte"
+  },
+  "degli": {
+   "ru": "слово без перевода (немного)",
+   "uk": "слово без перекладу (трохи)",
+   "en": "some",
+   "es": "unos"
+  },
+  "spiccioli": {
+   "ru": "мелочь",
+   "uk": "дрібні гроші",
+   "en": "small change",
+   "es": "monedas sueltas"
+  },
+  "ritorno": {
+   "ru": "возвращение, обратный",
+   "uk": "повернення, зворотний",
+   "en": "return",
+   "es": "vuelta"
+  },
+  "prenotazione": {
+   "ru": "бронь",
+   "uk": "бронь",
+   "en": "booking",
+   "es": "reserva"
+  },
+  "bisogno": {
+   "ru": "нужда, надобность",
+   "uk": "потреба",
+   "en": "need",
+   "es": "necesidad"
+  },
+  "aiuto": {
+   "ru": "помощь",
+   "uk": "допомога",
+   "en": "help",
+   "es": "ayuda"
+  },
+  "pausa": {
+   "ru": "перерыв",
+   "uk": "перерва",
+   "en": "break",
+   "es": "pausa"
+  },
+  "riposo": {
+   "ru": "отдых",
+   "uk": "відпочинок",
+   "en": "rest",
+   "es": "descanso"
+  },
+  "d’acqua": {
+   "ru": "воды",
+   "uk": "води",
+   "en": "of water",
+   "es": "de agua"
+  },
+  "po’": {
+   "ru": "немного",
+   "uk": "трохи",
+   "en": "a little",
+   "es": "poco"
+  },
+  "possibilità": {
+   "ru": "возможность",
+   "uk": "можливість",
+   "en": "possibility",
+   "es": "posibilidad"
+  },
+  "scegliere": {
+   "ru": "выбирать",
+   "uk": "вибирати",
+   "en": "to choose",
+   "es": "elegir"
+  },
+  "mezzogiorno": {
+   "ru": "полдень",
+   "uk": "полудень",
+   "en": "noon",
+   "es": "mediodía"
+  },
+  "gola": {
+   "ru": "горло",
+   "uk": "горло",
+   "en": "throat",
+   "es": "garganta"
+  },
+  "della": {
+   "ru": "её (слитно со словом перед ним)",
+   "uk": "її (злито зі словом перед ним)",
+   "en": "of the (joined word)",
+   "es": "de la"
+  },
+  "ricetta": {
+   "ru": "рецепт",
+   "uk": "рецепт",
+   "en": "recipe, prescription",
+   "es": "receta"
+  }
+ }
+}

@@ -1,0 +1,531 @@
+{
+ "lang": "de",
+ "lesson": 4,
+ "words": [
+  {
+   "form": "morgen",
+   "surface": "Morgen",
+   "count": 7,
+   "examples": [
+    {
+     "id": "de:04:02",
+     "target": "Morgen arbeite ich",
+     "ru": "Завтра я работаю.",
+     "en": "Tomorrow I am working."
+    },
+    {
+     "id": "de:04:04",
+     "target": "Morgen lernt Anna",
+     "ru": "Завтра Анна учится.",
+     "en": "Tomorrow Anna is studying."
+    }
+   ]
+  },
+  {
+   "form": "montag",
+   "surface": "Montag",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:04:05",
+     "target": "Am Montag arbeite ich",
+     "ru": "В понедельник я работаю.",
+     "en": "On Monday I am working."
+    },
+    {
+     "id": "de:04:15",
+     "target": "Am Montag kaufen wir Gemüse",
+     "ru": "В понедельник мы покупаем овощи.",
+     "en": "On Monday we're buying vegetables."
+    }
+   ]
+  },
+  {
+   "form": "dienstag",
+   "surface": "Dienstag",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:04:06",
+     "target": "Am Dienstag arbeite ich",
+     "ru": "Во вторник я работаю.",
+     "en": "On Tuesday I am working."
+    },
+    {
+     "id": "de:04:16",
+     "target": "Am Dienstag kochen wir Suppe",
+     "ru": "Во вторник мы варим суп.",
+     "en": "On Tuesday we're making soup."
+    }
+   ]
+  },
+  {
+   "form": "freitag",
+   "surface": "Freitag",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:04:07",
+     "target": "Am Freitag arbeitet Tom",
+     "ru": "В пятницу Том работает.",
+     "en": "On Friday Tom is working."
+    },
+    {
+     "id": "de:04:17",
+     "target": "Am Freitag lernen wir Deutsch",
+     "ru": "В пятницу мы учим немецкий.",
+     "en": "On Friday we're learning German."
+    }
+   ]
+  },
+  {
+   "form": "samstag",
+   "surface": "Samstag",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:04:08",
+     "target": "Am Samstag arbeitet Tom",
+     "ru": "В субботу Том работает.",
+     "en": "On Saturday Tom is working."
+    },
+    {
+     "id": "de:04:18",
+     "target": "Am Samstag spielen die Kinder draußen",
+     "ru": "В субботу дети играют на улице.",
+     "en": "On Saturday the children are playing outside."
+    }
+   ]
+  },
+  {
+   "form": "sonntag",
+   "surface": "Sonntag",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:04:09",
+     "target": "Am Sonntag kochen wir",
+     "ru": "В воскресенье мы готовим.",
+     "en": "On Sunday we are cooking."
+    },
+    {
+     "id": "de:04:19",
+     "target": "Am Sonntag macht Tom Frühstück",
+     "ru": "В воскресенье Том готовит завтрак.",
+     "en": "On Sunday Tom is making breakfast."
+    }
+   ]
+  },
+  {
+   "form": "um",
+   "surface": "Um",
+   "count": 10,
+   "examples": [
+    {
+     "id": "de:04:21",
+     "target": "Um acht beginnt der Kurs",
+     "ru": "В восемь начинается занятие.",
+     "en": "The class starts at eight."
+    },
+    {
+     "id": "de:04:22",
+     "target": "Um neun beginnt die Arbeit",
+     "ru": "В девять начинается работа.",
+     "en": "Work starts at nine."
+    }
+   ]
+  },
+  {
+   "form": "acht",
+   "surface": "acht",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:04:21",
+     "target": "Um acht beginnt der Kurs",
+     "ru": "В восемь начинается занятие.",
+     "en": "The class starts at eight."
+    },
+    {
+     "id": "de:04:30",
+     "target": "Um acht bin ich zu Hause",
+     "ru": "В восемь я дома.",
+     "en": "I'm home at eight."
+    }
+   ]
+  },
+  {
+   "form": "beginnt",
+   "surface": "beginnt",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:04:21",
+     "target": "Um acht beginnt der Kurs",
+     "ru": "В восемь начинается занятие.",
+     "en": "The class starts at eight."
+    },
+    {
+     "id": "de:04:22",
+     "target": "Um neun beginnt die Arbeit",
+     "ru": "В девять начинается работа.",
+     "en": "Work starts at nine."
+    }
+   ]
+  },
+  {
+   "form": "kurs",
+   "surface": "Kurs",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:04:21",
+     "target": "Um acht beginnt der Kurs",
+     "ru": "В восемь начинается занятие.",
+     "en": "The class starts at eight."
+    },
+    {
+     "id": "de:04:31",
+     "target": "Nach dem Kurs lerne ich zu Hause",
+     "ru": "После занятия я учусь дома.",
+     "en": "After class, I study at home."
+    }
+   ]
+  },
+  {
+   "form": "neun",
+   "surface": "neun",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:22",
+     "target": "Um neun beginnt die Arbeit",
+     "ru": "В девять начинается работа.",
+     "en": "Work starts at nine."
+    }
+   ]
+  },
+  {
+   "form": "arbeit",
+   "surface": "Arbeit",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:04:22",
+     "target": "Um neun beginnt die Arbeit",
+     "ru": "В девять начинается работа.",
+     "en": "Work starts at nine."
+    },
+    {
+     "id": "de:04:32",
+     "target": "Nach der Arbeit kauft Anna Brot",
+     "ru": "После работы Анна покупает хлеб.",
+     "en": "After work, Anna buys bread."
+    }
+   ]
+  },
+  {
+   "form": "zehn",
+   "surface": "zehn",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:23",
+     "target": "Um zehn öffnet der Laden",
+     "ru": "В десять открывается магазин.",
+     "en": "The shop opens at ten."
+    }
+   ]
+  },
+  {
+   "form": "öffnet",
+   "surface": "öffnet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:23",
+     "target": "Um zehn öffnet der Laden",
+     "ru": "В десять открывается магазин.",
+     "en": "The shop opens at ten."
+    }
+   ]
+  },
+  {
+   "form": "sechs",
+   "surface": "sechs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:24",
+     "target": "Um sechs schließt die Küche",
+     "ru": "В шесть закрывается кухня.",
+     "en": "The kitchen closes at six."
+    }
+   ]
+  },
+  {
+   "form": "schließt",
+   "surface": "schließt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:24",
+     "target": "Um sechs schließt die Küche",
+     "ru": "В шесть закрывается кухня.",
+     "en": "The kitchen closes at six."
+    }
+   ]
+  },
+  {
+   "form": "sieben",
+   "surface": "sieben",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:25",
+     "target": "Um sieben kommt der Bus",
+     "ru": "В семь приходит автобус.",
+     "en": "The bus arrives at seven."
+    }
+   ]
+  },
+  {
+   "form": "kommt",
+   "surface": "kommt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:25",
+     "target": "Um sieben kommt der Bus",
+     "ru": "В семь приходит автобус.",
+     "en": "The bus arrives at seven."
+    }
+   ]
+  },
+  {
+   "form": "zwölf",
+   "surface": "zwölf",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:26",
+     "target": "Um zwölf machen wir eine Pause",
+     "ru": "В двенадцать мы делаем перерыв.",
+     "en": "We take a break at twelve."
+    }
+   ]
+  },
+  {
+   "form": "drei",
+   "surface": "drei",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:27",
+     "target": "Um drei wartet Tom am Eingang",
+     "ru": "В три Том ждёт у входа.",
+     "en": "Tom waits at the entrance at three."
+    }
+   ]
+  },
+  {
+   "form": "vier",
+   "surface": "vier",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:28",
+     "target": "Um vier arbeitet Anna im Café",
+     "ru": "В четыре Анна работает в кафе.",
+     "en": "Anna works in the café at four."
+    }
+   ]
+  },
+  {
+   "form": "fünf",
+   "surface": "fünf",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:29",
+     "target": "Um fünf kochen wir",
+     "ru": "В пять мы готовим.",
+     "en": "We cook at five."
+    }
+   ]
+  },
+  {
+   "form": "nach",
+   "surface": "Nach",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:04:31",
+     "target": "Nach dem Kurs lerne ich zu Hause",
+     "ru": "После занятия я учусь дома.",
+     "en": "After class, I study at home."
+    },
+    {
+     "id": "de:04:32",
+     "target": "Nach der Arbeit kauft Anna Brot",
+     "ru": "После работы Анна покупает хлеб.",
+     "en": "After work, Anna buys bread."
+    }
+   ]
+  },
+  {
+   "form": "dem",
+   "surface": "dem",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:04:31",
+     "target": "Nach dem Kurs lerne ich zu Hause",
+     "ru": "После занятия я учусь дома.",
+     "en": "After class, I study at home."
+    },
+    {
+     "id": "de:04:33",
+     "target": "Nach dem Essen hören wir Musik",
+     "ru": "После еды мы слушаем музыку.",
+     "en": "After dinner, we listen to music."
+    }
+   ]
+  },
+  {
+   "form": "vor",
+   "surface": "Vor",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:04:34",
+     "target": "Vor dem Kurs trinke ich Tee",
+     "ru": "Перед занятием я пью чай.",
+     "en": "Before class, I drink tea."
+    },
+    {
+     "id": "de:04:35",
+     "target": "Vor der Arbeit macht Tom Kaffee",
+     "ru": "Перед работой Том готовит кофе.",
+     "en": "Before work, Tom makes coffee."
+    }
+   ]
+  },
+  {
+   "form": "trinke",
+   "surface": "trinke",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:34",
+     "target": "Vor dem Kurs trinke ich Tee",
+     "ru": "Перед занятием я пью чай.",
+     "en": "Before class, I drink tea."
+    }
+   ]
+  },
+  {
+   "form": "abend",
+   "surface": "Abend",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:04:37",
+     "target": "Am Abend lesen wir",
+     "ru": "Вечером мы читаем.",
+     "en": "In the evening, we read."
+    },
+    {
+     "id": "de:04:45",
+     "target": "Am Abend ist der Platz frei",
+     "ru": "Вечером место свободно.",
+     "en": "The seat is free this evening."
+    }
+   ]
+  },
+  {
+   "form": "lesen",
+   "surface": "lesen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:37",
+     "target": "Am Abend lesen wir",
+     "ru": "Вечером мы читаем.",
+     "en": "In the evening, we read."
+    }
+   ]
+  },
+  {
+   "form": "nachmittag",
+   "surface": "Nachmittag",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:38",
+     "target": "Am Nachmittag spielen die Kinder",
+     "ru": "После обеда дети играют.",
+     "en": "In the afternoon, the children play."
+    }
+   ]
+  },
+  {
+   "form": "in",
+   "surface": "In",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:04:39",
+     "target": "In der Pause trinken wir Wasser",
+     "ru": "На перерыве мы пьём воду.",
+     "en": "During the break, we drink water."
+    },
+    {
+     "id": "de:04:46",
+     "target": "In der Pause ist die Küche frei",
+     "ru": "Во время перерыва кухня свободна.",
+     "en": "The kitchen is free during the break."
+    }
+   ]
+  },
+  {
+   "form": "trinken",
+   "surface": "trinken",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:39",
+     "target": "In der Pause trinken wir Wasser",
+     "ru": "На перерыве мы пьём воду.",
+     "en": "During the break, we drink water."
+    }
+   ]
+  },
+  {
+   "form": "wochenende",
+   "surface": "Wochenende",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:40",
+     "target": "Am Wochenende arbeiten wir draußen",
+     "ru": "В выходные мы работаем на улице.",
+     "en": "On weekends, we work outside."
+    }
+   ]
+  },
+  {
+   "form": "ende",
+   "surface": "Ende",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:04:50",
+     "target": "Am Freitag ist der Kurs zu Ende",
+     "ru": "В пятницу курс заканчивается.",
+     "en": "The course ends on Friday."
+    }
+   ]
+  }
+ ]
+}

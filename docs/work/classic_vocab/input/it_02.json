@@ -1,0 +1,555 @@
+{
+ "lang": "it",
+ "lesson": 2,
+ "words": [
+  {
+   "form": "non",
+   "surface": "Non",
+   "count": 50,
+   "examples": [
+    {
+     "id": "it:02:01",
+     "target": "Non sono qui",
+     "ru": "Меня здесь нет.",
+     "en": "I am not here."
+    },
+    {
+     "id": "it:02:02",
+     "target": "Non sei qui",
+     "ru": "Тебя здесь нет.",
+     "en": "You’re not here."
+    }
+   ]
+  },
+  {
+   "form": "sola",
+   "surface": "sola",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:15",
+     "target": "Lea non è sola",
+     "ru": "Леа не одна.",
+     "en": "Lea is not alone."
+    }
+   ]
+  },
+  {
+   "form": "ritardo",
+   "surface": "ritardo",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:02:19",
+     "target": "Non siete in ritardo",
+     "ru": "Вы не опоздали.",
+     "en": "You are not late."
+    },
+    {
+     "id": "it:02:40",
+     "target": "Il treno non è in ritardo",
+     "ru": "Поезд не опаздывает.",
+     "en": "The train is not late."
+    }
+   ]
+  },
+  {
+   "form": "anticipo",
+   "surface": "anticipo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:20",
+     "target": "Non siamo in anticipo",
+     "ru": "Мы не пришли заранее.",
+     "en": "We didn’t arrive early."
+    }
+   ]
+  },
+  {
+   "form": "aperti",
+   "surface": "aperti",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:23",
+     "target": "I negozi non sono aperti",
+     "ru": "Магазины не открыты.",
+     "en": "The stores aren’t open."
+    }
+   ]
+  },
+  {
+   "form": "stanza",
+   "surface": "stanza",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:25",
+     "target": "La stanza non è vuota",
+     "ru": "Комната не пуста.",
+     "en": "The room is not empty."
+    }
+   ]
+  },
+  {
+   "form": "vuota",
+   "surface": "vuota",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:25",
+     "target": "La stanza non è vuota",
+     "ru": "Комната не пуста.",
+     "en": "The room is not empty."
+    }
+   ]
+  },
+  {
+   "form": "corridoio",
+   "surface": "corridoio",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:02:26",
+     "target": "Il corridoio non è buio",
+     "ru": "В коридоре не темно.",
+     "en": "The hallway is not dark."
+    },
+    {
+     "id": "it:02:47",
+     "target": "Il corridoio non è molto largo",
+     "ru": "Коридор не очень широкий.",
+     "en": "The corridor isn’t very wide."
+    }
+   ]
+  },
+  {
+   "form": "buio",
+   "surface": "buio",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:26",
+     "target": "Il corridoio non è buio",
+     "ru": "В коридоре не темно.",
+     "en": "The hallway is not dark."
+    }
+   ]
+  },
+  {
+   "form": "tavolo",
+   "surface": "tavolo",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:02:29",
+     "target": "Il tavolo non è pulito",
+     "ru": "Стол не чистый.",
+     "en": "The table isn’t clean."
+    },
+    {
+     "id": "it:02:39",
+     "target": "I biglietti non sono sul tavolo",
+     "ru": "Билетов нет на столе.",
+     "en": "The tickets are not on the table."
+    }
+   ]
+  },
+  {
+   "form": "pulito",
+   "surface": "pulito",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:29",
+     "target": "Il tavolo non è pulito",
+     "ru": "Стол не чистый.",
+     "en": "The table isn’t clean."
+    }
+   ]
+  },
+  {
+   "form": "bicchiere",
+   "surface": "bicchiere",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:30",
+     "target": "Il bicchiere non è sporco",
+     "ru": "Стакан не грязный.",
+     "en": "The glass is not dirty."
+    }
+   ]
+  },
+  {
+   "form": "sporco",
+   "surface": "sporco",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:30",
+     "target": "Il bicchiere non è sporco",
+     "ru": "Стакан не грязный.",
+     "en": "The glass is not dirty."
+    }
+   ]
+  },
+  {
+   "form": "l’autobus",
+   "surface": "L’autobus",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:02:31",
+     "target": "L’autobus non è lontano",
+     "ru": "Автобус недалеко.",
+     "en": "The bus isn’t far."
+    },
+    {
+     "id": "it:02:49",
+     "target": "L’autobus non è ancora qui",
+     "ru": "Автобуса ещё нет.",
+     "en": "The bus isn’t here yet."
+    }
+   ]
+  },
+  {
+   "form": "lontano",
+   "surface": "lontano",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:31",
+     "target": "L’autobus non è lontano",
+     "ru": "Автобус недалеко.",
+     "en": "The bus isn’t far."
+    }
+   ]
+  },
+  {
+   "form": "bagni",
+   "surface": "bagni",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:32",
+     "target": "I bagni non sono in fondo",
+     "ru": "Туалеты не в конце зала.",
+     "en": "The toilets are not at the back."
+    }
+   ]
+  },
+  {
+   "form": "fondo",
+   "surface": "fondo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:32",
+     "target": "I bagni non sono in fondo",
+     "ru": "Туалеты не в конце зала.",
+     "en": "The toilets are not at the back."
+    }
+   ]
+  },
+  {
+   "form": "biglietto",
+   "surface": "biglietto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:33",
+     "target": "Il biglietto non è nella borsa",
+     "ru": "Билета нет в сумке.",
+     "en": "The ticket isn’t in the bag."
+    }
+   ]
+  },
+  {
+   "form": "nella",
+   "surface": "nella",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:02:33",
+     "target": "Il biglietto non è nella borsa",
+     "ru": "Билета нет в сумке.",
+     "en": "The ticket isn’t in the bag."
+    },
+    {
+     "id": "it:02:34",
+     "target": "I bambini non sono nella sala",
+     "ru": "Детей нет в комнате.",
+     "en": "The children aren’t in the room."
+    }
+   ]
+  },
+  {
+   "form": "sala",
+   "surface": "sala",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:34",
+     "target": "I bambini non sono nella sala",
+     "ru": "Детей нет в комнате.",
+     "en": "The children aren’t in the room."
+    }
+   ]
+  },
+  {
+   "form": "bicicletta",
+   "surface": "bicicletta",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:35",
+     "target": "La bicicletta non è fuori",
+     "ru": "Велосипед не на улице.",
+     "en": "The bicycle is not outside."
+    }
+   ]
+  },
+  {
+   "form": "mio",
+   "surface": "mio",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:36",
+     "target": "Il mio telefono non è qui",
+     "ru": "Моего телефона здесь нет.",
+     "en": "My phone isn’t here."
+    }
+   ]
+  },
+  {
+   "form": "telefono",
+   "surface": "telefono",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:36",
+     "target": "Il mio telefono non è qui",
+     "ru": "Моего телефона здесь нет.",
+     "en": "My phone isn’t here."
+    }
+   ]
+  },
+  {
+   "form": "museo",
+   "surface": "museo",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:02:37",
+     "target": "Il museo non è aperto",
+     "ru": "Музей не открыт.",
+     "en": "The museum is not open."
+    },
+    {
+     "id": "it:02:45",
+     "target": "La stazione ferroviaria non è vicina al museo",
+     "ru": "Железнодорожный вокзал находится не рядом с музеем.",
+     "en": "The train station is not near the museum."
+    }
+   ]
+  },
+  {
+   "form": "farmacia",
+   "surface": "farmacia",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:38",
+     "target": "La farmacia non è lontana",
+     "ru": "Аптека недалеко.",
+     "en": "The pharmacy isn’t far."
+    }
+   ]
+  },
+  {
+   "form": "biglietti",
+   "surface": "biglietti",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:39",
+     "target": "I biglietti non sono sul tavolo",
+     "ru": "Билетов нет на столе.",
+     "en": "The tickets are not on the table."
+    }
+   ]
+  },
+  {
+   "form": "sul",
+   "surface": "sul",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:39",
+     "target": "I biglietti non sono sul tavolo",
+     "ru": "Билетов нет на столе.",
+     "en": "The tickets are not on the table."
+    }
+   ]
+  },
+  {
+   "form": "treno",
+   "surface": "treno",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:40",
+     "target": "Il treno non è in ritardo",
+     "ru": "Поезд не опаздывает.",
+     "en": "The train is not late."
+    }
+   ]
+  },
+  {
+   "form": "pranzo",
+   "surface": "pranzo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:43",
+     "target": "Il pranzo non è pronto",
+     "ru": "Обед не готов.",
+     "en": "Lunch is not ready."
+    }
+   ]
+  },
+  {
+   "form": "camera",
+   "surface": "camera",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:44",
+     "target": "La camera non è libera",
+     "ru": "Номер не свободен.",
+     "en": "The room is not available."
+    }
+   ]
+  },
+  {
+   "form": "libera",
+   "surface": "libera",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:44",
+     "target": "La camera non è libera",
+     "ru": "Номер не свободен.",
+     "en": "The room is not available."
+    }
+   ]
+  },
+  {
+   "form": "al",
+   "surface": "al",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:45",
+     "target": "La stazione ferroviaria non è vicina al museo",
+     "ru": "Железнодорожный вокзал находится не рядом с музеем.",
+     "en": "The train station is not near the museum."
+    }
+   ]
+  },
+  {
+   "form": "scarpe",
+   "surface": "scarpe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:46",
+     "target": "Le scarpe non sono pulite",
+     "ru": "Обувь не чистая.",
+     "en": "The shoes are not clean."
+    }
+   ]
+  },
+  {
+   "form": "pulite",
+   "surface": "pulite",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:46",
+     "target": "Le scarpe non sono pulite",
+     "ru": "Обувь не чистая.",
+     "en": "The shoes are not clean."
+    }
+   ]
+  },
+  {
+   "form": "molto",
+   "surface": "molto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:47",
+     "target": "Il corridoio non è molto largo",
+     "ru": "Коридор не очень широкий.",
+     "en": "The corridor isn’t very wide."
+    }
+   ]
+  },
+  {
+   "form": "largo",
+   "surface": "largo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:47",
+     "target": "Il corridoio non è molto largo",
+     "ru": "Коридор не очень широкий.",
+     "en": "The corridor isn’t very wide."
+    }
+   ]
+  },
+  {
+   "form": "soli",
+   "surface": "soli",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:48",
+     "target": "Non siete soli qui",
+     "ru": "Вы здесь не одни.",
+     "en": "You’re not alone here."
+    }
+   ]
+  },
+  {
+   "form": "lontani",
+   "surface": "lontani",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:50",
+     "target": "Non siamo lontani dalla stazione",
+     "ru": "Мы недалеко от вокзала.",
+     "en": "We’re not far from the station."
+    }
+   ]
+  },
+  {
+   "form": "dalla",
+   "surface": "dalla",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:02:50",
+     "target": "Non siamo lontani dalla stazione",
+     "ru": "Мы недалеко от вокзала.",
+     "en": "We’re not far from the station."
+    }
+   ]
+  }
+ ]
+}

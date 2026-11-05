@@ -1,0 +1,12 @@
+{
+  "_note": "Переводы plain-теории английского курса, урок 6 — локаль uk (Переводчик, 05.11). Обращение «ви». Английские слова и примеры не переводятся.",
+  "title": {"uk": "Питання: де, коли, що, як"},
+  "chapters": {
+    "c1": {"title": {"uk": "Де і коли"}, "text": {"uk": "Ставте нове слово на початок.\nWhere do you work?\nСлово Where означає «в якому місці».\nWhere does she live?\nДля неї кажемо does.\nWhen does the sale end?\nСлово When означає «о котрій годині».\nСлова: meet (зустрічатися), after (після), coat (пальто), batteries (батарейки)."}},
+    "c2": {"title": {"uk": "Що"}, "text": {"uk": "Слово What означає «яку річ».\nWhat size do you wear?\nСлово size означає «який розмір».\nWhat does this word mean?\nСлово mean означає «мати значення».\nСлова: label (етикетка), say (казати), button (кнопка)."}},
+    "c3": {"title": {"uk": "Який із них"}, "text": {"uk": "Слово Which означає «котрий із них».\nWhich colour do you prefer?\nСлова: colour (колір), prefer (віддавати перевагу).\nWhich bus goes to the centre?\nТут немає do чи does: автобус їде сам.\nСлова: centre (центр), leads (веде), belongs (належить)."}},
+    "c4": {"title": {"uk": "Чому і як"}, "text": {"uk": "Why означає «з якої причини». How означає «яким чином».\nWhy does the alarm beep?\nСлова: alarm (будильник, сигналізація), beep (пікати).\nHow do I restart the printer?\nСлово restart означає «почати знову».\nСлова: screen (екран), dark (темний), more (більше), cost (коштувати).\nСлова: spell (писати по буквах), surname (прізвище), one (один)."}},
+    "c5": {"title": {"uk": "Скільки"}, "text": {"uk": "Слово How можна поєднати з іншим словом.\nHow much does a ticket cost?\nHow much питає про ціну.\nHow many people live here?\nHow many питає про кількість.\nHow long, how often, how far — як довго, як часто, як далеко.\nСлова: journey (подорож), day (день), each (кожен), foot (нога, пішки)."}},
+    "c6": {"title": {"uk": "Хто"}, "text": {"uk": "Слово Who означає «яка людина».\nWho checks the orders?\nТут немає do чи does: Who вже каже, хто діє.\nСлово order означає «замовлення».\nWho do I call?\nСлово call означає «телефонувати».\nСлова: teach (навчати), evening (вечір)."}}
+  }
+}

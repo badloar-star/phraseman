@@ -18,6 +18,7 @@ import { plainTheoryFor, plainStats } from './classic_plain_apply.mjs';
 import { scrubTheory } from './classic_locale_scrub.mjs';
 import { applyManualGlossary, manualStats } from './classic_glossary_manual.mjs';
 import { applyVocab, vocabStats } from './classic_vocab_apply.mjs';
+import { plainIntroFor, introPlainStats } from './classic_intro_plain_apply.mjs';
 import { rebuildTheoryExamples, addChapterTitles, theoryExamplesStats } from './classic_theory_examples.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -404,9 +405,40 @@ function scanForbidden(lang, name, node, path = '') {
 // окончанием правильного слова (3 → 2 → 1 знака), того же регистра, по убыванию частоты. Результат детерминирован.
 const LISTS = JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_distractor_lists.json'), 'utf8'));
 const PATCHES = JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_distractor_patches.json'), 'utf8'));
+// зачем (Координатор/Ревизор 05.11, смысловой аудит Opus pass1): «выдающие себя» соблазны en — remove (слова в фразе) и replacements (from → to).
+// Вливаем только английскую часть (es скрыт до 2.1.1) в те же PATCHES.remove / PATCHES.replace по ключу «en:LL:NN», не правя общий файл правок.
+{
+  const REV_PATCH_PATH = join(ROOT, 'docs', 'work', 'course_quality_1pct', 'pass1', 'distractor_patch_en_es.json');
+  const REV_LANGS = new Set(['en']);
+  const revKey = (id) => { const m = /^([a-z]+)[^:]*:(\d\d)[.:](\d\d)$/.exec(id); return m && REV_LANGS.has(m[1]) ? `${m[1]}:${m[2]}:${m[3]}` : null; };
+  if (existsSync(REV_PATCH_PATH)) {
+    const rp = JSON.parse(readFileSync(REV_PATCH_PATH, 'utf8'));
+    let nRemove = 0, nReplace = 0;
+    for (const [id, words] of Object.entries(rp.remove ?? {})) { const k = revKey(id); if (!k) continue; (PATCHES.remove ??= {})[k] = [...(PATCHES.remove[k] ?? []), ...words]; nRemove += words.length; }
+    for (const r of rp.replacements ?? []) { const k = revKey(r.id); if (!k) continue; ((PATCHES.replace ??= {})[k] ??= []).push({ from: r.from, to: r.to, position: r.position }); nReplace++; }
+    console.log(`[DISTR-REV-PATCH] влито: remove ${nRemove} слов, replace ${nReplace} (языки ${[...REV_LANGS]})`);
+  } else console.log(`[DISTR-REV-PATCH] нет файла ${REV_PATCH_PATH} — патч Ревизора не влит`);
+}
 // зачем (05.11, «курсы ≤1%»): классы слов от spaCy (scripts/classic_pos_export.py) — тот же разбор, что у локального валидатора check_distractors.py;
 // соблазн допускается, только если его класс в изоляции пересекается с классом верной плитки (иначе валидатор помечает pos_mismatch).
 const POS_LEX = existsSync(join(ROOT, 'scripts', 'classic_pos_lexicon.json')) ? JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_pos_lexicon.json'), 'utf8')) : null;
+// зачем (владелец 05.11: «та же часть речи и форма, правдоподобная ошибка»; Работник А): класс в изоляции пропускал «regardons» на месте «ne»,
+// «gare» на месте «en», «Waiting» на месте «Take». Подписи из РАЗБОРА В КОНТЕКСТЕ (scripts/classic_ctx_signatures.py): подпись верной плитки
+// в своей фразе обязана входить в подписи кандидата (как он стоит в курсе), плюс точечные запреты подстановок. Языки — CTX_LANGS.
+const CTX_SIG = existsSync(join(ROOT, 'scripts', 'classic_ctx_signatures.json')) ? JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_ctx_signatures.json'), 'utf8')) : null;
+const CTX_LANGS = new Set(['en']); // зачем: в 150 идёт английский (Диспетчер 05.11); es/fr/de/it — после проверки en
+function ctxReason(ctx, ph, i, d) {
+  const S = ctx.ctxSig;
+  if (!S) return null;
+  const want = S.tiles[ph.id]?.[i];
+  if (!want) return null; // нет разбора верной плитки — правило не применяем
+  const m = /(\d\d)[.:](\d\d)$/.exec(ph.id);
+  // зачем: регистр первой плитки выравнивается ПОСЛЕ проверки (that → That), поэтому запреты сверяем без учёта регистра
+  if (m && S.bans[`${m[1]}:${m[2]}#${i}`]?.some((b) => b.toLowerCase() === d.toLowerCase())) return 'ctxPos';
+  const have = S.words[d.toLowerCase()];
+  if (!have) return ctx.relax ? null : 'ctxUnknown'; // слова нет в курсе ни верным, ни соблазном — форму не знаем
+  return have.includes(want) ? null : 'ctxPos';
+}
 function spacyReason(ctx, ph, i, d) {
   const L = ctx.posLex;
   if (!L) return null;
@@ -497,6 +529,7 @@ function badReason(lang, ctx, ph, i, d, mine) {
     if (!cc && dc && !ctx.articles.has(c) && !isNum && !isName) return 'posClass';
   }
   if (!ctx.noTag) { const tr = tagReason(ctx, ph, i, dd) ?? spacyReason(ctx, ph, i, d); if (tr) return tr; }
+  { const cr = ctxReason(ctx, ph, i, d); if (cr) return cr; } // зачем: действует и в запасных проходах — иначе добор вернёт чужую часть речи
   if (ctx.adverbOnly && ctx.adverbOnly.words.includes(dd) && !ctx.adverbOnly.allowedFor.includes(c)) return 'posClass';
   if (lang === 'es' && c === 'fuera' && ctx.serForms.has(dd) && !/^(si|que|como|aunque)$/i.test(corrects[i - 1] ?? '')) return 'pos';
   if (ctx.numbers.has(dd) !== isNum || (!ctx.relax && CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
@@ -620,7 +653,7 @@ function buildContext(lang, all) {
   for (const [k, toks] of Object.entries(PATCHES.remove ?? {})) patch.set(k, new Set(toks.map(stripP)));
   if (process.env.DEBUG_NAMES) console.log(`имена ${lang}: ${[...names].filter((n) => /^(He|She|They|We|You|It|The|A|There|This)$/.test(n)).join(',')} всего ${names.size}`);
   return {
-    lang, posLex: POS_LEX?.[lang] ?? null, tags: buildTags(lang, all, new Set(LISTS.articles?.[lang] ?? []), LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }), numbers, names, nameTile, vocab, patch, globalKeys,
+    lang, posLex: POS_LEX?.[lang] ?? null, ctxSig: CTX_LANGS.has(lang) ? CTX_SIG?.[lang] ?? null : null, tags: buildTags(lang, all, new Set(LISTS.articles?.[lang] ?? []), LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }), numbers, names, nameTile, vocab, patch, globalKeys,
     articles: sets(LISTS.articles?.[lang]), synonyms: LISTS.synonyms?.[lang] ?? [], youGroups: LISTS.youGroups?.[lang] ?? [],
     replace: new Map(Object.entries(PATCHES.replace ?? {})), artPairs: LISTS.articlePairs?.[lang] ?? null,
     closed: LISTS.closedClasses?.[lang] ?? { prep: [], conj: [] }, adverbOnly: LISTS.adverbOnly?.[lang] ?? null,
@@ -671,14 +704,31 @@ function fixDistractors(lang, all) {
       const kept = [];
       const rep = ctx.replace.get(`${lang}:${phraseNumbers(ph.id).key}`) ?? [];
       for (let d of tile.distractors) {
-        const forced = rep.find((r) => stripP(r.from) === stripP(d));
-        if (forced) { kept.push(upperFirst(d) ? forced.to[0].toUpperCase() + forced.to.slice(1) : forced.to); removed.patchReplaced = (removed.patchReplaced ?? 0) + 1; continue; }
+        // зачем: замена Ревизора несёт позицию — та же форма слова может стоять соблазном на другой плитке, где замена неуместна
+        const forced = rep.find((r) => stripP(r.from) === stripP(d) && (r.position === undefined || r.position === i));
+        if (forced) {
+          const to = upperFirst(d) ? forced.to[0].toUpperCase() + forced.to.slice(1) : forced.to;
+          kept.push(to); removed.patchReplaced = (removed.patchReplaced ?? 0) + 1;
+          // замену с позицией дал сильный аудитор (Opus) — мягкие правила генератора её не отменяют, как и правки слоя аудита
+          if (forced.position !== undefined) auditForced.add(`${ph.id}#${i}:${to.toLowerCase()}`);
+          continue;
+        }
         if (lang === 'en' && /^i(['’]|$)/.test(d)) { d = 'I' + d.slice(1); removed.caseFixed++; }
         if (ctx.nameTile.get(tile) === true && !upperFirst(d) && ctx.names.has(d[0].toUpperCase() + d.slice(1))) { d = d[0].toUpperCase() + d.slice(1); removed.caseFixed++; }
         const why = badReason(lang, ctx, ph, i, d, kept);
         if (process.env.DEBUG_TILE === `${ph.id}#${i}`) console.log('tile', d, why);
         if (why === 'youForm') youPhrases.add(ph.id);
         if (why) removed[why] = (removed[why] ?? 0) + 1; else kept.push(d);
+      }
+      // зачем (патч Ревизора 05.11): большинство его «from» — слова прошлого добора, в архиве их нет, и замена выше не срабатывает;
+      // тогда предложенное «to» ставим первым кандидатом добора (только жёсткие проверки: не верное слово фразы, не вторая верная фраза, не дубль)
+      for (const r of rep) {
+        if (kept.length >= want || r.position !== i) continue;
+        const to = i === 0 && upperFirst(tile.correct) && lang !== 'en' ? r.to[0].toUpperCase() + r.to.slice(1) : r.to;
+        if (kept.some((x) => stripP(x) === stripP(to))) continue;
+        const why = badReason(lang, { ...ctx, relax: true, noTag: true }, ph, i, to, kept);
+        if (why && ['otherCorrect', 'acceptedPhrase', 'selfCase', 'duplicate', 'nonWord', 'patch'].includes(why)) { removed.revRejected = (removed.revRejected ?? 0) + 1; console.log(`[DISTR-REV-PATCH] отклонено ${ph.id}#${i} ${r.from}→${to}: ${why}`); continue; }
+        kept.push(to); auditForced.add(`${ph.id}#${i}:${to.toLowerCase()}`); removed.revFilled = (removed.revFilled ?? 0) + 1;
       }
       if (kept.length < want) {
         // английские соблазны в архиве строчные даже у первой плитки (You → he, they); в остальных языках первая плитка с заглавной
@@ -759,6 +809,17 @@ function fixDistractors(lang, all) {
             if (!badReason(lang, ctx, ph, i, c, kept)) { kept.push(c); removed.refilled++; }
           }
           if (kept.length >= want) break;
+        }
+        // зачем (Работник А 05.11): где включены контекстные подписи, они точнее классов «в изоляции» (tagReason/spacyReason). Прежде чем
+        // снимать запрет непройденных слов (relax ниже), пробуем слова того же класса ПО КОНТЕКСТУ среди уже пройденных: noTag, но не relax
+        if (kept.length < want && ctx.ctxSig) {
+          const ctxC = { ...ctx, noTag: true };
+          for (const [c0] of [...everything.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))) {
+            if (kept.length >= want) break;
+            const c = asWanted(c0);
+            if (kept.some((x) => stripP(x) === stripP(c)) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
+            if (!badReason(lang, ctxC, ph, i, c, kept)) { tried.add(c); kept.push(c); removed.refilled++; removed.ctxSeen = (removed.ctxSeen ?? 0) + 1; }
+          }
         }
         // запас: если по правилам класса/непройденного не набралось 5 — берём любые допустимые слова нужного регистра (всё остальное правим по-прежнему)
         if (kept.length < want) {
@@ -937,6 +998,7 @@ function convert(lang, zips) {
     if (!Array.isArray(blocks) || blocks.map((b) => b.kind).join() !== 'concept,formula,practice') fail(lang, `урок ${n}: вступление не concept/formula/practice`);
     // зачем: оверрайды применяем до проверок ниже, чтобы проверка видела итоговые тексты
     blocks = applyIntroOverrides(blocks, lang, n);
+    blocks = plainIntroFor(lang, n, blocks); // зачем: вступления «как ребёнку» по локалям (docs/work/classic_intro_plain), перекрывают урок в тех локалях, что есть в файлах
     for (const b of blocks ?? []) for (const loc of LOCALES) if (!introText(b, loc, 'title') || !introText(b, loc, 'text')) fail(lang, `урок ${n} вступление ${b.kind}: нет ${loc}`);
     // заголовки — обычный текст: обратные кавычки (`je suis`) без разметки показались бы ученику буквально; в текстах и lines* разметку не трогаем
     for (const b of blocks ?? []) {
@@ -1054,6 +1116,8 @@ console.log('слой аудита: ' + JSON.stringify(auditStats));
 console.log('правки теорий: ' + JSON.stringify(theoryFixStats));
 console.log('примеры глав: ' + JSON.stringify(theoryExamplesStats));
 console.log('теория как для ребёнка: ' + JSON.stringify(plainStats));
+console.log('интро как для ребёнка: ' + JSON.stringify(introPlainStats));
+console.log('словарь уроков: ' + JSON.stringify(vocabStats));
 console.log(`переводы ru/uk: исправлено невидимых символов/знаков конца: ${translationNormalized.n}`);
 console.log(JSON.stringify(table));
 if (warnings.length) console.log(`ПРЕДУПРЕЖДЕНИЯ (${warnings.length}): ` + warnings.slice(0, 3).join(' | ') + ' …');

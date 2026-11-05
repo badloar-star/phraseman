@@ -1,0 +1,591 @@
+{
+ "lang": "en",
+ "lesson": 5,
+ "words": [
+  {
+   "form": "sell",
+   "surface": "sell",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.16",
+     "target": "Do you sell stamps",
+     "ru": "Вы продаете марки?",
+     "en": "Do you sell stamps?"
+    }
+   ]
+  },
+  {
+   "form": "stamps",
+   "surface": "stamps",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.16",
+     "target": "Do you sell stamps",
+     "ru": "Вы продаете марки?",
+     "en": "Do you sell stamps?"
+    }
+   ]
+  },
+  {
+   "form": "sundays",
+   "surface": "Sundays",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.18",
+     "target": "Do the buses run on Sundays",
+     "ru": "Автобусы ходят по воскресеньям?",
+     "en": "Do the buses run on Sundays?"
+    }
+   ]
+  },
+  {
+   "form": "down",
+   "surface": "down",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.19",
+     "target": "Does the lift go down",
+     "ru": "Лифт опускается?",
+     "en": "Does the lift go down?"
+    }
+   ]
+  },
+  {
+   "form": "pay",
+   "surface": "pay",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.20",
+     "target": "Do we pay here",
+     "ru": "Мы платим здесь?",
+     "en": "Do we pay here?"
+    }
+   ]
+  },
+  {
+   "form": "street",
+   "surface": "street",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.21",
+     "target": "Do you live on this street",
+     "ru": "Вы живете на этой улице?",
+     "en": "Do you live on this street?"
+    }
+   ]
+  },
+  {
+   "form": "balcony",
+   "surface": "balcony",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.22",
+     "target": "Does your flat have a balcony",
+     "ru": "В вашей квартире есть балкон?",
+     "en": "Does your flat have a balcony?"
+    }
+   ]
+  },
+  {
+   "form": "oven",
+   "surface": "oven",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.26",
+     "target": "Does the oven work",
+     "ru": "Духовка работает?",
+     "en": "Does the oven work?"
+    }
+   ]
+  },
+  {
+   "form": "hear",
+   "surface": "hear",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.27",
+     "target": "Do you hear that noise",
+     "ru": "Вы слышите этот шум?",
+     "en": "Do you hear that noise?"
+    }
+   ]
+  },
+  {
+   "form": "noise",
+   "surface": "noise",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.27",
+     "target": "Do you hear that noise",
+     "ru": "Вы слышите этот шум?",
+     "en": "Do you hear that noise?"
+    }
+   ]
+  },
+  {
+   "form": "by",
+   "surface": "by",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.28",
+     "target": "Does the gate shut by itself",
+     "ru": "Ворота закрываются сами по себе?",
+     "en": "Does the gate shut by itself?"
+    }
+   ]
+  },
+  {
+   "form": "itself",
+   "surface": "itself",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.28",
+     "target": "Does the gate shut by itself",
+     "ru": "Ворота закрываются сами по себе?",
+     "en": "Does the gate shut by itself?"
+    }
+   ]
+  },
+  {
+   "form": "parking",
+   "surface": "parking",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.29",
+     "target": "Do we need a parking permit",
+     "ru": "Нужен ли нам парковочный пропуск?",
+     "en": "Do we need a parking permit?"
+    }
+   ]
+  },
+  {
+   "form": "permit",
+   "surface": "permit",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.29",
+     "target": "Do we need a parking permit",
+     "ru": "Нужен ли нам парковочный пропуск?",
+     "en": "Do we need a parking permit?"
+    }
+   ]
+  },
+  {
+   "form": "landlord",
+   "surface": "landlord",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.30",
+     "target": "Does the landlord live nearby",
+     "ru": "Живет ли арендодатель поблизости?",
+     "en": "Does the landlord live nearby?"
+    }
+   ]
+  },
+  {
+   "form": "new",
+   "surface": "new",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.31",
+     "target": "Do you like your new shift",
+     "ru": "Вам нравится ваша новая смена?",
+     "en": "Do you like your new shift?"
+    }
+   ]
+  },
+  {
+   "form": "team",
+   "surface": "team",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.32",
+     "target": "Does your team start early",
+     "ru": "Ваша команда начинает работу рано?",
+     "en": "Does your team start early?"
+    }
+   ]
+  },
+  {
+   "form": "wear",
+   "surface": "wear",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.33",
+     "target": "Do they wear a uniform",
+     "ru": "Они носят униформу?",
+     "en": "Do they wear a uniform?"
+    }
+   ]
+  },
+  {
+   "form": "uniform",
+   "surface": "uniform",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.33",
+     "target": "Do they wear a uniform",
+     "ru": "Они носят униформу?",
+     "en": "Do they wear a uniform?"
+    }
+   ]
+  },
+  {
+   "form": "manager",
+   "surface": "manager",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.34",
+     "target": "Does your manager check the rota",
+     "ru": "Ваш менеджер проверяет график работы?",
+     "en": "Does your manager check the rota?"
+    }
+   ]
+  },
+  {
+   "form": "rota",
+   "surface": "rota",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.34",
+     "target": "Does your manager check the rota",
+     "ru": "Ваш менеджер проверяет график работы?",
+     "en": "Does your manager check the rota?"
+    }
+   ]
+  },
+  {
+   "form": "get",
+   "surface": "get",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.35",
+     "target": "Do you get a lunch break",
+     "ru": "У вас есть перерыв на обед?",
+     "en": "Do you get a lunch break?"
+    }
+   ]
+  },
+  {
+   "form": "break",
+   "surface": "break",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.35",
+     "target": "Do you get a lunch break",
+     "ru": "У вас есть перерыв на обед?",
+     "en": "Do you get a lunch break?"
+    }
+   ]
+  },
+  {
+   "form": "printer",
+   "surface": "printer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.36",
+     "target": "Does the printer need paper",
+     "ru": "Нужна ли принтеру бумага?",
+     "en": "Does the printer need paper?"
+    }
+   ]
+  },
+  {
+   "form": "paper",
+   "surface": "paper",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.36",
+     "target": "Does the printer need paper",
+     "ru": "Нужна ли принтеру бумага?",
+     "en": "Does the printer need paper?"
+    }
+   ]
+  },
+  {
+   "form": "sign",
+   "surface": "sign",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.37",
+     "target": "Do we sign this form",
+     "ru": "Мы подписываем эту форму?",
+     "en": "Do we sign this form?"
+    }
+   ]
+  },
+  {
+   "form": "form",
+   "surface": "form",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.37",
+     "target": "Do we sign this form",
+     "ru": "Мы подписываем эту форму?",
+     "en": "Do we sign this form?"
+    }
+   ]
+  },
+  {
+   "form": "spare",
+   "surface": "spare",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.38",
+     "target": "Does the office have a spare key",
+     "ru": "Есть ли в офисе запасной ключ?",
+     "en": "Does the office have a spare key?"
+    }
+   ]
+  },
+  {
+   "form": "keep",
+   "surface": "keep",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.39",
+     "target": "Do you keep the receipts",
+     "ru": "Вы храните чеки?",
+     "en": "Do you keep the receipts?"
+    }
+   ]
+  },
+  {
+   "form": "receipts",
+   "surface": "receipts",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.39",
+     "target": "Do you keep the receipts",
+     "ru": "Вы храните чеки?",
+     "en": "Do you keep the receipts?"
+    }
+   ]
+  },
+  {
+   "form": "colleague",
+   "surface": "colleague",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.40",
+     "target": "Does your colleague work weekends",
+     "ru": "Ваш коллега работает по выходным?",
+     "en": "Does your colleague work weekends?"
+    }
+   ]
+  },
+  {
+   "form": "weekends",
+   "surface": "weekends",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.40",
+     "target": "Does your colleague work weekends",
+     "ru": "Ваш коллега работает по выходным?",
+     "en": "Does your colleague work weekends?"
+    }
+   ]
+  },
+  {
+   "form": "delivery",
+   "surface": "delivery",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.41",
+     "target": "Does this price include delivery",
+     "ru": "Включает ли эта цена доставку?",
+     "en": "Does this price include delivery?"
+    }
+   ]
+  },
+  {
+   "form": "address",
+   "surface": "address",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.42",
+     "target": "Do you need my address",
+     "ru": "Вам нужен мой адрес?",
+     "en": "Do you need my address?"
+    }
+   ]
+  },
+  {
+   "form": "parcel",
+   "surface": "parcel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.43",
+     "target": "Does the parcel fit in the box",
+     "ru": "Помещается ли посылка в коробку?",
+     "en": "Does the parcel fit in the box?"
+    }
+   ]
+  },
+  {
+   "form": "box",
+   "surface": "box",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.43",
+     "target": "Does the parcel fit in the box",
+     "ru": "Помещается ли посылка в коробку?",
+     "en": "Does the parcel fit in the box?"
+    }
+   ]
+  },
+  {
+   "form": "send",
+   "surface": "send",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.44",
+     "target": "Do you send a confirmation email",
+     "ru": "Вы отправляете письмо с подтверждением?",
+     "en": "Do you send a confirmation email?"
+    }
+   ]
+  },
+  {
+   "form": "confirmation",
+   "surface": "confirmation",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.44",
+     "target": "Do you send a confirmation email",
+     "ru": "Вы отправляете письмо с подтверждением?",
+     "en": "Do you send a confirmation email?"
+    }
+   ]
+  },
+  {
+   "form": "anyone",
+   "surface": "anyone",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.45",
+     "target": "Does anyone check the post",
+     "ru": "Кто-нибудь проверяет почту?",
+     "en": "Does anyone check the post?"
+    }
+   ]
+  },
+  {
+   "form": "post",
+   "surface": "post",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.45",
+     "target": "Does anyone check the post",
+     "ru": "Кто-нибудь проверяет почту?",
+     "en": "Does anyone check the post?"
+    }
+   ]
+  },
+  {
+   "form": "collect",
+   "surface": "collect",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.46",
+     "target": "Do I collect it here",
+     "ru": "Мне забирать это здесь?",
+     "en": "Do I collect it here?"
+    }
+   ]
+  },
+  {
+   "form": "quiet",
+   "surface": "quiet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.48",
+     "target": "Does this train have a quiet carriage",
+     "ru": "В этом поезде есть тихий вагон?",
+     "en": "Does this train have a quiet carriage?"
+    }
+   ]
+  },
+  {
+   "form": "carriage",
+   "surface": "carriage",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.48",
+     "target": "Does this train have a quiet carriage",
+     "ru": "В этом поезде есть тихий вагон?",
+     "en": "Does this train have a quiet carriage?"
+    }
+   ]
+  },
+  {
+   "form": "left",
+   "surface": "left",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.49",
+     "target": "Do the doors open on the left",
+     "ru": "Двери открываются слева?",
+     "en": "Do the doors open on the left?"
+    }
+   ]
+  },
+  {
+   "form": "next",
+   "surface": "next",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:05.50",
+     "target": "Do you know the next stop",
+     "ru": "Вы знаете следующую остановку?",
+     "en": "Do you know the next stop?"
+    }
+   ]
+  }
+ ]
+}

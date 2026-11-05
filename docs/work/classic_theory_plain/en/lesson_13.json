@@ -1,0 +1,732 @@
+{
+  "lang": "en",
+  "lesson": 13,
+  "title": {
+    "ru": "Что я сделаю и что будет",
+    "uk": "Що я зроблю і що буде",
+    "en": "What I will do and what will happen"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я сделаю потом",
+        "uk": "Я зроблю потім",
+        "en": "I will do it later"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы сделаете потом.\nI will wait outside. — Я подожду снаружи.\nЧитается: ай уил уэ́йт аутса́йд.\nСлово will показывает: это ещё не случилось, это будет потом.\nСлова will wait вместе значат «подожду».\nПо-русски отдельного слова для will нет.\nShe will call later. — Она позвонит позже.\nЧитается: ши уил ко́л лэ́йтер.\nСлово later значит «позже».\nСлова will call вместе значат «позвонит».\nСлово will одинаковое для всех: I will, she will, we will, they will.\nWe will bring the cups. — Мы принесем чашки.\nЧитается: уи уил бри́нг зэ ка́пс.\nСлова will bring вместе значат «принесём».",
+        "uk": "Дивіться, як сказати, що ви зробите потім.\nI will wait outside. — Я почекаю надворі.\nЧитається: ай уил уе́йт аутса́йд.\nСлово will показує: це ще не сталося, це буде потім.\nСлова will wait разом означають «почекаю».\nУкраїнською окремого слова для will немає.\nShe will call later. — Вона подзвонить пізніше.\nЧитається: ші уил ко́л ле́йтер.\nСлово later означає «пізніше».\nСлова will call разом означають «подзвонить».\nСлово will однакове для всіх: I will, she will, we will, they will.\nWe will bring the cups. — Ми принесемо чашки.\nЧитається: уи уил брі́нг зе ка́пс.\nСлова will bring разом означають «принесемо».",
+        "en": "Look how to say what you will do later.\nI will wait outside.\nThe word will shows: this has not happened yet, it comes later.\nThe words will wait together mean “I am going to wait”.\nSome languages have no separate word for it.\nShe will call later.\nThe word later means “after some time”.\nThe words will call together mean “is going to call”.\nThe word will is the same for everyone: I will, she will, we will, they will.\nWe will bring the cups.\nThe words will bring together mean “are going to bring”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:13.01",
+          "say": {
+            "ru": "ай уил уэ́йт аутса́йд",
+            "uk": "ай уил уе́йт аутса́йд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.02",
+          "say": {
+            "ru": "ши уил ко́л лэ́йтер",
+            "uk": "ші уил ко́л ле́йтер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.03",
+          "say": {
+            "ru": "уи уил бри́нг зэ ка́пс",
+            "uk": "уи уил брі́нг зе ка́пс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я подожду снаружи»",
+            "uk": "Виберіть, як сказати: «Я почекаю надворі»",
+            "en": "Choose how to say: “I will wait outside.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:13.01",
+          "options": [
+            "en-classic-r1:13.01",
+            "en-classic-r1:13.02",
+            "en-classic-r1:13.03"
+          ],
+          "answerId": "en-classic-r1:13.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она позвонит позже»",
+            "uk": "Виберіть, як сказати: «Вона подзвонить пізніше»",
+            "en": "Choose how to say: “She will call later.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.02",
+          "options": [
+            "en-classic-r1:13.02",
+            "en-classic-r1:13.03",
+            "en-classic-r1:13.01"
+          ],
+          "answerId": "en-classic-r1:13.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы принесем чашки»",
+            "uk": "Виберіть, як сказати: «Ми принесемо чашки»",
+            "en": "Choose how to say: “We will bring the cups.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.03",
+          "options": [
+            "en-classic-r1:13.03",
+            "en-classic-r1:13.01",
+            "en-classic-r1:13.02"
+          ],
+          "answerId": "en-classic-r1:13.03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Решил — и сделаю",
+        "uk": "Вирішив — і зроблю",
+        "en": "I decided, so I will do it"
+      },
+      "text": {
+        "ru": "Так говорят, когда решили что-то сделать или обещаете.\nHe will open the gate. — Он откроет ворота.\nЧитается: хи уил о́упен зэ гэ́йт.\nСлова will open вместе значат «откроет».\nПосле will слово остаётся простым: will open, а не will opens.\nI will take this bag. — Я возьму эту сумку.\nЧитается: ай уил тэ́йк зи́с бэ́г.\nСлова will take вместе значат «возьму».\nShe will send a photo. — Она пришлет фотографию.\nЧитается: ши уил сэ́нд э фо́уто.\nСлова will send вместе значат «пришлёт».",
+        "uk": "Так кажуть, коли вирішили щось зробити або обіцяєте.\nHe will open the gate. — Він відчинить ворота.\nЧитається: хі уил о́упен зе ге́йт.\nСлова will open разом означають «відчинить».\nПісля will слово залишається простим: will open, а не will opens.\nI will take this bag. — Я візьму цю сумку.\nЧитається: ай уил те́йк зі́с бе́г.\nСлова will take разом означають «візьму».\nShe will send a photo. — Вона надішле фото.\nЧитається: ші уил се́нд е фо́уто.\nСлова will send разом означають «надішле».",
+        "en": "We say this when we decide to do something or promise it.\nHe will open the gate.\nThe words will open together mean “is going to open”.\nAfter will the word stays plain: will open, not will opens.\nI will take this bag.\nThe words will take together mean “am going to take”.\nShe will send a photo.\nThe words will send together mean “is going to send”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:13.04",
+          "say": {
+            "ru": "хи уил о́упен зэ гэ́йт",
+            "uk": "хі уил о́упен зе ге́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.06",
+          "say": {
+            "ru": "ай уил тэ́йк зи́с бэ́г",
+            "uk": "ай уил те́йк зі́с бе́г"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.08",
+          "say": {
+            "ru": "ши уил сэ́нд э фо́уто",
+            "uk": "ші уил се́нд е фо́уто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он откроет ворота»",
+            "uk": "Виберіть, як сказати: «Він відчинить ворота»",
+            "en": "Choose how to say: “He will open the gate.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:13.04",
+          "options": [
+            "en-classic-r1:13.04",
+            "en-classic-r1:13.06",
+            "en-classic-r1:13.08"
+          ],
+          "answerId": "en-classic-r1:13.04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я возьму эту сумку»",
+            "uk": "Виберіть, як сказати: «Я візьму цю сумку»",
+            "en": "Choose how to say: “I will take this bag.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.06",
+          "options": [
+            "en-classic-r1:13.06",
+            "en-classic-r1:13.08",
+            "en-classic-r1:13.04"
+          ],
+          "answerId": "en-classic-r1:13.06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она пришлет фотографию»",
+            "uk": "Виберіть, як сказати: «Вона надішле фото»",
+            "en": "Choose how to say: “She will send a photo.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.08",
+          "options": [
+            "en-classic-r1:13.08",
+            "en-classic-r1:13.04",
+            "en-classic-r1:13.02"
+          ],
+          "answerId": "en-classic-r1:13.08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Понесу, поделим, спрошу",
+        "uk": "Понесу, поділимо, запитаю",
+        "en": "I will carry, split and ask"
+      },
+      "text": {
+        "ru": "Ещё несколько дел, которые вы сделаете потом.\nI will carry the heavy box. — Я понесу тяжелую коробку.\nЧитается: ай уил кэ́ри зэ хэ́ви бо́кс.\nСлово heavy значит «тяжёлый».\nСлова will carry вместе значат «понесу».\nWe will split the bill. — Мы разделим счет.\nЧитается: уи уил спли́т зэ би́л.\nСлово split значит «разделить».\nСлова split the bill вместе значат «разделить счёт».\nI will ask about luggage storage. — Я спрошу о хранении багажа.\nЧитается: ай уил а́ск эба́ут ла́гидж сто́рэдж.\nСлово ask значит «спросить».\nСлово about значит «о, про».\nСлово storage значит «хранение».\nСлова luggage storage вместе значат «хранение багажа».\nI will put the kettle on. — Я поставлю чайник.\nЧитается: ай уил пу́т зэ кэ́тл он.\nСлово put вы видели в уроке 12: «положила».\nСлова put the kettle on вместе значат «поставить чайник».",
+        "uk": "Ще кілька справ, які ви зробите потім.\nI will carry the heavy box. — Я понесу важку коробку.\nЧитається: ай уил ке́рі зе хе́ві бо́кс.\nСлово heavy означає «важкий».\nСлова will carry разом означають «понесу».\nWe will split the bill. — Ми розділимо рахунок.\nЧитається: уи уил сплі́т зе бі́л.\nСлово split означає «розділити».\nСлова split the bill разом означають «розділити рахунок».\nI will ask about luggage storage. — Я запитаю про камеру схову багажу.\nЧитається: ай уил а́ск еба́ут ла́гідж сто́редж.\nСлово ask означає «запитати».\nСлово about означає «про».\nСлово storage означає «зберігання».\nСлова luggage storage разом означають «камера схову багажу».\nI will put the kettle on. — Я поставлю чайник.\nЧитається: ай уил пу́т зе ке́тл он.\nСлово put ви бачили в уроці 12: «поклала».\nСлова put the kettle on разом означають «поставити чайник».",
+        "en": "A few more things you will do later.\nI will carry the heavy box.\nThe word heavy means “weighs a lot”.\nThe words will carry together mean “am going to carry”.\nWe will split the bill.\nThe word split means “to share between people”.\nThe words split the bill together mean “each person pays a part”.\nI will ask about luggage storage.\nThe word ask means “to put a question”.\nThe word about means “on the subject of”.\nThe word storage means “a place to keep things”.\nThe words luggage storage together mean “a place that keeps bags”.\nI will put the kettle on.\nYou saw the word put in lesson 12: placed.\nThe words put the kettle on together mean “start heating the kettle”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:13.12",
+          "say": {
+            "ru": "ай уил кэ́ри зэ хэ́ви бо́кс",
+            "uk": "ай уил ке́рі зе хе́ві бо́кс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.17",
+          "say": {
+            "ru": "уи уил спли́т зэ би́л",
+            "uk": "уи уил сплі́т зе бі́л"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.18",
+          "say": {
+            "ru": "ай уил а́ск эба́ут ла́гидж сто́рэдж",
+            "uk": "ай уил а́ск еба́ут ла́гідж сто́редж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.20",
+          "say": {
+            "ru": "ай уил пу́т зэ кэ́тл он",
+            "uk": "ай уил пу́т зе ке́тл он"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я понесу тяжелую коробку»",
+            "uk": "Виберіть, як сказати: «Я понесу важку коробку»",
+            "en": "Choose how to say: “I will carry the heavy box.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:13.12",
+          "options": [
+            "en-classic-r1:13.12",
+            "en-classic-r1:13.17",
+            "en-classic-r1:13.20"
+          ],
+          "answerId": "en-classic-r1:13.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы разделим счет»",
+            "uk": "Виберіть, як сказати: «Ми розділимо рахунок»",
+            "en": "Choose how to say: “We will split the bill.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.17",
+          "options": [
+            "en-classic-r1:13.17",
+            "en-classic-r1:13.12",
+            "en-classic-r1:13.20"
+          ],
+          "answerId": "en-classic-r1:13.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я спрошу о хранении багажа»",
+            "uk": "Виберіть, як сказати: «Я запитаю про камеру схову багажу»",
+            "en": "Choose how to say: “I will ask about luggage storage.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.18",
+          "options": [
+            "en-classic-r1:13.18",
+            "en-classic-r1:13.17",
+            "en-classic-r1:13.20"
+          ],
+          "answerId": "en-classic-r1:13.18"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Что будет",
+        "uk": "Що буде",
+        "en": "What will be"
+      },
+      "text": {
+        "ru": "Will говорят и тогда, когда что-то просто случится.\nI think the train will be busy. — Думаю, в поезде будет много народу.\nЧитается: ай си́нк зэ трэ́йн уил би би́зи.\nСлово think значит «думаю».\nВ уроке 12 было thought — «думал».\nСлово be значит «быть».\nСлова will be вместе значат «будет».\nЗдесь busy значит «много народу».\nThe soup will be ready soon. — Суп скоро будет готов.\nЧитается: зэ су́п уил би рэ́ди су́н.\nСлова will be ready вместе значат «будет готов».\nThere will be a small fee for delivery. — За доставку будет небольшая плата.\nЧитается: зэ́р уил би э смо́л фи́ фо́р дели́вери.\nСлово fee значит «плата».\nСлова there will be вместе значат «будет».\nThe new timetable will start next month. — Новое расписание начнет действовать в следующем месяце.\nЧитается: зэ нью́ та́ймтэйбл уил ста́рт нэ́кст ма́нс.\nСлово month значит «месяц».\nСлова will start вместе значат «начнёт действовать».\nThis light will turn green in a moment. — Этот светофор через мгновение загорится зеленым.\nЧитается: зи́с ла́йт уил тэ́рн гри́н ин э мо́умент.\nРаньше lights были «лампы». Здесь light — «светофор».\nСлово turn значит «стать».\nСлово green значит «зелёный».\nСлова turn green вместе значат «загореться зелёным».\nСлова in a moment вместе значат «через мгновение».",
+        "uk": "Will кажуть і тоді, коли щось просто станеться.\nI think the train will be busy. — Думаю, у поїзді буде багато людей.\nЧитається: ай сі́нк зе тре́йн уил бі бі́зі.\nСлово think означає «думаю».\nВ уроці 12 було thought — «думав».\nСлово be означає «бути».\nСлова will be разом означають «буде».\nТут busy означає «багато людей».\nThe soup will be ready soon. — Суп скоро буде готовий.\nЧитається: зе су́п уил бі ре́ді су́н.\nСлова will be ready разом означають «буде готовий».\nThere will be a small fee for delivery. — За доставку буде невелика плата.\nЧитається: зе́р уил бі е смо́л фі́ фо́р делі́вері.\nСлово fee означає «плата».\nСлова there will be разом означають «буде».\nThe new timetable will start next month. — Новий розклад почне діяти наступного місяця.\nЧитається: зе нью́ та́ймтейбл уил ста́рт не́кст ма́нс.\nСлово month означає «місяць».\nСлова will start разом означають «почне діяти».\nThis light will turn green in a moment. — Цей світлофор за мить загориться зеленим.\nЧитається: зі́с ла́йт уил те́рн грі́н ін е мо́умент.\nРаніше lights були «лампи». Тут light — «світлофор».\nСлово turn означає «стати».\nСлово green означає «зелений».\nСлова turn green разом означають «засвітитися зеленим».\nСлова in a moment разом означають «за мить».",
+        "en": "We also use will when something just happens.\nI think the train will be busy.\nThe word think means “to have an idea in your mind”.\nIn lesson 12 you saw thought. That is think for yesterday.\nThe word be means “to exist, to be somewhere”.\nThe words will be together mean “is going to be”.\nHere busy means many people are there.\nThe soup will be ready soon.\nThe words will be ready together mean “is going to be ready”.\nThere will be a small fee for delivery.\nThe word fee means “money you pay for a service”.\nThe words there will be together mean “there is going to be”.\nThe new timetable will start next month.\nThe word month means “one part of the year”.\nThe words will start together mean “is going to begin”.\nThis light will turn green in a moment.\nBefore, lights were lamps. Here light is a traffic light.\nThe word turn means “to become”.\nThe word green means “the colour of grass”.\nThe words turn green together mean “become green”.\nThe words in a moment together mean “very soon”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:13.41",
+          "say": {
+            "ru": "ай си́нк зэ трэ́йн уил би би́зи",
+            "uk": "ай сі́нк зе тре́йн уил бі бі́зі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.42",
+          "say": {
+            "ru": "зэ су́п уил би рэ́ди су́н",
+            "uk": "зе су́п уил бі ре́ді су́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.19",
+          "say": {
+            "ru": "зэ́р уил би э смо́л фи́ фо́р дели́вери",
+            "uk": "зе́р уил бі е смо́л фі́ фо́р делі́вері"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.44",
+          "say": {
+            "ru": "зэ нью́ та́ймтэйбл уил ста́рт нэ́кст ма́нс",
+            "uk": "зе нью́ та́ймтейбл уил ста́рт не́кст ма́нс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.46",
+          "say": {
+            "ru": "зи́с ла́йт уил тэ́рн гри́н ин э мо́умент",
+            "uk": "зі́с ла́йт уил те́рн грі́н ін е мо́умент"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Суп скоро будет готов»",
+            "uk": "Виберіть, як сказати: «Суп скоро буде готовий»",
+            "en": "Choose how to say: “The soup will be ready soon.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:13.42",
+          "options": [
+            "en-classic-r1:13.42",
+            "en-classic-r1:13.19",
+            "en-classic-r1:13.44"
+          ],
+          "answerId": "en-classic-r1:13.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «За доставку будет небольшая плата»",
+            "uk": "Виберіть, як сказати: «За доставку буде невелика плата»",
+            "en": "Choose how to say: “There will be a small fee for delivery.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.19",
+          "options": [
+            "en-classic-r1:13.19",
+            "en-classic-r1:13.42",
+            "en-classic-r1:13.41"
+          ],
+          "answerId": "en-classic-r1:13.19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Этот светофор через мгновение загорится зеленым»",
+            "uk": "Виберіть, як сказати: «Цей світлофор за мить загориться зеленим»",
+            "en": "Choose how to say: “This light will turn green in a moment.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.46",
+          "options": [
+            "en-classic-r1:13.46",
+            "en-classic-r1:13.44",
+            "en-classic-r1:13.41"
+          ],
+          "answerId": "en-classic-r1:13.46"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Завтра и потом",
+        "uk": "Завтра і потім",
+        "en": "Tomorrow and later"
+      },
+      "text": {
+        "ru": "Можно сказать, когда это случится: завтра, после обеда.\nMy brother will collect the keys tomorrow. — Мой брат заберет ключи завтра.\nЧитается: май бра́зер уил колэ́кт зэ ки́з тумо́роу.\nСлово brother значит «брат».\nСлово tomorrow значит «завтра».\nСлова will collect вместе значат «заберёт».\nThe forecast says it will rain after lunch. — По прогнозу, после обеда будет дождь.\nЧитается: зэ фо́ркэст сэ́з ит уил рэ́йн э́фтер ла́нч.\nСлово forecast значит «прогноз погоды».\nСлово says значит «говорит».\nСлово rain значит «дождь».\nСлова it will rain вместе значат «будет дождь».\nСлово it здесь не переводят.\nDo not worry; I will lock up. — Не волнуйся, я всё закрою.\nЧитается: ду́ но́т уо́ри ай уил ло́к а́п.\nСлово worry значит «волноваться».\nСлова do not worry вместе значат «не волнуйтесь».\nСлово up значит «вверх».\nСлова lock up вместе значат «всё запереть».",
+        "uk": "Можна сказати, коли це станеться: завтра, після обіду.\nMy brother will collect the keys tomorrow. — Мій брат забере ключі завтра.\nЧитається: май бра́зер уил коле́кт зе кі́з тумо́роу.\nСлово brother означає «брат».\nСлово tomorrow означає «завтра».\nСлова will collect разом означають «забере».\nThe forecast says it will rain after lunch. — Прогноз погоди обіцяє дощ після обіду.\nЧитається: зе фо́ркест се́з іт уил ре́йн е́фтер ла́нч.\nСлово forecast означає «прогноз погоди».\nСлово says означає «каже».\nСлово rain означає «дощ».\nСлова it will rain разом означають «буде дощ».\nСлово it тут не перекладають.\nDo not worry; I will lock up. — Не хвилюйся, я все зачиню.\nЧитається: ду́ но́т уо́рі ай уил ло́к а́п.\nСлово worry означає «хвилюватися».\nСлова do not worry разом означають «не хвилюйтеся».\nСлово up означає «угору».\nСлова lock up разом означають «все замкнути».",
+        "en": "You can say when it happens: tomorrow, after lunch.\nMy brother will collect the keys tomorrow.\nThe word brother means “a boy or man with the same parents as you”.\nThe word tomorrow means “the day after today”.\nThe words will collect together mean “is going to pick up”.\nThe forecast says it will rain after lunch.\nThe word forecast means “words about the weather for tomorrow”.\nThe word says means “tells”.\nThe word rain means “water from the sky”.\nThe words it will rain together mean “rain is going to fall”.\nHere it has no meaning of its own.\nDo not worry; I will lock up.\nThe word worry means “to feel afraid that something is wrong”.\nThe words do not worry together mean “you do not need to be afraid”.\nThe word up means “to a higher place”.\nThe words lock up together mean “close and lock everything”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:13.47",
+          "say": {
+            "ru": "май бра́зер уил колэ́кт зэ ки́з тумо́роу",
+            "uk": "май бра́зер уил коле́кт зе кі́з тумо́роу"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.45",
+          "say": {
+            "ru": "зэ фо́ркэст сэ́з ит уил рэ́йн э́фтер ла́нч",
+            "uk": "зе фо́ркест се́з іт уил ре́йн е́фтер ла́нч"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.49",
+          "say": {
+            "ru": "ду́ но́т уо́ри ай уил ло́к а́п",
+            "uk": "ду́ но́т уо́рі ай уил ло́к а́п"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой брат заберет ключи завтра»",
+            "uk": "Виберіть, як сказати: «Мій брат забере ключі завтра»",
+            "en": "Choose how to say: “My brother will collect the keys tomorrow.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:13.47",
+          "options": [
+            "en-classic-r1:13.47",
+            "en-classic-r1:13.45",
+            "en-classic-r1:13.49"
+          ],
+          "answerId": "en-classic-r1:13.47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «По прогнозу, после обеда будет дождь»",
+            "uk": "Виберіть, як сказати: «Прогноз погоди обіцяє дощ після обіду»",
+            "en": "Choose how to say: “The forecast says it will rain after lunch.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.45",
+          "options": [
+            "en-classic-r1:13.45",
+            "en-classic-r1:13.47",
+            "en-classic-r1:13.49"
+          ],
+          "answerId": "en-classic-r1:13.45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не волнуйся, я всё закрою»",
+            "uk": "Виберіть, як сказати: «Не хвилюйся, я все зачиню»",
+            "en": "Choose how to say: “Do not worry; I will lock up.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.49",
+          "options": [
+            "en-classic-r1:13.49",
+            "en-classic-r1:13.45",
+            "en-classic-r1:13.47"
+          ],
+          "answerId": "en-classic-r1:13.49"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Не сделаю",
+        "uk": "Не зроблю",
+        "en": "I will not"
+      },
+      "text": {
+        "ru": "Поставьте not после will — получится «не».\nI will not be late. — Я не опоздаю.\nЧитается: ай уил но́т би лэ́йт.\nСлова will not be late вместе значат «не опоздаю».\nShe will not forget the key. — Она не забудет ключ.\nЧитается: ши уил но́т фэге́т зэ ки́.\nСлова will not forget вместе значат «не забудет».\nHe will not stay overnight. — Он не останется на ночь.\nЧитается: хи уил но́т сте́й оувэрна́йт.\nСлово overnight значит «на ночь».\nСлова will not stay вместе значат «не останется».\nWe will not leave without you. — Мы не уйдем без вас.\nЧитается: уи уил но́т ли́в уизау́т ю.\nСлово without значит «без».\nЗдесь leave значит «уйти».\nСлова will not leave вместе значат «не уйдём».",
+        "uk": "Поставте not після will — вийде «не».\nI will not be late. — Я не запізнюся.\nЧитається: ай уил но́т бі ле́йт.\nСлова will not be late разом означають «не запізнюся».\nShe will not forget the key. — Вона не забуде ключ.\nЧитається: ші уил но́т феге́т зе кі́.\nСлова will not forget разом означають «не забуде».\nHe will not stay overnight. — Він не залишиться на ніч.\nЧитається: хі уил но́т сте́й оуверна́йт.\nСлово overnight означає «на ніч».\nСлова will not stay разом означають «не залишиться».\nWe will not leave without you. — Ми не підемо без вас.\nЧитається: уи уил но́т лі́в уизау́т ю.\nСлово without означає «без».\nТут leave означає «піти».\nСлова will not leave разом означають «не підемо».",
+        "en": "Put not after will to say no.\nI will not be late.\nThe words will not be late together mean “am not going to be late”.\nShe will not forget the key.\nThe words will not forget together mean “is not going to forget”.\nHe will not stay overnight.\nThe word overnight means “for the whole night”.\nThe words will not stay together mean “is not going to stay”.\nWe will not leave without you.\nThe word without means “not with”.\nHere leave means go away.\nThe words will not leave together mean “are not going to go away”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:13.21",
+          "say": {
+            "ru": "ай уил но́т би лэ́йт",
+            "uk": "ай уил но́т бі ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.23",
+          "say": {
+            "ru": "ши уил но́т фэге́т зэ ки́",
+            "uk": "ші уил но́т феге́т зе кі́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.24",
+          "say": {
+            "ru": "хи уил но́т сте́й оувэрна́йт",
+            "uk": "хі уил но́т сте́й оуверна́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.27",
+          "say": {
+            "ru": "уи уил но́т ли́в уизау́т ю",
+            "uk": "уи уил но́т лі́в уизау́т ю"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не опоздаю»",
+            "uk": "Виберіть, як сказати: «Я не запізнюся»",
+            "en": "Choose how to say: “I will not be late.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:13.21",
+          "options": [
+            "en-classic-r1:13.21",
+            "en-classic-r1:13.23",
+            "en-classic-r1:13.24"
+          ],
+          "answerId": "en-classic-r1:13.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не останется на ночь»",
+            "uk": "Виберіть, як сказати: «Він не залишиться на ніч»",
+            "en": "Choose how to say: “He will not stay overnight.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.24",
+          "options": [
+            "en-classic-r1:13.24",
+            "en-classic-r1:13.27",
+            "en-classic-r1:13.23"
+          ],
+          "answerId": "en-classic-r1:13.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не уйдем без вас»",
+            "uk": "Виберіть, як сказати: «Ми не підемо без вас»",
+            "en": "Choose how to say: “We will not leave without you.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.27",
+          "options": [
+            "en-classic-r1:13.27",
+            "en-classic-r1:13.21",
+            "en-classic-r1:13.12"
+          ],
+          "answerId": "en-classic-r1:13.27"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Не поместится, не хватит",
+        "uk": "Не поміститься, не вистачить",
+        "en": "It will not fit, it will not last"
+      },
+      "text": {
+        "ru": "Will not говорят и о вещах, и о событиях.\nThe shop will not open tomorrow. — Магазин завтра не откроется.\nЧитается: зэ шо́п уил но́т о́упен тумо́роу.\nСлова will not open вместе значат «не откроется».\nThis bag will not fit in the locker. — Эта сумка не поместится в шкафчик.\nЧитается: зи́с бэ́г уил но́т фи́т ин зэ ло́кер.\nСлово locker значит «шкафчик».\nСлова will not fit вместе значат «не поместится».\nThe battery will not last all day. — Батарея не продержится весь день.\nЧитается: зэ бэ́тэри уил но́т ла́ст о́л дэ́й.\nСлово battery значит «батарея».\nСлово all значит «весь, всё».\nСлово last раньше значило «последний». Здесь will not last — «не продержится».\nСлова all day вместе значат «весь день».",
+        "uk": "Will not кажуть і про речі, і про події.\nThe shop will not open tomorrow. — Магазин не відкриється завтра.\nЧитається: зе шо́п уил но́т о́упен тумо́роу.\nСлова will not open разом означають «не відкриється».\nThis bag will not fit in the locker. — Ця сумка не поміститься в шафку.\nЧитається: зі́с бе́г уил но́т фі́т ін зе ло́кер.\nСлово locker означає «шафка».\nСлова will not fit разом означають «не поміститься».\nThe battery will not last all day. — Батареї не вистачить на весь день.\nЧитається: зе бе́тері уил но́т ла́ст о́л де́й.\nСлово battery означає «батарея».\nСлово all означає «увесь, все».\nСлово last раніше означало «останній». Тут will not last — «не протримається».\nСлова all day разом означають «цілий день».",
+        "en": "We say will not about things and events too.\nThe shop will not open tomorrow.\nThe words will not open together mean “is not going to open”.\nThis bag will not fit in the locker.\nThe word locker means “a small cupboard with a lock”.\nThe words will not fit together mean “is too big for the place”.\nThe battery will not last all day.\nThe word battery means “a small box that gives power”.\nThe word all means “the whole”.\nBefore, last meant the final one. Here will not last means will not stay working.\nThe words all day together mean “from morning to night”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:13.28",
+          "say": {
+            "ru": "зэ шо́п уил но́т о́упен тумо́роу",
+            "uk": "зе шо́п уил но́т о́упен тумо́роу"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.29",
+          "say": {
+            "ru": "зи́с бэ́г уил но́т фи́т ин зэ ло́кер",
+            "uk": "зі́с бе́г уил но́т фі́т ін зе ло́кер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.30",
+          "say": {
+            "ru": "зэ бэ́тэри уил но́т ла́ст о́л дэ́й",
+            "uk": "зе бе́тері уил но́т ла́ст о́л де́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эта сумка не поместится в шкафчик»",
+            "uk": "Виберіть, як сказати: «Ця сумка не поміститься в шафку»",
+            "en": "Choose how to say: “This bag will not fit in the locker.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:13.29",
+          "options": [
+            "en-classic-r1:13.29",
+            "en-classic-r1:13.28",
+            "en-classic-r1:13.30"
+          ],
+          "answerId": "en-classic-r1:13.29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Батарея не продержится весь день»",
+            "uk": "Виберіть, як сказати: «Батареї не вистачить на весь день»",
+            "en": "Choose how to say: “The battery will not last all day.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.30",
+          "options": [
+            "en-classic-r1:13.30",
+            "en-classic-r1:13.28",
+            "en-classic-r1:13.29"
+          ],
+          "answerId": "en-classic-r1:13.30"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазин завтра не откроется»",
+            "uk": "Виберіть, як сказати: «Магазин не відкриється завтра»",
+            "en": "Choose how to say: “The shop will not open tomorrow.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.28",
+          "options": [
+            "en-classic-r1:13.28",
+            "en-classic-r1:13.24",
+            "en-classic-r1:13.30"
+          ],
+          "answerId": "en-classic-r1:13.28"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Вопросы со словом will",
+        "uk": "Питання зі словом will",
+        "en": "Questions with will"
+      },
+      "text": {
+        "ru": "Поставьте will в начало — получится вопрос.\nWill you be home tonight? — Вы будете дома сегодня вечером?\nЧитается: уил ю би хо́ум туна́йт.\nСлова will you be вместе значат «вы будете».\nWill it rain tomorrow? — Завтра будет дождь?\nЧитается: уил ит рэ́йн тумо́роу.\nСлова will it rain вместе значат «будет дождь?».\nWhen will the parcel arrive? — Когда придет посылка?\nЧитается: уэ́н уил зэ па́рсел эра́йв.\nСлово when стоит первым, потом will.\nWhere will you meet the group? — Где вы встретите группу?\nЧитается: уэ́р уил ю ми́т зэ гру́п.\nСлово group значит «группа».\nСлово where стоит первым, потом will.\nHow much will it cost? — Сколько это будет стоить?\nЧитается: ха́у ма́ч уил ит ко́ст.\nСлова how much вы видели в уроке 6.",
+        "uk": "Поставте will на початок — вийде питання.\nWill you be home tonight? — Ви будете вдома сьогодні ввечері?\nЧитається: уил ю бі хо́ум туна́йт.\nСлова will you be разом означають «ви будете».\nWill it rain tomorrow? — Чи буде завтра дощ?\nЧитається: уил іт ре́йн тумо́роу.\nСлова will it rain разом означають «буде дощ?».\nWhen will the parcel arrive? — Коли прибуде посилка?\nЧитається: уе́н уил зе па́рсел ера́йв.\nСлово when стоїть першим, потім will.\nWhere will you meet the group? — Де ви зустрінете групу?\nЧитається: уе́р уил ю мі́т зе гру́п.\nСлово group означає «група».\nСлово where стоїть першим, потім will.\nHow much will it cost? — Скільки це коштуватиме?\nЧитається: ха́у ма́ч уил іт ко́ст.\nСлова how much ви бачили в уроці 6.",
+        "en": "Put will first to ask a question.\nWill you be home tonight?\nThe words will you be together mean “are you going to be”.\nWill it rain tomorrow?\nThe words will it rain together mean “is rain going to fall”.\nWhen will the parcel arrive?\nThe word when comes first, then will.\nWhere will you meet the group?\nThe word group means “people together”.\nThe word where comes first, then will.\nHow much will it cost?\nYou saw how much in lesson 6."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:13.31",
+          "say": {
+            "ru": "уил ю би хо́ум туна́йт",
+            "uk": "уил ю бі хо́ум туна́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.34",
+          "say": {
+            "ru": "уил ит рэ́йн тумо́роу",
+            "uk": "уил іт ре́йн тумо́роу"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.38",
+          "say": {
+            "ru": "уэ́н уил зэ па́рсел эра́йв",
+            "uk": "уе́н уил зе па́рсел ера́йв"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.39",
+          "say": {
+            "ru": "уэ́р уил ю ми́т зэ гру́п",
+            "uk": "уе́р уил ю мі́т зе гру́п"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:13.40",
+          "say": {
+            "ru": "ха́у ма́ч уил ит ко́ст",
+            "uk": "ха́у ма́ч уил іт ко́ст"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы будете дома сегодня вечером?»",
+            "uk": "Виберіть, як сказати: «Ви будете вдома сьогодні ввечері?»",
+            "en": "Choose how to say: “Will you be home tonight?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:13.31",
+          "options": [
+            "en-classic-r1:13.31",
+            "en-classic-r1:13.34",
+            "en-classic-r1:13.38"
+          ],
+          "answerId": "en-classic-r1:13.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Завтра будет дождь?»",
+            "uk": "Виберіть, як сказати: «Чи буде завтра дощ?»",
+            "en": "Choose how to say: “Will it rain tomorrow?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.34",
+          "options": [
+            "en-classic-r1:13.34",
+            "en-classic-r1:13.31",
+            "en-classic-r1:13.39"
+          ],
+          "answerId": "en-classic-r1:13.34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда придет посылка?»",
+            "uk": "Виберіть, як сказати: «Коли прибуде посилка?»",
+            "en": "Choose how to say: “When will the parcel arrive?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.38",
+          "options": [
+            "en-classic-r1:13.38",
+            "en-classic-r1:13.39",
+            "en-classic-r1:13.40"
+          ],
+          "answerId": "en-classic-r1:13.38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько это будет стоить?»",
+            "uk": "Виберіть, як сказати: «Скільки це коштуватиме?»",
+            "en": "Choose how to say: “How much will it cost?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:13.40",
+          "options": [
+            "en-classic-r1:13.40",
+            "en-classic-r1:13.38",
+            "en-classic-r1:13.39"
+          ],
+          "answerId": "en-classic-r1:13.40"
+        }
+      ]
+    }
+  ]
+}

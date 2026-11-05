@@ -1,0 +1,472 @@
+{
+ "lang": "it",
+ "lesson": 3,
+ "words": [
+  {
+   "form": "orario",
+   "surface": "orario",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:16",
+     "target": "Il treno è in orario",
+     "ru": "Поезд идёт по расписанию?",
+     "en": "Is the train running on schedule?"
+    }
+   ]
+  },
+  {
+   "form": "pulita",
+   "surface": "pulita",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:20",
+     "target": "La camera è pulita",
+     "ru": "Комната чистая?",
+     "en": "Is the room clean?"
+    }
+   ]
+  },
+  {
+   "form": "biglietteria",
+   "surface": "biglietteria",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:03:21",
+     "target": "La biglietteria è aperta",
+     "ru": "Касса открыта?",
+     "en": "Is the ticket office open?"
+    },
+    {
+     "id": "it:03:45",
+     "target": "L’uscita è vicino alla biglietteria",
+     "ru": "Выход находится рядом с билетной кассой?",
+     "en": "Is the exit near the ticket window?"
+    }
+   ]
+  },
+  {
+   "form": "l’ingresso",
+   "surface": "L’ingresso",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:22",
+     "target": "L’ingresso è lì",
+     "ru": "Вход там?",
+     "en": "Is the entrance there?"
+    }
+   ]
+  },
+  {
+   "form": "fermata",
+   "surface": "fermata",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:23",
+     "target": "La fermata dell’autobus è lontana",
+     "ru": "Автобусная остановка далеко?",
+     "en": "Is the bus stop far away?"
+    }
+   ]
+  },
+  {
+   "form": "dell’autobus",
+   "surface": "dell’autobus",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:23",
+     "target": "La fermata dell’autobus è lontana",
+     "ru": "Автобусная остановка далеко?",
+     "en": "Is the bus stop far away?"
+    }
+   ]
+  },
+  {
+   "form": "banchina",
+   "surface": "banchina",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:24",
+     "target": "La banchina è di fronte",
+     "ru": "Перрон напротив?",
+     "en": "Is the platform opposite?"
+    }
+   ]
+  },
+  {
+   "form": "di",
+   "surface": "di",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:24",
+     "target": "La banchina è di fronte",
+     "ru": "Перрон напротив?",
+     "en": "Is the platform opposite?"
+    }
+   ]
+  },
+  {
+   "form": "fronte",
+   "surface": "fronte",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:24",
+     "target": "La banchina è di fronte",
+     "ru": "Перрон напротив?",
+     "en": "Is the platform opposite?"
+    }
+   ]
+  },
+  {
+   "form": "l’uscita",
+   "surface": "L’uscita",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:03:25",
+     "target": "L’uscita è a sinistra",
+     "ru": "Выход слева?",
+     "en": "Is the exit on the left?"
+    },
+    {
+     "id": "it:03:45",
+     "target": "L’uscita è vicino alla biglietteria",
+     "ru": "Выход находится рядом с билетной кассой?",
+     "en": "Is the exit near the ticket window?"
+    }
+   ]
+  },
+  {
+   "form": "sinistra",
+   "surface": "sinistra",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:25",
+     "target": "L’uscita è a sinistra",
+     "ru": "Выход слева?",
+     "en": "Is the exit on the left?"
+    }
+   ]
+  },
+  {
+   "form": "parcheggio",
+   "surface": "parcheggio",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:26",
+     "target": "Il parcheggio è a destra",
+     "ru": "Парковка справа?",
+     "en": "Is the parking lot on the right?"
+    }
+   ]
+  },
+  {
+   "form": "destra",
+   "surface": "destra",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:26",
+     "target": "Il parcheggio è a destra",
+     "ru": "Парковка справа?",
+     "en": "Is the parking lot on the right?"
+    }
+   ]
+  },
+  {
+   "form": "oggi",
+   "surface": "oggi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:27",
+     "target": "Il museo è aperto oggi",
+     "ru": "Музей сегодня открыт?",
+     "en": "Is the museum open today?"
+    }
+   ]
+  },
+  {
+   "form": "stasera",
+   "surface": "stasera",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:03:30",
+     "target": "La farmacia è aperta stasera",
+     "ru": "Аптека открыта сегодня вечером?",
+     "en": "Is the pharmacy open tonight?"
+    },
+    {
+     "id": "it:03:46",
+     "target": "Sei solo stasera",
+     "ru": "Ты сегодня вечером один?",
+     "en": "Are you alone tonight?"
+    }
+   ]
+  },
+  {
+   "form": "con",
+   "surface": "con",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:03:31",
+     "target": "Lea è con te",
+     "ru": "Леа с тобой?",
+     "en": "Is Lea with you?"
+    },
+    {
+     "id": "it:03:49",
+     "target": "I bambini sono con voi",
+     "ru": "Дети с вами?",
+     "en": "Are the children with you?"
+    }
+   ]
+  },
+  {
+   "form": "te",
+   "surface": "te",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:31",
+     "target": "Lea è con te",
+     "ru": "Леа с тобой?",
+     "en": "Is Lea with you?"
+    }
+   ]
+  },
+  {
+   "form": "sull’autobus",
+   "surface": "sull’autobus",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:32",
+     "target": "La borsa è sull’autobus",
+     "ru": "Сумка в автобусе?",
+     "en": "Is the bag on the bus?"
+    }
+   ]
+  },
+  {
+   "form": "tua",
+   "surface": "tua",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:35",
+     "target": "I biglietti sono nella tua tasca",
+     "ru": "Билеты у тебя в кармане?",
+     "en": "Do you have your tickets?"
+    }
+   ]
+  },
+  {
+   "form": "tasca",
+   "surface": "tasca",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:35",
+     "target": "I biglietti sono nella tua tasca",
+     "ru": "Билеты у тебя в кармане?",
+     "en": "Do you have your tickets?"
+    }
+   ]
+  },
+  {
+   "form": "all’ingresso",
+   "surface": "all’ingresso",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:40",
+     "target": "Siete vicino all’ingresso",
+     "ru": "Вы рядом с входом?",
+     "en": "Are you near the entrance?"
+    }
+   ]
+  },
+  {
+   "form": "prossimo",
+   "surface": "prossimo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:41",
+     "target": "Il prossimo autobus è già qui",
+     "ru": "Следующий автобус уже здесь?",
+     "en": "Is the next bus already here?"
+    }
+   ]
+  },
+  {
+   "form": "autobus",
+   "surface": "autobus",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:41",
+     "target": "Il prossimo autobus è già qui",
+     "ru": "Следующий автобус уже здесь?",
+     "en": "Is the next bus already here?"
+    }
+   ]
+  },
+  {
+   "form": "entrambe",
+   "surface": "Entrambe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:42",
+     "target": "Entrambe le porte sono chiuse",
+     "ru": "Обе двери закрыты?",
+     "en": "Are both doors closed?"
+    }
+   ]
+  },
+  {
+   "form": "chiuse",
+   "surface": "chiuse",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:42",
+     "target": "Entrambe le porte sono chiuse",
+     "ru": "Обе двери закрыты?",
+     "en": "Are both doors closed?"
+    }
+   ]
+  },
+  {
+   "form": "serratura",
+   "surface": "serratura",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:43",
+     "target": "La chiave è nella serratura",
+     "ru": "Ключ в замке?",
+     "en": "Is the key in the lock?"
+    }
+   ]
+  },
+  {
+   "form": "su",
+   "surface": "su",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:44",
+     "target": "Il treno è su questo binario",
+     "ru": "Поезд у этой платформы?",
+     "en": "Is the train at this platform?"
+    }
+   ]
+  },
+  {
+   "form": "questo",
+   "surface": "questo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:44",
+     "target": "Il treno è su questo binario",
+     "ru": "Поезд у этой платформы?",
+     "en": "Is the train at this platform?"
+    }
+   ]
+  },
+  {
+   "form": "binario",
+   "surface": "binario",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:44",
+     "target": "Il treno è su questo binario",
+     "ru": "Поезд у этой платформы?",
+     "en": "Is the train at this platform?"
+    }
+   ]
+  },
+  {
+   "form": "per",
+   "surface": "per",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:47",
+     "target": "Siete qui per il concerto",
+     "ru": "Вы пришли на концерт?",
+     "en": "Are you here for the concert?"
+    }
+   ]
+  },
+  {
+   "form": "concerto",
+   "surface": "concerto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:47",
+     "target": "Siete qui per il concerto",
+     "ru": "Вы пришли на концерт?",
+     "en": "Are you here for the concert?"
+    }
+   ]
+  },
+  {
+   "form": "primo",
+   "surface": "primo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:48",
+     "target": "La camera è al primo piano",
+     "ru": "Комната на первом этаже?",
+     "en": "Is the room on the first floor?"
+    }
+   ]
+  },
+  {
+   "form": "piano",
+   "surface": "piano",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:48",
+     "target": "La camera è al primo piano",
+     "ru": "Комната на первом этаже?",
+     "en": "Is the room on the first floor?"
+    }
+   ]
+  },
+  {
+   "form": "voi",
+   "surface": "voi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:03:49",
+     "target": "I bambini sono con voi",
+     "ru": "Дети с вами?",
+     "en": "Are the children with you?"
+    }
+   ]
+  }
+ ]
+}

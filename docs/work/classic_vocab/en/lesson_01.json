@@ -1,0 +1,288 @@
+{
+ "lang": "en",
+ "lesson": 1,
+ "words": {
+  "i": {
+   "ru": "я",
+   "uk": "я",
+   "en": "the speaker, myself",
+   "es": "yo"
+  },
+  "am": {
+   "ru": "(я) есть, нахожусь",
+   "uk": "(я) є, перебуваю",
+   "en": "is, exists (with I)",
+   "es": "soy, estoy"
+  },
+  "ready": {
+   "ru": "готов",
+   "uk": "готовий",
+   "en": "prepared",
+   "es": "listo"
+  },
+  "you": {
+   "ru": "ты, вы",
+   "uk": "ти, ви",
+   "en": "the person I talk to",
+   "es": "tú, usted"
+  },
+  "are": {
+   "ru": "(вы, мы, они) есть",
+   "uk": "(ви, ми, вони) є",
+   "en": "exist, be (with you, we, they)",
+   "es": "son, estáis"
+  },
+  "busy": {
+   "ru": "занят",
+   "uk": "зайнятий",
+   "en": "having a lot to do",
+   "es": "ocupado"
+  },
+  "she": {
+   "ru": "она",
+   "uk": "вона",
+   "en": "that woman",
+   "es": "ella"
+  },
+  "is": {
+   "ru": "(он, она) есть",
+   "uk": "(він, вона) є",
+   "en": "exists, be (with he, she, it)",
+   "es": "es, está"
+  },
+  "he": {
+   "ru": "он",
+   "uk": "він",
+   "en": "that man",
+   "es": "él"
+  },
+  "we": {
+   "ru": "мы",
+   "uk": "ми",
+   "en": "I and others",
+   "es": "nosotros"
+  },
+  "they": {
+   "ru": "они",
+   "uk": "вони",
+   "en": "those people",
+   "es": "ellos"
+  },
+  "free": {
+   "ru": "свободен",
+   "uk": "вільний",
+   "en": "not busy, available",
+   "es": "libre"
+  },
+  "here": {
+   "ru": "здесь",
+   "uk": "тут",
+   "en": "in this place",
+   "es": "aquí"
+  },
+  "at": {
+   "ru": "в, у (месте)",
+   "uk": "у, біля, в",
+   "en": "in a place",
+   "es": "en"
+  },
+  "home": {
+   "ru": "дом, дома",
+   "uk": "дім, вдома",
+   "en": "where one lives",
+   "es": "casa"
+  },
+  "work": {
+   "ru": "работа",
+   "uk": "робота",
+   "en": "job, place of work",
+   "es": "trabajo"
+  },
+  "it": {
+   "ru": "оно, это",
+   "uk": "воно, це",
+   "en": "that thing",
+   "es": "ello, eso"
+  },
+  "open": {
+   "ru": "открыт",
+   "uk": "відчинений",
+   "en": "not closed",
+   "es": "abierto"
+  },
+  "closed": {
+   "ru": "закрыт",
+   "uk": "зачинений",
+   "en": "not open",
+   "es": "cerrado"
+  },
+  "the": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; в українській немає",
+   "en": "word before a known thing",
+   "es": "el, la"
+  },
+  "door": {
+   "ru": "дверь",
+   "uk": "двері",
+   "en": "entrance of a room",
+   "es": "puerta"
+  },
+  "shop": {
+   "ru": "магазин",
+   "uk": "магазин",
+   "en": "place to buy things",
+   "es": "tienda"
+  },
+  "shops": {
+   "ru": "магазины",
+   "uk": "магазини",
+   "en": "places to buy things",
+   "es": "tiendas"
+  },
+  "doors": {
+   "ru": "двери",
+   "uk": "двері",
+   "en": "entrances of rooms",
+   "es": "puertas"
+  },
+  "lights": {
+   "ru": "свет, лампы",
+   "uk": "світло, лампи",
+   "en": "lamps",
+   "es": "luces"
+  },
+  "on": {
+   "ru": "включён",
+   "uk": "увімкнений",
+   "en": "working, switched on",
+   "es": "encendido"
+  },
+  "off": {
+   "ru": "выключен",
+   "uk": "вимкнений",
+   "en": "not working, switched off",
+   "es": "apagado"
+  },
+  "early": {
+   "ru": "рано",
+   "uk": "рано",
+   "en": "before the usual time",
+   "es": "temprano"
+  },
+  "late": {
+   "ru": "поздно, опаздывает",
+   "uk": "пізно, спізнюється",
+   "en": "after the usual time",
+   "es": "tarde"
+  },
+  "bus": {
+   "ru": "автобус",
+   "uk": "автобус",
+   "en": "large road vehicle",
+   "es": "autobús"
+  },
+  "buses": {
+   "ru": "автобусы",
+   "uk": "автобуси",
+   "en": "large road vehicles",
+   "es": "autobuses"
+  },
+  "room": {
+   "ru": "комната",
+   "uk": "кімната",
+   "en": "space inside a building",
+   "es": "habitación"
+  },
+  "warm": {
+   "ru": "тёплый",
+   "uk": "теплий",
+   "en": "a little hot",
+   "es": "cálido"
+  },
+  "rooms": {
+   "ru": "комнаты",
+   "uk": "кімнати",
+   "en": "spaces inside a building",
+   "es": "habitaciones"
+  },
+  "coffee": {
+   "ru": "кофе",
+   "uk": "кава",
+   "en": "hot brown drink",
+   "es": "café"
+  },
+  "cold": {
+   "ru": "холодный",
+   "uk": "холодний",
+   "en": "not hot",
+   "es": "frío"
+  },
+  "my": {
+   "ru": "мой",
+   "uk": "мій",
+   "en": "belonging to me",
+   "es": "mi"
+  },
+  "bag": {
+   "ru": "сумка",
+   "uk": "сумка",
+   "en": "carrier for things",
+   "es": "bolso"
+  },
+  "your": {
+   "ru": "твой, ваш",
+   "uk": "твій, ваш",
+   "en": "belonging to you",
+   "es": "tu, su"
+  },
+  "keys": {
+   "ru": "ключи",
+   "uk": "ключі",
+   "en": "things that open locks",
+   "es": "llaves"
+  },
+  "phone": {
+   "ru": "телефон",
+   "uk": "телефон",
+   "en": "device for calls",
+   "es": "teléfono"
+  },
+  "kitchen": {
+   "ru": "кухня",
+   "uk": "кухня",
+   "en": "room for cooking",
+   "es": "cocina"
+  },
+  "window": {
+   "ru": "окно",
+   "uk": "вікно",
+   "en": "glass opening in a wall",
+   "es": "ventana"
+  },
+  "windows": {
+   "ru": "окна",
+   "uk": "вікна",
+   "en": "glass openings in a wall",
+   "es": "ventanas"
+  },
+  "hands": {
+   "ru": "руки",
+   "uk": "руки",
+   "en": "parts of the body at the arms' ends",
+   "es": "manos"
+  },
+  "our": {
+   "ru": "наш",
+   "uk": "наш",
+   "en": "belonging to us",
+   "es": "nuestro"
+  },
+  "seats": {
+   "ru": "места, сиденья",
+   "uk": "місця, сидіння",
+   "en": "places to sit",
+   "es": "asientos"
+  }
+ }
+}

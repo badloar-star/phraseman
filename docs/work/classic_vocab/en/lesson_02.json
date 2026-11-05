@@ -1,0 +1,132 @@
+{
+ "lang": "en",
+ "lesson": 2,
+ "words": {
+  "not": {
+   "ru": "не",
+   "uk": "не",
+   "en": "word that makes a negative",
+   "es": "no"
+  },
+  "yes": {
+   "ru": "да",
+   "uk": "так",
+   "en": "word for agreeing",
+   "es": "sí"
+  },
+  "no": {
+   "ru": "нет",
+   "uk": "ні",
+   "en": "word for refusing",
+   "es": "no"
+  },
+  "this": {
+   "ru": "этот",
+   "uk": "цей",
+   "en": "the one close to me",
+   "es": "este"
+  },
+  "seat": {
+   "ru": "место, сиденье",
+   "uk": "місце, сидіння",
+   "en": "place to sit",
+   "es": "asiento"
+  },
+  "lift": {
+   "ru": "лифт",
+   "uk": "ліфт",
+   "en": "machine that carries people up",
+   "es": "ascensor"
+  },
+  "stairs": {
+   "ru": "лестница",
+   "uk": "сходи",
+   "en": "steps between floors",
+   "es": "escaleras"
+  },
+  "safe": {
+   "ru": "безопасный",
+   "uk": "безпечний",
+   "en": "not dangerous",
+   "es": "seguro"
+  },
+  "ticket": {
+   "ru": "билет",
+   "uk": "квиток",
+   "en": "paper for travel",
+   "es": "billete"
+  },
+  "valid": {
+   "ru": "действительный",
+   "uk": "дійсний",
+   "en": "can be used now",
+   "es": "válido"
+  },
+  "platform": {
+   "ru": "платформа",
+   "uk": "платформа",
+   "en": "place to wait for a train",
+   "es": "andén"
+  },
+  "empty": {
+   "ru": "пустой",
+   "uk": "порожній",
+   "en": "with nothing in it",
+   "es": "vacío"
+  },
+  "these": {
+   "ru": "эти",
+   "uk": "ці",
+   "en": "the ones close to me",
+   "es": "estos"
+  },
+  "station": {
+   "ru": "вокзал, станция",
+   "uk": "вокзал, станція",
+   "en": "place where trains stop",
+   "es": "estación"
+  },
+  "last": {
+   "ru": "последний",
+   "uk": "останній",
+   "en": "final one",
+   "es": "último"
+  },
+  "tickets": {
+   "ru": "билеты",
+   "uk": "квитки",
+   "en": "papers for travel",
+   "es": "billetes"
+  },
+  "waiting": {
+   "ru": "ожидания (зал ожидания)",
+   "uk": "очікування (зал очікування)",
+   "en": "used for waiting",
+   "es": "espera"
+  },
+  "office": {
+   "ru": "касса, офис",
+   "uk": "каса, офіс",
+   "en": "place for work or service",
+   "es": "oficina"
+  },
+  "her": {
+   "ru": "её",
+   "uk": "її",
+   "en": "belonging to her",
+   "es": "su"
+  },
+  "train": {
+   "ru": "поезд",
+   "uk": "потяг",
+   "en": "vehicle on rails",
+   "es": "tren"
+  },
+  "time": {
+   "ru": "время",
+   "uk": "час",
+   "en": "hours and minutes",
+   "es": "hora"
+  }
+ }
+}

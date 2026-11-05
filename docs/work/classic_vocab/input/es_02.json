@@ -1,0 +1,120 @@
+{
+ "lang": "es",
+ "lesson": 2,
+ "words": [
+  {
+   "form": "no",
+   "surface": "No",
+   "count": 50,
+   "examples": [
+    {
+     "id": "es:02:01",
+     "target": "No estoy en casa",
+     "ru": "Я не дома.",
+     "en": "I am not at home."
+    },
+    {
+     "id": "es:02:02",
+     "target": "No estás en casa",
+     "ru": "Ты не дома.",
+     "en": "You are not at home."
+    }
+   ]
+  },
+  {
+   "form": "tienda",
+   "surface": "tienda",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:02:15",
+     "target": "La tienda no está cerca",
+     "ru": "Магазин не рядом.",
+     "en": "The shop is not nearby."
+    },
+    {
+     "id": "es:02:16",
+     "target": "No estoy en la tienda",
+     "ru": "Я не в магазине.",
+     "en": "I am not in the shop."
+    }
+   ]
+  },
+  {
+   "form": "farmacia",
+   "surface": "farmacia",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:02:17",
+     "target": "Ella no está en la farmacia",
+     "ru": "Она не в аптеке.",
+     "en": "She is not at the pharmacy."
+    },
+    {
+     "id": "es:02:28",
+     "target": "Ana no está en la farmacia",
+     "ru": "Ана не в аптеке.",
+     "en": "Ana is not at the pharmacy."
+    }
+   ]
+  },
+  {
+   "form": "oficina",
+   "surface": "oficina",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:02:18",
+     "target": "Él no está en la oficina",
+     "ru": "Он не в офисе.",
+     "en": "He is not in the office."
+    },
+    {
+     "id": "es:02:19",
+     "target": "No estoy en la oficina",
+     "ru": "Я не в офисе.",
+     "en": "I am not in the office."
+    }
+   ]
+  },
+  {
+   "form": "bolso",
+   "surface": "bolso",
+   "count": 5,
+   "examples": [
+    {
+     "id": "es:02:40",
+     "target": "El bolso no está en el coche",
+     "ru": "Сумка не в машине.",
+     "en": "The bag is not in the car."
+    },
+    {
+     "id": "es:02:41",
+     "target": "La llave no está en el bolso",
+     "ru": "Ключ не в сумке.",
+     "en": "The key is not in the bag."
+    }
+   ]
+  },
+  {
+   "form": "bolsillo",
+   "surface": "bolsillo",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:02:44",
+     "target": "El móvil no está en el bolsillo",
+     "ru": "Телефон не в кармане.",
+     "en": "The phone is not in the pocket."
+    },
+    {
+     "id": "es:02:45",
+     "target": "La llave no está en el bolsillo",
+     "ru": "Ключ не в кармане.",
+     "en": "The key is not in the pocket."
+    }
+   ]
+  }
+ ]
+}

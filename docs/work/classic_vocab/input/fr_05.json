@@ -1,0 +1,701 @@
+{
+ "lang": "fr",
+ "lesson": 5,
+ "words": [
+  {
+   "form": "j’ai",
+   "surface": "J’ai",
+   "count": 10,
+   "examples": [
+    {
+     "id": "fr:05:01",
+     "target": "J’ai une clé",
+     "ru": "У меня есть ключ.",
+     "en": "I have a key."
+    },
+    {
+     "id": "fr:05:10",
+     "target": "J’ai mon téléphone",
+     "ru": "У меня с собой телефон.",
+     "en": "I have my phone with me."
+    }
+   ]
+  },
+  {
+   "form": "as",
+   "surface": "as",
+   "count": 7,
+   "examples": [
+    {
+     "id": "fr:05:02",
+     "target": "Tu as une clé",
+     "ru": "У тебя есть ключ.",
+     "en": "You have a key."
+    },
+    {
+     "id": "fr:05:12",
+     "target": "Tu as faim",
+     "ru": "Ты голоден.",
+     "en": "You're hungry."
+    }
+   ]
+  },
+  {
+   "form": "a",
+   "surface": "a",
+   "count": 14,
+   "examples": [
+    {
+     "id": "fr:05:03",
+     "target": "Elle a un sac",
+     "ru": "У неё есть сумка.",
+     "en": "She has a bag."
+    },
+    {
+     "id": "fr:05:04",
+     "target": "Il a un sac",
+     "ru": "У него есть сумка.",
+     "en": "He has a bag."
+    }
+   ]
+  },
+  {
+   "form": "il",
+   "surface": "Il",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:05:04",
+     "target": "Il a un sac",
+     "ru": "У него есть сумка.",
+     "en": "He has a bag."
+    },
+    {
+     "id": "fr:05:35",
+     "target": "Il a son passeport",
+     "ru": "Его паспорт при нём?",
+     "en": "Does he have his passport?"
+    }
+   ]
+  },
+  {
+   "form": "avons",
+   "surface": "avons",
+   "count": 6,
+   "examples": [
+    {
+     "id": "fr:05:05",
+     "target": "Nous avons un plan",
+     "ru": "У нас есть план.",
+     "en": "We have a plan."
+    },
+    {
+     "id": "fr:05:15",
+     "target": "Nous avons froid",
+     "ru": "Нам холодно.",
+     "en": "We're cold."
+    }
+   ]
+  },
+  {
+   "form": "avez",
+   "surface": "avez",
+   "count": 7,
+   "examples": [
+    {
+     "id": "fr:05:06",
+     "target": "Vous avez un plan",
+     "ru": "У вас есть план.",
+     "en": "You have a plan."
+    },
+    {
+     "id": "fr:05:16",
+     "target": "Vous avez chaud",
+     "ru": "Вам жарко.",
+     "en": "You're hot."
+    }
+   ]
+  },
+  {
+   "form": "ont",
+   "surface": "ont",
+   "count": 5,
+   "examples": [
+    {
+     "id": "fr:05:07",
+     "target": "Ils ont un billet",
+     "ru": "У них есть билет.",
+     "en": "They have a ticket."
+    },
+    {
+     "id": "fr:05:08",
+     "target": "Elles ont un billet",
+     "ru": "У них есть билет.",
+     "en": "They have a ticket."
+    }
+   ]
+  },
+  {
+   "form": "faim",
+   "surface": "faim",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:05:11",
+     "target": "J’ai faim",
+     "ru": "Я голоден.",
+     "en": "I'm hungry."
+    },
+    {
+     "id": "fr:05:12",
+     "target": "Tu as faim",
+     "ru": "Ты голоден.",
+     "en": "You're hungry."
+    }
+   ]
+  },
+  {
+   "form": "soif",
+   "surface": "soif",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:05:13",
+     "target": "J’ai soif",
+     "ru": "Мне хочется пить.",
+     "en": "I'm thirsty."
+    },
+    {
+     "id": "fr:05:14",
+     "target": "Elle a soif",
+     "ru": "Ей хочется пить.",
+     "en": "She's thirsty."
+    }
+   ]
+  },
+  {
+   "form": "froid",
+   "surface": "froid",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:15",
+     "target": "Nous avons froid",
+     "ru": "Нам холодно.",
+     "en": "We're cold."
+    }
+   ]
+  },
+  {
+   "form": "chaud",
+   "surface": "chaud",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:16",
+     "target": "Vous avez chaud",
+     "ru": "Вам жарко.",
+     "en": "You're hot."
+    }
+   ]
+  },
+  {
+   "form": "peur",
+   "surface": "peur",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:17",
+     "target": "Paul a peur",
+     "ru": "Поль боится.",
+     "en": "Paul is afraid."
+    }
+   ]
+  },
+  {
+   "form": "sommeil",
+   "surface": "sommeil",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:18",
+     "target": "Ils ont sommeil",
+     "ru": "Они хотят спать.",
+     "en": "They want to sleep."
+    }
+   ]
+  },
+  {
+   "form": "mal",
+   "surface": "mal",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:05:19",
+     "target": "J’ai mal au dos",
+     "ru": "У меня болит спина.",
+     "en": "My back hurts."
+    },
+    {
+     "id": "fr:05:20",
+     "target": "Tu as mal à la tête",
+     "ru": "У тебя болит голова.",
+     "en": "You have a headache."
+    }
+   ]
+  },
+  {
+   "form": "dos",
+   "surface": "dos",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:19",
+     "target": "J’ai mal au dos",
+     "ru": "У меня болит спина.",
+     "en": "My back hurts."
+    }
+   ]
+  },
+  {
+   "form": "tête",
+   "surface": "tête",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:20",
+     "target": "Tu as mal à la tête",
+     "ru": "У тебя болит голова.",
+     "en": "You have a headache."
+    }
+   ]
+  },
+  {
+   "form": "vingt",
+   "surface": "vingt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:21",
+     "target": "J’ai vingt ans",
+     "ru": "Мне двадцать лет.",
+     "en": "I am twenty years old."
+    }
+   ]
+  },
+  {
+   "form": "ans",
+   "surface": "ans",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:05:21",
+     "target": "J’ai vingt ans",
+     "ru": "Мне двадцать лет.",
+     "en": "I am twenty years old."
+    },
+    {
+     "id": "fr:05:22",
+     "target": "Léa a trente ans",
+     "ru": "Леа тридцать лет.",
+     "en": "Léa is thirty years old."
+    }
+   ]
+  },
+  {
+   "form": "trente",
+   "surface": "trente",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:22",
+     "target": "Léa a trente ans",
+     "ru": "Леа тридцать лет.",
+     "en": "Léa is thirty years old."
+    }
+   ]
+  },
+  {
+   "form": "dix",
+   "surface": "dix",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:23",
+     "target": "Mon frère a dix ans",
+     "ru": "Моему брату десять лет.",
+     "en": "My brother is ten years old."
+    }
+   ]
+  },
+  {
+   "form": "trois",
+   "surface": "trois",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:25",
+     "target": "Nous avons trois places",
+     "ru": "У нас три места.",
+     "en": "We have three seats."
+    }
+   ]
+  },
+  {
+   "form": "cinq",
+   "surface": "cinq",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:26",
+     "target": "Vous avez cinq minutes",
+     "ru": "У вас пять минут.",
+     "en": "You have five minutes."
+    }
+   ]
+  },
+  {
+   "form": "minutes",
+   "surface": "minutes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:26",
+     "target": "Vous avez cinq minutes",
+     "ru": "У вас пять минут.",
+     "en": "You have five minutes."
+    }
+   ]
+  },
+  {
+   "form": "rendez-vous",
+   "surface": "rendez-vous",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:05:27",
+     "target": "J’ai un rendez-vous",
+     "ru": "У меня назначена встреча.",
+     "en": "I have an appointment."
+    },
+    {
+     "id": "fr:05:48",
+     "target": "Nous avons rendez-vous à midi",
+     "ru": "У нас назначена встреча на полдень.",
+     "en": "We have an appointment at noon."
+    }
+   ]
+  },
+  {
+   "form": "question",
+   "surface": "question",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:28",
+     "target": "Paul a une question",
+     "ru": "У Поля есть вопрос.",
+     "en": "Paul has a question."
+    }
+   ]
+  },
+  {
+   "form": "idée",
+   "surface": "idée",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:29",
+     "target": "Nous avons une idée",
+     "ru": "У нас есть идея.",
+     "en": "We have an idea."
+    }
+   ]
+  },
+  {
+   "form": "temps",
+   "surface": "temps",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:05:30",
+     "target": "Tu as le temps",
+     "ru": "У тебя есть время?",
+     "en": "Do you have time?"
+    },
+    {
+     "id": "fr:05:45",
+     "target": "J’ai encore un peu de temps",
+     "ru": "У меня ещё есть немного времени.",
+     "en": "I still have some time."
+    }
+   ]
+  },
+  {
+   "form": "avez-vous",
+   "surface": "Avez-vous",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:31",
+     "target": "Avez-vous un stylo",
+     "ru": "У вас есть ручка?",
+     "en": "Do you have a pen?"
+    }
+   ]
+  },
+  {
+   "form": "stylo",
+   "surface": "stylo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:31",
+     "target": "Avez-vous un stylo",
+     "ru": "У вас есть ручка?",
+     "en": "Do you have a pen?"
+    }
+   ]
+  },
+  {
+   "form": "instant",
+   "surface": "instant",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:33",
+     "target": "Vous avez un instant",
+     "ru": "У вас есть минутка?",
+     "en": "Do you have a moment?"
+    }
+   ]
+  },
+  {
+   "form": "qu’elle",
+   "surface": "qu’elle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:34",
+     "target": "Est-ce qu’elle a ses lunettes",
+     "ru": "У неё с собой очки?",
+     "en": "Does she have her glasses?"
+    }
+   ]
+  },
+  {
+   "form": "ses",
+   "surface": "ses",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:34",
+     "target": "Est-ce qu’elle a ses lunettes",
+     "ru": "У неё с собой очки?",
+     "en": "Does she have her glasses?"
+    }
+   ]
+  },
+  {
+   "form": "passeport",
+   "surface": "passeport",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:35",
+     "target": "Il a son passeport",
+     "ru": "Его паспорт при нём?",
+     "en": "Does he have his passport?"
+    }
+   ]
+  },
+  {
+   "form": "monnaie",
+   "surface": "monnaie",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:37",
+     "target": "Vous avez de la monnaie",
+     "ru": "У вас есть мелочь?",
+     "en": "Do you have any change?"
+    }
+   ]
+  },
+  {
+   "form": "retour",
+   "surface": "retour",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:39",
+     "target": "Léa a son billet de retour",
+     "ru": "Обратный билет у Леа с собой?",
+     "en": "Does Leah have her return ticket?"
+    }
+   ]
+  },
+  {
+   "form": "réservation",
+   "surface": "réservation",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:40",
+     "target": "Est-ce que vous avez une réservation",
+     "ru": "У вас есть бронирование?",
+     "en": "Do you have a reservation?"
+    }
+   ]
+  },
+  {
+   "form": "besoin",
+   "surface": "besoin",
+   "count": 5,
+   "examples": [
+    {
+     "id": "fr:05:41",
+     "target": "J’ai besoin d’aide",
+     "ru": "Мне нужна помощь.",
+     "en": "I need help."
+    },
+    {
+     "id": "fr:05:42",
+     "target": "Tu as besoin d’une pause",
+     "ru": "Тебе нужен перерыв.",
+     "en": "You need a break."
+    }
+   ]
+  },
+  {
+   "form": "d’aide",
+   "surface": "d’aide",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:41",
+     "target": "J’ai besoin d’aide",
+     "ru": "Мне нужна помощь.",
+     "en": "I need help."
+    }
+   ]
+  },
+  {
+   "form": "d’une",
+   "surface": "d’une",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:42",
+     "target": "Tu as besoin d’une pause",
+     "ru": "Тебе нужен перерыв.",
+     "en": "You need a break."
+    }
+   ]
+  },
+  {
+   "form": "pause",
+   "surface": "pause",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:42",
+     "target": "Tu as besoin d’une pause",
+     "ru": "Тебе нужен перерыв.",
+     "en": "You need a break."
+    }
+   ]
+  },
+  {
+   "form": "repos",
+   "surface": "repos",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:43",
+     "target": "Il a besoin de repos",
+     "ru": "Ему нужен отдых.",
+     "en": "He needs rest."
+    }
+   ]
+  },
+  {
+   "form": "d’eau",
+   "surface": "d’eau",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:44",
+     "target": "Nous avons besoin d’eau",
+     "ru": "Нам нужна вода.",
+     "en": "We need water."
+    }
+   ]
+  },
+  {
+   "form": "peu",
+   "surface": "peu",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:45",
+     "target": "J’ai encore un peu de temps",
+     "ru": "У меня ещё есть немного времени.",
+     "en": "I still have some time."
+    }
+   ]
+  },
+  {
+   "form": "choix",
+   "surface": "choix",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:46",
+     "target": "Vous avez le choix",
+     "ru": "У вас есть выбор.",
+     "en": "You have a choice."
+    }
+   ]
+  },
+  {
+   "form": "midi",
+   "surface": "midi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:48",
+     "target": "Nous avons rendez-vous à midi",
+     "ru": "У нас назначена встреча на полдень.",
+     "en": "We have an appointment at noon."
+    }
+   ]
+  },
+  {
+   "form": "gorge",
+   "surface": "gorge",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:49",
+     "target": "J’ai mal à la gorge",
+     "ru": "У меня болит горло.",
+     "en": "My throat hurts."
+    }
+   ]
+  },
+  {
+   "form": "ordonnance",
+   "surface": "ordonnance",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:05:50",
+     "target": "Elle a besoin de son ordonnance",
+     "ru": "Ей нужен её рецепт.",
+     "en": "She needs her prescription."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,689 @@
+{
+  "lang": "en",
+  "lesson": 11,
+  "title": {
+    "ru": "Что было вчера",
+    "uk": "Що було вчора",
+    "en": "What happened yesterday"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Это было раньше",
+        "uk": "Це було раніше",
+        "en": "It happened earlier"
+      },
+      "text": {
+        "ru": "Буквы ed в конце слова показывают: это было раньше.\nI walked home yesterday. — Я вчера шел домой пешком.\nЧитается: ай уо́кт хо́ум е́стердэй.\nСлово walked значит «шёл пешком» (walk + ed).\nСлово yesterday значит «вчера».\nHe worked from home on Monday. — Он работал из дома в понедельник.\nЧитается: хи уо́ркт фро́м хо́ум он ма́ндэй.\nСлово worked значит «работал» (work + ed).\nСлово from значит «из, от».\nShe called a taxi. — Она вызвала такси.\nЧитается: ши ко́лд э тэ́кси.\nСлово called значит «позвонил, вызвал» (call + ed).\nСлово taxi значит «такси».\nI opened the envelope. — Я открыл конверт.\nЧитается: ай о́упенд зи э́нвелоуп.\nСлово opened значит «открыл» (open + ed).\nСлово envelope значит «конверт».\nЗдесь open значит «открыть». В уроке 1 оно значило «открыт».",
+        "uk": "Літери ed наприкінці слова показують: це було раніше.\nI walked home yesterday. — Я вчора пішов додому пішки.\nЧитається: ай уо́кт хо́ум е́стердей.\nСлово walked означає «йшов пішки» (walk + ed).\nСлово yesterday означає «вчора».\nHe worked from home on Monday. — Він працював з дому в понеділок.\nЧитається: хі уо́ркт фро́м хо́ум он ма́ндей.\nСлово worked означає «працював» (work + ed).\nСлово from означає «з, від».\nShe called a taxi. — Вона викликала таксі.\nЧитається: ші ко́лд е те́ксі.\nСлово called означає «зателефонував, викликав» (call + ed).\nСлово taxi означає «таксі».\nI opened the envelope. — Я відкрив конверт.\nЧитається: ай о́упенд зі е́нвелоуп.\nСлово opened означає «відкрив» (open + ed).\nСлово envelope означає «конверт».\nТут open означає «відкрити». В уроці 1 воно означало «відкритий».",
+        "en": "The letters ed at the end show it happened earlier.\nI walked home yesterday.\nThe word walked means “went on foot” (walk + ed).\nThe word yesterday means “the day before today”.\nHe worked from home on Monday.\nThe word worked means “had a job or did work” (work + ed).\nThe word from means “starting at a place”.\nShe called a taxi.\nThe word called means “phoned” (call + ed).\nThe word taxi means “a car you pay to ride in”.\nI opened the envelope.\nThe word opened means “made open” (open + ed).\nThe word envelope means “a paper cover for a letter”.\nHere open means to make open. In lesson 1 it meant not shut."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:11.01",
+          "say": {
+            "ru": "ай уо́кт хо́ум е́стердэй",
+            "uk": "ай уо́кт хо́ум е́стердей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.04",
+          "say": {
+            "ru": "хи уо́ркт фро́м хо́ум он ма́ндэй",
+            "uk": "хі уо́ркт фро́м хо́ум он ма́ндей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.06",
+          "say": {
+            "ru": "ши ко́лд э тэ́кси",
+            "uk": "ші ко́лд е те́ксі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.11",
+          "say": {
+            "ru": "ай о́упенд зи э́нвелоуп",
+            "uk": "ай о́упенд зі е́нвелоуп"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера шел домой пешком»",
+            "uk": "Виберіть, як сказати: «Я вчора пішов додому пішки»",
+            "en": "Choose how to say: “I walked home yesterday.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:11.01",
+          "options": [
+            "en-classic-r1:11.01",
+            "en-classic-r1:11.04",
+            "en-classic-r1:11.06"
+          ],
+          "answerId": "en-classic-r1:11.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он работал из дома в понедельник»",
+            "uk": "Виберіть, як сказати: «Він працював з дому в понеділок»",
+            "en": "Choose how to say: “He worked from home on Monday.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.04",
+          "options": [
+            "en-classic-r1:11.04",
+            "en-classic-r1:11.01",
+            "en-classic-r1:11.11"
+          ],
+          "answerId": "en-classic-r1:11.04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я открыл конверт»",
+            "uk": "Виберіть, як сказати: «Я відкрив конверт»",
+            "en": "Choose how to say: “I opened the envelope.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.11",
+          "options": [
+            "en-classic-r1:11.11",
+            "en-classic-r1:11.06",
+            "en-classic-r1:11.01"
+          ],
+          "answerId": "en-classic-r1:11.11"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Помыли, собрали, отправили",
+        "uk": "Помили, зібрали, надіслали",
+        "en": "Washed, packed, posted"
+      },
+      "text": {
+        "ru": "Так же со всеми такими словами: wash — washed, pack — packed.\nHe washed the cups. — Он вымыл чашки.\nЧитается: хи уо́шт зэ ка́пс.\nСлово washed значит «вымыл» (wash + ed).\nСлово cups значит «чашки».\nThey packed their bags. — Они собрали свои чемоданы.\nЧитается: зэй пэ́кт зэ́р бэ́гз.\nСлово packed значит «собрали (вещи)» (pack + ed).\nСлово their значит «их, свои».\nСлово bags значит «сумки, чемоданы».\nWe posted the letter. — Мы отправили письмо.\nЧитается: уи по́устид зэ лэ́тер.\nСлово posted значит «отправили по почте» (post + ed).\nСлово letter значит «письмо».",
+        "uk": "Так само з усіма такими словами: wash — washed, pack — packed.\nHe washed the cups. — Він помив чашки.\nЧитається: хі уо́шт зе ка́пс.\nСлово washed означає «вимив» (wash + ed).\nСлово cups означає «чашки».\nThey packed their bags. — Вони зібрали свої валізи.\nЧитається: зей пе́кт зе́р бе́гз.\nСлово packed означає «зібрали (речі)» (pack + ed).\nСлово their означає «їхні, свої».\nСлово bags означає «сумки, валізи».\nWe posted the letter. — Ми відправили листа.\nЧитається: уи по́устід зе ле́тер.\nСлово posted означає «надіслали поштою» (post + ed).\nСлово letter означає «лист».",
+        "en": "It is the same for all such words: wash, washed. Pack, packed.\nHe washed the cups.\nThe word washed means “cleaned with water” (wash + ed).\nThe word cups means “small bowls for tea (one: cup)”.\nThey packed their bags.\nThe word packed means “put things in bags” (pack + ed).\nThe word their means “belonging to them”.\nThe word bags means “things to carry stuff (one: bag)”.\nWe posted the letter.\nThe word posted means “sent by mail” (post + ed).\nThe word letter means “a message on paper”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:11.14",
+          "say": {
+            "ru": "хи уо́шт зэ ка́пс",
+            "uk": "хі уо́шт зе ка́пс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.15",
+          "say": {
+            "ru": "зэй пэ́кт зэ́р бэ́гз",
+            "uk": "зей пе́кт зе́р бе́гз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.18",
+          "say": {
+            "ru": "уи по́устид зэ лэ́тер",
+            "uk": "уи по́устід зе ле́тер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он вымыл чашки»",
+            "uk": "Виберіть, як сказати: «Він помив чашки»",
+            "en": "Choose how to say: “He washed the cups.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:11.14",
+          "options": [
+            "en-classic-r1:11.14",
+            "en-classic-r1:11.15",
+            "en-classic-r1:11.18"
+          ],
+          "answerId": "en-classic-r1:11.14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они собрали свои чемоданы»",
+            "uk": "Виберіть, як сказати: «Вони зібрали свої валізи»",
+            "en": "Choose how to say: “They packed their bags.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.15",
+          "options": [
+            "en-classic-r1:11.15",
+            "en-classic-r1:11.14",
+            "en-classic-r1:11.18"
+          ],
+          "answerId": "en-classic-r1:11.15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы отправили письмо»",
+            "uk": "Виберіть, як сказати: «Ми відправили листа»",
+            "en": "Choose how to say: “We posted the letter.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.18",
+          "options": [
+            "en-classic-r1:11.18",
+            "en-classic-r1:11.14",
+            "en-classic-r1:11.15"
+          ],
+          "answerId": "en-classic-r1:11.18"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Отменили, вернули, перезапустили",
+        "uk": "Скасували, повернули, перезапустили",
+        "en": "Cancelled, returned, restarted"
+      },
+      "text": {
+        "ru": "Если короткое слово кончается на ОДНУ согласную после ОДНОЙ гласной, её пишут два раза.\nУ слов, где громче говорят первую часть, такого нет: open — opened, а не openned.\nstop — stopped («остановился»), plan — planned («планировал»).\ncancel («отменить») — cancelled: две буквы l.\nShe cancelled the appointment. — Она отменила встречу.\nЧитается: ши кэ́нсэлд зи эпо́йнтмент.\nСлово cancelled значит «отменила» (cancel + led).\nСлово appointment значит «встреча, запись».\nWe returned the broken lamp. — Мы вернули сломанную лампу.\nЧитается: уи рито́рнд зэ бро́укен лэ́мп.\nСлово returned значит «вернули» (return + ed).\nСлово broken значит «сломанный».\nСлово lamp значит «лампа».\nI restarted the laptop. — Я перезагрузил ноутбук.\nЧитается: ай риста́ртид зэ лэ́птоп.\nСлово restarted значит «перезапустил» (restart + ed).\nСлово laptop значит «ноутбук».",
+        "uk": "Якщо коротке слово закінчується на ОДНУ приголосну після ОДНІЄЇ голосної, її пишуть двічі.\nУ слів, де голосніше кажуть першу частину, такого немає: open — opened, а не openned.\nstop — stopped («зупинився»), plan — planned («планував»).\ncancel («скасувати») — cancelled: дві літери l.\nShe cancelled the appointment. — Вона скасувала зустріч.\nЧитається: ші ке́нселд зі епо́йнтмент.\nСлово cancelled означає «скасувала» (cancel + led).\nСлово appointment означає «зустріч, запис».\nWe returned the broken lamp. — Ми повернули зламану лампу.\nЧитається: уи ріто́рнд зе бро́укен ле́мп.\nСлово returned означає «повернули» (return + ed).\nСлово broken означає «зламаний».\nСлово lamp означає «лампа».\nI restarted the laptop. — Я перезавантажив ноутбук.\nЧитається: ай ріста́ртід зе ле́птоп.\nСлово restarted означає «перезапустив» (restart + ed).\nСлово laptop означає «ноутбук».",
+        "en": "If a short word ends in ONE consonant after ONE vowel, write that consonant twice.\nA word that is stressed on its first part does not do this: open,\nopened (not openned).\nstop, stopped. plan, planned.\ncancel, cancelled: two letters l.\nShe cancelled the appointment.\nThe word cancelled means “said it will not happen” (cancel + led).\nThe word appointment means “a time to meet someone”.\nWe returned the broken lamp.\nThe word returned means “gave back” (return + ed).\nThe word broken means “not working”.\nThe word lamp means “a thing that gives light”.\nI restarted the laptop.\nThe word restarted means “started again” (restart + ed).\nThe word laptop means “a computer you can carry”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:11.24",
+          "say": {
+            "ru": "ши кэ́нсэлд зи эпо́йнтмент",
+            "uk": "ші ке́нселд зі епо́йнтмент"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.49",
+          "say": {
+            "ru": "уи рито́рнд зэ бро́укен лэ́мп",
+            "uk": "уи ріто́рнд зе бро́укен ле́мп"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.43",
+          "say": {
+            "ru": "ай риста́ртид зэ лэ́птоп",
+            "uk": "ай ріста́ртід зе ле́птоп"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она отменила встречу»",
+            "uk": "Виберіть, як сказати: «Вона скасувала зустріч»",
+            "en": "Choose how to say: “She cancelled the appointment.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:11.24",
+          "options": [
+            "en-classic-r1:11.24",
+            "en-classic-r1:11.49",
+            "en-classic-r1:11.43"
+          ],
+          "answerId": "en-classic-r1:11.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы вернули сломанную лампу»",
+            "uk": "Виберіть, як сказати: «Ми повернули зламану лампу»",
+            "en": "Choose how to say: “We returned the broken lamp.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.49",
+          "options": [
+            "en-classic-r1:11.49",
+            "en-classic-r1:11.24",
+            "en-classic-r1:11.43"
+          ],
+          "answerId": "en-classic-r1:11.49"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я перезагрузил ноутбук»",
+            "uk": "Виберіть, як сказати: «Я перезавантажив ноутбук»",
+            "en": "Choose how to say: “I restarted the laptop.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.43",
+          "options": [
+            "en-classic-r1:11.43",
+            "en-classic-r1:11.24",
+            "en-classic-r1:11.49"
+          ],
+          "answerId": "en-classic-r1:11.43"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Добрались и опоздали",
+        "uk": "Дісталися і запізнилися",
+        "en": "Reached and late"
+      },
+      "text": {
+        "ru": "Если слово уже кончается на e, добавляют только d.\narrive — arrived, close — closed («закрыл»).\nI reached the platform in time. — Я вовремя добрался до платформы.\nЧитается: ай ри́чт зэ плэ́тформ ин та́йм.\nСлово reached значит «добрался до» (reach + ed).\nСлово platform значит «платформа».\nСлово time значит «время».\nСлова in time значат «успеть вовремя»: он успел до отправления.\nThe train arrived ten minutes late. — Поезд опоздал на десять минут.\nЧитается: зэ трэ́йн эра́йвд тэ́н ми́нитс лэ́йт.\nСлово arrived значит «приехал, прибыл» (arrive + d).\nСлово ten значит «десять».\nСлово minutes значит «минуты».\nСлово late значит «поздно, с опозданием».\nВ уроке 10 stay late — «остаться допоздна». Здесь arrived late — «опоздал».\nWe worked late yesterday. — Мы вчера работали допоздна.\nЧитается: уи уо́ркт лэ́йт е́стердэй.\nСлова worked late вместе значат «работали допоздна».",
+        "uk": "Якщо слово вже закінчується на e, додають лише d.\narrive — arrived, close — closed («закрив»).\nI reached the platform in time. — Я встиг на платформу.\nЧитається: ай рі́чт зе пле́тформ ін та́йм.\nСлово reached означає «дістався до» (reach + ed).\nСлово platform означає «платформа».\nСлово time означає «час».\nСлова in time означають «встигнути вчасно»: він встиг до відправлення.\nThe train arrived ten minutes late. — Поїзд прибув із запізненням на десять хвилин.\nЧитається: зе тре́йн ера́йвд те́н мі́нітс ле́йт.\nСлово arrived означає «приїхав, прибув» (arrive + d).\nСлово ten означає «десять».\nСлово minutes означає «хвилини».\nСлово late означає «пізно, із запізненням».\nВ уроці 10 stay late — «залишитися допізна». Тут arrived late — «запізнився».\nWe worked late yesterday. — Ми вчора працювали допізна.\nЧитається: уи уо́ркт ле́йт е́стердей.\nСлова worked late разом означають «працювали допізна».",
+        "en": "If a word already ends in e, add only d.\narrive, arrived. close, closed.\nI reached the platform in time.\nThe word reached means “got to a place” (reach + ed).\nThe word platform means “the place where you wait for a train”.\nThe word time means “hours and minutes”.\nThe words in time mean early enough, before it leaves.\nThe train arrived ten minutes late.\nThe word arrived means “came to a place” (arrive + d).\nThe word ten means “the number 10”.\nThe word minutes means “short parts of an hour (one: minute)”.\nThe word late means “after the right time”.\nIn lesson 10, stay late meant stay until night. Here arrived late means not on time.\nWe worked late yesterday.\nThe words worked late together mean worked until the night."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:11.26",
+          "say": {
+            "ru": "ай ри́чт зэ плэ́тформ ин та́йм",
+            "uk": "ай рі́чт зе пле́тформ ін та́йм"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.30",
+          "say": {
+            "ru": "зэ трэ́йн эра́йвд тэ́н ми́нитс лэ́йт",
+            "uk": "зе тре́йн ера́йвд те́н мі́нітс ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.03",
+          "say": {
+            "ru": "уи уо́ркт лэ́йт е́стердэй",
+            "uk": "уи уо́ркт ле́йт е́стердей"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вовремя добрался до платформы»",
+            "uk": "Виберіть, як сказати: «Я встиг на платформу»",
+            "en": "Choose how to say: “I reached the platform in time.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:11.26",
+          "options": [
+            "en-classic-r1:11.26",
+            "en-classic-r1:11.30",
+            "en-classic-r1:11.03"
+          ],
+          "answerId": "en-classic-r1:11.26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд опоздал на десять минут»",
+            "uk": "Виберіть, як сказати: «Поїзд прибув із запізненням на десять хвилин»",
+            "en": "Choose how to say: “The train arrived ten minutes late.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.30",
+          "options": [
+            "en-classic-r1:11.30",
+            "en-classic-r1:11.26",
+            "en-classic-r1:11.03"
+          ],
+          "answerId": "en-classic-r1:11.30"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы вчера работали допоздна»",
+            "uk": "Виберіть, як сказати: «Ми вчора працювали допізна»",
+            "en": "Choose how to say: “We worked late yesterday.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.03",
+          "options": [
+            "en-classic-r1:11.03",
+            "en-classic-r1:11.26",
+            "en-classic-r1:11.30"
+          ],
+          "answerId": "en-classic-r1:11.03"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "На дороге",
+        "uk": "На дорозі",
+        "en": "On the road"
+      },
+      "text": {
+        "ru": "We crossed the road at the lights. — Мы перешли дорогу на светофоре.\nЧитается: уи кро́ст зэ ро́уд эт зэ ла́йтс.\nСлово crossed значит «перешли» (cross + ed).\nСлово road значит «дорога».\nСлово lights значит «светофор».\nСлова at the lights вместе значат «на светофоре».\nShe parked behind the shop. — Она припарковалась за магазином.\nЧитается: ши па́ркт биха́йнд зэ шо́п.\nСлово parked значит «припарковалась» (park + ed).\nСлово behind значит «позади, за».\nСлово shop значит «магазин».\nThe driver stopped by the gate. — Водитель остановился у ворот.\nЧитается: зэ дра́йвер сто́пт бай зэ гэ́йт.\nСлово stopped значит «остановился» (stop + ped).\nСлово gate значит «ворота; выход на посадку».\nВ stopped две буквы p — как две l в cancelled.",
+        "uk": "We crossed the road at the lights. — Ми перейшли дорогу на світлофорі.\nЧитається: уи кро́ст зе ро́уд ет зе ла́йтс.\nСлово crossed означає «перейшли» (cross + ed).\nСлово road означає «дорога».\nСлово lights означає «світлофор».\nСлова at the lights разом означають «на світлофорі».\nShe parked behind the shop. — Вона припаркувалася за магазином.\nЧитається: ші па́ркт біха́йнд зе шо́п.\nСлово parked означає «припаркувалася» (park + ed).\nСлово behind означає «позаду, за».\nСлово shop означає «магазин».\nThe driver stopped by the gate. — Водій зупинився біля воріт.\nЧитається: зе дра́йвер сто́пт бай зе ге́йт.\nСлово stopped означає «зупинився» (stop + ped).\nСлово gate означає «ворота; вихід на посадку».\nУ stopped дві літери p — як дві l у cancelled.",
+        "en": "We crossed the road at the lights.\nThe word crossed means “went to the other side” (cross + ed).\nThe word road means “a way for cars”.\nThe word lights means “red, yellow and green lamps for cars”.\nThe words at the lights together mean at the traffic lights.\nShe parked behind the shop.\nThe word parked means “left a car in a place” (park + ed).\nThe word behind means “at the back of”.\nThe word shop means “a place to buy things”.\nThe driver stopped by the gate.\nThe word stopped means “did not go on” (stop + ped).\nThe word gate means “a door in a fence, or an exit at an airport”.\nIn stopped there are two letters p, like two letters l in cancelled."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:11.27",
+          "say": {
+            "ru": "уи кро́ст зэ ро́уд эт зэ ла́йтс",
+            "uk": "уи кро́ст зе ро́уд ет зе ла́йтс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.28",
+          "say": {
+            "ru": "ши па́ркт биха́йнд зэ шо́п",
+            "uk": "ші па́ркт біха́йнд зе шо́п"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.29",
+          "say": {
+            "ru": "зэ дра́йвер сто́пт бай зэ гэ́йт",
+            "uk": "зе дра́йвер сто́пт бай зе ге́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы перешли дорогу на светофоре»",
+            "uk": "Виберіть, як сказати: «Ми перейшли дорогу на світлофорі»",
+            "en": "Choose how to say: “We crossed the road at the lights.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:11.27",
+          "options": [
+            "en-classic-r1:11.27",
+            "en-classic-r1:11.28",
+            "en-classic-r1:11.29"
+          ],
+          "answerId": "en-classic-r1:11.27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она припарковалась за магазином»",
+            "uk": "Виберіть, як сказати: «Вона припаркувалася за магазином»",
+            "en": "Choose how to say: “She parked behind the shop.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.28",
+          "options": [
+            "en-classic-r1:11.28",
+            "en-classic-r1:11.27",
+            "en-classic-r1:11.29"
+          ],
+          "answerId": "en-classic-r1:11.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Водитель остановился у ворот»",
+            "uk": "Виберіть, як сказати: «Водій зупинився біля воріт»",
+            "en": "Choose how to say: “The driver stopped by the gate.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.29",
+          "options": [
+            "en-classic-r1:11.29",
+            "en-classic-r1:11.28",
+            "en-classic-r1:11.27"
+          ],
+          "answerId": "en-classic-r1:11.29"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Вопрос и «не»",
+        "uk": "Питання і «не»",
+        "en": "Did and did not"
+      },
+      "text": {
+        "ru": "Чтобы спросить о прошлом, поставьте Did в начало.\nDid the bus arrive on time? — Автобус прибыл вовремя?\nЧитается: ди́д зэ ба́с эра́йв он тайм.\nСлово Did значит «слово-помощник вопроса».\nПо-русски такого слова нет. Такое было в уроке 5: Do you drive?\nПосле Did слово простое: arrive, а не arrived.\nСлова on time значат «вовремя, по расписанию».\nin time — успеть к сроку, on time — прийти точно по плану.\nThey did not miss the flight. — Они не опоздали на рейс.\nЧитается: зэй ди́д но́т ми́с зэ фла́йт.\nСлово miss значит «опоздать на».\nСлово flight значит «рейс».\nЧтобы сказать «не сделал», пишут did not и простое слово.\nHe did not answer the door. — Он не открыл дверь.\nЧитается: хи ди́д но́т а́нсэр зэ до́р.\nСлово answer значит «ответить на звонок или стук».\nСлова answer the door вместе значат «открыть дверь».\nDid the shop refund the delivery charge? — Возместил ли магазин стоимость доставки?\nЧитается: ди́д зэ шо́п ри́фанд зэ дели́вери ча́рдж.\nСлово refund значит «вернуть деньги».\nСлово delivery значит «доставка».\nСлово charge значит «плата, стоимость».",
+        "uk": "Щоб запитати про минуле, поставте Did на початок.\nDid the bus arrive on time? — Автобус прибув вчасно?\nЧитається: ді́д зе ба́с ера́йв он тайм.\nСлово Did означає «слово-помічник питання».\nУкраїнською такого слова немає. Таке було в уроці 5: Do you drive?\nПісля Did слово просте: arrive, а не arrived.\nСлова on time означають «вчасно, за розкладом».\nin time — встигнути до строку, on time — прийти точно за планом.\nThey did not miss the flight. — Вони не пропустили рейс.\nЧитається: зей ді́д но́т мі́с зе фла́йт.\nСлово miss означає «запізнитися на».\nСлово flight означає «рейс».\nЩоб сказати «не зробив», пишуть did not і просте слово.\nHe did not answer the door. — Він не відчинив двері.\nЧитається: хі ді́д но́т а́нсер зе до́р.\nСлово answer означає «відповісти на дзвінок чи стукіт».\nСлова answer the door разом означають «відчинити двері».\nDid the shop refund the delivery charge? — Чи повернув магазин кошти за доставку?\nЧитається: ді́д зе шо́п рі́фанд зе делі́вері ча́рдж.\nСлово refund означає «повернути гроші».\nСлово delivery означає «доставка».\nСлово charge означає «плата, вартість».",
+        "en": "To ask about the past, put Did first.\nDid the bus arrive on time?\nThe word Did means “a helper word for questions about the past”.\nSome languages have no such word. You saw a helper in lesson 5: Do you drive?\nAfter Did the word stays plain: arrive, not arrived.\nThe words on time mean as planned.\nin time means early enough. on time means exactly as planned.\nThey did not miss the flight.\nThe word miss means “to be too late for”.\nThe word flight means “a trip by plane”.\nTo say someone did not do it, write did not and the plain word.\nHe did not answer the door.\nThe word answer means “to react when someone calls”.\nThe words answer the door together mean to open it for a visitor.\nDid the shop refund the delivery charge?\nThe word refund means “to give money back”.\nThe word delivery means “bringing things to your home”.\nThe word charge means “money you must pay”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:11.35",
+          "say": {
+            "ru": "ди́д зэ ба́с эра́йв он тайм",
+            "uk": "ді́д зе ба́с ера́йв он тайм"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.38",
+          "say": {
+            "ru": "зэй ди́д но́т ми́с зэ фла́йт",
+            "uk": "зей ді́д но́т мі́с зе фла́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.40",
+          "say": {
+            "ru": "хи ди́д но́т а́нсэр зэ до́р",
+            "uk": "хі ді́д но́т а́нсер зе до́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.50",
+          "say": {
+            "ru": "ди́д зэ шо́п ри́фанд зэ дели́вери ча́рдж",
+            "uk": "ді́д зе шо́п рі́фанд зе делі́вері ча́рдж"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус прибыл вовремя?»",
+            "uk": "Виберіть, як сказати: «Автобус прибув вчасно?»",
+            "en": "Choose how to say: “Did the bus arrive on time?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:11.35",
+          "options": [
+            "en-classic-r1:11.35",
+            "en-classic-r1:11.50",
+            "en-classic-r1:11.38"
+          ],
+          "answerId": "en-classic-r1:11.35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они не опоздали на рейс»",
+            "uk": "Виберіть, як сказати: «Вони не пропустили рейс»",
+            "en": "Choose how to say: “They did not miss the flight.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.38",
+          "options": [
+            "en-classic-r1:11.38",
+            "en-classic-r1:11.40",
+            "en-classic-r1:11.35"
+          ],
+          "answerId": "en-classic-r1:11.38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Возместил ли магазин стоимость доставки?»",
+            "uk": "Виберіть, як сказати: «Чи повернув магазин кошти за доставку?»",
+            "en": "Choose how to say: “Did the shop refund the delivery charge?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.50",
+          "options": [
+            "en-classic-r1:11.50",
+            "en-classic-r1:11.35",
+            "en-classic-r1:11.38"
+          ],
+          "answerId": "en-classic-r1:11.50"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "С техникой",
+        "uk": "З технікою",
+        "en": "Gadgets"
+      },
+      "text": {
+        "ru": "Если слово кончается на y, y меняется на i, и добавляется ed.\ntry — tried, copy — copied.\nThe screen flashed twice. — Экран дважды мигнул.\nЧитается: зэ скри́н флэ́шт туа́йс.\nСлово screen значит «экран».\nСлово flashed значит «мигнул» (flash + ed).\nСлово twice значит «дважды».\nWe tried a different cable. — Мы попробовали другой кабель.\nЧитается: уи тра́йд э ди́ферент кэ́йбл.\nСлово tried значит «попробовали» (try → tried).\nСлово different значит «другой, иной».\nShe copied the file. — Она скопировала файл.\nЧитается: ши ко́пид зэ фа́йл.\nСлово copied значит «скопировала» (copy → copied).\nСлово file значит «файл».",
+        "uk": "Якщо слово закінчується на y, y змінюється на i, і додається ed.\ntry — tried, copy — copied.\nThe screen flashed twice. — Екран блимнув двічі.\nЧитається: зе скрі́н фле́шт туа́йс.\nСлово screen означає «екран».\nСлово flashed означає «мигнув» (flash + ed).\nСлово twice означає «двічі».\nWe tried a different cable. — Ми спробували інший кабель.\nЧитається: уи тра́йд е ді́ферент ке́йбл.\nСлово tried означає «спробували» (try → tried).\nСлово different означає «інший, не такий самий».\nShe copied the file. — Вона скопіювала файл.\nЧитається: ші ко́під зе фа́йл.\nСлово copied означає «скопіювала» (copy → copied).\nСлово file означає «файл».",
+        "en": "If a word ends in y, the y becomes i and we add ed.\ntry, tried. copy, copied.\nThe screen flashed twice.\nThe word screen means “the flat part of a phone or computer that you look at”.\nThe word flashed means “showed a quick light” (flash + ed).\nThe word twice means “two times”.\nWe tried a different cable.\nThe word tried means “tested” (try → tried).\nThe word different means “not the same”.\nShe copied the file.\nThe word copied means “made another one the same” (copy → copied).\nThe word file means “a document on a computer”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:11.42",
+          "say": {
+            "ru": "зэ скри́н флэ́шт туа́йс",
+            "uk": "зе скрі́н фле́шт туа́йс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.44",
+          "say": {
+            "ru": "уи тра́йд э ди́ферент кэ́йбл",
+            "uk": "уи тра́йд е ді́ферент ке́йбл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.45",
+          "say": {
+            "ru": "ши ко́пид зэ фа́йл",
+            "uk": "ші ко́під зе фа́йл"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Экран дважды мигнул»",
+            "uk": "Виберіть, як сказати: «Екран блимнув двічі»",
+            "en": "Choose how to say: “The screen flashed twice.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:11.42",
+          "options": [
+            "en-classic-r1:11.42",
+            "en-classic-r1:11.44",
+            "en-classic-r1:11.45"
+          ],
+          "answerId": "en-classic-r1:11.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы попробовали другой кабель»",
+            "uk": "Виберіть, як сказати: «Ми спробували інший кабель»",
+            "en": "Choose how to say: “We tried a different cable.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.44",
+          "options": [
+            "en-classic-r1:11.44",
+            "en-classic-r1:11.42",
+            "en-classic-r1:11.45"
+          ],
+          "answerId": "en-classic-r1:11.44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она скопировала файл»",
+            "uk": "Виберіть, як сказати: «Вона скопіювала файл»",
+            "en": "Choose how to say: “She copied the file.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.45",
+          "options": [
+            "en-classic-r1:11.45",
+            "en-classic-r1:11.44",
+            "en-classic-r1:11.42"
+          ],
+          "answerId": "en-classic-r1:11.45"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Сохранили, заметили, починили",
+        "uk": "Зберегли, помітили, полагодили",
+        "en": "Saved, noticed, fixed"
+      },
+      "text": {
+        "ru": "He saved the wrong version. — Он сохранил неправильную версию.\nЧитается: хи сэ́йвд зэ ро́нг ве́ржен.\nСлово saved значит «сохранил» (save + d).\nСлово wrong значит «неправильный».\nСлово version значит «версия».\nI noticed a missing page. — Я заметил, что не хватает страницы.\nЧитается: ай но́утист э ми́синг пэ́йдж.\nСлово noticed значит «заметил» (notice + d).\nСлово missing значит «недостающий».\nСлова a missing page вместе значат «страницы не хватает». Слово page — «страница».\nThey fixed the printer last week. — Они починили принтер на прошлой неделе.\nЧитается: зэй фи́кст зэ при́нтер ла́ст уи́к.\nСлово fixed значит «починили» (fix + ed).\nСлово printer значит «принтер».\nСлово week значит «неделя».\nЗдесь last week значит «на прошлой неделе». Слово last может быть и «последний»: last train.",
+        "uk": "He saved the wrong version. — Він зберіг неправильну версію.\nЧитається: хі се́йвд зе ро́нг ве́ржен.\nСлово saved означає «зберіг» (save + d).\nСлово wrong означає «неправильний».\nСлово version означає «версія».\nI noticed a missing page. — Я помітив, що бракує сторінки.\nЧитається: ай но́утіст е мі́сінг пе́йдж.\nСлово noticed означає «помітив» (notice + d).\nСлово missing означає «відсутній».\nСлова a missing page разом означають «сторінки не вистачає». Слово page — «сторінка».\nThey fixed the printer last week. — Вони полагодили принтер минулого тижня.\nЧитається: зей фі́кст зе прі́нтер ла́ст уи́к.\nСлово fixed означає «полагодили» (fix + ed).\nСлово printer означає «принтер».\nСлово week означає «тиждень».\nТут last week означає «минулого тижня». Слово last може бути й «останній»: last train.",
+        "en": "He saved the wrong version.\nThe word saved means “kept” (save + d).\nThe word wrong means “not right”.\nThe word version means “one copy of a document”.\nI noticed a missing page.\nThe word noticed means “saw” (notice + d).\nThe word missing means “not there”.\nThe words a missing page mean a page is not there. A page is one sheet.\nThey fixed the printer last week.\nThe word fixed means “made work again” (fix + ed).\nThe word printer means “a machine that puts words on paper”.\nThe word week means “seven days”.\nHere last week means the week before this one. Last can also mean final: last train."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:11.46",
+          "say": {
+            "ru": "хи сэ́йвд зэ ро́нг ве́ржен",
+            "uk": "хі се́йвд зе ро́нг ве́ржен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.47",
+          "say": {
+            "ru": "ай но́утист э ми́синг пэ́йдж",
+            "uk": "ай но́утіст е мі́сінг пе́йдж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:11.48",
+          "say": {
+            "ru": "зэй фи́кст зэ при́нтер ла́ст уи́к",
+            "uk": "зей фі́кст зе прі́нтер ла́ст уи́к"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он сохранил неправильную версию»",
+            "uk": "Виберіть, як сказати: «Він зберіг неправильну версію»",
+            "en": "Choose how to say: “He saved the wrong version.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:11.46",
+          "options": [
+            "en-classic-r1:11.46",
+            "en-classic-r1:11.47",
+            "en-classic-r1:11.48"
+          ],
+          "answerId": "en-classic-r1:11.46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я заметил, что не хватает страницы»",
+            "uk": "Виберіть, як сказати: «Я помітив, що бракує сторінки»",
+            "en": "Choose how to say: “I noticed a missing page.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.47",
+          "options": [
+            "en-classic-r1:11.47",
+            "en-classic-r1:11.46",
+            "en-classic-r1:11.48"
+          ],
+          "answerId": "en-classic-r1:11.47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они починили принтер на прошлой неделе»",
+            "uk": "Виберіть, як сказати: «Вони полагодили принтер минулого тижня»",
+            "en": "Choose how to say: “They fixed the printer last week.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:11.48",
+          "options": [
+            "en-classic-r1:11.48",
+            "en-classic-r1:11.47",
+            "en-classic-r1:11.46"
+          ],
+          "answerId": "en-classic-r1:11.48"
+        }
+      ]
+    }
+  ]
+}

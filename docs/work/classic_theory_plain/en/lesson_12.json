@@ -1,0 +1,703 @@
+{
+  "lang": "en",
+  "lesson": 12,
+  "title": {
+    "ru": "Что было: слова, которые меняются",
+    "uk": "Що було: слова, які змінюються",
+    "en": "What happened: words that change"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Пошёл, взял, купил",
+        "uk": "Пішов, взяв, купив",
+        "en": "Went, took, bought"
+      },
+      "text": {
+        "ru": "Некоторые слова не берут ed. В прошлом они меняются сами.\nИх запоминают парами: go — went.\nI went home early. — Я ушел домой раньше.\nЧитается: ай уэ́нт хо́ум э́рли.\nСлово went значит «пошёл, поехал» (go → went).\nShe went to the bank. — Она пошла в банк.\nЧитается: ши уэ́нт ту зэ бэ́нк.\nСлово bank значит «банк».\nWe took the bus home. — Мы поехали домой на автобусе.\nЧитается: уи ту́к зэ ба́с хо́ум.\nСлово took значит «взяли» (take → took).\nСлова took the bus вместе значат «поехали на автобусе».\nHe took my coat by mistake. — Он по ошибке взял мое пальто.\nЧитается: хи ту́к май ко́ут бай миста́йк.\nСлово coat значит «пальто, куртка».\nУ слова by два смысла: «по» и «у, возле».\nby mistake — «по ошибке».\nI bought fresh bread. — Я купил свежий хлеб.\nЧитается: ай бо́т фрэ́ш брэ́д.\nСлово bought значит «купил» (buy → bought).\nСлово fresh значит «свежий».\nСлово bread значит «хлеб».",
+        "uk": "Деякі слова не беруть ed. У минулому вони змінюються самі.\nЇх запам’ятовують парами: go — went.\nI went home early. — Я пішов додому раніше.\nЧитається: ай уе́нт хо́ум е́рлі.\nСлово went означає «пішов, поїхав» (go → went).\nShe went to the bank. — Вона пішла до банку.\nЧитається: ші уе́нт ту зе бе́нк.\nСлово bank означає «банк».\nWe took the bus home. — Ми поїхали додому автобусом.\nЧитається: уи ту́к зе ба́с хо́ум.\nСлово took означає «взяли» (take → took).\nСлова took the bus разом означають «поїхали автобусом».\nHe took my coat by mistake. — Він помилково взяв моє пальто.\nЧитається: хі ту́к май ко́ут бай міста́йк.\nСлово coat означає «пальто, куртка».\nУ слова by два значення: «через» і «біля, коло».\nby mistake — «помилково».\nI bought fresh bread. — Я купив свіжий хліб.\nЧитається: ай бо́т фре́ш бре́д.\nСлово bought означає «купив» (buy → bought).\nСлово fresh означає «свіжий».\nСлово bread означає «хліб».",
+        "en": "Some words do not take ed. In the past they change by themselves.\nWe learn them in pairs: go and went.\nI went home early.\nThe word went means “moved to a place” (go → went).\nShe went to the bank.\nThe word bank means “a place that keeps money”.\nWe took the bus home.\nThe word took means “got and used” (take → took).\nThe words took the bus together mean traveled by bus.\nHe took my coat by mistake.\nThe word coat means “warm clothes for outside”.\nThe word by has two meanings: because of, and next to.\nby mistake means by accident.\nI bought fresh bread.\nThe word bought means “paid for” (buy → bought).\nThe word fresh means “new and not old”.\nThe word bread means “food made from flour”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:12.01",
+          "say": {
+            "ru": "ай уэ́нт хо́ум э́рли",
+            "uk": "ай уе́нт хо́ум е́рлі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.02",
+          "say": {
+            "ru": "ши уэ́нт ту зэ бэ́нк",
+            "uk": "ші уе́нт ту зе бе́нк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.03",
+          "say": {
+            "ru": "уи ту́к зэ ба́с хо́ум",
+            "uk": "уи ту́к зе ба́с хо́ум"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.04",
+          "say": {
+            "ru": "хи ту́к май ко́ут бай миста́йк",
+            "uk": "хі ту́к май ко́ут бай міста́йк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.05",
+          "say": {
+            "ru": "ай бо́т фрэ́ш брэ́д",
+            "uk": "ай бо́т фре́ш бре́д"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она пошла в банк»",
+            "uk": "Виберіть, як сказати: «Вона пішла до банку»",
+            "en": "Choose how to say: “She went to the bank.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:12.02",
+          "options": [
+            "en-classic-r1:12.02",
+            "en-classic-r1:12.03",
+            "en-classic-r1:12.05"
+          ],
+          "answerId": "en-classic-r1:12.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы поехали домой на автобусе»",
+            "uk": "Виберіть, як сказати: «Ми поїхали додому автобусом»",
+            "en": "Choose how to say: “We took the bus home.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.03",
+          "options": [
+            "en-classic-r1:12.03",
+            "en-classic-r1:12.04",
+            "en-classic-r1:12.05"
+          ],
+          "answerId": "en-classic-r1:12.03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я купил свежий хлеб»",
+            "uk": "Виберіть, як сказати: «Я купив свіжий хліб»",
+            "en": "Choose how to say: “I bought fresh bread.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.05",
+          "options": [
+            "en-classic-r1:12.05",
+            "en-classic-r1:12.02",
+            "en-classic-r1:12.04"
+          ],
+          "answerId": "en-classic-r1:12.05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Принесла, нашёл, дал",
+        "uk": "Принесла, знайшов, дав",
+        "en": "Brought, found, gave"
+      },
+      "text": {
+        "ru": "Ещё пары слов, которые меняются сами.\nShe brought a spare key. — Она принесла запасной ключ.\nЧитается: ши бро́т э спэ́р ки́.\nСлово brought значит «принесла» (bring → brought).\nСлово spare значит «запасной».\nСлово key значит «ключ».\nHe found his wallet downstairs. — Он нашел свой кошелек внизу.\nЧитается: хи фа́унд хи́з уо́лит даунсте́рз.\nСлово found значит «нашёл» (find → found).\nСлово wallet значит «кошелёк».\nСлово downstairs значит «внизу».\nHe gave me a lift. — Он подвёз меня.\nЧитается: хи гэ́йв ми э ли́фт.\nСлово gave значит «дал» (give → gave).\nСлово lift значит «подвоз».\nСлова gave me a lift вместе значат «подвёз меня».\nВ уроке 3 lift значило «лифт». Здесь — «подвоз».",
+        "uk": "Ще пари слів, які змінюються самі.\nShe brought a spare key. — Вона принесла запасний ключ.\nЧитається: ші бро́т е спе́р кі́.\nСлово brought означає «принесла» (bring → brought).\nСлово spare означає «запасний».\nСлово key означає «ключ».\nHe found his wallet downstairs. — Він знайшов свій гаманець внизу.\nЧитається: хі фа́унд хі́з уо́літ даунсте́рз.\nСлово found означає «знайшов» (find → found).\nСлово wallet означає «гаманець».\nСлово downstairs означає «унизу».\nHe gave me a lift. — Він мене підвіз.\nЧитається: хі ге́йв мі е лі́фт.\nСлово gave означає «дав» (give → gave).\nСлово lift означає «підвезення».\nСлова gave me a lift разом означають «підвіз мене».\nВ уроці 3 lift означало «ліфт». Тут — «підвезення».",
+        "en": "More pairs of words that change by themselves.\nShe brought a spare key.\nThe word brought means “took here” (bring → brought).\nThe word spare means “extra, kept for later”.\nThe word key means “a small metal tool for a lock”.\nHe found his wallet downstairs.\nThe word found means “saw where it was” (find → found).\nThe word wallet means “a small case for money”.\nThe word downstairs means “on the lower floor”.\nHe gave me a lift.\nThe word gave means “handed to someone” (give → gave).\nThe word lift means “a ride in a car”.\nThe words gave me a lift together mean gave me a ride.\nIn lesson 3, lift was a machine in a building. Here it is a ride."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:12.07",
+          "say": {
+            "ru": "ши бро́т э спэ́р ки́",
+            "uk": "ші бро́т е спе́р кі́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.10",
+          "say": {
+            "ru": "хи фа́унд хи́з уо́лит даунсте́рз",
+            "uk": "хі фа́унд хі́з уо́літ даунсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.15",
+          "say": {
+            "ru": "хи гэ́йв ми э ли́фт",
+            "uk": "хі ге́йв мі е лі́фт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она принесла запасной ключ»",
+            "uk": "Виберіть, як сказати: «Вона принесла запасний ключ»",
+            "en": "Choose how to say: “She brought a spare key.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:12.07",
+          "options": [
+            "en-classic-r1:12.07",
+            "en-classic-r1:12.10",
+            "en-classic-r1:12.15"
+          ],
+          "answerId": "en-classic-r1:12.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он нашел свой кошелек внизу»",
+            "uk": "Виберіть, як сказати: «Він знайшов свій гаманець внизу»",
+            "en": "Choose how to say: “He found his wallet downstairs.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.10",
+          "options": [
+            "en-classic-r1:12.10",
+            "en-classic-r1:12.07",
+            "en-classic-r1:12.15"
+          ],
+          "answerId": "en-classic-r1:12.10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он подвёз меня»",
+            "uk": "Виберіть, як сказати: «Він мене підвіз»",
+            "en": "Choose how to say: “He gave me a lift.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.15",
+          "options": [
+            "en-classic-r1:12.15",
+            "en-classic-r1:12.07",
+            "en-classic-r1:12.10"
+          ],
+          "answerId": "en-classic-r1:12.15"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Оставил, потерял, успели, прислал",
+        "uk": "Залишив, загубив, встигли, надіслав",
+        "en": "Left, lost, caught, sent"
+      },
+      "text": {
+        "ru": "Ещё несколько слов, которые меняются сами.\nI left my glasses at work. — Я оставил свои очки на работе.\nЧитается: ай ле́фт май гла́сиз эт уо́рк.\nСлово left значит «оставил» (leave → left).\nСлово glasses значит «очки».\nСлово leave бывает «уйти» и «оставить». Смысл видно по фразе.\nShe lost her bus pass. — Она потеряла свой проездной на автобус.\nЧитается: ши ло́ст хэ́р ба́с па́с.\nСлово lost значит «потеряла» (lose → lost).\nСлово pass значит «проездной».\nВ уроке 10 pass значило «передать». Здесь это «проездной».\nWe caught the early train. — Мы сели на ранний поезд.\nЧитается: уи ко́т зи э́рли трэ́йн.\nСлово caught значит «успели на, сели на» (catch → caught).\nСлова caught the train вместе значат «успели на поезд».\nHe sent me the address of the clinic. — Он прислал мне адрес клиники.\nЧитается: хи сэ́нт ми зи эдрэ́с ов зэ кли́ник.\nСлово sent значит «прислал» (send → sent).\nСлово clinic значит «клиника».\nСлово address значит «адрес».\nСлова address of the clinic вместе значат «адрес клиники».",
+        "uk": "Ще кілька слів, які змінюються самі.\nI left my glasses at work. — Я залишив окуляри на роботі.\nЧитається: ай ле́фт май гла́сіз ет уо́рк.\nСлово left означає «залишив» (leave → left).\nСлово glasses означає «окуляри».\nСлово leave буває «піти» і «залишити». Зміст видно з фрази.\nShe lost her bus pass. — Вона загубила свій проїзний на автобус.\nЧитається: ші ло́ст хе́р ба́с па́с.\nСлово lost означає «загубила» (lose → lost).\nСлово pass означає «проїзний».\nВ уроці 10 pass означало «передати». Тут це «проїзний».\nWe caught the early train. — Ми сіли на ранній поїзд.\nЧитається: уи ко́т зі е́рлі тре́йн.\nСлово caught означає «встигли на, сіли на» (catch → caught).\nСлова caught the train разом означають «встигли на потяг».\nHe sent me the address of the clinic. — Він надіслав мені адресу клініки.\nЧитається: хі се́нт мі зі едре́с ов зе клі́нік.\nСлово sent означає «надіслав» (send → sent).\nСлово clinic означає «клініка».\nСлово address означає «адреса».\nСлова address of the clinic разом означають «адреса клініки».",
+        "en": "A few more words that change by themselves.\nI left my glasses at work.\nThe word left means “put and went away” (leave → left).\nThe word glasses means “two lenses you wear to see better”.\nThe word leave can mean go away or put and go. The phrase shows which one.\nShe lost her bus pass.\nThe word lost means “could not find any more” (lose → lost).\nThe word pass means “a card for a bus”.\nIn lesson 10, pass meant to hand over. Here it is a card for a bus.\nWe caught the early train.\nThe word caught means “got on in time” (catch → caught).\nThe words caught the train together mean got on the train in time.\nHe sent me the address of the clinic.\nThe word sent means “made go to someone” (send → sent).\nThe word clinic means “a place where doctors help people”.\nThe word address means “where someone lives or works”.\nThe words address of the clinic mean the clinic’s address."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:12.11",
+          "say": {
+            "ru": "ай ле́фт май гла́сиз эт уо́рк",
+            "uk": "ай ле́фт май гла́сіз ет уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.12",
+          "say": {
+            "ru": "ши ло́ст хэ́р ба́с па́с",
+            "uk": "ші ло́ст хе́р ба́с па́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.13",
+          "say": {
+            "ru": "уи ко́т зи э́рли трэ́йн",
+            "uk": "уи ко́т зі е́рлі тре́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.20",
+          "say": {
+            "ru": "хи сэ́нт ми зи эдрэ́с ов зэ кли́ник",
+            "uk": "хі се́нт мі зі едре́с ов зе клі́нік"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я оставил свои очки на работе»",
+            "uk": "Виберіть, як сказати: «Я залишив окуляри на роботі»",
+            "en": "Choose how to say: “I left my glasses at work.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:12.11",
+          "options": [
+            "en-classic-r1:12.11",
+            "en-classic-r1:12.12",
+            "en-classic-r1:12.13"
+          ],
+          "answerId": "en-classic-r1:12.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она потеряла свой проездной на автобус»",
+            "uk": "Виберіть, як сказати: «Вона загубила свій проїзний на автобус»",
+            "en": "Choose how to say: “She lost her bus pass.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.12",
+          "options": [
+            "en-classic-r1:12.12",
+            "en-classic-r1:12.11",
+            "en-classic-r1:12.13"
+          ],
+          "answerId": "en-classic-r1:12.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он прислал мне адрес клиники»",
+            "uk": "Виберіть, як сказати: «Він надіслав мені адресу клініки»",
+            "en": "Choose how to say: “He sent me the address of the clinic.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.20",
+          "options": [
+            "en-classic-r1:12.20",
+            "en-classic-r1:12.12",
+            "en-classic-r1:12.13"
+          ],
+          "answerId": "en-classic-r1:12.20"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Увидела, услышали, оплатил",
+        "uk": "Побачила, почули, оплатив",
+        "en": "Saw, heard, paid"
+      },
+      "text": {
+        "ru": "Ещё три пары слов.\nShe saw my message. — Она видела моё сообщение.\nЧитается: ши со́ май мэ́сидж.\nСлово saw значит «увидела» (see → saw).\nСлово message значит «сообщение».\nWe heard the alarm. — Мы услышали сигнал тревоги.\nЧитается: уи хэ́рд зи эла́рм.\nСлово heard значит «услышали» (hear → heard).\nСлово alarm значит «сигнал тревоги».\nI paid the bill online. — Я оплатил счёт онлайн.\nЧитается: ай пэ́йд зэ би́л онла́йн.\nСлово paid значит «оплатил» (pay → paid).\nСлово bill значит «счёт».\nСлово online значит «онлайн, через интернет».",
+        "uk": "Ще три пари слів.\nShe saw my message. — Вона побачила моє повідомлення.\nЧитається: ші со́ май ме́сідж.\nСлово saw означає «побачила» (see → saw).\nСлово message означає «повідомлення».\nWe heard the alarm. — Ми чули сигналізацію.\nЧитається: уи хе́рд зі ела́рм.\nСлово heard означає «почули» (hear → heard).\nСлово alarm означає «сигнал тривоги».\nI paid the bill online. — Я оплатив рахунок онлайн.\nЧитається: ай пе́йд зе бі́л онла́йн.\nСлово paid означає «оплатив» (pay → paid).\nСлово bill означає «рахунок».\nСлово online означає «онлайн, через інтернет».",
+        "en": "Three more pairs of words.\nShe saw my message.\nThe word saw means “looked and noticed” (see → saw).\nThe word message means “words you send to someone”.\nWe heard the alarm.\nThe word heard means “got a sound with the ears” (hear → heard).\nThe word alarm means “a loud sound that warns you”.\nI paid the bill online.\nThe word paid means “gave money for” (pay → paid).\nThe word bill means “a paper that says how much to pay”.\nThe word online means “on the internet”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:12.17",
+          "say": {
+            "ru": "ши со́ май мэ́сидж",
+            "uk": "ші со́ май ме́сідж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.18",
+          "say": {
+            "ru": "уи хэ́рд зи эла́рм",
+            "uk": "уи хе́рд зі ела́рм"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.19",
+          "say": {
+            "ru": "ай пэ́йд зэ би́л онла́йн",
+            "uk": "ай пе́йд зе бі́л онла́йн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она видела моё сообщение»",
+            "uk": "Виберіть, як сказати: «Вона побачила моє повідомлення»",
+            "en": "Choose how to say: “She saw my message.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:12.17",
+          "options": [
+            "en-classic-r1:12.17",
+            "en-classic-r1:12.18",
+            "en-classic-r1:12.19"
+          ],
+          "answerId": "en-classic-r1:12.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы услышали сигнал тревоги»",
+            "uk": "Виберіть, як сказати: «Ми чули сигналізацію»",
+            "en": "Choose how to say: “We heard the alarm.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.18",
+          "options": [
+            "en-classic-r1:12.18",
+            "en-classic-r1:12.17",
+            "en-classic-r1:12.19"
+          ],
+          "answerId": "en-classic-r1:12.18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я оплатил счёт онлайн»",
+            "uk": "Виберіть, як сказати: «Я оплатив рахунок онлайн»",
+            "en": "Choose how to say: “I paid the bill online.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.19",
+          "options": [
+            "en-classic-r1:12.19",
+            "en-classic-r1:12.17",
+            "en-classic-r1:12.18"
+          ],
+          "answerId": "en-classic-r1:12.19"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Положила, прочитал, испекли",
+        "uk": "Поклала, прочитав, спекли",
+        "en": "Put, read, made"
+      },
+      "text": {
+        "ru": "Здесь два слова ведут себя необычно.\nShe put the parcel by the door. — Она положила посылку у двери.\nЧитается: ши пу́т зэ па́рсел бай зэ до́р.\nСлово put значит «положила».\nСлово parcel значит «посылка».\nЗдесь by значит «у»: by the door — «у двери».\nСлово put в прошлом не меняется: put — put.\nI read the sign twice. — Я дважды прочитал надпись.\nЧитается: ай рэ́д зэ са́йн туа́йс.\nСлово read значит «прочитал».\nСлово sign значит «надпись, знак».\nСлово twice значит «дважды».\nСлово read в настоящем читается «рид», а в прошлом пишется так же, но читается иначе: «рэд».\nВ уроке 10 sign значило «подписать». Здесь — «надпись».\nThey made a cake together. — Они вместе испекли торт.\nЧитается: зэй мэ́йд э кэ́йк тугэ́зер.\nСлово made значит «испекли» (make → made).\nСлово cake значит «торт».\nСлово together значит «вместе».\nСлово make значит «делать», made — «сделали».\nПро торт по-русски говорят «испекли».",
+        "uk": "Тут два слова поводяться незвично.\nShe put the parcel by the door. — Вона поклала посилку біля дверей.\nЧитається: ші пу́т зе па́рсел бай зе до́р.\nСлово put означає «поклала».\nСлово parcel означає «посилка».\nТут by означає «біля»: by the door — «біля дверей».\nСлово put у минулому не змінюється: put — put.\nI read the sign twice. — Я двічі прочитав напис.\nЧитається: ай ре́д зе са́йн туа́йс.\nСлово read означає «прочитав».\nСлово sign означає «напис, знак».\nСлово twice означає «двічі».\nСлово read у теперішньому читається «рід», а в минулому пишеться так само, але читається інакше: «ред».\nВ уроці 10 sign означало «підписати». Тут — «напис».\nThey made a cake together. — Вони разом спекли торт.\nЧитається: зей ме́йд е ке́йк туге́зер.\nСлово made означає «спекли» (make → made).\nСлово cake означає «торт».\nСлово together означає «разом».\nСлово make означає «робити», made — «зробили».\nПро торт кажуть «спекли».",
+        "en": "Here two words act in an unusual way.\nShe put the parcel by the door.\nThe word put means “placed”.\nThe word parcel means “a box sent by post”.\nHere by means next to: by the door.\nThe word put does not change in the past: put, put.\nI read the sign twice.\nThe word read means “looked at the words”.\nThe word sign means “a board with words or a picture”.\nThe word twice means “two times”.\nThe word read is written the same, but sounds different: red.\nIn lesson 10, sign meant to write your name. Here it is a board with words.\nThey made a cake together.\nThe word made means “prepared” (make → made).\nThe word cake means “a sweet food baked in an oven”.\nThe word together means “with each other”.\nThe word make means to create, and made means created.\nFor a cake we say baked."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:12.21",
+          "say": {
+            "ru": "ши пу́т зэ па́рсел бай зэ до́р",
+            "uk": "ші пу́т зе па́рсел бай зе до́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.22",
+          "say": {
+            "ru": "ай рэ́д зэ са́йн туа́йс",
+            "uk": "ай ре́д зе са́йн туа́йс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.25",
+          "say": {
+            "ru": "зэй мэ́йд э кэ́йк тугэ́зер",
+            "uk": "зей ме́йд е ке́йк туге́зер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она положила посылку у двери»",
+            "uk": "Виберіть, як сказати: «Вона поклала посилку біля дверей»",
+            "en": "Choose how to say: “She put the parcel by the door.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:12.21",
+          "options": [
+            "en-classic-r1:12.21",
+            "en-classic-r1:12.22",
+            "en-classic-r1:12.25"
+          ],
+          "answerId": "en-classic-r1:12.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дважды прочитал надпись»",
+            "uk": "Виберіть, як сказати: «Я двічі прочитав напис»",
+            "en": "Choose how to say: “I read the sign twice.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.22",
+          "options": [
+            "en-classic-r1:12.22",
+            "en-classic-r1:12.21",
+            "en-classic-r1:12.25"
+          ],
+          "answerId": "en-classic-r1:12.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они вместе испекли торт»",
+            "uk": "Виберіть, як сказати: «Вони разом спекли торт»",
+            "en": "Choose how to say: “They made a cake together.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.25",
+          "options": [
+            "en-classic-r1:12.25",
+            "en-classic-r1:12.21",
+            "en-classic-r1:12.22"
+          ],
+          "answerId": "en-classic-r1:12.25"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Забыл, выбрали, упал",
+        "uk": "Забув, вибрали, упав",
+        "en": "Forgot, chose, fell"
+      },
+      "text": {
+        "ru": "И ещё три пары слов.\nI forgot my password. — Я забыл свой пароль.\nЧитается: ай фэго́т май па́сворд.\nСлово forgot значит «забыл» (forget → forgot).\nWe chose the cheaper room. — Мы выбрали более дешевый номер.\nЧитается: уи чо́уз зэ чи́пер ру́м.\nСлово chose значит «выбрали» (choose → chose).\nСлово cheaper значит «дешевле».\nСлово room значит «комната, номер».\ncheap значит «дешёвый». К слову добавили er — стало «дешевле».\nThe glass fell off the shelf. — Стакан упал с полки.\nЧитается: зэ гла́с фэ́л оф зэ шэ́лф.\nСлово glass значит «стакан».\nСлово fell значит «упал» (fall → fell).\nСлово off значит «с, вниз с».\nСлово shelf значит «полка».\nОдно glass — «стакан», а glasses — «очки», как выше.",
+        "uk": "І ще три пари слів.\nI forgot my password. — Я забув пароль.\nЧитається: ай фего́т май па́сворд.\nСлово forgot означає «забув» (forget → forgot).\nWe chose the cheaper room. — Ми обрали дешевший номер.\nЧитається: уи чо́уз зе чі́пер ру́м.\nСлово chose означає «вибрали» (choose → chose).\nСлово cheaper означає «дешевше».\nСлово room означає «кімната, номер».\ncheap означає «дешевий». До слова додали er — стало «дешевше».\nThe glass fell off the shelf. — Склянка впала з полиці.\nЧитається: зе гла́с фе́л оф зе ше́лф.\nСлово glass означає «склянка».\nСлово fell означає «упав» (fall → fell).\nСлово off означає «з, униз із».\nСлово shelf означає «полиця».\nОдне glass — «склянка», а glasses — «окуляри», як вище.",
+        "en": "And three more pairs of words.\nI forgot my password.\nThe word forgot means “did not remember” (forget → forgot).\nWe chose the cheaper room.\nThe word chose means “picked” (choose → chose).\nThe word cheaper means “costing less”.\nThe word room means “a space in a hotel or house”.\ncheap means low price. We add er to say even lower.\nThe glass fell off the shelf.\nThe word glass means “a cup of glass for water”.\nThe word fell means “dropped down” (fall → fell).\nThe word off means “away from a place”.\nThe word shelf means “a board on a wall”.\nOne glass is a cup. But glasses, as above, are for the eyes."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:12.27",
+          "say": {
+            "ru": "ай фэго́т май па́сворд",
+            "uk": "ай фего́т май па́сворд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.28",
+          "say": {
+            "ru": "уи чо́уз зэ чи́пер ру́м",
+            "uk": "уи чо́уз зе чі́пер ру́м"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.30",
+          "say": {
+            "ru": "зэ гла́с фэ́л оф зэ шэ́лф",
+            "uk": "зе гла́с фе́л оф зе ше́лф"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я забыл свой пароль»",
+            "uk": "Виберіть, як сказати: «Я забув пароль»",
+            "en": "Choose how to say: “I forgot my password.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:12.27",
+          "options": [
+            "en-classic-r1:12.27",
+            "en-classic-r1:12.28",
+            "en-classic-r1:12.30"
+          ],
+          "answerId": "en-classic-r1:12.27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы выбрали более дешевый номер»",
+            "uk": "Виберіть, як сказати: «Ми обрали дешевший номер»",
+            "en": "Choose how to say: “We chose the cheaper room.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.28",
+          "options": [
+            "en-classic-r1:12.28",
+            "en-classic-r1:12.27",
+            "en-classic-r1:12.30"
+          ],
+          "answerId": "en-classic-r1:12.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Стакан упал с полки»",
+            "uk": "Виберіть, як сказати: «Склянка впала з полиці»",
+            "en": "Choose how to say: “The glass fell off the shelf.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.30",
+          "options": [
+            "en-classic-r1:12.30",
+            "en-classic-r1:12.27",
+            "en-classic-r1:12.28"
+          ],
+          "answerId": "en-classic-r1:12.30"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Вопросы с Did",
+        "uk": "Питання з Did",
+        "en": "Questions with Did"
+      },
+      "text": {
+        "ru": "Чтобы спросить о прошлом, снова ставьте Did в начало.\nПосле Did слово простое: send, а не sent.\nDid he send the photo? — Он отправил фото?\nЧитается: ди́д хи сэ́нд зэ фо́уто.\nСлово photo значит «фото».\nDid they catch the bus? — Они успели на автобус?\nЧитается: ди́д зэй кэ́ч зэ ба́с.\nСлово catch значит «успеть на».\nТак же здесь: catch, а не caught.\nWe did not find a parking space. — Мы не нашли парковочное место.\nЧитается: уи ди́д но́т фа́йнд э па́ркинг спэ́йс.\nСлово parking значит «парковка» (park + ing).\nСлово space значит «место».\nСлова parking space вместе значат «парковочное место».\nСлова did not find вместе значат «не нашли».\nShe did not take my coat. — Она не взяла мое пальто.\nЧитается: ши ди́д но́т тэ́йк май ко́ут.\nЗдесь тоже did not и простое слово: take, а не took.",
+        "uk": "Щоб запитати про минуле, знову ставте Did на початок.\nПісля Did слово просте: send, а не sent.\nDid he send the photo? — Він надіслав фотографію?\nЧитається: ді́д хі се́нд зе фо́уто.\nСлово photo означає «фото».\nDid they catch the bus? — Вони встигли на автобус?\nЧитається: ді́д зей ке́ч зе ба́с.\nСлово catch означає «встигнути на».\nТак само тут: catch, а не caught.\nWe did not find a parking space. — Ми не знайшли місця для паркування.\nЧитається: уи ді́д но́т фа́йнд е па́ркінг спе́йс.\nСлово parking означає «парковка» (park + ing).\nСлово space означає «місце».\nСлова parking space разом означають «місце для паркування».\nСлова did not find разом означають «не знайшли».\nShe did not take my coat. — Вона не взяла моє пальто.\nЧитається: ші ді́д но́т те́йк май ко́ут.\nТут теж did not і просте слово: take, а не took.",
+        "en": "To ask about the past, put Did first again.\nAfter Did the word stays plain: send, not sent.\nDid he send the photo?\nThe word photo means “a picture from a camera”.\nDid they catch the bus?\nThe word catch means “to get on in time”.\nThe same here: catch, not caught.\nWe did not find a parking space.\nThe word parking means “a place to leave a car” (park + ing).\nThe word space means “room for something”.\nThe words parking space mean a place to leave a car.\nThe words did not find together mean could not find.\nShe did not take my coat.\nAgain did not and the plain word: take, not took."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:12.33",
+          "say": {
+            "ru": "ди́д хи сэ́нд зэ фо́уто",
+            "uk": "ді́д хі се́нд зе фо́уто"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.34",
+          "say": {
+            "ru": "ди́д зэй кэ́ч зэ ба́с",
+            "uk": "ді́д зей ке́ч зе ба́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.36",
+          "say": {
+            "ru": "уи ди́д но́т фа́йнд э па́ркинг спэ́йс",
+            "uk": "уи ді́д но́т фа́йнд е па́ркінг спе́йс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.37",
+          "say": {
+            "ru": "ши ди́д но́т тэ́йк май ко́ут",
+            "uk": "ші ді́д но́т те́йк май ко́ут"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он отправил фото?»",
+            "uk": "Виберіть, як сказати: «Він надіслав фотографію?»",
+            "en": "Choose how to say: “Did he send the photo?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:12.33",
+          "options": [
+            "en-classic-r1:12.33",
+            "en-classic-r1:12.34",
+            "en-classic-r1:12.36"
+          ],
+          "answerId": "en-classic-r1:12.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они успели на автобус?»",
+            "uk": "Виберіть, як сказати: «Вони встигли на автобус?»",
+            "en": "Choose how to say: “Did they catch the bus?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.34",
+          "options": [
+            "en-classic-r1:12.34",
+            "en-classic-r1:12.33",
+            "en-classic-r1:12.37"
+          ],
+          "answerId": "en-classic-r1:12.34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не нашли парковочное место»",
+            "uk": "Виберіть, як сказати: «Ми не знайшли місця для паркування»",
+            "en": "Choose how to say: “We did not find a parking space.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.36",
+          "options": [
+            "en-classic-r1:12.36",
+            "en-classic-r1:12.37",
+            "en-classic-r1:12.34"
+          ],
+          "answerId": "en-classic-r1:12.36"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Думал, стоял, держал",
+        "uk": "Думав, стояв, тримав",
+        "en": "Thought, stood, held"
+      },
+      "text": {
+        "ru": "Сначала два слова: was и were.\nСлово was значит «был, была, было». Слово were значит «были».\nЭто прошлое от am, is, are: I am — I was, they are — they were.\nI thought the pharmacy was open. — Я думал, аптека открыта.\nЧитается: ай то́т зэ фа́рмаси уо́з о́упен.\nСлово thought значит «думал» (think → thought).\nСлово pharmacy значит «аптека».\nСлова the pharmacy was open значат «аптека (была) открыта».\nСлова «была» по-русски часто нет.\nWe stood outside for ten minutes. — Мы простояли на улице десять минут.\nЧитается: уи сту́д аутса́йд фо́р тэ́н ми́нитс.\nСлово stood значит «стояли» (stand → stood).\nСлово outside значит «на улице, снаружи».\nСлово for значит «в течение, на».\nСлова for ten minutes вместе значат «десять минут».\nHe held the ladder for me. — Он подержал для меня лестницу.\nЧитается: хи хэ́лд зэ лэ́дер фо́р ми.\nСлово held значит «держал» (hold → held).\nСлово ladder значит «стремянка, лестница».\nЗдесь for значит «для»: for me — «для меня».",
+        "uk": "Спочатку два слова: was і were.\nСлово was означає «був, була, було». Слово were означає «були».\nЦе минуле від am, is, are: I am — I was, they are — they were.\nI thought the pharmacy was open. — Я думав, що аптека відкрита.\nЧитається: ай то́т зе фа́рмасі уо́з о́упен.\nСлово thought означає «думав» (think → thought).\nСлово pharmacy означає «аптека».\nСлова the pharmacy was open означають «аптека (була) відчинена».\nСлова «була» українською часто немає.\nWe stood outside for ten minutes. — Ми стояли надворі десять хвилин.\nЧитається: уи сту́д аутса́йд фо́р те́н мі́нітс.\nСлово stood означає «стояли» (stand → stood).\nСлово outside означає «надворі, зовні».\nСлово for означає «протягом, на».\nСлова for ten minutes разом означають «десять хвилин».\nHe held the ladder for me. — Він потримав мені драбину.\nЧитається: хі хе́лд зе ле́дер фо́р мі.\nСлово held означає «тримав» (hold → held).\nСлово ladder означає «драбина».\nТут for означає «для»: for me — «для мене».",
+        "en": "First, two words: was and were.\nThe word was means used to be. The word were means used to be, for many.\nThey are the past of am, is, are: I am, I was. They are, they were.\nI thought the pharmacy was open.\nThe word thought means “had in mind” (think → thought).\nThe word pharmacy means “a shop for medicine”.\nThe words the pharmacy was open mean the pharmacy was not shut.\nSome languages often skip this word.\nWe stood outside for ten minutes.\nThe word stood means “was on the feet” (stand → stood).\nThe word outside means “not in the building”.\nThe word for means “during a time”.\nThe words for ten minutes together mean ten minutes long.\nHe held the ladder for me.\nThe word held means “kept in the hands” (hold → held).\nThe word ladder means “steps you climb on”.\nHere for means for the use of: for me."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:12.46",
+          "say": {
+            "ru": "ай то́т зэ фа́рмаси уо́з о́упен",
+            "uk": "ай то́т зе фа́рмасі уо́з о́упен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.48",
+          "say": {
+            "ru": "уи сту́д аутса́йд фо́р тэ́н ми́нитс",
+            "uk": "уи сту́д аутса́йд фо́р те́н мі́нітс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:12.49",
+          "say": {
+            "ru": "хи хэ́лд зэ лэ́дер фо́р ми",
+            "uk": "хі хе́лд зе ле́дер фо́р мі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я думал, аптека открыта»",
+            "uk": "Виберіть, як сказати: «Я думав, що аптека відкрита»",
+            "en": "Choose how to say: “I thought the pharmacy was open.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:12.46",
+          "options": [
+            "en-classic-r1:12.46",
+            "en-classic-r1:12.48",
+            "en-classic-r1:12.49"
+          ],
+          "answerId": "en-classic-r1:12.46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы простояли на улице десять минут»",
+            "uk": "Виберіть, як сказати: «Ми стояли надворі десять хвилин»",
+            "en": "Choose how to say: “We stood outside for ten minutes.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.48",
+          "options": [
+            "en-classic-r1:12.48",
+            "en-classic-r1:12.49",
+            "en-classic-r1:12.46"
+          ],
+          "answerId": "en-classic-r1:12.48"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он подержал для меня лестницу»",
+            "uk": "Виберіть, як сказати: «Він потримав мені драбину»",
+            "en": "Choose how to say: “He held the ladder for me.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:12.49",
+          "options": [
+            "en-classic-r1:12.49",
+            "en-classic-r1:12.48",
+            "en-classic-r1:12.46"
+          ],
+          "answerId": "en-classic-r1:12.49"
+        }
+      ]
+    }
+  ]
+}

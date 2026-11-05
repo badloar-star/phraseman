@@ -1,0 +1,348 @@
+{
+ "lang": "de",
+ "lesson": 3,
+ "words": {
+  "wohne": {
+   "ru": "(я) живу",
+   "uk": "(я) живу",
+   "en": "(I) live",
+   "es": "(yo) vivo"
+  },
+  "wohnst": {
+   "ru": "(ты) живёшь",
+   "uk": "(ти) живеш",
+   "en": "(you) live",
+   "es": "(tú) vives"
+  },
+  "wohnt": {
+   "ru": "(он, она) живёт",
+   "uk": "(він, вона) живе",
+   "en": "(he, she) lives",
+   "es": "(él, ella) vive"
+  },
+  "wohnen": {
+   "ru": "(мы, они) живём, живут",
+   "uk": "(ми, вони) живемо, живуть",
+   "en": "(we, they) live",
+   "es": "(nosotros, ellos) vivimos, viven"
+  },
+  "lerne": {
+   "ru": "(я) учу, изучаю",
+   "uk": "(я) вчу, вивчаю",
+   "en": "(I) learn",
+   "es": "(yo) aprendo"
+  },
+  "deutsch": {
+   "ru": "немецкий язык",
+   "uk": "німецька мова",
+   "en": "German",
+   "es": "alemán"
+  },
+  "lernst": {
+   "ru": "(ты) учишь, изучаешь",
+   "uk": "(ти) вчиш, вивчаєш",
+   "en": "(you) learn",
+   "es": "(tú) aprendes"
+  },
+  "lernt": {
+   "ru": "(он, она) учит, изучает",
+   "uk": "(він, вона) вчить, вивчає",
+   "en": "(he, she) learns",
+   "es": "(él, ella) aprende"
+  },
+  "lernen": {
+   "ru": "(мы, они) учим, изучаем",
+   "uk": "(ми, вони) вчимо, вивчаємо",
+   "en": "(we, they) learn",
+   "es": "(nosotros, ellos) aprendemos"
+  },
+  "mache": {
+   "ru": "(я) делаю, готовлю",
+   "uk": "(я) роблю, готую",
+   "en": "(I) make",
+   "es": "(yo) hago, preparo"
+  },
+  "machst": {
+   "ru": "(ты) делаешь, готовишь",
+   "uk": "(ти) робиш, готуєш",
+   "en": "(you) make",
+   "es": "(tú) haces, preparas"
+  },
+  "macht": {
+   "ru": "(он, она) делает, готовит",
+   "uk": "(він, вона) робить, готує",
+   "en": "(he, she) makes",
+   "es": "(él, ella) hace, prepara"
+  },
+  "frühstück": {
+   "ru": "завтрак",
+   "uk": "сніданок",
+   "en": "breakfast",
+   "es": "desayuno"
+  },
+  "machen": {
+   "ru": "(мы, они) делаем, делают",
+   "uk": "(ми, вони) робимо, роблять",
+   "en": "(we, they) make, do",
+   "es": "(nosotros) hacemos"
+  },
+  "eine": {
+   "ru": "один, какой-то; по-русски нет",
+   "uk": "один, якийсь; українською немає",
+   "en": "a, an",
+   "es": "un, una"
+  },
+  "pause": {
+   "ru": "перерыв, пауза",
+   "uk": "перерва, пауза",
+   "en": "break",
+   "es": "descanso, pausa"
+  },
+  "kaufe": {
+   "ru": "(я) покупаю",
+   "uk": "(я) купую",
+   "en": "(I) buy",
+   "es": "(yo) compro"
+  },
+  "brot": {
+   "ru": "хлеб",
+   "uk": "хліб",
+   "en": "bread",
+   "es": "pan"
+  },
+  "kaufst": {
+   "ru": "(ты) покупаешь",
+   "uk": "(ти) купуєш",
+   "en": "(you) buy",
+   "es": "(tú) compras"
+  },
+  "milch": {
+   "ru": "молоко",
+   "uk": "молоко",
+   "en": "milk",
+   "es": "leche"
+  },
+  "kauft": {
+   "ru": "(он, она) покупает",
+   "uk": "(він, вона) купує",
+   "en": "(he, she) buys",
+   "es": "(él, ella) compra"
+  },
+  "kaufen": {
+   "ru": "(мы, они) покупаем, покупают",
+   "uk": "(ми, вони) купуємо, купують",
+   "en": "(we, they) buy",
+   "es": "(nosotros, ellos) compramos"
+  },
+  "gemüse": {
+   "ru": "овощи",
+   "uk": "овочі",
+   "en": "vegetables",
+   "es": "verduras"
+  },
+  "tickets": {
+   "ru": "билеты",
+   "uk": "квитки",
+   "en": "tickets",
+   "es": "billetes"
+  },
+  "suche": {
+   "ru": "(я) ищу",
+   "uk": "(я) шукаю",
+   "en": "(I) look for",
+   "es": "(yo) busco"
+  },
+  "den": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the",
+   "es": "el"
+  },
+  "suchst": {
+   "ru": "(ты) ищешь",
+   "uk": "(ти) шукаєш",
+   "en": "(you) look for",
+   "es": "(tú) buscas"
+  },
+  "sucht": {
+   "ru": "(он, она) ищет",
+   "uk": "(він, вона) шукає",
+   "en": "(he, she) looks for",
+   "es": "(él, ella) busca"
+  },
+  "suchen": {
+   "ru": "(мы, они) ищем, ищут",
+   "uk": "(ми, вони) шукаємо, шукають",
+   "en": "(we, they) look for",
+   "es": "(nosotros, ellos) buscamos"
+  },
+  "höre": {
+   "ru": "(я) слушаю, слышу",
+   "uk": "(я) слухаю, чую",
+   "en": "(I) listen, hear",
+   "es": "(yo) escucho"
+  },
+  "musik": {
+   "ru": "музыка",
+   "uk": "музика",
+   "en": "music",
+   "es": "música"
+  },
+  "hörst": {
+   "ru": "(ты) слушаешь, слышишь",
+   "uk": "(ти) слухаєш, чуєш",
+   "en": "(you) listen, hear",
+   "es": "(tú) escuchas"
+  },
+  "hört": {
+   "ru": "(он, она) слушает, слышит",
+   "uk": "(він, вона) слухає, чує",
+   "en": "(he, she) listens, hears",
+   "es": "(él, ella) escucha"
+  },
+  "hören": {
+   "ru": "(мы, они) слушаем, слышим",
+   "uk": "(ми, вони) слухаємо, чуємо",
+   "en": "(we, they) listen, hear",
+   "es": "(nosotros) escuchamos"
+  },
+  "ein": {
+   "ru": "один, какой-то; по-русски нет",
+   "uk": "один, якийсь; українською немає",
+   "en": "a, an",
+   "es": "un"
+  },
+  "lied": {
+   "ru": "песня",
+   "uk": "пісня",
+   "en": "song",
+   "es": "canción"
+  },
+  "arbeite": {
+   "ru": "(я) работаю",
+   "uk": "(я) працюю",
+   "en": "(I) work",
+   "es": "(yo) trabajo"
+  },
+  "heute": {
+   "ru": "сегодня",
+   "uk": "сьогодні",
+   "en": "today",
+   "es": "hoy"
+  },
+  "arbeitest": {
+   "ru": "(ты) работаешь",
+   "uk": "(ти) працюєш",
+   "en": "(you) work",
+   "es": "(tú) trabajas"
+  },
+  "arbeitet": {
+   "ru": "(он, она) работает",
+   "uk": "(він, вона) працює",
+   "en": "(he, she) works",
+   "es": "(él, ella) trabaja"
+  },
+  "im": {
+   "ru": "в",
+   "uk": "у",
+   "en": "in the",
+   "es": "en el"
+  },
+  "arbeiten": {
+   "ru": "(мы, они) работаем, работают",
+   "uk": "(ми, вони) працюємо, працюють",
+   "en": "(we, they) work",
+   "es": "(nosotros, ellos) trabajamos"
+  },
+  "zusammen": {
+   "ru": "вместе",
+   "uk": "разом",
+   "en": "together",
+   "es": "juntos"
+  },
+  "warte": {
+   "ru": "(я) жду",
+   "uk": "(я) чекаю",
+   "en": "(I) wait",
+   "es": "(yo) espero"
+  },
+  "wartest": {
+   "ru": "(ты) ждёшь",
+   "uk": "(ти) чекаєш",
+   "en": "(you) wait",
+   "es": "(tú) esperas"
+  },
+  "wartet": {
+   "ru": "(он, она) ждёт",
+   "uk": "(він, вона) чекає",
+   "en": "(he, she) waits",
+   "es": "(él, ella) espera"
+  },
+  "am": {
+   "ru": "у, в (у входа, в понедельник)",
+   "uk": "біля, у (біля входу, у понеділок)",
+   "en": "at the, on the",
+   "es": "en el, a la"
+  },
+  "warten": {
+   "ru": "(мы, они) ждём, ждут",
+   "uk": "(ми, вони) чекаємо, чекають",
+   "en": "(we, they) wait",
+   "es": "(nosotros, ellos) esperamos"
+  },
+  "bezahle": {
+   "ru": "(я) плачу, оплачиваю",
+   "uk": "(я) плачу, оплачую",
+   "en": "(I) pay",
+   "es": "(yo) pago"
+  },
+  "bezahlst": {
+   "ru": "(ты) платишь, оплачиваешь",
+   "uk": "(ти) платиш, оплачуєш",
+   "en": "(you) pay",
+   "es": "(tú) pagas"
+  },
+  "bezahlt": {
+   "ru": "(он, она) платит, оплачивает",
+   "uk": "(він, вона) платить, оплачує",
+   "en": "(he, she) pays",
+   "es": "(él, ella) paga"
+  },
+  "bezahlen": {
+   "ru": "(мы, они) платим, платят",
+   "uk": "(ми, вони) платимо, платять",
+   "en": "(we, they) pay",
+   "es": "(nosotros, ellos) pagamos"
+  },
+  "koche": {
+   "ru": "(я) готовлю еду, варю",
+   "uk": "(я) готую їжу, варю",
+   "en": "(I) cook",
+   "es": "(yo) cocino"
+  },
+  "kochst": {
+   "ru": "(ты) готовишь еду, варишь",
+   "uk": "(ти) готуєш їжу, вариш",
+   "en": "(you) cook",
+   "es": "(tú) cocinas"
+  },
+  "kocht": {
+   "ru": "(он, она) готовит еду, варит",
+   "uk": "(він, вона) готує їжу, варить",
+   "en": "(he, she) cooks",
+   "es": "(él, ella) cocina"
+  },
+  "kochen": {
+   "ru": "(мы, они) готовим еду, варим",
+   "uk": "(ми, вони) готуємо їжу, варимо",
+   "en": "(we, they) cook",
+   "es": "(nosotros, ellos) cocinamos"
+  },
+  "spielen": {
+   "ru": "(мы, они) играем, играют",
+   "uk": "(ми, вони) граємо, грають",
+   "en": "(we, they) play",
+   "es": "(nosotros, ellos) jugamos"
+  }
+ }
+}

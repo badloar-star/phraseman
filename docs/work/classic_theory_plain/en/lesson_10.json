@@ -1,0 +1,717 @@
+{
+  "lang": "en",
+  "lesson": 10,
+  "title": {
+    "ru": "Могу, стоит, должен",
+    "uk": "Можу, варто, повинен",
+    "en": "Can, should, must"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Умею и не могу",
+        "uk": "Вмію і не можу",
+        "en": "I can, I cannot"
+      },
+      "text": {
+        "ru": "Слово can говорит о том, что вы умеете или можете.\nI can swim. — Я умею плавать.\nЧитается: ай кэн сви́м.\nСлово can значит «могу, умею, может».\nСлово swim значит «плавать».\nСлово can не меняется: I can, he can, we can.\nHe can come today. — Он может приехать сегодня.\nЧитается: хи кэн ка́м тудэ́й.\nСлово come значит «приехать, прийти».\nHe cannot find his ticket. — Он не может найти свой билет.\nЧитается: хи кэ́нот фа́йнд хи́з ти́кит.\nСлово cannot значит «не могу, не может».\nСлово find значит «найти».\nСлово cannot — это can и not, написанные вместе.\nThey cannot stay late. — Они не могут оставаться допоздна.\nЧитается: зэй кэ́нот сте́й лэ́йт.\nСлово stay значит «остаться, пробыть».",
+        "uk": "Слово can говорить про те, що ви вмієте або можете.\nI can swim. — Я вмію плавати.\nЧитається: ай кен сві́м.\nСлово can означає «можу, вмію, може».\nСлово swim означає «плавати».\nСлово can не змінюється: I can, he can, we can.\nHe can come today. — Він може приїхати сьогодні.\nЧитається: хі кен ка́м туде́й.\nСлово come означає «приїхати, прийти».\nHe cannot find his ticket. — Він не може знайти свій квиток.\nЧитається: хі ке́нот фа́йнд хі́з ті́кіт.\nСлово cannot означає «не можу, не може».\nСлово find означає «знайти».\nСлово cannot — це can і not, написані разом.\nThey cannot stay late. — Вони не можуть залишатися допізна.\nЧитається: зей ке́нот сте́й ле́йт.\nСлово stay означає «залишитися, пробути».",
+        "en": "The word can tells what you are able to do.\nI can swim.\nThe word can means “able to do something”.\nThe word swim means “to move in water”.\nThe word can never changes: I can, he can, we can.\nHe can come today.\nThe word come means “to arrive here”.\nHe cannot find his ticket.\nThe word cannot means “not able to”.\nThe word find means “to see where something is”.\nThe word cannot is can and not written together.\nThey cannot stay late.\nThe word stay means “to not leave a place”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:10.01",
+          "say": {
+            "ru": "ай кэн сви́м",
+            "uk": "ай кен сві́м"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.04",
+          "say": {
+            "ru": "хи кэн ка́м тудэ́й",
+            "uk": "хі кен ка́м туде́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.09",
+          "say": {
+            "ru": "хи кэ́нот фа́йнд хи́з ти́кит",
+            "uk": "хі ке́нот фа́йнд хі́з ті́кіт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.10",
+          "say": {
+            "ru": "зэй кэ́нот сте́й лэ́йт",
+            "uk": "зей ке́нот сте́й ле́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я умею плавать»",
+            "uk": "Виберіть, як сказати: «Я вмію плавати»",
+            "en": "Choose how to say: “I can swim.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:10.01",
+          "options": [
+            "en-classic-r1:10.01",
+            "en-classic-r1:10.09",
+            "en-classic-r1:10.10"
+          ],
+          "answerId": "en-classic-r1:10.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он может приехать сегодня»",
+            "uk": "Виберіть, як сказати: «Він може приїхати сьогодні»",
+            "en": "Choose how to say: “He can come today.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.04",
+          "options": [
+            "en-classic-r1:10.04",
+            "en-classic-r1:10.01",
+            "en-classic-r1:10.09"
+          ],
+          "answerId": "en-classic-r1:10.04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не может найти свой билет»",
+            "uk": "Виберіть, як сказати: «Він не може знайти свій квиток»",
+            "en": "Choose how to say: “He cannot find his ticket.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.09",
+          "options": [
+            "en-classic-r1:10.09",
+            "en-classic-r1:10.01",
+            "en-classic-r1:10.10"
+          ],
+          "answerId": "en-classic-r1:10.09"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Можно мне…?",
+        "uk": "Можна мені…?",
+        "en": "Can I…?"
+      },
+      "text": {
+        "ru": "Поставьте Can в начало — получится просьба.\nCan I …? значит «можно мне …?». Can we …? — «можно нам …?».\nCan I sit here? — Можно мне сесть здесь?\nЧитается: кэн ай си́т хи́р.\nСлово sit значит «сесть, сидеть».\nCan I borrow a pen? — Можно мне взять ручку?\nЧитается: кэн ай бо́роу э пэ́н.\nСлово borrow значит «взять на время».\nCan we book a table? — Можно нам забронировать столик?\nЧитается: кэн уи бу́к э тэ́йбл.\nСлово book значит «забронировать».\nЕщё book значит «книга». Но столик не читают, его бронируют.\nCan I bring a friend? — Можно мне привести друга?\nЧитается: кэн ай бри́нг э фрэ́нд.\nСлово bring значит «принести, привести».\nСлово friend значит «друг».",
+        "uk": "Поставте Can на початок — вийде прохання.\nCan I …? означає «можна мені …?». Can we …? — «можна нам …?».\nCan I sit here? — Чи можу я тут сісти?\nЧитається: кен ай сі́т хі́р.\nСлово sit означає «сісти, сидіти».\nCan I borrow a pen? — Чи можу я позичити ручку?\nЧитається: кен ай бо́роу е пе́н.\nСлово borrow означає «взяти на час».\nCan we book a table? — Чи можемо ми забронювати столик?\nЧитається: кен уи бу́к е те́йбл.\nСлово book означає «забронювати».\nЩе book означає «книга». Але столик не читають, його бронюють.\nCan I bring a friend? — Чи можу я привести друга?\nЧитається: кен ай брі́нг е фре́нд.\nСлово bring означає «принести, привести».\nСлово friend означає «друг».",
+        "en": "Put Can first to ask for something.\nCan I …? asks for a thing for me. Can we …? asks for us.\nCan I sit here?\nThe word sit means “to rest on a chair”.\nCan I borrow a pen?\nThe word borrow means “to take and give back later”.\nCan we book a table?\nThe word book means “to reserve a place”.\nThe word book can also be a thing you read. A table is reserved, not read.\nCan I bring a friend?\nThe word bring means “to take here with you”.\nThe word friend means “a person you like”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:10.11",
+          "say": {
+            "ru": "кэн ай си́т хи́р",
+            "uk": "кен ай сі́т хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.17",
+          "say": {
+            "ru": "кэн ай бо́роу э пэ́н",
+            "uk": "кен ай бо́роу е пе́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.19",
+          "say": {
+            "ru": "кэн уи бу́к э тэ́йбл",
+            "uk": "кен уи бу́к е те́йбл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.20",
+          "say": {
+            "ru": "кэн ай бри́нг э фрэ́нд",
+            "uk": "кен ай брі́нг е фре́нд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можно мне сесть здесь?»",
+            "uk": "Виберіть, як сказати: «Чи можу я тут сісти?»",
+            "en": "Choose how to say: “Can I sit here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:10.11",
+          "options": [
+            "en-classic-r1:10.11",
+            "en-classic-r1:10.17",
+            "en-classic-r1:10.19"
+          ],
+          "answerId": "en-classic-r1:10.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можно мне взять ручку?»",
+            "uk": "Виберіть, як сказати: «Чи можу я позичити ручку?»",
+            "en": "Choose how to say: “Can I borrow a pen?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.17",
+          "options": [
+            "en-classic-r1:10.17",
+            "en-classic-r1:10.19",
+            "en-classic-r1:10.20"
+          ],
+          "answerId": "en-classic-r1:10.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можно мне привести друга?»",
+            "uk": "Виберіть, як сказати: «Чи можу я привести друга?»",
+            "en": "Choose how to say: “Can I bring a friend?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.20",
+          "options": [
+            "en-classic-r1:10.20",
+            "en-classic-r1:10.11",
+            "en-classic-r1:10.19"
+          ],
+          "answerId": "en-classic-r1:10.20"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Можете…?",
+        "uk": "Можете…?",
+        "en": "Can you…?"
+      },
+      "text": {
+        "ru": "Can you …? значит «можете …?». Так просят о помощи.\nCan you say that again? — Можете повторить?\nЧитается: кэн ю сэ́й зэ́т эге́н.\nСлово again значит «ещё раз, снова».\nCan you write it down? — Можете записать?\nЧитается: кэн ю ра́йт ит да́ун.\nСлово write значит «написать, записать».\nСлово down значит «вниз».\nСлова write it down вместе значат «записать».\nCan you hold the door? — Можете придержать дверь?\nЧитается: кэн ю хо́улд зэ до́р.\nСлово hold значит «держать, придержать».\nCan you show me the way? — Можете показать мне дорогу?\nЧитается: кэн ю шо́у ми зэ уэ́й.\nСлово show значит «показать».\nСлово me значит «мне».",
+        "uk": "Can you …? означає «можете …?». Так просять про допомогу.\nCan you say that again? — Чи можете ви повторити це?\nЧитається: кен ю се́й зе́т еге́н.\nСлово again означає «ще раз, знову».\nCan you write it down? — Чи можете ви записати це?\nЧитається: кен ю ра́йт іт да́ун.\nСлово write означає «написати, записати».\nСлово down означає «вниз».\nСлова write it down разом означають «записати».\nCan you hold the door? — Чи можете ви потримати двері?\nЧитається: кен ю хо́улд зе до́р.\nСлово hold означає «тримати, притримати».\nCan you show me the way? — Чи можете ви показати мені дорогу?\nЧитається: кен ю шо́у мі зе уе́й.\nСлово show означає «показати».\nСлово me означає «мені».",
+        "en": "Can you …? asks someone for help.\nCan you say that again?\nThe word again means “one more time”.\nCan you write it down?\nThe word write means “to put words on paper”.\nThe word down means “toward the bottom”.\nThe words write it down together mean to put it on paper.\nCan you hold the door?\nThe word hold means “to keep in place”.\nCan you show me the way?\nThe word show means “to let someone see”.\nThe word me means “the person who speaks”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:10.22",
+          "say": {
+            "ru": "кэн ю сэ́й зэ́т эге́н",
+            "uk": "кен ю се́й зе́т еге́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.23",
+          "say": {
+            "ru": "кэн ю ра́йт ит да́ун",
+            "uk": "кен ю ра́йт іт да́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.24",
+          "say": {
+            "ru": "кэн ю хо́улд зэ до́р",
+            "uk": "кен ю хо́улд зе до́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.25",
+          "say": {
+            "ru": "кэн ю шо́у ми зэ уэ́й",
+            "uk": "кен ю шо́у мі зе уе́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можете повторить?»",
+            "uk": "Виберіть, як сказати: «Чи можете ви повторити це?»",
+            "en": "Choose how to say: “Can you say that again?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:10.22",
+          "options": [
+            "en-classic-r1:10.22",
+            "en-classic-r1:10.23",
+            "en-classic-r1:10.24"
+          ],
+          "answerId": "en-classic-r1:10.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можете записать?»",
+            "uk": "Виберіть, як сказати: «Чи можете ви записати це?»",
+            "en": "Choose how to say: “Can you write it down?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.23",
+          "options": [
+            "en-classic-r1:10.23",
+            "en-classic-r1:10.22",
+            "en-classic-r1:10.25"
+          ],
+          "answerId": "en-classic-r1:10.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можете показать мне дорогу?»",
+            "uk": "Виберіть, як сказати: «Чи можете ви показати мені дорогу?»",
+            "en": "Choose how to say: “Can you show me the way?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.25",
+          "options": [
+            "en-classic-r1:10.25",
+            "en-classic-r1:10.24",
+            "en-classic-r1:10.22"
+          ],
+          "answerId": "en-classic-r1:10.25"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Передайте, пришлите",
+        "uk": "Передайте, надішліть",
+        "en": "Pass it, send it"
+      },
+      "text": {
+        "ru": "Так можно попросить передать, прислать или подвинуть.\nCan you send me the link? — Можете прислать мне ссылку?\nЧитается: кэн ю сэ́нд ми зэ ли́нк.\nСлово link значит «ссылка».\nCan you move your bag? — Можете передвинуть свою сумку?\nЧитается: кэн ю му́в йо́р бэ́г.\nСлово move значит «передвинуть».\nCan you pass me the salt? — Можете передать мне соль?\nЧитается: кэн ю па́с ми зэ со́лт.\nСлово pass значит «передать».\nСлово salt значит «соль».\nЕщё pass значит «проездной». Но соль передают, значит — «передать».\nCan you help me with this form? — Можете помочь мне с этой формой?\nЧитается: кэн ю хэ́лп ми уи́з зи́с фо́рм.\nСлово with значит «с, вместе с».\nСлово form значит «анкета, бланк».",
+        "uk": "Так можна попросити передати, надіслати або посунути.\nCan you send me the link? — Чи можете ви надіслати мені посилання?\nЧитається: кен ю се́нд мі зе лі́нк.\nСлово link означає «посилання».\nCan you move your bag? — Чи можете ви пересунути свою сумку?\nЧитається: кен ю му́в йо́р бе́г.\nСлово move означає «пересунути».\nCan you pass me the salt? — Чи можете ви передати мені сіль?\nЧитається: кен ю па́с мі зе со́лт.\nСлово pass означає «передати».\nСлово salt означає «сіль».\nЩе pass означає «проїзний». Але сіль передають, тож — «передати».\nCan you help me with this form? — Чи можете ви допомогти мені з цією формою?\nЧитається: кен ю хе́лп мі уи́з зі́с фо́рм.\nСлово with означає «з, разом із».\nСлово form означає «анкета, бланк».",
+        "en": "You can ask someone to pass, send or move something.\nCan you send me the link?\nThe word link means “an address on the internet”.\nCan you move your bag?\nThe word move means “to put in another place”.\nCan you pass me the salt?\nThe word pass means “to hand to someone”.\nThe word salt means “white powder for food”.\nPass can also be a bus card. Salt is handed over, so pass means hand over.\nCan you help me with this form?\nThe word with means “together with”.\nThe word form means “a paper to fill in”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:10.27",
+          "say": {
+            "ru": "кэн ю сэ́нд ми зэ ли́нк",
+            "uk": "кен ю се́нд мі зе лі́нк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.28",
+          "say": {
+            "ru": "кэн ю му́в йо́р бэ́г",
+            "uk": "кен ю му́в йо́р бе́г"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.29",
+          "say": {
+            "ru": "кэн ю па́с ми зэ со́лт",
+            "uk": "кен ю па́с мі зе со́лт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.30",
+          "say": {
+            "ru": "кэн ю хэ́лп ми уи́з зи́с фо́рм",
+            "uk": "кен ю хе́лп мі уи́з зі́с фо́рм"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можете прислать мне ссылку?»",
+            "uk": "Виберіть, як сказати: «Чи можете ви надіслати мені посилання?»",
+            "en": "Choose how to say: “Can you send me the link?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:10.27",
+          "options": [
+            "en-classic-r1:10.27",
+            "en-classic-r1:10.28",
+            "en-classic-r1:10.29"
+          ],
+          "answerId": "en-classic-r1:10.27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можете передать мне соль?»",
+            "uk": "Виберіть, як сказати: «Чи можете ви передати мені сіль?»",
+            "en": "Choose how to say: “Can you pass me the salt?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.29",
+          "options": [
+            "en-classic-r1:10.29",
+            "en-classic-r1:10.27",
+            "en-classic-r1:10.30"
+          ],
+          "answerId": "en-classic-r1:10.29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можете помочь мне с этой формой?»",
+            "uk": "Виберіть, як сказати: «Чи можете ви допомогти мені з цією формою?»",
+            "en": "Choose how to say: “Can you help me with this form?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.30",
+          "options": [
+            "en-classic-r1:10.30",
+            "en-classic-r1:10.28",
+            "en-classic-r1:10.29"
+          ],
+          "answerId": "en-classic-r1:10.30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Стоит",
+        "uk": "Варто",
+        "en": "You should"
+      },
+      "text": {
+        "ru": "Слово should значит «стоит, следует, лучше бы».\nОно не меняется: we should, he should.\nWe should leave soon. — Нам стоит скоро уйти.\nЧитается: уи шу́д ли́в су́н.\nСлово should значит «стоит, следует».\nСлово leave значит «уйти, уехать».\nСлово soon значит «скоро».\nЗдесь leave значит «уйти». В уроке 3 оно значило «отправляться».\nАвтобус отправляется — значит, уезжает. Это почти то же.\nЕщё leave значит «оставить». Но мы говорим, что пора уходить.\nHe should get some rest. — Ему стоит отдохнуть.\nЧитается: хи шу́д гэ́т са́м рэ́ст.\nСлово get значит «получить, взять».\nСлово some значит «немного, какой-то».\nСлово rest значит «отдых».\nСлова get some rest вместе значат «отдохнуть».\nShe should call the office. — Ей следует позвонить в офис.\nЧитается: ши шу́д ко́л зи о́фис.\nСлово office значит «офис».",
+        "uk": "Слово should означає «варто, слід, краще б».\nВоно не змінюється: we should, he should.\nWe should leave soon. — Нам слід скоро вирушати.\nЧитається: уи шу́д лі́в су́н.\nСлово should означає «варто, слід».\nСлово leave означає «піти, поїхати».\nСлово soon означає «скоро».\nТут leave означає «піти». В уроці 3 воно означало «відправлятися».\nАвтобус відправляється — значить, їде. Це майже те саме.\nЩе leave означає «залишити». Але ми кажемо, що час іти.\nHe should get some rest. — Йому слід відпочити.\nЧитається: хі шу́д ге́т са́м ре́ст.\nСлово get означає «отримати, взяти».\nСлово some означає «трохи, якийсь».\nСлово rest означає «відпочинок».\nСлова get some rest разом означають «відпочити».\nShe should call the office. — Їй слід зателефонувати в офіс.\nЧитається: ші шу́д ко́л зі о́фіс.\nСлово office означає «офіс».",
+        "en": "The word should means it is a good idea.\nIt never changes: we should, he should.\nWe should leave soon.\nThe word should means “it is a good idea”.\nThe word leave means “to go away”.\nThe word soon means “in a short time”.\nHere leave means to go away. In lesson 3 it was about a bus going away.\nA bus that leaves goes away. It is nearly the same.\nThe word leave can also mean to put something down and go. Here people go away.\nHe should get some rest.\nThe word get means “to have something come to you”.\nThe word some means “a little”.\nThe word rest means “quiet time to get strong again”.\nThe words get some rest together mean to take a break.\nShe should call the office.\nThe word office means “a place where people work”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:10.33",
+          "say": {
+            "ru": "уи шу́д ли́в су́н",
+            "uk": "уи шу́д лі́в су́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.34",
+          "say": {
+            "ru": "хи шу́д гэ́т са́м рэ́ст",
+            "uk": "хі шу́д ге́т са́м ре́ст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.35",
+          "say": {
+            "ru": "ши шу́д ко́л зи о́фис",
+            "uk": "ші шу́д ко́л зі о́фіс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам стоит скоро уйти»",
+            "uk": "Виберіть, як сказати: «Нам слід скоро вирушати»",
+            "en": "Choose how to say: “We should leave soon.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:10.33",
+          "options": [
+            "en-classic-r1:10.33",
+            "en-classic-r1:10.34",
+            "en-classic-r1:10.35"
+          ],
+          "answerId": "en-classic-r1:10.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ему стоит отдохнуть»",
+            "uk": "Виберіть, як сказати: «Йому слід відпочити»",
+            "en": "Choose how to say: “He should get some rest.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.34",
+          "options": [
+            "en-classic-r1:10.34",
+            "en-classic-r1:10.33",
+            "en-classic-r1:10.35"
+          ],
+          "answerId": "en-classic-r1:10.34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ей следует позвонить в офис»",
+            "uk": "Виберіть, як сказати: «Їй слід зателефонувати в офіс»",
+            "en": "Choose how to say: “She should call the office.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.35",
+          "options": [
+            "en-classic-r1:10.35",
+            "en-classic-r1:10.34",
+            "en-classic-r1:10.33"
+          ],
+          "answerId": "en-classic-r1:10.35"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Стоит ли? Не стоит",
+        "uk": "Чи варто? Не варто",
+        "en": "Should I? Should not"
+      },
+      "text": {
+        "ru": "Чтобы спросить «стоит ли?», поставьте Should в начало.\nЕсли «не стоит» — пишите should not.\nShould I book in advance? — Стоит ли мне бронировать заранее?\nЧитается: шу́д ай бу́к ин эдва́нс.\nСлово advance значит «вперёд».\nСлова in advance вместе значат «заранее».\nShould we tell the driver? — Стоит ли нам сказать водителю?\nЧитается: шу́д уи тэ́л зэ дра́йвер.\nСлово tell значит «сказать, рассказать».\nWe should not block the exit. — Нам не стоит загораживать выход.\nЧитается: уи шу́д но́т бло́к зи э́гзит.\nСлово block значит «загораживать».\nСлово exit значит «выход».\nYou should not share your password. — Вам не следует сообщать свой пароль.\nЧитается: ю шу́д но́т шэ́р йо́р па́сворд.\nСлово share значит «сообщить другим, поделиться».\nСлово password значит «пароль».\nВ уроке 3 share a flat значило «делить квартиру».\nЗдесь share — «сообщить другим».",
+        "uk": "Щоб запитати «чи варто?», поставте Should на початок.\nЯкщо «не варто» — пишіть should not.\nShould I book in advance? — Чи варто мені бронювати заздалегідь?\nЧитається: шу́д ай бу́к ін едва́нс.\nСлово advance означає «наперед».\nСлова in advance разом означають «заздалегідь».\nShould we tell the driver? — Чи варто нам сказати водієві?\nЧитається: шу́д уи те́л зе дра́йвер.\nСлово tell означає «сказати, розповісти».\nWe should not block the exit. — Нам не слід блокувати вихід.\nЧитається: уи шу́д но́т бло́к зі е́гзіт.\nСлово block означає «загороджувати».\nСлово exit означає «вихід».\nYou should not share your password. — Вам не слід повідомляти свій пароль.\nЧитається: ю шу́д но́т ше́р йо́р па́сворд.\nСлово share означає «повідомити іншим, поділитися».\nСлово password означає «пароль».\nВ уроці 3 share a flat означало «ділити квартиру».\nТут share — «повідомити іншим».",
+        "en": "To ask, put Should first.\nFor “better not,” write should not.\nShould I book in advance?\nThe word advance means “before the time”.\nThe words in advance together mean early, before the time.\nShould we tell the driver?\nThe word tell means “to say something to someone”.\nWe should not block the exit.\nThe word block means “to stop people from passing”.\nThe word exit means “the way out”.\nYou should not share your password.\nThe word share means “to give to other people”.\nThe word password means “a secret word to open an account”.\nIn lesson 3, share a flat meant to live together.\nHere share means to tell other people."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:10.39",
+          "say": {
+            "ru": "шу́д ай бу́к ин эдва́нс",
+            "uk": "шу́д ай бу́к ін едва́нс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.40",
+          "say": {
+            "ru": "шу́д уи тэ́л зэ дра́йвер",
+            "uk": "шу́д уи те́л зе дра́йвер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.36",
+          "say": {
+            "ru": "уи шу́д но́т бло́к зи э́гзит",
+            "uk": "уи шу́д но́т бло́к зі е́гзіт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.37",
+          "say": {
+            "ru": "ю шу́д но́т шэ́р йо́р па́сворд",
+            "uk": "ю шу́д но́т ше́р йо́р па́сворд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Стоит ли мне бронировать заранее?»",
+            "uk": "Виберіть, як сказати: «Чи варто мені бронювати заздалегідь?»",
+            "en": "Choose how to say: “Should I book in advance?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:10.39",
+          "options": [
+            "en-classic-r1:10.39",
+            "en-classic-r1:10.40",
+            "en-classic-r1:10.36"
+          ],
+          "answerId": "en-classic-r1:10.39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Стоит ли нам сказать водителю?»",
+            "uk": "Виберіть, як сказати: «Чи варто нам сказати водієві?»",
+            "en": "Choose how to say: “Should we tell the driver?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.40",
+          "options": [
+            "en-classic-r1:10.40",
+            "en-classic-r1:10.39",
+            "en-classic-r1:10.37"
+          ],
+          "answerId": "en-classic-r1:10.40"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам не стоит загораживать выход»",
+            "uk": "Виберіть, як сказати: «Нам не слід блокувати вихід»",
+            "en": "Choose how to say: “We should not block the exit.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.36",
+          "options": [
+            "en-classic-r1:10.36",
+            "en-classic-r1:10.37",
+            "en-classic-r1:10.40"
+          ],
+          "answerId": "en-classic-r1:10.36"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Нужно и нельзя",
+        "uk": "Потрібно і не можна",
+        "en": "Must and must not"
+      },
+      "text": {
+        "ru": "Слово must значит «обязан, очень нужно». Оно не меняется.\nmust not значит «нельзя». Это строже, чем should not — «не стоит».\nYou must wear a helmet. — Вы должны надеть шлем.\nЧитается: ю ма́ст уэ́р э хэ́лмит.\nСлово must значит «обязан, нельзя иначе».\nСлово wear значит «носить, надеть».\nСлово helmet значит «шлем».\nYou must wear a helmet — «вы обязаны носить шлем».\nYou must not touch the cable. — Вы не должны прикасаться к кабелю.\nЧитается: ю ма́ст но́т та́ч зэ кэ́йбл.\nСлово touch значит «трогать, касаться».\nСлово cable значит «кабель».\nСлова «не должны» здесь значат «нельзя».\nYou must not park by the exit. — Вы не должны парковаться у выхода.\nЧитается: ю ма́ст но́т па́рк бай зи э́гзит.\nСлово park значит «парковаться».\nСлово by значит «возле, у».\nСлова «не должны» здесь тоже значат «нельзя».",
+        "uk": "Слово must означає «зобов’язаний, дуже потрібно». Воно не змінюється.\nmust not означає «не можна». Це суворіше, ніж should not — «не варто».\nYou must wear a helmet. — Ви повинні надіти шолом.\nЧитається: ю ма́ст уе́р е хе́лміт.\nСлово must означає «зобов’язаний, не можна інакше».\nСлово wear означає «носити, одягти».\nСлово helmet означає «шолом».\nYou must wear a helmet — «ви зобов’язані носити шолом».\nYou must not touch the cable. — Ви не повинні торкатися кабелю.\nЧитається: ю ма́ст но́т та́ч зе ке́йбл.\nСлово touch означає «чіпати, торкатися».\nСлово cable означає «кабель».\nСлова «не повинні» тут означають «не можна».\nYou must not park by the exit. — Ви не повинні паркуватися біля виходу.\nЧитається: ю ма́ст но́т па́рк бай зі е́гзіт.\nСлово park означає «паркуватися».\nСлово by означає «біля, коло».\nСлова «не повинні» тут теж означають «не можна».",
+        "en": "The word must means you have no choice. It never changes.\nmust not means it is forbidden. It is stronger than should not.\nYou must wear a helmet.\nThe word must means “have no choice”.\nThe word wear means “to have on your body”.\nThe word helmet means “a hard hat for your head”.\nYou must wear a helmet means you have no choice.\nYou must not touch the cable.\nThe word touch means “to put your hand on”.\nThe word cable means “a wire for power”.\nHere must not means it is forbidden.\nYou must not park by the exit.\nThe word park means “to leave a car in a place”.\nThe word by means “next to”.\nHere must not again means it is forbidden."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:10.41",
+          "say": {
+            "ru": "ю ма́ст уэ́р э хэ́лмит",
+            "uk": "ю ма́ст уе́р е хе́лміт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.44",
+          "say": {
+            "ru": "ю ма́ст но́т та́ч зэ кэ́йбл",
+            "uk": "ю ма́ст но́т та́ч зе ке́йбл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.50",
+          "say": {
+            "ru": "ю ма́ст но́т па́рк бай зи э́гзит",
+            "uk": "ю ма́ст но́т па́рк бай зі е́гзіт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы должны надеть шлем»",
+            "uk": "Виберіть, як сказати: «Ви повинні надіти шолом»",
+            "en": "Choose how to say: “You must wear a helmet.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:10.41",
+          "options": [
+            "en-classic-r1:10.41",
+            "en-classic-r1:10.44",
+            "en-classic-r1:10.50"
+          ],
+          "answerId": "en-classic-r1:10.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы не должны прикасаться к кабелю»",
+            "uk": "Виберіть, як сказати: «Ви не повинні торкатися кабелю»",
+            "en": "Choose how to say: “You must not touch the cable.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.44",
+          "options": [
+            "en-classic-r1:10.44",
+            "en-classic-r1:10.41",
+            "en-classic-r1:10.50"
+          ],
+          "answerId": "en-classic-r1:10.44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы не должны парковаться у выхода»",
+            "uk": "Виберіть, як сказати: «Ви не повинні паркуватися біля виходу»",
+            "en": "Choose how to say: “You must not park by the exit.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.50",
+          "options": [
+            "en-classic-r1:10.50",
+            "en-classic-r1:10.44",
+            "en-classic-r1:10.41"
+          ],
+          "answerId": "en-classic-r1:10.50"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Приходится: have to",
+        "uk": "Доводиться: have to",
+        "en": "Have to"
+      },
+      "text": {
+        "ru": "Есть второй способ сказать «нужно»: have to.\nhave to значит «приходится, нужно по правилам».\nmust — «обязан, очень нужно».\nПро него и про неё говорят has to: he has to, she has to.\nWe have to show our tickets. — Мы должны показать наши билеты.\nЧитается: уи хэ́в ту шо́у а́ур ти́китс.\nСлово tickets значит «билеты».\nWe have to show — «нам приходится показать».\nHe has to bring his passport. — Он должен принести свой паспорт.\nЧитается: хи хэ́з ту бри́нг хи́з па́спорт.\nСлово passport значит «паспорт».\nHe has to bring — «ему приходится принести».\nYou do not have to print the ticket. — Вам не нужно распечатывать билет.\nЧитается: ю ду́ но́т хэ́в ту при́нт зэ ти́кит.\nСлово print значит «распечатать».\ndo not have to значит «не нужно, можно не делать».\nЭто не то же, что must not — «нельзя».\nDo we have to sign both pages? — Нужно ли нам подписывать обе страницы?\nЧитается: ду́ уи хэ́в ту са́йн бо́ус пэ́йджиз.\nСлово sign значит «подписать».\nСлово both значит «оба, обе».\nСлово pages значит «страницы».\nЕщё sign значит «надпись, знак». Но страницы подписывают, значит — «подписать».\nСлово Do в начале — слово-помощник вопроса. По-русски его нет.\nТакое было в уроке 5: Do you drive? — «Вы водите машину?».",
+        "uk": "Є другий спосіб сказати «потрібно»: have to.\nhave to означає «доводиться, потрібно за правилами».\nmust — «зобов’язаний, дуже потрібно».\nПро нього і про неї кажуть has to: he has to, she has to.\nWe have to show our tickets. — Ми повинні показати наші квитки.\nЧитається: уи хе́в ту шо́у а́ур ті́кітс.\nСлово tickets означає «квитки».\nWe have to show — «нам доводиться показати».\nHe has to bring his passport. — Він має взяти з собою свій паспорт.\nЧитається: хі хе́з ту брі́нг хі́з па́спорт.\nСлово passport означає «паспорт».\nHe has to bring — «йому доводиться принести».\nYou do not have to print the ticket. — Вам не потрібно друкувати квиток.\nЧитається: ю ду́ но́т хе́в ту прі́нт зе ті́кіт.\nСлово print означає «роздрукувати».\ndo not have to означає «не потрібно, можна не робити».\nЦе не те саме, що must not — «не можна».\nDo we have to sign both pages? — Чи повинні ми підписувати обидві сторінки?\nЧитається: ду́ уи хе́в ту са́йн бо́ус пе́йджіз.\nСлово sign означає «підписати».\nСлово both означає «обидва, обидві».\nСлово pages означає «сторінки».\nЩе sign означає «напис, знак». Але сторінки підписують, тож — «підписати».\nСлово Do на початку — слово-помічник питання. Українською його немає.\nТаке було в уроці 5: Do you drive? — «Ви водите автомобіль?».",
+        "en": "There is a second way to say “needed”: have to.\nhave to means the rules ask you.\nmust means you really have no choice.\nFor him and her, say has to: he has to, she has to.\nWe have to show our tickets.\nThe word tickets means “papers to travel (one paper: ticket)”.\nWe have to show means the rules ask us to show.\nHe has to bring his passport.\nThe word passport means “a paper to travel to other countries”.\nHe has to bring means the rules ask him to bring.\nYou do not have to print the ticket.\nThe word print means “to put on paper with a printer”.\ndo not have to means you may skip it.\nIt is not the same as must not, which is forbidden.\nDo we have to sign both pages?\nThe word sign means “to write your name”.\nThe word both means “the two of them”.\nThe word pages means “sheets of a book (one sheet: page)”.\nThe word sign can also be a board with words. Pages are signed with a name.\nThe word Do at the start only helps to ask a question.\nYou saw it in lesson 5: Do you drive?"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:10.42",
+          "say": {
+            "ru": "уи хэ́в ту шо́у а́ур ти́китс",
+            "uk": "уи хе́в ту шо́у а́ур ті́кітс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.43",
+          "say": {
+            "ru": "хи хэ́з ту бри́нг хи́з па́спорт",
+            "uk": "хі хе́з ту брі́нг хі́з па́спорт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.45",
+          "say": {
+            "ru": "ю ду́ но́т хэ́в ту при́нт зэ ти́кит",
+            "uk": "ю ду́ но́т хе́в ту прі́нт зе ті́кіт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:10.47",
+          "say": {
+            "ru": "ду́ уи хэ́в ту са́йн бо́ус пэ́йджиз",
+            "uk": "ду́ уи хе́в ту са́йн бо́ус пе́йджіз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы должны показать наши билеты»",
+            "uk": "Виберіть, як сказати: «Ми повинні показати наші квитки»",
+            "en": "Choose how to say: “We have to show our tickets.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:10.42",
+          "options": [
+            "en-classic-r1:10.42",
+            "en-classic-r1:10.43",
+            "en-classic-r1:10.45"
+          ],
+          "answerId": "en-classic-r1:10.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он должен принести свой паспорт»",
+            "uk": "Виберіть, як сказати: «Він має взяти з собою свій паспорт»",
+            "en": "Choose how to say: “He has to bring his passport.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.43",
+          "options": [
+            "en-classic-r1:10.43",
+            "en-classic-r1:10.42",
+            "en-classic-r1:10.47"
+          ],
+          "answerId": "en-classic-r1:10.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нужно ли нам подписывать обе страницы?»",
+            "uk": "Виберіть, як сказати: «Чи повинні ми підписувати обидві сторінки?»",
+            "en": "Choose how to say: “Do we have to sign both pages?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:10.47",
+          "options": [
+            "en-classic-r1:10.47",
+            "en-classic-r1:10.45",
+            "en-classic-r1:10.42"
+          ],
+          "answerId": "en-classic-r1:10.47"
+        }
+      ]
+    }
+  ]
+}

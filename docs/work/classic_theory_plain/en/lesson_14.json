@@ -1,0 +1,732 @@
+{
+  "lang": "en",
+  "lesson": 14,
+  "title": {
+    "ru": "Как сравнить: легче, дороже, самый лучший",
+    "uk": "Як порівняти: легше, дорожче, найкращий",
+    "en": "How to compare two things"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Добавьте er",
+        "uk": "Додайте er",
+        "en": "Add er"
+      },
+      "text": {
+        "ru": "Чтобы сказать «легче» или «теплее», добавьте er в конец слова.\nThis bag is lighter. — Эта сумка легче.\nЧитается: зи́с бэ́г из ла́йтер.\nСлово light значит «лёгкий».\nРаньше lights были «лампы», а в уроке 13 light — «светофор». Здесь light — «лёгкий».\nК слову light добавили er: lighter значит «легче».\nThis room is warmer. — В этой комнате теплее.\nЧитается: зи́с ру́м из уо́рмер.\nК слову warm добавили er: warmer значит «теплее».\nThis seat is wider. — Это сиденье шире.\nЧитается: зи́с си́т из уа́йдер.\nСлово wide значит «широкий».\nСлово wide уже кончается на e. Добавляем только r: wider, «шире».\nThis route is shorter. — Этот маршрут короче.\nЧитается: зи́с ру́т из шо́ртер.\nСлово route значит «маршрут».\nК слову short добавили er: shorter значит «короче».\nThe new lift is faster. — Новый лифт быстрее.\nЧитается: зэ нью́ ли́фт из фэ́стер.\nСлово fast значит «быстрый».\nК слову fast добавили er: faster значит «быстрее».\nЗдесь lift — «лифт», как в уроке 3.",
+        "uk": "Щоб сказати «легше» чи «тепліше», додайте er в кінець слова.\nThis bag is lighter. — Ця сумка легша.\nЧитається: зі́с бе́г із ла́йтер.\nСлово light означає «легкий».\nРаніше lights були «лампи», а в уроці 13 light — «світлофор». Тут light — «легкий».\nДо слова light додали er: lighter означає «легше».\nThis room is warmer. — У цій кімнаті тепліше.\nЧитається: зі́с ру́м із уо́рмер.\nДо слова warm додали er: warmer означає «тепліше».\nThis seat is wider. — Це сидіння ширше.\nЧитається: зі́с сі́т із уа́йдер.\nСлово wide означає «широкий».\nСлово wide вже закінчується на e. Додаємо тільки r: wider, «ширше».\nThis route is shorter. — Цей маршрут коротший.\nЧитається: зі́с ру́т із шо́ртер.\nСлово route означає «маршрут».\nДо слова short додали er: shorter означає «коротше».\nThe new lift is faster. — Новий ліфт швидший.\nЧитається: зе нью́ лі́фт із фе́стер.\nСлово fast означає «швидкий».\nДо слова fast додали er: faster означає «швидше».\nТут lift — «ліфт», як в уроці 3.",
+        "en": "To say “lighter” or “warmer”, add er to the end of the word.\nThis bag is lighter.\nThe word light means “not heavy”.\nBefore, lights were lamps.\nIn lesson 13, light was a traffic light.\nHere light is the opposite of heavy.\nWe add er to light: lighter means “weighs less”.\nThis room is warmer.\nWe add er to warm: warmer means “more warm”.\nThis seat is wider.\nThe word wide means “big from side to side”.\nThe word wide already ends with e. We add only r: wider.\nThis route is shorter.\nThe word route means “the way you go from one place to another”.\nWe add er to short: shorter means “not so long”.\nThe new lift is faster.\nThe word fast means “moving with high speed”.\nWe add er to fast: faster means “more quick”.\nHere lift is the machine in a building, as in lesson 3."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:14.01",
+          "say": {
+            "ru": "зи́с бэ́г из ла́йтер",
+            "uk": "зі́с бе́г із ла́йтер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.03",
+          "say": {
+            "ru": "зи́с ру́м из уо́рмер",
+            "uk": "зі́с ру́м із уо́рмер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.05",
+          "say": {
+            "ru": "зи́с си́т из уа́йдер",
+            "uk": "зі́с сі́т із уа́йдер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.07",
+          "say": {
+            "ru": "зи́с ру́т из шо́ртер",
+            "uk": "зі́с ру́т із шо́ртер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.08",
+          "say": {
+            "ru": "зэ нью́ ли́фт из фэ́стер",
+            "uk": "зе нью́ лі́фт із фе́стер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эта сумка легче»",
+            "uk": "Виберіть, як сказати: «Ця сумка легша»",
+            "en": "Choose how to say: “This bag is lighter.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:14.01",
+          "options": [
+            "en-classic-r1:14.01",
+            "en-classic-r1:14.03",
+            "en-classic-r1:14.07"
+          ],
+          "answerId": "en-classic-r1:14.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это сиденье шире»",
+            "uk": "Виберіть, як сказати: «Це сидіння ширше»",
+            "en": "Choose how to say: “This seat is wider.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.05",
+          "options": [
+            "en-classic-r1:14.05",
+            "en-classic-r1:14.03",
+            "en-classic-r1:14.08"
+          ],
+          "answerId": "en-classic-r1:14.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Новый лифт быстрее»",
+            "uk": "Виберіть, як сказати: «Новий ліфт швидший»",
+            "en": "Choose how to say: “The new lift is faster.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.08",
+          "options": [
+            "en-classic-r1:14.08",
+            "en-classic-r1:14.07",
+            "en-classic-r1:14.01"
+          ],
+          "answerId": "en-classic-r1:14.08"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Чем: слово than",
+        "uk": "Ніж: слово than",
+        "en": "The word than"
+      },
+      "text": {
+        "ru": "Чтобы сравнить две вещи, после слова с er ставьте than.\nTea is cheaper than coffee here. — Чай здесь дешевле кофе.\nЧитается: ти́ из чи́пер зэн ко́фи хи́р.\nСлово than значит «чем».\nСлово cheaper вы видели в уроке 12: «дешевле».\nСлова cheaper than coffee вместе значат «дешевле, чем кофе».\nThe stairs are quicker than the lift. — Лестница быстрее лифта.\nЧитается: зэ сте́рз ар кви́кер зэн зэ ли́фт.\nСлово quick значит «быстрый».\nК слову quick добавили er: quicker значит «быстрее».\nСлова quicker than the lift вместе значат «быстрее лифта».\nHer bag is lighter than mine. — Ее сумка легче моей.\nЧитается: хэ́р бэ́г из ла́йтер зэн ма́йн.\nСлово mine значит «мой, моя».\nСлово mine заменяет «моя сумка»: lighter than mine — «легче моей».",
+        "uk": "Щоб порівняти дві речі, після слова з er ставте than.\nTea is cheaper than coffee here. — Чай тут дешевший за каву.\nЧитається: ті́ із чі́пер зен ко́фі хі́р.\nСлово than означає «ніж».\nСлово cheaper ви бачили в уроці 12: «дешевше».\nСлова cheaper than coffee разом означають «дешевше, ніж кава».\nThe stairs are quicker than the lift. — Сходи швидші за ліфт.\nЧитається: зе сте́рз ар кві́кер зен зе лі́фт.\nСлово quick означає «швидкий».\nДо слова quick додали er: quicker означає «швидше».\nСлова quicker than the lift разом означають «швидше за ліфт».\nHer bag is lighter than mine. — Її сумка легша за мою.\nЧитається: хе́р бе́г із ла́йтер зен ма́йн.\nСлово mine означає «мій, моя».\nСлово mine замінює «моя сумка»: lighter than mine — «легша за мою».",
+        "en": "To compare two things, put than after the word with er.\nTea is cheaper than coffee here.\nThe word than means “the word between the two things we compare”.\nYou saw the word cheaper in lesson 12: costing less.\nThe words cheaper than coffee together mean “costs less than coffee”.\nThe stairs are quicker than the lift.\nThe word quick means “taking only a short time”.\nWe add er to quick: quicker means “more quick”.\nThe words quicker than the lift together mean “takes less time than the lift”.\nHer bag is lighter than mine.\nThe word mine means “belonging to me”.\nThe word mine stands in for my bag: lighter than mine."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:14.11",
+          "say": {
+            "ru": "ти́ из чи́пер зэн ко́фи хи́р",
+            "uk": "ті́ із чі́пер зен ко́фі хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.12",
+          "say": {
+            "ru": "зэ сте́рз ар кви́кер зэн зэ ли́фт",
+            "uk": "зе сте́рз ар кві́кер зен зе лі́фт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.13",
+          "say": {
+            "ru": "хэ́р бэ́г из ла́йтер зэн ма́йн",
+            "uk": "хе́р бе́г із ла́йтер зен ма́йн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чай здесь дешевле кофе»",
+            "uk": "Виберіть, як сказати: «Чай тут дешевший за каву»",
+            "en": "Choose how to say: “Tea is cheaper than coffee here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:14.11",
+          "options": [
+            "en-classic-r1:14.11",
+            "en-classic-r1:14.12",
+            "en-classic-r1:14.13"
+          ],
+          "answerId": "en-classic-r1:14.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Лестница быстрее лифта»",
+            "uk": "Виберіть, як сказати: «Сходи швидші за ліфт»",
+            "en": "Choose how to say: “The stairs are quicker than the lift.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.12",
+          "options": [
+            "en-classic-r1:14.12",
+            "en-classic-r1:14.13",
+            "en-classic-r1:14.11"
+          ],
+          "answerId": "en-classic-r1:14.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ее сумка легче моей»",
+            "uk": "Виберіть, як сказати: «Її сумка легша за мою»",
+            "en": "Choose how to say: “Her bag is lighter than mine.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.13",
+          "options": [
+            "en-classic-r1:14.13",
+            "en-classic-r1:14.11",
+            "en-classic-r1:14.03"
+          ],
+          "answerId": "en-classic-r1:14.13"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Длинные слова: more",
+        "uk": "Довгі слова: more",
+        "en": "Long words: more"
+      },
+      "text": {
+        "ru": "К длинным словам er не добавляют. Перед ними ставят more.\nСлово more здесь значит «более».\nThe map is more useful than the list. — Карта полезнее, чем список.\nЧитается: зэ мэ́п из мо́р ю́сфул зэн зэ ли́ст.\nСлово useful значит «полезный».\nСлова more useful вместе значат «полезнее».\nThe new screen is more reliable. — Новый экран более надежен.\nЧитается: зэ нью́ скри́н из мо́р рила́йэбл.\nСлово reliable значит «надёжный».\nСлова more reliable вместе значат «надёжнее».\nMy new shoes are more comfortable than my old ones.\n— Мои новые туфли удобнее старых.\nЧитается: май нью́ шу́з ар мо́р ка́мфтэбл зэн май о́улд уа́нз.\nСлово comfortable значит «удобный».\nСлово old значит «старый».\nСлово ones заменяет слово shoes, чтобы не повторять его.\nСлова my old ones вместе значат «мои старые».",
+        "uk": "До довгих слів er не додають. Перед ними ставлять more.\nСлово more тут означає «більш».\nThe map is more useful than the list. — Карта корисніша за список.\nЧитається: зе ме́п із мо́р ю́сфул зен зе лі́ст.\nСлово useful означає «корисний».\nСлова more useful разом означають «корисніший».\nThe new screen is more reliable. — Новий екран надійніший.\nЧитається: зе нью́ скрі́н із мо́р ріла́йебл.\nСлово reliable означає «надійний».\nСлова more reliable разом означають «надійніший».\nMy new shoes are more comfortable than my old ones.\n— Моє нове взуття зручніше за старе.\nЧитається: май нью́ шу́з ар мо́р ка́мфтебл зен май о́улд уа́нз.\nСлово comfortable означає «зручний».\nСлово old означає «старий».\nСлово ones замінює слово shoes, щоб не повторювати його.\nСлова my old ones разом означають «мої старі».",
+        "en": "We do not add er to long words. We put more before them.\nHere more means a bigger amount of the quality.\nThe map is more useful than the list.\nThe word useful means “helps you a lot”.\nThe words more useful together mean “helps you more”.\nThe new screen is more reliable.\nThe word reliable means “you can trust it”.\nThe words more reliable together mean “you can trust it more”.\nMy new shoes are more comfortable than my old ones.\nThe word comfortable means “nice to sit or wear”.\nThe word old means “not new”.\nThe word ones stands in for shoes, so we do not say it twice.\nThe words my old ones together mean “my old shoes”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:14.23",
+          "say": {
+            "ru": "зэ мэ́п из мо́р ю́сфул зэн зэ ли́ст",
+            "uk": "зе ме́п із мо́р ю́сфул зен зе лі́ст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.24",
+          "say": {
+            "ru": "зэ нью́ скри́н из мо́р рила́йэбл",
+            "uk": "зе нью́ скрі́н із мо́р ріла́йебл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.43",
+          "say": {
+            "ru": "май нью́ шу́з ар мо́р ка́мфтэбл зэн май о́улд уа́нз",
+            "uk": "май нью́ шу́з ар мо́р ка́мфтебл зен май о́улд уа́нз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Карта полезнее, чем список»",
+            "uk": "Виберіть, як сказати: «Карта корисніша за список»",
+            "en": "Choose how to say: “The map is more useful than the list.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:14.23",
+          "options": [
+            "en-classic-r1:14.23",
+            "en-classic-r1:14.24",
+            "en-classic-r1:14.43"
+          ],
+          "answerId": "en-classic-r1:14.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Новый экран более надежен»",
+            "uk": "Виберіть, як сказати: «Новий екран надійніший»",
+            "en": "Choose how to say: “The new screen is more reliable.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.24",
+          "options": [
+            "en-classic-r1:14.24",
+            "en-classic-r1:14.23",
+            "en-classic-r1:14.12"
+          ],
+          "answerId": "en-classic-r1:14.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои новые туфли удобнее старых»",
+            "uk": "Виберіть, як сказати: «Моє нове взуття зручніше за старе»",
+            "en": "Choose how to say: “My new shoes are more comfortable than my old ones.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.43",
+          "options": [
+            "en-classic-r1:14.43",
+            "en-classic-r1:14.24",
+            "en-classic-r1:14.23"
+          ],
+          "answerId": "en-classic-r1:14.43"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Менее: less",
+        "uk": "Менш: less",
+        "en": "Not so much: less"
+      },
+      "text": {
+        "ru": "Слово less работает как more, только наоборот.\nThis road is less crowded. — Эта дорога менее загружена.\nЧитается: зи́с ро́уд из лэ́с кра́удид.\nСлово less значит «менее».\nСлово crowded значит «переполненный, людный».\nThe morning shift is less stressful. — Утренняя смена менее напряженная.\nЧитается: зэ мо́рнинг ши́фт из лэ́с стрэ́сфул.\nСлово stressful значит «напряжённый».\nThe written instructions are clearer. — Письменные инструкции понятнее.\nЧитается: зэ ри́тн инстра́кшнз ар кли́рер.\nСлово written значит «написанный, письменный».\nСлово instructions значит «инструкции».\nСлово clear значит «понятный».\nК слову clear добавили er: clearer значит «понятнее».",
+        "uk": "Слово less працює як more, тільки навпаки.\nThis road is less crowded. — Ця дорога менш завантажена.\nЧитається: зі́с ро́уд із ле́с кра́удід.\nСлово less означає «менш».\nСлово crowded означає «переповнений, людний».\nThe morning shift is less stressful. — Ранкова зміна менш стресова.\nЧитається: зе мо́рнінг ші́фт із ле́с стре́сфул.\nСлово stressful означає «напружений».\nThe written instructions are clearer. — Письмові інструкції зрозуміліші.\nЧитається: зе рі́тн інстра́кшнз ар клі́рер.\nСлово written означає «написаний, письмовий».\nСлово instructions означає «інструкції».\nСлово clear означає «зрозумілий».\nДо слова clear додали er: clearer означає «зрозуміліше».",
+        "en": "The word less works like more, but the other way round.\nThis road is less crowded.\nThe word less means “not so much”.\nThe word crowded means “full of people”.\nThe morning shift is less stressful.\nThe word stressful means “makes you feel worried and tired”.\nThe written instructions are clearer.\nThe word written means “put down with a pen or on a screen”.\nThe word instructions means “words that tell you what to do”.\nThe word clear means “easy to understand”.\nWe add er to clear: clearer means “easier to understand”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:14.26",
+          "say": {
+            "ru": "зи́с ро́уд из лэ́с кра́удид",
+            "uk": "зі́с ро́уд із ле́с кра́удід"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.27",
+          "say": {
+            "ru": "зэ мо́рнинг ши́фт из лэ́с стрэ́сфул",
+            "uk": "зе мо́рнінг ші́фт із ле́с стре́сфул"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.25",
+          "say": {
+            "ru": "зэ ри́тн инстра́кшнз ар кли́рер",
+            "uk": "зе рі́тн інстра́кшнз ар клі́рер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эта дорога менее загружена»",
+            "uk": "Виберіть, як сказати: «Ця дорога менш завантажена»",
+            "en": "Choose how to say: “This road is less crowded.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:14.26",
+          "options": [
+            "en-classic-r1:14.26",
+            "en-classic-r1:14.27",
+            "en-classic-r1:14.25"
+          ],
+          "answerId": "en-classic-r1:14.26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Утренняя смена менее напряженная»",
+            "uk": "Виберіть, як сказати: «Ранкова зміна менш стресова»",
+            "en": "Choose how to say: “The morning shift is less stressful.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.27",
+          "options": [
+            "en-classic-r1:14.27",
+            "en-classic-r1:14.26",
+            "en-classic-r1:14.25"
+          ],
+          "answerId": "en-classic-r1:14.27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Письменные инструкции понятнее»",
+            "uk": "Виберіть, як сказати: «Письмові інструкції зрозуміліші»",
+            "en": "Choose how to say: “The written instructions are clearer.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.25",
+          "options": [
+            "en-classic-r1:14.25",
+            "en-classic-r1:14.27",
+            "en-classic-r1:14.24"
+          ],
+          "answerId": "en-classic-r1:14.25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Лучше и хуже",
+        "uk": "Краще і гірше",
+        "en": "Better and worse"
+      },
+      "text": {
+        "ru": "Слова «хороший» и «плохой» меняются сами, без er и без more.\nThis option is better for children. — Этот вариант лучше подходит для детей.\nЧитается: зи́с о́пшн из бэ́тер фо́р чи́лдрен.\nСлово option значит «вариант».\nСлово children значит «дети».\nСлово good значит «хороший».\nСлово better значит «лучше»: good → better.\nThe weather is worse today. — Сегодня погода хуже.\nЧитается: зэ уэ́зер из уо́рс тудэ́й.\nСлово weather значит «погода».\nСлово bad значит «плохой».\nСлово worse значит «хуже»: bad → worse.\nA return ticket is better value. — Билет туда и обратно выгоднее.\nЧитается: э ритэ́рн ти́кит из бэ́тер вэ́лью.\nСлово value значит «выгода».\nСлова better value вместе значат «выгоднее».",
+        "uk": "Слова «хороший» і «поганий» змінюються самі, без er і без more.\nThis option is better for children. — Цей варіант краще підходить для дітей.\nЧитається: зі́с о́пшн із бе́тер фо́р чі́лдрен.\nСлово option означає «варіант».\nСлово children означає «діти».\nСлово good означає «хороший».\nСлово better означає «краще»: good → better.\nThe weather is worse today. — Сьогодні погода гірша.\nЧитається: зе уе́зер із уо́рс туде́й.\nСлово weather означає «погода».\nСлово bad означає «поганий».\nСлово worse означає «гірше»: bad → worse.\nA return ticket is better value. — Квиток туди й назад вигідніший.\nЧитається: е ріте́рн ті́кіт із бе́тер ве́лью.\nСлово value означає «вигода».\nСлова better value разом означають «вигідніше».",
+        "en": "The words for good and bad change by themselves, without er and without more.\nThis option is better for children.\nThe word option means “one of the things you can choose”.\nThe word children means “more than one child”.\nThe word good means “nice, as it should be”.\nThe word better means “more good”: good, better.\nThe weather is worse today.\nThe word weather means “sun, rain, wind and cold outside”.\nThe word bad means “not good”.\nThe word worse means “more bad”: bad, worse.\nA return ticket is better value.\nThe word value means “how much you get for your money”.\nThe words better value together mean “you get more for your money”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:14.28",
+          "say": {
+            "ru": "зи́с о́пшн из бэ́тер фо́р чи́лдрен",
+            "uk": "зі́с о́пшн із бе́тер фо́р чі́лдрен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.29",
+          "say": {
+            "ru": "зэ уэ́зер из уо́рс тудэ́й",
+            "uk": "зе уе́зер із уо́рс туде́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.30",
+          "say": {
+            "ru": "э ритэ́рн ти́кит из бэ́тер вэ́лью",
+            "uk": "е ріте́рн ті́кіт із бе́тер ве́лью"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Этот вариант лучше подходит для детей»",
+            "uk": "Виберіть, як сказати: «Цей варіант краще підходить для дітей»",
+            "en": "Choose how to say: “This option is better for children.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:14.28",
+          "options": [
+            "en-classic-r1:14.28",
+            "en-classic-r1:14.29",
+            "en-classic-r1:14.30"
+          ],
+          "answerId": "en-classic-r1:14.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня погода хуже»",
+            "uk": "Виберіть, як сказати: «Сьогодні погода гірша»",
+            "en": "Choose how to say: “The weather is worse today.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.29",
+          "options": [
+            "en-classic-r1:14.29",
+            "en-classic-r1:14.28",
+            "en-classic-r1:14.30"
+          ],
+          "answerId": "en-classic-r1:14.29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билет туда и обратно выгоднее»",
+            "uk": "Виберіть, як сказати: «Квиток туди й назад вигідніший»",
+            "en": "Choose how to say: “A return ticket is better value.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.30",
+          "options": [
+            "en-classic-r1:14.30",
+            "en-classic-r1:14.28",
+            "en-classic-r1:14.26"
+          ],
+          "answerId": "en-classic-r1:14.30"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Проще, тише, оживлённее",
+        "uk": "Простіше, тихіше, жвавіше",
+        "en": "Easier, quieter, busier"
+      },
+      "text": {
+        "ru": "Если слово кончается на y, меняем y на i и добавляем er.\nThe second question is easier than the first. — Второй вопрос проще первого.\nЧитается: зэ сэ́конд куэ́счен из и́зиер зэн зэ фэ́рст.\nСлово second значит «второй».\nСлово easy значит «простой».\nEasy → easier: y стало i, и добавили er. Easier значит «проще».\nThe back room is quieter than the kitchen. — Задняя комната тише кухни.\nЧитается: зэ бэ́к ру́м из куа́йетер зэн зэ ки́чен.\nК слову quiet добавили er: quieter значит «тише».\nToday is busier than yesterday. — Сегодня больше людей, чем вчера.\nЧитается: тудэ́й из би́зиер зэн е́стердэй.\nСлово busy вы видели в уроке 1. Busy → busier: y стало i.\nСлово busier здесь значит «оживлённее, больше людей».\nMy coat is warmer than yours. — «Моё пальто теплее твоего.»\nЧитается: май ко́ут из уо́рмер зэн ёрз.\nСлово yours значит «ваш, твой».\nСлово yours заменяет «ваше пальто».",
+        "uk": "Якщо слово закінчується на y, міняємо y на i і додаємо er.\nThe second question is easier than the first. — Друге питання легше за перше.\nЧитається: зе се́конд куе́счен із і́зіер зен зе фе́рст.\nСлово second означає «другий».\nСлово easy означає «простий».\nEasy → easier: y стало i, і додали er. Easier означає «простіше».\nThe back room is quieter than the kitchen.\n— У задній кімнаті тихіше, ніж на кухні.\nЧитається: зе бе́к ру́м із куа́йетер зен зе кі́чен.\nДо слова quiet додали er: quieter означає «тихіше».\nToday is busier than yesterday. — Сьогодні більше людей, ніж учора.\nЧитається: туде́й із бі́зіер зен е́стердей.\nСлово busy ви бачили в уроці 1. Busy → busier: y стало i.\nСлово busier тут означає «жвавіше, більше людей».\nMy coat is warmer than yours. — «Моє пальто тепліше за твоє.»\nЧитається: май ко́ут із уо́рмер зен йорз.\nСлово yours означає «ваш, твій».\nСлово yours замінює «ваше пальто».",
+        "en": "If a word ends in y, we change y to i and add er.\nThe second question is easier than the first.\nThe word second means “number two”.\nThe word easy means “not hard”.\nEasy becomes easier: y changes to i, then er. Easier means “not so hard”.\nThe back room is quieter than the kitchen.\nWe add er to quiet: quieter means “with less noise”.\nToday is busier than yesterday.\nYou saw the word busy in lesson 1. Busy becomes busier: y changes to i.\nHere busier means “with more people”.\nMy coat is warmer than yours.\nThe word yours means “belonging to you”.\nThe word yours stands in for your coat."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:14.19",
+          "say": {
+            "ru": "зэ сэ́конд куэ́счен из и́зиер зэн зэ фэ́рст",
+            "uk": "зе се́конд куе́счен із і́зіер зен зе фе́рст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.18",
+          "say": {
+            "ru": "зэ бэ́к ру́м из куа́йетер зэн зэ ки́чен",
+            "uk": "зе бе́к ру́м із куа́йетер зен зе кі́чен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.20",
+          "say": {
+            "ru": "тудэ́й из би́зиер зэн е́стердэй",
+            "uk": "туде́й із бі́зіер зен е́стердей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.17",
+          "say": {
+            "ru": "май ко́ут из уо́рмер зэн ёрз",
+            "uk": "май ко́ут із уо́рмер зен йорз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Второй вопрос проще первого»",
+            "uk": "Виберіть, як сказати: «Друге питання легше за перше»",
+            "en": "Choose how to say: “The second question is easier than the first.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:14.19",
+          "options": [
+            "en-classic-r1:14.19",
+            "en-classic-r1:14.18",
+            "en-classic-r1:14.20"
+          ],
+          "answerId": "en-classic-r1:14.19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня больше людей, чем вчера»",
+            "uk": "Виберіть, як сказати: «Сьогодні більше людей, ніж учора»",
+            "en": "Choose how to say: “Today is busier than yesterday.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.20",
+          "options": [
+            "en-classic-r1:14.20",
+            "en-classic-r1:14.19",
+            "en-classic-r1:14.18"
+          ],
+          "answerId": "en-classic-r1:14.20"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моё пальто теплее твоего»",
+            "uk": "Виберіть, як сказати: «Моє пальто тепліше за твоє»",
+            "en": "Choose how to say: “My coat is warmer than yours.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.17",
+          "options": [
+            "en-classic-r1:14.17",
+            "en-classic-r1:14.13",
+            "en-classic-r1:14.03"
+          ],
+          "answerId": "en-classic-r1:14.17"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Самый…",
+        "uk": "Найбільш…",
+        "en": "The most…"
+      },
+      "text": {
+        "ru": "Чтобы сказать «самый», поставьте the и добавьте est.\nThis is the safest crossing. — Это самый безопасный переход.\nЧитается: зи́с из зэ сэ́йфист кро́синг.\nСлово crossing значит «переход».\nСлово safe вы видели. Оно кончается на e, поэтому добавляем только st: safest, «самый безопасный».\nThis path is safer at night. — Этот путь безопаснее ночью.\nЧитается: зи́с пэ́с из сэ́йфер эт на́йт.\nСлово path значит «тропа, путь».\nЕсли добавить к safe только r, выйдет safer, «безопаснее». Это не «самый», а «более».\nThis is the best seat on the bus. — Это лучшее место в автобусе.\nЧитается: зи́с из зэ бэ́ст си́т он зэ ба́с.\nСлово best значит «самый лучший»: good → better → best.\nThis is the most useful page. — Это самая полезная страница.\nЧитается: зи́с из зэ мо́уст ю́сфул пэ́йдж.\nСлово most значит «самый».\nДля длинных слов вместо est ставят most: most useful — «самый полезный».",
+        "uk": "Щоб сказати «найбільш», поставте the і додайте est.\nThis is the safest crossing. — Це найбезпечніший перехід.\nЧитається: зі́с із зе се́йфіст кро́сінг.\nСлово crossing означає «перехід».\nСлово safe ви бачили. Воно закінчується на e, тому додаємо тільки st: safest, «найбезпечніший».\nThis path is safer at night. — Цей шлях безпечніший вночі.\nЧитається: зі́с пе́с із се́йфер ет на́йт.\nСлово path означає «стежка, шлях».\nЯкщо додати до safe тільки r, вийде safer, «безпечніше». Це не «найбільш», а «більш».\nThis is the best seat on the bus. — Це найкраще місце в автобусі.\nЧитається: зі́с із зе бе́ст сі́т он зе ба́с.\nСлово best означає «найкращий»: good → better → best.\nThis is the most useful page. — Це найкорисніша сторінка.\nЧитається: зі́с із зе мо́уст ю́сфул пе́йдж.\nСлово most означає «найбільш».\nДля довгих слів замість est ставлять most: most useful — «найкорисніший».",
+        "en": "To say “the most”, put the before the word and add est.\nThis is the safest crossing.\nThe word crossing means “a place to cross the road”.\nYou saw the word safe.\nIt ends with e, so we add only st: safest, the most safe.\nThis path is safer at night.\nThe word path means “a narrow way to walk on”.\nIf we add only r to safe, we get safer.\nIt means more safe, but not the most safe.\nThis is the best seat on the bus.\nThe word best means “the most good”: good, better, best.\nThis is the most useful page.\nThe word most means “the biggest amount of the quality”.\nFor long words we put most instead of est: most useful."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:14.35",
+          "say": {
+            "ru": "зи́с из зэ сэ́йфист кро́синг",
+            "uk": "зі́с із зе се́йфіст кро́сінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.45",
+          "say": {
+            "ru": "зи́с пэ́с из сэ́йфер эт на́йт",
+            "uk": "зі́с пе́с із се́йфер ет на́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.38",
+          "say": {
+            "ru": "зи́с из зэ бэ́ст си́т он зэ ба́с",
+            "uk": "зі́с із зе бе́ст сі́т он зе ба́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.40",
+          "say": {
+            "ru": "зи́с из зэ мо́уст ю́сфул пэ́йдж",
+            "uk": "зі́с із зе мо́уст ю́сфул пе́йдж"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Этот путь безопаснее ночью»",
+            "uk": "Виберіть, як сказати: «Цей шлях безпечніший вночі»",
+            "en": "Choose how to say: “This path is safer at night.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:14.45",
+          "options": [
+            "en-classic-r1:14.45",
+            "en-classic-r1:14.35",
+            "en-classic-r1:14.38"
+          ],
+          "answerId": "en-classic-r1:14.45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это самый безопасный переход»",
+            "uk": "Виберіть, як сказати: «Це найбезпечніший перехід»",
+            "en": "Choose how to say: “This is the safest crossing.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.35",
+          "options": [
+            "en-classic-r1:14.35",
+            "en-classic-r1:14.45",
+            "en-classic-r1:14.40"
+          ],
+          "answerId": "en-classic-r1:14.35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это самая полезная страница»",
+            "uk": "Виберіть, як сказати: «Це найкорисніша сторінка»",
+            "en": "Choose how to say: “This is the most useful page.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.40",
+          "options": [
+            "en-classic-r1:14.40",
+            "en-classic-r1:14.38",
+            "en-classic-r1:14.35"
+          ],
+          "answerId": "en-classic-r1:14.40"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Ещё примеры",
+        "uk": "Ще приклади",
+        "en": "More examples"
+      },
+      "text": {
+        "ru": "Ещё несколько слов, которые меняются так же.\nThe earlier train is not always cheaper. — Более ранний поезд не всегда дешевле.\nЧитается: зи э́рлиер трэ́йн из но́т о́лвэйз чи́пер.\nСлово earlier значит «более ранний, раньше».\nСлово early вы видели. Early → earlier: y стало i.\nIs the larger room more expensive? — Больший номер дороже?\nЧитается: из зэ ла́рджер ру́м мо́р икспэ́нсив.\nСлово larger значит «больший, крупнее».\nЗдесь слово large кончается на e: large + r.\nСлово expensive значит «дорогой».\nThe easiest way is the side entrance. — Проще всего войти через боковой вход.\nЧитается: зи и́зиист уэ́й из зэ са́йд э́нтранс.\nСлово easiest значит «самый простой».\nEasy → easiest: y стало i, добавили est.\nСлово side значит «боковой, сторона».\nСлова side entrance вместе значат «боковой вход».\nThe smallest locker is big enough. — Самый маленький шкафчик достаточно большой.\nЧитается: зэ смо́лист ло́кер из би́г ина́ф.\nК слову small добавили est: smallest значит «самый маленький».\nСлово big значит «большой».\nСлова big enough вместе значат «достаточно большой».\nThe second bus was even later than the first.\n— Второй автобус опоздал ещё сильнее первого.\nЧитается: зэ сэ́конд ба́с уо́з и́вен лэ́йтер зэн зэ фэ́рст.\nСлово even значит «ещё, даже».\nСлова even later вместе значат «ещё позже».",
+        "uk": "Ще кілька слів, які змінюються так само.\nThe earlier train is not always cheaper. — Раніший поїзд не завжди дешевший.\nЧитається: зі е́рліер тре́йн із но́т о́лвейз чі́пер.\nСлово earlier означає «раніший, раніше».\nСлово early ви бачили. Early → earlier: y стало i.\nIs the larger room more expensive? — Чи більший номер дорожчий?\nЧитається: із зе ла́рджер ру́м мо́р ікспе́нсів.\nСлово larger означає «більший, крупніший».\nТут слово large закінчується на e: large + r.\nСлово expensive означає «дорогий».\nThe easiest way is the side entrance. — Найпростіший шлях – бічний вхід.\nЧитається: зі і́зііст уе́й із зе са́йд е́нтранс.\nСлово easiest означає «найпростіший».\nEasy → easiest: y стало i, додали est.\nСлово side означає «бічний, сторона».\nСлова side entrance разом означають «бічний вхід».\nThe smallest locker is big enough. — Найменша шафка достатньо велика.\nЧитається: зе смо́ліст ло́кер із бі́г іна́ф.\nДо слова small додали est: smallest означає «найменший».\nСлово big означає «великий».\nСлова big enough разом означають «достатньо великий».\nThe second bus was even later than the first.\n— Другий автобус прибув навіть пізніше за перший.\nЧитається: зе се́конд ба́с уо́з і́вен ле́йтер зен зе фе́рст.\nСлово even означає «ще, навіть».\nСлова even later разом означають «ще пізніше».",
+        "en": "A few more words that change in the same way.\nThe earlier train is not always cheaper.\nThe word earlier means “before the other one”.\nYou saw the word early. Early becomes earlier: y changes to i.\nIs the larger room more expensive?\nThe word larger means “bigger”.\nThe word large ends with e: large and r.\nThe word expensive means “costs a lot of money”.\nThe easiest way is the side entrance.\nThe word easiest means “the least hard”.\nEasy becomes easiest: y changes to i, then est.\nThe word side means “the part at the edge”.\nThe words side entrance together mean “a door at the side”.\nThe smallest locker is big enough.\nWe add est to small: smallest means “the least big”.\nThe word big means “large”.\nThe words big enough together mean “as big as you need”.\nThe second bus was even later than the first.\nThe word even means “stronger than you think”.\nThe words even later together mean “much later”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:14.41",
+          "say": {
+            "ru": "зи э́рлиер трэ́йн из но́т о́лвэйз чи́пер",
+            "uk": "зі е́рліер тре́йн із но́т о́лвейз чі́пер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.42",
+          "say": {
+            "ru": "из зэ ла́рджер ру́м мо́р икспэ́нсив",
+            "uk": "із зе ла́рджер ру́м мо́р ікспе́нсів"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.47",
+          "say": {
+            "ru": "зи и́зиист уэ́й из зэ са́йд э́нтранс",
+            "uk": "зі і́зііст уе́й із зе са́йд е́нтранс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.48",
+          "say": {
+            "ru": "зэ смо́лист ло́кер из би́г ина́ф",
+            "uk": "зе смо́ліст ло́кер із бі́г іна́ф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:14.50",
+          "say": {
+            "ru": "зэ сэ́конд ба́с уо́з и́вен лэ́йтер зэн зэ фэ́рст",
+            "uk": "зе се́конд ба́с уо́з і́вен ле́йтер зен зе фе́рст"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Более ранний поезд не всегда дешевле»",
+            "uk": "Виберіть, як сказати: «Раніший поїзд не завжди дешевший»",
+            "en": "Choose how to say: “The earlier train is not always cheaper.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:14.41",
+          "options": [
+            "en-classic-r1:14.41",
+            "en-classic-r1:14.42",
+            "en-classic-r1:14.47"
+          ],
+          "answerId": "en-classic-r1:14.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Проще всего войти через боковой вход»",
+            "uk": "Виберіть, як сказати: «Найпростіший шлях – бічний вхід»",
+            "en": "Choose how to say: “The easiest way is the side entrance.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.47",
+          "options": [
+            "en-classic-r1:14.47",
+            "en-classic-r1:14.48",
+            "en-classic-r1:14.50"
+          ],
+          "answerId": "en-classic-r1:14.47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Второй автобус опоздал ещё сильнее первого»",
+            "uk": "Виберіть, як сказати: «Другий автобус прибув навіть пізніше за перший»",
+            "en": "Choose how to say: “The second bus was even later than the first.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.50",
+          "options": [
+            "en-classic-r1:14.50",
+            "en-classic-r1:14.41",
+            "en-classic-r1:14.42"
+          ],
+          "answerId": "en-classic-r1:14.50"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Самый маленький шкафчик достаточно большой»",
+            "uk": "Виберіть, як сказати: «Найменша шафка достатньо велика»",
+            "en": "Choose how to say: “The smallest locker is big enough.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:14.48",
+          "options": [
+            "en-classic-r1:14.48",
+            "en-classic-r1:14.42",
+            "en-classic-r1:14.47"
+          ],
+          "answerId": "en-classic-r1:14.48"
+        }
+      ]
+    }
+  ]
+}

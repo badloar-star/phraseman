@@ -1,0 +1,300 @@
+{
+ "lang": "de",
+ "lesson": 1,
+ "words": {
+  "ich": {
+   "ru": "я",
+   "uk": "я",
+   "en": "I",
+   "es": "yo"
+  },
+  "bin": {
+   "ru": "(я) есть, нахожусь",
+   "uk": "(я) є, перебуваю",
+   "en": "(I) am",
+   "es": "(yo) estoy, soy"
+  },
+  "hier": {
+   "ru": "здесь",
+   "uk": "тут",
+   "en": "here",
+   "es": "aquí"
+  },
+  "du": {
+   "ru": "ты",
+   "uk": "ти",
+   "en": "you (one person, informal)",
+   "es": "tú"
+  },
+  "bist": {
+   "ru": "(ты) есть, находишься",
+   "uk": "(ти) є, перебуваєш",
+   "en": "(you) are",
+   "es": "(tú) estás, eres"
+  },
+  "müde": {
+   "ru": "усталый, уставший",
+   "uk": "втомлений",
+   "en": "tired",
+   "es": "cansado"
+  },
+  "anna": {
+   "ru": "Анна (имя)",
+   "uk": "Анна (ім'я)",
+   "en": "Anna (name)",
+   "es": "Anna (nombre)"
+  },
+  "ist": {
+   "ru": "(он, она, оно) есть",
+   "uk": "(він, вона, воно) є",
+   "en": "is",
+   "es": "(él, ella) está, es"
+  },
+  "wir": {
+   "ru": "мы",
+   "uk": "ми",
+   "en": "we",
+   "es": "nosotros"
+  },
+  "sind": {
+   "ru": "(мы, они, вы) есть",
+   "uk": "(ми, вони, ви) є",
+   "en": "(we, they, you) are",
+   "es": "(nosotros, ellos) estamos, están"
+  },
+  "wach": {
+   "ru": "бодрый, не спящий",
+   "uk": "бадьорий, не спить",
+   "en": "awake",
+   "es": "despierto"
+  },
+  "ihr": {
+   "ru": "вы (несколько людей)",
+   "uk": "ви (кілька людей)",
+   "en": "you (several people)",
+   "es": "vosotros"
+  },
+  "seid": {
+   "ru": "(вы) есть",
+   "uk": "(ви) є",
+   "en": "(you all) are",
+   "es": "(vosotros) estáis, sois"
+  },
+  "tom": {
+   "ru": "Том (имя)",
+   "uk": "Том (ім'я)",
+   "en": "Tom (name)",
+   "es": "Tom (nombre)"
+  },
+  "zu": {
+   "ru": "у, к (часть слов «дома»)",
+   "uk": "у, до (частина слів «вдома»)",
+   "en": "at, to",
+   "es": "en, a"
+  },
+  "hause": {
+   "ru": "дом (в слове «дома»)",
+   "uk": "дім (у слові «вдома»)",
+   "en": "home",
+   "es": "casa"
+  },
+  "bereit": {
+   "ru": "готов",
+   "uk": "готовий",
+   "en": "ready",
+   "es": "listo"
+  },
+  "die": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the",
+   "es": "el, la, los, las"
+  },
+  "kinder": {
+   "ru": "дети",
+   "uk": "діти",
+   "en": "children",
+   "es": "niños"
+  },
+  "allein": {
+   "ru": "один, в одиночестве",
+   "uk": "сам, на самоті",
+   "en": "alone",
+   "es": "solo"
+  },
+  "draußen": {
+   "ru": "на улице, снаружи",
+   "uk": "надворі, назовні",
+   "en": "outside",
+   "es": "afuera"
+  },
+  "drinnen": {
+   "ru": "внутри, в помещении",
+   "uk": "всередині, у приміщенні",
+   "en": "inside",
+   "es": "dentro"
+  },
+  "krank": {
+   "ru": "больной",
+   "uk": "хворий",
+   "en": "sick",
+   "es": "enfermo"
+  },
+  "tür": {
+   "ru": "дверь",
+   "uk": "двері",
+   "en": "door",
+   "es": "puerta"
+  },
+  "offen": {
+   "ru": "открытый",
+   "uk": "відчинений",
+   "en": "open",
+   "es": "abierto"
+  },
+  "das": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the",
+   "es": "el, lo"
+  },
+  "fenster": {
+   "ru": "окно",
+   "uk": "вікно",
+   "en": "window",
+   "es": "ventana"
+  },
+  "der": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the",
+   "es": "el"
+  },
+  "tee": {
+   "ru": "чай",
+   "uk": "чай",
+   "en": "tea",
+   "es": "té"
+  },
+  "heiß": {
+   "ru": "горячий",
+   "uk": "гарячий",
+   "en": "hot",
+   "es": "caliente"
+  },
+  "wasser": {
+   "ru": "вода",
+   "uk": "вода",
+   "en": "water",
+   "es": "agua"
+  },
+  "kalt": {
+   "ru": "холодный",
+   "uk": "холодний",
+   "en": "cold",
+   "es": "frío"
+  },
+  "suppe": {
+   "ru": "суп",
+   "uk": "суп",
+   "en": "soup",
+   "es": "sopa"
+  },
+  "warm": {
+   "ru": "тёплый",
+   "uk": "теплий",
+   "en": "warm",
+   "es": "tibio, cálido"
+  },
+  "kaffee": {
+   "ru": "кофе",
+   "uk": "кава",
+   "en": "coffee",
+   "es": "café"
+  },
+  "essen": {
+   "ru": "еда",
+   "uk": "їжа",
+   "en": "food, meal",
+   "es": "comida"
+  },
+  "fertig": {
+   "ru": "готов, готово",
+   "uk": "готовий, готово",
+   "en": "ready, done",
+   "es": "listo"
+  },
+  "und": {
+   "ru": "и",
+   "uk": "і, та",
+   "en": "and",
+   "es": "y"
+  },
+  "leise": {
+   "ru": "тихий",
+   "uk": "тихий",
+   "en": "quiet",
+   "es": "callado"
+  },
+  "zimmer": {
+   "ru": "комната",
+   "uk": "кімната",
+   "en": "room",
+   "es": "habitación"
+  },
+  "ruhig": {
+   "ru": "спокойный, тихий",
+   "uk": "спокійний, тихий",
+   "en": "calm, quiet",
+   "es": "tranquilo"
+  },
+  "platz": {
+   "ru": "место",
+   "uk": "місце",
+   "en": "seat, place",
+   "es": "sitio, asiento"
+  },
+  "frei": {
+   "ru": "свободный",
+   "uk": "вільний",
+   "en": "free, vacant",
+   "es": "libre"
+  },
+  "plätze": {
+   "ru": "места",
+   "uk": "місця",
+   "en": "seats, places",
+   "es": "asientos, sitios"
+  },
+  "bad": {
+   "ru": "ванная",
+   "uk": "ванна кімната",
+   "en": "bathroom",
+   "es": "baño"
+  },
+  "meine": {
+   "ru": "моя",
+   "uk": "моя",
+   "en": "my",
+   "es": "mi"
+  },
+  "tasche": {
+   "ru": "сумка",
+   "uk": "сумка",
+   "en": "bag",
+   "es": "bolso"
+  },
+  "deine": {
+   "ru": "твои",
+   "uk": "твої",
+   "en": "your",
+   "es": "tus"
+  },
+  "schlüssel": {
+   "ru": "ключи, ключ",
+   "uk": "ключі, ключ",
+   "en": "key, keys",
+   "es": "llave, llaves"
+  }
+ }
+}

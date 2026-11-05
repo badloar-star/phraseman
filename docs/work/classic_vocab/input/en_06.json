@@ -1,0 +1,761 @@
+{
+ "lang": "en",
+ "lesson": 6,
+ "words": [
+  {
+   "form": "where",
+   "surface": "Where",
+   "count": 9,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.01",
+     "target": "Where do you work",
+     "ru": "Где вы работаете?",
+     "en": "Where do you work?"
+    },
+    {
+     "id": "en-classic-r1:06.02",
+     "target": "Where does she live",
+     "ru": "Где она живет?",
+     "en": "Where does she live?"
+    }
+   ]
+  },
+  {
+   "form": "when",
+   "surface": "When",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.03",
+     "target": "When do we start",
+     "ru": "Когда мы начинаем?",
+     "en": "When do we start?"
+    },
+    {
+     "id": "en-classic-r1:06.04",
+     "target": "When does it close",
+     "ru": "Когда закрывается?",
+     "en": "When does it close?"
+    }
+   ]
+  },
+  {
+   "form": "what",
+   "surface": "What",
+   "count": 8,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.05",
+     "target": "What do you need",
+     "ru": "Что вам нужно?",
+     "en": "What do you need?"
+    },
+    {
+     "id": "en-classic-r1:06.06",
+     "target": "What does he want",
+     "ru": "Что он хочет?",
+     "en": "What does he want?"
+    }
+   ]
+  },
+  {
+   "form": "how",
+   "surface": "How",
+   "count": 12,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.07",
+     "target": "How do you pay",
+     "ru": "Как вы платите?",
+     "en": "How do you pay?"
+    },
+    {
+     "id": "en-classic-r1:06.08",
+     "target": "How does it work",
+     "ru": "Как это работает?",
+     "en": "How does it work?"
+    }
+   ]
+  },
+  {
+   "form": "why",
+   "surface": "Why",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.09",
+     "target": "Why do they wait here",
+     "ru": "Почему они ждут здесь?",
+     "en": "Why do they wait here?"
+    },
+    {
+     "id": "en-classic-r1:06.10",
+     "target": "Why does the alarm beep",
+     "ru": "Почему пищит сигнализация?",
+     "en": "Why does the alarm beep?"
+    }
+   ]
+  },
+  {
+   "form": "wait",
+   "surface": "wait",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.09",
+     "target": "Why do they wait here",
+     "ru": "Почему они ждут здесь?",
+     "en": "Why do they wait here?"
+    }
+   ]
+  },
+  {
+   "form": "alarm",
+   "surface": "alarm",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.10",
+     "target": "Why does the alarm beep",
+     "ru": "Почему пищит сигнализация?",
+     "en": "Why does the alarm beep?"
+    }
+   ]
+  },
+  {
+   "form": "beep",
+   "surface": "beep",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.10",
+     "target": "Why does the alarm beep",
+     "ru": "Почему пищит сигнализация?",
+     "en": "Why does the alarm beep?"
+    }
+   ]
+  },
+  {
+   "form": "leave",
+   "surface": "leave",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.12",
+     "target": "What time does the bus leave",
+     "ru": "В какое время отправляется автобус?",
+     "en": "What time does the bus leave?"
+    },
+    {
+     "id": "en-classic-r1:06.34",
+     "target": "Where do you leave your coat",
+     "ru": "Где вы оставляете своё пальто?",
+     "en": "Where do you leave your coat?"
+    }
+   ]
+  },
+  {
+   "form": "much",
+   "surface": "much",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.13",
+     "target": "How much does a ticket cost",
+     "ru": "Сколько стоит билет?",
+     "en": "How much does a ticket cost?"
+    },
+    {
+     "id": "en-classic-r1:06.21",
+     "target": "How much do these shoes cost",
+     "ru": "Сколько стоят эти туфли?",
+     "en": "How much do these shoes cost?"
+    }
+   ]
+  },
+  {
+   "form": "cost",
+   "surface": "cost",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.13",
+     "target": "How much does a ticket cost",
+     "ru": "Сколько стоит билет?",
+     "en": "How much does a ticket cost?"
+    },
+    {
+     "id": "en-classic-r1:06.21",
+     "target": "How much do these shoes cost",
+     "ru": "Сколько стоят эти туфли?",
+     "en": "How much do these shoes cost?"
+    }
+   ]
+  },
+  {
+   "form": "which",
+   "surface": "Which",
+   "count": 7,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.14",
+     "target": "Which platform do we need",
+     "ru": "Какая платформа нам нужна?",
+     "en": "Which platform do we need?"
+    },
+    {
+     "id": "en-classic-r1:06.18",
+     "target": "Which bus goes to the centre",
+     "ru": "Какой автобус едет до центра?",
+     "en": "Which bus goes to the centre?"
+    }
+   ]
+  },
+  {
+   "form": "long",
+   "surface": "long",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.16",
+     "target": "How long does the journey take",
+     "ru": "Сколько времени занимает поездка?",
+     "en": "How long does the journey take?"
+    },
+    {
+     "id": "en-classic-r1:06.50",
+     "target": "How long does it take on foot",
+     "ru": "Сколько времени это занимает пешком?",
+     "en": "How long does it take on foot?"
+    }
+   ]
+  },
+  {
+   "form": "journey",
+   "surface": "journey",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.16",
+     "target": "How long does the journey take",
+     "ru": "Сколько времени занимает поездка?",
+     "en": "How long does the journey take?"
+    }
+   ]
+  },
+  {
+   "form": "gates",
+   "surface": "gates",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.17",
+     "target": "When do the gates close",
+     "ru": "Когда закрываются ворота?",
+     "en": "When do the gates close?"
+    }
+   ]
+  },
+  {
+   "form": "goes",
+   "surface": "goes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.18",
+     "target": "Which bus goes to the centre",
+     "ru": "Какой автобус едет до центра?",
+     "en": "Which bus goes to the centre?"
+    }
+   ]
+  },
+  {
+   "form": "centre",
+   "surface": "centre",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.18",
+     "target": "Which bus goes to the centre",
+     "ru": "Какой автобус едет до центра?",
+     "en": "Which bus goes to the centre?"
+    }
+   ]
+  },
+  {
+   "form": "often",
+   "surface": "often",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.20",
+     "target": "How often do the trains run",
+     "ru": "Как часто ходят поезда?",
+     "en": "How often do the trains run?"
+    }
+   ]
+  },
+  {
+   "form": "trains",
+   "surface": "trains",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.20",
+     "target": "How often do the trains run",
+     "ru": "Как часто ходят поезда?",
+     "en": "How often do the trains run?"
+    }
+   ]
+  },
+  {
+   "form": "size",
+   "surface": "size",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.22",
+     "target": "What size do you wear",
+     "ru": "Какой у вас размер?",
+     "en": "What size do you wear?"
+    }
+   ]
+  },
+  {
+   "form": "colour",
+   "surface": "colour",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.23",
+     "target": "Which colour do you prefer",
+     "ru": "Какой цвет вы предпочитаете?",
+     "en": "Which colour do you prefer?"
+    }
+   ]
+  },
+  {
+   "form": "prefer",
+   "surface": "prefer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.23",
+     "target": "Which colour do you prefer",
+     "ru": "Какой цвет вы предпочитаете?",
+     "en": "Which colour do you prefer?"
+    }
+   ]
+  },
+  {
+   "form": "batteries",
+   "surface": "batteries",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.24",
+     "target": "Where do you keep the batteries",
+     "ru": "Где вы храните батарейки?",
+     "en": "Where do you keep the batteries?"
+    }
+   ]
+  },
+  {
+   "form": "sale",
+   "surface": "sale",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.25",
+     "target": "When does the sale end",
+     "ru": "Когда заканчивается распродажа?",
+     "en": "When does the sale end?"
+    }
+   ]
+  },
+  {
+   "form": "end",
+   "surface": "end",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.25",
+     "target": "When does the sale end",
+     "ru": "Когда заканчивается распродажа?",
+     "en": "When does the sale end?"
+    }
+   ]
+  },
+  {
+   "form": "label",
+   "surface": "label",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.29",
+     "target": "What does the label say",
+     "ru": "Что написано на этикетке?",
+     "en": "What does the label say?"
+    }
+   ]
+  },
+  {
+   "form": "say",
+   "surface": "say",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.29",
+     "target": "What does the label say",
+     "ru": "Что написано на этикетке?",
+     "en": "What does the label say?"
+    }
+   ]
+  },
+  {
+   "form": "one",
+   "surface": "one",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.30",
+     "target": "Why does this one cost more",
+     "ru": "Почему эта стоит дороже?",
+     "en": "Why does this one cost more?"
+    }
+   ]
+  },
+  {
+   "form": "more",
+   "surface": "more",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.30",
+     "target": "Why does this one cost more",
+     "ru": "Почему эта стоит дороже?",
+     "en": "Why does this one cost more?"
+    }
+   ]
+  },
+  {
+   "form": "coat",
+   "surface": "coat",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.34",
+     "target": "Where do you leave your coat",
+     "ru": "Где вы оставляете своё пальто?",
+     "en": "Where do you leave your coat?"
+    }
+   ]
+  },
+  {
+   "form": "restart",
+   "surface": "restart",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.35",
+     "target": "How do I restart the printer",
+     "ru": "Как перезапустить принтер?",
+     "en": "How do I restart the printer?"
+    }
+   ]
+  },
+  {
+   "form": "button",
+   "surface": "button",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.36",
+     "target": "What does this button do",
+     "ru": "Что делает эта кнопка?",
+     "en": "What does this button do?"
+    }
+   ]
+  },
+  {
+   "form": "screen",
+   "surface": "screen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.37",
+     "target": "Why does the screen go dark",
+     "ru": "Почему экран гаснет?",
+     "en": "Why does the screen go dark?"
+    }
+   ]
+  },
+  {
+   "form": "dark",
+   "surface": "dark",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.37",
+     "target": "Why does the screen go dark",
+     "ru": "Почему экран гаснет?",
+     "en": "Why does the screen go dark?"
+    }
+   ]
+  },
+  {
+   "form": "who",
+   "surface": "Who",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.38",
+     "target": "Who checks the orders",
+     "ru": "Кто проверяет заказы?",
+     "en": "Who checks the orders?"
+    },
+    {
+     "id": "en-classic-r1:06.39",
+     "target": "Who do I call",
+     "ru": "Кому мне позвонить?",
+     "en": "Who do I call?"
+    }
+   ]
+  },
+  {
+   "form": "orders",
+   "surface": "orders",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.38",
+     "target": "Who checks the orders",
+     "ru": "Кто проверяет заказы?",
+     "en": "Who checks the orders?"
+    }
+   ]
+  },
+  {
+   "form": "call",
+   "surface": "call",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.39",
+     "target": "Who do I call",
+     "ru": "Кому мне позвонить?",
+     "en": "Who do I call?"
+    }
+   ]
+  },
+  {
+   "form": "has",
+   "surface": "has",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.40",
+     "target": "Who has the spare key",
+     "ru": "У кого запасной ключ?",
+     "en": "Who has the spare key?"
+    }
+   ]
+  },
+  {
+   "form": "leads",
+   "surface": "leads",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.41",
+     "target": "Which door leads to the stairs",
+     "ru": "Какая дверь ведет к лестнице?",
+     "en": "Which door leads to the stairs?"
+    }
+   ]
+  },
+  {
+   "form": "meet",
+   "surface": "meet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.42",
+     "target": "Where do we meet after class",
+     "ru": "Где мы встретимся после занятий?",
+     "en": "Where do we meet after class?"
+    }
+   ]
+  },
+  {
+   "form": "after",
+   "surface": "after",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.42",
+     "target": "Where do we meet after class",
+     "ru": "Где мы встретимся после занятий?",
+     "en": "Where do we meet after class?"
+    }
+   ]
+  },
+  {
+   "form": "spell",
+   "surface": "spell",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.43",
+     "target": "How do you spell your surname",
+     "ru": "Как пишется ваша фамилия?",
+     "en": "How do you spell your surname?"
+    }
+   ]
+  },
+  {
+   "form": "surname",
+   "surface": "surname",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.43",
+     "target": "How do you spell your surname",
+     "ru": "Как пишется ваша фамилия?",
+     "en": "How do you spell your surname?"
+    }
+   ]
+  },
+  {
+   "form": "mean",
+   "surface": "mean",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.44",
+     "target": "What does this word mean",
+     "ru": "Что означает это слово?",
+     "en": "What does this word mean?"
+    }
+   ]
+  },
+  {
+   "form": "many",
+   "surface": "many",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.45",
+     "target": "How many people live here",
+     "ru": "Сколько человек здесь живет?",
+     "en": "How many people live here?"
+    }
+   ]
+  },
+  {
+   "form": "people",
+   "surface": "people",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.45",
+     "target": "How many people live here",
+     "ru": "Сколько человек здесь живет?",
+     "en": "How many people live here?"
+    }
+   ]
+  },
+  {
+   "form": "far",
+   "surface": "far",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.46",
+     "target": "How far do you walk each day",
+     "ru": "Какое расстояние вы проходите пешком каждый день?",
+     "en": "How far do you walk each day?"
+    }
+   ]
+  },
+  {
+   "form": "each",
+   "surface": "each",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.46",
+     "target": "How far do you walk each day",
+     "ru": "Какое расстояние вы проходите пешком каждый день?",
+     "en": "How far do you walk each day?"
+    }
+   ]
+  },
+  {
+   "form": "day",
+   "surface": "day",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.46",
+     "target": "How far do you walk each day",
+     "ru": "Какое расстояние вы проходите пешком каждый день?",
+     "en": "How far do you walk each day?"
+    }
+   ]
+  },
+  {
+   "form": "teaches",
+   "surface": "teaches",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.47",
+     "target": "Who teaches the evening class",
+     "ru": "Кто ведет вечерние занятия?",
+     "en": "Who teaches the evening class?"
+    }
+   ]
+  },
+  {
+   "form": "evening",
+   "surface": "evening",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.47",
+     "target": "Who teaches the evening class",
+     "ru": "Кто ведет вечерние занятия?",
+     "en": "Who teaches the evening class?"
+    }
+   ]
+  },
+  {
+   "form": "belongs",
+   "surface": "belongs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.48",
+     "target": "Which bag belongs to you",
+     "ru": "Какая сумка ваша?",
+     "en": "Which bag belongs to you?"
+    }
+   ]
+  },
+  {
+   "form": "foot",
+   "surface": "foot",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:06.50",
+     "target": "How long does it take on foot",
+     "ru": "Сколько времени это занимает пешком?",
+     "en": "How long does it take on foot?"
+    }
+   ]
+  }
+ ]
+}

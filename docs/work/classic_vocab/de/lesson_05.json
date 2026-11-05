@@ -1,0 +1,138 @@
+{
+ "lang": "de",
+ "lesson": 5,
+ "words": {
+  "türen": {
+   "ru": "двери",
+   "uk": "двері",
+   "en": "doors",
+   "es": "puertas"
+  },
+  "berlin": {
+   "ru": "Берлин (город)",
+   "uk": "Берлін (місто)",
+   "en": "Berlin (city)",
+   "es": "Berlín (ciudad)"
+  },
+  "bald": {
+   "ru": "скоро",
+   "uk": "скоро",
+   "en": "soon",
+   "es": "pronto"
+  },
+  "kommen": {
+   "ru": "(они, вы) приходят, приедут",
+   "uk": "(вони, ви) приходять, приїдуть",
+   "en": "(they) come",
+   "es": "(ellos) vienen"
+  },
+  "früher": {
+   "ru": "раньше",
+   "uk": "раніше",
+   "en": "earlier",
+   "es": "más temprano"
+  },
+  "brauchen": {
+   "ru": "(вы) нуждаетесь, (вам) нужно",
+   "uk": "(ви) потребуєте, (вам) потрібно",
+   "en": "(you) need",
+   "es": "(usted) necesita"
+  },
+  "sie": {
+   "ru": "вы (вежливо, к одному человеку)",
+   "uk": "ви (чемно, до однієї людини)",
+   "en": "you (polite)",
+   "es": "usted"
+  },
+  "hilfe": {
+   "ru": "помощь",
+   "uk": "допомога",
+   "en": "help",
+   "es": "ayuda"
+  },
+  "mit": {
+   "ru": "с, при помощи",
+   "uk": "з, за допомогою",
+   "en": "with",
+   "es": "con"
+  },
+  "bleiben": {
+   "ru": "(вы) остаётесь, оставайтесь",
+   "uk": "(ви) залишаєтесь, залишайтесь",
+   "en": "(you) stay",
+   "es": "(usted) se queda"
+  },
+  "haben": {
+   "ru": "иметь, (у вас) есть",
+   "uk": "мати, (у вас) є",
+   "en": "to have, (you) have",
+   "es": "tener, (usted) tiene"
+  },
+  "zeit": {
+   "ru": "время",
+   "uk": "час",
+   "en": "time",
+   "es": "tiempo"
+  },
+  "möchten": {
+   "ru": "(вы) хотите, хотели бы",
+   "uk": "(ви) хочете, хотіли б",
+   "en": "(you) would like",
+   "es": "(usted) querría"
+  },
+  "frau": {
+   "ru": "госпожа, женщина",
+   "uk": "пані, жінка",
+   "en": "Mrs, woman",
+   "es": "señora"
+  },
+  "weber": {
+   "ru": "Вебер (фамилия)",
+   "uk": "Вебер (прізвище)",
+   "en": "Weber (surname)",
+   "es": "Weber (apellido)"
+  },
+  "hast": {
+   "ru": "(у тебя) есть",
+   "uk": "(у тебе) є",
+   "en": "(you) have",
+   "es": "(tú) tienes"
+  },
+  "hat": {
+   "ru": "(у него, у неё) есть",
+   "uk": "(у нього, у неї) є",
+   "en": "(he, she) has",
+   "es": "(él, ella) tiene"
+  },
+  "habt": {
+   "ru": "(у вас) есть",
+   "uk": "(у вас) є",
+   "en": "(you all) have",
+   "es": "(vosotros) tenéis"
+  },
+  "durst": {
+   "ru": "жажда",
+   "uk": "спрага",
+   "en": "thirst",
+   "es": "sed"
+  },
+  "spielt": {
+   "ru": "(вы) играете",
+   "uk": "(ви) граєте",
+   "en": "(you all) play",
+   "es": "(vosotros) jugáis"
+  },
+  "auch": {
+   "ru": "тоже, также",
+   "uk": "теж, також",
+   "en": "also, too",
+   "es": "también"
+  },
+  "dein": {
+   "ru": "твой",
+   "uk": "твій",
+   "en": "your",
+   "es": "tu"
+  }
+ }
+}

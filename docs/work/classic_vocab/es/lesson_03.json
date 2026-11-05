@@ -1,0 +1,48 @@
+{
+ "lang": "es",
+ "lesson": 3,
+ "words": {
+  "parada": {
+   "ru": "остановка",
+   "uk": "зупинка",
+   "en": "stop (bus stop)",
+   "es": "lugar donde para el autobús"
+  },
+  "hotel": {
+   "ru": "отель, гостиница",
+   "uk": "готель",
+   "en": "hotel",
+   "es": "lugar para dormir de viaje"
+  },
+  "pasaporte": {
+   "ru": "паспорт",
+   "uk": "паспорт",
+   "en": "passport",
+   "es": "documento para viajar"
+  },
+  "billete": {
+   "ru": "билет",
+   "uk": "квиток",
+   "en": "ticket",
+   "es": "papel para viajar"
+  },
+  "billetes": {
+   "ru": "билеты",
+   "uk": "квитки",
+   "en": "tickets",
+   "es": "varios billetes"
+  },
+  "pasaportes": {
+   "ru": "паспорта",
+   "uk": "паспорти",
+   "en": "passports",
+   "es": "varios pasaportes"
+  },
+  "salida": {
+   "ru": "выход",
+   "uk": "вихід",
+   "en": "exit",
+   "es": "lugar por donde se sale"
+  }
+ }
+}

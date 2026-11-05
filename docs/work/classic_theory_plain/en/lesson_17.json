@@ -1,0 +1,710 @@
+{
+  "lang": "en",
+  "lesson": 17,
+  "title": {
+    "ru": "Что происходит прямо сейчас",
+    "uk": "Що відбувається просто зараз",
+    "en": "What is happening right now"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я жду. Она ждёт. Мы уходим",
+        "uk": "Я чекаю. Вона чекає. Ми йдемо",
+        "en": "I am waiting. She is waiting. We are leaving"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я жду сейчас».\nI am waiting. — Я жду.\nЧитается: ай эм уэ́йтинг.\nСлово am вы уже видели.\nОно значит «быть, находиться».\nПо-русски его не говорят.\nСлово waiting — это wait + ing.\nWait значит «ждать».\nКогда действие идёт сейчас, берут am, is или are и слово с ing.\nShe is waiting. — Она ждёт.\nЧитается: ши из уэ́йтинг.\nСлово меняется, смотря о ком речь.\nЯ — am.\nОн, она — is.\nМы, они — are.\nWe are leaving. — Мы уходим.\nЧитается: уи ар ли́винг.\nСлово leaving значит «уходят» (leave + ing).\nЗдесь leave значит «уходить».\nБуква e в конце пропала.\nОна не читается, и перед ing её убирают.",
+        "uk": "Дивіться, як сказати «Я чекаю зараз».\nI am waiting. — Я чекаю.\nЧитається: ай ем уе́йтінг.\nСлово am ви вже бачили.\nВоно означає «бути, перебувати».\nУкраїнською його не кажуть.\nСлово waiting — це wait + ing.\nWait означає «чекати».\nКоли дія триває зараз, беруть am, is або are і слово з ing.\nShe is waiting. — Вона чекає.\nЧитається: ші із уе́йтінг.\nСлово змінюється залежно від того, про кого мова.\nЯ — am.\nВін, вона — is.\nМи, вони — are.\nWe are leaving. — Ми йдемо.\nЧитається: уи ар лі́вінг.\nСлово leaving означає «йдуть» (leave + ing).\nТут leave означає «йти геть».\nЛітера e в кінці зникла.\nВона не читається, і перед ing її прибирають.",
+        "en": "Look at how to say what you are doing now.\nI am waiting.\nYou have seen the word am.\nIt means “to be”.\nIt joins I with the next word.\nThe word waiting is wait + ing.\nWait means to stay until something happens.\nWhen something is happening now, use am, is or are, and a word with ing.\nShe is waiting.\nThe word changes with who we talk about.\nI — am.\nHe, she — is.\nWe, they — are.\nWe are leaving.\nThe word leaving means “going away” (leave + ing).\nHere leave means to go away.\nThe letter e at the end is gone.\nWe do not say it, so we drop it before ing."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:17.01",
+          "say": {
+            "ru": "ай эм уэ́йтинг",
+            "uk": "ай ем уе́йтінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.02",
+          "say": {
+            "ru": "ши из уэ́йтинг",
+            "uk": "ші із уе́йтінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.03",
+          "say": {
+            "ru": "уи ар ли́винг",
+            "uk": "уи ар лі́вінг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я жду»",
+            "uk": "Виберіть, як сказати: «Я чекаю»",
+            "en": "Choose how to say: “I am waiting.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:17.01",
+          "options": [
+            "en-classic-r1:17.01",
+            "en-classic-r1:17.02",
+            "en-classic-r1:17.03"
+          ],
+          "answerId": "en-classic-r1:17.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она ждёт»",
+            "uk": "Виберіть, як сказати: «Вона чекає»",
+            "en": "Choose how to say: “She is waiting.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.02",
+          "options": [
+            "en-classic-r1:17.02",
+            "en-classic-r1:17.01",
+            "en-classic-r1:17.03"
+          ],
+          "answerId": "en-classic-r1:17.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы уходим»",
+            "uk": "Виберіть, як сказати: «Ми йдемо»",
+            "en": "Choose how to say: “We are leaving.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.03",
+          "options": [
+            "en-classic-r1:17.03",
+            "en-classic-r1:17.02",
+            "en-classic-r1:17.01"
+          ],
+          "answerId": "en-classic-r1:17.03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Готовит, слушает, звонит",
+        "uk": "Готує, слухає, дзвонить",
+        "en": "Cooking, listening, ringing"
+      },
+      "text": {
+        "ru": "He is cooking. — Он готовит.\nЧитается: хи из ку́кинг.\nСлово cooking значит «готовит» (cook + ing).\nI am listening. — Я слушаю.\nЧитается: ай эм ли́сенинг.\nСлово listening значит «слушаю» (listen + ing).\nСлово listen значит «слушать».\nThe phone is ringing. — Звонит телефон.\nЧитается: зэ фо́ун из ри́нгинг.\nСлово ringing значит «звонит» (ring + ing).\nТелефон один, поэтому is.\nThe doors are closing. — Двери закрываются.\nЧитается: зэ до́рз ар кло́узинг.\nСлово closing значит «закрываются» (close + ing).\nДвери — их несколько, поэтому are.\nБуква e пропала, как в leaving.",
+        "uk": "He is cooking. — Він готує.\nЧитається: хі із ку́кінг.\nСлово cooking означає «готує» (cook + ing).\nI am listening. — Я слухаю.\nЧитається: ай ем лі́сенінг.\nСлово listening означає «слухаю» (listen + ing).\nСлово listen означає «слухати».\nThe phone is ringing. — Телефон дзвонить.\nЧитається: зе фо́ун із рі́нгінг.\nСлово ringing означає «дзвонить» (ring + ing).\nТелефон один, тому is.\nThe doors are closing. — Двері зачиняються.\nЧитається: зе до́рз ар кло́узінг.\nСлово closing означає «зачиняються» (close + ing).\nДвері — їх кілька, тому are.\nЛітера e зникла, як у leaving.",
+        "en": "He is cooking.\nThe word cooking means “making food” (cook + ing).\nI am listening.\nThe word listening means “using your ears on purpose” (listen + ing).\nThe word listen means to use your ears on purpose.\nThe phone is ringing.\nThe word ringing means “making a bell sound” (ring + ing).\nThere is one phone, so we say is.\nThe doors are closing.\nThe word closing means “shutting” (close + ing).\nThere are two doors, so we say are.\nThe letter e is gone, as in leaving."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:17.05",
+          "say": {
+            "ru": "хи из ку́кинг",
+            "uk": "хі із ку́кінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.06",
+          "say": {
+            "ru": "ай эм ли́сенинг",
+            "uk": "ай ем лі́сенінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.07",
+          "say": {
+            "ru": "зэ фо́ун из ри́нгинг",
+            "uk": "зе фо́ун із рі́нгінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.08",
+          "say": {
+            "ru": "зэ до́рз ар кло́узинг",
+            "uk": "зе до́рз ар кло́узінг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он готовит»",
+            "uk": "Виберіть, як сказати: «Він готує»",
+            "en": "Choose how to say: “He is cooking.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:17.05",
+          "options": [
+            "en-classic-r1:17.05",
+            "en-classic-r1:17.06",
+            "en-classic-r1:17.07"
+          ],
+          "answerId": "en-classic-r1:17.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Звонит телефон»",
+            "uk": "Виберіть, як сказати: «Телефон дзвонить»",
+            "en": "Choose how to say: “The phone is ringing.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.07",
+          "options": [
+            "en-classic-r1:17.07",
+            "en-classic-r1:17.08",
+            "en-classic-r1:17.05"
+          ],
+          "answerId": "en-classic-r1:17.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Двери закрываются»",
+            "uk": "Виберіть, як сказати: «Двері зачиняються»",
+            "en": "Choose how to say: “The doors are closing.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.08",
+          "options": [
+            "en-classic-r1:17.08",
+            "en-classic-r1:17.07",
+            "en-classic-r1:17.06"
+          ],
+          "answerId": "en-classic-r1:17.08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Надевает, моет, собирает, записывает",
+        "uk": "Одягає, миє, збирає, записує",
+        "en": "Putting on, washing, packing, writing"
+      },
+      "text": {
+        "ru": "She is putting her coat on. — Она надевает пальто.\nЧитается: ши из пу́тинг хэр ко́ут он.\nСлово putting значит «надевает» (put + ing).\nЗдесь буква t удвоилась: put → putting.\nСлово короткое, и без второй t гласная читалась бы по-другому.\nВместе put on — «надеть».\nСлово on здесь стоит после слова coat: put on a coat — «надевать пальто».\nHe is washing his hands. — Он моет руки.\nЧитается: хи из уо́шинг хиз хэ́ндз.\nСлово washing значит «моет» (wash + ing).\nWe are packing our suitcases. — Мы собираем чемоданы.\nЧитается: уи ар пэ́кинг а́уэр су́ткэйсиз.\nСлово packing значит «собираем» (pack + ing).\nСлово suitcases значит «чемоданы» (один — suitcase).\nI am writing down the address. — Я записываю адрес.\nЧитается: ай эм ра́йтинг да́ун зи эдрэ́с.\nСлово writing значит «записываю» (write + ing).\nБуква e пропала.\nВместе write down — «записать».",
+        "uk": "She is putting her coat on. — Вона одягає пальто.\nЧитається: ші із пу́тінг хер ко́ут он.\nСлово putting означає «одягає» (put + ing).\nТут літера t подвоїлась: put → putting.\nСлово коротке, і без другої t голосна читалася б інакше.\nРазом put on — «одягти».\nСлово on тут стоїть після слова coat: put on a coat — «одягати пальто».\nHe is washing his hands. — Він миє руки.\nЧитається: хі із уо́шінг хіз хе́ндз.\nСлово washing означає «миє» (wash + ing).\nWe are packing our suitcases. — Ми пакуємо валізи.\nЧитається: уи ар пе́кінг а́уер су́ткейсіз.\nСлово packing означає «збираємо» (pack + ing).\nСлово suitcases означає «валізи» (одна — suitcase).\nI am writing down the address. — Я записую адресу.\nЧитається: ай ем ра́йтінг да́ун зі едре́с.\nСлово writing означає «записую» (write + ing).\nЛітера e зникла.\nРазом write down — «записати».",
+        "en": "She is putting her coat on.\nThe word putting means “moving something into place” (put + ing).\nHere the letter t is doubled: put → putting.\nThe word is short.\nWithout the second t, the vowel would sound different.\nTogether, put on means to wear.\nThe word on stands after the verb here: put on a coat.\nHe is washing his hands.\nThe word washing means “cleaning with water” (wash + ing).\nWe are packing our suitcases.\nThe word packing means “putting things in a bag” (pack + ing).\nThe word suitcases means “big bags for a trip” (one: suitcase).\nI am writing down the address.\nThe word writing means “putting words on paper” (write + ing).\nThe letter e is gone.\nTogether, write down means to put on paper."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:17.12",
+          "say": {
+            "ru": "ши из пу́тинг хэр ко́ут он",
+            "uk": "ші із пу́тінг хер ко́ут он"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.13",
+          "say": {
+            "ru": "хи из уо́шинг хиз хэ́ндз",
+            "uk": "хі із уо́шінг хіз хе́ндз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.14",
+          "say": {
+            "ru": "уи ар пэ́кинг а́уэр су́ткэйсиз",
+            "uk": "уи ар пе́кінг а́уер су́ткейсіз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.17",
+          "say": {
+            "ru": "ай эм ра́йтинг да́ун зи эдрэ́с",
+            "uk": "ай ем ра́йтінг да́ун зі едре́с"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она надевает пальто»",
+            "uk": "Виберіть, як сказати: «Вона одягає пальто»",
+            "en": "Choose how to say: “She is putting her coat on.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:17.12",
+          "options": [
+            "en-classic-r1:17.12",
+            "en-classic-r1:17.13",
+            "en-classic-r1:17.14"
+          ],
+          "answerId": "en-classic-r1:17.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он моет руки»",
+            "uk": "Виберіть, як сказати: «Він миє руки»",
+            "en": "Choose how to say: “He is washing his hands.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.13",
+          "options": [
+            "en-classic-r1:17.13",
+            "en-classic-r1:17.12",
+            "en-classic-r1:17.17"
+          ],
+          "answerId": "en-classic-r1:17.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я записываю адрес»",
+            "uk": "Виберіть, як сказати: «Я записую адресу»",
+            "en": "Choose how to say: “I am writing down the address.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.17",
+          "options": [
+            "en-classic-r1:17.17",
+            "en-classic-r1:17.14",
+            "en-classic-r1:17.13"
+          ],
+          "answerId": "en-classic-r1:17.17"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Несут, чинят, спит",
+        "uk": "Несуть, лагодить, спить",
+        "en": "Carrying, fixing, sleeping"
+      },
+      "text": {
+        "ru": "They are carrying a mattress upstairs. — Они несут матрас наверх.\nЧитается: зэй ар кэ́ринг э мэ́трис апсте́рз.\nСлово carrying значит «несут» (carry + ing).\nУ carry буква y остаётся: carrying.\nИначе подряд встали бы две i.\nСлово mattress значит «матрас».\nMy neighbour is fixing his bike. — Мой сосед чинит свой велосипед.\nЧитается: май нэ́йбор из фи́ксинг хиз ба́йк.\nСлово neighbour значит «сосед».\nСлово fixing значит «чинит» (fix + ing).\nThe baby is sleeping in the cot. — Ребенок спит в кроватке.\nЧитается: зэ бэ́йби из сли́пинг ин зэ ко́т.\nСлово baby значит «малыш, ребёнок».\nСлово sleeping значит «спит» (sleep + ing).\nСлово cot значит «детская кроватка».",
+        "uk": "They are carrying a mattress upstairs. — Вони несуть матрац нагору.\nЧитається: зей ар ке́рінг е ме́тріс апсте́рз.\nСлово carrying означає «несуть» (carry + ing).\nУ carry літера y залишається: carrying.\nІнакше підряд стали б дві i.\nСлово mattress означає «матрац».\nMy neighbour is fixing his bike. — Мій сусід ремонтує свій велосипед.\nЧитається: май не́йбор із фі́ксінг хіз ба́йк.\nСлово neighbour означає «сусід».\nСлово fixing означає «лагодить» (fix + ing).\nThe baby is sleeping in the cot. — Малюк спить у ліжечку.\nЧитається: зе бе́йбі із слі́пінг ін зе ко́т.\nСлово baby означає «малюк, дитина».\nСлово sleeping означає «спить» (sleep + ing).\nСлово cot означає «дитяче ліжечко».",
+        "en": "They are carrying a mattress upstairs.\nThe word carrying means “moving something in your hands” (carry + ing).\nIn carry the letter y stays: carrying.\nOtherwise two i letters would stand together.\nThe word mattress means “a soft pad for a bed”.\nMy neighbour is fixing his bike.\nThe word neighbour means “a person who lives next to you”.\nThe word fixing means “making something work again” (fix + ing).\nThe baby is sleeping in the cot.\nThe word baby means “a very young child”.\nThe word sleeping means “resting with closed eyes” (sleep + ing).\nThe word cot means “a small bed for a baby”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:17.15",
+          "say": {
+            "ru": "зэй ар кэ́ринг э мэ́трис апсте́рз",
+            "uk": "зей ар ке́рінг е ме́тріс апсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.19",
+          "say": {
+            "ru": "май нэ́йбор из фи́ксинг хиз ба́йк",
+            "uk": "май не́йбор із фі́ксінг хіз ба́йк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.20",
+          "say": {
+            "ru": "зэ бэ́йби из сли́пинг ин зэ ко́т",
+            "uk": "зе бе́йбі із слі́пінг ін зе ко́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они несут матрас наверх»",
+            "uk": "Виберіть, як сказати: «Вони несуть матрац нагору»",
+            "en": "Choose how to say: “They are carrying a mattress upstairs.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:17.15",
+          "options": [
+            "en-classic-r1:17.15",
+            "en-classic-r1:17.19",
+            "en-classic-r1:17.20"
+          ],
+          "answerId": "en-classic-r1:17.15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой сосед чинит свой велосипед»",
+            "uk": "Виберіть, як сказати: «Мій сусід ремонтує свій велосипед»",
+            "en": "Choose how to say: “My neighbour is fixing his bike.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.19",
+          "options": [
+            "en-classic-r1:17.19",
+            "en-classic-r1:17.15",
+            "en-classic-r1:17.20"
+          ],
+          "answerId": "en-classic-r1:17.19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ребенок спит в кроватке»",
+            "uk": "Виберіть, як сказати: «Малюк спить у ліжечку»",
+            "en": "Choose how to say: “The baby is sleeping in the cot.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.20",
+          "options": [
+            "en-classic-r1:17.20",
+            "en-classic-r1:17.19",
+            "en-classic-r1:17.12"
+          ],
+          "answerId": "en-classic-r1:17.20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вопросы",
+        "uk": "Питання",
+        "en": "Questions"
+      },
+      "text": {
+        "ru": "Чтобы спросить, поставьте is или are в начало.\nIs she coming with us? — Она идет с нами?\nЧитается: из ши ка́минг уи́з а́с.\nСлово coming значит «идёт, приезжает» (come + ing).\nБыло: She is coming.\nСтало: Is she coming?\nБуква e пропала.\nAre they waiting outside? — Они ждут снаружи?\nЧитается: ар зэй уэ́йтинг аутса́йд.\nIs the kettle boiling? — Чайник кипит?\nЧитается: из зэ кэ́тл бо́йлинг.\nСлово boiling значит «кипит» (boil + ing).\nСлова where и why ставят в самое начало.\nWhere are we going? — Куда мы идём?\nЧитается: уэ́р ар уи го́уинг.\nСлово going значит «идём, едем» (go + ing).\nWhy is the light flashing? — Почему мигает свет?\nЧитается: уа́й из зэ ла́йт флэ́шинг.\nСлово flashing значит «мигает» (flash + ing).",
+        "uk": "Щоб запитати, поставте is або are на початок.\nIs she coming with us? — Вона йде з нами?\nЧитається: із ші ка́мінг уи́з а́с.\nСлово coming означає «йде, приїжджає» (come + ing).\nБуло: She is coming.\nСтало: Is she coming?\nЛітера e зникла.\nAre they waiting outside? — Вони чекають надворі?\nЧитається: ар зей уе́йтінг аутса́йд.\nIs the kettle boiling? — Чайник кипить?\nЧитається: із зе ке́тл бо́йлінг.\nСлово boiling означає «кипить» (boil + ing).\nСлова where та why ставлять на самий початок.\nWhere are we going? — Куди ми йдемо?\nЧитається: уе́р ар уи го́уинг.\nСлово going означає «йдемо, їдемо» (go + ing).\nWhy is the light flashing? — Чому блимає світло?\nЧитається: уа́й із зе ла́йт фле́шінг.\nСлово flashing означає «блимає» (flash + ing).",
+        "en": "To ask a question, put is or are first.\nIs she coming with us?\nThe word coming means “moving toward here” (come + ing).\nBefore: She is coming.\nNow: Is she coming?\nThe letter e is gone.\nAre they waiting outside?\nIs the kettle boiling?\nThe word boiling means “getting very hot, with bubbles” (boil + ing).\nThe words where and why go at the very start.\nWhere are we going?\nThe word going means “moving to a place” (go + ing).\nWhy is the light flashing?\nThe word flashing means “turning on and off quickly” (flash + ing)."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:17.22",
+          "say": {
+            "ru": "из ши ка́минг уи́з а́с",
+            "uk": "із ші ка́мінг уи́з а́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.23",
+          "say": {
+            "ru": "ар зэй уэ́йтинг аутса́йд",
+            "uk": "ар зей уе́йтінг аутса́йд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.28",
+          "say": {
+            "ru": "из зэ кэ́тл бо́йлинг",
+            "uk": "із зе ке́тл бо́йлінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.26",
+          "say": {
+            "ru": "уэ́р ар уи го́уинг",
+            "uk": "уе́р ар уи го́уинг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.27",
+          "say": {
+            "ru": "уа́й из зэ ла́йт флэ́шинг",
+            "uk": "уа́й із зе ла́йт фле́шінг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она идет с нами?»",
+            "uk": "Виберіть, як сказати: «Вона йде з нами?»",
+            "en": "Choose how to say: “Is she coming with us?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:17.22",
+          "options": [
+            "en-classic-r1:17.22",
+            "en-classic-r1:17.23",
+            "en-classic-r1:17.28"
+          ],
+          "answerId": "en-classic-r1:17.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чайник кипит?»",
+            "uk": "Виберіть, як сказати: «Чайник кипить?»",
+            "en": "Choose how to say: “Is the kettle boiling?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.28",
+          "options": [
+            "en-classic-r1:17.28",
+            "en-classic-r1:17.23",
+            "en-classic-r1:17.22"
+          ],
+          "answerId": "en-classic-r1:17.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Куда мы идём?»",
+            "uk": "Виберіть, як сказати: «Куди ми йдемо?»",
+            "en": "Choose how to say: “Where are we going?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.26",
+          "options": [
+            "en-classic-r1:17.26",
+            "en-classic-r1:17.27",
+            "en-classic-r1:17.22"
+          ],
+          "answerId": "en-classic-r1:17.26"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Не происходит сейчас",
+        "uk": "Не відбувається зараз",
+        "en": "Not happening now"
+      },
+      "text": {
+        "ru": "Добавьте not после am, is или are — получится «не».\nI am not ignoring you. — Я вас не игнорирую.\nЧитается: ай эм нот игно́ринг ю.\nСлово ignoring значит «игнорирую» (ignore + ing).\nThe printer is not responding. — Принтер не отвечает.\nЧитается: зэ при́нтер из нот риспо́ндинг.\nСлово responding значит «отвечает» (respond + ing).\nIt is not raining now. — Сейчас не идёт дождь.\nЧитается: ит из нот рэ́йнинг на́у.\nСлово raining значит «идёт (о дожде)» (rain + ing).\nСлово now значит «сейчас».\nThe bus is not moving. — Автобус не едет.\nЧитается: зэ ба́с из нот му́винг.\nСлово moving значит «едет, движется» (move + ing).\nБуква e пропала в ignoring и moving.",
+        "uk": "Додайте not після am, is або are — вийде «не».\nI am not ignoring you. — Я вас не ігнорую.\nЧитається: ай ем нот ігно́рінг ю.\nСлово ignoring означає «ігнорую» (ignore + ing).\nThe printer is not responding. — Принтер не відповідає.\nЧитається: зе прі́нтер із нот ріспо́ндінг.\nСлово responding означає «відповідає» (respond + ing).\nIt is not raining now. — Зараз дощу немає.\nЧитається: іт із нот ре́йнінг на́у.\nСлово raining означає «йде (про дощ)» (rain + ing).\nСлово now означає «зараз».\nThe bus is not moving. — Автобус не рухається.\nЧитається: зе ба́с із нот му́вінг.\nСлово moving означає «їде, рухається» (move + ing).\nЛітера e зникла в ignoring та moving.",
+        "en": "Add not after am, is or are to say it is not happening.\nI am not ignoring you.\nThe word ignoring means “not paying attention to someone” (ignore + ing).\nThe printer is not responding.\nThe word responding means “answering” (respond + ing).\nIt is not raining now.\nThe word raining means “water falling from clouds” (rain + ing).\nThe word now means “at this moment”.\nThe bus is not moving.\nThe word moving means “going from one place to another” (move + ing).\nThe letter e is gone in ignoring and moving."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:17.31",
+          "say": {
+            "ru": "ай эм нот игно́ринг ю",
+            "uk": "ай ем нот ігно́рінг ю"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.35",
+          "say": {
+            "ru": "зэ при́нтер из нот риспо́ндинг",
+            "uk": "зе прі́нтер із нот ріспо́ндінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.38",
+          "say": {
+            "ru": "ит из нот рэ́йнинг на́у",
+            "uk": "іт із нот ре́йнінг на́у"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.40",
+          "say": {
+            "ru": "зэ ба́с из нот му́винг",
+            "uk": "зе ба́с із нот му́вінг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вас не игнорирую»",
+            "uk": "Виберіть, як сказати: «Я вас не ігнорую»",
+            "en": "Choose how to say: “I am not ignoring you.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:17.31",
+          "options": [
+            "en-classic-r1:17.31",
+            "en-classic-r1:17.35",
+            "en-classic-r1:17.38"
+          ],
+          "answerId": "en-classic-r1:17.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сейчас не идёт дождь»",
+            "uk": "Виберіть, як сказати: «Зараз дощу немає»",
+            "en": "Choose how to say: “It is not raining now.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.38",
+          "options": [
+            "en-classic-r1:17.38",
+            "en-classic-r1:17.40",
+            "en-classic-r1:17.35"
+          ],
+          "answerId": "en-classic-r1:17.38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус не едет»",
+            "uk": "Виберіть, як сказати: «Автобус не рухається»",
+            "en": "Choose how to say: “The bus is not moving.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.40",
+          "options": [
+            "en-classic-r1:17.40",
+            "en-classic-r1:17.38",
+            "en-classic-r1:17.35"
+          ],
+          "answerId": "en-classic-r1:17.40"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Сейчас, а не всегда",
+        "uk": "Зараз, а не завжди",
+        "en": "Now, not always"
+      },
+      "text": {
+        "ru": "Обычное дело говорят без ing.\nТо, что идёт сейчас, — с ing.\nI usually drive, but today I am walking.\nСлово but значит «но».\n— Обычно я езжу на машине, но сегодня иду пешком.\nЧитается: ай ю́жуали дра́йв бат тудэ́й ай эм уо́кинг.\nСлово walking значит «иду пешком» (walk + ing).\nShe normally works upstairs, but today she is helping us.\n— Обычно она работает наверху, но сегодня помогает нам.\nЧитается: ши но́рмали уо́ркс апсте́рз бат тудэ́й ши из хэ́лпинг а́с.\nСлово normally значит «обычно».\nСлово helping значит «помогает» (help + ing).\nI am learning to swim this summer. — Этим летом я учусь плавать.\nЧитается: ай эм ле́рнинг ту сви́м зис са́мер.\nСлово learning значит «учусь» (learn + ing).\nСлово learn значит «учиться».",
+        "uk": "Звичну справу кажуть без ing.\nТе, що триває зараз, — з ing.\nI usually drive, but today I am walking.\nСлово but означає «але».\n— Зазвичай я їжджу машиною, але сьогодні йду пішки.\nЧитається: ай ю́жуалі дра́йв бат туде́й ай ем уо́кінг.\nСлово walking означає «йду пішки» (walk + ing).\nShe normally works upstairs, but today she is helping us.\n— Зазвичай вона працює нагорі, але сьогодні вона нам допомагає.\nЧитається: ші но́рмалі уо́ркс апсте́рз бат туде́й ші із хе́лпінг а́с.\nСлово normally означає «зазвичай».\nСлово helping означає «допомагає» (help + ing).\nI am learning to swim this summer. — Цього літа я вчуся плавати.\nЧитається: ай ем ле́рнінг ту сві́м зіс са́мер.\nСлово learning означає «вчуся» (learn + ing).\nСлово learn означає «вчитися».",
+        "en": "A habit is said without ing.\nSomething happening now has ing.\nI usually drive, but today I am walking.\nThe word but means “but”: it joins two ideas that differ.\nThe word walking means “going on foot” (walk + ing).\nShe normally works upstairs, but today she is helping us.\nThe word normally means “in the usual way”.\nThe word helping means “making things easier for someone” (help + ing).\nI am learning to swim this summer.\nThe word learning means “getting to know how” (learn + ing).\nThe word learn means to get to know how to do something."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:17.41",
+          "say": {
+            "ru": "ай ю́жуали дра́йв бат тудэ́й ай эм уо́кинг",
+            "uk": "ай ю́жуалі дра́йв бат туде́й ай ем уо́кінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.42",
+          "say": {
+            "ru": "ши но́рмали уо́ркс апсте́рз бат тудэ́й ши из хэ́лпинг а́с",
+            "uk": "ші но́рмалі уо́ркс апсте́рз бат туде́й ші із хе́лпінг а́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.44",
+          "say": {
+            "ru": "ай эм ле́рнинг ту сви́м зис са́мер",
+            "uk": "ай ем ле́рнінг ту сві́м зіс са́мер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Обычно я езжу на машине, но сегодня иду пешком»",
+            "uk": "Виберіть, як сказати: «Зазвичай я їжджу машиною, але сьогодні йду пішки»",
+            "en": "Choose how to say: “I usually drive, but today I am walking.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:17.41",
+          "options": [
+            "en-classic-r1:17.41",
+            "en-classic-r1:17.42",
+            "en-classic-r1:17.44"
+          ],
+          "answerId": "en-classic-r1:17.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Обычно она работает наверху, но сегодня помогает нам»",
+            "uk": "Виберіть, як сказати: «Зазвичай вона працює нагорі, але сьогодні вона нам допомагає»",
+            "en": "Choose how to say: “She normally works upstairs, but today she is helping us.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.42",
+          "options": [
+            "en-classic-r1:17.42",
+            "en-classic-r1:17.41",
+            "en-classic-r1:17.44"
+          ],
+          "answerId": "en-classic-r1:17.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Этим летом я учусь плавать»",
+            "uk": "Виберіть, як сказати: «Цього літа я вчуся плавати»",
+            "en": "Choose how to say: “I am learning to swim this summer.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.44",
+          "options": [
+            "en-classic-r1:17.44",
+            "en-classic-r1:17.41",
+            "en-classic-r1:17.42"
+          ],
+          "answerId": "en-classic-r1:17.44"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Красят, улучшается, заканчиваю",
+        "uk": "Фарбують, покращується, закінчую",
+        "en": "Painting, getting better, finishing"
+      },
+      "text": {
+        "ru": "They are painting the front door today. — Сегодня красят входную дверь.\nЧитается: зэй ар пэ́йнтинг зэ фра́нт до́р тудэ́й.\nСлово painting значит «красят» (paint + ing).\nСлово paint значит «красить».\nСлово front значит «передний».\nВместе front door — «входная дверь».\nMy English is getting better. — Мой английский улучшается.\nЧитается: май и́нглиш из гэ́тинг бэ́тер.\nСлово getting значит «становится» (get + ing).\nЗдесь t удвоилась, как в putting.\nВместе getting better — «становится лучше».\nI am just finishing the report on my tablet.\n— Я как раз заканчиваю отчет на планшете.\nЧитается: ай эм джа́ст фи́нишинг зэ рипо́рт он май тэ́блит.\nСлово just значит «как раз сейчас».\nСлово finishing значит «заканчиваю» (finish + ing).\nСлово report значит «отчёт».\nСлово tablet значит «планшет».",
+        "uk": "They are painting the front door today. — Сьогодні фарбують вхідні двері.\nЧитається: зей ар пе́йнтінг зе фра́нт до́р туде́й.\nСлово painting означає «фарбують» (paint + ing).\nСлово paint означає «фарбувати».\nСлово front означає «передній».\nРазом front door — «вхідні двері».\nMy English is getting better. — Моя англійська покращується.\nЧитається: май і́нгліш із ге́тінг бе́тер.\nСлово getting означає «стає» (get + ing).\nТут t подвоїлась, як у putting.\nРазом getting better — «стає краще».\nI am just finishing the report on my tablet.\n— Я якраз закінчую звіт на своєму планшеті.\nЧитається: ай ем джа́ст фі́нішінг зе ріпо́рт он май те́бліт.\nСлово just означає «саме зараз».\nСлово finishing означає «закінчую» (finish + ing).\nСлово report означає «звіт».\nСлово tablet означає «планшет».",
+        "en": "They are painting the front door today.\nThe word painting means “putting colour on a wall” (paint + ing).\nThe word paint means to put colour on something.\nThe word front means “at the face or start of something”.\nTogether, front door means the main door of a house.\nMy English is getting better.\nThe word getting means “becoming” (get + ing).\nHere t is doubled, like in putting.\nTogether, getting better means becoming better.\nI am just finishing the report on my tablet.\nThe word just means “at this very moment”.\nThe word finishing means “doing the last part” (finish + ing).\nThe word report means “a paper that tells what happened”.\nThe word tablet means “a flat computer you touch”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:17.45",
+          "say": {
+            "ru": "зэй ар пэ́йнтинг зэ фра́нт до́р тудэ́й",
+            "uk": "зей ар пе́йнтінг зе фра́нт до́р туде́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.47",
+          "say": {
+            "ru": "май и́нглиш из гэ́тинг бэ́тер",
+            "uk": "май і́нгліш із ге́тінг бе́тер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:17.50",
+          "say": {
+            "ru": "ай эм джа́ст фи́нишинг зэ рипо́рт он май тэ́блит",
+            "uk": "ай ем джа́ст фі́нішінг зе ріпо́рт он май те́бліт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня красят входную дверь»",
+            "uk": "Виберіть, як сказати: «Сьогодні фарбують вхідні двері»",
+            "en": "Choose how to say: “They are painting the front door today.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:17.45",
+          "options": [
+            "en-classic-r1:17.45",
+            "en-classic-r1:17.47",
+            "en-classic-r1:17.50"
+          ],
+          "answerId": "en-classic-r1:17.45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой английский улучшается»",
+            "uk": "Виберіть, як сказати: «Моя англійська покращується»",
+            "en": "Choose how to say: “My English is getting better.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.47",
+          "options": [
+            "en-classic-r1:17.47",
+            "en-classic-r1:17.45",
+            "en-classic-r1:17.50"
+          ],
+          "answerId": "en-classic-r1:17.47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я как раз заканчиваю отчет на планшете»",
+            "uk": "Виберіть, як сказати: «Я якраз закінчую звіт на своєму планшеті»",
+            "en": "Choose how to say: “I am just finishing the report on my tablet.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:17.50",
+          "options": [
+            "en-classic-r1:17.50",
+            "en-classic-r1:17.45",
+            "en-classic-r1:17.47"
+          ],
+          "answerId": "en-classic-r1:17.50"
+        }
+      ]
+    }
+  ]
+}

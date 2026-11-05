@@ -1,0 +1,393 @@
+{
+ "lang": "es",
+ "lesson": 4,
+ "words": [
+  {
+   "form": "soy",
+   "surface": "Soy",
+   "count": 13,
+   "examples": [
+    {
+     "id": "es:04:01",
+     "target": "Soy Ana",
+     "ru": "Я Ана.",
+     "en": "I am Ana."
+    },
+    {
+     "id": "es:04:02",
+     "target": "Soy Luis",
+     "ru": "Я Луис.",
+     "en": "I am Luis."
+    }
+   ]
+  },
+  {
+   "form": "médico",
+   "surface": "médico",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:04:03",
+     "target": "Soy médico",
+     "ru": "Я врач.",
+     "en": "I am a doctor."
+    },
+    {
+     "id": "es:04:05",
+     "target": "Eres médico",
+     "ru": "Ты врач.",
+     "en": "You are a doctor."
+    }
+   ]
+  },
+  {
+   "form": "médica",
+   "surface": "médica",
+   "count": 5,
+   "examples": [
+    {
+     "id": "es:04:04",
+     "target": "Soy médica",
+     "ru": "Я врач.",
+     "en": "I am a doctor."
+    },
+    {
+     "id": "es:04:06",
+     "target": "Eres médica",
+     "ru": "Ты врач (жен.).",
+     "en": "You are a doctor."
+    }
+   ]
+  },
+  {
+   "form": "eres",
+   "surface": "Eres",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:04:05",
+     "target": "Eres médico",
+     "ru": "Ты врач.",
+     "en": "You are a doctor."
+    },
+    {
+     "id": "es:04:06",
+     "target": "Eres médica",
+     "ru": "Ты врач (жен.).",
+     "en": "You are a doctor."
+    }
+   ]
+  },
+  {
+   "form": "estudiante",
+   "surface": "estudiante",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:04:07",
+     "target": "Soy estudiante",
+     "ru": "Я студент.",
+     "en": "I am a student."
+    },
+    {
+     "id": "es:04:08",
+     "target": "Eres estudiante",
+     "ru": "Ты студентка.",
+     "en": "You are a student."
+    }
+   ]
+  },
+  {
+   "form": "profesor",
+   "surface": "profesor",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:04:09",
+     "target": "Soy profesor",
+     "ru": "Я преподаватель.",
+     "en": "I am a teacher."
+    },
+    {
+     "id": "es:04:14",
+     "target": "Luis es profesor",
+     "ru": "Луис — преподаватель.",
+     "en": "Luis is a teacher."
+    }
+   ]
+  },
+  {
+   "form": "profesora",
+   "surface": "profesora",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:04:10",
+     "target": "Soy profesora",
+     "ru": "Я преподавательница.",
+     "en": "I am a teacher."
+    },
+    {
+     "id": "es:04:13",
+     "target": "Ana es profesora",
+     "ru": "Ана — преподавательница.",
+     "en": "Ana is a teacher."
+    }
+   ]
+  },
+  {
+   "form": "es",
+   "surface": "es",
+   "count": 17,
+   "examples": [
+    {
+     "id": "es:04:11",
+     "target": "Ana es médica",
+     "ru": "Ана — врач.",
+     "en": "Ana is a doctor."
+    },
+    {
+     "id": "es:04:12",
+     "target": "Luis es médico",
+     "ru": "Луис — врач.",
+     "en": "Luis is a doctor."
+    }
+   ]
+  },
+  {
+   "form": "guía",
+   "surface": "guía",
+   "count": 7,
+   "examples": [
+    {
+     "id": "es:04:19",
+     "target": "Ana es guía",
+     "ru": "Ана — гид.",
+     "en": "Ana is a guide."
+    },
+    {
+     "id": "es:04:20",
+     "target": "Luis es guía",
+     "ru": "Луис — гид.",
+     "en": "Luis is a guide."
+    }
+   ]
+  },
+  {
+   "form": "somos",
+   "surface": "Somos",
+   "count": 8,
+   "examples": [
+    {
+     "id": "es:04:21",
+     "target": "Somos estudiantes",
+     "ru": "Мы студенты.",
+     "en": "We are students."
+    },
+    {
+     "id": "es:04:22",
+     "target": "Somos médicos",
+     "ru": "Мы врачи.",
+     "en": "We are doctors."
+    }
+   ]
+  },
+  {
+   "form": "estudiantes",
+   "surface": "estudiantes",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:04:21",
+     "target": "Somos estudiantes",
+     "ru": "Мы студенты.",
+     "en": "We are students."
+    },
+    {
+     "id": "es:04:26",
+     "target": "Son estudiantes",
+     "ru": "Вы студенты.",
+     "en": "You are students."
+    }
+   ]
+  },
+  {
+   "form": "médicos",
+   "surface": "médicos",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:04:22",
+     "target": "Somos médicos",
+     "ru": "Мы врачи.",
+     "en": "We are doctors."
+    }
+   ]
+  },
+  {
+   "form": "médicas",
+   "surface": "médicas",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:04:23",
+     "target": "Somos médicas",
+     "ru": "Мы врачи.",
+     "en": "We are doctors."
+    },
+    {
+     "id": "es:04:48",
+     "target": "Ellas son médicas",
+     "ru": "Они работают врачами.",
+     "en": "They are doctors."
+    }
+   ]
+  },
+  {
+   "form": "profesores",
+   "surface": "profesores",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:04:24",
+     "target": "Somos profesores",
+     "ru": "Мы преподаватели.",
+     "en": "We are teachers."
+    },
+    {
+     "id": "es:04:28",
+     "target": "Ellos son profesores",
+     "ru": "Они преподаватели.",
+     "en": "They are teachers."
+    }
+   ]
+  },
+  {
+   "form": "profesoras",
+   "surface": "profesoras",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:04:25",
+     "target": "Somos profesoras",
+     "ru": "Мы преподавательницы.",
+     "en": "We are teachers."
+    },
+    {
+     "id": "es:04:29",
+     "target": "Ellas son profesoras",
+     "ru": "Они преподавательницы.",
+     "en": "They are teachers."
+    }
+   ]
+  },
+  {
+   "form": "son",
+   "surface": "Son",
+   "count": 6,
+   "examples": [
+    {
+     "id": "es:04:26",
+     "target": "Son estudiantes",
+     "ru": "Вы студенты.",
+     "en": "You are students."
+    },
+    {
+     "id": "es:04:28",
+     "target": "Ellos son profesores",
+     "ru": "Они преподаватели.",
+     "en": "They are teachers."
+    }
+   ]
+  },
+  {
+   "form": "sois",
+   "surface": "Sois",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:04:27",
+     "target": "Sois estudiantes",
+     "ru": "Вы студенты.",
+     "en": "You are students."
+    },
+    {
+     "id": "es:04:47",
+     "target": "Sois guías",
+     "ru": "Вы гиды.",
+     "en": "You are guides."
+    }
+   ]
+  },
+  {
+   "form": "guías",
+   "surface": "guías",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:04:30",
+     "target": "Ana y Luis son guías",
+     "ru": "Ана и Луис — гиды.",
+     "en": "Ana and Luis are guides."
+    },
+    {
+     "id": "es:04:39",
+     "target": "Somos los guías",
+     "ru": "Гиды — это мы.",
+     "en": "We are the guides."
+    }
+   ]
+  },
+  {
+   "form": "enfermero",
+   "surface": "enfermero",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:04:41",
+     "target": "Soy enfermero",
+     "ru": "Я медбрат.",
+     "en": "I am a nurse."
+    },
+    {
+     "id": "es:04:43",
+     "target": "Luis es enfermero",
+     "ru": "Луис — медбрат.",
+     "en": "Luis is a nurse."
+    }
+   ]
+  },
+  {
+   "form": "enfermera",
+   "surface": "enfermera",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:04:42",
+     "target": "Soy enfermera",
+     "ru": "Я медсестра.",
+     "en": "I am a nurse."
+    },
+    {
+     "id": "es:04:44",
+     "target": "Ana es enfermera",
+     "ru": "Ана — медсестра.",
+     "en": "Ana is a nurse."
+    }
+   ]
+  },
+  {
+   "form": "usted",
+   "surface": "Usted",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:04:46",
+     "target": "Usted es médica",
+     "ru": "Вы врач.",
+     "en": "You are a doctor."
+    }
+   ]
+  }
+ ]
+}

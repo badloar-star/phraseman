@@ -1,0 +1,692 @@
+{
+ "lang": "es",
+ "lesson": 1,
+ "words": [
+  {
+   "form": "estoy",
+   "surface": "Estoy",
+   "count": 6,
+   "examples": [
+    {
+     "id": "es:01:01",
+     "target": "Estoy aquí",
+     "ru": "Я здесь.",
+     "en": "I am here."
+    },
+    {
+     "id": "es:01:06",
+     "target": "Estoy en casa",
+     "ru": "Я дома.",
+     "en": "I am at home."
+    }
+   ]
+  },
+  {
+   "form": "aquí",
+   "surface": "aquí",
+   "count": 9,
+   "examples": [
+    {
+     "id": "es:01:01",
+     "target": "Estoy aquí",
+     "ru": "Я здесь.",
+     "en": "I am here."
+    },
+    {
+     "id": "es:01:02",
+     "target": "Estás aquí",
+     "ru": "Ты здесь.",
+     "en": "You are here."
+    }
+   ]
+  },
+  {
+   "form": "estás",
+   "surface": "Estás",
+   "count": 5,
+   "examples": [
+    {
+     "id": "es:01:02",
+     "target": "Estás aquí",
+     "ru": "Ты здесь.",
+     "en": "You are here."
+    },
+    {
+     "id": "es:01:07",
+     "target": "Estás en casa",
+     "ru": "Ты дома.",
+     "en": "You are at home."
+    }
+   ]
+  },
+  {
+   "form": "en",
+   "surface": "en",
+   "count": 19,
+   "examples": [
+    {
+     "id": "es:01:07",
+     "target": "Estás en casa",
+     "ru": "Ты дома.",
+     "en": "You are at home."
+    },
+    {
+     "id": "es:01:06",
+     "target": "Estoy en casa",
+     "ru": "Я дома.",
+     "en": "I am at home."
+    }
+   ]
+  },
+  {
+   "form": "casa",
+   "surface": "casa",
+   "count": 8,
+   "examples": [
+    {
+     "id": "es:01:07",
+     "target": "Estás en casa",
+     "ru": "Ты дома.",
+     "en": "You are at home."
+    },
+    {
+     "id": "es:01:06",
+     "target": "Estoy en casa",
+     "ru": "Я дома.",
+     "en": "I am at home."
+    }
+   ]
+  },
+  {
+   "form": "clase",
+   "surface": "clase",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:01:08",
+     "target": "Estoy en clase",
+     "ru": "Я на занятии.",
+     "en": "I am in class."
+    },
+    {
+     "id": "es:01:20",
+     "target": "Él está en clase",
+     "ru": "Он на занятии.",
+     "en": "He is in class."
+    }
+   ]
+  },
+  {
+   "form": "él",
+   "surface": "Él",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:01:20",
+     "target": "Él está en clase",
+     "ru": "Он на занятии.",
+     "en": "He is in class."
+    },
+    {
+     "id": "es:01:11",
+     "target": "Él está aquí",
+     "ru": "Он здесь.",
+     "en": "He is here."
+    }
+   ]
+  },
+  {
+   "form": "está",
+   "surface": "está",
+   "count": 22,
+   "examples": [
+    {
+     "id": "es:01:20",
+     "target": "Él está en clase",
+     "ru": "Он на занятии.",
+     "en": "He is in class."
+    },
+    {
+     "id": "es:01:11",
+     "target": "Él está aquí",
+     "ru": "Он здесь.",
+     "en": "He is here."
+    }
+   ]
+  },
+  {
+   "form": "ana",
+   "surface": "Ana",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:01:13",
+     "target": "Ana está en casa",
+     "ru": "Ана дома.",
+     "en": "Ana is at home."
+    },
+    {
+     "id": "es:01:29",
+     "target": "Ana y Luis están aquí",
+     "ru": "Ана и Луис здесь.",
+     "en": "Ana and Luis are here."
+    }
+   ]
+  },
+  {
+   "form": "ella",
+   "surface": "Ella",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:01:19",
+     "target": "Ella está en casa",
+     "ru": "Она дома.",
+     "en": "She is at home."
+    },
+    {
+     "id": "es:01:12",
+     "target": "Ella está allí",
+     "ru": "Она вон там.",
+     "en": "She is over there."
+    }
+   ]
+  },
+  {
+   "form": "luis",
+   "surface": "Luis",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:01:14",
+     "target": "Luis está en clase",
+     "ru": "Луис на занятии.",
+     "en": "Luis is in class."
+    },
+    {
+     "id": "es:01:29",
+     "target": "Ana y Luis están aquí",
+     "ru": "Ана и Луис здесь.",
+     "en": "Ana and Luis are here."
+    }
+   ]
+  },
+  {
+   "form": "estamos",
+   "surface": "Estamos",
+   "count": 5,
+   "examples": [
+    {
+     "id": "es:01:21",
+     "target": "Estamos aquí",
+     "ru": "Мы здесь.",
+     "en": "We are here."
+    },
+    {
+     "id": "es:01:23",
+     "target": "Estamos en casa",
+     "ru": "Мы дома.",
+     "en": "We are at home."
+    }
+   ]
+  },
+  {
+   "form": "allí",
+   "surface": "allí",
+   "count": 5,
+   "examples": [
+    {
+     "id": "es:01:03",
+     "target": "Estás allí",
+     "ru": "Ты вон там.",
+     "en": "You are over there."
+    },
+    {
+     "id": "es:01:12",
+     "target": "Ella está allí",
+     "ru": "Она вон там.",
+     "en": "She is over there."
+    }
+   ]
+  },
+  {
+   "form": "ellos",
+   "surface": "Ellos",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:01:22",
+     "target": "Ellos están allí",
+     "ru": "Они вон там.",
+     "en": "They are over there."
+    },
+    {
+     "id": "es:01:28",
+     "target": "Ellos están dentro",
+     "ru": "Они внутри.",
+     "en": "They are inside."
+    }
+   ]
+  },
+  {
+   "form": "están",
+   "surface": "están",
+   "count": 10,
+   "examples": [
+    {
+     "id": "es:01:22",
+     "target": "Ellos están allí",
+     "ru": "Они вон там.",
+     "en": "They are over there."
+    },
+    {
+     "id": "es:01:24",
+     "target": "Ellas están cerca",
+     "ru": "Они рядом.",
+     "en": "They are nearby."
+    }
+   ]
+  },
+  {
+   "form": "cerca",
+   "surface": "cerca",
+   "count": 5,
+   "examples": [
+    {
+     "id": "es:01:04",
+     "target": "Estás cerca",
+     "ru": "Ты рядом.",
+     "en": "You are nearby."
+    },
+    {
+     "id": "es:01:15",
+     "target": "Ella está cerca",
+     "ru": "Она рядом.",
+     "en": "She is nearby."
+    }
+   ]
+  },
+  {
+   "form": "ellas",
+   "surface": "Ellas",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:01:24",
+     "target": "Ellas están cerca",
+     "ru": "Они рядом.",
+     "en": "They are nearby."
+    }
+   ]
+  },
+  {
+   "form": "y",
+   "surface": "y",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:01:29",
+     "target": "Ana y Luis están aquí",
+     "ru": "Ана и Луис здесь.",
+     "en": "Ana and Luis are here."
+    }
+   ]
+  },
+  {
+   "form": "lejos",
+   "surface": "lejos",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:01:05",
+     "target": "Estoy lejos",
+     "ru": "Я далеко.",
+     "en": "I am far away."
+    },
+    {
+     "id": "es:01:18",
+     "target": "Luis está lejos",
+     "ru": "Луис далеко.",
+     "en": "Luis is far away."
+    }
+   ]
+  },
+  {
+   "form": "dentro",
+   "surface": "dentro",
+   "count": 4,
+   "examples": [
+    {
+     "id": "es:01:10",
+     "target": "Estoy dentro",
+     "ru": "Я внутри.",
+     "en": "I am inside."
+    },
+    {
+     "id": "es:01:17",
+     "target": "Ana está dentro",
+     "ru": "Ана внутри.",
+     "en": "Ana is inside."
+    }
+   ]
+  },
+  {
+   "form": "fuera",
+   "surface": "fuera",
+   "count": 5,
+   "examples": [
+    {
+     "id": "es:01:09",
+     "target": "Estás fuera",
+     "ru": "Ты снаружи.",
+     "en": "You are outside."
+    },
+    {
+     "id": "es:01:16",
+     "target": "Él está fuera",
+     "ru": "Он снаружи.",
+     "en": "He is outside."
+    }
+   ]
+  },
+  {
+   "form": "estáis",
+   "surface": "Estáis",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:01:25",
+     "target": "Estáis aquí",
+     "ru": "Вы здесь.",
+     "en": "You are here."
+    },
+    {
+     "id": "es:01:27",
+     "target": "Estáis fuera",
+     "ru": "Вы снаружи.",
+     "en": "You are outside."
+    }
+   ]
+  },
+  {
+   "form": "el",
+   "surface": "El",
+   "count": 7,
+   "examples": [
+    {
+     "id": "es:01:31",
+     "target": "El móvil está aquí",
+     "ru": "Телефон здесь.",
+     "en": "The phone is here."
+    },
+    {
+     "id": "es:01:39",
+     "target": "El libro está aquí",
+     "ru": "Книга здесь.",
+     "en": "The book is here."
+    }
+   ]
+  },
+  {
+   "form": "móvil",
+   "surface": "móvil",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:01:31",
+     "target": "El móvil está aquí",
+     "ru": "Телефон здесь.",
+     "en": "The phone is here."
+    },
+    {
+     "id": "es:01:37",
+     "target": "El móvil está en casa",
+     "ru": "Телефон дома.",
+     "en": "The phone is at home."
+    }
+   ]
+  },
+  {
+   "form": "las",
+   "surface": "Las",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:01:32",
+     "target": "Las llaves están aquí",
+     "ru": "Ключи здесь.",
+     "en": "The keys are here."
+    },
+    {
+     "id": "es:01:42",
+     "target": "Las llaves están en la mesa",
+     "ru": "Ключи на столе.",
+     "en": "The keys are on the table."
+    }
+   ]
+  },
+  {
+   "form": "llaves",
+   "surface": "llaves",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:01:32",
+     "target": "Las llaves están aquí",
+     "ru": "Ключи здесь.",
+     "en": "The keys are here."
+    },
+    {
+     "id": "es:01:42",
+     "target": "Las llaves están en la mesa",
+     "ru": "Ключи на столе.",
+     "en": "The keys are on the table."
+    }
+   ]
+  },
+  {
+   "form": "libro",
+   "surface": "libro",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:01:39",
+     "target": "El libro está aquí",
+     "ru": "Книга здесь.",
+     "en": "The book is here."
+    }
+   ]
+  },
+  {
+   "form": "los",
+   "surface": "Los",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:01:35",
+     "target": "Los libros están allí",
+     "ru": "Книги вон там.",
+     "en": "The books are over there."
+    },
+    {
+     "id": "es:01:38",
+     "target": "Los coches están fuera",
+     "ru": "Машины снаружи.",
+     "en": "The cars are outside."
+    }
+   ]
+  },
+  {
+   "form": "libros",
+   "surface": "libros",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:01:35",
+     "target": "Los libros están allí",
+     "ru": "Книги вон там.",
+     "en": "The books are over there."
+    },
+    {
+     "id": "es:01:46",
+     "target": "Los libros están en casa",
+     "ru": "Книги дома.",
+     "en": "The books are at home."
+    }
+   ]
+  },
+  {
+   "form": "coche",
+   "surface": "coche",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:01:34",
+     "target": "El coche está fuera",
+     "ru": "Машина снаружи.",
+     "en": "The car is outside."
+    },
+    {
+     "id": "es:01:45",
+     "target": "El coche está cerca",
+     "ru": "Машина рядом.",
+     "en": "The car is nearby."
+    }
+   ]
+  },
+  {
+   "form": "coches",
+   "surface": "coches",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:01:38",
+     "target": "Los coches están fuera",
+     "ru": "Машины снаружи.",
+     "en": "The cars are outside."
+    }
+   ]
+  },
+  {
+   "form": "la",
+   "surface": "La",
+   "count": 10,
+   "examples": [
+    {
+     "id": "es:01:36",
+     "target": "La mochila está en casa",
+     "ru": "Рюкзак дома.",
+     "en": "The backpack is at home."
+    },
+    {
+     "id": "es:01:33",
+     "target": "La mesa está allí",
+     "ru": "Стол вон там.",
+     "en": "The table is over there."
+    }
+   ]
+  },
+  {
+   "form": "mochila",
+   "surface": "mochila",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:01:36",
+     "target": "La mochila está en casa",
+     "ru": "Рюкзак дома.",
+     "en": "The backpack is at home."
+    },
+    {
+     "id": "es:01:50",
+     "target": "Las llaves están en la mochila",
+     "ru": "Ключи в рюкзаке.",
+     "en": "The keys are in the backpack."
+    }
+   ]
+  },
+  {
+   "form": "mesa",
+   "surface": "mesa",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:01:33",
+     "target": "La mesa está allí",
+     "ru": "Стол вон там.",
+     "en": "The table is over there."
+    },
+    {
+     "id": "es:01:42",
+     "target": "Las llaves están en la mesa",
+     "ru": "Ключи на столе.",
+     "en": "The keys are on the table."
+    }
+   ]
+  },
+  {
+   "form": "llave",
+   "surface": "llave",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:01:40",
+     "target": "La llave está dentro",
+     "ru": "Ключ внутри.",
+     "en": "The key is inside."
+    }
+   ]
+  },
+  {
+   "form": "cocina",
+   "surface": "cocina",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:01:41",
+     "target": "Estoy en la cocina",
+     "ru": "Я на кухне.",
+     "en": "I am in the kitchen."
+    },
+    {
+     "id": "es:01:47",
+     "target": "Luis está en la cocina",
+     "ru": "Луис на кухне.",
+     "en": "Luis is in the kitchen."
+    }
+   ]
+  },
+  {
+   "form": "puerta",
+   "surface": "puerta",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:01:43",
+     "target": "Ana está en la puerta",
+     "ru": "Ана у двери.",
+     "en": "Ana is at the door."
+    }
+   ]
+  },
+  {
+   "form": "estación",
+   "surface": "estación",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:01:44",
+     "target": "Estamos en la estación",
+     "ru": "Мы на станции.",
+     "en": "We are at the station."
+    },
+    {
+     "id": "es:01:49",
+     "target": "La estación está cerca",
+     "ru": "Вокзал рядом.",
+     "en": "The station is nearby."
+    }
+   ]
+  }
+ ]
+}

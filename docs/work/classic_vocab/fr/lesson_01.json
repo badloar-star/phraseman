@@ -1,0 +1,360 @@
+{
+ "lang": "fr",
+ "lesson": 1,
+ "words": {
+  "je": {
+   "ru": "я",
+   "uk": "я",
+   "en": "I",
+   "es": "yo"
+  },
+  "suis": {
+   "ru": "(я) есть, нахожусь",
+   "uk": "(я) є, перебуваю",
+   "en": "(I) am",
+   "es": "(yo) estoy, soy"
+  },
+  "ici": {
+   "ru": "здесь",
+   "uk": "тут",
+   "en": "here",
+   "es": "aquí"
+  },
+  "tu": {
+   "ru": "ты",
+   "uk": "ти",
+   "en": "you (one person)",
+   "es": "tú"
+  },
+  "es": {
+   "ru": "(ты) есть, находишься",
+   "uk": "(ти) є, перебуваєш",
+   "en": "(you) are",
+   "es": "(tú) estás, eres"
+  },
+  "là": {
+   "ru": "там",
+   "uk": "там",
+   "en": "there",
+   "es": "allí, ahí"
+  },
+  "léa": {
+   "ru": "Леа (имя)",
+   "uk": "Леа (ім'я)",
+   "en": "Léa (name)",
+   "es": "Léa (nombre)"
+  },
+  "est": {
+   "ru": "(он, она) есть, находится",
+   "uk": "(він, вона) є, перебуває",
+   "en": "(he, she) is",
+   "es": "(él, ella) está, es"
+  },
+  "paul": {
+   "ru": "Поль (имя)",
+   "uk": "Поль (ім'я)",
+   "en": "Paul (name)",
+   "es": "Paul (nombre)"
+  },
+  "nous": {
+   "ru": "мы",
+   "uk": "ми",
+   "en": "we",
+   "es": "nosotros"
+  },
+  "sommes": {
+   "ru": "(мы) есть, находимся",
+   "uk": "(ми) є, перебуваємо",
+   "en": "(we) are",
+   "es": "(nosotros) estamos, somos"
+  },
+  "vous": {
+   "ru": "вы",
+   "uk": "ви",
+   "en": "you (polite or many)",
+   "es": "usted, ustedes"
+  },
+  "êtes": {
+   "ru": "(вы) есть, находитесь",
+   "uk": "(ви) є, перебуваєте",
+   "en": "(you) are",
+   "es": "(usted) está, es"
+  },
+  "ils": {
+   "ru": "они (мужчины или смешанно)",
+   "uk": "вони (чоловіки або змішано)",
+   "en": "they",
+   "es": "ellos"
+  },
+  "sont": {
+   "ru": "(они) есть, находятся",
+   "uk": "(вони) є, перебувають",
+   "en": "(they) are",
+   "es": "(ellos) están, son"
+  },
+  "elles": {
+   "ru": "они (женщины)",
+   "uk": "вони (жінки)",
+   "en": "they (women)",
+   "es": "ellas"
+  },
+  "à": {
+   "ru": "в, на, у",
+   "uk": "в, на, у",
+   "en": "at, in",
+   "es": "en, a"
+  },
+  "la": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the (before a thing's name)",
+   "es": "la (antes del nombre)"
+  },
+  "maison": {
+   "ru": "дом",
+   "uk": "дім, будинок",
+   "en": "house, home",
+   "es": "casa"
+  },
+  "gare": {
+   "ru": "вокзал",
+   "uk": "вокзал",
+   "en": "train station",
+   "es": "estación"
+  },
+  "au": {
+   "ru": "в, на (слитно с «the»)",
+   "uk": "в, на (злито з «the»)",
+   "en": "at the, in the",
+   "es": "en el, al"
+  },
+  "bureau": {
+   "ru": "офис",
+   "uk": "офіс",
+   "en": "office",
+   "es": "oficina"
+  },
+  "elle": {
+   "ru": "она",
+   "uk": "вона",
+   "en": "she",
+   "es": "ella"
+  },
+  "prêt": {
+   "ru": "готов",
+   "uk": "готовий",
+   "en": "ready",
+   "es": "listo"
+  },
+  "prête": {
+   "ru": "готова",
+   "uk": "готова",
+   "en": "ready (she)",
+   "es": "lista"
+  },
+  "fatigué": {
+   "ru": "уставший",
+   "uk": "втомлений",
+   "en": "tired (he)",
+   "es": "cansado"
+  },
+  "fatiguée": {
+   "ru": "уставшая",
+   "uk": "втомлена",
+   "en": "tired (she)",
+   "es": "cansada"
+  },
+  "prêts": {
+   "ru": "готовы",
+   "uk": "готові",
+   "en": "ready (several)",
+   "es": "listos"
+  },
+  "fatigués": {
+   "ru": "уставшие",
+   "uk": "втомлені",
+   "en": "tired (several)",
+   "es": "cansados"
+  },
+  "prêtes": {
+   "ru": "готовы (о женщинах)",
+   "uk": "готові (про жінок)",
+   "en": "ready (women)",
+   "es": "listas"
+  },
+  "libre": {
+   "ru": "свободен",
+   "uk": "вільний",
+   "en": "free",
+   "es": "libre"
+  },
+  "porte": {
+   "ru": "дверь",
+   "uk": "двері",
+   "en": "door",
+   "es": "puerta"
+  },
+  "ouverte": {
+   "ru": "открыта",
+   "uk": "відчинена",
+   "en": "open (she, it)",
+   "es": "abierta"
+  },
+  "fenêtre": {
+   "ru": "окно",
+   "uk": "вікно",
+   "en": "window",
+   "es": "ventana"
+  },
+  "le": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the (before a thing's name)",
+   "es": "el (antes del nombre)"
+  },
+  "magasin": {
+   "ru": "магазин",
+   "uk": "магазин",
+   "en": "shop",
+   "es": "tienda"
+  },
+  "ouvert": {
+   "ru": "открыт",
+   "uk": "відчинений",
+   "en": "open",
+   "es": "abierto"
+  },
+  "loin": {
+   "ru": "далеко",
+   "uk": "далеко",
+   "en": "far",
+   "es": "lejos"
+  },
+  "proche": {
+   "ru": "рядом, близко",
+   "uk": "поруч, близько",
+   "en": "near, close",
+   "es": "cerca"
+  },
+  "café": {
+   "ru": "кафе",
+   "uk": "кафе",
+   "en": "café",
+   "es": "cafetería"
+  },
+  "fermé": {
+   "ru": "закрыт",
+   "uk": "зачинений",
+   "en": "closed",
+   "es": "cerrado"
+  },
+  "fermée": {
+   "ru": "закрыта",
+   "uk": "зачинена",
+   "en": "closed (she, it)",
+   "es": "cerrada"
+  },
+  "les": {
+   "ru": "слово перед названиями вещей; по-русски нет",
+   "uk": "слово перед назвами речей; українською немає",
+   "en": "the (before several things)",
+   "es": "los, las"
+  },
+  "portes": {
+   "ru": "двери",
+   "uk": "двері",
+   "en": "doors",
+   "es": "puertas"
+  },
+  "ouvertes": {
+   "ru": "открыты (о нескольких)",
+   "uk": "відчинені (про кілька)",
+   "en": "open (several)",
+   "es": "abiertas"
+  },
+  "magasins": {
+   "ru": "магазины",
+   "uk": "магазини",
+   "en": "shops",
+   "es": "tiendas"
+  },
+  "fermés": {
+   "ru": "закрыты",
+   "uk": "зачинені",
+   "en": "closed (several)",
+   "es": "cerrados"
+  },
+  "calme": {
+   "ru": "тихий, спокойный",
+   "uk": "тихий, спокійний",
+   "en": "quiet, calm",
+   "es": "tranquilo"
+  },
+  "déjà": {
+   "ru": "уже",
+   "uk": "вже",
+   "en": "already",
+   "es": "ya"
+  },
+  "encore": {
+   "ru": "всё ещё",
+   "uk": "досі, ще",
+   "en": "still",
+   "es": "todavía"
+  },
+  "seul": {
+   "ru": "один, одинокий",
+   "uk": "сам, один",
+   "en": "alone",
+   "es": "solo"
+  },
+  "ensemble": {
+   "ru": "вместе",
+   "uk": "разом",
+   "en": "together",
+   "es": "juntos"
+  },
+  "clé": {
+   "ru": "ключ",
+   "uk": "ключ",
+   "en": "key",
+   "es": "llave"
+  },
+  "clés": {
+   "ru": "ключи",
+   "uk": "ключі",
+   "en": "keys",
+   "es": "llaves"
+  },
+  "sac": {
+   "ru": "сумка",
+   "uk": "сумка",
+   "en": "bag",
+   "es": "bolso"
+  },
+  "près": {
+   "ru": "рядом",
+   "uk": "поруч",
+   "en": "near",
+   "es": "cerca"
+  },
+  "de": {
+   "ru": "от, у (рядом с)",
+   "uk": "від, біля",
+   "en": "of, from",
+   "es": "de"
+  },
+  "enfants": {
+   "ru": "дети",
+   "uk": "діти",
+   "en": "children",
+   "es": "niños"
+  },
+  "dehors": {
+   "ru": "на улице, снаружи",
+   "uk": "надворі, ззовні",
+   "en": "outside",
+   "es": "fuera"
+  }
+ }
+}

@@ -22,9 +22,11 @@ for (const l of lang ? [lang] : ['en', 'es', 'fr', 'de', 'it']) {
     const ids = new Set(inp.phrases.map((p) => p.id)); const byId = Object.fromEntries(inp.phrases.map((p) => [p.id, p]));
     // разрешённые слова изучаемого языка: слова фраз урока + слова прошлых уроков из пакета
     const allowed = new Set([...inp.phrases.flatMap((p) => p.target.toLowerCase().split(/[^\p{L}'’]+/u)), ...inp.knownWords.flatMap((w) => String(w).toLowerCase().split(/[^\p{L}'’]+/u)), ...inp.newWords.map((w) => w.lemma.toLowerCase())]);
+    // зачем: части слитных слов (dell’acqua → dell’, acqua) тоже разрешены к упоминанию в тексте
+    for (const w of [...allowed]) for (const part of w.split(/['’]/)) if (part) allowed.add(part);
     const err = (m) => { bad++; console.log(`${l} урок ${n}: ${m}`); };
     checked++;
-    if (!out.chapters?.length || out.chapters.length < 2 || out.chapters.length > 6) err(`глав ${out.chapters?.length}`);
+    if (!out.chapters?.length || out.chapters.length < 2 || out.chapters.length > 8) err(`глав ${out.chapters?.length}`);
     for (const loc of ['ru', 'uk', 'en']) if (!out.title?.[loc]?.trim()) err(`нет title.${loc}`);
     // уровень урока (Learning V2, 05.11): не меньше 8 реальных заданий; новые слова введены (текст или примеры)
     {

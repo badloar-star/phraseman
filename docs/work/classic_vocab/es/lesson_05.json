@@ -1,0 +1,90 @@
+{
+ "lang": "es",
+ "lesson": 5,
+ "words": {
+  "dónde": {
+   "ru": "где",
+   "uk": "де",
+   "en": "where",
+   "es": "en qué lugar"
+  },
+  "aeropuerto": {
+   "ru": "аэропорт",
+   "uk": "аеропорт",
+   "en": "airport",
+   "es": "lugar donde salen los aviones"
+  },
+  "recepción": {
+   "ru": "стойка регистрации, ресепшен",
+   "uk": "стійка реєстрації, рецепція",
+   "en": "reception desk",
+   "es": "mostrador de entrada de un hotel"
+  },
+  "baño": {
+   "ru": "туалет, ванная",
+   "uk": "туалет, ванна",
+   "en": "bathroom",
+   "es": "lugar para lavarse"
+  },
+  "quién": {
+   "ru": "кто",
+   "uk": "хто",
+   "en": "who",
+   "es": "qué persona"
+  },
+  "ascensor": {
+   "ru": "лифт",
+   "uk": "ліфт",
+   "en": "elevator",
+   "es": "sube y baja personas"
+  },
+  "quiénes": {
+   "ru": "кто (о нескольких)",
+   "uk": "хто (про кількох)",
+   "en": "who (several people)",
+   "es": "qué personas"
+  },
+  "qué": {
+   "ru": "что",
+   "uk": "що",
+   "en": "what",
+   "es": "qué cosa"
+  },
+  "esto": {
+   "ru": "это (рядом)",
+   "uk": "це (поруч)",
+   "en": "this",
+   "es": "cosa cercana"
+  },
+  "eso": {
+   "ru": "это (подальше)",
+   "uk": "це (подалі)",
+   "en": "that",
+   "es": "cosa más lejana"
+  },
+  "cuánto": {
+   "ru": "сколько",
+   "uk": "скільки",
+   "en": "how much",
+   "es": "qué cantidad"
+  },
+  "cuesta": {
+   "ru": "стоит (цена)",
+   "uk": "коштує",
+   "en": "it costs",
+   "es": "tiene el precio de"
+  },
+  "banco": {
+   "ru": "банк",
+   "uk": "банк",
+   "en": "bank",
+   "es": "lugar para el dinero"
+  },
+  "ustedes": {
+   "ru": "Вы (вежливо, о нескольких)",
+   "uk": "Ви (ввічливо, про кількох)",
+   "en": "you all (polite)",
+   "es": "vosotros, con respeto"
+  }
+ }
+}

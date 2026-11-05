@@ -1,0 +1,366 @@
+{
+ "lang": "en",
+ "lesson": 3,
+ "words": {
+  "nearby": {
+   "ru": "рядом, поблизости",
+   "uk": "поруч, поблизу",
+   "en": "close to here",
+   "es": "cerca"
+  },
+  "works": {
+   "ru": "работает",
+   "uk": "працює",
+   "en": "does a job",
+   "es": "trabaja"
+  },
+  "live": {
+   "ru": "жить, живу",
+   "uk": "жити, живу",
+   "en": "have a home somewhere",
+   "es": "vivir"
+  },
+  "alone": {
+   "ru": "один, одна",
+   "uk": "сам, сама",
+   "en": "with no one else",
+   "es": "solo"
+  },
+  "lives": {
+   "ru": "живёт",
+   "uk": "живе",
+   "en": "has a home somewhere",
+   "es": "vive"
+  },
+  "start": {
+   "ru": "начинать, начинаем",
+   "uk": "починати, починаємо",
+   "en": "begin",
+   "es": "empezar"
+  },
+  "starts": {
+   "ru": "начинается, начинает",
+   "uk": "починається, починає",
+   "en": "begins",
+   "es": "empieza"
+  },
+  "finish": {
+   "ru": "заканчивать, заканчивают",
+   "uk": "закінчувати, закінчують",
+   "en": "end",
+   "es": "terminar"
+  },
+  "finishes": {
+   "ru": "заканчивает",
+   "uk": "закінчує",
+   "en": "ends",
+   "es": "termina"
+  },
+  "walk": {
+   "ru": "ходить пешком, иду",
+   "uk": "ходити пішки, іду",
+   "en": "go on foot",
+   "es": "caminar"
+  },
+  "need": {
+   "ru": "нуждаться, нужно",
+   "uk": "потребувати, потрібно",
+   "en": "must have",
+   "es": "necesitar"
+  },
+  "help": {
+   "ru": "помощь",
+   "uk": "допомога",
+   "en": "support",
+   "es": "ayuda"
+  },
+  "needs": {
+   "ru": "нуждается, ей нужно",
+   "uk": "потребує, їй потрібно",
+   "en": "must have",
+   "es": "necesita"
+  },
+  "want": {
+   "ru": "хотеть, хотим",
+   "uk": "хотіти, хочемо",
+   "en": "wish to have",
+   "es": "querer"
+  },
+  "wants": {
+   "ru": "хочет",
+   "uk": "хоче",
+   "en": "wishes to have",
+   "es": "quiere"
+  },
+  "tea": {
+   "ru": "чай",
+   "uk": "чай",
+   "en": "hot drink from leaves",
+   "es": "té"
+  },
+  "like": {
+   "ru": "нравится, люблю",
+   "uk": "подобається, люблю",
+   "en": "enjoy",
+   "es": "gustar"
+  },
+  "likes": {
+   "ru": "нравится, любит",
+   "uk": "подобається, любить",
+   "en": "enjoys",
+   "es": "gusta"
+  },
+  "use": {
+   "ru": "пользоваться, используют",
+   "uk": "користуватися, використовують",
+   "en": "make use of",
+   "es": "usar"
+  },
+  "uses": {
+   "ru": "пользуется, использует",
+   "uk": "користується, використовує",
+   "en": "makes use of",
+   "es": "usa"
+  },
+  "speak": {
+   "ru": "говорить, говоришь",
+   "uk": "говорити, говориш",
+   "en": "talk in a language",
+   "es": "hablar"
+  },
+  "english": {
+   "ru": "английский (язык)",
+   "uk": "англійська (мова)",
+   "en": "language of England",
+   "es": "inglés"
+  },
+  "speaks": {
+   "ru": "говорит",
+   "uk": "говорить",
+   "en": "talks in a language",
+   "es": "habla"
+  },
+  "stops": {
+   "ru": "останавливается",
+   "uk": "зупиняється",
+   "en": "halts",
+   "es": "para"
+  },
+  "opens": {
+   "ru": "открывается",
+   "uk": "відчиняється",
+   "en": "becomes open",
+   "es": "abre"
+  },
+  "nine": {
+   "ru": "девять",
+   "uk": "дев'ять",
+   "en": "number 9",
+   "es": "nueve"
+  },
+  "leaves": {
+   "ru": "отправляется, уходит",
+   "uk": "відправляється, іде",
+   "en": "goes away",
+   "es": "sale"
+  },
+  "eight": {
+   "ru": "восемь",
+   "uk": "вісім",
+   "en": "number 8",
+   "es": "ocho"
+  },
+  "class": {
+   "ru": "урок, занятие",
+   "uk": "урок, заняття",
+   "en": "lesson with a teacher",
+   "es": "clase"
+  },
+  "ten": {
+   "ru": "десять",
+   "uk": "десять",
+   "en": "number 10",
+   "es": "diez"
+  },
+  "cafe": {
+   "ru": "кафе",
+   "uk": "кафе",
+   "en": "small place for coffee",
+   "es": "café"
+  },
+  "closes": {
+   "ru": "закрывается",
+   "uk": "зачиняється",
+   "en": "becomes closed",
+   "es": "cierra"
+  },
+  "slowly": {
+   "ru": "медленно",
+   "uk": "повільно",
+   "en": "not fast",
+   "es": "despacio"
+  },
+  "shift": {
+   "ru": "смена",
+   "uk": "зміна",
+   "en": "work period",
+   "es": "turno"
+  },
+  "soon": {
+   "ru": "скоро",
+   "uk": "скоро",
+   "en": "in a short while",
+   "es": "pronto"
+  },
+  "well": {
+   "ru": "хорошо",
+   "uk": "добре",
+   "en": "in a good way",
+   "es": "bien"
+  },
+  "close": {
+   "ru": "закрываться, закрывают",
+   "uk": "зачинятися, зачиняють",
+   "en": "become shut",
+   "es": "cerrar"
+  },
+  "take": {
+   "ru": "брать, еду (на)",
+   "uk": "брати, їду (на)",
+   "en": "use for travel",
+   "es": "tomar"
+  },
+  "takes": {
+   "ru": "берёт, едет (на)",
+   "uk": "бере, їде (на)",
+   "en": "uses for travel",
+   "es": "toma"
+  },
+  "share": {
+   "ru": "делить, делим",
+   "uk": "ділити, ділимо",
+   "en": "use together",
+   "es": "compartir"
+  },
+  "a": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; в українській немає",
+   "en": "word meaning one of something",
+   "es": "un, una"
+  },
+  "shares": {
+   "ru": "делит",
+   "uk": "ділить",
+   "en": "uses together",
+   "es": "comparte"
+  },
+  "flat": {
+   "ru": "квартира",
+   "uk": "квартира",
+   "en": "home in a building",
+   "es": "piso"
+  },
+  "check": {
+   "ru": "проверять, проверяю",
+   "uk": "перевіряти, перевіряю",
+   "en": "look to see",
+   "es": "revisar"
+  },
+  "email": {
+   "ru": "электронная почта",
+   "uk": "електронна пошта",
+   "en": "message sent online",
+   "es": "correo electrónico"
+  },
+  "checks": {
+   "ru": "проверяет",
+   "uk": "перевіряє",
+   "en": "looks to see",
+   "es": "revisa"
+  },
+  "his": {
+   "ru": "его",
+   "uk": "його",
+   "en": "belonging to him",
+   "es": "su"
+  },
+  "cash": {
+   "ru": "наличные",
+   "uk": "готівка",
+   "en": "money in coins and notes",
+   "es": "efectivo"
+  },
+  "to": {
+   "ru": "к, в (куда)",
+   "uk": "до, в (куди)",
+   "en": "towards a place",
+   "es": "a"
+  },
+  "walks": {
+   "ru": "идёт пешком, ходит",
+   "uk": "іде пішки, ходить",
+   "en": "goes on foot",
+   "es": "camina"
+  },
+  "sister": {
+   "ru": "сестра",
+   "uk": "сестра",
+   "en": "female sibling",
+   "es": "hermana"
+  },
+  "nights": {
+   "ru": "ночью, по ночам",
+   "uk": "уночі, вночі",
+   "en": "during the dark hours",
+   "es": "noches"
+  },
+  "together": {
+   "ru": "вместе",
+   "uk": "разом",
+   "en": "with each other",
+   "es": "juntos"
+  },
+  "sometimes": {
+   "ru": "иногда",
+   "uk": "іноді",
+   "en": "not always",
+   "es": "a veces"
+  },
+  "studies": {
+   "ru": "учит, изучает",
+   "uk": "вчить, вивчає",
+   "en": "learns about",
+   "es": "estudia"
+  },
+  "driver": {
+   "ru": "водитель",
+   "uk": "водій",
+   "en": "person who drives",
+   "es": "conductor"
+  },
+  "knows": {
+   "ru": "знает",
+   "uk": "знає",
+   "en": "has knowledge of",
+   "es": "sabe"
+  },
+  "way": {
+   "ru": "дорога, путь",
+   "uk": "дорога, шлях",
+   "en": "route",
+   "es": "camino"
+  },
+  "key": {
+   "ru": "ключ",
+   "uk": "ключ",
+   "en": "thing that opens a lock",
+   "es": "llave"
+  },
+  "gate": {
+   "ru": "ворота, калитка",
+   "uk": "ворота, хвіртка",
+   "en": "outdoor door",
+   "es": "puerta"
+  }
+ }
+}

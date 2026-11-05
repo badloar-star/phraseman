@@ -1,0 +1,230 @@
+{
+ "lang": "es",
+ "lesson": 5,
+ "words": [
+  {
+   "form": "dónde",
+   "surface": "Dónde",
+   "count": 18,
+   "examples": [
+    {
+     "id": "es:05:01",
+     "target": "Dónde estás",
+     "ru": "Где ты?",
+     "en": "Where are you?"
+    },
+    {
+     "id": "es:05:02",
+     "target": "Dónde está Ana",
+     "ru": "Где Ана?",
+     "en": "Where is Ana?"
+    }
+   ]
+  },
+  {
+   "form": "aeropuerto",
+   "surface": "aeropuerto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:05:03",
+     "target": "Dónde está el aeropuerto",
+     "ru": "Где аэропорт?",
+     "en": "Where is the airport?"
+    }
+   ]
+  },
+  {
+   "form": "recepción",
+   "surface": "recepción",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:05:09",
+     "target": "Dónde está la recepción",
+     "ru": "Где стойка регистрации?",
+     "en": "Where is reception?"
+    },
+    {
+     "id": "es:05:20",
+     "target": "Quién está en la recepción",
+     "ru": "Кто на ресепшене?",
+     "en": "Who is at reception?"
+    }
+   ]
+  },
+  {
+   "form": "baño",
+   "surface": "baño",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:05:10",
+     "target": "Dónde está el baño",
+     "ru": "Где туалет?",
+     "en": "Where is the bathroom?"
+    },
+    {
+     "id": "es:05:19",
+     "target": "Quién está en el baño",
+     "ru": "Кто в туалете?",
+     "en": "Who is in the bathroom?"
+    }
+   ]
+  },
+  {
+   "form": "quién",
+   "surface": "Quién",
+   "count": 19,
+   "examples": [
+    {
+     "id": "es:05:11",
+     "target": "Quién está aquí",
+     "ru": "Кто здесь?",
+     "en": "Who is here?"
+    },
+    {
+     "id": "es:05:12",
+     "target": "Quién está en casa",
+     "ru": "Кто дома?",
+     "en": "Who is at home?"
+    }
+   ]
+  },
+  {
+   "form": "ascensor",
+   "surface": "ascensor",
+   "count": 2,
+   "examples": [
+    {
+     "id": "es:05:17",
+     "target": "Quién está en el ascensor",
+     "ru": "Кто в лифте?",
+     "en": "Who is in the lift?"
+    },
+    {
+     "id": "es:05:49",
+     "target": "Dónde está el ascensor",
+     "ru": "Где лифт?",
+     "en": "Where is the lift?"
+    }
+   ]
+  },
+  {
+   "form": "quiénes",
+   "surface": "Quiénes",
+   "count": 3,
+   "examples": [
+    {
+     "id": "es:05:25",
+     "target": "Quiénes son ellos",
+     "ru": "Кто они?",
+     "en": "Who are they?"
+    },
+    {
+     "id": "es:05:26",
+     "target": "Quiénes son ellas",
+     "ru": "Кто они?",
+     "en": "Who are they?"
+    }
+   ]
+  },
+  {
+   "form": "qué",
+   "surface": "Qué",
+   "count": 9,
+   "examples": [
+    {
+     "id": "es:05:31",
+     "target": "Qué es esto",
+     "ru": "Что это?",
+     "en": "What is this?"
+    },
+    {
+     "id": "es:05:32",
+     "target": "Qué es eso",
+     "ru": "Что это такое?",
+     "en": "What is that?"
+    }
+   ]
+  },
+  {
+   "form": "esto",
+   "surface": "esto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:05:31",
+     "target": "Qué es esto",
+     "ru": "Что это?",
+     "en": "What is this?"
+    }
+   ]
+  },
+  {
+   "form": "eso",
+   "surface": "eso",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:05:32",
+     "target": "Qué es eso",
+     "ru": "Что это такое?",
+     "en": "What is that?"
+    }
+   ]
+  },
+  {
+   "form": "cuánto",
+   "surface": "Cuánto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:05:39",
+     "target": "Cuánto cuesta el billete",
+     "ru": "Сколько стоит билет?",
+     "en": "How much does the ticket cost?"
+    }
+   ]
+  },
+  {
+   "form": "cuesta",
+   "surface": "cuesta",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:05:39",
+     "target": "Cuánto cuesta el billete",
+     "ru": "Сколько стоит билет?",
+     "en": "How much does the ticket cost?"
+    }
+   ]
+  },
+  {
+   "form": "banco",
+   "surface": "banco",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:05:42",
+     "target": "Quién está en el banco",
+     "ru": "Кто в банке?",
+     "en": "Who is at the bank?"
+    }
+   ]
+  },
+  {
+   "form": "ustedes",
+   "surface": "ustedes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "es:05:46",
+     "target": "Dónde están ustedes",
+     "ru": "Где вы находитесь?",
+     "en": "Where are you?"
+    }
+   ]
+  }
+ ]
+}

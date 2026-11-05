@@ -1,0 +1,843 @@
+{
+ "lang": "de",
+ "lesson": 3,
+ "words": [
+  {
+   "form": "wohne",
+   "surface": "wohne",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:01",
+     "target": "Ich wohne hier",
+     "ru": "Я здесь живу.",
+     "en": "I live here."
+    }
+   ]
+  },
+  {
+   "form": "wohnst",
+   "surface": "wohnst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:02",
+     "target": "Du wohnst hier",
+     "ru": "Ты здесь живёшь.",
+     "en": "You live here."
+    }
+   ]
+  },
+  {
+   "form": "wohnt",
+   "surface": "wohnt",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:03",
+     "target": "Anna wohnt hier",
+     "ru": "Анна здесь живёт.",
+     "en": "Anna lives here."
+    },
+    {
+     "id": "de:03:05",
+     "target": "Ihr wohnt hier",
+     "ru": "Вы здесь живёте.",
+     "en": "You (plural) live here."
+    }
+   ]
+  },
+  {
+   "form": "wohnen",
+   "surface": "wohnen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:04",
+     "target": "Wir wohnen hier",
+     "ru": "Мы здесь живём.",
+     "en": "We live here."
+    }
+   ]
+  },
+  {
+   "form": "lerne",
+   "surface": "lerne",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:06",
+     "target": "Ich lerne Deutsch",
+     "ru": "Я учу немецкий.",
+     "en": "I am learning German."
+    }
+   ]
+  },
+  {
+   "form": "deutsch",
+   "surface": "Deutsch",
+   "count": 5,
+   "examples": [
+    {
+     "id": "de:03:06",
+     "target": "Ich lerne Deutsch",
+     "ru": "Я учу немецкий.",
+     "en": "I am learning German."
+    },
+    {
+     "id": "de:03:07",
+     "target": "Du lernst Deutsch",
+     "ru": "Ты учишь немецкий.",
+     "en": "You (plural) are learning German."
+    }
+   ]
+  },
+  {
+   "form": "lernst",
+   "surface": "lernst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:07",
+     "target": "Du lernst Deutsch",
+     "ru": "Ты учишь немецкий.",
+     "en": "You (plural) are learning German."
+    }
+   ]
+  },
+  {
+   "form": "lernt",
+   "surface": "lernt",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:08",
+     "target": "Tom lernt Deutsch",
+     "ru": "Том учит немецкий.",
+     "en": "Tom is learning German."
+    },
+    {
+     "id": "de:03:49",
+     "target": "Ihr lernt zusammen",
+     "ru": "Вы учитесь вместе.",
+     "en": "You're studying together."
+    }
+   ]
+  },
+  {
+   "form": "lernen",
+   "surface": "lernen",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:09",
+     "target": "Wir lernen Deutsch",
+     "ru": "Мы учим немецкий.",
+     "en": "We are learning German."
+    },
+    {
+     "id": "de:03:10",
+     "target": "Die Kinder lernen Deutsch",
+     "ru": "Дети учат немецкий.",
+     "en": "The children are learning German."
+    }
+   ]
+  },
+  {
+   "form": "mache",
+   "surface": "mache",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:11",
+     "target": "Ich mache Kaffee",
+     "ru": "Я готовлю кофе.",
+     "en": "I'm making coffee."
+    }
+   ]
+  },
+  {
+   "form": "machst",
+   "surface": "machst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:12",
+     "target": "Du machst Tee",
+     "ru": "Ты готовишь чай.",
+     "en": "You're making tea."
+    }
+   ]
+  },
+  {
+   "form": "macht",
+   "surface": "macht",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:13",
+     "target": "Anna macht Frühstück",
+     "ru": "Анна готовит завтрак.",
+     "en": "Anna is making breakfast."
+    },
+    {
+     "id": "de:03:15",
+     "target": "Ihr macht das Essen",
+     "ru": "Вы готовите еду.",
+     "en": "You (plural) are making the food."
+    }
+   ]
+  },
+  {
+   "form": "frühstück",
+   "surface": "Frühstück",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:13",
+     "target": "Anna macht Frühstück",
+     "ru": "Анна готовит завтрак.",
+     "en": "Anna is making breakfast."
+    },
+    {
+     "id": "de:03:43",
+     "target": "Anna bezahlt das Frühstück",
+     "ru": "Анна оплачивает завтрак.",
+     "en": "Anna is paying for breakfast."
+    }
+   ]
+  },
+  {
+   "form": "machen",
+   "surface": "machen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:14",
+     "target": "Wir machen eine Pause",
+     "ru": "Мы делаем перерыв.",
+     "en": "We're taking a break."
+    }
+   ]
+  },
+  {
+   "form": "eine",
+   "surface": "eine",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:14",
+     "target": "Wir machen eine Pause",
+     "ru": "Мы делаем перерыв.",
+     "en": "We're taking a break."
+    }
+   ]
+  },
+  {
+   "form": "pause",
+   "surface": "Pause",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:14",
+     "target": "Wir machen eine Pause",
+     "ru": "Мы делаем перерыв.",
+     "en": "We're taking a break."
+    }
+   ]
+  },
+  {
+   "form": "kaufe",
+   "surface": "kaufe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:16",
+     "target": "Ich kaufe Brot",
+     "ru": "Я покупаю хлеб.",
+     "en": "I'm buying bread."
+    }
+   ]
+  },
+  {
+   "form": "brot",
+   "surface": "Brot",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:16",
+     "target": "Ich kaufe Brot",
+     "ru": "Я покупаю хлеб.",
+     "en": "I'm buying bread."
+    }
+   ]
+  },
+  {
+   "form": "kaufst",
+   "surface": "kaufst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:17",
+     "target": "Du kaufst Milch",
+     "ru": "Ты покупаешь молоко.",
+     "en": "You're buying milk."
+    }
+   ]
+  },
+  {
+   "form": "milch",
+   "surface": "Milch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:17",
+     "target": "Du kaufst Milch",
+     "ru": "Ты покупаешь молоко.",
+     "en": "You're buying milk."
+    }
+   ]
+  },
+  {
+   "form": "kauft",
+   "surface": "kauft",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:18",
+     "target": "Tom kauft Kaffee",
+     "ru": "Том покупает кофе.",
+     "en": "Tom is buying coffee."
+    }
+   ]
+  },
+  {
+   "form": "kaufen",
+   "surface": "kaufen",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:19",
+     "target": "Wir kaufen Gemüse",
+     "ru": "Мы покупаем овощи.",
+     "en": "We're buying vegetables."
+    },
+    {
+     "id": "de:03:20",
+     "target": "Die Gäste kaufen Tickets",
+     "ru": "Гости покупают билеты.",
+     "en": "The guests are buying tickets."
+    }
+   ]
+  },
+  {
+   "form": "gemüse",
+   "surface": "Gemüse",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:19",
+     "target": "Wir kaufen Gemüse",
+     "ru": "Мы покупаем овощи.",
+     "en": "We're buying vegetables."
+    },
+    {
+     "id": "de:03:47",
+     "target": "Tom kocht das Gemüse",
+     "ru": "Том готовит овощи.",
+     "en": "Tom is cooking the vegetables."
+    }
+   ]
+  },
+  {
+   "form": "tickets",
+   "surface": "Tickets",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:20",
+     "target": "Die Gäste kaufen Tickets",
+     "ru": "Гости покупают билеты.",
+     "en": "The guests are buying tickets."
+    }
+   ]
+  },
+  {
+   "form": "suche",
+   "surface": "suche",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:21",
+     "target": "Ich suche den Schlüssel",
+     "ru": "Я ищу ключ.",
+     "en": "I'm looking for the key."
+    }
+   ]
+  },
+  {
+   "form": "den",
+   "surface": "den",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:03:21",
+     "target": "Ich suche den Schlüssel",
+     "ru": "Я ищу ключ.",
+     "en": "I'm looking for the key."
+    },
+    {
+     "id": "de:03:24",
+     "target": "Wir suchen den Eingang",
+     "ru": "Мы ищем вход.",
+     "en": "We're looking for the entrance."
+    }
+   ]
+  },
+  {
+   "form": "suchst",
+   "surface": "suchst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:22",
+     "target": "Du suchst die Tasche",
+     "ru": "Ты ищешь сумку.",
+     "en": "You're looking for the bag."
+    }
+   ]
+  },
+  {
+   "form": "sucht",
+   "surface": "sucht",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:23",
+     "target": "Anna sucht das Handy",
+     "ru": "Анна ищет телефон.",
+     "en": "Anna is looking for the cell phone."
+    },
+    {
+     "id": "de:03:25",
+     "target": "Ihr sucht die Kasse",
+     "ru": "Вы ищете кассу.",
+     "en": "You (plural) are looking for the cash register."
+    }
+   ]
+  },
+  {
+   "form": "suchen",
+   "surface": "suchen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:24",
+     "target": "Wir suchen den Eingang",
+     "ru": "Мы ищем вход.",
+     "en": "We're looking for the entrance."
+    }
+   ]
+  },
+  {
+   "form": "höre",
+   "surface": "höre",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:26",
+     "target": "Ich höre Musik",
+     "ru": "Я слушаю музыку.",
+     "en": "I'm listening to music."
+    }
+   ]
+  },
+  {
+   "form": "musik",
+   "surface": "Musik",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:26",
+     "target": "Ich höre Musik",
+     "ru": "Я слушаю музыку.",
+     "en": "I'm listening to music."
+    }
+   ]
+  },
+  {
+   "form": "hörst",
+   "surface": "hörst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:27",
+     "target": "Du hörst Radio",
+     "ru": "Ты слушаешь радио.",
+     "en": "You're listening to the radio."
+    }
+   ]
+  },
+  {
+   "form": "hört",
+   "surface": "hört",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:28",
+     "target": "Tom hört die Kinder",
+     "ru": "Том слышит детей.",
+     "en": "Tom is listening to the children."
+    }
+   ]
+  },
+  {
+   "form": "hören",
+   "surface": "hören",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:29",
+     "target": "Wir hören den Bus",
+     "ru": "Мы слышим автобус.",
+     "en": "We're listening to the bus."
+    },
+    {
+     "id": "de:03:30",
+     "target": "Die Kinder hören ein Lied",
+     "ru": "Дети слушают песню.",
+     "en": "The children are listening to a song."
+    }
+   ]
+  },
+  {
+   "form": "ein",
+   "surface": "ein",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:30",
+     "target": "Die Kinder hören ein Lied",
+     "ru": "Дети слушают песню.",
+     "en": "The children are listening to a song."
+    }
+   ]
+  },
+  {
+   "form": "lied",
+   "surface": "Lied",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:30",
+     "target": "Die Kinder hören ein Lied",
+     "ru": "Дети слушают песню.",
+     "en": "The children are listening to a song."
+    }
+   ]
+  },
+  {
+   "form": "arbeite",
+   "surface": "arbeite",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:31",
+     "target": "Ich arbeite heute",
+     "ru": "Я сегодня работаю.",
+     "en": "I'm working today."
+    }
+   ]
+  },
+  {
+   "form": "heute",
+   "surface": "heute",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:31",
+     "target": "Ich arbeite heute",
+     "ru": "Я сегодня работаю.",
+     "en": "I'm working today."
+    },
+    {
+     "id": "de:03:45",
+     "target": "Ich koche heute",
+     "ru": "Я сегодня готовлю.",
+     "en": "I'm cooking today."
+    }
+   ]
+  },
+  {
+   "form": "arbeitest",
+   "surface": "arbeitest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:32",
+     "target": "Du arbeitest hier",
+     "ru": "Ты здесь работаешь.",
+     "en": "You work here."
+    }
+   ]
+  },
+  {
+   "form": "arbeitet",
+   "surface": "arbeitet",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:33",
+     "target": "Anna arbeitet im Hotel",
+     "ru": "Анна работает в гостинице.",
+     "en": "Anna works at the hotel."
+    },
+    {
+     "id": "de:03:35",
+     "target": "Ihr arbeitet draußen",
+     "ru": "Вы работаете на улице.",
+     "en": "You (plural) work outside."
+    }
+   ]
+  },
+  {
+   "form": "im",
+   "surface": "im",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:33",
+     "target": "Anna arbeitet im Hotel",
+     "ru": "Анна работает в гостинице.",
+     "en": "Anna works at the hotel."
+    },
+    {
+     "id": "de:03:39",
+     "target": "Wir warten im Café",
+     "ru": "Мы ждём в кафе.",
+     "en": "We are waiting in the café."
+    }
+   ]
+  },
+  {
+   "form": "arbeiten",
+   "surface": "arbeiten",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:34",
+     "target": "Wir arbeiten zusammen",
+     "ru": "Мы работаем вместе.",
+     "en": "We work together."
+    }
+   ]
+  },
+  {
+   "form": "zusammen",
+   "surface": "zusammen",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:03:34",
+     "target": "Wir arbeiten zusammen",
+     "ru": "Мы работаем вместе.",
+     "en": "We work together."
+    },
+    {
+     "id": "de:03:44",
+     "target": "Wir bezahlen zusammen",
+     "ru": "Мы платим вместе.",
+     "en": "We're paying together."
+    }
+   ]
+  },
+  {
+   "form": "warte",
+   "surface": "warte",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:36",
+     "target": "Ich warte hier",
+     "ru": "Я жду здесь.",
+     "en": "I'm waiting here."
+    }
+   ]
+  },
+  {
+   "form": "wartest",
+   "surface": "wartest",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:37",
+     "target": "Du wartest draußen",
+     "ru": "Ты ждёшь на улице.",
+     "en": "You are waiting outside."
+    }
+   ]
+  },
+  {
+   "form": "wartet",
+   "surface": "wartet",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:38",
+     "target": "Tom wartet am Eingang",
+     "ru": "Том ждёт у входа.",
+     "en": "Tom is waiting at the entrance."
+    }
+   ]
+  },
+  {
+   "form": "am",
+   "surface": "am",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:38",
+     "target": "Tom wartet am Eingang",
+     "ru": "Том ждёт у входа.",
+     "en": "Tom is waiting at the entrance."
+    }
+   ]
+  },
+  {
+   "form": "warten",
+   "surface": "warten",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:03:39",
+     "target": "Wir warten im Café",
+     "ru": "Мы ждём в кафе.",
+     "en": "We are waiting in the café."
+    },
+    {
+     "id": "de:03:40",
+     "target": "Die Gäste warten drinnen",
+     "ru": "Гости ждут внутри.",
+     "en": "The guests are waiting inside."
+    }
+   ]
+  },
+  {
+   "form": "bezahle",
+   "surface": "bezahle",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:41",
+     "target": "Ich bezahle die Rechnung",
+     "ru": "Я оплачиваю счёт.",
+     "en": "I'm paying the bill."
+    }
+   ]
+  },
+  {
+   "form": "bezahlst",
+   "surface": "bezahlst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:42",
+     "target": "Du bezahlst das Ticket",
+     "ru": "Ты оплачиваешь билет.",
+     "en": "You're paying for the ticket."
+    }
+   ]
+  },
+  {
+   "form": "bezahlt",
+   "surface": "bezahlt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:43",
+     "target": "Anna bezahlt das Frühstück",
+     "ru": "Анна оплачивает завтрак.",
+     "en": "Anna is paying for breakfast."
+    }
+   ]
+  },
+  {
+   "form": "bezahlen",
+   "surface": "bezahlen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:44",
+     "target": "Wir bezahlen zusammen",
+     "ru": "Мы платим вместе.",
+     "en": "We're paying together."
+    }
+   ]
+  },
+  {
+   "form": "koche",
+   "surface": "koche",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:45",
+     "target": "Ich koche heute",
+     "ru": "Я сегодня готовлю.",
+     "en": "I'm cooking today."
+    }
+   ]
+  },
+  {
+   "form": "kochst",
+   "surface": "kochst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:46",
+     "target": "Du kochst die Suppe",
+     "ru": "Ты варишь суп.",
+     "en": "You're cooking the soup."
+    }
+   ]
+  },
+  {
+   "form": "kocht",
+   "surface": "kocht",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:47",
+     "target": "Tom kocht das Gemüse",
+     "ru": "Том готовит овощи.",
+     "en": "Tom is cooking the vegetables."
+    }
+   ]
+  },
+  {
+   "form": "kochen",
+   "surface": "kochen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:48",
+     "target": "Wir kochen zu Hause",
+     "ru": "Мы готовим дома.",
+     "en": "We're cooking at home."
+    }
+   ]
+  },
+  {
+   "form": "spielen",
+   "surface": "spielen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:03:50",
+     "target": "Die Kinder spielen draußen",
+     "ru": "Дети играют на улице.",
+     "en": "The children are playing outside."
+    }
+   ]
+  }
+ ]
+}

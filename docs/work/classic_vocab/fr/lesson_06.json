@@ -1,0 +1,312 @@
+{
+ "lang": "fr",
+ "lesson": 6,
+ "words": {
+  "sous": {
+   "ru": "под",
+   "uk": "під",
+   "en": "under",
+   "es": "debajo de"
+  },
+  "lit": {
+   "ru": "кровать",
+   "uk": "ліжко",
+   "en": "bed",
+   "es": "cama"
+  },
+  "l’adresse": {
+   "ru": "адрес",
+   "uk": "адреса",
+   "en": "the address",
+   "es": "la dirección"
+  },
+  "pain": {
+   "ru": "хлеб",
+   "uk": "хліб",
+   "en": "bread",
+   "es": "pan"
+  },
+  "soupe": {
+   "ru": "суп",
+   "uk": "суп",
+   "en": "soup",
+   "es": "sopa"
+  },
+  "chaude": {
+   "ru": "горячая",
+   "uk": "гаряча",
+   "en": "hot (she, it)",
+   "es": "caliente"
+  },
+  "verres": {
+   "ru": "стаканы",
+   "uk": "склянки",
+   "en": "glasses (for drinking)",
+   "es": "vasos"
+  },
+  "l’eau": {
+   "ru": "вода",
+   "uk": "вода",
+   "en": "the water",
+   "es": "el agua"
+  },
+  "froide": {
+   "ru": "холодная",
+   "uk": "холодна",
+   "en": "cold (she, it)",
+   "es": "fría"
+  },
+  "j’aime": {
+   "ru": "я люблю, мне нравится",
+   "uk": "я люблю, мені подобається",
+   "en": "I like, I love",
+   "es": "me gusta, amo"
+  },
+  "thé": {
+   "ru": "чай",
+   "uk": "чай",
+   "en": "tea",
+   "es": "té"
+  },
+  "aime": {
+   "ru": "(он, она) любит, ему нравится",
+   "uk": "(він, вона) любить, йому подобається",
+   "en": "(he, she) likes",
+   "es": "(él, ella) le gusta, ama"
+  },
+  "musique": {
+   "ru": "музыка",
+   "uk": "музика",
+   "en": "music",
+   "es": "música"
+  },
+  "cinéma": {
+   "ru": "кино",
+   "uk": "кіно",
+   "en": "cinema",
+   "es": "cine"
+  },
+  "aimons": {
+   "ru": "(мы) любим",
+   "uk": "(ми) любимо",
+   "en": "(we) like",
+   "es": "(nosotros) amamos, nos gusta"
+  },
+  "livres": {
+   "ru": "книги",
+   "uk": "книги",
+   "en": "books",
+   "es": "libros"
+  },
+  "aimes": {
+   "ru": "(ты) любишь",
+   "uk": "(ти) любиш",
+   "en": "(you) like",
+   "es": "(tú) amas, te gusta"
+  },
+  "fraises": {
+   "ru": "клубника",
+   "uk": "полуниця",
+   "en": "strawberries",
+   "es": "fresas"
+  },
+  "fromage": {
+   "ru": "сыр",
+   "uk": "сир",
+   "en": "cheese",
+   "es": "queso"
+  },
+  "aiment": {
+   "ru": "(они) любят",
+   "uk": "(вони) люблять",
+   "en": "(they) like",
+   "es": "(ellos) aman, les gusta"
+  },
+  "chocolat": {
+   "ru": "шоколад",
+   "uk": "шоколад",
+   "en": "chocolate",
+   "es": "chocolate"
+  },
+  "aimez": {
+   "ru": "(вы) любите",
+   "uk": "(ви) любите",
+   "en": "(you) like",
+   "es": "(usted) ama, le gusta"
+  },
+  "l’odeur": {
+   "ru": "запах",
+   "uk": "запах",
+   "en": "the smell",
+   "es": "el olor"
+  },
+  "banque": {
+   "ru": "банк",
+   "uk": "банк",
+   "en": "bank",
+   "es": "banco"
+  },
+  "marché": {
+   "ru": "рынок",
+   "uk": "ринок",
+   "en": "market",
+   "es": "mercado"
+  },
+  "l’école": {
+   "ru": "школа",
+   "uk": "школа",
+   "en": "the school",
+   "es": "la escuela"
+  },
+  "bibliothèque": {
+   "ru": "библиотека",
+   "uk": "бібліотека",
+   "en": "library",
+   "es": "biblioteca"
+  },
+  "jardin": {
+   "ru": "сад",
+   "uk": "сад",
+   "en": "garden",
+   "es": "jardín"
+  },
+  "petit": {
+   "ru": "маленький",
+   "uk": "маленький",
+   "en": "small",
+   "es": "pequeño"
+  },
+  "l’hôtel": {
+   "ru": "отель, гостиница",
+   "uk": "готель",
+   "en": "the hotel",
+   "es": "el hotel"
+  },
+  "chambres": {
+   "ru": "комнаты, номера",
+   "uk": "кімнати, номери",
+   "en": "rooms",
+   "es": "habitaciones"
+  },
+  "l’étage": {
+   "ru": "этаж; наверху",
+   "uk": "поверх; нагорі",
+   "en": "the floor",
+   "es": "el piso"
+  },
+  "l’ascenseur": {
+   "ru": "лифт",
+   "uk": "ліфт",
+   "en": "the lift",
+   "es": "el ascensor"
+  },
+  "réception": {
+   "ru": "стойка регистрации",
+   "uk": "рецепція",
+   "en": "reception desk",
+   "es": "recepción"
+  },
+  "bas": {
+   "ru": "низ (внизу)",
+   "uk": "низ (внизу)",
+   "en": "bottom, down",
+   "es": "abajo"
+  },
+  "manteau": {
+   "ru": "пальто",
+   "uk": "пальто",
+   "en": "coat",
+   "es": "abrigo"
+  },
+  "chaise": {
+   "ru": "стул",
+   "uk": "стілець",
+   "en": "chair",
+   "es": "silla"
+  },
+  "veste": {
+   "ru": "куртка",
+   "uk": "куртка",
+   "en": "jacket",
+   "es": "chaqueta"
+  },
+  "gants": {
+   "ru": "перчатки",
+   "uk": "рукавички",
+   "en": "gloves",
+   "es": "guantes"
+  },
+  "l’écharpe": {
+   "ru": "шарф",
+   "uk": "шарф",
+   "en": "the scarf",
+   "es": "la bufanda"
+  },
+  "portefeuille": {
+   "ru": "кошелёк",
+   "uk": "гаманець",
+   "en": "wallet",
+   "es": "cartera"
+  },
+  "tiroir": {
+   "ru": "ящик (стола)",
+   "uk": "шухляда",
+   "en": "drawer",
+   "es": "cajón"
+  },
+  "l’ordinateur": {
+   "ru": "компьютер",
+   "uk": "комп'ютер",
+   "en": "the computer",
+   "es": "el ordenador"
+  },
+  "chargeur": {
+   "ru": "зарядка",
+   "uk": "зарядка",
+   "en": "charger",
+   "es": "cargador"
+  },
+  "lampe": {
+   "ru": "лампа",
+   "uk": "лампа",
+   "en": "lamp",
+   "es": "lámpara"
+  },
+  "l’amie": {
+   "ru": "подруга",
+   "uk": "подруга",
+   "en": "the friend (woman)",
+   "es": "la amiga"
+  },
+  "voiture": {
+   "ru": "машина",
+   "uk": "машина",
+   "en": "car",
+   "es": "coche"
+  },
+  "gratuite": {
+   "ru": "бесплатная",
+   "uk": "безкоштовна",
+   "en": "free of charge (she, it)",
+   "es": "gratuita"
+  },
+  "prix": {
+   "ru": "цены, цена",
+   "uk": "ціни, ціна",
+   "en": "prices, price",
+   "es": "precios, precio"
+  },
+  "nom": {
+   "ru": "имя, название",
+   "uk": "ім'я, назва",
+   "en": "name",
+   "es": "nombre"
+  },
+  "l’enveloppe": {
+   "ru": "конверт",
+   "uk": "конверт",
+   "en": "the envelope",
+   "es": "el sobre"
+  }
+ }
+}

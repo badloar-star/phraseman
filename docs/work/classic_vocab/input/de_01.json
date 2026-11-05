@@ -1,0 +1,829 @@
+{
+ "lang": "de",
+ "lesson": 1,
+ "words": [
+  {
+   "form": "ich",
+   "surface": "Ich",
+   "count": 8,
+   "examples": [
+    {
+     "id": "de:01:01",
+     "target": "Ich bin hier",
+     "ru": "Я здесь.",
+     "en": "I am here."
+    },
+    {
+     "id": "de:01:04",
+     "target": "Ich bin müde",
+     "ru": "Я устал.",
+     "en": "I am tired."
+    }
+   ]
+  },
+  {
+   "form": "bin",
+   "surface": "bin",
+   "count": 6,
+   "examples": [
+    {
+     "id": "de:01:01",
+     "target": "Ich bin hier",
+     "ru": "Я здесь.",
+     "en": "I am here."
+    },
+    {
+     "id": "de:01:04",
+     "target": "Ich bin müde",
+     "ru": "Я устал.",
+     "en": "I am tired."
+    }
+   ]
+  },
+  {
+   "form": "hier",
+   "surface": "hier",
+   "count": 7,
+   "examples": [
+    {
+     "id": "de:01:01",
+     "target": "Ich bin hier",
+     "ru": "Я здесь.",
+     "en": "I am here."
+    },
+    {
+     "id": "de:01:02",
+     "target": "Du bist hier",
+     "ru": "Ты здесь.",
+     "en": "You are here."
+    }
+   ]
+  },
+  {
+   "form": "du",
+   "surface": "Du",
+   "count": 5,
+   "examples": [
+    {
+     "id": "de:01:02",
+     "target": "Du bist hier",
+     "ru": "Ты здесь.",
+     "en": "You are here."
+    },
+    {
+     "id": "de:01:03",
+     "target": "Du bist müde",
+     "ru": "Ты устал.",
+     "en": "You are tired."
+    }
+   ]
+  },
+  {
+   "form": "bist",
+   "surface": "bist",
+   "count": 5,
+   "examples": [
+    {
+     "id": "de:01:02",
+     "target": "Du bist hier",
+     "ru": "Ты здесь.",
+     "en": "You are here."
+    },
+    {
+     "id": "de:01:03",
+     "target": "Du bist müde",
+     "ru": "Ты устал.",
+     "en": "You are tired."
+    }
+   ]
+  },
+  {
+   "form": "müde",
+   "surface": "müde",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:01:03",
+     "target": "Du bist müde",
+     "ru": "Ты устал.",
+     "en": "You are tired."
+    },
+    {
+     "id": "de:01:04",
+     "target": "Ich bin müde",
+     "ru": "Я устал.",
+     "en": "I am tired."
+    }
+   ]
+  },
+  {
+   "form": "anna",
+   "surface": "Anna",
+   "count": 6,
+   "examples": [
+    {
+     "id": "de:01:05",
+     "target": "Anna ist hier",
+     "ru": "Анна здесь.",
+     "en": "Anna is here."
+    },
+    {
+     "id": "de:01:06",
+     "target": "Anna ist müde",
+     "ru": "Анна устала.",
+     "en": "Anna is tired."
+    }
+   ]
+  },
+  {
+   "form": "ist",
+   "surface": "ist",
+   "count": 20,
+   "examples": [
+    {
+     "id": "de:01:05",
+     "target": "Anna ist hier",
+     "ru": "Анна здесь.",
+     "en": "Anna is here."
+    },
+    {
+     "id": "de:01:06",
+     "target": "Anna ist müde",
+     "ru": "Анна устала.",
+     "en": "Anna is tired."
+    }
+   ]
+  },
+  {
+   "form": "wir",
+   "surface": "Wir",
+   "count": 6,
+   "examples": [
+    {
+     "id": "de:01:07",
+     "target": "Wir sind hier",
+     "ru": "Мы здесь.",
+     "en": "We are here."
+    },
+    {
+     "id": "de:01:08",
+     "target": "Wir sind wach",
+     "ru": "Мы не спим.",
+     "en": "We are awake."
+    }
+   ]
+  },
+  {
+   "form": "sind",
+   "surface": "sind",
+   "count": 16,
+   "examples": [
+    {
+     "id": "de:01:07",
+     "target": "Wir sind hier",
+     "ru": "Мы здесь.",
+     "en": "We are here."
+    },
+    {
+     "id": "de:01:08",
+     "target": "Wir sind wach",
+     "ru": "Мы не спим.",
+     "en": "We are awake."
+    }
+   ]
+  },
+  {
+   "form": "wach",
+   "surface": "wach",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:08",
+     "target": "Wir sind wach",
+     "ru": "Мы не спим.",
+     "en": "We are awake."
+    },
+    {
+     "id": "de:01:09",
+     "target": "Ihr seid wach",
+     "ru": "Вы не спите.",
+     "en": "You are awake."
+    }
+   ]
+  },
+  {
+   "form": "ihr",
+   "surface": "Ihr",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:09",
+     "target": "Ihr seid wach",
+     "ru": "Вы не спите.",
+     "en": "You are awake."
+    },
+    {
+     "id": "de:01:19",
+     "target": "Ihr seid bereit",
+     "ru": "Вы готовы.",
+     "en": "You (plural) are ready."
+    }
+   ]
+  },
+  {
+   "form": "seid",
+   "surface": "seid",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:09",
+     "target": "Ihr seid wach",
+     "ru": "Вы не спите.",
+     "en": "You are awake."
+    },
+    {
+     "id": "de:01:19",
+     "target": "Ihr seid bereit",
+     "ru": "Вы готовы.",
+     "en": "You (plural) are ready."
+    }
+   ]
+  },
+  {
+   "form": "tom",
+   "surface": "Tom",
+   "count": 5,
+   "examples": [
+    {
+     "id": "de:01:10",
+     "target": "Tom ist wach",
+     "ru": "Том не спит.",
+     "en": "Tom is awake."
+    },
+    {
+     "id": "de:01:13",
+     "target": "Tom ist zu Hause",
+     "ru": "Том дома.",
+     "en": "Tom is at home."
+    }
+   ]
+  },
+  {
+   "form": "zu",
+   "surface": "zu",
+   "count": 6,
+   "examples": [
+    {
+     "id": "de:01:11",
+     "target": "Ich bin zu Hause",
+     "ru": "Я дома.",
+     "en": "I am at home."
+    },
+    {
+     "id": "de:01:12",
+     "target": "Du bist zu Hause",
+     "ru": "Ты дома.",
+     "en": "You are at home."
+    }
+   ]
+  },
+  {
+   "form": "hause",
+   "surface": "Hause",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:01:11",
+     "target": "Ich bin zu Hause",
+     "ru": "Я дома.",
+     "en": "I am at home."
+    },
+    {
+     "id": "de:01:12",
+     "target": "Du bist zu Hause",
+     "ru": "Ты дома.",
+     "en": "You are at home."
+    }
+   ]
+  },
+  {
+   "form": "bereit",
+   "surface": "bereit",
+   "count": 6,
+   "examples": [
+    {
+     "id": "de:01:15",
+     "target": "Ich bin bereit",
+     "ru": "Я готов.",
+     "en": "I am ready."
+    },
+    {
+     "id": "de:01:16",
+     "target": "Du bist bereit",
+     "ru": "Ты готов.",
+     "en": "You are ready."
+    }
+   ]
+  },
+  {
+   "form": "die",
+   "surface": "Die",
+   "count": 9,
+   "examples": [
+    {
+     "id": "de:01:20",
+     "target": "Die Kinder sind bereit",
+     "ru": "Дети готовы.",
+     "en": "The children are ready."
+    },
+    {
+     "id": "de:01:26",
+     "target": "Die Kinder sind draußen",
+     "ru": "Дети на улице.",
+     "en": "The children are outside."
+    }
+   ]
+  },
+  {
+   "form": "kinder",
+   "surface": "Kinder",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:01:20",
+     "target": "Die Kinder sind bereit",
+     "ru": "Дети готовы.",
+     "en": "The children are ready."
+    },
+    {
+     "id": "de:01:26",
+     "target": "Die Kinder sind draußen",
+     "ru": "Дети на улице.",
+     "en": "The children are outside."
+    }
+   ]
+  },
+  {
+   "form": "allein",
+   "surface": "allein",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:21",
+     "target": "Ich bin allein",
+     "ru": "Я один.",
+     "en": "I am alone."
+    },
+    {
+     "id": "de:01:22",
+     "target": "Du bist allein",
+     "ru": "Ты один.",
+     "en": "You are alone."
+    }
+   ]
+  },
+  {
+   "form": "draußen",
+   "surface": "draußen",
+   "count": 4,
+   "examples": [
+    {
+     "id": "de:01:24",
+     "target": "Wir sind draußen",
+     "ru": "Мы на улице.",
+     "en": "We are outside."
+    },
+    {
+     "id": "de:01:25",
+     "target": "Ihr seid draußen",
+     "ru": "Вы на улице.",
+     "en": "You (plural) are outside."
+    }
+   ]
+  },
+  {
+   "form": "drinnen",
+   "surface": "drinnen",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:01:27",
+     "target": "Anna ist drinnen",
+     "ru": "Анна внутри.",
+     "en": "Anna is inside."
+    },
+    {
+     "id": "de:01:28",
+     "target": "Wir sind drinnen",
+     "ru": "Мы внутри.",
+     "en": "We are inside."
+    }
+   ]
+  },
+  {
+   "form": "krank",
+   "surface": "krank",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:01:29",
+     "target": "Ich bin krank",
+     "ru": "Я болею.",
+     "en": "I am sick."
+    },
+    {
+     "id": "de:01:30",
+     "target": "Die Kinder sind krank",
+     "ru": "Дети болеют.",
+     "en": "The children are sick."
+    }
+   ]
+  },
+  {
+   "form": "tür",
+   "surface": "Tür",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:01:31",
+     "target": "Die Tür ist offen",
+     "ru": "Дверь открыта.",
+     "en": "The door is open."
+    },
+    {
+     "id": "de:01:34",
+     "target": "Die Tür ist zu",
+     "ru": "Дверь закрыта.",
+     "en": "The door is closed."
+    }
+   ]
+  },
+  {
+   "form": "offen",
+   "surface": "offen",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:31",
+     "target": "Die Tür ist offen",
+     "ru": "Дверь открыта.",
+     "en": "The door is open."
+    },
+    {
+     "id": "de:01:32",
+     "target": "Das Fenster ist offen",
+     "ru": "Окно открыто.",
+     "en": "The window is open."
+    }
+   ]
+  },
+  {
+   "form": "das",
+   "surface": "Das",
+   "count": 6,
+   "examples": [
+    {
+     "id": "de:01:32",
+     "target": "Das Fenster ist offen",
+     "ru": "Окно открыто.",
+     "en": "The window is open."
+    },
+    {
+     "id": "de:01:35",
+     "target": "Das Fenster ist zu",
+     "ru": "Окно закрыто.",
+     "en": "The window is closed."
+    }
+   ]
+  },
+  {
+   "form": "fenster",
+   "surface": "Fenster",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:32",
+     "target": "Das Fenster ist offen",
+     "ru": "Окно открыто.",
+     "en": "The window is open."
+    },
+    {
+     "id": "de:01:33",
+     "target": "Die Fenster sind offen",
+     "ru": "Окна открыты.",
+     "en": "The windows are open."
+    }
+   ]
+  },
+  {
+   "form": "der",
+   "surface": "Der",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:36",
+     "target": "Der Tee ist heiß",
+     "ru": "Чай горячий.",
+     "en": "The tea is hot."
+    },
+    {
+     "id": "de:01:39",
+     "target": "Der Kaffee ist kalt",
+     "ru": "Кофе холодный.",
+     "en": "The coffee is cold."
+    }
+   ]
+  },
+  {
+   "form": "tee",
+   "surface": "Tee",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:36",
+     "target": "Der Tee ist heiß",
+     "ru": "Чай горячий.",
+     "en": "The tea is hot."
+    }
+   ]
+  },
+  {
+   "form": "heiß",
+   "surface": "heiß",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:36",
+     "target": "Der Tee ist heiß",
+     "ru": "Чай горячий.",
+     "en": "The tea is hot."
+    }
+   ]
+  },
+  {
+   "form": "wasser",
+   "surface": "Wasser",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:37",
+     "target": "Das Wasser ist kalt",
+     "ru": "Вода холодная.",
+     "en": "The water is cold."
+    }
+   ]
+  },
+  {
+   "form": "kalt",
+   "surface": "kalt",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:01:37",
+     "target": "Das Wasser ist kalt",
+     "ru": "Вода холодная.",
+     "en": "The water is cold."
+    },
+    {
+     "id": "de:01:39",
+     "target": "Der Kaffee ist kalt",
+     "ru": "Кофе холодный.",
+     "en": "The coffee is cold."
+    }
+   ]
+  },
+  {
+   "form": "suppe",
+   "surface": "Suppe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:38",
+     "target": "Die Suppe ist warm",
+     "ru": "Суп тёплый.",
+     "en": "The soup is warm."
+    }
+   ]
+  },
+  {
+   "form": "warm",
+   "surface": "warm",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:38",
+     "target": "Die Suppe ist warm",
+     "ru": "Суп тёплый.",
+     "en": "The soup is warm."
+    }
+   ]
+  },
+  {
+   "form": "kaffee",
+   "surface": "Kaffee",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:39",
+     "target": "Der Kaffee ist kalt",
+     "ru": "Кофе холодный.",
+     "en": "The coffee is cold."
+    }
+   ]
+  },
+  {
+   "form": "essen",
+   "surface": "Essen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:40",
+     "target": "Das Essen ist fertig",
+     "ru": "Еда готова.",
+     "en": "The food is ready."
+    }
+   ]
+  },
+  {
+   "form": "fertig",
+   "surface": "fertig",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:40",
+     "target": "Das Essen ist fertig",
+     "ru": "Еда готова.",
+     "en": "The food is ready."
+    }
+   ]
+  },
+  {
+   "form": "und",
+   "surface": "und",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:41",
+     "target": "Anna und Tom sind hier",
+     "ru": "Анна и Том здесь.",
+     "en": "Anna and Tom are here."
+    },
+    {
+     "id": "de:01:42",
+     "target": "Tom und ich sind draußen",
+     "ru": "Мы с Томом на улице.",
+     "en": "Tom and I are outside."
+    }
+   ]
+  },
+  {
+   "form": "leise",
+   "surface": "leise",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:44",
+     "target": "Die Kinder sind leise",
+     "ru": "Дети ведут себя тихо.",
+     "en": "The children are quiet."
+    }
+   ]
+  },
+  {
+   "form": "zimmer",
+   "surface": "Zimmer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:45",
+     "target": "Das Zimmer ist ruhig",
+     "ru": "В комнате тихо.",
+     "en": "The room is quiet."
+    }
+   ]
+  },
+  {
+   "form": "ruhig",
+   "surface": "ruhig",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:45",
+     "target": "Das Zimmer ist ruhig",
+     "ru": "В комнате тихо.",
+     "en": "The room is quiet."
+    }
+   ]
+  },
+  {
+   "form": "platz",
+   "surface": "Platz",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:46",
+     "target": "Der Platz ist frei",
+     "ru": "Место свободно.",
+     "en": "The seat is free."
+    }
+   ]
+  },
+  {
+   "form": "frei",
+   "surface": "frei",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:01:46",
+     "target": "Der Platz ist frei",
+     "ru": "Место свободно.",
+     "en": "The seat is free."
+    },
+    {
+     "id": "de:01:47",
+     "target": "Die Plätze sind frei",
+     "ru": "Места свободны.",
+     "en": "The seats are free."
+    }
+   ]
+  },
+  {
+   "form": "plätze",
+   "surface": "Plätze",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:47",
+     "target": "Die Plätze sind frei",
+     "ru": "Места свободны.",
+     "en": "The seats are free."
+    }
+   ]
+  },
+  {
+   "form": "bad",
+   "surface": "Bad",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:48",
+     "target": "Das Bad ist frei",
+     "ru": "Ванная свободна.",
+     "en": "The bathroom is free."
+    }
+   ]
+  },
+  {
+   "form": "meine",
+   "surface": "Meine",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:49",
+     "target": "Meine Tasche ist hier",
+     "ru": "Моя сумка здесь.",
+     "en": "My bag is here."
+    }
+   ]
+  },
+  {
+   "form": "tasche",
+   "surface": "Tasche",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:49",
+     "target": "Meine Tasche ist hier",
+     "ru": "Моя сумка здесь.",
+     "en": "My bag is here."
+    }
+   ]
+  },
+  {
+   "form": "deine",
+   "surface": "Deine",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:50",
+     "target": "Deine Schlüssel sind hier",
+     "ru": "Твои ключи здесь.",
+     "en": "Your keys are here."
+    }
+   ]
+  },
+  {
+   "form": "schlüssel",
+   "surface": "Schlüssel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:01:50",
+     "target": "Deine Schlüssel sind hier",
+     "ru": "Твои ключи здесь.",
+     "en": "Your keys are here."
+    }
+   ]
+  }
+ ]
+}

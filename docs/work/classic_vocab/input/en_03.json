@@ -1,0 +1,894 @@
+{
+ "lang": "en",
+ "lesson": 3,
+ "words": [
+  {
+   "form": "nearby",
+   "surface": "nearby",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.01",
+     "target": "I work nearby",
+     "ru": "Я работаю неподалеку.",
+     "en": "I work nearby."
+    },
+    {
+     "id": "en-classic-r1:03.02",
+     "target": "We work nearby",
+     "ru": "Мы работаем неподалеку.",
+     "en": "We work nearby."
+    }
+   ]
+  },
+  {
+   "form": "works",
+   "surface": "works",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.03",
+     "target": "She works nearby",
+     "ru": "Она работает неподалеку.",
+     "en": "She works nearby."
+    },
+    {
+     "id": "en-classic-r1:03.28",
+     "target": "The lift works well",
+     "ru": "Лифт работает хорошо.",
+     "en": "The lift works well."
+    }
+   ]
+  },
+  {
+   "form": "live",
+   "surface": "live",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.04",
+     "target": "I live alone",
+     "ru": "Я живу один.",
+     "en": "I live alone."
+    }
+   ]
+  },
+  {
+   "form": "alone",
+   "surface": "alone",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.04",
+     "target": "I live alone",
+     "ru": "Я живу один.",
+     "en": "I live alone."
+    },
+    {
+     "id": "en-classic-r1:03.05",
+     "target": "He lives alone",
+     "ru": "Он живет один.",
+     "en": "He lives alone."
+    }
+   ]
+  },
+  {
+   "form": "lives",
+   "surface": "lives",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.05",
+     "target": "He lives alone",
+     "ru": "Он живет один.",
+     "en": "He lives alone."
+    }
+   ]
+  },
+  {
+   "form": "start",
+   "surface": "start",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.06",
+     "target": "We start early",
+     "ru": "Мы начинаем рано.",
+     "en": "We start early."
+    }
+   ]
+  },
+  {
+   "form": "starts",
+   "surface": "starts",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.07",
+     "target": "She starts early",
+     "ru": "Она начинает рано.",
+     "en": "She starts early."
+    },
+    {
+     "id": "en-classic-r1:03.24",
+     "target": "The class starts at ten",
+     "ru": "Занятие начинается в десять.",
+     "en": "The class starts at ten."
+    }
+   ]
+  },
+  {
+   "form": "finish",
+   "surface": "finish",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.08",
+     "target": "They finish late",
+     "ru": "Они заканчивают поздно.",
+     "en": "They finish late."
+    }
+   ]
+  },
+  {
+   "form": "finishes",
+   "surface": "finishes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.09",
+     "target": "He finishes late",
+     "ru": "Он заканчивает поздно.",
+     "en": "He finishes late."
+    }
+   ]
+  },
+  {
+   "form": "walk",
+   "surface": "walk",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.10",
+     "target": "I walk home",
+     "ru": "Я иду домой пешком.",
+     "en": "I walk home."
+    },
+    {
+     "id": "en-classic-r1:03.39",
+     "target": "We walk to the shop",
+     "ru": "Мы идем в магазин пешком.",
+     "en": "We walk to the shop."
+    }
+   ]
+  },
+  {
+   "form": "need",
+   "surface": "need",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.11",
+     "target": "I need help",
+     "ru": "Мне нужна помощь.",
+     "en": "I need help."
+    }
+   ]
+  },
+  {
+   "form": "help",
+   "surface": "help",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.11",
+     "target": "I need help",
+     "ru": "Мне нужна помощь.",
+     "en": "I need help."
+    },
+    {
+     "id": "en-classic-r1:03.12",
+     "target": "She needs help",
+     "ru": "Ей нужна помощь.",
+     "en": "She needs help."
+    }
+   ]
+  },
+  {
+   "form": "needs",
+   "surface": "needs",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.12",
+     "target": "She needs help",
+     "ru": "Ей нужна помощь.",
+     "en": "She needs help."
+    }
+   ]
+  },
+  {
+   "form": "want",
+   "surface": "want",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.13",
+     "target": "We want coffee",
+     "ru": "Мы хотим кофе.",
+     "en": "We want coffee."
+    }
+   ]
+  },
+  {
+   "form": "wants",
+   "surface": "wants",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.14",
+     "target": "He wants tea",
+     "ru": "Он хочет чай.",
+     "en": "He wants tea."
+    }
+   ]
+  },
+  {
+   "form": "tea",
+   "surface": "tea",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.14",
+     "target": "He wants tea",
+     "ru": "Он хочет чай.",
+     "en": "He wants tea."
+    }
+   ]
+  },
+  {
+   "form": "like",
+   "surface": "like",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.15",
+     "target": "I like this seat",
+     "ru": "Мне нравится это место.",
+     "en": "I like this seat."
+    }
+   ]
+  },
+  {
+   "form": "likes",
+   "surface": "likes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.16",
+     "target": "She likes this seat",
+     "ru": "Ей нравится это место.",
+     "en": "She likes this seat."
+    }
+   ]
+  },
+  {
+   "form": "use",
+   "surface": "use",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.17",
+     "target": "They use the lift",
+     "ru": "Они пользуются лифтом.",
+     "en": "They use the lift."
+    }
+   ]
+  },
+  {
+   "form": "uses",
+   "surface": "uses",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.18",
+     "target": "He uses the stairs",
+     "ru": "Он пользуется лестницей.",
+     "en": "He uses the stairs."
+    }
+   ]
+  },
+  {
+   "form": "speak",
+   "surface": "speak",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.19",
+     "target": "You speak English",
+     "ru": "Вы говорите по-английски.",
+     "en": "You speak English."
+    }
+   ]
+  },
+  {
+   "form": "english",
+   "surface": "English",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.19",
+     "target": "You speak English",
+     "ru": "Вы говорите по-английски.",
+     "en": "You speak English."
+    },
+    {
+     "id": "en-classic-r1:03.20",
+     "target": "She speaks English",
+     "ru": "Она говорит по-английски.",
+     "en": "She speaks English."
+    }
+   ]
+  },
+  {
+   "form": "speaks",
+   "surface": "speaks",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.20",
+     "target": "She speaks English",
+     "ru": "Она говорит по-английски.",
+     "en": "She speaks English."
+    }
+   ]
+  },
+  {
+   "form": "stops",
+   "surface": "stops",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.21",
+     "target": "The train stops here",
+     "ru": "Поезд останавливается здесь.",
+     "en": "The train stops here."
+    },
+    {
+     "id": "en-classic-r1:03.29",
+     "target": "The bus stops nearby",
+     "ru": "Автобус останавливается неподалеку.",
+     "en": "The bus stops nearby."
+    }
+   ]
+  },
+  {
+   "form": "opens",
+   "surface": "opens",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.22",
+     "target": "The shop opens at nine",
+     "ru": "Магазин открывается в девять.",
+     "en": "The shop opens at nine."
+    },
+    {
+     "id": "en-classic-r1:03.50",
+     "target": "This key opens the gate",
+     "ru": "Этот ключ открывает ворота.",
+     "en": "This key opens the gate."
+    }
+   ]
+  },
+  {
+   "form": "nine",
+   "surface": "nine",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.22",
+     "target": "The shop opens at nine",
+     "ru": "Магазин открывается в девять.",
+     "en": "The shop opens at nine."
+    }
+   ]
+  },
+  {
+   "form": "leaves",
+   "surface": "leaves",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.23",
+     "target": "The bus leaves at eight",
+     "ru": "Автобус отправляется в восемь.",
+     "en": "The bus leaves at eight."
+    }
+   ]
+  },
+  {
+   "form": "eight",
+   "surface": "eight",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.23",
+     "target": "The bus leaves at eight",
+     "ru": "Автобус отправляется в восемь.",
+     "en": "The bus leaves at eight."
+    }
+   ]
+  },
+  {
+   "form": "class",
+   "surface": "class",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.24",
+     "target": "The class starts at ten",
+     "ru": "Занятие начинается в десять.",
+     "en": "The class starts at ten."
+    }
+   ]
+  },
+  {
+   "form": "ten",
+   "surface": "ten",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.24",
+     "target": "The class starts at ten",
+     "ru": "Занятие начинается в десять.",
+     "en": "The class starts at ten."
+    }
+   ]
+  },
+  {
+   "form": "cafe",
+   "surface": "cafe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.25",
+     "target": "The cafe closes early",
+     "ru": "Кафе закрывается рано.",
+     "en": "The cafe closes early."
+    }
+   ]
+  },
+  {
+   "form": "closes",
+   "surface": "closes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.25",
+     "target": "The cafe closes early",
+     "ru": "Кафе закрывается рано.",
+     "en": "The cafe closes early."
+    }
+   ]
+  },
+  {
+   "form": "slowly",
+   "surface": "slowly",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.26",
+     "target": "The doors open slowly",
+     "ru": "Двери открываются медленно.",
+     "en": "The doors open slowly."
+    }
+   ]
+  },
+  {
+   "form": "shift",
+   "surface": "shift",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.27",
+     "target": "My shift starts soon",
+     "ru": "Моя смена скоро начнётся.",
+     "en": "My shift starts soon."
+    },
+    {
+     "id": "en-classic-r1:03.42",
+     "target": "Her shift starts late",
+     "ru": "Ее смена начинается поздно.",
+     "en": "Her shift starts late."
+    }
+   ]
+  },
+  {
+   "form": "soon",
+   "surface": "soon",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.27",
+     "target": "My shift starts soon",
+     "ru": "Моя смена скоро начнётся.",
+     "en": "My shift starts soon."
+    }
+   ]
+  },
+  {
+   "form": "well",
+   "surface": "well",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.28",
+     "target": "The lift works well",
+     "ru": "Лифт работает хорошо.",
+     "en": "The lift works well."
+    }
+   ]
+  },
+  {
+   "form": "close",
+   "surface": "close",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.30",
+     "target": "The shops close late",
+     "ru": "Магазины закрываются поздно.",
+     "en": "The shops close late."
+    }
+   ]
+  },
+  {
+   "form": "take",
+   "surface": "take",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.31",
+     "target": "I take the bus",
+     "ru": "Я еду на автобусе.",
+     "en": "I take the bus."
+    },
+    {
+     "id": "en-classic-r1:03.37",
+     "target": "They take cash",
+     "ru": "Они принимают наличные.",
+     "en": "They take cash."
+    }
+   ]
+  },
+  {
+   "form": "takes",
+   "surface": "takes",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.32",
+     "target": "He takes the train",
+     "ru": "Он едет на поезде.",
+     "en": "He takes the train."
+    },
+    {
+     "id": "en-classic-r1:03.38",
+     "target": "She takes cash",
+     "ru": "Она принимает наличные.",
+     "en": "She takes cash."
+    }
+   ]
+  },
+  {
+   "form": "share",
+   "surface": "share",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.33",
+     "target": "We share a kitchen",
+     "ru": "Мы делим кухню.",
+     "en": "We share a kitchen."
+    }
+   ]
+  },
+  {
+   "form": "a",
+   "surface": "a",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.33",
+     "target": "We share a kitchen",
+     "ru": "Мы делим кухню.",
+     "en": "We share a kitchen."
+    },
+    {
+     "id": "en-classic-r1:03.34",
+     "target": "She shares a flat",
+     "ru": "Она живёт в квартире с кем-то ещё.",
+     "en": "She shares a flat."
+    }
+   ]
+  },
+  {
+   "form": "shares",
+   "surface": "shares",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.34",
+     "target": "She shares a flat",
+     "ru": "Она живёт в квартире с кем-то ещё.",
+     "en": "She shares a flat."
+    }
+   ]
+  },
+  {
+   "form": "flat",
+   "surface": "flat",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.34",
+     "target": "She shares a flat",
+     "ru": "Она живёт в квартире с кем-то ещё.",
+     "en": "She shares a flat."
+    }
+   ]
+  },
+  {
+   "form": "check",
+   "surface": "check",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.35",
+     "target": "I check my email",
+     "ru": "Я проверяю электронную почту.",
+     "en": "I check my email."
+    }
+   ]
+  },
+  {
+   "form": "email",
+   "surface": "email",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.35",
+     "target": "I check my email",
+     "ru": "Я проверяю электронную почту.",
+     "en": "I check my email."
+    }
+   ]
+  },
+  {
+   "form": "checks",
+   "surface": "checks",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.36",
+     "target": "He checks his phone",
+     "ru": "Он проверяет телефон.",
+     "en": "He checks his phone."
+    }
+   ]
+  },
+  {
+   "form": "his",
+   "surface": "his",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.36",
+     "target": "He checks his phone",
+     "ru": "Он проверяет телефон.",
+     "en": "He checks his phone."
+    }
+   ]
+  },
+  {
+   "form": "cash",
+   "surface": "cash",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.37",
+     "target": "They take cash",
+     "ru": "Они принимают наличные.",
+     "en": "They take cash."
+    },
+    {
+     "id": "en-classic-r1:03.38",
+     "target": "She takes cash",
+     "ru": "Она принимает наличные.",
+     "en": "She takes cash."
+    }
+   ]
+  },
+  {
+   "form": "to",
+   "surface": "to",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.39",
+     "target": "We walk to the shop",
+     "ru": "Мы идем в магазин пешком.",
+     "en": "We walk to the shop."
+    },
+    {
+     "id": "en-classic-r1:03.40",
+     "target": "He walks to the shop",
+     "ru": "Он идет в магазин пешком.",
+     "en": "He walks to the shop."
+    }
+   ]
+  },
+  {
+   "form": "walks",
+   "surface": "walks",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.40",
+     "target": "He walks to the shop",
+     "ru": "Он идет в магазин пешком.",
+     "en": "He walks to the shop."
+    },
+    {
+     "id": "en-classic-r1:03.44",
+     "target": "She walks to work",
+     "ru": "Она ходит на работу пешком.",
+     "en": "She walks to work."
+    }
+   ]
+  },
+  {
+   "form": "sister",
+   "surface": "sister",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.41",
+     "target": "My sister works nights",
+     "ru": "Моя сестра работает по ночам.",
+     "en": "My sister works nights."
+    },
+    {
+     "id": "en-classic-r1:03.46",
+     "target": "My sister studies English",
+     "ru": "Моя сестра изучает английский.",
+     "en": "My sister studies English."
+    }
+   ]
+  },
+  {
+   "form": "nights",
+   "surface": "nights",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.41",
+     "target": "My sister works nights",
+     "ru": "Моя сестра работает по ночам.",
+     "en": "My sister works nights."
+    }
+   ]
+  },
+  {
+   "form": "together",
+   "surface": "together",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.43",
+     "target": "We work together",
+     "ru": "Мы работаем вместе.",
+     "en": "We work together."
+    }
+   ]
+  },
+  {
+   "form": "sometimes",
+   "surface": "sometimes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.45",
+     "target": "I sometimes work at home",
+     "ru": "Я иногда работаю дома.",
+     "en": "I sometimes work at home."
+    }
+   ]
+  },
+  {
+   "form": "studies",
+   "surface": "studies",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.46",
+     "target": "My sister studies English",
+     "ru": "Моя сестра изучает английский.",
+     "en": "My sister studies English."
+    },
+    {
+     "id": "en-classic-r1:03.48",
+     "target": "She studies at home",
+     "ru": "Она учится дома.",
+     "en": "She studies at home."
+    }
+   ]
+  },
+  {
+   "form": "driver",
+   "surface": "driver",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.49",
+     "target": "The driver knows the way",
+     "ru": "Водитель знает дорогу.",
+     "en": "The driver knows the way."
+    }
+   ]
+  },
+  {
+   "form": "knows",
+   "surface": "knows",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.49",
+     "target": "The driver knows the way",
+     "ru": "Водитель знает дорогу.",
+     "en": "The driver knows the way."
+    }
+   ]
+  },
+  {
+   "form": "way",
+   "surface": "way",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.49",
+     "target": "The driver knows the way",
+     "ru": "Водитель знает дорогу.",
+     "en": "The driver knows the way."
+    }
+   ]
+  },
+  {
+   "form": "key",
+   "surface": "key",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.50",
+     "target": "This key opens the gate",
+     "ru": "Этот ключ открывает ворота.",
+     "en": "This key opens the gate."
+    }
+   ]
+  },
+  {
+   "form": "gate",
+   "surface": "gate",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:03.50",
+     "target": "This key opens the gate",
+     "ru": "Этот ключ открывает ворота.",
+     "en": "This key opens the gate."
+    }
+   ]
+  }
+ ]
+}

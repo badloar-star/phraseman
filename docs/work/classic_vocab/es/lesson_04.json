@@ -1,0 +1,132 @@
+{
+ "lang": "es",
+ "lesson": 4,
+ "words": {
+  "soy": {
+   "ru": "(я) есть, являюсь",
+   "uk": "(я) є, являюся",
+   "en": "I am",
+   "es": "yo soy"
+  },
+  "médico": {
+   "ru": "врач",
+   "uk": "лікар (чоловік)",
+   "en": "doctor (man)",
+   "es": "hombre que cura enfermos"
+  },
+  "médica": {
+   "ru": "врач (о женщине)",
+   "uk": "лікарка (жінка)",
+   "en": "doctor (woman)",
+   "es": "mujer que cura enfermos"
+  },
+  "eres": {
+   "ru": "(ты) есть, являешься",
+   "uk": "(ти) є, являєшся",
+   "en": "you are",
+   "es": "tú eres"
+  },
+  "estudiante": {
+   "ru": "студент, студентка",
+   "uk": "студент, студентка",
+   "en": "student",
+   "es": "persona que estudia"
+  },
+  "profesor": {
+   "ru": "преподаватель",
+   "uk": "викладач",
+   "en": "teacher (man)",
+   "es": "hombre que enseña"
+  },
+  "profesora": {
+   "ru": "преподавательница",
+   "uk": "викладачка",
+   "en": "teacher (woman)",
+   "es": "mujer que enseña"
+  },
+  "es": {
+   "ru": "(он, она) есть, является",
+   "uk": "(він, вона) є, являється",
+   "en": "he, she is",
+   "es": "él, ella es"
+  },
+  "guía": {
+   "ru": "гид, экскурсовод",
+   "uk": "гід, екскурсовод",
+   "en": "guide",
+   "es": "persona que enseña un lugar"
+  },
+  "somos": {
+   "ru": "(мы) есть, являемся",
+   "uk": "(ми) є, являємося",
+   "en": "we are",
+   "es": "nosotros somos"
+  },
+  "estudiantes": {
+   "ru": "студенты",
+   "uk": "студенти",
+   "en": "students",
+   "es": "varias personas que estudian"
+  },
+  "médicos": {
+   "ru": "врачи",
+   "uk": "лікарі",
+   "en": "doctors",
+   "es": "varios médicos"
+  },
+  "médicas": {
+   "ru": "врачи (женщины)",
+   "uk": "лікарки",
+   "en": "doctors (women)",
+   "es": "varias médicas"
+  },
+  "profesores": {
+   "ru": "преподаватели",
+   "uk": "викладачі",
+   "en": "teachers",
+   "es": "varios profesores"
+  },
+  "profesoras": {
+   "ru": "преподавательницы",
+   "uk": "викладачки",
+   "en": "teachers (women)",
+   "es": "varias profesoras"
+  },
+  "son": {
+   "ru": "(они, вы вежливо) есть",
+   "uk": "(вони, ви ввічливо) є",
+   "en": "they are",
+   "es": "ellos, ellas son"
+  },
+  "sois": {
+   "ru": "(вы) есть, являетесь",
+   "uk": "(ви) є, являєтеся",
+   "en": "you all are",
+   "es": "vosotros sois"
+  },
+  "guías": {
+   "ru": "гиды, экскурсоводы",
+   "uk": "гіди, екскурсоводи",
+   "en": "guides",
+   "es": "varios guías"
+  },
+  "enfermero": {
+   "ru": "медбрат",
+   "uk": "медбрат",
+   "en": "nurse (man)",
+   "es": "hombre que cuida enfermos"
+  },
+  "enfermera": {
+   "ru": "медсестра",
+   "uk": "медсестра",
+   "en": "nurse (woman)",
+   "es": "mujer que cuida enfermos"
+  },
+  "usted": {
+   "ru": "Вы (вежливо)",
+   "uk": "Ви (ввічливо)",
+   "en": "you (polite)",
+   "es": "tú, con respeto"
+  }
+ }
+}

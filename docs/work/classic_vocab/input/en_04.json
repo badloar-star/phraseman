@@ -1,0 +1,889 @@
+{
+ "lang": "en",
+ "lesson": 4,
+ "words": [
+  {
+   "form": "do",
+   "surface": "do",
+   "count": 24,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.01",
+     "target": "I do not drive",
+     "ru": "Я не вожу машину.",
+     "en": "I do not drive."
+    },
+    {
+     "id": "en-classic-r1:04.02",
+     "target": "We do not drive",
+     "ru": "Мы не водим машину.",
+     "en": "We do not drive."
+    }
+   ]
+  },
+  {
+   "form": "drive",
+   "surface": "drive",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.01",
+     "target": "I do not drive",
+     "ru": "Я не вожу машину.",
+     "en": "I do not drive."
+    },
+    {
+     "id": "en-classic-r1:04.02",
+     "target": "We do not drive",
+     "ru": "Мы не водим машину.",
+     "en": "We do not drive."
+    }
+   ]
+  },
+  {
+   "form": "does",
+   "surface": "does",
+   "count": 26,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.03",
+     "target": "He does not drive",
+     "ru": "Он не водит машину.",
+     "en": "He does not drive."
+    },
+    {
+     "id": "en-classic-r1:04.05",
+     "target": "She does not smoke",
+     "ru": "Она не курит.",
+     "en": "She does not smoke."
+    }
+   ]
+  },
+  {
+   "form": "smoke",
+   "surface": "smoke",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.04",
+     "target": "I do not smoke",
+     "ru": "Я не курю.",
+     "en": "I do not smoke."
+    },
+    {
+     "id": "en-classic-r1:04.05",
+     "target": "She does not smoke",
+     "ru": "Она не курит.",
+     "en": "She does not smoke."
+    }
+   ]
+  },
+  {
+   "form": "eat",
+   "surface": "eat",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.10",
+     "target": "I do not eat meat",
+     "ru": "Я не ем мясо.",
+     "en": "I do not eat meat."
+    },
+    {
+     "id": "en-classic-r1:04.35",
+     "target": "They do not eat lunch here",
+     "ru": "Они не обедают здесь.",
+     "en": "They do not eat lunch here."
+    }
+   ]
+  },
+  {
+   "form": "meat",
+   "surface": "meat",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.10",
+     "target": "I do not eat meat",
+     "ru": "Я не ем мясо.",
+     "en": "I do not eat meat."
+    }
+   ]
+  },
+  {
+   "form": "have",
+   "surface": "have",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.11",
+     "target": "I do not have cash",
+     "ru": "У меня нет наличных.",
+     "en": "I do not have cash."
+    },
+    {
+     "id": "en-classic-r1:04.12",
+     "target": "He does not have cash",
+     "ru": "У него нет наличных.",
+     "en": "He does not have cash."
+    }
+   ]
+  },
+  {
+   "form": "entrance",
+   "surface": "entrance",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.13",
+     "target": "We do not use this entrance",
+     "ru": "Мы не пользуемся этим входом.",
+     "en": "We do not use this entrance."
+    },
+    {
+     "id": "en-classic-r1:04.14",
+     "target": "She does not use this entrance",
+     "ru": "Она не пользуется этим входом.",
+     "en": "She does not use this entrance."
+    }
+   ]
+  },
+  {
+   "form": "accept",
+   "surface": "accept",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.15",
+     "target": "They do not accept cards",
+     "ru": "Они не принимают карты.",
+     "en": "They do not accept cards."
+    },
+    {
+     "id": "en-classic-r1:04.16",
+     "target": "This machine does not accept coins",
+     "ru": "Этот автомат не принимает монеты.",
+     "en": "This machine does not accept coins."
+    }
+   ]
+  },
+  {
+   "form": "cards",
+   "surface": "cards",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.15",
+     "target": "They do not accept cards",
+     "ru": "Они не принимают карты.",
+     "en": "They do not accept cards."
+    }
+   ]
+  },
+  {
+   "form": "machine",
+   "surface": "machine",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.16",
+     "target": "This machine does not accept coins",
+     "ru": "Этот автомат не принимает монеты.",
+     "en": "This machine does not accept coins."
+    },
+    {
+     "id": "en-classic-r1:04.50",
+     "target": "My card does not work in this machine",
+     "ru": "Моя карта не работает в этом автомате.",
+     "en": "My card does not work in this machine."
+    }
+   ]
+  },
+  {
+   "form": "coins",
+   "surface": "coins",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.16",
+     "target": "This machine does not accept coins",
+     "ru": "Этот автомат не принимает монеты.",
+     "en": "This machine does not accept coins."
+    }
+   ]
+  },
+  {
+   "form": "know",
+   "surface": "know",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.17",
+     "target": "I do not know the code",
+     "ru": "Я не знаю код.",
+     "en": "I do not know the code."
+    },
+    {
+     "id": "en-classic-r1:04.18",
+     "target": "He does not know the way",
+     "ru": "Он не знает дорогу.",
+     "en": "He does not know the way."
+    }
+   ]
+  },
+  {
+   "form": "code",
+   "surface": "code",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.17",
+     "target": "I do not know the code",
+     "ru": "Я не знаю код.",
+     "en": "I do not know the code."
+    }
+   ]
+  },
+  {
+   "form": "desk",
+   "surface": "desk",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.19",
+     "target": "We do not share a desk",
+     "ru": "Мы не сидим за одним столом.",
+     "en": "We do not share a desk."
+    }
+   ]
+  },
+  {
+   "form": "carry",
+   "surface": "carry",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.20",
+     "target": "She does not carry a purse",
+     "ru": "Она не носит с собой кошелёк.",
+     "en": "She does not carry a purse."
+    }
+   ]
+  },
+  {
+   "form": "purse",
+   "surface": "purse",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.20",
+     "target": "She does not carry a purse",
+     "ru": "Она не носит с собой кошелёк.",
+     "en": "She does not carry a purse."
+    }
+   ]
+  },
+  {
+   "form": "lock",
+   "surface": "lock",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.21",
+     "target": "The door does not lock",
+     "ru": "Дверь не запирается.",
+     "en": "The door does not lock."
+    }
+   ]
+  },
+  {
+   "form": "tap",
+   "surface": "tap",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.22",
+     "target": "The tap does not work",
+     "ru": "Кран не работает.",
+     "en": "The tap does not work."
+    }
+   ]
+  },
+  {
+   "form": "stop",
+   "surface": "stop",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.23",
+     "target": "The lift does not stop here",
+     "ru": "Лифт здесь не останавливается.",
+     "en": "The lift does not stop here."
+    },
+    {
+     "id": "en-classic-r1:04.48",
+     "target": "That bus does not stop near my flat",
+     "ru": "Этот автобус не останавливается рядом с моей квартирой.",
+     "en": "That bus does not stop near my flat."
+    }
+   ]
+  },
+  {
+   "form": "charge",
+   "surface": "charge",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.24",
+     "target": "My phone does not charge",
+     "ru": "Мой телефон не заряжается.",
+     "en": "My phone does not charge."
+    }
+   ]
+  },
+  {
+   "form": "fit",
+   "surface": "fit",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.25",
+     "target": "This key does not fit",
+     "ru": "Этот ключ не подходит.",
+     "en": "This key does not fit."
+    },
+    {
+     "id": "en-classic-r1:04.28",
+     "target": "My shoes do not fit",
+     "ru": "Мои туфли мне не подходят.",
+     "en": "My shoes do not fit."
+    }
+   ]
+  },
+  {
+   "form": "shut",
+   "surface": "shut",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.27",
+     "target": "The windows do not shut",
+     "ru": "Окна не закрываются.",
+     "en": "The windows do not shut."
+    }
+   ]
+  },
+  {
+   "form": "shoes",
+   "surface": "shoes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.28",
+     "target": "My shoes do not fit",
+     "ru": "Мои туфли мне не подходят.",
+     "en": "My shoes do not fit."
+    }
+   ]
+  },
+  {
+   "form": "headphones",
+   "surface": "headphones",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.29",
+     "target": "These headphones do not work",
+     "ru": "Эти наушники не работают.",
+     "en": "These headphones do not work."
+    }
+   ]
+  },
+  {
+   "form": "run",
+   "surface": "run",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.30",
+     "target": "The buses do not run today",
+     "ru": "Автобусы сегодня не ходят.",
+     "en": "The buses do not run today."
+    }
+   ]
+  },
+  {
+   "form": "today",
+   "surface": "today",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.30",
+     "target": "The buses do not run today",
+     "ru": "Автобусы сегодня не ходят.",
+     "en": "The buses do not run today."
+    },
+    {
+     "id": "en-classic-r1:04.40",
+     "target": "I do not feel well today",
+     "ru": "Сегодня я плохо себя чувствую.",
+     "en": "I do not feel well today."
+    }
+   ]
+  },
+  {
+   "form": "drink",
+   "surface": "drink",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.31",
+     "target": "I do not drink coffee at night",
+     "ru": "Я не пью кофе на ночь.",
+     "en": "I do not drink coffee at night."
+    }
+   ]
+  },
+  {
+   "form": "night",
+   "surface": "night",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.31",
+     "target": "I do not drink coffee at night",
+     "ru": "Я не пью кофе на ночь.",
+     "en": "I do not drink coffee at night."
+    }
+   ]
+  },
+  {
+   "form": "until",
+   "surface": "until",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.32",
+     "target": "She does not start until nine",
+     "ru": "Она начинает работать только в девять.",
+     "en": "She does not start until nine."
+    }
+   ]
+  },
+  {
+   "form": "cook",
+   "surface": "cook",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.33",
+     "target": "We do not cook on Fridays",
+     "ru": "Мы не готовим по пятницам.",
+     "en": "We do not cook on Fridays."
+    }
+   ]
+  },
+  {
+   "form": "fridays",
+   "surface": "Fridays",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.33",
+     "target": "We do not cook on Fridays",
+     "ru": "Мы не готовим по пятницам.",
+     "en": "We do not cook on Fridays."
+    }
+   ]
+  },
+  {
+   "form": "lunch",
+   "surface": "lunch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.35",
+     "target": "They do not eat lunch here",
+     "ru": "Они не обедают здесь.",
+     "en": "They do not eat lunch here."
+    }
+   ]
+  },
+  {
+   "form": "usually",
+   "surface": "usually",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.36",
+     "target": "I do not usually work late",
+     "ru": "Я обычно не работаю допоздна.",
+     "en": "I do not usually work late."
+    }
+   ]
+  },
+  {
+   "form": "always",
+   "surface": "always",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.37",
+     "target": "She does not always take the train",
+     "ru": "Она не всегда ездит на поезде.",
+     "en": "She does not always take the train."
+    }
+   ]
+  },
+  {
+   "form": "buy",
+   "surface": "buy",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.38",
+     "target": "We do not buy bottled water",
+     "ru": "Мы не покупаем бутилированную воду.",
+     "en": "We do not buy bottled water."
+    }
+   ]
+  },
+  {
+   "form": "bottled",
+   "surface": "bottled",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.38",
+     "target": "We do not buy bottled water",
+     "ru": "Мы не покупаем бутилированную воду.",
+     "en": "We do not buy bottled water."
+    }
+   ]
+  },
+  {
+   "form": "water",
+   "surface": "water",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.38",
+     "target": "We do not buy bottled water",
+     "ru": "Мы не покупаем бутилированную воду.",
+     "en": "We do not buy bottled water."
+    }
+   ]
+  },
+  {
+   "form": "messages",
+   "surface": "messages",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.39",
+     "target": "He does not check messages at work",
+     "ru": "Он не проверяет сообщения на работе.",
+     "en": "He does not check messages at work."
+    }
+   ]
+  },
+  {
+   "form": "feel",
+   "surface": "feel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.40",
+     "target": "I do not feel well today",
+     "ru": "Сегодня я плохо себя чувствую.",
+     "en": "I do not feel well today."
+    }
+   ]
+  },
+  {
+   "form": "price",
+   "surface": "price",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.41",
+     "target": "The price does not include breakfast",
+     "ru": "В стоимость не входит завтрак.",
+     "en": "The price does not include breakfast."
+    }
+   ]
+  },
+  {
+   "form": "include",
+   "surface": "include",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.41",
+     "target": "The price does not include breakfast",
+     "ru": "В стоимость не входит завтрак.",
+     "en": "The price does not include breakfast."
+    },
+    {
+     "id": "en-classic-r1:04.44",
+     "target": "Our rent does not include heating",
+     "ru": "Наша арендная плата не включает отопление.",
+     "en": "Our rent does not include heating."
+    }
+   ]
+  },
+  {
+   "form": "breakfast",
+   "surface": "breakfast",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.41",
+     "target": "The price does not include breakfast",
+     "ru": "В стоимость не входит завтрак.",
+     "en": "The price does not include breakfast."
+    }
+   ]
+  },
+  {
+   "form": "cover",
+   "surface": "cover",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.42",
+     "target": "The ticket does not cover the return trip",
+     "ru": "Билет не включает обратный путь.",
+     "en": "The ticket does not cover the return trip."
+    }
+   ]
+  },
+  {
+   "form": "return",
+   "surface": "return",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.42",
+     "target": "The ticket does not cover the return trip",
+     "ru": "Билет не включает обратный путь.",
+     "en": "The ticket does not cover the return trip."
+    }
+   ]
+  },
+  {
+   "form": "trip",
+   "surface": "trip",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.42",
+     "target": "The ticket does not cover the return trip",
+     "ru": "Билет не включает обратный путь.",
+     "en": "The ticket does not cover the return trip."
+    }
+   ]
+  },
+  {
+   "form": "receipt",
+   "surface": "receipt",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.43",
+     "target": "The receipt does not show the date",
+     "ru": "На квитанции не указана дата.",
+     "en": "The receipt does not show the date."
+    },
+    {
+     "id": "en-classic-r1:04.47",
+     "target": "We do not need a receipt",
+     "ru": "Квитанция нам не нужна.",
+     "en": "We do not need a receipt."
+    }
+   ]
+  },
+  {
+   "form": "show",
+   "surface": "show",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.43",
+     "target": "The receipt does not show the date",
+     "ru": "На квитанции не указана дата.",
+     "en": "The receipt does not show the date."
+    }
+   ]
+  },
+  {
+   "form": "date",
+   "surface": "date",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.43",
+     "target": "The receipt does not show the date",
+     "ru": "На квитанции не указана дата.",
+     "en": "The receipt does not show the date."
+    }
+   ]
+  },
+  {
+   "form": "rent",
+   "surface": "rent",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.44",
+     "target": "Our rent does not include heating",
+     "ru": "Наша арендная плата не включает отопление.",
+     "en": "Our rent does not include heating."
+    }
+   ]
+  },
+  {
+   "form": "heating",
+   "surface": "heating",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.44",
+     "target": "Our rent does not include heating",
+     "ru": "Наша арендная плата не включает отопление.",
+     "en": "Our rent does not include heating."
+    }
+   ]
+  },
+  {
+   "form": "go",
+   "surface": "go",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.45",
+     "target": "This train does not go to Cork",
+     "ru": "Этот поезд не едет в Корк.",
+     "en": "This train does not go to Cork."
+    }
+   ]
+  },
+  {
+   "form": "cork",
+   "surface": "Cork",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.45",
+     "target": "This train does not go to Cork",
+     "ru": "Этот поезд не едет в Корк.",
+     "en": "This train does not go to Cork."
+    }
+   ]
+  },
+  {
+   "form": "son",
+   "surface": "son",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.46",
+     "target": "My son does not like milk",
+     "ru": "Мой сын не любит молоко.",
+     "en": "My son does not like milk."
+    }
+   ]
+  },
+  {
+   "form": "milk",
+   "surface": "milk",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.46",
+     "target": "My son does not like milk",
+     "ru": "Мой сын не любит молоко.",
+     "en": "My son does not like milk."
+    }
+   ]
+  },
+  {
+   "form": "that",
+   "surface": "That",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.48",
+     "target": "That bus does not stop near my flat",
+     "ru": "Этот автобус не останавливается рядом с моей квартирой.",
+     "en": "That bus does not stop near my flat."
+    }
+   ]
+  },
+  {
+   "form": "near",
+   "surface": "near",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.48",
+     "target": "That bus does not stop near my flat",
+     "ru": "Этот автобус не останавливается рядом с моей квартирой.",
+     "en": "That bus does not stop near my flat."
+    }
+   ]
+  },
+  {
+   "form": "understand",
+   "surface": "understand",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.49",
+     "target": "I do not understand this word",
+     "ru": "Я не понимаю это слово.",
+     "en": "I do not understand this word."
+    }
+   ]
+  },
+  {
+   "form": "word",
+   "surface": "word",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.49",
+     "target": "I do not understand this word",
+     "ru": "Я не понимаю это слово.",
+     "en": "I do not understand this word."
+    }
+   ]
+  },
+  {
+   "form": "card",
+   "surface": "card",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.50",
+     "target": "My card does not work in this machine",
+     "ru": "Моя карта не работает в этом автомате.",
+     "en": "My card does not work in this machine."
+    }
+   ]
+  },
+  {
+   "form": "in",
+   "surface": "in",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:04.50",
+     "target": "My card does not work in this machine",
+     "ru": "Моя карта не работает в этом автомате.",
+     "en": "My card does not work in this machine."
+    }
+   ]
+  }
+ ]
+}

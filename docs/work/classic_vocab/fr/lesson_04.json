@@ -1,0 +1,300 @@
+{
+ "lang": "fr",
+ "lesson": 4,
+ "words": {
+  "c’est": {
+   "ru": "это есть",
+   "uk": "це є",
+   "en": "this is, it is",
+   "es": "esto es"
+  },
+  "ma": {
+   "ru": "моя",
+   "uk": "моя",
+   "en": "my (her, it)",
+   "es": "mi"
+  },
+  "sœur": {
+   "ru": "сестра",
+   "uk": "сестра",
+   "en": "sister",
+   "es": "hermana"
+  },
+  "frère": {
+   "ru": "брат",
+   "uk": "брат",
+   "en": "brother",
+   "es": "hermano"
+  },
+  "une": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "a, an (before a thing's name)",
+   "es": "una"
+  },
+  "amie": {
+   "ru": "подруга",
+   "uk": "подруга",
+   "en": "friend (woman)",
+   "es": "amiga"
+  },
+  "un": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "a, an (before a thing's name)",
+   "es": "un"
+  },
+  "ami": {
+   "ru": "друг",
+   "uk": "друг",
+   "en": "friend (man)",
+   "es": "amigo"
+  },
+  "voisin": {
+   "ru": "сосед",
+   "uk": "сусід",
+   "en": "neighbour (man)",
+   "es": "vecino"
+  },
+  "voisine": {
+   "ru": "соседка",
+   "uk": "сусідка",
+   "en": "neighbour (woman)",
+   "es": "vecina"
+  },
+  "père": {
+   "ru": "отец",
+   "uk": "батько",
+   "en": "father",
+   "es": "padre"
+  },
+  "mère": {
+   "ru": "мать",
+   "uk": "мати",
+   "en": "mother",
+   "es": "madre"
+  },
+  "billet": {
+   "ru": "билет",
+   "uk": "квиток",
+   "en": "ticket",
+   "es": "billete"
+  },
+  "carte": {
+   "ru": "карта; меню",
+   "uk": "карта; меню",
+   "en": "map, card, menu",
+   "es": "mapa, tarjeta"
+  },
+  "plan": {
+   "ru": "план, схема",
+   "uk": "план, схема",
+   "en": "plan, map",
+   "es": "plan, plano"
+  },
+  "photo": {
+   "ru": "фотография",
+   "uk": "фотографія",
+   "en": "photo",
+   "es": "foto"
+  },
+  "cadeau": {
+   "ru": "подарок",
+   "uk": "подарунок",
+   "en": "gift",
+   "es": "regalo"
+  },
+  "adresse": {
+   "ru": "адрес",
+   "uk": "адреса",
+   "en": "address",
+   "es": "dirección"
+  },
+  "reçu": {
+   "ru": "чек, квитанция",
+   "uk": "чек, квитанція",
+   "en": "receipt",
+   "es": "recibo"
+  },
+  "facture": {
+   "ru": "счёт (к оплате)",
+   "uk": "рахунок (до сплати)",
+   "en": "invoice, bill",
+   "es": "factura"
+  },
+  "mes": {
+   "ru": "мои",
+   "uk": "мої",
+   "en": "my (several things)",
+   "es": "mis"
+  },
+  "amis": {
+   "ru": "друзья",
+   "uk": "друзі",
+   "en": "friends",
+   "es": "amigos"
+  },
+  "nos": {
+   "ru": "наши",
+   "uk": "наші",
+   "en": "our (several things)",
+   "es": "nuestros"
+  },
+  "des": {
+   "ru": "слово перед названиями вещей; по-русски нет",
+   "uk": "слово перед назвами речей; українською немає",
+   "en": "some (before several things)",
+   "es": "unos, unas"
+  },
+  "voisins": {
+   "ru": "соседи",
+   "uk": "сусіди",
+   "en": "neighbours",
+   "es": "vecinos"
+  },
+  "photos": {
+   "ru": "фотографии",
+   "uk": "фотографії",
+   "en": "photos",
+   "es": "fotos"
+  },
+  "tes": {
+   "ru": "твои",
+   "uk": "твої",
+   "en": "your (several things)",
+   "es": "tus"
+  },
+  "cadeaux": {
+   "ru": "подарки",
+   "uk": "подарунки",
+   "en": "gifts",
+   "es": "regalos"
+  },
+  "vos": {
+   "ru": "ваши",
+   "uk": "ваші",
+   "en": "your (several things)",
+   "es": "sus, vuestros"
+  },
+  "reçus": {
+   "ru": "чеки, квитанции",
+   "uk": "чеки, квитанції",
+   "en": "receipts",
+   "es": "recibos"
+  },
+  "leurs": {
+   "ru": "их",
+   "uk": "їхні",
+   "en": "their",
+   "es": "sus"
+  },
+  "places": {
+   "ru": "места",
+   "uk": "місця",
+   "en": "seats, places",
+   "es": "asientos, lugares"
+  },
+  "première": {
+   "ru": "первая",
+   "uk": "перша",
+   "en": "first (she, it)",
+   "es": "primera"
+  },
+  "visite": {
+   "ru": "визит, посещение",
+   "uk": "візит, відвідини",
+   "en": "visit",
+   "es": "visita"
+  },
+  "votre": {
+   "ru": "ваш, ваша",
+   "uk": "ваш, ваша",
+   "en": "your",
+   "es": "su, vuestro"
+  },
+  "notre": {
+   "ru": "наш, наша",
+   "uk": "наш, наша",
+   "en": "our",
+   "es": "nuestro"
+  },
+  "arrêt": {
+   "ru": "остановка",
+   "uk": "зупинка",
+   "en": "stop",
+   "es": "parada"
+  },
+  "son": {
+   "ru": "его, её",
+   "uk": "його, її",
+   "en": "his, her",
+   "es": "su"
+  },
+  "tour": {
+   "ru": "очередь",
+   "uk": "черга",
+   "en": "turn",
+   "es": "turno"
+  },
+  "bonne": {
+   "ru": "правильная, хорошая",
+   "uk": "правильна, хороша",
+   "en": "right, good (she, it)",
+   "es": "correcta, buena"
+  },
+  "dernier": {
+   "ru": "последний",
+   "uk": "останній",
+   "en": "last",
+   "es": "último"
+  },
+  "famille": {
+   "ru": "семья",
+   "uk": "сім'я",
+   "en": "family",
+   "es": "familia"
+  },
+  "numéro": {
+   "ru": "номер",
+   "uk": "номер",
+   "en": "number",
+   "es": "número"
+  },
+  "place": {
+   "ru": "место",
+   "uk": "місце",
+   "en": "seat, place",
+   "es": "asiento, lugar"
+  },
+  "bon": {
+   "ru": "правильный, хороший",
+   "uk": "правильний, хороший",
+   "en": "right, good",
+   "es": "correcto, bueno"
+  },
+  "lunettes": {
+   "ru": "очки",
+   "uk": "окуляри",
+   "en": "glasses",
+   "es": "gafas"
+  },
+  "ton": {
+   "ru": "твой",
+   "uk": "твій",
+   "en": "your",
+   "es": "tu"
+  },
+  "bagages": {
+   "ru": "багаж",
+   "uk": "багаж",
+   "en": "luggage",
+   "es": "equipaje"
+  },
+  "demain": {
+   "ru": "завтра",
+   "uk": "завтра",
+   "en": "tomorrow",
+   "es": "mañana"
+  }
+ }
+}

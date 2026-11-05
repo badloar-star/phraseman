@@ -1,0 +1,304 @@
+{
+ "lang": "de",
+ "lesson": 5,
+ "words": [
+  {
+   "form": "türen",
+   "surface": "Türen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:09",
+     "target": "Sind die Türen zu",
+     "ru": "Двери закрыты?",
+     "en": "Are the doors closed?"
+    }
+   ]
+  },
+  {
+   "form": "berlin",
+   "surface": "Berlin",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:12",
+     "target": "Wohnt Tom in Berlin",
+     "ru": "Том живёт в Берлине?",
+     "en": "Does Tom live in Berlin?"
+    }
+   ]
+  },
+  {
+   "form": "bald",
+   "surface": "bald",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:21",
+     "target": "Kommt der Bus bald",
+     "ru": "Автобус скоро придёт?",
+     "en": "Is the bus coming soon?"
+    }
+   ]
+  },
+  {
+   "form": "kommen",
+   "surface": "Kommen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:23",
+     "target": "Kommen die Gäste morgen",
+     "ru": "Гости придут завтра?",
+     "en": "Are the guests coming tomorrow?"
+    }
+   ]
+  },
+  {
+   "form": "früher",
+   "surface": "früher",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:26",
+     "target": "Schließt der Laden heute früher",
+     "ru": "Сегодня магазин закрывается раньше?",
+     "en": "Is the shop closing early today?"
+    }
+   ]
+  },
+  {
+   "form": "brauchen",
+   "surface": "Brauchen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:31",
+     "target": "Brauchen Sie Hilfe",
+     "ru": "Вам нужна помощь?",
+     "en": "Do you need help?"
+    }
+   ]
+  },
+  {
+   "form": "sie",
+   "surface": "Sie",
+   "count": 10,
+   "examples": [
+    {
+     "id": "de:05:31",
+     "target": "Brauchen Sie Hilfe",
+     "ru": "Вам нужна помощь?",
+     "en": "Do you need help?"
+    },
+    {
+     "id": "de:05:32",
+     "target": "Suchen Sie den Bahnhof",
+     "ru": "Вы ищете вокзал?",
+     "en": "Are you looking for the train station?"
+    }
+   ]
+  },
+  {
+   "form": "hilfe",
+   "surface": "Hilfe",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:31",
+     "target": "Brauchen Sie Hilfe",
+     "ru": "Вам нужна помощь?",
+     "en": "Do you need help?"
+    }
+   ]
+  },
+  {
+   "form": "mit",
+   "surface": "mit",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:35",
+     "target": "Bezahlen Sie mit Karte",
+     "ru": "Вы платите картой?",
+     "en": "Are you paying by card?"
+    }
+   ]
+  },
+  {
+   "form": "bleiben",
+   "surface": "Bleiben",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:37",
+     "target": "Bleiben Sie heute hier",
+     "ru": "Вы сегодня остаётесь здесь?",
+     "en": "Are you staying here today?"
+    }
+   ]
+  },
+  {
+   "form": "haben",
+   "surface": "Haben",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:05:38",
+     "target": "Haben Sie Zeit",
+     "ru": "У вас есть время?",
+     "en": "Do you have time?"
+    },
+    {
+     "id": "de:05:44",
+     "target": "Haben die Kinder Durst",
+     "ru": "Дети хотят пить?",
+     "en": "Are the children thirsty?"
+    }
+   ]
+  },
+  {
+   "form": "zeit",
+   "surface": "Zeit",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:38",
+     "target": "Haben Sie Zeit",
+     "ru": "У вас есть время?",
+     "en": "Do you have time?"
+    }
+   ]
+  },
+  {
+   "form": "möchten",
+   "surface": "Möchten",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:39",
+     "target": "Möchten Sie Tee",
+     "ru": "Хотите чаю?",
+     "en": "Would you like some tea?"
+    }
+   ]
+  },
+  {
+   "form": "frau",
+   "surface": "Frau",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:40",
+     "target": "Sind Sie Frau Weber",
+     "ru": "Вы госпожа Вебер?",
+     "en": "Are you Mrs. Weber?"
+    }
+   ]
+  },
+  {
+   "form": "weber",
+   "surface": "Weber",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:40",
+     "target": "Sind Sie Frau Weber",
+     "ru": "Вы госпожа Вебер?",
+     "en": "Are you Mrs. Weber?"
+    }
+   ]
+  },
+  {
+   "form": "hast",
+   "surface": "Hast",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:41",
+     "target": "Hast du das Ticket",
+     "ru": "У тебя билет?",
+     "en": "Do you have the ticket?"
+    }
+   ]
+  },
+  {
+   "form": "hat",
+   "surface": "Hat",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:42",
+     "target": "Hat Anna die Karte",
+     "ru": "У Анны карта?",
+     "en": "Does Anna have the card?"
+    }
+   ]
+  },
+  {
+   "form": "habt",
+   "surface": "Habt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:43",
+     "target": "Habt ihr die Schlüssel",
+     "ru": "У вас ключи?",
+     "en": "Do you have the keys?"
+    }
+   ]
+  },
+  {
+   "form": "durst",
+   "surface": "Durst",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:44",
+     "target": "Haben die Kinder Durst",
+     "ru": "Дети хотят пить?",
+     "en": "Are the children thirsty?"
+    }
+   ]
+  },
+  {
+   "form": "spielt",
+   "surface": "Spielt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:45",
+     "target": "Spielt ihr heute draußen",
+     "ru": "Вы сегодня играете на улице?",
+     "en": "Are you playing outside today?"
+    }
+   ]
+  },
+  {
+   "form": "auch",
+   "surface": "auch",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:48",
+     "target": "Kaufst du auch Brot",
+     "ru": "Ты тоже покупаешь хлеб?",
+     "en": "Are you buying bread too?"
+    }
+   ]
+  },
+  {
+   "form": "dein",
+   "surface": "dein",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:05:49",
+     "target": "Ist das dein Handy",
+     "ru": "Это твой телефон?",
+     "en": "Is this your cell phone?"
+    }
+   ]
+  }
+ ]
+}

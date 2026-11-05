@@ -1,0 +1,809 @@
+{
+ "lang": "en",
+ "lesson": 1,
+ "words": [
+  {
+   "form": "i",
+   "surface": "I",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.01",
+     "target": "I am ready",
+     "ru": "Я готов.",
+     "en": "I am ready."
+    },
+    {
+     "id": "en-classic-r1:01.03",
+     "target": "I am busy",
+     "ru": "Я занят.",
+     "en": "I am busy."
+    }
+   ]
+  },
+  {
+   "form": "am",
+   "surface": "am",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.01",
+     "target": "I am ready",
+     "ru": "Я готов.",
+     "en": "I am ready."
+    },
+    {
+     "id": "en-classic-r1:01.03",
+     "target": "I am busy",
+     "ru": "Я занят.",
+     "en": "I am busy."
+    }
+   ]
+  },
+  {
+   "form": "ready",
+   "surface": "ready",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.01",
+     "target": "I am ready",
+     "ru": "Я готов.",
+     "en": "I am ready."
+    },
+    {
+     "id": "en-classic-r1:01.02",
+     "target": "You are ready",
+     "ru": "Ты готов.",
+     "en": "You are ready."
+    }
+   ]
+  },
+  {
+   "form": "you",
+   "surface": "You",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.02",
+     "target": "You are ready",
+     "ru": "Ты готов.",
+     "en": "You are ready."
+    },
+    {
+     "id": "en-classic-r1:01.16",
+     "target": "You are at home",
+     "ru": "Ты дома.",
+     "en": "You are at home."
+    }
+   ]
+  },
+  {
+   "form": "are",
+   "surface": "are",
+   "count": 22,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.02",
+     "target": "You are ready",
+     "ru": "Ты готов.",
+     "en": "You are ready."
+    },
+    {
+     "id": "en-classic-r1:01.06",
+     "target": "We are ready",
+     "ru": "Мы готовы.",
+     "en": "We are ready."
+    }
+   ]
+  },
+  {
+   "form": "busy",
+   "surface": "busy",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.03",
+     "target": "I am busy",
+     "ru": "Я занят.",
+     "en": "I am busy."
+    },
+    {
+     "id": "en-classic-r1:01.04",
+     "target": "She is busy",
+     "ru": "Она занята.",
+     "en": "She is busy."
+    }
+   ]
+  },
+  {
+   "form": "she",
+   "surface": "She",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.04",
+     "target": "She is busy",
+     "ru": "Она занята.",
+     "en": "She is busy."
+    },
+    {
+     "id": "en-classic-r1:01.09",
+     "target": "She is free",
+     "ru": "Она свободна.",
+     "en": "She is free."
+    }
+   ]
+  },
+  {
+   "form": "is",
+   "surface": "is",
+   "count": 23,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.04",
+     "target": "She is busy",
+     "ru": "Она занята.",
+     "en": "She is busy."
+    },
+    {
+     "id": "en-classic-r1:01.05",
+     "target": "He is ready",
+     "ru": "Он готов.",
+     "en": "He is ready."
+    }
+   ]
+  },
+  {
+   "form": "he",
+   "surface": "He",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.05",
+     "target": "He is ready",
+     "ru": "Он готов.",
+     "en": "He is ready."
+    },
+    {
+     "id": "en-classic-r1:01.11",
+     "target": "He is here",
+     "ru": "Он здесь.",
+     "en": "He is here."
+    }
+   ]
+  },
+  {
+   "form": "we",
+   "surface": "We",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.06",
+     "target": "We are ready",
+     "ru": "Мы готовы.",
+     "en": "We are ready."
+    },
+    {
+     "id": "en-classic-r1:01.10",
+     "target": "We are free",
+     "ru": "Мы свободны.",
+     "en": "We are free."
+    }
+   ]
+  },
+  {
+   "form": "they",
+   "surface": "They",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.07",
+     "target": "They are busy",
+     "ru": "Они заняты.",
+     "en": "They are busy."
+    },
+    {
+     "id": "en-classic-r1:01.14",
+     "target": "They are here",
+     "ru": "Они здесь.",
+     "en": "They are here."
+    }
+   ]
+  },
+  {
+   "form": "free",
+   "surface": "free",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.08",
+     "target": "I am free",
+     "ru": "Я свободен.",
+     "en": "I am free."
+    },
+    {
+     "id": "en-classic-r1:01.09",
+     "target": "She is free",
+     "ru": "Она свободна.",
+     "en": "She is free."
+    }
+   ]
+  },
+  {
+   "form": "here",
+   "surface": "here",
+   "count": 7,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.11",
+     "target": "He is here",
+     "ru": "Он здесь.",
+     "en": "He is here."
+    },
+    {
+     "id": "en-classic-r1:01.12",
+     "target": "She is here",
+     "ru": "Она здесь.",
+     "en": "She is here."
+    }
+   ]
+  },
+  {
+   "form": "at",
+   "surface": "at",
+   "count": 6,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.15",
+     "target": "I am at home",
+     "ru": "Я дома.",
+     "en": "I am at home."
+    },
+    {
+     "id": "en-classic-r1:01.16",
+     "target": "You are at home",
+     "ru": "Ты дома.",
+     "en": "You are at home."
+    }
+   ]
+  },
+  {
+   "form": "home",
+   "surface": "home",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.15",
+     "target": "I am at home",
+     "ru": "Я дома.",
+     "en": "I am at home."
+    },
+    {
+     "id": "en-classic-r1:01.16",
+     "target": "You are at home",
+     "ru": "Ты дома.",
+     "en": "You are at home."
+    }
+   ]
+  },
+  {
+   "form": "work",
+   "surface": "work",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.17",
+     "target": "She is at work",
+     "ru": "Она на работе.",
+     "en": "She is at work."
+    },
+    {
+     "id": "en-classic-r1:01.18",
+     "target": "He is at work",
+     "ru": "Он на работе.",
+     "en": "He is at work."
+    }
+   ]
+  },
+  {
+   "form": "it",
+   "surface": "It",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.21",
+     "target": "It is open",
+     "ru": "Открыто.",
+     "en": "It is open."
+    },
+    {
+     "id": "en-classic-r1:01.22",
+     "target": "It is closed",
+     "ru": "Закрыто.",
+     "en": "It is closed."
+    }
+   ]
+  },
+  {
+   "form": "open",
+   "surface": "open",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.21",
+     "target": "It is open",
+     "ru": "Открыто.",
+     "en": "It is open."
+    },
+    {
+     "id": "en-classic-r1:01.23",
+     "target": "The door is open",
+     "ru": "Дверь открыта.",
+     "en": "The door is open."
+    }
+   ]
+  },
+  {
+   "form": "closed",
+   "surface": "closed",
+   "count": 5,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.22",
+     "target": "It is closed",
+     "ru": "Закрыто.",
+     "en": "It is closed."
+    },
+    {
+     "id": "en-classic-r1:01.24",
+     "target": "The door is closed",
+     "ru": "Дверь закрыта.",
+     "en": "The door is closed."
+    }
+   ]
+  },
+  {
+   "form": "the",
+   "surface": "The",
+   "count": 17,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.23",
+     "target": "The door is open",
+     "ru": "Дверь открыта.",
+     "en": "The door is open."
+    },
+    {
+     "id": "en-classic-r1:01.24",
+     "target": "The door is closed",
+     "ru": "Дверь закрыта.",
+     "en": "The door is closed."
+    }
+   ]
+  },
+  {
+   "form": "door",
+   "surface": "door",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.23",
+     "target": "The door is open",
+     "ru": "Дверь открыта.",
+     "en": "The door is open."
+    },
+    {
+     "id": "en-classic-r1:01.24",
+     "target": "The door is closed",
+     "ru": "Дверь закрыта.",
+     "en": "The door is closed."
+    }
+   ]
+  },
+  {
+   "form": "shop",
+   "surface": "shop",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.25",
+     "target": "The shop is open",
+     "ru": "Магазин открыт.",
+     "en": "The shop is open."
+    },
+    {
+     "id": "en-classic-r1:01.26",
+     "target": "The shop is closed",
+     "ru": "Магазин закрыт.",
+     "en": "The shop is closed."
+    }
+   ]
+  },
+  {
+   "form": "shops",
+   "surface": "shops",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.27",
+     "target": "The shops are open",
+     "ru": "Магазины открыты.",
+     "en": "The shops are open."
+    }
+   ]
+  },
+  {
+   "form": "doors",
+   "surface": "doors",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.28",
+     "target": "The doors are closed",
+     "ru": "Двери закрыты.",
+     "en": "The doors are closed."
+    }
+   ]
+  },
+  {
+   "form": "lights",
+   "surface": "lights",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.29",
+     "target": "The lights are on",
+     "ru": "Лампы включены.",
+     "en": "The lights are on."
+    },
+    {
+     "id": "en-classic-r1:01.30",
+     "target": "The lights are off",
+     "ru": "Лампы выключены.",
+     "en": "The lights are off."
+    }
+   ]
+  },
+  {
+   "form": "on",
+   "surface": "on",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.29",
+     "target": "The lights are on",
+     "ru": "Лампы включены.",
+     "en": "The lights are on."
+    },
+    {
+     "id": "en-classic-r1:01.43",
+     "target": "My phone is on",
+     "ru": "Мой телефон включен.",
+     "en": "My phone is on."
+    }
+   ]
+  },
+  {
+   "form": "off",
+   "surface": "off",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.30",
+     "target": "The lights are off",
+     "ru": "Лампы выключены.",
+     "en": "The lights are off."
+    }
+   ]
+  },
+  {
+   "form": "early",
+   "surface": "early",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.31",
+     "target": "I am early",
+     "ru": "Я пришел раньше.",
+     "en": "I am early."
+    },
+    {
+     "id": "en-classic-r1:01.32",
+     "target": "You are early",
+     "ru": "Ты пришел раньше.",
+     "en": "You are early."
+    }
+   ]
+  },
+  {
+   "form": "late",
+   "surface": "late",
+   "count": 4,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.33",
+     "target": "She is late",
+     "ru": "Она опаздывает.",
+     "en": "She is late."
+    },
+    {
+     "id": "en-classic-r1:01.35",
+     "target": "They are late",
+     "ru": "Они опаздывают.",
+     "en": "They are late."
+    }
+   ]
+  },
+  {
+   "form": "bus",
+   "surface": "bus",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.36",
+     "target": "The bus is late",
+     "ru": "Автобус опаздывает.",
+     "en": "The bus is late."
+    },
+    {
+     "id": "en-classic-r1:01.48",
+     "target": "The bus is here",
+     "ru": "Автобус здесь.",
+     "en": "The bus is here."
+    }
+   ]
+  },
+  {
+   "form": "buses",
+   "surface": "buses",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.37",
+     "target": "The buses are late",
+     "ru": "Автобусы опаздывают.",
+     "en": "The buses are late."
+    }
+   ]
+  },
+  {
+   "form": "room",
+   "surface": "room",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.38",
+     "target": "The room is warm",
+     "ru": "Комната тёплая.",
+     "en": "The room is warm."
+    }
+   ]
+  },
+  {
+   "form": "warm",
+   "surface": "warm",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.38",
+     "target": "The room is warm",
+     "ru": "Комната тёплая.",
+     "en": "The room is warm."
+    },
+    {
+     "id": "en-classic-r1:01.39",
+     "target": "The rooms are warm",
+     "ru": "Комнаты тёплые.",
+     "en": "The rooms are warm."
+    }
+   ]
+  },
+  {
+   "form": "rooms",
+   "surface": "rooms",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.39",
+     "target": "The rooms are warm",
+     "ru": "Комнаты тёплые.",
+     "en": "The rooms are warm."
+    }
+   ]
+  },
+  {
+   "form": "coffee",
+   "surface": "coffee",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.40",
+     "target": "The coffee is cold",
+     "ru": "Кофе холодный.",
+     "en": "The coffee is cold."
+    },
+    {
+     "id": "en-classic-r1:01.50",
+     "target": "Your coffee is ready",
+     "ru": "Ваш кофе готов.",
+     "en": "Your coffee is ready."
+    }
+   ]
+  },
+  {
+   "form": "cold",
+   "surface": "cold",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.40",
+     "target": "The coffee is cold",
+     "ru": "Кофе холодный.",
+     "en": "The coffee is cold."
+    },
+    {
+     "id": "en-classic-r1:01.47",
+     "target": "My hands are cold",
+     "ru": "У меня холодные руки.",
+     "en": "My hands are cold."
+    }
+   ]
+  },
+  {
+   "form": "my",
+   "surface": "My",
+   "count": 3,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.41",
+     "target": "My bag is here",
+     "ru": "Моя сумка здесь.",
+     "en": "My bag is here."
+    },
+    {
+     "id": "en-classic-r1:01.43",
+     "target": "My phone is on",
+     "ru": "Мой телефон включен.",
+     "en": "My phone is on."
+    }
+   ]
+  },
+  {
+   "form": "bag",
+   "surface": "bag",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.41",
+     "target": "My bag is here",
+     "ru": "Моя сумка здесь.",
+     "en": "My bag is here."
+    }
+   ]
+  },
+  {
+   "form": "your",
+   "surface": "Your",
+   "count": 2,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.42",
+     "target": "Your keys are here",
+     "ru": "Ваши ключи здесь.",
+     "en": "Your keys are here."
+    },
+    {
+     "id": "en-classic-r1:01.50",
+     "target": "Your coffee is ready",
+     "ru": "Ваш кофе готов.",
+     "en": "Your coffee is ready."
+    }
+   ]
+  },
+  {
+   "form": "keys",
+   "surface": "keys",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.42",
+     "target": "Your keys are here",
+     "ru": "Ваши ключи здесь.",
+     "en": "Your keys are here."
+    }
+   ]
+  },
+  {
+   "form": "phone",
+   "surface": "phone",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.43",
+     "target": "My phone is on",
+     "ru": "Мой телефон включен.",
+     "en": "My phone is on."
+    }
+   ]
+  },
+  {
+   "form": "kitchen",
+   "surface": "kitchen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.44",
+     "target": "The kitchen is warm",
+     "ru": "На кухне тепло.",
+     "en": "The kitchen is warm."
+    }
+   ]
+  },
+  {
+   "form": "window",
+   "surface": "window",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.45",
+     "target": "The window is open",
+     "ru": "Окно открыто.",
+     "en": "The window is open."
+    }
+   ]
+  },
+  {
+   "form": "windows",
+   "surface": "windows",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.46",
+     "target": "The windows are closed",
+     "ru": "Окна закрыты.",
+     "en": "The windows are closed."
+    }
+   ]
+  },
+  {
+   "form": "hands",
+   "surface": "hands",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.47",
+     "target": "My hands are cold",
+     "ru": "У меня холодные руки.",
+     "en": "My hands are cold."
+    }
+   ]
+  },
+  {
+   "form": "our",
+   "surface": "Our",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.49",
+     "target": "Our seats are free",
+     "ru": "Наши места свободны.",
+     "en": "Our seats are free."
+    }
+   ]
+  },
+  {
+   "form": "seats",
+   "surface": "seats",
+   "count": 1,
+   "examples": [
+    {
+     "id": "en-classic-r1:01.49",
+     "target": "Our seats are free",
+     "ru": "Наши места свободны.",
+     "en": "Our seats are free."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,788 @@
+{
+ "forms": {
+  "essere": [
+   "è",
+   "sono",
+   "siamo",
+   "siete",
+   "era",
+   "erano",
+   "fosse",
+   "fossero",
+   "sia",
+   "sarà",
+   "saranno",
+   "stato",
+   "stata"
+  ],
+  "avere": [
+   "ha",
+   "ho",
+   "hanno",
+   "abbiamo",
+   "abbia",
+   "avevano",
+   "avrà",
+   "avuto",
+   "l’ho"
+  ],
+  "stare": [
+   "stai",
+   "sto",
+   "stiamo"
+  ],
+  "potere": [
+   "può",
+   "possiamo"
+  ],
+  "volere": [
+   "vuole"
+  ],
+  "dovere": [
+   "devo",
+   "deve"
+  ],
+  "ne": [
+   "n’è"
+  ],
+  "altro": [
+   "un’altra",
+   "dell’altra",
+   "dell’altro"
+  ],
+  "prendere": [
+   "prendiamo",
+   "prendete",
+   "prenderne"
+  ],
+  "aprire": [
+   "aprendo"
+  ],
+  "andare": [
+   "andarci",
+   "andarmene",
+   "vadano"
+  ],
+  "venire": [
+   "venuti"
+  ],
+  "restare": [
+   "resti",
+   "restiamo",
+   "restarci"
+  ],
+  "tenere": [
+   "tieni",
+   "tenga",
+   "tenevo",
+   "tenerlo",
+   "tenerla",
+   "tenerne"
+  ],
+  "perdere": [
+   "perda"
+  ],
+  "svegliare": [
+   "sveglio",
+   "svegliamo"
+  ],
+  "vestire": [
+   "vesto",
+   "vesti"
+  ],
+  "chiamare": [
+   "chiamo",
+   "chiamarmi"
+  ],
+  "richiamare": [
+   "richiamerò",
+   "richiamarmi"
+  ],
+  "piovere": [
+   "piova"
+  ],
+  "partire": [
+   "parta",
+   "partiate",
+   "partano"
+  ],
+  "uscire": [
+   "uscendo"
+  ],
+  "vivere": [
+   "vivevamo"
+  ],
+  "mangiare": [
+   "mangiavamo"
+  ],
+  "riposare": [
+   "riposarmi",
+   "riposarti"
+  ],
+  "assaggiare": [
+   "l’assaggio"
+  ],
+  "ascoltare": [
+   "l’ascolto"
+  ],
+  "provare": [
+   "provarlo"
+  ],
+  "lasciare": [
+   "lasciarla",
+   "lascerò"
+  ],
+  "ordinare": [
+   "ordinarne"
+  ],
+  "aiutare": [
+   "aiutarla"
+  ],
+  "dire": [
+   "dirmi"
+  ],
+  "riparare": [
+   "ripararlo"
+  ],
+  "restituire": [
+   "restituirli",
+   "restituirgli"
+  ],
+  "leggere": [
+   "leggerlo"
+  ],
+  "comprare": [
+   "comprarli"
+  ],
+  "mettere": [
+   "metterli"
+  ],
+  "chiedere": [
+   "chiederle"
+  ],
+  "passare": [
+   "passargli",
+   "passarci"
+  ],
+  "rispondere": [
+   "rispondergli"
+  ],
+  "tornare": [
+   "tornarci"
+  ],
+  "entrare": [
+   "entrarci"
+  ],
+  "incontrare": [
+   "incontrarla",
+   "incontrarci"
+  ],
+  "portare": [
+   "portarne"
+  ],
+  "mandare": [
+   "manderò",
+   "mandarle"
+  ],
+  "inviare": [
+   "invierò"
+  ],
+  "prestare": [
+   "prestarmi"
+  ],
+  "guidare": [
+   "guidarci"
+  ],
+  "chiudere": [
+   "chiuderei"
+  ],
+  "fare": [
+   "facciate"
+  ],
+  "robusto": [
+   "robuste"
+  ],
+  "autobus": [
+   "dell’autobus",
+   "sull’autobus"
+  ],
+  "indirizzo": [
+   "l’indirizzo"
+  ],
+  "acqua": [
+   "d’acqua",
+   "dell’acqua"
+  ],
+  "ufficio": [
+   "dell’ufficio",
+   "all’ufficio"
+  ],
+  "armadio": [
+   "nell’armadio"
+  ],
+  "aglio": [
+   "dell’aglio"
+  ],
+  "insalata": [
+   "dell’insalata"
+  ],
+  "olio": [
+   "dell’olio"
+  ],
+  "erba": [
+   "sull’erba"
+  ],
+  "angolo": [
+   "all’angolo"
+  ],
+  "ingresso": [
+   "all’ingresso",
+   "nell’ingresso"
+  ],
+  "uscita": [
+   "all’uscita"
+  ],
+  "odore": [
+   "l’odore"
+  ],
+  "albergo": [
+   "l’albergo"
+  ],
+  "anno": [
+   "l’anno"
+  ],
+  "ora": [
+   "l’ora",
+   "un’ora"
+  ],
+  "ultimo": [
+   "l’ultimo",
+   "sull’ultimo"
+  ],
+  "area": [
+   "un’area"
+  ],
+  "idea": [
+   "un’idea"
+  ],
+  "accordo": [
+   "d’accordo"
+  ],
+  "identità": [
+   "d’identità"
+  ],
+  "estate": [
+   "d’estate"
+  ],
+  "trovare": [
+   "troviamo"
+  ],
+  "aperto": [
+   "all’aperto"
+  ],
+  "in": [
+   "nel",
+   "nella",
+   "nei",
+   "negli"
+  ],
+  "su": [
+   "sul",
+   "sullo",
+   "sulla"
+  ],
+  "da": [
+   "dal",
+   "dalla"
+  ],
+  "preparare": [
+   "preparino"
+  ]
+ },
+ "new": [
+  {
+   "lemma": "a",
+   "pos": "ADP",
+   "meaning": {
+    "ru": "в, к, на (место, направление, время)",
+    "uk": "в, до, на (місце, напрям, час)",
+    "en": "to, at, in",
+    "es": "a, en"
+   },
+   "forms": [
+    "ad",
+    "al",
+    "allo",
+    "alla",
+    "alle",
+    "ai"
+   ]
+  },
+  {
+   "lemma": "di",
+   "pos": "ADP",
+   "meaning": {
+    "ru": "из, о; «немного чего-то»; показывает, чьё это или из чего",
+    "uk": "з, про; «трохи чогось»; показує, чиє це або з чого",
+    "en": "of, from; some",
+    "es": "de; algo de"
+   },
+   "forms": [
+    "del",
+    "dello",
+    "della",
+    "dei",
+    "degli",
+    "delle"
+   ]
+  },
+  {
+   "lemma": "mi",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "мне, меня; ещё «себя» (Mi chiamo — меня зовут)",
+    "uk": "мені, мене; ще «себе» (Mi chiamo — мене звуть)",
+    "en": "me, to me; myself",
+    "es": "me; a mí"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "si",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "себя; ещё «в общем, у всех»",
+    "uk": "себе; ще «загалом, у всіх»",
+    "en": "oneself; himself, herself, themselves",
+    "es": "se"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "se",
+   "pos": "CONJ",
+   "meaning": {
+    "ru": "если",
+    "uk": "якщо",
+    "en": "if",
+    "es": "si"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "sé",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "себя, себе (con sé — с собой)",
+    "uk": "себе (con sé — із собою)",
+    "en": "oneself (con sé: with oneself)",
+    "es": "sí mismo (con sé: consigo)"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "vi",
+   "pos": "PRON",
+   "meaning": {
+    "ru": "вам, вас; себя (о «вы» во мн. ч.)",
+    "uk": "вам, вас; себе (про «ви» у множині)",
+    "en": "you (plural), to you",
+    "es": "os; a vosotros"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "c’è",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "есть, имеется (здесь, там)",
+    "uk": "є, наявний (тут, там)",
+    "en": "there is",
+    "es": "hay"
+   },
+   "forms": [
+    "c’era"
+   ]
+  },
+  {
+   "lemma": "dov’è",
+   "pos": "ADV",
+   "meaning": {
+    "ru": "где находится",
+    "uk": "де знаходиться",
+    "en": "where is",
+    "es": "dónde está"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "po’",
+   "pos": "NOUN",
+   "meaning": {
+    "ru": "немного (un po’ — немножко)",
+    "uk": "трохи (un po’ — трішки)",
+    "en": "a little (un po’: a bit)",
+    "es": "un poco"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "anch’io",
+   "pos": "ADV",
+   "meaning": {
+    "ru": "я тоже",
+    "uk": "я теж",
+    "en": "me too, I also",
+    "es": "yo también"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "tutto",
+   "pos": "ADJ",
+   "meaning": {
+    "ru": "весь, всё",
+    "uk": "весь, усе",
+    "en": "all, whole, every",
+    "es": "todo"
+   },
+   "forms": [
+    "tutta",
+    "tutti"
+   ]
+  },
+  {
+   "lemma": "necessario",
+   "pos": "ADJ",
+   "meaning": {
+    "ru": "нужный, необходимый",
+    "uk": "потрібний, необхідний",
+    "en": "necessary",
+    "es": "necesario"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "riso",
+   "pos": "NOUN",
+   "meaning": {
+    "ru": "рис",
+    "uk": "рис",
+    "en": "rice",
+    "es": "arroz"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "sale",
+   "pos": "NOUN",
+   "meaning": {
+    "ru": "соль",
+    "uk": "сіль",
+    "en": "salt",
+    "es": "sal"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "scala",
+   "pos": "NOUN",
+   "meaning": {
+    "ru": "лестница; ступеньки",
+    "uk": "драбина; сходи",
+    "en": "ladder, stairs",
+    "es": "escalera"
+   },
+   "forms": [
+    "scale"
+   ]
+  },
+  {
+   "lemma": "fronte",
+   "pos": "NOUN",
+   "meaning": {
+    "ru": "передняя сторона; di fronte — напротив",
+    "uk": "передня сторона; di fronte — навпроти",
+    "en": "front; di fronte: opposite",
+    "es": "frente; di fronte: enfrente"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "tragitto",
+   "pos": "NOUN",
+   "meaning": {
+    "ru": "путь, дорога (от места до места)",
+    "uk": "шлях, дорога (від місця до місця)",
+    "en": "journey, route",
+    "es": "trayecto"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "scontrino",
+   "pos": "NOUN",
+   "meaning": {
+    "ru": "чек (из кассы)",
+    "uk": "чек (з каси)",
+    "en": "receipt",
+    "es": "ticket de compra"
+   },
+   "forms": []
+  },
+  {
+   "lemma": "apparecchiare",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "накрывать на стол",
+    "uk": "накривати на стіл",
+    "en": "to set (the table)",
+    "es": "poner (la mesa)"
+   },
+   "forms": [
+    "apparecchiato"
+   ]
+  },
+  {
+   "lemma": "puntuale",
+   "pos": "ADJ",
+   "meaning": {
+    "ru": "точный, приходящий вовремя",
+    "uk": "точний, що приходить вчасно",
+    "en": "punctual, on time",
+    "es": "puntual"
+   },
+   "forms": [
+    "puntuali"
+   ]
+  },
+  {
+   "lemma": "fioco",
+   "pos": "ADJ",
+   "meaning": {
+    "ru": "тусклый, слабый (о свете)",
+    "uk": "тьмяний, слабкий (про світло)",
+    "en": "dim, faint",
+    "es": "tenue, débil"
+   },
+   "forms": [
+    "fioca"
+   ]
+  },
+  {
+   "lemma": "amica",
+   "pos": "NOUN",
+   "meaning": {
+    "ru": "подруга",
+    "uk": "подруга",
+    "en": "(female) friend",
+    "es": "amiga"
+   },
+   "forms": [
+    "un’amica",
+    "l’amica"
+   ]
+  },
+  {
+   "lemma": "rimanere",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "оставаться",
+    "uk": "залишатися",
+    "en": "to stay, to remain",
+    "es": "quedarse, permanecer"
+   },
+   "forms": [
+    "rimasta",
+    "rimasti",
+    "rimasto"
+   ]
+  },
+  {
+   "lemma": "togliere",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "убирать, снимать, вынимать",
+    "uk": "прибирати, знімати, виймати",
+    "en": "to take away, to remove",
+    "es": "quitar, retirar"
+   },
+   "forms": [
+    "tolga"
+   ]
+  },
+  {
+   "lemma": "premere",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "нажимать",
+    "uk": "натискати",
+    "en": "to press",
+    "es": "pulsar, apretar"
+   },
+   "forms": [
+    "prema"
+   ]
+  },
+  {
+   "lemma": "sedersi",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "садиться",
+    "uk": "сідати",
+    "en": "to sit down",
+    "es": "sentarse"
+   },
+   "forms": [
+    "sederti",
+    "sederci"
+   ]
+  },
+  {
+   "lemma": "salire",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "подниматься, садиться (в транспорт)",
+    "uk": "підніматися, сідати (в транспорт)",
+    "en": "to go up, to get on",
+    "es": "subir"
+   },
+   "forms": [
+    "salita",
+    "salite",
+    "salivo",
+    "saliva"
+   ]
+  },
+  {
+   "lemma": "tirare",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "тянуть; о ветре — дуть",
+    "uk": "тягнути; про вітер — дути",
+    "en": "to pull; of wind: to blow",
+    "es": "tirar; soplar (viento)"
+   },
+   "forms": [
+    "tirava"
+   ]
+  },
+  {
+   "lemma": "profumare",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "приятно пахнуть",
+    "uk": "приємно пахнути",
+    "en": "to smell nice",
+    "es": "oler bien"
+   },
+   "forms": [
+    "profumava"
+   ]
+  },
+  {
+   "lemma": "scaldare",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "греть, нагревать",
+    "uk": "гріти, нагрівати",
+    "en": "to heat, to warm",
+    "es": "calentar"
+   },
+   "forms": [
+    "scaldava"
+   ]
+  },
+  {
+   "lemma": "addormentarsi",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "засыпать",
+    "uk": "засинати",
+    "en": "to fall asleep",
+    "es": "dormirse"
+   },
+   "forms": [
+    "addormentarmi"
+   ]
+  },
+  {
+   "lemma": "stampare",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "печатать",
+    "uk": "друкувати",
+    "en": "to print",
+    "es": "imprimir"
+   },
+   "forms": [
+    "stampo"
+   ]
+  },
+  {
+   "lemma": "telefonare",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "звонить по телефону",
+    "uk": "дзвонити по телефону",
+    "en": "to phone",
+    "es": "llamar por teléfono"
+   },
+   "forms": [
+    "telefonarle"
+   ]
+  },
+  {
+   "lemma": "fermare",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "останавливать",
+    "uk": "зупиняти",
+    "en": "to stop",
+    "es": "parar, detener"
+   },
+   "forms": [
+    "fermerò"
+   ]
+  },
+  {
+   "lemma": "indicare",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "показывать, указывать",
+    "uk": "показувати, вказувати",
+    "en": "to show, to point out",
+    "es": "indicar"
+   },
+   "forms": [
+    "indicarmi"
+   ]
+  },
+  {
+   "lemma": "accorgersi",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "замечать, понимать",
+    "uk": "помічати, розуміти",
+    "en": "to notice, to realize",
+    "es": "darse cuenta"
+   },
+   "forms": [
+    "accorge"
+   ]
+  },
+  {
+   "lemma": "spegnere",
+   "pos": "VERB",
+   "meaning": {
+    "ru": "выключать, гасить",
+    "uk": "вимикати, гасити",
+    "en": "to turn off",
+    "es": "apagar"
+   },
+   "forms": [
+    "spenga"
+   ]
+  }
+ ]
+}

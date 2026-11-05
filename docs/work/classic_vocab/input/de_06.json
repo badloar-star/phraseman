@@ -1,0 +1,422 @@
+{
+ "lang": "de",
+ "lesson": 6,
+ "words": [
+  {
+   "form": "wo",
+   "surface": "Wo",
+   "count": 10,
+   "examples": [
+    {
+     "id": "de:06:01",
+     "target": "Wo wohnst du",
+     "ru": "Где ты живёшь?",
+     "en": "Where do you live?"
+    },
+    {
+     "id": "de:06:02",
+     "target": "Wo wohnt Anna",
+     "ru": "Где живёт Анна?",
+     "en": "Where does Anna live?"
+    }
+   ]
+  },
+  {
+   "form": "wann",
+   "surface": "Wann",
+   "count": 10,
+   "examples": [
+    {
+     "id": "de:06:11",
+     "target": "Wann kommst du",
+     "ru": "Когда ты придёшь?",
+     "en": "When are you coming?"
+    },
+    {
+     "id": "de:06:12",
+     "target": "Wann kommt der Bus",
+     "ru": "Когда придёт автобус?",
+     "en": "When does the bus arrive?"
+    }
+   ]
+  },
+  {
+   "form": "kommst",
+   "surface": "kommst",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:06:11",
+     "target": "Wann kommst du",
+     "ru": "Когда ты придёшь?",
+     "en": "When are you coming?"
+    },
+    {
+     "id": "de:06:46",
+     "target": "Woher kommst du",
+     "ru": "Ты откуда?",
+     "en": "Where are you from?"
+    }
+   ]
+  },
+  {
+   "form": "wie",
+   "surface": "Wie",
+   "count": 12,
+   "examples": [
+    {
+     "id": "de:06:21",
+     "target": "Wie heißt du",
+     "ru": "Как тебя зовут?",
+     "en": "What's your name?"
+    },
+    {
+     "id": "de:06:22",
+     "target": "Wie heißen Sie",
+     "ru": "Как вас зовут?",
+     "en": "What's your name (formal)?"
+    }
+   ]
+  },
+  {
+   "form": "heißt",
+   "surface": "heißt",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:06:21",
+     "target": "Wie heißt du",
+     "ru": "Как тебя зовут?",
+     "en": "What's your name?"
+    },
+    {
+     "id": "de:06:23",
+     "target": "Wie heißt die Straße",
+     "ru": "Как называется улица?",
+     "en": "What's the name of the street?"
+    }
+   ]
+  },
+  {
+   "form": "heißen",
+   "surface": "heißen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:22",
+     "target": "Wie heißen Sie",
+     "ru": "Как вас зовут?",
+     "en": "What's your name (formal)?"
+    }
+   ]
+  },
+  {
+   "form": "straße",
+   "surface": "Straße",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:23",
+     "target": "Wie heißt die Straße",
+     "ru": "Как называется улица?",
+     "en": "What's the name of the street?"
+    }
+   ]
+  },
+  {
+   "form": "geht",
+   "surface": "geht",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:06:24",
+     "target": "Wie geht es dir",
+     "ru": "Как у тебя дела?",
+     "en": "How are you?"
+    },
+    {
+     "id": "de:06:25",
+     "target": "Wie geht es Ihnen",
+     "ru": "Как у вас дела?",
+     "en": "How are you (formal)?"
+    }
+   ]
+  },
+  {
+   "form": "es",
+   "surface": "es",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:06:24",
+     "target": "Wie geht es dir",
+     "ru": "Как у тебя дела?",
+     "en": "How are you?"
+    },
+    {
+     "id": "de:06:25",
+     "target": "Wie geht es Ihnen",
+     "ru": "Как у вас дела?",
+     "en": "How are you (formal)?"
+    }
+   ]
+  },
+  {
+   "form": "dir",
+   "surface": "dir",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:24",
+     "target": "Wie geht es dir",
+     "ru": "Как у тебя дела?",
+     "en": "How are you?"
+    }
+   ]
+  },
+  {
+   "form": "ihnen",
+   "surface": "Ihnen",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:25",
+     "target": "Wie geht es Ihnen",
+     "ru": "Как у вас дела?",
+     "en": "How are you (formal)?"
+    }
+   ]
+  },
+  {
+   "form": "komme",
+   "surface": "komme",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:27",
+     "target": "Wie komme ich zum Bahnhof",
+     "ru": "Как мне добраться до вокзала?",
+     "en": "How do I get to the train station?"
+    }
+   ]
+  },
+  {
+   "form": "zum",
+   "surface": "zum",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:27",
+     "target": "Wie komme ich zum Bahnhof",
+     "ru": "Как мне добраться до вокзала?",
+     "en": "How do I get to the train station?"
+    }
+   ]
+  },
+  {
+   "form": "lange",
+   "surface": "lange",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:06:28",
+     "target": "Wie lange dauert die Fahrt",
+     "ru": "Сколько длится поездка?",
+     "en": "How long does the journey take?"
+    },
+    {
+     "id": "de:06:29",
+     "target": "Wie lange bleibt ihr",
+     "ru": "Как долго вы остаётесь?",
+     "en": "How long are you staying?"
+    }
+   ]
+  },
+  {
+   "form": "dauert",
+   "surface": "dauert",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:28",
+     "target": "Wie lange dauert die Fahrt",
+     "ru": "Сколько длится поездка?",
+     "en": "How long does the journey take?"
+    }
+   ]
+  },
+  {
+   "form": "fahrt",
+   "surface": "Fahrt",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:06:28",
+     "target": "Wie lange dauert die Fahrt",
+     "ru": "Сколько длится поездка?",
+     "en": "How long does the journey take?"
+    },
+    {
+     "id": "de:06:48",
+     "target": "Wohin fahrt ihr",
+     "ru": "Куда вы едете?",
+     "en": "Where are you going?"
+    }
+   ]
+  },
+  {
+   "form": "bleibt",
+   "surface": "bleibt",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:29",
+     "target": "Wie lange bleibt ihr",
+     "ru": "Как долго вы остаётесь?",
+     "en": "How long are you staying?"
+    }
+   ]
+  },
+  {
+   "form": "spät",
+   "surface": "spät",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:30",
+     "target": "Wie spät ist es",
+     "ru": "Который час?",
+     "en": "What time is it?"
+    }
+   ]
+  },
+  {
+   "form": "was",
+   "surface": "Was",
+   "count": 10,
+   "examples": [
+    {
+     "id": "de:06:31",
+     "target": "Was suchst du",
+     "ru": "Что ты ищешь?",
+     "en": "What are you looking for?"
+    },
+    {
+     "id": "de:06:32",
+     "target": "Was sucht Anna",
+     "ru": "Что ищет Анна?",
+     "en": "What is Anna looking for?"
+    }
+   ]
+  },
+  {
+   "form": "kostet",
+   "surface": "kostet",
+   "count": 3,
+   "examples": [
+    {
+     "id": "de:06:34",
+     "target": "Was kostet das Ticket",
+     "ru": "Сколько стоит билет?",
+     "en": "How much does the ticket cost?"
+    },
+    {
+     "id": "de:06:35",
+     "target": "Was kostet die Suppe",
+     "ru": "Сколько стоит суп?",
+     "en": "How much does the soup cost?"
+    }
+   ]
+  },
+  {
+   "form": "wer",
+   "surface": "Wer",
+   "count": 5,
+   "examples": [
+    {
+     "id": "de:06:41",
+     "target": "Wer wartet draußen",
+     "ru": "Кто ждёт на улице?",
+     "en": "Who is waiting outside?"
+    },
+    {
+     "id": "de:06:42",
+     "target": "Wer macht heute Kaffee",
+     "ru": "Кто сегодня готовит кофе?",
+     "en": "Who is making coffee today?"
+    }
+   ]
+  },
+  {
+   "form": "woher",
+   "surface": "Woher",
+   "count": 2,
+   "examples": [
+    {
+     "id": "de:06:46",
+     "target": "Woher kommst du",
+     "ru": "Ты откуда?",
+     "en": "Where are you from?"
+    },
+    {
+     "id": "de:06:47",
+     "target": "Woher kommt diese Milch",
+     "ru": "Откуда это молоко?",
+     "en": "Where does this milk come from?"
+    }
+   ]
+  },
+  {
+   "form": "diese",
+   "surface": "diese",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:47",
+     "target": "Woher kommt diese Milch",
+     "ru": "Откуда это молоко?",
+     "en": "Where does this milk come from?"
+    }
+   ]
+  },
+  {
+   "form": "wohin",
+   "surface": "Wohin",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:48",
+     "target": "Wohin fahrt ihr",
+     "ru": "Куда вы едете?",
+     "en": "Where are you going?"
+    }
+   ]
+  },
+  {
+   "form": "viel",
+   "surface": "viel",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:49",
+     "target": "Wie viel kostet ein Zimmer",
+     "ru": "Сколько стоит комната?",
+     "en": "How much does a room cost?"
+    }
+   ]
+  },
+  {
+   "form": "viele",
+   "surface": "viele",
+   "count": 1,
+   "examples": [
+    {
+     "id": "de:06:50",
+     "target": "Wie viele Gäste kommen",
+     "ru": "Сколько гостей придёт?",
+     "en": "How many guests are coming?"
+    }
+   ]
+  }
+ ]
+}

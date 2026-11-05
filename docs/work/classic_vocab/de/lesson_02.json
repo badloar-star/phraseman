@@ -1,0 +1,264 @@
+{
+ "lang": "de",
+ "lesson": 2,
+ "words": {
+  "handy": {
+   "ru": "мобильный телефон",
+   "uk": "мобільний телефон",
+   "en": "mobile phone",
+   "es": "móvil"
+  },
+  "neu": {
+   "ru": "новый",
+   "uk": "новий",
+   "en": "new",
+   "es": "nuevo"
+  },
+  "bus": {
+   "ru": "автобус",
+   "uk": "автобус",
+   "en": "bus",
+   "es": "autobús"
+  },
+  "da": {
+   "ru": "здесь, уже пришёл",
+   "uk": "тут, уже прийшов",
+   "en": "here, arrived",
+   "es": "aquí, ya llegó"
+  },
+  "bahn": {
+   "ru": "поезд, электричка",
+   "uk": "потяг, електричка",
+   "en": "train",
+   "es": "tren"
+  },
+  "taxi": {
+   "ru": "такси",
+   "uk": "таксі",
+   "en": "taxi",
+   "es": "taxi"
+  },
+  "gäste": {
+   "ru": "гости",
+   "uk": "гості",
+   "en": "guests",
+   "es": "invitados"
+  },
+  "bahnhof": {
+   "ru": "вокзал",
+   "uk": "вокзал",
+   "en": "train station",
+   "es": "estación de tren"
+  },
+  "haltestelle": {
+   "ru": "остановка",
+   "uk": "зупинка",
+   "en": "stop",
+   "es": "parada"
+  },
+  "dort": {
+   "ru": "там",
+   "uk": "там",
+   "en": "there",
+   "es": "allí"
+  },
+  "hotel": {
+   "ru": "гостиница, отель",
+   "uk": "готель",
+   "en": "hotel",
+   "es": "hotel"
+  },
+  "eingang": {
+   "ru": "вход",
+   "uk": "вхід",
+   "en": "entrance",
+   "es": "entrada"
+  },
+  "kasse": {
+   "ru": "касса",
+   "uk": "каса",
+   "en": "cash desk",
+   "es": "caja"
+  },
+  "büro": {
+   "ru": "офис",
+   "uk": "офіс",
+   "en": "office",
+   "es": "oficina"
+  },
+  "tisch": {
+   "ru": "стол",
+   "uk": "стіл",
+   "en": "table",
+   "es": "mesa"
+  },
+  "bank": {
+   "ru": "скамейка",
+   "uk": "лавка",
+   "en": "bench",
+   "es": "banco"
+  },
+  "tische": {
+   "ru": "столы",
+   "uk": "столи",
+   "en": "tables",
+   "es": "mesas"
+  },
+  "bänke": {
+   "ru": "скамейки",
+   "uk": "лавки",
+   "en": "benches",
+   "es": "bancos"
+  },
+  "stuhl": {
+   "ru": "стул",
+   "uk": "стілець",
+   "en": "chair",
+   "es": "silla"
+  },
+  "kaputt": {
+   "ru": "сломан",
+   "uk": "зламаний",
+   "en": "broken",
+   "es": "roto"
+  },
+  "lampe": {
+   "ru": "лампа",
+   "uk": "лампа",
+   "en": "lamp",
+   "es": "lámpara"
+  },
+  "radio": {
+   "ru": "радио",
+   "uk": "радіо",
+   "en": "radio",
+   "es": "radio"
+  },
+  "stühle": {
+   "ru": "стулья",
+   "uk": "стільці",
+   "en": "chairs",
+   "es": "sillas"
+  },
+  "plan": {
+   "ru": "план",
+   "uk": "план",
+   "en": "plan",
+   "es": "plan"
+  },
+  "karte": {
+   "ru": "карта",
+   "uk": "карта",
+   "en": "map",
+   "es": "mapa"
+  },
+  "ticket": {
+   "ru": "билет",
+   "uk": "квиток",
+   "en": "ticket",
+   "es": "billete"
+  },
+  "karten": {
+   "ru": "карты",
+   "uk": "карти",
+   "en": "maps",
+   "es": "mapas"
+  },
+  "brief": {
+   "ru": "письмо",
+   "uk": "лист",
+   "en": "letter",
+   "es": "carta"
+  },
+  "rechnung": {
+   "ru": "счёт",
+   "uk": "рахунок",
+   "en": "bill",
+   "es": "cuenta, factura"
+  },
+  "paket": {
+   "ru": "посылка",
+   "uk": "посилка",
+   "en": "parcel",
+   "es": "paquete"
+  },
+  "briefe": {
+   "ru": "письма",
+   "uk": "листи",
+   "en": "letters",
+   "es": "cartas"
+  },
+  "aufzug": {
+   "ru": "лифт",
+   "uk": "ліфт",
+   "en": "elevator",
+   "es": "ascensor"
+  },
+  "treppe": {
+   "ru": "лестница",
+   "uk": "сходи",
+   "en": "stairs",
+   "es": "escalera"
+  },
+  "laden": {
+   "ru": "магазин",
+   "uk": "магазин",
+   "en": "shop",
+   "es": "tienda"
+  },
+  "küche": {
+   "ru": "кухня",
+   "uk": "кухня",
+   "en": "kitchen",
+   "es": "cocina"
+  },
+  "café": {
+   "ru": "кафе",
+   "uk": "кафе",
+   "en": "café",
+   "es": "cafetería"
+  },
+  "läden": {
+   "ru": "магазины",
+   "uk": "магазини",
+   "en": "shops",
+   "es": "tiendas"
+  },
+  "mantel": {
+   "ru": "пальто",
+   "uk": "пальто",
+   "en": "coat",
+   "es": "abrigo"
+  },
+  "schwer": {
+   "ru": "тяжёлый",
+   "uk": "важкий",
+   "en": "heavy",
+   "es": "pesado"
+  },
+  "kiste": {
+   "ru": "ящик",
+   "uk": "ящик",
+   "en": "crate, box",
+   "es": "caja"
+  },
+  "buch": {
+   "ru": "книга",
+   "uk": "книга",
+   "en": "book",
+   "es": "libro"
+  },
+  "kisten": {
+   "ru": "ящики",
+   "uk": "ящики",
+   "en": "crates, boxes",
+   "es": "cajas"
+  },
+  "taxis": {
+   "ru": "такси",
+   "uk": "таксі",
+   "en": "taxis",
+   "es": "taxis"
+  }
+ }
+}

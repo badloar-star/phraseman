@@ -1,0 +1,234 @@
+{
+ "lang": "es",
+ "lesson": 1,
+ "words": {
+  "estoy": {
+   "ru": "(я) нахожусь",
+   "uk": "(я) перебуваю",
+   "en": "I am (somewhere)",
+   "es": "yo me encuentro"
+  },
+  "aquí": {
+   "ru": "здесь",
+   "uk": "тут",
+   "en": "here",
+   "es": "en este lugar"
+  },
+  "estás": {
+   "ru": "(ты) находишься",
+   "uk": "(ти) перебуваєш",
+   "en": "you are (somewhere)",
+   "es": "tú te encuentras"
+  },
+  "en": {
+   "ru": "в, на",
+   "uk": "в, на",
+   "en": "in, at",
+   "es": "dentro de, sobre un lugar"
+  },
+  "casa": {
+   "ru": "дом",
+   "uk": "дім, будинок",
+   "en": "home, house",
+   "es": "lugar donde se vive"
+  },
+  "clase": {
+   "ru": "занятие, урок",
+   "uk": "заняття, урок",
+   "en": "class, classroom",
+   "es": "aula o lección"
+  },
+  "él": {
+   "ru": "он",
+   "uk": "він",
+   "en": "he",
+   "es": "esa persona (hombre)"
+  },
+  "está": {
+   "ru": "(он, она) находится",
+   "uk": "(він, вона) перебуває",
+   "en": "he, she is (somewhere)",
+   "es": "se encuentra"
+  },
+  "ana": {
+   "ru": "Ана (имя)",
+   "uk": "Ана (ім’я)",
+   "en": "Ana (a name)",
+   "es": "Ana (nombre de mujer)"
+  },
+  "ella": {
+   "ru": "она",
+   "uk": "вона",
+   "en": "she",
+   "es": "esa persona (mujer)"
+  },
+  "luis": {
+   "ru": "Луис (имя)",
+   "uk": "Луїс (ім’я)",
+   "en": "Luis (a name)",
+   "es": "Luis (nombre de hombre)"
+  },
+  "estamos": {
+   "ru": "(мы) находимся",
+   "uk": "(ми) перебуваємо",
+   "en": "we are (somewhere)",
+   "es": "nosotros nos encontramos"
+  },
+  "allí": {
+   "ru": "вон там",
+   "uk": "отам",
+   "en": "there",
+   "es": "en aquel lugar"
+  },
+  "ellos": {
+   "ru": "они",
+   "uk": "вони",
+   "en": "they (men or mixed)",
+   "es": "esas personas"
+  },
+  "están": {
+   "ru": "(они) находятся",
+   "uk": "(вони) перебувають",
+   "en": "they are (somewhere)",
+   "es": "se encuentran"
+  },
+  "cerca": {
+   "ru": "близко",
+   "uk": "близько",
+   "en": "near, close",
+   "es": "a poca distancia"
+  },
+  "ellas": {
+   "ru": "они (о женщинах)",
+   "uk": "вони (про жінок)",
+   "en": "they (women)",
+   "es": "esas mujeres"
+  },
+  "y": {
+   "ru": "и",
+   "uk": "і, й",
+   "en": "and",
+   "es": "une dos cosas"
+  },
+  "lejos": {
+   "ru": "далеко",
+   "uk": "далеко",
+   "en": "far away",
+   "es": "a mucha distancia"
+  },
+  "dentro": {
+   "ru": "внутри",
+   "uk": "всередині",
+   "en": "inside",
+   "es": "en el interior"
+  },
+  "fuera": {
+   "ru": "снаружи",
+   "uk": "надворі, зовні",
+   "en": "outside",
+   "es": "en el exterior"
+  },
+  "estáis": {
+   "ru": "(вы) находитесь",
+   "uk": "(ви) перебуваєте",
+   "en": "you all are (somewhere)",
+   "es": "vosotros os encontráis"
+  },
+  "el": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the (before a thing)",
+   "es": "palabra antes de un nombre"
+  },
+  "móvil": {
+   "ru": "мобильный телефон",
+   "uk": "мобільний телефон",
+   "en": "mobile phone",
+   "es": "teléfono que se lleva encima"
+  },
+  "las": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the (before several things)",
+   "es": "palabra antes de varios nombres"
+  },
+  "llaves": {
+   "ru": "ключи",
+   "uk": "ключі",
+   "en": "keys",
+   "es": "varias llaves"
+  },
+  "libro": {
+   "ru": "книга",
+   "uk": "книга",
+   "en": "book",
+   "es": "texto con muchas páginas"
+  },
+  "los": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the (before several things)",
+   "es": "palabra antes de varios nombres"
+  },
+  "libros": {
+   "ru": "книги",
+   "uk": "книги",
+   "en": "books",
+   "es": "varios libros"
+  },
+  "coche": {
+   "ru": "машина",
+   "uk": "машина, авто",
+   "en": "car",
+   "es": "vehículo con cuatro ruedas"
+  },
+  "coches": {
+   "ru": "машины",
+   "uk": "машини, авто",
+   "en": "cars",
+   "es": "varios coches"
+  },
+  "la": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "the (before a thing)",
+   "es": "palabra antes de un nombre"
+  },
+  "mochila": {
+   "ru": "рюкзак",
+   "uk": "рюкзак",
+   "en": "backpack",
+   "es": "bolsa que se lleva a la espalda"
+  },
+  "mesa": {
+   "ru": "стол",
+   "uk": "стіл",
+   "en": "table",
+   "es": "mueble con patas"
+  },
+  "llave": {
+   "ru": "ключ",
+   "uk": "ключ",
+   "en": "key",
+   "es": "sirve para abrir una puerta"
+  },
+  "cocina": {
+   "ru": "кухня",
+   "uk": "кухня",
+   "en": "kitchen",
+   "es": "lugar donde se prepara la comida"
+  },
+  "puerta": {
+   "ru": "дверь",
+   "uk": "двері",
+   "en": "door",
+   "es": "sirve para entrar y salir"
+  },
+  "estación": {
+   "ru": "станция, вокзал",
+   "uk": "станція, вокзал",
+   "en": "station",
+   "es": "lugar donde paran los trenes"
+  }
+ }
+}

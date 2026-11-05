@@ -1,0 +1,591 @@
+{
+ "lang": "fr",
+ "lesson": 2,
+ "words": [
+  {
+   "form": "ne",
+   "surface": "ne",
+   "count": 18,
+   "examples": [
+    {
+     "id": "fr:02:01",
+     "target": "Je ne suis pas ici",
+     "ru": "Меня здесь нет.",
+     "en": "I am not here."
+    },
+    {
+     "id": "fr:02:06",
+     "target": "Je ne suis pas au bureau",
+     "ru": "Меня нет в офисе.",
+     "en": "I am not in the office."
+    }
+   ]
+  },
+  {
+   "form": "pas",
+   "surface": "pas",
+   "count": 50,
+   "examples": [
+    {
+     "id": "fr:02:01",
+     "target": "Je ne suis pas ici",
+     "ru": "Меня здесь нет.",
+     "en": "I am not here."
+    },
+    {
+     "id": "fr:02:02",
+     "target": "Tu n’es pas ici",
+     "ru": "Тебя здесь нет.",
+     "en": "You're not here."
+    }
+   ]
+  },
+  {
+   "form": "n’es",
+   "surface": "n’es",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:02:02",
+     "target": "Tu n’es pas ici",
+     "ru": "Тебя здесь нет.",
+     "en": "You're not here."
+    },
+    {
+     "id": "fr:02:03",
+     "target": "Tu n’es pas là",
+     "ru": "Тебя там нет.",
+     "en": "You're not there."
+    }
+   ]
+  },
+  {
+   "form": "n’est",
+   "surface": "n’est",
+   "count": 26,
+   "examples": [
+    {
+     "id": "fr:02:04",
+     "target": "Elle n’est pas là",
+     "ru": "Её там нет.",
+     "en": "She is not there."
+    },
+    {
+     "id": "fr:02:05",
+     "target": "Paul n’est pas au bureau",
+     "ru": "Поля нет в офисе.",
+     "en": "Paul is not in the office."
+    }
+   ]
+  },
+  {
+   "form": "n’êtes",
+   "surface": "n’êtes",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:02:08",
+     "target": "Vous n’êtes pas à la maison",
+     "ru": "Вас нет дома.",
+     "en": "You are not at home."
+    },
+    {
+     "id": "fr:02:19",
+     "target": "Vous n’êtes pas en retard",
+     "ru": "Вы не опоздали.",
+     "en": "You are not late."
+    }
+   ]
+  },
+  {
+   "form": "seule",
+   "surface": "seule",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:15",
+     "target": "Léa n’est pas seule",
+     "ru": "Леа не одна.",
+     "en": "Léa is not alone."
+    }
+   ]
+  },
+  {
+   "form": "en",
+   "surface": "en",
+   "count": 3,
+   "examples": [
+    {
+     "id": "fr:02:19",
+     "target": "Vous n’êtes pas en retard",
+     "ru": "Вы не опоздали.",
+     "en": "You are not late."
+    },
+    {
+     "id": "fr:02:20",
+     "target": "Nous ne sommes pas en avance",
+     "ru": "Мы не пришли заранее.",
+     "en": "We didn't arrive early."
+    }
+   ]
+  },
+  {
+   "form": "retard",
+   "surface": "retard",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:02:19",
+     "target": "Vous n’êtes pas en retard",
+     "ru": "Вы не опоздали.",
+     "en": "You are not late."
+    },
+    {
+     "id": "fr:02:40",
+     "target": "Le train n’est pas en retard",
+     "ru": "Поезд не опаздывает.",
+     "en": "The train is not late."
+    }
+   ]
+  },
+  {
+   "form": "avance",
+   "surface": "avance",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:20",
+     "target": "Nous ne sommes pas en avance",
+     "ru": "Мы не пришли заранее.",
+     "en": "We didn't arrive early."
+    }
+   ]
+  },
+  {
+   "form": "ouverts",
+   "surface": "ouverts",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:23",
+     "target": "Les magasins ne sont pas ouverts",
+     "ru": "Магазины не открыты.",
+     "en": "The stores aren't open."
+    }
+   ]
+  },
+  {
+   "form": "salle",
+   "surface": "salle",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:02:25",
+     "target": "La salle n’est pas vide",
+     "ru": "Комната не пуста.",
+     "en": "The room is not empty."
+    },
+    {
+     "id": "fr:02:34",
+     "target": "Les enfants ne sont pas dans la salle",
+     "ru": "Детей нет в комнате.",
+     "en": "The children aren't in the room."
+    }
+   ]
+  },
+  {
+   "form": "vide",
+   "surface": "vide",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:25",
+     "target": "La salle n’est pas vide",
+     "ru": "Комната не пуста.",
+     "en": "The room is not empty."
+    }
+   ]
+  },
+  {
+   "form": "couloir",
+   "surface": "couloir",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:02:26",
+     "target": "Le couloir n’est pas sombre",
+     "ru": "В коридоре не темно.",
+     "en": "The hallway is not dark."
+    },
+    {
+     "id": "fr:02:47",
+     "target": "Le couloir n’est pas très large",
+     "ru": "Коридор не очень широкий.",
+     "en": "The corridor isn't very wide."
+    }
+   ]
+  },
+  {
+   "form": "sombre",
+   "surface": "sombre",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:26",
+     "target": "Le couloir n’est pas sombre",
+     "ru": "В коридоре не темно.",
+     "en": "The hallway is not dark."
+    }
+   ]
+  },
+  {
+   "form": "table",
+   "surface": "table",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:02:29",
+     "target": "La table n’est pas propre",
+     "ru": "Стол не чистый.",
+     "en": "The table isn't clean."
+    },
+    {
+     "id": "fr:02:39",
+     "target": "Les billets ne sont pas sur la table",
+     "ru": "Билетов нет на столе.",
+     "en": "The tickets are not on the table."
+    }
+   ]
+  },
+  {
+   "form": "propre",
+   "surface": "propre",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:29",
+     "target": "La table n’est pas propre",
+     "ru": "Стол не чистый.",
+     "en": "The table isn't clean."
+    }
+   ]
+  },
+  {
+   "form": "verre",
+   "surface": "verre",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:30",
+     "target": "Le verre n’est pas sale",
+     "ru": "Стакан не грязный.",
+     "en": "The glass is not dirty."
+    }
+   ]
+  },
+  {
+   "form": "sale",
+   "surface": "sale",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:30",
+     "target": "Le verre n’est pas sale",
+     "ru": "Стакан не грязный.",
+     "en": "The glass is not dirty."
+    }
+   ]
+  },
+  {
+   "form": "bus",
+   "surface": "bus",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:02:31",
+     "target": "Le bus n’est pas loin",
+     "ru": "Автобус недалеко.",
+     "en": "The bus isn't far."
+    },
+    {
+     "id": "fr:02:49",
+     "target": "Le bus n’est pas encore là",
+     "ru": "Автобуса ещё нет.",
+     "en": "The bus isn't here yet."
+    }
+   ]
+  },
+  {
+   "form": "toilettes",
+   "surface": "toilettes",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:32",
+     "target": "Les toilettes ne sont pas au fond",
+     "ru": "Туалет не в глубине зала.",
+     "en": "The toilets are not at the back."
+    }
+   ]
+  },
+  {
+   "form": "fond",
+   "surface": "fond",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:32",
+     "target": "Les toilettes ne sont pas au fond",
+     "ru": "Туалет не в глубине зала.",
+     "en": "The toilets are not at the back."
+    }
+   ]
+  },
+  {
+   "form": "ticket",
+   "surface": "ticket",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:33",
+     "target": "Le ticket n’est pas dans le sac",
+     "ru": "Билета нет в сумке.",
+     "en": "The ticket isn't in the bag."
+    }
+   ]
+  },
+  {
+   "form": "dans",
+   "surface": "dans",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:02:33",
+     "target": "Le ticket n’est pas dans le sac",
+     "ru": "Билета нет в сумке.",
+     "en": "The ticket isn't in the bag."
+    },
+    {
+     "id": "fr:02:34",
+     "target": "Les enfants ne sont pas dans la salle",
+     "ru": "Детей нет в комнате.",
+     "en": "The children aren't in the room."
+    }
+   ]
+  },
+  {
+   "form": "vélo",
+   "surface": "vélo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:35",
+     "target": "Le vélo n’est pas dehors",
+     "ru": "Велосипед не на улице.",
+     "en": "The bicycle is not outside."
+    }
+   ]
+  },
+  {
+   "form": "mon",
+   "surface": "Mon",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:36",
+     "target": "Mon téléphone n’est pas ici",
+     "ru": "Моего телефона здесь нет.",
+     "en": "My phone isn't here."
+    }
+   ]
+  },
+  {
+   "form": "téléphone",
+   "surface": "téléphone",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:36",
+     "target": "Mon téléphone n’est pas ici",
+     "ru": "Моего телефона здесь нет.",
+     "en": "My phone isn't here."
+    }
+   ]
+  },
+  {
+   "form": "musée",
+   "surface": "musée",
+   "count": 2,
+   "examples": [
+    {
+     "id": "fr:02:37",
+     "target": "Le musée n’est pas ouvert",
+     "ru": "Музей не открыт.",
+     "en": "The museum is not open."
+    },
+    {
+     "id": "fr:02:45",
+     "target": "La gare n’est pas près du musée",
+     "ru": "Вокзал не рядом с музеем.",
+     "en": "The train station is not near the museum."
+    }
+   ]
+  },
+  {
+   "form": "pharmacie",
+   "surface": "pharmacie",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:38",
+     "target": "La pharmacie n’est pas loin",
+     "ru": "Аптека недалеко.",
+     "en": "The pharmacy isn't far."
+    }
+   ]
+  },
+  {
+   "form": "billets",
+   "surface": "billets",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:39",
+     "target": "Les billets ne sont pas sur la table",
+     "ru": "Билетов нет на столе.",
+     "en": "The tickets are not on the table."
+    }
+   ]
+  },
+  {
+   "form": "sur",
+   "surface": "sur",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:39",
+     "target": "Les billets ne sont pas sur la table",
+     "ru": "Билетов нет на столе.",
+     "en": "The tickets are not on the table."
+    }
+   ]
+  },
+  {
+   "form": "train",
+   "surface": "train",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:40",
+     "target": "Le train n’est pas en retard",
+     "ru": "Поезд не опаздывает.",
+     "en": "The train is not late."
+    }
+   ]
+  },
+  {
+   "form": "déjeuner",
+   "surface": "déjeuner",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:43",
+     "target": "Le déjeuner n’est pas prêt",
+     "ru": "Обед не готов.",
+     "en": "Lunch is not ready."
+    }
+   ]
+  },
+  {
+   "form": "chambre",
+   "surface": "chambre",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:44",
+     "target": "La chambre n’est pas libre",
+     "ru": "Номер не свободен.",
+     "en": "The room is not available."
+    }
+   ]
+  },
+  {
+   "form": "du",
+   "surface": "du",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:45",
+     "target": "La gare n’est pas près du musée",
+     "ru": "Вокзал не рядом с музеем.",
+     "en": "The train station is not near the museum."
+    }
+   ]
+  },
+  {
+   "form": "chaussures",
+   "surface": "chaussures",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:46",
+     "target": "Les chaussures ne sont pas propres",
+     "ru": "Обувь не чистая.",
+     "en": "The shoes are not clean."
+    }
+   ]
+  },
+  {
+   "form": "propres",
+   "surface": "propres",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:46",
+     "target": "Les chaussures ne sont pas propres",
+     "ru": "Обувь не чистая.",
+     "en": "The shoes are not clean."
+    }
+   ]
+  },
+  {
+   "form": "très",
+   "surface": "très",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:47",
+     "target": "Le couloir n’est pas très large",
+     "ru": "Коридор не очень широкий.",
+     "en": "The corridor isn't very wide."
+    }
+   ]
+  },
+  {
+   "form": "large",
+   "surface": "large",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:47",
+     "target": "Le couloir n’est pas très large",
+     "ru": "Коридор не очень широкий.",
+     "en": "The corridor isn't very wide."
+    }
+   ]
+  },
+  {
+   "form": "seuls",
+   "surface": "seuls",
+   "count": 1,
+   "examples": [
+    {
+     "id": "fr:02:48",
+     "target": "Vous n’êtes pas seuls ici",
+     "ru": "Вы здесь не одни.",
+     "en": "You're not alone here."
+    }
+   ]
+  }
+ ]
+}

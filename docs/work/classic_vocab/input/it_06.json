@@ -1,0 +1,864 @@
+{
+ "lang": "it",
+ "lesson": 6,
+ "words": [
+  {
+   "form": "sotto",
+   "surface": "sotto",
+   "count": 3,
+   "examples": [
+    {
+     "id": "it:06:02",
+     "target": "La borsa è sotto il tavolo",
+     "ru": "Сумка под столом.",
+     "en": "The bag is under the table."
+    },
+    {
+     "id": "it:06:30",
+     "target": "La reception è al piano di sotto",
+     "ru": "Стойка регистрации внизу.",
+     "en": "Reception is downstairs."
+    }
+   ]
+  },
+  {
+   "form": "gli",
+   "surface": "Gli",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:06:04",
+     "target": "Gli occhiali sono sul letto",
+     "ru": "Очки лежат на кровати.",
+     "en": "The glasses are on the bed."
+    },
+    {
+     "id": "it:06:36",
+     "target": "Gli spiccioli sono in tasca",
+     "ru": "В кармане мелочь.",
+     "en": "Some change in your pocket."
+    }
+   ]
+  },
+  {
+   "form": "letto",
+   "surface": "letto",
+   "count": 4,
+   "examples": [
+    {
+     "id": "it:06:04",
+     "target": "Gli occhiali sono sul letto",
+     "ru": "Очки лежат на кровати.",
+     "en": "The glasses are on the bed."
+    },
+    {
+     "id": "it:06:34",
+     "target": "La sciarpa è sul letto",
+     "ru": "Шарф лежит на кровати.",
+     "en": "The scarf is on the bed."
+    }
+   ]
+  },
+  {
+   "form": "sulla",
+   "surface": "sulla",
+   "count": 4,
+   "examples": [
+    {
+     "id": "it:06:05",
+     "target": "L’indirizzo è sulla mappa",
+     "ru": "Адрес указан на карте.",
+     "en": "The address is on the map."
+    },
+    {
+     "id": "it:06:27",
+     "target": "Lo zaino è sulla sedia",
+     "ru": "Рюкзак на стуле.",
+     "en": "The backpack is on the chair."
+    }
+   ]
+  },
+  {
+   "form": "mappa",
+   "surface": "mappa",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:05",
+     "target": "L’indirizzo è sulla mappa",
+     "ru": "Адрес указан на карте.",
+     "en": "The address is on the map."
+    }
+   ]
+  },
+  {
+   "form": "pane",
+   "surface": "pane",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:06:07",
+     "target": "Il pane è sul tavolo",
+     "ru": "Хлеб на столе.",
+     "en": "The bread is on the table."
+    },
+    {
+     "id": "it:06:20",
+     "target": "Mi piace l’odore del pane",
+     "ru": "Мне нравится запах хлеба.",
+     "en": "I like the smell of bread."
+    }
+   ]
+  },
+  {
+   "form": "zuppa",
+   "surface": "zuppa",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:06:08",
+     "target": "La zuppa è calda",
+     "ru": "Суп горячий.",
+     "en": "The soup is hot."
+    },
+    {
+     "id": "it:06:19",
+     "target": "Le piace la zuppa",
+     "ru": "Вам нравится суп?",
+     "en": "Do you like soup?"
+    }
+   ]
+  },
+  {
+   "form": "calda",
+   "surface": "calda",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:08",
+     "target": "La zuppa è calda",
+     "ru": "Суп горячий.",
+     "en": "The soup is hot."
+    }
+   ]
+  },
+  {
+   "form": "bicchieri",
+   "surface": "bicchieri",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:09",
+     "target": "I bicchieri sono puliti",
+     "ru": "Стаканы чистые.",
+     "en": "The glasses are clean."
+    }
+   ]
+  },
+  {
+   "form": "puliti",
+   "surface": "puliti",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:09",
+     "target": "I bicchieri sono puliti",
+     "ru": "Стаканы чистые.",
+     "en": "The glasses are clean."
+    }
+   ]
+  },
+  {
+   "form": "l’acqua",
+   "surface": "L’acqua",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:10",
+     "target": "L’acqua è fredda",
+     "ru": "Вода холодная.",
+     "en": "The water is cold."
+    }
+   ]
+  },
+  {
+   "form": "fredda",
+   "surface": "fredda",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:10",
+     "target": "L’acqua è fredda",
+     "ru": "Вода холодная.",
+     "en": "The water is cold."
+    }
+   ]
+  },
+  {
+   "form": "mi",
+   "surface": "Mi",
+   "count": 3,
+   "examples": [
+    {
+     "id": "it:06:11",
+     "target": "Mi piace il caffè",
+     "ru": "Мне нравится кофе.",
+     "en": "I like coffee."
+    },
+    {
+     "id": "it:06:12",
+     "target": "Mi piace il tè",
+     "ru": "Мне нравится чай.",
+     "en": "I like tea."
+    }
+   ]
+  },
+  {
+   "form": "piace",
+   "surface": "piace",
+   "count": 8,
+   "examples": [
+    {
+     "id": "it:06:11",
+     "target": "Mi piace il caffè",
+     "ru": "Мне нравится кофе.",
+     "en": "I like coffee."
+    },
+    {
+     "id": "it:06:12",
+     "target": "Mi piace il tè",
+     "ru": "Мне нравится чай.",
+     "en": "I like tea."
+    }
+   ]
+  },
+  {
+   "form": "caffè",
+   "surface": "caffè",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:11",
+     "target": "Mi piace il caffè",
+     "ru": "Мне нравится кофе.",
+     "en": "I like coffee."
+    }
+   ]
+  },
+  {
+   "form": "tè",
+   "surface": "tè",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:12",
+     "target": "Mi piace il tè",
+     "ru": "Мне нравится чай.",
+     "en": "I like tea."
+    }
+   ]
+  },
+  {
+   "form": "musica",
+   "surface": "musica",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:13",
+     "target": "A lei piace la musica",
+     "ru": "Ей нравится музыка.",
+     "en": "She likes music."
+    }
+   ]
+  },
+  {
+   "form": "cinema",
+   "surface": "cinema",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:14",
+     "target": "A lui piace il cinema",
+     "ru": "Ему нравится кино.",
+     "en": "He likes the cinema."
+    }
+   ]
+  },
+  {
+   "form": "ci",
+   "surface": "Ci",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:15",
+     "target": "Ci piacciono i libri",
+     "ru": "Мы любим книги.",
+     "en": "We like books."
+    }
+   ]
+  },
+  {
+   "form": "piacciono",
+   "surface": "piacciono",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:06:15",
+     "target": "Ci piacciono i libri",
+     "ru": "Мы любим книги.",
+     "en": "We like books."
+    },
+    {
+     "id": "it:06:16",
+     "target": "Ti piacciono le fragole",
+     "ru": "Тебе нравится клубника?",
+     "en": "Do you like strawberries?"
+    }
+   ]
+  },
+  {
+   "form": "libri",
+   "surface": "libri",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:15",
+     "target": "Ci piacciono i libri",
+     "ru": "Мы любим книги.",
+     "en": "We like books."
+    }
+   ]
+  },
+  {
+   "form": "ti",
+   "surface": "Ti",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:16",
+     "target": "Ti piacciono le fragole",
+     "ru": "Тебе нравится клубника?",
+     "en": "Do you like strawberries?"
+    }
+   ]
+  },
+  {
+   "form": "fragole",
+   "surface": "fragole",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:16",
+     "target": "Ti piacciono le fragole",
+     "ru": "Тебе нравится клубника?",
+     "en": "Do you like strawberries?"
+    }
+   ]
+  },
+  {
+   "form": "formaggio",
+   "surface": "formaggio",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:17",
+     "target": "A Lea piace il formaggio",
+     "ru": "Леа любит сыр.",
+     "en": "Lea likes cheese."
+    }
+   ]
+  },
+  {
+   "form": "ai",
+   "surface": "Ai",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:18",
+     "target": "Ai bambini piace il cioccolato",
+     "ru": "Детям нравится шоколад.",
+     "en": "Children like chocolate."
+    }
+   ]
+  },
+  {
+   "form": "cioccolato",
+   "surface": "cioccolato",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:18",
+     "target": "Ai bambini piace il cioccolato",
+     "ru": "Детям нравится шоколад.",
+     "en": "Children like chocolate."
+    }
+   ]
+  },
+  {
+   "form": "l’odore",
+   "surface": "l’odore",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:20",
+     "target": "Mi piace l’odore del pane",
+     "ru": "Мне нравится запах хлеба.",
+     "en": "I like the smell of bread."
+    }
+   ]
+  },
+  {
+   "form": "banca",
+   "surface": "banca",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:21",
+     "target": "La banca è chiusa",
+     "ru": "Банк закрыт.",
+     "en": "The bank is closed."
+    }
+   ]
+  },
+  {
+   "form": "mercato",
+   "surface": "mercato",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:06:22",
+     "target": "Il mercato è aperto",
+     "ru": "Рынок открыт.",
+     "en": "The market is open."
+    },
+    {
+     "id": "it:06:45",
+     "target": "Il fratello di Paolo è al mercato",
+     "ru": "Брат Паоло на рынке.",
+     "en": "Paolo’s brother is at the market."
+    }
+   ]
+  },
+  {
+   "form": "scuola",
+   "surface": "scuola",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:23",
+     "target": "La scuola è di fronte",
+     "ru": "Школа находится напротив.",
+     "en": "The school is opposite."
+    }
+   ]
+  },
+  {
+   "form": "biblioteca",
+   "surface": "biblioteca",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:25",
+     "target": "La biblioteca è silenziosa",
+     "ru": "В библиотеке тихо.",
+     "en": "The library is quiet."
+    }
+   ]
+  },
+  {
+   "form": "silenziosa",
+   "surface": "silenziosa",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:25",
+     "target": "La biblioteca è silenziosa",
+     "ru": "В библиотеке тихо.",
+     "en": "The library is quiet."
+    }
+   ]
+  },
+  {
+   "form": "giardino",
+   "surface": "giardino",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:26",
+     "target": "Il giardino è piccolo",
+     "ru": "Сад небольшой.",
+     "en": "The garden is small."
+    }
+   ]
+  },
+  {
+   "form": "piccolo",
+   "surface": "piccolo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:26",
+     "target": "Il giardino è piccolo",
+     "ru": "Сад небольшой.",
+     "en": "The garden is small."
+    }
+   ]
+  },
+  {
+   "form": "lo",
+   "surface": "Lo",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:27",
+     "target": "Lo zaino è sulla sedia",
+     "ru": "Рюкзак на стуле.",
+     "en": "The backpack is on the chair."
+    }
+   ]
+  },
+  {
+   "form": "zaino",
+   "surface": "zaino",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:27",
+     "target": "Lo zaino è sulla sedia",
+     "ru": "Рюкзак на стуле.",
+     "en": "The backpack is on the chair."
+    }
+   ]
+  },
+  {
+   "form": "sedia",
+   "surface": "sedia",
+   "count": 3,
+   "examples": [
+    {
+     "id": "it:06:27",
+     "target": "Lo zaino è sulla sedia",
+     "ru": "Рюкзак на стуле.",
+     "en": "The backpack is on the chair."
+    },
+    {
+     "id": "it:06:31",
+     "target": "Il cappotto è sulla sedia",
+     "ru": "Пальто лежит на стуле.",
+     "en": "The coat is on the chair."
+    }
+   ]
+  },
+  {
+   "form": "camere",
+   "surface": "camere",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:28",
+     "target": "Le camere sono al piano superiore",
+     "ru": "Номера наверху.",
+     "en": "The rooms are upstairs."
+    }
+   ]
+  },
+  {
+   "form": "superiore",
+   "surface": "superiore",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:28",
+     "target": "Le camere sono al piano superiore",
+     "ru": "Номера наверху.",
+     "en": "The rooms are upstairs."
+    }
+   ]
+  },
+  {
+   "form": "l’ascensore",
+   "surface": "L’ascensore",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:29",
+     "target": "L’ascensore è a sinistra",
+     "ru": "Лифт находится слева.",
+     "en": "The elevator is on the left."
+    }
+   ]
+  },
+  {
+   "form": "reception",
+   "surface": "reception",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:30",
+     "target": "La reception è al piano di sotto",
+     "ru": "Стойка регистрации внизу.",
+     "en": "Reception is downstairs."
+    }
+   ]
+  },
+  {
+   "form": "cappotto",
+   "surface": "cappotto",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:31",
+     "target": "Il cappotto è sulla sedia",
+     "ru": "Пальто лежит на стуле.",
+     "en": "The coat is on the chair."
+    }
+   ]
+  },
+  {
+   "form": "giacca",
+   "surface": "giacca",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:32",
+     "target": "La giacca è nell’ingresso",
+     "ru": "Куртка в прихожей.",
+     "en": "The jacket is in the entryway."
+    }
+   ]
+  },
+  {
+   "form": "nell’ingresso",
+   "surface": "nell’ingresso",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:32",
+     "target": "La giacca è nell’ingresso",
+     "ru": "Куртка в прихожей.",
+     "en": "The jacket is in the entryway."
+    }
+   ]
+  },
+  {
+   "form": "guanti",
+   "surface": "guanti",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:33",
+     "target": "I guanti sono nella borsa",
+     "ru": "Перчатки в сумке.",
+     "en": "The gloves are in the bag."
+    }
+   ]
+  },
+  {
+   "form": "sciarpa",
+   "surface": "sciarpa",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:34",
+     "target": "La sciarpa è sul letto",
+     "ru": "Шарф лежит на кровати.",
+     "en": "The scarf is on the bed."
+    }
+   ]
+  },
+  {
+   "form": "portafoglio",
+   "surface": "portafoglio",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:35",
+     "target": "Il portafoglio è nel cassetto",
+     "ru": "Кошелек в ящике.",
+     "en": "The wallet is in the drawer."
+    }
+   ]
+  },
+  {
+   "form": "nel",
+   "surface": "nel",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:06:35",
+     "target": "Il portafoglio è nel cassetto",
+     "ru": "Кошелек в ящике.",
+     "en": "The wallet is in the drawer."
+    },
+    {
+     "id": "it:06:46",
+     "target": "La foto è nel cassetto",
+     "ru": "Фотография в ящике.",
+     "en": "The photo is in the drawer."
+    }
+   ]
+  },
+  {
+   "form": "cassetto",
+   "surface": "cassetto",
+   "count": 2,
+   "examples": [
+    {
+     "id": "it:06:35",
+     "target": "Il portafoglio è nel cassetto",
+     "ru": "Кошелек в ящике.",
+     "en": "The wallet is in the drawer."
+    },
+    {
+     "id": "it:06:46",
+     "target": "La foto è nel cassetto",
+     "ru": "Фотография в ящике.",
+     "en": "The photo is in the drawer."
+    }
+   ]
+  },
+  {
+   "form": "computer",
+   "surface": "computer",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:38",
+     "target": "Il computer è in ufficio",
+     "ru": "Компьютер в офисе.",
+     "en": "The computer is at the office."
+    }
+   ]
+  },
+  {
+   "form": "caricabatterie",
+   "surface": "caricabatterie",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:39",
+     "target": "Il caricabatterie è in camera da letto",
+     "ru": "Зарядное устройство в спальне.",
+     "en": "The charger is in the bedroom."
+    }
+   ]
+  },
+  {
+   "form": "da",
+   "surface": "da",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:39",
+     "target": "Il caricabatterie è in camera da letto",
+     "ru": "Зарядное устройство в спальне.",
+     "en": "The charger is in the bedroom."
+    }
+   ]
+  },
+  {
+   "form": "lampada",
+   "surface": "lampada",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:40",
+     "target": "La lampada è vicino al letto",
+     "ru": "Лампа рядом с кроватью.",
+     "en": "The lamp is near the bed."
+    }
+   ]
+  },
+  {
+   "form": "l’amica",
+   "surface": "L’amica",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:44",
+     "target": "L’amica di Lea è qui",
+     "ru": "Подруга Леа здесь.",
+     "en": "Lea’s friend is here."
+    }
+   ]
+  },
+  {
+   "form": "macchina",
+   "surface": "macchina",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:47",
+     "target": "Le chiavi della macchina sono qui",
+     "ru": "Ключи от машины здесь.",
+     "en": "The car keys are here."
+    }
+   ]
+  },
+  {
+   "form": "gratuito",
+   "surface": "gratuito",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:48",
+     "target": "L’ingresso al museo è gratuito",
+     "ru": "Вход в музей бесплатный.",
+     "en": "Admission to the museum is free."
+    }
+   ]
+  },
+  {
+   "form": "prezzi",
+   "surface": "prezzi",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:49",
+     "target": "I prezzi sono sul menù",
+     "ru": "Цены указаны в меню.",
+     "en": "Prices are listed on the menu."
+    }
+   ]
+  },
+  {
+   "form": "menù",
+   "surface": "menù",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:49",
+     "target": "I prezzi sono sul menù",
+     "ru": "Цены указаны в меню.",
+     "en": "Prices are listed on the menu."
+    }
+   ]
+  },
+  {
+   "form": "nome",
+   "surface": "nome",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:50",
+     "target": "Il nome è sulla busta",
+     "ru": "Имя на конверте.",
+     "en": "The name is on the envelope."
+    }
+   ]
+  },
+  {
+   "form": "busta",
+   "surface": "busta",
+   "count": 1,
+   "examples": [
+    {
+     "id": "it:06:50",
+     "target": "Il nome è sulla busta",
+     "ru": "Имя на конверте.",
+     "en": "The name is on the envelope."
+    }
+   ]
+  }
+ ]
+}

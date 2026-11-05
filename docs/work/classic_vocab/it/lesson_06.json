@@ -1,0 +1,366 @@
+{
+ "lang": "it",
+ "lesson": 6,
+ "words": {
+  "sotto": {
+   "ru": "под, внизу",
+   "uk": "під, внизу",
+   "en": "under, below",
+   "es": "debajo"
+  },
+  "gli": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "word before a thing’s name",
+   "es": "palabra delante del nombre"
+  },
+  "letto": {
+   "ru": "кровать",
+   "uk": "ліжко",
+   "en": "bed",
+   "es": "cama"
+  },
+  "sulla": {
+   "ru": "на (слитно со словом перед ним)",
+   "uk": "на (злито зі словом перед ним)",
+   "en": "on the",
+   "es": "sobre la"
+  },
+  "mappa": {
+   "ru": "карта",
+   "uk": "мапа",
+   "en": "map",
+   "es": "mapa"
+  },
+  "pane": {
+   "ru": "хлеб",
+   "uk": "хліб",
+   "en": "bread",
+   "es": "pan"
+  },
+  "zuppa": {
+   "ru": "суп",
+   "uk": "суп",
+   "en": "soup",
+   "es": "sopa"
+  },
+  "calda": {
+   "ru": "горячая",
+   "uk": "гаряча",
+   "en": "hot",
+   "es": "caliente"
+  },
+  "bicchieri": {
+   "ru": "стаканы",
+   "uk": "склянки",
+   "en": "glasses",
+   "es": "vasos"
+  },
+  "puliti": {
+   "ru": "чистые",
+   "uk": "чисті",
+   "en": "clean",
+   "es": "limpios"
+  },
+  "l’acqua": {
+   "ru": "вода (слитно со словом перед ней)",
+   "uk": "вода (злито зі словом перед нею)",
+   "en": "the water",
+   "es": "el agua"
+  },
+  "fredda": {
+   "ru": "холодная",
+   "uk": "холодна",
+   "en": "cold",
+   "es": "fría"
+  },
+  "mi": {
+   "ru": "мне",
+   "uk": "мені",
+   "en": "to me",
+   "es": "me"
+  },
+  "piace": {
+   "ru": "нравится",
+   "uk": "подобається",
+   "en": "is liked",
+   "es": "gusta"
+  },
+  "caffè": {
+   "ru": "кофе",
+   "uk": "кава",
+   "en": "coffee",
+   "es": "café"
+  },
+  "tè": {
+   "ru": "чай",
+   "uk": "чай",
+   "en": "tea",
+   "es": "té"
+  },
+  "musica": {
+   "ru": "музыка",
+   "uk": "музика",
+   "en": "music",
+   "es": "música"
+  },
+  "cinema": {
+   "ru": "кино",
+   "uk": "кіно",
+   "en": "cinema",
+   "es": "cine"
+  },
+  "ci": {
+   "ru": "нам",
+   "uk": "нам",
+   "en": "to us",
+   "es": "nos"
+  },
+  "piacciono": {
+   "ru": "нравятся",
+   "uk": "подобаються",
+   "en": "are liked",
+   "es": "gustan"
+  },
+  "libri": {
+   "ru": "книги",
+   "uk": "книги",
+   "en": "books",
+   "es": "libros"
+  },
+  "ti": {
+   "ru": "тебе",
+   "uk": "тобі",
+   "en": "to you",
+   "es": "te"
+  },
+  "fragole": {
+   "ru": "клубника",
+   "uk": "полуниці",
+   "en": "strawberries",
+   "es": "fresas"
+  },
+  "formaggio": {
+   "ru": "сыр",
+   "uk": "сир",
+   "en": "cheese",
+   "es": "queso"
+  },
+  "ai": {
+   "ru": "для, к (слитно со словом перед ним)",
+   "uk": "для, до (злито зі словом перед ним)",
+   "en": "to the",
+   "es": "a los"
+  },
+  "cioccolato": {
+   "ru": "шоколад",
+   "uk": "шоколад",
+   "en": "chocolate",
+   "es": "chocolate"
+  },
+  "l’odore": {
+   "ru": "запах (слитно со словом перед ним)",
+   "uk": "запах (злито зі словом перед ним)",
+   "en": "the smell",
+   "es": "el olor"
+  },
+  "banca": {
+   "ru": "банк",
+   "uk": "банк",
+   "en": "bank",
+   "es": "banco"
+  },
+  "mercato": {
+   "ru": "рынок",
+   "uk": "ринок",
+   "en": "market",
+   "es": "mercado"
+  },
+  "scuola": {
+   "ru": "школа",
+   "uk": "школа",
+   "en": "school",
+   "es": "escuela"
+  },
+  "biblioteca": {
+   "ru": "библиотека",
+   "uk": "бібліотека",
+   "en": "library",
+   "es": "biblioteca"
+  },
+  "silenziosa": {
+   "ru": "тихая",
+   "uk": "тиха",
+   "en": "quiet",
+   "es": "silenciosa"
+  },
+  "giardino": {
+   "ru": "сад",
+   "uk": "сад",
+   "en": "garden",
+   "es": "jardín"
+  },
+  "piccolo": {
+   "ru": "маленький",
+   "uk": "маленький",
+   "en": "small",
+   "es": "pequeño"
+  },
+  "lo": {
+   "ru": "слово перед названием вещи; по-русски нет",
+   "uk": "слово перед назвою речі; українською немає",
+   "en": "word before a thing’s name",
+   "es": "palabra delante del nombre"
+  },
+  "zaino": {
+   "ru": "рюкзак",
+   "uk": "рюкзак",
+   "en": "backpack",
+   "es": "mochila"
+  },
+  "sedia": {
+   "ru": "стул",
+   "uk": "стілець",
+   "en": "chair",
+   "es": "silla"
+  },
+  "camere": {
+   "ru": "номера, комнаты",
+   "uk": "номери, кімнати",
+   "en": "rooms",
+   "es": "habitaciones"
+  },
+  "superiore": {
+   "ru": "верхний",
+   "uk": "верхній",
+   "en": "upper",
+   "es": "superior"
+  },
+  "l’ascensore": {
+   "ru": "лифт (слитно со словом перед ним)",
+   "uk": "ліфт (злито зі словом перед ним)",
+   "en": "the lift",
+   "es": "el ascensor"
+  },
+  "reception": {
+   "ru": "стойка регистрации",
+   "uk": "стійка реєстрації",
+   "en": "reception desk",
+   "es": "recepción"
+  },
+  "cappotto": {
+   "ru": "пальто",
+   "uk": "пальто",
+   "en": "coat",
+   "es": "abrigo"
+  },
+  "giacca": {
+   "ru": "куртка",
+   "uk": "куртка",
+   "en": "jacket",
+   "es": "chaqueta"
+  },
+  "nell’ingresso": {
+   "ru": "в прихожей",
+   "uk": "у передпокої",
+   "en": "in the entrance hall",
+   "es": "en la entrada"
+  },
+  "guanti": {
+   "ru": "перчатки",
+   "uk": "рукавички",
+   "en": "gloves",
+   "es": "guantes"
+  },
+  "sciarpa": {
+   "ru": "шарф",
+   "uk": "шарф",
+   "en": "scarf",
+   "es": "bufanda"
+  },
+  "portafoglio": {
+   "ru": "кошелёк",
+   "uk": "гаманець",
+   "en": "wallet",
+   "es": "cartera"
+  },
+  "nel": {
+   "ru": "в (слитно со словом перед ним)",
+   "uk": "у (злито зі словом перед ним)",
+   "en": "in the",
+   "es": "en el"
+  },
+  "cassetto": {
+   "ru": "ящик",
+   "uk": "шухляда",
+   "en": "drawer",
+   "es": "cajón"
+  },
+  "computer": {
+   "ru": "компьютер",
+   "uk": "комп’ютер",
+   "en": "computer",
+   "es": "ordenador"
+  },
+  "caricabatterie": {
+   "ru": "зарядное устройство",
+   "uk": "зарядний пристрій",
+   "en": "charger",
+   "es": "cargador"
+  },
+  "da": {
+   "ru": "для, из",
+   "uk": "для, з",
+   "en": "for, from",
+   "es": "de"
+  },
+  "lampada": {
+   "ru": "лампа",
+   "uk": "лампа",
+   "en": "lamp",
+   "es": "lámpara"
+  },
+  "l’amica": {
+   "ru": "подруга (слитно со словом перед ней)",
+   "uk": "подруга (злито зі словом перед нею)",
+   "en": "the friend",
+   "es": "la amiga"
+  },
+  "macchina": {
+   "ru": "машина",
+   "uk": "машина",
+   "en": "car",
+   "es": "coche"
+  },
+  "gratuito": {
+   "ru": "бесплатный",
+   "uk": "безкоштовний",
+   "en": "free of charge",
+   "es": "gratuito"
+  },
+  "prezzi": {
+   "ru": "цены",
+   "uk": "ціни",
+   "en": "prices",
+   "es": "precios"
+  },
+  "menù": {
+   "ru": "меню",
+   "uk": "меню",
+   "en": "menu",
+   "es": "menú"
+  },
+  "nome": {
+   "ru": "имя",
+   "uk": "ім’я",
+   "en": "name",
+   "es": "nombre"
+  },
+  "busta": {
+   "ru": "конверт",
+   "uk": "конверт",
+   "en": "envelope",
+   "es": "sobre"
+  }
+ }
+}

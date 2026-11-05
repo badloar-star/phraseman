@@ -2801,6 +2801,7 @@ export default function FriendsTabScreen() {
       error={friendsListError}
       ladder={friendsLadderShown ? (
         <ReferralLadder
+          compactFriends
           view={friendsLadderView}
           code={referralCode}
           codeCopied={ladderCodeCopy.copied}

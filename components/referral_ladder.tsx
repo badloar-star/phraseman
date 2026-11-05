@@ -21,6 +21,8 @@ import { referralLadderText } from './referral_ladder_strings';
 
 export type ReferralLadderProps = Readonly<{
   view: ReferralLadderView;
+  /** Вкладка «Друзья»: оставляет только заголовок, код и действия; правила раскрываются в «Как это работает». */
+  compactFriends?: boolean;
   /** Код приглашения; null — ещё готовится (поле не рисуется, кнопка «Поделиться» остаётся: экран сам скажет «код готовится»). */
   code: string | null;
   codeCopied: boolean;
@@ -46,7 +48,7 @@ function Step({ done, num, text, right, testID }: Readonly<{ done: boolean; num:
   );
 }
 
-function ReferralLadder({ view, code, codeCopied, shareBusy, onCopy, onShare, onHow }: ReferralLadderProps) {
+function ReferralLadder({ view, compactFriends = false, code, codeCopied, shareBusy, onCopy, onShare, onHow }: ReferralLadderProps) {
   const { liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -62,28 +64,34 @@ function ReferralLadder({ view, code, codeCopied, shareBusy, onCopy, onShare, on
   const progressLabel = view.step2Done ? undefined : referralLadderText(L, 'progress', { n: view.cycle, need: view.friendsPerGrant });
   return (
     <View testID="referral-ladder" style={{ paddingTop: 6 }}>
-      <View style={{ alignItems: 'center', marginBottom: 14 }}>
-        <View style={{ width: 52, height: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, marginBottom: 12 }}>
-          <Ionicons name="people-outline" size={24} color={glass.text} />
-        </View>
+      <View style={{ alignItems: 'center', marginBottom: compactFriends ? 0 : 14 }}>
+        {compactFriends ? null : (
+          <View testID="referral-ladder-header-icon" style={{ width: 52, height: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, marginBottom: 12 }}>
+            <Ionicons name="people-outline" size={24} color={glass.text} />
+          </View>
+        )}
         <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 25, fontWeight: '700', textAlign: 'center' }}>
           {referralLadderText(L, 'title')}
         </Text>
       </View>
-      <Step testID="referral-ladder-step-1" done={view.step1Done} num={1} text={step1} />
-      <Step testID="referral-ladder-step-2" done={view.step2Done} num={2} text={step2} right={progressLabel} />
-      {view.step2Done ? null : (
-        <View testID="referral-ladder-bar" style={{ paddingHorizontal: 14, paddingTop: 8, paddingBottom: 2 }}>
-          <View style={{ height: 8, borderRadius: 4, backgroundColor: glass.opaqueControl, overflow: 'hidden' }}>
-            <View style={{ width: `${view.progressPct}%`, height: 8, borderRadius: 4, backgroundColor: glass.accent }} />
-          </View>
-        </View>
+      {compactFriends ? null : (
+        <>
+          <Step testID="referral-ladder-step-1" done={view.step1Done} num={1} text={step1} />
+          <Step testID="referral-ladder-step-2" done={view.step2Done} num={2} text={step2} right={progressLabel} />
+          {view.step2Done ? null : (
+            <View testID="referral-ladder-bar" style={{ paddingHorizontal: 14, paddingTop: 8, paddingBottom: 2 }}>
+              <View style={{ height: 8, borderRadius: 4, backgroundColor: glass.opaqueControl, overflow: 'hidden' }}>
+                <View style={{ width: `${view.progressPct}%`, height: 8, borderRadius: 4, backgroundColor: glass.accent }} />
+              </View>
+            </View>
+          )}
+          {view.capReached ? (
+            <Text testID="referral-ladder-cap" style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 10, textAlign: 'center' /* guard-ok: состояние «месячный потолок исчерпан» (Ядро 29.10), не расшифровка названия */ }}>
+              {referralLadderText(L, 'capNote', { m: view.monthCounted, cap: view.monthlyCap })}
+            </Text>
+          ) : null}
+        </>
       )}
-      {view.capReached ? (
-        <Text testID="referral-ladder-cap" style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 10, textAlign: 'center' /* guard-ok: состояние «месячный потолок исчерпан» (Ядро 29.10), не расшифровка названия */ }}>
-          {referralLadderText(L, 'capNote', { m: view.monthCounted, cap: view.monthlyCap })}
-        </Text>
-      ) : null}
       {code ? (
         <KitTouchable
           testID="referral-ladder-code"

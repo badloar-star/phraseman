@@ -1208,7 +1208,8 @@
    "Estudiante",
    "Guía",
    "Guías",
-   "Médico"
+   "Médico",
+   "una"
   ],
   "es:04:11": [
    "los",
@@ -6392,6 +6393,12 @@
     "to": "Sois",
     "position": 0,
     "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "una",
+    "to": "dentista",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
    }
   ],
   "es:04:11": [
@@ -10814,19 +10821,19 @@
    {
     "from": "hermanos",
     "to": "duchamos",
-    "position": 2,
+    "position": 1,
     "reason": "semantic-es-2026-11-05"
    },
    {
     "from": "llave",
     "to": "duchó",
-    "position": 2,
+    "position": 1,
     "reason": "semantic-es-2026-11-05"
    },
    {
     "from": "mensaje",
     "to": "duché",
-    "position": 2,
+    "position": 1,
     "reason": "semantic-es-2026-11-05"
    }
   ],
@@ -10834,19 +10841,19 @@
    {
     "from": "hermanos",
     "to": "duchamos",
-    "position": 2,
+    "position": 1,
     "reason": "semantic-es-2026-11-05"
    },
    {
     "from": "llave",
     "to": "duchó",
-    "position": 2,
+    "position": 1,
     "reason": "semantic-es-2026-11-05"
    },
    {
     "from": "mensaje",
     "to": "duché",
-    "position": 2,
+    "position": 1,
     "reason": "semantic-es-2026-11-05"
    }
   ],

@@ -260,7 +260,7 @@
    "fix": {
     "replace": [
      {
-      "position": 2,
+      "position": 1,
       "from": "una",
       "to": "dentista"
      }
@@ -6535,17 +6535,17 @@
    "fix": {
     "replace": [
      {
-      "position": 2,
+      "position": 1,
       "from": "hermanos",
       "to": "duchamos"
      },
      {
-      "position": 2,
+      "position": 1,
       "from": "llave",
       "to": "duchó"
      },
      {
-      "position": 2,
+      "position": 1,
       "from": "mensaje",
       "to": "duché"
      }
@@ -6601,17 +6601,17 @@
    "fix": {
     "replace": [
      {
-      "position": 2,
+      "position": 1,
       "from": "hermanos",
       "to": "duchamos"
      },
      {
-      "position": 2,
+      "position": 1,
       "from": "llave",
       "to": "duchó"
      },
      {
-      "position": 2,
+      "position": 1,
       "from": "mensaje",
       "to": "duché"
      }

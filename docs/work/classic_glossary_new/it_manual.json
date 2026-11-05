@@ -1,0 +1,917 @@
+{
+ "_note": "Вступления DE/IT (17), 05.11: недостающие формы слов из фраз, у которых не было ни одного слова в словаре (замер course_quality V0). Каждое слово один раз; урок считает сборщик по первой встрече.",
+ "new": [
+  {
+   "lemma": "parlo",
+   "meaning": {
+    "ru": "говорю",
+    "uk": "говорю",
+    "en": "I speak"
+   }
+  },
+  {
+   "lemma": "francese",
+   "meaning": {
+    "ru": "французский, по-французски",
+    "uk": "французька, по-французьки",
+    "en": "French"
+   }
+  },
+  {
+   "lemma": "parli",
+   "meaning": {
+    "ru": "говоришь",
+    "uk": "говориш",
+    "en": "you speak"
+   }
+  },
+  {
+   "lemma": "parliamo",
+   "meaning": {
+    "ru": "говорим",
+    "uk": "говоримо",
+    "en": "we speak"
+   }
+  },
+  {
+   "lemma": "spagnolo",
+   "meaning": {
+    "ru": "испанский, по-испански",
+    "uk": "іспанська, по-іспанськи",
+    "en": "Spanish"
+   }
+  },
+  {
+   "lemma": "chi",
+   "meaning": {
+    "ru": "кто",
+    "uk": "хто",
+    "en": "who"
+   }
+  },
+  {
+   "lemma": "c’è",
+   "meaning": {
+    "ru": "есть, здесь есть",
+    "uk": "є, тут є",
+    "en": "there is"
+   }
+  },
+  {
+   "lemma": "parla",
+   "meaning": {
+    "ru": "говорит",
+    "uk": "говорить",
+    "en": "speaks"
+   }
+  },
+  {
+   "lemma": "quando",
+   "meaning": {
+    "ru": "когда",
+    "uk": "коли",
+    "en": "when"
+   }
+  },
+  {
+   "lemma": "arrivi",
+   "meaning": {
+    "ru": "приезжаешь, приходишь",
+    "uk": "приїжджаєш, приходиш",
+    "en": "you arrive"
+   }
+  },
+  {
+   "lemma": "parte",
+   "meaning": {
+    "ru": "уезжает, уходит",
+    "uk": "їде, відходить",
+    "en": "leaves"
+   }
+  },
+  {
+   "lemma": "perché",
+   "meaning": {
+    "ru": "почему, потому что",
+    "uk": "чому, тому що",
+    "en": "why, because"
+   }
+  },
+  {
+   "lemma": "partite",
+   "meaning": {
+    "ru": "уезжаете, уходите",
+    "uk": "їдете, відходите",
+    "en": "you (all) leave"
+   }
+  },
+  {
+   "lemma": "così",
+   "meaning": {
+    "ru": "так",
+    "uk": "так",
+    "en": "so, like this"
+   }
+  },
+  {
+   "lemma": "presto",
+   "meaning": {
+    "ru": "рано, скоро",
+    "uk": "рано, скоро",
+    "en": "early, soon"
+   }
+  },
+  {
+   "lemma": "come",
+   "meaning": {
+    "ru": "как",
+    "uk": "як",
+    "en": "how, like"
+   }
+  },
+  {
+   "lemma": "sta",
+   "meaning": {
+    "ru": "находится, чувствует себя",
+    "uk": "перебуває, почувається",
+    "en": "is, feels"
+   }
+  },
+  {
+   "lemma": "dell’acqua",
+   "meaning": {
+    "ru": "немного воды",
+    "uk": "трохи води",
+    "en": "some water"
+   }
+  },
+  {
+   "lemma": "troppo",
+   "meaning": {
+    "ru": "слишком, слишком много",
+    "uk": "занадто, забагато",
+    "en": "too much"
+   }
+  },
+  {
+   "lemma": "rumore",
+   "meaning": {
+    "ru": "шум",
+    "uk": "шум",
+    "en": "noise"
+   }
+  },
+  {
+   "lemma": "molta",
+   "meaning": {
+    "ru": "много",
+    "uk": "багато",
+    "en": "a lot of"
+   }
+  },
+  {
+   "lemma": "gente",
+   "meaning": {
+    "ru": "люди",
+    "uk": "люди",
+    "en": "people"
+   }
+  },
+  {
+   "lemma": "poco",
+   "meaning": {
+    "ru": "мало",
+    "uk": "мало",
+    "en": "little, few"
+   }
+  },
+  {
+   "lemma": "traffico",
+   "meaning": {
+    "ru": "движение на дороге, машины",
+    "uk": "рух на дорозі, машини",
+    "en": "traffic"
+   }
+  },
+  {
+   "lemma": "andiamo",
+   "meaning": {
+    "ru": "идём, едем",
+    "uk": "йдемо, їдемо",
+    "en": "we go"
+   }
+  },
+  {
+   "lemma": "negli",
+   "meaning": {
+    "ru": "в (перед названием нескольких вещей)",
+    "uk": "в (перед назвою кількох речей)",
+    "en": "in the"
+   }
+  },
+  {
+   "lemma": "stati",
+   "meaning": {
+    "ru": "штаты, государства",
+    "uk": "штати, держави",
+    "en": "states"
+   }
+  },
+  {
+   "lemma": "uniti",
+   "meaning": {
+    "ru": "соединённые",
+    "uk": "об’єднані",
+    "en": "united"
+   }
+  },
+  {
+   "lemma": "prendiamo",
+   "meaning": {
+    "ru": "берём",
+    "uk": "беремо",
+    "en": "we take"
+   }
+  },
+  {
+   "lemma": "prendono",
+   "meaning": {
+    "ru": "берут",
+    "uk": "беруть",
+    "en": "they take"
+   }
+  },
+  {
+   "lemma": "dell’insalata",
+   "meaning": {
+    "ru": "немного салата",
+    "uk": "трохи салату",
+    "en": "some salad"
+   }
+  },
+  {
+   "lemma": "vorrei",
+   "meaning": {
+    "ru": "я бы хотел(а)",
+    "uk": "я б хотів(ла)",
+    "en": "I would like"
+   }
+  },
+  {
+   "lemma": "dell’olio",
+   "meaning": {
+    "ru": "немного масла",
+    "uk": "трохи олії",
+    "en": "some oil"
+   }
+  },
+  {
+   "lemma": "posso",
+   "meaning": {
+    "ru": "могу",
+    "uk": "можу",
+    "en": "I can"
+   }
+  },
+  {
+   "lemma": "entrare",
+   "meaning": {
+    "ru": "войти, заходить",
+    "uk": "увійти, заходити",
+    "en": "to enter"
+   }
+  },
+  {
+   "lemma": "puoi",
+   "meaning": {
+    "ru": "можешь",
+    "uk": "можеш",
+    "en": "you can"
+   }
+  },
+  {
+   "lemma": "possiamo",
+   "meaning": {
+    "ru": "можем",
+    "uk": "можемо",
+    "en": "we can"
+   }
+  },
+  {
+   "lemma": "aspettare",
+   "meaning": {
+    "ru": "ждать, подождать",
+    "uk": "чекати, зачекати",
+    "en": "to wait"
+   }
+  },
+  {
+   "lemma": "potete",
+   "meaning": {
+    "ru": "можете (вы)",
+    "uk": "можете (ви)",
+    "en": "you (all) can"
+   }
+  },
+  {
+   "lemma": "passare",
+   "meaning": {
+    "ru": "пройти, проходить",
+    "uk": "пройти, проходити",
+    "en": "to pass"
+   }
+  },
+  {
+   "lemma": "possono",
+   "meaning": {
+    "ru": "могут",
+    "uk": "можуть",
+    "en": "they can"
+   }
+  },
+  {
+   "lemma": "restare",
+   "meaning": {
+    "ru": "остаться, оставаться",
+    "uk": "залишитися, залишатися",
+    "en": "to stay"
+   }
+  },
+  {
+   "lemma": "devo",
+   "meaning": {
+    "ru": "мне нужно, должен",
+    "uk": "мені треба, маю",
+    "en": "I must"
+   }
+  },
+  {
+   "lemma": "partire",
+   "meaning": {
+    "ru": "уехать, уйти",
+    "uk": "поїхати, піти",
+    "en": "to leave"
+   }
+  },
+  {
+   "lemma": "devi",
+   "meaning": {
+    "ru": "тебе нужно, должен",
+    "uk": "тобі треба, маєш",
+    "en": "you must"
+   }
+  },
+  {
+   "lemma": "dobbiamo",
+   "meaning": {
+    "ru": "нам нужно, должны",
+    "uk": "нам треба, маємо",
+    "en": "we must"
+   }
+  },
+  {
+   "lemma": "pagare",
+   "meaning": {
+    "ru": "платить, заплатить",
+    "uk": "платити, заплатити",
+    "en": "to pay"
+   }
+  },
+  {
+   "lemma": "voglio",
+   "meaning": {
+    "ru": "хочу",
+    "uk": "хочу",
+    "en": "I want"
+   }
+  },
+  {
+   "lemma": "provarlo",
+   "meaning": {
+    "ru": "попробовать это",
+    "uk": "спробувати це",
+    "en": "to try it"
+   }
+  },
+  {
+   "lemma": "vuole",
+   "meaning": {
+    "ru": "хочет",
+    "uk": "хоче",
+    "en": "wants"
+   }
+  },
+  {
+   "lemma": "prenotare",
+   "meaning": {
+    "ru": "бронировать, забронировать",
+    "uk": "бронювати, забронювати",
+    "en": "to book"
+   }
+  },
+  {
+   "lemma": "vuoi",
+   "meaning": {
+    "ru": "хочешь",
+    "uk": "хочеш",
+    "en": "you want"
+   }
+  },
+  {
+   "lemma": "sederti",
+   "meaning": {
+    "ru": "присесть",
+    "uk": "сісти",
+    "en": "to sit down"
+   }
+  },
+  {
+   "lemma": "bere",
+   "meaning": {
+    "ru": "пить, выпить",
+    "uk": "пити, випити",
+    "en": "to drink"
+   }
+  },
+  {
+   "lemma": "qualcosa",
+   "meaning": {
+    "ru": "что-нибудь",
+    "uk": "щось",
+    "en": "something"
+   }
+  },
+  {
+   "lemma": "aiutarla",
+   "meaning": {
+    "ru": "помочь вам",
+    "uk": "допомогти вам",
+    "en": "to help you"
+   }
+  },
+  {
+   "lemma": "può",
+   "meaning": {
+    "ru": "может, можете",
+    "uk": "може, можете",
+    "en": "can, you can"
+   }
+  },
+  {
+   "lemma": "ripetere",
+   "meaning": {
+    "ru": "повторить",
+    "uk": "повторити",
+    "en": "to repeat"
+   }
+  },
+  {
+   "lemma": "parlare",
+   "meaning": {
+    "ru": "говорить",
+    "uk": "говорити",
+    "en": "to speak"
+   }
+  },
+  {
+   "lemma": "più",
+   "meaning": {
+    "ru": "более, больше",
+    "uk": "більш, більше",
+    "en": "more"
+   }
+  },
+  {
+   "lemma": "lentamente",
+   "meaning": {
+    "ru": "медленно",
+    "uk": "повільно",
+    "en": "slowly"
+   }
+  },
+  {
+   "lemma": "devono",
+   "meaning": {
+    "ru": "должны, им нужно",
+    "uk": "мають, їм треба",
+    "en": "they must"
+   }
+  },
+  {
+   "lemma": "annullare",
+   "meaning": {
+    "ru": "отменить",
+    "uk": "скасувати",
+    "en": "to cancel"
+   }
+  },
+  {
+   "lemma": "l’appuntamento",
+   "meaning": {
+    "ru": "встреча, назначенное время",
+    "uk": "зустріч, призначений час",
+    "en": "the appointment"
+   }
+  },
+  {
+   "lemma": "sto",
+   "meaning": {
+    "ru": "я сейчас (делаю)",
+    "uk": "я зараз (роблю)",
+    "en": "I am (doing now)"
+   }
+  },
+  {
+   "lemma": "bevendo",
+   "meaning": {
+    "ru": "выпивая, пью",
+    "uk": "п’ючи, п’ю",
+    "en": "drinking"
+   }
+  },
+  {
+   "lemma": "acqua",
+   "meaning": {
+    "ru": "вода",
+    "uk": "вода",
+    "en": "water"
+   }
+  },
+  {
+   "lemma": "entra",
+   "meaning": {
+    "ru": "заходи",
+    "uk": "заходь",
+    "en": "come in"
+   }
+  },
+  {
+   "lemma": "entri",
+   "meaning": {
+    "ru": "заходите (на «вы»)",
+    "uk": "заходьте (на «ви»)",
+    "en": "come in (polite)"
+   }
+  },
+  {
+   "lemma": "aspetta",
+   "meaning": {
+    "ru": "подожди",
+    "uk": "зачекай",
+    "en": "wait"
+   }
+  },
+  {
+   "lemma": "aspetti",
+   "meaning": {
+    "ru": "подождите (на «вы»)",
+    "uk": "зачекайте (на «ви»)",
+    "en": "wait (polite)"
+   }
+  },
+  {
+   "lemma": "ascolta",
+   "meaning": {
+    "ru": "слушай",
+    "uk": "слухай",
+    "en": "listen"
+   }
+  },
+  {
+   "lemma": "bene",
+   "meaning": {
+    "ru": "хорошо, внимательно",
+    "uk": "добре, уважно",
+    "en": "well"
+   }
+  },
+  {
+   "lemma": "ascolti",
+   "meaning": {
+    "ru": "слушайте (на «вы»)",
+    "uk": "слухайте (на «ви»)",
+    "en": "listen (polite)"
+   }
+  },
+  {
+   "lemma": "passi",
+   "meaning": {
+    "ru": "пройдите (на «вы»)",
+    "uk": "пройдіть (на «ви»)",
+    "en": "go through (polite)"
+   }
+  },
+  {
+   "lemma": "dal",
+   "meaning": {
+    "ru": "через, от, из",
+    "uk": "через, від, з",
+    "en": "through, from"
+   }
+  },
+  {
+   "lemma": "cortile",
+   "meaning": {
+    "ru": "двор",
+    "uk": "двір",
+    "en": "courtyard"
+   }
+  },
+  {
+   "lemma": "si",
+   "meaning": {
+    "ru": "вам, себя; по-русски отдельного слова нет",
+    "uk": "вам, себе; українською окремого слова немає",
+    "en": "oneself, yourself"
+   }
+  },
+  {
+   "lemma": "sente",
+   "meaning": {
+    "ru": "чувствует",
+    "uk": "почувається",
+    "en": "feels"
+   }
+  },
+  {
+   "lemma": "meglio",
+   "meaning": {
+    "ru": "лучше",
+    "uk": "краще",
+    "en": "better"
+   }
+  },
+  {
+   "lemma": "d’estate",
+   "meaning": {
+    "ru": "летом",
+    "uk": "влітку",
+    "en": "in summer"
+   }
+  },
+  {
+   "lemma": "dormivano",
+   "meaning": {
+    "ru": "спали",
+    "uk": "спали",
+    "en": "they slept"
+   }
+  },
+  {
+   "lemma": "all’aperto",
+   "meaning": {
+    "ru": "на улице, на свежем воздухе",
+    "uk": "надворі, просто неба",
+    "en": "outdoors"
+   }
+  },
+  {
+   "lemma": "li",
+   "meaning": {
+    "ru": "их",
+    "uk": "їх",
+    "en": "them"
+   }
+  },
+  {
+   "lemma": "vedo",
+   "meaning": {
+    "ru": "вижу",
+    "uk": "бачу",
+    "en": "I see"
+   }
+  },
+  {
+   "lemma": "conosci",
+   "meaning": {
+    "ru": "знаешь, знаком с",
+    "uk": "знаєш, знайомий з",
+    "en": "you know"
+   }
+  },
+  {
+   "lemma": "aspettiamo",
+   "meaning": {
+    "ru": "ждём",
+    "uk": "чекаємо",
+    "en": "we wait"
+   }
+  },
+  {
+   "lemma": "tenerlo",
+   "meaning": {
+    "ru": "оставить его себе",
+    "uk": "залишити його собі",
+    "en": "to keep it"
+   }
+  },
+  {
+   "lemma": "comprarli",
+   "meaning": {
+    "ru": "купить их",
+    "uk": "купити їх",
+    "en": "to buy them"
+   }
+  },
+  {
+   "lemma": "online",
+   "meaning": {
+    "ru": "онлайн, в интернете",
+    "uk": "онлайн, в інтернеті",
+    "en": "online"
+   }
+  },
+  {
+   "lemma": "tornarci",
+   "meaning": {
+    "ru": "вернуться туда",
+    "uk": "повернутися туди",
+    "en": "to go back there"
+   }
+  },
+  {
+   "lemma": "ne",
+   "meaning": {
+    "ru": "из них, о них; по-русски отдельного слова нет",
+    "uk": "з них, про них; українською окремого слова немає",
+    "en": "of it, of them"
+   }
+  },
+  {
+   "lemma": "uno",
+   "meaning": {
+    "ru": "один",
+    "uk": "один",
+    "en": "one"
+   }
+  },
+  {
+   "lemma": "prendi",
+   "meaning": {
+    "ru": "берёшь",
+    "uk": "береш",
+    "en": "you take"
+   }
+  },
+  {
+   "lemma": "compriamo",
+   "meaning": {
+    "ru": "покупаем",
+    "uk": "купуємо",
+    "en": "we buy"
+   }
+  },
+  {
+   "lemma": "quattro",
+   "meaning": {
+    "ru": "четыре",
+    "uk": "чотири",
+    "en": "four"
+   }
+  },
+  {
+   "lemma": "ordinarne",
+   "meaning": {
+    "ru": "заказать ещё",
+    "uk": "замовити ще",
+    "en": "to order more"
+   }
+  },
+  {
+   "lemma": "altri",
+   "meaning": {
+    "ru": "другие, ещё",
+    "uk": "інші, ще",
+    "en": "others, more"
+   }
+  },
+  {
+   "lemma": "sarebbe",
+   "meaning": {
+    "ru": "было бы",
+    "uk": "було б",
+    "en": "would be"
+   }
+  },
+  {
+   "lemma": "dovresti",
+   "meaning": {
+    "ru": "тебе стоило бы",
+    "uk": "тобі слід було б",
+    "en": "you should"
+   }
+  },
+  {
+   "lemma": "riposarti",
+   "meaning": {
+    "ru": "отдохнуть",
+    "uk": "відпочити",
+    "en": "to rest"
+   }
+  },
+  {
+   "lemma": "bisogna",
+   "meaning": {
+    "ru": "нужно, надо",
+    "uk": "треба, потрібно",
+    "en": "it is necessary"
+   }
+  },
+  {
+   "lemma": "che",
+   "meaning": {
+    "ru": "что, чтобы",
+    "uk": "що, щоб",
+    "en": "that"
+   }
+  },
+  {
+   "lemma": "partiamo",
+   "meaning": {
+    "ru": "мы уйдём, мы уедем",
+    "uk": "ми підемо, ми поїдемо",
+    "en": "we leave"
+   }
+  },
+  {
+   "lemma": "partiate",
+   "meaning": {
+    "ru": "вы уедете, вам уехать",
+    "uk": "ви поїдете, вам поїхати",
+    "en": "you (all) leave"
+   }
+  },
+  {
+   "lemma": "partano",
+   "meaning": {
+    "ru": "они уйдут, им уйти",
+    "uk": "вони підуть, їм піти",
+    "en": "they leave"
+   }
+  },
+  {
+   "lemma": "abbiano",
+   "meaning": {
+    "ru": "у них есть, им хватало",
+    "uk": "у них є, їм вистачало",
+    "en": "they have"
+   }
+  },
+  {
+   "lemma": "abbastanza",
+   "meaning": {
+    "ru": "достаточно",
+    "uk": "достатньо",
+    "en": "enough"
+   }
+  },
+  {
+   "lemma": "spazio",
+   "meaning": {
+    "ru": "место, пространство",
+    "uk": "місце, простір",
+    "en": "space"
+   }
+  },
+  {
+   "lemma": "era",
+   "meaning": {
+    "ru": "был, была",
+    "uk": "був, була",
+    "en": "was"
+   }
+  },
+  {
+   "lemma": "felice",
+   "meaning": {
+    "ru": "счастливый, счастливая",
+    "uk": "щасливий, щаслива",
+    "en": "happy"
+   }
+  },
+  {
+   "lemma": "aveva",
+   "meaning": {
+    "ru": "имел, имела",
+    "uk": "мав, мала",
+    "en": "had"
+   }
+  },
+  {
+   "lemma": "avuto",
+   "meaning": {
+    "ru": "имел, получил",
+    "uk": "мав, отримав",
+    "en": "had"
+   }
+  },
+  {
+   "lemma": "successo",
+   "meaning": {
+    "ru": "успех",
+    "uk": "успіх",
+    "en": "success"
+   }
+  }
+ ]
+}

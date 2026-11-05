@@ -9627,6 +9627,104 @@
     "from": "arriveremmo",
     "with": "quell’armadio"
    }
+  ],
+  "de:08:36": [
+   {
+    "position": 4,
+    "from": "Karten",
+    "with": "Zug"
+   }
+  ],
+  "de:11:11": [
+   {
+    "position": 3,
+    "from": "an",
+    "with": "hinter"
+   }
+  ],
+  "de:21:33": [
+   {
+    "position": 3,
+    "from": "dass",
+    "with": "denn"
+   }
+  ],
+  "de:24:14": [
+   {
+    "position": 4,
+    "from": "während",
+    "with": "ob"
+   }
+  ],
+  "de:28:15": [
+   {
+    "position": 3,
+    "from": "kalt",
+    "with": "feucht"
+   }
+  ],
+  "de:29:01": [
+   {
+    "position": 2,
+    "from": "bitte",
+    "with": "vorsichtig"
+   }
+  ],
+  "de:31:15": [
+   {
+    "position": 7,
+    "from": "beim",
+    "with": "hinterm"
+   }
+  ],
+  "de:32:30": [
+   {
+    "position": 3,
+    "from": "früh",
+    "with": "spät"
+   }
+  ],
+  "it:01:14": [
+   {
+    "position": 2,
+    "from": "nella",
+    "with": "dalla"
+   }
+  ],
+  "it:08:27": [
+   {
+    "position": 0,
+    "from": "Da",
+    "with": "Sotto"
+   }
+  ],
+  "it:25:23": [
+   {
+    "position": 1,
+    "from": "le",
+    "with": "mi"
+   }
+  ],
+  "it:27:17": [
+   {
+    "position": 5,
+    "from": "pranzo",
+    "with": "pavimento"
+   }
+  ],
+  "it:29:21": [
+   {
+    "position": 4,
+    "from": "preparando",
+    "with": "tagliando"
+   }
+  ],
+  "it:30:15": [
+   {
+    "position": 4,
+    "from": "posto",
+    "with": "bagaglio"
+   }
   ]
  },
  "alt": {

@@ -228,5 +228,15 @@
   "id": "lesson-32/terms",
   "field": "title.uk",
   "fix": "Якби було інакше: `se` і «я б»"
+ },
+ {
+  "id": "lesson-30/terms",
+  "field": "chapters[1].textByLocale.ru",
+  "fix": "Смотрите, как слово меняется после bisogna che. Для «я» — `parta`, для «мы» — `partiamo`, для «вы» — `partiate`, для «они» — `partano`. Некоторые из них звучат так же, как в обычной фразе. Понять смысл помогает начало: `bisogna che`."
+ },
+ {
+  "id": "lesson-30/terms",
+  "field": "chapters[1].textByLocale.uk",
+  "fix": "Дивіться, як слово змінюється після bisogna che. Для «я» — `parta`, для «ми» — `partiamo`, для «ви» — `partiate`, для «вони» — `partano`. Деякі з них звучать так само, як у звичайній фразі. Зрозуміти зміст допомагає початок: `bisogna che`."
  }
 ]

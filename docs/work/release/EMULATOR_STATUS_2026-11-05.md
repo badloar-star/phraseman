@@ -42,3 +42,10 @@
 - dock:   y=163, h=1827, w=411  ← НИЖНЯЯ ПАНЕЛЬ НА ВЕСЬ ЭКРАН (1827 при листе 856)
 [PAYWALL-FIT] skip {"touched":false,"viewportH":0,"contentH":0}, затем skip {"touched":false,"viewportH":0,"contentH":381}.
 Вывод: содержимое (contentH=381) не помещается, потому что viewport прокрутки имеет высоту 0, а «dock» растянут на 1827 (с y=163) — он занимает всю область под шапкой и вытесняет плитки/промокод; визуально внизу пустота (кадр). Это причина «пустого окна»: сломан flex-layout (dock без ограничения высоты / scroll без flex:1 и minHeight). Для Входа.
+
+## Пересъёмка окон оплаты после 406692e88 (22:55, 5560, тёмная+светлая × 5 контекстов)
+- Кадры: docs/work/release/frames_2026-11-05/sverka/6-paywalls-retake/{dark,light}_{course_after_lesson3,language_add,generic,no_energy,premium_expired}.png; журнал: paywall_layout_log_raw.txt (PAYWALL-LAYOUT/FIT, без очистки, 10 показов); флоу e2e/maestro/16_paywalls_retake_ru.yaml.
+- ВАЖНО: первый ретейк (22:32) снят на СТАРОМ бандле (scroll h=0, dock h=1827). После force-stop и перезапуска dev-клиента бандл подхватил фикс — этот ретейк на нём.
+- Размеры: sheet h=856 (generic 835); header 205/197/163/205/239 (course/language_add/generic/no_energy/premium_expired); scroll h=360/368/381/360/326 (>0); dock h=291 (ниже ожидаемых 300–450, но всё помещается); PAYWALL-FIT: contentH=381, overflow 21/13/0/21/55, action scroll_to_end (generic: fits).
+- Кадры: выгоды, плитки «Ultra·Год €39,99 / Plus·Месяц €7,99», «Подключить Ultra», «Восстановить покупки», «Ввести промокод», «Условия/Конфиденциальность» — всё на месте во всех контекстах.
+- ДЕФЕКТ для Входа: при overflow>0 (premium_expired, overflow 55) авто-прокрутка scroll_to_end сдвигает список — первая выгода «Серия, фразы и уроки сохранены» залезает под подзаголовок/шапку (виден обрезок строки, light_premium_expired.png). Нужно скроллить к началу или не прокручивать автоматически.

@@ -1,0 +1,90 @@
+appId: app.phraseman
+name: 16 Paywalls retake
+---
+- tapOn:
+    point: "14%,93%"
+- extendedWaitUntil:
+    visible: ".*0/10.*"
+    timeout: 60000
+- openLink: "phraseman://dev_state?set=uiLang:ru,appearance:dark"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=course_after_lesson3&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: dark_course_after_lesson3
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=language_add&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: dark_language_add
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=generic&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: dark_generic
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=no_energy&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: dark_no_energy
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=premium_expired&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: dark_premium_expired
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_state?set=uiLang:ru,appearance:light"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=course_after_lesson3&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: light_course_after_lesson3
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=language_add&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: light_language_add
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=generic&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: light_generic
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=no_energy&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: light_no_energy
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=premium_expired&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: light_premium_expired
+- back
+- waitForAnimationToEnd

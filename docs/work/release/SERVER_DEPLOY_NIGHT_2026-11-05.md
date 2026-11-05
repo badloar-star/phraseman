@@ -87,3 +87,13 @@ Governance-ID: TG-3EB023A82AAB
 - Индексы чистки при удалении аккаунта (коммит Входа e4965b3de) на 03:00: `pack_likes.userId`, `pack_adds.userId`, `pack_comments.authorId`, `contest_votes.userId` (COLLECTION_GROUP) — **READY**.
 - Функция удаления аккаунта (`account_delete`) НОЧЬЮ НЕ выкладывалась — решение координатора: риск сломать удаление (требование магазинов) выше пользы от чистки остатков. Выкладка утром по слову владельца отдельной строкой `--only "functions:default:<имя экспорта account_delete>" --execute` (индексы уже READY, так что `FAILED_PRECONDITION` на этапе collection_group_matches не возникнет). Откат — revert + повторный `--only functions:<имя>`; индексы откатывать не нужно.
 - Откат ночной выкладки не понадобился. Сухой откат из копии PREV проверен (PASS).
+
+## Выкладка удаления аккаунта (05.11 утро, решение владельца через координатора)
+Governance-ID: TG-9A992F4F0D48
+- Сухой прогон на HEAD 25e3155ff — PASS. Боевой запуск (HEAD 425a1e6b7): `deploy_from_clean_head.sh --only "functions:default:accountDeleteMine,functions:default:accountDeleteWorker,functions:default:accountDeleteRetryCron" --execute` — «Successful update operation» ×3, Deploy complete, exit 0 (05:47Z).
+- Ревизии: accountdeletemine-00067-fer (было 00066-nat), accountdeleteworker-00040-bor (было 00039-faw), accountdeleteretrycron-00034-nuf (было 00033-xuf); все ACTIVE.
+- Предусловие: 4 индекса чистки (`pack_likes.userId`, `pack_adds.userId`, `pack_comments.authorId`, `contest_votes.userId`) READY (03:00).
+- Пост-проверка (первые ~10 мин): ошибок severity≥ERROR по трём функциям — 0; `FAILED_PRECONDITION` — 0; `accountDeleteWorker` отработал реальные вызовы (6 записей INFO/NOTICE) без ошибок.
+- ⚠ Проверка «на тестовом аккаунте» в бою НЕ выполнялась: тестового боевого аккаунта с доступом из этой сессии нет, а удалять настоящий аккаунт нельзя. Заменой служат: тест-страж `account_delete_community_marks_2026_11_05`, READY индексов, отсутствие `FAILED_PRECONDITION` и успешные прогоны worker на живых запросах. Если нужен сквозной прогон — завести тестовый аккаунт и удалить его в приложении (проверить, что в `account_delete_jobs` запись дошла до `completed`).
+- Откат не понадобился. Если появятся ошибки: `git revert e4965b3de` → тот же `--only … --execute` (индексы откатывать не нужно). Предыдущие ревизии для ручного возврата трафика: accountdeletemine-00066-nat, accountdeleteworker-00039-faw, accountdeleteretrycron-00033-xuf.
+- Политика конфиденциальности: удаление теперь чистит лайки/добавления/комментарии/голоса под чужими наборами → редакция Б (по сообщению координатора; текст политики — Переводчик).

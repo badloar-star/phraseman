@@ -6,6 +6,7 @@
 //   node scripts/release_cut_2_1_0.mjs --apply         — применить (метка среза = сейчас)
 //   node scripts/release_cut_2_1_0.mjs --apply --since 1793836800000   — своя метка среза (мс)
 //   --versions-only — только версии, метку среза не трогать (по умолчанию метка тоже не перезаписывается, если уже не заглушка)
+//   --code N        — номер сборки для обеих платформ (по умолчанию 149; для пересборки — 150)
 //   --root <папка>  — работать в копии дерева (проверка до 02:15), по умолчанию корень репозитория
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,7 +19,13 @@ const root = val('--root') ? path.resolve(val('--root')) : path.join(path.dirnam
 const apply = flag('--apply');
 const versionsOnly = flag('--versions-only');
 const sinceMs = Number(val('--since') ?? Date.now());
-const TARGET = { version: '2.1.0', code: 149 };
+// зачем (пересборка 150, координатор 05.11): номер сборки можно задать --code N (оба номера — android.versionCode и ios.buildNumber — вместе); по умолчанию 149
+const codeArg = val('--code');
+const TARGET = { version: '2.1.0', code: codeArg === undefined ? 149 : Number(codeArg) };
+if (!Number.isInteger(TARGET.code) || TARGET.code < 149) {
+  console.error(`[RELEASE-CUT] ✖ --code должен быть целым ≥ 149, получено ${codeArg}`);
+  process.exit(2);
+}
 if (!Number.isFinite(sinceMs) || sinceMs < Date.UTC(2026, 0, 1)) {
   console.error(`[RELEASE-CUT] ✖ метка среза ${sinceMs} не похожа на момент релиза`);
   process.exit(2);

@@ -210,6 +210,7 @@ export default function HomeScene(p: Props) {
       lostStreakDays={devSetup ? devSetup.lostStreakDays : streakLostToday ? personal.streakCount : null}
       minutesToMidnight={devSetup?.minutesToMidnight}
       place={p.place}
+      studyTarget={p.studyTarget}
       pending={p.pending}
       busy={p.busy}
       active={p.active}
@@ -237,6 +238,8 @@ export type HomeSceneViewProps = Readonly<{
   /** Минуты до энергии; не задано — живой таймер энергии (dev-вход задаёт число). */
   energyMinutes?: number;
   place: HomeScenePlace;
+  /** зачем (владелец 05.11, герой новичка): язык изучения — для названия урока 1 под «Урок 1»; HomeScene передаёт его из Главной, dev-вход может не задавать. */
+  studyTarget?: unknown;
   pending: boolean;
   busy: boolean;
   active: boolean;

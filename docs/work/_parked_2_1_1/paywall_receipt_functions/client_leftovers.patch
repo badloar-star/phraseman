@@ -1,0 +1,40 @@
+diff --git a/components/CleanOnboarding.tsx b/components/CleanOnboarding.tsx
+index 64ee125a5..d81ff57f3 100644
+--- a/components/CleanOnboarding.tsx
++++ b/components/CleanOnboarding.tsx
+@@ -236,11 +236,11 @@ function onboardingSwitchedSignInAgainText(lang: Lang): string {
+     pl: 'Konto zmienione. Zaloguj się ponownie w potrzebny sposób.',
+   });
+ }
+-// зачем (координатор 15.10 к сборке 16.10, решение владельца): экран уровня включён и рисуется в цветах темы; D126 (владелец 2026-09-30) — «только включаем экран с выбором языка, он
+-// уже есть», остальной онбординг не трогается. Поэтому рубильник разделён: выбор
++// D126 (владелец 2026-09-30): включаем экран с выбором языка, остальной
++// онбординг не трогаем. Поэтому рубильник разделён: выбор
+ // языка включён, экран уровня остаётся выключенным (после языка сразу уведомления).
+ const SHOW_ONBOARDING_LANGUAGE_STEP = true;
+-const SHOW_ONBOARDING_LEVEL_STEP = true;
++const SHOW_ONBOARDING_LEVEL_STEP = false;
+ // Флоу ровно по скриншотам Bevel (владелец, 2026-08-17): welcome → privacy (сейф:
+ // вход и «данные не передаются») → niceToMeet (приветствие по имени) → promise
+ // (график на весь экран) → improve → source → блок языка (выключен, пока язык
+@@ -2727,6 +2727,7 @@ function CleanOnboarding({
+   } = usePaywallPurchase({
+     variant: 'C',
+     context: 'onboarding_plan',
++    trackShown: step === 'onboardingPaywall',
+     source: 'onboarding_plan',
+     lang,
+     forceTrialUI: true,
+diff --git a/components/paywall/PaywallPlusScreen.tsx b/components/paywall/PaywallPlusScreen.tsx
+index a13239d7e..89d8ba4d3 100644
+--- a/components/paywall/PaywallPlusScreen.tsx
++++ b/components/paywall/PaywallPlusScreen.tsx
+@@ -154,7 +154,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
+ 
+   useEffect(() => {
+     void trackEvent('paywall_shown', { context: ctx, source, paywall: PAYWALL_PLUS_VARIANT, ...entryAnalytics, ...paywallImpressionParams(impression) });
+-    logPaywallFunnel('shown', { variant: PAYWALL_PLUS_VARIANT, context: ctx });
++    logPaywallFunnel('shown', { variant: PAYWALL_PLUS_VARIANT, context: ctx, impressionId: impression.id });
+   }, [ctx, entryAnalytics, impression, source]);
+ 
+   // зачем (D158): есть цены (живые или из кэша) — рисуем их; иначе скелетон ТОЛЬКО пока идёт загрузка

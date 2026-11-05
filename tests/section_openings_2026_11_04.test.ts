@@ -126,6 +126,22 @@ describe('хранилище: память + телефон', () => {
     dismissSectionOpening();
     expect(peekSectionOpening().current).toBeNull();
   });
+  it('«Пропустить» закрывает окно сразу и навсегда для этого раздела; журнал называет раздел, источник, пропуск и отметку', async () => {
+    const lines: string[] = [];
+    const spy = jest.spyOn(console, 'log').mockImplementation((...args: unknown[]) => { lines.push(args.map(String).join(' ')); });
+    await reconcileSectionOpenings(facts({ open: ['video'] }));
+    expect(peekSectionOpening().current).toBe('rank');
+    noteSectionOpeningShown('rank');
+    expect(dismissSectionOpening('skip')).toBe('rank');
+    // те же факты ещё раз (хост пересчитывает при любой смене) — пропущенный раздел не возвращается
+    await reconcileSectionOpenings(facts({ open: ['video'] }));
+    expect(peekSectionOpening().current).not.toBe('rank');
+    const row = lines.find((l) => l.includes('"event":"dismissed"'));
+    spy.mockRestore();
+    expect(row).toBeDefined();
+    const json = JSON.parse(row!.slice(row!.indexOf('{')));
+    expect(json).toMatchObject({ event: 'dismissed', section: 'rank', source: 'skip', skipped: true, persisted: true });
+  });
   it('убили приложение посреди очереди: непоказанное вернётся на следующем запуске, показанное — нет', async () => {
     await reconcileSectionOpenings(facts({ open: ['video', 'dialogues'] }));
     noteSectionOpeningShown('rank');
@@ -210,7 +226,7 @@ describe('подключение и запреты', () => {
   });
   it('Главная: слот стоит в очереди окон арбитра (Modal, ключ sectionOpening) и ведёт по маршруту раздела', () => {
     expect(read('app/(tabs)/home.tsx')).toContain('<HomeSectionOpeningSlot lang={lang} active={homeRuntimeActive} onNavigate={homeOpenSectionRoute} />');
-    expect(read('components/home/home_moment_slots.tsx')).toContain('onRequestClose={sectionOpening.dismiss}');
+    expect(read('components/home/home_moment_slots.tsx')).toContain("onRequestClose={() => sectionOpening.dismiss('back')}");
     expect(read('components/overlay_arbiter_core.ts')).toContain("'sectionOpening'");
   });
   it('окно: таймлайн на UI-потоке (Reanimated), без setState в кадрах, без обводок, без обрезки строк и ужатия шрифта; уменьшенное движение — сразу финал', () => {

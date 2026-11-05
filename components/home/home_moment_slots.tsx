@@ -102,13 +102,13 @@ export const HomeSectionOpeningSlot = memo(function HomeSectionOpeningSlot({ lan
   const sectionOpening = useSectionOpeningHost(active);
   if (!sectionOpening.current) return null;
   return (
-    <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={sectionOpening.dismiss}>
+    <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={() => sectionOpening.dismiss('back')}>
       <SheetSwipeRoot>
         <Suspense fallback={null}>
           <SectionOpeningCeremony
             id={sectionOpening.current}
             lang={lang}
-            onSkip={sectionOpening.dismiss}
+            onSkip={() => sectionOpening.dismiss('skip')}
             onCta={() => { const route = sectionOpening.accept(); if (route) onNavigate(route); }}
           />
         </Suspense>

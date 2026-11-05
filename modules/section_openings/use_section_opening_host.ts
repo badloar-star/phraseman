@@ -43,7 +43,7 @@ export type SectionOpeningHost = Readonly<{
   /** CTA: закрыть и вернуть маршрут раздела (null — rank/plus просто идут дальше). */
   accept: () => string | null;
   /** «Пропустить» / «Назад»: закрыть, следующее окно очереди появится само. */
-  dismiss: () => void;
+  dismiss: (source?: 'skip' | 'back') => void;
 }>;
 
 export function useSectionOpeningHost(active: boolean): SectionOpeningHost {
@@ -122,10 +122,10 @@ export function useSectionOpeningHost(active: boolean): SectionOpeningHost {
   return useMemo<SectionOpeningHost>(() => ({
     current: shown,
     accept: () => {
-      const closed = dismissSectionOpening();
+      const closed = dismissSectionOpening('cta');
       return closed ? SECTION_OPENING_ROUTES[closed] : null;
     },
-    dismiss: () => { dismissSectionOpening(); },
+    dismiss: (source = 'back') => { dismissSectionOpening(source); },
   }), [shown]);
 }
 

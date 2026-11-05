@@ -15,6 +15,8 @@ const LOG = '[SECTION-OPENING]';
 export const SECTION_OPENING_KEY_PREFIX = 'story_events_v1:section_openings';
 export const sectionOpeningKey = (owner: string): string => `${SECTION_OPENING_KEY_PREFIX}:${owner}`;
 
+/** Чем закрыли окно: «Пропустить», кнопка раздела (CTA) или «Назад»/системный жест. */
+export type SectionOpeningDismissSource = 'skip' | 'cta' | 'back';
 export type SectionOpeningSnapshot = Readonly<{ owner: string | null; current: SectionOpeningId | null }>;
 const EMPTY_SNAPSHOT: SectionOpeningSnapshot = Object.freeze({ owner: null, current: null });
 
@@ -120,10 +122,12 @@ export function noteSectionOpeningShown(id: SectionOpeningId): void {
 }
 
 /** Закрыто (CTA, «Пропустить», «Назад»): следующее окно очереди, если есть. */
-export function dismissSectionOpening(): SectionOpeningId | null {
+export function dismissSectionOpening(source: SectionOpeningDismissSource = 'back'): SectionOpeningId | null {
   const closed = current;
   current = pending.shift() ?? null;
-  console.log(LOG, 'dismissed', JSON.stringify({ closed, next: current })); // guard-ok: закрытие
+  // зачем (150 №11, Maestro: «Skip закрывает?»): одна строка на закрытие — какой раздел, чем закрыли, пропуск ли это и лежит ли отметка «показано» (persisted) — значит окно
+  // для этого раздела не вернётся. Отметка ставится при ПОКАЗЕ (noteSectionOpeningShown), поэтому «Пропустить» = закрыто навсегда без отдельной записи.
+  console.log(LOG, 'dismissed', JSON.stringify({ event: 'dismissed', section: closed, source, skipped: source === 'skip', persisted: closed ? marks.seen.includes(closed) : null, closed, next: current })); // guard-ok: закрытие
   publish();
   return closed;
 }

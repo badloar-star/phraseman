@@ -39,6 +39,7 @@ graphify-out/
 .codex-tools/
 .expo/
 .codex-tmp/
+.codex-tmp-*
 .codex-logs/
 .worktrees/
 .dev-screens/

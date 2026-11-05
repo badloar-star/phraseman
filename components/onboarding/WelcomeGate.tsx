@@ -13,6 +13,7 @@ import { useLang } from '../LangContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { tabPillTopOffset } from '../v2/tab_bar_geometry';
 import { useActiveAccountOwner } from '../../hooks/use_active_account_owner';
 import { useOverlayVisible } from '../OverlayArbiter';
 import type { Lang } from '../../constants/i18n';
@@ -130,7 +131,8 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
       active
       reducedMotion={reducedMotion}
       safeTop={insets.top}
-      safeBottom={insets.bottom}
+      // зачем (находка Maestro 05.11): «Next» уходил под плавающую капсулу таб-бара — низ экрана считаем от ВЕРХА капсулы (общая геометрия tab_bar_geometry), а не от системной полосы. В dev-превью (force) таб-бара нет.
+      safeBottom={force ? insets.bottom : tabPillTopOffset(insets.bottom)}
       onSkip={onSkip}
       onStart={onStart}
     />

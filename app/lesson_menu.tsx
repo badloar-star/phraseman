@@ -440,7 +440,8 @@ function LessonMenu() {
   // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): пункт без данных целевого языка скрыт, а не подписан текстом-заглушкой.
   const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
   const targetVerbsAvailable = vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs');
-  const menuClassicWords = classicWordsActiveFor(storageStudyTarget(studyTarget)) ? storageStudyTarget(studyTarget) : null;
+  const menuStorageTarget = storageStudyTarget(studyTarget);
+  const menuClassicWords = classicWordsActiveFor(menuStorageTarget) ? menuStorageTarget : null;
   const wordsTotal = menuClassicWords ? classicLessonWordCount(menuClassicWords, lessonId) : (LESSONS_WITH_WORDS.has(lessonId) ? lessonWordCount(lessonId) : 0);
   const lessonHasWords = wordsTotal > 0;
   const targetTheoryUnavailable = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);

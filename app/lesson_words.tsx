@@ -3020,7 +3020,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     const wordEn = current.word.en;
     // Результат ответа в момент выбора: успех на верном, ошибка на неверном.
     // [FeedbackKit] fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
-    if (voiceOut) speakAudio(wordEn, speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
+    if (voiceOut) speakAudio(wordEn, speechRate, { language: ttsLocaleForStudyTarget(storageStudyTarget(studyTarget)) });
     if (isRight) {
       runCorrectRef.current += 1;
       fk.verdict({ correct: true });
@@ -3596,7 +3596,8 @@ function LessonWords() {
   const lessonId = parseInt(id || '1', 10);
   const initialTab = (Array.isArray(tabParam) ? tabParam[0] : tabParam) === 'list' ? 'list' : null;
   const frenchVocabularyBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
-  const classicWordsTarget = classicWordsActiveFor(storageStudyTarget(studyTarget)) ? storageStudyTarget(studyTarget) : null;
+  const wordsStorageTarget = storageStudyTarget(studyTarget);
+  const classicWordsTarget = classicWordsActiveFor(wordsStorageTarget) ? wordsStorageTarget : null;
   // зачем (владелец 05.11): у курса со словарём (glossary.json) слова берутся оттуда, без удалённой загрузки французского банка.
   const isFrenchLessonWords = storageStudyTarget(studyTarget) === 'fr' && !classicWordsTarget;
   const frenchSourceLocale = lang === 'uk' ? 'uk' : 'ru';

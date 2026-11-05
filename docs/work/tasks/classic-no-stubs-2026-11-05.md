@@ -43,3 +43,9 @@ Governance-ID: TG-2C7DB19BCA1F (слова урока fr/es/de/it из glossary.
 Governance-ID: TG-0E153B452E14 (план интерактивных заданий теории fr/es/de/it: чтение данных и оценка)
 
 Governance-ID: TG-C44F45024B95 (интерактивные задания теории fr/es/de/it: адаптер ClassicTheory→TheorySection + TheoryLessonView)
+
+Governance-ID: TG-087054EE1A0A (задания теории «как ребёнку»: инструкции, образец ответа, убрать непонятные типы и технические блоки)
+
+Governance-ID: TG-F4A397C9A3C2 (задания только из слов, введённых теорией к этому разделу; команды из classic_task_commands_9lang.md; сторож firstLesson<=N)
+
+Governance-ID: TG-D980467BC13F (срочно: типы в HEAD — сужение типа classicWordsActiveFor в lesson_menu/lesson_words; затем рендер plain-формата теории)

@@ -86,7 +86,9 @@ function fromChapters(target: 'es' | 'fr' | 'de' | 'it', lessonId: number, d: Re
     if (!body) continue;
     // зачем: название главы — своё (titleByLocale, Теория 12) или первое предложение текста; «Часть N» остаётся последним запасным вариантом
     const explicit = stripTheoryMarkup(pick(ch.titleByLocale, locale));
-    sections.push({ title: explicit || firstSentenceTitle(body), body, examples: examplesFor(target, lessonId, ch.exampleIds, locale) });
+    // примеры: старый формат — exampleIds[], новый (plain) — examples[{phraseId}]
+    const exampleIds = [...arr(ch.exampleIds), ...arr(ch.examples).map((e) => obj(e).phraseId)];
+    sections.push({ title: explicit || firstSentenceTitle(body), body, examples: examplesFor(target, lessonId, exampleIds, locale) });
   }
   if (sections.length === 0) return null;
   const table: [string, string][] = [];
@@ -222,7 +224,7 @@ export function getClassicTheory(target: unknown, lessonId: number, locale: stri
     const file = filesOf()[t];
     const d = obj(obj(file?.data)[String(lessonId)]);
     if (Object.keys(d).length > 0) {
-      result = file?.format === 'studio2' || d.localized ? fromStudio2(t, lessonId, d, locale) : fromChapters(t, lessonId, d, locale);
+      result = d.localized ? fromStudio2(t, lessonId, d, locale) : fromChapters(t, lessonId, d, locale) // зачем: формат определяет сам урок (у es часть уроков уже в новом plain-формате с chapters);
     }
   } catch (error: unknown) {
     console.warn('[CLASSIC-THEORY] load failed', t, lessonId, error instanceof Error ? error.message : String(error)); // guard-ok: причина отсутствия теории

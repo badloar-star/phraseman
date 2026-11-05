@@ -49,3 +49,7 @@ Governance-ID: TG-087054EE1A0A (задания теории «как ребён�
 Governance-ID: TG-F4A397C9A3C2 (задания только из слов, введённых теорией к этому разделу; команды из classic_task_commands_9lang.md; сторож firstLesson<=N)
 
 Governance-ID: TG-D980467BC13F (срочно: типы в HEAD — сужение типа classicWordsActiveFor в lesson_menu/lesson_words; затем рендер plain-формата теории)
+
+Governance-ID: TG-E62B1E24CB5D (рендер plain-формата теории: classic_theory_plain.ts, ThreeTileChoice stacked, hint для en)
+
+Governance-ID: TG-86DA1598522B (вёрстка: заголовок колонки таблицы форм «AFFIRMATIVE» ломается посреди слова)

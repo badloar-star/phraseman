@@ -11,6 +11,8 @@ import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import TonalSurface from '../components/TonalSurface';
 import { safeRouterBack } from './navigation_back';
+import { getClassicPlainView } from './classic_theory_plain';
+import ClassicPlainTheoryScreen from '../components/theory/ClassicPlainTheoryScreen';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ReportErrorButton from '../components/ReportErrorButton';
 import TheoryLessonView, {
@@ -143,9 +145,11 @@ function TableHeader({ cols, t, f }: { cols: string[]; t: any; f: any }) {
       {/* зачем (владелец 12.10, стиль «Тень»): сетка таблицы — линии-View (RowDivider), не рамки ячеек */}
       <RowDivider edge="bottom" color={t.border} />
       {cols.map((col, i) => (
-        <View key={i} style={{ flex: 1, paddingVertical: 8, paddingHorizontal: 6, alignItems: 'center' }}>
+        <View key={i} style={{ flex: 1, paddingVertical: 8, paddingHorizontal: 4, alignItems: 'center' }}>
           {i < cols.length - 1 ? <RowDivider edge="right" color={t.border} /> : null}
-          <Text style={{ color: t.accentText, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.3, textAlign: 'center' }} maxFontSizeMultiplier={1}>
+          {/* зачем (Макеты 05.11): капс с разрядкой в узкой колонке резал слово посреди («AFFIRMATI / VE»). Обычный регистр, без разрядки, 12 пт —
+              слово целиком влезает в колонку на 360 px, а длинные заголовки переносятся по словам, не по буквам. */}
+          <Text style={{ color: t.accentText, fontSize: cols.length >= 4 ? 11 : 12, lineHeight: 16, fontWeight: '700', letterSpacing: 0, textAlign: 'center' }} maxFontSizeMultiplier={1}>
             {col}
           </Text>
         </View>
@@ -766,7 +770,7 @@ const HINTS: Record<number, HintContent> = {
     titleEn: 'Possessive pronouns',
     render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[L(lang, "Лицо", "Особа", "Person", "Persona", "Pessoa", "Ngôi", "Orang", "Kişi", "Osoba"), L(lang, "Перед сущ.", "Перед іменником", "Before noun", "Antes del sust.", "Antes do subst.", "Trước danh từ", "Sebelum nomina", "İsimden önce", "Przed rzecz."), L(lang, "Самостоятельно", "Самостійно", "Standalone", "Apartados", "Separados", "Đứng độc lập", "Berdiri sendiri", "Tek başına", "Samodzielnie"), L(lang, "Пример", "Приклад", "Example", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
+        headers={[L(lang, "Лицо", "Особа", "Person", "Persona", "Pessoa", "Ngôi", "Orang", "Kişi", "Osoba"), L(lang, "Перед сущ.", "Перед іменником", "Before noun", "Antes del sust.", "Antes do subst.", "Trước danh từ", "Sebelum nomina", "İsimden önce", "Przed rzecz."), L(lang, "Отдельно", "Окремо", "Standalone", "Apartados", "Separados", "Đứng độc lập", "Berdiri sendiri", "Tek başına", "Samodzielnie"), L(lang, "Пример", "Приклад", "Example", "Ejemplo", "Exemplo", "Ví dụ", "Contoh", "Örnek", "Przykład")]}
         rows={[
           ['I',    'my',    'mine',   "This is my bag. — It\'s mine."    ],
           ['You',  'your',  'yours',  "It\'s yours."                     ],
@@ -1479,6 +1483,10 @@ function HintScreen() {
   }, [hintForeignTarget, studyTarget, lessonId, router]);
   if (hintForeignTarget) return null;
   if (theoryEntry !== 'hint') return null;
+
+  // зачем (Теория 12, 05.11): урок английского курса в новом формате «как для ребёнка» (plain:true в theory.json) — тот же экран с заданиями, что у fr/es/de/it
+  const plainEnView = getClassicPlainView('en', lessonId, lang);
+  if (plainEnView) return <ClassicPlainTheoryScreen lessonId={lessonId} studyTarget={studyTarget} view={plainEnView} />;
 
   // Новая теория «дорогой минимализм» — для всех уроков с готовым контентом
   // (реестр theory_content_registry, уроки 1-32). Остальные — прежняя шпаргалка.

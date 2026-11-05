@@ -90,6 +90,8 @@ export default function ThreeTileChoice({
 
   const why = introText(data.why, lang);
   const instruction = introText(data.instruction, lang);
+  const stacked = data.stacked === true;
+  const hideSentence = data.hideSentence === true;
 
   return (
     <View style={[styles.wrap, { borderColor: `${accent}33` }]}>
@@ -100,6 +102,7 @@ export default function ThreeTileChoice({
         <Text style={[styles.hint, { color: theme.textMuted }]}>{triLang(lang, { ru: 'Попробуй выбрать форму', uk: 'Спробуй вибрати форму', en: 'Try picking the form', es: 'Prueba a elegir la forma', 'pt-BR': 'Tente escolher a forma', vi: 'Thử chọn dạng đúng', id: 'Coba pilih bentuknya', tr: 'Doğru biçimi seçmeyi dene', pl: 'Spróbuj wybrać formę' })}</Text>
       )}
 
+      {hideSentence ? null : (
       <Text style={[styles.q, { color: theme.textPrimary }]}>
         {data.before}
         <Text
@@ -116,8 +119,9 @@ export default function ThreeTileChoice({
         </Text>
         {data.after}
       </Text>
+      )}
 
-      <View style={styles.tiles}>
+      <View style={[styles.tiles, stacked && styles.tilesStacked]}>
         {data.options.map((opt) => {
           const thisOk = isCorrect && opt === data.answer;
           const thisErr = !isCorrect && picked === opt;
@@ -130,6 +134,7 @@ export default function ThreeTileChoice({
               accessibilityLabel={opt}
               style={[
                 styles.tile,
+                stacked && styles.tileStacked,
                 {
                   backgroundColor: thisOk
                     ? theme.correct
@@ -172,6 +177,8 @@ const styles = StyleSheet.create({
   q: { fontSize: 16, lineHeight: 26, textAlign: 'center', marginBottom: 12 },
   gap: { borderRadius: 8, overflow: 'hidden', fontWeight: '600' },
   tiles: { flexDirection: 'row', gap: 8 },
+  tilesStacked: { flexDirection: 'column' },
+  tileStacked: { flex: 0, alignSelf: 'stretch', paddingHorizontal: 12 },
   tile: { flex: 1, paddingVertical: 14, borderRadius: 10, alignItems: 'center', minHeight: 52, justifyContent: 'center' },
   tileText: { fontSize: 16, fontWeight: '600' },
   whyBtn: { alignSelf: 'center', marginTop: 10, paddingVertical: 4, paddingHorizontal: 8 },

@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { getClassicTheoryView } from '../app/classic_theory_view';
+import { isClassicPlainLesson } from '../app/classic_theory_plain';
 import { getClassicKnownWords, theoryTokens } from '../app/classic_theory';
 import type { TheoryDrill } from '../components/theory/TheoryLessonView';
 
@@ -18,6 +19,7 @@ describe('classic theory view: drills built from theory.json', () => {
   it.each(TARGETS)('%s: 32 lessons give sections, examples and valid drills of all 4 kinds', (target) => {
     const totals: Record<string, number> = {};
     for (let lessonId = 1; lessonId <= 32; lessonId += 1) {
+      if (isClassicPlainLesson(target, lessonId)) continue; // новый формат — свой сторож (classic_theory_plain_contract)
       for (const locale of LOCALES) {
         const view = getClassicTheoryView(target, lessonId, locale);
         expect([target, lessonId, locale, view !== null]).toEqual([target, lessonId, locale, true]);
@@ -72,6 +74,7 @@ describe('classic theory view: drills built from theory.json', () => {
       firstLessonOf.set(key, Math.min(firstLessonOf.get(key) ?? 99, l.firstLesson));
     }
     for (let lessonId = 1; lessonId <= 32; lessonId += 1) {
+      if (isClassicPlainLesson(target, lessonId)) continue; // новый формат — свой сторож
       const view = getClassicTheoryView(target, lessonId, 'ru')!;
       view.sections.forEach((section, sectionIndex) => {
         const known = getClassicKnownWords(target, lessonId, sectionIndex);
@@ -88,11 +91,11 @@ describe('classic theory view: drills built from theory.json', () => {
   });
 
   it('commands are the owner-approved plain ones (classic_task_commands_9lang), not meta-instructions', () => {
-    const view = getClassicTheoryView('fr', 2, 'en')!;
+    const view = getClassicTheoryView('fr', 10, 'en')!;
     const texts = view.sections.flatMap((section) => section.blocks.flatMap((b) => (b.kind === 'drill' && b.drill ? [String(((b.drill.instruction ?? b.drill.question) as Record<string, string>).en)] : [])));
     expect(texts.length).toBeGreaterThan(0);
     for (const text of texts) expect(text).toMatch(/^(Choose how to say:|Build the sentence:|Find the right sentence:) “.+”/);
-    const ru = getClassicTheoryView('fr', 2, 'ru')!;
+    const ru = getClassicTheoryView('fr', 10, 'ru')!;
     const ruTexts = ru.sections.flatMap((section) => section.blocks.flatMap((b) => (b.kind === 'drill' && b.drill ? [String(((b.drill.instruction ?? b.drill.question) as Record<string, string>).ru)] : [])));
     for (const text of ruTexts) expect(text).toMatch(/^(Выберите, как сказать:|Соберите фразу:|Найдите верную фразу:) «.+»/);
   });
@@ -103,8 +106,8 @@ describe('classic theory view: drills built from theory.json', () => {
       const examples = view.sections.flatMap((s) => s.blocks.flatMap((b) => (b.kind === 'examples' ? b.examples ?? [] : [])));
       expect(examples.length).toBeGreaterThan(0);
       expect(examples.every((e) => !/[А-Яа-яЁё]/.test(e.translation))).toBe(true);
-      // задания остаются только из введённых слов — в первом уроке «выбери» может не быть, ищем в первых уроках
-      const choice = [1, 2, 3, 4, 5, 6].flatMap((n) => drillsOf(getClassicTheoryView(target, n, 'en')!)).find((d) => d.type === 'choice')!;
+      // задания остаются только из введённых слов — «выбери» бывает не в каждом уроке; уроки 1–3 уже в новом формате, берём 10–15
+      const choice = [10, 11, 12, 13, 14, 15].flatMap((n) => drillsOf(getClassicTheoryView(target, n, 'en')!)).find((d) => d.type === 'choice')!;
       expect((choice.instruction as Record<string, string>).en).toMatch(/^Choose how to say: “.+”/);
     }
   });
@@ -113,7 +116,7 @@ describe('classic theory view: drills built from theory.json', () => {
   // на экране нет технических блоков (нюансы, стратегия, ошибка→верно, таблица форм).
   it.each(TARGETS)('%s: every drill has one plain instruction, first drill of a section has a sample, no technical blocks', (target) => {
     for (const locale of ['ru', 'en']) {
-      const view = getClassicTheoryView(target, 1, locale)!;
+      const view = getClassicTheoryView(target, 10, locale)!;
       for (const section of view.sections) {
         const kinds = new Set(section.blocks.map((b) => b.kind));
         expect([...kinds].filter((k) => !['body', 'examples', 'drill'].includes(k))).toEqual([]);

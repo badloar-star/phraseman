@@ -59,6 +59,8 @@ export interface TheoryExample {
   translation: string;
   /** Подстрока en для подсветки акцентом (напр. 'is'). */
   hi?: string;
+  /** Как читается фраза русскими/украинскими буквами («эстóй акý»); готовая строка с подписью, показывается под переводом. */
+  reading?: string;
 }
 
 export interface TheoryFix {
@@ -553,6 +555,8 @@ export default function TheoryLessonView({
                       {after}
                     </Text>
                     <Text style={[styles.exampleTranslation, { color: glass.secondary }]}>{ex.translation}</Text>
+                    {/* зачем (Теория 12, новый формат «как ребёнку»): как читается фраза — для людей, не знающих алфавита/звуков языка */}
+                    {!!ex.reading && <Text style={[styles.exampleTranslation, { color: glass.secondary }]}>{ex.reading}</Text>}
                   </View>
                 );
               })}

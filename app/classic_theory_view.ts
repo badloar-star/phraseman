@@ -8,6 +8,7 @@ import { lazyContent } from './content_lazy';
 import { classicCourseActiveFor } from './classic_course_phrases';
 import { getClassicKnownWords, getClassicTheory, theoryTokens } from './classic_theory';
 import { classicWordFirstLesson } from './classic_lesson_words';
+import { getClassicPlainView } from './classic_theory_plain';
 import { getRawClassicPhrases, rawPhraseTranslation, type RawClassicPhrase } from './classic_raw_phrases';
 import type { TheoryBlock, TheoryDrill, TheorySection } from '../components/theory/TheoryLessonView';
 
@@ -243,6 +244,12 @@ export function getClassicTheoryView(target: unknown, lessonId: number, locale: 
   const t = target as Target;
   const key = `${t}:${lessonId}:${locale}`;
   if (viewCache.has(key)) return viewCache.get(key) ?? null;
+  // новый формат «как для ребёнка» (plain:true) — отдельный разбор; старые уроки идут ниже прежним путём
+  const plainView = getClassicPlainView(t, lessonId, locale);
+  if (plainView) {
+    viewCache.set(key, plainView);
+    return plainView;
+  }
   const theory = getClassicTheory(t, lessonId, locale);
   if (!theory) {
     console.log('[THEORY-DRILLS] нет теории для урока', JSON.stringify({ target: t, lessonId, locale })); // guard-ok: ранний выход с причиной

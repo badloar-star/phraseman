@@ -256,6 +256,10 @@ export type DevStateRequest = Readonly<{
   m08Hold?: number | 'off';
   /** Лига башни Шпиля для ПОКАЗА (0..11, Гранит…Алмаз): подмена выбора наряда башни в памяти процесса — неделя, комната и облако не меняются (dev_spire_tier.ts). off — снять. */
   spireTier?: number | 'off';
+  /** Порог «полного просмотра» видео для ПОКАЗА награды +500 (3..600 с вместо 70 % длительности): dev_video_full. */
+  videoFullTargetSec?: number | 'off';
+  /** Показ окна «Видео просмотрено: +500» без просмотра (story) или с настоящей выдачей +500 (grant): dev_video_full. */
+  videoFullDemo?: 'story' | 'grant' | 'off';
   /** Короткий урок 1.0 для честной проверки итога: N заданий (1..10) вместо 50, начисление — боевой код (dev_short_lesson). */
   shortLesson?: number | 'off';
   /** Исход карточки «Итог недели» Шпиля для ПОКАЗА (макет «Итог недели»): up — повышение в Базальт, stay — остаёшься в Граните, down — понижение, top — высшая лига Алмаз, marble — Мрамор, obsidian — остаёшься в Обсидиане; off — снять (dev_spire_tier.ts). */
@@ -515,6 +519,14 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     else if (Number.isInteger(tierN) && tierN >= 0 && tierN <= 11) request.spireTier = tierN;
     else rejected.spireTier = `ожидалось 0..11 или off, пришло ${spireTierRaw}`;
   }
+  const videoFullRaw = one(params.videoFullTargetSec);
+  if (videoFullRaw !== undefined) {
+    const vfN = Number(videoFullRaw);
+    if (videoFullRaw === 'off') request.videoFullTargetSec = 'off';
+    else if (Number.isFinite(vfN) && vfN >= 3 && vfN <= 600) request.videoFullTargetSec = vfN;
+    else rejected.videoFullTargetSec = `ожидалось 3..600 или off, пришло ${videoFullRaw}`;
+  }
+  request.videoFullDemo = pick('videoFullDemo', ['story', 'grant', 'off'] as const);
   request.spireWeek = pick('spireWeek', ['up', 'stay', 'down', 'top', 'marble', 'obsidian', 'off'] as const);
   request.spireScroll = pick('spireScroll', ['top', 'off'] as const);
   request.spireRankBy = pick('spireRankBy', ['coins', 'steps', 'off'] as const);
@@ -1167,6 +1179,18 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('spireTier', String(request.spireTier), async () => {
       const { setDevSpireTierOverride } = await import('./dev_spire_tier');
       return setDevSpireTierOverride(request.spireTier === 'off' ? null : (request.spireTier as number));
+    });
+  }
+  if (request.videoFullTargetSec !== undefined) {
+    await step('videoFullTargetSec', String(request.videoFullTargetSec), async () => {
+      const { setDevVideoFullTargetSec } = await import('./dev_video_full');
+      return setDevVideoFullTargetSec(request.videoFullTargetSec === 'off' ? null : (request.videoFullTargetSec as number));
+    });
+  }
+  if (request.videoFullDemo !== undefined && request.videoFullDemo !== 'off') {
+    await step('videoFullDemo', String(request.videoFullDemo), async () => {
+      const { runDevVideoFullDemo } = await import('./dev_video_full');
+      return runDevVideoFullDemo(request.videoFullDemo as 'story' | 'grant');
     });
   }
   if (request.shortLesson !== undefined) {

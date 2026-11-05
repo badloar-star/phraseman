@@ -3,6 +3,8 @@
 // секунды ≥ 0,7 × длительность, перемотка вперёд и пауза не копятся, ended не обязателен): плеер шлёт позицию раз в секунду ТОЛЬКО пока ролик
 // играет (app/youtube_player_seek_bus.publishYoutubePosition), поэтому «секунда просмотра» = шаг позиции ≈ 1 с при реальном ходе часов.
 // Шаг больше реального времени (перемотка вперёд) или назад (перемотка) секунд не добавляет. Награда срабатывает один раз в момент 70 %.
+import { getDevVideoFullTargetSec } from './dev_video_full';
+
 export const VIDEO_FULL_WATCH_RATIO = 0.7;
 /** Видео короче — не засчитываем (короткие ролики — ферма монет: 70 % от 10 с — это 7 секунд). */
 export const VIDEO_FULL_MIN_DURATION_SEC = 30;
@@ -41,7 +43,10 @@ export function videoFullEligibility(durationSec: number | null | undefined, isL
 }
 
 export function videoFullTarget(durationSec: number): number {
-  return durationSec * VIDEO_FULL_WATCH_RATIO;
+  const target = durationSec * VIDEO_FULL_WATCH_RATIO;
+  // зачем: dev-подмена для кадров (dev_state?videoFullTargetSec=N) — только __DEV__, в стор-сборке null
+  const dev = getDevVideoFullTargetSec();
+  return dev !== null ? Math.min(target, dev) : target;
 }
 
 export function createVideoFullState(videoId: string, durationSec: number): VideoFullState {

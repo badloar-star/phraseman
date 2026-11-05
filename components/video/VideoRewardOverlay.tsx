@@ -5,6 +5,7 @@ import React, { memo, useCallback, useEffect, useState, useSyncExternalStore } f
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeOut, ReduceMotion, ZoomIn } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { router } from 'expo-router';
 import SpireRankCoin from '../spire/SpireRankCoin';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
@@ -57,7 +58,10 @@ function VideoRewardStoryHostBase() {
   const g = liquidGlassTokens(liquidGlassThemeId);
   const rank = useMyCoinRank();
   const close = useCallback(() => dismissVideoFullStory(), []);
+  // зачем (макет video_reward v3: главная кнопка «Следующее видео» ведёт в раздел «Видео»; пропустить можно в любой момент — крестик/затемнение)
+  const next = useCallback(() => { dismissVideoFullStory(); router.push('/(tabs)/video' as never); }, []);
   if (!story || !isVideoFullRewardEnabled()) return null;
+  const nextLabel = triLang(lang, { ru: 'Следующее видео', uk: 'Наступне відео', en: 'Next video', es: 'Siguiente vídeo', 'pt-BR': 'Próximo vídeo', vi: 'Video tiếp theo', id: 'Video berikutnya', tr: 'Sonraki video', pl: 'Następne wideo' });
   const title = triLang(lang, { ru: 'Видео просмотрено', uk: 'Відео переглянуто', en: 'Video watched', es: 'Vídeo visto', 'pt-BR': 'Vídeo assistido', vi: 'Đã xem video', id: 'Video ditonton', tr: 'Video izlendi', pl: 'Wideo obejrzane' });
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={close}>
@@ -70,6 +74,9 @@ function VideoRewardStoryHostBase() {
           </View>
           <Text maxFontSizeMultiplier={1.2} style={[s.title, { color: g.text }]}>{title}</Text>
           <Text allowFontScaling={false} style={[s.amount, { color: g.accentTextSafe }]}>{`+${story.amount}`}</Text>
+          <Pressable accessibilityRole="button" onPress={next} style={[s.cta, { backgroundColor: g.accent }]} testID="video-reward-story-next">
+            <Text maxFontSizeMultiplier={1.2} style={[s.ctaText, { color: g.accentInk }]}>{nextLabel}</Text>
+          </Pressable>
           <Pressable accessibilityRole="button" accessibilityLabel="✕" hitSlop={12} onPress={close} style={[s.close, { backgroundColor: g.opaqueControl }]} testID="video-reward-story-close">
             <Ionicons name="close" size={22} color={g.text} />
           </Pressable>
@@ -90,5 +97,7 @@ const s = StyleSheet.create({
   check: { position: 'absolute', right: -6, bottom: -6, width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center' },
   title: { fontSize: 24, lineHeight: 30, fontWeight: '800', textAlign: 'center', marginTop: 10 },
   amount: { fontSize: 56, lineHeight: 64, fontWeight: '800', letterSpacing: -1 },
+  cta: { alignSelf: 'stretch', minHeight: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', marginTop: 6, paddingHorizontal: 20 },
+  ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '800' },
   close: { position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
 });

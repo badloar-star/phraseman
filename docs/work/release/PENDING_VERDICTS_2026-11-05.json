@@ -135,6 +135,25 @@
    "note": "Хаб Карточек у новичка: 4 плитки (Saved 0, My packs 0, From videos 6, Community 7) и кнопка «Create a pack», нет «Тренироваться · осталось N из M» и чипа 24/30 (для 0/0 макет их и не рисует). Сравнивать с макетом Cards 0/0 в Сверке. Перед хабом всплывает листок-знакомство (Got it / Later).",
    "proposed_by": "3-МАКЕТЫ",
    "confirmed_by": null
+  },
+  "home-rank0-newbie-0905": {
+   "verdict": "diff",
+   "frame": "docs/work/release/frames_2026-11-05/pending/newbie/home-rank0-newbie-AFTER-gates__REAL-viewed-0905-720x1600.png",
+   "compose": "docs/work/release/frames_2026-11-05/pending/compose/home-rank0__rev6-free-0_vs_app-newbie-0905.png",
+   "viewed_by": "3-МАКЕТЫ 09:05 (Pixel_8_fresh, после 9f84a4de4, глазами)",
+   "reference": "docs/work/golden/approved-rev8/rev6-home-free-0.png",
+   "note": "После P0-починки замков (9f84a4de4) Главная новичка стала ближе к макету: 4 вкладки, плитки «Lessons/Saved», карточка «Сегодня». Остаются расхождения: в «Сегодня» 2 строки (урок + опрос), в макете одна «Пройди урок» и ссылка «Все задания»; в шапке «Day counted / Next: Lesson 1 / Continue lesson 1» вместо названия урока и «Начать»; нет блока «Фраза дня» с озвучкой, вместо него секция «Videos»; тема светлая (сравнение по структуре). Предыдущий кадр до починки (0842) заменён.",
+   "proposed_by": "3-МАКЕТЫ",
+   "confirmed_by": null
+  },
+  "lesson1-theory-de-0908": {
+   "verdict": "match_candidate",
+   "frame": "docs/work/release/frames_2026-11-05/pending/lesson-de/lesson1-theory-de__REAL-viewed-0908-720x1600.png",
+   "viewed_by": "3-МАКЕТЫ 09:08 (Pixel_8_fresh, dev_state studyTarget=de&plus=on, глазами)",
+   "reference": "слово владельца: заглушек нет, теория на языке интерфейса",
+   "note": "Теория урока 1 немецкого: заголовок «First words in German», прогресс «Sections 1/6 · drills 0/12», раздел «I am here» с примерами Ich bin hier / ich bin müde (новый формат «как для ребёнка»). Не заглушка. Замечания: фраза «Russian letters only give the sound approximately» в английском интерфейсе; при прокрутке контент заезжает под строку состояния и кнопку «назад» без затемнения края. Меню урока и список de показывают «Lesson 1» без названия темы (кадры lesson1-menu-de, lessons-list-de-plus).",
+   "proposed_by": "3-МАКЕТЫ",
+   "confirmed_by": null
   }
  }
 }

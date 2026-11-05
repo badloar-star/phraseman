@@ -475,6 +475,9 @@ function classReason(ctx, ph, i, d) {
   if (!PASS2 || ctx.lang !== 'en' || !ctx.ctxSig) return null;
   // сокращения (he's, hasn't, I'll) — только на плитке-сокращении: на месте «not»/«to»/«Please» они отсеиваются по виду
   if (/['’]/.test(d) && !/['’]/.test(ph.tiles[i].correct)) return 'contraction';
+  // зачем (перемер 4, Ревизор): «двойники» — слово того же класса, которое в живой речи заменяет верное (take/get вместо bring, at вместо near)
+  // и даёт верную фразу; запрещены для этого верного слова во всех фразах (PASS2.twins: верное → список)
+  if (PASS2.twins?.[stripP(ph.tiles[i].correct)]?.includes(stripP(d))) return 'twin';
   const cl = tileClass(ctx, ph, i);
   return cl && !cl.candidates.includes(stripP(d)) ? 'classOnly' : null;
 }
@@ -745,7 +748,16 @@ function fixDistractors(lang, all) {
       const want = tile.distractors.length;
       const kept = [];
       const rep = ctx.replace.get(`${lang}:${phraseNumbers(ph.id).key}`) ?? [];
-      for (let d of tile.distractors) {
+      // зачем (перемер 4): плитка, где весь набор соблазнов не того класса (причастие с сущ., имя с предметами), получает список целиком
+      // (PASS2.tiles «en:LL:NN#i»); слова проходят только жёсткие проверки сторожа, остальное добирает обычный добор
+      const ov = lang === 'en' && ctx.ctxSig ? PASS2?.tiles?.[`${lang}:${phraseNumbers(ph.id).key}#${i}`] : null;
+      for (const w of ov ?? []) {
+        if (kept.length >= want) break;
+        const why = badReason(lang, { ...ctx, noTag: true, ctxSig: null }, ph, i, w, kept);
+        if (why && ['otherCorrect', 'acceptedPhrase', 'selfCase', 'duplicate', 'nonWord', 'patch', 'synonym', 'category', 'unseen', 'article', 'youForm', 'genderPair'].includes(why)) { console.log(`[DISTR-PASS2] набор ${ph.id}#${i}: «${w}» отклонён — ${why}`); continue; }
+        kept.push(w); auditForced.add(`${ph.id}#${i}:${w.toLowerCase()}`); removed.tileSet = (removed.tileSet ?? 0) + 1;
+      }
+      for (let d of ov ? [] : tile.distractors) {
         // зачем: замена Ревизора несёт позицию — та же форма слова может стоять соблазном на другой плитке, где замена неуместна
         const forced = rep.find((r) => stripP(r.from) === stripP(d) && (r.position === undefined || r.position === i));
         const forcedTo = forced ? (upperFirst(d) ? forced.to[0].toUpperCase() + forced.to.slice(1) : forced.to) : null;
@@ -1124,21 +1136,24 @@ function convert(lang, zips) {
   if (dstat.removed.short) fail(lang, `соблазны: ${dstat.removed.short} плиток с недобором соблазнов`);
   // зачем (владелец 05.11, «изучаемый язык одним цветом + строка «Читается» под каждым примером вступления», docs/work/release/mockups/target_lang_one_color_PLAN.md (б)):
   // экран вступления не должен грузить теорию (en theory.json ~2 МБ) — копируем чтение (say ru/uk) в блок вступления: block.sayByLocale = { ru: {"02.01": "…"}, uk: {…} }.
-  // Источник: примеры теории (chapters[].examples[].say по phraseId), для фраз вне теории — docs/work/classic_intro_plain/say_extra_en.json. Пока только английский (в 150 — он один).
-  if (lang === 'en') {
+  // Источник: примеры теории (chapters[].examples[].say по phraseId), для фраз вне теории — docs/work/classic_intro_plain/say_extra_<lang>.json.
+  // зачем (владелец 05.11, «Читается — в эту сборку для всех курсов»; Вступления DE/IT): de и it — тем же путём. Ключ — тот id, по которому экран ищет пример
+  // (app/classic_course_phrases.ts, introExampleIds): у en это examplesById «02.01», у de/it — exampleIds «de:02:01». es/fr включит их сессия, когда будут чтения (иначе сборка упадёт на пропусках).
+  if (['en', 'de', 'it'].includes(lang)) {
+    const fullIds = lang !== 'en';
     const say = {};
-    for (const th of Object.values(theory)) for (const ch of th.chapters ?? []) for (const e of ch.examples ?? []) { if (e.say && e.phraseId) say[e.phraseId.split(':').pop()] = e.say; }
-    const extraFile = join(ROOT, 'docs', 'work', 'classic_intro_plain', 'say_extra_en.json');
+    for (const th of Object.values(theory)) for (const ch of th.chapters ?? []) for (const e of ch.examples ?? []) { if (e.say && e.phraseId) say[fullIds ? e.phraseId : e.phraseId.split(':').pop()] = e.say; }
+    const extraFile = join(ROOT, 'docs', 'work', 'classic_intro_plain', `say_extra_${lang}.json`);
     if (existsSync(extraFile)) for (const [k, v] of Object.entries(JSON.parse(readFileSync(extraFile, 'utf8'))) ) if (!k.startsWith('_') && !say[k]) say[k] = v;
     const missing = [];
     for (const blocks of Object.values(intro)) for (const b of blocks) {
-      const ids = (b.examplesById ?? []).map((id) => String(id));
+      const ids = ((fullIds ? b.exampleIds : b.examplesById) ?? []).map((id) => String(id));
       if (!ids.length) continue;
       const by = { ru: {}, uk: {} };
       for (const id of ids) { const sy = say[id]; if (sy?.ru && sy?.uk) { by.ru[id] = sy.ru; by.uk[id] = sy.uk; } else missing.push(id); }
       b.sayByLocale = by;
     }
-    console.log('чтения во вступлениях en: ' + JSON.stringify({ blocks: Object.values(intro).flat().filter((b) => b.sayByLocale).length, missing: missing.length }));
+    console.log(`чтения во вступлениях ${lang}: ` + JSON.stringify({ blocks: Object.values(intro).flat().filter((b) => b.sayByLocale).length, missing: missing.length }));
     if (missing.length) fail(lang, `вступления: нет чтения для примеров ${missing.slice(0, 10).join(', ')}`);
   }
   files['intro.json'] = intro;

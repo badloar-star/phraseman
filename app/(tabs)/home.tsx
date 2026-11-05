@@ -15,6 +15,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { isLearnTabVisibleForTarget, isLearningSurfaceReady } from '../learning_language_surface_readiness';
+import { logHomeVideoPacksTile } from '../home_video_packs_tile_log'; // зачем (слово владельца через координатора, e4331d3b4): журнал плитки «Фразы из видео»
 import { useSpireTabEnabled } from '../spire_tab_flag';
 import { filterTodayTasksForTarget } from '../today_task_surface_filter';
 import { homeVideoRailUsesCatalog, loadHomeVideoRailForTarget, peekHomeVideoRailForTarget } from '../home_video_rail_source';
@@ -2674,8 +2675,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             },
             {
                 key: 'video_packs',
-                available: isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible && !rankLockedVideo,
-                title: triLang(lang, { ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Video packs', es: 'Packs de vídeos', 'pt-BR': 'Pacotes de vídeos', vi: 'Bộ từ video', id: 'Paket video', tr: 'Video paketleri', pl: 'Zestawy z filmów' }),
+                // зачем (слово владельца через координатора, e4331d3b4, макет одобрен «да! оно!!!»): плитка «Фразы из видео» на Главной ВСЕГДА, даже у ранга 0 с закрытым
+                // разделом «Видео»: ранговый замок вкладки Видео её и экран наборов из видео не прячет («в каждом ролике говорим, что в приложении есть все фразы из видео»)
+                available: isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible,
+                title: triLang(lang, { ru: 'Фразы из видео', uk: 'Фрази з відео', en: 'Video phrases', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Frazy z filmów' }),
                 subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Вислови з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
                 onPress: () => { nav.push('/flashcards_video_packs' as never); },
                 ...tileArt('cards_from_video', require('../../assets/images/v2/spiral_notepad.png')), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
@@ -2718,6 +2721,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeV2TilesReason = homeV2WithSpire ? 'four:all_sections_and_spire'
             : homeV2RankedBase.length === 3 ? `three:spire_off(surface=${isLearningSurfaceReady(studyTarget, 'spire')},tab=${spireTabEnabled})`
             : `fill:base=${homeV2RankedBase.map((tile) => tile.key).join('+') || 'none'}`;
+        // зачем (слово владельца через координатора, e4331d3b4; сперва логи): почему плитка «Фразы из видео» показана или скрыта (язык, карточки, ряд)
+        logHomeVideoPacksTile({
+          studyTarget: String(studyTarget),
+          surfaceVideosReady: isLearningSurfaceReady(studyTarget, 'videos'),
+          flashcardsVisible: !!homeFlashcardsVisible,
+          rankLockedVideo: !!rankLockedVideo,
+          rankLockedCardsHub: !!rankLockedCardsHub,
+          available: homeV2FillerTiles.find((tile) => tile.key === 'video_packs')?.available === true,
+          shown: homeV2Tiles.some((tile) => tile.key === 'video_packs'),
+          rowKeys: homeV2Tiles.map((tile) => tile.key),
+        });
         // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): ряд плиток со «Сценой» — Уроки, Карточки, Диалоги, Пик (порядок макета); без «Сцены» порядок прежний
         const homeV2TileOrder = ['lessons', 'cards', 'saved', 'dialogs', 'spire'];
         const homeV2TilesInOrder: HomeFeatureTile[] = HOME_SCENE_V2_ENABLED

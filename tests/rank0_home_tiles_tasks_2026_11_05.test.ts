@@ -28,4 +28,9 @@ describe('Главная: ряд плиток и «Сегодня» по ран�
     expect(src).toMatch(/homeTodayCardTasks = homeTodayRank0 \? \[homeV2Tasks\.find\(\(task\) => task\.kind === 'lesson'\) \?\? homeV2Tasks\[0\]\]/);
     expect(src).toContain("go('/today_tasks')");
   });
+
+  it('на ранге 0 заголовок «Сегодня» — ссылка «Все задания» вместо счёта, строки опроса/триала нет (макет home-free-0)', () => {
+    expect(src).toContain("count: homeTodayRank0 ? triLang(lang, { ru: 'Все задания'");
+    expect(src).toContain('surveyRow={homeTodayRank0 ? null :');
+  });
 });

@@ -2991,11 +2991,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             )}
             <HomeV2TodayCard
               title={HOME_SCENE_V2_ENABLED ? homeTodayTitle : homeTodayTitle.toUpperCase()}
-              scene={HOME_SCENE_V2_ENABLED ? { count: todayOfLine(lang, homeTodayCardTasks.filter((task) => task.done).length, homeTodayCardTasks.length) } : null}
+              // зачем (макет home-free-0, слово владельца «ранг 0 — 1 в 1»): на ранге 0 справа в заголовке «Сегодня» — ссылка «Все задания» вместо счёта «0 из 1»
+              scene={HOME_SCENE_V2_ENABLED ? { count: homeTodayRank0 ? triLang(lang, { ru: 'Все задания', uk: 'Усі завдання', en: 'All tasks', es: 'Todas las tareas', 'pt-BR': 'Todas as tarefas', vi: 'Tất cả nhiệm vụ', id: 'Semua tugas', tr: 'Tüm görevler', pl: 'Wszystkie zadania' }) : todayOfLine(lang, homeTodayCardTasks.filter((task) => task.done).length, homeTodayCardTasks.length) } : null}
               tasks={homeTodayCardTasks}
               pairRow={homeFriendPairRow}
               onOpenTask={(task) => go(task.route)}
-              surveyRow={homeTodayRowSource === 'trial' && homeTrial.row ? homeTrial.row : homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {
+              // зачем (макет home-free-0): на ранге 0 в «Сегодня» ровно одна задача — строки опроса/триала нет
+              surveyRow={homeTodayRank0 ? null : homeTodayRowSource === 'trial' && homeTrial.row ? homeTrial.row : homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {
                 title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Poll', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
                 subtitle: triLang(lang, { ru: `${homePollV2.total} вопроса`, uk: `${homePollV2.total} питання`, en: `${homePollV2.total} questions`, es: `${homePollV2.total} preguntas`, 'pt-BR': `${homePollV2.total} perguntas`, vi: `${homePollV2.total} câu hỏi`, id: `${homePollV2.total} pertanyaan`, tr: `${homePollV2.total} soru`, pl: `${homePollV2.total} pytania` }),
                 onPress: () => setHomePollV2Open(true),

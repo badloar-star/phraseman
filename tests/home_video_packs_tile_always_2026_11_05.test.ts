@@ -1,5 +1,6 @@
 // Governance-ID: TG-HOMEVIDEO-0511
 import fs from 'node:fs';
+import { homeVideoPacksTileWanted } from '../app/home_video_tile_rule';
 import path from 'node:path';
 import { homeVideoPacksTileReason, logHomeVideoPacksTile, __resetHomeVideoPacksTileLogForTests } from '../app/home_video_packs_tile_log';
 
@@ -12,18 +13,36 @@ const tileBlock = (() => {
   return home.slice(start, start + 1600);
 })();
 
-describe('Главная: плитка «Фразы из видео» не зависит от рангового замка Видео', () => {
+describe('Главная: плитка «Фразы из видео» живёт только пока раздел «Видео» закрыт', () => {
   test('условие доступности плитки не содержит rankLockedVideo', () => {
     const availableLine = tileBlock.split('\n').find((l) => l.includes('available:')) ?? '';
     expect(availableLine).toContain("isLearningSurfaceReady(studyTarget, 'videos')");
     expect(availableLine).not.toContain('rankLockedVideo');
   });
 
-  // зачем (Макеты 05.11, эмулятор: «на Главной с пятью вкладками плитки нет»): раньше плитка добавлялась только пока в ряду было меньше трёх — на ранге ≥1 пропадала
-  test('плитка добавляется ВСЕГДА, когда доступна, а не только при свободном месте в ряду из трёх', () => {
-    expect(home).toContain("const homeV2VideoTile = homeV2FillerTiles.find((tile) => tile.key === 'video_packs');");
-    expect(home).toContain("homeV2VideoTile?.available && !homeV2TilesCore.some((tile) => tile.key === 'video_packs')");
-    expect(home).toContain('[...homeV2TilesCore, (({ available: _available, ...tile }) => tile)(homeV2VideoTile)]');
+  // зачем (слово владельца ~20:41: «ФРАЗЫ ИЗ ВИДЕО НЕ СТАНОВИТСЯ 5 В РЯД! ОНА ТОЛЬКО ПОКА РАЗДЕЛ ВИДЕО НЕДОСТУПЕН»): плитка есть только пока Видео закрыт; при открытом — нет; в ряд из 4 пятой не встаёт
+  test('в home.tsx плитка берётся из правила «только при закрытом Видео» и всегда вне ядра ряда', () => {
+    expect(home).toContain('videoUnlocked: !rankLockedVideo');
+    expect(home).toContain("homeV2TilesCore.filter((tile) => tile.key !== 'video_packs')");
+    expect(home).toContain('[...homeV2TilesNoVideo, (({ available: _available, ...tile }) => tile)(homeV2VideoTile)]');
+    expect(home).not.toContain('[...homeV2TilesCore, (({ available');
+  });
+
+  test.each([
+    [true, false, 3, true],
+    [true, true, 3, false],
+    [true, true, 2, false],
+    [true, false, 4, false],
+    [false, false, 3, false],
+  ])('правило: available=%s videoUnlocked=%s ряд=%s → плитка %s', (available, videoUnlocked, rowWithoutVideo, expected) => {
+    expect(homeVideoPacksTileWanted({ available, videoUnlocked, rowWithoutVideo })).toBe(expected);
+  });
+
+  test('ряд никогда не становится пятым: при любом ранге и числе плиток итог ≤ 4', () => {
+    for (const unlocked of [false, true]) for (let n = 0; n <= 6; n += 1) {
+      const wanted = homeVideoPacksTileWanted({ available: true, videoUnlocked: unlocked, rowWithoutVideo: n });
+      if (wanted) expect(n + 1).toBeLessThanOrEqual(4);
+    }
   });
 
   test('плитка ведёт на экран наборов из видео', () => {
@@ -38,6 +57,7 @@ describe('Главная: плитка «Фразы из видео» не за�
   test('ранг 0, видео закрыто: журнал называет плитку показанной, замок Видео в причину не входит', () => {
     const reason = homeVideoPacksTileReason({ surfaceVideosReady: true, flashcardsVisible: true, available: true, shown: true });
     expect(reason).toBe('shown');
+    expect(homeVideoPacksTileReason({ surfaceVideosReady: true, flashcardsVisible: true, available: true, shown: false, rankLockedVideo: false })).toBe('hidden:video_unlocked');
   });
 
   test('причины скрытия названы (язык без видео, карточки скрыты, ряд занят)', () => {

@@ -30,7 +30,9 @@ describe('Главная: ряд плиток и «Сегодня» по ран�
   });
 
   it('на ранге 0 заголовок «Сегодня» — ссылка «Все задания» вместо счёта, строки опроса/триала нет (макет home-free-0)', () => {
-    expect(src).toContain("count: homeTodayRank0 ? triLang(lang, { ru: 'Все задания'");
+    // зачем (решение координатора 05.11, «1:1 с одобренным макетом»): «Все задания» справа в «Сегодня» теперь на ЛЮБОМ ранге, не только на ранге 0
+    expect(src).toContain("scene={HOME_SCENE_V2_ENABLED ? { count: triLang(lang, { ru: 'Все задания'");
+    expect(src).not.toContain('todayOfLine(lang, homeTodayCardTasks');
     expect(src).toContain('surveyRow={homeTodayRank0 ? null :');
   });
 

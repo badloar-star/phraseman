@@ -158,6 +158,7 @@ import {
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
+import { homeVideoPacksTileWanted } from '../home_video_tile_rule'; // зачем (слово владельца ~20:41): правило «видеоплитка только пока Видео закрыт» — чистая функция, проверяется по рангам 0…5
 import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
 import { isHomeContinueV2Enabled, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
@@ -2721,11 +2722,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             : homeV2RankedBase.length >= 3 || homeV2RankedBase.length === 0
             ? homeV2RankedBase
             : [...homeV2RankedBase, ...homeV2RankedFillers.filter((tile) => tile.available).map(({ available: _available, ...tile }) => tile)].slice(0, 3);
-        // зачем (🔴 закон владельца ~15:05 через координатора, e4331d3b4; вердикт Макетов 05.11): плитка «Фразы из видео» на Главной ВСЕГДА — рядом с «Уроки» и «Сохранённые», на любом ранге, а не только когда в ряду есть место (на ранге ≥1 ряд из трёх уже занят, и плитка пропадала). Ряд длиннее трёх идёт горизонтальной лентой (HomeV2FeatureTiles); порядок — в конце.
+        // зачем (🔴 слово владельца ~20:41: «ФРАЗЫ ИЗ ВИДЕО НЕ СТАНОВИТСЯ 5 В РЯД! ОНА ТОЛЬКО ПОКА РАЗДЕЛ ВИДЕО НЕДОСТУПЕН»; закон ~15:05 для ранга 0, e4331d3b4): плитка «Фразы из видео»
+        // стоит рядом с «Уроки» и «Сохранённые» ТОЛЬКО пока раздел «Видео» закрыт (videoUnlocked=false). Как только Видео открыт — плитки нет (наборы из видео доступны в самом разделе),
+        // пятой в ряд она не становится никогда. Прежняя правка b086c01ce («ВСЕГДА, и на ранге ≥1») была неверной и отменена.
         const homeV2VideoTile = homeV2FillerTiles.find((tile) => tile.key === 'video_packs');
-        const homeV2Tiles: HomeFeatureTile[] = homeV2VideoTile?.available && !homeV2TilesCore.some((tile) => tile.key === 'video_packs')
-            ? [...homeV2TilesCore, (({ available: _available, ...tile }) => tile)(homeV2VideoTile)]
-            : homeV2TilesCore;
+        const homeV2TilesNoVideo: HomeFeatureTile[] = homeV2TilesCore.filter((tile) => tile.key !== 'video_packs');
+        const homeV2VideoTileWanted = homeVideoPacksTileWanted({ available: Boolean(homeV2VideoTile?.available), videoUnlocked: !rankLockedVideo, rowWithoutVideo: homeV2TilesNoVideo.length });
+        const homeV2Tiles: HomeFeatureTile[] = homeV2VideoTileWanted && homeV2VideoTile
+            ? [...homeV2TilesNoVideo, (({ available: _available, ...tile }) => tile)(homeV2VideoTile)]
+            : homeV2TilesNoVideo;
         const homeV2TilesReason = homeV2WithSpire ? 'four:all_sections_and_spire'
             : homeV2RankedBase.length === 3 ? `three:spire_off(surface=${isLearningSurfaceReady(studyTarget, 'spire')},tab=${spireTabEnabled})`
             : `fill:base=${homeV2RankedBase.map((tile) => tile.key).join('+') || 'none'}`;
@@ -3018,8 +3023,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             )}
             <HomeV2TodayCard
               title={HOME_SCENE_V2_ENABLED ? homeTodayTitle : homeTodayTitle.toUpperCase()}
-              // зачем (макет home-free-0, слово владельца «ранг 0 — 1 в 1»): на ранге 0 справа в заголовке «Сегодня» — ссылка «Все задания» вместо счёта «0 из 1»
-              scene={HOME_SCENE_V2_ENABLED ? { count: homeTodayRank0 ? triLang(lang, { ru: 'Все задания', uk: 'Усі завдання', en: 'All tasks', es: 'Todas las tareas', 'pt-BR': 'Todas as tarefas', vi: 'Tất cả nhiệm vụ', id: 'Semua tugas', tr: 'Tüm görevler', pl: 'Wszystkie zadania' }) : todayOfLine(lang, homeTodayCardTasks.filter((task) => task.done).length, homeTodayCardTasks.length) } : null}
+              // зачем (эталоны rev6-home-free-0 / rev6-home-plus-3 / rev7-home-unlock-video; решение координатора 05.11 по правилу «1:1 с одобренным макетом»): справа в заголовке «Сегодня» ВСЕГДА ссылка «Все задания», на любом ранге; счёт «N из M» убран
+              scene={HOME_SCENE_V2_ENABLED ? { count: triLang(lang, { ru: 'Все задания', uk: 'Усі завдання', en: 'All tasks', es: 'Todas las tareas', 'pt-BR': 'Todas as tarefas', vi: 'Tất cả nhiệm vụ', id: 'Semua tugas', tr: 'Tüm görevler', pl: 'Wszystkie zadania' }) } : null}
               tasks={homeTodayCardTasks}
               pairRow={homeFriendPairRow}
               onOpenTask={(task) => go(task.route)}

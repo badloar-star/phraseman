@@ -15,12 +15,13 @@ export type HomeVideoPacksTileFacts = Readonly<{
   rowKeys: readonly string[];
 }>;
 
-/** Причина решения; ранг Видео в неё намеренно НЕ входит — замок вкладки «Видео» эту плитку не прячет. */
-export function homeVideoPacksTileReason(facts: Pick<HomeVideoPacksTileFacts, 'surfaceVideosReady' | 'flashcardsVisible' | 'available' | 'shown'>): string {
+/** Причина решения; плитка показывается только пока раздел «Видео» закрыт (rankLockedVideo=true). */
+export function homeVideoPacksTileReason(facts: Pick<HomeVideoPacksTileFacts, 'surfaceVideosReady' | 'flashcardsVisible' | 'available' | 'shown'> & Partial<Pick<HomeVideoPacksTileFacts, 'rankLockedVideo'>>): string {
   if (!facts.surfaceVideosReady) return 'hidden:language_has_no_video_packs';
   if (!facts.flashcardsVisible) return 'hidden:flashcards_not_visible';
   if (!facts.available) return 'hidden:unavailable';
-  if (!facts.shown) return 'available_but_row_full';
+  // зачем (слово владельца ~20:41): плитка только пока Видео закрыт — при открытом Видео скрытие это правило, а не «ряд занят»
+  if (!facts.shown) return facts.rankLockedVideo === false ? 'hidden:video_unlocked' : 'available_but_row_full';
   return 'shown';
 }
 

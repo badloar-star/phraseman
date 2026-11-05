@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Вкладка Plus</title>
+<style>
+/* Три варианта вкладки Plus для пользователя с 4 иконками внизу. Цвета Plus — фиолетовое кольцо приложения, Ultra — Рубин (одобрено 05.11).
+   Список отличий Free/Plus — только подтверждённые кодом (см. FREE_VS_PLUS_EVIDENCE.md рядом). */
+:root{--page:#0e1015;--pgx:#e9ebf1;--pgs:#9aa1ae;--bg:#0a0d12;--card:#151b23;--card2:#1c232d;--tx:#f5f7fb;--sec:#9aa3b2;--mut:#6c7484;--tab:#141a22;--sel:#232b36;
+ --p1:#8E7CFF;--p2:#6FA8FF;--p3:#7FE0D8;--u1:#FF5F8F;--u2:#FF7A59;--u3:#E8423F;--ok:#7FE0D8}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--page:#e8ebf0;--pgx:#15181e;--pgs:#5c6370}}
+:root[data-theme="light"]{--page:#e8ebf0;--pgx:#15181e;--pgs:#5c6370}
+:root[data-theme="dark"]{--page:#0e1015;--pgx:#e9ebf1;--pgs:#9aa1ae}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--pgx);font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:21px;margin:0 0 4px;text-wrap:balance}
+.lead{color:var(--pgs);font-size:14px;margin:0 0 18px;max-width:75ch;line-height:1.45}
+.stage{display:flex;flex-wrap:wrap;gap:26px;justify-content:center}
+.cell{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;max-width:100%}
+.cap{font-size:13px;font-weight:700;color:var(--pgs);text-align:center}.cap b{color:var(--pgx);font-size:15px;display:block}
+
+/* телефон */
+.ph{width:350px;max-width:100%;aspect-ratio:390/844;border-radius:40px;overflow:hidden;position:relative;background:var(--bg);color:var(--tx);box-shadow:0 0 0 7px #000,0 0 0 8px #2b2d33,0 24px 60px -20px rgba(0,0,0,.6);font-size:14px}
+.scr{position:absolute;inset:0;overflow-y:auto;padding:46px 16px 100px;scrollbar-width:none}.scr::-webkit-scrollbar{display:none}
+.sb{position:absolute;left:24px;right:20px;top:12px;display:flex;justify-content:space-between;font-size:13px;font-weight:600;z-index:7}
+.tabbar{position:absolute;left:12px;right:12px;bottom:18px;height:58px;border-radius:29px;background:var(--tab);display:flex;justify-content:space-around;align-items:center;color:var(--sec);z-index:6;box-shadow:0 10px 30px -10px #000}
+.tabbar span{width:46px;height:40px;display:grid;place-items:center;border-radius:20px;font-size:19px}
+.tabbar .on{background:var(--sel);color:var(--tx)}
+.gem{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--p1),var(--p2));display:grid;place-items:center;box-shadow:0 0 0 2px rgba(142,124,255,.25)}
+.gem i{width:9px;height:9px;background:#fff;transform:rotate(45deg);border-radius:1px}
+
+h2{margin:6px 0 4px;font-size:25px;font-weight:800;line-height:1.12;letter-spacing:-.4px;text-wrap:balance}
+.sub{color:var(--sec);font-size:13.5px;margin-bottom:14px}
+.sec{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:16px 2px 6px}
+
+/* A — таблица */
+.thead{display:grid;grid-template-columns:1fr 76px 82px;gap:6px;padding:0 12px;font-size:11px;font-weight:800;color:var(--sec);padding-top:4px;padding-bottom:4px}
+.thead span:nth-child(2),.thead span:nth-child(3){text-align:center}.thead span:nth-child(3){color:#C9C0FF}
+.row{display:block;width:100%;border:0;background:var(--card);border-radius:14px;padding:10px 12px;margin-bottom:5px;text-align:left;cursor:pointer;transition:background .2s ease}
+.row:active{transform:scale(.99)}
+.row:focus-visible{outline:2px solid var(--p1);outline-offset:2px}
+.row .g{display:grid;grid-template-columns:1fr 76px 82px;gap:6px;align-items:center}
+.row .n{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px;line-height:1.25}
+.row .n i{font-style:normal;width:24px;flex:none;text-align:center;font-size:15px}
+.row .f{font-size:12px;color:var(--sec);text-align:center;line-height:1.25}
+.row .p{font-size:12px;font-weight:800;text-align:center;line-height:1.25;color:var(--tx)}
+.row .p::before{content:'✓ ';color:var(--ok)}
+.row.same .p::before{content:''}.row.same .p{color:var(--sec);font-weight:700}
+.row .more{max-height:0;overflow:hidden;color:var(--sec);font-size:12.5px;line-height:1.4;transition:max-height .28s cubic-bezier(.2,.8,.2,1),margin .28s;padding-left:32px}
+.row.open{background:var(--card2)}.row.open .more{max-height:90px;margin-top:8px}
+
+/* B — карточки «где упираешься» */
+.bc{background:var(--card);border-radius:16px;padding:11px 12px;margin-bottom:6px}
+.bc .n{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+.bc .n i{font-style:normal;width:24px;text-align:center;font-size:15px}
+.bc .vs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.pill{border-radius:11px;padding:7px 9px;font-size:12.5px;line-height:1.25}
+.pill small{display:block;font-size:10.5px;font-weight:700;opacity:.75;margin-bottom:1px}
+.pill.fr{background:#11161d;color:var(--sec)}
+.pill.pl{background:linear-gradient(135deg,rgba(142,124,255,.22),rgba(111,168,255,.14));color:var(--tx);font-weight:800}
+.pill.eq{grid-column:1/-1;background:#11161d;color:var(--sec)}
+
+/* C — переключатель */
+.seg{position:absolute;left:0;right:0;top:0;z-index:5;background:linear-gradient(var(--bg) 88%,rgba(10,13,18,0));padding:40px 16px 12px}
+.cv .scr{padding-top:104px}
+.segin{position:relative;display:grid;grid-template-columns:1fr 1fr;background:var(--card);border-radius:14px;padding:4px}
+.segin button{position:relative;z-index:1;border:0;background:none;padding:9px 0;font-weight:800;font-size:14px;cursor:pointer;color:var(--sec);transition:color .2s}
+.segin button[aria-checked="true"]{color:#fff}
+.thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:10px;background:var(--sel);transition:transform .32s cubic-bezier(.2,.8,.2,1),background .32s}
+.cv.isplus .thumb{transform:translateX(100%);background:linear-gradient(135deg,var(--p1),#6b5ae0)}
+.hero{display:flex;align-items:center;gap:14px;margin:4px 0 12px}
+.ava{width:58px;height:58px;border-radius:50%;padding:3px;flex:none;position:relative;background:transparent;transition:background .35s}
+.ava div{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e7a26a,#b8622c)}
+.ava em{position:absolute;right:-2px;bottom:-2px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--p1),var(--p2));display:grid;place-items:center;font-style:normal;font-size:10px;color:#fff;box-shadow:0 0 0 3px var(--bg);opacity:0;transform:scale(.5);transition:opacity .3s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.cv.isplus .ava{background:conic-gradient(from 200deg,var(--p1),var(--p2),var(--p3),#C69BFF,var(--p1))}
+.cv.isplus .ava em{opacity:1;transform:none}
+.hero h2{margin:0;font-size:22px}
+.hero .cnt{color:var(--sec);font-size:13px;margin-top:3px}
+.swap{display:grid}.swap>*{grid-area:1/1;transition:opacity .25s,transform .25s cubic-bezier(.2,.8,.2,1)}
+.swap .s-p{opacity:0;transform:translateY(6px)}
+.cv.isplus .swap .s-f{opacity:0;transform:translateY(-6px)}.cv.isplus .swap .s-p{opacity:1;transform:none}
+.cr{display:grid;grid-template-columns:24px 1fr auto;gap:8px;align-items:center;background:var(--card);border-radius:14px;padding:10px 12px;margin-bottom:5px}
+.cr i{font-style:normal;text-align:center;font-size:15px;transition:opacity .25s}
+.cr .t{font-weight:700;font-size:13.5px}
+.cr .v{font-size:12.5px;text-align:right;max-width:130px}
+.cr .v .s-f{color:var(--sec)}.cr .v .s-p{font-weight:800}
+.cr.lim .v .s-f::before{content:'🔒 ';font-size:11px}
+.cr .v .s-p::before{content:'✓ ';color:var(--ok)}
+.cr.same .v .s-p::before{content:''}.cr.same .v .s-p{color:var(--sec);font-weight:600}
+.cv:not(.isplus) .cr.lim i{opacity:.55}
+
+/* планы */
+.plabel{font-size:11.5px;color:var(--mut);margin:18px 2px 6px}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
+.plan{border:0;border-radius:18px;background:var(--card);color:var(--tx);padding:12px;text-align:left;cursor:pointer;position:relative;transition:box-shadow .2s,transform .12s}
+.plan:active{transform:scale(.98)}
+.plan:focus-visible{outline:2px solid var(--p1);outline-offset:2px}
+.plan .hd{display:flex;align-items:center;gap:7px}
+.plan b{font-size:15px}.plan small{display:block;color:var(--sec);margin-top:4px;font-size:12px}.plan .pr{font-weight:800;font-size:17px;margin-top:4px}
+.plan.on.plus{box-shadow:0 0 0 2px var(--p1)}.plan.on.ultra{box-shadow:0 0 0 2px var(--u1)}
+.mk{width:20px;height:20px;display:grid;place-items:center;color:#fff;font-size:10px;flex:none}
+.mk.pl{border-radius:50%;background:linear-gradient(135deg,var(--p1),var(--p2))}
+.mk.ul{background:linear-gradient(135deg,var(--u1),var(--u3));clip-path:polygon(25% 4%,75% 4%,100% 50%,75% 96%,25% 96%,0 50%)}
+.badge{position:absolute;top:9px;right:9px;font-size:10px;font-weight:800;padding:2px 6px;border-radius:8px;background:rgba(255,95,143,.2);color:#FFC2D3}
+.cta{width:100%;border:0;border-radius:16px;padding:15px;font-weight:800;font-size:15px;line-height:1;color:#fff;background:linear-gradient(180deg,var(--p1),#6b5ae0);cursor:pointer;transition:background .25s,transform .12s}
+.cta:active{transform:scale(.985)}
+.cta.ultra{background:linear-gradient(180deg,var(--u1),var(--u3))}
+.legal{font-size:11px;color:var(--sec);text-align:center;margin-top:8px;line-height:1.4}
+.rule{max-width:900px;margin:22px auto 0;color:var(--pgs);font-size:13px;line-height:1.5}
+.rule b{color:var(--pgx)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Вкладка Plus · вариант B</h1>
+  <p class="lead">Вариант B, который вы выбрали. Убраны: кольцо у аватара, «Видео и фразы из них», заголовок «Что сейчас ограничено / И что будет с Plus». Вместо старых тем — «Цвет приложения» (ползунки оттенка и насыщенности, по вашему решению только для Plus). Плитки цен нажимаются.</p>
+  <div class="stage">
+
+    <div class="cell"><div class="cap"><b>B · «Где упираешься»</b></div>
+      <div class="ph"><div class="sb"><span>9:41</span><span>▲ ▮</span></div>
+        <div class="scr">
+          <h2>Занимайся сколько хочешь</h2>
+          <div class="sub">Всё, что даёт Plus</div>
+          <div data-b></div>
+          <div data-plans-slot></div>
+        </div>
+        <div class="tabbar"><span>⌂</span><span>▤</span><span>👥</span><span>⚙</span><span class="on"><span class="gem"><i></i></span></span></div>
+      </div>
+    </div>
+
+
+  </div>
+  <p class="rule"><b>Правило вкладки.</b> Вкладка Plus видна только пока в нижней панели 4 иконки и у человека нет подписки. Открылась пятая вкладка или куплен Plus/Ultra — вкладка Plus исчезает. Месяц = Plus, год = Ultra. Цены здесь — пример; в приложении цена и пробный период берутся из магазина в валюте человека.</p>
+</div>
+
+<template id="plans-tpl">
+  <div class="plabel">Цены — пример</div>
+  <div class="plans" data-plans>
+    <button class="plan plus" data-k="plus" aria-pressed="false"><span class="hd"><span class="mk pl">◆</span><b>Plus</b></span><small>Месяц</small><div class="pr">€7,99</div></button>
+    <button class="plan ultra on" data-k="ultra" aria-pressed="true"><span class="badge">Выгоднее</span><span class="hd"><span class="mk ul">✦</span><b>Ultra</b></span><small>Год · ≈€3,33 в месяц</small><div class="pr">€39,99</div></button>
+  </div>
+  <button class="cta ultra" data-cta>Оформить Ultra на год</button>
+  <div class="legal">Цена и пробный период — из магазина. Отмена в любой момент.</div>
+</template>
+
+<script>
+// зачем: один список отличий на все три варианта — только то, что подтверждено кодом (FREE_VS_PLUS_EVIDENCE.md). f:null = у Free нет совсем.
+const DATA = [
+  { sec: 'Уроки', items: [
+    { ic: '📚', t: 'Уроки курса', f: 'Уроки 1–3', p: 'Все 32', m: 'Без Plus — первые 3 урока. С Plus открыты все 32 сразу, без звёзд за предыдущий.' },
+    { ic: '⚡', t: 'Энергия', f: '5, +1 за 30 мин', p: 'Не тратится', m: 'Занятия тратят энергию. Без Plus запас 5, полный — через 2,5 часа. С Plus не тратится.' },
+    { ic: '🎙', t: 'Говорить вслух', f: '3 в день', p: 'Без лимита', m: 'Устный ответ в уроке, голос в диалоге и в карточках — один общий счётчик.' },
+    { ic: '🔁', t: 'Работа над ошибками', f: '1 раз в день', p: 'Без лимита', m: 'Все ошибки из уроков и карточек в одном месте.' },
+    { ic: '💡', t: 'Разбор ошибки ИИ', f: '3 в день', p: 'Каждая', m: 'ИИ объясняет, что не так и как сказать верно.' },
+    { ic: '🧩', t: 'Урок из нескольких тем', f: null, p: 'Есть', m: 'Выбираешь темы сам — урок собирается из них.' },
+  ] },
+  { sec: 'Диалоги', items: [
+    { ic: '💬', t: 'Ответы ИИ', f: '30 в месяц', p: 'Без лимита', m: 'Разговор с ИИ по сценарию. Без Plus счётчик обнуляется раз в месяц.' },
+    { ic: '🗂', t: 'Сценарии', f: 'По рангу', p: 'Все сразу', m: 'Без Plus раздел открывается с ранга 1, следующие сценарии — с новыми рангами.' },
+  ] },
+  { sec: 'Карточки', items: [
+    { ic: '🃏', t: 'Сохранённые фразы', f: '50', p: 'Без лимита', m: 'Считаются свои фразы и сохранённые из уроков и видео.' },
+    { ic: '📦', t: 'Свои наборы', f: null, p: 'Есть', m: 'Собери набор под поездку, работу или сериал. Уже созданные наборы остаются у всех.' },
+    { ic: '🗃', t: 'Раздел «Карточки»', f: 'С ранга 3', p: 'Сразу', m: 'Без Plus раздел открывается на ранге 3.' },
+  ] },
+  { sec: 'Прогресс', items: [
+    { ic: '🛡', t: 'Защита серии', f: null, p: '3 в месяц', m: 'Пропустил день — заморозка сохранит серию. С Plus 3 заморозки каждый месяц.' },
+    { ic: '🏔', t: 'Пик', f: 'С ранга 2', p: 'Сразу', m: 'Рейтинг учеников. Без Plus открывается на ранге 2.' },
+    { ic: '📈', t: 'Статистика', f: 'Основная', p: 'Вся', m: 'Советы по занятиям, все показатели, место среди учеников, график пути.' },
+  ] },
+  { sec: 'Оформление', items: [
+    { ic: '🎨', t: 'Цвет приложения', f: 'Светлая или тёмная', p: 'Любой оттенок', m: 'Светлую и тёмную тему выбирает любой. С Plus — ползунки оттенка и насыщенности.' },
+  ] },
+];
+
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// B — карточки «сейчас / с Plus»
+// зачем: владелец 05.11 — без заголовков разделов («УРОКИ», «ОФОРМЛЕНИЕ»…), один сплошной список
+document.querySelector('[data-b]').innerHTML = DATA.map((s) => s.items.map((it) =>
+  `<div class="bc"><div class="n"><i>${it.ic}</i>${esc(it.t)}</div><div class="vs">${it.same
+    ? `<span class="pill eq"><small>У всех</small>Бесплатно, как и сейчас</span>`
+    : `<span class="pill fr"><small>Бесплатно</small>${esc(it.f === null ? '—' : it.f)}</span><span class="pill pl"><small>Plus</small>${esc(it.p)}</span>`}</div></div>`).join('')).join('');
+
+// планы в каждом телефоне: выбор плитки меняет кнопку
+const tpl = document.getElementById('plans-tpl');
+document.querySelectorAll('[data-plans-slot]').forEach((slot) => {
+  slot.appendChild(tpl.content.cloneNode(true));
+  const plans = slot.querySelector('[data-plans]'), cta = slot.querySelector('[data-cta]');
+  plans.addEventListener('click', (e) => {
+    const p = e.target.closest('.plan'); if (!p) return;
+    plans.querySelectorAll('.plan').forEach((x) => { const on = x === p; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); });
+    const u = p.dataset.k === 'ultra';
+    cta.textContent = u ? 'Оформить Ultra на год' : 'Оформить Plus на месяц';
+    cta.classList.toggle('ultra', u);
+  });
+});
+</script>
+</body>
+</html>

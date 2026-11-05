@@ -10931,15 +10931,15 @@
     {
      "id": "q1",
      "text": {
-      "ru": "Сколько ступеней проходишь за раз?",
-      "uk": "Скільки сходинок проходиш за раз?",
-      "en": "How many steps do you complete at a time?",
-      "es": "¿Cuántos escalones superas de una vez?",
-      "pt-BR": "Quantos degraus você passa de uma vez?",
-      "vi": "Bạn vượt qua bao nhiêu bậc mỗi lần?",
-      "id": "Berapa anak tangga yang kamu lewati sekali main?",
-      "tr": "Bir seferde kaç basamak geçiyorsun?",
-      "pl": "Ile stopni pokonujesz za jednym razem?"
+      "ru": "Сколько этапов проходишь за раз?",
+      "uk": "Скільки етапів проходиш за раз?",
+      "en": "How many stages do you complete at a time?",
+      "es": "¿Cuántas etapas superas de una vez?",
+      "pt-BR": "Quantas etapas você passa de uma vez?",
+      "vi": "Bạn vượt qua bao nhiêu giai đoạn mỗi lần?",
+      "id": "Berapa tahap yang kamu lewati sekali main?",
+      "tr": "Bir seferde kaç aşama geçiyorsun?",
+      "pl": "Ile etapów pokonujesz za jednym razem?"
      },
      "options": [
       {

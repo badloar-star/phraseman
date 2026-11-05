@@ -50,14 +50,14 @@ async function main(): Promise<void> {
   assert.equal(day.kicker, "Гранит");
   assert.equal(day.kicker2, `до конца недели 2${nb}д${nb}14${nb}ч`);
   assert.equal(day.title, "Этаж 4");
-  assert.equal(day.line, "ступень 7 из 8");
+  assert.equal(day.line, "этап 7 из 8");
   assert.equal(day.bar, 7 / 8);
-  assert.deepEqual([...day.rewards], ["+10 за ступень", "+40 за этаж"]);
+  assert.deepEqual([...day.rewards], ["+10 за этап", "+40 за этаж"]);
   const search = buildSpireSceneCopy("ru", "search", { ...facts, floor: 1, stepDone: 0, stepTotal: 5, floorCoins: 10 });
   assert.equal(search.kicker, "Новая неделя · Гранит");
   assert.equal(search.title, "Этаж 1");
-  assert.equal(search.line, "ступень 0 из 5");
-  assert.deepEqual([...search.rewards], ["+10 за ступень", "+10 за этаж"]);
+  assert.equal(search.line, "этап 0 из 5");
+  assert.deepEqual([...search.rewards], ["+10 за этап", "+10 за этаж"]);
   const eve = buildSpireSceneCopy("ru", "eve", { ...facts, msLeft: 2 * H + 20 * 60_000 });
   assert.equal(eve.kicker, "Гранит · до конца недели");
   assert.equal(eve.title, `2${nb}ч 20${nb}мин`, "между часами и минутами — обычный пробел: заголовок переносится, как в эталоне");
@@ -66,7 +66,7 @@ async function main(): Promise<void> {
   const zero = buildSpireSceneCopy("ru", "zero", facts);
   assert.equal(zero.kicker, "Энергия через");
   assert.equal(zero.liveEnergyTitle, true, "заголовок — живой отсчёт энергии");
-  assert.equal(zero.line, "этаж 4 · ступень 7 из 8");
+  assert.equal(zero.line, "этаж 4 · этап 7 из 8");
   assert.equal(buildSpireSceneCopy("uk", "day", facts).title, "Поверх 4");
   assert.deepEqual({ ...spireSceneLeft(2 * D + 14 * H + 5 * 60_000) }, { days: 2, hours: 14, minutes: 5 });
 

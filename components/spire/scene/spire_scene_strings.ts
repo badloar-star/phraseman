@@ -12,8 +12,8 @@ type Nine = readonly [string, string, string, string, string, string, string, st
 
 const S = {
   newWeek: ['Новая неделя', 'Новий тиждень', 'New week', 'Nueva semana', 'Nova semana', 'Tuần mới', 'Minggu baru', 'Yeni hafta', 'Nowy tydzień'],
-  step: ['ступень', 'сходинка', 'step', 'escalón', 'degrau', 'bậc', 'langkah', 'basamak', 'stopień'],
-  perStep: ['за ступень', 'за сходинку', 'per step', 'por escalón', 'por degrau', 'mỗi bậc', 'per langkah', 'basamak başına', 'za stopień'],
+  step: ['этап', 'етап', 'stage', 'etapa', 'etapa', 'giai đoạn', 'tahap', 'aşama', 'etap'],
+  perStep: ['за этап', 'за етап', 'per stage', 'por etapa', 'por etapa', 'mỗi giai đoạn', 'per tahap', 'aşama başına', 'za etap'],
   perFloor: ['за этаж', 'за поверх', 'per floor', 'por piso', 'por andar', 'mỗi tầng', 'per lantai', 'kat başına', 'za piętro'],
   energyIn: ['Энергия через', 'Енергія через', 'Energy in', 'Energía en', 'Energia em', 'Năng lượng sau', 'Energi dalam', 'Enerji gelmesine', 'Energia za'],
   playIn: ['Играть через {t}', 'Грати через {t}', 'Play in {t}', 'Jugar en {t}', 'Jogar em {t}', 'Chơi sau {t}', 'Main dalam {t}', '{t} sonra oyna', 'Graj za {t}'],

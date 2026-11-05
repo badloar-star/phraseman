@@ -46,7 +46,8 @@ const S = {
   peakReachedTop: ['Дошёл до вершины', 'Дійшов до вершини', 'Reached the top', 'Llegó a la cima', 'Chegou ao topo', 'Đã lên tới đỉnh', 'Sudah sampai puncak', 'Zirveye ulaştı', 'Dotarł na szczyt'],
   peakWeekCoins: ['Монеты за неделю', 'Монети за тиждень', 'Coins this week', 'Monedas de la semana', 'Moedas da semana', 'Xu trong tuần', 'Koin minggu ini', 'Bu haftanın koinleri', 'Monety w tym tygodniu'],
   // ── Ступень (§4–6) ──
-  step: ['Этаж', 'Поверх', 'Floor', 'Piso', 'Andar', 'Tầng', 'Lantai', 'Kat', 'Piętro'],
+  // зачем (слово владельца 05.11: шаг внутри этажа Пика = «этап»): заголовок экрана шага — «Этап N», не «Этаж N» (этаж — это целая башня-ступень из нескольких этапов)
+  step: ['Этап', 'Етап', 'Stage', 'Etapa', 'Etapa', 'Giai đoạn', 'Tahap', 'Aşama', 'Etap'],
   timerPaused: ['таймер на паузе', 'таймер на паузі', 'timer paused', 'tiempo en pausa', 'tempo pausado', 'đồng hồ tạm dừng', 'waktu dijeda', 'süre durdu', 'licznik wstrzymany'],
   promptGuess: ['Выбери перевод', 'Обери переклад', 'Choose the translation', 'Elige la traducción', 'Escolha a tradução', 'Chọn bản dịch', 'Pilih terjemahan', 'Çeviriyi seç', 'Wybierz tłumaczenie'],
   promptGap: ['Вставь слово', 'Встав слово', 'Fill in the word', 'Completa la palabra', 'Complete a palavra', 'Điền từ', 'Isi kata', 'Kelimeyi yerleştir', 'Wstaw słowo'],
@@ -85,16 +86,16 @@ const S = {
   hearts: ['Сердца: {n} из 3', 'Серця: {n} з 3', 'Hearts: {n} of 3', 'Corazones: {n} de 3', 'Corações: {n} de 3', 'Tim: {n}/3', 'Hati: {n} dari 3', 'Kalpler: {n}/3', 'Serca: {n} z 3'],
   timeLeft: ['Осталось {t}', 'Залишилось {t}', '{t} left', 'Quedan {t}', 'Faltam {t}', 'Còn {t}', 'Sisa {t}', '{t} kaldı', 'Zostało {t}'],
   // ── Итог ступени и этажа (§7–8) ──
-  stepPassed: ['Этаж пройден', 'Поверх пройдено', 'Floor cleared', 'Piso superado', 'Andar concluído', 'Đã qua tầng', 'Lantai selesai', 'Kat geçildi', 'Piętro zaliczone'],
-  oneHigher: ['Ещё одна выше', 'Ще одна вище', 'One more up', 'Uno más arriba', 'Mais um acima', 'Thêm một bậc', 'Satu lagi naik', 'Bir basamak daha', 'Jeszcze jeden wyżej'],
+  stepPassed: ['Этап пройден', 'Етап пройдено', 'Stage cleared', 'Etapa superada', 'Etapa concluída', 'Đã qua giai đoạn', 'Tahap selesai', 'Aşama geçildi', 'Etap zaliczony'],
+  oneHigher: ['Ещё одна выше', 'Ще одна вище', 'One more up', 'Uno más arriba', 'Mais um acima', 'Thêm một giai đoạn', 'Satu lagi naik', 'Bir aşama daha', 'Jeszcze jeden wyżej'],
   noErrors: ['без ошибок', 'без помилок', 'no mistakes', 'sin errores', 'sem erros', 'không lỗi', 'tanpa salah', 'hatasız', 'bez błędów'],
   errorsN: ['ошибок: {n}', 'помилок: {n}', 'mistakes: {n}', 'errores: {n}', 'erros: {n}', 'lỗi: {n}', 'salah: {n}', 'hata: {n}', 'błędów: {n}'],
   onFloorProgress: ['{k} из {n} на этаже', '{k} з {n} на поверсі', '{k} of {n} on this floor', '{k} de {n} en el piso', '{k} de {n} no andar', '{k}/{n} trên tầng', '{k} dari {n} di lantai', 'katta {k}/{n}', '{k} z {n} na piętrze'],
   higher: ['Выше', 'Вище', 'Higher', 'Más arriba', 'Mais alto', 'Lên nữa', 'Naik lagi', 'Daha yukarı', 'Wyżej'],
-  stepFailed: ['Этаж не пройден', 'Поверх не пройдено', 'Floor not cleared', 'Piso no superado', 'Andar não concluído', 'Chưa qua tầng', 'Lantai gagal', 'Kat geçilemedi', 'Piętro niezaliczone'],
+  stepFailed: ['Этап не пройден', 'Етап не пройдено', 'Stage not cleared', 'Etapa no superada', 'Etapa não concluída', 'Chưa qua giai đoạn', 'Tahap gagal', 'Aşama geçilemedi', 'Etap niezaliczony'],
   failHearts: ['Сердца кончились — этот этаж сегодня упрямый. Ещё раз?', 'Серця скінчилися — цей поверх сьогодні впертий. Ще раз?', 'Out of hearts — this floor is stubborn today. Again?', 'Sin corazones: este piso hoy está terco. ¿Otra vez?', 'Acabaram os corações — esse andar está teimoso hoje. De novo?', 'Hết tim rồi — tầng này hôm nay cứng đầu quá. Thử lại?', 'Hati habis — lantai ini lagi bandel. Lagi?', 'Kalpler bitti — bu kat bugün inatçı. Bir daha?', 'Koniec serc — to piętro dziś jest uparte. Jeszcze raz?'],
   failTimeout: ['Время вышло', 'Час вийшов', 'Time’s up', 'Se acabó el tiempo', 'O tempo acabou', 'Hết giờ', 'Waktu habis', 'Süre doldu', 'Czas minął'],
-  failBack: ['Этаж прерван', 'Поверх перервано', 'Floor abandoned', 'Piso interrumpido', 'Andar interrompido', 'Đã bỏ tầng', 'Lantai dihentikan', 'Kat yarıda kaldı', 'Piętro przerwane'],
+  failBack: ['Этап прерван', 'Етап перервано', 'Stage abandoned', 'Etapa interrumpida', 'Etapa interrompida', 'Đã bỏ giai đoạn', 'Tahap dihentikan', 'Aşama yarıda kaldı', 'Etap przerwany'],
   failSub: ['Остаёшься на {n} этаже. Новый набор из 10 заданий', 'Лишаєшся на {n} поверсі. Новий набір із 10 завдань', 'You stay on floor {n}. A new set of 10 tasks', 'Te quedas en el piso {n}. Nuevo set de 10 tareas', 'Você fica no andar {n}. Novo conjunto de 10 tarefas', 'Bạn ở lại tầng {n}. Bộ 10 bài mới', 'Kamu tetap di lantai {n}. Set baru 10 tugas', '{n}. katta kalıyorsun. Yeni 10 görev', 'Zostajesz na {n} piętrze. Nowy zestaw 10 zadań'],
   again: ['Ещё раз', 'Ще раз', 'Try again', 'Otra vez', 'De novo', 'Làm lại', 'Lagi', 'Tekrar', 'Jeszcze raz'],
   later: ['Позже', 'Пізніше', 'Later', 'Más tarde', 'Depois', 'Để sau', 'Nanti', 'Sonra', 'Później'],
@@ -111,7 +112,7 @@ const S = {
   aboveCloudsCta: ['Выше — над облаками', 'Вище — над хмарами', 'Higher — above the clouds', 'Más arriba, sobre las nubes', 'Mais alto, acima das nuvens', 'Lên nữa — trên mây', 'Lebih tinggi — di atas awan', 'Daha yukarı — bulutların üstü', 'Wyżej — nad chmury'],
   saveFailed: ['Этаж не сохранился. Попробуй ещё раз', 'Поверх не збережено. Спробуй ще раз', 'The floor wasn’t saved. Try again', 'El piso no se guardó. Inténtalo de nuevo', 'O andar não foi salvo. Tente de novo', 'Chưa lưu được tầng. Thử lại nhé', 'Lantai tidak tersimpan. Coba lagi', 'Kat kaydedilmedi. Tekrar dene', 'Piętro się nie zapisało. Spróbuj ponownie'],
   // зачем (координатор 13.10, Дизайн 497a2535d): сервер не засчитал ступень и маркер откатился — точная причина, а не общее «не сохранилась».
-  stepNotCounted: ['Этаж не засчитался. Пройди его ещё раз', 'Поверх не зараховано. Пройди його ще раз', 'The floor didn’t count. Play it again', 'El piso no se contó. Vuelve a jugarlo', 'O andar não contou. Jogue de novo', 'Tầng này chưa được tính. Hãy làm lại', 'Lantai tidak terhitung. Mainkan lagi', 'Kat sayılmadı. Tekrar oyna', 'Piętro nie zostało zaliczone. Zagraj jeszcze raz'],
+  stepNotCounted: ['Этап не засчитался. Пройди его ещё раз', 'Етап не зараховано. Пройди його ще раз', 'The stage didn’t count. Play it again', 'La etapa no se contó. Vuelve a jugarla', 'A etapa não contou. Jogue de novo', 'Giai đoạn này chưa được tính. Hãy làm lại', 'Tahap tidak terhitung. Mainkan lagi', 'Aşama sayılmadı. Tekrar oyna', 'Etap nie został zaliczony. Zagraj jeszcze raz'],
   coins: ['монет', 'монет', 'coins', 'monedas', 'moedas', 'xu', 'koin', 'jeton', 'monet'],
   // ── Итог недели (§9) ──
   weekResult: ['Итог недели', 'Підсумок тижня', 'Week result', 'Resultado de la semana', 'Resultado da semana', 'Kết quả tuần', 'Hasil minggu ini', 'Hafta sonucu', 'Wynik tygodnia'],

@@ -14,7 +14,7 @@ const S = {
   ofTasks: ['{ok} из {all}', '{ok} з {all}', '{ok} of {all}', '{ok} de {all}', '{ok} de {all}', '{ok}/{all}', '{ok} dari {all}', '{ok}/{all}', '{ok} z {all}'],
   ofBudget: ['из {t}', 'з {t}', 'of {t}', 'de {t}', 'de {t}', '/ {t}', 'dari {t}', '/ {t}', 'z {t}'],
   clean: ['Чисто!', 'Чисто!', 'Clean!', '¡Limpio!', 'Limpo!', 'Sạch!', 'Bersih!', 'Temiz!', 'Czysto!'],
-  failHearts: ['3 ошибки — ступень не пройдена', '3 помилки — сходинку не пройдено', '3 mistakes — step not cleared', '3 errores: escalón no superado', '3 erros — degrau não concluído', '3 lỗi — chưa qua bậc', '3 salah — anak tangga belum lewat', '3 hata — basamak geçilmedi', '3 błędy — stopień niezaliczony'],
+  failHearts: ['3 ошибки — этап не пройден', '3 помилки — етап не пройдено', '3 mistakes — stage not cleared', '3 errores: etapa no superada', '3 erros — etapa não concluída', '3 lỗi — chưa qua giai đoạn', '3 salah — tahap belum lewat', '3 hata — aşama geçilmedi', '3 błędy — etap niezaliczony'],
   retrySet: ['Ещё раз — другой набор', 'Ще раз — інший набір', 'Try again — a new set', 'Otra vez — otro conjunto', 'Outro conjunto', 'Làm lại — bộ khác', 'Lagi — set lain', 'Tekrar — başka set', 'Inny zestaw'],
   toTower: ['К башне', 'До вежі', 'To the tower', 'A la torre', 'À torre', 'Về tháp', 'Ke menara', 'Kuleye', 'Do wieży'],
   toFloor: ['На {n} этаж', 'На {n} поверх', 'To floor {n}', 'Al piso {n}', 'Ao andar {n}', 'Lên tầng {n}', 'Ke lantai {n}', '{n}. kata', 'Na piętro {n}'],

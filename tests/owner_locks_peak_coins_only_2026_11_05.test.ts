@@ -82,4 +82,50 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 05.11 — в Пике только мо�
       for (const [key, text] of texts) expect(`${lang}.${key}: ${STEP_WORD.test(text)}`).toBe(`${lang}.${key}: false`);
     }
   });
+
+  // ЗАМОК ВЛАДЕЛЬЦА: шаг внутри этажа в видимых текстах — «ЭТАП» (ru этап · uk етап · en stage · es/pt-BR etapa · vi giai đoạn · id tahap · tr aşama · pl etap).
+  // Прежние слова (ступень/сходинка/step/escalón/degrau/bậc/langkah/anak tangga/basamak/stopień) во всех видимых значениях этих словарей запрещены.
+  // Проверяем СТРОКОВЫЕ ЛИТЕРАЛЫ: идентификаторы, комментарии и одиночные ключи вроде 'steps' (режим rankBy) пропускаются, {подстановки} вырезаются.
+  it('«этап»: словари Пика, «Сегодня», объявлений, кольца серии и энергии не содержат старых слов про шаг внутри этажа на 9 языках', () => {
+    const DICTS = [
+      'components/home/v2/today_scene/today_scene_copy.ts',
+      'modules/today-tasks/today_tasks_view.ts',
+      'components/spire/scene/spire_scene_strings.ts',
+      'components/spire/moments/step_moment_strings.ts',
+      'components/spire/moments/moments_strings.ts',
+      'components/spire/moments/position_moment_strings.ts',
+      'app/spire/spire_gold_copy.ts',
+      'components/stories/announcements_v2/announcement_v2_registry.ts',
+      'components/spire/spire_game_strings.ts',
+      'components/spire/spire_strings.ts',
+      'components/spire/spire_ghost_strings.ts',
+      'components/spire/spire_record_copy.ts',
+      'components/streak/moments/streak_moments_strings.ts',
+      'app/energy_activity_titles.ts',
+    ] as const;
+    const LITERAL = /'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|`(?:[^`\\]|\\.)*`/g;
+    const offenders: string[] = [];
+    for (const rel of DICTS) {
+      for (const raw of code(rel).match(LITERAL) ?? []) {
+        const text = raw.slice(1, -1).replace(/\$?\{[^}]*\}/g, ' ');
+        // одиночный ASCII-токен — идентификатор/ключ/путь ('steps', 'spire_steps', 'step'), а не фраза для человека
+        if (!/\s/.test(text) && /^[\x21-\x7e]*$/.test(text)) continue;
+        if (STEP_WORD.test(text)) offenders.push(`${rel}: ${text.slice(0, 80)}`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  it('«этап»: слово этапа стоит в ключах scene.step/perStep и в тексте провала этапа на всех 9 языках', () => {
+    const { spireSceneText } = require('../components/spire/scene/spire_scene_strings');
+    const { stepMomentText } = require('../components/spire/moments/step_moment_strings');
+    const STAGE: Record<Lang, RegExp> = {
+      ru: /этап/i, uk: /етап/i, en: /stage/i, es: /etapa/i, 'pt-BR': /etapa/i, vi: /giai đoạn/i, id: /tahap/i, tr: /aşama/i, pl: /etap/i,
+    };
+    for (const lang of LANGS) {
+      expect(`${lang}.step: ${STAGE[lang].test(spireSceneText(lang, 'step'))}`).toBe(`${lang}.step: true`);
+      expect(`${lang}.perStep: ${STAGE[lang].test(spireSceneText(lang, 'perStep'))}`).toBe(`${lang}.perStep: true`);
+      expect(`${lang}.failHearts: ${STAGE[lang].test(stepMomentText(lang, 'failHearts'))}`).toBe(`${lang}.failHearts: true`);
+    }
+  });
 });

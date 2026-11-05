@@ -95,7 +95,7 @@ describe('m06 · ступень пройдена', () => {
   });
 });
 
-describe('m06 · ступень не пройдена', () => {
+describe('m06 · этап не пройден', () => {
   it('исходник: пузырь «Ещё раз?» получает самостоятельный вертикальный резерв и не перекрывает сердца', () => {
     const src = read('components/spire/moments/SpireStepResultMoment.tsx');
     expect(src).toContain('FAIL_COIN_BUBBLE_CLEARANCE');
@@ -115,7 +115,7 @@ describe('m06 · ступень не пройдена', () => {
     const onAgain = jest.fn();
     const onLater = jest.fn();
     await render(<SpireStepResultMoment lang="ru" outcome={outcome({ kind: 'failed', failReason: 'hearts' as never, errors: 3 })} coins={COINS} coinRank={5} onAgain={onAgain} onLater={onLater} />);
-    expect(screen.getByTestId('step-moment-title').props.children).toBe('3 ошибки — ступень не пройдена');
+    expect(screen.getByTestId('step-moment-title').props.children).toBe('3 ошибки — этап не пройден');
     expect(screen.getByText(/Остаёшься на 4 этаже/)).toBeTruthy();
     expect(screen.getByText('Ещё раз?')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('step-moment-again'));

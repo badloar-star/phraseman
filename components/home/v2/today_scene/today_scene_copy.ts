@@ -49,7 +49,7 @@ const NOUN: Readonly<Record<TodayTaskKind, Words>> = {
   cards: { ru: 'карточки', uk: 'картки', en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kartlar', pl: 'karty' },
   video: { ru: 'видео', uk: 'відео', en: 'video', es: 'vídeo', 'pt-BR': 'vídeo', vi: 'video', id: 'video', tr: 'video', pl: 'wideo' },
   mistakes: { ru: 'ошибки', uk: 'помилки', en: 'mistakes', es: 'errores', 'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hatalar', pl: 'błędy' },
-  spire_steps: { ru: 'ступени Пика', uk: 'сходинки Піку', en: 'Peak steps', es: 'escalones del Pico', 'pt-BR': 'degraus do Pico', vi: 'bậc Đỉnh', id: 'anak tangga Puncak', tr: 'Zirve basamakları', pl: 'stopnie Szczytu' },
+  spire_steps: { ru: 'этапы Пика', uk: 'етапи Піку', en: 'Peak stages', es: 'etapas del Pico', 'pt-BR': 'etapas do Pico', vi: 'giai đoạn Đỉnh', id: 'tahap Puncak', tr: 'Zirve aşamaları', pl: 'etapy Szczytu' },
 };
 
 const AND: Words = { ru: 'и', uk: 'і', en: 'and', es: 'y', 'pt-BR': 'e', vi: 'và', id: 'dan', tr: 've', pl: 'i' };

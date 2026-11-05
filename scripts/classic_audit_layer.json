@@ -155,6 +155,31 @@
     "position": 0,
     "from": "Ist",
     "with": "Bist"
+   },
+   {
+    "position": 2,
+    "from": "Gefahren",
+    "with": "Vertrag"
+   },
+   {
+    "position": 2,
+    "from": "Direkten",
+    "with": "Auftrag"
+   },
+   {
+    "position": 2,
+    "from": "Essen",
+    "with": "Besuch"
+   },
+   {
+    "position": 2,
+    "from": "Falschen",
+    "with": "Kurs"
+   },
+   {
+    "position": 2,
+    "from": "Kleinen",
+    "with": "Beitrag"
    }
   ],
   "de:28:45": [
@@ -167,6 +192,31 @@
     "position": 4,
     "from": "gewaschen",
     "with": "gebacken"
+   },
+   {
+    "position": 2,
+    "from": "Gefahren",
+    "with": "Türen"
+   },
+   {
+    "position": 2,
+    "from": "Direkten",
+    "with": "Tore"
+   },
+   {
+    "position": 2,
+    "from": "Essen",
+    "with": "Dächer"
+   },
+   {
+    "position": 2,
+    "from": "Falschen",
+    "with": "Schilder"
+   },
+   {
+    "position": 2,
+    "from": "Kleinen",
+    "with": "Böden"
    }
   ],
   "de:29:05": [
@@ -2197,6 +2247,26 @@
     "position": 0,
     "from": "Nehmen",
     "with": "Abend"
+   },
+   {
+    "position": 1,
+    "from": "hat",
+    "with": "gibt"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Lager"
+   },
+   {
+    "position": 3,
+    "from": "Freien",
+    "with": "Kino"
+   },
+   {
+    "position": 3,
+    "from": "Anna",
+    "with": "Hotel"
    }
   ],
   "de:04:05": [
@@ -2419,6 +2489,11 @@
     "position": 4,
     "from": "spielen",
     "with": "zu"
+   },
+   {
+    "position": 1,
+    "from": "hat",
+    "with": "gibt"
    }
   ],
   "de:04:43": [
@@ -2431,6 +2506,31 @@
     "position": 0,
     "from": "Komme",
     "with": "Um"
+   },
+   {
+    "position": 2,
+    "from": "hat",
+    "with": "wurde"
+   },
+   {
+    "position": 0,
+    "from": "Warm",
+    "with": "Beim"
+   },
+   {
+    "position": 0,
+    "from": "Des",
+    "with": "Vom"
+   },
+   {
+    "position": 1,
+    "from": "Tom",
+    "with": "Dienstag"
+   },
+   {
+    "position": 4,
+    "from": "Tom",
+    "with": "Kino"
    }
   ],
   "de:04:45": [
@@ -2815,6 +2915,46 @@
     "position": 1,
     "from": "allein",
     "with": "finden"
+   },
+   {
+    "position": 3,
+    "from": "dir",
+    "with": "dem"
+   },
+   {
+    "position": 3,
+    "from": "sich",
+    "with": "der"
+   },
+   {
+    "position": 3,
+    "from": "viel",
+    "with": "des"
+   },
+   {
+    "position": 3,
+    "from": "was",
+    "with": "die"
+   },
+   {
+    "position": 3,
+    "from": "ihnen",
+    "with": "das"
+   },
+   {
+    "position": 4,
+    "from": "Essen",
+    "with": "Eingang"
+   },
+   {
+    "position": 4,
+    "from": "Freien",
+    "with": "Flur"
+   },
+   {
+    "position": 4,
+    "from": "Anna",
+    "with": "Schalter"
    }
   ],
   "de:08:47": [
@@ -3424,6 +3564,16 @@
     "position": 1,
     "from": "früher",
     "with": "ist"
+   },
+   {
+    "position": 2,
+    "from": "im",
+    "with": "ins"
+   },
+   {
+    "position": 0,
+    "from": "Des",
+    "with": "Du"
    }
   ],
   "de:11:27": [
@@ -3476,12 +3626,32 @@
    {
     "position": 2,
     "from": "eis",
-    "with": "das"
+    "with": "den"
    },
    {
     "position": 2,
     "from": "wer",
     "with": "ein"
+   },
+   {
+    "position": 1,
+    "from": "des",
+    "with": "du"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Hefte"
+   },
+   {
+    "position": 6,
+    "from": "Essen",
+    "with": "Tisch"
+   },
+   {
+    "position": 6,
+    "from": "Freien",
+    "with": "Bett"
    }
   ],
   "de:12:37": [
@@ -4305,6 +4475,46 @@
     "position": 6,
     "from": "sie",
     "with": "schmutzig"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Hemd"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Tuch"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Kissen"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Kostüm"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Bett"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Lena"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Eva"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Max"
    }
   ],
   "de:27:28": [
@@ -9901,6 +10111,31 @@
     "position": 3,
     "from": "kalt",
     "with": "feucht"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Butter"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Suppe"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Sahne"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Tasse"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Flasche"
    }
   ],
   "de:29:01": [
@@ -10306,6 +10541,31 @@
     "position": 5,
     "from": "eis",
     "with": "im"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Zug"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Flug"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Wagen"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Weg"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Plan"
    }
   ],
   "de:27:09": [
@@ -10330,6 +10590,31 @@
     "position": 3,
     "from": "eis",
     "with": "beim"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Flur"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Weg"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Saal"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Hof"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Park"
    }
   ],
   "de:27:23": [
@@ -10342,6 +10627,31 @@
     "position": 3,
     "from": "eis",
     "with": "aufs"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Tor"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Dach"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Licht"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Schild"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Tuch"
    }
   ],
   "de:27:24": [
@@ -10385,12 +10695,22 @@
    {
     "position": 2,
     "from": "wenig",
-    "with": "das"
+    "with": "den"
    },
    {
     "position": 2,
     "from": "baby",
     "with": "ein"
+   },
+   {
+    "position": 2,
+    "from": "ein",
+    "with": "eines"
+   },
+   {
+    "position": 5,
+    "from": "des",
+    "with": "du"
    }
   ],
   "de:27:15": [
@@ -10418,6 +10738,56 @@
     "position": 6,
     "from": "eis",
     "with": "dich"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Treppe"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Küche"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Etage"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Straße"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Lampe"
+   },
+   {
+    "position": 8,
+    "from": "Gefahren",
+    "with": "Park"
+   },
+   {
+    "position": 8,
+    "from": "Direkten",
+    "with": "Hof"
+   },
+   {
+    "position": 8,
+    "from": "Essen",
+    "with": "Plan"
+   },
+   {
+    "position": 8,
+    "from": "Falschen",
+    "with": "Strom"
+   },
+   {
+    "position": 8,
+    "from": "Kleinen",
+    "with": "Zug"
    }
   ],
   "de:27:35": [
@@ -10445,6 +10815,26 @@
     "position": 5,
     "from": "eis",
     "with": "dich"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Stuhl"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Schrank"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Teller"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Koffer"
    }
   ],
   "de:27:19": [
@@ -10472,6 +10862,26 @@
     "position": 5,
     "from": "baby",
     "with": "dich"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Hose"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Mütze"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Bluse"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Tasche"
    }
   ],
   "de:27:41": [
@@ -10499,6 +10909,41 @@
     "position": 3,
     "from": "baby",
     "with": "dich"
+   },
+   {
+    "position": 6,
+    "from": "Hause",
+    "with": "Max"
+   },
+   {
+    "position": 6,
+    "from": "Kinder",
+    "with": "Lena"
+   },
+   {
+    "position": 6,
+    "from": "Gäste",
+    "with": "Eva"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Nachbar"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Chef"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Arzt"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Lehrer"
    }
   ],
   "de:27:32": [
@@ -10526,6 +10971,71 @@
     "position": 5,
     "from": "baby",
     "with": "eines"
+   },
+   {
+    "position": 0,
+    "from": "Hause",
+    "with": "Lena"
+   },
+   {
+    "position": 0,
+    "from": "Schlüssel",
+    "with": "Eva"
+   },
+   {
+    "position": 0,
+    "from": "Gäste",
+    "with": "Max"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Treppe"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Küche"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Etage"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Straße"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Lampe"
+   },
+   {
+    "position": 6,
+    "from": "Gefahren",
+    "with": "Garten"
+   },
+   {
+    "position": 6,
+    "from": "Direkten",
+    "with": "Keller"
+   },
+   {
+    "position": 6,
+    "from": "Essen",
+    "with": "Flur"
+   },
+   {
+    "position": 6,
+    "from": "Falschen",
+    "with": "Hof"
+   },
+   {
+    "position": 6,
+    "from": "Kleinen",
+    "with": "Aufzug"
    }
   ],
   "de:27:36": [
@@ -10673,6 +11183,31 @@
     "position": 4,
     "from": "schneit",
     "with": "nimmst"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Butter"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Suppe"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Sahne"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Tasse"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Flasche"
    }
   ],
   "de:28:22": [
@@ -10732,6 +11267,31 @@
     "position": 4,
     "from": "gesperrt",
     "with": "gedeckt"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Wand"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Treppe"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Kasse"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Lampe"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Heizung"
    }
   ],
   "de:28:41": [
@@ -10746,6 +11306,31 @@
     "position": 0,
     "from": "Besten",
     "with": "Warum"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Brief"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Handy"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Buch"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Ticket"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Formular"
    }
   ],
   "de:28:32": [
@@ -10753,6 +11338,31 @@
     "position": 6,
     "from": "beim",
     "with": "ans"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Kunden"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Nachbarn"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Tiere"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Schüler"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Autos"
    }
   ],
   "it:03:01": [
@@ -11112,6 +11722,1466 @@
     "position": 0,
     "from": "Elettronico",
     "with": "Mangeranno"
+   }
+  ],
+  "de:07:41": [
+   {
+    "position": 2,
+    "from": "dir",
+    "with": "einem"
+   },
+   {
+    "position": 2,
+    "from": "sich",
+    "with": "einer"
+   },
+   {
+    "position": 2,
+    "from": "viel",
+    "with": "eines"
+   },
+   {
+    "position": 2,
+    "from": "was",
+    "with": "ein"
+   },
+   {
+    "position": 2,
+    "from": "ihnen",
+    "with": "eine"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Block"
+   },
+   {
+    "position": 3,
+    "from": "Freien",
+    "with": "Ordner"
+   },
+   {
+    "position": 3,
+    "from": "Anna",
+    "with": "Zettel"
+   }
+  ],
+  "de:07:44": [
+   {
+    "position": 2,
+    "from": "dir",
+    "with": "einem"
+   },
+   {
+    "position": 2,
+    "from": "sich",
+    "with": "einer"
+   },
+   {
+    "position": 2,
+    "from": "viel",
+    "with": "eines"
+   },
+   {
+    "position": 2,
+    "from": "was",
+    "with": "ein"
+   },
+   {
+    "position": 2,
+    "from": "ihnen",
+    "with": "eine"
+   },
+   {
+    "position": 1,
+    "from": "Des",
+    "with": "Du"
+   },
+   {
+    "position": 1,
+    "from": "Dem",
+    "with": "Er"
+   },
+   {
+    "position": 1,
+    "from": "Das",
+    "with": "Es"
+   }
+  ],
+  "de:07:45": [
+   {
+    "position": 2,
+    "from": "dir",
+    "with": "einen"
+   },
+   {
+    "position": 2,
+    "from": "sich",
+    "with": "einem"
+   },
+   {
+    "position": 2,
+    "from": "viel",
+    "with": "einer"
+   },
+   {
+    "position": 2,
+    "from": "was",
+    "with": "eines"
+   },
+   {
+    "position": 2,
+    "from": "ihnen",
+    "with": "ein"
+   },
+   {
+    "position": 1,
+    "from": "Des",
+    "with": "Du"
+   },
+   {
+    "position": 1,
+    "from": "Dem",
+    "with": "Er"
+   },
+   {
+    "position": 1,
+    "from": "Das",
+    "with": "Es"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Karte"
+   },
+   {
+    "position": 3,
+    "from": "Freien",
+    "with": "Liste"
+   },
+   {
+    "position": 3,
+    "from": "Anna",
+    "with": "Mappe"
+   }
+  ],
+  "de:12:38": [
+   {
+    "position": 3,
+    "from": "zum",
+    "with": "am"
+   }
+  ],
+  "de:27:46": [
+   {
+    "position": 5,
+    "from": "hatte",
+    "with": "bin"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Vertrag"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Auftrag"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Besuch"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Kurs"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Beitrag"
+   }
+  ],
+  "de:27:39": [
+   {
+    "position": 3,
+    "from": "dir",
+    "with": "einem"
+   },
+   {
+    "position": 3,
+    "from": "dich",
+    "with": "einer"
+   },
+   {
+    "position": 3,
+    "from": "sich",
+    "with": "eines"
+   },
+   {
+    "position": 3,
+    "from": "uns",
+    "with": "ein"
+   },
+   {
+    "position": 3,
+    "from": "mich",
+    "with": "eine"
+   },
+   {
+    "position": 1,
+    "from": "geschrieben",
+    "with": "gebe"
+   },
+   {
+    "position": 1,
+    "from": "schreibe",
+    "with": "geben"
+   },
+   {
+    "position": 1,
+    "from": "bleibe",
+    "with": "gebt"
+   },
+   {
+    "position": 1,
+    "from": "bleiben",
+    "with": "gegeben"
+   },
+   {
+    "position": 1,
+    "from": "geblieben",
+    "with": "gibst"
+   },
+   {
+    "position": 2,
+    "from": "des",
+    "with": "sie"
+   },
+   {
+    "position": 4,
+    "from": "Gefahren",
+    "with": "Eingang"
+   },
+   {
+    "position": 4,
+    "from": "Direkten",
+    "with": "Flur"
+   },
+   {
+    "position": 4,
+    "from": "Essen",
+    "with": "Schalter"
+   },
+   {
+    "position": 4,
+    "from": "Falschen",
+    "with": "Balkon"
+   },
+   {
+    "position": 4,
+    "from": "Kleinen",
+    "with": "Parkplatz"
+   }
+  ],
+  "de:27:40": [
+   {
+    "position": 2,
+    "from": "dir",
+    "with": "einem"
+   },
+   {
+    "position": 2,
+    "from": "dich",
+    "with": "einer"
+   },
+   {
+    "position": 2,
+    "from": "sich",
+    "with": "eines"
+   },
+   {
+    "position": 2,
+    "from": "uns",
+    "with": "ein"
+   },
+   {
+    "position": 2,
+    "from": "mich",
+    "with": "eine"
+   },
+   {
+    "position": 0,
+    "from": "Geschrieben",
+    "with": "Gebe"
+   },
+   {
+    "position": 0,
+    "from": "Bleiben",
+    "with": "Geben"
+   },
+   {
+    "position": 0,
+    "from": "Geblieben",
+    "with": "Gebt"
+   },
+   {
+    "position": 1,
+    "from": "des",
+    "with": "sie"
+   },
+   {
+    "position": 5,
+    "from": "falschen",
+    "with": "kaum"
+   },
+   {
+    "position": 7,
+    "from": "Tom",
+    "with": "Markt"
+   },
+   {
+    "position": 7,
+    "from": "Anna",
+    "with": "Bahnhof"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Zug"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Flug"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Wagen"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Weg"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Plan"
+   }
+  ],
+  "de:27:48": [
+   {
+    "position": 3,
+    "from": "Des",
+    "with": "Du"
+   },
+   {
+    "position": 3,
+    "from": "Dem",
+    "with": "Er"
+   },
+   {
+    "position": 3,
+    "from": "Das",
+    "with": "Es"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Liste"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Mappe"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Karte"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Adresse"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Kasse"
+   }
+  ],
+  "de:27:49": [
+   {
+    "position": 2,
+    "from": "dir",
+    "with": "der"
+   },
+   {
+    "position": 2,
+    "from": "dich",
+    "with": "den"
+   },
+   {
+    "position": 2,
+    "from": "sich",
+    "with": "dem"
+   },
+   {
+    "position": 2,
+    "from": "uns",
+    "with": "das"
+   },
+   {
+    "position": 2,
+    "from": "mich",
+    "with": "des"
+   },
+   {
+    "position": 5,
+    "from": "direkten",
+    "with": "kaum"
+   },
+   {
+    "position": 5,
+    "from": "falschen",
+    "with": "leider"
+   },
+   {
+    "position": 5,
+    "from": "nächste",
+    "with": "bald"
+   }
+  ],
+  "de:28:23": [
+   {
+    "position": 6,
+    "from": "des",
+    "with": "ohne"
+   },
+   {
+    "position": 6,
+    "from": "dem",
+    "with": "für"
+   },
+   {
+    "position": 6,
+    "from": "das",
+    "with": "bei"
+   }
+  ],
+  "de:28:25": [
+   {
+    "position": 1,
+    "from": "viel",
+    "with": "dieses"
+   },
+   {
+    "position": 1,
+    "from": "man",
+    "with": "diesem"
+   },
+   {
+    "position": 2,
+    "from": "Essen",
+    "with": "Tür"
+   }
+  ],
+  "de:28:29": [
+   {
+    "position": 4,
+    "from": "das",
+    "with": "viel"
+   },
+   {
+    "position": 4,
+    "from": "dem",
+    "with": "genug"
+   },
+   {
+    "position": 1,
+    "from": "viel",
+    "with": "diesem"
+   }
+  ],
+  "de:27:31": [
+   {
+    "position": 5,
+    "from": "direkten",
+    "with": "kaum"
+   },
+   {
+    "position": 5,
+    "from": "falschen",
+    "with": "bald"
+   },
+   {
+    "position": 5,
+    "from": "nächste",
+    "with": "leise"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Block"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Ordner"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Zettel"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Teller"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Schalter"
+   }
+  ],
+  "de:27:37": [
+   {
+    "position": 5,
+    "from": "direkten",
+    "with": "laut"
+   },
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Büro"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Bad"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Haus"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Hotel"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Bett"
+   }
+  ],
+  "de:27:42": [
+   {
+    "position": 6,
+    "from": "Hause",
+    "with": "Max"
+   },
+   {
+    "position": 6,
+    "from": "Kinder",
+    "with": "Lena"
+   },
+   {
+    "position": 6,
+    "from": "Gäste",
+    "with": "Eva"
+   },
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Nachbar"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Chef"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Arzt"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Lehrer"
+   }
+  ],
+  "de:27:03": [
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Haus"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Auto"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Mädchen"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Tier"
+   }
+  ],
+  "de:27:04": [
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Kunden"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Nachbarn"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Tiere"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Schüler"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Autos"
+   }
+  ],
+  "de:27:11": [
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Ausweis"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Ordner"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Brief"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Stift"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Koffer"
+   }
+  ],
+  "de:27:12": [
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Tasche"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Liste"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Adresse"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Mappe"
+   }
+  ],
+  "de:27:16": [
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Mappe"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Jacke"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Tüte"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Kiste"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Uhr"
+   },
+   {
+    "position": 5,
+    "from": "Gefahren",
+    "with": "Lena"
+   },
+   {
+    "position": 5,
+    "from": "Direkten",
+    "with": "Eva"
+   },
+   {
+    "position": 5,
+    "from": "Essen",
+    "with": "Max"
+   }
+  ],
+  "de:27:17": [
+   {
+    "position": 3,
+    "from": "Gefahren",
+    "with": "Brief"
+   },
+   {
+    "position": 3,
+    "from": "Direkten",
+    "with": "Handy"
+   },
+   {
+    "position": 3,
+    "from": "Essen",
+    "with": "Buch"
+   },
+   {
+    "position": 3,
+    "from": "Falschen",
+    "with": "Ticket"
+   },
+   {
+    "position": 3,
+    "from": "Kleinen",
+    "with": "Formular"
+   }
+  ],
+  "de:27:21": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Bus"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Flug"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Wagen"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Weg"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Plan"
+   }
+  ],
+  "de:27:29": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Zug"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Flug"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Wagen"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Weg"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Plan"
+   }
+  ],
+  "de:27:47": [
+   {
+    "position": 9,
+    "from": "Gefahren",
+    "with": "Paket"
+   },
+   {
+    "position": 9,
+    "from": "Direkten",
+    "with": "Brief"
+   },
+   {
+    "position": 9,
+    "from": "Essen",
+    "with": "Buch"
+   },
+   {
+    "position": 9,
+    "from": "Falschen",
+    "with": "Ticket"
+   },
+   {
+    "position": 9,
+    "from": "Kleinen",
+    "with": "Foto"
+   }
+  ],
+  "de:28:01": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Wand"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Treppe"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Kasse"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Lampe"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Heizung"
+   }
+  ],
+  "de:28:02": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Tor"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Dach"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Licht"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Schild"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Tuch"
+   }
+  ],
+  "de:28:03": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Türen"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Tore"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Dächer"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Schilder"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Tücher"
+   }
+  ],
+  "de:28:04": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Stuhl"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Schrank"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Teller"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Koffer"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Plan"
+   }
+  ],
+  "de:28:07": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Zettel"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Vertrag"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Bericht"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Antrag"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Plan"
+   }
+  ],
+  "de:28:08": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Liste"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Mappe"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Karte"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Adresse"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Kasse"
+   }
+  ],
+  "de:28:13": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Eingang"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Flur"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Schalter"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Balkon"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Parkplatz"
+   }
+  ],
+  "de:28:14": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Büros"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Bäder"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Hotels"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Betten"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Wände"
+   }
+  ],
+  "de:28:16": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Salz"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Fleisch"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Obst"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Gemüse"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Eis"
+   }
+  ],
+  "de:28:17": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Kuchen"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Torten"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Eier"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Äpfel"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Zeitungen"
+   }
+  ],
+  "de:28:18": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Schrott"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Glas"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Papier"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Karton"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Sand"
+   }
+  ],
+  "de:28:30": [
+   {
+    "position": 4,
+    "from": "Gefahren",
+    "with": "Zaun"
+   },
+   {
+    "position": 4,
+    "from": "Direkten",
+    "with": "Strauch"
+   },
+   {
+    "position": 4,
+    "from": "Essen",
+    "with": "Brunnen"
+   },
+   {
+    "position": 4,
+    "from": "Falschen",
+    "with": "Stein"
+   },
+   {
+    "position": 4,
+    "from": "Kleinen",
+    "with": "Tisch"
+   }
+  ],
+  "de:28:33": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Ausweis"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Ordner"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Brief"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Stift"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Koffer"
+   }
+  ],
+  "de:28:34": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Stuhl"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Schrank"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Teller"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Koffer"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Plan"
+   },
+   {
+    "position": 5,
+    "from": "Gefahren",
+    "with": "Besuch"
+   },
+   {
+    "position": 5,
+    "from": "Direkten",
+    "with": "Vortrag"
+   },
+   {
+    "position": 5,
+    "from": "Essen",
+    "with": "Test"
+   },
+   {
+    "position": 5,
+    "from": "Falschen",
+    "with": "Film"
+   },
+   {
+    "position": 5,
+    "from": "Kleinen",
+    "with": "Spiel"
+   }
+  ],
+  "de:28:35": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Liste"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Mappe"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Karte"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Adresse"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Kasse"
+   },
+   {
+    "position": 5,
+    "from": "Gefahren",
+    "with": "Bank"
+   },
+   {
+    "position": 5,
+    "from": "Direkten",
+    "with": "Schule"
+   },
+   {
+    "position": 5,
+    "from": "Essen",
+    "with": "Stadt"
+   },
+   {
+    "position": 5,
+    "from": "Falschen",
+    "with": "Kasse"
+   },
+   {
+    "position": 5,
+    "from": "Kleinen",
+    "with": "Post"
+   }
+  ],
+  "de:28:36": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Wand"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Treppe"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Kasse"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Lampe"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Heizung"
+   }
+  ],
+  "de:28:37": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Bus"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Flug"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Wagen"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Weg"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Plan"
+   }
+  ],
+  "de:28:39": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Foto"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Buch"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Ticket"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Radio"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Fahrrad"
+   }
+  ],
+  "de:28:46": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Heft"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Blatt"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Buch"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Ticket"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Foto"
+   }
+  ],
+  "de:28:48": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Tee"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Saft"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Bier"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Kaffee"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Öl"
+   }
+  ],
+  "de:28:50": [
+   {
+    "position": 1,
+    "from": "Gefahren",
+    "with": "Schlüssel"
+   },
+   {
+    "position": 1,
+    "from": "Direkten",
+    "with": "Gutschein"
+   },
+   {
+    "position": 1,
+    "from": "Essen",
+    "with": "Vertrag"
+   },
+   {
+    "position": 1,
+    "from": "Falschen",
+    "with": "Koffer"
+   },
+   {
+    "position": 1,
+    "from": "Kleinen",
+    "with": "Ordner"
    }
   ]
  },
@@ -13089,6 +15159,102 @@
   "it:27:44": {
    "add": [
     "Dopo il concerto tornerò a casa a piedi."
+   ],
+   "remove": []
+  },
+  "de:20:25": {
+   "add": [
+    "Jetzt wohnt ihr näher am Bahnhof."
+   ],
+   "remove": []
+  },
+  "de:20:34": {
+   "add": [
+    "Heute dauert die Fahrt länger."
+   ],
+   "remove": []
+  },
+  "de:20:31": {
+   "add": [
+    "Jetzt kosten die Tickets mehr."
+   ],
+   "remove": []
+  },
+  "de:19:49": {
+   "add": [
+    "Gestern haben wir uns getroffen."
+   ],
+   "remove": []
+  },
+  "de:19:31": {
+   "add": [
+    "Morgen melde ich mich."
+   ],
+   "remove": []
+  },
+  "de:19:34": {
+   "add": [
+    "Am Bahnhof treffen wir uns."
+   ],
+   "remove": []
+  },
+  "de:28:11": {
+   "add": [
+    "Heute wird das Paket geliefert."
+   ],
+   "remove": []
+  },
+  "de:28:16": {
+   "add": [
+    "Hier wird das Brot gebacken."
+   ],
+   "remove": []
+  },
+  "de:28:18": {
+   "add": [
+    "Am Dienstag wird der Müll abgeholt."
+   ],
+   "remove": []
+  },
+  "de:28:19": {
+   "add": [
+    "Im Keller wird die Wäsche gewaschen."
+   ],
+   "remove": []
+  },
+  "de:28:21": {
+   "add": [
+    "Mit Karte wird hier bezahlt."
+   ],
+   "remove": []
+  },
+  "de:28:32": {
+   "add": [
+    "Am Eingang werden die Leute von einem Kollegen begrüßt."
+   ],
+   "remove": []
+  },
+  "de:28:34": {
+   "add": [
+    "Nach dem Kurs wird der Tisch zusammengeklappt."
+   ],
+   "remove": []
+  },
+  "de:28:36": {
+   "add": [
+    "Gestern wurde die Tür gestrichen."
+   ],
+   "remove": []
+  },
+  "de:28:39": {
+   "add": [
+    "Gestern wurde das Handy gefunden."
+   ],
+   "remove": []
+  },
+  "de:28:50": {
+   "add": [
+    "Am Eingang muss der Ausweis gezeigt werden."
    ],
    "remove": []
   }

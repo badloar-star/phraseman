@@ -44,3 +44,13 @@ Governance-ID: TG-3C55CFCC6A75
 - Android (resourceClass large): build `c1c7c708-5cfe-40f5-8058-812b368ceb36` — **FINISHED** (~01:05). AAB: https://expo.dev/artifacts/eas/MOAgxcdzqVR3incxEPx1na0TXm1O4pSzaYKGh5xlk4E.aab. В Google Play не отправлялась.
 - iOS: build `2156a312-6360-4118-9ccd-f195f0d3b849` — IN_PROGRESS (на 01:07). Без сабмита.
 - Номер 148 занят прежними релизами (iOS 4a4b269d 26.10) → эти сборки только артефакты, сабмит невозможен (см. FINAL_BUILD_RUNBOOK_2026-11-05.md §0). 149/150 в истории EAS свободны.
+
+## Финал (Ядро, 05.11 02:24–03:00, ревизия 47206b7f1, версия 2.1.0 / versionCode 149 / buildNumber 149 / runtimeVersion 2.1.0)
+Governance-ID: TG-3EB023A82AAB
+Срез версии: коммит 47206b7f1 (скрипт `scripts/release_cut_2_1_0.mjs --apply --versions-only`, метка RANK_GATES 1793841350582 не тронута). Ревизор ✅ GREEN на 47206b7f1 (проверка типов приложения 0 ошибок, 18 наборов, 162/162). Обе сборки собраны с первой попытки.
+- **Android production (resourceClass large):** build `05d97ff4-a630-40eb-9a82-d5a6259bf381` — **FINISHED**. AAB: https://expo.dev/artifacts/eas/0R_MmbSBgO0G1kx5MHiscFT3xBTjEJWNSRbFFIy1AA0.aab . В Google Play **НЕ отправлялась**.
+- **iOS production (без --auto-submit):** build `b1ae1455-4325-47e0-a0d3-0b60b1b27ee5` — **FINISHED**. IPA: https://expo.dev/artifacts/eas/krmR25VCAQBCkPSHR-t4usGIfiJ3oQUUPIjw2B8W3wQ.ipa .
+- **Загрузка в App Store Connect:** вручную `eas submit --platform ios --profile production --id b1ae1455… --non-interactive` — «successfully uploaded», submission `9aa334d8-2273-4ac3-b6f5-97139c1a9749` (https://expo.dev/accounts/badloar/projects/phraseman/submissions/9aa334d8-2273-4ac3-b6f5-97139c1a9749 ). Ключ ASC — EAS-managed, номер 149 принят. Состояние обработки Apple (Processing → Ready to Test) отсюда не читается — смотреть TestFlight: https://appstoreconnect.apple.com/apps/6764800879/testflight/ios (придёт письмо от Apple).
+- **НЕ отправлено:** ревью App Store (кнопка «Submit for Review» не нажималась), Google Play (сабмит Android не запускался), боевые конфиги Пика и Пульт не менялись.
+- Серверная часть ночи — см. `SERVER_DEPLOY_NIGHT_2026-11-05.md` (правила, 3 функции, индексы — выложено; функция удаления аккаунта — утром).
+- Запасной вариант при 🔴 от Сверки: пересборка с 150 (`android.versionCode` и `ios.buildNumber` вместе) → срез → мини-прогон Ревизора → сборки по `FINAL_BUILD_RUNBOOK_2026-11-05.md`. Номера 149/150 в истории EAS были свободны до финала; 149 теперь занят.

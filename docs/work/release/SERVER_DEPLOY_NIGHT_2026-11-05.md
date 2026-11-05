@@ -79,3 +79,11 @@ bash scripts/deploy_from_clean_head.sh --only "functions:default:progressSubmitE
 - Не выкладывать `functions:default` целиком и не вызывать `firebase deploy` напрямую из общего грязного дерева.
 - Не поднимать `version.json` на сервере до выхода сборки в стор.
 - Не включать App Check (запломбировано владельцем, 2026-08-17).
+
+## Итог ночной выкладки (Ядро, 05.11 02:00–03:00)
+Governance-ID: TG-3EB023A82AAB
+- Строка A (HEAD 288be9c9a): `firestore:rules` + `progressSubmitEvent` + `spireFinalizeCron` + `spireJoinRoom` — выложено, exit 0. Ревизии: progresssubmitevent-00047-sir (было 00046), spirefinalizecron-00005-zif (было 00004), spirejoinroom-00007-weg (было 00006). Журнал ошибок с 02:04Z — 0.
+- Строка B: `firestore:indexes` — выложено, exit 0 (без `--force`: 4 field overrides вне файла не удалялись).
+- Индексы чистки при удалении аккаунта (коммит Входа e4965b3de) на 03:00: `pack_likes.userId`, `pack_adds.userId`, `pack_comments.authorId`, `contest_votes.userId` (COLLECTION_GROUP) — **READY**.
+- Функция удаления аккаунта (`account_delete`) НОЧЬЮ НЕ выкладывалась — решение координатора: риск сломать удаление (требование магазинов) выше пользы от чистки остатков. Выкладка утром по слову владельца отдельной строкой `--only "functions:default:<имя экспорта account_delete>" --execute` (индексы уже READY, так что `FAILED_PRECONDITION` на этапе collection_group_matches не возникнет). Откат — revert + повторный `--only functions:<имя>`; индексы откатывать не нужно.
+- Откат ночной выкладки не понадобился. Сухой откат из копии PREV проверен (PASS).

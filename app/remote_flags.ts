@@ -60,6 +60,7 @@ export type RemoteBoolKey =
   // зачем (владелец 05.11 06:08: «Ранг 0 а у меня всё доступно»): ранговые замки действуют и на СТАРЫХ пользователей; Пульт может выключить это без пересборки (тогда замки только у «новых»)
   | 'rank_gates_existing_users'
   | 'video_full_reward_enabled'
+  | 'energy_gift_enabled'
   // зачем (владелец 04.11, координатор): праздничные окна «Открытие разделов» — ВЫКЛ, включаем по слову владельца через «Пульт»
   | 'section_openings_enabled'
   // зачем (владелец 25.10, координатор 25.10): «золотое задание» Пика ×2 монеты ступени — переключатель «Пульта», по умолчанию ВЫКЛ
@@ -291,6 +292,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   section_openings_enabled: false, // зачем: окна «Открытие разделов» 04.11 — ВЫКЛ до слова владельца (Пульт)
   // зачем (владелец 05.11: «+500 монет за полный просмотр видео — 70 %»; координатор: флаг по умолчанию ON, чтобы владелец увидел в 150): выключатель награды, плашек и истории
   video_full_reward_enabled: true,
+  // зачем (владелец 05.11: «Подарок энергии — разрешить с лимитом»): клиент подарка выключен, пока сервер и журнал энергии (Ядро) не проверены на устройстве; включает Пульт
+  energy_gift_enabled: false,
   rank_gates_existing_users: false, // зачем (координатор 05.11: «настоящие старые пользователи не теряют доступ»; ранг — купленное состояние, а не прогресс): по умолчанию замки по рангу только «новым» (аккаунт создан после среза 2.1.0 и без серии/XP); true в Пульте распространяет замки и на старых
   rank_gates_enabled: true, // зачем (слово владельца 05.11 06:08: «Ранг 0 а у меня всё доступно»; отменяет решение координатора «гейты выкл в первой версии»): ранговые замки Главной ВКЛ по умолчанию; kill-switch в Пульте. Бонус +500 от флага не зависит
   referral_ladder_enabled: false, // зачем (владелец 29.10): «Лесенка приглашений» вместо рулетки Plus — ВЫКЛ, пока сервер/Пульт не включат; выключен = экран /referrals прежний
@@ -573,7 +576,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'app_messages_feed_rev', 'global_broadcast_rev', 'home_survey_rev',
   ]);
   const allowedBools = new Set<RemoteBoolKey>([
-    'learning_cant_speak_enabled', 'account_delete_variant_b_ui_enabled', 'dialogue_freeform_translate_enabled', 'learning_chapter_exam_v2_enabled', 'spire_streak_heart', 'ghost_friend_ab', 'video_full_reward_enabled', 'rank_gates_existing_users', 'rank_gates_enabled', 'section_openings_enabled', 'referral_ladder_enabled', 'spire_gold', 'premium_theme_webgl_motion_enabled',
+    'learning_cant_speak_enabled', 'account_delete_variant_b_ui_enabled', 'dialogue_freeform_translate_enabled', 'learning_chapter_exam_v2_enabled', 'spire_streak_heart', 'ghost_friend_ab', 'video_full_reward_enabled', 'energy_gift_enabled', 'rank_gates_existing_users', 'rank_gates_enabled', 'section_openings_enabled', 'referral_ladder_enabled', 'spire_gold', 'premium_theme_webgl_motion_enabled',
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'energy_mistake_charge', 'speaking_strict_check_enabled',

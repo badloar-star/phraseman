@@ -42,6 +42,10 @@ export function plainIntroFor(lang, n, blocks) {
         const ids = x.exampleIds;
         if (Array.isArray(b.examplesById)) { const full = typeof b.examplesById[0] === 'string' && /^[a-z]{2}:/.test(b.examplesById[0]); out.examplesById = full ? ids : ids.map((id) => /(\d\d)[.:](\d\d)$/.exec(id).slice(1).join('.')); }
         if (Array.isArray(b.exampleIds)) out.exampleIds = ids;
+        // зачем (читалка Координатора 05.11, de: 84 блока с двойными примерами и 20 «пропавших»): экран берёт примеры из exampleIds И exampleRefs
+        // (app/classic_course_phrases.ts introExampleIds) — старые ссылки архива дублируют новые и местами ведут на фразы другого урока.
+        // Когда файл вступления задаёт свои примеры, старые ссылки убираем. Пока только de/it (их владелец — Вступления DE/IT); другие курсы — по решению их владельцев.
+        if (['de', 'it'].includes(lang) && Array.isArray(out.exampleRefs)) delete out.exampleRefs;
       }
     }
     introPlainStats.blocks++;

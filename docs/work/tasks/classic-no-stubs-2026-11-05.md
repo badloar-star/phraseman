@@ -59,3 +59,5 @@ Governance-ID: TG-364790768A0A (проверка формулировок на �
 Governance-ID: TG-1DC7AACFC10C (очередь координатора: темы уроков, журнал ожидания слов, сторож слов, drills)
 
 Governance-ID: TG-8247D3BF5B24 (экран слов без ожидания прогресса; exam_episode_words; learning_v2_locale_gate; прогон сторожей на данных Теории)
+
+Governance-ID: TG-D6AF64F86AEA (экзамен главы l23: слово perfect вне эпизодов — замок владельца 25.10)

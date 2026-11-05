@@ -21,23 +21,23 @@ function fakeDb(update: (data: Record<string, unknown>) => Promise<unknown>) {
 
 describe('publicProfilePlusPatch', () => {
   it('real Plus → ring with its expiry; no Plus → null, never 0 (0 means «forever»)', () => {
-    expect(publicProfilePlusPatch(YEARLY, NOW)).toEqual({ isPlus: true, plusUntilMs: NOW + 86_400_000 });
-    expect(publicProfilePlusPatch({ premium_plan: 'lifetime', premium_expiry: '0' }, NOW)).toEqual({ isPlus: true, plusUntilMs: 0 });
-    expect(publicProfilePlusPatch({}, NOW)).toEqual({ isPlus: false, plusUntilMs: null });
-    expect(publicProfilePlusPatch({ intro_access_until_ms: String(NOW + 3_600_000) }, NOW)).toEqual({ isPlus: false, plusUntilMs: null });
+    expect(publicProfilePlusPatch(YEARLY, NOW)).toEqual({ isPlus: true, plusUntilMs: NOW + 86_400_000, plusTier: 'ultra' });
+    expect(publicProfilePlusPatch({ premium_plan: 'lifetime', premium_expiry: '0' }, NOW)).toEqual({ isPlus: true, plusUntilMs: 0, plusTier: 'plus' });
+    expect(publicProfilePlusPatch({}, NOW)).toEqual({ isPlus: false, plusUntilMs: null, plusTier: null });
+    expect(publicProfilePlusPatch({ intro_access_until_ms: String(NOW + 3_600_000) }, NOW)).toEqual({ isPlus: false, plusUntilMs: null, plusTier: null });
   });
 
   it('VIP in the full progress keeps the ring when the subscription part expired', () => {
     const progress = { premium_plan: 'monthly', premium_expiry: String(NOW - 1), vip_plan: 'referral', vip_until: String(NOW + 5_000) };
-    expect(publicProfilePlusPatch(progress, NOW)).toEqual({ isPlus: true, plusUntilMs: NOW + 5_000 });
+    expect(publicProfilePlusPatch(progress, NOW)).toEqual({ isPlus: true, plusUntilMs: NOW + 5_000, plusTier: 'plus' });
   });
 });
 
 describe('syncPublicProfilePlusAfterCommit', () => {
-  it('updates only isPlus and plusUntilMs of public_profiles/{stableUid}', async () => {
+  it('updates only isPlus, plusUntilMs and plusTier of public_profiles/{stableUid}', async () => {
     const { db, calls } = fakeDb(async () => undefined);
     await expect(syncPublicProfilePlusAfterCommit({ db, stableUid: 'stable-1', progress: YEARLY, nowMs: NOW, source: 'test' })).resolves.toBe('updated');
-    expect(calls).toEqual([{ collection: 'public_profiles', id: 'stable-1', data: { isPlus: true, plusUntilMs: NOW + 86_400_000 } }]);
+    expect(calls).toEqual([{ collection: 'public_profiles', id: 'stable-1', data: { isPlus: true, plusUntilMs: NOW + 86_400_000, plusTier: 'ultra' } }]);
   });
 
   it('no profile (NOT_FOUND) → quiet skip, nothing is created', async () => {

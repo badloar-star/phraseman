@@ -106,6 +106,8 @@ export interface FriendPublicProfile {
   isPlus: boolean | null;
   /** Срок Plus: 0 — бессрочно, иначе мс; null — Plus нет или поле не записано. */
   plusUntilMs: number | null;
+  /** Уровень Plus (06.11, «Plus/Ultra»): 'ultra' — годовая подписка; 'plus' — всё остальное; null — поля нет/Plus нет (клиент: не 'ultra' = plus). */
+  plusTier: 'plus' | 'ultra' | null;
   /** «Вместе» (§3.1): последний известный локальный день активности. null = нет данных. */
   lastActiveDate: string | null;
   /** «Вместе»: кодек активных дней для daysTogether(). null = нет данных. */
@@ -397,6 +399,8 @@ export function buildFriendProfile(
     // не несёт: там null, и кольца нет. Это дешевле, чем откатываться на isPremium с вводным доступом. 0 новых чтений.
     isPlus: typeof publicProfileData?.isPlus === 'boolean' ? publicProfileData.isPlus : null,
     plusUntilMs: plusUntilMsOrNull(publicProfileData?.plusUntilMs),
+    // зачем (06.11, «Plus/Ultra»): уровень из того же документа public_profiles, 0 новых чтений; незнакомое значение → null
+    plusTier: publicProfileData?.plusTier === 'ultra' ? 'ultra' : publicProfileData?.plusTier === 'plus' ? 'plus' : null,
     lastActiveDate: together.lastActiveDate,
     activeDays: together.activeDays,
     friendsPush: together.friendsPush,

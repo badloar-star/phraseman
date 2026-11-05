@@ -248,6 +248,21 @@ export function isRealPlusActive(progress: ProgressLike, now: number = Date.now(
   return isStorePremiumActive(progress, now) || isAdminGrantActive(progress, now) || isVipActive(progress, now) || parseProgressMs(progress?.community_plus_until_ms) > now;
 }
 
+export type PlusTier = 'plus' | 'ultra';
+
+/**
+ * Уровень настоящего Plus для публичного профиля (слово владельца 06.11, «Plus/Ultra»): годовая магазинная подписка — 'ultra',
+ * всё остальное (месячная, пожизненная, VIP, подарок, админский грант, конкурсный Plus) — 'plus'; Plus нет — null.
+ * зачем: права одинаковы (Ultra = все права Plus), различие только в цвете кольца/значка, который видят другие.
+ * 'ultra' строго при АКТИВНОЙ store-подписке: истёкшая годовая с живым другим Plus уровня не повышает.
+ */
+export function realPlusTier(progress: ProgressLike, now: number = Date.now()): PlusTier | null {
+  if (!isRealPlusActive(progress, now)) return null;
+  const plan = cleanPlan((progress ?? {}).premium_plan);
+  if (isStorePremiumActive(progress, now) && (plan === 'yearly' || plan === 'annual')) return 'ultra';
+  return 'plus';
+}
+
 /**
  * До какого момента действует настоящий Plus: 0 — бессрочно (пожизненный, грант без срока); null — Plus НЕТ.
  * зачем: публичный профиль обновляется не на каждом событии — со сроком кольцо у истёкшего Plus гаснет само.

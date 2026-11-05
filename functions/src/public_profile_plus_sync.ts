@@ -12,15 +12,16 @@
 //  • Только update: нет профиля — тихий пропуск, пустой обрывок без имени не создаётся физически. 0 чтений.
 //  • Ошибка — только в журнал [PLUS-RING] с причиной, без uid.
 // ════════════════════════════════════════════════════════════════════════════
-import { isRealPlusActive, realPlusUntilMs } from './premium_status';
+import { isRealPlusActive, realPlusTier, realPlusUntilMs, type PlusTier } from './premium_status';
 
 const LOG = '[PLUS-RING]';
 
-export type PublicProfilePlusPatch = Readonly<{ isPlus: boolean; plusUntilMs: number | null }>;
+/** plusTier (слово владельца 06.11, «Plus/Ultra»): 'ultra' — годовая магазинная подписка, иначе 'plus'; null — Plus нет. */
+export type PublicProfilePlusPatch = Readonly<{ isPlus: boolean; plusUntilMs: number | null; plusTier: PlusTier | null }>;
 
 /** То же правило, что в publicProfileProjectMine: настоящий Plus без вводного доступа; null — Plus нет, 0 — бессрочно. */
 export function publicProfilePlusPatch(progress: Readonly<Record<string, unknown>>, nowMs: number): PublicProfilePlusPatch {
-  return { isPlus: isRealPlusActive(progress, nowMs), plusUntilMs: realPlusUntilMs(progress, nowMs) };
+  return { isPlus: isRealPlusActive(progress, nowMs), plusUntilMs: realPlusUntilMs(progress, nowMs), plusTier: realPlusTier(progress, nowMs) };
 }
 
 export type PublicProfilePlusSyncResult = 'updated' | 'no_profile' | 'failed';
@@ -52,7 +53,7 @@ export async function syncPublicProfilePlusAfterCommit(input: Readonly<{
   }
   try {
     await input.db.collection('public_profiles').doc(input.stableUid).update({ ...patch });
-    console.log(LOG, JSON.stringify({ step: 'updated', source: input.source, isPlus: patch.isPlus, plusUntilMs: patch.plusUntilMs }));
+    console.log(LOG, JSON.stringify({ step: 'updated', source: input.source, isPlus: patch.isPlus, plusUntilMs: patch.plusUntilMs, plusTier: patch.plusTier }));
     return 'updated';
   } catch (error) {
     const code = errorCode(error);

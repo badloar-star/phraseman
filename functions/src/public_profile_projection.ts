@@ -6,7 +6,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
-import { isLifetimePlanActive, isPremiumAccessActive, isRealPlusActive, isVipActive, realPlusUntilMs } from './premium_status';
+import { isLifetimePlanActive, isPremiumAccessActive, isRealPlusActive, isVipActive, realPlusTier, realPlusUntilMs } from './premium_status';
 type ProfileReason = 'display_change' | 'entitlement_change';
 
 export type PublicProfileProjectionInput = {
@@ -116,6 +116,8 @@ export function buildAuthoritativePublicProfileProjection(
     // isPremium не трогаем (его читают другие экраны). plusUntilMs: 0 — бессрочно; иначе кольцо гаснет само по сроку.
     isPlus: isRealPlusActive(progress, nowMs),
     plusUntilMs: realPlusUntilMs(progress, nowMs),
+    // зачем (слово владельца 06.11, «Plus/Ultra»): 'ultra' — годовая магазинная подписка, иначе 'plus'; null — Plus нет. Права не меняются.
+    plusTier: realPlusTier(progress, nowMs),
   };
 
   const legendNo = nonnegativeInt(input.profileCardLegendNo);

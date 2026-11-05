@@ -75,20 +75,21 @@ describe('friendsGetProfiles reads', () => {
       ...friendRows('caller-d4', 'old-profile'),
       ...friendRows('caller-d4', 'bad-term'),
     };
-    rows['public_profiles/plus-forever'] = { name: 'A', isPlus: true, plusUntilMs: 0 };
-    rows['public_profiles/plus-term'] = { name: 'B', isPlus: true, plusUntilMs: 1_800_000_000_000 };
+    rows['public_profiles/plus-forever'] = { name: 'A', isPlus: true, plusUntilMs: 0, plusTier: 'plus' };
+    rows['public_profiles/plus-term'] = { name: 'B', isPlus: true, plusUntilMs: 1_800_000_000_000, plusTier: 'ultra' };
     rows['public_profiles/no-plus'] = { name: 'C', isPlus: false, plusUntilMs: null, isPremium: true };
-    rows['public_profiles/bad-term'] = { name: 'E', isPlus: 'yes', plusUntilMs: -5 };
+    rows['public_profiles/bad-term'] = { name: 'E', isPlus: 'yes', plusUntilMs: -5, plusTier: 'gold' };
     const { db, reads } = makeDb(rows);
     const result = await runFriendsGetProfiles(db, 'caller-d4', ['plus-forever', 'plus-term', 'no-plus', 'old-profile', 'bad-term']);
 
-    expect(result.profiles['plus-forever']).toMatchObject({ isPlus: true, plusUntilMs: 0 });
-    expect(result.profiles['plus-term']).toMatchObject({ isPlus: true, plusUntilMs: 1_800_000_000_000 });
+    expect(result.profiles['plus-forever']).toMatchObject({ isPlus: true, plusUntilMs: 0, plusTier: 'plus' });
+    expect(result.profiles['plus-term']).toMatchObject({ isPlus: true, plusUntilMs: 1_800_000_000_000, plusTier: 'ultra' });
     // isPremium (вводный доступ) кольца не даёт: берём только isPlus.
     expect(result.profiles['no-plus']).toMatchObject({ isPlus: false, plusUntilMs: null, isPremium: true });
     // Профиль до проекции cbdecef56 — полей нет: null, кольца нет.
-    expect(result.profiles['old-profile']).toMatchObject({ isPlus: null, plusUntilMs: null });
-    expect(result.profiles['bad-term']).toMatchObject({ isPlus: null, plusUntilMs: null });
+    expect(result.profiles['old-profile']).toMatchObject({ isPlus: null, plusUntilMs: null, plusTier: null });
+    // незнакомый уровень («gold») → null, клиент трактует как plus
+    expect(result.profiles['bad-term']).toMatchObject({ isPlus: null, plusUntilMs: null, plusTier: null });
     // 4 чтения проверки дружбы + 1 публичный профиль на каждого — новых чтений нет.
     expect(reads).toHaveLength(5 * 5);
   });

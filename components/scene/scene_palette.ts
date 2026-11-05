@@ -443,6 +443,16 @@ export function skyToneHex(p: Extract<ScenePaletteResult, { raw: unknown }>): st
 export function sceneTopHex(p: ScenePaletteResult): string {
   return isSkyPalette(p) ? skyToneHex(p) : p.gradient.top.hex;
 }
+/**
+ * Цвет «тела» сцены для рамки блока (#RRGGBB) — тот, которым сцена закрашена у НИЗА, а не верхний.
+ * зачем (P0 владельца 05.11, «два оттенка, шов под кнопкой»; кадр 5554: градиент обрывался на 255 dp, ниже до края блока видна рамка цвета sceneTop = ВЕРХ градиента — на 20–30 % светлее низа):
+ * рамка красится тоном низа (светлое «А»: середина верха и низа градиента — ровно тот тон, в который он уходит; тёмное небо — единый тон неба), шов исчезает, даже если фон не доходит до края.
+ */
+export function sceneFrameToneHex(p: ScenePaletteResult): string {
+  if (isSkyPalette(p)) return skyToneHex(p);
+  const top = p.gradient.top.rgb; const bot = p.gradient.bottom.rgb;
+  return hex(top.map((v, i) => (v + bot[i]!) / 2));
+}
 /** Нижний цвет сцены (#RRGGBB): тёмное — низ «неба», светлое — низ «А». */
 export function sceneBottomHex(p: ScenePaletteResult): string {
   return isSkyPalette(p) ? skyToneHex(p) : p.gradient.bottom.hex;

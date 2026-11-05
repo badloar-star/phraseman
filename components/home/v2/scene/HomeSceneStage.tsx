@@ -16,7 +16,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { PixelRatio, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import SceneBackdrop from '../../../scene/SceneBackdrop';
 import SceneBlockShadow from '../../../scene/SceneBlockShadow';
-import { isPremiumSceneTheme, scenePaletteCached } from '../../../scene/scene_palette';
+import { isPremiumSceneTheme, sceneFrameToneHex, scenePaletteCached } from '../../../scene/scene_palette';
 import { logSceneEdge, logSceneLayers, logSceneTheme } from './scene_theme_log';
 import Animated, { Easing, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
@@ -148,7 +148,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   return (
     // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ»): градиент и свет сцены — от верха экрана, под часами;
     // высота сцены считается от верха экрана, как в эталоне (.a-stage 540 вместе со строкой статуса), раскладка отступает на зону часов
-    <SceneBlockShadow tone={tokens.sceneTop} flat>
+    <SceneBlockShadow tone={isPremium ? tokens.sceneBottom : sceneFrameToneHex(scenePal)} flat>
     <View
       testID="home-scene-stage"
       style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}

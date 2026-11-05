@@ -79,7 +79,7 @@ function subscribe(listener: () => void): () => void {
  */
 export const NEUTRAL_ROUTE_PREFIXES: readonly string[] = [
   '/premium_modal', '/paywall', '/manage_subscription', '/promo_code_entry', '/referrals', '/account_details',
-  '/settings_edu', '/settings_notifications', '/settings_themes', '/settings_language', '/privacy_settings', '/support_report', '/privacy_screen', '/terms_screen', '/survey_screen',
+  '/settings_edu', '/settings_notifications', '/settings_themes', '/settings_appearance', '/settings_language', '/privacy_settings', '/support_report', '/privacy_screen', '/terms_screen', '/survey_screen',
 ];
 
 export function isNeutralRoute(pathname: string | null | undefined): boolean {

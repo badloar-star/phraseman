@@ -33,6 +33,8 @@ import { KitGlassLayer } from '../../components/v2/KitLiquidGlass';
 import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+// зачем (флаг theme_sliders_v1, слово владельца 05.11): при включённом флаге вместо списка тем — экран «Оформление» (Светлая/Тёмная + Оттенок + Насыщенность)
+import { THEME_SLIDERS_V1_ENABLED } from '../../constants/theme_sliders_flag';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
 import { coinRankDisplaySource } from '../../components/coins/coin_rank_display';
@@ -46,6 +48,7 @@ import { useLang } from '../../components/LangContext';
 import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
 import { usePremium } from '../../components/PremiumContext';
 import { PlusAvatarRing, PlusTag } from '../../components/plus/PlusAvatarRing';
+import { useSubscriptionTier } from '../../components/plus/use_subscription_tier';
 import CustomSwitch from '../../components/CustomSwitch';
 import { setLiteModeOverride, useLiteMode } from '../lite_mode';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
@@ -452,6 +455,8 @@ export default function SettingsMain() {
   const { isPremium, isVip, isPro, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
   // зачем (владелец 21.10, реестр №6): кольцо и метка «◆ Plus» у моей монеты — только при настоящем Plus (isPremium/VIP/Pro), вводный пробный доступ его не даёт
   const isPlus = isPremium || isVip || isPro;
+  // зачем (владелец 06.11, Plus/Ultra): годовая подписка — «Ultra» (другой цвет и значок кольца, метка «✦ Ultra»); месячная и прочее — Plus.
+  const subTier = useSubscriptionTier() ?? 'plus';
   const initialSettingsMessageOwnerRef = useRef(captureAccountGeneration().stableId ?? '');
   const [settingsMessageOwner, setSettingsMessageOwner] = useState(initialSettingsMessageOwnerRef.current);
   const [settingsMessageSelection, setSettingsMessageSelection] = useState<SettingsMessageSlotSelection>(() => {
@@ -1144,7 +1149,7 @@ export default function SettingsMain() {
             {L('Настройки', 'Параметри', 'Settings', 'Ajustes', 'Ajustes', 'Cài đặt', 'Setelan', 'Ayarlar', 'Ustawienia')}
           </Text>
           <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-            <PlusAvatarRing plus={isPlus} size={44} surface={glass.bg}>
+            <PlusAvatarRing plus={isPlus} tier={subTier} size={44} surface={glass.bg}>
               {renderRankCoin('settings-header-coin', 44)}
             </PlusAvatarRing>
           </View>
@@ -1163,7 +1168,7 @@ export default function SettingsMain() {
         >
           <KitGlassLayer radius={22} />
           <View style={{ width: 52, height: 52, alignItems: 'center', justifyContent: 'center' }}>
-            <PlusAvatarRing plus={isPlus} size={52} surface={glass.plateFillFrom}>
+            <PlusAvatarRing plus={isPlus} tier={subTier} size={52} surface={glass.plateFillFrom}>
               {renderRankCoin('settings-profile-coin', 52)}
             </PlusAvatarRing>
           </View>
@@ -1171,7 +1176,7 @@ export default function SettingsMain() {
             {/* зачем (эталон plus-ring-etalon.html, «Настройки»): метка «◆ Plus» после имени — только в своём профиле, при Plus */}
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ flexShrink: 1, color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700' /* зачем: имя в карточке профиля — заголовок ≥19 по шкале D145 (макет profile.html показывает 18/22 — Макетам поправить на 19/24) */ }}>{profileCardName}</Text>
-              {isPlus ? <PlusTag testID="settings-plus-tag" isLight={glass.isLight} style={{ marginLeft: 8 }} /> : null}
+              {isPlus ? <PlusTag testID="settings-plus-tag" isLight={glass.isLight} tier={subTier} style={{ marginLeft: 8 }} /> : null}
             </View>
             {profileCardSub ? (
               <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>{profileCardSub}</Text>
@@ -1283,9 +1288,9 @@ export default function SettingsMain() {
             glass={glass}
             testID="settings-themes-row"
             icon="layers-outline"
-            title={L('Темы', 'Теми', 'Themes', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
-            value={currentThemeLabel}
-            onPress={() => router.push('/settings_themes' as any)}
+            title={THEME_SLIDERS_V1_ENABLED ? L('Оформление', 'Оформлення', 'Appearance', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd') : L('Темы', 'Теми', 'Themes', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
+            value={THEME_SLIDERS_V1_ENABLED ? undefined : currentThemeLabel}
+            onPress={() => router.push((THEME_SLIDERS_V1_ENABLED ? '/settings_appearance' : '/settings_themes') as any)}
           />
           {/* sound-settings-start */}
           {SHOW_SOUND_SETTINGS ? (

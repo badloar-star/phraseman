@@ -3785,6 +3785,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="settings_edu" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="settings_notifications" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="settings_themes" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_appearance" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="settings_language" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="privacy_settings" options={SECTION_SHEET_STACK_OPTIONS} />
       {/* зачем: PM-171 — раздел «Идеи» удалён (ideas_catalog/ideas_submit), маршруты сняты. */}

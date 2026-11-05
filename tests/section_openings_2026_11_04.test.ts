@@ -233,7 +233,10 @@ describe('подключение и запреты', () => {
     const src = read('components/section_openings/SectionOpeningCeremony.tsx');
     expect(src).toContain('useSharedValue(reduced ? 1');
     expect(src).toContain('useAnimatedStyle');
-    expect(src.match(/borderWidth|borderColor|numberOfLines|adjustsFontSizeToFit|requestAnimationFrame|setInterval/gu) ?? []).toEqual([]);
+    // зачем (владелец 05.11 «В ТОЧНОСТИ 1 К 1 как макет»): рамки мотивов апертуры (2 px) и веера (1 px) — часть одобренного макета openings.css; обводок вокруг остальных блоков по-прежнему нет
+    expect(src.match(/numberOfLines|adjustsFontSizeToFit|requestAnimationFrame|setInterval/gu) ?? []).toEqual([]);
+    expect((src.match(/borderWidth/gu) ?? []).length).toBeLessThanOrEqual(3);
+    expect(src).not.toMatch(/haloStyle|styles.halo|halo:/u); // макет: круга за героем НЕТ (.opening-halo{background:none})
     expect(src).toContain("pointerEvents={ctaReady ? 'auto' : 'none'}");
   });
 });
@@ -257,7 +260,7 @@ describe('dev-вход для Сверки и память', () => {
     expect(slots).toContain('if (!sectionOpening.current) return null;');
     expect(slots).toContain("lazy(() => import('../section_openings/SectionOpeningCeremony')");
     const ceremony = read('components/section_openings/SectionOpeningCeremony.tsx');
-    expect(ceremony.match(/cachePolicy="none"/gu)?.length).toBe(2);
+    expect(ceremony.match(/cachePolicy="none"/gu)?.length).toBe(3); // герой + его свечение + арт раздела
     expect(ceremony).toContain('useReducedMotion() || forceReduced === true');
   });
   it('мотивы макета: апертура «Видео», пузыри «Диалогов», ступени «Пика», веер «Карточек»', () => {

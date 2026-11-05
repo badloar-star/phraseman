@@ -2699,18 +2699,26 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         ];
         // зачем (владелец 17.10: «На Главной должен быть Пик тоже — кнопка-иконка… 4: Уроки, Диалоги, Карточки и Пик»; эталон #four-tiles вариант (а)):
         // все три раздела есть и Пик открыт для языка → четвёртая плитка «Пик»; иначе прежний ряд из трёх (D143). Без сети: только флаги готовности.
+        // зачем (владелец 05.11: «макеты 1 в 1», аудит ранг-гейтинга п.4): пока хаб карточек закрыт рангом (<3), слот «Карточки» занимает
+        // «Сохранённые» (всегда открыты), а «Наборы из видео»/«Мои ошибки» ряд не занимают. Ряд по рангам: 0 — Уроки+Сохранённые;
+        // 1 — +Диалоги; 2 — +Пик; 3 — Карточки вместо Сохранённых. Незагейченным (старым) пользователям rankLockedCardsHub=false — ряд прежний.
+        const homeV2SavedAsCards = rankLockedCardsHub && homeFlashcardsVisible ? homeV2FillerTiles.find((tile) => tile.key === 'saved') : undefined;
+        const homeV2RankedBase: HomeFeatureTile[] = homeV2SavedAsCards
+            ? (({ available: _a, ...tile }) => [...homeV2BaseTiles.slice(0, 1), tile, ...homeV2BaseTiles.slice(1)])(homeV2SavedAsCards)
+            : homeV2BaseTiles;
+        const homeV2RankedFillers = homeV2SavedAsCards ? homeV2FillerTiles.filter((tile) => tile.key !== 'saved') : homeV2FillerTiles;
         const homeV2SpireTile = homeV2FillerTiles[0]!;
-        const homeV2WithSpire = homeV2BaseTiles.length === 3 && homeV2SpireTile.available;
+        const homeV2WithSpire = homeV2RankedBase.length === 3 && homeV2SpireTile.available;
         const homeV2Tiles: HomeFeatureTile[] = homeV2WithSpire
-            ? [...homeV2BaseTiles, (({ available: _available, ...tile }) => tile)(homeV2SpireTile)]
-            : homeV2BaseTiles.length >= 3 || homeV2BaseTiles.length === 0
-            ? homeV2BaseTiles
-            : [...homeV2BaseTiles, ...homeV2FillerTiles.filter((tile) => tile.available).map(({ available: _available, ...tile }) => tile)].slice(0, 3);
+            ? [...homeV2RankedBase, (({ available: _available, ...tile }) => tile)(homeV2SpireTile)]
+            : homeV2RankedBase.length >= 3 || homeV2RankedBase.length === 0
+            ? homeV2RankedBase
+            : [...homeV2RankedBase, ...homeV2RankedFillers.filter((tile) => tile.available).map(({ available: _available, ...tile }) => tile)].slice(0, 3);
         const homeV2TilesReason = homeV2WithSpire ? 'four:all_sections_and_spire'
-            : homeV2BaseTiles.length === 3 ? `three:spire_off(surface=${isLearningSurfaceReady(studyTarget, 'spire')},tab=${spireTabEnabled})`
-            : `fill:base=${homeV2BaseTiles.map((tile) => tile.key).join('+') || 'none'}`;
+            : homeV2RankedBase.length === 3 ? `three:spire_off(surface=${isLearningSurfaceReady(studyTarget, 'spire')},tab=${spireTabEnabled})`
+            : `fill:base=${homeV2RankedBase.map((tile) => tile.key).join('+') || 'none'}`;
         // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): ряд плиток со «Сценой» — Уроки, Карточки, Диалоги, Пик (порядок макета); без «Сцены» порядок прежний
-        const homeV2TileOrder = ['lessons', 'cards', 'dialogs', 'spire'];
+        const homeV2TileOrder = ['lessons', 'cards', 'saved', 'dialogs', 'spire'];
         const homeV2TilesInOrder: HomeFeatureTile[] = HOME_SCENE_V2_ENABLED
             ? [...homeV2Tiles].sort((a, b) => (homeV2TileOrder.indexOf(a.key) + 1 || 99) - (homeV2TileOrder.indexOf(b.key) + 1 || 99))
             : homeV2Tiles;
@@ -2722,7 +2730,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           studyTarget,
         );
         // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): в карточке «Сегодня» всегда три строки набора дня (видео — задание дня, если выпало; владелец 22.10: «раздел видео никуда не девается»); анкета — 4-й строкой только при активной кампании из админки (Poll V2 на Главной не показываем)
-        const homeTodayCardTasks = homeV2Tasks;
+        // зачем (владелец 05.11, ранг 0 по утверждённому макету «Сегодня»: одна задача + «Смотреть все»): пока Видео и Диалоги закрыты рангом
+        // (то есть ранг 0 у «нового»), показываем только задачу урока; с ранга 1 — полный набор. Остальные задачи видны на /today_tasks.
+        const homeTodayRank0 = rankLockedVideo && rankLockedDialogues;
+        const homeTodayCardTasks = homeTodayRank0 ? [homeV2Tasks.find((task) => task.kind === 'lesson') ?? homeV2Tasks[0]].filter((task): task is NonNullable<typeof task> => task != null) : homeV2Tasks;
         const homeTodayTitle = triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' });
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);

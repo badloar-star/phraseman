@@ -12,7 +12,7 @@ describe('Главная: 4 плитки с Пиком', () => {
   const tiles = read('components/home/v2/HomeV2FeatureTiles.tsx');
 
   it('Пик — четвёртым, только при трёх разделах и открытом Пике; иначе прежний ряд из трёх', () => {
-    expect(home).toContain('const homeV2WithSpire = homeV2BaseTiles.length === 3 && homeV2SpireTile.available;');
+    expect(home).toContain('const homeV2WithSpire = homeV2RankedBase.length === 3 && homeV2SpireTile.available;');
     // зачем (владелец 30.10, ранговые гейты): к условию добавилось «Пик закрыт рангом для новичка» — Пик с ранга 2
     expect(home).toContain("available: isLearningSurfaceReady(studyTarget, 'spire') && spireTabEnabled && !rankLockedPeak,");
     expect(home).toMatch(/\.slice\(0, 3\);/);

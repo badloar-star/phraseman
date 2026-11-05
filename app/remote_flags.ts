@@ -21,6 +21,7 @@ import {
   type OnboardingStepId,
 } from './onboarding_flow';
 import type { SoftUpsellTrigger } from './soft_upsell_core';
+import { isDevForcedFlag } from './dev_forced_flags';
 
 export type RemoteNumberKey =
   // зачем (владелец 05.11): хэш uid аккаунта, который показывается «новым» принудительно (0 — выкл); считает app/rank_gate_uid_hash.ts
@@ -530,6 +531,7 @@ const DEV_FORCED_ON: ReadonlySet<string> = (() => {
 
 export function getRemoteBool(key: RemoteBoolKey): boolean {
   if (DEV_FORCED_ON.size > 0 && DEV_FORCED_ON.has(key)) return true;
+  if (isDevForcedFlag(key)) return true; // зачем: dev_state?devFlags=… включает флаг без рестарта Metro (только dev-сборка)
   const override = _boolOverrides[key];
   if (typeof override === 'boolean') return override;
   return DEFAULT_FLAGS[key];

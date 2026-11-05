@@ -258,6 +258,8 @@ export type DevStateRequest = Readonly<{
   spireTier?: number | 'off';
   /** Порог «полного просмотра» видео для ПОКАЗА награды +500 (3..600 с вместо 70 % длительности): dev_video_full. */
   videoFullTargetSec?: number | 'off';
+  /** Принудительно включить remote-флаги ссылкой (через запятую) или off — только dev: dev_forced_flags (окна за флагами: section_openings_enabled, energy_gift_enabled…). */
+  devFlags?: string;
   /** Показ окна «Видео просмотрено: +500» без просмотра (story) или с настоящей выдачей +500 (grant): dev_video_full. */
   videoFullDemo?: 'story' | 'grant' | 'off';
   /** Короткий урок 1.0 для честной проверки итога: N заданий (1..10) вместо 50, начисление — боевой код (dev_short_lesson). */
@@ -519,6 +521,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     else if (Number.isInteger(tierN) && tierN >= 0 && tierN <= 11) request.spireTier = tierN;
     else rejected.spireTier = `ожидалось 0..11 или off, пришло ${spireTierRaw}`;
   }
+  const devFlagsRaw = one(params.devFlags);
+  if (devFlagsRaw !== undefined) request.devFlags = devFlagsRaw;
   const videoFullRaw = one(params.videoFullTargetSec);
   if (videoFullRaw !== undefined) {
     const vfN = Number(videoFullRaw);
@@ -1179,6 +1183,15 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('spireTier', String(request.spireTier), async () => {
       const { setDevSpireTierOverride } = await import('./dev_spire_tier');
       return setDevSpireTierOverride(request.spireTier === 'off' ? null : (request.spireTier as number));
+    });
+  }
+  if (request.devFlags !== undefined) {
+    await step('devFlags', request.devFlags, async () => {
+      const { setDevForcedFlags, parseDevForcedFlags } = await import('./dev_forced_flags');
+      const names = request.devFlags === 'off' ? null : parseDevForcedFlags(request.devFlags as string);
+      const applied = setDevForcedFlags(names);
+      if (applied) { const { emitAppEvent } = await import('./events'); emitAppEvent('remote_config_changed'); } // зачем: хосты за флагами перечитывают значение сразу
+      return applied;
     });
   }
   if (request.videoFullTargetSec !== undefined) {

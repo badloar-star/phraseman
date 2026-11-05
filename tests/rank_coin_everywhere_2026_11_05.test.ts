@@ -32,6 +32,17 @@ describe('монета строго по рангу — везде', () => {
     expect(src).toMatch(/MyRankCoin|useMyRankCoinSource/);
   });
 
+  // зачем (аудит Диспетчера 05.11): аватары друзей/уведомлений рисуют монету ранга, а не старый аватар; настройки не мелькают бронзой
+  it('аватары в «Вместе» и уведомлениях получают ранг; настройки берут последний известный', () => {
+    const sheet = read('components/friends_together/FriendTogetherSheet.tsx');
+    expect(sheet).toContain('coinRank={myCoinRank}');
+    expect(sheet).toContain('coinRank={friendCoinRank}');
+    expect(read('components/NotificationCenterButton.tsx')).toMatch(/<AvatarView[\s\S]{0,200}coinRank=/);
+    const settings = read('app/(tabs)/settings.tsx');
+    expect(settings).toContain('useMyRankCoinRank');
+    expect(settings).not.toContain('coinRankRowForDisplay(0)');
+  });
+
   it('общий модуль homeRuneAsset не хранит базовую монету', () => {
     expect(read('components/home/homeRuneAsset.ts')).not.toMatch(/require\(/);
   });

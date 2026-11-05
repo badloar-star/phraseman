@@ -594,7 +594,14 @@ function NotificationCenterButton({
         style={[styles.notificationRow, { backgroundColor: t.bgSurface }]}
       >
         {hasAvatar ? (
-          <AvatarView avatar={row.fromAvatar!} size={38} animateAura={false} />
+          // зачем (слово владельца 05.11, «монета строго по рангу везде»): у отправителя-друга рисуем его монету ранга из локального снимка «Вместе» (0 чтений);
+          // рангу нет в снимке (не друг/старое уведомление) — прежний аватар, ничего не выдумываем.
+          <AvatarView
+            avatar={row.fromAvatar!}
+            size={38}
+            animateAura={false}
+            coinRank={row.nav?.kind === 'friend_event' ? (getFriendsTogetherSnapshot()?.pairs[row.nav.actorStableUid]?.coinRank ?? null) : null}
+          />
         ) : (
           <View style={[styles.notificationIcon, { backgroundColor: t.bgCard }]}>
             <Ionicons name={notificationIcon(row.type)} size={18} color={notificationIconColor(row.type, t.textMuted, tones)} />

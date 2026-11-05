@@ -12,6 +12,8 @@ import { useLang } from '../LangContext';
 import { type Lang, triLang } from '../../constants/i18n';
 import { buttonForegroundForBackground } from '../../constants/color_contrast';
 import { semanticInk } from '../../constants/liquidGlassSemanticInk';
+import { useMyRankCoinRank } from '../../hooks/use_my_rank_coin';
+import { getFriendsTogetherSnapshot } from '../../app/friends_together/together_store';
 
 export interface FriendTogetherDisplay {
   days: number;
@@ -82,6 +84,7 @@ function FriendTogetherSheet({
   onClose,
   onDismissed,
   friendName,
+  friendUid,
   friendAvatar,
   friendAura,
   myAvatar,
@@ -98,6 +101,11 @@ function FriendTogetherSheet({
   const { lang } = useLang();
   const L = (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
     triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  // зачем (слово владельца 05.11, «монета строго по рангу везде»): и свой, и друга — монета ранга. Свой ранг из кэша (последний известный, пока не прочитан — прежний аватар),
+  // ранг друга — из локального снимка «Вместе» (0 чтений). Нет ранга — прежний аватар, ничего не выдумываем.
+  const { rank: myRank, origin: myRankOrigin } = useMyRankCoinRank();
+  const myCoinRank = myRankOrigin === 'pending_base' ? null : myRank;
+  const friendCoinRank = getFriendsTogetherSnapshot()?.pairs[friendUid]?.coinRank ?? null;
   const isGold = together?.level !== undefined && together.level >= 4;
   const nudgeDisabled = Boolean(together?.nudged || together?.learnedToday);
   const progress = together?.progressPercent === null || together?.progressPercent === undefined
@@ -138,9 +146,9 @@ function FriendTogetherSheet({
             {together && (
               <View testID="friend-together-sheet-together-hero" style={styles.hero}>
                 <View style={styles.pairRow}>
-                  <AvatarView avatar={myAvatar} size={64} />
+                  <AvatarView avatar={myAvatar} size={64} coinRank={myCoinRank} />
                   <View style={[styles.link, { backgroundColor: isGold ? g.text : g.cta }]} />
-                  <AvatarView avatar={friendAvatar} size={64} auraId={friendAura} />
+                  <AvatarView avatar={friendAvatar} size={64} auraId={friendAura} coinRank={friendCoinRank} />
                 </View>
                 <FlowText testID="friend-together-sheet-level" provenance="authored" style={{ color: isGold ? g.text : g.accentText, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>
                   {friendshipLevelName(together.level, lang)}

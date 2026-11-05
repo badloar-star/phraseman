@@ -36,6 +36,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 // зачем (флаг theme_sliders_v1, слово владельца 05.11): при включённом флаге вместо списка тем — экран «Оформление» (Светлая/Тёмная + Оттенок + Насыщенность)
 import { THEME_SLIDERS_V1_ENABLED } from '../../constants/theme_sliders_flag';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
+import { useMyRankCoinRank } from '../../hooks/use_my_rank_coin';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
 import { coinRankDisplaySource } from '../../components/coins/coin_rank_display';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
@@ -392,6 +393,7 @@ export default function SettingsMain() {
   // зачем: монета текущего ранга вместо аватара-гексагона (PRF-18) — ранг из кэша в памяти, без сети.
   const myCoinRank = useMyCoinRank();
   const myCoinRankRow = isValidCoinRank(myCoinRank) ? coinRankRowForDisplay(myCoinRank) : null;
+  const { rank: shownRankFallback } = useMyRankCoinRank();
   const topFadeScroll = useTopFadeScroll();
   // Маска шапки (TopFadeMask) слушает scrollY порогом showThreshold=6, поэтому JS
   // дёргаем только при пересечении порога, а не каждый кадр — скролл идёт UI-потоком.
@@ -1061,7 +1063,8 @@ export default function SettingsMain() {
       testID={myCoinRankRow ? testID : `${testID}-default`}
       accessible={false}
       // зачем (Ревизор 3.120): монета 44/52 dp — копия под размер вместо исходника 768²
-      source={coinRankDisplaySource((myCoinRankRow ?? coinRankRowForDisplay(0)).rank, size)}
+      // зачем (слово владельца 05.11): пока ранг не прочитан — ПОСЛЕДНИЙ известный из кэша (useMyRankCoinRank), а не бронза ранга 0: шапка не мелькает
+      source={coinRankDisplaySource((myCoinRankRow ?? coinRankRowForDisplay(shownRankFallback)).rank, size)}
       style={{ width: size, height: size }} contentFit="contain"
     />
   );

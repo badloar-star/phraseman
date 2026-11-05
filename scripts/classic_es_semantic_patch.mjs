@@ -155,6 +155,33 @@ addAns('es:03:23', [], ['¿Estás en casa?'], 'b4');
 // es:20:22 «estas semana» добавляет сам сборщик (addYouVariants принимает указательное «esta» за глагол «está») — из исходников не убрать,
 // передано владельцу сборщика; запись remove здесь только маскировала бы ошибку (сторож курса её ловит).
 
+// ── 6. Аудит уроков 1–16 (координатор 05.11: Глаголы — уроки 1–16, Теория — 17–32): находки 4 аудиторов Sonnet по классам Ревизора
+// (B1 соблазн выдаёт себя / второй верный, B3 нет варианта, M подсказка), сведённые в docs/work/es_semantic_audit_l1_16_2026-11-05.json.
+// Замены соблазнов сборщик всё равно проверяет жёсткими правилами (вторая верная фраза, «ты/вы», непройденное слово) — не прошла → только запрет.
+const AUDIT_FILE = path.join(ROOT, 'docs', 'work', 'es_semantic_audit_l1_16_2026-11-05.json');
+const auditTr = {};
+if (fs.existsSync(AUDIT_FILE)) {
+  const audit = JSON.parse(fs.readFileSync(AUDIT_FILE, 'utf8'));
+  for (const it of audit.items ?? []) {
+    const p = phrases.get(it.id);
+    if (!p) { console.warn('[ES-SEM] аудит: нет фразы', it.id); continue; }
+    const f = it.fix ?? {};
+    for (const r of f.replace ?? []) {
+      const t = p.tiles[r.position];
+      if (!t) { count('audit_bad_position'); continue; }
+      addRep(it.id, r.position, r.from, r.to, 'audit_replace');
+    }
+    if ((f.addAnswers ?? []).length || (f.removeAnswers ?? []).length) {
+      addAns(it.id, (f.addAnswers ?? []).filter((x) => !has(p, x)), f.removeAnswers ?? [], 'audit_answers');
+    }
+    if (f.ru || f.uk) {
+      const k = it.id.replace(/^es:(\d\d):(\d\d)$/, 'es:$1.$2');
+      auditTr[k] = { ...(auditTr[k] ?? {}), ...(f.ru ? { ru: f.ru } : {}), ...(f.uk ? { uk: f.uk } : {}), reason: `аудит es 1–16 (05.11): ${it.why ?? ''}`.trim() };
+      count('audit_translation');
+    }
+  }
+}
+
 // ── запись ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 const P = JSON.parse(fs.readFileSync(PATCH_FILE, 'utf8'));
 P.replace ??= {};
@@ -168,6 +195,13 @@ for (const [k, ws] of Object.entries(removeW)) P.remove[k] = [...new Set([...(P.
 for (const [k, a] of Object.entries(answers)) {
   const prev = P.answers[k] ?? {};
   P.answers[k] = { ...prev, add: [...new Set([...(prev.add ?? []), ...a.add])], remove: [...new Set([...(prev.remove ?? []), ...a.remove])], reason: TAG };
+}
+// подсказки ru/uk аудита — в файл правок переводов (ключи es:LL.PP); прежние ручные записи (04.17, 03.23…) сохраняются, аудит дописывает
+const TR_FILE = path.join(ROOT, 'docs', 'work', 'classic_translation_fixes_es_semantic_2026_11_05.json');
+if (Object.keys(auditTr).length && !DRY) {
+  const tr = JSON.parse(fs.readFileSync(TR_FILE, 'utf8'));
+  for (const [k, v] of Object.entries(auditTr)) tr[k] = { ...(tr[k] ?? {}), ...v };
+  fs.writeFileSync(TR_FILE, JSON.stringify(tr, null, 2) + '\n');
 }
 console.log('[ES-SEM] правки по классам:', JSON.stringify(stats), 'фраз с заменами:', Object.keys(replace).length, 'с ответами:', Object.keys(answers).length);
 if (!DRY) fs.writeFileSync(PATCH_FILE, JSON.stringify(P, null, 1) + '\n');

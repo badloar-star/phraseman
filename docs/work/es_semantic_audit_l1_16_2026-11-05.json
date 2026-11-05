@@ -1,0 +1,7923 @@
+{
+ "_note": "Аудит смысла es уроков 1–16 (05.11, 4 аудитора Sonnet по классам Ревизора B1/B3/B4/M, по текущей сборке b038c98b6). Применяет scripts/classic_es_semantic_patch.mjs (раздел 6). Системные классы соблазнов (entre на артикле, существительные на глаголе/вопросительном) Ловушки чинят в генераторе (detOnly/qOnly/контекст глагола).",
+ "checked": 800,
+ "phrasesFlagged": 435,
+ "byType": {
+  "B3": 67,
+  "M": 13,
+  "B1": 391
+ },
+ "items": [
+  {
+   "id": "es:01:25",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Ustedes están aquí.",
+     "Usted está aquí."
+    ]
+   },
+   "why": "Вы allows ustedes/usted with explicit pronoun"
+  },
+  {
+   "id": "es:01:27",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Ustedes están fuera.",
+     "Usted está fuera."
+    ]
+   },
+   "why": "Вы allows ustedes/usted with explicit pronoun"
+  },
+  {
+   "id": "es:02:21",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "No están en la estación.",
+     "Ustedes no están en la estación."
+    ],
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "same prompt as 02:23 (ustedes); also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:23",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "No estáis en la estación.",
+     "Vosotros no estáis en la estación.",
+     "Vosotras no estáis en la estación."
+    ],
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "same prompt as 02:21 (vosotros); also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:21",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Ustedes están en casa?"
+    ]
+   },
+   "why": "ustedes variant missing"
+  },
+  {
+   "id": "es:03:22",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Vosotros estáis en casa?",
+     "¿Vosotras estáis en casa?"
+    ]
+   },
+   "why": "vosotros variant missing"
+  },
+  {
+   "id": "es:03:24",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Están en la puerta?",
+     "¿Ustedes están en la puerta?"
+    ],
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "ustedes variant missing; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:25",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Estáis en la puerta?",
+     "¿Vosotros estáis en la puerta?",
+     "¿Vosotras estáis en la puerta?"
+    ],
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "vosotros variant missing; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:04:26",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Vosotros sois estudiantes.",
+     "Vosotras sois estudiantes."
+    ]
+   },
+   "why": "Вы allows vosotros"
+  },
+  {
+   "id": "es:04:27",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Ustedes son estudiantes."
+    ]
+   },
+   "why": "Вы allows ustedes with pronoun"
+  },
+  {
+   "id": "es:04:47",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Ustedes son guías."
+    ]
+   },
+   "why": "Вы allows ustedes with pronoun"
+  },
+  {
+   "id": "es:04:33",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "La profesora es Ana."
+    ]
+   },
+   "why": "ru word order \"Преподавательница — Ана\" = La profesora es Ana"
+  },
+  {
+   "id": "es:04:34",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "El profesor es Luis."
+    ],
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "ru word order \"Преподаватель — Луис\" = El profesor es Luis; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:04:03",
+   "type": "M",
+   "fix": {
+    "ru": "Я врач (муж.)"
+   },
+   "why": "врач is gender-ambiguous; 04:04 same ru"
+  },
+  {
+   "id": "es:04:04",
+   "type": "M",
+   "fix": {
+    "ru": "Я врач (жен.)"
+   },
+   "why": "врач ambiguous, identical ru to 04:03"
+  },
+  {
+   "id": "es:04:05",
+   "type": "M",
+   "fix": {
+    "ru": "Ты врач (муж.)"
+   },
+   "why": "врач ambiguous vs 04:06"
+  },
+  {
+   "id": "es:04:22",
+   "type": "M",
+   "fix": {
+    "ru": "Мы врачи (муж.)"
+   },
+   "why": "ru identical to 04:23"
+  },
+  {
+   "id": "es:04:23",
+   "type": "M",
+   "fix": {
+    "ru": "Мы врачи (жен.)"
+   },
+   "why": "ru identical to 04:22"
+  },
+  {
+   "id": "es:04:32",
+   "type": "M",
+   "fix": {
+    "ru": "Я и есть врач (жен.)",
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "ambiguous gender, \"el médico\" also fits; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:04:35",
+   "type": "M",
+   "fix": {
+    "ru": "Я и есть гид (жен.)",
+    "uk": "Я і є гід (жін.)",
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "ambiguous gender, \"el guía\" also fits; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:04:06",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "una",
+      "to": "dentista"
+     }
+    ]
+   },
+   "why": "article where noun needed"
+  },
+  {
+   "id": "es:04:46",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Las",
+      "to": "Ustedes"
+     }
+    ],
+    "ru": "Вы (вежл.) врач (жен.)"
+   },
+   "why": "article where pronoun needed"
+  },
+  {
+   "id": "es:01:31",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:36",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:33",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:40",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:47",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:42",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:48",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:01:49",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:01:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:13",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:14",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:15",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:18",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:19",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:20",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:22",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:27",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:29",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:30",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:33",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:34",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:35",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:36",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:40",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:42",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:44",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:45",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:46",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:47",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:48",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:02:49",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:02:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:05",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:09",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:10",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:19",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:26",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:28",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:29",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:31",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:34",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:35",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:36",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:40",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:42",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:44",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:45",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:03:48",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:49",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:03:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away; also preposition \"Entre\" in article slot"
+  },
+  {
+   "id": "es:04:31",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:04:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:04:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "preposition \"Entre\" in article slot gives itself away"
+  },
+  {
+   "id": "es:05:01",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:02",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:03",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:04",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:05",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:06",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:07",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:08",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:09",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:10",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:11",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:12",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:13",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:14",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:15",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:16",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Cuánta"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:17",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:18",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:19",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:20",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:21",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:22",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:23",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     },
+     {
+      "position": 1,
+      "from": "estudiantes",
+      "to": "es"
+     },
+     {
+      "position": 1,
+      "from": "estudiante",
+      "to": "soy"
+     },
+     {
+      "position": 1,
+      "from": "guía",
+      "to": "sois"
+     },
+     {
+      "position": 1,
+      "from": "guías",
+      "to": "somos"
+     },
+     {
+      "position": 1,
+      "from": "médica",
+      "to": "son"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, verb position gives itself away"
+  },
+  {
+   "id": "es:05:24",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuánta"
+     },
+     {
+      "position": 2,
+      "from": "los",
+      "to": "ella"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, pronoun position gives itself away"
+  },
+  {
+   "id": "es:05:25",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:26",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:27",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:28",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:29",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:30",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:31",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 2,
+      "from": "otra",
+      "to": "este"
+     },
+     {
+      "position": 2,
+      "from": "el",
+      "to": "esta"
+     },
+     {
+      "position": 2,
+      "from": "la",
+      "to": "ese"
+     },
+     {
+      "position": 2,
+      "from": "los",
+      "to": "esa"
+     },
+     {
+      "position": 2,
+      "from": "quién",
+      "to": "estos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, demonstrative position gives itself away"
+  },
+  {
+   "id": "es:05:32",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Cuánta"
+     },
+     {
+      "position": 2,
+      "from": "el",
+      "to": "este"
+     },
+     {
+      "position": 2,
+      "from": "la",
+      "to": "esta"
+     },
+     {
+      "position": 2,
+      "from": "los",
+      "to": "estos"
+     },
+     {
+      "position": 2,
+      "from": "quién",
+      "to": "estas"
+     },
+     {
+      "position": 2,
+      "from": "las",
+      "to": "esas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, demonstrative position gives itself away"
+  },
+  {
+   "id": "es:05:33",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Cuánta"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:34",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:35",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Cuánta"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:36",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Cuánta"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mis",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Tu",
+      "to": "Cuántas"
+     },
+     {
+      "position": 0,
+      "from": "Su",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Sus",
+      "to": "Quién"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:40",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, article/determiner position gives itself away"
+  },
+  {
+   "id": "es:05:42",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "La",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:44",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:45",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:46",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     },
+     {
+      "position": 2,
+      "from": "los",
+      "to": "ellos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word, pronoun position gives itself away"
+  },
+  {
+   "id": "es:05:47",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Mi",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Cuánta"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:48",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:49",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:06:04",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:07",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:08",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:09",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:11",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:13",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:15",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:16",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:17",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:19",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:21",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:22",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:23",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:24",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:25",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:26",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:28",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:29",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:30",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:31",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:32",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:33",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:34",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:35",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:36",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:40",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:42",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:44",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:45",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:46",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:47",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:49",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:06:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:01",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:02",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:03",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:04",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:05",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:06",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:07",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:08",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:09",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:10",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:11",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:12",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:13",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:14",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:15",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:17",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:19",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:22",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:23",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:24",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:25",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:27",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:28",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:33",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:42",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:44",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:45",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:46",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:07:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:07",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:08",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:09",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:10",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:14",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:15",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:16",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:17",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:18",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:23",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:24",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:26",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Mis"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Tus"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Sus"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Mi"
+     },
+     {
+      "position": 0,
+      "from": "Libro",
+      "to": "Su"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at article/determiner position gives itself away"
+  },
+  {
+   "id": "es:08:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:08:44",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:08:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Cuánto"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cuánta"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Quiénes"
+     }
+    ]
+   },
+   "why": "distractor of different word class (noun/article/possessive/preposition) at question word position gives itself away"
+  },
+  {
+   "id": "es:05:25",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Quiénes son?",
+     "¿Quiénes son ellas?"
+    ]
+   },
+   "why": "ru 'Кто они?' does not fix gender; subject pronoun optional"
+  },
+  {
+   "id": "es:05:26",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Quiénes son?",
+     "¿Quiénes son ellos?"
+    ]
+   },
+   "why": "ru 'Кто они?' does not fix gender; subject pronoun optional"
+  },
+  {
+   "id": "es:05:45",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Dónde están ustedes?"
+    ]
+   },
+   "why": "'вы' allows ustedes"
+  },
+  {
+   "id": "es:05:46",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Dónde estáis?",
+     "¿Dónde estáis vosotros?",
+     "¿Dónde está usted?"
+    ]
+   },
+   "why": "'вы' allows vosotros/usted"
+  },
+  {
+   "id": "es:08:27",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Vuestro billete está aquí.",
+     "Aquí está vuestro billete."
+    ]
+   },
+   "why": "'Ваш' allows vuestro"
+  },
+  {
+   "id": "es:08:28",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Vuestros billetes están en la mesa.",
+     "En la mesa están vuestros billetes."
+    ]
+   },
+   "why": "'Ваши' allows vuestros"
+  },
+  {
+   "id": "es:05:27",
+   "type": "M",
+   "fix": {
+    "ru": "Кто гид?",
+    "uk": "Хто гід?"
+   },
+   "why": "target has no 'у нас'"
+  },
+  {
+   "id": "es:06:10",
+   "type": "M",
+   "fix": {
+    "ru": "Пальта внутри.",
+    "uk": "Пальта всередині."
+   },
+   "why": "target (first answer) is plural 'Los abrigos', ru singular 'Пальто'"
+  },
+  {
+   "id": "es:06:46",
+   "type": "M",
+   "fix": {
+    "ru": "Женщина-гид в отеле."
+   },
+   "why": "ru lacks female gender (La guía), duplicates 06:45"
+  },
+  {
+   "id": "es:08:35",
+   "type": "M",
+   "fix": {
+    "ru": "Мои люди здесь.",
+    "uk": "Мої люди тут."
+   },
+   "why": "'близкие' != 'gente' (mi gente = мои люди)"
+  },
+  {
+   "id": "es:09:03",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Libro",
+      "to": "Trabajas"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Trabaja"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Trabajamos"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:05",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Estudia"
+     },
+     {
+      "position": 0,
+      "from": "Mensaje",
+      "to": "Estudiamos"
+     },
+     {
+      "position": 0,
+      "from": "Bolso",
+      "to": "Estudiáis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:06",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Estudiamos"
+     },
+     {
+      "position": 0,
+      "from": "Libro",
+      "to": "Estudiáis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:07",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Estudia"
+     },
+     {
+      "position": 0,
+      "from": "Mensaje",
+      "to": "Estudiamos"
+     },
+     {
+      "position": 0,
+      "from": "Bolso",
+      "to": "Estudiáis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:08",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Estudiamos"
+     },
+     {
+      "position": 0,
+      "from": "Libro",
+      "to": "Estudiáis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:17",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Estudia"
+     },
+     {
+      "position": 0,
+      "from": "Mensaje",
+      "to": "Estudiamos"
+     },
+     {
+      "position": 0,
+      "from": "Bolso",
+      "to": "Estudiáis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:19",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Él"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:09:32",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Médica",
+      "to": "Busco"
+     },
+     {
+      "position": 0,
+      "from": "Estudiante",
+      "to": "Buscamos"
+     },
+     {
+      "position": 0,
+      "from": "Profesor",
+      "to": "Buscáis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Trabajas"
+     },
+     {
+      "position": 0,
+      "from": "Libro",
+      "to": "Trabaja"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Trabajamos"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "estudiante",
+      "to": "trabajas"
+     },
+     {
+      "position": 2,
+      "from": "profesoras",
+      "to": "trabaja"
+     },
+     {
+      "position": 2,
+      "from": "leche",
+      "to": "trabajamos"
+     },
+     {
+      "position": 2,
+      "from": "azúcar",
+      "to": "trabajáis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:46",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Cuándo"
+     },
+     {
+      "position": 0,
+      "from": "Foto",
+      "to": "Quién"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Cómo"
+     },
+     {
+      "position": 0,
+      "from": "Hermanas",
+      "to": "Qué"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Cuál"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:47",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Médica",
+      "to": "Busco"
+     },
+     {
+      "position": 0,
+      "from": "Estudiante",
+      "to": "Buscamos"
+     },
+     {
+      "position": 0,
+      "from": "Profesor",
+      "to": "Buscáis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:10:02",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Estación",
+      "to": "Vivo"
+     },
+     {
+      "position": 0,
+      "from": "Puerta",
+      "to": "Vive"
+     },
+     {
+      "position": 0,
+      "from": "Reserva",
+      "to": "Vivimos"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Vivís"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Viven"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:10:04",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Puerta",
+      "to": "Vivo"
+     },
+     {
+      "position": 0,
+      "from": "Reserva",
+      "to": "Vive"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Vivimos"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Vivís"
+     },
+     {
+      "position": 0,
+      "from": "Mensaje",
+      "to": "Viven"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:05",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Comes"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Come"
+     },
+     {
+      "position": 0,
+      "from": "Las",
+      "to": "Comemos"
+     },
+     {
+      "position": 0,
+      "from": "Un",
+      "to": "Coméis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:10:07",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Comes"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Come"
+     },
+     {
+      "position": 0,
+      "from": "Las",
+      "to": "Comemos"
+     },
+     {
+      "position": 0,
+      "from": "Un",
+      "to": "Coméis"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:08",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Médico",
+      "to": "Como"
+     },
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Comemos"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:10",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "casa",
+      "to": "bebo"
+     },
+     {
+      "position": 1,
+      "from": "foto",
+      "to": "bebes"
+     },
+     {
+      "position": 1,
+      "from": "hotel",
+      "to": "bebemos"
+     },
+     {
+      "position": 1,
+      "from": "hermanas",
+      "to": "bebéis"
+     },
+     {
+      "position": 1,
+      "from": "coche",
+      "to": "beben"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:10:11",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Bebe"
+     },
+     {
+      "position": 0,
+      "from": "Libro",
+      "to": "Bebemos"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Bebéis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:10:12",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Médico",
+      "to": "Bebe"
+     },
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Bebemos"
+     },
+     {
+      "position": 0,
+      "from": "Hermanos",
+      "to": "Bebéis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:10:13",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Bebe"
+     },
+     {
+      "position": 0,
+      "from": "Libro",
+      "to": "Bebemos"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Bebéis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:10:15",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Hermana",
+      "to": "Lee"
+     },
+     {
+      "position": 0,
+      "from": "Banco",
+      "to": "Leemos"
+     },
+     {
+      "position": 0,
+      "from": "Bolsos",
+      "to": "Leéis"
+     },
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Leen"
+     },
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:27",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Escribo"
+     },
+     {
+      "position": 0,
+      "from": "Mensaje",
+      "to": "Escribes"
+     },
+     {
+      "position": 0,
+      "from": "Hermanos",
+      "to": "Escribimos"
+     },
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Escribía"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:31",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Cambio",
+      "to": "Ya"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:32",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Cambio",
+      "to": "Ya"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Cambio",
+      "to": "Ya"
+     },
+     {
+      "position": 1,
+      "from": "los",
+      "to": "comes"
+     },
+     {
+      "position": 1,
+      "from": "una",
+      "to": "come"
+     },
+     {
+      "position": 1,
+      "from": "las",
+      "to": "comemos"
+     },
+     {
+      "position": 1,
+      "from": "un",
+      "to": "coméis"
+     },
+     {
+      "position": 1,
+      "from": "el",
+      "to": "comen"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "ese"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Cambio",
+      "to": "Ya"
+     },
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Puerta",
+      "to": "Vivo"
+     },
+     {
+      "position": 0,
+      "from": "Reserva",
+      "to": "Vive"
+     },
+     {
+      "position": 0,
+      "from": "Coche",
+      "to": "Vivimos"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Vivís"
+     },
+     {
+      "position": 0,
+      "from": "Mensaje",
+      "to": "Viven"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:42",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Los",
+      "to": "Comes"
+     },
+     {
+      "position": 0,
+      "from": "Una",
+      "to": "Come"
+     },
+     {
+      "position": 0,
+      "from": "Las",
+      "to": "Comemos"
+     },
+     {
+      "position": 0,
+      "from": "Un",
+      "to": "Coméis"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:10:44",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Médico",
+      "to": "Leemos"
+     },
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Leéis"
+     },
+     {
+      "position": 0,
+      "from": "Hermanos",
+      "to": "Leen"
+     },
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:45",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Médico",
+      "to": "Leemos"
+     },
+     {
+      "position": 0,
+      "from": "Hermanos",
+      "to": "Leéis"
+     },
+     {
+      "position": 0,
+      "from": "Mensaje",
+      "to": "Leen"
+     },
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone; also \"entre\" (preposition) in determiner slot"
+  },
+  {
+   "id": "es:10:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Casa",
+      "to": "Escribo"
+     },
+     {
+      "position": 0,
+      "from": "Mensaje",
+      "to": "Escribes"
+     },
+     {
+      "position": 0,
+      "from": "Hermanos",
+      "to": "Escribimos"
+     },
+     {
+      "position": 0,
+      "from": "Hotel",
+      "to": "Escribía"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:11:34",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Cambio",
+      "to": "Ya"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:11:36",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "los",
+      "to": "él"
+     },
+     {
+      "position": 2,
+      "from": "quién",
+      "to": "cada"
+     },
+     {
+      "position": 2,
+      "from": "eso",
+      "to": "ese"
+     },
+     {
+      "position": 2,
+      "from": "esto",
+      "to": "esa"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:11:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "los",
+      "to": "ellas"
+     },
+     {
+      "position": 2,
+      "from": "quién",
+      "to": "cada"
+     },
+     {
+      "position": 2,
+      "from": "eso",
+      "to": "ese"
+     },
+     {
+      "position": 2,
+      "from": "esto",
+      "to": "esa"
+     }
+    ]
+   },
+   "why": "distractor(s) of a different word class than the correct tile (nouns/articles/question-or-negation junk where a verb/pronoun/question word is needed) - rejectable by grammar alone"
+  },
+  {
+   "id": "es:09:44",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Hoy trabajas?",
+     "¿Hoy tú trabajas?",
+     "¿Tú hoy trabajas?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:31",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Tú tienes un minuto?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:32",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Tú tienes mi mochila?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:33",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Tú tienes una foto?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:35",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Tú tienes una pregunta?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:39",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Nosotros tenemos una reserva?",
+     "¿Nosotras tenemos una reserva?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:42",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Tú tienes una cita en el banco?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:34",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Yo no tengo mi cargador aquí.",
+     "Aquí no tengo mi cargador.",
+     "Yo no tengo aquí mi cargador."
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:36",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Tiene una reserva?",
+     "¿Tenéis una reserva?",
+     "¿Vosotros tenéis una reserva?",
+     "¿Vosotras tenéis una reserva?",
+     "¿Tienen una reserva?",
+     "¿Ustedes tienen una reserva?",
+     "¿Tienen ustedes una reserva?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:37",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Vosotros tenéis una reserva?",
+     "¿Vosotras tenéis una reserva?",
+     "¿Tiene una reserva?",
+     "¿Tiene usted una reserva?",
+     "¿Usted tiene una reserva?",
+     "¿Ustedes tienen una reserva?",
+     "¿Tienen ustedes una reserva?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:38",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "¿Tienen una reserva?",
+     "¿Tiene una reserva?",
+     "¿Usted tiene una reserva?",
+     "¿Tiene usted una reserva?",
+     "¿Tenéis una reserva?",
+     "¿Vosotros tenéis una reserva?",
+     "¿Vosotras tenéis una reserva?"
+    ]
+   },
+   "why": "natural equivalent not in answers (tú/nosotros pronoun variant, time word first, or usted/ustedes/vosotros reading of \"вы\")"
+  },
+  {
+   "id": "es:11:34",
+   "type": "M",
+   "fix": {
+    "uk": "У мене тут немає мого зарядного пристрою."
+   },
+   "why": "uk \"зарядного\" is an adjective without its noun"
+  },
+  {
+   "id": "es:11:11",
+   "type": "M",
+   "fix": {
+    "uk": "У Ани призначена зустріч."
+   },
+   "why": "uk \"В Ани\" is wrong preposition; should be \"У Ани\" (cf. 11:12)"
+  },
+  {
+   "id": "es:09:12",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:09:13",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "ese"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:09:22",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:09:35",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:09:48",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:03",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:14",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:17",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:18",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:19",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:20",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:26",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:29",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:30",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:33",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:34",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:38",
+   "fix": {
+    "replace": [
+     {
+      "position": 6,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:46",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:47",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:10:48",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:01",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:02",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:03",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:04",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:05",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:06",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:07",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:09",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:12",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:13",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:14",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:15",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Ese"
+     },
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:17",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:20",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:30",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:31",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:35",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:37",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "ese"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:39",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:40",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:42",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:45",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:47",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:11:48",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:01",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:02",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:03",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:04",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:05",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:06",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:07",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:08",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:09",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:10",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:12",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:18",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Unas"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:24",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:26",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:29",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:30",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:31",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:32",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:34",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:35",
+   "fix": {
+    "replace": [
+     {
+      "position": 0,
+      "from": "Entre",
+      "to": "Cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:41",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:42",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "ese"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:43",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:44",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "ese"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:45",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:12:46",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "entre",
+      "to": "cada"
+     }
+    ]
+   },
+   "why": "minor: preposition \"entre\" in determiner slot gives itself away",
+   "type": "B1"
+  },
+  {
+   "id": "es:13:35",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:13:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:13:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:13:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:13:40",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:04",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:06",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:09",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "quién",
+      "to": "le"
+     }
+    ]
+   },
+   "why": "\"quién\" (question word) as clitic distractor"
+  },
+  {
+   "id": "es:14:10",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:11",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:12",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "hermanos",
+      "to": "duchamos"
+     },
+     {
+      "position": 2,
+      "from": "llave",
+      "to": "duchó"
+     },
+     {
+      "position": 2,
+      "from": "mensaje",
+      "to": "duché"
+     }
+    ]
+   },
+   "why": "noun distractors in verb slot give themselves away; "
+  },
+  {
+   "id": "es:14:13",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:15",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:17",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:18",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "hermanos",
+      "to": "duchamos"
+     },
+     {
+      "position": 2,
+      "from": "llave",
+      "to": "duchó"
+     },
+     {
+      "position": 2,
+      "from": "mensaje",
+      "to": "duché"
+     }
+    ]
+   },
+   "why": "noun distractors in verb slot give themselves away; "
+  },
+  {
+   "id": "es:14:19",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "quién",
+      "to": "le"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; \"quién\" (question word) as clitic distractor"
+  },
+  {
+   "id": "es:14:21",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:22",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:24",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:26",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:28",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:29",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "quién",
+      "to": "le"
+     }
+    ]
+   },
+   "why": "\"quién\" (question word) as clitic distractor"
+  },
+  {
+   "id": "es:14:30",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:32",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:34",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:36",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 6,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "quién",
+      "to": "le"
+     }
+    ]
+   },
+   "why": "\"quién\" (question word) as clitic distractor"
+  },
+  {
+   "id": "es:14:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:44",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:45",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:46",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:47",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:48",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:14:49",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "quién",
+      "to": "le"
+     },
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; \"quién\" (question word) as clitic distractor"
+  },
+  {
+   "id": "es:15:01",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:04",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:09",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "con",
+      "to": "sobre"
+     }
+    ]
+   },
+   "why": "\"pagar con efectivo\" is also a correct rendering; "
+  },
+  {
+   "id": "es:15:12",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:13",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:14",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     },
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unas"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:15",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:17",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:18",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:20",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:25",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 1,
+      "from": "contenta",
+      "to": "abre"
+     }
+    ]
+   },
+   "why": "adjective in verb slot; "
+  },
+  {
+   "id": "es:15:26",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:27",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:31",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:32",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:33",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "con",
+      "to": "sobre"
+     }
+    ]
+   },
+   "why": "\"pagar con efectivo\" is also a correct rendering; "
+  },
+  {
+   "id": "es:15:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:41",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:49",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 2,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:07",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:08",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:11",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:12",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:14",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:18",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:19",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:24",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:25",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:26",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 6,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:27",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:28",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:29",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:30",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:36",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:37",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 6,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:38",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:39",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:40",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:43",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:46",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 5,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:47",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:48",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 3,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:16:50",
+   "type": "B1",
+   "fix": {
+    "replace": [
+     {
+      "position": 4,
+      "from": "entre",
+      "to": "unos"
+     }
+    ]
+   },
+   "why": "\"entre\" (preposition) as article distractor; "
+  },
+  {
+   "id": "es:15:21",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy puedo pagar en efectivo."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:22",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy puedes pagar con tarjeta."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:23",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy podemos llamar al hotel."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:24",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy Ana puede llamar a Luis."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:25",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy Luis puede volver a casa."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:26",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy mis hermanas pueden volver a la estación."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:27",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy podemos leer el libro."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:28",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy podéis leer el mensaje."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:29",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy puedo beber agua."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:30",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy puedes beber café."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:11",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Más tarde Ana va a escribir una carta."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:12",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Más tarde vamos a escribir un mensaje."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:13",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Más tarde Luis va a leer el libro."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:17",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Más tarde Luis va a abrir la puerta."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:19",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Más tarde mis hermanos van a preparar la cena."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:20",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Más tarde vamos a preparar la mochila."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:21",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Mañana vamos a pagar en efectivo."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:22",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Mañana vais a pagar con tarjeta."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:24",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Mañana vamos a volver a la estación."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:26",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Mañana mis hermanos van a entrar en la oficina."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:27",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Mañana vamos a mandar la foto."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:28",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Mañana vais a mandar el mapa."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:29",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Mañana mis hermanos van a llevar la maleta."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:30",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Mañana Luis va a llevar la bolsa."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:31",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy no voy a comprar leche."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:33",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy no vamos a preparar arroz."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:34",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy Luis no va a volver a casa."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:35",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy no voy a escribir una carta."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:36",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy Ana no va a escribir un mensaje."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:37",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy mis hermanas no van a preparar la cena."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:39",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy no vas a abrir la puerta."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:16:40",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Hoy Luis no va a abrir la ventana."
+    ]
+   },
+   "why": "time word at sentence start missing from answers"
+  },
+  {
+   "id": "es:14:11",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Por la mañana me ducho."
+    ]
+   },
+   "why": "time phrase at sentence start missing from answers"
+  },
+  {
+   "id": "es:14:13",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Por la mañana Ana se ducha."
+    ]
+   },
+   "why": "time phrase at sentence start missing from answers"
+  },
+  {
+   "id": "es:14:15",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Por la mañana Luis se ducha."
+    ]
+   },
+   "why": "time phrase at sentence start missing from answers"
+  },
+  {
+   "id": "es:14:19",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "Por la mañana no me ducho."
+    ]
+   },
+   "why": "time phrase at sentence start missing from answers"
+  },
+  {
+   "id": "es:15:39",
+   "type": "B3",
+   "fix": {
+    "addAnswers": [
+     "No pueden entrar en la oficina."
+    ]
+   },
+   "why": "usted/ustedes variant missing (prompt Вы; sibling phrases include it)"
+  }
+ ]
+}

@@ -17,12 +17,68 @@
   },
   "es:11.34": {
     "ru": "У меня здесь нет моей зарядки.",
-    "uk": "У мене тут немає мого зарядного.",
-    "reason": "смысловой замер es 05.11: терялось «у меня» из No tengo"
+    "uk": "У мене тут немає мого зарядного пристрою.",
+    "reason": "аудит es 1–16 (05.11): uk \"зарядного\" is an adjective without its noun"
   },
   "es:03.23": {
     "ru": "Вы (вежл.) дома?",
     "uk": "Ви (ввічл.) вдома?",
     "reason": "смысловой замер es 05.11 (B4): «Вы» без пометки — сборщик добавлял «¿Estás en casa?» (ты); usted = вежливое «вы»"
+  },
+  "es:04.03": {
+    "ru": "Я врач (муж.)",
+    "reason": "аудит es 1–16 (05.11): врач is gender-ambiguous; 04:04 same ru"
+  },
+  "es:04.04": {
+    "ru": "Я врач (жен.)",
+    "reason": "аудит es 1–16 (05.11): врач ambiguous, identical ru to 04:03"
+  },
+  "es:04.05": {
+    "ru": "Ты врач (муж.)",
+    "reason": "аудит es 1–16 (05.11): врач ambiguous vs 04:06"
+  },
+  "es:04.22": {
+    "ru": "Мы врачи (муж.)",
+    "reason": "аудит es 1–16 (05.11): ru identical to 04:23"
+  },
+  "es:04.23": {
+    "ru": "Мы врачи (жен.)",
+    "reason": "аудит es 1–16 (05.11): ru identical to 04:22"
+  },
+  "es:04.32": {
+    "ru": "Я и есть врач (жен.)",
+    "reason": "аудит es 1–16 (05.11): ambiguous gender, \"el médico\" also fits; also preposition \"Entre\" in article slot"
+  },
+  "es:04.35": {
+    "ru": "Я и есть гид (жен.)",
+    "uk": "Я і є гід (жін.)",
+    "reason": "аудит es 1–16 (05.11): ambiguous gender, \"el guía\" also fits; also preposition \"Entre\" in article slot"
+  },
+  "es:04.46": {
+    "ru": "Вы (вежл.) врач (жен.)",
+    "reason": "аудит es 1–16 (05.11): article where pronoun needed"
+  },
+  "es:05.27": {
+    "ru": "Кто гид?",
+    "uk": "Хто гід?",
+    "reason": "аудит es 1–16 (05.11): target has no 'у нас'"
+  },
+  "es:06.10": {
+    "ru": "Пальта внутри.",
+    "uk": "Пальта всередині.",
+    "reason": "аудит es 1–16 (05.11): target (first answer) is plural 'Los abrigos', ru singular 'Пальто'"
+  },
+  "es:06.46": {
+    "ru": "Женщина-гид в отеле.",
+    "reason": "аудит es 1–16 (05.11): ru lacks female gender (La guía), duplicates 06:45"
+  },
+  "es:08.35": {
+    "ru": "Мои люди здесь.",
+    "uk": "Мої люди тут.",
+    "reason": "аудит es 1–16 (05.11): 'близкие' != 'gente' (mi gente = мои люди)"
+  },
+  "es:11.11": {
+    "uk": "У Ани призначена зустріч.",
+    "reason": "аудит es 1–16 (05.11): uk \"В Ани\" is wrong preposition; should be \"У Ани\" (cf. 11:12)"
   }
 }

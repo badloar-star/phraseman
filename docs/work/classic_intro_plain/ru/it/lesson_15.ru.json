@@ -1,0 +1,48 @@
+{
+  "lang": "it",
+  "lesson": 15,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что вы делаете сейчас"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, что делаете прямо сейчас.\nSto leggendo il libro. — Я сейчас читаю книгу.\nAna sta scrivendo una lettera. — Ана сейчас пишет письмо.\nStai preparando la cena. — Ты сейчас готовишь ужин.\nСлово sto значит «я сейчас занят этим»."
+      },
+      "exampleIds": [
+        "it:15:01",
+        "it:15:05",
+        "it:15:13"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Sto, stai, sta и дело"
+      },
+      "text": {
+        "ru": "Сначала sto, stai, sta — смотря кто. Потом дело.\nSto leggendo il libro. — Я сейчас читаю книгу.\nStai leggendo il libro. — Ты сейчас читаешь книгу.\nStiamo leggendo il libro. — Мы сейчас читаем книгу.\nState leggendo il messaggio. — Вы сейчас читаете сообщение.\nВторое слово не меняется: leggendo, scrivendo, bevendo."
+      },
+      "exampleIds": [
+        "it:15:01",
+        "it:15:02",
+        "it:15:21",
+        "it:15:22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — итальянские слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Sto → leggendo → il → libro."
+      },
+      "exampleIds": [
+        "it:15:01",
+        "it:15:11"
+      ]
+    }
+  ]
+}

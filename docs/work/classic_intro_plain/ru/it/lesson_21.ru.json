@@ -1,0 +1,46 @@
+{
+  "lang": "it",
+  "lesson": 21,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что-то шло, и вдруг…"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь рассказывать: одно длилось, и тут случилось другое.\nLeggevo quando hai chiamato. — Я читал, когда ты позвонил.\nPioveva quando siamo usciti. — Шёл дождь, когда мы вышли.\nMentre aspettavamo, è uscito il dottore. — Пока мы ждали, вышел врач.\nQuando — «когда», mentre — «пока»."
+      },
+      "exampleIds": [
+        "it:21:01",
+        "it:21:11",
+        "it:21:22"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Фон и событие"
+      },
+      "text": {
+        "ru": "То, что длилось, звучит как в прошлом уроке: leggevo, pioveva.\nТо, что случилось один раз, — с ho или è: hai chiamato, siamo usciti.\nLeggevo quando hai chiamato. — Я читал, когда ты позвонил.\nДлилось — leggevo. Случилось — hai chiamato.\nМожно сказать и через sto: stavamo mangiando — «мы как раз ели».\nStavamo mangiando quando è arrivato Paolo. — Мы ели, когда приехал Паоло."
+      },
+      "exampleIds": [
+        "it:21:01",
+        "it:21:04"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — итальянские слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Leggevo → quando → hai → chiamato."
+      },
+      "exampleIds": [
+        "it:21:01",
+        "it:21:03"
+      ]
+    }
+  ]
+}

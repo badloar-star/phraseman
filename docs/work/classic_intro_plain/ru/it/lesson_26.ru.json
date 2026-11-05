@@ -1,0 +1,48 @@
+{
+  "lang": "it",
+  "lesson": 26,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Сравнить: больше, меньше"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь сравнивать.\nPaolo è più alto di me. — Паоло выше меня.\nL’autobus è più lento del treno. — Автобус медленнее поезда.\nIl tè è caldo come il caffè. — Чай такой же горячий, как кофе.\nPiù — больше, meno — меньше, come — как."
+      },
+      "exampleIds": [
+        "it:26:01",
+        "it:26:07",
+        "it:26:05"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Più … di"
+      },
+      "text": {
+        "ru": "«Выше» по-итальянски — «более высокий»: più alto.\nPaolo è più alto di me. — Паоло выше меня.\nLea è più alta di me. — Леа выше меня.\nС кем сравнивают — после di, del или della.\nQuesto cappotto è più costoso della giacca. — Это пальто дороже куртки.\n«Такой же, как» — come.\nLa zuppa è calda come il tè. — Суп такой же горячий, как чай."
+      },
+      "exampleIds": [
+        "it:26:01",
+        "it:26:02",
+        "it:26:11",
+        "it:26:06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — итальянские слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Paolo → è → più → alto → di → me."
+      },
+      "exampleIds": [
+        "it:26:01",
+        "it:26:03"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "lang": "it",
+  "lesson": 31,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Это случилось ещё раньше"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, что одно случилось ещё раньше другого.\nAvevo già mangiato quando hai chiamato. — Когда ты позвонил, я уже поел.\nLea aveva già asciugato il pavimento. — Леа уже вытерла пол.\nNon avevo visto il cartello. — Я не видел табличку.\nСлово già значит «уже»."
+      },
+      "exampleIds": [
+        "it:31:01",
+        "it:31:03",
+        "it:31:21"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Avevo + дело"
+      },
+      "text": {
+        "ru": "Вы уже знаете ho mangiato — «я поел».\nДля того, что было ещё раньше, вместо ho говорят avevo.\nAvevo già mangiato quando hai chiamato. — Когда ты позвонил, я уже поел.\nAvevamo già prenotato i nostri posti. — Мы уже забронировали свои места.\nAvevo, avevi, aveva, avevamo — смотря кто."
+      },
+      "exampleIds": [
+        "it:31:01",
+        "it:31:04"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — итальянские слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Avevo → già → mangiato → quando → hai → chiamato."
+      },
+      "exampleIds": [
+        "it:31:01",
+        "it:31:06"
+      ]
+    }
+  ]
+}

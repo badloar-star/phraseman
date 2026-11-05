@@ -1,0 +1,48 @@
+{
+  "lang": "it",
+  "lesson": 30,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Нужно, чтобы…"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить «мне нужно», «нужно, чтобы».\nBisogna che io parta. — Мне нужно уйти.\nBisogna che io vada alla posta. — Мне нужно сходить на почту.\nÈ meglio che tu non parta da solo. — Тебе лучше не уходить одному.\nBisogna che значит «нужно, чтобы»."
+      },
+      "exampleIds": [
+        "it:30:01",
+        "it:30:21",
+        "it:30:41"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "После bisogna che слово меняется"
+      },
+      "text": {
+        "ru": "После bisogna che слово про дело звучит по-особому.\nBisogna che io parta. — Мне нужно уйти.\nBisogna che tu parta. — Тебе нужно уйти.\nBisogna che partiamo. — Нам нужно уйти.\nBisogna che partano. — Им нужно уйти.\nЗапоминайте эти слова вместе с bisogna che."
+      },
+      "exampleIds": [
+        "it:30:01",
+        "it:30:02",
+        "it:30:04",
+        "it:30:06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — итальянские слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Bisogna → che → io → parta."
+      },
+      "exampleIds": [
+        "it:30:01",
+        "it:30:03"
+      ]
+    }
+  ]
+}

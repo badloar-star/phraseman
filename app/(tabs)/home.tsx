@@ -107,6 +107,7 @@ import { useCloudProfileRefreshing } from '../cloud_profile_refresh_state';
 import HomeV2ContinueCardBase from '../../components/home/v2/HomeV2ContinueCard';
 import HomeV2FeatureTilesBase from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRailBase from '../../components/home/v2/HomeV2VideoRail';
+import HomeVideoRailLog from '../../components/home/v2/HomeVideoRailLog';
 import HomeV2TodayCardBase from '../../components/home/v2/HomeV2TodayCard';
 import { useTabRetapScrollTop } from '../../hooks/use_tab_retap_scroll_top'; // зачем (удобство №1): повторный тап по вкладке «Главная» — наверх
 import HomeReviewHint from '../../components/home/HomeReviewHint'; // зачем (удобство №8, владелец 04.11): «Повторить N слов · M мин» одной строкой под «Сегодня»
@@ -3016,6 +3017,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <HomeReviewHint lang={lang} active={homeRuntimeActive} />
             {HOME_SCENE_V2_ENABLED && homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2TilesInOrder} reason={`${homeV2TilesReason};lang=${studyTarget};row`} spireLang={String(studyTarget)} uiLang={lang} row /> : null}
             {/* зачем (слово владельца 05.11, «ВЕРНИ БЛОК ВИДЕО НА ГЛАВНУЮ КАК БЫЛО РАНЬШЕ, МЕЖДУ ИКОНКАМИ И ФРАЗОЙ ДНЯ»; отменяет вариант 2 от 22.10): лента видео со «Сценой» — между рядом плиток и «Фразой дня», горизонтальный скролл; условия показа те же, что без «Сцены» */}
+            {HOME_SCENE_V2_ENABLED ? <HomeVideoRailLog buttonEnabled={isVideoButtonEnabled()} videosVisible={!!homeVideosVisible} rankLocked={!!rankLockedVideo} noChannel={!!homeV2VideoNoChannel} langHidden={!!homeVideoLang.hidden} videosCount={Array.isArray(homeV2Videos) ? homeV2Videos.length : 0} status={String(homeV2VideoStatus)} studyTarget={String(studyTarget)} ownerActive={!!homeRuntimeActive} /> : null}
             {HOME_SCENE_V2_ENABLED && isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
               <HomeV2VideoRail videos={homeV2Videos} status={homeV2VideoStatus} ownerActive={homeRuntimeActive} />
             ) : null}

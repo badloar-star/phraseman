@@ -1227,12 +1227,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [postOnboardingGoldBridgeVisible, setPostOnboardingGoldBridgeVisible] = useState(false);
   const [postOnboardingGoldBridgeArmed, setPostOnboardingGoldBridgeArmed] = useState(false);
 
+  // зачем (слово владельца 05.11: «после онбординга появление из жёлтого — если ещё есть, убрать»): после последнего шага Главную закрывал тёплый слой
+  // (градиент rgba(255,224,144,0.34)→rgba(163,104,24,0.16), 3000 мс плавного растворения) — «золотой мост». Теперь Главная (с приветствием
+  // Лингмана и пеленой) появляется сразу: слой не взводится. Ранний выход пишет причину; остаток констант моста — мёртвый код под чистку.
   const armPostOnboardingGoldBridge = useCallback(() => {
-    postOnboardingGoldBridgeAnim.stopAnimation();
-    postOnboardingGoldBridgeAnim.setValue(1);
-    setPostOnboardingGoldBridgeVisible(true);
-    setPostOnboardingGoldBridgeArmed(true);
-  }, [postOnboardingGoldBridgeAnim]);
+    console.log('[ONB-EXIT-REVEAL]', JSON.stringify({ layer: 'gold_bridge', action: 'skipped', colors: POST_ONBOARDING_GOLD_BRIDGE_SCREEN, wouldFadeMs: POST_ONBOARDING_GOLD_BRIDGE_MS })); // guard-ok: слой убран владельцем, причина пропуска
+  }, []);
 
   const beginPostOnboardingGoldBridgeFade = useCallback(() => {
     postOnboardingGoldBridgeAnim.stopAnimation();

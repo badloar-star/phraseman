@@ -24,6 +24,8 @@ import { useTheme } from '../ThemeContext';
 import V2Pressable from '../v2/V2Pressable';
 import { PaywallPlusPlansSkeleton, PaywallPlusPriceNote, paywallPlusCtaCopy } from '../paywall/PaywallPlus';
 import { PlusTabPlans } from './PlusTabPlans';
+import { PlusTabLegalRow } from './PlusTabLegalRow';
+import { plusTabRenewsLine } from './plus_tab_disclosure';
 import { PaywallTierScope } from '../paywall/paywall_tier_context';
 import { ULTRA_PALETTE, pinColorsForTier } from '../plus/plus_ring_spec';
 import {
@@ -154,6 +156,9 @@ export default function PlusTabScreen() {
             : <Text style={[S.ctaText, { color: ctaInk }]}>{ctaShown}</Text>}
         </V2Pressable>
         <Text style={[S.fine, { color: g.secondary }]}>{p.tapNotice ? TRY_LATER[lang] ?? TRY_LATER.en : (STORE_NOTE[lang] ?? STORE_NOTE.en)}</Text>
+        {/* зачем (владелец ~19:40 05.11, вариант Б; Apple 3.1.2 / Google Play): подпись макета выше НЕ меняется; под ней — автопродление выбранного плана и ряд «Условия · Конфиденциальность · Восстановить» */}
+        <Text testID="plus-tab-renews" style={[S.fineRenews, { color: g.secondary }]}>{plusTabRenewsLine(lang, p.selected)}</Text>
+        <PlusTabLegalRow lang={lang} color={g.secondary} restoring={p.restoring} disabled={ctaBusy} onRestore={() => { void p.handleRestore(); }} />
       </ScrollView>
     </PaywallTierScope>
   );
@@ -199,4 +204,5 @@ const S = StyleSheet.create({
   cta: { marginTop: 12, borderRadius: 16, paddingVertical: 15, alignItems: 'center', justifyContent: 'center', minHeight: 50 },
   ctaText: { fontSize: 16, lineHeight: 20, fontWeight: '800' },
   fine: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginTop: 8 },
+  fineRenews: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginTop: 2 },
 });

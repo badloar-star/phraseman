@@ -218,6 +218,8 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'welcomeBack',
     // legacyBonusWelcome — «Встречайте PhraseMan 2.0» (D195): закрывает человек («Понятно»), таймера нет — выселять нельзя.
     'legacyBonusWelcome',
+    // videoReward — окно «Видео просмотрено +500» (05.11): закрывает человек («Следующее видео» / ✕), выселять нельзя
+    'videoReward',
     // coinRankEnough — m14A: закрывает человек («Повысить» / «Позже»), таймера нет — выселять нельзя.
     'coinRankEnough',
     'update', 'releaseNotes', 'broadcast', 'appMessageModal', 'personalAdminMessage', 'notifNudge',

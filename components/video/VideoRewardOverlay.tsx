@@ -16,6 +16,7 @@ import { isVideoFullRewardEnabled } from '../../hooks/use_video_full_rewarded';
 import { VIDEO_FULL_REWARD_COINS } from '../../app/video_full_reward';
 import { dismissVideoFullStory, peekVideoFullStory, subscribeVideoFullStory } from '../../app/video_full_story_state';
 import { useVideoMediaTones } from './video_media_tones';
+import { useOverlayVisible } from '../OverlayArbiter';
 
 const FLASH_MS = 2400;
 
@@ -57,10 +58,13 @@ function VideoRewardStoryHostBase() {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const rank = useMyCoinRank();
+  // зачем (координатор 05.11; инвентарь окон: «моё окно в корне нативным Modal без арбитра»): окно-история идёт ЧЕРЕЗ арбитр — в очередь после штатных окон (ранг/Plus/праздники),
+  // ровно одно нативное окно за раз (без наложения, без мерцания System UI на Android)
+  const arbiterVisible = useOverlayVisible('videoReward', story !== null);
   const close = useCallback(() => dismissVideoFullStory(), []);
   // зачем (макет video_reward v3: главная кнопка «Следующее видео» ведёт в раздел «Видео»; пропустить можно в любой момент — крестик/затемнение)
   const next = useCallback(() => { dismissVideoFullStory(); router.push('/(tabs)/video' as never); }, []);
-  if (!story || !isVideoFullRewardEnabled()) return null;
+  if (!story || !arbiterVisible || !isVideoFullRewardEnabled()) return null;
   const nextLabel = triLang(lang, { ru: 'Следующее видео', uk: 'Наступне відео', en: 'Next video', es: 'Siguiente vídeo', 'pt-BR': 'Próximo vídeo', vi: 'Video tiếp theo', id: 'Video berikutnya', tr: 'Sonraki video', pl: 'Następne wideo' });
   const title = triLang(lang, { ru: 'Видео просмотрено', uk: 'Відео переглянуто', en: 'Video watched', es: 'Vídeo visto', 'pt-BR': 'Vídeo assistido', vi: 'Đã xem video', id: 'Video ditonton', tr: 'Video izlendi', pl: 'Wideo obejrzane' });
   return (

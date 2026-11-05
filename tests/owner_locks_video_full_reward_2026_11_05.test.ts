@@ -69,4 +69,14 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 05.11 — +500 монет за полн�
       expect(`${rel}: ${/досмотрел[аи]? видео до конца|Награда уже на счёте|already (on|in) your (balance|account)|Reward is already/i.test(code(rel))}`).toBe(`${rel}: false`);
     }
   });
+
+  it('окно-история идёт ЧЕРЕЗ арбитр окон (ключ videoReward, после штатных окон ранга/Plus), без наложения', () => {
+    const overlay = code('components/video/VideoRewardOverlay.tsx');
+    expect(overlay).toContain("useOverlayVisible('videoReward', story !== null)");
+    expect(overlay).toContain('!arbiterVisible');
+    const core = code('components/overlay_arbiter_core.ts');
+    expect(core).toContain("'videoReward'");
+    expect(core.indexOf("'coinRankEnough'")).toBeLessThan(core.indexOf("'videoReward'")); // после «Хватает на ранг»
+    expect(core.indexOf("'premiumCelebration'")).toBeLessThan(core.indexOf("'videoReward'")); // после праздника Plus
+  });
 });

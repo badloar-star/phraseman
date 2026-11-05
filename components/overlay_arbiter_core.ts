@@ -22,6 +22,7 @@ export type OverlayKey =
   | 'referralWelcome'
   | 'friendGift'
   | 'friendPairMilestone'
+  | 'videoReward'
   | 'devHub'
   | 'compassBriefing'
   | 'lessonResultsSequence'
@@ -78,6 +79,9 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   // приходит сам, не по тапу. Уступает системным, окнам запуска Главной и сообщениям; закрывает человек («Отлично» / свайп).
   // Шторка в нативном окне (HybridSheetShell) — в NATIVE_MODAL_KEYS.
   'friendPairMilestone',
+  // videoReward — окно-история «Видео просмотрено: +500» (владелец 05.11; координатор: «в очередь после штатных окон (ранг/Plus), без наложения»): стоит ПОСЛЕ окон ранга/Plus/праздников и сообщений,
+  // но перед системными тостами; закрывает человек (выселять нельзя); нативный <Modal> (NATIVE_MODAL_KEYS).
+  'videoReward',
   // DEV Hub owns one uninterrupted slot while handing off from its native
   // tool sheet to an in-tree preview.
   'devHub',
@@ -159,6 +163,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'referralWelcome',
   'friendGift',
   'friendPairMilestone',
+  'videoReward',
   'themedAlert',
   'devHub',
   'compassBriefing',
@@ -215,6 +220,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   referralWelcome: false,
   friendGift: false,
   friendPairMilestone: false,
+  videoReward: false,
   devHub: false,
   compassBriefing: false,
   lessonResultsSequence: false,

@@ -1186,6 +1186,15 @@ for (const lang of LANGS) {
     if (name.startsWith('lessons-')) lessonHash.update(text);
     if (!CHECK_ONLY) { mkdirSync(dir, { recursive: true }); writeFileSync(join(dir, name), text); }
   }
+  // зачем (Координатор 06.11, красный manifest-тест после 513ca7bf8): say.json («Читается» в теории старого формата) собирает не этот сборщик, а
+  // scripts/classic_theory_say_build.mjs; но файл лежит в папке курса, значит обязан быть в manifest.files. Берём готовый файл как есть (чтения не трогаем),
+  // а если его ещё нет — кладём пустой, чтобы пересборка курса не теряла запись и не рассинхронизировала manifest с папкой.
+  {
+    const sayFile = join(dir, 'say.json');
+    const sayText = existsSync(sayFile) ? readFileSync(sayFile, 'utf8') : JSON.stringify({ schema: 'phraseman.classic.say/1', lang, ru: {}, uk: {} }) + '\n';
+    if (!CHECK_ONLY && !existsSync(sayFile)) { mkdirSync(dir, { recursive: true }); writeFileSync(sayFile, sayText); }
+    fileInfo['say.json'] = { bytes: Buffer.byteLength(sayText), sha256: sha256(sayText) };
+  }
   const index = { lang, lessons: 32, phrases: res.phrases, rev: lessonHash.digest('hex'), sourceZipSha256: res.sourceZipSha256 };
   const indexText = JSON.stringify(index) + '\n';
   fileInfo['index.json'] = { bytes: Buffer.byteLength(indexText), sha256: sha256(indexText) };

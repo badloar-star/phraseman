@@ -1,0 +1,562 @@
+[
+ {
+  "lang": "de",
+  "chunk": "03",
+  "id": "de:07:31",
+  "type": "B2",
+  "problem": "uk 'Я читаю листа' — неверная форма (родительный/одушевлённый вин. падеж). Нужно 'Я читаю лист'."
+ },
+ {
+  "lang": "de",
+  "chunk": "03",
+  "id": "de:07:41, de:07:44, de:07:45, de:07:47",
+  "type": "B1",
+  "problem": "Системный шаблон: на позицию артикля (einen/eine/den) поставлены соблазны 'dir, sich, viel, was, ihnen' — местоимения, частица и наречие вместо артиклей. Ученик отсеивает их по классу слов без знания грамматики. Заменить на артикли или формы артикля, например 'einem, einer, eines, ein, der'."
+ },
+ {
+  "lang": "it",
+  "chunk": "01",
+  "id": "it:03:48",
+  "type": "B2",
+  "problem": "«al primo piano» в Италии означает второй этаж по русскому и украинскому счёту. «Комната на первом этаже?» и «Кімната на першому поверсі?» передают «al piano terra», то есть смысл другой (ложный друг)."
+ },
+ {
+  "lang": "it",
+  "chunk": "01",
+  "id": "it:03:10",
+  "type": "B4",
+  "problem": "В alternatives стоит «Sei libero?», это «ты», а подсказка ru/uk «Вы свободны?» / «Ви вільні?», это «вы». Лицо меняется, альтернатива не соответствует подсказке. Нужно убрать «Sei libero?» и при необходимости добавить «Lei è libero?»."
+ },
+ {
+  "lang": "it",
+  "chunk": "01",
+  "id": "it:03:46",
+  "type": "B3",
+  "problem": "Подсказка «Ты сегодня вечером один?» не исключает столь же естественный порядок «Stasera sei solo?» (а также «Sei stasera solo?»). Этих вариантов нет в alternatives, поэтому верный ответ не засчитают."
+ },
+ {
+  "lang": "it",
+  "chunk": "01",
+  "id": "it:03:29",
+  "type": "M",
+  "problem": "В «Il negozio è qui vicino?» потеряно «qui». Ru «Магазин находится рядом?» и uk «Магазин поруч?» дают «рядом», а должно быть «здесь рядом» / «тут поруч», иначе пропадает смысловой элемент и пара qui/qua в alternatives. Предложение для ru: «Магазин здесь рядом?», для uk: «Магазин тут поруч?»."
+ },
+ {
+  "lang": "it",
+  "chunk": "13",
+  "id": "it:27:25",
+  "type": "B1",
+  "problem": "Соблазн «arriverà» на позиции 1 даёт верную естественную фразу «L’idraulico arriverà domattina» (Сантехник придёт завтра утром), её нет в alternatives. Заменить соблазн на глагол другого значения, например «preparerà». Остальные соблазны на этой позиции (ricevuta, ricevuto, portare, presa) из другого класса слов."
+ },
+ {
+  "lang": "it",
+  "chunk": "13",
+  "id": "it:27:16",
+  "type": "B1",
+  "problem": "На позиции глагола «Viaggeranno» все пять соблазнов — существительные и прилагательные (L’idraulico, Rubinetto, Appartamento, Consiglio, Elettronico). Ученик отсеет их по грамматике, не зная слов. Нужны правдоподобные глаголы в будущем времени, например «Arriveranno», «Partiranno», «Aspetteranno»."
+ },
+ {
+  "lang": "it",
+  "chunk": "13",
+  "id": "it:27:30",
+  "type": "B2",
+  "problem": "Target «I lavori dureranno» стоит во множественном числе, а ru «Работа продлится три дня» и uk «Робота триватиме три дні» — в единственном. Должно быть ru «Работы продлятся три дня», uk «Роботи триватимуть три дні»."
+ },
+ {
+  "lang": "it",
+  "chunk": "13",
+  "id": "it:27:44",
+  "type": "B3",
+  "problem": "ru начинается с обстоятельства («После концерта я пойду домой пешком»), а target ставит «dopo il concerto» в конец. В alternatives нет порядка «Dopo il concerto tornerò a casa a piedi», поэтому ученик, следуя ru, получит «ошибка». Нужно добавить эту альтернативу или переписать ru под порядок target."
+ },
+ {
+  "lang": "it",
+  "chunk": "13",
+  "id": "it:28:23",
+  "type": "M",
+  "problem": "ru «Она бы предпочла встретиться утром» — глагол, а в target существительное «un appuntamento di mattina». uk «ранкову зустріч» передаёт его иначе, значит ru и uk расходятся между собой. Единый вариант: ru «Она бы предпочла встречу утром», uk «Вона б воліла зустріч уранці»."
+ },
+ {
+  "lang": "it",
+  "chunk": "13",
+  "id": "it:28:48",
+  "type": "B1",
+  "problem": "Соблазн «chiamarmi» на позиции 1 даёт верную естественную фразу «Potrebbe chiamarmi dopo le dieci?». Разница с «richiamarmi» только в нюансе «пере-» (ru «перезвонить»), и ученик вправе её выбрать. Заменить на глагол другого значения, например «ringraziarmi»."
+ },
+ {
+  "lang": "de",
+  "chunk": "01",
+  "id": "de:04:41",
+  "type": "B1",
+  "problem": "Позиция 1 (ist): соблазн «hat» даёт верную естественную фразу «Heute hat der Laden offen.» (hat offen = ist geöffnet), она подходит под ru и uk, но её нет в alternatives. Заменить «hat» на «gibt» или «wurde»."
+ },
+ {
+  "lang": "de",
+  "chunk": "01",
+  "id": "de:04:42",
+  "type": "B1",
+  "problem": "Позиция 1 (ist): соблазн «hat» даёт верную естественную фразу «Morgen hat das Büro zu.» (hat zu = ist geschlossen), она подходит под ru и uk, но её нет в alternatives. Заменить «hat» на «gibt» или «wurde»."
+ },
+ {
+  "lang": "de",
+  "chunk": "01",
+  "id": "de:04:43",
+  "type": "B1",
+  "problem": "Позиция 2 (ist): соблазн «hat» даёт верную естественную фразу «Am Montag hat das Café offen.», она подходит под ru и uk, но её нет в alternatives. Заменить «hat» на «gibt» или «wurde»."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:07:47",
+  "type": "B1",
+  "problem": "tiles, позиция 0 (Torni): все 5 соблазнов (Chiavi, Biglietti, Occhiali, Posti, Negozi) — существительные в слоте глагола. Ученик отсеивает их по грамматике, настоящих соблазнов нет. Заменить на глагольные формы, например Tornano, Torniamo, Torna, Arrivi."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:08:22",
+  "type": "B1",
+  "problem": "tiles, позиция 1 (parte): все 5 соблазнов (madre, persone, chiave, partita, scarpe) — существительные в слоте глагола, настоящих соблазнов нет. Заменить на глагольные формы, например parti, partono, arriva, chiude."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:08:29",
+  "type": "B1",
+  "problem": "tiles, позиция 3 (parte): все 5 соблазнов (madre, persone, chiave, partita, scarpe) — существительные в слоте глагола, настоящих соблазнов нет. Заменить на глагольные формы, например arriva, parti, finisce, apre."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:08:38",
+  "type": "B1",
+  "problem": "tiles, позиция 2 (prenderete): все 5 соблазнов (chiave, lezione, persone, fame, garage) — существительные в слоте глагола, настоящих соблазнов нет. Заменить на глагольные формы, например prendete, prenderà, prendiamo, arriverete."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:07:39",
+  "type": "B3",
+  "problem": "ru «Они посещают музей» не исключает варианта «Loro visitano il museo.». В остальных фразах с «Они» (07:06, 07:26, 07:30) такой вариант в alternatives есть, здесь его нет, а alternatives пуст. Добавить в alternatives: Loro visitano il museo."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:07:42",
+  "type": "B3",
+  "problem": "ru «Утром я слушаю радио» содержит «я», а «La mattina io ascolto la radio.» в alternatives нет (alternatives пуст). Это естественный вариант с явным местоимением, в соседних фразах такие варианты записаны. Добавить в alternatives: La mattina io ascolto la radio."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:08:05",
+  "type": "B4",
+  "problem": "alternatives «Dove lavori?» меняет лицо: ru «Где вы работаете?» — вежливое «вы» (Lei), а lavori — «ты». Ответ в форме «ты» засчитают как верный. Убрать «Dove lavori?» из alternatives и из accepted."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:08:42",
+  "type": "B4",
+  "problem": "alternatives «Perché sei in ritardo?» меняет лицо: ru «Почему вы опаздываете?» — вежливое «вы», sei — «ты». Убрать «Perché sei in ritardo?» из alternatives и из accepted."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:08:43",
+  "type": "B4",
+  "problem": "alternatives «Come stai?» меняет лицо: ru «Как у вас дела?» и uk «Як у вас справи?» — вежливое «вы», stai — «ты». Убрать «Come stai?» из alternatives и из accepted."
+ },
+ {
+  "lang": "it",
+  "chunk": "03",
+  "id": "it:08:47",
+  "type": "B4",
+  "problem": "alternatives «Che cosa prepari?» меняет лицо: ru «Что вы готовите?» — вежливое «вы», prepari — «ты». Убрать «Che cosa prepari?» из alternatives и из accepted."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:10",
+  "type": "B1",
+  "problem": "Соблазн «olio» на позиции 1 даёт верную естественную фразу «Vorrei olio.» (без партитивного артикля), которой нет в alternatives. Заменить на несвязанное слово, например «dell’acqua»."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:11:11,it:11:12,it:11:27,it:11:28,it:11:37,it:11:41,it:11:44",
+  "type": "B1",
+  "problem": "Системный шаблон соблазнов глагола: «puliti» (причастие/прилагательное), «porta» и «compriamo». Они из другого класса слов и сразу отсеиваются по грамматике, как явный мусор. Заменить на правдоподобные формы andare или близкие глаголы движения."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:15",
+  "type": "B1",
+  "problem": "Позиция «compra»: все соблазны (pallone, figli, d’acqua, panna, pasta) существительные на месте глагола. Нелепо и отсеивается по классу слов."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:35",
+  "type": "B1",
+  "problem": "Позиция «sale»: все соблазны (beve, aggiunge, prende, sceglie, vuoi) глаголы на месте существительного. «Non aggiungi beve?» отсеивается по грамматике без знания слов."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:38",
+  "type": "B1",
+  "problem": "Позиция «c’è»: соблазны una, la, il, un, le — одни артикли на месте глагола. Явный мусор, отсеивается по классу слов."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:40",
+  "type": "B1",
+  "problem": "Позиция «molte»: соблазны te, entrambe, chi, l’ascensore, l’odore не из того класса (местоимение, существительные) и не из темы. Нужны количественные слова, например «tante», «poche»."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:21",
+  "type": "B1",
+  "problem": "Позиция «Bevo»: соблазны Buio, Fondo, Freddo, Vecchio, Grigio — прилагательные и существительные вместо глагола. Явный мусор, нужны формы bere или близкие глаголы."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:50",
+  "type": "B1",
+  "problem": "Позиция «miei» (в it:11:50, у «dei miei genitori»): соблазны l’indirizzo, mi, ti, quante, quanti из другого класса слов, явный мусор. Нужны притяжательные, например «suoi», «tuoi», «nostri». Запись относится к фразе it:11:50, не к it:12:50; в it:12:50 («Metto…») такого дистрактора нет."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:11:43",
+  "type": "B2",
+  "problem": "uk «Я не піду сьогодні до магазину» — будущее время, а target и ru в настоящем («не иду»). Исправить uk: «Я сьогодні не йду до магазину.»"
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:11:15",
+  "type": "B2",
+  "problem": "В target есть «alcuni», а ru «к друзьям» и uk «до друзів» его теряют. Ученик не поймёт, зачем нужна плитка alcuni. Исправить: ru «Мы идём к нескольким друзьям.», uk «Ми йдемо до кількох друзів.»"
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:49",
+  "type": "B2",
+  "problem": "Target «Dividiamo» (делим), а ru «Мы берём одну тарелку… на всех» и uk «Ми беремо…» переведены глаголом «брать» (prendiamo). Смысл «делить» утерян. Исправить: ru «Мы делим одну тарелку картошки фри.», uk «Ми ділимо одну тарілку картоплі фрі.»"
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:12:47",
+  "type": "B3",
+  "problem": "ru «В соусе есть чеснок» и uk «У соусі є часник» начинаются с места, поэтому равно естественен порядок «Nella salsa c’è dell’aglio.». Его нет в alternatives. Добавить в alternatives."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:11:35",
+  "type": "B4",
+  "problem": "В alternatives «Vai in spiaggia in treno?» — форма «ты», а ru «Вы едете». Меняет лицо. Удалить."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:11:41",
+  "type": "B4",
+  "problem": "В alternatives «Dove vai dopo la lezione?» — форма «ты», а ru «вы идёте». Меняет лицо. Удалить."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:11:46",
+  "type": "B4",
+  "problem": "В alternatives «Vai alla reception o alla biglietteria?» — форма «ты», а ru «Вы идёте». Меняет лицо. Удалить."
+ },
+ {
+  "lang": "it",
+  "chunk": "05",
+  "id": "it:11:46",
+  "type": "M",
+  "problem": "reception переведено как «стойка информации» / «стійка інформації». Это information desk, а reception — «ресепшен» / «стойка регистрации». Исправить: ru «Вы идёте на ресепшен или в кассу?», uk «Ви йдете на рецепцію чи до каси?»"
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:21",
+  "type": "B1",
+  "problem": "Соблазн «camera» на позиции stanza даёт верную фразу «Lea è entrata nella camera» (camera = комната). Замена: «tasca»."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:46",
+  "type": "B1",
+  "problem": "Соблазн «per» на позиции «a» даёт верную фразу «Il vicino è sceso per prendere la posta», она совпадает с «спустился за почтой» и не записана в alternatives. Замена: «per» на «su»."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:20:24",
+  "type": "B1",
+  "problem": "Соблазн «grande» на позиции «forte» даёт естественную фразу «Tirava un grande vento», она передаёт «сильно дул ветер». Замена: «grande» на «lungo»."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:20:25",
+  "type": "B1",
+  "problem": "Соблазн «vuota» на позиции «deserta» даёт верную фразу «La strada era vuota», синоним к «пустынна». Замена: «chiusa»."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:20:27",
+  "type": "B1",
+  "problem": "Все 5 соблазнов на позиции «fioca» (comprava, coricava, pioveva, profumava, c’era) — глаголы на месте прилагательного после «era», ученик отсеивает их по грамматике. Нужны прилагательные, например «lenta», «ruvida», «stretta», «dolce», «pesante»."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:20:28",
+  "type": "B1",
+  "problem": "Все соблазны на позиции «profumava» (ferroviaria, coperta, leggera, vicina, lontana, silenzioso) — прилагательные на месте глагола, ученик отсеивает их по грамматике. Нужны глаголы в imperfetto, например «lavorava», «aspettava», «tornava», «cantava», «dormiva»."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:20:44",
+  "type": "B1",
+  "problem": "Соблазн «stava» на позиции «era» даёт верную фразу «La stazione ferroviaria stava in fondo alla strada» (stare = находиться), она совпадает с «находился в конце улицы». Замена: «stava» на «ero»."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:05",
+  "type": "B3",
+  "problem": "Подсказка «Они прибыли»/«Вони прибули» одинакова для «Sono arrivati» и «Sono arrivate» (it:19:06), а в alternatives второго варианта нет. Ученик, выбравший другой род, получит «ошибка». Нужно различить подсказки, например «Они (м.)» и «Они (ж.)», или принимать оба варианта."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:06",
+  "type": "B3",
+  "problem": "Подсказка «Они прибыли»/«Вони прибули» совпадает с it:19:05. Форма «arrivate» неотличима от «arrivati» по ru/uk, а другого варианта в alternatives нет."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:07",
+  "type": "B3",
+  "problem": "Подсказка «Они ушли»/«Вони пішли» одинакова для «Sono partiti» и «Sono partite» (it:19:08). Верный вариант другого рода не засчитают."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:08",
+  "type": "B3",
+  "problem": "Подсказка «Они ушли»/«Вони пішли» совпадает с it:19:07. Род не различим, в alternatives нет «Sono partiti»."
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:09",
+  "type": "B3",
+  "problem": "«Мой брат пришёл» / «Мій брат прийшов» допускает самый естественный порядок «Mio fratello è arrivato», его нет в alternatives и accepted. Добавить «Mio fratello è arrivato.»"
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:10",
+  "type": "B3",
+  "problem": "«Моя сестра пришла» / «Моя сестра прийшла» допускает «Mia sorella è arrivata», его нет в alternatives и accepted. Добавить «Mia sorella è arrivata.»"
+ },
+ {
+  "lang": "it",
+  "chunk": "09",
+  "id": "it:19:37",
+  "type": "B3",
+  "problem": "«Куда они ушли?» / «Куди вони пішли?» не указывает род. «Dove sono andati?» одинаково верно, но в alternatives его нет. Уточнить подсказку («они (ж.)») или добавить «Dove sono andati?»."
+ },
+ {
+  "lang": "de",
+  "chunk": "05",
+  "id": "de:11:26",
+  "type": "B1",
+  "problem": "Соблазн «im» на позиции «am» даёт «Ihr seid im Bahnhof.». Это естественная верная фраза, подходящая под «Вы на вокзале / Ви на вокзалі», и её нет в alternatives. Замена: «im» на «ins» (позиция 2)."
+ },
+ {
+  "lang": "de",
+  "chunk": "05",
+  "id": "de:12:33",
+  "type": "B1",
+  "problem": "Соблазн «eis» на позиции «die» не артикль, а несуществующая строчная форма (путают с Eis). Выглядит как мусор и подсказывает, что вариант ложный. Замена: «eis» на «den» или «das» (позиция 2)."
+ },
+ {
+  "lang": "de",
+  "chunk": "05",
+  "id": "de:12:38",
+  "type": "B1",
+  "problem": "Соблазн «zum» на позиции «ins» даёт «Kommst du mit zum Kino?». Это естественная верная фраза («пойдёшь с нами в кино / у кіно»), и её нет в alternatives. Замена: «zum» на «am» (позиция 3)."
+ },
+ {
+  "lang": "de",
+  "chunk": "09",
+  "id": "de:20:25",
+  "type": "B3",
+  "problem": "ru начинается с «Теперь вы живёте…», естественный порядок «Jetzt wohnt ihr näher am Bahnhof.» подсказкой не исключён, а в alternatives его нет (в похожих de:20:18/19/20 такие варианты записаны)."
+ },
+ {
+  "lang": "de",
+  "chunk": "09",
+  "id": "de:20:34",
+  "type": "B3",
+  "problem": "ru и uk начинаются с «Сегодня/Сьогодні», то есть подсказывают «Heute dauert die Fahrt länger.», а в alternatives этого порядка нет."
+ },
+ {
+  "lang": "de",
+  "chunk": "09",
+  "id": "de:20:31",
+  "type": "B3",
+  "problem": "«Jetzt kosten die Tickets mehr.» естественно и подсказкой не исключено, в alternatives нет (аналогично de:20:19)."
+ },
+ {
+  "lang": "de",
+  "chunk": "09",
+  "id": "de:19:49",
+  "type": "B3",
+  "problem": "«Gestern haben wir uns getroffen.» естественный порядок, подсказка «Мы вчера встречались» его не исключает, в alternatives нет."
+ },
+ {
+  "lang": "de",
+  "chunk": "09",
+  "id": "de:19:31",
+  "type": "B3",
+  "problem": "«Morgen melde ich mich.» естественный порядок, подсказкой не исключён, в alternatives нет."
+ },
+ {
+  "lang": "de",
+  "chunk": "09",
+  "id": "de:19:34",
+  "type": "B3",
+  "problem": "«Am Bahnhof treffen wir uns.» естественный порядок, подсказкой не исключён, в alternatives нет."
+ },
+ {
+  "lang": "de",
+  "chunk": "09",
+  "id": "de:20:34",
+  "type": "M",
+  "problem": "uk «подорож займає більше часу» — Fahrt здесь «поїздка» (так же переведено в de:19:27); «подорож» неестественно для повседневной поездки."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:27:50",
+  "type": "B1",
+  "problem": "Соблазн «ein» на позиции «der» даёт верную фразу «Ist das ein Koffer, den ihr am Bahnhof vergessen habt?». В ru/uk артикля нет, поэтому ответ засчитают как ошибку. Заменить «ein» на «eines»."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:27:46",
+  "type": "B1",
+  "problem": "Соблазн «hatte» на позиции «habe» даёт верную фразу «Der Termin, den ich abgesagt hatte, war am Montag.», она соответствует ru/uk. Заменить на «bin»."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:27:03",
+  "type": "B1",
+  "problem": "Системный шаблон: в слотах существительных стоит одинаковый мусор «Gefahren/Direkten/Essen/Falschen/Kleinen» (от 3 до 5 штук на слот). «Direkten», «Falschen», «Kleinen» — склонённые прилагательные, ученик отсеивает их без знания слова. В слоте имени (Anna, Tom) это тоже нелепо. Нужны правдоподобные существительные того же рода. Затронутые id: de:27:03, de:27:04, de:27:08, de:27:11, de:27:12, de:27:13, de:27:15, de:27:16, de:27:17, de:27:19, de:27:21, de:27:22, de:27:23, de:27:29, de:27:30, de:27:31, de:27:32, de:27:35, de:27:37, de:27:39, de:27:40, de:27:41, de:27:42, de:27:46, de:27:47, de:27:48, de:28:01, de:28:02, de:28:03, de:28:04, de:28:07, de:28:08, de:28:13, de:28:14, de:28:15, de:28:16, de:28:17, de:28:18, de:28:30, de:28:32, de:28:33, de:28:34, de:28:35, de:28:36, de:28:37, de:28:39, de:28:42, de:28:44, de:28:45, de:28:46, de:28:47, de:28:48, de:28:50."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:27:39",
+  "type": "B1",
+  "problem": "Системный шаблон: соблазны другого класса слов, ученик отсеивает их по грамматике. Артикль «einen» заменён личными местоимениями «dir/dich/sich/uns/mich» (de:27:39, de:27:40). «die» перед «Frau» тоже заменён местоимениями (de:27:49). Вместо подлежащего «Sie» стоят артикли «Des/Dem/Das» (de:27:48). «zu» в инфинитивной группе заменено артиклями «des/dem/das» (de:28:23). «weniger» заменено на «das/dem» (de:28:29). «dieser» заменено на «viel/man» (de:28:25). Относительное «der» заменено на «man» (de:27:44). Нужны соблазны того же класса: другие формы артикля, местоимения, наречия. Затронутые id: de:27:39, de:27:40, de:27:44, de:27:48, de:27:49, de:28:23, de:28:25, de:28:29."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:11",
+  "type": "B3",
+  "problem": "Подсказка не исключает порядок «Heute wird das Paket geliefert.». Он так же естественен, а в alternatives его нет. Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:16",
+  "type": "B3",
+  "problem": "Подсказка не исключает «Hier wird das Brot gebacken.». Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:18",
+  "type": "B3",
+  "problem": "Подсказка не исключает «Am Dienstag wird der Müll abgeholt.». Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:19",
+  "type": "B3",
+  "problem": "Подсказка не исключает «Im Keller wird die Wäsche gewaschen.». Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:21",
+  "type": "B3",
+  "problem": "Подсказка не исключает «Mit Karte wird hier bezahlt.». Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:32",
+  "type": "B3",
+  "problem": "ru и uk начинаются с обстоятельства («У входа…» в ru), а target ставит «am Eingang» в конец. Фраза «Am Eingang werden die Leute von einem Kollegen begrüßt.» не принята. Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:34",
+  "type": "B3",
+  "problem": "ru/uk начинаются с «После занятия / Після заняття». Фраза «Nach dem Kurs wird der Tisch zusammengeklappt.» не принята. Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:36",
+  "type": "B3",
+  "problem": "Подсказка не исключает «Gestern wurde die Tür gestrichen.». Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:39",
+  "type": "B3",
+  "problem": "ru/uk начинаются с «Вчера/Вчора», что соответствует порядку «Gestern wurde das Handy gefunden.». Этой фразы нет в alternatives. Добавить."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:50",
+  "type": "B3",
+  "problem": "ru/uk начинаются с «У входа / Біля входу». Фраза «Am Eingang muss der Ausweis gezeigt werden.» не принята. Добавить в alternatives."
+ },
+ {
+  "lang": "de",
+  "chunk": "13",
+  "id": "de:28:29",
+  "type": "M",
+  "problem": "uk «Ці лампи споживають менше електроенергії» построено на активном подлежащем и теряет «Mit diesen Lampen», в отличие от ru «С этими лампами расходуется…». Предложение: «З цими лампами витрачається менше електроенергії.»"
+ }
+]

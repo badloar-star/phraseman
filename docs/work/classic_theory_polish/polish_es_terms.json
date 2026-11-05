@@ -1043,5 +1043,35 @@
   "id": "lesson-32/terms",
   "field": "localized.uk.tables[2].title",
   "fix": "hablar · Форма «би»"
+ },
+ {
+  "id": "lesson-21/meta",
+  "field": "localized.ru.choose",
+  "fix": "Llamé — я позвонил. Llamó — он или она позвонили. Это разные слова, менять их местами нельзя. По концу слова видно, кто позвонил."
+ },
+ {
+  "id": "lesson-32/plain",
+  "field": "localized.ru.formula",
+  "fix": "si + особая форма (comprara) → форма «бы» (compraría)"
+ },
+ {
+  "id": "lesson-32/plain",
+  "field": "localized.uk.formula",
+  "fix": "si + особлива форма (comprara) → форма «би» (compraría)"
+ },
+ {
+  "id": "lesson-21/meta",
+  "field": "localized.ru.chapters[1].body",
+  "fix": "Llamé — я позвонил. Llamó — он или она позвонили. Это разные слова, менять их местами нельзя. По концу слова видно, кто позвонил."
+ },
+ {
+  "id": "lesson-21/meta",
+  "field": "localized.uk.choose",
+  "fix": "Llamé — я зателефонував. Llamó — він або вона зателефонували. Це різні слова, міняти їх місцями не можна. За кінцем слова видно, хто телефонував."
+ },
+ {
+  "id": "lesson-21/meta",
+  "field": "localized.uk.chapters[1].body",
+  "fix": "Llamé — я зателефонував. Llamó — він або вона зателефонували. Це різні слова, міняти їх місцями не можна. За кінцем слова видно, хто телефонував."
  }
 ]

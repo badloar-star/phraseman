@@ -53,6 +53,9 @@
     "móvil": {"pt-BR": "celular"},
     "gracias": {"pt-BR": "obrigado"},
     "favor": {"pt-BR": "favor"},
-    "noche": {"pt-BR": "noite"}
+    "noche": {"pt-BR": "noite"},
+    "un / una": {"ru": "один, одна · какой-то (перед словом)", "uk": "один, одна · якийсь (перед словом)", "en": "a, an · one"},
+    "haber": {"ru": "есть, имеется (hay) · перед действием: he comido — я поел", "uk": "є, наявне (hay) · перед дією: he comido — я поїв", "en": "there is (hay) · before an action: he comido — I have eaten"},
+    "estar": {"ru": "быть, находиться · estoy comiendo — я сейчас ем", "uk": "бути, перебувати · estoy comiendo — я зараз їм", "en": "to be (state, place) · estoy comiendo — I am eating"}
   }
 }

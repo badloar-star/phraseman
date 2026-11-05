@@ -1,0 +1,76 @@
+{
+ "_note": "fr: самопроверка 100 случайных фраз (цель ≤15% проблем). Исправлены подсказки en/es; накладывает сборщик classic_course_pack.mjs (слой TRANSLATION_FIXES).",
+ "fr:21.49": {
+  "en": "The passengers were waiting when the information on the screen changed.",
+  "es": "Los pasajeros esperaban cuando cambió la información en la pantalla.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:32.44": {
+  "en": "If you offered a solution, I would listen to it.",
+  "es": "Si propusieras una solución, la escucharía.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:22.38": {
+  "es": "Pueden ponerlos ahí.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:22.27": {
+  "es": "¿La quiere?",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:23.32": {
+  "en": "She doesn't talk to them about the price.",
+  "es": "Ella no les habla del precio.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:11.41": {
+  "es": "¿Adónde van después de clase?",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:07.35": {
+  "es": "Está preparando el almuerzo.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:16.03": {
+  "es": "¡Espera!",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:12.40": {
+  "es": "Ella compra muchas verduras.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:15.49": {
+  "es": "Verán la salida a la derecha.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:14.48": {
+  "es": "Puede quedarse con el cambio.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:19.43": {
+  "en": "The two (female) friends came on foot.",
+  "es": "Las dos amigas vinieron a pie.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:23.06": {
+  "es": "Ustedes hablan con ellos.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:22.17": {
+  "es": "Los boletos los imprimo.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:10.17": {
+  "es": "Hay un mensaje para usted.",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:16.31": {
+  "es": "¡No corras!",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ },
+ "fr:16.39": {
+  "en": "Don't wait in front of the exit!",
+  "es": "¡No esperen delante de la salida!",
+  "reason": "самопроверка смысла 100 случайных фраз fr (Теория, 05.11): подсказки en/es"
+ }
+}

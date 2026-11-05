@@ -217,7 +217,7 @@ function buildPhrase(lang, prof, r, where) {
   if (lang === 'en') { src.en = r.english; src.ru = r.russian; src.uk = r.ukrainian; src.es = r.spanish; }
   const fixKey = (() => { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); return m ? `${lang}:${m[1]}:${m[2]}` : ''; })();
   const tfix = TRANSLATION_FIXES.get(fixKey);
-  if (tfix) { usedTranslationFixes.add(fixKey); for (const l of ['ru', 'uk']) if (nonEmpty(tfix[l])) src[l] = tfix[l]; }
+  if (tfix) { usedTranslationFixes.add(fixKey); for (const l of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) if (nonEmpty(tfix[l])) src[l] = tfix[l]; } // зачем (самопроверка fr 05.11): правки подсказок en/es из аудита смысла, не только ru/uk
   if (tp) for (const l of ['ru', 'uk']) if (nonEmpty(tp[l])) src[l] = tp[l];
   // ru/uk: убираем невидимые символы нулевой ширины и добавляем конечный знак, если его нет (Координатор 04.11, EN 07.21/07.46/08.19)
   for (const l of ['ru', 'uk']) {

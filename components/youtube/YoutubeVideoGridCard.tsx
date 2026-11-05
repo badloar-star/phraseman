@@ -2,6 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
+import VideoRewardBadge from '../video_reward/VideoRewardBadge';
 import type { YoutubeVideoSnapshot } from '../../shared/youtube_catalog_contract';
 import { formatRelativeVideoDate } from '../video/formatRelativeVideoDate';
 import { formatVideoDuration } from '../video/formatVideoDuration';
@@ -59,6 +60,8 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, onToggleSave, highlig
         <View style={[styles.thumb, { backgroundColor: g.opaqueControl }, highlighted ? { boxShadow: raisedBoxShadow(g), transform: [{ translateY: RAISED_LIFT }] } : { boxShadow: plateBoxShadow(g) }]}>
           {/* Лента: только диск — декодированные обложки ушедших карточек не держим в памяти. */}
           <Image accessible={false} source={{ uri: feedThumbUrl(video.thumbnailUrl, true) }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} cachePolicy="disk" recyclingKey={video.id} />
+          {/* зачем (макет video-reward-2026-11-05, слово владельца): плашка награды слева сверху обложки; под флагом VIDEO_REWARD_BADGE_ENABLED, название и длительность не закрыты */}
+          <VideoRewardBadge videoId={video.id} durationSec={video.durationSec} live={video.state === 'live'} />
           {duration ? <View style={[styles.duration, { backgroundColor: media.badge }]} pointerEvents="none"><Text style={[styles.durationText, { color: media.ink }]}>{duration}</Text></View> : null}
         </View>
         {/* зачем (владелец 11.10: «названия слишком крупные — в половину меньше, компактно и красиво»): 13/17 вес 600, максимум 2 строки;

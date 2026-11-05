@@ -16,6 +16,7 @@ import { withHomeChildCost } from '../../../app/home_focus_cost_probe';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import { orderHomeVideos, type WatchedVideoMap } from '../../../app/home_video_order';
 import { readWatchedVideos } from '../../../app/home_video_watched';
+import VideoRewardBadge from '../../video_reward/VideoRewardBadge';
 // зачем ([HOME-CHILD-COST] 18.10): превью видео — кандидат на «nested-update» рейки (8–16 мс на возврате): измеряем отдельно; dev, в релизе тот же компонент
 const VideoThumb = withHomeChildCost('video_thumb', VideoThumbBase);
 
@@ -59,6 +60,8 @@ const VideoRailCards = memo(function VideoRailCards({ videos, title, plateColor,
           {/* зачем (координатор 12.10, [THUMB] + запасной вид): превью — через общий VideoThumb; при ошибке/пустом адресе вместо серой пустой плитки — название на собственной плашке ленты,
               ▶ остаётся тот же внизу слева, новых запросов и повторов нет */}
           <VideoThumb surface="home_video_rail" id={video.id} videoId={video.id} thumbUrl={video.thumbnailUrl || null} title={video.title} g={glass} showTitle showPlay={false} fallbackBackground="transparent" />
+          {/* зачем (макет video-reward-2026-11-05): плашка награды слева сверху обложки, без подписей; сама решает, показываться ли (флаг, длительность, получено) */}
+          <VideoRewardBadge videoId={video.id} durationSec={video.durationSec} />
           <View style={s.cardContent}>
             <Ionicons name="play-circle" size={26} color="#FFFFFF" /* theme-exempt: белая иконка play лежит на превью ролика (фото), не на фоне темы */ />
           </View>
@@ -75,7 +78,7 @@ const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos: sourceVi
   const glass = useShadowGlass();
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   // зачем (слово владельца 05.11): новое — первым, просмотренное — в конец; порядок пересчитывается при возврате на Главную, прокрутка — в начало.
-  // «Просмотрено» читается локально (home_video_watched, без Firestore); пока события «досмотрел» нет — порядок источника.
+  // «Просмотрено» читается локально (home_video_watched, без Firestore); пока события полного просмотра нет — порядок источника.
   const [watched, setWatched] = useState<WatchedVideoMap>({});
   useEffect(() => {
     if (!ownerActive) return undefined;
@@ -144,7 +147,7 @@ const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos: sourceVi
           <View style={[s.placeholderCard, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA) }]} />
         </View>
       )}
-      {VideoPlayerModal && selectedVideo ? <VideoPlayerModal video={selectedVideo} onClose={() => setActiveVideoId(null)} /> : null}
+      {VideoPlayerModal && selectedVideo ? <VideoPlayerModal video={selectedVideo} durationSec={selectedVideo.durationSec} live={false} onClose={() => setActiveVideoId(null)} /> : null}
     </View>
   );
 });

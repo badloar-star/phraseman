@@ -39,55 +39,6 @@ const entries = ['gold', 'silver', 'bronze'].map((id, index) => ({
 }));
 
 describe('monthly podium navigation', () => {
-  beforeEach(() => {
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 10, 15));
-    mockPush.mockClear();
-    packSocialLive.reset();
-    packSocialLive.setContestEntries('2026-11', entries);
-  });
-  afterEach(async () => { await cleanup(); jest.restoreAllMocks(); });
-
-  it('opens the exact pack at each place, independent of catalogue order and lifetime likes', async () => {
-    const onOpen = jest.fn();
-    await render(<CommunityContestStage packs={packs} lang="ru" authorId={null} onOpen={onOpen} />);
-    for (const [index, id] of ['gold', 'silver', 'bronze'].entries()) {
-      await fireEvent.press(screen.getByTestId(`community-podium-${index + 1}`));
-      expect(onOpen).toHaveBeenLastCalledWith(packs.find(pack => pack.id === id));
-    }
-    expect(onOpen).toHaveBeenCalledTimes(3);
-    expect(mockPush).not.toHaveBeenCalled();
-    expect(screen.getByText('♥ 30')).toBeTruthy();
-    expect(screen.queryByText('♥ 1000')).toBeNull();
-  });
-
-  it('opens the server-ranked ID even when that pack is absent from the loaded catalogue', async () => {
-    const onOpen = jest.fn();
-    await render(<CommunityContestStage packs={[]} lang="ru" authorId={null} onOpen={onOpen} />);
-    await fireEvent.press(screen.getByTestId('community-podium-2'));
-    expect(mockPush).toHaveBeenCalledWith({ pathname: '/flashcards_collection', params: { pack: 'silver', preview: '1', scene: 'community', from: 'community' } });
-    expect(onOpen).not.toHaveBeenCalled();
-  });
-
-  it('does not expose active podium buttons before the first contest', async () => {
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 9, 26));
-    await render(<CommunityContestStage packs={packs} lang="ru" authorId={null} onOpen={jest.fn()} />);
-    for (const place of [1, 2, 3]) expect(screen.queryByTestId(`community-podium-${place}`)).toBeNull();
-    expect(screen.getByText('До начала конкурса')).toBeTruthy();
-  });
-
-  it('can render a future reference month only with explicitly supplied fixture authors', async () => {
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 9, 26));
-    const authors = Object.fromEntries(packs.map(pack => [pack.id, { name: pack.id, coinRank: 0, isPremium: false }]));
-    const fixturePacks = packs.map(pack => ({ ...pack, firstPublishedAtMs: Date.UTC(2026, 9, 1) }));
-    await render(<CommunityContestStage packs={fixturePacks} authors={authors} referenceNowMs={Date.UTC(2026, 10, 15)} lang="ru" authorId={null} onOpen={jest.fn()} />);
-    expect(screen.getByText('До конца конкурса')).toBeTruthy();
-    expect(screen.getByTestId('community-podium-1')).toBeTruthy();
-  });
-
-  it('ignores the reference date on the real catalogue path', async () => {
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 9, 26));
-    await render(<CommunityContestStage packs={packs} referenceNowMs={Date.UTC(2026, 10, 15)} lang="ru" authorId={null} onOpen={jest.fn()} />);
-    expect(screen.getByText('До начала конкурса')).toBeTruthy();
-    expect(screen.queryByTestId('community-podium-1')).toBeNull();
-  });
+  // зачем (слово владельца 05.11, «Наборы» rev8): пьедестала и «места набора» в герое конкурса нет — навигация с пьедестала снята; сцена проверяется в community_contest_hero_2026_11_05.test.ts
+  it.todo('podium removed: see community_contest_hero_2026_11_05');
 });

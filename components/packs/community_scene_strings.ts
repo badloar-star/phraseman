@@ -67,6 +67,7 @@ const BY_RU: Readonly<Record<string, Nine>> = {
   'Понятно': { uk: 'Зрозуміло', es: 'Entendido', ptBr: 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Jasne' },
   'До начала конкурса': { uk: 'До початку конкурсу', es: 'Empieza en', ptBr: 'Começa em', vi: 'Bắt đầu sau', id: 'Dimulai dalam', tr: 'Başlamasına', pl: 'Start za' },
   'До конца конкурса': { uk: 'До кінця конкурсу', es: 'Termina en', ptBr: 'Termina em', vi: 'Kết thúc sau', id: 'Berakhir dalam', tr: 'Bitmesine', pl: 'Koniec za' },
+  'Набор месяца': { uk: 'Набір місяця', es: 'Pack del mes', ptBr: 'Pacote do mês', vi: 'Bộ thẻ của tháng', id: 'Paket bulan ini', tr: 'Ayın paketi', pl: 'Zestaw miesiąca' },
   'Условия участия': { uk: 'Умови участі', es: 'Cómo participar', ptBr: 'Como participar', vi: 'Thể lệ', id: 'Syarat ikut', tr: 'Katılım koşulları', pl: 'Zasady udziału' },
   'Твой набор': { uk: 'Твій набір', es: 'Tu pack', ptBr: 'Seu pacote', vi: 'Bộ thẻ của bạn', id: 'Paketmu', tr: 'Paketin', pl: 'Twój zestaw' },
   'место': { uk: 'місце', es: 'puesto', ptBr: 'lugar', vi: 'hạng', id: 'peringkat', tr: 'sıra', pl: 'miejsce' },
@@ -84,6 +85,15 @@ export function communityDaysLabel(lang: Lang, n: number): string {
   return triLang(lang, {
     ru: w('день', 'дня', 'дней'), uk: w('день', 'дні', 'днів'), en: w('day', 'days', 'days'), es: w('día', 'días', 'días'),
     'pt-BR': w('dia', 'dias', 'dias'), vi: `${n} ngày`, id: `${n} hari`, tr: `${n} gün`, pl: w('dzień', 'dni', 'dni'),
+  });
+}
+
+/** «Ещё 5 дней» — сколько осталось до конца конкурса (макет «Наборы» rev8: «Набор месяца / Ещё N дней»). */
+export function communityDaysLeftLabel(lang: Lang, n: number): string {
+  const w = (one: string, few: string, many: string) => pluralWord(lang, n, { one, few, many });
+  return triLang(lang, {
+    ru: `Ещё ${n} ${w('день', 'дня', 'дней')}`, uk: `Ще ${n} ${w('день', 'дні', 'днів')}`, en: `${n} ${w('day', 'days', 'days')} left`, es: `Quedan ${n} ${w('día', 'días', 'días')}`,
+    'pt-BR': `Faltam ${n} ${w('dia', 'dias', 'dias')}`, vi: `Còn ${n} ngày`, id: `Tersisa ${n} hari`, tr: `${n} gün kaldı`, pl: `Jeszcze ${n} ${w('dzień', 'dni', 'dni')}`,
   });
 }
 

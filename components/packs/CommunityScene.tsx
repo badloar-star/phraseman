@@ -1,4 +1,3 @@
-import { useRouter } from 'expo-router';
 /** Native counterpart of community-scene-v3; geometry follows the approved 430 dp reference. */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
@@ -13,16 +12,15 @@ import { homeSceneTokensForTheme, homeSceneOklchOf } from '../home/v2/scene/home
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import { useCommunityAuthor } from '../../app/community_packs/packAuthorNames';
 import { packTitleForInterface, type FlashcardMarketPack } from '../../app/flashcards/marketplace';
-import { triLang, type Lang } from '../../constants/i18n';
-import { COMMUNITY_CONTEST_FIRST_MONTH, communityContestSchedule, contestMonth, rankContestEntries } from '../../shared/community_month_contest';
+import type { Lang } from '../../constants/i18n';
+import { communityContestSchedule, contestMonth } from '../../shared/community_month_contest';
 
 import { packSocialLive } from '../../app/community_packs/packSocialLive';
 import { callCommunityMonthGetRanking } from '../../app/community_packs/functionsClient';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../../app/account_generation';
 import { DebugLogger } from '../../app/debug-logger';
 // зачем (координатор 29.10, Переводчик): LP раньше отдавал украинцу и испанцу английский — теперь 9 языков по словарю
-import { communitySceneText } from './community_scene_strings';
-import { communityContestMonthStore, monthlyContestPlace } from './community_scene_shared';
+import { communityDaysLabel, communityDaysLeftLabel, communitySceneText } from './community_scene_strings';
 import { communityTilePropsEqual } from './community_tile_props_equal';
 
 export type CommunitySceneAuthor = Readonly<{ name: string; coinRank: number; isPremium: boolean }>;
@@ -80,9 +78,9 @@ function AuthorCoin({ pack, lang, size = 22, authorOverride }: Readonly<{ pack: 
   return <Image source={coinRankRowForDisplay(author.coinRank ?? 0).source} style={{ width: size, height: size }} contentFit="contain" accessibilityElementsHidden />;
 }
 
-function CommunitySceneTileImpl({ pack, lang, likes, onOpen, onLongPress, authorOverride, heart, referencePlace }: Readonly<{
+function CommunitySceneTileImpl({ pack, lang, likes, onOpen, onLongPress, authorOverride, heart }: Readonly<{
   pack: FlashcardMarketPack; lang: Lang; likes: number; onOpen: () => void; onLongPress?: () => void; authorOverride?: CommunitySceneAuthor; heart?: React.ReactNode;
-  /** Visual fixtures only; ignored without an explicit fixture author. */
+  /** Больше не рисуется (место набора убрано, 05.11); поле оставлено, чтобы вызовы превью не ломались. */
   referencePlace?: number;
 }>): React.JSX.Element {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
@@ -90,19 +88,11 @@ function CommunitySceneTileImpl({ pack, lang, likes, onOpen, onLongPress, author
   const { g, c } = useMemo(() => ({ g: liquidGlassTokens(liquidGlassThemeId), c: homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance) }), [liquidGlassThemeId, liquidGlassAppearance]);
   const resolvedAuthor = useCommunityAuthor(authorOverride ? null : pack, lang);
   const author = authorOverride ?? resolvedAuthor;
-  // зачем (оптимизация плиток 29.10): один таймер и один слушатель AppState на весь список (community_scene_shared), месяц меняется на границе без сети
-  const month = useSyncExternalStore(communityContestMonthStore.subscribe, communityContestMonthStore.get, communityContestMonthStore.get);
-  // зачем: подписка на ЧИСЛО — сердечко у другого набора место этой плитки не меняет, и плитка не перерисовывается; таблица мест одна на версию хранилища
-  const placeLive = month.id >= COMMUNITY_CONTEST_FIRST_MONTH && !authorOverride;
-  const readPlace = (): number => (placeLive ? monthlyContestPlace(pack.id, month) : 0);
-  const monthlyPlace = useSyncExternalStore(packSocialLive.subscribe, readPlace, readPlace);
-  const place = authorOverride && typeof referencePlace === 'number' && Number.isSafeInteger(referencePlace) && referencePlace > 0
-    ? referencePlace : monthlyPlace;
+  // зачем (слово владельца 05.11, «Наборы» rev8: «место набора» убрано): бейджа месячного места на плитке больше нет — ни подписки на хранилище, ни таймера месяца
   return <KitTouchable testID={`community-scene-tile-${pack.id}`} accessibilityRole="button" accessibilityLabel={packTitleForInterface(pack, lang)} onPress={onOpen} onLongPress={onLongPress} style={s.tile}>
     <LinearGradient colors={[c.sceneTop, c.sceneBottom]} style={StyleSheet.absoluteFill} />
     <LinearGradient colors={[g.accentGlow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: .3, y: .8 }} style={StyleSheet.absoluteFill} />
     <View style={s.tileCount}><Ionicons name="copy-outline" size={13} color={WHITE} /><Text style={s.count}>{pack.cardCount}</Text></View>
-    {place > 0 ? <View testID={`community-month-place-${pack.id}`} accessible accessibilityLabel={triLang(lang, { ru: `${place} место в конкурсе месяца`, uk: `${place} місце в конкурсі місяця`, es: `Puesto ${place} en el concurso del mes`, en: `Place ${place} in the monthly contest`, 'pt-BR': `${place}º lugar no concurso do mês`, vi: `Hạng ${place} trong cuộc thi tháng`, id: `Peringkat ${place} di kontes bulanan`, tr: `Aylık yarışmada ${place}. sıra`, pl: `${place}. miejsce w konkursie miesiąca` })} style={s.tileRank}><Text style={s.tileRankText}>{place}</Text></View> : null}
     <Text style={s.tileTitle}>{packTitleForInterface(pack, lang)}</Text>
     <View style={s.author}><AuthorCoin pack={pack} lang={lang} authorOverride={authorOverride} /><Text style={s.authorName}>{author.name}</Text>{heart ?? <><Ionicons name="heart-outline" size={14} color={WHITE} /><Text style={s.count}>{likes}</Text></>}</View>
   </KitTouchable>;
@@ -135,13 +125,12 @@ export function CommunityContestRules({ visible, lang, onClose }: Readonly<{ vis
   </Modal>;
 }
 
-export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset = 100, authors, referenceNowMs }: Readonly<{
-  packs: readonly FlashcardMarketPack[]; lang: Lang; onOpen: (pack: FlashcardMarketPack) => void; authorId: string | null; topInset?: number; authors?: Readonly<Record<string, CommunitySceneAuthor>>;
+export function CommunityContestStage({ packs, lang, authorId, topInset = 100, authors, referenceNowMs }: Readonly<{
+  packs: readonly FlashcardMarketPack[]; lang: Lang; /** Оставлен для совместимости вызовов: пьедестала (и открытия набора с него) больше нет. */ onOpen?: (pack: FlashcardMarketPack) => void; authorId: string | null; topInset?: number; authors?: Readonly<Record<string, CommunitySceneAuthor>>;
   /** Visual fixtures only; ignored without fixture authors, never sent to the server. */
   referenceNowMs?: number;
 }>): React.JSX.Element {
   const [rules, setRules] = useState(false);
-  const router = useRouter();
   const [liveNowMs, setNowMs] = useState(Date.now);
   useEffect(() => {
     const refresh = () => setNowMs(previous => {
@@ -169,46 +158,24 @@ export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset 
     }).catch((error: unknown) => { DebugLogger.warn('community:month-ranking', String(error)); });
     return () => { live = false; };
   }, [authorId, authors, month.id, schedule.phase]);
-  const ranked = (() => {
-    if (schedule.phase !== 'active') return [];
-    // Fixtures declare their monthly scores explicitly. Production never falls back to lifetime likes.
-    const entries = authors ? packs.map(p => ({ id: p.id, authorId: p.authorStableId ?? '', title: packTitleForInterface(p, lang), hearts: p.likesCount ?? 0, publishedAtMs: p.firstPublishedAtMs ?? 0, status: p.listingStatus ?? '' })) : packSocialLive.contestEntries(month.id);
-    const ids = rankContestEntries(entries, month);
-    const byId = new Map(packs.map(p => [p.id, p]));
-    return ids.map(e => ({ hearts: e.hearts, known: byId.has(e.id), pack: byId.get(e.id) ?? {
-      id: e.id, codeName: e.title, titleRu: e.title, titleUk: e.title, titleEs: e.title,
-      descriptionRu: '', descriptionUk: '', descriptionEs: '', category: 'daily' as const,
-      cardCount: 0, priceShards: 0, salesCount: 0, updatedAt: new Date(e.publishedAtMs).toISOString(),
-      authorStableId: e.authorId, authorName: '', isOfficial: false, isCommunityUgc: true, listingStatus: 'published' as const,
-    } }));
-  })();
-  const mine = ranked.findIndex(row => row.pack.authorStableId === authorId);
   const LP = (ru: string, en: string): string => communitySceneText(lang, ru, en);
   // зачем (координатор 05.11, владелец: «Наборы» без героя): лог [SETS-HERO] — видно, отрисована ли сцена и с каким числом наборов
-  console.log('[SETS-HERO] stage render', JSON.stringify({ packs: packs.length, lang, hasAuthor: authorId !== null, topInset, mine: mine }));
+  console.log('[SETS-HERO] stage render', JSON.stringify({ packs: packs.length, lang, hasAuthor: authorId !== null, topInset, phase: schedule.phase, days: schedule.days })); // guard-ok: одна строка на отрисовку сцены
+  // зачем (макет «Наборы» rev8, слово владельца: пьедестала и «места набора» нет): «Набор месяца» / «Ещё N дней» / кнопка «Условия участия ›», арт-карточки справа
   return <View style={[s.stage, { paddingTop: topInset }]}><CommunitySceneBackdrop /><CommunitySceneFan />
-    <View style={s.stageCopy}><Text style={s.kicker}>{schedule.phase === 'upcoming' ? LP('До начала конкурса', 'Contest starts in') : LP('До конца конкурса', 'Contest ends in')}</Text><Text style={s.stageTitle}>{LP(`${schedule.days} ${schedule.days % 10 === 1 && schedule.days % 100 !== 11 ? 'день' : schedule.days % 10 >= 2 && schedule.days % 10 <= 4 && (schedule.days % 100 < 12 || schedule.days % 100 > 14) ? 'дня' : 'дней'}`, `${schedule.days} ${schedule.days === 1 ? 'day' : 'days'}`)}</Text>
-      <KitTouchable onPress={() => setRules(true)} accessibilityRole="button" style={s.rulesButton}><Text style={s.ruleLabel}>{LP('Условия участия', 'How to take part')}</Text><Ionicons name="chevron-forward" size={14} color={WHITE} /></KitTouchable>
+    <View style={s.stageCopy}><Text style={s.kicker}>{schedule.phase === 'upcoming' ? LP('До начала конкурса', 'Contest starts in') : LP('Набор месяца', 'Pack of the month')}</Text><Text testID="community-contest-days" style={s.stageTitle}>{schedule.phase === 'upcoming' ? communityDaysLabel(lang, schedule.days) : communityDaysLeftLabel(lang, schedule.days)}</Text>
+      <KitTouchable testID="community-contest-rules" onPress={() => setRules(true)} accessibilityRole="button" style={s.rulesButton}><Text style={s.ruleLabel}>{LP('Условия участия', 'How to take part')}</Text><Ionicons name="chevron-forward" size={14} color={WHITE} /></KitTouchable>
     </View>
-    {mine >= 0 ? <View style={s.myPlace}><Text style={s.kicker}>{LP('Твой набор', 'Your pack')}</Text><View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><AuthorCoin pack={ranked[mine].pack} lang={lang} size={30} authorOverride={authors?.[ranked[mine].pack.id]} /><Text style={s.myRank}>{mine + 1} {LP('место', 'place')}</Text></View><Text style={s.ruleLabel}>♥ {ranked[mine].hearts}</Text></View> : null}
-    <View style={s.podium}>{[1, 0, 2].map(index => { const row = ranked[index]; const pack = row?.pack; return <View key={index} style={{ flex: 1, justifyContent: 'flex-end' }}>
-      {pack ? <KitTouchable onPress={() => { if (row.known) onOpen(pack); else router.push({ pathname: '/flashcards_collection', params: { pack: pack.id, preview: '1', scene: 'community', from: 'community' } }); }} accessibilityRole="button" accessibilityLabel={packTitleForInterface(pack, lang)} testID={`community-podium-${index + 1}`} style={[s.podiumBlock, { height: [124, 100, 80][index], backgroundColor: 'transparent' }]}>
-        <LinearGradient pointerEvents="none" colors={index === 0 ? ['rgba(255,255,255,.34)', 'rgba(255,255,255,.12)', 'rgba(255,255,255,.05)'] : ['rgba(255,255,255,.26)', 'rgba(255,255,255,.08)', 'rgba(255,255,255,.04)']} locations={[0, .7, 1]} style={[StyleSheet.absoluteFill, { borderTopLeftRadius: 16, borderTopRightRadius: 16, borderBottomLeftRadius: 6, borderBottomRightRadius: 6 }]} /><View style={s.podiumCoin}><AuthorCoin pack={pack} lang={lang} size={index === 0 ? 48 : 38} authorOverride={authors?.[pack.id]} /></View><Text style={s.place}>{index + 1}</Text><Text style={s.podiumName}>{packTitleForInterface(pack, lang)}</Text><Text style={s.ruleLabel}>♥ {row.hearts}</Text>
-      </KitTouchable> : <View style={[s.podiumBlock, { height: [124, 100, 80][index], opacity: .5 }]}><Text style={s.place}>{index + 1}</Text><Text style={s.podiumName}>{LP('Место свободно', 'Open place')}</Text></View>}
-    </View>; })}</View>
     <CommunityContestRules visible={rules} lang={lang} onClose={() => setRules(false)} />
   </View>;
 }
 
 const s = StyleSheet.create({
-  tileRank: { position: 'absolute', top: 12, right: 12, minWidth: 26, height: 26, paddingHorizontal: 5, borderRadius: 13, backgroundColor: WHITE, alignItems: 'center', justifyContent: 'center' },
-  tileRankText: { color: '#121318', fontSize: 13, fontWeight: '800' },
-  stage: { height: 580, position: 'relative', overflow: 'hidden', borderBottomLeftRadius: 34, borderBottomRightRadius: 34 },
+  stage: { minHeight: 330, position: 'relative', overflow: 'hidden', borderBottomLeftRadius: 34, borderBottomRightRadius: 34 },
   fan: { position: 'absolute', right: -18, top: 92, width: 224, height: 224 },
   stageCopy: { paddingHorizontal: 20, paddingTop: 28, maxWidth: 250 }, kicker: { color: WHITE, opacity: .8, fontSize: 14, fontWeight: '600' }, stageTitle: { fontSize: 34, lineHeight: 40, fontWeight: '800', color: WHITE, marginTop: 6 },
   rulesButton: { flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', gap: 5, paddingHorizontal: 12, minHeight: 36, borderRadius: 18, backgroundColor: GLASS, marginTop: 14 },
-  ruleLabel: { color: WHITE, fontSize: 13, fontWeight: '600' }, myPlace: { position: 'absolute', left: 20, top: 300 }, myRank: { color: WHITE, fontSize: 27, fontWeight: '800', marginVertical: 4 },
-  podium: { position: 'absolute', left: 22, right: 22, bottom: 50, flexDirection: 'row', gap: 7, alignItems: 'flex-end' }, podiumBlock: { backgroundColor: GLASS, borderTopLeftRadius: 16, borderTopRightRadius: 16, alignItems: 'center', justifyContent: 'flex-end', paddingHorizontal: 5, paddingBottom: 10 }, podiumCoin: { position: 'absolute', top: -26, alignSelf: 'center' }, place: { color: WHITE, fontSize: 24, lineHeight: 28, fontWeight: '800' }, podiumName: { color: WHITE, fontWeight: '700', fontSize: 13, lineHeight: 16, textAlign: 'center' },
+  ruleLabel: { color: WHITE, fontSize: 13, fontWeight: '600' },
   tile: { minHeight: 136, borderRadius: 22, padding: 12, overflow: 'hidden' }, tileCount: { backgroundColor: GLASS, flexDirection: 'row', alignSelf: 'flex-start', alignItems: 'center', paddingHorizontal: 9, height: 28, borderRadius: 14, gap: 4 }, count: { color: WHITE, fontSize: 13, fontWeight: '700' }, tileTitle: { color: WHITE, fontSize: 17, lineHeight: 21, fontWeight: '700', marginTop: 'auto', paddingTop: 12 }, author: { flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 8 }, authorName: { flex: 1, color: WHITE, fontSize: 13, fontWeight: '700' },
   modalBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,.4)', justifyContent: 'flex-end' }, sheet: { borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 20, paddingBottom: 32, maxHeight: '88%' }, grab: { alignSelf: 'center', width: 40, height: 5, borderRadius: 3, opacity: .25, marginBottom: 16 }, sheetTitle: { fontSize: 23, fontWeight: '700', textAlign: 'center' }, body: { fontSize: 15, lineHeight: 21, marginTop: 14, marginBottom: 8 }, ruleRow: { flexDirection: 'row', gap: 12, paddingVertical: 12 }, ruleIcon: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center' }, ruleText: { flex: 1 }, ruleTitle: { fontSize: 16, fontWeight: '700' }, ruleBody: { fontSize: 14, lineHeight: 20, marginTop: 4 }, prizes: { borderRadius: 18, paddingHorizontal: 14, paddingVertical: 10, marginTop: 10 }, prizeRow: { flexDirection: 'row', justifyContent: 'space-between', gap: 12, paddingVertical: 7 }, button: { borderRadius: 28, minHeight: 54, alignItems: 'center', justifyContent: 'center', marginTop: 16 }, buttonText: { fontSize: 17, fontWeight: '700' },
 });

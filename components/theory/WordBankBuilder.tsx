@@ -114,6 +114,7 @@ export default function WordBankBuilder({
   const [misses, setMisses] = useState(() => initialProgress?.misses ?? 0);
 
   const prompt = introText(data.prompt, lang);
+  const instruction = introText(data.instruction, lang);
   const allFilled = slots.every((s) => s !== null);
   const checkLabel = triLang(lang, {
     ru: 'Проверить', uk: 'Перевірити', en: 'Check', es: 'Comprobar', 'pt-BR': 'Verificar', vi: 'Kiểm tra', id: 'Periksa', tr: 'Kontrol et', pl: 'Sprawdź',
@@ -209,8 +210,15 @@ export default function WordBankBuilder({
 
   return (
     <View style={[styles.wrap, { borderColor: `${accent}33` }]}>
-      <Text style={[styles.hint, { color: theme.textMuted }]}>{/* зачем (LANG_AUDIT_CORE_R1, слово владельца 13.10): было «Подсказка» по-русски на любом языке */}{triLang(lang, { ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica', vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź' })}</Text>
-      <Text style={[styles.prompt, { color: theme.textPrimary }]}>{prompt}</Text>
+      {instruction ? (
+        // зачем (владелец 05.11): одна понятная команда с переводом фразы вместо двух строк «Подсказка» + перевод
+        <Text style={[styles.prompt, { color: theme.textPrimary }]}>{instruction}</Text>
+      ) : (
+        <>
+        <Text style={[styles.hint, { color: theme.textMuted }]}>{/* зачем (LANG_AUDIT_CORE_R1, слово владельца 13.10): было «Подсказка» по-русски на любом языке */}{triLang(lang, { ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica', vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź' })}</Text>
+        <Text style={[styles.prompt, { color: theme.textPrimary }]}>{prompt}</Text>
+        </>
+      )}
 
       <View style={[styles.slots, { backgroundColor: theme.chipBgFaint }]}>
         {slots.map((slot, i) => {

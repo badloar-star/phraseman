@@ -69,6 +69,13 @@ function examplesFor(target: 'es' | 'fr' | 'de' | 'it', lessonId: number, ids: u
   return out;
 }
 
+/** Первое предложение главы как название, если оно короче 70 знаков; иначе undefined (экран подставит «Часть N»). */
+export function firstSentenceTitle(body: string): string | undefined {
+  const m = body.match(/^[^.!?…\n]{3,69}[.!?…]?/);
+  const text = (m?.[0] ?? '').trim().replace(/[.!?…]+$/, '');
+  return text.length >= 3 && text.length <= 70 && text.length < body.length ? text : undefined;
+}
+
 function fromChapters(target: 'es' | 'fr' | 'de' | 'it', lessonId: number, d: Record<string, unknown>, locale: string): ClassicTheory | null {
   const chapters = arr(d.chapters);
   if (chapters.length === 0) return null;
@@ -77,7 +84,9 @@ function fromChapters(target: 'es' | 'fr' | 'de' | 'it', lessonId: number, d: Re
     const ch = obj(c);
     const body = stripTheoryMarkup(pick(ch.textByLocale, locale));
     if (!body) continue;
-    sections.push({ body, examples: examplesFor(target, lessonId, ch.exampleIds, locale) });
+    // зачем: название главы — своё (titleByLocale, Теория 12) или первое предложение текста; «Часть N» остаётся последним запасным вариантом
+    const explicit = stripTheoryMarkup(pick(ch.titleByLocale, locale));
+    sections.push({ title: explicit || firstSentenceTitle(body), body, examples: examplesFor(target, lessonId, ch.exampleIds, locale) });
   }
   if (sections.length === 0) return null;
   const table: [string, string][] = [];
@@ -125,6 +134,79 @@ function fromStudio2(target: 'es' | 'fr' | 'de' | 'it', lessonId: number, d: Rec
     right: stripTheoryMarkup(str(loc.right)) || undefined,
     strategy: stripTheoryMarkup(pick(d.strategy, locale)) || undefined,
   };
+}
+
+// ─── Слова, «введённые» теорией ────────────────────────────────────────────────────────────────────────────────────────────
+// зачем (Ревизор 05.11: в заданиях слова, которых человек ещё не видел — est/là/au/prêt, è/pronto, müde/lerne…): задание урока N может
+// использовать только слова, которые уже встретились на экране теории — в текстах глав и примерах ЭТОГО урока (до раздела с заданием
+// включительно) или прошлых уроков. Набор не зависит от языка интерфейса (берём тексты всех локалей): состав заданий не «прыгает» при смене языка.
+const TOKEN_RE = /[\p{L}\p{M}]+/gu;
+
+/** Слова строки в нижнем регистре; апострофы делят слово (n’est → n, est). */
+export function theoryTokens(text: string): string[] {
+  return (text.toLocaleLowerCase().match(TOKEN_RE) ?? []);
+}
+
+function addTokens(into: Set<string>, text: unknown): void {
+  if (typeof text === 'string') for (const w of theoryTokens(text)) into.add(w);
+}
+
+function addPhraseTokens(into: Set<string>, target: 'es' | 'fr' | 'de' | 'it', lessonId: number, ids: unknown): void {
+  const phrases = getRawClassicPhrases(target, lessonId);
+  for (const raw of arr(ids)) {
+    const id = str(raw);
+    const p = phrases.find((x) => x.id === id || x.id.endsWith(`:${id}`));
+    if (p) addTokens(into, p.target);
+  }
+}
+
+const sectionWordsCache = new Map<string, Set<string>[]>();
+
+/** Слова по разделам теории урока (каждый элемент — слова одного раздела: текст всех локалей, название и примеры). */
+export function getClassicSectionWords(target: 'es' | 'fr' | 'de' | 'it', lessonId: number): Set<string>[] {
+  const key = `${target}:${lessonId}`;
+  const cached = sectionWordsCache.get(key);
+  if (cached) return cached;
+  const out: Set<string>[] = [];
+  try {
+    const d = obj(obj(filesOf()[target]?.data)[String(lessonId)]);
+    if (d.localized) {
+      const localized = obj(d.localized);
+      const base = arr(obj(localized.ru).chapters).length || arr(obj(localized.en).chapters).length;
+      for (let i = 0; i < base; i += 1) {
+        const words = new Set<string>();
+        for (const loc of Object.values(localized)) {
+          const ch = obj(arr(obj(loc).chapters)[i]);
+          addTokens(words, ch.title);
+          addTokens(words, ch.body);
+          addPhraseTokens(words, target, lessonId, ch.samples);
+        }
+        out.push(words);
+      }
+    } else {
+      for (const c of arr(d.chapters)) {
+        const ch = obj(c);
+        const words = new Set<string>();
+        for (const text of Object.values(obj(ch.textByLocale))) addTokens(words, text);
+        for (const text of Object.values(obj(ch.titleByLocale))) addTokens(words, text);
+        addPhraseTokens(words, target, lessonId, ch.exampleIds);
+        out.push(words);
+      }
+    }
+  } catch (error: unknown) {
+    console.warn('[THEORY-DRILLS] section words failed', target, lessonId, error instanceof Error ? error.message : String(error)); // guard-ok: причина пустого набора слов
+  }
+  sectionWordsCache.set(key, out);
+  return out;
+}
+
+/** Слова, введённые к разделу sectionIndex урока lessonId: все разделы прошлых уроков + разделы 0..sectionIndex этого урока. */
+export function getClassicKnownWords(target: 'es' | 'fr' | 'de' | 'it', lessonId: number, sectionIndex: number): Set<string> {
+  const known = new Set<string>();
+  for (let n = 1; n < lessonId; n += 1) for (const words of getClassicSectionWords(target, n)) for (const w of words) known.add(w);
+  const own = getClassicSectionWords(target, lessonId);
+  for (let i = 0; i <= Math.min(sectionIndex, own.length - 1); i += 1) for (const w of own[i]!) known.add(w);
+  return known;
 }
 
 const cache = new Map<string, ClassicTheory | null>();

@@ -89,10 +89,16 @@ export default function ThreeTileChoice({
   );
 
   const why = introText(data.why, lang);
+  const instruction = introText(data.instruction, lang);
 
   return (
     <View style={[styles.wrap, { borderColor: `${accent}33` }]}>
-      <Text style={[styles.hint, { color: theme.textMuted }]}>{triLang(lang, { ru: 'Попробуй выбрать форму', uk: 'Спробуй вибрати форму', en: 'Try picking the form', es: 'Prueba a elegir la forma', 'pt-BR': 'Tente escolher a forma', vi: 'Thử chọn dạng đúng', id: 'Coba pilih bentuknya', tr: 'Doğru biçimi seçmeyi dene', pl: 'Spróbuj wybrać formę' })}</Text>
+      {instruction ? (
+        // зачем (владелец 05.11: «объясняем как ребёнку»): одна понятная команда простыми словами, обычным регистром, а не мелкий заголовок капсом
+        <Text style={[styles.instruction, { color: theme.textPrimary }]}>{instruction}</Text>
+      ) : (
+        <Text style={[styles.hint, { color: theme.textMuted }]}>{triLang(lang, { ru: 'Попробуй выбрать форму', uk: 'Спробуй вибрати форму', en: 'Try picking the form', es: 'Prueba a elegir la forma', 'pt-BR': 'Tente escolher a forma', vi: 'Thử chọn dạng đúng', id: 'Coba pilih bentuknya', tr: 'Doğru biçimi seçmeyi dene', pl: 'Spróbuj wybrać formę' })}</Text>
+      )}
 
       <Text style={[styles.q, { color: theme.textPrimary }]}>
         {data.before}
@@ -162,6 +168,7 @@ export default function ThreeTileChoice({
 const styles = StyleSheet.create({
   wrap: { padding: 14, borderRadius: 14, borderWidth: 0, marginTop: 10 },
   hint: { fontSize: 13, letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: '700', marginBottom: 10, textAlign: 'center' },
+  instruction: { fontSize: 16, lineHeight: 22, fontWeight: '700', marginBottom: 12, textAlign: 'center' },
   q: { fontSize: 16, lineHeight: 26, textAlign: 'center', marginBottom: 12 },
   gap: { borderRadius: 8, overflow: 'hidden', fontWeight: '600' },
   tiles: { flexDirection: 'row', gap: 8 },

@@ -2,38 +2,35 @@
 // примеры из фраз курса и ИНТЕРАКТИВНЫЕ ЗАДАНИЯ «Разделы n/m · задания k/N».
 // зачем (владелец 05.11: «как в английском курсе»): задания УЖЕ написаны автором в theory.json (по 20 на урок × 32 урока × 4 языка:
 // fr/it `drills`, de `lab`, es `sharedActivities`); здесь они превращаются в 4 вида заданий существующего экрана БЕЗ новых текстов курса:
-//   choice/transfer/form → choice (выбери форму), spot → spot_slip (найди неверное слово), match → binary (какая фраза верна),
-//   build/transform → word_bank (собери фразу). Порядок вариантов детерминирован (хэш id) — один и тот же ответ не «прыгает» между открытиями.
+//   choice/form → «Выбери, как сказать», match → «Какая фраза значит…», build → «Собери фразу». Непонятные новичку виды (spot, transfer, transform) убраны
+//   (стандарт «как ребёнку», 05.11). У каждого задания одна команда простыми словами, у первого в разделе — образец. Порядок вариантов детерминирован (хэш id) — один и тот же ответ не «прыгает» между открытиями.
 import { lazyContent } from './content_lazy';
 import { classicCourseActiveFor } from './classic_course_phrases';
-import { getClassicTheory } from './classic_theory';
+import { getClassicKnownWords, getClassicTheory, theoryTokens } from './classic_theory';
+import { classicWordFirstLesson } from './classic_lesson_words';
 import { getRawClassicPhrases, rawPhraseTranslation, type RawClassicPhrase } from './classic_raw_phrases';
 import type { TheoryBlock, TheoryDrill, TheorySection } from '../components/theory/TheoryLessonView';
 
 type Target = 'es' | 'fr' | 'de' | 'it';
-type Kind = 'choice' | 'spot_slip' | 'binary' | 'word_bank';
+type Kind = 'choice' | 'binary' | 'word_bank';
 type Loc9 = Readonly<Record<'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl', string>>;
 
-/** Короткие подписи интерфейса заданий (не контент курса). */
+/** Короткие подписи интерфейса заданий (не контент курса). {t} — перевод фразы на языке интерфейса. Список отдан Переводчику на проверку. */
 const UI = {
   part: { ru: 'Часть', uk: 'Частина', en: 'Part', es: 'Parte', 'pt-BR': 'Parte', vi: 'Phần', id: 'Bagian', tr: 'Bölüm', pl: 'Część' } as Loc9,
-  forms: { ru: 'Формы', uk: 'Форми', en: 'Forms', es: 'Formas', 'pt-BR': 'Formas', vi: 'Dạng', id: 'Bentuk', tr: 'Biçimler', pl: 'Formy' } as Loc9,
-  spot: {
-    ru: 'Найди неверное слово', uk: 'Знайди неправильне слово', en: 'Find the wrong word', es: 'Encuentra la palabra incorrecta',
-    'pt-BR': 'Encontre a palavra errada', vi: 'Tìm từ sai', id: 'Temukan kata yang salah', tr: 'Yanlış kelimeyi bul', pl: 'Znajdź błędne słowo',
-  } as Loc9,
-  binary: {
-    ru: 'Какая фраза верна?', uk: 'Яка фраза правильна?', en: 'Which phrase is correct?', es: '¿Qué frase es correcta?',
-    'pt-BR': 'Qual frase está correta?', vi: 'Câu nào đúng?', id: 'Kalimat mana yang benar?', tr: 'Hangi cümle doğru?', pl: 'Które zdanie jest poprawne?',
-  } as Loc9,
+  example: { ru: 'Образец', uk: 'Зразок', en: 'Example', es: 'Ejemplo', 'pt-BR': 'Exemplo', vi: 'Mẫu', id: 'Contoh', tr: 'Örnek', pl: 'Przykład' } as Loc9,
+  // Одна понятная команда на задание — формулировки из docs/work/classic_task_commands_9lang.md (Ревизор/Переводчик; «вы»); дальше идёт фраза в кавычках.
+  choose: { ru: 'Выберите, как сказать:', uk: 'Оберіть, як сказати:', en: 'Choose how to say:', es: 'Elija cómo decirlo:', 'pt-BR': 'Escolha como dizer:', vi: 'Chọn cách nói:', id: 'Pilih cara mengatakan:', tr: 'Nasıl söyleneceğini seçin:', pl: 'Wybierz, jak powiedzieć:' } as Loc9,
+  build: { ru: 'Соберите фразу:', uk: 'Складіть фразу:', en: 'Build the sentence:', es: 'Arme la frase:', 'pt-BR': 'Monte a frase:', vi: 'Ghép câu:', id: 'Susun kalimatnya:', tr: 'Cümleyi kurun:', pl: 'Ułóż zdanie:' } as Loc9,
+  which: { ru: 'Найдите верную фразу:', uk: 'Знайдіть правильну фразу:', en: 'Find the right sentence:', es: 'Encuentre la frase correcta:', 'pt-BR': 'Encontre a frase certa:', vi: 'Tìm câu đúng:', id: 'Temukan kalimat yang benar:', tr: 'Doğru cümleyi bulun:', pl: 'Znajdź poprawne zdanie:' } as Loc9,
 } as const;
 
-/** Подпись в формате IntroI18nText (ключи ru/uk/en/es/ptBr/…): интерфейс заданий выбирает строку по языку. */
-function i18n(loc: Loc9, suffix = ''): Record<string, string> {
-  return {
-    ru: loc.ru + suffix, uk: loc.uk + suffix, en: loc.en + suffix, es: loc.es + suffix, ptBr: loc['pt-BR'] + suffix,
-    vi: loc.vi + suffix, id: loc.id + suffix, tr: loc.tr + suffix, pl: loc.pl + suffix,
-  };
+/** Команда задания на языке интерфейса; у первого задания раздела — готовый образец ответа. */
+function instruction(kind: 'choose' | 'build' | 'which', translation: string, locale: string, sample: string | null): Record<string, string> {
+  const key = (locale in UI.part ? locale : 'en') as keyof Loc9;
+  const [open, close] = locale === 'ru' || locale === 'uk' || locale === 'es' || locale === 'pt-BR' ? ['«', '»'] : locale === 'pl' ? ['„', '”'] : ['“', '”'];
+  const text = `${UI[kind][key]} ${open}${translation}${close}`;
+  return plain(sample ? `${text}\n${UI.example[key]}: ${sample}` : text);
 }
 
 function plain(text: string): Record<string, string> {
@@ -81,12 +78,15 @@ type DrillSpec = Readonly<{
   other: string;
 }>;
 
+const EXCLUDED_KINDS: ReadonlySet<string> = new Set(['spot', 'transfer', 'transform']);
+
 function kindOf(raw: string): Kind | null {
   switch (raw) {
-    case 'choice': case 'transfer': case 'form': return 'choice';
-    case 'spot': return 'spot_slip';
+    // зачем (владелец 05.11: «не надо делать задания, которые без основательного контекста не понять»): оставлены три простых вида —
+    // выбрать, как сказать; выбрать верную фразу; собрать фразу. «Найди неверную форму» (spot), «перенос» (transfer) и «преобразование» (transform) убраны.
+    case 'choice': case 'form': return 'choice';
     case 'match': return 'binary';
-    case 'build': case 'transform': return 'word_bank';
+    case 'build': return 'word_bank';
     default: return null;
   }
 }
@@ -98,6 +98,7 @@ function fromAuthoredDrills(target: Target, lessonId: number, list: unknown[]): 
     const kind = kindOf(str(d.kind));
     const item = num(d.item);
     if (!kind || item === null) {
+      if (!kind && EXCLUDED_KINDS.has(str(d.kind))) continue;
       console.log('[THEORY-DRILLS] drill skipped (kind/item)', JSON.stringify({ target, lessonId, id: str(d.id), kind: str(d.kind), item })); // guard-ok: ранний выход с причиной
       continue;
     }
@@ -131,6 +132,7 @@ function fromStudioActivities(target: Target, lessonId: number, data: Record<str
     const kind = kindOf(str(a.kind));
     const id = str(a.id);
     if (!kind || !id) {
+      if (!kind && EXCLUDED_KINDS.has(str(a.kind))) return;
       console.log('[THEORY-DRILLS] activity skipped (kind/id)', JSON.stringify({ target, lessonId, index, kind: str(a.kind) })); // guard-ok: ранний выход с причиной
       return;
     }
@@ -161,46 +163,58 @@ function wordsOf(p: RawClassicPhrase): string[] {
   return p.tiles.map((t) => t.correct || t.text);
 }
 
-function buildDrill(spec: DrillSpec, phrase: RawClassicPhrase, locale: string, byId: ReadonlyMap<string, RawClassicPhrase>): TheoryDrill | null {
+/** Слова строки, которых нет среди введённых теорией (пусто — все известны). */
+function unknownWords(text: string, introduced: (word: string) => boolean): string[] {
+  return theoryTokens(text).filter((w) => !introduced(w));
+}
+
+function buildDrill(spec: DrillSpec, phrase: RawClassicPhrase, locale: string, byId: ReadonlyMap<string, RawClassicPhrase>, sample: string | null, introduced: (word: string) => boolean): TheoryDrill | null {
+  // зачем (Ревизор 05.11): задание может использовать только слова, уже встреченные в теории этого и прошлых уроков (est/là/au/prêt… не вводились)
+  const unknown = unknownWords(phrase.target, introduced);
+  if (unknown.length > 0) {
+    console.log('[THEORY-DRILLS] drill skipped (слова не введены теорией)', JSON.stringify({ id: spec.id, kind: spec.kind, unknown })); // guard-ok: ранний выход с причиной
+    return null;
+  }
   const words = wordsOf(phrase);
   const slot = spec.slot !== null && spec.slot >= 0 && spec.slot < words.length ? spec.slot : null;
   const correct = slot !== null ? words[slot]! : '';
-  const whyText = spec.why ?? plain(phrase.target);
+  // зачем: после ответа показываем верную фразу целиком, а не грамматический комментарий автора (стандарт «как ребёнку»)
+  const whyText = plain(phrase.target);
+  const translation = rawPhraseTranslation(phrase, locale);
+  if (!translation) return null;
   switch (spec.kind) {
     case 'choice': {
       // фраза из одного слова не даёт задания «выбери форму» (остался бы один пропуск без контекста)
       if (slot === null || !correct || words.length < 2) return null;
       const pool = [correct, spec.bad, ...spec.options, ...(phrase.tiles[slot]?.distractors ?? [])];
-      const options = shuffled(Array.from(new Set(pool.filter((x) => x))).slice(0, 3), spec.id);
+      // варианты ответа тоже только из введённых слов (верное слово — всегда)
+      const options = shuffled(Array.from(new Set(pool.filter((x) => x && (x === correct || unknownWords(x, introduced).length === 0)))).slice(0, 3), spec.id);
       if (!options.includes(correct)) options[0] = correct;
       if (options.length < 2) return null;
-      return { type: 'choice', before: words.slice(0, slot).join(' '), after: words.slice(slot + 1).join(' '), options, answer: correct, why: whyText };
-    }
-    case 'spot_slip': {
-      if (slot === null || !spec.bad || spec.bad === correct) return null;
-      const chips = words.map((w, i) => (i === slot ? spec.bad : w));
-      return { type: 'spot_slip', chips, answerIndex: slot, hint: i18n(UI.spot), fix: spec.why ?? plain(phrase.target) };
+      return { type: 'choice', instruction: instruction('choose', translation, locale, sample), before: words.slice(0, slot).join(' '), after: words.slice(slot + 1).join(' '), options, answer: correct, why: whyText };
     }
     case 'binary': {
-      // es `match`: пара фраз — вопрос = перевод первой, варианты = обе фразы (автор дал пару id/other, текстов «почему» нет)
+      // es `match`: пара фраз — варианты = обе фразы; fr/it/de: верная фраза и та же с типичной ошибкой на месте slot
       const otherPhrase = spec.other ? byId.get(spec.other) : undefined;
+      let wrong = '';
       if (otherPhrase) {
-        const question = rawPhraseTranslation(phrase, locale);
-        if (!question || otherPhrase.target === phrase.target) return null;
-        const first = hash(spec.id) % 2 === 0;
-        return { type: 'binary', question: plain(question), optionA: first ? phrase.target : otherPhrase.target, optionB: first ? otherPhrase.target : phrase.target, correct: first ? 'A' : 'B', explain: plain(phrase.target) };
+        wrong = otherPhrase.target;
+      } else if (slot !== null && spec.bad && spec.bad !== correct) {
+        wrong = words.map((w, i) => (i === slot ? spec.bad : w)).join(' ');
       }
-      if (slot === null || !spec.bad || spec.bad === correct) return null;
-      const right = phrase.target;
-      const wrong = words.map((w, i) => (i === slot ? spec.bad : w)).join(' ');
+      if (!wrong || wrong === phrase.target) return null;
+      const wrongUnknown = unknownWords(wrong, introduced);
+      if (wrongUnknown.length > 0) {
+        console.log('[THEORY-DRILLS] drill skipped (неверный вариант со словами вне теории)', JSON.stringify({ id: spec.id, unknown: wrongUnknown })); // guard-ok: ранний выход с причиной
+        return null;
+      }
       const rightFirst = hash(spec.id) % 2 === 0;
-      return { type: 'binary', question: i18n(UI.binary), optionA: rightFirst ? right : wrong, optionB: rightFirst ? wrong : right, correct: rightFirst ? 'A' : 'B', explain: whyText };
+      return { type: 'binary', question: instruction('which', translation, locale, sample), optionA: rightFirst ? phrase.target : wrong, optionB: rightFirst ? wrong : phrase.target, correct: rightFirst ? 'A' : 'B', explain: whyText };
     }
     case 'word_bank': {
-      const prompt = rawPhraseTranslation(phrase, locale);
-      if (!prompt || words.length < 2) return null;
+      if (words.length < 2) return null;
       const extra = phrase.tiles.flatMap((t) => t.distractors).filter((d) => !words.includes(d));
-      return { type: 'word_bank', prompt: plain(prompt), answer: words, distractors: shuffled(Array.from(new Set(extra)), spec.id).slice(0, 2) };
+      return { type: 'word_bank', instruction: instruction('build', translation, locale, sample), prompt: plain(translation), answer: words, distractors: shuffled(Array.from(new Set(extra.filter((d) => unknownWords(d, introduced).length === 0))), spec.id).slice(0, 2) };
     }
     default:
       return null;
@@ -242,37 +256,49 @@ export function getClassicTheoryView(target: unknown, lessonId: number, locale: 
   const phrases = getRawClassicPhrases(t, lessonId);
   const byId = new Map(phrases.map((p) => [p.id, p] as const));
   const sectionCount = theory.sections.length;
-  const drillsBySection: TheoryDrill[][] = theory.sections.map(() => []);
-  let built = 0;
+  const pending: { spec: DrillSpec; phrase: RawClassicPhrase }[][] = theory.sections.map(() => []);
   let skipped = 0;
   specs.forEach((spec, order) => {
     const phrase = byId.get(spec.phraseId);
-    const drill = phrase ? buildDrill(spec, phrase, locale, byId) : null;
-    if (!drill) {
+    if (!phrase) {
       skipped += 1;
-      console.log('[THEORY-DRILLS] drill skipped', JSON.stringify({ target: t, lessonId, id: spec.id, kind: spec.kind, phraseFound: !!phrase, slot: spec.slot })); // guard-ok: ранний выход с причиной
+      console.log('[THEORY-DRILLS] drill skipped (нет фразы)', JSON.stringify({ target: t, lessonId, id: spec.id, kind: spec.kind, phraseId: spec.phraseId })); // guard-ok: ранний выход с причиной
       return;
     }
     const chapterIndex = Math.min(sectionCount - 1, Math.max(0, (spec.chapter ?? (order % sectionCount) + 1) - 1));
-    drillsBySection[chapterIndex]!.push(drill);
-    built += 1;
+    pending[chapterIndex]!.push({ spec, phrase });
   });
   const partWord = UI.part[(locale in UI.part ? locale : 'en') as keyof Loc9];
   let exampleTotal = 0;
+  let built = 0;
   const sections: TheorySection[] = theory.sections.map((section, i) => {
-    const blocks: TheoryBlock[] = [];
-    if (i === 0) for (const line of theory.lead) blocks.push({ kind: 'body', text: line });
-    blocks.push({ kind: 'body', text: section.body });
+    // зачем (владелец 05.11: «понятно как ребёнку»): на экране только простой текст главы, примеры и задания. Без блоков «нюансы», «стратегия»,
+    // «ошибка → верно», таблицы форм и справок — они остаются в данных и вернутся, когда Теория перепишет их простыми словами.
+    const blocks: TheoryBlock[] = [{ kind: 'body', text: section.body }];
     if (section.examples.length > 0) {
       blocks.push({ kind: 'examples', examples: section.examples.slice(0, 6).map((e) => ({ en: e.target, translation: e.translation })) });
     }
-    if (section.note) blocks.push({ kind: 'tip', text: section.note });
-    if (i === theory.sections.length - 1) {
-      if (theory.wrong && theory.right) blocks.push({ kind: 'fix', fixes: [{ wrong: theory.wrong, right: theory.right }] });
-      if (theory.table.length > 0) blocks.push({ kind: 'note', text: theory.table.map(([a, b]) => `${a} — ${b}`).join('\n') });
-      if (theory.strategy) blocks.push({ kind: 'tip', text: theory.strategy });
-    }
-    for (const drill of drillsBySection[i]!) blocks.push({ kind: 'drill', drill });
+    const first = section.examples[0];
+    const sampleLine = first ? `${first.target} — ${first.translation}` : null;
+    // слово «введено», если встретилось в теории до этого раздела И в словаре курса его первый урок не позже текущего (владелец/Ревизор 05.11)
+    const knownHere = getClassicKnownWords(t, lessonId, i);
+    const introduced = (word: string): boolean => {
+      if (!knownHere.has(word)) return false;
+      const first = classicWordFirstLesson(t, word);
+      return first === undefined || first <= lessonId;
+    };
+    let builtHere = 0;
+    pending[i]!.forEach((entry) => {
+      const drill = buildDrill(entry.spec, entry.phrase, locale, byId, builtHere === 0 ? sampleLine : null, introduced);
+      if (!drill) {
+        skipped += 1;
+        console.log('[THEORY-DRILLS] drill skipped', JSON.stringify({ target: t, lessonId, id: entry.spec.id, kind: entry.spec.kind, slot: entry.spec.slot })); // guard-ok: ранний выход с причиной
+        return;
+      }
+      blocks.push({ kind: 'drill', drill });
+      builtHere += 1;
+      built += 1;
+    });
     exampleTotal += section.examples.length;
     return {
       num: pad2(i + 1),

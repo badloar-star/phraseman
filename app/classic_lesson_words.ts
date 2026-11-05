@@ -83,6 +83,28 @@ export function classicLessonWordBank(target: ClassicWordsLang, lessonId: number
   return out.slice();
 }
 
+/** Урок, в котором слово словаря курса встречается впервые (самый ранний); undefined — слова нет в словаре. */
+const firstLessonCache = new Map<ClassicWordsLang, ReadonlyMap<string, number>>();
+export function classicWordFirstLesson(target: ClassicWordsLang, word: string): number | undefined {
+  let map = firstLessonCache.get(target);
+  if (!map) {
+    const built = new Map<string, number>();
+    try {
+      for (const item of glossaryOf()[target]?.lemmas ?? []) {
+        const key = String(item.lemma ?? '').trim().toLocaleLowerCase();
+        if (!key) continue;
+        const prev = built.get(key);
+        if (prev === undefined || item.firstLesson < prev) built.set(key, item.firstLesson);
+      }
+    } catch (error: unknown) {
+      console.warn('[CLASSIC-WORDS] first-lesson map failed', target, error instanceof Error ? error.message : String(error)); // guard-ok: причина
+    }
+    map = built;
+    firstLessonCache.set(target, map);
+  }
+  return map.get(word.toLocaleLowerCase());
+}
+
 export function classicLessonWordCount(target: ClassicWordsLang, lessonId: number): number {
   return classicLessonWordBank(target, lessonId).length;
 }

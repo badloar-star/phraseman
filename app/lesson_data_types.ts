@@ -286,6 +286,8 @@ export interface IntroI18nText {
  */
 export interface IntroBuildInteraction {
   kind: "word_bank";
+  /** Одна понятная команда («Собери фразу: …») вместо стандартной подсказки; если есть — подсказка и prompt не рисуются. */
+  instruction?: IntroI18nText;
   /** Подсказка на родном языке над слотами («Она готова»). */
   prompt: IntroI18nText;
   /** Эталонная сборка по словам, по порядку. Напр. ['She','is','ready']. */
@@ -299,6 +301,8 @@ export interface IntroBuildInteraction {
 /** «Выбери форму» — один пропуск, 2-3 кнопки (3-Tile Choice). */
 export interface IntroChoiceInteraction {
   kind: "choice";
+  /** Одна понятная команда («Выбери, как сказать: …») вместо стандартной подсказки «Попробуй выбрать форму». */
+  instruction?: IntroI18nText;
   /** Фраза с пропуском: части до и после слота. */
   before: string;
   after: string;

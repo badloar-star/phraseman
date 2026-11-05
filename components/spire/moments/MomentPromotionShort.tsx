@@ -22,6 +22,8 @@ import { MomentCoin } from './moments_coin';
 import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentCoinWord, momentNumber, momentText } from './moments_strings';
+import { getSpireEnergyBonus } from '../../../app/spire_energy_bonus_store';
+import { promotionEnergyLine } from '../spire_week_energy';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 /** Тайминги эталона (вариант B), мс: монета cheer + искры 400 · фейерверк, дрожь, итог 900 · тексты 422/648/813 · кнопки 1044. */
@@ -72,6 +74,7 @@ function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, we
   const [boom, setBoom] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const league = spireTierName(toTier, lang);
+  const energyLine = promotionEnergyLine(lang, getSpireEnergyBonus()); // зачем (координатор 05.11): то же правило, что в карточке итога — запас 11 → строки «+1» нет
   const T = MOMENT_PROMO_SHORT_TIMELINE;
 
   useEffect(() => {
@@ -94,7 +97,7 @@ function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, we
           <Animated.Text entering={beat(T.overline)} style={[s.ov, { color: p.accentTextSafe }]} testID={`${testID}-overline`}>{momentText(lang, 'promoShortOverline', { league }).toUpperCase()}</Animated.Text>
           <Animated.Text entering={beat(T.title)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{momentText(lang, 'promoShortTitle')}</Animated.Text>
           <Animated.Text entering={beat(T.body)} style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{promotionShortBody(lang, myPlace, weekCoins, bonusCoins, weekSteps)}</Animated.Text>
-          <Animated.Text entering={beat(T.body)} style={[s.body, { color: p.textSecondary }]} testID={`${testID}-energy`}>{momentText(lang, 'promoEnergy')}</Animated.Text>
+          {energyLine ? <Animated.Text entering={beat(T.body)} style={[s.body, { color: p.textSecondary }]} testID={`${testID}-energy`}>{energyLine}</Animated.Text> : null}
         </View>
         <Animated.View entering={beat(T.buttons)} style={[s.dock, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>
           <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={() => fire(onPlay, 'play')} testID={`${testID}-play`} />

@@ -41,6 +41,8 @@ import { MomentCoin } from './moments_coin';
 import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentNumber, momentText } from './moments_strings';
+import { getSpireEnergyBonus } from '../../../app/spire_energy_bonus_store';
+import { promotionEnergyLine } from '../spire_week_energy';
 import { createPromoZoneTracker, PROMO_ROW_GAP } from './promo_zone';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 import { useShadowGlass } from '../../v2/ShadowSurface';
@@ -187,6 +189,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const flash = useSharedValue(0);
 
   const league = spireTierName(toTier, lang);
+  const energyLine = promotionEnergyLine(lang, getSpireEnergyBonus()); // зачем (координатор 05.11): то же правило, что в карточке итога — запас 11 → строки «+1» нет
   const fromLeague = spireTierName(fromTier, lang);
   const shown = useMemo(() => (rows ?? []).slice(0, 6), [rows]);
 
@@ -332,7 +335,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
             >
                 <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hXl, { color: p.text }]}>{league}</Text>
                 {bonusCoins > 0 ? <Text style={[s.pBonus, { color: p.textSecondary }]}>{momentText(lang, 'promoBonus', { n: bonusCoins })}</Text> : null}
-                <Text style={[s.pBonus, { color: p.textSecondary }]} testID={`${testID}-energy`}>{momentText(lang, 'promoEnergy')}</Text>
+                {energyLine ? <Text style={[s.pBonus, { color: p.textSecondary }]} testID={`${testID}-energy`}>{energyLine}</Text> : null}
                 <View style={s.playWrap}>
                   <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={onPlay} testID={phase.final ? `${testID}-play` : `${testID}-play-pending`} />
                 </View>

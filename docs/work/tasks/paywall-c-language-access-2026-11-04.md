@@ -2,7 +2,7 @@
 
 Governance-ID: TG-F257B8FB7693
 Governance-ID: TG-62F13E97E714
-Status: In progress
+Status: Done (05.11: код в 6ddbd5f6d, b38d977d8, 186d6d948, 1ebaedd64; сторожа зелёные; в правилах владельца ничего не открыто)
 Owner: Learning V2 session (теперь Sonnet); поручение координатора 04.11 («план принят — ок»)
 
 ## Outcome
@@ -41,3 +41,4 @@ Governance-ID: TG-7D4A557FDC93 (замок языка с прогрессом: �
 Governance-ID: TG-9B34AA14CB7C (перевод use_home_trial_row на generic + source home_trial_row; починка реестра входов пейвола)
 
 Governance-ID: TG-8AD961A837C5 (ключ первого языка по владельцу аккаунта — блокер Ревизора; затем удобства №2/№6/№7)
+Governance-ID: TG-889EA8C58BA1 (закрытие статуса; по просьбе Моментов/координатора)

@@ -25,5 +25,9 @@ export const MAIN_TABS: MainTabDefinition[] = [
   { key: 'settings', icon: 'settings-outline', active: 'settings', label: {
     ru: 'Настройки', uk: 'Параметри', en: 'Settings', es: 'Ajustes', 'pt-BR': 'Ajustes', vi: 'Cài đặt', id: 'Setelan', tr: 'Ayarlar', pl: 'Ustawienia',
   } },
+  // зачем (слово владельца 05.11): пятая иконка — Plus, ромб без подписи (подпись нужна только доступности); видна по правилу app/plus_tab_visibility.ts
+  { key: 'plus', icon: 'diamond-outline', active: 'diamond', label: {
+    ru: 'Plus', uk: 'Plus', en: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus',
+  } },
 ];
 

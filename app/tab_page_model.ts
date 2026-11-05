@@ -22,13 +22,17 @@
  * оставлены (а не вырезаны по всему layout), чтобы не переписывать свайп-
  * логику и сохранить единую точку правды, если слева снова появится страница.
  */
-export const LOGICAL_TAB_IDS = ['home', 'lessons', 'video', 'community', 'settings'] as const;
+// зачем (слово владельца 05.11, макет plus_tab_approved): шестая логическая вкладка «Plus» — в раскладке скрыта ВСЕГДА, кроме случая,
+// когда её открывает правило app/plus_tab_visibility.ts (4 иконки в панели и нет подписки). Старые раскладки поэтому не меняют ни одной страницы.
+export const LOGICAL_TAB_IDS = ['home', 'lessons', 'video', 'community', 'settings', 'plus'] as const;
 export const PHYSICAL_PAGE_IDS = [...LOGICAL_TAB_IDS] as const;
 
 export type LogicalTabId = (typeof LOGICAL_TAB_IDS)[number];
 export type PhysicalPageId = (typeof PHYSICAL_PAGE_IDS)[number];
-export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;
-export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;
+export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4 | 5;
+export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4 | 5;
+/** Логический индекс вкладки Plus. */
+export const PLUS_TAB_INDEX = 5 as const;
 /** Разделы внутри вкладки «Сообщество»: владелец выдаётся только видимому разделу. */
 // зачем 'spire': третий раздел «Шпиль» (за замком app/spire_tab_flag.ts) получает собственного
 // владельца, чтобы его таймеры/анимации крутились только пока раздел виден.
@@ -55,23 +59,31 @@ function assertIntegerInRange(value: number, max: number, label: string): void {
  */
 export type TabPageLayout = Readonly<{ hiddenLogicalTabs: readonly LogicalTabIndex[] }>;
 
-export const FULL_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([]) as readonly LogicalTabIndex[] });
-const LESSONS_HIDDEN_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([1]) as readonly LogicalTabIndex[] });
+// зачем (Plus 05.11): раскладки кэшируются по набору скрытых вкладок — одинаковые флаги дают ТОТ ЖЕ объект (ссылки в ref/deps не мигают)
+const layoutCache = new Map<string, TabPageLayout>();
+function layoutFor(hidden: readonly LogicalTabIndex[]): TabPageLayout {
+  const key = hidden.join(',');
+  const cached = layoutCache.get(key);
+  if (cached) return cached;
+  const layout: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([...hidden]) as readonly LogicalTabIndex[] });
+  layoutCache.set(key, layout);
+  return layout;
+}
+export const FULL_TAB_PAGE_LAYOUT: TabPageLayout = layoutFor([5]);
 
 // зачем (владелец 30.10, «Главная Free по рангам»): вкладка «Видео» (логический индекс 2) скрыта у новичка до ранга 1 — как и «Обучение»,
 // исчезает и из таббара, и из свайп-ленты. Раскладки кэшируются: одинаковые флаги дают ТОТ ЖЕ объект (ссылки в ref/deps не прыгают).
-const VIDEO_HIDDEN_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([2]) as readonly LogicalTabIndex[] });
-const LESSONS_AND_VIDEO_HIDDEN_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([1, 2]) as readonly LogicalTabIndex[] });
-
-export function tabPageLayoutFor(options: { learnTabVisible: boolean; videoTabVisible?: boolean }): TabPageLayout {
-  const videoVisible = options.videoTabVisible !== false;
-  if (options.learnTabVisible) return videoVisible ? FULL_TAB_PAGE_LAYOUT : VIDEO_HIDDEN_TAB_PAGE_LAYOUT;
-  return videoVisible ? LESSONS_HIDDEN_TAB_PAGE_LAYOUT : LESSONS_AND_VIDEO_HIDDEN_TAB_PAGE_LAYOUT;
+export function tabPageLayoutFor(options: { learnTabVisible: boolean; videoTabVisible?: boolean; plusTabVisible?: boolean }): TabPageLayout {
+  const hidden: LogicalTabIndex[] = [];
+  if (!options.learnTabVisible) hidden.push(1);
+  if (options.videoTabVisible === false) hidden.push(2);
+  if (options.plusTabVisible !== true) hidden.push(PLUS_TAB_INDEX);
+  return layoutFor(hidden);
 }
 
 /** Логические индексы, у которых есть физическая страница, в порядке свайпа. */
 export function visibleLogicalTabs(layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): readonly LogicalTabIndex[] {
-  return ([0, 1, 2, 3, 4] as const).filter((index) => !layout.hiddenLogicalTabs.includes(index));
+  return ([0, 1, 2, 3, 4, 5] as const).filter((index) => !layout.hiddenLogicalTabs.includes(index));
 }
 
 export function isLogicalTabHidden(index: number, layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): boolean {

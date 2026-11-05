@@ -18,7 +18,8 @@ describe('Tab page model', () => {
   // а не расползтись по _layout.tsx.
   test('maps every logical tab onto the same physical page', () => {
     // 2026-09-24 (2.0, D39): «Главная · Обучение · Видео · Сообщество · Настройки».
-    expect(LOGICAL_TAB_IDS).toEqual(['home', 'lessons', 'video', 'community', 'settings']);
+    // 05.11: шестая вкладка «plus» скрыта раскладкой всегда, пока правило видимости её не откроет
+    expect(LOGICAL_TAB_IDS).toEqual(['home', 'lessons', 'video', 'community', 'settings', 'plus']);
     expect(PHYSICAL_PAGE_IDS).toEqual(LOGICAL_TAB_IDS);
     for (const index of [0, 1, 2, 3, 4]) {
       expect(physicalPageToLogicalTab(logicalTabToPhysicalPage(index))).toBe(index);
@@ -39,7 +40,7 @@ describe('Tab page model', () => {
 
   test('rejects invalid indexes instead of silently clamping them', () => {
     expect(() => logicalTabToPhysicalPage(-1)).toThrow(RangeError);
-    expect(() => logicalTabToPhysicalPage(5)).toThrow(RangeError);
+    expect(() => logicalTabToPhysicalPage(6)).toThrow(RangeError); // 05.11: индекс 5 — вкладка Plus, теперь допустим
     expect(() => physicalPageToLogicalTab(-1)).toThrow(RangeError);
     expect(() => physicalPageToRuntimeOwner(5)).toThrow(RangeError);
   });

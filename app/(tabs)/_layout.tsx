@@ -96,19 +96,17 @@ import {
   physicalPageCount,
   physicalPageToLogicalTab,
   physicalPageToRuntimeOwner,
-  tabPageLayoutFor,
   type PhysicalPageIndex,
   type TabPageLayout,
 } from '../tab_page_model';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { trackCurrentSection } from '../section_language';
-import { isLearnTabVisibleForTarget } from '../learning_language_surface_readiness';
 import { shouldLoadTabScreen } from '../tab_mount_policy';
+import { useTabPageLayout } from '../use_tab_page_layout'; // зачем (Plus 05.11): общая раскладка нижней панели
 import { noteTabActivated } from '../../components/tab_activation_trace';
 import { whenOnboardingSettled } from '../onboarding_defer_gate';
 import { scheduleAfterRootNavigationReady } from '../paywall_navigation';
 import { planHiddenTabRedirect } from '../tabs_hidden_route_redirect';
-import { isSurfaceLocked, useRankAccess } from '../../hooks/use_rank_access';
 import { emitTabRetap } from '../tab_retap_bus'; // зачем (удобство №1, владелец 04.11): повторный тап по открытой вкладке
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -125,6 +123,7 @@ let deferredLessonsScreen: TabScreenComponent | null = null;
 let deferredVideoScreen: TabScreenComponent | null = null;
 let deferredCommunityScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
+let deferredPlusScreen: TabScreenComponent | null = null; // зачем (Plus 05.11): вкладка Plus грузится лениво, как остальные
 
 function loadLessonsScreen(): TabScreenComponent {
   deferredLessonsScreen ??= (require('./lessons') as DeferredTabModule).default;
@@ -148,12 +147,18 @@ function loadSettingsScreen(): TabScreenComponent {
   return deferredSettingsScreen;
 }
 
+function loadPlusScreen(): TabScreenComponent {
+  deferredPlusScreen ??= (require('./plus') as DeferredTabModule).default;
+  return deferredPlusScreen;
+}
+
 function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
   switch (idx) {
     case 1: return loadLessonsScreen();
     case 2: return loadVideoScreen();
     case 3: return loadCommunityScreen();
     case 4: return loadSettingsScreen();
+    case 5: return loadPlusScreen();
     default: return null;
   }
 }
@@ -445,7 +450,7 @@ type TabDef = {
 /** Суффиксы основных табов. `/journal` остаётся legacy-якорем вкладки уроков.
  *  `/friends` — старый адрес, теперь раздел «Друзья» во вкладке «Сообщество»;
  *  `/arena` — законсервированная Арена (PM-036), старые ссылки ведут на Главную. */
-const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/video', '/community', '/friends', '/arena', '/settings'] as const;
+const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/video', '/community', '/friends', '/arena', '/settings', '/plus'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
@@ -456,6 +461,7 @@ const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/friends': 3,
   '/arena': 0,
   '/settings': 4,
+  '/plus': 5,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
@@ -463,6 +469,7 @@ const IDX_TO_TAB_ROUTE: Record<number, string> = {
   2: '/(tabs)/video',
   3: '/(tabs)/community',
   4: '/(tabs)/settings',
+  5: '/(tabs)/plus',
 };
 
 /** D129: скрытая вкладка заменяется Главной (0). */
@@ -558,6 +565,7 @@ const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   friends: 3,
   arena: 0,
   settings: 4,
+  plus: 5,
 };
 
 /**
@@ -951,10 +959,9 @@ function ReleasedTabLayout() {
   // studyTarget синхронный (peek из снапшота) — первый кадр таббара уже финальный,
   // без вспышки вкладки, которая потом исчезает.
   const { studyTarget } = useStudyTarget();
-  const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
-  // зачем (владелец 30.10): «Видео» в таббаре и свайп-ленте скрыта у новичка до ранга 1 (use_rank_access; неопределённое = видно)
-  const videoTabVisible = !isSurfaceLocked(useRankAccess('video'));
-  const pageLayout = tabPageLayoutFor({ learnTabVisible, videoTabVisible });
+  // зачем (слово владельца 05.11, вкладка Plus): раскладка панели — ОДНА (app/use_tab_page_layout): «Обучение» по курсу языка, «Видео» по рангу (30.10),
+  // Plus — только при 4 иконках и без подписки; общий хук держит ту же раскладку и в копии панели на экранах поверх вкладок
+  const { layout: pageLayout } = useTabPageLayout();
   const rootNavigationReady = Boolean(useRootNavigationState()?.key);
   const rawRouteTabIdx = tabIdxFromRouter(pathname, segments);
   const hiddenTabRedirect = planHiddenTabRedirect({
@@ -1518,6 +1525,8 @@ function ReleasedTabLayout() {
         {show(4) && shouldLoad(4) ? null : <View style={StyleSheet.absoluteFill} pointerEvents="none" importantForAccessibility="no-hide-descendants" accessibilityElementsHidden><TabShellSkeleton title={SETTINGS_TAB_TITLE} /></View>}
         {show(4) ? <TabPane freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} shellUnderlay /></TabRenderProbe></TabPane> : null}
       </View>,
+      // зачем (слово владельца 05.11): шестая страница — вкладка Plus; раскладка выкидывает её из ленты, пока правило видимости её не открыло
+      show(5) ? <TabPane key="plus" freezeWanted={freezeWanted(5)}><TabRenderProbe id="tab:plus"><DeferredTabScreen shouldLoad={shouldLoad(5)} loadScreen={loadPlusScreen} /></TabRenderProbe></TabPane> : placeholder('ph-plus'),
     ];
     return screens.filter((_, logicalIdx) => !isLogicalTabHidden(logicalIdx, pageLayout));
   }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);

@@ -1,5 +1,7 @@
 Governance-ID: TG-BF6A8ECE6C57
 Governance-ID: TG-A9C881207310
+Governance-ID: TG-40C81BEA31F9
+Governance-ID: TG-1B368AC94CC0
 
 # Task packet: вкладка Plus в нижней панели (150)
 

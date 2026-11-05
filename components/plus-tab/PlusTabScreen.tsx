@@ -22,7 +22,8 @@ import { THEME_SLIDERS_V1_ENABLED } from '../../constants/theme_sliders_flag';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import V2Pressable from '../v2/V2Pressable';
-import { PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPriceNote, paywallPlusCtaCopy } from '../paywall/PaywallPlus';
+import { PaywallPlusPlansSkeleton, PaywallPlusPriceNote, paywallPlusCtaCopy } from '../paywall/PaywallPlus';
+import { PlusTabPlans } from './PlusTabPlans';
 import { PaywallTierScope } from '../paywall/paywall_tier_context';
 import { ULTRA_PALETTE, pinColorsForTier } from '../plus/plus_ring_spec';
 import {
@@ -47,9 +48,10 @@ export default function PlusTabScreen() {
   const items = useMemo(() => plusTabItems(THEME_SLIDERS_V1_ENABLED), []);
   const plusPin = pinColorsForTier('plus');
 
-  // зачем: покупка, цены и пробный — тем же хуком, что окна оплаты. trackShown=false: вкладка — не окно, лишнего «shown» в воронке не пишем.
+  // зачем: покупка, цены и пробный — тем же хуком, что окна оплаты (в HEAD события показа пишет само окно, у хука параметра trackShown нет —
+  // вкладка не окно, «shown» не пишет; блокер типов 06.11: прежняя версия передавала trackShown из незакоммиченной воронки).
   const p = usePaywallPurchase({
-    variant: 'PLUS', context: 'generic', source: 'direct', lang, trackShown: false, resilientCheckout: true,
+    variant: 'PLUS', context: 'generic', source: 'direct', lang, resilientCheckout: true,
   });
   const hasPrices = !!(p.yearlyPrice || p.monthlyPrice) || p.previewPrices;
   const state = hasPrices ? 'ready' : (!p.offeringsSettled || p.loading) ? 'loading' : 'error';
@@ -125,11 +127,11 @@ export default function PlusTabScreen() {
           {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
           {state === 'error' ? <PaywallPlusPriceNote lang={lang} g={g} reason={p.storeUnavailableReason} /> : null}
           {state === 'ready' ? (
-            <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
-              yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
-              yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
-              yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo}
-              yearlyPriceSource={p.yearlyPriceSource} monthlyPriceSource={p.monthlyPriceSource} savingsPct={p.savingsPct} />
+            // зачем (замечание координатора 06.11): плитки по макету — Plus·месяц слева, Ultra·год справа с бейджем, выбор — тонкое кольцо цвета плана
+            <PlusTabPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
+              monthlyPrice={p.monthlyPrice} yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth}
+              monthlyApprox={p.monthlyPriceSource === 'reference'} yearlyApprox={p.yearlyPriceSource === 'reference'}
+              monthlyTrialDays={monthlyTrialDays} yearlyTrialDays={yearlyTrialDays} />
           ) : null}
         </View>
 

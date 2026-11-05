@@ -1,0 +1,1223 @@
+{
+  "schema": "phraseman.classic-irregular-verbs/1",
+  "lang": "it",
+  "formsLayout": [
+    {
+      "key": "inf",
+      "label": {
+        "ru": "Начальная форма",
+        "uk": "Початкова форма"
+      }
+    },
+    {
+      "key": "presente",
+      "label": {
+        "ru": "Настоящее (io / lui)",
+        "uk": "Теперішній (io / lui)"
+      }
+    },
+    {
+      "key": "pp",
+      "label": {
+        "ru": "Для прошедшего",
+        "uk": "Для минулого"
+      }
+    }
+  ],
+  "lessons": {
+    "1": [
+      {
+        "lemma": "essere",
+        "meaning": {
+          "ru": "быть",
+          "uk": "бути",
+          "en": "to be",
+          "es": "ser, estar",
+          "pt-BR": "ser, estar",
+          "vi": "là, thì, ở",
+          "id": "ada, adalah",
+          "tr": "olmak",
+          "pl": "być"
+        },
+        "forms": {
+          "inf": "essere",
+          "presente": "io sono / lui è",
+          "pp": "stato"
+        },
+        "train": {
+          "base": "essere",
+          "past": "sono",
+          "pp": "stato"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Самый частый глагол: каждая форма своя. Форма для прошедшего stato такая же, как у stare.",
+          "uk": "Найчастіше дієслово: кожна форма своя. Форма для минулого stato така сама, як у stare."
+        },
+        "examples": [
+          "it:01:04",
+          "it:01:05",
+          "it:01:07"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "lemma": "avere",
+        "meaning": {
+          "ru": "иметь",
+          "uk": "мати",
+          "en": "to have",
+          "es": "tener, haber",
+          "pt-BR": "ter, haver",
+          "vi": "có",
+          "id": "memiliki, punya",
+          "tr": "sahip olmak",
+          "pl": "mieć"
+        },
+        "forms": {
+          "inf": "avere",
+          "presente": "io ho / lui ha",
+          "pp": "avuto"
+        },
+        "train": {
+          "base": "avere",
+          "past": "ho",
+          "pp": "avuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Буква «h» не читается: ho, hai, ha, hanno.",
+          "uk": "Літера «h» не читається: ho, hai, ha, hanno."
+        },
+        "examples": [
+          "it:05:11",
+          "it:05:12",
+          "it:05:14"
+        ]
+      },
+      {
+        "lemma": "scegliere",
+        "meaning": {
+          "ru": "выбирать",
+          "uk": "вибирати",
+          "en": "to choose",
+          "es": "elegir",
+          "pt-BR": "escolher",
+          "vi": "chọn",
+          "id": "memilih",
+          "tr": "seçmek",
+          "pl": "wybierać"
+        },
+        "forms": {
+          "inf": "scegliere",
+          "presente": "io scelgo / lui sceglie",
+          "pp": "scelto"
+        },
+        "train": {
+          "base": "scegliere",
+          "past": "scelgo",
+          "pp": "scelto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: scelgo, scegli, sceglie.",
+          "uk": "Корінь змінюється: scelgo, scegli, sceglie."
+        },
+        "examples": [
+          "it:05:46",
+          "it:18:48"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "lemma": "piacere",
+        "meaning": {
+          "ru": "нравиться",
+          "uk": "подобатися",
+          "en": "to be pleasing, to like",
+          "es": "gustar",
+          "pt-BR": "agradar, gostar",
+          "vi": "được yêu thích, thích",
+          "id": "disukai, menyenangkan",
+          "tr": "hoşlanılmak, hoşa gitmek",
+          "pl": "podobać się"
+        },
+        "forms": {
+          "inf": "piacere",
+          "presente": "mi piace / mi piacciono",
+          "pp": "piaciuto"
+        },
+        "train": {
+          "base": "piacere",
+          "past": "piace",
+          "pp": "piaciuto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Глагол зависит от того, что нравится: piace (одно), piacciono (много).",
+          "uk": "Дієслово залежить від того, що подобається: piace (одне), piacciono (багато)."
+        },
+        "examples": [
+          "it:06:12",
+          "it:06:15"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "lemma": "chiudere",
+        "meaning": {
+          "ru": "закрывать",
+          "uk": "зачиняти",
+          "en": "to close",
+          "es": "cerrar",
+          "pt-BR": "fechar",
+          "vi": "đóng",
+          "id": "menutup",
+          "tr": "kapatmak",
+          "pl": "zamykać"
+        },
+        "forms": {
+          "inf": "chiudere",
+          "presente": "io chiudo / lui chiude",
+          "pp": "chiuso"
+        },
+        "train": {
+          "base": "chiudere",
+          "past": "chiudo",
+          "pp": "chiuso"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: chiuso.",
+          "uk": "Для минулого часу своя форма: chiuso."
+        },
+        "examples": [
+          "it:07:40",
+          "it:08:24"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "lemma": "stare",
+        "meaning": {
+          "ru": "находиться, чувствовать себя",
+          "uk": "перебувати, почуватися",
+          "en": "to stay, to be (feeling)",
+          "es": "estar, quedarse",
+          "pt-BR": "estar, ficar",
+          "vi": "ở, cảm thấy",
+          "id": "berada, tinggal",
+          "tr": "durmak, kalmak",
+          "pl": "przebywać, czuć się"
+        },
+        "forms": {
+          "inf": "stare",
+          "presente": "io sto / lui sta",
+          "pp": "stato"
+        },
+        "train": {
+          "base": "stare",
+          "past": "sto",
+          "pp": "stato"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Как себя чувствуешь и «идёт процесс»: sto bene, sto leggendo.",
+          "uk": "Як почуваєшся і «триває процес»: sto bene, sto leggendo."
+        },
+        "examples": [
+          "it:08:43",
+          "it:08:46"
+        ]
+      },
+      {
+        "lemma": "aprire",
+        "meaning": {
+          "ru": "открывать",
+          "uk": "відчиняти",
+          "en": "to open",
+          "es": "abrir",
+          "pt-BR": "abrir",
+          "vi": "mở",
+          "id": "membuka",
+          "tr": "açmak",
+          "pl": "otwierać"
+        },
+        "forms": {
+          "inf": "aprire",
+          "presente": "io apro / lui apre",
+          "pp": "aperto"
+        },
+        "train": {
+          "base": "aprire",
+          "past": "apro",
+          "pp": "aperto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: aperto.",
+          "uk": "Для минулого часу своя форма: aperto."
+        },
+        "examples": [
+          "it:08:27",
+          "it:16:12"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "lemma": "prendere",
+        "meaning": {
+          "ru": "брать",
+          "uk": "брати",
+          "en": "to take",
+          "es": "tomar, coger",
+          "pt-BR": "pegar, tomar",
+          "vi": "lấy",
+          "id": "mengambil",
+          "tr": "almak",
+          "pl": "brać"
+        },
+        "forms": {
+          "inf": "prendere",
+          "presente": "io prendo / lui prende",
+          "pp": "preso"
+        },
+        "train": {
+          "base": "prendere",
+          "past": "prendo",
+          "pp": "preso"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: preso.",
+          "uk": "Для минулого часу своя форма: preso."
+        },
+        "examples": [
+          "it:09:28",
+          "it:25:03"
+        ]
+      },
+      {
+        "lemma": "mettere",
+        "meaning": {
+          "ru": "класть, надевать",
+          "uk": "класти, одягати",
+          "en": "to put, to place",
+          "es": "poner",
+          "pt-BR": "pôr, colocar",
+          "vi": "đặt, để",
+          "id": "menaruh, meletakkan",
+          "tr": "koymak",
+          "pl": "kłaść, wkładać"
+        },
+        "forms": {
+          "inf": "mettere",
+          "presente": "io metto / lui mette",
+          "pp": "messo"
+        },
+        "train": {
+          "base": "mettere",
+          "past": "metto",
+          "pp": "messo"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: messo.",
+          "uk": "Для минулого часу своя форма: messo."
+        },
+        "examples": [
+          "it:09:45",
+          "it:22:14"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "lemma": "andare",
+        "meaning": {
+          "ru": "идти, ехать",
+          "uk": "йти, їхати",
+          "en": "to go",
+          "es": "ir",
+          "pt-BR": "ir",
+          "vi": "đi",
+          "id": "pergi",
+          "tr": "gitmek",
+          "pl": "iść, jechać"
+        },
+        "forms": {
+          "inf": "andare",
+          "presente": "io vado / lui va",
+          "pp": "andato"
+        },
+        "train": {
+          "base": "andare",
+          "past": "vado",
+          "pp": "andato"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Корень меняется: vado, vai, va, andiamo, vanno.",
+          "uk": "Корінь змінюється: vado, vai, va, andiamo, vanno."
+        },
+        "examples": [
+          "it:11:30",
+          "it:11:02",
+          "it:11:06"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "lemma": "volere",
+        "meaning": {
+          "ru": "хотеть",
+          "uk": "хотіти",
+          "en": "to want",
+          "es": "querer",
+          "pt-BR": "querer",
+          "vi": "muốn",
+          "id": "ingin, mau",
+          "tr": "istemek",
+          "pl": "chcieć"
+        },
+        "forms": {
+          "inf": "volere",
+          "presente": "io voglio / lui vuole",
+          "pp": "voluto"
+        },
+        "train": {
+          "base": "volere",
+          "past": "voglio",
+          "pp": "voluto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Вежливо: vorrei — «я хотел бы».",
+          "uk": "Чемно: vorrei — «я хотів би»."
+        },
+        "examples": [
+          "it:12:09",
+          "it:12:44"
+        ]
+      },
+      {
+        "lemma": "bere",
+        "meaning": {
+          "ru": "пить",
+          "uk": "пити",
+          "en": "to drink",
+          "es": "beber",
+          "pt-BR": "beber",
+          "vi": "uống",
+          "id": "minum",
+          "tr": "içmek",
+          "pl": "pić"
+        },
+        "forms": {
+          "inf": "bere",
+          "presente": "io bevo / lui beve",
+          "pp": "bevuto"
+        },
+        "train": {
+          "base": "bere",
+          "past": "bevo",
+          "pp": "bevuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Слово удлиняется: bevo, bevi, beve, beviamo.",
+          "uk": "Слово подовжується: bevo, bevi, beve, beviamo."
+        },
+        "examples": [
+          "it:12:21",
+          "it:12:24",
+          "it:12:23"
+        ]
+      },
+      {
+        "lemma": "rimanere",
+        "meaning": {
+          "ru": "оставаться",
+          "uk": "залишатися",
+          "en": "to stay, to remain",
+          "es": "quedarse, permanecer",
+          "pt-BR": "ficar, permanecer",
+          "vi": "ở lại",
+          "id": "tinggal, tetap",
+          "tr": "kalmak",
+          "pl": "zostawać"
+        },
+        "forms": {
+          "inf": "rimanere",
+          "presente": "io rimango / lui rimane",
+          "pp": "rimasto"
+        },
+        "train": {
+          "base": "rimanere",
+          "past": "rimango",
+          "pp": "rimasto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: rimasto.",
+          "uk": "Для минулого часу своя форма: rimasto."
+        },
+        "examples": [
+          "it:12:28",
+          "it:12:29"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "lemma": "venire",
+        "meaning": {
+          "ru": "приходить",
+          "uk": "приходити",
+          "en": "to come",
+          "es": "venir",
+          "pt-BR": "vir",
+          "vi": "đến",
+          "id": "datang",
+          "tr": "gelmek",
+          "pl": "przychodzić"
+        },
+        "forms": {
+          "inf": "venire",
+          "presente": "io vengo / lui viene",
+          "pp": "venuto"
+        },
+        "train": {
+          "base": "venire",
+          "past": "vengo",
+          "pp": "venuto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Корень меняется: vengo, vieni, viene, veniamo, vengono.",
+          "uk": "Корінь змінюється: vengo, vieni, viene, veniamo, vengono."
+        },
+        "examples": [
+          "it:14:03",
+          "it:27:20"
+        ]
+      },
+      {
+        "lemma": "potere",
+        "meaning": {
+          "ru": "мочь",
+          "uk": "могти",
+          "en": "can, to be able to",
+          "es": "poder",
+          "pt-BR": "poder",
+          "vi": "có thể",
+          "id": "dapat, bisa",
+          "tr": "-ebilmek, mümkün olmak",
+          "pl": "móc"
+        },
+        "forms": {
+          "inf": "potere",
+          "presente": "io posso / lui può",
+          "pp": "potuto"
+        },
+        "train": {
+          "base": "potere",
+          "past": "posso",
+          "pp": "potuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: posso, puoi, può, possiamo, possono.",
+          "uk": "Корінь змінюється: posso, puoi, può, possiamo, possono."
+        },
+        "examples": [
+          "it:14:02",
+          "it:14:19",
+          "it:14:01"
+        ]
+      },
+      {
+        "lemma": "dovere",
+        "meaning": {
+          "ru": "быть должным",
+          "uk": "бути повинним",
+          "en": "must, to have to",
+          "es": "deber, tener que",
+          "pt-BR": "dever, ter que",
+          "vi": "phải",
+          "id": "harus",
+          "tr": "zorunda olmak, -meli",
+          "pl": "musieć"
+        },
+        "forms": {
+          "inf": "dovere",
+          "presente": "io devo / lui deve",
+          "pp": "dovuto"
+        },
+        "train": {
+          "base": "dovere",
+          "past": "devo",
+          "pp": "dovuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: devo, devi, deve, dobbiamo, devono.",
+          "uk": "Корінь змінюється: devo, devi, deve, dobbiamo, devono."
+        },
+        "examples": [
+          "it:14:07",
+          "it:14:08",
+          "it:14:10"
+        ]
+      },
+      {
+        "lemma": "sapere",
+        "meaning": {
+          "ru": "знать, уметь",
+          "uk": "знати, вміти",
+          "en": "to know, to know how to",
+          "es": "saber",
+          "pt-BR": "saber",
+          "vi": "biết",
+          "id": "tahu, bisa",
+          "tr": "bilmek",
+          "pl": "wiedzieć, umieć"
+        },
+        "forms": {
+          "inf": "sapere",
+          "presente": "io so / lui sa",
+          "pp": "saputo"
+        },
+        "train": {
+          "base": "sapere",
+          "past": "so",
+          "pp": "saputo"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: so, sai, sa, sappiamo, sanno.",
+          "uk": "Корінь змінюється: so, sai, sa, sappiamo, sanno."
+        },
+        "examples": [
+          "it:14:44",
+          "it:27:13"
+        ]
+      },
+      {
+        "lemma": "leggere",
+        "meaning": {
+          "ru": "читать",
+          "uk": "читати",
+          "en": "to read",
+          "es": "leer",
+          "pt-BR": "ler",
+          "vi": "đọc",
+          "id": "membaca",
+          "tr": "okumak",
+          "pl": "czytać"
+        },
+        "forms": {
+          "inf": "leggere",
+          "presente": "io leggo / lui legge",
+          "pp": "letto"
+        },
+        "train": {
+          "base": "leggere",
+          "past": "leggo",
+          "pp": "letto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Форма для прошедшего letto совпадает со словом «кровать».",
+          "uk": "Форма для минулого letto збігається зі словом «ліжко»."
+        },
+        "examples": [
+          "it:14:40",
+          "it:15:01"
+        ]
+      },
+      {
+        "lemma": "perdere",
+        "meaning": {
+          "ru": "терять",
+          "uk": "губити",
+          "en": "to lose",
+          "es": "perder",
+          "pt-BR": "perder",
+          "vi": "mất, thua",
+          "id": "kehilangan, kalah",
+          "tr": "kaybetmek",
+          "pl": "tracić, przegrywać"
+        },
+        "forms": {
+          "inf": "perdere",
+          "presente": "io perdo / lui perde",
+          "pp": "perso"
+        },
+        "train": {
+          "base": "perdere",
+          "past": "perdo",
+          "pp": "perso"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "В прошедшем времени perso (или perduto).",
+          "uk": "У минулому часі perso (або perduto)."
+        },
+        "examples": [
+          "it:14:39",
+          "it:25:35"
+        ]
+      },
+      {
+        "lemma": "rispondere",
+        "meaning": {
+          "ru": "отвечать",
+          "uk": "відповідати",
+          "en": "to answer, to reply",
+          "es": "responder",
+          "pt-BR": "responder",
+          "vi": "trả lời",
+          "id": "menjawab",
+          "tr": "cevap vermek",
+          "pl": "odpowiadać"
+        },
+        "forms": {
+          "inf": "rispondere",
+          "presente": "io rispondo / lui risponde",
+          "pp": "risposto"
+        },
+        "train": {
+          "base": "rispondere",
+          "past": "rispondo",
+          "pp": "risposto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: risposto.",
+          "uk": "Для минулого часу своя форма: risposto."
+        },
+        "examples": [
+          "it:14:33",
+          "it:23:09"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "lemma": "scrivere",
+        "meaning": {
+          "ru": "писать",
+          "uk": "писати",
+          "en": "to write",
+          "es": "escribir",
+          "pt-BR": "escrever",
+          "vi": "viết",
+          "id": "menulis",
+          "tr": "yazmak",
+          "pl": "pisać"
+        },
+        "forms": {
+          "inf": "scrivere",
+          "presente": "io scrivo / lui scrive",
+          "pp": "scritto"
+        },
+        "train": {
+          "base": "scrivere",
+          "past": "scrivo",
+          "pp": "scritto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: scritto.",
+          "uk": "Для минулого часу своя форма: scritto."
+        },
+        "examples": [
+          "it:15:08",
+          "it:23:08"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "lemma": "fare",
+        "meaning": {
+          "ru": "делать",
+          "uk": "робити",
+          "en": "to do, to make",
+          "es": "hacer",
+          "pt-BR": "fazer",
+          "vi": "làm",
+          "id": "melakukan, membuat",
+          "tr": "yapmak",
+          "pl": "robić"
+        },
+        "forms": {
+          "inf": "fare",
+          "presente": "io faccio / lui fa",
+          "pp": "fatto"
+        },
+        "train": {
+          "base": "fare",
+          "past": "faccio",
+          "pp": "fatto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: faccio, fai, fa, facciamo, fanno.",
+          "uk": "Корінь змінюється: faccio, fai, fa, facciamo, fanno."
+        },
+        "examples": [
+          "it:16:42",
+          "it:18:28"
+        ]
+      },
+      {
+        "lemma": "tenere",
+        "meaning": {
+          "ru": "держать",
+          "uk": "тримати",
+          "en": "to hold, to keep",
+          "es": "sostener, mantener",
+          "pt-BR": "segurar, manter",
+          "vi": "giữ, cầm",
+          "id": "memegang, menjaga",
+          "tr": "tutmak",
+          "pl": "trzymać"
+        },
+        "forms": {
+          "inf": "tenere",
+          "presente": "io tengo / lui tiene",
+          "pp": "tenuto"
+        },
+        "train": {
+          "base": "tenere",
+          "past": "tengo",
+          "pp": "tenuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: tengo, tieni, tiene, teniamo, tengono.",
+          "uk": "Корінь змінюється: tengo, tieni, tiene, teniamo, tengono."
+        },
+        "examples": [
+          "it:16:14",
+          "it:25:05"
+        ]
+      },
+      {
+        "lemma": "correre",
+        "meaning": {
+          "ru": "бежать",
+          "uk": "бігти",
+          "en": "to run",
+          "es": "correr",
+          "pt-BR": "correr",
+          "vi": "chạy",
+          "id": "berlari",
+          "tr": "koşmak",
+          "pl": "biegać"
+        },
+        "forms": {
+          "inf": "correre",
+          "presente": "io corro / lui corre",
+          "pp": "corso"
+        },
+        "train": {
+          "base": "correre",
+          "past": "corro",
+          "pp": "corso"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: corso.",
+          "uk": "Для минулого часу своя форма: corso."
+        },
+        "examples": [
+          "it:16:31"
+        ]
+      }
+    ],
+    "17": [
+      {
+        "lemma": "uscire",
+        "meaning": {
+          "ru": "выходить",
+          "uk": "виходити",
+          "en": "to go out, to leave",
+          "es": "salir",
+          "pt-BR": "sair",
+          "vi": "đi ra, ra ngoài",
+          "id": "keluar",
+          "tr": "çıkmak",
+          "pl": "wychodzić"
+        },
+        "forms": {
+          "inf": "uscire",
+          "presente": "io esco / lui esce",
+          "pp": "uscito"
+        },
+        "train": {
+          "base": "uscire",
+          "past": "esco",
+          "pp": "uscito"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Корень меняется: esco, esci, esce, usciamo.",
+          "uk": "Корінь змінюється: esco, esci, esce, usciamo."
+        },
+        "examples": [
+          "it:17:24",
+          "it:31:09"
+        ]
+      }
+    ],
+    "18": [
+      {
+        "lemma": "dire",
+        "meaning": {
+          "ru": "говорить, сказать",
+          "uk": "казати",
+          "en": "to say, to tell",
+          "es": "decir",
+          "pt-BR": "dizer",
+          "vi": "nói",
+          "id": "mengatakan",
+          "tr": "söylemek",
+          "pl": "mówić, powiedzieć"
+        },
+        "forms": {
+          "inf": "dire",
+          "presente": "io dico / lui dice",
+          "pp": "detto"
+        },
+        "train": {
+          "base": "dire",
+          "past": "dico",
+          "pp": "detto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Корень меняется: dico, dici, dice, diciamo, dicono.",
+          "uk": "Корінь змінюється: dico, dici, dice, diciamo, dicono."
+        },
+        "examples": [
+          "it:18:30",
+          "it:23:33"
+        ]
+      },
+      {
+        "lemma": "vedere",
+        "meaning": {
+          "ru": "видеть",
+          "uk": "бачити",
+          "en": "to see",
+          "es": "ver",
+          "pt-BR": "ver",
+          "vi": "nhìn thấy",
+          "id": "melihat",
+          "tr": "görmek",
+          "pl": "widzieć"
+        },
+        "forms": {
+          "inf": "vedere",
+          "presente": "io vedo / lui vede",
+          "pp": "visto"
+        },
+        "train": {
+          "base": "vedere",
+          "past": "vedo",
+          "pp": "visto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: visto.",
+          "uk": "Для минулого часу своя форма: visto."
+        },
+        "examples": [
+          "it:18:24",
+          "it:22:01"
+        ]
+      },
+      {
+        "lemma": "chiedere",
+        "meaning": {
+          "ru": "спрашивать, просить",
+          "uk": "питати, просити",
+          "en": "to ask, to request",
+          "es": "preguntar, pedir",
+          "pt-BR": "perguntar, pedir",
+          "vi": "hỏi, yêu cầu",
+          "id": "bertanya, meminta",
+          "tr": "sormak, istemek",
+          "pl": "pytać, prosić"
+        },
+        "forms": {
+          "inf": "chiedere",
+          "presente": "io chiedo / lui chiede",
+          "pp": "chiesto"
+        },
+        "train": {
+          "base": "chiedere",
+          "past": "chiedo",
+          "pp": "chiesto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: chiesto.",
+          "uk": "Для минулого часу своя форма: chiesto."
+        },
+        "examples": [
+          "it:18:46",
+          "it:23:44"
+        ]
+      },
+      {
+        "lemma": "condividere",
+        "meaning": {
+          "ru": "делиться",
+          "uk": "ділитися",
+          "en": "to share",
+          "es": "compartir",
+          "pt-BR": "compartilhar",
+          "vi": "chia sẻ",
+          "id": "berbagi",
+          "tr": "paylaşmak",
+          "pl": "dzielić się"
+        },
+        "forms": {
+          "inf": "condividere",
+          "presente": "io condivido / lui condivide",
+          "pp": "condiviso"
+        },
+        "train": {
+          "base": "condividere",
+          "past": "condivido",
+          "pp": "condiviso"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: condiviso.",
+          "uk": "Для минулого часу своя форма: condiviso."
+        },
+        "examples": [
+          "it:18:16",
+          "it:28:26"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "lemma": "cadere",
+        "meaning": {
+          "ru": "падать",
+          "uk": "падати",
+          "en": "to fall",
+          "es": "caer",
+          "pt-BR": "cair",
+          "vi": "ngã, rơi",
+          "id": "jatuh",
+          "tr": "düşmek",
+          "pl": "spadać, upadać"
+        },
+        "forms": {
+          "inf": "cadere",
+          "presente": "io cado / lui cade",
+          "pp": "caduto"
+        },
+        "train": {
+          "base": "cadere",
+          "past": "cado",
+          "pp": "caduto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "В будущем одна «d» исчезает: cadrò.",
+          "uk": "У майбутньому одна «d» зникає: cadrò."
+        },
+        "examples": [
+          "it:19:30"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "lemma": "conoscere",
+        "meaning": {
+          "ru": "знать (кого-то)",
+          "uk": "знати (когось)",
+          "en": "to know (a person or place)",
+          "es": "conocer",
+          "pt-BR": "conhecer",
+          "vi": "biết, quen biết",
+          "id": "mengenal",
+          "tr": "tanımak",
+          "pl": "znać, poznawać"
+        },
+        "forms": {
+          "inf": "conoscere",
+          "presente": "io conosco / lui conosce",
+          "pp": "conosciuto"
+        },
+        "train": {
+          "base": "conoscere",
+          "past": "conosco",
+          "pp": "conosciuto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Знать человека или место; факт — sapere.",
+          "uk": "Знати людину або місце; факт — sapere."
+        },
+        "examples": [
+          "it:20:31",
+          "it:22:04"
+        ]
+      },
+      {
+        "lemma": "piovere",
+        "meaning": {
+          "ru": "идти (о дожде)",
+          "uk": "іти (про дощ)",
+          "en": "to rain",
+          "es": "llover",
+          "pt-BR": "chover",
+          "vi": "mưa",
+          "id": "hujan",
+          "tr": "yağmur yağmak",
+          "pl": "padać (o deszczu)"
+        },
+        "forms": {
+          "inf": "piovere",
+          "presente": "piove",
+          "pp": "piovuto"
+        },
+        "train": {
+          "base": "piovere",
+          "past": "piove",
+          "pp": "piovuto"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Только форма «оно»: piove — «идёт дождь».",
+          "uk": "Лише форма «воно»: piove — «йде дощ»."
+        },
+        "examples": [
+          "it:20:23",
+          "it:32:19"
+        ]
+      }
+    ],
+    "21": [
+      {
+        "lemma": "salire",
+        "meaning": {
+          "ru": "подниматься",
+          "uk": "підніматися",
+          "en": "to go up, to climb",
+          "es": "subir",
+          "pt-BR": "subir",
+          "vi": "đi lên, leo",
+          "id": "naik",
+          "tr": "çıkmak, yükselmek",
+          "pl": "wchodzić, wspinać się"
+        },
+        "forms": {
+          "inf": "salire",
+          "presente": "io salgo / lui sale",
+          "pp": "salito"
+        },
+        "train": {
+          "base": "salire",
+          "past": "salgo",
+          "pp": "salito"
+        },
+        "aux": "essere",
+        "note": {
+          "ru": "Корень меняется: salgo, sali, sale, saliamo, salgono.",
+          "uk": "Корінь змінюється: salgo, sali, sale, saliamo, salgono."
+        },
+        "examples": [
+          "it:21:46",
+          "it:21:40"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "lemma": "dare",
+        "meaning": {
+          "ru": "давать",
+          "uk": "давати",
+          "en": "to give",
+          "es": "dar",
+          "pt-BR": "dar",
+          "vi": "cho, đưa",
+          "id": "memberi",
+          "tr": "vermek",
+          "pl": "dawać"
+        },
+        "forms": {
+          "inf": "dare",
+          "presente": "io do / lui dà",
+          "pp": "dato"
+        },
+        "train": {
+          "base": "dare",
+          "past": "do",
+          "pp": "dato"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Буква «à» у «он/она»: lui dà.",
+          "uk": "Літера «à» у «він/вона»: lui dà."
+        },
+        "examples": [
+          "it:23:17",
+          "it:25:41"
+        ]
+      }
+    ],
+    "31": [
+      {
+        "lemma": "dipingere",
+        "meaning": {
+          "ru": "рисовать, красить",
+          "uk": "малювати, фарбувати",
+          "en": "to paint",
+          "es": "pintar",
+          "pt-BR": "pintar",
+          "vi": "vẽ, sơn",
+          "id": "melukis, mengecat",
+          "tr": "boyamak, resim yapmak",
+          "pl": "malować"
+        },
+        "forms": {
+          "inf": "dipingere",
+          "presente": "io dipingo / lui dipinge",
+          "pp": "dipinto"
+        },
+        "train": {
+          "base": "dipingere",
+          "past": "dipingo",
+          "pp": "dipinto"
+        },
+        "aux": "avere",
+        "note": {
+          "ru": "Для прошедшего времени своя форма: dipinto.",
+          "uk": "Для минулого часу своя форма: dipinto."
+        },
+        "examples": [
+          "it:31:43"
+        ]
+      }
+    ]
+  }
+}

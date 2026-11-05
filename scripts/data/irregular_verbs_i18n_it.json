@@ -1,0 +1,326 @@
+{
+  "essere": {
+    "en": "to be",
+    "es": "ser, estar",
+    "pt-BR": "ser, estar",
+    "vi": "là, thì, ở",
+    "id": "ada, adalah",
+    "tr": "olmak",
+    "pl": "być"
+  },
+  "avere": {
+    "en": "to have",
+    "es": "tener, haber",
+    "pt-BR": "ter, haver",
+    "vi": "có",
+    "id": "memiliki, punya",
+    "tr": "sahip olmak",
+    "pl": "mieć"
+  },
+  "andare": {
+    "en": "to go",
+    "es": "ir",
+    "pt-BR": "ir",
+    "vi": "đi",
+    "id": "pergi",
+    "tr": "gitmek",
+    "pl": "iść, jechać"
+  },
+  "fare": {
+    "en": "to do, to make",
+    "es": "hacer",
+    "pt-BR": "fazer",
+    "vi": "làm",
+    "id": "melakukan, membuat",
+    "tr": "yapmak",
+    "pl": "robić"
+  },
+  "stare": {
+    "en": "to stay, to be (feeling)",
+    "es": "estar, quedarse",
+    "pt-BR": "estar, ficar",
+    "vi": "ở, cảm thấy",
+    "id": "berada, tinggal",
+    "tr": "durmak, kalmak",
+    "pl": "przebywać, czuć się"
+  },
+  "dare": {
+    "en": "to give",
+    "es": "dar",
+    "pt-BR": "dar",
+    "vi": "cho, đưa",
+    "id": "memberi",
+    "tr": "vermek",
+    "pl": "dawać"
+  },
+  "venire": {
+    "en": "to come",
+    "es": "venir",
+    "pt-BR": "vir",
+    "vi": "đến",
+    "id": "datang",
+    "tr": "gelmek",
+    "pl": "przychodzić"
+  },
+  "volere": {
+    "en": "to want",
+    "es": "querer",
+    "pt-BR": "querer",
+    "vi": "muốn",
+    "id": "ingin, mau",
+    "tr": "istemek",
+    "pl": "chcieć"
+  },
+  "potere": {
+    "en": "can, to be able to",
+    "es": "poder",
+    "pt-BR": "poder",
+    "vi": "có thể",
+    "id": "dapat, bisa",
+    "tr": "-ebilmek, mümkün olmak",
+    "pl": "móc"
+  },
+  "dovere": {
+    "en": "must, to have to",
+    "es": "deber, tener que",
+    "pt-BR": "dever, ter que",
+    "vi": "phải",
+    "id": "harus",
+    "tr": "zorunda olmak, -meli",
+    "pl": "musieć"
+  },
+  "dire": {
+    "en": "to say, to tell",
+    "es": "decir",
+    "pt-BR": "dizer",
+    "vi": "nói",
+    "id": "mengatakan",
+    "tr": "söylemek",
+    "pl": "mówić, powiedzieć"
+  },
+  "uscire": {
+    "en": "to go out, to leave",
+    "es": "salir",
+    "pt-BR": "sair",
+    "vi": "đi ra, ra ngoài",
+    "id": "keluar",
+    "tr": "çıkmak",
+    "pl": "wychodzić"
+  },
+  "bere": {
+    "en": "to drink",
+    "es": "beber",
+    "pt-BR": "beber",
+    "vi": "uống",
+    "id": "minum",
+    "tr": "içmek",
+    "pl": "pić"
+  },
+  "vedere": {
+    "en": "to see",
+    "es": "ver",
+    "pt-BR": "ver",
+    "vi": "nhìn thấy",
+    "id": "melihat",
+    "tr": "görmek",
+    "pl": "widzieć"
+  },
+  "sapere": {
+    "en": "to know, to know how to",
+    "es": "saber",
+    "pt-BR": "saber",
+    "vi": "biết",
+    "id": "tahu, bisa",
+    "tr": "bilmek",
+    "pl": "wiedzieć, umieć"
+  },
+  "rimanere": {
+    "en": "to stay, to remain",
+    "es": "quedarse, permanecer",
+    "pt-BR": "ficar, permanecer",
+    "vi": "ở lại",
+    "id": "tinggal, tetap",
+    "tr": "kalmak",
+    "pl": "zostawać"
+  },
+  "scrivere": {
+    "en": "to write",
+    "es": "escribir",
+    "pt-BR": "escrever",
+    "vi": "viết",
+    "id": "menulis",
+    "tr": "yazmak",
+    "pl": "pisać"
+  },
+  "leggere": {
+    "en": "to read",
+    "es": "leer",
+    "pt-BR": "ler",
+    "vi": "đọc",
+    "id": "membaca",
+    "tr": "okumak",
+    "pl": "czytać"
+  },
+  "prendere": {
+    "en": "to take",
+    "es": "tomar, coger",
+    "pt-BR": "pegar, tomar",
+    "vi": "lấy",
+    "id": "mengambil",
+    "tr": "almak",
+    "pl": "brać"
+  },
+  "mettere": {
+    "en": "to put, to place",
+    "es": "poner",
+    "pt-BR": "pôr, colocar",
+    "vi": "đặt, để",
+    "id": "menaruh, meletakkan",
+    "tr": "koymak",
+    "pl": "kłaść, wkładać"
+  },
+  "chiudere": {
+    "en": "to close",
+    "es": "cerrar",
+    "pt-BR": "fechar",
+    "vi": "đóng",
+    "id": "menutup",
+    "tr": "kapatmak",
+    "pl": "zamykać"
+  },
+  "aprire": {
+    "en": "to open",
+    "es": "abrir",
+    "pt-BR": "abrir",
+    "vi": "mở",
+    "id": "membuka",
+    "tr": "açmak",
+    "pl": "otwierać"
+  },
+  "conoscere": {
+    "en": "to know (a person or place)",
+    "es": "conocer",
+    "pt-BR": "conhecer",
+    "vi": "biết, quen biết",
+    "id": "mengenal",
+    "tr": "tanımak",
+    "pl": "znać, poznawać"
+  },
+  "cadere": {
+    "en": "to fall",
+    "es": "caer",
+    "pt-BR": "cair",
+    "vi": "ngã, rơi",
+    "id": "jatuh",
+    "tr": "düşmek",
+    "pl": "spadać, upadać"
+  },
+  "perdere": {
+    "en": "to lose",
+    "es": "perder",
+    "pt-BR": "perder",
+    "vi": "mất, thua",
+    "id": "kehilangan, kalah",
+    "tr": "kaybetmek",
+    "pl": "tracić, przegrywać"
+  },
+  "piovere": {
+    "en": "to rain",
+    "es": "llover",
+    "pt-BR": "chover",
+    "vi": "mưa",
+    "id": "hujan",
+    "tr": "yağmur yağmak",
+    "pl": "padać (o deszczu)"
+  },
+  "piacere": {
+    "en": "to be pleasing, to like",
+    "es": "gustar",
+    "pt-BR": "agradar, gostar",
+    "vi": "được yêu thích, thích",
+    "id": "disukai, menyenangkan",
+    "tr": "hoşlanılmak, hoşa gitmek",
+    "pl": "podobać się"
+  },
+  "tenere": {
+    "en": "to hold, to keep",
+    "es": "sostener, mantener",
+    "pt-BR": "segurar, manter",
+    "vi": "giữ, cầm",
+    "id": "memegang, menjaga",
+    "tr": "tutmak",
+    "pl": "trzymać"
+  },
+  "salire": {
+    "en": "to go up, to climb",
+    "es": "subir",
+    "pt-BR": "subir",
+    "vi": "đi lên, leo",
+    "id": "naik",
+    "tr": "çıkmak, yükselmek",
+    "pl": "wchodzić, wspinać się"
+  },
+  "rispondere": {
+    "en": "to answer, to reply",
+    "es": "responder",
+    "pt-BR": "responder",
+    "vi": "trả lời",
+    "id": "menjawab",
+    "tr": "cevap vermek",
+    "pl": "odpowiadać"
+  },
+  "scegliere": {
+    "en": "to choose",
+    "es": "elegir",
+    "pt-BR": "escolher",
+    "vi": "chọn",
+    "id": "memilih",
+    "tr": "seçmek",
+    "pl": "wybierać"
+  },
+  "chiedere": {
+    "en": "to ask, to request",
+    "es": "preguntar, pedir",
+    "pt-BR": "perguntar, pedir",
+    "vi": "hỏi, yêu cầu",
+    "id": "bertanya, meminta",
+    "tr": "sormak, istemek",
+    "pl": "pytać, prosić"
+  },
+  "correre": {
+    "en": "to run",
+    "es": "correr",
+    "pt-BR": "correr",
+    "vi": "chạy",
+    "id": "berlari",
+    "tr": "koşmak",
+    "pl": "biegać"
+  },
+  "sedere": {
+    "en": "to sit",
+    "es": "estar sentado",
+    "pt-BR": "estar sentado",
+    "vi": "ngồi",
+    "id": "duduk",
+    "tr": "oturmak",
+    "pl": "siedzieć"
+  },
+  "condividere": {
+    "en": "to share",
+    "es": "compartir",
+    "pt-BR": "compartilhar",
+    "vi": "chia sẻ",
+    "id": "berbagi",
+    "tr": "paylaşmak",
+    "pl": "dzielić się"
+  },
+  "dipingere": {
+    "en": "to paint",
+    "es": "pintar",
+    "pt-BR": "pintar",
+    "vi": "vẽ, sơn",
+    "id": "melukis, mengecat",
+    "tr": "boyamak, resim yapmak",
+    "pl": "malować"
+  }
+}

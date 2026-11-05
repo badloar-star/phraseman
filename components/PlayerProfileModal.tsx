@@ -50,6 +50,8 @@ import ProfileCardBody from './profile-card/ProfileCardBody';
 import ProfileCardCoin, { CoinImage, GoldRing } from './profile-card/ProfileCardCoin';
 import { useIsPlus } from './plus/use_is_plus';
 import { isPlusProfile } from './plus/plus_ring_spec';
+import { useSubscriptionTier } from './plus/use_subscription_tier';
+import { tierFromPublicField } from '../app/subscription_tier';
 import { ProfileCardOtherFooter, ProfileCardSelfFooter } from './profile-card/ProfileCardFooter';
 import { ProBadge } from './profile-card/ProfileCardParts';
 import ProfileCardProSheet from './profile-card/ProfileCardProSheet';
@@ -186,6 +188,9 @@ function PlayerProfileModalBody({
   // зачем (владелец 21.10, реестр №6): Plus у человека на визитке — кольцо у монеты и метка «◆ Plus» у имени. Себе — живой статус, другим — публичный профиль
   const myIsPlus = useIsPlus();
   const plus = isMe ? myIsPlus : isPlusProfile(player);
+  // зачем (владелец 06.11, Plus/Ultra): свой уровень — по продукту магазина (useSubscriptionTier); чужой — публичное поле plusTier (часть D, сервер), нет поля → Plus.
+  const myTier = useSubscriptionTier() ?? 'plus';
+  const plusTier = isMe ? myTier : tierFromPublicField((player as { plusTier?: unknown } | null | undefined)?.plusTier);
   const myCoinRank = useMyCoinRank();
   const publicRank = player.coinRank ?? null;
   const visibleRank = resolvePlayerProfileVisibleRank({
@@ -376,7 +381,7 @@ function PlayerProfileModalBody({
                 accessibilityLabel={rankRow ? coinRankTitle(rankRow.rank, L) : t4(L, PC.rankUnknown)}
                 style={{ position: 'absolute', left: cx - coinSize / 2, top: cy - coinSize / 2 }}
               >
-                <ProfileCardCoin look={look} rank={visibleRank} size={coinSize} animate={animate} plus={plus} plusSurface={tokens.bg} />
+                <ProfileCardCoin look={look} rank={visibleRank} size={coinSize} animate={animate} plus={plus} plusTier={plusTier} plusSurface={tokens.bg} />
               </View>
             ) : null}
 
@@ -430,6 +435,7 @@ function PlayerProfileModalBody({
               onEditBio={() => setSheet('bio')}
               onOpenBuy={() => setSheet('buy')}
               plus={plus}
+              plusTier={plusTier}
             />
             {!isMe && player.pairStats ? <FriendCardStats stats={player.pairStats} tokens={tokens} lang={L} /> : null}
           </View>

@@ -14,6 +14,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import type { CoinRankCeremony } from '../../hooks/use_coin_rank_upgrade';
 import { RankChip } from './ProfileCardParts';
 import { PlusTag } from '../plus/PlusAvatarRing';
+import type { SubscriptionTier } from '../../app/subscription_tier';
 import type { useRankChipStyles } from './ProfileCardRankUp';
 import type { ProfileCardLookTokens } from './profile_card_looks';
 import { PC, t4 } from './profile_card_copy';
@@ -35,6 +36,8 @@ type Props = Readonly<{
   onOpenBuy: () => void;
   /** У человека есть Plus: метка «◆ Plus» у имени (владелец 21.10, реестр №6). Карточка всегда тёмная — метка тёмного варианта. */
   plus?: boolean;
+  /** Уровень подписки для метки у имени: plus → «◆ Plus», ultra → «✦ Ultra»; по умолчанию plus. */
+  plusTier?: SubscriptionTier;
 }>;
 
 // зачем (Сверка 05.10 04:45: при rank=5 визитка писала «ранг 6», после повышения «ранг 7»): ранги 0…19 показываются
@@ -44,7 +47,7 @@ export function profileCardRankLabel(rank: number, lang: Lang): string {
 }
 
 function ProfileCardBodyBase({
-  lang, tokens, name, rank, ceremony, chipStyles, bioText, canEditBio, showLock, onEditBio, onOpenBuy, plus,
+  lang, tokens, name, rank, ceremony, chipStyles, bioText, canEditBio, showLock, onEditBio, onOpenBuy, plus, plusTier = 'plus',
 }: Props) {
   const editable = canEditBio && !ceremony;
   // зачем (закон владельца 22.10): белое поверх арта — mediaInk темы с прежними плотностями (profile_card_art_ink), не свои литералы
@@ -65,7 +68,7 @@ function ProfileCardBodyBase({
         >
           {name}
         </Text>
-        {plus === true ? <PlusTag testID="profile-card-plus-tag" isLight={false} style={styles.plusTag} /> : null}
+        {plus === true ? <PlusTag testID="profile-card-plus-tag" isLight={false} tier={plusTier} style={styles.plusTag} /> : null}
       </View>
       <View style={styles.rankWrap}>
         {ceremony ? (

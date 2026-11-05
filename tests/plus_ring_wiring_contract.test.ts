@@ -101,7 +101,7 @@ describe('кольцо Plus: 7 мест эталона', () => {
     expect(src('components/profile-card/ProfileCardBody.tsx')).toContain('{plus === true ? <PlusTag testID="profile-card-plus-tag"');
     const modal = src('components/PlayerProfileModal.tsx');
     expect(modal).toContain('const plus = isMe ? myIsPlus : isPlusProfile(player);');
-    expect(modal).toContain('plus={plus} plusSurface={tokens.bg}');
+    expect(modal).toContain('plus={plus} plusTier={plusTier} plusSurface={tokens.bg}'); // зачем: Plus/Ultra 06.11 — уровень визитки
   });
 
   it('метка «◆ Plus» только в трёх местах: Настройки, Аккаунт, визитка (в списках и на башне её нет)', () => {

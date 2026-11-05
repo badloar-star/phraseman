@@ -277,6 +277,8 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
  * плитки (и строка про цену под ними) целиком над кнопкой; сверху остаётся то, что помещается. Ничего не мигает: прокрутка без анимации до первого касания.
  * Журнал [PAYWALL-FIT]: высота окна прокрутки, высота содержимого, на сколько прокрутили — по нему видно, на каких экранах срабатывает.
  */
+const FIT_BOTTOM_SLACK = 28; // paddingBottom содержимого окна прокрутки (S.scrollContent: 30) минус 2 — не показываем пустой отступ ценой верхней строки
+
 export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
   // зачем (150, Сверка: на 10 кадрах окон оплаты нет плиток/ссылок): положение и высота окна прокрутки — рядом с [PAYWALL-FIT]
 
@@ -291,7 +293,9 @@ export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
       console.log('[PAYWALL-FIT] skip', JSON.stringify({ touched: touchedRef.current, viewportH: Math.round(viewportH), contentH: Math.round(contentH) })); // guard-ok: ранний выход называет причину
       return;
     }
-    const overflow = Math.max(0, Math.round(contentH - viewportH));
+    // зачем (Сверка 05.11, premium_expired: overflow 55 резал заголовок первой выгоды): нижний отступ содержимого (scrollContent.paddingBottom 30) показывать не нужно — прокручиваем на
+    // переполнение МИНУС этот отступ: плитки по-прежнему целиком над кнопкой, а наверх уходит в основном верхний отступ, а не строка текста
+    const overflow = Math.max(0, Math.round(contentH - viewportH - FIT_BOTTOM_SLACK));
     if (overflow === lastOffsetRef.current) return;
     lastOffsetRef.current = overflow;
     console.log('[PAYWALL-FIT]', JSON.stringify({ viewportH: Math.round(viewportH), contentH: Math.round(contentH), overflow, action: overflow > 0 ? 'scroll_to_end' : 'fits' })); // guard-ok: одна строка на смену высоты

@@ -1,0 +1,452 @@
+{
+ "lang": "de",
+ "lesson": 9,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:09:01",
+   "target": "Das ist mein Pass.",
+   "ru": "Это мой паспорт.",
+   "uk": "Це мій паспорт."
+  },
+  {
+   "id": "de:09:02",
+   "target": "Das ist dein Pass.",
+   "ru": "Это твой паспорт.",
+   "uk": "Це твій паспорт."
+  },
+  {
+   "id": "de:09:03",
+   "target": "Das ist meine Jacke.",
+   "ru": "Это моя куртка.",
+   "uk": "Це моя куртка."
+  },
+  {
+   "id": "de:09:04",
+   "target": "Das ist deine Jacke.",
+   "ru": "Это твоя куртка.",
+   "uk": "Це твоя куртка."
+  },
+  {
+   "id": "de:09:05",
+   "target": "Das ist mein Fahrrad.",
+   "ru": "Это мой велосипед.",
+   "uk": "Це мій велосипед."
+  },
+  {
+   "id": "de:09:06",
+   "target": "Das ist dein Fahrrad.",
+   "ru": "Это твой велосипед.",
+   "uk": "Це твій велосипед."
+  },
+  {
+   "id": "de:09:07",
+   "target": "Das sind meine Schuhe.",
+   "ru": "Это моя обувь.",
+   "uk": "Це моє взуття."
+  },
+  {
+   "id": "de:09:08",
+   "target": "Das sind deine Schuhe.",
+   "ru": "Это твоя обувь.",
+   "uk": "Це твоє взуття."
+  },
+  {
+   "id": "de:09:09",
+   "target": "Hier ist mein Ausweis.",
+   "ru": "Вот моё удостоверение.",
+   "uk": "Ось моє посвідчення."
+  },
+  {
+   "id": "de:09:10",
+   "target": "Hier ist deine Brille.",
+   "ru": "Вот твои очки.",
+   "uk": "Ось твої окуляри."
+  },
+  {
+   "id": "de:09:11",
+   "target": "Anna hat ihren Pass.",
+   "ru": "У Анны её паспорт.",
+   "uk": "У Анни її паспорт."
+  },
+  {
+   "id": "de:09:12",
+   "target": "Tom hat seinen Pass.",
+   "ru": "У Тома его паспорт.",
+   "uk": "У Тома його паспорт."
+  },
+  {
+   "id": "de:09:13",
+   "target": "Anna sucht ihren Schal.",
+   "ru": "Анна ищет свой шарф.",
+   "uk": "Анна шукає свій шарф."
+  },
+  {
+   "id": "de:09:14",
+   "target": "Tom sucht seinen Schal.",
+   "ru": "Том ищет свой шарф.",
+   "uk": "Том шукає свій шарф."
+  },
+  {
+   "id": "de:09:15",
+   "target": "Anna holt ihre Tasche.",
+   "ru": "Анна берёт свою сумку.",
+   "uk": "Ганна бере свою сумку."
+  },
+  {
+   "id": "de:09:16",
+   "target": "Tom holt seine Tasche.",
+   "ru": "Том берёт свою сумку.",
+   "uk": "Том бере свою сумку."
+  },
+  {
+   "id": "de:09:17",
+   "target": "Anna nimmt ihr Handy.",
+   "ru": "Анна берёт свой телефон.",
+   "uk": "Анна бере свій телефон."
+  },
+  {
+   "id": "de:09:18",
+   "target": "Tom nimmt sein Handy.",
+   "ru": "Том берёт свой телефон.",
+   "uk": "Том бере свій телефон."
+  },
+  {
+   "id": "de:09:19",
+   "target": "Anna findet ihre Schlüssel.",
+   "ru": "Анна находит свои ключи.",
+   "uk": "Анна знаходить свої ключі."
+  },
+  {
+   "id": "de:09:20",
+   "target": "Tom findet seine Schlüssel.",
+   "ru": "Том находит свои ключи.",
+   "uk": "Том знаходить свої ключі."
+  },
+  {
+   "id": "de:09:21",
+   "target": "Unser Zug kommt.",
+   "ru": "Наш поезд прибывает.",
+   "uk": "Наш поїзд прибуває."
+  },
+  {
+   "id": "de:09:22",
+   "target": "Unsere Bahn kommt.",
+   "ru": "Наша электричка прибывает.",
+   "uk": "Наша електричка прибуває."
+  },
+  {
+   "id": "de:09:23",
+   "target": "Unser Taxi kommt.",
+   "ru": "Наше такси подъезжает.",
+   "uk": "Наше таксі під'їжджає."
+  },
+  {
+   "id": "de:09:24",
+   "target": "Unsere Gäste kommen.",
+   "ru": "Наши гости приходят.",
+   "uk": "Наші гості приходять."
+  },
+  {
+   "id": "de:09:25",
+   "target": "Euer Bus wartet.",
+   "ru": "Ваш автобус ждёт.",
+   "uk": "Ваш автобус чекає."
+  },
+  {
+   "id": "de:09:26",
+   "target": "Eure Freundin wartet.",
+   "ru": "Ваша подруга ждёт.",
+   "uk": "Ваша подруга чекає."
+  },
+  {
+   "id": "de:09:27",
+   "target": "Euer Kind wartet.",
+   "ru": "Ваш ребёнок ждёт.",
+   "uk": "Ваша дитина чекає."
+  },
+  {
+   "id": "de:09:28",
+   "target": "Eure Freunde warten.",
+   "ru": "Ваши друзья ждут.",
+   "uk": "Ваші друзі чекають."
+  },
+  {
+   "id": "de:09:29",
+   "target": "Unser Zimmer ist fertig.",
+   "ru": "Наша комната готова.",
+   "uk": "Наша кімната готова."
+  },
+  {
+   "id": "de:09:30",
+   "target": "Eure Zimmer sind fertig.",
+   "ru": "Ваши комнаты готовы.",
+   "uk": "Ваші кімнати готові."
+  },
+  {
+   "id": "de:09:31",
+   "target": "Wo ist mein Ladegerät?",
+   "ru": "Где моя зарядка?",
+   "uk": "Де моя зарядка?"
+  },
+  {
+   "id": "de:09:32",
+   "target": "Wo sind meine Schuhe?",
+   "ru": "Где моя обувь?",
+   "uk": "Де моє взуття?"
+  },
+  {
+   "id": "de:09:33",
+   "target": "Hast du deinen Ausweis?",
+   "ru": "У тебя с собой удостоверение?",
+   "uk": "У тебе з собою посвідчення?"
+  },
+  {
+   "id": "de:09:34",
+   "target": "Hast du deine Fahrkarte?",
+   "ru": "У тебя твой билет?",
+   "uk": "У тебе твій квиток?"
+  },
+  {
+   "id": "de:09:35",
+   "target": "Hat Anna ihren Koffer?",
+   "ru": "У Анны её чемодан?",
+   "uk": "У Анни її валіза?"
+  },
+  {
+   "id": "de:09:36",
+   "target": "Hat Tom seine Brille?",
+   "ru": "У Тома его очки?",
+   "uk": "У Тома його окуляри?"
+  },
+  {
+   "id": "de:09:37",
+   "target": "Ist das Ihr Mantel?",
+   "ru": "Это ваше пальто?",
+   "uk": "Це ваше пальто?"
+  },
+  {
+   "id": "de:09:38",
+   "target": "Sind das Ihre Schlüssel?",
+   "ru": "Это ваши ключи?",
+   "uk": "Це ваші ключі?"
+  },
+  {
+   "id": "de:09:39",
+   "target": "Ist das Ihr Gepäck?",
+   "ru": "Это ваш багаж?",
+   "uk": "Чи це ваш багаж?"
+  },
+  {
+   "id": "de:09:40",
+   "target": "Brauchen Sie Ihre Quittung?",
+   "ru": "Вам нужна ваша квитанция?",
+   "uk": "Вам потрібна ваша квитанція?"
+  },
+  {
+   "id": "de:09:41",
+   "target": "Ich packe meinen Rucksack.",
+   "ru": "Я собираю свой рюкзак.",
+   "uk": "Я збираю свій рюкзак."
+  },
+  {
+   "id": "de:09:42",
+   "target": "Du packst deine Jacke ein.",
+   "ru": "Ты берёшь с собой свою куртку.",
+   "uk": "Ти береш із собою свою куртку."
+  },
+  {
+   "id": "de:09:43",
+   "target": "Wir holen unseren Ball.",
+   "ru": "Мы забираем наш мяч.",
+   "uk": "Ми забираємо наш м'яч."
+  },
+  {
+   "id": "de:09:44",
+   "target": "Ihr holt euren Koffer.",
+   "ru": "Вы забираете свой чемодан.",
+   "uk": "Ви забираєте свою валізу."
+  },
+  {
+   "id": "de:09:45",
+   "target": "Ich zeige meine Karte.",
+   "ru": "Я показываю свою карту.",
+   "uk": "Я показую свою карту."
+  },
+  {
+   "id": "de:09:46",
+   "target": "Du öffnest dein Paket.",
+   "ru": "Ты открываешь свою посылку.",
+   "uk": "Ти відкриваєш свою посилку."
+  },
+  {
+   "id": "de:09:47",
+   "target": "Anna schreibt ihre Adresse.",
+   "ru": "Анна пишет свой адрес.",
+   "uk": "Ганна пише свою адресу."
+  },
+  {
+   "id": "de:09:48",
+   "target": "Tom nennt seinen Namen.",
+   "ru": "Том называет своё имя.",
+   "uk": "Том називає своє ім'я."
+  },
+  {
+   "id": "de:09:49",
+   "target": "Wir suchen unsere Plätze.",
+   "ru": "Мы ищем наши места.",
+   "uk": "Ми шукаємо наші місця."
+  },
+  {
+   "id": "de:09:50",
+   "target": "Ihr findet eure Plätze.",
+   "ru": "Вы находите свои места.",
+   "uk": "Ви знаходите свої місця."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Pass",
+   "ru": "паспорт",
+   "uk": "паспорт"
+  },
+  {
+   "lemma": "die Brille",
+   "ru": "очки для зрения",
+   "uk": "окуляри для зору"
+  },
+  {
+   "lemma": "der Schal",
+   "ru": "шарф",
+   "uk": "шарф"
+  },
+  {
+   "lemma": "der Ausweis",
+   "ru": "удостоверение личности",
+   "uk": "посвідчення особи"
+  },
+  {
+   "lemma": "der Rucksack",
+   "ru": "рюкзак",
+   "uk": "рюкзак"
+  },
+  {
+   "lemma": "schreiben",
+   "ru": "писать",
+   "uk": "писати"
+  }
+ ],
+ "knownWords": [
+  "hier",
+  "müde",
+  "bereit",
+  "die Tür",
+  "der Schlüssel",
+  "das Fenster",
+  "das Kind",
+  "der Kaffee",
+  "die Suppe",
+  "das Wasser",
+  "die Tasche",
+  "das Zimmer",
+  "sein",
+  "der Bahnhof",
+  "die Haltestelle",
+  "die Rechnung",
+  "der Aufzug",
+  "die Treppe",
+  "das Handy",
+  "der Stuhl",
+  "der Bus",
+  "das Ticket",
+  "der Tisch",
+  "die Küche",
+  "die Karte",
+  "das Hotel",
+  "das Büro",
+  "der Brief",
+  "das Paket",
+  "wohnen",
+  "lernen",
+  "warten",
+  "arbeiten",
+  "kaufen",
+  "das Brot",
+  "die Milch",
+  "die Pause",
+  "suchen",
+  "bezahlen",
+  "morgen",
+  "der Kurs",
+  "beginnen",
+  "das Wochenende",
+  "schließen",
+  "die Arbeit",
+  "kommen",
+  "lesen",
+  "bald",
+  "die Hilfe",
+  "brauchen",
+  "bleiben",
+  "Zeit haben",
+  "haben",
+  "wo",
+  "wann",
+  "kosten",
+  "die Fahrt",
+  "wie lange",
+  "die Straße",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden",
+  "der Hunger",
+  "der Balkon",
+  "funktionieren",
+  "passen",
+  "das Kleingeld",
+  "der Garten",
+  "fahren"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у меня есть и что мне нужно: Akkusativ"
+  },
+  {
+   "lesson": 8,
+   "title": "`nicht` или `kein`: что именно отрицаем?"
+  }
+ ],
+ "oldTopicTitle": "Мой, твой, её: чья это вещь?",
+ "oldTheoryRu": "Один и тот же человек может владеть и паспортом, и курткой. Начало притяжательного слова остаётся тем же, конец меняется из-за названия предмета. Цвет, размер и реальный владелец не определяют грамматический род предмета. Когда вещей несколько, появляется форма на `-e` в именительном и винительном падежах. По одной паре обуви можно выучить сразу два решения: чей это комплект и как называется предмет во множественном числе. `Sein` или `ihr`? В этих примерах речь о собственной вещи названного человека. Для Тома выбирай основу `sein-`, для Анны — `ihr-`. Окончание зависит от вещи, а не от владельца: `ihren Pass`, `seinen Schal`. Не ориентируйся на пол владельца, выбирая окончание. У телефона средний род, у ключей во множественном числе свой набор окончаний. Можно менять вещь, не меняя владельца. Есть и владельцы-группы: `unser` включает говорящего, `euer` обращено к нескольким знакомым. Обрати внимание на короткое `eure`, не пытайся сохранить обе гласные исходной формы. Вежливое `Ihr` начинается с заглавной буквы даже внутри фразы. Сравни: знакомому — `deinen Ausweis`, собеседнику на «вы» — `Ihre Quittung`. На слух `Ihr` совпадает со словом «её» или «их», поэтому смотри, к кому обращаются. Когда вещь становится прямым объектом, снова нужен винительный падеж. От знакомой пары `mein Rucksack` легко перейти к `meinen Rucksack`, не меняя самого владельца."
+}

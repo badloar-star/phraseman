@@ -1,0 +1,543 @@
+{
+  "lang": "fr",
+  "lesson": 2,
+  "title": {
+    "ru": "Как сказать «не»",
+    "uk": "Як сказати «не»",
+    "en": "How to say “not”"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Два слова «не»",
+        "uk": "Два слова «не»",
+        "en": "Two words for “not”"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «нет».\nВы уже знаете фразу «Ты здесь.»\nТеперь та же фраза с «не».\nTu n’es pas ici. — «Тебя здесь нет.»\nЧитается: тю нэ па иси́.\nПо-русски «нет» или «не» — одно слово. По-французски нужны два: ne и pas.\nСлово ne значит «не». Слово pas тоже значит «не».\nМежду ними стоит слово «быть, находиться». Вы его уже знаете.\nNe стоит перед ним, pas — после.\nЕсли следующее слово начинается на гласную, ne сокращается и получает апостроф: n’es, n’est, n’êtes.\nПеред suis, sommes, sont ne остаётся целым.\nJe ne suis pas au bureau. — «Меня нет в офисе.»\nЧитается: жё нэ сюи па о бюро́.\nВот ещё одна фраза.\nJe ne suis pas là. — «Меня здесь нет.»\nЧитается: жё нэ сюи па ла́.\nСлово là значит «там» или «здесь, на месте». Когда говорят «меня тут нет», используют là.\nСлово ici значит «здесь».",
+        "uk": "Дивіться, як сказати «ні».\nВи вже знаєте фразу «Ти тут.»\nТепер та сама фраза з «не».\nTu n’es pas ici. — «Тебе тут немає.»\nЧитається: тю не па ісі́.\nУкраїнською «ні» або «не» — одне слово. Французькою потрібні два: ne і pas.\nСлово ne означає «не». Слово pas теж означає «не».\nМіж ними стоїть слово «бути, перебувати». Ви його вже знаєте.\nNe стоїть перед ним, pas — після.\nЯкщо наступне слово починається на голосну, ne скорочується й отримує апостроф: n’es, n’est, n’êtes.\nПеред suis, sommes, sont ne лишається цілим.\nJe ne suis pas au bureau. — «Мене немає в офісі.»\nЧитається: жё не сюі па о бюро́.\nОсь іще одна фраза.\nJe ne suis pas là. — «Мене тут немає.»\nЧитається: жё не сюі па ла́.\nСлово là означає «там» або «тут, на місці». Коли кажуть «мене тут немає», використовують là.\nСлово ici означає «тут».",
+        "en": "Look at how to say “not”.\nYou already know the phrase “You are here.”\nNow the same phrase with “not”.\nTu n’es pas ici. — “You are not here.”\nFrench needs two words: ne and pas.\nne means “not”. pas also means “not”.\nBetween them stands “to be, to be somewhere”.\nYou know that word already.\nne stands before it, pas — after.\nBefore a vowel, ne is shortened with an apostrophe:\nn’es, n’est, n’êtes.\nBefore suis, sommes, sont ne stays whole.\nJe ne suis pas au bureau. — “I am not at the office.”\nHere is one more phrase.\nJe ne suis pas là. — “I am not here.”\nlà means “there” or “here, in place”. When people say “I am not here”,\nthey use là.\nici means “here”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:02:02",
+          "say": {
+            "ru": "тю нэ па иси́",
+            "uk": "тю не па ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:02:03",
+          "say": {
+            "ru": "тю нэ па ла́",
+            "uk": "тю не па ла́"
+          }
+        },
+        {
+          "phraseId": "fr:02:01",
+          "say": {
+            "ru": "жё нэ сюи па ла́",
+            "uk": "жё не сюі па ла́"
+          }
+        },
+        {
+          "phraseId": "fr:02:06",
+          "say": {
+            "ru": "жё нэ сюи па о бюро́",
+            "uk": "жё не сюі па о бюро́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Тебя там нет»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Тебе там немає»?",
+            "en": "Sample. Tap the right answer: how do you say “You are not there”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:02:03",
+          "options": [
+            "fr:02:03",
+            "fr:02:02"
+          ],
+          "answerId": "fr:02:03"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Тебя здесь нет»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Тебе тут немає»?",
+            "en": "Tap the right answer: how do you say “You are not here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:02",
+          "options": [
+            "fr:02:02",
+            "fr:02:03",
+            "fr:02:01"
+          ],
+          "answerId": "fr:02:02"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Меня нет в офисе»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Мене немає в офісі»?",
+            "en": "Tap the right answer: how do you say “I am not at the office”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:06",
+          "options": [
+            "fr:02:06",
+            "fr:02:01",
+            "fr:02:02"
+          ],
+          "answerId": "fr:02:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Поль и «она»",
+        "uk": "Поль і «вона»",
+        "en": "Paul and “she”"
+      },
+      "text": {
+        "ru": "Теперь про Поля и про «она».\nPaul n’est pas au bureau. — «Поля нет в офисе.»\nЧитается: поль нэ па о бюро́.\nElle n’est pas là. — «Её там нет.»\nЧитается: эль нэ па ла́.\nСлово elle значит «она». Слово Paul — это Поль.\nСлово au значит «в» перед словом bureau («офис»).\nЗдесь ne тоже сокращается и получает апостроф: n’est.",
+        "uk": "Тепер про Поля і про «вона».\nPaul n’est pas au bureau. — «Поля немає в офісі.»\nЧитається: поль не па о бюро́.\nElle n’est pas là. — «Її там немає.»\nЧитається: ель не па ла́.\nСлово elle означає «вона». Слово Paul — це Поль.\nСлово au означає «в» перед словом bureau («офіс»).\nТут ne теж скорочується й отримує апостроф: n’est.",
+        "en": "Now about Paul and “she”.\nPaul n’est pas au bureau. — “Paul is not at the office.”\nElle n’est pas là. — “She is not there.”\nelle means “she”. Paul is Paul.\nau means “at” before bureau (“office”).\nHere ne is shortened too, with an apostrophe: n’est."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:02:05",
+          "say": {
+            "ru": "поль нэ па о бюро́",
+            "uk": "поль не па о бюро́"
+          }
+        },
+        {
+          "phraseId": "fr:02:04",
+          "say": {
+            "ru": "эль нэ па ла́",
+            "uk": "ель не па ла́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Её там нет»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Її там немає»?",
+            "en": "Sample. Tap the right answer: how do you say “She is not there”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:02:04",
+          "options": [
+            "fr:02:04",
+            "fr:02:03",
+            "fr:02:05"
+          ],
+          "answerId": "fr:02:04"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Поля нет в офисе»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Поля немає в офісі»?",
+            "en": "Tap the right answer: how do you say “Paul is not at the office”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:05",
+          "options": [
+            "fr:02:05",
+            "fr:02:04",
+            "fr:02:06"
+          ],
+          "answerId": "fr:02:05"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Тебя там нет»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Тебе там немає»?",
+            "en": "Tap the right answer: how do you say “You are not there”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:03",
+          "options": [
+            "fr:02:03",
+            "fr:02:04",
+            "fr:02:02"
+          ],
+          "answerId": "fr:02:03"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Мы, вы, они",
+        "uk": "Ми, ви, вони",
+        "en": "We, you (all), they"
+      },
+      "text": {
+        "ru": "Теперь «мы», «вы» и «они».\nNous ne sommes pas à la gare. — «Нас нет на станции.»\nЧитается: ну нэ сом па а ла гар.\nVous n’êtes pas à la maison. — «Вас нет дома.»\nЧитается: ву нэт па а ла мэзо́н.\nIls ne sont pas dehors. — «Их нет на улице.»\nЧитается: иль нэ сон па дэо́р.\nСлово nous значит «мы», слово vous — «вы», слова ils и elles — «они».\nElles — только про женщин.\nСлово gare значит «вокзал» или «станция». Слово dehors — «на улице».\nNe и pas стоят по бокам: ne sommes pas, n’êtes pas, ne sont pas.\nВ n’êtes слово ne сокращается. В ne sommes и ne sont — остаётся целым.\nНосовой звук: «ан», «он», «эн» говорят в нос, «н» почти не слышно.\nТак читается «сон» в sont.",
+        "uk": "Тепер «ми», «ви» і «вони».\nNous ne sommes pas à la gare. — «Нас немає на станції.»\nЧитається: ну не сом па а ла гар.\nVous n’êtes pas à la maison. — «Вас немає вдома.»\nЧитається: ву нет па а ла мезо́н.\nIls ne sont pas dehors. — «Їх немає надворі.»\nЧитається: іль не сон па део́р.\nСлово nous означає «ми», слово vous — «ви», слова ils і elles — «вони».\nElles — тільки про жінок.\nСлово gare означає «вокзал» або «станція». Слово dehors — «надворі».\nNe і pas стоять по боках: ne sommes pas, n’êtes pas, ne sont pas.\nУ n’êtes слово ne скорочується. У ne sommes і ne sont — лишається цілим.\nНосовий звук: «ан», «он», «ен» кажуть у ніс, «н» майже не чути.\nТак читається «сон» у sont.",
+        "en": "Now “we”, “you (all)” and “they”.\nNous ne sommes pas à la gare. — “We are not at the station.”\nVous n’êtes pas à la maison. — “You are not at home.”\nIls ne sont pas dehors. — “They are not outside.”\nnous means “we”, vous — “you (all)”, ils and elles — “they”.\nelles is only for women.\ngare means “station”. dehors means “outside”.\nne and pas stand on both sides: ne sommes pas, n’êtes pas, ne sont pas.\nIn n’êtes the word ne is shortened. In ne sommes and ne sont it stays whole.\nNasal sound: “an”, “on”, “en” are said through the nose, the “n” is barely heard.\nThat is how “son” in sont is read."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:02:07",
+          "say": {
+            "ru": "ну нэ сом па а ла гар",
+            "uk": "ну не сом па а ла гар"
+          }
+        },
+        {
+          "phraseId": "fr:02:08",
+          "say": {
+            "ru": "ву нэт па а ла мэзо́н",
+            "uk": "ву нет па а ла мезо́н"
+          }
+        },
+        {
+          "phraseId": "fr:02:09",
+          "say": {
+            "ru": "иль нэ сон па дэо́р",
+            "uk": "іль не сон па део́р"
+          }
+        },
+        {
+          "phraseId": "fr:02:10",
+          "say": {
+            "ru": "эль нэ сон па иси́",
+            "uk": "ель не сон па ісі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Нас нет на станции»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Нас немає на станції»?",
+            "en": "Sample. Tap the right answer: how do you say “We are not at the station”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:02:07",
+          "options": [
+            "fr:02:07",
+            "fr:02:08",
+            "fr:02:09"
+          ],
+          "answerId": "fr:02:07"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Вас нет дома»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Вас немає вдома»?",
+            "en": "Tap the right answer: how do you say “You are not at home”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:08",
+          "options": [
+            "fr:02:08",
+            "fr:02:07",
+            "fr:02:02"
+          ],
+          "answerId": "fr:02:08"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Их здесь нет»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Їх немає тут»?",
+            "en": "Tap the right answer: how do you say “They are not here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:10",
+          "options": [
+            "fr:02:10",
+            "fr:02:09",
+            "fr:02:04"
+          ],
+          "answerId": "fr:02:10"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не готов",
+        "uk": "Не готовий",
+        "en": "Not ready"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не готов».\nJe ne suis pas prêt. — «Я не готов.»\nЧитается: жё нэ сюи па прэ́.\nElle n’est pas prête. — «Она не готова.»\nЧитается: эль нэ па прэ́т.\nСлово prêt значит «готов», слово prête — «готова».\nВ конце добавляется ещё одна буква (prêt → prête), и теперь «т» слышно: «прэ́» → «прэ́т».\nNe и pas здесь тоже стоят по бокам: ne suis pas, n’est pas.\nNous ne sommes pas prêts. — «Мы не готовы.»\nЧитается: ну нэ сом па прэ́.\nСлово prêts значит «готовы».",
+        "uk": "Дивіться, як сказати «не готовий».\nJe ne suis pas prêt. — «Я не готовий.»\nЧитається: жё не сюі па пре́.\nElle n’est pas prête. — «Вона не готова.»\nЧитається: ель не па пре́т.\nСлово prêt означає «готовий», слово prête — «готова».\nУ кінці додається ще одна літера (prêt → prête), і тепер «т» чути: «пре́» → «пре́т».\nNe і pas тут теж стоять по боках: ne suis pas, n’est pas.\nNous ne sommes pas prêts. — «Ми не готові.»\nЧитається: ну не сом па пре́.\nСлово prêts означає «готові».",
+        "en": "Look at how to say “not ready”.\nJe ne suis pas prêt. — “I am not ready.”\nElle n’est pas prête. — “She is not ready.”\nprêt means “ready”, prête — “ready” (about her).\nOne more letter comes at the end (prêt → prête), and now the “t” is heard.\nne and pas stand on both sides here too: ne suis pas, n’est pas.\nNous ne sommes pas prêts. — “We are not ready.”\nprêts means “ready” (several people)."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:02:11",
+          "say": {
+            "ru": "жё нэ сюи па прэ́",
+            "uk": "жё не сюі па пре́"
+          }
+        },
+        {
+          "phraseId": "fr:02:12",
+          "say": {
+            "ru": "эль нэ па прэ́т",
+            "uk": "ель не па пре́т"
+          }
+        },
+        {
+          "phraseId": "fr:02:13",
+          "say": {
+            "ru": "ну нэ сом па прэ́",
+            "uk": "ну не сом па пре́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Она не готова»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Вона не готова»?",
+            "en": "Sample. Tap the right answer: how do you say “She is not ready”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:02:12",
+          "options": [
+            "fr:02:12",
+            "fr:02:11",
+            "fr:02:04"
+          ],
+          "answerId": "fr:02:12"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Я не готов»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Я не готовий»?",
+            "en": "Tap the right answer: how do you say “I am not ready”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:11",
+          "options": [
+            "fr:02:11",
+            "fr:02:12",
+            "fr:02:13"
+          ],
+          "answerId": "fr:02:11"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мы не готовы»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ми не готові»?",
+            "en": "Tap the right answer: how do you say “We are not ready”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:13",
+          "options": [
+            "fr:02:13",
+            "fr:02:11",
+            "fr:02:12"
+          ],
+          "answerId": "fr:02:13"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Места и комнаты",
+        "uk": "Місця і кімнати",
+        "en": "Places and rooms"
+      },
+      "text": {
+        "ru": "Теперь названия мест и комнат.\nLe couloir n’est pas sombre. — «В коридоре не темно.»\nЧитается: лё кулуа́р нэ па сомбр.\nСлово couloir значит «коридор». Слово sombre значит «тёмный».\nLa chambre n’est pas libre. — «Номер не свободен.»\nЧитается: ла шанбр нэ па либр.\nСлово chambre значит «номер в гостинице». Слово libre значит «свободен».\nНосовой звук: «ан», «он», «эн» говорят в нос, «н» почти не слышно.\nLes enfants ne sont pas dans la salle. — «Детей нет в комнате.»\nЧитается: лэ занфа́н нэ сон па дан ла саль.\nСлово enfants значит «дети». Слово les стоит перед несколькими людьми или вещами.\nПо-русски слова les нет, запоминайте его вместе со словом.\nСлово dans значит «в». Слово salle значит «зал, помещение»; в фразе курса — «в комнате».\nНе путайте с chambre: это «номер в гостинице».\nПеред словом на гласную последняя буква читается как лёгкое «з»: «лэ-з-анфа́н».\nLa pharmacie n’est pas loin. — «Аптека недалеко.»\nЧитается: ла фармаси́ нэ па луэ́н.\nСлово pharmacie значит «аптека». Слово loin значит «далеко», а pas loin — «недалеко».\nLe musée n’est pas ouvert. — «Музей не открыт.»\nЧитается: лё мюзе́ нэ па зувэ́р.\nСлово musée значит «музей». Здесь тоже лёгкое «з»: «па-з-увэ́р».\nСлова la и le по-русски не говорят — запоминайте их вместе с названием.",
+        "uk": "Тепер назви місць і кімнат.\nLe couloir n’est pas sombre. — «Коридор не темний.»\nЧитається: лё кулуа́р не па сомбр.\nСлово couloir означає «коридор». Слово sombre означає «темний».\nLa chambre n’est pas libre. — «Номер не вільний.»\nЧитається: ла шанбр не па лібр.\nСлово chambre означає «номер у готелі». Слово libre означає «вільний».\nНосовий звук: «ан», «он», «ен» кажуть у ніс, «н» майже не чути.\nLes enfants ne sont pas dans la salle. — «Дітей немає в кімнаті.»\nЧитається: ле занфа́н не сон па дан ла саль.\nСлово enfants означає «діти». Слово les стоїть перед кількома людьми або речами.\nУкраїнською слова les немає, запам’ятовуйте його разом зі словом.\nСлово dans означає «в». Слово salle означає «зала, приміщення»; у фразі курсу — «в кімнаті».\nНе плутайте з chambre: це «номер у готелі».\nПеред словом на голосну остання літера читається як легке «з»: «ле-з-анфа́н».\nLa pharmacie n’est pas loin. — «Аптека недалеко.»\nЧитається: ла фармасі́ не па луе́н.\nСлово pharmacie означає «аптека». Слово loin означає «далеко», а pas loin — «недалеко».\nLe musée n’est pas ouvert. — «Музей не відкритий.»\nЧитається: лё мюзе́ не па зуве́р.\nСлово musée означає «музей». Тут теж легке «з»: «па-з-уве́р».\nСлів la і le українською немає — запам’ятовуйте їх разом із назвою.",
+        "en": "Now names of places and rooms.\nLe couloir n’est pas sombre. — “The corridor is not dark.”\ncouloir means “corridor”. sombre means “dark”.\nLa chambre n’est pas libre. — “The room is not free.”\nchambre means “hotel room”. libre means “free”.\nNasal sound: “an”, “on”, “en” are said through the nose, the “n” is barely heard.\nLes enfants ne sont pas dans la salle. — “The children are not in the room.”\nenfants means “children”. les stands before several people or things.\nEnglish has no such word here: learn it together with the word.\ndans means “in”. salle means “hall, room”; in the course phrase it is “in the room”.\nDo not mix it up with chambre: that is a “hotel room”.\nBefore a vowel the last letter sounds like a light “z”: “lay-z-anfan”.\nLa pharmacie n’est pas loin. — “The pharmacy is not far.”\npharmacie means “pharmacy”. loin means “far”, and pas loin — “not far”.\nLe musée n’est pas ouvert. — “The museum is not open.”\nmusée means “museum”. A light “z” here too: “pa-z-oovair”.\nla and le have no word in English here — learn them together with the name."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:02:26",
+          "say": {
+            "ru": "лё кулуа́р нэ па сомбр",
+            "uk": "лё кулуа́р не па сомбр"
+          }
+        },
+        {
+          "phraseId": "fr:02:44",
+          "say": {
+            "ru": "ла шанбр нэ па либр",
+            "uk": "ла шанбр не па лібр"
+          }
+        },
+        {
+          "phraseId": "fr:02:34",
+          "say": {
+            "ru": "лэ занфа́н нэ сон па дан ла саль",
+            "uk": "ле занфа́н не сон па дан ла саль"
+          }
+        },
+        {
+          "phraseId": "fr:02:38",
+          "say": {
+            "ru": "ла фармаси́ нэ па луэ́н",
+            "uk": "ла фармасі́ не па луе́н"
+          }
+        },
+        {
+          "phraseId": "fr:02:37",
+          "say": {
+            "ru": "лё мюзе́ нэ па зувэ́р",
+            "uk": "лё мюзе́ не па зуве́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «В коридоре не темно»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Коридор не темний»?",
+            "en": "Sample. Tap the right answer: how do you say “The corridor is not dark”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:02:26",
+          "options": [
+            "fr:02:26",
+            "fr:02:44",
+            "fr:02:38"
+          ],
+          "answerId": "fr:02:26"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Аптека недалеко»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Аптека недалеко»?",
+            "en": "Tap the right answer: how do you say “The pharmacy is not far”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:38",
+          "options": [
+            "fr:02:38",
+            "fr:02:37",
+            "fr:02:26"
+          ],
+          "answerId": "fr:02:38"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Музей не открыт»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Музей не відкритий»?",
+            "en": "Tap the right answer: how do you say “The museum is not open”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:37",
+          "options": [
+            "fr:02:37",
+            "fr:02:38",
+            "fr:02:44"
+          ],
+          "answerId": "fr:02:37"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Вещи и транспорт",
+        "uk": "Речі і транспорт",
+        "en": "Things and transport"
+      },
+      "text": {
+        "ru": "Теперь вещи и транспорт.\nLes billets ne sont pas sur la table. — «Билетов нет на столе.»\nЧитается: лэ бийэ́ нэ сон па сюр ла табль.\nСлово billets значит «билеты», слово table — «стол». Слово sur значит «на».\nСлово les стоит перед несколькими вещами: les billets. По-русски такого слова нет.\nLe train n’est pas en retard. — «Поезд не опаздывает.»\nЧитается: лё трэ́н нэ па зан рёта́р.\nСлово train значит «поезд», слова en retard — «с опозданием».\nЗдесь тоже лёгкое «з»: «па-з-ан».\nОстальные слова смотрите на карточках: ticket («билет, талон»), vélo («велосипед»), bus («автобус»).",
+        "uk": "Тепер речі і транспорт.\nLes billets ne sont pas sur la table. — «Квитки не на столі.»\nЧитається: ле бійе́ не сон па сюр ла табль.\nСлово billets означає «квитки», слово table — «стіл». Слово sur означає «на».\nСлово les стоїть перед кількома речами: les billets. Українською такого слова немає.\nLe train n’est pas en retard. — «Поїзд не запізнюється.»\nЧитається: лё тре́н не па зан рёта́р.\nСлово train означає «потяг», слова en retard — «із запізненням».\nТут теж легке «з»: «па-з-ан».\nРешту слів дивіться на картках: ticket («квиток, талон»), vélo («велосипед»), bus («автобус»).",
+        "en": "Now things and transport.\nLes billets ne sont pas sur la table. — “The tickets are not on the table.”\nbillets means “tickets”, table — “table”. sur means “on”.\nles stands before several things: les billets. English has no such word here.\nLe train n’est pas en retard. — “The train is not late.”\ntrain means “train”, en retard — “late”.\nA light “z” here too: “pa-z-an”.\nThe other words are on the cards: ticket, vélo (“bike”), bus."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:02:39",
+          "say": {
+            "ru": "лэ бийэ́ нэ сон па сюр ла табль",
+            "uk": "ле бійе́ не сон па сюр ла табль"
+          }
+        },
+        {
+          "phraseId": "fr:02:40",
+          "say": {
+            "ru": "лё трэ́н нэ па зан рёта́р",
+            "uk": "лё тре́н не па зан рёта́р"
+          }
+        },
+        {
+          "phraseId": "fr:02:33",
+          "say": {
+            "ru": "лё тикэ́ нэ па дан лё сак",
+            "uk": "лё тіке́ не па дан лё сак"
+          }
+        },
+        {
+          "phraseId": "fr:02:35",
+          "say": {
+            "ru": "лё вело́ нэ па дэо́р",
+            "uk": "лё вело́ не па део́р"
+          }
+        },
+        {
+          "phraseId": "fr:02:31",
+          "say": {
+            "ru": "лё бюс нэ па луэ́н",
+            "uk": "лё бюс не па луе́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Поезд не опаздывает»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Поїзд не запізнюється»?",
+            "en": "Sample. Tap the right answer: how do you say “The train is not late”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:02:40",
+          "options": [
+            "fr:02:40",
+            "fr:02:31",
+            "fr:02:35"
+          ],
+          "answerId": "fr:02:40"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Велосипед не на улице»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Велосипед не на вулиці»?",
+            "en": "Tap the right answer: how do you say “The bike is not outside”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:35",
+          "options": [
+            "fr:02:35",
+            "fr:02:31",
+            "fr:02:33"
+          ],
+          "answerId": "fr:02:35"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Автобус недалеко»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Автобус недалеко»?",
+            "en": "Tap the right answer: how do you say “The bus is not far”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:02:31",
+          "options": [
+            "fr:02:31",
+            "fr:02:35",
+            "fr:02:40"
+          ],
+          "answerId": "fr:02:31"
+        }
+      ]
+    }
+  ]
+}

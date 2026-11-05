@@ -1,0 +1,551 @@
+{
+  "lang": "fr",
+  "lesson": 9,
+  "title": {
+    "ru": "Мой, твой, его, наш",
+    "uk": "Мій, твій, його, наш",
+    "en": "My, your, his, our"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Мой",
+        "uk": "Мій",
+        "en": "My"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Моя сумка здесь».\nMon sac est ici. — «Моя сумка здесь.»\nЧитается: мон сак э иси́.\nСлово mon значит «мой, моя».\nMa clé est là. — «Мой ключ там.»\nЧитается: ма кле́ э ла.\nСлово ma тоже значит «мой, моя».\nMes clés sont ici. — «Мои ключи здесь.»\nЧитается: мэ кле́ сон иси́.\nСлово mes значит «мои».\nДля sac говорят mon, для clé — ma.\nЗапоминайте слово вместе с названием вещи.\nMon vélo est au garage. — «Мой велосипед в гараже.»\nЧитается: мон вело́ э о гара́ж.\nСлово garage значит «гараж, автомастерская». Слова au garage значат «в гараже».",
+        "uk": "Дивіться, як сказати «Моя сумка тут».\nMon sac est ici. — «Моя сумка тут.»\nЧитається: мон сак е ісі́.\nСлово mon означає «мій, моя».\nMa clé est là. — «Мій ключ там.»\nЧитається: ма кле́ е ла.\nСлово ma теж означає «мій, моя».\nMes clés sont ici. — «Мої ключі тут.»\nЧитається: ме кле́ сон ісі́.\nСлово mes означає «мої».\nДля sac кажуть mon, для clé — ma.\nЗапам’ятовуйте слово разом із назвою речі.\nMon vélo est au garage. — «Мій велосипед у гаражі.»\nЧитається: мон вело́ е о гара́ж.\nСлово garage означає «гараж, автомайстерня». Слова au garage означають «у гаражі».",
+        "en": "Look at how to say “My bag is here”.\nMon sac est ici. — “My bag is here.”\nmon means “my”.\nMa clé est là. — “My key is there.”\nma also means “my”.\nMes clés sont ici. — “My keys are here.”\nmes means “my” for several things.\nFor sac we say mon, for clé — ma.\nLearn the word together with the name of the thing.\nMon vélo est au garage. — “My bike is in the garage.”\ngarage means “garage”. au garage means “in the garage”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:09:01",
+          "say": {
+            "ru": "мон сак э иси́",
+            "uk": "мон сак е ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:09:03",
+          "say": {
+            "ru": "ма кле́ э ла",
+            "uk": "ма кле́ е ла"
+          }
+        },
+        {
+          "phraseId": "fr:09:05",
+          "say": {
+            "ru": "мэ кле́ сон иси́",
+            "uk": "ме кле́ сон ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:09:10",
+          "say": {
+            "ru": "мон вело́ э о гара́ж",
+            "uk": "мон вело́ е о гара́ж"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Моя сумка здесь»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Моя сумка тут»?",
+            "en": "Sample. Tap the right answer: how do you say “My bag is here”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:09:01",
+          "options": [
+            "fr:09:01",
+            "fr:09:03",
+            "fr:09:05"
+          ],
+          "answerId": "fr:09:01"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мой ключ там»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Мій ключ там»?",
+            "en": "Tap the right answer: how do you say “My key is there”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:03",
+          "options": [
+            "fr:09:03",
+            "fr:09:01",
+            "fr:09:05"
+          ],
+          "answerId": "fr:09:03"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мой велосипед в гараже»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Мій велосипед у гаражі»?",
+            "en": "Tap the right answer: how do you say “My bike is in the garage”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:10",
+          "options": [
+            "fr:09:10",
+            "fr:09:01",
+            "fr:09:03"
+          ],
+          "answerId": "fr:09:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Твой",
+        "uk": "Твій",
+        "en": "Your (one person)"
+      },
+      "text": {
+        "ru": "Теперь «твой», «твоя» и «твои».\nTon sac est ici. — «Твоя сумка здесь.»\nЧитается: тон сак э иси́.\nСлово ton значит «твой, твоя».\nTa clé est là. — «Твой ключ там.»\nЧитается: та кле́ э ла.\nСлово ta тоже значит «твой, твоя».\nTes clés sont ici. — «Твои ключи здесь.»\nЧитается: тэ кле́ сон иси́.\nСлово tes значит «твои».\nВсё как с mon, ma, mes: mon sac — ton sac.\nMa clé — ta clé. Mes clés — tes clés.",
+        "uk": "Тепер «твій», «твоя» і «твої».\nTon sac est ici. — «Твоя сумка тут.»\nЧитається: тон сак е ісі́.\nСлово ton означає «твій, твоя».\nTa clé est là. — «Твій ключ там.»\nЧитається: та кле́ е ла.\nСлово ta теж означає «твій, твоя».\nTes clés sont ici. — «Твої ключі тут.»\nЧитається: те кле́ сон ісі́.\nСлово tes означає «твої».\nУсе як з mon, ma, mes: mon sac — ton sac.\nMa clé — ta clé. Mes clés — tes clés.",
+        "en": "Now “your” for one person you call tu.\nTon sac est ici. — “Your bag is here.”\nton means “your”.\nTa clé est là. — “Your key is there.”\nta also means “your”.\nTes clés sont ici. — “Your keys are here.”\ntes means “your” for several things.\nSame as with mon, ma, mes: mon sac — ton sac.\nMa clé — ta clé. Mes clés — tes clés."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:09:02",
+          "say": {
+            "ru": "тон сак э иси́",
+            "uk": "тон сак е ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:09:04",
+          "say": {
+            "ru": "та кле́ э ла",
+            "uk": "та кле́ е ла"
+          }
+        },
+        {
+          "phraseId": "fr:09:06",
+          "say": {
+            "ru": "тэ кле́ сон иси́",
+            "uk": "те кле́ сон ісі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Твоя сумка здесь»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Твоя сумка тут»?",
+            "en": "Sample. Tap the right answer: how do you say “Your bag is here”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:09:02",
+          "options": [
+            "fr:09:02",
+            "fr:09:04",
+            "fr:09:06"
+          ],
+          "answerId": "fr:09:02"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Твой ключ там»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Твій ключ там»?",
+            "en": "Tap the right answer: how do you say “Your key is there”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:04",
+          "options": [
+            "fr:09:04",
+            "fr:09:02",
+            "fr:09:06"
+          ],
+          "answerId": "fr:09:04"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Твои ключи здесь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Твої ключі тут»?",
+            "en": "Tap the right answer: how do you say “Your keys are here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:06",
+          "options": [
+            "fr:09:06",
+            "fr:09:02",
+            "fr:09:04"
+          ],
+          "answerId": "fr:09:06"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Его, её",
+        "uk": "Його, її",
+        "en": "His, her"
+      },
+      "text": {
+        "ru": "Теперь «его» и «её».\nSon sac est dehors. — «Его сумка снаружи.»\nЧитается: сон сак э дёо́р.\nСлово son значит «его, её». Слово dehors значит «снаружи».\nSa veste est dehors. — «Его куртка снаружи.»\nЧитается: са вест э дёо́р.\nСлово sa тоже значит «его, её».\nSes lunettes sont là. — «Его очки здесь.»\nЧитается: сэ люнэ́т сон ла.\nСлово ses значит «его, её» — когда вещей несколько.\nПо слову не видно, чьё это — его или её.\nЭто понятно из разговора.",
+        "uk": "Тепер «його» і «її».\nSon sac est dehors. — «Його сумка зовні.»\nЧитається: сон сак е дёо́р.\nСлово son означає «його, її». Слово dehors означає «зовні».\nSa veste est dehors. — «Його куртка зовні.»\nЧитається: са вест е дёо́р.\nСлово sa теж означає «його, її».\nSes lunettes sont là. — «Його окуляри тут.»\nЧитається: се люне́т сон ла.\nСлово ses означає «його, її» — коли речей кілька.\nЗа словом не видно, чиє це — його чи її.\nЦе зрозуміло з розмови.",
+        "en": "Now “his” and “her”.\nSon sac est dehors. — “His bag is outside.”\nson means “his, her”. dehors means “outside”.\nSa veste est dehors. — “His jacket is outside.”\nsa also means “his, her”.\nSes lunettes sont là. — “His glasses are here.”\nses means “his, her” for several things.\nThe word does not show whether it is his or hers.\nYou understand it from the talk."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:09:07",
+          "say": {
+            "ru": "сон сак э дёо́р",
+            "uk": "сон сак е дёо́р"
+          }
+        },
+        {
+          "phraseId": "fr:09:08",
+          "say": {
+            "ru": "са вест э дёо́р",
+            "uk": "са вест е дёо́р"
+          }
+        },
+        {
+          "phraseId": "fr:09:09",
+          "say": {
+            "ru": "сэ люнэ́т сон ла",
+            "uk": "се люне́т сон ла"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Его сумка снаружи»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Його сумка зовні»?",
+            "en": "Sample. Tap the right answer: how do you say “His bag is outside”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:09:07",
+          "options": [
+            "fr:09:07",
+            "fr:09:08",
+            "fr:09:09"
+          ],
+          "answerId": "fr:09:07"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Его куртка снаружи»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Його куртка зовні»?",
+            "en": "Tap the right answer: how do you say “His jacket is outside”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:08",
+          "options": [
+            "fr:09:08",
+            "fr:09:07",
+            "fr:09:09"
+          ],
+          "answerId": "fr:09:08"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Его очки здесь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Його окуляри тут»?",
+            "en": "Tap the right answer: how do you say “His glasses are here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:09",
+          "options": [
+            "fr:09:09",
+            "fr:09:07",
+            "fr:09:08"
+          ],
+          "answerId": "fr:09:09"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Наш, ваш, их",
+        "uk": "Наш, ваш, їхній",
+        "en": "Our, your, their"
+      },
+      "text": {
+        "ru": "Теперь «наш», «ваш» и «их».\nNotre train est à quai. — «Наш поезд на платформе.»\nЧитается: нотр трэн э та ке́.\nСлово notre значит «наш». Слова à quai значат «на платформе».\nVotre train est à quai. — «Ваш поезд на платформе.»\nЧитается: вотр трэн э та ке́.\nСлово votre значит «ваш».\nNos billets sont prêts. — «Наши билеты готовы.»\nЧитается: но бийэ́ сон прэ.\nСлова nos и vos значат «наши» и «ваши».\nLeur chambre est libre. — «Их комната свободна.»\nЧитается: лёр шанбр э либр.\nСлово leur значит «их». Когда вещей несколько — leurs.",
+        "uk": "Тепер «наш», «ваш» і «їхній».\nNotre train est à quai. — «Наш поїзд на платформі.»\nЧитається: нотр трен е та ке́.\nСлово notre означає «наш». Слова à quai означають «на платформі».\nVotre train est à quai. — «Ваш поїзд на платформі.»\nЧитається: вотр трен е та ке́.\nСлово votre означає «ваш».\nNos billets sont prêts. — «Наші квитки готові.»\nЧитається: но бійе́ сон пре.\nСлова nos і vos означають «наші» і «ваші».\nLeur chambre est libre. — «Їхня кімната вільна.»\nЧитається: лёр шанбр е лібр.\nСлово leur означає «їхній». Коли речей кілька — leurs.",
+        "en": "Now “our”, “your” and “their”.\nNotre train est à quai. — “Our train is at the platform.”\nnotre means “our”. à quai means “at the platform”.\nVotre train est à quai. — “Your train is at the platform.”\nvotre means “your”.\nNos billets sont prêts. — “Our tickets are ready.”\nnos and vos mean “our” and “your” for several things.\nLeur chambre est libre. — “Their room is free.”\nleur means “their”. For several things — leurs."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:09:11",
+          "say": {
+            "ru": "нотр трэн э та ке́",
+            "uk": "нотр трен е та ке́"
+          }
+        },
+        {
+          "phraseId": "fr:09:12",
+          "say": {
+            "ru": "вотр трэн э та ке́",
+            "uk": "вотр трен е та ке́"
+          }
+        },
+        {
+          "phraseId": "fr:09:13",
+          "say": {
+            "ru": "но бийэ́ сон прэ",
+            "uk": "но бійе́ сон пре"
+          }
+        },
+        {
+          "phraseId": "fr:09:14",
+          "say": {
+            "ru": "во бийэ́ сон прэ",
+            "uk": "во бійе́ сон пре"
+          }
+        },
+        {
+          "phraseId": "fr:09:15",
+          "say": {
+            "ru": "лёр шанбр э либр",
+            "uk": "лёр шанбр е лібр"
+          }
+        },
+        {
+          "phraseId": "fr:09:16",
+          "say": {
+            "ru": "лёр шанбр сон либр",
+            "uk": "лёр шанбр сон лібр"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Наш поезд на платформе»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Наш поїзд на платформі»?",
+            "en": "Sample. Tap the right answer: how do you say “Our train is at the platform”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:09:11",
+          "options": [
+            "fr:09:11",
+            "fr:09:12",
+            "fr:09:15"
+          ],
+          "answerId": "fr:09:11"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ваши билеты готовы»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ваші квитки готові»?",
+            "en": "Tap the right answer: how do you say “Your tickets are ready”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:14",
+          "options": [
+            "fr:09:14",
+            "fr:09:13",
+            "fr:09:16"
+          ],
+          "answerId": "fr:09:14"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Их комната свободна»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Їхня кімната вільна»?",
+            "en": "Tap the right answer: how do you say “Their room is free”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:15",
+          "options": [
+            "fr:09:15",
+            "fr:09:16",
+            "fr:09:11"
+          ],
+          "answerId": "fr:09:15"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Свой",
+        "uk": "Свій",
+        "en": "One’s own"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я беру свой зонтик».\nJe prends mon parapluie. — «Я беру свой зонтик.»\nЧитается: жё пран мон параплюи́.\nСлово prends значит «беру». Слово parapluie значит «зонт».\nTu prends ton casque. — «Ты берёшь свой шлем.»\nЧитается: тю пран тон каск.\nСлово casque значит «шлем».\nPaul cherche son badge. — «Поль ищет свой пропуск.»\nЧитается: поль шэрш сон бадж.\nСлово badge значит «пропуск, бейдж».\nПо-русски говорят «свой».\nПо-французски говорят «мой», «твой» или «его» — смотря о ком речь.\nJe cherche mon manteau. — «Я ищу своё пальто.»\nЧитается: жё шэрш мон манто́.\nLes enfants cherchent leur ballon. — «Дети ищут свой мяч.»\nЧитается: лэ занфа́н шэрш лёр бало́н.\nСлово ballon значит «мяч». Слово enfants значит «дети».",
+        "uk": "Дивіться, як сказати «Я беру свою парасольку».\nJe prends mon parapluie. — «Я беру свою парасольку.»\nЧитається: жё пран мон параплюі́.\nСлово prends означає «беру». Слово parapluie означає «парасолька».\nTu prends ton casque. — «Ти береш свій шолом.»\nЧитається: тю пран тон каск.\nСлово casque означає «шолом».\nPaul cherche son badge. — «Пол шукає свою перепустку.»\nЧитається: поль шерш сон бадж.\nСлово badge означає «пропуск, бейдж».\nУкраїнською кажуть «свій».\nФранцузькою кажуть «мій», «твій» або «його» — залежно від того, про кого мова.\nJe cherche mon manteau. — «Я шукаю своє пальто.»\nЧитається: жё шерш мон манто́.\nLes enfants cherchent leur ballon. — «Діти шукають свій м'яч.»\nЧитається: ле занфа́н шерш лёр бало́н.\nСлово ballon означає «м'яч». Слово enfants означає «діти».",
+        "en": "Look at how to say “I am taking my umbrella”.\nJe prends mon parapluie. — “I am taking my umbrella.”\nprends means “take”. parapluie means “umbrella”.\nTu prends ton casque. — “You take your helmet.”\ncasque means “helmet”.\nPaul cherche son badge. — “Paul is looking for his badge.”\nbadge means “badge, pass”.\nIn French you say “my”, “your” or “his” — it depends on who it is about.\nJe cherche mon manteau. — “I am looking for my coat.”\nLes enfants cherchent leur ballon. — “The children are looking for their ball.”\nballon means “ball”. enfants means “children”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:09:28",
+          "say": {
+            "ru": "жё пран мон параплюи́",
+            "uk": "жё пран мон параплюі́"
+          }
+        },
+        {
+          "phraseId": "fr:09:29",
+          "say": {
+            "ru": "тю пран тон каск",
+            "uk": "тю пран тон каск"
+          }
+        },
+        {
+          "phraseId": "fr:09:23",
+          "say": {
+            "ru": "поль шэрш сон бадж",
+            "uk": "поль шерш сон бадж"
+          }
+        },
+        {
+          "phraseId": "fr:09:21",
+          "say": {
+            "ru": "жё шэрш мон манто́",
+            "uk": "жё шерш мон манто́"
+          }
+        },
+        {
+          "phraseId": "fr:09:27",
+          "say": {
+            "ru": "лэ занфа́н шэрш лёр бало́н",
+            "uk": "ле занфа́н шерш лёр бало́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Я беру свой зонтик»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я беру свою парасольку»?",
+            "en": "Sample. Tap the right answer: how do you say “I am taking my umbrella”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:09:28",
+          "options": [
+            "fr:09:28",
+            "fr:09:29",
+            "fr:09:23"
+          ],
+          "answerId": "fr:09:28"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Дети ищут свой мяч»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Діти шукають свій м'яч»?",
+            "en": "Tap the right answer: how do you say “The children are looking for their ball”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:27",
+          "options": [
+            "fr:09:27",
+            "fr:09:21",
+            "fr:09:23"
+          ],
+          "answerId": "fr:09:27"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Я ищу своё пальто»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Я шукаю своє пальто»?",
+            "en": "Tap the right answer: how do you say “I am looking for my coat”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:21",
+          "options": [
+            "fr:09:21",
+            "fr:09:28",
+            "fr:09:27"
+          ],
+          "answerId": "fr:09:21"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Близкие и коллеги",
+        "uk": "Близькі та колеги",
+        "en": "Family and colleagues"
+      },
+      "text": {
+        "ru": "Так же говорят про людей.\nSa sœur travaille ici. — «Его сестра работает здесь.»\nЧитается: са сёр трава́й иси́.\nSon père habite à Lyon. — «Его отец живет в Лионе.»\nЧитается: сон пэр аби́т а лио́н.\nСлово père значит «отец».\nMes collègues sont au bureau. — «Мои коллеги в офисе.»\nЧитается: мэ колэ́г сон о бюро́.\nСлово collègues значит «коллеги».\nСлова au bureau значат «в офисе».",
+        "uk": "Так само кажуть про людей.\nSa sœur travaille ici. — «Його сестра працює тут.»\nЧитається: са сёр трава́й ісі́.\nSon père habite à Lyon. — «Його батько живе в Ліоні.»\nЧитається: сон пер абі́т а ліо́н.\nСлово père означає «батько».\nMes collègues sont au bureau. — «Мої колеги в офісі.»\nЧитається: ме коле́г сон о бюро́.\nСлово collègues означає «колеги».\nСлова au bureau означають «в офісі».",
+        "en": "We say the same about people.\nSa sœur travaille ici. — “His sister works here.”\nSon père habite à Lyon. — “His father lives in Lyon.”\npère means “father”.\nMes collègues sont au bureau. — “My colleagues are at the office.”\ncollègues means “colleagues”.\nau bureau means “at the office”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:09:38",
+          "say": {
+            "ru": "са сёр трава́й иси́",
+            "uk": "са сёр трава́й ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:09:39",
+          "say": {
+            "ru": "сон пэр аби́т а лио́н",
+            "uk": "сон пер абі́т а ліо́н"
+          }
+        },
+        {
+          "phraseId": "fr:09:37",
+          "say": {
+            "ru": "мэ колэ́г сон о бюро́",
+            "uk": "ме коле́г сон о бюро́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Его сестра работает здесь»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Його сестра працює тут»?",
+            "en": "Sample. Tap the right answer: how do you say “His sister works here”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:09:38",
+          "options": [
+            "fr:09:38",
+            "fr:09:39",
+            "fr:09:37"
+          ],
+          "answerId": "fr:09:38"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Его отец живет в Лионе»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Його батько живе в Ліоні»?",
+            "en": "Tap the right answer: how do you say “His father lives in Lyon”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:39",
+          "options": [
+            "fr:09:39",
+            "fr:09:38",
+            "fr:09:37"
+          ],
+          "answerId": "fr:09:39"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мои коллеги в офисе»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Мої колеги в офісі»?",
+            "en": "Tap the right answer: how do you say “My colleagues are at the office”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:09:37",
+          "options": [
+            "fr:09:37",
+            "fr:09:38",
+            "fr:09:39"
+          ],
+          "answerId": "fr:09:37"
+        }
+      ]
+    }
+  ]
+}

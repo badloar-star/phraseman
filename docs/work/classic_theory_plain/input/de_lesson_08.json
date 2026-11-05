@@ -1,0 +1,446 @@
+{
+ "lang": "de",
+ "lesson": 8,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:08:01",
+   "target": "Ich bin nicht müde.",
+   "ru": "Я не устал.",
+   "uk": "Я не втомився."
+  },
+  {
+   "id": "de:08:02",
+   "target": "Du bist nicht allein.",
+   "ru": "Ты не один.",
+   "uk": "Ти не один."
+  },
+  {
+   "id": "de:08:03",
+   "target": "Anna ist nicht krank.",
+   "ru": "Анна не болеет.",
+   "uk": "Анна не хворіє."
+  },
+  {
+   "id": "de:08:04",
+   "target": "Das Bad ist nicht frei.",
+   "ru": "Ванная не свободна.",
+   "uk": "Ванна кімната не вільна."
+  },
+  {
+   "id": "de:08:05",
+   "target": "Die Tür ist nicht zu.",
+   "ru": "Дверь не закрыта.",
+   "uk": "Двері не зачинені."
+  },
+  {
+   "id": "de:08:06",
+   "target": "Das Essen ist nicht kalt.",
+   "ru": "Еда не холодная.",
+   "uk": "Їжа не холодна."
+  },
+  {
+   "id": "de:08:07",
+   "target": "Der Laden ist nicht offen.",
+   "ru": "Магазин не открыт.",
+   "uk": "Магазин не відкритий."
+  },
+  {
+   "id": "de:08:08",
+   "target": "Wir sind nicht zu Hause.",
+   "ru": "Мы не дома.",
+   "uk": "Ми не вдома."
+  },
+  {
+   "id": "de:08:09",
+   "target": "Tom ist nicht im Büro.",
+   "ru": "Том не в офисе.",
+   "uk": "Том не в офісі."
+  },
+  {
+   "id": "de:08:10",
+   "target": "Die Gäste sind nicht hier.",
+   "ru": "Гостей здесь нет.",
+   "uk": "Гостей тут немає."
+  },
+  {
+   "id": "de:08:11",
+   "target": "Ich habe keinen Schlüssel.",
+   "ru": "У меня нет ключа.",
+   "uk": "У мене немає ключа."
+  },
+  {
+   "id": "de:08:12",
+   "target": "Du hast keine Tasche.",
+   "ru": "У тебя нет сумки.",
+   "uk": "У тебе немає сумки."
+  },
+  {
+   "id": "de:08:13",
+   "target": "Anna hat kein Handy.",
+   "ru": "У Анны нет телефона.",
+   "uk": "Анна не має телефону."
+  },
+  {
+   "id": "de:08:14",
+   "target": "Wir haben keine Tickets.",
+   "ru": "У нас нет билетов.",
+   "uk": "У нас немає квитків."
+  },
+  {
+   "id": "de:08:15",
+   "target": "Ihr habt keinen Termin.",
+   "ru": "У вас нет записи на приём.",
+   "uk": "У вас немає запису на прийом."
+  },
+  {
+   "id": "de:08:16",
+   "target": "Tom hat keine Zeit.",
+   "ru": "У Тома нет времени.",
+   "uk": "У Тома немає часу."
+  },
+  {
+   "id": "de:08:17",
+   "target": "Ich brauche keinen Beleg.",
+   "ru": "Мне не нужен чек.",
+   "uk": "Мені не потрібен чек."
+  },
+  {
+   "id": "de:08:18",
+   "target": "Sie braucht keine Quittung.",
+   "ru": "Ей не нужна квитанция.",
+   "uk": "Їй не потрібна квитанція."
+  },
+  {
+   "id": "de:08:19",
+   "target": "Wir brauchen kein Taxi.",
+   "ru": "Нам не нужно такси.",
+   "uk": "Нам не потрібне таксі."
+  },
+  {
+   "id": "de:08:20",
+   "target": "Die Kinder haben keinen Hunger.",
+   "ru": "Дети не голодны.",
+   "uk": "Діти не голодні."
+  },
+  {
+   "id": "de:08:21",
+   "target": "Ich trinke keinen Kaffee.",
+   "ru": "Я не пью кофе.",
+   "uk": "Я не п'ю кави."
+  },
+  {
+   "id": "de:08:22",
+   "target": "Anna isst kein Fleisch.",
+   "ru": "Анна не ест мясо.",
+   "uk": "Ганна не їсть м'ясо."
+  },
+  {
+   "id": "de:08:23",
+   "target": "Wir kaufen keine Milch.",
+   "ru": "Мы не покупаем молоко.",
+   "uk": "Ми не купуємо молоко."
+  },
+  {
+   "id": "de:08:24",
+   "target": "Tom bestellt keinen Salat.",
+   "ru": "Том не заказывает салат.",
+   "uk": "Том не замовляє салат."
+  },
+  {
+   "id": "de:08:25",
+   "target": "Ich höre keine Musik.",
+   "ru": "Я не слушаю музыку.",
+   "uk": "Я не слухаю музику."
+  },
+  {
+   "id": "de:08:26",
+   "target": "Du liest keine Zeitung.",
+   "ru": "Ты не читаешь газету.",
+   "uk": "Ти не читаєш газету."
+  },
+  {
+   "id": "de:08:27",
+   "target": "Die Küche hat kein Fenster.",
+   "ru": "На кухне нет окна.",
+   "uk": "На кухні немає вікна."
+  },
+  {
+   "id": "de:08:28",
+   "target": "Das Zimmer hat keinen Balkon.",
+   "ru": "В комнате нет балкона.",
+   "uk": "У кімнаті немає балкона."
+  },
+  {
+   "id": "de:08:29",
+   "target": "Das Büro hat keinen Aufzug.",
+   "ru": "В офисе нет лифта.",
+   "uk": "В офісі немає ліфта."
+  },
+  {
+   "id": "de:08:30",
+   "target": "Der Laden hat keine Kasse.",
+   "ru": "В магазине нет кассы.",
+   "uk": "У магазині немає каси."
+  },
+  {
+   "id": "de:08:31",
+   "target": "Ich arbeite heute nicht.",
+   "ru": "Я сегодня не работаю.",
+   "uk": "Я сьогодні не працюю."
+  },
+  {
+   "id": "de:08:32",
+   "target": "Anna kommt morgen nicht.",
+   "ru": "Анна завтра не придёт.",
+   "uk": "Ганна завтра не прийде."
+  },
+  {
+   "id": "de:08:33",
+   "target": "Wir kochen heute nicht.",
+   "ru": "Мы сегодня не готовим.",
+   "uk": "Ми сьогодні не готуємо."
+  },
+  {
+   "id": "de:08:34",
+   "target": "Tom wartet nicht draußen.",
+   "ru": "Том ждёт не на улице.",
+   "uk": "Том чекає не на вулиці."
+  },
+  {
+   "id": "de:08:35",
+   "target": "Ich wohne nicht hier.",
+   "ru": "Я живу не здесь.",
+   "uk": "Я живу не тут."
+  },
+  {
+   "id": "de:08:36",
+   "target": "Wir bezahlen nicht mit Karte.",
+   "ru": "Мы платим не картой.",
+   "uk": "Ми платимо не карткою."
+  },
+  {
+   "id": "de:08:37",
+   "target": "Die Kinder spielen nicht im Garten.",
+   "ru": "Дети играют не в саду.",
+   "uk": "Діти грають не в саду."
+  },
+  {
+   "id": "de:08:38",
+   "target": "Das Radio funktioniert nicht.",
+   "ru": "Радио не работает.",
+   "uk": "Радіо не працює."
+  },
+  {
+   "id": "de:08:39",
+   "target": "Der Schlüssel passt nicht.",
+   "ru": "Ключ не подходит.",
+   "uk": "Ключ не підходить."
+  },
+  {
+   "id": "de:08:40",
+   "target": "Die Bahn fährt heute nicht.",
+   "ru": "Сегодня поезда не ходят.",
+   "uk": "Сьогодні поїзди не ходять."
+  },
+  {
+   "id": "de:08:41",
+   "target": "Das ist kein Eingang.",
+   "ru": "Это не вход.",
+   "uk": "Це не вхід."
+  },
+  {
+   "id": "de:08:42",
+   "target": "Das ist keine Haltestelle.",
+   "ru": "Это не остановка.",
+   "uk": "Це не зупинка."
+  },
+  {
+   "id": "de:08:43",
+   "target": "Das ist kein Hotel.",
+   "ru": "Это не гостиница.",
+   "uk": "Це не готель."
+  },
+  {
+   "id": "de:08:44",
+   "target": "Das sind keine Rechnungen.",
+   "ru": "Это не счета.",
+   "uk": "Це не рахунки."
+  },
+  {
+   "id": "de:08:45",
+   "target": "Das ist nicht mein Koffer.",
+   "ru": "Это не мой чемодан.",
+   "uk": "Це не моя валіза."
+  },
+  {
+   "id": "de:08:46",
+   "target": "Das ist nicht deine Jacke.",
+   "ru": "Это не твоя куртка.",
+   "uk": "Це не твоя куртка."
+  },
+  {
+   "id": "de:08:47",
+   "target": "Ich finde den Parkplatz nicht.",
+   "ru": "Я не могу найти парковочное место.",
+   "uk": "Я не можу знайти місце для паркування."
+  },
+  {
+   "id": "de:08:48",
+   "target": "Anna versteht die Frage nicht.",
+   "ru": "Анна не понимает вопрос.",
+   "uk": "Ганна не розуміє питання."
+  },
+  {
+   "id": "de:08:49",
+   "target": "Wir hören den Bus nicht.",
+   "ru": "Мы не слышим автобус.",
+   "uk": "Ми не чуємо автобус."
+  },
+  {
+   "id": "de:08:50",
+   "target": "Ich habe leider kein Kleingeld.",
+   "ru": "К сожалению, у меня нет мелочи.",
+   "uk": "На жаль, у мене немає дрібних грошей."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Hunger",
+   "ru": "голод",
+   "uk": "голод"
+  },
+  {
+   "lemma": "der Balkon",
+   "ru": "балкон",
+   "uk": "балкон"
+  },
+  {
+   "lemma": "funktionieren",
+   "ru": "работать исправно",
+   "uk": "працювати справно"
+  },
+  {
+   "lemma": "passen",
+   "ru": "подходить по размеру или форме",
+   "uk": "підходити за розміром або формою"
+  },
+  {
+   "lemma": "das Kleingeld",
+   "ru": "мелкие деньги",
+   "uk": "дрібні гроші"
+  },
+  {
+   "lemma": "der Garten",
+   "ru": "сад",
+   "uk": "сад"
+  },
+  {
+   "lemma": "fahren",
+   "ru": "ехать",
+   "uk": "їхати"
+  }
+ ],
+ "knownWords": [
+  "hier",
+  "müde",
+  "bereit",
+  "die Tür",
+  "der Schlüssel",
+  "das Fenster",
+  "das Kind",
+  "der Kaffee",
+  "die Suppe",
+  "das Wasser",
+  "die Tasche",
+  "das Zimmer",
+  "sein",
+  "der Bahnhof",
+  "die Haltestelle",
+  "die Rechnung",
+  "der Aufzug",
+  "die Treppe",
+  "das Handy",
+  "der Stuhl",
+  "der Bus",
+  "das Ticket",
+  "der Tisch",
+  "die Küche",
+  "die Karte",
+  "das Hotel",
+  "das Büro",
+  "der Brief",
+  "das Paket",
+  "wohnen",
+  "lernen",
+  "warten",
+  "arbeiten",
+  "kaufen",
+  "das Brot",
+  "die Milch",
+  "die Pause",
+  "suchen",
+  "bezahlen",
+  "morgen",
+  "der Kurs",
+  "beginnen",
+  "das Wochenende",
+  "schließen",
+  "die Arbeit",
+  "kommen",
+  "lesen",
+  "bald",
+  "die Hilfe",
+  "brauchen",
+  "bleiben",
+  "Zeit haben",
+  "haben",
+  "wo",
+  "wann",
+  "kosten",
+  "die Fahrt",
+  "wie lange",
+  "die Straße",
+  "der Termin",
+  "der Stift",
+  "die Apotheke",
+  "die Quittung",
+  "das Ladegerät",
+  "der Zug",
+  "die Jacke",
+  "der Schrank",
+  "finden"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  },
+  {
+   "lesson": 7,
+   "title": "Что у меня есть и что мне нужно: Akkusativ"
+  }
+ ],
+ "oldTopicTitle": "`nicht` или `kein`: что именно отрицаем?",
+ "oldTheoryRu": "Если неверно описание, отрицание стоит перед этим описанием. Сравни «устал» и «не устал»: речь всё ещё о человеке, а не об отсутствии какого-то предмета. Чтобы сказать, что у тебя нет билета, используется отрицательный артикль. Представь положительное `ein Ticket` и замени артикль: `kein Ticket`. Не добавляй второй неопределённый артикль. Почему бывает `keinen`? Окончание отрицательного артикля зависит от того же рода, числа и падежа, что и у других определителей. У мужского объекта после `haben` нужен `keinen`. Названия продуктов и занятий часто идут без артикля в положительной фразе. При отрицании количества «никакого кофе, никакой музыки» можно поставить `kein` с подходящим окончанием. Место `nicht` не фиксировано. Если отрицаешь одну часть фразы, например способ оплаты, `nicht` стоит прямо перед ней: `nicht mit Karte`. Когда отрицается всё действие целиком, `nicht` обычно оказывается ближе к концу: `Ich arbeite heute nicht`. Это не мой чемодан. Здесь уже есть определитель `mein`, поэтому нельзя одновременно поставить `kein mein`. Отрицай принадлежность с помощью `nicht` перед группой с `mein`. Сравни две истории: ключа вообще нет или конкретный ключ ты не находишь. В первой ситуации отрицай наличие предмета, во второй — результат действия над определённым предметом."
+}

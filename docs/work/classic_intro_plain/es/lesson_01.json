@@ -1,0 +1,48 @@
+{
+  "lang": "es",
+  "lesson": 1,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying where you are"
+      },
+      "text": {
+        "en": "Today you learn to say where someone is.\nEstoy aquí. = I am here.\nEstoy means “I am”. Aquí means “here”.\nEstoy en casa. = I am at home.\nEn means “at” or “in”. Casa means “home”.\nEnglish uses “am”, “are”, “is”. Spanish has its own words for that."
+      },
+      "exampleIds": [
+        "es:01:01",
+        "es:01:06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "One word, many endings"
+      },
+      "text": {
+        "en": "The word for “am, are, is” changes with the person.\nEstoy aquí. = I am here.\nEstás aquí. = You are here.\nÉl está aquí. = He is here. Él means “he”.\nEstamos aquí. = We are here.\nAna y Luis están aquí. = Ana and Luis are here.\nY means “and”. For several people, the word ends in -n."
+      },
+      "exampleIds": [
+        "es:01:02",
+        "es:01:11",
+        "es:01:21",
+        "es:01:29"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What to look for"
+      },
+      "text": {
+        "en": "Next you pick the right sentence for each picture.\nFirst ask: who is it about? I, you, he, we, or they?\nThen pick the matching word: estoy, estás, está, estamos, están.\nEstamos en casa. = We are at home.\nEstoy lejos. = I am far away. Lejos means “far away”.\nEl móvil está aquí. = The phone is here. El means “the”."
+      },
+      "exampleIds": [
+        "es:01:23",
+        "es:01:05",
+        "es:01:31"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,555 @@
+{
+  "lang": "it",
+  "lesson": 4,
+  "title": {
+    "ru": "Это он, это она, это вещь",
+    "uk": "Це він, це вона, це річ",
+    "en": "This is he, this is she, this is a thing"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Это он, это она",
+        "uk": "Це він, це вона",
+        "en": "This is he, this is she"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это Паоло».\nQuesto è Paolo. — «Это Паоло.»\nЧитается: куэ́сто э па́оло.\nQuesta è Lea. — «Это Леа.»\nЧитается: куэ́ста э ле́а.\nPaolo — имя мужчины, Lea — имя женщины.\nСлово questo значит «это», когда речь о нём.\nСлово questa значит «это», когда речь о ней.\nСлово è значит «есть». По-русски его не говорят, а по-итальянски оно нужно.\nСмотрите ещё.\nQuesto è mio padre. — «Это мой отец.»\nЧитается: куэ́сто э ми́о па́дре.\nQuesta è mia madre. — «Это моя мать.»\nЧитается: куэ́ста э ми́а ма́дре.\nСлово padre значит «отец», слово madre — «мать».\nСлово mio значит «мой», слово mia — «моя».\nОтец — «он»: questo и mio. Мать — «она»: questa и mia.",
+        "uk": "Дивіться, як сказати «Це Паоло».\nQuesto è Paolo. — «Це Паоло.»\nЧитається: куе́сто е па́оло.\nQuesta è Lea. — «Це Леа.»\nЧитається: куе́ста е ле́а.\nPaolo — ім’я чоловіка, Lea — ім’я жінки.\nСлово questo означає «це», коли мова про нього.\nСлово questa означає «це», коли мова про неї.\nСлово è означає «є». По-українськи його не кажуть, а по-італійськи воно потрібне.\nДивіться ще.\nQuesto è mio padre. — «Це мій батько.»\nЧитається: куе́сто е мі́о па́дре.\nQuesta è mia madre. — «Це моя мати.»\nЧитається: куе́ста е мі́а ма́дре.\nСлово padre означає «батько», слово madre — «мати».\nСлово mio означає «мій», слово mia — «моя».\nБатько — «він»: questo і mio. Мати — «вона»: questa і mia.",
+        "en": "Look at how to say “This is Paolo”.\nQuesto è Paolo. — “This is Paolo.”\nQuesta è Lea. — “This is Lea.”\nPaolo is a man’s name, Lea is a woman’s name.\nThe word questo means “this”, when it is about him.\nThe word questa means “this”, when it is about her.\nThe word è means “is”. Some languages skip it, but Italian needs it.\nLook at two more.\nQuesto è mio padre. — “This is my father.”\nQuesta è mia madre. — “This is my mother.”\nThe word padre means “father”, the word madre — “mother”.\nThe word mio means “my” (him), the word mia — “my” (her).\nFather is “he”: questo and mio. Mother is “she”: questa and mia."
+      },
+      "examples": [
+        {
+          "phraseId": "it:04:01",
+          "say": {
+            "ru": "куэ́сто э па́оло",
+            "uk": "куе́сто е па́оло"
+          }
+        },
+        {
+          "phraseId": "it:04:02",
+          "say": {
+            "ru": "куэ́ста э ле́а",
+            "uk": "куе́ста е ле́а"
+          }
+        },
+        {
+          "phraseId": "it:04:09",
+          "say": {
+            "ru": "куэ́сто э ми́о па́дре",
+            "uk": "куе́сто е мі́о па́дре"
+          }
+        },
+        {
+          "phraseId": "it:04:10",
+          "say": {
+            "ru": "куэ́ста э ми́а ма́дре",
+            "uk": "куе́ста е мі́а ма́дре"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это Паоло»",
+            "uk": "Виберіть, як сказати: «Це Паоло»",
+            "en": "Choose how to say: “This is Paolo”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:04:01",
+          "options": [
+            "it:04:01",
+            "it:04:02"
+          ],
+          "answerId": "it:04:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это моя мать»",
+            "uk": "Виберіть, як сказати: «Це моя мати»",
+            "en": "Choose how to say: “This is my mother”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:10",
+          "options": [
+            "it:04:10",
+            "it:04:09",
+            "it:04:02"
+          ],
+          "answerId": "it:04:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это мой отец»",
+            "uk": "Виберіть, як сказати: «Це мій батько»",
+            "en": "Choose how to say: “This is my father”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:09",
+          "options": [
+            "it:04:09",
+            "it:04:10",
+            "it:04:01"
+          ],
+          "answerId": "it:04:09"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Друг, подруга, сосед",
+        "uk": "Друг, подруга, сусід",
+        "en": "Friend, neighbour"
+      },
+      "text": {
+        "ru": "Смотрите, как назвать друга и подругу.\nQuesto è un amico. — «Это друг.»\nЧитается: куэ́сто э ун ами́ко.\nQuesta è un’amica. — «Это подруга.»\nЧитается: куэ́ста э ун ами́ка.\nСлово amico значит «друг», слово un’amica — «подруга».\nА так — сосед и соседка.\nQuesto è un vicino. — «Это сосед.»\nЧитается: куэ́сто э ун вичи́но.\nQuesta è una vicina. — «Это соседка.»\nЧитается: куэ́ста э у́на вичи́на.\nСлово vicino значит «сосед», слово vicina — «соседка».\nСлова un и una значат «один» и «одна».\nПо-русски их здесь не говорят: «Это друг».\nПро «него» говорят un, про «неё» — una.",
+        "uk": "Дивіться, як назвати друга й подругу.\nQuesto è un amico. — «Це друг.»\nЧитається: куе́сто е ун амі́ко.\nQuesta è un’amica. — «Це подруга.»\nЧитається: куе́ста е ун амі́ка.\nСлово amico означає «друг», слово un’amica — «подруга».\nА так — сусід і сусідка.\nQuesto è un vicino. — «Це сусід.»\nЧитається: куе́сто е ун вічі́но.\nQuesta è una vicina. — «Це сусідка.»\nЧитається: куе́ста е у́на вічі́на.\nСлово vicino означає «сусід», слово vicina — «сусідка».\nСлова un і una означають «один» і «одна».\nПо-українськи їх тут не кажуть: «Це друг».\nПро «нього» кажуть un, про «неї» — una.",
+        "en": "Look at how to say friend.\nQuesto è un amico. — “This is a friend.”\nQuesta è un’amica. — “This is a friend.”\nThe word amico means “friend” (him), un’amica — “friend” (her).\nAnd here — a neighbour.\nQuesto è un vicino. — “This is a neighbour.”\nQuesta è una vicina. — “This is a neighbour.”\nThe word vicino means “neighbour” (him), vicina — “neighbour” (her).\nThe words un and una mean “one”.\nWe do not translate them here.\nFor “him” we say un, for “her” — una."
+      },
+      "examples": [
+        {
+          "phraseId": "it:04:06",
+          "say": {
+            "ru": "куэ́сто э ун ами́ко",
+            "uk": "куе́сто е ун амі́ко"
+          }
+        },
+        {
+          "phraseId": "it:04:05",
+          "say": {
+            "ru": "куэ́ста э ун ами́ка",
+            "uk": "куе́ста е ун амі́ка"
+          }
+        },
+        {
+          "phraseId": "it:04:07",
+          "say": {
+            "ru": "куэ́сто э ун вичи́но",
+            "uk": "куе́сто е ун вічі́но"
+          }
+        },
+        {
+          "phraseId": "it:04:08",
+          "say": {
+            "ru": "куэ́ста э у́на вичи́на",
+            "uk": "куе́ста е у́на вічі́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это друг»",
+            "uk": "Виберіть, як сказати: «Це друг»",
+            "en": "Choose how to say: “This is a friend”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:04:06",
+          "options": [
+            "it:04:06",
+            "it:04:05"
+          ],
+          "answerId": "it:04:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это сосед»",
+            "uk": "Виберіть, як сказати: «Це сусід»",
+            "en": "Choose how to say: “This is a neighbour”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:07",
+          "options": [
+            "it:04:07",
+            "it:04:08",
+            "it:04:06"
+          ],
+          "answerId": "it:04:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это соседка»",
+            "uk": "Виберіть, як сказати: «Це сусідка»",
+            "en": "Choose how to say: “This is a neighbour”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:08",
+          "options": [
+            "it:04:08",
+            "it:04:07",
+            "it:04:05"
+          ],
+          "answerId": "it:04:08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Брат и сестра",
+        "uk": "Брат і сестра",
+        "en": "Brother and sister"
+      },
+      "text": {
+        "ru": "Смотрите, как назвать брата и сестру.\nQuesto è mio fratello. — «Это мой брат.»\nЧитается: куэ́сто э ми́о фрате́лло.\nQuesta è mia sorella. — «Это моя сестра.»\nЧитается: куэ́ста э ми́а соре́лла.\nСлово fratello значит «брат», слово sorella — «сестра».\nБрат — «он»: mio fratello. Сестра — «она»: mia sorella.\nА так спрашивают.\nQuesto è tuo fratello? — «Это твой брат?»\nЧитается: куэ́сто э ту́о фрате́лло.\nСлово tuo значит «твой».\nВопрос — та же фраза, голос в конце идёт вверх.",
+        "uk": "Дивіться, як назвати брата й сестру.\nQuesto è mio fratello. — «Це мій брат.»\nЧитається: куе́сто е мі́о фрате́лло.\nQuesta è mia sorella. — «Це моя сестра.»\nЧитається: куе́ста е мі́а соре́лла.\nСлово fratello означає «брат», слово sorella — «сестра».\nБрат — «він»: mio fratello. Сестра — «вона»: mia sorella.\nА так питають.\nQuesto è tuo fratello? — «Це твій брат?»\nЧитається: куе́сто е ту́о фрате́лло.\nСлово tuo означає «твій».\nПитання — та сама фраза, голос наприкінці йде вгору.",
+        "en": "Look at how to say brother and sister.\nQuesto è mio fratello. — “This is my brother.”\nQuesta è mia sorella. — “This is my sister.”\nThe word fratello means “brother”, the word sorella — “sister”.\nBrother is “he”: mio fratello. Sister is “she”: mia sorella.\nAnd this is how we ask.\nQuesto è tuo fratello? — “Is this your brother?”\nThe word tuo means “your”.\nA question is the same phrase, the voice goes up at the end."
+      },
+      "examples": [
+        {
+          "phraseId": "it:04:04",
+          "say": {
+            "ru": "куэ́сто э ми́о фрате́лло",
+            "uk": "куе́сто е мі́о фрате́лло"
+          }
+        },
+        {
+          "phraseId": "it:04:03",
+          "say": {
+            "ru": "куэ́ста э ми́а соре́лла",
+            "uk": "куе́ста е мі́а соре́лла"
+          }
+        },
+        {
+          "phraseId": "it:04:46",
+          "say": {
+            "ru": "куэ́сто э ту́о фрате́лло",
+            "uk": "куе́сто е ту́о фрате́лло"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это мой брат»",
+            "uk": "Виберіть, як сказати: «Це мій брат»",
+            "en": "Choose how to say: “This is my brother”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:04:04",
+          "options": [
+            "it:04:04",
+            "it:04:03"
+          ],
+          "answerId": "it:04:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это моя сестра»",
+            "uk": "Виберіть, як сказати: «Це моя сестра»",
+            "en": "Choose how to say: “This is my sister”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:03",
+          "options": [
+            "it:04:03",
+            "it:04:04",
+            "it:04:10"
+          ],
+          "answerId": "it:04:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это твой брат?»",
+            "uk": "Виберіть, як сказати: «Це твій брат?»",
+            "en": "Choose how to say: “Is this your brother?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:46",
+          "options": [
+            "it:04:46",
+            "it:04:04",
+            "it:04:09"
+          ],
+          "answerId": "it:04:46"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вещи",
+        "uk": "Речі",
+        "en": "Things"
+      },
+      "text": {
+        "ru": "Вещи тоже бывают «он» и «она».\nQuesta è una chiave. — «Это ключ.»\nЧитается: куэ́ста э у́на кья́ве.\nQuesto è un biglietto. — «Это билет.»\nЧитается: куэ́сто э ун билье́тто.\nСлово chiave значит «ключ», слово biglietto — «билет».\nКлюч — «она»: una chiave. Билет — «он»: un biglietto.\nЗапоминайте вещь вместе с una или un.\nЕщё вещи.\nQuesta è una foto. — «Это фотография.»\nЧитается: куэ́ста э у́на фо́то.\nQuesto è un regalo. — «Это подарок.»\nЧитается: куэ́сто э ун рега́ло.\nQuesta è una ricevuta. — «Это чек.»\nЧитается: куэ́ста э у́на ричеву́та.\nQuesta è una fattura. — «Это счёт.»\nЧитается: куэ́ста э у́на фатту́ра.\nСлово foto значит «фотография», слово regalo — «подарок».\nСлово ricevuta значит «чек, квитанция», слово fattura — «счёт на оплату».",
+        "uk": "Речі теж бувають «він» і «вона».\nQuesta è una chiave. — «Це ключ.»\nЧитається: куе́ста е у́на кья́ве.\nQuesto è un biglietto. — «Це квиток.»\nЧитається: куе́сто е ун білье́тто.\nСлово chiave означає «ключ», слово biglietto — «квиток».\nКлюч — «вона»: una chiave. Квиток — «він»: un biglietto.\nЗапам’ятовуйте річ разом з una або un.\nЩе речі.\nQuesta è una foto. — «Це фотографія.»\nЧитається: куе́ста е у́на фо́то.\nQuesto è un regalo. — «Це подарунок.»\nЧитається: куе́сто е ун рега́ло.\nQuesta è una ricevuta. — «Це чек.»\nЧитається: куе́ста е у́на річеву́та.\nQuesta è una fattura. — «Це рахунок.»\nЧитається: куе́ста е у́на фатту́ра.\nСлово foto означає «фотографія», слово regalo — «подарунок».\nСлово ricevuta означає «чек, квитанція», слово fattura — «рахунок на оплату».",
+        "en": "Things are also “he” or “she”.\nQuesta è una chiave. — “This is a key.”\nQuesto è un biglietto. — “This is a ticket.”\nThe word chiave means “key”, the word biglietto — “ticket”.\nA key is “she”: una chiave. A ticket is “he”: un biglietto.\nLearn a thing together with una or un.\nMore things.\nQuesta è una foto. — “This is a photo.”\nQuesto è un regalo. — “This is a gift.”\nQuesta è una ricevuta. — “This is a receipt.”\nQuesta è una fattura. — “This is an invoice.”\nThe word foto means “photo”, the word regalo — “gift”.\nThe word ricevuta means “receipt”, the word fattura — “invoice”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:04:11",
+          "say": {
+            "ru": "куэ́ста э у́на кья́ве",
+            "uk": "куе́ста е у́на кья́ве"
+          }
+        },
+        {
+          "phraseId": "it:04:12",
+          "say": {
+            "ru": "куэ́сто э ун билье́тто",
+            "uk": "куе́сто е ун білье́тто"
+          }
+        },
+        {
+          "phraseId": "it:04:16",
+          "say": {
+            "ru": "куэ́ста э у́на фо́то",
+            "uk": "куе́ста е у́на фо́то"
+          }
+        },
+        {
+          "phraseId": "it:04:17",
+          "say": {
+            "ru": "куэ́сто э ун рега́ло",
+            "uk": "куе́сто е ун рега́ло"
+          }
+        },
+        {
+          "phraseId": "it:04:19",
+          "say": {
+            "ru": "куэ́ста э у́на ричеву́та",
+            "uk": "куе́ста е у́на річеву́та"
+          }
+        },
+        {
+          "phraseId": "it:04:20",
+          "say": {
+            "ru": "куэ́ста э у́на фатту́ра",
+            "uk": "куе́ста е у́на фатту́ра"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это ключ»",
+            "uk": "Виберіть, як сказати: «Це ключ»",
+            "en": "Choose how to say: “This is a key”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:04:11",
+          "options": [
+            "it:04:11",
+            "it:04:12"
+          ],
+          "answerId": "it:04:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это билет»",
+            "uk": "Виберіть, як сказати: «Це квиток»",
+            "en": "Choose how to say: “This is a ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:12",
+          "options": [
+            "it:04:12",
+            "it:04:11",
+            "it:04:16"
+          ],
+          "answerId": "it:04:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это чек»",
+            "uk": "Виберіть, як сказати: «Це чек»",
+            "en": "Choose how to say: “This is a receipt”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:19",
+          "options": [
+            "it:04:19",
+            "it:04:20",
+            "it:04:17"
+          ],
+          "answerId": "it:04:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это счёт»",
+            "uk": "Виберіть, як сказати: «Це рахунок»",
+            "en": "Choose how to say: “This is an invoice”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:20",
+          "options": [
+            "it:04:20",
+            "it:04:19",
+            "it:04:16"
+          ],
+          "answerId": "it:04:20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Это — много",
+        "uk": "Це — багато",
+        "en": "These"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это» про многих.\nQueste sono le mie chiavi. — «Это мои ключи.»\nЧитается: куэ́сте со́но ле ми́е кья́ви.\nQuesti sono i miei amici. — «Это мои друзья.»\nЧитается: куэ́сти со́но и мье́й ами́чи.\nQuesti sono i nostri posti. — «Это наши места.»\nЧитается: куэ́сти со́но и но́стри по́сти.\nСлова queste и questi значат «эти».\nQueste — про «она», questi — про «он».\nСлово chiavi значит «ключи», amici — «друзья», posti — «места».\nСлово sono значит «есть», когда их несколько.\nСлова mie и miei значат «мои», слово nostri — «наши».\nСлова le и i стоят перед названием: по-русски их нет.",
+        "uk": "Дивіться, як сказати «Це» про багатьох.\nQueste sono le mie chiavi. — «Це мої ключі.»\nЧитається: куе́сте со́но ле мі́е кья́ві.\nQuesti sono i miei amici. — «Це мої друзі.»\nЧитається: куе́сті со́но і мье́й амі́чі.\nQuesti sono i nostri posti. — «Це наші місця.»\nЧитається: куе́сті со́но і но́стрі по́сті.\nСлова queste і questi означають «ці».\nQueste — про «вона», questi — про «він».\nСлово chiavi означає «ключі», amici — «друзі», posti — «місця».\nСлово sono означає «є», коли їх кілька.\nСлова mie і miei означають «мої», слово nostri — «наші».\nСлова le і i стоять перед назвою: по-українськи їх нема.",
+        "en": "Look at how to say “These”.\nQueste sono le mie chiavi. — “These are my keys.”\nQuesti sono i miei amici. — “These are my friends.”\nQuesti sono i nostri posti. — “These are our seats.”\nThe words queste and questi mean “these”.\nQueste is for “she” things, questi for “he” things.\nThe word chiavi means “keys”, amici — “friends”, posti — “seats”.\nThe word sono means “are”, when there are several.\nThe words mie and miei mean “my”, the word nostri — “our”.\nThe words le and i stand before the name. No such word in English."
+      },
+      "examples": [
+        {
+          "phraseId": "it:04:21",
+          "say": {
+            "ru": "куэ́сте со́но ле ми́е кья́ви",
+            "uk": "куе́сте со́но ле мі́е кья́ві"
+          }
+        },
+        {
+          "phraseId": "it:04:22",
+          "say": {
+            "ru": "куэ́сти со́но и мье́й ами́чи",
+            "uk": "куе́сті со́но і мье́й амі́чі"
+          }
+        },
+        {
+          "phraseId": "it:04:30",
+          "say": {
+            "ru": "куэ́сти со́но и но́стри по́сти",
+            "uk": "куе́сті со́но і но́стрі по́сті"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это мои ключи»",
+            "uk": "Виберіть, як сказати: «Це мої ключі»",
+            "en": "Choose how to say: “These are my keys”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:04:21",
+          "options": [
+            "it:04:21",
+            "it:04:22",
+            "it:04:30"
+          ],
+          "answerId": "it:04:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это мои друзья»",
+            "uk": "Виберіть, як сказати: «Це мої друзі»",
+            "en": "Choose how to say: “These are my friends”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:22",
+          "options": [
+            "it:04:22",
+            "it:04:21",
+            "it:04:30"
+          ],
+          "answerId": "it:04:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это наши места»",
+            "uk": "Виберіть, як сказати: «Це наші місця»",
+            "en": "Choose how to say: “These are our seats”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:30",
+          "options": [
+            "it:04:30",
+            "it:04:21",
+            "it:04:22"
+          ],
+          "answerId": "it:04:30"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Это не моё",
+        "uk": "Це не моє",
+        "en": "This is not mine"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это не моё».\nQuesta non è la mia borsa. — «Это не моя сумка.»\nЧитается: куэ́ста нон э ла ми́а бо́рса.\nQuesto non è il tuo posto. — «Это не твоё место.»\nЧитается: куэ́сто нон э иль ту́о по́сто.\nQuesti non sono i miei occhiali. — «Это не мои очки.»\nЧитается: куэ́сти нон со́но и мье́й окья́ли.\nСлово non значит «не».\nСлово borsa значит «сумка», слово posto — «место», слово occhiali — «очки».\nСлово tuo значит «твой»: il tuo posto — «твоё место».\nСлова la и il стоят перед названием вещи: по-русски их нет.\nОчки — как «ключи»: их несколько, поэтому questi и sono.",
+        "uk": "Дивіться, як сказати «Це не моє».\nQuesta non è la mia borsa. — «Це не моя сумка.»\nЧитається: куе́ста нон е ла мі́а бо́рса.\nQuesto non è il tuo posto. — «Це не твоє місце.»\nЧитається: куе́сто нон е іль ту́о по́сто.\nQuesti non sono i miei occhiali. — «Це не мої окуляри.»\nЧитається: куе́сті нон со́но і мье́й окья́лі.\nСлово non означає «не».\nСлово borsa означає «сумка», слово posto — «місце», слово occhiali — «окуляри».\nСлово tuo означає «твій»: il tuo posto — «твоє місце».\nСлова la і il стоять перед назвою речі: по-українськи їх нема.\nОкуляри — як «ключі»: їх кілька, тому questi і sono.",
+        "en": "Look at how to say “This is not mine”.\nQuesta non è la mia borsa. — “This is not my bag.”\nQuesto non è il tuo posto. — “This is not your seat.”\nQuesti non sono i miei occhiali. — “These are not my glasses.”\nThe word non means “not”.\nThe word borsa means “bag”, posto — “seat”, occhiali — “glasses”.\nThe word tuo means “your”: il tuo posto — “your seat”.\nThe words la and il stand before a thing. No such word in English.\nGlasses are like “keys”: several, so questi and sono."
+      },
+      "examples": [
+        {
+          "phraseId": "it:04:41",
+          "say": {
+            "ru": "куэ́ста нон э ла ми́а бо́рса",
+            "uk": "куе́ста нон е ла мі́а бо́рса"
+          }
+        },
+        {
+          "phraseId": "it:04:42",
+          "say": {
+            "ru": "куэ́сто нон э иль ту́о по́сто",
+            "uk": "куе́сто нон е іль ту́о по́сто"
+          }
+        },
+        {
+          "phraseId": "it:04:44",
+          "say": {
+            "ru": "куэ́сти нон со́но и мье́й окья́ли",
+            "uk": "куе́сті нон со́но і мье́й окья́лі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это не моя сумка»",
+            "uk": "Виберіть, як сказати: «Це не моя сумка»",
+            "en": "Choose how to say: “This is not my bag”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:04:41",
+          "options": [
+            "it:04:41",
+            "it:04:42",
+            "it:04:44"
+          ],
+          "answerId": "it:04:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это не твоё место»",
+            "uk": "Виберіть, як сказати: «Це не твоє місце»",
+            "en": "Choose how to say: “This is not your seat”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:42",
+          "options": [
+            "it:04:42",
+            "it:04:41",
+            "it:04:44"
+          ],
+          "answerId": "it:04:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это не мои очки»",
+            "uk": "Виберіть, як сказати: «Це не мої окуляри»",
+            "en": "Choose how to say: “These are not my glasses”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:04:44",
+          "options": [
+            "it:04:44",
+            "it:04:41",
+            "it:04:42"
+          ],
+          "answerId": "it:04:44"
+        }
+      ]
+    }
+  ]
+}

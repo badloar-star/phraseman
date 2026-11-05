@@ -1,0 +1,503 @@
+{
+  "lang": "es",
+  "lesson": 3,
+  "title": {
+    "ru": "Спрашиваем, где кто-то или что-то",
+    "uk": "Питаємо, де хтось або щось",
+    "en": "Asking where someone or something is"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Вопрос «Ты…?»",
+        "uk": "Питання «Ти…?»",
+        "en": "The question “Are you…?”"
+      },
+      "text": {
+        "ru": "Смотрите, как задать вопрос.\n¿Estás en casa? — «Ты дома?»\nЧитается: эста́с эн ка́са.\nСлова те же, что в Estás en casa. Добавляются только знаки.\nВ начале вопроса стоит перевёрнутый знак ¿. В конце — обычный ?.\nГолос в конце вопроса идёт вверх.\nСлово cerca значит «рядом», lejos — «далеко».",
+        "uk": "Дивіться, як поставити запитання.\n¿Estás en casa? — «Ти вдома?»\nЧитається: еста́с ен ка́са.\nСлова ті самі, що в Estás en casa. Додаються тільки знаки.\nНа початку запитання стоїть перевернутий знак ¿. Наприкінці — звичайний ?.\nГолос наприкінці запитання йде вгору.\nСлово cerca означає «поруч», lejos — «далеко».",
+        "en": "Look at how to ask a question.\n¿Estás en casa? — “Are you at home?”\nThe words are the same as in Estás en casa.\nOnly the marks are added.\nAt the start of a question there is an upside-down mark ¿.\nAt the end — the usual ?.\nYour voice goes up at the end of a question.\nThe word cerca means “near”, lejos means “far”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:03:01",
+          "say": {
+            "ru": "эста́с эн ка́са",
+            "uk": "еста́с ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:03:02",
+          "say": {
+            "ru": "эста́с эн кла́се",
+            "uk": "еста́с ен кла́се"
+          }
+        },
+        {
+          "phraseId": "es:03:03",
+          "say": {
+            "ru": "эста́с се́рка",
+            "uk": "еста́с се́рка"
+          }
+        },
+        {
+          "phraseId": "es:03:04",
+          "say": {
+            "ru": "эста́с ле́хос",
+            "uk": "еста́с ле́хос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты рядом?»",
+            "uk": "Виберіть, як сказати: «Ти поруч?»",
+            "en": "Choose how to say: “Are you near?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:03:03",
+          "options": [
+            "es:03:03",
+            "es:03:04",
+            "es:03:01"
+          ],
+          "answerId": "es:03:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты далеко?»",
+            "uk": "Виберіть, як сказати: «Ти далеко?»",
+            "en": "Choose how to say: “Are you far?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:04",
+          "options": [
+            "es:03:04",
+            "es:03:03",
+            "es:03:02"
+          ],
+          "answerId": "es:03:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты дома?»",
+            "uk": "Виберіть, як сказати: «Ти вдома?»",
+            "en": "Choose how to say: “Are you at home?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:01",
+          "options": [
+            "es:03:01",
+            "es:03:02",
+            "es:03:03"
+          ],
+          "answerId": "es:03:01"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я и мы",
+        "uk": "Я і ми",
+        "en": "I and we"
+      },
+      "text": {
+        "ru": "Так же спрашивают о себе и о нас.\n¿Estoy cerca? — «Я близко?»\nЧитается: эсто́й се́рка.\nСлово estoy значит «я нахожусь», estamos — «мы находимся».\nСлово cerca везде значит «рядом». «Я близко?» — это то же слово.\nСлово parada значит «остановка». Слово en здесь значит «на».\nПеред одними местами стоит la: en la parada, en la estación.\nПеред другими нет: en casa, en clase.",
+        "uk": "Так само питають про себе і про нас.\n¿Estoy cerca? — «Я близько?»\nЧитається: есто́й се́рка.\nСлово estoy означає «я перебуваю», estamos — «ми перебуваємо».\nСлово cerca скрізь означає «поруч». «Я близько?» — це те саме слово.\nСлово parada означає «зупинка». Слово en тут означає «на».\nПеред одними місцями стоїть la: en la parada, en la estación.\nПеред іншими ні: en casa, en clase.",
+        "en": "You ask the same way about yourself and about us.\n¿Estoy cerca? — “Am I close?”\nThe word estoy means “I am located”, estamos means “we are located”.\nThe word cerca is the same here: “near”.\nThe word parada means “bus stop”. The word en here means “at”.\nSome places get la: en la parada, en la estación.\nOthers do not: en casa, en clase."
+      },
+      "examples": [
+        {
+          "phraseId": "es:03:07",
+          "say": {
+            "ru": "эсто́й се́рка",
+            "uk": "есто́й се́рка"
+          }
+        },
+        {
+          "phraseId": "es:03:06",
+          "say": {
+            "ru": "эста́мос се́рка",
+            "uk": "еста́мос се́рка"
+          }
+        },
+        {
+          "phraseId": "es:03:08",
+          "say": {
+            "ru": "эста́мос эн ла эстасьо́н",
+            "uk": "еста́мос ен ла естасьо́н"
+          }
+        },
+        {
+          "phraseId": "es:03:26",
+          "say": {
+            "ru": "эста́мос эн ла пара́да",
+            "uk": "еста́мос ен ла пара́да"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я близко?»",
+            "uk": "Виберіть, як сказати: «Я близько?»",
+            "en": "Choose how to say: “Am I close?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:03:07",
+          "options": [
+            "es:03:07",
+            "es:03:06",
+            "es:03:03"
+          ],
+          "answerId": "es:03:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы близко?»",
+            "uk": "Виберіть, як сказати: «Ми близько?»",
+            "en": "Choose how to say: “Are we close?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:06",
+          "options": [
+            "es:03:06",
+            "es:03:07",
+            "es:03:03"
+          ],
+          "answerId": "es:03:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы на остановке?»",
+            "uk": "Виберіть, як сказати: «Ми на зупинці?»",
+            "en": "Choose how to say: “Are we at the bus stop?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:26",
+          "options": [
+            "es:03:26",
+            "es:03:08",
+            "es:03:06"
+          ],
+          "answerId": "es:03:26"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Ана и Луис",
+        "uk": "Ана і Луїс",
+        "en": "Ana and Luis"
+      },
+      "text": {
+        "ru": "Когда спрашивают о другом человеке, используют слово está — «находится».\n¿Está Ana en casa? — «Ана дома?»\nЧитается: эста́ А́на эн ка́са.\nМожно сказать ¿Está Ana en casa? или ¿Ana está en casa? — смысл тот же.\nЛюдей двое? Тогда вместо está говорят están, «находятся».\nСлово dentro значит «внутри», cocina — «кухня».",
+        "uk": "Коли питають про іншу людину, вживають слово está — «перебуває».\n¿Está Ana en casa? — «Ана вдома?»\nЧитається: еста́ А́на ен ка́са.\nМожна сказати ¿Está Ana en casa? або ¿Ana está en casa? — зміст той самий.\nЛюдей двоє? Тоді замість está кажуть están, «перебувають».\nСлово dentro означає «всередині», cocina — «кухня».",
+        "en": "When you ask about another person, you use the word está — “is located”.\n¿Está Ana en casa? — “Is Ana at home?”\nYou can say ¿Está Ana en casa? or ¿Ana está en casa? Same meaning.\nTwo people? Then instead of está you say están, “are located”.\nThe word dentro means “inside”, cocina means “kitchen”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:03:11",
+          "say": {
+            "ru": "эста́ А́на эн ка́са",
+            "uk": "еста́ А́на ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:03:15",
+          "say": {
+            "ru": "эста́ А́на аки́",
+            "uk": "еста́ А́на акі́"
+          }
+        },
+        {
+          "phraseId": "es:03:16",
+          "say": {
+            "ru": "эста́ Луи́с де́нтро",
+            "uk": "еста́ Луі́с де́нтро"
+          }
+        },
+        {
+          "phraseId": "es:03:18",
+          "say": {
+            "ru": "А́на эста́ эн ла коси́на",
+            "uk": "А́на еста́ ен ла косі́на"
+          }
+        },
+        {
+          "phraseId": "es:03:20",
+          "say": {
+            "ru": "эста́н А́на и Луи́с эн ка́са",
+            "uk": "еста́н А́на і Луі́с ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана дома?»",
+            "uk": "Виберіть, як сказати: «Ана вдома?»",
+            "en": "Choose how to say: “Is Ana at home?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:03:11",
+          "options": [
+            "es:03:11",
+            "es:03:15",
+            "es:03:16"
+          ],
+          "answerId": "es:03:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис внутри?»",
+            "uk": "Виберіть, як сказати: «Луїс усередині?»",
+            "en": "Choose how to say: “Is Luis inside?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:16",
+          "options": [
+            "es:03:16",
+            "es:03:11",
+            "es:03:20"
+          ],
+          "answerId": "es:03:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана и Луис дома?»",
+            "uk": "Виберіть, як сказати: «Ана й Луїс удома?»",
+            "en": "Choose how to say: “Are Ana and Luis at home?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:20",
+          "options": [
+            "es:03:20",
+            "es:03:11",
+            "es:03:18"
+          ],
+          "answerId": "es:03:20"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Ключ, телефон, отель",
+        "uk": "Ключ, телефон, готель",
+        "en": "Key, phone, hotel"
+      },
+      "text": {
+        "ru": "Так же спрашивают о вещах.\n¿Está la llave en casa? — «Ключ дома?»\nЧитается: эста́ ла йа́ве эн ка́са.\nСлова la, el, las, los стоят перед названием вещи.\nЗапоминайте их вместе со словом: по-русски их нет.\nВещей несколько? Тогда las и están.\nС вещи можно и начать вопрос:\n¿El hotel está cerca? — «Отель рядом?»\nЧитается: эль оте́ль эста́ се́рка.\nСлово hotel значит «отель». Первая буква в нём не читается, громче говорят конец: оте́ль.",
+        "uk": "Так само питають про речі.\n¿Está la llave en casa? — «Ключ удома?»\nЧитається: еста́ ла йа́ве ен ка́са.\nСлова la, el, las, los стоять перед назвою речі.\nЗапам’ятовуйте їх разом зі словом: українською їх немає.\nРечей кілька? Тоді las і están.\nЗ речі можна й почати запитання:\n¿El hotel está cerca? — «Готель поруч?»\nЧитається: ель оте́ль еста́ се́рка.\nСлово hotel означає «готель». Перша літера в ньому не читається, голосніше кажуть кінець: оте́ль.",
+        "en": "You ask the same way about things.\n¿Está la llave en casa? — “Is the key at home?”\nThe words la, el, las, los stand before the name of a thing.\nThey mean “the”: learn each one together with its word.\nSeveral things? Then las and están.\nYou can also start the question with the thing:\n¿El hotel está cerca? — “Is the hotel near?”\nThe word hotel means “hotel”.\nIts first letter is silent, and the end is said louder: оте́ль."
+      },
+      "examples": [
+        {
+          "phraseId": "es:03:32",
+          "say": {
+            "ru": "эста́ ла йа́ве эн ка́са",
+            "uk": "еста́ ла йа́ве ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:03:33",
+          "say": {
+            "ru": "эста́н лас йа́вес эн ка́са",
+            "uk": "еста́н лас йа́вес ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:03:31",
+          "say": {
+            "ru": "эста́ эль мо́виль эн ка́са",
+            "uk": "еста́ ель мо́віль ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:03:37",
+          "say": {
+            "ru": "эста́ эль мо́виль эн эль бо́льсо",
+            "uk": "еста́ ель мо́віль ен ель бо́льсо"
+          }
+        },
+        {
+          "phraseId": "es:03:34",
+          "say": {
+            "ru": "эста́ эль ли́бро эн ла ме́са",
+            "uk": "еста́ ель лі́бро ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:03:30",
+          "say": {
+            "ru": "эль оте́ль эста́ се́рка",
+            "uk": "ель оте́ль еста́ се́рка"
+          }
+        },
+        {
+          "phraseId": "es:03:28",
+          "say": {
+            "ru": "ла пара́да эста́ се́рка",
+            "uk": "ла пара́да еста́ се́рка"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ дома?»",
+            "uk": "Виберіть, як сказати: «Ключ удома?»",
+            "en": "Choose how to say: “Is the key at home?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:03:32",
+          "options": [
+            "es:03:32",
+            "es:03:33",
+            "es:03:31"
+          ],
+          "answerId": "es:03:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключи дома?»",
+            "uk": "Виберіть, як сказати: «Ключі вдома?»",
+            "en": "Choose how to say: “Are the keys at home?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:33",
+          "options": [
+            "es:03:33",
+            "es:03:32",
+            "es:03:31"
+          ],
+          "answerId": "es:03:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Отель рядом?»",
+            "uk": "Виберіть, як сказати: «Готель поруч?»",
+            "en": "Choose how to say: “Is the hotel near?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:30",
+          "options": [
+            "es:03:30",
+            "es:03:28",
+            "es:03:32"
+          ],
+          "answerId": "es:03:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Паспорт, билет, выход",
+        "uk": "Паспорт, квиток, вихід",
+        "en": "Passport, ticket, exit"
+      },
+      "text": {
+        "ru": "Три новых слова для поездки.\n¿Está el pasaporte en el bolso? — «Паспорт в сумке?»\nЧитается: эста́ эль пасапо́рте эн эль бо́льсо.\nСлово pasaporte значит «паспорт», billete — «билет», salida — «выход».\nВещей несколько? Тогда вместо el говорят los, а вместо está — están.",
+        "uk": "Три нових слова для поїздки.\n¿Está el pasaporte en el bolso? — «Паспорт у сумці?»\nЧитається: еста́ ель пасапо́рте ен ель бо́льсо.\nСлово pasaporte означає «паспорт», billete — «квиток», salida — «вихід».\nРечей кілька? Тоді замість el кажуть los, а замість está — están.",
+        "en": "Three new words for a trip.\n¿Está el pasaporte en el bolso? — “Is the passport in the bag?”\nThe word pasaporte means “passport”, billete means “ticket”, salida means “exit”.\nSeveral things?\nThen instead of el you say los, and instead of está — están."
+      },
+      "examples": [
+        {
+          "phraseId": "es:03:42",
+          "say": {
+            "ru": "эста́ эль пасапо́рте эн эль бо́льсо",
+            "uk": "еста́ ель пасапо́рте ен ель бо́льсо"
+          }
+        },
+        {
+          "phraseId": "es:03:43",
+          "say": {
+            "ru": "эста́ эль бийе́те эн эль больси́йо",
+            "uk": "еста́ ель бійе́те ен ель больсі́йо"
+          }
+        },
+        {
+          "phraseId": "es:03:44",
+          "say": {
+            "ru": "эста́н лос бийе́тес эн эль бо́льсо",
+            "uk": "еста́н лос бійе́тес ен ель бо́льсо"
+          }
+        },
+        {
+          "phraseId": "es:03:45",
+          "say": {
+            "ru": "эста́н лос пасапо́ртес эн эль ко́че",
+            "uk": "еста́н лос пасапо́ртес ен ель ко́че"
+          }
+        },
+        {
+          "phraseId": "es:03:47",
+          "say": {
+            "ru": "ла сали́да эста́ ай-и́",
+            "uk": "ла салі́да еста́ ай-і́"
+          }
+        },
+        {
+          "phraseId": "es:03:48",
+          "say": {
+            "ru": "эста́ Луи́с эн ла сали́да",
+            "uk": "еста́ Луі́с ен ла салі́да"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паспорт в сумке?»",
+            "uk": "Виберіть, як сказати: «Паспорт у сумці?»",
+            "en": "Choose how to say: “Is the passport in the bag?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:03:42",
+          "options": [
+            "es:03:42",
+            "es:03:43",
+            "es:03:37"
+          ],
+          "answerId": "es:03:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билет в кармане?»",
+            "uk": "Виберіть, як сказати: «Квиток у кишені?»",
+            "en": "Choose how to say: “Is the ticket in the pocket?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:43",
+          "options": [
+            "es:03:43",
+            "es:03:42",
+            "es:03:44"
+          ],
+          "answerId": "es:03:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Выход вон там?»",
+            "uk": "Виберіть, як сказати: «Вихід он там?»",
+            "en": "Choose how to say: “Is the exit over there?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:03:47",
+          "options": [
+            "es:03:47",
+            "es:03:48",
+            "es:03:28"
+          ],
+          "answerId": "es:03:47"
+        }
+      ]
+    }
+  ]
+}

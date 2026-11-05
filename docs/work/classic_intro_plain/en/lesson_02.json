@@ -1,0 +1,45 @@
+{
+  "lang": "en",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying no, and asking"
+      },
+      "text": {
+        "en": "Today you learn two new things.\nYou say that something is not true.\nYou ask a question.\nI am not late.\nIt means: I did not come after the time.\nAre you ready?\nIt means: I want to know if you can start."
+      },
+      "exampleIds": [
+        "en-classic-r1:02.01",
+        "en-classic-r1:02.11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Add not, or swap the order"
+      },
+      "text": {
+        "en": "To say no, put not after the small word.\nThe door is not open.\nTo ask, put the small word first.\nThe door is open. Is the door open?\nShe is ready. Is she ready?\nThe small words stay the same: am, is, are."
+      },
+      "exampleIds": [
+        "en-classic-r1:02.08",
+        "en-classic-r1:02.12"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will make sentences with not.\nYou will make questions.\nYou will also answer them.\nYes, she is. No, she is not.\nLook at the question first.\nAnswer with the same small word: am, is or are."
+      },
+      "exampleIds": [
+        "en-classic-r1:02.23",
+        "en-classic-r1:02.24"
+      ]
+    }
+  ]
+}

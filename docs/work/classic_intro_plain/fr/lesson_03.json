@@ -1,0 +1,45 @@
+{
+  "lang": "fr",
+  "lesson": 3,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Asking a question"
+      },
+      "text": {
+        "en": "Now you ask if something is true.\nTu es là. = You are there.\nTu es là ? = Are you there?\nThe words stay the same.\nYour voice goes up at the end.\nIn writing, a ? appears at the end."
+      },
+      "exampleIds": [
+        "fr:03:01",
+        "fr:03:02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Est-ce que opens a question"
+      },
+      "text": {
+        "en": "There is a second way to ask.\nStart with est-ce que, then say the usual phrase.\nEst-ce que tu es à la gare ? = Are you at the train station?\nÀ la gare means “at the train station”.\nEst-ce que la porte est ouverte ? = Is the door open?\nLa porte means “the door”. Ouverte means “open”."
+      },
+      "exampleIds": [
+        "fr:03:11",
+        "fr:03:12"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Ask it out loud"
+      },
+      "text": {
+        "en": "Now you build questions from word tiles.\nSay each one in your head with a rising voice.\nElle est prête ? = Is she ready?\nPrête means “ready”.\nLook for est-ce que at the start of longer questions.\nThe rest of the phrase stays in order."
+      },
+      "exampleIds": [
+        "fr:03:04",
+        "fr:03:01"
+      ]
+    }
+  ]
+}

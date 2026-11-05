@@ -1,0 +1,565 @@
+{
+  "lang": "de",
+  "lesson": 3,
+  "title": {
+    "ru": "Я живу, я учу, я работаю",
+    "uk": "Я живу, я вчу, я працюю",
+    "en": "I live, I learn, I work"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я здесь живу",
+        "uk": "Я тут живу",
+        "en": "I live here"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я здесь живу».\nIch wohne hier. — «Я здесь живу.»\nЧитается: их во́не хи́р.\nDu wohnst hier. — «Ты здесь живёшь.»\nЧитается: ду во́нст хи́р.\nAnna wohnt hier. — «Анна здесь живёт.»\nЧитается: А́нна во́нт хи́р.\nСлово wohnen значит «жить». Слово ich значит «я», слово du — «ты».\nСлово wohnen меняется: ich wohne, du wohnst, Anna wohnt.\nСлово «быть» здесь не нужно: wohne уже значит «живу».",
+        "uk": "Дивіться, як сказати «Я тут живу».\nIch wohne hier. — «Я тут живу.»\nЧитається: іх во́не хі́р.\nDu wohnst hier. — «Ти тут живеш.»\nЧитається: ду во́нст хі́р.\nAnna wohnt hier. — «Анна тут мешкає.»\nЧитається: А́нна во́нт хі́р.\nСлово wohnen означає «жити». Слово ich означає «я», слово du — «ти».\nСлово wohnen змінюється: ich wohne, du wohnst, Anna wohnt.\nСлово «бути» тут не потрібне: wohne вже означає «живу».",
+        "en": "Look at how to say “I live here”.\nIch wohne hier. — “I live here.”\nSounds like: ikh VOH-ne heer.\nDu wohnst hier. — “You live here.”\nSounds like: doo VOHNST heer.\nAnna wohnt hier. — “Anna lives here.”\nSounds like: AH-na VOHNT heer.\nThe word wohnen means “to live”.\nThe word ich means “I”, the word du — “you”.\nThe word wohnen changes: ich wohne, du wohnst, Anna wohnt.\nYou do not need the word “to be” here: wohne already means “live”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:03:01",
+          "say": {
+            "ru": "их во́не хи́р",
+            "uk": "іх во́не хі́р"
+          }
+        },
+        {
+          "phraseId": "de:03:02",
+          "say": {
+            "ru": "ду во́нст хи́р",
+            "uk": "ду во́нст хі́р"
+          }
+        },
+        {
+          "phraseId": "de:03:03",
+          "say": {
+            "ru": "А́нна во́нт хи́р",
+            "uk": "А́нна во́нт хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна здесь живёт»",
+            "uk": "Виберіть, як сказати: «Анна тут мешкає»",
+            "en": "Choose how to say: “Anna lives here”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:03:03",
+          "options": [
+            "de:03:03",
+            "de:03:01",
+            "de:03:02"
+          ],
+          "answerId": "de:03:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я здесь живу»",
+            "uk": "Виберіть, як сказати: «Я тут живу»",
+            "en": "Choose how to say: “I live here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:01",
+          "options": [
+            "de:03:01",
+            "de:03:02",
+            "de:03:03"
+          ],
+          "answerId": "de:03:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты здесь живёшь»",
+            "uk": "Виберіть, як сказати: «Ти тут живеш»",
+            "en": "Choose how to say: “You live here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:02",
+          "options": [
+            "de:03:02",
+            "de:03:03",
+            "de:03:01"
+          ],
+          "answerId": "de:03:02"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мы и вы живём",
+        "uk": "Ми і ви живемо",
+        "en": "We live, you live"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы здесь живём».\nWir wohnen hier. — «Мы здесь живём.»\nЧитается: вир во́нен хи́р.\nIhr wohnt hier. — «Вы здесь живёте.»\nЧитается: ир во́нт хи́р.\nСлово wir значит «мы». Слово ihr значит «вы», когда речь о нескольких людях.\nКогда речь о нас, слово остаётся таким, как в словаре: wohnen.\nКогда речь о вас, оно такое же, как для Анны: wohnt.",
+        "uk": "Дивіться, як сказати «Ми тут живемо».\nWir wohnen hier. — «Ми тут живемо.»\nЧитається: вір во́нен хі́р.\nIhr wohnt hier. — «Ви тут мешкаєте.»\nЧитається: ір во́нт хі́р.\nСлово wir означає «ми». Слово ihr означає «ви», коли мова про кількох людей.\nКоли мова про нас, слово залишається таким, як у словнику: wohnen.\nКоли мова про вас, воно таке саме, як для Анни: wohnt.",
+        "en": "Look at how to say “We live here”.\nWir wohnen hier. — “We live here.”\nSounds like: veer VOH-nen heer.\nIhr wohnt hier. — “You live here.”\nSounds like: eer VOHNT heer.\nThe word wir means “we”. The word ihr means “you” for several people.\nWhen it is about us, the word stays as in the dictionary: wohnen.\nWhen it is about you, it is the same as for Anna: wohnt."
+      },
+      "examples": [
+        {
+          "phraseId": "de:03:04",
+          "say": {
+            "ru": "вир во́нен хи́р",
+            "uk": "вір во́нен хі́р"
+          }
+        },
+        {
+          "phraseId": "de:03:05",
+          "say": {
+            "ru": "ир во́нт хи́р",
+            "uk": "ір во́нт хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы здесь живём»",
+            "uk": "Виберіть, як сказати: «Ми тут живемо»",
+            "en": "Choose how to say: “We live here”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:03:04",
+          "options": [
+            "de:03:04",
+            "de:03:05",
+            "de:03:01"
+          ],
+          "answerId": "de:03:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы здесь живёте»",
+            "uk": "Виберіть, як сказати: «Ви тут мешкаєте»",
+            "en": "Choose how to say: “You live here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:05",
+          "options": [
+            "de:03:05",
+            "de:03:04",
+            "de:03:03"
+          ],
+          "answerId": "de:03:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна здесь живёт»",
+            "uk": "Виберіть, як сказати: «Анна тут мешкає»",
+            "en": "Choose how to say: “Anna lives here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:03",
+          "options": [
+            "de:03:03",
+            "de:03:05",
+            "de:03:04"
+          ],
+          "answerId": "de:03:03"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я учу немецкий",
+        "uk": "Я вчу німецьку",
+        "en": "I learn German"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я учу немецкий».\nIch lerne Deutsch. — «Я учу немецкий.»\nЧитается: их ле́рне дойч.\nDu lernst Deutsch. — «Ты учишь немецкий.»\nЧитается: ду ле́рнст дойч.\nTom lernt Deutsch. — «Том учит немецкий.»\nЧитается: Том ле́рнт дойч.\nСлово lernen значит «учить». Слово Deutsch значит «немецкий».\nСмотрите: всё как у wohnen. Я — lerne, «ты» — lernst, Том — lernt.\nWir lernen Deutsch. — «Мы учим немецкий.»\nЧитается: вир ле́рнен дойч.\nDie Kinder lernen Deutsch. — «Дети учат немецкий.»\nЧитается: ди ки́ндер ле́рнен дойч.\nСлово Kinder значит «дети». Для «мы» и для нескольких детей слово одно: lernen.",
+        "uk": "Дивіться, як сказати «Я вчу німецьку».\nIch lerne Deutsch. — «Я вчу німецьку.»\nЧитається: іх ле́рне дойч.\nDu lernst Deutsch. — «Ти вчиш німецьку.»\nЧитається: ду ле́рнст дойч.\nTom lernt Deutsch. — «Том вчить німецьку.»\nЧитається: Том ле́рнт дойч.\nСлово lernen означає «вчити». Слово Deutsch означає «німецька».\nДивіться: усе як у wohnen. Я — lerne, «ти» — lernst, Том — lernt.\nWir lernen Deutsch. — «Ми вчимо німецьку.»\nЧитається: вір ле́рнен дойч.\nDie Kinder lernen Deutsch. — «Діти вчать німецьку.»\nЧитається: ді ки́ндер ле́рнен дойч.\nСлово Kinder означає «діти». Для «ми» і для кількох дітей слово одне: lernen.",
+        "en": "Look at how to say “I learn German”.\nIch lerne Deutsch. — “I learn German.”\nSounds like: ikh LER-ne doych.\nDu lernst Deutsch. — “You learn German.”\nSounds like: doo LERNST doych.\nTom lernt Deutsch. — “Tom learns German.”\nSounds like: tom LERNT doych.\nThe word lernen means “to learn”. The word Deutsch means “German”.\nLook: it is just like wohnen.\nI — lerne, “you” — lernst, Tom — lernt.\nWir lernen Deutsch. — “We learn German.”\nSounds like: veer LER-nen doych.\nDie Kinder lernen Deutsch. — “The children learn German.”\nSounds like: dee KIN-der LER-nen doych.\nThe word Kinder means “children”.\nFor “we” and for several children the word is one: lernen."
+      },
+      "examples": [
+        {
+          "phraseId": "de:03:06",
+          "say": {
+            "ru": "их ле́рне дойч",
+            "uk": "іх ле́рне дойч"
+          }
+        },
+        {
+          "phraseId": "de:03:07",
+          "say": {
+            "ru": "ду ле́рнст дойч",
+            "uk": "ду ле́рнст дойч"
+          }
+        },
+        {
+          "phraseId": "de:03:08",
+          "say": {
+            "ru": "Том ле́рнт дойч",
+            "uk": "Том ле́рнт дойч"
+          }
+        },
+        {
+          "phraseId": "de:03:09",
+          "say": {
+            "ru": "вир ле́рнен дойч",
+            "uk": "вір ле́рнен дойч"
+          }
+        },
+        {
+          "phraseId": "de:03:10",
+          "say": {
+            "ru": "ди ки́ндер ле́рнен дойч",
+            "uk": "ді кі́ндер ле́рнен дойч"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том учит немецкий»",
+            "uk": "Виберіть, як сказати: «Том вчить німецьку»",
+            "en": "Choose how to say: “Tom learns German”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:03:08",
+          "options": [
+            "de:03:08",
+            "de:03:06",
+            "de:03:07"
+          ],
+          "answerId": "de:03:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я учу немецкий»",
+            "uk": "Виберіть, як сказати: «Я вчу німецьку»",
+            "en": "Choose how to say: “I learn German”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:06",
+          "options": [
+            "de:03:06",
+            "de:03:07",
+            "de:03:08"
+          ],
+          "answerId": "de:03:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети учат немецкий»",
+            "uk": "Виберіть, як сказати: «Діти вчать німецьку»",
+            "en": "Choose how to say: “The children learn German”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:10",
+          "options": [
+            "de:03:10",
+            "de:03:09",
+            "de:03:08"
+          ],
+          "answerId": "de:03:10"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я сегодня работаю",
+        "uk": "Я сьогодні працюю",
+        "en": "I work today"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сегодня работаю».\nIch arbeite heute. — «Я сегодня работаю.»\nЧитается: их а́рбайте хо́йте.\nDu arbeitest hier. — «Ты здесь работаешь.»\nЧитается: ду а́рбайтест хи́р.\nСлово arbeiten значит «работать». Слово heute значит «сегодня».\nВ arbeiten перед «ст» и «т» добавляется «е»: arbeitest, arbeitet.\nВы говорите это «е» вслух.\nAnna arbeitet im Hotel. — «Анна работает в гостинице.»\nЧитается: А́нна а́рбайтет им хоте́ль.\nСлово im значит «в». Слово Hotel значит «гостиница».\nIhr arbeitet draußen. — «Вы работаете на улице.»\nЧитается: ир а́рбайтет дра́усен.\nСлово draußen значит «на улице». Для Анны и для вас слово одно: arbeitet.\nIch warte hier. — «Я жду здесь.»\nЧитается: их ва́рте хи́р.\nDu wartest draußen. — «Ты ждёшь на улице.»\nЧитается: ду ва́ртест дра́усен.\nTom wartet am Eingang. — «Том ждёт у входа.»\nЧитается: Том ва́ртет ам а́йнганг.\nТак же и в warten: wartest, wartet.\nСлово warten значит «ждать». Слово Eingang значит «вход». Слово am значит «у».",
+        "uk": "Дивіться, як сказати «Я сьогодні працюю».\nIch arbeite heute. — «Я сьогодні працюю.»\nЧитається: іх а́рбайте хо́йте.\nDu arbeitest hier. — «Ти тут працюєш.»\nЧитається: ду а́рбайтест хі́р.\nСлово arbeiten означає «працювати». Слово heute означає «сьогодні».\nВ arbeiten перед «ст» і «т» додається «е»: arbeitest, arbeitet.\nВи вимовляєте це «е» уголос.\nAnna arbeitet im Hotel. — «Анна працює у готелі.»\nЧитається: А́нна а́рбайтет ім хоте́ль.\nСлово im означає «у». Слово Hotel означає «готель».\nIhr arbeitet draußen. — «Ви працюєте на вулиці.»\nЧитається: ір а́рбайтет дра́усен.\nСлово draußen означає «на вулиці». Для Анни і для вас слово одне: arbeitet.\nIch warte hier. — «Я чекаю тут.»\nЧитається: іх ва́рте хі́р.\nDu wartest draußen. — «Ти чекаєш на вулиці.»\nЧитається: ду ва́ртест дра́усен.\nTom wartet am Eingang. — «Том чекає на вході.»\nЧитається: Том ва́ртет ам а́йнганг.\nТак само і в warten: wartest, wartet.\nСлово warten означає «чекати». Слово Eingang означає «вхід». Слово am означає «біля».",
+        "en": "Look at how to say “I work today”.\nIch arbeite heute. — “I work today.”\nSounds like: ikh AR-bai-te HOY-te.\nDu arbeitest hier. — “You work here.”\nSounds like: doo AR-bai-test heer.\nThe word arbeiten means “to work”. The word heute means “today”.\nIn arbeiten an “e” is added before “st” and “t”: arbeitest, arbeitet.\nYou say this “e” out loud.\nAnna arbeitet im Hotel. — “Anna works in a hotel.”\nSounds like: AH-na AR-bai-tet im ho-TEL.\nThe word im means “in”. The word Hotel means “hotel”.\nIhr arbeitet draußen. — “You work outside.”\nSounds like: eer AR-bai-tet DROW-sen.\nThe word draußen means “outside”.\nFor Anna and for you the word is one: arbeitet.\nIch warte hier. — “I wait here”\nDu wartest draußen. — “You wait outside”\nTom wartet am Eingang. — “Tom waits at the entrance”\nThe same in warten: wartest, wartet.\nThe word warten means “to wait”.\nThe word Eingang means “entrance”.\nThe word am means “at”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:03:31",
+          "say": {
+            "ru": "их а́рбайте хо́йте",
+            "uk": "іх а́рбайте хо́йте"
+          }
+        },
+        {
+          "phraseId": "de:03:32",
+          "say": {
+            "ru": "ду а́рбайтест хи́р",
+            "uk": "ду а́рбайтест хі́р"
+          }
+        },
+        {
+          "phraseId": "de:03:33",
+          "say": {
+            "ru": "А́нна а́рбайтет им хоте́ль",
+            "uk": "А́нна а́рбайтет ім хоте́ль"
+          }
+        },
+        {
+          "phraseId": "de:03:35",
+          "say": {
+            "ru": "ир а́рбайтет дра́усен",
+            "uk": "ір а́рбайтет дра́усен"
+          }
+        },
+        {
+          "phraseId": "de:03:36",
+          "say": {
+            "ru": "их ва́рте хи́р",
+            "uk": "іх ва́рте хі́р"
+          }
+        },
+        {
+          "phraseId": "de:03:37",
+          "say": {
+            "ru": "ду ва́ртест дра́усен",
+            "uk": "ду ва́ртест дра́усен"
+          }
+        },
+        {
+          "phraseId": "de:03:38",
+          "say": {
+            "ru": "Том ва́ртет ам а́йнганг",
+            "uk": "Том ва́ртет ам а́йнганг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна работает в гостинице»",
+            "uk": "Виберіть, як сказати: «Анна працює у готелі»",
+            "en": "Choose how to say: “Anna works in a hotel”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:03:33",
+          "options": [
+            "de:03:33",
+            "de:03:32",
+            "de:03:35"
+          ],
+          "answerId": "de:03:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сегодня работаю»",
+            "uk": "Виберіть, як сказати: «Я сьогодні працюю»",
+            "en": "Choose how to say: “I work today”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:31",
+          "options": [
+            "de:03:31",
+            "de:03:32",
+            "de:03:36"
+          ],
+          "answerId": "de:03:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я жду здесь»",
+            "uk": "Виберіть, як сказати: «Я чекаю тут»",
+            "en": "Choose how to say: “I wait here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:36",
+          "options": [
+            "de:03:36",
+            "de:03:37",
+            "de:03:31"
+          ],
+          "answerId": "de:03:36"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Я ищу ключ",
+        "uk": "Я шукаю ключ",
+        "en": "I look for the key"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я ищу ключ».\nIch suche den Schlüssel. — «Я ищу ключ.»\nЧитается: их зу́хе ден шлю́сель.\nDu suchst die Tasche. — «Ты ищешь сумку.»\nЧитается: ду зу́хст ди та́ше.\nAnna sucht das Handy. — «Анна ищет телефон.»\nЧитается: А́нна зу́хт дас хе́нди.\nСлово suchen значит «искать».\nСмотрите на ключ: раньше было der Schlüssel, а здесь den Schlüssel.\nТак бывает при любом действии с вещью:\nищут её, покупают её.\nТогда der становится den.\nWir suchen den Eingang. — «Мы ищем вход.»\nЧитается: вир зу́хен ден а́йнганг.\nСлово Eingang значит «вход».\nСлова die и das не меняются: die Tasche, das Handy.",
+        "uk": "Дивіться, як сказати «Я шукаю ключ».\nIch suche den Schlüssel. — «Я шукаю ключ.»\nЧитається: іх зу́хе ден шлю́сель.\nDu suchst die Tasche. — «Ти шукаєш сумку.»\nЧитається: ду зу́хст ді та́ше.\nAnna sucht das Handy. — «Анна шукає телефон.»\nЧитається: А́нна зу́хт дас хе́нді.\nСлово suchen означає «шукати».\nДивіться на ключ: раніше було der Schlüssel, а тут den Schlüssel.\nТак буває за будь-якої дії з річчю:\nшукають її, купують її.\nТоді der стає den.\nWir suchen den Eingang. — «Ми шукаємо вхід.»\nЧитається: вір зу́хен ден а́йнганг.\nСлово Eingang означає «вхід».\nСлова die і das не змінюються: die Tasche, das Handy.",
+        "en": "Look at how to say “I look for the key”.\nIch suche den Schlüssel. — “I look for the key.”\nSounds like: ikh ZOO-khe den SHLYOO-sel.\nDu suchst die Tasche. — “You look for the bag.”\nSounds like: doo ZOOKHST dee TA-she.\nAnna sucht das Handy. — “Anna looks for the phone.”\nSounds like: AH-na ZOOKHT das HEN-dee.\nThe word suchen means “to look for”.\nLook at the key: before it was der Schlüssel, here it is den Schlüssel.\nThis happens with any action on a thing:\nyou look for it, you buy it.\nThen der becomes den.\nWir suchen den Eingang. — “We look for the entrance.”\nSounds like: veer ZOO-khen den AYN-gang.\nThe word Eingang means “entrance”.\nThe words die and das do not change: die Tasche, das Handy."
+      },
+      "examples": [
+        {
+          "phraseId": "de:03:21",
+          "say": {
+            "ru": "их зу́хе ден шлю́сель",
+            "uk": "іх зу́хе ден шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:03:22",
+          "say": {
+            "ru": "ду зу́хст ди та́ше",
+            "uk": "ду зу́хст ді та́ше"
+          }
+        },
+        {
+          "phraseId": "de:03:23",
+          "say": {
+            "ru": "А́нна зу́хт дас хе́нди",
+            "uk": "А́нна зу́хт дас хе́нді"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ищу ключ»",
+            "uk": "Виберіть, як сказати: «Я шукаю ключ»",
+            "en": "Choose how to say: “I look for the key”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:03:21",
+          "options": [
+            "de:03:21",
+            "de:03:22",
+            "de:03:23"
+          ],
+          "answerId": "de:03:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты ищешь сумку»",
+            "uk": "Виберіть, як сказати: «Ти шукаєш сумку»",
+            "en": "Choose how to say: “You look for the bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:22",
+          "options": [
+            "de:03:22",
+            "de:03:21",
+            "de:03:23"
+          ],
+          "answerId": "de:03:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна ищет телефон»",
+            "uk": "Виберіть, як сказати: «Анна шукає телефон»",
+            "en": "Choose how to say: “Anna looks for the phone”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:23",
+          "options": [
+            "de:03:23",
+            "de:03:22",
+            "de:03:21"
+          ],
+          "answerId": "de:03:23"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Покупаю и плачу",
+        "uk": "Купую і плачу",
+        "en": "I buy and I pay"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я покупаю хлеб».\nIch kaufe Brot. — «Я покупаю хлеб.»\nЧитается: их ка́уфе брот.\nDu kaufst Milch. — «Ты покупаешь молоко.»\nЧитается: ду ка́уфст мильх.\nTom kauft Kaffee. — «Том покупает кофе.»\nЧитается: Том ка́уфт ка́фе.\nIch bezahle die Rechnung. — «Я оплачиваю счёт.»\nЧитается: их беца́ле ди ре́хнунг.\nDu bezahlst das Ticket. — «Ты оплачиваешь билет.»\nЧитается: ду беца́льст дас ти́кет.\nWir machen eine Pause. — «Мы делаем перерыв.»\nЧитается: вир ма́хен а́йне па́узе.\nСлово kaufen значит «покупать».\nСлова Brot — «хлеб», Milch — «молоко».\nСлово меняется так же, как wohnen: kaufe, kaufst, kauft.\nСлово bezahlen значит «оплачивать», Rechnung — «счёт», Ticket — «билет». Слово Pause значит «перерыв».\nСлово machen значит «делать»: wir machen — «мы делаем».\nСлово eine значит «один, какой-то».\nПо-русски такого слова нет.\nЗапоминайте его вместе с названием, как der, die, das.\nПеред Brot, Milch, Kaffee слов der, die, das нет.\nО еде и напитках вообще («хлеб, молоко») эти слова не нужны.",
+        "uk": "Дивіться, як сказати «Я купую хліб».\nIch kaufe Brot. — «Я купую хліб.»\nЧитається: іх ка́уфе брот.\nDu kaufst Milch. — «Ти купуєш молоко.»\nЧитається: ду ка́уфст мільх.\nTom kauft Kaffee. — «Том купує каву.»\nЧитається: Том ка́уфт ка́фе.\nIch bezahle die Rechnung. — «Я сплачую рахунок.»\nЧитається: іх беца́ле ді ре́хнунг.\nDu bezahlst das Ticket. — «Ти оплачуєш квиток.»\nЧитається: ду беца́льст дас ті́кет.\nWir machen eine Pause. — «Ми робимо перерву.»\nЧитається: вір ма́хен а́йне па́узе.\nСлово kaufen означає «купувати».\nСлова Brot — «хліб», Milch — «молоко».\nСлово змінюється так само, як wohnen: kaufe, kaufst, kauft.\nСлово bezahlen означає «оплачувати», Rechnung — «рахунок», Ticket — «квиток». Слово Pause означає «перерва».\nСлово machen означає «робити»: wir machen — «ми робимо».\nСлово eine означає «один, якийсь».\nУкраїнською такого слова немає.\nЗапам'ятовуйте його разом з назвою, як der, die, das.\nПеред Brot, Milch, Kaffee слів der, die, das немає.\nПро їжу і напої взагалі («хліб, молоко») ці слова не потрібні.",
+        "en": "Look at how to say “I buy bread”.\nIch kaufe Brot. — “I buy bread”\nDu kaufst Milch. — “You buy milk”\nTom kauft Kaffee. — “Tom buys coffee”\nIch bezahle die Rechnung. — “I pay the bill”\nDu bezahlst das Ticket. — “You pay for the ticket”\nWir machen eine Pause. — “We take a break”\nThe word kaufen means “to buy”.\nBrot — “bread”, Milch — “milk”.\nIt changes just like wohnen: kaufe, kaufst, kauft.\nThe word bezahlen means “to pay”, Rechnung — “bill”, Ticket — “ticket”.\nThe word Pause means “break”.\nThe word machen means “to do, to make”: wir machen — “we take”.\nThe word eine means “one, a”.\nEnglish has no such word.\nLearn it together with the noun, like der, die, das.\nBefore Brot, Milch, Kaffee there is no der, die, das.\nFor food and drinks in general (“bread, milk”) you do not need them."
+      },
+      "examples": [
+        {
+          "phraseId": "de:03:16",
+          "say": {
+            "ru": "их ка́уфе брот",
+            "uk": "іх ка́уфе брот"
+          }
+        },
+        {
+          "phraseId": "de:03:17",
+          "say": {
+            "ru": "ду ка́уфст мильх",
+            "uk": "ду ка́уфст мільх"
+          }
+        },
+        {
+          "phraseId": "de:03:18",
+          "say": {
+            "ru": "Том ка́уфт ка́фе",
+            "uk": "Том ка́уфт ка́фе"
+          }
+        },
+        {
+          "phraseId": "de:03:41",
+          "say": {
+            "ru": "их беца́ле ди ре́хнунг",
+            "uk": "іх беца́ле ді ре́хнунг"
+          }
+        },
+        {
+          "phraseId": "de:03:42",
+          "say": {
+            "ru": "ду беца́льст дас ти́кет",
+            "uk": "ду беца́льст дас ті́кет"
+          }
+        },
+        {
+          "phraseId": "de:03:14",
+          "say": {
+            "ru": "вир ма́хен а́йне па́узе",
+            "uk": "вір ма́хен а́йне па́узе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я покупаю хлеб»",
+            "uk": "Виберіть, як сказати: «Я купую хліб»",
+            "en": "Choose how to say: “I buy bread”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:03:16",
+          "options": [
+            "de:03:16",
+            "de:03:17",
+            "de:03:18"
+          ],
+          "answerId": "de:03:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты покупаешь молоко»",
+            "uk": "Виберіть, як сказати: «Ти купуєш молоко»",
+            "en": "Choose how to say: “You buy milk”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:17",
+          "options": [
+            "de:03:17",
+            "de:03:16",
+            "de:03:18"
+          ],
+          "answerId": "de:03:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том покупает кофе»",
+            "uk": "Виберіть, як сказати: «Том купує каву»",
+            "en": "Choose how to say: “Tom buys coffee”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:03:18",
+          "options": [
+            "de:03:18",
+            "de:03:16",
+            "de:03:17"
+          ],
+          "answerId": "de:03:18"
+        }
+      ]
+    }
+  ]
+}

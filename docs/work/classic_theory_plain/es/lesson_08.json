@@ -1,0 +1,558 @@
+{
+  "lang": "es",
+  "lesson": 8,
+  "title": {
+    "ru": "Мои, твои или их: mi, tu, su",
+    "uk": "Мої, твої чи їхні: mi, tu, su",
+    "en": "Mine, yours or theirs: mi, tu, su"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Мой",
+        "uk": "Мій",
+        "en": "My"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «мой».\nMi libro está aquí. — «Моя книга здесь.»\nЧитается: ми ли́бро эста́ аки́.\nСлово mi значит «мой, моя». Слово está — «находится».\nВещей несколько? Тогда mis и están.\nMis libros están aquí. — «Мои книги здесь.»",
+        "uk": "Дивіться, як сказати «мій».\nMi libro está aquí. — «Моя книжка тут.»\nЧитається: мі лі́бро еста́ акі́.\nСлово mi означає «мій, моя». Слово está — «знаходиться».\nРечей кілька? Тоді mis і están.\nMis libros están aquí. — «Мої книжки тут.»",
+        "en": "Look at how to say “my”.\nMi libro está aquí. — “My book is here.”\nThe word mi means “my”. The word está means “is located”.\nSeveral things? Then mis and están.\nMis libros están aquí. — “My books are here.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:08:01",
+          "say": {
+            "ru": "ми ли́бро эста́ аки́",
+            "uk": "мі лі́бро еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:08:02",
+          "say": {
+            "ru": "мис ли́брос эста́н аки́",
+            "uk": "міс лі́брос еста́н акі́"
+          }
+        },
+        {
+          "phraseId": "es:08:03",
+          "say": {
+            "ru": "ми йа́ве эста́ аки́",
+            "uk": "мі йа́ве еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:08:05",
+          "say": {
+            "ru": "ми мочи́ла эста́ эн ка́са",
+            "uk": "мі мочі́ла еста́ ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя книга здесь»",
+            "uk": "Виберіть, як сказати: «Моя книжка тут»",
+            "en": "Choose how to say: “My book is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:08:01",
+          "options": [
+            "es:08:01",
+            "es:08:02",
+            "es:08:03"
+          ],
+          "answerId": "es:08:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой ключ здесь»",
+            "uk": "Виберіть, як сказати: «Мій ключ тут»",
+            "en": "Choose how to say: “My key is here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:03",
+          "options": [
+            "es:08:03",
+            "es:08:01",
+            "es:08:05"
+          ],
+          "answerId": "es:08:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои книги здесь»",
+            "uk": "Виберіть, як сказати: «Мої книжки тут»",
+            "en": "Choose how to say: “My books are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:02",
+          "options": [
+            "es:08:02",
+            "es:08:01",
+            "es:08:03"
+          ],
+          "answerId": "es:08:02"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мои вещи",
+        "uk": "Мої речі",
+        "en": "My things"
+      },
+      "text": {
+        "ru": "Слово mi ставят перед любой вещью.\nMi cargador está en el coche. — «Моя зарядка в машине.»\nЧитается: ми каргадо́р эста́ эн эль ко́че.\nСлово cargador значит «зарядка», coche — «машина».\nMi reloj está en el bolsillo. — «Мои часы в кармане.»\nСлово reloj значит «часы». Часы одни, поэтому mi и está.",
+        "uk": "Слово mi ставлять перед будь-якою річчю.\nMi cargador está en el coche. — «Моя зарядка в машині.»\nЧитається: мі каргадо́р еста́ ен ель ко́че.\nСлово cargador означає «зарядка», coche — «машина».\nMi reloj está en el bolsillo. — «Мій годинник у кишені.»\nСлово reloj означає «годинник». Годинник один, тому mi і está.",
+        "en": "The word mi goes before any thing.\nMi cargador está en el coche. — “My charger is in the car.”\nThe word cargador means “charger”, coche — “car”.\nMi reloj está en el bolsillo. — “My watch is in the pocket.”\nThe word reloj means “watch”. It is one watch, so mi and está."
+      },
+      "examples": [
+        {
+          "phraseId": "es:08:08",
+          "say": {
+            "ru": "ми каргадо́р эста́ эн эль ко́че",
+            "uk": "мі каргадо́р еста́ ен ель ко́че"
+          }
+        },
+        {
+          "phraseId": "es:08:09",
+          "say": {
+            "ru": "ми рело́х эста́ эн эль больси́йо",
+            "uk": "мі рело́х еста́ ен ель больсі́йо"
+          }
+        },
+        {
+          "phraseId": "es:08:06",
+          "say": {
+            "ru": "ми пасапо́рте эста́ эн ка́са",
+            "uk": "мі пасапо́рте еста́ ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:08:07",
+          "say": {
+            "ru": "мис фо́тос эста́н эн эль мо́биль",
+            "uk": "міс фо́тос еста́н ен ель мо́біль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя зарядка в машине»",
+            "uk": "Виберіть, як сказати: «Моя зарядка в машині»",
+            "en": "Choose how to say: “My charger is in the car”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:08:08",
+          "options": [
+            "es:08:08",
+            "es:08:09",
+            "es:08:06"
+          ],
+          "answerId": "es:08:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои часы в кармане»",
+            "uk": "Виберіть, як сказати: «Мій годинник у кишені»",
+            "en": "Choose how to say: “My watch is in the pocket”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:09",
+          "options": [
+            "es:08:09",
+            "es:08:08",
+            "es:08:07"
+          ],
+          "answerId": "es:08:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой паспорт дома»",
+            "uk": "Виберіть, як сказати: «Мій паспорт удома»",
+            "en": "Choose how to say: “My passport is at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:06",
+          "options": [
+            "es:08:06",
+            "es:08:08",
+            "es:08:07"
+          ],
+          "answerId": "es:08:06"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Твой",
+        "uk": "Твій",
+        "en": "Your"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «твой».\nTu libro está aquí. — «Твоя книга здесь.»\nЧитается: ту ли́бро эста́ аки́.\nСлово tu значит «твой, твоя».\nВещей несколько? Тогда tus.\nTus libros están aquí. — «Твои книги здесь.»\nСлово bicicleta значит «велосипед».",
+        "uk": "Дивіться, як сказати «твій».\nTu libro está aquí. — «Твоя книжка тут.»\nЧитається: ту лі́бро еста́ акі́.\nСлово tu означає «твій, твоя».\nРечей кілька? Тоді tus.\nTus libros están aquí. — «Твої книжки тут.»\nСлово bicicleta означає «велосипед».",
+        "en": "Look at how to say “your”.\nTu libro está aquí. — “Your book is here.”\nThe word tu means “your”.\nSeveral things? Then tus.\nTus libros están aquí. — “Your books are here.”\nThe word bicicleta means “bicycle”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:08:11",
+          "say": {
+            "ru": "ту ли́бро эста́ аки́",
+            "uk": "ту лі́бро еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:08:12",
+          "say": {
+            "ru": "тус ли́брос эста́н аки́",
+            "uk": "тус лі́брос еста́н акі́"
+          }
+        },
+        {
+          "phraseId": "es:08:13",
+          "say": {
+            "ru": "ту йа́ве эста́ эн ла ме́са",
+            "uk": "ту йа́ве еста́ ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:08:19",
+          "say": {
+            "ru": "ту бисикле́та эста́ се́рка",
+            "uk": "ту бісікле́та еста́ се́рка"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Твоя книга здесь»",
+            "uk": "Виберіть, як сказати: «Твоя книжка тут»",
+            "en": "Choose how to say: “Your book is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:08:11",
+          "options": [
+            "es:08:11",
+            "es:08:01",
+            "es:08:12"
+          ],
+          "answerId": "es:08:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Твои книги здесь»",
+            "uk": "Виберіть, як сказати: «Твої книжки тут»",
+            "en": "Choose how to say: “Your books are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:12",
+          "options": [
+            "es:08:12",
+            "es:08:02",
+            "es:08:11"
+          ],
+          "answerId": "es:08:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Твой велосипед рядом»",
+            "uk": "Виберіть, як сказати: «Твій велосипед поруч»",
+            "en": "Choose how to say: “Your bicycle is nearby”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:19",
+          "options": [
+            "es:08:19",
+            "es:08:13",
+            "es:08:11"
+          ],
+          "answerId": "es:08:19"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Его, её, их, ваш",
+        "uk": "Його, її, їхній, ваш",
+        "en": "His, her, their, your"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «его, её, их».\nSu mochila está aquí. — «Её рюкзак здесь.»\nЧитается: су мочи́ла эста́ аки́.\nСлово su значит «его, её, их». Нескольких? Тогда sus.\nSus mochilas están aquí. — «Их рюкзаки здесь.»\nКогда вежливо говорят «вы» (usted), su значит «ваш».\nSu billete está aquí. — «Ваш билет здесь.»",
+        "uk": "Дивіться, як сказати «його, її, їхній».\nSu mochila está aquí. — «Її рюкзак тут.»\nЧитається: су мочі́ла еста́ акі́.\nСлово su означає «його, її, їхній». Кількох? Тоді sus.\nSus mochilas están aquí. — «Їхні рюкзаки тут.»\nКоли ввічливо кажуть «ви» (usted), su означає «ваш».\nSu billete está aquí. — «Ваш квиток тут.»",
+        "en": "Look at how to say “his, her, their”.\nSu mochila está aquí. — “Her backpack is here.”\nThe word su means “his, her, their”. Several? Then sus.\nSus mochilas están aquí. — “Their backpacks are here.”\nWhen you say the polite “you” (usted), su means “your”.\nSu billete está aquí. — “Your ticket is here.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:08:21",
+          "say": {
+            "ru": "су мочи́ла эста́ аки́",
+            "uk": "су мочі́ла еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:08:22",
+          "say": {
+            "ru": "сус мочи́лас эста́н аки́",
+            "uk": "сус мочі́лас еста́н акі́"
+          }
+        },
+        {
+          "phraseId": "es:08:23",
+          "say": {
+            "ru": "су пасапо́рте эста́ эн эль бо́льсо",
+            "uk": "су пасапо́рте еста́ ен ель бо́льсо"
+          }
+        },
+        {
+          "phraseId": "es:08:27",
+          "say": {
+            "ru": "су бийе́те эста́ аки́",
+            "uk": "су бійе́те еста́ акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Её рюкзак здесь»",
+            "uk": "Виберіть, як сказати: «Її рюкзак тут»",
+            "en": "Choose how to say: “Her backpack is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:08:21",
+          "options": [
+            "es:08:21",
+            "es:08:22",
+            "es:08:23"
+          ],
+          "answerId": "es:08:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Их рюкзаки здесь»",
+            "uk": "Виберіть, як сказати: «Їхні рюкзаки тут»",
+            "en": "Choose how to say: “Their backpacks are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:22",
+          "options": [
+            "es:08:22",
+            "es:08:21",
+            "es:08:02"
+          ],
+          "answerId": "es:08:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Его паспорт в сумке»",
+            "uk": "Виберіть, як сказати: «Його паспорт у сумці»",
+            "en": "Choose how to say: “His passport is in the bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:23",
+          "options": [
+            "es:08:23",
+            "es:08:21",
+            "es:08:06"
+          ],
+          "answerId": "es:08:23"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Брат, сестра, мама",
+        "uk": "Брат, сестра, мама",
+        "en": "Brother, sister, mother"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать про сестру, брата и маму.\nMi hermana está en casa. — «Моя сестра дома.»\nЧитается: ми эрма́на эста́ эн ка́са.\nСлово hermana значит «сестра», hermano — «брат».\nКонец слова разный: hermana — сестра, hermano — брат.\nMis hermanos están aquí. — «Мои братья здесь.»\nСлово madre значит «мама».\nMi madre es profesora. — «Моя мама — учительница.»",
+        "uk": "Дивіться, як сказати про сестру, брата і маму.\nMi hermana está en casa. — «Моя сестра вдома.»\nЧитається: мі ерма́на еста́ ен ка́са.\nСлово hermana означає «сестра», hermano — «брат».\nКінець слова різний: hermana — сестра, hermano — брат.\nMis hermanos están aquí. — «Мої брати тут.»\nСлово madre означає «мама».\nMi madre es profesora. — «Моя мама — вчителька.»",
+        "en": "Look at how to talk about a sister, a brother and a mother.\nMi hermana está en casa. — “My sister is at home.”\nThe word hermana means “sister”, hermano — “brother”.\nThe end of the word differs: hermana — sister, hermano — brother.\nMis hermanos están aquí. — “My brothers are here.”\nThe word madre means “mother”.\nMi madre es profesora. — “My mother is a teacher.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:08:31",
+          "say": {
+            "ru": "ми эрма́на эста́ эн ка́са",
+            "uk": "мі ерма́на еста́ ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:08:34",
+          "say": {
+            "ru": "мис эрма́нос эста́н аки́",
+            "uk": "міс ерма́нос еста́н акі́"
+          }
+        },
+        {
+          "phraseId": "es:08:36",
+          "say": {
+            "ru": "ми ма́дре эс професо́ра",
+            "uk": "мі ма́дре ес професо́ра"
+          }
+        },
+        {
+          "phraseId": "es:08:37",
+          "say": {
+            "ru": "ту ма́дре эста́ эн ла фарма́сья",
+            "uk": "ту ма́дре еста́ ен ла фарма́сья"
+          }
+        },
+        {
+          "phraseId": "es:08:33",
+          "say": {
+            "ru": "су эрма́но эс ме́дико",
+            "uk": "су ерма́но ес ме́діко"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сестра дома»",
+            "uk": "Виберіть, як сказати: «Моя сестра вдома»",
+            "en": "Choose how to say: “My sister is at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:08:31",
+          "options": [
+            "es:08:31",
+            "es:08:34",
+            "es:08:36"
+          ],
+          "answerId": "es:08:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя мама — учительница»",
+            "uk": "Виберіть, як сказати: «Моя мама — вчителька»",
+            "en": "Choose how to say: “My mother is a teacher”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:36",
+          "options": [
+            "es:08:36",
+            "es:08:31",
+            "es:08:37"
+          ],
+          "answerId": "es:08:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Твоя мама в аптеке»",
+            "uk": "Виберіть, як сказати: «Твоя мама в аптеці»",
+            "en": "Choose how to say: “Your mother is at the pharmacy”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:37",
+          "options": [
+            "es:08:37",
+            "es:08:36",
+            "es:08:31"
+          ],
+          "answerId": "es:08:37"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Где мой?",
+        "uk": "Де мій?",
+        "en": "Where is my…?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Где мой паспорт?».\n¿Dónde está mi pasaporte? — «Где мой паспорт?»\nЧитается: до́нде эста́ ми пасапо́рте.\nСлово dónde значит «где».\nВещей несколько? Тогда están и mis.\n¿Dónde están mis llaves? — «Где мои ключи?»\nMi móvil no está aquí. — «Моего телефона здесь нет.»\nСлово no перед está значит «нет».",
+        "uk": "Дивіться, як спитати «Де мій паспорт?».\n¿Dónde está mi pasaporte? — «Де мій паспорт?»\nЧитається: до́нде еста́ мі пасапо́рте.\nСлово dónde означає «де».\nРечей кілька? Тоді están і mis.\n¿Dónde están mis llaves? — «Де мої ключі?»\nMi móvil no está aquí. — «Мого телефону тут немає.»\nСлово no перед está означає «немає».",
+        "en": "Look at how to ask “Where is my passport?”.\n¿Dónde está mi pasaporte? — “Where is my passport?”\nThe word dónde means “where”.\nSeveral things? Then están and mis.\n¿Dónde están mis llaves? — “Where are my keys?”\nMi móvil no está aquí. — “My phone is not here.”\nThe word no before está means “is not”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:08:43",
+          "say": {
+            "ru": "до́нде эста́ ми пасапо́рте",
+            "uk": "до́нде еста́ мі пасапо́рте"
+          }
+        },
+        {
+          "phraseId": "es:08:44",
+          "say": {
+            "ru": "до́нде эста́н мис йа́вес",
+            "uk": "до́нде еста́н міс йа́вес"
+          }
+        },
+        {
+          "phraseId": "es:08:45",
+          "say": {
+            "ru": "эста́ ту эрма́на эн ка́са",
+            "uk": "еста́ ту ерма́на ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:08:41",
+          "say": {
+            "ru": "ми мо́биль но эста́ аки́",
+            "uk": "мі мо́біль но еста́ акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где мой паспорт?»",
+            "uk": "Виберіть, як сказати: «Де мій паспорт?»",
+            "en": "Choose how to say: “Where is my passport?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:08:43",
+          "options": [
+            "es:08:43",
+            "es:08:44",
+            "es:08:45"
+          ],
+          "answerId": "es:08:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где мои ключи?»",
+            "uk": "Виберіть, як сказати: «Де мої ключі?»",
+            "en": "Choose how to say: “Where are my keys?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:44",
+          "options": [
+            "es:08:44",
+            "es:08:43",
+            "es:08:45"
+          ],
+          "answerId": "es:08:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Твоя сестра дома?»",
+            "uk": "Виберіть, як сказати: «Твоя сестра вдома?»",
+            "en": "Choose how to say: “Is your sister at home?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:08:45",
+          "options": [
+            "es:08:45",
+            "es:08:31",
+            "es:08:43"
+          ],
+          "answerId": "es:08:45"
+        }
+      ]
+    }
+  ]
+}

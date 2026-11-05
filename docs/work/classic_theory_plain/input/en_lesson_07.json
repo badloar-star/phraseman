@@ -1,0 +1,831 @@
+{
+ "lang": "en",
+ "lesson": 7,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:07.01",
+   "target": "I have a ticket.",
+   "ru": "У меня есть билет.",
+   "uk": "У мене є квиток."
+  },
+  {
+   "id": "en-classic-r1:07.02",
+   "target": "She has a ticket.",
+   "ru": "У неё есть билет.",
+   "uk": "У неї є квиток."
+  },
+  {
+   "id": "en-classic-r1:07.03",
+   "target": "We have a spare key.",
+   "ru": "У нас есть запасной ключ.",
+   "uk": "У нас є запасний ключ."
+  },
+  {
+   "id": "en-classic-r1:07.04",
+   "target": "He has a spare key.",
+   "ru": "У него есть запасной ключ.",
+   "uk": "У нього є запасний ключ."
+  },
+  {
+   "id": "en-classic-r1:07.05",
+   "target": "I have your number.",
+   "ru": "У меня есть ваш номер.",
+   "uk": "У мене є ваш номер."
+  },
+  {
+   "id": "en-classic-r1:07.06",
+   "target": "She has my address.",
+   "ru": "У неё есть мой адрес.",
+   "uk": "У неї є моя адреса."
+  },
+  {
+   "id": "en-classic-r1:07.07",
+   "target": "They have a car.",
+   "ru": "У них есть машина.",
+   "uk": "У них є машина."
+  },
+  {
+   "id": "en-classic-r1:07.08",
+   "target": "He has a bicycle.",
+   "ru": "У него есть велосипед.",
+   "uk": "У нього є велосипед."
+  },
+  {
+   "id": "en-classic-r1:07.09",
+   "target": "We have time.",
+   "ru": "У нас есть время.",
+   "uk": "У нас є час."
+  },
+  {
+   "id": "en-classic-r1:07.10",
+   "target": "I have a question.",
+   "ru": "У меня есть вопрос.",
+   "uk": "У мене є питання."
+  },
+  {
+   "id": "en-classic-r1:07.11",
+   "target": "I have a sore throat.",
+   "ru": "У меня болит горло.",
+   "uk": "У мене болить горло."
+  },
+  {
+   "id": "en-classic-r1:07.12",
+   "target": "He has a cough.",
+   "ru": "У него кашель.",
+   "uk": "У нього кашель."
+  },
+  {
+   "id": "en-classic-r1:07.13",
+   "target": "She has a headache.",
+   "ru": "У неё болит голова.",
+   "uk": "У неї болить голова."
+  },
+  {
+   "id": "en-classic-r1:07.14",
+   "target": "We have an appointment.",
+   "ru": "У нас запись на приём.",
+   "uk": "У нас призначений прийом."
+  },
+  {
+   "id": "en-classic-r1:07.15",
+   "target": "My daughter has a cold.",
+   "ru": "У моей дочери простуда.",
+   "uk": "У моєї доньки застуда."
+  },
+  {
+   "id": "en-classic-r1:07.16",
+   "target": "I have a blocked nose.",
+   "ru": "У меня заложен нос.",
+   "uk": "У мене закладений ніс."
+  },
+  {
+   "id": "en-classic-r1:07.17",
+   "target": "He has a fever.",
+   "ru": "У него температура.",
+   "uk": "У нього температура."
+  },
+  {
+   "id": "en-classic-r1:07.18",
+   "target": "She has a prescription.",
+   "ru": "У неё есть рецепт.",
+   "uk": "У неї є рецепт."
+  },
+  {
+   "id": "en-classic-r1:07.19",
+   "target": "They have health insurance.",
+   "ru": "У них есть медицинская страховка.",
+   "uk": "У них є медична страховка."
+  },
+  {
+   "id": "en-classic-r1:07.20",
+   "target": "I have the doctor's number.",
+   "ru": "У меня есть номер врача.",
+   "uk": "У мене є номер лікаря."
+  },
+  {
+   "id": "en-classic-r1:07.21",
+   "target": "Do you have a charger?",
+   "ru": "У вас есть зарядное устройство?",
+   "uk": "У вас є зарядний пристрій?"
+  },
+  {
+   "id": "en-classic-r1:07.22",
+   "target": "Does she have her passport?",
+   "ru": "У неё есть паспорт?",
+   "uk": "У неї є паспорт?"
+  },
+  {
+   "id": "en-classic-r1:07.23",
+   "target": "Do we have enough time?",
+   "ru": "У нас достаточно времени?",
+   "uk": "У нас достатньо часу?"
+  },
+  {
+   "id": "en-classic-r1:07.24",
+   "target": "Does he have any change?",
+   "ru": "У него есть сдача?",
+   "uk": "У нього є решта?"
+  },
+  {
+   "id": "en-classic-r1:07.25",
+   "target": "Do you have a pen?",
+   "ru": "У вас есть ручка?",
+   "uk": "У вас є ручка?"
+  },
+  {
+   "id": "en-classic-r1:07.26",
+   "target": "Does the room have a shower?",
+   "ru": "В номере есть душ?",
+   "uk": "У номері є душ?"
+  },
+  {
+   "id": "en-classic-r1:07.27",
+   "target": "Do the rooms have windows?",
+   "ru": "В номерах есть окна?",
+   "uk": "У номерах є вікна?"
+  },
+  {
+   "id": "en-classic-r1:07.28",
+   "target": "Does the bag have a zip?",
+   "ru": "На сумке есть молния?",
+   "uk": "Чи є на сумці блискавка?"
+  },
+  {
+   "id": "en-classic-r1:07.29",
+   "target": "Do you have a smaller size?",
+   "ru": "У вас есть меньший размер?",
+   "uk": "У вас є менший розмір?"
+  },
+  {
+   "id": "en-classic-r1:07.30",
+   "target": "Does the shop have a phone number?",
+   "ru": "У магазина есть номер телефона?",
+   "uk": "У магазину є номер телефону?"
+  },
+  {
+   "id": "en-classic-r1:07.31",
+   "target": "I do not have a booking.",
+   "ru": "У меня нет бронирования.",
+   "uk": "У мене немає бронювання."
+  },
+  {
+   "id": "en-classic-r1:07.32",
+   "target": "She does not have her glasses.",
+   "ru": "У нее нет очков.",
+   "uk": "У неї немає окулярів."
+  },
+  {
+   "id": "en-classic-r1:07.33",
+   "target": "We do not have the original receipt.",
+   "ru": "У нас нет оригинала чека.",
+   "uk": "У нас немає оригінального чека."
+  },
+  {
+   "id": "en-classic-r1:07.34",
+   "target": "He does not have a driving licence.",
+   "ru": "У него нет водительских прав.",
+   "uk": "У нього немає водійських прав."
+  },
+  {
+   "id": "en-classic-r1:07.35",
+   "target": "They do not have a lift.",
+   "ru": "У них нет лифта.",
+   "uk": "У них немає ліфта."
+  },
+  {
+   "id": "en-classic-r1:07.36",
+   "target": "I do not have your new number.",
+   "ru": "У меня нет вашего нового номера.",
+   "uk": "У мене немає вашого нового номера."
+  },
+  {
+   "id": "en-classic-r1:07.37",
+   "target": "My bike does not have lights.",
+   "ru": "На моем велосипеде нет фар.",
+   "uk": "У мого велосипеда немає фар."
+  },
+  {
+   "id": "en-classic-r1:07.38",
+   "target": "This door does not have a handle.",
+   "ru": "У этой двери нет ручки.",
+   "uk": "У цих дверях немає ручки."
+  },
+  {
+   "id": "en-classic-r1:07.39",
+   "target": "We do not have a spare chair.",
+   "ru": "У нас нет лишнего стула.",
+   "uk": "У нас немає вільного стільця."
+  },
+  {
+   "id": "en-classic-r1:07.40",
+   "target": "The flat does not have a garden.",
+   "ru": "В квартире нет сада.",
+   "uk": "У квартирі немає саду."
+  },
+  {
+   "id": "en-classic-r1:07.41",
+   "target": "Our bus has two doors.",
+   "ru": "В нашем автобусе две двери.",
+   "uk": "У нашому автобусі двоє дверей."
+  },
+  {
+   "id": "en-classic-r1:07.42",
+   "target": "Your ticket has a seat number.",
+   "ru": "На вашем билете указан номер места.",
+   "uk": "У вашому квитку є номер місця."
+  },
+  {
+   "id": "en-classic-r1:07.43",
+   "target": "The form has three pages.",
+   "ru": "В анкете три страницы.",
+   "uk": "Анкета має три сторінки."
+  },
+  {
+   "id": "en-classic-r1:07.44",
+   "target": "My passport has a blue cover.",
+   "ru": "Мой паспорт в синей обложке.",
+   "uk": "У мого паспорта синя обкладинка."
+  },
+  {
+   "id": "en-classic-r1:07.45",
+   "target": "The coat has deep pockets.",
+   "ru": "В пальто глубокие карманы.",
+   "uk": "У пальто глибокі кишені."
+  },
+  {
+   "id": "en-classic-r1:07.46",
+   "target": "She has a free afternoon.",
+   "ru": "У неё свободна вторая половина дня.",
+   "uk": "Після обіду вона вільна."
+  },
+  {
+   "id": "en-classic-r1:07.47",
+   "target": "We have a table for two.",
+   "ru": "У нас есть столик на двоих.",
+   "uk": "У нас є столик на двох."
+  },
+  {
+   "id": "en-classic-r1:07.48",
+   "target": "The hotel has a luggage room.",
+   "ru": "В отеле есть камера хранения багажа.",
+   "uk": "У готелі є камера схову."
+  },
+  {
+   "id": "en-classic-r1:07.49",
+   "target": "Do you have a moment?",
+   "ru": "У вас есть минутка?",
+   "uk": "Маєте хвилинку?"
+  },
+  {
+   "id": "en-classic-r1:07.50",
+   "target": "I have everything I need.",
+   "ru": "У меня есть всё, что мне нужно.",
+   "uk": "У мене є все, що мені потрібно."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "number",
+   "ru": "число",
+   "uk": "число"
+  },
+  {
+   "lemma": "car",
+   "ru": "автомобиль",
+   "uk": "автомобіль"
+  },
+  {
+   "lemma": "bicycle",
+   "ru": "велосипед",
+   "uk": "велосипед"
+  },
+  {
+   "lemma": "question",
+   "ru": "вопрос",
+   "uk": "питання"
+  },
+  {
+   "lemma": "sore",
+   "ru": "боль",
+   "uk": "біль"
+  },
+  {
+   "lemma": "throat",
+   "ru": "горло",
+   "uk": "горло"
+  },
+  {
+   "lemma": "cough",
+   "ru": "кашель",
+   "uk": "кашель"
+  },
+  {
+   "lemma": "headache",
+   "ru": "головная боль",
+   "uk": "головний біль"
+  },
+  {
+   "lemma": "appointment",
+   "ru": "запланированная встреча",
+   "uk": "запланована зустріч"
+  },
+  {
+   "lemma": "daughter",
+   "ru": "дочь",
+   "uk": "донька"
+  },
+  {
+   "lemma": "block",
+   "ru": "блокировка",
+   "uk": "закладеність"
+  },
+  {
+   "lemma": "nose",
+   "ru": "нос",
+   "uk": "ніс"
+  },
+  {
+   "lemma": "fever",
+   "ru": "лихорадка",
+   "uk": "лихоманка"
+  },
+  {
+   "lemma": "prescription",
+   "ru": "рецепт",
+   "uk": "рецепт"
+  },
+  {
+   "lemma": "health",
+   "ru": "здоровье",
+   "uk": "здоров'я"
+  },
+  {
+   "lemma": "insurance",
+   "ru": "страховка",
+   "uk": "страхування"
+  },
+  {
+   "lemma": "doctor",
+   "ru": "врач",
+   "uk": "лікар"
+  },
+  {
+   "lemma": "charger",
+   "ru": "зарядное устройство",
+   "uk": "зарядний пристрій"
+  },
+  {
+   "lemma": "passport",
+   "ru": "паспорт",
+   "uk": "паспорт"
+  },
+  {
+   "lemma": "enough",
+   "ru": "достаточно",
+   "uk": "достатньо"
+  },
+  {
+   "lemma": "change",
+   "ru": "мелкие монеты; что-то менять",
+   "uk": "дрібні монети; щось змінювати"
+  },
+  {
+   "lemma": "pen",
+   "ru": "ручка",
+   "uk": "ручка"
+  },
+  {
+   "lemma": "shower",
+   "ru": "душ",
+   "uk": "душ"
+  },
+  {
+   "lemma": "zip",
+   "ru": "молния на сумке",
+   "uk": "блискавка на сумці"
+  },
+  {
+   "lemma": "small",
+   "ru": "маленький",
+   "uk": "маленький"
+  },
+  {
+   "lemma": "booking",
+   "ru": "бронирование",
+   "uk": "бронювання"
+  },
+  {
+   "lemma": "glasses",
+   "ru": "очки",
+   "uk": "окуляри"
+  },
+  {
+   "lemma": "original",
+   "ru": "оригинал",
+   "uk": "оригінал"
+  },
+  {
+   "lemma": "licence",
+   "ru": "лицензия",
+   "uk": "посвідчення особи"
+  },
+  {
+   "lemma": "bike",
+   "ru": "велосипед",
+   "uk": "велосипед"
+  },
+  {
+   "lemma": "handle",
+   "ru": "дверная ручка",
+   "uk": "дверна ручка"
+  },
+  {
+   "lemma": "chair",
+   "ru": "стул",
+   "uk": "стілець"
+  },
+  {
+   "lemma": "garden",
+   "ru": "сад",
+   "uk": "сад"
+  },
+  {
+   "lemma": "two",
+   "ru": "два",
+   "uk": "два"
+  },
+  {
+   "lemma": "three",
+   "ru": "три",
+   "uk": "три"
+  },
+  {
+   "lemma": "page",
+   "ru": "страница",
+   "uk": "сторінка"
+  },
+  {
+   "lemma": "blue",
+   "ru": "синий",
+   "uk": "синій"
+  },
+  {
+   "lemma": "deep",
+   "ru": "глубокий",
+   "uk": "глибокий"
+  },
+  {
+   "lemma": "pocket",
+   "ru": "карман",
+   "uk": "кишеня"
+  },
+  {
+   "lemma": "afternoon",
+   "ru": "послеобеденный",
+   "uk": "день"
+  },
+  {
+   "lemma": "table",
+   "ru": "стол",
+   "uk": "стіл"
+  },
+  {
+   "lemma": "hotel",
+   "ru": "отель",
+   "uk": "готель"
+  },
+  {
+   "lemma": "luggage",
+   "ru": "багаж",
+   "uk": "багаж"
+  },
+  {
+   "lemma": "moment",
+   "ru": "момент",
+   "uk": "момент"
+  },
+  {
+   "lemma": "everything",
+   "ru": "всё",
+   "uk": "все"
+  },
+  {
+   "lemma": "'s",
+   "ru": "(притяжательный -'s)",
+   "uk": "(присвійний -'s)"
+  },
+  {
+   "lemma": "an",
+   "ru": "неопределённый артикль",
+   "uk": "неозначений артикль"
+  },
+  {
+   "lemma": "any",
+   "ru": "какой-нибудь, любой",
+   "uk": "будь-який"
+  },
+  {
+   "lemma": "for",
+   "ru": "для, на",
+   "uk": "для, на"
+  }
+ ],
+ "knownWords": [
+  "ready",
+  "busy",
+  "free",
+  "home",
+  "work",
+  "open",
+  "close",
+  "door",
+  "shop",
+  "light",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "room",
+  "warm",
+  "coffee",
+  "cold",
+  "bag",
+  "key",
+  "phone",
+  "kitchen",
+  "window",
+  "hand",
+  "seat",
+  "at",
+  "be",
+  "he",
+  "here",
+  "i",
+  "it",
+  "my",
+  "on",
+  "our",
+  "she",
+  "the",
+  "they",
+  "we",
+  "you",
+  "your",
+  "lift",
+  "stairs",
+  "safe",
+  "ticket",
+  "valid",
+  "platform",
+  "empty",
+  "station",
+  "last",
+  "wait",
+  "office",
+  "train",
+  "time",
+  "her",
+  "no",
+  "not",
+  "these",
+  "this",
+  "waiting",
+  "yes",
+  "nearby",
+  "live",
+  "alone",
+  "start",
+  "finish",
+  "walk",
+  "need",
+  "help",
+  "want",
+  "tea",
+  "like",
+  "use",
+  "speak",
+  "english",
+  "stop",
+  "nine",
+  "leave",
+  "eight",
+  "class",
+  "ten",
+  "cafe",
+  "slowly",
+  "shift",
+  "soon",
+  "well",
+  "take",
+  "share",
+  "flat",
+  "check",
+  "email",
+  "cash",
+  "sister",
+  "night",
+  "together",
+  "sometimes",
+  "study",
+  "driver",
+  "know",
+  "way",
+  "gate",
+  "a",
+  "his",
+  "to",
+  "drive",
+  "smoke",
+  "eat",
+  "meat",
+  "entrance",
+  "accept",
+  "card",
+  "machine",
+  "coins",
+  "code",
+  "desk",
+  "carry",
+  "purse",
+  "lock",
+  "tap",
+  "charge",
+  "fit",
+  "shut",
+  "shoe",
+  "headphones",
+  "run",
+  "today",
+  "drink",
+  "cook",
+  "friday",
+  "lunch",
+  "usually",
+  "always",
+  "buy",
+  "bottle",
+  "water",
+  "message",
+  "feel",
+  "price",
+  "include",
+  "breakfast",
+  "cover",
+  "return",
+  "trip",
+  "receipt",
+  "show",
+  "date",
+  "rent",
+  "heating",
+  "go",
+  "son",
+  "milk",
+  "near",
+  "understand",
+  "word",
+  "bottled",
+  "cork",
+  "do",
+  "have",
+  "in",
+  "that",
+  "until",
+  "sell",
+  "stamps",
+  "sunday",
+  "pay",
+  "street",
+  "balcony",
+  "oven",
+  "hear",
+  "noise",
+  "park",
+  "permit",
+  "landlord",
+  "new",
+  "team",
+  "wear",
+  "uniform",
+  "manager",
+  "rota",
+  "get",
+  "break",
+  "printer",
+  "paper",
+  "sign",
+  "form",
+  "spare",
+  "keep",
+  "colleague",
+  "weekends",
+  "delivery",
+  "address",
+  "parcel",
+  "box",
+  "send",
+  "confirmation",
+  "anyone",
+  "post",
+  "collect",
+  "quiet",
+  "carriage",
+  "left",
+  "next",
+  "by",
+  "down",
+  "itself",
+  "parking",
+  "alarm",
+  "beep",
+  "cost",
+  "long",
+  "journey",
+  "centre",
+  "often",
+  "size",
+  "colour",
+  "prefer",
+  "battery",
+  "sale",
+  "end",
+  "label",
+  "say",
+  "more",
+  "coat",
+  "restart",
+  "button",
+  "screen",
+  "dark",
+  "order",
+  "call",
+  "leads",
+  "meet",
+  "spell",
+  "surname",
+  "mean",
+  "person",
+  "far",
+  "day",
+  "teach",
+  "evening",
+  "belongs",
+  "foot",
+  "after",
+  "each",
+  "how",
+  "many",
+  "much",
+  "one",
+  "people",
+  "what",
+  "when",
+  "where",
+  "which",
+  "who",
+  "why"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  }
+ ],
+ "oldTopicTitle": "Что у меня есть",
+ "oldTheoryRu": "Билет у меня: I have a ticket. Билет у неё: She has a ticket. В вопросе Does she have a ticket? форму has заменяет have. Используй `have` для вещей, которые носишь с собой, встреч и некоторых недомоганий. Головная боль — `have a headache`, а «мне холодно» — `I am cold`, с `be`. Запоминай выражение целиком. Используй `have` для вещей, которые носишь с собой, встреч и некоторых недомоганий. Головная боль — `have a headache`, а «мне холодно» — `I am cold`, с `be`. Запоминай выражение целиком. `I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`. Для текущего владения в повседневном британском английском также используют `have got`. Вопрос тогда — `Have you got ...?`, а не смесь двух моделей. Не переноси эту замену на все случаи с `have`, например на приём пищи: `have lunch`. `I have a ticket`, но `She has a ticket`. В вопросе признак лица уже передаёт `does`: `Does she have her passport?`, не `does she has`. Объясните, чего не хватает Перед уходом проверьте, у кого паспорт, а у кого запасной ключ. Затем спросите об одном предмете, используя другую форму. Свяжите владение с реальным предметом"
+}

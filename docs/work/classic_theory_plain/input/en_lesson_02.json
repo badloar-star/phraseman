@@ -1,0 +1,409 @@
+{
+ "lang": "en",
+ "lesson": 2,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:02.01",
+   "target": "I am not late.",
+   "ru": "Я не опоздал.",
+   "uk": "Я не запізнився."
+  },
+  {
+   "id": "en-classic-r1:02.02",
+   "target": "You are not late.",
+   "ru": "Вы не опоздали.",
+   "uk": "Ви не запізнилися."
+  },
+  {
+   "id": "en-classic-r1:02.03",
+   "target": "She is not ready.",
+   "ru": "Она не готова.",
+   "uk": "Вона не готова."
+  },
+  {
+   "id": "en-classic-r1:02.04",
+   "target": "He is not busy.",
+   "ru": "Он не занят.",
+   "uk": "Він не зайнятий."
+  },
+  {
+   "id": "en-classic-r1:02.05",
+   "target": "It is not cold.",
+   "ru": "Не холодно.",
+   "uk": "Не холодно."
+  },
+  {
+   "id": "en-classic-r1:02.06",
+   "target": "We are not at home.",
+   "ru": "Нас нет дома.",
+   "uk": "Нас немає вдома."
+  },
+  {
+   "id": "en-classic-r1:02.07",
+   "target": "They are not at work.",
+   "ru": "Они не на работе.",
+   "uk": "Вони не на роботі."
+  },
+  {
+   "id": "en-classic-r1:02.08",
+   "target": "The door is not open.",
+   "ru": "Дверь не открыта.",
+   "uk": "Двері не відчинені."
+  },
+  {
+   "id": "en-classic-r1:02.09",
+   "target": "My phone is not on.",
+   "ru": "Мой телефон не включён.",
+   "uk": "Мій телефон не ввімкнений."
+  },
+  {
+   "id": "en-classic-r1:02.10",
+   "target": "Your keys are not here.",
+   "ru": "Ваших ключей здесь нет.",
+   "uk": "Ваших ключів тут немає."
+  },
+  {
+   "id": "en-classic-r1:02.11",
+   "target": "Are you ready?",
+   "ru": "Вы готовы?",
+   "uk": "Ви готові?"
+  },
+  {
+   "id": "en-classic-r1:02.12",
+   "target": "Is she ready?",
+   "ru": "Она готова?",
+   "uk": "Вона готова?"
+  },
+  {
+   "id": "en-classic-r1:02.13",
+   "target": "Is he at work?",
+   "ru": "Он на работе?",
+   "uk": "Він на роботі?"
+  },
+  {
+   "id": "en-classic-r1:02.14",
+   "target": "Are they at home?",
+   "ru": "Они дома?",
+   "uk": "Вони вдома?"
+  },
+  {
+   "id": "en-classic-r1:02.15",
+   "target": "Is it open?",
+   "ru": "Открыто?",
+   "uk": "Це відчинено?"
+  },
+  {
+   "id": "en-classic-r1:02.16",
+   "target": "Are we late?",
+   "ru": "Мы опаздываем?",
+   "uk": "Ми запізнюємося?"
+  },
+  {
+   "id": "en-classic-r1:02.17",
+   "target": "Am I early?",
+   "ru": "Я пришёл раньше?",
+   "uk": "Я прийшов раніше?"
+  },
+  {
+   "id": "en-classic-r1:02.18",
+   "target": "Is the bus here?",
+   "ru": "Автобус приехал?",
+   "uk": "Автобус тут?"
+  },
+  {
+   "id": "en-classic-r1:02.19",
+   "target": "Are the windows closed?",
+   "ru": "Окна закрыты?",
+   "uk": "Вікна зачинені?"
+  },
+  {
+   "id": "en-classic-r1:02.20",
+   "target": "Is the shop busy?",
+   "ru": "В магазине много посетителей?",
+   "uk": "У магазині багато людей?"
+  },
+  {
+   "id": "en-classic-r1:02.21",
+   "target": "Yes, I am.",
+   "ru": "Да, я здесь.",
+   "uk": "Так, я тут."
+  },
+  {
+   "id": "en-classic-r1:02.22",
+   "target": "No, I am not.",
+   "ru": "Нет, меня здесь нет.",
+   "uk": "Ні, мене тут немає."
+  },
+  {
+   "id": "en-classic-r1:02.23",
+   "target": "Yes, she is.",
+   "ru": "— Она здесь? — Да.",
+   "uk": "— Вона тут? — Так."
+  },
+  {
+   "id": "en-classic-r1:02.24",
+   "target": "No, she is not.",
+   "ru": "— Она здесь? — Нет, её нет.",
+   "uk": "— Вона тут? — Ні, її немає."
+  },
+  {
+   "id": "en-classic-r1:02.25",
+   "target": "Yes, they are.",
+   "ru": "Да, они здесь.",
+   "uk": "Так, вони тут."
+  },
+  {
+   "id": "en-classic-r1:02.26",
+   "target": "No, they are not.",
+   "ru": "Нет, их здесь нет.",
+   "uk": "Ні, їх тут немає."
+  },
+  {
+   "id": "en-classic-r1:02.27",
+   "target": "Yes, we are.",
+   "ru": "Да, мы здесь.",
+   "uk": "Так, ми тут."
+  },
+  {
+   "id": "en-classic-r1:02.28",
+   "target": "No, we are not.",
+   "ru": "Нет, нас здесь нет.",
+   "uk": "Ні, нас тут немає."
+  },
+  {
+   "id": "en-classic-r1:02.29",
+   "target": "Yes, it is.",
+   "ru": "Да, оно здесь.",
+   "uk": "Так, воно тут."
+  },
+  {
+   "id": "en-classic-r1:02.30",
+   "target": "No, it is not.",
+   "ru": "Нет, его здесь нет.",
+   "uk": "Ні, його тут немає."
+  },
+  {
+   "id": "en-classic-r1:02.31",
+   "target": "Is this seat free?",
+   "ru": "Это место свободно?",
+   "uk": "Це місце вільне?"
+  },
+  {
+   "id": "en-classic-r1:02.32",
+   "target": "Is the lift here?",
+   "ru": "Лифт здесь?",
+   "uk": "Ліфт тут?"
+  },
+  {
+   "id": "en-classic-r1:02.33",
+   "target": "Are the stairs safe?",
+   "ru": "Лестница безопасна?",
+   "uk": "Сходи безпечні?"
+  },
+  {
+   "id": "en-classic-r1:02.34",
+   "target": "Is your ticket valid?",
+   "ru": "Ваш билет действителен?",
+   "uk": "Ваш квиток дійсний?"
+  },
+  {
+   "id": "en-classic-r1:02.35",
+   "target": "Is the platform empty?",
+   "ru": "Платформа пуста?",
+   "uk": "Платформа порожня?"
+  },
+  {
+   "id": "en-classic-r1:02.36",
+   "target": "Are these seats free?",
+   "ru": "Эти места свободны?",
+   "uk": "Ці місця вільні?"
+  },
+  {
+   "id": "en-classic-r1:02.37",
+   "target": "The lift is not here.",
+   "ru": "Лифта здесь нет.",
+   "uk": "Ліфта тут немає."
+  },
+  {
+   "id": "en-classic-r1:02.38",
+   "target": "The platform is not empty.",
+   "ru": "Платформа не пуста.",
+   "uk": "Платформа не порожня."
+  },
+  {
+   "id": "en-classic-r1:02.39",
+   "target": "The stairs are not safe.",
+   "ru": "Лестница небезопасна.",
+   "uk": "Сходи небезпечні."
+  },
+  {
+   "id": "en-classic-r1:02.40",
+   "target": "My ticket is not valid.",
+   "ru": "Мой билет недействителен.",
+   "uk": "Мій квиток недійсний."
+  },
+  {
+   "id": "en-classic-r1:02.41",
+   "target": "Are you at the station?",
+   "ru": "Вы на вокзале?",
+   "uk": "Ви на станції?"
+  },
+  {
+   "id": "en-classic-r1:02.42",
+   "target": "Is the last bus late?",
+   "ru": "Последний автобус опаздывает?",
+   "uk": "Останній автобус запізнюється?"
+  },
+  {
+   "id": "en-classic-r1:02.43",
+   "target": "Are the tickets here?",
+   "ru": "Билеты здесь?",
+   "uk": "Квитки тут?"
+  },
+  {
+   "id": "en-classic-r1:02.44",
+   "target": "Is the waiting room warm?",
+   "ru": "В зале ожидания тепло?",
+   "uk": "У залі очікування тепло?"
+  },
+  {
+   "id": "en-classic-r1:02.45",
+   "target": "The ticket office is not open.",
+   "ru": "Касса не работает.",
+   "uk": "Каса не працює."
+  },
+  {
+   "id": "en-classic-r1:02.46",
+   "target": "Are your hands cold?",
+   "ru": "У вас холодные руки?",
+   "uk": "У вас холодні руки?"
+  },
+  {
+   "id": "en-classic-r1:02.47",
+   "target": "Is her phone off?",
+   "ru": "У нее выключен телефон?",
+   "uk": "У неї вимкнений телефон?"
+  },
+  {
+   "id": "en-classic-r1:02.48",
+   "target": "I am not on the bus.",
+   "ru": "Меня нет в автобусе.",
+   "uk": "Я не в автобусі."
+  },
+  {
+   "id": "en-classic-r1:02.49",
+   "target": "We are not at the station.",
+   "ru": "Нас нет на вокзале.",
+   "uk": "Ми не на станції."
+  },
+  {
+   "id": "en-classic-r1:02.50",
+   "target": "Is your train on time?",
+   "ru": "Ваш поезд прибывает вовремя?",
+   "uk": "Ваш поїзд прибуває вчасно?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "lift",
+   "ru": "пассажирский лифт",
+   "uk": "пасажирський ліфт"
+  },
+  {
+   "lemma": "stairs",
+   "ru": "лестница",
+   "uk": "сходи"
+  },
+  {
+   "lemma": "safe",
+   "ru": "сейф",
+   "uk": "сейф"
+  },
+  {
+   "lemma": "ticket",
+   "ru": "проездной билет",
+   "uk": "проїзний квиток"
+  },
+  {
+   "lemma": "valid",
+   "ru": "действительный",
+   "uk": "дійсний"
+  },
+  {
+   "lemma": "platform",
+   "ru": "железнодорожная платформа",
+   "uk": "залізнична платформа"
+  },
+  {
+   "lemma": "empty",
+   "ru": "пусто",
+   "uk": "порожній"
+  },
+  {
+   "lemma": "station",
+   "ru": "станция",
+   "uk": "станція"
+  },
+  {
+   "lemma": "last",
+   "ru": "последний",
+   "uk": "останній"
+  },
+  {
+   "lemma": "wait",
+   "ru": "ждать",
+   "uk": "чекати"
+  },
+  {
+   "lemma": "office",
+   "ru": "офис",
+   "uk": "офіс"
+  },
+  {
+   "lemma": "train",
+   "ru": "поезд; тренироваться или практиковаться",
+   "uk": "поїзд; тренуватися або практикуватися"
+  },
+  {
+   "lemma": "time",
+   "ru": "время",
+   "uk": "час"
+  }
+ ],
+ "knownWords": [
+  "ready",
+  "busy",
+  "free",
+  "home",
+  "work",
+  "open",
+  "close",
+  "door",
+  "shop",
+  "light",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "room",
+  "warm",
+  "coffee",
+  "cold",
+  "bag",
+  "key",
+  "phone",
+  "kitchen",
+  "window",
+  "hand",
+  "seat"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Где я и как я себя чувствую"
+  }
+ ],
+ "oldTopicTitle": "Как переспросить и ответить коротко",
+ "oldTheoryRu": "Дверь магазина открыта: The shop is open. Не уверен и спрашиваешь? Перенеси is вперёд: Is the shop open? Не добавляй do: нужный глагол уже есть. Дверь магазина открыта: The shop is open. Не уверен и спрашиваешь? Перенеси is вперёд: Is the shop open? Не добавляй do: нужный глагол уже есть. Дверь магазина открыта: The shop is open. Не уверен и спрашиваешь? Перенеси is вперёд: Is the shop open? Не добавляй do: нужный глагол уже есть. Чтобы отрицать, добавь `not` после формы `be`: `She is not ready`. Чтобы спросить, переставь глагол перед подлежащим: `Is she ready?` Слово `do` здесь не нужно. В кратких ответах сохраняются подлежащее и глагол. Утвердительный ответ не может заканчиваться на `I'm` или `she's`; отрицательный может заканчиваться на `isn't` или `aren't`. Именно поэтому не все сокращения взаимозаменяемы повсюду. В кратком ответе «да» глагол не сокращают: `Yes, I am`, `Yes, she is`. `I'm` или `she's` в конце фразы не ставят; в отрицании сокращение возможно: `No, I'm not`, `No, she isn't`. Вопрос о местах и доступе На остановке вам нужно знать, здесь ли автобус. Сравните вопрос с ответом, а не изучайте их как несвязанные фразы. Проверка ситуации на станции"
+}

@@ -1,0 +1,655 @@
+{
+ "lang": "en",
+ "lesson": 4,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:04.01",
+   "target": "I do not drive.",
+   "ru": "Я не вожу машину.",
+   "uk": "Я не воджу машину."
+  },
+  {
+   "id": "en-classic-r1:04.02",
+   "target": "We do not drive.",
+   "ru": "Мы не водим машину.",
+   "uk": "Ми не водимо машину."
+  },
+  {
+   "id": "en-classic-r1:04.03",
+   "target": "He does not drive.",
+   "ru": "Он не водит машину.",
+   "uk": "Він не водить машину."
+  },
+  {
+   "id": "en-classic-r1:04.04",
+   "target": "I do not smoke.",
+   "ru": "Я не курю.",
+   "uk": "Я не курю."
+  },
+  {
+   "id": "en-classic-r1:04.05",
+   "target": "She does not smoke.",
+   "ru": "Она не курит.",
+   "uk": "Вона не курить."
+  },
+  {
+   "id": "en-classic-r1:04.06",
+   "target": "They do not work here.",
+   "ru": "Они здесь не работают.",
+   "uk": "Вони тут не працюють."
+  },
+  {
+   "id": "en-classic-r1:04.07",
+   "target": "He does not work here.",
+   "ru": "Он здесь не работает.",
+   "uk": "Він тут не працює."
+  },
+  {
+   "id": "en-classic-r1:04.08",
+   "target": "We do not need help.",
+   "ru": "Нам не нужна помощь.",
+   "uk": "Нам не потрібна допомога."
+  },
+  {
+   "id": "en-classic-r1:04.09",
+   "target": "She does not need help.",
+   "ru": "Ей не нужна помощь.",
+   "uk": "Їй не потрібна допомога."
+  },
+  {
+   "id": "en-classic-r1:04.10",
+   "target": "I do not eat meat.",
+   "ru": "Я не ем мясо.",
+   "uk": "Я не їм м'яса."
+  },
+  {
+   "id": "en-classic-r1:04.11",
+   "target": "I do not have cash.",
+   "ru": "У меня нет наличных.",
+   "uk": "У мене немає готівки."
+  },
+  {
+   "id": "en-classic-r1:04.12",
+   "target": "He does not have cash.",
+   "ru": "У него нет наличных.",
+   "uk": "У нього немає готівки."
+  },
+  {
+   "id": "en-classic-r1:04.13",
+   "target": "We do not use this entrance.",
+   "ru": "Мы не пользуемся этим входом.",
+   "uk": "Ми не користуємося цим входом."
+  },
+  {
+   "id": "en-classic-r1:04.14",
+   "target": "She does not use this entrance.",
+   "ru": "Она не пользуется этим входом.",
+   "uk": "Вона не користується цим входом."
+  },
+  {
+   "id": "en-classic-r1:04.15",
+   "target": "They do not accept cards.",
+   "ru": "Они не принимают карты.",
+   "uk": "Вони не приймають картки."
+  },
+  {
+   "id": "en-classic-r1:04.16",
+   "target": "This machine does not accept coins.",
+   "ru": "Этот автомат не принимает монеты.",
+   "uk": "Цей автомат не приймає монети."
+  },
+  {
+   "id": "en-classic-r1:04.17",
+   "target": "I do not know the code.",
+   "ru": "Я не знаю код.",
+   "uk": "Я не знаю коду."
+  },
+  {
+   "id": "en-classic-r1:04.18",
+   "target": "He does not know the way.",
+   "ru": "Он не знает дорогу.",
+   "uk": "Він не знає дороги."
+  },
+  {
+   "id": "en-classic-r1:04.19",
+   "target": "We do not share a desk.",
+   "ru": "Мы не сидим за одним столом.",
+   "uk": "Ми не сидимо за одним столом."
+  },
+  {
+   "id": "en-classic-r1:04.20",
+   "target": "She does not carry a purse.",
+   "ru": "Она не носит с собой кошелёк.",
+   "uk": "Вона не носить гаманець."
+  },
+  {
+   "id": "en-classic-r1:04.21",
+   "target": "The door does not lock.",
+   "ru": "Дверь не запирается.",
+   "uk": "Двері не замикаються."
+  },
+  {
+   "id": "en-classic-r1:04.22",
+   "target": "The tap does not work.",
+   "ru": "Кран не работает.",
+   "uk": "Кран не працює."
+  },
+  {
+   "id": "en-classic-r1:04.23",
+   "target": "The lift does not stop here.",
+   "ru": "Лифт здесь не останавливается.",
+   "uk": "Ліфт тут не зупиняється."
+  },
+  {
+   "id": "en-classic-r1:04.24",
+   "target": "My phone does not charge.",
+   "ru": "Мой телефон не заряжается.",
+   "uk": "Мій телефон не заряджається."
+  },
+  {
+   "id": "en-classic-r1:04.25",
+   "target": "This key does not fit.",
+   "ru": "Этот ключ не подходит.",
+   "uk": "Цей ключ не підходить."
+  },
+  {
+   "id": "en-classic-r1:04.26",
+   "target": "The lights do not work.",
+   "ru": "Свет не работает.",
+   "uk": "Світло не працює."
+  },
+  {
+   "id": "en-classic-r1:04.27",
+   "target": "The windows do not shut.",
+   "ru": "Окна не закрываются.",
+   "uk": "Вікна не зачиняються."
+  },
+  {
+   "id": "en-classic-r1:04.28",
+   "target": "My shoes do not fit.",
+   "ru": "Мои туфли мне не подходят.",
+   "uk": "Мої туфлі мені не підходять."
+  },
+  {
+   "id": "en-classic-r1:04.29",
+   "target": "These headphones do not work.",
+   "ru": "Эти наушники не работают.",
+   "uk": "Ці навушники не працюють."
+  },
+  {
+   "id": "en-classic-r1:04.30",
+   "target": "The buses do not run today.",
+   "ru": "Автобусы сегодня не ходят.",
+   "uk": "Автобуси сьогодні не курсують."
+  },
+  {
+   "id": "en-classic-r1:04.31",
+   "target": "I do not drink coffee at night.",
+   "ru": "Я не пью кофе на ночь.",
+   "uk": "Я не п'ю каву на ніч."
+  },
+  {
+   "id": "en-classic-r1:04.32",
+   "target": "She does not start until nine.",
+   "ru": "Она начинает работать только в девять.",
+   "uk": "Вона починає працювати лише о дев'ятій."
+  },
+  {
+   "id": "en-classic-r1:04.33",
+   "target": "We do not cook on Fridays.",
+   "ru": "Мы не готовим по пятницам.",
+   "uk": "Ми не готуємо по п'ятницях."
+  },
+  {
+   "id": "en-classic-r1:04.34",
+   "target": "He does not live alone.",
+   "ru": "Он живет не один.",
+   "uk": "Він не живе сам."
+  },
+  {
+   "id": "en-classic-r1:04.35",
+   "target": "They do not eat lunch here.",
+   "ru": "Они не обедают здесь.",
+   "uk": "Вони тут не обідають."
+  },
+  {
+   "id": "en-classic-r1:04.36",
+   "target": "I do not usually work late.",
+   "ru": "Я обычно не работаю допоздна.",
+   "uk": "Я зазвичай не працюю допізна."
+  },
+  {
+   "id": "en-classic-r1:04.37",
+   "target": "She does not always take the train.",
+   "ru": "Она не всегда ездит на поезде.",
+   "uk": "Вона не завжди їздить потягом."
+  },
+  {
+   "id": "en-classic-r1:04.38",
+   "target": "We do not buy bottled water.",
+   "ru": "Мы не покупаем бутилированную воду.",
+   "uk": "Ми не купуємо бутильовану воду."
+  },
+  {
+   "id": "en-classic-r1:04.39",
+   "target": "He does not check messages at work.",
+   "ru": "Он не проверяет сообщения на работе.",
+   "uk": "Він не перевіряє повідомлення на роботі."
+  },
+  {
+   "id": "en-classic-r1:04.40",
+   "target": "I do not feel well today.",
+   "ru": "Сегодня я плохо себя чувствую.",
+   "uk": "Я сьогодні погано почуваюся."
+  },
+  {
+   "id": "en-classic-r1:04.41",
+   "target": "The price does not include breakfast.",
+   "ru": "В стоимость не входит завтрак.",
+   "uk": "Ціна не включає сніданок."
+  },
+  {
+   "id": "en-classic-r1:04.42",
+   "target": "The ticket does not cover the return trip.",
+   "ru": "Билет не включает обратный путь.",
+   "uk": "Квиток не включає зворотної поїздки."
+  },
+  {
+   "id": "en-classic-r1:04.43",
+   "target": "The receipt does not show the date.",
+   "ru": "На квитанции не указана дата.",
+   "uk": "На чеку не вказано дату."
+  },
+  {
+   "id": "en-classic-r1:04.44",
+   "target": "Our rent does not include heating.",
+   "ru": "Наша арендная плата не включает отопление.",
+   "uk": "Наша орендна плата не включає опалення."
+  },
+  {
+   "id": "en-classic-r1:04.45",
+   "target": "This train does not go to Cork.",
+   "ru": "Этот поезд не едет в Корк.",
+   "uk": "Цей поїзд не їде до Корка."
+  },
+  {
+   "id": "en-classic-r1:04.46",
+   "target": "My son does not like milk.",
+   "ru": "Мой сын не любит молоко.",
+   "uk": "Мій син не любить молоко."
+  },
+  {
+   "id": "en-classic-r1:04.47",
+   "target": "We do not need a receipt.",
+   "ru": "Квитанция нам не нужна.",
+   "uk": "Нам не потрібен чек."
+  },
+  {
+   "id": "en-classic-r1:04.48",
+   "target": "That bus does not stop near my flat.",
+   "ru": "Этот автобус не останавливается рядом с моей квартирой.",
+   "uk": "Цей автобус не зупиняється біля моєї квартири."
+  },
+  {
+   "id": "en-classic-r1:04.49",
+   "target": "I do not understand this word.",
+   "ru": "Я не понимаю это слово.",
+   "uk": "Я не розумію цього слова."
+  },
+  {
+   "id": "en-classic-r1:04.50",
+   "target": "My card does not work in this machine.",
+   "ru": "Моя карта не работает в этом автомате.",
+   "uk": "Моя картка не працює в цьому автоматі."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "drive",
+   "ru": "ехать",
+   "uk": "їхати"
+  },
+  {
+   "lemma": "smoke",
+   "ru": "курить",
+   "uk": "курити"
+  },
+  {
+   "lemma": "eat",
+   "ru": "есть",
+   "uk": "їсти"
+  },
+  {
+   "lemma": "meat",
+   "ru": "мясо",
+   "uk": "м'ясо"
+  },
+  {
+   "lemma": "entrance",
+   "ru": "вход",
+   "uk": "вхід"
+  },
+  {
+   "lemma": "accept",
+   "ru": "принимать",
+   "uk": "приймати"
+  },
+  {
+   "lemma": "card",
+   "ru": "карту",
+   "uk": "картка"
+  },
+  {
+   "lemma": "machine",
+   "ru": "автомат",
+   "uk": "автомат"
+  },
+  {
+   "lemma": "coins",
+   "ru": "монеты",
+   "uk": "монети"
+  },
+  {
+   "lemma": "code",
+   "ru": "код доступа",
+   "uk": "код доступу"
+  },
+  {
+   "lemma": "desk",
+   "ru": "стол",
+   "uk": "стіл"
+  },
+  {
+   "lemma": "carry",
+   "ru": "носить",
+   "uk": "носити з собою"
+  },
+  {
+   "lemma": "purse",
+   "ru": "кошелек",
+   "uk": "гаманець"
+  },
+  {
+   "lemma": "lock",
+   "ru": "замок или запирать",
+   "uk": "замок або замикати"
+  },
+  {
+   "lemma": "tap",
+   "ru": "водопроводный кран",
+   "uk": "водопровідний кран"
+  },
+  {
+   "lemma": "charge",
+   "ru": "заряжать батарею; плата или взимание цены",
+   "uk": "заряджати акумулятор; плата або стягнення плати"
+  },
+  {
+   "lemma": "fit",
+   "ru": "подходить",
+   "uk": "підходити"
+  },
+  {
+   "lemma": "shut",
+   "ru": "закрывать",
+   "uk": "закривати"
+  },
+  {
+   "lemma": "shoe",
+   "ru": "обувь",
+   "uk": "черевик"
+  },
+  {
+   "lemma": "headphones",
+   "ru": "наушники",
+   "uk": "навушники"
+  },
+  {
+   "lemma": "run",
+   "ru": "бег",
+   "uk": "бігти"
+  },
+  {
+   "lemma": "today",
+   "ru": "сегодня",
+   "uk": "сьогодні"
+  },
+  {
+   "lemma": "drink",
+   "ru": "напиток",
+   "uk": "напій"
+  },
+  {
+   "lemma": "cook",
+   "ru": "готовить",
+   "uk": "готувати"
+  },
+  {
+   "lemma": "friday",
+   "ru": "пятница",
+   "uk": "п'ятниця"
+  },
+  {
+   "lemma": "lunch",
+   "ru": "обед",
+   "uk": "обід"
+  },
+  {
+   "lemma": "usually",
+   "ru": "обычно",
+   "uk": "зазвичай"
+  },
+  {
+   "lemma": "always",
+   "ru": "всегда",
+   "uk": "завжди"
+  },
+  {
+   "lemma": "buy",
+   "ru": "купить",
+   "uk": "купити"
+  },
+  {
+   "lemma": "bottle",
+   "ru": "бутылка",
+   "uk": "пляшка"
+  },
+  {
+   "lemma": "water",
+   "ru": "вода",
+   "uk": "вода"
+  },
+  {
+   "lemma": "message",
+   "ru": "сообщение",
+   "uk": "повідомлення"
+  },
+  {
+   "lemma": "feel",
+   "ru": "ощущение",
+   "uk": "відчуття"
+  },
+  {
+   "lemma": "price",
+   "ru": "цена",
+   "uk": "ціна"
+  },
+  {
+   "lemma": "include",
+   "ru": "включает",
+   "uk": "включити"
+  },
+  {
+   "lemma": "breakfast",
+   "ru": "завтрак",
+   "uk": "сніданок"
+  },
+  {
+   "lemma": "cover",
+   "ru": "покрытие или для покрытия",
+   "uk": "обкладинка або для покриття"
+  },
+  {
+   "lemma": "return",
+   "ru": "возврат",
+   "uk": "повернення"
+  },
+  {
+   "lemma": "trip",
+   "ru": "поездка",
+   "uk": "поїздка"
+  },
+  {
+   "lemma": "receipt",
+   "ru": "чек о покупке",
+   "uk": "чек про покупку"
+  },
+  {
+   "lemma": "show",
+   "ru": "показ",
+   "uk": "показати"
+  },
+  {
+   "lemma": "date",
+   "ru": "дата",
+   "uk": "дата"
+  },
+  {
+   "lemma": "rent",
+   "ru": "аренда жилья",
+   "uk": "орендна плата за житло"
+  },
+  {
+   "lemma": "heating",
+   "ru": "отопление",
+   "uk": "опалення"
+  },
+  {
+   "lemma": "go",
+   "ru": "идти",
+   "uk": "йти"
+  },
+  {
+   "lemma": "son",
+   "ru": "сын",
+   "uk": "син"
+  },
+  {
+   "lemma": "milk",
+   "ru": "молоко",
+   "uk": "молоко"
+  },
+  {
+   "lemma": "near",
+   "ru": "рядом",
+   "uk": "біля"
+  },
+  {
+   "lemma": "understand",
+   "ru": "понимать",
+   "uk": "зрозуміти"
+  },
+  {
+   "lemma": "word",
+   "ru": "слово",
+   "uk": "слово"
+  }
+ ],
+ "knownWords": [
+  "ready",
+  "busy",
+  "free",
+  "home",
+  "work",
+  "open",
+  "close",
+  "door",
+  "shop",
+  "light",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "room",
+  "warm",
+  "coffee",
+  "cold",
+  "bag",
+  "key",
+  "phone",
+  "kitchen",
+  "window",
+  "hand",
+  "seat",
+  "lift",
+  "stairs",
+  "safe",
+  "ticket",
+  "valid",
+  "platform",
+  "empty",
+  "station",
+  "last",
+  "wait",
+  "office",
+  "train",
+  "time",
+  "nearby",
+  "live",
+  "alone",
+  "start",
+  "finish",
+  "walk",
+  "need",
+  "help",
+  "want",
+  "tea",
+  "like",
+  "use",
+  "speak",
+  "english",
+  "stop",
+  "nine",
+  "leave",
+  "eight",
+  "class",
+  "ten",
+  "cafe",
+  "slowly",
+  "shift",
+  "soon",
+  "well",
+  "take",
+  "share",
+  "flat",
+  "check",
+  "email",
+  "cash",
+  "sister",
+  "night",
+  "together",
+  "sometimes",
+  "study",
+  "driver",
+  "know",
+  "way",
+  "gate"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Где я и как я себя чувствую"
+  },
+  {
+   "lesson": 2,
+   "title": "Как переспросить и ответить коротко"
+  },
+  {
+   "lesson": 3,
+   "title": "Что я делаю обычно"
+  }
+ ],
+ "oldTopicTitle": "Чего я не делаю",
+ "oldTheoryRu": "She drives — она водит. Чтобы сказать обратное, выбирай She doesn’t drive. Метка лица уже в doesn’t; второе -s не нужно. Чтобы построить отрицание в настоящем простом времени, основному глаголу нужен вспомогательный. Ставь `do not` или `does not` перед действием; к обычным предложениям с `be` его не добавляй. Чтобы построить отрицание в настоящем простом времени, основному глаголу нужен вспомогательный. Ставь `do not` или `does not` перед действием; к обычным предложениям с `be` его не добавляй. После `he/she/it` и одного названного предмета выбирай `does not`, после `I/you/we/they` — `do not`. Окончание уже в `does`: поэтому `This key doesn't fit`, не `doesn't fits`. Оба варианта `does not` и `doesn't` подходят. Отрицание рутины отличается от ее запрета: `I do not drive` описывает меня; `Do not drive` указывает кому-то, что делать. После `he/she/it` и одного названного предмета выбирай `does not`, после `I/you/we/they` — `do not`. Окончание уже в `does`: поэтому `This key doesn't fit`, не `doesn't fits`. Опишите привычку, которой у вас нет На ресепшене объясните одну проблему с ключом или картой. Сначала выберите вспомогательный глагол (do или does), потом — слово, которое называет неисправность. Объясните цену или услугу"
+}

@@ -1,0 +1,679 @@
+{
+ "lang": "en",
+ "lesson": 6,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:06.01",
+   "target": "Where do you work?",
+   "ru": "Где вы работаете?",
+   "uk": "Де ви працюєте?"
+  },
+  {
+   "id": "en-classic-r1:06.02",
+   "target": "Where does she live?",
+   "ru": "Где она живет?",
+   "uk": "Де вона живе?"
+  },
+  {
+   "id": "en-classic-r1:06.03",
+   "target": "When do we start?",
+   "ru": "Когда мы начинаем?",
+   "uk": "Коли ми починаємо?"
+  },
+  {
+   "id": "en-classic-r1:06.04",
+   "target": "When does it close?",
+   "ru": "Когда закрывается?",
+   "uk": "Коли закривається?"
+  },
+  {
+   "id": "en-classic-r1:06.05",
+   "target": "What do you need?",
+   "ru": "Что вам нужно?",
+   "uk": "Що вам потрібно?"
+  },
+  {
+   "id": "en-classic-r1:06.06",
+   "target": "What does he want?",
+   "ru": "Что он хочет?",
+   "uk": "Що він хоче?"
+  },
+  {
+   "id": "en-classic-r1:06.07",
+   "target": "How do you pay?",
+   "ru": "Как вы платите?",
+   "uk": "Як ви платите?"
+  },
+  {
+   "id": "en-classic-r1:06.08",
+   "target": "How does it work?",
+   "ru": "Как это работает?",
+   "uk": "Як це працює?"
+  },
+  {
+   "id": "en-classic-r1:06.09",
+   "target": "Why do they wait here?",
+   "ru": "Почему они ждут здесь?",
+   "uk": "Чому вони тут чекають?"
+  },
+  {
+   "id": "en-classic-r1:06.10",
+   "target": "Why does the alarm beep?",
+   "ru": "Почему пищит сигнализация?",
+   "uk": "Чому пищить сигналізація?"
+  },
+  {
+   "id": "en-classic-r1:06.11",
+   "target": "Where do I sign?",
+   "ru": "Где мне расписаться?",
+   "uk": "Де мені розписатися?"
+  },
+  {
+   "id": "en-classic-r1:06.12",
+   "target": "What time does the bus leave?",
+   "ru": "В какое время отправляется автобус?",
+   "uk": "О котрій годині відправляється автобус?"
+  },
+  {
+   "id": "en-classic-r1:06.13",
+   "target": "How much does a ticket cost?",
+   "ru": "Сколько стоит билет?",
+   "uk": "Скільки коштує квиток?"
+  },
+  {
+   "id": "en-classic-r1:06.14",
+   "target": "Which platform do we need?",
+   "ru": "Какая платформа нам нужна?",
+   "uk": "Яка платформа нам потрібна?"
+  },
+  {
+   "id": "en-classic-r1:06.15",
+   "target": "Where does this train stop?",
+   "ru": "Где останавливается этот поезд?",
+   "uk": "Де зупиняється цей поїзд?"
+  },
+  {
+   "id": "en-classic-r1:06.16",
+   "target": "How long does the journey take?",
+   "ru": "Сколько времени занимает поездка?",
+   "uk": "Скільки часу триває подорож?"
+  },
+  {
+   "id": "en-classic-r1:06.17",
+   "target": "When do the gates close?",
+   "ru": "Когда закрываются ворота?",
+   "uk": "Коли зачиняються ворота?"
+  },
+  {
+   "id": "en-classic-r1:06.18",
+   "target": "Which bus goes to the centre?",
+   "ru": "Какой автобус едет до центра?",
+   "uk": "Який автобус їде до центру?"
+  },
+  {
+   "id": "en-classic-r1:06.19",
+   "target": "Where do I get off?",
+   "ru": "Где мне выйти?",
+   "uk": "Де мені вийти?"
+  },
+  {
+   "id": "en-classic-r1:06.20",
+   "target": "How often do the trains run?",
+   "ru": "Как часто ходят поезда?",
+   "uk": "Як часто курсують поїзди?"
+  },
+  {
+   "id": "en-classic-r1:06.21",
+   "target": "How much do these shoes cost?",
+   "ru": "Сколько стоят эти туфли?",
+   "uk": "Скільки коштує це взуття?"
+  },
+  {
+   "id": "en-classic-r1:06.22",
+   "target": "What size do you wear?",
+   "ru": "Какой у вас размер?",
+   "uk": "Який розмір ви носите?"
+  },
+  {
+   "id": "en-classic-r1:06.23",
+   "target": "Which colour do you prefer?",
+   "ru": "Какой цвет вы предпочитаете?",
+   "uk": "Якому кольору ви віддаєте перевагу?"
+  },
+  {
+   "id": "en-classic-r1:06.24",
+   "target": "Where do you keep the batteries?",
+   "ru": "Где вы храните батарейки?",
+   "uk": "Де ви зберігаєте батарейки?"
+  },
+  {
+   "id": "en-classic-r1:06.25",
+   "target": "When does the sale end?",
+   "ru": "Когда заканчивается распродажа?",
+   "uk": "Коли закінчується розпродаж?"
+  },
+  {
+   "id": "en-classic-r1:06.26",
+   "target": "How much does delivery cost?",
+   "ru": "Сколько стоит доставка?",
+   "uk": "Скільки коштує доставка?"
+  },
+  {
+   "id": "en-classic-r1:06.27",
+   "target": "Where do I return this parcel?",
+   "ru": "Куда мне вернуть эту посылку?",
+   "uk": "Куди мені повернути цю посилку?"
+  },
+  {
+   "id": "en-classic-r1:06.28",
+   "target": "Which card do you use?",
+   "ru": "Какую карту вы используете?",
+   "uk": "Яку картку ви використовуєте?"
+  },
+  {
+   "id": "en-classic-r1:06.29",
+   "target": "What does the label say?",
+   "ru": "Что написано на этикетке?",
+   "uk": "Що написано на етикетці?"
+  },
+  {
+   "id": "en-classic-r1:06.30",
+   "target": "Why does this one cost more?",
+   "ru": "Почему эта стоит дороже?",
+   "uk": "Чому ця коштує дорожче?"
+  },
+  {
+   "id": "en-classic-r1:06.31",
+   "target": "What time do you finish work?",
+   "ru": "Во сколько вы заканчиваете работу?",
+   "uk": "О котрій годині ви закінчуєте роботу?"
+  },
+  {
+   "id": "en-classic-r1:06.32",
+   "target": "When does your break start?",
+   "ru": "Когда начинается ваш перерыв?",
+   "uk": "Коли починається ваша перерва?"
+  },
+  {
+   "id": "en-classic-r1:06.33",
+   "target": "Which desk do you use?",
+   "ru": "Каким столом вы пользуетесь?",
+   "uk": "Яким столом ви користуєтеся?"
+  },
+  {
+   "id": "en-classic-r1:06.34",
+   "target": "Where do you leave your coat?",
+   "ru": "Где вы оставляете своё пальто?",
+   "uk": "Де ви залишаєте своє пальто?"
+  },
+  {
+   "id": "en-classic-r1:06.35",
+   "target": "How do I restart the printer?",
+   "ru": "Как перезапустить принтер?",
+   "uk": "Як перезапустити принтер?"
+  },
+  {
+   "id": "en-classic-r1:06.36",
+   "target": "What does this button do?",
+   "ru": "Что делает эта кнопка?",
+   "uk": "Що робить ця кнопка?"
+  },
+  {
+   "id": "en-classic-r1:06.37",
+   "target": "Why does the screen go dark?",
+   "ru": "Почему экран гаснет?",
+   "uk": "Чому екран темніє?"
+  },
+  {
+   "id": "en-classic-r1:06.38",
+   "target": "Who checks the orders?",
+   "ru": "Кто проверяет заказы?",
+   "uk": "Хто перевіряє замовлення?"
+  },
+  {
+   "id": "en-classic-r1:06.39",
+   "target": "Who do I call?",
+   "ru": "Кому мне позвонить?",
+   "uk": "Кому мені подзвонити?"
+  },
+  {
+   "id": "en-classic-r1:06.40",
+   "target": "Who has the spare key?",
+   "ru": "У кого запасной ключ?",
+   "uk": "У кого запасний ключ?"
+  },
+  {
+   "id": "en-classic-r1:06.41",
+   "target": "Which door leads to the stairs?",
+   "ru": "Какая дверь ведет к лестнице?",
+   "uk": "Які двері ведуть до сходів?"
+  },
+  {
+   "id": "en-classic-r1:06.42",
+   "target": "Where do we meet after class?",
+   "ru": "Где мы встретимся после занятий?",
+   "uk": "Де ми зустрінемося після занять?"
+  },
+  {
+   "id": "en-classic-r1:06.43",
+   "target": "How do you spell your surname?",
+   "ru": "Как пишется ваша фамилия?",
+   "uk": "Як пишеться ваше прізвище?"
+  },
+  {
+   "id": "en-classic-r1:06.44",
+   "target": "What does this word mean?",
+   "ru": "Что означает это слово?",
+   "uk": "Що означає це слово?"
+  },
+  {
+   "id": "en-classic-r1:06.45",
+   "target": "How many people live here?",
+   "ru": "Сколько человек здесь живет?",
+   "uk": "Скільки людей тут живе?"
+  },
+  {
+   "id": "en-classic-r1:06.46",
+   "target": "How far do you walk each day?",
+   "ru": "Какое расстояние вы проходите пешком каждый день?",
+   "uk": "Яку відстань ви проходите щодня?"
+  },
+  {
+   "id": "en-classic-r1:06.47",
+   "target": "Who teaches the evening class?",
+   "ru": "Кто ведет вечерние занятия?",
+   "uk": "Хто викладає вечірні заняття?"
+  },
+  {
+   "id": "en-classic-r1:06.48",
+   "target": "Which bag belongs to you?",
+   "ru": "Какая сумка ваша?",
+   "uk": "Яка сумка належить вам?"
+  },
+  {
+   "id": "en-classic-r1:06.49",
+   "target": "Why do you take the early bus?",
+   "ru": "Почему вы едете на раннем автобусе?",
+   "uk": "Чому ви їдете раннім автобусом?"
+  },
+  {
+   "id": "en-classic-r1:06.50",
+   "target": "How long does it take on foot?",
+   "ru": "Сколько времени это занимает пешком?",
+   "uk": "Скільки часу потрібно, щоб дістатися пішки?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "alarm",
+   "ru": "сигнализация",
+   "uk": "тривога"
+  },
+  {
+   "lemma": "beep",
+   "ru": "звуковой сигнал",
+   "uk": "звуковий сигнал"
+  },
+  {
+   "lemma": "cost",
+   "ru": "стоимость",
+   "uk": "коштувати"
+  },
+  {
+   "lemma": "long",
+   "ru": "длинный",
+   "uk": "довго"
+  },
+  {
+   "lemma": "journey",
+   "ru": "путешествие",
+   "uk": "подорож"
+  },
+  {
+   "lemma": "centre",
+   "ru": "центр",
+   "uk": "центр"
+  },
+  {
+   "lemma": "often",
+   "ru": "часто",
+   "uk": "часто"
+  },
+  {
+   "lemma": "size",
+   "ru": "размер",
+   "uk": "розмір"
+  },
+  {
+   "lemma": "colour",
+   "ru": "цвет",
+   "uk": "колір"
+  },
+  {
+   "lemma": "prefer",
+   "ru": "предпочитать",
+   "uk": "віддати перевагу"
+  },
+  {
+   "lemma": "battery",
+   "ru": "батарея",
+   "uk": "батарейка"
+  },
+  {
+   "lemma": "sale",
+   "ru": "распродажа",
+   "uk": "розпродаж"
+  },
+  {
+   "lemma": "end",
+   "ru": "до конца или конец",
+   "uk": "до кінця або кінець"
+  },
+  {
+   "lemma": "label",
+   "ru": "этикетка на предмете",
+   "uk": "етикетка на предметі"
+  },
+  {
+   "lemma": "say",
+   "ru": "сказать",
+   "uk": "сказати"
+  },
+  {
+   "lemma": "more",
+   "ru": "больше",
+   "uk": "більше"
+  },
+  {
+   "lemma": "coat",
+   "ru": "пальто",
+   "uk": "пальто"
+  },
+  {
+   "lemma": "restart",
+   "ru": "перезапуск",
+   "uk": "перезавантажити"
+  },
+  {
+   "lemma": "button",
+   "ru": "кнопка на устройстве",
+   "uk": "кнопка на машині"
+  },
+  {
+   "lemma": "screen",
+   "ru": "экран",
+   "uk": "екран"
+  },
+  {
+   "lemma": "dark",
+   "ru": "темный",
+   "uk": "темний"
+  },
+  {
+   "lemma": "order",
+   "ru": "заказ или для заказа",
+   "uk": "замовлення або на замовлення"
+  },
+  {
+   "lemma": "call",
+   "ru": "позвонить",
+   "uk": "дзвінок"
+  },
+  {
+   "lemma": "leads",
+   "ru": "ведёт к",
+   "uk": "веде до"
+  },
+  {
+   "lemma": "meet",
+   "ru": "встретиться",
+   "uk": "зустрічатися"
+  },
+  {
+   "lemma": "spell",
+   "ru": "заклинание",
+   "uk": "заклинання"
+  },
+  {
+   "lemma": "surname",
+   "ru": "фамилия",
+   "uk": "прізвище"
+  },
+  {
+   "lemma": "mean",
+   "ru": "значит",
+   "uk": "означає"
+  },
+  {
+   "lemma": "person",
+   "ru": "человек",
+   "uk": "людина"
+  },
+  {
+   "lemma": "far",
+   "ru": "далеко",
+   "uk": "далеко"
+  },
+  {
+   "lemma": "day",
+   "ru": "день",
+   "uk": "день"
+  },
+  {
+   "lemma": "teach",
+   "ru": "учить",
+   "uk": "навчати"
+  },
+  {
+   "lemma": "evening",
+   "ru": "вечер",
+   "uk": "вечір"
+  },
+  {
+   "lemma": "belongs",
+   "ru": "принадлежит",
+   "uk": "належить"
+  },
+  {
+   "lemma": "foot",
+   "ru": "нога",
+   "uk": "стопа"
+  }
+ ],
+ "knownWords": [
+  "ready",
+  "busy",
+  "free",
+  "home",
+  "work",
+  "open",
+  "close",
+  "door",
+  "shop",
+  "light",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "room",
+  "warm",
+  "coffee",
+  "cold",
+  "bag",
+  "key",
+  "phone",
+  "kitchen",
+  "window",
+  "hand",
+  "seat",
+  "lift",
+  "stairs",
+  "safe",
+  "ticket",
+  "valid",
+  "platform",
+  "empty",
+  "station",
+  "last",
+  "wait",
+  "office",
+  "train",
+  "time",
+  "nearby",
+  "live",
+  "alone",
+  "start",
+  "finish",
+  "walk",
+  "need",
+  "help",
+  "want",
+  "tea",
+  "like",
+  "use",
+  "speak",
+  "english",
+  "stop",
+  "nine",
+  "leave",
+  "eight",
+  "class",
+  "ten",
+  "cafe",
+  "slowly",
+  "shift",
+  "soon",
+  "well",
+  "take",
+  "share",
+  "flat",
+  "check",
+  "email",
+  "cash",
+  "sister",
+  "night",
+  "together",
+  "sometimes",
+  "study",
+  "driver",
+  "know",
+  "way",
+  "gate",
+  "drive",
+  "smoke",
+  "eat",
+  "meat",
+  "entrance",
+  "accept",
+  "card",
+  "machine",
+  "coins",
+  "code",
+  "desk",
+  "carry",
+  "purse",
+  "lock",
+  "tap",
+  "charge",
+  "fit",
+  "shut",
+  "shoe",
+  "headphones",
+  "run",
+  "today",
+  "drink",
+  "cook",
+  "friday",
+  "lunch",
+  "usually",
+  "always",
+  "buy",
+  "bottle",
+  "water",
+  "message",
+  "feel",
+  "price",
+  "include",
+  "breakfast",
+  "cover",
+  "return",
+  "trip",
+  "receipt",
+  "show",
+  "date",
+  "rent",
+  "heating",
+  "go",
+  "son",
+  "milk",
+  "near",
+  "understand",
+  "word",
+  "sell",
+  "stamps",
+  "sunday",
+  "pay",
+  "street",
+  "balcony",
+  "oven",
+  "hear",
+  "noise",
+  "park",
+  "permit",
+  "landlord",
+  "new",
+  "team",
+  "wear",
+  "uniform",
+  "manager",
+  "rota",
+  "get",
+  "break",
+  "printer",
+  "paper",
+  "sign",
+  "form",
+  "spare",
+  "keep",
+  "colleague",
+  "weekends",
+  "delivery",
+  "address",
+  "parcel",
+  "box",
+  "send",
+  "confirmation",
+  "anyone",
+  "post",
+  "collect",
+  "quiet",
+  "carriage",
+  "left",
+  "next"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Где я и как я себя чувствую"
+  },
+  {
+   "lesson": 2,
+   "title": "Как переспросить и ответить коротко"
+  },
+  {
+   "lesson": 3,
+   "title": "Что я делаю обычно"
+  },
+  {
+   "lesson": 4,
+   "title": "Чего я не делаю"
+  },
+  {
+   "lesson": 5,
+   "title": "Как задать вопрос о действии"
+  }
+ ],
+ "oldTopicTitle": "Как узнать нужную подробность",
+ "oldTheoryRu": "Кто звонит? Who calls? Само who выполняет действие. Кому ты звонишь? Who do you call? Теперь действие выполняет you. Вопрос «да/нет» не даст точную платформу или цену. Начни с того, что тебе нужно узнать: место, время, цену, человека или выбор. Вопрос «да/нет» не даст точную платформу или цену. Начни с того, что тебе нужно узнать: место, время, цену, человека или выбор. Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`. Запоминай начала вопросов целиком: `how much`, `how long`, `how often`. `Which` спрашивает о выборе, `where` — о месте. Сначала реши, что неизвестно. «Кто проверяет?» — `Who checks?`: слово `who` само выполняет действие. «Кому мне звонить?» — `Who do I call?`: подлежащее уже есть, это `I`. Спросите о работе: подлежащее или дополнение? У вас есть одна минута у билетной кассы. Спросите цену и платформу, а не задавайте вопрос «да/нет» о поезде. Выберите недостающую информацию самостоятельно"
+}

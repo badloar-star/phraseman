@@ -1,0 +1,551 @@
+{
+  "lang": "es",
+  "lesson": 7,
+  "title": {
+    "ru": "Hay: что здесь есть?",
+    "uk": "Hay: що тут є?",
+    "en": "Hay: what is there?"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Есть",
+        "uk": "Є",
+        "en": "There is"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Здесь есть книга».\nHay un libro aquí. — «Здесь есть книга.»\nЧитается: ай ун ли́бро аки́.\nСлово hay значит «есть, имеется». Слово aquí — «здесь».\nСлова un и una значат «один». По-русски их часто не говорят.\nСлово libro значит «книга», llave — «ключ».\nЗапоминайте un или una вместе с названием вещи.",
+        "uk": "Дивіться, як сказати «Тут є книжка».\nHay un libro aquí. — «Тут є книжка.»\nЧитається: ай ун лі́бро акі́.\nСлово hay означає «є, наявне». Слово aquí — «тут».\nСлова un і una означають «один». Українською їх часто не кажуть.\nСлово libro означає «книжка», llave — «ключ».\nЗапам’ятовуйте un або una разом із назвою речі.",
+        "en": "Look at how to say “There is a book here”.\nHay un libro aquí. — “There is a book here.”\nThe word hay means “there is”. The word aquí means “here”.\nThe words un and una mean “a” or “one”.\nThe word libro means “book”, llave — “key”.\nLearn un or una together with the name of the thing."
+      },
+      "examples": [
+        {
+          "phraseId": "es:07:01",
+          "say": {
+            "ru": "ай ун ли́бро аки́",
+            "uk": "ай ун лі́бро акі́"
+          }
+        },
+        {
+          "phraseId": "es:07:02",
+          "say": {
+            "ru": "ай у́на йа́ве аки́",
+            "uk": "ай у́на йа́ве акі́"
+          }
+        },
+        {
+          "phraseId": "es:07:03",
+          "say": {
+            "ru": "ай у́на мочи́ла аки́",
+            "uk": "ай у́на мочі́ла акі́"
+          }
+        },
+        {
+          "phraseId": "es:07:04",
+          "say": {
+            "ru": "ай ун ма́па аки́",
+            "uk": "ай ун ма́па акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Здесь есть книга»",
+            "uk": "Виберіть, як сказати: «Тут є книжка»",
+            "en": "Choose how to say: “There is a book here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:07:01",
+          "options": [
+            "es:07:01",
+            "es:07:02",
+            "es:07:04"
+          ],
+          "answerId": "es:07:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Здесь есть ключ»",
+            "uk": "Виберіть, як сказати: «Тут є ключ»",
+            "en": "Choose how to say: “There is a key here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:02",
+          "options": [
+            "es:07:02",
+            "es:07:01",
+            "es:07:03"
+          ],
+          "answerId": "es:07:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Здесь есть карта»",
+            "uk": "Виберіть, як сказати: «Тут є мапа»",
+            "en": "Choose how to say: “There is a map here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:04",
+          "options": [
+            "es:07:04",
+            "es:07:03",
+            "es:07:01"
+          ],
+          "answerId": "es:07:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Где лежит",
+        "uk": "Де лежить",
+        "en": "Where it is"
+      },
+      "text": {
+        "ru": "Скажите, где что-то есть: добавьте en и место.\nHay un mapa en la mochila. — «В рюкзаке есть карта.»\nЧитается: ай ун ма́па эн ла мочи́ла.\nСлово en значит «в» или «на». Слово mochila — «рюкзак», mapa — «карта».\nHay una llave en el bolso. — «В сумке есть ключ.»\nСлово bolso значит «сумка».\nСлова el и la стоят перед названием места. По-русски их нет.",
+        "uk": "Скажіть, де щось є: додайте en і місце.\nHay un mapa en la mochila. — «У рюкзаку є мапа.»\nЧитається: ай ун ма́па ен ла мочі́ла.\nСлово en означає «в» або «на». Слово mochila — «рюкзак», mapa — «мапа».\nHay una llave en el bolso. — «У сумці є ключ.»\nСлово bolso означає «сумка».\nСлова el і la стоять перед назвою місця. Українською їх немає.",
+        "en": "Say where something is: add en and the place.\nHay un mapa en la mochila. — “There is a map in the backpack.”\nThe word en means “in” or “on”. The word mochila means “backpack”, mapa — “map”.\nHay una llave en el bolso. — “There is a key in the bag.”\nThe word bolso means “bag”.\nThe words el and la stand before the name of a place. English says “the”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:07:05",
+          "say": {
+            "ru": "ай ун ма́па эн ла мочи́ла",
+            "uk": "ай ун ма́па ен ла мочі́ла"
+          }
+        },
+        {
+          "phraseId": "es:07:06",
+          "say": {
+            "ru": "ай ун ли́бро эн ла мочи́ла",
+            "uk": "ай ун лі́бро ен ла мочі́ла"
+          }
+        },
+        {
+          "phraseId": "es:07:07",
+          "say": {
+            "ru": "ай у́на йа́ве эн эль бо́льсо",
+            "uk": "ай у́на йа́ве ен ель бо́льсо"
+          }
+        },
+        {
+          "phraseId": "es:07:09",
+          "say": {
+            "ru": "ай ун бийе́те эн эль больси́йо",
+            "uk": "ай ун бійе́те ен ель больсі́йо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В рюкзаке есть карта»",
+            "uk": "Виберіть, як сказати: «У рюкзаку є мапа»",
+            "en": "Choose how to say: “There is a map in the backpack”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:07:05",
+          "options": [
+            "es:07:05",
+            "es:07:06",
+            "es:07:07"
+          ],
+          "answerId": "es:07:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В сумке есть ключ»",
+            "uk": "Виберіть, як сказати: «У сумці є ключ»",
+            "en": "Choose how to say: “There is a key in the bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:07",
+          "options": [
+            "es:07:07",
+            "es:07:05",
+            "es:07:09"
+          ],
+          "answerId": "es:07:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В кармане есть билет»",
+            "uk": "Виберіть, як сказати: «У кишені є квиток»",
+            "en": "Choose how to say: “There is a ticket in the pocket”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:09",
+          "options": [
+            "es:07:09",
+            "es:07:06",
+            "es:07:07"
+          ],
+          "answerId": "es:07:09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Два",
+        "uk": "Два",
+        "en": "Two"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «два».\nHay dos libros en la mesa. — «На столе две книги.»\nЧитается: ай дос ли́брос эн ла ме́са.\nСлово dos значит «два, две». Слово mesa — «стол».\nСлов un и una тут нет.\nЗато у названия вещи на конце — лишняя буква.\nLibro — libros, llave — llaves.",
+        "uk": "Дивіться, як сказати «два».\nHay dos libros en la mesa. — «На столі дві книжки.»\nЧитається: ай дос лі́брос ен ла ме́са.\nСлово dos означає «два, дві». Слово mesa — «стіл».\nСлів un і una тут немає.\nЗате в назви речі наприкінці — зайва літера.\nLibro — libros, llave — llaves.",
+        "en": "Look at how to say “two”.\nHay dos libros en la mesa. — “There are two books on the table.”\nThe word dos means “two”. The word mesa means “table”.\nThere is no un or una here.\nInstead, the name of the thing gets an extra letter at the end.\nLibro — libros, llave — llaves."
+      },
+      "examples": [
+        {
+          "phraseId": "es:07:10",
+          "say": {
+            "ru": "ай ун ли́бро эн ла ме́са",
+            "uk": "ай ун лі́бро ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:07:11",
+          "say": {
+            "ru": "ай дос ли́брос эн ла ме́са",
+            "uk": "ай дос лі́брос ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:07:12",
+          "say": {
+            "ru": "ай дос йа́вес эн ла ме́са",
+            "uk": "ай дос йа́вес ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:07:16",
+          "say": {
+            "ru": "ай дос пасапо́ртес эн ла мочи́ла",
+            "uk": "ай дос пасапо́ртес ен ла мочі́ла"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На столе две книги»",
+            "uk": "Виберіть, як сказати: «На столі дві книжки»",
+            "en": "Choose how to say: “There are two books on the table”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:07:11",
+          "options": [
+            "es:07:11",
+            "es:07:10",
+            "es:07:12"
+          ],
+          "answerId": "es:07:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На столе два ключа»",
+            "uk": "Виберіть, як сказати: «На столі два ключі»",
+            "en": "Choose how to say: “There are two keys on the table”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:12",
+          "options": [
+            "es:07:12",
+            "es:07:11",
+            "es:07:10"
+          ],
+          "answerId": "es:07:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В рюкзаке два паспорта»",
+            "uk": "Виберіть, як сказати: «У рюкзаку два паспорти»",
+            "en": "Choose how to say: “There are two passports in the backpack”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:16",
+          "options": [
+            "es:07:16",
+            "es:07:12",
+            "es:07:07"
+          ],
+          "answerId": "es:07:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вода, кофе, молоко, сахар",
+        "uk": "Вода, кава, молоко, цукор",
+        "en": "Water, coffee, milk, sugar"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать про воду и молоко.\nHay agua. — «Есть вода.»\nЧитается: ай а́гуа.\nСлово agua значит «вода», leche — «молоко».\nСлово café значит «кофе», azúcar — «сахар».\nHay leche en la cocina. — «На кухне есть молоко.»\nСлово cocina значит «кухня».\nСлов un и una тут нет: воду и молоко не считают.",
+        "uk": "Дивіться, як сказати про воду і молоко.\nHay agua. — «Є вода.»\nЧитається: ай а́гуа.\nСлово agua означає «вода», leche — «молоко».\nСлово café означає «кава», azúcar — «цукор».\nHay leche en la cocina. — «На кухні є молоко.»\nСлово cocina означає «кухня».\nСлів un і una тут немає: воду й молоко не рахують.",
+        "en": "Look at how to talk about water and milk.\nHay agua. — “There is water.”\nThe word agua means “water”, leche — “milk”.\nThe word café means “coffee”, azúcar — “sugar”.\nHay leche en la cocina. — “There is milk in the kitchen.”\nThe word cocina means “kitchen”.\nThere is no un or una here: you do not count water or milk."
+      },
+      "examples": [
+        {
+          "phraseId": "es:07:21",
+          "say": {
+            "ru": "ай а́гуа",
+            "uk": "ай а́гуа"
+          }
+        },
+        {
+          "phraseId": "es:07:22",
+          "say": {
+            "ru": "ай ле́че эн ла коси́на",
+            "uk": "ай ле́че ен ла косі́на"
+          }
+        },
+        {
+          "phraseId": "es:07:23",
+          "say": {
+            "ru": "ай кафе́ эн ла коси́на",
+            "uk": "ай кафе́ ен ла косі́на"
+          }
+        },
+        {
+          "phraseId": "es:07:24",
+          "say": {
+            "ru": "ай асу́кар эн ла офиси́на",
+            "uk": "ай асу́кар ен ла офісі́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть вода»",
+            "uk": "Виберіть, як сказати: «Є вода»",
+            "en": "Choose how to say: “There is water”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:07:21",
+          "options": [
+            "es:07:21",
+            "es:07:22",
+            "es:07:23"
+          ],
+          "answerId": "es:07:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На кухне есть кофе»",
+            "uk": "Виберіть, як сказати: «На кухні є кава»",
+            "en": "Choose how to say: “There is coffee in the kitchen”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:23",
+          "options": [
+            "es:07:23",
+            "es:07:22",
+            "es:07:24"
+          ],
+          "answerId": "es:07:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В офисе есть сахар»",
+            "uk": "Виберіть, як сказати: «В офісі є цукор»",
+            "en": "Choose how to say: “There is sugar in the office”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:24",
+          "options": [
+            "es:07:24",
+            "es:07:22",
+            "es:07:23"
+          ],
+          "answerId": "es:07:24"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Нет",
+        "uk": "Немає",
+        "en": "There is no"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «нет».\nNo hay agua. — «Воды нет.»\nЧитается: но ай а́гуа.\nСлово no значит «не». Перед hay оно даёт «нет».\nNo hay trenes hoy. — «Сегодня поездов нет.»\nСлово hoy значит «сегодня», trenes — «поезда».",
+        "uk": "Дивіться, як сказати «немає».\nNo hay agua. — «Води немає.»\nЧитається: но ай а́гуа.\nСлово no означає «не». Перед hay воно дає «немає».\nNo hay trenes hoy. — «Сьогодні поїздів немає.»\nСлово hoy означає «сьогодні», trenes — «поїзди».",
+        "en": "Look at how to say “there is no”.\nNo hay agua. — “There is no water.”\nThe word no means “not”. Before hay it gives “there is no”.\nNo hay trenes hoy. — “There are no trains today.”\nThe word hoy means “today”, trenes — “trains”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:07:31",
+          "say": {
+            "ru": "но ай а́гуа",
+            "uk": "но ай а́гуа"
+          }
+        },
+        {
+          "phraseId": "es:07:32",
+          "say": {
+            "ru": "но ай кафе́",
+            "uk": "но ай кафе́"
+          }
+        },
+        {
+          "phraseId": "es:07:36",
+          "say": {
+            "ru": "но ай тре́нес ой",
+            "uk": "но ай тре́нес ой"
+          }
+        },
+        {
+          "phraseId": "es:07:33",
+          "say": {
+            "ru": "но ай асу́кар эн ла офиси́на",
+            "uk": "но ай асу́кар ен ла офісі́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Воды нет»",
+            "uk": "Виберіть, як сказати: «Води немає»",
+            "en": "Choose how to say: “There is no water”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:07:31",
+          "options": [
+            "es:07:31",
+            "es:07:21",
+            "es:07:32"
+          ],
+          "answerId": "es:07:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кофе нет»",
+            "uk": "Виберіть, як сказати: «Кави немає»",
+            "en": "Choose how to say: “There is no coffee”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:32",
+          "options": [
+            "es:07:32",
+            "es:07:31",
+            "es:07:23"
+          ],
+          "answerId": "es:07:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня поездов нет»",
+            "uk": "Виберіть, як сказати: «Сьогодні поїздів немає»",
+            "en": "Choose how to say: “There are no trains today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:36",
+          "options": [
+            "es:07:36",
+            "es:07:31",
+            "es:07:33"
+          ],
+          "answerId": "es:07:36"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Вопрос и люди",
+        "uk": "Питання і люди",
+        "en": "Questions and people"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Здесь есть вода?».\n¿Hay agua aquí? — «Здесь есть вода?»\nЧитается: ай а́гуа аки́.\nСлова те же, что в Hay agua. Добавляются знаки ¿ и ?.\nСлово gente значит «люди».\nHay gente dentro. — «Внутри есть люди.»\nЧитается: ай хе́нте де́нтро.\nСлово dentro значит «внутри».",
+        "uk": "Дивіться, як спитати «Тут є вода?».\n¿Hay agua aquí? — «Тут є вода?»\nЧитається: ай а́гуа акі́.\nСлова ті самі, що в Hay agua. Додаються знаки ¿ і ?.\nСлово gente означає «люди».\nHay gente dentro. — «Усередині є люди.»\nЧитається: ай хе́нте де́нтро.\nСлово dentro означає «усередині».",
+        "en": "Look at how to ask “Is there water here?”.\n¿Hay agua aquí? — “Is there water here?”\nThe words are the same as in Hay agua. Only ¿ and ? are added.\nThe word gente means “people”.\nHay gente dentro. — “There are people inside.”\nThe word dentro means “inside”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:07:37",
+          "say": {
+            "ru": "ай а́гуа аки́",
+            "uk": "ай а́гуа акі́"
+          }
+        },
+        {
+          "phraseId": "es:07:39",
+          "say": {
+            "ru": "ай у́на тье́нда се́рка",
+            "uk": "ай у́на тье́нда се́рка"
+          }
+        },
+        {
+          "phraseId": "es:07:29",
+          "say": {
+            "ru": "ай хе́нте де́нтро",
+            "uk": "ай хе́нте де́нтро"
+          }
+        },
+        {
+          "phraseId": "es:07:49",
+          "say": {
+            "ru": "ай хе́нте эн ла офиси́на",
+            "uk": "ай хе́нте ен ла офісі́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Здесь есть вода?»",
+            "uk": "Виберіть, як сказати: «Тут є вода?»",
+            "en": "Choose how to say: “Is there water here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:07:37",
+          "options": [
+            "es:07:37",
+            "es:07:21",
+            "es:07:39"
+          ],
+          "answerId": "es:07:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поблизости есть магазин?»",
+            "uk": "Виберіть, як сказати: «Поблизу є магазин?»",
+            "en": "Choose how to say: “Is there a shop nearby?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:39",
+          "options": [
+            "es:07:39",
+            "es:07:37",
+            "es:07:29"
+          ],
+          "answerId": "es:07:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В офисе есть люди?»",
+            "uk": "Виберіть, як сказати: «В офісі є люди?»",
+            "en": "Choose how to say: “Are there people in the office?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:07:49",
+          "options": [
+            "es:07:49",
+            "es:07:29",
+            "es:07:39"
+          ],
+          "answerId": "es:07:49"
+        }
+      ]
+    }
+  ]
+}

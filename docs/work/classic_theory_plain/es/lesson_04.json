@@ -1,0 +1,496 @@
+{
+  "lang": "es",
+  "lesson": 4,
+  "title": {
+    "ru": "Кто вы: имя и занятие",
+    "uk": "Хто ви: ім’я та заняття",
+    "en": "Who you are: name and job"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Кто я",
+        "uk": "Хто я",
+        "en": "Who I am"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, кто вы.\nSoy Ana. — «Я Ана.»\nЧитается: сой А'на.\nСлово soy значит «я есть». Оно из слова ser — «быть кем-то».\nSoy estudiante. — «Я студент.»\nСлово estudiante значит «студент», médico — «врач».\nПро место говорят другим словом: estar — «находиться».",
+        "uk": "Дивіться, як сказати, хто ви.\nSoy Ana. — «Я Ана.»\nЧитається: сой А'на.\nСлово soy означає «я є». Воно зі слова ser — «бути кимось».\nSoy estudiante. — «Я студент.»\nСлово estudiante означає «студент», médico — «лікар».\nПро місце кажуть іншим словом: estar — «перебувати».",
+        "en": "Look at how to say who you are.\nSoy Ana. — “I am Ana.”\nThe word soy means “I am”. It comes from the word ser — “to be someone”.\nSoy estudiante. — “I am a student.”\nThe word estudiante means “student”, médico means “doctor”.\nFor a place we use another word: estar — “to be located”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:04:01",
+          "say": {
+            "ru": "сой А'на",
+            "uk": "сой А'на"
+          }
+        },
+        {
+          "phraseId": "es:04:02",
+          "say": {
+            "ru": "сой Луи́с",
+            "uk": "сой Луі́с"
+          }
+        },
+        {
+          "phraseId": "es:04:07",
+          "say": {
+            "ru": "сой эстудья́нте",
+            "uk": "сой естудья́нте"
+          }
+        },
+        {
+          "phraseId": "es:04:03",
+          "say": {
+            "ru": "сой ме́дико",
+            "uk": "сой ме́діко"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я Ана»",
+            "uk": "Виберіть, як сказати: «Я Ана»",
+            "en": "Choose how to say: “I am Ana”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:04:01",
+          "options": [
+            "es:04:01",
+            "es:04:02",
+            "es:04:07"
+          ],
+          "answerId": "es:04:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я Луис»",
+            "uk": "Виберіть, як сказати: «Я Луїс»",
+            "en": "Choose how to say: “I am Luis”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:02",
+          "options": [
+            "es:04:02",
+            "es:04:01",
+            "es:04:03"
+          ],
+          "answerId": "es:04:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я студент»",
+            "uk": "Виберіть, як сказати: «Я студент»",
+            "en": "Choose how to say: “I am a student”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:07",
+          "options": [
+            "es:04:07",
+            "es:04:03",
+            "es:04:02"
+          ],
+          "answerId": "es:04:07"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мужчина или женщина говорит",
+        "uk": "Чоловік чи жінка говорить",
+        "en": "Man or woman"
+      },
+      "text": {
+        "ru": "Смотрите: слово зависит от того, кто говорит.\nSoy médico. — «Я врач.» Так говорит мужчина.\nSoy médica. — «Я врач.» Так говорит женщина.\nСлово profesor значит «преподаватель», profesora — «преподавательница».\nСлово enfermero значит «медбрат», enfermera — «медсестра».\nСмотрите на конец слова: у мужчины одно, у женщины другое.",
+        "uk": "Дивіться: слово залежить від того, хто говорить.\nSoy médico. — «Я лікар.» Так каже чоловік.\nSoy médica. — «Я лікарка.» Так каже жінка.\nСлово profesor означає «викладач», profesora — «викладачка».\nСлово enfermero означає «медбрат», enfermera — «медсестра».\nДивіться на кінець слова: у чоловіка одне, у жінки інше.",
+        "en": "Look: the word depends on who is speaking.\nSoy médico. — “I am a doctor.” A man says this.\nSoy médica. — “I am a doctor.” A woman says this.\nThe word profesor means “teacher” (man), profesora — “teacher” (woman).\nThe word enfermero means “male nurse”, enfermera — “nurse” (woman).\nLook at the end of the word: one for a man, another for a woman."
+      },
+      "examples": [
+        {
+          "phraseId": "es:04:03",
+          "say": {
+            "ru": "сой ме́дико",
+            "uk": "сой ме́діко"
+          }
+        },
+        {
+          "phraseId": "es:04:04",
+          "say": {
+            "ru": "сой ме́дика",
+            "uk": "сой ме́діка"
+          }
+        },
+        {
+          "phraseId": "es:04:09",
+          "say": {
+            "ru": "сой професо́р",
+            "uk": "сой професо́р"
+          }
+        },
+        {
+          "phraseId": "es:04:10",
+          "say": {
+            "ru": "сой професо́ра",
+            "uk": "сой професо́ра"
+          }
+        },
+        {
+          "phraseId": "es:04:41",
+          "say": {
+            "ru": "сой энферме́ро",
+            "uk": "сой енферме́ро"
+          }
+        },
+        {
+          "phraseId": "es:04:42",
+          "say": {
+            "ru": "сой энферме́ра",
+            "uk": "сой енферме́ра"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я преподаватель»",
+            "uk": "Виберіть, як сказати: «Я викладач»",
+            "en": "Choose how to say: “I am a teacher”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:04:09",
+          "options": [
+            "es:04:09",
+            "es:04:10",
+            "es:04:41"
+          ],
+          "answerId": "es:04:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я преподавательница»",
+            "uk": "Виберіть, як сказати: «Я викладачка»",
+            "en": "Choose how to say: “I am a teacher (woman)”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:10",
+          "options": [
+            "es:04:10",
+            "es:04:09",
+            "es:04:42"
+          ],
+          "answerId": "es:04:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я медсестра»",
+            "uk": "Виберіть, як сказати: «Я медсестра»",
+            "en": "Choose how to say: “I am a nurse”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:42",
+          "options": [
+            "es:04:42",
+            "es:04:41",
+            "es:04:10"
+          ],
+          "answerId": "es:04:42"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "«Ты» и «вы»",
+        "uk": "«Ти» і «ви»",
+        "en": "“You”"
+      },
+      "text": {
+        "ru": "Чтобы сказать «ты», нужно слово eres.\nEres médico. — «Ты врач.»\nЧитается: э́рес ме́дико.\nСлово eres значит «ты есть».\nВежливое «вы» к одному человеку — слово usted.\nUsted es médica. — «Вы врач.»\nСлово es значит «есть». Оно идёт после usted.",
+        "uk": "Щоб сказати «ти», потрібне слово eres.\nEres médico. — «Ти лікар.»\nЧитається: е́рес ме́діко.\nСлово eres означає «ти є».\nВвічливе «ви» до однієї людини — слово usted.\nUsted es médica. — «Ви лікарка.»\nСлово es означає «є». Воно йде після usted.",
+        "en": "To say “you” (a friend), you need the word eres.\nEres médico. — “You are a doctor.”\nThe word eres means “you are”.\nThe polite “you” to one person is the word usted.\nUsted es médica. — “You are a doctor.”\nThe word es means “is”. It goes after usted."
+      },
+      "examples": [
+        {
+          "phraseId": "es:04:05",
+          "say": {
+            "ru": "э́рес ме́дико",
+            "uk": "е́рес ме́діко"
+          }
+        },
+        {
+          "phraseId": "es:04:08",
+          "say": {
+            "ru": "э́рес эстудья́нте",
+            "uk": "е́рес естудья́нте"
+          }
+        },
+        {
+          "phraseId": "es:04:46",
+          "say": {
+            "ru": "усте́д эс ме́дика",
+            "uk": "усте́д ес ме́діка"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты врач»",
+            "uk": "Виберіть, як сказати: «Ти лікар»",
+            "en": "Choose how to say: “You are a doctor”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:04:05",
+          "options": [
+            "es:04:05",
+            "es:04:03",
+            "es:04:08"
+          ],
+          "answerId": "es:04:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты студентка»",
+            "uk": "Виберіть, як сказати: «Ти студентка»",
+            "en": "Choose how to say: “You are a student”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:08",
+          "options": [
+            "es:04:08",
+            "es:04:07",
+            "es:04:46"
+          ],
+          "answerId": "es:04:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы врач»",
+            "uk": "Виберіть, як сказати: «Ви лікарка»",
+            "en": "Choose how to say: “You are a doctor (polite)”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:46",
+          "options": [
+            "es:04:46",
+            "es:04:05",
+            "es:04:04"
+          ],
+          "answerId": "es:04:46"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Он, она, Ана",
+        "uk": "Він, вона, Ана",
+        "en": "He, she, Ana"
+      },
+      "text": {
+        "ru": "О другом человеке говорят es.\nAna es médica. — «Ана — врач.»\nЧитается: А'на эс ме́дика.\nСлово él значит «он», ella — «она». Их ставят перед es.\nÉl es estudiante. — «Он студент.»\nAna es guía. — «Ана — гид.» Слово guía значит «гид».\nСлово guía одно и для мужчины, и для женщины.",
+        "uk": "Про іншу людину кажуть es.\nAna es médica. — «Ана — лікарка.»\nЧитається: А'на ес ме́діка.\nСлово él означає «він», ella — «вона». Їх ставлять перед es.\nÉl es estudiante. — «Він студент.»\nAna es guía. — «Ана — гід.» Слово guía означає «гід».\nСлово guía одне і для чоловіка, і для жінки.",
+        "en": "About another person we say es.\nAna es médica. — “Ana is a doctor.”\nThe word él means “he”, ella means “she”. They go before es.\nÉl es estudiante. — “He is a student.”\nAna es guía. — “Ana is a guide.” The word guía means “guide”.\nThe word guía is the same for a man and a woman."
+      },
+      "examples": [
+        {
+          "phraseId": "es:04:11",
+          "say": {
+            "ru": "А'на эс ме́дика",
+            "uk": "А'на ес ме́діка"
+          }
+        },
+        {
+          "phraseId": "es:04:12",
+          "say": {
+            "ru": "Луи́с эс ме́дико",
+            "uk": "Луі́с ес ме́діко"
+          }
+        },
+        {
+          "phraseId": "es:04:16",
+          "say": {
+            "ru": "эль эс эстудья́нте",
+            "uk": "ель ес естудья́нте"
+          }
+        },
+        {
+          "phraseId": "es:04:15",
+          "say": {
+            "ru": "э́йя эс эстудья́нте",
+            "uk": "е́йя ес естудья́нте"
+          }
+        },
+        {
+          "phraseId": "es:04:19",
+          "say": {
+            "ru": "А'на эс ги́а",
+            "uk": "А'на ес гі́а"
+          }
+        },
+        {
+          "phraseId": "es:04:20",
+          "say": {
+            "ru": "Луи́с эс ги́а",
+            "uk": "Луі́с ес гі́а"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана — врач»",
+            "uk": "Виберіть, як сказати: «Ана — лікарка»",
+            "en": "Choose how to say: “Ana is a doctor”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:04:11",
+          "options": [
+            "es:04:11",
+            "es:04:12",
+            "es:04:19"
+          ],
+          "answerId": "es:04:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он студент»",
+            "uk": "Виберіть, як сказати: «Він студент»",
+            "en": "Choose how to say: “He is a student”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:16",
+          "options": [
+            "es:04:16",
+            "es:04:15",
+            "es:04:12"
+          ],
+          "answerId": "es:04:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис — гид»",
+            "uk": "Виберіть, як сказати: «Луїс — гід»",
+            "en": "Choose how to say: “Luis is a guide”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:20",
+          "options": [
+            "es:04:20",
+            "es:04:19",
+            "es:04:12"
+          ],
+          "answerId": "es:04:20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Мы и они",
+        "uk": "Ми і вони",
+        "en": "We and they"
+      },
+      "text": {
+        "ru": "Когда речь о нас, говорят somos — «мы есть».\nSomos estudiantes. — «Мы студенты.»\nЧитается: со́мос эстудья́нтес.\nКогда речь о них, говорят son — «они есть».\nEllos son profesores. — «Они преподаватели.»\nSomos Ana y Luis. — «Мы Ана и Луис.»\nЕсли вы говорите с несколькими друзьями — sois.",
+        "uk": "Коли мова про нас, кажуть somos — «ми є».\nSomos estudiantes. — «Ми студенти.»\nЧитається: со́мос естудья́нтес.\nКоли мова про них, кажуть son — «вони є».\nEllos son profesores. — «Вони викладачі.»\nSomos Ana y Luis. — «Ми Ана та Луїс.»\nЯкщо ви говорите з кількома друзями — sois.",
+        "en": "When it is about us, we say somos — “we are”.\nSomos estudiantes. — “We are students.”\nWhen it is about them, we say son — “they are”.\nEllos son profesores. — “They are teachers.”\nSomos Ana y Luis. — “We are Ana and Luis.”\nIf you speak to several friends — sois."
+      },
+      "examples": [
+        {
+          "phraseId": "es:04:21",
+          "say": {
+            "ru": "со́мос эстудья́нтес",
+            "uk": "со́мос естудья́нтес"
+          }
+        },
+        {
+          "phraseId": "es:04:22",
+          "say": {
+            "ru": "со́мос ме́дикос",
+            "uk": "со́мос ме́дікос"
+          }
+        },
+        {
+          "phraseId": "es:04:28",
+          "say": {
+            "ru": "э́йос сон професо́рес",
+            "uk": "е́йос сон професо́рес"
+          }
+        },
+        {
+          "phraseId": "es:04:49",
+          "say": {
+            "ru": "А'на и Луи́с сон эстудья́нтес",
+            "uk": "А'на і Луі́с сон естудья́нтес"
+          }
+        },
+        {
+          "phraseId": "es:04:50",
+          "say": {
+            "ru": "со́мос А'на и Луи́с",
+            "uk": "со́мос А'на і Луі́с"
+          }
+        },
+        {
+          "phraseId": "es:04:27",
+          "say": {
+            "ru": "сойс эстудья́нтес",
+            "uk": "сойс естудья́нтес"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы студенты»",
+            "uk": "Виберіть, як сказати: «Ми студенти»",
+            "en": "Choose how to say: “We are students”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:04:21",
+          "options": [
+            "es:04:21",
+            "es:04:22",
+            "es:04:28"
+          ],
+          "answerId": "es:04:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они преподаватели»",
+            "uk": "Виберіть, як сказати: «Вони викладачі»",
+            "en": "Choose how to say: “They are teachers”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:28",
+          "options": [
+            "es:04:28",
+            "es:04:21",
+            "es:04:49"
+          ],
+          "answerId": "es:04:28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы Ана и Луис»",
+            "uk": "Виберіть, як сказати: «Ми Ана та Луїс»",
+            "en": "Choose how to say: “We are Ana and Luis”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:04:50",
+          "options": [
+            "es:04:50",
+            "es:04:49",
+            "es:04:21"
+          ],
+          "answerId": "es:04:50"
+        }
+      ]
+    }
+  ]
+}

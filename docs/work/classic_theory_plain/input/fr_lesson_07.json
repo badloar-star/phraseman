@@ -1,0 +1,441 @@
+{
+ "lang": "fr",
+ "lesson": 7,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:07:01",
+   "target": "Je travaille ici.",
+   "ru": "Я здесь работаю.",
+   "uk": "Я тут працюю."
+  },
+  {
+   "id": "fr:07:02",
+   "target": "Tu travailles ici.",
+   "ru": "Ты работаешь здесь.",
+   "uk": "Ти працюєш тут."
+  },
+  {
+   "id": "fr:07:03",
+   "target": "Léa travaille ici.",
+   "ru": "Леа здесь работает.",
+   "uk": "Леа тут працює."
+  },
+  {
+   "id": "fr:07:04",
+   "target": "Nous travaillons ensemble.",
+   "ru": "Мы работаем вместе.",
+   "uk": "Ми працюємо разом."
+  },
+  {
+   "id": "fr:07:05",
+   "target": "Vous travaillez ensemble.",
+   "ru": "Вы работаете вместе.",
+   "uk": "Ви працюєте разом."
+  },
+  {
+   "id": "fr:07:06",
+   "target": "Ils travaillent dehors.",
+   "ru": "Они работают на улице.",
+   "uk": "Вони працюють надворі."
+  },
+  {
+   "id": "fr:07:07",
+   "target": "Je parle français.",
+   "ru": "Я говорю по-французски.",
+   "uk": "Я розмовляю французькою."
+  },
+  {
+   "id": "fr:07:08",
+   "target": "Tu parles français.",
+   "ru": "Ты говоришь по-французски.",
+   "uk": "Ти говориш по-французьки."
+  },
+  {
+   "id": "fr:07:09",
+   "target": "Elle parle anglais.",
+   "ru": "Она говорит по-английски.",
+   "uk": "Вона розмовляє англійською."
+  },
+  {
+   "id": "fr:07:10",
+   "target": "Nous parlons espagnol.",
+   "ru": "Мы говорим по-испански.",
+   "uk": "Ми розмовляємо іспанською."
+  },
+  {
+   "id": "fr:07:11",
+   "target": "J’habite à Lyon.",
+   "ru": "Я живу в Лионе.",
+   "uk": "Я живу в Ліоні."
+  },
+  {
+   "id": "fr:07:12",
+   "target": "Tu habites à Lille.",
+   "ru": "Ты живёшь в Лилле.",
+   "uk": "Ти живеш у Ліллі."
+  },
+  {
+   "id": "fr:07:13",
+   "target": "Paul habite près du marché.",
+   "ru": "Поль живёт рядом с рынком.",
+   "uk": "Поль живе поряд із ринком."
+  },
+  {
+   "id": "fr:07:14",
+   "target": "Nous habitons à la campagne.",
+   "ru": "Мы живём в сельской местности.",
+   "uk": "Ми живемо в сільській місцевості."
+  },
+  {
+   "id": "fr:07:15",
+   "target": "Vous habitez en ville.",
+   "ru": "Вы живёте в городе.",
+   "uk": "Ви живете у місті."
+  },
+  {
+   "id": "fr:07:16",
+   "target": "Elles habitent ici.",
+   "ru": "Они живут здесь.",
+   "uk": "Вони живуть тут."
+  },
+  {
+   "id": "fr:07:17",
+   "target": "J’écoute la radio.",
+   "ru": "Я слушаю радио.",
+   "uk": "Я слухаю радіо."
+  },
+  {
+   "id": "fr:07:18",
+   "target": "Tu écoutes la radio.",
+   "ru": "Ты слушаешь радио.",
+   "uk": "Ти слухаєш радіо."
+  },
+  {
+   "id": "fr:07:19",
+   "target": "Il écoute un message.",
+   "ru": "Он слушает сообщение.",
+   "uk": "Він слухає повідомлення."
+  },
+  {
+   "id": "fr:07:20",
+   "target": "Nous écoutons de la musique.",
+   "ru": "Мы слушаем музыку.",
+   "uk": "Ми слухаємо музику."
+  },
+  {
+   "id": "fr:07:21",
+   "target": "Je cherche mes clés.",
+   "ru": "Я ищу свои ключи.",
+   "uk": "Я шукаю свої ключі."
+  },
+  {
+   "id": "fr:07:22",
+   "target": "Tu cherches ton sac.",
+   "ru": "Ты ищешь свою сумку.",
+   "uk": "Ти шукаєш свою сумку."
+  },
+  {
+   "id": "fr:07:23",
+   "target": "Elle cherche la sortie.",
+   "ru": "Она ищет выход.",
+   "uk": "Вона шукає вихід."
+  },
+  {
+   "id": "fr:07:24",
+   "target": "Nous cherchons une adresse.",
+   "ru": "Мы ищем адрес.",
+   "uk": "Ми шукаємо адресу."
+  },
+  {
+   "id": "fr:07:25",
+   "target": "Vous cherchez un hôtel ?",
+   "ru": "Вы ищете отель?",
+   "uk": "Ви шукаєте готель?"
+  },
+  {
+   "id": "fr:07:26",
+   "target": "Ils cherchent une place.",
+   "ru": "Они ищут место.",
+   "uk": "Вони шукають місце."
+  },
+  {
+   "id": "fr:07:27",
+   "target": "Je regarde le plan.",
+   "ru": "Я смотрю на карту.",
+   "uk": "Я дивлюся на карту."
+  },
+  {
+   "id": "fr:07:28",
+   "target": "Léa regarde les prix.",
+   "ru": "Леа смотрит цены.",
+   "uk": "Леа дивиться на ціни."
+  },
+  {
+   "id": "fr:07:29",
+   "target": "Nous regardons une photo.",
+   "ru": "Мы рассматриваем фотографию.",
+   "uk": "Ми дивимося на фотографію."
+  },
+  {
+   "id": "fr:07:30",
+   "target": "Ils regardent le match.",
+   "ru": "Они смотрят матч.",
+   "uk": "Вони дивляться матч."
+  },
+  {
+   "id": "fr:07:31",
+   "target": "Je prépare le dîner.",
+   "ru": "Я готовлю ужин.",
+   "uk": "Я готую вечерю."
+  },
+  {
+   "id": "fr:07:32",
+   "target": "Tu prépares la soupe.",
+   "ru": "Ты готовишь суп.",
+   "uk": "Ти готуєш суп."
+  },
+  {
+   "id": "fr:07:33",
+   "target": "Paul prépare du café.",
+   "ru": "Поль варит кофе.",
+   "uk": "Пол варить каву."
+  },
+  {
+   "id": "fr:07:34",
+   "target": "Nous préparons les valises.",
+   "ru": "Мы собираем чемоданы.",
+   "uk": "Ми пакуємо валізи."
+  },
+  {
+   "id": "fr:07:35",
+   "target": "Vous préparez le déjeuner.",
+   "ru": "Вы готовите обед.",
+   "uk": "Ви готуєте обід."
+  },
+  {
+   "id": "fr:07:36",
+   "target": "Elle réserve une chambre.",
+   "ru": "Она бронирует номер.",
+   "uk": "Вона бронює номер."
+  },
+  {
+   "id": "fr:07:37",
+   "target": "Je commande un thé.",
+   "ru": "Я заказываю чай.",
+   "uk": "Я замовляю чай."
+  },
+  {
+   "id": "fr:07:38",
+   "target": "Nous commandons deux cafés.",
+   "ru": "Мы заказываем два кофе.",
+   "uk": "Ми замовляємо дві кави."
+  },
+  {
+   "id": "fr:07:39",
+   "target": "Ils visitent le musée.",
+   "ru": "Они посещают музей.",
+   "uk": "Вони відвідують музей."
+  },
+  {
+   "id": "fr:07:40",
+   "target": "Tu fermes la fenêtre.",
+   "ru": "Ты закрываешь окно.",
+   "uk": "Ти закриваєш вікно."
+  },
+  {
+   "id": "fr:07:41",
+   "target": "Je travaille le samedi.",
+   "ru": "Я работаю по субботам.",
+   "uk": "Я працюю по суботах."
+  },
+  {
+   "id": "fr:07:42",
+   "target": "Le matin, j’écoute la radio.",
+   "ru": "Утром я слушаю радио.",
+   "uk": "Вранці я слухаю радіо."
+  },
+  {
+   "id": "fr:07:43",
+   "target": "Elle parle doucement.",
+   "ru": "Она говорит тихо.",
+   "uk": "Вона тихо говорить."
+  },
+  {
+   "id": "fr:07:44",
+   "target": "Nous cherchons un appartement.",
+   "ru": "Мы ищем квартиру.",
+   "uk": "Ми шукаємо квартиру."
+  },
+  {
+   "id": "fr:07:45",
+   "target": "Vous réservez pour ce soir ?",
+   "ru": "Вы бронируете на сегодняшний вечер?",
+   "uk": "Ви бронюєте на сьогоднішній вечір?"
+  },
+  {
+   "id": "fr:07:46",
+   "target": "J’achète du pain.",
+   "ru": "Я покупаю хлеб.",
+   "uk": "Я купую хліб."
+  },
+  {
+   "id": "fr:07:47",
+   "target": "Tu rentres à la maison.",
+   "ru": "Ты возвращаешься домой.",
+   "uk": "Ти повертаєшся додому."
+  },
+  {
+   "id": "fr:07:48",
+   "target": "Les voisins discutent dans le jardin.",
+   "ru": "Соседи болтают в саду.",
+   "uk": "Сусіди базікають у саду."
+  },
+  {
+   "id": "fr:07:49",
+   "target": "Nous marchons jusqu’à la gare.",
+   "ru": "Мы идём к вокзалу.",
+   "uk": "Ми йдемо до вокзалу."
+  },
+  {
+   "id": "fr:07:50",
+   "target": "Je laisse un message à Léa.",
+   "ru": "Я оставляю сообщение для Леа.",
+   "uk": "Я залишаю повідомлення для Леї."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "chercher",
+   "ru": "искать",
+   "uk": "шукати"
+  },
+  {
+   "lemma": "la radio",
+   "ru": "радио",
+   "uk": "радіо"
+  },
+  {
+   "lemma": "le message",
+   "ru": "сообщение",
+   "uk": "повідомлення"
+  },
+  {
+   "lemma": "préparer",
+   "ru": "готовить, подготавливать",
+   "uk": "готувати, готувати"
+  },
+  {
+   "lemma": "l’appartement (m.)",
+   "ru": "квартира",
+   "uk": "квартира"
+  },
+  {
+   "lemma": "travailler",
+   "ru": "работать",
+   "uk": "працювати"
+  },
+  {
+   "lemma": "habiter",
+   "ru": "жить, проживать",
+   "uk": "жити, мешкати"
+  },
+  {
+   "lemma": "la valise",
+   "ru": "чемодан",
+   "uk": "валіза"
+  }
+ ],
+ "knownWords": [
+  "ici",
+  "la gare",
+  "la clé",
+  "la fenêtre",
+  "prêt / prête",
+  "être",
+  "je / j’",
+  "tu",
+  "nous",
+  "vous",
+  "la maison",
+  "le bureau",
+  "la porte",
+  "ensemble",
+  "le magasin",
+  "le sac",
+  "le couloir",
+  "la chambre",
+  "le ticket",
+  "la pharmacie",
+  "en retard",
+  "la table",
+  "la salle",
+  "le train",
+  "le billet",
+  "le vélo",
+  "le bus",
+  "le musée",
+  "le quai",
+  "le guichet",
+  "la sortie",
+  "la poche",
+  "la serrure",
+  "l’entrée (f.)",
+  "le parking",
+  "le reçu",
+  "la facture",
+  "le voisin / la voisine",
+  "le cadeau",
+  "les lunettes",
+  "la sœur",
+  "le frère",
+  "la place",
+  "la carte",
+  "le passeport",
+  "la monnaie",
+  "la pause",
+  "le rendez-vous",
+  "l’ordonnance (f.)",
+  "avoir",
+  "l’eau (f.)",
+  "le tiroir",
+  "le chargeur",
+  "l’enveloppe (f.)",
+  "le marché",
+  "l’ascenseur (m.)",
+  "le pain",
+  "le jardin",
+  "la chaise",
+  "la voiture",
+  "la soupe",
+  "la veste"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  }
+ ],
+ "oldTopicTitle": "Повседневное действие: настоящее на `-er`",
+ "oldTheoryRu": "Раньше ты сообщал, кто где находится. Теперь назови действие. В `je travaille` никакой дополнительной формы «быть» не нужно: сам глагол уже показывает настоящее время. У регулярных глаголов на `-er` убери `-er` и добавь окончание для человека. Формы `travaille` и `travailles` звучат сходно, но на письме `s` указывает на `tu`. К `nous` подбирай `-ons`, к `vous` — `-ez`, к `ils` или `elles` — `-ent`. Последнее окончание обычных личных форм не произноси как отдельный слог. Перед гласной и немым `h` вместо `je` пишут `j’`. Не отделяй апостроф пробелом: `j’habite`, `j’écoute`. При переходе к `tu` местоимение вновь становится отдельным словом. Переставь внимание с окончания на смысл: `chercher` означает «искать», а `regarder` — «смотреть». Знакомое окончание не делает глаголы взаимозаменяемыми. Дополнение иногда состоит из нескольких слов. В `j’écoute la radio` сначала принимаешь решение о лице и глаголе, а затем добавляешь объект с его артиклем. У части глаголов меняется и написание основы: `acheter` даёт `j’achète`. Глагол `aller` вообще не следует обычной схеме на `-er`. Смотри на словарный образец, а не только на последние две буквы."
+}

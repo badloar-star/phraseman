@@ -1,0 +1,445 @@
+{
+ "lang": "it",
+ "lesson": 9,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:09:01",
+   "target": "La mia borsa è qui.",
+   "ru": "Моя сумка здесь.",
+   "uk": "Моя сумка тут."
+  },
+  {
+   "id": "it:09:02",
+   "target": "La tua borsa è qui.",
+   "ru": "Твоя сумка здесь.",
+   "uk": "Твоя сумка тут."
+  },
+  {
+   "id": "it:09:03",
+   "target": "La mia chiave è lì.",
+   "ru": "Мой ключ там.",
+   "uk": "Мій ключ там."
+  },
+  {
+   "id": "it:09:04",
+   "target": "La tua chiave è lì.",
+   "ru": "Твой ключ там.",
+   "uk": "Твій ключ там."
+  },
+  {
+   "id": "it:09:05",
+   "target": "Le mie chiavi sono qui.",
+   "ru": "Мои ключи здесь.",
+   "uk": "Мої ключі тут."
+  },
+  {
+   "id": "it:09:06",
+   "target": "Le tue chiavi sono qui.",
+   "ru": "Твои ключи здесь.",
+   "uk": "Твої ключі тут."
+  },
+  {
+   "id": "it:09:07",
+   "target": "La sua borsa è fuori.",
+   "ru": "Его сумка снаружи.",
+   "uk": "Його сумка зовні."
+  },
+  {
+   "id": "it:09:08",
+   "target": "La sua giacca è fuori.",
+   "ru": "Его куртка снаружи.",
+   "uk": "Його куртка зовні."
+  },
+  {
+   "id": "it:09:09",
+   "target": "I suoi occhiali sono qui.",
+   "ru": "Его очки здесь.",
+   "uk": "Його окуляри тут."
+  },
+  {
+   "id": "it:09:10",
+   "target": "La mia bicicletta è in garage.",
+   "ru": "Мой велосипед в гараже.",
+   "uk": "Мій велосипед у гаражі."
+  },
+  {
+   "id": "it:09:11",
+   "target": "Il nostro treno è al binario.",
+   "ru": "Наш поезд на платформе.",
+   "uk": "Наш поїзд на платформі."
+  },
+  {
+   "id": "it:09:12",
+   "target": "Il vostro treno è al binario.",
+   "ru": "Ваш поезд на платформе.",
+   "uk": "Ваш поїзд на платформі."
+  },
+  {
+   "id": "it:09:13",
+   "target": "I nostri biglietti sono pronti.",
+   "ru": "Наши билеты готовы.",
+   "uk": "Наші квитки готові."
+  },
+  {
+   "id": "it:09:14",
+   "target": "I vostri biglietti sono pronti.",
+   "ru": "Ваши билеты готовы.",
+   "uk": "Ваші квитки готові."
+  },
+  {
+   "id": "it:09:15",
+   "target": "La loro camera è libera.",
+   "ru": "Их комната свободна.",
+   "uk": "Їхня кімната вільна."
+  },
+  {
+   "id": "it:09:16",
+   "target": "Le loro camere sono libere.",
+   "ru": "Их комнаты свободны.",
+   "uk": "Їхні кімнати вільні."
+  },
+  {
+   "id": "it:09:17",
+   "target": "Il nostro tavolo è vicino alla finestra.",
+   "ru": "Наш столик у окна.",
+   "uk": "Наш столик біля вікна."
+  },
+  {
+   "id": "it:09:18",
+   "target": "Il suo caffè è sul tavolo.",
+   "ru": "Ваш кофе стоит на столе.",
+   "uk": "Ваша кава на столі."
+  },
+  {
+   "id": "it:09:19",
+   "target": "Le mie scarpe sono bagnate.",
+   "ru": "Мои туфли мокрые.",
+   "uk": "Мої туфлі мокрі."
+  },
+  {
+   "id": "it:09:20",
+   "target": "I tuoi guanti sono asciutti.",
+   "ru": "Твои перчатки сухие.",
+   "uk": "Твої рукавички сухі."
+  },
+  {
+   "id": "it:09:21",
+   "target": "Sto cercando il mio cappotto.",
+   "ru": "Я ищу своё пальто.",
+   "uk": "Я шукаю своє пальто."
+  },
+  {
+   "id": "it:09:22",
+   "target": "Stai cercando la tua giacca.",
+   "ru": "Ты ищешь свою куртку.",
+   "uk": "Ти шукаєш свою куртку."
+  },
+  {
+   "id": "it:09:23",
+   "target": "Paolo cerca il suo badge.",
+   "ru": "Паоло ищет свой бейдж.",
+   "uk": "Паоло шукає свій бейдж."
+  },
+  {
+   "id": "it:09:24",
+   "target": "Lea sta cercando la sua carta.",
+   "ru": "Леа ищет свою карточку.",
+   "uk": "Леа шукає свою картку."
+  },
+  {
+   "id": "it:09:25",
+   "target": "Stiamo cercando i nostri posti.",
+   "ru": "Мы ищем свои места.",
+   "uk": "Ми шукаємо свої місця."
+  },
+  {
+   "id": "it:09:26",
+   "target": "Cercate i vostri bagagli.",
+   "ru": "Вы ищете свой багаж.",
+   "uk": "Ви шукаєте свій багаж."
+  },
+  {
+   "id": "it:09:27",
+   "target": "I bambini cercano il loro pallone.",
+   "ru": "Дети ищут свой мяч.",
+   "uk": "Діти шукають свій м'яч."
+  },
+  {
+   "id": "it:09:28",
+   "target": "Prendo il mio ombrello.",
+   "ru": "Я беру свой зонтик.",
+   "uk": "Я беру свою парасольку."
+  },
+  {
+   "id": "it:09:29",
+   "target": "State prendendo il vostro casco.",
+   "ru": "Вы берёте свой шлем.",
+   "uk": "Ви берете свій шолом."
+  },
+  {
+   "id": "it:09:30",
+   "target": "Prepara la sua valigia.",
+   "ru": "Она собирает свой чемодан.",
+   "uk": "Вона збирає свою валізу."
+  },
+  {
+   "id": "it:09:31",
+   "target": "Il mio indirizzo è sulla mappa.",
+   "ru": "Мой адрес указан на карте.",
+   "uk": "Моя адреса на карті."
+  },
+  {
+   "id": "it:09:32",
+   "target": "Il tuo amico è arrivato.",
+   "ru": "Твой друг приехал.",
+   "uk": "Твій друг приїхав."
+  },
+  {
+   "id": "it:09:33",
+   "target": "La sua scuola è vicino al parco.",
+   "ru": "Его школа находится рядом с парком.",
+   "uk": "Його школа знаходиться біля парку."
+  },
+  {
+   "id": "it:09:34",
+   "target": "La mia busta è vuota.",
+   "ru": "Мой конверт пуст.",
+   "uk": "Мій конверт порожній."
+  },
+  {
+   "id": "it:09:35",
+   "target": "La sua ricetta è pronta.",
+   "ru": "Ваш рецепт готов.",
+   "uk": "Ваш рецепт готовий."
+  },
+  {
+   "id": "it:09:36",
+   "target": "La nostra squadra è al completo.",
+   "ru": "Наша команда в полном составе.",
+   "uk": "Наша команда в повному складі."
+  },
+  {
+   "id": "it:09:37",
+   "target": "I miei colleghi sono in ufficio.",
+   "ru": "Мои коллеги в офисе.",
+   "uk": "Мої колеги в офісі."
+  },
+  {
+   "id": "it:09:38",
+   "target": "Sua sorella lavora qui.",
+   "ru": "Его сестра работает здесь.",
+   "uk": "Його сестра працює тут."
+  },
+  {
+   "id": "it:09:39",
+   "target": "Suo padre vive a Lione.",
+   "ru": "Его отец живет в Лионе.",
+   "uk": "Його батько живе в Ліоні."
+  },
+  {
+   "id": "it:09:40",
+   "target": "Il loro figlio sta imparando il francese.",
+   "ru": "Их сын изучает французский язык.",
+   "uk": "Їхній син вивчає французьку мову."
+  },
+  {
+   "id": "it:09:41",
+   "target": "Dov’è il tuo portafoglio?",
+   "ru": "Где твой кошелёк?",
+   "uk": "Де твій гаманець?"
+  },
+  {
+   "id": "it:09:42",
+   "target": "Dove sono le vostre valigie?",
+   "ru": "Где ваши (мн.) чемоданы?",
+   "uk": "Де ваші (мн.) валізи?"
+  },
+  {
+   "id": "it:09:43",
+   "target": "Il mio posto è accanto al tuo.",
+   "ru": "Моё место рядом с твоим.",
+   "uk": "Моє місце поруч з твоїм."
+  },
+  {
+   "id": "it:09:44",
+   "target": "Lascio il mio numero alla reception.",
+   "ru": "Я оставляю свой номер на ресепшене.",
+   "uk": "Я залишаю свій номер на рецепції."
+  },
+  {
+   "id": "it:09:45",
+   "target": "Metti i tuoi occhiali nella custodia.",
+   "ru": "Положи свои очки в футляр.",
+   "uk": "Поклади свої окуляри у футляр."
+  },
+  {
+   "id": "it:09:46",
+   "target": "Mostri il Suo biglietto al controllore.",
+   "ru": "Покажите свой билет контролёру.",
+   "uk": "Покажіть свій квиток контролеру."
+  },
+  {
+   "id": "it:09:47",
+   "target": "Conserviamo le nostre ricevute.",
+   "ru": "Мы храним свои чеки.",
+   "uk": "Ми зберігаємо свої чеки."
+  },
+  {
+   "id": "it:09:48",
+   "target": "I vicini chiudono le loro finestre.",
+   "ru": "Соседи закрывают свои окна.",
+   "uk": "Сусіди закривають свої вікна."
+  },
+  {
+   "id": "it:09:49",
+   "target": "Mio fratello ha dimenticato la sua chiave.",
+   "ru": "Мой брат забыл свой ключ.",
+   "uk": "Мій брат забув свій ключ."
+  },
+  {
+   "id": "it:09:50",
+   "target": "Nostra figlia prepara le sue cose.",
+   "ru": "Наша дочь собирает свои вещи.",
+   "uk": "Наша донька збирає свої речі."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il garage",
+   "ru": "гараж, автомастерская",
+   "uk": "гараж, автомайстерня"
+  },
+  {
+   "lemma": "il badge",
+   "ru": "пропуск, бейдж",
+   "uk": "пропуск, бейдж"
+  },
+  {
+   "lemma": "l’ombrello",
+   "ru": "зонт",
+   "uk": "парасолька"
+  },
+  {
+   "lemma": "il casco",
+   "ru": "шлем",
+   "uk": "шолом"
+  },
+  {
+   "lemma": "il pallone",
+   "ru": "мяч",
+   "uk": "м'яч"
+  }
+ ],
+ "knownWords": [
+  "qui",
+  "la stazione",
+  "la chiave",
+  "la finestra",
+  "pronto",
+  "essere",
+  "la casa",
+  "l’ufficio",
+  "la porta",
+  "insieme",
+  "il negozio",
+  "la borsa",
+  "il corridoio",
+  "la camera",
+  "il biglietto",
+  "la farmacia",
+  "in ritardo",
+  "il tavolo",
+  "la sala",
+  "il treno",
+  "la bicicletta",
+  "l’autobus",
+  "il museo",
+  "la banchina",
+  "la biglietteria",
+  "l’uscita",
+  "la tasca",
+  "la serratura",
+  "voi",
+  "l’ingresso",
+  "il parcheggio",
+  "la ricevuta",
+  "la fattura",
+  "il vicino / la vicina",
+  "il regalo",
+  "gli occhiali",
+  "la sorella",
+  "il fratello",
+  "il posto",
+  "il passaporto",
+  "gli spiccioli",
+  "la pausa",
+  "l’appuntamento",
+  "la ricetta",
+  "avere",
+  "l’acqua",
+  "la carta",
+  "il cassetto",
+  "il caricabatterie",
+  "la busta",
+  "il mercato",
+  "l’ascensore",
+  "il pane",
+  "il giardino",
+  "la sedia",
+  "l’auto",
+  "la zuppa",
+  "la giacca",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia",
+  "quanto",
+  "il tragitto",
+  "la consegna",
+  "la lezione",
+  "cominciare",
+  "la strada"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия: настоящее время"
+  },
+  {
+   "lesson": 8,
+   "title": "Вопросы: где, кто, когда, сколько"
+  }
+ ],
+ "oldTopicTitle": "Чьи это вещи: `mio`, `mia`, `miei`, `mie`",
+ "oldTheoryRu": "Для «мой» и «твой» есть несколько форм. Сменить владельца проще всего, сохранив одну вещь: `la mia borsa` и `la tua borsa`. Артикль при этом не меняется. Множественное число относится к нескольким вещам. `Le mie chiavi` — мои ключи, а не ключи нескольких хозяев. Артикль и притяжательное слово согласованы с `chiavi`. `Suo` и `sua` не кодируют пол владельца. `La sua giacca` может быть его или её курткой. Ясность дают имя и ситуация. Не выводи из `sua`, что вещь непременно принадлежит женщине. Для группы с говорящим используется `nostro` и его формы; для нескольких собеседников — `vostro`. Состав группы не нужно повторять в каждой словарной карточке: сопоставь `i nostri` и `i vostri` на одной вещи. В предложении о действии притяжательное остаётся частью предмета: «ищу свой пропуск». Сначала выбери глагол для того, кто ищет, затем артикль и форму для пропуска. Это две независимые проверки. У `loro` форма не меняется. Число и род по-прежнему видны по артиклю и существительному: `la loro casa`, `i loro figli`. С одиночным названием близкого родственника без уточнений артикль часто опускают: `mio fratello`. Это не правило для любой вещи в единственном числе: `la mia borsa` по-прежнему с артиклем."
+}

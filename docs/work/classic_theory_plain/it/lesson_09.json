@@ -1,0 +1,509 @@
+{
+  "lang": "it",
+  "lesson": 9,
+  "title": {
+    "ru": "Моё, твоё, наше",
+    "uk": "Моє, твоє, наше",
+    "en": "Mine, yours, ours"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Моя, мои",
+        "uk": "Моя, мої",
+        "en": "My"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «моя» и «мои».\nLa mia borsa è qui. — «Моя сумка здесь.»\nЧитается: ла ми́а бо́рса э куи.\nLe mie chiavi sono qui. — «Мои ключи здесь.»\nЧитается: ле ми́е кья́ви со́но куи.\nLa mia bicicletta è in garage. — «Мой велосипед в гараже.»\nЧитается: ла ми́а бичикле́тта э ин гара́ж.\nСлово mia значит «моя»: la mia borsa — «моя сумка».\nСлово mie значит «мои»: le mie chiavi — «мои ключи».\nСлова la и le стоят перед mia и mie: по-русски их нет.\nСлово garage значит «гараж», слова in garage — «в гараже».",
+        "uk": "Дивіться, як сказати «моя» та «мої».\nLa mia borsa è qui. — «Моя сумка тут.»\nЧитається: ла мі́а бо́рса е куі.\nLe mie chiavi sono qui. — «Мої ключі тут.»\nЧитається: ле мі́е кья́ві со́но куі.\nLa mia bicicletta è in garage. — «Мій велосипед у гаражі.»\nЧитається: ла мі́а бічікле́тта е ін гара́ж.\nСлово mia означає «моя»: la mia borsa — «моя сумка».\nСлово mie означає «мої»: le mie chiavi — «мої ключі».\nСлова la та le стоять перед mia та mie: українською їх нема.\nСлово garage означає «гараж», слова in garage — «в гаражі».",
+        "en": "Look at how to say “my”.\nLa mia borsa è qui. — “My bag is here.”\nLe mie chiavi sono qui. — “My keys are here.”\nLa mia bicicletta è in garage. — “My bicycle is in the garage.”\nThe word mia means “my”: la mia borsa — “my bag”.\nThe word mie means “my” for several things: le mie chiavi — “my keys”.\nThe words la and le stand before mia and mie. No such words in English.\nThe word garage means “garage”, the words in garage — “in the garage”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:09:01",
+          "say": {
+            "ru": "ла ми́а бо́рса э куи",
+            "uk": "ла мі́а бо́рса е куі"
+          }
+        },
+        {
+          "phraseId": "it:09:05",
+          "say": {
+            "ru": "ле ми́е кья́ви со́но куи",
+            "uk": "ле мі́е кья́ві со́но куі"
+          }
+        },
+        {
+          "phraseId": "it:09:10",
+          "say": {
+            "ru": "ла ми́а бичикле́тта э ин гара́ж",
+            "uk": "ла мі́а бічікле́тта е ін гара́ж"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сумка здесь»",
+            "uk": "Виберіть, як сказати: «Моя сумка тут»",
+            "en": "Choose how to say: “My bag is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:09:01",
+          "options": [
+            "it:09:01",
+            "it:09:05",
+            "it:09:10"
+          ],
+          "answerId": "it:09:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои ключи здесь»",
+            "uk": "Виберіть, як сказати: «Мої ключі тут»",
+            "en": "Choose how to say: “My keys are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:05",
+          "options": [
+            "it:09:01",
+            "it:09:05",
+            "it:09:10"
+          ],
+          "answerId": "it:09:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой велосипед в гараже»",
+            "uk": "Виберіть, як сказати: «Мій велосипед у гаражі»",
+            "en": "Choose how to say: “My bicycle is in the garage”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:10",
+          "options": [
+            "it:09:01",
+            "it:09:05",
+            "it:09:10"
+          ],
+          "answerId": "it:09:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мой, мои",
+        "uk": "Мій, мої",
+        "en": "My"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «мой» и «мои».\nIl mio indirizzo è sulla mappa. — «Мой адрес указан на карте.»\nЧитается: иль ми́о индири́ццо э су́лла ма́ппа.\nI miei colleghi sono in ufficio. — «Мои коллеги в офисе.»\nЧитается: и ми́ей колле́ги со́но ин уффи́чо.\nPrendo il mio ombrello. — «Я беру свой зонтик.»\nЧитается: пре́ндо иль ми́о омбре́лло.\nСлово mio значит «мой»: il mio indirizzo — «мой адрес».\nСлово miei значит «мои»: i miei colleghi — «мои коллеги».\nСлово ombrello значит «зонт», слово prendo — «я беру».\nИногда по-русски вместо «мой» говорят «свой».",
+        "uk": "Дивіться, як сказати «мій» та «мої».\nIl mio indirizzo è sulla mappa. — «Моя адреса на карті.»\nЧитається: іль мі́о індірі́ццо е су́лла ма́ппа.\nI miei colleghi sono in ufficio. — «Мої колеги в офісі.»\nЧитається: і мі́ей колле́гі со́но ін уффі́чо.\nPrendo il mio ombrello. — «Я беру свою парасольку.»\nЧитається: пре́ндо іль мі́о омбре́лло.\nСлово mio означає «мій»: il mio indirizzo — «моя адреса».\nСлово miei означає «мої»: i miei colleghi — «мої колеги».\nСлово ombrello означає «парасолька», слово prendo — «я беру».\nІноді українською замість «мій» кажуть «свій».",
+        "en": "Look at another way to say “my”.\nIl mio indirizzo è sulla mappa. — “My address is on the map.”\nI miei colleghi sono in ufficio. — “My colleagues are in the office.”\nPrendo il mio ombrello. — “I take my umbrella.”\nThe word mio means “my”: il mio indirizzo — “my address”.\nThe word miei means “my” for several: i miei colleghi — “my colleagues”.\nThe word ombrello means “umbrella”, the word prendo — “I take”.\nIl mio ombrello is just “my umbrella”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:09:31",
+          "say": {
+            "ru": "иль ми́о индири́ццо э су́лла ма́ппа",
+            "uk": "іль мі́о індірі́ццо е су́лла ма́ппа"
+          }
+        },
+        {
+          "phraseId": "it:09:37",
+          "say": {
+            "ru": "и ми́ей колле́ги со́но ин уффи́чо",
+            "uk": "і мі́ей колле́гі со́но ін уффі́чо"
+          }
+        },
+        {
+          "phraseId": "it:09:28",
+          "say": {
+            "ru": "пре́ндо иль ми́о омбре́лло",
+            "uk": "пре́ндо іль мі́о омбре́лло"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой адрес указан на карте»",
+            "uk": "Виберіть, як сказати: «Моя адреса на карті»",
+            "en": "Choose how to say: “My address is on the map”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:09:31",
+          "options": [
+            "it:09:31",
+            "it:09:37",
+            "it:09:28"
+          ],
+          "answerId": "it:09:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои коллеги в офисе»",
+            "uk": "Виберіть, як сказати: «Мої колеги в офісі»",
+            "en": "Choose how to say: “My colleagues are in the office”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:37",
+          "options": [
+            "it:09:31",
+            "it:09:37",
+            "it:09:28"
+          ],
+          "answerId": "it:09:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я беру свой зонтик»",
+            "uk": "Виберіть, як сказати: «Я беру свою парасольку»",
+            "en": "Choose how to say: “I take my umbrella”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:28",
+          "options": [
+            "it:09:31",
+            "it:09:37",
+            "it:09:28"
+          ],
+          "answerId": "it:09:28"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "«Твоя», «твои»",
+        "uk": "«Твоя», «твої»",
+        "en": "Your"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «твоя» и «твои».\nLa tua borsa è qui. — «Твоя сумка здесь.»\nЧитается: ла ту́а бо́рса э куи.\nLe tue chiavi sono qui. — «Твои ключи здесь.»\nЧитается: ле ту́е кья́ви со́но куи.\nIl tuo amico è arrivato. — «Твой друг приехал.»\nЧитается: иль ту́о ами́ко э аррива́то.\nСлово tua значит «твоя», слово tue — «твои», слово tuo — «твой».\nСлово amico значит «друг», слово arrivato — «приехал».\nЭти слова — про вещи того, с кем вы говорите.",
+        "uk": "Дивіться, як сказати «твоя» та «твої».\nLa tua borsa è qui. — «Твоя сумка тут.»\nЧитається: ла ту́а бо́рса е куі.\nLe tue chiavi sono qui. — «Твої ключі тут.»\nЧитається: ле ту́е кья́ві со́но куі.\nIl tuo amico è arrivato. — «Твій друг приїхав.»\nЧитається: іль ту́о амі́ко е арріва́то.\nСлово tua означає «твоя», слово tue — «твої», слово tuo — «твій».\nСлово amico означає «друг», слово arrivato — «приїхав».\nЦі слова — про речі того, з ким ви говорите.",
+        "en": "Look at how to say “your”, for one person.\nLa tua borsa è qui. — “Your bag is here.”\nLe tue chiavi sono qui. — “Your keys are here.”\nIl tuo amico è arrivato. — “Your friend has arrived.”\nThe word tua means “your”, tue — “your” for several things, tuo — “your”.\nThe word amico means “friend”, the word arrivato — “has arrived”.\nThese words are about the things of the person you talk to."
+      },
+      "examples": [
+        {
+          "phraseId": "it:09:02",
+          "say": {
+            "ru": "ла ту́а бо́рса э куи",
+            "uk": "ла ту́а бо́рса е куі"
+          }
+        },
+        {
+          "phraseId": "it:09:06",
+          "say": {
+            "ru": "ле ту́е кья́ви со́но куи",
+            "uk": "ле ту́е кья́ві со́но куі"
+          }
+        },
+        {
+          "phraseId": "it:09:32",
+          "say": {
+            "ru": "иль ту́о ами́ко э аррива́то",
+            "uk": "іль ту́о амі́ко е арріва́то"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Твоя сумка здесь»",
+            "uk": "Виберіть, як сказати: «Твоя сумка тут»",
+            "en": "Choose how to say: “Your bag is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:09:02",
+          "options": [
+            "it:09:02",
+            "it:09:06",
+            "it:09:32"
+          ],
+          "answerId": "it:09:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Твои ключи здесь»",
+            "uk": "Виберіть, як сказати: «Твої ключі тут»",
+            "en": "Choose how to say: “Your keys are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:06",
+          "options": [
+            "it:09:02",
+            "it:09:06",
+            "it:09:32"
+          ],
+          "answerId": "it:09:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Твой друг приехал»",
+            "uk": "Виберіть, як сказати: «Твій друг приїхав»",
+            "en": "Choose how to say: “Your friend has arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:32",
+          "options": [
+            "it:09:02",
+            "it:09:06",
+            "it:09:32"
+          ],
+          "answerId": "it:09:32"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Его, её",
+        "uk": "Його, її",
+        "en": "His, her"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «его» и «её».\nLa sua borsa è fuori. — «Его сумка снаружи.»\nЧитается: ла су́а бо́рса э фуо́ри.\nLea sta cercando la sua carta. — «Леа ищет свою карточку.»\nЧитается: ле́а ста черка́ндо ла су́а ка́рта.\nPaolo cerca il suo badge. — «Паоло ищет свой бейдж.»\nЧитается: па́оло че́рка иль су́о бэ́дж.\nСлово sua значит «его» или «её»: la sua borsa, la sua carta.\nСлово suo значит то же: il suo badge.\nИз фразы понятно, о ком речь: о Леа или о Паоло.\nСлово badge значит «пропуск, бейдж», слово carta — «карточка».\nСлова sta cercando значат «ищет».",
+        "uk": "Дивіться, як сказати «його» та «її».\nLa sua borsa è fuori. — «Його сумка зовні.»\nЧитається: ла су́а бо́рса е фуо́рі.\nLea sta cercando la sua carta. — «Леа шукає свою картку.»\nЧитається: ле́а ста черка́ндо ла су́а ка́рта.\nPaolo cerca il suo badge. — «Паоло шукає свій бейдж.»\nЧитається: па́оло че́рка іль су́о бе́дж.\nСлово sua означає «його» або «її»: la sua borsa, la sua carta.\nСлово suo означає те саме: il suo badge.\nЗ фрази зрозуміло, про кого мова: про Леа чи про Паоло.\nСлово badge означає «пропуск, бейдж», слово carta — «картка».\nСлова sta cercando означають «шукає».",
+        "en": "Look at how to say “his” and “her”.\nLa sua borsa è fuori. — “His bag is outside.”\nLea sta cercando la sua carta. — “Lea is looking for her card.”\nPaolo cerca il suo badge. — “Paolo is looking for his badge.”\nThe word sua means “his” or “her”: la sua borsa, la sua carta.\nThe word suo means the same: il suo badge.\nThe sentence shows who it is about: Lea or Paolo.\nThe word badge means “badge”, the word carta — “card”.\nThe words sta cercando mean “is looking for”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:09:07",
+          "say": {
+            "ru": "ла су́а бо́рса э фуо́ри",
+            "uk": "ла су́а бо́рса е фуо́рі"
+          }
+        },
+        {
+          "phraseId": "it:09:24",
+          "say": {
+            "ru": "ле́а ста черка́ндо ла су́а ка́рта",
+            "uk": "ле́а ста черка́ндо ла су́а ка́рта"
+          }
+        },
+        {
+          "phraseId": "it:09:23",
+          "say": {
+            "ru": "па́оло че́рка иль су́о бэ́дж",
+            "uk": "па́оло че́рка іль су́о бе́дж"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Его сумка снаружи»",
+            "uk": "Виберіть, як сказати: «Його сумка зовні»",
+            "en": "Choose how to say: “His bag is outside”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:09:07",
+          "options": [
+            "it:09:07",
+            "it:09:24",
+            "it:09:23"
+          ],
+          "answerId": "it:09:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа ищет свою карточку»",
+            "uk": "Виберіть, як сказати: «Леа шукає свою картку»",
+            "en": "Choose how to say: “Lea is looking for her card”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:24",
+          "options": [
+            "it:09:07",
+            "it:09:24",
+            "it:09:23"
+          ],
+          "answerId": "it:09:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло ищет свой бейдж»",
+            "uk": "Виберіть, як сказати: «Паоло шукає свій бейдж»",
+            "en": "Choose how to say: “Paolo is looking for his badge”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:23",
+          "options": [
+            "it:09:07",
+            "it:09:24",
+            "it:09:23"
+          ],
+          "answerId": "it:09:23"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Наш, ваш",
+        "uk": "Наш, ваш",
+        "en": "Our, your"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «наш» и «ваш».\nIl nostro treno è al binario. — «Наш поезд на платформе.»\nЧитается: иль но́стро тре́но э аль бина́рьо.\nIl vostro treno è al binario. — «Ваш поезд на платформе.»\nЧитается: иль во́стро тре́но э аль бина́рьо.\nState prendendo il vostro casco. — «Вы берёте свой шлем.»\nЧитается: ста́те прендэ́ндо иль во́стро ка́ско.\nСлово nostro значит «наш», слово vostro — «ваш».\nСлово vostro говорят, когда вас несколько.\nСлово binario значит «платформа, путь».\nСлово casco значит «шлем», слова state prendendo — «вы берёте».",
+        "uk": "Дивіться, як сказати «наш» та «ваш».\nIl nostro treno è al binario. — «Наш поїзд на платформі.»\nЧитається: іль но́стро тре́но е аль біна́рьо.\nIl vostro treno è al binario. — «Ваш поїзд на платформі.»\nЧитається: іль во́стро тре́но е аль біна́рьо.\nState prendendo il vostro casco. — «Ви берете свій шолом.»\nЧитається: ста́те пренде́ндо іль во́стро ка́ско.\nСлово nostro означає «наш», слово vostro — «ваш».\nСлово vostro кажуть, коли вас кілька.\nСлово binario означає «платформа, колія».\nСлово casco означає «шолом», слова state prendendo — «ви берете».",
+        "en": "Look at how to say “our” and “your”.\nIl nostro treno è al binario. — “Our train is at the platform.”\nIl vostro treno è al binario. — “Your train is at the platform.”\nState prendendo il vostro casco. — “You are putting on your helmet.”\nThe word nostro means “our”, the word vostro — “your”.\nWe say vostro when there are several of you.\nThe word binario means “platform”.\nThe word casco means “helmet”, the words state prendendo — “you take”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:09:11",
+          "say": {
+            "ru": "иль но́стро тре́но э аль бина́рьо",
+            "uk": "іль но́стро тре́но е аль біна́рьо"
+          }
+        },
+        {
+          "phraseId": "it:09:12",
+          "say": {
+            "ru": "иль во́стро тре́но э аль бина́рьо",
+            "uk": "іль во́стро тре́но е аль біна́рьо"
+          }
+        },
+        {
+          "phraseId": "it:09:29",
+          "say": {
+            "ru": "ста́те прендэ́ндо иль во́стро ка́ско",
+            "uk": "ста́те пренде́ндо іль во́стро ка́ско"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Наш поезд на платформе»",
+            "uk": "Виберіть, як сказати: «Наш поїзд на платформі»",
+            "en": "Choose how to say: “Our train is at the platform”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:09:11",
+          "options": [
+            "it:09:11",
+            "it:09:12",
+            "it:09:29"
+          ],
+          "answerId": "it:09:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваш поезд на платформе»",
+            "uk": "Виберіть, як сказати: «Ваш поїзд на платформі»",
+            "en": "Choose how to say: “Your train is at the platform”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:12",
+          "options": [
+            "it:09:11",
+            "it:09:12",
+            "it:09:29"
+          ],
+          "answerId": "it:09:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы берёте свой шлем»",
+            "uk": "Виберіть, як сказати: «Ви берете свій шолом»",
+            "en": "Choose how to say: “You are putting on your helmet”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:29",
+          "options": [
+            "it:09:11",
+            "it:09:12",
+            "it:09:29"
+          ],
+          "answerId": "it:09:29"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Их",
+        "uk": "Їх",
+        "en": "Their"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «их».\nLa loro camera è libera. — «Их комната свободна.»\nЧитается: ла ло́ро ка́мера э ли́бера.\nLe loro camere sono libere. — «Их комнаты свободны.»\nЧитается: ле ло́ро ка́мере со́но ли́бере.\nI bambini cercano il loro pallone. — «Дети ищут свой мяч.»\nЧитается: и бамби́ни че́ркано иль ло́ро палло́не.\nСлово loro значит «их»: la loro camera — «их комната».\nСлово loro не меняется: le loro camere — «их комнаты».\nСлово libera значит «свободна», слово libere — «свободны».\nСлово bambini значит «дети», слово pallone — «мяч».",
+        "uk": "Дивіться, як сказати «їх».\nLa loro camera è libera. — «Їхня кімната вільна.»\nЧитається: ла ло́ро ка́мера е лі́бера.\nLe loro camere sono libere. — «Їхні кімнати вільні.»\nЧитається: ле ло́ро ка́мере со́но лі́бере.\nI bambini cercano il loro pallone. — «Діти шукають свій м́яч.»\nЧитається: і бамбі́ні че́ркано іль ло́ро палло́не.\nСлово loro означає «їх»: la loro camera — «їх кімната».\nСлово loro не змінюється: le loro camere — «їх кімнати».\nСлово libera означає «вільна», слово libere — «вільні».\nСлово bambini означає «діти», слово pallone — «м’яч».",
+        "en": "Look at how to say “their”.\nLa loro camera è libera. — “Their room is free.”\nLe loro camere sono libere. — “Their rooms are free.”\nI bambini cercano il loro pallone. — “The children are looking for their ball.”\nThe word loro means “their”: la loro camera — “their room”.\nThe word loro does not change: le loro camere — “their rooms”.\nThe word libera means “free”, the word libere — “free” for several.\nThe word bambini means “children”, the word pallone — “ball”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:09:15",
+          "say": {
+            "ru": "ла ло́ро ка́мера э ли́бера",
+            "uk": "ла ло́ро ка́мера е лі́бера"
+          }
+        },
+        {
+          "phraseId": "it:09:16",
+          "say": {
+            "ru": "ле ло́ро ка́мере со́но ли́бере",
+            "uk": "ле ло́ро ка́мере со́но лі́бере"
+          }
+        },
+        {
+          "phraseId": "it:09:27",
+          "say": {
+            "ru": "и бамби́ни че́ркано иль ло́ро палло́не",
+            "uk": "і бамбі́ні че́ркано іль ло́ро палло́не"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Их комната свободна»",
+            "uk": "Виберіть, як сказати: «Їхня кімната вільна»",
+            "en": "Choose how to say: “Their room is free”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:09:15",
+          "options": [
+            "it:09:15",
+            "it:09:16",
+            "it:09:27"
+          ],
+          "answerId": "it:09:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Их комнаты свободны»",
+            "uk": "Виберіть, як сказати: «Їхні кімнати вільні»",
+            "en": "Choose how to say: “Their rooms are free”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:16",
+          "options": [
+            "it:09:15",
+            "it:09:16",
+            "it:09:27"
+          ],
+          "answerId": "it:09:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети ищут свой мяч»",
+            "uk": "Виберіть, як сказати: «Діти шукають свій м'яч»",
+            "en": "Choose how to say: “The children are looking for their ball”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:09:27",
+          "options": [
+            "it:09:15",
+            "it:09:16",
+            "it:09:27"
+          ],
+          "answerId": "it:09:27"
+        }
+      ]
+    }
+  ]
+}

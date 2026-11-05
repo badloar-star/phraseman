@@ -1,0 +1,496 @@
+{
+  "lang": "it",
+  "lesson": 3,
+  "title": {
+    "ru": "Ты там?",
+    "uk": "Ти там?",
+    "en": "Are you there?"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Слова те же",
+        "uk": "Слова ті самі",
+        "en": "Same words"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить.\nSei lì? — «Ты там?»\nЧитается: се́й ли.\nSei qui? — «Ты здесь?»\nЧитается: се́й куи.\nSei pronto? — «Ты готов?»\nЧитается: се́й про́нто.\nСлово pronto значит «готов».\nСлова те же, что и без вопроса: Sei lì. — «Ты там.»\nВ конце вопроса голос идёт вверх. На письме ставят знак «?».\nБольше ничего менять не нужно.",
+        "uk": "Дивіться, як запитати.\nSei lì? — «Ти там?»\nЧитається: се́й лі.\nSei qui? — «Ти тут?»\nЧитається: се́й куі.\nSei pronto? — «Ти готовий?»\nЧитається: се́й про́нто.\nСлово pronto означає «готовий».\nСлова ті самі, що й без питання: Sei lì. — «Ти там.»\nНаприкінці питання голос іде вгору. На письмі ставлять знак «?».\nБільше нічого міняти не треба.",
+        "en": "Look at how to ask.\nSei lì? — “Are you there?”\nSei qui? — “Are you here?”\nSei pronto? — “Are you ready?”\nThe word pronto means “ready”.\nThe words are the same as without a question: Sei lì.\n— “You are there.”\nAt the end of a question the voice goes up.\nIn writing we put the sign “?”.\nNothing else needs to change."
+      },
+      "examples": [
+        {
+          "phraseId": "it:03:01",
+          "say": {
+            "ru": "се́й ли",
+            "uk": "се́й лі"
+          }
+        },
+        {
+          "phraseId": "it:03:02",
+          "say": {
+            "ru": "се́й куи",
+            "uk": "се́й куі"
+          }
+        },
+        {
+          "phraseId": "it:03:03",
+          "say": {
+            "ru": "се́й про́нто",
+            "uk": "се́й про́нто"
+          }
+        },
+        {
+          "phraseId": "it:03:04",
+          "say": {
+            "ru": "ле́й э про́нта",
+            "uk": "ле́й е про́нта"
+          }
+        },
+        {
+          "phraseId": "it:03:11",
+          "say": {
+            "ru": "се́й а́лла статсьо́не",
+            "uk": "се́й а́лла статсьо́не"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты там?»",
+            "uk": "Виберіть, як сказати: «Ти там?»",
+            "en": "Choose how to say: “Are you there?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:03:01",
+          "options": [
+            "it:03:01",
+            "it:03:02",
+            "it:03:03"
+          ],
+          "answerId": "it:03:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты готов?»",
+            "uk": "Виберіть, як сказати: «Ти готовий?»",
+            "en": "Choose how to say: “Are you ready?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:03",
+          "options": [
+            "it:03:03",
+            "it:03:01",
+            "it:03:04"
+          ],
+          "answerId": "it:03:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты на вокзале?»",
+            "uk": "Виберіть, як сказати: «Ти на вокзалі?»",
+            "en": "Choose how to say: “Are you at the station?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:11",
+          "options": [
+            "it:03:11",
+            "it:03:02",
+            "it:03:03"
+          ],
+          "answerId": "it:03:11"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Про человека и вещь",
+        "uk": "Про людину і річ",
+        "en": "About a person or a thing"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить про человека или вещь.\nPaolo è in ufficio? — «Паоло в офисе?»\nЧитается: па́оло э ин уффи́чо.\nLea è alla stazione? — «Леа на вокзале?»\nЧитается: ле́а э а́лла статсьо́не.\nLa porta è aperta? — «Дверь открыта?»\nЧитается: ла по́рта э апе́рта.\nLea — имя девочки, Paolo — имя мужчины.\nВ biglietti середина читается как мягкое «ль»: билье́тти.\nФраза та же, что без вопроса: Paolo è in ufficio.\n— «Паоло в офисе.»\nМеняются только голос в конце и знак «?».\nСлово è стоит на своём месте.\nСлово bar значит «кафе, бар».\nСлово nella значит «в».\nNella serratura — «в замке», nella tua tasca — «у тебя в кармане».\nСлово tua значит «твой, твоя».\nСлова serratura — «замок», tasca — «карман».",
+        "uk": "Дивіться, як запитати про людину або річ.\nPaolo è in ufficio? — «Паоло в офісі?»\nЧитається: па́оло е ін уффі́чо.\nLea è alla stazione? — «Леа на вокзалі?»\nЧитається: ле́а е а́лла статсьо́не.\nLa porta è aperta? — «Двері відчинені?»\nЧитається: ла по́рта е апе́рта.\nLea — ім’я дівчинки, Paolo — ім’я чоловіка.\nУ biglietti середина читається як м’яке «ль»: білье́тті.\nФраза та сама, що без питання: Paolo è in ufficio.\n— «Паоло в офісі.»\nЗмінюються тільки голос наприкінці і знак «?».\nСлово è стоїть на своєму місці.\nСлово bar означає «кафе, бар».\nСлово nella означає «у».\nNella serratura — «у замку», nella tua tasca — «у тебе в кишені».\nСлово tua означає «твій, твоя».\nСлова serratura — «замок», tasca — «кишеня».",
+        "en": "Look at how to ask about a person or a thing.\nPaolo è in ufficio? — “Is Paolo in the office?”\nLea è alla stazione? — “Is Lea at the station?”\nLa porta è aperta? — “Is the door open?”\nLea is a girl’s name, Paolo is a man’s name.\nIn biglietti the middle sounds like a soft “l”: билье́тти.\nThe phrase is the same as without a question: Paolo è in ufficio.\n— “Paolo is in the office.”\nOnly the voice at the end and the sign “?” change.\nThe word è stays in its place.\nThe word bar means “café, bar”.\nThe word nella means “in”.\nNella serratura — “in the lock”, nella tua tasca — “in your pocket”.\nThe word tua means “your”.\nThe words serratura — “lock”, tasca — “pocket”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:03:05",
+          "say": {
+            "ru": "па́оло э ин уффи́чо",
+            "uk": "па́оло е ін уффі́чо"
+          }
+        },
+        {
+          "phraseId": "it:03:06",
+          "say": {
+            "ru": "ле́а э а́лла статсьо́не",
+            "uk": "ле́а е а́лла статсьо́не"
+          }
+        },
+        {
+          "phraseId": "it:03:12",
+          "say": {
+            "ru": "ла по́рта э апе́рта",
+            "uk": "ла по́рта е апе́рта"
+          }
+        },
+        {
+          "phraseId": "it:03:13",
+          "say": {
+            "ru": "иль бар э кьу́зо",
+            "uk": "іль бар е кьу́зо"
+          }
+        },
+        {
+          "phraseId": "it:03:43",
+          "say": {
+            "ru": "ла кья́ве э не́лла серрату́ра",
+            "uk": "ла кья́ве е не́лла серрату́ра"
+          }
+        },
+        {
+          "phraseId": "it:03:35",
+          "say": {
+            "ru": "и билье́тти со́но не́лла ту́а та́ска",
+            "uk": "і білье́тті со́но не́лла ту́а та́ска"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь открыта?»",
+            "uk": "Виберіть, як сказати: «Двері відчинені?»",
+            "en": "Choose how to say: “Is the door open?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:03:12",
+          "options": [
+            "it:03:12",
+            "it:03:05",
+            "it:03:06"
+          ],
+          "answerId": "it:03:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа на вокзале?»",
+            "uk": "Виберіть, як сказати: «Леа на вокзалі?»",
+            "en": "Choose how to say: “Is Lea at the station?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:06",
+          "options": [
+            "it:03:06",
+            "it:03:05",
+            "it:03:13"
+          ],
+          "answerId": "it:03:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ в замке?»",
+            "uk": "Виберіть, як сказати: «Ключ у замку?»",
+            "en": "Choose how to say: “Is the key in the lock?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:43",
+          "options": [
+            "it:03:43",
+            "it:03:12",
+            "it:03:13"
+          ],
+          "answerId": "it:03:43"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вы и они",
+        "uk": "Ви і вони",
+        "en": "You and they"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить про «вы» и «они».\nSiete a casa? — «Вы дома?»\nЧитается: сье́те а ка́за.\nLoro sono fuori? — «Они на улице?»\nЧитается: ло́ро со́но фуо́ри.\nSiamo in ritardo? — «Мы опаздываем?»\nЧитается: сьа́мо ин рита́рдо.\nСлово siete значит «вы есть», когда вас несколько.\nСлово voi тоже значит «вы»: con voi — «с вами».\nСлово loro значит «они». Слово fuori значит «на улице».\nСлова in ritardo значат «с опозданием».\nСлова bambini — «дети», con — «с».\nСлово sono подходит и к «я», и к «они».",
+        "uk": "Дивіться, як запитати про «ви» і «вони».\nSiete a casa? — «Ви вдома?»\nЧитається: сье́те а ка́за.\nLoro sono fuori? — «Вони надворі?»\nЧитається: ло́ро со́но фуо́рі.\nSiamo in ritardo? — «Ми запізнюємося?»\nЧитається: сьа́мо ін ріта́рдо.\nСлово siete означає «ви є», коли вас кілька.\nСлово voi теж означає «ви»: con voi — «з вами».\nСлово loro означає «вони». Слово fuori означає «надворі».\nСлова in ritardo означають «із запізненням».\nСлова bambini — «діти», con — «з».\nСлово sono підходить і до «я», і до «вони».",
+        "en": "Look at how to ask about “you” and “they”.\nSiete a casa? — “Are you at home?”\nLoro sono fuori? — “Are they outside?”\nSiamo in ritardo? — “Are we late?”\nThe word siete means “you are”, when there are several of you.\nThe word voi also means “you”: con voi — “with you”.\nThe word loro means “they”. The word fuori means “outside”.\nThe words in ritardo mean “late”.\nThe words bambini — “children”, con — “with”.\nThe word sono fits both “I am” and “they are”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:03:07",
+          "say": {
+            "ru": "сье́те а ка́за",
+            "uk": "сье́те а ка́за"
+          }
+        },
+        {
+          "phraseId": "it:03:08",
+          "say": {
+            "ru": "ло́ро со́но фуо́ри",
+            "uk": "ло́ро со́но фуо́рі"
+          }
+        },
+        {
+          "phraseId": "it:03:09",
+          "say": {
+            "ru": "сьа́мо ин рита́рдо",
+            "uk": "сьа́мо ін ріта́рдо"
+          }
+        },
+        {
+          "phraseId": "it:03:49",
+          "say": {
+            "ru": "и бамби́ни со́но кон во́й",
+            "uk": "і бамбі́ні со́но кон во́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они на улице?»",
+            "uk": "Виберіть, як сказати: «Вони надворі?»",
+            "en": "Choose how to say: “Are they outside?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:03:08",
+          "options": [
+            "it:03:08",
+            "it:03:07",
+            "it:03:09"
+          ],
+          "answerId": "it:03:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети с вами?»",
+            "uk": "Виберіть, як сказати: «Діти з вами?»",
+            "en": "Choose how to say: “Are the children with you?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:49",
+          "options": [
+            "it:03:49",
+            "it:03:07",
+            "it:03:08"
+          ],
+          "answerId": "it:03:49"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы опаздываем?»",
+            "uk": "Виберіть, як сказати: «Ми запізнюємося?»",
+            "en": "Choose how to say: “Are we late?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:09",
+          "options": [
+            "it:03:09",
+            "it:03:08",
+            "it:03:07"
+          ],
+          "answerId": "it:03:09"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вежливый вопрос",
+        "uk": "Ввічливе питання",
+        "en": "A polite question"
+      },
+      "text": {
+        "ru": "Смотрите, к кому обращаются.\nSei pronto? — «Ты готов?»\nЧитается: се́й про́нто.\nSei говорят одному близкому человеку.\nSiete a casa? — «Вы дома?»\nЧитается: сье́те а ка́за.\nSiete говорят нескольким людям.\nÈ libero? — «Вы свободны?»\nЧитается: э ли́беро.\nСлово è без имени — вежливо к одному незнакомому человеку: «Вы».\nСлово libero значит «свободен».\nСравните: Il tavolo è libero? — «Столик свободен?»\nЗдесь перед è стоит название вещи, речь о ней.\nСлова sala — «зал», tavolo — «стол».",
+        "uk": "Дивіться, до кого звертаються.\nSei pronto? — «Ти готовий?»\nЧитається: се́й про́нто.\nSei кажуть одній близькій людині.\nSiete a casa? — «Ви вдома?»\nЧитається: сье́те а ка́за.\nSiete кажуть кільком людям.\nÈ libero? — «Ви вільні?»\nЧитається: е лі́беро.\nСлово è без імені — ввічливо до однієї незнайомої людини: «Ви».\nСлово libero означає «вільний».\nПорівняйте: Il tavolo è libero? — «Столик вільний?»\nТут перед è стоїть назва речі, мова про неї.\nСлова sala — «зала», tavolo — «стіл».",
+        "en": "Look at who is being spoken to.\nSei pronto? — “Are you ready?”\nWe say sei to one close person.\nSiete a casa? — “Are you at home?”\nWe say siete to several people.\nÈ libero? — “Are you free?”\nThe word è without a name is polite, to one stranger: “you”.\nThe word libero means “free”.\nCompare: Il tavolo è libero? — “Is the table free?”\nHere a thing stands before è, so it is about the thing.\nThe words sala — “hall”, tavolo — “table”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:03:03",
+          "say": {
+            "ru": "се́й про́нто",
+            "uk": "се́й про́нто"
+          }
+        },
+        {
+          "phraseId": "it:03:07",
+          "say": {
+            "ru": "сье́те а ка́за",
+            "uk": "сье́те а ка́за"
+          }
+        },
+        {
+          "phraseId": "it:03:10",
+          "say": {
+            "ru": "э ли́беро",
+            "uk": "е лі́беро"
+          }
+        },
+        {
+          "phraseId": "it:03:34",
+          "say": {
+            "ru": "иль та́воло э ли́беро",
+            "uk": "іль та́воло е лі́беро"
+          }
+        },
+        {
+          "phraseId": "it:03:14",
+          "say": {
+            "ru": "ла са́ла э ли́бера",
+            "uk": "ла са́ла е лі́бера"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы свободны?»",
+            "uk": "Виберіть, як сказати: «Ви вільні?»",
+            "en": "Choose how to say: “Are you free?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:03:10",
+          "options": [
+            "it:03:10",
+            "it:03:03",
+            "it:03:07"
+          ],
+          "answerId": "it:03:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Столик свободен?»",
+            "uk": "Виберіть, як сказати: «Столик вільний?»",
+            "en": "Choose how to say: “Is the table free?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:34",
+          "options": [
+            "it:03:34",
+            "it:03:10",
+            "it:03:14"
+          ],
+          "answerId": "it:03:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Зал свободен?»",
+            "uk": "Виберіть, як сказати: «Зала вільна?»",
+            "en": "Choose how to say: “Is the hall free?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:14",
+          "options": [
+            "it:03:14",
+            "it:03:34",
+            "it:03:10"
+          ],
+          "answerId": "it:03:14"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вход и выход",
+        "uk": "Вхід і вихід",
+        "en": "Entrance and exit"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить, где что находится.\nL’uscita è a sinistra? — «Выход слева?»\nЧитается: л’уши́та э а сини́стра.\nIl parcheggio è a destra? — «Парковка справа?»\nЧитается: иль парке́джо э а де́стра.\nL’ingresso è lì? — «Вход там?»\nЧитается: л’ингре́ссо э ли.\nСлова l’uscita — «выход», il parcheggio — «парковка», l’ingresso — «вход».\nЗапоминайте их целиком.\nАпостроф в l’uscita: перед гласной слово la (или il) сливается с названием вещи.\nA sinistra значит «слева», a destra — «справа».\nLa biglietteria è aperta? — «Касса открыта?»\nЧитается: ла билье́ттери́я э апе́рта.\nСлово biglietteria значит «касса». Середина читается как мягкое «ль», как в biglietti.\nСлово banchina значит «перрон»: La banchina è di fronte? Слова di fronte значат «напротив».",
+        "uk": "Дивіться, як запитати, де що знаходиться.\nL’uscita è a sinistra? — «Вихід ліворуч?»\nЧитається: л’уші́та е а сіні́стра.\nIl parcheggio è a destra? — «Парковка праворуч?»\nЧитається: іль парке́джо е а де́стра.\nL’ingresso è lì? — «Вхід там?»\nЧитається: л’інгре́ссо е лі.\nСлова l’uscita — «вихід», il parcheggio — «парковка», l’ingresso — «вхід».\nЗапам’ятовуйте їх цілком.\nАпостроф в l’uscita: перед голосною слово la (або il) зливається з назвою речі.\nA sinistra означає «ліворуч», a destra — «праворуч».\nLa biglietteria è aperta? — «Каса відкрита?»\nЧитається: ла білье́ттері́я е апе́рта.\nСлово biglietteria означає «каса». Середина читається як м’яке «ль», як у biglietti.\nСлово banchina означає «перон»: La banchina è di fronte? Слова di fronte означають «навпроти».",
+        "en": "Look at how to ask where something is.\nL’uscita è a sinistra? — “Is the exit on the left?”\nIl parcheggio è a destra? — “Is the parking on the right?”\nL’ingresso è lì? — “Is the entrance there?”\nThe words l’uscita — “exit”, il parcheggio — “parking”, l’ingresso — “entrance”.\nLearn them whole.\nThe apostrophe in l’uscita:\nbefore a vowel the word la (or il) joins the name of the thing.\nA sinistra means “on the left”, a destra — “on the right”.\nLa biglietteria è aperta? — “Is the ticket office open?”\nThe word biglietteria means “ticket office”. The middle sounds like a soft “l”, as in biglietti.\nThe word banchina means “platform”: La banchina è di fronte? The words di fronte mean “opposite”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:03:25",
+          "say": {
+            "ru": "л’уши́та э а сини́стра",
+            "uk": "л’уші́та е а сіні́стра"
+          }
+        },
+        {
+          "phraseId": "it:03:26",
+          "say": {
+            "ru": "иль парке́джо э а де́стра",
+            "uk": "іль парке́джо е а де́стра"
+          }
+        },
+        {
+          "phraseId": "it:03:22",
+          "say": {
+            "ru": "л’ингре́ссо э ли",
+            "uk": "л’інгре́ссо е лі"
+          }
+        },
+        {
+          "phraseId": "it:03:21",
+          "say": {
+            "ru": "ла билье́ттери́я э апе́рта",
+            "uk": "ла білье́ттері́я е апе́рта"
+          }
+        },
+        {
+          "phraseId": "it:03:24",
+          "say": {
+            "ru": "ла банки́на э ди фро́нте",
+            "uk": "ла банкі́на е ді фро́нте"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Выход слева?»",
+            "uk": "Виберіть, як сказати: «Вихід ліворуч?»",
+            "en": "Choose how to say: “Is the exit on the left?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:03:25",
+          "options": [
+            "it:03:25",
+            "it:03:26",
+            "it:03:22"
+          ],
+          "answerId": "it:03:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Парковка справа?»",
+            "uk": "Виберіть, як сказати: «Парковка праворуч?»",
+            "en": "Choose how to say: “Is the parking on the right?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:26",
+          "options": [
+            "it:03:26",
+            "it:03:25",
+            "it:03:22"
+          ],
+          "answerId": "it:03:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Касса открыта?»",
+            "uk": "Виберіть, як сказати: «Каса відкрита?»",
+            "en": "Choose how to say: “Is the ticket office open?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:03:21",
+          "options": [
+            "it:03:21",
+            "it:03:22",
+            "it:03:24"
+          ],
+          "answerId": "it:03:21"
+        }
+      ]
+    }
+  ]
+}

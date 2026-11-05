@@ -1,0 +1,448 @@
+{
+ "lang": "fr",
+ "lesson": 9,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:09:01",
+   "target": "Mon sac est ici.",
+   "ru": "Моя сумка здесь.",
+   "uk": "Моя сумка тут."
+  },
+  {
+   "id": "fr:09:02",
+   "target": "Ton sac est ici.",
+   "ru": "Твоя сумка здесь.",
+   "uk": "Твоя сумка тут."
+  },
+  {
+   "id": "fr:09:03",
+   "target": "Ma clé est là.",
+   "ru": "Мой ключ там.",
+   "uk": "Мій ключ там."
+  },
+  {
+   "id": "fr:09:04",
+   "target": "Ta clé est là.",
+   "ru": "Твой ключ там.",
+   "uk": "Твій ключ там."
+  },
+  {
+   "id": "fr:09:05",
+   "target": "Mes clés sont ici.",
+   "ru": "Мои ключи здесь.",
+   "uk": "Мої ключі тут."
+  },
+  {
+   "id": "fr:09:06",
+   "target": "Tes clés sont ici.",
+   "ru": "Твои ключи здесь.",
+   "uk": "Твої ключі тут."
+  },
+  {
+   "id": "fr:09:07",
+   "target": "Son sac est dehors.",
+   "ru": "Его сумка снаружи.",
+   "uk": "Його сумка зовні."
+  },
+  {
+   "id": "fr:09:08",
+   "target": "Sa veste est dehors.",
+   "ru": "Его куртка снаружи.",
+   "uk": "Його куртка зовні."
+  },
+  {
+   "id": "fr:09:09",
+   "target": "Ses lunettes sont là.",
+   "ru": "Его очки здесь.",
+   "uk": "Його окуляри тут."
+  },
+  {
+   "id": "fr:09:10",
+   "target": "Mon vélo est au garage.",
+   "ru": "Мой велосипед в гараже.",
+   "uk": "Мій велосипед у гаражі."
+  },
+  {
+   "id": "fr:09:11",
+   "target": "Notre train est à quai.",
+   "ru": "Наш поезд на платформе.",
+   "uk": "Наш поїзд на платформі."
+  },
+  {
+   "id": "fr:09:12",
+   "target": "Votre train est à quai.",
+   "ru": "Ваш поезд на платформе.",
+   "uk": "Ваш поїзд на платформі."
+  },
+  {
+   "id": "fr:09:13",
+   "target": "Nos billets sont prêts.",
+   "ru": "Наши билеты готовы.",
+   "uk": "Наші квитки готові."
+  },
+  {
+   "id": "fr:09:14",
+   "target": "Vos billets sont prêts.",
+   "ru": "Ваши билеты готовы.",
+   "uk": "Ваші квитки готові."
+  },
+  {
+   "id": "fr:09:15",
+   "target": "Leur chambre est libre.",
+   "ru": "Их комната свободна.",
+   "uk": "Їхня кімната вільна."
+  },
+  {
+   "id": "fr:09:16",
+   "target": "Leurs chambres sont libres.",
+   "ru": "Их комнаты свободны.",
+   "uk": "Їхні кімнати вільні."
+  },
+  {
+   "id": "fr:09:17",
+   "target": "Notre table est près de la fenêtre.",
+   "ru": "Наш столик у окна.",
+   "uk": "Наш столик біля вікна."
+  },
+  {
+   "id": "fr:09:18",
+   "target": "Votre café est sur la table.",
+   "ru": "Ваш кофе стоит на столе.",
+   "uk": "Ваша кава на столі."
+  },
+  {
+   "id": "fr:09:19",
+   "target": "Mes chaussures sont mouillées.",
+   "ru": "Мои туфли мокрые.",
+   "uk": "Мої туфлі мокрі."
+  },
+  {
+   "id": "fr:09:20",
+   "target": "Tes gants sont secs.",
+   "ru": "Твои перчатки сухие.",
+   "uk": "Твої рукавички сухі."
+  },
+  {
+   "id": "fr:09:21",
+   "target": "Je cherche mon manteau.",
+   "ru": "Я ищу своё пальто.",
+   "uk": "Я шукаю своє пальто."
+  },
+  {
+   "id": "fr:09:22",
+   "target": "Tu cherches ta veste.",
+   "ru": "Ты ищешь свою куртку.",
+   "uk": "Ти шукаєш свою куртку."
+  },
+  {
+   "id": "fr:09:23",
+   "target": "Paul cherche son badge.",
+   "ru": "Поль ищет свой пропуск.",
+   "uk": "Пол шукає свою перепустку."
+  },
+  {
+   "id": "fr:09:24",
+   "target": "Léa cherche sa carte.",
+   "ru": "Леа ищет свою карточку.",
+   "uk": "Леа шукає свою картку."
+  },
+  {
+   "id": "fr:09:25",
+   "target": "Nous cherchons nos places.",
+   "ru": "Мы ищем свои места.",
+   "uk": "Ми шукаємо свої місця."
+  },
+  {
+   "id": "fr:09:26",
+   "target": "Vous cherchez vos bagages.",
+   "ru": "Вы ищете свой багаж.",
+   "uk": "Ви шукаєте свій багаж."
+  },
+  {
+   "id": "fr:09:27",
+   "target": "Les enfants cherchent leur ballon.",
+   "ru": "Дети ищут свой мяч.",
+   "uk": "Діти шукають свій м'яч."
+  },
+  {
+   "id": "fr:09:28",
+   "target": "Je prends mon parapluie.",
+   "ru": "Я беру свой зонтик.",
+   "uk": "Я беру свою парасольку."
+  },
+  {
+   "id": "fr:09:29",
+   "target": "Tu prends ton casque.",
+   "ru": "Ты берёшь свой шлем.",
+   "uk": "Ти береш свій шолом."
+  },
+  {
+   "id": "fr:09:30",
+   "target": "Elle prépare ses affaires.",
+   "ru": "Она собирает свои вещи.",
+   "uk": "Вона пакує свої речі."
+  },
+  {
+   "id": "fr:09:31",
+   "target": "Mon adresse est sur la carte.",
+   "ru": "Мой адрес указан на карте.",
+   "uk": "Моя адреса на карті."
+  },
+  {
+   "id": "fr:09:32",
+   "target": "Ton amie est arrivée.",
+   "ru": "Твоя подруга приехала.",
+   "uk": "Твоя подруга приїхала."
+  },
+  {
+   "id": "fr:09:33",
+   "target": "Son école est près du parc.",
+   "ru": "Его школа находится рядом с парком.",
+   "uk": "Його школа знаходиться біля парку."
+  },
+  {
+   "id": "fr:09:34",
+   "target": "Mon enveloppe est vide.",
+   "ru": "Мой конверт пуст.",
+   "uk": "Мій конверт порожній."
+  },
+  {
+   "id": "fr:09:35",
+   "target": "Votre ordonnance est prête.",
+   "ru": "Ваш рецепт готов.",
+   "uk": "Ваш рецепт готовий."
+  },
+  {
+   "id": "fr:09:36",
+   "target": "Notre équipe est au complet.",
+   "ru": "Наша команда в полном составе.",
+   "uk": "Наша команда укомплектована."
+  },
+  {
+   "id": "fr:09:37",
+   "target": "Mes collègues sont au bureau.",
+   "ru": "Мои коллеги в офисе.",
+   "uk": "Мої колеги в офісі."
+  },
+  {
+   "id": "fr:09:38",
+   "target": "Sa sœur travaille ici.",
+   "ru": "Его сестра работает здесь.",
+   "uk": "Його сестра працює тут."
+  },
+  {
+   "id": "fr:09:39",
+   "target": "Son père habite à Lyon.",
+   "ru": "Его отец живет в Лионе.",
+   "uk": "Його батько живе в Ліоні."
+  },
+  {
+   "id": "fr:09:40",
+   "target": "Leur fils apprend le français.",
+   "ru": "Их сын изучает французский язык.",
+   "uk": "Їхній син вивчає французьку мову."
+  },
+  {
+   "id": "fr:09:41",
+   "target": "Où est ton portefeuille ?",
+   "ru": "Где твой кошелёк?",
+   "uk": "Де твій гаманець?"
+  },
+  {
+   "id": "fr:09:42",
+   "target": "Où sont vos valises ?",
+   "ru": "Где ваши чемоданы?",
+   "uk": "Де ваші валізи?"
+  },
+  {
+   "id": "fr:09:43",
+   "target": "Ma place est à côté de la tienne.",
+   "ru": "Моё место рядом с твоим.",
+   "uk": "Моє місце поруч з твоїм."
+  },
+  {
+   "id": "fr:09:44",
+   "target": "Je laisse mon numéro à la réception.",
+   "ru": "Я оставляю свой номер на ресепшене.",
+   "uk": "Я залишаю свій номер на рецепції."
+  },
+  {
+   "id": "fr:09:45",
+   "target": "Tu ranges tes lunettes dans ton étui.",
+   "ru": "Ты убираешь свои очки в свой футляр.",
+   "uk": "Ти кладеш свої окуляри у свій футляр."
+  },
+  {
+   "id": "fr:09:46",
+   "target": "Elle montre son billet au contrôleur.",
+   "ru": "Она показывает свой билет кондуктору.",
+   "uk": "Вона показує свій квиток кондуктору."
+  },
+  {
+   "id": "fr:09:47",
+   "target": "Nous gardons nos reçus.",
+   "ru": "Мы сохраняем свои чеки.",
+   "uk": "Ми зберігаємо наші чеки."
+  },
+  {
+   "id": "fr:09:48",
+   "target": "Les voisins ferment leurs fenêtres.",
+   "ru": "Соседи закрывают свои окна.",
+   "uk": "Сусіди зачиняють свої вікна."
+  },
+  {
+   "id": "fr:09:49",
+   "target": "Mon frère a oublié sa clé.",
+   "ru": "Мой брат забыл свой ключ.",
+   "uk": "Мій брат забув свій ключ."
+  },
+  {
+   "id": "fr:09:50",
+   "target": "Notre fille prépare son sac.",
+   "ru": "Наша дочь собирает свою сумку.",
+   "uk": "Наша донька пакує свою сумку."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le garage",
+   "ru": "гараж, автомастерская",
+   "uk": "гараж, автомайстерня"
+  },
+  {
+   "lemma": "le badge",
+   "ru": "пропуск, бейдж",
+   "uk": "пропуск, бейдж"
+  },
+  {
+   "lemma": "le parapluie",
+   "ru": "зонт",
+   "uk": "парасолька"
+  },
+  {
+   "lemma": "le casque",
+   "ru": "шлем",
+   "uk": "шолом"
+  },
+  {
+   "lemma": "le ballon",
+   "ru": "мяч",
+   "uk": "м'яч"
+  }
+ ],
+ "knownWords": [
+  "ici",
+  "la gare",
+  "la clé",
+  "la fenêtre",
+  "prêt / prête",
+  "être",
+  "je / j’",
+  "tu",
+  "nous",
+  "vous",
+  "la maison",
+  "le bureau",
+  "la porte",
+  "ensemble",
+  "le magasin",
+  "le sac",
+  "le couloir",
+  "la chambre",
+  "le ticket",
+  "la pharmacie",
+  "en retard",
+  "la table",
+  "la salle",
+  "le train",
+  "le billet",
+  "le vélo",
+  "le bus",
+  "le musée",
+  "le quai",
+  "le guichet",
+  "la sortie",
+  "la poche",
+  "la serrure",
+  "l’entrée (f.)",
+  "le parking",
+  "le reçu",
+  "la facture",
+  "le voisin / la voisine",
+  "le cadeau",
+  "les lunettes",
+  "la sœur",
+  "le frère",
+  "la place",
+  "la carte",
+  "le passeport",
+  "la monnaie",
+  "la pause",
+  "le rendez-vous",
+  "l’ordonnance (f.)",
+  "avoir",
+  "l’eau (f.)",
+  "le tiroir",
+  "le chargeur",
+  "l’enveloppe (f.)",
+  "le marché",
+  "l’ascenseur (m.)",
+  "le pain",
+  "le jardin",
+  "la chaise",
+  "la voiture",
+  "la soupe",
+  "la veste",
+  "chercher",
+  "la radio",
+  "le message",
+  "préparer",
+  "l’appartement (m.)",
+  "travailler",
+  "habiter",
+  "la valise",
+  "combien",
+  "le trajet",
+  "la livraison",
+  "le cours",
+  "commencer",
+  "la rue"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Кто где находится"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»"
+  },
+  {
+   "lesson": 3,
+   "title": "Вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Это — человек или вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Повседневное действие: настоящее на `-er`"
+  },
+  {
+   "lesson": 8,
+   "title": "Как спросить: где, кто, когда и сколько"
+  }
+ ],
+ "oldTopicTitle": "Чья вещь: `mon`, `ma`, `mes`",
+ "oldTheoryRu": "Сначала установи, кому принадлежит вещь. `Mon` или `ma` — мне, `ton` или `ta` — тебе. Окончательный выбор зависит не от пола владельца, а от самой вещи. Сравни один ключ `ma clé` и несколько `mes clés`. Владелец остался тем же. Изменилось только число ключей — и вместе с ним слово перед ними. Род во множественном числе уже не различается. `Son sac` может означать и его сумку, и её сумку. Из формы `son` нельзя вычислить пол человека. Прояснить владельца может контекст, а не другая французская плитка. Если владельцев несколько, сначала выбери семейство `notre`, `votre` или `leur`. Один предмет у них — `leur chambre`, несколько — `leurs chambres`. Как и артикль, слово принадлежности стоит перед существительным. Сочетание `le mon sac` невозможно: «моя сумка» — это просто `mon sac`. Оставь только одно определяющее слово. Перед словом женского рода, начинающимся с гласной или немого `h`, вместо `ma`, `ta`, `sa` обязательно ставят `mon`, `ton`, `son` — так удобнее произносить. Именно поэтому `mon adresse`, хотя `adresse` женского рода. Собери всю группу целиком. Не переноси одну и ту же форму на разные вещи: в «твои очки в твоём футляре» количество у очков и у футляра разное."
+}

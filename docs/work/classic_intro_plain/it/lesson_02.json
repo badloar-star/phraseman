@@ -1,0 +1,45 @@
+{
+  "lang": "it",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying “not”"
+      },
+      "text": {
+        "en": "Sono qui. — I am here.\nNon sono qui. — I am not here.\nNon means “not”.\nPut it in front of sono.\nNothing else changes."
+      },
+      "exampleIds": [
+        "it:02:01"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Non comes first"
+      },
+      "text": {
+        "en": "Non sei lì. — You’re not there.\nLei non è lì. — She is not there.\nLei means “she”.\nPaolo non è in ufficio. — Paolo is not in the office.\nNon always goes right before sono, sei or è."
+      },
+      "exampleIds": [
+        "it:02:03",
+        "it:02:04",
+        "it:02:05"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Say what is not"
+      },
+      "text": {
+        "en": "Non sono pronto. — I am not ready.\nPronto means “ready”.\nNon siamo pronti. — We are not ready.\nNext, you build each sentence from word pieces.\nStart with Non, then pick who, then the last word."
+      },
+      "exampleIds": [
+        "it:02:11",
+        "it:02:13"
+      ]
+    }
+  ]
+}

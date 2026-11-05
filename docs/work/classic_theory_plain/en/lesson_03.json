@@ -1,0 +1,593 @@
+{
+  "lang": "en",
+  "lesson": 3,
+  "title": {
+    "ru": "Что я делаю обычно",
+    "uk": "Що я роблю зазвичай",
+    "en": "What I usually do"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я работаю, я живу",
+        "uk": "Я працюю, я живу",
+        "en": "I work, I live"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы делаете.\nI work nearby. — Я работаю неподалеку.\nЧитается: ай уо́рк ни́рбай.\nСлово work здесь значит «работать». В первом уроке оно значило «работа».\nСлово nearby значит «неподалёку, рядом».\nI live alone. — Я живу один.\nЧитается: ай ли́в эло́ун.\nСлово live значит «жить». Слово alone значит «один, без других».\nI walk home. — Я иду домой пешком.\nЧитается: ай уо́к хо́ум.\nСлово walk значит «идти пешком». Слово home здесь значит «домой».\nПо-английски «в» или «к» не говорят: walk home — «идти домой».\nСлов am, is, are здесь не нужно: хватает work, live, walk.\nWe walk to the shop. — Мы идём в магазин пешком.\nЧитается: уи уо́к ту зэ шо́п.\nСлово to перед местом значит «в, к»: walk to the shop. Слово shop значит «магазин».",
+        "uk": "Дивіться, як сказати, що ви робите.\nI work nearby. — Я працюю поруч.\nЧитається: ай уо́рк ні́рбай.\nСлово work тут означає «працювати». У першому уроці воно означало «робота».\nСлово nearby означає «поруч, неподалік».\nI live alone. — Я живу сам.\nЧитається: ай лі́в ело́ун.\nСлово live означає «жити». Слово alone означає «сам, без інших».\nI walk home. — Я йду додому пішки.\nЧитається: ай уо́к хо́ум.\nСлово walk означає «іти пішки». Слово home тут означає «додому».\nПо-англійськи «в» чи «до» не кажуть: walk home — «іти додому».\nСлів am, is, are тут не треба: вистачає work, live, walk.\nWe walk to the shop. — Ми йдемо до магазину пішки.\nЧитається: уі уо́к ту зе шо́п.\nСлово to перед місцем означає «в, до»: walk to the shop. Слово shop означає «магазин».",
+        "en": "Look at how to say what you do.\nI work nearby.\nThe word work means “to have a job.”\nIn lesson 1 it meant “a job.”\nThe word nearby means “close to here.”\nI live alone.\nThe word live means “to have a home somewhere.”\nThe word alone means “without others.”\nI walk home.\nThe word walk means “to go on foot.” The word home here means “to home.”\nIn English you do not say “to”: walk home means “go home.”\nYou do not need am, is or are here.\nThe words work, live and walk are enough.\nWe walk to the shop. — “We walk to the shop.”\nThe word to before a place means “to”: walk to the shop.\nThe word shop means “shop”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:03.01",
+          "say": {
+            "ru": "ай уо́рк ни́рбай",
+            "uk": "ай уо́рк ні́рбай"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.04",
+          "say": {
+            "ru": "ай ли́в эло́ун",
+            "uk": "ай лі́в ело́ун"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.10",
+          "say": {
+            "ru": "ай уо́к хо́ум",
+            "uk": "ай уо́к хо́ум"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.39",
+          "say": {
+            "ru": "уи уо́к ту зэ шо́п",
+            "uk": "уі уо́к ту зе шо́п"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я работаю неподалеку»",
+            "uk": "Виберіть, як сказати: «Я працюю поруч»",
+            "en": "Choose how to say: “I work nearby.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:03.01",
+          "options": [
+            "en-classic-r1:03.01",
+            "en-classic-r1:03.04",
+            "en-classic-r1:03.10"
+          ],
+          "answerId": "en-classic-r1:03.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу один»",
+            "uk": "Виберіть, як сказати: «Я живу сам»",
+            "en": "Choose how to say: “I live alone.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.04",
+          "options": [
+            "en-classic-r1:03.04",
+            "en-classic-r1:03.01",
+            "en-classic-r1:03.10"
+          ],
+          "answerId": "en-classic-r1:03.04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду домой пешком»",
+            "uk": "Виберіть, як сказати: «Я йду додому пішки»",
+            "en": "Choose how to say: “I walk home.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.10",
+          "options": [
+            "en-classic-r1:03.10",
+            "en-classic-r1:03.01",
+            "en-classic-r1:03.04"
+          ],
+          "answerId": "en-classic-r1:03.10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Он и она: буквы s и es",
+        "uk": "Він і вона: літери s та es",
+        "en": "He and she: letters s and es"
+      },
+      "text": {
+        "ru": "Теперь скажем о нём и о ней.\nShe starts early. — Она начинает рано.\nЧитается: ши ста́ртс э́рли.\nСлово start значит «начинать».\nКогда речь о нём или о ней, на конце слова добавляют s.\nwork — works, live — lives, start — starts.\nThey finish late. — Они заканчивают поздно.\nЧитается: зэй фи́ниш лэ́йт.\nСлово they значит «они». Слово finish значит «заканчивать».\nКогда речь о них, обо мне, о вас, о нас, s не нужно.\nHe finishes late. — Он заканчивает поздно.\nЧитается: хи фи́нишиз лэ́йт.\nЕсли слово кончается на sh, ch, s или x, добавляют es: finish — finishes.\nShe studies at home. — Она учится дома.\nЧитается: ши ста́диз эт хо́ум.\nСлово study значит «учиться». Буква y пропадает, вместо неё ies: study — studies.",
+        "uk": "Тепер скажемо про нього і про неї.\nShe starts early. — Вона починає рано.\nЧитається: ші ста́ртс е́рлі.\nСлово start означає «починати».\nКоли мова про нього або про неї, наприкінці слова додають s.\nwork — works, live — lives, start — starts.\nThey finish late. — Вони закінчують пізно.\nЧитається: зей фі́ніш ле́йт.\nСлово they означає «вони». Слово finish означає «закінчувати».\nКоли мова про них, про мене, про вас, про нас, s не потрібно.\nHe finishes late. — Він закінчує пізно.\nЧитається: хі фі́нішіз ле́йт.\nЯкщо слово закінчується на sh, ch, s або x, додають es: finish — finishes.\nShe studies at home. — Вона вчиться вдома.\nЧитається: ші ста́діз ет хо́ум.\nСлово study означає «вчитися». Буква y зникає, замість неї ies: study — studies.",
+        "en": "Now let us talk about him and her.\nShe starts early.\nThe word start means “to begin.”\nWhen we talk about him or her, add s at the end.\nwork — works, live — lives, start — starts.\nThey finish late.\nThe word they means “other people.” The word finish means “to end.”\nFor them, me, you or us, do not add s.\nHe finishes late.\nIf a word ends with sh, ch, s or x, add es: finish — finishes.\nShe studies at home.\nThe word study means “to learn.”\nThe letter y goes away, and ies comes instead."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:03.07",
+          "say": {
+            "ru": "ши ста́ртс э́рли",
+            "uk": "ші ста́ртс е́рлі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.08",
+          "say": {
+            "ru": "зэй фи́ниш лэ́йт",
+            "uk": "зей фі́ніш ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.09",
+          "say": {
+            "ru": "хи фи́нишиз лэ́йт",
+            "uk": "хі фі́нішіз ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.48",
+          "say": {
+            "ru": "ши ста́диз эт хо́ум",
+            "uk": "ші ста́діз ет хо́ум"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она начинает рано»",
+            "uk": "Виберіть, як сказати: «Вона починає рано»",
+            "en": "Choose how to say: “She starts early.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:03.07",
+          "options": [
+            "en-classic-r1:03.07",
+            "en-classic-r1:03.08",
+            "en-classic-r1:03.48"
+          ],
+          "answerId": "en-classic-r1:03.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они заканчивают поздно»",
+            "uk": "Виберіть, як сказати: «Вони закінчують пізно»",
+            "en": "Choose how to say: “They finish late.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.08",
+          "options": [
+            "en-classic-r1:03.08",
+            "en-classic-r1:03.09",
+            "en-classic-r1:03.07"
+          ],
+          "answerId": "en-classic-r1:03.08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он заканчивает поздно»",
+            "uk": "Виберіть, як сказати: «Він закінчує пізно»",
+            "en": "Choose how to say: “He finishes late.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.09",
+          "options": [
+            "en-classic-r1:03.09",
+            "en-classic-r1:03.08",
+            "en-classic-r1:03.48"
+          ],
+          "answerId": "en-classic-r1:03.09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Мне нужно, я хочу",
+        "uk": "Мені потрібно, я хочу",
+        "en": "I need, I want"
+      },
+      "text": {
+        "ru": "Теперь скажем, что нужно и чего хочется.\nI need help. — Мне нужна помощь.\nЧитается: ай ни́д хэ́лп.\nСлово need значит «нуждаться». Слово help значит «помощь».\nWe want coffee. — Мы хотим кофе.\nЧитается: уи уо́нт ко́фи.\nСлово want значит «хотеть». Слово coffee значит «кофе».\nHe wants tea. — Он хочет чай.\nЧитается: хи уо́нтс ти́.\nСлово tea значит «чай», читается «ти́». Здесь тоже s: he wants.\nI like this seat. — Мне нравится это место.\nЧитается: ай лай́к зис си́т.\nСлово like значит «нравиться». Слово this значит «этот, это».",
+        "uk": "Тепер скажемо, що потрібно і чого хочеться.\nI need help. — Мені потрібна допомога.\nЧитається: ай ні́д хе́лп.\nСлово need означає «потребувати». Слово help означає «допомога».\nWe want coffee. — Ми хочемо кави.\nЧитається: уі уо́нт ко́фі.\nСлово want означає «хотіти». Слово coffee означає «кава».\nHe wants tea. — Він хоче чаю.\nЧитається: хі уо́нтс ті́.\nСлово tea означає «чай», читається «ті́». Тут теж s: he wants.\nI like this seat. — Мені подобається це місце.\nЧитається: ай лай́к зіс сі́т.\nСлово like означає «подобатися». Слово this означає «цей, це».",
+        "en": "Now let us say what we need and what we want.\nI need help.\nThe word need means “must have.”\nThe word help means “a hand with something.”\nWe want coffee.\nThe word want means “wish to have.” The word coffee means “coffee.”\nHe wants tea.\nThe word tea means “tea.” Here is s again: he wants.\nI like this seat.\nThe word like means “enjoy.” The word this means “this one here.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:03.11",
+          "say": {
+            "ru": "ай ни́д хэ́лп",
+            "uk": "ай ні́д хе́лп"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.13",
+          "say": {
+            "ru": "уи уо́нт ко́фи",
+            "uk": "уі уо́нт ко́фі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.14",
+          "say": {
+            "ru": "хи уо́нтс ти́",
+            "uk": "хі уо́нтс ті́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.15",
+          "say": {
+            "ru": "ай лай́к зис си́т",
+            "uk": "ай лай́к зіс сі́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужна помощь»",
+            "uk": "Виберіть, як сказати: «Мені потрібна допомога»",
+            "en": "Choose how to say: “I need help.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:03.11",
+          "options": [
+            "en-classic-r1:03.11",
+            "en-classic-r1:03.13",
+            "en-classic-r1:03.15"
+          ],
+          "answerId": "en-classic-r1:03.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы хотим кофе»",
+            "uk": "Виберіть, як сказати: «Ми хочемо кави»",
+            "en": "Choose how to say: “We want coffee.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.13",
+          "options": [
+            "en-classic-r1:03.13",
+            "en-classic-r1:03.14",
+            "en-classic-r1:03.11"
+          ],
+          "answerId": "en-classic-r1:03.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он хочет чай»",
+            "uk": "Виберіть, як сказати: «Він хоче чаю»",
+            "en": "Choose how to say: “He wants tea.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.14",
+          "options": [
+            "en-classic-r1:03.14",
+            "en-classic-r1:03.13",
+            "en-classic-r1:03.15"
+          ],
+          "answerId": "en-classic-r1:03.14"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Что люди делают",
+        "uk": "Що люди роблять",
+        "en": "What people do"
+      },
+      "text": {
+        "ru": "Скажем, что люди делают каждый день.\nThey use the lift. — Они пользуются лифтом.\nЧитается: зэй ю́з зэ ли́фт.\nСлово they значит «они». Слово use значит «пользоваться».\nYou speak English. — Вы говорите по-английски.\nЧитается: ю спи́к и́нглиш.\nСлово speak значит «говорить». Слово English значит «английский».\nThey take cash. — Они принимают наличные.\nЧитается: зэй тэ́йк кэ́ш.\nСлово take значит «брать, принимать». Слово cash значит «наличные».\nShe shares a flat. — Она живёт в квартире с кем-то ещё.\nЧитается: ши шэ́рз э флэ́т.\nСлово share значит «делить». Слово flat значит «квартира».\nДелить квартиру — значит жить в ней вместе с кем-то.\nСлово a стоит перед названием ОДНОЙ вещи, которую можно посчитать: a flat.\nПо-русски такого слова нет.\nПеред help, coffee и my … слово a не ставят.\nТак: I need help, We want coffee, I check my email.\nI check my email. — Я проверяю электронную почту.\nЧитается: ай чэ́к май и́мэйл.\nСлово check значит «проверять». Слово email значит «электронная почта».\nHe checks his phone. — Он проверяет телефон.\nЧитается: хи чэ́кс хиз фо́ун.\nСлово his значит «его». Слово phone значит «телефон».",
+        "uk": "Скажемо, що люди роблять щодня.\nThey use the lift. — Вони користуються ліфтом.\nЧитається: зей ю́з зе лі́фт.\nСлово they означає «вони». Слово use означає «користуватися».\nYou speak English. — Ви розмовляєте англійською.\nЧитається: ю спі́к і́нгліш.\nСлово speak означає «розмовляти». Слово English означає «англійська».\nThey take cash. — Вони приймають готівку.\nЧитається: зей те́йк ке́ш.\nСлово take означає «брати, приймати». Слово cash означає «готівка».\nShe shares a flat. — Вона живе в одній квартирі ще з кимось.\nЧитається: ші ше́рз е фле́т.\nСлово share означає «ділити». Слово flat означає «квартира».\nДілити квартиру — значить жити в ній разом із кимось.\nСлово a стоїть перед назвою ОДНІЄЇ речі, яку можна порахувати: a flat.\nПо-українськи такого слова немає.\nПеред help, coffee і my … слово a не ставлять.\nТак: I need help, We want coffee, I check my email.\nI check my email. — Я перевіряю електронну пошту.\nЧитається: ай че́к май і́мейл.\nСлово check означає «перевіряти». Слово email означає «електронна пошта».\nHe checks his phone. — Він перевіряє телефон.\nЧитається: хі че́кс хіз фо́ун.\nСлово his означає «його». Слово phone означає «телефон».",
+        "en": "Let us say what people do every day.\nThey use the lift.\nThe word they means “other people.”\nThe word use means “to make use of.”\nYou speak English.\nThe word speak means “to talk.” The word English means “English.”\nThey take cash.\nThe word take means “to get, to accept.”\nThe word cash means “money in hand.”\nShe shares a flat.\nThe word share means “to use together.” The word flat means “flat.”\nTo share a flat means to live in it together with someone.\nThe word a stands before the name of ONE thing you can count.\nFor example: a flat.\nSome languages have no such word. Learn it with the noun.\nBefore help, coffee and my … there is no a.\nSo: I need help, We want coffee, I check my email.\nI check my email.\nThe word check means “to look and see.” The word email means “email.”\nHe checks his phone. — “He checks his phone.”\nThe word his means “his”. The word phone means “phone”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:03.17",
+          "say": {
+            "ru": "зэй ю́з зэ ли́фт",
+            "uk": "зей ю́з зе лі́фт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.19",
+          "say": {
+            "ru": "ю спи́к и́нглиш",
+            "uk": "ю спі́к і́нгліш"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.37",
+          "say": {
+            "ru": "зэй тэ́йк кэ́ш",
+            "uk": "зей те́йк ке́ш"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.34",
+          "say": {
+            "ru": "ши шэ́рз э флэ́т",
+            "uk": "ші ше́рз е фле́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.35",
+          "say": {
+            "ru": "ай чэ́к май и́мэйл",
+            "uk": "ай че́к май і́мейл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.36",
+          "say": {
+            "ru": "хи чэ́кс хиз фо́ун",
+            "uk": "хі че́кс хіз фо́ун"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они пользуются лифтом»",
+            "uk": "Виберіть, як сказати: «Вони користуються ліфтом»",
+            "en": "Choose how to say: “They use the lift.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:03.17",
+          "options": [
+            "en-classic-r1:03.17",
+            "en-classic-r1:03.19",
+            "en-classic-r1:03.37"
+          ],
+          "answerId": "en-classic-r1:03.17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы говорите по-английски»",
+            "uk": "Виберіть, як сказати: «Ви розмовляєте англійською»",
+            "en": "Choose how to say: “You speak English.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.19",
+          "options": [
+            "en-classic-r1:03.19",
+            "en-classic-r1:03.17",
+            "en-classic-r1:03.35"
+          ],
+          "answerId": "en-classic-r1:03.19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они принимают наличные»",
+            "uk": "Виберіть, як сказати: «Вони приймають готівку»",
+            "en": "Choose how to say: “They take cash.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.37",
+          "options": [
+            "en-classic-r1:03.37",
+            "en-classic-r1:03.17",
+            "en-classic-r1:03.34"
+          ],
+          "answerId": "en-classic-r1:03.37"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Поезд, магазин, автобус",
+        "uk": "Поїзд, магазин, автобус",
+        "en": "Train, shop, bus"
+      },
+      "text": {
+        "ru": "Так же скажем о вещах.\nThe train stops here. — Поезд останавливается здесь.\nЧитается: зэ трэ́йн сто́пс хи́р.\nСлово stop значит «останавливаться».\nО вещи тоже добавляют s: stops, opens, leaves. Это когда вещь одна.\nThe shop opens at nine. — Магазин открывается в девять.\nЧитается: зэ шо́п о́упенз эт на́йн.\nСлово nine значит «девять». Слово at перед числом значит «в».\nСлово open в уроке 1 значило «открыт», здесь opens — «открывается».\nТак же, как work.\nThe bus leaves at eight. — Автобус отправляется в восемь.\nСлово leave значит «отправляться». Слово eight значит «восемь».\nThe class starts at ten. — Занятие начинается в десять.\nСлово class значит «занятие». Слово ten значит «десять».\nThe cafe closes early. — Кафе закрывается рано.\nСлово cafe значит «кафе». Слово closes значит «закрывается».\nThe doors open slowly. — Двери открываются медленно.\nСлово slowly значит «медленно».\nДверей несколько, поэтому open без s: s добавляют, когда вещь одна.\nMy shift starts soon. — Моя смена скоро начнётся.\nСлово shift значит «смена». Слово soon значит «скоро».\nThe lift works well. — Лифт работает хорошо.\nСлово well значит «хорошо».",
+        "uk": "Так само скажемо про речі.\nThe train stops here. — Поїзд зупиняється тут.\nЧитається: зе тре́йн сто́пс хі́р.\nСлово stop означає «зупинятися».\nПро річ теж додають s: stops, opens, leaves. Це коли річ одна.\nThe shop opens at nine. — Магазин відкривається о дев'ятій.\nЧитається: зе шо́п о́упенз ет на́йн.\nСлово nine означає «дев’ять». Слово at перед числом означає «о».\nСлово open в уроці 1 означало «відчинений», тут opens — «відчиняється».\nТак само, як work.\nThe bus leaves at eight. — Автобус відправляється о восьмій.\nСлово leave означає «відправлятися». Слово eight означає «вісім».\nThe class starts at ten. — Заняття починається о десятій.\nСлово class означає «заняття». Слово ten означає «десять».\nThe cafe closes early. — Кафе закривається рано.\nСлово cafe означає «кафе». Слово closes означає «зачиняється».\nThe doors open slowly. — Двері відчиняються повільно.\nСлово slowly означає «повільно».\nДверей кілька, тому open без s: s додають, коли річ одна.\nMy shift starts soon. — Моя зміна скоро починається.\nСлово shift означає «зміна». Слово soon означає «скоро».\nThe lift works well. — Ліфт працює добре.\nСлово well означає «добре».",
+        "en": "We can say the same about things.\nThe train stops here.\nThe word stop means “to halt.”\nWith a thing, we also add s: stops, opens, leaves. This is for one thing.\nThe shop opens at nine.\nThe word nine means “9.” The word at before a number means “when.”\nIn lesson 1 open meant “not shut.”\nHere opens means “starts to be open.”\nSame as work.\nThe bus leaves at eight.\nThe word leave means “to go away.” The word eight means “8.”\nThe class starts at ten.\nThe word class means “a lesson.” The word ten means “10.”\nThe cafe closes early.\nThe word cafe means “cafe.” The word closes means “shuts.”\nThe doors open slowly.\nThe word slowly means “not fast.”\nThere are several doors, so open has no s: add s when there is one thing.\nMy shift starts soon.\nThe word shift means “work hours.”\nThe word soon means “in a short time.”\nThe lift works well.\nThe word well means “in a good way.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:03.21",
+          "say": {
+            "ru": "зэ трэ́йн сто́пс хи́р",
+            "uk": "зе тре́йн сто́пс хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.22",
+          "say": {
+            "ru": "зэ шо́п о́упенз эт на́йн",
+            "uk": "зе шо́п о́упенз ет на́йн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.23",
+          "say": {
+            "ru": "зэ ба́с ли́вз эт э́йт",
+            "uk": "зе ба́с лі́вз ет е́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.24",
+          "say": {
+            "ru": "зэ клэ́с ста́ртс эт тэ́н",
+            "uk": "зе кле́с ста́ртс ет те́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.25",
+          "say": {
+            "ru": "зэ кэфэ́й кло́узиз э́рли",
+            "uk": "зе кефе́й кло́узіз е́рлі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.26",
+          "say": {
+            "ru": "зэ до́рз о́упен сло́ули",
+            "uk": "зе до́рз о́упен сло́улі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.27",
+          "say": {
+            "ru": "май ши́фт ста́ртс су́н",
+            "uk": "май ші́фт ста́ртс су́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд останавливается здесь»",
+            "uk": "Виберіть, як сказати: «Поїзд зупиняється тут»",
+            "en": "Choose how to say: “The train stops here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:03.21",
+          "options": [
+            "en-classic-r1:03.21",
+            "en-classic-r1:03.22",
+            "en-classic-r1:03.23"
+          ],
+          "answerId": "en-classic-r1:03.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазин открывается в девять»",
+            "uk": "Виберіть, як сказати: «Магазин відкривається о дев'ятій»",
+            "en": "Choose how to say: “The shop opens at nine.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.22",
+          "options": [
+            "en-classic-r1:03.22",
+            "en-classic-r1:03.23",
+            "en-classic-r1:03.24"
+          ],
+          "answerId": "en-classic-r1:03.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Занятие начинается в десять»",
+            "uk": "Виберіть, як сказати: «Заняття починається о десятій»",
+            "en": "Choose how to say: “The class starts at ten.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.24",
+          "options": [
+            "en-classic-r1:03.24",
+            "en-classic-r1:03.22",
+            "en-classic-r1:03.27"
+          ],
+          "answerId": "en-classic-r1:03.24"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Сестра, ночью, вместе",
+        "uk": "Сестра, вночі, разом",
+        "en": "Sister, nights, together"
+      },
+      "text": {
+        "ru": "Ещё несколько фраз о людях.\nMy sister works nights. — Моя сестра работает по ночам.\nЧитается: май си́стер уо́ркс на́йтс.\nСлово sister значит «сестра». Слово nights значит «ночью, по ночам».\nWe work together. — Мы работаем вместе.\nСлово together значит «вместе».\nI sometimes work at home. — Я иногда работаю дома.\nСлово sometimes значит «иногда».\nThe driver knows the way. — Водитель знает дорогу.\nСлово driver значит «водитель». Слово knows значит «знает». Слово way — «дорога».\nThis key opens the gate. — Этот ключ открывает ворота.\nСлово gate значит «ворота».",
+        "uk": "Ще кілька фраз про людей.\nMy sister works nights. — Моя сестра працює вночі.\nЧитається: май сі́стер уо́ркс на́йтс.\nСлово sister означає «сестра». Слово nights означає «вночі, по ночах».\nWe work together. — Ми працюємо разом.\nСлово together означає «разом».\nI sometimes work at home. — Я іноді працюю вдома.\nСлово sometimes означає «іноді».\nThe driver knows the way. — Водій знає дорогу.\nСлово driver означає «водій». Слово knows означає «знає». Слово way — «дорога».\nThis key opens the gate. — Цей ключ відчиняє ворота.\nСлово gate означає «ворота».",
+        "en": "A few more phrases about people.\nMy sister works nights.\nThe word sister means “sister.” The word nights means “in the night.”\nWe work together.\nThe word together means “with others.”\nI sometimes work at home.\nThe word sometimes means “not always.”\nThe driver knows the way.\nThe word driver means “who drives.”\nThe word knows means “has in mind.”\nThe word way means “road.”\nThis key opens the gate.\nThe word gate means “gate.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:03.41",
+          "say": {
+            "ru": "май си́стер уо́ркс на́йтс",
+            "uk": "май сі́стер уо́ркс на́йтс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.43",
+          "say": {
+            "ru": "уи уо́рк тугэ́зер",
+            "uk": "уі уо́рк туге́зер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.45",
+          "say": {
+            "ru": "ай са́мтаймз уо́рк эт хо́ум",
+            "uk": "ай са́мтаймз уо́рк ет хо́ум"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.49",
+          "say": {
+            "ru": "зэ дра́йвер но́уз зэ уэ́й",
+            "uk": "зе дра́йвер но́уз зе уе́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:03.50",
+          "say": {
+            "ru": "зис ки́ о́упенз зэ гэ́йт",
+            "uk": "зіс кі́ о́упенз зе ге́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы работаем вместе»",
+            "uk": "Виберіть, як сказати: «Ми працюємо разом»",
+            "en": "Choose how to say: “We work together.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:03.43",
+          "options": [
+            "en-classic-r1:03.43",
+            "en-classic-r1:03.01",
+            "en-classic-r1:03.41"
+          ],
+          "answerId": "en-classic-r1:03.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сестра работает по ночам»",
+            "uk": "Виберіть, як сказати: «Моя сестра працює вночі»",
+            "en": "Choose how to say: “My sister works nights.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.41",
+          "options": [
+            "en-classic-r1:03.41",
+            "en-classic-r1:03.43",
+            "en-classic-r1:03.45"
+          ],
+          "answerId": "en-classic-r1:03.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Водитель знает дорогу»",
+            "uk": "Виберіть, як сказати: «Водій знає дорогу»",
+            "en": "Choose how to say: “The driver knows the way.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:03.49",
+          "options": [
+            "en-classic-r1:03.49",
+            "en-classic-r1:03.50",
+            "en-classic-r1:03.41"
+          ],
+          "answerId": "en-classic-r1:03.49"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "lang": "it",
+  "lesson": 1,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying where you are"
+      },
+      "text": {
+        "en": "Sono qui. — I am here.\nSono means “I am”. Qui means “here”.\nSei qui. — You are here.\nSei means “you are”.\nThe word for “am / are” changes with who you talk about."
+      },
+      "exampleIds": [
+        "it:01:01",
+        "it:01:02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Am, are, is, we are"
+      },
+      "text": {
+        "en": "Lea è qui. — Lea is here.\nÈ means “is”. Use it for one person or thing.\nSiamo qui. — We are here.\nSiamo means “we are”.\nLoro sono lì. — They are there.\nLoro means “they”. Lì means “there”."
+      },
+      "exampleIds": [
+        "it:01:05",
+        "it:01:07",
+        "it:01:09"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Here or there"
+      },
+      "text": {
+        "en": "Sono lì. — I am there.\nSei lì. — You are there.\nSame sentence, only one word changes.\nNext, you build each sentence from word pieces.\nFirst pick who: Sono or Sei.\nThen pick the place: qui or lì."
+      },
+      "exampleIds": [
+        "it:01:04",
+        "it:01:03"
+      ]
+    }
+  ]
+}

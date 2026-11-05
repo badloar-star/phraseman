@@ -1,0 +1,572 @@
+{
+  "lang": "es",
+  "lesson": 5,
+  "title": {
+    "ru": "Где? Кто? Что?",
+    "uk": "Де? Хто? Що?",
+    "en": "Where? Who? What?"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Где?",
+        "uk": "Де?",
+        "en": "Where?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «где».\n¿Dónde estás? — «Где ты?»\nЧитается: до́нде эста́с.\nСлово dónde значит «где». Оно стоит в начале вопроса.\nОстальные слова вы уже знаете.\n¿Dónde está la llave? — «Где ключ?»\nКлючей несколько? Тогда están: ¿Dónde están las llaves?",
+        "uk": "Дивіться, як спитати «де».\n¿Dónde estás? — «Де ти?»\nЧитається: до́нде еста́с.\nСлово dónde означає «де». Воно стоїть на початку запитання.\nРешту слів ви вже знаєте.\n¿Dónde está la llave? — «Де ключ?»\nКлючів кілька? Тоді están: ¿Dónde están las llaves?",
+        "en": "Look at how to ask “where”.\n¿Dónde estás? — “Where are you?”\nThe word dónde means “where”. It stands at the start of the question.\nYou already know the other words.\n¿Dónde está la llave? — “Where is the key?”\nSeveral keys? Then están: ¿Dónde están las llaves?"
+      },
+      "examples": [
+        {
+          "phraseId": "es:05:01",
+          "say": {
+            "ru": "до́нде эста́с",
+            "uk": "до́нде еста́с"
+          }
+        },
+        {
+          "phraseId": "es:05:02",
+          "say": {
+            "ru": "до́нде эста́ А'на",
+            "uk": "до́нде еста́ А'на"
+          }
+        },
+        {
+          "phraseId": "es:05:04",
+          "say": {
+            "ru": "до́нде эста́мос",
+            "uk": "до́нде еста́мос"
+          }
+        },
+        {
+          "phraseId": "es:05:06",
+          "say": {
+            "ru": "до́нде эста́ ла йа́ве",
+            "uk": "до́нде еста́ ла йа́ве"
+          }
+        },
+        {
+          "phraseId": "es:05:07",
+          "say": {
+            "ru": "до́нде эста́н лас йа́вес",
+            "uk": "до́нде еста́н лас йа́вес"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где ты?»",
+            "uk": "Виберіть, як сказати: «Де ти?»",
+            "en": "Choose how to say: “Where are you?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:05:01",
+          "options": [
+            "es:05:01",
+            "es:05:02",
+            "es:05:04"
+          ],
+          "answerId": "es:05:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где мы?»",
+            "uk": "Виберіть, як сказати: «Де ми?»",
+            "en": "Choose how to say: “Where are we?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:04",
+          "options": [
+            "es:05:04",
+            "es:05:01",
+            "es:05:06"
+          ],
+          "answerId": "es:05:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где ключ?»",
+            "uk": "Виберіть, як сказати: «Де ключ?»",
+            "en": "Choose how to say: “Where is the key?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:06",
+          "options": [
+            "es:05:06",
+            "es:05:07",
+            "es:05:02"
+          ],
+          "answerId": "es:05:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Где туалет, лифт, аэропорт",
+        "uk": "Де туалет, ліфт, аеропорт",
+        "en": "Toilet, lift, airport"
+      },
+      "text": {
+        "ru": "Новые места для вопроса «где».\n¿Dónde está el aeropuerto? — «Где аэропорт?»\nЧитается: до́нде эста́ эль аэропуэ́рто.\nСлово aeropuerto значит «аэропорт», baño — «туалет».\nСлово recepción значит «стойка регистрации», ascensor — «лифт».",
+        "uk": "Нові місця для запитання «де».\n¿Dónde está el aeropuerto? — «Де аеропорт?»\nЧитається: до́нде еста́ ель аеропуе́рто.\nСлово aeropuerto означає «аеропорт», baño — «туалет».\nСлово recepción означає «стійка реєстрації», ascensor — «ліфт».",
+        "en": "New places for the question “where”.\n¿Dónde está el aeropuerto? — “Where is the airport?”\nThe word aeropuerto means “airport”, baño means “toilet”.\nThe word recepción means “reception desk”, ascensor means “lift”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:05:03",
+          "say": {
+            "ru": "до́нде эста́ эль аэропуэ́рто",
+            "uk": "до́нде еста́ ель аеропуе́рто"
+          }
+        },
+        {
+          "phraseId": "es:05:10",
+          "say": {
+            "ru": "до́нде эста́ эль ба́ньо",
+            "uk": "до́нде еста́ ель ба́ньо"
+          }
+        },
+        {
+          "phraseId": "es:05:09",
+          "say": {
+            "ru": "до́нде эста́ ла ресепсьо́н",
+            "uk": "до́нде еста́ ла ресепсьо́н"
+          }
+        },
+        {
+          "phraseId": "es:05:49",
+          "say": {
+            "ru": "до́нде эста́ эль асенсо́р",
+            "uk": "до́нде еста́ ель асенсо́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где аэропорт?»",
+            "uk": "Виберіть, як сказати: «Де аеропорт?»",
+            "en": "Choose how to say: “Where is the airport?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:05:03",
+          "options": [
+            "es:05:03",
+            "es:05:10",
+            "es:05:09"
+          ],
+          "answerId": "es:05:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где туалет?»",
+            "uk": "Виберіть, як сказати: «Де туалет?»",
+            "en": "Choose how to say: “Where is the toilet?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:10",
+          "options": [
+            "es:05:10",
+            "es:05:03",
+            "es:05:49"
+          ],
+          "answerId": "es:05:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где стойка регистрации?»",
+            "uk": "Виберіть, як сказати: «Де стійка реєстрації?»",
+            "en": "Choose how to say: “Where is the reception desk?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:09",
+          "options": [
+            "es:05:09",
+            "es:05:49",
+            "es:05:10"
+          ],
+          "answerId": "es:05:09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Кто?",
+        "uk": "Хто?",
+        "en": "Who?"
+      },
+      "text": {
+        "ru": "Чтобы спросить «кто», говорят quién.\n¿Quién está aquí? — «Кто здесь?»\nЧитается: кье́н эста́ аки́.\nСлово quién значит «кто». Остальное вы уже знаете.\n¿Quién está en el ascensor? — «Кто в лифте?»\nСлово banco значит «банк».",
+        "uk": "Щоб спитати «хто», кажуть quién.\n¿Quién está aquí? — «Хто тут?»\nЧитається: кье́н еста́ акі́.\nСлово quién означає «хто». Решту ви вже знаєте.\n¿Quién está en el ascensor? — «Хто в ліфті?»\nСлово banco означає «банк».",
+        "en": "To ask “who”, we say quién.\n¿Quién está aquí? — “Who is here?”\nThe word quién means “who”. You already know the rest.\n¿Quién está en el ascensor? — “Who is in the lift?”\nThe word banco means “bank”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:05:11",
+          "say": {
+            "ru": "кье́н эста́ аки́",
+            "uk": "кье́н еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:05:12",
+          "say": {
+            "ru": "кье́н эста́ эн ка́са",
+            "uk": "кье́н еста́ ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:05:17",
+          "say": {
+            "ru": "кье́н эста́ эн эль асенсо́р",
+            "uk": "кье́н еста́ ен ель асенсо́р"
+          }
+        },
+        {
+          "phraseId": "es:05:19",
+          "say": {
+            "ru": "кье́н эста́ эн эль ба́ньо",
+            "uk": "кье́н еста́ ен ель ба́ньо"
+          }
+        },
+        {
+          "phraseId": "es:05:42",
+          "say": {
+            "ru": "кье́н эста́ эн эль ба́нко",
+            "uk": "кье́н еста́ ен ель ба́нко"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто здесь?»",
+            "uk": "Виберіть, як сказати: «Хто тут?»",
+            "en": "Choose how to say: “Who is here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:05:11",
+          "options": [
+            "es:05:11",
+            "es:05:12",
+            "es:05:17"
+          ],
+          "answerId": "es:05:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто в лифте?»",
+            "uk": "Виберіть, як сказати: «Хто в ліфті?»",
+            "en": "Choose how to say: “Who is in the lift?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:17",
+          "options": [
+            "es:05:17",
+            "es:05:19",
+            "es:05:12"
+          ],
+          "answerId": "es:05:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто в банке?»",
+            "uk": "Виберіть, як сказати: «Хто в банку?»",
+            "en": "Choose how to say: “Who is in the bank?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:42",
+          "options": [
+            "es:05:42",
+            "es:05:19",
+            "es:05:11"
+          ],
+          "answerId": "es:05:42"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Кто он, кто вы",
+        "uk": "Хто він, хто ви",
+        "en": "Who is he, who are you"
+      },
+      "text": {
+        "ru": "Чтобы спросить, кто это, говорят quién es.\n¿Quién es él? — «Кто он?»\nЧитается: кье́н эс эль.\n¿Quién es ella? — «Кто она?»\n¿Quién es usted? — «Кто вы?» Слово usted — вежливое «вы».\nО нескольких людях: ¿Quiénes son ellos? — «Кто они?»\nСлово quiénes — это «кто» про нескольких.",
+        "uk": "Щоб спитати, хто це, кажуть quién es.\n¿Quién es él? — «Хто він?»\nЧитається: кье́н ес ель.\n¿Quién es ella? — «Хто вона?»\n¿Quién es usted? — «Хто ви?» Слово usted — ввічливе «ви».\nПро кількох людей: ¿Quiénes son ellos? — «Хто вони?»\nСлово quiénes — це «хто» про кількох.",
+        "en": "To ask who someone is, we say quién es.\n¿Quién es él? — “Who is he?”\n¿Quién es ella? — “Who is she?”\n¿Quién es usted? — “Who are you?” The word usted is the polite “you”.\nAbout several people: ¿Quiénes son ellos? — “Who are they?”\nThe word quiénes is “who” about several people."
+      },
+      "examples": [
+        {
+          "phraseId": "es:05:21",
+          "say": {
+            "ru": "кье́н эс эль",
+            "uk": "кье́н ес ель"
+          }
+        },
+        {
+          "phraseId": "es:05:22",
+          "say": {
+            "ru": "кье́н эс э́йя",
+            "uk": "кье́н ес е́йя"
+          }
+        },
+        {
+          "phraseId": "es:05:23",
+          "say": {
+            "ru": "кье́н э́рес",
+            "uk": "кье́н е́рес"
+          }
+        },
+        {
+          "phraseId": "es:05:24",
+          "say": {
+            "ru": "кье́н эс усте́д",
+            "uk": "кье́н ес усте́д"
+          }
+        },
+        {
+          "phraseId": "es:05:25",
+          "say": {
+            "ru": "кье́нес сон э́йос",
+            "uk": "кье́нес сон е́йос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто он?»",
+            "uk": "Виберіть, як сказати: «Хто він?»",
+            "en": "Choose how to say: “Who is he?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:05:21",
+          "options": [
+            "es:05:21",
+            "es:05:22",
+            "es:05:24"
+          ],
+          "answerId": "es:05:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто она?»",
+            "uk": "Виберіть, як сказати: «Хто вона?»",
+            "en": "Choose how to say: “Who is she?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:22",
+          "options": [
+            "es:05:22",
+            "es:05:21",
+            "es:05:23"
+          ],
+          "answerId": "es:05:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто вы?»",
+            "uk": "Виберіть, як сказати: «Хто ви?»",
+            "en": "Choose how to say: “Who are you? (polite)”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:24",
+          "options": [
+            "es:05:24",
+            "es:05:23",
+            "es:05:25"
+          ],
+          "answerId": "es:05:24"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Что? Какой?",
+        "uk": "Що? Який?",
+        "en": "What? Which?"
+      },
+      "text": {
+        "ru": "Слово qué значит «что» или «какой».\n¿Qué es esto? — «Что это?»\nЧитается: ке эс э́сто.\nСлово esto значит «это». Слово eso тоже «это»: так говорят о том, что возле собеседника.\n¿Qué libro está en la mesa? — «Какая книга на столе?»\nСлово qué стоит перед названием вещи.",
+        "uk": "Слово qué означає «що» або «який».\n¿Qué es esto? — «Що це?»\nЧитається: ке ес е́сто.\nСлово esto означає «це». Слово eso теж «це»: так кажуть про те, що біля співрозмовника.\n¿Qué libro está en la mesa? — «Яка книжка на столі?»\nСлово qué стоїть перед назвою речі.",
+        "en": "The word qué means “what” or “which”.\n¿Qué es esto? — “What is this?”\nThe word esto means “this”.\nThe word eso is also “this”:\nit is for what is near the other person.\n¿Qué libro está en la mesa? — “Which book is on the table?”\nThe word qué stands before the name of the thing."
+      },
+      "examples": [
+        {
+          "phraseId": "es:05:31",
+          "say": {
+            "ru": "ке эс э́сто",
+            "uk": "ке ес е́сто"
+          }
+        },
+        {
+          "phraseId": "es:05:32",
+          "say": {
+            "ru": "ке эс э́со",
+            "uk": "ке ес е́со"
+          }
+        },
+        {
+          "phraseId": "es:05:33",
+          "say": {
+            "ru": "ке ли́бро эста́ эн ла ме́са",
+            "uk": "ке лі́бро еста́ ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:05:35",
+          "say": {
+            "ru": "ке йа́ве эста́ эн эль бо́льсо",
+            "uk": "ке йа́ве еста́ ен ель бо́льсо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Что это?»",
+            "uk": "Виберіть, як сказати: «Що це?»",
+            "en": "Choose how to say: “What is this?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:05:31",
+          "options": [
+            "es:05:31",
+            "es:05:33",
+            "es:05:35"
+          ],
+          "answerId": "es:05:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Какая книга на столе?»",
+            "uk": "Виберіть, як сказати: «Яка книжка на столі?»",
+            "en": "Choose how to say: “Which book is on the table?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:33",
+          "options": [
+            "es:05:33",
+            "es:05:35",
+            "es:05:31"
+          ],
+          "answerId": "es:05:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Какой ключ в сумке?»",
+            "uk": "Виберіть, як сказати: «Який ключ у сумці?»",
+            "en": "Choose how to say: “Which key is in the bag?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:35",
+          "options": [
+            "es:05:35",
+            "es:05:33",
+            "es:05:32"
+          ],
+          "answerId": "es:05:35"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Сколько стоит?",
+        "uk": "Скільки коштує?",
+        "en": "How much is it?"
+      },
+      "text": {
+        "ru": "Слово cuánto значит «сколько».\n¿Cuánto cuesta el billete? — «Сколько стоит билет?»\nЧитается: куа́нто куэ́ста эль бийе́те.\nСлово cuesta значит «стоит». Оно из слова costar — «стоить».\nТеперь снова «где»: врач, медсестра, паспорт.",
+        "uk": "Слово cuánto означає «скільки».\n¿Cuánto cuesta el billete? — «Скільки коштує квиток?»\nЧитається: куа́нто куе́ста ель бійе́те.\nСлово cuesta означає «коштує». Воно зі слова costar — «коштувати».\nТепер знову «де»: лікар, медсестра, паспорт.",
+        "en": "The word cuánto means “how much”.\n¿Cuánto cuesta el billete? — “How much is the ticket?”\nThe word cuesta means “costs”. It comes from the word costar — “to cost”.\nNow “where” again: doctor, nurse, passport."
+      },
+      "examples": [
+        {
+          "phraseId": "es:05:39",
+          "say": {
+            "ru": "куа́нто куэ́ста эль бийе́те",
+            "uk": "куа́нто куе́ста ель бійе́те"
+          }
+        },
+        {
+          "phraseId": "es:05:43",
+          "say": {
+            "ru": "до́нде эста́ эль пасапо́рте",
+            "uk": "до́нде еста́ ель пасапо́рте"
+          }
+        },
+        {
+          "phraseId": "es:05:41",
+          "say": {
+            "ru": "до́нде эста́ эль ме́дико",
+            "uk": "до́нде еста́ ель ме́діко"
+          }
+        },
+        {
+          "phraseId": "es:05:48",
+          "say": {
+            "ru": "до́нде эста́ ла энферме́ра",
+            "uk": "до́нде еста́ ла енферме́ра"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько стоит билет?»",
+            "uk": "Виберіть, як сказати: «Скільки коштує квиток?»",
+            "en": "Choose how to say: “How much is the ticket?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:05:39",
+          "options": [
+            "es:05:39",
+            "es:05:43",
+            "es:05:41"
+          ],
+          "answerId": "es:05:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где паспорт?»",
+            "uk": "Виберіть, як сказати: «Де паспорт?»",
+            "en": "Choose how to say: “Where is the passport?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:43",
+          "options": [
+            "es:05:43",
+            "es:05:41",
+            "es:05:48"
+          ],
+          "answerId": "es:05:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где медсестра?»",
+            "uk": "Виберіть, як сказати: «Де медсестра?»",
+            "en": "Choose how to say: “Where is the nurse?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:05:48",
+          "options": [
+            "es:05:48",
+            "es:05:41",
+            "es:05:39"
+          ],
+          "answerId": "es:05:48"
+        }
+      ]
+    }
+  ]
+}

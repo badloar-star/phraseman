@@ -1,0 +1,531 @@
+{
+  "lang": "en",
+  "lesson": 5,
+  "title": {
+    "ru": "Как задать вопрос о действии",
+    "uk": "Як поставити питання про дію",
+    "en": "How to ask about an action"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Вопрос: Do you…?",
+        "uk": "Питання: Do you…?",
+        "en": "A question: Do you…?"
+      },
+      "text": {
+        "ru": "Смотрите, как задать вопрос: слово Do ставят в начало.\nDo you drive? — Вы водите машину?\nЧитается: ду́ ю дра́йв.\nСлово Do в начале показывает, что это вопрос. По-русски такого слова нет.\nСлово you значит «вы». Слово we значит «мы». Слово they значит «они».\nDo we pay here? — Мы платим здесь?\nЧитается: ду́ уи пэ́й хи́р.\nСлово pay значит «платить».\nСлова: sell — «продавать», stamps — «марки», street — «улица».",
+        "uk": "Дивіться, як поставити питання: слово Do ставлять на початок.\nDo you drive? — Ви керуєте автомобілем?\nЧитається: ду́ ю дра́йв.\nСлово Do на початку показує, що це питання. Українською такого слова немає.\nСлово you означає «ви». Слово we означає «ми». Слово they означає «вони».\nDo we pay here? — Ми платимо тут?\nЧитається: ду́ уі пе́й хі́р.\nСлово pay означає «платити».\nСлова: sell — «продавати», stamps — «марки», street — «вулиця».",
+        "en": "Look at how to ask: put the word Do first.\nDo you drive?\nThe word Do at the start shows a question.\nThe word you means “you.”\nDo we pay here?\nThe word pay means “to give money.”\nThe words: sell, stamps, street."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:05.01",
+          "say": {
+            "ru": "ду́ ю дра́йв",
+            "uk": "ду́ ю дра́йв"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.03",
+          "say": {
+            "ru": "ду́ зэй уо́рк ни́рбай",
+            "uk": "ду́ зей уо́рк ні́рбай"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.16",
+          "say": {
+            "ru": "ду́ ю сэ́л стэ́мпс",
+            "uk": "ду́ ю се́л сте́мпс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.20",
+          "say": {
+            "ru": "ду́ уи пэ́й хи́р",
+            "uk": "ду́ уі пе́й хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.21",
+          "say": {
+            "ru": "ду́ ю ли́в он зис стри́т",
+            "uk": "ду́ ю лі́в он зіс стрі́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы водите машину?»",
+            "uk": "Виберіть, як сказати: «Ви керуєте автомобілем?»",
+            "en": "Choose how to say: “Do you drive?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:05.01",
+          "options": [
+            "en-classic-r1:05.01",
+            "en-classic-r1:05.03",
+            "en-classic-r1:05.20"
+          ],
+          "answerId": "en-classic-r1:05.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы продаете марки?»",
+            "uk": "Виберіть, як сказати: «Ви продаєте марки?»",
+            "en": "Choose how to say: “Do you sell stamps?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.16",
+          "options": [
+            "en-classic-r1:05.16",
+            "en-classic-r1:05.21",
+            "en-classic-r1:05.20"
+          ],
+          "answerId": "en-classic-r1:05.16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы живете на этой улице?»",
+            "uk": "Виберіть, як сказати: «Ви живете на цій вулиці?»",
+            "en": "Choose how to say: “Do you live on this street?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.21",
+          "options": [
+            "en-classic-r1:05.21",
+            "en-classic-r1:05.01",
+            "en-classic-r1:05.03"
+          ],
+          "answerId": "en-classic-r1:05.21"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Про него и про неё: Does…?",
+        "uk": "Про нього і про неї: Does…?",
+        "en": "About him and her: Does…?"
+      },
+      "text": {
+        "ru": "Про него, про неё и про одну вещь вместо Do ставят Does.\nDoes she drive? — Она водит машину?\nЧитается: да́з ши дра́йв.\nПосле Does слово остаётся прежним: drive. Буквы s в конце нет.\nСлова: landlord — «арендодатель», balcony — «балкон».\nСлова: oven — «духовка», spare — «запасной».",
+        "uk": "Про нього, про неї і про одну річ замість Do ставлять Does.\nDoes she drive? — Вона керує автомобілем?\nЧитається: да́з ші дра́йв.\nПісля Does слово лишається тим самим: drive. Букви s у кінці немає.\nСлова: landlord — «орендодавець», balcony — «балкон».\nСлова: oven — «духовка», spare — «запасний».",
+        "en": "For him, her or one thing we use Does instead of Do.\nDoes she drive?\nAfter Does the word stays the same: drive. No s at the end.\nThe words: landlord, balcony.\nThe words: oven, spare."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:05.02",
+          "say": {
+            "ru": "да́з ши дра́йв",
+            "uk": "да́з ші дра́йв"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.30",
+          "say": {
+            "ru": "да́з зэ лэ́ндлорд ли́в ни́рбай",
+            "uk": "да́з зе ле́ндлорд лі́в ні́рбай"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.22",
+          "say": {
+            "ru": "да́з ёр флэ́т хэ́в э бэ́лкони",
+            "uk": "да́з йор фле́т хе́в е бе́лконі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.26",
+          "say": {
+            "ru": "да́з зэ а́вен уо́рк",
+            "uk": "да́з зе а́вен уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.38",
+          "say": {
+            "ru": "да́з зэ о́фис хэ́в э спэ́р ки́",
+            "uk": "да́з зе о́фіс хе́в е спе́р кі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она водит машину?»",
+            "uk": "Виберіть, як сказати: «Вона керує автомобілем?»",
+            "en": "Choose how to say: “Does she drive?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:05.02",
+          "options": [
+            "en-classic-r1:05.02",
+            "en-classic-r1:05.01",
+            "en-classic-r1:05.30"
+          ],
+          "answerId": "en-classic-r1:05.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Духовка работает?»",
+            "uk": "Виберіть, як сказати: «Духовка працює?»",
+            "en": "Choose how to say: “Does the oven work?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.26",
+          "options": [
+            "en-classic-r1:05.26",
+            "en-classic-r1:05.22",
+            "en-classic-r1:05.38"
+          ],
+          "answerId": "en-classic-r1:05.26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В вашей квартире есть балкон?»",
+            "uk": "Виберіть, як сказати: «У вашій квартирі є балкон?»",
+            "en": "Choose how to say: “Does your flat have a balcony?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.22",
+          "options": [
+            "en-classic-r1:05.22",
+            "en-classic-r1:05.30",
+            "en-classic-r1:05.02"
+          ],
+          "answerId": "en-classic-r1:05.22"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Дом и дорога",
+        "uk": "Дім і дорога",
+        "en": "Home and road"
+      },
+      "text": {
+        "ru": "Вопросы о доме и дороге строятся так же.\nDo the buses run on Sundays? — Автобусы ходят по воскресеньям?\nЧитается: ду́ зэ ба́сиз ра́н он са́ндэйз.\nАвтобусов несколько, поэтому Do. Слово Sundays значит «по воскресеньям».\nСлова: hear — «слышать», noise — «шум», quiet — «тихий».\nСлова: carriage — «вагон», itself — «сам», by itself — «сам по себе».\nСлова: park — «парковать машину», permit — «пропуск».\nЕщё слова: left — «слева», next — «следующий», down — «вниз».",
+        "uk": "Питання про дім і дорогу будуються так само.\nDo the buses run on Sundays? — Автобуси ходять по неділях?\nЧитається: ду́ зе ба́сіз ра́н он са́ндейз.\nАвтобусів кілька, тому Do. Слово Sundays означає «по неділях».\nСлова: hear — «чути», noise — «шум», quiet — «тихий».\nСлова: carriage — «вагон», itself — «сам», by itself — «сам по собі».\nСлова: park — «паркувати машину», permit — «дозвіл».\nЩе слова: left — «ліворуч», next — «наступний», down — «вниз».",
+        "en": "Questions about home and road work the same way.\nDo the buses run on Sundays?\nThere are many buses, so Do.\nThe words: hear, noise, quiet.\nThe words: carriage, itself.\nThe words: park, permit.\nMore words: left, next, down."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:05.18",
+          "say": {
+            "ru": "ду́ зэ ба́сиз ра́н он са́ндэйз",
+            "uk": "ду́ зе ба́сіз ра́н он са́ндейз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.27",
+          "say": {
+            "ru": "ду́ ю хи́р зэ́т но́йз",
+            "uk": "ду́ ю хі́р зе́т но́йз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.28",
+          "say": {
+            "ru": "да́з зэ гэ́йт ша́т ба́й итсэ́лф",
+            "uk": "да́з зе ге́йт ша́т ба́й ітсе́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.29",
+          "say": {
+            "ru": "ду́ уи ни́д э па́ркинг пэ́рмит",
+            "uk": "ду́ уі ні́д е па́ркінг пе́рміт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.48",
+          "say": {
+            "ru": "да́з зис трэ́йн хэ́в э куа́йет кэ́ридж",
+            "uk": "да́з зіс тре́йн хе́в е куа́йет ке́рідж"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобусы ходят по воскресеньям?»",
+            "uk": "Виберіть, як сказати: «Автобуси ходять по неділях?»",
+            "en": "Choose how to say: “Do the buses run on Sundays?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:05.18",
+          "options": [
+            "en-classic-r1:05.18",
+            "en-classic-r1:05.27",
+            "en-classic-r1:05.28"
+          ],
+          "answerId": "en-classic-r1:05.18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы слышите этот шум?»",
+            "uk": "Виберіть, як сказати: «Ви чуєте цей шум?»",
+            "en": "Choose how to say: “Do you hear that noise?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.27",
+          "options": [
+            "en-classic-r1:05.27",
+            "en-classic-r1:05.28",
+            "en-classic-r1:05.29"
+          ],
+          "answerId": "en-classic-r1:05.27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нужен ли нам парковочный пропуск?»",
+            "uk": "Виберіть, як сказати: «Чи потрібен нам дозвіл на паркування?»",
+            "en": "Choose how to say: “Do we need a parking permit?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.29",
+          "options": [
+            "en-classic-r1:05.29",
+            "en-classic-r1:05.48",
+            "en-classic-r1:05.18"
+          ],
+          "answerId": "en-classic-r1:05.29"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Работа",
+        "uk": "Робота",
+        "en": "Work"
+      },
+      "text": {
+        "ru": "Спросим о работе.\nDoes your team start early? — Ваша команда начинает работу рано?\nЧитается: да́з ёр ти́м ста́рт э́рли.\nСлово team значит «команда». Your team — это одна команда, поэтому Does.\nСлова: new — «новый», wear — «носить одежду», manager — «менеджер».\nСлова: rota — «график работы», get — «получать», break — «перерыв».\nСлова: printer — «принтер», paper — «бумага», sign — «подписывать».\nСлова: colleague — «коллега», weekends — «выходные».",
+        "uk": "Запитаємо про роботу.\nDoes your team start early? — Чи ваша команда починає роботу рано?\nЧитається: да́з йор ті́м ста́рт е́рлі.\nСлово team означає «команда». Your team — це одна команда, тому Does.\nСлова: new — «новий», wear — «носити одяг», manager — «менеджер».\nСлова: rota — «графік роботи», get — «отримувати», break — «перерва».\nСлова: printer — «принтер», paper — «папір», sign — «підписувати».\nСлова: colleague — «колега», weekends — «вихідні».",
+        "en": "Let us ask about work.\nDoes your team start early?\nYour team is one group, so Does.\nThe words: new, wear, manager.\nThe words: rota, get, break.\nThe words: printer, paper, sign.\nThe words: colleague, weekends."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:05.31",
+          "say": {
+            "ru": "ду́ ю ла́йк ёр ню́ ши́фт",
+            "uk": "ду́ ю ла́йк йор ню́ ші́фт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.32",
+          "say": {
+            "ru": "да́з ёр ти́м ста́рт э́рли",
+            "uk": "да́з йор ті́м ста́рт е́рлі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.33",
+          "say": {
+            "ru": "ду́ зэй уэ́р э ю́ниформ",
+            "uk": "ду́ зей уе́р е ю́ніформ"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.34",
+          "say": {
+            "ru": "да́з ёр мэ́нэджер чэ́к зэ ро́ута",
+            "uk": "да́з йор ме́неджер че́к зе ро́ута"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.35",
+          "say": {
+            "ru": "ду́ ю гэ́т э ла́нч брэ́йк",
+            "uk": "ду́ ю ге́т е ла́нч бре́йк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.36",
+          "say": {
+            "ru": "да́з зэ при́нтер ни́д пэ́йпер",
+            "uk": "да́з зе прі́нтер ні́д пе́йпер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.37",
+          "say": {
+            "ru": "ду́ уи са́йн зис фо́рм",
+            "uk": "ду́ уі са́йн зіс фо́рм"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.40",
+          "say": {
+            "ru": "да́з ёр ко́лиг уо́рк уи́кэндз",
+            "uk": "да́з йор ко́ліг уо́рк уі́кендз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они носят униформу?»",
+            "uk": "Виберіть, як сказати: «Чи носять вони уніформу?»",
+            "en": "Choose how to say: “Do they wear a uniform?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:05.33",
+          "options": [
+            "en-classic-r1:05.33",
+            "en-classic-r1:05.32",
+            "en-classic-r1:05.31"
+          ],
+          "answerId": "en-classic-r1:05.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нужна ли принтеру бумага?»",
+            "uk": "Виберіть, як сказати: «Чи потрібен папір для принтера?»",
+            "en": "Choose how to say: “Does the printer need paper?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.36",
+          "options": [
+            "en-classic-r1:05.36",
+            "en-classic-r1:05.37",
+            "en-classic-r1:05.34"
+          ],
+          "answerId": "en-classic-r1:05.36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваш коллега работает по выходным?»",
+            "uk": "Виберіть, як сказати: «Чи працює ваш колега у вихідні?»",
+            "en": "Choose how to say: “Does your colleague work weekends?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.40",
+          "options": [
+            "en-classic-r1:05.40",
+            "en-classic-r1:05.35",
+            "en-classic-r1:05.32"
+          ],
+          "answerId": "en-classic-r1:05.40"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Почта и покупки",
+        "uk": "Пошта і покупки",
+        "en": "Post and shopping"
+      },
+      "text": {
+        "ru": "Так же спрашивают о почте и покупках.\nDoes the parcel fit in the box? — Помещается ли посылка в коробку?\nЧитается: да́з зэ па́рсел фи́т ин зэ бо́кс.\nСлова: parcel — «посылка», box — «коробка».\nСлова: delivery — «доставка», address — «адрес», send — «отправлять».\nСлова: confirmation — «подтверждение», collect — «забирать».\nСлова: keep — «хранить», anyone — «кто-нибудь», post — «почта».",
+        "uk": "Так само питають про пошту і покупки.\nDoes the parcel fit in the box? — Чи поміщається посилка в коробку?\nЧитається: да́з зе па́рсел фі́т ін зе бо́кс.\nСлова: parcel — «посилка», box — «коробка».\nСлова: delivery — «доставка», address — «адреса», send — «надсилати».\nСлова: confirmation — «підтвердження», collect — «забирати».\nСлова: keep — «зберігати», anyone — «хтось», post — «пошта».",
+        "en": "We ask the same about post and shopping.\nDoes the parcel fit in the box?\nThe words: parcel, box.\nThe words: delivery, address, send.\nThe words: confirmation, collect.\nThe words: keep, anyone, post."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:05.39",
+          "say": {
+            "ru": "ду́ ю ки́п зэ риси́тс",
+            "uk": "ду́ ю кі́п зе рісі́тс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.41",
+          "say": {
+            "ru": "да́з зис пра́йс инклу́д дели́вери",
+            "uk": "да́з зіс пра́йс інклу́д делі́вері"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.42",
+          "say": {
+            "ru": "ду́ ю ни́д май адрэ́с",
+            "uk": "ду́ ю ні́д май адре́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.43",
+          "say": {
+            "ru": "да́з зэ па́рсел фи́т ин зэ бо́кс",
+            "uk": "да́з зе па́рсел фі́т ін зе бо́кс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.44",
+          "say": {
+            "ru": "ду́ ю сэ́нд э конфермэ́йшн и́мэйл",
+            "uk": "ду́ ю се́нд е конферме́йшн і́мейл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.45",
+          "say": {
+            "ru": "да́з э́ниуан чэ́к зэ по́уст",
+            "uk": "да́з е́ніуан че́к зе по́уст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:05.46",
+          "say": {
+            "ru": "ду́ ай колэ́кт ит хи́р",
+            "uk": "ду́ ай коле́кт іт хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Помещается ли посылка в коробку?»",
+            "uk": "Виберіть, як сказати: «Чи поміщається посилка в коробку?»",
+            "en": "Choose how to say: “Does the parcel fit in the box?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:05.43",
+          "options": [
+            "en-classic-r1:05.43",
+            "en-classic-r1:05.41",
+            "en-classic-r1:05.42"
+          ],
+          "answerId": "en-classic-r1:05.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вам нужен мой адрес?»",
+            "uk": "Виберіть, як сказати: «Вам потрібна моя адреса?»",
+            "en": "Choose how to say: “Do you need my address?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.42",
+          "options": [
+            "en-classic-r1:05.42",
+            "en-classic-r1:05.41",
+            "en-classic-r1:05.44"
+          ],
+          "answerId": "en-classic-r1:05.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне забирать это здесь?»",
+            "uk": "Виберіть, як сказати: «Мені забирати це тут?»",
+            "en": "Choose how to say: “Do I collect it here?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:05.46",
+          "options": [
+            "en-classic-r1:05.46",
+            "en-classic-r1:05.45",
+            "en-classic-r1:05.39"
+          ],
+          "answerId": "en-classic-r1:05.46"
+        }
+      ]
+    }
+  ]
+}

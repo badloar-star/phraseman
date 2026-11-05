@@ -1,0 +1,44 @@
+{
+  "lang": "it",
+  "lesson": 3,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Asking yes or no"
+      },
+      "text": {
+        "en": "Sei lì. — You are there.\nSei lì? — Are you there?\nThe words are the same.\nOnly the question mark changes.\nWhen you say it, your voice goes up at the end."
+      },
+      "exampleIds": [
+        "it:03:01"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Same order, new meaning"
+      },
+      "text": {
+        "en": "Paolo è in ufficio? — Is Paolo at the office?\nLea è alla stazione? — Is Lea at the train station?\nAlla stazione means “at the station”.\nEnglish swaps the words: “Is Paolo…”.\nItalian keeps the order and adds the question mark."
+      },
+      "exampleIds": [
+        "it:03:05",
+        "it:03:06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Ask it yourself"
+      },
+      "text": {
+        "en": "Sei pronto? — Are you ready?\nLei è pronta? — Is she ready?\nNext, you build each question from word pieces.\nPick the words as for a normal sentence.\nThe question mark is added for you."
+      },
+      "exampleIds": [
+        "it:03:03",
+        "it:03:04"
+      ]
+    }
+  ]
+}

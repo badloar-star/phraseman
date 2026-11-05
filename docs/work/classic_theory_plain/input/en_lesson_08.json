@@ -1,0 +1,939 @@
+{
+ "lang": "en",
+ "lesson": 8,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:08.01",
+   "target": "I start at seven.",
+   "ru": "Я начинаю в семь.",
+   "uk": "Я починаю о сьомій."
+  },
+  {
+   "id": "en-classic-r1:08.02",
+   "target": "She starts at noon.",
+   "ru": "Она начинает в полдень.",
+   "uk": "Вона починає опівдні."
+  },
+  {
+   "id": "en-classic-r1:08.03",
+   "target": "We meet on Tuesday.",
+   "ru": "Мы встречаемся во вторник.",
+   "uk": "Ми зустрічаємося у вівторок."
+  },
+  {
+   "id": "en-classic-r1:08.04",
+   "target": "He works on Fridays.",
+   "ru": "Он работает по пятницам.",
+   "uk": "Він працює по п'ятницях."
+  },
+  {
+   "id": "en-classic-r1:08.05",
+   "target": "I travel in July.",
+   "ru": "Я путешествую в июле.",
+   "uk": "Я подорожую в липні."
+  },
+  {
+   "id": "en-classic-r1:08.06",
+   "target": "She studies in the evening.",
+   "ru": "Она учится вечером.",
+   "uk": "Вона навчається ввечері."
+  },
+  {
+   "id": "en-classic-r1:08.07",
+   "target": "We finish at midnight.",
+   "ru": "Мы заканчиваем в полночь.",
+   "uk": "Ми закінчуємо опівночі."
+  },
+  {
+   "id": "en-classic-r1:08.08",
+   "target": "They arrive on Monday.",
+   "ru": "Они приезжают в понедельник.",
+   "uk": "Вони прибувають у понеділок."
+  },
+  {
+   "id": "en-classic-r1:08.09",
+   "target": "I walk in the morning.",
+   "ru": "Я гуляю утром.",
+   "uk": "Я гуляю вранці."
+  },
+  {
+   "id": "en-classic-r1:08.10",
+   "target": "He works at night.",
+   "ru": "Он работает ночью.",
+   "uk": "Він працює вночі."
+  },
+  {
+   "id": "en-classic-r1:08.11",
+   "target": "The gate opens at half past six.",
+   "ru": "Ворота открываются в половине седьмого.",
+   "uk": "Ворота відчиняються о пів на сьому."
+  },
+  {
+   "id": "en-classic-r1:08.12",
+   "target": "The train leaves at a quarter past eight.",
+   "ru": "Поезд отправляется в четверть девятого.",
+   "uk": "Поїзд відправляється о чверть на дев'яту."
+  },
+  {
+   "id": "en-classic-r1:08.13",
+   "target": "Lunch starts at one.",
+   "ru": "Обед начинается в час дня.",
+   "uk": "Обід починається о першій."
+  },
+  {
+   "id": "en-classic-r1:08.14",
+   "target": "The desk closes at half past four.",
+   "ru": "Стойка регистрации закрывается в половине пятого.",
+   "uk": "Стійка зачиняється о пів на п'яту."
+  },
+  {
+   "id": "en-classic-r1:08.15",
+   "target": "We meet at lunchtime.",
+   "ru": "Мы встречаемся в обеденное время.",
+   "uk": "Ми зустрічаємося під час обіду."
+  },
+  {
+   "id": "en-classic-r1:08.16",
+   "target": "The concert starts at eight fifteen.",
+   "ru": "Концерт начинается в восемь пятнадцать.",
+   "uk": "Концерт починається о восьмій п'ятнадцять."
+  },
+  {
+   "id": "en-classic-r1:08.17",
+   "target": "The alarm rings at six thirty.",
+   "ru": "Будильник звонит в шесть тридцать.",
+   "uk": "Будильник дзвонить о шостій тридцять."
+  },
+  {
+   "id": "en-classic-r1:08.18",
+   "target": "The bakery opens at dawn.",
+   "ru": "Пекарня открывается на рассвете.",
+   "uk": "Пекарня відкривається на світанку."
+  },
+  {
+   "id": "en-classic-r1:08.19",
+   "target": "The shift changes at ten.",
+   "ru": "Пересменка в десять.",
+   "uk": "Перезмінка о десятій."
+  },
+  {
+   "id": "en-classic-r1:08.20",
+   "target": "The bell rings at midday.",
+   "ru": "Звонок звенит в полдень.",
+   "uk": "Дзвінок дзвонить опівдні."
+  },
+  {
+   "id": "en-classic-r1:08.21",
+   "target": "The office closes on public holidays.",
+   "ru": "Офис закрыт в праздничные дни.",
+   "uk": "Офіс зачиняється у святкові дні."
+  },
+  {
+   "id": "en-classic-r1:08.22",
+   "target": "We train on Wednesday evenings.",
+   "ru": "Мы тренируемся по средам вечером.",
+   "uk": "Ми тренуємося по середах ввечері."
+  },
+  {
+   "id": "en-classic-r1:08.23",
+   "target": "The bill is due on Friday.",
+   "ru": "Счет нужно оплатить в пятницу.",
+   "uk": "Рахунок має бути сплачений у п'ятницю."
+  },
+  {
+   "id": "en-classic-r1:08.24",
+   "target": "My appointment is on Thursday morning.",
+   "ru": "Моя встреча назначена на утро четверга.",
+   "uk": "Моя зустріч у четвер вранці."
+  },
+  {
+   "id": "en-classic-r1:08.25",
+   "target": "The market opens on Saturdays.",
+   "ru": "Рынок открыт по субботам.",
+   "uk": "Ринок відкривається по суботах."
+  },
+  {
+   "id": "en-classic-r1:08.26",
+   "target": "The parcel arrives on Monday afternoon.",
+   "ru": "Посылка прибудет в понедельник днем.",
+   "uk": "Посилка прибуває в понеділок вдень."
+  },
+  {
+   "id": "en-classic-r1:08.27",
+   "target": "The rent is due on the first of May.",
+   "ru": "Арендная плата должна быть внесена первого мая.",
+   "uk": "Орендна плата має бути сплачена першого травня."
+  },
+  {
+   "id": "en-classic-r1:08.28",
+   "target": "Her birthday is on New Year's Day.",
+   "ru": "Ее день рождения приходится на Новый год.",
+   "uk": "Її день народження на Новий рік."
+  },
+  {
+   "id": "en-classic-r1:08.29",
+   "target": "The last class is on Friday evening.",
+   "ru": "Последнее занятие в пятницу вечером.",
+   "uk": "Останнє заняття у п'ятницю ввечері."
+  },
+  {
+   "id": "en-classic-r1:08.30",
+   "target": "We do the shopping on Sundays.",
+   "ru": "Мы ходим за покупками по воскресеньям.",
+   "uk": "Ми робимо покупки по неділях."
+  },
+  {
+   "id": "en-classic-r1:08.31",
+   "target": "The days are short in winter.",
+   "ru": "Дни зимой короткие.",
+   "uk": "Взимку дні короткі."
+  },
+  {
+   "id": "en-classic-r1:08.32",
+   "target": "Our course starts in September.",
+   "ru": "Наш курс начинается в сентябре.",
+   "uk": "Наш курс починається у вересні."
+  },
+  {
+   "id": "en-classic-r1:08.33",
+   "target": "The kitchen gets hot in summer.",
+   "ru": "На кухне летом жарко.",
+   "uk": "Влітку на кухні стає спекотно."
+  },
+  {
+   "id": "en-classic-r1:08.34",
+   "target": "We usually travel in spring.",
+   "ru": "Обычно мы путешествуем весной.",
+   "uk": "Ми зазвичай подорожуємо навесні."
+  },
+  {
+   "id": "en-classic-r1:08.35",
+   "target": "The park is quiet in the afternoon.",
+   "ru": "В парке тихо днем.",
+   "uk": "У парку тихо вдень."
+  },
+  {
+   "id": "en-classic-r1:08.36",
+   "target": "My birthday is in June.",
+   "ru": "Мой день рождения в июне.",
+   "uk": "Мій день народження в червні."
+  },
+  {
+   "id": "en-classic-r1:08.37",
+   "target": "Our club meets in January.",
+   "ru": "Наш клуб собирается в январе.",
+   "uk": "Наш клуб зустрічається в січні."
+  },
+  {
+   "id": "en-classic-r1:08.38",
+   "target": "The new timetable starts in April.",
+   "ru": "Новое расписание вступает в силу в апреле.",
+   "uk": "Новий розклад починається у квітні."
+  },
+  {
+   "id": "en-classic-r1:08.39",
+   "target": "The garden is beautiful in autumn.",
+   "ru": "Сад прекрасен осенью.",
+   "uk": "Сад прекрасний восени."
+  },
+  {
+   "id": "en-classic-r1:08.40",
+   "target": "We take a break in the evening.",
+   "ru": "Мы делаем перерыв вечером.",
+   "uk": "Ми робимо перерву ввечері."
+  },
+  {
+   "id": "en-classic-r1:08.41",
+   "target": "I work every Monday.",
+   "ru": "Я работаю каждый понедельник.",
+   "uk": "Я працюю щопонеділка."
+  },
+  {
+   "id": "en-classic-r1:08.42",
+   "target": "She starts next week.",
+   "ru": "Она начинает на следующей неделе.",
+   "uk": "Вона починає наступного тижня."
+  },
+  {
+   "id": "en-classic-r1:08.43",
+   "target": "The film starts tonight.",
+   "ru": "Фильм начинается сегодня вечером.",
+   "uk": "Фільм починається сьогодні ввечері."
+  },
+  {
+   "id": "en-classic-r1:08.44",
+   "target": "I see him every morning.",
+   "ru": "Я вижу его каждое утро.",
+   "uk": "Я бачу його щоранку."
+  },
+  {
+   "id": "en-classic-r1:08.45",
+   "target": "The shop closes early today.",
+   "ru": "Магазин сегодня закрывается рано.",
+   "uk": "Магазин сьогодні закривається рано."
+  },
+  {
+   "id": "en-classic-r1:08.46",
+   "target": "Does she work at night?",
+   "ru": "Она работает по ночам?",
+   "uk": "Вона працює вночі?"
+  },
+  {
+   "id": "en-classic-r1:08.47",
+   "target": "Do you study on Sunday mornings?",
+   "ru": "Вы учитесь по воскресеньям утром?",
+   "uk": "Ви навчаєтесь по неділях уранці?"
+  },
+  {
+   "id": "en-classic-r1:08.48",
+   "target": "The last bus leaves at eleven.",
+   "ru": "Последний автобус отправляется в одиннадцать.",
+   "uk": "Останній автобус відправляється об одинадцятій."
+  },
+  {
+   "id": "en-classic-r1:08.49",
+   "target": "I have a dentist's appointment on Tuesday.",
+   "ru": "У меня во вторник приём у стоматолога.",
+   "uk": "У мене прийом у стоматолога у вівторок."
+  },
+  {
+   "id": "en-classic-r1:08.50",
+   "target": "Do we have time before the train leaves at six?",
+   "ru": "У нас есть время до отправления поезда в шесть?",
+   "uk": "У нас є час до відправлення поїзда о шостій?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "seven",
+   "ru": "семь",
+   "uk": "сім"
+  },
+  {
+   "lemma": "noon",
+   "ru": "полдень",
+   "uk": "полудень"
+  },
+  {
+   "lemma": "tuesday",
+   "ru": "вторник",
+   "uk": "вівторок"
+  },
+  {
+   "lemma": "travel",
+   "ru": "путешествие",
+   "uk": "подорож"
+  },
+  {
+   "lemma": "july",
+   "ru": "июль",
+   "uk": "липень"
+  },
+  {
+   "lemma": "midnight",
+   "ru": "полночь",
+   "uk": "опівніч"
+  },
+  {
+   "lemma": "arrive",
+   "ru": "прибытие",
+   "uk": "прибуття"
+  },
+  {
+   "lemma": "monday",
+   "ru": "понедельник",
+   "uk": "понеділок"
+  },
+  {
+   "lemma": "morning",
+   "ru": "утро",
+   "uk": "ранок"
+  },
+  {
+   "lemma": "half",
+   "ru": "половина",
+   "uk": "половина"
+  },
+  {
+   "lemma": "past",
+   "ru": "прошлое",
+   "uk": "минуле"
+  },
+  {
+   "lemma": "six",
+   "ru": "шесть",
+   "uk": "шість"
+  },
+  {
+   "lemma": "quarter",
+   "ru": "квартал",
+   "uk": "чверть"
+  },
+  {
+   "lemma": "four",
+   "ru": "четыре",
+   "uk": "чотири"
+  },
+  {
+   "lemma": "lunchtime",
+   "ru": "обеденное время",
+   "uk": "обідня перерва"
+  },
+  {
+   "lemma": "concert",
+   "ru": "концерт",
+   "uk": "концерт"
+  },
+  {
+   "lemma": "fifteen",
+   "ru": "пятнадцать",
+   "uk": "п'ятнадцять"
+  },
+  {
+   "lemma": "ring",
+   "ru": "звонить",
+   "uk": "дзвонити"
+  },
+  {
+   "lemma": "thirty",
+   "ru": "тридцать",
+   "uk": "тридцять"
+  },
+  {
+   "lemma": "bakery",
+   "ru": "пекарня",
+   "uk": "пекарня"
+  },
+  {
+   "lemma": "dawn",
+   "ru": "рассвет",
+   "uk": "світанок"
+  },
+  {
+   "lemma": "bell",
+   "ru": "колокол",
+   "uk": "дзвінок"
+  },
+  {
+   "lemma": "midday",
+   "ru": "полдень",
+   "uk": "полудень"
+  },
+  {
+   "lemma": "public",
+   "ru": "общественный",
+   "uk": "громадськість"
+  },
+  {
+   "lemma": "holidays",
+   "ru": "праздники",
+   "uk": "свята"
+  },
+  {
+   "lemma": "wednesday",
+   "ru": "среда",
+   "uk": "середа"
+  },
+  {
+   "lemma": "bill",
+   "ru": "счет к оплате",
+   "uk": "рахунок до оплати"
+  },
+  {
+   "lemma": "due",
+   "ru": "срок",
+   "uk": "термін сплати"
+  },
+  {
+   "lemma": "thursday",
+   "ru": "четверг",
+   "uk": "четвер"
+  },
+  {
+   "lemma": "market",
+   "ru": "рынок",
+   "uk": "ринок"
+  },
+  {
+   "lemma": "saturdays",
+   "ru": "субботы",
+   "uk": "суботи"
+  },
+  {
+   "lemma": "first",
+   "ru": "первый",
+   "uk": "перший"
+  },
+  {
+   "lemma": "birthday",
+   "ru": "день рождения",
+   "uk": "день народження"
+  },
+  {
+   "lemma": "year",
+   "ru": "год",
+   "uk": "рік"
+  },
+  {
+   "lemma": "short",
+   "ru": "короткий",
+   "uk": "короткий"
+  },
+  {
+   "lemma": "winter",
+   "ru": "зима",
+   "uk": "зима"
+  },
+  {
+   "lemma": "course",
+   "ru": "курс",
+   "uk": "курс"
+  },
+  {
+   "lemma": "september",
+   "ru": "сентябрь",
+   "uk": "вересень"
+  },
+  {
+   "lemma": "hot",
+   "ru": "жаркий",
+   "uk": "спекотно"
+  },
+  {
+   "lemma": "summer",
+   "ru": "лето",
+   "uk": "літо"
+  },
+  {
+   "lemma": "spring",
+   "ru": "весна",
+   "uk": "весна"
+  },
+  {
+   "lemma": "june",
+   "ru": "июнь",
+   "uk": "червень"
+  },
+  {
+   "lemma": "club",
+   "ru": "клуб",
+   "uk": "клуб"
+  },
+  {
+   "lemma": "january",
+   "ru": "январь",
+   "uk": "січень"
+  },
+  {
+   "lemma": "timetable",
+   "ru": "расписание транспорта",
+   "uk": "розклад руху транспорту"
+  },
+  {
+   "lemma": "april",
+   "ru": "апрель",
+   "uk": "квітень"
+  },
+  {
+   "lemma": "beautiful",
+   "ru": "красивый",
+   "uk": "красиво"
+  },
+  {
+   "lemma": "autumn",
+   "ru": "осень",
+   "uk": "осінь"
+  },
+  {
+   "lemma": "week",
+   "ru": "неделя",
+   "uk": "тиждень"
+  },
+  {
+   "lemma": "film",
+   "ru": "фильм",
+   "uk": "фільм"
+  },
+  {
+   "lemma": "tonight",
+   "ru": "сегодня вечером",
+   "uk": "сьогодні ввечері"
+  },
+  {
+   "lemma": "see",
+   "ru": "видеть",
+   "uk": "дивитися"
+  },
+  {
+   "lemma": "eleven",
+   "ru": "одиннадцать",
+   "uk": "одинадцять"
+  },
+  {
+   "lemma": "dentist",
+   "ru": "стоматолог",
+   "uk": "стоматолог"
+  },
+  {
+   "lemma": "before",
+   "ru": "до",
+   "uk": "до"
+  },
+  {
+   "lemma": "every",
+   "ru": "каждый",
+   "uk": "кожен"
+  },
+  {
+   "lemma": "leaf",
+   "ru": "лист",
+   "uk": "лист"
+  },
+  {
+   "lemma": "may",
+   "ru": "может",
+   "uk": "може"
+  },
+  {
+   "lemma": "of",
+   "ru": "из, от",
+   "uk": "з, від"
+  },
+  {
+   "lemma": "shopping",
+   "ru": "покупки",
+   "uk": "покупки"
+  }
+ ],
+ "knownWords": [
+  "ready",
+  "busy",
+  "free",
+  "home",
+  "work",
+  "open",
+  "close",
+  "door",
+  "shop",
+  "light",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "room",
+  "warm",
+  "coffee",
+  "cold",
+  "bag",
+  "key",
+  "phone",
+  "kitchen",
+  "window",
+  "hand",
+  "seat",
+  "at",
+  "be",
+  "he",
+  "here",
+  "i",
+  "it",
+  "my",
+  "on",
+  "our",
+  "she",
+  "the",
+  "they",
+  "we",
+  "you",
+  "your",
+  "lift",
+  "stairs",
+  "safe",
+  "ticket",
+  "valid",
+  "platform",
+  "empty",
+  "station",
+  "last",
+  "wait",
+  "office",
+  "train",
+  "time",
+  "her",
+  "no",
+  "not",
+  "these",
+  "this",
+  "waiting",
+  "yes",
+  "nearby",
+  "live",
+  "alone",
+  "start",
+  "finish",
+  "walk",
+  "need",
+  "help",
+  "want",
+  "tea",
+  "like",
+  "use",
+  "speak",
+  "english",
+  "stop",
+  "nine",
+  "leave",
+  "eight",
+  "class",
+  "ten",
+  "cafe",
+  "slowly",
+  "shift",
+  "soon",
+  "well",
+  "take",
+  "share",
+  "flat",
+  "check",
+  "email",
+  "cash",
+  "sister",
+  "night",
+  "together",
+  "sometimes",
+  "study",
+  "driver",
+  "know",
+  "way",
+  "gate",
+  "a",
+  "his",
+  "to",
+  "drive",
+  "smoke",
+  "eat",
+  "meat",
+  "entrance",
+  "accept",
+  "card",
+  "machine",
+  "coins",
+  "code",
+  "desk",
+  "carry",
+  "purse",
+  "lock",
+  "tap",
+  "charge",
+  "fit",
+  "shut",
+  "shoe",
+  "headphones",
+  "run",
+  "today",
+  "drink",
+  "cook",
+  "friday",
+  "lunch",
+  "usually",
+  "always",
+  "buy",
+  "bottle",
+  "water",
+  "message",
+  "feel",
+  "price",
+  "include",
+  "breakfast",
+  "cover",
+  "return",
+  "trip",
+  "receipt",
+  "show",
+  "date",
+  "rent",
+  "heating",
+  "go",
+  "son",
+  "milk",
+  "near",
+  "understand",
+  "word",
+  "bottled",
+  "cork",
+  "do",
+  "have",
+  "in",
+  "that",
+  "until",
+  "sell",
+  "stamps",
+  "sunday",
+  "pay",
+  "street",
+  "balcony",
+  "oven",
+  "hear",
+  "noise",
+  "park",
+  "permit",
+  "landlord",
+  "new",
+  "team",
+  "wear",
+  "uniform",
+  "manager",
+  "rota",
+  "get",
+  "break",
+  "printer",
+  "paper",
+  "sign",
+  "form",
+  "spare",
+  "keep",
+  "colleague",
+  "weekends",
+  "delivery",
+  "address",
+  "parcel",
+  "box",
+  "send",
+  "confirmation",
+  "anyone",
+  "post",
+  "collect",
+  "quiet",
+  "carriage",
+  "left",
+  "next",
+  "by",
+  "down",
+  "itself",
+  "parking",
+  "alarm",
+  "beep",
+  "cost",
+  "long",
+  "journey",
+  "centre",
+  "often",
+  "size",
+  "colour",
+  "prefer",
+  "battery",
+  "sale",
+  "end",
+  "label",
+  "say",
+  "more",
+  "coat",
+  "restart",
+  "button",
+  "screen",
+  "dark",
+  "order",
+  "call",
+  "leads",
+  "meet",
+  "spell",
+  "surname",
+  "mean",
+  "person",
+  "far",
+  "day",
+  "teach",
+  "evening",
+  "belongs",
+  "foot",
+  "after",
+  "each",
+  "how",
+  "many",
+  "much",
+  "one",
+  "people",
+  "what",
+  "when",
+  "where",
+  "which",
+  "who",
+  "why",
+  "number",
+  "car",
+  "bicycle",
+  "question",
+  "sore",
+  "throat",
+  "cough",
+  "headache",
+  "appointment",
+  "daughter",
+  "block",
+  "nose",
+  "fever",
+  "prescription",
+  "health",
+  "insurance",
+  "doctor",
+  "charger",
+  "passport",
+  "enough",
+  "change",
+  "pen",
+  "shower",
+  "zip",
+  "small",
+  "booking",
+  "glasses",
+  "original",
+  "licence",
+  "bike",
+  "handle",
+  "chair",
+  "garden",
+  "two",
+  "three",
+  "page",
+  "blue",
+  "deep",
+  "pocket",
+  "afternoon",
+  "table",
+  "hotel",
+  "luggage",
+  "moment",
+  "everything",
+  "'s",
+  "an",
+  "any",
+  "for"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7,
+   "title": "Что у меня есть"
+  }
+ ],
+ "oldTopicTitle": "Во сколько, в какой день и когда",
+ "oldTheoryRu": "Записываешь встречу: at seven — час на часах, on Monday — день календаря, in May — месяц. В next Monday предлог уже не нужен. Отталкивайся от «размера» времени: время по часам — точка, названный день — один день, месяц или сезон — более долгий период. Отталкивайся от «размера» времени: время по часам — точка, названный день — один день, месяц или сезон — более долгий период. Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком. В конструкциях `last`, `next`, `every` или `this`, стоящих непосредственно перед временем, предлог обычно опускается. `At the weekend` и `on the weekend` отражают различные широко используемые варианты английского языка. Точный час: `at seven`. Конкретный день или утро этого дня: `on Monday`, `on Thursday morning`. Месяц, сезон, часть дня вообще: `in April`, `in summer`, `in the morning`. Выражение `at night` запомни целиком. Назовите месяц, время года или часть дня У клиента указан правильный адрес, но неверный день. Укажите день и время, чтобы он мог изменить встречу. Знайте, когда предлог не нужен"
+}

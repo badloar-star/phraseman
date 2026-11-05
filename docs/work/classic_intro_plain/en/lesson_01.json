@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 1,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying how things are"
+      },
+      "text": {
+        "en": "Today you learn to say how you are.\nOr where you are, or how things are.\nI am ready.\nIt means: I can start now.\nShe is busy.\nIt means: she has things to do."
+      },
+      "exampleIds": [
+        "en-classic-r1:01.01",
+        "en-classic-r1:01.04"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Three small words: am, is, are"
+      },
+      "text": {
+        "en": "One small word changes with who we talk about.\nI am ready.\nShe is ready. He is ready.\nWe are ready. They are ready.\nYou are ready.\nOnly I goes with am.\nOne person or thing goes with is.\nYou, we and they go with are."
+      },
+      "exampleIds": [
+        "en-classic-r1:01.01",
+        "en-classic-r1:01.05",
+        "en-classic-r1:01.06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will build short sentences, word by word.\nFirst pick who: I, she, we, they.\nThen pick the small word: am, is or are.\nThen pick the last word, like here, busy or free.\nCheck who the sentence is about.\nThat tells you which small word fits."
+      },
+      "exampleIds": [
+        "en-classic-r1:01.03",
+        "en-classic-r1:01.13"
+      ]
+    }
+  ]
+}

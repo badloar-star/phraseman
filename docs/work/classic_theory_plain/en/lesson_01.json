@@ -1,0 +1,579 @@
+{
+  "lang": "en",
+  "lesson": 1,
+  "title": {
+    "ru": "Я, он, она, мы, они: кто и где",
+    "uk": "Я, він, вона, ми, вони: хто і де",
+    "en": "I, he, she, we, they: who and where"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я готов",
+        "uk": "Я готовий",
+        "en": "I am ready"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я готов».\nI am ready. — Я готов.\nЧитается: ай эм рэ́ди.\nЧёрточка над буквой в подсказке «Читается» показывает, какую часть слова говорить громче.\nРусские буквы передают звук приблизительно.\nСлово I значит «я». I всегда пишется с большой буквы.\nСлово ready значит «готов».\nСлово am значит «быть».\nПо-русски его не говорят: «я готов» — два слова, а по-английски три.\nЕщё так:\nI am busy. — Я занят.\nЧитается: ай эм би́зи.\nСлово busy значит «занят».\nИ так:\nI am free. — Я свободен.\nЧитается: ай эм фри́.\nСлово free значит «свободен».\nОн нужен, чтобы вы поняли, что делать.",
+        "uk": "Дивіться, як сказати «Я готовий».\nI am ready. — Я готовий.\nЧитається: ай ем ре́ді.\nЧорточка над буквою в підказці «Читається» показує, яку частину слова говорити голосніше.\nУкраїнські букви передають звук приблизно.\nСлово I означає «я». I завжди пишеться з великої літери.\nСлово ready означає «готовий».\nСлово am означає «бути».\nПо-українськи його не кажуть: «я готовий» — два слова, а по-англійськи три.\nЩе так:\nI am busy. — Я зайнятий.\nЧитається: ай ем бі́зі.\nСлово busy означає «зайнятий».\nІ так:\nI am free. — Я вільний.\nЧитається: ай ем фрі́.\nСлово free означає «вільний».\nВін потрібен, щоб ви зрозуміли, що робити.",
+        "en": "Look at how to say “I am ready.”\nI am ready.\nThe word I means “me.” I is always written with a capital letter.\nThe word ready means “prepared.”\nThe word am means “to be.”\nSome languages skip it.\nIn English you always say it.\nAnother one:\nI am busy.\nThe word busy means “not free.”\nAnd:\nI am free.\nThe word free means “with time to spare.”\nIt shows you what to do."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:01.01",
+          "say": {
+            "ru": "ай эм рэ́ди",
+            "uk": "ай ем ре́ді"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.03",
+          "say": {
+            "ru": "ай эм би́зи",
+            "uk": "ай ем бі́зі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.08",
+          "say": {
+            "ru": "ай эм фри́",
+            "uk": "ай ем фрі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я готов»",
+            "uk": "Виберіть, як сказати: «Я готовий»",
+            "en": "Choose how to say: “I am ready.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:01.01",
+          "options": [
+            "en-classic-r1:01.01",
+            "en-classic-r1:01.03",
+            "en-classic-r1:01.08"
+          ],
+          "answerId": "en-classic-r1:01.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я занят»",
+            "uk": "Виберіть, як сказати: «Я зайнятий»",
+            "en": "Choose how to say: “I am busy.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.03",
+          "options": [
+            "en-classic-r1:01.03",
+            "en-classic-r1:01.08",
+            "en-classic-r1:01.01"
+          ],
+          "answerId": "en-classic-r1:01.03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я свободен»",
+            "uk": "Виберіть, як сказати: «Я вільний»",
+            "en": "Choose how to say: “I am free.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.08",
+          "options": [
+            "en-classic-r1:01.08",
+            "en-classic-r1:01.01",
+            "en-classic-r1:01.03"
+          ],
+          "answerId": "en-classic-r1:01.08"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Он, она, мы, они, вы",
+        "uk": "Він, вона, ми, вони, ви",
+        "en": "He, she, we, they, you"
+      },
+      "text": {
+        "ru": "Теперь скажем о других людях.\nHe is ready. — Он готов.\nЧитается: хи из рэ́ди.\nShe is busy. — Она занята.\nСлово he значит «он». Слово she значит «она».\nО нём и о ней говорят is. Слово is тоже значит «быть».\nWe are ready. — Мы готовы.\nThey are busy. — Они заняты.\nСлово we значит «мы». Слово they значит «они».\nО нас и о них говорят are. Слово are тоже значит «быть».\nYou are ready. — «Ты готов.»\nСлово you значит «ты» и «вы». О вас тоже говорят are.\nСлово «быть» меняется, смотря о ком речь.\nОбо мне — am.\nО нём и о ней — is.\nО нас, о вас, о них — are.",
+        "uk": "Тепер скажемо про інших людей.\nHe is ready. — Він готовий.\nЧитається: хі із ре́ді.\nShe is busy. — Вона зайнята.\nСлово he означає «він». Слово she означає «вона».\nПро нього й про неї кажуть is. Слово is теж означає «бути».\nWe are ready. — Ми готові.\nThey are busy. — Вони зайняті.\nСлово we означає «ми». Слово they означає «вони».\nПро нас і про них кажуть are. Слово are теж означає «бути».\nYou are ready. — «Ти готовий.»\nСлово you означає «ти» і «ви». Про вас теж кажуть are.\nСлово «бути» змінюється, залежно від того, про кого мова.\nПро мене — am.\nПро нього й про неї — is.\nПро нас, про вас, про них — are.",
+        "en": "Now let us talk about other people.\nHe is ready.\nShe is busy.\nThe word he means “that man.” The word she means “that woman.”\nFor him or her, you say is.\nThe word is also means “to be.”\nWe are ready.\nThey are busy.\nThe word we means “me and others.” The word they means “other people.”\nFor us or for them, you say are.\nThe word are also means “to be.”\nYou are ready.\nThe word you means one person you speak to, or many.\nFor you, people also say are.\nThe word “be” changes, depending on who we talk about.\nFor me — am.\nFor him or her — is.\nFor us, you, them — are."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:01.05",
+          "say": {
+            "ru": "хи из рэ́ди",
+            "uk": "хі із ре́ді"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.04",
+          "say": {
+            "ru": "ши из би́зи",
+            "uk": "ші із бі́зі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.06",
+          "say": {
+            "ru": "уи ар рэ́ди",
+            "uk": "уі ар ре́ді"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.07",
+          "say": {
+            "ru": "зэй ар би́зи",
+            "uk": "зей ар бі́зі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.02",
+          "say": {
+            "ru": "ю ар рэ́ди",
+            "uk": "ю ар ре́ді"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он готов»",
+            "uk": "Виберіть, як сказати: «Він готовий»",
+            "en": "Choose how to say: “He is ready.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:01.05",
+          "options": [
+            "en-classic-r1:01.05",
+            "en-classic-r1:01.01",
+            "en-classic-r1:01.06"
+          ],
+          "answerId": "en-classic-r1:01.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они заняты»",
+            "uk": "Виберіть, як сказати: «Вони зайняті»",
+            "en": "Choose how to say: “They are busy.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.07",
+          "options": [
+            "en-classic-r1:01.07",
+            "en-classic-r1:01.04",
+            "en-classic-r1:01.03"
+          ],
+          "answerId": "en-classic-r1:01.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты готов»",
+            "uk": "Виберіть, як сказати: «Ти готовий»",
+            "en": "Choose how to say: “You are ready.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.02",
+          "options": [
+            "en-classic-r1:01.02",
+            "en-classic-r1:01.05",
+            "en-classic-r1:01.06"
+          ],
+          "answerId": "en-classic-r1:01.02"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Здесь, дома, на работе",
+        "uk": "Тут, вдома, на роботі",
+        "en": "Here, at home, at work"
+      },
+      "text": {
+        "ru": "Теперь скажем, где человек.\nHe is here. — Он здесь.\nЧитается: хи из хи́р.\nСлово here значит «здесь».\nI am at home. — Я дома.\nЧитается: ай эм эт хо́ум.\nСлово at значит «в, на». Слово home значит «дом».\nShe is at work. — Она на работе.\nЧитается: ши из эт уо́рк.\nСлово work значит «работа».\nПо-русски слово «быть» не говорят, но по-английски оно нужно: is, am, are.",
+        "uk": "Тепер скажемо, де людина.\nHe is here. — Він тут.\nЧитається: хі із хі́р.\nСлово here означає «тут».\nI am at home. — Я вдома.\nЧитається: ай ем ет хо́ум.\nСлово at означає «в, на». Слово home означає «дім».\nShe is at work. — Вона на роботі.\nЧитається: ші із ет уо́рк.\nСлово work означає «робота».\nПо-українськи слово «бути» не кажуть, але по-англійськи воно потрібне: is, am, are.",
+        "en": "Now let us say where a person is.\nHe is here.\nThe word here means “in this place.”\nI am at home.\nThe word at means “in, on.” The word home means “house.”\nShe is at work.\nThe word work means “job.”\nSome languages skip the word “be” here.\nIn English you need it: is, am, are."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:01.11",
+          "say": {
+            "ru": "хи из хи́р",
+            "uk": "хі із хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.15",
+          "say": {
+            "ru": "ай эм эт хо́ум",
+            "uk": "ай ем ет хо́ум"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.17",
+          "say": {
+            "ru": "ши из эт уо́рк",
+            "uk": "ші із ет уо́рк"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он здесь»",
+            "uk": "Виберіть, як сказати: «Він тут»",
+            "en": "Choose how to say: “He is here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:01.11",
+          "options": [
+            "en-classic-r1:01.11",
+            "en-classic-r1:01.05",
+            "en-classic-r1:01.17"
+          ],
+          "answerId": "en-classic-r1:01.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дома»",
+            "uk": "Виберіть, як сказати: «Я вдома»",
+            "en": "Choose how to say: “I am at home.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.15",
+          "options": [
+            "en-classic-r1:01.15",
+            "en-classic-r1:01.17",
+            "en-classic-r1:01.11"
+          ],
+          "answerId": "en-classic-r1:01.15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она на работе»",
+            "uk": "Виберіть, як сказати: «Вона на роботі»",
+            "en": "Choose how to say: “She is at work.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.17",
+          "options": [
+            "en-classic-r1:01.17",
+            "en-classic-r1:01.04",
+            "en-classic-r1:01.15"
+          ],
+          "answerId": "en-classic-r1:01.17"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Мои вещи",
+        "uk": "Мої речі",
+        "en": "My things"
+      },
+      "text": {
+        "ru": "Так же скажем о вещах.\nMy bag is here. — Моя сумка здесь.\nЧитается: май бэ́г из хи́р.\nСлово my значит «мой, моя». Слово bag значит «сумка».\nПро одну вещь говорят is, про несколько — are.\nYour keys are here. — Ваши ключи здесь.\nЧитается: ёр ки́з ар хи́р.\nСлово your значит «ваш, ваши». Слово keys значит «ключи».\nБуква s на конце показывает, что вещей несколько: key — ключ, keys — ключи.\nПоэтому тут are.\nСлова my, your, our на выбор is или are не влияют.\nMy phone is on. — Мой телефон включен.\nЧитается: май фо́ун из он.\nСлово phone значит «телефон». Слово on значит «включён».\nOur seats are free. — Наши места свободны.\nСлово our значит «наш, наши». Слово seats значит «места».\nМест несколько, поэтому снова are.\nThe bus is here. — Автобус здесь.\nСлово the стоит перед названием вещи: the bus. По-русски такого слова нет.\nКогда уже есть my, your или our, слово the не нужно.\nТак: my bag, your keys.\nСлово bus значит «автобус». Запоминайте the вместе с вещью.",
+        "uk": "Так само скажемо про речі.\nMy bag is here. — Моя сумка тут.\nЧитається: май бе́г із хі́р.\nСлово my означає «мій, моя». Слово bag означає «сумка».\nПро одну річ кажуть is, про кілька — are.\nYour keys are here. — Ваші ключі тут.\nЧитається: йор кі́з ар хі́р.\nСлово your означає «ваш, ваші». Слово keys означає «ключі».\nБуква s наприкінці показує, що речей кілька: key — ключ, keys — ключі.\nТому тут are.\nСлова my, your, our на вибір is чи are не впливають.\nMy phone is on. — Мій телефон увімкнений.\nЧитається: май фо́ун із он.\nСлово phone означає «телефон». Слово on означає «ввімкнений».\nOur seats are free. — Наші місця вільні.\nСлово our означає «наш, наші». Слово seats означає «місця».\nМісць кілька, тому знову are.\nThe bus is here. — Автобус тут.\nСлово the стоїть перед назвою речі: the bus. По-українськи такого слова немає.\nКоли вже є my, your або our, слово the не потрібне.\nТак: my bag, your keys.\nСлово bus означає «автобус». Запам’ятовуйте the разом із річчю.",
+        "en": "We can say the same about things.\nMy bag is here.\nThe word my means “belonging to me.” The word bag means “a bag.”\nFor one thing, say is. For several things, say are.\nYour keys are here.\nThe word your means “belonging to you.”\nThe word keys means “more than one key.”\nThe letter s at the end shows there are several: key is one, keys is many.\nThat is why it is are here.\nThe words my, your, our do not change is or are.\nMy phone is on.\nThe word phone means “a phone.” The word on means “switched on.”\nOur seats are free.\nThe word our means “belonging to us.”\nThe word seats means “places to sit.” There are several, so are again.\nThe bus is here.\nThe word the stands before the name of a thing: the bus.\nSome languages have no such word. Learn it with the noun.\nWhen my, your or our is already there, you do not need the.\nSo: my bag, your keys.\nThe word bus means “a bus.” Remember the together with the thing."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:01.41",
+          "say": {
+            "ru": "май бэ́г из хи́р",
+            "uk": "май бе́г із хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.42",
+          "say": {
+            "ru": "ёр ки́з ар хи́р",
+            "uk": "йор кі́з ар хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.43",
+          "say": {
+            "ru": "май фо́ун из он",
+            "uk": "май фо́ун із он"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.49",
+          "say": {
+            "ru": "ау́р си́тс ар фри́",
+            "uk": "ау́р сі́тс ар фрі́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.48",
+          "say": {
+            "ru": "зэ ба́с из хи́р",
+            "uk": "зе ба́с із хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сумка здесь»",
+            "uk": "Виберіть, як сказати: «Моя сумка тут»",
+            "en": "Choose how to say: “My bag is here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:01.41",
+          "options": [
+            "en-classic-r1:01.41",
+            "en-classic-r1:01.42",
+            "en-classic-r1:01.11"
+          ],
+          "answerId": "en-classic-r1:01.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой телефон включен»",
+            "uk": "Виберіть, як сказати: «Мій телефон увімкнений»",
+            "en": "Choose how to say: “My phone is on.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.43",
+          "options": [
+            "en-classic-r1:01.43",
+            "en-classic-r1:01.41",
+            "en-classic-r1:01.49"
+          ],
+          "answerId": "en-classic-r1:01.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус здесь»",
+            "uk": "Виберіть, як сказати: «Автобус тут»",
+            "en": "Choose how to say: “The bus is here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.48",
+          "options": [
+            "en-classic-r1:01.48",
+            "en-classic-r1:01.11",
+            "en-classic-r1:01.42"
+          ],
+          "answerId": "en-classic-r1:01.48"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Открыто и закрыто",
+        "uk": "Відчинено і зачинено",
+        "en": "Open and closed"
+      },
+      "text": {
+        "ru": "Так же можно сказать про вещи.\nThe door is open. — Дверь открыта.\nЧитается: зэ до́р из о́упен.\nСлово door значит «дверь». Слово open значит «открыта».\nThe door is closed. — Дверь закрыта.\nСлово closed значит «закрыта».\nThe shops are open. — Магазины открыты.\nСлово shop значит «магазин». Если их несколько, на конце s: shops.\nПро одну вещь говорят is, про несколько — are.\nThe lights are on. — Лампы включены.\nСлово lights значит «лампы». Слово on значит «включены».\nThe lights are off. — Лампы выключены.\nСлово off значит «выключены».\nThe window is open. — Окно открыто.\nСлово window значит «окно».",
+        "uk": "Так само можна сказати про речі.\nThe door is open. — Двері відчинені.\nЧитається: зе до́р із о́упен.\nСлово door означає «двері». Слово open означає «відчинені».\nThe door is closed. — Двері зачинені.\nСлово closed означає «зачинені».\nThe shops are open. — Магазини відкриті.\nСлово shop означає «магазин». Якщо їх кілька, наприкінці s: shops.\nПро одну річ кажуть is, про кілька — are.\nThe lights are on. — Лампи ввімкнені.\nСлово lights означає «лампи». Слово on означає «ввімкнені».\nThe lights are off. — Лампи вимкнені.\nСлово off означає «вимкнені».\nThe window is open. — Вікно відчинене.\nСлово window означає «вікно».",
+        "en": "You can say the same about things.\nThe door is open.\nThe word door means “door.” The word open means “not shut.”\nThe door is closed.\nThe word closed means “shut.”\nThe shops are open.\nThe word shop means “a place to buy things.”\nFor several, add s: shops.\nFor one thing, say is. For several, say are.\nThe lights are on.\nThe word lights means “lamps.” The word on means “switched on.”\nThe lights are off.\nThe word off means “switched off.”\nThe window is open.\nThe word window means “window.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:01.23",
+          "say": {
+            "ru": "зэ до́р из о́упен",
+            "uk": "зе до́р із о́упен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.24",
+          "say": {
+            "ru": "зэ до́р из кло́узд",
+            "uk": "зе до́р із кло́узд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.27",
+          "say": {
+            "ru": "зэ шо́пс ар о́упен",
+            "uk": "зе шо́пс ар о́упен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.29",
+          "say": {
+            "ru": "зэ лай́тс ар он",
+            "uk": "зе лай́тс ар он"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.30",
+          "say": {
+            "ru": "зэ лай́тс ар оф",
+            "uk": "зе лай́тс ар оф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.45",
+          "say": {
+            "ru": "зэ уи́ндоу из о́упен",
+            "uk": "зе уі́ндоу із о́упен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь открыта»",
+            "uk": "Виберіть, як сказати: «Двері відчинені»",
+            "en": "Choose how to say: “The door is open.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:01.23",
+          "options": [
+            "en-classic-r1:01.23",
+            "en-classic-r1:01.24",
+            "en-classic-r1:01.45"
+          ],
+          "answerId": "en-classic-r1:01.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь закрыта»",
+            "uk": "Виберіть, як сказати: «Двері зачинені»",
+            "en": "Choose how to say: “The door is closed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.24",
+          "options": [
+            "en-classic-r1:01.24",
+            "en-classic-r1:01.23",
+            "en-classic-r1:01.27"
+          ],
+          "answerId": "en-classic-r1:01.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Лампы выключены»",
+            "uk": "Виберіть, як сказати: «Лампи вимкнені»",
+            "en": "Choose how to say: “The lights are off.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.30",
+          "options": [
+            "en-classic-r1:01.30",
+            "en-classic-r1:01.29",
+            "en-classic-r1:01.23"
+          ],
+          "answerId": "en-classic-r1:01.30"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Рано, поздно, тепло, холодно",
+        "uk": "Рано, пізно, тепло, холодно",
+        "en": "Early, late, warm, cold"
+      },
+      "text": {
+        "ru": "Скажем, когда человек пришёл и что тёплое или холодное.\nI am early. — Я пришел раньше.\nЧитается: ай эм э́рли.\nСлово early значит «рано, раньше».\nShe is late. — Она опаздывает.\nСлово late значит «поздно, с опозданием».\nThe room is warm. — Комната тёплая.\nСлово room значит «комната». Слово warm значит «тёплая».\nThe kitchen is warm. — На кухне тепло.\nСлово kitchen значит «кухня».\nThe coffee is cold. — Кофе холодный.\nСлово coffee значит «кофе». Слово cold значит «холодный».\nMy hands are cold. — У меня холодные руки.\nСлово hands значит «руки».\nПо-английски говорят «мои руки холодные»: слов «у меня» нет.",
+        "uk": "Скажемо, коли людина прийшла і що тепле чи холодне.\nI am early. — Я прийшов рано.\nЧитається: ай ем е́рлі.\nСлово early означає «рано, раніше».\nShe is late. — Вона запізнюється.\nСлово late означає «пізно, із запізненням».\nThe room is warm. — Кімната тепла.\nСлово room означає «кімната». Слово warm означає «тепла».\nThe kitchen is warm. — На кухні тепло.\nСлово kitchen означає «кухня».\nThe coffee is cold. — Кава холодна.\nСлово coffee означає «кава». Слово cold означає «холодна».\nMy hands are cold. — Мої руки холодні.\nСлово hands означає «руки».\nПо-англійськи кажуть «мої руки холодні»: слова «у мене» тут немає.",
+        "en": "Let us say when a person comes and what is warm or cold.\nI am early.\nThe word early means “before the usual time.”\nShe is late.\nThe word late means “after the usual time.”\nThe room is warm.\nThe word room means “a room.” The word warm means “a bit hot.”\nThe kitchen is warm.\nThe word kitchen means “kitchen.”\nThe coffee is cold.\nThe word coffee means “coffee.” The word cold means “not warm.”\nMy hands are cold.\nThe word hands means “hands.”\nIn English you say “my hands are cold.” There are no words for “I have” here."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:01.31",
+          "say": {
+            "ru": "ай эм э́рли",
+            "uk": "ай ем е́рлі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.33",
+          "say": {
+            "ru": "ши из лэ́йт",
+            "uk": "ші із ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.38",
+          "say": {
+            "ru": "зэ ру́м из уо́рм",
+            "uk": "зе ру́м із уо́рм"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.44",
+          "say": {
+            "ru": "зэ ки́тчен из уо́рм",
+            "uk": "зе кі́тчен із уо́рм"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.40",
+          "say": {
+            "ru": "зэ ко́фи из ко́улд",
+            "uk": "зе ко́фі із ко́улд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:01.47",
+          "say": {
+            "ru": "май хэ́ндз ар ко́улд",
+            "uk": "май хе́ндз ар ко́улд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я пришел раньше»",
+            "uk": "Виберіть, як сказати: «Я прийшов рано»",
+            "en": "Choose how to say: “I am early.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:01.31",
+          "options": [
+            "en-classic-r1:01.31",
+            "en-classic-r1:01.33",
+            "en-classic-r1:01.38"
+          ],
+          "answerId": "en-classic-r1:01.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она опаздывает»",
+            "uk": "Виберіть, як сказати: «Вона запізнюється»",
+            "en": "Choose how to say: “She is late.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.33",
+          "options": [
+            "en-classic-r1:01.33",
+            "en-classic-r1:01.31",
+            "en-classic-r1:01.40"
+          ],
+          "answerId": "en-classic-r1:01.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кофе холодный»",
+            "uk": "Виберіть, як сказати: «Кава холодна»",
+            "en": "Choose how to say: “The coffee is cold.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:01.40",
+          "options": [
+            "en-classic-r1:01.40",
+            "en-classic-r1:01.38",
+            "en-classic-r1:01.47"
+          ],
+          "answerId": "en-classic-r1:01.40"
+        }
+      ]
+    }
+  ]
+}

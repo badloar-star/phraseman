@@ -1,0 +1,45 @@
+{
+  "lang": "fr",
+  "lesson": 1,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying “I am here”"
+      },
+      "text": {
+        "en": "Today you say where you are.\nJe suis ici. = I am here.\nJe means “I”. Ici means “here”.\nSuis means “am”. English has this word too.\nTu es ici. = You are here.\nTu means “you”. Es means “are”."
+      },
+      "exampleIds": [
+        "fr:01:01",
+        "fr:01:02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "One word, three jobs"
+      },
+      "text": {
+        "en": "Every phrase has three parts: who, am/are/is, where.\nJe suis là. = I am there.\nLà means “there”.\nThe middle word changes with the person.\nJe goes with suis. Tu goes with es.\nLéa est ici. = Léa is here. Est means “is”."
+      },
+      "exampleIds": [
+        "fr:01:04",
+        "fr:01:05"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Build each phrase"
+      },
+      "text": {
+        "en": "Next you build short phrases from word tiles.\nLook at the first tile: who is it about?\nPick the middle word that goes with that person.\nThen add the place: ici or là.\nExample: Tu es là. = You are there."
+      },
+      "exampleIds": [
+        "fr:01:03",
+        "fr:01:01"
+      ]
+    }
+  ]
+}

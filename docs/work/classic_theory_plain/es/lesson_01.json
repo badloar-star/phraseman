@@ -1,0 +1,586 @@
+{
+  "lang": "es",
+  "lesson": 1,
+  "title": {
+    "ru": "Где находитесь вы и другие",
+    "uk": "Де перебуваєте ви та інші",
+    "en": "Where you and others are"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я здесь",
+        "uk": "Я тут",
+        "en": "I am here"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я здесь».\nEstoy aquí. — «Я здесь.»\nЧитается: эсто́й аки́.\nСлово estoy значит «я нахожусь».\nСлово aquí значит «здесь».\nЧёрточка над буквой в подсказке «Читается» показывает, какую часть слова говорить громче.\nРусские буквы передают звук приблизительно.\nСлово estoy не меняется, меняется только место: lejos — «далеко», dentro — «внутри».\nОбразец в заданиях — готовый ответ: он показывает, что делать.",
+        "uk": "Дивіться, як сказати «Я тут».\nEstoy aquí. — «Я тут.»\nЧитається: есто́й акі́.\nСлово estoy означає «я перебуваю».\nСлово aquí означає «тут».\nРиска над літерою в підказці «Читається» показує, яку частину слова казати голосніше.\nУкраїнські літери передають звук приблизно.\nСлово estoy не змінюється, змінюється тільки місце: lejos — «далеко», dentro — «всередині».\nЗразок у завданнях — готова відповідь: він показує, що робити.",
+        "en": "Look at how to say “I am here”.\nEstoy aquí. — “I am here.”\nThe word estoy means “I am located”.\nThe word aquí means “here”.\nThe mark over a letter shows which part of the word to say louder.\nThe letters in the hint show the sound only roughly.\nThe word estoy does not change; only the place changes:\nlejos — “far”, dentro — “inside”.\nA sample in the tasks is a finished answer: it shows what to do."
+      },
+      "examples": [
+        {
+          "phraseId": "es:01:01",
+          "say": {
+            "ru": "эсто́й аки́",
+            "uk": "есто́й акі́"
+          }
+        },
+        {
+          "phraseId": "es:01:05",
+          "say": {
+            "ru": "эсто́й ле́хос",
+            "uk": "есто́й ле́хос"
+          }
+        },
+        {
+          "phraseId": "es:01:10",
+          "say": {
+            "ru": "эсто́й де́нтро",
+            "uk": "есто́й де́нтро"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я здесь»",
+            "uk": "Виберіть, як сказати: «Я тут»",
+            "en": "Choose how to say: “I am here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:01:01",
+          "options": [
+            "es:01:01",
+            "es:01:05",
+            "es:01:10"
+          ],
+          "answerId": "es:01:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я далеко»",
+            "uk": "Виберіть, як сказати: «Я далеко»",
+            "en": "Choose how to say: “I am far”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:05",
+          "options": [
+            "es:01:05",
+            "es:01:01",
+            "es:01:10"
+          ],
+          "answerId": "es:01:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я внутри»",
+            "uk": "Виберіть, як сказати: «Я всередині»",
+            "en": "Choose how to say: “I am inside”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:10",
+          "options": [
+            "es:01:10",
+            "es:01:05",
+            "es:01:01"
+          ],
+          "answerId": "es:01:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Ты и мы",
+        "uk": "Ти і ми",
+        "en": "You and we"
+      },
+      "text": {
+        "ru": "Теперь о человеке, с которым вы говорите.\nEstás aquí. — «Ты здесь.»\nЧитается: эста́с аки́.\nСлово estás значит «ты находишься».\nСлово cerca значит «рядом».\nЕсли речь о нас, слово другое: estamos — «мы находимся».\nЕсли вы говорите с несколькими людьми: estáis — «вы находитесь».\nСлов «я» и «ты» по-испански отдельно не пишут: они спрятаны в estoy и estás.",
+        "uk": "Тепер про людину, з якою ви говорите.\nEstás aquí. — «Ти тут.»\nЧитається: еста́с акі́.\nСлово estás означає «ти перебуваєш».\nСлово cerca означає «поруч».\nЯкщо мова про нас, слово інше: estamos — «ми перебуваємо».\nЯкщо ви говорите з кількома людьми: estáis — «ви перебуваєте».\nСлів «я» і «ти» іспанською окремо не пишуть: вони сховані в estoy та estás.",
+        "en": "Now about the person you are talking to.\nEstás aquí. — “You are here.”\nThe word estás means “you are located”.\nThe word cerca means “near”.\nWhen it is about us, the word is different: estamos — “we are located”.\nWhen you talk to several people: estáis — “you (all) are located”.\nSpanish does not write “I” and “you” separately:\nthey are hidden inside estoy and estás."
+      },
+      "examples": [
+        {
+          "phraseId": "es:01:02",
+          "say": {
+            "ru": "эста́с аки́",
+            "uk": "еста́с акі́"
+          }
+        },
+        {
+          "phraseId": "es:01:04",
+          "say": {
+            "ru": "эста́с се́рка",
+            "uk": "еста́с се́рка"
+          }
+        },
+        {
+          "phraseId": "es:01:21",
+          "say": {
+            "ru": "эста́мос аки́",
+            "uk": "еста́мос акі́"
+          }
+        },
+        {
+          "phraseId": "es:01:25",
+          "say": {
+            "ru": "эста́йс аки́",
+            "uk": "еста́йс акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты здесь»",
+            "uk": "Виберіть, як сказати: «Ти тут»",
+            "en": "Choose how to say: “You are here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:01:02",
+          "options": [
+            "es:01:02",
+            "es:01:01",
+            "es:01:21"
+          ],
+          "answerId": "es:01:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы здесь»",
+            "uk": "Виберіть, як сказати: «Ми тут»",
+            "en": "Choose how to say: “We are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:21",
+          "options": [
+            "es:01:21",
+            "es:01:02",
+            "es:01:01"
+          ],
+          "answerId": "es:01:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты рядом»",
+            "uk": "Виберіть, як сказати: «Ти поруч»",
+            "en": "Choose how to say: “You are near”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:04",
+          "options": [
+            "es:01:04",
+            "es:01:02",
+            "es:01:05"
+          ],
+          "answerId": "es:01:04"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Он, она, имя",
+        "uk": "Він, вона, ім’я",
+        "en": "He, she, a name"
+      },
+      "text": {
+        "ru": "Когда речь о нём или о ней, слово другое: está.\nÉl está aquí. — «Он здесь.»\nЧитается: эль эста́ аки́.\nСлово él значит «он», ella — «она». Слово está значит «находится».\nСлово allí значит «вон там», fuera — «снаружи».\nAna — это имя. «Он» и «она» по-испански пишут отдельно.\nВ слове ella середина читается как «й»: э́йя.",
+        "uk": "Коли мова про нього чи про неї, слово інше: está.\nÉl está aquí. — «Він тут.»\nЧитається: ель еста́ акі́.\nСлово él означає «він», ella — «вона». Слово está означає «перебуває».\nСлово allí означає «он там», fuera — «надворі».\nAna — це ім’я. «Він» і «вона» іспанською пишуть окремо.\nУ слові ella середина читається як «й»: е́йя.",
+        "en": "When it is about him or her, the word is different: está.\nÉl está aquí. — “He is here.”\nThe word él means “he”, ella means “she”. The word está means “is located”.\nThe word allí means “over there”, fuera means “outside”.\nAna is a name. “He” and “she” are written separately in Spanish.\nIn ella the middle sounds like “y” in “yes”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:01:11",
+          "say": {
+            "ru": "эль эста́ аки́",
+            "uk": "ель еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:01:12",
+          "say": {
+            "ru": "э́йя эста́ ай-и́",
+            "uk": "е́йя еста́ ай-і́"
+          }
+        },
+        {
+          "phraseId": "es:01:16",
+          "say": {
+            "ru": "эль эста́ фуэ́ра",
+            "uk": "ель еста́ фуе́ра"
+          }
+        },
+        {
+          "phraseId": "es:01:17",
+          "say": {
+            "ru": "А́на эста́ де́нтро",
+            "uk": "А́на еста́ де́нтро"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он здесь»",
+            "uk": "Виберіть, як сказати: «Він тут»",
+            "en": "Choose how to say: “He is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:01:11",
+          "options": [
+            "es:01:11",
+            "es:01:12",
+            "es:01:16"
+          ],
+          "answerId": "es:01:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она вон там»",
+            "uk": "Виберіть, як сказати: «Вона он там»",
+            "en": "Choose how to say: “She is over there”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:12",
+          "options": [
+            "es:01:12",
+            "es:01:11",
+            "es:01:02"
+          ],
+          "answerId": "es:01:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана внутри»",
+            "uk": "Виберіть, як сказати: «Ана всередині»",
+            "en": "Choose how to say: “Ana is inside”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:17",
+          "options": [
+            "es:01:17",
+            "es:01:16",
+            "es:01:10"
+          ],
+          "answerId": "es:01:17"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Когда людей несколько",
+        "uk": "Коли людей кілька",
+        "en": "When there are several people"
+      },
+      "text": {
+        "ru": "Речь о нескольких людях? Слово снова другое: están.\nEllos están allí. — «Они вон там.»\nЧитается: э́йос эста́н ай-и́.\nСлово están значит «находятся».\nСлово ellos значит «они» (мужчины или смешанная группа). Слово ellas — «они» (только женщины).\nСлово y значит «и». Luis — тоже имя.",
+        "uk": "Мова про кількох людей? Слово знову інше: están.\nEllos están allí. — «Вони он там.»\nЧитається: е́йос еста́н ай-і́.\nСлово están означає «перебувають».\nСлово ellos означає «вони» (чоловіки або змішана група). Слово ellas — «вони» (тільки жінки).\nСлово y означає «і». Luis — теж ім’я.",
+        "en": "Talking about several people? The word changes again: están.\nEllos están allí. — “They are over there.”\nThe word están means “are located”.\nThe word ellos means “they” (men or a mixed group).\nThe word ellas means “they” (women only).\nThe word y means “and”. Luis is also a name."
+      },
+      "examples": [
+        {
+          "phraseId": "es:01:22",
+          "say": {
+            "ru": "э́йос эста́н ай-и́",
+            "uk": "е́йос еста́н ай-і́"
+          }
+        },
+        {
+          "phraseId": "es:01:24",
+          "say": {
+            "ru": "э́йяс эста́н се́рка",
+            "uk": "е́йяс еста́н се́рка"
+          }
+        },
+        {
+          "phraseId": "es:01:29",
+          "say": {
+            "ru": "А́на и Луи́с эста́н аки́",
+            "uk": "А́на і Луі́с еста́н акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они вон там»",
+            "uk": "Виберіть, як сказати: «Вони он там»",
+            "en": "Choose how to say: “They are over there”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:01:22",
+          "options": [
+            "es:01:22",
+            "es:01:12",
+            "es:01:24"
+          ],
+          "answerId": "es:01:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они рядом»",
+            "uk": "Виберіть, як сказати: «Вони поруч»",
+            "en": "Choose how to say: “They are near”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:24",
+          "options": [
+            "es:01:24",
+            "es:01:22",
+            "es:01:12"
+          ],
+          "answerId": "es:01:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана и Луис здесь»",
+            "uk": "Виберіть, як сказати: «Ана й Луїс тут»",
+            "en": "Choose how to say: “Ana and Luis are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:29",
+          "options": [
+            "es:01:29",
+            "es:01:11",
+            "es:01:22"
+          ],
+          "answerId": "es:01:29"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Дома и на занятии",
+        "uk": "Вдома і на занятті",
+        "en": "At home and in class"
+      },
+      "text": {
+        "ru": "Чтобы назвать место, нужно слово en.\nEstoy en casa. — «Я дома.»\nЧитается: эсто́й эн ка́са.\nСлово en значит «в», «на» или «у»,\nсмотря по месту. Слово casa значит «дом», clase — «занятие».\nСлово estoy не меняется, меняется только место после en.",
+        "uk": "Щоб назвати місце, потрібне слово en.\nEstoy en casa. — «Я вдома.»\nЧитається: есто́й ен ка́са.\nСлово en означає «в», «на» або «біля»,\nзалежно від місця. Слово casa означає «дім», clase — «заняття».\nСлово estoy не змінюється, змінюється тільки місце після en.",
+        "en": "To name a place you need the word en.\nEstoy en casa. — “I am at home.”\nThe word en means “in”, “on” or “at” — it depends on the place.\nThe word casa means “house”, clase means “class”.\nThe word estoy does not change; only the place after en changes."
+      },
+      "examples": [
+        {
+          "phraseId": "es:01:06",
+          "say": {
+            "ru": "эсто́й эн ка́са",
+            "uk": "есто́й ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:01:08",
+          "say": {
+            "ru": "эсто́й эн кла́се",
+            "uk": "есто́й ен кла́се"
+          }
+        },
+        {
+          "phraseId": "es:01:13",
+          "say": {
+            "ru": "А́на эста́ эн ка́са",
+            "uk": "А́на еста́ ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:01:23",
+          "say": {
+            "ru": "эста́мос эн ка́са",
+            "uk": "еста́мос ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дома»",
+            "uk": "Виберіть, як сказати: «Я вдома»",
+            "en": "Choose how to say: “I am at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:01:06",
+          "options": [
+            "es:01:06",
+            "es:01:08",
+            "es:01:01"
+          ],
+          "answerId": "es:01:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я на занятии»",
+            "uk": "Виберіть, як сказати: «Я на занятті»",
+            "en": "Choose how to say: “I am in class”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:08",
+          "options": [
+            "es:01:08",
+            "es:01:06",
+            "es:01:10"
+          ],
+          "answerId": "es:01:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана дома»",
+            "uk": "Виберіть, як сказати: «Ана вдома»",
+            "en": "Choose how to say: “Ana is at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:13",
+          "options": [
+            "es:01:13",
+            "es:01:06",
+            "es:01:17"
+          ],
+          "answerId": "es:01:13"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Вещи и места",
+        "uk": "Речі та місця",
+        "en": "Things and places"
+      },
+      "text": {
+        "ru": "Теперь вещи.\nEl móvil está aquí. — «Телефон здесь.»\nЧитается: эль мо́виль эста́ аки́.\nСлово móvil значит «телефон».\nСлова el, la, los, las стоят перед названием вещи.\nЗапоминайте их вместе со словом: по-русски их нет.\nВещей несколько? Тогда los или las, и están.\nПеред многими местами тоже стоит la: en la cocina — «на кухне».\nПеред casa его нет: en casa — «дома».\nСлово estación значит «станция», puerta — «дверь».\nВ фразе про Ану en значит «у»: en la puerta — «у двери».",
+        "uk": "Тепер речі.\nEl móvil está aquí. — «Телефон тут.»\nЧитається: ель мо́віль еста́ акі́.\nСлово móvil означає «телефон».\nСлова el, la, los, las стоять перед назвою речі.\nЗапам’ятовуйте їх разом зі словом: українською їх немає.\nРечей кілька? Тоді los або las, і están.\nПеред багатьма місцями теж стоїть la: en la cocina — «на кухні».\nПеред casa його немає: en casa — «вдома».\nСлово estación означає «станція», puerta — «двері».\nУ фразі про Ану en означає «біля»: en la puerta — «біля дверей».",
+        "en": "Now things.\nEl móvil está aquí. — “The phone is here.”\nThe word móvil means “phone”.\nThe words el, la, los, las stand before the name of a thing.\nThey mean “the”: learn each one together with its word.\nSeveral things? Then los or las, and están.\nMany places also get la: en la cocina — “in the kitchen”.\nNot before casa: en casa — “at home”.\nThe word estación means “station”, puerta means “door”.\nIn the phrase about Ana, en means “at”: en la puerta — “at the door”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:01:31",
+          "say": {
+            "ru": "эль мо́виль эста́ аки́",
+            "uk": "ель мо́віль еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:01:32",
+          "say": {
+            "ru": "лас йа́вес эста́н аки́",
+            "uk": "лас йа́вес еста́н акі́"
+          }
+        },
+        {
+          "phraseId": "es:01:40",
+          "say": {
+            "ru": "ла йа́ве эста́ де́нтро",
+            "uk": "ла йа́ве еста́ де́нтро"
+          }
+        },
+        {
+          "phraseId": "es:01:39",
+          "say": {
+            "ru": "эль ли́бро эста́ аки́",
+            "uk": "ель лі́бро еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:01:34",
+          "say": {
+            "ru": "эль ко́че эста́ фуэ́ра",
+            "uk": "ель ко́че еста́ фуе́ра"
+          }
+        },
+        {
+          "phraseId": "es:01:36",
+          "say": {
+            "ru": "ла мочи́ла эста́ эн ка́са",
+            "uk": "ла мочі́ла еста́ ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:01:33",
+          "say": {
+            "ru": "ла ме́са эста́ ай-и́",
+            "uk": "ла ме́са еста́ ай-і́"
+          }
+        },
+        {
+          "phraseId": "es:01:41",
+          "say": {
+            "ru": "эсто́й эн ла коси́на",
+            "uk": "есто́й ен ла косі́на"
+          }
+        },
+        {
+          "phraseId": "es:01:43",
+          "say": {
+            "ru": "А́на эста́ эн ла пуэ́рта",
+            "uk": "А́на еста́ ен ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:01:44",
+          "say": {
+            "ru": "эста́мос эн ла эстасьо́н",
+            "uk": "еста́мос ен ла естасьо́н"
+          }
+        },
+        {
+          "phraseId": "es:01:42",
+          "say": {
+            "ru": "лас йа́вес эста́н эн ла ме́са",
+            "uk": "лас йа́вес еста́н ен ла ме́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Телефон здесь»",
+            "uk": "Виберіть, як сказати: «Телефон тут»",
+            "en": "Choose how to say: “The phone is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:01:31",
+          "options": [
+            "es:01:31",
+            "es:01:32",
+            "es:01:39"
+          ],
+          "answerId": "es:01:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ внутри»",
+            "uk": "Виберіть, як сказати: «Ключ усередині»",
+            "en": "Choose how to say: “The key is inside”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:40",
+          "options": [
+            "es:01:40",
+            "es:01:32",
+            "es:01:36"
+          ],
+          "answerId": "es:01:40"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я на кухне»",
+            "uk": "Виберіть, як сказати: «Я на кухні»",
+            "en": "Choose how to say: “I am in the kitchen”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:01:41",
+          "options": [
+            "es:01:41",
+            "es:01:06",
+            "es:01:44"
+          ],
+          "answerId": "es:01:41"
+        }
+      ]
+    }
+  ]
+}

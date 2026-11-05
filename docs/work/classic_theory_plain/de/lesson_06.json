@@ -1,0 +1,586 @@
+{
+  "lang": "de",
+  "lesson": 6,
+  "title": {
+    "ru": "Где, когда, как, что, кто",
+    "uk": "Де, коли, як, що, хто",
+    "en": "Where, when, how, what, who"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Где?",
+        "uk": "Де?",
+        "en": "Where?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Где ты живёшь?».\nWo wohnst du? — «Где ты живёшь?»\nЧитается: во во́нст ду\nWo wohnt Anna? — «Где живёт Анна?»\nЧитается: во вонт А́нна\nСлово wo значит «где». Оно стоит первым.\nПотом идёт слово про дело: wohnst, wohnt. Это второе слово.\nСлово ich или du стоит после него.\nWo ist der Eingang? — «Где вход?»\nЧитается: во ист дер а́йнганг\nWo ist die Kasse? — «Где касса?»\nЧитается: во ист ди ка́се\nWo ist die Haltestelle? — «Где остановка?»\nЧитается: во ист ди ха́льтештеле\nWo sind die Schlüssel? — «Где ключи?»\nЧитается: во зинд ди шлю́сель\nСлово Eingang значит «вход». Слово Kasse — «касса».\nСлово Haltestelle — «остановка». Слово Schlüssel — «ключи».\nПро одну вещь говорят ist: Wo ist der Eingang?\nПро несколько вещей — sind: Wo sind die Schlüssel?",
+        "uk": "Дивіться, як запитати «Де ти живеш?».\nWo wohnst du? — «Де ти живеш?»\nЧитається: во во́нст ду\nWo wohnt Anna? — «Де живе Ганна?»\nЧитається: во вонт А́нна\nСлово wo означає «де». Воно стоїть першим.\nПотім іде слово про справу: wohnst, wohnt. Це друге слово.\nСлово ich або du стоїть після нього.\nWo ist der Eingang? — «Де вхід?»\nЧитається: во іст дер а́йнганг\nWo ist die Kasse? — «Де каса?»\nЧитається: во іст ді ка́се\nWo ist die Haltestelle? — «Де зупинка?»\nЧитається: во іст ді ха́льтештеле\nWo sind die Schlüssel? — «Де ключі?»\nЧитається: во зінд ді шлю́сель\nСлово Eingang означає «вхід». Слово Kasse — «каса».\nСлово Haltestelle — «зупинка». Слово Schlüssel — «ключі».\nПро одну річ кажуть ist: Wo ist der Eingang?\nПро кілька речей — sind: Wo sind die Schlüssel?",
+        "en": "Look at how to ask “Where do you live?”.\nWo wohnst du? — “Where do you live?”\nSounds like: vo vOnst doo\nWo wohnt Anna? — “Where does Anna live?”\nSounds like: vo vont Anna\nThe word wo means “where”. It comes first.\nThen comes the word about the action: wohnst, wohnt. This is the second word.\nThe word ich or du comes after it.\nWo ist der Eingang? — “Where is the entrance?”\nSounds like: vo eest der Ayngang\nWo ist die Kasse? — “Where is the cash desk?”\nSounds like: vo eest dee kAse\nWo ist die Haltestelle? — “Where is the stop?”\nSounds like: vo eest dee khAlteshtele\nWo sind die Schlüssel? — “Where are the keys?”\nSounds like: vo zeend dee shlYOOsel\nThe word Eingang means “entrance”. The word Kasse — “cash desk”.\nThe word Haltestelle — “stop”. The word Schlüssel — “keys”.\nFor one thing you say ist: Wo ist der Eingang?\nFor several things — sind: Wo sind die Schlüssel?"
+      },
+      "examples": [
+        {
+          "phraseId": "de:06:01",
+          "say": {
+            "ru": "во во́нст ду",
+            "uk": "во во́нст ду"
+          }
+        },
+        {
+          "phraseId": "de:06:02",
+          "say": {
+            "ru": "во вонт А́нна",
+            "uk": "во вонт А́нна"
+          }
+        },
+        {
+          "phraseId": "de:06:06",
+          "say": {
+            "ru": "во ист дер а́йнганг",
+            "uk": "во іст дер а́йнганг"
+          }
+        },
+        {
+          "phraseId": "de:06:07",
+          "say": {
+            "ru": "во ист ди ка́се",
+            "uk": "во іст ді ка́се"
+          }
+        },
+        {
+          "phraseId": "de:06:08",
+          "say": {
+            "ru": "во ист ди ха́льтештеле",
+            "uk": "во іст ді ха́льтештеле"
+          }
+        },
+        {
+          "phraseId": "de:06:05",
+          "say": {
+            "ru": "во зинд ди шлю́сель",
+            "uk": "во зінд ді шлю́сель"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где ты живёшь?»",
+            "uk": "Виберіть, як сказати: «Де ти живеш?»",
+            "en": "Choose how to say: “Where do you live?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:06:01",
+          "options": [
+            "de:06:01",
+            "de:06:02",
+            "de:06:06"
+          ],
+          "answerId": "de:06:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где живёт Анна?»",
+            "uk": "Виберіть, як сказати: «Де живе Ганна?»",
+            "en": "Choose how to say: “Where does Anna live?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:02",
+          "options": [
+            "de:06:02",
+            "de:06:01",
+            "de:06:06"
+          ],
+          "answerId": "de:06:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где остановка?»",
+            "uk": "Виберіть, як сказати: «Де зупинка?»",
+            "en": "Choose how to say: “Where is the stop?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:08",
+          "options": [
+            "de:06:08",
+            "de:06:07",
+            "de:06:06"
+          ],
+          "answerId": "de:06:08"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Когда?",
+        "uk": "Коли?",
+        "en": "When?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Когда ты придёшь?».\nWann kommst du? — «Когда ты придёшь?»\nЧитается: ван комст ду\nWann kommt der Bus? — «Когда придёт автобус?»\nЧитается: ван комт дер бус\nСлово wann значит «когда». Оно стоит первым.\nСлово kommst значит «приходишь». Слово kommt — «приходит».\nWann beginnt die Pause? — «Когда начинается перерыв?»\nЧитается: ван беги́нт ди па́узе\nWann öffnet die Küche? — «Когда открывается кухня?»\nЧитается: ван э́фнет ди кю́хе\nWann schließt das Büro? — «Когда закрывается офис?»\nЧитается: ван шли́ст дас бюро́\nСлово beginnt значит «начинается». Слово Pause — «перерыв».\nСлово öffnet — «открывается». Слово Küche — «кухня».\nСлово schließt — «закрывается». Слово Büro — «офис».",
+        "uk": "Дивіться, як запитати «Коли ти прийдеш?».\nWann kommst du? — «Коли ти прийдеш?»\nЧитається: ван комст ду\nWann kommt der Bus? — «Коли прийде автобус?»\nЧитається: ван комт дер бус\nСлово wann означає «коли». Воно стоїть першим.\nСлово kommst означає «приходиш». Слово kommt — «приходить».\nWann beginnt die Pause? — «Коли починається перерва?»\nЧитається: ван бегі́нт ді па́узе\nWann öffnet die Küche? — «Коли відкривається кухня?»\nЧитається: ван е́фнет ді кю́хе\nWann schließt das Büro? — «Коли закривається офіс?»\nЧитається: ван шлі́ст дас бюро́\nСлово beginnt означає «починається». Слово Pause — «перерва».\nСлово öffnet — «відкривається». Слово Küche — «кухня».\nСлово schließt — «закривається». Слово Büro — «офіс».",
+        "en": "Look at how to ask “When are you coming?”.\nWann kommst du? — “When are you coming?”\nSounds like: van komst doo\nWann kommt der Bus? — “When is the bus coming?”\nSounds like: van komt der boos\nThe word wann means “when”. It comes first.\nThe word kommst means “come”. The word kommt — “comes”.\nWann beginnt die Pause? — “When does the break start?”\nSounds like: van begEEnt dee pAooze\nWann öffnet die Küche? — “When does the kitchen open?”\nSounds like: van Efnet dee kYOOkhe\nWann schließt das Büro? — “When does the office close?”\nSounds like: van shlEEst das byoorO\nThe word beginnt means “starts”. The word Pause — “break”.\nThe word öffnet — “opens”. The word Küche — “kitchen”.\nThe word schließt — “closes”. The word Büro — “office”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:06:11",
+          "say": {
+            "ru": "ван комст ду",
+            "uk": "ван комст ду"
+          }
+        },
+        {
+          "phraseId": "de:06:12",
+          "say": {
+            "ru": "ван комт дер бус",
+            "uk": "ван комт дер бус"
+          }
+        },
+        {
+          "phraseId": "de:06:14",
+          "say": {
+            "ru": "ван беги́нт ди па́узе",
+            "uk": "ван бегі́нт ді па́узе"
+          }
+        },
+        {
+          "phraseId": "de:06:16",
+          "say": {
+            "ru": "ван э́фнет ди кю́хе",
+            "uk": "ван е́фнет ді кю́хе"
+          }
+        },
+        {
+          "phraseId": "de:06:17",
+          "say": {
+            "ru": "ван шли́ст дас бюро́",
+            "uk": "ван шлі́ст дас бюро́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда ты придёшь?»",
+            "uk": "Виберіть, як сказати: «Коли ти прийдеш?»",
+            "en": "Choose how to say: “When are you coming?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:06:11",
+          "options": [
+            "de:06:11",
+            "de:06:12",
+            "de:06:16"
+          ],
+          "answerId": "de:06:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда придёт автобус?»",
+            "uk": "Виберіть, як сказати: «Коли прийде автобус?»",
+            "en": "Choose how to say: “When is the bus coming?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:12",
+          "options": [
+            "de:06:12",
+            "de:06:11",
+            "de:06:16"
+          ],
+          "answerId": "de:06:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда закрывается офис?»",
+            "uk": "Виберіть, як сказати: «Коли закривається офіс?»",
+            "en": "Choose how to say: “When does the office close?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:17",
+          "options": [
+            "de:06:17",
+            "de:06:16",
+            "de:06:14"
+          ],
+          "answerId": "de:06:17"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Как?",
+        "uk": "Як?",
+        "en": "How?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Как тебя зовут?».\nWie heißt du? — «Как тебя зовут?»\nЧитается: ви хайст ду\nWie heißen Sie? — «Как вас зовут?»\nЧитается: ви ха́йсен зи\nWie heißt die Straße? — «Как называется улица?»\nЧитается: ви хайст ди штра́се\nСлово wie значит «как». Оно стоит первым.\nСлово heißt значит «зовут» или «называется». Слово Straße — «улица».\nSie с большой буквы — вежливое «вы»: Wie heißen Sie?\nWie geht es dir? — «Как у тебя дела?»\nЧитается: ви гет ес дир\nWie geht es Ihnen? — «Как у вас дела?»\nЧитается: ви гет ес и́нен\nСлова geht es значат «идут дела». Слово dir — «тебе». Слово Ihnen — «вам».\nИх вы запоминаете вместе: Wie geht es dir?",
+        "uk": "Дивіться, як запитати «Як тебе звати?».\nWie heißt du? — «Як тебе звати?»\nЧитається: ві хайст ду\nWie heißen Sie? — «Як вас звати?»\nЧитається: ві ха́йсен зі\nWie heißt die Straße? — «Як називається вулиця?»\nЧитається: ві хайст ді штра́се\nСлово wie означає «як». Воно стоїть першим.\nСлово heißt означає «звати» або «називається». Слово Straße — «вулиця».\nSie з великої літери — ввічливе «ви»: Wie heißen Sie?\nWie geht es dir? — «Як у тебе справи?»\nЧитається: ві гет ес дір\nWie geht es Ihnen? — «Як у вас справи?»\nЧитається: ві гет ес і́нен\nСлова geht es означають «йдуть справи». Слово dir — «тобі». Слово Ihnen — «вам».\nЇх ви запам’ятовуєте разом: Wie geht es dir?",
+        "en": "Look at how to ask “What is your name?”.\nWie heißt du? — “What is your name?”\nSounds like: vee khayst doo\nWie heißen Sie? — “What is your name? (polite)”\nSounds like: vee khAysen zee\nWie heißt die Straße? — “What is the street called?”\nSounds like: vee khayst dee shtrAse\nThe word wie means “how”. It comes first.\nThe word heißt means “is called”. The word Straße — “street”.\nSie with a capital letter is the polite “you”: Wie heißen Sie?\nWie geht es dir? — “How are you?”\nSounds like: vee get es deer\nWie geht es Ihnen? — “How are you? (polite)”\nSounds like: vee get es EEnen\nThe words geht es mean “things go”. The word dir — “to you”.\nThe word Ihnen — “to you” (polite).\nLearn them together: Wie geht es dir?"
+      },
+      "examples": [
+        {
+          "phraseId": "de:06:21",
+          "say": {
+            "ru": "ви хайст ду",
+            "uk": "ві хайст ду"
+          }
+        },
+        {
+          "phraseId": "de:06:22",
+          "say": {
+            "ru": "ви ха́йсен зи",
+            "uk": "ві ха́йсен зі"
+          }
+        },
+        {
+          "phraseId": "de:06:23",
+          "say": {
+            "ru": "ви хайст ди штра́се",
+            "uk": "ві хайст ді штра́се"
+          }
+        },
+        {
+          "phraseId": "de:06:24",
+          "say": {
+            "ru": "ви гет ес дир",
+            "uk": "ві гет ес дір"
+          }
+        },
+        {
+          "phraseId": "de:06:25",
+          "say": {
+            "ru": "ви гет ес и́нен",
+            "uk": "ві гет ес і́нен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как тебя зовут?»",
+            "uk": "Виберіть, як сказати: «Як тебе звати?»",
+            "en": "Choose how to say: “What is your name?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:06:21",
+          "options": [
+            "de:06:21",
+            "de:06:24",
+            "de:06:23"
+          ],
+          "answerId": "de:06:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как вас зовут?»",
+            "uk": "Виберіть, як сказати: «Як вас звати?»",
+            "en": "Choose how to say: “What is your name? (polite)”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:22",
+          "options": [
+            "de:06:22",
+            "de:06:21",
+            "de:06:24"
+          ],
+          "answerId": "de:06:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как называется улица?»",
+            "uk": "Виберіть, як сказати: «Як називається вулиця?»",
+            "en": "Choose how to say: “What is the street called?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:23",
+          "options": [
+            "de:06:23",
+            "de:06:21",
+            "de:06:22"
+          ],
+          "answerId": "de:06:23"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Как долго?",
+        "uk": "Як довго?",
+        "en": "How long?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Сколько длится поездка?».\nWie lange dauert die Fahrt? — «Сколько длится поездка?»\nЧитается: ви ла́нге да́уерт ди фарт\nWie lange bleibt ihr? — «Как долго вы остаётесь?»\nЧитается: ви ла́нге блайбт ир\nСлова wie lange значат «как долго». Они идут вместе.\nСлово Fahrt значит «поездка». Слово dauert — «длится».\nСлово bleibt значит «остаётесь».\nWie spät ist es? — «Который час?»\nЧитается: ви шпэт ист ес\nWie bezahle ich hier? — «Как мне здесь заплатить?»\nЧитается: ви беца́ле их хи́р\nWie spät ist es? — так спрашивают время. Слово spät значит «поздно».\nСлово bezahle значит «плачу». Слово hier — «здесь».",
+        "uk": "Дивіться, як запитати «Скільки триває подорож?».\nWie lange dauert die Fahrt? — «Скільки триває подорож?»\nЧитається: ві ла́нге да́уерт ді фарт\nWie lange bleibt ihr? — «Як довго ви залишаєтеся?»\nЧитається: ві ла́нге блайбт ір\nСлова wie lange означають «як довго». Вони йдуть разом.\nСлово Fahrt означає «подорож». Слово dauert — «триває».\nСлово bleibt означає «залишаєтеся».\nWie spät ist es? — «Котра година?»\nЧитається: ві шпет іст ес\nWie bezahle ich hier? — «Як мені тут заплатити?»\nЧитається: ві беца́ле іх хі́р\nWie spät ist es? — так питають, котра година. Слово spät означає «пізно».\nСлово bezahle означає «плачу». Слово hier — «тут».",
+        "en": "Look at how to ask “How long does the trip take?”.\nWie lange dauert die Fahrt? — “How long does the trip take?”\nSounds like: vee lAnge dAooert dee fart\nWie lange bleibt ihr? — “How long are you staying?”\nSounds like: vee lAnge blaybt eer\nThe words wie lange mean “how long”. They go together.\nThe word Fahrt means “trip”. The word dauert — “lasts”.\nThe word bleibt means “stay”.\nWie spät ist es? — “What time is it?”\nSounds like: vee shpet eest es\nWie bezahle ich hier? — “How do I pay here?”\nSounds like: vee betsAle eekh khEEr\nWie spät ist es? — this is how you ask the time.\nThe word spät means “late”.\nThe word bezahle means “I pay”. The word hier — “here”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:06:28",
+          "say": {
+            "ru": "ви ла́нге да́уерт ди фарт",
+            "uk": "ві ла́нге да́уерт ді фарт"
+          }
+        },
+        {
+          "phraseId": "de:06:29",
+          "say": {
+            "ru": "ви ла́нге блайбт ир",
+            "uk": "ві ла́нге блайбт ір"
+          }
+        },
+        {
+          "phraseId": "de:06:30",
+          "say": {
+            "ru": "ви шпэт ист ес",
+            "uk": "ві шпет іст ес"
+          }
+        },
+        {
+          "phraseId": "de:06:26",
+          "say": {
+            "ru": "ви беца́ле их хи́р",
+            "uk": "ві беца́ле іх хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько длится поездка?»",
+            "uk": "Виберіть, як сказати: «Скільки триває подорож?»",
+            "en": "Choose how to say: “How long does the trip take?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:06:28",
+          "options": [
+            "de:06:28",
+            "de:06:29",
+            "de:06:30"
+          ],
+          "answerId": "de:06:28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как долго вы остаётесь?»",
+            "uk": "Виберіть, як сказати: «Як довго ви залишаєтеся?»",
+            "en": "Choose how to say: “How long are you staying?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:29",
+          "options": [
+            "de:06:29",
+            "de:06:28",
+            "de:06:30"
+          ],
+          "answerId": "de:06:29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Который час?»",
+            "uk": "Виберіть, як сказати: «Котра година?»",
+            "en": "Choose how to say: “What time is it?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:30",
+          "options": [
+            "de:06:30",
+            "de:06:28",
+            "de:06:26"
+          ],
+          "answerId": "de:06:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Что? Сколько стоит?",
+        "uk": "Що? Скільки коштує?",
+        "en": "What? How much?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Что ты ищешь?».\nWas suchst du? — «Что ты ищешь?»\nЧитается: вас зухст ду\nWas ist das? — «Что это?»\nЧитается: вас ист дас\nСлово was значит «что». Оно стоит первым.\nWas ist das? — «Что это?»\nWas kostet das Ticket? — «Сколько стоит билет?»\nЧитается: вас ко́стет дас ти́кет\nWas kostet die Suppe? — «Сколько стоит суп?»\nЧитается: вас ко́стет ди зу́пе\nWas brauchen Sie? — «Что вам нужно?»\nЧитается: вас бра́ухен зи\nСлово kostet значит «стоит». Слово kosten — «стоить».\nWas kostet das Ticket? — «Сколько стоит билет?»\nСлово brauchen значит «нуждаться»: Was brauchen Sie? — «Что вам нужно?»",
+        "uk": "Дивіться, як запитати «Що ти шукаєш?».\nWas suchst du? — «Що ти шукаєш?»\nЧитається: вас зухст ду\nWas ist das? — «Що це?»\nЧитається: вас іст дас\nСлово was означає «що». Воно стоїть першим.\nWas ist das? — «Що це?»\nWas kostet das Ticket? — «Скільки коштує квиток?»\nЧитається: вас ко́стет дас ті́кет\nWas kostet die Suppe? — «Скільки коштує суп?»\nЧитається: вас ко́стет ді зу́пе\nWas brauchen Sie? — «Що вам потрібно?»\nЧитається: вас бра́ухен зі\nСлово kostet означає «коштує». Слово kosten — «коштувати».\nWas kostet das Ticket? — «Скільки коштує квиток?»\nСлово brauchen означає «потребувати»: Was brauchen Sie? — «Що вам потрібно?»",
+        "en": "Look at how to ask “What are you looking for?”.\nWas suchst du? — “What are you looking for?”\nSounds like: vas zookhst doo\nWas ist das? — “What is that?”\nSounds like: vas eest das\nThe word was means “what”. It comes first.\nWas ist das? — “What is that?”\nWas kostet das Ticket? — “How much is the ticket?”\nSounds like: vas kOstet das tEEket\nWas kostet die Suppe? — “How much is the soup?”\nSounds like: vas kOstet dee zOOpe\nWas brauchen Sie? — “What do you need?”\nSounds like: vas brAookhen zee\nThe word kostet means “costs”. The word kosten — “to cost”.\nWas kostet das Ticket? — “How much is the ticket?”\nThe word brauchen means “to need”: Was brauchen Sie? — “What do you need?”"
+      },
+      "examples": [
+        {
+          "phraseId": "de:06:31",
+          "say": {
+            "ru": "вас зухст ду",
+            "uk": "вас зухст ду"
+          }
+        },
+        {
+          "phraseId": "de:06:40",
+          "say": {
+            "ru": "вас ист дас",
+            "uk": "вас іст дас"
+          }
+        },
+        {
+          "phraseId": "de:06:34",
+          "say": {
+            "ru": "вас ко́стет дас ти́кет",
+            "uk": "вас ко́стет дас ті́кет"
+          }
+        },
+        {
+          "phraseId": "de:06:35",
+          "say": {
+            "ru": "вас ко́стет ди зу́пе",
+            "uk": "вас ко́стет ді зу́пе"
+          }
+        },
+        {
+          "phraseId": "de:06:36",
+          "say": {
+            "ru": "вас бра́ухен зи",
+            "uk": "вас бра́ухен зі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Что ты ищешь?»",
+            "uk": "Виберіть, як сказати: «Що ти шукаєш?»",
+            "en": "Choose how to say: “What are you looking for?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:06:31",
+          "options": [
+            "de:06:31",
+            "de:06:36",
+            "de:06:40"
+          ],
+          "answerId": "de:06:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько стоит билет?»",
+            "uk": "Виберіть, як сказати: «Скільки коштує квиток?»",
+            "en": "Choose how to say: “How much is the ticket?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:34",
+          "options": [
+            "de:06:34",
+            "de:06:35",
+            "de:06:31"
+          ],
+          "answerId": "de:06:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Что вам нужно?»",
+            "uk": "Виберіть, як сказати: «Що вам потрібно?»",
+            "en": "Choose how to say: “What do you need?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:36",
+          "options": [
+            "de:06:36",
+            "de:06:40",
+            "de:06:31"
+          ],
+          "answerId": "de:06:36"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Кто?",
+        "uk": "Хто?",
+        "en": "Who?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Кто ждёт на улице?».\nWer wartet draußen? — «Кто ждёт на улице?»\nЧитается: вер ва́ртет дра́усен\nWer bezahlt die Rechnung? — «Кто оплачивает счёт?»\nЧитается: вер беца́льт ди ре́хнунг\nWer kommt am Freitag? — «Кто придёт в пятницу?»\nЧитается: вер комт ам фра́йтаг\nСлово wer значит «кто». Оно стоит первым.\nСлово wartet значит «ждёт». Слово bezahlt — «оплачивает».\nСлово Rechnung — «счёт». Слово Freitag — «пятница».\nWer hat den Schlüssel? — «У кого ключ?»\nЧитается: вер хат ден шлю́сель\nСлово hat значит «имеет». Wer hat den Schlüssel? — «У кого ключ?»",
+        "uk": "Дивіться, як запитати «Хто чекає на вулиці?».\nWer wartet draußen? — «Хто чекає на вулиці?»\nЧитається: вер ва́ртет дра́усен\nWer bezahlt die Rechnung? — «Хто оплачує рахунок?»\nЧитається: вер беца́льт ді ре́хнунг\nWer kommt am Freitag? — «Хто прийде у п'ятницю?»\nЧитається: вер комт ам фра́йтаг\nСлово wer означає «хто». Воно стоїть першим.\nСлово wartet означає «чекає». Слово bezahlt — «сплачує».\nСлово Rechnung — «рахунок». Слово Freitag — «п’ятниця».\nWer hat den Schlüssel? — «У кого ключ?»\nЧитається: вер хат ден шлю́сель\nСлово hat означає «має». Wer hat den Schlüssel? — «У кого ключ?»",
+        "en": "Look at how to ask “Who is waiting outside?”.\nWer wartet draußen? — “Who is waiting outside?”\nSounds like: ver vArtet drAoosen\nWer bezahlt die Rechnung? — “Who pays the bill?”\nSounds like: ver betsAlt dee rEkhnoong\nWer kommt am Freitag? — “Who is coming on Friday?”\nSounds like: ver komt am frAytag\nThe word wer means “who”. It comes first.\nThe word wartet means “waits”. The word bezahlt — “pays”.\nThe word Rechnung — “bill”. The word Freitag — “Friday”.\nWer hat den Schlüssel? — “Who has the key?”\nSounds like: ver khat den shlYOOsel\nThe word hat means “has”. Wer hat den Schlüssel? — “Who has the key?”"
+      },
+      "examples": [
+        {
+          "phraseId": "de:06:41",
+          "say": {
+            "ru": "вер ва́ртет дра́усен",
+            "uk": "вер ва́ртет дра́усен"
+          }
+        },
+        {
+          "phraseId": "de:06:43",
+          "say": {
+            "ru": "вер беца́льт ди ре́хнунг",
+            "uk": "вер беца́льт ді ре́хнунг"
+          }
+        },
+        {
+          "phraseId": "de:06:44",
+          "say": {
+            "ru": "вер комт ам фра́йтаг",
+            "uk": "вер комт ам фра́йтаг"
+          }
+        },
+        {
+          "phraseId": "de:06:45",
+          "say": {
+            "ru": "вер хат ден шлю́сель",
+            "uk": "вер хат ден шлю́сель"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто ждёт на улице?»",
+            "uk": "Виберіть, як сказати: «Хто чекає на вулиці?»",
+            "en": "Choose how to say: “Who is waiting outside?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:06:41",
+          "options": [
+            "de:06:41",
+            "de:06:43",
+            "de:06:44"
+          ],
+          "answerId": "de:06:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто оплачивает счёт?»",
+            "uk": "Виберіть, як сказати: «Хто оплачує рахунок?»",
+            "en": "Choose how to say: “Who pays the bill?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:43",
+          "options": [
+            "de:06:43",
+            "de:06:41",
+            "de:06:44"
+          ],
+          "answerId": "de:06:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто придёт в пятницу?»",
+            "uk": "Виберіть, як сказати: «Хто прийде у п'ятницю?»",
+            "en": "Choose how to say: “Who is coming on Friday?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:06:44",
+          "options": [
+            "de:06:44",
+            "de:06:41",
+            "de:06:45"
+          ],
+          "answerId": "de:06:44"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,579 @@
+{
+  "lang": "en",
+  "lesson": 6,
+  "title": {
+    "ru": "Вопросы: где, когда, что, как",
+    "uk": "Питання: де, коли, що, як",
+    "en": "Questions: where, when, what, how"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Где и когда",
+        "uk": "Де і коли",
+        "en": "Where and when"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «где» и «когда». Новое слово ставят в самое начало.\nWhere do you work? — Где вы работаете?\nЧитается: уэ́р ду́ ю уо́рк.\nСлово Where значит «где». Дальше всё как в прошлом уроке: do you work.\nWhere does she live? — Где она живет?\nЧитается: уэ́р да́з ши ли́в.\nПро неё — does, как раньше.\nWhen does the sale end? — Когда заканчивается распродажа?\nЧитается: уэ́н да́з зэ сэ́йл э́нд.\nСлово When значит «когда». Слово sale значит «распродажа». Слово end — «заканчиваться».\nСлова: meet — «встречаться», after — «после», coat — «пальто», batteries — «батарейки».",
+        "uk": "Дивіться, як запитати «де» і «коли». Нове слово ставлять на самий початок.\nWhere do you work? — Де ви працюєте?\nЧитається: уе́р ду́ ю уо́рк.\nСлово Where означає «де». Далі все як у минулому уроці: do you work.\nWhere does she live? — Де вона живе?\nЧитається: уе́р да́з ші лі́в.\nПро неї — does, як раніше.\nWhen does the sale end? — Коли закінчується розпродаж?\nЧитається: уе́н да́з зе се́йл е́нд.\nСлово When означає «коли». Слово sale означає «розпродаж». Слово end — «закінчуватися».\nСлова: meet — «зустрічатися», after — «після», coat — «пальто», batteries — «батарейки».",
+        "en": "Put the new word first.\nWhere do you work?\nWhere means “in which place.”\nWhere does she live?\nFor her we say does.\nWhen does the sale end?\nWhen means “at what time.”\nThe words: meet, after, coat, batteries."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:06.01",
+          "say": {
+            "ru": "уэ́р ду́ ю уо́рк",
+            "uk": "уе́р ду́ ю уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.02",
+          "say": {
+            "ru": "уэ́р да́з ши ли́в",
+            "uk": "уе́р да́з ші лі́в"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.25",
+          "say": {
+            "ru": "уэ́н да́з зэ сэ́йл э́нд",
+            "uk": "уе́н да́з зе се́йл е́нд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.42",
+          "say": {
+            "ru": "уэ́р ду́ уи ми́т э́фтер клэ́с",
+            "uk": "уе́р ду́ уі мі́т е́фтер кле́с"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.34",
+          "say": {
+            "ru": "уэ́р ду́ ю ли́в ёр ко́ут",
+            "uk": "уе́р ду́ ю лі́в йор ко́ут"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.24",
+          "say": {
+            "ru": "уэ́р ду́ ю ки́п зэ бэ́тэриз",
+            "uk": "уе́р ду́ ю кі́п зе бе́теріз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где вы работаете?»",
+            "uk": "Виберіть, як сказати: «Де ви працюєте?»",
+            "en": "Choose how to say: “Where do you work?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:06.01",
+          "options": [
+            "en-classic-r1:06.01",
+            "en-classic-r1:06.02",
+            "en-classic-r1:06.25"
+          ],
+          "answerId": "en-classic-r1:06.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда заканчивается распродажа?»",
+            "uk": "Виберіть, як сказати: «Коли закінчується розпродаж?»",
+            "en": "Choose how to say: “When does the sale end?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.25",
+          "options": [
+            "en-classic-r1:06.25",
+            "en-classic-r1:06.42",
+            "en-classic-r1:06.01"
+          ],
+          "answerId": "en-classic-r1:06.25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где мы встретимся после занятий?»",
+            "uk": "Виберіть, як сказати: «Де ми зустрінемося після занять?»",
+            "en": "Choose how to say: “Where do we meet after class?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.42",
+          "options": [
+            "en-classic-r1:06.42",
+            "en-classic-r1:06.34",
+            "en-classic-r1:06.24"
+          ],
+          "answerId": "en-classic-r1:06.42"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Что",
+        "uk": "Що",
+        "en": "What"
+      },
+      "text": {
+        "ru": "Слово What значит «что» или «какой».\nWhat size do you wear? — Какой у вас размер?\nЧитается: уо́т са́йз ду́ ю уэ́р.\nСлово size значит «размер». Слово wear здесь значит «носить».\nWhat does this word mean? — Что означает это слово?\nЧитается: уо́т да́з зис уо́рд ми́н.\nСлово mean значит «значить». Слово word значит «слово».\nСлова: label — «этикетка», say — «быть написанным», button — «кнопка».",
+        "uk": "Слово What означає «що» або «який».\nWhat size do you wear? — Який розмір ви носите?\nЧитається: уо́т са́йз ду́ ю уе́р.\nСлово size означає «розмір». Слово wear тут означає «носити».\nWhat does this word mean? — Що означає це слово?\nЧитається: уо́т да́з зіс уо́рд мі́н.\nСлово mean означає «означати». Слово word означає «слово».\nСлова: label — «етикетка», say — «бути написаним», button — «кнопка».",
+        "en": "What means “which thing.”\nWhat size do you wear?\nThe word size means “how big.”\nWhat does this word mean?\nThe word mean means “to have a meaning.”\nThe words: label, say, button."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:06.22",
+          "say": {
+            "ru": "уо́т са́йз ду́ ю уэ́р",
+            "uk": "уо́т са́йз ду́ ю уе́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.29",
+          "say": {
+            "ru": "уо́т да́з зэ лэ́йбл сэ́й",
+            "uk": "уо́т да́з зе ле́йбл се́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.36",
+          "say": {
+            "ru": "уо́т да́з зис ба́тн ду́",
+            "uk": "уо́т да́з зіс ба́тн ду́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.44",
+          "say": {
+            "ru": "уо́т да́з зис уо́рд ми́н",
+            "uk": "уо́т да́з зіс уо́рд мі́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Какой у вас размер?»",
+            "uk": "Виберіть, як сказати: «Який розмір ви носите?»",
+            "en": "Choose how to say: “What size do you wear?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:06.22",
+          "options": [
+            "en-classic-r1:06.22",
+            "en-classic-r1:06.29",
+            "en-classic-r1:06.36"
+          ],
+          "answerId": "en-classic-r1:06.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Что делает эта кнопка?»",
+            "uk": "Виберіть, як сказати: «Що робить ця кнопка?»",
+            "en": "Choose how to say: “What does this button do?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.36",
+          "options": [
+            "en-classic-r1:06.36",
+            "en-classic-r1:06.44",
+            "en-classic-r1:06.22"
+          ],
+          "answerId": "en-classic-r1:06.36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Что означает это слово?»",
+            "uk": "Виберіть, як сказати: «Що означає це слово?»",
+            "en": "Choose how to say: “What does this word mean?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.44",
+          "options": [
+            "en-classic-r1:06.44",
+            "en-classic-r1:06.29",
+            "en-classic-r1:06.22"
+          ],
+          "answerId": "en-classic-r1:06.44"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Какой",
+        "uk": "Який",
+        "en": "Which"
+      },
+      "text": {
+        "ru": "Слово Which значит «какой» или «который из».\nWhich colour do you prefer? — Какой цвет вы предпочитаете?\nЧитается: уи́ч ка́лер ду́ ю прифэ́р.\nСлова: colour — «цвет», prefer — «предпочитать».\nWhich bus goes to the centre? — Какой автобус едет до центра?\nЧитается: уи́ч ба́с го́уз ту зэ сэ́нтер.\nЗдесь слов do и does нет: автобус сам едет.\nВ конце слова есть s, как в уроке 3: she starts.\nСлова: centre — «центр», leads — «ведёт», belongs — «принадлежит».",
+        "uk": "Слово Which означає «який» або «котрий із».\nWhich colour do you prefer? — Якому кольору ви віддаєте перевагу?\nЧитається: уі́ч ка́лер ду́ ю пріфе́р.\nСлова: colour — «колір», prefer — «віддавати перевагу».\nWhich bus goes to the centre? — Який автобус їде до центру?\nЧитається: уі́ч ба́с го́уз ту зе се́нтер.\nТут слів do і does немає: автобус сам їде.\nУ кінці слова є s, як в уроці 3: she starts.\nСлова: centre — «центр», leads — «веде», belongs — «належить».",
+        "en": "Which means “which one of them.”\nWhich colour do you prefer?\nThe words: colour, prefer.\nWhich bus goes to the centre?\nHere there is no do or does: the bus goes by itself.\nThe words: centre, leads, belongs."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:06.23",
+          "say": {
+            "ru": "уи́ч ка́лер ду́ ю прифэ́р",
+            "uk": "уі́ч ка́лер ду́ ю пріфе́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.41",
+          "say": {
+            "ru": "уи́ч до́р ли́дз ту зэ стэ́рз",
+            "uk": "уі́ч до́р лі́дз ту зе сте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.18",
+          "say": {
+            "ru": "уи́ч ба́с го́уз ту зэ сэ́нтер",
+            "uk": "уі́ч ба́с го́уз ту зе се́нтер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.48",
+          "say": {
+            "ru": "уи́ч бэ́г било́нгз ту ю",
+            "uk": "уі́ч бе́г біло́нгз ту ю"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Какой цвет вы предпочитаете?»",
+            "uk": "Виберіть, як сказати: «Якому кольору ви віддаєте перевагу?»",
+            "en": "Choose how to say: “Which colour do you prefer?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:06.23",
+          "options": [
+            "en-classic-r1:06.23",
+            "en-classic-r1:06.18",
+            "en-classic-r1:06.48"
+          ],
+          "answerId": "en-classic-r1:06.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Какой автобус едет до центра?»",
+            "uk": "Виберіть, як сказати: «Який автобус їде до центру?»",
+            "en": "Choose how to say: “Which bus goes to the centre?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.18",
+          "options": [
+            "en-classic-r1:06.18",
+            "en-classic-r1:06.41",
+            "en-classic-r1:06.23"
+          ],
+          "answerId": "en-classic-r1:06.18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Какая сумка ваша?»",
+            "uk": "Виберіть, як сказати: «Яка сумка належить вам?»",
+            "en": "Choose how to say: “Which bag belongs to you?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.48",
+          "options": [
+            "en-classic-r1:06.48",
+            "en-classic-r1:06.41",
+            "en-classic-r1:06.23"
+          ],
+          "answerId": "en-classic-r1:06.48"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Почему и как",
+        "uk": "Чому і як",
+        "en": "Why and how"
+      },
+      "text": {
+        "ru": "Слово Why значит «почему». Слово How значит «как».\nWhy does the alarm beep? — Почему пищит сигнализация?\nЧитается: уа́й да́з зэ эла́рм би́п.\nСлова: alarm — «сигнализация», beep — «пищать».\nHow do I restart the printer? — Как перезапустить принтер?\nЧитается: ха́у ду́ ай риста́рт зэ при́нтер.\nСлово restart значит «перезапускать».\nСлова: screen — «экран», dark — «тёмный», more — «больше», cost — «стоить».\nСлова: spell — «писать по буквам», surname — «фамилия», one — «один».",
+        "uk": "Слово Why означає «чому». Слово How означає «як».\nWhy does the alarm beep? — Чому пищить сигналізація?\nЧитається: уа́й да́з зе ела́рм бі́п.\nСлова: alarm — «сигналізація», beep — «пищати».\nHow do I restart the printer? — Як перезапустити принтер?\nЧитається: ха́у ду́ ай ріста́рт зе прі́нтер.\nСлово restart означає «перезапускати».\nСлова: screen — «екран», dark — «темний», more — «більше», cost — «коштувати».\nСлова: spell — «писати по літерах», surname — «прізвище», one — «один».",
+        "en": "Why means “for what reason.” How means “in what way.”\nWhy does the alarm beep?\nThe words: alarm, beep.\nHow do I restart the printer?\nThe word restart means “to start again.”\nThe words: screen, dark, more, cost.\nThe words: spell, surname, one."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:06.10",
+          "say": {
+            "ru": "уа́й да́з зэ эла́рм би́п",
+            "uk": "уа́й да́з зе ела́рм бі́п"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.30",
+          "say": {
+            "ru": "уа́й да́з зис уа́н ко́ст мо́р",
+            "uk": "уа́й да́з зіс уа́н ко́ст мо́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.37",
+          "say": {
+            "ru": "уа́й да́з зэ скри́н го́у да́рк",
+            "uk": "уа́й да́з зе скрі́н го́у да́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.35",
+          "say": {
+            "ru": "ха́у ду́ ай риста́рт зэ при́нтер",
+            "uk": "ха́у ду́ ай ріста́рт зе прі́нтер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.43",
+          "say": {
+            "ru": "ха́у ду́ ю спэ́л ёр сэ́рнэйм",
+            "uk": "ха́у ду́ ю спе́л йор се́рнейм"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Почему пищит сигнализация?»",
+            "uk": "Виберіть, як сказати: «Чому пищить сигналізація?»",
+            "en": "Choose how to say: “Why does the alarm beep?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:06.10",
+          "options": [
+            "en-classic-r1:06.10",
+            "en-classic-r1:06.35",
+            "en-classic-r1:06.43"
+          ],
+          "answerId": "en-classic-r1:06.10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Почему экран гаснет?»",
+            "uk": "Виберіть, як сказати: «Чому екран темніє?»",
+            "en": "Choose how to say: “Why does the screen go dark?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.37",
+          "options": [
+            "en-classic-r1:06.37",
+            "en-classic-r1:06.30",
+            "en-classic-r1:06.10"
+          ],
+          "answerId": "en-classic-r1:06.37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как пишется ваша фамилия?»",
+            "uk": "Виберіть, як сказати: «Як пишеться ваше прізвище?»",
+            "en": "Choose how to say: “How do you spell your surname?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.43",
+          "options": [
+            "en-classic-r1:06.43",
+            "en-classic-r1:06.35",
+            "en-classic-r1:06.10"
+          ],
+          "answerId": "en-classic-r1:06.43"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Сколько",
+        "uk": "Скільки",
+        "en": "How much"
+      },
+      "text": {
+        "ru": "Слово How можно соединить с другим словом.\nHow much does a ticket cost? — Сколько стоит билет?\nЧитается: ха́у ма́ч да́з э ти́кет ко́ст.\nHow much значит «сколько» (про цену). Слово cost значит «стоить».\nHow many people live here? — Сколько человек здесь живет?\nЧитается: ха́у мэ́ни пи́пл ли́в хи́р.\nHow many значит «сколько» (про количество). Слово people значит «люди».\nHow long значит «как долго». How often — «как часто». How far — «как далеко».\nСлова: journey — «поездка», day — «день», each — «каждый», foot — «нога».",
+        "uk": "Слово How можна поєднати з іншим словом.\nHow much does a ticket cost? — Скільки коштує квиток?\nЧитається: ха́у ма́ч да́з е ті́кет ко́ст.\nHow much означає «скільки» (про ціну). Слово cost означає «коштувати».\nHow many people live here? — Скільки людей тут живе?\nЧитається: ха́у ме́ні пі́пл лі́в хі́р.\nHow many означає «скільки» (про кількість). Слово people означає «люди».\nHow long означає «як довго». How often — «як часто». How far — «як далеко».\nСлова: journey — «подорож», day — «день», each — «кожен», foot — «нога».",
+        "en": "You can join How with another word.\nHow much does a ticket cost?\nHow much asks about a price.\nHow many people live here?\nHow many asks about a number.\nHow long, how often, how far.\nThe words: journey, day, each, foot."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:06.13",
+          "say": {
+            "ru": "ха́у ма́ч да́з э ти́кет ко́ст",
+            "uk": "ха́у ма́ч да́з е ті́кет ко́ст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.16",
+          "say": {
+            "ru": "ха́у ло́нг да́з зэ дже́рни тэ́йк",
+            "uk": "ха́у ло́нг да́з зе дже́рні те́йк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.20",
+          "say": {
+            "ru": "ха́у о́фен ду́ зэ трэ́йнз ра́н",
+            "uk": "ха́у о́фен ду́ зе тре́йнз ра́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.45",
+          "say": {
+            "ru": "ха́у мэ́ни пи́пл ли́в хи́р",
+            "uk": "ха́у ме́ні пі́пл лі́в хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.46",
+          "say": {
+            "ru": "ха́у фа́р ду́ ю уо́к и́ч дэ́й",
+            "uk": "ха́у фа́р ду́ ю уо́к і́ч де́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.50",
+          "say": {
+            "ru": "ха́у ло́нг да́з ит тэ́йк он фу́т",
+            "uk": "ха́у ло́нг да́з іт те́йк он фу́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько стоит билет?»",
+            "uk": "Виберіть, як сказати: «Скільки коштує квиток?»",
+            "en": "Choose how to say: “How much does a ticket cost?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:06.13",
+          "options": [
+            "en-classic-r1:06.13",
+            "en-classic-r1:06.16",
+            "en-classic-r1:06.20"
+          ],
+          "answerId": "en-classic-r1:06.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как часто ходят поезда?»",
+            "uk": "Виберіть, як сказати: «Як часто курсують поїзди?»",
+            "en": "Choose how to say: “How often do the trains run?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.20",
+          "options": [
+            "en-classic-r1:06.20",
+            "en-classic-r1:06.16",
+            "en-classic-r1:06.46"
+          ],
+          "answerId": "en-classic-r1:06.20"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько человек здесь живет?»",
+            "uk": "Виберіть, як сказати: «Скільки людей тут живе?»",
+            "en": "Choose how to say: “How many people live here?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.45",
+          "options": [
+            "en-classic-r1:06.45",
+            "en-classic-r1:06.13",
+            "en-classic-r1:06.50"
+          ],
+          "answerId": "en-classic-r1:06.45"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Кто",
+        "uk": "Хто",
+        "en": "Who"
+      },
+      "text": {
+        "ru": "Слово Who значит «кто».\nWho checks the orders? — Кто проверяет заказы?\nЧитается: ху́ чэ́кс зэ о́рдерз.\nЗдесь слов do и does нет: Who само говорит, кто делает.\nСлово order значит «заказ».\nWho do I call? — Кому мне позвонить?\nЧитается: ху́ ду́ ай ко́л.\nСлово call значит «звонить».\nСлова: teach — «учить», evening — «вечер».",
+        "uk": "Слово Who означає «хто».\nWho checks the orders? — Хто перевіряє замовлення?\nЧитається: ху́ че́кс зе о́рдерз.\nТут слів do і does немає: Who саме каже, хто робить.\nСлово order означає «замовлення».\nWho do I call? — Кому мені подзвонити?\nЧитається: ху́ ду́ ай ко́л.\nСлово call означає «телефонувати».\nСлова: teach — «навчати», evening — «вечір».",
+        "en": "Who means “which person.”\nWho checks the orders?\nThere is no do or does: Who already says who acts.\nThe word order means “something you ask for.”\nWho do I call?\nThe word call means “to phone.”\nThe words: teach, evening."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:06.38",
+          "say": {
+            "ru": "ху́ чэ́кс зэ о́рдерз",
+            "uk": "ху́ че́кс зе о́рдерз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.39",
+          "say": {
+            "ru": "ху́ ду́ ай ко́л",
+            "uk": "ху́ ду́ ай ко́л"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:06.47",
+          "say": {
+            "ru": "ху́ ти́чиз зэ и́внинг клэ́с",
+            "uk": "ху́ ті́чіз зе і́внінг кле́с"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто проверяет заказы?»",
+            "uk": "Виберіть, як сказати: «Хто перевіряє замовлення?»",
+            "en": "Choose how to say: “Who checks the orders?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:06.38",
+          "options": [
+            "en-classic-r1:06.38",
+            "en-classic-r1:06.39",
+            "en-classic-r1:06.47"
+          ],
+          "answerId": "en-classic-r1:06.38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кому мне позвонить?»",
+            "uk": "Виберіть, як сказати: «Кому мені подзвонити?»",
+            "en": "Choose how to say: “Who do I call?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.39",
+          "options": [
+            "en-classic-r1:06.39",
+            "en-classic-r1:06.38",
+            "en-classic-r1:06.47"
+          ],
+          "answerId": "en-classic-r1:06.39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто ведет вечерние занятия?»",
+            "uk": "Виберіть, як сказати: «Хто викладає вечірні заняття?»",
+            "en": "Choose how to say: “Who teaches the evening class?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:06.47",
+          "options": [
+            "en-classic-r1:06.47",
+            "en-classic-r1:06.38",
+            "en-classic-r1:06.39"
+          ],
+          "answerId": "en-classic-r1:06.47"
+        }
+      ]
+    }
+  ]
+}

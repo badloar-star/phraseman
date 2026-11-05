@@ -1,0 +1,398 @@
+{
+ "lang": "it",
+ "lesson": 4,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:04:01",
+   "target": "Questo è Paolo.",
+   "ru": "Это Паоло.",
+   "uk": "Це Паоло."
+  },
+  {
+   "id": "it:04:02",
+   "target": "Questa è Lea.",
+   "ru": "Это Леа.",
+   "uk": "Це Леа."
+  },
+  {
+   "id": "it:04:03",
+   "target": "Questa è mia sorella.",
+   "ru": "Это моя сестра.",
+   "uk": "Це моя сестра."
+  },
+  {
+   "id": "it:04:04",
+   "target": "Questo è mio fratello.",
+   "ru": "Это мой брат.",
+   "uk": "Це мій брат."
+  },
+  {
+   "id": "it:04:05",
+   "target": "Questa è un’amica.",
+   "ru": "Это подруга.",
+   "uk": "Це подруга."
+  },
+  {
+   "id": "it:04:06",
+   "target": "Questo è un amico.",
+   "ru": "Это друг.",
+   "uk": "Це друг."
+  },
+  {
+   "id": "it:04:07",
+   "target": "Questo è un vicino.",
+   "ru": "Это сосед.",
+   "uk": "Це сусід."
+  },
+  {
+   "id": "it:04:08",
+   "target": "Questa è una vicina.",
+   "ru": "Это соседка.",
+   "uk": "Це сусідка."
+  },
+  {
+   "id": "it:04:09",
+   "target": "Questo è mio padre.",
+   "ru": "Это мой отец.",
+   "uk": "Це мій батько."
+  },
+  {
+   "id": "it:04:10",
+   "target": "Questa è mia madre.",
+   "ru": "Это моя мать.",
+   "uk": "Це моя мати."
+  },
+  {
+   "id": "it:04:11",
+   "target": "Questa è una chiave.",
+   "ru": "Это ключ.",
+   "uk": "Це ключ."
+  },
+  {
+   "id": "it:04:12",
+   "target": "Questo è un biglietto.",
+   "ru": "Это билет.",
+   "uk": "Це квиток."
+  },
+  {
+   "id": "it:04:13",
+   "target": "Questo è un biglietto dell’autobus.",
+   "ru": "Это автобусный билет.",
+   "uk": "Це квиток на автобус."
+  },
+  {
+   "id": "it:04:14",
+   "target": "Questa è una tessera.",
+   "ru": "Это карточка.",
+   "uk": "Це картка."
+  },
+  {
+   "id": "it:04:15",
+   "target": "Questa è una piantina.",
+   "ru": "Это план.",
+   "uk": "Це план."
+  },
+  {
+   "id": "it:04:16",
+   "target": "Questa è una foto.",
+   "ru": "Это фотография.",
+   "uk": "Це фотографія."
+  },
+  {
+   "id": "it:04:17",
+   "target": "Questo è un regalo.",
+   "ru": "Это подарок.",
+   "uk": "Це подарунок."
+  },
+  {
+   "id": "it:04:18",
+   "target": "Questo è un indirizzo.",
+   "ru": "Это адрес.",
+   "uk": "Це адреса."
+  },
+  {
+   "id": "it:04:19",
+   "target": "Questa è una ricevuta.",
+   "ru": "Это чек.",
+   "uk": "Це чек."
+  },
+  {
+   "id": "it:04:20",
+   "target": "Questa è una fattura.",
+   "ru": "Это счёт.",
+   "uk": "Це рахунок."
+  },
+  {
+   "id": "it:04:21",
+   "target": "Queste sono le mie chiavi.",
+   "ru": "Это мои ключи.",
+   "uk": "Це мої ключі."
+  },
+  {
+   "id": "it:04:22",
+   "target": "Questi sono i miei amici.",
+   "ru": "Это мои друзья.",
+   "uk": "Це мої друзі."
+  },
+  {
+   "id": "it:04:23",
+   "target": "Questi sono i nostri biglietti.",
+   "ru": "Это наши билеты.",
+   "uk": "Це наші квитки."
+  },
+  {
+   "id": "it:04:24",
+   "target": "Questi sono dei vicini.",
+   "ru": "Это соседи.",
+   "uk": "Це сусіди."
+  },
+  {
+   "id": "it:04:25",
+   "target": "Queste sono delle foto.",
+   "ru": "Это фотографии.",
+   "uk": "Це фотографії."
+  },
+  {
+   "id": "it:04:26",
+   "target": "Queste sono le tue scarpe.",
+   "ru": "Это твоя обувь.",
+   "uk": "Це твоє взуття."
+  },
+  {
+   "id": "it:04:27",
+   "target": "Questi sono regali.",
+   "ru": "Это подарки.",
+   "uk": "Це подарунки."
+  },
+  {
+   "id": "it:04:28",
+   "target": "Queste sono le vostre ricevute.",
+   "ru": "Это ваши квитанции.",
+   "uk": "Це ваші квитанції."
+  },
+  {
+   "id": "it:04:29",
+   "target": "Questi sono i loro figli.",
+   "ru": "Это их дети.",
+   "uk": "Це їхні діти."
+  },
+  {
+   "id": "it:04:30",
+   "target": "Questi sono i nostri posti.",
+   "ru": "Это наши места.",
+   "uk": "Це наші місця."
+  },
+  {
+   "id": "it:04:31",
+   "target": "Questa è la mia prima visita.",
+   "ru": "Это мой первый визит.",
+   "uk": "Це мій перший візит."
+  },
+  {
+   "id": "it:04:32",
+   "target": "Questa è la sua camera.",
+   "ru": "Это ваша комната.",
+   "uk": "Це ваша кімната."
+  },
+  {
+   "id": "it:04:33",
+   "target": "Questa è la nostra fermata.",
+   "ru": "Это наша остановка.",
+   "uk": "Це наша зупинка."
+  },
+  {
+   "id": "it:04:34",
+   "target": "Questa è la sua bicicletta.",
+   "ru": "Это его велосипед.",
+   "uk": "Це його велосипед."
+  },
+  {
+   "id": "it:04:35",
+   "target": "È il suo turno.",
+   "ru": "Ваша очередь.",
+   "uk": "Ваша черга."
+  },
+  {
+   "id": "it:04:36",
+   "target": "Questo è l’indirizzo giusto.",
+   "ru": "Это правильный адрес.",
+   "uk": "Це правильна адреса."
+  },
+  {
+   "id": "it:04:37",
+   "target": "Questo è l’ultimo autobus.",
+   "ru": "Это последний автобус.",
+   "uk": "Це останній автобус."
+  },
+  {
+   "id": "it:04:38",
+   "target": "Questo è un regalo per Lea.",
+   "ru": "Это подарок для Леа.",
+   "uk": "Це подарунок для Леа."
+  },
+  {
+   "id": "it:04:39",
+   "target": "Questa è una foto di famiglia.",
+   "ru": "Это семейная фотография.",
+   "uk": "Це сімейна фотографія."
+  },
+  {
+   "id": "it:04:40",
+   "target": "Questo è il numero dell’ufficio.",
+   "ru": "Это номер офиса.",
+   "uk": "Це номер офісу."
+  },
+  {
+   "id": "it:04:41",
+   "target": "Questa non è la mia borsa.",
+   "ru": "Это не моя сумка.",
+   "uk": "Це не моя сумка."
+  },
+  {
+   "id": "it:04:42",
+   "target": "Questo non è il tuo posto.",
+   "ru": "Это не твоё место.",
+   "uk": "Це не твоє місце."
+  },
+  {
+   "id": "it:04:43",
+   "target": "Questo non è il binario giusto.",
+   "ru": "Это не та платформа.",
+   "uk": "Це не та платформа."
+  },
+  {
+   "id": "it:04:44",
+   "target": "Questi non sono i miei occhiali.",
+   "ru": "Это не мои очки.",
+   "uk": "Це не мої окуляри."
+  },
+  {
+   "id": "it:04:45",
+   "target": "Questo è il suo telefono?",
+   "ru": "Это ваш телефон?",
+   "uk": "Це ваш телефон?"
+  },
+  {
+   "id": "it:04:46",
+   "target": "Questo è tuo fratello?",
+   "ru": "Это твой брат?",
+   "uk": "Це твій брат?"
+  },
+  {
+   "id": "it:04:47",
+   "target": "Questi sono i vostri bagagli?",
+   "ru": "Это ваш багаж?",
+   "uk": "Це ваш багаж?"
+  },
+  {
+   "id": "it:04:48",
+   "target": "Questo è un biglietto per domani.",
+   "ru": "Это билет на завтра.",
+   "uk": "Це квиток на завтра."
+  },
+  {
+   "id": "it:04:49",
+   "target": "Queste sono le chiavi del negozio.",
+   "ru": "Это ключи от магазина.",
+   "uk": "Це ключі від магазину."
+  },
+  {
+   "id": "it:04:50",
+   "target": "Questa è l’uscita del parcheggio.",
+   "ru": "Это выезд с парковки.",
+   "uk": "Це виїзд з парковки."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "la ricevuta",
+   "ru": "чек, квитанция",
+   "uk": "чек, квитанція"
+  },
+  {
+   "lemma": "la fattura",
+   "ru": "счёт на оплату",
+   "uk": "рахунок на оплату"
+  },
+  {
+   "lemma": "il vicino / la vicina",
+   "ru": "сосед, соседка",
+   "uk": "сусід, сусідка"
+  },
+  {
+   "lemma": "il regalo",
+   "ru": "подарок",
+   "uk": "подарунок"
+  },
+  {
+   "lemma": "gli occhiali",
+   "ru": "очки",
+   "uk": "окуляри"
+  },
+  {
+   "lemma": "la sorella",
+   "ru": "сестра",
+   "uk": "сестра"
+  },
+  {
+   "lemma": "il fratello",
+   "ru": "брат",
+   "uk": "брат"
+  },
+  {
+   "lemma": "il posto",
+   "ru": "место",
+   "uk": "місце"
+  }
+ ],
+ "knownWords": [
+  "qui",
+  "la stazione",
+  "la chiave",
+  "la finestra",
+  "pronto",
+  "essere",
+  "la casa",
+  "l’ufficio",
+  "la porta",
+  "insieme",
+  "il negozio",
+  "la borsa",
+  "il corridoio",
+  "la camera",
+  "il biglietto",
+  "la farmacia",
+  "in ritardo",
+  "il tavolo",
+  "la sala",
+  "il treno",
+  "la bicicletta",
+  "l’autobus",
+  "il museo",
+  "la banchina",
+  "la biglietteria",
+  "l’uscita",
+  "la tasca",
+  "la serratura",
+  "voi",
+  "l’ingresso",
+  "il parcheggio"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь: `essere`"
+  },
+  {
+   "lesson": 2,
+   "title": "Отрицание: одно слово `non`"
+  },
+  {
+   "lesson": 3,
+   "title": "Уточнить догадку: вопрос без перестановки"
+  }
+ ],
+ "oldTopicTitle": "Представить человека или назвать вещь",
+ "oldTheoryRu": "Указательное слово стоит самостоятельно и указывает на того, кого видят. Сравни с обычным сообщением о себе. Форма первого лица `sono` не заменяет указания на другого человека. Называя одного из многих людей, используй подходящий неопределённый артикль. Перед женским `amica` получается `un’amica`, но мужское `un amico` апострофа не имеет. Род меняет и написание, и смысл. В сочетаниях `mia madre`, `mio padre`, `tuo fratello` обычный артикль перед притяжательным словом не нужен. Не распространяй это на любую вещь: про сумку говорят `la mia borsa`. В сочетании `Questo è un indirizzo` слово `questo` указывает, а `un indirizzo` называет тип предмета. Если просто сказать «адрес», исчезнет часть сообщения «это адрес». Указание, глагол и название должны уживаться в одной группе по числу. `Queste sono le mie chiavi`: предметов несколько, поэтому не `è`. Для одежды смотри на итальянское существительное, а не на число в переводе. В конце фразы может идти уточнение: первый визит, правильный адрес, последний автобус. Попробуй сначала назвать вещь без уточнения, а затем вернуть деталь. Так видно, какую информацию она добавляет. Можно отрицать или спрашивать, чей это предмет. `Questa non è la mia borsa` не означает, что сумки нет: сумка перед нами, просто она чужая."
+}

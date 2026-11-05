@@ -1,0 +1,553 @@
+{
+  "lang": "fr",
+  "lesson": 4,
+  "title": {
+    "ru": "Это — человек или вещь",
+    "uk": "Це — людина чи річ",
+    "en": "This is a person or a thing"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Это Поль, это Леа",
+        "uk": "Це Поль, це Леа",
+        "en": "This is Paul, this is Léa"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это Поль».\nC’est Paul. — «Это Поль.»\nЧитается: сэ поль.\nСлово c’est значит «это».\nC’est Léa. — «Это Леа.»\nЧитается: сэ леа́.\nОдно слово c’est — и вы показываете на человека.\nТак же про брата.\nC’est mon frère. — «Это мой брат.»\nЧитается: сэ мон фрэр.\nСлово mon значит «мой».\nСлово frère значит «брат».\nВ mon звук носовой, как в sont.",
+        "uk": "Дивіться, як сказати «Це Поль».\nC’est Paul. — «Це Пол.»\nЧитається: се поль.\nСлово c’est означає «це».\nC’est Léa. — «Це Леа.»\nЧитається: се леа́.\nОдне слово c’est — і ви показуєте на людину.\nТак само про брата.\nC’est mon frère. — «Це мій брат.»\nЧитається: се мон фрер.\nСлово mon означає «мій».\nСлово frère означає «брат».\nУ mon звук носовий, як у sont.",
+        "en": "Look at how to say “This is Paul”.\nC’est Paul. — “This is Paul.”\nc’est means “this is”.\nC’est Léa. — “This is Léa.”\nOne word, c’est, and you point at a person.\nSame for a brother.\nC’est mon frère. — “This is my brother.”\nmon means “my”.\nfrère means “brother”.\nIn mon the sound goes through the nose, as in sont."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:04:01",
+          "say": {
+            "ru": "сэ поль",
+            "uk": "се поль"
+          }
+        },
+        {
+          "phraseId": "fr:04:02",
+          "say": {
+            "ru": "сэ леа́",
+            "uk": "се леа́"
+          }
+        },
+        {
+          "phraseId": "fr:04:04",
+          "say": {
+            "ru": "сэ мон фрэр",
+            "uk": "се мон фрер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Это Поль»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Це Пол»?",
+            "en": "Sample. Tap the right answer: how do you say “This is Paul”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:04:01",
+          "options": [
+            "fr:04:01",
+            "fr:04:02"
+          ],
+          "answerId": "fr:04:01"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это Леа»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це Леа»?",
+            "en": "Tap the right answer: how do you say “This is Léa”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:02",
+          "options": [
+            "fr:04:02",
+            "fr:04:01",
+            "fr:04:04"
+          ],
+          "answerId": "fr:04:02"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это мой брат»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це мій брат»?",
+            "en": "Tap the right answer: how do you say “This is my brother”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:04",
+          "options": [
+            "fr:04:04",
+            "fr:04:01",
+            "fr:04:02"
+          ],
+          "answerId": "fr:04:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Моя сестра, моя мать",
+        "uk": "Моя сестра, моя мати",
+        "en": "My sister, my mother"
+      },
+      "text": {
+        "ru": "Теперь про сестру и про родителей.\nC’est ma sœur. — «Это моя сестра.»\nЧитается: сэ ма сёр.\nСлово ma значит «моя».\nСлово sœur значит «сестра».\nВ sœur звук «ё»: скажите «э», округлив губы.\nC’est ma mère. — «Это моя мать.»\nЧитается: сэ ма мэр.\nСлово mère значит «мать».\nC’est mon père. — «Это мой отец.»\nЧитается: сэ мон пэр.\nСлово père значит «отец».\nСлово «мой» бывает двух видов: mon и ma.\nMon стоит перед frère и père. Ma — перед sœur и mère.\nЗапоминайте их вместе со словом.",
+        "uk": "Тепер про сестру і про батьків.\nC’est ma sœur. — «Це моя сестра.»\nЧитається: се ма сёр.\nСлово ma означає «моя».\nСлово sœur означає «сестра».\nУ sœur звук «ё»: скажіть «е», округливши губи.\nC’est ma mère. — «Це моя мати.»\nЧитається: се ма мер.\nСлово mère означає «мати».\nC’est mon père. — «Це мій батько.»\nЧитається: се мон пер.\nСлово père означає «батько».\nСлово «мій» буває двох видів: mon і ma.\nMon стоїть перед frère і père. Ma — перед sœur і mère.\nЗапам’ятовуйте їх разом зі словом.",
+        "en": "Now about a sister and parents.\nC’est ma sœur. — “This is my sister.”\nma means “my”.\nsœur means “sister”.\nIn sœur the sound is “e” said with rounded lips.\nC’est ma mère. — “This is my mother.”\nmère means “mother”.\nC’est mon père. — “This is my father.”\npère means “father”.\nThe word “my” comes in two kinds: mon and ma.\nMon goes with frère and père. Ma goes with sœur and mère.\nLearn them together with the word."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:04:03",
+          "say": {
+            "ru": "сэ ма сёр",
+            "uk": "се ма сёр"
+          }
+        },
+        {
+          "phraseId": "fr:04:10",
+          "say": {
+            "ru": "сэ ма мэр",
+            "uk": "се ма мер"
+          }
+        },
+        {
+          "phraseId": "fr:04:09",
+          "say": {
+            "ru": "сэ мон пэр",
+            "uk": "се мон пер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Это моя сестра»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Це моя сестра»?",
+            "en": "Sample. Tap the right answer: how do you say “This is my sister”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:04:03",
+          "options": [
+            "fr:04:03",
+            "fr:04:04"
+          ],
+          "answerId": "fr:04:03"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это моя мать»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це моя мати»?",
+            "en": "Tap the right answer: how do you say “This is my mother”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:10",
+          "options": [
+            "fr:04:10",
+            "fr:04:09",
+            "fr:04:03"
+          ],
+          "answerId": "fr:04:10"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это мой отец»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це мій батько»?",
+            "en": "Tap the right answer: how do you say “This is my father”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:09",
+          "options": [
+            "fr:04:09",
+            "fr:04:10",
+            "fr:04:04"
+          ],
+          "answerId": "fr:04:09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Друг и сосед",
+        "uk": "Друг і сусід",
+        "en": "A friend and a neighbor"
+      },
+      "text": {
+        "ru": "Теперь друг, подруга и соседи.\nC’est un ami. — «Это друг.»\nЧитается: сэ тён ами́.\nСлово ami значит «друг».\nC’est une amie. — «Это подруга.»\nЧитается: сэ тюн ами́.\nСлово amie значит «подруга».\nПеред ami говорят un, перед amie — une.\nПо-русски таких слов нет. Запоминайте их вместе со словом.\nМежду «сэ» и «ён», «юн» слышится лёгкое «т».\nC’est un voisin. — «Это сосед.»\nЧитается: сэ тён вуазэ́н.\nСлово voisin значит «сосед».\nC’est une voisine. — «Это соседка.»\nЧитается: сэ тюн вуази́н.\nСлово voisine значит «соседка».",
+        "uk": "Тепер друг, подруга і сусіди.\nC’est un ami. — «Це друг.»\nЧитається: се тён амі́.\nСлово ami означає «друг».\nC’est une amie. — «Це подруга.»\nЧитається: се тюн амі́.\nСлово amie означає «подруга».\nПеред ami кажуть un, перед amie — une.\nУкраїнською таких слів немає. Запам’ятовуйте їх разом зі словом.\nМіж «сэ» і «ён», «юн» чути легке «т».\nC’est un voisin. — «Це сусід.»\nЧитається: се тён вуазе́н.\nСлово voisin означає «сусід».\nC’est une voisine. — «Це сусідка.»\nЧитається: се тюн вуазі́н.\nСлово voisine означає «сусідка».",
+        "en": "Now a friend and neighbors.\nC’est un ami. — “This is a friend.”\nami means “friend (a man)”.\nC’est une amie. — “This is a friend.”\namie means “friend (a woman)”.\nBefore ami we say un, before amie — une.\nEnglish has no such small word here. Learn it together with the word.\nBetween “se” and “ön”, “ün” you hear a light “t”.\nC’est un voisin. — “This is a neighbor.”\nvoisin means “neighbor (a man)”.\nC’est une voisine. — “This is a neighbor.”\nvoisine means “neighbor (a woman)”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:04:06",
+          "say": {
+            "ru": "сэ тён ами́",
+            "uk": "се тён амі́"
+          }
+        },
+        {
+          "phraseId": "fr:04:05",
+          "say": {
+            "ru": "сэ тюн ами́",
+            "uk": "се тюн амі́"
+          }
+        },
+        {
+          "phraseId": "fr:04:07",
+          "say": {
+            "ru": "сэ тён вуазэ́н",
+            "uk": "се тён вуазе́н"
+          }
+        },
+        {
+          "phraseId": "fr:04:08",
+          "say": {
+            "ru": "сэ тюн вуази́н",
+            "uk": "се тюн вуазі́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Это друг»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Це друг»?",
+            "en": "Sample. Tap the right answer: how do you say “This is a friend”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:04:06",
+          "options": [
+            "fr:04:06",
+            "fr:04:05"
+          ],
+          "answerId": "fr:04:06"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это соседка»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це сусідка»?",
+            "en": "Tap the right answer: how do you say “This is a neighbor”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:08",
+          "options": [
+            "fr:04:08",
+            "fr:04:07",
+            "fr:04:05"
+          ],
+          "answerId": "fr:04:08"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это сосед»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це сусід»?",
+            "en": "Tap the right answer: how do you say “This is a neighbor”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:07",
+          "options": [
+            "fr:04:07",
+            "fr:04:08",
+            "fr:04:06"
+          ],
+          "answerId": "fr:04:07"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вещи",
+        "uk": "Речі",
+        "en": "Things"
+      },
+      "text": {
+        "ru": "Так же называют вещи.\nC’est une clé. — «Это ключ.»\nЧитается: сэ тюн кле́.\nC’est un billet. — «Это билет.»\nЧитается: сэ тён бийэ́.\nСлова clé и billet вы знаете: «ключ» и «билет».\nC’est une carte. — «Это карта.»\nЧитается: сэ тюн карт.\nСлово carte значит «карта».\nC’est un cadeau. — «Это подарок.»\nЧитается: сэ тён кадо́.\nСлово cadeau значит «подарок».\nC’est un reçu. — «Это чек.»\nЧитается: сэ тён рёсю́.\nСлово reçu значит «чек».\nC’est une facture. — «Это счёт.»\nЧитается: сэ тюн фактю́р.\nСлово facture значит «счёт».",
+        "uk": "Так само називають речі.\nC’est une clé. — «Це ключ.»\nЧитається: се тюн кле́.\nC’est un billet. — «Це квиток.»\nЧитається: се тён бійе́.\nСлова clé і billet ви знаєте: «ключ» і «квиток».\nC’est une carte. — «Це мапа.»\nЧитається: се тюн карт.\nСлово carte означає «карта».\nC’est un cadeau. — «Це подарунок.»\nЧитається: се тён кадо́.\nСлово cadeau означає «подарунок».\nC’est un reçu. — «Це чек.»\nЧитається: се тён рёсю́.\nСлово reçu означає «чек».\nC’est une facture. — «Це рахунок.»\nЧитається: се тюн фактю́р.\nСлово facture означає «рахунок».",
+        "en": "Things are named the same way.\nC’est une clé. — “This is a key.”\nC’est un billet. — “This is a ticket.”\nYou know clé and billet: “key” and “ticket”.\nC’est une carte. — “This is a card.”\ncarte means “card, map”.\nC’est un cadeau. — “This is a gift.”\ncadeau means “gift”.\nC’est un reçu. — “This is a receipt.”\nreçu means “receipt”.\nC’est une facture. — “This is a bill.”\nfacture means “bill”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:04:11",
+          "say": {
+            "ru": "сэ тюн кле́",
+            "uk": "се тюн кле́"
+          }
+        },
+        {
+          "phraseId": "fr:04:12",
+          "say": {
+            "ru": "сэ тён бийэ́",
+            "uk": "се тён бійе́"
+          }
+        },
+        {
+          "phraseId": "fr:04:14",
+          "say": {
+            "ru": "сэ тюн карт",
+            "uk": "се тюн карт"
+          }
+        },
+        {
+          "phraseId": "fr:04:17",
+          "say": {
+            "ru": "сэ тён кадо́",
+            "uk": "се тён кадо́"
+          }
+        },
+        {
+          "phraseId": "fr:04:19",
+          "say": {
+            "ru": "сэ тён рёсю́",
+            "uk": "се тён рёсю́"
+          }
+        },
+        {
+          "phraseId": "fr:04:20",
+          "say": {
+            "ru": "сэ тюн фактю́р",
+            "uk": "се тюн фактю́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Это ключ»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Це ключ»?",
+            "en": "Sample. Tap the right answer: how do you say “This is a key”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:04:11",
+          "options": [
+            "fr:04:11",
+            "fr:04:12"
+          ],
+          "answerId": "fr:04:11"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это подарок»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це подарунок»?",
+            "en": "Tap the right answer: how do you say “This is a gift”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:17",
+          "options": [
+            "fr:04:17",
+            "fr:04:14",
+            "fr:04:19"
+          ],
+          "answerId": "fr:04:17"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это счёт»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це рахунок»?",
+            "en": "Tap the right answer: how do you say “This is a bill”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:20",
+          "options": [
+            "fr:04:20",
+            "fr:04:19",
+            "fr:04:12"
+          ],
+          "answerId": "fr:04:20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Когда их несколько",
+        "uk": "Коли їх кілька",
+        "en": "When there are several"
+      },
+      "text": {
+        "ru": "Когда их несколько, вместо c’est говорят ce sont.\nСлово sont вы знаете: так говорят «они».\nCe sont mes clés. — «Это мои ключи.»\nЧитается: сэ сон мэ кле́.\nСлово mes значит «мои».\nCe sont nos billets. — «Это наши билеты.»\nЧитается: сэ сон но бийэ́.\nСлово nos значит «наши».\nCe sont des voisins. — «Это соседи.»\nЧитается: сэ сон дэ вуазэ́н.\nСлово des по-русски не говорят. Оно стоит, когда их несколько.\nCe sont des cadeaux. — «Это подарки.»\nЧитается: сэ сон дэ кадо́.\nCe sont nos places. — «Это наши места.»\nЧитается: сэ сон но плас.\nСлово place значит «место».\nCe sont mes amis. — «Это мои друзья.»\nЧитается: сэ сон мэ зами́.\nВ «мэ зами» слышится лёгкое «з».",
+        "uk": "Коли їх кілька, замість c’est кажуть ce sont.\nСлово sont ви знаєте: так кажуть «вони».\nCe sont mes clés. — «Це мої ключі.»\nЧитається: се сон ме кле́.\nСлово mes означає «мої».\nCe sont nos billets. — «Це наші квитки.»\nЧитається: се сон но бійе́.\nСлово nos означає «наші».\nCe sont des voisins. — «Це сусіди.»\nЧитається: се сон де вуазе́н.\nСлово des українською не кажуть. Воно стоїть, коли їх кілька.\nCe sont des cadeaux. — «Це подарунки.»\nЧитається: се сон де кадо́.\nCe sont nos places. — «Це наші місця.»\nЧитається: се сон но плас.\nСлово place означає «місце».\nCe sont mes amis. — «Це мої друзі.»\nЧитається: се сон ме замі́.\nУ «мэ зами» чути легке «з».",
+        "en": "When there are several, we say ce sont instead of c’est.\nYou know sont: it was used for “they”.\nCe sont mes clés. — “These are my keys.”\nmes means “my (several)”.\nCe sont nos billets. — “These are our tickets.”\nnos means “our (several)”.\nCe sont des voisins. — “These are neighbors.”\nThere is no word for des in English. It stands when there are several.\nCe sont des cadeaux. — “These are gifts.”\nCe sont nos places. — “These are our seats.”\nplace means “seat, place”.\nCe sont mes amis. — “These are my friends.”\nIn “mè zami” you hear a light “z”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:04:21",
+          "say": {
+            "ru": "сэ сон мэ кле́",
+            "uk": "се сон ме кле́"
+          }
+        },
+        {
+          "phraseId": "fr:04:23",
+          "say": {
+            "ru": "сэ сон но бийэ́",
+            "uk": "се сон но бійе́"
+          }
+        },
+        {
+          "phraseId": "fr:04:24",
+          "say": {
+            "ru": "сэ сон дэ вуазэ́н",
+            "uk": "се сон де вуазе́н"
+          }
+        },
+        {
+          "phraseId": "fr:04:27",
+          "say": {
+            "ru": "сэ сон дэ кадо́",
+            "uk": "се сон де кадо́"
+          }
+        },
+        {
+          "phraseId": "fr:04:30",
+          "say": {
+            "ru": "сэ сон но плас",
+            "uk": "се сон но плас"
+          }
+        },
+        {
+          "phraseId": "fr:04:22",
+          "say": {
+            "ru": "сэ сон мэ зами́",
+            "uk": "се сон ме замі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Это мои ключи»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Це мої ключі»?",
+            "en": "Sample. Tap the right answer: how do you say “These are my keys”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:04:21",
+          "options": [
+            "fr:04:21",
+            "fr:04:11"
+          ],
+          "answerId": "fr:04:21"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это наши билеты»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це наші квитки»?",
+            "en": "Tap the right answer: how do you say “These are our tickets”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:23",
+          "options": [
+            "fr:04:23",
+            "fr:04:21",
+            "fr:04:24"
+          ],
+          "answerId": "fr:04:23"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это наши места»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це наші місця»?",
+            "en": "Tap the right answer: how do you say “These are our seats”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:30",
+          "options": [
+            "fr:04:30",
+            "fr:04:23",
+            "fr:04:27"
+          ],
+          "answerId": "fr:04:30"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Это не…",
+        "uk": "Це не…",
+        "en": "This is not…"
+      },
+      "text": {
+        "ru": "Вы помните «не» из урока 2: ne и pas стоят по бокам.\nCe n’est pas mon sac. — «Это не моя сумка.»\nЧитается: сэ нэ па мон сак.\nСлово sac значит «сумка».\nCe n’est pas ta place. — «Это не твоё место.»\nЧитается: сэ нэ па та плас.\nСлово ta значит «твой, твоя».\nCe ne sont pas mes lunettes. — «Это не мои очки.»\nЧитается: сэ нэ сон па мэ люнэ́т.\nСлово lunettes значит «очки».\nПеред est слово ne сокращается: n’est. Перед sont остаётся целым.",
+        "uk": "Ви пам’ятаєте «не» з уроку 2: ne і pas стоять по боках.\nCe n’est pas mon sac. — «Це не моя сумка.»\nЧитається: се не па мон сак.\nСлово sac означає «сумка».\nCe n’est pas ta place. — «Це не твоє місце.»\nЧитається: се не па та плас.\nСлово ta означає «твій, твоя».\nCe ne sont pas mes lunettes. — «Це не мої окуляри.»\nЧитається: се не сон па ме люне́т.\nСлово lunettes означає «окуляри».\nПеред est слово ne скорочується: n’est. Перед sont лишається цілим.",
+        "en": "You remember “not” from lesson 2: ne and pas stand on both sides.\nCe n’est pas mon sac. — “This is not my bag.”\nsac means “bag”.\nCe n’est pas ta place. — “This is not your seat.”\nta means “your”.\nCe ne sont pas mes lunettes. — “These are not my glasses.”\nlunettes means “glasses”.\nBefore est, ne is shortened: n’est. Before sont it stays whole."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:04:41",
+          "say": {
+            "ru": "сэ нэ па мон сак",
+            "uk": "се не па мон сак"
+          }
+        },
+        {
+          "phraseId": "fr:04:42",
+          "say": {
+            "ru": "сэ нэ па та плас",
+            "uk": "се не па та плас"
+          }
+        },
+        {
+          "phraseId": "fr:04:44",
+          "say": {
+            "ru": "сэ нэ сон па мэ люнэ́т",
+            "uk": "се не сон па ме люне́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Это не моя сумка»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Це не моя сумка»?",
+            "en": "Sample. Tap the right answer: how do you say “This is not my bag”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:04:41",
+          "options": [
+            "fr:04:41",
+            "fr:04:44",
+            "fr:04:42"
+          ],
+          "answerId": "fr:04:41"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это не мои очки»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це не мої окуляри»?",
+            "en": "Tap the right answer: how do you say “These are not my glasses”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:44",
+          "options": [
+            "fr:04:44",
+            "fr:04:42",
+            "fr:04:41"
+          ],
+          "answerId": "fr:04:44"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Это не твоё место»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Це не твоє місце»?",
+            "en": "Tap the right answer: how do you say “This is not your seat”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:04:42",
+          "options": [
+            "fr:04:42",
+            "fr:04:41",
+            "fr:04:44"
+          ],
+          "answerId": "fr:04:42"
+        }
+      ]
+    }
+  ]
+}

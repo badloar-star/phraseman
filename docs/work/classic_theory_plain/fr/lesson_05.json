@@ -1,0 +1,571 @@
+{
+  "lang": "fr",
+  "lesson": 5,
+  "title": {
+    "ru": "У меня есть",
+    "uk": "У мене є",
+    "en": "I have"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я, ты, она, он",
+        "uk": "Я, ти, вона, він",
+        "en": "I, you, she, he"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня есть ключ».\nJ’ai une clé. — «У меня есть ключ.»\nЧитается: жэ юн кле́.\nСлово avoir значит «иметь».\nПо-французски говорят «я имею ключ». По-русски — «у меня есть».\nTu as une clé. — «У тебя есть ключ.»\nЧитается: тю а юн кле́.\nElle a un sac. — «У неё есть сумка.»\nЧитается: эль а ён сак.\nIl a un sac. — «У него есть сумка.»\nЧитается: иль а ён сак.\nСлово il значит «он».\nСлово меняется, смотря о ком речь.\n«я» — j’ai, «ты» — as, «она» и «он» — a.",
+        "uk": "Дивіться, як сказати «У мене є ключ».\nJ’ai une clé. — «У мене є ключ.»\nЧитається: же юн кле́.\nСлово avoir означає «мати».\nФранцузькою кажуть «я маю ключ». Українською — «у мене є».\nTu as une clé. — «У тебе є ключ.»\nЧитається: тю а юн кле́.\nElle a un sac. — «У неї є сумка.»\nЧитається: ель а ён сак.\nIl a un sac. — «У нього є сумка.»\nЧитається: іль а ён сак.\nСлово il означає «він».\nСлово змінюється, залежно від того, про кого мова.\n«я» — j’ai, «ти» — as, «вона» і «він» — a.",
+        "en": "Look at how to say “I have a key”.\nJ’ai une clé. — “I have a key.”\navoir means “to have”.\nIn French you say “I have a key”, as in English.\nTu as une clé. — “You have a key.”\nElle a un sac. — “She has a bag.”\nIl a un sac. — “He has a bag.”\nil means “he”.\nThe word changes with who it is about.\n“I” — j’ai, “you” — as, “she” and “he” — a."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:05:01",
+          "say": {
+            "ru": "жэ юн кле́",
+            "uk": "же юн кле́"
+          }
+        },
+        {
+          "phraseId": "fr:05:02",
+          "say": {
+            "ru": "тю а юн кле́",
+            "uk": "тю а юн кле́"
+          }
+        },
+        {
+          "phraseId": "fr:05:03",
+          "say": {
+            "ru": "эль а ён сак",
+            "uk": "ель а ён сак"
+          }
+        },
+        {
+          "phraseId": "fr:05:04",
+          "say": {
+            "ru": "иль а ён сак",
+            "uk": "іль а ён сак"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «У меня есть ключ»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «У мене є ключ»?",
+            "en": "Sample. Tap the right answer: how do you say “I have a key”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:05:01",
+          "options": [
+            "fr:05:01",
+            "fr:05:02",
+            "fr:05:03"
+          ],
+          "answerId": "fr:05:01"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «У неё есть сумка»?",
+            "uk": "Натисніть потрібний варіант: як сказати «У неї є сумка»?",
+            "en": "Tap the right answer: how do you say “She has a bag”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:03",
+          "options": [
+            "fr:05:03",
+            "fr:05:04",
+            "fr:05:01"
+          ],
+          "answerId": "fr:05:03"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «У тебя есть ключ»?",
+            "uk": "Натисніть потрібний варіант: як сказати «У тебе є ключ»?",
+            "en": "Tap the right answer: how do you say “You have a key”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:02",
+          "options": [
+            "fr:05:02",
+            "fr:05:01",
+            "fr:05:04"
+          ],
+          "answerId": "fr:05:02"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мы, вы, они",
+        "uk": "Ми, ви, вони",
+        "en": "We, you, they"
+      },
+      "text": {
+        "ru": "Теперь «у нас», «у вас» и «у них».\nNous avons un plan. — «У нас есть план.»\nЧитается: ну заво́н ён пла́н.\nСлово plan значит «план».\nVous avez un plan. — «У вас есть план.»\nЧитается: ву заве́ ён пла́н.\nIls ont un billet. — «У них есть билет.»\nЧитается: иль зон ён бийэ́.\nLéa a une carte. — «У Леа есть карта.»\nЧитается: леа́ а юн карт.\nКогда речь о нас, говорят avons. О вас — avez. О них — ont.\nПро Леа говорят a, как про «она».\nВ «ну заво́н», «ву заве́», «иль зон» слышится лёгкое «з».",
+        "uk": "Тепер «у нас», «у вас» і «у них».\nNous avons un plan. — «У нас є план.»\nЧитається: ну заво́н ён пла́н.\nСлово plan означає «план».\nVous avez un plan. — «У вас є план.»\nЧитається: ву заве́ ён пла́н.\nIls ont un billet. — «Вони мають квиток.»\nЧитається: іль зон ён бійе́.\nLéa a une carte. — «Леа має мапу.»\nЧитається: леа́ а юн карт.\nКоли мова про нас, кажуть avons. Про вас — avez. Про них — ont.\nПро Леа кажуть a, як про «вона».\nУ «ну заво́н», «ву заве́», «іль зон» чути легке «з».",
+        "en": "Now “we have”, “you have” and “they have”.\nNous avons un plan. — “We have a plan.”\nplan means “plan”.\nVous avez un plan. — “You have a plan.”\nIls ont un billet. — “They have a ticket.”\nLéa a une carte. — “Léa has a card.”\nFor “we” we say avons. For “you” — avez. For “they” — ont.\nFor Léa we say a, as for “she”.\nIn “nou zavon”, “vou zavé”, “il zon” you hear a light “z”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:05:05",
+          "say": {
+            "ru": "ну заво́н ён пла́н",
+            "uk": "ну заво́н ён пла́н"
+          }
+        },
+        {
+          "phraseId": "fr:05:06",
+          "say": {
+            "ru": "ву заве́ ён пла́н",
+            "uk": "ву заве́ ён пла́н"
+          }
+        },
+        {
+          "phraseId": "fr:05:07",
+          "say": {
+            "ru": "иль зон ён бийэ́",
+            "uk": "іль зон ён бійе́"
+          }
+        },
+        {
+          "phraseId": "fr:05:09",
+          "say": {
+            "ru": "леа́ а юн карт",
+            "uk": "леа́ а юн карт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «У нас есть план»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «У нас є план»?",
+            "en": "Sample. Tap the right answer: how do you say “We have a plan”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:05:05",
+          "options": [
+            "fr:05:05",
+            "fr:05:06",
+            "fr:05:07"
+          ],
+          "answerId": "fr:05:05"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «У вас есть план»?",
+            "uk": "Натисніть потрібний варіант: як сказати «У вас є план»?",
+            "en": "Tap the right answer: how do you say “You have a plan”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:06",
+          "options": [
+            "fr:05:06",
+            "fr:05:05",
+            "fr:05:09"
+          ],
+          "answerId": "fr:05:06"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «У них есть билет»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Вони мають квиток»?",
+            "en": "Tap the right answer: how do you say “They have a ticket”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:07",
+          "options": [
+            "fr:05:07",
+            "fr:05:05",
+            "fr:05:09"
+          ],
+          "answerId": "fr:05:07"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Голод, жажда, холод",
+        "uk": "Голод, спрага, холод",
+        "en": "Hunger, thirst, cold"
+      },
+      "text": {
+        "ru": "Про состояние по-французски говорят «у меня голод».\nJ’ai faim. — «Я голоден.»\nЧитается: жэ фэн.\nСлово faim значит «голод».\nJ’ai soif. — «Мне хочется пить.»\nЧитается: жэ суаф.\nСлово soif значит «жажда».\nNous avons froid. — «Нам холодно.»\nЧитается: ну заво́н фруа́.\nСлово froid значит «холод».\nVous avez chaud. — «Вам жарко.»\nЧитается: ву заве́ шо́.\nСлово chaud значит «жара».\nPaul a peur. — «Поль боится.»\nЧитается: поль а пёр.\nСлово peur значит «страх».\nIls ont sommeil. — «Они хотят спать.»\nЧитается: иль зон сомэ́й.\nСлово sommeil значит «сонливость».",
+        "uk": "Про стан французькою кажуть «у мене голод».\nJ’ai faim. — «Я голодний.»\nЧитається: же фен.\nСлово faim означає «голод».\nJ’ai soif. — «Я хочу пити.»\nЧитається: же суаф.\nСлово soif означає «спрага».\nNous avons froid. — «Нам холодно.»\nЧитається: ну заво́н фруа́.\nСлово froid означає «холод».\nVous avez chaud. — «Вам спекотно.»\nЧитається: ву заве́ шо́.\nСлово chaud означає «жара».\nPaul a peur. — «Пол боїться.»\nЧитається: поль а пёр.\nСлово peur означає «страх».\nIls ont sommeil. — «Вони хочуть спати.»\nЧитається: іль зон соме́й.\nСлово sommeil означає «сонливість».",
+        "en": "For feelings, French says “I have hunger”.\nJ’ai faim. — “I am hungry.”\nfaim means “hunger”.\nJ’ai soif. — “I am thirsty.”\nsoif means “thirst”.\nNous avons froid. — “We are cold.”\nfroid means “cold”.\nVous avez chaud. — “You are hot.”\nchaud means “heat”.\nPaul a peur. — “Paul is afraid.”\npeur means “fear”.\nIls ont sommeil. — “They are sleepy.”\nsommeil means “sleepiness”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:05:11",
+          "say": {
+            "ru": "жэ фэн",
+            "uk": "же фен"
+          }
+        },
+        {
+          "phraseId": "fr:05:13",
+          "say": {
+            "ru": "жэ суаф",
+            "uk": "же суаф"
+          }
+        },
+        {
+          "phraseId": "fr:05:15",
+          "say": {
+            "ru": "ну заво́н фруа́",
+            "uk": "ну заво́н фруа́"
+          }
+        },
+        {
+          "phraseId": "fr:05:16",
+          "say": {
+            "ru": "ву заве́ шо́",
+            "uk": "ву заве́ шо́"
+          }
+        },
+        {
+          "phraseId": "fr:05:17",
+          "say": {
+            "ru": "поль а пёр",
+            "uk": "поль а пёр"
+          }
+        },
+        {
+          "phraseId": "fr:05:18",
+          "say": {
+            "ru": "иль зон сомэ́й",
+            "uk": "іль зон соме́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Я голоден»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я голодний»?",
+            "en": "Sample. Tap the right answer: how do you say “I am hungry”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:05:11",
+          "options": [
+            "fr:05:11",
+            "fr:05:13"
+          ],
+          "answerId": "fr:05:11"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Нам холодно»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Нам холодно»?",
+            "en": "Tap the right answer: how do you say “We are cold”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:15",
+          "options": [
+            "fr:05:15",
+            "fr:05:16",
+            "fr:05:11"
+          ],
+          "answerId": "fr:05:15"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Они хотят спать»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Вони хочуть спати»?",
+            "en": "Tap the right answer: how do you say “They are sleepy”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:18",
+          "options": [
+            "fr:05:18",
+            "fr:05:17",
+            "fr:05:13"
+          ],
+          "answerId": "fr:05:18"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Болит, годы, минуты",
+        "uk": "Болить, роки, хвилини",
+        "en": "Pain, years, minutes"
+      },
+      "text": {
+        "ru": "Так же с avoir говорят про боль, годы и количество.\nJ’ai mal au dos. — «У меня болит спина.»\nЧитается: жэ маль о до.\nСлова mal au dos значат «болит спина».\nTu as mal à la tête. — «У тебя болит голова.»\nЧитается: тю а маль а ла тэ́т.\nСлова mal à la tête значат «болит голова».\nВозраст тоже «имеют»: «я имею двадцать лет».\nJ’ai vingt ans. — «Мне двадцать лет.»\nЧитается: жэ вэн тан.\nСлово vingt значит «двадцать».\nСлово ans значит «лет».\nMon frère a dix ans. — «Моему брату десять лет.»\nЧитается: мон фрэр а диз ан.\nСлово dix значит «десять».\nVous avez cinq minutes. — «У вас пять минут.»\nЧитается: ву заве́ сэнк миню́т.\nСлова cinq minutes значат «пять минут».",
+        "uk": "Так само з avoir кажуть про біль, роки й кількість.\nJ’ai mal au dos. — «У мене болить спина.»\nЧитається: же маль о до.\nСлова mal au dos означають «болить спина».\nTu as mal à la tête. — «У тебе болить голова.»\nЧитається: тю а маль а ла те́т.\nСлова mal à la tête означають «болить голова».\nВік теж «мають»: «я маю двадцять років».\nJ’ai vingt ans. — «Мені двадцять років.»\nЧитається: же вен тан.\nСлово vingt означає «двадцять».\nСлово ans означає «років».\nMon frère a dix ans. — «Моєму братові десять років.»\nЧитається: мон фрер а діз ан.\nСлово dix означає «десять».\nVous avez cinq minutes. — «У вас є п'ять хвилин.»\nЧитається: ву заве́ сенк міню́т.\nСлова cinq minutes означають «п’ять хвилин».",
+        "en": "The same word is used for pain, age and amounts.\nJ’ai mal au dos. — “My back hurts.”\nmal au dos means “my back hurts”.\nTu as mal à la tête. — “Your head hurts.”\nmal à la tête means “my head hurts”.\nAge is “had” too: “I have twenty years”.\nJ’ai vingt ans. — “I am twenty years old.”\nvingt means “twenty”.\nans means “years”.\nMon frère a dix ans. — “My brother is ten years old.”\ndix means “ten”.\nVous avez cinq minutes. — “You have five minutes.”\ncinq minutes means “five minutes”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:05:19",
+          "say": {
+            "ru": "жэ маль о до",
+            "uk": "же маль о до"
+          }
+        },
+        {
+          "phraseId": "fr:05:20",
+          "say": {
+            "ru": "тю а маль а ла тэ́т",
+            "uk": "тю а маль а ла те́т"
+          }
+        },
+        {
+          "phraseId": "fr:05:21",
+          "say": {
+            "ru": "жэ вэн тан",
+            "uk": "же вен тан"
+          }
+        },
+        {
+          "phraseId": "fr:05:23",
+          "say": {
+            "ru": "мон фрэр а диз ан",
+            "uk": "мон фрер а діз ан"
+          }
+        },
+        {
+          "phraseId": "fr:05:26",
+          "say": {
+            "ru": "ву заве́ сэнк миню́т",
+            "uk": "ву заве́ сенк міню́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «У меня болит спина»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «У мене болить спина»?",
+            "en": "Sample. Tap the right answer: how do you say “My back hurts”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:05:19",
+          "options": [
+            "fr:05:19",
+            "fr:05:20",
+            "fr:05:21"
+          ],
+          "answerId": "fr:05:19"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мне двадцать лет»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Мені двадцять років»?",
+            "en": "Tap the right answer: how do you say “I am twenty years old”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:21",
+          "options": [
+            "fr:05:21",
+            "fr:05:23",
+            "fr:05:19"
+          ],
+          "answerId": "fr:05:21"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «У тебя болит голова»?",
+            "uk": "Натисніть потрібний варіант: як сказати «У тебе болить голова»?",
+            "en": "Tap the right answer: how do you say “Your head hurts”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:20",
+          "options": [
+            "fr:05:20",
+            "fr:05:19",
+            "fr:05:26"
+          ],
+          "answerId": "fr:05:20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вопрос: есть ли у вас",
+        "uk": "Питання: чи є у вас",
+        "en": "Do you have…?"
+      },
+      "text": {
+        "ru": "Вопрос: голос в конце идёт вверх, как в уроке 3.\nAvez-vous un stylo ? — «У вас есть ручка?»\nЧитается: авэ́ву ён стило́.\nСлово stylo значит «ручка».\nВ Avez-vous слова меняются местами: «у вас ли».\nIl a son passeport ? — «Его паспорт при нём?»\nЧитается: иль а сон паспо́р.\nСлово passeport значит «паспорт».\nСлово son значит «его».\nVous avez de la monnaie ? — «У вас есть мелочь?»\nЧитается: ву заве́ дё ла моне́.\nСлово monnaie значит «мелочь».\nСлова de la по-русски не говорят.\nJ’ai un rendez-vous. — «У меня назначена встреча.»\nЧитается: жэ ён рандэву́.\nСлово rendez-vous значит «назначенная встреча».",
+        "uk": "Питання: голос у кінці йде вгору, як в уроці 3.\nAvez-vous un stylo ? — «У вас є ручка?»\nЧитається: аве́ву ён стіло́.\nСлово stylo означає «ручка».\nУ Avez-vous слова міняються місцями: «чи у вас».\nIl a son passeport ? — «Його паспорт при ньому?»\nЧитається: іль а сон паспо́р.\nСлово passeport означає «паспорт».\nСлово son означає «його».\nVous avez de la monnaie ? — «У вас є дрібні гроші?»\nЧитається: ву заве́ дё ла моне́.\nСлово monnaie означає «дрібниця».\nСлова de la українською не кажуть.\nJ’ai un rendez-vous. — «У мене призначена зустріч.»\nЧитається: же ён рандеву́.\nСлово rendez-vous означає «призначена зустріч».",
+        "en": "A question: the voice goes up at the end, as in lesson 3.\nAvez-vous un stylo ? — “Do you have a pen.”\nstylo means “pen”.\nIn Avez-vous the words swap places.\nIl a son passeport ? — “Does he have his passport.”\npasseport means “passport”.\nson means “his”.\nVous avez de la monnaie ? — “Do you have any change.”\nmonnaie means “change”.\nThere is no word for de la in English.\nJ’ai un rendez-vous. — “I have an appointment.”\nrendez-vous means “appointment”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:05:31",
+          "say": {
+            "ru": "авэ́ву ён стило́",
+            "uk": "аве́ву ён стіло́"
+          }
+        },
+        {
+          "phraseId": "fr:05:35",
+          "say": {
+            "ru": "иль а сон паспо́р",
+            "uk": "іль а сон паспо́р"
+          }
+        },
+        {
+          "phraseId": "fr:05:37",
+          "say": {
+            "ru": "ву заве́ дё ла моне́",
+            "uk": "ву заве́ дё ла моне́"
+          }
+        },
+        {
+          "phraseId": "fr:05:27",
+          "say": {
+            "ru": "жэ ён рандэву́",
+            "uk": "же ён рандеву́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «У вас есть мелочь»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «У вас є дрібні гроші»?",
+            "en": "Sample. Tap the right answer: how do you say “Do you have any change”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:05:37",
+          "options": [
+            "fr:05:37",
+            "fr:05:35",
+            "fr:05:27"
+          ],
+          "answerId": "fr:05:37"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Его паспорт при нём»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Його паспорт при ньому»?",
+            "en": "Tap the right answer: how do you say “Does he have his passport”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:35",
+          "options": [
+            "fr:05:35",
+            "fr:05:37",
+            "fr:05:31"
+          ],
+          "answerId": "fr:05:35"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «У меня назначена встреча»?",
+            "uk": "Натисніть потрібний варіант: як сказати «У мене призначена зустріч»?",
+            "en": "Tap the right answer: how do you say “I have an appointment”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:27",
+          "options": [
+            "fr:05:27",
+            "fr:05:31",
+            "fr:05:35"
+          ],
+          "answerId": "fr:05:27"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Мне нужно",
+        "uk": "Мені потрібно",
+        "en": "I need"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нужна помощь».\nJ’ai besoin d’aide. — «Мне нужна помощь.»\nЧитается: жэ бёзуэ́н дэд.\nСлово besoin значит «нужда».\nСлова d’aide значат «помощь».\nСлова avoir besoin de значат «нуждаться в».\nTu as besoin d’une pause. — «Тебе нужен перерыв.»\nЧитается: тю а бёзуэ́н дюн поз.\nСлово pause значит «перерыв».\nNous avons besoin d’eau. — «Нам нужна вода.»\nЧитается: ну заво́н бёзуэ́н до́.\nСлова d’eau значат «вода».\nElle a besoin de son ordonnance. — «Ей нужен её рецепт.»\nЧитается: эль а бёзуэ́н дё сон ордона́нс.\nСлово ordonnance значит «рецепт врача».",
+        "uk": "Дивіться, як сказати «Мені потрібна допомога».\nJ’ai besoin d’aide. — «Мені потрібна допомога.»\nЧитається: же бёзуе́н дед.\nСлово besoin означає «потреба».\nСлова d’aide означають «допомога».\nСлова avoir besoin de означають «потребувати».\nTu as besoin d’une pause. — «Тобі потрібна перерва.»\nЧитається: тю а бёзуе́н дюн поз.\nСлово pause означає «перерва».\nNous avons besoin d’eau. — «Нам потрібна вода.»\nЧитається: ну заво́н бёзуе́н до́.\nСлова d’eau означають «вода».\nElle a besoin de son ordonnance. — «Їй потрібен її рецепт.»\nЧитається: ель а бёзуе́н дё сон ордона́нс.\nСлово ordonnance означає «рецепт лікаря».",
+        "en": "Look at how to say “I need help”.\nJ’ai besoin d’aide. — “I need help.”\nbesoin means “need”.\nd’aide means “help”.\navoir besoin de means “to need”.\nTu as besoin d’une pause. — “You need a break.”\npause means “break”.\nNous avons besoin d’eau. — “We need water.”\nd’eau means “water”.\nElle a besoin de son ordonnance. — “She needs her prescription.”\nordonnance means “prescription”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:05:41",
+          "say": {
+            "ru": "жэ бёзуэ́н дэд",
+            "uk": "же бёзуе́н дед"
+          }
+        },
+        {
+          "phraseId": "fr:05:42",
+          "say": {
+            "ru": "тю а бёзуэ́н дюн поз",
+            "uk": "тю а бёзуе́н дюн поз"
+          }
+        },
+        {
+          "phraseId": "fr:05:44",
+          "say": {
+            "ru": "ну заво́н бёзуэ́н до́",
+            "uk": "ну заво́н бёзуе́н до́"
+          }
+        },
+        {
+          "phraseId": "fr:05:50",
+          "say": {
+            "ru": "эль а бёзуэ́н дё сон ордона́нс",
+            "uk": "ель а бёзуе́н дё сон ордона́нс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Мне нужна помощь»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Мені потрібна допомога»?",
+            "en": "Sample. Tap the right answer: how do you say “I need help”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:05:41",
+          "options": [
+            "fr:05:41",
+            "fr:05:42",
+            "fr:05:44"
+          ],
+          "answerId": "fr:05:41"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Нам нужна вода»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Нам потрібна вода»?",
+            "en": "Tap the right answer: how do you say “We need water”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:44",
+          "options": [
+            "fr:05:44",
+            "fr:05:42",
+            "fr:05:41"
+          ],
+          "answerId": "fr:05:44"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ей нужен её рецепт»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Їй потрібен її рецепт»?",
+            "en": "Tap the right answer: how do you say “She needs her prescription”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:05:50",
+          "options": [
+            "fr:05:50",
+            "fr:05:42",
+            "fr:05:44"
+          ],
+          "answerId": "fr:05:50"
+        }
+      ]
+    }
+  ]
+}

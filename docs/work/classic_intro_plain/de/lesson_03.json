@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 3,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying what you do"
+      },
+      "text": {
+        "en": "Now you say what people do.\nIch wohne hier. = I live here.\nWohne means “live”.\nIch lerne Deutsch. = I am learning German.\nLerne means “learn”. Deutsch means “German”.\nOne German sentence covers “I learn” and “I am learning”."
+      },
+      "exampleIds": [
+        "de:03:01",
+        "de:03:06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "The end of the word follows who"
+      },
+      "text": {
+        "en": "Look at the last letters of the word.\nIch wohne hier. = I live here.\nDu wohnst hier. = You live here.\nAnna wohnt hier. = Anna lives here.\nWir wohnen hier. = We live here.\nThe start, wohn-, stays the same.\nOnly the end changes: -e, -st, -t, -en."
+      },
+      "exampleIds": [
+        "de:03:02",
+        "de:03:03",
+        "de:03:04"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Same trick, new words"
+      },
+      "text": {
+        "en": "Many words work just like wohnen.\nIch kaufe Brot. = I am buying bread.\nDu kaufst Milch. = You are buying milk.\nKaufe and kaufst mean “buy”. Brot is “bread”. Milch is “milk”.\nCheck who it is, then pick the end of the word."
+      },
+      "exampleIds": [
+        "de:03:16",
+        "de:03:17"
+      ]
+    }
+  ]
+}

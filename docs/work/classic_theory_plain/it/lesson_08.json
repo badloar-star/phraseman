@@ -1,0 +1,509 @@
+{
+  "lang": "it",
+  "lesson": 8,
+  "title": {
+    "ru": "Вопросы",
+    "uk": "Запитання",
+    "en": "Questions"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Где?",
+        "uk": "Де?",
+        "en": "Where?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить, где что-то находится.\nDove sei? — «Где ты?»\nЧитается: до́ве се́й.\nDov’è Paolo? — «Где Паоло?»\nЧитается: дове́ па́оло.\nDove sono le chiavi? — «Где ключи?»\nЧитается: до́ве со́но ле кья́ви.\nСлово dove значит «где».\nСлово dov’è значит «где находится»: dove и è вместе.\nСлово sei значит «ты находишься», слово sono — «находятся».\nЕсли вещей несколько, говорят dove sono.\nСлово chiavi значит «ключи». Слово le стоит перед ним: по-русски его нет.",
+        "uk": "Дивіться, як спитати, де щось перебуває.\nDove sei? — «Де ти?»\nЧитається: до́ве се́й.\nDov’è Paolo? — «Де Паоло?»\nЧитається: дове́ па́оло.\nDove sono le chiavi? — «Де ключі?»\nЧитається: до́ве со́но ле кья́ві.\nСлово dove означає «де».\nСлово dov’è означає «де перебуває»: dove та è разом.\nСлово sei означає «ти перебуваєш», слово sono — «перебувають».\nЯкщо речей кілька, кажуть dove sono.\nСлово chiavi означає «ключі». Слово le стоїть перед ним: українською його нема.",
+        "en": "Look at how to ask where something is.\nDove sei? — “Where are you?”\nDov’è Paolo? — “Where is Paolo?”\nDove sono le chiavi? — “Where are the keys?”\nThe word dove means “where”.\nThe word dov’è means “where is”: dove and è together.\nThe word sei means “you are”, the word sono — “they are”.\nWhen there are several things, we say dove sono.\nThe word chiavi means “keys”. The word le stands before it. No such word in English."
+      },
+      "examples": [
+        {
+          "phraseId": "it:08:01",
+          "say": {
+            "ru": "до́ве се́й",
+            "uk": "до́ве се́й"
+          }
+        },
+        {
+          "phraseId": "it:08:02",
+          "say": {
+            "ru": "дове́ па́оло",
+            "uk": "дове́ па́оло"
+          }
+        },
+        {
+          "phraseId": "it:08:03",
+          "say": {
+            "ru": "до́ве со́но ле кья́ви",
+            "uk": "до́ве со́но ле кья́ві"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где ты»",
+            "uk": "Виберіть, як сказати: «Де ти»",
+            "en": "Choose how to say: “Where are you”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:08:01",
+          "options": [
+            "it:08:01",
+            "it:08:02",
+            "it:08:03"
+          ],
+          "answerId": "it:08:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где Паоло»",
+            "uk": "Виберіть, як сказати: «Де Паоло»",
+            "en": "Choose how to say: “Where is Paolo”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:02",
+          "options": [
+            "it:08:01",
+            "it:08:02",
+            "it:08:03"
+          ],
+          "answerId": "it:08:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где ключи»",
+            "uk": "Виберіть, як сказати: «Де ключі»",
+            "en": "Choose how to say: “Where are the keys”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:03",
+          "options": [
+            "it:08:01",
+            "it:08:02",
+            "it:08:03"
+          ],
+          "answerId": "it:08:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Кто?",
+        "uk": "Хто?",
+        "en": "Who?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Кто?».\nChi lavora qui? — «Кто здесь работает?»\nЧитается: ки лаво́ра куи.\nChi prepara la cena? — «Кто готовит ужин?»\nЧитается: ки препа́ра ла че́на.\nChi ascolta la radio? — «Кто слушает радио?»\nЧитается: ки аско́льта ла ра́дьо.\nСлово chi значит «кто».\nПосле chi слово такое же, как про «он»: lavora, prepara, ascolta.\nСлово lavora значит «работает», prepara — «готовит», ascolta — «слушает».",
+        "uk": "Дивіться, як спитати «Хто?».\nChi lavora qui? — «Хто тут працює?»\nЧитається: кі лаво́ра куі.\nChi prepara la cena? — «Хто готує вечерю?»\nЧитається: кі препа́ра ла че́на.\nChi ascolta la radio? — «Хто слухає радіо?»\nЧитається: кі аско́льта ла ра́дьо.\nСлово chi означає «хто».\nПісля chi слово таке саме, як про «він»: lavora, prepara, ascolta.\nСлово lavora означає «працює», prepara — «готує», ascolta — «слухає».",
+        "en": "Look at how to ask “Who?”.\nChi lavora qui? — “Who works here?”\nChi prepara la cena? — “Who is cooking dinner?”\nChi ascolta la radio? — “Who is listening to the radio?”\nThe word chi means “who”.\nAfter chi the word is the same as for “he”: lavora, prepara, ascolta.\nThe word lavora means “works”, prepara — “cooks”, ascolta — “listens”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:08:13",
+          "say": {
+            "ru": "ки лаво́ра куи",
+            "uk": "кі лаво́ра куі"
+          }
+        },
+        {
+          "phraseId": "it:08:16",
+          "say": {
+            "ru": "ки препа́ра ла че́на",
+            "uk": "кі препа́ра ла че́на"
+          }
+        },
+        {
+          "phraseId": "it:08:17",
+          "say": {
+            "ru": "ки аско́льта ла ра́дьо",
+            "uk": "кі аско́льта ла ра́дьо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто здесь работает»",
+            "uk": "Виберіть, як сказати: «Хто тут працює»",
+            "en": "Choose how to say: “Who works here”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:08:13",
+          "options": [
+            "it:08:13",
+            "it:08:16",
+            "it:08:17"
+          ],
+          "answerId": "it:08:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто готовит ужин»",
+            "uk": "Виберіть, як сказати: «Хто готує вечерю»",
+            "en": "Choose how to say: “Who is cooking dinner”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:16",
+          "options": [
+            "it:08:13",
+            "it:08:16",
+            "it:08:17"
+          ],
+          "answerId": "it:08:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто слушает радио»",
+            "uk": "Виберіть, як сказати: «Хто слухає радіо»",
+            "en": "Choose how to say: “Who is listening to the radio”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:17",
+          "options": [
+            "it:08:13",
+            "it:08:16",
+            "it:08:17"
+          ],
+          "answerId": "it:08:17"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Когда?",
+        "uk": "Коли?",
+        "en": "When?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Когда?».\nQuando è il concerto? — «Когда концерт?»\nЧитается: куа́ндо э иль конче́рто.\nQuando arrivi? — «Когда ты приезжаешь?»\nЧитается: куа́ндо арри́ви.\nQuando comincia la lezione? — «Когда начинается занятие?»\nЧитается: куа́ндо коми́нча ла ледзьо́не.\nСлово quando значит «когда».\nСлово concerto значит «концерт», слово arrivi — «ты приезжаешь».\nСлово comincia значит «начинается». Это слово cominciare, «начинать».\nСлово lezione значит «занятие, урок».",
+        "uk": "Дивіться, як спитати «Коли?».\nQuando è il concerto? — «Коли концерт?»\nЧитається: куа́ндо е іль конче́рто.\nQuando arrivi? — «Коли ти приїжджаєш?»\nЧитається: куа́ндо аррі́ві.\nQuando comincia la lezione? — «Коли починається заняття?»\nЧитається: куа́ндо комі́нча ла ледзьо́не.\nСлово quando означає «коли».\nСлово concerto означає «концерт», слово arrivi — «ти приїжджаєш».\nСлово comincia означає «починається». Це слово cominciare, «починати».\nСлово lezione означає «заняття, урок».",
+        "en": "Look at how to ask “When?”.\nQuando è il concerto? — “When is the concert?”\nQuando arrivi? — “When are you arriving?”\nQuando comincia la lezione? — “When does the lesson start?”\nThe word quando means “when”.\nThe word concerto means “concert”, the word arrivi — “you arrive”.\nThe word comincia means “starts”. This is the word cominciare, “to start”.\nThe word lezione means “lesson”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:08:23",
+          "say": {
+            "ru": "куа́ндо э иль конче́рто",
+            "uk": "куа́ндо е іль конче́рто"
+          }
+        },
+        {
+          "phraseId": "it:08:21",
+          "say": {
+            "ru": "куа́ндо арри́ви",
+            "uk": "куа́ндо аррі́ві"
+          }
+        },
+        {
+          "phraseId": "it:08:25",
+          "say": {
+            "ru": "куа́ндо коми́нча ла ледзьо́не",
+            "uk": "куа́ндо комі́нча ла ледзьо́не"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда концерт»",
+            "uk": "Виберіть, як сказати: «Коли концерт»",
+            "en": "Choose how to say: “When is the concert”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:08:23",
+          "options": [
+            "it:08:23",
+            "it:08:21",
+            "it:08:25"
+          ],
+          "answerId": "it:08:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда ты приезжаешь»",
+            "uk": "Виберіть, як сказати: «Коли ти приїжджаєш»",
+            "en": "Choose how to say: “When are you arriving”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:21",
+          "options": [
+            "it:08:23",
+            "it:08:21",
+            "it:08:25"
+          ],
+          "answerId": "it:08:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда начинается занятие»",
+            "uk": "Виберіть, як сказати: «Коли починається заняття»",
+            "en": "Choose how to say: “When does the lesson start”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:25",
+          "options": [
+            "it:08:23",
+            "it:08:21",
+            "it:08:25"
+          ],
+          "answerId": "it:08:25"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Во сколько?",
+        "uk": "О котрій?",
+        "en": "At what time?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Во сколько?».\nA che ora apre il museo? — «Во сколько открывается музей?»\nЧитается: а ке о́ра а́пре иль музе́о.\nA che ora parte il treno? — «Во сколько отправляется поезд?»\nЧитается: а ке о́ра па́рте иль тре́но.\nA che ora è l’appuntamento? — «Во сколько назначена встреча?»\nЧитается: а ке о́ра э л’аппунтаме́нто.\nСлова a che ora вместе значат «во сколько».\nСлово ora отдельно значит «час».\nСлово apre значит «открывается», слово parte — «отправляется».\nСлово l’appuntamento значит «встреча».",
+        "uk": "Дивіться, як спитати «О котрій?».\nA che ora apre il museo? — «О котрій годині відкривається музей?»\nЧитається: а ке о́ра а́пре іль музе́о.\nA che ora parte il treno? — «О котрій годині відправляється поїзд?»\nЧитається: а ке о́ра па́рте іль тре́но.\nA che ora è l’appuntamento? — «О котрій годині призначена зустріч?»\nЧитається: а ке о́ра е л’аппунтаме́нто.\nСлова a che ora разом означають «о котрій».\nСлово ora окремо означає «година».\nСлово apre означає «відчиняється», слово parte — «відправляється».\nСлово l’appuntamento означає «зустріч».",
+        "en": "Look at how to ask “At what time?”.\nA che ora apre il museo? — “What time does the museum open?”\nA che ora parte il treno? — “What time does the train leave?”\nA che ora è l’appuntamento? — “What time is the appointment?”\nThe words a che ora together mean “at what time”.\nThe word ora alone means “hour”.\nThe word apre means “opens”, the word parte — “leaves”.\nThe word appuntamento means “appointment”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:08:27",
+          "say": {
+            "ru": "а ке о́ра а́пре иль музе́о",
+            "uk": "а ке о́ра а́пре іль музе́о"
+          }
+        },
+        {
+          "phraseId": "it:08:29",
+          "say": {
+            "ru": "а ке о́ра па́рте иль тре́но",
+            "uk": "а ке о́ра па́рте іль тре́но"
+          }
+        },
+        {
+          "phraseId": "it:08:30",
+          "say": {
+            "ru": "а ке о́ра э л’аппунтаме́нто",
+            "uk": "а ке о́ра е л’аппунтаме́нто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Во сколько открывается музей»",
+            "uk": "Виберіть, як сказати: «О котрій годині відкривається музей»",
+            "en": "Choose how to say: “What time does the museum open”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:08:27",
+          "options": [
+            "it:08:27",
+            "it:08:29",
+            "it:08:30"
+          ],
+          "answerId": "it:08:27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Во сколько отправляется поезд»",
+            "uk": "Виберіть, як сказати: «О котрій годині відправляється поїзд»",
+            "en": "Choose how to say: “What time does the train leave”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:29",
+          "options": [
+            "it:08:27",
+            "it:08:29",
+            "it:08:30"
+          ],
+          "answerId": "it:08:29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Во сколько назначена встреча»",
+            "uk": "Виберіть, як сказати: «О котрій годині призначена зустріч»",
+            "en": "Choose how to say: “What time is the appointment”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:30",
+          "options": [
+            "it:08:27",
+            "it:08:29",
+            "it:08:30"
+          ],
+          "answerId": "it:08:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Сколько?",
+        "uk": "Скільки?",
+        "en": "How much?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Сколько?».\nQuanto costa il biglietto? — «Сколько стоит билет?»\nЧитается: куа́нто ко́ста иль билье́тто.\nQuanto costano queste scarpe? — «Сколько стоят эти туфли?»\nЧитается: куа́нто ко́стано куэ́сте ска́рпе.\nQuanto costa la consegna? — «Сколько стоит доставка?»\nЧитается: куа́нто ко́ста ла консе́нья.\nСлово quanto значит «сколько».\nСлово costa значит «стоит», слово costano — «стоят».\nCostano говорят, когда вещей несколько: queste scarpe — «эти туфли».\nСлово consegna значит «доставка».\nQuanto dura il tragitto? — «Сколько длится поездка?»\nЧитается: куа́нто ду́ра иль траджи́тто.\nСлово dura значит «длится», слово tragitto — «путь, поездка».",
+        "uk": "Дивіться, як спитати «Скільки?».\nQuanto costa il biglietto? — «Скільки коштує квиток?»\nЧитається: куа́нто ко́ста іль білье́тто.\nQuanto costano queste scarpe? — «Скільки коштує це взуття?»\nЧитається: куа́нто ко́стано куе́сте ска́рпе.\nQuanto costa la consegna? — «Скільки коштує доставка?»\nЧитається: куа́нто ко́ста ла консе́нья.\nСлово quanto означає «скільки».\nСлово costa означає «коштує», слово costano — «коштують».\nCostano кажуть, коли речей кілька: queste scarpe — «ці туфлі».\nСлово consegna означає «доставка».\nQuanto dura il tragitto? — «Скільки триває поїздка?»\nЧитається: куа́нто ду́ра іль траджі́тто.\nСлово dura означає «триває», слово tragitto — «шлях, поїздка».",
+        "en": "Look at how to ask “How much?”.\nQuanto costa il biglietto? — “How much is the ticket?”\nQuanto costano queste scarpe? — “How much are these shoes?”\nQuanto costa la consegna? — “How much is the delivery?”\nThe word quanto means “how much”.\nThe word costa means “costs”, the word costano — “cost” for several things.\nWe say costano for several things: queste scarpe — “these shoes”.\nThe word consegna means “delivery”.\nQuanto dura il tragitto? — “How long does the trip last?”\nThe word dura means “lasts”.\nThe word tragitto means “trip, way”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:08:31",
+          "say": {
+            "ru": "куа́нто ко́ста иль билье́тто",
+            "uk": "куа́нто ко́ста іль білье́тто"
+          }
+        },
+        {
+          "phraseId": "it:08:32",
+          "say": {
+            "ru": "куа́нто ко́стано куэ́сте ска́рпе",
+            "uk": "куа́нто ко́стано куе́сте ска́рпе"
+          }
+        },
+        {
+          "phraseId": "it:08:33",
+          "say": {
+            "ru": "куа́нто ко́ста ла консе́нья",
+            "uk": "куа́нто ко́ста ла консе́нья"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько стоит билет»",
+            "uk": "Виберіть, як сказати: «Скільки коштує квиток»",
+            "en": "Choose how to say: “How much is the ticket”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:08:31",
+          "options": [
+            "it:08:31",
+            "it:08:32",
+            "it:08:33"
+          ],
+          "answerId": "it:08:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько стоят эти туфли»",
+            "uk": "Виберіть, як сказати: «Скільки коштує це взуття»",
+            "en": "Choose how to say: “How much are these shoes”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:32",
+          "options": [
+            "it:08:31",
+            "it:08:32",
+            "it:08:33"
+          ],
+          "answerId": "it:08:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сколько стоит доставка»",
+            "uk": "Виберіть, як сказати: «Скільки коштує доставка»",
+            "en": "Choose how to say: “How much is the delivery”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:33",
+          "options": [
+            "it:08:31",
+            "it:08:32",
+            "it:08:33"
+          ],
+          "answerId": "it:08:33"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "С кем? Для кого? Как?",
+        "uk": "З ким? Для кого? Як?",
+        "en": "With whom? For whom? How?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «С кем?», «Для кого?» и «Как?».\nCon chi lavori? — «С кем ты работаешь?»\nЧитается: кон ки лаво́ри.\nPer chi è questo regalo? — «Для кого этот подарок?»\nЧитается: пер ки э куэ́сто рега́ло.\nCome si chiama questa strada? — «Как называется эта улица?»\nЧитается: ко́ме си кья́ма куэ́ста стра́да.\nСлова con chi значат «с кем», слова per chi — «для кого».\nСлово questo значит «этот», слово questa — «эта».\nСлово regalo значит «подарок», слово strada — «улица».\nСлово come значит «как», слова si chiama — «называется».",
+        "uk": "Дивіться, як спитати «З ким?», «Для кого?» та «Як?».\nCon chi lavori? — «З ким ти працюєш?»\nЧитається: кон кі лаво́рі.\nPer chi è questo regalo? — «Для кого цей подарунок?»\nЧитається: пер кі е куе́сто рега́ло.\nCome si chiama questa strada? — «Як називається ця вулиця?»\nЧитається: ко́ме сі кья́ма куе́ста стра́да.\nСлова con chi означають «з ким», слова per chi — «для кого».\nСлово questo означає «цей», слово questa — «ця».\nСлово regalo означає «подарунок», слово strada — «вулиця».\nСлово come означає «як», слова si chiama — «називається».",
+        "en": "Look at how to ask “With whom?”, “For whom?” and “How?”.\nCon chi lavori? — “Who do you work with?”\nPer chi è questo regalo? — “Who is this gift for?”\nCome si chiama questa strada? — “What is this street called?”\nThe words con chi mean “with whom”, the words per chi — “for whom”.\nThe word questo means “this”, the word questa — “this” too.\nThe word regalo means “gift”, the word strada — “street”.\nThe word come means “how”, the words si chiama — “is called”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:08:49",
+          "say": {
+            "ru": "кон ки лаво́ри",
+            "uk": "кон кі лаво́рі"
+          }
+        },
+        {
+          "phraseId": "it:08:50",
+          "say": {
+            "ru": "пер ки э куэ́сто рега́ло",
+            "uk": "пер кі е куе́сто рега́ло"
+          }
+        },
+        {
+          "phraseId": "it:08:44",
+          "say": {
+            "ru": "ко́ме си кья́ма куэ́ста стра́да",
+            "uk": "ко́ме сі кья́ма куе́ста стра́да"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «С кем ты работаешь»",
+            "uk": "Виберіть, як сказати: «З ким ти працюєш»",
+            "en": "Choose how to say: “Who do you work with”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:08:49",
+          "options": [
+            "it:08:49",
+            "it:08:50",
+            "it:08:44"
+          ],
+          "answerId": "it:08:49"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Для кого этот подарок»",
+            "uk": "Виберіть, як сказати: «Для кого цей подарунок»",
+            "en": "Choose how to say: “Who is this gift for”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:50",
+          "options": [
+            "it:08:49",
+            "it:08:50",
+            "it:08:44"
+          ],
+          "answerId": "it:08:50"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как называется эта улица»",
+            "uk": "Виберіть, як сказати: «Як називається ця вулиця»",
+            "en": "Choose how to say: “What is this street called”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:08:44",
+          "options": [
+            "it:08:49",
+            "it:08:50",
+            "it:08:44"
+          ],
+          "answerId": "it:08:44"
+        }
+      ]
+    }
+  ]
+}

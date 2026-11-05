@@ -1,0 +1,593 @@
+{
+  "lang": "en",
+  "lesson": 4,
+  "title": {
+    "ru": "Чего я не делаю",
+    "uk": "Чого я не роблю",
+    "en": "What I do not do"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я не делаю: do not",
+        "uk": "Я не роблю: do not",
+        "en": "I do not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы чего-то не делаете.\nI do not drive. — Я не вожу машину.\nЧитается: ай ду́ но́т дра́йв.\nСлова do not вместе значат «не». Они стоят перед действием.\nСлово do здесь отдельно не переводят.\nСлово drive значит «водить машину».\nСлово eat значит «есть, кушать». Слово meat значит «мясо».\nСлово have значит «иметь». Слово cash значит «наличные».\nI do not have cash. — У меня нет наличных.\nЧитается: ай ду́ но́т хэ́в кэ́ш.\nПро «мы» говорят так же: do not.\nWe do not share a desk. — Мы не сидим за одним столом.\nЧитается: уи ду́ но́т шэ́р э дэ́ск.\nСлова: desk — «стол», code — «код», entrance — «вход».",
+        "uk": "Дивіться, як сказати, що ви чогось не робите.\nI do not drive. — Я не воджу машину.\nЧитається: ай ду́ но́т дра́йв.\nСлова do not разом означають «не». Вони стоять перед дією.\nСлово do тут окремо не перекладають.\nСлово drive означає «водити машину».\nСлово eat означає «їсти». Слово meat означає «м'ясо».\nСлово have означає «мати». Слово cash означає «готівка».\nI do not have cash. — У мене немає готівки.\nЧитається: ай ду́ но́т хе́в ке́ш.\nПро «ми» кажуть так само: do not.\nWe do not share a desk. — Ми не сидимо за одним столом.\nЧитається: уі ду́ но́т ше́р е де́ск.\nСлова: desk — «стіл», code — «код», entrance — «вхід».",
+        "en": "Look at how to say what you do not do.\nI do not drive.\nThe words do not stand before the action.\nThe word drive means “to drive a car.”\nThe word eat means “to eat.” The word meat means “meat.”\nThe word have means “to own.”\nI do not have cash.\nFor “we” it is the same: do not.\nWe do not share a desk.\nThe words: desk, code, entrance."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:04.01",
+          "say": {
+            "ru": "ай ду́ но́т дра́йв",
+            "uk": "ай ду́ но́т дра́йв"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.10",
+          "say": {
+            "ru": "ай ду́ но́т и́т ми́т",
+            "uk": "ай ду́ но́т і́т мі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.17",
+          "say": {
+            "ru": "ай ду́ но́т но́у зэ ко́уд",
+            "uk": "ай ду́ но́т но́у зе ко́уд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.13",
+          "say": {
+            "ru": "уи ду́ но́т ю́з зис э́нтрэнс",
+            "uk": "уі ду́ но́т ю́з зіс е́нтренс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.19",
+          "say": {
+            "ru": "уи ду́ но́т шэ́р э дэ́ск",
+            "uk": "уі ду́ но́т ше́р е де́ск"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не вожу машину.»",
+            "uk": "Виберіть, як сказати: «Я не воджу машину.»",
+            "en": "Choose how to say: “I do not drive.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:04.01",
+          "options": [
+            "en-classic-r1:04.01",
+            "en-classic-r1:04.10",
+            "en-classic-r1:04.17"
+          ],
+          "answerId": "en-classic-r1:04.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не ем мясо.»",
+            "uk": "Виберіть, як сказати: «Я не їм м'яса.»",
+            "en": "Choose how to say: “I do not eat meat.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.10",
+          "options": [
+            "en-classic-r1:04.10",
+            "en-classic-r1:04.13",
+            "en-classic-r1:04.19"
+          ],
+          "answerId": "en-classic-r1:04.10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не знаю код.»",
+            "uk": "Виберіть, як сказати: «Я не знаю коду.»",
+            "en": "Choose how to say: “I do not know the code.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.17",
+          "options": [
+            "en-classic-r1:04.17",
+            "en-classic-r1:04.01",
+            "en-classic-r1:04.19"
+          ],
+          "answerId": "en-classic-r1:04.17"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Он и она: does not",
+        "uk": "Він і вона: does not",
+        "en": "He and she: does not"
+      },
+      "text": {
+        "ru": "Когда речь о нём или о ней, вместо do говорят does.\nHe does not drive. — Он не водит машину.\nЧитается: хи да́з но́т дра́йв.\nСравните: I do not drive. — Я не вожу машину.\nПосле does not слово остаётся прежним: drive. Буквы s в конце нет.\nСлово smoke значит «курить».\nСлово carry значит «носить с собой». Слово purse значит «кошелёк».",
+        "uk": "Коли мова про нього або про неї, замість do кажуть does.\nHe does not drive. — Він не водить машину.\nЧитається: хі да́з но́т дра́йв.\nПорівняйте: I do not drive. — Я не воджу машину.\nПісля does not слово лишається тим самим: drive. Букви s у кінці немає.\nСлово smoke означає «курити».\nСлово carry означає «носити з собою». Слово purse означає «гаманець».",
+        "en": "For him or her, we say does instead of do.\nHe does not drive.\nCompare: I do not drive. He does not drive.\nAfter does not the word stays the same: drive. No s at the end.\nThe word smoke means “to smoke.”\nThe word carry means “to take along.” The word purse means “a small bag for money.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:04.03",
+          "say": {
+            "ru": "хи да́з но́т дра́йв",
+            "uk": "хі да́з но́т дра́йв"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.05",
+          "say": {
+            "ru": "ши да́з но́т смо́ук",
+            "uk": "ші да́з но́т смо́ук"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.20",
+          "say": {
+            "ru": "ши да́з но́т кэ́ри э пэ́рс",
+            "uk": "ші да́з но́т ке́рі е пе́рс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не водит машину.»",
+            "uk": "Виберіть, як сказати: «Він не водить машину.»",
+            "en": "Choose how to say: “He does not drive.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:04.03",
+          "options": [
+            "en-classic-r1:04.03",
+            "en-classic-r1:04.01",
+            "en-classic-r1:04.05"
+          ],
+          "answerId": "en-classic-r1:04.03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не курит.»",
+            "uk": "Виберіть, як сказати: «Вона не курить.»",
+            "en": "Choose how to say: “She does not smoke.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.05",
+          "options": [
+            "en-classic-r1:04.05",
+            "en-classic-r1:04.20",
+            "en-classic-r1:04.10"
+          ],
+          "answerId": "en-classic-r1:04.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не носит с собой кошелёк.»",
+            "uk": "Виберіть, як сказати: «Вона не носить гаманець.»",
+            "en": "Choose how to say: “She does not carry a purse.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.20",
+          "options": [
+            "en-classic-r1:04.20",
+            "en-classic-r1:04.19",
+            "en-classic-r1:04.05"
+          ],
+          "answerId": "en-classic-r1:04.20"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вещь, как «он»: does not",
+        "uk": "Річ, як «він»: does not",
+        "en": "One thing: does not"
+      },
+      "text": {
+        "ru": "Про одну вещь говорят так же, как про него: does not.\nThe door does not lock. — Дверь не запирается.\nЧитается: зэ до́р да́з но́т ло́к.\nСлово lock значит «запираться».\nСлова: tap — «кран», charge — «заряжаться», fit — «подходить».\nСлова: machine — «автомат», coins — «монеты», accept — «принимать».\nСлово card значит «карта». Слово in значит «в».",
+        "uk": "Про одну річ кажуть так само, як про нього: does not.\nThe door does not lock. — Двері не замикаються.\nЧитається: зе до́р да́з но́т ло́к.\nСлово lock означає «замикатися».\nСлова: tap — «кран», charge — «заряджатися», fit — «підходити».\nСлова: machine — «автомат», coins — «монети», accept — «приймати».\nСлово card означає «картка». Слово in означає «в».",
+        "en": "For one thing we also say does not.\nThe door does not lock.\nThe word lock means “to close with a key.”\nThe words: tap, charge, fit.\nThe words: machine, coins, accept.\nThe word card means “a plastic card.” The word in means “inside.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:04.16",
+          "say": {
+            "ru": "зис мэши́н да́з но́т эксэ́пт ко́йнз",
+            "uk": "зіс меші́н да́з но́т ексе́пт ко́йнз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.21",
+          "say": {
+            "ru": "зэ до́р да́з но́т ло́к",
+            "uk": "зе до́р да́з но́т ло́к"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.22",
+          "say": {
+            "ru": "зэ тэ́п да́з но́т уо́рк",
+            "uk": "зе те́п да́з но́т уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.24",
+          "say": {
+            "ru": "май фо́ун да́з но́т ча́рдж",
+            "uk": "май фо́ун да́з но́т ча́рдж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.50",
+          "say": {
+            "ru": "май ка́рд да́з но́т уо́рк ин зис мэши́н",
+            "uk": "май ка́рд да́з но́т уо́рк ін зіс меші́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Этот автомат не принимает монеты.»",
+            "uk": "Виберіть, як сказати: «Цей автомат не приймає монети.»",
+            "en": "Choose how to say: “This machine does not accept coins.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:04.16",
+          "options": [
+            "en-classic-r1:04.16",
+            "en-classic-r1:04.21",
+            "en-classic-r1:04.22"
+          ],
+          "answerId": "en-classic-r1:04.16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь не запирается.»",
+            "uk": "Виберіть, як сказати: «Двері не замикаються.»",
+            "en": "Choose how to say: “The door does not lock.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.21",
+          "options": [
+            "en-classic-r1:04.21",
+            "en-classic-r1:04.22",
+            "en-classic-r1:04.24"
+          ],
+          "answerId": "en-classic-r1:04.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой телефон не заряжается.»",
+            "uk": "Виберіть, як сказати: «Мій телефон не заряджається.»",
+            "en": "Choose how to say: “My phone does not charge.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.24",
+          "options": [
+            "en-classic-r1:04.24",
+            "en-classic-r1:04.50",
+            "en-classic-r1:04.16"
+          ],
+          "answerId": "en-classic-r1:04.24"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вещей много: do not",
+        "uk": "Речей багато: do not",
+        "en": "Many things: do not"
+      },
+      "text": {
+        "ru": "Если вещей несколько, говорят do not — как про «мы» и «они».\nThe windows do not shut. — Окна не закрываются.\nЧитается: зэ уи́ндоуз ду́ но́т ша́т.\nСлово shut значит «закрываться».\nСлова: shoes — «туфли», headphones — «наушники».\nСлово run значит «ходить» (про автобус). Слово today значит «сегодня».",
+        "uk": "Якщо речей кілька, кажуть do not — як про «ми» і «вони».\nThe windows do not shut. — Вікна не зачиняються.\nЧитається: зе уі́ндоуз ду́ но́т ша́т.\nСлово shut означає «зачинятися».\nСлова: shoes — «туфлі», headphones — «навушники».\nСлово run означає «курсувати» (про автобус). Слово today означає «сьогодні».",
+        "en": "For many things we say do not, like for “we” and “they.”\nThe windows do not shut.\nThe word shut means “to close.”\nThe words: shoes, headphones.\nThe word run here means “to go on its route.” The word today means “this day.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:04.27",
+          "say": {
+            "ru": "зэ уи́ндоуз ду́ но́т ша́т",
+            "uk": "зе уі́ндоуз ду́ но́т ша́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.28",
+          "say": {
+            "ru": "май шу́з ду́ но́т фи́т",
+            "uk": "май шу́з ду́ но́т фі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.29",
+          "say": {
+            "ru": "зи́з хэ́дфоунз ду́ но́т уо́рк",
+            "uk": "зі́з хе́дфоунз ду́ но́т уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.30",
+          "say": {
+            "ru": "зэ ба́сиз ду́ но́т ра́н тудэ́й",
+            "uk": "зе ба́сіз ду́ но́т ра́н туде́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Окна не закрываются.»",
+            "uk": "Виберіть, як сказати: «Вікна не зачиняються.»",
+            "en": "Choose how to say: “The windows do not shut.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:04.27",
+          "options": [
+            "en-classic-r1:04.27",
+            "en-classic-r1:04.21",
+            "en-classic-r1:04.28"
+          ],
+          "answerId": "en-classic-r1:04.27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эти наушники не работают.»",
+            "uk": "Виберіть, як сказати: «Ці навушники не працюють.»",
+            "en": "Choose how to say: “These headphones do not work.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.29",
+          "options": [
+            "en-classic-r1:04.29",
+            "en-classic-r1:04.22",
+            "en-classic-r1:04.28"
+          ],
+          "answerId": "en-classic-r1:04.29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобусы сегодня не ходят.»",
+            "uk": "Виберіть, як сказати: «Автобуси сьогодні не курсують.»",
+            "en": "Choose how to say: “The buses do not run today.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.30",
+          "options": [
+            "en-classic-r1:04.30",
+            "en-classic-r1:04.27",
+            "en-classic-r1:04.22"
+          ],
+          "answerId": "en-classic-r1:04.30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Когда и что",
+        "uk": "Коли і що",
+        "en": "When and what"
+      },
+      "text": {
+        "ru": "К этой фразе можно добавить, когда или что.\nI do not usually work late. — Я обычно не работаю допоздна.\nЧитается: ай ду́ но́т ю́жуали уо́рк лэ́йт.\nСлово usually значит «обычно». Слово always значит «всегда».\nСлова: drink — «пить», cook — «готовить», buy — «покупать».\nСлова: lunch — «обед», water — «вода», bottled — «в бутылках».\nСлово Fridays значит «по пятницам».\nЕщё слова: feel — «чувствовать», message — «сообщение», until — «до».",
+        "uk": "До цієї фрази можна додати, коли або що.\nI do not usually work late. — Я зазвичай не працюю допізна.\nЧитається: ай ду́ но́т ю́жуалі уо́рк ле́йт.\nСлово usually означає «зазвичай». Слово always означає «завжди».\nСлова: drink — «пити», cook — «готувати», buy — «купувати».\nСлова: lunch — «обід», water — «вода», bottled — «у пляшках».\nСлово Fridays означає «по п'ятницях».\nЩе слова: feel — «відчувати», message — «повідомлення», until — «до».",
+        "en": "You can add when or what.\nI do not usually work late.\nThe word usually means “most days.” The word always means “every time.”\nThe words: drink, cook, buy.\nThe words: lunch, water, bottled.\nThe word Fridays means “every Friday.”\nMore words: feel, message, until."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:04.31",
+          "say": {
+            "ru": "ай ду́ но́т дри́нк ко́фи эт на́йт",
+            "uk": "ай ду́ но́т дрі́нк ко́фі ет на́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.33",
+          "say": {
+            "ru": "уи ду́ но́т ку́к он фра́йдэйз",
+            "uk": "уі ду́ но́т ку́к он фра́йдейз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.35",
+          "say": {
+            "ru": "зэй ду́ но́т и́т ла́нч хи́р",
+            "uk": "зей ду́ но́т і́т ла́нч хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.36",
+          "say": {
+            "ru": "ай ду́ но́т ю́жуали уо́рк лэ́йт",
+            "uk": "ай ду́ но́т ю́жуалі уо́рк ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.38",
+          "say": {
+            "ru": "уи ду́ но́т ба́й бо́тлд уо́тер",
+            "uk": "уі ду́ но́т ба́й бо́тлд уо́тер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не пью кофе на ночь.»",
+            "uk": "Виберіть, як сказати: «Я не п'ю каву на ніч.»",
+            "en": "Choose how to say: “I do not drink coffee at night.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:04.31",
+          "options": [
+            "en-classic-r1:04.31",
+            "en-classic-r1:04.33",
+            "en-classic-r1:04.35"
+          ],
+          "answerId": "en-classic-r1:04.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не готовим по пятницам.»",
+            "uk": "Виберіть, як сказати: «Ми не готуємо по п'ятницях.»",
+            "en": "Choose how to say: “We do not cook on Fridays.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.33",
+          "options": [
+            "en-classic-r1:04.33",
+            "en-classic-r1:04.35",
+            "en-classic-r1:04.38"
+          ],
+          "answerId": "en-classic-r1:04.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я обычно не работаю допоздна.»",
+            "uk": "Виберіть, як сказати: «Я зазвичай не працюю допізна.»",
+            "en": "Choose how to say: “I do not usually work late.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.36",
+          "options": [
+            "en-classic-r1:04.36",
+            "en-classic-r1:04.31",
+            "en-classic-r1:04.35"
+          ],
+          "answerId": "en-classic-r1:04.36"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Цена, билет, дом",
+        "uk": "Ціна, квиток, дім",
+        "en": "Price, ticket, home"
+      },
+      "text": {
+        "ru": "Так же говорят о цене, билете и других вещах.\nThe price does not include breakfast. — В стоимость не входит завтрак.\nЧитается: зэ пра́йс да́з но́т инклу́д брэ́кфаст.\nСлова: price — «цена», include — «включать», breakfast — «завтрак».\nСлова: cover — «покрывать», return — «обратный», trip — «поездка».\nСлова: receipt — «чек», show — «показывать», date — «дата».\nСлова: rent — «арендная плата», heating — «отопление».\nСлова: go — «ехать», Cork — город Корк, son — «сын», milk — «молоко».\nСлова: near — «рядом», understand — «понимать», word — «слово».",
+        "uk": "Так само говорять про ціну, квиток та інші речі.\nThe price does not include breakfast. — Ціна не включає сніданок.\nЧитається: зе пра́йс да́з но́т інклу́д бре́кфаст.\nСлова: price — «ціна», include — «включати», breakfast — «сніданок».\nСлова: cover — «покривати», return — «зворотний», trip — «поїздка».\nСлова: receipt — «чек», show — «показувати», date — «дата».\nСлова: rent — «орендна плата», heating — «опалення».\nСлова: go — «їхати», Cork — місто Корк, son — «син», milk — «молоко».\nСлова: near — «поруч», understand — «розуміти», word — «слово».",
+        "en": "We say the same about prices and tickets.\nThe price does not include breakfast.\nThe words: price, include, breakfast.\nThe words: cover, return, trip.\nThe words: receipt, show, date.\nThe words: rent, heating.\nThe words: go, Cork, son, milk.\nThe words: near, understand, word."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:04.41",
+          "say": {
+            "ru": "зэ пра́йс да́з но́т инклу́д брэ́кфаст",
+            "uk": "зе пра́йс да́з но́т інклу́д бре́кфаст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.42",
+          "say": {
+            "ru": "зэ ти́кет да́з но́т ка́вер зэ ритэ́рн три́п",
+            "uk": "зе ті́кет да́з но́т ка́вер зе ріте́рн трі́п"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.43",
+          "say": {
+            "ru": "зэ риси́т да́з но́т шо́у зэ дэ́йт",
+            "uk": "зе рісі́т да́з но́т шо́у зе де́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.44",
+          "say": {
+            "ru": "ау́р рэ́нт да́з но́т инклу́д хи́тинг",
+            "uk": "ау́р ре́нт да́з но́т інклу́д хі́тінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.45",
+          "say": {
+            "ru": "зис трэ́йн да́з но́т го́у ту ко́рк",
+            "uk": "зіс тре́йн да́з но́т го́у ту ко́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.46",
+          "say": {
+            "ru": "май са́н да́з но́т ла́йк ми́лк",
+            "uk": "май са́н да́з но́т ла́йк мі́лк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.48",
+          "say": {
+            "ru": "зэ́т ба́с да́з но́т сто́п ни́р май флэ́т",
+            "uk": "зе́т ба́с да́з но́т сто́п ні́р май фле́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:04.49",
+          "say": {
+            "ru": "ай ду́ но́т андерстэ́нд зис уо́рд",
+            "uk": "ай ду́ но́т андерсте́нд зіс уо́рд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В стоимость не входит завтрак.»",
+            "uk": "Виберіть, як сказати: «Ціна не включає сніданок.»",
+            "en": "Choose how to say: “The price does not include breakfast.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:04.41",
+          "options": [
+            "en-classic-r1:04.41",
+            "en-classic-r1:04.43",
+            "en-classic-r1:04.44"
+          ],
+          "answerId": "en-classic-r1:04.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На квитанции не указана дата.»",
+            "uk": "Виберіть, як сказати: «На чеку не вказано дату.»",
+            "en": "Choose how to say: “The receipt does not show the date.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.43",
+          "options": [
+            "en-classic-r1:04.43",
+            "en-classic-r1:04.41",
+            "en-classic-r1:04.44"
+          ],
+          "answerId": "en-classic-r1:04.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не понимаю это слово.»",
+            "uk": "Виберіть, як сказати: «Я не розумію цього слова.»",
+            "en": "Choose how to say: “I do not understand this word.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:04.49",
+          "options": [
+            "en-classic-r1:04.49",
+            "en-classic-r1:04.46",
+            "en-classic-r1:04.48"
+          ],
+          "answerId": "en-classic-r1:04.49"
+        }
+      ]
+    }
+  ]
+}

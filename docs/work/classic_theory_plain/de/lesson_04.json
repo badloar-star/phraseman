@@ -1,0 +1,558 @@
+{
+  "lang": "de",
+  "lesson": 4,
+  "title": {
+    "ru": "Сначала «когда»",
+    "uk": "Спочатку «коли»",
+    "en": "Start with “when”"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Сегодня, завтра",
+        "uk": "Сьогодні, завтра",
+        "en": "Today, tomorrow"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Сегодня я работаю».\nHeute arbeite ich. — «Сегодня я работаю.»\nЧитается: хо́йте а́рбайте их\nMorgen arbeite ich. — «Завтра я работаю.»\nЧитается: мо́рген а́рбайте их\nСлово heute значит «сегодня». Слово morgen значит «завтра».\nРаньше вы говорили: Ich arbeite heute. — «Я сегодня работаю.»\nТеперь слово про «когда» стоит первым. Слово arbeite — вторым.\nСлово ich уходит назад: Heute arbeite ich.\nHeute lernt Anna. — «Сегодня Анна учится.»\nЧитается: хо́йте лернт А́нна\nMorgen lernt Anna. — «Завтра Анна учится.»\nЧитается: мо́рген лернт А́нна\nСлово lernt значит «учится». Оно тоже стоит вторым.\nТак же и со словом sind — «есть»:\nHeute sind wir müde. — «Сегодня мы устали.»\nЧитается: хо́йте зинд вир мю́де\nСлова wir — «мы», müde — «усталый». Порядок тот же: heute, потом sind.",
+        "uk": "Дивіться, як сказати «Сьогодні я працюю».\nHeute arbeite ich. — «Сьогодні я працюю.»\nЧитається: хо́йте а́рбайте іх\nMorgen arbeite ich. — «Завтра я працюю.»\nЧитається: мо́рген а́рбайте іх\nСлово heute означає «сьогодні». Слово morgen означає «завтра».\nРаніше ви казали: Ich arbeite heute. — «Я сьогодні працюю.»\nТепер слово про «коли» стоїть першим. Слово arbeite — другим.\nСлово ich іде назад: Heute arbeite ich.\nHeute lernt Anna. — «Сьогодні Ганна навчається.»\nЧитається: хо́йте лернт А́нна\nMorgen lernt Anna. — «Завтра Ганна навчається.»\nЧитається: мо́рген лернт А́нна\nСлово lernt означає «навчається». Воно теж стоїть другим.\nТак само і зі словом sind — «є»:\nHeute sind wir müde. — «Сьогодні ми втомилися.»\nЧитається: хо́йте зінд вір мю́де\nСлова wir — «ми», müde — «втомлений». Порядок той самий: heute, потім sind.",
+        "en": "Look at how to say “Today I work”.\nHeute arbeite ich. — “Today I work.”\nSounds like: khOyte Arbayte eekh\nMorgen arbeite ich. — “Tomorrow I work.”\nSounds like: mOrgen Arbayte eekh\nThe word heute means “today”. The word morgen means “tomorrow”.\nBefore, you said: Ich arbeite heute. — “I work today.”\nNow the word about “when” comes first. The word arbeite is second.\nThe word ich moves back: Heute arbeite ich.\nHeute lernt Anna. — “Today Anna studies.”\nSounds like: khOyte lernt Anna\nMorgen lernt Anna. — “Tomorrow Anna studies.”\nSounds like: mOrgen lernt Anna\nThe word lernt means “studies”. It is second too.\nIt is the same with the word sind — “are”:\nHeute sind wir müde. — “Today we are tired.”\nSounds like: khOyte zeend veer mYOOde\nThe words wir — “we”, müde — “tired”. Same order: heute, then sind."
+      },
+      "examples": [
+        {
+          "phraseId": "de:04:01",
+          "say": {
+            "ru": "хо́йте а́рбайте их",
+            "uk": "хо́йте а́рбайте іх"
+          }
+        },
+        {
+          "phraseId": "de:04:02",
+          "say": {
+            "ru": "мо́рген а́рбайте их",
+            "uk": "мо́рген а́рбайте іх"
+          }
+        },
+        {
+          "phraseId": "de:04:03",
+          "say": {
+            "ru": "хо́йте лернт А́нна",
+            "uk": "хо́йте лернт А́нна"
+          }
+        },
+        {
+          "phraseId": "de:04:04",
+          "say": {
+            "ru": "мо́рген лернт А́нна",
+            "uk": "мо́рген лернт А́нна"
+          }
+        },
+        {
+          "phraseId": "de:04:47",
+          "say": {
+            "ru": "хо́йте зинд вир мю́де",
+            "uk": "хо́йте зінд вір мю́де"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня я работаю.»",
+            "uk": "Виберіть, як сказати: «Сьогодні я працюю.»",
+            "en": "Choose how to say: “Today I work.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:04:01",
+          "options": [
+            "de:04:01",
+            "de:04:02",
+            "de:04:03"
+          ],
+          "answerId": "de:04:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Завтра я работаю.»",
+            "uk": "Виберіть, як сказати: «Завтра я працюю.»",
+            "en": "Choose how to say: “Tomorrow I work.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:02",
+          "options": [
+            "de:04:02",
+            "de:04:01",
+            "de:04:04"
+          ],
+          "answerId": "de:04:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Завтра Анна учится.»",
+            "uk": "Виберіть, як сказати: «Завтра Ганна навчається.»",
+            "en": "Choose how to say: “Tomorrow Anna studies.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:04",
+          "options": [
+            "de:04:04",
+            "de:04:03",
+            "de:04:02"
+          ],
+          "answerId": "de:04:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Дни недели",
+        "uk": "Дні тижня",
+        "en": "Days of the week"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «В понедельник я работаю».\nAm Montag arbeite ich. — «В понедельник я работаю.»\nЧитается: ам мо́нтаг а́рбайте их\nAm Dienstag arbeite ich. — «Во вторник я работаю.»\nЧитается: ам ди́нстаг а́рбайте их\nСлово Montag значит «понедельник». Слово Dienstag — «вторник».\nСлово am здесь значит «в»: am Montag — «в понедельник».\nAm Montag — два слова, но один ответ на «когда».\nСчитайте их за одно. Потом идёт arbeite.\nAm Freitag arbeitet Tom. — «В пятницу Том работает.»\nЧитается: ам фра́йтаг а́рбайтет Том\nAm Samstag arbeitet Tom. — «В субботу Том работает.»\nЧитается: ам за́мстаг а́рбайтет Том\nAm Sonntag kochen wir. — «В воскресенье мы готовим.»\nЧитается: ам зо́нтаг ко́хен вир\nСлова Freitag — «пятница», Samstag — «суббота», Sonntag — «воскресенье».\nДля Тома — arbeitet, для «мы» — kochen, как и раньше.\nСлово kochen значит «готовить».",
+        "uk": "Дивіться, як сказати «У понеділок я працюю».\nAm Montag arbeite ich. — «У понеділок я працюю.»\nЧитається: ам мо́нтаг а́рбайте іх\nAm Dienstag arbeite ich. — «У вівторок я працюю.»\nЧитається: ам ді́нстаг а́рбайте іх\nСлово Montag означає «понеділок». Слово Dienstag — «вівторок».\nСлово am тут означає «у»: am Montag — «у понеділок».\nAm Montag — два слова, але одна відповідь на «коли».\nРахуйте їх за одне. Потім іде arbeite.\nAm Freitag arbeitet Tom. — «У п'ятницю Том працює.»\nЧитається: ам фра́йтаг а́рбайтет Том\nAm Samstag arbeitet Tom. — «У суботу Том працює.»\nЧитається: ам за́мстаг а́рбайтет Том\nAm Sonntag kochen wir. — «У неділю ми готуємо.»\nЧитається: ам зо́нтаг ко́хен вір\nСлова Freitag — «п’ятниця», Samstag — «субота», Sonntag — «неділя».\nДля Тома — arbeitet, для «ми» — kochen, як і раніше.\nСлово kochen означає «готувати».",
+        "en": "Look at how to say “On Monday I work”.\nAm Montag arbeite ich. — “On Monday I work.”\nSounds like: am mOntag Arbayte eekh\nAm Dienstag arbeite ich. — “On Tuesday I work.”\nSounds like: am dEEnstag Arbayte eekh\nThe word Montag means “Monday”. The word Dienstag — “Tuesday”.\nThe word am here means “on”: am Montag — “on Monday”.\nAm Montag is two words, but one answer to “when”.\nCount them as one. Then comes arbeite.\nAm Freitag arbeitet Tom. — “On Friday Tom works.”\nSounds like: am frAytag Arbaytet Tom\nAm Samstag arbeitet Tom. — “On Saturday Tom works.”\nSounds like: am zAmstag Arbaytet Tom\nAm Sonntag kochen wir. — “On Sunday we cook.”\nSounds like: am zOntag kOkhen veer\nThe words Freitag — “Friday”, Samstag — “Saturday”, Sonntag — “Sunday”.\nFor Tom — arbeitet, for “we” — kochen, as before.\nThe word kochen means “to cook”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:04:05",
+          "say": {
+            "ru": "ам мо́нтаг а́рбайте их",
+            "uk": "ам мо́нтаг а́рбайте іх"
+          }
+        },
+        {
+          "phraseId": "de:04:06",
+          "say": {
+            "ru": "ам ди́нстаг а́рбайте их",
+            "uk": "ам ді́нстаг а́рбайте іх"
+          }
+        },
+        {
+          "phraseId": "de:04:07",
+          "say": {
+            "ru": "ам фра́йтаг а́рбайтет Том",
+            "uk": "ам фра́йтаг а́рбайтет Том"
+          }
+        },
+        {
+          "phraseId": "de:04:08",
+          "say": {
+            "ru": "ам за́мстаг а́рбайтет Том",
+            "uk": "ам за́мстаг а́рбайтет Том"
+          }
+        },
+        {
+          "phraseId": "de:04:09",
+          "say": {
+            "ru": "ам зо́нтаг ко́хен вир",
+            "uk": "ам зо́нтаг ко́хен вір"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В понедельник я работаю.»",
+            "uk": "Виберіть, як сказати: «У понеділок я працюю.»",
+            "en": "Choose how to say: “On Monday I work.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:04:05",
+          "options": [
+            "de:04:05",
+            "de:04:06",
+            "de:04:09"
+          ],
+          "answerId": "de:04:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Во вторник я работаю.»",
+            "uk": "Виберіть, як сказати: «У вівторок я працюю.»",
+            "en": "Choose how to say: “On Tuesday I work.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:06",
+          "options": [
+            "de:04:06",
+            "de:04:05",
+            "de:04:09"
+          ],
+          "answerId": "de:04:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В субботу Том работает.»",
+            "uk": "Виберіть, як сказати: «У суботу Том працює.»",
+            "en": "Choose how to say: “On Saturday Tom works.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:08",
+          "options": [
+            "de:04:08",
+            "de:04:07",
+            "de:04:09"
+          ],
+          "answerId": "de:04:08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "В какой час",
+        "uk": "О котрій годині",
+        "en": "At what hour"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «В восемь начинается занятие».\nUm acht beginnt der Kurs. — «В восемь начинается занятие.»\nЧитается: ум ахт беги́нт дер курс\nUm neun beginnt die Arbeit. — «В девять начинается работа.»\nЧитается: ум нойн беги́нт ди а́рбайт\nСлово um перед числом значит «в»: um acht — «в восемь».\nСлово acht значит «восемь». Слово neun — «девять».\nСлово Kurs значит «занятие». Слово Arbeit — «работа».\nСлово beginnt значит «начинается». Слово beginnen — «начинать, начинаться».\nПеред Kurs и Arbeit стоят слова der и die. По-русски таких слов нет.\nЗапоминайте их вместе с названием: der Kurs, die Arbeit.\nТак же и со словом bin — «есть»:\nUm acht bin ich zu Hause. — «В восемь я дома.»\nЧитается: ум ахт бин их цу ха́узе\nСлова zu Hause значат «дома».",
+        "uk": "Дивіться, як сказати «О восьмій починається заняття».\nUm acht beginnt der Kurs. — «О восьмій починається заняття.»\nЧитається: ум ахт бегі́нт дер курс\nUm neun beginnt die Arbeit. — «О дев'ятій починається робота.»\nЧитається: ум нойн бегі́нт ді а́рбайт\nСлово um перед числом означає «о»: um acht — «о восьмій».\nСлово acht означає «вісім». Слово neun — «дев’ять».\nСлово Kurs означає «заняття». Слово Arbeit — «робота».\nСлово beginnt означає «починається». Слово beginnen — «починати, починатися».\nПеред Kurs і Arbeit стоять слова der і die. Українською таких слів немає.\nЗапам’ятовуйте їх разом з назвою: der Kurs, die Arbeit.\nТак само і зі словом bin — «є»:\nUm acht bin ich zu Hause. — «О восьмій я вдома.»\nЧитається: ум ахт бін іх цу ха́узе\nСлова zu Hause означають «вдома».",
+        "en": "Look at how to say “The class starts at eight”.\nUm acht beginnt der Kurs. — “The class starts at eight.”\nSounds like: oom akht begEEnt der koors\nUm neun beginnt die Arbeit. — “Work starts at nine.”\nSounds like: oom noyn begEEnt dee Arbayt\nThe word um before a number means “at”: um acht — “at eight”.\nThe word acht means “eight”. The word neun — “nine”.\nThe word Kurs means “class”. The word Arbeit — “work”.\nThe word beginnt means “starts”. The word beginnen — “to begin”.\nBefore Kurs and Arbeit stand the words der and die. English has no such words here.\nLearn them together with the name: der Kurs, die Arbeit.\nIt is the same with the word bin — “am”:\nUm acht bin ich zu Hause. — “At eight I am at home.”\nSounds like: oom akht been eekh tsoo khAooze\nThe words zu Hause mean “at home”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:04:21",
+          "say": {
+            "ru": "ум ахт беги́нт дер курс",
+            "uk": "ум ахт бегі́нт дер курс"
+          }
+        },
+        {
+          "phraseId": "de:04:22",
+          "say": {
+            "ru": "ум нойн беги́нт ди а́рбайт",
+            "uk": "ум нойн бегі́нт ді а́рбайт"
+          }
+        },
+        {
+          "phraseId": "de:04:30",
+          "say": {
+            "ru": "ум ахт бин их цу ха́узе",
+            "uk": "ум ахт бін іх цу ха́узе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В восемь начинается занятие.»",
+            "uk": "Виберіть, як сказати: «О восьмій починається заняття.»",
+            "en": "Choose how to say: “The class starts at eight.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:04:21",
+          "options": [
+            "de:04:21",
+            "de:04:22",
+            "de:04:30"
+          ],
+          "answerId": "de:04:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В девять начинается работа.»",
+            "uk": "Виберіть, як сказати: «О дев'ятій починається робота.»",
+            "en": "Choose how to say: “Work starts at nine.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:22",
+          "options": [
+            "de:04:22",
+            "de:04:21",
+            "de:04:30"
+          ],
+          "answerId": "de:04:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В восемь я дома.»",
+            "uk": "Виберіть, як сказати: «О восьмій я вдома.»",
+            "en": "Choose how to say: “At eight I am at home.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:30",
+          "options": [
+            "de:04:30",
+            "de:04:21",
+            "de:04:22"
+          ],
+          "answerId": "de:04:30"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Открывается, закрывается, приходит",
+        "uk": "Відкривається, закривається, приходить",
+        "en": "Opens, closes, comes"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «В десять открывается магазин».\nUm zehn öffnet der Laden. — «В десять открывается магазин.»\nЧитается: ум цен э́фнет дер ла́ден\nUm sechs schließt die Küche. — «В шесть закрывается кухня.»\nЧитается: ум зекс шли́ст ди кю́хе\nUm sieben kommt der Bus. — «В семь приходит автобус.»\nЧитается: ум зи́бен комт дер бус\nСлово zehn значит «десять». Слово sechs — «шесть». Слово sieben — «семь».\nСлово öffnet значит «открывается». Слово Laden — «магазин».\nПервая буква в öffnet читается как «э», но губы трубочкой.\nСлово schließt значит «закрывается». Слово schließen — «закрывать, закрываться».\nСлово Küche значит «кухня». Слово Bus — «автобус».\nСлово kommt значит «приходит». Слово kommen — «приходить».\nUm drei wartet Tom am Eingang. — «В три Том ждёт у входа.»\nЧитается: ум драй ва́ртет Том ам а́йнганг\nСлово drei значит «три». Слово wartet — «ждёт». Слова am Eingang — «у входа».",
+        "uk": "Дивіться, як сказати «О десятій відкривається магазин».\nUm zehn öffnet der Laden. — «О десятій відкривається магазин.»\nЧитається: ум цен е́фнет дер ла́ден\nUm sechs schließt die Küche. — «О шостій закривається кухня.»\nЧитається: ум зекс шлі́ст ді кю́хе\nUm sieben kommt der Bus. — «О сьомій приходить автобус.»\nЧитається: ум зі́бен комт дер бус\nСлово zehn означає «десять». Слово sechs — «шість». Слово sieben — «сім».\nСлово öffnet означає «відкривається». Слово Laden — «магазин».\nПерша буква в öffnet читається як «е», але губи трубочкою.\nСлово schließt означає «закривається». Слово schließen — «закривати, закриватися».\nСлово Küche означає «кухня». Слово Bus — «автобус».\nСлово kommt означає «приходить». Слово kommen — «приходити».\nUm drei wartet Tom am Eingang. — «О третій Том чекає на вході.»\nЧитається: ум драй ва́ртет Том ам а́йнганг\nСлово drei означає «три». Слово wartet — «чекає». Слова am Eingang — «на вході».",
+        "en": "Look at how to say “The shop opens at ten”.\nUm zehn öffnet der Laden. — “The shop opens at ten.”\nSounds like: oom tsen Efnet der lAden\nUm sechs schließt die Küche. — “The kitchen closes at six.”\nSounds like: oom zeks shlEEst dee kYOOkhe\nUm sieben kommt der Bus. — “The bus comes at seven.”\nSounds like: oom zEEben komt der boos\nThe word zehn means “ten”.\nThe word sechs — “six”. The word sieben — “seven”.\nThe word öffnet means “opens”. The word Laden — “shop”.\nThe first letter of öffnet sounds like “e”, but with rounded lips.\nThe word schließt means “closes”. The word schließen — “to close”.\nThe word Küche means “kitchen”. The word Bus — “bus”.\nThe word kommt means “comes”. The word kommen — “to come”.\nUm drei wartet Tom am Eingang. — “At three Tom waits at the entrance.”\nSounds like: oom dray vArtet Tom am Ayngang\nThe word drei means “three”. The word wartet — “waits”.\nThe words am Eingang — “at the entrance”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:04:23",
+          "say": {
+            "ru": "ум цен э́фнет дер ла́ден",
+            "uk": "ум цен е́фнет дер ла́ден"
+          }
+        },
+        {
+          "phraseId": "de:04:24",
+          "say": {
+            "ru": "ум зекс шли́ст ди кю́хе",
+            "uk": "ум зекс шлі́ст ді кю́хе"
+          }
+        },
+        {
+          "phraseId": "de:04:25",
+          "say": {
+            "ru": "ум зи́бен комт дер бус",
+            "uk": "ум зі́бен комт дер бус"
+          }
+        },
+        {
+          "phraseId": "de:04:27",
+          "say": {
+            "ru": "ум драй ва́ртет Том ам а́йнганг",
+            "uk": "ум драй ва́ртет Том ам а́йнганг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В десять открывается магазин.»",
+            "uk": "Виберіть, як сказати: «О десятій відкривається магазин.»",
+            "en": "Choose how to say: “The shop opens at ten.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:04:23",
+          "options": [
+            "de:04:23",
+            "de:04:24",
+            "de:04:25"
+          ],
+          "answerId": "de:04:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В шесть закрывается кухня.»",
+            "uk": "Виберіть, як сказати: «О шостій закривається кухня.»",
+            "en": "Choose how to say: “The kitchen closes at six.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:24",
+          "options": [
+            "de:04:24",
+            "de:04:23",
+            "de:04:27"
+          ],
+          "answerId": "de:04:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В семь приходит автобус.»",
+            "uk": "Виберіть, як сказати: «О сьомій приходить автобус.»",
+            "en": "Choose how to say: “The bus comes at seven.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:25",
+          "options": [
+            "de:04:25",
+            "de:04:24",
+            "de:04:27"
+          ],
+          "answerId": "de:04:25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "До и после",
+        "uk": "До і після",
+        "en": "Before and after"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «После занятия я учусь дома».\nNach dem Kurs lerne ich zu Hause. — «После занятия я учусь дома.»\nЧитается: нах дем курс ле́рне их цу ха́узе\nNach der Arbeit kauft Anna Brot. — «После работы Анна покупает хлеб.»\nЧитается: нах дер а́рбайт ка́уфт А́нна брот\nСлово nach значит «после». Nach dem Kurs — «после занятия».\nNach der Arbeit — «после работы».\nVor dem Kurs trinke ich Tee. — «Перед занятием я пью чай.»\nЧитается: фор дем курс три́нке их те́\nVor der Arbeit macht Tom Kaffee. — «Перед работой Том готовит кофе.»\nЧитается: фор дер а́рбайт махт Том ка́фе\nСлово vor значит «перед». Vor dem Kurs — «перед занятием».\nVor der Arbeit — «перед работой».\nСлова dem и der — маленькие слова перед названием.\nПо-русски их нет. Запоминайте вместе: dem Kurs, der Arbeit.\nСлово trinke значит «пью». Слово Tee — «чай».\nСлово macht значит «готовит». Слово Kaffee — «кофе».",
+        "uk": "Дивіться, як сказати «Після заняття я навчаюсь вдома».\nNach dem Kurs lerne ich zu Hause. — «Після заняття я навчаюсь вдома.»\nЧитається: нах дем курс ле́рне іх цу ха́узе\nNach der Arbeit kauft Anna Brot. — «Після роботи Ганна купує хліб.»\nЧитається: нах дер а́рбайт ка́уфт А́нна брот\nСлово nach означає «після». Nach dem Kurs — «після заняття».\nNach der Arbeit — «після роботи».\nVor dem Kurs trinke ich Tee. — «Перед заняттям я п'ю чай.»\nЧитається: фор дем курс трі́нке іх те́\nVor der Arbeit macht Tom Kaffee. — «Перед роботою Том готує каву.»\nЧитається: фор дер а́рбайт махт Том ка́фе\nСлово vor означає «перед». Vor dem Kurs — «перед заняттям».\nVor der Arbeit — «перед роботою».\nСлова dem і der — маленькі слова перед назвою.\nУкраїнською їх немає. Запам’ятовуйте разом: dem Kurs, der Arbeit.\nСлово trinke означає «п’ю». Слово Tee — «чай».\nСлово macht означає «готує». Слово Kaffee — «кава».",
+        "en": "Look at how to say “After the class I study at home”.\nNach dem Kurs lerne ich zu Hause. — “After the class I study at home.”\nSounds like: nakh dem koors lErne eekh tsoo khAooze\nNach der Arbeit kauft Anna Brot. — “After work Anna buys bread.”\nSounds like: nakh der Arbayt kAooft Anna brot\nThe word nach means “after”. Nach dem Kurs — “after the class”.\nNach der Arbeit — “after work”.\nVor dem Kurs trinke ich Tee. — “Before the class I drink tea.”\nSounds like: for dem koors trEEnke eekh tE\nVor der Arbeit macht Tom Kaffee. — “Before work Tom makes coffee.”\nSounds like: for der Arbayt makht Tom kAfe\nThe word vor means “before”. Vor dem Kurs — “before the class”.\nVor der Arbeit — “before work”.\nThe words dem and der are small words before the name.\nEnglish has no such words here. Learn them together: dem Kurs, der Arbeit.\nThe word trinke means “drink”. The word Tee — “tea”.\nThe word macht means “makes”. The word Kaffee — “coffee”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:04:31",
+          "say": {
+            "ru": "нах дем курс ле́рне их цу ха́узе",
+            "uk": "нах дем курс ле́рне іх цу ха́узе"
+          }
+        },
+        {
+          "phraseId": "de:04:32",
+          "say": {
+            "ru": "нах дер а́рбайт ка́уфт А́нна брот",
+            "uk": "нах дер а́рбайт ка́уфт А́нна брот"
+          }
+        },
+        {
+          "phraseId": "de:04:34",
+          "say": {
+            "ru": "фор дем курс три́нке их те́",
+            "uk": "фор дем курс трі́нке іх те́"
+          }
+        },
+        {
+          "phraseId": "de:04:35",
+          "say": {
+            "ru": "фор дер а́рбайт махт Том ка́фе",
+            "uk": "фор дер а́рбайт махт Том ка́фе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «После занятия я учусь дома.»",
+            "uk": "Виберіть, як сказати: «Після заняття я навчаюсь вдома.»",
+            "en": "Choose how to say: “After the class I study at home.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:04:31",
+          "options": [
+            "de:04:31",
+            "de:04:32",
+            "de:04:34"
+          ],
+          "answerId": "de:04:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «После работы Анна покупает хлеб.»",
+            "uk": "Виберіть, як сказати: «Після роботи Ганна купує хліб.»",
+            "en": "Choose how to say: “After work Anna buys bread.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:32",
+          "options": [
+            "de:04:32",
+            "de:04:35",
+            "de:04:31"
+          ],
+          "answerId": "de:04:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Перед занятием я пью чай.»",
+            "uk": "Виберіть, як сказати: «Перед заняттям я п'ю чай.»",
+            "en": "Choose how to say: “Before the class I drink tea.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:34",
+          "options": [
+            "de:04:34",
+            "de:04:31",
+            "de:04:35"
+          ],
+          "answerId": "de:04:34"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Утро, вечер, выходные",
+        "uk": "Ранок, вечір, вихідні",
+        "en": "Morning, evening, weekend"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Вечером мы читаем».\nAm Abend lesen wir. — «Вечером мы читаем.»\nЧитается: ам а́бенд ле́зен вир\nAm Nachmittag spielen die Kinder. — «После обеда дети играют.»\nЧитается: ам на́хмитаг шпи́лен ди ки́ндер\nСлово Abend значит «вечер». Am Abend — «вечером».\nСлово Nachmittag значит «время после обеда». Am Nachmittag — «после обеда».\nСлово lesen значит «читать». Слово spielen — «играть».\nAm Morgen suche ich meine Schlüssel. — «Утром я ищу свои ключи.»\nЧитается: ам мо́рген зу́хе их ма́йне шлю́сель\nСлово Morgen с большой буквы значит «утро». Am Morgen — «утром».\nСлово morgen с маленькой буквы значит «завтра».\nСлово meine значит «мои, свои». Слово Schlüssel — «ключи».\nAm Wochenende arbeiten wir draußen. — «В выходные мы работаем на улице.»\nЧитается: ам во́хенэнде а́рбайтен вир дра́усен\nСлово Wochenende значит «выходные». Am Wochenende — «в выходные».",
+        "uk": "Дивіться, як сказати «Увечері ми читаємо».\nAm Abend lesen wir. — «Увечері ми читаємо.»\nЧитається: ам а́бенд ле́зен вір\nAm Nachmittag spielen die Kinder. — «Після обіду діти граються.»\nЧитається: ам на́хмітаг шпі́лен ді кі́ндер\nСлово Abend означає «вечір». Am Abend — «увечері».\nСлово Nachmittag означає «час після обіду». Am Nachmittag — «після обіду».\nСлово lesen означає «читати». Слово spielen — «грати».\nAm Morgen suche ich meine Schlüssel. — «Вранці я шукаю свої ключі.»\nЧитається: ам мо́рген зу́хе іх ма́йне шлю́сель\nСлово Morgen з великої літери означає «ранок». Am Morgen — «вранці».\nСлово morgen з малої літери означає «завтра».\nСлово meine означає «мої, свої». Слово Schlüssel — «ключі».\nAm Wochenende arbeiten wir draußen. — «У вихідні ми працюємо на вулиці.»\nЧитається: ам во́хененде а́рбайтен вір дра́усен\nСлово Wochenende означає «вихідні». Am Wochenende — «у вихідні».",
+        "en": "Look at how to say “In the evening we read”.\nAm Abend lesen wir. — “In the evening we read.”\nSounds like: am Abend lEzen veer\nAm Nachmittag spielen die Kinder. — “In the afternoon the children play.”\nSounds like: am nAkhmeetag shpEElen dee kEEnder\nThe word Abend means “evening”. Am Abend — “in the evening”.\nThe word Nachmittag means “afternoon”. Am Nachmittag — “in the afternoon”.\nThe word lesen means “to read”. The word spielen — “to play”.\nAm Morgen suche ich meine Schlüssel. — “In the morning I look for my keys.”\nSounds like: am mOrgen zOOkhe eekh mAyne shlYOOsel\nThe word Morgen with a capital letter means “morning”. Am Morgen — “in the morning”.\nThe word morgen with a small letter means “tomorrow”.\nThe word meine means “my”. The word Schlüssel — “keys”.\nAm Wochenende arbeiten wir draußen. — “On the weekend we work outside.”\nSounds like: am vOkhenende Arbayten veer drAoosen\nThe word Wochenende means “weekend”. Am Wochenende — “on the weekend”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:04:37",
+          "say": {
+            "ru": "ам а́бенд ле́зен вир",
+            "uk": "ам а́бенд ле́зен вір"
+          }
+        },
+        {
+          "phraseId": "de:04:38",
+          "say": {
+            "ru": "ам на́хмитаг шпи́лен ди ки́ндер",
+            "uk": "ам на́хмітаг шпі́лен ді кі́ндер"
+          }
+        },
+        {
+          "phraseId": "de:04:36",
+          "say": {
+            "ru": "ам мо́рген зу́хе их ма́йне шлю́сель",
+            "uk": "ам мо́рген зу́хе іх ма́йне шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:04:40",
+          "say": {
+            "ru": "ам во́хенэнде а́рбайтен вир дра́усен",
+            "uk": "ам во́хененде а́рбайтен вір дра́усен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вечером мы читаем.»",
+            "uk": "Виберіть, як сказати: «Увечері ми читаємо.»",
+            "en": "Choose how to say: “In the evening we read.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:04:37",
+          "options": [
+            "de:04:37",
+            "de:04:38",
+            "de:04:40"
+          ],
+          "answerId": "de:04:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В выходные мы работаем на улице.»",
+            "uk": "Виберіть, як сказати: «У вихідні ми працюємо на вулиці.»",
+            "en": "Choose how to say: “On the weekend we work outside.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:40",
+          "options": [
+            "de:04:40",
+            "de:04:37",
+            "de:04:38"
+          ],
+          "answerId": "de:04:40"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «После обеда дети играют.»",
+            "uk": "Виберіть, як сказати: «Після обіду діти граються.»",
+            "en": "Choose how to say: “In the afternoon the children play.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:04:38",
+          "options": [
+            "de:04:38",
+            "de:04:37",
+            "de:04:40"
+          ],
+          "answerId": "de:04:38"
+        }
+      ]
+    }
+  ]
+}

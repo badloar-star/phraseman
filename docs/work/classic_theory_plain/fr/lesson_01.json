@@ -1,0 +1,406 @@
+{
+  "lang": "fr",
+  "lesson": 1,
+  "title": {
+    "ru": "Кто где находится",
+    "uk": "Хто де перебуває",
+    "en": "Who is where"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я и ты: здесь и там",
+        "uk": "Я і ти: тут і там",
+        "en": "I and you: here and there"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я здесь».\nJe suis ici. — «Я здесь.»\nЧитается: жё сюи иси́.\nДве подсказки. Знак ´ над буквой показывает, какую часть слова говорить громче.\nРусские буквы передают звук только приблизительно.\nСлово je значит «я».\nСлово ici значит «здесь».\nСлово suis значит «быть, находиться». В «Я здесь» по-русски такого слова нет, а по-французски оно нужно.\nВ suis звук «ю»: скажите «и», округлив губы.\nТеперь «Я там».\nJe suis là. — «Я там.»\nЧитается: жё сюи ла́.\nСлово là значит «там».\nА вот «Ты здесь».\nTu es ici. — «Ты здесь.»\nЧитается: тю э иси́.\nСлово tu значит «ты».\nСлово «быть, находиться» меняется, смотря о ком речь: «я» — suis, «ты» — es.",
+        "uk": "Дивіться, як сказати «Я тут».\nJe suis ici. — «Я тут.»\nЧитається: жё сюі ісі́.\nДві підказки. Знак ´ над літерою показує, яку частину слова казати голосніше.\nУкраїнські літери передають звук лише приблизно.\nСлово je означає «я».\nСлово ici означає «тут».\nСлово suis означає «бути, перебувати». В «Я тут» українською такого слова немає, а французькою воно потрібне.\nУ suis звук «ю»: скажіть «і», округливши губи.\nТепер «Я там».\nJe suis là. — «Я там.»\nЧитається: жё сюі ла́.\nСлово là означає «там».\nА ось «Ти тут».\nTu es ici. — «Ти тут.»\nЧитається: тю е ісі́.\nСлово tu означає «ти».\nСлово «бути, перебувати» змінюється залежно від того, про кого мова: «я» — suis, «ти» — es.",
+        "en": "Look at how to say “I am here”.\nJe suis ici. — “I am here.”\nTwo hints.\nThe mark ´ over a letter shows which part of the word to say louder.\nAny spelling of a sound is only approximate.\nje means “I”. ici means “here”.\nsuis means “to be, to be somewhere”. French needs this word.\nIn suis the sound “ü”: say “ee” with rounded lips.\nNow “I am there”.\nJe suis là. — “I am there.”\nlà means “there”.\nAnd “You are here”.\nTu es ici. — “You are here.”\ntu means “you”.\nThe word changes depending on who we talk about: “I” — suis, “you” — es."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:01:01",
+          "say": {
+            "ru": "жё сюи иси́",
+            "uk": "жё сюі ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:01:04",
+          "say": {
+            "ru": "жё сюи ла́",
+            "uk": "жё сюі ла́"
+          }
+        },
+        {
+          "phraseId": "fr:01:02",
+          "say": {
+            "ru": "тю э иси́",
+            "uk": "тю е ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:01:03",
+          "say": {
+            "ru": "тю э ла́",
+            "uk": "тю е ла́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец — это готовый ответ, чтобы вы поняли, что нужно делать. Нажмите на нужный вариант: как сказать «Я там»?",
+            "uk": "Зразок — це готова відповідь, щоб ви зрозуміли, що треба робити. Натисніть потрібний варіант: як сказати «Я там»?",
+            "en": "A sample is a ready answer, so you can see what to do. Tap the right answer: how do you say “I am there”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:01:04",
+          "options": [
+            "fr:01:04",
+            "fr:01:03",
+            "fr:01:01"
+          ],
+          "answerId": "fr:01:04"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ты здесь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ти тут»?",
+            "en": "Tap the right answer: how do you say “You are here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:01:02",
+          "options": [
+            "fr:01:02",
+            "fr:01:01",
+            "fr:01:03"
+          ],
+          "answerId": "fr:01:02"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Я здесь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Я тут»?",
+            "en": "Tap the right answer: how do you say “I am here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:01:01",
+          "options": [
+            "fr:01:01",
+            "fr:01:04",
+            "fr:01:02"
+          ],
+          "answerId": "fr:01:01"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Леа, мы, вы",
+        "uk": "Леа, ми, ви",
+        "en": "Léa, we, you"
+      },
+      "text": {
+        "ru": "Когда речь о Леа или о Поле, говорят est.\nLéa est ici. — «Леа здесь.»\nЧитается: леа́ э иси́.\nPaul est là. — «Поль там.»\nЧитается: поль э ла́.\nО женщине можно сказать «она»: elle. Читается «эль».\nС elle тоже говорят est.\nСлово est — то же «быть, находиться». По-русски его не говорят.\nТеперь «Мы здесь» и «Вы здесь».\nNous sommes ici. — «Мы здесь.»\nЧитается: ну сом иси́.\nVous êtes ici. — «Вы здесь.»\nЧитается: ву зэт иси́.\nСлово nous значит «мы», слово vous значит «вы».\nВ «ву зэт» между словами слышится лёгкое «з».\nКогда речь о нас, говорят sommes. Когда о вас — êtes.\nТеперь «Мы вместе».\nNous sommes ensemble. — «Мы вместе.»\nЧитается: ну сом анса́мбль.\nНосовой звук: «ан», «он», «эн» говорят в нос, «н» почти не слышно.\nСлово ensemble значит «вместе».",
+        "uk": "Коли мова про Леа або про Поля, кажуть est.\nLéa est ici. — «Леа тут.»\nЧитається: леа́ е ісі́.\nPaul est là. — «Поль там.»\nЧитається: поль е ла́.\nПро жінку можна сказати «вона»: elle. Читається «ель».\nЗ elle теж кажуть est.\nСлово est — те саме «бути, перебувати». Українською його не кажуть.\nТепер «Ми тут» і «Ви тут».\nNous sommes ici. — «Ми тут.»\nЧитається: ну сом ісі́.\nVous êtes ici. — «Ви тут.»\nЧитається: ву зет ісі́.\nСлово nous означає «ми», слово vous означає «ви».\nУ «ву зет» між словами чути легке «з».\nКоли мова про нас, кажуть sommes. Коли про вас — êtes.\nТепер «Ми разом».\nNous sommes ensemble. — «Ми разом.»\nЧитається: ну сом анса́мбль.\nНосовий звук: «ан», «он», «ен» кажуть у ніс, «н» майже не чути.\nСлово ensemble означає «разом».",
+        "en": "About Léa or Paul people say est.\nLéa est ici. — “Léa is here.”\nPaul est là. — “Paul is there.”\nFor a woman you can say “she”: elle. elle also goes with est.\nest is the same “to be, to be somewhere”.\nNow “We are here” and “You are here”.\nNous sommes ici. — “We are here.”\nVous êtes ici. — “You are here.”\nnous means “we”, vous means “you”.\nIn “voo zet” a light “z” sounds between the words.\nAbout us people say sommes, about you — êtes.\nNow “We are together”.\nNous sommes ensemble. — “We are together.”\nNasal sound: “an”, “on”, “en” are said through the nose, the “n” is barely heard.\nensemble means “together”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:01:05",
+          "say": {
+            "ru": "леа́ э иси́",
+            "uk": "леа́ е ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:01:06",
+          "say": {
+            "ru": "поль э ла́",
+            "uk": "поль е ла́"
+          }
+        },
+        {
+          "phraseId": "fr:01:07",
+          "say": {
+            "ru": "ну сом иси́",
+            "uk": "ну сом ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:01:08",
+          "say": {
+            "ru": "ву зэт иси́",
+            "uk": "ву зет ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:01:44",
+          "say": {
+            "ru": "ну сом анса́мбль",
+            "uk": "ну сом анса́мбль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Мы здесь»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Ми тут»?",
+            "en": "Sample. Tap the right answer: how do you say “We are here”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:01:07",
+          "options": [
+            "fr:01:07",
+            "fr:01:08",
+            "fr:01:05"
+          ],
+          "answerId": "fr:01:07"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Вы здесь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ви тут»?",
+            "en": "Tap the right answer: how do you say “You are here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:01:08",
+          "options": [
+            "fr:01:08",
+            "fr:01:07",
+            "fr:01:02"
+          ],
+          "answerId": "fr:01:08"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мы вместе»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ми разом»?",
+            "en": "Tap the right answer: how do you say “We are together”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:01:44",
+          "options": [
+            "fr:01:44",
+            "fr:01:07",
+            "fr:01:08"
+          ],
+          "answerId": "fr:01:44"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Они и «готов»",
+        "uk": "Вони і «готовий»",
+        "en": "They, and “ready”"
+      },
+      "text": {
+        "ru": "Когда речь о них, говорят sont.\nIls sont là. — «Они там.»\nЧитается: иль сон ла́.\nElles sont ici. — «Они здесь.»\nЧитается: эль сон иси́.\nСлова ils и elles оба значат «они». Elles — только про женщин.\nНосовой звук: «ан», «он», «эн» говорят в нос, «н» почти не слышно.\nТак читается «сон» в sont.\nТеперь «готов».\nJe suis prêt. — «Я готов.»\nЧитается: жё сюи прэ́.\nElle est prête. — «Она готова.»\nЧитается: эль э прэ́т.\nСлово prêt значит «готов», слово prête — «готова».\nО женщине в конце добавляют ещё одну букву: prêt → prête.\nТеперь последняя согласная звучит: «прэ́» — «прэ́т».\nВот весь набор слова «быть, находиться»:\n«я» — suis, «ты» — es, «она», Леа и Поль — est.\n«мы» — sommes, «вы» — êtes, «они» — sont.\nСлово меняется, смотря о ком речь.",
+        "uk": "Коли мова про них, кажуть sont.\nIls sont là. — «Вони там.»\nЧитається: іль сон ла́.\nElles sont ici. — «Вони тут.»\nЧитається: ель сон ісі́.\nСлова ils і elles обидва означають «вони». Elles — тільки про жінок.\nНосовий звук: «ан», «он», «ен» кажуть у ніс, «н» майже не чути.\nТак читається «сон» у sont.\nТепер «готовий».\nJe suis prêt. — «Я готовий.»\nЧитається: жё сюі пре́.\nElle est prête. — «Вона готова.»\nЧитається: ель е пре́т.\nСлово prêt означає «готовий», слово prête — «готова».\nПро жінку в кінці додають ще одну літеру: prêt → prête.\nТепер остання приголосна звучить: «пре́» — «пре́т».\nОсь весь набір слова «бути, перебувати»:\n«я» — suis, «ти» — es, «вона», Леа і Поль — est.\n«ми» — sommes, «ви» — êtes, «вони» — sont.\nСлово змінюється залежно від того, про кого мова.",
+        "en": "About them people say sont.\nIls sont là. — “They are there.”\nElles sont ici. — “They are here.”\nils and elles both mean “they”. elles is only for women.\nNasal sound: “an”, “on”, “en” are said through the nose, the “n” is barely heard.\nThat is how “son” in sont is read.\nNow “ready”.\nJe suis prêt. — “I am ready.”\nElle est prête. — “She is ready.”\nprêt means “ready” (about him), prête — “ready” (about her).\nAbout a woman one more letter is added at the end: prêt → prête.\nNow the last consonant is heard: “preh” — “preht”.\nThe whole set of “to be, to be somewhere”:\n“I” — suis, “you” — es, “she”, Léa and Paul — est.\n“we” — sommes, “you (all)” — êtes, “they” — sont.\nThe word changes depending on who we talk about."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:01:09",
+          "say": {
+            "ru": "иль сон ла́",
+            "uk": "іль сон ла́"
+          }
+        },
+        {
+          "phraseId": "fr:01:10",
+          "say": {
+            "ru": "эль сон иси́",
+            "uk": "ель сон ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:01:21",
+          "say": {
+            "ru": "жё сюи прэ́",
+            "uk": "жё сюі пре́"
+          }
+        },
+        {
+          "phraseId": "fr:01:23",
+          "say": {
+            "ru": "эль э прэ́т",
+            "uk": "ель е пре́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Они там»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Вони там»?",
+            "en": "Sample. Tap the right answer: how do you say “They are there”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:01:09",
+          "options": [
+            "fr:01:09",
+            "fr:01:04",
+            "fr:01:06"
+          ],
+          "answerId": "fr:01:09"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Они здесь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Вони тут»?",
+            "en": "Tap the right answer: how do you say “They are here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:01:10",
+          "options": [
+            "fr:01:10",
+            "fr:01:09",
+            "fr:01:05"
+          ],
+          "answerId": "fr:01:10"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Она готова»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Вона готова»?",
+            "en": "Tap the right answer: how do you say “She is ready”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:01:23",
+          "options": [
+            "fr:01:23",
+            "fr:01:21",
+            "fr:01:10"
+          ],
+          "answerId": "fr:01:23"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Места и вещи",
+        "uk": "Місця і речі",
+        "en": "Places and things"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где вы находитесь.\nJe suis à la maison. — «Я дома.»\nЧитается: жё сюи а ла мэзо́н.\nНосовой звук: «ан», «он», «эн» говорят в нос, «н» почти не слышно.\nLéa est à la gare. — «Леа на вокзале.»\nЧитается: леа́ э а ла гар.\nElle est au bureau. — «Она в офисе.»\nЧитается: эль э о бюро́.\nСлово à значит «в» или «на». Слово au значит «в» перед словом bureau.\nСлова la и le стоят перед названием места или вещи.\nПо-русски таких слов нет, запоминайте их вместе с названием.\nСлово maison значит «дом», gare — «вокзал», bureau — «офис».\nТеперь вещи.\nLa porte est ouverte. — «Дверь открыта.»\nЧитается: ла порт э увэ́рт.\nСлово porte значит «дверь», слово ouverte — «открыта».\nК женскому слову (la porte) в конце добавляют ещё одну букву: ouvert → ouverte.\nТеперь последняя согласная звучит: «увэ́р» — «увэ́рт».\nПро магазин (le magasin) говорят ouvert — «открыт».\nЕщё слова смотрите на карточках:\nfenêtre — «окно», clé — «ключ», sac — «сумка», magasin — «магазин».",
+        "uk": "Дивіться, як сказати, де ви перебуваєте.\nJe suis à la maison. — «Я вдома.»\nЧитається: жё сюі а ла мезо́н.\nНосовий звук: «ан», «он», «ен» кажуть у ніс, «н» майже не чути.\nLéa est à la gare. — «Леа на вокзалі.»\nЧитається: леа́ е а ла гар.\nElle est au bureau. — «Вона в офісі.»\nЧитається: ель е о бюро́.\nСлово à означає «в» або «на». Слово au означає «в» перед словом bureau.\nСлова la і le стоять перед назвою місця або речі.\nУкраїнською таких слів немає, запам’ятовуйте їх разом із назвою.\nСлово maison означає «дім», gare — «вокзал», bureau — «офіс».\nТепер речі.\nLa porte est ouverte. — «Двері відчинені.»\nЧитається: ла порт е уве́рт.\nСлово porte означає «двері», слово ouverte — «відчинені».\nДо «жіночого» слова (la porte) в кінці додають ще одну літеру: ouvert → ouverte.\nТепер остання приголосна звучить: «уве́р» — «уве́рт».\nПро магазин (le magasin) кажуть ouvert — «відкритий».\nЩе слова дивіться на картках:\nfenêtre — «вікно», clé — «ключ», sac — «сумка», magasin — «магазин».",
+        "en": "Look at how to say where you are.\nJe suis à la maison. — “I am at home.”\nNasal sound: “an”, “on”, “en” are said through the nose, the “n” is barely heard.\nLéa est à la gare. — “Léa is at the station.”\nElle est au bureau. — “She is at the office.”\nà means “at” or “in”. au means “at” before the word bureau.\nla and le stand before a place or thing. Learn them together with the name.\nmaison means “house”, gare — “station”, bureau — “office”.\nNow things.\nLa porte est ouverte. — “The door is open.”\nporte means “door”, ouverte — “open”.\nA “feminine” word (la porte) gets one more letter at the end: ouvert → ouverte.\nNow the last consonant is heard: “oo-vair” — “oo-vairt”.\nAbout a shop (le magasin) people say ouvert.\nMore words are on the cards:\nfenêtre — “window”, clé — “key”, sac — “bag”, magasin — “shop”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:01:11",
+          "say": {
+            "ru": "жё сюи а ла мэзо́н",
+            "uk": "жё сюі а ла мезо́н"
+          }
+        },
+        {
+          "phraseId": "fr:01:14",
+          "say": {
+            "ru": "леа́ э а ла гар",
+            "uk": "леа́ е а ла гар"
+          }
+        },
+        {
+          "phraseId": "fr:01:18",
+          "say": {
+            "ru": "эль э о бюро́",
+            "uk": "ель е о бюро́"
+          }
+        },
+        {
+          "phraseId": "fr:01:31",
+          "say": {
+            "ru": "ла порт э увэ́рт",
+            "uk": "ла порт е уве́рт"
+          }
+        },
+        {
+          "phraseId": "fr:01:32",
+          "say": {
+            "ru": "ла фёнэ́тр э увэ́рт",
+            "uk": "ла фёне́тр е уве́рт"
+          }
+        },
+        {
+          "phraseId": "fr:01:33",
+          "say": {
+            "ru": "лё магазэ́н э увэ́р",
+            "uk": "лё магазе́н е уве́р"
+          }
+        },
+        {
+          "phraseId": "fr:01:45",
+          "say": {
+            "ru": "ла кле́ э иси́",
+            "uk": "ла кле́ е ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:01:47",
+          "say": {
+            "ru": "лё сак э а ла мэзо́н",
+            "uk": "лё сак е а ла мезо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Я дома»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я вдома»?",
+            "en": "Sample. Tap the right answer: how do you say “I am at home”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:01:11",
+          "options": [
+            "fr:01:11",
+            "fr:01:18",
+            "fr:01:01"
+          ],
+          "answerId": "fr:01:11"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Леа на вокзале»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Леа на вокзалі»?",
+            "en": "Tap the right answer: how do you say “Léa is at the station”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:01:14",
+          "options": [
+            "fr:01:14",
+            "fr:01:18",
+            "fr:01:11"
+          ],
+          "answerId": "fr:01:14"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Дверь открыта»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Двері відчинені»?",
+            "en": "Tap the right answer: how do you say “The door is open”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:01:31",
+          "options": [
+            "fr:01:31",
+            "fr:01:32",
+            "fr:01:33"
+          ],
+          "answerId": "fr:01:31"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,496 @@
+{
+  "lang": "de",
+  "lesson": 2,
+  "title": {
+    "ru": "Ключ, сумка, телефон",
+    "uk": "Ключ, сумка, телефон",
+    "en": "Key, bag, phone"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Это ключ, это сумка",
+        "uk": "Це ключ, це сумка",
+        "en": "This is a key, this is a bag"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это ключ».\nDas ist der Schlüssel. — «Это ключ.»\nЧитается: дас ист дер шлю́сель.\nDas ist die Tasche. — «Это сумка.»\nЧитается: дас ист ди та́ше.\nDas ist das Handy. — «Это телефон.»\nЧитается: дас ист дас хе́нди.\nСлова das ist значат «это». Слово ist вы уже видели: оно значит «есть».\nВ das Handy первое das значит «это». Второе das — маленькое слово перед Handy.\nПеред названием вещи стоит маленькое слово: der, die или das.\nУ каждой вещи своё: der Schlüssel «ключ», die Tasche «сумка», das Handy «телефон».\nПо-русски таких слов нет. Запоминайте их вместе с названием вещи.\nDas ist die Karte. — «Это карта.»\nЧитается: дас ист ди ка́рте.\nDas ist das Ticket. — «Это билет.»\nЧитается: дас ист дас ти́кет.\nСлова Karte — «карта», Ticket — «билет».",
+        "uk": "Дивіться, як сказати «Це ключ».\nDas ist der Schlüssel. — «Це ключ.»\nЧитається: дас іст дер шлю́сель.\nDas ist die Tasche. — «Це сумка.»\nЧитається: дас іст ді та́ше.\nDas ist das Handy. — «Це телефон.»\nЧитається: дас іст дас хе́нді.\nСлова das ist означають «це». Слово ist ви вже бачили: воно означає «є».\nУ das Handy перше das означає «це». Друге das — маленьке слово перед Handy.\nПеред назвою речі стоїть маленьке слово: der, die або das.\nУ кожної речі своє: der Schlüssel «ключ», die Tasche «сумка», das Handy «телефон».\nУкраїнською таких слів немає. Запам'ятовуйте їх разом з назвою речі.\nDas ist die Karte. — «Це мапа.»\nЧитається: дас іст ді ка́рте.\nDas ist das Ticket. — «Це квиток.»\nЧитається: дас іст дас ті́кет.\nСлова Karte — «карта», Ticket — «квиток».",
+        "en": "Look at how to say “This is a key”.\nDas ist der Schlüssel. — “This is a key.”\nSounds like: das ist der SHLYOO-sel.\nDas ist die Tasche. — “This is a bag.”\nSounds like: das ist dee TA-she.\nDas ist das Handy. — “This is a phone.”\nSounds like: das ist das HEN-dee.\nThe words das ist mean “this is”. You already know ist: it means “is”.\nIn das Handy the first das means “this”.\nThe second das is a little word before Handy.\nBefore the name of a thing there is a little word: der, die or das.\nEach thing has its own: der Schlüssel “key”, die Tasche “bag”, das Handy “phone”.\nLearn these little words together with the name of the thing.\nDas ist die Karte. — “This is the map”\nDas ist das Ticket. — “This is the ticket”\nKarte — “map”, Ticket — “ticket”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:02:01",
+          "say": {
+            "ru": "дас ист дер шлю́сель",
+            "uk": "дас іст дер шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:02:02",
+          "say": {
+            "ru": "дас ист ди та́ше",
+            "uk": "дас іст ді та́ше"
+          }
+        },
+        {
+          "phraseId": "de:02:03",
+          "say": {
+            "ru": "дас ист дас хе́нди",
+            "uk": "дас іст дас хе́нді"
+          }
+        },
+        {
+          "phraseId": "de:02:32",
+          "say": {
+            "ru": "дас ист ди ка́рте",
+            "uk": "дас іст ді ка́рте"
+          }
+        },
+        {
+          "phraseId": "de:02:33",
+          "say": {
+            "ru": "дас ист дас ти́кет",
+            "uk": "дас іст дас ті́кет"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это сумка»",
+            "uk": "Виберіть, як сказати: «Це сумка»",
+            "en": "Choose how to say: “This is a bag”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:02:02",
+          "options": [
+            "de:02:02",
+            "de:02:01",
+            "de:02:03"
+          ],
+          "answerId": "de:02:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это карта»",
+            "uk": "Виберіть, як сказати: «Це мапа»",
+            "en": "Choose how to say: “This is the map”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:32",
+          "options": [
+            "de:02:32",
+            "de:02:33",
+            "de:02:01"
+          ],
+          "answerId": "de:02:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это билет»",
+            "uk": "Виберіть, як сказати: «Це квиток»",
+            "en": "Choose how to say: “This is the ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:33",
+          "options": [
+            "de:02:33",
+            "de:02:32",
+            "de:02:03"
+          ],
+          "answerId": "de:02:33"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Вот ключ, вот сумка",
+        "uk": "Ось ключ, ось сумка",
+        "en": "Here is the key, here is the bag"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Вот ключ».\nHier ist der Schlüssel. — «Вот ключ.»\nЧитается: хи́р ист дер шлю́сель.\nHier ist die Tasche. — «Вот сумка.»\nЧитается: хи́р ист ди та́ше.\nHier ist das Handy. — «Вот телефон.»\nЧитается: хи́р ист дас хе́нди.\nСлово hier вы уже знаете: «здесь».\nКогда показывают вещь, hier ist значит «вот».\nМаленькие слова остаются при своих вещах.\nКлюч — всегда der Schlüssel, сумка — всегда die Tasche.\nHier ist der Brief. — «Вот письмо.»\nЧитается: хи́р ист дер бри́ф.\nHier ist die Rechnung. — «Вот счёт.»\nЧитается: хи́р ист ди ре́хнунг.\nHier ist das Paket. — «Вот посылка.»\nЧитается: хи́р ист дас паке́т.\nСлова Brief — «письмо», Rechnung — «счёт», Paket — «посылка».",
+        "uk": "Дивіться, як сказати «Ось ключ».\nHier ist der Schlüssel. — «Ось ключ.»\nЧитається: хі́р іст дер шлю́сель.\nHier ist die Tasche. — «Ось сумка.»\nЧитається: хі́р іст ді та́ше.\nHier ist das Handy. — «Ось телефон.»\nЧитається: хі́р іст дас хе́нді.\nСлово hier ви вже знаєте: «тут».\nКоли показують річ, hier ist означає «ось».\nМаленькі слова залишаються при своїх речах.\nКлюч — завжди der Schlüssel, сумка — завжди die Tasche.\nHier ist der Brief. — «Ось лист.»\nЧитається: хі́р іст дер брі́ф.\nHier ist die Rechnung. — «Ось рахунок.»\nЧитається: хі́р іст ді ре́хнунг.\nHier ist das Paket. — «Ось посилка.»\nЧитається: хі́р іст дас паке́т.\nСлова Brief — «лист», Rechnung — «рахунок», Paket — «посилка».",
+        "en": "Look at how to say “Here is the key”.\nHier ist der Schlüssel. — “Here is the key.”\nSounds like: heer ist der SHLYOO-sel.\nHier ist die Tasche. — “Here is the bag.”\nSounds like: heer ist dee TA-she.\nHier ist das Handy. — “Here is the phone.”\nSounds like: heer ist das HEN-dee.\nYou already know hier: “here”.\nWhen you point at a thing, hier ist means “here is”.\nThe little words stay with their things.\nThe key is always der Schlüssel, the bag is always die Tasche.\nHier ist der Brief. — “Here is the letter”\nHier ist die Rechnung. — “Here is the bill”\nHier ist das Paket. — “Here is the parcel”\nBrief — “letter”, Rechnung — “bill”, Paket — “parcel”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:02:04",
+          "say": {
+            "ru": "хи́р ист дер шлю́сель",
+            "uk": "хі́р іст дер шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:02:05",
+          "say": {
+            "ru": "хи́р ист ди та́ше",
+            "uk": "хі́р іст ді та́ше"
+          }
+        },
+        {
+          "phraseId": "de:02:06",
+          "say": {
+            "ru": "хи́р ист дас хе́нди",
+            "uk": "хі́р іст дас хе́нді"
+          }
+        },
+        {
+          "phraseId": "de:02:35",
+          "say": {
+            "ru": "хи́р ист дер бри́ф",
+            "uk": "хі́р іст дер брі́ф"
+          }
+        },
+        {
+          "phraseId": "de:02:36",
+          "say": {
+            "ru": "хи́р ист ди ре́хнунг",
+            "uk": "хі́р іст ді ре́хнунг"
+          }
+        },
+        {
+          "phraseId": "de:02:37",
+          "say": {
+            "ru": "хи́р ист дас паке́т",
+            "uk": "хі́р іст дас паке́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вот телефон»",
+            "uk": "Виберіть, як сказати: «Ось телефон»",
+            "en": "Choose how to say: “Here is the phone”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:02:06",
+          "options": [
+            "de:02:06",
+            "de:02:04",
+            "de:02:05"
+          ],
+          "answerId": "de:02:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вот письмо»",
+            "uk": "Виберіть, як сказати: «Ось лист»",
+            "en": "Choose how to say: “Here is the letter”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:35",
+          "options": [
+            "de:02:35",
+            "de:02:36",
+            "de:02:37"
+          ],
+          "answerId": "de:02:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вот посылка»",
+            "uk": "Виберіть, як сказати: «Ось посилка»",
+            "en": "Choose how to say: “Here is the parcel”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:37",
+          "options": [
+            "de:02:37",
+            "de:02:36",
+            "de:02:04"
+          ],
+          "answerId": "de:02:37"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Новый, сломанный, открытый",
+        "uk": "Новий, зламаний, відкритий",
+        "en": "New, broken, open"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ключ новый».\nDer Schlüssel ist neu. — «Ключ новый.»\nЧитается: дер шлю́сель ист ной.\nDie Tasche ist neu. — «Сумка новая.»\nЧитается: ди та́ше ист ной.\nСлово neu значит «новый».\nПо-русски говорят «новый», «новая». По-немецки neu всегда одно и то же.\nDer Stuhl ist kaputt. — «Стул сломан.»\nЧитается: дер шту́ль ист капу́т.\nСлово Stuhl значит «стул». Слово kaputt значит «сломан».\nDie Küche ist offen. — «Кухня открыта.»\nЧитается: ди кю́хе ист о́фен.\nСлово Küche значит «кухня».\nСлово offen значит «открыта».\nЗвук после «к» — как «ю», губы трубочкой.",
+        "uk": "Дивіться, як сказати «Ключ новий».\nDer Schlüssel ist neu. — «Ключ новий.»\nЧитається: дер шлю́сель іст ной.\nDie Tasche ist neu. — «Сумка нова.»\nЧитається: ді та́ше іст ной.\nСлово neu означає «новий».\nУкраїнською кажуть «новий», «нова». Німецькою neu завжди те саме.\nDer Stuhl ist kaputt. — «Стілець зламаний.»\nЧитається: дер шту́ль іст капу́т.\nСлово Stuhl означає «стілець». Слово kaputt означає «зламаний».\nDie Küche ist offen. — «Кухня відкрита.»\nЧитається: ді кю́хе іст о́фен.\nСлово Küche означає «кухня».\nСлово offen означає «відчинена».\nЗвук після «к» — як «ю», губи трубочкою.",
+        "en": "Look at how to say “The key is new”.\nDer Schlüssel ist neu. — “The key is new.”\nSounds like: der SHLYOO-sel ist noy.\nDie Tasche ist neu. — “The bag is new.”\nSounds like: dee TA-she ist noy.\nThe word neu means “new”.\nIn some languages it changes for each thing.\nIn German neu is always the same.\nDer Stuhl ist kaputt. — “The chair is broken.”\nSounds like: der SHTOOL ist ka-POOT.\nThe word Stuhl means “chair”. The word kaputt means “broken”.\nDie Küche ist offen. — “The kitchen is open”\nThe word Küche means “kitchen”. The word offen means “open”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:02:07",
+          "say": {
+            "ru": "дер шлю́сель ист ной",
+            "uk": "дер шлю́сель іст ной"
+          }
+        },
+        {
+          "phraseId": "de:02:08",
+          "say": {
+            "ru": "ди та́ше ист ной",
+            "uk": "ді та́ше іст ной"
+          }
+        },
+        {
+          "phraseId": "de:02:27",
+          "say": {
+            "ru": "дер шту́ль ист капу́т",
+            "uk": "дер шту́ль іст капу́т"
+          }
+        },
+        {
+          "phraseId": "de:02:42",
+          "say": {
+            "ru": "ди кю́хе ист о́фен",
+            "uk": "ді кю́хе іст о́фен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сумка новая»",
+            "uk": "Виберіть, як сказати: «Сумка нова»",
+            "en": "Choose how to say: “The bag is new”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:02:08",
+          "options": [
+            "de:02:08",
+            "de:02:07",
+            "de:02:27"
+          ],
+          "answerId": "de:02:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ новый»",
+            "uk": "Виберіть, як сказати: «Ключ новий»",
+            "en": "Choose how to say: “The key is new”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:07",
+          "options": [
+            "de:02:07",
+            "de:02:08",
+            "de:02:27"
+          ],
+          "answerId": "de:02:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кухня открыта»",
+            "uk": "Виберіть, як сказати: «Кухня відкрита»",
+            "en": "Choose how to say: “The kitchen is open”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:42",
+          "options": [
+            "de:02:42",
+            "de:02:27",
+            "de:02:08"
+          ],
+          "answerId": "de:02:42"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Один или несколько",
+        "uk": "Один чи кілька",
+        "en": "One or many"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать про одну вещь и про несколько.\nDer Tisch ist frei. — «Стол свободен.»\nЧитается: дер тиш ист фра́й.\nDie Tische sind frei. — «Столы свободны.»\nЧитается: ди ти́ше зинд фра́й.\nСлово Tisch значит «стол». Слово frei значит «свободный».\nСлово sind вы уже видели: это тоже «есть».\nОдна вещь — ist. Несколько вещей — sind.\nПеред несколькими вещами всегда die. Само название чуть меняется: Tisch, Tische.\nDas sind die Schlüssel. — «Это ключи.»\nЧитается: дас зинд ди шлю́сель.\nЗдесь тоже sind, ведь ключей много. Слово Schlüssel не изменилось.",
+        "uk": "Дивіться, як сказати про одну річ і про кілька.\nDer Tisch ist frei. — «Стіл вільний.»\nЧитається: дер ті́ш іст фра́й.\nDie Tische sind frei. — «Столи вільні.»\nЧитається: ді ті́ше зінд фра́й.\nСлово Tisch означає «стіл». Слово frei означає «вільний».\nСлово sind ви вже бачили: це теж «є».\nОдна річ — ist. Кілька речей — sind.\nПеред кількома речами завжди die. Сама назва трохи змінюється: Tisch, Tische.\nDas sind die Schlüssel. — «Це ключі.»\nЧитається: дас зінд ді шлю́сель.\nТут теж sind, адже ключів багато. Слово Schlüssel не змінилося.",
+        "en": "Look at how to talk about one thing and many things.\nDer Tisch ist frei. — “The table is free.”\nSounds like: der TISH ist FRY.\nDie Tische sind frei. — “The tables are free.”\nSounds like: dee TI-she zint FRY.\nThe word Tisch means “table”. The word frei means “free”.\nYou already saw sind: it is also “are”.\nOne thing — ist. Many things — sind.\nBefore many things there is always die. The name changes a little: Tisch, Tische.\nDas sind die Schlüssel. — “These are keys.”\nSounds like: das zint dee SHLYOO-sel.\nHere sind too, because there are many keys. The word Schlüssel did not change."
+      },
+      "examples": [
+        {
+          "phraseId": "de:02:21",
+          "say": {
+            "ru": "дер тиш ист фра́й",
+            "uk": "дер ті́ш іст фра́й"
+          }
+        },
+        {
+          "phraseId": "de:02:24",
+          "say": {
+            "ru": "ди ти́ше зинд фра́й",
+            "uk": "ді ті́ше зінд фра́й"
+          }
+        },
+        {
+          "phraseId": "de:02:10",
+          "say": {
+            "ru": "дас зинд ди шлю́сель",
+            "uk": "дас зінд ді шлю́сель"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Столы свободны»",
+            "uk": "Виберіть, як сказати: «Столи вільні»",
+            "en": "Choose how to say: “The tables are free”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:02:24",
+          "options": [
+            "de:02:24",
+            "de:02:21",
+            "de:02:10"
+          ],
+          "answerId": "de:02:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Стол свободен»",
+            "uk": "Виберіть, як сказати: «Стіл вільний»",
+            "en": "Choose how to say: “The table is free”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:21",
+          "options": [
+            "de:02:21",
+            "de:02:24",
+            "de:02:10"
+          ],
+          "answerId": "de:02:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это ключи»",
+            "uk": "Виберіть, як сказати: «Це ключі»",
+            "en": "Choose how to say: “These are keys”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:10",
+          "options": [
+            "de:02:10",
+            "de:02:24",
+            "de:02:21"
+          ],
+          "answerId": "de:02:10"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Здесь, там, уже здесь",
+        "uk": "Тут, там, вже тут",
+        "en": "Here, there, already here"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где что находится.\nDer Bahnhof ist hier. — «Вокзал здесь.»\nЧитается: дер ба́нхоф ист хи́р.\nDie Haltestelle ist dort. — «Остановка там.»\nЧитается: ди ха́льтештеле ист до́рт.\nDer Bus ist da. — «Автобус уже здесь.»\nЧитается: дер бу́с ист да́.\nСлово hier значит «здесь». Слово dort значит «там».\nСлово da значит «уже здесь, на месте».\nBahnhof — «вокзал», Haltestelle — «остановка», Bus — «автобус».\nDas Hotel ist dort. — «Гостиница там.»\nЧитается: дас хоте́ль ист до́рт.\nDas Büro ist hier. — «Офис здесь.»\nЧитается: дас бюро́ ист хи́р.\nDort ist der Aufzug. — «Вон там лифт.»\nЧитается: до́рт ист дер а́уфцуг.\nDort ist die Treppe. — «Вон там лестница.»\nЧитается: до́рт ист ди тре́пе.\nСлова Hotel — «гостиница», Büro — «офис», Aufzug — «лифт», Treppe — «лестница».",
+        "uk": "Дивіться, як сказати, де що перебуває.\nDer Bahnhof ist hier. — «Вокзал тут.»\nЧитається: дер ба́нхоф іст хі́р.\nDie Haltestelle ist dort. — «Зупинка там.»\nЧитається: ді ха́льтештеле іст до́рт.\nDer Bus ist da. — «Автобус вже тут.»\nЧитається: дер бу́с іст да́.\nСлово hier означає «тут». Слово dort означає «там».\nСлово da означає «вже тут, на місці».\nBahnhof — «вокзал», Haltestelle — «зупинка», Bus — «автобус».\nDas Hotel ist dort. — «Готель там.»\nЧитається: дас хоте́ль іст до́рт.\nDas Büro ist hier. — «Офіс тут.»\nЧитається: дас бюро́ іст хі́р.\nDort ist der Aufzug. — «Он там ліфт.»\nЧитається: до́рт іст дер а́уфцуг.\nDort ist die Treppe. — «Он там сходи.»\nЧитається: до́рт іст ді тре́пе.\nСлова Hotel — «готель», Büro — «офіс», Aufzug — «ліфт», Treppe — «сходи».",
+        "en": "Look at how to say where things are.\nDer Bahnhof ist hier. — “The station is here.”\nSounds like: der BAHN-hohf ist HEER.\nDie Haltestelle ist dort. — “The stop is there.”\nSounds like: dee HAL-te-shte-le ist DORT.\nDer Bus ist da. — “The bus is already here.”\nSounds like: der BOOS ist DAH.\nThe word hier means “here”. The word dort means “there”.\nThe word da means “already here, in place”.\nBahnhof — “station”, Haltestelle — “stop”, Bus — “bus”.\nDas Hotel ist dort. — “The hotel is there”\nDas Büro ist hier. — “The office is here”\nDort ist der Aufzug. — “There is the elevator”\nDort ist die Treppe. — “There are the stairs”\nHotel — “hotel”, Büro — “office”, Aufzug — “elevator”, Treppe — “stairs”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:02:15",
+          "say": {
+            "ru": "дер ба́нхоф ист хи́р",
+            "uk": "дер ба́нхоф іст хі́р"
+          }
+        },
+        {
+          "phraseId": "de:02:16",
+          "say": {
+            "ru": "ди ха́льтештеле ист до́рт",
+            "uk": "ді ха́льтештеле іст до́рт"
+          }
+        },
+        {
+          "phraseId": "de:02:11",
+          "say": {
+            "ru": "дер бу́с ист да́",
+            "uk": "дер бу́с іст да́"
+          }
+        },
+        {
+          "phraseId": "de:02:17",
+          "say": {
+            "ru": "дас хоте́ль ист до́рт",
+            "uk": "дас хоте́ль іст до́рт"
+          }
+        },
+        {
+          "phraseId": "de:02:20",
+          "say": {
+            "ru": "дас бюро́ ист хи́р",
+            "uk": "дас бюро́ іст хі́р"
+          }
+        },
+        {
+          "phraseId": "de:02:39",
+          "say": {
+            "ru": "до́рт ист дер а́уфцуг",
+            "uk": "до́рт іст дер а́уфцуг"
+          }
+        },
+        {
+          "phraseId": "de:02:40",
+          "say": {
+            "ru": "до́рт ист ди тре́пе",
+            "uk": "до́рт іст ді тре́пе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Остановка там»",
+            "uk": "Виберіть, як сказати: «Зупинка там»",
+            "en": "Choose how to say: “The stop is there”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:02:16",
+          "options": [
+            "de:02:16",
+            "de:02:15",
+            "de:02:11"
+          ],
+          "answerId": "de:02:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус уже здесь»",
+            "uk": "Виберіть, як сказати: «Автобус вже тут»",
+            "en": "Choose how to say: “The bus is already here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:11",
+          "options": [
+            "de:02:11",
+            "de:02:15",
+            "de:02:16"
+          ],
+          "answerId": "de:02:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вон там лифт»",
+            "uk": "Виберіть, як сказати: «Он там ліфт»",
+            "en": "Choose how to say: “There is the elevator”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:02:39",
+          "options": [
+            "de:02:39",
+            "de:02:40",
+            "de:02:17"
+          ],
+          "answerId": "de:02:39"
+        }
+      ]
+    }
+  ]
+}

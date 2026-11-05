@@ -1,0 +1,565 @@
+{
+  "lang": "it",
+  "lesson": 5,
+  "title": {
+    "ru": "У меня есть",
+    "uk": "У мене є",
+    "en": "I have"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "У меня есть",
+        "uk": "У мене є",
+        "en": "I have"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня есть ключ».\nHo una chiave. — «У меня есть ключ.»\nЧитается: о у́на кья́ве.\nHai una chiave. — «У тебя есть ключ.»\nЧитается: а́й у́на кья́ве.\nLei ha una borsa. — «У неё есть сумка.»\nЧитается: ле́й а у́на бо́рса.\nLui ha una borsa. — «У него есть сумка.»\nЧитается: лу́й а у́на бо́рса.\nLea ha una carta. — «У Леа есть карточка.»\nЧитается: ле́а а у́на ка́рта.\nСлово ho значит «у меня есть», слово hai — «у тебя есть».\nСлово ha значит «у неё есть» или «у него есть».\nСлово lei значит «она», слово lui — «он».\nВсе эти слова — одно слово avere, «иметь».\nОно меняется, смотря о ком речь.\nО себе — ho. О нём или о ней — ha.\nО том, с кем вы говорите, — hai.\nСлово una значит «одна»: по-русски его не говорят.\nСлово chiave — «ключ», borsa — «сумка», carta — «карточка».",
+        "uk": "Дивіться, як сказати «У мене є ключ».\nHo una chiave. — «У мене є ключ.»\nЧитається: о у́на кья́ве.\nHai una chiave. — «У тебе є ключ.»\nЧитається: а́й у́на кья́ве.\nLei ha una borsa. — «У неї є сумка.»\nЧитається: ле́й а у́на бо́рса.\nLui ha una borsa. — «У нього є сумка.»\nЧитається: лу́й а у́на бо́рса.\nLea ha una carta. — «Леа має картку.»\nЧитається: ле́а а у́на ка́рта.\nСлово ho означає «у мене є», слово hai — «у тебе є».\nСлово ha означає «у неї є» або «у нього є».\nСлово lei означає «вона», слово lui — «він».\nУсі ці слова — одне слово avere, «мати».\nВоно змінюється, залежно від того, про кого мова.\nПро себе — ho. Про нього чи про неї — ha.\nПро того, з ким ви говорите, — hai.\nСлово una означає «одна»: по-українськи його не кажуть.\nСлово chiave — «ключ», borsa — «сумка», carta — «картка».",
+        "en": "Look at how to say “I have a key”.\nHo una chiave. — “I have a key.”\nHai una chiave. — “You have a key.”\nLei ha una borsa. — “She has a bag.”\nLui ha una borsa. — “He has a bag.”\nLea ha una carta. — “Lea has a card.”\nThe word ho means “I have”, the word hai — “you have”.\nThe word ha means “she has” or “he has”.\nThe word lei means “she”, the word lui — “he”.\nAll these words are one word, avere, “to have”.\nIt changes with who it is about.\nMe — ho. Him or her — ha.\nThe person you talk to — hai.\nThe word una means “a”: we often skip it in English.\nThe word chiave is “key”, borsa — “bag”, carta — “card”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:05:01",
+          "say": {
+            "ru": "о у́на кья́ве",
+            "uk": "о у́на кья́ве"
+          }
+        },
+        {
+          "phraseId": "it:05:02",
+          "say": {
+            "ru": "а́й у́на кья́ве",
+            "uk": "а́й у́на кья́ве"
+          }
+        },
+        {
+          "phraseId": "it:05:03",
+          "say": {
+            "ru": "ле́й а у́на бо́рса",
+            "uk": "ле́й а у́на бо́рса"
+          }
+        },
+        {
+          "phraseId": "it:05:04",
+          "say": {
+            "ru": "лу́й а у́на бо́рса",
+            "uk": "лу́й а у́на бо́рса"
+          }
+        },
+        {
+          "phraseId": "it:05:09",
+          "say": {
+            "ru": "ле́а а у́на ка́рта",
+            "uk": "ле́а а у́на ка́рта"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня есть ключ»",
+            "uk": "Виберіть, як сказати: «У мене є ключ»",
+            "en": "Choose how to say: “I have a key”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:05:01",
+          "options": [
+            "it:05:01",
+            "it:05:02",
+            "it:05:03"
+          ],
+          "answerId": "it:05:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У неё есть сумка»",
+            "uk": "Виберіть, як сказати: «У неї є сумка»",
+            "en": "Choose how to say: “She has a bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:03",
+          "options": [
+            "it:05:03",
+            "it:05:04",
+            "it:05:01"
+          ],
+          "answerId": "it:05:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У тебя есть ключ»",
+            "uk": "Виберіть, як сказати: «У тебе є ключ»",
+            "en": "Choose how to say: “You have a key”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:02",
+          "options": [
+            "it:05:02",
+            "it:05:01",
+            "it:05:09"
+          ],
+          "answerId": "it:05:02"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "У нас, у вас, у них",
+        "uk": "У нас, у вас, у них",
+        "en": "We, you, they have"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У нас есть схема».\nAbbiamo una piantina. — «У нас есть схема.»\nЧитается: аббья́мо у́на пьянти́на.\nAvete una piantina. — «У вас есть схема.»\nЧитается: аве́те у́на пьянти́на.\nLoro hanno un biglietto. — «У них есть билет.»\nЧитается: ло́ро а́нно ун билье́тто.\nLe ragazze hanno un biglietto. — «У девушек есть билет.»\nЧитается: ле рага́цце а́нно ун билье́тто.\nСлово abbiamo значит «у нас есть».\nСлово avete — «у вас есть», слово hanno — «у них есть».\nЭто то же слово avere: оно снова меняется.\nСлово avete говорят, когда вас несколько.\nСлово piantina значит «схема, план», слово biglietto — «билет».\nСлово loro значит «они», слово ragazze — «девушки».\nСлово le стоит перед ragazze: по-русски его нет.",
+        "uk": "Дивіться, як сказати «У нас є схема».\nAbbiamo una piantina. — «У нас є схема.»\nЧитається: аббья́мо у́на пьянті́на.\nAvete una piantina. — «У вас є схема.»\nЧитається: аве́те у́на пьянті́на.\nLoro hanno un biglietto. — «Вони мають квиток.»\nЧитається: ло́ро а́нно ун білье́тто.\nLe ragazze hanno un biglietto. — «У дівчат є квиток.»\nЧитається: ле рага́цце а́нно ун білье́тто.\nСлово abbiamo означає «у нас є».\nСлово avete — «у вас є», слово hanno — «у них є».\nЦе те саме слово avere: воно знову змінюється.\nСлово avete кажуть, коли вас кілька.\nСлово piantina означає «схема, план», слово biglietto — «квиток».\nСлово loro означає «вони», слово ragazze — «дівчата».\nСлово le стоїть перед ragazze: по-українськи його нема.",
+        "en": "Look at how to say “We have a plan”.\nAbbiamo una piantina. — “We have a plan.”\nAvete una piantina. — “You have a plan.”\nLoro hanno un biglietto. — “They have a ticket.”\nLe ragazze hanno un biglietto. — “The girls have a ticket.”\nThe word abbiamo means “we have”.\nThe word avete is “you have”, hanno — “they have”.\nIt is the same word avere: it changes again.\nWe say avete when there are several of you.\nThe word piantina means “plan”, the word biglietto — “ticket”.\nThe word loro means “they”, the word ragazze — “girls”.\nThe word le stands before ragazze. No such word in English."
+      },
+      "examples": [
+        {
+          "phraseId": "it:05:05",
+          "say": {
+            "ru": "аббья́мо у́на пьянти́на",
+            "uk": "аббья́мо у́на пьянті́на"
+          }
+        },
+        {
+          "phraseId": "it:05:06",
+          "say": {
+            "ru": "аве́те у́на пьянти́на",
+            "uk": "аве́те у́на пьянті́на"
+          }
+        },
+        {
+          "phraseId": "it:05:07",
+          "say": {
+            "ru": "ло́ро а́нно ун билье́тто",
+            "uk": "ло́ро а́нно ун білье́тто"
+          }
+        },
+        {
+          "phraseId": "it:05:08",
+          "say": {
+            "ru": "ле рага́цце а́нно ун билье́тто",
+            "uk": "ле рага́цце а́нно ун білье́тто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нас есть схема»",
+            "uk": "Виберіть, як сказати: «У нас є схема»",
+            "en": "Choose how to say: “We have a plan”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:05:05",
+          "options": [
+            "it:05:05",
+            "it:05:06",
+            "it:05:07"
+          ],
+          "answerId": "it:05:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У вас есть схема»",
+            "uk": "Виберіть, як сказати: «У вас є схема»",
+            "en": "Choose how to say: “You have a plan”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:06",
+          "options": [
+            "it:05:06",
+            "it:05:05",
+            "it:05:07"
+          ],
+          "answerId": "it:05:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У них есть билет»",
+            "uk": "Виберіть, як сказати: «Вони мають квиток»",
+            "en": "Choose how to say: “They have a ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:07",
+          "options": [
+            "it:05:07",
+            "it:05:08",
+            "it:05:05"
+          ],
+          "answerId": "it:05:07"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Голод, жажда, холод",
+        "uk": "Голод, спрага, холод",
+        "en": "Hunger, thirst, cold"
+      },
+      "text": {
+        "ru": "По-итальянски говорят «у меня голод», а по-русски — «я голоден».\nHo fame. — «Я голоден.»\nЧитается: о фа́ме.\nHo sete. — «Мне хочется пить.»\nЧитается: о се́те.\nAbbiamo freddo. — «Нам холодно.»\nЧитается: аббья́мо фре́ддо.\nAvete caldo. — «Вам жарко.»\nЧитается: аве́те ка́льдо.\nСлово fame значит «голод», слово sete — «жажда».\nСлово freddo значит «холод», слово caldo — «жара».\nСлово ho — «у меня», abbiamo — «у нас», avete — «у вас».",
+        "uk": "По-італійськи кажуть «у мене голод», а по-українськи — «я голодний».\nHo fame. — «Я голодний.»\nЧитається: о фа́ме.\nHo sete. — «Я хочу пити.»\nЧитається: о се́те.\nAbbiamo freddo. — «Нам холодно.»\nЧитається: аббья́мо фре́ддо.\nAvete caldo. — «Вам спекотно.»\nЧитається: аве́те ка́льдо.\nСлово fame означає «голод», слово sete — «спрага».\nСлово freddo означає «холод», слово caldo — «спека».\nСлово ho — «у мене», abbiamo — «у нас», avete — «у вас».",
+        "en": "In Italian we say “I have hunger”, in English “I am hungry”.\nHo fame. — “I am hungry.”\nHo sete. — “I am thirsty.”\nAbbiamo freddo. — “We are cold.”\nAvete caldo. — “You are hot.”\nThe word fame means “hunger”, the word sete — “thirst”.\nThe word freddo means “cold”, the word caldo — “heat”.\nThe word ho is “I have”, abbiamo — “we have”, avete — “you have”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:05:11",
+          "say": {
+            "ru": "о фа́ме",
+            "uk": "о фа́ме"
+          }
+        },
+        {
+          "phraseId": "it:05:13",
+          "say": {
+            "ru": "о се́те",
+            "uk": "о се́те"
+          }
+        },
+        {
+          "phraseId": "it:05:15",
+          "say": {
+            "ru": "аббья́мо фре́ддо",
+            "uk": "аббья́мо фре́ддо"
+          }
+        },
+        {
+          "phraseId": "it:05:16",
+          "say": {
+            "ru": "аве́те ка́льдо",
+            "uk": "аве́те ка́льдо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я голоден»",
+            "uk": "Виберіть, як сказати: «Я голодний»",
+            "en": "Choose how to say: “I am hungry”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:05:11",
+          "options": [
+            "it:05:11",
+            "it:05:13",
+            "it:05:15"
+          ],
+          "answerId": "it:05:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне хочется пить»",
+            "uk": "Виберіть, як сказати: «Я хочу пити»",
+            "en": "Choose how to say: “I am thirsty”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:13",
+          "options": [
+            "it:05:13",
+            "it:05:11",
+            "it:05:16"
+          ],
+          "answerId": "it:05:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам холодно»",
+            "uk": "Виберіть, як сказати: «Нам холодно»",
+            "en": "Choose how to say: “We are cold”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:15",
+          "options": [
+            "it:05:15",
+            "it:05:16",
+            "it:05:11"
+          ],
+          "answerId": "it:05:15"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Сон и боль",
+        "uk": "Сон і біль",
+        "en": "Sleep and pain"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Они хотят спать».\nHanno sonno. — «Они хотят спать.»\nЧитается: а́нно со́нно.\nHo mal di schiena. — «У меня болит спина.»\nЧитается: о маль ди скье́на.\nHai mal di testa. — «У тебя болит голова.»\nЧитается: а́й маль ди те́ста.\nHo mal di gola. — «У меня болит горло.»\nЧитается: о маль ди го́ла.\nСлово sonno значит «сон»: hanno sonno — «у них сон».\nСлова mal di значат «боль в».\nСлово schiena — «спина», testa — «голова», gola — «горло».\nHo mal di schiena — «у меня боль в спине».",
+        "uk": "Дивіться, як сказати «Вони хочуть спати».\nHanno sonno. — «Вони хочуть спати.»\nЧитається: а́нно со́нно.\nHo mal di schiena. — «У мене болить спина.»\nЧитається: о маль ді скье́на.\nHai mal di testa. — «У тебе болить голова.»\nЧитається: а́й маль ді те́ста.\nHo mal di gola. — «У мене болить горло.»\nЧитається: о маль ді го́ла.\nСлово sonno означає «сон»: hanno sonno — «у них сон».\nСлова mal di означають «біль у».\nСлово schiena — «спина», testa — «голова», gola — «горло».\nHo mal di schiena — «у мене біль у спині».",
+        "en": "Look at how to say “They are sleepy”.\nHanno sonno. — “They are sleepy.”\nHo mal di schiena. — “My back hurts.”\nHai mal di testa. — “You have a headache.”\nHo mal di gola. — “My throat hurts.”\nThe word sonno means “sleep”: hanno sonno — “they have sleep”.\nThe words mal di mean “pain in”.\nThe word schiena is “back”, testa — “head”, gola — “throat”.\nHo mal di schiena — “I have pain in the back”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:05:18",
+          "say": {
+            "ru": "а́нно со́нно",
+            "uk": "а́нно со́нно"
+          }
+        },
+        {
+          "phraseId": "it:05:19",
+          "say": {
+            "ru": "о маль ди скье́на",
+            "uk": "о маль ді скье́на"
+          }
+        },
+        {
+          "phraseId": "it:05:20",
+          "say": {
+            "ru": "а́й маль ди те́ста",
+            "uk": "а́й маль ді те́ста"
+          }
+        },
+        {
+          "phraseId": "it:05:49",
+          "say": {
+            "ru": "о маль ди го́ла",
+            "uk": "о маль ді го́ла"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они хотят спать»",
+            "uk": "Виберіть, як сказати: «Вони хочуть спати»",
+            "en": "Choose how to say: “They are sleepy”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:05:18",
+          "options": [
+            "it:05:18",
+            "it:05:19",
+            "it:05:49"
+          ],
+          "answerId": "it:05:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня болит спина»",
+            "uk": "Виберіть, як сказати: «У мене болить спина»",
+            "en": "Choose how to say: “My back hurts”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:19",
+          "options": [
+            "it:05:19",
+            "it:05:20",
+            "it:05:49"
+          ],
+          "answerId": "it:05:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня болит горло»",
+            "uk": "Виберіть, як сказати: «У мене болить горло»",
+            "en": "Choose how to say: “My throat hurts”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:49",
+          "options": [
+            "it:05:49",
+            "it:05:19",
+            "it:05:18"
+          ],
+          "answerId": "it:05:49"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Мне нужно",
+        "uk": "Мені потрібно",
+        "en": "I need"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нужна помощь».\nHo bisogno di aiuto. — «Мне нужна помощь.»\nЧитается: о бизо́ньо ди аи́уто.\nHai bisogno di una pausa. — «Тебе нужен перерыв.»\nЧитается: а́й бизо́ньо ди у́на па́уза.\nAbbiamo bisogno d’acqua. — «Нам нужна вода.»\nЧитается: аббья́мо бизо́ньо д’а́кква.\nLei ha bisogno della sua ricetta. — «Ей нужен её рецепт.»\nЧитается: ле́й а бизо́ньо де́лла су́а риче́тта.\nСлова bisogno di значат «нужда в».\nСлово aiuto значит «помощь», слово pausa — «перерыв».\nСлова d’acqua значат «воды».\nСлово ricetta значит «рецепт врача», слова della sua — «её».",
+        "uk": "Дивіться, як сказати «Мені потрібна допомога».\nHo bisogno di aiuto. — «Мені потрібна допомога.»\nЧитається: о бізо́ньо ді аі́уто.\nHai bisogno di una pausa. — «Тобі потрібна перерва.»\nЧитається: а́й бізо́ньо ді у́на па́уза.\nAbbiamo bisogno d’acqua. — «Нам потрібна вода.»\nЧитається: аббья́мо бізо́ньо д’а́кква.\nLei ha bisogno della sua ricetta. — «Їй потрібен її рецепт.»\nЧитається: ле́й а бізо́ньо де́лла су́а річе́тта.\nСлова bisogno di означають «потреба в».\nСлово aiuto означає «допомога», слово pausa — «перерва».\nСлова d’acqua означають «води».\nСлово ricetta означає «рецепт лікаря», слова della sua — «її».",
+        "en": "Look at how to say “I need help”.\nHo bisogno di aiuto. — “I need help.”\nHai bisogno di una pausa. — “You need a break.”\nAbbiamo bisogno d’acqua. — “We need water.”\nLei ha bisogno della sua ricetta. — “She needs her prescription.”\nThe words bisogno di mean “need of”.\nThe word aiuto means “help”, the word pausa — “break”.\nThe words d’acqua mean “of water”.\nThe word ricetta means “prescription”, the words della sua — “her”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:05:41",
+          "say": {
+            "ru": "о бизо́ньо ди аи́уто",
+            "uk": "о бізо́ньо ді аі́уто"
+          }
+        },
+        {
+          "phraseId": "it:05:42",
+          "say": {
+            "ru": "а́й бизо́ньо ди у́на па́уза",
+            "uk": "а́й бізо́ньо ді у́на па́уза"
+          }
+        },
+        {
+          "phraseId": "it:05:44",
+          "say": {
+            "ru": "аббья́мо бизо́ньо д’а́кква",
+            "uk": "аббья́мо бізо́ньо д’а́кква"
+          }
+        },
+        {
+          "phraseId": "it:05:50",
+          "say": {
+            "ru": "ле́й а бизо́ньо де́лла су́а риче́тта",
+            "uk": "ле́й а бізо́ньо де́лла су́а річе́тта"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужна помощь»",
+            "uk": "Виберіть, як сказати: «Мені потрібна допомога»",
+            "en": "Choose how to say: “I need help”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:05:41",
+          "options": [
+            "it:05:41",
+            "it:05:42",
+            "it:05:44"
+          ],
+          "answerId": "it:05:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Тебе нужен перерыв»",
+            "uk": "Виберіть, як сказати: «Тобі потрібна перерва»",
+            "en": "Choose how to say: “You need a break”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:42",
+          "options": [
+            "it:05:42",
+            "it:05:41",
+            "it:05:44"
+          ],
+          "answerId": "it:05:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужна вода»",
+            "uk": "Виберіть, як сказати: «Нам потрібна вода»",
+            "en": "Choose how to say: “We need water”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:44",
+          "options": [
+            "it:05:44",
+            "it:05:41",
+            "it:05:50"
+          ],
+          "answerId": "it:05:44"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "У вас есть…?",
+        "uk": "У вас є…?",
+        "en": "Do you have…?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «У вас есть ручка?»\nHa una penna? — «У вас есть ручка?»\nЧитается: а у́на пе́нна.\nHai la ricevuta? — «У тебя есть чек?»\nЧитается: а́й ла ричеву́та.\nHa degli spiccioli? — «У вас есть мелочь?»\nЧитается: а де́льи спичи́оли.\nHa con sé il passaporto? — «Паспорт у него с собой?»\nЧитается: а кон се иль пассапо́рто.\nHo un appuntamento. — «У меня назначена встреча.»\nЧитается: о ун аппунтаме́нто.\nВопрос — та же фраза, голос в конце идёт вверх.\nСлово ha вежливо говорят одному незнакомому человеку: «у вас есть».\nСлово penna значит «ручка», слово passaporto — «паспорт».\nСлова degli spiccioli значат «мелочь», слова con sé — «при себе».\nСлово appuntamento значит «назначенная встреча».",
+        "uk": "Дивіться, як запитати «У вас є ручка?»\nHa una penna? — «У вас є ручка?»\nЧитається: а у́на пе́нна.\nHai la ricevuta? — «У тебе є чек?»\nЧитається: а́й ла річеву́та.\nHa degli spiccioli? — «У вас є дрібні гроші?»\nЧитається: а де́льі спічі́олі.\nHa con sé il passaporto? — «Паспорт у нього з собою?»\nЧитається: а кон се іль пассапо́рто.\nHo un appuntamento. — «У мене призначена зустріч.»\nЧитається: о ун аппунтаме́нто.\nПитання — та сама фраза, голос наприкінці йде вгору.\nСлово ha ввічливо кажуть одній незнайомій людині: «у вас є».\nСлово penna означає «ручка», слово passaporto — «паспорт».\nСлова degli spiccioli означають «дрібні гроші», слова con sé — «при собі».\nСлово appuntamento означає «призначена зустріч».",
+        "en": "Look at how to ask “Do you have a pen?”\nHa una penna? — “Do you have a pen?”\nHai la ricevuta? — “Do you have the receipt?”\nHa degli spiccioli? — “Do you have any change?”\nHa con sé il passaporto? — “Does he have his passport with him?”\nHo un appuntamento. — “I have an appointment.”\nA question is the same phrase, the voice goes up at the end.\nWe say ha politely to one stranger: “you have”.\nThe word penna means “pen”, the word passaporto — “passport”.\nThe words degli spiccioli mean “change”, the words con sé — “with oneself”.\nThe word appuntamento means “appointment”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:05:31",
+          "say": {
+            "ru": "а у́на пе́нна",
+            "uk": "а у́на пе́нна"
+          }
+        },
+        {
+          "phraseId": "it:05:32",
+          "say": {
+            "ru": "а́й ла ричеву́та",
+            "uk": "а́й ла річеву́та"
+          }
+        },
+        {
+          "phraseId": "it:05:37",
+          "say": {
+            "ru": "а де́льи спичи́оли",
+            "uk": "а де́льі спічі́олі"
+          }
+        },
+        {
+          "phraseId": "it:05:35",
+          "say": {
+            "ru": "а кон се иль пассапо́рто",
+            "uk": "а кон се іль пассапо́рто"
+          }
+        },
+        {
+          "phraseId": "it:05:27",
+          "say": {
+            "ru": "о ун аппунтаме́нто",
+            "uk": "о ун аппунтаме́нто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У вас есть ручка?»",
+            "uk": "Виберіть, як сказати: «У вас є ручка?»",
+            "en": "Choose how to say: “Do you have a pen?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:05:31",
+          "options": [
+            "it:05:31",
+            "it:05:32",
+            "it:05:37"
+          ],
+          "answerId": "it:05:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У вас есть мелочь?»",
+            "uk": "Виберіть, як сказати: «У вас є дрібні гроші?»",
+            "en": "Choose how to say: “Do you have any change?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:37",
+          "options": [
+            "it:05:37",
+            "it:05:31",
+            "it:05:35"
+          ],
+          "answerId": "it:05:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паспорт у него с собой?»",
+            "uk": "Виберіть, як сказати: «Паспорт у нього з собою?»",
+            "en": "Choose how to say: “Does he have his passport with him?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:05:35",
+          "options": [
+            "it:05:35",
+            "it:05:31",
+            "it:05:27"
+          ],
+          "answerId": "it:05:35"
+        }
+      ]
+    }
+  ]
+}

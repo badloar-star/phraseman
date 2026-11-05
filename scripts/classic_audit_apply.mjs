@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 // зачем: результаты полного прохода + контрольного аудита (sample4) — один формат, одни проверки
-const DIRS = ['classic_audit_full_2026_11_04', 'classic_audit_sample4_2026_11_04', 'classic_audit_full2_2026_11_05'].map((d) => join(ROOT, 'docs', 'work', d));
+const DIRS = ['classic_audit_full_2026_11_04', 'classic_audit_sample4_2026_11_04', 'classic_audit_full2_2026_11_05', 'course_quality_1pct/pass1'].map((d) => join(ROOT, 'docs', 'work', d));
 const LAYER = join(ROOT, 'scripts', 'classic_audit_layer.json');
 const layer = existsSync(LAYER) ? JSON.parse(readFileSync(LAYER, 'utf8')) : { tiles: {}, alt: {}, target: {} };
 const stats = { files: 0, records: 0, tiles: 0, altAdd: 0, altRemove: 0, target: 0, skippedField: 0, badShape: 0 };

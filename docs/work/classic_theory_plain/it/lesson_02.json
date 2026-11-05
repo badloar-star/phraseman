@@ -1,0 +1,510 @@
+{
+  "lang": "it",
+  "lesson": 2,
+  "title": {
+    "ru": "Меня здесь нет",
+    "uk": "Мене тут немає",
+    "en": "I am not here"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Слово «не»",
+        "uk": "Слово «не»",
+        "en": "The word “not”"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не».\nNon sono qui. — «Меня здесь нет.»\nЧитается: нон со́но куи.\nNon sei qui. — «Тебя здесь нет.»\nЧитается: нон се́й куи.\nСлово non значит «не». Оно стоит перед словом «быть»: sono, sei, è.\nСамо non не меняется.\nLei non è lì. — «Её там нет.»\nЧитается: ле́й нон э ли.\nСлово Lei значит «она».\nСлово loro значит «они»: Loro non sono qui.\n— «Их здесь нет.»",
+        "uk": "Дивіться, як сказати «не».\nNon sono qui. — «Мене тут немає.»\nЧитається: нон со́но куі.\nNon sei qui. — «Тебе тут немає.»\nЧитається: нон се́й куі.\nСлово non означає «не». Воно стоїть перед словом «бути»: sono, sei, è.\nСаме non не змінюється.\nLei non è lì. — «Її там немає.»\nЧитається: ле́й нон е лі.\nСлово Lei означає «вона».\nСлово loro означає «вони»: Loro non sono qui.\n— «Їх немає тут.»",
+        "en": "Look at how to say “not”.\nNon sono qui. — “I am not here.”\nNon sei qui. — “You are not here.”\nThe word non means “not”.\nIt stands before the word “to be”: sono, sei, è.\nThe word non itself never changes.\nLei non è lì. — “She is not there.”\nThe word Lei means “she”.\nThe word loro means “they”: Loro non sono qui.\n— “They are not here.”"
+      },
+      "examples": [
+        {
+          "phraseId": "it:02:01",
+          "say": {
+            "ru": "нон со́но куи",
+            "uk": "нон со́но куі"
+          }
+        },
+        {
+          "phraseId": "it:02:02",
+          "say": {
+            "ru": "нон се́й куи",
+            "uk": "нон се́й куі"
+          }
+        },
+        {
+          "phraseId": "it:02:04",
+          "say": {
+            "ru": "ле́й нон э ли",
+            "uk": "ле́й нон е лі"
+          }
+        },
+        {
+          "phraseId": "it:02:10",
+          "say": {
+            "ru": "ло́ро нон со́но куи",
+            "uk": "ло́ро нон со́но куі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Тебя здесь нет.»",
+            "uk": "Виберіть, як сказати: «Тебе тут немає.»",
+            "en": "Choose how to say: “You are not here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:02:02",
+          "options": [
+            "it:02:01",
+            "it:02:02",
+            "it:02:04"
+          ],
+          "answerId": "it:02:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Её там нет.»",
+            "uk": "Виберіть, як сказати: «Її там немає.»",
+            "en": "Choose how to say: “She is not there.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:04",
+          "options": [
+            "it:02:04",
+            "it:02:02",
+            "it:02:10"
+          ],
+          "answerId": "it:02:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Их здесь нет.»",
+            "uk": "Виберіть, як сказати: «Їх немає тут.»",
+            "en": "Choose how to say: “They are not here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:10",
+          "options": [
+            "it:02:10",
+            "it:02:01",
+            "it:02:04"
+          ],
+          "answerId": "it:02:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Не готов, не свободен",
+        "uk": "Не готовий, не вільний",
+        "en": "Not ready, not free"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не готов».\nNon sono pronto. — «Я не готов.»\nЧитается: нон со́но про́нто.\nLei non è pronta. — «Она не готова.»\nЧитается: ле́й нон э про́нта.\nNon siamo pronti. — «Мы не готовы.»\nЧитается: нон сьа́мо про́нти.\nСлова pronto, pronta, pronti значат «готов», «готова», «готовы».\nКакое взять, зависит от того, о ком речь.\nО нём — pronto, о ней — pronta, о нас — pronti.\nТак же libero и libera значат «свободен» и «свободна».\nPaolo — мужское имя, Lea — женское.\nСлово camera значит «комната, номер в гостинице».",
+        "uk": "Дивіться, як сказати «не готовий».\nNon sono pronto. — «Я не готовий.»\nЧитається: нон со́но про́нто.\nLei non è pronta. — «Вона не готова.»\nЧитається: ле́й нон е про́нта.\nNon siamo pronti. — «Ми не готові.»\nЧитається: нон сьа́мо про́нті.\nСлова pronto, pronta, pronti означають «готовий», «готова», «готові».\nЯке взяти, залежить від того, про кого мова.\nПро нього — pronto, про неї — pronta, про нас — pronti.\nТак само libero та libera означають «вільний» і «вільна».\nPaolo — чоловіче ім’я, Lea — жіноче.\nСлово camera означає «кімната, номер у готелі».",
+        "en": "Look at how to say “not ready”.\nNon sono pronto. — “I am not ready.”\nLei non è pronta. — “She is not ready.”\nNon siamo pronti. — “We are not ready.”\nThe words pronto, pronta, pronti mean “ready”.\nWhich one to take depends on who we talk about.\nHim — pronto, her — pronta, us — pronti.\nIn the same way libero and libera mean “free”.\nPaolo is a man’s name, Lea is a woman’s name.\nThe word camera means “room, hotel room”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:02:11",
+          "say": {
+            "ru": "нон со́но про́нто",
+            "uk": "нон со́но про́нто"
+          }
+        },
+        {
+          "phraseId": "it:02:12",
+          "say": {
+            "ru": "ле́й нон э про́нта",
+            "uk": "ле́й нон е про́нта"
+          }
+        },
+        {
+          "phraseId": "it:02:13",
+          "say": {
+            "ru": "нон сьа́мо про́нти",
+            "uk": "нон сьа́мо про́нті"
+          }
+        },
+        {
+          "phraseId": "it:02:18",
+          "say": {
+            "ru": "па́оло нон э ли́беро",
+            "uk": "па́оло нон е лі́беро"
+          }
+        },
+        {
+          "phraseId": "it:02:44",
+          "say": {
+            "ru": "ла ка́мера нон э ли́бера",
+            "uk": "ла ка́мера нон е лі́бера"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не готова.»",
+            "uk": "Виберіть, як сказати: «Вона не готова.»",
+            "en": "Choose how to say: “She is not ready.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:02:12",
+          "options": [
+            "it:02:11",
+            "it:02:12",
+            "it:02:13"
+          ],
+          "answerId": "it:02:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не готовы.»",
+            "uk": "Виберіть, як сказати: «Ми не готові.»",
+            "en": "Choose how to say: “We are not ready.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:13",
+          "options": [
+            "it:02:13",
+            "it:02:11",
+            "it:02:12"
+          ],
+          "answerId": "it:02:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Номер не свободен.»",
+            "uk": "Виберіть, як сказати: «Номер не вільний.»",
+            "en": "Choose how to say: “The room is not free.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:44",
+          "options": [
+            "it:02:44",
+            "it:02:18",
+            "it:02:11"
+          ],
+          "answerId": "it:02:44"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Кого и где нет",
+        "uk": "Кого і де немає",
+        "en": "Who is not where"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где кого-то нет.\nPaolo non è in ufficio. — «Паоло нет в офисе.»\nЧитается: па́оло нон э ин уффи́чо.\nNon siamo alla stazione. — «Нас нет на станции.»\nЧитается: нон сьа́мо а́лла статсьо́не.\nNon siete a casa. — «Вас нет дома.»\nЧитается: нон сье́те а ка́за.\nСлово siamo значит «мы есть», слово siete — «вы есть».\nСлово stazione значит «вокзал» или «станция» — это одно слово.\nNon sono ancora a casa. — «Меня ещё нет дома.»\nЧитается: нон со́но анко́ра а ка́за.\nСлово ancora значит «ещё». Оно стоит после non.\nNon è ancora in ufficio. — «Её ещё нет в офисе.»\nЧитается: нон э анко́ра ин уффи́чо.\nЗдесь имени нет.\nСлово è без имени может значить «он» или «она».\nКто это, понятно из ситуации.",
+        "uk": "Дивіться, як сказати, де когось немає.\nPaolo non è in ufficio. — «Паоло немає в офісі.»\nЧитається: па́оло нон е ін уффі́чо.\nNon siamo alla stazione. — «Нас немає на станції.»\nЧитається: нон сьа́мо а́лла статсьо́не.\nNon siete a casa. — «Вас немає вдома.»\nЧитається: нон сье́те а ка́за.\nСлово siamo означає «ми є», слово siete — «ви є».\nСлово stazione означає «вокзал» або «станція» — це одне слово.\nNon sono ancora a casa. — «Я ще не вдома.»\nЧитається: нон со́но анко́ра а ка́за.\nСлово ancora означає «ще». Воно стоїть після non.\nNon è ancora in ufficio. — «Вона ще не в офісі.»\nЧитається: нон е анко́ра ін уффі́чо.\nТут імені немає.\nСлово è без імені може означати «він» або «вона».\nХто це, зрозуміло з ситуації.",
+        "en": "Look at how to say where someone is not.\nPaolo non è in ufficio. — “Paolo is not in the office.”\nNon siamo alla stazione. — “We are not at the station.”\nNon siete a casa. — “You are not at home.”\nThe word siamo means “we are”, the word siete — “you are”.\nThe word stazione means “station” — it is one word.\nNon sono ancora a casa. — “I am not at home yet.”\nThe word ancora means “yet”. It stands after non.\nNon è ancora in ufficio.\n— “She is not in the office yet.”\nThere is no name here.\nThe word è without a name can mean “he” or “she”.\nThe situation tells who."
+      },
+      "examples": [
+        {
+          "phraseId": "it:02:05",
+          "say": {
+            "ru": "па́оло нон э ин уффи́чо",
+            "uk": "па́оло нон е ін уффі́чо"
+          }
+        },
+        {
+          "phraseId": "it:02:07",
+          "say": {
+            "ru": "нон сьа́мо а́лла статсьо́не",
+            "uk": "нон сьа́мо а́лла статсьо́не"
+          }
+        },
+        {
+          "phraseId": "it:02:08",
+          "say": {
+            "ru": "нон сье́те а ка́за",
+            "uk": "нон сье́те а ка́за"
+          }
+        },
+        {
+          "phraseId": "it:02:41",
+          "say": {
+            "ru": "нон со́но анко́ра а ка́за",
+            "uk": "нон со́но анко́ра а ка́за"
+          }
+        },
+        {
+          "phraseId": "it:02:42",
+          "say": {
+            "ru": "нон э анко́ра ин уффи́чо",
+            "uk": "нон е анко́ра ін уффі́чо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вас нет дома.»",
+            "uk": "Виберіть, як сказати: «Вас немає вдома.»",
+            "en": "Choose how to say: “You are not at home.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:02:08",
+          "options": [
+            "it:02:08",
+            "it:02:07",
+            "it:02:05"
+          ],
+          "answerId": "it:02:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нас нет на станции.»",
+            "uk": "Виберіть, як сказати: «Нас немає на станції.»",
+            "en": "Choose how to say: “We are not at the station.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:07",
+          "options": [
+            "it:02:07",
+            "it:02:08",
+            "it:02:05"
+          ],
+          "answerId": "it:02:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Меня ещё нет дома.»",
+            "uk": "Виберіть, як сказати: «Я ще не вдома.»",
+            "en": "Choose how to say: “I am not at home yet.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:41",
+          "options": [
+            "it:02:41",
+            "it:02:42",
+            "it:02:08"
+          ],
+          "answerId": "it:02:41"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Про вещи",
+        "uk": "Про речі",
+        "en": "About things"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не» про вещи.\nLa porta non è aperta. — «Дверь не открыта.»\nЧитается: ла по́рта нон э апе́рта.\nIl bar non è chiuso. — «Кафе не закрыто.»\nЧитается: иль бар нон э кьу́зо.\nI negozi non sono aperti. — «Магазины не открыты.»\nЧитается: и него́цьи нон со́но апе́рти.\nСлова la, il, i, le стоят перед названием вещи.\nПо-русски такого слова нет.\nВещь одна — la, il: la chiave, il negozio.\nВещей несколько — le, i: le chiavi, i negozi.\nКогда вещей несколько, слово меняет конец: chiave → chiavi, negozio → negozi.\nКогда вещей несколько, говорят sono: i negozi non sono aperti.\nСлово aperti значит «открыты».\nСлово bar значит «кафе, бар».\nСлова museo — «музей», farmacia — «аптека», lontana — «далеко»: non lontana — «недалеко».",
+        "uk": "Дивіться, як сказати «не» про речі.\nLa porta non è aperta. — «Двері не відчинені.»\nЧитається: ла по́рта нон е апе́рта.\nIl bar non è chiuso. — «Кафе не зачинене.»\nЧитається: іль бар нон е кьу́зо.\nI negozi non sono aperti. — «Магазини не відкриті.»\nЧитається: і него́цьі нон со́но апе́рті.\nСлова la, il, i, le стоять перед назвою речі.\nУкраїнською такого слова немає.\nРіч одна — la, il: la chiave, il negozio.\nРечей кілька — le, i: le chiavi, i negozi.\nКоли речей кілька, слово міняє кінець: chiave → chiavi, negozio → negozi.\nКоли речей кілька, кажуть sono: i negozi non sono aperti.\nСлово aperti означає «відкриті».\nСлово bar означає «кафе, бар».\nСлова museo — «музей», farmacia — «аптека», lontana — «далеко»: non lontana — «недалеко».",
+        "en": "Look at how to say “not” about things.\nLa porta non è aperta. — “The door is not open.”\nIl bar non è chiuso. — “The café is not closed.”\nI negozi non sono aperti. — “The shops are not open.”\nThe words la, il, i, le stand before the name of a thing.\nEnglish has no such word here.\nOne thing — la, il: la chiave, il negozio.\nSeveral things — le, i: le chiavi, i negozi.\nFor several things the word changes its end: chiave → chiavi, negozio → negozi.\nFor several things we say sono: i negozi non sono aperti.\nThe word aperti means “open”.\nThe word bar means “café, bar”.\nThe words museo — “museum”, farmacia — “pharmacy”, lontana — “far”: non lontana — “not far”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:02:21",
+          "say": {
+            "ru": "ла по́рта нон э апе́рта",
+            "uk": "ла по́рта нон е апе́рта"
+          }
+        },
+        {
+          "phraseId": "it:02:22",
+          "say": {
+            "ru": "иль бар нон э кьу́зо",
+            "uk": "іль бар нон е кьу́зо"
+          }
+        },
+        {
+          "phraseId": "it:02:23",
+          "say": {
+            "ru": "и него́цьи нон со́но апе́рти",
+            "uk": "і него́цьі нон со́но апе́рті"
+          }
+        },
+        {
+          "phraseId": "it:02:27",
+          "say": {
+            "ru": "ле кья́ви нон со́но куи",
+            "uk": "ле кья́ві нон со́но куі"
+          }
+        },
+        {
+          "phraseId": "it:02:28",
+          "say": {
+            "ru": "ла бо́рса нон э ли",
+            "uk": "ла бо́рса нон е лі"
+          }
+        },
+        {
+          "phraseId": "it:02:37",
+          "say": {
+            "ru": "иль музе́о нон э апе́рто",
+            "uk": "іль музе́о нон е апе́рто"
+          }
+        },
+        {
+          "phraseId": "it:02:38",
+          "say": {
+            "ru": "ла фармачи́я нон э лонта́на",
+            "uk": "ла фармачі́я нон е лонта́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазины не открыты.»",
+            "uk": "Виберіть, як сказати: «Магазини не відкриті.»",
+            "en": "Choose how to say: “The shops are not open.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:02:23",
+          "options": [
+            "it:02:23",
+            "it:02:21",
+            "it:02:22"
+          ],
+          "answerId": "it:02:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кафе не закрыто.»",
+            "uk": "Виберіть, як сказати: «Кафе не зачинене.»",
+            "en": "Choose how to say: “The café is not closed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:22",
+          "options": [
+            "it:02:22",
+            "it:02:21",
+            "it:02:23"
+          ],
+          "answerId": "it:02:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключей здесь нет.»",
+            "uk": "Виберіть, як сказати: «Ключів тут немає.»",
+            "en": "Choose how to say: “The keys are not here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:27",
+          "options": [
+            "it:02:27",
+            "it:02:28",
+            "it:02:01"
+          ],
+          "answerId": "it:02:27"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Где вещи и транспорт",
+        "uk": "Де речі і транспорт",
+        "en": "Where things and transport are"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где вещей нет.\nI biglietti non sono sul tavolo. — «Билетов нет на столе.»\nЧитается: и билье́тти нон со́но суль та́воло.\nI bambini non sono nella sala. — «Детей нет в комнате.»\nЧитается: и бамби́ни нон со́но не́лла са́ла.\nСлова sul и nella значат «на» и «в».\nSul tavolo — «на столе», nella sala — «в зале».\nОдин билет — biglietto, несколько — biglietti: слово меняет конец.\nСлова biglietti — «билеты», tavolo — «стол», bambini — «дети».\nСлова bicicletta — «велосипед», fuori — «на улице».\nСлова corridoio — «коридор», buio — «темно».\nСлова l’autobus — «автобус», treno — «поезд»: запоминайте их целиком.\nСлова in ritardo значат «с опозданием»: Il treno non è in ritardo.",
+        "uk": "Дивіться, як сказати, де речей немає.\nI biglietti non sono sul tavolo. — «Квитки не на столі.»\nЧитається: і білье́тті нон со́но суль та́воло.\nI bambini non sono nella sala. — «Дітей немає в кімнаті.»\nЧитається: і бамбі́ні нон со́но не́лла са́ла.\nСлова sul та nella означають «на» і «в».\nSul tavolo — «на столі», nella sala — «у залі».\nОдин квиток — biglietto, кілька — biglietti: слово міняє кінець.\nСлова biglietti — «квитки», tavolo — «стіл», bambini — «діти».\nСлова bicicletta — «велосипед», fuori — «на вулиці».\nСлова corridoio — «коридор», buio — «темно».\nСлова l’autobus — «автобус», treno — «потяг»: запам’ятовуйте їх цілком.\nСлова in ritardo означають «із запізненням»: Il treno non è in ritardo.",
+        "en": "Look at how to say where things are not.\nI biglietti non sono sul tavolo.\n— “The tickets are not on the table.”\nI bambini non sono nella sala.\n— “The children are not in the room.”\nThe words sul and nella mean “on” and “in”.\nSul tavolo — “on the table”, nella sala — “in the hall”.\nOne ticket — biglietto, several — biglietti: the word changes its end.\nThe words biglietti — “tickets”, tavolo — “table”, bambini — “children”.\nThe word sala means “hall, room”.\nThe words bicicletta — “bicycle”, fuori — “outside”.\nThe words corridoio — “corridor”, buio — “dark”.\nThe words l’autobus — “bus”, treno — “train”: learn them whole.\nThe words in ritardo mean “late”: Il treno non è in ritardo."
+      },
+      "examples": [
+        {
+          "phraseId": "it:02:39",
+          "say": {
+            "ru": "и билье́тти нон со́но суль та́воло",
+            "uk": "і білье́тті нон со́но суль та́воло"
+          }
+        },
+        {
+          "phraseId": "it:02:34",
+          "say": {
+            "ru": "и бамби́ни нон со́но не́лла са́ла",
+            "uk": "і бамбі́ні нон со́но не́лла са́ла"
+          }
+        },
+        {
+          "phraseId": "it:02:35",
+          "say": {
+            "ru": "ла бичикле́тта нон э фуо́ри",
+            "uk": "ла бічікле́тта нон е фуо́рі"
+          }
+        },
+        {
+          "phraseId": "it:02:26",
+          "say": {
+            "ru": "иль корридо́йо нон э бу́йо",
+            "uk": "іль коррідо́йо нон е бу́йо"
+          }
+        },
+        {
+          "phraseId": "it:02:49",
+          "say": {
+            "ru": "л’а́утобус нон э анко́ра куи",
+            "uk": "л’а́утобус нон е анко́ра куі"
+          }
+        },
+        {
+          "phraseId": "it:02:40",
+          "say": {
+            "ru": "иль тре́но нон э ин рита́рдо",
+            "uk": "іль тре́но нон е ін ріта́рдо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билетов нет на столе.»",
+            "uk": "Виберіть, як сказати: «Квитки не на столі.»",
+            "en": "Choose how to say: “The tickets are not on the table.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:02:39",
+          "options": [
+            "it:02:39",
+            "it:02:34",
+            "it:02:35"
+          ],
+          "answerId": "it:02:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Детей нет в комнате.»",
+            "uk": "Виберіть, як сказати: «Дітей немає в кімнаті.»",
+            "en": "Choose how to say: “The children are not in the room.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:34",
+          "options": [
+            "it:02:34",
+            "it:02:39",
+            "it:02:35"
+          ],
+          "answerId": "it:02:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд не опаздывает.»",
+            "uk": "Виберіть, як сказати: «Поїзд не запізнюється.»",
+            "en": "Choose how to say: “The train is not late.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:02:40",
+          "options": [
+            "it:02:40",
+            "it:02:49",
+            "it:02:26"
+          ],
+          "answerId": "it:02:40"
+        }
+      ]
+    }
+  ]
+}

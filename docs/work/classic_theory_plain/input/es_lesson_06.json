@@ -1,0 +1,422 @@
+{
+ "lang": "es",
+ "lesson": 6,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "es:06:01",
+   "target": "El pasaporte está aquí.",
+   "ru": "Паспорт здесь.",
+   "uk": "Паспорт тут."
+  },
+  {
+   "id": "es:06:02",
+   "target": "Los pasaportes están aquí.",
+   "ru": "Паспорта здесь.",
+   "uk": "Паспорти тут."
+  },
+  {
+   "id": "es:06:03",
+   "target": "La maleta está aquí.",
+   "ru": "Чемодан здесь.",
+   "uk": "Валіза тут."
+  },
+  {
+   "id": "es:06:04",
+   "target": "Las maletas están aquí.",
+   "ru": "Чемоданы здесь.",
+   "uk": "Валізи тут."
+  },
+  {
+   "id": "es:06:05",
+   "target": "El billete está allí.",
+   "ru": "Билет вон там.",
+   "uk": "Квиток он там."
+  },
+  {
+   "id": "es:06:06",
+   "target": "Los billetes están allí.",
+   "ru": "Билеты вон там.",
+   "uk": "Квитки он там."
+  },
+  {
+   "id": "es:06:07",
+   "target": "La llave está allí.",
+   "ru": "Ключ вон там.",
+   "uk": "Ключ он там."
+  },
+  {
+   "id": "es:06:08",
+   "target": "Las llaves están allí.",
+   "ru": "Ключи вон там.",
+   "uk": "Ключі он там."
+  },
+  {
+   "id": "es:06:09",
+   "target": "El bolso está dentro.",
+   "ru": "Сумка внутри.",
+   "uk": "Сумка всередині."
+  },
+  {
+   "id": "es:06:10",
+   "target": "Los abrigos están dentro.",
+   "ru": "Пальто внутри.",
+   "uk": "Пальта всередині."
+  },
+  {
+   "id": "es:06:11",
+   "target": "La botella está allí.",
+   "ru": "Бутылка вон там.",
+   "uk": "Пляшка он там."
+  },
+  {
+   "id": "es:06:12",
+   "target": "Las botellas están allí.",
+   "ru": "Бутылки вон там.",
+   "uk": "Пляшки он там."
+  },
+  {
+   "id": "es:06:13",
+   "target": "El tren está cerca.",
+   "ru": "Поезд близко.",
+   "uk": "Потяг близько."
+  },
+  {
+   "id": "es:06:14",
+   "target": "El hotel está cerca.",
+   "ru": "Отель рядом.",
+   "uk": "Готель поруч."
+  },
+  {
+   "id": "es:06:15",
+   "target": "La farmacia está cerca.",
+   "ru": "Аптека рядом.",
+   "uk": "Аптека поруч."
+  },
+  {
+   "id": "es:06:16",
+   "target": "Las tiendas están cerca.",
+   "ru": "Магазины рядом.",
+   "uk": "Магазини поруч."
+  },
+  {
+   "id": "es:06:17",
+   "target": "La maleta está fuera.",
+   "ru": "Чемодан снаружи.",
+   "uk": "Валіза надворі."
+  },
+  {
+   "id": "es:06:18",
+   "target": "Las maletas están fuera.",
+   "ru": "Чемоданы снаружи.",
+   "uk": "Валізи надворі."
+  },
+  {
+   "id": "es:06:19",
+   "target": "Los móviles están en casa.",
+   "ru": "Телефоны дома.",
+   "uk": "Телефони вдома."
+  },
+  {
+   "id": "es:06:20",
+   "target": "Las mochilas están en casa.",
+   "ru": "Рюкзаки дома.",
+   "uk": "Рюкзаки вдома."
+  },
+  {
+   "id": "es:06:21",
+   "target": "El mapa está en la mesa.",
+   "ru": "Карта на столе.",
+   "uk": "Мапа на столі."
+  },
+  {
+   "id": "es:06:22",
+   "target": "Los mapas están en la mesa.",
+   "ru": "Карты на столе.",
+   "uk": "Мапи на столі."
+  },
+  {
+   "id": "es:06:23",
+   "target": "La foto está en la mesa.",
+   "ru": "Фотография на столе.",
+   "uk": "Фотографія на столі."
+  },
+  {
+   "id": "es:06:24",
+   "target": "Las fotos están en la mesa.",
+   "ru": "Фотографии на столе.",
+   "uk": "Фотографії на столі."
+  },
+  {
+   "id": "es:06:25",
+   "target": "El mapa está en la mochila.",
+   "ru": "Карта в рюкзаке.",
+   "uk": "Мапа у рюкзаку."
+  },
+  {
+   "id": "es:06:26",
+   "target": "La foto está en la mochila.",
+   "ru": "Фотография в рюкзаке.",
+   "uk": "Фотографія у рюкзаку."
+  },
+  {
+   "id": "es:06:27",
+   "target": "Los mapas están en el coche.",
+   "ru": "Карты в машине.",
+   "uk": "Мапи в машині."
+  },
+  {
+   "id": "es:06:28",
+   "target": "Las fotos están en el bolso.",
+   "ru": "Фотографии в сумке.",
+   "uk": "Фотографії в сумці."
+  },
+  {
+   "id": "es:06:29",
+   "target": "El mapa está en el bolsillo.",
+   "ru": "Карта в кармане.",
+   "uk": "Мапа в кишені."
+  },
+  {
+   "id": "es:06:30",
+   "target": "La foto está en el bolsillo.",
+   "ru": "Фотография в кармане.",
+   "uk": "Фотографія в кишені."
+  },
+  {
+   "id": "es:06:31",
+   "target": "El pasaporte está en la maleta.",
+   "ru": "Паспорт в чемодане.",
+   "uk": "Паспорт у валізі."
+  },
+  {
+   "id": "es:06:32",
+   "target": "Los pasaportes están en la maleta.",
+   "ru": "Паспорта в чемодане.",
+   "uk": "Паспорти у валізі."
+  },
+  {
+   "id": "es:06:33",
+   "target": "La maleta está en el coche.",
+   "ru": "Чемодан в машине.",
+   "uk": "Валіза в машині."
+  },
+  {
+   "id": "es:06:34",
+   "target": "Las maletas están en el coche.",
+   "ru": "Чемоданы в машине.",
+   "uk": "Валізи в машині."
+  },
+  {
+   "id": "es:06:35",
+   "target": "El abrigo está en la mesa.",
+   "ru": "Пальто на столе.",
+   "uk": "Пальто на столі."
+  },
+  {
+   "id": "es:06:36",
+   "target": "El ascensor está aquí.",
+   "ru": "Лифт здесь.",
+   "uk": "Ліфт тут."
+  },
+  {
+   "id": "es:06:37",
+   "target": "El móvil está en la cocina.",
+   "ru": "Телефон на кухне.",
+   "uk": "Телефон на кухні."
+  },
+  {
+   "id": "es:06:38",
+   "target": "La llave está en la maleta.",
+   "ru": "Ключ в чемодане.",
+   "uk": "Ключ у валізі."
+  },
+  {
+   "id": "es:06:39",
+   "target": "El tren está en la estación.",
+   "ru": "Поезд на станции.",
+   "uk": "Потяг на станції."
+  },
+  {
+   "id": "es:06:40",
+   "target": "Los trenes están en la estación.",
+   "ru": "Поезда на станции.",
+   "uk": "Потяги на станції."
+  },
+  {
+   "id": "es:06:41",
+   "target": "El médico está en la puerta.",
+   "ru": "Врач у двери.",
+   "uk": "Лікар біля дверей."
+  },
+  {
+   "id": "es:06:42",
+   "target": "La médica está en la puerta.",
+   "ru": "Женщина-врач у двери.",
+   "uk": "Лікарка біля дверей."
+  },
+  {
+   "id": "es:06:43",
+   "target": "Los estudiantes están en la estación.",
+   "ru": "Студенты на станции.",
+   "uk": "Студенти на станції."
+  },
+  {
+   "id": "es:06:44",
+   "target": "Las estudiantes están en la estación.",
+   "ru": "Студентки на станции.",
+   "uk": "Студентки на станції."
+  },
+  {
+   "id": "es:06:45",
+   "target": "El guía está en el hotel.",
+   "ru": "Гид в отеле.",
+   "uk": "Гід у готелі."
+  },
+  {
+   "id": "es:06:46",
+   "target": "La guía está en el hotel.",
+   "ru": "Женщина-гид в отеле.",
+   "uk": "Гідеса в готелі."
+  },
+  {
+   "id": "es:06:47",
+   "target": "Las fotos están en las mochilas.",
+   "ru": "Фотографии в рюкзаках.",
+   "uk": "Фотографії в рюкзаках."
+  },
+  {
+   "id": "es:06:48",
+   "target": "Los billetes están en los bolsos.",
+   "ru": "Билеты в сумках.",
+   "uk": "Квитки в сумках."
+  },
+  {
+   "id": "es:06:49",
+   "target": "El mapa está en la maleta.",
+   "ru": "Карта в чемодане.",
+   "uk": "Мапа у валізі."
+  },
+  {
+   "id": "es:06:50",
+   "target": "Las llaves están en los bolsillos.",
+   "ru": "Ключи в карманах.",
+   "uk": "Ключі в кишенях."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "foto",
+   "ru": "фотография",
+   "uk": "фотографія"
+  },
+  {
+   "lemma": "abrigo",
+   "ru": "пальто",
+   "uk": "пальто"
+  },
+  {
+   "lemma": "botella",
+   "ru": "бутылка",
+   "uk": "пляшка"
+  },
+  {
+   "lemma": "maleta",
+   "ru": "чемодан",
+   "uk": "валіза"
+  },
+  {
+   "lemma": "mapa",
+   "ru": "карта местности",
+   "uk": "мапа місцевості"
+  },
+  {
+   "lemma": "tren",
+   "ru": "поезд",
+   "uk": "потяг"
+  }
+ ],
+ "knownWords": [
+  "allí",
+  "Ana",
+  "aquí",
+  "el / la",
+  "casa",
+  "cerca",
+  "clase",
+  "coche",
+  "cocina",
+  "dentro",
+  "él",
+  "ella",
+  "ellas",
+  "ellos",
+  "en",
+  "estación",
+  "estar",
+  "fuera",
+  "lejos",
+  "libro",
+  "llave",
+  "Luis",
+  "mesa",
+  "mochila",
+  "móvil",
+  "puerta",
+  "y",
+  "bolsillo",
+  "bolso",
+  "farmacia",
+  "no",
+  "oficina",
+  "tienda",
+  "billete",
+  "hotel",
+  "parada",
+  "pasaporte",
+  "salida",
+  "enfermero",
+  "estudiante",
+  "guía",
+  "médico",
+  "profesor",
+  "ser",
+  "usted",
+  "costar",
+  "dónde",
+  "eso",
+  "esto",
+  "aeropuerto",
+  "ascensor",
+  "banco",
+  "baño",
+  "cuánto",
+  "recepción",
+  "qué",
+  "quién"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Где я, где ты, где вещи: глагол estar"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня нет дома: отрицание с no"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты дома? Вопрос о месте"
+  },
+  {
+   "lesson": 4,
+   "title": "Кто я: имя и профессия с ser"
+  },
+  {
+   "lesson": 5,
+   "title": "Где? Кто? Что? Вопрос с неизвестной деталью"
+  }
+ ],
+ "oldTopicTitle": "Конкретные вещи: el, la, los, las",
+ "oldTheoryRu": "У тебя один конкретный ключ: la llave. Появился второй: las llaves. Род слова не изменился; изменилось количество. Для знакомого предмета сначала найди род и число испанского названия; по ним выбери el, la, los или las. Например: el mapa, но las llaves. Вы с другом ищете паспорт, который он только что держал в руках. El pasaporte — именно этот, известный вам паспорт. Артикль не означает, что нужно отдельно говорить «этот». Сейчас нас интересуют конкретные знакомые предметы. Мужской род: el в единственном числе и los во множественном. Женский: la и las. Увидел pasaportes? Вернись к словарной паре el pasaporte, затем возьми множественное los. Увидел maletas? База la maleta, значит las. Окончание -s говорит о числе, но само по себе не скажет, какой из двух артиклей множественного числа нужен. Род — свойство испанского слова, а не вещи. Даже знакомые предметы учи маленькими парами: la llave, el mapa, la foto. У mapa окончание -a, но нужен el. У foto окончание -o, но нужна la (это короткое название фотографии). Во множественном числе род сохраняется: los mapas, las fotos. Раздели Los pasaportes están en la maleta на две группы. О чём говорим? Los pasaportes — мужской род, несколько. Где они? En la maleta — женский род, один чемодан. Каждое существительное определяет свой артикль. Если перенести артикль из первой группы во вторую, получится ошибочное en los maleta. Глагол выбирается по тому, что находится, а не по месту. В Las fotos están en el bolso фотографий несколько, хотя сумка одна. Сравни El mapa está en el bolsillo. Мы не вводим новую форму estar, а возвращаем правило из урока 1, чтобы увидеть, какие части меняются вместе. В четвёртом уроке Ana es guía называло профессию без артикля. Теперь ищем конкретного гида: el guía или la guía. Слово guía не меняется; артикль уточняет, о ком речь. То же со студентами: los estudiantes — мужчины или смешанная группа, las estudiantes — только женщины. Когда перевод не уточняет состав группы, читай контекст. En la cocina — на конкретной кухне. А знакомое en casa обычно означает «дома» и не требует la. En la casa тоже бывает правильно, но тогда говорят о конкретном доме как о здании. Смотри на смысл места, а не на правило «после en всегда артикль»."
+}

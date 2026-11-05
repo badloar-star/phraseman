@@ -1,0 +1,410 @@
+{
+ "lang": "it",
+ "lesson": 5,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:05:01",
+   "target": "Ho una chiave.",
+   "ru": "У меня есть ключ.",
+   "uk": "У мене є ключ."
+  },
+  {
+   "id": "it:05:02",
+   "target": "Hai una chiave.",
+   "ru": "У тебя есть ключ.",
+   "uk": "У тебе є ключ."
+  },
+  {
+   "id": "it:05:03",
+   "target": "Lei ha una borsa.",
+   "ru": "У неё есть сумка.",
+   "uk": "У неї є сумка."
+  },
+  {
+   "id": "it:05:04",
+   "target": "Lui ha una borsa.",
+   "ru": "У него есть сумка.",
+   "uk": "У нього є сумка."
+  },
+  {
+   "id": "it:05:05",
+   "target": "Abbiamo una piantina.",
+   "ru": "У нас есть схема.",
+   "uk": "У нас є схема."
+  },
+  {
+   "id": "it:05:06",
+   "target": "Avete una piantina.",
+   "ru": "У вас есть схема.",
+   "uk": "У вас є схема."
+  },
+  {
+   "id": "it:05:07",
+   "target": "Loro hanno un biglietto.",
+   "ru": "У них есть билет.",
+   "uk": "Вони мають квиток."
+  },
+  {
+   "id": "it:05:08",
+   "target": "Le ragazze hanno un biglietto.",
+   "ru": "У девушек есть билет.",
+   "uk": "У дівчат є квиток."
+  },
+  {
+   "id": "it:05:09",
+   "target": "Lea ha una carta.",
+   "ru": "У Леа есть карточка.",
+   "uk": "Леа має картку."
+  },
+  {
+   "id": "it:05:10",
+   "target": "Ho con me il telefono.",
+   "ru": "Телефон у меня с собой.",
+   "uk": "Телефон у мене з собою."
+  },
+  {
+   "id": "it:05:11",
+   "target": "Ho fame.",
+   "ru": "Я голоден.",
+   "uk": "Я голодний."
+  },
+  {
+   "id": "it:05:12",
+   "target": "Hai fame.",
+   "ru": "Ты голоден.",
+   "uk": "Ти голодний."
+  },
+  {
+   "id": "it:05:13",
+   "target": "Ho sete.",
+   "ru": "Мне хочется пить.",
+   "uk": "Я хочу пити."
+  },
+  {
+   "id": "it:05:14",
+   "target": "Lei ha sete.",
+   "ru": "Ей хочется пить.",
+   "uk": "Вона хоче пити."
+  },
+  {
+   "id": "it:05:15",
+   "target": "Abbiamo freddo.",
+   "ru": "Нам холодно.",
+   "uk": "Нам холодно."
+  },
+  {
+   "id": "it:05:16",
+   "target": "Avete caldo.",
+   "ru": "Вам жарко.",
+   "uk": "Вам спекотно."
+  },
+  {
+   "id": "it:05:17",
+   "target": "Paolo ha paura.",
+   "ru": "Паоло боится.",
+   "uk": "Паоло боїться."
+  },
+  {
+   "id": "it:05:18",
+   "target": "Hanno sonno.",
+   "ru": "Они хотят спать.",
+   "uk": "Вони хочуть спати."
+  },
+  {
+   "id": "it:05:19",
+   "target": "Ho mal di schiena.",
+   "ru": "У меня болит спина.",
+   "uk": "У мене болить спина."
+  },
+  {
+   "id": "it:05:20",
+   "target": "Hai mal di testa.",
+   "ru": "У тебя болит голова.",
+   "uk": "У тебе болить голова."
+  },
+  {
+   "id": "it:05:21",
+   "target": "Ho vent’anni.",
+   "ru": "Мне двадцать лет.",
+   "uk": "Мені двадцять років."
+  },
+  {
+   "id": "it:05:22",
+   "target": "Lea ha trent’anni.",
+   "ru": "Леа тридцать лет.",
+   "uk": "Леа тридцять років."
+  },
+  {
+   "id": "it:05:23",
+   "target": "Mio fratello ha dieci anni.",
+   "ru": "Моему брату десять лет.",
+   "uk": "Моєму братові десять років."
+  },
+  {
+   "id": "it:05:24",
+   "target": "Lei ha due figli.",
+   "ru": "У нее двое детей.",
+   "uk": "У неї двоє дітей."
+  },
+  {
+   "id": "it:05:25",
+   "target": "Abbiamo tre posti.",
+   "ru": "У нас три места.",
+   "uk": "У нас три місця."
+  },
+  {
+   "id": "it:05:26",
+   "target": "Ha cinque minuti.",
+   "ru": "У вас пять минут.",
+   "uk": "У вас є п’ять хвилин."
+  },
+  {
+   "id": "it:05:27",
+   "target": "Ho un appuntamento.",
+   "ru": "У меня назначена встреча.",
+   "uk": "У мене призначена зустріч."
+  },
+  {
+   "id": "it:05:28",
+   "target": "Paolo ha una domanda.",
+   "ru": "У Паоло есть вопрос.",
+   "uk": "У Паоло є питання."
+  },
+  {
+   "id": "it:05:29",
+   "target": "Abbiamo un’idea.",
+   "ru": "У нас есть идея.",
+   "uk": "У нас є ідея."
+  },
+  {
+   "id": "it:05:30",
+   "target": "Hai tempo?",
+   "ru": "У тебя есть время?",
+   "uk": "У тебе є час?"
+  },
+  {
+   "id": "it:05:31",
+   "target": "Ha una penna?",
+   "ru": "У вас есть ручка?",
+   "uk": "У вас є ручка?"
+  },
+  {
+   "id": "it:05:32",
+   "target": "Hai la ricevuta?",
+   "ru": "У тебя есть чек?",
+   "uk": "У тебе є чек?"
+  },
+  {
+   "id": "it:05:33",
+   "target": "Ha un momento?",
+   "ru": "У вас есть минутка?",
+   "uk": "Маєте хвилинку?"
+  },
+  {
+   "id": "it:05:34",
+   "target": "Ha con sé i suoi occhiali?",
+   "ru": "Её очки при ней?",
+   "uk": "Її окуляри при ній?"
+  },
+  {
+   "id": "it:05:35",
+   "target": "Ha con sé il passaporto?",
+   "ru": "Паспорт у него с собой?",
+   "uk": "Паспорт у нього з собою?"
+  },
+  {
+   "id": "it:05:36",
+   "target": "Hanno le chiavi dell’ufficio?",
+   "ru": "У них есть ключи от офиса?",
+   "uk": "У них є ключі від офісу?"
+  },
+  {
+   "id": "it:05:37",
+   "target": "Ha degli spiccioli?",
+   "ru": "У вас есть мелочь?",
+   "uk": "У вас є дрібні гроші?"
+  },
+  {
+   "id": "it:05:38",
+   "target": "Hai il mio numero?",
+   "ru": "У тебя есть мой номер?",
+   "uk": "У тебе є мій номер?"
+  },
+  {
+   "id": "it:05:39",
+   "target": "Lea ha il biglietto di ritorno?",
+   "ru": "У Леа есть обратный билет?",
+   "uk": "У Леа є зворотний квиток?"
+  },
+  {
+   "id": "it:05:40",
+   "target": "Ha una prenotazione?",
+   "ru": "У вас есть бронирование?",
+   "uk": "У вас є бронювання?"
+  },
+  {
+   "id": "it:05:41",
+   "target": "Ho bisogno di aiuto.",
+   "ru": "Мне нужна помощь.",
+   "uk": "Мені потрібна допомога."
+  },
+  {
+   "id": "it:05:42",
+   "target": "Hai bisogno di una pausa.",
+   "ru": "Тебе нужен перерыв.",
+   "uk": "Тобі потрібна перерва."
+  },
+  {
+   "id": "it:05:43",
+   "target": "Lui ha bisogno di riposo.",
+   "ru": "Ему нужен отдых.",
+   "uk": "Йому потрібен відпочинок."
+  },
+  {
+   "id": "it:05:44",
+   "target": "Abbiamo bisogno d’acqua.",
+   "ru": "Нам нужна вода.",
+   "uk": "Нам потрібна вода."
+  },
+  {
+   "id": "it:05:45",
+   "target": "Ho ancora un po’ di tempo.",
+   "ru": "У меня ещё есть немного времени.",
+   "uk": "У мене ще є трохи часу."
+  },
+  {
+   "id": "it:05:46",
+   "target": "Ha la possibilità di scegliere.",
+   "ru": "У вас есть выбор.",
+   "uk": "У вас є вибір."
+  },
+  {
+   "id": "it:05:47",
+   "target": "I bambini hanno fame.",
+   "ru": "Дети голодны.",
+   "uk": "Діти голодні."
+  },
+  {
+   "id": "it:05:48",
+   "target": "Abbiamo un appuntamento a mezzogiorno.",
+   "ru": "У нас назначена встреча на полдень.",
+   "uk": "У нас зустріч опівдні."
+  },
+  {
+   "id": "it:05:49",
+   "target": "Ho mal di gola.",
+   "ru": "У меня болит горло.",
+   "uk": "У мене болить горло."
+  },
+  {
+   "id": "it:05:50",
+   "target": "Lei ha bisogno della sua ricetta.",
+   "ru": "Ей нужен её рецепт.",
+   "uk": "Їй потрібен її рецепт."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il passaporto",
+   "ru": "паспорт",
+   "uk": "паспорт"
+  },
+  {
+   "lemma": "gli spiccioli",
+   "ru": "мелочь или сдача",
+   "uk": "дрібниця або здавання"
+  },
+  {
+   "lemma": "la pausa",
+   "ru": "перерыв",
+   "uk": "перерва"
+  },
+  {
+   "lemma": "l’appuntamento",
+   "ru": "назначенная встреча",
+   "uk": "призначена зустріч"
+  },
+  {
+   "lemma": "la ricetta",
+   "ru": "рецепт врача",
+   "uk": "рецепт лікаря"
+  },
+  {
+   "lemma": "avere",
+   "ru": "иметь",
+   "uk": "мати"
+  },
+  {
+   "lemma": "l’acqua",
+   "ru": "вода",
+   "uk": "вода"
+  },
+  {
+   "lemma": "la carta",
+   "ru": "карта; карточка; меню",
+   "uk": "карта; картка; меню"
+  }
+ ],
+ "knownWords": [
+  "qui",
+  "la stazione",
+  "la chiave",
+  "la finestra",
+  "pronto",
+  "essere",
+  "la casa",
+  "l’ufficio",
+  "la porta",
+  "insieme",
+  "il negozio",
+  "la borsa",
+  "il corridoio",
+  "la camera",
+  "il biglietto",
+  "la farmacia",
+  "in ritardo",
+  "il tavolo",
+  "la sala",
+  "il treno",
+  "la bicicletta",
+  "l’autobus",
+  "il museo",
+  "la banchina",
+  "la biglietteria",
+  "l’uscita",
+  "la tasca",
+  "la serratura",
+  "voi",
+  "l’ingresso",
+  "il parcheggio",
+  "la ricevuta",
+  "la fattura",
+  "il vicino / la vicina",
+  "il regalo",
+  "gli occhiali",
+  "la sorella",
+  "il fratello",
+  "il posto"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь: `essere`"
+  },
+  {
+   "lesson": 2,
+   "title": "Отрицание: одно слово `non`"
+  },
+  {
+   "lesson": 3,
+   "title": "Уточнить догадку: вопрос без перестановки"
+  },
+  {
+   "lesson": 4,
+   "title": "Представить человека или назвать вещь"
+  }
+ ],
+ "oldTopicTitle": "У меня есть: настоящее `avere`",
+ "oldTheoryRu": "Ищи владельца, а не количество вещей: один человек может иметь несколько предметов, и форма глагола останется единственной. Одна сумка у нескольких людей, наоборот, потребует формы множественного числа. `Abbiamo` относится к нам, `avete` к группе собеседников, `hanno` к другим людям. Если глагол достаточно явно обозначает человека, местоимение можно не произносить. Для голода, жажды и ощущения температуры обычно используются выражения `avere fame`, `avere sete`, `avere caldo`. Не меняй `avere` на `essere` только потому, что в другом языке состояние выражается прилагательным. Боль можно описать группой `avere mal di` и названием части тела: `Ho mal di gola`. Это готовый способ назвать симптом, а не требование во всех фразах про тело использовать один и тот же глагол. Возраст выражается через `avere` и количество лет. `Ho vent’anni` сообщает возраст; дословный перевод по словам здесь мешает. Не опускай `anni`, если возраст не очевиден из вопроса. В кассе или отеле важно различать дружеское `hai` и вежливое `ha`. То же `ha` может означать «у него» или «у неё». Задача уточняет адресата, когда без этого выбрать нельзя. `Avere bisogno di` — «нуждаться в». Без `bisogno` фраза `Ho una ricetta` означает, что рецепт уже есть. `Ho bisogno di una ricetta` сообщает обратную практическую вещь: рецепт ещё нужен."
+}

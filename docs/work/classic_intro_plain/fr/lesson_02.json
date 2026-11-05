@@ -1,0 +1,45 @@
+{
+  "lang": "fr",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying “not”"
+      },
+      "text": {
+        "en": "Last time you said where someone is.\nNow you say where they are not.\nJe suis ici. = I am here.\nJe ne suis pas ici. = I am not here.\nNe and pas are new. Together they mean “not”.\nTu n’es pas là. = You’re not there."
+      },
+      "exampleIds": [
+        "fr:02:01",
+        "fr:02:03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Ne and pas hug the middle word"
+      },
+      "text": {
+        "en": "Ne goes before the am/are/is word.\nPas goes right after it.\nJe ne suis pas ici. Ne, then suis, then pas.\nElle n’est pas là. = She is not there.\nElle means “she”. Est means “is”.\nBefore est or es, ne becomes n’. It joins the next word."
+      },
+      "exampleIds": [
+        "fr:02:01",
+        "fr:02:04"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Wrap the middle word"
+      },
+      "text": {
+        "en": "Now you build phrases with “not”.\nStart with who: Je, Tu, Elle.\nPut ne (or n’) next, then the middle word, then pas.\nLast, add the place.\nExample: Paul n’est pas au bureau.\n= Paul is not in the office."
+      },
+      "exampleIds": [
+        "fr:02:05",
+        "fr:02:06"
+      ]
+    }
+  ]
+}

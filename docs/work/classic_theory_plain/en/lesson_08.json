@@ -1,0 +1,593 @@
+{
+  "lang": "en",
+  "lesson": 8,
+  "title": {
+    "ru": "Во сколько, в какой день и когда",
+    "uk": "О котрій, у який день і коли",
+    "en": "What time, which day, when"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "В какой час",
+        "uk": "О котрій годині",
+        "en": "At what hour"
+      },
+      "text": {
+        "ru": "Перед часом ставят at: at seven — «в семь».\nI start at seven. — Я начинаю в семь.\nЧитается: ай ста́рт эт сэ́вен.\nСлово seven значит «семь». Слово at — «в, ровно в».\nShe starts at noon. — Она начинает в полдень.\nЧитается: ши ста́ртс эт ну́н.\nСлово noon значит «полдень».\nПро неё — starts, с s на конце, как раньше.\nWe finish at midnight. — Мы заканчиваем в полночь.\nЧитается: уи фи́ниш эт ми́днайт.\nСлово midnight значит «полночь».\nСлова: lunchtime — «обеденное время», bakery — «пекарня», dawn — «рассвет», bell — «звонок».\nСлова: midday — «полдень».",
+        "uk": "Перед годиною ставлять at: at seven — «о сьомій».\nI start at seven. — Я починаю о сьомій.\nЧитається: ай ста́рт ет се́вен.\nСлово seven означає «сім». Слово at — «о, рівно о».\nShe starts at noon. — Вона починає опівдні.\nЧитається: ші ста́ртс ет ну́н.\nСлово noon означає «полудень».\nПро неї — starts, з s на кінці, як раніше.\nWe finish at midnight. — Ми закінчуємо опівночі.\nЧитається: уі фі́ніш ет мі́днайт.\nСлово midnight означає «опівніч».\nСлова: lunchtime — «обідня перерва», bakery — «пекарня», dawn — «світанок», bell — «дзвінок».\nСлова: midday — «полудень».",
+        "en": "Before a time of day we say at: at seven.\nI start at seven.\nThe word seven means “the number 7”.\nThe word at means “used before a time”.\nShe starts at noon.\nThe word noon means “12 o'clock in the day”.\nFor her: starts, with s on the end.\nWe finish at midnight.\nThe word midnight means “12 o'clock at night”.\nMore words: lunchtime — “the time for lunch”.\nMore words: bakery — “a shop that sells bread”.\nMore words: dawn — “when the sun comes up”, bell — “a ringing thing”.\nMore words: midday — “noon”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:08.01",
+          "say": {
+            "ru": "ай ста́рт эт сэ́вен",
+            "uk": "ай ста́рт ет се́вен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.02",
+          "say": {
+            "ru": "ши ста́ртс эт ну́н",
+            "uk": "ші ста́ртс ет ну́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.07",
+          "say": {
+            "ru": "уи фи́ниш эт ми́днайт",
+            "uk": "уі фі́ніш ет мі́днайт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.15",
+          "say": {
+            "ru": "уи ми́т эт ла́нчтайм",
+            "uk": "уі мі́т ет ла́нчтайм"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.18",
+          "say": {
+            "ru": "зэ бэ́йкери о́упенз эт до́н",
+            "uk": "зе бе́йкері о́упенз ет до́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.20",
+          "say": {
+            "ru": "зэ бэ́л ри́нгз эт мидде́й",
+            "uk": "зе бе́л рі́нгз ет мідде́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я начинаю в семь.»",
+            "uk": "Виберіть, як сказати: «Я починаю о сьомій.»",
+            "en": "Choose how to say: “I start at seven.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:08.01",
+          "options": [
+            "en-classic-r1:08.01",
+            "en-classic-r1:08.02",
+            "en-classic-r1:08.07"
+          ],
+          "answerId": "en-classic-r1:08.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она начинает в полдень.»",
+            "uk": "Виберіть, як сказати: «Вона починає опівдні.»",
+            "en": "Choose how to say: “She starts at noon.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.02",
+          "options": [
+            "en-classic-r1:08.02",
+            "en-classic-r1:08.01",
+            "en-classic-r1:08.15"
+          ],
+          "answerId": "en-classic-r1:08.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы заканчиваем в полночь.»",
+            "uk": "Виберіть, як сказати: «Ми закінчуємо опівночі.»",
+            "en": "Choose how to say: “We finish at midnight.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.07",
+          "options": [
+            "en-classic-r1:08.07",
+            "en-classic-r1:08.18",
+            "en-classic-r1:08.20"
+          ],
+          "answerId": "en-classic-r1:08.07"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Половина и четверть",
+        "uk": "Пів і чверть",
+        "en": "Half past and quarter past"
+      },
+      "text": {
+        "ru": "Так называют минуты после часа.\nThe gate opens at half past six. — Ворота открываются в половине седьмого.\nЧитается: зэ гэ́йт о́упенз эт ха́ф па́ст си́кс.\nСлово half значит «половина». Слово past — «после». Слово six — «шесть».\nhalf past six — «половина после шести». По-русски говорят «половина седьмого».\nThe train leaves at a quarter past eight. — Поезд отправляется в четверть девятого.\nЧитается: зэ трэ́йн ли́вз эт э куо́тер па́ст э́йт.\nСлово quarter значит «четверть».\na quarter past eight — «четверть после восьми». Слово eight — «восемь».\nThe concert starts at eight fifteen. — Концерт начинается в восемь пятнадцать.\nЧитается: зэ ко́нсерт ста́ртс эт э́йт фифти́н.\nСлово concert значит «концерт». Слово fifteen — «пятнадцать».\nМожно просто назвать цифры: eight fifteen — 8:15.\nСлова: four — «четыре», ring — «звонить», thirty — «тридцать», eleven — «одиннадцать».\nСлова: leaves — «отправляется, уходит».",
+        "uk": "Так називають хвилини після години.\nThe gate opens at half past six. — Ворота відчиняються о пів на сьому.\nЧитається: зе ге́йт о́упенз ет ха́ф па́ст сі́кс.\nСлово half означає «половина». Слово past — «після». Слово six — «шість».\nhalf past six — «половина після шостої». Українською кажуть «пів на сьому».\nThe train leaves at a quarter past eight. — Поїзд відправляється о чверть на дев'яту.\nЧитається: зе тре́йн лі́вз ет е куо́тер па́ст е́йт.\nСлово quarter означає «чверть».\na quarter past eight — «чверть після восьмої». Слово eight — «вісім».\nThe concert starts at eight fifteen. — Концерт починається о восьмій п'ятнадцять.\nЧитається: зе ко́нсерт ста́ртс ет е́йт фіфті́н.\nСлово concert означає «концерт». Слово fifteen — «п'ятнадцять».\nМожна просто назвати цифри: eight fifteen — 8:15.\nСлова: four — «чотири», ring — «дзвонити», thirty — «тридцять», eleven — «одинадцять».\nСлова: leaves — «відправляється, йде».",
+        "en": "This is how we name minutes after the hour.\nThe gate opens at half past six.\nThe word half means “one of two equal parts”. The word past means “after”.\nThe word six means “the number 6”.\nHalf past six means 6:30.\nThe train leaves at a quarter past eight.\nThe word quarter means “one of four equal parts”.\nA quarter past eight means 8:15.\nThe concert starts at eight fifteen.\nThe word concert means “music for an audience”.\nThe word fifteen means “the number 15”.\nYou can just say the numbers: eight fifteen is 8:15.\nMore words: four — “the number 4”, ring — “to make a bell sound”.\nMore words: thirty — “the number 30”, eleven — “the number 11”.\nMore words: leaves — “goes away”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:08.11",
+          "say": {
+            "ru": "зэ гэ́йт о́упенз эт ха́ф па́ст си́кс",
+            "uk": "зе ге́йт о́упенз ет ха́ф па́ст сі́кс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.12",
+          "say": {
+            "ru": "зэ трэ́йн ли́вз эт э куо́тер па́ст э́йт",
+            "uk": "зе тре́йн лі́вз ет е куо́тер па́ст е́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.14",
+          "say": {
+            "ru": "зэ дэ́ск кло́узиз эт ха́ф па́ст фо́р",
+            "uk": "зе де́ск кло́узіз ет ха́ф па́ст фо́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.16",
+          "say": {
+            "ru": "зэ ко́нсерт ста́ртс эт э́йт фифти́н",
+            "uk": "зе ко́нсерт ста́ртс ет е́йт фіфті́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.17",
+          "say": {
+            "ru": "зи эла́рм ри́нгз эт си́кс сэ́рти",
+            "uk": "зі ела́рм рі́нгз ет сі́кс се́рті"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.48",
+          "say": {
+            "ru": "зэ ла́ст ба́с ли́вз эт или́вен",
+            "uk": "зе ла́ст ба́с лі́вз ет ілі́вен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ворота открываются в половине седьмого.»",
+            "uk": "Виберіть, як сказати: «Ворота відчиняються о пів на сьому.»",
+            "en": "Choose how to say: “The gate opens at half past six.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:08.11",
+          "options": [
+            "en-classic-r1:08.11",
+            "en-classic-r1:08.12",
+            "en-classic-r1:08.14"
+          ],
+          "answerId": "en-classic-r1:08.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд отправляется в четверть девятого.»",
+            "uk": "Виберіть, як сказати: «Поїзд відправляється о чверть на дев'яту.»",
+            "en": "Choose how to say: “The train leaves at a quarter past eight.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.12",
+          "options": [
+            "en-classic-r1:08.12",
+            "en-classic-r1:08.11",
+            "en-classic-r1:08.16"
+          ],
+          "answerId": "en-classic-r1:08.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Концерт начинается в восемь пятнадцать.»",
+            "uk": "Виберіть, як сказати: «Концерт починається о восьмій п'ятнадцять.»",
+            "en": "Choose how to say: “The concert starts at eight fifteen.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.16",
+          "options": [
+            "en-classic-r1:08.16",
+            "en-classic-r1:08.17",
+            "en-classic-r1:08.48"
+          ],
+          "answerId": "en-classic-r1:08.16"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "В какой день",
+        "uk": "У який день",
+        "en": "Which day"
+      },
+      "text": {
+        "ru": "Перед днём недели ставят on: on Tuesday — «во вторник».\nWe meet on Tuesday. — Мы встречаемся во вторник.\nЧитается: уи ми́т он тью́здей.\nСлово tuesday значит «вторник».\nThey arrive on Monday. — Они приезжают в понедельник.\nЧитается: зэй эра́йв он ма́ндэй.\nСлово arrive значит «приезжать, прибывать». Слово monday — «понедельник».\nПро них — arrive, без s на конце.\nThe market opens on Saturdays. — Рынок открыт по субботам.\nЧитается: зэ ма́ркит о́упенз он сэ́тердэйз.\nСлово market значит «рынок». Слово saturdays — «субботы».\nДень с s на конце значит «каждую неделю»: on Saturdays — «по субботам».\nСлова: shopping — «покупки», wednesday — «среда», thursday — «четверг».",
+        "uk": "Перед днем тижня ставлять on: on Tuesday — «у вівторок».\nWe meet on Tuesday. — Ми зустрічаємося у вівторок.\nЧитається: уи мі́т он тью́здей.\nСлово tuesday означає «вівторок».\nThey arrive on Monday. — Вони прибувають у понеділок.\nЧитається: зей ера́йв он ма́ндей.\nСлово arrive означає «прибувати». Слово monday — «понеділок».\nПро них — arrive, без s на кінці.\nThe market opens on Saturdays. — Ринок відкривається по суботах.\nЧитається: зе ма́ркіт о́упенз он се́тердейз.\nСлово market означає «ринок». Слово saturdays — «суботи».\nДень з s на кінці означає «щотижня»: on Saturdays — «по суботах».\nСлова: shopping — «покупки», wednesday — «середа», thursday — «четвер».",
+        "en": "Before a day we say on: on Tuesday.\nWe meet on Tuesday.\nThe word tuesday means “the day after Monday”.\nThey arrive on Monday.\nThe word arrive means “to get to a place”.\nThe word monday means “the first day of the week”.\nFor them: arrive, no s on the end.\nThe market opens on Saturdays.\nThe word market means “a place to buy food outside”.\nThe word saturdays means “every Saturday”.\nA day with s on the end means every week: on Saturdays.\nMore words: shopping — “buying things in shops”, wednesday — “the day after Tuesday”.\nMore words: thursday — “the day after Wednesday”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:08.03",
+          "say": {
+            "ru": "уи ми́т он тью́здей",
+            "uk": "уи мі́т он тью́здей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.08",
+          "say": {
+            "ru": "зэй эра́йв он ма́ндэй",
+            "uk": "зей ера́йв он ма́ндей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.25",
+          "say": {
+            "ru": "зэ ма́ркит о́упенз он сэ́тердэйз",
+            "uk": "зе ма́ркіт о́упенз он се́тердейз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.30",
+          "say": {
+            "ru": "уи ду́ зэ шо́пинг он са́ндэйз",
+            "uk": "уі ду́ зе шо́пінг он са́ндейз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы встречаемся во вторник.»",
+            "uk": "Виберіть, як сказати: «Ми зустрічаємося у вівторок.»",
+            "en": "Choose how to say: “We meet on Tuesday.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:08.03",
+          "options": [
+            "en-classic-r1:08.03",
+            "en-classic-r1:08.08",
+            "en-classic-r1:08.25"
+          ],
+          "answerId": "en-classic-r1:08.03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они приезжают в понедельник.»",
+            "uk": "Виберіть, як сказати: «Вони прибувають у понеділок.»",
+            "en": "Choose how to say: “They arrive on Monday.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.08",
+          "options": [
+            "en-classic-r1:08.08",
+            "en-classic-r1:08.03",
+            "en-classic-r1:08.30"
+          ],
+          "answerId": "en-classic-r1:08.08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Рынок открыт по субботам.»",
+            "uk": "Виберіть, як сказати: «Ринок відкривається по суботах.»",
+            "en": "Choose how to say: “The market opens on Saturdays.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.25",
+          "options": [
+            "en-classic-r1:08.25",
+            "en-classic-r1:08.30",
+            "en-classic-r1:08.03"
+          ],
+          "answerId": "en-classic-r1:08.25"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Срок и праздники",
+        "uk": "Строк і свята",
+        "en": "Due dates and holidays"
+      },
+      "text": {
+        "ru": "Так говорят о сроках, праздниках и датах.\nThe bill is due on Friday. — Счет нужно оплатить в пятницу.\nЧитается: зэ би́л из дью́ он фра́йдэй.\nСлово bill значит «счёт». Слово due — «нужно оплатить».\nThe office closes on public holidays. — Офис закрыт в праздничные дни.\nЧитается: зи о́фис кло́узиз он па́блик хо́лидэйз.\nСлово public значит «общественный». Слово holidays — «праздники».\npublic holidays — «праздничные дни».\nСлова: first — «первый», May — «май», of — «из, от».\nСлова: birthday — «день рождения», year — «год».",
+        "uk": "Так кажуть про строки, свята й дати.\nThe bill is due on Friday. — Рахунок має бути сплачений у п'ятницю.\nЧитається: зе бі́л із дью́ он фра́йдей.\nСлово bill означає «рахунок». Слово due — «має бути сплачено».\nThe office closes on public holidays. — Офіс зачиняється у святкові дні.\nЧитається: зі о́фіс кло́узіз он па́блік хо́лідейз.\nСлово public означає «громадський». Слово holidays — «свята».\npublic holidays — «святкові дні».\nСлова: first — «перший», May — «травень», of — «з, від».\nСлова: birthday — «день народження», year — «рік».",
+        "en": "We use these for deadlines, holidays and dates.\nThe bill is due on Friday.\nThe word bill means “a paper that asks for money”.\nThe word due means “has to be paid”.\nThe office closes on public holidays.\nThe word public means “for everyone”. The word holidays means “days off work”.\nPublic holidays are days off for everyone.\nMore words: first — “number one in order”, May — “the fifth month”.\nMore words: of — “a small word that links two things”.\nMore words: birthday — “the day you were born”, year — “12 months”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:08.23",
+          "say": {
+            "ru": "зэ би́л из дью́ он фра́йдэй",
+            "uk": "зе бі́л із дью́ он фра́йдей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.21",
+          "say": {
+            "ru": "зи о́фис кло́узиз он па́блик хо́лидэйз",
+            "uk": "зі о́фіс кло́узіз он па́блік хо́лідейз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.27",
+          "say": {
+            "ru": "зэ рэ́нт из дью́ он зэ фэ́рст ов мэ́й",
+            "uk": "зе ре́нт із дью́ он зе фе́рст ов ме́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.28",
+          "say": {
+            "ru": "хё́р бэ́рсдэй из он нью́ йи́рз дэ́й",
+            "uk": "хьо́р бе́рсдей із он нью́ йі́рз де́й"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Счет нужно оплатить в пятницу.»",
+            "uk": "Виберіть, як сказати: «Рахунок має бути сплачений у п'ятницю.»",
+            "en": "Choose how to say: “The bill is due on Friday.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:08.23",
+          "options": [
+            "en-classic-r1:08.23",
+            "en-classic-r1:08.21",
+            "en-classic-r1:08.27"
+          ],
+          "answerId": "en-classic-r1:08.23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Офис закрыт в праздничные дни.»",
+            "uk": "Виберіть, як сказати: «Офіс зачиняється у святкові дні.»",
+            "en": "Choose how to say: “The office closes on public holidays.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.21",
+          "options": [
+            "en-classic-r1:08.21",
+            "en-classic-r1:08.28",
+            "en-classic-r1:08.23"
+          ],
+          "answerId": "en-classic-r1:08.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Арендная плата должна быть внесена первого мая.»",
+            "uk": "Виберіть, як сказати: «Орендна плата має бути сплачена першого травня.»",
+            "en": "Choose how to say: “The rent is due on the first of May.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.27",
+          "options": [
+            "en-classic-r1:08.27",
+            "en-classic-r1:08.23",
+            "en-classic-r1:08.28"
+          ],
+          "answerId": "en-classic-r1:08.27"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Месяцы и сезоны",
+        "uk": "Місяці та сезони",
+        "en": "Months and seasons"
+      },
+      "text": {
+        "ru": "Перед месяцем и сезоном ставят in: in July — «в июле».\nI travel in July. — Я путешествую в июле.\nЧитается: ай трэ́вел ин джула́й.\nСлово travel значит «путешествовать». Слово July — «июль».\nThe days are short in winter. — Дни зимой короткие.\nЧитается: зэ дэ́йз а́р шо́рт ин уи́нтер.\nСлово short значит «короткий». Слово winter — «зима».\nСлова: hot — «жаркий», summer — «лето», beautiful — «красивый», autumn — «осень».\nСлова: timetable — «расписание», April — «апрель», spring — «весна», June — «июнь».\nСлова: January — «январь», September — «сентябрь», course — «курс», club — «клуб».",
+        "uk": "Перед місяцем і сезоном ставлять in: in July — «у липні».\nI travel in July. — Я подорожую в липні.\nЧитається: ай тре́вел ін джула́й.\nСлово travel означає «подорожувати». Слово July — «липень».\nThe days are short in winter. — Взимку дні короткі.\nЧитається: зе де́йз а́р шо́рт ін уі́нтер.\nСлово short означає «короткий». Слово winter — «зима».\nСлова: hot — «спекотний», summer — «літо», beautiful — «красивий», autumn — «осінь».\nСлова: timetable — «розклад», April — «квітень», spring — «весна», June — «червень».\nСлова: January — «січень», September — «вересень», course — «курс», club — «клуб».",
+        "en": "Before a month or season we say in: in July.\nI travel in July.\nThe word travel means “to go to far places”.\nThe word July means “the seventh month”.\nThe days are short in winter.\nThe word short means “not long”. The word winter means “the coldest season”.\nMore words: hot — “very warm”, summer — “the warmest season”.\nMore words: beautiful — “very nice to see”, autumn — “the season before winter”.\nMore words: timetable — “a list of times”, April — “the fourth month”.\nMore words: spring — “the season after winter”, June — “the sixth month”.\nMore words: January — “the first month”, September — “the ninth month”.\nMore words: course — “a set of lessons”, club — “a group that meets”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:08.05",
+          "say": {
+            "ru": "ай трэ́вел ин джула́й",
+            "uk": "ай тре́вел ін джула́й"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.31",
+          "say": {
+            "ru": "зэ дэ́йз а́р шо́рт ин уи́нтер",
+            "uk": "зе де́йз а́р шо́рт ін уі́нтер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.33",
+          "say": {
+            "ru": "зэ ки́чен гэ́тс хо́т ин са́мер",
+            "uk": "зе кі́чен ге́тс хо́т ін са́мер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.39",
+          "say": {
+            "ru": "зэ га́рден из бью́тифул ин о́том",
+            "uk": "зе га́рден із бью́тіфул ін о́том"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.38",
+          "say": {
+            "ru": "зэ нью́ та́ймтэйбл ста́ртс ин э́йприл",
+            "uk": "зе нью́ та́ймтейбл ста́ртс ін е́йпріл"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я путешествую в июле.»",
+            "uk": "Виберіть, як сказати: «Я подорожую в липні.»",
+            "en": "Choose how to say: “I travel in July.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:08.05",
+          "options": [
+            "en-classic-r1:08.05",
+            "en-classic-r1:08.31",
+            "en-classic-r1:08.33"
+          ],
+          "answerId": "en-classic-r1:08.05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дни зимой короткие.»",
+            "uk": "Виберіть, як сказати: «Взимку дні короткі.»",
+            "en": "Choose how to say: “The days are short in winter.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.31",
+          "options": [
+            "en-classic-r1:08.31",
+            "en-classic-r1:08.33",
+            "en-classic-r1:08.39"
+          ],
+          "answerId": "en-classic-r1:08.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Новое расписание вступает в силу в апреле.»",
+            "uk": "Виберіть, як сказати: «Новий розклад починається у квітні.»",
+            "en": "Choose how to say: “The new timetable starts in April.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.38",
+          "options": [
+            "en-classic-r1:08.38",
+            "en-classic-r1:08.05",
+            "en-classic-r1:08.39"
+          ],
+          "answerId": "en-classic-r1:08.38"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Каждый день и скоро",
+        "uk": "Щодня і скоро",
+        "en": "Every day and soon"
+      },
+      "text": {
+        "ru": "Эти слова помогают сказать, как часто и когда.\nI work every Monday. — Я работаю каждый понедельник.\nЧитается: ай уо́рк э́ври ма́ндэй.\nСлово every значит «каждый».\nПеред every слова on не нужно: every Monday — «каждый понедельник».\nThe film starts tonight. — Фильм начинается сегодня вечером.\nЧитается: зэ фи́лм ста́ртс туна́йт.\nСлово film значит «фильм». Слово tonight — «сегодня вечером».\nСлова at и in со словом tonight не нужны.\nI see him every morning. — Я вижу его каждое утро.\nЧитается: ай си́ хи́м э́ври мо́рнинг.\nСлово see значит «видеть». Слово morning — «утро».\nСлова: dentist — «стоматолог», before — «до», week — «неделя».",
+        "uk": "Ці слова допомагають сказати, як часто і коли.\nI work every Monday. — Я працюю щопонеділка.\nЧитається: ай уо́рк е́врі ма́ндей.\nСлово every означає «кожен».\nПеред every слова on не треба: every Monday — «щопонеділка».\nThe film starts tonight. — Фільм починається сьогодні ввечері.\nЧитається: зе фі́лм ста́ртс туна́йт.\nСлово film означає «фільм». Слово tonight — «сьогодні ввечері».\nСлова at та in зі словом tonight не потрібні.\nI see him every morning. — Я бачу його щоранку.\nЧитається: ай сі́ хі́м е́врі мо́рнінг.\nСлово see означає «бачити». Слово morning — «ранок».\nСлова: dentist — «стоматолог», before — «до», week — «тиждень».",
+        "en": "These words say how often and when.\nI work every Monday.\nThe word every means “each one”.\nWith every we do not say on.\nThe film starts tonight.\nThe word film means “a movie”. The word tonight means “this evening”.\nWe do not say at or in with tonight.\nI see him every morning.\nThe word see means “to look at with your eyes”.\nThe word morning means “the early part of the day”.\nMore words: dentist — “a doctor for teeth”, before — “earlier than”.\nMore words: week — “seven days”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:08.41",
+          "say": {
+            "ru": "ай уо́рк э́ври ма́ндэй",
+            "uk": "ай уо́рк е́врі ма́ндей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.43",
+          "say": {
+            "ru": "зэ фи́лм ста́ртс туна́йт",
+            "uk": "зе фі́лм ста́ртс туна́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.44",
+          "say": {
+            "ru": "ай си́ хи́м э́ври мо́рнинг",
+            "uk": "ай сі́ хі́м е́врі мо́рнінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.49",
+          "say": {
+            "ru": "ай хэ́в э дэ́нтистс эпо́йнтмент он тью́здэй",
+            "uk": "ай хе́в е де́нтістс епо́йнтмент он тью́здей"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:08.50",
+          "say": {
+            "ru": "ду́ уи хэ́в та́йм бифо́р зэ трэ́йн ли́вз эт си́кс",
+            "uk": "ду́ уі хе́в та́йм біфо́р зе тре́йн лі́вз ет сі́кс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я работаю каждый понедельник.»",
+            "uk": "Виберіть, як сказати: «Я працюю щопонеділка.»",
+            "en": "Choose how to say: “I work every Monday.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:08.41",
+          "options": [
+            "en-classic-r1:08.41",
+            "en-classic-r1:08.43",
+            "en-classic-r1:08.44"
+          ],
+          "answerId": "en-classic-r1:08.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Фильм начинается сегодня вечером.»",
+            "uk": "Виберіть, як сказати: «Фільм починається сьогодні ввечері.»",
+            "en": "Choose how to say: “The film starts tonight.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.43",
+          "options": [
+            "en-classic-r1:08.43",
+            "en-classic-r1:08.44",
+            "en-classic-r1:08.49"
+          ],
+          "answerId": "en-classic-r1:08.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вижу его каждое утро.»",
+            "uk": "Виберіть, як сказати: «Я бачу його щоранку.»",
+            "en": "Choose how to say: “I see him every morning.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:08.44",
+          "options": [
+            "en-classic-r1:08.44",
+            "en-classic-r1:08.41",
+            "en-classic-r1:08.49"
+          ],
+          "answerId": "en-classic-r1:08.44"
+        }
+      ]
+    }
+  ]
+}

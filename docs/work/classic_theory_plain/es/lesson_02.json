@@ -1,0 +1,510 @@
+{
+  "lang": "es",
+  "lesson": 2,
+  "title": {
+    "ru": "Когда кого-то или чего-то нет",
+    "uk": "Коли когось або чогось немає",
+    "en": "When someone or something is not there"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Слово no",
+        "uk": "Слово no",
+        "en": "The word no"
+      },
+      "text": {
+        "ru": "Вы уже знаете: Estoy en casa. — «Я дома.»\nДобавьте слово no — и получится «не дома».\nNo estoy en casa. — «Я не дома.»\nЧитается: но эсто́й эн ка́са.\nСлово no значит «не».\nСлово no стоит прямо перед estoy и estamos. Больше ничего не меняется.",
+        "uk": "Ви вже знаєте: Estoy en casa. — «Я вдома.»\nДодайте слово no — і вийде «не вдома».\nNo estoy en casa. — «Я не вдома.»\nЧитається: но есто́й ен ка́са.\nСлово no означає «не».\nСлово no стоїть прямо перед estoy та estamos. Більше нічого не змінюється.",
+        "en": "You already know: Estoy en casa. — “I am at home.”\nAdd the word no — and you get “not at home”.\nNo estoy en casa. — “I am not at home.”\nThe word no means “not”.\nThe word no stands right before estoy and estamos. Nothing else changes."
+      },
+      "examples": [
+        {
+          "phraseId": "es:02:01",
+          "say": {
+            "ru": "но эсто́й эн ка́са",
+            "uk": "но есто́й ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:02:03",
+          "say": {
+            "ru": "но эсто́й эн кла́се",
+            "uk": "но есто́й ен кла́се"
+          }
+        },
+        {
+          "phraseId": "es:02:04",
+          "say": {
+            "ru": "но эста́мос эн кла́се",
+            "uk": "но еста́мос ен кла́се"
+          }
+        },
+        {
+          "phraseId": "es:02:05",
+          "say": {
+            "ru": "но эста́мос эн ка́са",
+            "uk": "но еста́мос ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:02:11",
+          "say": {
+            "ru": "но эсто́й ле́хос",
+            "uk": "но есто́й ле́хос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не дома»",
+            "uk": "Виберіть, як сказати: «Я не вдома»",
+            "en": "Choose how to say: “I am not at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:02:01",
+          "options": [
+            "es:02:01",
+            "es:02:05",
+            "es:02:03"
+          ],
+          "answerId": "es:02:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не на занятии»",
+            "uk": "Виберіть, як сказати: «Ми не на занятті»",
+            "en": "Choose how to say: “We are not in class”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:04",
+          "options": [
+            "es:02:04",
+            "es:02:05",
+            "es:02:03"
+          ],
+          "answerId": "es:02:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я недалеко»",
+            "uk": "Виберіть, як сказати: «Я недалеко»",
+            "en": "Choose how to say: “I am not far”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:11",
+          "options": [
+            "es:02:11",
+            "es:02:01",
+            "es:02:03"
+          ],
+          "answerId": "es:02:11"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Другие люди",
+        "uk": "Інші люди",
+        "en": "Other people"
+      },
+      "text": {
+        "ru": "Так же говорят о других людях.\nAna no está en casa. — «Ана не дома.»\nЧитается: А́на но эста́ эн ка́са.\nСлово no стоит перед está.\nЛюдей несколько? Тогда вместо está говорят están, «находятся».",
+        "uk": "Так само говорять про інших людей.\nAna no está en casa. — «Ана не вдома.»\nЧитається: А́на но еста́ ен ка́са.\nСлово no стоїть перед está.\nЛюдей кілька? Тоді замість está кажуть están, «перебувають».",
+        "en": "You say it the same way about other people.\nAna no está en casa. — “Ana is not at home.”\nThe word no stands before está.\nSeveral people? Then instead of está you say están, “are located”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:02:06",
+          "say": {
+            "ru": "А́на но эста́ эн ка́са",
+            "uk": "А́на но еста́ ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:02:07",
+          "say": {
+            "ru": "Луи́с но эста́ эн кла́се",
+            "uk": "Луі́с но еста́ ен кла́се"
+          }
+        },
+        {
+          "phraseId": "es:02:25",
+          "say": {
+            "ru": "э́йос но эста́н эн ка́са",
+            "uk": "е́йос но еста́н ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:02:26",
+          "say": {
+            "ru": "А́на и Луи́с но эста́н эн ка́са",
+            "uk": "А́на і Луі́с но еста́н ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана не дома»",
+            "uk": "Виберіть, як сказати: «Ана не вдома»",
+            "en": "Choose how to say: “Ana is not at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:02:06",
+          "options": [
+            "es:02:06",
+            "es:02:07",
+            "es:02:25"
+          ],
+          "answerId": "es:02:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис не на занятии»",
+            "uk": "Виберіть, як сказати: «Луїс не на занятті»",
+            "en": "Choose how to say: “Luis is not in class”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:07",
+          "options": [
+            "es:02:07",
+            "es:02:06",
+            "es:02:25"
+          ],
+          "answerId": "es:02:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они не дома»",
+            "uk": "Виберіть, як сказати: «Вони не вдома»",
+            "en": "Choose how to say: “They are not at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:25",
+          "options": [
+            "es:02:25",
+            "es:02:06",
+            "es:02:07"
+          ],
+          "answerId": "es:02:25"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Здесь нет",
+        "uk": "Тут немає",
+        "en": "Not here"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Аны здесь нет».\nAna no está aquí. — «Аны здесь нет.»\nЧитается: А́на но эста́ аки́.\nПо-русски говорят «здесь нет», а по-испански — «не находится здесь».\nСмысл один и тот же.\nТеперь о вещах.\nLa llave no está aquí. — «Ключа здесь нет.»\nЧитается: ла йа́ве но эста́ аки́.\nСлово llave значит «ключ».\nСлова la, el, los, las стоят перед названием вещи.\nЗапоминайте их вместе со словом: по-русски их нет.\nВещей несколько? Тогда las и están: llaves — «ключи».",
+        "uk": "Дивіться, як сказати «Ани тут немає».\nAna no está aquí. — «Ани тут немає.»\nЧитається: А́на но еста́ акі́.\nУкраїнською кажуть «тут немає», а іспанською — «не перебуває тут». Зміст той самий.\nТепер про речі.\nLa llave no está aquí. — «Ключа тут немає.»\nЧитається: ла йа́ве но еста́ акі́.\nСлово llave означає «ключ».\nСлова la, el, los, las стоять перед назвою речі.\nЗапам’ятовуйте їх разом зі словом: українською їх немає.\nРечей кілька? Тоді las і están: llaves — «ключі».",
+        "en": "Look at how to say “Ana is not here”.\nAna no está aquí. — “Ana is not here.”\nIn Spanish you say “is not located here”.\nThe meaning is the same.\nNow about things.\nLa llave no está aquí. — “The key is not here.”\nThe word llave means “key”.\nThe words la, el, los, las stand before the name of a thing.\nThey mean “the”: learn each one together with its word.\nSeveral things? Then las and están: llaves means “keys”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:02:08",
+          "say": {
+            "ru": "А́на но эста́ аки́",
+            "uk": "А́на но еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:02:10",
+          "say": {
+            "ru": "А́на и Луи́с но эста́н аки́",
+            "uk": "А́на і Луі́с но еста́н акі́"
+          }
+        },
+        {
+          "phraseId": "es:02:31",
+          "say": {
+            "ru": "ла йа́ве но эста́ аки́",
+            "uk": "ла йа́ве но еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:02:32",
+          "say": {
+            "ru": "лас йа́вес но эста́н аки́",
+            "uk": "лас йа́вес но еста́н акі́"
+          }
+        },
+        {
+          "phraseId": "es:02:33",
+          "say": {
+            "ru": "эль мо́виль но эста́ аки́",
+            "uk": "ель мо́віль но еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:02:34",
+          "say": {
+            "ru": "ла мочи́ла но эста́ аки́",
+            "uk": "ла мочі́ла но еста́ акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Аны здесь нет»",
+            "uk": "Виберіть, як сказати: «Ани тут немає»",
+            "en": "Choose how to say: “Ana is not here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:02:08",
+          "options": [
+            "es:02:08",
+            "es:02:10",
+            "es:02:31"
+          ],
+          "answerId": "es:02:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключа здесь нет»",
+            "uk": "Виберіть, як сказати: «Ключа тут немає»",
+            "en": "Choose how to say: “The key is not here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:31",
+          "options": [
+            "es:02:31",
+            "es:02:32",
+            "es:02:08"
+          ],
+          "answerId": "es:02:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Телефона здесь нет»",
+            "uk": "Виберіть, як сказати: «Телефону тут немає»",
+            "en": "Choose how to say: “The phone is not here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:33",
+          "options": [
+            "es:02:33",
+            "es:02:34",
+            "es:02:31"
+          ],
+          "answerId": "es:02:33"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Магазин, аптека, офис",
+        "uk": "Магазин, аптека, офіс",
+        "en": "Shop, pharmacy, office"
+      },
+      "text": {
+        "ru": "Теперь три новых места.\nNo estoy en la tienda. — «Я не в магазине.»\nЧитается: но эсто́й эн ла тье́нда.\nСлово tienda значит «магазин». Слово en значит «в».\nСлово farmacia значит «аптека», oficina — «офис».",
+        "uk": "Тепер три нових місця.\nNo estoy en la tienda. — «Я не в магазині.»\nЧитається: но есто́й ен ла тьє́нда.\nСлово tienda означає «магазин». Слово en означає «в».\nСлово farmacia означає «аптека», oficina — «офіс».",
+        "en": "Now three new places.\nNo estoy en la tienda. — “I am not in the shop.”\nThe word tienda means “shop”. The word en means “in”.\nThe word farmacia means “pharmacy”, oficina means “office”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:02:16",
+          "say": {
+            "ru": "но эсто́й эн ла тье́нда",
+            "uk": "но есто́й ен ла тьє́нда"
+          }
+        },
+        {
+          "phraseId": "es:02:17",
+          "say": {
+            "ru": "э́йя но эста́ эн ла фарма́сья",
+            "uk": "е́йя но еста́ ен ла фарма́сья"
+          }
+        },
+        {
+          "phraseId": "es:02:18",
+          "say": {
+            "ru": "эль но эста́ эн ла офиси́на",
+            "uk": "ель но еста́ ен ла офісі́на"
+          }
+        },
+        {
+          "phraseId": "es:02:19",
+          "say": {
+            "ru": "но эсто́й эн ла офиси́на",
+            "uk": "но есто́й ен ла офісі́на"
+          }
+        },
+        {
+          "phraseId": "es:02:15",
+          "say": {
+            "ru": "ла тье́нда но эста́ се́рка",
+            "uk": "ла тьє́нда но еста́ се́рка"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не в магазине»",
+            "uk": "Виберіть, як сказати: «Я не в магазині»",
+            "en": "Choose how to say: “I am not in the shop”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:02:16",
+          "options": [
+            "es:02:16",
+            "es:02:17",
+            "es:02:18"
+          ],
+          "answerId": "es:02:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не в аптеке»",
+            "uk": "Виберіть, як сказати: «Вона не в аптеці»",
+            "en": "Choose how to say: “She is not at the pharmacy”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:17",
+          "options": [
+            "es:02:17",
+            "es:02:16",
+            "es:02:18"
+          ],
+          "answerId": "es:02:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не в офисе»",
+            "uk": "Виберіть, як сказати: «Він не в офісі»",
+            "en": "Choose how to say: “He is not in the office”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:18",
+          "options": [
+            "es:02:18",
+            "es:02:17",
+            "es:02:16"
+          ],
+          "answerId": "es:02:18"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Сумка и карман",
+        "uk": "Сумка і кишеня",
+        "en": "Bag and pocket"
+      },
+      "text": {
+        "ru": "Теперь сумка и карман.\nEl móvil no está en el bolso. — «Телефон не в сумке.»\nЧитается: эль мо́виль но эста́ эн эль бо́льсо.\nСлово móvil значит «телефон». Слово bolso значит «сумка».\nСлово bolsillo значит «карман».",
+        "uk": "Тепер сумка і кишеня.\nEl móvil no está en el bolso. — «Телефон не в сумці.»\nЧитається: ель мо́віль но еста́ ен ель бо́льсо.\nСлово móvil означає «телефон». Слово bolso означає «сумка».\nСлово bolsillo означає «кишеня».",
+        "en": "Now the bag and the pocket.\nEl móvil no está en el bolso. — “The phone is not in the bag.”\nThe word móvil means “phone”. The word bolso means “bag”.\nThe word bolsillo means “pocket”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:02:43",
+          "say": {
+            "ru": "эль мо́виль но эста́ эн эль бо́льсо",
+            "uk": "ель мо́віль но еста́ ен ель бо́льсо"
+          }
+        },
+        {
+          "phraseId": "es:02:44",
+          "say": {
+            "ru": "эль мо́виль но эста́ эн эль больси́йо",
+            "uk": "ель мо́віль но еста́ ен ель больсі́йо"
+          }
+        },
+        {
+          "phraseId": "es:02:45",
+          "say": {
+            "ru": "ла йа́ве но эста́ эн эль больси́йо",
+            "uk": "ла йа́ве но еста́ ен ель больсі́йо"
+          }
+        },
+        {
+          "phraseId": "es:02:41",
+          "say": {
+            "ru": "ла йа́ве но эста́ эн эль бо́льсо",
+            "uk": "ла йа́ве но еста́ ен ель бо́льсо"
+          }
+        },
+        {
+          "phraseId": "es:02:38",
+          "say": {
+            "ru": "эль мо́виль но эста́ эн эль ко́че",
+            "uk": "ель мо́віль но еста́ ен ель ко́че"
+          }
+        },
+        {
+          "phraseId": "es:02:35",
+          "say": {
+            "ru": "эль ли́бро но эста́ эн ла ме́са",
+            "uk": "ель лі́бро но еста́ ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:02:50",
+          "say": {
+            "ru": "лос ли́брос но эста́н эн ла офиси́на",
+            "uk": "лос лі́брос но еста́н ен ла офісі́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Телефон не в сумке»",
+            "uk": "Виберіть, як сказати: «Телефон не в сумці»",
+            "en": "Choose how to say: “The phone is not in the bag”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:02:43",
+          "options": [
+            "es:02:43",
+            "es:02:44",
+            "es:02:38"
+          ],
+          "answerId": "es:02:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Телефон не в кармане»",
+            "uk": "Виберіть, як сказати: «Телефон не в кишені»",
+            "en": "Choose how to say: “The phone is not in the pocket”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:44",
+          "options": [
+            "es:02:44",
+            "es:02:43",
+            "es:02:38"
+          ],
+          "answerId": "es:02:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ не в сумке»",
+            "uk": "Виберіть, як сказати: «Ключ не в сумці»",
+            "en": "Choose how to say: “The key is not in the bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:02:41",
+          "options": [
+            "es:02:41",
+            "es:02:45",
+            "es:02:43"
+          ],
+          "answerId": "es:02:41"
+        }
+      ]
+    }
+  ]
+}

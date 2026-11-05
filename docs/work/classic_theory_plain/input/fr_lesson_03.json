@@ -1,0 +1,386 @@
+{
+ "lang": "fr",
+ "lesson": 3,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:03:01",
+   "target": "Tu es là ?",
+   "ru": "Ты там?",
+   "uk": "Ти там?"
+  },
+  {
+   "id": "fr:03:02",
+   "target": "Tu es ici ?",
+   "ru": "Ты здесь?",
+   "uk": "Ти тут?"
+  },
+  {
+   "id": "fr:03:03",
+   "target": "Tu es prêt ?",
+   "ru": "Ты готов?",
+   "uk": "Ти готовий?"
+  },
+  {
+   "id": "fr:03:04",
+   "target": "Elle est prête ?",
+   "ru": "Она готова?",
+   "uk": "Вона готова?"
+  },
+  {
+   "id": "fr:03:05",
+   "target": "Paul est au bureau ?",
+   "ru": "Поль в офисе?",
+   "uk": "Пол в офісі?"
+  },
+  {
+   "id": "fr:03:06",
+   "target": "Léa est à la gare ?",
+   "ru": "Леа на вокзале?",
+   "uk": "Леа на вокзалі?"
+  },
+  {
+   "id": "fr:03:07",
+   "target": "Vous êtes à la maison ?",
+   "ru": "Вы дома?",
+   "uk": "Ви вдома?"
+  },
+  {
+   "id": "fr:03:08",
+   "target": "Ils sont dehors ?",
+   "ru": "Они на улице?",
+   "uk": "Вони надворі?"
+  },
+  {
+   "id": "fr:03:09",
+   "target": "Nous sommes en retard ?",
+   "ru": "Мы опаздываем?",
+   "uk": "Ми запізнюємося?"
+  },
+  {
+   "id": "fr:03:10",
+   "target": "Vous êtes libre ?",
+   "ru": "Вы свободны?",
+   "uk": "Ви вільні?"
+  },
+  {
+   "id": "fr:03:11",
+   "target": "Est-ce que tu es à la gare ?",
+   "ru": "Ты на вокзале?",
+   "uk": "Ти на вокзалі?"
+  },
+  {
+   "id": "fr:03:12",
+   "target": "Est-ce que la porte est ouverte ?",
+   "ru": "Дверь открыта?",
+   "uk": "Двері відчинені?"
+  },
+  {
+   "id": "fr:03:13",
+   "target": "Est-ce que le café est fermé ?",
+   "ru": "Кафе закрыто?",
+   "uk": "Кафе зачинене?"
+  },
+  {
+   "id": "fr:03:14",
+   "target": "Est-ce que la salle est libre ?",
+   "ru": "Комната свободна?",
+   "uk": "Кімната вільна?"
+  },
+  {
+   "id": "fr:03:15",
+   "target": "Est-ce que les clés sont ici ?",
+   "ru": "Ключи здесь?",
+   "uk": "Ключі тут?"
+  },
+  {
+   "id": "fr:03:16",
+   "target": "Est-ce que le train est à l’heure ?",
+   "ru": "Поезд идёт по расписанию?",
+   "uk": "Поїзд іде за розкладом?"
+  },
+  {
+   "id": "fr:03:17",
+   "target": "Est-ce que vous êtes en avance ?",
+   "ru": "Вы пришли раньше времени?",
+   "uk": "Ви прийшли завчасно?"
+  },
+  {
+   "id": "fr:03:18",
+   "target": "Est-ce que Paul est fatigué ?",
+   "ru": "Поль устал?",
+   "uk": "Пол втомився?"
+  },
+  {
+   "id": "fr:03:19",
+   "target": "Est-ce que les enfants sont prêts ?",
+   "ru": "Дети готовы?",
+   "uk": "Діти готові?"
+  },
+  {
+   "id": "fr:03:20",
+   "target": "Est-ce que la chambre est propre ?",
+   "ru": "Комната чистая?",
+   "uk": "Кімната чиста?"
+  },
+  {
+   "id": "fr:03:21",
+   "target": "Le guichet est ouvert ?",
+   "ru": "Касса открыта?",
+   "uk": "Каса відкрита?"
+  },
+  {
+   "id": "fr:03:22",
+   "target": "L’entrée est là ?",
+   "ru": "Вход там?",
+   "uk": "Вхід там?"
+  },
+  {
+   "id": "fr:03:23",
+   "target": "L’arrêt est loin ?",
+   "ru": "Остановка далеко?",
+   "uk": "Зупинка далеко?"
+  },
+  {
+   "id": "fr:03:24",
+   "target": "Le quai est en face ?",
+   "ru": "Перрон напротив?",
+   "uk": "Перон навпроти?"
+  },
+  {
+   "id": "fr:03:25",
+   "target": "La sortie est à gauche ?",
+   "ru": "Выход слева?",
+   "uk": "Вихід ліворуч?"
+  },
+  {
+   "id": "fr:03:26",
+   "target": "Le parking est à droite ?",
+   "ru": "Парковка справа?",
+   "uk": "Парковка праворуч?"
+  },
+  {
+   "id": "fr:03:27",
+   "target": "Le musée est ouvert aujourd’hui ?",
+   "ru": "Музей сегодня открыт?",
+   "uk": "Музей сьогодні відкритий?"
+  },
+  {
+   "id": "fr:03:28",
+   "target": "Les toilettes sont au fond ?",
+   "ru": "Туалет в глубине зала?",
+   "uk": "Туалет у глибині зали?"
+  },
+  {
+   "id": "fr:03:29",
+   "target": "Le magasin est près d’ici ?",
+   "ru": "Магазин находится рядом?",
+   "uk": "Магазин поруч?"
+  },
+  {
+   "id": "fr:03:30",
+   "target": "La pharmacie est ouverte ce soir ?",
+   "ru": "Аптека открыта сегодня вечером?",
+   "uk": "Аптека відчинена сьогодні ввечері?"
+  },
+  {
+   "id": "fr:03:31",
+   "target": "Est-ce que Léa est avec toi ?",
+   "ru": "Леа с тобой?",
+   "uk": "Леа з тобою?"
+  },
+  {
+   "id": "fr:03:32",
+   "target": "Est-ce que le sac est dans le bus ?",
+   "ru": "Сумка в автобусе?",
+   "uk": "Сумка в автобусі?"
+  },
+  {
+   "id": "fr:03:33",
+   "target": "Est-ce que la fenêtre est fermée ?",
+   "ru": "Окно закрыто?",
+   "uk": "Вікно зачинене?"
+  },
+  {
+   "id": "fr:03:34",
+   "target": "Est-ce que la table est libre ?",
+   "ru": "Столик свободен?",
+   "uk": "Столик вільний?"
+  },
+  {
+   "id": "fr:03:35",
+   "target": "Est-ce que les billets sont dans ta poche ?",
+   "ru": "Билеты у тебя в кармане?",
+   "uk": "Квитки у тебе в кишені?"
+  },
+  {
+   "id": "fr:03:36",
+   "target": "Est-ce que le couloir est sombre ?",
+   "ru": "В коридоре темно?",
+   "uk": "У коридорі темно?"
+  },
+  {
+   "id": "fr:03:37",
+   "target": "Est-ce que le vélo est à la maison ?",
+   "ru": "Велосипед дома?",
+   "uk": "Велосипед вдома?"
+  },
+  {
+   "id": "fr:03:38",
+   "target": "Est-ce que la salle est vide ?",
+   "ru": "Комната пуста?",
+   "uk": "Кімната порожня?"
+  },
+  {
+   "id": "fr:03:39",
+   "target": "Est-ce que le téléphone est sur la table ?",
+   "ru": "Телефон на столе?",
+   "uk": "Телефон на столі?"
+  },
+  {
+   "id": "fr:03:40",
+   "target": "Est-ce que vous êtes près de l’entrée ?",
+   "ru": "Вы рядом с входом?",
+   "uk": "Ви біля входу?"
+  },
+  {
+   "id": "fr:03:41",
+   "target": "Le prochain bus est déjà là ?",
+   "ru": "Следующий автобус уже здесь?",
+   "uk": "Наступний автобус вже тут?"
+  },
+  {
+   "id": "fr:03:42",
+   "target": "Les deux portes sont fermées ?",
+   "ru": "Обе двери закрыты?",
+   "uk": "Обидві двері зачинені?"
+  },
+  {
+   "id": "fr:03:43",
+   "target": "La clé est dans la serrure ?",
+   "ru": "Ключ в замке?",
+   "uk": "Ключ у замку?"
+  },
+  {
+   "id": "fr:03:44",
+   "target": "Le train est sur ce quai ?",
+   "ru": "Поезд у этой платформы?",
+   "uk": "Поїзд біля цієї платформи?"
+  },
+  {
+   "id": "fr:03:45",
+   "target": "La sortie est près du guichet ?",
+   "ru": "Выход рядом с кассой?",
+   "uk": "Вихід біля каси?"
+  },
+  {
+   "id": "fr:03:46",
+   "target": "Tu es seul ce soir ?",
+   "ru": "Ты сегодня вечером один?",
+   "uk": "Ти сьогодні ввечері один?"
+  },
+  {
+   "id": "fr:03:47",
+   "target": "Vous êtes ici pour le concert ?",
+   "ru": "Вы пришли на концерт?",
+   "uk": "Ви прийшли на концерт?"
+  },
+  {
+   "id": "fr:03:48",
+   "target": "La chambre est au premier étage ?",
+   "ru": "Комната на втором этаже?",
+   "uk": "Кімната на другому поверсі?"
+  },
+  {
+   "id": "fr:03:49",
+   "target": "Les enfants sont avec vous ?",
+   "ru": "Дети с вами?",
+   "uk": "Діти з вами?"
+  },
+  {
+   "id": "fr:03:50",
+   "target": "Le déjeuner est prêt ?",
+   "ru": "Обед готов?",
+   "uk": "Обід готовий?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le quai",
+   "ru": "платформа, перрон",
+   "uk": "платформа, перон"
+  },
+  {
+   "lemma": "le guichet",
+   "ru": "касса, окошко обслуживания",
+   "uk": "каса, віконце обслуговування"
+  },
+  {
+   "lemma": "la sortie",
+   "ru": "выход",
+   "uk": "вихід"
+  },
+  {
+   "lemma": "la poche",
+   "ru": "карман",
+   "uk": "кишеню"
+  },
+  {
+   "lemma": "la serrure",
+   "ru": "замок в двери",
+   "uk": "замок у двері"
+  },
+  {
+   "lemma": "l’entrée (f.)",
+   "ru": "вход",
+   "uk": "вхід"
+  },
+  {
+   "lemma": "le parking",
+   "ru": "парковка",
+   "uk": "паркінг"
+  }
+ ],
+ "knownWords": [
+  "ici",
+  "la gare",
+  "la clé",
+  "la fenêtre",
+  "prêt / prête",
+  "être",
+  "je / j’",
+  "tu",
+  "nous",
+  "vous",
+  "la maison",
+  "le bureau",
+  "la porte",
+  "ensemble",
+  "le magasin",
+  "le sac",
+  "le couloir",
+  "la chambre",
+  "le ticket",
+  "la pharmacie",
+  "en retard",
+  "la table",
+  "la salle",
+  "le train",
+  "le billet",
+  "le vélo",
+  "le bus",
+  "le musée"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь: `je suis`, `tu es`"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»: `ne … pas`"
+  }
+ ],
+ "oldTopicTitle": "Проверить догадку: вопрос «да или нет»",
+ "oldTheoryRu": "Неизвестно лишь, верно ли сообщение. Оставь слова простого утверждения, но произнеси их как вопрос. Такой вопрос отличается от вопроса «где?»: здесь достаточно «да» или «нет». Чтобы явно обозначить вопрос, начни с `est-ce que`. Потом поставь обычное сообщение: кто, глагол, остальное. Не нужно ещё раз переставлять подлежащее за глаголом. В вопросе всё ещё важно, о ком он. Несколько ключей требуют `sont`. Один поезд требует `est`. Само начало `est-ce que` на этот выбор не влияет. Вокзал — хорошее место для коротких уточнений. Спрашивая, далеко ли остановка или слева ли выход, не заменяй вопрос словом «где», если тебе нужно подтвердить конкретную догадку. В конструкции `est-ce que` первое слово содержит дефис, а `que` пишется отдельно. Перед гласной получим `qu’`: это не отдельная дополнительная плитка со звуком `e`. Полезное изменение: добавь `déjà`, когда спрашиваешь «уже?». Не добавляй его автоматически ко всем вопросам: иначе появится ожидание, которого не было в задании. Разные формулировки одного вопроса могут быть правильными. Короткая разговорная и форма с `est-ce que` не меняют запрос. Учись узнавать обе, не удваивая маркеры вопроса."
+}

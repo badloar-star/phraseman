@@ -1,0 +1,551 @@
+{
+  "lang": "fr",
+  "lesson": 7,
+  "title": {
+    "ru": "Что мы делаем",
+    "uk": "Що ми робимо",
+    "en": "What we do"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я работаю",
+        "uk": "Я працюю",
+        "en": "I work"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я здесь работаю».\nJe travaille ici. — «Я здесь работаю.»\nЧитается: жё трава́й иси́.\nСлово travailler значит «работать». Слово ici значит «здесь».\nTu travailles ici. — «Ты работаешь здесь.»\nЧитается: тю трава́й иси́.\nLéa travaille ici. — «Леа здесь работает.»\nЧитается: леа́ трава́й иси́.\nСлово меняется, смотря о ком речь.\n«я» — travaille, «ты» — travailles, «она» — travaille.\nКонец слова не слышен: travaille и travailles звучат одинаково.",
+        "uk": "Дивіться, як сказати «Я тут працюю».\nJe travaille ici. — «Я тут працюю.»\nЧитається: жё трава́й ісі́.\nСлово travailler означає «працювати». Слово ici означає «тут».\nTu travailles ici. — «Ти працюєш тут.»\nЧитається: тю трава́й ісі́.\nLéa travaille ici. — «Леа тут працює.»\nЧитається: леа́ трава́й ісі́.\nСлово змінюється, залежно від того, про кого мова.\n«я» — travaille, «ти» — travailles, «вона» — travaille.\nКінець слова не чути: travaille і travailles звучать однаково.",
+        "en": "Look at how to say “I work here”.\nJe travaille ici. — “I work here.”\ntravailler means “to work”. ici means “here”.\nTu travailles ici. — “You work here.”\nLéa travaille ici. — “Léa works here.”\nThe word changes with who it is about.\n“I” — travaille, “you” — travailles, “she” — travaille.\nThe end of the word is silent: travaille and travailles sound the same."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:07:01",
+          "say": {
+            "ru": "жё трава́й иси́",
+            "uk": "жё трава́й ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:07:02",
+          "say": {
+            "ru": "тю трава́й иси́",
+            "uk": "тю трава́й ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:07:03",
+          "say": {
+            "ru": "леа́ трава́й иси́",
+            "uk": "леа́ трава́й ісі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Я здесь работаю»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я тут працюю»?",
+            "en": "Sample. Tap the right answer: how do you say “I work here”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:07:01",
+          "options": [
+            "fr:07:01",
+            "fr:07:02",
+            "fr:07:03"
+          ],
+          "answerId": "fr:07:01"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ты работаешь здесь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ти працюєш тут»?",
+            "en": "Tap the right answer: how do you say “You work here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:02",
+          "options": [
+            "fr:07:02",
+            "fr:07:03",
+            "fr:07:01"
+          ],
+          "answerId": "fr:07:02"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Леа здесь работает»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Леа тут працює»?",
+            "en": "Tap the right answer: how do you say “Léa works here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:03",
+          "options": [
+            "fr:07:03",
+            "fr:07:01",
+            "fr:07:02"
+          ],
+          "answerId": "fr:07:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мы, вы, они",
+        "uk": "Ми, ви, вони",
+        "en": "We, you, they"
+      },
+      "text": {
+        "ru": "Теперь «мы работаем», «вы работаете» и «они работают».\nNous travaillons ensemble. — «Мы работаем вместе.»\nЧитается: ну травайо́н анса́нбль.\nСлово ensemble значит «вместе».\nVous travaillez ensemble. — «Вы работаете вместе.»\nЧитается: ву травайе́ анса́нбль.\nIls travaillent dehors. — «Они работают на улице.»\nЧитается: иль трава́й дёо́р.\nСлово ils значит «они». Слово dehors значит «на улице».\nДля «мы» говорят travaillons, для «вы» — travaillez, для «они» — travaillent.\nКонец слова travaillent не слышен.",
+        "uk": "Тепер «ми працюємо», «ви працюєте» і «вони працюють».\nNous travaillons ensemble. — «Ми працюємо разом.»\nЧитається: ну травайо́н анса́нбль.\nСлово ensemble означає «разом».\nVous travaillez ensemble. — «Ви працюєте разом.»\nЧитається: ву травайе́ анса́нбль.\nIls travaillent dehors. — «Вони працюють надворі.»\nЧитається: іль трава́й дёо́р.\nСлово ils означає «вони». Слово dehors означає «надворі».\nДля «ми» кажуть travaillons, для «ви» — travaillez, для «вони» — travaillent.\nКінець слова travaillent не чути.",
+        "en": "Now “we work”, “you work” and “they work”.\nNous travaillons ensemble. — “We work together.”\nensemble means “together”.\nVous travaillez ensemble. — “You work together.”\nIls travaillent dehors. — “They work outside.”\nils means “they”. dehors means “outside”.\nFor “we” we say travaillons, for “you” — travaillez, for “they” — travaillent.\nThe end of travaillent is silent."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:07:04",
+          "say": {
+            "ru": "ну травайо́н анса́нбль",
+            "uk": "ну травайо́н анса́нбль"
+          }
+        },
+        {
+          "phraseId": "fr:07:05",
+          "say": {
+            "ru": "ву травайе́ анса́нбль",
+            "uk": "ву травайе́ анса́нбль"
+          }
+        },
+        {
+          "phraseId": "fr:07:06",
+          "say": {
+            "ru": "иль трава́й дёо́р",
+            "uk": "іль трава́й дёо́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Мы работаем вместе»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Ми працюємо разом»?",
+            "en": "Sample. Tap the right answer: how do you say “We work together”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:07:04",
+          "options": [
+            "fr:07:04",
+            "fr:07:05",
+            "fr:07:06"
+          ],
+          "answerId": "fr:07:04"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Вы работаете вместе»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ви працюєте разом»?",
+            "en": "Tap the right answer: how do you say “You work together”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:05",
+          "options": [
+            "fr:07:05",
+            "fr:07:04",
+            "fr:07:06"
+          ],
+          "answerId": "fr:07:05"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Они работают на улице»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Вони працюють надворі»?",
+            "en": "Tap the right answer: how do you say “They work outside”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:06",
+          "options": [
+            "fr:07:06",
+            "fr:07:04",
+            "fr:07:05"
+          ],
+          "answerId": "fr:07:06"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я живу",
+        "uk": "Я живу",
+        "en": "I live"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я живу в Лионе».\nJ’habite à Lyon. — «Я живу в Лионе.»\nЧитается: жаби́т а лио́н.\nСлово habiter значит «жить». Слово à значит «в».\nПеред habite слово je сокращают: j’habite. Первая буква слова habite не слышна.\nPaul habite près du marché. — «Поль живёт рядом с рынком.»\nЧитается: поль аби́т прэ дю марше́.\nСлова près du значат «рядом с».\nVous habitez en ville. — «Вы живёте в городе.»\nЧитается: ву забите́ ан виль.\nСлова en ville значат «в городе».\nСлово меняется: «я» — habite, «мы» — habitons, «вы» — habitez.\nСлово elles тоже значит «они» — когда речь о женщинах.",
+        "uk": "Дивіться, як сказати «Я живу в Ліоні».\nJ’habite à Lyon. — «Я живу в Ліоні.»\nЧитається: жабі́т а ліо́н.\nСлово habiter означає «жити». Слово à означає «в».\nПеред habite слово je скорочують: j’habite. Перша літера слова habite не чути.\nPaul habite près du marché. — «Поль живе поряд із ринком.»\nЧитається: поль абі́т пре дю марше́.\nСлова près du означають «поряд із».\nVous habitez en ville. — «Ви живете у місті.»\nЧитається: ву забіте́ ан віль.\nСлова en ville означають «у місті».\nСлово змінюється: «я» — habite, «ми» — habitons, «ви» — habitez.\nСлово elles теж означає «вони» — коли мова про жінок.",
+        "en": "Look at how to say “I live in Lyon”.\nJ’habite à Lyon. — “I live in Lyon.”\nhabiter means “to live”. à means “in”.\nBefore habite, je is shortened: j’habite. The first letter of habite is silent.\nPaul habite près du marché. — “Paul lives near the market.”\nprès du means “near”.\nVous habitez en ville. — “You live in the city.”\nen ville means “in the city”.\nThe word changes: “I” — habite, “we” — habitons, “you” — habitez.\nelles also means “they” — when it is about women."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:07:11",
+          "say": {
+            "ru": "жаби́т а лио́н",
+            "uk": "жабі́т а ліо́н"
+          }
+        },
+        {
+          "phraseId": "fr:07:12",
+          "say": {
+            "ru": "тю аби́т а лиль",
+            "uk": "тю абі́т а ліль"
+          }
+        },
+        {
+          "phraseId": "fr:07:13",
+          "say": {
+            "ru": "поль аби́т прэ дю марше́",
+            "uk": "поль абі́т пре дю марше́"
+          }
+        },
+        {
+          "phraseId": "fr:07:14",
+          "say": {
+            "ru": "ну забито́н а ла канпа́нь",
+            "uk": "ну забіто́н а ла канпа́нь"
+          }
+        },
+        {
+          "phraseId": "fr:07:15",
+          "say": {
+            "ru": "ву забите́ ан виль",
+            "uk": "ву забіте́ ан віль"
+          }
+        },
+        {
+          "phraseId": "fr:07:16",
+          "say": {
+            "ru": "эль заби́т иси́",
+            "uk": "ель забі́т ісі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Я живу в Лионе»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я живу в Ліоні»?",
+            "en": "Sample. Tap the right answer: how do you say “I live in Lyon”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:07:11",
+          "options": [
+            "fr:07:11",
+            "fr:07:12",
+            "fr:07:13"
+          ],
+          "answerId": "fr:07:11"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мы живём в сельской местности»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ми живемо в сільській місцевості»?",
+            "en": "Tap the right answer: how do you say “We live in the countryside”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:14",
+          "options": [
+            "fr:07:14",
+            "fr:07:15",
+            "fr:07:16"
+          ],
+          "answerId": "fr:07:14"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Они живут здесь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Вони живуть тут»?",
+            "en": "Tap the right answer: how do you say “They live here”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:16",
+          "options": [
+            "fr:07:16",
+            "fr:07:12",
+            "fr:07:13"
+          ],
+          "answerId": "fr:07:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я слушаю",
+        "uk": "Я слухаю",
+        "en": "I listen"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я слушаю радио».\nJ’écoute la radio. — «Я слушаю радио.»\nЧитается: жеку́т ла радио́.\nСлово écoute значит «слушаю, слушает». Слово la radio значит «радио».\nIl écoute un message. — «Он слушает сообщение.»\nЧитается: иль эку́т ён меса́ж.\nСлово message значит «сообщение».\nNous écoutons de la musique. — «Мы слушаем музыку.»\nЧитается: ну зэкуто́н дё ла мюзи́к.\nСлово меняется: «я» — écoute, «ты» — écoutes, «мы» — écoutons.\nПеред écoute слово je тоже сокращают: j’écoute.",
+        "uk": "Дивіться, як сказати «Я слухаю радіо».\nJ’écoute la radio. — «Я слухаю радіо.»\nЧитається: жеку́т ла радіо́.\nСлово écoute означає «слухаю, слухає». Слово la radio означає «радіо».\nIl écoute un message. — «Він слухає повідомлення.»\nЧитається: іль еку́т ён меса́ж.\nСлово message означає «повідомлення».\nNous écoutons de la musique. — «Ми слухаємо музику.»\nЧитається: ну зекуто́н дё ла мюзі́к.\nСлово змінюється: «я» — écoute, «ти» — écoutes, «ми» — écoutons.\nПеред écoute слово je теж скорочують: j’écoute.",
+        "en": "Look at how to say “I listen to the radio”.\nJ’écoute la radio. — “I listen to the radio.”\nécoute means “listen, listens”. la radio means “the radio”.\nIl écoute un message. — “He listens to a message.”\nmessage means “message”.\nNous écoutons de la musique. — “We listen to music.”\nThe word changes: “I” — écoute, “you” — écoutes, “we” — écoutons.\nBefore écoute, je is shortened too: j’écoute."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:07:17",
+          "say": {
+            "ru": "жеку́т ла радио́",
+            "uk": "жеку́т ла радіо́"
+          }
+        },
+        {
+          "phraseId": "fr:07:18",
+          "say": {
+            "ru": "тю эку́т ла радио́",
+            "uk": "тю еку́т ла радіо́"
+          }
+        },
+        {
+          "phraseId": "fr:07:19",
+          "say": {
+            "ru": "иль эку́т ён меса́ж",
+            "uk": "іль еку́т ён меса́ж"
+          }
+        },
+        {
+          "phraseId": "fr:07:20",
+          "say": {
+            "ru": "ну зэкуто́н дё ла мюзи́к",
+            "uk": "ну зекуто́н дё ла мюзі́к"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Я слушаю радио»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я слухаю радіо»?",
+            "en": "Sample. Tap the right answer: how do you say “I listen to the radio”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:07:17",
+          "options": [
+            "fr:07:17",
+            "fr:07:18",
+            "fr:07:19"
+          ],
+          "answerId": "fr:07:17"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Он слушает сообщение»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Він слухає повідомлення»?",
+            "en": "Tap the right answer: how do you say “He listens to a message”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:19",
+          "options": [
+            "fr:07:19",
+            "fr:07:17",
+            "fr:07:20"
+          ],
+          "answerId": "fr:07:19"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мы слушаем музыку»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ми слухаємо музику»?",
+            "en": "Tap the right answer: how do you say “We listen to music”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:20",
+          "options": [
+            "fr:07:20",
+            "fr:07:18",
+            "fr:07:19"
+          ],
+          "answerId": "fr:07:20"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Я ищу",
+        "uk": "Я шукаю",
+        "en": "I look for"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я ищу свои ключи».\nJe cherche mes clés. — «Я ищу свои ключи.»\nЧитается: жё шэрш мэ кле́.\nСлово chercher значит «искать». Слова mes clés значат «мои ключи».\nElle cherche la sortie. — «Она ищет выход.»\nЧитается: эль шэрш ла сорти́.\nNous cherchons un appartement. — «Мы ищем квартиру.»\nЧитается: ну шэршо́н ён апартема́н.\nСлово appartement значит «квартира».\nVous cherchez un hôtel ? — «Вы ищете отель?»\nЧитается: ву шэрше́ ён отэ́ль.\nСлово меняется: «я» — cherche, «мы» — cherchons, «вы» — cherchez.",
+        "uk": "Дивіться, як сказати «Я шукаю свої ключі».\nJe cherche mes clés. — «Я шукаю свої ключі.»\nЧитається: жё шерш ме кле́.\nСлово chercher означає «шукати». Слова mes clés означають «мої ключі».\nElle cherche la sortie. — «Вона шукає вихід.»\nЧитається: ель шерш ла сорті́.\nNous cherchons un appartement. — «Ми шукаємо квартиру.»\nЧитається: ну шершо́н ён апартема́н.\nСлово appartement означає «квартира».\nVous cherchez un hôtel ? — «Ви шукаєте готель?»\nЧитається: ву шерше́ ён оте́ль.\nСлово змінюється: «я» — cherche, «ми» — cherchons, «ви» — cherchez.",
+        "en": "Look at how to say “I am looking for my keys”.\nJe cherche mes clés. — “I am looking for my keys.”\nchercher means “to look for”. mes clés means “my keys”.\nElle cherche la sortie. — “She is looking for the exit.”\nNous cherchons un appartement. — “We are looking for an apartment.”\nappartement means “apartment”.\nVous cherchez un hôtel ? — “Are you looking for a hotel?”\nThe word changes: “I” — cherche, “we” — cherchons, “you” — cherchez."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:07:21",
+          "say": {
+            "ru": "жё шэрш мэ кле́",
+            "uk": "жё шерш ме кле́"
+          }
+        },
+        {
+          "phraseId": "fr:07:23",
+          "say": {
+            "ru": "эль шэрш ла сорти́",
+            "uk": "ель шерш ла сорті́"
+          }
+        },
+        {
+          "phraseId": "fr:07:25",
+          "say": {
+            "ru": "ву шэрше́ ён отэ́ль",
+            "uk": "ву шерше́ ён оте́ль"
+          }
+        },
+        {
+          "phraseId": "fr:07:44",
+          "say": {
+            "ru": "ну шэршо́н ён апартема́н",
+            "uk": "ну шершо́н ён апартема́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Я ищу свои ключи»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я шукаю свої ключі»?",
+            "en": "Sample. Tap the right answer: how do you say “I am looking for my keys”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:07:21",
+          "options": [
+            "fr:07:21",
+            "fr:07:23",
+            "fr:07:25"
+          ],
+          "answerId": "fr:07:21"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Вы ищете отель»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ви шукаєте готель»?",
+            "en": "Tap the right answer: how do you say “Are you looking for a hotel”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:25",
+          "options": [
+            "fr:07:25",
+            "fr:07:21",
+            "fr:07:44"
+          ],
+          "answerId": "fr:07:25"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мы ищем квартиру»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ми шукаємо квартиру»?",
+            "en": "Tap the right answer: how do you say “We are looking for an apartment”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:44",
+          "options": [
+            "fr:07:44",
+            "fr:07:23",
+            "fr:07:21"
+          ],
+          "answerId": "fr:07:44"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Я готовлю",
+        "uk": "Я готую",
+        "en": "I prepare"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я готовлю ужин».\nJe prépare le dîner. — «Я готовлю ужин.»\nЧитается: жё препа́р лё дине́.\nСлово préparer значит «готовить». Слово dîner значит «ужин».\nNous préparons les valises. — «Мы собираем чемоданы.»\nЧитается: ну препаро́н лэ вали́з.\nСлова les valises значат «чемоданы». С чемоданами préparer значит «собирать».\nPaul prépare du café. — «Поль варит кофе.»\nЧитается: поль препа́р дю кафе́.\nСлово café значит «кофе».\nСлово меняется: «я» — prépare, «ты» — prépares, «мы» — préparons.",
+        "uk": "Дивіться, як сказати «Я готую вечерю».\nJe prépare le dîner. — «Я готую вечерю.»\nЧитається: жё препа́р лё діне́.\nСлово préparer означає «готувати». Слово dîner означає «вечеря».\nNous préparons les valises. — «Ми пакуємо валізи.»\nЧитається: ну препаро́н ле валі́з.\nСлова les valises означають «валізи». З валізами préparer означає «пакувати».\nPaul prépare du café. — «Пол варить каву.»\nЧитається: поль препа́р дю кафе́.\nСлово café означає «кава».\nСлово змінюється: «я» — prépare, «ти» — prépares, «ми» — préparons.",
+        "en": "Look at how to say “I am making dinner”.\nJe prépare le dîner. — “I am making dinner.”\npréparer means “to prepare”. dîner means “dinner”.\nNous préparons les valises. — “We are packing the suitcases.”\nles valises means “the suitcases”. With suitcases, préparer means “to pack”.\nPaul prépare du café. — “Paul is making coffee.”\ncafé means “coffee”.\nThe word changes: “I” — prépare, “you” — prépares, “we” — préparons."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:07:31",
+          "say": {
+            "ru": "жё препа́р лё дине́",
+            "uk": "жё препа́р лё діне́"
+          }
+        },
+        {
+          "phraseId": "fr:07:32",
+          "say": {
+            "ru": "тю препа́р ла суп",
+            "uk": "тю препа́р ла суп"
+          }
+        },
+        {
+          "phraseId": "fr:07:33",
+          "say": {
+            "ru": "поль препа́р дю кафе́",
+            "uk": "поль препа́р дю кафе́"
+          }
+        },
+        {
+          "phraseId": "fr:07:34",
+          "say": {
+            "ru": "ну препаро́н лэ вали́з",
+            "uk": "ну препаро́н ле валі́з"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Я готовлю ужин»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я готую вечерю»?",
+            "en": "Sample. Tap the right answer: how do you say “I am making dinner”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:07:31",
+          "options": [
+            "fr:07:31",
+            "fr:07:32",
+            "fr:07:34"
+          ],
+          "answerId": "fr:07:31"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Поль варит кофе»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Пол варить каву»?",
+            "en": "Tap the right answer: how do you say “Paul is making coffee”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:33",
+          "options": [
+            "fr:07:33",
+            "fr:07:31",
+            "fr:07:34"
+          ],
+          "answerId": "fr:07:33"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мы собираем чемоданы»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ми пакуємо валізи»?",
+            "en": "Tap the right answer: how do you say “We are packing the suitcases”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:07:34",
+          "options": [
+            "fr:07:34",
+            "fr:07:32",
+            "fr:07:33"
+          ],
+          "answerId": "fr:07:34"
+        }
+      ]
+    }
+  ]
+}

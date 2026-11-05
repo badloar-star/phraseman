@@ -1,0 +1,46 @@
+{
+  "lang": "en",
+  "lesson": 3,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying what people do"
+      },
+      "text": {
+        "en": "Today you learn to say what people do.\nLike work, live, start and need.\nI work nearby.\nIt means: my work is close to here.\nWe start early.\nIt means: we begin when the day is young."
+      },
+      "exampleIds": [
+        "en-classic-r1:03.01",
+        "en-classic-r1:03.06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "One person gets an s"
+      },
+      "text": {
+        "en": "With I, you, we and they, the word stays short.\nI work nearby. We work nearby.\nWith one other person, add s.\nShe works nearby. He lives alone.\nA thing counts as one, too.\nThe shop opens at nine."
+      },
+      "exampleIds": [
+        "en-classic-r1:03.03",
+        "en-classic-r1:03.05",
+        "en-classic-r1:03.22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "What you will do now"
+      },
+      "text": {
+        "en": "You will pick the right word for each person.\nLook at who the sentence is about.\nIs it I, we, you or they? Keep the short word.\nIs it she, he or one thing? Add s.\nSome words change a little more.\nHe finishes late. She studies at home."
+      },
+      "exampleIds": [
+        "en-classic-r1:03.09",
+        "en-classic-r1:03.48"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,495 @@
+{
+  "lang": "fr",
+  "lesson": 6,
+  "title": {
+    "ru": "Где что лежит",
+    "uk": "Де що лежить",
+    "en": "Where things are"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "На, под, в",
+        "uk": "На, під, у",
+        "en": "On, under, in"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где лежит вещь.\nLa clé est sur la table. — «Ключ лежит на столе.»\nЧитается: ла кле́ э сюр ла табль.\nСлово sur значит «на».\nLe sac est sous la table. — «Сумка под столом.»\nЧитается: лё сак э су ла табль.\nСлово sous значит «под».\nLe billet est dans la poche. — «Билет в кармане.»\nЧитается: лё бийэ́ э дан ла пош.\nСлово dans значит «в».\nLes lunettes sont sur le lit. — «Очки лежат на кровати.»\nЧитается: лэ люнэ́т сон сюр лё ли.\nСлово lit значит «кровать».\nКогда вещей несколько, вместо est говорят sont.",
+        "uk": "Дивіться, як сказати, де лежить річ.\nLa clé est sur la table. — «Ключ на столі.»\nЧитається: ла кле́ е сюр ла табль.\nСлово sur означає «на».\nLe sac est sous la table. — «Сумка під столом.»\nЧитається: лё сак е су ла табль.\nСлово sous означає «під».\nLe billet est dans la poche. — «Квиток у кишені.»\nЧитається: лё бійе́ е дан ла пош.\nСлово dans означає «у».\nLes lunettes sont sur le lit. — «Окуляри на ліжку.»\nЧитається: ле люне́т сон сюр лё лі.\nСлово lit означає «ліжко».\nКоли речей кілька, замість est кажуть sont.",
+        "en": "Look at how to say where a thing is.\nLa clé est sur la table. — “The key is on the table.”\nsur means “on”.\nLe sac est sous la table. — “The bag is under the table.”\nsous means “under”.\nLe billet est dans la poche. — “The ticket is in the pocket.”\ndans means “in”.\nLes lunettes sont sur le lit. — “The glasses are on the bed.”\nlit means “bed”.\nWhen there are several things, we say sont instead of est."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:06:01",
+          "say": {
+            "ru": "ла кле́ э сюр ла табль",
+            "uk": "ла кле́ е сюр ла табль"
+          }
+        },
+        {
+          "phraseId": "fr:06:02",
+          "say": {
+            "ru": "лё сак э су ла табль",
+            "uk": "лё сак е су ла табль"
+          }
+        },
+        {
+          "phraseId": "fr:06:03",
+          "say": {
+            "ru": "лё бийэ́ э дан ла пош",
+            "uk": "лё бійе́ е дан ла пош"
+          }
+        },
+        {
+          "phraseId": "fr:06:04",
+          "say": {
+            "ru": "лэ люнэ́т сон сюр лё ли",
+            "uk": "ле люне́т сон сюр лё лі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Ключ лежит на столе»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Ключ на столі»?",
+            "en": "Sample. Tap the right answer: how do you say “The key is on the table”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:06:01",
+          "options": [
+            "fr:06:01",
+            "fr:06:02",
+            "fr:06:03"
+          ],
+          "answerId": "fr:06:01"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Билет в кармане»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Квиток у кишені»?",
+            "en": "Tap the right answer: how do you say “The ticket is in the pocket”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:03",
+          "options": [
+            "fr:06:03",
+            "fr:06:01",
+            "fr:06:04"
+          ],
+          "answerId": "fr:06:03"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Сумка под столом»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Сумка під столом»?",
+            "en": "Tap the right answer: how do you say “The bag is under the table”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:02",
+          "options": [
+            "fr:06:02",
+            "fr:06:01",
+            "fr:06:04"
+          ],
+          "answerId": "fr:06:02"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Вещи в доме",
+        "uk": "Речі в домі",
+        "en": "Things at home"
+      },
+      "text": {
+        "ru": "Теперь вещи дома.\nLe manteau est sur la chaise. — «Пальто лежит на стуле.»\nЧитается: лё манто́ э сюр ла шэз.\nСлово manteau значит «пальто».\nСлово chaise значит «стул».\nLa photo est dans le tiroir. — «Фотография в ящике.»\nЧитается: ла фото́ э дан лё тируа́р.\nСлово tiroir значит «ящик».\nLa veste est dans l’entrée. — «Куртка в прихожей.»\nЧитается: ла вест э дан лантре́.\nСлово veste значит «куртка».\nСлово l’entrée значит «вход» и «прихожая».\nLe chargeur est dans la chambre. — «Зарядное устройство в спальне.»\nЧитается: лё шаржёр э дан ла шанбр.\nСлово chargeur значит «зарядное устройство».\nLes clés de la voiture sont ici. — «Ключи от машины здесь.»\nЧитается: лэ кле́ дё ла вуату́р сон иси́.\nСлово voiture значит «машина».\nСлова de la voiture значат «от машины».\nLe nom est sur l’enveloppe. — «Имя на конверте.»\nЧитается: лё нон э сюр лановло́п.\nСлово l’enveloppe значит «конверт».\nСлово nom значит «имя».",
+        "uk": "Тепер речі вдома.\nLe manteau est sur la chaise. — «Пальто на стільці.»\nЧитається: лё манто́ е сюр ла шез.\nСлово manteau означає «пальто».\nСлово chaise означає «стілець».\nLa photo est dans le tiroir. — «Фотографія в шухляді.»\nЧитається: ла фото́ е дан лё тіруа́р.\nСлово tiroir означає «шухляда».\nLa veste est dans l’entrée. — «Куртка в передпокої.»\nЧитається: ла вест е дан лантре́.\nСлово veste означає «куртка».\nСлово l’entrée означає «вхід» і «передпокій».\nLe chargeur est dans la chambre. — «Зарядний пристрій у спальні.»\nЧитається: лё шаржёр е дан ла шанбр.\nСлово chargeur означає «зарядний пристрій».\nLes clés de la voiture sont ici. — «Ключі від машини тут.»\nЧитається: ле кле́ дё ла вуату́р сон ісі́.\nСлово voiture означає «машина».\nСлова de la voiture означають «від машини».\nLe nom est sur l’enveloppe. — «Ім'я на конверті.»\nЧитається: лё нон е сюр лановло́п.\nСлово l’enveloppe означає «конверт».\nСлово nom означає «ім’я».",
+        "en": "Now things at home.\nLe manteau est sur la chaise. — “The coat is on the chair.”\nmanteau means “coat”.\nchaise means “chair”.\nLa photo est dans le tiroir. — “The photo is in the drawer.”\ntiroir means “drawer”.\nLa veste est dans l’entrée. — “The jacket is in the hallway.”\nveste means “jacket”.\nl’entrée means “entrance” and “hallway”.\nLe chargeur est dans la chambre. — “The charger is in the bedroom.”\nchargeur means “charger”.\nLes clés de la voiture sont ici. — “The car keys are here.”\nvoiture means “car”.\nde la voiture means “of the car”.\nLe nom est sur l’enveloppe. — “The name is on the envelope.”\nl’enveloppe means “envelope”.\nnom means “name”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:06:31",
+          "say": {
+            "ru": "лё манто́ э сюр ла шэз",
+            "uk": "лё манто́ е сюр ла шез"
+          }
+        },
+        {
+          "phraseId": "fr:06:46",
+          "say": {
+            "ru": "ла фото́ э дан лё тируа́р",
+            "uk": "ла фото́ е дан лё тіруа́р"
+          }
+        },
+        {
+          "phraseId": "fr:06:32",
+          "say": {
+            "ru": "ла вест э дан лантре́",
+            "uk": "ла вест е дан лантре́"
+          }
+        },
+        {
+          "phraseId": "fr:06:39",
+          "say": {
+            "ru": "лё шаржёр э дан ла шанбр",
+            "uk": "лё шаржёр е дан ла шанбр"
+          }
+        },
+        {
+          "phraseId": "fr:06:47",
+          "say": {
+            "ru": "лэ кле́ дё ла вуату́р сон иси́",
+            "uk": "ле кле́ дё ла вуату́р сон ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:06:50",
+          "say": {
+            "ru": "лё нон э сюр лановло́п",
+            "uk": "лё нон е сюр лановло́п"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Пальто лежит на стуле»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Пальто на стільці»?",
+            "en": "Sample. Tap the right answer: how do you say “The coat is on the chair”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:06:31",
+          "options": [
+            "fr:06:31",
+            "fr:06:46",
+            "fr:06:32"
+          ],
+          "answerId": "fr:06:31"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Зарядное устройство в спальне»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Зарядний пристрій у спальні»?",
+            "en": "Tap the right answer: how do you say “The charger is in the bedroom”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:39",
+          "options": [
+            "fr:06:39",
+            "fr:06:32",
+            "fr:06:46"
+          ],
+          "answerId": "fr:06:39"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Имя на конверте»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ім'я на конверті»?",
+            "en": "Tap the right answer: how do you say “The name is on the envelope”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:50",
+          "options": [
+            "fr:06:50",
+            "fr:06:47",
+            "fr:06:31"
+          ],
+          "answerId": "fr:06:50"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Какой он",
+        "uk": "Який він",
+        "en": "What it is like"
+      },
+      "text": {
+        "ru": "Слово est ставят и перед описанием: «суп горячий».\nLa soupe est chaude. — «Суп горячий.»\nЧитается: ла суп э шод.\nСлово soupe значит «суп».\nСлово chaude значит «горячий».\nL’eau est froide. — «Вода холодная.»\nЧитается: ло э фруад.\nСлова l’eau est froide значат «вода холодная».\nLe jardin est petit. — «Сад небольшой.»\nЧитается: лё жарде́н э пти́.\nСлово jardin значит «сад».\nСлово petit значит «небольшой».\nLe marché est ouvert. — «Рынок открыт.»\nЧитается: лё марше́ э увэ́р.\nСлово marché значит «рынок».",
+        "uk": "Слово est ставлять і перед описом: «суп гарячий».\nLa soupe est chaude. — «Суп гарячий.»\nЧитається: ла суп е шод.\nСлово soupe означає «суп».\nСлово chaude означає «гарячий».\nL’eau est froide. — «Вода холодна.»\nЧитається: ло е фруад.\nСлова l’eau est froide означають «вода холодна».\nLe jardin est petit. — «Сад маленький.»\nЧитається: лё жарде́н е пті́.\nСлово jardin означає «сад».\nСлово petit означає «невеликий».\nLe marché est ouvert. — «Ринок відкритий.»\nЧитається: лё марше́ е уве́р.\nСлово marché означає «ринок».",
+        "en": "Est also comes before a description: “the soup is hot”.\nLa soupe est chaude. — “The soup is hot.”\nsoupe means “soup”.\nchaude means “hot”.\nL’eau est froide. — “The water is cold.”\nl’eau est froide means “the water is cold”.\nLe jardin est petit. — “The garden is small.”\njardin means “garden”.\npetit means “small”.\nLe marché est ouvert. — “The market is open.”\nmarché means “market”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:06:08",
+          "say": {
+            "ru": "ла суп э шод",
+            "uk": "ла суп е шод"
+          }
+        },
+        {
+          "phraseId": "fr:06:10",
+          "say": {
+            "ru": "ло э фруад",
+            "uk": "ло е фруад"
+          }
+        },
+        {
+          "phraseId": "fr:06:26",
+          "say": {
+            "ru": "лё жарде́н э пти́",
+            "uk": "лё жарде́н е пті́"
+          }
+        },
+        {
+          "phraseId": "fr:06:22",
+          "say": {
+            "ru": "лё марше́ э увэ́р",
+            "uk": "лё марше́ е уве́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Суп горячий»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Суп гарячий»?",
+            "en": "Sample. Tap the right answer: how do you say “The soup is hot”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:06:08",
+          "options": [
+            "fr:06:08",
+            "fr:06:10"
+          ],
+          "answerId": "fr:06:08"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Сад небольшой»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Сад маленький»?",
+            "en": "Tap the right answer: how do you say “The garden is small”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:26",
+          "options": [
+            "fr:06:26",
+            "fr:06:22",
+            "fr:06:10"
+          ],
+          "answerId": "fr:06:26"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Рынок открыт»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ринок відкритий»?",
+            "en": "Tap the right answer: how do you say “The market is open”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:22",
+          "options": [
+            "fr:06:22",
+            "fr:06:26",
+            "fr:06:08"
+          ],
+          "answerId": "fr:06:22"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Мне нравится",
+        "uk": "Мені подобається",
+        "en": "I like"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нравится кофе».\nJ’aime le café. — «Мне нравится кофе.»\nЧитается: жэм лё кафэ́.\nСлово aime значит «люблю, нравится».\nJ’aime le thé. — «Мне нравится чай.»\nЧитается: жэм лё тэ.\nElle aime la musique. — «Ей нравится музыка.»\nЧитается: эль эм ла мюзи́к.\nNous aimons les livres. — «Мы любим книги.»\nЧитается: ну зэмо́н лэ ливр.\nVous aimez la soupe ? — «Вам нравится суп?»\nЧитается: ву зэме́ ла суп.\nСлово меняется, смотря о ком речь: j’aime, elle aime, nous aimons, vous aimez.\nДля «мы» говорят aimons, для «вы» — aimez.\nJ’aime l’odeur du pain. — «Мне нравится запах хлеба.»\nЧитается: жэм лодёр дю пэн.\nСлова l’odeur du pain значат «запах хлеба».\nСлово pain значит «хлеб».",
+        "uk": "Дивіться, як сказати «Мені подобається кава».\nJ’aime le café. — «Я люблю каву.»\nЧитається: жем лё кафе́.\nСлово aime означає «люблю, подобається».\nJ’aime le thé. — «Я люблю чай.»\nЧитається: жем лё те.\nElle aime la musique. — «Їй подобається музика.»\nЧитається: ель ем ла мюзі́к.\nNous aimons les livres. — «Нам подобаються книги.»\nЧитається: ну земо́н ле лівр.\nVous aimez la soupe ? — «Ви любите суп?»\nЧитається: ву земе́ ла суп.\nСлово змінюється залежно від того, про кого мова.\nДля «ми» кажуть aimons, для «ви» — aimez.\nJ’aime l’odeur du pain. — «Мені подобається запах хліба.»\nЧитається: жем лодёр дю пен.\nСлова l’odeur du pain означають «запах хліба».\nСлово pain означає «хліб».",
+        "en": "Look at how to say “I like coffee”.\nJ’aime le café. — “I like coffee.”\naime means “like”.\nJ’aime le thé. — “I like tea.”\nElle aime la musique. — “She likes music.”\nNous aimons les livres. — “We love books.”\nVous aimez la soupe ? — “Do you like soup.”\nThe word changes with who it is about.\nFor “we” we say aimons, for “you” — aimez.\nJ’aime l’odeur du pain. — “I like the smell of bread.”\nl’odeur du pain means “the smell of bread”.\npain means “bread”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:06:11",
+          "say": {
+            "ru": "жэм лё кафэ́",
+            "uk": "жем лё кафе́"
+          }
+        },
+        {
+          "phraseId": "fr:06:12",
+          "say": {
+            "ru": "жэм лё тэ",
+            "uk": "жем лё те"
+          }
+        },
+        {
+          "phraseId": "fr:06:13",
+          "say": {
+            "ru": "эль эм ла мюзи́к",
+            "uk": "ель ем ла мюзі́к"
+          }
+        },
+        {
+          "phraseId": "fr:06:15",
+          "say": {
+            "ru": "ну зэмо́н лэ ливр",
+            "uk": "ну земо́н ле лівр"
+          }
+        },
+        {
+          "phraseId": "fr:06:19",
+          "say": {
+            "ru": "ву зэме́ ла суп",
+            "uk": "ву земе́ ла суп"
+          }
+        },
+        {
+          "phraseId": "fr:06:20",
+          "say": {
+            "ru": "жэм лодёр дю пэн",
+            "uk": "жем лодёр дю пен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Мне нравится кофе»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Я люблю каву»?",
+            "en": "Sample. Tap the right answer: how do you say “I like coffee”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:06:11",
+          "options": [
+            "fr:06:11",
+            "fr:06:12",
+            "fr:06:13"
+          ],
+          "answerId": "fr:06:11"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ей нравится музыка»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Їй подобається музика»?",
+            "en": "Tap the right answer: how do you say “She likes music”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:13",
+          "options": [
+            "fr:06:13",
+            "fr:06:11",
+            "fr:06:15"
+          ],
+          "answerId": "fr:06:13"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Вам нравится суп»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Ви любите суп»?",
+            "en": "Tap the right answer: how do you say “Do you like soup”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:19",
+          "options": [
+            "fr:06:19",
+            "fr:06:15",
+            "fr:06:12"
+          ],
+          "answerId": "fr:06:19"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Где находится",
+        "uk": "Де знаходиться",
+        "en": "Where it is"
+      },
+      "text": {
+        "ru": "Вы уже знаете «слева» и «справа». Теперь ещё места.\nL’entrée est à droite. — «Вход справа.»\nЧитается: лантре́ э а друа́т.\nL’ascenseur est à gauche. — «Лифт находится слева.»\nЧитается: лассансёр э а гош.\nСлово l’ascenseur значит «лифт».\nL’école est en face. — «Школа находится напротив.»\nЧитается: леко́ль э ан фас.\nL’hôtel est près de la gare. — «Отель рядом с вокзалом.»\nЧитается: лотэ́ль э прэ дё ла гар.\nСлова près de значат «рядом с».\nLa réception est en bas. — «Стойка регистрации внизу.»\nЧитается: ла ресепсьо́н э ан ба.\nСлова en bas значат «внизу».",
+        "uk": "Ви вже знаєте «ліворуч» і «праворуч». Тепер ще місця.\nL’entrée est à droite. — «Вхід праворуч.»\nЧитається: лантре́ е а друа́т.\nL’ascenseur est à gauche. — «Ліфт ліворуч.»\nЧитається: лассансёр е а гош.\nСлово l’ascenseur означає «ліфт».\nL’école est en face. — «Школа навпроти.»\nЧитається: леко́ль е ан фас.\nL’hôtel est près de la gare. — «Готель біля вокзалу.»\nЧитається: лоте́ль е пре дё ла гар.\nСлова près de означають «поруч із».\nLa réception est en bas. — «Стійка реєстрації внизу.»\nЧитається: ла ресепсьо́н е ан ба.\nСлова en bas означають «внизу».",
+        "en": "You already know “left” and “right”. Now more places.\nL’entrée est à droite. — “The entrance is on the right.”\nL’ascenseur est à gauche. — “The elevator is on the left.”\nl’ascenseur means “elevator”.\nL’école est en face. — “The school is opposite.”\nL’hôtel est près de la gare. — “The hotel is near the station.”\nprès de means “near”.\nLa réception est en bas. — “The reception is downstairs.”\nen bas means “downstairs”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:06:06",
+          "say": {
+            "ru": "лантре́ э а друа́т",
+            "uk": "лантре́ е а друа́т"
+          }
+        },
+        {
+          "phraseId": "fr:06:29",
+          "say": {
+            "ru": "лассансёр э а гош",
+            "uk": "лассансёр е а гош"
+          }
+        },
+        {
+          "phraseId": "fr:06:23",
+          "say": {
+            "ru": "леко́ль э ан фас",
+            "uk": "леко́ль е ан фас"
+          }
+        },
+        {
+          "phraseId": "fr:06:27",
+          "say": {
+            "ru": "лотэ́ль э прэ дё ла гар",
+            "uk": "лоте́ль е пре дё ла гар"
+          }
+        },
+        {
+          "phraseId": "fr:06:30",
+          "say": {
+            "ru": "ла ресепсьо́н э ан ба",
+            "uk": "ла ресепсьо́н е ан ба"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Вход справа»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Вхід праворуч»?",
+            "en": "Sample. Tap the right answer: how do you say “The entrance is on the right”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:06:06",
+          "options": [
+            "fr:06:06",
+            "fr:06:29",
+            "fr:06:23"
+          ],
+          "answerId": "fr:06:06"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Отель рядом с вокзалом»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Готель біля вокзалу»?",
+            "en": "Tap the right answer: how do you say “The hotel is near the station”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:27",
+          "options": [
+            "fr:06:27",
+            "fr:06:30",
+            "fr:06:23"
+          ],
+          "answerId": "fr:06:27"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Стойка регистрации внизу»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Стійка реєстрації внизу»?",
+            "en": "Tap the right answer: how do you say “The reception is downstairs”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:06:30",
+          "options": [
+            "fr:06:30",
+            "fr:06:29",
+            "fr:06:27"
+          ],
+          "answerId": "fr:06:30"
+        }
+      ]
+    }
+  ]
+}

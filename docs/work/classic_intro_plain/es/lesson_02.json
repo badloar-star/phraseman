@@ -1,0 +1,47 @@
+{
+  "lang": "es",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying “not”"
+      },
+      "text": {
+        "en": "Now you say where someone is not.\nEstoy en casa. = I am at home.\nNo estoy en casa. = I am not at home.\nNo means “not”. It goes right before the changing word.\nNo estás en casa. = You are not at home.\nNothing else in the sentence moves."
+      },
+      "exampleIds": [
+        "es:02:01",
+        "es:02:02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Name, no, then the word"
+      },
+      "text": {
+        "en": "With a name, the order is: name, no, changing word, place.\nAna no está en casa. = Ana is not at home.\nLuis no está aquí. = Luis is not here.\nAna y Luis no están aquí. = Ana and Luis are not here.\nNo always sits just before está or están."
+      },
+      "exampleIds": [
+        "es:02:06",
+        "es:02:09",
+        "es:02:10"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Spot the “no”"
+      },
+      "text": {
+        "en": "Next you pick the right sentence with or without “not”.\nFirst look for no. Then look at who it is about.\nNo estamos en clase. = We are not in class.\nLa estación no está lejos. = The station is not far away.\nLa estación means “the station”. Lejos means “far away”.\nNo estoy en la tienda. = I am not in the shop.\nLa tienda means “the shop”."
+      },
+      "exampleIds": [
+        "es:02:04",
+        "es:02:13",
+        "es:02:16"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 1,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Saying how you are"
+      },
+      "text": {
+        "en": "Start with a sentence you can say today.\nIch bin hier. = I am here.\nIch means “I”. Hier means “here”.\nBin means “am”. It sits in the middle, like in English.\nIch bin müde. = I am tired.\nMüde means “tired”. Change the last word, keep the rest."
+      },
+      "exampleIds": [
+        "de:01:01",
+        "de:01:04"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "The middle word changes"
+      },
+      "text": {
+        "en": "Say who, and the middle word changes.\nIch bin hier. = I am here.\nDu bist hier. = You are here.\nAnna ist hier. = Anna is here.\nWir sind hier. = We are here.\nEnglish does this too: I am, you are, she is.\nGerman uses bin, bist, ist, sind."
+      },
+      "exampleIds": [
+        "de:01:02",
+        "de:01:05",
+        "de:01:07"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Build it word by word"
+      },
+      "text": {
+        "en": "You will see a sentence in English.\nTap the German words one by one.\nAfter each tap, the next choices appear.\nDie Kinder sind bereit. = The children are ready.\nDie means “the”. Kinder means “children”. Bereit means “ready”.\nYou do not need commas or full stops."
+      },
+      "exampleIds": [
+        "de:01:20",
+        "de:01:18"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,664 @@
+{
+ "lang": "en",
+ "lesson": 5,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:05.01",
+   "target": "Do you drive?",
+   "ru": "Вы водите машину?",
+   "uk": "Ви керуєте автомобілем?"
+  },
+  {
+   "id": "en-classic-r1:05.02",
+   "target": "Does she drive?",
+   "ru": "Она водит машину?",
+   "uk": "Вона керує автомобілем?"
+  },
+  {
+   "id": "en-classic-r1:05.03",
+   "target": "Do they work nearby?",
+   "ru": "Они работают поблизости?",
+   "uk": "Вони працюють поруч?"
+  },
+  {
+   "id": "en-classic-r1:05.04",
+   "target": "Does he live nearby?",
+   "ru": "Он живет поблизости?",
+   "uk": "Він живе поруч?"
+  },
+  {
+   "id": "en-classic-r1:05.05",
+   "target": "Do you need a bag?",
+   "ru": "Вам нужна сумка?",
+   "uk": "Вам потрібна сумка?"
+  },
+  {
+   "id": "en-classic-r1:05.06",
+   "target": "Does she want tea?",
+   "ru": "Она хочет чаю?",
+   "uk": "Вона хоче чаю?"
+  },
+  {
+   "id": "en-classic-r1:05.07",
+   "target": "Do we need tickets?",
+   "ru": "Нам нужны билеты?",
+   "uk": "Нам потрібні квитки?"
+  },
+  {
+   "id": "en-classic-r1:05.08",
+   "target": "Does it work?",
+   "ru": "Это работает?",
+   "uk": "Це працює?"
+  },
+  {
+   "id": "en-classic-r1:05.09",
+   "target": "Do you take cards?",
+   "ru": "Вы принимаете карты?",
+   "uk": "Ви приймаєте картки?"
+  },
+  {
+   "id": "en-classic-r1:05.10",
+   "target": "Does he speak English?",
+   "ru": "Он говорит по-английски?",
+   "uk": "Він розмовляє англійською?"
+  },
+  {
+   "id": "en-classic-r1:05.11",
+   "target": "Do I need a receipt?",
+   "ru": "Мне нужен чек?",
+   "uk": "Мені потрібен чек?"
+  },
+  {
+   "id": "en-classic-r1:05.12",
+   "target": "Does the key fit?",
+   "ru": "Ключ подходит?",
+   "uk": "Ключ підходить?"
+  },
+  {
+   "id": "en-classic-r1:05.13",
+   "target": "Does this bus stop here?",
+   "ru": "Этот автобус останавливается здесь?",
+   "uk": "Цей автобус зупиняється тут?"
+  },
+  {
+   "id": "en-classic-r1:05.14",
+   "target": "Do these windows open?",
+   "ru": "Эти окна открываются?",
+   "uk": "Ці вікна відчиняються?"
+  },
+  {
+   "id": "en-classic-r1:05.15",
+   "target": "Does the door lock?",
+   "ru": "Дверь запирается?",
+   "uk": "Двері замикаються?"
+  },
+  {
+   "id": "en-classic-r1:05.16",
+   "target": "Do you sell stamps?",
+   "ru": "Вы продаете марки?",
+   "uk": "Ви продаєте марки?"
+  },
+  {
+   "id": "en-classic-r1:05.17",
+   "target": "Does the shop open early?",
+   "ru": "Магазин открывается рано?",
+   "uk": "Магазин відкривається рано?"
+  },
+  {
+   "id": "en-classic-r1:05.18",
+   "target": "Do the buses run on Sundays?",
+   "ru": "Автобусы ходят по воскресеньям?",
+   "uk": "Автобуси ходять по неділях?"
+  },
+  {
+   "id": "en-classic-r1:05.19",
+   "target": "Does the lift go down?",
+   "ru": "Лифт опускается?",
+   "uk": "Ліфт спускається?"
+  },
+  {
+   "id": "en-classic-r1:05.20",
+   "target": "Do we pay here?",
+   "ru": "Мы платим здесь?",
+   "uk": "Ми платимо тут?"
+  },
+  {
+   "id": "en-classic-r1:05.21",
+   "target": "Do you live on this street?",
+   "ru": "Вы живете на этой улице?",
+   "uk": "Ви живете на цій вулиці?"
+  },
+  {
+   "id": "en-classic-r1:05.22",
+   "target": "Does your flat have a balcony?",
+   "ru": "В вашей квартире есть балкон?",
+   "uk": "У вашій квартирі є балкон?"
+  },
+  {
+   "id": "en-classic-r1:05.23",
+   "target": "Do the rooms have heating?",
+   "ru": "В комнатах есть отопление?",
+   "uk": "У кімнатах є опалення?"
+  },
+  {
+   "id": "en-classic-r1:05.24",
+   "target": "Does your rent include water?",
+   "ru": "Ваша арендная плата включает воду?",
+   "uk": "Чи включає ваша орендна плата воду?"
+  },
+  {
+   "id": "en-classic-r1:05.25",
+   "target": "Do you share the kitchen?",
+   "ru": "Вы пользуетесь общей кухней?",
+   "uk": "Ви користуєтеся спільною кухнею?"
+  },
+  {
+   "id": "en-classic-r1:05.26",
+   "target": "Does the oven work?",
+   "ru": "Духовка работает?",
+   "uk": "Духовка працює?"
+  },
+  {
+   "id": "en-classic-r1:05.27",
+   "target": "Do you hear that noise?",
+   "ru": "Вы слышите этот шум?",
+   "uk": "Ви чуєте цей шум?"
+  },
+  {
+   "id": "en-classic-r1:05.28",
+   "target": "Does the gate shut by itself?",
+   "ru": "Ворота закрываются сами по себе?",
+   "uk": "Ворота зачиняються самі по собі?"
+  },
+  {
+   "id": "en-classic-r1:05.29",
+   "target": "Do we need a parking permit?",
+   "ru": "Нужен ли нам парковочный пропуск?",
+   "uk": "Чи потрібен нам дозвіл на паркування?"
+  },
+  {
+   "id": "en-classic-r1:05.30",
+   "target": "Does the landlord live nearby?",
+   "ru": "Живет ли арендодатель поблизости?",
+   "uk": "Чи орендодавець живе поруч?"
+  },
+  {
+   "id": "en-classic-r1:05.31",
+   "target": "Do you like your new shift?",
+   "ru": "Вам нравится ваша новая смена?",
+   "uk": "Чи подобається вам ваша нова зміна?"
+  },
+  {
+   "id": "en-classic-r1:05.32",
+   "target": "Does your team start early?",
+   "ru": "Ваша команда начинает работу рано?",
+   "uk": "Чи ваша команда починає роботу рано?"
+  },
+  {
+   "id": "en-classic-r1:05.33",
+   "target": "Do they wear a uniform?",
+   "ru": "Они носят униформу?",
+   "uk": "Чи носять вони уніформу?"
+  },
+  {
+   "id": "en-classic-r1:05.34",
+   "target": "Does your manager check the rota?",
+   "ru": "Ваш менеджер проверяет график работы?",
+   "uk": "Чи перевіряє ваш менеджер графік?"
+  },
+  {
+   "id": "en-classic-r1:05.35",
+   "target": "Do you get a lunch break?",
+   "ru": "У вас есть перерыв на обед?",
+   "uk": "Чи є у вас перерва на обід?"
+  },
+  {
+   "id": "en-classic-r1:05.36",
+   "target": "Does the printer need paper?",
+   "ru": "Нужна ли принтеру бумага?",
+   "uk": "Чи потрібен папір для принтера?"
+  },
+  {
+   "id": "en-classic-r1:05.37",
+   "target": "Do we sign this form?",
+   "ru": "Мы подписываем эту форму?",
+   "uk": "Чи підписуємо ми цю форму?"
+  },
+  {
+   "id": "en-classic-r1:05.38",
+   "target": "Does the office have a spare key?",
+   "ru": "Есть ли в офисе запасной ключ?",
+   "uk": "Чи є в офісі запасний ключ?"
+  },
+  {
+   "id": "en-classic-r1:05.39",
+   "target": "Do you keep the receipts?",
+   "ru": "Вы храните чеки?",
+   "uk": "Чи зберігаєте ви чеки?"
+  },
+  {
+   "id": "en-classic-r1:05.40",
+   "target": "Does your colleague work weekends?",
+   "ru": "Ваш коллега работает по выходным?",
+   "uk": "Чи працює ваш колега у вихідні?"
+  },
+  {
+   "id": "en-classic-r1:05.41",
+   "target": "Does this price include delivery?",
+   "ru": "Включает ли эта цена доставку?",
+   "uk": "Чи включає ця ціна доставку?"
+  },
+  {
+   "id": "en-classic-r1:05.42",
+   "target": "Do you need my address?",
+   "ru": "Вам нужен мой адрес?",
+   "uk": "Вам потрібна моя адреса?"
+  },
+  {
+   "id": "en-classic-r1:05.43",
+   "target": "Does the parcel fit in the box?",
+   "ru": "Помещается ли посылка в коробку?",
+   "uk": "Чи поміщається посилка в коробку?"
+  },
+  {
+   "id": "en-classic-r1:05.44",
+   "target": "Do you send a confirmation email?",
+   "ru": "Вы отправляете письмо с подтверждением?",
+   "uk": "Ви надсилаєте підтвердження електронною поштою?"
+  },
+  {
+   "id": "en-classic-r1:05.45",
+   "target": "Does anyone check the post?",
+   "ru": "Кто-нибудь проверяет почту?",
+   "uk": "Хтось перевіряє пошту?"
+  },
+  {
+   "id": "en-classic-r1:05.46",
+   "target": "Do I collect it here?",
+   "ru": "Мне забирать это здесь?",
+   "uk": "Мені забирати це тут?"
+  },
+  {
+   "id": "en-classic-r1:05.47",
+   "target": "Do I show my ticket at the gate?",
+   "ru": "Мне показывать свой билет на турникете?",
+   "uk": "Мені показувати свій квиток біля турнікета?"
+  },
+  {
+   "id": "en-classic-r1:05.48",
+   "target": "Does this train have a quiet carriage?",
+   "ru": "В этом поезде есть тихий вагон?",
+   "uk": "Чи є в цьому поїзді тихий вагон?"
+  },
+  {
+   "id": "en-classic-r1:05.49",
+   "target": "Do the doors open on the left?",
+   "ru": "Двери открываются слева?",
+   "uk": "Чи двері відчиняються ліворуч?"
+  },
+  {
+   "id": "en-classic-r1:05.50",
+   "target": "Do you know the next stop?",
+   "ru": "Вы знаете следующую остановку?",
+   "uk": "Ви знаєте наступну зупинку?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "sell",
+   "ru": "продавать",
+   "uk": "продати"
+  },
+  {
+   "lemma": "stamps",
+   "ru": "марки",
+   "uk": "марки"
+  },
+  {
+   "lemma": "sunday",
+   "ru": "воскресенье",
+   "uk": "неділя"
+  },
+  {
+   "lemma": "pay",
+   "ru": "платить",
+   "uk": "платити"
+  },
+  {
+   "lemma": "street",
+   "ru": "улица",
+   "uk": "вулиця"
+  },
+  {
+   "lemma": "balcony",
+   "ru": "балкон",
+   "uk": "балкон"
+  },
+  {
+   "lemma": "oven",
+   "ru": "духовка",
+   "uk": "духовка"
+  },
+  {
+   "lemma": "hear",
+   "ru": "слышать",
+   "uk": "чути"
+  },
+  {
+   "lemma": "noise",
+   "ru": "шум",
+   "uk": "шум"
+  },
+  {
+   "lemma": "park",
+   "ru": "припарковать транспортное средство; общественный парк",
+   "uk": "паркувати транспортний засіб; громадський парк"
+  },
+  {
+   "lemma": "permit",
+   "ru": "разрешение на парковку",
+   "uk": "дозвіл на паркування"
+  },
+  {
+   "lemma": "landlord",
+   "ru": "арендодатель",
+   "uk": "орендодавець"
+  },
+  {
+   "lemma": "new",
+   "ru": "новый",
+   "uk": "новий"
+  },
+  {
+   "lemma": "team",
+   "ru": "команда",
+   "uk": "команда"
+  },
+  {
+   "lemma": "wear",
+   "ru": "носить",
+   "uk": "носити"
+  },
+  {
+   "lemma": "uniform",
+   "ru": "униформа",
+   "uk": "форма"
+  },
+  {
+   "lemma": "manager",
+   "ru": "менеджер",
+   "uk": "менеджер"
+  },
+  {
+   "lemma": "rota",
+   "ru": "график работы",
+   "uk": "графік"
+  },
+  {
+   "lemma": "get",
+   "ru": "получить",
+   "uk": "отримувати"
+  },
+  {
+   "lemma": "break",
+   "ru": "короткий период отдыха; сломать или повредить",
+   "uk": "короткий період відпочинку; зламати або пошкодити"
+  },
+  {
+   "lemma": "printer",
+   "ru": "принтер",
+   "uk": "принтер"
+  },
+  {
+   "lemma": "paper",
+   "ru": "бумага",
+   "uk": "папір"
+  },
+  {
+   "lemma": "sign",
+   "ru": "подписать документ; вывеска с информацией",
+   "uk": "підписати документ; знак з інформацією"
+  },
+  {
+   "lemma": "form",
+   "ru": "документ для заполнения",
+   "uk": "документ для заповнення"
+  },
+  {
+   "lemma": "spare",
+   "ru": "дополнительный или в резерве",
+   "uk": "додатково або в резерві"
+  },
+  {
+   "lemma": "keep",
+   "ru": "хранить",
+   "uk": "зберегти"
+  },
+  {
+   "lemma": "colleague",
+   "ru": "коллега",
+   "uk": "колега"
+  },
+  {
+   "lemma": "weekends",
+   "ru": "выходные",
+   "uk": "вихідні"
+  },
+  {
+   "lemma": "delivery",
+   "ru": "доставка товаров",
+   "uk": "доставка товарів"
+  },
+  {
+   "lemma": "address",
+   "ru": "почтовый адрес",
+   "uk": "поштова адреса"
+  },
+  {
+   "lemma": "parcel",
+   "ru": "посылка для доставки",
+   "uk": "посилка для доставки"
+  },
+  {
+   "lemma": "box",
+   "ru": "коробка",
+   "uk": "скринька"
+  },
+  {
+   "lemma": "send",
+   "ru": "отправить",
+   "uk": "надіслати"
+  },
+  {
+   "lemma": "confirmation",
+   "ru": "подтверждение",
+   "uk": "підтвердження"
+  },
+  {
+   "lemma": "anyone",
+   "ru": "кто угодно",
+   "uk": "будь-хто"
+  },
+  {
+   "lemma": "post",
+   "ru": "отправить по почте",
+   "uk": "надіслати поштою"
+  },
+  {
+   "lemma": "collect",
+   "ru": "собирать",
+   "uk": "збирати"
+  },
+  {
+   "lemma": "quiet",
+   "ru": "тихий",
+   "uk": "тихо"
+  },
+  {
+   "lemma": "carriage",
+   "ru": "карета",
+   "uk": "каретка"
+  },
+  {
+   "lemma": "left",
+   "ru": "левая сторона",
+   "uk": "ліва сторона"
+  },
+  {
+   "lemma": "next",
+   "ru": "следующий",
+   "uk": "далі"
+  }
+ ],
+ "knownWords": [
+  "ready",
+  "busy",
+  "free",
+  "home",
+  "work",
+  "open",
+  "close",
+  "door",
+  "shop",
+  "light",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "room",
+  "warm",
+  "coffee",
+  "cold",
+  "bag",
+  "key",
+  "phone",
+  "kitchen",
+  "window",
+  "hand",
+  "seat",
+  "lift",
+  "stairs",
+  "safe",
+  "ticket",
+  "valid",
+  "platform",
+  "empty",
+  "station",
+  "last",
+  "wait",
+  "office",
+  "train",
+  "time",
+  "nearby",
+  "live",
+  "alone",
+  "start",
+  "finish",
+  "walk",
+  "need",
+  "help",
+  "want",
+  "tea",
+  "like",
+  "use",
+  "speak",
+  "english",
+  "stop",
+  "nine",
+  "leave",
+  "eight",
+  "class",
+  "ten",
+  "cafe",
+  "slowly",
+  "shift",
+  "soon",
+  "well",
+  "take",
+  "share",
+  "flat",
+  "check",
+  "email",
+  "cash",
+  "sister",
+  "night",
+  "together",
+  "sometimes",
+  "study",
+  "driver",
+  "know",
+  "way",
+  "gate",
+  "drive",
+  "smoke",
+  "eat",
+  "meat",
+  "entrance",
+  "accept",
+  "card",
+  "machine",
+  "coins",
+  "code",
+  "desk",
+  "carry",
+  "purse",
+  "lock",
+  "tap",
+  "charge",
+  "fit",
+  "shut",
+  "shoe",
+  "headphones",
+  "run",
+  "today",
+  "drink",
+  "cook",
+  "friday",
+  "lunch",
+  "usually",
+  "always",
+  "buy",
+  "bottle",
+  "water",
+  "message",
+  "feel",
+  "price",
+  "include",
+  "breakfast",
+  "cover",
+  "return",
+  "trip",
+  "receipt",
+  "show",
+  "date",
+  "rent",
+  "heating",
+  "go",
+  "son",
+  "milk",
+  "near",
+  "understand",
+  "word"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Где я и как я себя чувствую"
+  },
+  {
+   "lesson": 2,
+   "title": "Как переспросить и ответить коротко"
+  },
+  {
+   "lesson": 3,
+   "title": "Что я делаю обычно"
+  },
+  {
+   "lesson": 4,
+   "title": "Чего я не делаю"
+  }
+ ],
+ "oldTopicTitle": "Как задать вопрос о действии",
+ "oldTheoryRu": "Ты водишь? Do you drive? А она? Does she drive? Меняй первое слово по человеку; последним всё равно будет drive. Чтобы спросить о действии или услуге, поставь вспомогательный глагол на первое место. Так можно уточнить цену, расписание или что взять с собой. Чтобы спросить о действии или услуге, поставь вспомогательный глагол на первое место. Так можно уточнить цену, расписание или что взять с собой. Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`. Вопрос о состоянии строится с `be`: `Is the door open?` спрашивает, открыта ли дверь, а `Does the door lock?` — запирается ли она, то есть как она работает. Вынеси `do` или `does` вперёд, назови того, о ком спрашиваешь, затем поставь глагол без окончания: `Does the key fit?` Сравни с утверждением: `The key fits`. Спросите о новой работе Вы осматриваете квартиру. Узнайте, открываются ли окна и входит ли вода в арендную плату. В каждом вопросе своё подлежащее. Проверьте доставку или поездку"
+}

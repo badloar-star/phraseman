@@ -1,0 +1,47 @@
+{
+  "lang": "es",
+  "lesson": 3,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Asking a question"
+      },
+      "text": {
+        "en": "Now you ask where someone is.\n¿Estás en casa? = Are you at home?\nThe words are the same as in “You are at home”.\nA ¿ opens the question. A ? closes it.\nIn English, “are” jumps to the front. In Spanish, the words stay.\nYour voice goes up at the end."
+      },
+      "exampleIds": [
+        "es:03:01",
+        "es:03:02"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Asking about a person"
+      },
+      "text": {
+        "en": "With a name, you can start with the changing word.\n¿Está Ana en casa? = Is Ana at home?\nOr you can keep the name first.\n¿Ana está en la cocina? = Is Ana in the kitchen?\nLa cocina means “the kitchen”.\n¿Están Ana y Luis en casa? = Are Ana and Luis at home?"
+      },
+      "exampleIds": [
+        "es:03:11",
+        "es:03:18",
+        "es:03:20"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Questions about things"
+      },
+      "text": {
+        "en": "Next you pick the right question.\nLook at the ¿ ? marks. Then see who it is about.\n¿Estamos cerca? = Are we nearby?\n¿Está el pasaporte en la mochila? = Is the passport in the backpack?\nEl pasaporte means “the passport”. La mochila means “the backpack”.\n¿Están los billetes en el bolso? = Are the tickets in the bag?\nLos billetes means “the tickets”. El bolso means “the bag”."
+      },
+      "exampleIds": [
+        "es:03:06",
+        "es:03:41",
+        "es:03:44"
+      ]
+    }
+  ]
+}

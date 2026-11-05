@@ -1,0 +1,482 @@
+{
+  "lang": "de",
+  "lesson": 5,
+  "title": {
+    "ru": "Вопрос: «да» или «нет»",
+    "uk": "Питання: «так» чи «ні»",
+    "en": "A yes-or-no question"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Вопрос со словом «есть»",
+        "uk": "Питання зі словом «є»",
+        "en": "A question with “is”"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Ты здесь?».\nBist du hier? — «Ты здесь?»\nЧитается: бист ду хи́р\nIst Anna hier? — «Анна здесь?»\nЧитается: ист А́нна хи́р\nРаньше было: Du bist hier. — «Ты здесь.»\nТеперь слово bist встало первым: Bist du hier?\nТак спрашивают, когда ответ — «да» или «нет».\nСлово ist тоже встало первым: Ist Anna hier?\nSeid ihr bereit? — «Вы готовы?»\nЧитается: зайт ир бера́йт\nSind die Kinder bereit? — «Дети готовы?»\nЧитается: зинд ди ки́ндер бера́йт\nСлово ihr значит «вы», когда речь о нескольких людях.\nСлово seid — «есть» для ihr. Слово bereit — «готов».\nСлово sind встаёт первым: Sind die Kinder bereit?\nСлово Kinder значит «дети».",
+        "uk": "Дивіться, як запитати «Ти тут?».\nBist du hier? — «Ти тут?»\nЧитається: біст ду хі́р\nIst Anna hier? — «Анна тут?»\nЧитається: іст А́нна хі́р\nРаніше було: Du bist hier. — «Ти тут.»\nТепер слово bist стало першим: Bist du hier?\nТак питають, коли відповідь — «так» або «ні».\nСлово ist теж стало першим: Ist Anna hier?\nSeid ihr bereit? — «Ви готові?»\nЧитається: зайт ір бера́йт\nSind die Kinder bereit? — «Діти готові?»\nЧитається: зінд ді кі́ндер бера́йт\nСлово ihr означає «ви», коли мова про кількох людей.\nСлово seid — «є» для ihr. Слово bereit — «готовий».\nСлово sind стає першим: Sind die Kinder bereit?\nСлово Kinder означає «діти».",
+        "en": "Look at how to ask “Are you here?”.\nBist du hier? — “Are you here?”\nSounds like: beest doo khEEr\nIst Anna hier? — “Is Anna here?”\nSounds like: eest Anna khEEr\nBefore it was: Du bist hier. — “You are here.”\nNow the word bist comes first: Bist du hier?\nThis is how you ask when the answer is “yes” or “no”.\nThe word ist comes first too: Ist Anna hier?\nSeid ihr bereit? — “Are you ready?”\nSounds like: zayt eer berAyt\nSind die Kinder bereit? — “Are the children ready?”\nSounds like: zeend dee kEEnder berAyt\nThe word ihr means “you”, when you talk to several people.\nThe word seid is “are” for ihr. The word bereit — “ready”.\nThe word sind comes first: Sind die Kinder bereit?\nThe word Kinder means “children”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:05:01",
+          "say": {
+            "ru": "бист ду хи́р",
+            "uk": "біст ду хі́р"
+          }
+        },
+        {
+          "phraseId": "de:05:02",
+          "say": {
+            "ru": "ист А́нна хи́р",
+            "uk": "іст А́нна хі́р"
+          }
+        },
+        {
+          "phraseId": "de:05:03",
+          "say": {
+            "ru": "зайт ир бера́йт",
+            "uk": "зайт ір бера́йт"
+          }
+        },
+        {
+          "phraseId": "de:05:04",
+          "say": {
+            "ru": "зинд ди ки́ндер бера́йт",
+            "uk": "зінд ді кі́ндер бера́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты здесь?»",
+            "uk": "Виберіть, як сказати: «Ти тут?»",
+            "en": "Choose how to say: “Are you here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:05:01",
+          "options": [
+            "de:05:01",
+            "de:05:02",
+            "de:05:03"
+          ],
+          "answerId": "de:05:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна здесь?»",
+            "uk": "Виберіть, як сказати: «Анна тут?»",
+            "en": "Choose how to say: “Is Anna here?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:02",
+          "options": [
+            "de:05:02",
+            "de:05:01",
+            "de:05:04"
+          ],
+          "answerId": "de:05:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети готовы?»",
+            "uk": "Виберіть, як сказати: «Діти готові?»",
+            "en": "Choose how to say: “Are the children ready?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:04",
+          "options": [
+            "de:05:04",
+            "de:05:03",
+            "de:05:02"
+          ],
+          "answerId": "de:05:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Живёт? Учит? Работает?",
+        "uk": "Живе? Вчить? Працює?",
+        "en": "Live? Learn? Work?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Ты здесь живёшь?».\nWohnst du hier? — «Ты здесь живёшь?»\nЧитается: во́нст ду хи́р\nWohnt Tom in Berlin? — «Том живёт в Берлине?»\nЧитается: вонт Том ин берли́н\nРаньше было: Du wohnst hier. — «Ты здесь живёшь.»\nТеперь слово wohnst первое: Wohnst du hier?\nСлово wohnt значит «живёт». Слово in значит «в».\nСлово Berlin значит «Берлин».\nLernst du Deutsch? — «Ты учишь немецкий?»\nЧитается: ле́рнст ду дойч\nArbeitest du morgen? — «Ты завтра работаешь?»\nЧитается: а́рбайтест ду мо́рген\nArbeitet Tom am Montag? — «Том работает в понедельник?»\nЧитается: а́рбайтет Том ам мо́нтаг\nСлово lernst значит «учишь». Слово arbeitest — «работаешь».\nСлово arbeitet — «работает». Слово morgen — «завтра».\nAm Montag — «в понедельник». Всегда так: сначала слово про дело, потом du или Tom.",
+        "uk": "Дивіться, як запитати «Ти тут живеш?».\nWohnst du hier? — «Ти тут живеш?»\nЧитається: во́нст ду хі́р\nWohnt Tom in Berlin? — «Том живе у Берліні?»\nЧитається: вонт Том ін берлі́н\nРаніше було: Du wohnst hier. — «Ти тут живеш.»\nТепер слово wohnst перше: Wohnst du hier?\nСлово wohnt означає «живе». Слово in означає «у».\nСлово Berlin означає «Берлін».\nLernst du Deutsch? — «Ти вчиш німецьку?»\nЧитається: ле́рнст ду дойч\nArbeitest du morgen? — «Ти завтра працюєш?»\nЧитається: а́рбайтест ду мо́рген\nArbeitet Tom am Montag? — «Том працює у понеділок?»\nЧитається: а́рбайтет Том ам мо́нтаг\nСлово lernst означає «вчиш». Слово arbeitest — «працюєш».\nСлово arbeitet — «працює». Слово morgen — «завтра».\nAm Montag — «у понеділок». Завжди так: спочатку слово про справу, потім du або Tom.",
+        "en": "Look at how to ask “Do you live here?”.\nWohnst du hier? — “Do you live here?”\nSounds like: vOnst doo khEEr\nWohnt Tom in Berlin? — “Does Tom live in Berlin?”\nSounds like: vont Tom een berlEEn\nBefore it was: Du wohnst hier. — “You live here.”\nNow the word wohnst is first: Wohnst du hier?\nThe word wohnt means “lives”. The word in means “in”.\nThe word Berlin means “Berlin”.\nLernst du Deutsch? — “Are you learning German?”\nSounds like: lErnst doo doych\nArbeitest du morgen? — “Are you working tomorrow?”\nSounds like: Arbaytest doo mOrgen\nArbeitet Tom am Montag? — “Does Tom work on Monday?”\nSounds like: Arbaytet Tom am mOntag\nThe word lernst means “learn”. The word arbeitest — “work”.\nThe word arbeitet — “works”. The word morgen — “tomorrow”.\nAm Montag — “on Monday”.\nAlways so: first the word about the action, then du or Tom."
+      },
+      "examples": [
+        {
+          "phraseId": "de:05:11",
+          "say": {
+            "ru": "во́нст ду хи́р",
+            "uk": "во́нст ду хі́р"
+          }
+        },
+        {
+          "phraseId": "de:05:12",
+          "say": {
+            "ru": "вонт Том ин берли́н",
+            "uk": "вонт Том ін берлі́н"
+          }
+        },
+        {
+          "phraseId": "de:05:14",
+          "say": {
+            "ru": "ле́рнст ду дойч",
+            "uk": "ле́рнст ду дойч"
+          }
+        },
+        {
+          "phraseId": "de:05:18",
+          "say": {
+            "ru": "а́рбайтест ду мо́рген",
+            "uk": "а́рбайтест ду мо́рген"
+          }
+        },
+        {
+          "phraseId": "de:05:17",
+          "say": {
+            "ru": "а́рбайтет Том ам мо́нтаг",
+            "uk": "а́рбайтет Том ам мо́нтаг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты здесь живёшь?»",
+            "uk": "Виберіть, як сказати: «Ти тут живеш?»",
+            "en": "Choose how to say: “Do you live here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:05:11",
+          "options": [
+            "de:05:11",
+            "de:05:12",
+            "de:05:14"
+          ],
+          "answerId": "de:05:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты учишь немецкий?»",
+            "uk": "Виберіть, як сказати: «Ти вчиш німецьку?»",
+            "en": "Choose how to say: “Are you learning German?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:14",
+          "options": [
+            "de:05:14",
+            "de:05:11",
+            "de:05:18"
+          ],
+          "answerId": "de:05:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты завтра работаешь?»",
+            "uk": "Виберіть, як сказати: «Ти завтра працюєш?»",
+            "en": "Choose how to say: “Are you working tomorrow?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:18",
+          "options": [
+            "de:05:18",
+            "de:05:17",
+            "de:05:14"
+          ],
+          "answerId": "de:05:18"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Придёт ли? Начнётся ли?",
+        "uk": "Прийде? Почнеться?",
+        "en": "Will it come? Will it start?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Автобус скоро придёт?».\nKommt der Bus bald? — «Автобус скоро придёт?»\nЧитается: комт дер бус бальт\nKommt Anna heute? — «Анна сегодня придёт?»\nЧитается: комт А́нна хо́йте\nKommen die Gäste morgen? — «Гости придут завтра?»\nЧитается: ко́мен ди ге́сте мо́рген\nСлово bald значит «скоро». Слово kommt значит «приходит».\nСлово kommen — «приходить». Слово Gäste — «гости».\nСлово heute — «сегодня», слово morgen — «завтра».\nВторая буква в Gäste читается как «э».\nBeginnt der Kurs um neun? — «Занятие начинается в девять?»\nЧитается: беги́нт дер курс ум нойн\nÖffnet das Café um acht? — «Кафе открывается в восемь?»\nЧитается: э́фнет дас кафе́ ум ахт\nСлово beginnt значит «начинается». Слово öffnet — «открывается».\nUm neun — «в девять». Um acht — «в восемь».\nСлово Café значит «кафе».",
+        "uk": "Дивіться, як запитати «Автобус скоро прийде?».\nKommt der Bus bald? — «Автобус скоро прийде?»\nЧитається: комт дер бус бальт\nKommt Anna heute? — «Анна сьогодні прийде?»\nЧитається: комт А́нна хо́йте\nKommen die Gäste morgen? — «Гості прийдуть завтра?»\nЧитається: ко́мен ді ге́сте мо́рген\nСлово bald означає «скоро». Слово kommt означає «приходить».\nСлово kommen — «приходити». Слово Gäste — «гості».\nСлово heute — «сьогодні», слово morgen — «завтра».\nДруга буква в Gäste читається як «е».\nBeginnt der Kurs um neun? — «Заняття починається о дев'ятій?»\nЧитається: бегі́нт дер курс ум нойн\nÖffnet das Café um acht? — «Кафе відкривається о восьмій?»\nЧитається: е́фнет дас кафе́ ум ахт\nСлово beginnt означає «починається». Слово öffnet — «відкривається».\nUm neun — «о дев’ятій». Um acht — «о восьмій».\nСлово Café означає «кафе».",
+        "en": "Look at how to ask “Is the bus coming soon?”.\nKommt der Bus bald? — “Is the bus coming soon?”\nSounds like: komt der boos balt\nKommt Anna heute? — “Is Anna coming today?”\nSounds like: komt Anna khOyte\nKommen die Gäste morgen? — “Are the guests coming tomorrow?”\nSounds like: kOmen dee gEste mOrgen\nThe word bald means “soon”. The word kommt means “comes”.\nThe word kommen — “to come”. The word Gäste — “guests”.\nThe word heute — “today”, the word morgen — “tomorrow”.\nThe second letter of Gäste sounds like “e”.\nBeginnt der Kurs um neun? — “Does the class start at nine?”\nSounds like: begEEnt der koors oom noyn\nÖffnet das Café um acht? — “Does the café open at eight?”\nSounds like: Efnet das kafE oom akht\nThe word beginnt means “starts”. The word öffnet — “opens”.\nUm neun — “at nine”. Um acht — “at eight”.\nThe word Café means “café”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:05:21",
+          "say": {
+            "ru": "комт дер бус бальт",
+            "uk": "комт дер бус бальт"
+          }
+        },
+        {
+          "phraseId": "de:05:22",
+          "say": {
+            "ru": "комт А́нна хо́йте",
+            "uk": "комт А́нна хо́йте"
+          }
+        },
+        {
+          "phraseId": "de:05:23",
+          "say": {
+            "ru": "ко́мен ди ге́сте мо́рген",
+            "uk": "ко́мен ді ге́сте мо́рген"
+          }
+        },
+        {
+          "phraseId": "de:05:24",
+          "say": {
+            "ru": "беги́нт дер курс ум нойн",
+            "uk": "бегі́нт дер курс ум нойн"
+          }
+        },
+        {
+          "phraseId": "de:05:25",
+          "say": {
+            "ru": "э́фнет дас кафе́ ум ахт",
+            "uk": "е́фнет дас кафе́ ум ахт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус скоро придёт?»",
+            "uk": "Виберіть, як сказати: «Автобус скоро прийде?»",
+            "en": "Choose how to say: “Is the bus coming soon?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:05:21",
+          "options": [
+            "de:05:21",
+            "de:05:22",
+            "de:05:23"
+          ],
+          "answerId": "de:05:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна сегодня придёт?»",
+            "uk": "Виберіть, як сказати: «Анна сьогодні прийде?»",
+            "en": "Choose how to say: “Is Anna coming today?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:22",
+          "options": [
+            "de:05:22",
+            "de:05:21",
+            "de:05:23"
+          ],
+          "answerId": "de:05:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Занятие начинается в девять?»",
+            "uk": "Виберіть, як сказати: «Заняття починається о дев'ятій?»",
+            "en": "Choose how to say: “Does the class start at nine?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:24",
+          "options": [
+            "de:05:24",
+            "de:05:25",
+            "de:05:21"
+          ],
+          "answerId": "de:05:24"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "У вас есть?",
+        "uk": "У вас є?",
+        "en": "Do you have?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «У тебя билет?».\nHast du das Ticket? — «У тебя билет?»\nЧитается: хаст ду дас ти́кет\nHat Anna die Karte? — «У Анны карта?»\nЧитается: хат А́нна ди ка́рте\nHabt ihr die Schlüssel? — «У вас ключи?»\nЧитается: хапт ир ди шлю́сель\nHaben die Kinder Durst? — «Дети хотят пить?»\nЧитается: ха́бен ди ки́ндер дурст\nСлово haben значит «иметь». Оно тоже меняется, смотря о ком речь.\nДля du — hast. Для Anna — hat. Для ihr — habt. Для Kinder — haben.\nСлова das Ticket — «билет», die Karte — «карта».\nСлово Durst значит «жажда». Haben Durst — «хотят пить».",
+        "uk": "Дивіться, як запитати «У тебе квиток?».\nHast du das Ticket? — «У тебе квиток?»\nЧитається: хаст ду дас ті́кет\nHat Anna die Karte? — «У Анни карта?»\nЧитається: хат А́нна ді ка́рте\nHabt ihr die Schlüssel? — «У вас ключі?»\nЧитається: хапт ір ді шлю́сель\nHaben die Kinder Durst? — «Діти хочуть пити?»\nЧитається: ха́бен ді кі́ндер дурст\nСлово haben означає «мати». Воно теж змінюється, залежно від того, про кого мова.\nДля du — hast. Для Anna — hat. Для ihr — habt. Для Kinder — haben.\nСлова das Ticket — «квиток», die Karte — «картка».\nСлово Durst означає «спрага». Haben Durst — «хочуть пити».",
+        "en": "Look at how to ask “Do you have the ticket?”.\nHast du das Ticket? — “Do you have the ticket?”\nSounds like: khast doo das tEEket\nHat Anna die Karte? — “Does Anna have the card?”\nSounds like: khat Anna dee kArte\nHabt ihr die Schlüssel? — “Do you have the keys?”\nSounds like: khapt eer dee shlYOOsel\nHaben die Kinder Durst? — “Are the children thirsty?”\nSounds like: khAben dee kEEnder doorst\nThe word haben means “to have”. It changes too, depending on who you talk about.\nFor du — hast. For Anna — hat. For ihr — habt. For Kinder — haben.\nThe words das Ticket — “ticket”, die Karte — “card”.\nThe word Durst means “thirst”. Haben Durst — “are thirsty”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:05:41",
+          "say": {
+            "ru": "хаст ду дас ти́кет",
+            "uk": "хаст ду дас ті́кет"
+          }
+        },
+        {
+          "phraseId": "de:05:42",
+          "say": {
+            "ru": "хат А́нна ди ка́рте",
+            "uk": "хат А́нна ді ка́рте"
+          }
+        },
+        {
+          "phraseId": "de:05:43",
+          "say": {
+            "ru": "хапт ир ди шлю́сель",
+            "uk": "хапт ір ді шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:05:44",
+          "say": {
+            "ru": "ха́бен ди ки́ндер дурст",
+            "uk": "ха́бен ді кі́ндер дурст"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У тебя билет?»",
+            "uk": "Виберіть, як сказати: «У тебе квиток?»",
+            "en": "Choose how to say: “Do you have the ticket?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:05:41",
+          "options": [
+            "de:05:41",
+            "de:05:42",
+            "de:05:43"
+          ],
+          "answerId": "de:05:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Анны карта?»",
+            "uk": "Виберіть, як сказати: «У Анни карта?»",
+            "en": "Choose how to say: “Does Anna have the card?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:42",
+          "options": [
+            "de:05:42",
+            "de:05:41",
+            "de:05:43"
+          ],
+          "answerId": "de:05:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети хотят пить?»",
+            "uk": "Виберіть, як сказати: «Діти хочуть пити?»",
+            "en": "Choose how to say: “Are the children thirsty?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:44",
+          "options": [
+            "de:05:44",
+            "de:05:43",
+            "de:05:41"
+          ],
+          "answerId": "de:05:44"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вежливое «вы»",
+        "uk": "Ввічливе «ви»",
+        "en": "The polite “you”"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить вежливо «Вам нужна помощь?».\nBrauchen Sie Hilfe? — «Вам нужна помощь?»\nЧитается: бра́ухен зи хи́льфе\nBleiben Sie heute hier? — «Вы сегодня остаётесь здесь?»\nЧитается: бла́йбен зи хо́йте хи́р\nHaben Sie Zeit? — «У вас есть время?»\nЧитается: ха́бен зи цайт\nСлово Sie с большой буквы — вежливое «вы». Так говорят с чужим человеком.\nСлово brauchen значит «нуждаться». Слово Hilfe — «помощь».\nСлово bleiben значит «оставаться». Слово heute — «сегодня».\nСлова Zeit haben значат «иметь время». Слово Zeit — «время».\nПосле Sie слово всегда такое же, как для «мы»: brauchen, bleiben, haben.\nMöchten Sie Tee? — «Хотите чаю?»\nЧитается: мэ́хтен зи те́\nSind Sie Frau Weber? — «Вы госпожа Вебер?»\nЧитается: зинд зи фрау ве́бер\nСлово möchten значит «хотеть». Слово Tee — «чай».\nСлово Frau значит «госпожа». Слово Weber — фамилия.\nПосле Sie слово sind — как для «мы».",
+        "uk": "Дивіться, як запитати ввічливо «Вам потрібна допомога?».\nBrauchen Sie Hilfe? — «Вам потрібна допомога?»\nЧитається: бра́ухен зі хі́льфе\nBleiben Sie heute hier? — «Ви сьогодні залишаєтеся тут?»\nЧитається: бла́йбен зі хо́йте хі́р\nHaben Sie Zeit? — «У вас є час?»\nЧитається: ха́бен зі цайт\nСлово Sie з великої літери — ввічливе «ви». Так кажуть з чужою людиною.\nСлово brauchen означає «потребувати». Слово Hilfe — «допомога».\nСлово bleiben означає «залишатися». Слово heute — «сьогодні».\nСлова Zeit haben означають «мати час». Слово Zeit — «час».\nПісля Sie слово завжди таке саме, як для «ми»: brauchen, bleiben, haben.\nMöchten Sie Tee? — «Бажаєте чаю?»\nЧитається: ме́хтен зі те́\nSind Sie Frau Weber? — «Ви пані Вебер?»\nЧитається: зінд зі фрау ве́бер\nСлово möchten означає «хотіти». Слово Tee — «чай».\nСлово Frau означає «пані». Слово Weber — прізвище.\nПісля Sie слово sind — як для «ми».",
+        "en": "Look at how to ask politely “Do you need help?”.\nBrauchen Sie Hilfe? — “Do you need help?”\nSounds like: brAookhen zee khEElfe\nBleiben Sie heute hier? — “Are you staying here today?”\nSounds like: blAyben zee khOyte khEEr\nHaben Sie Zeit? — “Do you have time?”\nSounds like: khAben zee tsayt\nThe word Sie with a capital letter is the polite “you”.\nYou say it to a stranger.\nThe word brauchen means “to need”. The word Hilfe — “help”.\nThe word bleiben means “to stay”. The word heute — “today”.\nThe words Zeit haben mean “to have time”. The word Zeit — “time”.\nAfter Sie the word is always the same as for “we”:\nbrauchen, bleiben, haben.\nMöchten Sie Tee? — “Would you like tea?”\nSounds like: mEkhten zee tE\nSind Sie Frau Weber? — “Are you Mrs Weber?”\nSounds like: zeend zee fraoo vEber\nThe word möchten means “would like”. The word Tee — “tea”.\nThe word Frau means “Mrs”. The word Weber is a surname.\nAfter Sie the word sind is the same as for “we”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:05:31",
+          "say": {
+            "ru": "бра́ухен зи хи́льфе",
+            "uk": "бра́ухен зі хі́льфе"
+          }
+        },
+        {
+          "phraseId": "de:05:37",
+          "say": {
+            "ru": "бла́йбен зи хо́йте хи́р",
+            "uk": "бла́йбен зі хо́йте хі́р"
+          }
+        },
+        {
+          "phraseId": "de:05:38",
+          "say": {
+            "ru": "ха́бен зи цайт",
+            "uk": "ха́бен зі цайт"
+          }
+        },
+        {
+          "phraseId": "de:05:39",
+          "say": {
+            "ru": "мэ́хтен зи те́",
+            "uk": "ме́хтен зі те́"
+          }
+        },
+        {
+          "phraseId": "de:05:40",
+          "say": {
+            "ru": "зинд зи фрау ве́бер",
+            "uk": "зінд зі фрау ве́бер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вам нужна помощь?»",
+            "uk": "Виберіть, як сказати: «Вам потрібна допомога?»",
+            "en": "Choose how to say: “Do you need help?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:05:31",
+          "options": [
+            "de:05:31",
+            "de:05:37",
+            "de:05:38"
+          ],
+          "answerId": "de:05:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы сегодня остаётесь здесь?»",
+            "uk": "Виберіть, як сказати: «Ви сьогодні залишаєтеся тут?»",
+            "en": "Choose how to say: “Are you staying here today?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:37",
+          "options": [
+            "de:05:37",
+            "de:05:31",
+            "de:05:39"
+          ],
+          "answerId": "de:05:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У вас есть время?»",
+            "uk": "Виберіть, як сказати: «У вас є час?»",
+            "en": "Choose how to say: “Do you have time?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:05:38",
+          "options": [
+            "de:05:38",
+            "de:05:31",
+            "de:05:39"
+          ],
+          "answerId": "de:05:38"
+        }
+      ]
+    }
+  ]
+}

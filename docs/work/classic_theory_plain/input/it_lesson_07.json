@@ -1,0 +1,442 @@
+{
+ "lang": "it",
+ "lesson": 7,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:07:01",
+   "target": "Lavoro qui.",
+   "ru": "Я здесь работаю.",
+   "uk": "Я тут працюю."
+  },
+  {
+   "id": "it:07:02",
+   "target": "Lavori qui.",
+   "ru": "Ты работаешь здесь.",
+   "uk": "Ти працюєш тут."
+  },
+  {
+   "id": "it:07:03",
+   "target": "Lea lavora qui.",
+   "ru": "Леа здесь работает.",
+   "uk": "Леа тут працює."
+  },
+  {
+   "id": "it:07:04",
+   "target": "Lavoriamo insieme.",
+   "ru": "Мы работаем вместе.",
+   "uk": "Ми працюємо разом."
+  },
+  {
+   "id": "it:07:05",
+   "target": "Lavorate insieme.",
+   "ru": "Вы работаете вместе.",
+   "uk": "Ви працюєте разом."
+  },
+  {
+   "id": "it:07:06",
+   "target": "Lavorano fuori.",
+   "ru": "Они работают на улице.",
+   "uk": "Вони працюють надворі."
+  },
+  {
+   "id": "it:07:07",
+   "target": "Parlo francese.",
+   "ru": "Я говорю по-французски.",
+   "uk": "Я розмовляю французькою."
+  },
+  {
+   "id": "it:07:08",
+   "target": "Parli francese.",
+   "ru": "Ты говоришь по-французски.",
+   "uk": "Ти говориш по-французьки."
+  },
+  {
+   "id": "it:07:09",
+   "target": "Lei parla inglese.",
+   "ru": "Она говорит по-английски.",
+   "uk": "Вона розмовляє англійською."
+  },
+  {
+   "id": "it:07:10",
+   "target": "Parliamo spagnolo.",
+   "ru": "Мы говорим по-испански.",
+   "uk": "Ми розмовляємо іспанською."
+  },
+  {
+   "id": "it:07:11",
+   "target": "Abito a Lione.",
+   "ru": "Я живу в Лионе.",
+   "uk": "Я живу в Ліоні."
+  },
+  {
+   "id": "it:07:12",
+   "target": "Abiti a Lille.",
+   "ru": "Ты живёшь в Лилле.",
+   "uk": "Ти живеш у Ліллі."
+  },
+  {
+   "id": "it:07:13",
+   "target": "Paolo abita vicino al mercato.",
+   "ru": "Паоло живёт рядом с рынком.",
+   "uk": "Паоло живе поряд із ринком."
+  },
+  {
+   "id": "it:07:14",
+   "target": "Abitiamo in campagna.",
+   "ru": "Мы живём в сельской местности.",
+   "uk": "Ми живемо в сільській місцевості."
+  },
+  {
+   "id": "it:07:15",
+   "target": "Abitate in città.",
+   "ru": "Вы живёте в городе.",
+   "uk": "Ви живете у місті."
+  },
+  {
+   "id": "it:07:16",
+   "target": "Abitano qui.",
+   "ru": "Они живут здесь.",
+   "uk": "Вони живуть тут."
+  },
+  {
+   "id": "it:07:17",
+   "target": "Ascolto la radio.",
+   "ru": "Я слушаю радио.",
+   "uk": "Я слухаю радіо."
+  },
+  {
+   "id": "it:07:18",
+   "target": "Tu ascolti la radio.",
+   "ru": "Ты слушаешь радио.",
+   "uk": "Ти слухаєш радіо."
+  },
+  {
+   "id": "it:07:19",
+   "target": "Lui ascolta un messaggio.",
+   "ru": "Он слушает сообщение.",
+   "uk": "Він слухає повідомлення."
+  },
+  {
+   "id": "it:07:20",
+   "target": "Ascoltiamo la musica.",
+   "ru": "Мы слушаем музыку.",
+   "uk": "Ми слухаємо музику."
+  },
+  {
+   "id": "it:07:21",
+   "target": "Cerco le mie chiavi.",
+   "ru": "Я ищу свои ключи.",
+   "uk": "Я шукаю свої ключі."
+  },
+  {
+   "id": "it:07:22",
+   "target": "Cerchi la tua borsa.",
+   "ru": "Ты ищешь свою сумку.",
+   "uk": "Ти шукаєш свою сумку."
+  },
+  {
+   "id": "it:07:23",
+   "target": "Lei cerca l’uscita.",
+   "ru": "Она ищет выход.",
+   "uk": "Вона шукає вихід."
+  },
+  {
+   "id": "it:07:24",
+   "target": "Cerchiamo un indirizzo.",
+   "ru": "Мы ищем адрес.",
+   "uk": "Ми шукаємо адресу."
+  },
+  {
+   "id": "it:07:25",
+   "target": "Cerca un albergo?",
+   "ru": "Вы ищете отель?",
+   "uk": "Ви шукаєте готель?"
+  },
+  {
+   "id": "it:07:26",
+   "target": "Cercano un posto.",
+   "ru": "Они ищут место.",
+   "uk": "Вони шукають місце."
+  },
+  {
+   "id": "it:07:27",
+   "target": "Guardo la mappa.",
+   "ru": "Я смотрю на карту.",
+   "uk": "Я дивлюся на карту."
+  },
+  {
+   "id": "it:07:28",
+   "target": "Lea guarda i prezzi.",
+   "ru": "Леа смотрит цены.",
+   "uk": "Леа дивиться на ціни."
+  },
+  {
+   "id": "it:07:29",
+   "target": "Guardiamo una foto.",
+   "ru": "Мы рассматриваем фотографию.",
+   "uk": "Ми дивимося на фотографію."
+  },
+  {
+   "id": "it:07:30",
+   "target": "Guardano la partita.",
+   "ru": "Они смотрят матч.",
+   "uk": "Вони дивляться матч."
+  },
+  {
+   "id": "it:07:31",
+   "target": "Preparo la cena.",
+   "ru": "Я готовлю ужин.",
+   "uk": "Я готую вечерю."
+  },
+  {
+   "id": "it:07:32",
+   "target": "Prepari la zuppa.",
+   "ru": "Ты готовишь суп.",
+   "uk": "Ти готуєш суп."
+  },
+  {
+   "id": "it:07:33",
+   "target": "Paolo prepara il caffè.",
+   "ru": "Паоло варит кофе.",
+   "uk": "Паоло варить каву."
+  },
+  {
+   "id": "it:07:34",
+   "target": "Prepariamo le valigie.",
+   "ru": "Мы собираем чемоданы.",
+   "uk": "Ми пакуємо валізи."
+  },
+  {
+   "id": "it:07:35",
+   "target": "Preparate il pranzo.",
+   "ru": "Вы готовите обед.",
+   "uk": "Ви готуєте обід."
+  },
+  {
+   "id": "it:07:36",
+   "target": "Lei prenota una camera.",
+   "ru": "Она бронирует номер.",
+   "uk": "Вона бронює кімнату."
+  },
+  {
+   "id": "it:07:37",
+   "target": "Ordino un tè.",
+   "ru": "Я заказываю чай.",
+   "uk": "Я замовляю чай."
+  },
+  {
+   "id": "it:07:38",
+   "target": "Ordiniamo due caffè.",
+   "ru": "Мы заказываем два кофе.",
+   "uk": "Ми замовляємо дві кави."
+  },
+  {
+   "id": "it:07:39",
+   "target": "Visitano il museo.",
+   "ru": "Они посещают музей.",
+   "uk": "Вони відвідують музей."
+  },
+  {
+   "id": "it:07:40",
+   "target": "Chiudi la finestra.",
+   "ru": "Ты закрываешь окно.",
+   "uk": "Ти закриваєш вікно."
+  },
+  {
+   "id": "it:07:41",
+   "target": "Lavoro il sabato.",
+   "ru": "Я работаю по субботам.",
+   "uk": "Я працюю по суботах."
+  },
+  {
+   "id": "it:07:42",
+   "target": "La mattina ascolto la radio.",
+   "ru": "Утром я слушаю радио.",
+   "uk": "Вранці я слухаю радіо."
+  },
+  {
+   "id": "it:07:43",
+   "target": "Lei parla piano.",
+   "ru": "Она говорит тихо.",
+   "uk": "Вона тихо говорить."
+  },
+  {
+   "id": "it:07:44",
+   "target": "Cerchiamo un appartamento.",
+   "ru": "Мы ищем квартиру.",
+   "uk": "Ми шукаємо квартиру."
+  },
+  {
+   "id": "it:07:45",
+   "target": "Prenota per stasera?",
+   "ru": "Вы (вежл.) бронируете на сегодняшний вечер?",
+   "uk": "Ви (ввіч.) бронюєте на сьогоднішній вечір?"
+  },
+  {
+   "id": "it:07:46",
+   "target": "Compro il pane.",
+   "ru": "Я покупаю хлеб.",
+   "uk": "Я купую хліб."
+  },
+  {
+   "id": "it:07:47",
+   "target": "Torni a casa.",
+   "ru": "Ты возвращаешься домой.",
+   "uk": "Ти повертаєшся додому."
+  },
+  {
+   "id": "it:07:48",
+   "target": "I vicini chiacchierano in giardino.",
+   "ru": "Соседи болтают в саду.",
+   "uk": "Сусіди базікають у саду."
+  },
+  {
+   "id": "it:07:49",
+   "target": "Camminiamo fino alla stazione.",
+   "ru": "Мы идём к вокзалу.",
+   "uk": "Ми йдемо до вокзалу."
+  },
+  {
+   "id": "it:07:50",
+   "target": "Lascio un messaggio per Lea.",
+   "ru": "Я оставляю сообщение для Леа.",
+   "uk": "Я залишаю повідомлення для Леа."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "cercare",
+   "ru": "искать",
+   "uk": "шукати"
+  },
+  {
+   "lemma": "la radio",
+   "ru": "радио",
+   "uk": "радіо"
+  },
+  {
+   "lemma": "il messaggio",
+   "ru": "сообщение",
+   "uk": "повідомлення"
+  },
+  {
+   "lemma": "preparare",
+   "ru": "готовить, подготавливать",
+   "uk": "готувати, готувати"
+  },
+  {
+   "lemma": "l’appartamento",
+   "ru": "квартира",
+   "uk": "квартира"
+  },
+  {
+   "lemma": "tu",
+   "ru": "ты",
+   "uk": "ти"
+  },
+  {
+   "lemma": "lavorare",
+   "ru": "работать",
+   "uk": "працювати"
+  },
+  {
+   "lemma": "abitare",
+   "ru": "жить, проживать",
+   "uk": "жити, мешкати"
+  },
+  {
+   "lemma": "la valigia",
+   "ru": "чемодан",
+   "uk": "валіза"
+  }
+ ],
+ "knownWords": [
+  "qui",
+  "la stazione",
+  "la chiave",
+  "la finestra",
+  "pronto",
+  "essere",
+  "la casa",
+  "l’ufficio",
+  "la porta",
+  "insieme",
+  "il negozio",
+  "la borsa",
+  "il corridoio",
+  "la camera",
+  "il biglietto",
+  "la farmacia",
+  "in ritardo",
+  "il tavolo",
+  "la sala",
+  "il treno",
+  "la bicicletta",
+  "l’autobus",
+  "il museo",
+  "la banchina",
+  "la biglietteria",
+  "l’uscita",
+  "la tasca",
+  "la serratura",
+  "voi",
+  "l’ingresso",
+  "il parcheggio",
+  "la ricevuta",
+  "la fattura",
+  "il vicino / la vicina",
+  "il regalo",
+  "gli occhiali",
+  "la sorella",
+  "il fratello",
+  "il posto",
+  "il passaporto",
+  "gli spiccioli",
+  "la pausa",
+  "l’appuntamento",
+  "la ricetta",
+  "avere",
+  "l’acqua",
+  "la carta",
+  "il cassetto",
+  "il caricabatterie",
+  "la busta",
+  "il mercato",
+  "l’ascensore",
+  "il pane",
+  "il giardino",
+  "la sedia",
+  "l’auto",
+  "la zuppa",
+  "la giacca"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  }
+ ],
+ "oldTopicTitle": "Обычные действия: настоящее время",
+ "oldTheoryRu": "Сначала найди, кто выполняет действие. С личным именем обычно нужна форма третьего лица: `Lea lavora`. Для себя — `lavoro`, для собеседника на «ты» — `lavori`. Для группы с говорящим окончание `-iamo`. Если ты обращаешься к нескольким людям, у глаголов на `-are` будет `-ate`. Когда говоришь о других людях, у этой группы глаголов обычно `-ano`. Разговор о языке не требует обязательного артикля после `parlare`: `parlo italiano`. Не добавляй предлог места к названию языка. Название языка в итальянском пишут со строчной буквы. Как и `lavorare`, глагол `abitare` легко разбить на основу и окончание. Если добавляешь город, используй `a`; для места вроде сельской местности — готовую группу `in campagna`. В `cercare` звук к сохраняется: `cerco`, но `cerchi`, `cerchiamo`. Буква `h` в этих двух формах помогает сохранить произношение и не обозначает отдельный звук. Настоящее время годится для привычки и для сообщения о текущем факте. Не нужно каждый раз добавлять «прямо сейчас». Человек в магазине может просто сказать, что заказывает чай. Отдели само действие от обстоятельства. В `Lavoro il sabato` глагол сообщает, что я делаю, а `il sabato` — по каким дням. Если поменял день, окончание глагола остаётся тем же."
+}

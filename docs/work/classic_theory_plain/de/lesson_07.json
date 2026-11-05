@@ -1,0 +1,544 @@
+{
+  "lang": "de",
+  "lesson": 7,
+  "title": {
+    "ru": "Что у вас есть и что вам нужно",
+    "uk": "Що у вас є і що вам потрібно",
+    "en": "What you have and what you need"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "У меня есть",
+        "uk": "У мене є",
+        "en": "I have"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня есть ключ».\nIch habe einen Schlüssel. — «У меня есть ключ.»\nЧитается: их ха́бе а́йнен шлю́сель\nСлово habe значит «у меня есть». Слово Schlüssel — «ключ».\nDu hast einen Schlüssel. — «У тебя есть ключ.»\nЧитается: ду хаст а́йнен шлю́сель\nСлово hast значит «у тебя есть».\nAnna hat einen Schlüssel. — «У Анны есть ключ.»\nЧитается: А́нна хат а́йнен шлю́сель\nСлово hat значит «есть у него, есть у неё». Так говорят про Anna.\nСлово меняется, смотря о ком речь: ich habe, du hast, Anna hat.\nIhr habt ein Handy. — «У вас есть телефон.»\nЧитается: ир хапт айн хе́нди\nСлово habt значит «у вас есть». Оно для ihr — «вы», когда вас несколько.\nПеред названием вещи стоят слова einen, ein. Они значат «один, какой-то».\nПо-русски такого слова нет. Запоминайте его вместе с названием вещи.\nTom hat einen Stift. — «У Тома есть ручка.»\nЧитается: том хат а́йнен штифт\nIch habe einen Termin. — «У меня назначена встреча.»\nЧитается: их ха́бе а́йнен терми́н\nСлово Stift значит «ручка». Слово Termin — «назначенная встреча».",
+        "uk": "Дивіться, як сказати «У мене є ключ».\nIch habe einen Schlüssel. — «У мене є ключ.»\nЧитається: іх ха́бе а́йнен шлю́сель\nСлово habe означає «у мене є». Слово Schlüssel — «ключ».\nDu hast einen Schlüssel. — «У тебе є ключ.»\nЧитається: ду хаст а́йнен шлю́сель\nСлово hast означає «у тебе є».\nAnna hat einen Schlüssel. — «Анна має ключ.»\nЧитається: А́нна хат а́йнен шлю́сель\nСлово hat означає «є в нього, є в неї». Так кажуть про Anna.\nСлово змінюється залежно від того, про кого мова: ich habe, du hast, Anna hat.\nIhr habt ein Handy. — «У вас є телефон.»\nЧитається: ір хапт айн хе́нді\nСлово habt означає «у вас є». Воно для ihr — «ви», коли вас кілька.\nПеред назвою речі стоять слова einen, ein. Вони означають «один, якийсь».\nВ українській такого слова немає. Запам’ятовуйте його разом із назвою речі.\nTom hat einen Stift. — «Том має ручку.»\nЧитається: том хат а́йнен штіфт\nIch habe einen Termin. — «У мене призначено зустріч.»\nЧитається: іх ха́бе а́йнен термі́н\nСлово Stift означає «ручка». Слово Termin — «призначена зустріч».",
+        "en": "Look at how to say “I have a key”.\nIch habe einen Schlüssel. — “I have a key.”\nSounds like: eekh khAbe Aynen shlYOOsel\nThe word habe means “I have”. The word Schlüssel means “key”.\nDu hast einen Schlüssel. — “You have a key.”\nSounds like: doo khast Aynen shlYOOsel\nThe word hast means “you have”.\nAnna hat einen Schlüssel. — “Anna has a key.”\nSounds like: Anna khat Aynen shlYOOsel\nThe word hat means “he has, she has”. You say it about Anna.\nThe word changes with who you talk about: ich habe, du hast, Anna hat.\nIhr habt ein Handy. — “You (all) have a phone.”\nSounds like: eer khapt ayn khEndee\nThe word habt means “you have”. It goes with ihr — “you” for several people.\nBefore the name of a thing come the words einen, ein. They mean “a, one”.\nSome languages skip this word. Learn it together with the name of the thing.\nTom hat einen Stift. — “Tom has a pen.”\nSounds like: tom khat Aynen shteeft\nIch habe einen Termin. — “I have an appointment.”\nSounds like: eekh khAbe Aynen termEEn\nThe word Stift means “pen”. The word Termin means “appointment”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:07:01",
+          "say": {
+            "ru": "их ха́бе а́йнен шлю́сель",
+            "uk": "іх ха́бе а́йнен шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:07:02",
+          "say": {
+            "ru": "ду хаст а́йнен шлю́сель",
+            "uk": "ду хаст а́йнен шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:07:03",
+          "say": {
+            "ru": "А́нна хат а́йнен шлю́сель",
+            "uk": "А́нна хат а́йнен шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:07:05",
+          "say": {
+            "ru": "ир хапт айн хе́нди",
+            "uk": "ір хапт айн хе́нді"
+          }
+        },
+        {
+          "phraseId": "de:07:06",
+          "say": {
+            "ru": "том хат а́йнен штифт",
+            "uk": "том хат а́йнен штіфт"
+          }
+        },
+        {
+          "phraseId": "de:07:07",
+          "say": {
+            "ru": "их ха́бе а́йнен терми́н",
+            "uk": "іх ха́бе а́йнен термі́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня есть ключ»",
+            "uk": "Виберіть, як сказати: «У мене є ключ»",
+            "en": "Choose how to say: “I have a key”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:07:01",
+          "options": [
+            "de:07:01",
+            "de:07:03",
+            "de:07:05"
+          ],
+          "answerId": "de:07:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Анны есть ключ»",
+            "uk": "Виберіть, як сказати: «Анна має ключ»",
+            "en": "Choose how to say: “Anna has a key”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:03",
+          "options": [
+            "de:07:03",
+            "de:07:01",
+            "de:07:02"
+          ],
+          "answerId": "de:07:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Тома есть ручка»",
+            "uk": "Виберіть, як сказати: «Том має ручку»",
+            "en": "Choose how to say: “Tom has a pen”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:06",
+          "options": [
+            "de:07:06",
+            "de:07:07",
+            "de:07:01"
+          ],
+          "answerId": "de:07:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мне нужно",
+        "uk": "Мені потрібно",
+        "en": "I need"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нужен ключ».\nIch brauche den Schlüssel. — «Мне нужен ключ.»\nЧитается: их бра́ухе ден шлю́сель\nСлово brauche значит «мне нужно».\nAnna braucht die Karte. — «Анне нужна карта.»\nЧитается: А́нна браухт ди ка́рте\nСлово braucht значит «нужно ему, нужно ей».\nWir brauchen das Ticket. — «Нам нужен билет.»\nЧитается: вир бра́ухен дас ти́кет\nСлово brauchen значит «нужно нам». Слово Ticket — «билет».\nСмотрите на слово перед названием вещи.\nКлюч — это der Schlüssel. Но после brauche он стал den Schlüssel.\nМеняется только der: он стал den. Слова die и das остались.\nDu brauchst den Stift. — «Тебе нужна ручка.»\nЧитается: ду браухст ден штифт\nСлово brauchst значит «нужно тебе». Слово Stift — «ручка», как раньше.",
+        "uk": "Дивіться, як сказати «Мені потрібний ключ».\nIch brauche den Schlüssel. — «Мені потрібний ключ.»\nЧитається: іх бра́ухе ден шлю́сель\nСлово brauche означає «мені потрібно».\nAnna braucht die Karte. — «Ганні потрібна карта.»\nЧитається: А́нна браухт ді ка́рте\nСлово braucht означає «потрібно йому, потрібно їй».\nWir brauchen das Ticket. — «Нам потрібний квиток.»\nЧитається: вір бра́ухен дас ті́кет\nСлово brauchen означає «потрібно нам». Слово Ticket — «квиток».\nДивіться на слово перед назвою речі.\nКлюч — це der Schlüssel. Але після brauche він став den Schlüssel.\nЗмінюється тільки der: він став den. Слова die і das лишилися.\nDu brauchst den Stift. — «Тобі потрібна ручка.»\nЧитається: ду браухст ден штіфт\nСлово brauchst означає «потрібно тобі». Слово Stift — «ручка», як раніше.",
+        "en": "Look at how to say “I need the key”.\nIch brauche den Schlüssel. — “I need the key.”\nSounds like: eekh brAookhe den shlYOOsel\nThe word brauche means “I need”.\nAnna braucht die Karte. — “Anna needs the card.”\nSounds like: Anna braookht dee kArte\nThe word braucht means “he needs, she needs”.\nWir brauchen das Ticket. — “We need the ticket.”\nSounds like: veer brAookhen das tEEket\nThe word brauchen means “we need”. The word Ticket means “ticket”.\nLook at the word before the name of the thing.\nKey is der Schlüssel. But after brauche it becomes den Schlüssel.\nOnly der changes: it became den. The words die and das stay.\nDu brauchst den Stift. — “You need the pen.”\nSounds like: doo braookhst den shteeft\nThe word brauchst means “you need”. The word Stift is “pen”, as before."
+      },
+      "examples": [
+        {
+          "phraseId": "de:07:11",
+          "say": {
+            "ru": "их бра́ухе ден шлю́сель",
+            "uk": "іх бра́ухе ден шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:07:13",
+          "say": {
+            "ru": "А́нна браухт ди ка́рте",
+            "uk": "А́нна браухт ді ка́рте"
+          }
+        },
+        {
+          "phraseId": "de:07:14",
+          "say": {
+            "ru": "вир бра́ухен дас ти́кет",
+            "uk": "вір бра́ухен дас ті́кет"
+          }
+        },
+        {
+          "phraseId": "de:07:12",
+          "say": {
+            "ru": "ду браухст ден штифт",
+            "uk": "ду браухст ден штіфт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужен ключ»",
+            "uk": "Виберіть, як сказати: «Мені потрібний ключ»",
+            "en": "Choose how to say: “I need the key”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:07:11",
+          "options": [
+            "de:07:11",
+            "de:07:01",
+            "de:07:13"
+          ],
+          "answerId": "de:07:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужен билет»",
+            "uk": "Виберіть, як сказати: «Нам потрібний квиток»",
+            "en": "Choose how to say: “We need the ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:14",
+          "options": [
+            "de:07:14",
+            "de:07:13",
+            "de:07:11"
+          ],
+          "answerId": "de:07:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Тебе нужна ручка»",
+            "uk": "Виберіть, як сказати: «Тобі потрібна ручка»",
+            "en": "Choose how to say: “You need the pen”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:12",
+          "options": [
+            "de:07:12",
+            "de:07:11",
+            "de:07:13"
+          ],
+          "answerId": "de:07:12"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Ищу и нахожу",
+        "uk": "Шукаю і знаходжу",
+        "en": "I look for and I find"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Том ищет гостиницу».\nTom sucht ein Hotel. — «Том ищет гостиницу.»\nЧитается: том зухт айн хоте́ль\nСлово sucht значит «ищет». Слово suche — «я ищу».\nDu suchst eine Apotheke. — «Ты ищешь аптеку.»\nЧитается: ду зухст а́йне апоте́ке\nСлово suchst значит «ищешь». Слово Apotheke — «аптека».\nПеред Hotel стоит ein, а перед Apotheke — eine.\nWo finde ich den Aufzug? — «Где мне найти лифт?»\nЧитается: во фи́нде их ден а́уфцук\nСлово finden значит «находить». Слово finde — «нахожу».\nСлово Aufzug значит «лифт». Слово der опять стало den.",
+        "uk": "Дивіться, як сказати «Том шукає готель».\nTom sucht ein Hotel. — «Том шукає готель.»\nЧитається: том зухт айн хоте́ль\nСлово sucht означає «шукає». Слово suche — «я шукаю».\nDu suchst eine Apotheke. — «Ти шукаєш аптеку.»\nЧитається: ду зухст а́йне апоте́ке\nСлово suchst означає «шукаєш». Слово Apotheke — «аптека».\nПеред Hotel стоїть ein, а перед Apotheke — eine.\nWo finde ich den Aufzug? — «Де знайти ліфт?»\nЧитається: во фі́нде іх ден а́уфцук\nСлово finden означає «знаходити». Слово finde — «знаходжу».\nСлово Aufzug означає «ліфт». Слово der знову стало den.",
+        "en": "Look at how to say “Tom is looking for a hotel”.\nTom sucht ein Hotel. — “Tom is looking for a hotel.”\nSounds like: tom zookht ayn khotEl\nThe word sucht means “looks for”. The word suche means “I look for”.\nDu suchst eine Apotheke. — “You are looking for a pharmacy.”\nSounds like: doo zookhst Ayne apotEke\nThe word suchst means “you look for”. The word Apotheke means “pharmacy”.\nBefore Hotel comes ein, and before Apotheke comes eine.\nWo finde ich den Aufzug? — “Where do I find the lift?”\nSounds like: vo fEEnde eekh den Aooftsook\nThe word finden means “to find”. The word finde means “I find”.\nThe word Aufzug means “lift”. The word der became den again."
+      },
+      "examples": [
+        {
+          "phraseId": "de:07:18",
+          "say": {
+            "ru": "том зухт айн хоте́ль",
+            "uk": "том зухт айн хоте́ль"
+          }
+        },
+        {
+          "phraseId": "de:07:17",
+          "say": {
+            "ru": "ду зухст а́йне апоте́ке",
+            "uk": "ду зухст а́йне апоте́ке"
+          }
+        },
+        {
+          "phraseId": "de:07:47",
+          "say": {
+            "ru": "во фи́нде их ден а́уфцук",
+            "uk": "во фі́нде іх ден а́уфцук"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том ищет гостиницу»",
+            "uk": "Виберіть, як сказати: «Том шукає готель»",
+            "en": "Choose how to say: “Tom is looking for a hotel”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:07:18",
+          "options": [
+            "de:07:18",
+            "de:07:17",
+            "de:07:06"
+          ],
+          "answerId": "de:07:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты ищешь аптеку»",
+            "uk": "Виберіть, як сказати: «Ти шукаєш аптеку»",
+            "en": "Choose how to say: “You are looking for a pharmacy”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:17",
+          "options": [
+            "de:07:17",
+            "de:07:18",
+            "de:07:47"
+          ],
+          "answerId": "de:07:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где мне найти лифт?»",
+            "uk": "Виберіть, як сказати: «Де знайти ліфт?»",
+            "en": "Choose how to say: “Where do I find the lift?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:47",
+          "options": [
+            "de:07:47",
+            "de:07:17",
+            "de:07:13"
+          ],
+          "answerId": "de:07:47"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Беру и читаю",
+        "uk": "Беру і читаю",
+        "en": "I take and I read"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы берём такси».\nWir nehmen das Taxi. — «Мы берём такси.»\nЧитается: вир не́мен дас та́кси\nСлово nehmen значит «брать». Про транспорт — «ехать на нём».\nDu nimmst den Zug. — «Ты едешь поездом.»\nЧитается: ду нимст ден цук\nСлово nimmst значит «берёшь». Слово Zug — «поезд».\nВ слове nehmen в середине звучит «е». В слове nimmst — «и».\nIch lese den Brief. — «Я читаю письмо.»\nЧитается: их ле́зе ден бриф\nСлово lese значит «читаю». Слово Brief — «письмо».\nAnna liest die Rechnung. — «Анна читает счёт.»\nЧитается: А́нна лист ди ре́хнунг\nСлово liest значит «читает». Тут тоже поменялся звук: lese — liest.\nЗвук меняется для du и для Anna. Для ich — нет: ich nehme, ich lese.",
+        "uk": "Дивіться, як сказати «Ми беремо таксі».\nWir nehmen das Taxi. — «Ми беремо таксі.»\nЧитається: вір не́мен дас та́ксі\nСлово nehmen означає «брати». Про транспорт — «їхати ним».\nDu nimmst den Zug. — «Ти їдеш поїздом.»\nЧитається: ду німст ден цук\nСлово nimmst означає «береш». Слово Zug — «поїзд».\nУ слові nehmen всередині звучить «е». У слові nimmst — «і».\nIch lese den Brief. — «Я читаю листа.»\nЧитається: іх ле́зе ден бріф\nСлово lese означає «читаю». Слово Brief — «лист».\nAnna liest die Rechnung. — «Анна читає рахунок.»\nЧитається: А́нна ліст ді ре́хнунг\nСлово liest означає «читає». Тут теж змінився звук: lese — liest.\nЗвук змінюється для du і для Anna. Для ich — ні: ich nehme, ich lese.",
+        "en": "Look at how to say “We take a taxi”.\nWir nehmen das Taxi. — “We take a taxi.”\nSounds like: veer nEmen das tAksee\nThe word nehmen means “to take”. With transport it means “to go by it”.\nDu nimmst den Zug. — “You take the train.”\nSounds like: doo neemst den tsook\nThe word nimmst means “you take”. The word Zug means “train”.\nIn the word nehmen you hear “e” in the middle. In nimmst you hear “i”.\nIch lese den Brief. — “I read the letter.”\nSounds like: eekh lEze den breef\nThe word lese means “I read”. The word Brief means “letter”.\nAnna liest die Rechnung. — “Anna reads the bill.”\nSounds like: Anna leest dee rEkhnoong\nThe word liest means “reads”. Here the sound changed too: lese — liest.\nThe sound changes for du and for Anna. Not for ich: ich nehme, ich lese."
+      },
+      "examples": [
+        {
+          "phraseId": "de:07:24",
+          "say": {
+            "ru": "вир не́мен дас та́кси",
+            "uk": "вір не́мен дас та́ксі"
+          }
+        },
+        {
+          "phraseId": "de:07:22",
+          "say": {
+            "ru": "ду нимст ден цук",
+            "uk": "ду німст ден цук"
+          }
+        },
+        {
+          "phraseId": "de:07:31",
+          "say": {
+            "ru": "их ле́зе ден бриф",
+            "uk": "іх ле́зе ден бріф"
+          }
+        },
+        {
+          "phraseId": "de:07:32",
+          "say": {
+            "ru": "А́нна лист ди ре́хнунг",
+            "uk": "А́нна ліст ді ре́хнунг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы берём такси»",
+            "uk": "Виберіть, як сказати: «Ми беремо таксі»",
+            "en": "Choose how to say: “We take a taxi”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:07:24",
+          "options": [
+            "de:07:24",
+            "de:07:22",
+            "de:07:14"
+          ],
+          "answerId": "de:07:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты едешь поездом»",
+            "uk": "Виберіть, як сказати: «Ти їдеш поїздом»",
+            "en": "Choose how to say: “You take the train”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:22",
+          "options": [
+            "de:07:22",
+            "de:07:24",
+            "de:07:32"
+          ],
+          "answerId": "de:07:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна читает счёт»",
+            "uk": "Виберіть, як сказати: «Анна читає рахунок»",
+            "en": "Choose how to say: “Anna reads the bill”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:32",
+          "options": [
+            "de:07:32",
+            "de:07:31",
+            "de:07:22"
+          ],
+          "answerId": "de:07:32"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вопрос про «есть»",
+        "uk": "Питання про «є»",
+        "en": "Asking who has what"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «У тебя есть ручка?».\nHast du einen Stift? — «У тебя есть ручка?»\nЧитается: хаст ду а́йнен штифт\nСлово hast встало первым: Hast du einen Stift?\nТак спрашивают, когда ответ — «да» или «нет».\nWer hat das Ladegerät? — «У кого зарядка?»\nЧитается: вер хат дас ла́дегерэт\nСлово wer значит «кто». Слово Ladegerät — «зарядное устройство».\nMöchten Sie eine Quittung? — «Хотите квитанцию?»\nЧитается: мё́хтен зи а́йне кви́тунг\nСлово möchten значит «хотите». Слово Sie — «вы».\nСлово Quittung значит «квитанция, чек об оплате».",
+        "uk": "Дивіться, як запитати «У тебе є ручка?».\nHast du einen Stift? — «У тебе є ручка?»\nЧитається: хаст ду а́йнен штіфт\nСлово hast стало першим: Hast du einen Stift?\nТак питають, коли відповідь — «так» або «ні».\nWer hat das Ladegerät? — «Хто має зарядку?»\nЧитається: вер хат дас ла́дегерет\nСлово wer означає «хто». Слово Ladegerät — «зарядний пристрій».\nMöchten Sie eine Quittung? — «Бажаєте квитанцію?»\nЧитається: мё́хтен зі а́йне кві́тунг\nСлово möchten означає «бажаєте». Слово Sie — «ви».\nСлово Quittung означає «квитанція, чек про оплату».",
+        "en": "Look at how to ask “Do you have a pen?”.\nHast du einen Stift? — “Do you have a pen?”\nSounds like: khast doo Aynen shteeft\nThe word hast comes first: Hast du einen Stift?\nYou ask this way when the answer is “yes” or “no”.\nWer hat das Ladegerät? — “Who has the charger?”\nSounds like: ver khat das lAdegeret\nThe word wer means “who”. The word Ladegerät means “charger”.\nMöchten Sie eine Quittung? — “Would you like a receipt?”\nSounds like: mYOkhten zee Ayne kvEEtoong\nThe word möchten means “would like”. The word Sie means “you”.\nThe word Quittung means “receipt”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:07:41",
+          "say": {
+            "ru": "хаст ду а́йнен штифт",
+            "uk": "хаст ду а́йнен штіфт"
+          }
+        },
+        {
+          "phraseId": "de:07:46",
+          "say": {
+            "ru": "вер хат дас ла́дегерэт",
+            "uk": "вер хат дас ла́дегерет"
+          }
+        },
+        {
+          "phraseId": "de:07:45",
+          "say": {
+            "ru": "мё́хтен зи а́йне кви́тунг",
+            "uk": "мё́хтен зі а́йне кві́тунг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У тебя есть ручка?»",
+            "uk": "Виберіть, як сказати: «У тебе є ручка?»",
+            "en": "Choose how to say: “Do you have a pen?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:07:41",
+          "options": [
+            "de:07:41",
+            "de:07:01",
+            "de:07:46"
+          ],
+          "answerId": "de:07:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У кого зарядка?»",
+            "uk": "Виберіть, як сказати: «Хто має зарядку?»",
+            "en": "Choose how to say: “Who has the charger?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:46",
+          "options": [
+            "de:07:46",
+            "de:07:45",
+            "de:07:41"
+          ],
+          "answerId": "de:07:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хотите квитанцию?»",
+            "uk": "Виберіть, як сказати: «Бажаєте квитанцію?»",
+            "en": "Choose how to say: “Would you like a receipt?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:45",
+          "options": [
+            "de:07:45",
+            "de:07:46",
+            "de:07:41"
+          ],
+          "answerId": "de:07:45"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Открываю, заказываю, забираю",
+        "uk": "Відкриваю, замовляю, забираю",
+        "en": "I open, I order, I pick up"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я открываю шкаф».\nIch öffne den Schrank. — «Я открываю шкаф.»\nЧитается: их э́фне ден шранк\nСлово öffne значит «открываю». Слово Schrank — «шкаф».\nIch bestelle einen Tee. — «Я заказываю чай.»\nЧитается: их беште́ле а́йнен те\nСлово bestelle значит «заказываю». Слово Tee — «чай».\nAnna holt die Jacke. — «Анна забирает куртку.»\nЧитается: А́нна холт ди я́ке\nСлово holt значит «забирает». Слово Jacke — «куртка».\nЗдесь звук не меняется: ich öffne, Anna öffnet.",
+        "uk": "Дивіться, як сказати «Я відкриваю шафу».\nIch öffne den Schrank. — «Я відкриваю шафу.»\nЧитається: іх е́фне ден шранк\nСлово öffne означає «відкриваю». Слово Schrank — «шафа».\nIch bestelle einen Tee. — «Я замовляю чай.»\nЧитається: іх беште́ле а́йнен те\nСлово bestelle означає «замовляю». Слово Tee — «чай».\nAnna holt die Jacke. — «Анна забирає куртку.»\nЧитається: А́нна холт ді я́ке\nСлово holt означає «забирає». Слово Jacke — «куртка».\nТут звук не змінюється: ich öffne, Anna öffnet.",
+        "en": "Look at how to say “I open the cupboard”.\nIch öffne den Schrank. — “I open the cupboard.”\nSounds like: eekh Efne den shrank\nThe word öffne means “I open”. The word Schrank means “cupboard”.\nIch bestelle einen Tee. — “I order a tea.”\nSounds like: eekh beshtEle Aynen te\nThe word bestelle means “I order”. The word Tee means “tea”.\nAnna holt die Jacke. — “Anna picks up the jacket.”\nSounds like: Anna kholt dee YAke\nThe word holt means “picks up”. The word Jacke means “jacket”.\nHere the sound stays: ich öffne, Anna öffnet."
+      },
+      "examples": [
+        {
+          "phraseId": "de:07:37",
+          "say": {
+            "ru": "их э́фне ден шранк",
+            "uk": "іх е́фне ден шранк"
+          }
+        },
+        {
+          "phraseId": "de:07:26",
+          "say": {
+            "ru": "их беште́ле а́йнен те",
+            "uk": "іх беште́ле а́йнен те"
+          }
+        },
+        {
+          "phraseId": "de:07:49",
+          "say": {
+            "ru": "А́нна холт ди я́ке",
+            "uk": "А́нна холт ді я́ке"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я открываю шкаф»",
+            "uk": "Виберіть, як сказати: «Я відкриваю шафу»",
+            "en": "Choose how to say: “I open the cupboard”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:07:37",
+          "options": [
+            "de:07:37",
+            "de:07:26",
+            "de:07:49"
+          ],
+          "answerId": "de:07:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я заказываю чай»",
+            "uk": "Виберіть, як сказати: «Я замовляю чай»",
+            "en": "Choose how to say: “I order a tea”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:26",
+          "options": [
+            "de:07:26",
+            "de:07:37",
+            "de:07:49"
+          ],
+          "answerId": "de:07:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна забирает куртку»",
+            "uk": "Виберіть, як сказати: «Анна забирає куртку»",
+            "en": "Choose how to say: “Anna picks up the jacket”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:07:49",
+          "options": [
+            "de:07:49",
+            "de:07:37",
+            "de:07:26"
+          ],
+          "answerId": "de:07:49"
+        }
+      ]
+    }
+  ]
+}

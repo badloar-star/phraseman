@@ -1,0 +1,586 @@
+{
+  "lang": "en",
+  "lesson": 9,
+  "title": {
+    "ru": "Что где есть",
+    "uk": "Що де є",
+    "en": "What there is"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Есть что-то",
+        "uk": "Є щось",
+        "en": "There is, there are"
+      },
+      "text": {
+        "ru": "Чтобы сказать, что что-то есть, начните с There is.\nThere is a lift. — Есть лифт.\nЧитается: зэ́р из э ли́фт.\nСлово there значит «есть».\nЗдесь There не значит «там». There is — «есть».\nОдна вещь — There is. Много вещей — There are.\nThere are stairs. — Есть лестница.\nЧитается: зэ́р а́р сте́рз.\nThere is a queue. — Есть очередь.\nЧитается: зэ́р из э кью́.\nСлово queue значит «очередь».\nСлова: back — «сзади, задняя часть».",
+        "uk": "Щоб сказати, що щось є, почніть з There is.\nThere is a lift. — Є ліфт.\nЧитається: зе́р із е лі́фт.\nСлово there означає «є».\nТут There не означає «там». There is — «є».\nОдна річ — There is. Багато речей — There are.\nThere are stairs. — Є сходи.\nЧитається: зе́р а́р сте́рз.\nThere is a queue. — Є черга.\nЧитається: зе́р із е кью́.\nСлово queue означає «черга».\nСлова: back — «ззаду, задня частина».",
+        "en": "To say that something exists, start with There is.\nThere is a lift.\nThe word there means “used to say something exists”.\nHere There does not mean “over there.”\nOne thing: There is. Many things: There are.\nThere are stairs.\nThere is a queue.\nThe word queue means “people waiting in a line”.\nMore words: back — “the part behind”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:09.01",
+          "say": {
+            "ru": "зэ́р из э ли́фт",
+            "uk": "зе́р із е лі́фт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.02",
+          "say": {
+            "ru": "зэ́р а́р сте́рз",
+            "uk": "зе́р а́р сте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.03",
+          "say": {
+            "ru": "зэ́р из э кью́",
+            "uk": "зе́р із е кью́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.04",
+          "say": {
+            "ru": "зэ́р а́р ту́ кью́з",
+            "uk": "зе́р а́р ту́ кью́з"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.06",
+          "say": {
+            "ru": "зэ́р а́р си́тс эт зэ бэ́к",
+            "uk": "зе́р а́р сі́тс ет зе бе́к"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть лифт.»",
+            "uk": "Виберіть, як сказати: «Є ліфт.»",
+            "en": "Choose how to say: “There is a lift.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:09.01",
+          "options": [
+            "en-classic-r1:09.01",
+            "en-classic-r1:09.02",
+            "en-classic-r1:09.03"
+          ],
+          "answerId": "en-classic-r1:09.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть лестница.»",
+            "uk": "Виберіть, як сказати: «Є сходи.»",
+            "en": "Choose how to say: “There are stairs.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.02",
+          "options": [
+            "en-classic-r1:09.02",
+            "en-classic-r1:09.01",
+            "en-classic-r1:09.04"
+          ],
+          "answerId": "en-classic-r1:09.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть очередь.»",
+            "uk": "Виберіть, як сказати: «Є черга.»",
+            "en": "Choose how to say: “There is a queue.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.03",
+          "options": [
+            "en-classic-r1:09.03",
+            "en-classic-r1:09.04",
+            "en-classic-r1:09.06"
+          ],
+          "answerId": "en-classic-r1:09.03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Где что находится",
+        "uk": "Де що знаходиться",
+        "en": "Where things are"
+      },
+      "text": {
+        "ru": "Добавьте место: upstairs — «наверху», downstairs — «внизу».\nThere is a toilet upstairs. — Наверху есть туалет.\nЧитается: зэ́р из э то́йлет апсте́рз.\nСлово toilet значит «туалет». Слово upstairs — «наверху».\nThere are toilets downstairs. — Внизу есть туалеты.\nЧитается: зэ́р а́р то́йлетс даунсте́рз.\nСлово downstairs значит «внизу».\nThere is a map outside. — Снаружи висит карта.\nЧитается: зэ́р из э мэ́п аутса́йд.\nСлово map значит «карта». Слово outside — «снаружи».\nСлова: inside — «внутри».",
+        "uk": "Додайте місце: upstairs — «нагорі», downstairs — «внизу».\nThere is a toilet upstairs. — Є туалет нагорі.\nЧитається: зе́р із е то́йлет апсте́рз.\nСлово toilet означає «туалет». Слово upstairs — «нагорі».\nThere are toilets downstairs. — Є туалети внизу.\nЧитається: зе́р а́р то́йлетс даунсте́рз.\nСлово downstairs означає «внизу».\nThere is a map outside. — Надворі є карта.\nЧитається: зе́р із е ме́п аутса́йд.\nСлово map означає «карта». Слово outside — «зовні».\nСлова: inside — «всередині».",
+        "en": "Add the place: upstairs, downstairs.\nThere is a toilet upstairs.\nThe word toilet means “a room to wash and go to the toilet”.\nThe word upstairs means “on a higher floor”.\nThere are toilets downstairs.\nThe word downstairs means “on a lower floor”.\nThere is a map outside.\nThe word map means “a drawing of a place”.\nThe word outside means “not in the building”.\nMore words: inside — “in the building”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:09.07",
+          "say": {
+            "ru": "зэ́р из э то́йлет апсте́рз",
+            "uk": "зе́р із е то́йлет апсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.08",
+          "say": {
+            "ru": "зэ́р а́р то́йлетс даунсте́рз",
+            "uk": "зе́р а́р то́йлетс даунсте́рз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.09",
+          "say": {
+            "ru": "зэ́р из э мэ́п аутса́йд",
+            "uk": "зе́р із е ме́п аутса́йд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.10",
+          "say": {
+            "ru": "зэ́р а́р са́йнз инса́йд",
+            "uk": "зе́р а́р са́йнз інса́йд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Наверху есть туалет.»",
+            "uk": "Виберіть, як сказати: «Є туалет нагорі.»",
+            "en": "Choose how to say: “There is a toilet upstairs.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:09.07",
+          "options": [
+            "en-classic-r1:09.07",
+            "en-classic-r1:09.08",
+            "en-classic-r1:09.09"
+          ],
+          "answerId": "en-classic-r1:09.07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Внизу есть туалеты.»",
+            "uk": "Виберіть, як сказати: «Є туалети внизу.»",
+            "en": "Choose how to say: “There are toilets downstairs.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.08",
+          "options": [
+            "en-classic-r1:09.08",
+            "en-classic-r1:09.07",
+            "en-classic-r1:09.10"
+          ],
+          "answerId": "en-classic-r1:09.08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Снаружи висит карта.»",
+            "uk": "Виберіть, як сказати: «Надворі є карта.»",
+            "en": "Choose how to say: “There is a map outside.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.09",
+          "options": [
+            "en-classic-r1:09.09",
+            "en-classic-r1:09.10",
+            "en-classic-r1:09.07"
+          ],
+          "answerId": "en-classic-r1:09.09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "На кухне",
+        "uk": "На кухні",
+        "en": "In the kitchen"
+      },
+      "text": {
+        "ru": "Эти слова пригодятся на кухне.\nThere is soup on the stove. — На плите стоит суп.\nЧитается: зэ́р из су́п он зэ сто́ув.\nСлово soup значит «суп». Слово stove — «плита».\nThere are eggs in the fridge. — В холодильнике есть яйца.\nЧитается: зэ́р а́р э́гз ин зэ фри́дж.\nСлово egg значит «яйцо». Слово fridge — «холодильник».\nКогда вещей много, на конце слова s: egg — eggs.\nThere are cups on the shelf. — На полке стоят чашки.\nЧитается: зэ́р а́р ка́пс он зэ ше́лф.\nСлово cup значит «чашка». Слово shelf — «полка».\nСлова: spoons — «ложки», drawer — «ящик», rice — «рис», cupboard — «шкаф».\nСлова: soap — «мыло», sink — «раковина», kettle — «чайник», bread — «хлеб».\nСлова: clean — «чистый», towel — «полотенце».",
+        "uk": "Ці слова стануть у пригоді на кухні.\nThere is soup on the stove. — На плиті є суп.\nЧитається: зе́р із су́п он зе сто́ув.\nСлово soup означає «суп». Слово stove — «плита».\nThere are eggs in the fridge. — У холодильнику є яйця.\nЧитається: зе́р а́р е́гз ін зе фрі́дж.\nСлово egg означає «яйце». Слово fridge — «холодильник».\nКоли речей багато, на кінці слова s: egg — eggs.\nThere are cups on the shelf. — На полиці є чашки.\nЧитається: зе́р а́р ка́пс он зе ше́лф.\nСлово cup означає «чашка». Слово shelf — «полиця».\nСлова: spoons — «ложки», drawer — «шухляда», rice — «рис», cupboard — «шафа».\nСлова: soap — «мило», sink — «раковина», kettle — «чайник», bread — «хліб».\nСлова: clean — «чистий», towel — «рушник».",
+        "en": "These words help in the kitchen.\nThere is soup on the stove.\nThe word soup means “a hot liquid food”.\nThe word stove means “a thing to cook on”.\nThere are eggs in the fridge.\nThe word egg means “a food from a hen”.\nThe word fridge means “a cold box for food”.\nFor many things we add s: egg, eggs.\nThere are cups on the shelf.\nThe word cup means “a small bowl for tea”.\nThe word shelf means “a board on a wall”.\nMore words: spoons — “things to eat soup with”.\nMore words: drawer — “a box that slides out”.\nMore words: rice — “small white grains of food”.\nMore words: cupboard — “a cabinet with doors”.\nMore words: soap — “a thing to wash with”.\nMore words: sink — “a basin to wash in”.\nMore words: kettle — “a pot to boil water”.\nMore words: bread — “food made from flour”, clean — “not dirty”.\nMore words: towel — “a cloth to dry yourself”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:09.13",
+          "say": {
+            "ru": "зэ́р из су́п он зэ сто́ув",
+            "uk": "зе́р із су́п он зе сто́ув"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.14",
+          "say": {
+            "ru": "зэ́р а́р э́гз ин зэ фри́дж",
+            "uk": "зе́р а́р е́гз ін зе фрі́дж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.15",
+          "say": {
+            "ru": "зэ́р а́р ка́пс он зэ ше́лф",
+            "uk": "зе́р а́р ка́пс он зе ше́лф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.17",
+          "say": {
+            "ru": "зэ́р а́р спу́нз ин зэ дро́р",
+            "uk": "зе́р а́р спу́нз ін зе дро́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.18",
+          "say": {
+            "ru": "зэ́р из ра́йс ин зэ ка́берд",
+            "uk": "зе́р із ра́йс ін зе ка́берд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.20",
+          "say": {
+            "ru": "зэ́р из со́уп ба́й зэ си́нк",
+            "uk": "зе́р із со́уп ба́й зе сі́нк"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На плите стоит суп.»",
+            "uk": "Виберіть, як сказати: «На плиті є суп.»",
+            "en": "Choose how to say: “There is soup on the stove.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:09.13",
+          "options": [
+            "en-classic-r1:09.13",
+            "en-classic-r1:09.14",
+            "en-classic-r1:09.15"
+          ],
+          "answerId": "en-classic-r1:09.13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В холодильнике есть яйца.»",
+            "uk": "Виберіть, як сказати: «У холодильнику є яйця.»",
+            "en": "Choose how to say: “There are eggs in the fridge.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.14",
+          "options": [
+            "en-classic-r1:09.14",
+            "en-classic-r1:09.13",
+            "en-classic-r1:09.18"
+          ],
+          "answerId": "en-classic-r1:09.14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На полке стоят чашки.»",
+            "uk": "Виберіть, як сказати: «На полиці є чашки.»",
+            "en": "Choose how to say: “There are cups on the shelf.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.15",
+          "options": [
+            "en-classic-r1:09.15",
+            "en-classic-r1:09.17",
+            "en-classic-r1:09.20"
+          ],
+          "answerId": "en-classic-r1:09.15"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Есть ли здесь…?",
+        "uk": "Чи є тут…?",
+        "en": "Is there…?"
+      },
+      "text": {
+        "ru": "Чтобы спросить, поставьте Is или Are в начало.\nAre there lockers at the station? — Есть ли на станции камеры хранения?\nЧитается: а́р зэ́р ло́керз эт зэ стэ́йшен.\nСлово locker значит «шкафчик».\nОдна вещь — Is there? Много вещей — Are there?\nAre there any blankets? — Есть ли одеяла?\nЧитается: а́р зэ́р э́ни блэ́нкитс.\nСлово blankets значит «одеяла».\nСлова: step — «ступенька», direct — «прямой».",
+        "uk": "Щоб запитати, поставте Is або Are на початок.\nAre there lockers at the station? — Чи є камери схову на станції?\nЧитається: а́р зе́р ло́керз ет зе сте́йшен.\nСлово locker означає «шафка».\nОдна річ — Is there? Багато речей — Are there?\nAre there any blankets? — Чи є ковдри?\nЧитається: а́р зе́р е́ні бле́нкітс.\nСлово blankets означає «ковдри».\nСлова: step — «сходинка», direct — «прямий».",
+        "en": "To ask, put Is or Are first.\nAre there lockers at the station?\nThe word locker means “a small box with a lock”.\nOne thing: Is there? Many things: Are there?\nAre there any blankets?\nThe word blankets means “warm covers for a bed”.\nMore words: step — “one part of stairs”, direct — “without changing”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:09.24",
+          "say": {
+            "ru": "а́р зэ́р ло́керз эт зэ стэ́йшен",
+            "uk": "а́р зе́р ло́керз ет зе сте́йшен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.26",
+          "say": {
+            "ru": "а́р зэ́р э́ни блэ́нкитс",
+            "uk": "а́р зе́р е́ні бле́нкітс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.28",
+          "say": {
+            "ru": "а́р зэ́р э́ни стэ́пс эт зи э́нтренс",
+            "uk": "а́р зе́р е́ні сте́пс ет зі е́нтренс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.30",
+          "say": {
+            "ru": "и́з зэ́р э дирэ́кт трэ́йн",
+            "uk": "і́з зе́р е діре́кт тре́йн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли на станции камеры хранения?»",
+            "uk": "Виберіть, як сказати: «Чи є камери схову на станції?»",
+            "en": "Choose how to say: “Are there lockers at the station?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:09.24",
+          "options": [
+            "en-classic-r1:09.24",
+            "en-classic-r1:09.26",
+            "en-classic-r1:09.30"
+          ],
+          "answerId": "en-classic-r1:09.24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли ступеньки у входа?»",
+            "uk": "Виберіть, як сказати: «Чи є сходи біля входу?»",
+            "en": "Choose how to say: “Are there any steps at the entrance?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.28",
+          "options": [
+            "en-classic-r1:09.28",
+            "en-classic-r1:09.24",
+            "en-classic-r1:09.30"
+          ],
+          "answerId": "en-classic-r1:09.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли прямой поезд?»",
+            "uk": "Виберіть, як сказати: «Чи є прямий поїзд?»",
+            "en": "Choose how to say: “Is there a direct train?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.30",
+          "options": [
+            "en-classic-r1:09.30",
+            "en-classic-r1:09.26",
+            "en-classic-r1:09.28"
+          ],
+          "answerId": "en-classic-r1:09.30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Когда чего-то нет",
+        "uk": "Коли чогось немає",
+        "en": "When there is none"
+      },
+      "text": {
+        "ru": "Скажите no или not: There is no sugar — «сахара нет».\nThere is no sugar left. — Сахара больше нет.\nЧитается: зэ́р из но́у шу́гер лэ́фт.\nСлово sugar значит «сахар».\nThere is not much space. — Места мало.\nЧитается: зэ́р из но́т ма́ч спэ́йс.\nСлово space значит «место».\nnot much — «не много».\nСлова: forks — «вилки», signal — «сигнал», floor — «пол, этаж».\nСлова: single — «одиночный, ни один».",
+        "uk": "Скажіть no або not: There is no sugar — «цукру немає».\nThere is no sugar left. — Цукру не залишилося.\nЧитається: зе́р із но́у шу́гер ле́фт.\nСлово sugar означає «цукор».\nThere is not much space. — Місця мало.\nЧитається: зе́р із но́т ма́ч спе́йс.\nСлово space означає «місце».\nnot much — «небагато».\nСлова: forks — «виделки», signal — «сигнал», floor — «підлога, поверх».\nСлова: single — «один, жодний».",
+        "en": "Say no or not: There is no sugar.\nThere is no sugar left.\nThe word sugar means “a sweet white food”.\nThere is not much space.\nThe word space means “room, not full”.\nNot much means “only a little.”\nMore words: forks — “things to eat with”, signal — “a phone connection”.\nMore words: floor — “the ground you walk on”, single — “only one”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:09.31",
+          "say": {
+            "ru": "зэ́р из но́у шу́гер лэ́фт",
+            "uk": "зе́р із но́у шу́гер ле́фт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.33",
+          "say": {
+            "ru": "зэ́р из но́т ма́ч спэ́йс",
+            "uk": "зе́р із но́т ма́ч спе́йс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.36",
+          "say": {
+            "ru": "зэ́р а́р но́у кли́н фо́рикс",
+            "uk": "зе́р а́р но́у клі́н фо́рікс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.37",
+          "say": {
+            "ru": "зэ́р из но́у си́гнл хи́р",
+            "uk": "зе́р із но́у сі́гнл хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.38",
+          "say": {
+            "ru": "зэ́р а́р но́у ло́керз он зис фло́р",
+            "uk": "зе́р а́р но́у ло́керз он зіс фло́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.39",
+          "say": {
+            "ru": "зэ́р из но́т э си́нгл си́т лэ́фт",
+            "uk": "зе́р із но́т е сі́нгл сі́т ле́фт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сахара больше нет.»",
+            "uk": "Виберіть, як сказати: «Цукру не залишилося.»",
+            "en": "Choose how to say: “There is no sugar left.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:09.31",
+          "options": [
+            "en-classic-r1:09.31",
+            "en-classic-r1:09.33",
+            "en-classic-r1:09.37"
+          ],
+          "answerId": "en-classic-r1:09.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Места мало.»",
+            "uk": "Виберіть, як сказати: «Місця мало.»",
+            "en": "Choose how to say: “There is not much space.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.33",
+          "options": [
+            "en-classic-r1:09.33",
+            "en-classic-r1:09.31",
+            "en-classic-r1:09.36"
+          ],
+          "answerId": "en-classic-r1:09.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Здесь нет сигнала.»",
+            "uk": "Виберіть, як сказати: «Тут немає сигналу.»",
+            "en": "Choose how to say: “There is no signal here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.37",
+          "options": [
+            "en-classic-r1:09.37",
+            "en-classic-r1:09.36",
+            "en-classic-r1:09.38"
+          ],
+          "answerId": "en-classic-r1:09.37"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Ещё примеры",
+        "uk": "Ще приклади",
+        "en": "More examples"
+      },
+      "text": {
+        "ru": "Ещё несколько фраз с There is и There are.\nThere are two names on the list. — В списке два имени.\nЧитается: зэ́р а́р ту́ нэ́ймз он зэ ли́ст.\nСлово name значит «имя». Слово list — «список».\nThere is a mistake on my bill. — В моем счете ошибка.\nЧитается: зэ́р из э миста́йк он май би́л.\nСлово mistake значит «ошибка».\nThere is a crack in the screen. — На экране трещина.\nЧитается: зэ́р из э крэ́к ин зэ скри́н.\nСлово crack значит «трещина».\nThere is still time for a coffee. — Еще есть время выпить кофе.\nЧитается: зэ́р из сти́л та́йм фо́р э ко́фи.\nСлово still значит «ещё».",
+        "uk": "Ще кілька фраз з There is і There are.\nThere are two names on the list. — У списку є два імені.\nЧитається: зе́р а́р ту́ не́ймз он зе лі́ст.\nСлово name означає «ім'я». Слово list — «список».\nThere is a mistake on my bill. — У моєму рахунку помилка.\nЧитається: зе́р із е міста́йк он май бі́л.\nСлово mistake означає «помилка».\nThere is a crack in the screen. — На екрані є тріщина.\nЧитається: зе́р із е кре́к ін зе скрі́н.\nСлово crack означає «тріщина».\nThere is still time for a coffee. — Ще є час для кави.\nЧитається: зе́р із сті́л та́йм фо́р е ко́фі.\nСлово still означає «ще».",
+        "en": "A few more phrases with There is and There are.\nThere are two names on the list.\nThe word name means “what people call you”.\nThe word list means “words written one under another”.\nThere is a mistake on my bill.\nThe word mistake means “something wrong”.\nThere is a crack in the screen.\nThe word crack means “a thin line where something breaks”.\nThere is still time for a coffee.\nThe word still means “even now”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:09.42",
+          "say": {
+            "ru": "зэ́р а́р ту́ нэ́ймз он зэ ли́ст",
+            "uk": "зе́р а́р ту́ не́ймз он зе лі́ст"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.43",
+          "say": {
+            "ru": "зэ́р из э миста́йк он май би́л",
+            "uk": "зе́р із е міста́йк он май бі́л"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.44",
+          "say": {
+            "ru": "зэ́р из э крэ́к ин зэ скри́н",
+            "uk": "зе́р із е кре́к ін зе скрі́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:09.50",
+          "say": {
+            "ru": "зэ́р из сти́л та́йм фо́р э ко́фи",
+            "uk": "зе́р із сті́л та́йм фо́р е ко́фі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В списке два имени.»",
+            "uk": "Виберіть, як сказати: «У списку є два імені.»",
+            "en": "Choose how to say: “There are two names on the list.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:09.42",
+          "options": [
+            "en-classic-r1:09.42",
+            "en-classic-r1:09.43",
+            "en-classic-r1:09.44"
+          ],
+          "answerId": "en-classic-r1:09.42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В моем счете ошибка.»",
+            "uk": "Виберіть, як сказати: «У моєму рахунку помилка.»",
+            "en": "Choose how to say: “There is a mistake on my bill.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.43",
+          "options": [
+            "en-classic-r1:09.43",
+            "en-classic-r1:09.44",
+            "en-classic-r1:09.50"
+          ],
+          "answerId": "en-classic-r1:09.43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Еще есть время выпить кофе.»",
+            "uk": "Виберіть, як сказати: «Ще є час для кави.»",
+            "en": "Choose how to say: “There is still time for a coffee.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:09.50",
+          "options": [
+            "en-classic-r1:09.50",
+            "en-classic-r1:09.42",
+            "en-classic-r1:09.44"
+          ],
+          "answerId": "en-classic-r1:09.50"
+        }
+      ]
+    }
+  ]
+}

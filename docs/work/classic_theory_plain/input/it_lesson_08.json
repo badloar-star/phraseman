@@ -1,0 +1,440 @@
+{
+ "lang": "it",
+ "lesson": 8,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:08:01",
+   "target": "Dove sei?",
+   "ru": "Где ты?",
+   "uk": "Де ти?"
+  },
+  {
+   "id": "it:08:02",
+   "target": "Dov’è Paolo?",
+   "ru": "Где Паоло?",
+   "uk": "Де Паоло?"
+  },
+  {
+   "id": "it:08:03",
+   "target": "Dove sono le chiavi?",
+   "ru": "Где ключи?",
+   "uk": "Де ключі?"
+  },
+  {
+   "id": "it:08:04",
+   "target": "Dove abiti?",
+   "ru": "Где ты живёшь?",
+   "uk": "Де ти живеш?"
+  },
+  {
+   "id": "it:08:05",
+   "target": "Dove lavora?",
+   "ru": "Где вы работаете?",
+   "uk": "Де ви працюєте?"
+  },
+  {
+   "id": "it:08:06",
+   "target": "Dov’è l’uscita?",
+   "ru": "Где выход?",
+   "uk": "Де вихід?"
+  },
+  {
+   "id": "it:08:07",
+   "target": "Dove sono i miei occhiali?",
+   "ru": "Где мои очки?",
+   "uk": "Де мої окуляри?"
+  },
+  {
+   "id": "it:08:08",
+   "target": "Dov’è la biglietteria?",
+   "ru": "Где билетная касса?",
+   "uk": "Де квиткова каса?"
+  },
+  {
+   "id": "it:08:09",
+   "target": "Dov’è il suo albergo?",
+   "ru": "Где ваш отель?",
+   "uk": "Де ваш готель?"
+  },
+  {
+   "id": "it:08:10",
+   "target": "Dove sono i bagni?",
+   "ru": "Где туалеты?",
+   "uk": "Де туалети?"
+  },
+  {
+   "id": "it:08:11",
+   "target": "Chi c’è?",
+   "ru": "Кто здесь?",
+   "uk": "Хто тут?"
+  },
+  {
+   "id": "it:08:12",
+   "target": "Chi è alla porta?",
+   "ru": "Кто стоит у двери?",
+   "uk": "Хто біля дверей?"
+  },
+  {
+   "id": "it:08:13",
+   "target": "Chi lavora qui?",
+   "ru": "Кто здесь работает?",
+   "uk": "Хто тут працює?"
+  },
+  {
+   "id": "it:08:14",
+   "target": "Chi parla francese?",
+   "ru": "Кто говорит по-французски?",
+   "uk": "Хто розмовляє французькою?"
+  },
+  {
+   "id": "it:08:15",
+   "target": "Chi ha la chiave?",
+   "ru": "У кого ключ?",
+   "uk": "У кого ключ?"
+  },
+  {
+   "id": "it:08:16",
+   "target": "Chi prepara la cena?",
+   "ru": "Кто готовит ужин?",
+   "uk": "Хто готує вечерю?"
+  },
+  {
+   "id": "it:08:17",
+   "target": "Chi ascolta la radio?",
+   "ru": "Кто слушает радио?",
+   "uk": "Хто слухає радіо?"
+  },
+  {
+   "id": "it:08:18",
+   "target": "Chi abita al piano di sopra?",
+   "ru": "Кто живет наверху?",
+   "uk": "Хто живе нагорі?"
+  },
+  {
+   "id": "it:08:19",
+   "target": "Chi prenota i posti?",
+   "ru": "Кто бронирует места?",
+   "uk": "Хто бронює місця?"
+  },
+  {
+   "id": "it:08:20",
+   "target": "Chi cerca un appartamento?",
+   "ru": "Кто ищет квартиру?",
+   "uk": "Хто шукає квартиру?"
+  },
+  {
+   "id": "it:08:21",
+   "target": "Quando arrivi?",
+   "ru": "Когда ты приезжаешь?",
+   "uk": "Коли ти приїжджаєш?"
+  },
+  {
+   "id": "it:08:22",
+   "target": "Quando parte?",
+   "ru": "Когда вы уезжаете?",
+   "uk": "Коли ви від’їжджаєте?"
+  },
+  {
+   "id": "it:08:23",
+   "target": "Quando è il concerto?",
+   "ru": "Когда концерт?",
+   "uk": "Коли концерт?"
+  },
+  {
+   "id": "it:08:24",
+   "target": "Quando chiude la banca?",
+   "ru": "Когда закрывается банк?",
+   "uk": "Коли зачиняється банк?"
+  },
+  {
+   "id": "it:08:25",
+   "target": "Quando comincia la lezione?",
+   "ru": "Когда начинается занятие?",
+   "uk": "Коли починається заняття?"
+  },
+  {
+   "id": "it:08:26",
+   "target": "Quando torna a casa Lea?",
+   "ru": "Когда Леа возвращается домой?",
+   "uk": "Коли Леа повертається додому?"
+  },
+  {
+   "id": "it:08:27",
+   "target": "A che ora apre il museo?",
+   "ru": "Во сколько открывается музей?",
+   "uk": "О котрій годині відкривається музей?"
+  },
+  {
+   "id": "it:08:28",
+   "target": "A che ora finisce il film?",
+   "ru": "Во сколько заканчивается фильм?",
+   "uk": "О котрій годині закінчується фільм?"
+  },
+  {
+   "id": "it:08:29",
+   "target": "A che ora parte il treno?",
+   "ru": "Во сколько отправляется поезд?",
+   "uk": "О котрій годині відправляється поїзд?"
+  },
+  {
+   "id": "it:08:30",
+   "target": "A che ora è l’appuntamento?",
+   "ru": "Во сколько назначена встреча?",
+   "uk": "О котрій годині призначена зустріч?"
+  },
+  {
+   "id": "it:08:31",
+   "target": "Quanto costa il biglietto?",
+   "ru": "Сколько стоит билет?",
+   "uk": "Скільки коштує квиток?"
+  },
+  {
+   "id": "it:08:32",
+   "target": "Quanto costano queste scarpe?",
+   "ru": "Сколько стоят эти туфли?",
+   "uk": "Скільки коштує це взуття?"
+  },
+  {
+   "id": "it:08:33",
+   "target": "Quanto costa la consegna?",
+   "ru": "Сколько стоит доставка?",
+   "uk": "Скільки коштує доставка?"
+  },
+  {
+   "id": "it:08:34",
+   "target": "Quanti posti desidera?",
+   "ru": "Сколько мест вы хотите?",
+   "uk": "Скільки місць ви хочете?"
+  },
+  {
+   "id": "it:08:35",
+   "target": "Quante notti resta?",
+   "ru": "На сколько ночей вы остаётесь?",
+   "uk": "На скільки ночей ви зупиняєтеся?"
+  },
+  {
+   "id": "it:08:36",
+   "target": "Quante persone arriveranno?",
+   "ru": "Сколько человек приедет?",
+   "uk": "Скільки людей приїде?"
+  },
+  {
+   "id": "it:08:37",
+   "target": "Quanto dura il tragitto?",
+   "ru": "Сколько времени занимает дорога?",
+   "uk": "Скільки часу забирає дорога?"
+  },
+  {
+   "id": "it:08:38",
+   "target": "Quale autobus prenderete?",
+   "ru": "На каком автобусе вы (мн.) поедете?",
+   "uk": "Яким автобусом ви (мн.) поїдете?"
+  },
+  {
+   "id": "it:08:39",
+   "target": "Quale camera è disponibile?",
+   "ru": "Какой номер свободен?",
+   "uk": "Який номер вільний?"
+  },
+  {
+   "id": "it:08:40",
+   "target": "Qual è il suo numero?",
+   "ru": "Какой у вас номер?",
+   "uk": "Який ваш номер?"
+  },
+  {
+   "id": "it:08:41",
+   "target": "Perché partite così presto?",
+   "ru": "Почему вы так рано уходите?",
+   "uk": "Чому ви так рано йдете?"
+  },
+  {
+   "id": "it:08:42",
+   "target": "Perché è in ritardo?",
+   "ru": "Почему вы опаздываете?",
+   "uk": "Чому ви запізнюєтеся?"
+  },
+  {
+   "id": "it:08:43",
+   "target": "Come sta?",
+   "ru": "Как у вас дела?",
+   "uk": "Як у вас справи?"
+  },
+  {
+   "id": "it:08:44",
+   "target": "Come si chiama questa strada?",
+   "ru": "Как называется эта улица?",
+   "uk": "Як називається ця вулиця?"
+  },
+  {
+   "id": "it:08:45",
+   "target": "Come torna a casa stasera?",
+   "ru": "Как вы доберетесь домой сегодня вечером?",
+   "uk": "Як ви доберетеся додому сьогодні ввечері?"
+  },
+  {
+   "id": "it:08:46",
+   "target": "Cosa stai cercando?",
+   "ru": "Что ты ищешь?",
+   "uk": "Що ти шукаєш?"
+  },
+  {
+   "id": "it:08:47",
+   "target": "Che cosa prepara?",
+   "ru": "Что вы готовите?",
+   "uk": "Що ви готуєте?"
+  },
+  {
+   "id": "it:08:48",
+   "target": "Cosa sta facendo Paolo?",
+   "ru": "Что делает Паоло?",
+   "uk": "Що робить Паоло?"
+  },
+  {
+   "id": "it:08:49",
+   "target": "Con chi lavori?",
+   "ru": "С кем ты работаешь?",
+   "uk": "З ким ти працюєш?"
+  },
+  {
+   "id": "it:08:50",
+   "target": "Per chi è questo regalo?",
+   "ru": "Для кого этот подарок?",
+   "uk": "Для кого цей подарунок?"
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "quanto",
+   "ru": "сколько",
+   "uk": "скільки"
+  },
+  {
+   "lemma": "il tragitto",
+   "ru": "путь, поездка",
+   "uk": "шлях, поїздка"
+  },
+  {
+   "lemma": "la consegna",
+   "ru": "доставка",
+   "uk": "доставка"
+  },
+  {
+   "lemma": "la lezione",
+   "ru": "занятие, урок",
+   "uk": "заняття, урок"
+  },
+  {
+   "lemma": "cominciare",
+   "ru": "начинать, начинаться",
+   "uk": "починати, починатися"
+  },
+  {
+   "lemma": "la strada",
+   "ru": "улица",
+   "uk": "вулиця"
+  }
+ ],
+ "knownWords": [
+  "qui",
+  "la stazione",
+  "la chiave",
+  "la finestra",
+  "pronto",
+  "essere",
+  "la casa",
+  "l’ufficio",
+  "la porta",
+  "insieme",
+  "il negozio",
+  "la borsa",
+  "il corridoio",
+  "la camera",
+  "il biglietto",
+  "la farmacia",
+  "in ritardo",
+  "il tavolo",
+  "la sala",
+  "il treno",
+  "la bicicletta",
+  "l’autobus",
+  "il museo",
+  "la banchina",
+  "la biglietteria",
+  "l’uscita",
+  "la tasca",
+  "la serratura",
+  "voi",
+  "l’ingresso",
+  "il parcheggio",
+  "la ricevuta",
+  "la fattura",
+  "il vicino / la vicina",
+  "il regalo",
+  "gli occhiali",
+  "la sorella",
+  "il fratello",
+  "il posto",
+  "il passaporto",
+  "gli spiccioli",
+  "la pausa",
+  "l’appuntamento",
+  "la ricetta",
+  "avere",
+  "l’acqua",
+  "la carta",
+  "il cassetto",
+  "il caricabatterie",
+  "la busta",
+  "il mercato",
+  "l’ascensore",
+  "il pane",
+  "il giardino",
+  "la sedia",
+  "l’auto",
+  "la zuppa",
+  "la giacca",
+  "cercare",
+  "la radio",
+  "il messaggio",
+  "preparare",
+  "l’appartamento",
+  "tu",
+  "lavorare",
+  "abitare",
+  "la valigia"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь"
+  },
+  {
+   "lesson": 2,
+   "title": "Меня здесь нет"
+  },
+  {
+   "lesson": 3,
+   "title": "Ты там?"
+  },
+  {
+   "lesson": 4,
+   "title": "Это он, это она, это вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть"
+  },
+  {
+   "lesson": 6,
+   "title": "Где что лежит"
+  },
+  {
+   "lesson": 7,
+   "title": "Обычные действия: настоящее время"
+  }
+ ],
+ "oldTopicTitle": "Вопросы: где, кто, когда, сколько",
+ "oldTheoryRu": "`Dove` спрашивает о месте. Перед `è` распространено написание `dov’è`. Для нескольких предметов глагол другой: `Dove sono le chiavi?`. Не путай вопрос о месте работы с вопросом о самом занятии. `Dove lavori?` предполагает ответ «в офисе» или название города; название профессии ответило бы на другой вопрос. `Chi` спрашивает о человеке. В `Chi lavora qui?` именно неизвестный человек выполняет действие. Отдельно ставить ещё одно местоимение в такой короткий вопрос не нужно. `Quando` допускает день, дату или период. `A che ora` точнее: собеседнику предлагается назвать время на часах. Выбирай по тому, какой ответ действительно нужен. Перед существительным `quanto` меняется: `quanto tempo`, `quante persone`. А в `Quanto costa?` спрашивают цену и не ставят после `quanto` название измеряемых предметов. `Perché` просит объяснить причину, `come` — способ. Можно правильно собрать все остальные слова, но получить другой вопрос, если перепутать первое. При необходимости оставь предлог: `con chi` — с кем, `per chi` — для кого. Это смысловая часть вопроса. Она не исчезает потому, что стоит в начале фразы."
+}

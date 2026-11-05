@@ -1,0 +1,593 @@
+{
+  "lang": "en",
+  "lesson": 7,
+  "title": {
+    "ru": "Что у меня есть",
+    "uk": "Що в мене є",
+    "en": "What I have"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "У меня есть, у неё есть",
+        "uk": "У мене є, у неї є",
+        "en": "I have, she has"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «у меня есть».\nI have a ticket. — У меня есть билет.\nЧитается: ай хэ́в э ти́кит.\nСлово have значит «иметь». Англичане говорят «я имею билет».\nСлово a стоит перед вещью: a ticket — «билет». По-русски такого слова нет.\nShe has a ticket. — У неё есть билет.\nЧитается: ши хэ́з э ти́кит.\nКогда речь о ней или о нём, вместо have говорят has.\nПосле I, we, they — have. После he, she — has.\nThey have a car. — У них есть машина.\nЧитается: зэй хэ́в э ка́р.\nСлово car значит «машина».\nHe has a bicycle. — У него есть велосипед.\nЧитается: хи хэ́з э ба́йсикл.\nСлово bicycle значит «велосипед».\nСлова: question — «вопрос», everything — «всё», number — «номер, число».",
+        "uk": "Дивіться, як сказати «у мене є».\nI have a ticket. — У мене є квиток.\nЧитається: ай хе́в е ті́кіт.\nСлово have означає «мати». Англійці кажуть «я маю квиток».\nСлово a стоїть перед річчю: a ticket — «квиток». Українською такого слова немає.\nShe has a ticket. — У неї є квиток.\nЧитається: ші хе́з е ті́кіт.\nКоли йдеться про неї чи про нього, замість have кажуть has.\nПісля I, we, they — have. Після he, she — has.\nThey have a car. — У них є машина.\nЧитається: зей хе́в е ка́р.\nСлово car означає «машина».\nHe has a bicycle. — У нього є велосипед.\nЧитається: хі хе́з е ба́йсікл.\nСлово bicycle означає «велосипед».\nСлова: question — «питання», everything — «все», number — «номер, число».",
+        "en": "Look at how to say what you have.\nI have a ticket.\nThe word have means “to own or hold.”\nThe word a stands before a thing: a ticket.\nShe has a ticket.\nFor her or him we say has instead of have.\nAfter I, we, they: have. After he, she: has.\nThey have a car.\nThe word car means “a vehicle with four wheels”.\nHe has a bicycle.\nThe word bicycle means “a vehicle with two wheels”.\nMore words: question — “something you ask”, everything — “all things”.\nMore words: number — “a figure like 5 or 12, or a phone number”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:07.01",
+          "say": {
+            "ru": "ай хэ́в э ти́кит",
+            "uk": "ай хе́в е ті́кіт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.02",
+          "say": {
+            "ru": "ши хэ́з э ти́кит",
+            "uk": "ші хе́з е ті́кіт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.07",
+          "say": {
+            "ru": "зэй хэ́в э ка́р",
+            "uk": "зей хе́в е ка́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.08",
+          "say": {
+            "ru": "хи хэ́з э ба́йсикл",
+            "uk": "хі хе́з е ба́йсікл"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.10",
+          "say": {
+            "ru": "ай хэ́в э куэ́счен",
+            "uk": "ай хе́в е куе́счен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.50",
+          "say": {
+            "ru": "ай хэ́в э́врисин ай ни́д",
+            "uk": "ай хе́в е́врісін ай ні́д"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня есть билет.»",
+            "uk": "Виберіть, як сказати: «У мене є квиток.»",
+            "en": "Choose how to say: “I have a ticket.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:07.01",
+          "options": [
+            "en-classic-r1:07.01",
+            "en-classic-r1:07.02",
+            "en-classic-r1:07.07"
+          ],
+          "answerId": "en-classic-r1:07.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У неё есть билет.»",
+            "uk": "Виберіть, як сказати: «У неї є квиток.»",
+            "en": "Choose how to say: “She has a ticket.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.02",
+          "options": [
+            "en-classic-r1:07.02",
+            "en-classic-r1:07.01",
+            "en-classic-r1:07.08"
+          ],
+          "answerId": "en-classic-r1:07.02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У него есть велосипед.»",
+            "uk": "Виберіть, як сказати: «У нього є велосипед.»",
+            "en": "Choose how to say: “He has a bicycle.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.08",
+          "options": [
+            "en-classic-r1:07.08",
+            "en-classic-r1:07.07",
+            "en-classic-r1:07.10"
+          ],
+          "answerId": "en-classic-r1:07.08"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Когда что-то болит",
+        "uk": "Коли щось болить",
+        "en": "When something hurts"
+      },
+      "text": {
+        "ru": "Так же говорят о боли и болезни.\nI have a sore throat. — У меня болит горло.\nЧитается: ай хэ́в э со́р сро́ут.\nСлово sore значит «больной». Слово throat — «горло».\nПо-русски говорят «болит горло», по-английски — «у меня больное горло».\nHe has a cough. — У него кашель.\nЧитается: хи хэ́з э ко́ф.\nСлово cough значит «кашель».\nHe has a fever. — У него температура.\nЧитается: хи хэ́з э фи́вер.\nСлово fever значит «температура, жар».\nСлова: headache — «головная боль», blocked — «заложенный», nose — «нос».",
+        "uk": "Так само кажуть про біль і хворобу.\nI have a sore throat. — У мене болить горло.\nЧитається: ай хе́в е со́р сро́ут.\nСлово sore означає «хворий, болючий». Слово throat — «горло».\nУкраїнською кажуть «болить горло», англійською — «у мене хворе горло».\nHe has a cough. — У нього кашель.\nЧитається: хі хе́з е ко́ф.\nСлово cough означає «кашель».\nHe has a fever. — У нього температура.\nЧитається: хі хе́з е фі́вер.\nСлово fever означає «температура, жар».\nСлова: headache — «головний біль», blocked — «закладений», nose — «ніс».",
+        "en": "We use the same words for pain and illness.\nI have a sore throat.\nThe word sore means “hurting”. The word throat means “the back of your mouth”.\nWe say “a sore throat,” a throat that hurts.\nHe has a cough.\nThe word cough means “a noise from your chest”.\nHe has a fever.\nThe word fever means “a hot body when you are ill”.\nMore words: headache — “a pain in the head”, blocked — “closed, not open”.\nMore words: nose — “the part of the face for smelling”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:07.11",
+          "say": {
+            "ru": "ай хэ́в э со́р сро́ут",
+            "uk": "ай хе́в е со́р сро́ут"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.12",
+          "say": {
+            "ru": "хи хэ́з э ко́ф",
+            "uk": "хі хе́з е ко́ф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.13",
+          "say": {
+            "ru": "ши хэ́з э хэ́дэйк",
+            "uk": "ші хе́з е хе́дейк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.16",
+          "say": {
+            "ru": "ай хэ́в э бло́кт но́уз",
+            "uk": "ай хе́в е бло́кт но́уз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.17",
+          "say": {
+            "ru": "хи хэ́з э фи́вер",
+            "uk": "хі хе́з е фі́вер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня болит горло.»",
+            "uk": "Виберіть, як сказати: «У мене болить горло.»",
+            "en": "Choose how to say: “I have a sore throat.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:07.11",
+          "options": [
+            "en-classic-r1:07.11",
+            "en-classic-r1:07.12",
+            "en-classic-r1:07.13"
+          ],
+          "answerId": "en-classic-r1:07.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У него кашель.»",
+            "uk": "Виберіть, як сказати: «У нього кашель.»",
+            "en": "Choose how to say: “He has a cough.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.12",
+          "options": [
+            "en-classic-r1:07.12",
+            "en-classic-r1:07.11",
+            "en-classic-r1:07.17"
+          ],
+          "answerId": "en-classic-r1:07.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У него температура.»",
+            "uk": "Виберіть, як сказати: «У нього температура.»",
+            "en": "Choose how to say: “He has a fever.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.17",
+          "options": [
+            "en-classic-r1:07.17",
+            "en-classic-r1:07.13",
+            "en-classic-r1:07.16"
+          ],
+          "answerId": "en-classic-r1:07.17"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "У врача",
+        "uk": "У лікаря",
+        "en": "At the doctor"
+      },
+      "text": {
+        "ru": "Слова, которые нужны у врача.\nWe have an appointment. — У нас запись на приём.\nЧитается: уи хэ́в эн эпо́йнтмент.\nСлово appointment значит «запись на приём».\nПеред словом на «а», «э», «и», «о» вместо a говорят an: an appointment. Смысл тот же.\nMy daughter has a cold. — У моей дочери простуда.\nЧитается: май до́тер хэ́з э ко́улд.\nСлово daughter значит «дочь».\nПро дочь — как про неё: has.\nI have the doctor's number. — У меня есть номер врача.\nЧитается: ай хэ́в зэ до́ктерз на́мбер.\nСлово doctor значит «врач».\nЗначок 's после слова показывает, чей номер: doctor's number — «номер врача».\nСлова: prescription — «рецепт», health — «здоровье», insurance — «страховка».",
+        "uk": "Слова, які потрібні в лікаря.\nWe have an appointment. — У нас призначений прийом.\nЧитається: уі хе́в ен епо́йнтмент.\nСлово appointment означає «запис на прийом».\nПеред словом на «а», «е», «і», «о» замість a кажуть an: an appointment. Зміст той самий.\nMy daughter has a cold. — У моєї доньки застуда.\nЧитається: май до́тер хе́з е ко́улд.\nСлово daughter означає «донька».\nПро доньку — як про неї: has.\nI have the doctor's number. — У мене є номер лікаря.\nЧитається: ай хе́в зе до́ктерз на́мбер.\nСлово doctor означає «лікар».\nЗначок 's після слова показує, чий номер: doctor's number — «номер лікаря».\nСлова: prescription — «рецепт», health — «здоров'я», insurance — «страховка».",
+        "en": "Words you need at the doctor.\nWe have an appointment.\nThe word appointment means “a planned meeting”.\nBefore a, e, i, o we say an instead of a.\nMy daughter has a cold.\nThe word daughter means “a girl child of a parent”.\nOne daughter counts as “she”: has.\nI have the doctor's number.\nThe word doctor means “a person who treats illness”.\nThe mark 's shows whose number it is: the doctor's number.\nMore words: prescription — “a paper from the doctor for medicine”.\nMore words: health — “how well your body is”.\nMore words: insurance — “money help when you are ill”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:07.14",
+          "say": {
+            "ru": "уи хэ́в эн эпо́йнтмент",
+            "uk": "уі хе́в ен епо́йнтмент"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.15",
+          "say": {
+            "ru": "май до́тер хэ́з э ко́улд",
+            "uk": "май до́тер хе́з е ко́улд"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.18",
+          "say": {
+            "ru": "ши хэ́з э прискри́пшен",
+            "uk": "ші хе́з е пріскрі́пшен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.19",
+          "say": {
+            "ru": "зэй хэ́в хэ́лс иншу́ренс",
+            "uk": "зей хе́в хе́лс іншу́ренс"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.20",
+          "say": {
+            "ru": "ай хэ́в зэ до́ктерз на́мбер",
+            "uk": "ай хе́в зе до́ктерз на́мбер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нас запись на приём.»",
+            "uk": "Виберіть, як сказати: «У нас призначений прийом.»",
+            "en": "Choose how to say: “We have an appointment.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:07.14",
+          "options": [
+            "en-classic-r1:07.14",
+            "en-classic-r1:07.18",
+            "en-classic-r1:07.20"
+          ],
+          "answerId": "en-classic-r1:07.14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У моей дочери простуда.»",
+            "uk": "Виберіть, як сказати: «У моєї доньки застуда.»",
+            "en": "Choose how to say: “My daughter has a cold.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.15",
+          "options": [
+            "en-classic-r1:07.15",
+            "en-classic-r1:07.14",
+            "en-classic-r1:07.19"
+          ],
+          "answerId": "en-classic-r1:07.15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня есть номер врача.»",
+            "uk": "Виберіть, як сказати: «У мене є номер лікаря.»",
+            "en": "Choose how to say: “I have the doctor's number.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.20",
+          "options": [
+            "en-classic-r1:07.20",
+            "en-classic-r1:07.18",
+            "en-classic-r1:07.19"
+          ],
+          "answerId": "en-classic-r1:07.20"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Есть ли у вас?",
+        "uk": "Чи є у вас?",
+        "en": "Do you have…?"
+      },
+      "text": {
+        "ru": "Чтобы спросить, поставьте do или does в начало.\nDo you have a charger? — У вас есть зарядное устройство?\nЧитается: ду́ ю хэ́в э ча́рджер.\nСлово charger значит «зарядное устройство».\nDo — с I, you, we, they. Does — с he и she.\nDoes she have her passport? — У неё есть паспорт?\nЧитается: да́з ши хэ́в хё́р па́спорт.\nСлово passport значит «паспорт».\nПосле does слово has снова становится have: Does she have…?\nDoes he have any change? — У него есть сдача?\nЧитается: да́з хи хэ́в э́ни чэ́йндж.\nСлово change значит «сдача, мелочь». Слово any — «какой-нибудь».\nВ вопросе any значит «хоть сколько-нибудь».\nСлова: pen — «ручка», moment — «минутка, момент», enough — «достаточно».",
+        "uk": "Щоб запитати, поставте do або does на початок.\nDo you have a charger? — У вас є зарядний пристрій?\nЧитається: ду́ ю хе́в е ча́рджер.\nСлово charger означає «зарядний пристрій».\nDo — с I, you, we, they. Does — с he і she.\nDoes she have her passport? — У неї є паспорт?\nЧитається: да́з ші хе́в хьо́р па́спорт.\nСлово passport означає «паспорт».\nПісля does слово has знову стає have: Does she have…?\nDoes he have any change? — У нього є решта?\nЧитається: да́з хі хе́в е́ні че́йндж.\nСлово change означає «решта, дрібні гроші». Слово any — «будь-який».\nУ питанні any означає «хоч скільки-небудь».\nСлова: pen — «ручка», moment — «хвилинка, момент», enough — «достатньо».",
+        "en": "To ask, put do or does first.\nDo you have a charger?\nThe word charger means “a thing that fills a phone with power”.\nDo goes with I, you, we, they. Does goes with he and she.\nDoes she have her passport?\nThe word passport means “a book for travel abroad”.\nAfter does, has turns back into have.\nDoes he have any change?\nThe word change means “small coins”. The word any means “even a little”.\nIn a question, any means “even a little.”\nMore words: pen — “a thing for writing”, moment — “a very short time”.\nMore words: enough — “as much as you need”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:07.21",
+          "say": {
+            "ru": "ду́ ю хэ́в э ча́рджер",
+            "uk": "ду́ ю хе́в е ча́рджер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.22",
+          "say": {
+            "ru": "да́з ши хэ́в хё́р па́спорт",
+            "uk": "да́з ші хе́в хьо́р па́спорт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.24",
+          "say": {
+            "ru": "да́з хи хэ́в э́ни чэ́йндж",
+            "uk": "да́з хі хе́в е́ні че́йндж"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.25",
+          "say": {
+            "ru": "ду́ ю хэ́в э пэ́н",
+            "uk": "ду́ ю хе́в е пе́н"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.49",
+          "say": {
+            "ru": "ду́ ю хэ́в э мо́умент",
+            "uk": "ду́ ю хе́в е мо́умент"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У вас есть зарядное устройство?»",
+            "uk": "Виберіть, як сказати: «У вас є зарядний пристрій?»",
+            "en": "Choose how to say: “Do you have a charger?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:07.21",
+          "options": [
+            "en-classic-r1:07.21",
+            "en-classic-r1:07.22",
+            "en-classic-r1:07.25"
+          ],
+          "answerId": "en-classic-r1:07.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У неё есть паспорт?»",
+            "uk": "Виберіть, як сказати: «У неї є паспорт?»",
+            "en": "Choose how to say: “Does she have her passport?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.22",
+          "options": [
+            "en-classic-r1:07.22",
+            "en-classic-r1:07.21",
+            "en-classic-r1:07.24"
+          ],
+          "answerId": "en-classic-r1:07.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У него есть сдача?»",
+            "uk": "Виберіть, як сказати: «У нього є решта?»",
+            "en": "Choose how to say: “Does he have any change?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.24",
+          "options": [
+            "en-classic-r1:07.24",
+            "en-classic-r1:07.25",
+            "en-classic-r1:07.49"
+          ],
+          "answerId": "en-classic-r1:07.24"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "У вещей и мест тоже есть",
+        "uk": "У речей і місць теж є",
+        "en": "Things and places have too"
+      },
+      "text": {
+        "ru": "Не только у людей что-то есть. Слово has подходит и для вещей и мест.\nDoes the room have a shower? — В номере есть душ?\nЧитается: да́з зэ ру́м хэ́в э ша́уер.\nСлово shower значит «душ».\nОдна вещь или одно место — как «она»: does и has.\nThe hotel has a luggage room. — В отеле есть камера хранения багажа.\nЧитается: зэ хоуте́л хэ́з э ла́гидж ру́м.\nСлово hotel значит «отель». Слово luggage — «багаж».\nThe form has three pages. — В анкете три страницы.\nЧитается: зэ фо́рм хэ́з сри́ пэ́йджиз.\nСлово three значит «три». Слово page — «страница».\nСлова: zip — «молния», table — «стол», for — «для, на», two — «два».\nСлова: small — «маленький», blue — «синий», deep — «глубокий», pocket — «карман».\nСлова: afternoon — «вторая половина дня».",
+        "uk": "Не лише в людей щось є. Слово has підходить і для речей та місць.\nDoes the room have a shower? — У номері є душ?\nЧитається: да́з зе ру́м хе́в е ша́уер.\nСлово shower означає «душ».\nОдна річ чи одне місце — як «вона»: does і has.\nThe hotel has a luggage room. — У готелі є камера схову.\nЧитається: зе хоуте́л хе́з е ла́гідж ру́м.\nСлово hotel означає «готель». Слово luggage — «багаж».\nThe form has three pages. — Анкета має три сторінки.\nЧитається: зе фо́рм хе́з срі́ пе́йджіз.\nСлово three означає «три». Слово page — «сторінка».\nСлова: zip — «блискавка», table — «стіл», for — «для, на», two — «два».\nСлова: small — «маленький», blue — «синій», deep — «глибокий», pocket — «кишеня».\nСлова: afternoon — «друга половина дня».",
+        "en": "Things and places can “have” too.\nDoes the room have a shower?\nThe word shower means “water from above to wash”.\nOne thing or place counts like “it”: does and has.\nThe hotel has a luggage room.\nThe word hotel means “a place to sleep when you travel”.\nThe word luggage means “your bags on a trip”.\nThe form has three pages.\nThe word three means “the number 3”.\nThe word page means “one side of a sheet of a book”.\nMore words: zip — “a fastener on a bag”.\nMore words: table — “a thing to eat at”.\nMore words: for — “used before who it is for”.\nMore words: two — “the number 2”, small — “not big”.\nMore words: blue — “the colour of the sky”, deep — “going far down”.\nMore words: pocket — “a small bag in clothes”.\nMore words: afternoon — “the time after noon”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:07.26",
+          "say": {
+            "ru": "да́з зэ ру́м хэ́в э ша́уер",
+            "uk": "да́з зе ру́м хе́в е ша́уер"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.28",
+          "say": {
+            "ru": "да́з зэ бэ́г хэ́в э зи́п",
+            "uk": "да́з зе бе́г хе́в е зі́п"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.48",
+          "say": {
+            "ru": "зэ хоуте́л хэ́з э ла́гидж ру́м",
+            "uk": "зе хоуте́л хе́з е ла́гідж ру́м"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.47",
+          "say": {
+            "ru": "уи хэ́в э тэ́йбл фо́р ту́",
+            "uk": "уі хе́в е те́йбл фо́р ту́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.43",
+          "say": {
+            "ru": "зэ фо́рм хэ́з сри́ пэ́йджиз",
+            "uk": "зе фо́рм хе́з срі́ пе́йджіз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В номере есть душ?»",
+            "uk": "Виберіть, як сказати: «У номері є душ?»",
+            "en": "Choose how to say: “Does the room have a shower?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:07.26",
+          "options": [
+            "en-classic-r1:07.26",
+            "en-classic-r1:07.28",
+            "en-classic-r1:07.48"
+          ],
+          "answerId": "en-classic-r1:07.26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На сумке есть молния?»",
+            "uk": "Виберіть, як сказати: «Чи є на сумці блискавка?»",
+            "en": "Choose how to say: “Does the bag have a zip?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.28",
+          "options": [
+            "en-classic-r1:07.28",
+            "en-classic-r1:07.26",
+            "en-classic-r1:07.43"
+          ],
+          "answerId": "en-classic-r1:07.28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В отеле есть камера хранения багажа.»",
+            "uk": "Виберіть, як сказати: «У готелі є камера схову.»",
+            "en": "Choose how to say: “The hotel has a luggage room.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.48",
+          "options": [
+            "en-classic-r1:07.48",
+            "en-classic-r1:07.47",
+            "en-classic-r1:07.43"
+          ],
+          "answerId": "en-classic-r1:07.48"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Когда чего-то нет",
+        "uk": "Коли чогось немає",
+        "en": "When you do not have it"
+      },
+      "text": {
+        "ru": "Чтобы сказать «нет», добавьте do not перед have.\nI do not have a booking. — У меня нет бронирования.\nЧитается: ай ду́ но́т хэ́в э бу́кинг.\nСлово booking значит «бронирование».\nПро неё и про него — does not have: She does not have…\nShe does not have her glasses. — У нее нет очков.\nЧитается: ши да́з но́т хэ́в хё́р гла́сиз.\nСлово glasses значит «очки».\nСлова: original — «оригинал», licence — «права, удостоверение», bike — «велосипед».\nСлова: handle — «ручка двери», chair — «стул», garden — «сад».",
+        "uk": "Щоб сказати «немає», додайте do not перед have.\nI do not have a booking. — У мене немає бронювання.\nЧитається: ай ду́ но́т хе́в е бу́кінг.\nСлово booking означає «бронювання».\nПро неї і про нього — does not have: She does not have…\nShe does not have her glasses. — У неї немає окулярів.\nЧитається: ші да́з но́т хе́в хьо́р гла́сіз.\nСлово glasses означає «окуляри».\nСлова: original — «оригінал», licence — «посвідчення», bike — «велосипед», handle — «ручка дверей».\nСлова: chair — «стілець», garden — «сад».",
+        "en": "To say “no,” add do not before have.\nI do not have a booking.\nThe word booking means “a place you have reserved”.\nFor her or him: does not have.\nShe does not have her glasses.\nThe word glasses means “things you wear to see better”.\nMore words: original — “the first one, not a copy”.\nMore words: licence — “an official paper to do something”, bike — “a bicycle”.\nMore words: handle — “the part of a door you hold”.\nMore words: chair — “a seat for one person”.\nMore words: garden — “a place with plants outside”."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:07.31",
+          "say": {
+            "ru": "ай ду́ но́т хэ́в э бу́кинг",
+            "uk": "ай ду́ но́т хе́в е бу́кінг"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.32",
+          "say": {
+            "ru": "ши да́з но́т хэ́в хё́р гла́сиз",
+            "uk": "ші да́з но́т хе́в хьо́р гла́сіз"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.33",
+          "say": {
+            "ru": "уи ду́ но́т хэ́в зи ори́джинл риси́т",
+            "uk": "уі ду́ но́т хе́в зі орі́джінл рісі́т"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:07.34",
+          "say": {
+            "ru": "хи да́з но́т хэ́в э дра́йвинг ла́йсенс",
+            "uk": "хі да́з но́т хе́в е дра́йвінг ла́йсенс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня нет бронирования.»",
+            "uk": "Виберіть, як сказати: «У мене немає бронювання.»",
+            "en": "Choose how to say: “I do not have a booking.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:07.31",
+          "options": [
+            "en-classic-r1:07.31",
+            "en-classic-r1:07.32",
+            "en-classic-r1:07.33"
+          ],
+          "answerId": "en-classic-r1:07.31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нее нет очков.»",
+            "uk": "Виберіть, як сказати: «У неї немає окулярів.»",
+            "en": "Choose how to say: “She does not have her glasses.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.32",
+          "options": [
+            "en-classic-r1:07.32",
+            "en-classic-r1:07.31",
+            "en-classic-r1:07.34"
+          ],
+          "answerId": "en-classic-r1:07.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У него нет водительских прав.»",
+            "uk": "Виберіть, як сказати: «У нього немає водійських прав.»",
+            "en": "Choose how to say: “He does not have a driving licence.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:07.34",
+          "options": [
+            "en-classic-r1:07.34",
+            "en-classic-r1:07.33",
+            "en-classic-r1:07.32"
+          ],
+          "answerId": "en-classic-r1:07.34"
+        }
+      ]
+    }
+  ]
+}

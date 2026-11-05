@@ -1,0 +1,903 @@
+{
+ "lang": "en",
+ "lesson": 9,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "en-classic-r1:09.01",
+   "target": "There is a lift.",
+   "ru": "Есть лифт.",
+   "uk": "Є ліфт."
+  },
+  {
+   "id": "en-classic-r1:09.02",
+   "target": "There are stairs.",
+   "ru": "Есть лестница.",
+   "uk": "Є сходи."
+  },
+  {
+   "id": "en-classic-r1:09.03",
+   "target": "There is a queue.",
+   "ru": "Есть очередь.",
+   "uk": "Є черга."
+  },
+  {
+   "id": "en-classic-r1:09.04",
+   "target": "There are two queues.",
+   "ru": "Есть две очереди.",
+   "uk": "Є дві черги."
+  },
+  {
+   "id": "en-classic-r1:09.05",
+   "target": "There is a seat by the door.",
+   "ru": "У двери есть место.",
+   "uk": "Є місце біля дверей."
+  },
+  {
+   "id": "en-classic-r1:09.06",
+   "target": "There are seats at the back.",
+   "ru": "Сзади есть места.",
+   "uk": "Є місця позаду."
+  },
+  {
+   "id": "en-classic-r1:09.07",
+   "target": "There is a toilet upstairs.",
+   "ru": "Наверху есть туалет.",
+   "uk": "Є туалет нагорі."
+  },
+  {
+   "id": "en-classic-r1:09.08",
+   "target": "There are toilets downstairs.",
+   "ru": "Внизу есть туалеты.",
+   "uk": "Є туалети внизу."
+  },
+  {
+   "id": "en-classic-r1:09.09",
+   "target": "There is a map outside.",
+   "ru": "Снаружи висит карта.",
+   "uk": "Надворі є карта."
+  },
+  {
+   "id": "en-classic-r1:09.10",
+   "target": "There are signs inside.",
+   "ru": "Внутри есть указатели.",
+   "uk": "Всередині є знаки."
+  },
+  {
+   "id": "en-classic-r1:09.11",
+   "target": "There is milk in the fridge.",
+   "ru": "В холодильнике есть молоко.",
+   "uk": "У холодильнику є молоко."
+  },
+  {
+   "id": "en-classic-r1:09.12",
+   "target": "There is water in the kettle.",
+   "ru": "В чайнике есть вода.",
+   "uk": "У чайнику є вода."
+  },
+  {
+   "id": "en-classic-r1:09.13",
+   "target": "There is soup on the stove.",
+   "ru": "На плите стоит суп.",
+   "uk": "На плиті є суп."
+  },
+  {
+   "id": "en-classic-r1:09.14",
+   "target": "There are eggs in the fridge.",
+   "ru": "В холодильнике есть яйца.",
+   "uk": "У холодильнику є яйця."
+  },
+  {
+   "id": "en-classic-r1:09.15",
+   "target": "There are cups on the shelf.",
+   "ru": "На полке стоят чашки.",
+   "uk": "На полиці є чашки."
+  },
+  {
+   "id": "en-classic-r1:09.16",
+   "target": "There is bread on the table.",
+   "ru": "На столе лежит хлеб.",
+   "uk": "На столі є хліб."
+  },
+  {
+   "id": "en-classic-r1:09.17",
+   "target": "There are spoons in the drawer.",
+   "ru": "В ящике лежат ложки.",
+   "uk": "У шухляді є ложки."
+  },
+  {
+   "id": "en-classic-r1:09.18",
+   "target": "There is rice in the cupboard.",
+   "ru": "В шкафу есть рис.",
+   "uk": "У шафі є рис."
+  },
+  {
+   "id": "en-classic-r1:09.19",
+   "target": "There are clean towels upstairs.",
+   "ru": "Наверху лежат чистые полотенца.",
+   "uk": "Нагорі є чисті рушники."
+  },
+  {
+   "id": "en-classic-r1:09.20",
+   "target": "There is soap by the sink.",
+   "ru": "У раковины лежит мыло.",
+   "uk": "Біля раковини є мило."
+  },
+  {
+   "id": "en-classic-r1:09.21",
+   "target": "Is there a bus stop nearby?",
+   "ru": "Есть ли поблизости автобусная остановка?",
+   "uk": "Чи є поблизу автобусна зупинка?"
+  },
+  {
+   "id": "en-classic-r1:09.22",
+   "target": "Are there any seats left?",
+   "ru": "Есть ли свободные места?",
+   "uk": "Чи є вільні місця?"
+  },
+  {
+   "id": "en-classic-r1:09.23",
+   "target": "Is there a cash machine here?",
+   "ru": "Есть ли здесь банкомат?",
+   "uk": "Чи є тут банкомат?"
+  },
+  {
+   "id": "en-classic-r1:09.24",
+   "target": "Are there lockers at the station?",
+   "ru": "Есть ли на станции камеры хранения?",
+   "uk": "Чи є камери схову на станції?"
+  },
+  {
+   "id": "en-classic-r1:09.25",
+   "target": "Is there a quiet room?",
+   "ru": "Есть тихая комната?",
+   "uk": "Чи є тиха кімната?"
+  },
+  {
+   "id": "en-classic-r1:09.26",
+   "target": "Are there any blankets?",
+   "ru": "Есть ли одеяла?",
+   "uk": "Чи є ковдри?"
+  },
+  {
+   "id": "en-classic-r1:09.27",
+   "target": "Is there a charge for parking?",
+   "ru": "Платная ли парковка?",
+   "uk": "Чи є плата за паркування?"
+  },
+  {
+   "id": "en-classic-r1:09.28",
+   "target": "Are there any steps at the entrance?",
+   "ru": "Есть ли ступеньки у входа?",
+   "uk": "Чи є сходи біля входу?"
+  },
+  {
+   "id": "en-classic-r1:09.29",
+   "target": "Is there room for my bike?",
+   "ru": "Есть ли место для моего велосипеда?",
+   "uk": "Чи є місце для мого велосипеда?"
+  },
+  {
+   "id": "en-classic-r1:09.30",
+   "target": "Is there a direct train?",
+   "ru": "Есть ли прямой поезд?",
+   "uk": "Чи є прямий поїзд?"
+  },
+  {
+   "id": "en-classic-r1:09.31",
+   "target": "There is no sugar left.",
+   "ru": "Сахара больше нет.",
+   "uk": "Цукру не залишилося."
+  },
+  {
+   "id": "en-classic-r1:09.32",
+   "target": "There are no buses tonight.",
+   "ru": "Сегодня вечером автобусов нет.",
+   "uk": "Сьогодні ввечері немає автобусів."
+  },
+  {
+   "id": "en-classic-r1:09.33",
+   "target": "There is not much space.",
+   "ru": "Места мало.",
+   "uk": "Місця мало."
+  },
+  {
+   "id": "en-classic-r1:09.34",
+   "target": "There are not enough chairs.",
+   "ru": "Недостаточно стульев.",
+   "uk": "Недостатньо стільців."
+  },
+  {
+   "id": "en-classic-r1:09.35",
+   "target": "There is no hot water.",
+   "ru": "Нет горячей воды.",
+   "uk": "Немає гарячої води."
+  },
+  {
+   "id": "en-classic-r1:09.36",
+   "target": "There are no clean forks.",
+   "ru": "Нет чистых вилок.",
+   "uk": "Немає чистих виделок."
+  },
+  {
+   "id": "en-classic-r1:09.37",
+   "target": "There is no signal here.",
+   "ru": "Здесь нет сигнала.",
+   "uk": "Тут немає сигналу."
+  },
+  {
+   "id": "en-classic-r1:09.38",
+   "target": "There are no lockers on this floor.",
+   "ru": "На этом этаже нет шкафчиков.",
+   "uk": "На цьому поверсі немає шафок."
+  },
+  {
+   "id": "en-classic-r1:09.39",
+   "target": "There is not a single seat left.",
+   "ru": "Нет ни одного свободного места.",
+   "uk": "Немає жодного вільного місця."
+  },
+  {
+   "id": "en-classic-r1:09.40",
+   "target": "There are no trains after midnight.",
+   "ru": "После полуночи поездов нет.",
+   "uk": "Після півночі поїздів немає."
+  },
+  {
+   "id": "en-classic-r1:09.41",
+   "target": "There is a number on the back.",
+   "ru": "На обороте есть номер.",
+   "uk": "На звороті є номер."
+  },
+  {
+   "id": "en-classic-r1:09.42",
+   "target": "There are two names on the list.",
+   "ru": "В списке два имени.",
+   "uk": "У списку є два імені."
+  },
+  {
+   "id": "en-classic-r1:09.43",
+   "target": "There is a mistake on my bill.",
+   "ru": "В моем счете ошибка.",
+   "uk": "У моєму рахунку помилка."
+  },
+  {
+   "id": "en-classic-r1:09.44",
+   "target": "There is a crack in the screen.",
+   "ru": "На экране трещина.",
+   "uk": "На екрані є тріщина."
+  },
+  {
+   "id": "en-classic-r1:09.45",
+   "target": "There is an empty room next door.",
+   "ru": "По соседству есть свободная комната.",
+   "uk": "Поруч є порожня кімната."
+  },
+  {
+   "id": "en-classic-r1:09.46",
+   "target": "There are three stops before the station.",
+   "ru": "До станции три остановки.",
+   "uk": "До станції три зупинки."
+  },
+  {
+   "id": "en-classic-r1:09.47",
+   "target": "Is there any room in your bag?",
+   "ru": "Есть ли место в вашей сумке?",
+   "uk": "У вашій сумці є місце?"
+  },
+  {
+   "id": "en-classic-r1:09.48",
+   "target": "There is a light on in the kitchen.",
+   "ru": "На кухне горит свет.",
+   "uk": "На кухні горить світло."
+  },
+  {
+   "id": "en-classic-r1:09.49",
+   "target": "There are people at the gate.",
+   "ru": "У выхода есть люди.",
+   "uk": "Біля виходу є люди."
+  },
+  {
+   "id": "en-classic-r1:09.50",
+   "target": "There is still time for a coffee.",
+   "ru": "Еще есть время выпить кофе.",
+   "uk": "Ще є час для кави."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "queue",
+   "ru": "очередь ожидающих людей",
+   "uk": "черга людей, що чекають"
+  },
+  {
+   "lemma": "back",
+   "ru": "сзади или снова сзади",
+   "uk": "ззаду або знову ззаду"
+  },
+  {
+   "lemma": "toilet",
+   "ru": "туалет",
+   "uk": "туалет"
+  },
+  {
+   "lemma": "upstairs",
+   "ru": "наверху",
+   "uk": "нагорі"
+  },
+  {
+   "lemma": "downstairs",
+   "ru": "внизу",
+   "uk": "внизу"
+  },
+  {
+   "lemma": "map",
+   "ru": "карта",
+   "uk": "карта"
+  },
+  {
+   "lemma": "outside",
+   "ru": "снаружи",
+   "uk": "зовні"
+  },
+  {
+   "lemma": "inside",
+   "ru": "внутри",
+   "uk": "всередині"
+  },
+  {
+   "lemma": "fridge",
+   "ru": "холодильник",
+   "uk": "холодильник"
+  },
+  {
+   "lemma": "kettle",
+   "ru": "чайник",
+   "uk": "чайник"
+  },
+  {
+   "lemma": "soup",
+   "ru": "суп",
+   "uk": "суп"
+  },
+  {
+   "lemma": "stove",
+   "ru": "плита",
+   "uk": "плита"
+  },
+  {
+   "lemma": "egg",
+   "ru": "яйцо",
+   "uk": "яйце"
+  },
+  {
+   "lemma": "cup",
+   "ru": "чашка",
+   "uk": "чашка"
+  },
+  {
+   "lemma": "shelf",
+   "ru": "полка",
+   "uk": "полиця"
+  },
+  {
+   "lemma": "bread",
+   "ru": "хлеб",
+   "uk": "хліб"
+  },
+  {
+   "lemma": "spoons",
+   "ru": "ложки",
+   "uk": "ложки"
+  },
+  {
+   "lemma": "drawer",
+   "ru": "ящик",
+   "uk": "шухляда"
+  },
+  {
+   "lemma": "rice",
+   "ru": "рис",
+   "uk": "рис"
+  },
+  {
+   "lemma": "cupboard",
+   "ru": "шкаф",
+   "uk": "шафа"
+  },
+  {
+   "lemma": "clean",
+   "ru": "чистый",
+   "uk": "чистий"
+  },
+  {
+   "lemma": "towel",
+   "ru": "полотенце",
+   "uk": "рушник"
+  },
+  {
+   "lemma": "soap",
+   "ru": "мыло",
+   "uk": "мило"
+  },
+  {
+   "lemma": "sink",
+   "ru": "раковина",
+   "uk": "раковина"
+  },
+  {
+   "lemma": "locker",
+   "ru": "шкафчик",
+   "uk": "шафка"
+  },
+  {
+   "lemma": "blankets",
+   "ru": "одеяла",
+   "uk": "ковдри"
+  },
+  {
+   "lemma": "step",
+   "ru": "ступенька",
+   "uk": "сходинка"
+  },
+  {
+   "lemma": "direct",
+   "ru": "прямой",
+   "uk": "прямий"
+  },
+  {
+   "lemma": "sugar",
+   "ru": "сахар",
+   "uk": "цукор"
+  },
+  {
+   "lemma": "space",
+   "ru": "место",
+   "uk": "місце"
+  },
+  {
+   "lemma": "forks",
+   "ru": "вилки",
+   "uk": "виделки"
+  },
+  {
+   "lemma": "signal",
+   "ru": "сигнал",
+   "uk": "сигнал"
+  },
+  {
+   "lemma": "floor",
+   "ru": "пол",
+   "uk": "підлога"
+  },
+  {
+   "lemma": "single",
+   "ru": "одиночный",
+   "uk": "одинарний"
+  },
+  {
+   "lemma": "name",
+   "ru": "имя",
+   "uk": "ім'я"
+  },
+  {
+   "lemma": "list",
+   "ru": "список",
+   "uk": "список"
+  },
+  {
+   "lemma": "mistake",
+   "ru": "ошибка",
+   "uk": "помилка"
+  },
+  {
+   "lemma": "crack",
+   "ru": "трещина",
+   "uk": "тріщина"
+  },
+  {
+   "lemma": "still",
+   "ru": "неподвижный",
+   "uk": "все ще"
+  },
+  {
+   "lemma": "there",
+   "ru": "там, есть",
+   "uk": "там, є"
+  }
+ ],
+ "knownWords": [
+  "ready",
+  "busy",
+  "free",
+  "home",
+  "work",
+  "open",
+  "close",
+  "door",
+  "shop",
+  "light",
+  "off",
+  "early",
+  "late",
+  "bus",
+  "room",
+  "warm",
+  "coffee",
+  "cold",
+  "bag",
+  "key",
+  "phone",
+  "kitchen",
+  "window",
+  "hand",
+  "seat",
+  "at",
+  "be",
+  "he",
+  "here",
+  "i",
+  "it",
+  "my",
+  "on",
+  "our",
+  "she",
+  "the",
+  "they",
+  "we",
+  "you",
+  "your",
+  "lift",
+  "stairs",
+  "safe",
+  "ticket",
+  "valid",
+  "platform",
+  "empty",
+  "station",
+  "last",
+  "wait",
+  "office",
+  "train",
+  "time",
+  "her",
+  "no",
+  "not",
+  "these",
+  "this",
+  "waiting",
+  "yes",
+  "nearby",
+  "live",
+  "alone",
+  "start",
+  "finish",
+  "walk",
+  "need",
+  "help",
+  "want",
+  "tea",
+  "like",
+  "use",
+  "speak",
+  "english",
+  "stop",
+  "nine",
+  "leave",
+  "eight",
+  "class",
+  "ten",
+  "cafe",
+  "slowly",
+  "shift",
+  "soon",
+  "well",
+  "take",
+  "share",
+  "flat",
+  "check",
+  "email",
+  "cash",
+  "sister",
+  "night",
+  "together",
+  "sometimes",
+  "study",
+  "driver",
+  "know",
+  "way",
+  "gate",
+  "a",
+  "his",
+  "to",
+  "drive",
+  "smoke",
+  "eat",
+  "meat",
+  "entrance",
+  "accept",
+  "card",
+  "machine",
+  "coins",
+  "code",
+  "desk",
+  "carry",
+  "purse",
+  "lock",
+  "tap",
+  "charge",
+  "fit",
+  "shut",
+  "shoe",
+  "headphones",
+  "run",
+  "today",
+  "drink",
+  "cook",
+  "friday",
+  "lunch",
+  "usually",
+  "always",
+  "buy",
+  "bottle",
+  "water",
+  "message",
+  "feel",
+  "price",
+  "include",
+  "breakfast",
+  "cover",
+  "return",
+  "trip",
+  "receipt",
+  "show",
+  "date",
+  "rent",
+  "heating",
+  "go",
+  "son",
+  "milk",
+  "near",
+  "understand",
+  "word",
+  "bottled",
+  "cork",
+  "do",
+  "have",
+  "in",
+  "that",
+  "until",
+  "sell",
+  "stamps",
+  "sunday",
+  "pay",
+  "street",
+  "balcony",
+  "oven",
+  "hear",
+  "noise",
+  "park",
+  "permit",
+  "landlord",
+  "new",
+  "team",
+  "wear",
+  "uniform",
+  "manager",
+  "rota",
+  "get",
+  "break",
+  "printer",
+  "paper",
+  "sign",
+  "form",
+  "spare",
+  "keep",
+  "colleague",
+  "weekends",
+  "delivery",
+  "address",
+  "parcel",
+  "box",
+  "send",
+  "confirmation",
+  "anyone",
+  "post",
+  "collect",
+  "quiet",
+  "carriage",
+  "left",
+  "next",
+  "by",
+  "down",
+  "itself",
+  "parking",
+  "alarm",
+  "beep",
+  "cost",
+  "long",
+  "journey",
+  "centre",
+  "often",
+  "size",
+  "colour",
+  "prefer",
+  "battery",
+  "sale",
+  "end",
+  "label",
+  "say",
+  "more",
+  "coat",
+  "restart",
+  "button",
+  "screen",
+  "dark",
+  "order",
+  "call",
+  "leads",
+  "meet",
+  "spell",
+  "surname",
+  "mean",
+  "person",
+  "far",
+  "day",
+  "teach",
+  "evening",
+  "belongs",
+  "foot",
+  "after",
+  "each",
+  "how",
+  "many",
+  "much",
+  "one",
+  "people",
+  "what",
+  "when",
+  "where",
+  "which",
+  "who",
+  "why",
+  "number",
+  "car",
+  "bicycle",
+  "question",
+  "sore",
+  "throat",
+  "cough",
+  "headache",
+  "appointment",
+  "daughter",
+  "block",
+  "nose",
+  "fever",
+  "prescription",
+  "health",
+  "insurance",
+  "doctor",
+  "charger",
+  "passport",
+  "enough",
+  "change",
+  "pen",
+  "shower",
+  "zip",
+  "small",
+  "booking",
+  "glasses",
+  "original",
+  "licence",
+  "bike",
+  "handle",
+  "chair",
+  "garden",
+  "two",
+  "three",
+  "page",
+  "blue",
+  "deep",
+  "pocket",
+  "afternoon",
+  "table",
+  "hotel",
+  "luggage",
+  "moment",
+  "everything",
+  "'s",
+  "an",
+  "any",
+  "for",
+  "seven",
+  "noon",
+  "tuesday",
+  "travel",
+  "july",
+  "midnight",
+  "arrive",
+  "monday",
+  "morning",
+  "half",
+  "past",
+  "six",
+  "quarter",
+  "four",
+  "lunchtime",
+  "concert",
+  "fifteen",
+  "ring",
+  "thirty",
+  "bakery",
+  "dawn",
+  "bell",
+  "midday",
+  "public",
+  "holidays",
+  "wednesday",
+  "bill",
+  "due",
+  "thursday",
+  "market",
+  "saturdays",
+  "first",
+  "birthday",
+  "year",
+  "short",
+  "winter",
+  "course",
+  "september",
+  "hot",
+  "summer",
+  "spring",
+  "june",
+  "club",
+  "january",
+  "timetable",
+  "april",
+  "beautiful",
+  "autumn",
+  "week",
+  "film",
+  "tonight",
+  "see",
+  "eleven",
+  "dentist",
+  "before",
+  "every",
+  "leaf",
+  "may",
+  "of",
+  "shopping"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1
+  },
+  {
+   "lesson": 2
+  },
+  {
+   "lesson": 3
+  },
+  {
+   "lesson": 4
+  },
+  {
+   "lesson": 5
+  },
+  {
+   "lesson": 6
+  },
+  {
+   "lesson": 7,
+   "title": "Что у меня есть"
+  },
+  {
+   "lesson": 8,
+   "title": "Во сколько, в какой день и когда"
+  }
+ ],
+ "oldTopicTitle": "Что здесь есть",
+ "oldTheoryRu": "Ты впервые описываешь комнату. Один стул: There is a chair. Два стула: There are two chairs. Число смотри у предмета после глагола. Этой конструкцией сообщают о том, чего слушатель ещё не знает: There is a lift. Если предмет уже известен и ты говоришь, где он, начни фразу с самого предмета, а не с there. Этой конструкцией сообщают о том, чего слушатель ещё не знает: There is a lift. Если предмет уже известен и ты говоришь, где он, начни фразу с самого предмета, а не с there. Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`. Чтобы сказать «нет ни одного», подходит `there is no…`. В нейтральном вопросе или отрицании часто встречается `any`. Сиденья можно пересчитать, а для воды обычно указывают меру: стакан, литр. Один предмет или вещество — `there is`: `There is a lift`, `There is water`. Несколько предметов — `there are`. В вопросе поставь `is` или `are` перед `there`. Скажите, что чего-то нет Сравните вопрос о наличии шкафчиков с вопросом о том, где они находятся. Только первый вопрос проверяет наличие. Найдите и представьте в контексте"
+}

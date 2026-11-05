@@ -1,0 +1,454 @@
+{
+  "lang": "de",
+  "lesson": 8,
+  "title": {
+    "ru": "Как сказать «не» и «нет»",
+    "uk": "Як сказати «не» і «немає»",
+    "en": "How to say “not” and “no”"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Не",
+        "uk": "Не",
+        "en": "Not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я живу не здесь».\nIch wohne nicht hier. — «Я живу не здесь.»\nЧитается: их во́не нихт хи́р\nСлово nicht значит «не». Слово wohne — «живу», hier — «здесь».\nTom wartet nicht draußen. — «Том ждёт не на улице.»\nЧитается: том ва́ртет нихт дра́усен\nСлово nicht стоит перед тем, где именно. Слово draußen — «на улице».\nIch bin nicht müde. — «Я не устал.»\nЧитается: их бин нихт мю́де\nСлово nicht стоит перед müde. Слово müde значит «усталый».\nСлово bin значит «я есть». По-русски его не говорят, по-немецки оно нужно.",
+        "uk": "Дивіться, як сказати «Я живу не тут».\nIch wohne nicht hier. — «Я живу не тут.»\nЧитається: іх во́не ніхт хі́р\nСлово nicht означає «не». Слово wohne — «живу», hier — «тут».\nTom wartet nicht draußen. — «Том чекає не на вулиці.»\nЧитається: том ва́ртет ніхт дра́усен\nСлово nicht стоїть перед тим, де саме. Слово draußen — «на вулиці».\nIch bin nicht müde. — «Я не втомився.»\nЧитається: іх бін ніхт мю́де\nСлово nicht стоїть перед müde. Слово müde означає «втомлений».\nСлово bin означає «я є». По-українськи його не кажуть, а по-німецьки воно потрібне.",
+        "en": "Look at how to say “I do not live here”.\nIch wohne nicht hier. — “I do not live here.”\nSounds like: eekh vOne neekht khEEr\nThe word nicht means “not”. The word wohne means “I live”, hier means “here”.\nTom wartet nicht draußen. — “Tom is not waiting outside.”\nSounds like: tom vArtet neekht drAoosen\nThe word nicht comes before the place. The word draußen means “outside”.\nIch bin nicht müde. — “I am not tired.”\nSounds like: eekh been neekht mYOOde\nThe word nicht comes before müde. The word müde means “tired”.\nThe word bin means “I am”. Keep it: German needs it here."
+      },
+      "examples": [
+        {
+          "phraseId": "de:08:35",
+          "say": {
+            "ru": "их во́не нихт хи́р",
+            "uk": "іх во́не ніхт хі́р"
+          }
+        },
+        {
+          "phraseId": "de:08:34",
+          "say": {
+            "ru": "том ва́ртет нихт дра́усен",
+            "uk": "том ва́ртет ніхт дра́усен"
+          }
+        },
+        {
+          "phraseId": "de:08:01",
+          "say": {
+            "ru": "их бин нихт мю́де",
+            "uk": "іх бін ніхт мю́де"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу не здесь»",
+            "uk": "Виберіть, як сказати: «Я живу не тут»",
+            "en": "Choose how to say: “I do not live here”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:08:35",
+          "options": [
+            "de:08:35",
+            "de:08:34",
+            "de:08:01"
+          ],
+          "answerId": "de:08:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том ждёт не на улице»",
+            "uk": "Виберіть, як сказати: «Том чекає не на вулиці»",
+            "en": "Choose how to say: “Tom is not waiting outside”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:34",
+          "options": [
+            "de:08:34",
+            "de:08:35",
+            "de:08:01"
+          ],
+          "answerId": "de:08:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не устал»",
+            "uk": "Виберіть, як сказати: «Я не втомився»",
+            "en": "Choose how to say: “I am not tired”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:01",
+          "options": [
+            "de:08:01",
+            "de:08:35",
+            "de:08:34"
+          ],
+          "answerId": "de:08:01"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Не — в конце",
+        "uk": "Не — у кінці",
+        "en": "Not at the end"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Радио не работает».\nDas Radio funktioniert nicht. — «Радио не работает.»\nЧитается: дас ра́дио функцьони́рт нихт\nСлово funktioniert значит «работает исправно». Слово Radio — «радио».\nЗдесь нет слов «где» или «какой». Слово nicht стоит в самом конце.\nDer Schlüssel passt nicht. — «Ключ не подходит.»\nЧитается: дер шлю́сель паст нихт\nСлово passt значит «подходит». Слово Schlüssel — «ключ».\nDie Bahn fährt heute nicht. — «Сегодня поезда не ходят.»\nЧитается: ди бан фэрт хо́йте нихт\nСлово fährt значит «едет, ходит». Слово heute — «сегодня».\nСлово fahren значит «ехать». Слово Bahn — «поезд, электричка».\nIch arbeite heute nicht. — «Я сегодня не работаю.»\nЧитается: их а́рбайте хо́йте нихт\nСлово arbeite значит «работаю». Тут nicht тоже в конце.",
+        "uk": "Дивіться, як сказати «Радіо не працює».\nDas Radio funktioniert nicht. — «Радіо не працює.»\nЧитається: дас ра́діо функцьоні́рт ніхт\nСлово funktioniert означає «працює справно». Слово Radio — «радіо».\nТут немає слів «де» чи «який». Слово nicht стоїть у самому кінці.\nDer Schlüssel passt nicht. — «Ключ не підходить.»\nЧитається: дер шлю́сель паст ніхт\nСлово passt означає «підходить». Слово Schlüssel — «ключ».\nDie Bahn fährt heute nicht. — «Сьогодні поїзди не ходять.»\nЧитається: ді бан ферт хо́йте ніхт\nСлово fährt означає «їде, ходить». Слово heute — «сьогодні».\nСлово fahren означає «їхати». Слово Bahn — «поїзд, електричка».\nIch arbeite heute nicht. — «Я сьогодні не працюю.»\nЧитається: іх а́рбайте хо́йте ніхт\nСлово arbeite означає «працюю». Тут nicht теж у кінці.",
+        "en": "Look at how to say “The radio does not work”.\nDas Radio funktioniert nicht. — “The radio does not work.”\nSounds like: das rAdeeo foonktsonEErt neekht\nThe word funktioniert means “works properly”. The word Radio means “radio”.\nThere is no place word here. The word nicht goes to the very end.\nDer Schlüssel passt nicht. — “The key does not fit.”\nSounds like: der shlYOOsel past neekht\nThe word passt means “fits”. The word Schlüssel means “key”.\nDie Bahn fährt heute nicht. — “The trains do not run today.”\nSounds like: dee ban fert khOyte neekht\nThe word fährt means “goes, runs”. The word heute means “today”.\nThe word fahren means “to go (by vehicle)”. The word Bahn means “train”.\nIch arbeite heute nicht. — “I do not work today.”\nSounds like: eekh Arbayte khOyte neekht\nThe word arbeite means “I work”. Here nicht is also at the end."
+      },
+      "examples": [
+        {
+          "phraseId": "de:08:38",
+          "say": {
+            "ru": "дас ра́дио функцьони́рт нихт",
+            "uk": "дас ра́діо функцьоні́рт ніхт"
+          }
+        },
+        {
+          "phraseId": "de:08:39",
+          "say": {
+            "ru": "дер шлю́сель паст нихт",
+            "uk": "дер шлю́сель паст ніхт"
+          }
+        },
+        {
+          "phraseId": "de:08:40",
+          "say": {
+            "ru": "ди бан фэрт хо́йте нихт",
+            "uk": "ді бан ферт хо́йте ніхт"
+          }
+        },
+        {
+          "phraseId": "de:08:31",
+          "say": {
+            "ru": "их а́рбайте хо́йте нихт",
+            "uk": "іх а́рбайте хо́йте ніхт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Радио не работает»",
+            "uk": "Виберіть, як сказати: «Радіо не працює»",
+            "en": "Choose how to say: “The radio does not work”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:08:38",
+          "options": [
+            "de:08:38",
+            "de:08:39",
+            "de:08:31"
+          ],
+          "answerId": "de:08:38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ не подходит»",
+            "uk": "Виберіть, як сказати: «Ключ не підходить»",
+            "en": "Choose how to say: “The key does not fit”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:39",
+          "options": [
+            "de:08:39",
+            "de:08:38",
+            "de:08:40"
+          ],
+          "answerId": "de:08:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня поезда не ходят»",
+            "uk": "Виберіть, як сказати: «Сьогодні поїзди не ходять»",
+            "en": "Choose how to say: “The trains do not run today”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:40",
+          "options": [
+            "de:08:40",
+            "de:08:31",
+            "de:08:38"
+          ],
+          "answerId": "de:08:40"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Нет вещи",
+        "uk": "Немає речі",
+        "en": "No thing"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня нет ключа».\nIch habe keinen Schlüssel. — «У меня нет ключа.»\nЧитается: их ха́бе ка́йнен шлю́сель\nСлово keinen значит «никакого, нет». Оно стоит перед названием вещи.\nDu hast keine Tasche. — «У тебя нет сумки.»\nЧитается: ду хаст ка́йне та́ше\nПеред Tasche стоит keine. Слово Tasche значит «сумка».\nAnna hat kein Handy. — «У Анны нет телефона.»\nЧитается: А́нна хат кайн хе́нди\nПеред Handy стоит kein. Слово Handy значит «телефон».\nСлово меняется вместе с вещью: keinen Schlüssel, keine Tasche, kein Handy.\nDie Kinder haben keinen Hunger. — «Дети не голодны.»\nЧитается: ди ки́ндер ха́бен ка́йнен ху́нгер\nСлово Hunger значит «голод». Keinen Hunger — «не голодны».",
+        "uk": "Дивіться, як сказати «У мене немає ключа».\nIch habe keinen Schlüssel. — «У мене немає ключа.»\nЧитається: іх ха́бе ка́йнен шлю́сель\nСлово keinen означає «жодного, немає». Воно стоїть перед назвою речі.\nDu hast keine Tasche. — «У тебе немає сумки.»\nЧитається: ду хаст ка́йне та́ше\nПеред Tasche стоїть keine. Слово Tasche означає «сумка».\nAnna hat kein Handy. — «Анна не має телефону.»\nЧитається: А́нна хат кайн хе́нді\nПеред Handy стоїть kein. Слово Handy означає «телефон».\nСлово змінюється разом із річчю: keinen Schlüssel, keine Tasche, kein Handy.\nDie Kinder haben keinen Hunger. — «Діти не голодні.»\nЧитається: ді кі́ндер ха́бен ка́йнен ху́нгер\nСлово Hunger означає «голод». Keinen Hunger — «не голодні».",
+        "en": "Look at how to say “I have no key”.\nIch habe keinen Schlüssel. — “I have no key.”\nSounds like: eekh khAbe kAynen shlYOOsel\nThe word keinen means “no, none”. It comes before the name of a thing.\nDu hast keine Tasche. — “You have no bag.”\nSounds like: doo khast kAyne tAshe\nBefore Tasche comes keine. The word Tasche means “bag”.\nAnna hat kein Handy. — “Anna has no phone.”\nSounds like: Anna khat kayn khEndee\nBefore Handy comes kein. The word Handy means “phone”.\nThe word changes with the thing: keinen Schlüssel, keine Tasche, kein Handy.\nDie Kinder haben keinen Hunger. — “The children are not hungry.”\nSounds like: dee kEEnder khAben kAynen khOOnger\nThe word Hunger means “hunger”. Keinen Hunger means “not hungry”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:08:11",
+          "say": {
+            "ru": "их ха́бе ка́йнен шлю́сель",
+            "uk": "іх ха́бе ка́йнен шлю́сель"
+          }
+        },
+        {
+          "phraseId": "de:08:12",
+          "say": {
+            "ru": "ду хаст ка́йне та́ше",
+            "uk": "ду хаст ка́йне та́ше"
+          }
+        },
+        {
+          "phraseId": "de:08:13",
+          "say": {
+            "ru": "А́нна хат кайн хе́нди",
+            "uk": "А́нна хат кайн хе́нді"
+          }
+        },
+        {
+          "phraseId": "de:08:20",
+          "say": {
+            "ru": "ди ки́ндер ха́бен ка́йнен ху́нгер",
+            "uk": "ді кі́ндер ха́бен ка́йнен ху́нгер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня нет ключа»",
+            "uk": "Виберіть, як сказати: «У мене немає ключа»",
+            "en": "Choose how to say: “I have no key”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:08:11",
+          "options": [
+            "de:08:11",
+            "de:08:12",
+            "de:08:13"
+          ],
+          "answerId": "de:08:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У тебя нет сумки»",
+            "uk": "Виберіть, як сказати: «У тебе немає сумки»",
+            "en": "Choose how to say: “You have no bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:12",
+          "options": [
+            "de:08:12",
+            "de:08:13",
+            "de:08:11"
+          ],
+          "answerId": "de:08:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети не голодны»",
+            "uk": "Виберіть, як сказати: «Діти не голодні»",
+            "en": "Choose how to say: “The children are not hungry”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:20",
+          "options": [
+            "de:08:20",
+            "de:08:13",
+            "de:08:12"
+          ],
+          "answerId": "de:08:20"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Нет того, что нужно",
+        "uk": "Немає потрібного",
+        "en": "No, I do not need it"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне не нужен чек».\nIch brauche keinen Beleg. — «Мне не нужен чек.»\nЧитается: их бра́ухе ка́йнен беле́г\nСлово Beleg значит «чек». Keinen Beleg — «никакого чека».\nTom bestellt keinen Salat. — «Том не заказывает салат.»\nЧитается: том беште́льт ка́йнен зала́т\nСлово bestellt значит «заказывает». Слово Salat — «салат».\nDas Zimmer hat keinen Balkon. — «В комнате нет балкона.»\nЧитается: дас ци́мер хат ка́йнен балко́н\nСлово Zimmer значит «комната». Слово Balkon — «балкон».\nIch habe leider kein Kleingeld. — «К сожалению, у меня нет мелочи.»\nЧитается: их ха́бе ла́йдер кайн кла́йнгельт\nСлово leider значит «к сожалению». Слово Kleingeld — «мелкие деньги».\nВезде одно и то же: нет вещи — kein, keinen, keine.",
+        "uk": "Дивіться, як сказати «Мені не потрібен чек».\nIch brauche keinen Beleg. — «Мені не потрібен чек.»\nЧитається: іх бра́ухе ка́йнен беле́г\nСлово Beleg означає «чек». Keinen Beleg — «жодного чека».\nTom bestellt keinen Salat. — «Том не замовляє салат.»\nЧитається: том беште́льт ка́йнен зала́т\nСлово bestellt означає «замовляє». Слово Salat — «салат».\nDas Zimmer hat keinen Balkon. — «У кімнаті немає балкона.»\nЧитається: дас ці́мер хат ка́йнен балко́н\nСлово Zimmer означає «кімната». Слово Balkon — «балкон».\nIch habe leider kein Kleingeld. — «На жаль, у мене немає дрібних грошей.»\nЧитається: іх ха́бе ла́йдер кайн кла́йнгельт\nСлово leider означає «на жаль». Слово Kleingeld — «дрібні гроші».\nСкрізь те саме: немає речі — kein, keinen, keine.",
+        "en": "Look at how to say “I do not need a receipt”.\nIch brauche keinen Beleg. — “I do not need a receipt.”\nSounds like: eekh brAookhe kAynen belEg\nThe word Beleg means “receipt”. Keinen Beleg means “no receipt”.\nTom bestellt keinen Salat. — “Tom does not order a salad.”\nSounds like: tom beshtElt kAynen zalAt\nThe word bestellt means “orders”. The word Salat means “salad”.\nDas Zimmer hat keinen Balkon. — “The room has no balcony.”\nSounds like: das tsEEmer khat kAynen balkOn\nThe word Zimmer means “room”. The word Balkon means “balcony”.\nIch habe leider kein Kleingeld. — “Sadly, I have no small change.”\nSounds like: eekh khAbe lAyder kayn klAyngelt\nThe word leider means “sadly”. The word Kleingeld means “small change”.\nIt is the same everywhere: no thing — kein, keinen, keine."
+      },
+      "examples": [
+        {
+          "phraseId": "de:08:17",
+          "say": {
+            "ru": "их бра́ухе ка́йнен беле́г",
+            "uk": "іх бра́ухе ка́йнен беле́г"
+          }
+        },
+        {
+          "phraseId": "de:08:24",
+          "say": {
+            "ru": "том беште́льт ка́йнен зала́т",
+            "uk": "том беште́льт ка́йнен зала́т"
+          }
+        },
+        {
+          "phraseId": "de:08:28",
+          "say": {
+            "ru": "дас ци́мер хат ка́йнен балко́н",
+            "uk": "дас ці́мер хат ка́йнен балко́н"
+          }
+        },
+        {
+          "phraseId": "de:08:50",
+          "say": {
+            "ru": "их ха́бе ла́йдер кайн кла́йнгельт",
+            "uk": "іх ха́бе ла́йдер кайн кла́йнгельт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В комнате нет балкона»",
+            "uk": "Виберіть, як сказати: «У кімнаті немає балкона»",
+            "en": "Choose how to say: “The room has no balcony”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:08:28",
+          "options": [
+            "de:08:28",
+            "de:08:17",
+            "de:08:24"
+          ],
+          "answerId": "de:08:28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне не нужен чек»",
+            "uk": "Виберіть, як сказати: «Мені не потрібен чек»",
+            "en": "Choose how to say: “I do not need a receipt”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:17",
+          "options": [
+            "de:08:17",
+            "de:08:24",
+            "de:08:50"
+          ],
+          "answerId": "de:08:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «К сожалению, у меня нет мелочи»",
+            "uk": "Виберіть, як сказати: «На жаль, у мене немає дрібних грошей»",
+            "en": "Choose how to say: “Sadly, I have no small change”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:50",
+          "options": [
+            "de:08:50",
+            "de:08:28",
+            "de:08:17"
+          ],
+          "answerId": "de:08:50"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Kein или nicht",
+        "uk": "Kein чи nicht",
+        "en": "Kein or nicht"
+      },
+      "text": {
+        "ru": "Смотрите: когда вещи нет, говорят kein. Когда не так, говорят nicht.\nDas ist kein Eingang. — «Это не вход.»\nЧитается: дас ист кайн а́йнганг\nСлово Eingang значит «вход». Вещи нет — значит kein.\nDas ist nicht mein Koffer. — «Это не мой чемодан.»\nЧитается: дас ист нихт майн ко́фер\nСлово mein значит «мой». С ним говорят nicht: nicht mein Koffer.\nDie Kinder spielen nicht im Garten. — «Дети играют не в саду.»\nЧитается: ди ки́ндер шпи́лен нихт им га́ртен\nСлово spielen значит «играть». Слово Garten — «сад». Слово im — «в».\nWir bezahlen nicht mit Karte. — «Мы платим не картой.»\nЧитается: вир беца́лен нихт мит ка́рте\nСлово mit значит «с, чем-то». Mit Karte — «картой». Не так — значит nicht.",
+        "uk": "Дивіться: коли речі немає, кажуть kein. Коли не так, кажуть nicht.\nDas ist kein Eingang. — «Це не вхід.»\nЧитається: дас іст кайн а́йнганг\nСлово Eingang означає «вхід». Речі немає — отже kein.\nDas ist nicht mein Koffer. — «Це не моя валіза.»\nЧитається: дас іст ніхт майн ко́фер\nСлово mein означає «мій». З ним кажуть nicht: nicht mein Koffer.\nDie Kinder spielen nicht im Garten. — «Діти грають не в саду.»\nЧитається: ді кі́ндер шпі́лен ніхт ім га́ртен\nСлово spielen означає «грати». Слово Garten — «сад». Слово im — «в».\nWir bezahlen nicht mit Karte. — «Ми платимо не карткою.»\nЧитається: вір беца́лен ніхт міт ка́рте\nСлово mit означає «з, чимось». Mit Karte — «карткою». Не так — отже nicht.",
+        "en": "No thing: say kein. Not so: say nicht.\nDas ist kein Eingang. — “This is not an entrance.”\nSounds like: das eest kayn Ayngang\nThe word Eingang means “entrance”. No thing — so kein.\nDas ist nicht mein Koffer. — “This is not my suitcase.”\nSounds like: das eest neekht mayn kOfer\nThe word mein means “my”. With it you say nicht: nicht mein Koffer.\nDie Kinder spielen nicht im Garten. — “The children are not playing in the garden.”\nSounds like: dee kEEnder shpEElen neekht eem gArten\nThe word spielen means “to play”. The word Garten means “garden”. The word im means “in”.\nWir bezahlen nicht mit Karte. — “We do not pay by card.”\nSounds like: veer betsAlen neekht meet kArte\nThe word mit means “with”. Mit Karte means “by card”. Not so — so nicht."
+      },
+      "examples": [
+        {
+          "phraseId": "de:08:41",
+          "say": {
+            "ru": "дас ист кайн а́йнганг",
+            "uk": "дас іст кайн а́йнганг"
+          }
+        },
+        {
+          "phraseId": "de:08:45",
+          "say": {
+            "ru": "дас ист нихт майн ко́фер",
+            "uk": "дас іст ніхт майн ко́фер"
+          }
+        },
+        {
+          "phraseId": "de:08:37",
+          "say": {
+            "ru": "ди ки́ндер шпи́лен нихт им га́ртен",
+            "uk": "ді кі́ндер шпі́лен ніхт ім га́ртен"
+          }
+        },
+        {
+          "phraseId": "de:08:36",
+          "say": {
+            "ru": "вир беца́лен нихт мит ка́рте",
+            "uk": "вір беца́лен ніхт міт ка́рте"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети играют не в саду»",
+            "uk": "Виберіть, як сказати: «Діти грають не в саду»",
+            "en": "Choose how to say: “The children are not playing in the garden”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:08:37",
+          "options": [
+            "de:08:37",
+            "de:08:36",
+            "de:08:41"
+          ],
+          "answerId": "de:08:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы платим не картой»",
+            "uk": "Виберіть, як сказати: «Ми платимо не карткою»",
+            "en": "Choose how to say: “We do not pay by card”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:36",
+          "options": [
+            "de:08:36",
+            "de:08:37",
+            "de:08:45"
+          ],
+          "answerId": "de:08:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это не вход»",
+            "uk": "Виберіть, як сказати: «Це не вхід»",
+            "en": "Choose how to say: “This is not an entrance”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:08:41",
+          "options": [
+            "de:08:41",
+            "de:08:45",
+            "de:08:36"
+          ],
+          "answerId": "de:08:41"
+        }
+      ]
+    }
+  ]
+}

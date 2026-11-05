@@ -1,0 +1,395 @@
+{
+ "lang": "fr",
+ "lesson": 2,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:02:01",
+   "target": "Je ne suis pas là.",
+   "ru": "Меня здесь нет.",
+   "uk": "Мене тут немає."
+  },
+  {
+   "id": "fr:02:02",
+   "target": "Tu n’es pas ici.",
+   "ru": "Тебя здесь нет.",
+   "uk": "Тебе тут немає."
+  },
+  {
+   "id": "fr:02:03",
+   "target": "Tu n’es pas là.",
+   "ru": "Тебя там нет.",
+   "uk": "Тебе там немає."
+  },
+  {
+   "id": "fr:02:04",
+   "target": "Elle n’est pas là.",
+   "ru": "Её там нет.",
+   "uk": "Її там немає."
+  },
+  {
+   "id": "fr:02:05",
+   "target": "Paul n’est pas au bureau.",
+   "ru": "Поля нет в офисе.",
+   "uk": "Поля немає в офісі."
+  },
+  {
+   "id": "fr:02:06",
+   "target": "Je ne suis pas au bureau.",
+   "ru": "Меня нет в офисе.",
+   "uk": "Мене немає в офісі."
+  },
+  {
+   "id": "fr:02:07",
+   "target": "Nous ne sommes pas à la gare.",
+   "ru": "Нас нет на станции.",
+   "uk": "Нас немає на станції."
+  },
+  {
+   "id": "fr:02:08",
+   "target": "Vous n’êtes pas à la maison.",
+   "ru": "Вас нет дома.",
+   "uk": "Вас немає вдома."
+  },
+  {
+   "id": "fr:02:09",
+   "target": "Ils ne sont pas dehors.",
+   "ru": "Их нет на улице.",
+   "uk": "Їх немає надворі."
+  },
+  {
+   "id": "fr:02:10",
+   "target": "Elles ne sont pas ici.",
+   "ru": "Их здесь нет.",
+   "uk": "Їх немає тут."
+  },
+  {
+   "id": "fr:02:11",
+   "target": "Je ne suis pas prêt.",
+   "ru": "Я не готов.",
+   "uk": "Я не готовий."
+  },
+  {
+   "id": "fr:02:12",
+   "target": "Elle n’est pas prête.",
+   "ru": "Она не готова.",
+   "uk": "Вона не готова."
+  },
+  {
+   "id": "fr:02:13",
+   "target": "Nous ne sommes pas prêts.",
+   "ru": "Мы не готовы.",
+   "uk": "Ми не готові."
+  },
+  {
+   "id": "fr:02:14",
+   "target": "Tu n’es pas seul.",
+   "ru": "Ты не один.",
+   "uk": "Ти не один."
+  },
+  {
+   "id": "fr:02:15",
+   "target": "Léa n’est pas seule.",
+   "ru": "Леа не одна.",
+   "uk": "Леа не сама."
+  },
+  {
+   "id": "fr:02:16",
+   "target": "Ils ne sont pas ensemble.",
+   "ru": "Они не вместе.",
+   "uk": "Вони не разом."
+  },
+  {
+   "id": "fr:02:17",
+   "target": "Je ne suis pas fatigué.",
+   "ru": "Я не устал.",
+   "uk": "Я не втомився."
+  },
+  {
+   "id": "fr:02:18",
+   "target": "Paul n’est pas libre.",
+   "ru": "Поль не свободен.",
+   "uk": "Поль не вільний."
+  },
+  {
+   "id": "fr:02:19",
+   "target": "Vous n’êtes pas en retard.",
+   "ru": "Вы не опоздали.",
+   "uk": "Ви не запізнилися."
+  },
+  {
+   "id": "fr:02:20",
+   "target": "Nous ne sommes pas en avance.",
+   "ru": "Мы не пришли заранее.",
+   "uk": "Ми не прийшли заздалегідь."
+  },
+  {
+   "id": "fr:02:21",
+   "target": "La porte n’est pas ouverte.",
+   "ru": "Дверь не открыта.",
+   "uk": "Двері не відчинені."
+  },
+  {
+   "id": "fr:02:22",
+   "target": "Le café n’est pas fermé.",
+   "ru": "Кафе не закрыто.",
+   "uk": "Кафе не зачинене."
+  },
+  {
+   "id": "fr:02:23",
+   "target": "Les magasins ne sont pas ouverts.",
+   "ru": "Магазины не открыты.",
+   "uk": "Магазини не відкриті."
+  },
+  {
+   "id": "fr:02:24",
+   "target": "La fenêtre n’est pas fermée.",
+   "ru": "Окно не закрыто.",
+   "uk": "Вікно не зачинене."
+  },
+  {
+   "id": "fr:02:25",
+   "target": "La salle n’est pas vide.",
+   "ru": "Комната не пуста.",
+   "uk": "Кімната не порожня."
+  },
+  {
+   "id": "fr:02:26",
+   "target": "Le couloir n’est pas sombre.",
+   "ru": "В коридоре не темно.",
+   "uk": "Коридор не темний."
+  },
+  {
+   "id": "fr:02:27",
+   "target": "Les clés ne sont pas ici.",
+   "ru": "Ключей здесь нет.",
+   "uk": "Ключів тут немає."
+  },
+  {
+   "id": "fr:02:28",
+   "target": "Le sac n’est pas là.",
+   "ru": "Сумки там нет.",
+   "uk": "Сумки там немає."
+  },
+  {
+   "id": "fr:02:29",
+   "target": "La table n’est pas propre.",
+   "ru": "Стол не чистый.",
+   "uk": "Стіл не чистий."
+  },
+  {
+   "id": "fr:02:30",
+   "target": "Le verre n’est pas sale.",
+   "ru": "Стакан не грязный.",
+   "uk": "Склянка не брудна."
+  },
+  {
+   "id": "fr:02:31",
+   "target": "Le bus n’est pas loin.",
+   "ru": "Автобус недалеко.",
+   "uk": "Автобус недалеко."
+  },
+  {
+   "id": "fr:02:32",
+   "target": "Les toilettes ne sont pas au fond.",
+   "ru": "Туалет не в глубине зала.",
+   "uk": "Туалет не в глибині зали."
+  },
+  {
+   "id": "fr:02:33",
+   "target": "Le ticket n’est pas dans le sac.",
+   "ru": "Билета нет в сумке.",
+   "uk": "Квитка немає в сумці."
+  },
+  {
+   "id": "fr:02:34",
+   "target": "Les enfants ne sont pas dans la salle.",
+   "ru": "Детей нет в комнате.",
+   "uk": "Дітей немає в кімнаті."
+  },
+  {
+   "id": "fr:02:35",
+   "target": "Le vélo n’est pas dehors.",
+   "ru": "Велосипед не на улице.",
+   "uk": "Велосипед не на вулиці."
+  },
+  {
+   "id": "fr:02:36",
+   "target": "Mon téléphone n’est pas ici.",
+   "ru": "Моего телефона здесь нет.",
+   "uk": "Мого телефону тут немає."
+  },
+  {
+   "id": "fr:02:37",
+   "target": "Le musée n’est pas ouvert.",
+   "ru": "Музей не открыт.",
+   "uk": "Музей не відкритий."
+  },
+  {
+   "id": "fr:02:38",
+   "target": "La pharmacie n’est pas loin.",
+   "ru": "Аптека недалеко.",
+   "uk": "Аптека недалеко."
+  },
+  {
+   "id": "fr:02:39",
+   "target": "Les billets ne sont pas sur la table.",
+   "ru": "Билетов нет на столе.",
+   "uk": "Квитки не на столі."
+  },
+  {
+   "id": "fr:02:40",
+   "target": "Le train n’est pas en retard.",
+   "ru": "Поезд не опаздывает.",
+   "uk": "Поїзд не запізнюється."
+  },
+  {
+   "id": "fr:02:41",
+   "target": "Je ne suis pas encore à la maison.",
+   "ru": "Меня ещё нет дома.",
+   "uk": "Я ще не вдома."
+  },
+  {
+   "id": "fr:02:42",
+   "target": "Elle n’est pas encore au bureau.",
+   "ru": "Её ещё нет в офисе.",
+   "uk": "Вона ще не в офісі."
+  },
+  {
+   "id": "fr:02:43",
+   "target": "Le déjeuner n’est pas prêt.",
+   "ru": "Обед не готов.",
+   "uk": "Обід не готовий."
+  },
+  {
+   "id": "fr:02:44",
+   "target": "La chambre n’est pas libre.",
+   "ru": "Номер не свободен.",
+   "uk": "Номер не вільний."
+  },
+  {
+   "id": "fr:02:45",
+   "target": "La gare n’est pas près du musée.",
+   "ru": "Вокзал не рядом с музеем.",
+   "uk": "Вокзал не поруч із музеєм."
+  },
+  {
+   "id": "fr:02:46",
+   "target": "Les chaussures ne sont pas propres.",
+   "ru": "Обувь не чистая.",
+   "uk": "Взуття не чисте."
+  },
+  {
+   "id": "fr:02:47",
+   "target": "Le couloir n’est pas très large.",
+   "ru": "Коридор не очень широкий.",
+   "uk": "Коридор не дуже широкий."
+  },
+  {
+   "id": "fr:02:48",
+   "target": "Vous n’êtes pas seuls ici.",
+   "ru": "Вы здесь не одни.",
+   "uk": "Ви тут не самі."
+  },
+  {
+   "id": "fr:02:49",
+   "target": "Le bus n’est pas encore là.",
+   "ru": "Автобуса ещё нет.",
+   "uk": "Автобус ще не прибув."
+  },
+  {
+   "id": "fr:02:50",
+   "target": "Nous ne sommes pas loin de la gare.",
+   "ru": "Мы недалеко от вокзала.",
+   "uk": "Ми недалеко від станції."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le couloir",
+   "ru": "коридор",
+   "uk": "коридор"
+  },
+  {
+   "lemma": "la chambre",
+   "ru": "комната, номер в гостинице",
+   "uk": "кімната, номер у готелі"
+  },
+  {
+   "lemma": "le ticket",
+   "ru": "билет, талон",
+   "uk": "квиток, талон"
+  },
+  {
+   "lemma": "la pharmacie",
+   "ru": "аптека",
+   "uk": "аптека"
+  },
+  {
+   "lemma": "en retard",
+   "ru": "с опозданием",
+   "uk": "із запізненням"
+  },
+  {
+   "lemma": "la table",
+   "ru": "стол",
+   "uk": "стіл"
+  },
+  {
+   "lemma": "la salle",
+   "ru": "зал, помещение",
+   "uk": "зала, приміщення"
+  },
+  {
+   "lemma": "le train",
+   "ru": "поезд",
+   "uk": "потяг"
+  },
+  {
+   "lemma": "le billet",
+   "ru": "билет",
+   "uk": "квиток"
+  },
+  {
+   "lemma": "le vélo",
+   "ru": "велосипед",
+   "uk": "велосипед"
+  },
+  {
+   "lemma": "le bus",
+   "ru": "автобус",
+   "uk": "автобус"
+  },
+  {
+   "lemma": "le musée",
+   "ru": "музей",
+   "uk": "музей"
+  }
+ ],
+ "knownWords": [
+  "ici",
+  "la gare",
+  "la clé",
+  "la fenêtre",
+  "prêt / prête",
+  "être",
+  "je / j’",
+  "tu",
+  "nous",
+  "vous",
+  "la maison",
+  "le bureau",
+  "la porte",
+  "ensemble",
+  "le magasin",
+  "le sac"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь: `je suis`, `tu es`"
+  }
+ ],
+ "oldTopicTitle": "Как сказать «не»: `ne … pas`",
+ "oldTheoryRu": "Ученик уже умеет сообщать, что он здесь. Чтобы опровергнуть это, не меняй «я» и «здесь». Заключи личную форму глагола в две части отрицания. Удобно представить две скобки вокруг действия. Сравни `je ne suis pas` и `tu n’es pas`. Перед гласной `ne` теряет `e` и получает апостроф. Пиши `n’es` слитно, но `pas` остаётся отдельным словом после глагола. В отрицании лицо не исчезает: для «мы» по-прежнему нужно `sommes`. Для вежливого обращения — `êtes`. Выбери форму, которую выбрал бы в утверждении, и только потом добавь отрицание. Подлежащим может быть и предмет. `La porte` остаётся перед отрицанием. Сначала выясни, одна это дверь или несколько, затем выбирай `n’est` или `ne sont`. `Pas` обычно стоит не в конце всей фразы, а сразу после простой личной формы. В `n’est pas dans le sac` слова о сумке следуют уже после отрицания. Ожидаемый результат ещё не наступил: `pas encore` — «пока не». Не путай с `encore` без отрицания: у фразы меняется смысл, а не только длина. В разговоре можно услышать отрицание без первой части. Здесь образцом служит полное нейтральное написание. Проверяй две опоры: где форма глагола и где стоит `pas`."
+}

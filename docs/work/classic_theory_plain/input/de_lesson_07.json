@@ -1,0 +1,443 @@
+{
+ "lang": "de",
+ "lesson": 7,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "de:07:01",
+   "target": "Ich habe einen Schlüssel.",
+   "ru": "У меня есть ключ.",
+   "uk": "У мене є ключ."
+  },
+  {
+   "id": "de:07:02",
+   "target": "Du hast einen Schlüssel.",
+   "ru": "У тебя есть ключ.",
+   "uk": "У тебе є ключ."
+  },
+  {
+   "id": "de:07:03",
+   "target": "Anna hat einen Schlüssel.",
+   "ru": "У Анны есть ключ.",
+   "uk": "Анна має ключ."
+  },
+  {
+   "id": "de:07:04",
+   "target": "Wir haben eine Tasche.",
+   "ru": "У нас есть сумка.",
+   "uk": "У нас є сумка."
+  },
+  {
+   "id": "de:07:05",
+   "target": "Ihr habt ein Handy.",
+   "ru": "У вас есть телефон.",
+   "uk": "У вас є телефон."
+  },
+  {
+   "id": "de:07:06",
+   "target": "Tom hat einen Stift.",
+   "ru": "У Тома есть ручка.",
+   "uk": "Том має ручку."
+  },
+  {
+   "id": "de:07:07",
+   "target": "Ich habe einen Termin.",
+   "ru": "У меня назначена встреча.",
+   "uk": "У мене призначено зустріч."
+  },
+  {
+   "id": "de:07:08",
+   "target": "Du hast eine Frage.",
+   "ru": "У тебя есть вопрос.",
+   "uk": "У тебе є питання."
+  },
+  {
+   "id": "de:07:09",
+   "target": "Wir haben ein Problem.",
+   "ru": "У нас проблема.",
+   "uk": "У нас проблема."
+  },
+  {
+   "id": "de:07:10",
+   "target": "Die Kinder haben einen Ball.",
+   "ru": "У детей есть мяч.",
+   "uk": "Діти мають м'яч."
+  },
+  {
+   "id": "de:07:11",
+   "target": "Ich brauche den Schlüssel.",
+   "ru": "Мне нужен ключ.",
+   "uk": "Мені потрібний ключ."
+  },
+  {
+   "id": "de:07:12",
+   "target": "Du brauchst den Stift.",
+   "ru": "Тебе нужна ручка.",
+   "uk": "Тобі потрібна ручка."
+  },
+  {
+   "id": "de:07:13",
+   "target": "Anna braucht die Karte.",
+   "ru": "Анне нужна карта.",
+   "uk": "Ганні потрібна карта."
+  },
+  {
+   "id": "de:07:14",
+   "target": "Wir brauchen das Ticket.",
+   "ru": "Нам нужен билет.",
+   "uk": "Нам потрібний квиток."
+  },
+  {
+   "id": "de:07:15",
+   "target": "Ihr braucht die Adresse.",
+   "ru": "Вам нужен адрес.",
+   "uk": "Вам потрібна адреса."
+  },
+  {
+   "id": "de:07:16",
+   "target": "Ich suche einen Arzt.",
+   "ru": "Я ищу врача.",
+   "uk": "Я шукаю лікаря."
+  },
+  {
+   "id": "de:07:17",
+   "target": "Du suchst eine Apotheke.",
+   "ru": "Ты ищешь аптеку.",
+   "uk": "Ти шукаєш аптеку."
+  },
+  {
+   "id": "de:07:18",
+   "target": "Tom sucht ein Hotel.",
+   "ru": "Том ищет гостиницу.",
+   "uk": "Том шукає готель."
+  },
+  {
+   "id": "de:07:19",
+   "target": "Wir suchen einen Parkplatz.",
+   "ru": "Мы ищем парковку.",
+   "uk": "Ми шукаємо паркування."
+  },
+  {
+   "id": "de:07:20",
+   "target": "Die Gäste suchen eine Bank.",
+   "ru": "Гости ищут банк.",
+   "uk": "Гості шукають банк."
+  },
+  {
+   "id": "de:07:21",
+   "target": "Ich nehme den Bus.",
+   "ru": "Я еду на автобусе.",
+   "uk": "Я їду автобусом."
+  },
+  {
+   "id": "de:07:22",
+   "target": "Du nimmst den Zug.",
+   "ru": "Ты едешь поездом.",
+   "uk": "Ти їдеш поїздом."
+  },
+  {
+   "id": "de:07:23",
+   "target": "Anna nimmt die Bahn.",
+   "ru": "Анна едет на поезде.",
+   "uk": "Анна їде поїздом."
+  },
+  {
+   "id": "de:07:24",
+   "target": "Wir nehmen das Taxi.",
+   "ru": "Мы берём такси.",
+   "uk": "Ми беремо таксі."
+  },
+  {
+   "id": "de:07:25",
+   "target": "Ihr nehmt die Treppe.",
+   "ru": "Вы идёте по лестнице.",
+   "uk": "Ви йдете сходами."
+  },
+  {
+   "id": "de:07:26",
+   "target": "Ich bestelle einen Tee.",
+   "ru": "Я заказываю чай.",
+   "uk": "Я замовляю чай."
+  },
+  {
+   "id": "de:07:27",
+   "target": "Du bestellst eine Suppe.",
+   "ru": "Ты заказываешь суп.",
+   "uk": "Ти замовляєш суп."
+  },
+  {
+   "id": "de:07:28",
+   "target": "Tom bestellt ein Wasser.",
+   "ru": "Том заказывает воду.",
+   "uk": "Том замовляє воду."
+  },
+  {
+   "id": "de:07:29",
+   "target": "Wir bestellen den Salat.",
+   "ru": "Мы заказываем салат.",
+   "uk": "Ми замовляємо салат."
+  },
+  {
+   "id": "de:07:30",
+   "target": "Die Kinder bestellen das Eis.",
+   "ru": "Дети заказывают мороженое.",
+   "uk": "Діти замовляють морозиво."
+  },
+  {
+   "id": "de:07:31",
+   "target": "Ich lese den Brief.",
+   "ru": "Я читаю письмо.",
+   "uk": "Я читаю листа."
+  },
+  {
+   "id": "de:07:32",
+   "target": "Anna liest die Rechnung.",
+   "ru": "Анна читает счёт.",
+   "uk": "Анна читає рахунок."
+  },
+  {
+   "id": "de:07:33",
+   "target": "Wir lesen das Buch.",
+   "ru": "Мы читаем книгу.",
+   "uk": "Ми читаємо книгу."
+  },
+  {
+   "id": "de:07:34",
+   "target": "Ich trage den Mantel.",
+   "ru": "Я ношу пальто.",
+   "uk": "Я ношу пальто."
+  },
+  {
+   "id": "de:07:35",
+   "target": "Du trägst die Kiste.",
+   "ru": "Ты несёшь ящик.",
+   "uk": "Ти несеш ящик."
+  },
+  {
+   "id": "de:07:36",
+   "target": "Tom trägt das Paket.",
+   "ru": "Том несёт посылку.",
+   "uk": "Том несе посилку."
+  },
+  {
+   "id": "de:07:37",
+   "target": "Ich öffne den Schrank.",
+   "ru": "Я открываю шкаф.",
+   "uk": "Я відкриваю шафу."
+  },
+  {
+   "id": "de:07:38",
+   "target": "Anna öffnet die Tür.",
+   "ru": "Анна открывает дверь.",
+   "uk": "Анна відчиняє двері."
+  },
+  {
+   "id": "de:07:39",
+   "target": "Wir öffnen das Fenster.",
+   "ru": "Мы открываем окно.",
+   "uk": "Ми відкриваємо вікно."
+  },
+  {
+   "id": "de:07:40",
+   "target": "Ihr öffnet die Tasche.",
+   "ru": "Вы открываете сумку.",
+   "uk": "Ви відкриваєте сумку."
+  },
+  {
+   "id": "de:07:41",
+   "target": "Hast du einen Stift?",
+   "ru": "У тебя есть ручка?",
+   "uk": "У тебе є ручка?"
+  },
+  {
+   "id": "de:07:42",
+   "target": "Habt ihr einen Plan?",
+   "ru": "У вас есть план?",
+   "uk": "У вас є план?"
+  },
+  {
+   "id": "de:07:43",
+   "target": "Hat Tom eine Fahrkarte?",
+   "ru": "У Тома есть проездной билет?",
+   "uk": "Том має проїзний квиток?"
+  },
+  {
+   "id": "de:07:44",
+   "target": "Brauchen Sie einen Beleg?",
+   "ru": "Вам нужен чек?",
+   "uk": "Вам потрібний чек?"
+  },
+  {
+   "id": "de:07:45",
+   "target": "Möchten Sie eine Quittung?",
+   "ru": "Хотите квитанцию?",
+   "uk": "Бажаєте квитанцію?"
+  },
+  {
+   "id": "de:07:46",
+   "target": "Wer hat das Ladegerät?",
+   "ru": "У кого зарядка?",
+   "uk": "Хто має зарядку?"
+  },
+  {
+   "id": "de:07:47",
+   "target": "Wo finde ich den Aufzug?",
+   "ru": "Где мне найти лифт?",
+   "uk": "Де знайти ліфт?"
+  },
+  {
+   "id": "de:07:48",
+   "target": "Ich hole den Koffer.",
+   "ru": "Я забираю чемодан.",
+   "uk": "Я забираю валізу."
+  },
+  {
+   "id": "de:07:49",
+   "target": "Anna holt die Jacke.",
+   "ru": "Анна забирает куртку.",
+   "uk": "Анна забирає куртку."
+  },
+  {
+   "id": "de:07:50",
+   "target": "Wir holen das Fahrrad.",
+   "ru": "Мы забираем велосипед.",
+   "uk": "Ми забираємо велосипед."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "der Termin",
+   "ru": "назначенная встреча, запись",
+   "uk": "призначена зустріч, запис"
+  },
+  {
+   "lemma": "der Stift",
+   "ru": "ручка или карандаш",
+   "uk": "ручка або олівець"
+  },
+  {
+   "lemma": "die Apotheke",
+   "ru": "аптека",
+   "uk": "аптека"
+  },
+  {
+   "lemma": "die Quittung",
+   "ru": "квитанция, чек об оплате",
+   "uk": "квитанція, чек про оплату"
+  },
+  {
+   "lemma": "das Ladegerät",
+   "ru": "зарядное устройство",
+   "uk": "зарядний пристрій"
+  },
+  {
+   "lemma": "der Zug",
+   "ru": "поезд",
+   "uk": "поїзд"
+  },
+  {
+   "lemma": "die Jacke",
+   "ru": "куртка",
+   "uk": "куртка"
+  },
+  {
+   "lemma": "der Schrank",
+   "ru": "шкаф",
+   "uk": "шафа"
+  },
+  {
+   "lemma": "finden",
+   "ru": "находить",
+   "uk": "знаходити"
+  }
+ ],
+ "knownWords": [
+  "hier",
+  "müde",
+  "bereit",
+  "die Tür",
+  "der Schlüssel",
+  "das Fenster",
+  "das Kind",
+  "der Kaffee",
+  "die Suppe",
+  "das Wasser",
+  "die Tasche",
+  "das Zimmer",
+  "sein",
+  "der Bahnhof",
+  "die Haltestelle",
+  "die Rechnung",
+  "der Aufzug",
+  "die Treppe",
+  "das Handy",
+  "der Stuhl",
+  "der Bus",
+  "das Ticket",
+  "der Tisch",
+  "die Küche",
+  "die Karte",
+  "das Hotel",
+  "das Büro",
+  "der Brief",
+  "das Paket",
+  "wohnen",
+  "lernen",
+  "warten",
+  "arbeiten",
+  "kaufen",
+  "das Brot",
+  "die Milch",
+  "die Pause",
+  "suchen",
+  "bezahlen",
+  "morgen",
+  "der Kurs",
+  "beginnen",
+  "das Wochenende",
+  "schließen",
+  "die Arbeit",
+  "kommen",
+  "lesen",
+  "bald",
+  "die Hilfe",
+  "brauchen",
+  "bleiben",
+  "Zeit haben",
+  "haben",
+  "wo",
+  "wann",
+  "kosten",
+  "die Fahrt",
+  "wie lange",
+  "die Straße"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Первые слова по-немецки"
+  },
+  {
+   "lesson": 2,
+   "title": "Ключ, сумка, телефон"
+  },
+  {
+   "lesson": 3,
+   "title": "Я живу, я учу, я работаю"
+  },
+  {
+   "lesson": 4,
+   "title": "Сначала «когда»"
+  },
+  {
+   "lesson": 5,
+   "title": "Вопрос: «да» или «нет»"
+  },
+  {
+   "lesson": 6,
+   "title": "Где, когда, как, что, кто"
+  }
+ ],
+ "oldTopicTitle": "Что у меня есть и что мне нужно: Akkusativ",
+ "oldTheoryRu": "Представь, что на стойке просят ключ. Один человек владеет вещью, другая часть сообщения называет эту вещь. Именно вторая часть получает винительный падеж, а глагол согласуется с владельцем. Сравни три вида предметов. Для одного неопределённого предмета получаются `einen`, `eine`, `ein`. В мужском роде легко заметить окончание `-en`; механически добавлять его в каждом роде нельзя. Известная вещь. О нужном ключе или уже названном билете часто говорят с определённым артиклем. Мужской `der` превращается в `den`; женский `die` и средний `das` выглядят как прежде. Вопрос «кого или что ищут?» помогает увидеть объект. Глагол `suchen` не требует отдельного предлога перед самим объектом. Сначала составь `Ich suche`, затем добавь, кого или что. Транспорт тоже бывает объектом: `den Bus nehmen` — поехать автобусом, буквально «взять» его. Не путай этот способ выразить поездку с конструкцией `mit dem Bus`, где падеж задаёт предлог. Не забывай про форму глагола. В то время как артикль зависит от объекта, `liest` или `trägt` выбирается по исполнителю. Эти два решения независимы. Практическая проверка. Чек, удостоверение и квитанция могут быть разного рода, хотя ситуация одна и та же. Выучи каждое слово с артиклем, а затем преврати эту словарную пару в объект действия."
+}

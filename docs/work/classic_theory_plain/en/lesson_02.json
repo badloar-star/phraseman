@@ -1,0 +1,572 @@
+{
+  "lang": "en",
+  "lesson": 2,
+  "title": {
+    "ru": "Не, вопросы и короткие ответы",
+    "uk": "Не, запитання і короткі відповіді",
+    "en": "Not, questions and short answers"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Слово not",
+        "uk": "Слово not",
+        "en": "The word not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не».\nI am not late. — Я не опоздал.\nЧитается: ай эм нот лэ́йт.\nСлово not значит «не». Слово late значит «поздно, с опозданием».\nShe is not ready. — Она не готова.\nЧитается: ши из нот рэ́ди.\nHe is not busy. — Он не занят.\nЧитается: хи из нот би́зи.\nYou are not late. — Вы не опоздали.\nЧитается: ю ар нот лэ́йт.\nСлово not стоит сразу после am, is или are.\nЭто «быть» из первого урока.",
+        "uk": "Дивіться, як сказати «не».\nI am not late. — Я не запізнився.\nЧитається: ай ем нот ле́йт.\nСлово not означає «не». Слово late означає «пізно, із запізненням».\nShe is not ready. — Вона не готова.\nЧитається: ші із нот ре́ді.\nHe is not busy. — Він не зайнятий.\nЧитається: хі із нот бі́зі.\nYou are not late. — Ви не запізнилися.\nЧитається: ю ар нот ле́йт.\nСлово not стоїть одразу після am, is або are.\nЦе «бути» з першого уроку.",
+        "en": "Look at how to say “not.”\nI am not late.\nThe word not means “no” here.\nThe word late means “after the right time.”\nShe is not ready.\nHe is not busy.\nYou are not late.\nThe word not goes right after am, is or are.\nThat is “be” from lesson 1."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:02.01",
+          "say": {
+            "ru": "ай эм нот лэ́йт",
+            "uk": "ай ем нот ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.03",
+          "say": {
+            "ru": "ши из нот рэ́ди",
+            "uk": "ші із нот ре́ді"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.04",
+          "say": {
+            "ru": "хи из нот би́зи",
+            "uk": "хі із нот бі́зі"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.02",
+          "say": {
+            "ru": "ю ар нот лэ́йт",
+            "uk": "ю ар нот ле́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не опоздал»",
+            "uk": "Виберіть, як сказати: «Я не запізнився»",
+            "en": "Choose how to say: “I am not late.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:02.01",
+          "options": [
+            "en-classic-r1:02.01",
+            "en-classic-r1:02.02",
+            "en-classic-r1:02.03"
+          ],
+          "answerId": "en-classic-r1:02.01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не занят»",
+            "uk": "Виберіть, як сказати: «Він не зайнятий»",
+            "en": "Choose how to say: “He is not busy.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.04",
+          "options": [
+            "en-classic-r1:02.04",
+            "en-classic-r1:02.03",
+            "en-classic-r1:02.01"
+          ],
+          "answerId": "en-classic-r1:02.04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы не опоздали»",
+            "uk": "Виберіть, як сказати: «Ви не запізнилися»",
+            "en": "Choose how to say: “You are not late.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.02",
+          "options": [
+            "en-classic-r1:02.02",
+            "en-classic-r1:02.01",
+            "en-classic-r1:02.03"
+          ],
+          "answerId": "en-classic-r1:02.02"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мой, ваш, не здесь",
+        "uk": "Мій, ваш, не тут",
+        "en": "My, your, not here"
+      },
+      "text": {
+        "ru": "Так же скажем о вещах.\nMy phone is not on. — Мой телефон не включён.\nЧитается: май фо́ун из нот он.\nСлово my значит «мой». Слово phone значит «телефон». Слово on значит «включён».\nYour keys are not here. — Ваших ключей здесь нет.\nЧитается: ёр ки́з ар нот хи́р.\nСлово your значит «ваш, ваши». Слово keys значит «ключи».\nПо-русски тут говорят «нет», а по-английски всё равно not.\nThe door is not open. — Дверь не открыта.\nЧитается: зэ до́р из нот о́упен.",
+        "uk": "Так само скажемо про речі.\nMy phone is not on. — Мій телефон не ввімкнений.\nЧитається: май фо́ун із нот он.\nСлово my означає «мій». Слово phone означає «телефон». Слово on означає «ввімкнений».\nYour keys are not here. — Ваших ключів тут немає.\nЧитається: йор кі́з ар нот хі́р.\nСлово your означає «ваш, ваші». Слово keys означає «ключі».\nПо-українськи тут кажуть «немає», а по-англійськи все одно not.\nThe door is not open. — Двері не відчинені.\nЧитається: зе до́р із нот о́упен.",
+        "en": "We can say the same about things.\nMy phone is not on.\nThe word my means “belonging to me.”\nThe word phone means “a phone.”\nThe word on means “switched on.”\nYour keys are not here.\nThe word your means “belonging to you.”\nThe word keys means “more than one key.”\nSome languages say “there is no” here. In English you still say not.\nThe door is not open."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:02.09",
+          "say": {
+            "ru": "май фо́ун из нот он",
+            "uk": "май фо́ун із нот он"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.10",
+          "say": {
+            "ru": "ёр ки́з ар нот хи́р",
+            "uk": "йор кі́з ар нот хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.08",
+          "say": {
+            "ru": "зэ до́р из нот о́упен",
+            "uk": "зе до́р із нот о́упен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой телефон не включён»",
+            "uk": "Виберіть, як сказати: «Мій телефон не ввімкнений»",
+            "en": "Choose how to say: “My phone is not on.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:02.09",
+          "options": [
+            "en-classic-r1:02.09",
+            "en-classic-r1:02.10",
+            "en-classic-r1:02.08"
+          ],
+          "answerId": "en-classic-r1:02.09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваших ключей здесь нет»",
+            "uk": "Виберіть, як сказати: «Ваших ключів тут немає»",
+            "en": "Choose how to say: “Your keys are not here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.10",
+          "options": [
+            "en-classic-r1:02.10",
+            "en-classic-r1:02.09",
+            "en-classic-r1:02.08"
+          ],
+          "answerId": "en-classic-r1:02.10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь не открыта»",
+            "uk": "Виберіть, як сказати: «Двері не відчинені»",
+            "en": "Choose how to say: “The door is not open.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.08",
+          "options": [
+            "en-classic-r1:02.08",
+            "en-classic-r1:02.09",
+            "en-classic-r1:02.10"
+          ],
+          "answerId": "en-classic-r1:02.08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вопрос",
+        "uk": "Запитання",
+        "en": "A question"
+      },
+      "text": {
+        "ru": "Смотрите, как задать вопрос.\nAre you ready? — Вы готовы?\nЧитается: ар ю рэ́ди.\nIs she ready? — Она готова?\nЧитается: из ши рэ́ди.\nIs he at work? — Он на работе?\nЧитается: из хи эт уо́рк.\nСравните: She is ready и Is she ready.\nСлова is и she поменялись местами. Так и получился вопрос.\nТак же с are и с am: Are you, Am I.\nСлово at значит «в, на». Слово work здесь значит «работа».\nThey are busy. — Они заняты.\nСлово they значит «они».\nAre they at home? — Они дома?\nЧитается: ар зэй эт хо́ум.\nСлово home значит «дом».",
+        "uk": "Дивіться, як поставити запитання.\nAre you ready? — Ви готові?\nЧитається: ар ю ре́ді.\nIs she ready? — Вона готова?\nЧитається: із ші ре́ді.\nIs he at work? — Він на роботі?\nЧитається: із хі ет уо́рк.\nПорівняйте: She is ready і Is she ready.\nСлова is і she помінялися місцями. Так і вийшло запитання.\nТак само з are і з am: Are you, Am I.\nСлово at означає «в, на». Слово work тут означає «робота».\nThey are busy. — Вони зайняті.\nСлово they означає «вони».\nAre they at home? — Вони вдома?\nЧитається: ар зей ет хо́ум.\nСлово home означає «дім».",
+        "en": "Look at how to ask a question.\nAre you ready?\nIs she ready?\nIs he at work?\nCompare: She is ready and Is she ready.\nThe words is and she changed places. That makes a question.\nIt works the same with are and am: Are you, Am I.\nThe word at means “in, on.” The word work here means “a job.”\nThey are busy.\nThe word they means “other people.”\nAre they at home?\nThe word home means “house.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:02.11",
+          "say": {
+            "ru": "ар ю рэ́ди",
+            "uk": "ар ю ре́ді"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.12",
+          "say": {
+            "ru": "из ши рэ́ди",
+            "uk": "із ші ре́ді"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.13",
+          "say": {
+            "ru": "из хи эт уо́рк",
+            "uk": "із хі ет уо́рк"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.14",
+          "say": {
+            "ru": "ар зэй эт хо́ум",
+            "uk": "ар зей ет хо́ум"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она готова?»",
+            "uk": "Виберіть, як сказати: «Вона готова?»",
+            "en": "Choose how to say: “Is she ready?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:02.12",
+          "options": [
+            "en-classic-r1:02.12",
+            "en-classic-r1:02.11",
+            "en-classic-r1:02.13"
+          ],
+          "answerId": "en-classic-r1:02.12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы готовы?»",
+            "uk": "Виберіть, як сказати: «Ви готові?»",
+            "en": "Choose how to say: “Are you ready?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.11",
+          "options": [
+            "en-classic-r1:02.11",
+            "en-classic-r1:02.12",
+            "en-classic-r1:02.14"
+          ],
+          "answerId": "en-classic-r1:02.11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он на работе?»",
+            "uk": "Виберіть, як сказати: «Він на роботі?»",
+            "en": "Choose how to say: “Is he at work?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.13",
+          "options": [
+            "en-classic-r1:02.13",
+            "en-classic-r1:02.12",
+            "en-classic-r1:02.14"
+          ],
+          "answerId": "en-classic-r1:02.13"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Да и нет",
+        "uk": "Так і ні",
+        "en": "Yes and no"
+      },
+      "text": {
+        "ru": "Смотрите, как ответить коротко.\nAre you here? — Вы здесь?\nЧитается: ар ю хи́р.\nYes, I am. — Да, я здесь.\nЧитается: йэ́с, ай эм.\nAre you here? — Вы здесь?\nNo, I am not. — Нет, меня здесь нет.\nЧитается: но́у, ай эм нот.\nIs she here? — Она здесь?\nЧитается: из ши хи́р.\nYes, she is. — Да, она здесь.\nЧитается: йэ́с, ши из.\nAre they here? — Они здесь?\nЧитается: ар зэй хи́р.\nYes, they are. — Да, они здесь.\nЧитается: йэ́с, зэй ар.\nСлово yes значит «да». Слово no значит «нет».\nПосле yes и no ставят слово «быть», которое подходит тому, кто отвечает.\nЯ — am. Он и она — is. Вы, мы и они — are.\nВас спросили «Are you…?», а вы отвечаете о себе, поэтому Yes, I am.\nДля «нет» добавляют not.\nСлова here в ответе нет: смысл «здесь» берут из вопроса.",
+        "uk": "Дивіться, як відповісти коротко.\nAre you here? — Ви тут?\nЧитається: ар ю хі́р.\nYes, I am. — Так, я тут.\nЧитається: йе́с, ай ем.\nAre you here? — Ви тут?\nNo, I am not. — Ні, мене тут немає.\nЧитається: но́у, ай ем нот.\nIs she here? — Вона тут?\nЧитається: із ші хі́р.\nYes, she is. — Так, вона тут.\nЧитається: йе́с, ші із.\nAre they here? — Вони тут?\nЧитається: ар зей хі́р.\nYes, they are. — Так, вони тут.\nЧитається: йе́с, зей ар.\nСлово yes означає «так». Слово no означає «ні».\nПісля yes і no ставлять слово «бути», яке пасує тому, хто відповідає.\nЯ — am. Він і вона — is. Ви, ми і вони — are.\nВас спитали «Are you…?», а ви відповідаєте про себе, тому Yes, I am.\nДля «ні» додають not.\nСлова here у відповіді немає: сенс «тут» беруть із запитання.",
+        "en": "Look at how to answer in a short way.\nAre you here?\nYes, I am.\nAre you here?\nNo, I am not.\nIs she here?\nYes, she is.\nThe card below shows the question and the answer together.\nAre they here?\nYes, they are.\nThe word yes means “agree.” The word no means “disagree.”\nAfter yes or no, put the word “be” that fits the person who answers.\nI — am. He and she — is. You, we and they — are.\nYou were asked “Are you…?” and you answer about yourself, so: Yes, I am.\nFor “no,” add not.\nThe word here is not in the answer: the meaning comes from the question."
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:02.21",
+          "say": {
+            "ru": "йэ́с, ай эм",
+            "uk": "йе́с, ай ем"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.22",
+          "say": {
+            "ru": "но́у, ай эм нот",
+            "uk": "но́у, ай ем нот"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.23",
+          "say": {
+            "ru": "йэ́с, ши из",
+            "uk": "йе́с, ші із"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.25",
+          "say": {
+            "ru": "йэ́с, зэй ар",
+            "uk": "йе́с, зей ар"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Да, я здесь»",
+            "uk": "Виберіть, як сказати: «Так, я тут»",
+            "en": "Choose how to say: “Yes, I am.”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:02.21",
+          "options": [
+            "en-classic-r1:02.21",
+            "en-classic-r1:02.22",
+            "en-classic-r1:02.25"
+          ],
+          "answerId": "en-classic-r1:02.21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нет, меня здесь нет»",
+            "uk": "Виберіть, як сказати: «Ні, мене тут немає»",
+            "en": "Choose how to say: “No, I am not.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.22",
+          "options": [
+            "en-classic-r1:02.22",
+            "en-classic-r1:02.21",
+            "en-classic-r1:02.25"
+          ],
+          "answerId": "en-classic-r1:02.22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Да, они здесь»",
+            "uk": "Виберіть, як сказати: «Так, вони тут»",
+            "en": "Choose how to say: “Yes, they are.”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.25",
+          "options": [
+            "en-classic-r1:02.25",
+            "en-classic-r1:02.21",
+            "en-classic-r1:02.22"
+          ],
+          "answerId": "en-classic-r1:02.25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Лифт, лестница, билет",
+        "uk": "Ліфт, сходи, квиток",
+        "en": "Lift, stairs, ticket"
+      },
+      "text": {
+        "ru": "Так же спросим о вещах.\nIs the lift here? — Лифт здесь?\nЧитается: из зэ ли́фт хи́р.\nСлово lift значит «лифт».\nAre the stairs safe? — Лестница безопасна?\nЧитается: ар зэ стэ́рз сэ́йф.\nСлово stairs значит «лестница». Слово safe значит «безопасный».\nСлово stairs — это много ступенек, поэтому тут are.\nIs your ticket valid? — Ваш билет действителен?\nЧитается: из ёр ти́кет вэ́лид.\nСлово ticket значит «билет». Слово valid значит «действителен, не просрочен».\nIs this seat free? — Это место свободно?\nСлово this значит «этот, это».\nAre these seats free? — Эти места свободны?\nСлово these значит «эти». Мест несколько, поэтому are.\nIs her phone off? — У неё выключен телефон?\nСлово her значит «её». Слово off значит «выключен».",
+        "uk": "Так само запитаємо про речі.\nIs the lift here? — Ліфт тут?\nЧитається: із зе лі́фт хі́р.\nСлово lift означає «ліфт».\nAre the stairs safe? — Сходи безпечні?\nЧитається: ар зе сте́рз се́йф.\nСлово stairs означає «сходи». Слово safe означає «безпечний».\nСлово stairs — це багато сходинок, тому тут are.\nIs your ticket valid? — Ваш квиток дійсний?\nЧитається: із йор ті́кет ве́лід.\nСлово ticket означає «квиток». Слово valid означає «дійсний, не прострочений».\nIs this seat free? — Це місце вільне?\nСлово this означає «цей, це».\nAre these seats free? — Ці місця вільні?\nСлово these означає «ці». Місць кілька, тому are.\nIs her phone off? — У неї вимкнений телефон?\nСлово her означає «її». Слово off означає «вимкнений».",
+        "en": "We can ask the same about things.\nIs the lift here?\nThe word lift means “a lift.”\nAre the stairs safe?\nThe word stairs means “steps.” The word safe means “not dangerous.”\nThe word stairs means many steps, so here you say are.\nIs your ticket valid?\nThe word ticket means “a ticket.”\nThe word valid means “not too old to use.”\nIs this seat free?\nThe word this means “this one here.”\nAre these seats free?\nThe word these means “these ones here.” There are several seats, so are.\nIs her phone off?\nThe word her means “belonging to her.” The word off means “switched off.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:02.32",
+          "say": {
+            "ru": "из зэ ли́фт хи́р",
+            "uk": "із зе лі́фт хі́р"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.33",
+          "say": {
+            "ru": "ар зэ стэ́рз сэ́йф",
+            "uk": "ар зе сте́рз се́йф"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.34",
+          "say": {
+            "ru": "из ёр ти́кет вэ́лид",
+            "uk": "із йор ті́кет ве́лід"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.31",
+          "say": {
+            "ru": "из зис си́т фри́",
+            "uk": "із зіс сі́т фрі́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.36",
+          "say": {
+            "ru": "ар зи́з си́тс фри́",
+            "uk": "ар зі́з сі́тс фрі́"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.47",
+          "say": {
+            "ru": "из хёр фо́ун оф",
+            "uk": "із хер фо́ун оф"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Лифт здесь?»",
+            "uk": "Виберіть, як сказати: «Ліфт тут?»",
+            "en": "Choose how to say: “Is the lift here?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:02.32",
+          "options": [
+            "en-classic-r1:02.32",
+            "en-classic-r1:02.33",
+            "en-classic-r1:02.34"
+          ],
+          "answerId": "en-classic-r1:02.32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Лестница безопасна?»",
+            "uk": "Виберіть, як сказати: «Сходи безпечні?»",
+            "en": "Choose how to say: “Are the stairs safe?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.33",
+          "options": [
+            "en-classic-r1:02.33",
+            "en-classic-r1:02.32",
+            "en-classic-r1:02.34"
+          ],
+          "answerId": "en-classic-r1:02.33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваш билет действителен?»",
+            "uk": "Виберіть, як сказати: «Ваш квиток дійсний?»",
+            "en": "Choose how to say: “Is your ticket valid?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.34",
+          "options": [
+            "en-classic-r1:02.34",
+            "en-classic-r1:02.32",
+            "en-classic-r1:02.33"
+          ],
+          "answerId": "en-classic-r1:02.34"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Вокзал и поезд",
+        "uk": "Вокзал і поїзд",
+        "en": "Station and train"
+      },
+      "text": {
+        "ru": "Скажем о вокзале.\nAre you at the station? — Вы на вокзале?\nЧитается: ар ю эт зэ стэ́йшн.\nСлово station значит «вокзал, станция».\nIs the platform empty? — Платформа пуста?\nЧитается: из зэ плэ́тформ э́мпти.\nСлово platform значит «платформа». Слово empty значит «пуста».\nIs the last bus late? — Последний автобус опаздывает?\nСлово last значит «последний».\nIs the waiting room warm? — В зале ожидания тепло?\nСлово waiting здесь значит «ожидания». Waiting room — «зал ожидания».\nЗапоминайте waiting room целиком.\nThe ticket office is not open. — Касса не работает.\nСлово office значит «офис». Ticket office — «касса».\nIs your train on time? — Ваш поезд прибывает вовремя?\nЧитается: из ёр трэ́йн он тай́м.\nСлово train значит «поезд». Слово time значит «время». On time — «вовремя».",
+        "uk": "Скажемо про вокзал.\nAre you at the station? — Ви на станції?\nЧитається: ар ю ет зе сте́йшн.\nСлово station означає «станція, вокзал».\nIs the platform empty? — Платформа порожня?\nЧитається: із зе пле́тформ е́мпті.\nСлово platform означає «платформа». Слово empty означає «порожня».\nIs the last bus late? — Останній автобус запізнюється?\nСлово last означає «останній».\nIs the waiting room warm? — У залі очікування тепло?\nСлово waiting тут означає «очікування». Waiting room — «зал очікування».\nЗапам’ятовуйте waiting room цілком.\nThe ticket office is not open. — Каса не працює.\nСлово office означає «офіс». Ticket office — «каса».\nIs your train on time? — Ваш поїзд прибуває вчасно?\nЧитається: із йор тре́йн он тай́м.\nСлово train означає «поїзд». Слово time означає «час». On time — «вчасно».",
+        "en": "Let us talk about the station.\nAre you at the station?\nThe word station means “a place for trains.”\nIs the platform empty?\nThe word platform means “a platform.”\nThe word empty means “with nothing in it.”\nIs the last bus late?\nThe word last means “the final one.”\nIs the waiting room warm?\nThe word waiting here means “for waiting.”\nWaiting room is a room where people wait. Remember waiting room as a whole.\nThe ticket office is not open.\nThe word office means “office.” Ticket office is where you buy tickets.\nIs your train on time?\nThe word train means “a train.”\nThe word time means “time.”\nOn time means “not late.”"
+      },
+      "examples": [
+        {
+          "phraseId": "en-classic-r1:02.41",
+          "say": {
+            "ru": "ар ю эт зэ стэ́йшн",
+            "uk": "ар ю ет зе сте́йшн"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.35",
+          "say": {
+            "ru": "из зэ плэ́тформ э́мпти",
+            "uk": "із зе пле́тформ е́мпті"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.42",
+          "say": {
+            "ru": "из зэ лэ́ст ба́с лэ́йт",
+            "uk": "із зе ле́ст ба́с ле́йт"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.44",
+          "say": {
+            "ru": "из зэ уэ́йтинг ру́м уо́рм",
+            "uk": "із зе уе́йтінг ру́м уо́рм"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.45",
+          "say": {
+            "ru": "зэ ти́кет о́фис из нот о́упен",
+            "uk": "зе ті́кет о́фіс із нот о́упен"
+          }
+        },
+        {
+          "phraseId": "en-classic-r1:02.50",
+          "say": {
+            "ru": "из ёр трэ́йн он тай́м",
+            "uk": "із йор тре́йн он тай́м"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Платформа пуста?»",
+            "uk": "Виберіть, як сказати: «Платформа порожня?»",
+            "en": "Choose how to say: “Is the platform empty?”"
+          },
+          "sample": true,
+          "promptPhraseId": "en-classic-r1:02.35",
+          "options": [
+            "en-classic-r1:02.35",
+            "en-classic-r1:02.32",
+            "en-classic-r1:02.41"
+          ],
+          "answerId": "en-classic-r1:02.35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы на вокзале?»",
+            "uk": "Виберіть, як сказати: «Ви на станції?»",
+            "en": "Choose how to say: “Are you at the station?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.41",
+          "options": [
+            "en-classic-r1:02.41",
+            "en-classic-r1:02.11",
+            "en-classic-r1:02.50"
+          ],
+          "answerId": "en-classic-r1:02.41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваш поезд прибывает вовремя?»",
+            "uk": "Виберіть, як сказати: «Ваш поїзд прибуває вчасно?»",
+            "en": "Choose how to say: “Is your train on time?”"
+          },
+          "sample": false,
+          "promptPhraseId": "en-classic-r1:02.50",
+          "options": [
+            "en-classic-r1:02.50",
+            "en-classic-r1:02.34",
+            "en-classic-r1:02.42"
+          ],
+          "answerId": "en-classic-r1:02.50"
+        }
+      ]
+    }
+  ]
+}

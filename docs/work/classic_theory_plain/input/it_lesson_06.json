@@ -1,0 +1,437 @@
+{
+ "lang": "it",
+ "lesson": 6,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "it:06:01",
+   "target": "La chiave è sul tavolo.",
+   "ru": "Ключ лежит на столе.",
+   "uk": "Ключ на столі."
+  },
+  {
+   "id": "it:06:02",
+   "target": "La borsa è sotto il tavolo.",
+   "ru": "Сумка под столом.",
+   "uk": "Сумка під столом."
+  },
+  {
+   "id": "it:06:03",
+   "target": "Il biglietto è in tasca.",
+   "ru": "Билет в кармане.",
+   "uk": "Квиток у кишені."
+  },
+  {
+   "id": "it:06:04",
+   "target": "Gli occhiali sono sul letto.",
+   "ru": "Очки лежат на кровати.",
+   "uk": "Окуляри на ліжку."
+  },
+  {
+   "id": "it:06:05",
+   "target": "L’indirizzo è sulla mappa.",
+   "ru": "Адрес указан на карте.",
+   "uk": "Адреса на карті."
+  },
+  {
+   "id": "it:06:06",
+   "target": "L’ingresso è a destra.",
+   "ru": "Вход справа.",
+   "uk": "Вхід праворуч."
+  },
+  {
+   "id": "it:06:07",
+   "target": "Il pane è sul tavolo.",
+   "ru": "Хлеб на столе.",
+   "uk": "Хліб на столі."
+  },
+  {
+   "id": "it:06:08",
+   "target": "La zuppa è calda.",
+   "ru": "Суп горячий.",
+   "uk": "Суп гарячий."
+  },
+  {
+   "id": "it:06:09",
+   "target": "I bicchieri sono puliti.",
+   "ru": "Стаканы чистые.",
+   "uk": "Склянки чисті."
+  },
+  {
+   "id": "it:06:10",
+   "target": "L’acqua è fredda.",
+   "ru": "Вода холодная.",
+   "uk": "Вода холодна."
+  },
+  {
+   "id": "it:06:11",
+   "target": "Mi piace il caffè.",
+   "ru": "Мне нравится кофе.",
+   "uk": "Я люблю каву."
+  },
+  {
+   "id": "it:06:12",
+   "target": "Mi piace il tè.",
+   "ru": "Мне нравится чай.",
+   "uk": "Я люблю чай."
+  },
+  {
+   "id": "it:06:13",
+   "target": "A lei piace la musica.",
+   "ru": "Ей нравится музыка.",
+   "uk": "Їй подобається музика."
+  },
+  {
+   "id": "it:06:14",
+   "target": "A lui piace il cinema.",
+   "ru": "Ему нравится кино.",
+   "uk": "Йому подобається кіно."
+  },
+  {
+   "id": "it:06:15",
+   "target": "Ci piacciono i libri.",
+   "ru": "Мы любим книги.",
+   "uk": "Нам подобаються книги."
+  },
+  {
+   "id": "it:06:16",
+   "target": "Ti piacciono le fragole?",
+   "ru": "Тебе нравится клубника?",
+   "uk": "Тобі подобається полуниця?"
+  },
+  {
+   "id": "it:06:17",
+   "target": "A Lea piace il formaggio.",
+   "ru": "Леа любит сыр.",
+   "uk": "Леа любить сир."
+  },
+  {
+   "id": "it:06:18",
+   "target": "Ai bambini piace il cioccolato.",
+   "ru": "Детям нравится шоколад.",
+   "uk": "Діти люблять шоколад."
+  },
+  {
+   "id": "it:06:19",
+   "target": "Le piace la zuppa?",
+   "ru": "Вам нравится суп?",
+   "uk": "Ви любите суп?"
+  },
+  {
+   "id": "it:06:20",
+   "target": "Mi piace l’odore del pane.",
+   "ru": "Мне нравится запах хлеба.",
+   "uk": "Мені подобається запах хліба."
+  },
+  {
+   "id": "it:06:21",
+   "target": "La banca è chiusa.",
+   "ru": "Банк закрыт.",
+   "uk": "Банк закритий."
+  },
+  {
+   "id": "it:06:22",
+   "target": "Il mercato è aperto.",
+   "ru": "Рынок открыт.",
+   "uk": "Ринок відкритий."
+  },
+  {
+   "id": "it:06:23",
+   "target": "La scuola è di fronte.",
+   "ru": "Школа находится напротив.",
+   "uk": "Школа навпроти."
+  },
+  {
+   "id": "it:06:24",
+   "target": "I negozi sono lontani.",
+   "ru": "Магазины находятся далеко.",
+   "uk": "Магазини далеко."
+  },
+  {
+   "id": "it:06:25",
+   "target": "La biblioteca è silenziosa.",
+   "ru": "В библиотеке тихо.",
+   "uk": "У бібліотеці тихо."
+  },
+  {
+   "id": "it:06:26",
+   "target": "Il giardino è piccolo.",
+   "ru": "Сад небольшой.",
+   "uk": "Сад маленький."
+  },
+  {
+   "id": "it:06:27",
+   "target": "Lo zaino è sulla sedia.",
+   "ru": "Рюкзак на стуле.",
+   "uk": "Рюкзак на стільці."
+  },
+  {
+   "id": "it:06:28",
+   "target": "Le camere sono al piano superiore.",
+   "ru": "Номера наверху.",
+   "uk": "Номери нагорі."
+  },
+  {
+   "id": "it:06:29",
+   "target": "L’ascensore è a sinistra.",
+   "ru": "Лифт находится слева.",
+   "uk": "Ліфт ліворуч."
+  },
+  {
+   "id": "it:06:30",
+   "target": "La reception è al piano di sotto.",
+   "ru": "Стойка регистрации внизу.",
+   "uk": "Стійка реєстрації внизу."
+  },
+  {
+   "id": "it:06:31",
+   "target": "Il cappotto è sulla sedia.",
+   "ru": "Пальто лежит на стуле.",
+   "uk": "Пальто на стільці."
+  },
+  {
+   "id": "it:06:32",
+   "target": "La giacca è nell’ingresso.",
+   "ru": "Куртка в прихожей.",
+   "uk": "Куртка в передпокої."
+  },
+  {
+   "id": "it:06:33",
+   "target": "I guanti sono nella borsa.",
+   "ru": "Перчатки в сумке.",
+   "uk": "Рукавички в сумці."
+  },
+  {
+   "id": "it:06:34",
+   "target": "La sciarpa è sul letto.",
+   "ru": "Шарф лежит на кровати.",
+   "uk": "Шарф на ліжку."
+  },
+  {
+   "id": "it:06:35",
+   "target": "Il portafoglio è nel cassetto.",
+   "ru": "Кошелек в ящике.",
+   "uk": "Гаманець у шухляді."
+  },
+  {
+   "id": "it:06:36",
+   "target": "Gli spiccioli sono in tasca.",
+   "ru": "В кармане мелочь.",
+   "uk": "Дрібні гроші в кишені."
+  },
+  {
+   "id": "it:06:37",
+   "target": "Le scarpe sono sotto la sedia.",
+   "ru": "Обувь под стулом.",
+   "uk": "Взуття під стільцем."
+  },
+  {
+   "id": "it:06:38",
+   "target": "Il computer è in ufficio.",
+   "ru": "Компьютер в офисе.",
+   "uk": "Комп’ютер в офісі."
+  },
+  {
+   "id": "it:06:39",
+   "target": "Il caricabatterie è in camera da letto.",
+   "ru": "Зарядное устройство в спальне.",
+   "uk": "Зарядний пристрій у спальні."
+  },
+  {
+   "id": "it:06:40",
+   "target": "La lampada è vicino al letto.",
+   "ru": "Лампа рядом с кроватью.",
+   "uk": "Лампа біля ліжка."
+  },
+  {
+   "id": "it:06:41",
+   "target": "La prima porta è chiusa.",
+   "ru": "Первая дверь закрыта.",
+   "uk": "Перші двері зачинені."
+  },
+  {
+   "id": "it:06:42",
+   "target": "L’ultimo treno è al binario.",
+   "ru": "Последний поезд на платформе.",
+   "uk": "Останній поїзд на платформі."
+  },
+  {
+   "id": "it:06:43",
+   "target": "I due bambini sono lì.",
+   "ru": "Оба ребёнка там.",
+   "uk": "Обидві дитини там."
+  },
+  {
+   "id": "it:06:44",
+   "target": "L’amica di Lea è qui.",
+   "ru": "Подруга Леа здесь.",
+   "uk": "Подруга Леа тут."
+  },
+  {
+   "id": "it:06:45",
+   "target": "Il fratello di Paolo è al mercato.",
+   "ru": "Брат Паоло на рынке.",
+   "uk": "Брат Паоло на ринку."
+  },
+  {
+   "id": "it:06:46",
+   "target": "La foto è nel cassetto.",
+   "ru": "Фотография в ящике.",
+   "uk": "Фотографія в шухляді."
+  },
+  {
+   "id": "it:06:47",
+   "target": "Le chiavi della macchina sono qui.",
+   "ru": "Ключи от машины здесь.",
+   "uk": "Ключі від машини тут."
+  },
+  {
+   "id": "it:06:48",
+   "target": "L’ingresso al museo è gratuito.",
+   "ru": "Вход в музей бесплатный.",
+   "uk": "Вхід до музею безкоштовний."
+  },
+  {
+   "id": "it:06:49",
+   "target": "I prezzi sono sul menù.",
+   "ru": "Цены указаны в меню.",
+   "uk": "Ціни вказані в меню."
+  },
+  {
+   "id": "it:06:50",
+   "target": "Il nome è sulla busta.",
+   "ru": "Имя на конверте.",
+   "uk": "Ім’я на конверті."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "il cassetto",
+   "ru": "выдвижной ящик",
+   "uk": "висувна скринька"
+  },
+  {
+   "lemma": "il caricabatterie",
+   "ru": "зарядное устройство",
+   "uk": "зарядний пристрій"
+  },
+  {
+   "lemma": "la busta",
+   "ru": "конверт (для письма)",
+   "uk": "конверт (для листа)"
+  },
+  {
+   "lemma": "il mercato",
+   "ru": "рынок",
+   "uk": "ринок"
+  },
+  {
+   "lemma": "l’ascensore",
+   "ru": "лифт",
+   "uk": "ліфт"
+  },
+  {
+   "lemma": "il pane",
+   "ru": "хлеб",
+   "uk": "хліб"
+  },
+  {
+   "lemma": "il giardino",
+   "ru": "сад",
+   "uk": "сад"
+  },
+  {
+   "lemma": "la sedia",
+   "ru": "стул",
+   "uk": "стілець"
+  },
+  {
+   "lemma": "l’auto",
+   "ru": "автомобиль",
+   "uk": "автомобіль"
+  },
+  {
+   "lemma": "la zuppa",
+   "ru": "суп",
+   "uk": "суп"
+  },
+  {
+   "lemma": "la giacca",
+   "ru": "куртка",
+   "uk": "куртка"
+  }
+ ],
+ "knownWords": [
+  "qui",
+  "la stazione",
+  "la chiave",
+  "la finestra",
+  "pronto",
+  "essere",
+  "la casa",
+  "l’ufficio",
+  "la porta",
+  "insieme",
+  "il negozio",
+  "la borsa",
+  "il corridoio",
+  "la camera",
+  "il biglietto",
+  "la farmacia",
+  "in ritardo",
+  "il tavolo",
+  "la sala",
+  "il treno",
+  "la bicicletta",
+  "l’autobus",
+  "il museo",
+  "la banchina",
+  "la biglietteria",
+  "l’uscita",
+  "la tasca",
+  "la serratura",
+  "voi",
+  "l’ingresso",
+  "il parcheggio",
+  "la ricevuta",
+  "la fattura",
+  "il vicino / la vicina",
+  "il regalo",
+  "gli occhiali",
+  "la sorella",
+  "il fratello",
+  "il posto",
+  "il passaporto",
+  "gli spiccioli",
+  "la pausa",
+  "l’appuntamento",
+  "la ricetta",
+  "avere",
+  "l’acqua",
+  "la carta"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь: `essere`"
+  },
+  {
+   "lesson": 2,
+   "title": "Отрицание: одно слово `non`"
+  },
+  {
+   "lesson": 3,
+   "title": "Уточнить догадку: вопрос без перестановки"
+  },
+  {
+   "lesson": 4,
+   "title": "Представить человека или назвать вещь"
+  },
+  {
+   "lesson": 5,
+   "title": "У меня есть: настоящее `avere`"
+  }
+ ],
+ "oldTopicTitle": "Артикли перед знакомым предметом",
+ "oldTheoryRu": "Артикль помогает назвать известный предмет. В итальянском его выбирают по самому существительному: `il pane`, `la borsa`. Род исходного слова может быть совершенно другим. Перед мужским множественным числом встречаются `i` и `gli`. Услышав `gli occhiali`, запомни всю группу. Не выбирай `le` только потому, что слово начинается с гласной. Перед гласной в единственном числе возможен `l’`: `l’acqua`, `l’ingresso`. Артикль в обоих случаях одинаков на письме, но род разный. Апостроф приклеивает его к следующему слову: пробел не нужен. С общими предпочтениями часто используют определённый артикль: `Mi piace il caffè`. Здесь речь может идти о кофе вообще, а не об одной известной чашке. Значение зависит от всей конструкции. Если название места само является подлежащим, артикль обычно стоит перед ним: `la scuola`. Не путай с устойчивым способом сказать «в школу» — `a scuola`: грамматическая роль изменилась. `Sul` включает `su + il`, `nel` — `in + il`. Нельзя после `sul` ещё раз поставить `il`. Подумай, какой артикль уже спрятан в соединённой форме. Проверь, какое существительное называет каждый артикль. В `il nome sulla busta` сначала идёт имя, затем конверт. У каждого из этих двух названий свой род, хотя они в одном сообщении."
+}

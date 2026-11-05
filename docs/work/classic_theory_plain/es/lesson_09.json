@@ -1,0 +1,558 @@
+{
+  "lang": "es",
+  "lesson": 9,
+  "title": {
+    "ru": "Я работаю, я учусь, я говорю",
+    "uk": "Я працюю, я навчаюся, я говорю",
+    "en": "I work, I study, I speak"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я работаю",
+        "uk": "Я працюю",
+        "en": "I work"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я работаю здесь».\nTrabajo aquí. — «Я работаю здесь.»\nЧитается: траба́хо аки́.\nСлово trabajo значит «я работаю». Слово aquí — «здесь».\nTrabajas aquí. — «Ты работаешь здесь.»\nКонец слова меняется: trabajo — «я», trabajas — «ты».\nСлова en casa вы знаете: «дома».",
+        "uk": "Дивіться, як сказати «Я працюю тут».\nTrabajo aquí. — «Я працюю тут.»\nЧитається: траба́хо акі́.\nСлово trabajo означає «я працюю». Слово aquí — «тут».\nTrabajas aquí. — «Ти працюєш тут.»\nКінець слова змінюється: trabajo — «я», trabajas — «ти».\nСлова en casa ви знаєте: «вдома».",
+        "en": "Look at how to say “I work here”.\nTrabajo aquí. — “I work here.”\nThe word trabajo means “I work”. The word aquí means “here”.\nTrabajas aquí. — “You work here.”\nThe end of the word changes: trabajo — “I”, trabajas — “you”.\nYou know the words en casa: “at home”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:09:01",
+          "say": {
+            "ru": "траба́хо аки́",
+            "uk": "траба́хо акі́"
+          }
+        },
+        {
+          "phraseId": "es:09:02",
+          "say": {
+            "ru": "траба́хас аки́",
+            "uk": "траба́хас акі́"
+          }
+        },
+        {
+          "phraseId": "es:09:03",
+          "say": {
+            "ru": "траба́хо эн ка́са",
+            "uk": "траба́хо ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:09:04",
+          "say": {
+            "ru": "траба́хас эн ка́са",
+            "uk": "траба́хас ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я работаю здесь»",
+            "uk": "Виберіть, як сказати: «Я працюю тут»",
+            "en": "Choose how to say: “I work here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:09:01",
+          "options": [
+            "es:09:01",
+            "es:09:02",
+            "es:09:03"
+          ],
+          "answerId": "es:09:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты работаешь здесь»",
+            "uk": "Виберіть, як сказати: «Ти працюєш тут»",
+            "en": "Choose how to say: “You work here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:02",
+          "options": [
+            "es:09:02",
+            "es:09:01",
+            "es:09:04"
+          ],
+          "answerId": "es:09:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я работаю дома»",
+            "uk": "Виберіть, як сказати: «Я працюю вдома»",
+            "en": "Choose how to say: “I work at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:03",
+          "options": [
+            "es:09:03",
+            "es:09:01",
+            "es:09:04"
+          ],
+          "answerId": "es:09:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я учусь, я учу",
+        "uk": "Я навчаюся, я вивчаю",
+        "en": "I study"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я учусь дома».\nEstudio en casa. — «Я учусь дома.»\nЧитается: эсту́дьо эн ка́са.\nСлово estudio значит «я учусь, я учу».\nEstudias — «ты учишься, ты учишь».\nEstudio español. — «Я учу испанский.»\nСлово español значит «испанский язык».",
+        "uk": "Дивіться, як сказати «Я навчаюся вдома».\nEstudio en casa. — «Я навчаюся вдома.»\nЧитається: есту́дьо ен ка́са.\nСлово estudio означає «я навчаюся, я вивчаю».\nEstudias — «ти навчаєшся, ти вивчаєш».\nEstudio español. — «Я вивчаю іспанську.»\nСлово español означає «іспанська мова».",
+        "en": "Look at how to say “I study at home”.\nEstudio en casa. — “I study at home.”\nThe word estudio means “I study”.\nEstudias — “you study”.\nEstudio español. — “I study Spanish.”\nThe word español means “Spanish language”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:09:05",
+          "say": {
+            "ru": "эсту́дьо эн ка́са",
+            "uk": "есту́дьо ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:09:06",
+          "say": {
+            "ru": "эсту́дьяс эн ка́са",
+            "uk": "есту́дьяс ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:09:07",
+          "say": {
+            "ru": "эсту́дьо эспаньо́ль",
+            "uk": "есту́дьо еспаньо́ль"
+          }
+        },
+        {
+          "phraseId": "es:09:08",
+          "say": {
+            "ru": "эсту́дьяс эспаньо́ль",
+            "uk": "есту́дьяс еспаньо́ль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я учу испанский»",
+            "uk": "Виберіть, як сказати: «Я вивчаю іспанську»",
+            "en": "Choose how to say: “I study Spanish”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:09:07",
+          "options": [
+            "es:09:07",
+            "es:09:05",
+            "es:09:08"
+          ],
+          "answerId": "es:09:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я учусь дома»",
+            "uk": "Виберіть, як сказати: «Я навчаюся вдома»",
+            "en": "Choose how to say: “I study at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:05",
+          "options": [
+            "es:09:05",
+            "es:09:03",
+            "es:09:06"
+          ],
+          "answerId": "es:09:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты учишь испанский»",
+            "uk": "Виберіть, як сказати: «Ти вивчаєш іспанську»",
+            "en": "Choose how to say: “You study Spanish”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:08",
+          "options": [
+            "es:09:08",
+            "es:09:07",
+            "es:09:06"
+          ],
+          "answerId": "es:09:08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я говорю",
+        "uk": "Я говорю",
+        "en": "I speak"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я говорю по-испански».\nHablo español. — «Я говорю по-испански.»\nЧитается: а́бло эспаньо́ль.\nСлово hablo значит «я говорю». Hablas — «ты говоришь».\nПервая буква в слове hablo не читается.\nEstudio inglés. — «Я учу английский.»\nСлово inglés значит «английский язык».\nNo hablo inglés. — «Я не говорю по-английски.»",
+        "uk": "Дивіться, як сказати «Я говорю іспанською».\nHablo español. — «Я говорю іспанською.»\nЧитається: а́бло еспаньо́ль.\nСлово hablo означає «я говорю». Hablas — «ти говориш».\nПерша літера в слові hablo не читається.\nEstudio inglés. — «Я вивчаю англійську.»\nСлово inglés означає «англійська мова».\nNo hablo inglés. — «Я не говорю англійською.»",
+        "en": "Look at how to say “I speak Spanish”.\nHablo español. — “I speak Spanish.”\nThe word hablo means “I speak”. Hablas — “you speak”.\nThe first letter in hablo is silent.\nEstudio inglés. — “I study English.”\nThe word inglés means “English language”.\nNo hablo inglés. — “I do not speak English.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:09:09",
+          "say": {
+            "ru": "а́бло эспаньо́ль",
+            "uk": "а́бло еспаньо́ль"
+          }
+        },
+        {
+          "phraseId": "es:09:10",
+          "say": {
+            "ru": "а́блас эспаньо́ль",
+            "uk": "а́блас еспаньо́ль"
+          }
+        },
+        {
+          "phraseId": "es:09:17",
+          "say": {
+            "ru": "эсту́дьо инглэ́с",
+            "uk": "есту́дьо інгле́с"
+          }
+        },
+        {
+          "phraseId": "es:09:42",
+          "say": {
+            "ru": "но а́бло инглэ́с",
+            "uk": "но а́бло інгле́с"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я говорю по-испански»",
+            "uk": "Виберіть, як сказати: «Я говорю іспанською»",
+            "en": "Choose how to say: “I speak Spanish”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:09:09",
+          "options": [
+            "es:09:09",
+            "es:09:10",
+            "es:09:07"
+          ],
+          "answerId": "es:09:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты говоришь по-испански»",
+            "uk": "Виберіть, як сказати: «Ти говориш іспанською»",
+            "en": "Choose how to say: “You speak Spanish”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:10",
+          "options": [
+            "es:09:10",
+            "es:09:09",
+            "es:09:08"
+          ],
+          "answerId": "es:09:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я учу английский»",
+            "uk": "Виберіть, як сказати: «Я вивчаю англійську»",
+            "en": "Choose how to say: “I study English”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:17",
+          "options": [
+            "es:09:17",
+            "es:09:07",
+            "es:09:09"
+          ],
+          "answerId": "es:09:17"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Он, она, мама",
+        "uk": "Він, вона, мама",
+        "en": "He, she, mother"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать про другого человека.\nAna trabaja aquí. — «Ана работает здесь.»\nЧитается: А́на траба́ха аки́.\nБыло trabajo — стало trabaja. Смотрите на конец слова.\nMi madre habla inglés. — «Моя мама говорит по-английски.»\nТак же: estudia — «учится», habla — «говорит».",
+        "uk": "Дивіться, як сказати про іншу людину.\nAna trabaja aquí. — «Ана працює тут.»\nЧитається: А́на траба́ха акі́.\nБуло trabajo — стало trabaja. Дивіться на кінець слова.\nMi madre habla inglés. — «Моя мама говорить англійською.»\nТак само: estudia — «навчається», habla — «говорить».",
+        "en": "Look at how to talk about another person.\nAna trabaja aquí. — “Ana works here.”\nIt was trabajo — now trabaja. Look at the end of the word.\nMi madre habla inglés. — “My mother speaks English.”\nThe same way: estudia — “studies”, habla — “speaks”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:09:11",
+          "say": {
+            "ru": "А́на траба́ха аки́",
+            "uk": "А́на траба́ха акі́"
+          }
+        },
+        {
+          "phraseId": "es:09:14",
+          "say": {
+            "ru": "ми эрма́но эсту́дья эспаньо́ль",
+            "uk": "мі ерма́но есту́дья еспаньо́ль"
+          }
+        },
+        {
+          "phraseId": "es:09:15",
+          "say": {
+            "ru": "А́на а́бла эспаньо́ль",
+            "uk": "А́на а́бла еспаньо́ль"
+          }
+        },
+        {
+          "phraseId": "es:09:16",
+          "say": {
+            "ru": "ми ма́дре а́бла инглэ́с",
+            "uk": "мі ма́дре а́бла інгле́с"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана работает здесь»",
+            "uk": "Виберіть, як сказати: «Ана працює тут»",
+            "en": "Choose how to say: “Ana works here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:09:11",
+          "options": [
+            "es:09:11",
+            "es:09:01",
+            "es:09:02"
+          ],
+          "answerId": "es:09:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мой брат учит испанский»",
+            "uk": "Виберіть, як сказати: «Мій брат вивчає іспанську»",
+            "en": "Choose how to say: “My brother studies Spanish”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:14",
+          "options": [
+            "es:09:14",
+            "es:09:07",
+            "es:09:15"
+          ],
+          "answerId": "es:09:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя мама говорит по-английски»",
+            "uk": "Виберіть, як сказати: «Моя мама говорить англійською»",
+            "en": "Choose how to say: “My mother speaks English”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:16",
+          "options": [
+            "es:09:16",
+            "es:09:17",
+            "es:09:15"
+          ],
+          "answerId": "es:09:16"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Мы, они, вы",
+        "uk": "Ми, вони, ви",
+        "en": "We, they, you"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «мы» и «они».\nTrabajamos aquí. — «Мы работаем здесь.»\nЧитается: трабаха́мос аки́.\nСлово trabajamos значит «мы работаем», hablamos — «мы говорим».\nMis hermanos trabajan aquí. — «Мои братья работают здесь.»\nСлово trabajan значит «они работают».\nTrabajáis en casa. — «Вы работаете дома.»\nТак говорят нескольким друзьям.",
+        "uk": "Дивіться, як сказати «ми» і «вони».\nTrabajamos aquí. — «Ми працюємо тут.»\nЧитається: трабаха́мос акі́.\nСлово trabajamos означає «ми працюємо», hablamos — «ми говоримо».\nMis hermanos trabajan aquí. — «Мої брати працюють тут.»\nСлово trabajan означає «вони працюють».\nTrabajáis en casa. — «Ви працюєте вдома.»\nТак кажуть кільком друзям.",
+        "en": "Look at how to say “we” and “they”.\nTrabajamos aquí. — “We work here.”\nThe word trabajamos means “we work”, hablamos — “we speak”.\nMis hermanos trabajan aquí. — “My brothers work here.”\nThe word trabajan means “they work”.\nTrabajáis en casa. — “You work at home.”\nThis is said to several friends."
+      },
+      "examples": [
+        {
+          "phraseId": "es:09:21",
+          "say": {
+            "ru": "трабаха́мос аки́",
+            "uk": "трабаха́мос акі́"
+          }
+        },
+        {
+          "phraseId": "es:09:24",
+          "say": {
+            "ru": "абла́мос инглэ́с",
+            "uk": "абла́мос інгле́с"
+          }
+        },
+        {
+          "phraseId": "es:09:28",
+          "say": {
+            "ru": "мис эрма́нос траба́хан аки́",
+            "uk": "міс ерма́нос траба́хан акі́"
+          }
+        },
+        {
+          "phraseId": "es:09:29",
+          "say": {
+            "ru": "А́на и Луи́с эсту́дьян инглэ́с",
+            "uk": "А́на і Луі́с есту́дьян інгле́с"
+          }
+        },
+        {
+          "phraseId": "es:09:25",
+          "say": {
+            "ru": "трабаха́йс эн ка́са",
+            "uk": "трабаха́йс ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы работаем здесь»",
+            "uk": "Виберіть, як сказати: «Ми працюємо тут»",
+            "en": "Choose how to say: “We work here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:09:21",
+          "options": [
+            "es:09:21",
+            "es:09:01",
+            "es:09:11"
+          ],
+          "answerId": "es:09:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы говорим по-английски»",
+            "uk": "Виберіть, як сказати: «Ми говоримо англійською»",
+            "en": "Choose how to say: “We speak English”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:24",
+          "options": [
+            "es:09:24",
+            "es:09:21",
+            "es:09:09"
+          ],
+          "answerId": "es:09:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья работают здесь»",
+            "uk": "Виберіть, як сказати: «Мої брати працюють тут»",
+            "en": "Choose how to say: “My brothers work here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:28",
+          "options": [
+            "es:09:28",
+            "es:09:11",
+            "es:09:21"
+          ],
+          "answerId": "es:09:28"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Искать",
+        "uk": "Шукати",
+        "en": "To look for"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я ищу свой телефон».\nBusco mi móvil. — «Я ищу свой телефон.»\nЧитается: бу́ско ми мо́биль.\nСлово busco значит «я ищу». Busca — «ищет», buscamos — «мы ищем».\nAna busca su pasaporte. — «Ана ищет свой паспорт.»\nСлова mi и su здесь значат «свой».",
+        "uk": "Дивіться, як сказати «Я шукаю свій телефон».\nBusco mi móvil. — «Я шукаю свій телефон.»\nЧитається: бу́ско мі мо́біль.\nСлово busco означає «я шукаю». Busca — «шукає», buscamos — «ми шукаємо».\nAna busca su pasaporte. — «Ана шукає свій паспорт.»\nСлова mi і su тут означають «свій».",
+        "en": "Look at how to say “I am looking for my phone”.\nBusco mi móvil. — “I am looking for my phone.”\nThe word busco means “I look for”. Busca — “looks for”, buscamos — “we look for”.\nAna busca su pasaporte. — “Ana is looking for her passport.”\nThe words mi and su here mean “my own”, “her own”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:09:31",
+          "say": {
+            "ru": "бу́ско ми мо́биль",
+            "uk": "бу́ско мі мо́біль"
+          }
+        },
+        {
+          "phraseId": "es:09:33",
+          "say": {
+            "ru": "бу́ско мис йа́вес",
+            "uk": "бу́ско міс йа́вес"
+          }
+        },
+        {
+          "phraseId": "es:09:34",
+          "say": {
+            "ru": "А́на бу́ска су пасапо́рте",
+            "uk": "А́на бу́ска су пасапо́рте"
+          }
+        },
+        {
+          "phraseId": "es:09:35",
+          "say": {
+            "ru": "буска́мос ла сали́да",
+            "uk": "буска́мос ла салі́да"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ищу свой телефон»",
+            "uk": "Виберіть, як сказати: «Я шукаю свій телефон»",
+            "en": "Choose how to say: “I am looking for my phone”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:09:31",
+          "options": [
+            "es:09:31",
+            "es:09:33",
+            "es:09:34"
+          ],
+          "answerId": "es:09:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ищу свои ключи»",
+            "uk": "Виберіть, як сказати: «Я шукаю свої ключі»",
+            "en": "Choose how to say: “I am looking for my keys”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:33",
+          "options": [
+            "es:09:33",
+            "es:09:31",
+            "es:09:34"
+          ],
+          "answerId": "es:09:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана ищет свой паспорт»",
+            "uk": "Виберіть, як сказати: «Ана шукає свій паспорт»",
+            "en": "Choose how to say: “Ana is looking for her passport”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:09:34",
+          "options": [
+            "es:09:34",
+            "es:09:33",
+            "es:09:35"
+          ],
+          "answerId": "es:09:34"
+        }
+      ]
+    }
+  ]
+}

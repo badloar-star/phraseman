@@ -1,0 +1,398 @@
+{
+  "lang": "it",
+  "lesson": 1,
+  "title": {
+    "ru": "Я здесь",
+    "uk": "Я тут",
+    "en": "I am here"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Здесь и там",
+        "uk": "Тут і там",
+        "en": "Here and there"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я здесь».\nSono qui. — «Я здесь.»\nЧитается: со́но куи.\nА так — «Я там».\nSono lì. — «Я там.»\nЧитается: со́но ли.\nСлово qui значит «здесь», слово lì — «там».\nЗнак над последней гласной в lì показывает, что этот звук говорят громче (как и в è).\nСлово sono значит «я есть, я нахожусь».\nПо-русски его не говорят, но по-итальянски оно нужно.\nА так — «Я готов». Слово pronto значит «готов».\nЧёрточка над буквой в подсказке «Читается» показывает, какую часть слова говорить громче.\nРусские буквы передают звук приблизительно.",
+        "uk": "Дивіться, як сказати «Я тут».\nSono qui. — «Я тут.»\nЧитається: со́но куі.\nА так — «Я там».\nSono lì. — «Я там.»\nЧитається: со́но лі.\nСлово qui означає «тут», слово lì — «там».\nЗнак над останньою голосною в lì показує, що цей звук кажуть гучніше (як і в è).\nСлово sono означає «я є, я перебуваю».\nУкраїнською його не кажуть, але італійською воно потрібне.\nА так — «Я готовий». Слово pronto означає «готовий».\nРиска над літерою в підказці «Читається» показує, яку частину слова казати гучніше.\nУкраїнські літери передають звук приблизно.",
+        "en": "Look at how to say “I am here”.\nSono qui. — “I am here.”\nAnd “I am there”.\nSono lì. — “I am there.”\nThe word qui means “here”, the word lì — “there”.\nThe mark over the last vowel in lì shows\nthat sound is said louder (as in è).\nThe word sono means “I am”.\nAnd “I am ready”. The word pronto means “ready”.\nThe little mark over a letter shows which part of the word to say louder.\nThe letters only show the sound approximately."
+      },
+      "examples": [
+        {
+          "phraseId": "it:01:01",
+          "say": {
+            "ru": "со́но куи",
+            "uk": "со́но куі"
+          }
+        },
+        {
+          "phraseId": "it:01:04",
+          "say": {
+            "ru": "со́но ли",
+            "uk": "со́но лі"
+          }
+        },
+        {
+          "phraseId": "it:01:21",
+          "say": {
+            "ru": "со́но про́нто",
+            "uk": "со́но про́нто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я здесь.»",
+            "uk": "Виберіть, як сказати: «Я тут.»",
+            "en": "Choose how to say: “I am here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:01:01",
+          "options": [
+            "it:01:01",
+            "it:01:04"
+          ],
+          "answerId": "it:01:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я готов.»",
+            "uk": "Виберіть, як сказати: «Я готовий.»",
+            "en": "Choose how to say: “I am ready.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:01:21",
+          "options": [
+            "it:01:21",
+            "it:01:01",
+            "it:01:04"
+          ],
+          "answerId": "it:01:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я там.»",
+            "uk": "Виберіть, як сказати: «Я там.»",
+            "en": "Choose how to say: “I am there.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:01:04",
+          "options": [
+            "it:01:04",
+            "it:01:21",
+            "it:01:01"
+          ],
+          "answerId": "it:01:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Кто где",
+        "uk": "Хто де",
+        "en": "Who is where"
+      },
+      "text": {
+        "ru": "Смотрите, как меняется слово sono.\nSei qui. — «Ты здесь.»\nЧитается: се́й куи.\nSiamo qui. — «Мы здесь.»\nЧитается: сьа́мо куи.\nSiete qui. — «Вы здесь.»\nЧитается: сье́те куи.\nSono, sei, siamo, siete — это одно слово «быть, находиться».\nОно меняется, смотря о ком речь.\nО «я» — sono, о «ты» — sei.\nО «мы» — siamo, о «вы» — siete.\nSei говорят одному близкому человеку, siete — нескольким людям.\nLea è qui. — «Леа здесь.»\nЧитается: ле́а э куи.\nLea — имя девочки.\nСлово è — то же «быть, находиться», когда речь о ней или о нём.\nЗнак над è — это просто буква «э».\nСлово sono подходит и к «я», и к «они».\nСлово loro значит «они»: Loro sono qui. — «Они здесь.»\nСлово insieme значит «вместе»: Siamo insieme. — «Мы вместе.»",
+        "uk": "Дивіться, як змінюється слово sono.\nSei qui. — «Ти тут.»\nЧитається: се́й куі.\nSiamo qui. — «Ми тут.»\nЧитається: сьа́мо куі.\nSiete qui. — «Ви тут.»\nЧитається: сье́те куі.\nSono, sei, siamo, siete — це одне слово «бути, перебувати».\nВоно змінюється, залежно від того, про кого мова.\nПро «я» — sono, про «ти» — sei.\nПро «ми» — siamo, про «ви» — siete.\nSei кажуть одній близькій людині, siete — кільком людям.\nLea è qui. — «Леа тут.»\nЧитається: ле́а е куі.\nLea — ім’я дівчинки.\nСлово è — те саме «бути, перебувати», коли мова про неї або про нього.\nЗнак над è — це просто літера «е».\nСлово sono підходить і до «я», і до «вони».\nСлово loro означає «вони»: Loro sono qui. — «Вони тут.»\nСлово insieme означає «разом»: Siamo insieme. — «Ми разом.»",
+        "en": "Look at how the word sono changes.\nSei qui. — “You are here.”\nSiamo qui. — “We are here.”\nSiete qui. — “You are here.”\nSono, sei, siamo, siete are one word, “to be”.\nIt changes depending on who we talk about.\n“I” — sono, “you” — sei.\n“We” — siamo, “you all” — siete.\nWe say sei to one close person, siete to several people.\nLea è qui. — “Lea is here.”\nLea is a girl’s name.\nThe word è is the same “to be”, said about her or him.\nThe mark over è is just the letter “e”.\nThe word sono fits both “I am” and “they are”.\nThe word loro means “they”: Loro sono qui. — “They are here.”\nThe word insieme means “together”: Siamo insieme. — “We are together.”"
+      },
+      "examples": [
+        {
+          "phraseId": "it:01:02",
+          "say": {
+            "ru": "се́й куи",
+            "uk": "се́й куі"
+          }
+        },
+        {
+          "phraseId": "it:01:07",
+          "say": {
+            "ru": "сьа́мо куи",
+            "uk": "сьа́мо куі"
+          }
+        },
+        {
+          "phraseId": "it:01:08",
+          "say": {
+            "ru": "сье́те куи",
+            "uk": "сье́те куі"
+          }
+        },
+        {
+          "phraseId": "it:01:05",
+          "say": {
+            "ru": "ле́а э куи",
+            "uk": "ле́а е куі"
+          }
+        },
+        {
+          "phraseId": "it:01:10",
+          "say": {
+            "ru": "ло́ро со́но куи",
+            "uk": "ло́ро со́но куі"
+          }
+        },
+        {
+          "phraseId": "it:01:44",
+          "say": {
+            "ru": "сьа́мо инсье́ме",
+            "uk": "сьа́мо інсье́ме"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты здесь.»",
+            "uk": "Виберіть, як сказати: «Ти тут.»",
+            "en": "Choose how to say: “You are here.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:01:02",
+          "options": [
+            "it:01:02",
+            "it:01:01",
+            "it:01:07"
+          ],
+          "answerId": "it:01:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы здесь.»",
+            "uk": "Виберіть, як сказати: «Ми тут.»",
+            "en": "Choose how to say: “We are here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:01:07",
+          "options": [
+            "it:01:07",
+            "it:01:02",
+            "it:01:08"
+          ],
+          "answerId": "it:01:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они здесь.»",
+            "uk": "Виберіть, як сказати: «Вони тут.»",
+            "en": "Choose how to say: “They are here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:01:10",
+          "options": [
+            "it:01:10",
+            "it:01:07",
+            "it:01:08"
+          ],
+          "answerId": "it:01:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Дома, на вокзале, в офисе",
+        "uk": "Вдома, на вокзалі, в офісі",
+        "en": "At home, at the station, at the office"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где вы.\nSono a casa. — «Я дома.»\nЧитается: со́но а ка́за.\nLea è alla stazione. — «Леа на вокзале.»\nЧитается: ле́а э а́лла статсьо́не.\nSono in ufficio. — «Я в офисе.»\nЧитается: со́но ин уффи́чо.\nСлово casa значит «дом», stazione — «вокзал», ufficio — «офис».\nПеред местом стоит маленькое слово: a, alla или in.\nВыбирать его не нужно: запоминайте место вместе с ним.\nВещи тоже бывают где-то: la chiave — «ключ», la borsa — «сумка».\nСлово la стоит перед названием вещи.\nПо-русски такого слова нет, запоминайте его вместе с вещью.\nЕсли буква написана дважды, как в alla и ufficio, звук чуть длиннее.",
+        "uk": "Дивіться, як сказати, де ви.\nSono a casa. — «Я вдома.»\nЧитається: со́но а ка́за.\nLea è alla stazione. — «Леа на вокзалі.»\nЧитається: ле́а е а́лла статсьо́не.\nSono in ufficio. — «Я в офісі.»\nЧитається: со́но ін уффі́чо.\nСлово casa означає «дім», stazione — «вокзал», ufficio — «офіс».\nПеред місцем стоїть маленьке слово: a, alla або in.\nОбирати його не потрібно: запам’ятовуйте місце разом із ним.\nРечі теж бувають десь: la chiave — «ключ», la borsa — «сумка».\nСлово la стоїть перед назвою речі.\nУкраїнською такого слова немає, запам’ятовуйте його разом із річчю.\nЯкщо літера написана двічі, як в alla та ufficio, звук трохи довший.",
+        "en": "Look at how to say where you are.\nSono a casa. — “I am at home.”\nLea è alla stazione. — “Lea is at the station.”\nSono in ufficio. — “I am in the office.”\nThe word casa means “home”, stazione — “station”, ufficio — “office”.\nA small word comes before the place: a, alla or in.\nYou do not choose it: learn the place together with it.\nThings are somewhere too: la chiave — “key”, la borsa — “bag”.\nThe word la stands before the name of a thing.\nEnglish has no such word here: learn it together with the thing.\nA doubled letter, as in alla and ufficio, makes the sound a bit longer."
+      },
+      "examples": [
+        {
+          "phraseId": "it:01:11",
+          "say": {
+            "ru": "со́но а ка́за",
+            "uk": "со́но а ка́за"
+          }
+        },
+        {
+          "phraseId": "it:01:14",
+          "say": {
+            "ru": "ле́а э а́лла статсьо́не",
+            "uk": "ле́а е а́лла статсьо́не"
+          }
+        },
+        {
+          "phraseId": "it:01:16",
+          "say": {
+            "ru": "сье́те ин статсьо́не",
+            "uk": "сье́те ін статсьо́не"
+          }
+        },
+        {
+          "phraseId": "it:01:17",
+          "say": {
+            "ru": "ло́ро со́но ин уффи́чо",
+            "uk": "ло́ро со́но ін уффі́чо"
+          }
+        },
+        {
+          "phraseId": "it:01:19",
+          "say": {
+            "ru": "со́но ин уффи́чо",
+            "uk": "со́но ін уффі́чо"
+          }
+        },
+        {
+          "phraseId": "it:01:45",
+          "say": {
+            "ru": "ла кья́ве э куи",
+            "uk": "ла кья́ве е куі"
+          }
+        },
+        {
+          "phraseId": "it:01:47",
+          "say": {
+            "ru": "ла бо́рса э а ка́за",
+            "uk": "ла бо́рса е а ка́за"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дома.»",
+            "uk": "Виберіть, як сказати: «Я вдома.»",
+            "en": "Choose how to say: “I am at home.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:01:11",
+          "options": [
+            "it:01:11",
+            "it:01:19",
+            "it:01:14"
+          ],
+          "answerId": "it:01:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа на вокзале.»",
+            "uk": "Виберіть, як сказати: «Леа на вокзалі.»",
+            "en": "Choose how to say: “Lea is at the station.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:01:14",
+          "options": [
+            "it:01:14",
+            "it:01:05",
+            "it:01:17"
+          ],
+          "answerId": "it:01:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сумка дома.»",
+            "uk": "Виберіть, як сказати: «Сумка вдома.»",
+            "en": "Choose how to say: “The bag is at home.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:01:47",
+          "options": [
+            "it:01:47",
+            "it:01:45",
+            "it:01:11"
+          ],
+          "answerId": "it:01:47"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Открыто и закрыто",
+        "uk": "Відчинено і зачинено",
+        "en": "Open and closed"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать про вещи.\nLa porta è aperta. — «Дверь открыта.»\nЧитается: ла по́рта э апе́рта.\nIl negozio è aperto. — «Магазин открыт.»\nЧитается: иль него́цьо э апе́рто.\nIl bar è chiuso. — «Кафе закрыто.»\nЧитается: иль бар э кьу́зо.\nСлова porta — «дверь», negozio — «магазин».\nСлова la и il стоят перед названием вещи. По-русски такого слова нет.\nЗапоминайте их вместе с вещью: la porta, il negozio, il bar.\nСлова aperta и aperto значат «открыта» и «открыт»: la porta — aperta, il negozio — aperto.\nLa finestra è chiusa. — «Окно закрыто.»\nЧитается: ла фине́стра э кьу́за.\nСлово finestra значит «окно», chiusa — «закрыта», chiuso — «закрыт».",
+        "uk": "Дивіться, як сказати про речі.\nLa porta è aperta. — «Двері відчинені.»\nЧитається: ла по́рта е апе́рта.\nIl negozio è aperto. — «Магазин відкритий.»\nЧитається: іль него́цьо е апе́рто.\nIl bar è chiuso. — «Кафе зачинено.»\nЧитається: іль бар е кьу́зо.\nСлова porta — «двері», negozio — «магазин».\nСлова la та il стоять перед назвою речі. Українською такого слова немає.\nЗапам’ятовуйте їх разом із річчю: la porta, il negozio, il bar.\nСлова aperta та aperto означають «відчинена» та «відкритий»: la porta — aperta, il negozio — aperto.\nLa finestra è chiusa. — «Вікно закрите.»\nЧитається: ла фіне́стра е кьу́за.\nСлово finestra означає «вікно», chiusa — «закрита», chiuso — «зачинено».",
+        "en": "Look at how to talk about things.\nLa porta è aperta. — “The door is open.”\nIl negozio è aperto. — “The shop is open.”\nIl bar è chiuso. — “The café is closed.”\nThe words porta — “door”, negozio — “shop”.\nThe words la and il stand before the name of a thing.\nEnglish has no such word here.\nLearn them together with the thing: la porta, il negozio, il bar.\nThe words aperta and aperto mean “open”.\nLa porta — aperta, il negozio — aperto.\nLa finestra è chiusa. — “The window is closed.”\nThe word finestra means “window”, chiusa and chiuso — “closed”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:01:31",
+          "say": {
+            "ru": "ла по́рта э апе́рта",
+            "uk": "ла по́рта е апе́рта"
+          }
+        },
+        {
+          "phraseId": "it:01:33",
+          "say": {
+            "ru": "иль него́цьо э апе́рто",
+            "uk": "іль него́цьо е апе́рто"
+          }
+        },
+        {
+          "phraseId": "it:01:36",
+          "say": {
+            "ru": "иль бар э кьу́зо",
+            "uk": "іль бар е кьу́зо"
+          }
+        },
+        {
+          "phraseId": "it:01:37",
+          "say": {
+            "ru": "ла фине́стра э кьу́за",
+            "uk": "ла фіне́стра е кьу́за"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазин открыт.»",
+            "uk": "Виберіть, як сказати: «Магазин відкритий.»",
+            "en": "Choose how to say: “The shop is open.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:01:33",
+          "options": [
+            "it:01:33",
+            "it:01:31",
+            "it:01:36"
+          ],
+          "answerId": "it:01:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кафе закрыто.»",
+            "uk": "Виберіть, як сказати: «Кафе зачинено.»",
+            "en": "Choose how to say: “The café is closed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:01:36",
+          "options": [
+            "it:01:36",
+            "it:01:33",
+            "it:01:37"
+          ],
+          "answerId": "it:01:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь открыта.»",
+            "uk": "Виберіть, як сказати: «Двері відчинені.»",
+            "en": "Choose how to say: “The door is open.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:01:31",
+          "options": [
+            "it:01:31",
+            "it:01:37",
+            "it:01:36"
+          ],
+          "answerId": "it:01:31"
+        }
+      ]
+    }
+  ]
+}

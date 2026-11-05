@@ -1,0 +1,509 @@
+{
+  "lang": "it",
+  "lesson": 7,
+  "title": {
+    "ru": "Обычные действия",
+    "uk": "Звичайні дії",
+    "en": "Everyday actions"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Работать",
+        "uk": "Працювати",
+        "en": "To work"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы работаете.\nLavoro qui. — «Я здесь работаю.»\nЧитается: лаво́ро куи.\nLavori qui. — «Ты работаешь здесь.»\nЧитается: лаво́ри куи.\nLea lavora qui. — «Леа здесь работает.»\nЧитается: ле́а лаво́ра куи.\nСлово lavoro значит «я работаю», слово lavori — «ты работаешь».\nСлово lavora значит «он работает» или «она работает».\nЭто одно слово lavorare, «работать».\nОно меняется, смотря о ком речь.\nЯ — lavoro, «ты» — lavori, он или она — lavora.",
+        "uk": "Дивіться, як сказати, що ви працюєте.\nLavoro qui. — «Я тут працюю.»\nЧитається: лаво́ро куі.\nLavori qui. — «Ти працюєш тут.»\nЧитається: лаво́рі куі.\nLea lavora qui. — «Леа тут працює.»\nЧитається: ле́а лаво́ра куі.\nСлово lavoro означає «я працюю», слово lavori — «ти працюєш».\nСлово lavora означає «він працює» або «вона працює».\nЦе одне слово lavorare, «працювати».\nВоно змінюється залежно від того, про кого мова.\nЯ — lavoro, «ти» — lavori, він або вона — lavora.",
+        "en": "Look at how to say that you work.\nLavoro qui. — “I work here.”\nLavori qui. — “You work here.”\nLea lavora qui. — “Lea works here.”\nThe word lavoro means “I work”, the word lavori — “you work”.\nThe word lavora means “he works” or “she works”.\nAll of these are one word, lavorare, “to work”.\nIt changes with who it is about.\nMe — lavoro, you — lavori, he or she — lavora."
+      },
+      "examples": [
+        {
+          "phraseId": "it:07:01",
+          "say": {
+            "ru": "лаво́ро куи",
+            "uk": "лаво́ро куі"
+          }
+        },
+        {
+          "phraseId": "it:07:02",
+          "say": {
+            "ru": "лаво́ри куи",
+            "uk": "лаво́рі куі"
+          }
+        },
+        {
+          "phraseId": "it:07:03",
+          "say": {
+            "ru": "ле́а лаво́ра куи",
+            "uk": "ле́а лаво́ра куі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я здесь работаю»",
+            "uk": "Виберіть, як сказати: «Я тут працюю»",
+            "en": "Choose how to say: “I work here”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:07:01",
+          "options": [
+            "it:07:01",
+            "it:07:02",
+            "it:07:03"
+          ],
+          "answerId": "it:07:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты работаешь здесь»",
+            "uk": "Виберіть, як сказати: «Ти працюєш тут»",
+            "en": "Choose how to say: “You work here”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:02",
+          "options": [
+            "it:07:01",
+            "it:07:02",
+            "it:07:03"
+          ],
+          "answerId": "it:07:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа здесь работает»",
+            "uk": "Виберіть, як сказати: «Леа тут працює»",
+            "en": "Choose how to say: “Lea works here”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:03",
+          "options": [
+            "it:07:01",
+            "it:07:02",
+            "it:07:03"
+          ],
+          "answerId": "it:07:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мы, вы, они",
+        "uk": "Ми, ви, вони",
+        "en": "We, you, they"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы работаем вместе».\nLavoriamo insieme. — «Мы работаем вместе.»\nЧитается: лаворья́мо инсье́ме.\nLavorate insieme. — «Вы работаете вместе.»\nЧитается: лавора́те инсье́ме.\nLavorano fuori. — «Они работают на улице.»\nЧитается: лаво́рано фуо́ри.\nСлово lavoriamo значит «мы работаем».\nСлово lavorate значит «вы работаете», когда вас несколько.\nСлово lavorano значит «они работают».\nСлово insieme значит «вместе», слово fuori — «на улице».\nЭто всё то же lavorare: оно снова меняется.",
+        "uk": "Дивіться, як сказати «Ми працюємо разом».\nLavoriamo insieme. — «Ми працюємо разом.»\nЧитається: лаворья́мо інсье́ме.\nLavorate insieme. — «Ви працюєте разом.»\nЧитається: лавора́те інсье́ме.\nLavorano fuori. — «Вони працюють надворі.»\nЧитається: лаво́рано фуо́рі.\nСлово lavoriamo означає «ми працюємо».\nСлово lavorate означає «ви працюєте», коли вас кілька.\nСлово lavorano означає «вони працюють».\nСлово insieme означає «разом», слово fuori — «надворі».\nЦе все те саме lavorare: воно знову змінюється.",
+        "en": "Look at how to say “We work together”.\nLavoriamo insieme. — “We work together.”\nLavorate insieme. — “You work together.”\nLavorano fuori. — “They work outside.”\nThe word lavoriamo means “we work”.\nThe word lavorate means “you work”, when there are several of you.\nThe word lavorano means “they work”.\nThe word insieme means “together”, the word fuori — “outside”.\nIt is the same lavorare: it changes again."
+      },
+      "examples": [
+        {
+          "phraseId": "it:07:04",
+          "say": {
+            "ru": "лаворья́мо инсье́ме",
+            "uk": "лаворья́мо інсье́ме"
+          }
+        },
+        {
+          "phraseId": "it:07:05",
+          "say": {
+            "ru": "лавора́те инсье́ме",
+            "uk": "лавора́те інсье́ме"
+          }
+        },
+        {
+          "phraseId": "it:07:06",
+          "say": {
+            "ru": "лаво́рано фуо́ри",
+            "uk": "лаво́рано фуо́рі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы работаем вместе»",
+            "uk": "Виберіть, як сказати: «Ми працюємо разом»",
+            "en": "Choose how to say: “We work together”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:07:04",
+          "options": [
+            "it:07:04",
+            "it:07:05",
+            "it:07:06"
+          ],
+          "answerId": "it:07:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы работаете вместе»",
+            "uk": "Виберіть, як сказати: «Ви працюєте разом»",
+            "en": "Choose how to say: “You work together”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:05",
+          "options": [
+            "it:07:04",
+            "it:07:05",
+            "it:07:06"
+          ],
+          "answerId": "it:07:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они работают на улице»",
+            "uk": "Виберіть, як сказати: «Вони працюють надворі»",
+            "en": "Choose how to say: “They work outside”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:06",
+          "options": [
+            "it:07:04",
+            "it:07:05",
+            "it:07:06"
+          ],
+          "answerId": "it:07:06"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Жить",
+        "uk": "Жити",
+        "en": "To live"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где вы живёте.\nAbito a Lione. — «Я живу в Лионе.»\nЧитается: а́бито а лио́не.\nAbitate in città. — «Вы живёте в городе.»\nЧитается: абита́те ин читта́.\nAbitano qui. — «Они живут здесь.»\nЧитается: а́битано куи.\nСлово abito значит «я живу», слово abitate — «вы живёте», слово abitano — «они живут».\nЭто слово abitare, «жить». Оно меняется так же, как lavorare.\nСлова a и in значат «в»: a Lione — «в Лионе», in città — «в городе».\nСлово città значит «город». Слово Lione значит «Лион».",
+        "uk": "Дивіться, як сказати, де ви живете.\nAbito a Lione. — «Я живу в Ліоні.»\nЧитається: а́біто а ліо́не.\nAbitate in città. — «Ви живете у місті.»\nЧитається: абіта́те ін чітта́.\nAbitano qui. — «Вони живуть тут.»\nЧитається: а́бітано куі.\nСлово abito означає «я живу», слово abitate — «ви живете», слово abitano — «вони живуть».\nЦе слово abitare, «жити». Воно змінюється так само, як lavorare.\nСлова a та in означають «в»: a Lione — «у Ліоні», in città — «у місті».\nСлово città означає «місто». Слово Lione означає «Ліон».",
+        "en": "Look at how to say where you live.\nAbito a Lione. — “I live in Lyon.”\nAbitate in città. — “You live in the city.”\nAbitano qui. — “They live here.”\nThe word abito means “I live”.\nThe word abitate — “you live”, abitano — “they live”.\nThis is the word abitare, “to live”. It changes just like lavorare.\nThe words a and in mean “in”.\nExamples: a Lione — “in Lyon”, in città — “in the city”.\nThe word città means “city”. The word Lione means “Lyon”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:07:11",
+          "say": {
+            "ru": "а́бито а лио́не",
+            "uk": "а́біто а ліо́не"
+          }
+        },
+        {
+          "phraseId": "it:07:15",
+          "say": {
+            "ru": "абита́те ин читта́",
+            "uk": "абіта́те ін чітта́"
+          }
+        },
+        {
+          "phraseId": "it:07:16",
+          "say": {
+            "ru": "а́битано куи",
+            "uk": "а́бітано куі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу в Лионе»",
+            "uk": "Виберіть, як сказати: «Я живу в Ліоні»",
+            "en": "Choose how to say: “I live in Lyon”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:07:11",
+          "options": [
+            "it:07:11",
+            "it:07:15",
+            "it:07:16"
+          ],
+          "answerId": "it:07:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы живёте в городе»",
+            "uk": "Виберіть, як сказати: «Ви живете у місті»",
+            "en": "Choose how to say: “You live in the city”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:15",
+          "options": [
+            "it:07:11",
+            "it:07:15",
+            "it:07:16"
+          ],
+          "answerId": "it:07:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они живут здесь»",
+            "uk": "Виберіть, як сказати: «Вони живуть тут»",
+            "en": "Choose how to say: “They live here”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:16",
+          "options": [
+            "it:07:11",
+            "it:07:15",
+            "it:07:16"
+          ],
+          "answerId": "it:07:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Слушать",
+        "uk": "Слухати",
+        "en": "To listen"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы слушаете.\nAscolto la radio. — «Я слушаю радио.»\nЧитается: аско́льто ла ра́дьо.\nTu ascolti la radio. — «Ты слушаешь радио.»\nЧитается: ту аско́льти ла ра́дьо.\nLui ascolta un messaggio. — «Он слушает сообщение.»\nЧитается: лу́й аско́льта ун месса́джо.\nСлово ascolto значит «я слушаю», слово ascolti — «ты слушаешь».\nСлово ascolta значит «он слушает». Слово lui значит «он».\nСлово radio значит «радио», слово messaggio — «сообщение».\nСлово tu значит «ты». Его можно не говорить.\nAscolti и так значит «ты слушаешь». Tu добавляют, чтобы подчеркнуть.\nСлово un значит «один»: по-русски его не говорят.\nСлово la стоит перед radio: по-русски его нет.",
+        "uk": "Дивіться, як сказати, що ви слухаєте.\nAscolto la radio. — «Я слухаю радіо.»\nЧитається: аско́льто ла ра́дьо.\nTu ascolti la radio. — «Ти слухаєш радіо.»\nЧитається: ту аско́льті ла ра́дьо.\nLui ascolta un messaggio. — «Він слухає повідомлення.»\nЧитається: лу́й аско́льта ун месса́джо.\nСлово ascolto означає «я слухаю», слово ascolti — «ти слухаєш».\nСлово ascolta означає «він слухає». Слово lui означає «він».\nСлово radio означає «радіо», слово messaggio — «повідомлення».\nСлово tu означає «ти». Його можна не казати.\nAscolti і так означає «ти слухаєш». Tu додають, щоб підкреслити.\nСлово un означає «один»: українською його не кажуть.\nСлово la стоїть перед radio: українською його нема.",
+        "en": "Look at how to say that you listen.\nAscolto la radio. — “I listen to the radio.”\nTu ascolti la radio. — “You listen to the radio.”\nLui ascolta un messaggio. — “He listens to a message.”\nThe word ascolto means “I listen”, the word ascolti — “you listen”.\nThe word ascolta means “he listens”. The word lui means “he”.\nThe word radio means “radio”, the word messaggio — “message”.\nThe word tu means “you”. You can leave it out.\nAscolti alone already means “you listen”. We add tu to stress it.\nThe word un means “a”.\nThe word la stands before radio. No such word in English."
+      },
+      "examples": [
+        {
+          "phraseId": "it:07:17",
+          "say": {
+            "ru": "аско́льто ла ра́дьо",
+            "uk": "аско́льто ла ра́дьо"
+          }
+        },
+        {
+          "phraseId": "it:07:18",
+          "say": {
+            "ru": "ту аско́льти ла ра́дьо",
+            "uk": "ту аско́льті ла ра́дьо"
+          }
+        },
+        {
+          "phraseId": "it:07:19",
+          "say": {
+            "ru": "лу́й аско́льта ун месса́джо",
+            "uk": "лу́й аско́льта ун месса́джо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я слушаю радио»",
+            "uk": "Виберіть, як сказати: «Я слухаю радіо»",
+            "en": "Choose how to say: “I listen to the radio”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:07:17",
+          "options": [
+            "it:07:17",
+            "it:07:18",
+            "it:07:19"
+          ],
+          "answerId": "it:07:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты слушаешь радио»",
+            "uk": "Виберіть, як сказати: «Ти слухаєш радіо»",
+            "en": "Choose how to say: “You listen to the radio”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:18",
+          "options": [
+            "it:07:17",
+            "it:07:18",
+            "it:07:19"
+          ],
+          "answerId": "it:07:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он слушает сообщение»",
+            "uk": "Виберіть, як сказати: «Він слухає повідомлення»",
+            "en": "Choose how to say: “He listens to a message”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:19",
+          "options": [
+            "it:07:17",
+            "it:07:18",
+            "it:07:19"
+          ],
+          "answerId": "it:07:19"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Искать",
+        "uk": "Шукати",
+        "en": "To look for"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы что-то ищете.\nLei cerca l’uscita. — «Она ищет выход.»\nЧитается: ле́й че́рка л’уши́та.\nCerchiamo un appartamento. — «Мы ищем квартиру.»\nЧитается: черкья́мо ун аппартаме́нто.\nCercano un posto. — «Они ищут место.»\nЧитается: че́ркано ун по́сто.\nСлово cerca значит «она ищет», слово cerchiamo — «мы ищем», слово cercano — «они ищут».\nЭто слово cercare, «искать». Оно меняется так же.\nСлово l’uscita значит «выход», слово posto — «место».\nСлово appartamento значит «квартира».",
+        "uk": "Дивіться, як сказати, що ви щось шукаєте.\nLei cerca l’uscita. — «Вона шукає вихід.»\nЧитається: ле́й че́рка л’уші́та.\nCerchiamo un appartamento. — «Ми шукаємо квартиру.»\nЧитається: черкья́мо ун аппартаме́нто.\nCercano un posto. — «Вони шукають місце.»\nЧитається: че́ркано ун по́сто.\nСлово cerca означає «вона шукає», слово cerchiamo — «ми шукаємо», слово cercano — «вони шукають».\nЦе слово cercare, «шукати». Воно змінюється так само.\nСлово l’uscita означає «вихід», слово posto — «місце».\nСлово appartamento означає «квартира».",
+        "en": "Look at how to say that you look for something.\nLei cerca l’uscita. — “She is looking for the exit.”\nCerchiamo un appartamento. — “We are looking for an apartment.”\nCercano un posto. — “They are looking for a place.”\nThe word cerca means “she looks for”.\nThe word cerchiamo — “we look for”, cercano — “they look for”.\nThis is the word cercare, “to look for”. It changes the same way.\nThe word l’uscita means “exit”, the word posto — “place”.\nThe word appartamento means “apartment”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:07:23",
+          "say": {
+            "ru": "ле́й че́рка л’уши́та",
+            "uk": "ле́й че́рка л’уші́та"
+          }
+        },
+        {
+          "phraseId": "it:07:44",
+          "say": {
+            "ru": "черкья́мо ун аппартаме́нто",
+            "uk": "черкья́мо ун аппартаме́нто"
+          }
+        },
+        {
+          "phraseId": "it:07:26",
+          "say": {
+            "ru": "че́ркано ун по́сто",
+            "uk": "че́ркано ун по́сто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она ищет выход»",
+            "uk": "Виберіть, як сказати: «Вона шукає вихід»",
+            "en": "Choose how to say: “She is looking for the exit”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:07:23",
+          "options": [
+            "it:07:23",
+            "it:07:44",
+            "it:07:26"
+          ],
+          "answerId": "it:07:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ищем квартиру»",
+            "uk": "Виберіть, як сказати: «Ми шукаємо квартиру»",
+            "en": "Choose how to say: “We are looking for an apartment”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:44",
+          "options": [
+            "it:07:23",
+            "it:07:44",
+            "it:07:26"
+          ],
+          "answerId": "it:07:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они ищут место»",
+            "uk": "Виберіть, як сказати: «Вони шукають місце»",
+            "en": "Choose how to say: “They are looking for a place”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:26",
+          "options": [
+            "it:07:23",
+            "it:07:44",
+            "it:07:26"
+          ],
+          "answerId": "it:07:26"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Готовить",
+        "uk": "Готувати",
+        "en": "To cook"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы готовите.\nPreparo la cena. — «Я готовлю ужин.»\nЧитается: препа́ро ла че́на.\nPaolo prepara il caffè. — «Паоло варит кофе.»\nЧитается: па́оло препа́ра иль каффэ́.\nPrepariamo le valigie. — «Мы собираем чемоданы.»\nЧитается: препарья́мо ле вали́дже.\nСлово preparo значит «я готовлю», слово prepara — «он готовит», слово prepariamo — «мы готовим».\nЭто слово preparare, «готовить». Оно меняется так же.\nСлово prepara ещё значит «варит», слово prepariamo — «собираем».\nСлово cena значит «ужин», слово caffè — «кофе».\nСлово valigie значит «чемоданы».\nСлово le стоит перед valigie: по-русски его нет.",
+        "uk": "Дивіться, як сказати, що ви готуєте.\nPreparo la cena. — «Я готую вечерю.»\nЧитається: препа́ро ла че́на.\nPaolo prepara il caffè. — «Паоло варить каву.»\nЧитається: па́оло препа́ра іль каффе́.\nPrepariamo le valigie. — «Ми пакуємо валізи.»\nЧитається: препарья́мо ле валі́дже.\nСлово preparo означає «я готую», слово prepara — «він готує», слово prepariamo — «ми готуємо».\nЦе слово preparare, «готувати». Воно змінюється так само.\nСлово prepara ще означає «варить», слово prepariamo — «збираємо».\nСлово cena означає «вечеря», слово caffè — «кава».\nСлово valigie означає «валізи».\nСлово le стоїть перед valigie: українською його нема.",
+        "en": "Look at how to say that you cook.\nPreparo la cena. — “I am cooking dinner.”\nPaolo prepara il caffè. — “Paolo is making coffee.”\nPrepariamo le valigie. — “We are packing the suitcases.”\nThe word preparo means “I cook”, prepara — “he cooks”, prepariamo — “we cook”.\nThis is the word preparare, “to prepare”. It changes the same way.\nThe word prepara also means “makes”, prepariamo — “we pack”.\nThe word cena means “dinner”, the word caffè — “coffee”.\nThe word valigie means “suitcases”.\nThe word le stands before valigie. No such word in English."
+      },
+      "examples": [
+        {
+          "phraseId": "it:07:31",
+          "say": {
+            "ru": "препа́ро ла че́на",
+            "uk": "препа́ро ла че́на"
+          }
+        },
+        {
+          "phraseId": "it:07:33",
+          "say": {
+            "ru": "па́оло препа́ра иль каффэ́",
+            "uk": "па́оло препа́ра іль каффе́"
+          }
+        },
+        {
+          "phraseId": "it:07:34",
+          "say": {
+            "ru": "препарья́мо ле вали́дже",
+            "uk": "препарья́мо ле валі́дже"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я готовлю ужин»",
+            "uk": "Виберіть, як сказати: «Я готую вечерю»",
+            "en": "Choose how to say: “I am cooking dinner”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:07:31",
+          "options": [
+            "it:07:31",
+            "it:07:33",
+            "it:07:34"
+          ],
+          "answerId": "it:07:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло варит кофе»",
+            "uk": "Виберіть, як сказати: «Паоло варить каву»",
+            "en": "Choose how to say: “Paolo is making coffee”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:33",
+          "options": [
+            "it:07:31",
+            "it:07:33",
+            "it:07:34"
+          ],
+          "answerId": "it:07:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы собираем чемоданы»",
+            "uk": "Виберіть, як сказати: «Ми пакуємо валізи»",
+            "en": "Choose how to say: “We are packing the suitcases”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:07:34",
+          "options": [
+            "it:07:31",
+            "it:07:33",
+            "it:07:34"
+          ],
+          "answerId": "it:07:34"
+        }
+      ]
+    }
+  ]
+}

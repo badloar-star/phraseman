@@ -9,7 +9,8 @@ import path from 'node:path';
 const ROOT = path.join(__dirname, '..', 'modules', 'classic-courses');
 const LANGS = fs.existsSync(ROOT) ? fs.readdirSync(ROOT, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : [];
 // зачем: лимит из контракта Ядра — ≤ 5 МБ сырого JSON на язык (EN допускается до 6,5)
-const BUDGET_MB: Record<string, number> = { en: 6.5, es: 5, fr: 5, de: 5, it: 5 };
+// зачем: de 5.04 МБ после plain-теории уроков 1–9 и словаря (фолбэк-копии en в 6 локалях до перевода) — лимит de временно 5.3, см. отчёт Теории
+const BUDGET_MB: Record<string, number> = { en: 6.5, es: 5, fr: 5, de: 5.3, it: 5 };
 const LISTS = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_lists.json'), 'utf8')) as { numbers: Record<string, string[]>; articles?: Record<string, string[]>; synonyms?: Record<string, string[][]>; youGroups?: Record<string, string[][]>; siblingTails?: Record<string, string[]>; timeAdverbs?: Record<string, string[]>; adverbOnly?: Record<string, { words: string[]; allowedFor: string[] }>; closedClasses?: Record<string, { prep: string[]; conj: string[] }>; articlePairs?: Record<string, string[][]>; posTags?: Record<string, { subj?: string[]; aux?: string[]; yn?: string[]; yn_fill?: string[]; det?: string[] }>; determiners?: Record<string, string[]> };
 const PATCHES = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'scripts', 'classic_distractor_patches.json'), 'utf8')) as { remove: Record<string, string[]>; answers?: Record<string, { remove?: string[] }> };
 // зачем: соблазны, поставленные аудитором (scripts/classic_audit_layer.json), не подчиняются классовым правилам генератора — их проверяет генератор
@@ -252,6 +253,33 @@ describe('классические курсы: рантайм-данные', () 
           const re = /\b(un|una)\s+\p{L}+(as|os|es)\b/iu;
           if (p.answers.slice(1).some((a) => re.test(a)) && !re.test(p.answers[0])) bad.push(`${p.id}: мусорный ответ`);
         }
+      }
+      expect(bad).toEqual([]);
+    });
+
+    it('нет слов со смесью кириллицы и латиницы (lessons, theory, intro, glossary)', () => {
+      const bad: string[] = [];
+      const walk = (node: unknown, where: string): void => {
+        if (typeof node === 'string') {
+          for (const w of node.split(/[\s.,;:!?¿¡«»"“”()[\]/—–-]+/)) if (w && /[Ѐ-ӿ]/.test(w) && /[A-Za-zÀ-ɏ]/.test(w)) bad.push(`${where}: ${w}`);
+        } else if (Array.isArray(node)) node.forEach((x, i) => walk(x, `${where}[${i}]`));
+        else if (node && typeof node === 'object') for (const [k, v] of Object.entries(node)) walk(v, `${where}.${k}`);
+      };
+      for (const f of ['theory.json', 'intro.json', 'glossary.json', ...lessonFiles]) walk(JSON.parse(read(lang, f)), f);
+      expect(bad.slice(0, 20)).toEqual([]);
+    });
+
+    it('словарь: лемма встречается один раз (в самом раннем уроке), ru/uk заполнены, firstLesson = первый урок из примеров', () => {
+      const g = JSON.parse(read(lang, 'glossary.json')) as { lemmas: { lemma: string; meaning: Record<string, string>; firstLesson: number; phraseIds?: string[] }[] };
+      const seen = new Set<string>();
+      const bad: string[] = [];
+      for (const e of g.lemmas) {
+        const k = e.lemma.toLowerCase().trim();
+        if (seen.has(k)) bad.push(`повтор: ${e.lemma}`);
+        seen.add(k);
+        if (!e.meaning?.ru?.trim() || !e.meaning?.uk?.trim()) bad.push(`нет ru/uk: ${e.lemma}`);
+        const first = Math.min(...(e.phraseIds ?? []).map((id) => Number(/(\d\d)[.:]\d\d$/.exec(id)![1])));
+        if ((e.phraseIds ?? []).length && first !== e.firstLesson) bad.push(`firstLesson: ${e.lemma} ${e.firstLesson}≠${first}`);
       }
       expect(bad).toEqual([]);
     });

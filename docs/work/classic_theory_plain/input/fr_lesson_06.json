@@ -1,0 +1,441 @@
+{
+ "lang": "fr",
+ "lesson": 6,
+ "instructions": "docs/work/classic_plain_explanation_standard_2026-11-05.md",
+ "phrases": [
+  {
+   "id": "fr:06:01",
+   "target": "La clé est sur la table.",
+   "ru": "Ключ лежит на столе.",
+   "uk": "Ключ на столі."
+  },
+  {
+   "id": "fr:06:02",
+   "target": "Le sac est sous la table.",
+   "ru": "Сумка под столом.",
+   "uk": "Сумка під столом."
+  },
+  {
+   "id": "fr:06:03",
+   "target": "Le billet est dans la poche.",
+   "ru": "Билет в кармане.",
+   "uk": "Квиток у кишені."
+  },
+  {
+   "id": "fr:06:04",
+   "target": "Les lunettes sont sur le lit.",
+   "ru": "Очки лежат на кровати.",
+   "uk": "Окуляри на ліжку."
+  },
+  {
+   "id": "fr:06:05",
+   "target": "L’adresse est sur la carte.",
+   "ru": "Адрес указан на карте.",
+   "uk": "Адреса на карті."
+  },
+  {
+   "id": "fr:06:06",
+   "target": "L’entrée est à droite.",
+   "ru": "Вход справа.",
+   "uk": "Вхід праворуч."
+  },
+  {
+   "id": "fr:06:07",
+   "target": "Le pain est sur la table.",
+   "ru": "Хлеб на столе.",
+   "uk": "Хліб на столі."
+  },
+  {
+   "id": "fr:06:08",
+   "target": "La soupe est chaude.",
+   "ru": "Суп горячий.",
+   "uk": "Суп гарячий."
+  },
+  {
+   "id": "fr:06:09",
+   "target": "Les verres sont propres.",
+   "ru": "Стаканы чистые.",
+   "uk": "Склянки чисті."
+  },
+  {
+   "id": "fr:06:10",
+   "target": "L’eau est froide.",
+   "ru": "Вода холодная.",
+   "uk": "Вода холодна."
+  },
+  {
+   "id": "fr:06:11",
+   "target": "J’aime le café.",
+   "ru": "Мне нравится кофе.",
+   "uk": "Я люблю каву."
+  },
+  {
+   "id": "fr:06:12",
+   "target": "J’aime le thé.",
+   "ru": "Мне нравится чай.",
+   "uk": "Я люблю чай."
+  },
+  {
+   "id": "fr:06:13",
+   "target": "Elle aime la musique.",
+   "ru": "Ей нравится музыка.",
+   "uk": "Їй подобається музика."
+  },
+  {
+   "id": "fr:06:14",
+   "target": "Il aime le cinéma.",
+   "ru": "Ему нравится кино.",
+   "uk": "Йому подобається кіно."
+  },
+  {
+   "id": "fr:06:15",
+   "target": "Nous aimons les livres.",
+   "ru": "Мы любим книги.",
+   "uk": "Нам подобаються книги."
+  },
+  {
+   "id": "fr:06:16",
+   "target": "Tu aimes les fraises ?",
+   "ru": "Тебе нравится клубника?",
+   "uk": "Тобі подобається полуниця?"
+  },
+  {
+   "id": "fr:06:17",
+   "target": "Léa aime le fromage.",
+   "ru": "Леа любит сыр.",
+   "uk": "Леа любить сир."
+  },
+  {
+   "id": "fr:06:18",
+   "target": "Les enfants aiment le chocolat.",
+   "ru": "Детям нравится шоколад.",
+   "uk": "Діти люблять шоколад."
+  },
+  {
+   "id": "fr:06:19",
+   "target": "Vous aimez la soupe ?",
+   "ru": "Вам нравится суп?",
+   "uk": "Ви любите суп?"
+  },
+  {
+   "id": "fr:06:20",
+   "target": "J’aime l’odeur du pain.",
+   "ru": "Мне нравится запах хлеба.",
+   "uk": "Мені подобається запах хліба."
+  },
+  {
+   "id": "fr:06:21",
+   "target": "La banque est fermée.",
+   "ru": "Банк закрыт.",
+   "uk": "Банк закритий."
+  },
+  {
+   "id": "fr:06:22",
+   "target": "Le marché est ouvert.",
+   "ru": "Рынок открыт.",
+   "uk": "Ринок відкритий."
+  },
+  {
+   "id": "fr:06:23",
+   "target": "L’école est en face.",
+   "ru": "Школа находится напротив.",
+   "uk": "Школа навпроти."
+  },
+  {
+   "id": "fr:06:24",
+   "target": "Les magasins sont loin.",
+   "ru": "Магазины находятся далеко.",
+   "uk": "Магазини далеко."
+  },
+  {
+   "id": "fr:06:25",
+   "target": "La bibliothèque est calme.",
+   "ru": "В библиотеке тихо.",
+   "uk": "У бібліотеці тихо."
+  },
+  {
+   "id": "fr:06:26",
+   "target": "Le jardin est petit.",
+   "ru": "Сад небольшой.",
+   "uk": "Сад маленький."
+  },
+  {
+   "id": "fr:06:27",
+   "target": "L’hôtel est près de la gare.",
+   "ru": "Отель рядом с вокзалом.",
+   "uk": "Готель біля вокзалу."
+  },
+  {
+   "id": "fr:06:28",
+   "target": "Les chambres sont à l’étage.",
+   "ru": "Номера наверху.",
+   "uk": "Номери нагорі."
+  },
+  {
+   "id": "fr:06:29",
+   "target": "L’ascenseur est à gauche.",
+   "ru": "Лифт находится слева.",
+   "uk": "Ліфт ліворуч."
+  },
+  {
+   "id": "fr:06:30",
+   "target": "La réception est en bas.",
+   "ru": "Стойка регистрации внизу.",
+   "uk": "Стійка реєстрації внизу."
+  },
+  {
+   "id": "fr:06:31",
+   "target": "Le manteau est sur la chaise.",
+   "ru": "Пальто лежит на стуле.",
+   "uk": "Пальто на стільці."
+  },
+  {
+   "id": "fr:06:32",
+   "target": "La veste est dans l’entrée.",
+   "ru": "Куртка в прихожей.",
+   "uk": "Куртка в передпокої."
+  },
+  {
+   "id": "fr:06:33",
+   "target": "Les gants sont dans le sac.",
+   "ru": "Перчатки в сумке.",
+   "uk": "Рукавички в сумці."
+  },
+  {
+   "id": "fr:06:34",
+   "target": "L’écharpe est sur le lit.",
+   "ru": "Шарф лежит на кровати.",
+   "uk": "Шарф на ліжку."
+  },
+  {
+   "id": "fr:06:35",
+   "target": "Le portefeuille est dans le tiroir.",
+   "ru": "Кошелек в ящике.",
+   "uk": "Гаманець у шухляді."
+  },
+  {
+   "id": "fr:06:36",
+   "target": "La monnaie est dans la poche.",
+   "ru": "В кармане мелочь.",
+   "uk": "У кишені дрібні гроші."
+  },
+  {
+   "id": "fr:06:37",
+   "target": "Les chaussures sont sous la chaise.",
+   "ru": "Обувь под стулом.",
+   "uk": "Взуття під стільцем."
+  },
+  {
+   "id": "fr:06:38",
+   "target": "L’ordinateur est au bureau.",
+   "ru": "Компьютер в офисе.",
+   "uk": "Комп'ютер в офісі."
+  },
+  {
+   "id": "fr:06:39",
+   "target": "Le chargeur est dans la chambre.",
+   "ru": "Зарядное устройство в спальне.",
+   "uk": "Зарядний пристрій у спальні."
+  },
+  {
+   "id": "fr:06:40",
+   "target": "La lampe est près du lit.",
+   "ru": "Лампа рядом с кроватью.",
+   "uk": "Лампа біля ліжка."
+  },
+  {
+   "id": "fr:06:41",
+   "target": "La première porte est fermée.",
+   "ru": "Первая дверь закрыта.",
+   "uk": "Перші двері зачинені."
+  },
+  {
+   "id": "fr:06:42",
+   "target": "Le dernier train est à quai.",
+   "ru": "Последний поезд на платформе.",
+   "uk": "Останній поїзд на платформі."
+  },
+  {
+   "id": "fr:06:43",
+   "target": "Les deux enfants sont là.",
+   "ru": "Оба ребёнка там.",
+   "uk": "Обидві дитини там."
+  },
+  {
+   "id": "fr:06:44",
+   "target": "L’amie de Léa est ici.",
+   "ru": "Подруга Леа здесь.",
+   "uk": "Подруга Леа тут."
+  },
+  {
+   "id": "fr:06:45",
+   "target": "Le frère de Paul est au marché.",
+   "ru": "Брат Поля на рынке.",
+   "uk": "Брат Поля на ринку."
+  },
+  {
+   "id": "fr:06:46",
+   "target": "La photo est dans le tiroir.",
+   "ru": "Фотография в ящике.",
+   "uk": "Фотографія в шухляді."
+  },
+  {
+   "id": "fr:06:47",
+   "target": "Les clés de la voiture sont ici.",
+   "ru": "Ключи от машины здесь.",
+   "uk": "Ключі від машини тут."
+  },
+  {
+   "id": "fr:06:48",
+   "target": "L’entrée du musée est gratuite.",
+   "ru": "Вход в музей бесплатный.",
+   "uk": "Вхід до музею безкоштовний."
+  },
+  {
+   "id": "fr:06:49",
+   "target": "Les prix sont sur la carte.",
+   "ru": "Цены указаны в меню.",
+   "uk": "Ціни вказані в меню."
+  },
+  {
+   "id": "fr:06:50",
+   "target": "Le nom est sur l’enveloppe.",
+   "ru": "Имя на конверте.",
+   "uk": "Ім'я на конверті."
+  }
+ ],
+ "newWords": [
+  {
+   "lemma": "le tiroir",
+   "ru": "выдвижной ящик",
+   "uk": "висувна скринька"
+  },
+  {
+   "lemma": "le chargeur",
+   "ru": "зарядное устройство",
+   "uk": "зарядний пристрій"
+  },
+  {
+   "lemma": "l’enveloppe (f.)",
+   "ru": "конверт",
+   "uk": "конверт"
+  },
+  {
+   "lemma": "le marché",
+   "ru": "рынок",
+   "uk": "ринок"
+  },
+  {
+   "lemma": "l’ascenseur (m.)",
+   "ru": "лифт",
+   "uk": "ліфт"
+  },
+  {
+   "lemma": "le pain",
+   "ru": "хлеб",
+   "uk": "хліб"
+  },
+  {
+   "lemma": "le jardin",
+   "ru": "сад",
+   "uk": "сад"
+  },
+  {
+   "lemma": "la chaise",
+   "ru": "стул",
+   "uk": "стілець"
+  },
+  {
+   "lemma": "la voiture",
+   "ru": "автомобиль",
+   "uk": "автомобіль"
+  },
+  {
+   "lemma": "la soupe",
+   "ru": "суп",
+   "uk": "суп"
+  },
+  {
+   "lemma": "la veste",
+   "ru": "куртка",
+   "uk": "куртка"
+  }
+ ],
+ "knownWords": [
+  "ici",
+  "la gare",
+  "la clé",
+  "la fenêtre",
+  "prêt / prête",
+  "être",
+  "je / j’",
+  "tu",
+  "nous",
+  "vous",
+  "la maison",
+  "le bureau",
+  "la porte",
+  "ensemble",
+  "le magasin",
+  "le sac",
+  "le couloir",
+  "la chambre",
+  "le ticket",
+  "la pharmacie",
+  "en retard",
+  "la table",
+  "la salle",
+  "le train",
+  "le billet",
+  "le vélo",
+  "le bus",
+  "le musée",
+  "le quai",
+  "le guichet",
+  "la sortie",
+  "la poche",
+  "la serrure",
+  "l’entrée (f.)",
+  "le parking",
+  "le reçu",
+  "la facture",
+  "le voisin / la voisine",
+  "le cadeau",
+  "les lunettes",
+  "la sœur",
+  "le frère",
+  "la place",
+  "la carte",
+  "le passeport",
+  "la monnaie",
+  "la pause",
+  "le rendez-vous",
+  "l’ordonnance (f.)",
+  "avoir",
+  "l’eau (f.)"
+ ],
+ "previousTopics": [
+  {
+   "lesson": 1,
+   "title": "Я здесь: `je suis`, `tu es`"
+  },
+  {
+   "lesson": 2,
+   "title": "Как сказать «не»: `ne … pas`"
+  },
+  {
+   "lesson": 3,
+   "title": "Проверить догадку: вопрос «да или нет»"
+  },
+  {
+   "lesson": 4,
+   "title": "Назвать человека или предмет: `c’est`"
+  },
+  {
+   "lesson": 5,
+   "title": "Что у меня есть: `avoir`"
+  }
+ ],
+ "oldTopicTitle": "Известный предмет: `le`, `la`, `l’`, `les`",
+ "oldTheoryRu": "Артикль — короткое слово перед названием предмета. Когда человеку понятно, какой предмет ты имеешь в виду, часто нужен определённый артикль. Запоминай название сразу с ним, а не угадывай род по переводу. В единственном числе перед согласной различай `le` и `la`. Перед гласной либо немым `h` оба могут стать `l’`. Апостроф прилегает к следующему слову: `l’entrée`. Французский также ставит определённый артикль, когда говорит о категории в целом. `J’aime le café` обычно о кофе как напитке, а не об одной чашке, стоящей перед тобой. Если артикль сократился, род не исчез. Например, относиться к `l’école` как к слову без рода нельзя. Для слов с так называемым придыхательным `h` сокращения нет; это свойство проверяют по словарю. Во множественном числе `les` подходит и к мужскому, и к женскому роду. В написании число важно даже тогда, когда финальная буква существительного не слышна. Не прибавляй второй определитель к уже готовому. «Мой ключ» — `ma clé`, а не `la ma clé`. Артикль в соседнем дополнении может оставаться на своём месте. Найди все группы существительных в длинной фразе. У каждой собственный артикль или другой определитель. Не выбирай артикль для второй группы по роду первой."
+}

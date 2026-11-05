@@ -1,0 +1,586 @@
+{
+  "lang": "es",
+  "lesson": 6,
+  "title": {
+    "ru": "Один предмет и несколько",
+    "uk": "Один предмет і кілька",
+    "en": "One thing and several"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Один и несколько",
+        "uk": "Один і кілька",
+        "en": "One and several"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать про один паспорт и про несколько.\nEl pasaporte está aquí. — «Паспорт здесь.»\nЧитается: эль пасапо́рте эста́ аки́.\nLos pasaportes están aquí. — «Паспорта здесь.»\nБыл el — стал los. Был está — стал están.\nПосмотрите на конец слова: pasaporte — pasaportes.\nСлово maleta значит «чемодан». La maleta — las maletas.",
+        "uk": "Дивіться, як сказати про один паспорт і про кілька.\nEl pasaporte está aquí. — «Паспорт тут.»\nЧитається: ель пасапо́рте еста́ акі́.\nLos pasaportes están aquí. — «Паспорти тут.»\nБув el — став los. Був está — став están.\nПодивіться на кінець слова: pasaporte — pasaportes.\nСлово maleta означає «валіза». La maleta — las maletas.",
+        "en": "Look at how to say one passport and several.\nEl pasaporte está aquí. — “The passport is here.”\nLos pasaportes están aquí. — “The passports are here.”\nThere was el — now los. There was está — now están.\nLook at the end of the word: pasaporte — pasaportes.\nThe word maleta means “suitcase”. La maleta — las maletas."
+      },
+      "examples": [
+        {
+          "phraseId": "es:06:01",
+          "say": {
+            "ru": "эль пасапо́рте эста́ аки́",
+            "uk": "ель пасапо́рте еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:06:02",
+          "say": {
+            "ru": "лос пасапо́ртес эста́н аки́",
+            "uk": "лос пасапо́ртес еста́н акі́"
+          }
+        },
+        {
+          "phraseId": "es:06:03",
+          "say": {
+            "ru": "ла мале́та эста́ аки́",
+            "uk": "ла мале́та еста́ акі́"
+          }
+        },
+        {
+          "phraseId": "es:06:04",
+          "say": {
+            "ru": "лас мале́тас эста́н аки́",
+            "uk": "лас мале́тас еста́н акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паспорт здесь»",
+            "uk": "Виберіть, як сказати: «Паспорт тут»",
+            "en": "Choose how to say: “The passport is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:06:01",
+          "options": [
+            "es:06:01",
+            "es:06:02",
+            "es:06:03"
+          ],
+          "answerId": "es:06:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паспорта здесь»",
+            "uk": "Виберіть, як сказати: «Паспорти тут»",
+            "en": "Choose how to say: “The passports are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:02",
+          "options": [
+            "es:06:02",
+            "es:06:01",
+            "es:06:04"
+          ],
+          "answerId": "es:06:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чемоданы здесь»",
+            "uk": "Виберіть, як сказати: «Валізи тут»",
+            "en": "Choose how to say: “The suitcases are here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:04",
+          "options": [
+            "es:06:04",
+            "es:06:03",
+            "es:06:02"
+          ],
+          "answerId": "es:06:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Вон там, внутри, снаружи",
+        "uk": "Он там, всередині, надворі",
+        "en": "Over there, inside, outside"
+      },
+      "text": {
+        "ru": "Вещь может быть вон там, внутри или снаружи.\nEl billete está allí. — «Билет вон там.»\nЧитается: эль бийе́те эста́ ай-и́.\nСлово allí значит «вон там», dentro — «внутри», fuera — «снаружи».\nСлово botella значит «бутылка», abrigo — «пальто».",
+        "uk": "Річ може бути он там, всередині або надворі.\nEl billete está allí. — «Квиток он там.»\nЧитається: ель бійе́те еста́ ай-і́.\nСлово allí означає «он там», dentro — «всередині», fuera — «надворі».\nСлово botella означає «пляшка», abrigo — «пальто».",
+        "en": "A thing can be over there, inside or outside.\nEl billete está allí. — “The ticket is over there.”\nThe word allí means “over there”, dentro — “inside”, fuera — “outside”.\nThe word botella means “bottle”, abrigo means “coat”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:06:05",
+          "say": {
+            "ru": "эль бийе́те эста́ ай-и́",
+            "uk": "ель бійе́те еста́ ай-і́"
+          }
+        },
+        {
+          "phraseId": "es:06:11",
+          "say": {
+            "ru": "ла боте́йя эста́ ай-и́",
+            "uk": "ла боте́йя еста́ ай-і́"
+          }
+        },
+        {
+          "phraseId": "es:06:10",
+          "say": {
+            "ru": "лос абри́гос эста́н де́нтро",
+            "uk": "лос абрі́гос еста́н де́нтро"
+          }
+        },
+        {
+          "phraseId": "es:06:09",
+          "say": {
+            "ru": "эль бо́льсо эста́ де́нтро",
+            "uk": "ель бо́льсо еста́ де́нтро"
+          }
+        },
+        {
+          "phraseId": "es:06:17",
+          "say": {
+            "ru": "ла мале́та эста́ фуэ́ра",
+            "uk": "ла мале́та еста́ фуе́ра"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билет вон там»",
+            "uk": "Виберіть, як сказати: «Квиток он там»",
+            "en": "Choose how to say: “The ticket is over there”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:06:05",
+          "options": [
+            "es:06:05",
+            "es:06:11",
+            "es:06:09"
+          ],
+          "answerId": "es:06:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Бутылка вон там»",
+            "uk": "Виберіть, як сказати: «Пляшка он там»",
+            "en": "Choose how to say: “The bottle is over there”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:11",
+          "options": [
+            "es:06:11",
+            "es:06:05",
+            "es:06:10"
+          ],
+          "answerId": "es:06:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чемодан снаружи»",
+            "uk": "Виберіть, як сказати: «Валіза надворі»",
+            "en": "Choose how to say: “The suitcase is outside”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:17",
+          "options": [
+            "es:06:17",
+            "es:06:09",
+            "es:06:10"
+          ],
+          "answerId": "es:06:17"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "На столе, в рюкзаке",
+        "uk": "На столі, у рюкзаку",
+        "en": "On the table, in the backpack"
+      },
+      "text": {
+        "ru": "Теперь где лежит вещь: на столе или в рюкзаке.\nEl mapa está en la mesa. — «Карта на столе.»\nЧитается: эль ма́па эста́ эн ла ме́са.\nСлово mapa значит «карта», foto — «фотография».\nLas fotos están en la mesa. — «Фотографии на столе.»",
+        "uk": "Тепер де лежить річ: на столі або в рюкзаку.\nEl mapa está en la mesa. — «Мапа на столі.»\nЧитається: ель ма́па еста́ ен ла ме́са.\nСлово mapa означає «мапа», foto — «фотографія».\nLas fotos están en la mesa. — «Фотографії на столі.»",
+        "en": "Now where a thing lies: on the table or in the backpack.\nEl mapa está en la mesa. — “The map is on the table.”\nThe word mapa means “map”, foto means “photo”.\nLas fotos están en la mesa. — “The photos are on the table.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:06:21",
+          "say": {
+            "ru": "эль ма́па эста́ эн ла ме́са",
+            "uk": "ель ма́па еста́ ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:06:23",
+          "say": {
+            "ru": "ла фо́то эста́ эн ла ме́са",
+            "uk": "ла фо́то еста́ ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:06:22",
+          "say": {
+            "ru": "лос ма́пас эста́н эн ла ме́са",
+            "uk": "лос ма́пас еста́н ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:06:24",
+          "say": {
+            "ru": "лас фо́тос эста́н эн ла ме́са",
+            "uk": "лас фо́тос еста́н ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:06:25",
+          "say": {
+            "ru": "эль ма́па эста́ эн ла мочи́ла",
+            "uk": "ель ма́па еста́ ен ла мочі́ла"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Карта на столе»",
+            "uk": "Виберіть, як сказати: «Мапа на столі»",
+            "en": "Choose how to say: “The map is on the table”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:06:21",
+          "options": [
+            "es:06:21",
+            "es:06:23",
+            "es:06:25"
+          ],
+          "answerId": "es:06:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Фотография на столе»",
+            "uk": "Виберіть, як сказати: «Фотографія на столі»",
+            "en": "Choose how to say: “The photo is on the table”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:23",
+          "options": [
+            "es:06:23",
+            "es:06:21",
+            "es:06:25"
+          ],
+          "answerId": "es:06:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Карта в рюкзаке»",
+            "uk": "Виберіть, як сказати: «Мапа у рюкзаку»",
+            "en": "Choose how to say: “The map is in the backpack”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:25",
+          "options": [
+            "es:06:25",
+            "es:06:21",
+            "es:06:22"
+          ],
+          "answerId": "es:06:25"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Рядом и на станции",
+        "uk": "Поруч і на станції",
+        "en": "Near and at the station"
+      },
+      "text": {
+        "ru": "Поезд и места рядом.\nEl tren está cerca. — «Поезд близко.»\nЧитается: эль трен эста́ се́рка.\nСлово tren значит «поезд».\nLos trenes están en la estación. — «Поезда на станции.»\nПосмотрите: tren — trenes.",
+        "uk": "Потяг і місця поруч.\nEl tren está cerca. — «Потяг близько.»\nЧитається: ель трен еста́ се́рка.\nСлово tren означає «потяг».\nLos trenes están en la estación. — «Потяги на станції.»\nПодивіться: tren — trenes.",
+        "en": "The train and places nearby.\nEl tren está cerca. — “The train is near.”\nThe word tren means “train”.\nLos trenes están en la estación. — “The trains are at the station.”\nLook: tren — trenes."
+      },
+      "examples": [
+        {
+          "phraseId": "es:06:13",
+          "say": {
+            "ru": "эль трен эста́ се́рка",
+            "uk": "ель трен еста́ се́рка"
+          }
+        },
+        {
+          "phraseId": "es:06:14",
+          "say": {
+            "ru": "эль оте́ль эста́ се́рка",
+            "uk": "ель оте́ль еста́ се́рка"
+          }
+        },
+        {
+          "phraseId": "es:06:15",
+          "say": {
+            "ru": "ла фарма́сья эста́ се́рка",
+            "uk": "ла фарма́сья еста́ се́рка"
+          }
+        },
+        {
+          "phraseId": "es:06:39",
+          "say": {
+            "ru": "эль трен эста́ эн ла эстасьо́н",
+            "uk": "ель трен еста́ ен ла естасьо́н"
+          }
+        },
+        {
+          "phraseId": "es:06:40",
+          "say": {
+            "ru": "лос тре́нес эста́н эн ла эстасьо́н",
+            "uk": "лос тре́нес еста́н ен ла естасьо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд близко»",
+            "uk": "Виберіть, як сказати: «Потяг близько»",
+            "en": "Choose how to say: “The train is near”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:06:13",
+          "options": [
+            "es:06:13",
+            "es:06:14",
+            "es:06:15"
+          ],
+          "answerId": "es:06:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд на станции»",
+            "uk": "Виберіть, як сказати: «Потяг на станції»",
+            "en": "Choose how to say: “The train is at the station”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:39",
+          "options": [
+            "es:06:39",
+            "es:06:40",
+            "es:06:13"
+          ],
+          "answerId": "es:06:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезда на станции»",
+            "uk": "Виберіть, як сказати: «Потяги на станції»",
+            "en": "Choose how to say: “The trains are at the station”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:40",
+          "options": [
+            "es:06:40",
+            "es:06:39",
+            "es:06:14"
+          ],
+          "answerId": "es:06:40"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Врач, гид, студенты",
+        "uk": "Лікар, гід, студенти",
+        "en": "Doctor, guide, students"
+      },
+      "text": {
+        "ru": "Про людей тоже говорят el и la.\nEl médico está en la puerta. — «Врач у двери.»\nЧитается: эль ме́дико эста́ эн ла пуэ́рта.\nLa médica está en la puerta. — «Женщина-врач у двери.»\nМужчина — el, женщина — la. Слово guía одно: el guía, la guía.\nСтудентов несколько? Los estudiantes, las estudiantes.",
+        "uk": "Про людей теж кажуть el і la.\nEl médico está en la puerta. — «Лікар біля дверей.»\nЧитається: ель ме́діко еста́ ен ла пуе́рта.\nLa médica está en la puerta. — «Лікарка біля дверей.»\nЧоловік — el, жінка — la. Слово guía одне: el guía, la guía.\nСтудентів кілька? Los estudiantes, las estudiantes.",
+        "en": "For people we also say el and la.\nEl médico está en la puerta. — “The doctor is at the door.”\nLa médica está en la puerta. — “The woman doctor is at the door.”\nMan — el, woman — la. The word guía is one: el guía, la guía.\nSeveral students? Los estudiantes, las estudiantes."
+      },
+      "examples": [
+        {
+          "phraseId": "es:06:41",
+          "say": {
+            "ru": "эль ме́дико эста́ эн ла пуэ́рта",
+            "uk": "ель ме́діко еста́ ен ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:06:42",
+          "say": {
+            "ru": "ла ме́дика эста́ эн ла пуэ́рта",
+            "uk": "ла ме́діка еста́ ен ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:06:45",
+          "say": {
+            "ru": "эль ги́а эста́ эн эль оте́ль",
+            "uk": "ель гі́а еста́ ен ель оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:06:46",
+          "say": {
+            "ru": "ла ги́а эста́ эн эль оте́ль",
+            "uk": "ла гі́а еста́ ен ель оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:06:43",
+          "say": {
+            "ru": "лос эстудья́нтес эста́н эн ла эстасьо́н",
+            "uk": "лос естудья́нтес еста́н ен ла естасьо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Врач у двери»",
+            "uk": "Виберіть, як сказати: «Лікар біля дверей»",
+            "en": "Choose how to say: “The doctor is at the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:06:41",
+          "options": [
+            "es:06:41",
+            "es:06:42",
+            "es:06:45"
+          ],
+          "answerId": "es:06:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Женщина-врач у двери»",
+            "uk": "Виберіть, як сказати: «Лікарка біля дверей»",
+            "en": "Choose how to say: “The woman doctor is at the door”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:42",
+          "options": [
+            "es:06:42",
+            "es:06:41",
+            "es:06:46"
+          ],
+          "answerId": "es:06:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Женщина-гид в отеле»",
+            "uk": "Виберіть, як сказати: «Гідеса в готелі»",
+            "en": "Choose how to say: “The woman guide is at the hotel”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:46",
+          "options": [
+            "es:06:46",
+            "es:06:45",
+            "es:06:42"
+          ],
+          "answerId": "es:06:46"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Несколько и несколько",
+        "uk": "Кілька і кілька",
+        "en": "Several in several"
+      },
+      "text": {
+        "ru": "Вещей несколько, и мест несколько тоже.\nLas fotos están en las mochilas. — «Фотографии в рюкзаках.»\nЧитается: лас фо́тос эста́н эн лас мочи́лас.\nСлово las стоит и перед fotos, и перед mochilas.\nLos billetes están en los bolsos. — «Билеты в сумках.»\nПаспорт один, а чемодан один: el pasaporte, la maleta.",
+        "uk": "Речей кілька, і місць теж кілька.\nLas fotos están en las mochilas. — «Фотографії в рюкзаках.»\nЧитається: лас фо́тос еста́н ен лас мочі́лас.\nСлово las стоїть і перед fotos, і перед mochilas.\nLos billetes están en los bolsos. — «Квитки в сумках.»\nПаспорт один, і валіза одна: el pasaporte, la maleta.",
+        "en": "Several things and several places too.\nLas fotos están en las mochilas. — “The photos are in the backpacks.”\nThe word las stands before fotos and before mochilas.\nLos billetes están en los bolsos. — “The tickets are in the bags.”\nOne passport, one suitcase: el pasaporte, la maleta."
+      },
+      "examples": [
+        {
+          "phraseId": "es:06:31",
+          "say": {
+            "ru": "эль пасапо́рте эста́ эн ла мале́та",
+            "uk": "ель пасапо́рте еста́ ен ла мале́та"
+          }
+        },
+        {
+          "phraseId": "es:06:32",
+          "say": {
+            "ru": "лос пасапо́ртес эста́н эн ла мале́та",
+            "uk": "лос пасапо́ртес еста́н ен ла мале́та"
+          }
+        },
+        {
+          "phraseId": "es:06:47",
+          "say": {
+            "ru": "лас фо́тос эста́н эн лас мочи́лас",
+            "uk": "лас фо́тос еста́н ен лас мочі́лас"
+          }
+        },
+        {
+          "phraseId": "es:06:48",
+          "say": {
+            "ru": "лос бийе́тес эста́н эн лос бо́льсос",
+            "uk": "лос бійе́тес еста́н ен лос бо́льсос"
+          }
+        },
+        {
+          "phraseId": "es:06:50",
+          "say": {
+            "ru": "лас йа́вес эста́н эн лос больси́йос",
+            "uk": "лас йа́вес еста́н ен лос больсі́йос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паспорт в чемодане»",
+            "uk": "Виберіть, як сказати: «Паспорт у валізі»",
+            "en": "Choose how to say: “The passport is in the suitcase”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:06:31",
+          "options": [
+            "es:06:31",
+            "es:06:32",
+            "es:06:47"
+          ],
+          "answerId": "es:06:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Фотографии в рюкзаках»",
+            "uk": "Виберіть, як сказати: «Фотографії в рюкзаках»",
+            "en": "Choose how to say: “The photos are in the backpacks”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:47",
+          "options": [
+            "es:06:47",
+            "es:06:48",
+            "es:06:50"
+          ],
+          "answerId": "es:06:47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключи в карманах»",
+            "uk": "Виберіть, як сказати: «Ключі в кишенях»",
+            "en": "Choose how to say: “The keys are in the pockets”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:06:50",
+          "options": [
+            "es:06:50",
+            "es:06:48",
+            "es:06:32"
+          ],
+          "answerId": "es:06:50"
+        }
+      ]
+    }
+  ]
+}

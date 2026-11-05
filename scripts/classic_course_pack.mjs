@@ -13,6 +13,12 @@ import { createHash } from 'node:crypto';
 import { inflateRawSync } from 'node:zlib';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { applyTheoryFixes, theoryFixStats } from './classic_theory_fixes.mjs';
+import { plainTheoryFor, plainStats } from './classic_plain_apply.mjs';
+import { scrubTheory } from './classic_locale_scrub.mjs';
+import { applyManualGlossary, manualStats } from './classic_glossary_manual.mjs';
+import { applyVocab, vocabStats } from './classic_vocab_apply.mjs';
+import { rebuildTheoryExamples, addChapterTitles, theoryExamplesStats } from './classic_theory_examples.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const argv = process.argv.slice(2);
@@ -293,7 +299,7 @@ function buildPhrase(lang, prof, r, where) {
   return out;
 }
 
-function buildGlossary(lang, prof, take, zips) {
+function buildGlossary(lang, prof, take, zips, allPhrases) {
   const lemmas = [];
   const usedEsOverrides = new Set();
   if (lang === 'en') {
@@ -332,14 +338,46 @@ function buildGlossary(lang, prof, take, zips) {
   }
   if (lang === 'es') for (const k of Object.keys(OVERRIDES.es ?? {})) if (!usedEsOverrides.has(k)) fail(lang, `правка словаря: лемма «${k}» не найдена`);
   if (lang === 'en') for (const k of Object.keys(OVERRIDES.en ?? {})) if (!lemmas.length || !Object.hasOwn(take('glossary.json'), k)) fail(lang, `правка словаря: ключ «${k}» не найден`);
-  // зачем (владелец 05.11, «слова урока без повторов»): одна лемма с одним и тем же значением (ru) — одна запись; омонимы с разными значениями остаются отдельно
+  // зачем (владелец 05.11, «все слова из фраз в словаре»): добавочные леммы с переводами docs/work/classic_glossary_new/<lang>.json
+  // (кандидаты из docs/work/classic_glossary_candidates + переводы Локального ИИ/Переводчика). Берём только записи с ru и uk; пустые локали = en.
+  {
+    // источники по приоритету: classic_glossary_new/<lang>.json (проверенные), затем classic_glossary_candidates/<lang>.translated.json (черновик переводов)
+    // зачем (Координатор 05.11, заморозка): черновики локальной модели (candidates/*.translated.json) в словарь НЕ вливаем — только проверенные classic_glossary_new/<lang>.json (сейчас пусто, файлы лежат в _frozen)
+    const addFiles = [join(ROOT, 'docs', 'work', 'classic_glossary_new', `${lang}.json`)].filter((f) => existsSync(f));
+    const have = new Set(lemmas.map((x) => String(x.lemma).toLowerCase().trim()));
+    for (const addFile of addFiles) {
+      for (const e of JSON.parse(readFileSync(addFile, 'utf8'))) {
+        if (have.has(String(e.lemma).toLowerCase().trim())) continue;
+        have.add(String(e.lemma).toLowerCase().trim());
+        const m = e.meaning ?? {};
+        if (!nonEmpty(m.ru) || !nonEmpty(m.uk)) continue;
+        lemmas.push({ lemma: e.lemma, meaning: Object.fromEntries(LOCALES.map((l) => [l, nonEmpty(m[l]) ? m[l] : (m.en ?? m.ru)])), firstLesson: e.firstLesson, phraseIds: e.phraseIds, ...(e.forms?.length ? { forms: e.forms } : {}), ...(e.proper ? { proper: true } : {}) });
+      }
+    }
+  }
+  // зачем (владелец 05.11): у старых лемм нет списка форм (est/sont ↔ être) — берём формы из кандидатов (spaCy), чтобы «слово из фразы» связывалось с леммой
+  {
+    const cf = join(ROOT, 'docs', 'work', 'classic_glossary_candidates', lang + '.json');
+    if (existsSync(cf)) {
+      const fm = new Map(JSON.parse(readFileSync(cf, 'utf8')).map((c) => [String(c.lemma).toLowerCase().trim(), c.forms]));
+      for (const e of lemmas) if (!e.forms?.length) { const f = fm.get(String(e.lemma).toLowerCase().trim()); if (f?.length) e.forms = f; }
+    }
+  }
+  applyVocab(lang, lemmas, allPhrases ?? []); // зачем: словарь уроков из слов-форм (classic_vocab) — новые слова урока, без дублей и мусора
+  applyManualGlossary(lang, lemmas, allPhrases ?? []); // зачем: служебные слова и формы вручную (docs/work/classic_glossary_new/<lang>_manual.json)
+  // зачем (владелец 05.11, «слова урока без повторов»): одна лемма — одна запись в самом раннем уроке; значения других смыслов (омонимы) дописываем в meaning через «; »,
+  // phraseIds объединяем. Так слово не повторяется в уроках, но все смыслы остаются у первого появления.
   const merged = [];
   const byKey = new Map();
-  for (const e of lemmas) {
-    const k = `${String(e.lemma).toLowerCase()}|${e.meaning?.ru ?? ''}`;
+  for (const e of [...lemmas].sort((x, y) => x.firstLesson - y.firstLesson)) {
+    const k = String(e.lemma).toLowerCase().trim();
     const prev = byKey.get(k);
     if (!prev) { byKey.set(k, e); merged.push(e); continue; }
-    prev.firstLesson = Math.min(prev.firstLesson, e.firstLesson);
+    for (const l of Object.keys(e.meaning ?? {})) {
+      const cur = prev.meaning[l];
+      if (!cur) prev.meaning[l] = e.meaning[l];
+      else if (e.meaning[l] && !cur.split('; ').includes(e.meaning[l])) prev.meaning[l] = `${cur}; ${e.meaning[l]}`;
+    }
     prev.phraseIds = [...new Set([...(prev.phraseIds ?? []), ...(e.phraseIds ?? [])])];
   }
   return { lemmas: merged };
@@ -911,6 +949,9 @@ function convert(lang, zips) {
     intro[n] = blocks;
 
     const th = take(prof.theory(n));
+    applyTheoryFixes(lang, n, th, prof.fmt); // зачем: правки Opus-аудита теорий (full3) применяются слоем при каждой пересборке
+    if (prof.fmt === 'chapters') addChapterTitles(th); // зачем (Learning V2): экран называл главы «Часть N» — даём заголовок главы на каждой локали
+    rebuildTheoryExamples(lang, n, th, prof.fmt, (files[`lessons-${pad2(n)}.json`]?.phrases ?? [])); // зачем: примеры глав — по смыслу текста главы, а не по шаблону позиций
     if (prof.fmt === 'studio2') {
       for (const loc of LOCALES) if (!th.localized?.[loc]) fail(lang, `урок ${n}: теория без ${loc}`);
     } else {
@@ -918,7 +959,9 @@ function convert(lang, zips) {
       for (const ch of th.chapters ?? []) for (const loc of LOCALES) if (!nonEmpty(ch.textByLocale?.[loc])) fail(lang, `урок ${n}: глава без ${loc}`);
       for (const loc of LOCALES) if (!nonEmpty(th.title?.[loc])) fail(lang, `урок ${n}: заголовок теории без ${loc}`);
     }
-    theory[n] = th;
+    // зачем (владелец 05.11, «объяснять как ребёнку»): если для урока есть переписанная теория (docs/work/classic_theory_plain), она заменяет старую целиком
+    theory[n] = plainTheoryFor(lang, n) ?? th;
+    scrubTheory(theory[n]); // зачем: P0 владельца 05.11 — без упоминаний русского в нерусских локалях
   }
   if (phrases !== 1600) fail(lang, `всего ${phrases} фраз вместо 1600`);
   const allPhrases = Object.values(files).filter((f) => f.phrases).flatMap((f) => f.phrases);
@@ -948,7 +991,7 @@ function convert(lang, zips) {
   if (dstat.removed.short) fail(lang, `соблазны: ${dstat.removed.short} плиток с недобором соблазнов`);
   files['intro.json'] = intro;
   files['theory.json'] = { format: prof.fmt, data: theory };
-  files['glossary.json'] = buildGlossary(lang, prof, take, zips);
+  files['glossary.json'] = buildGlossary(lang, prof, take, zips, allPhrases);
   if (!files['glossary.json'].lemmas.length) fail(lang, 'пустой словарь');
 
   // ключи подсказок (род, «друг/вы», связка…) резолвятся в ui курса: кладём только используемые, на 9 языках
@@ -1008,6 +1051,9 @@ if (!CHECK_ONLY && !errors.length) { mkdirSync(OUT, { recursive: true }); writeF
 if (auditStats.rejected && process.env.AUDIT_DUMP) writeFileSync(process.env.AUDIT_DUMP, JSON.stringify(auditStats.rejected, null, 1));
 delete auditStats.rejected;
 console.log('слой аудита: ' + JSON.stringify(auditStats));
+console.log('правки теорий: ' + JSON.stringify(theoryFixStats));
+console.log('примеры глав: ' + JSON.stringify(theoryExamplesStats));
+console.log('теория как для ребёнка: ' + JSON.stringify(plainStats));
 console.log(`переводы ru/uk: исправлено невидимых символов/знаков конца: ${translationNormalized.n}`);
 console.log(JSON.stringify(table));
 if (warnings.length) console.log(`ПРЕДУПРЕЖДЕНИЯ (${warnings.length}): ` + warnings.slice(0, 3).join(' | ') + ' …');

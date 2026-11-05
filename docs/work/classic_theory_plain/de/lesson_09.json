@@ -1,0 +1,544 @@
+{
+  "lang": "de",
+  "lesson": 9,
+  "title": {
+    "ru": "Мой, твой, её, наш, ваш",
+    "uk": "Мій, твій, її, наш, ваш",
+    "en": "My, your, her, our, your"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Мой и твой",
+        "uk": "Мій і твій",
+        "en": "My and your"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это мой паспорт».\nDas ist mein Pass. — «Это мой паспорт.»\nЧитается: дас ист майн пас\nСлово mein значит «мой». Слово Pass — «паспорт».\nDas ist dein Pass. — «Это твой паспорт.»\nЧитается: дас ист дайн пас\nСлово dein значит «твой».\nHier ist mein Ausweis. — «Вот моё удостоверение.»\nЧитается: хир ист майн а́усвайс\nСлово Ausweis значит «удостоверение личности». Hier ist — «вот».\nDas ist meine Jacke. — «Это моя куртка.»\nЧитается: дас ист ма́йне я́ке\nСлово Jacke значит «куртка». Перед ней mein стало meine.\nHier ist deine Brille. — «Вот твои очки.»\nЧитается: хир ист да́йне бри́ле\nСлово меняется вместе с вещью: mein Pass, meine Jacke, deine Brille.\nСлово Brille значит «очки». Слово deine — «твоя, твои».",
+        "uk": "Дивіться, як сказати «Це мій паспорт».\nDas ist mein Pass. — «Це мій паспорт.»\nЧитається: дас іст майн пас\nСлово mein означає «мій». Слово Pass — «паспорт».\nDas ist dein Pass. — «Це твій паспорт.»\nЧитається: дас іст дайн пас\nСлово dein означає «твій».\nHier ist mein Ausweis. — «Ось моє посвідчення.»\nЧитається: хір іст майн а́усвайс\nСлово Ausweis означає «посвідчення особи». Hier ist — «ось».\nDas ist meine Jacke. — «Це моя куртка.»\nЧитається: дас іст ма́йне я́ке\nСлово Jacke означає «куртка». Перед нею mein стало meine.\nHier ist deine Brille. — «Ось твої окуляри.»\nЧитається: хір іст да́йне брі́ле\nСлово змінюється разом із річчю: mein Pass, meine Jacke, deine Brille.\nСлово Brille означає «окуляри». Слово deine — «твоя, твої».",
+        "en": "Look at how to say “This is my passport”.\nDas ist mein Pass. — “This is my passport.”\nSounds like: das eest mayn pas\nThe word mein means “my”. The word Pass means “passport”.\nDas ist dein Pass. — “This is your passport.”\nSounds like: das eest dayn pas\nThe word dein means “your”.\nHier ist mein Ausweis. — “Here is my ID.”\nSounds like: kheer eest mayn Aoosvays\nThe word Ausweis means “ID card”. Hier ist means “here is”.\nDas ist meine Jacke. — “This is my jacket.”\nSounds like: das eest mAyne YAke\nThe word Jacke means “jacket”. Before it mein became meine.\nHier ist deine Brille. — “Here are your glasses.”\nSounds like: kheer eest dAyne brEEle\nThe word changes with the thing: mein Pass, meine Jacke, deine Brille.\nThe word Brille means “glasses”. The word deine means “your”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:09:01",
+          "say": {
+            "ru": "дас ист майн пас",
+            "uk": "дас іст майн пас"
+          }
+        },
+        {
+          "phraseId": "de:09:02",
+          "say": {
+            "ru": "дас ист дайн пас",
+            "uk": "дас іст дайн пас"
+          }
+        },
+        {
+          "phraseId": "de:09:09",
+          "say": {
+            "ru": "хир ист майн а́усвайс",
+            "uk": "хір іст майн а́усвайс"
+          }
+        },
+        {
+          "phraseId": "de:09:03",
+          "say": {
+            "ru": "дас ист ма́йне я́ке",
+            "uk": "дас іст ма́йне я́ке"
+          }
+        },
+        {
+          "phraseId": "de:09:10",
+          "say": {
+            "ru": "хир ист да́йне бри́ле",
+            "uk": "хір іст да́йне брі́ле"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это мой паспорт»",
+            "uk": "Виберіть, як сказати: «Це мій паспорт»",
+            "en": "Choose how to say: “This is my passport”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:09:01",
+          "options": [
+            "de:09:01",
+            "de:09:02",
+            "de:09:03"
+          ],
+          "answerId": "de:09:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это твой паспорт»",
+            "uk": "Виберіть, як сказати: «Це твій паспорт»",
+            "en": "Choose how to say: “This is your passport”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:02",
+          "options": [
+            "de:09:02",
+            "de:09:01",
+            "de:09:10"
+          ],
+          "answerId": "de:09:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вот твои очки»",
+            "uk": "Виберіть, як сказати: «Ось твої окуляри»",
+            "en": "Choose how to say: “Here are your glasses”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:10",
+          "options": [
+            "de:09:10",
+            "de:09:03",
+            "de:09:09"
+          ],
+          "answerId": "de:09:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Её и его",
+        "uk": "Її та його",
+        "en": "Her and his"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У Анны её паспорт».\nAnna hat ihren Pass. — «У Анны её паспорт.»\nЧитается: А́нна хат и́рен пас\nСлово ihren значит «её». Не путайте с ihr — «вы».\nTom hat seinen Pass. — «У Тома его паспорт.»\nЧитается: том хат за́йнен пас\nСлово seinen значит «его». Про Anna — ihren, про Tom — seinen.\nAnna sucht ihren Schal. — «Анна ищет свой шарф.»\nЧитается: А́нна зухт и́рен шаль\nСлово Schal значит «шарф». Слово sucht — «ищет».\nTom sucht seinen Schal. — «Том ищет свой шарф.»\nЧитается: том зухт за́йнен шаль",
+        "uk": "Дивіться, як сказати «У Анни її паспорт».\nAnna hat ihren Pass. — «У Анни її паспорт.»\nЧитається: А́нна хат і́рен пас\nСлово ihren означає «її». Не плутайте з ihr — «ви».\nTom hat seinen Pass. — «У Тома його паспорт.»\nЧитається: том хат за́йнен пас\nСлово seinen означає «його». Про Anna — ihren, про Tom — seinen.\nAnna sucht ihren Schal. — «Анна шукає свій шарф.»\nЧитається: А́нна зухт і́рен шаль\nСлово Schal означає «шарф». Слово sucht — «шукає».\nTom sucht seinen Schal. — «Том шукає свій шарф.»\nЧитається: том зухт за́йнен шаль",
+        "en": "Look at how to say “Anna has her passport”.\nAnna hat ihren Pass. — “Anna has her passport.”\nSounds like: Anna khat EEren pas\nThe word ihren means “her”. Do not mix it up with ihr — “you”.\nTom hat seinen Pass. — “Tom has his passport.”\nSounds like: tom khat zAynen pas\nThe word seinen means “his”. About Anna — ihren, about Tom — seinen.\nAnna sucht ihren Schal. — “Anna is looking for her scarf.”\nSounds like: Anna zookht EEren shal\nThe word Schal means “scarf”. The word sucht means “looks for”.\nTom sucht seinen Schal. — “Tom is looking for his scarf.”\nSounds like: tom zookht zAynen shal"
+      },
+      "examples": [
+        {
+          "phraseId": "de:09:11",
+          "say": {
+            "ru": "А́нна хат и́рен пас",
+            "uk": "А́нна хат і́рен пас"
+          }
+        },
+        {
+          "phraseId": "de:09:12",
+          "say": {
+            "ru": "том хат за́йнен пас",
+            "uk": "том хат за́йнен пас"
+          }
+        },
+        {
+          "phraseId": "de:09:13",
+          "say": {
+            "ru": "А́нна зухт и́рен шаль",
+            "uk": "А́нна зухт і́рен шаль"
+          }
+        },
+        {
+          "phraseId": "de:09:14",
+          "say": {
+            "ru": "том зухт за́йнен шаль",
+            "uk": "том зухт за́йнен шаль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Анны её паспорт»",
+            "uk": "Виберіть, як сказати: «У Анни її паспорт»",
+            "en": "Choose how to say: “Anna has her passport”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:09:11",
+          "options": [
+            "de:09:11",
+            "de:09:12",
+            "de:09:01"
+          ],
+          "answerId": "de:09:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Тома его паспорт»",
+            "uk": "Виберіть, як сказати: «У Тома його паспорт»",
+            "en": "Choose how to say: “Tom has his passport”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:12",
+          "options": [
+            "de:09:12",
+            "de:09:11",
+            "de:09:02"
+          ],
+          "answerId": "de:09:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том ищет свой шарф»",
+            "uk": "Виберіть, як сказати: «Том шукає свій шарф»",
+            "en": "Choose how to say: “Tom is looking for his scarf”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:14",
+          "options": [
+            "de:09:14",
+            "de:09:13",
+            "de:09:12"
+          ],
+          "answerId": "de:09:14"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Её сумка, его сумка",
+        "uk": "Її сумка, його сумка",
+        "en": "Her bag, his bag"
+      },
+      "text": {
+        "ru": "Смотрите: перед Tasche слова ihr и sein тоже меняются.\nAnna holt ihre Tasche. — «Анна берёт свою сумку.»\nЧитается: А́нна холт и́ре та́ше\nСлово ihre значит «её». Слово holt — «берёт».\nTom holt seine Tasche. — «Том берёт свою сумку.»\nЧитается: том холт за́йне та́ше\nСлово seine значит «его». Было seinen, стало seine.\nAnna schreibt ihre Adresse. — «Анна пишет свой адрес.»\nЧитается: А́нна шрайпт и́ре адре́се\nСлово schreibt значит «пишет». Слово Adresse — «адрес».\nСлово schreiben значит «писать».",
+        "uk": "Дивіться: перед Tasche слова ihr і sein теж змінюються.\nAnna holt ihre Tasche. — «Ганна бере свою сумку.»\nЧитається: А́нна холт і́ре та́ше\nСлово ihre означає «її». Слово holt — «бере».\nTom holt seine Tasche. — «Том бере свою сумку.»\nЧитається: том холт за́йне та́ше\nСлово seine означає «його». Було seinen, стало seine.\nAnna schreibt ihre Adresse. — «Ганна пише свою адресу.»\nЧитається: А́нна шрайпт і́ре адре́се\nСлово schreibt означає «пише». Слово Adresse — «адреса».\nСлово schreiben означає «писати».",
+        "en": "Look: before Tasche the words for “her” and “his” change too.\nAnna holt ihre Tasche. — “Anna picks up her bag.”\nSounds like: Anna kholt EEre tAshe\nThe word ihre means “her”. The word holt means “picks up”.\nTom holt seine Tasche. — “Tom picks up his bag.”\nSounds like: tom kholt zAyne tAshe\nThe word seine means “his”. It was seinen, now it is seine.\nAnna schreibt ihre Adresse. — “Anna writes her address.”\nSounds like: Anna shraypt EEre adrEse\nThe word schreibt means “writes”. The word Adresse means “address”.\nThe word schreiben means “to write”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:09:15",
+          "say": {
+            "ru": "А́нна холт и́ре та́ше",
+            "uk": "А́нна холт і́ре та́ше"
+          }
+        },
+        {
+          "phraseId": "de:09:16",
+          "say": {
+            "ru": "том холт за́йне та́ше",
+            "uk": "том холт за́йне та́ше"
+          }
+        },
+        {
+          "phraseId": "de:09:47",
+          "say": {
+            "ru": "А́нна шрайпт и́ре адре́се",
+            "uk": "А́нна шрайпт і́ре адре́се"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна берёт свою сумку»",
+            "uk": "Виберіть, як сказати: «Ганна бере свою сумку»",
+            "en": "Choose how to say: “Anna picks up her bag”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:09:15",
+          "options": [
+            "de:09:15",
+            "de:09:16",
+            "de:09:11"
+          ],
+          "answerId": "de:09:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том берёт свою сумку»",
+            "uk": "Виберіть, як сказати: «Том бере свою сумку»",
+            "en": "Choose how to say: “Tom picks up his bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:16",
+          "options": [
+            "de:09:16",
+            "de:09:15",
+            "de:09:12"
+          ],
+          "answerId": "de:09:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна пишет свой адрес»",
+            "uk": "Виберіть, як сказати: «Ганна пише свою адресу»",
+            "en": "Choose how to say: “Anna writes her address”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:47",
+          "options": [
+            "de:09:47",
+            "de:09:15",
+            "de:09:16"
+          ],
+          "answerId": "de:09:47"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Наш и ваш",
+        "uk": "Наш і ваш",
+        "en": "Our and your"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Наш поезд прибывает».\nUnser Zug kommt. — «Наш поезд прибывает.»\nЧитается: у́нзер цук комт\nСлово unser значит «наш». Слово kommt — «приходит».\nUnsere Bahn kommt. — «Наша электричка прибывает.»\nЧитается: у́нзере бан комт\nПеред Bahn стоит unsere, а не unser.\nEuer Bus wartet. — «Ваш автобус ждёт.»\nЧитается: о́йер бус ва́ртет\nСлово euer значит «ваш», когда вас несколько. Слово wartet — «ждёт».\nEure Freundin wartet. — «Ваша подруга ждёт.»\nЧитается: о́йре фро́йндин ва́ртет\nПеред Freundin стоит eure. Слово Freundin — «подруга».",
+        "uk": "Дивіться, як сказати «Наш поїзд прибуває».\nUnser Zug kommt. — «Наш поїзд прибуває.»\nЧитається: у́нзер цук комт\nСлово unser означає «наш». Слово kommt — «приходить».\nUnsere Bahn kommt. — «Наша електричка прибуває.»\nЧитається: у́нзере бан комт\nПеред Bahn стоїть unsere, а не unser.\nEuer Bus wartet. — «Ваш автобус чекає.»\nЧитається: о́йер бус ва́ртет\nСлово euer означає «ваш», коли вас кілька. Слово wartet — «чекає».\nEure Freundin wartet. — «Ваша подруга чекає.»\nЧитається: о́йре фро́йндін ва́ртет\nПеред Freundin стоїть eure. Слово Freundin — «подруга».",
+        "en": "Look at how to say “Our train is arriving”.\nUnser Zug kommt. — “Our train is arriving.”\nSounds like: OOnzer tsook komt\nThe word unser means “our”. The word kommt means “comes”.\nUnsere Bahn kommt. — “Our train is arriving.”\nSounds like: OOnzere ban komt\nBefore Bahn comes unsere, not unser.\nEuer Bus wartet. — “Your bus is waiting.”\nSounds like: Oyer boos vArtet\nThe word euer means “your”, for several people. The word wartet means “waits”.\nEure Freundin wartet. — “Your friend is waiting.”\nSounds like: Oyre frOyndeen vArtet\nBefore Freundin comes eure. The word Freundin means “friend”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:09:21",
+          "say": {
+            "ru": "у́нзер цук комт",
+            "uk": "у́нзер цук комт"
+          }
+        },
+        {
+          "phraseId": "de:09:22",
+          "say": {
+            "ru": "у́нзере бан комт",
+            "uk": "у́нзере бан комт"
+          }
+        },
+        {
+          "phraseId": "de:09:25",
+          "say": {
+            "ru": "о́йер бус ва́ртет",
+            "uk": "о́йер бус ва́ртет"
+          }
+        },
+        {
+          "phraseId": "de:09:26",
+          "say": {
+            "ru": "о́йре фро́йндин ва́ртет",
+            "uk": "о́йре фро́йндін ва́ртет"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Наш поезд прибывает»",
+            "uk": "Виберіть, як сказати: «Наш поїзд прибуває»",
+            "en": "Choose how to say: “Our train is arriving”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:09:21",
+          "options": [
+            "de:09:21",
+            "de:09:22",
+            "de:09:25"
+          ],
+          "answerId": "de:09:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваш автобус ждёт»",
+            "uk": "Виберіть, як сказати: «Ваш автобус чекає»",
+            "en": "Choose how to say: “Your bus is waiting”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:25",
+          "options": [
+            "de:09:25",
+            "de:09:21",
+            "de:09:26"
+          ],
+          "answerId": "de:09:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Наша электричка прибывает»",
+            "uk": "Виберіть, як сказати: «Наша електричка прибуває»",
+            "en": "Choose how to say: “Our train is arriving”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:22",
+          "options": [
+            "de:09:22",
+            "de:09:21",
+            "de:09:26"
+          ],
+          "answerId": "de:09:22"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вопросы про вещи",
+        "uk": "Питання про речі",
+        "en": "Asking about things"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Где моя зарядка?».\nWo ist mein Ladegerät? — «Где моя зарядка?»\nЧитается: во ист майн ла́дегерэт\nСлово wo значит «где». Слово mein — «мой». Слово Ladegerät — «зарядка».\nHast du deinen Ausweis? — «У тебя с собой удостоверение?»\nЧитается: хаст ду да́йнен а́усвайс\nСлово deinen значит «твой». Hast du — «у тебя есть».\nHat Tom seine Brille? — «У Тома его очки?»\nЧитается: хат том за́йне бри́ле\nСлово seine значит «его». Hat Tom — «у Тома есть».\nIst das Ihr Mantel? — «Это ваше пальто?»\nЧитается: ист дас ир ма́нтель\nIhr с большой буквы значит вежливое «ваш». Слово Mantel — «пальто».",
+        "uk": "Дивіться, як запитати «Де моя зарядка?».\nWo ist mein Ladegerät? — «Де моя зарядка?»\nЧитається: во іст майн ла́дегерет\nСлово wo означає «де». Слово mein — «мій». Слово Ladegerät — «зарядка».\nHast du deinen Ausweis? — «У тебе з собою посвідчення?»\nЧитається: хаст ду да́йнен а́усвайс\nСлово deinen означає «твій». Hast du — «у тебе є».\nHat Tom seine Brille? — «У Тома його окуляри?»\nЧитається: хат том за́йне брі́ле\nСлово seine означає «його». Hat Tom — «у Тома є».\nIst das Ihr Mantel? — «Це ваше пальто?»\nЧитається: іст дас ір ма́нтель\nIhr з великої літери означає ввічливе «ваш». Слово Mantel — «пальто».",
+        "en": "Look at how to ask “Where is my charger?”.\nWo ist mein Ladegerät? — “Where is my charger?”\nSounds like: vo eest mayn lAdegeret\nThe word wo means “where”. The word mein means “my”. The word Ladegerät means “charger”.\nHast du deinen Ausweis? — “Do you have your ID with you?”\nSounds like: khast doo dAynen Aoosvays\nThe word deinen means “your”. Hast du means “do you have”.\nHat Tom seine Brille? — “Does Tom have his glasses?”\nSounds like: khat tom zAyne brEEle\nThe word seine means “his”. Hat Tom means “does Tom have”.\nIst das Ihr Mantel? — “Is this your coat?”\nSounds like: eest das eer mAntel\nIhr with a capital letter means a polite “your”. The word Mantel means “coat”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:09:31",
+          "say": {
+            "ru": "во ист майн ла́дегерэт",
+            "uk": "во іст майн ла́дегерет"
+          }
+        },
+        {
+          "phraseId": "de:09:33",
+          "say": {
+            "ru": "хаст ду да́йнен а́усвайс",
+            "uk": "хаст ду да́йнен а́усвайс"
+          }
+        },
+        {
+          "phraseId": "de:09:36",
+          "say": {
+            "ru": "хат том за́йне бри́ле",
+            "uk": "хат том за́йне брі́ле"
+          }
+        },
+        {
+          "phraseId": "de:09:37",
+          "say": {
+            "ru": "ист дас ир ма́нтель",
+            "uk": "іст дас ір ма́нтель"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где моя зарядка?»",
+            "uk": "Виберіть, як сказати: «Де моя зарядка?»",
+            "en": "Choose how to say: “Where is my charger?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:09:31",
+          "options": [
+            "de:09:31",
+            "de:09:33",
+            "de:09:37"
+          ],
+          "answerId": "de:09:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У тебя с собой удостоверение?»",
+            "uk": "Виберіть, як сказати: «У тебе з собою посвідчення?»",
+            "en": "Choose how to say: “Do you have your ID with you?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:33",
+          "options": [
+            "de:09:33",
+            "de:09:31",
+            "de:09:36"
+          ],
+          "answerId": "de:09:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Тома его очки?»",
+            "uk": "Виберіть, як сказати: «У Тома його окуляри?»",
+            "en": "Choose how to say: “Does Tom have his glasses?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:36",
+          "options": [
+            "de:09:36",
+            "de:09:33",
+            "de:09:37"
+          ],
+          "answerId": "de:09:36"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Мой рюкзак, наш мяч",
+        "uk": "Мій рюкзак, наш м’яч",
+        "en": "My backpack, our ball"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я собираю свой рюкзак».\nIch packe meinen Rucksack. — «Я собираю свой рюкзак.»\nЧитается: их па́ке ма́йнен ру́ксак\nСлово packe значит «собираю». Слово Rucksack — «рюкзак».\nК слову mein добавилась «н»: mein — meinen.\nWir holen unseren Ball. — «Мы забираем наш мяч.»\nЧитается: вир хо́лен у́нзерен баль\nСлово unseren значит «наш». Слово Ball — «мяч».\nIhr holt euren Koffer. — «Вы забираете свой чемодан.»\nЧитается: ир холт о́йрен ко́фер\nСлово euren значит «ваш». Слово Koffer — «чемодан».\nТо же с unser и euer: unseren, euren.",
+        "uk": "Дивіться, як сказати «Я збираю свій рюкзак».\nIch packe meinen Rucksack. — «Я збираю свій рюкзак.»\nЧитається: іх па́ке ма́йнен ру́ксак\nСлово packe означає «збираю». Слово Rucksack — «рюкзак».\nДо слова mein додалася «н»: mein — meinen.\nWir holen unseren Ball. — «Ми забираємо наш м'яч.»\nЧитається: вір хо́лен у́нзерен баль\nСлово unseren означає «наш». Слово Ball — «м’яч».\nIhr holt euren Koffer. — «Ви забираєте свою валізу.»\nЧитається: ір холт о́йрен ко́фер\nСлово euren означає «ваш». Слово Koffer — «валіза».\nТе саме з unser і euer: unseren, euren.",
+        "en": "Look at how to say “I pack my backpack”.\nIch packe meinen Rucksack. — “I pack my backpack.”\nSounds like: eekh pAke mAynen rOOksak\nThe word packe means “I pack”. The word Rucksack means “backpack”.\nSomething is added to mein: mein — meinen.\nWir holen unseren Ball. — “We pick up our ball.”\nSounds like: veer khOlen OOnzeren bal\nThe word unseren means “our”. The word Ball means “ball”.\nIhr holt euren Koffer. — “You pick up your suitcase.”\nSounds like: eer kholt Oyren kOfer\nThe word euren means “your”. The word Koffer means “suitcase”.\nThe same with unser and euer: unseren, euren."
+      },
+      "examples": [
+        {
+          "phraseId": "de:09:41",
+          "say": {
+            "ru": "их па́ке ма́йнен ру́ксак",
+            "uk": "іх па́ке ма́йнен ру́ксак"
+          }
+        },
+        {
+          "phraseId": "de:09:43",
+          "say": {
+            "ru": "вир хо́лен у́нзерен баль",
+            "uk": "вір хо́лен у́нзерен баль"
+          }
+        },
+        {
+          "phraseId": "de:09:44",
+          "say": {
+            "ru": "ир холт о́йрен ко́фер",
+            "uk": "ір холт о́йрен ко́фер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собираю свой рюкзак»",
+            "uk": "Виберіть, як сказати: «Я збираю свій рюкзак»",
+            "en": "Choose how to say: “I pack my backpack”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:09:41",
+          "options": [
+            "de:09:41",
+            "de:09:43",
+            "de:09:44"
+          ],
+          "answerId": "de:09:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы забираем наш мяч»",
+            "uk": "Виберіть, як сказати: «Ми забираємо наш м'яч»",
+            "en": "Choose how to say: “We pick up our ball”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:43",
+          "options": [
+            "de:09:43",
+            "de:09:41",
+            "de:09:44"
+          ],
+          "answerId": "de:09:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы забираете свой чемодан»",
+            "uk": "Виберіть, як сказати: «Ви забираєте свою валізу»",
+            "en": "Choose how to say: “You pick up your suitcase”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:09:44",
+          "options": [
+            "de:09:44",
+            "de:09:43",
+            "de:09:41"
+          ],
+          "answerId": "de:09:44"
+        }
+      ]
+    }
+  ]
+}

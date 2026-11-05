@@ -1,0 +1,550 @@
+{
+  "lang": "de",
+  "lesson": 1,
+  "title": {
+    "ru": "Первые слова по-немецки",
+    "uk": "Перші слова німецькою",
+    "en": "First words in German"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я здесь",
+        "uk": "Я тут",
+        "en": "I am here"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я здесь».\nIch bin hier. — «Я здесь.»\nЧитается: их бин хи́р.\nЧёрточка над буквой в подсказке «Читается» показывает, какую часть слова говорить громче.\nРусские буквы передают звук приблизительно.\nСлово ich значит «я». Читается «их»: «х» мягкий, как тихий выдох.\nСлово hier значит «здесь».\nСлово bin значит «быть». По-русски его не говорят: «Я здесь». По-немецки оно нужно.\nIch bin müde. — «Я устал.»\nЧитается: их бин мю́де.\nСлово müde значит «усталый».\nВ müde звук после «м» — как «ю» в слове «тюль».\nПо-русски: «Я устал». По-немецки: ich bin müde.\nIch bin bereit. — «Я готов.»\nЧитается: их бин бера́йт.\nСлово bereit значит «готов».",
+        "uk": "Дивіться, як сказати «Я тут».\nIch bin hier. — «Я тут.»\nЧитається: іх бін хі́р.\nРисочка над літерою в підказці «Читається» показує, яку частину слова говорити голосніше.\nУкраїнські літери передають звук приблизно.\nСлово ich означає «я». Читається «іх»: «х» м'який, як тихий видих.\nСлово hier означає «тут».\nСлово bin означає «бути». Українською його не кажуть: «Я тут». Німецькою воно потрібне.\nIch bin müde. — «Я втомився.»\nЧитається: іх бін мю́де.\nСлово müde означає «стомлений».\nУ müde звук після «м» — як «ю» в слові «тюль».\nУкраїнською: «Я втомився». Німецькою: ich bin müde.\nIch bin bereit. — «Я готовий.»\nЧитається: іх бін бера́йт.\nСлово bereit означає «готовий».",
+        "en": "Look at how to say “I am here”.\nIch bin hier. — “I am here.”\nSounds like: ikh bin heer.\nThe little mark above a letter shows which part to say louder.\nThe spelling in the hint gives the sound only approximately.\nThe word ich means “I”. It sounds like “ikh”, soft, like a quiet breath.\nThe word hier means “here”.\nThe word bin means “to be”.\nGerman needs it here; some languages skip it.\nIch bin müde. — “I am tired.”\nSounds like: ikh bin MYOO-de.\nThe word müde means “tired”.\nIn müde the sound after “m” is like “yoo”.\nGerman: ich bin müde.\nIch bin bereit. — “I am ready”\nThe word bereit means “ready”.\nAfter that you choose yourself."
+      },
+      "examples": [
+        {
+          "phraseId": "de:01:01",
+          "say": {
+            "ru": "их бин хи́р",
+            "uk": "іх бін хі́р"
+          }
+        },
+        {
+          "phraseId": "de:01:04",
+          "say": {
+            "ru": "их бин мю́де",
+            "uk": "іх бін мю́де"
+          }
+        },
+        {
+          "phraseId": "de:01:15",
+          "say": {
+            "ru": "их бин бера́йт",
+            "uk": "іх бін бера́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я устал»",
+            "uk": "Виберіть, як сказати: «Я втомився»",
+            "en": "Choose how to say: “I am tired”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:01:04",
+          "options": [
+            "de:01:04",
+            "de:01:01"
+          ],
+          "answerId": "de:01:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я готов»",
+            "uk": "Виберіть, як сказати: «Я готовий»",
+            "en": "Choose how to say: “I am ready”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:15",
+          "options": [
+            "de:01:15",
+            "de:01:04",
+            "de:01:01"
+          ],
+          "answerId": "de:01:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я здесь»",
+            "uk": "Виберіть, як сказати: «Я тут»",
+            "en": "Choose how to say: “I am here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:01",
+          "options": [
+            "de:01:01",
+            "de:01:04",
+            "de:01:15"
+          ],
+          "answerId": "de:01:01"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Ты, Анна, мы",
+        "uk": "Ти, Анна, ми",
+        "en": "You, Anna, we"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать про других.\nDu bist hier. — «Ты здесь.»\nЧитается: ду бист хи́р.\nAnna ist hier. — «Анна здесь.»\nЧитается: А́нна ист хи́р.\nWir sind hier. — «Мы здесь.»\nЧитается: вир зинд хи́р.\nСлово du значит «ты». Слово wir значит «мы».\nВ начале wir звук «в».\nСлова bin, bist, ist, sind — это одно слово «быть».\nОно меняется, смотря о ком речь.\n«Я» — bin, «ты» — bist, «Анна» — ist, «мы» — sind.\nПо-русски это слово часто не говорят, а по-немецки оно нужно.\nDu bist müde. — «Ты устал.»\nЧитается: ду бист мю́де.\nAnna ist müde. — «Анна устала.»\nЧитается: А́нна ист мю́де.\nСлово müde то же самое, что в первой главе.",
+        "uk": "Дивіться, як сказати про інших.\nDu bist hier. — «Ти тут.»\nЧитається: ду бист хі́р.\nAnna ist hier. — «Анна тут.»\nЧитається: А́нна іст хі́р.\nWir sind hier. — «Ми тут.»\nЧитається: вір зінд хі́р.\nСлово du означає «ти». Слово wir означає «ми».\nНа початку wir звук «в».\nСлова bin, bist, ist, sind — це одне слово «бути».\nВоно змінюється залежно від того, про кого мова.\n«Я» — bin, «ти» — bist, «Анна» — ist, «ми» — sind.\nУкраїнською це слово часто не кажуть, а німецькою воно потрібне.\nDu bist müde. — «Ти втомився.»\nЧитається: ду біст мю́де.\nAnna ist müde. — «Анна втомилася.»\nЧитається: А́нна іст мю́де.\nСлово müde те саме, що в першому розділі.",
+        "en": "Look at how to talk about other people.\nDu bist hier. — “You are here.”\nSounds like: doo bist heer.\nAnna ist hier. — “Anna is here.”\nSounds like: AH-na ist heer.\nWir sind hier. — “We are here.”\nSounds like: veer zint heer.\nThe word du means “you”. The word wir means “we”.\nAt the start of wir the sound is “v”.\nThe words bin, bist, ist, sind are one word: “to be”.\nIt changes depending on who you talk about.\n“I” — bin, “you” — bist, “Anna” — ist, “we” — sind.\nGerman always needs this word.\nDu bist müde. — “You are tired”\nAnna ist müde. — “Anna is tired”\nThe word müde is the same as in the first chapter."
+      },
+      "examples": [
+        {
+          "phraseId": "de:01:02",
+          "say": {
+            "ru": "ду бист хи́р",
+            "uk": "ду бист хі́р"
+          }
+        },
+        {
+          "phraseId": "de:01:05",
+          "say": {
+            "ru": "А́нна ист хи́р",
+            "uk": "А́нна іст хі́р"
+          }
+        },
+        {
+          "phraseId": "de:01:07",
+          "say": {
+            "ru": "вир зинд хи́р",
+            "uk": "вір зінд хі́р"
+          }
+        },
+        {
+          "phraseId": "de:01:03",
+          "say": {
+            "ru": "ду бист мю́де",
+            "uk": "ду біст мю́де"
+          }
+        },
+        {
+          "phraseId": "de:01:06",
+          "say": {
+            "ru": "А́нна ист мю́де",
+            "uk": "А́нна іст мю́де"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы здесь»",
+            "uk": "Виберіть, як сказати: «Ми тут»",
+            "en": "Choose how to say: “We are here”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:01:07",
+          "options": [
+            "de:01:07",
+            "de:01:05",
+            "de:01:02"
+          ],
+          "answerId": "de:01:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты устал»",
+            "uk": "Виберіть, як сказати: «Ти втомився»",
+            "en": "Choose how to say: “You are tired”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:03",
+          "options": [
+            "de:01:03",
+            "de:01:02",
+            "de:01:04"
+          ],
+          "answerId": "de:01:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна здесь»",
+            "uk": "Виберіть, як сказати: «Анна тут»",
+            "en": "Choose how to say: “Anna is here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:05",
+          "options": [
+            "de:01:05",
+            "de:01:07",
+            "de:01:02"
+          ],
+          "answerId": "de:01:05"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вы не спите",
+        "uk": "Ви не спите",
+        "en": "You are awake"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Вы не спите».\nIhr seid wach. — «Вы не спите.»\nЧитается: ир зайт вах.\nСлово ihr значит «вы», когда говорят с несколькими людьми.\nСлово seid — тоже «быть», оно к слову ihr.\nСлово wach значит «не спит».\nВ начале wach звук «в», а в конце — «х», как в слове «ах».\nWir sind wach. — «Мы не спим.»\nЧитается: вир зинд вах.\nTom ist wach. — «Том не спит.»\nЧитается: Том ист вах.\nСмотрите: «мы» — sind, «Том» — ist, «вы» — seid.\nIhr seid bereit. — «Вы готовы.»\nЧитается: ир зайт бера́йт.\nDie Kinder sind bereit. — «Дети готовы.»\nЧитается: ди ки́ндер зинд бера́йт.\nСлово bereit значит «готов».\nСлово Kinder значит «дети».\nСлово die перед ним: по-русски такого слова нет.",
+        "uk": "Дивіться, як сказати «Ви не спите».\nIhr seid wach. — «Ви не спите.»\nЧитається: ір зайт вах.\nСлово ihr означає «ви», коли говорять з кількома людьми.\nСлово seid — теж «бути», воно до слова ihr.\nСлово wach означає «не спить».\nНа початку wach звук «в», а в кінці — «х», як у слові «ах».\nWir sind wach. — «Ми не спимо.»\nЧитається: вір зінд вах.\nTom ist wach. — «Том не спить.»\nЧитається: Том іст вах.\nДивіться: «ми» — sind, «Том» — ist, «ви» — seid.\nIhr seid bereit. — «Ви готові.»\nЧитається: ір зайт бера́йт.\nDie Kinder sind bereit. — «Діти готові.»\nЧитається: ді кі́ндер зінд бера́йт.\nСлово bereit означає «готовий».\nСлово Kinder означає «діти».\nСлово die перед ним: українською такого слова немає.",
+        "en": "Look at how to say “You are awake”.\nIhr seid wach. — “You are awake.”\nSounds like: eer zite vakh.\nThe word ihr means “you” for several people.\nThe word seid is also “to be”, it goes with ihr.\nThe word wach means “awake”.\nAt the start of wach the sound is “v”.\nAt the end it is “kh”, as in “ah”.\nWir sind wach. — “We are awake.”\nSounds like: veer zint vakh.\nTom ist wach. — “Tom is awake.”\nSounds like: tom ist vakh.\nLook: “we” — sind, “Tom” — ist, “you” — seid.\nIhr seid bereit. — “You are ready”\nDie Kinder sind bereit. — “The children are ready”\nThe word bereit means “ready”.\nThe word Kinder means “children”.\nEnglish has no such word here; learn die together with the noun."
+      },
+      "examples": [
+        {
+          "phraseId": "de:01:09",
+          "say": {
+            "ru": "ир зайт вах",
+            "uk": "ір зайт вах"
+          }
+        },
+        {
+          "phraseId": "de:01:08",
+          "say": {
+            "ru": "вир зинд вах",
+            "uk": "вір зінд вах"
+          }
+        },
+        {
+          "phraseId": "de:01:10",
+          "say": {
+            "ru": "Том ист вах",
+            "uk": "Том іст вах"
+          }
+        },
+        {
+          "phraseId": "de:01:19",
+          "say": {
+            "ru": "ир зайт бера́йт",
+            "uk": "ір зайт бера́йт"
+          }
+        },
+        {
+          "phraseId": "de:01:20",
+          "say": {
+            "ru": "ди ки́ндер зинд бера́йт",
+            "uk": "ді кі́ндер зінд бера́йт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы не спите»",
+            "uk": "Виберіть, як сказати: «Ви не спите»",
+            "en": "Choose how to say: “You are awake”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:01:09",
+          "options": [
+            "de:01:09",
+            "de:01:08",
+            "de:01:10"
+          ],
+          "answerId": "de:01:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы готовы»",
+            "uk": "Виберіть, як сказати: «Ви готові»",
+            "en": "Choose how to say: “You are ready”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:19",
+          "options": [
+            "de:01:19",
+            "de:01:09",
+            "de:01:08"
+          ],
+          "answerId": "de:01:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети готовы»",
+            "uk": "Виберіть, як сказати: «Діти готові»",
+            "en": "Choose how to say: “The children are ready”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:20",
+          "options": [
+            "de:01:20",
+            "de:01:19",
+            "de:01:10"
+          ],
+          "answerId": "de:01:20"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Дома или на улице",
+        "uk": "Вдома чи надворі",
+        "en": "At home or outside"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я дома».\nIch bin zu Hause. — «Я дома.»\nЧитается: их бин цу ха́узе.\nСлова zu Hause идут вместе и значат «дома».\nВ начале zu звук «ц».\nWir sind draußen. — «Мы на улице.»\nЧитается: вир зинд дра́усен.\nAnna ist drinnen. — «Анна внутри.»\nЧитается: А́нна ист дри́нен.\nСлово draußen значит «на улице». Слово drinnen значит «внутри».",
+        "uk": "Дивіться, як сказати «Я вдома».\nIch bin zu Hause. — «Я вдома.»\nЧитається: іх бін цу ха́узе.\nСлова zu Hause йдуть разом і означають «вдома».\nНа початку zu звук «ц».\nWir sind draußen. — «Ми на вулиці.»\nЧитається: вір зінд дра́усен.\nAnna ist drinnen. — «Анна всередині.»\nЧитається: А́нна іст дрі́нен.\nСлово draußen означає «на вулиці». Слово drinnen означає «всередині».",
+        "en": "Look at how to say “I am at home”.\nIch bin zu Hause. — “I am at home.”\nSounds like: ikh bin tsoo HOW-ze.\nThe words zu Hause go together and mean “at home”.\nAt the start of zu the sound is “ts”.\nWir sind draußen. — “We are outside.”\nSounds like: veer zint DROW-sen.\nAnna ist drinnen. — “Anna is inside.”\nSounds like: AH-na ist DRIN-nen.\nThe word draußen means “outside”. The word drinnen means “inside”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:01:11",
+          "say": {
+            "ru": "их бин цу ха́узе",
+            "uk": "іх бін цу ха́узе"
+          }
+        },
+        {
+          "phraseId": "de:01:24",
+          "say": {
+            "ru": "вир зинд дра́усен",
+            "uk": "вір зінд дра́усен"
+          }
+        },
+        {
+          "phraseId": "de:01:27",
+          "say": {
+            "ru": "А́нна ист дри́нен",
+            "uk": "А́нна іст дри́нен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дома»",
+            "uk": "Виберіть, як сказати: «Я вдома»",
+            "en": "Choose how to say: “I am at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:01:11",
+          "options": [
+            "de:01:11",
+            "de:01:24",
+            "de:01:27"
+          ],
+          "answerId": "de:01:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы на улице»",
+            "uk": "Виберіть, як сказати: «Ми на вулиці»",
+            "en": "Choose how to say: “We are outside”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:24",
+          "options": [
+            "de:01:24",
+            "de:01:11",
+            "de:01:27"
+          ],
+          "answerId": "de:01:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна внутри»",
+            "uk": "Виберіть, як сказати: «Анна всередині»",
+            "en": "Choose how to say: “Anna is inside”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:27",
+          "options": [
+            "de:01:27",
+            "de:01:24",
+            "de:01:11"
+          ],
+          "answerId": "de:01:27"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Дверь, окно, комната",
+        "uk": "Двері, вікно, кімната",
+        "en": "Door, window, room"
+      },
+      "text": {
+        "ru": "Смотрите, как назвать вещи вокруг.\nDie Tür ist offen. — «Дверь открыта.»\nЧитается: ди тюр ист о́фен.\nDas Fenster ist offen. — «Окно открыто.»\nЧитается: дас фе́нстер ист о́фен.\nDas Zimmer ist ruhig. — «В комнате тихо.»\nЧитается: дас ци́мер ист ру́их.\nMeine Tasche ist hier. — «Моя сумка здесь.»\nЧитается: майне та́ше ист хи́р.\nDeine Schlüssel sind hier. — «Твои ключи здесь.»\nЧитается: дайне шлю́сель зинд хи́р.\nСлова Tür — «дверь», Fenster — «окно», Zimmer — «комната».\nСлово offen значит «открыто».\nСлово ruhig значит «тихо, спокойно».\nКонец ruhig читается «их», как ich: мягкий «х».\nВ Tür звук после «т» — как «ю», губы трубочкой.\nСлова Tasche — «сумка», Schlüssel — «ключ, ключи».\nСлово meine значит «мой, моя, мои».\nСлово deine значит «твой, твоя, твои»; на «вы» — «ваш».\nСлово sind нужно не только при «мы».\nКлючей несколько, поэтому: Schlüssel — sind.\nПеред названием вещи стоит маленькое слово: der, die или das.\nПо-русски таких слов нет, запоминайте их вместе с названием вещи.",
+        "uk": "Дивіться, як назвати речі навколо.\nDie Tür ist offen. — «Двері відчинені.»\nЧитається: ді тюр іст о́фен.\nDas Fenster ist offen. — «Вікно відчинене.»\nЧитається: дас фе́нстер іст о́фен.\nDas Zimmer ist ruhig. — «У кімнаті тихо.»\nЧитається: дас ці́мер іст ру́іх.\nMeine Tasche ist hier. — «Моя сумка тут.»\nЧитається: майне та́ше іст хі́р.\nDeine Schlüssel sind hier. — «Твої ключі тут.»\nЧитається: дайне шлю́сель зінд хі́р.\nСлова Tür — «двері», Fenster — «вікно», Zimmer — «кімната».\nСлово offen означає «відчинено».\nСлово ruhig означає «тихо, спокійно».\nКінець ruhig читається «іх», як ich: м'який «х».\nУ Tür звук після «т» — як «ю», губи трубочкою.\nСлова Tasche — «сумка», Schlüssel — «ключ, ключі».\nСлово meine означає «мій, моя, мої».\nСлово deine означає «твій, твоя, твої»; на «ви» — «ваш».\nСлово sind потрібне не лише при «ми».\nКлючів кілька, тому: Schlüssel — sind.\nПеред назвою речі стоїть маленьке слово: der, die або das.\nУкраїнською таких слів немає, запам’ятовуйте їх разом з назвою речі.",
+        "en": "Look at how to name things around you.\nDie Tür ist offen. — “The door is open”\nDas Fenster ist offen. — “The window is open”\nDas Zimmer ist ruhig. — “The room is quiet”\nMeine Tasche ist hier. — “My bag is here”\nDeine Schlüssel sind hier. — “Your keys are here”\nTür — “door”, Fenster — “window”, Zimmer — “room”. The word offen means “open”.\nThe word ruhig means “quiet, calm”.\nThe end of ruhig sounds like “ikh”, as in ich.\nTasche — “bag”, Schlüssel — “key, keys”.\nThe word meine means “my”.\nThe word deine means “your”.\nThe word sind is not only for “we”.\nThere are several keys, so: Schlüssel — sind.\nBefore the name of a thing there is a little word: der, die or das.\nLearn it together with the name."
+      },
+      "examples": [
+        {
+          "phraseId": "de:01:31",
+          "say": {
+            "ru": "ди тюр ист о́фен",
+            "uk": "ді тюр іст о́фен"
+          }
+        },
+        {
+          "phraseId": "de:01:32",
+          "say": {
+            "ru": "дас фе́нстер ист о́фен",
+            "uk": "дас фе́нстер іст о́фен"
+          }
+        },
+        {
+          "phraseId": "de:01:45",
+          "say": {
+            "ru": "дас ци́мер ист ру́их",
+            "uk": "дас ці́мер іст ру́іх"
+          }
+        },
+        {
+          "phraseId": "de:01:49",
+          "say": {
+            "ru": "майне та́ше ист хи́р",
+            "uk": "майне та́ше іст хі́р"
+          }
+        },
+        {
+          "phraseId": "de:01:50",
+          "say": {
+            "ru": "дайне шлю́сель зинд хи́р",
+            "uk": "дайне шлю́сель зінд хі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь открыта»",
+            "uk": "Виберіть, як сказати: «Двері відчинені»",
+            "en": "Choose how to say: “The door is open”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:01:31",
+          "options": [
+            "de:01:31",
+            "de:01:32",
+            "de:01:45"
+          ],
+          "answerId": "de:01:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Окно открыто»",
+            "uk": "Виберіть, як сказати: «Вікно відчинене»",
+            "en": "Choose how to say: “The window is open”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:32",
+          "options": [
+            "de:01:32",
+            "de:01:31",
+            "de:01:45"
+          ],
+          "answerId": "de:01:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сумка здесь»",
+            "uk": "Виберіть, як сказати: «Моя сумка тут»",
+            "en": "Choose how to say: “My bag is here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:49",
+          "options": [
+            "de:01:49",
+            "de:01:50",
+            "de:01:45"
+          ],
+          "answerId": "de:01:49"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Вода, кофе, суп",
+        "uk": "Вода, кава, суп",
+        "en": "Water, coffee, soup"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать про воду, кофе и суп.\nDas Wasser ist kalt. — «Вода холодная.»\nЧитается: дас ва́сер ист кальт.\nDer Kaffee ist kalt. — «Кофе холодный.»\nЧитается: дер ка́фе ист кальт.\nDie Suppe ist warm. — «Суп тёплый.»\nЧитается: ди зу́пе ист варм.\nСлова Wasser — «вода», Kaffee — «кофе», Suppe — «суп».\nСлово kalt значит «холодный», warm — «тёплый».\nСлово kalt одно и для воды, и для кофе.",
+        "uk": "Дивіться, як сказати про воду, каву і суп.\nDas Wasser ist kalt. — «Вода холодна.»\nЧитається: дас ва́сер іст кальт.\nDer Kaffee ist kalt. — «Кава холодна.»\nЧитається: дер ка́фе іст кальт.\nDie Suppe ist warm. — «Суп теплий.»\nЧитається: ді зу́пе іст варм.\nСлова Wasser — «вода», Kaffee — «кава», Suppe — «суп».\nСлово kalt означає «холодний», warm — «теплий».\nСлово kalt одне і для води, і для кави.",
+        "en": "Look at how to talk about water, coffee and soup.\nDas Wasser ist kalt. — “The water is cold”\nDer Kaffee ist kalt. — “The coffee is cold”\nDie Suppe ist warm. — “The soup is warm”\nWasser — “water”, Kaffee — “coffee”, Suppe — “soup”.\nThe word kalt means “cold”, warm — “warm”.\nKalt is the same for water and for coffee."
+      },
+      "examples": [
+        {
+          "phraseId": "de:01:37",
+          "say": {
+            "ru": "дас ва́сер ист кальт",
+            "uk": "дас ва́сер іст кальт"
+          }
+        },
+        {
+          "phraseId": "de:01:39",
+          "say": {
+            "ru": "дер ка́фе ист кальт",
+            "uk": "дер ка́фе іст кальт"
+          }
+        },
+        {
+          "phraseId": "de:01:38",
+          "say": {
+            "ru": "ди зу́пе ист варм",
+            "uk": "ді зу́пе іст варм"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вода холодная»",
+            "uk": "Виберіть, як сказати: «Вода холодна»",
+            "en": "Choose how to say: “The water is cold”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:01:37",
+          "options": [
+            "de:01:37",
+            "de:01:39",
+            "de:01:38"
+          ],
+          "answerId": "de:01:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кофе холодный»",
+            "uk": "Виберіть, як сказати: «Кава холодна»",
+            "en": "Choose how to say: “The coffee is cold”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:39",
+          "options": [
+            "de:01:39",
+            "de:01:37",
+            "de:01:38"
+          ],
+          "answerId": "de:01:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Суп тёплый»",
+            "uk": "Виберіть, як сказати: «Суп теплий»",
+            "en": "Choose how to say: “The soup is warm”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:01:38",
+          "options": [
+            "de:01:38",
+            "de:01:39",
+            "de:01:37"
+          ],
+          "answerId": "de:01:38"
+        }
+      ]
+    }
+  ]
+}

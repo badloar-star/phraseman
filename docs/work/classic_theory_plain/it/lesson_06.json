@@ -1,0 +1,558 @@
+{
+  "lang": "it",
+  "lesson": 6,
+  "title": {
+    "ru": "Где что лежит",
+    "uk": "Де що лежить",
+    "en": "Where things are"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Где лежит",
+        "uk": "Де лежить",
+        "en": "Where it is"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где лежит вещь.\nLa chiave è sul tavolo. — «Ключ лежит на столе.»\nЧитается: ла кья́ве э суль та́воло.\nLa borsa è sotto il tavolo. — «Сумка под столом.»\nЧитается: ла бо́рса э со́тто иль та́воло.\nIl biglietto è in tasca. — «Билет в кармане.»\nЧитается: иль билье́тто э ин та́ска.\nGli occhiali sono sul letto. — «Очки лежат на кровати.»\nЧитается: льи окья́ли со́но суль ле́тто.\nСлово sul значит «на», слово sotto — «под», слово in — «в».\nСлово tavolo значит «стол», letto — «кровать», tasca — «карман».\nСлово è значит «есть», когда вещь одна.\nСлово sono — когда вещей несколько: gli occhiali sono.\nСлова la, il, gli стоят перед названием: по-русски их нет.",
+        "uk": "Дивіться, як сказати, де лежить річ.\nLa chiave è sul tavolo. — «Ключ на столі.»\nЧитається: ла кья́ве е суль та́воло.\nLa borsa è sotto il tavolo. — «Сумка під столом.»\nЧитається: ла бо́рса е со́тто іль та́воло.\nIl biglietto è in tasca. — «Квиток у кишені.»\nЧитається: іль білье́тто е ін та́ска.\nGli occhiali sono sul letto. — «Окуляри на ліжку.»\nЧитається: льі окья́лі со́но суль ле́тто.\nСлово sul означає «на», слово sotto — «під», слово in — «в».\nСлово tavolo означає «стіл», letto — «ліжко», tasca — «кишеня».\nСлово è означає «є», коли річ одна.\nСлово sono — коли речей кілька: gli occhiali sono.\nСлова la, il, gli стоять перед назвою: по-українськи їх нема.",
+        "en": "Look at how to say where a thing is.\nLa chiave è sul tavolo. — “The key is on the table.”\nLa borsa è sotto il tavolo. — “The bag is under the table.”\nIl biglietto è in tasca. — “The ticket is in the pocket.”\nGli occhiali sono sul letto. — “The glasses are on the bed.”\nThe word sul means “on”, sotto — “under”, in — “in”.\nThe word tavolo means “table”, letto — “bed”, tasca — “pocket”.\nThe word è means “is”, when the thing is one.\nThe word sono is for several things: gli occhiali sono.\nThe words la, il, gli stand before the name. No such word in English."
+      },
+      "examples": [
+        {
+          "phraseId": "it:06:01",
+          "say": {
+            "ru": "ла кья́ве э суль та́воло",
+            "uk": "ла кья́ве е суль та́воло"
+          }
+        },
+        {
+          "phraseId": "it:06:02",
+          "say": {
+            "ru": "ла бо́рса э со́тто иль та́воло",
+            "uk": "ла бо́рса е со́тто іль та́воло"
+          }
+        },
+        {
+          "phraseId": "it:06:03",
+          "say": {
+            "ru": "иль билье́тто э ин та́ска",
+            "uk": "іль білье́тто е ін та́ска"
+          }
+        },
+        {
+          "phraseId": "it:06:04",
+          "say": {
+            "ru": "льи окья́ли со́но суль ле́тто",
+            "uk": "льі окья́лі со́но суль ле́тто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ лежит на столе»",
+            "uk": "Виберіть, як сказати: «Ключ на столі»",
+            "en": "Choose how to say: “The key is on the table”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:06:01",
+          "options": [
+            "it:06:01",
+            "it:06:02",
+            "it:06:03"
+          ],
+          "answerId": "it:06:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сумка под столом»",
+            "uk": "Виберіть, як сказати: «Сумка під столом»",
+            "en": "Choose how to say: “The bag is under the table”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:02",
+          "options": [
+            "it:06:02",
+            "it:06:01",
+            "it:06:03"
+          ],
+          "answerId": "it:06:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билет в кармане»",
+            "uk": "Виберіть, як сказати: «Квиток у кишені»",
+            "en": "Choose how to say: “The ticket is in the pocket”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:03",
+          "options": [
+            "it:06:03",
+            "it:06:02",
+            "it:06:01"
+          ],
+          "answerId": "it:06:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "На стуле, в ящике",
+        "uk": "На стільці, у шухляді",
+        "en": "On the chair, in the drawer"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «на стуле» и «в ящике».\nLo zaino è sulla sedia. — «Рюкзак на стуле.»\nЧитается: ло дза́ино э су́лла се́дья.\nIl nome è sulla busta. — «Имя на конверте.»\nЧитается: иль но́ме э су́лла бу́ста.\nIl portafoglio è nel cassetto. — «Кошелек в ящике.»\nЧитается: иль портафо́льо э нель кассе́тто.\nLa giacca è nell’ingresso. — «Куртка в прихожей.»\nЧитается: ла джа́кка э нелл’ингре́ссо.\nСлово sulla тоже значит «на»: sul — про «него», sulla — про «неё».\nСлова nel и nell’ingresso значат «в».\nСлово sedia значит «стул», busta — «конверт», cassetto — «выдвижной ящик».\nСлово giacca значит «куртка», слова nell’ingresso — «в прихожей».\nСлово zaino значит «рюкзак», portafoglio — «кошелёк», nome — «имя».",
+        "uk": "Дивіться, як сказати «на стільці» і «у шухляді».\nLo zaino è sulla sedia. — «Рюкзак на стільці.»\nЧитається: ло дза́іно е су́лла се́дья.\nIl nome è sulla busta. — «Ім’я на конверті.»\nЧитається: іль но́ме е су́лла бу́ста.\nIl portafoglio è nel cassetto. — «Гаманець у шухляді.»\nЧитається: іль портафо́льо е нель кассе́тто.\nLa giacca è nell’ingresso. — «Куртка в передпокої.»\nЧитається: ла джа́кка е нелл’інгре́ссо.\nСлово sulla теж означає «на»: sul — про «нього», sulla — про «неї».\nСлова nel і nell’ingresso означають «у».\nСлово sedia означає «стілець», busta — «конверт», cassetto — «висувна шухляда».\nСлово giacca означає «куртка», слова nell’ingresso — «в передпокої».\nСлово zaino означає «рюкзак», portafoglio — «гаманець», nome — «ім’я».",
+        "en": "Look at how to say “on the chair” and “in the drawer”.\nLo zaino è sulla sedia. — “The backpack is on the chair.”\nIl nome è sulla busta. — “The name is on the envelope.”\nIl portafoglio è nel cassetto. — “The wallet is in the drawer.”\nLa giacca è nell’ingresso. — “The jacket is in the hall.”\nThe word sulla also means “on”: sul for “him”, sulla for “her”.\nThe words nel and nell’ingresso mean “in”.\nThe word sedia means “chair”, busta — “envelope”, cassetto — “drawer”.\nThe word giacca means “jacket”, nell’ingresso — “in the hall”.\nThe word zaino means “backpack”, portafoglio — “wallet”, nome — “name”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:06:27",
+          "say": {
+            "ru": "ло дза́ино э су́лла се́дья",
+            "uk": "ло дза́іно е су́лла се́дья"
+          }
+        },
+        {
+          "phraseId": "it:06:50",
+          "say": {
+            "ru": "иль но́ме э су́лла бу́ста",
+            "uk": "іль но́ме е су́лла бу́ста"
+          }
+        },
+        {
+          "phraseId": "it:06:35",
+          "say": {
+            "ru": "иль портафо́льо э нель кассе́тто",
+            "uk": "іль портафо́льо е нель кассе́тто"
+          }
+        },
+        {
+          "phraseId": "it:06:32",
+          "say": {
+            "ru": "ла джа́кка э нелл’ингре́ссо",
+            "uk": "ла джа́кка е нелл’інгре́ссо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Рюкзак на стуле»",
+            "uk": "Виберіть, як сказати: «Рюкзак на стільці»",
+            "en": "Choose how to say: “The backpack is on the chair”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:06:27",
+          "options": [
+            "it:06:27",
+            "it:06:01",
+            "it:06:35"
+          ],
+          "answerId": "it:06:27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кошелек в ящике»",
+            "uk": "Виберіть, як сказати: «Гаманець у шухляді»",
+            "en": "Choose how to say: “The wallet is in the drawer”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:35",
+          "options": [
+            "it:06:35",
+            "it:06:27",
+            "it:06:03"
+          ],
+          "answerId": "it:06:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Имя на конверте»",
+            "uk": "Виберіть, як сказати: «Ім’я на конверті»",
+            "en": "Choose how to say: “The name is on the envelope”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:50",
+          "options": [
+            "it:06:50",
+            "it:06:27",
+            "it:06:32"
+          ],
+          "answerId": "it:06:50"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Хлеб, суп, вода",
+        "uk": "Хліб, суп, вода",
+        "en": "Bread, soup, water"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, какой он.\nIl pane è sul tavolo. — «Хлеб на столе.»\nЧитается: иль па́не э суль та́воло.\nLa zuppa è calda. — «Суп горячий.»\nЧитается: ла дзу́ппа э ка́льда.\nL’acqua è fredda. — «Вода холодная.»\nЧитается: л’а́кква э фре́дда.\nI bicchieri sono puliti. — «Стаканы чистые.»\nЧитается: и биккье́ри со́но пули́ти.\nСлово pane значит «хлеб», слово zuppa — «суп».\nСлова l’acqua значат «вода», слово bicchieri — «стаканы».\nСлово calda значит «горячая», слово fredda — «холодная».\nСлово puliti значит «чистые».",
+        "uk": "Дивіться, як сказати, який він.\nIl pane è sul tavolo. — «Хліб на столі.»\nЧитається: іль па́не е суль та́воло.\nLa zuppa è calda. — «Суп гарячий.»\nЧитається: ла дзу́ппа е ка́льда.\nL’acqua è fredda. — «Вода холодна.»\nЧитається: л’а́кква е фре́дда.\nI bicchieri sono puliti. — «Склянки чисті.»\nЧитається: і біккье́рі со́но пулі́ті.\nСлово pane означає «хліб», слово zuppa — «суп».\nСлова l’acqua означають «вода», слово bicchieri — «склянки».\nСлово calda означає «гаряча», слово fredda — «холодна».\nСлово puliti означає «чисті».",
+        "en": "Look at how to say what it is like.\nIl pane è sul tavolo. — “The bread is on the table.”\nLa zuppa è calda. — “The soup is hot.”\nL’acqua è fredda. — “The water is cold.”\nI bicchieri sono puliti. — “The glasses are clean.”\nThe word pane means “bread”, the word zuppa — “soup”.\nThe words l’acqua mean “water”, the word bicchieri — “glasses”.\nThe word calda means “hot”, the word fredda — “cold”.\nThe word puliti means “clean”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:06:07",
+          "say": {
+            "ru": "иль па́не э суль та́воло",
+            "uk": "іль па́не е суль та́воло"
+          }
+        },
+        {
+          "phraseId": "it:06:08",
+          "say": {
+            "ru": "ла дзу́ппа э ка́льда",
+            "uk": "ла дзу́ппа е ка́льда"
+          }
+        },
+        {
+          "phraseId": "it:06:10",
+          "say": {
+            "ru": "л’а́кква э фре́дда",
+            "uk": "л’а́кква е фре́дда"
+          }
+        },
+        {
+          "phraseId": "it:06:09",
+          "say": {
+            "ru": "и биккье́ри со́но пули́ти",
+            "uk": "і біккье́рі со́но пулі́ті"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хлеб на столе»",
+            "uk": "Виберіть, як сказати: «Хліб на столі»",
+            "en": "Choose how to say: “The bread is on the table”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:06:07",
+          "options": [
+            "it:06:07",
+            "it:06:01",
+            "it:06:08"
+          ],
+          "answerId": "it:06:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Суп горячий»",
+            "uk": "Виберіть, як сказати: «Суп гарячий»",
+            "en": "Choose how to say: “The soup is hot”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:08",
+          "options": [
+            "it:06:08",
+            "it:06:10",
+            "it:06:07"
+          ],
+          "answerId": "it:06:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вода холодная»",
+            "uk": "Виберіть, як сказати: «Вода холодна»",
+            "en": "Choose how to say: “The water is cold”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:10",
+          "options": [
+            "it:06:10",
+            "it:06:08",
+            "it:06:09"
+          ],
+          "answerId": "it:06:10"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Мне нравится",
+        "uk": "Мені подобається",
+        "en": "I like"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нравится кофе».\nMi piace il caffè. — «Мне нравится кофе.»\nЧитается: ми пья́че иль каффе́.\nMi piace il tè. — «Мне нравится чай.»\nЧитается: ми пья́че иль те́.\nA lei piace la musica. — «Ей нравится музыка.»\nЧитается: а ле́й пья́че ла му́зика.\nCi piacciono i libri. — «Мы любим книги.»\nЧитается: чи пья́чоно и ли́бри.\nСлова mi piace значат «мне нравится».\nСлова a lei piace значат «ей нравится».\nНравится несколько вещей — говорят piacciono.\nСлово ci значит «нам»: ci piacciono — «нам нравятся».\nСлово caffè значит «кофе», tè — «чай», musica — «музыка», libri — «книги».",
+        "uk": "Дивіться, як сказати «Мені подобається кава».\nMi piace il caffè. — «Я люблю каву.»\nЧитається: мі пья́че іль каффе́.\nMi piace il tè. — «Я люблю чай.»\nЧитається: мі пья́че іль те́.\nA lei piace la musica. — «Їй подобається музика.»\nЧитається: а ле́й пья́че ла му́зіка.\nCi piacciono i libri. — «Нам подобаються книги.»\nЧитається: чі пья́чоно і лі́брі.\nСлова mi piace означають «мені подобається».\nСлова a lei piace означають «їй подобається».\nПодобається кілька речей — кажуть piacciono.\nСлово ci означає «нам»: ci piacciono — «нам подобаються».\nСлово caffè означає «кава», tè — «чай», musica — «музика», libri — «книги».",
+        "en": "Look at how to say “I like coffee”.\nMi piace il caffè. — “I like coffee.”\nMi piace il tè. — “I like tea.”\nA lei piace la musica. — “She likes music.”\nCi piacciono i libri. — “We like books.”\nThe words mi piace mean “I like”.\nThe words a lei piace mean “she likes”.\nIf we like several things, we say piacciono.\nThe word ci means “us”: ci piacciono — “we like”.\nThe word caffè means “coffee”, tè — “tea”, musica — “music”, libri — “books”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:06:11",
+          "say": {
+            "ru": "ми пья́че иль каффе́",
+            "uk": "мі пья́че іль каффе́"
+          }
+        },
+        {
+          "phraseId": "it:06:12",
+          "say": {
+            "ru": "ми пья́че иль те́",
+            "uk": "мі пья́че іль те́"
+          }
+        },
+        {
+          "phraseId": "it:06:13",
+          "say": {
+            "ru": "а ле́й пья́че ла му́зика",
+            "uk": "а ле́й пья́че ла му́зіка"
+          }
+        },
+        {
+          "phraseId": "it:06:15",
+          "say": {
+            "ru": "чи пья́чоно и ли́бри",
+            "uk": "чі пья́чоно і лі́брі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравится кофе»",
+            "uk": "Виберіть, як сказати: «Я люблю каву»",
+            "en": "Choose how to say: “I like coffee”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:06:11",
+          "options": [
+            "it:06:11",
+            "it:06:12",
+            "it:06:13"
+          ],
+          "answerId": "it:06:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравится чай»",
+            "uk": "Виберіть, як сказати: «Я люблю чай»",
+            "en": "Choose how to say: “I like tea”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:12",
+          "options": [
+            "it:06:12",
+            "it:06:11",
+            "it:06:13"
+          ],
+          "answerId": "it:06:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы любим книги»",
+            "uk": "Виберіть, як сказати: «Нам подобаються книги»",
+            "en": "Choose how to say: “We like books”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:15",
+          "options": [
+            "it:06:15",
+            "it:06:11",
+            "it:06:13"
+          ],
+          "answerId": "it:06:15"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Места и двери",
+        "uk": "Місця й двері",
+        "en": "Places"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где что находится.\nIl mercato è aperto. — «Рынок открыт.»\nЧитается: иль мерка́то э апе́рто.\nLa banca è chiusa. — «Банк закрыт.»\nЧитается: ла ба́нка э кьу́за.\nLa scuola è di fronte. — «Школа находится напротив.»\nЧитается: ла скуо́ла э ди фро́нте.\nL’ascensore è a sinistra. — «Лифт находится слева.»\nЧитается: л’ашшенсо́ре э а сини́стра.\nIl giardino è piccolo. — «Сад небольшой.»\nЧитается: иль джарди́но э пи́кколо.\nСлово mercato значит «рынок», banca — «банк», scuola — «школа».\nСлово l’ascensore значит «лифт», giardino — «сад».\nСлово aperto значит «открыт», chiusa — «закрыта», piccolo — «небольшой».\nСлова di fronte значат «напротив», a sinistra — «слева».",
+        "uk": "Дивіться, як сказати, де що знаходиться.\nIl mercato è aperto. — «Ринок відкритий.»\nЧитається: іль мерка́то е апе́рто.\nLa banca è chiusa. — «Банк закритий.»\nЧитається: ла ба́нка е кьу́за.\nLa scuola è di fronte. — «Школа навпроти.»\nЧитається: ла скуо́ла е ді фро́нте.\nL’ascensore è a sinistra. — «Ліфт ліворуч.»\nЧитається: л’ашшенсо́ре е а сіні́стра.\nIl giardino è piccolo. — «Сад маленький.»\nЧитається: іль джарді́но е пі́кколо.\nСлово mercato означає «ринок», banca — «банк», scuola — «школа».\nСлово l’ascensore означає «ліфт», giardino — «сад».\nСлово aperto означає «відчинений», chiusa — «зачинена», piccolo — «невеликий».\nСлова di fronte означають «навпроти», a sinistra — «ліворуч».",
+        "en": "Look at how to say where something is.\nIl mercato è aperto. — “The market is open.”\nLa banca è chiusa. — “The bank is closed.”\nLa scuola è di fronte. — “The school is opposite.”\nL’ascensore è a sinistra. — “The lift is on the left.”\nIl giardino è piccolo. — “The garden is small.”\nThe word mercato means “market”, banca — “bank”, scuola — “school”.\nThe word l’ascensore means “lift”, giardino — “garden”.\nThe word aperto means “open”, chiusa — “closed”, piccolo — “small”.\nThe words di fronte mean “opposite”, a sinistra — “on the left”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:06:22",
+          "say": {
+            "ru": "иль мерка́то э апе́рто",
+            "uk": "іль мерка́то е апе́рто"
+          }
+        },
+        {
+          "phraseId": "it:06:21",
+          "say": {
+            "ru": "ла ба́нка э кьу́за",
+            "uk": "ла ба́нка е кьу́за"
+          }
+        },
+        {
+          "phraseId": "it:06:23",
+          "say": {
+            "ru": "ла скуо́ла э ди фро́нте",
+            "uk": "ла скуо́ла е ді фро́нте"
+          }
+        },
+        {
+          "phraseId": "it:06:29",
+          "say": {
+            "ru": "л’ашшенсо́ре э а сини́стра",
+            "uk": "л’ашшенсо́ре е а сіні́стра"
+          }
+        },
+        {
+          "phraseId": "it:06:26",
+          "say": {
+            "ru": "иль джарди́но э пи́кколо",
+            "uk": "іль джарді́но е пі́кколо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Рынок открыт»",
+            "uk": "Виберіть, як сказати: «Ринок відкритий»",
+            "en": "Choose how to say: “The market is open”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:06:22",
+          "options": [
+            "it:06:22",
+            "it:06:21",
+            "it:06:23"
+          ],
+          "answerId": "it:06:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Банк закрыт»",
+            "uk": "Виберіть, як сказати: «Банк закритий»",
+            "en": "Choose how to say: “The bank is closed”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:21",
+          "options": [
+            "it:06:21",
+            "it:06:22",
+            "it:06:26"
+          ],
+          "answerId": "it:06:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Лифт находится слева»",
+            "uk": "Виберіть, як сказати: «Ліфт ліворуч»",
+            "en": "Choose how to say: “The lift is on the left”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:29",
+          "options": [
+            "it:06:29",
+            "it:06:22",
+            "it:06:26"
+          ],
+          "answerId": "it:06:29"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Чьё и где",
+        "uk": "Чиє й де",
+        "en": "Whose and where"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, чьё это и где оно.\nLe chiavi della macchina sono qui. — «Ключи от машины здесь.»\nЧитается: ле кья́ви де́лла ма́ккина со́но куи.\nIl fratello di Paolo è al mercato. — «Брат Паоло на рынке.»\nЧитается: иль фрате́лло ди па́оло э аль мерка́то.\nL’amica di Lea è qui. — «Подруга Леа здесь.»\nЧитается: л’ами́ка ди ле́а э куи.\nIl caricabatterie è in camera da letto. — «Зарядное устройство в спальне.»\nЧитается: иль карикабаттери́е э ин ка́мера да ле́тто.\nСлово di показывает, чьё: l’amica di Lea — «подруга Леа».\nСлово macchina значит «машина», слова della macchina — «от машины».\nСлово caricabatterie значит «зарядное устройство».\nСлова camera da letto значат «спальня».",
+        "uk": "Дивіться, як сказати, чиє це і де воно.\nLe chiavi della macchina sono qui. — «Ключі від машини тут.»\nЧитається: ле кья́ві де́лла ма́ккіна со́но куі.\nIl fratello di Paolo è al mercato. — «Брат Паоло на ринку.»\nЧитається: іль фрате́лло ді па́оло е аль мерка́то.\nL’amica di Lea è qui. — «Подруга Леа тут.»\nЧитається: л’амі́ка ді ле́а е куі.\nIl caricabatterie è in camera da letto. — «Зарядний пристрій у спальні.»\nЧитається: іль карікабаттері́е е ін ка́мера да ле́тто.\nСлово di показує, чиє: l’amica di Lea — «подруга Леа».\nСлово macchina означає «машина», слова della macchina — «від машини».\nСлово caricabatterie означає «зарядний пристрій».\nСлова camera da letto означають «спальня».",
+        "en": "Look at how to say whose it is and where.\nLe chiavi della macchina sono qui. — “The car keys are here.”\nIl fratello di Paolo è al mercato. — “Paolo’s brother is at the market.”\nL’amica di Lea è qui. — “Lea’s friend is here.”\nIl caricabatterie è in camera da letto. — “The charger is in the bedroom.”\nThe word di shows whose: l’amica di Lea — “Lea’s friend”.\nThe word macchina means “car”, the words della macchina — “of the car”.\nThe word caricabatterie means “charger”.\nThe words camera da letto mean “bedroom”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:06:47",
+          "say": {
+            "ru": "ле кья́ви де́лла ма́ккина со́но куи",
+            "uk": "ле кья́ві де́лла ма́ккіна со́но куі"
+          }
+        },
+        {
+          "phraseId": "it:06:45",
+          "say": {
+            "ru": "иль фрате́лло ди па́оло э аль мерка́то",
+            "uk": "іль фрате́лло ді па́оло е аль мерка́то"
+          }
+        },
+        {
+          "phraseId": "it:06:44",
+          "say": {
+            "ru": "л’ами́ка ди ле́а э куи",
+            "uk": "л’амі́ка ді ле́а е куі"
+          }
+        },
+        {
+          "phraseId": "it:06:39",
+          "say": {
+            "ru": "иль карикабаттери́е э ин ка́мера да ле́тто",
+            "uk": "іль карікабаттері́е е ін ка́мера да ле́тто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключи от машины здесь»",
+            "uk": "Виберіть, як сказати: «Ключі від машини тут»",
+            "en": "Choose how to say: “The car keys are here”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:06:47",
+          "options": [
+            "it:06:47",
+            "it:06:44",
+            "it:06:45"
+          ],
+          "answerId": "it:06:47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Брат Паоло на рынке»",
+            "uk": "Виберіть, як сказати: «Брат Паоло на ринку»",
+            "en": "Choose how to say: “Paolo’s brother is at the market”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:45",
+          "options": [
+            "it:06:45",
+            "it:06:44",
+            "it:06:47"
+          ],
+          "answerId": "it:06:45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Зарядное устройство в спальне»",
+            "uk": "Виберіть, як сказати: «Зарядний пристрій у спальні»",
+            "en": "Choose how to say: “The charger is in the bedroom”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:06:39",
+          "options": [
+            "it:06:39",
+            "it:06:35",
+            "it:06:47"
+          ],
+          "answerId": "it:06:39"
+        }
+      ]
+    }
+  ]
+}

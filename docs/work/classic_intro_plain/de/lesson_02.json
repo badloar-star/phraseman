@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "en": "Three words for “the”"
+      },
+      "text": {
+        "en": "English has one “the”. German has three.\nDas ist der Schlüssel. = This is the key.\nDas ist means “this is”. Schlüssel means “key”.\nDas ist die Tasche. = This is the bag.\nDas ist das Handy. = This is the cell phone.\nTasche means “bag”. Handy means “cell phone”.\nThe “the” changed: der, die, das."
+      },
+      "exampleIds": [
+        "de:02:01",
+        "de:02:02",
+        "de:02:03"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "en": "Learn each thing with its “the”"
+      },
+      "text": {
+        "en": "Each German thing keeps its own “the”.\nYou cannot guess it, so learn the pair.\nder Schlüssel = the key\ndie Tasche = the bag\ndas Handy = the cell phone\nFor more than one, it is always die.\nDas sind die Schlüssel. = These are the keys.\nSind means “are”."
+      },
+      "exampleIds": [
+        "de:02:10",
+        "de:02:24"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "en": "Pick the right “the”"
+      },
+      "text": {
+        "en": "You will see a sentence in English.\nBuild it in German, word by word.\nWatch the “the”: der, die or das?\nDer Stuhl ist kaputt. = The chair is broken.\nStuhl means “chair”. Kaputt means “broken”.\nOnly one “the” fits each thing."
+      },
+      "exampleIds": [
+        "de:02:27",
+        "de:02:28"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,522 @@
+{
+  "lang": "fr",
+  "lesson": 3,
+  "title": {
+    "ru": "Вопрос «да или нет»",
+    "uk": "Питання «так чи ні»",
+    "en": "A yes-or-no question"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Голос идёт вверх",
+        "uk": "Голос іде вгору",
+        "en": "The voice goes up"
+      },
+      "text": {
+        "ru": "Смотрите, как задать вопрос, на который отвечают «да» или «нет».\nСначала обычная фраза.\nTu es ici. — «Ты здесь.»\nТеперь вопрос.\nTu es ici ? — «Ты здесь?»\nЧитается: тю э иси́.\nВ конце голос идёт вверх.\nСлова те же. Меняется только голос.\nНа письме в конце стоит знак ?\nЕщё один вопрос.\nTu es là ? — «Ты там?»\nЧитается: тю э ла́.\nСлово là значит «там», слово ici — «здесь».\nЕщё вопрос — «готов?»\nTu es prêt ? — «Ты готов?»\nЧитается: тю э прэ́.\nСлово prêt значит «готов».",
+        "uk": "Дивіться, як поставити питання, на яке відповідають «так» або «ні».\nСпочатку звичайна фраза.\nTu es ici. — «Ти тут.»\nТепер питання.\nTu es ici ? — «Ти тут?»\nЧитається: тю е ісі́.\nУ кінці голос іде вгору.\nСлова ті самі. Змінюється лише голос.\nНа письмі в кінці стоїть знак ?\nЩе одне питання.\nTu es là ? — «Ти там?»\nЧитається: тю е ла́.\nСлово là означає «там», слово ici — «тут».\nЩе питання — «готовий?»\nTu es prêt ? — «Ти готовий?»\nЧитається: тю е пре́.\nСлово prêt означає «готовий».",
+        "en": "Look at how to ask a question with the answer “yes” or “no”.\nFirst an ordinary phrase.\nTu es ici. — “You are here.”\nNow a question.\nTu es ici ? — “Are you here?”\nAt the end the voice goes up.\nThe words are the same. Only the voice changes.\nIn writing there is a sign ? at the end.\nOne more question.\nTu es là ? — “Are you there?”\nlà means “there”, ici — “here”.\nAnother question — “ready?”\nTu es prêt ? — “Are you ready?”\nprêt means “ready”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:03:02",
+          "say": {
+            "ru": "тю э иси́",
+            "uk": "тю е ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:03:01",
+          "say": {
+            "ru": "тю э ла́",
+            "uk": "тю е ла́"
+          }
+        },
+        {
+          "phraseId": "fr:03:03",
+          "say": {
+            "ru": "тю э прэ́",
+            "uk": "тю е пре́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Ты там?»",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Ти там?»",
+            "en": "Sample. Tap the right answer: how do you say “Are you there?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:03:01",
+          "options": [
+            "fr:03:01",
+            "fr:03:02"
+          ],
+          "answerId": "fr:03:01"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ты здесь?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Ти тут?»",
+            "en": "Tap the right answer: how do you say “Are you here?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:02",
+          "options": [
+            "fr:03:02",
+            "fr:03:01",
+            "fr:03:03"
+          ],
+          "answerId": "fr:03:02"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ты готов?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Ти готовий?»",
+            "en": "Tap the right answer: how do you say “Are you ready?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:03",
+          "options": [
+            "fr:03:03",
+            "fr:03:02",
+            "fr:03:01"
+          ],
+          "answerId": "fr:03:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Вопрос про Поля и Леа",
+        "uk": "Питання про Поля і Леа",
+        "en": "Asking about Paul and Léa"
+      },
+      "text": {
+        "ru": "Так же спрашивают про других.\nPaul est au bureau ? — «Поль в офисе?»\nЧитается: поль э о бюро́.\nLéa est à la gare ? — «Леа на вокзале?»\nЧитается: леа́ э а ла гар.\nГолос в конце идёт вверх.\nСлово est вы знаете: «быть, находиться», когда речь о Поле или о Леа.\nСлово au значит «в» перед словом bureau («офис»).\nСлово à значит «в» или «на». Слово gare значит «вокзал».\nСлово la по-русски не говорят: запоминайте его вместе с названием места.\nПро неё так же:\nElle est prête ? — «Она готова?»\nЧитается: эль э прэ́т.",
+        "uk": "Так само питають про інших.\nPaul est au bureau ? — «Пол в офісі?»\nЧитається: поль е о бюро́.\nLéa est à la gare ? — «Леа на вокзалі?»\nЧитається: леа́ е а ла гар.\nГолос у кінці іде вгору.\nСлово est ви знаєте: «бути, перебувати», коли мова про Поля або про Леа.\nСлово au означає «в» перед словом bureau («офіс»).\nСлово à означає «в» або «на». Слово gare означає «вокзал».\nСлова la українською немає: запам’ятовуйте його разом із назвою місця.\nПро неї так само:\nElle est prête ? — «Вона готова?»\nЧитається: ель е пре́т.",
+        "en": "People ask about others the same way.\nPaul est au bureau ? — “Is Paul at the office?”\nLéa est à la gare ? — “Is Léa at the station?”\nThe voice goes up at the end.\nYou know est: “to be, to be somewhere”, about Paul or Léa.\nau means “at” before bureau (“office”).\nà means “at” or “in”. gare means “station”.\nla has no word in English here: learn it together with the place.\nAbout her the same way:\nElle est prête ? — “Is she ready?”"
+      },
+      "examples": [
+        {
+          "phraseId": "fr:03:05",
+          "say": {
+            "ru": "поль э о бюро́",
+            "uk": "поль е о бюро́"
+          }
+        },
+        {
+          "phraseId": "fr:03:06",
+          "say": {
+            "ru": "леа́ э а ла гар",
+            "uk": "леа́ е а ла гар"
+          }
+        },
+        {
+          "phraseId": "fr:03:04",
+          "say": {
+            "ru": "эль э прэ́т",
+            "uk": "ель е пре́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Леа на вокзале?»",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Леа на вокзалі?»",
+            "en": "Sample. Tap the right answer: how do you say “Is Léa at the station?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:03:06",
+          "options": [
+            "fr:03:06",
+            "fr:03:05",
+            "fr:03:01"
+          ],
+          "answerId": "fr:03:06"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Поль в офисе?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Пол в офісі?»",
+            "en": "Tap the right answer: how do you say “Is Paul at the office?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:05",
+          "options": [
+            "fr:03:05",
+            "fr:03:06",
+            "fr:03:04"
+          ],
+          "answerId": "fr:03:05"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Она готова?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Вона готова?»",
+            "en": "Tap the right answer: how do you say “Is she ready?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:04",
+          "options": [
+            "fr:03:04",
+            "fr:03:03",
+            "fr:03:05"
+          ],
+          "answerId": "fr:03:04"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вопрос про вас и про них",
+        "uk": "Питання про вас і про них",
+        "en": "Asking about you (all) and them"
+      },
+      "text": {
+        "ru": "Теперь вопросы со словами «вы», «они» и «мы».\nVous êtes à la maison ? — «Вы дома?»\nЧитается: ву зэт а ла мэзо́н.\nПеред гласной слово vous слышится с лёгким «з»: «ву зэ́т».\nIls sont dehors ? — «Они на улице?»\nЧитается: иль сон дэо́р.\nVous êtes libre ? — «Вы свободны?»\nЧитается: ву зэт либр.\nNous sommes en retard ? — «Мы опаздываем?»\nЧитается: ну сом зан рёта́р.\nСлово vous значит «вы», слово ils — «они», слово nous — «мы».\nСлово dehors значит «на улице». Слова à la maison значат «дома».\nСлова en retard значат «с опозданием». Слово libre значит «свободен».\nКогда речь о вас, говорят êtes. О них — sont. О нас — sommes.\nГолос в конце идёт вверх.",
+        "uk": "Тепер питання зі словами «ви», «вони» і «ми».\nVous êtes à la maison ? — «Ви вдома?»\nЧитається: ву зет а ла мезо́н.\nПеред голосною слово vous чути з легким «з»: «ву зе́т».\nIls sont dehors ? — «Вони надворі?»\nЧитається: іль сон део́р.\nVous êtes libre ? — «Ви вільні?»\nЧитається: ву зет лібр.\nNous sommes en retard ? — «Ми запізнюємося?»\nЧитається: ну сом зан рёта́р.\nСлово vous означає «ви», слово ils — «вони», слово nous — «ми».\nСлово dehors означає «надворі». Слова à la maison означають «вдома».\nСлова en retard означають «із запізненням». Слово libre означає «вільний».\nКоли мова про вас, кажуть êtes. Про них — sont. Про нас — sommes.\nГолос у кінці іде вгору.",
+        "en": "Now questions with “you (all)”, “they” and “we”.\nVous êtes à la maison ? — “Are you at home?”\nBefore a vowel the word vous sounds with a light “z”: “voo zet”.\nIls sont dehors ? — “Are they outside?”\nVous êtes libre ? — “Are you free?”\nNous sommes en retard ? — “Are we late?”\nvous means “you (all)”, ils — “they”, nous — “we”.\ndehors means “outside”. à la maison means “at home”.\nen retard means “late”. libre means “free”.\nAbout you (all) people say êtes. About them — sont. About us — sommes.\nThe voice goes up at the end."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:03:07",
+          "say": {
+            "ru": "ву зэт а ла мэзо́н",
+            "uk": "ву зет а ла мезо́н"
+          }
+        },
+        {
+          "phraseId": "fr:03:08",
+          "say": {
+            "ru": "иль сон дэо́р",
+            "uk": "іль сон део́р"
+          }
+        },
+        {
+          "phraseId": "fr:03:10",
+          "say": {
+            "ru": "ву зэт либр",
+            "uk": "ву зет лібр"
+          }
+        },
+        {
+          "phraseId": "fr:03:09",
+          "say": {
+            "ru": "ну сом зан рёта́р",
+            "uk": "ну сом зан рёта́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Они на улице?»",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Вони надворі?»",
+            "en": "Sample. Tap the right answer: how do you say “Are they outside?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:03:08",
+          "options": [
+            "fr:03:08",
+            "fr:03:07",
+            "fr:03:06"
+          ],
+          "answerId": "fr:03:08"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Вы дома?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Ви вдома?»",
+            "en": "Tap the right answer: how do you say “Are you at home?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:07",
+          "options": [
+            "fr:03:07",
+            "fr:03:08",
+            "fr:03:10"
+          ],
+          "answerId": "fr:03:07"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Мы опаздываем?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Ми запізнюємося?»",
+            "en": "Tap the right answer: how do you say “Are we late?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:09",
+          "options": [
+            "fr:03:09",
+            "fr:03:10",
+            "fr:03:08"
+          ],
+          "answerId": "fr:03:09"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Слова est-ce que",
+        "uk": "Слова est-ce que",
+        "en": "The words est-ce que"
+      },
+      "text": {
+        "ru": "Есть второй способ. Вопрос можно начать со слов est-ce que.\nEst-ce que la porte est ouverte ? — «Дверь открыта?»\nЧитается: эс ка ла порт э увэ́рт.\nСлово porte значит «дверь». Слово ouverte значит «открыта».\nEst-ce que Paul est fatigué ? — «Поль устал?»\nЧитается: эс ка поль э фатиге́.\nСлово fatigué значит «устал».\nEst-ce que tu es à la gare ? — «Ты на вокзале?»\nЧитается: эс ка тю э а ла гар.\nСлова est-ce que говорят: дальше будет вопрос.\nПо-русски такого слова нет.\nДальше идёт обычная фраза. Голос в конце тоже идёт вверх.",
+        "uk": "Є другий спосіб. Питання можна почати зі слів est-ce que.\nEst-ce que la porte est ouverte ? — «Двері відчинені?»\nЧитається: ес ка ла порт е уве́рт.\nСлово porte означає «двері». Слово ouverte означає «відчинені».\nEst-ce que Paul est fatigué ? — «Пол втомився?»\nЧитається: ес ка поль е фатіге́.\nСлово fatigué означає «втомився».\nEst-ce que tu es à la gare ? — «Ти на вокзалі?»\nЧитається: ес ка тю е а ла гар.\nСлова est-ce que кажуть: далі буде питання.\nУкраїнською такого слова немає.\nДалі йде звичайна фраза. Голос у кінці теж іде вгору.",
+        "en": "There is a second way. A question can start with est-ce que.\nEst-ce que la porte est ouverte ? — “Is the door open?”\nporte means “door”. ouverte means “open”.\nEst-ce que Paul est fatigué ? — “Is Paul tired?”\nfatigué means “tired”.\nEst-ce que tu es à la gare ? — “Are you at the station?”\nest-ce que says: a question is coming.\nEnglish has no such word here.\nThen comes an ordinary phrase. The voice goes up at the end too."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:03:12",
+          "say": {
+            "ru": "эс ка ла порт э увэ́рт",
+            "uk": "ес ка ла порт е уве́рт"
+          }
+        },
+        {
+          "phraseId": "fr:03:18",
+          "say": {
+            "ru": "эс ка поль э фатиге́",
+            "uk": "ес ка поль е фатіге́"
+          }
+        },
+        {
+          "phraseId": "fr:03:11",
+          "say": {
+            "ru": "эс ка тю э а ла гар",
+            "uk": "ес ка тю е а ла гар"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Дверь открыта?»",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Двері відчинені?»",
+            "en": "Sample. Tap the right answer: how do you say “Is the door open?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:03:12",
+          "options": [
+            "fr:03:12",
+            "fr:03:18",
+            "fr:03:11"
+          ],
+          "answerId": "fr:03:12"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Поль устал?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Пол втомився?»",
+            "en": "Tap the right answer: how do you say “Is Paul tired?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:18",
+          "options": [
+            "fr:03:18",
+            "fr:03:12",
+            "fr:03:11"
+          ],
+          "answerId": "fr:03:18"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ты на вокзале?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Ти на вокзалі?»",
+            "en": "Tap the right answer: how do you say “Are you at the station?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:11",
+          "options": [
+            "fr:03:11",
+            "fr:03:12",
+            "fr:03:18"
+          ],
+          "answerId": "fr:03:11"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Слева, справа, напротив",
+        "uk": "Ліворуч, праворуч, навпроти",
+        "en": "Left, right, opposite"
+      },
+      "text": {
+        "ru": "Так можно спросить, где что находится.\nLa sortie est à gauche ? — «Выход слева?»\nЧитается: ла сорти́ э а гош.\nLe parking est à droite ? — «Парковка справа?»\nЧитается: лё парки́нг э а друа́т.\nСлово sortie значит «выход», слово parking — «парковка».\nСлово gauche значит «слева», слово droite — «справа».\nLe quai est en face ? — «Перрон напротив?»\nЧитается: лё кэ э ан фас.\nСлово quai значит «платформа, перрон». Слова en face значат «напротив».\nСлова la и le по-русски не говорят: запоминайте их вместе с названием вещи.\nГолос в конце идёт вверх.",
+        "uk": "Так можна запитати, де що перебуває.\nLa sortie est à gauche ? — «Вихід ліворуч?»\nЧитається: ла сорті́ е а гош.\nLe parking est à droite ? — «Парковка праворуч?»\nЧитається: лё паркі́нг е а друа́т.\nСлово sortie означає «вихід», слово parking — «паркінг».\nСлово gauche означає «ліворуч», слово droite — «праворуч».\nLe quai est en face ? — «Перон навпроти?»\nЧитається: лё ке е ан фас.\nСлово quai означає «платформа, перон». Слова en face означають «навпроти».\nСлів la і le українською немає: запам’ятовуйте їх разом із назвою речі.\nГолос у кінці іде вгору.",
+        "en": "This is how you can ask where something is.\nLa sortie est à gauche ? — “Is the exit on the left?”\nLe parking est à droite ? — “Is the car park on the right?”\nsortie means “exit”, parking — “car park”.\ngauche means “on the left”, droite — “on the right”.\nLe quai est en face ? — “Is the platform opposite?”\nquai means “platform”. en face means “opposite”.\nla and le have no word in English here: learn them together with the name.\nThe voice goes up at the end."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:03:25",
+          "say": {
+            "ru": "ла сорти́ э а гош",
+            "uk": "ла сорті́ е а гош"
+          }
+        },
+        {
+          "phraseId": "fr:03:26",
+          "say": {
+            "ru": "лё парки́нг э а друа́т",
+            "uk": "лё паркі́нг е а друа́т"
+          }
+        },
+        {
+          "phraseId": "fr:03:24",
+          "say": {
+            "ru": "лё кэ э ан фас",
+            "uk": "лё ке е ан фас"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Выход слева?»",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Вихід ліворуч?»",
+            "en": "Sample. Tap the right answer: how do you say “Is the exit on the left?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:03:25",
+          "options": [
+            "fr:03:25",
+            "fr:03:26",
+            "fr:03:24"
+          ],
+          "answerId": "fr:03:25"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Парковка справа?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Парковка праворуч?»",
+            "en": "Tap the right answer: how do you say “Is the car park on the right?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:26",
+          "options": [
+            "fr:03:26",
+            "fr:03:25",
+            "fr:03:24"
+          ],
+          "answerId": "fr:03:26"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Перрон напротив?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Перон навпроти?»",
+            "en": "Tap the right answer: how do you say “Is the platform opposite?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:24",
+          "options": [
+            "fr:03:24",
+            "fr:03:25",
+            "fr:03:26"
+          ],
+          "answerId": "fr:03:24"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Вход, касса, замок",
+        "uk": "Вхід, каса, замок",
+        "en": "Entrance, ticket office, lock"
+      },
+      "text": {
+        "ru": "Теперь вход, касса, замок и карман.\nL’entrée est là ? — «Вход там?»\nЧитается: лантре́ э ла́.\nСлова l’entrée значат «вход».\nАпостроф в l’entrée: перед гласной слова la и le пишутся слитно.\nНосовой звук: «ан», «он», «эн» говорят в нос, «н» почти не слышно. Поэтому «лантре́».\nLe guichet est ouvert ? — «Касса открыта?»\nЧитается: лё гишэ́ э увэ́р.\nСлово guichet значит «касса, окошко обслуживания». Слово ouvert значит «открыт».\nLa clé est dans la serrure ? — «Ключ в замке?»\nЧитается: ла кле́ э дан ла сэрю́р.\nСлово serrure значит «замок в двери», слово dans — «в». Слово clé — «ключ».\nEst-ce que les billets sont dans ta poche ? — «Билеты у тебя в кармане?»\nЧитается: эс ка лэ бийэ́ сон дан та пош.\nСлово billets значит «билеты». Слово les стоит перед несколькими вещами. По-русски такого слова нет.\nСлово ta значит «твой, твоя». Слово poche значит «карман».\nПо-французски говорят «в твоём кармане», по-русски — «у тебя в кармане».",
+        "uk": "Тепер вхід, каса, замок і кишеня.\nL’entrée est là ? — «Вхід там?»\nЧитається: лантре́ е ла́.\nСлова l’entrée означають «вхід».\nАпостроф у l’entrée: перед голосною слова la і le пишуться разом.\nНосовий звук: «ан», «он», «ен» кажуть у ніс, «н» майже не чути. Тому «лантре́».\nLe guichet est ouvert ? — «Каса відкрита?»\nЧитається: лё гіше́ е уве́р.\nСлово guichet означає «каса, віконце обслуговування». Слово ouvert означає «відкритий».\nLa clé est dans la serrure ? — «Ключ у замку?»\nЧитається: ла кле́ е дан ла серю́р.\nСлово serrure означає «замок у дверях», слово dans — «в». Слово clé — «ключ».\nEst-ce que les billets sont dans ta poche ? — «Квитки у тебе в кишені?»\nЧитається: ес ка ле бійе́ сон дан та пош.\nСлово billets означає «квитки». Слово les стоїть перед кількома речами. Українською такого слова немає.\nСлово ta означає «твій, твоя». Слово poche означає «кишеня».\nФранцузькою кажуть «у твоїй кишені», українською — «у тебе в кишені».",
+        "en": "Now entrance, ticket office, lock and pocket.\nL’entrée est là ? — “Is the entrance there?”\nl’entrée means “entrance”.\nThe apostrophe in l’entrée: before a vowel la and le are written together.\nNasal sound: “an”, “on”, “en” are said through the nose, the “n” is barely heard.\nSo “lantray”.\nLe guichet est ouvert ? — “Is the ticket office open?”\nguichet means “ticket office”. ouvert means “open”.\nLa clé est dans la serrure ? — “Is the key in the lock?”\nserrure means “lock”, dans — “in”. clé means “key”.\nEst-ce que les billets sont dans ta poche ? — “Are the tickets in your pocket?”\nbillets means “tickets”. les stands before several things.\nEnglish has no such word here.\nta means “your”. poche means “pocket”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:03:22",
+          "say": {
+            "ru": "лантре́ э ла́",
+            "uk": "лантре́ е ла́"
+          }
+        },
+        {
+          "phraseId": "fr:03:21",
+          "say": {
+            "ru": "лё гишэ́ э увэ́р",
+            "uk": "лё гіше́ е уве́р"
+          }
+        },
+        {
+          "phraseId": "fr:03:43",
+          "say": {
+            "ru": "ла кле́ э дан ла сэрю́р",
+            "uk": "ла кле́ е дан ла серю́р"
+          }
+        },
+        {
+          "phraseId": "fr:03:35",
+          "say": {
+            "ru": "эс ка лэ бийэ́ сон дан та пош",
+            "uk": "ес ка ле бійе́ сон дан та пош"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Вход там?»",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Вхід там?»",
+            "en": "Sample. Tap the right answer: how do you say “Is the entrance there?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:03:22",
+          "options": [
+            "fr:03:22",
+            "fr:03:21",
+            "fr:03:25"
+          ],
+          "answerId": "fr:03:22"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Касса открыта?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Каса відкрита?»",
+            "en": "Tap the right answer: how do you say “Is the ticket office open?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:21",
+          "options": [
+            "fr:03:21",
+            "fr:03:12",
+            "fr:03:25"
+          ],
+          "answerId": "fr:03:21"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Ключ в замке?»",
+            "uk": "Натисніть потрібний варіант: як сказати «Ключ у замку?»",
+            "en": "Tap the right answer: how do you say “Is the key in the lock?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:03:43",
+          "options": [
+            "fr:03:43",
+            "fr:03:22",
+            "fr:03:21"
+          ],
+          "answerId": "fr:03:43"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,551 @@
+{
+  "lang": "fr",
+  "lesson": 8,
+  "title": {
+    "ru": "Вопросы: где, кто, когда, сколько",
+    "uk": "Питання: де, хто, коли, скільки",
+    "en": "Questions: where, who, when, how much"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Где?",
+        "uk": "Де?",
+        "en": "Where?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить, где что-то находится.\nOù est Paul ? — «Где Поль?»\nЧитается: у э поль.\nСлово où значит «где».\nOù sont les clés ? — «Где ключи?»\nЧитается: у сон лэ кле́.\nКогда вещей несколько, вместо est говорят sont.\nOù est la sortie ? — «Где выход?»\nЧитается: у э ла сорти́.\nOù es-tu ? — «Где ты?»\nЧитается: у э тю.\nСлова tu и vous ставят в конец и соединяют чёрточкой.\nOù travaillez-vous ? — «Где вы работаете?»\nЧитается: у травайе́ ву.",
+        "uk": "Дивіться, як запитати, де щось знаходиться.\nOù est Paul ? — «Де Пол?»\nЧитається: у е поль.\nСлово où означає «де».\nOù sont les clés ? — «Де ключі?»\nЧитається: у сон ле кле́.\nКоли речей кілька, замість est кажуть sont.\nOù est la sortie ? — «Де вихід?»\nЧитається: у е ла сорті́.\nOù es-tu ? — «Де ти?»\nЧитається: у е тю.\nСлова tu і vous ставлять в кінець і з’єднують рискою.\nOù travaillez-vous ? — «Де ви працюєте?»\nЧитається: у травайе́ ву.",
+        "en": "Look at how to ask where something is.\nOù est Paul ? — “Where is Paul?”\noù means “where”.\nOù sont les clés ? — “Where are the keys?”\nWhen there are several things, we say sont instead of est.\nOù est la sortie ? — “Where is the exit?”\nOù es-tu ? — “Where are you?”\nThe words tu and vous go at the end, joined by a dash.\nOù travaillez-vous ? — “Where do you work?”"
+      },
+      "examples": [
+        {
+          "phraseId": "fr:08:02",
+          "say": {
+            "ru": "у э поль",
+            "uk": "у е поль"
+          }
+        },
+        {
+          "phraseId": "fr:08:03",
+          "say": {
+            "ru": "у сон лэ кле́",
+            "uk": "у сон ле кле́"
+          }
+        },
+        {
+          "phraseId": "fr:08:06",
+          "say": {
+            "ru": "у э ла сорти́",
+            "uk": "у е ла сорті́"
+          }
+        },
+        {
+          "phraseId": "fr:08:01",
+          "say": {
+            "ru": "у э тю",
+            "uk": "у е тю"
+          }
+        },
+        {
+          "phraseId": "fr:08:05",
+          "say": {
+            "ru": "у травайе́ ву",
+            "uk": "у травайе́ ву"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Где Поль»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Де Пол»?",
+            "en": "Sample. Tap the right answer: how do you say “Where is Paul”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:08:02",
+          "options": [
+            "fr:08:02",
+            "fr:08:03",
+            "fr:08:06"
+          ],
+          "answerId": "fr:08:02"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Где ключи»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Де ключі»?",
+            "en": "Tap the right answer: how do you say “Where are the keys”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:03",
+          "options": [
+            "fr:08:03",
+            "fr:08:02",
+            "fr:08:06"
+          ],
+          "answerId": "fr:08:03"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Где вы работаете»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Де ви працюєте»?",
+            "en": "Tap the right answer: how do you say “Where do you work”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:05",
+          "options": [
+            "fr:08:05",
+            "fr:08:01",
+            "fr:08:02"
+          ],
+          "answerId": "fr:08:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Кто?",
+        "uk": "Хто?",
+        "en": "Who?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Кто здесь работает?»\nQui travaille ici ? — «Кто здесь работает?»\nЧитается: ки трава́й иси́.\nСлово qui значит «кто».\nQui est là ? — «Кто здесь?»\nЧитается: ки э ла.\nQui prépare le dîner ? — «Кто готовит ужин?»\nЧитается: ки препа́р лё дине́.\nQui cherche un appartement ? — «Кто ищет квартиру?»\nЧитается: ки шэрш ён апартема́н.\nПосле qui слово говорят так же, как про «он»: qui travaille, qui prépare.",
+        "uk": "Дивіться, як запитати «Хто тут працює?»\nQui travaille ici ? — «Хто тут працює?»\nЧитається: кі трава́й ісі́.\nСлово qui означає «хто».\nQui est là ? — «Хто тут?»\nЧитається: ки е ла.\nQui prépare le dîner ? — «Хто готує вечерю?»\nЧитається: кі препа́р лё діне́.\nQui cherche un appartement ? — «Хто шукає квартиру?»\nЧитається: кі шерш ён апартема́н.\nПісля qui слово кажуть так само, як про «він»: qui travaille, qui prépare.",
+        "en": "Look at how to ask “Who works here?”\nQui travaille ici ? — “Who works here?”\nqui means “who”.\nQui est là ? — “Who is there?”\nQui prépare le dîner ? — “Who is making dinner?”\nQui cherche un appartement ? — “Who is looking for an apartment?”\nAfter qui, the word is the same as for “he”: qui travaille, qui prépare."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:08:13",
+          "say": {
+            "ru": "ки трава́й иси́",
+            "uk": "кі трава́й ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:08:11",
+          "say": {
+            "ru": "ки э ла",
+            "uk": "ки е ла"
+          }
+        },
+        {
+          "phraseId": "fr:08:16",
+          "say": {
+            "ru": "ки препа́р лё дине́",
+            "uk": "кі препа́р лё діне́"
+          }
+        },
+        {
+          "phraseId": "fr:08:20",
+          "say": {
+            "ru": "ки шэрш ён апартема́н",
+            "uk": "кі шерш ён апартема́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Кто здесь работает»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Хто тут працює»?",
+            "en": "Sample. Tap the right answer: how do you say “Who works here”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:08:13",
+          "options": [
+            "fr:08:13",
+            "fr:08:11",
+            "fr:08:16"
+          ],
+          "answerId": "fr:08:13"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Кто готовит ужин»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Хто готує вечерю»?",
+            "en": "Tap the right answer: how do you say “Who is making dinner”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:16",
+          "options": [
+            "fr:08:16",
+            "fr:08:20",
+            "fr:08:13"
+          ],
+          "answerId": "fr:08:16"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Кто ищет квартиру»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Хто шукає квартиру»?",
+            "en": "Tap the right answer: how do you say “Who is looking for an apartment”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:20",
+          "options": [
+            "fr:08:20",
+            "fr:08:16",
+            "fr:08:11"
+          ],
+          "answerId": "fr:08:20"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Когда?",
+        "uk": "Коли?",
+        "en": "When?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Когда?» и «Во сколько?»\nQuand est le concert ? — «Когда концерт?»\nЧитается: кан э лё консэ́р.\nСлово quand значит «когда».\nQuand commence le cours ? — «Когда начинается занятие?»\nЧитается: кан кома́нс лё кур.\nСлово commencer значит «начинать, начинаться». Слово cours значит «занятие, урок».\nÀ quelle heure part le train ? — «Во сколько отправляется поезд?»\nЧитается: а кэль ёр пар лё трэ́н.\nСлова à quelle heure значат «во сколько».\nÀ quelle heure ouvre le musée ? — «Во сколько открывается музей?»\nЧитается: а кэль ёр увр лё мюзе́.",
+        "uk": "Дивіться, як запитати «Коли?» і «О котрій?»\nQuand est le concert ? — «Коли концерт?»\nЧитається: кан е лё консе́р.\nСлово quand означає «коли».\nQuand commence le cours ? — «Коли починається заняття?»\nЧитається: кан кома́нс лё кур.\nСлово commencer означає «починати, починатися». Слово cours означає «заняття, урок».\nÀ quelle heure part le train ? — «О котрій годині відправляється поїзд?»\nЧитається: а кель ёр пар лё тре́н.\nСлова à quelle heure означають «о котрій годині».\nÀ quelle heure ouvre le musée ? — «О котрій годині відкривається музей?»\nЧитається: а кель ёр увр лё мюзе́.",
+        "en": "Look at how to ask “When?” and “What time?”\nQuand est le concert ? — “When is the concert?”\nquand means “when”.\nQuand commence le cours ? — “When does the class start?”\ncommencer means “to begin”. cours means “class, lesson”.\nÀ quelle heure part le train ? — “What time does the train leave?”\nà quelle heure means “at what time”.\nÀ quelle heure ouvre le musée ? — “What time does the museum open?”"
+      },
+      "examples": [
+        {
+          "phraseId": "fr:08:23",
+          "say": {
+            "ru": "кан э лё консэ́р",
+            "uk": "кан е лё консе́р"
+          }
+        },
+        {
+          "phraseId": "fr:08:25",
+          "say": {
+            "ru": "кан кома́нс лё кур",
+            "uk": "кан кома́нс лё кур"
+          }
+        },
+        {
+          "phraseId": "fr:08:29",
+          "say": {
+            "ru": "а кэль ёр пар лё трэ́н",
+            "uk": "а кель ёр пар лё тре́н"
+          }
+        },
+        {
+          "phraseId": "fr:08:27",
+          "say": {
+            "ru": "а кэль ёр увр лё мюзе́",
+            "uk": "а кель ёр увр лё мюзе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Когда концерт»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Коли концерт»?",
+            "en": "Sample. Tap the right answer: how do you say “When is the concert”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:08:23",
+          "options": [
+            "fr:08:23",
+            "fr:08:25",
+            "fr:08:29"
+          ],
+          "answerId": "fr:08:23"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Во сколько отправляется поезд»?",
+            "uk": "Натисніть потрібний варіант: як сказати «О котрій годині відправляється поїзд»?",
+            "en": "Tap the right answer: how do you say “What time does the train leave”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:29",
+          "options": [
+            "fr:08:29",
+            "fr:08:27",
+            "fr:08:23"
+          ],
+          "answerId": "fr:08:29"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Во сколько открывается музей»?",
+            "uk": "Натисніть потрібний варіант: як сказати «О котрій годині відкривається музей»?",
+            "en": "Tap the right answer: how do you say “What time does the museum open”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:27",
+          "options": [
+            "fr:08:27",
+            "fr:08:29",
+            "fr:08:25"
+          ],
+          "answerId": "fr:08:27"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Сколько?",
+        "uk": "Скільки?",
+        "en": "How much?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Сколько стоит билет?»\nCombien coûte le billet ? — «Сколько стоит билет?»\nЧитается: конбьэ́н кут лё бийэ́.\nСлово combien значит «сколько». Слово coûte значит «стоит».\nCombien coûte la livraison ? — «Сколько стоит доставка?»\nЧитается: конбьэ́н кут ла ливрезо́н.\nСлово la livraison значит «доставка».\nCombien de places voulez-vous ? — «Сколько мест вы хотите?»\nЧитается: конбьэ́н дё плас вуле́ ву.\nСлова combien de значат «сколько» — дальше называют вещь.\nСлово le trajet значит «путь, поездка». Слово temps значит «время».",
+        "uk": "Дивіться, як запитати «Скільки коштує квиток?»\nCombien coûte le billet ? — «Скільки коштує квиток?»\nЧитається: конбье́н кут лё бійе́.\nСлово combien означає «скільки». Слово coûte означає «коштує».\nCombien coûte la livraison ? — «Скільки коштує доставка?»\nЧитається: конбье́н кут ла ліврезо́н.\nСлово la livraison означає «доставка».\nCombien de places voulez-vous ? — «Скільки місць ви хочете?»\nЧитається: конбье́н дё плас вуле́ ву.\nСлова combien de означають «скільки» — далі називають річ.\nСлово le trajet означає «шлях, поїздка». Слово temps означає «час».",
+        "en": "Look at how to ask “How much is the ticket?”\nCombien coûte le billet ? — “How much is the ticket?”\ncombien means “how much”. coûte means “costs”.\nCombien coûte la livraison ? — “How much is delivery?”\nla livraison means “delivery”.\nCombien de places voulez-vous ? — “How many seats do you want?”\ncombien de means “how many” — then we name the thing.\nCombien de temps dure le trajet ? — “How long does the trip take?”\nle trajet means “trip, way”. temps means “time”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:08:31",
+          "say": {
+            "ru": "конбьэ́н кут лё бийэ́",
+            "uk": "конбье́н кут лё бійе́"
+          }
+        },
+        {
+          "phraseId": "fr:08:33",
+          "say": {
+            "ru": "конбьэ́н кут ла ливрезо́н",
+            "uk": "конбье́н кут ла ліврезо́н"
+          }
+        },
+        {
+          "phraseId": "fr:08:34",
+          "say": {
+            "ru": "конбьэ́н дё плас вуле́ ву",
+            "uk": "конбье́н дё плас вуле́ ву"
+          }
+        },
+        {
+          "phraseId": "fr:08:37",
+          "say": {
+            "ru": "конбьэ́н дё тан дюр лё траже́",
+            "uk": "конбье́н дё тан дюр лё траже́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Сколько стоит билет»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Скільки коштує квиток»?",
+            "en": "Sample. Tap the right answer: how do you say “How much is the ticket”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:08:31",
+          "options": [
+            "fr:08:31",
+            "fr:08:33",
+            "fr:08:34"
+          ],
+          "answerId": "fr:08:31"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Сколько стоит доставка»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Скільки коштує доставка»?",
+            "en": "Tap the right answer: how do you say “How much is delivery”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:33",
+          "options": [
+            "fr:08:33",
+            "fr:08:31",
+            "fr:08:34"
+          ],
+          "answerId": "fr:08:33"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Сколько мест вы хотите»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Скільки місць ви хочете»?",
+            "en": "Tap the right answer: how do you say “How many seats do you want”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:34",
+          "options": [
+            "fr:08:34",
+            "fr:08:31",
+            "fr:08:37"
+          ],
+          "answerId": "fr:08:34"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Какой?",
+        "uk": "Який?",
+        "en": "Which?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Какой автобус?»\nQuel bus prends-tu ? — «На каком автобусе ты едешь?»\nЧитается: кэль бюс пран тю.\nСлово quel значит «какой».\nQuelle chambre est libre ? — «Какой номер свободен?»\nЧитается: кэль шанбр э либр.\nСлово quelle тоже значит «какой».\nДля bus говорят quel, для chambre — quelle.\nЗапоминайте слово вместе с названием вещи.\nQuel est votre numéro ? — «Какой у вас номер?»\nЧитается: кэль э вотр нюмеро́.\nСлова votre numéro значат «ваш номер».",
+        "uk": "Дивіться, як запитати «Який автобус?»\nQuel bus prends-tu ? — «Яким автобусом ти їдеш?»\nЧитається: кель бюс пран тю.\nСлово quel означає «який».\nQuelle chambre est libre ? — «Який номер вільний?»\nЧитається: кель шанбр е лібр.\nСлово quelle теж означає «який».\nДля bus кажуть quel, для chambre — quelle.\nЗапам’ятовуйте слово разом із назвою речі.\nQuel est votre numéro ? — «Який ваш номер?»\nЧитається: кель е вотр нюмеро́.\nСлова votre numéro означають «ваш номер».",
+        "en": "Look at how to ask “Which bus?”\nQuel bus prends-tu ? — “Which bus do you take?”\nquel means “which”.\nQuelle chambre est libre ? — “Which room is free?”\nquelle also means “which”.\nFor bus we say quel, for chambre — quelle.\nLearn the word together with the name of the thing.\nQuel est votre numéro ? — “What is your number?”\nvotre numéro means “your number”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:08:38",
+          "say": {
+            "ru": "кэль бюс пран тю",
+            "uk": "кель бюс пран тю"
+          }
+        },
+        {
+          "phraseId": "fr:08:39",
+          "say": {
+            "ru": "кэль шанбр э либр",
+            "uk": "кель шанбр е лібр"
+          }
+        },
+        {
+          "phraseId": "fr:08:40",
+          "say": {
+            "ru": "кэль э вотр нюмеро́",
+            "uk": "кель е вотр нюмеро́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «На каком автобусе ты едешь»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Яким автобусом ти їдеш»?",
+            "en": "Sample. Tap the right answer: how do you say “Which bus do you take”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:08:38",
+          "options": [
+            "fr:08:38",
+            "fr:08:39",
+            "fr:08:40"
+          ],
+          "answerId": "fr:08:38"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Какой номер свободен»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Який номер вільний»?",
+            "en": "Tap the right answer: how do you say “Which room is free”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:39",
+          "options": [
+            "fr:08:39",
+            "fr:08:38",
+            "fr:08:40"
+          ],
+          "answerId": "fr:08:39"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Какой у вас номер»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Який ваш номер»?",
+            "en": "Tap the right answer: how do you say “What is your number”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:40",
+          "options": [
+            "fr:08:40",
+            "fr:08:38",
+            "fr:08:39"
+          ],
+          "answerId": "fr:08:40"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Почему? Как? Что?",
+        "uk": "Чому? Як? Що?",
+        "en": "Why? How? What?"
+      },
+      "text": {
+        "ru": "Ещё три вопроса. Слово-вопрос стоит в начале.\nPourquoi pars-tu si tôt ? — «Почему ты так рано уходишь?»\nЧитается: пуркуа́ пар тю си то.\nСлово pourquoi значит «почему».\nComment allez-vous ? — «Как у вас дела?»\nЧитается: кома́н але́ ву.\nСлово comment значит «как».\nComment s’appelle cette rue ? — «Как называется эта улица?»\nЧитается: кома́н сапэ́ль сэт рю.\nСлово la rue значит «улица».\nQu’est-ce que tu cherches ? — «Что ты ищешь?»\nЧитается: кэс кё тю шэрш.\nСлова qu’est-ce que значат «что».",
+        "uk": "Ще три питання. Слово-питання стоїть на початку.\nPourquoi pars-tu si tôt ? — «Чому ти так рано йдеш?»\nЧитається: пуркуа́ пар тю сі то.\nСлово pourquoi означає «чому».\nComment allez-vous ? — «Як у вас справи?»\nЧитається: кома́н але́ ву.\nСлово comment означає «як».\nComment s’appelle cette rue ? — «Як називається ця вулиця?»\nЧитається: кома́н сапе́ль сет рю.\nСлово la rue означає «вулиця».\nQu’est-ce que tu cherches ? — «Що ти шукаєш?»\nЧитається: кес кё тю шерш.\nСлова qu’est-ce que означають «що».",
+        "en": "Three more questions. The question word comes first.\nPourquoi pars-tu si tôt ? — “Why are you leaving so early?”\npourquoi means “why”.\nComment allez-vous ? — “How are you?”\ncomment means “how”.\nComment s’appelle cette rue ? — “What is this street called?”\nla rue means “street”.\nQu’est-ce que tu cherches ? — “What are you looking for?”\nqu’est-ce que means “what”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:08:41",
+          "say": {
+            "ru": "пуркуа́ пар тю си то",
+            "uk": "пуркуа́ пар тю сі то"
+          }
+        },
+        {
+          "phraseId": "fr:08:43",
+          "say": {
+            "ru": "кома́н але́ ву",
+            "uk": "кома́н але́ ву"
+          }
+        },
+        {
+          "phraseId": "fr:08:44",
+          "say": {
+            "ru": "кома́н сапэ́ль сэт рю",
+            "uk": "кома́н сапе́ль сет рю"
+          }
+        },
+        {
+          "phraseId": "fr:08:46",
+          "say": {
+            "ru": "кэс кё тю шэрш",
+            "uk": "кес кё тю шерш"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Образец. Нажмите на нужный вариант: как сказать «Почему ты так рано уходишь»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Чому ти так рано йдеш»?",
+            "en": "Sample. Tap the right answer: how do you say “Why are you leaving so early”?"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:08:41",
+          "options": [
+            "fr:08:41",
+            "fr:08:43",
+            "fr:08:46"
+          ],
+          "answerId": "fr:08:41"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Как у вас дела»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Як у вас справи»?",
+            "en": "Tap the right answer: how do you say “How are you”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:43",
+          "options": [
+            "fr:08:43",
+            "fr:08:44",
+            "fr:08:41"
+          ],
+          "answerId": "fr:08:43"
+        },
+        {
+          "command": {
+            "ru": "Нажмите на нужный вариант: как сказать «Что ты ищешь»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Що ти шукаєш»?",
+            "en": "Tap the right answer: how do you say “What are you looking for”?"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:08:46",
+          "options": [
+            "fr:08:46",
+            "fr:08:41",
+            "fr:08:44"
+          ],
+          "answerId": "fr:08:46"
+        }
+      ]
+    }
+  ]
+}

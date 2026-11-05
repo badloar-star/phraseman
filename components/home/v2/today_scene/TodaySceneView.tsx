@@ -29,7 +29,6 @@ import type { TodayTask, TodayTaskKind } from '../home_v2_types';
 import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
 import { useTheme } from '../../../ThemeContext';
 import SceneBlockShadow from '../../../scene/SceneBlockShadow';
-import { mixPremiumHex } from '../../../../constants/premiumThemeVisualSpecs';
 import { homeSceneTokensForTheme } from '../scene/home_scene_tokens';
 import { homeSceneWarmTone } from '../scene/home_scene_warm_tone';
 import type { TodaySceneCopy } from './today_scene_copy';
@@ -106,9 +105,9 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   const separator = `${card.text.slice(0, 7)}12`;
   return (
     <ScrollView decelerationRate="fast" testID="today-scene" style={[s.root, { backgroundColor: p.bg }]} contentContainerStyle={s.content} showsVerticalScrollIndicator={false} bounces={false} onScroll={onSceneScroll} scrollEventThrottle={32}>
-      <SceneBlockShadow tone={tokens.sceneBottom}>
+      <SceneBlockShadow tone={tokens.sceneTop} flat>
       <View testID="today-scene-stage" style={[s.stage, { minHeight: stageH }]}>
-        <LinearGradient colors={[tokens.sceneTop, mixPremiumHex(tokens.sceneTop, tokens.sceneBottom, 0.5), mixPremiumHex(tokens.sceneTop, tokens.sceneBottom, 0.5)]} locations={[0, 0.5, 1]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
+        <LinearGradient colors={[tokens.sceneTop, tokens.sceneTop]} locations={[0, 1]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
           <Defs>
             <RadialGradient id="todayLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">

@@ -13,14 +13,15 @@ import { useTheme } from '../ThemeContext';
 /** Радиус нижних углов сцены — тот же, что верхние углы карточки «Сегодня». */
 export const SCENE_BOTTOM_RADIUS = 28;
 
-type Props = Readonly<{ tone: string; children: ReactNode; style?: StyleProp<ViewStyle> }>;
+// зачем (владелец 05.11 07:4x: «сцена разделена на два цвета, должен быть один цвет сцены, без тёмного низа»): flat — без тени под низом, фон рамки = цвет сцены; Главная и «Сегодня» так и рисуются
+type Props = Readonly<{ tone: string; children: ReactNode; style?: StyleProp<ViewStyle>; flat?: boolean }>;
 
-export default function SceneBlockShadow({ tone, children, style }: Props) {
+export default function SceneBlockShadow({ tone, children, style, flat = false }: Props) {
   const { isDark } = useTheme();
   return (
     <View
       pointerEvents="box-none"
-      style={[s.frame, { backgroundColor: tone, boxShadow: [{ offsetX: 0, offsetY: 9, blurRadius: 18, color: isDark ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.32)' }] }, style]}
+      style={[s.frame, { backgroundColor: tone, boxShadow: flat ? 'none' : [{ offsetX: 0, offsetY: 9, blurRadius: 18, color: isDark ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.32)' }] }, style]}
     >
       {children}
     </View>

@@ -148,7 +148,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   return (
     // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ»): градиент и свет сцены — от верха экрана, под часами;
     // высота сцены считается от верха экрана, как в эталоне (.a-stage 540 вместе со строкой статуса), раскладка отступает на зону часов
-    <SceneBlockShadow tone={tokens.sceneBottom}>
+    <SceneBlockShadow tone={tokens.sceneTop} flat>
     <View
       testID="home-scene-stage"
       style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}

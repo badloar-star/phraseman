@@ -17,6 +17,7 @@ import { useAudio } from '../hooks/use-audio';
 import {
   isFcAutoSpeakEnabled,
   isFcSfxEnabled,
+  playSfx,
   setFcAutoSpeakEnabled,
   setFcSfxEnabled,
 } from './flashcards/SoundService';
@@ -357,7 +358,12 @@ export default function SettingsEdu() {
       label: L({ ru: 'Звуковые эффекты', uk: 'Звукові ефекти', en: 'Sound effects', es: 'Efectos de sonido', 'pt-BR': 'Efeitos sonoros', vi: 'Hiệu ứng âm thanh', id: 'Efek suara', tr: 'Ses efektleri', pl: 'Efekty dźwiękowe' }),
       sub: L({ ru: 'Короткие звуки в карточках и тренировках', uk: 'Короткі звуки у картках і тренуваннях', en: 'Brief sounds in cards and training', es: 'Sonidos breves en tarjetas y entrenamientos', 'pt-BR': 'Sons curtos em cartões e treinos', vi: 'Âm thanh ngắn trong thẻ và luyện tập', id: 'Suara singkat di kartu dan latihan', tr: 'Kartlarda ve antrenmanlarda kısa sesler', pl: 'Krótkie dźwięki w kartach i ćwiczeniach' }),
       icon: 'volume-high' as const, // зачем (Сверка settings-gap-015, макет settings-gaps-states): значок звука в макете залитый, не контурный
-      onValueChange: (value: boolean) => { setFcSfx(value); void Promise.resolve(setFcSfxEnabled(value)).catch(logToggleSaveFailure('fc_sfx', () => setFcSfx((current) => (current === value ? !value : current)))); },
+      onValueChange: (value: boolean) => {
+        setFcSfx(value);
+        void Promise.resolve(setFcSfxEnabled(value)).catch(logToggleSaveFailure('fc_sfx', () => setFcSfx((current) => (current === value ? !value : current))));
+        // зачем (раунд 2, Настройки п.4, одобрено владельцем 05.11): при включении — короткий звук «верно», чтобы сразу слышать, что включилось (кэш флага ставится синхронно в setFcSfxEnabled)
+        if (value) playSfx('correct');
+      },
     },
     {
       testID: 'fc-autospeak-toggle',

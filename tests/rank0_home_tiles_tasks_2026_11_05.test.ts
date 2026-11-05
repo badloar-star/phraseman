@@ -38,4 +38,8 @@ describe('Главная: ряд плиток и «Сегодня» по ран�
     const hits = src.split('isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel').length - 1;
     expect(hits).toBe(2);
   });
+
+  it('на ранге 0 до первого пройденного занятия сцена — «newbie» (hasProgress=false): «Урок 1 + название + Начать», серия первого дня прогрессом не считается', () => {
+    expect(src).toContain('hasProgress={homeTodayRank0 && homeSceneLessonNo === 1 && !lastLesson && (homeSceneCount.done ?? 0) === 0 ? false :');
+  });
 });

@@ -2877,7 +2877,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             streakToday={streakToday}
             plus={hasPremiumAccess}
             energy={energyPeekNow ? energyPeekNow.energy : null}
-            hasProgress={continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null}
+            // зачем (макет home-free-0, вердикт Макетов 05.11: герой ранга 0 — «Урок 1 + название + Начать»): на ранге 0 до первого пройденного занятия сцена — 'newbie' (прогресса нет), а не «День засчитан / Продолжить» (серия первого дня прогрессом не считается)
+            hasProgress={homeTodayRank0 && homeSceneLessonNo === 1 && !lastLesson && (homeSceneCount.done ?? 0) === 0 ? false : continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null}
             place={{
               badge: continuePlace ? homeContinuePlaceBadge(lang, continueChoice.kind === 'dialog' ? 'dialog' : 'cards')
                 : homeSceneLessonNo !== null ? triLang(lang, { ru: `Урок ${homeSceneLessonNo}`, uk: `Урок ${homeSceneLessonNo}`, en: `Lesson ${homeSceneLessonNo}`, es: `Lección ${homeSceneLessonNo}`, 'pt-BR': `Lição ${homeSceneLessonNo}`, vi: `Bài ${homeSceneLessonNo}`, id: `Pelajaran ${homeSceneLessonNo}`, tr: `Ders ${homeSceneLessonNo}`, pl: `Lekcja ${homeSceneLessonNo}` }) : null,

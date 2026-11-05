@@ -19,7 +19,9 @@ describe('«Сцена» Главной: «Продолжить» никогда
     const home = readSource('app/(tabs)/home.tsx');
     expect(home).toContain('const homeSceneTarget = homeSceneContinueTarget({');
     expect(home).toContain('const homeSceneOnPlace = continuePlace !== null || continueStart || homeSceneSection !== null;');
-    expect(home).toContain("hasProgress={continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null}");
+    // зачем (ранг 0, 05.11): перед прежним условием — ветка «ранг 0 без пройденных заданий → newbie»; поведение «Продолжить» для остальных не меняется (хвост условия прежний)
+    expect(home).toContain("continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null}");
+    expect(home).toMatch(/hasProgress=\{(homeTodayRank0 && homeSceneLessonNo === 1 && !lastLesson && \(homeSceneCount\.done \?\? 0\) === 0 \? false : )?continueChoice\.kind === 'none'/);
     // зачем (жалоба владельца 25.10): обработчик выбирается по той же цели, что и надпись (homeSceneCtaTarget) — порядок прежний:
     // раздел → место/«начать» → продолжение курса; таблицу цель → надпись → обработчик держит home_scene_cta_target_table
     expect(home).toContain("const homeSceneOnContinue = homeSceneCta === 'section' ? openHomeSceneSection");

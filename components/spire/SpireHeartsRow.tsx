@@ -34,8 +34,16 @@ function Segment({ filled, color, track, reduce }: Readonly<{ filled: boolean; c
 }
 
 function Heart({ on, index, pop, popIndex, on_, off, halo, reduce }: Readonly<{ on: boolean; index: number; pop: SharedValue<number>; popIndex: SharedValue<number>; on_: string; off: string; halo: string; reduce: boolean }>) {
+  // зачем (ТОП-20 №14, 05.11): потеря сердца — короткое «сжатие» 1 → 0,82 → 1 (240 мс), на UI-потоке; Reduce Motion — без движения
+  const squeeze = useSharedValue(1);
+  const wasOn = useRef(on);
+  useEffect(() => {
+    if (wasOn.current && !on && !reduce) squeeze.value = withSequence(withTiming(0.82, { duration: 90, easing: EASE_OUT }), withTiming(1, { duration: 150, easing: EASE_OUT }));
+    wasOn.current = on;
+  }, [on, reduce, squeeze]);
   const heart = useAnimatedStyle(() => {
-    if (reduce || popIndex.value !== index) return { transform: [{ scale: 1 }] };
+    if (reduce) return { transform: [{ scale: 1 }] };
+    if (popIndex.value !== index) return { transform: [{ scale: squeeze.value }] };
     // pop 0→1: 0,92 → 1,06 (60 %) → 1
     const t = pop.value;
     const scale = t < 0.6 ? 0.92 + (1.06 - 0.92) * (t / 0.6) : 1.06 - 0.06 * ((t - 0.6) / 0.4);

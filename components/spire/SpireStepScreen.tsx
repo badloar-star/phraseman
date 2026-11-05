@@ -7,9 +7,10 @@
 // Первый кадр = итоговая геометрия: кольцо и подпись паузы стоят сразу, задание
 // появляется после списания энергии (D72 — энергия на первом задании).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useMemo, useRef, useState, type MutableRefObject } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
 import { Modal, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -100,6 +101,15 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
   const onGoldLaunch = useCallback((x: number, y: number) => setGoldLaunch((cur) => ({ seq: (cur?.seq ?? 0) + 1, x, y })), []);
   const goldPerStep = peekSpireConfig()?.coins.perStep ?? 0;
   const fb = feedback && !feedback.ok ? feedback : null;
+  // зачем (ТОП-20 №14, 05.11): подсказка «Правильно: …» появляется мягко (fade + 8 px вверх, 180 мс) и прокрутка доходит до неё — на низком окне она не оставалась за краем; Reduce Motion — без движения и без анимации прокрутки
+  const reduceMotion = useReducedMotion();
+  const scrollRef = useRef<ScrollView>(null);
+  const hintTaskIndex = fb ? fb.taskIndex : -1;
+  useEffect(() => {
+    if (hintTaskIndex < 0) return undefined;
+    const timer = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: !reduceMotion }), 60);
+    return () => clearTimeout(timer);
+  }, [hintTaskIndex, reduceMotion]);
   // зачем ([PEAK-PERF], жалоба №3 «после 6–7 шага сильно тормозит»): время кадра и перерисовки ступени по фактам с устройства
   usePeakPerfProbe('step', `floor=${ctx.floor} step=${ctx.stepInFloor + 1} task=${counter}`);
   // зачем (Сверка 24.10, кадры a1/a4/a6/st4: счётчик «k / 10» был последней строкой прокрутки — у низкого окна его перечёркивала системная полоса жестов, а после неверного ответа блок «Правильно + Дальше» стоял поверх него;
@@ -123,7 +133,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
       </View>
       {goldPerStep > 0 ? <SpireGoldReward launch={goldLaunch} perStep={goldPerStep} top={insets.top + (SCREEN_BACK_SIZE - 37) / 2} right={V2.screenPad + 104} /> : null}
       <ScreenBackButton screen="spire_step" testID="spire-step-back" accessibilityLabel={spireText(lang, 'back')} onPress={props.onBack} />
-      <ScrollView style={s.scroll} contentContainerStyle={[s.content, { paddingBottom: 16 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast" onLayout={(e) => { boxes.current.viewport = e.nativeEvent.layout.height; }} onContentSizeChange={(_w, h) => { boxes.current.content = h; }}>
+      <ScrollView ref={scrollRef} style={s.scroll} contentContainerStyle={[s.content, { paddingBottom: 16 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast" onLayout={(e) => { boxes.current.viewport = e.nativeEvent.layout.height; }} onContentSizeChange={(_w, h) => { boxes.current.content = h; }}>
         <View style={s.ringWrap}>
           <SpireTimerRing lang={lang} clock={clock} budgetMs={budgetMs} paused={paused} />
           {props.ghost ? <SpireGhostLayer lang={lang} view={props.ghost} clock={clock} paused={paused} done={taskIndex} /> : null}
@@ -149,7 +159,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
         )}
         {props.reportSlot}
         {fb ? (
-          <View style={[s.hint, { backgroundColor: lv2Alpha(p.wrong, 0.14) }, sh.plate]} accessibilityLiveRegion="polite" testID="spire-step-hint">
+          <Animated.View entering={reduceMotion ? undefined : FadeInDown.duration(180).withInitialValues({ opacity: 0, transform: [{ translateY: 8 }] })} style={[s.hint, { backgroundColor: lv2Alpha(p.wrong, 0.14) }, sh.plate]} accessibilityLiveRegion="polite" testID="spire-step-hint">
             {fb.correctText ? (
               <Text style={[s.hintText, { color: p.text }]}>
                 {`${spireGameText(lang, 'correctIs')} `}<Text style={s.hintBold}>{fb.correctText}</Text>
@@ -170,7 +180,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
               <Text style={[s.onwardText, { color: p.ctaText }]}>{spireGameText(lang, 'onward')}</Text>
               <Ionicons name="arrow-forward" size={18} color={p.ctaText} />
             </V2Pressable>
-          </View>
+          </Animated.View>
         ) : null}
       </ScrollView>
       <View onLayout={onCounterLayout} style={[s.counterBar, { paddingBottom: insets.bottom + 12 }]}>

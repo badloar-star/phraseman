@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 26,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Порівняти: більше, менше чи так само"
+      },
+      "text": {
+        "uk": "Є дві валізи, одна легша за іншу. Ви ставите їх поруч і називаєте різницю.\nPaul est plus grand que moi. — Поль вищий за мене.\nPlus — «більше», moins — «менше», aussi — «так само».\nQue тут значить «за» або «ніж»: після нього називають, з ким порівнюємо."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Як сказати"
+      },
+      "text": {
+        "uk": "Plus, moins або aussi + яка + que + з ким порівнюємо.\nLéa est plus grande que moi. — Леа вища за мене.\nCette valise est moins lourde que l’autre. — Ця валіза легша за іншу.\nСлово «яка» змінюється, як і раніше: la valise — lourde, le sac — lourd.\nPlus і moins цього не скасовують."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Складімо разом"
+      },
+      "text": {
+        "uk": "Ви порівнюєте зріст Поля зі своїм.\nНазвіть Поля, потім est plus grand, а після que — moi.\nPaul est plus grand que moi. — Поль вищий за мене.\nCette valise est moins lourde que l’autre. — Ця валіза легша за іншу."
+      }
+    }
+  ]
+}

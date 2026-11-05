@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 27,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що буде завтра"
+      },
+      "text": {
+        "uk": "Ви записуєтеся на завтра і обіцяєте прийти.\nJe partirai demain. — Я поїду завтра.\nТут «буде» заховано в самому слові: наприкінці чути -ai.\nДва слова, як у «я збираюся піти», не потрібні."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Як сказати"
+      },
+      "text": {
+        "uk": "Слово для дії + закінчення: -ai, -as, -a, -ons, -ez, -ont.\nNous partirons ensemble. — Ми поїдемо разом.\nVous partirez ensemble. — Ви поїдете разом.\nЗакінчення підказує, хто робить: partirai — я, partiras — ти, partira — він.\nСлово demain («завтра») називає день, але слово дії все одно потрібне."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Складімо разом"
+      },
+      "text": {
+        "uk": "Ви обіцяєте поїхати завтра.\nPartirai — одне слово: «поїду». Je — «я». Demain — «завтра».\nJe partirai demain. — Я поїду завтра.\nNous partirons ensemble. — Ми поїдемо разом."
+      }
+    }
+  ]
+}

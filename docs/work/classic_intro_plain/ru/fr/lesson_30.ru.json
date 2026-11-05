@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 30,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что нужно сделать"
+      },
+      "text": {
+        "ru": "Поезд скоро уходит. Вы не говорите «я ухожу», а говорите, что вам нужно уйти.\nIl faut que je parte. — Мне нужно уйти.\nIl faut que значит «нужно, чтобы». После него идёт новая часть: кто и что делает.\nСлово для действия после que немного меняется."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Как сказать"
+      },
+      "text": {
+        "ru": "Il faut que + кто + слово действия с особым концом.\nIl faut que nous partions. — Нам нужно уйти.\nIl faut que vous partiez. — Вам нужно уйти.\nСравните: je pars — я ухожу, il faut que je parte — мне нужно уйти.\nИногда слово меняется сильно: je suis — que je sois. Такие пары просто запоминайте."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Соберите вместе"
+      },
+      "text": {
+        "ru": "Нужно, чтобы ушли именно вы.\nСначала Il faut, потом que je, потом parte.\nIl faut que je parte. — Мне нужно уйти.\nIl faut que nous partions. — Нам нужно уйти."
+      }
+    }
+  ]
+}

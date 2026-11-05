@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 28,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Ввічливе прохання"
+      },
+      "text": {
+        "uk": "У кав’ярні можна сказати «дайте каву», а можна м’яко попросити.\nJe voudrais un café. — Я б хотів кави.\nНапій той самий. Різниця в тому, як це звучить для людини поруч.\nВвічливе слово — voudrais, а не veux."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Як сказати"
+      },
+      "text": {
+        "uk": "Хто + voudrais або aimerais + що або дія.\nJ’aimerais partir tôt. — Я хотів би піти раніше.\nPaul aimerait apprendre à conduire. — Поль хотів би навчитися водити машину.\nJe veux — «я хочу», звучить прямо. Je voudrais — «я б хотів», звучить м’яко.\nПопросити людину щось зробити можна так: pourriez-vous — «чи не могли б ви». Після aimerais дія лишається як у словнику: partir."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Складімо разом"
+      },
+      "text": {
+        "uk": "Ви біля стійки й хочете кави.\nJe voudrais м’якше, ніж je veux. Потім те, що хочете: un café.\nJe voudrais un café. — Я б хотів кави.\nElle voudrait une chambre calme. — Вона хотіла б тиху кімнату."
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 15,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що я скоро зроблю"
+      },
+      "text": {
+        "uk": "Людина з валізою ще не пішла, але вже збирається.\nJe vais partir. — Я збираюся піти.\nРаніше після vais ми називали місце: je vais à la gare. Тепер після нього йде дія.\nМіж vais і дією нічого ставити не треба."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Як сказати"
+      },
+      "text": {
+        "uk": "Хто + vais, vas, va… + дія.\nNous allons marcher. — Ми збираємося піти пішки.\nVous allez rester. — Ви збираєтеся залишитися.\nПеревірка проста. Je vais à la gare — іду куди? Je vais partir — що збираюся зробити?\nЗмінюється лише перше слово: vais, vas, va, allons, allez, vont. Дія лишається як у словнику."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Складімо разом"
+      },
+      "text": {
+        "uk": "Je vais ви вже знаєте: «я йду».\nТепер замість місця поставте дію: partir — «піти».\nJe vais partir. — Я збираюся піти.\nNous allons marcher. — Ми збираємося піти пішки."
+      }
+    }
+  ]
+}

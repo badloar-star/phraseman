@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 18,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что уже случилось"
+      },
+      "text": {
+        "ru": "Дверь была открыта. Теперь вы её закрыли.\nJ’ai fermé la porte. — Я закрыл дверь.\nТак говорят о том, что уже сделано. Во французском для этого нужны два слова.\nПервое показывает, кто это сделал. Второе — что сделано."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Как сказать"
+      },
+      "text": {
+        "ru": "Кто + ai, as, a, avons… + что сделано.\nElle a fermé la fenêtre. — Она закрыла окно.\nNous avons fermé le magasin. — Мы закрыли магазин.\nМеняется только первое слово: j’ai, tu as, elle a, nous avons. Слово fermé остаётся тем же.\nНе говорите nous avons fermons: после avons идёт fermé."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Соберите вместе"
+      },
+      "text": {
+        "ru": "Вы сообщаете: дверь закрыта, и это сделали вы.\nJ’ai — «я сделал». Fermé — «закрыл». La porte — «дверь».\nJ’ai fermé la porte. — Я закрыл дверь.\nNous avons fermé le magasin. — Мы закрыли магазин."
+      }
+    }
+  ]
+}

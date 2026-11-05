@@ -1,0 +1,43 @@
+{
+  "lang": "fr",
+  "lesson": 2,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Что нужно знать"
+      },
+      "text": {
+        "ru": "Чтобы сказать «не», ставьте ne перед глаголом и pas после него. Je ne suis pas ici — меня здесь нет. Elle n’est pas là — её там нет."
+      },
+      "exampleIds": [
+        "fr:02:01"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Как сказать"
+      },
+      "text": {
+        "ru": "Порядок такой: кто — ne — глагол — pas — место. Слово ici — «здесь», там — «là»."
+      },
+      "exampleIds": [
+        "fr:02:01",
+        "fr:02:06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Типичные ошибки и примеры"
+      },
+      "text": {
+        "ru": "Ошибка: Je suis pas ici. Верно: Je ne suis pas ici — ne ставится перед глаголом, pas после него. Пример: Elle n’est pas là — её там нет."
+      },
+      "exampleIds": [
+        "fr:02:08"
+      ]
+    }
+  ]
+}

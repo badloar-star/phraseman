@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 30,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що треба зробити"
+      },
+      "text": {
+        "uk": "Потяг скоро відходить. Ви не кажете «я йду», а кажете, що вам треба піти.\nIl faut que je parte. — Мені треба піти.\nIl faut que значить «треба, щоб». Після нього йде нова частина: хто і що робить.\nСлово для дії після que трохи змінюється."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Як сказати"
+      },
+      "text": {
+        "uk": "Il faut que + хто + слово дії з особливим закінченням.\nIl faut que nous partions. — Нам треба піти.\nIl faut que vous partiez. — Вам треба піти.\nПорівняйте: je pars — я йду, il faut que je parte — мені треба піти.\nІноді слово змінюється сильно: je suis — que je sois. Такі пари просто запам’ятовуйте."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Складімо разом"
+      },
+      "text": {
+        "uk": "Треба, щоб пішли саме ви.\nСпочатку Il faut, потім que je, потім parte.\nIl faut que je parte. — Мені треба піти.\nIl faut que nous partions. — Нам треба піти."
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 24,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Не повторювати місце: слово y"
+      },
+      "text": {
+        "uk": "Ви вже сказали про ринок. Вдруге називати його не хочеться.\nJe vais au marché et Paul y va aussi. — Я йду на ринок, і Поль теж.\nМаленьке слово y значить «туди» або «там».\nВоно замінює місце, про яке всі вже знають."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Як сказати"
+      },
+      "text": {
+        "uk": "Хто + y + дія.\nJ’y vais maintenant. — Я йду туди зараз.\nTu y vas demain. — Ти підеш туди завтра.\nY стоїть перед словом дії. Je перед ним скорочується до j’.\nPaul y va: Paul — хто, y — куди, va — іде."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Складімо разом"
+      },
+      "text": {
+        "uk": "Спочатку назвіть місце: je vais au marché.\nПоль іде туди ж. Вдруге «ринок» не потрібен: Paul y va aussi.\nJe vais au marché et Paul y va aussi. — Я йду на ринок, і Поль теж.\nElle va au musée et nous y allons aussi. — Вона йде до музею, і ми теж."
+      }
+    }
+  ]
+}

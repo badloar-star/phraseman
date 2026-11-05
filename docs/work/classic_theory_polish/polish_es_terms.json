@@ -1,0 +1,1047 @@
+[
+ {
+  "id": "lesson-10/terms",
+  "field": "localized.uk.chapters[0].body",
+  "fix": "Відкиньте -er у comer та -ir у vivir. Залишаться com- та viv-. Для «я» додайте -o: como — я їм, vivo — я живу. Саме слово comer ще не каже, хто їсть."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.ru.chapters[0].body",
+  "fix": "В «У меня вопрос» владелец — говорящий. Именно он «делает» в испанской фразе — «я имею». Не переводите «у» отдельным предлогом: tengo уже означает «у меня есть»."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.nuance",
+  "fix": "Скажіть, у кого є річ або можливість. Спочатку визначте власника, потім оберіть форму tener. Слово tener підлаштовується під власника, а не під річ."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[0].body",
+  "fix": "У «У мене запитання» власником є мовець. Саме він «діє» в іспанській фразі — «я маю». Не перекладайте «у» окремим прийменником: tengo вже означає «я маю»."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[0].note",
+  "fix": "Ключова форма: Tengo. Слово tener підлаштовується під власника, а не під річ."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[1].note",
+  "fix": "Ключова форма: Tienes. Слово tener підлаштовується під власника, а не під річ."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[2].note",
+  "fix": "Ключова форма: Tenemos. Слово tener підлаштовується під власника, а не під річ."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[3].note",
+  "fix": "Ключова форма: Tengo. Слово tener підлаштовується під власника, а не під річ."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[4].note",
+  "fix": "Ключова форма: tengo. Слово tener підлаштовується під власника, а не під річ."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[5].body",
+  "fix": "Порівняйте два завдання: «У нас є ідея.» / «У мене немає дрібних грошей». Слово tener підлаштовується під власника, а не під річ. Смислові опори: «idea» — ідея."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[5].note",
+  "fix": "Ключова форма: tengo. Слово tener підлаштовується під власника, а не під річ."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[6].body",
+  "fix": "Порівняйте два завдання: «У Луїса є мій номер.» / «У моїх сестер ключі від дому». Слово tener підлаштовується під власника, а не під річ. Скажіть, у кого є річ або можливість. Спочатку визначте власника, потім оберіть форму tener."
+ },
+ {
+  "id": "lesson-11/terms",
+  "field": "localized.uk.chapters[6].note",
+  "fix": "Ключова форма: tienen. Слово tener підлаштовується під власника, а не під річ."
+ },
+ {
+  "id": "lesson-12/terms",
+  "field": "localized.ru.title",
+  "fix": "Красная сумка, красные сумки: слова подстраиваются"
+ },
+ {
+  "id": "lesson-12/terms",
+  "field": "localized.ru.chapters[2].body",
+  "fix": "Подстройка слов сохраняется и через es/son: la mochila es nueva, las mochilas son nuevas. Меняются сразу es/son и окончание, потому что изменилось то, о чём речь."
+ },
+ {
+  "id": "lesson-12/terms",
+  "field": "localized.uk.title",
+  "fix": "Червона сумка, червоні сумки: слова підлаштовуються"
+ },
+ {
+  "id": "lesson-12/terms",
+  "field": "localized.uk.chapters[0].body",
+  "fix": "Почніть з іспанського іменника. В el libro слово libro чоловічого роду: el libro nuevo. У la mochila слово mochila жіночого роду: la mochila nueva. Закінчення підлаштовується під іспанське слово."
+ },
+ {
+  "id": "lesson-12/terms",
+  "field": "localized.uk.chapters[2].body",
+  "fix": "Підлаштовування зберігається і через es/son: la mochila es nueva, las mochilas son nuevas. Коли змінюється те, про що мова, змінюються і es/son, і закінчення."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.nuance",
+  "fix": "Опишіть самопочуття людини або стан знайомої речі в цій ситуації. Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[0].note",
+  "fix": "cansado: однина. Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[1].note",
+  "fix": "cansada: однина. Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[2].note",
+  "fix": "contentas: множина. Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[3].note",
+  "fix": "abierta: однина. Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[4].note",
+  "fix": "nerviosa: однина. Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[5].body",
+  "fix": "Порівняйте два завдання: «Твої сестри готові?» / «Двері відчинені». Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ. Смислові опори: «hermanas» — сестри; «listas» — готові."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[5].note",
+  "fix": "abierta: однина. Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[6].body",
+  "fix": "Порівняйте два завдання: «Сьогодні ви раді.» / «Столи чисті». Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ. Опишіть самопочуття людини або стан знайомої речі в цій ситуації."
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "localized.uk.chapters[6].note",
+  "fix": "limpias: множина. Від того, про кого мова, залежить форма estar, а слово-ознака підлаштовується під людину чи річ."
+ },
+ {
+  "id": "lesson-14/terms",
+  "field": "localized.ru.chapters[3].body",
+  "fix": "В me lavo las manos принадлежность рук уже ясна из me. Нейтральный испанский образец ставит маленькое слово las, а не кальку с «мои руки»."
+ },
+ {
+  "id": "lesson-14/terms",
+  "field": "localized.uk.chapters[3].body",
+  "fix": "У me lavo las manos з me уже зрозуміло, чиї руки. У нейтральному іспанському зразку ставлять маленьке слово las, а не кальку з «мої руки»."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.title",
+  "fix": "Я могу: poder + действие"
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.formula",
+  "fix": "poder в нужной форме + действие, как в словаре"
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.nuance",
+  "fix": "Скажите, кто может выполнить действие, не меняя второе слово. Меняется только poder; второе слово остаётся как в словаре."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[0].note",
+  "fix": "Глагольная группа: Puedo entrar. Меняется только poder; второе слово остаётся как в словаре."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[1].note",
+  "fix": "Глагольная группа: Podemos esperar. Меняется только poder; второе слово остаётся как в словаре."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[2].note",
+  "fix": "Глагольная группа: Puedes pagar. Меняется только poder; второе слово остаётся как в словаре."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[3].note",
+  "fix": "Глагольная группа: Puedo pagar. Меняется только poder; второе слово остаётся как в словаре."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[4].note",
+  "fix": "Глагольная группа: puede pagar. Меняется только poder; второе слово остаётся как в словаре."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[5].body",
+  "fix": "Сравните два задания: «Мои сёстры могут отнести пакет.» / «Я сегодня могу заплатить наличными». Меняется только poder; второе слово остаётся как в словаре. Смысловые опоры: «hermanas» — сёстры; «bolsa» — пакет, сумка."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[5].note",
+  "fix": "Глагольная группа: Puedo pagar. Меняется только poder; второе слово остаётся как в словаре."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[6].body",
+  "fix": "Сравните два задания: «Ты можешь подождать снаружи?» / «Ты можешь отнести пакет?» Меняется только poder; второе слово остаётся как в словаре. Скажите, кто может выполнить действие, не меняя второе слово."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.ru.chapters[6].note",
+  "fix": "Глагольная группа: Puedes llevar. Меняется только poder; второе слово остаётся как в словаре."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.title",
+  "fix": "Я можу: poder + дія"
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.formula",
+  "fix": "poder у потрібній формі + дія, як у словнику"
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.story",
+  "fix": "Можу ввійти — puedo entrar. Можеш увійти — puedes entrar. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.nuance",
+  "fix": "Скажіть, хто може виконати дію. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[0].note",
+  "fix": "Дієслівна група: Puedo entrar. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[1].note",
+  "fix": "Дієслівна група: Podemos esperar. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[2].note",
+  "fix": "Дієслівна група: Puedes pagar. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[3].note",
+  "fix": "Дієслівна група: Puedo pagar. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[4].note",
+  "fix": "Дієслівна група: puede pagar. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[5].body",
+  "fix": "Порівняйте два завдання: «Мої сестри можуть віднести пакет.» / «Я сьогодні можу заплатити готівкою». Змінюється лише poder; друге слово лишається як у словнику. Смислові опори: «hermanas» — сестри; «bolsa» — пакет, сумка."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[5].note",
+  "fix": "Дієслівна група: Puedo pagar. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[6].body",
+  "fix": "Порівняйте два завдання: «Ти можеш почекати надворі?» / «Ти можеш віднести пакет?» Змінюється лише poder; друге слово лишається як у словнику. Скажіть, хто може виконати дію, не змінюючи друге слово."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "localized.uk.chapters[6].note",
+  "fix": "Дієслівна група: Puedes llevar. Змінюється лише poder; друге слово лишається як у словнику."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.title",
+  "fix": "Собираюсь сделать: ir a + действие"
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.formula",
+  "fix": "ir в нужной форме + a + действие, как в словаре"
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.choose",
+  "fix": "Учитель и ученики строят план по-разному: el profesor va…, los estudiantes van… . Формы ir сильно отличаются от самого ir: voy, vas, va, vamos, vais, van."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.nuance",
+  "fix": "Назовите план: кто собирается что сделать. Не теряйте a между двумя глаголами. Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[0].note",
+  "fix": "Глагольная группа: Voy a llamar. Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[1].body",
+  "fix": "Учитель и ученики строят план по-разному: el profesor va…, los estudiantes van… . Формы ir сильно отличаются от самого ir: voy, vas, va, vamos, vais, van."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[1].note",
+  "fix": "Глагольная группа: va a escribir. Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[2].body",
+  "fix": "После poder второе слово идёт сразу. После ir для плана нужно ещё a: puedo llamar, но voy a llamar. На экране a занимает отдельную позицию."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[2].note",
+  "fix": "Глагольная группа: Vais a pagar. Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[3].body",
+  "fix": "Hoy, mañana и más tarde уточняют план, но не меняют второе слово. Mañana в значении «завтра» стоит без el/la; la mañana — «утро»."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[3].note",
+  "fix": "Глагольная группа: Vamos a pagar. Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[4].note",
+  "fix": "Глагольная группа: va a escribir. Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[5].body",
+  "fix": "Сравните два задания: «Мы позже собираемся собрать рюкзак.» / «Мы завтра собираемся заплатить наличными». Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a. Смысловые опоры: «mochila» — рюкзак."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[5].note",
+  "fix": "Глагольная группа: Vamos a pagar. Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[6].body",
+  "fix": "Сравните два задания: «Ты собираешься поесть дома?» / «Луис собирается купить билет?» Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a. Назовите план: кто собирается что сделать. Не теряйте a между двумя глаголами."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.ru.chapters[6].note",
+  "fix": "Глагольная группа: va a comprar. Меняется ir, а между ним и вторым словом (как в словаре) сохраняется a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.title",
+  "fix": "Збираюся зробити: ir a + дія"
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.formula",
+  "fix": "ir у потрібній формі + a + дія, як у словнику"
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.choose",
+  "fix": "Учитель і учні будують план по-різному: el profesor va…, los estudiantes van… . Форми ir сильно відрізняються від самого ir: voy, vas, va, vamos, vais, van."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.nuance",
+  "fix": "Назвіть план: хто збирається що зробити. Не пропускайте a між двома дієсловами. Змінюється ir, а між ним і другим словом (як у словнику) зберігається a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[0].note",
+  "fix": "Дієслівна група: Voy a llamar. Змінюється ir, а між ним і другим словом (як у словнику) зберігається a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[1].body",
+  "fix": "Учитель і учні будують план по-різному: el profesor va…, los estudiantes van… . Форми ir сильно відрізняються від самого ir: voy, vas, va, vamos, vais, van."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[1].note",
+  "fix": "Дієслівна група: va a escribir. Змінюється ir, а між ним і другим словом (як у словнику) зберігається a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[2].body",
+  "fix": "Після poder друге слово йде одразу. Після ir для плану потрібне ще a: puedo llamar, але voy a llamar. На екрані a — окрема позиція."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[2].note",
+  "fix": "Дієслівна група: Vais a pagar. Змінюється ir, а між ним і другим словом (як у словнику) зберігається a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[3].body",
+  "fix": "Hoy, mañana та más tarde уточнюють план, не змінюючи друге слово. Mañana у значенні «завтра» стоїть без el/la; la mañana — «ранок»."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[3].note",
+  "fix": "Дієслівна група: Vamos a pagar. Змінюється ir, а між ним і другим словом (як у словнику) зберігається a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[4].note",
+  "fix": "Дієслівна група: va a escribir. Змінюється ir, а між ним і другим словом (як у словнику) зберігається a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[5].body",
+  "fix": "Порівняйте два завдання: «Ми пізніше збираємося зібрати рюкзак.» / «Ми завтра збираємося заплатити готівкою». Змінюється ir, а між ним і другим словом (як у словнику) зберігається a. Смислові опори: «mochila» — рюкзак."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[5].note",
+  "fix": "Дієслівна група: Vamos a pagar. Змінюється ir, а між ним і другим словом (як у словнику) зберігається a."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[6].body",
+  "fix": "Порівняйте два завдання: «Ти збираєшся поїсти вдома?» / «Луїс збирається купити квиток?» Змінюється ir, а між ним і другим словом (як у словнику) зберігається a. Назвіть план: хто збирається що зробити. Не пропускайте a між двома дієсловами."
+ },
+ {
+  "id": "lesson-16/terms",
+  "field": "localized.uk.chapters[6].note",
+  "fix": "Дієслівна група: va a comprar. Змінюється ir, а між ним і другим словом (як у словнику) зберігається a."
+ },
+ {
+  "id": "lesson-17/terms",
+  "field": "localized.ru.chapters[3].body",
+  "fix": "Если нравится читать, то, что нравится, — действие leer. Для одного действия берите gusta: me gusta leer. Не меняйте gusta под людей, которые читают."
+ },
+ {
+  "id": "lesson-17/terms",
+  "field": "localized.uk.use",
+  "fix": "Окремо визначте, кому подобається і що подобається. Gusta/gustan підлаштовується під те, що подобається."
+ },
+ {
+  "id": "lesson-17/terms",
+  "field": "localized.uk.nuance",
+  "fix": "Окремо визначте, кому подобається і що подобається. Gusta/gustan підлаштовується під те, що подобається. Зважайте на те, одна річ подобається чи кілька, а не на кількість людей."
+ },
+ {
+  "id": "lesson-17/terms",
+  "field": "localized.uk.chapters[3].body",
+  "fix": "Якщо подобається читати, тим, що подобається, є дія leer. Для однієї дії обирайте gusta: me gusta leer. Не підлаштовуйте gusta під людей, які читають."
+ },
+ {
+  "id": "lesson-17/terms",
+  "field": "localized.uk.chapters[6].body",
+  "fix": "Порівняйте два завдання: «Моїм сестрам не подобаються ці туфлі.» / «Нам подобається ця фотографія.». Зважайте на те, одна річ подобається чи кілька, а не на кількість людей. Окремо визначте, кому подобається і що подобається. Gusta/gustan підлаштовується під те, що подобається."
+ },
+ {
+  "id": "lesson-18/terms",
+  "field": "localized.ru.chapters[3].title",
+  "fix": "Не el и не la"
+ },
+ {
+  "id": "lesson-18/terms",
+  "field": "localized.ru.chapters[4].body",
+  "fix": "В этой теме работаем с одной личной формой: lo busco, no lo busco. Другие позиции возможны со словом из словаря (как comprar) и с приказом, но это не цель данной тренировки."
+ },
+ {
+  "id": "lesson-18/terms",
+  "field": "localized.uk.chapters[3].title",
+  "fix": "Не el і не la"
+ },
+ {
+  "id": "lesson-18/terms",
+  "field": "localized.uk.chapters[4].body",
+  "fix": "У цій темі одна особова форма: lo busco, no lo busco. Інші позиції можливі зі словом зі словника (як comprar) і з наказом, але їх тут не відпрацьовуємо."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.formula",
+  "fix": "estar в нужной форме + слово на -ando/-iendo"
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.nuance",
+  "fix": "Опишите действие изнутри, пока оно идёт, а не как привычку или план. Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[0].note",
+  "fix": "Глагольная группа: Estoy leyendo. Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[1].note",
+  "fix": "Глагольная группа: Estás leyendo. Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[2].body",
+  "fix": "Trabajar даёт trabajando, а comer и escribir дают comiendo и escribiendo. Это не форма для я/ты/он и не слово из словаря: к estoy добавляется именно форма на -ando или -iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[2].note",
+  "fix": "Глагольная группа: Estamos comiendo. Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[3].note",
+  "fix": "Глагольная группа: Estoy leyendo. Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[4].note",
+  "fix": "Глагольная группа: Estás trabajando. Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[5].body",
+  "fix": "Сравните два задания: «Ты сейчас платишь картой.» / «Мы сейчас читаем книгу.». Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo. Смысловые опоры: «tarjeta» — карта для оплаты."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[5].note",
+  "fix": "Глагольная группа: Estamos leyendo. Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[6].body",
+  "fix": "Сравните два задания: «Ты сейчас читаешь книгу?» / «Ты сейчас ищешь мои ключи?». Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo. Опишите действие изнутри, пока оно идёт, а не как привычку или план."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.ru.chapters[6].note",
+  "fix": "Глагольная группа: Estás buscando. Кто делает, показывает estar, а что действие идёт — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.formula",
+  "fix": "estar у потрібній формі + слово на -ando/-iendo"
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.choose",
+  "fix": "Для «я» — estoy, для «ми» — estamos. Змінюється лише це слово. Форма leyendo однакова для однієї людини й для групи."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.nuance",
+  "fix": "Опишіть дію зсередини, поки вона триває, а не як звичку чи план. Хто діє, показує estar, а що дія триває — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[0].note",
+  "fix": "Дієслівна група: Estoy leyendo. Хто діє, показує estar, а що дія триває — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[1].body",
+  "fix": "Для «я» — estoy, для «ми» — estamos. Змінюється лише це слово. Форма leyendo однакова для однієї людини й для групи."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[1].note",
+  "fix": "Дієслівна група: Estás leyendo. Хто діє, показує estar, а що дія триває — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[2].body",
+  "fix": "Trabajar дає trabajando, а comer й escribir — comiendo та escribiendo. Це не форма для я/ти/він і не слово зі словника: до estoy додаємо форму на -ando або -iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[2].note",
+  "fix": "Дієслівна група: Estamos comiendo. Хто діє, показує estar, а що дія триває — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[3].note",
+  "fix": "Дієслівна група: Estoy leyendo. Хто діє, показує estar, а що дія триває — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[4].note",
+  "fix": "Дієслівна група: Estás trabajando. Хто діє, показує estar, а що дія триває — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[5].body",
+  "fix": "Порівняйте два завдання: «Ти зараз платиш карткою.» / «Ми зараз читаємо книжку.». Хто діє, показує estar, а що дія триває — слово на -ando/-iendo. Смислові опори: «tarjeta» — платіжна картка."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[5].note",
+  "fix": "Дієслівна група: Estamos leyendo. Хто діє, показує estar, а що дія триває — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[6].body",
+  "fix": "Порівняйте два завдання: «Ти зараз читаєш книжку?» / «Ти зараз шукаєш мої ключі?». Хто діє, показує estar, а що дія триває — слово на -ando/-iendo. Опишіть дію зсередини, поки вона триває, а не як звичку чи план."
+ },
+ {
+  "id": "lesson-19/terms",
+  "field": "localized.uk.chapters[6].note",
+  "fix": "Дієслівна група: Estás buscando. Хто діє, показує estar, а що дія триває — слово на -ando/-iendo."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.title",
+  "fix": "Уже сделал сегодня: he + слово на -ado/-ido"
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.formula",
+  "fix": "haber в нужной форме + неизменное слово на -ado/-ido"
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.nuance",
+  "fix": "Соедините результат с текущим отрезком времени — так, как принято в испанском варианте этого урока. Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[0].note",
+  "fix": "Глагольная группа: he llamado. Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[1].note",
+  "fix": "Глагольная группа: has llamado. Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[2].title",
+  "fix": "Как получить слово на -ado/-ido"
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[2].note",
+  "fix": "Глагольная группа: ha comprado. Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[3].note",
+  "fix": "Глагольная группа: han abierto. Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[4].title",
+  "fix": "После haber второе слово не меняется"
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[4].note",
+  "fix": "Глагольная группа: He pagado. Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[5].body",
+  "fix": "Сравните два задания: «Ты сегодня вернулся на вокзал.» / «Мы на этой неделе прочитали книгу.». Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется. Смысловые опоры: «estación» — станция."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[5].note",
+  "fix": "Глагольная группа: Hemos leído. Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[6].body",
+  "fix": "Сравните два задания: «Ты сегодня прочитал книгу?» / «Вы сегодня вошли в офис?». Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется. Соедините результат с текущим отрезком времени — так, как принято в испанском варианте этого урока."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.ru.chapters[6].note",
+  "fix": "Глагольная группа: Habéis entrado. Меняется только haber, а слово на -ado/-ido (llamado, leído) не меняется."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.title",
+  "fix": "Уже зробив сьогодні: he + слово на -ado/-ido"
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.formula",
+  "fix": "haber у потрібній формі + незмінне слово на -ado/-ido"
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.nuance",
+  "fix": "Поєднайте результат з поточним часовим проміжком у варіанті іспанської, обраному для цього уроку. Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[0].note",
+  "fix": "Дієслівна група: he llamado. Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[1].note",
+  "fix": "Дієслівна група: has llamado. Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[2].title",
+  "fix": "Як отримати слово на -ado/-ido"
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[2].note",
+  "fix": "Дієслівна група: ha comprado. Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[3].note",
+  "fix": "Дієслівна група: han abierto. Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[4].title",
+  "fix": "Після haber друге слово не змінюється"
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[4].note",
+  "fix": "Дієслівна група: He pagado. Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[5].body",
+  "fix": "Порівняйте два завдання: «Ти сьогодні повернувся на вокзал.» / «Ми цього тижня прочитали книжку.». Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється. Смислові опори: «estación» — станція."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[5].note",
+  "fix": "Дієслівна група: Hemos leído. Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[6].body",
+  "fix": "Порівняйте два завдання: «Ти сьогодні прочитав книжку?» / «Ви сьогодні зайшли до офісу?». Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється. Поєднайте результат з поточним часовим проміжком у варіанті іспанської, обраному для цього уроку."
+ },
+ {
+  "id": "lesson-20/terms",
+  "field": "localized.uk.chapters[6].note",
+  "fix": "Дієслівна група: Habéis entrado. Змінюється лише haber, а слово на -ado/-ido (llamado, leído) не змінюється."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "localized.ru.choose",
+  "fix": "Tuve и pude оканчиваются на -e без ударения на письме. Не добавляйте обычное -í к слову из словаря: это особые основы, а не tenerí или poderí."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "localized.ru.chapters[1].body",
+  "fix": "Tuve и pude оканчиваются на -e без ударения на письме. Не добавляйте обычное -í к слову из словаря: это особые основы, а не tenerí или poderí."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "localized.uk.choose",
+  "fix": "Tuve та pude закінчуються на -e без графічного наголосу. Не додавай звичне -í до слова зі словника: тут особливі основи."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "localized.uk.chapters[1].body",
+  "fix": "Tuve та pude закінчуються на -e без графічного наголосу. Не додавай звичне -í до слова зі словника: тут особливі основи."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "localized.uk.chapters[4].body",
+  "fix": "Pude entrar часто означає, що мені вдалося зайти саме цього разу. Після pude лишайте entrar без змін, як у словнику. Загальна можливість у минулому — podía entrar."
+ },
+ {
+  "id": "lesson-25/terms",
+  "field": "localized.ru.chapters[2].body",
+  "fix": "Comer → come, abrir → abre. Оба окончания в этой форме выглядят как -e. Не используйте слово из словаря (comer, abrir) как обращение к одному человеку."
+ },
+ {
+  "id": "lesson-25/terms",
+  "field": "localized.uk.chapters[2].body",
+  "fix": "Comer → come, abrir → abre. Обидва закінчення тут мають вигляд -e. Не вживайте слово зі словника (comer, abrir) як звертання до однієї людини."
+ },
+ {
+  "id": "lesson-27/terms",
+  "field": "localized.ru.chapters[3].body",
+  "fix": "Мысленно уберите que compré из el libro que compré es corto. Останется el libro es corto — основа сообщения. Главной части по-прежнему нужно своё действие."
+ },
+ {
+  "id": "lesson-27/terms",
+  "field": "localized.uk.chapters[3].body",
+  "fix": "Подумки приберіть que compré з el libro que compré es corto. Лишиться el libro es corto — основа повідомлення. Головна частина досі потребує свого дієслова."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.formula",
+  "fix": "слово из словаря целиком + é / ás / á / emos / éis / án"
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.nuance",
+  "fix": "Выразите будущее одной глагольной формой, не добавляя voy a. К целому слову из словаря (llamar, volver) просто добавляется окончание."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[0].note",
+  "fix": "Ключевая форма: llamaré. К целому слову из словаря (llamar, volver) просто добавляется окончание."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[1].note",
+  "fix": "Ключевая форма: llamarás. К целому слову из словаря (llamar, volver) просто добавляется окончание."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[2].note",
+  "fix": "Ключевая форма: mandaréis. К целому слову из словаря (llamar, volver) просто добавляется окончание."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[3].note",
+  "fix": "Ключевая форма: volverá. К целому слову из словаря (llamar, volver) просто добавляется окончание."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[4].note",
+  "fix": "Ключевая форма: llamarás. К целому слову из словаря (llamar, volver) просто добавляется окончание."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[5].body",
+  "fix": "Сравните два задания: «Ты позже заплатишь наличными.» / «Я продам машину после поездки.». К целому слову из словаря (llamar, volver) просто добавляется окончание. Смысловые опоры: «efectivo» — наличные."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[5].note",
+  "fix": "Ключевая форма: Venderé. К целому слову из словаря (llamar, volver) просто добавляется окончание."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[6].body",
+  "fix": "Сравните два задания: «Ты откроешь окно?» / «Вы прочитаете сообщение?». К целому слову из словаря (llamar, volver) просто добавляется окончание. Выразите будущее одной глагольной формой, не добавляя voy a."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.ru.chapters[6].note",
+  "fix": "Ключевая форма: leeréis. К целому слову из словаря (llamar, volver) просто добавляется окончание."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.formula",
+  "fix": "слово зі словника повністю + é / ás / á / emos / éis / án"
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.nuance",
+  "fix": "Висловіть майбутнє однією дієслівною формою, без voy a. До цілого слова зі словника (llamar, volver) просто додається закінчення."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[0].note",
+  "fix": "Ключова форма: llamaré. До цілого слова зі словника (llamar, volver) просто додається закінчення."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[1].note",
+  "fix": "Ключова форма: llamarás. До цілого слова зі словника (llamar, volver) просто додається закінчення."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[2].note",
+  "fix": "Ключова форма: mandaréis. До цілого слова зі словника (llamar, volver) просто додається закінчення."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[3].note",
+  "fix": "Ключова форма: volverá. До цілого слова зі словника (llamar, volver) просто додається закінчення."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[4].note",
+  "fix": "Ключова форма: llamarás. До цілого слова зі словника (llamar, volver) просто додається закінчення."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[5].body",
+  "fix": "Порівняйте два завдання: «Ти пізніше заплатиш готівкою.» / «Я продам машину після поїздки.». До цілого слова зі словника (llamar, volver) просто додається закінчення. Смислові опори: «efectivo» — готівка."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[5].note",
+  "fix": "Ключова форма: Venderé. До цілого слова зі словника (llamar, volver) просто додається закінчення."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[6].body",
+  "fix": "Порівняйте два завдання: «Ти відчиниш вікно?» / «Ви прочитаєте повідомлення?». До цілого слова зі словника (llamar, volver) просто додається закінчення. Висловіть майбутнє однією дієслівною формою, без voy a."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "localized.uk.chapters[6].note",
+  "fix": "Ключова форма: leeréis. До цілого слова зі словника (llamar, volver) просто додається закінчення."
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.ru.formula",
+  "fix": "слово из словаря целиком + ía / ías / ía / íamos / íais / ían"
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.ru.choose",
+  "fix": "Для правильного глагола сохраните слово из словаря целиком: llamar-é «позвоню», llamar-ía «позвонил бы». Смена окончания меняет отношение говорящего к действию."
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.ru.chapters[1].body",
+  "fix": "Для правильного глагола сохраните слово из словаря целиком: llamar-é «позвоню», llamar-ía «позвонил бы». Смена окончания меняет отношение говорящего к действию."
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.ru.tables[0].title",
+  "fix": "llamar · Форма «бы»"
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.ru.tables[1].title",
+  "fix": "comprar · Форма «бы»"
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.ru.tables[2].title",
+  "fix": "volver · Форма «бы»"
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.uk.formula",
+  "fix": "слово зі словника повністю + ía / ías / ía / íamos / íais / ían"
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.uk.choose",
+  "fix": "У правильного дієслова збережіть слово зі словника повністю: llamar-é «зателефоную», llamar-ía «зателефонував би». Закінчення змінює ставлення мовця до дії."
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.uk.chapters[1].body",
+  "fix": "У правильного дієслова збережіть слово зі словника повністю: llamar-é «зателефоную», llamar-ía «зателефонував би». Закінчення змінює ставлення мовця до дії."
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.uk.tables[0].title",
+  "fix": "llamar · Форма «би»"
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.uk.tables[1].title",
+  "fix": "comprar · Форма «би»"
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "localized.uk.tables[2].title",
+  "fix": "volver · Форма «би»"
+ },
+ {
+  "id": "lesson-30/terms",
+  "field": "localized.ru.tables[0].title",
+  "fix": "venir · Особая форма после que"
+ },
+ {
+  "id": "lesson-30/terms",
+  "field": "localized.ru.tables[1].title",
+  "fix": "abrir · Особая форма после que"
+ },
+ {
+  "id": "lesson-30/terms",
+  "field": "localized.ru.tables[2].title",
+  "fix": "leer · Особая форма после que"
+ },
+ {
+  "id": "lesson-30/terms",
+  "field": "localized.ru.tables[3].title",
+  "fix": "volver · Особая форма после que"
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "localized.ru.chapters[3].body",
+  "fix": "Cuando termine la clase, volveremos a casa. Порядок частей изменился, форма слов — нет. После начального придаточного ставится запятая; это оформление, а не плитка."
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "localized.ru.chapters[4].body",
+  "fix": "Каждый раз, когда возвращаюсь, звоню — привычка: cuando vuelvo. Позвоню, когда вернусь, — предстоящее событие: cuando vuelva. Само слово cuando не требует всегда одной и той же формы."
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "localized.ru.tables[0].title",
+  "fix": "llegar · Особая форма после cuando"
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "localized.ru.tables[1].title",
+  "fix": "terminar · Особая форма после cuando"
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "localized.ru.tables[2].title",
+  "fix": "venir · Особая форма после cuando"
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "localized.uk.chapters[3].body",
+  "fix": "Cuando termine la clase, volveremos a casa. Порядок частин змінився, форма слів — ні. Після початкової підрядної частини ставимо кому; це оформлення, а не плитка."
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "localized.ru.tables[0].title",
+  "fix": "ir · Форма «бы»"
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "localized.ru.tables[1].title",
+  "fix": "comprar · Форма «бы»"
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "localized.ru.tables[2].title",
+  "fix": "hablar · Форма «бы»"
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "localized.uk.tables[0].title",
+  "fix": "ir · Форма «би»"
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "localized.uk.tables[1].title",
+  "fix": "comprar · Форма «би»"
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "localized.uk.tables[2].title",
+  "fix": "hablar · Форма «би»"
+ }
+]

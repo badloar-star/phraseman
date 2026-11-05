@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 28,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Вежливая просьба"
+      },
+      "text": {
+        "ru": "В кафе можно сказать «дайте кофе», а можно мягко попросить.\nJe voudrais un café. — Я бы хотел кофе.\nНапиток тот же. Разница в том, как это звучит для человека рядом.\nВежливое слово — voudrais, а не veux."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Как сказать"
+      },
+      "text": {
+        "ru": "Кто + voudrais или aimerais + что или действие.\nJ’aimerais partir tôt. — Я хотел бы уйти пораньше.\nPaul aimerait apprendre à conduire. — Поль хотел бы научиться водить машину.\nJe veux — «я хочу», звучит прямо. Je voudrais — «я бы хотел», звучит мягко.\nПопросить человека что-то сделать можно так: pourriez-vous — «не могли бы вы». После aimerais действие остаётся как в словаре: partir."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Соберите вместе"
+      },
+      "text": {
+        "ru": "Вы у стойки и хотите кофе.\nJe voudrais мягче, чем je veux. Потом то, что хотите: un café.\nJe voudrais un café. — Я бы хотел кофе.\nElle voudrait une chambre calme. — Она хотела бы тихую комнату."
+      }
+    }
+  ]
+}

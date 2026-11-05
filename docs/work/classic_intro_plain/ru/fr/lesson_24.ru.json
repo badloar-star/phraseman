@@ -1,0 +1,33 @@
+{
+  "lang": "fr",
+  "lesson": 24,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Не повторять место: слово y"
+      },
+      "text": {
+        "ru": "Вы уже сказали про рынок. Второй раз называть его не хочется.\nJe vais au marché et Paul y va aussi. — Я иду на рынок, и Поль тоже.\nМаленькое слово y значит «туда» или «там».\nОно заменяет место, о котором все уже знают."
+      }
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Как сказать"
+      },
+      "text": {
+        "ru": "Кто + y + действие.\nJ’y vais maintenant. — Я иду туда сейчас.\nTu y vas demain. — Ты пойдёшь туда завтра.\nY стоит перед словом действия. Je перед ним сокращается до j’.\nPaul y va: Paul — кто, y — куда, va — идёт."
+      }
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Соберите вместе"
+      },
+      "text": {
+        "ru": "Сначала назовите место: je vais au marché.\nПоль идёт туда же. Второй раз «рынок» не нужен: Paul y va aussi.\nJe vais au marché et Paul y va aussi. — Я иду на рынок, и Поль тоже.\nElle va au musée et nous y allons aussi. — Она идёт в музей, и мы тоже."
+      }
+    }
+  ]
+}

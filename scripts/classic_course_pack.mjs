@@ -332,7 +332,17 @@ function buildGlossary(lang, prof, take, zips) {
   }
   if (lang === 'es') for (const k of Object.keys(OVERRIDES.es ?? {})) if (!usedEsOverrides.has(k)) fail(lang, `правка словаря: лемма «${k}» не найдена`);
   if (lang === 'en') for (const k of Object.keys(OVERRIDES.en ?? {})) if (!lemmas.length || !Object.hasOwn(take('glossary.json'), k)) fail(lang, `правка словаря: ключ «${k}» не найден`);
-  return { lemmas };
+  // зачем (владелец 05.11, «слова урока без повторов»): одна лемма с одним и тем же значением (ru) — одна запись; омонимы с разными значениями остаются отдельно
+  const merged = [];
+  const byKey = new Map();
+  for (const e of lemmas) {
+    const k = `${String(e.lemma).toLowerCase()}|${e.meaning?.ru ?? ''}`;
+    const prev = byKey.get(k);
+    if (!prev) { byKey.set(k, e); merged.push(e); continue; }
+    prev.firstLesson = Math.min(prev.firstLesson, e.firstLesson);
+    prev.phraseIds = [...new Set([...(prev.phraseIds ?? []), ...(e.phraseIds ?? [])])];
+  }
+  return { lemmas: merged };
 }
 
 // зачем (Ядро 04.11, решение владельца): в классических курсах пока ТОЛЬКО системный TTS телефона — никаких полей озвучки,
@@ -364,7 +374,9 @@ function spacyReason(ctx, ph, i, d) {
   if (!L) return null;
   const tc = L.tiles[ph.id]?.[i];
   if (!tc?.length) return null;
-  const di = L.iso[d] ?? L.iso[d[0].toLowerCase() + d.slice(1)] ?? L.iso[d[0].toUpperCase() + d.slice(1)];
+  // как у валидатора: соблазн первой плитки с заглавной верной плитки проверяется в виде «Слово» (итоговый регистр)
+  const form = i === 0 && ph.tiles[0].correct[0] !== ph.tiles[0].correct[0].toLowerCase() ? d[0].toUpperCase() + d.slice(1) : d;
+  const di = L.iso[form] ?? L.iso[d] ?? L.iso[d[0].toLowerCase() + d.slice(1)] ?? L.iso[d[0].toUpperCase() + d.slice(1)];
   if (!di?.length) return null;
   return tc.some((c) => di.includes(c)) ? null : 'posSpacy';
 }
@@ -912,7 +924,24 @@ function convert(lang, zips) {
   const allPhrases = Object.values(files).filter((f) => f.phrases).flatMap((f) => f.phrases);
   pruneSingularYouForms(lang, allPhrases);
   const ystat = addYouVariants(lang, allPhrases);
-  const dstat = fixDistractors(lang, allPhrases);
+  let dstat = fixDistractors(lang, allPhrases);
+  // зачем (владелец 05.11, «ноль B1»): пара соблазнов на двух позициях не должна складываться в верную фразу этой же подсказки (target/accepted/alternatives) —
+  // нарушающий соблазн запрещаем (PATCHES.remove в памяти) и пересобираем соблазны: плитка с нехваткой добирает замену
+  for (let round = 0; round < 4; round++) {
+    const bans = [];
+    for (const ph of allPhrases) {
+      const { acc } = phraseKeys(ph);
+      const c = ph.tiles.map((t) => t.correct);
+      for (let i = 0; i < ph.tiles.length; i++) for (let j = i + 1; j < ph.tiles.length; j++) for (const di of ph.tiles[i].distractors) for (const dj of ph.tiles[j].distractors) {
+        const arr = c.slice(); arr[i] = di; arr[j] = dj;
+        if (acc.has(keyOf(arr))) bans.push([ph.id, dj]);
+      }
+    }
+    if (!bans.length) break;
+    for (const [id, w] of bans) { const k = `${lang}:${phraseNumbers(id).key}`; (PATCHES.remove[k] ??= []).push(w); }
+    dstat = fixDistractors(lang, allPhrases);
+    dstat.removed.pairBans = (dstat.removed.pairBans ?? 0) + bans.length;
+  }
   dstat.removed.youVariantPhrases = ystat.phrases;
   dstat.removed.youVariants = ystat.variants;
   for (const [rule, n] of Object.entries(dstat.left)) if (n) fail(lang, `соблазны: правило ${rule} — осталось ${n}`);

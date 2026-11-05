@@ -10,6 +10,7 @@ import Svg, { Defs, Mask, Rect } from 'react-native-svg';
 import type { Lang } from '../../../constants/i18n';
 import { spireTierName } from '../../../modules/spire/tier_names';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
+import { useRuntimeActive } from '../../../hooks/use_runtime_active';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import V2Pressable from '../../v2/V2Pressable';
 import { useSpirePalette } from '../useSpirePalette';
@@ -35,12 +36,14 @@ const CARD_MAX_FONT_SCALE = 1.15;
 
 function RisingArrow({ x, y, delay, color, still }: Readonly<{ x: number; y: number; delay: number; color: string; still: boolean }>) {
   const lift = useSharedValue(0);
+  // зачем (сторож perf_freeze_contract): бесконечный подъём стрелок стоит, пока экран не в фокусе или приложение в фоне; вид и тайминги те же
+  const runtimeActive = useRuntimeActive();
   useEffect(() => {
-    if (still) { lift.value = 0; return undefined; }
+    if (still || !runtimeActive) { cancelAnimation(lift); lift.value = 0; return undefined; }
     // зачем (макет: стрелки «поднимаются»): мягкий подъём вверх и возврат, со сдвигом по строкам; только transform на UI-потоке
     lift.value = withDelay(delay, withRepeat(withSequence(withTiming(-ARROW_RISE, { duration: 700, easing: Easing.out(Easing.cubic) }), withTiming(0, { duration: 700, easing: Easing.inOut(Easing.cubic) })), -1));
     return () => cancelAnimation(lift);
-  }, [still, delay, lift]);
+  }, [still, runtimeActive, delay, lift]);
   const style = useAnimatedStyle(() => ({ transform: [{ translateY: lift.value }] }));
   return (
     <Animated.View pointerEvents="none" style={[s.arrow, { left: x, top: y }, style]}>

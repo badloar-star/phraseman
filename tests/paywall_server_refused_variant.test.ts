@@ -67,6 +67,8 @@ describe('«Не видим твой Plus»: локальный Plus, а сер�
     const allowed = new Set([
       'app/premium_context.ts', 'app/paywall_entry_contract.ts', 'app/paywall_context_texts.ts', 'app/paywall_copy.ts',
       'components/paywall/PaywallContextIcons.tsx', 'components/dev/paywallDevContexts.ts',
+      // зачем (пейвол 1:1 по макету, a1aec863f): таблица строк плиток по контексту — данные, как paywall_context_texts; ключ plus_server_refused там — подпись плитки, а не вызов пейвола
+      'app/paywall_v3_rows.ts',
     ]);
     const offenders: string[] = [];
     const walk = (dir: string): void => {

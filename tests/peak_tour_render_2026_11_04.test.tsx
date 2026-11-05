@@ -31,6 +31,8 @@ jest.mock('react-native-reanimated', () => {
   };
 });
 jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Defs: 'Defs', Mask: 'Mask', Rect: 'Rect' }));
+// зачем (сторож perf_freeze_contract): стрелки тура стоят, пока экран не в фокусе или приложение в фоне — хук активности подменён «активно»
+jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => true }));
 jest.mock('../components/v2/ShadowSurface', () => ({ useShadowGlass: () => ({ scrim: 'rgba(0,0,0,0.6)', opaqueCard: '#151517' }) }));
 jest.mock('../components/spire/useSpirePalette', () => ({ useSpirePalette: () => ({ text: '#fff', textSecondary: '#bbb', control: '#222', cta: '#eee', ctaText: '#000', correct: '#4c8' }) }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));

@@ -11,6 +11,7 @@ import { StyleSheet, View } from 'react-native';
 import Animated, { cancelAnimation, Easing, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 
 /** Каждая N-я звезда палитры мерцает (остальные статичны в Svg фона). */
 export const SCENE_TWINKLE_EVERY = 8;
@@ -52,10 +53,12 @@ function Dot({ star, index, animate }: { star: Star; index: number; animate: boo
 
 function SceneStarTwinkle({ stars, active = true }: Props) {
   const reduce = useReduceMotion();
+  // зачем (сторож perf_freeze_contract, Performance Bible): бесконечное мерцание не работает, пока экран не в фокусе или приложение в фоне (экраны стека не размонтируются); вид и тайминги те же
+  const runtimeActive = useRuntimeActive();
   const picked = useMemo(() => stars.filter((_, i) => i % SCENE_TWINKLE_EVERY === 0), [stars]);
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      {picked.map((s, i) => <Dot key={i} star={s} index={i} animate={active && !reduce} />)}
+      {picked.map((s, i) => <Dot key={i} star={s} index={i} animate={active && runtimeActive && !reduce} />)}
     </View>
   );
 }

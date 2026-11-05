@@ -37,3 +37,8 @@ git apply docs/work/_parked_2_1_1/classic_completion_journal/classic_completion_
 
 ## Дополнение (координатор, 05.11 ~16:45)
 `StudyTargetContext_prime.patch` — хвост журнала: `components/StudyTargetContext.tsx` вызывал `commitLessonScreenPrimeStudyTarget` из запаркованного `lesson_screen_bootstrap`; после парковки приложение падало на старте (Render Error: ... is not a function). Файл возвращён к HEAD. Возвращать вместе с основным патчем.
+
+## Дополнение (Ядро, 06.11): сопутствующие файлы «области первого показа урока»
+- `prime_scope_tests_tracked.patch` — правки `tests/lesson_screen_bootstrap.test.ts` (ждали функции `commitLessonScreenPrimeStudyTarget`, которая живёт в запаркованной версии `lesson_screen_bootstrap.ts`);
+- `untracked/tests/lesson_screen_account_isolation.test.ts.untracked` — новый тест того же кластера.
+- `components/StudyTargetContext.tsx` (вызов `commitLessonScreenPrimeStudyTarget` в layout-эффекте) оставался грязным и ронял сборку бандлера в эмуляторе после парковки (вызов функции, которой нет в HEAD) — возвращён к HEAD (+6/−1: импорт `useLayoutEffect`, импорт `commitLessonScreenPrimeStudyTarget`, эффект `useLayoutEffect(() => { commitLessonScreenPrimeStudyTarget(studyTarget); }, [studyTarget])`). При возврате кластера этот эффект вернуть вручную.

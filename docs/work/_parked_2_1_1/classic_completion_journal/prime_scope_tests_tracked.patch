@@ -1,0 +1,37 @@
+diff --git a/tests/lesson_screen_bootstrap.test.ts b/tests/lesson_screen_bootstrap.test.ts
+index 5dd9950ea..f82704265 100644
+--- a/tests/lesson_screen_bootstrap.test.ts
++++ b/tests/lesson_screen_bootstrap.test.ts
+@@ -1,11 +1,14 @@
+ import {
+   buildLessonContentSignature,
++  captureLessonScreenPrimeOriginScope,
++  commitLessonScreenPrimeStudyTarget,
+   clampStoredLessonCell,
+   getInitialOverridePhraseCell,
+   touchLessonScreenPrimed,
+   parseStoredLessonOrder,
+   parseStoredLessonProgress,
+ } from '../app/lesson_screen_bootstrap';
++import { beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
+ import { readFileSync } from 'fs';
+ import { join } from 'path';
+ 
+@@ -71,12 +74,16 @@ describe('lesson screen bootstrap storage recovery', () => {
+   });
+ 
+   it('primes the active replay override so the first lesson frame is stable', () => {
++    beginAccountGeneration('lesson-screen-bootstrap-test');
++    commitLessonScreenPrimeStudyTarget('en');
++    const accountToken = captureAccountGeneration();
++    const originScope = captureLessonScreenPrimeOriginScope(accountToken, 'en');
+     touchLessonScreenPrimed(7, {
+       cell: 4,
+       order: [4, 3, 2, 1, 0],
+       progress: ['empty', 'wrong', 'empty', 'correct', 'empty'],
+       override: 1,
+-    }, 'en');
++    }, originScope);
+ 
+     expect(getInitialOverridePhraseCell(7, 5, 'en')).toBe(1);
+   });

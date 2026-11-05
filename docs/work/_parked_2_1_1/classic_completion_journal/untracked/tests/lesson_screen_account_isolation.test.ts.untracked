@@ -1,0 +1,338 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+type Deferred<T> = {
+  promise: Promise<T>;
+  resolve: (value: T) => void;
+};
+
+function deferred<T>(): Deferred<T> {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>((done) => { resolve = done; });
+  return { promise, resolve };
+}
+
+const mockMultiGet = jest.fn();
+const mockPatchAppSnapshot = jest.fn();
+
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  __esModule: true,
+  default: { multiGet: mockMultiGet },
+}));
+
+jest.mock('../app/app_snapshot_store', () => ({
+  patchAppSnapshot: mockPatchAppSnapshot,
+}));
+
+jest.mock('../app/debug-logger', () => ({
+  DebugLogger: { error: jest.fn() },
+}));
+
+import {
+  beginAccountGeneration,
+  captureAccountGeneration,
+  invalidateAccountGeneration,
+} from '../app/account_generation';
+import {
+  captureLessonScreenPrimeOriginScope,
+  commitLessonScreenPrimeStudyTarget,
+  getInitialOrderAndCell,
+  getInitialOverridePhraseCell,
+  getInitialProgressArray,
+  getLessonScreenPrimed,
+  LESSON_ID_MAX,
+  primeAllLessonsFromStorageOnAppLaunch,
+  primeLessonScreenFromStorage,
+  touchLessonScreenPrimed,
+} from '../app/lesson_screen_bootstrap';
+
+const ORDER = [0, 1, 2];
+const A_PROGRESS = ['correct', 'wrong', 'empty'];
+
+function storageRows(keys: string[], lessonId: number, values?: {
+  cell?: string;
+  order?: string;
+  progress?: string;
+  override?: string;
+}): Array<[string, string | null]> {
+  return keys.map((key) => {
+    if (key.endsWith(`lesson${lessonId}_cellIndex`) || key === `lesson${lessonId}_cellIndex`) {
+      return [key, values?.cell ?? '1'];
+    }
+    if (key.endsWith(`lesson${lessonId}_phraseOrder`) || key === `lesson${lessonId}_phraseOrder`) {
+      return [key, values?.order ?? JSON.stringify(ORDER)];
+    }
+    if (key.endsWith(`lesson${lessonId}_progress`) || key === `lesson${lessonId}_progress`) {
+      return [key, values?.progress ?? JSON.stringify(A_PROGRESS)];
+    }
+    if (key.endsWith(`lesson${lessonId}_errorReplayOverride`) || key === `lesson${lessonId}_errorReplayOverride`) {
+      return [key, values?.override ?? '1'];
+    }
+    return [key, null];
+  });
+}
+
+function latestSnapshotLessons(currentStudyTarget = 'fr'): Record<string, unknown> {
+  const updater = mockPatchAppSnapshot.mock.calls.at(-1)?.[0];
+  expect(typeof updater).toBe('function');
+  return updater({
+    lessons: {
+      source: 'storage',
+      updatedAt: 1,
+      primedCount: 99,
+      lastOpenedLesson: '9',
+      lastOpenedLessonCorrect: 4,
+      studyTarget: currentStudyTarget,
+    },
+  }).lessons;
+}
+
+describe('lesson screen prime account isolation', () => {
+  beforeEach(() => {
+    mockMultiGet.mockReset();
+    mockPatchAppSnapshot.mockReset();
+    commitLessonScreenPrimeStudyTarget('en');
+  });
+
+  test('uninitialized and transitioning generations cannot read storage or publish cache state', async () => {
+    const fakeToken = Object.freeze({ generation: 0, stableId: null, phase: 'uninitialized' as const });
+
+    expect(captureLessonScreenPrimeOriginScope(fakeToken, 'en')).toBeNull();
+    expect(touchLessonScreenPrimed(1, { cell: 1 }, null)).toBe(false);
+    await primeLessonScreenFromStorage(1, 'en');
+    await primeAllLessonsFromStorageOnAppLaunch('en');
+    expect(mockMultiGet).not.toHaveBeenCalled();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+    expect(getLessonScreenPrimed(1, 'en')).toBeNull();
+
+    beginAccountGeneration('account-transition');
+    const activeToken = captureAccountGeneration();
+    const activeScope = captureLessonScreenPrimeOriginScope(activeToken, 'en');
+    invalidateAccountGeneration();
+    expect(touchLessonScreenPrimed(1, { cell: 2 }, activeScope)).toBe(false);
+    await primeLessonScreenFromStorage(1, 'en');
+    expect(mockMultiGet).not.toHaveBeenCalled();
+    expect(getLessonScreenPrimed(1, 'en')).toBeNull();
+  });
+
+  test('already-cached A is an immediate miss after B becomes current', () => {
+    beginAccountGeneration('account-A');
+    const tokenA = captureAccountGeneration();
+    const scopeA = captureLessonScreenPrimeOriginScope(tokenA, 'en');
+    expect(touchLessonScreenPrimed(1, {
+      cell: 1,
+      order: ORDER,
+      progress: A_PROGRESS,
+      override: 1,
+    }, scopeA)).toBe(true);
+
+    beginAccountGeneration('account-B');
+
+    expect(getLessonScreenPrimed(1, 'en')).toBeNull();
+    expect(getInitialOrderAndCell(1, 3, 3, 'en')).toEqual({ startCell: 0, initialOrder: [] });
+    expect(getInitialProgressArray(3, 1, 'en')).toEqual(['empty', 'empty', 'empty']);
+  });
+
+  test('pending B selected prime cannot expose cached A before B storage settles', async () => {
+    beginAccountGeneration('pending-A');
+    const tokenA = captureAccountGeneration();
+    const scopeA = captureLessonScreenPrimeOriginScope(tokenA, 'en');
+    touchLessonScreenPrimed(2, { cell: 1, order: ORDER, progress: A_PROGRESS }, scopeA);
+    beginAccountGeneration('pending-B');
+    const bRead = deferred<Array<[string, string | null]>>();
+    mockMultiGet.mockReturnValueOnce(bRead.promise);
+
+    const pendingBPrime = primeLessonScreenFromStorage(2, 'en');
+    expect(getLessonScreenPrimed(2, 'en')).toBeNull();
+
+    const keys = mockMultiGet.mock.calls[0][0] as string[];
+    bRead.resolve(keys.map((key) => [key, null]));
+    await pendingBPrime;
+  });
+
+  test('late all-prime A performs zero cache and snapshot publication after B', async () => {
+    beginAccountGeneration('all-A');
+    const aRead = deferred<Array<[string, string | null]>>();
+    mockMultiGet.mockReturnValueOnce(aRead.promise);
+    const pendingAPrime = primeAllLessonsFromStorageOnAppLaunch('en');
+    const keys = mockMultiGet.mock.calls[0][0] as string[];
+
+    beginAccountGeneration('all-B');
+    mockPatchAppSnapshot.mockClear();
+    aRead.resolve(storageRows(keys, 3));
+    await pendingAPrime;
+
+    expect(getLessonScreenPrimed(3, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+
+  test('late selected-prime A performs zero cache and snapshot publication after B', async () => {
+    beginAccountGeneration('selected-A');
+    const aRead = deferred<Array<[string, string | null]>>();
+    mockMultiGet.mockReturnValueOnce(aRead.promise);
+    const pendingAPrime = primeLessonScreenFromStorage(4, 'en');
+    const keys = mockMultiGet.mock.calls[0][0] as string[];
+
+    beginAccountGeneration('selected-B');
+    mockPatchAppSnapshot.mockClear();
+    aRead.resolve(storageRows(keys, 4));
+    await pendingAPrime;
+
+    expect(getLessonScreenPrimed(4, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+
+  test('late originating A touch and a fabricated current-looking token are rejected', () => {
+    beginAccountGeneration('touch-A');
+    const tokenA = captureAccountGeneration();
+    const scopeA = captureLessonScreenPrimeOriginScope(tokenA, 'en');
+    beginAccountGeneration('touch-B');
+    const current = captureAccountGeneration();
+    const fabricated = Object.freeze({ ...current });
+    const fabricatedScope = Object.freeze({ accountToken: current, studyTarget: 'en', epoch: 0, parent: null });
+
+    expect(captureLessonScreenPrimeOriginScope(fabricated, 'en')).toBeNull();
+    expect(touchLessonScreenPrimed(5, { cell: 2 }, fabricatedScope as any)).toBe(false);
+    expect(touchLessonScreenPrimed(5, { cell: 2 }, scopeA)).toBe(false);
+    expect(getLessonScreenPrimed(5, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+
+  test('committed target transitions synchronously invalidate prior target cache entries', () => {
+    beginAccountGeneration('language-A');
+    const tokenA = captureAccountGeneration();
+    expect(touchLessonScreenPrimed(6, { cell: 1 }, captureLessonScreenPrimeOriginScope(tokenA, 'en'))).toBe(true);
+    commitLessonScreenPrimeStudyTarget('es');
+    expect(getLessonScreenPrimed(6, 'en')).toBeNull();
+    expect(touchLessonScreenPrimed(6, { cell: 2 }, captureLessonScreenPrimeOriginScope(tokenA, 'es'))).toBe(true);
+    commitLessonScreenPrimeStudyTarget('fr');
+    expect(getLessonScreenPrimed(6, 'es')).toBeNull();
+    expect(touchLessonScreenPrimed(6, { cell: 3 }, captureLessonScreenPrimeOriginScope(tokenA, 'fr'))).toBe(true);
+
+    expect(getLessonScreenPrimed(6, 'fr')?.cell).toBe(3);
+
+    beginAccountGeneration('language-B');
+    expect(getLessonScreenPrimed(6, 'en')).toBeNull();
+    expect(getLessonScreenPrimed(6, 'es')).toBeNull();
+    expect(getLessonScreenPrimed(6, 'fr')).toBeNull();
+  });
+
+  test('current-owner storage prime preserves clamp, order, progress and override validation', async () => {
+    beginAccountGeneration('storage-owner');
+    mockMultiGet.mockImplementationOnce(async (keys: string[]) => storageRows(keys, 7, {
+      cell: '999',
+      order: JSON.stringify([2, 1, 0]),
+      progress: JSON.stringify(['correct', 'wrong', 'empty']),
+      override: '1',
+    }));
+
+    await primeLessonScreenFromStorage(7, 'en');
+
+    expect(getInitialOrderAndCell(7, 3, 3, 'en')).toEqual({ startCell: 2, initialOrder: [2, 1, 0] });
+    expect(getInitialProgressArray(3, 7, 'en')).toEqual(['correct', 'wrong', 'empty']);
+    expect(getInitialOverridePhraseCell(7, 3, 'en')).toBe(1);
+    expect((getLessonScreenPrimed(7, 'en') as any)?.source).toBe('storage');
+  });
+
+  test('optimistic touch is owner-scoped memory provenance, not a durability receipt', () => {
+    beginAccountGeneration('optimistic-owner');
+    const token = captureAccountGeneration();
+
+    expect(touchLessonScreenPrimed(8, { cell: 2, progress: A_PROGRESS }, captureLessonScreenPrimeOriginScope(token, 'en'))).toBe(true);
+
+    const primed = getLessonScreenPrimed(8, 'en') as any;
+    expect(primed).toMatchObject({ cell: 2, progress: A_PROGRESS, source: 'optimistic_memory' });
+    expect(primed).not.toHaveProperty('durable');
+    expect(latestSnapshotLessons()).toMatchObject({ source: 'memory', studyTarget: 'en', primedCount: 1 });
+  });
+
+  test('all-lessons publication remains atomic if the scope changes during result parsing', async () => {
+    beginAccountGeneration('atomic-A');
+    mockMultiGet.mockImplementationOnce(async (keys: string[]) => {
+      const rows = storageRows(keys, 9);
+      let transitioned = false;
+      for (const row of rows) {
+        const value = row[1];
+        Object.defineProperty(row, 1, {
+          configurable: true,
+          enumerable: true,
+          get: () => {
+            if (!transitioned) {
+              transitioned = true;
+              beginAccountGeneration('atomic-B');
+            }
+            return value;
+          },
+        });
+      }
+      return rows;
+    });
+
+    await primeAllLessonsFromStorageOnAppLaunch('en');
+
+    for (let lessonId = 1; lessonId <= LESSON_ID_MAX; lessonId += 1) {
+      expect(getLessonScreenPrimed(lessonId, 'en')).toBeNull();
+    }
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+
+  test('snapshot count and target include only the current owner and requested target', () => {
+    beginAccountGeneration('snapshot-owner');
+    const token = captureAccountGeneration();
+    touchLessonScreenPrimed(10, { cell: 1 }, captureLessonScreenPrimeOriginScope(token, 'en'));
+    commitLessonScreenPrimeStudyTarget('es');
+    touchLessonScreenPrimed(11, { cell: 2 }, captureLessonScreenPrimeOriginScope(token, 'es'));
+
+    expect(latestSnapshotLessons()).toMatchObject({
+      source: 'memory',
+      primedCount: 1,
+      studyTarget: 'es',
+      lastOpenedLesson: null,
+      lastOpenedLessonCorrect: null,
+    });
+  });
+
+  test('snapshot preserves last-opened fields only for the same committed target', () => {
+    beginAccountGeneration('snapshot-same-target');
+    const token = captureAccountGeneration();
+    touchLessonScreenPrimed(12, { cell: 1 }, captureLessonScreenPrimeOriginScope(token, 'en'));
+
+    expect(latestSnapshotLessons('en')).toMatchObject({
+      source: 'memory',
+      studyTarget: 'en',
+      lastOpenedLesson: '9',
+      lastOpenedLessonCorrect: 4,
+    });
+  });
+
+  test('stale origin after a target commit cannot publish a relabelled snapshot', () => {
+    beginAccountGeneration('snapshot-stale-origin');
+    const token = captureAccountGeneration();
+    const enScope = captureLessonScreenPrimeOriginScope(token, 'en');
+    commitLessonScreenPrimeStudyTarget('es');
+
+    expect(touchLessonScreenPrimed(13, { cell: 2 }, enScope)).toBe(false);
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+
+  test('lesson navigation remains fire-and-forget and all four touches carry immutable origin scopes', () => {
+    const root = path.resolve(__dirname, '..');
+    const menu = fs.readFileSync(path.join(root, 'app', 'lesson_menu.tsx'), 'utf8');
+    const complete = fs.readFileSync(path.join(root, 'app', 'lesson_complete.tsx'), 'utf8');
+    const lesson = fs.readFileSync(path.join(root, 'app', 'lesson1.tsx'), 'utf8');
+
+    expect(menu).not.toContain('await primeLessonScreenFromStorage');
+    expect(complete).not.toContain('await primeLessonScreenFromStorage');
+    expect(lesson.match(/touchLessonScreenPrimed\([\s\S]*?(?:originScope|screenPrimeScope)\);/g)).toHaveLength(4);
+  });
+
+  test('selected-prime storage rejection stays fail-open and publishes nothing', async () => {
+    beginAccountGeneration('reject-owner');
+    mockMultiGet.mockRejectedValueOnce(new Error('storage unavailable'));
+
+    await expect(primeLessonScreenFromStorage(12, 'en')).resolves.toBeUndefined();
+
+    expect(getLessonScreenPrimed(12, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+});

@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef, useSyncExternalStore } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// зачем (флаг theme_sliders_v1, слово владельца 05.11): настроенная тема tune:H:S — доступна всем, прежняя тема при включении флага мигрирует в ближайшие H/S (app/theme_tune_migration.ts)
+import { THEME_SLIDERS_V1_ENABLED } from '../constants/theme_sliders_flag';
+import { parseThemeTuneId } from '../constants/theme_tune';
+import { migrateThemeIdToTune } from '../app/theme_tune_migration';
 import { Appearance, useColorScheme, useWindowDimensions } from 'react-native';
 import { DARK, Theme, ThemeMode } from '../constants/theme';
 import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
@@ -444,7 +448,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // Store: шесть тем достижений доступны только по серверному entitlement.
   // Debug: все открыты для ручной сверки каждой темы на эмуляторе.
   const isLiquidGlassThemeAvailable = useCallback((id: LiquidGlassThemeId) => (
-    LIQUID_GLASS_THEME_IDS.includes(id) && (!isPremiumThemeId(id) || IS_DEV || premiumThemeEntitlements.unlocked.has(id))
+    (LIQUID_GLASS_THEME_IDS.includes(id) && (!isPremiumThemeId(id) || IS_DEV || premiumThemeEntitlements.unlocked.has(id)))
+    || (THEME_SLIDERS_V1_ENABLED && parseThemeTuneId(id) !== null)
   ), [premiumThemeEntitlements.unlocked]);
 
   useEffect(() => {
@@ -638,7 +643,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       // В хранилище лежит только метка; первый выбор замораживает пару (freezeFollowSystem). Старые пользователи сюда не попадают.
       const bootScheme = Appearance.getColorScheme();
       const newUserPair = newUserApply ? pickSystemDefaultTheme(bootScheme) : null;
-      const resolved = newUserPair ? resolveLiquidGlassTheme(newUserPair.themeId) : storedResolved;
+      const resolvedBefore = newUserPair ? resolveLiquidGlassTheme(newUserPair.themeId) : storedResolved;
+      // зачем (theme_sliders_v1): флаг включён → прежняя тема становится tune:H:S (ближайшие оттенок и насыщенность; новичку — стандарт); выключен — ничего не меняется
+      const resolved = migrateThemeIdToTune({ resolvedId: resolvedBefore, appearance: resolveLiquidGlassAppearance(pairs[2]?.[1] ?? null), isNewUser: newUserApply !== null }).id as LiquidGlassThemeId;
       console.log(`[DEFAULT-THEME] первый запуск=${String(firstRun.kind === 'new_user')} решение=${firstRun.kind}/${firstRun.reason} системный режим=${String(bootScheme)} → тема=${resolved} источник=${newUserPair ? 'по умолчанию (следует за системой)' : 'выбор человека / прежнее'}`); // guard-ok: итог выбора стартовой темы
       if (newUserPair) {
         followSystemInProcess = true;

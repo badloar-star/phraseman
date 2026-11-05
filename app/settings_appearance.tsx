@@ -9,7 +9,7 @@
 // зачем (владелец 05.11 ~20:55 «КАК ПО МАКЕТУ»): размеры, значки и подписи — 1:1 с макетом (☀/☾ в сегменте, замок у «Plus», значок у «Вернуть стандартный»,
 // кромка дорожки, 15 px у чисел). Круг «назад» остаётся на общем месте приложения (правило владельца «назад везде в одной точке»), заголовок — под ним.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -20,6 +20,8 @@ import V2SegmentedControl from '../components/v2/V2SegmentedControl';
 import ContentWrap from '../components/ContentWrap';
 import { settingsGlassCardStyle } from '../components/settings/SettingsGlassRows';
 import { TuneSlider } from '../components/settings/TuneSlider';
+import { AppearancePlusSheet } from '../components/settings/AppearancePlusSheet';
+import { KIT_MOTION } from '../constants/motionHybrid';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
@@ -94,10 +96,31 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   const onHueCommit = useCallback((H: number) => commit(normalizeThemeTune({ H, S: shown.S }), 'hue'), [commit, shown.S]);
   const onSatPreview = useCallback((S: number) => preview(normalizeThemeTune({ H: shown.H, S })), [preview, shown.H]);
   const onSatCommit = useCallback((S: number) => commit(normalizeThemeTune({ H: shown.H, S }), 'saturation'), [commit, shown.H]);
+  // зачем (координатор 05.11 ~22:20, «КАК ПО МАКЕТУ»): запертый ползунок/сброс без Plus сначала поднимает шторку макета «Цвет под себя — с Plus»,
+  // в окно оплаты ведёт только её кнопка. Оплата открывается после ухода шторки (KIT_MOTION.sheetMs), чтобы Modal не перекрывал экран оплаты.
+  const [plusSheet, setPlusSheet] = useState(false);
+  const paywallTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (paywallTimerRef.current) clearTimeout(paywallTimerRef.current); }, []);
   const onLockedPress = useCallback(() => {
-    console.log(LOG, 'ползунок заперт без Plus — пейвол', JSON.stringify({ plus: hasPremiumAccess })); // guard-ok: причина перехода
-    openPremiumPaywall(router as never, { context: 'generic', source: 'appearance_tune' });
-  }, [hasPremiumAccess, router]);
+    console.log(LOG, 'lock_tap', 'ползунок заперт без Plus — шторка', JSON.stringify({ plus: hasPremiumAccess, sheetOpen: plusSheet })); // guard-ok: причина перехода
+    if (plusSheet) return;
+    void hapticTap();
+    setPlusSheet(true);
+    console.log(LOG, 'sheet_open', JSON.stringify({ source: 'appearance_tune' })); // guard-ok: одна строка на показ
+  }, [hasPremiumAccess, plusSheet]);
+  const onSheetPlus = useCallback(() => {
+    console.log(LOG, 'sheet_cta', JSON.stringify({ to: 'paywall', context: 'generic', source: 'appearance_tune', delayMs: KIT_MOTION.sheetMs })); // guard-ok: одна строка на нажатие
+    setPlusSheet(false);
+    if (paywallTimerRef.current) clearTimeout(paywallTimerRef.current);
+    paywallTimerRef.current = setTimeout(() => {
+      paywallTimerRef.current = null;
+      openPremiumPaywall(router as never, { context: 'generic', source: 'appearance_tune' });
+    }, KIT_MOTION.sheetMs);
+  }, [router]);
+  const onSheetDismiss = useCallback((reason: 'not_now' | 'backdrop_or_back') => {
+    console.log(LOG, 'sheet_dismiss', JSON.stringify({ reason })); // guard-ok: причина закрытия
+    setPlusSheet(false);
+  }, []);
   const onReset = useCallback(() => {
     if (locked) { onLockedPress(); return; }
     void hapticTap();
@@ -167,6 +190,7 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
           </BouncyScrollView>
         </ContentWrap>
       </View>
+      <AppearancePlusSheet lang={lang} visible={plusSheet} onPlus={onSheetPlus} onDismiss={onSheetDismiss} />
       <ScreenBackButton screen="settings_appearance" testID="appearance-back" accessibilityLabel={triLang(lang, T.title)} onPress={() => safeRouterBack(router, '/(tabs)/settings' as never)} />
     </ScreenGradient>
   );

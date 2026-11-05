@@ -65,7 +65,7 @@ test('рейка: карточки — отдельный memo-компонен�
   const rail = read('components/home/v2/HomeV2VideoRail.tsx');
   assert.ok(rail.includes('const VideoRailCards = memo(function VideoRailCards('));
   const view = rail.slice(rail.indexOf('const HomeV2VideoRailView = memo('));
-  assert.ok(view.includes('<VideoRailCards videos={videos} title={title} plateColor={colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA)} glass={glass} onSelect={setActiveVideoId} />'));
+  assert.ok(view.includes('<VideoRailCards key={orderKey} videos={videos} title={title} plateColor={colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA)} glass={glass} onSelect={setActiveVideoId} />'));
   assert.ok(!view.includes('key={video.id}'), 'карточки больше не рисуются в теле рейки');
   const cards = rail.slice(rail.indexOf('const VideoRailCards = memo('), rail.indexOf('const HomeV2VideoRailView = memo('));
   assert.ok(!cards.includes('ownerActive'), 'карточкам ownerActive не нужен');

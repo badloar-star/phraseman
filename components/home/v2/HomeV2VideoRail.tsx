@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -14,6 +14,8 @@ import { animateNextLayoutTransition } from '../../../app/smooth_layout';
 import VideoThumbBase from '../../../app/flashcards/VideoThumb';
 import { withHomeChildCost } from '../../../app/home_focus_cost_probe';
 import { useShadowGlass } from '../../v2/ShadowSurface';
+import { orderHomeVideos, type WatchedVideoMap } from '../../../app/home_video_order';
+import { readWatchedVideos } from '../../../app/home_video_watched';
 // зачем ([HOME-CHILD-COST] 18.10): превью видео — кандидат на «nested-update» рейки (8–16 мс на возврате): измеряем отдельно; dev, в релизе тот же компонент
 const VideoThumb = withHomeChildCost('video_thumb', VideoThumbBase);
 
@@ -66,12 +68,29 @@ const VideoRailCards = memo(function VideoRailCards({ videos, title, plateColor,
   );
 });
 
-const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, ownerActive }: Props) {
+const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos: sourceVideos, status, ownerActive }: Props) {
   useRenderCause('home:video_rail', () => ({ videos, status, ownerActive }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const { lang } = useLang();
   const p = useV2Palette();
   const glass = useShadowGlass();
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  // зачем (слово владельца 05.11): новое — первым, просмотренное — в конец; порядок пересчитывается при возврате на Главную, прокрутка — в начало.
+  // «Просмотрено» читается локально (home_video_watched, без Firestore); пока события «досмотрел» нет — порядок источника.
+  const [watched, setWatched] = useState<WatchedVideoMap>({});
+  useEffect(() => {
+    if (!ownerActive) return undefined;
+    let alive = true;
+    void readWatchedVideos().then((map) => {
+      if (!alive) return;
+      console.log(`[HOME-VIDEO] порядок ленты: просмотренных=${Object.keys(map).length} источник=${sourceVideos.length}`); // guard-ok: значение, решившее порядок
+      setWatched(map);
+    });
+    return () => { alive = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- пересчёт при возврате на Главную; смена источника учитывается useMemo ниже
+  }, [ownerActive]);
+  const videos = useMemo(() => orderHomeVideos(sourceVideos, watched), [sourceVideos, watched]);
+  // зачем: ключ = порядок роликов — при пересортировке карточки собираются заново и прокрутка идёт в начало; без смены порядка рейка не перерисовывается (контракт [HOME-CHILD-COST])
+  const orderKey = useMemo(() => videos.map((video) => video.id).join('|'), [videos]);
   const selectedVideo = videos.find((video) => video.id === activeVideoId) ?? null;
   // The WebView module is evaluated only after a deliberate tap, never on Home's first frame.
   const VideoPlayerModal = selectedVideo && ownerActive
@@ -115,7 +134,7 @@ const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, 
         <Text style={[s.headingText, { color: p.text }]}>{title}</Text>
       </View>
       {videos.length ? (
-        <VideoRailCards videos={videos} title={title} plateColor={colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA)} glass={glass} onSelect={setActiveVideoId} />
+        <VideoRailCards key={orderKey} videos={videos} title={title} plateColor={colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA)} glass={glass} onSelect={setActiveVideoId} />
       ) : (
         // зачем (владелец 01.10): рейка не прячется и не пишет «недоступны/нет видео» —
         // при любом статусе без данных те же скелетоны резервной геометрии 246x138.

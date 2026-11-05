@@ -1,6 +1,7 @@
 # Task packet: video reward mockup update (70 percent threshold, replay gives no reward)
 
 Governance-ID: TG-10032D85D9CC
+Governance-ID: TG-9E39AD799413
 Status: In progress
 Owner: 3 · МАКЕТЫ (coordinator relay of owner clarification)
 Related epic/enabler: MASTER row 35 (Q)

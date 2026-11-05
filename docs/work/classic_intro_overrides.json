@@ -1,48 +1,14 @@
 {
   "_note": "Оверрайды интро классики (Темы). Ключ = screenId. Поля titleRU/textRU/linesRU; uk — отдельный файл Переводчика.",
   "en:01:intro:1": {
-    "titleRU": "Правило",
-    "textRU": "В английском глагол be («быть» в значении «находиться в каком-то состоянии») меняет форму в зависимости от подлежащего: am — только с I, is — с he, she, it и с одним предметом, are — с you, we, they и с несколькими предметами. В русском настоящее «быть» обычно не произносится («Я готов»), поэтому форму здесь приходится выбирать сознательно. Самая частая ошибка новичков — «I is ready» вместо «I am ready». Выбирай форму по подлежащему, а не по смыслу: «My keys are here» — ключи во множественном числе, даже если владелец один. Исключение, которое стоит запомнить: you всегда требует are, даже когда обращаешься к одному человеку.",
+    "titleRU": "Что учим сегодня",
+    "textRU": "Сегодня учим, как сказать «я», «он» и «мы» в английском. Слово «быть» там меняется, в зависимости от того, кто говорит.",
     "linesRU": [
       {
         "type": "text",
         "parts": [
           {
-            "text": "Форма be зависит только от того, кто или что стоит перед ней. Сравни три примера."
-          }
-        ]
-      },
-      {
-        "type": "example",
-        "parts": [
-          {
-            "text": "I am ready.",
-            "tone": "strong",
-            "semantic": "targetCorrect"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "parts": [
-          {
-            "text": "Я готов.",
-            "tone": "muted",
-            "semantic": "nativeGloss"
-          }
-        ]
-      }
-    ]
-  },
-  "en:01:intro:2": {
-    "titleRU": "Как строится",
-    "textRU": "Схема простая: подлежащее, затем форма be, затем признак или место. Подлежащее определяет форму: I — am; he, she, it и один предмет — is; you, we, they и несколько предметов — are.",
-    "linesRU": [
-      {
-        "type": "text",
-        "parts": [
-          {
-            "text": "[подлежащее] + [am / is / are] + [признак или место]",
+            "text": "Слово «быть» в английском меняется.",
             "tone": "strong"
           }
         ]
@@ -61,6 +27,144 @@
         "type": "text",
         "parts": [
           {
+            "text": "Ай эм рэди. — Я готов.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "She is ready.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Ши из рэди. — Она готова.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "We are ready.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Уи а рэди. — Мы готовы.",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "en:01:intro:2": {
+    "titleRU": "Как читается",
+    "textRU": "Эти слова звучат так:",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "am — «эм»",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "I am — «ай эм»",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "is — «из»",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "She is — «ши из»",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "are — «а»",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "We are — «уи а»",
+            "tone": "muted",
+            "semantic": "nativeGloss"
+          }
+        ]
+      }
+    ]
+  },
+  "en:01:intro:3": {
+    "titleRU": "Попробуйте сами",
+    "textRU": "Выберите слово, которое подходит.",
+    "linesRU": [
+      {
+        "type": "text",
+        "parts": [
+          {
+            "text": "Смотрите образец, потом решайте сами.",
+            "tone": "strong"
+          }
+        ]
+      },
+      {
+        "type": "example",
+        "parts": [
+          {
+            "text": "I ___ ready. → I am ready.",
+            "tone": "strong",
+            "semantic": "targetCorrect"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "parts": [
+          {
             "text": "Я готов.",
             "tone": "muted",
             "semantic": "nativeGloss"
@@ -71,7 +175,7 @@
         "type": "example",
         "parts": [
           {
-            "text": "She is at home.",
+            "text": "We ___ ready. → We are ready.",
             "tone": "strong",
             "semantic": "targetCorrect"
           }
@@ -81,7 +185,7 @@
         "type": "text",
         "parts": [
           {
-            "text": "Она дома.",
+            "text": "Мы готовы.",
             "tone": "muted",
             "semantic": "nativeGloss"
           }
@@ -91,7 +195,7 @@
         "type": "example",
         "parts": [
           {
-            "text": "They are ready.",
+            "text": "She ___ ready. → She is ready.",
             "tone": "strong",
             "semantic": "targetCorrect"
           }
@@ -101,73 +205,7 @@
         "type": "text",
         "parts": [
           {
-            "text": "Они готовы.",
-            "tone": "muted",
-            "semantic": "nativeGloss"
-          }
-        ]
-      }
-    ]
-  },
-  "en:01:intro:3": {
-    "titleRU": "Типичные ошибки и примеры",
-    "textRU": "Две ошибки встречаются чаще всего: форма is с I или you и смешивание is/are при нескольких предметах. Проверь подлежащее перед тем, как писать глагол.",
-    "linesRU": [
-      {
-        "type": "text",
-        "parts": [
-          {
-            "text": "Неверно: I is ready. Верно: I am ready. С I всегда am.",
-            "tone": "muted",
-            "semantic": "nativeGloss"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "parts": [
-          {
-            "text": "Неверно: You is late. Верно: You are late. You всегда требует are.",
-            "tone": "muted",
-            "semantic": "nativeGloss"
-          }
-        ]
-      },
-      {
-        "type": "example",
-        "parts": [
-          {
-            "text": "We are at school.",
-            "tone": "strong",
-            "semantic": "targetCorrect"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "parts": [
-          {
-            "text": "Мы в школе.",
-            "tone": "muted",
-            "semantic": "nativeGloss"
-          }
-        ]
-      },
-      {
-        "type": "example",
-        "parts": [
-          {
-            "text": "The keys are here.",
-            "tone": "strong",
-            "semantic": "targetCorrect"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "parts": [
-          {
-            "text": "Ключи здесь.",
+            "text": "Она готова.",
             "tone": "muted",
             "semantic": "nativeGloss"
           }

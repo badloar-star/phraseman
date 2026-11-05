@@ -75,7 +75,7 @@ const OVERRIDES = existsSync(OVERRIDES_PATH) ? JSON.parse(readFileSync(OVERRIDES
 // Два писателя — два файла: ru/прочие языки — Темы, uk — Переводчик. Ключ — screenId «<lang>:<LL>:intro:<N>», значение — поля titleXX/textXX/linesXX.
 const readIntroOverrides = (p) => (existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : {});
 const INTRO_OVERRIDES_PATHS = [join(ROOT, 'docs', 'work', 'classic_intro_overrides.json'), join(ROOT, 'docs', 'work', 'classic_intro_overrides_uk.json')];
-const INTRO_OVERRIDES = Object.assign({}, ...INTRO_OVERRIDES_PATHS.map(readIntroOverrides).map((o) => Object.fromEntries(Object.entries(o).filter(([k]) => k !== '_note'))));
+const INTRO_OVERRIDES = INTRO_OVERRIDES_PATHS.map(readIntroOverrides).reduce((acc, o) => { for (const [k, v] of Object.entries(o)) { if (k !== '_note') acc[k] = { ...(acc[k] ?? {}), ...v }; } return acc; }, {}); // зачем: поля одного экрана из двух файлов (ru в одном, uk в другом) сливаются, а не затирают друг друга
 const introOverrideUsed = new Set();
 // зачем: приоритет над архивом; возвращает НОВЫЕ объекты (блоки архива не мутируем). Неиспользованный ключ — предупреждение, чтобы опечатка в screenId была видна.
 function applyIntroOverrides(blocks, lang, n) {

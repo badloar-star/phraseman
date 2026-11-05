@@ -1,6 +1,7 @@
 # Аудит: чистит ли удаление аккаунта данные Сообщества (pack_likes / pack_adds / pack_comments / contest_votes)
 
 Governance-ID: TG-5381A8631F51
+Governance-ID: TG-778913AEA999
 Status: Аудит готов; правка НЕ внесена (рискованная — порядок выкладки), описание для утреннего отчёта
 Owner: «5 · ВХОД»
 
@@ -41,3 +42,18 @@ grep по `account_delete.ts`: подколлекции набора в спис
 - **Почему НЕ внесено ночью:** порядок выкладки обязателен — сначала индексы (`firebase deploy --only firestore:indexes`, строятся минуты), потом функция удаления; если функция уйдёт раньше индексов, запрос по полю в collection group упадёт (FAILED_PRECONDITION) и может сорвать удаление аккаунтов целиком. Функцию удаления деплоит Ядро по списку.
 - **Для Ядра:** имя функции — экспорт удаления аккаунта из `functions/src/account_delete.ts` (в `--only`, если её нет в списке); индексы — отдельным шагом до неё.
 - **Политика:** до исправления формулировка «удаление аккаунта удаляет ваши лайки и добавления» (Правка 2 дельты) НЕВЕРНА для чужих наборов — писать «удаляет ваш аккаунт и ваши наборы; отметки на чужих наборах удаляются при следующей очистке» либо исправить код до релиза.
+
+## Правка внесена (решение координатора 05.11 00:18) — код+тест, функция НЕ выкладывается ночью
+
+- `functions/src/account_delete.ts`: 4 collection-group-спеки (`pack_likes.userId`, `pack_adds.userId`, `pack_comments.authorId`, `contest_votes.userId`, `values: 'stable'`).
+- `firestore.indexes.json`: 4 override'а (COLLECTION ASC/DESC/CONTAINS сохранены + COLLECTION_GROUP ASC).
+- Тесты: `tests/account_delete_community_marks_2026_11_05.test.ts`, контракт `account_delete_collection_group_indexes_contract` (требует индекс на каждую спеку).
+- Счётчики `likesCount`/`addedCount` не декрементируем (принято: завышение на 1, в KNOWN_ISSUES).
+
+## ПОРЯДОК ВЫКЛАДКИ (для Ядра)
+
+1. **Индексы** (ночное окно 02:00, отдельной строкой ПОСЛЕ rules): `firebase deploy --only firestore:indexes --project <боевой>`. Аддитивно: добавляются 4 индекса группы коллекций, существующие не меняются. Построение — минуты.
+2. **Проверка READY**: `firebase firestore:indexes --project <боевой>` — для `pack_likes.userId`, `pack_adds.userId`, `pack_comments.authorId`, `contest_votes.userId` с `queryScope: COLLECTION_GROUP` статус `READY`; либо Консоль → Firestore → Индексы → Исключения/Группа коллекций → «Готов».
+3. **Только после READY — функция удаления** (утром): `firebase deploy --only functions:<имя экспортируемой функции удаления из functions/src/account_delete.ts>` (то, что сейчас в списке `--only` для удаления аккаунта; отдельную НОВУЮ функцию не добавляем).
+4. **Откат**: функция — вернуть предыдущую версию (git revert коммита + повторный `--only functions:<имя>`); индексы откатывать НЕ нужно (безвредны). Если функция выкачена раньше READY и удаления падают с `FAILED_PRECONDITION` на этапе `collection_group_matches` — немедленно откат функции, дождаться READY, выкатить снова.
+5. **Проверка после выкладки**: удалить тестовый аккаунт, поставивший лайк/комментарий под чужим набором на эмуляторе/стейджинге; `community_packs/<id>/pack_likes/<uid>` и комментарий исчезли.

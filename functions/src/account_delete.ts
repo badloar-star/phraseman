@@ -291,6 +291,13 @@ const COLLECTION_GROUP_QUERY_SPECS: AccountDeleteCollectionGroupSpec[] = [
   { collectionGroup: 'messages', field: 'authorUid', values: 'both' },
   { collectionGroup: 'messages', field: 'authorStableUid', values: 'both' },
   { collectionGroup: 'reactions', field: 'userId', values: 'stable' },
+  // зачем (Privacy-аудит 05.11, координатор): отметки пользователя ПОД ЧУЖИМИ наборами Сообщества (лайк, «добавил себе», комментарий, голос конкурса) хранят stable uid
+  // (комментарий — ещё имя автора) и раньше переживали удаление аккаунта; свои наборы уходят целиком через recursiveDelete. Счётчики likesCount/addedCount не декрементируем (принято: завышение на 1).
+  // ВЫКЛАДКА: сначала индексы COLLECTION_GROUP (firestore.indexes.json), потом эта функция — иначе запрос упадёт FAILED_PRECONDITION на этапе collection_group_matches.
+  { collectionGroup: 'pack_likes', field: 'userId', values: 'stable' },
+  { collectionGroup: 'pack_adds', field: 'userId', values: 'stable' },
+  { collectionGroup: 'pack_comments', field: 'authorId', values: 'stable' },
+  { collectionGroup: 'contest_votes', field: 'userId', values: 'stable' },
   { collectionGroup: 'poll_votes', field: 'userId', values: 'stable' },
   // Опрос дня (30.09): daily_polls/{date}/votes/{stableUid}. Счётчики опроса не уменьшаем — это анонимная сумма.
   { collectionGroup: 'votes', field: 'userId', values: 'stable' },

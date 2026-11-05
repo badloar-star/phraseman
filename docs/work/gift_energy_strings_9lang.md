@@ -1,0 +1,19 @@
+# Подарок энергии: строки на 9 языках
+
+Порядок языков: ru, uk, en, es, pt-BR, vi, id, tr, pl. Стиль приложения — «ты», без рода там, где возможно. Все строки короче 65 знаков. Плейсхолдеров нет.
+
+Одно отступление от черновика: ключ giftErrSender в русском был «Сегодня уже дарил — завтра снова» (мужской род). Заменено на безродовую форму «Сегодня подарок уже отправлен — завтра снова». Ключ giftErrTooNew: «Вы дружите» заменено на «Дружба меньше суток», потому что приложение на «ты» и «дружите» без подлежащего звучит официально.
+
+| ключ | ru | uk | en | es | pt-BR | vi | id | tr | pl |
+|---|---|---|---|---|---|---|---|---|---|
+| giftSend | Подарить +1 | Подарувати +1 | Gift +1 | Regalar +1 | Presentear +1 | Tặng +1 | Hadiahkan +1 | +1 hediye et | Podaruj +1 |
+| giftSent | Отправлено | Надіслано | Sent | Enviado | Enviado | Đã gửi | Terkirim | Gönderildi | Wysłano |
+| giftIncoming | Друг прислал +1 энергии | Друг надіслав +1 енергії | A friend sent you +1 energy | Un amigo te envió +1 de energía | Um amigo enviou +1 de energia | Bạn đã gửi cho bạn +1 năng lượng | Temanmu mengirim +1 energi | Bir arkadaşın +1 enerji gönderdi | Przyjaciel przysłał +1 energii |
+| giftClaim | Забрать | Забрати | Claim | Recoger | Resgatar | Nhận | Ambil | Al | Odbierz |
+| giftErrSender | Сегодня подарок уже отправлен — завтра снова | Сьогодні подарунок уже надіслано — завтра знову | Already gifted today — try tomorrow | Ya enviaste hoy — mañana de nuevo | Já enviado hoje — amanhã de novo | Hôm nay đã tặng rồi — mai lại được | Sudah memberi hari ini — besok lagi | Bugün zaten gönderildi — yarın yine | Dzisiaj już wysłano — jutro znowu |
+| giftErrReceiver | Другу сегодня уже подарили три раза | Другу сьогодні вже подарували тричі | Your friend already got three gifts today | Tu amigo ya recibió tres regalos hoy | Seu amigo já recebeu três presentes hoje | Bạn ấy hôm nay đã nhận đủ ba lần tặng | Temanmu sudah menerima tiga hadiah hari ini | Arkadaşın bugün zaten üç hediye aldı | Przyjaciel dziś dostał już trzy prezenty |
+| giftErrPoolFull | Копилка полна — подарок подождёт 7 дней | Скарбничка повна — подарунок почекає 7 днів | Energy jar is full — the gift waits 7 days | El bote está lleno — el regalo espera 7 días | O cofrinho está cheio — o presente espera 7 dias | Hũ đã đầy — quà sẽ chờ 7 ngày | Celengan penuh — hadiah menunggu 7 hari | Kumbara dolu — hediye 7 gün bekler | Skarbonka pełna — prezent poczeka 7 dni |
+| giftErrPlus | У друга Plus — энергия не тратится | У друга Plus — енергія не витрачається | Your friend has Plus — no energy is spent | Tu amigo tiene Plus — no se gasta energía | Seu amigo tem Plus — nenhuma energia é gasta | Bạn có Plus — không tốn năng lượng | Temanmu punya Plus — energi tidak terpakai | Arkadaşında Plus var — enerji harcanmaz | Przyjaciel ma Plus — energia się nie zużywa |
+| giftErrNotFriends | Дарить можно только друзьям | Дарувати можна лише друзям | You can only gift friends | Solo puedes regalar a amigos | Você só pode presentear amigos | Chỉ tặng được bạn bè | Kamu hanya bisa memberi hadiah ke teman | Yalnızca arkadaşlarına hediye verebilirsin | Prezenty można dawać tylko przyjaciołom |
+| giftErrTooNew | Дружба меньше суток — подарок откроется завтра | Дружба менше доби — подарунок відкриється завтра | Friends for under a day — the gift opens tomorrow | Amigos desde hace menos de un día — el regalo se abre mañana | Amigos há menos de um dia — o presente abre amanhã | Mới kết bạn chưa đầy một ngày — quà mở vào ngày mai | Baru berteman kurang dari sehari — hadiah dibuka besok | Arkadaş olalı bir gün bile olmadı — hediye yarın açılır | Znajomość krótsza niż dzień — prezent otworzy się jutro |
+| giftErrGeneric | Не получилось. Попробуй ещё раз | Не вдалося. Спробуй ще раз | Didn't work. Try again | No funcionó. Inténtalo de nuevo | Não deu certo. Tente de novo | Không thành công. Thử lại nhé | Gagal. Coba lagi | Olmadı. Tekrar dene | Nie udało się. Spróbuj ponownie |

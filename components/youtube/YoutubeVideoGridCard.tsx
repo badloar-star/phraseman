@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { SaveStar } from './SaveStar';
 import { Image } from 'expo-image';
 import VideoRewardBadge from '../video_reward/VideoRewardBadge';
 import type { YoutubeVideoSnapshot } from '../../shared/youtube_catalog_contract';
@@ -84,7 +84,7 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, onToggleSave, highlig
             onPress={(event) => { event.stopPropagation(); onToggleSave(); }}
             style={({ pressed }) => [styles.like, { backgroundColor: 'transparent' }, pressed && styles.likePressed]}
           >
-            <Ionicons name={saved ? 'star' : 'star-outline'} size={20} color={saved ? g.accentTextSafe : g.secondary} />
+            <SaveStar saved={!!saved} activeColor={g.accentTextSafe} idleColor={g.secondary} />
           </Pressable>
         ) : null}
       </View>

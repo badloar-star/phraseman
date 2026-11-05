@@ -8,7 +8,7 @@
  * Вкладка «Видео» открывает этот экран по тапу на ролик в сетке (владелец 11.10, макет video-redesign #c1, экран 3): сверху «назад» и закладка,
  * плеер, полоса прогресса, название, фразы по таймкодам, внизу закреплена «Добавить набор себе · N карточек».
  */
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { SaveStar } from '../components/youtube/SaveStar';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { InteractionManager, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -250,7 +250,7 @@ export default function LingmanVideoWatchScreen() {
             onPress={toggleSave}
             style={[styles.topButton, { backgroundColor: 'transparent' }]}
           >
-            <Ionicons name={savedVideo ? 'star' : 'star-outline'} size={20} color={savedVideo ? g.accentTextSafe : g.secondary} />
+            <SaveStar saved={!!savedVideo} activeColor={g.accentTextSafe} idleColor={g.secondary} />
           </Pressable>
         </View>
         <View style={styles.player}>

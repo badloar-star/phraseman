@@ -30,7 +30,7 @@ export const PaywallMDock = memo(function PaywallMDock({ g, texts, purchasing, d
         accessibilityState={{ disabled, busy: purchasing }}
         disabled={disabled}
         onPress={onPress}
-        withHaptic={false}
+        withHaptic // зачем (ТОП-20 №20, 05.11): деньги — самое «клеящее» нажатие, лёгкий хаптик на главной кнопке оплаты; состояние «идёт покупка» (busy + спиннер) уже есть
         scaleTo={0.97}
         style={[S.cta, { backgroundColor: g.ctaFill }]}
       >

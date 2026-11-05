@@ -17,6 +17,7 @@ import { VideoPlayBadge } from '../video/VideoGlassKit';
 import { plateBoxShadow, raisedBoxShadow } from '../v2/ShadowSurface';
 import { formatViewCount } from '../video/formatViewCount';
 import { hapticTap } from '../../hooks/use-haptics';
+import { SaveStar } from './SaveStar';
 
 /**
  * зачем (замер Q53, координатор 02.10: «Видео» +34 МБ нативной памяти после 10 прокруток):
@@ -93,7 +94,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
               onPress={(event) => { event.stopPropagation(); onToggleSave(); }}
               style={({ pressed }) => [styles.saveBtn, { backgroundColor: 'transparent' }, pressed && styles.savePressed]}
             >
-              <Ionicons name={saved ? 'star' : 'star-outline'} size={20} color={saved ? g.accentTextSafe : g.secondary} />
+              <SaveStar saved={!!saved} activeColor={g.accentTextSafe} idleColor={g.secondary} />
             </Pressable>
           ) : null}
         </View>

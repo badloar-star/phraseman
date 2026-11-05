@@ -12,8 +12,8 @@ export const ENERGY_GIFT_POOL_MAX = 3;
 const APPLIED_KEEP = 30;
 export const energyGiftPoolKey = (owner: string): string => `story_events_v1:energy_gift_pool:${owner}`;
 
-type PoolState = Readonly<{ pool: number; applied: readonly string[]; pending: readonly string[] }>;
-const EMPTY: PoolState = { pool: 0, applied: [], pending: [] };
+type PoolState = Readonly<{ pool: number; applied: readonly string[]; pending: readonly string[]; spent: readonly string[] }>;
+const EMPTY: PoolState = { pool: 0, applied: [], pending: [], spent: [] };
 const memory = new Map<string, PoolState>();
 const listeners = new Set<(owner: string, pool: number) => void>();
 let watching = false;
@@ -28,7 +28,7 @@ function normalize(raw: unknown): PoolState {
   const o = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
   const ids = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string').slice(-APPLIED_KEEP) : []);
   const n = Number(o.pool);
-  return { pool: Number.isFinite(n) ? Math.max(0, Math.min(ENERGY_GIFT_POOL_MAX, Math.trunc(n))) : 0, applied: ids(o.applied), pending: ids(o.pending) };
+  return { pool: Number.isFinite(n) ? Math.max(0, Math.min(ENERGY_GIFT_POOL_MAX, Math.trunc(n))) : 0, applied: ids(o.applied), pending: ids(o.pending), spent: ids(o.spent) };
 }
 
 function commit(owner: string, next: PoolState, reason: string): PoolState {
@@ -75,7 +75,7 @@ export function applyGiftLocal(owner: string, giftId: string): ApplyGiftResult {
   const cur = memory.get(owner) ?? EMPTY;
   if (cur.applied.includes(giftId)) { console.log(LOG, 'apply_skipped duplicate', giftId.slice(0, 8)); return 'duplicate'; } // guard-ok: ранний выход называет причину
   if (cur.pool >= ENERGY_GIFT_POOL_MAX) { console.log(LOG, 'apply_skipped pool_full', giftId.slice(0, 8)); return 'full'; } // guard-ok: ранний выход называет причину
-  commit(owner, { pool: cur.pool + 1, applied: [...cur.applied, giftId].slice(-APPLIED_KEEP), pending: [...cur.pending, giftId] }, 'apply');
+  commit(owner, { pool: cur.pool + 1, applied: [...cur.applied, giftId].slice(-APPLIED_KEEP), pending: [...cur.pending, giftId], spent: cur.spent }, 'apply');
   return 'applied';
 }
 
@@ -90,7 +90,7 @@ export function confirmGift(owner: string, giftId: string): void {
 export function rollbackGift(owner: string, giftId: string): boolean {
   const cur = memory.get(owner) ?? EMPTY;
   if (!cur.pending.includes(giftId)) { console.log(LOG, 'rollback_skipped not_pending', giftId.slice(0, 8)); return false; } // guard-ok: ранний выход называет причину
-  commit(owner, { pool: Math.max(0, cur.pool - 1), applied: cur.applied.filter((id) => id !== giftId), pending: cur.pending.filter((id) => id !== giftId) }, 'rollback');
+  commit(owner, { pool: Math.max(0, cur.pool - 1), applied: cur.applied.filter((id) => id !== giftId), pending: cur.pending.filter((id) => id !== giftId), spent: cur.spent }, 'rollback');
   return true;
 }
 
@@ -99,12 +99,34 @@ export function pendingGiftIds(owner: string): readonly string[] {
   return (memory.get(owner) ?? EMPTY).pending;
 }
 
-/** Тратит единицу копилки (первой, перед обычной энергией). false — копилка пуста. */
-export function spendGiftUnit(owner: string): boolean {
+/** Копилка сейчас (зеркало для журнала энергии: giftUnit = флаг && readGiftBank(owner) > 0). Синхронно, без записи. */
+export function readGiftBank(owner: string): number {
+  return peekGiftPool(owner);
+}
+
+/**
+ * Тратит единицу копилки (первой, перед обычной энергией). false — копилка пуста.
+ * зачем (Ядро 05.11, вариант B): реальное списание идёт внутри durable-операции журнала энергии; operationId делает трату
+ * идемпотентной — повтор того же старта не списывает копилку второй раз (возвращает true без изменения).
+ */
+export function spendGiftUnit(owner: string, operationId?: string): boolean {
   watchAccountChanges();
   const cur = memory.get(owner) ?? EMPTY;
-  if (cur.pool <= 0) return false;
-  commit(owner, { ...cur, pool: cur.pool - 1 }, 'spend');
+  if (operationId && cur.spent.includes(operationId)) { console.log(LOG, 'spend_skipped duplicate_op', operationId.slice(0, 8)); return true; } // guard-ok: повтор той же операции
+  if (cur.pool <= 0) { console.log(LOG, 'spend_skipped pool_empty', operationId ? operationId.slice(0, 8) : '-'); return false; } // guard-ok: ранний выход называет причину
+  commit(owner, { ...cur, pool: cur.pool - 1, spent: operationId ? [...cur.spent, operationId].slice(-APPLIED_KEEP) : cur.spent }, 'spend');
+  return true;
+}
+
+/**
+ * Возвращает в копилку единицу, потраченную операцией operationId (откат/возврат занятия). Идемпотентно: вернуть можно только
+ * то, что потрачено этой операцией и ещё не возвращено; потолок ENERGY_GIFT_POOL_MAX не превышается.
+ */
+export function creditGiftUnit(owner: string, operationId: string): boolean {
+  watchAccountChanges();
+  const cur = memory.get(owner) ?? EMPTY;
+  if (!cur.spent.includes(operationId)) { console.log(LOG, 'credit_skipped not_spent', operationId.slice(0, 8)); return false; } // guard-ok: нечего возвращать / уже возвращено
+  commit(owner, { ...cur, pool: Math.min(ENERGY_GIFT_POOL_MAX, cur.pool + 1), spent: cur.spent.filter((id) => id !== operationId) }, 'credit');
   return true;
 }
 

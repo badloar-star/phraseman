@@ -36,6 +36,7 @@
  *   PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 PHRASEMAN_ALLOW_UPLOAD=1 \
  *     node scripts/revoice_all_phrases_echo.mjs --apply
  */
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('revoice_all_phrases_echo.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';

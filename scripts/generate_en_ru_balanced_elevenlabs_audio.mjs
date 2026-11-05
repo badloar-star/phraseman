@@ -6,6 +6,7 @@
  *
  * The run is resumable. A valid existing numbered MP3 is never regenerated.
  */
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('generate_en_ru_balanced_elevenlabs_audio.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';

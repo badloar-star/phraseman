@@ -7,6 +7,7 @@
  * Run:
  *   PHRASEMAN_ALLOW_ELEVENLABS_DEV_SPEND=1 node scripts/patch_lingman_two_word_with_elevenlabs.mjs --draft-name PULSE_7
  */
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('patch_lingman_two_word_with_elevenlabs.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';

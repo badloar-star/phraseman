@@ -17,6 +17,7 @@
 //
 // Запуск: node scripts/voice_trial_echo.mjs [--count=50]
 // ════════════════════════════════════════════════════════════════════════════
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('voice_trial_echo.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';

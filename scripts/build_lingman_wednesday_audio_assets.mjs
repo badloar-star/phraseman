@@ -1,4 +1,5 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('build_lingman_wednesday_audio_assets.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';

@@ -7,6 +7,7 @@
  * Run:
  *   PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 node scripts/patch_lingman_two_word_into_existing_capcut.mjs --draft-name "LINGMAN_WEDNESDAY_INTERESTING_11LABS_STRICT_BG_202 (2)"
  */
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('patch_lingman_two_word_into_existing_capcut.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';

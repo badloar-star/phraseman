@@ -45,6 +45,8 @@ import {
   type CardTtsLanguage,
 } from '../functions/src/card_tts_core';
 import { communityPackTtsLanguage } from '../functions/src/community_pack_language';
+// зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11: «аудио не генерим за деньги»)
+if (process.env.ALLOW_PAID_AUDIO !== '1') { console.error('[PAID-AUDIO] card_tts_voice_all.ts: ОТКАЗ — платная генерация озвучки запрещена; исключение только с ALLOW_PAID_AUDIO=1. Ничего не отправлено.'); process.exit(3); }
 
 const ROOT = path.resolve(__dirname, '..');
 const APPLY = process.argv.includes('--apply');

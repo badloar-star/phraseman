@@ -23,6 +23,7 @@
  *   PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 PHRASEMAN_ALLOW_UPLOAD=1 \
  *     node scripts/regen_phrase_audio_storage.mjs --apply       # do it
  */
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('regen_phrase_audio_storage.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import os from 'node:os';

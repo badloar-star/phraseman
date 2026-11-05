@@ -159,6 +159,9 @@ function validateItem(item: V2VoiceTtsWorkItemV1): void {
 async function defaultTransport(
   input: Parameters<V2OpenAiVoiceTtsTransportV1["request"]>[0],
 ): Promise<V2OpenAiVoiceTtsTransportResponseV1> {
+  // зачем (владелец 05.11: «Аудио не генерим за деньги»): платный синтез озвучки в Cloud Functions отключён без явного ALLOW_PAID_AUDIO=1;
+  // единственное осознанное исключение — серверная озвучка карточек (card_tts_worker). Проверка ДО резерва расходов и сети.
+  if (process.env.ALLOW_PAID_AUDIO !== '1') fail("v2_openai_voice_tts_paid_audio_disabled");
   // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
   await reserveDailySpend({ fn: 'contentFactoryVoiceTts', kind: 'tts' });
   const response = await fetch(input.endpoint, {

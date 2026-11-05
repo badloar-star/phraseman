@@ -15,6 +15,7 @@
 //   node scripts/voice_audition_samples.mjs            # все голоса
 //   node scripts/voice_audition_samples.mjs ash coral  # только указанные
 // ════════════════════════════════════════════════════════════════════════════
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('voice_audition_samples.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

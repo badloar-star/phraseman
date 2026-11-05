@@ -14,6 +14,7 @@
  *   5. Prints full report
  */
 
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('regen_phrase_audio.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';

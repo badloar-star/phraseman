@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('build_learning_v2_session1_production_audio.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";

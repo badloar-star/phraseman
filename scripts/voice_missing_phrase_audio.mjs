@@ -25,6 +25,7 @@
  *     FB_TOKEN=$(node .codex-tmp/tts-voicing/fb_token.mjs) \
  *     node scripts/voice_missing_phrase_audio.mjs --apply
  */
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('voice_missing_phrase_audio.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';

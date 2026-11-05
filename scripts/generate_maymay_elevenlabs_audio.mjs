@@ -8,6 +8,7 @@
  *   $env:ELEVENLABS_API_KEY = [Environment]::GetEnvironmentVariable('ELEVENLABS_API_KEY', 'User')
  *   node scripts/generate_maymay_elevenlabs_audio.mjs --project "...\\MAYMAY(1)" --generate --sync-capcut
  */
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('generate_maymay_elevenlabs_audio.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';

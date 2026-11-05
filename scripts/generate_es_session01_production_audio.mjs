@@ -33,6 +33,7 @@
  * app/learning_v2_es_session1_production_audio_v1.ts (written by hand after,
  * mirroring learning_v2_session1_production_audio_v1.ts's exact shape).
  */
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('generate_es_session01_production_audio.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';

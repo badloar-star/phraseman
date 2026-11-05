@@ -7,6 +7,7 @@
  * Index:  assets/audio/en/index.json  { "text": "filename.mp3" }
  */
 
+import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('generate_audio.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';

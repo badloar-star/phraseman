@@ -1909,6 +1909,66 @@ export async function assertAccountIsNotSealedFromDeletion(
   }
 }
 
+/**
+ * Q26 (Вход 05.11, владелец: «повторный вход после удаления — чистить все связанные записи входа Apple/Google/e-mail»):
+ * кроме основного Auth-пользователя в замыкании личностей бывают ДРУГИЕ Auth-пользователи (ранее привязанные Apple/Google/e-mail).
+ * Если оставить их, следующий вход тем же провайдером упирается в identity_retired и клиент показывает окно «аккаунт удалён».
+ * Чистая функция: кандидаты на удаление = замыкание минус основной Auth uid (без пустых и повторов). stable id может совпадать с Auth uid
+ * первого входа — это тоже Auth-пользователь, поэтому не исключаем; несуществующий uid безопасен (user-not-found = успех).
+ */
+export function extraClosureAuthUidCandidates(identities: readonly string[], primaryAuthUid: string): string[] {
+  const seen = new Set<string>([cleanId(primaryAuthUid)]);
+  const out: string[] = [];
+  for (const raw of identities) {
+    const id = cleanId(raw);
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    out.push(id);
+  }
+  return out;
+}
+
+export type ExtraAuthApi = Readonly<{
+  getUser(uid: string): Promise<{ customClaims?: Record<string, unknown> | null }>;
+  deleteUser(uid: string): Promise<void>;
+}>;
+export type ExtraAuthResult = Readonly<{ deleted: number; notFound: number; skippedAdmin: number; failed: number }>;
+
+/**
+ * Удаляет Auth-пользователей замыкания (кроме основного). Идемпотентно: user-not-found = успех. Админа (claim admin) НЕ трогаем никогда.
+ * Не бросает: сбой одного uid считается и логируется (uid в лог не пишем — только счётчики и код), остальные продолжаются.
+ */
+export async function deleteExtraClosureAuthUsers(
+  api: ExtraAuthApi,
+  uids: readonly string[],
+  log: (event: string, details: Record<string, unknown>) => void,
+): Promise<ExtraAuthResult> {
+  let deleted = 0; let notFound = 0; let skippedAdmin = 0; let failed = 0;
+  for (const uid of uids) {
+    try {
+      let record: { customClaims?: Record<string, unknown> | null } | null = null;
+      try {
+        record = await api.getUser(uid);
+      } catch (e: any) {
+        if (e?.code === 'auth/user-not-found') { notFound += 1; continue; }
+        throw e;
+      }
+      if (record?.customClaims?.admin === true) {
+        skippedAdmin += 1;
+        log('auth_extra_skipped_admin', { uidHash: hashId(uid).slice(0, 12) });
+        continue;
+      }
+      await api.deleteUser(uid);
+      deleted += 1;
+    } catch (e: any) {
+      if (e?.code === 'auth/user-not-found') { notFound += 1; continue; }
+      failed += 1;
+      log('auth_extra_delete_failed', { uidHash: hashId(uid).slice(0, 12), code: String(e?.code ?? e?.name ?? 'unknown').slice(0, 60) });
+    }
+  }
+  return { deleted, notFound, skippedAdmin, failed };
+}
+
 export async function executeAccountDeletion(
   db: FirebaseFirestore.Firestore,
   stableUid: string,
@@ -2099,6 +2159,14 @@ export async function executeAccountDeletion(
       // это не ошибка, но причина обязана быть в журнале, иначе «не удалили» и «нечего было удалять» не различить.
       accountDeleteLog(ctx, 'auth_already_deleted', stats, { code: 'auth/user-not-found' });
     }
+
+    // зачем (Q26, Вход 05.11): остальные Auth-пользователи замыкания (прежние Apple/Google/e-mail) уходят вместе с основным —
+    // иначе повторный вход упирается в identity_retired. Идемпотентно, админа не трогает, сбой одного uid не роняет удаление.
+    await runDeleteStage(ctx, stats, 'auth_extra_closure', async () => {
+      const candidates = extraClosureAuthUidCandidates(identities, authUid);
+      const result = await deleteExtraClosureAuthUsers(admin.auth(), candidates, (event, details) => accountDeleteLog(ctx, event, stats, details));
+      accountDeleteLog(ctx, 'auth_extra_closure_done', stats, { candidates: candidates.length, ...result });
+    });
 
     // зачем (Пакет 6A): «completed» ставит ТОЛЬКО конец конвейера — после
     // полного удаления. Не бросает: данные уже стёрты, сбой лишь в логе.

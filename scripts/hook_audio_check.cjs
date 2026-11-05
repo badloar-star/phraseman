@@ -4,6 +4,8 @@
  * Receives JSON on stdin from Claude Code hook system.
  */
 
+// зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11) — хук без флага тихо выходит, ничего не генерируя
+if (process.env.ALLOW_PAID_AUDIO !== '1') { process.exit(0); }
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');

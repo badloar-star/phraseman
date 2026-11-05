@@ -38,6 +38,11 @@ describe('Пик: на башне нет иконок пользователей
     expect(lineBlock).not.toMatch(/SpireRankCoin|SpireTowerMarker/);
   });
 
+  it('строка «Ты» в списке Пика берёт текущий ранг пользователя, а не устаревший из комнаты (монета = ранг)', () => {
+    expect(screen).toMatch(/m\.isMe && myRank !== null \? \{ coinRank: myRank \}/);
+    expect(screen).toContain('const myRank = towerProps.myCoinRank;');
+  });
+
   it('журнал [PEAK-LINE-MARKER] на месте', () => {
     expect(screen).toContain('[PEAK-LINE-MARKER]');
   });

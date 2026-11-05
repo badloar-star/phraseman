@@ -82,7 +82,10 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
     console.log('[PEAK-LINE-MARKER]', JSON.stringify({ tower: 'clean', participantCoins: 'removed', ownMarker: 'hidden (myCoinRank=null: метка пустая)', myFloor: towerProps.myFloor, upLine: 'peak-up-line, left 0 width 3 в панели списка, ничего не перекрывает', reason: 'owner_05_11_no_user_icons_on_tower' })); // guard-ok: трассировка решения по башне
   }, [towerProps.myFloor]);
   // зачем: участники приходят порядком комнаты (уже по рубильнику); weekCoins в документе может отсутствовать — считаем 0
-  const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0 })), rankBy), [members, rankBy]);
+  // зачем (владелец 05.11 ~19:15: «монета абсолютно во всех местах обязана соответствовать рангу строго»; аудит RANK_COIN_AUDIT): ранг в документе комнаты пишется только при входе —
+  // пустой кэш давал бронзу, после повышения монета устаревала. У своей строки берём ТЕКУЩИЙ ранг (useMyCoinRank из экрана Пика), ранга ещё нет — значение комнаты. 0 новых чтений.
+  const myRank = towerProps.myCoinRank;
+  const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0, ...(m.isMe && myRank !== null ? { coinRank: myRank } : null) })), rankBy), [members, rankBy, myRank]);
   // зачем (тур первого входа): окна затемнения считаются от измеренных блоков; меряем только когда тур показывается (в обычной жизни — ноль работы)
   const headRef = useRef<View>(null);
   const pillRef = useRef<View>(null);

@@ -94,7 +94,8 @@ import { isCourseVisibleOnOnboarding } from '../app/courses_gate'; // зачем
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
 import { getDevGreetName, isDevConfettiHold } from '../app/dev_account_state';
-import { getEnabledOnboardingSteps, getRemoteBool } from '../app/remote_flags';
+import { getEnabledOnboardingSteps, getRemoteBool, hasRemoteConfigSnapshotApplied } from '../app/remote_flags';
+import { awaitOnboardingStepsList } from '../app/onboarding_steps_gate';
 import {
   decideOnboardingTransition,
   getOnboardingProgress,
@@ -2600,6 +2601,10 @@ function CleanOnboarding({
   const codeInputRef = useRef<TextInput | null>(null);
   const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(() =>
     resolveRuntimeOnboardingSteps(getEnabledOnboardingSteps(), FORCE_ONBOARDING_QA));
+  // зачем (решение координатора 06.11, гонка холодного старта): маршрут шагов фиксируется ОДИН раз — после ответа Пульта, пока человек на welcome;
+  // дальше обновления списка маршрут не двигают (иначе шаги прыгали бы посреди онбординга). startWaiting — индикатор на кнопке «Начать».
+  const routeLockedRef = useRef(false);
+  const [startWaiting, setStartWaiting] = useState(false);
   // зачем: оба рубильника читаются как обычные kill-switch'и и обновляются по
   // тому же событию remote_config_changed, что и список экранов — владелец
   // выключает их из админки без релиза, живые сессии подхватывают за секунды.
@@ -2754,8 +2759,8 @@ function CleanOnboarding({
     ]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiSet'));
   }, []);
 
-  const go = useCallback((requested: CleanOnboardingStep) => {
-    const next = onbStall('go:resolve', () => resolveOnboardingStep(enabledOrder, requested, 'current-or-forward'));
+  const go = useCallback((requested: CleanOnboardingStep, orderOverride?: readonly OnboardingStepId[]) => {
+    const next = onbStall('go:resolve', () => resolveOnboardingStep(orderOverride ?? enabledOrder, requested, 'current-or-forward'));
     console.log(`[ONB-STEP-WAIT] go requested=${requested} next=${next}`);
     onbGoMark.target = next;
     onbGoMark.atMs = onbNowMs();
@@ -2763,6 +2768,35 @@ function CleanOnboarding({
     onbStall('go:persistStep', () => { void persistStep(next); });
     onbStall('go:trackStepView', () => trackOnboardingStepView({ step: next }));
   }, [enabledOrder, persistStep]);
+
+  // зачем (диагноз Эмулятора 06.11: cache=none → origin=default → все 12 шагов, список Пульта приходит через ~3 с): welcome виден сразу, а «Начать» ждёт
+  // список (до 4 с, индикатор на кнопке), фиксирует маршрут и только потом идёт дальше. Нет ответа → безопасный минимум welcome/language/name, не «всё включено».
+  const startOnboardingRoute = useCallback(async () => {
+    if (routeLockedRef.current) {
+      console.log('[ONB-FLAGS] route: повторное «Начать» — маршрут уже зафиксирован'); // guard-ok: ранний выход с причиной
+      return;
+    }
+    setStartWaiting(true);
+    const plan = await awaitOnboardingStepsList({
+      isReady: () => FORCE_ONBOARDING_QA || hasRemoteConfigSnapshotApplied(),
+      getList: () => resolveRuntimeOnboardingSteps(getEnabledOnboardingSteps(), FORCE_ONBOARDING_QA),
+      subscribe: (onChange) => {
+        const sub = onAppEvent('remote_config_changed', onChange);
+        return () => sub.remove();
+      },
+    });
+    routeLockedRef.current = true;
+    const languageRequired = !isStudyTargetAllowedForUi('en', lang);
+    const order = resolveEnabledOnboardingOrder(
+      languageRequired ? withRequiredLanguageStep(plan.steps) : plan.steps,
+      SHOW_ONBOARDING_LANGUAGE_STEP || languageRequired,
+      SHOW_ONBOARDING_LEVEL_STEP,
+    );
+    console.log(`[ONB-FLAGS] route: source=${plan.source} waitedMs=${plan.waitedMs} list=${plan.steps.join(',')} final=${order.join(',')} ui=${lang}`); // guard-ok: источник, ожидание и итоговый порядок
+    setRemoteEnabledSteps([...plan.steps]);
+    setStartWaiting(false);
+    go('privacy', order);
+  }, [go, lang]);
 
   const { displayStep, slideStyle } = useStepSlide(step);
   // зачем ([ONB-STALL], координатор 12.10): полное время «go() → новый шаг на экране» и рендер шага (React Profiler — в dev-сборке).
@@ -2848,7 +2882,11 @@ function CleanOnboarding({
 
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
-      setRemoteEnabledSteps(resolveRuntimeOnboardingSteps(getEnabledOnboardingSteps(), FORCE_ONBOARDING_QA));
+      if (routeLockedRef.current) {
+        console.log('[ONB-FLAGS] route locked: новый список шагов Пульта не применяется к уже выбранному маршруту'); // guard-ok: ранний выход с причиной
+      } else {
+        setRemoteEnabledSteps(resolveRuntimeOnboardingSteps(getEnabledOnboardingSteps(), FORCE_ONBOARDING_QA));
+      }
       setSkipEnabled(getRemoteBool('onboarding_skip_enabled'));
     });
     return () => subscription.remove();
@@ -4115,12 +4153,13 @@ function CleanOnboarding({
               </Text>
               <PrimaryButton
                 label={oc.start}
+                loading={startWaiting}
                 onPress={() => {
                   // зачем: D126 — английский остаётся дефолтом, если человек ничего
                   // не выберет (или экран языка выключен в админке). Фиксируем его
                   // здесь всегда; экран выбора языка дальше перезапишет таргет.
                   void ensureEnglishStudyTarget();
-                  go('privacy');
+                  void startOnboardingRoute();
                 }}
                 testID="onboarding-start"
               />

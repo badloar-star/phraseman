@@ -54,3 +54,9 @@
 - п.1 окна оплаты: sverka/7-final/1-paywalls/ (10 кадров + журнал; метка fix:"noFlexGrow-406692e88+children" в 90 строках, dock h=291, scroll h=326–381).
 - п.2 «Открытие раздела» RU, 6 разделов (rank, video, dialogs, peak, cards, plus) × фазы 1–4 × тёмная/светлая = 48 кадров: sverka/7-final/2-openings/{dark,light}_<раздел>_p<N>.png; журналы [SECTION-OPENING]: section_opening_dark.txt (117 строк), section_opening_light.txt (125). Флоу e2e/maestro/17_openings_final_{dark,light}.yaml.
 - НЕ сделано в п.2: тема «Спокойно» (ползунок насыщенности на минимум) и запись жестов истории — отдельным проходом после п.3–5.
+
+## premium_expired v2 после 34e40efc1 (23:24, 5560) — ДЕФЕКТ НЕ УСТРАНЁН
+- Перепроверено: git HEAD содержит 34e40efc1; Metro-бандл (curl entry.bundle) содержит `contextual && !headline.title ? headline.subtitle`; приложение перезапущено дважды (force-stop + dev-клиент).
+- Числа прежние: header h=239, scroll h=326, FIT contentH=381 overflow=55 action=scroll_to_end, dock h=291 (ожидание Входа: overflow ≈10).
+- Кадры dark_premium_expired_v2.png / light_premium_expired_v2.png: заголовок «Всё на месте — продолжим?» + подзаголовок «Серия, фразы и уроки никуда не делись. Подключи Ultra и продолжай.», под ним обрезок строки «Серия, фразы и уроки сохранены» (первая выгода наполовину под подзаголовком) — как в v1. Дубль подписи, скорее всего, не тот: обрезается заголовок/первая строка выгоды, а не подпись, совпадающая с подзаголовком (подписи различаются).
+- Файлы: sverka/7-final/1-paywalls/{dark,light}_premium_expired_v2.png, paywall_layout_log_expired_v2.txt.

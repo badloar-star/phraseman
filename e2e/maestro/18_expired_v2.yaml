@@ -1,0 +1,34 @@
+appId: app.phraseman
+name: 18 expired v2
+---
+- tapOn:
+    point: "14%,93%"
+- extendedWaitUntil:
+    visible: ".*0/10.*"
+    timeout: 60000
+- openLink: "phraseman://dev_state?set=appearance:dark"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=premium_expired&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: dark_premium_expired_v2
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_state?set=appearance:light"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- openLink: "phraseman://premium_modal?context=premium_expired&_dev_state=live"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: light_premium_expired_v2
+- back
+- waitForAnimationToEnd

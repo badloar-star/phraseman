@@ -1,0 +1,16 @@
+import React from 'react';
+import { render, screen } from '@testing-library/react-native';
+jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Image: 'Image', StyleSheet: { flatten: (s: unknown) => s }, Platform: { OS: 'android' } }));
+jest.mock('expo-image', () => ({ Image: 'Image' }));
+jest.mock('@expo/vector-icons/Ionicons', () => 'Icon');
+jest.mock('../constants/achievementImageAssets', () => ({ achievementImageSource: () => 1 }));
+import AchievementArt from '../components/AchievementArt';
+
+it('keeps the same statuette image when upgraded and adds a visible stage marker', async () => {
+  const view = await render(<AchievementArt achievementId="spire_summit_granite" size={120} accessibilityLabel="Granite" />);
+  expect(screen.queryByTestId('spire-achievement-upgrade')).toBeNull();
+  const originalSource = screen.getByLabelText('Granite').props.source;
+  await view.rerender(<AchievementArt achievementId="spire_summit_granite" size={120} accessibilityLabel="Granite" upgraded />);
+  expect(screen.getByTestId('spire-achievement-upgrade')).toBeTruthy();
+  expect(screen.getByLabelText('Granite').props.source).toEqual(originalSource);
+});

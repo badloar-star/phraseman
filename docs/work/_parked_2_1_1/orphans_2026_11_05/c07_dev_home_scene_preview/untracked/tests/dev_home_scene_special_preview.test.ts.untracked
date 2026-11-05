@@ -1,0 +1,45 @@
+import {
+  homeSceneSpecialPreviewSetup,
+  HOME_SCENE_SPECIAL_PREVIEW_STATES,
+} from '../app/dev_home_scene_special_preview_fixtures';
+import {
+  HOME_SCENE_SPECIAL_EMPTY_JOURNAL,
+  pickHomeSceneSpecial,
+} from '../components/home/v2/scene/home_scene_special';
+import { buildHomeSceneSpecialCopy } from '../components/home/v2/scene/home_scene_special_copy';
+import fs from 'node:fs';
+import path from 'node:path';
+
+describe('[DEV-HOME-SCENE] special-scene visual fixtures', () => {
+  it('covers every approved special state exactly once', () => {
+    expect(HOME_SCENE_SPECIAL_PREVIEW_STATES).toHaveLength(12);
+    expect(new Set(HOME_SCENE_SPECIAL_PREVIEW_STATES).size).toBe(12);
+  });
+
+  it.each(HOME_SCENE_SPECIAL_PREVIEW_STATES)('selects and copies %s from a deterministic DEV-only fixture', (requested) => {
+    const fixture = homeSceneSpecialPreviewSetup(requested);
+    const decided = pickHomeSceneSpecial(
+      fixture.input,
+      fixture.baseDecision,
+      HOME_SCENE_SPECIAL_EMPTY_JOURNAL,
+    );
+
+    expect(decided.special).toBe(requested);
+    expect(fixture.requested).toBe(decided.special);
+
+    const copy = buildHomeSceneSpecialCopy({
+      ...fixture.copyInput,
+      special: decided.special!,
+    });
+    expect(copy.title).not.toBe('');
+    expect(copy.cta).not.toBeNull();
+  });
+
+  it('keeps the guarded preview route on the real HomeSceneView with a no-op special CTA', () => {
+    const route = fs.readFileSync(path.join(process.cwd(), 'app', 'dev_home_scene_preview.tsx'), 'utf8');
+    expect(route).toContain('homeSceneSpecialPreviewView');
+    expect(route).toContain('isHomeSceneSpecialPreviewState(params.special)');
+    expect(route).toContain('special={specialPreview?.view ?? null}');
+    expect(route).toContain('onSpecial={specialPreview ? noop : undefined}');
+  });
+});

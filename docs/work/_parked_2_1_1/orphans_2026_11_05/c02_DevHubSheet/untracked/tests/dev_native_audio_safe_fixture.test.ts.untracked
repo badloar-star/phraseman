@@ -1,0 +1,315 @@
+import fs from 'fs';
+import path from 'path';
+
+const createAudioPlayer = jest.fn();
+const fromModule = jest.fn(() => ({ localUri: 'file:///bundle/pm_voice_no_speech_v1.m4a' }));
+const claimVideoAudio = jest.fn();
+const permissionCheck = jest.fn();
+const permissionRequest = jest.fn();
+const startHoldRecording = jest.fn();
+const deleteHoldRecording = jest.fn();
+
+jest.mock('expo-audio', () => ({ createAudioPlayer }));
+jest.mock('expo-asset', () => ({ Asset: { fromModule } }));
+jest.mock('../modules/audio/audio_runtime_arbiter', () => ({ claimVideoAudio }));
+jest.mock('expo-file-system', () => ({ Paths: { cache: 'file:///cache/' }, File: class {
+  uri = 'file:///cache/test.m4a'; exists = true; size = 12363; bytes = new Uint8Array();
+  create() {} write(bytes: Uint8Array) { this.bytes = bytes; }
+  bytesSync() { return this.bytes; } delete() { this.exists = false; }
+} }));
+jest.mock('react-native', () => ({
+  Platform: { OS: 'android' },
+  PermissionsAndroid: {
+    check: permissionCheck,
+    request: permissionRequest,
+    PERMISSIONS: { RECORD_AUDIO: 'android.permission.RECORD_AUDIO' },
+  },
+}));
+jest.mock('../app/dev_diag_gate', () => ({ DIAG_ENABLED: true }));
+jest.mock('../app/speaking_hold_recorder', () => ({
+  startHoldRecording,
+  deleteHoldRecording,
+}));
+
+import {
+  playBundledAudioSmoke,
+  startLocalMicSmoke,
+  stopAndDeleteLocalMicSmoke,
+  ownLocalMicSession,
+} from '../modules/dev/native_audio_safe_fixture';
+
+const repoRoot = path.join(__dirname, '..');
+const sourcePath = path.join(repoRoot, 'modules', 'dev', 'native_audio_safe_fixture.ts');
+const assetPath = path.join(
+  repoRoot,
+  'assets',
+  'audio',
+  'sfx',
+  'v1',
+  'voice',
+  'pm_voice_no_speech_v1.m4a',
+);
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  fromModule.mockReturnValue({ localUri: 'file:///bundle/pm_voice_no_speech_v1.m4a' });
+  claimVideoAudio.mockImplementation(() => ({
+    isCurrent: () => true,
+    release: jest.fn(),
+  }));
+  global.fetch = jest.fn() as typeof fetch;
+});
+
+afterEach(() => jest.restoreAllMocks());
+
+test('uses one fixed bundled asset and no V2, fetch, TTS, ASR, or route import', () => {
+  const source = fs.readFileSync(sourcePath, 'utf8');
+  expect(source).toContain(
+    "require('./native_audio_local_payload')",
+  );
+  for (const forbidden of [
+    'learning-v2',
+    'fetch(',
+    'expo-speech',
+    'speech-recognition',
+    'whisper',
+    'judge',
+    'upload',
+    'expo-router',
+  ]) {
+    expect(source.toLowerCase()).not.toContain(forbidden);
+  }
+  expect(source).toContain('claimVideoAudio');
+});
+
+test('uses the real dev/store-release gate', () => {
+  const fixture = fs.readFileSync(sourcePath, 'utf8');
+  const gate = fs.readFileSync(path.join(repoRoot, 'app', 'dev_diag_gate.ts'), 'utf8');
+  expect(fixture).toContain('DIAG_ENABLED');
+  expect(gate).toContain("typeof __DEV__ !== 'undefined' && __DEV__ && process.env.EXPO_PUBLIC_STORE_RELEASE !== '1'");
+});
+
+test('a play throw releases the native player and never fetches', async () => {
+  const releaseClaim = jest.fn();
+  claimVideoAudio.mockReturnValue({ isCurrent: () => true, release: releaseClaim });
+  const player = {
+    play: jest.fn(() => { throw new Error('native-play-failed'); }),
+    pause: jest.fn(),
+    release: jest.fn(),
+  };
+  createAudioPlayer.mockReturnValue(player);
+
+  await expect(playBundledAudioSmoke()).resolves.toBeNull();
+  expect(player.pause).toHaveBeenCalledTimes(1);
+  expect(player.release).toHaveBeenCalledTimes(1);
+  expect(releaseClaim).toHaveBeenCalledTimes(1);
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('a player construction throw is contained and never fetches', async () => {
+  const releaseClaim = jest.fn();
+  claimVideoAudio.mockReturnValue({ isCurrent: () => true, release: releaseClaim });
+  createAudioPlayer.mockImplementation(() => {
+    throw new Error('native-player-construction-failed');
+  });
+
+  await expect(playBundledAudioSmoke()).resolves.toBeNull();
+  expect(releaseClaim).toHaveBeenCalledTimes(1);
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('a refused media claim never creates a player', async () => {
+  claimVideoAudio.mockReturnValue(null);
+
+  await expect(playBundledAudioSmoke()).resolves.toBeNull();
+  expect(claimVideoAudio).toHaveBeenCalledWith(expect.any(Function), 'dev:native-audio-smoke');
+  expect(createAudioPlayer).not.toHaveBeenCalled();
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('a successful stop releases once even when called repeatedly', async () => {
+  const releaseClaim = jest.fn();
+  claimVideoAudio.mockReturnValue({ isCurrent: () => true, release: releaseClaim });
+  const player = { play: jest.fn(), pause: jest.fn(), release: jest.fn() };
+  createAudioPlayer.mockReturnValue(player);
+
+  const playback = await playBundledAudioSmoke();
+  playback?.stop();
+  playback?.stop();
+
+  expect(player.play).toHaveBeenCalledTimes(1);
+  expect(player.pause).toHaveBeenCalledTimes(1);
+  expect(player.release).toHaveBeenCalledTimes(1);
+  expect(releaseClaim).toHaveBeenCalledTimes(1);
+  expect(claimVideoAudio.mock.invocationCallOrder[0]).toBeLessThan(
+    createAudioPlayer.mock.invocationCallOrder[0],
+  );
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('arbiter revocation stops the owned player and remains idempotent', async () => {
+  let revoke!: () => void;
+  const releaseClaim = jest.fn();
+  claimVideoAudio.mockImplementation((stop: () => void) => {
+    revoke = stop;
+    return { isCurrent: () => true, release: releaseClaim };
+  });
+  const player = { play: jest.fn(), pause: jest.fn(), release: jest.fn() };
+  createAudioPlayer.mockReturnValue(player);
+
+  const handle = await playBundledAudioSmoke();
+  revoke();
+  handle?.stop();
+
+  expect(player.pause).toHaveBeenCalledTimes(1);
+  expect(player.release).toHaveBeenCalledTimes(1);
+  expect(releaseClaim).toHaveBeenCalledTimes(1);
+});
+
+test('Metro metadata is ignored; only the owned local file reaches the player', async () => {
+  fromModule.mockReturnValue({ localUri: 'http://127.0.0.1:8081/assets/audio.m4a' });
+
+  const handle = await playBundledAudioSmoke();
+  expect(handle).not.toBeNull();
+  expect(fromModule).not.toHaveBeenCalled();
+  expect(createAudioPlayer).toHaveBeenCalledWith('file:///cache/test.m4a');
+  handle?.stop();
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('an inactive recorder is cancelled and never retained', async () => {
+  permissionCheck.mockResolvedValue(true);
+  const recording = { isActive: jest.fn(() => false), dispose: jest.fn(), finalized: Promise.resolve({ status: 'no_wav', uri: null }) };
+  startHoldRecording.mockReturnValue(recording);
+
+  await expect(startLocalMicSmoke()).resolves.toBeNull();
+  expect(recording.dispose).toHaveBeenCalledTimes(1);
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('a denied permission does not start recording or request a prompt', async () => {
+  permissionCheck.mockResolvedValue(false);
+
+  await expect(startLocalMicSmoke()).resolves.toBeNull();
+  expect(permissionCheck).toHaveBeenCalledWith('android.permission.RECORD_AUDIO');
+  expect(permissionRequest).not.toHaveBeenCalled();
+  expect(startHoldRecording).not.toHaveBeenCalled();
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('native stop failure is reported without invented URI', async () => {
+  const recording = {
+    stop: jest.fn(), dispose: jest.fn(),
+    finalized: Promise.resolve({ status: 'native_stop_failed', uri: null }),
+  };
+
+  await expect(stopAndDeleteLocalMicSmoke(ownLocalMicSession(recording as never))).resolves.toBe('stop_failed');
+  expect(deleteHoldRecording).not.toHaveBeenCalled();
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('partial write failure deletes exact allocated file once and stays failure', async () => {
+  const rec = { finalized: Promise.resolve({ status: 'write_failed', uri: 'file:///cache/partial.wav' }), stop: jest.fn(), dispose: jest.fn() };
+  const session = ownLocalMicSession(rec as never);
+  await expect(session.settled).resolves.toBe('write_failed');
+  await session.stop(); await session.dispose();
+  expect(deleteHoldRecording).toHaveBeenCalledTimes(1);
+  expect(deleteHoldRecording).toHaveBeenCalledWith('file:///cache/partial.wav');
+});
+
+test('a returned local URI is deleted without scoring, upload, or fetch', async () => {
+  const recording = {
+    stop: jest.fn(), dispose: jest.fn(),
+    finalized: Promise.resolve({ status: 'wav', uri: 'file:///cache/native-audio-smoke.wav' }),
+  };
+
+  const session = ownLocalMicSession(recording as never);
+  await expect(session.settled).resolves.toBe('cleanup_attempted');
+  await session.stop(); await session.dispose();
+  expect(deleteHoldRecording).toHaveBeenCalledTimes(1);
+  expect(deleteHoldRecording).toHaveBeenCalledWith('file:///cache/native-audio-smoke.wav');
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('a successful stop with no WAV deletes null and does not cancel', async () => {
+  const recording = {
+    stop: jest.fn(), dispose: jest.fn(),
+    finalized: Promise.resolve({ status: 'no_wav', uri: null }),
+  };
+
+  await expect(ownLocalMicSession(recording as never).dispose()).resolves.toBe('no_wav');
+  expect(deleteHoldRecording).not.toHaveBeenCalled();
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('permission invalidated before completion cannot claim native recording', async () => {
+  let grant!: (value: boolean) => void;
+  permissionCheck.mockReturnValue(new Promise(resolve => { grant = resolve; }));
+  const abort = new AbortController();
+  const pending = startLocalMicSmoke(abort.signal);
+  abort.abort(); grant(true);
+  await expect(pending).resolves.toBeNull();
+  expect(startHoldRecording).not.toHaveBeenCalled();
+});
+
+test('old permission cannot claim native after a newer session starts', async () => {
+  let oldGrant!: (value: boolean) => void;
+  permissionCheck.mockReturnValueOnce(new Promise(resolve => { oldGrant = resolve; })).mockResolvedValueOnce(true);
+  const abort = new AbortController(); const old = startLocalMicSmoke(abort.signal); abort.abort();
+  startHoldRecording.mockReturnValue({ isActive: () => true, finalized: new Promise(() => {}), dispose: jest.fn(), stop: jest.fn() });
+  expect(await startLocalMicSmoke(new AbortController().signal)).not.toBeNull();
+  oldGrant(true); expect(await old).toBeNull(); expect(startHoldRecording).toHaveBeenCalledTimes(1);
+});
+
+test('the recorder error path is warning-only and dev app health does not send remotely', () => {
+  const recorder = fs.readFileSync(path.join(repoRoot, 'app', 'speaking_hold_recorder.ts'), 'utf8');
+  const logger = fs.readFileSync(path.join(repoRoot, 'app', 'debug-logger.ts'), 'utf8');
+  const health = fs.readFileSync(path.join(repoRoot, 'app', 'app_health.ts'), 'utf8');
+  expect(recorder).toContain("DebugLogger.error('speaking_hold_recorder:");
+  expect(recorder).toContain("'warning'");
+  expect(logger).toContain("writeToFirestore: severity === 'critical'");
+  expect(health).toContain('if (!isDevClient && (severity === \'critical\' || severity === \'warning\'))');
+  expect(health).toContain('if (!shouldWrite) return;');
+});
+
+test('the fixed asset remains the reviewed local file', () => {
+  const crypto = require('crypto') as typeof import('crypto');
+  const bytes = fs.readFileSync(assetPath);
+  expect(bytes.length).toBe(12363);
+  expect(crypto.createHash('sha256').update(bytes).digest('hex')).toBe(
+    '7bd97a8a2e6db1278ae45a94417f529fd0bf7df6f842420027420e5f0984cd77',
+  );
+});
+
+test.each([
+  ['disabled diagnostic gate', false, 'android'],
+  ['non-Android platform', true, 'ios'],
+])('%s creates neither player nor recorder', async (_caseName, diagEnabled, platform) => {
+  jest.resetModules();
+  jest.doMock('expo-audio', () => ({ createAudioPlayer }));
+  jest.doMock('react-native', () => ({
+    Platform: { OS: platform },
+    PermissionsAndroid: {
+      check: permissionCheck,
+      PERMISSIONS: { RECORD_AUDIO: 'android.permission.RECORD_AUDIO' },
+    },
+  }));
+  jest.doMock('../app/dev_diag_gate', () => ({ DIAG_ENABLED: diagEnabled }));
+  jest.doMock('../modules/dev/native_audio_local_payload', () => { throw new Error('Payload evaluated outside gate'); });
+  jest.doMock('../app/speaking_hold_recorder', () => ({
+    startHoldRecording,
+    deleteHoldRecording,
+  }));
+
+  const fixture = await import('../modules/dev/native_audio_safe_fixture');
+  const recording = { stop: jest.fn(), cancel: jest.fn() };
+  await expect(fixture.playBundledAudioSmoke()).resolves.toBeNull();
+  await expect(fixture.startLocalMicSmoke()).resolves.toBeNull();
+  await expect(fixture.stopAndDeleteLocalMicSmoke(recording as never)).resolves.toBe('no_wav');
+  expect(createAudioPlayer).not.toHaveBeenCalled();
+  expect(permissionCheck).not.toHaveBeenCalled();
+  expect(startHoldRecording).not.toHaveBeenCalled();
+  expect(recording.stop).not.toHaveBeenCalled();
+  expect(recording.cancel).not.toHaveBeenCalled();
+  expect(deleteHoldRecording).not.toHaveBeenCalled();
+});

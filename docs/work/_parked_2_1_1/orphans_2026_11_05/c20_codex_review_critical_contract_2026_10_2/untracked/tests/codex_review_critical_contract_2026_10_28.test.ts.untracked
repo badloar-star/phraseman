@@ -1,0 +1,60 @@
+import * as fs from 'fs';
+import * as path from 'path';
+
+const read = (relativePath: string): string =>
+  fs.readFileSync(path.resolve(__dirname, '..', relativePath), 'utf8').replace(/\r\n/g, '\n');
+
+describe('Codex review 2026-10-28 critical contracts', () => {
+  test('Cloudflare audio disclosure describes observable processing without promising that edge logs store nothing', () => {
+    const worker = read('workers/learning-v2-audio/src/index.mjs');
+    const workerReadme = read('workers/learning-v2-audio/README.md');
+    expect(worker).not.toMatch(/console\.(?:log|info|warn|error)/);
+    expect(workerReadme).toContain('dashboard invocation-log retention remains an owner-controlled setting');
+
+    for (const file of [
+      'knowly-www/legal/privacy/index.html',
+      'knowly-www/legal/privacy-ios/index.html',
+    ]) {
+      const policy = read(file);
+      expect(policy).toContain('Audio delivery (Cloudflare).');
+      expect(policy).toContain('does not intentionally write the IP address or token to application logs');
+      expect(policy).toContain('Cloudflare may process request and network metadata');
+      expect(policy).not.toContain('We do not store your IP address or the token');
+      expect(policy).not.toContain('receives your IP address and a sign-in token; not stored');
+    }
+  });
+
+  test('energy comments and the enabled owner guard name only the 28.10 decision', () => {
+    const contract = read('app/energy_contract.ts');
+    const system = read('app/energy_system.ts');
+    const guard = read('tests/owner_locks_energy_30min_no_month_cap_2026_10_28.test.ts');
+    const contractHeader = contract.slice(0, contract.indexOf('export const ENERGY_PASSIVE_UNIT_MS'));
+    expect(contract).toContain('Замок владельца 28.10');
+    expect(system).toContain('Замок владельца 28.10');
+    expect(contractHeader).not.toMatch(/D06|D07|PM-083/);
+    expect(system).not.toMatch(/D06|D07|PM-083/);
+    expect(guard).toContain('const CODEX_ENERGY_COMMITTED = true;');
+  });
+
+  // зачем (координатор 29.10): воронка окна покупки v2 отложена владельцем до после 2.0.4; пункта в плане выпуска нет. Вместо проверки
+  // документа — инвариант кода: если клиент начнёт писать поля v2 в paywall_funnel, правила Firestore обязаны их принимать
+  // (иначе события молча отбиваются). Пока клиент их не пишет — гейта нет.
+  test('paywall_funnel v2 fields are accepted by the rules whenever the client writes them', () => {
+    const funnel = read('app/paywall_funnel.ts');
+    const clientWritesV2 = /transactionHash/.test(funnel) && /schemaVersion: 2/.test(funnel);
+    if (!clientWritesV2) return;
+    const rules = read('firestore.rules');
+    for (const field of ['schemaVersion', 'impressionId', 'transactionHash', 'periodType']) {
+      expect(rules).toContain(`'${field}'`);
+    }
+    expect(rules).toContain("'store_confirmed'");
+    expect(rules).toContain("'access_applied'");
+  });
+
+  test('OWNER_LOCKS records the 26.10 shared exam-modal decision without claiming device verification', () => {
+    const locks = read('docs/work/OWNER_LOCKS.md');
+    expect(locks).toContain('docs/work/tasks/owner-course-modal-stories-2026-10-26.md');
+    expect(locks).toContain('LearningV2SessionOutcomeSheet');
+    expect(locks).toContain('tests/season_shared_modal.test.tsx');
+  });
+});

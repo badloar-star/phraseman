@@ -1,0 +1,17 @@
+import type { ImageSourcePropType } from 'react-native';
+
+/** Approved transparent collectibles, compressed for reliable offline rendering. */
+export const SPIRE_ACHIEVEMENT_IMAGE: Readonly<Record<string, ImageSourcePropType>> = {
+  spire_summit_granite: require('../assets/images/spire-achievements/spire_summit_granite.webp'),
+  spire_summit_basalt: require('../assets/images/spire-achievements/spire_summit_basalt.webp'),
+  spire_summit_marble: require('../assets/images/spire-achievements/spire_summit_marble.webp'),
+  spire_summit_jade: require('../assets/images/spire-achievements/spire_summit_jade.webp'),
+  spire_summit_quartz: require('../assets/images/spire-achievements/spire_summit_quartz.webp'),
+  spire_summit_agate: require('../assets/images/spire-achievements/spire_summit_agate.webp'),
+  spire_summit_onyx: require('../assets/images/spire-achievements/spire_summit_onyx.webp'),
+  spire_summit_amethyst: require('../assets/images/spire-achievements/spire_summit_amethyst.webp'),
+  spire_summit_opal: require('../assets/images/spire-achievements/spire_summit_opal.webp'),
+  spire_summit_topaz: require('../assets/images/spire-achievements/spire_summit_topaz.webp'),
+  spire_summit_obsidian: require('../assets/images/spire-achievements/spire_summit_obsidian.webp'),
+  spire_summit_diamond: require('../assets/images/spire-achievements/spire_summit_diamond.webp'),
+};

@@ -1,0 +1,33 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import ts from 'typescript';
+import type { PhoneStateStore } from '../../modules/phone-state/store';
+import type { PersonalProgressJournal } from '../../modules/phone-state/domains/progress_api';
+import { emptyPersonalProgressState } from '../../modules/phone-state/domains/progress_projection';
+
+/** Test instrumentation only: execute the private production adapter verbatim.
+ * No implementation is copied or rewritten and no product file is changed.
+ * Its native/store session boundary is supplied by the caller.
+ */
+export function loadProductionProgressJournal() {
+  const file = path.join(process.cwd(),'app/phone_state_runtime.ts');
+  const source = fs.readFileSync(file,'utf8');
+  const ast = ts.createSourceFile(file,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
+  const declaration = ast.statements.find((node):node is ts.FunctionDeclaration =>
+    ts.isFunctionDeclaration(node) && node.name?.text==='progressJournal');
+  if (!declaration) throw Error('production_progressJournal_not_found');
+  const verbatim = declaration.getText(ast);
+  const compiled = ts.transpileModule(`export ${verbatim}`,{compilerOptions:{
+    target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,
+  }}).outputText;
+  type Session = {context:{stableUid:string;lineage:number};deviceId:string;store:PhoneStateStore;triggerSync(reason:string):void};
+  const exported = {} as {progressJournal(session:Session):PersonalProgressJournal};
+  // The evaluated text is the trusted, hash-recorded local function above.
+  new Function('exports','emptyPersonalProgressState',compiled)(exported,emptyPersonalProgressState);
+  return {
+    create:exported.progressJournal,
+    sourceSha256:createHash('sha256').update(source).digest('hex').toUpperCase(),
+    adapterSha256:createHash('sha256').update(verbatim).digest('hex').toUpperCase(),
+  };
+}

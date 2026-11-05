@@ -1,0 +1,144 @@
+import type { Lang } from "../../constants/i18n";
+import { ACTIVITY_ACHIEVEMENTS } from "./activity_catalog";
+
+export function activityAchievementCopy(
+  id: string,
+  lang: Lang,
+  field: "name" | "condition" | "desc",
+): string | undefined {
+  const row = ACTIVITY_ACHIEVEMENTS.find((item) => item.id === id);
+  if (!row) return undefined;
+  if (lang === "ru") return field === "name" ? row.nameRu : row.conditionRu;
+  const uk = lang === "uk",
+    es = lang === "es";
+  let match = id.match(/^video_hours_(\d+)$/);
+  if (match) {
+    const n = Number(match[1]);
+    if (field !== "name")
+      return uk
+        ? `Переглянути ${n} годин відео в застосунку.`
+        : es
+          ? `Mira ${n} horas de vídeo en la aplicación.`
+          : `Watch ${n} hours of video in the app.`;
+    const index = [10, 50, 100, 200].indexOf(n);
+    return (
+      uk
+        ? [
+            "Увійшов у смак",
+            "Надивленість",
+            "Сто годин у мові",
+            "За межами субтитрів",
+          ]
+        : es
+          ? [
+              "El gusto de mirar",
+              "Una mirada entrenada",
+              "Cien horas de idioma",
+              "Más allá de los subtítulos",
+            ]
+          : [
+              "Getting into it",
+              "A trained eye",
+              "One hundred hours",
+              "Beyond subtitles",
+            ]
+    )[index];
+  }
+  match = id.match(/^today_complete_streak_(\d+)$/);
+  if (match) {
+    const n = Number(match[1]);
+    if (field !== "name")
+      return uk
+        ? `Виконати всі щоденні завдання ${n} днів поспіль.`
+        : es
+          ? `Completa todas las tareas diarias durante ${n} días seguidos.`
+          : `Complete every daily task for ${n} consecutive days.`;
+    const index = [3, 7, 30, 60, 100, 200].indexOf(n);
+    return (
+      uk
+        ? [
+            "Без хвостів",
+            "Тиждень на відмінно",
+            "Місяць порядку",
+            "Залізна звичка",
+            "Сто днів справи",
+            "Незламний",
+          ]
+        : es
+          ? [
+              "Todo al día",
+              "Una semana perfecta",
+              "Un mes de constancia",
+              "Un hábito firme",
+              "Cien días cumplidos",
+              "Inquebrantable",
+            ]
+          : [
+              "All caught up",
+              "A perfect week",
+              "A month of consistency",
+              "An iron habit",
+              "One hundred days",
+              "Unwavering",
+            ]
+    )[index];
+  }
+  match = id.match(/^reports_sent_(\d+)$/);
+  if (match) {
+    const n = Number(match[1]);
+    if (field !== "name")
+      return uk
+        ? `Успішно надіслати ${n} різних повідомлень про проблеми.`
+        : es
+          ? `Envía correctamente ${n} informes distintos.`
+          : `Successfully submit ${n} distinct reports.`;
+    const index = [10, 50, 100].indexOf(n);
+    return (
+      uk
+        ? ["Пильне око", "Мисливець за помилками", "Вартовий якості"]
+        : es
+          ? ["Ojo atento", "Cazador de errores", "Guardián de la calidad"]
+          : ["Keen eye", "Bug hunter", "Guardian of quality"]
+    )[index];
+  }
+  if (id === "legacy_course_complete")
+    return field === "name"
+      ? uk
+        ? "Перший великий шлях"
+        : es
+          ? "El primer gran camino"
+          : "The first great journey"
+      : uk
+        ? "Пройти всі 32 уроки старого курсу однією мовою."
+        : es
+          ? "Completa las 32 lecciones del curso anterior en un mismo idioma."
+          : "Complete all 32 lessons of the original course in one language.";
+  match = id.match(/^course_v2_(en|es)_lesson_(\d+)$/);
+  if (match) {
+    const language =
+      match[1] === "en"
+        ? uk
+          ? "Англійська"
+          : es
+            ? "Inglés"
+            : "English"
+        : uk
+          ? "Іспанська"
+          : es
+            ? "Español"
+            : "Spanish";
+    const n = match[2];
+    return field === "name"
+      ? uk
+        ? `${language}: урок ${n} завершено`
+        : es
+          ? `${language}: lección ${n} completada`
+          : `${language}: lesson ${n} complete`
+      : uk
+        ? `Повністю пройти всі 56 занять уроку ${n} Learning V2 (${language}).`
+        : es
+          ? `Completa las 56 sesiones de la lección ${n} de Learning V2 (${language}).`
+          : `Complete all 56 sessions of Learning V2 lesson ${n} (${language}).`;
+  }
+  return undefined;
+}

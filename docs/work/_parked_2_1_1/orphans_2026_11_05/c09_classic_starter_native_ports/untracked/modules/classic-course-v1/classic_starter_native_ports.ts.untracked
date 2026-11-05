@@ -1,0 +1,187 @@
+export const PROTECTED_PRE_RECORD_CODES = Object.freeze([
+  'protected_record_capacity_exhausted',
+  'protected_invalid_canonical_local_uri',
+  'protected_registration_setup_rolled_back',
+] as const);
+
+export type ProtectedPreRecordCode = (typeof PROTECTED_PRE_RECORD_CODES)[number];
+export type ProtectedRegistrationResult =
+  | Readonly<{ kind: 'registered'; nativeToken: string; opaqueUri: string }>
+  | Readonly<{ kind: 'pre_record_no_native_reader'; code: ProtectedPreRecordCode }>;
+
+export type ProtectedNativeAudioModule = Readonly<{
+  registerProtectedLocalSource(canonicalFileUri: string): unknown;
+  beginDetach(nativeToken: string): void;
+  whenDetached(nativeToken: string): Promise<void>;
+}>;
+
+type ProtectedPlaybackStatus = Readonly<{
+  isLoaded: boolean;
+  playing: boolean;
+  didJustFinish?: boolean;
+  error?: boolean;
+}>;
+
+type RawAudioPlayer = Readonly<{
+  play(): void;
+  pause(): void;
+  remove(): void;
+  release?: () => void;
+  addListener?: (
+    event: 'playbackStatusUpdate',
+    listener: (status: ProtectedPlaybackStatus) => void,
+  ) => Readonly<{ remove(): void }>;
+}>;
+
+type RegistrationState =
+  | Readonly<{ kind: 'pending_registration' }>
+  | Readonly<{ kind: 'registered'; nativeToken: string; opaqueUri: string }>
+  | Readonly<{ kind: 'proven_no_native_reader'; code: ProtectedPreRecordCode }>;
+
+export class ProtectedRegistrationError extends Error {
+  readonly code: ProtectedPreRecordCode;
+
+  constructor(code: ProtectedPreRecordCode) {
+    super(code);
+    this.name = 'ProtectedRegistrationError';
+    this.code = code;
+  }
+}
+
+const TOKEN_PATTERN = /^[A-Za-z0-9_-]{43}$/u;
+const allowedCodes = new Set<string>(PROTECTED_PRE_RECORD_CODES);
+
+function ownKeys(value: object): string[] {
+  return Object.keys(value).sort();
+}
+
+function exactKeys(value: object, expected: readonly string[]): boolean {
+  const actual = ownKeys(value);
+  const sortedExpected = [...expected].sort();
+  return actual.length === sortedExpected.length && actual.every((key, index) => key === sortedExpected[index]);
+}
+
+function parseRegistrationResult(value: unknown): ProtectedRegistrationResult | undefined {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+  const candidate = value as Record<string, unknown>;
+  if (candidate.kind === 'registered') {
+    if (!exactKeys(candidate, ['kind', 'nativeToken', 'opaqueUri'])) return undefined;
+    if (typeof candidate.nativeToken !== 'string' || !TOKEN_PATTERN.test(candidate.nativeToken)) return undefined;
+    if (
+      typeof candidate.opaqueUri !== 'string' ||
+      candidate.opaqueUri !== `pmclassiclocal://v1/${candidate.nativeToken}`
+    )
+      return undefined;
+    return Object.freeze({
+      kind: 'registered',
+      nativeToken: candidate.nativeToken,
+      opaqueUri: candidate.opaqueUri,
+    });
+  }
+  if (candidate.kind === 'pre_record_no_native_reader') {
+    if (!exactKeys(candidate, ['kind', 'code'])) return undefined;
+    if (typeof candidate.code !== 'string' || !allowedCodes.has(candidate.code)) return undefined;
+    return Object.freeze({
+      kind: 'pre_record_no_native_reader',
+      code: candidate.code as ProtectedPreRecordCode,
+    });
+  }
+  return undefined;
+}
+
+function error(message: string): Error {
+  return new Error(message);
+}
+
+export function createClassicStarterNativePlayerPorts(input: Readonly<{
+  native: ProtectedNativeAudioModule;
+  createAudioPlayer: (
+    source: Readonly<{ uri: string }>,
+    options: Readonly<{ downloadFirst: false }>,
+  ) => RawAudioPlayer;
+}>) {
+  const states = new Map<symbol, RegistrationState>();
+
+  return Object.freeze({
+    async create(
+      source: Readonly<{ uri: string; downloadFirst: false }>,
+      readerToken: symbol,
+      onStatus: (status: ProtectedPlaybackStatus) => void,
+      signal: AbortSignal,
+    ) {
+      if (states.has(readerToken)) throw error('native_token_duplicate');
+      states.set(readerToken, Object.freeze({ kind: 'pending_registration' }));
+
+      let parsed: ProtectedRegistrationResult;
+      try {
+        const result = input.native.registerProtectedLocalSource(source.uri);
+        const validated = parseRegistrationResult(result);
+        if (!validated) throw error('protected_registration_result_invalid');
+        parsed = validated;
+      } catch (registrationError) {
+        throw registrationError;
+      }
+
+      if (parsed.kind === 'pre_record_no_native_reader') {
+        states.set(
+          readerToken,
+          Object.freeze({ kind: 'proven_no_native_reader', code: parsed.code }),
+        );
+        throw new ProtectedRegistrationError(parsed.code);
+      }
+
+      const registered = Object.freeze({
+        kind: 'registered' as const,
+        nativeToken: parsed.nativeToken,
+        opaqueUri: parsed.opaqueUri,
+      });
+      states.set(readerToken, registered);
+
+      try {
+        if (signal.aborted) throw error('native_player_create_aborted');
+        const raw = input.createAudioPlayer(
+          Object.freeze({ uri: registered.opaqueUri }),
+          Object.freeze({ downloadFirst: false as const }),
+        );
+        if (signal.aborted) throw error('native_player_create_aborted');
+        const listener = raw.addListener?.('playbackStatusUpdate', onStatus);
+        let fenced = false;
+        const fence = () => {
+          if (fenced) return;
+          fenced = true;
+          input.native.beginDetach(registered.nativeToken);
+        };
+        return Object.freeze({
+          play: () => raw.play(),
+          stop: () => {
+            fence();
+            raw.pause();
+          },
+          remove: () => {
+            fence();
+            listener?.remove();
+            raw.remove();
+            raw.release?.();
+          },
+        });
+      } catch (constructionError) {
+        input.native.beginDetach(registered.nativeToken);
+        throw constructionError;
+      }
+    },
+
+    async whenDetached(readerToken: symbol): Promise<void> {
+      const state = states.get(readerToken);
+      try {
+        if (!state) throw error('native_token_missing');
+        if (state.kind === 'pending_registration') throw error('native_registration_outcome_unknown');
+        if (state.kind === 'proven_no_native_reader') return;
+        await input.native.whenDetached(state.nativeToken);
+      } finally {
+        states.delete(readerToken);
+      }
+    },
+
+    inspect: () => Object.freeze({ mappings: states.size }),
+  });
+}

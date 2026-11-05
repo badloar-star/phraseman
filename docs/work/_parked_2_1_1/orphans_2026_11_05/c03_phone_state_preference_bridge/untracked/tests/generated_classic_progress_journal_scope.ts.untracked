@@ -1,0 +1,42 @@
+// Generated semantic gate for the verbatim private production adapter only.
+import type {PersonalProgressJournal,PersonalProgressCommitMetadata} from '../modules/phone-state/domains/progress_api';
+import type {PersonalProgressCommand,PersonalProgressProjection,PersonalProgressState} from '../modules/phone-state/domains/progress_projection';
+import {emptyPersonalProgressState} from '../modules/phone-state/domains/progress_projection';
+import type {PendingPersonalOperation} from '../modules/phone-state/contracts';
+import type {PhoneStateStore} from '../modules/phone-state/store';
+type RuntimeSession={context:{stableUid:string;lineage:number};deviceId:string;store:PhoneStateStore;triggerSync(reason:string):void};
+export function progressJournal(session: RuntimeSession): PersonalProgressJournal {
+  const projectionFromState = (state: unknown): PersonalProgressProjection => {
+    const candidate = state as PersonalProgressState | undefined;
+    return candidate?.projection ?? emptyPersonalProgressState().projection;
+  };
+  return Object.freeze({
+    commit: async (command: PersonalProgressCommand, metadata?: PersonalProgressCommitMetadata) => {
+      if(metadata && (Object.keys(metadata).length!==1 || !Number.isSafeInteger(metadata.originalCreatedAtMs) || metadata.originalCreatedAtMs<0))throw Error('phone_state_progress_input_invalid');
+      const pending: PendingPersonalOperation = Object.freeze({
+        schemaVersion: 1,
+        stableUid: session.context.stableUid,
+        accountGeneration: session.context.lineage,
+        deviceId: session.deviceId,
+        domain: 'progress',
+        kind: command.kind,
+        entityId: command.eventId,
+        payload: command,
+        exactResult: 'exactResult' in command ? command.exactResult : Object.freeze({ imported: true }),
+        createdAtMs: metadata ? metadata.originalCreatedAtMs : Date.now(),
+      });
+      const result = await session.store.commit(pending, { idempotencyKey: command.eventId });
+      if (command.kind === 'complete_lesson' || command.kind === 'complete_exam') {
+        session.triggerSync('sealed_segment');
+      }
+      return Object.freeze({
+        projection: projectionFromState(result.projection.state),
+        duplicate: result.duplicate,
+      });
+    },
+    read: async () => {
+      const projection = await session.store.readProjection('progress');
+      return projectionFromState(projection?.state);
+    },
+  });
+}

@@ -1,0 +1,81 @@
+import type { AchievementDefinitionV2 } from "../../app/achievement_catalog_v2";
+
+export const VIDEO_HOURS = [10, 50, 100, 200] as const;
+export const DAILY_DAYS = [3, 7, 30, 60, 100, 200] as const;
+export const REPORT_COUNTS = [10, 50, 100] as const;
+// Languages supported by the current course progress store. Curriculum drafts are not completed courses.
+export const V2_ACHIEVEMENT_LANGUAGES = ["en", "es"] as const;
+const definition = (
+  id: string,
+  name: string,
+  condition: string,
+  icon: string,
+): AchievementDefinitionV2 => ({
+  id,
+  nameRu: name,
+  nameUk: name,
+  conditionRu: condition,
+  conditionUk: condition,
+  descRu: condition,
+  descUk: condition,
+  category: "special",
+  foundationGroup: "activity",
+  icon,
+});
+export const ACTIVITY_ACHIEVEMENTS: readonly AchievementDefinitionV2[] = [
+  ...VIDEO_HOURS.map((hours, index) =>
+    definition(
+      `video_hours_${hours}`,
+      [
+        "Вошёл во вкус",
+        "Насмотренность",
+        "Сто часов в языке",
+        "За пределами субтитров",
+      ][index],
+      `Посмотреть ${hours} часов видео через приложение.`,
+      "🎬",
+    ),
+  ),
+  ...DAILY_DAYS.map((days, index) =>
+    definition(
+      `today_complete_streak_${days}`,
+      [
+        "Без хвостов",
+        "Неделя на отлично",
+        "Месяц порядка",
+        "Железная привычка",
+        "Сто дней дела",
+        "Несгибаемый",
+      ][index],
+      `Выполнить все ежедневные задания ${days} дней подряд.`,
+      "🌳",
+    ),
+  ),
+  ...REPORT_COUNTS.map((count, index) =>
+    definition(
+      `reports_sent_${count}`,
+      ["Зоркий глаз", "Охотник за ошибками", "Хранитель качества"][index],
+      `Успешно отправить ${count} разных репортов через приложение.`,
+      "🦅",
+    ),
+  ),
+  definition(
+    "legacy_course_complete",
+    "Первый большой путь",
+    "Пройти все 32 урока старого курса на одном языке.",
+    "📖",
+  ),
+  ...V2_ACHIEVEMENT_LANGUAGES.flatMap((language) =>
+    Array.from({ length: 32 }, (_, index) =>
+      definition(
+        `course_v2_${language}_lesson_${index + 1}`,
+        `${language === "en" ? "Английский" : "Испанский"}: урок ${index + 1} закрыт`,
+        `Полностью пройти все 56 занятий урока ${index + 1} Learning V2 (${language === "en" ? "английский" : "испанский"}). Открытые или пропущенные занятия не считаются пройденными.`,
+        "📚",
+      ),
+    ),
+  ),
+];
+export const ACTIVITY_ACHIEVEMENT_IDS = new Set(
+  ACTIVITY_ACHIEVEMENTS.map((row) => row.id),
+);

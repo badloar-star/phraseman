@@ -1,0 +1,45 @@
+const mockPrepare = jest.fn();
+jest.mock('../app/learning_v2_course_released_session_client_v3', () => ({
+  prepareCurrentLearningV2CourseSessionV3: (...args: unknown[]) => mockPrepare(...args),
+  stageLearningV2CourseSessionReadyHandoffV3: jest.fn(),
+}));
+jest.mock('expo-crypto', () => ({ randomUUID: () => 'run-disabled' }));
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn(), warn: jest.fn() } }));
+jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: jest.fn() }));
+
+import {
+  prepareLearningV2SessionRunV1,
+  prewarmLearningV2SessionRunV1,
+  scheduleLearningV2SessionPrewarmV1,
+} from '../app/learning_v2_session_launch_v1';
+
+const locator = {
+  environment: 'production' as const,
+  seasonId: 'learning-v2',
+  studyTarget: 'en',
+  learnerSourceLocale: 'ru',
+  lessonOrdinal: 1,
+  sessionOrdinal: 1,
+};
+
+describe('Learning V2 full-off direct preparation API', () => {
+  beforeEach(() => {
+    mockPrepare.mockReset();
+    mockPrepare.mockResolvedValue({});
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => jest.restoreAllMocks());
+
+  it('rejects direct preparation before loading or materializing V2 content, including dev preview', async () => {
+    await expect(prepareLearningV2SessionRunV1(locator, { devUnlockedDrafts: false })).rejects.toThrow('learning_v2_disabled_by_owner');
+    await expect(prepareLearningV2SessionRunV1(locator, { devUnlockedDrafts: true })).rejects.toThrow('learning_v2_disabled_by_owner');
+    expect(mockPrepare).not.toHaveBeenCalled();
+  });
+
+  it('turns direct and delayed prewarm into cancellable no-ops', async () => {
+    await expect(prewarmLearningV2SessionRunV1(locator, 'home')).resolves.toBeUndefined();
+    expect(scheduleLearningV2SessionPrewarmV1(locator, 'lessons_entry')).toEqual(expect.any(Function));
+    expect(mockPrepare).not.toHaveBeenCalled();
+  });
+});

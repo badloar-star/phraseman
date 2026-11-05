@@ -1,0 +1,232 @@
+diff --git a/app/audio_session_coordinator.ts b/app/audio_session_coordinator.ts
+index 949b6121e..0513ea149 100644
+--- a/app/audio_session_coordinator.ts
++++ b/app/audio_session_coordinator.ts
+@@ -5,30 +5,41 @@ type AudioMode = Parameters<typeof setAudioModeAsync>[0];
+ 
+ // expo-audio controls one process-wide native session. Keep transitions in
+ // invocation order so a late playback restore cannot overtake a newer capture
+-// request. Callers still handle rejection locally because some native drivers
+-// own the session themselves.
++// request. Caller-visible native failures resolve as structured outcomes;
++// transitionTail swallows rejection only so later native calls stay ordered.
+ let transitionTail: Promise<void> = Promise.resolve();
+ const AUDIO_MODE_TRANSITION_TIMEOUT_MS = 1500;
+ 
++export type ManagedAudioModeOutcome = 'applied' | 'failed' | 'timed_out';
++export type ManagedAudioModeResult = Readonly<{
++  outcome: ManagedAudioModeOutcome;
++}>;
++
+ function settleCallerWithinDeadline(
+   transition: Promise<void>,
+   mode: AudioMode,
+   startedAt: number,
+-): Promise<void> {
+-  return new Promise<void>((resolve, reject) => {
++): Promise<ManagedAudioModeResult> {
++  return new Promise<ManagedAudioModeResult>((resolve) => {
++    let published = false;
++    const publish = (outcome: ManagedAudioModeOutcome): void => {
++      if (published) return;
++      published = true;
++      resolve(Object.freeze({ outcome }));
++    };
+     const timeout = setTimeout(() => {
+       console.warn(`[SOUND-AUDIT] audio_mode:timeout ${JSON.stringify({ afterMs: Date.now() - startedAt, allowsRecording: mode.allowsRecording ?? null, interruptionMode: mode.interruptionMode ?? null })}`); // guard-ok: нативный переход не ответил — вызывающий не зависает
+-      resolve();
++      publish('timed_out');
+     }, AUDIO_MODE_TRANSITION_TIMEOUT_MS);
+     (timeout as unknown as { unref?: () => void }).unref?.();
+     transition.then(
+       () => {
+         clearTimeout(timeout);
+-        resolve();
++        publish('applied');
+       },
+-      (error: unknown) => {
++      () => {
+         clearTimeout(timeout);
+-        reject(error);
++        publish('failed');
+       },
+     );
+   });
+@@ -48,7 +59,7 @@ export function subscribeManagedAudioMode(listener: () => void): () => void {
+   return () => modeListeners.delete(listener);
+ }
+ 
+-export function setManagedAudioMode(mode: AudioMode): Promise<void> {
++export function setManagedAudioMode(mode: AudioMode): Promise<ManagedAudioModeResult> {
+   const nextRecordingActive = mode.allowsRecording === true;
+   if (nextRecordingActive !== recordingActive) {
+     recordingActive = nextRecordingActive;
+diff --git a/components/youtube/YoutubeInlinePlayer.tsx b/components/youtube/YoutubeInlinePlayer.tsx
+index cc5d9468e..77c1ef3a7 100644
+--- a/components/youtube/YoutubeInlinePlayer.tsx
++++ b/components/youtube/YoutubeInlinePlayer.tsx
+@@ -15,6 +15,7 @@ import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
+ import { forgetYoutubePosition, readYoutubeResumeSec, rememberYoutubePosition } from '../../app/youtube_resume_position';
+ import { triLang } from '../../constants/i18n';
+ import { setManagedAudioMode } from '../../app/audio_session_coordinator';
++import { reportYoutubeAudioModeOutcome } from '../../app/audio_mode_outcome_diagnostics';
+ import { UI_SFX_AUDIO_MODE } from '../../app/audio_playback_mode';
+ import { claimVideoAudio, type SpokenAudioClaim } from '../../modules/audio/audio_runtime_arbiter';
+ import { useLang } from '../LangContext';
+@@ -153,7 +154,7 @@ export default function YoutubeInlinePlayer({
+   // режим приложения (тот же, что ставит запуск), иначе озвучка фраз и звуки интерфейса молчат.
+   useEffect(() => () => {
+     console.log('[VIDEO-PLAYER] закрыт — возвращаю режим звука приложения', JSON.stringify({ videoId }));
+-    setManagedAudioMode(UI_SFX_AUDIO_MODE).catch((error: unknown) => {
++    setManagedAudioMode(UI_SFX_AUDIO_MODE).then(reportYoutubeAudioModeOutcome).catch((error: unknown) => {
+       console.warn('[VIDEO-PLAYER] режим звука не вернулся', error instanceof Error ? error.message : String(error));
+     });
+   }, [videoId]);
+diff --git a/modules/audio/audio_activity.ts b/modules/audio/audio_activity.ts
+index 6165c1133..603e25a3d 100644
+--- a/modules/audio/audio_activity.ts
++++ b/modules/audio/audio_activity.ts
+@@ -3,9 +3,19 @@ import {
+   SPOKEN_AUDIO_MODE,
+   UI_SFX_AUDIO_MODE,
+ } from '@/app/audio_playback_mode';
+-import { setManagedAudioMode } from '@/app/audio_session_coordinator';
++import {
++  setManagedAudioMode,
++  type ManagedAudioModeOutcome,
++} from '@/app/audio_session_coordinator';
+ 
+ export type AudioActivityKind = 'spoken' | 'recording';
++export type AudioActivityIntent = 'ui' | AudioActivityKind;
++
++export type AudioActivityTransitionResult = Readonly<{
++  intent: AudioActivityIntent;
++  revision: number;
++  outcome: ManagedAudioModeOutcome;
++}>;
+ 
+ export type AudioActivitySnapshot = Readonly<{
+   spokenActive: boolean;
+@@ -52,8 +62,13 @@ function leaseTrace(step: string, data: Record<string, unknown>): void {
+ 
+ let spokenLeases = 0;
+ let recordingLeases = 0;
+-let currentIntent: 'ui' | AudioActivityKind | null = null;
+-let activityTail: Promise<void> = Promise.resolve();
++let currentIntent: AudioActivityIntent | null = null;
++let currentIntentRevision = 0;
++let activityTail: Promise<AudioActivityTransitionResult> = Promise.resolve(Object.freeze({
++  intent: 'ui',
++  revision: currentIntentRevision,
++  outcome: 'applied',
++}));
+ const listeners = new Set<() => void>();
+ /**
+  * Живые аренды: нужны предохранителю, диагностике «кто держит звук» и
+@@ -83,20 +98,22 @@ function reconcile(): void {
+   const nextIntent = recordingLeases > 0 ? 'recording' : spokenLeases > 0 ? 'spoken' : 'ui';
+   if (nextIntent === currentIntent) return;
+   currentIntent = nextIntent;
++  const revision = ++currentIntentRevision;
+   const mode = nextIntent === 'recording'
+     ? SPEAKING_RECORDING_AUDIO_MODE
+     : nextIntent === 'spoken'
+       ? SPOKEN_AUDIO_MODE
+       : UI_SFX_AUDIO_MODE;
+-  // зачем (2026-09-14, «микрофон ломается после N-й попытки»): смена нативного
+-  // аудиорежима — единственное место цепочки, где отказ глотался молча. Пишем
+-  // намерение, счётчики аренд и причину отказа; сам отказ по-прежнему не
+-  // роняет вызывающего (некоторые нативные драйверы владеют сессией сами).
+-  const startedAt = Date.now();
+-  console.log('[SPEAK-MIC] audio-mode', JSON.stringify({ intent: nextIntent, spokenLeases, recordingLeases })); // guard-ok: трасса владельца, ≤3 строк на попытку
+-  activityTail = setManagedAudioMode(mode).catch((e: unknown) => {
+-    console.warn('[SPEAK-MIC] audio-mode:failed', JSON.stringify({ intent: nextIntent, tookMs: Date.now() - startedAt, error: e instanceof Error ? `${e.name}: ${e.message}` : String(e) })); // guard-ok: трасса владельца
+-    return undefined;
++  // One immutable marker correlates the caller-visible outcome with the exact
++  // intent revision. A late native settlement cannot rewrite this result.
++  activityTail = setManagedAudioMode(mode).then(({ outcome }) => {
++    const result: AudioActivityTransitionResult = Object.freeze({
++      intent: nextIntent,
++      revision,
++      outcome,
++    });
++    console.log('[SPEAK-MIC] audio-mode:outcome', JSON.stringify(result)); // guard-ok: one bounded transition outcome marker
++    return result;
+   });
+   listeners.forEach((listener) => listener());
+ }
+@@ -200,6 +217,15 @@ export async function whenAudioActivitySettled(): Promise<void> {
+   await activityTail;
+ }
+ 
++export async function whenAudioActivityReady(expected: AudioActivityKind): Promise<boolean> {
++  const capturedTransition = activityTail;
++  const result = await capturedTransition;
++  return result.outcome === 'applied'
++    && result.intent === expected
++    && result.intent === currentIntent
++    && result.revision === currentIntentRevision;
++}
++
+ export function resetAudioActivityForTests(): void {
+   spokenLeases = 0;
+   recordingLeases = 0;
+diff --git a/tests/audio_session_coordinator.test.ts b/tests/audio_session_coordinator.test.ts
+index a7fae9266..481322bc0 100644
+--- a/tests/audio_session_coordinator.test.ts
++++ b/tests/audio_session_coordinator.test.ts
+@@ -39,8 +39,8 @@ describe('audio session coordinator', () => {
+     await Promise.resolve();
+     expect(nativeSet).toHaveBeenCalledTimes(1);
+     finishCapture();
+-    await capture;
+-    await playback;
++    await expect(capture).resolves.toEqual({ outcome: 'applied' });
++    await expect(playback).resolves.toEqual({ outcome: 'applied' });
+ 
+     expect(nativeSet.mock.calls.map(([mode]) => mode.allowsRecording)).toEqual([true, false]);
+   });
+@@ -71,18 +71,22 @@ describe('audio session coordinator', () => {
+     expect(getManagedAudioModeSnapshot().recordingActive).toBe(true);
+     const playback = setManagedAudioMode({ allowsRecording: false });
+     expect(getManagedAudioModeSnapshot().recordingActive).toBe(false);
+-    await Promise.all([recording, playback]);
++    await expect(recording).resolves.toEqual({ outcome: 'applied' });
++    await expect(playback).resolves.toEqual({ outcome: 'applied' });
+     unsubscribe();
+ 
+     expect(observed).toEqual([true, false]);
+   });
+ 
+-  it('clears the deadline after a native transition settles', async () => {
++  it('reports applied and failed native outcomes without late deadline warnings', async () => {
+     jest.useFakeTimers();
+     const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+-    (setAudioModeAsync as jest.Mock).mockResolvedValue(undefined);
++    (setAudioModeAsync as jest.Mock)
++      .mockResolvedValueOnce(undefined)
++      .mockRejectedValueOnce(new Error('native mode rejected'));
+ 
+-    await setManagedAudioMode({ allowsRecording: false });
++    await expect(setManagedAudioMode({ allowsRecording: false })).resolves.toEqual({ outcome: 'applied' });
++    await expect(setManagedAudioMode({ allowsRecording: true })).resolves.toEqual({ outcome: 'failed' });
+     await jest.advanceTimersByTimeAsync(2_000);
+ 
+     expect(warn.mock.calls.some(([message]) => String(message).includes('audio_mode:timeout'))).toBe(false);
+@@ -104,13 +108,15 @@ describe('audio session coordinator', () => {
+     await Promise.resolve();
+     const second = setManagedAudioMode({ allowsRecording: false });
+     await jest.advanceTimersByTimeAsync(3_000);
+-    await Promise.all([first, second]);
++    await expect(first).resolves.toEqual({ outcome: 'timed_out' });
++    await expect(second).resolves.toEqual({ outcome: 'timed_out' });
+ 
+     const callsAtDeadline = nativeSet.mock.calls.length;
+     finishFirst();
+     for (let index = 0; index < 10; index += 1) await Promise.resolve();
+     expect(callsAtDeadline).toBe(1);
+     expect(nativeSet).toHaveBeenCalledTimes(2);
++    await expect(first).resolves.toEqual({ outcome: 'timed_out' });
+ 
+     warn.mockRestore();
+     jest.useRealTimers();

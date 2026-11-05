@@ -1,0 +1,81 @@
+diff --git a/components/spire/moments/SpireNoEnergySheet.tsx b/components/spire/moments/SpireNoEnergySheet.tsx
+index e415c1a95..a1526beea 100644
+--- a/components/spire/moments/SpireNoEnergySheet.tsx
++++ b/components/spire/moments/SpireNoEnergySheet.tsx
+@@ -3,7 +3,7 @@
+ //
+ // зачем (координатор 15.10, m22 к сборке 16.10): док Пика без энергии раньше сразу уводил в пейвол отдельным окном. По эталону — шторка над
+ // доком: плитка ⚡ + чип «Энергия», «Энергия закончилась», «Следующая — через m:ss. С Plus — без ожидания.» (живой отсчёт), выгода
+-// «Энергия не кончается», «Попробовать Plus» с мелкой строкой цены, «Подожду 10 минут». Покупка ИЗ шторки — после выпуска, по слову
++// «Энергия не кончается», «Попробовать Plus» с мелкой строкой цены, «Подожду 30 минут». Покупка ИЗ шторки — после выпуска, по слову
+ // владельца: «Попробовать Plus» открывает прежний полный пейвол (колбэк onPlus у дока, атрибуция no_energy / spire_no_energy).
+ // Мелкая строка (координатор 15.10): пробный доступен (живой признак магазина) → fineTrial; нет → finePrice; нет цены в кэше → строки нет.
+ // Ничего не пишет и не покупает: «Plus» и «закрыть» — колбэки.
+@@ -32,7 +32,7 @@ export type SpireNoEnergySheetProps = Readonly<{
+   visible: boolean;
+   /** «Попробовать Plus» — родитель закрывает шторку и открывает пейвол. */
+   onPlus: () => void;
+-  /** «Подожду 10 минут», свайп вниз, тап по фону, «Назад». */
++  /** «Подожду 30 минут», свайп вниз, тап по фону, «Назад». */
+   onClose: () => void;
+   testID?: string;
+ }>;
+diff --git a/components/spire/moments/no_energy_sheet_strings.ts b/components/spire/moments/no_energy_sheet_strings.ts
+index daac4dd1c..8a952427c 100644
+--- a/components/spire/moments/no_energy_sheet_strings.ts
++++ b/components/spire/moments/no_energy_sheet_strings.ts
+@@ -1,7 +1,7 @@
+ // ════════════════════════════════════════════════════════════════════════════
+ // no_energy_sheet_strings.ts — тексты момента m22 «Энергия закончилась → Plus», 9 языков.
+ //
+-// зачем (координатор 15.10, m22 к сборке 16.10; эталон engagement-moments-v3-all.html m22 / plusSheet): шторка над доком Пика вместо
++// зачем (координатор 15.30, m22 к сборке 16.30; эталон engagement-moments-v3-all.html m22 / plusSheet): шторка над доком Пика вместо
+ // мгновенного перехода в пейвол. Переводы 8 языков — финальные от «Специалиста по переводам» (0cf596364): заголовок как у окна энергии, без обещания «бесплатно».
+ // ════════════════════════════════════════════════════════════════════════════
+ import type { Lang } from '../../../constants/i18n';
+@@ -38,7 +38,7 @@ const S = {
+     'okres próbny w sklepie · ≈ {price}/mies.',
+   ],
+   finePrice: ['≈ {price}/мес', '≈ {price}/міс', '≈ {price}/mo', '≈ {price}/mes', '≈ {price}/mês', '≈ {price}/tháng', '≈ {price}/bln', '≈ {price}/ay', '≈ {price}/mies.'],
+-  wait: ['Подожду 10 минут', 'Почекаю 10 хвилин', 'I’ll wait 10 minutes', 'Esperaré 10 minutos', 'Vou esperar 10 minutos', 'Tôi sẽ chờ 10 phút', 'Aku tunggu 10 menit', '10 dakika beklerim', 'Poczekam 10 minut'],
++  wait: ['Подожду 30 минут', 'Почекаю 30 хвилин', 'I’ll wait 30 minutes', 'Esperaré 30 minutos', 'Vou esperar 30 minutos', 'Tôi sẽ chờ 30 phút', 'Aku tunggu 30 menit', '30 dakika beklerim', 'Poczekam 30 minut'],
+ } as const satisfies Readonly<Record<string, Nine>>;
+ 
+ export type NoEnergySheetStringKey = keyof typeof S;
+@@ -49,6 +49,6 @@ export const NO_ENERGY_SHEET_LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id
+ export function noEnergySheetText(lang: Lang, key: NoEnergySheetStringKey, vars?: Readonly<Record<string, string | number>>): string {
+   const raw = (S[key] as Nine)[LANG_INDEX[lang] ?? LANG_INDEX.en];
+   if (!vars) return raw;
+-  // зачем (координатор 18.10, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке, текст не меняется
++  // зачем (координатор 18.30, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке, текст не меняется
+   return glueNumbers(raw.replace(/\{(\w+)\}/g, (whole, name: string) => (name in vars ? String(vars[name]) : whole)));
+ }
+diff --git a/tests/spire_no_energy_sheet_contract.test.tsx b/tests/spire_no_energy_sheet_contract.test.tsx
+index c4caa36a0..c88cdd540 100644
+--- a/tests/spire_no_energy_sheet_contract.test.tsx
++++ b/tests/spire_no_energy_sheet_contract.test.tsx
+@@ -1,5 +1,5 @@
+ // зачем (координатор 15.10, m22 к сборке 16.10; эталон engagement-moments-v3-all.html m22 · A): шторка «Энергия закончилась → Plus» над доком Пика.
+-// Живой отсчёт энергии в подзаголовке; «Попробовать Plus» — колбэк (пейвол открывает док, путь покупки не тронут); «Подожду 10 минут» — закрыть;
++// Живой отсчёт энергии в подзаголовке; «Попробовать Plus» — колбэк (пейвол открывает док, путь покупки не тронут); «Подожду 30 минут» — закрыть;
+ // мелкая строка: пробный доступен → fineTrial, нет → finePrice, нет цены в кэше → строки нет; двойной тап гасится; тексты на 9 языках.
+ (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
+ 
+@@ -72,7 +72,7 @@ describe('m22 шторка «Энергия закончилась → Plus»',
+     expect(screen.getByTestId('no-energy-sheet-sub').props.children).toBe(glueNumbers('Следующая — через 9:40. С Plus — без ожидания.'));
+     expect(screen.getByText('Энергия не кончается')).toBeTruthy();
+     expect(screen.getByText('Попробовать Plus')).toBeTruthy();
+-    expect(screen.getByText('Подожду 10 минут')).toBeTruthy();
++    expect(screen.getByText('Подожду 30 минут')).toBeTruthy();
+   });
+ 
+   it('«Попробовать Plus» зовёт onPlus один раз (двойной тап гасится), onClose не зовёт', async () => {
+@@ -85,7 +85,7 @@ describe('m22 шторка «Энергия закончилась → Plus»',
+     expect(onClose).not.toHaveBeenCalled();
+   });
+ 
+-  it('«Подожду 10 минут» закрывает шторку', async () => {
++  it('«Подожду 30 минут» закрывает шторку', async () => {
+     const onClose = jest.fn();
+     await render(<SpireNoEnergySheet lang="ru" visible onPlus={jest.fn()} onClose={onClose} />);
+     await fireEvent.press(screen.getByTestId('no-energy-sheet-wait'));

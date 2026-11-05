@@ -1,0 +1,128 @@
+import {
+  applyActivityFact,
+  mergeActivityEvidence,
+  longestCompletedDayRun,
+  completedV2Lessons,
+} from "../modules/achievements/activity_progress";
+
+describe("activity achievement facts", () => {
+  it("crosses only elapsed video thresholds and does not lower the total", () => {
+    const first = applyActivityFact(
+      [],
+      { kind: "video", totalSeconds: 50 * 3600 },
+      1_800_000_000_000,
+    );
+    expect(first.unlocked).toEqual(["video_hours_10", "video_hours_50"]);
+    expect(
+      applyActivityFact(
+        first.states,
+        { kind: "video", totalSeconds: 1 },
+        1_800_000_000_001,
+      ).unlocked,
+    ).toEqual([]);
+    expect(
+      applyActivityFact(
+        [],
+        { kind: "video", totalSeconds: NaN },
+        1_800_000_000_000,
+      ).unlocked,
+    ).toEqual([]);
+  });
+  it("deduplicates receipts and excludes automatic events and fake nonstored reports", () => {
+    let states = [] as ReturnType<typeof applyActivityFact>["states"];
+    for (let n = 0; n < 10; n++)
+      states = applyActivityFact(
+        states,
+        {
+          kind: "report",
+          reportKind: "error_report",
+          collection: "error_reports",
+          receiptId: String(n),
+        },
+        1_800_000_000_000,
+      ).states;
+    expect(
+      states.find((s) => s.id === "reports_sent_10")?.unlockedAt,
+    ).toBeTruthy();
+    expect(
+      applyActivityFact(
+        states,
+        {
+          kind: "report",
+          reportKind: "error_report",
+          collection: "error_reports",
+          receiptId: "0",
+        },
+        1_800_000_000_001,
+      ).changed,
+    ).toBe(false);
+    for (const reportKind of [
+      "app_error",
+      "app_activity",
+      "subscription_cancel_survey",
+    ])
+      expect(
+        applyActivityFact(
+          [],
+          {
+            kind: "report",
+            reportKind,
+            collection: "error_reports",
+            receiptId: "id",
+          },
+          1_800_000_000_000,
+        ).changed,
+      ).toBe(false);
+    expect(
+      applyActivityFact(
+        [],
+        {
+          kind: "report",
+          reportKind: "arena_opponent_report",
+          collection: "",
+          receiptId: "accepted",
+        },
+        1_800_000_000_000,
+      ).changed,
+    ).toBe(false);
+  });
+  it("uses valid calendar dates, removes duplicates and crosses year/DST boundaries", () => {
+    expect(
+      longestCompletedDayRun([
+        "2026-12-31",
+        "2027-01-01",
+        "2027-01-02",
+        "2027-01-02",
+      ]),
+    ).toBe(3);
+    expect(
+      longestCompletedDayRun(["2026-03-28", "2026-03-29", "2026-03-30"]),
+    ).toBe(3);
+    expect(longestCompletedDayRun(["2026-02-30", "2026-03-01"])).toBe(1);
+    expect(longestCompletedDayRun(["2026-01-01", "2026-01-03"])).toBe(1);
+  });
+  it("requires all 56 actually completed sessions, ignoring merely opened ones", () => {
+    expect(completedV2Lessons(Array.from({ length: 55 }, (_, i) => i))).toEqual(
+      [],
+    );
+    expect(completedV2Lessons(Array.from({ length: 56 }, (_, i) => i))).toEqual(
+      [1],
+    );
+    expect(
+      completedV2Lessons(Array.from({ length: 56 }, (_, i) => i + 56)),
+    ).toEqual([2]);
+  });
+  it("merges independently earned evidence from both devices without duplicate counts", () => {
+    expect(
+      mergeActivityEvidence(
+        { reportKeys: ["a", "b"], videoSeconds: 100, days: ["2026-01-01"] },
+        { reportKeys: ["b", "c"], videoSeconds: 50, days: ["2026-01-02"] },
+      ),
+    ).toMatchObject({
+      reportKeys: ["a", "b", "c"],
+      videoSeconds: 100,
+      days: ["2026-01-01", "2026-01-02"],
+      bestDailyRun: 2,
+    });
+  });
+});

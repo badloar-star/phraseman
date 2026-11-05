@@ -1,0 +1,32 @@
+diff --git a/components/friends/FriendsEmptyState.tsx b/components/friends/FriendsEmptyState.tsx
+index 913b0678a..cc9c56218 100644
+--- a/components/friends/FriendsEmptyState.tsx
++++ b/components/friends/FriendsEmptyState.tsx
+@@ -21,7 +21,7 @@ export default function FriendsEmptyState({
+ }: {
+   onAdd: () => void;
+   error?: boolean;
+-  /** «Лесенка приглашений» (владелец 29.10): если передана — стоит на месте значка, заголовка и подсказки; «Добавить друга» остаётся под ней. */
++  /** «Лесенка приглашений»: если передана — полностью заменяет прежнее пустое состояние; ввод кода доступен через её «Как это работает». */
+   ladder?: React.ReactNode;
+ }) {
+   const { lang } = useLang();
+@@ -57,18 +57,6 @@ export default function FriendsEmptyState({
+     return (
+       <View testID="friends-list-empty" style={{ paddingTop: 12, paddingBottom: 8, paddingHorizontal: 24 }}>
+         {ladder}
+-        <FriendsGlassButton
+-          glass={glass}
+-          textScale={textScale}
+-          compact
+-          hug
+-          variant="ghost"
+-          label={add}
+-          onPress={onAdd}
+-          testID="friends-empty-add"
+-          accessibilityLabel={add}
+-          style={{ marginTop: 14, alignSelf: 'center' }}
+-        />
+       </View>
+     );
+   }

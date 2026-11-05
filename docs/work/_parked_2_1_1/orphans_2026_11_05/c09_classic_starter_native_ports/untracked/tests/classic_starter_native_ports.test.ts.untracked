@@ -1,0 +1,271 @@
+import {
+  createClassicStarterNativePlayerPorts,
+  type ProtectedNativeAudioModule,
+} from '../modules/classic-course-v1/classic_starter_native_ports';
+import { CANONICAL_URI, OPAQUE_URI, TOKEN, rawPlayerFixture } from './fixtures/classic_starter_native_ports_fixture';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createStarterAudioPlayer } from '@frozen-c/classic_starter_audio_player';
+import {
+  createStarterReadinessFactory,
+  inspectStarterReadiness,
+} from '@frozen-c/classic_starter_readiness';
+import { cFixture, scope } from '@frozen-c-test/classic_starter_c_fixture';
+
+const certifiedCodes = [
+  'protected_record_capacity_exhausted',
+  'protected_invalid_canonical_local_uri',
+  'protected_registration_setup_rolled_back',
+] as const;
+
+function fixture(result: unknown) {
+  const raw = rawPlayerFixture();
+  const native: ProtectedNativeAudioModule = {
+    registerProtectedLocalSource: jest.fn(() => result) as never,
+    beginDetach: jest.fn(),
+    whenDetached: jest.fn(async () => undefined),
+  };
+  const bridge = createClassicStarterNativePlayerPorts({
+    native,
+    createAudioPlayer: jest.fn(() => raw),
+  });
+  return { raw, native, bridge };
+}
+
+async function frozenCPlaybackFixture() {
+  const frozen = await cFixture();
+  const readiness = createStarterReadinessFactory({
+    content: frozen.ports,
+    audio: frozen.audioPorts,
+  });
+  const ready = await readiness.prepare(frozen.index, scope);
+  const metadata = inspectStarterReadiness(ready.receipt);
+  if (!metadata) throw new Error('frozen_c_readiness_fixture_invalid');
+  return {
+    receipt: ready.receipt,
+    reference: { ...metadata, ...frozen.requirements.rows[0] },
+  };
+}
+
+async function flushUntil(predicate: () => boolean) {
+  for (let index = 0; index < 100; index += 1) {
+    if (predicate()) return;
+    await Promise.resolve();
+  }
+  throw new Error('async_cleanup_did_not_settle');
+}
+
+test('copies a strict registered result and fences before raw teardown', async () => {
+  const x = fixture({ kind: 'registered', nativeToken: TOKEN, opaqueUri: OPAQUE_URI });
+  const symbol = Symbol('reader');
+  const player = await x.bridge.create(
+    { uri: CANONICAL_URI, downloadFirst: false },
+    symbol,
+    jest.fn(),
+    new AbortController().signal,
+  );
+  player.stop();
+  player.remove();
+  await x.bridge.whenDetached(symbol);
+  expect(x.native.beginDetach).toHaveBeenCalledWith(TOKEN);
+  expect(x.raw.pause).toHaveBeenCalledTimes(1);
+  expect(x.raw.remove).toHaveBeenCalledTimes(1);
+  expect(x.native.whenDetached).toHaveBeenCalledWith(TOKEN);
+  expect(x.bridge.inspect().mappings).toBe(0);
+});
+
+test.each(certifiedCodes)('certified %s releases C cleanup without tokenless lifecycle calls', async (code) => {
+  const x = fixture({ kind: 'pre_record_no_native_reader', code });
+  const symbol = Symbol(code);
+  await expect(
+    x.bridge.create(
+      { uri: CANONICAL_URI, downloadFirst: false },
+      symbol,
+      jest.fn(),
+      new AbortController().signal,
+    ),
+  ).rejects.toMatchObject({ code });
+  await expect(x.bridge.whenDetached(symbol)).resolves.toBeUndefined();
+  expect(x.native.beginDetach).not.toHaveBeenCalled();
+  expect(x.native.whenDetached).not.toHaveBeenCalled();
+  expect(x.bridge.inspect().mappings).toBe(0);
+});
+
+test.each([
+  { kind: 'registered', nativeToken: TOKEN, opaqueUri: OPAQUE_URI, extra: true },
+  { kind: 'registered', nativeToken: TOKEN, opaqueUri: `pmclassiclocal://v1/${'B'.repeat(43)}` },
+  { kind: 'pre_record_no_native_reader', code: certifiedCodes[0], nativeToken: TOKEN },
+  { kind: 'pre_record_no_native_reader', code: 'unknown' },
+  { kind: 'other' },
+  null,
+])('malformed result remains unknown quarantine: %p', async (result) => {
+  const x = fixture(result);
+  const symbol = Symbol('malformed');
+  await expect(
+    x.bridge.create(
+      { uri: CANONICAL_URI, downloadFirst: false },
+      symbol,
+      jest.fn(),
+      new AbortController().signal,
+    ),
+  ).rejects.toThrow('protected_registration_result_invalid');
+  await expect(x.bridge.whenDetached(symbol)).rejects.toThrow('native_registration_outcome_unknown');
+  expect(x.bridge.inspect().mappings).toBe(0);
+});
+
+test('matching thrown code is negative evidence and retains unknown quarantine', async () => {
+  const x = fixture({ kind: 'registered', nativeToken: TOKEN, opaqueUri: OPAQUE_URI });
+  (x.native.registerProtectedLocalSource as jest.Mock).mockImplementation(() => {
+    throw Object.assign(new Error('protected_record_capacity_exhausted'), {
+      code: 'protected_record_capacity_exhausted',
+    });
+  });
+  const symbol = Symbol('throw');
+  await expect(
+    x.bridge.create(
+      { uri: CANONICAL_URI, downloadFirst: false },
+      symbol,
+      jest.fn(),
+      new AbortController().signal,
+    ),
+  ).rejects.toThrow('protected_record_capacity_exhausted');
+  await expect(x.bridge.whenDetached(symbol)).rejects.toThrow('native_registration_outcome_unknown');
+});
+
+test('1000 fresh certified capacity rejections restore mapping baseline', async () => {
+  const x = fixture({
+    kind: 'pre_record_no_native_reader',
+    code: 'protected_record_capacity_exhausted',
+  });
+  for (let index = 0; index < 1000; index += 1) {
+    const symbol = Symbol(`reader-${index}`);
+    await expect(
+      x.bridge.create(
+        { uri: CANONICAL_URI, downloadFirst: false },
+        symbol,
+        jest.fn(),
+        new AbortController().signal,
+      ),
+    ).rejects.toMatchObject({ code: 'protected_record_capacity_exhausted' });
+    await x.bridge.whenDetached(symbol);
+    expect(x.bridge.inspect().mappings).toBe(0);
+  }
+  expect(x.native.beginDetach).not.toHaveBeenCalled();
+  expect(x.native.whenDetached).not.toHaveBeenCalled();
+});
+
+test('1000 fresh frozen-C controllers release certified record-cap rejections', async () => {
+  const frozen = await frozenCPlaybackFixture();
+  const nativeCounters = { liveRecords: 2, physicalReaders: 0 };
+  const native: ProtectedNativeAudioModule = {
+    registerProtectedLocalSource: jest.fn(() => ({
+      kind: 'pre_record_no_native_reader',
+      code: 'protected_record_capacity_exhausted',
+    })),
+    beginDetach: jest.fn(),
+    whenDetached: jest.fn(async () => undefined),
+  };
+
+  for (let index = 0; index < 1000; index += 1) {
+    const leaseRelease = jest.fn(async () => undefined);
+    const bridge = createClassicStarterNativePlayerPorts({
+      native,
+      createAudioPlayer: jest.fn(() => rawPlayerFixture()),
+    });
+    const player = createStarterAudioPlayer(
+      {
+        acquire: jest.fn(async (handle: { uri: string }) => ({
+          uri: handle.uri,
+          release: leaseRelease,
+        })),
+        claim: jest.fn(() => ({ isCurrent: () => true, release: jest.fn() })),
+        whenReady: jest.fn(async () => true),
+        create: bridge.create,
+        whenDetached: bridge.whenDetached,
+        schedule: jest.fn(() => () => undefined),
+        isCurrent: jest.fn(() => true),
+      },
+      { maxReaders: 1, startTimeoutMs: 100 },
+    );
+
+    await expect(player.play(frozen.receipt, frozen.reference)).resolves.toEqual({ state: 'corrupt' });
+    await flushUntil(() => player.pendingReaders() === 0);
+    expect(leaseRelease).toHaveBeenCalledTimes(1);
+    expect(bridge.inspect().mappings).toBe(0);
+    expect(nativeCounters).toEqual({ liveRecords: 2, physicalReaders: 0 });
+  }
+
+  expect(native.registerProtectedLocalSource).toHaveBeenCalledTimes(1000);
+  expect(native.beginDetach).not.toHaveBeenCalled();
+  expect(native.whenDetached).not.toHaveBeenCalled();
+});
+
+test('frozen C quarantines an unknown post-handoff registration outcome', async () => {
+  const frozen = await frozenCPlaybackFixture();
+  const leaseRelease = jest.fn(async () => undefined);
+  const native: ProtectedNativeAudioModule = {
+    registerProtectedLocalSource: jest.fn(() => {
+      throw Object.assign(new Error('protected_record_capacity_exhausted'), {
+        code: 'protected_record_capacity_exhausted',
+      });
+    }),
+    beginDetach: jest.fn(),
+    whenDetached: jest.fn(async () => undefined),
+  };
+  const bridge = createClassicStarterNativePlayerPorts({
+    native,
+    createAudioPlayer: jest.fn(() => rawPlayerFixture()),
+  });
+  const player = createStarterAudioPlayer(
+    {
+      acquire: jest.fn(async (handle: { uri: string }) => ({ uri: handle.uri, release: leaseRelease })),
+      claim: jest.fn(() => ({ isCurrent: () => true, release: jest.fn() })),
+      whenReady: jest.fn(async () => true),
+      create: bridge.create,
+      whenDetached: bridge.whenDetached,
+      schedule: jest.fn(() => () => undefined),
+      isCurrent: jest.fn(() => true),
+    },
+    { maxReaders: 1, startTimeoutMs: 100 },
+  );
+
+  await expect(player.play(frozen.receipt, frozen.reference)).resolves.toEqual({ state: 'corrupt' });
+  await flushUntil(() => bridge.inspect().mappings === 0);
+  expect(player.pendingReaders()).toBe(1);
+  expect(leaseRelease).not.toHaveBeenCalled();
+  expect(native.beginDetach).not.toHaveBeenCalled();
+  expect(native.whenDetached).not.toHaveBeenCalled();
+});
+
+test('Android protected reader source keeps capacity and close proof in native ownership', () => {
+  const audioRoot = path.join(
+    process.cwd(),
+    'node_modules/expo-audio/android/src/main/java/expo/modules/audio',
+  );
+  const registry = fs.readFileSync(path.join(audioRoot, 'ReaderDetachRegistry.kt'), 'utf8');
+  const tracking = fs.readFileSync(path.join(audioRoot, 'TrackingDataSource.kt'), 'utf8');
+  const module = fs.readFileSync(path.join(audioRoot, 'AudioModule.kt'), 'utf8');
+  expect(registry).toContain('MAX_PROTECTED_LIVE_RECORDS = 2');
+  expect(registry).toContain('MAX_PROTECTED_PHYSICAL_READERS = 1');
+  expect(registry).toContain('FAILED_OPEN');
+  expect(tracking).toContain('registry.beginOpen(nativeToken)');
+  expect(tracking).toContain('registry.readerClosed(nativeToken, readerId)');
+  expect(module).toContain('Function("registerProtectedLocalSource")');
+  expect(module).toContain('AsyncFunction("whenDetached")');
+  expect(module).toContain('TrackingDataSource.Factory');
+});
+
+test('iOS protected reader source owns opaque loading and explicit file close', () => {
+  const audioRoot = path.join(process.cwd(), 'node_modules/expo-audio/ios');
+  const reader = fs.readFileSync(path.join(audioRoot, 'ScopedLocalAudioReader.swift'), 'utf8');
+  const module = fs.readFileSync(path.join(audioRoot, 'AudioModule.swift'), 'utf8');
+  const utils = fs.readFileSync(path.join(audioRoot, 'AudioUtils.swift'), 'utf8');
+  const player = fs.readFileSync(path.join(audioRoot, 'AudioPlayer.swift'), 'utf8');
+  expect(reader).toContain('AVAssetResourceLoaderDelegate');
+  expect(reader).toContain('FileHandle(forReadingFrom:');
+  expect(reader).toContain('try fileHandle.close()');
+  expect(reader).toContain('MAX_PROTECTED_LIVE_RECORDS = 2');
+  expect(module).toContain('Function("registerProtectedLocalSource")');
+  expect(utils).toContain('pmclassiclocal');
+  expect(player).toContain('scopedLocalAudioReader');
+});

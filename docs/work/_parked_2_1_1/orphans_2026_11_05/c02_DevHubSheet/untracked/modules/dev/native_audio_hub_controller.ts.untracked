@@ -1,0 +1,62 @@
+import type { LocalMicSession, LocalMicSmokeStopResult } from './native_audio_safe_fixture';
+export type NativeAudioHubPlayer = Readonly<{ stop(): void }>;
+export type NativeAudioHubDependencies = Readonly<{
+  play(): Promise<NativeAudioHubPlayer | null>;
+  start(signal: AbortSignal): Promise<LocalMicSession | null>;
+}>;
+
+export function createNativeAudioHubController(deps: NativeAudioHubDependencies) {
+  let player: NativeAudioHubPlayer | null = null;
+  let session: LocalMicSession | null = null;
+  let playGeneration = 0;
+  let playPending = false;
+  let pending: AbortController | null = null;
+  let retiring: Promise<LocalMicSmokeStopResult> | null = null;
+  const stopPlayback = () => {
+    ++playGeneration; playPending = false;
+    const old = player; player = null; old?.stop();
+  };
+  const retire = (discard: boolean): Promise<LocalMicSmokeStopResult> => {
+    pending?.abort(); pending = null;
+    if (retiring) return retiring;
+    const old = session; session = null;
+    if (!old) return Promise.resolve('no_wav');
+    retiring = (discard ? old.dispose() : old.stop()).finally(() => { retiring = null; });
+    return retiring;
+  };
+  return {
+    async play() {
+      if (player || playPending) return false;
+      playPending = true; const generation = ++playGeneration;
+      try {
+        const result = await deps.play();
+        if (generation !== playGeneration) { result?.stop(); return false; }
+        player = result; return Boolean(result);
+      } catch { return false; }
+      finally { if (generation === playGeneration) playPending = false; }
+    },
+    async startMic() {
+      if (session || pending || retiring) return false;
+      const token = new AbortController(); pending = token;
+      try {
+        const result = await deps.start(token.signal);
+        if (token.signal.aborted) { await result?.dispose(); return false; }
+        session = result;
+        if (result) void result.settled.then(() => { if (session === result) session = null; });
+        return Boolean(result);
+      } catch { return false; }
+      finally { if (pending === token) pending = null; }
+    },
+    stopPlayback,
+    stopMic: () => retire(false),
+    close() { stopPlayback(); return retire(true); },
+  };
+}
+
+export function bindNativeAudioHubLifecycle(
+  source: { addEventListener(event: 'change', listener: (state: string) => void): { remove(): void } },
+  controller: { close(): Promise<unknown> },
+) {
+  const listener = source.addEventListener('change', state => { if (state !== 'active') void controller.close(); });
+  return () => { listener.remove(); void controller.close(); };
+}

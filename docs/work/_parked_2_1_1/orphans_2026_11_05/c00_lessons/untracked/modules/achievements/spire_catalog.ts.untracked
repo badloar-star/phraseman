@@ -1,0 +1,16 @@
+import type { AchievementDefinitionV2 } from '../../app/achievement_catalog_v2';
+import { SPIRE_TIER_NAMES } from '../spire/tier_names';
+import { spireAchievementId } from '../spire/achievement_progress';
+
+/** One permanent statuette per tower; promotion is a stage, never a second award. */
+export const SPIRE_ACHIEVEMENTS: readonly AchievementDefinitionV2[] = SPIRE_TIER_NAMES.ru.map((name, tier) => ({
+  id: spireAchievementId(tier)!, icon: '◇', category: 'special', foundationGroup: 'spire',
+  nameRu: `Вершина: ${name}`, nameUk: `Вершина: ${SPIRE_TIER_NAMES.uk[tier]}`,
+  nameEs: `Cumbre: ${SPIRE_TIER_NAMES.es[tier]}`,
+  conditionRu: `Пройти все 15 этажей башни «${name}» в Пике.`,
+  conditionUk: `Пройти всі 15 поверхів вежі «${SPIRE_TIER_NAMES.uk[tier]}» у Піку.`,
+  conditionEs: `Completa los 15 pisos de la torre ${SPIRE_TIER_NAMES.es[tier]} en Pico.`,
+  descRu: tier === 11 ? 'Высшая вершина Пика. Статуэтка остаётся в коллекции навсегда.' : 'Вершина открывает статуэтку. Подтверждённое повышение из этой башни улучшает её.',
+  descUk: tier === 11 ? 'Найвища вершина Піку. Статуетка залишається в колекції назавжди.' : 'Вершина відкриває статуетку. Підтверджене підвищення з цієї вежі покращує її.',
+  descEs: tier === 11 ? 'La cumbre más alta de Pico. La estatuilla permanece en tu colección.' : 'La cumbre desbloquea la estatuilla. Un ascenso confirmado desde esta torre la mejora.',
+}));

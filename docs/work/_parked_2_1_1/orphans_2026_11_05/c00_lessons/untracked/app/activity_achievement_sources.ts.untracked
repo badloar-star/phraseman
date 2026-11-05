@@ -1,0 +1,176 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from "./account_generation";
+import { DebugLogger } from "./debug-logger";
+import { recordActivityAchievementFact } from "./achievements";
+import {
+  lessonBonusGrantedKey,
+  lessonProgressKey,
+} from "./target_storage_keys";
+import type { TodayTasksDayState } from "../modules/today-tasks/today_tasks_core";
+
+export async function recordSavedDailyAchievement(
+  state: TodayTasksDayState,
+  token: AccountGenerationToken,
+): Promise<boolean> {
+  if (state.tasks.length === 0 || !state.tasks.every((task) => task.done))
+    return true;
+  if (token.stableId !== state.ownerKey || !isCurrentAccountGeneration(token))
+    return false;
+  return recordActivityAchievementFact(
+    { kind: "daily", dayKey: state.dayKey },
+    token,
+  );
+}
+
+export async function reconcileLegacyCourseAchievements(
+  token: AccountGenerationToken,
+): Promise<void> {
+  if (!token.stableId || !isCurrentAccountGeneration(token)) return;
+  for (const target of ["en", "fr", "es", "de", "it"]) {
+    const ids = Array.from({ length: 32 }, (_, i) => i + 1);
+    const keys = ids.flatMap((id) => [
+      lessonBonusGrantedKey(id, target),
+      lessonProgressKey(id, target),
+    ]);
+    const values = new Map(await AsyncStorage.multiGet(keys));
+    if (!isCurrentAccountGeneration(token)) return;
+    const passed = ids.filter((id) => {
+      if (values.get(lessonBonusGrantedKey(id, target)) === "1") return true;
+      try {
+        const value: unknown = JSON.parse(
+          values.get(lessonProgressKey(id, target)) ?? "null",
+        );
+        return (
+          Array.isArray(value) &&
+          value.filter((v) => v === "correct" || v === "replay_correct")
+            .length >= 45
+        );
+      } catch {
+        return false;
+      }
+    });
+    if (passed.length === 32) {
+      await recordActivityAchievementFact(
+        { kind: "legacy", passedLessonIds: passed },
+        token,
+      );
+      return;
+    }
+  }
+}
+
+export async function reconcileV2CourseAchievements(
+  token: AccountGenerationToken,
+): Promise<void> {
+  if (!token.stableId || !isCurrentAccountGeneration(token)) return;
+  const [course, masks, sync, scope] = await Promise.all([
+    import("../modules/learning-v2/progress/course_local_progress_v1"),
+    import("../modules/learning-v2/progress/course_progress_masks_v1"),
+    import("../modules/learning-v2/progress/progress_sync_v1"),
+    import("../modules/learning-v2/progress/progress_account_scope"),
+  ]);
+  const hash = scope.deriveLocalOfflineProgressAccountScopeHash(token.stableId);
+  for (const language of ["en", "es"] as const) {
+    try {
+      const base = [
+        course.LEARNING_V2_COURSE_LOCAL_PROGRESS_STORAGE_PREFIX_V1 + hash,
+        course.LEARNING_V2_COURSE_LOCAL_MASKS_STORAGE_PREFIX_V1 + hash,
+        masks.LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1,
+        sync.LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
+      ];
+      const keys = base.map((key) =>
+        course.learningV2LanguageScopedStorageKeyV1(key, language),
+      );
+      const pairs = await AsyncStorage.multiGet(keys);
+      if (!isCurrentAccountGeneration(token)) return;
+      const raw = pairs.map((pair) => pair[1]);
+      const completed = new Set<number>();
+      for (const index of masks.parseCourseMasksV1(raw[1], 1792).completed)
+        completed.add(index);
+      for (const index of masks.parseCourseMasksV1(raw[2], 1792).completed)
+        completed.add(index);
+      let chain = sync.parseCourseProgressSyncCountV1(raw[3]);
+      if (raw[0]) {
+        const local = course.parseLearningV2CourseLocalProgressV1(
+          JSON.parse(raw[0]),
+        );
+        if (local.accountScopeHash === hash)
+          chain = Math.max(chain, local.completedSessionIds.length);
+      }
+      for (let i = 0; i < Math.min(chain, 1792); i++) completed.add(i);
+      if (completed.size >= 56)
+        await recordActivityAchievementFact(
+          { kind: "v2", language, completedIndices: [...completed] },
+          token,
+        );
+    } catch (error) {
+      DebugLogger.error("achievements:v2_recovery", error, "warning");
+    }
+  }
+}
+
+export async function reconcileActivityAchievements(
+  token: AccountGenerationToken,
+): Promise<void> {
+  if (!token.stableId || !isCurrentAccountGeneration(token)) return;
+  await recordActivityAchievementFact({ kind: "reconcile" }, token);
+  await reconcileLegacyCourseAchievements(token);
+  await reconcileV2CourseAchievements(token);
+  const [{ parseTodayTasksDayState }, { readTodayWeek }] = await Promise.all([
+    import("../modules/today-tasks/today_tasks_core"),
+    import("../modules/today-tasks/today_tasks_week"),
+  ]);
+  const raw = await AsyncStorage.getItem(`today_tasks_v1:${token.stableId}`);
+  if (!isCurrentAccountGeneration(token)) return;
+  const day = parseTodayTasksDayState(raw);
+  if (day) await recordSavedDailyAchievement(day, token);
+  const week = await readTodayWeek(token.stableId);
+  if (!isCurrentAccountGeneration(token)) return;
+  for (const row of week) {
+    if (
+      row.targets.some((n) => n > 0) &&
+      row.targets.every((n, i) => n === 0 || row.progress[i] >= n)
+    )
+      await recordActivityAchievementFact(
+        { kind: "daily", dayKey: row.dayKey },
+        token,
+      );
+  }
+  const { peekPremiumThemeEntitlements } =
+    await import("./premium_theme_entitlements");
+  const snapshot = peekPremiumThemeEntitlements();
+  const video = snapshot.progressByCondition.video_200_hours;
+  if (
+    snapshot.ownerStableId === token.stableId &&
+    snapshot.ready &&
+    video?.unit === "hours" &&
+    video.target === 200
+  )
+    await recordActivityAchievementFact(
+      { kind: "video", totalSeconds: video.current * 3600 },
+      token,
+    );
+}
+
+/** Source adapters call this without holding storage_mutex or an account-transition lock. */
+export function deliverVideoHours(owner: string | null, hours: number): void {
+  const token = captureAccountGeneration();
+  if (
+    !owner ||
+    owner !== token.stableId ||
+    !Number.isSafeInteger(hours) ||
+    hours < 0
+  )
+    return;
+  void recordActivityAchievementFact(
+    { kind: "video", totalSeconds: hours * 3600 },
+    token,
+  );
+}
+export default function __RouteShim() {
+  return null;
+}

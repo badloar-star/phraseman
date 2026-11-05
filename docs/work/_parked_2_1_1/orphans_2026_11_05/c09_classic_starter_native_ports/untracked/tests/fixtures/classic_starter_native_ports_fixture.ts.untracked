@@ -1,0 +1,27 @@
+export const TOKEN = 'A'.repeat(43);
+export const OPAQUE_URI = `pmclassiclocal://v1/${TOKEN}`;
+export const CANONICAL_URI = 'file:///data/user/0/app/files/classic/test.m4a';
+
+type PlaybackStatus = Readonly<{
+  isLoaded: boolean;
+  playing: boolean;
+  didJustFinish?: boolean;
+  error?: boolean;
+}>;
+
+export function rawPlayerFixture() {
+  const listeners: Array<(status: PlaybackStatus) => void> = [];
+  return {
+    play: jest.fn(),
+    pause: jest.fn(),
+    remove: jest.fn(),
+    release: jest.fn(),
+    addListener: jest.fn((_event: string, listener: (status: PlaybackStatus) => void) => {
+      listeners.push(listener);
+      return { remove: jest.fn() };
+    }),
+    emit(status: PlaybackStatus) {
+      listeners.forEach((listener) => listener(status));
+    },
+  };
+}

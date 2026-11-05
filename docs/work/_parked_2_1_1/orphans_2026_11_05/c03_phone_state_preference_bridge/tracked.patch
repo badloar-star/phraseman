@@ -1,0 +1,215 @@
+diff --git a/app/phone_state_preference_bridge.ts b/app/phone_state_preference_bridge.ts
+index e9eb03ef0..b93645a09 100644
+--- a/app/phone_state_preference_bridge.ts
++++ b/app/phone_state_preference_bridge.ts
+@@ -15,12 +15,15 @@ export function configurePhoneStatePreferenceBridge(next: Runtime | null): void
+   runtime = next;
+ }
+ 
+-export async function persistPortablePreference(key: string, value: string): Promise<void> {
++export async function persistPortablePreference(key: string, value: string, options?: Readonly<{ requireJournal?: boolean; expectedStableUid?: string }>): Promise<void> {
++  const active = runtime;
++  if (options?.requireJournal && (portableOwnerForKey(key) !== 'preferences' || !active || (options.expectedStableUid && active.scope.stableUid !== options.expectedStableUid))) {
++    throw new Error('preference_journal_unavailable_for_owner');
++  }
+   if (portableOwnerForKey(key) !== 'preferences') {
+     await AsyncStorage.setItem(key, value);
+     return;
+   }
+-  const active = runtime;
+   if (active) {
+     const operation: PendingPersonalOperation = Object.freeze({
+       schemaVersion: 1,
+@@ -34,10 +37,14 @@ export async function persistPortablePreference(key: string, value: string): Pro
+       exactResult: Object.freeze({ value }),
+       createdAtMs: Date.now(),
+     });
+-    await active.store.commit(operation, { idempotencyKey: `preference:${Crypto.randomUUID()}` })
+-      .catch(noteSwallowedAs('phone_state_preference_bridge:promise_1', undefined));
++    const write = active.store.commit(operation, { idempotencyKey: `preference:${Crypto.randomUUID()}` });
++    if (options?.requireJournal) await write;
++    else await write.catch(noteSwallowedAs('phone_state_preference_bridge:promise_1', undefined));
+   }
+-  await AsyncStorage.setItem(key, value);
++  if (options?.requireJournal) {
++    // The journal is authoritative; a failed legacy mirror must not undo a committed save.
++    await AsyncStorage.setItem(key, value).catch(noteSwallowedAs('phone_state_preference_bridge:mirror_after_commit', undefined));
++  } else await AsyncStorage.setItem(key, value);
+ }
+ 
+ export async function readPortablePreference(key: string): Promise<string | null> {
+diff --git a/app/phone_state_progress_cutover.ts b/app/phone_state_progress_cutover.ts
+index 102a717c3..242438458 100644
+--- a/app/phone_state_progress_cutover.ts
++++ b/app/phone_state_progress_cutover.ts
+@@ -3,11 +3,48 @@ import type { PersonalProgressProjection } from '../modules/phone-state/domains/
+ import { assignPhoneStateCohort, getRemoteBool, getRemoteNumber } from './remote_flags';
+ import { publishPersonalProgressProjection } from './personal_progress_store';
+ import { isPhoneStateHealthCutoverAllowed } from './phone_state_health';
++import type { AccountGenerationToken } from './account_generation';
+ 
+ let progressApi: PersonalProgressApi | null = null;
++type PublicationScope = Readonly<{token:AccountGenerationToken;isCurrent():boolean}>;
++type PendingPublication = {api:PersonalProgressApi;stableUid:string;scope:PublicationScope;inFlight:boolean};
++let pendingPublication:PendingPublication|null=null;
++
++const publicationCurrent = (scope:PublicationScope):boolean => {try{return scope.isCurrent();}catch{return false;}};
++const reportPublicationFailure = ():void => {console.warn('[PROGRESS-CUTOVER] durable commit retained; view publication failed, refresh pending');};
++
++function publishCommittedProjection(api:PersonalProgressApi,stableUid:string,projection:PersonalProgressProjection,scope:PublicationScope|null):void{
++  if(progressApi!==api)return;
++  try{
++    publishPersonalProgressProjection(projection,'phone_state');
++    if(pendingPublication?.api===api&&pendingPublication.stableUid===stableUid)pendingPublication=null;
++  }catch{
++    if(scope&&publicationCurrent(scope)&&progressApi===api)pendingPublication={api,stableUid,scope,inFlight:false};
++    reportPublicationFailure();
++  }
++}
++
++/** Optional view refresh only. Durable projection is already committed; never
++ * repeat its command or wait for this refresh on completion/recovery success. */
++export async function retryPendingPhoneStateProgressPublication(stableUid:string,token:AccountGenerationToken):Promise<boolean>{
++  const pending=pendingPublication;
++  if(!pending||pending.inFlight||pending.stableUid!==stableUid||pending.scope.token.generation!==token.generation||pending.scope.token.stableId!==token.stableId||pending.scope.token.phase!==token.phase||progressApi!==pending.api||!publicationCurrent(pending.scope))return false;
++  pending.inFlight=true;
++  try{
++    const projection=await pending.api.read();
++    if(pendingPublication!==pending||progressApi!==pending.api||!publicationCurrent(pending.scope))return false;
++    publishPersonalProgressProjection(projection,'phone_state');
++    if(pendingPublication===pending)pendingPublication=null;
++    return true;
++  }catch{
++    if(pendingPublication===pending&&progressApi===pending.api&&publicationCurrent(pending.scope))reportPublicationFailure();
++    return false;
++  }finally{pending.inFlight=false;}
++}
+ 
+ export function configurePhoneStateProgressCutover(api: PersonalProgressApi | null): void {
+   progressApi = api;
++  pendingPublication = null;
+ }
+ 
+ export function getPhoneStateProgressApi(): PersonalProgressApi | null {
+@@ -32,21 +69,32 @@ export async function trySubmitProgressThroughPhoneState(
+     type: string;
+     payload: Readonly<Record<string, unknown>>;
+   }>,
++  options?: Readonly<{ requireDurableCommit: true; originalCreatedAtMs: number; publicationScope?: PublicationScope }>,
+ ): Promise<PersonalProgressProjection | null> {
++  if(options && (input.type!=='lesson_complete' || input.payload.studyTarget!=='en' || !Number.isSafeInteger(options.originalCreatedAtMs) || options.originalCreatedAtMs<0))throw Error('phone_state_progress_input_invalid');
++  const originalCreatedAtMs=options?.originalCreatedAtMs;
++  const publicationScope=options?.publicationScope?Object.freeze({...options.publicationScope}):null;
++  if(publicationScope&&!publicationCurrent(publicationScope))throw Error('phone_state_progress_owner_stale');
+   const api = progressApi;
+   if (!api || !isPhoneStateCutoverEnabled(stableUid) || input.type === 'wager_win') return null;
+   try {
+     if (input.type === 'lesson_complete') {
+       const lessonId = input.payload.lessonId ?? input.payload.lessonNumber;
+-      if (typeof lessonId !== 'string' && typeof lessonId !== 'number') return null;
++      if (typeof lessonId !== 'string' && typeof lessonId !== 'number') {
++        if(options?.requireDurableCommit)throw Error('phone_state_progress_input_invalid');
++        return null;
++      }
+       const bestCandidate = Number(input.payload.bestPct ?? input.payload.bestScore);
+       const bestPct = Number.isFinite(bestCandidate) ? bestCandidate : undefined;
+       const projection = await api.completeLesson({
+         eventId: input.eventId,
+         lessonId: String(lessonId),
+         ...(bestPct === undefined ? {} : { bestPct }),
+-      });
+-      publishPersonalProgressProjection(projection, 'phone_state');
++      }, originalCreatedAtMs===undefined ? undefined : {originalCreatedAtMs});
++      if(options?.requireDurableCommit){
++        if(publicationScope&&!publicationCurrent(publicationScope))throw Error('phone_state_progress_owner_stale');
++        publishCommittedProjection(api,stableUid!,projection,publicationScope);
++      }else publishPersonalProgressProjection(projection, 'phone_state');
+       return projection;
+     }
+     if (input.type === 'exam_complete') {
+@@ -61,6 +109,7 @@ export async function trySubmitProgressThroughPhoneState(
+     }
+     return api.read();
+   } catch (error) {
++    if(options?.requireDurableCommit)throw error;
+     // зачем (PM-215 preflight, 03.10): немой catch молча переключал прогресс на сетевую ветку —
+     // причина отказа phone-state обязана быть в журнале. Поведение прежнее (null → сетевая ветка).
+     console.warn('[PROGRESS-CUTOVER] phone_state submit failed — fallback to network path', String((error as Error)?.message ?? error).slice(0, 160));
+diff --git a/app/phone_state_runtime.ts b/app/phone_state_runtime.ts
+index c08413303..1a139e1b5 100644
+--- a/app/phone_state_runtime.ts
++++ b/app/phone_state_runtime.ts
+@@ -38,6 +38,7 @@ import { configurePhoneStateLearningV2Bridge } from '../modules/phone-state/lear
+ import {
+   createPersonalProgressApi,
+   type PersonalProgressJournal,
++  type PersonalProgressCommitMetadata,
+ } from '../modules/phone-state/domains/progress_api';
+ import {
+   emptyPersonalProgressState,
+@@ -209,7 +210,8 @@ function progressJournal(session: RuntimeSession): PersonalProgressJournal {
+     return candidate?.projection ?? emptyPersonalProgressState().projection;
+   };
+   return Object.freeze({
+-    commit: async (command: PersonalProgressCommand) => {
++    commit: async (command: PersonalProgressCommand, metadata?: PersonalProgressCommitMetadata) => {
++      if(metadata && (Object.keys(metadata).length!==1 || !Number.isSafeInteger(metadata.originalCreatedAtMs) || metadata.originalCreatedAtMs<0))throw Error('phone_state_progress_input_invalid');
+       const pending: PendingPersonalOperation = Object.freeze({
+         schemaVersion: 1,
+         stableUid: session.context.stableUid,
+@@ -220,7 +222,7 @@ function progressJournal(session: RuntimeSession): PersonalProgressJournal {
+         entityId: command.eventId,
+         payload: command,
+         exactResult: 'exactResult' in command ? command.exactResult : Object.freeze({ imported: true }),
+-        createdAtMs: Date.now(),
++        createdAtMs: metadata ? metadata.originalCreatedAtMs : Date.now(),
+       });
+       const result = await session.store.commit(pending, { idempotencyKey: command.eventId });
+       if (command.kind === 'complete_lesson' || command.kind === 'complete_exam') {
+diff --git a/modules/phone-state/domains/progress_api.ts b/modules/phone-state/domains/progress_api.ts
+index 00620a1bd..009f66b43 100644
+--- a/modules/phone-state/domains/progress_api.ts
++++ b/modules/phone-state/domains/progress_api.ts
+@@ -4,19 +4,20 @@ import type {
+ } from './progress_projection';
+ 
+ export interface PersonalProgressJournal {
+-  commit(command: PersonalProgressCommand): Promise<Readonly<{
++  commit(command: PersonalProgressCommand, metadata?: PersonalProgressCommitMetadata): Promise<Readonly<{
+     projection: PersonalProgressProjection;
+     duplicate: boolean;
+   }>>;
+   read(): Promise<PersonalProgressProjection>;
+ }
++export type PersonalProgressCommitMetadata = Readonly<{ originalCreatedAtMs: number }>;
+ 
+ export interface PersonalProgressApi {
+   completeLesson(input: Readonly<{
+     eventId: string;
+     lessonId: string;
+     bestPct?: number;
+-  }>): Promise<PersonalProgressProjection>;
++  }>, metadata?: PersonalProgressCommitMetadata): Promise<PersonalProgressProjection>;
+   completeExam(input: Readonly<{
+     eventId: string;
+     examId: string;
+@@ -43,8 +44,17 @@ export function createPersonalProgressApi(
+     }
+   };
+ 
+-  const completeLesson: PersonalProgressApi['completeLesson'] = async (input) => {
+-    const committed = await options.journal.commit(Object.freeze({ kind: 'complete_lesson', ...input }));
++  const completeLesson: PersonalProgressApi['completeLesson'] = async (input, metadata) => {
++    let capturedMetadata: PersonalProgressCommitMetadata | undefined;
++    if (metadata) {
++      if (Object.keys(metadata).length !== 1) throw Error('phone_state_progress_input_invalid');
++      const originalCreatedAtMs = metadata.originalCreatedAtMs;
++      if (!Number.isSafeInteger(originalCreatedAtMs) || originalCreatedAtMs < 0) {
++        throw Error('phone_state_progress_input_invalid');
++      }
++      capturedMetadata = Object.freeze({ originalCreatedAtMs });
++    }
++    const committed = await options.journal.commit(Object.freeze({ kind: 'complete_lesson', ...input }),capturedMetadata);
+     await mirror(committed.projection);
+     return committed.projection;
+   };

@@ -1,0 +1,243 @@
+diff --git a/components/spire/scene/SpireScene.tsx b/components/spire/scene/SpireScene.tsx
+index 25008a016..9a99428f0 100644
+--- a/components/spire/scene/SpireScene.tsx
++++ b/components/spire/scene/SpireScene.tsx
+@@ -10,10 +10,9 @@
+ // башня — SpireTower в режиме «сцена», тексты — spire_scene_model. Кегли — шкала 16/13 (D145), заголовки 40/26 — как в эталоне V2.
+ // ═══════════════════════════════════════════════════════════════════════════
+ import Ionicons from '@expo/vector-icons/Ionicons';
+-import { LinearGradient } from 'expo-linear-gradient';
+ import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+-import Svg, { Circle, Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
++import { StyleSheet, Text, View, useWindowDimensions, PixelRatio } from 'react-native';
++import Svg, { Circle } from 'react-native-svg';
+ 
+ import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
+ import type { Lang } from '../../../constants/i18n';
+@@ -24,6 +23,8 @@ import type { PlayerInfo } from '../../PlayerProfileModal';
+ import { useScaledTextStyles } from '../../../hooks/useLineScale';
+ import { useTheme } from '../../ThemeContext';
+ import { homeSceneTokensForTheme } from '../../home/v2/scene/home_scene_tokens';
++import { isSkyPalette, sceneBottomHex, scenePaletteCached, sceneTopHex } from '../../scene/scene_palette';
++import { logSceneEdge } from '../../home/v2/scene/scene_theme_log';
+ import SpireTower from '../SpireTower';
+ import { spireGameText } from '../spire_game_strings';
+ import type { SpireMemberRow, SpireRankByView } from '../spire_room_types';
+@@ -69,6 +70,7 @@ const DEFAULT_DOCK_CLEAR = 150;
+ const LOG_TAP = '[SPIRE-TAP]';
+ 
+ type Props = Readonly<{
++  recordSlot?: (compact: boolean) => React.ReactNode;
+   lang: Lang;
+   decision: SpireSceneDecision;
+   copy: SpireSceneCopy;
+@@ -83,7 +85,6 @@ type Props = Readonly<{
+   onSelect: (floor: number) => void;
+   rivalsByFloor: ReadonlyMap<number, readonly SpireRival[]>;
+   tier: number | null;
+-  onTouchActive?: (active: boolean) => void;
+   onOpenAll: () => void;
+   /** Только dev-вход: «6:40» из моков вместо живого отсчёта энергии. */
+   energyTime?: string;
+@@ -105,9 +106,16 @@ function SpireScene(p: Props) {
+   const { width, height: windowH, fontScale } = useWindowDimensions();
+   const insets = useStableSafeAreaInsets();
+   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+-  const evening = p.decision.state === 'eve';
+   // зачем: владелец 22.10 — сцена всегда как утверждённый эталон (токены уровня «Максимум» при любом положении ползунка)
+-  const tokens = useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening), [liquidGlassThemeId, liquidGlassAppearance, evening]);
++  // зачем (вердикт владельца 29.10, scenePalette): цвет фона Пика — из единой функции сцены (тёмное «Глубокое небо», светлое «А»); вечер Пика — как день, без красного света и углей (вечер владелец выбрал только для Главной).
++  // Верх/низ/свет для шапки, наряда башни и пьедестала берутся из палитры на эталонной канве; сам фон рисуется ниже по реальному размеру (SpireSceneBackdrop → SceneBackdrop).
++  const tokens = useMemo(() => {
++    const base = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, false);
++    const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'peak', 1080, 1950, 2.625);
++    const lc = isSkyPalette(pal) ? pal.raw.lightC : pal.palette.lightC;
++    const la = isSkyPalette(pal) ? pal.sun.a : pal.palette.a1;
++    return { ...base, sceneTop: sceneTopHex(pal), sceneBottom: sceneBottomHex(pal), sceneGlow: `rgba(${Math.round(lc[0]!)},${Math.round(lc[1]!)},${Math.round(lc[2]!)},${la})`, scrim: false };
++  }, [liquidGlassThemeId, liquidGlassAppearance]);
+   const off = p.decision.offlineLine;
+   const searching = p.decision.state === 'search';
+   const guardChars = useMemo(() => spireText(p.lang, 'guard').toUpperCase().length, [p.lang]);
+@@ -123,7 +131,7 @@ function SpireScene(p: Props) {
+     const cut = full.indexOf('. ');
+     return cut > 0 ? { bold: full.slice(0, cut + 1), rest: full.slice(cut + 1) } : { bold: full, rest: '' };
+   }, [p.lang]);
+-  const glow = evening ? tokens.eveningGlow : tokens.sceneGlow;
++  const glow = tokens.sceneGlow;
+   // зачем (Сверка 22.10 по 7961dde6a: «звёзды белые в обеих темах»): звёзды — оттенок свечения темы с четвертью белого, а не почти белые
+   const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.25), [tokens.sceneGlow]);
+   // зачем (владелец 22.10: «цвета строго оттенками текущей темы»; сцена всегда на «Максимуме»): акцент темы — для наряда башни
+@@ -145,7 +153,15 @@ function SpireScene(p: Props) {
+   useEffect(() => {
+     console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_scene_bleed', headerInset, measuredBleed, bleed, source: headerInset > 0 ? 'header_overlay' : 'measure' })); // guard-ok: одна строка на смену источника/значения
+   }, [headerInset, measuredBleed, bleed]);
+-  const backdrop = useMemo<SpireSceneBackdropSpec>(() => ({ top: tokens.sceneTop, bottom: tokens.sceneBottom, glow, evening, bleed, sceneH: frame.sceneH }), [tokens.sceneTop, tokens.sceneBottom, glow, evening, bleed, frame.sceneH]);
++  const dpr = PixelRatio.get();
++  const palette = useMemo(() => scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'peak', width * dpr, (bleed + frame.sceneH) * dpr, dpr), [liquidGlassThemeId, liquidGlassAppearance, width, dpr, bleed, frame.sceneH]);
++  useEffect(() => {
++    console.log('[SCENE-THEME]', JSON.stringify({ screen: 'peak', mode: palette.mode, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, w: Math.round(width), h: Math.round(bleed + frame.sceneH), top: sceneTopHex(palette), bottom: sceneBottomHex(palette) })); // guard-ok: одна строка на смену темы/размера
++  }, [palette, liquidGlassThemeId, liquidGlassAppearance, width, bleed, frame.sceneH]);
++  useEffect(() => {
++    logSceneEdge('peak', { sceneH: Math.round(frame.sceneH), bleed: Math.round(bleed), sceneW: Math.round(width), windowH: Math.round(windowH), shareOfWindow: Math.round((frame.sceneH / windowH) * 100), bottomRadius: 28, fadeToBg: false, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: palette.mode, source: 'scenePalette' });
++  }, [frame.sceneH, bleed, width, windowH, liquidGlassThemeId, liquidGlassAppearance, palette.mode]);
++  const backdrop = useMemo<SpireSceneBackdropSpec>(() => ({ top: tokens.sceneTop, bottom: tokens.sceneBottom, glow, evening: false, bleed, sceneH: frame.sceneH, palette }), [tokens.sceneTop, tokens.sceneBottom, glow, bleed, frame.sceneH, palette]);
+   useEffect(() => {
+     if (!p.headerTint) return undefined;
+     setSpireSceneBackdrop(backdrop);
+@@ -207,20 +223,10 @@ function SpireScene(p: Props) {
+         }}
+       >
+         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
+-          <Defs>
+-            {evening ? (
+-              <RadialGradient id="spireSceneEmber" cx="50%" cy="50%" r="50%">
+-                <Stop offset="0" stopColor={tokens.sceneEmber} stopOpacity="1" />
+-                <Stop offset="0.68" stopColor={tokens.sceneEmber} stopOpacity="0" />
+-              </RadialGradient>
+-            ) : null}
+-          </Defs>
+           {/* зачем (владелец 22.10: «фон за башней — чтобы не отличался»; «звёздочки по всей плоскости до краёв»): ореола за башней нет — фон
+               единый; звёзды — по всей сцене, светлый оттенок свечения темы */}
+-          {SCENE_STARS.map(([x, y, r, o], i) => <Circle key={`st${i}` /* guard-ok: постоянный список звёзд */} cx={x * width} cy={y * frame.sceneH} r={r} fill={starColor} opacity={o} />)}
+-          {evening ? <Rect x={-40} y={frame.sceneH - 200} width={260} height={260} fill="url(#spireSceneEmber)" /> : null}
++          {isSkyPalette(palette) ? null : SCENE_STARS.map(([x, y, r, o], i) => <Circle key={`st${i}` /* guard-ok: постоянный список звёзд */} cx={x * width} cy={y * frame.sceneH} r={r} fill={starColor} opacity={o} />)}
+         </Svg>
+-        {tokens.scrim ? <LinearGradient pointerEvents="none" colors={[SPIRE_SCENE_INK.clear, SPIRE_SCENE_INK.scrim]} style={s.scrim} /> : null}
+         <View style={[s.tower, { width: frame.towerW, left: frame.towerLeft, top: frame.windowTop }]}>
+           <SpireTower
+             variant="scene"
+@@ -235,7 +241,6 @@ function SpireScene(p: Props) {
+             windowHeight={frame.windowH}
+             sceneRowsClearBottom={frame.rowsClearBottom}
+             hideFloorWords={frame.wordsHidden}
+-            onTouchActive={p.onTouchActive}
+             onPressRival={onPressRival}
+             onPressMore={p.onOpenAll}
+             onPressMe={onPressMe}
+@@ -255,6 +260,7 @@ function SpireScene(p: Props) {
+           {/* зачем (владелец 22.10: «ВОТ ЭТОТ ТЕКСТ УБИРАЙ»): плашек «+10 за ступень / этаж» на сцене нет; строки наград в модели остаются */}
+           {/* зачем (владелец 22.10 по макету peak-pedestal-left.html, вариант 3): «Комната недели» — список топ-3 под текстом, слева от башни */}
+           <SpireScenePedestal
++            recordSlot={p.recordSlot}
+             lang={p.lang}
+             width={frame.copyW + SPIRE_SCENE_PEDESTAL_INSET}
+             top={p.room.top}
+@@ -287,7 +293,7 @@ export default memo(SpireScene);
+ 
+ const s = StyleSheet.create({
+   // зачем (scenes-compact .sc): сцена во всю ширину, скругление только снизу 32
+-  stage: { overflow: 'hidden', borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
++  stage: { overflow: 'hidden', borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
+   backdrop: { position: 'absolute', left: 0, right: 0, overflow: 'hidden', borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
+   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
+   tower: { position: 'absolute' },
+diff --git a/components/spire/scene/SpireScenePedestal.tsx b/components/spire/scene/SpireScenePedestal.tsx
+index 6587375e3..982f61d89 100644
+--- a/components/spire/scene/SpireScenePedestal.tsx
++++ b/components/spire/scene/SpireScenePedestal.tsx
+@@ -46,6 +46,7 @@ const ME_HIGHLIGHT = colorWithAlpha(SPIRE_SCENE_INK.text, 0.3);
+ const LINK = colorWithAlpha(SPIRE_SCENE_INK.text, 0.9);
+ 
+ type Props = Readonly<{
++  recordSlot?: (compact: boolean) => React.ReactNode;
+   lang: Lang;
+   /** Ширина колонки: от левого края пьедестала до окна башни (spire_scene_layout), dp. */
+   width: number;
+@@ -68,7 +69,7 @@ type Props = Readonly<{
+   onOpenAll: () => void;
+ }>;
+ 
+-function SpireScenePedestal({ lang, width, top, count, myPlace, me, myCoinRank, compact, loading, dim, onPressMember, onPressMe, onOpenAll }: Props) {
++function SpireScenePedestal({ recordSlot, lang, width, top, count, myPlace, me, myCoinRank, compact, loading, dim, onPressMember, onPressMe, onOpenAll }: Props) {
+   // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, строки не наезжают
+   const ts = useScaledTextStyles(s, TEXT_MAX_SCALE);
+   const rows: readonly (SpireMemberRow | null)[] = loading ? Array.from({ length: TOP_N }, () => null) : top.slice(0, TOP_N);
+@@ -122,7 +123,7 @@ function SpireScenePedestal({ lang, width, top, count, myPlace, me, myCoinRank,
+           })}
+         </View>
+       ) : null}
+-      {loading ? (
++      {recordSlot?.(compact) ?? (loading ? (
+         <View style={s.me}>
+           <View style={[s.coinEmpty, { width: ME_COIN, height: ME_COIN, borderRadius: ME_COIN / 2 }]} />
+           <Text style={[ts.name, s.grow]} numberOfLines={2} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireSceneText(lang, 'searching')}</Text>
+@@ -135,7 +136,7 @@ function SpireScenePedestal({ lang, width, top, count, myPlace, me, myCoinRank,
+             {me && !compact ? <Text style={ts.sub} maxFontSizeMultiplier={TEXT_MAX_SCALE} android_hyphenationFrequency="full">{spireNickWrap(me.name)}</Text> : null}
+           </View>
+         </V2Pressable>
+-      )}
++      ))}
+       {compact ? null : (
+       <V2Pressable testID="spire-scene-pedestal-all" onPress={onOpenAll} disabled={loading || count === 0} scaleTo={0.96} hitSlop={10} outerStyle={s.allOuter} style={s.all}>
+         <Text style={ts.allText} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireText(lang, 'allMembers')}</Text>
+diff --git a/components/spire/scene/spire_scene_backdrop.tsx b/components/spire/scene/spire_scene_backdrop.tsx
+index 091bbeabf..8f18c6c4a 100644
+--- a/components/spire/scene/spire_scene_backdrop.tsx
++++ b/components/spire/scene/spire_scene_backdrop.tsx
+@@ -12,6 +12,7 @@ import { StyleSheet, View, useWindowDimensions } from 'react-native';
+ import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
+ 
+ export type { SpireSceneBackdropSpec } from './spire_scene_backdrop_math';
++import SceneBackdrop from '../../scene/SceneBackdrop';
+ import { SPIRE_SCENE_INK } from './spire_scene_palette';
+ import { SPIRE_LIGHT_RY_FACTOR, SPIRE_LIGHT_STAGE_H, SPIRE_SHADE_TAIL, spireTopShadeAlpha, type SpireSceneBackdropSpec } from './spire_scene_backdrop_math';
+ 
+@@ -20,7 +21,7 @@ const listeners = new Set<() => void>();
+ 
+ /** Сцена Пика публикует свой фон для слоя шапки; null — сцены нет. */
+ export function setSpireSceneBackdrop(next: SpireSceneBackdropSpec | null): void {
+-  if (next === spec || (next && spec && next.top === spec.top && next.bottom === spec.bottom && next.glow === spec.glow && next.evening === spec.evening && next.bleed === spec.bleed && next.sceneH === spec.sceneH)) return;
++  if (next === spec || (next && spec && next.top === spec.top && next.bottom === spec.bottom && next.glow === spec.glow && next.evening === spec.evening && next.bleed === spec.bleed && next.sceneH === spec.sceneH && next.palette === spec.palette)) return;
+   spec = next;
+   console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_backdrop', spec })); // guard-ok: одна строка на смену фона — чем закрыт верх Пика
+   listeners.forEach((listener) => {
+@@ -53,16 +54,23 @@ function SpireSceneBackdrop({ spec: b, offsetTop }: Readonly<{ spec: SpireSceneB
+   }, [offsetTop, height, b, shade, lightRy]);
+   return (
+     <View pointerEvents="none" style={[s.fill, { top: -offsetTop, height }]}>
+-      <LinearGradient colors={[b.top, b.bottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
+-      <Svg style={StyleSheet.absoluteFill} width="100%" height="100%">
+-        <Defs>
+-          <RadialGradient id="spireBackdropLight" cx={b.evening ? '82%' : '18%'} cy="0%" rx="70%" ry={lightRy} fx={b.evening ? '82%' : '18%'} fy="0%">
+-            <Stop offset="0" stopColor={b.glow} stopOpacity="1" />
+-            <Stop offset="1" stopColor={b.glow} stopOpacity="0" />
+-          </RadialGradient>
+-        </Defs>
+-        <Rect x="0" y="0" width="100%" height="100%" fill="url(#spireBackdropLight)" />
+-      </Svg>
++      {b.palette ? (
++        // зачем (вердикт владельца 29.10, scenePalette): фон Пика — утверждённая сцена; два экземпляра (сцена и шапка) — разные id градиентов
++        <SceneBackdrop palette={b.palette} idPrefix={`spireBd${Math.round(offsetTop)}`} />
++      ) : (
++        <>
++          <LinearGradient colors={[b.top, b.bottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
++          <Svg style={StyleSheet.absoluteFill} width="100%" height="100%">
++            <Defs>
++              <RadialGradient id="spireBackdropLight" cx={b.evening ? '82%' : '18%'} cy="0%" rx="70%" ry={lightRy} fx={b.evening ? '82%' : '18%'} fy="0%">
++                <Stop offset="0" stopColor={b.glow} stopOpacity="1" />
++                <Stop offset="1" stopColor={b.glow} stopOpacity="0" />
++              </RadialGradient>
++            </Defs>
++            <Rect x="0" y="0" width="100%" height="100%" fill="url(#spireBackdropLight)" />
++          </Svg>
++        </>
++      )}
+       {shade > 0 ? (
+         <LinearGradient
+           colors={[`rgba(0,0,0,${shade})`, `rgba(0,0,0,${shade})`, SPIRE_SCENE_INK.clear]} // theme-exempt: затемнение — только альфа над фоном темы; конец — токен сцены clear (храповик цветовых литералов 2.0)
+diff --git a/components/spire/scene/spire_scene_backdrop_math.ts b/components/spire/scene/spire_scene_backdrop_math.ts
+index c1a000975..77166ef27 100644
+--- a/components/spire/scene/spire_scene_backdrop_math.ts
++++ b/components/spire/scene/spire_scene_backdrop_math.ts
+@@ -1,7 +1,9 @@
+ // spire_scene_backdrop_math.ts — чистая математика общего фона «Сцены» Пика (без react-native): спек и затемнение под вкладками.
+ // зачем: считается и в приложении, и в тестах замка «верх цельный» (tests/owner_lock_whole_top_2026_10_25.test.ts).
+ 
+-export type SpireSceneBackdropSpec = Readonly<{ top: string; bottom: string; glow: string; evening: boolean; /** от верха экрана до верха сцены, dp */ bleed: number; sceneH: number }>;
++import type { ScenePaletteResult } from '../../scene/scene_palette';
++
++export type SpireSceneBackdropSpec = Readonly<{ top: string; bottom: string; glow: string; evening: boolean; /** утверждённая сцена (scenePalette) для отрисовки; нет — прежний плоский фон */ palette?: ScenePaletteResult | null; /** от верха экрана до верха сцены, dp */ bleed: number; sceneH: number }>;
+ 
+ const rgbaOf = (c: string): readonly [number, number, number, number] => {
+   const m = /rgba?((d+),s*(d+),s*(d+)(?:,s*([d.e-]+))?)/.exec(c);

@@ -1,0 +1,42 @@
+import type { SpireAchievementFact } from './achievement_progress';
+
+/** Only server result fields are accepted; UI-decoded/clamped tiers are not evidence. */
+export function spireFactsFromWeekResult(raw: unknown): SpireAchievementFact[] {
+  if (!raw || typeof raw !== 'object') return [];
+  const d = raw as Record<string, unknown>;
+  if (d.schema !== 'spire-week-result.v1' || !Number.isInteger(d.prevTier) || Number(d.prevTier) < 0 || Number(d.prevTier) > 11) return [];
+  const tier = Number(d.prevTier);
+  const facts: SpireAchievementFact[] = [];
+  if (Number.isInteger(d.steps) && Number(d.steps) >= 135 && Number.isSafeInteger(d.reachedAtMs) && Number(d.reachedAtMs) > 0) {
+    facts.push({ kind: 'summit', tier, floor: 16, stepsCleared: Number(d.steps), atMs: Number(d.reachedAtMs) });
+  }
+  const stamp = d.finalizedAt as { toMillis?: () => number } | null;
+  const atMs = typeof stamp?.toMillis === 'function' ? stamp.toMillis() : NaN;
+  if (d.promoted === true && d.demoted === false && tier < 11 && d.newTier === tier + 1 && Number.isSafeInteger(atMs) && atMs > 0) {
+    facts.push({ kind: 'promotion', tier, newTier: tier + 1, promoted: true, demoted: false, atMs });
+  }
+  return facts;
+}
+
+export type SpireHistoryPage = { rows: readonly unknown[]; next: string | null };
+/** No durable cursor: restored achievement state must always be recoverable from the full history. */
+export async function reconcileSpireHistory(
+  readPage: (after: string | null) => Promise<SpireHistoryPage>,
+  apply: (fact: SpireAchievementFact) => Promise<boolean>,
+  current: () => boolean,
+): Promise<boolean> {
+  let cursor: string | null = null;
+  do {
+    if (!current()) return false;
+    const page = await readPage(cursor);
+    if (!current()) return false;
+    for (const row of page.rows) {
+      for (const fact of spireFactsFromWeekResult(row)) {
+        if (!current() || !await apply(fact)) return false;
+      }
+    }
+    if (page.next === cursor && page.next !== null) return false;
+    cursor = page.next;
+  } while (cursor !== null);
+  return current();
+}

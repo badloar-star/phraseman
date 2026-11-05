@@ -1,0 +1,169 @@
+import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
+import { PermissionsAndroid, Platform } from 'react-native';
+
+import { DIAG_ENABLED } from '../../app/dev_diag_gate';
+import {
+  deleteHoldRecording,
+  startHoldRecording,
+  type HoldRecording,
+  type HoldRecordingFinalization,
+} from '../../app/speaking_hold_recorder';
+
+let playbackFileSequence = 0;
+
+export type NativeAudioSmokeStop = Readonly<{ stop(): void }>;
+export type LocalMicSmokeStopResult = 'cleanup_attempted' | 'no_wav' | 'stop_failed' | 'write_failed';
+export type LocalMicSession = Readonly<{
+  settled: Promise<LocalMicSmokeStopResult>;
+  stop(): Promise<LocalMicSmokeStopResult>;
+  dispose(): Promise<LocalMicSmokeStopResult>;
+}>;
+
+export function ownLocalMicSession(recording: HoldRecording): LocalMicSession {
+  const settled = recording.finalized.then((result: HoldRecordingFinalization) => {
+    const uri = result.uri;
+    try {
+      return result.status === 'native_stop_failed' ? 'stop_failed' as const
+        : result.status === 'write_failed' ? 'write_failed' as const
+        : isVerifiedLocalAudioUri(uri) ? 'cleanup_attempted' as const : 'no_wav' as const;
+    } finally {
+      if (isVerifiedLocalAudioUri(uri)) deleteHoldRecording(uri);
+    }
+  });
+  return Object.freeze({
+    settled,
+    stop: () => { void recording.stop(); return settled; },
+    dispose: () => { void recording.dispose(); return settled; },
+  });
+}
+
+function isEnabled(): boolean {
+  return DIAG_ENABLED && Platform.OS === 'android';
+}
+
+function isVerifiedLocalAudioUri(uri: string | null): uri is string {
+  return typeof uri === 'string' && uri.startsWith('file://');
+}
+
+function releasePlayer(player: AudioPlayer): void {
+  try {
+    player.pause();
+  } catch {
+    // The player may have failed before it became playable; release remains required.
+  }
+  try {
+    player.release();
+  } catch {
+    // This is a dev-only cleanup boundary; a second release must stay harmless.
+  }
+}
+
+type PlaybackActivityClaim = Readonly<{
+  isCurrent(): boolean;
+  release(): void;
+}>;
+
+function claimPlaybackActivity(stop: () => void): PlaybackActivityClaim | null {
+  try {
+    const arbiter = require('../audio/audio_runtime_arbiter') as {
+      claimVideoAudio?: (stopOwner: () => void, owner: string) => PlaybackActivityClaim | null;
+    };
+    return arbiter.claimVideoAudio?.(stop, 'dev:native-audio-smoke') ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export async function playBundledAudioSmoke(): Promise<NativeAudioSmokeStop | null> {
+  if (!isEnabled()) return null;
+  let player: AudioPlayer | null = null;
+  let file: { uri: string; exists: boolean; size: number; create(options: { overwrite: boolean }): void; write(bytes: Uint8Array): void; bytesSync(): Uint8Array; delete(): void } | null = null;
+  let ownsFile = false;
+  let playbackClaim: PlaybackActivityClaim | null = null;
+  let stopped = false;
+  const cleanupFile = () => {
+    if (!ownsFile || !file) return;
+    ownsFile = false;
+    try { if (file.exists) file.delete(); } catch { /* Best-effort cleanup of this handle's file only. */ }
+  };
+  const stopOwnedPlayback = () => {
+    if (stopped) return;
+    stopped = true;
+    const ownedPlayer = player;
+    player = null;
+    const ownedClaim = playbackClaim;
+    playbackClaim = null;
+    if (ownedPlayer) releasePlayer(ownedPlayer);
+    cleanupFile();
+    ownedClaim?.release();
+  };
+  try {
+    // Lazy imports: payload and filesystem are evaluated only after the diagnostic gate.
+    const { AUDIO_BASE64, EXPECTED_BYTES } = require('./native_audio_local_payload') as typeof import('./native_audio_local_payload');
+    const { File, Paths } = require('expo-file-system') as {
+      File: new (root: unknown, name: string) => NonNullable<typeof file>;
+      Paths: { cache: unknown };
+    };
+    const { base64ToBytes } = require('../../app/pcm_wav') as typeof import('../../app/pcm_wav');
+    const bytes = base64ToBytes(AUDIO_BASE64);
+    if (bytes.length !== EXPECTED_BYTES) return null;
+    file = new File(Paths.cache, `pm-dev-audio-${Date.now()}-${++playbackFileSequence}-${Math.random().toString(36).slice(2)}.m4a`);
+    if (!isVerifiedLocalAudioUri(file.uri)) return null;
+    file.create({ overwrite: false });
+    ownsFile = true;
+    file.write(bytes);
+    const readback = file.bytesSync();
+    if (!file.exists || file.size !== EXPECTED_BYTES || readback.length !== bytes.length || readback.some((byte, index) => byte !== bytes[index])) throw new Error('Local audio verification failed');
+    const ownClaim = claimPlaybackActivity(stopOwnedPlayback);
+    if (!ownClaim) {
+      cleanupFile();
+      return null;
+    }
+    playbackClaim = ownClaim;
+    player = createAudioPlayer(file.uri);
+    if (!ownClaim.isCurrent()) {
+      stopOwnedPlayback();
+      return null;
+    }
+    player.play();
+  } catch {
+    stopOwnedPlayback();
+    return null;
+  }
+  return Object.freeze({
+    stop: stopOwnedPlayback,
+  });
+}
+
+/** A denied permission is never prompted for by this fixture. */
+export async function startLocalMicSmoke(signal?: AbortSignal): Promise<LocalMicSession | null> {
+  if (!isEnabled() || signal?.aborted) return null;
+  let granted = false;
+  try {
+    granted = await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+    );
+  } catch {
+    return null;
+  }
+  if (!granted || signal?.aborted) return null;
+  let recording: HoldRecording;
+  try {
+    recording = startHoldRecording();
+  } catch {
+    return null;
+  }
+  const session = ownLocalMicSession(recording);
+  if (!recording.isActive()) {
+    await session.dispose();
+    return null;
+  }
+  return session;
+}
+
+export async function stopAndDeleteLocalMicSmoke(
+  recording: LocalMicSession,
+): Promise<LocalMicSmokeStopResult> {
+  if (!isEnabled()) return 'no_wav';
+  return recording.stop();
+}

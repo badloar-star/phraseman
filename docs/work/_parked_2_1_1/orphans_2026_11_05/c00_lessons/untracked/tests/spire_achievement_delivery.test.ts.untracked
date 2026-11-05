@@ -1,0 +1,100 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
+jest.mock('../app/cloud_sync', () => ({ syncToCloud: jest.fn(async () => undefined) }));
+jest.mock('../app/storage_mutex', () => ({ withStorageLock: jest.fn(async (fn: () => unknown) => fn()) }));
+jest.mock('../modules/story_events/story_events_store', () => ({ recordStoryEvent: jest.fn(async () => ({ recorded: true })) }));
+jest.mock('../modules/story_events/story_event_sources', () => ({ recordAchievementStories: jest.fn() }));
+import { recordSpireAchievementFact, loadAchievementStates } from '../app/achievements';
+import { beginAccountGeneration, captureAccountGeneration, __resetAccountGenerationForTests } from '../app/account_generation';
+import { recordStoryEvent } from '../modules/story_events/story_events_store';
+import { mergeAchievementStatesRaw } from '../app/achievement_restore_diff';
+import { storyEventKey } from '../modules/story_events/story_events_core';
+
+const atMs = Date.parse('2026-10-28T01:00:00Z');
+const summit = { kind: 'summit' as const, tier: 0, floor: 16, stepsCleared: 135, atMs };
+const promotion = { kind: 'promotion' as const, tier: 0, newTier: 1, promoted: true, demoted: false, atMs: atMs + 1000 };
+const id = 'spire_summit_granite';
+
+it('saves a promotion before the summit without unlocking or posting a story', async () => {
+  const token = captureAccountGeneration();
+  expect(await recordSpireAchievementFact(promotion, token)).toBe(true);
+  expect((await loadAchievementStates()).find(row => row.id === id)).toMatchObject({ unlockedAt: null, spirePromotedAt: new Date(promotion.atMs).toISOString() });
+  expect(recordStoryEvent).not.toHaveBeenCalled();
+  const { syncToCloud } = await import('../app/cloud_sync');
+  expect(syncToCloud).toHaveBeenCalled();
+  expect(await recordSpireAchievementFact(summit, token)).toBe(true);
+  expect(recordStoryEvent).toHaveBeenCalledWith('achievement', { achievementId: id, stage: 'upgraded' }, promotion.atMs, { accountToken: token });
+});
+
+beforeEach(() => {
+  (AsyncStorage as unknown as { __reset: () => void }).__reset();
+  jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('spire-achievement-owner');
+});
+
+it('does not grant or post a story when the achievement write fails, and can retry', async () => {
+  const token = captureAccountGeneration();
+  jest.mocked(AsyncStorage.setItem).mockRejectedValueOnce(new Error('disk full'));
+  expect(await recordSpireAchievementFact(summit, token)).toBe(false);
+  expect(recordStoryEvent).not.toHaveBeenCalled();
+  expect(await recordSpireAchievementFact(summit, token)).toBe(true);
+  expect((await loadAchievementStates()).filter(row => row.id === id && row.unlockedAt)).toHaveLength(1);
+});
+
+it('does not overwrite other achievements when reading stored state fails', async () => {
+  const token = captureAccountGeneration();
+  jest.mocked(AsyncStorage.getItem).mockRejectedValueOnce(new Error('disk unavailable'));
+  const write = jest.mocked(AsyncStorage.setItem);
+  expect(await recordSpireAchievementFact(summit, token)).toBe(false);
+  expect(write).not.toHaveBeenCalled();
+  expect(recordStoryEvent).not.toHaveBeenCalled();
+});
+
+it('serializes simultaneous summit and promotion without losing either fact', async () => {
+  const token = captureAccountGeneration();
+  expect(await Promise.all([recordSpireAchievementFact(summit, token), recordSpireAchievementFact(promotion, token)])).toEqual([true, true]);
+  expect((await loadAchievementStates()).find(row => row.id === id)).toMatchObject({ unlockedAt: new Date(atMs).toISOString(), spirePromotedAt: new Date(promotion.atMs).toISOString() });
+});
+
+it('persists one award and its upgrade, and replays original story dates on retry', async () => {
+  const token = captureAccountGeneration();
+  expect(await recordSpireAchievementFact(summit, token)).toBe(true);
+  expect(await recordSpireAchievementFact(promotion, token)).toBe(true);
+  expect(await recordSpireAchievementFact(promotion, token)).toBe(true);
+  const rows = (await loadAchievementStates()).filter((row) => row.id === id);
+  expect(rows).toHaveLength(1);
+  expect(rows[0]).toMatchObject({ unlockedAt: new Date(atMs).toISOString(), spirePromotedAt: new Date(atMs + 1000).toISOString(), shardClaimed: true });
+  expect(recordStoryEvent).toHaveBeenCalledWith('achievement', { achievementId: id }, atMs, { accountToken: token });
+  expect(recordStoryEvent).toHaveBeenCalledWith('achievement', { achievementId: id, stage: 'upgraded' }, atMs + 1000, { accountToken: token });
+});
+
+it('keeps the earned state but reports a failed history write so delivery can retry', async () => {
+  const token = captureAccountGeneration();
+  jest.mocked(recordStoryEvent).mockResolvedValueOnce({ recorded: false, reason: 'storage_failed' });
+  expect(await recordSpireAchievementFact(summit, token)).toBe(false);
+  expect((await loadAchievementStates()).find(row => row.id === id)?.unlockedAt).toBe(new Date(atMs).toISOString());
+  expect(await recordSpireAchievementFact(summit, token)).toBe(true);
+});
+
+it('rejects old account delivery and does not write stories to the new owner', async () => {
+  const token = captureAccountGeneration();
+  beginAccountGeneration('another-owner');
+  expect(await recordSpireAchievementFact(summit, token)).toBe(false);
+  expect(recordStoryEvent).not.toHaveBeenCalled();
+  expect((await loadAchievementStates()).find((row) => row.id === id)?.unlockedAt).toBeNull();
+});
+
+it('keeps unlock and upgrade as distinct stable story keys', () => {
+  expect(storyEventKey('achievement', { achievementId: id })).toBe(`achievement:${id}`);
+  expect(storyEventKey('achievement', { achievementId: id, stage: 'upgraded' })).toBe(`achievement:${id}:upgraded`);
+});
+
+it.each([true, false])('cloud restore retains both independent facts (promotion local=%s)', (promotionLocal) => {
+  const opened = { id, unlockedAt: new Date(atMs).toISOString(), notified: true };
+  const promoted = { id, unlockedAt: null, spirePromotedAt: new Date(atMs + 1000).toISOString(), notified: false };
+  const result = JSON.parse(mergeAchievementStatesRaw(JSON.stringify([promotionLocal ? promoted : opened]), JSON.stringify([promotionLocal ? opened : promoted])));
+  expect(result).toHaveLength(1);
+  expect(result[0]).toMatchObject({ ...opened, spirePromotedAt: promoted.spirePromotedAt });
+});

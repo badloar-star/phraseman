@@ -1,0 +1,18 @@
+import { triLang, type Lang } from '../../constants/i18n';
+import { SPIRE_ACHIEVEMENT_SLUGS } from './achievement_progress';
+import { SPIRE_TIER_NAMES } from './tier_names';
+
+export function spireUpgradeLabel(lang: Lang): string {
+  return triLang(lang, { ru: 'Статуэтка улучшена', uk: 'Статуетку покращено', en: 'Statuette upgraded', es: 'Estatuilla mejorada', 'pt-BR': 'Estatueta melhorada', vi: 'Tượng đã nâng cấp', id: 'Patung ditingkatkan', tr: 'Heykelcik geliştirildi', pl: 'Ulepszono statuetkę' });
+}
+export function spireCollectibleCopy(id: string, lang: Lang, field: 'name' | 'condition' | 'desc'): string | undefined {
+  const tier = SPIRE_ACHIEVEMENT_SLUGS.findIndex((slug) => id === `spire_summit_${slug}`);
+  if (tier < 0) return undefined;
+  const tower = SPIRE_TIER_NAMES[lang][tier];
+  if (field === 'name') return `${triLang(lang, { ru: 'Вершина', uk: 'Вершина', en: 'Summit', es: 'Cumbre', 'pt-BR': 'Cume', vi: 'Đỉnh', id: 'Puncak', tr: 'Zirve', pl: 'Szczyt' })}: ${tower}`;
+  if (field === 'condition') return triLang(lang, {
+    ru: `Пройти все 15 этажей башни «${tower}» в Пике.`, uk: `Пройти всі 15 поверхів вежі «${tower}» у Піку.`, en: `Complete all 15 floors of the ${tower} tower in Peak.`, es: `Completa los 15 pisos de la torre ${tower} en Pico.`, 'pt-BR': `Complete os 15 andares da torre ${tower} no Pico.`, vi: `Hoàn thành cả 15 tầng của tháp ${tower} trong Đỉnh.`, id: `Selesaikan 15 lantai menara ${tower} di Puncak.`, tr: `Zirve'de ${tower} kulesinin 15 katını tamamla.`, pl: `Ukończ wszystkie 15 pięter wieży ${tower} w Szczycie.`,
+  });
+  if (tier === 11) return triLang(lang, { ru: 'Высшая вершина Пика. Статуэтка остаётся в коллекции навсегда.', uk: 'Найвища вершина Піку. Статуетка залишається в колекції назавжди.', en: 'The highest summit in Peak. Your statuette stays in the collection forever.', es: 'La cumbre más alta de Pico. La estatuilla permanece en tu colección.', 'pt-BR': 'O cume mais alto do Pico. A estatueta fica na coleção para sempre.', vi: 'Đỉnh cao nhất. Tượng ở lại trong bộ sưu tập mãi mãi.', id: 'Puncak tertinggi. Patung tetap ada di koleksi selamanya.', tr: 'En yüksek zirve. Heykelcik koleksiyonunda sonsuza dek kalır.', pl: 'Najwyższy szczyt. Statuetka zostaje w kolekcji na zawsze.' });
+  return triLang(lang, { ru: 'Вершина открывает статуэтку. Подтверждённое повышение из этой башни улучшает её.', uk: 'Вершина відкриває статуетку. Підтверджене підвищення з цієї вежі покращує її.', en: 'The summit unlocks the statuette. A confirmed promotion from this tower upgrades it.', es: 'La cumbre desbloquea la estatuilla. Un ascenso confirmado desde esta torre la mejora.', 'pt-BR': 'O cume desbloqueia a estatueta. Uma promoção confirmada desta torre a melhora.', vi: 'Lên đỉnh mở khóa tượng. Thăng hạng được xác nhận từ tháp này sẽ nâng cấp tượng.', id: 'Puncak membuka patung. Promosi terkonfirmasi dari menara ini meningkatkannya.', tr: 'Zirve heykelciği açar. Bu kuleden onaylanan yükselme onu geliştirir.', pl: 'Szczyt odblokowuje statuetkę. Potwierdzony awans z tej wieży ją ulepsza.' });
+}

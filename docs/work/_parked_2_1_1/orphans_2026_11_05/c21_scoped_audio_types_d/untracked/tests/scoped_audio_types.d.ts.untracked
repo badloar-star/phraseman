@@ -1,0 +1,11 @@
+declare module 'react-native' {
+  export const Platform: { OS: string };
+  export const PermissionsAndroid: { check(permission: string): Promise<boolean>; PERMISSIONS: { RECORD_AUDIO: string } };
+}
+declare module 'expo-audio' {
+  export interface AudioPlayer { play(): void; pause(): void; release(): void }
+  export function createAudioPlayer(source: string): AudioPlayer;
+}
+declare module 'expo-asset' { export const Asset: { fromModule(id: number): { localUri: string | null } }; }
+declare module '*debug-logger' { export const DebugLogger: { error(context: string, error: Error, severity: string): void }; }
+declare const __DEV__: boolean;

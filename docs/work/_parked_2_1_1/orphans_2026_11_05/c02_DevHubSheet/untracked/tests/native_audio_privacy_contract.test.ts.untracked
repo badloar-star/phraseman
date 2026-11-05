@@ -1,0 +1,84 @@
+const native = { init: jest.fn(), start: jest.fn(), stop: jest.fn(), on: jest.fn() };
+const write = jest.fn();
+const removed = jest.fn();
+const release = jest.fn();
+let data: (chunk: string) => void;
+jest.mock('react-native', () => ({ Platform: { OS: 'android' } }));
+jest.mock('expo-audio', () => ({ createAudioPlayer: jest.fn() }));
+jest.mock('expo-asset', () => ({ Asset: { fromModule: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('@fugood/react-native-audio-pcm-stream', () => native, { virtual: true });
+jest.mock('../modules/audio/audio_runtime_arbiter', () => ({ claimRecordingAudio: () => ({ release }) }), { virtual: true });
+jest.mock('expo-file-system', () => ({
+  Paths: { cache: 'file:///cache' },
+  Directory: class { exists = true; },
+  File: class { uri = 'file:///cache/actual.wav'; exists = true; write = write; delete() { removed(this.uri); } },
+}), { virtual: true });
+import { startHoldRecording, MAX_HOLD_MS } from '../app/speaking_hold_recorder';
+import { ownLocalMicSession } from '../modules/dev/native_audio_safe_fixture';
+beforeEach(() => {
+  jest.useFakeTimers(); jest.clearAllMocks();
+  native.init.mockResolvedValue(undefined); native.stop.mockResolvedValue(undefined);
+  write.mockReset();
+  native.on.mockImplementation((_event, cb) => { data = cb; return { remove: jest.fn() }; });
+});
+
+test('legacy stop-only caller deletes partial WAV exactly once and returns failure', async () => {
+  write.mockImplementation(() => { throw new Error('partial write'); });
+  const rec = startHoldRecording(); await tick(); data(Buffer.alloc(16000).toString('base64'));
+  expect(await rec.stop()).toBeNull();
+  expect(await rec.finalized).toMatchObject({ status: 'write_failed', uri: null });
+  await rec.stop(); await rec.dispose();
+  expect(removed).toHaveBeenCalledTimes(1);
+  expect(removed).toHaveBeenCalledWith('file:///cache/actual.wav');
+});
+
+test('connected DevHub session does not delete recorder-owned partial file twice', async () => {
+  write.mockImplementation(() => { throw new Error('partial'); });
+  const rec = startHoldRecording(); const session = ownLocalMicSession(rec);
+  await tick(); data(Buffer.alloc(16000).toString('base64'));
+  await expect(session.stop()).resolves.toBe('write_failed');
+  await session.dispose(); await rec.stop();
+  expect(removed).toHaveBeenCalledTimes(1);
+  expect(removed).toHaveBeenCalledWith('file:///cache/actual.wav');
+});
+afterEach(() => jest.useRealTimers());
+const tick = async () => { await Promise.resolve(); await Promise.resolve(); };
+test('auto max hold is replayable, one stop/write/lease release', async () => {
+  const rec = startHoldRecording(); await tick();
+  data(Buffer.alloc(16000).toString('base64'));
+  jest.advanceTimersByTime(MAX_HOLD_MS);
+  const final = await rec.finalized;
+  expect(final).toMatchObject({ trigger: 'max_hold', status: 'wav', uri: 'file:///cache/actual.wav' });
+  expect(await rec.stop()).toBe(final.uri); expect(await rec.dispose()).toBe(final);
+  expect(native.stop).toHaveBeenCalledTimes(1); expect(write).toHaveBeenCalledTimes(1); expect(release).toHaveBeenCalledTimes(1);
+});
+test('discard wins against timer and awaits native stop', async () => {
+  let finish!: () => void; native.stop.mockReturnValue(new Promise<void>(r => { finish = r; }));
+  const rec = startHoldRecording(); await tick(); data(Buffer.alloc(16000).toString('base64'));
+  const disposed = rec.dispose(); let done = false; void rec.finalized.then(() => { done = true; });
+  jest.advanceTimersByTime(MAX_HOLD_MS); await tick(); expect(done).toBe(false);
+  finish(); expect(await disposed).toMatchObject({ trigger: 'cancelled', uri: null });
+  expect(write).not.toHaveBeenCalled(); expect(native.stop).toHaveBeenCalledTimes(1);
+});
+test('manual stop wins timer once and stop rejection is observable', async () => {
+  native.stop.mockRejectedValue(new Error('stop')); const rec = startHoldRecording(); await tick();
+  const stopping = rec.stop(); jest.advanceTimersByTime(MAX_HOLD_MS);
+  expect(await stopping).toBeNull(); expect(await rec.finalized).toMatchObject({ trigger: 'manual_stop', status: 'native_stop_failed' });
+  expect(write).not.toHaveBeenCalled(); expect(release).toHaveBeenCalledTimes(1);
+});
+test('pending init cancellation prevents native start; init rejection settles', async () => {
+  let initialized!: () => void; native.init.mockReturnValue(new Promise<void>(r => { initialized = r; }));
+  const rec = startHoldRecording(); rec.cancel(); initialized(); await rec.finalized; await tick();
+  expect(native.start).not.toHaveBeenCalled();
+  native.init.mockRejectedValue(new Error('init')); const failed = startHoldRecording();
+  expect(await failed.finalized).toMatchObject({ trigger: 'init_failed', uri: null });
+});
+
+test('manual stop wins timer and later dispose preserves exact finalized URI', async () => {
+  const rec = startHoldRecording(); await tick(); data(Buffer.alloc(16000).toString('base64'));
+  const stopping = rec.stop(); jest.advanceTimersByTime(MAX_HOLD_MS);
+  expect(await stopping).toBe('file:///cache/actual.wav');
+  const result = await rec.dispose(); expect(result.trigger).toBe('manual_stop');
+  expect(result).toBe(await rec.finalized); expect(write).toHaveBeenCalledTimes(1); expect(native.stop).toHaveBeenCalledTimes(1);
+});

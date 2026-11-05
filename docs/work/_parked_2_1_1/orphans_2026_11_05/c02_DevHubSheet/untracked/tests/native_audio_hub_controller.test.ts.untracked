@@ -1,0 +1,49 @@
+import { createNativeAudioHubController, bindNativeAudioHubLifecycle } from '../modules/dev/native_audio_hub_controller';
+const deferred = <T>() => { let resolve!: (v: T) => void; const promise = new Promise<T>(r => { resolve = r; }); return { promise, resolve }; };
+function session() {
+  const terminal = deferred<any>();
+  return { settled: terminal.promise, finish: terminal.resolve,
+    stop: jest.fn(() => { terminal.resolve('cleanup_attempted'); return terminal.promise; }),
+    dispose: jest.fn(() => { terminal.resolve('no_wav'); return terminal.promise; }) };
+}
+const tick = async () => { await Promise.resolve(); await Promise.resolve(); };
+test('close/unmount aborts pending request and disposes stale result', async () => {
+  const pending = deferred<any>(); const start = jest.fn(() => pending.promise);
+  const c = createNativeAudioHubController({ play: jest.fn(), start });
+  const request = c.startMic(); await c.close();
+  expect(start.mock.calls[0][0].aborted).toBe(true);
+  const old = session(); pending.resolve(old); await request;
+  expect(old.dispose).toHaveBeenCalledTimes(1);
+});
+test('old identity completion cannot clear newer session; auto settlement permits retry', async () => {
+  const old = session(), fresh = session(), third = session();
+  const start = jest.fn().mockResolvedValueOnce(old).mockResolvedValueOnce(fresh).mockResolvedValueOnce(third);
+  const c = createNativeAudioHubController({ play: jest.fn(), start });
+  await c.startMic(); await c.close(); await c.startMic(); old.finish('no_wav'); await tick();
+  expect(await c.startMic()).toBe(false);
+  fresh.finish('no_wav'); await tick(); expect(await c.startMic()).toBe(true);
+});
+test('manual stop racing background/close settles one session; rejected start retries', async () => {
+  const current = session(); const start = jest.fn().mockRejectedValueOnce(new Error('init')).mockResolvedValue(current);
+  const c = createNativeAudioHubController({ play: jest.fn(), start });
+  expect(await c.startMic()).toBe(false); expect(await c.startMic()).toBe(true);
+  await Promise.all([c.stopMic(), c.close(), c.stopMic()]);
+  expect(current.stop).toHaveBeenCalledTimes(1); expect(current.dispose).not.toHaveBeenCalled();
+});
+test('AppState background disposes, foreground never restarts, listener removed on unmount', async () => {
+  let listener!: (state: string) => void; const remove = jest.fn();
+  const source = { addEventListener: jest.fn((_event, cb) => { listener = cb; return { remove }; }) };
+  const current = session(); const start = jest.fn().mockResolvedValue(current);
+  const c = createNativeAudioHubController({ play: jest.fn(), start });
+  const unmount = bindNativeAudioHubLifecycle(source, c); await c.startMic();
+  listener('background'); await tick(); expect(current.dispose).toHaveBeenCalledTimes(1);
+  listener('active'); expect(start).toHaveBeenCalledTimes(1);
+  unmount(); expect(remove).toHaveBeenCalledTimes(1);
+});
+test('double start/stop is harmless and playback restarts after close', async () => {
+  const pending = deferred<any>(); const play = jest.fn().mockReturnValueOnce(pending.promise).mockResolvedValue({ stop: jest.fn() });
+  const c = createNativeAudioHubController({ play, start: jest.fn() });
+  const first = c.play(); expect(await c.play()).toBe(false); await c.close();
+  const player = { stop: jest.fn() }; pending.resolve(player); await first; expect(player.stop).toHaveBeenCalledTimes(1);
+  expect(await c.play()).toBe(true); c.stopPlayback(); c.stopPlayback(); expect(await c.play()).toBe(true);
+});

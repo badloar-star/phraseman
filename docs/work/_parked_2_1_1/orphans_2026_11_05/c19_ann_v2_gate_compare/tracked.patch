@@ -1,0 +1,14 @@
+diff --git a/scripts/mockups/ann_v2_gate_compare.cjs b/scripts/mockups/ann_v2_gate_compare.cjs
+index e4e94dad9..30cd3f652 100644
+--- a/scripts/mockups/ann_v2_gate_compare.cjs
++++ b/scripts/mockups/ann_v2_gate_compare.cjs
+@@ -22,6 +22,9 @@ const SHEET = args.sheet || 'C:/Temp/claude/ann_gate/worst.png';
+ /** Порог, % средней разницы (замок владельца; до калибровки — null = только отчёт). */
+ const THRESHOLD = args.threshold !== undefined ? Number(args.threshold) : null;
+ const CALIBRATE = args.calibrate === 'true';
++// --- ВРЕМЕННО (29.10): пропуск сравнения внутри прогона по маркеру, чтобы слот и эмулятор отдавались сразу после съёмки ---
++if (fs.existsSync('C:/Temp/claude/ann_gate/SKIP_COMPARE_IN_RUN')) { console.log('[ANN-GATE] сравнение внутри прогона пропущено (маркер SKIP_COMPARE_IN_RUN) — запуск отдельно без слота'); process.exit(0); }
++// --- конец временного блока ---
+ const DOWN = 4;
+ /** Критерий (а): допуск геометрии по testID, dp (координатор 28.10: ±2 dp при 390 × 844). */
+ const GEO_TOL_DP = Number(args['geo-tol'] || 2);

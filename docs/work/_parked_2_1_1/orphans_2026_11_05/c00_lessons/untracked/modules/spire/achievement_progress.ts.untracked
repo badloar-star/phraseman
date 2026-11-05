@@ -1,0 +1,33 @@
+/** Permanent collectible facts. No clocks, network, UI or storage in this reducer. */
+export const SPIRE_ACHIEVEMENT_SLUGS = ['granite', 'basalt', 'marble', 'jade', 'quartz', 'agate', 'onyx', 'amethyst', 'opal', 'topaz', 'obsidian', 'diamond'] as const;
+export type SpireAchievementFact = Readonly<
+  | { kind: 'summit'; tier: number; floor: number; stepsCleared: number; atMs: number }
+  | { kind: 'promotion'; tier: number; newTier: number; promoted: boolean; demoted: boolean; atMs: number }
+>;
+export type SpireAchievementState = Readonly<{
+  id: string; unlockedAt: string | null; notified: boolean; shardClaimed?: boolean;
+  spirePromotedAt?: string;
+}>;
+export function spireAchievementId(tier: number): string | null {
+  return Number.isInteger(tier) && tier >= 0 && tier < 12 ? `spire_summit_${SPIRE_ACHIEVEMENT_SLUGS[tier]}` : null;
+}
+export function validSpireDate(value: unknown): value is string {
+  return typeof value === 'string' && Number.isFinite(Date.parse(value)) && Date.parse(value) > 0;
+}
+export function spireAchievementUpgradedAt(state: Pick<SpireAchievementState, 'unlockedAt' | 'spirePromotedAt'> | undefined): string | null {
+  if (!validSpireDate(state?.unlockedAt) || !validSpireDate(state?.spirePromotedAt)) return null;
+  return new Date(Math.max(Date.parse(state.unlockedAt), Date.parse(state.spirePromotedAt))).toISOString();
+}
+export function applySpireAchievementFact(state: SpireAchievementState | undefined, fact: SpireAchievementFact): { state: SpireAchievementState; change: 'unlocked' | 'upgraded' | null } | null {
+  const id = spireAchievementId(fact.tier);
+  if (!id || !Number.isSafeInteger(fact.atMs) || fact.atMs <= 0 || !Number.isFinite(new Date(fact.atMs).getTime())) return null;
+  if (state && state.id !== id) return null;
+  const previous = state ?? { id, unlockedAt: null, notified: false, shardClaimed: true };
+  const date = new Date(fact.atMs).toISOString();
+  if (fact.kind === 'summit') {
+    if (fact.floor !== 16 || !Number.isInteger(fact.stepsCleared) || fact.stepsCleared < 135 || previous.unlockedAt) return null;
+    return { state: { ...previous, unlockedAt: date, notified: false, shardClaimed: true }, change: 'unlocked' };
+  }
+  if (!fact.promoted || fact.demoted || fact.tier === 11 || fact.newTier !== fact.tier + 1 || previous.spirePromotedAt) return null;
+  return { state: { ...previous, spirePromotedAt: date }, change: previous.unlockedAt ? 'upgraded' : null };
+}

@@ -1,0 +1,166 @@
+diff --git a/app/dev_home_scene_preview.tsx b/app/dev_home_scene_preview.tsx
+index cdb92afbf..f934b0ded 100644
+--- a/app/dev_home_scene_preview.tsx
++++ b/app/dev_home_scene_preview.tsx
+@@ -26,6 +26,7 @@ import { coinRankDisplaySource } from '../components/coins/coin_rank_display';
+ import HomeV2Header from '../components/home/v2/HomeV2Header';
+ import { HomeSceneView } from '../components/home/v2/scene/HomeScene';
+ import { HomeSceneEnergyView } from '../components/home/v2/scene/HomeSceneEnergy';
++import type { HomeSceneCopy } from '../components/home/v2/scene/home_scene_copy';
+ import {
+   homeScenePreviewHeaderWords,
+   homeScenePreviewPlace,
+@@ -33,7 +34,7 @@ import {
+   isHomeScenePreviewState,
+   type HomeScenePreviewState,
+ } from '../components/home/v2/scene/home_scene_preview_fixtures';
+-import { pickHomeSceneState } from '../components/home/v2/scene/home_scene_state';
++import { pickHomeSceneState, type HomeSceneDecision } from '../components/home/v2/scene/home_scene_state';
+ import { STORY_RING_SLOT } from '../components/stories/story_ring_constants';
+ import { nestedBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
+ import { colorWithAlpha } from '../components/v2/plateAlpha';
+@@ -42,7 +43,11 @@ import { LIQUID_GLASS_THEME_IDS, type LiquidGlassThemeId } from '../constants/li
+ import { V2 } from '../constants/v2Style';
+ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
+ import { getDevAppearance, getDevThemeChoice, setDevAppearance, setDevThemeChoice } from './dev_appearance_override';
+-import { homeContinueV2Title } from './home_continue_mark';
++import {
++  homeSceneSpecialPreviewSetup,
++  homeSceneSpecialPreviewView,
++  isHomeSceneSpecialPreviewState,
++} from './dev_home_scene_special_preview_fixtures';
+ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+ 
+ const noop = (): void => undefined;
+@@ -50,15 +55,71 @@ const noop = (): void => undefined;
+ const PREVIEW_COIN_RANK = 5;
+ const isThemeId = (value: unknown): value is LiquidGlassThemeId => typeof value === 'string' && (LIQUID_GLASS_THEME_IDS as readonly string[]).includes(value);
+ 
++type HomeScenePreviewPlace = ReturnType<typeof homeScenePreviewPlace>;
++type OwnerFullOffPreviewPlace = HomeScenePreviewPlace & Readonly<{
++  ctaTarget: 'legacy' | 'unknown';
++  lessonNo: number | null;
++}>;
++
++/**
++ * Learning V2 отключён решением владельца, не включать.
++ * DEV-превью сохраняет все состояния и оформление Сцены, но не может показывать
++ * эпизод, теорию или V2-CTA, которых никогда не будет на боевой Главной.
++ */
++export function projectDevHomeScenePreviewPlaceForOwnerFullOff(
++  place: HomeScenePreviewPlace,
++  lesson: number,
++): OwnerFullOffPreviewPlace {
++  const hasClassicLesson = place.episode !== null;
++  return Object.freeze({
++    ...place,
++    episode: null,
++    title: hasClassicLesson ? place.badge : place.title,
++    done: null,
++    total: null,
++    theoryLessonId: null,
++    ctaTarget: hasClassicLesson ? 'legacy' : 'unknown',
++    lessonNo: hasClassicLesson ? lesson : null,
++  });
++}
++
++/** Exam and "all released" are Learning V2 states; their visible copy must use Classic continuation. */
++export function projectDevHomeSceneDecisionForOwnerFullOff(decision: HomeSceneDecision): HomeSceneDecision {
++  if (decision.state !== 'exam_ready' && decision.state !== 'all_done') return decision;
++  return Object.freeze({
++    ...decision,
++    state: 'continue',
++    reason: `owner_full_off:${decision.reason}`,
++  });
++}
++
++const OWNER_FULL_OFF_V2_COPY = /Learning V2|\bV2\b|Эпизод|Епізод|Episode|Episodio|Episódio|Tập|Bölüm|Odcinek/i;
++const removeLearningV2PreviewCopy = (value: string | null): string | null =>
++  value !== null && OWNER_FULL_OFF_V2_COPY.test(value) ? null : value;
++
++/** Special copy is built by the production builder first, then stripped of its DEV-only V2 place fixture. */
++export function projectDevHomeSceneSpecialCopyForOwnerFullOff(copy: HomeSceneCopy): HomeSceneCopy {
++  return Object.freeze({
++    ...copy,
++    kicker: removeLearningV2PreviewCopy(copy.kicker) ?? '',
++    title: removeLearningV2PreviewCopy(copy.title) ?? '',
++    line: removeLearningV2PreviewCopy(copy.line),
++    cta: removeLearningV2PreviewCopy(copy.cta),
++  });
++}
++
+ function Inner() {
+-  const params = useLocalSearchParams<{ state?: string; theme?: string; appearance?: string; plus?: string }>();
++  const params = useLocalSearchParams<{ state?: string; special?: string; theme?: string; appearance?: string; plus?: string }>();
+   const { lang } = useLang();
+   const { liquidGlassAppearance } = useTheme();
+   const v2 = useV2Palette();
+   const shadowGlass = useShadowGlass();
+   const insets = useStableSafeAreaInsets();
+-  const requested: HomeScenePreviewState = isHomeScenePreviewState(params.state) ? params.state : 'continue';
+-  const plus = params.plus === '1';
++  const requestedSpecial = isHomeSceneSpecialPreviewState(params.special) ? params.special : null;
++  const specialFixture = useMemo(() => requestedSpecial ? homeSceneSpecialPreviewSetup(requestedSpecial) : null, [requestedSpecial]);
++  // Special captures use their fixed eligible base scene, not a caller-provided state/Plus combination.
++  const requested: HomeScenePreviewState = specialFixture?.baseDecision.state ?? (isHomeScenePreviewState(params.state) ? params.state : 'continue');
++  const plus = specialFixture ? false : params.plus === '1';
+   const themeId = isThemeId(params.theme) ? params.theme : null;
+   const appearanceParam = params.appearance ?? (params.theme === 'dark' || params.theme === 'light' ? params.theme : undefined);
+   const wantedAppearance = appearanceParam === 'dark' || appearanceParam === 'light' ? appearanceParam : null;
+@@ -78,16 +139,35 @@ function Inner() {
+   }, [wantedAppearance]);
+ 
+   const setup = useMemo(() => homeScenePreviewSetup(requested, plus), [requested, plus]);
+-  const decision = useMemo(() => pickHomeSceneState(setup.input), [setup]);
+-  const place = useMemo(() => homeScenePreviewPlace(lang, setup, homeContinueV2Title), [lang, setup]);
++  const decision = useMemo(
++    () => projectDevHomeSceneDecisionForOwnerFullOff(specialFixture?.baseDecision ?? pickHomeSceneState(setup.input)),
++    [specialFixture, setup],
++  );
++  const place = useMemo(
++    () => projectDevHomeScenePreviewPlaceForOwnerFullOff(homeScenePreviewPlace(lang, setup, () => ''), setup.lesson),
++    [lang, setup],
++  );
++  const specialPreview = useMemo(() => {
++    if (!requestedSpecial) return null;
++    const preview = homeSceneSpecialPreviewView(lang, requestedSpecial);
++    return Object.freeze({
++      ...preview,
++      view: Object.freeze({
++        ...preview.view,
++        copy: projectDevHomeSceneSpecialCopyForOwnerFullOff(preview.view.copy),
++      }),
++    });
++  }, [lang, requestedSpecial]);
+   const words = useMemo(() => homeScenePreviewHeaderWords(lang, setup.streakDays), [lang, setup.streakDays]);
+   const artTone = liquidGlassAppearance === 'light' ? 'light' : 'dark';
+ 
+   useEffect(() => {
+     if (params.state !== undefined && !isHomeScenePreviewState(params.state)) console.warn(`[DEV-STATE] home_scene_preview state=${params.state} неизвестно → continue`); // guard-ok: dev-маршрут, причина подмены параметра
++    if (params.special !== undefined && !isHomeSceneSpecialPreviewState(params.special)) console.warn(`[DEV-STATE] home_scene_preview special=${params.special} неизвестно → обычная сцена`); // guard-ok: dev-маршрут, причина подмены параметра
+     if (params.theme !== undefined && !themeId && !wantedAppearance) console.warn(`[DEV-STATE] home_scene_preview theme=${params.theme} неизвестна → тема приложения`); // guard-ok: dev-маршрут, причина подмены параметра
+     console.log(`[DEV-STATE] home_scene_preview route requested=${requested} decided=${decision.state} match=${String(decision.state === requested)} reason=${decision.reason} offlineLine=${String(decision.offlineLine)} theme=${themeId ?? 'приложение'} appearance=${wantedAppearance ?? `${liquidGlassAppearance} (приложение)`} plus=${String(plus)} input=${JSON.stringify(setup.input)}`); // guard-ok: dev-маршрут, в релизе не открывается (Redirect на Главную)
+-  }, [requested, decision, params.state, params.theme, themeId, wantedAppearance, liquidGlassAppearance, plus, setup]);
++    if (specialPreview) console.log(`[DEV-STATE] home_scene_preview special requested=${requestedSpecial} decided=${specialPreview.view.special} match=${String(specialPreview.view.special === requestedSpecial)} reason=${specialPreview.reason}`); // guard-ok: dev-маршрут, selector использует пустой журнал без записи
++  }, [requested, decision, params.state, params.special, params.theme, themeId, wantedAppearance, liquidGlassAppearance, plus, setup, requestedSpecial, specialPreview]);
+ 
+   const coinSource = useMemo(() => coinRankDisplaySource(PREVIEW_COIN_RANK, STORY_RING_SLOT), []);
+   const header = useCallback((surface: string) => (
+@@ -127,7 +207,7 @@ function Inner() {
+           {/* зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): как на Главной — сцена сама рисует фон под часами (topInset), без полосы */}
+           {/* key: смена героя, Plus или темы пересоздаёт сцену — как новый показ Главной */}
+           <HomeSceneView
+-            key={`${requested}|${plus ? 'plus' : 'free'}|${themeId ?? 'app'}|${wantedAppearance ?? 'app'}`}
++            key={`${requested}|${requestedSpecial ?? 'ordinary'}|${plus ? 'plus' : 'free'}|${themeId ?? 'app'}|${wantedAppearance ?? 'app'}`}
+             lang={lang}
+             header={header}
+             artTone={artTone}
+@@ -145,6 +225,8 @@ function Inner() {
+             topInset={insets.top}
+             onContinue={noop}
+             onChip={noop}
++            special={specialPreview?.view ?? null}
++            onSpecial={specialPreview ? noop : undefined}
+           />
+           <View style={s.tail} />
+         </ScrollView>

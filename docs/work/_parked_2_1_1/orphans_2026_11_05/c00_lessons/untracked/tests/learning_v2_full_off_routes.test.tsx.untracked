@@ -1,0 +1,109 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import React from 'react';
+import { act, render } from '@testing-library/react-native';
+
+const mockReplace = jest.fn();
+const mockCancelScheduledNavigation = jest.fn();
+let rootNavigationKey: string | undefined;
+let scheduledNavigation: (() => void) | null = null;
+jest.mock('expo-router', () => ({
+  useRootNavigationState: () => (rootNavigationKey ? { key: rootNavigationKey } : undefined),
+  useRouter: () => ({ replace: mockReplace }),
+}));
+jest.mock('../app/paywall_navigation', () => ({
+  scheduleAfterRootNavigationReady: (navigate: () => void) => {
+    scheduledNavigation = navigate;
+    return { cancel: mockCancelScheduledNavigation };
+  },
+}));
+jest.mock('../app/initial_deep_link_store', () => ({ rememberInitialDeepLinkTarget: jest.fn() }));
+
+import { redirectSystemPath } from '../app/+native-intent';
+import { withLearningV2LocaleGuardV1 } from '../app/learning_v2_locale_guard';
+
+const ROOT = path.join(__dirname, '..');
+
+function learningV2ExpoRouteFiles(): readonly string[] {
+  const out: string[] = [];
+  const visit = (dir: string) => {
+    for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+      const rel = `${dir}/${entry.name}`;
+      if (entry.isDirectory()) visit(rel);
+      else if (/\.tsx$/iu.test(rel)) {
+        const source = fs.readFileSync(path.join(ROOT, rel), 'utf8');
+        const isClassicCourseHost = rel === 'app/(tabs)/lessons.tsx';
+        const namedLikeLearningV2 = /learning[-_]v2/iu.test(rel);
+        const mountsLearningV2CourseBody = /components\/learning-v2\/(?:season\/(?:SeasonCourse|season_preview_fixtures)|exam_v2\/(?:ChapterExamV2Run|chapter_exam_v2_dev_presets))/u.test(source);
+        if (!isClassicCourseHost && source.includes('export default') && (namedLikeLearningV2 || mountsLearningV2CourseBody)) out.push(rel);
+      }
+    }
+  };
+  visit('app');
+  return out.sort();
+}
+
+describe('Learning V2 full-off route boundary', () => {
+  beforeEach(() => {
+    rootNavigationKey = undefined;
+    scheduledNavigation = null;
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => jest.restoreAllMocks());
+
+  it('discovers every production and dev Expo route and wraps it before its screen mounts', () => {
+    const files = learningV2ExpoRouteFiles();
+    expect(files).toEqual(expect.arrayContaining([
+      'app/learning-v2/course.tsx',
+      'app/learning-v2/session/[id].tsx',
+      'app/learning_v2_direct_session_player_v1.tsx',
+      'app/dev_learning_v2_dictionary_v2.tsx',
+      'app/dev_season_preview.tsx',
+      'app/dev_chapter_exam_v2_preview.tsx',
+      'app/_learning_v2_authoring_preview.tsx',
+      'app/learning_v2_modes_showcase_run/[family].tsx',
+    ]));
+    expect(files.length).toBeGreaterThanOrEqual(15);
+    for (const rel of files) {
+      expect([rel, fs.readFileSync(path.join(ROOT, rel), 'utf8')]).toEqual([
+        rel,
+        expect.stringMatching(/export default withLearningV2DisabledGuardV1\(/u),
+      ]);
+    }
+  });
+
+  it('never mounts the guarded child and waits for root readiness before replacing with Classic Course', async () => {
+    const Child = jest.fn(() => null);
+    const Guarded = withLearningV2LocaleGuardV1('full_off_test', Child);
+    const view = await render(<Guarded />);
+    expect(Child).not.toHaveBeenCalled();
+    expect(mockReplace).not.toHaveBeenCalled();
+    expect(scheduledNavigation).toBeNull();
+
+    rootNavigationKey = 'root-ready';
+    await view.rerender(<Guarded />);
+    expect(scheduledNavigation).toEqual(expect.any(Function));
+    expect(mockReplace).not.toHaveBeenCalled();
+
+    await act(async () => scheduledNavigation?.());
+    expect(mockReplace).toHaveBeenCalledWith('/lessons_list');
+    expect(Child).not.toHaveBeenCalled();
+
+    await view.unmount();
+    expect(mockCancelScheduledNavigation).toHaveBeenCalledTimes(1);
+  });
+
+  it.each([
+    '/learning-v2/course',
+    '/learning_v2_direct_session_player_v1',
+    '/dev_learning_v2_dictionary_v2',
+    '/dev_season_preview?state=cover',
+    '/dev_chapter_exam_v2_preview?state=start',
+    '/_learning_v2_authoring_preview',
+    'phraseman:///learning-v2/session/lesson-01:session:01',
+  ])('redirects %s to the Classic Course before route matching', (link) => {
+    expect(redirectSystemPath({ path: link, initial: false })).toBe('/lessons_list');
+  });
+});

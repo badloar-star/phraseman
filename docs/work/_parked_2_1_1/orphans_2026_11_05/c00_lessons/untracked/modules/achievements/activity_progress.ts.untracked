@@ -1,0 +1,262 @@
+import {
+  DAILY_DAYS,
+  REPORT_COUNTS,
+  VIDEO_HOURS,
+  V2_ACHIEVEMENT_LANGUAGES,
+} from "./activity_catalog";
+
+export type ActivityEvidence = Readonly<{
+  videoSeconds?: number;
+  reportKeys?: readonly string[];
+  days?: readonly string[];
+  bestDailyRun?: number;
+}>;
+export type ActivityAchievementState = {
+  id: string;
+  unlockedAt: string | null;
+  notified: boolean;
+  shardClaimed?: boolean;
+  activityEvidence?: ActivityEvidence;
+};
+export type ActivityFact =
+  | { kind: "video"; totalSeconds: number }
+  | {
+      kind: "report";
+      reportKind: string;
+      collection: string;
+      receiptId: string;
+    }
+  | { kind: "daily"; dayKey: string }
+  | { kind: "v2"; language: string; completedIndices: readonly number[] }
+  | { kind: "legacy"; passedLessonIds: readonly number[] }
+  | { kind: "reconcile" };
+const manualCollections: Readonly<Record<string, string>> = {
+  user_report: "user_reports",
+  arena_opponent_report: "user_reports",
+  community_pack_report: "community_pack_reports",
+  error_report: "error_reports",
+  spire_task_report: "error_reports",
+};
+export function isManualAchievementReceipt(
+  reportKind: string,
+  collection: string,
+  receiptId: string,
+): boolean {
+  return (
+    !!collection &&
+    manualCollections[reportKind] === collection &&
+    receiptId.length > 0 &&
+    receiptId.length <= 200 &&
+    !receiptId.includes("/")
+  );
+}
+const positive = (n: unknown) =>
+  typeof n === "number" && Number.isSafeInteger(n) && n >= 0 ? n : 0;
+function dayNumber(day: string): number | null {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return null;
+  const time = Date.parse(`${day}T00:00:00Z`);
+  return Number.isFinite(time) &&
+    new Date(time).toISOString().slice(0, 10) === day
+    ? time / 86400000
+    : null;
+}
+export function longestCompletedDayRun(days: readonly string[]): number {
+  const sorted = [
+    ...new Set(days.map(dayNumber).filter((n): n is number => n !== null)),
+  ].sort((a, b) => a - b);
+  let best = 0,
+    run = 0,
+    previous = -Infinity;
+  for (const day of sorted) {
+    run = day === previous + 1 ? run + 1 : 1;
+    best = Math.max(best, run);
+    previous = day;
+  }
+  return best;
+}
+export function mergeActivityEvidence(
+  a: ActivityEvidence = {},
+  b: ActivityEvidence = {},
+): ActivityEvidence {
+  const keys = [
+    ...new Set(
+      [
+        ...(Array.isArray(a.reportKeys) ? a.reportKeys : []),
+        ...(Array.isArray(b.reportKeys) ? b.reportKeys : []),
+      ].filter((k) => typeof k === "string" && k.length > 0 && k.length <= 300),
+    ),
+  ]
+    .sort()
+    .slice(0, 100);
+  const days = [
+    ...new Set(
+      [
+        ...(Array.isArray(a.days) ? a.days : []),
+        ...(Array.isArray(b.days) ? b.days : []),
+      ].filter((d) => typeof d === "string" && dayNumber(d) !== null),
+    ),
+  ].sort();
+  return {
+    videoSeconds: Math.max(positive(a.videoSeconds), positive(b.videoSeconds)),
+    reportKeys: keys,
+    days: days.slice(-201),
+    bestDailyRun: Math.max(
+      positive(a.bestDailyRun),
+      positive(b.bestDailyRun),
+      longestCompletedDayRun(days),
+    ),
+  };
+}
+export function completedV2Lessons(indices: readonly number[]): number[] {
+  const completed = new Set(
+    indices.filter((n) => Number.isInteger(n) && n >= 0 && n < 1792),
+  );
+  return Array.from({ length: 32 }, (_, i) => i + 1).filter((lesson) =>
+    Array.from({ length: 56 }, (_, i) => (lesson - 1) * 56 + i).every((i) =>
+      completed.has(i),
+    ),
+  );
+}
+export function activityAchievementProgress(
+  id: string,
+  states: readonly ActivityAchievementState[],
+  now: Date = new Date(),
+): [number, number] | null {
+  let match = id.match(/^video_hours_(\d+)$/);
+  if (match) {
+    const target = Number(match[1]);
+    const seconds =
+      states.find((row) => row.id === "video_hours_10")?.activityEvidence
+        ?.videoSeconds ?? 0;
+    return [Math.min(target, Math.floor(seconds / 360) / 10), target];
+  }
+  match = id.match(/^reports_sent_(\d+)$/);
+  if (match) {
+    const target = Number(match[1]);
+    return [
+      Math.min(
+        target,
+        states.find((row) => row.id === "reports_sent_10")?.activityEvidence
+          ?.reportKeys?.length ?? 0,
+      ),
+      target,
+    ];
+  }
+  match = id.match(/^today_complete_streak_(\d+)$/);
+  if (match) {
+    const target = Number(match[1]);
+    const days = new Set(
+      (
+        states.find((row) => row.id === "today_complete_streak_3")
+          ?.activityEvidence?.days ?? []
+      ).map(dayNumber),
+    );
+    const today =
+      Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000;
+    let cursor = days.has(today) ? today : today - 1;
+    let run = 0;
+    while (days.has(cursor)) {
+      run++;
+      cursor--;
+    }
+    return [Math.min(target, run), target];
+  }
+  return null;
+}
+export function applyActivityFact(
+  input: readonly ActivityAchievementState[],
+  fact: ActivityFact,
+  atMs: number,
+): {
+  states: ActivityAchievementState[];
+  unlocked: string[];
+  changed: boolean;
+} {
+  const states = input.map((row) => ({ ...row }));
+  const untouched = () => ({ states, unlocked: [], changed: false });
+  if (
+    !Number.isSafeInteger(atMs) ||
+    atMs <= 0 ||
+    !Number.isFinite(new Date(atMs).getTime())
+  )
+    return untouched();
+  const rowFor = (id: string) => {
+    let row = states.find((s) => s.id === id);
+    if (!row) {
+      row = { id, unlockedAt: null, notified: false, shardClaimed: true };
+      states.push(row);
+    }
+    return row;
+  };
+  let changed = false;
+  const evidence = (id: string, patch: ActivityEvidence) => {
+    const row = rowFor(id);
+    const next = mergeActivityEvidence(row.activityEvidence, patch);
+    if (JSON.stringify(row.activityEvidence) !== JSON.stringify(next)) {
+      row.activityEvidence = next;
+      changed = true;
+    }
+  };
+  const eligible = new Set<string>();
+  if (fact.kind === "video") {
+    if (!Number.isSafeInteger(fact.totalSeconds) || fact.totalSeconds < 0)
+      return untouched();
+    evidence("video_hours_10", { videoSeconds: fact.totalSeconds });
+  } else if (fact.kind === "report") {
+    if (
+      !isManualAchievementReceipt(
+        fact.reportKind,
+        fact.collection,
+        fact.receiptId,
+      )
+    )
+      return untouched();
+    evidence("reports_sent_10", {
+      reportKeys: [`${fact.collection}:${fact.receiptId}`],
+    });
+  } else if (fact.kind === "daily") {
+    if (dayNumber(fact.dayKey) === null) return untouched();
+    evidence("today_complete_streak_3", { days: [fact.dayKey] });
+  } else if (fact.kind === "v2") {
+    if (!V2_ACHIEVEMENT_LANGUAGES.some((lang) => lang === fact.language))
+      return untouched();
+    for (const lesson of completedV2Lessons(fact.completedIndices))
+      eligible.add(`course_v2_${fact.language}_lesson_${lesson}`);
+  } else if (fact.kind === "legacy") {
+    const passed = new Set(fact.passedLessonIds);
+    if (
+      Array.from({ length: 32 }, (_, i) => i + 1).every((id) => passed.has(id))
+    )
+      eligible.add("legacy_course_complete");
+  }
+  const video =
+    states.find((s) => s.id === "video_hours_10")?.activityEvidence
+      ?.videoSeconds ?? 0;
+  const reports =
+    states.find((s) => s.id === "reports_sent_10")?.activityEvidence?.reportKeys
+      ?.length ?? 0;
+  const daily =
+    states.find((s) => s.id === "today_complete_streak_3")?.activityEvidence
+      ?.bestDailyRun ?? 0;
+  VIDEO_HOURS.forEach((n) => {
+    if (video >= n * 3600) eligible.add(`video_hours_${n}`);
+  });
+  REPORT_COUNTS.forEach((n) => {
+    if (reports >= n) eligible.add(`reports_sent_${n}`);
+  });
+  DAILY_DAYS.forEach((n) => {
+    if (daily >= n) eligible.add(`today_complete_streak_${n}`);
+  });
+  const unlocked: string[] = [];
+  for (const id of eligible) {
+    const row = rowFor(id);
+    if (!row.unlockedAt) {
+      row.unlockedAt = new Date(atMs).toISOString();
+      row.notified = false;
+      row.shardClaimed = true;
+      unlocked.push(id);
+      changed = true;
+    }
+  }
+  return { states, unlocked, changed };
+}

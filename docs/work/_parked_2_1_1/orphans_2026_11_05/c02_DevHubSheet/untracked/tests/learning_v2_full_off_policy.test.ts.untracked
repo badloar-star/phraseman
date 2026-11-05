@@ -1,0 +1,77 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+import {
+  LEARNING_V2_HIDDEN,
+  isLearningV2Hidden,
+  isLearningV2OpenForUiLangV1,
+} from '../app/learning_v2_visibility_switch';
+import { getOrderedDevToolSections } from '../components/dev/devToolRegistry';
+import { SECTION as LEARNING_SHOWCASE_SECTION } from '../components/dev/motion_showcase/sections/screens_learn';
+
+const ROOT = path.join(__dirname, '..');
+const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+
+describe('owner contract: Learning V2 is fully off', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => jest.restoreAllMocks());
+
+  it('is permanently fail-closed for every locale, including unresolved locale', () => {
+    expect(LEARNING_V2_HIDDEN).toBe(true);
+    expect(isLearningV2Hidden()).toBe(true);
+    for (const lang of [null, undefined, 'ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
+      expect([lang, isLearningV2OpenForUiLangV1(lang)]).toEqual([lang, false]);
+    }
+  });
+
+  it('records the exact owner note in source and repository documentation', () => {
+    const note = 'Learning V2 отключён решением владельца, не включать';
+    expect(read('app/learning_v2_visibility_switch.ts')).toContain(note);
+    expect(fs.existsSync(path.join(ROOT, 'docs/v2/LEARNING_V2_DISABLED.md'))).toBe(true);
+    expect(read('docs/v2/LEARNING_V2_DISABLED.md')).toContain(note);
+  });
+
+  it('keeps Classic startup and V2 work off while preserving Dialogs', () => {
+    const lessons = read('app/(tabs)/lessons.tsx');
+    expect(lessons).toContain('return "lessons";');
+    expect(lessons).not.toContain('initial === "lessons" && presentation === "tab" && learningV2CanOpen ? "v2"');
+    expect(lessons).toContain('const page = LEARNING_V2_HIDDEN && pageRaw === "v2" ? "lessons" : pageRaw;');
+    expect(lessons).toContain('const allowedNext = LEARNING_V2_HIDDEN && next === "v2" ? "lessons" : next;');
+    expect(lessons).toContain('page === "dialogs"');
+    expect(lessons).toContain('const learningV2WarmupEnabled = !LEARNING_V2_HIDDEN && learningV2WarmupArmed;');
+    expect(lessons).toContain('const learningV2ProgressWarmupEnabled = !LEARNING_V2_HIDDEN && (page === "v2" || learningV2WarmupArmed);');
+  });
+
+  it('removes Learning V2 entries from the DEV hub too', () => {
+    const sections = getOrderedDevToolSections();
+    expect(sections.some((section) => section.id.includes('learning-v2'))).toBe(false);
+    expect(sections.flatMap((section) => section.tools).some((tool) => tool.id.includes('learning-v2'))).toBe(false);
+    expect(LEARNING_SHOWCASE_SECTION.items.some((item) => item.id.startsWith('learning-v2-'))).toBe(false);
+  });
+
+  it('keeps the Classic route free of V2 disk reads, projection work, star subscriptions, and scene chrome', () => {
+    const lessons = read('app/(tabs)/lessons.tsx');
+    const tabs = read('app/(tabs)/_layout.tsx');
+    expect(lessons).toContain('useLearningV2LastLesson(studyTarget, !LEARNING_V2_HIDDEN)');
+    expect(lessons).toContain('LEARNING_V2_HIDDEN ? null : prepareLearningV2CourseAccordionProgressV1');
+    expect(lessons).toContain('if (LEARNING_V2_HIDDEN) return undefined;');
+    expect(tabs).toContain('!LEARNING_V2_HIDDEN && SEASON_SCENE_V2_ENABLED');
+  });
+
+  it('rejects lesson invites before they can wedge Friends or trigger acknowledgement side effects', () => {
+    const friends = read('app/(tabs)/friends.tsx');
+    const start = friends.indexOf('const openFriendEvent = useCallback');
+    const end = friends.indexOf("if (event.kind === 'high_five')", start);
+    const prefix = friends.slice(start, end);
+    expect(prefix).toContain("if (LEARNING_V2_HIDDEN && event.kind === 'lesson_invite') return;");
+    expect(prefix.indexOf("event.kind === 'lesson_invite'")).toBeLessThan(prefix.indexOf('hapticTap();'));
+  });
+
+  it('preserves the existing background completion delivery registration', () => {
+    expect(read('app/_layout.tsx')).toContain('scheduler.ensureLearningV2CompletionBackgroundSchedulerInstalled();');
+  });
+});

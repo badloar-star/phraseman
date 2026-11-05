@@ -1,0 +1,2142 @@
+diff --git a/app/(tabs)/lessons.tsx b/app/(tabs)/lessons.tsx
+index 89eaf5d75..67f3d35a9 100644
+--- a/app/(tabs)/lessons.tsx
++++ b/app/(tabs)/lessons.tsx
+@@ -241,6 +241,26 @@ import NetInfo from '@react-native-community/netinfo';
+ import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+ import { useMemHomeRegisterSources } from '../mem_home_probe';
+ 
++type BouncyWrapComponent = ReturnType<typeof useBouncy>["GestureWrap"];
++
++/**
++ * Android-only diagnostic seam: the legacy list keeps its iOS visual bounce,
++ * but bypasses the Android GestureDetector until a native swipe confirms or
++ * rejects it as the drag receiver. The list itself stays unchanged.
++ */
++function LegacyLessonsScrollWrap({
++  BouncyWrap,
++  bouncyStyle,
++  children,
++}: Readonly<{
++  BouncyWrap: BouncyWrapComponent;
++  bouncyStyle: ReturnType<typeof useBouncyStyle>;
++  children: React.ReactNode;
++}>): React.ReactElement {
++  if (Platform.OS === "android") return <View style={{ flex: 1 }}>{children}</View>;
++  return <BouncyWrap style={bouncyStyle}>{children}</BouncyWrap>;
++}
++
+ const EXEMPT_COLOR_1 = '#8FA0FF'; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
+ const EXEMPT_COLOR_2 = '#B79CFF'; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
+ const EXEMPT_COLOR_3 = '#FFD27A'; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
+@@ -1375,25 +1395,14 @@ type LessonsTabProps = {
+ const learningV2CourseCanBeOpenedManually = (): boolean => !LEARNING_V2_HIDDEN && (LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS);
+ if (LEARNING_V2_HIDDEN) logLearningV2Hidden("lessons_tab_v2_entries", "lessons", "hidden=v2_button,new_lessons_chip,remembered_tab");
+ 
+-// зачем (владелец 17.10: «вкладка Обучения будет открывать конкретно именно новые уроки, а не старые, а старые уроки будут открываться отдельной кнопочкой»;
+-// отменяет решения 13.09 «вход открывает старые уроки» и 13.10 «вкладки Уроки | V2 с памятью выбора»): корневая вкладка «Обучение» при каждом входе открывается
+-// на карте V2, без запомненного выбора; старый список — по кнопке «Классический курс» на карте. Отдельный маршрут /lessons_list (плитка «Уроки» на Главной,
+-// выходы из старых уроков) остаётся на старом списке — туда возвращаются те, кто был в старом уроке. Память выбора вкладки удалена: иначе у людей
+-// со старой записью «v2» этот маршрут молча прыгал бы на карту.
++// Learning V2 отключён решением владельца, не включать. Любой вход в раздел,
++// включая старый initialPage="v2", открывает только классический курс.
+ type LessonsTabsPage = "lessons" | "v2";
+ // зачем (R92, координатор 17.10): доступность курса приходит параметром — кроме рубильника и выпущенных занятий она зависит от языка
+ // интерфейса (пояснения курса есть только на ru/uk); при другом языке вкладка открывает классический курс.
+ function startLessonsPage(initial: LessonsTabsPage, presentation: "tab" | "push", learningV2CanOpen: boolean): "lessons" | "dialogs" | "v2" {
+-  // зачем (координатор 13.10, план Б R1): маршрут learning-v2/course в стор-сборке не вырезан и передаёт initialPage="v2" — без
+-  // выпущенных занятий (потолок бандла 0) раздел V2 не открывается и по прямой ссылке: человек попадает в список уроков.
+-  if (initial === "v2" && !learningV2CanOpen) {
+-    console.warn(`[V2-ROUTE] reason=${learningV2CourseCanBeOpenedManually() ? "ui_lang_without_v2" : "ceiling0"} — курс V2 недоступен, открываю список уроков`); // guard-ok: ранний выход
+-    return "lessons";
+-  }
+-  // зачем (владелец 04.11, заморозка V2): таб «Уроки» открывает ОБЫЧНЫЙ курс у всех, в том числе с прогрессом V2; V2 — только явной кнопкой вкладки
+-  const start: LessonsTabsPage = initial;
+-  console.log(`[LESSONS-TABS] вход: presentation=${presentation} initialPage=${initial} v2Доступен=${String(learningV2CanOpen)} (рубильник+выпуск=${String(learningV2CourseCanBeOpenedManually())}) → старт=${start}`); // guard-ok: итог выбора стартовой страницы
+-  return start;
++  console.log(`[LESSONS-TABS] вход: presentation=${presentation} initialPage=${initial} v2Доступен=${String(learningV2CanOpen)} → старт=lessons reason=owner_disabled`); // guard-ok: итог выбора стартовой страницы
++  return "lessons";
+ }
+ 
+ 
+@@ -2616,16 +2625,17 @@ export default function LessonsTab({
+   // повторного router.push на ту же сессию) — нужно увидеть, ЧТО меняет page
+   // обратно и МОНТИРУЕТСЯ ли LessonsTab целиком заново. Печатаем стек вызова,
+   // чтобы отличить пользовательский тап от программного сброса.
+-  const page = pageRaw;
++  const page = LEARNING_V2_HIDDEN && pageRaw === "v2" ? "lessons" : pageRaw;
+   const setPage = useCallback((next: "lessons" | "dialogs" | "v2") => {
++    const allowedNext = LEARNING_V2_HIDDEN && next === "v2" ? "lessons" : next;
+     if (__DEV__) {
+       console.log(
+         "[V2-PAGE] setPage",
+-        JSON.stringify({ from: pageRaw, to: next, presentation, initialPage, instanceId: instanceIdRef.current, runtimeOwnerId, visible: lessonsTabVisible }),
++        JSON.stringify({ from: pageRaw, to: allowedNext, presentation, initialPage, instanceId: instanceIdRef.current, runtimeOwnerId, visible: lessonsTabVisible }),
+         new Error("trace").stack?.split("\n").slice(1, 5).join(" | "),
+       );
+     }
+-    setPageRaw(next);
++    setPageRaw(allowedNext);
+   }, [pageRaw, presentation, initialPage, runtimeOwnerId, lessonsTabVisible]);
+   useEffect(() => {
+     if (page !== "v2" || learningV2CanOpen) return;
+@@ -2812,11 +2822,11 @@ export default function LessonsTab({
+   );
+   // Переход на страницу V2 сам по себе не является разрешением занимать
+   // JS-поток: и прямой вход /learning-v2/course ждёт true-idle.
+-  const learningV2WarmupEnabled = learningV2WarmupArmed;
++  const learningV2WarmupEnabled = !LEARNING_V2_HIDDEN && learningV2WarmupArmed;
+   // Прогресс — не декоративный прогрев, а источник истины для current/locked
+   // и repeat. Читаем его сразу при входе в V2; откладываем только тяжёлый
+   // каталог, материализация которого и блокировала касания.
+-  const learningV2ProgressWarmupEnabled = page === "v2" || learningV2WarmupArmed;
++  const learningV2ProgressWarmupEnabled = !LEARNING_V2_HIDDEN && (page === "v2" || learningV2WarmupArmed);
+   useFocusEffect(
+     useCallback(() => {
+       if (!learningV2ProgressWarmupEnabled) return undefined;
+@@ -2966,7 +2976,7 @@ export default function LessonsTab({
+     setLearningV2AccountGeneration(generation);
+   }, [focusTick]);
+   // зачем (поручение владельца через координатора 18.10): запомненный урок карты (память → диск); undefined — ещё не читали, карта рисуется по первому незавершённому занятию
+-  const learningV2LastLesson = useLearningV2LastLesson(studyTarget);
++  const learningV2LastLesson = useLearningV2LastLesson(studyTarget, !LEARNING_V2_HIDDEN);
+   const learningV2ProjectionScopeKey = useMemo(
+     () =>
+       `${learningV2AccountGeneration}:${studyTarget}:${_overlayIdentityEpoch}`,
+@@ -2975,7 +2985,7 @@ export default function LessonsTab({
+   perfR1BodyMark('lessons', 'before_v2_progress', perfBodyStart);
+   const learningV2PreparedProgress = useMemo(
+     () =>
+-      prepareLearningV2CourseAccordionProgressV1({
++      LEARNING_V2_HIDDEN ? null : prepareLearningV2CourseAccordionProgressV1({
+         completedSessionIds: learningV2Progress.completedSessionIds,
+         currentSessionId: learningV2Progress.currentSessionId,
+         openedSessionIds: learningV2Progress.openedSessionIds,
+@@ -2994,6 +3004,7 @@ export default function LessonsTab({
+   // что PulseCourse ничего не теряет.
+   const prepareLearningV2Lesson = useCallback(
+     (lessonOrdinal: number) => {
++      if (!learningV2PreparedProgress) return;
+       buildLearningV2CourseAccordionMapFromPreparedProgressV1({
+         projectionScopeKey: learningV2ProjectionScopeKey,
+         expandedLessonOrdinal: lessonOrdinal,
+@@ -3658,9 +3669,10 @@ export default function LessonsTab({
+   // без авторитета над прогрессом и без сети.
+   const [learningV2StarResults, setLearningV2StarResults] =
+     useState<LearningV2SessionStarResultsV1>(() =>
+-      peekLearningV2SessionStarResults(studyTarget === "es" ? "es" : "en"),
++      LEARNING_V2_HIDDEN ? {} : peekLearningV2SessionStarResults(studyTarget === "es" ? "es" : "en"),
+     );
+   useEffect(() => {
++    if (LEARNING_V2_HIDDEN) return undefined;
+     const refresh = () =>
+       setLearningV2StarResults(peekLearningV2SessionStarResults(studyTarget === "es" ? "es" : "en"));
+     const unsubscribe = subscribeLearningV2SessionStarResults(refresh);
+@@ -5401,7 +5413,7 @@ export default function LessonsTab({
+               legacyLessonsLabel={classicCourseLabel}
+               legacyProgress={legacyProgress}
+               onLegacyLessons={requestLegacyLessons}
+-              preparedProgress={learningV2PreparedProgress}
++              preparedProgress={learningV2PreparedProgress!}
+               currentSessionId={learningV2Progress.currentSessionId}
+               preferredLessonOrdinal={learningV2LastLesson ?? null}
+               completedSessionIds={learningV2Progress.completedSessionIds}
+@@ -5756,7 +5768,7 @@ export default function LessonsTab({
+               </Text>
+             ) : null}
+ 
+-          <BouncyWrap style={bouncyStyle}>
++          <LegacyLessonsScrollWrap BouncyWrap={BouncyWrap} bouncyStyle={bouncyStyle}>
+             <Animated.FlatList
+               ref={scrollRef}
+               showsVerticalScrollIndicator={false}
+@@ -6002,7 +6014,7 @@ export default function LessonsTab({
+             />
+             {/* зачем (learn-007, находка Тем 13.10): список листается под полем поиска — верхний край был жёстким срезом впритык к полю; мягкое растворение 16 px появляется только после прокрутки. */}
+             {topFadeScroll ? <ListTopEdgeFade g={learnGlass} scrollY={topFadeScroll.scrollY} /> : null}
+-          </BouncyWrap>
++          </LegacyLessonsScrollWrap>
+           </View>
+           )}
+           {learningV2DenialHint !== null ? (
+diff --git a/app/_learning_v2_authoring_preview.tsx b/app/_learning_v2_authoring_preview.tsx
+index 6fad6b5f7..6dfead661 100644
+--- a/app/_learning_v2_authoring_preview.tsx
++++ b/app/_learning_v2_authoring_preview.tsx
+@@ -11,6 +11,7 @@ import { LEARNING_V2_AUTHORING_PREVIEW_ROUTE } from "../constants/devRoutes";
+ import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
+ import { rememberNavigationPath, safeRouterBack } from "./navigation_back";
+ import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+ const STATUS_COPY = Object.freeze({
+   DRAFT: "Черновик",
+@@ -19,7 +20,7 @@ const STATUS_COPY = Object.freeze({
+   LOCKED: "Зафиксирована",
+ });
+ 
+-export default function LearningV2AuthoringPreviewScreen() {
++function LearningV2AuthoringPreviewScreen() {
+   const router = useRouter();
+   const insets = useStableSafeAreaInsets();
+   const { theme: t, f } = useTheme();
+@@ -148,3 +149,5 @@ const styles = StyleSheet.create({
+   rowStatus: { marginTop: 2, fontSize: 13, lineHeight: 18, fontWeight: "700" },
+   blocked: { marginTop: 8, paddingHorizontal: 4, fontSize: 13, lineHeight: 19, fontWeight: "400" },
+ });
++
++export default withLearningV2DisabledGuardV1('route__learning_v2_authoring_preview', LearningV2AuthoringPreviewScreen);
+diff --git a/app/_learning_v2_modes_showcase.tsx b/app/_learning_v2_modes_showcase.tsx
+index 4bb22dc63..dbb6c185f 100644
+--- a/app/_learning_v2_modes_showcase.tsx
++++ b/app/_learning_v2_modes_showcase.tsx
+@@ -24,8 +24,9 @@ import {
+   LEARNING_V2_MODE_SHOWCASE_VOICE_FIXTURE_V1,
+ } from '../modules/learning-v2/modes/dev_showcase_fixtures_v1';
+ import { noAndroidOutline } from "../constants/androidGlow";
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+-export default function LearningV2ModesShowcaseScreen() {
++function LearningV2ModesShowcaseScreen() {
+   const { theme: t, f } = useTheme();
+   const insets = useStableSafeAreaInsets();
+   const router = useRouter();
+@@ -143,3 +144,5 @@ const styles = StyleSheet.create({
+   rowTitle: { fontWeight: '700' },
+   rowDetail: { marginTop: 3 },
+ });
++
++export default withLearningV2DisabledGuardV1('route__learning_v2_modes_showcase', LearningV2ModesShowcaseScreen);
+diff --git a/app/achievement_catalog_v2.ts b/app/achievement_catalog_v2.ts
+index 5a329e518..b7fb35acf 100644
+--- a/app/achievement_catalog_v2.ts
++++ b/app/achievement_catalog_v2.ts
+@@ -1,4 +1,6 @@
+ import { ACHIEVEMENT_COPY_RU_V2 } from './achievement_copy_ru_v2';
++import { SPIRE_ACHIEVEMENTS } from '../modules/achievements/spire_catalog';
++import { ACTIVITY_ACHIEVEMENTS } from '../modules/achievements/activity_catalog';
+ 
+ export type AchievementCategory = 'streak' | 'lessons' | 'combo' | 'special' | 'medal';
+ export type FoundationAchievementGroup =
+@@ -7,6 +9,8 @@ export type FoundationAchievementGroup =
+   | 'time'
+   | 'access'
+   | 'legend'
++  | 'spire'
++  | 'activity'
+   | 'retired';
+ 
+ export interface AchievementDefinitionV2 {
+@@ -121,10 +125,12 @@ export const ACHIEVEMENT_CATALOG_V2: readonly AchievementDefinitionV2[] = [
+   retired('daily_all_30', '🗓️', '30 дней без хвостов'),
+   retired('daily_no_reroll_7', '🎯', 'Неделя без замен'),
+   retired('daily_no_reroll_30', '🏆', 'Без торга'),
++  ...SPIRE_ACHIEVEMENTS,
++  ...ACTIVITY_ACHIEVEMENTS,
+ ] as const;
+ 
+ export const ACTIVE_FOUNDATION_IDS = ACHIEVEMENT_CATALOG_V2
+-  .filter((row) => !row.retired)
++  .filter((row) => !row.retired && row.foundationGroup !== 'spire' && row.foundationGroup !== 'activity')
+   .map((row) => row.id);
+ 
+ export const SECRET_FOUNDATION_IDS = ACHIEVEMENT_CATALOG_V2
+diff --git a/app/achievement_restore_diff.ts b/app/achievement_restore_diff.ts
+index d57618ed6..95868a03c 100644
+--- a/app/achievement_restore_diff.ts
++++ b/app/achievement_restore_diff.ts
+@@ -35,7 +35,8 @@ export function diffAchievementUnlocks(localRaw: string | null | undefined, clou
+   return { localUnlocked, cloudUnlocked, wouldLose };
+ }
+ 
+-type AchievementStateRow = { id: string; unlockedAt: string | null; notified?: boolean; shardClaimed?: boolean };
++import { mergeActivityEvidence, type ActivityEvidence } from '../modules/achievements/activity_progress';
++type AchievementStateRow = { id: string; unlockedAt: string | null; notified?: boolean; shardClaimed?: boolean; spirePromotedAt?: string; activityEvidence?: ActivityEvidence };
+ 
+ function parseRows(raw: string | null | undefined): AchievementStateRow[] | null {
+   if (!raw) return [];
+@@ -81,6 +82,17 @@ export function mergeAchievementStatesRaw(localRaw: string | null | undefined, c
+     }
+   }
+   for (const local of localRows) if (!seen.has(local.id)) merged.push(local);
++  // A promotion and a summit can arrive on different devices, in either order.
++  for (const row of merged) {
++    const localEvidence = localById.get(row.id)?.activityEvidence;
++    const cloudEvidence = cloudRows.find(item=>item.id===row.id)?.activityEvidence;
++    if (localEvidence || cloudEvidence) row.activityEvidence = mergeActivityEvidence(localEvidence,cloudEvidence);
++    if (!row.id.startsWith('spire_summit_')) continue;
++    const dates = [localById.get(row.id)?.spirePromotedAt, cloudRows.find((item) => item.id === row.id)?.spirePromotedAt]
++      .filter((value): value is string => typeof value === 'string' && Number.isFinite(Date.parse(value)) && Date.parse(value) > 0)
++      .sort((a, b) => Date.parse(a) - Date.parse(b));
++    if (dates[0]) row.spirePromotedAt = dates[0];
++  }
+   return JSON.stringify(merged);
+ }
+ 
+diff --git a/app/achievements.ts b/app/achievements.ts
+index e9746bc9b..38989beba 100644
+--- a/app/achievements.ts
++++ b/app/achievements.ts
+@@ -1,6 +1,10 @@
+ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
+ import type { Lang } from '../constants/i18n';
++import { applyActivityFact, type ActivityFact, type ActivityEvidence } from '../modules/achievements/activity_progress';
++import { ACTIVITY_ACHIEVEMENT_IDS } from '../modules/achievements/activity_catalog';
++import { activityAchievementCopy } from '../modules/achievements/activity_copy';
++import { spireCollectibleCopy } from '../modules/spire/achievement_copy';
+ import {
+   ACHIEVEMENT_CATALOG_V2,
+   type AchievementDefinitionV2,
+@@ -37,6 +41,8 @@ import {
+ import { DebugLogger } from './debug-logger';
+ import { recordAchievementStories } from '../modules/story_events/story_event_sources';
+ import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
++import { applySpireAchievementFact, spireAchievementId, spireAchievementUpgradedAt, type SpireAchievementFact } from '../modules/spire/achievement_progress';
++import { recordStoryEvent } from '../modules/story_events/story_events_store';
+ 
+ /**
+  * Достижения: ru/uk здесь; es — achievements_es_locale.ts.
+@@ -65,6 +71,9 @@ export interface AchievementState {
+    * Kept only so older persisted snapshots remain readable; new unlocks never create a pending reward.
+    */
+   shardClaimed?: boolean;
++  /** Confirmed promotion FROM this tower; retained even if its summit is not yet conquered. */
++  spirePromotedAt?: string;
++  activityEvidence?: ActivityEvidence;
+ }
+ 
+ type AchievementLocalePicker = (achievement: Achievement) => string | undefined;
+@@ -749,11 +758,19 @@ function plannedAchievementCopy(
+ }
+ 
+ export function achievementNameForLang(a: Achievement, lang: Lang): string {
++  const activity = activityAchievementCopy(a.id,lang,'name');
++  if(activity)return activity;
++  const spire = spireCollectibleCopy(a.id, lang, 'name');
++  if (spire) return spire;
+   const localized = ACHIEVEMENT_NAME_PICKERS[lang](a);
+   return localized ?? a.nameRu;
+ }
+ 
+ export function achievementDescForLang(a: Achievement, lang: Lang): string {
++  const activity = activityAchievementCopy(a.id,lang,'desc');
++  if(activity)return activity;
++  const spire = spireCollectibleCopy(a.id, lang, 'desc');
++  if (spire) return spire;
+   const localized = ACHIEVEMENT_DESC_PICKERS[lang](a);
+   return localized ?? a.descRu;
+ }
+@@ -766,6 +783,10 @@ export function achievementDescForLang(a: Achievement, lang: Lang): string {
+  * a different locale.
+  */
+ export function achievementConditionForLang(a: Achievement, lang: Lang): string | undefined {
++  const activity = activityAchievementCopy(a.id,lang,'condition');
++  if(activity)return activity;
++  const spire = spireCollectibleCopy(a.id, lang, 'condition');
++  if (spire) return spire;
+   if (lang === 'ru') return a.conditionRu;
+   if (lang === 'uk') return a.conditionUk;
+   if (lang === 'es') return a.conditionEs;
+@@ -1458,6 +1479,16 @@ export const checkAchievements = async (
+   event: AchievementEvent,
+   accountToken?: AccountGenerationToken,
+ ): Promise<Achievement[]> => {
++  if (event.type === 'backfill' || event.type === 'lesson_complete') {
++    const sourceToken = accountToken ?? captureAccountGeneration();
++    if (sourceToken.stableId && isCurrentAccountGeneration(sourceToken)) {
++      try {
++        const source = await import('./activity_achievement_sources');
++        if (event.type === 'backfill') await source.reconcileActivityAchievements(sourceToken);
++        else await source.reconcileLegacyCourseAchievements(sourceToken);
++      } catch (error) { DebugLogger.error('achievements:activity_recovery', error, 'warning'); }
++    }
++  }
+   if (!FOUNDATION_ACHIEVEMENT_EVENT_TYPES.has(event.type)) {
+     // зачем (R56, аудит кнопок 15.10): ранний выход был немым — вызовы friend/mistake/lesson/… выглядели рабочими.
+     // Новые события НЕ включаем (решение координатора), но видно, что они мёртвые: одна строка на тип за запуск.
+@@ -1586,6 +1617,7 @@ export const checkAchievements = async (
+       recordAchievementStories(justUnlocked.filter((a) => !backfilledIds.has(a.id)).map((a) => a.id)); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
+ 
+     }
++    if (event.type === 'backfill') await replaySpireAchievementStories(states, operationToken);
+     console.warn('[ACH-CHECK] done', JSON.stringify({
+       event: event.type, unlocked: justUnlocked.length, eligible: eligibleIds.length, totalMs: Date.now() - calledAt, stages,
+     }));
+@@ -1605,6 +1637,65 @@ export const checkAchievements = async (
+   }, []);
+ };
+ 
++/** Replay original dates: a crash between achievement persistence and history cannot lose the story. */
++async function replaySpireAchievementStories(states: readonly AchievementState[], token: AccountGenerationToken): Promise<boolean> {
++  const delivered = (result: Awaited<ReturnType<typeof recordStoryEvent>>) => result.recorded || result.reason === 'duplicate' || result.reason === 'expired';
++  for (const state of states) {
++    if ((!state.id.startsWith('spire_summit_') && !ACTIVITY_ACHIEVEMENT_IDS.has(state.id)) || !state.unlockedAt) continue;
++    if (!isCurrentAccountGeneration(token)) return false;
++    if (!delivered(await recordStoryEvent('achievement', { achievementId: state.id }, Date.parse(state.unlockedAt), { accountToken: token }))) return false;
++    const upgradedAt = spireAchievementUpgradedAt(state);
++    if (upgradedAt && isCurrentAccountGeneration(token)) {
++      if (!delivered(await recordStoryEvent('achievement', { achievementId: state.id, stage: 'upgraded' }, Date.parse(upgradedAt), { accountToken: token }))) return false;
++    }
++  }
++  return isCurrentAccountGeneration(token);
++}
++
++/** Uses the existing account queue, state storage, notification event and story pipeline. No currency. */
++export async function recordSpireAchievementFact(fact: SpireAchievementFact, token: AccountGenerationToken): Promise<boolean> {
++  const id = spireAchievementId(fact.tier);
++  if (!id || !token.stableId || !isCurrentAccountGeneration(token)) return false;
++  return enqueueAchievementOperation(token, async () => {
++    try {
++      const states = await loadAchievementStatesForTargetInternal(undefined, token, false);
++      if (!states.length || !isCurrentAccountGeneration(token)) return false;
++      const result = applySpireAchievementFact(states.find((row) => row.id === id), fact);
++      if (!result) {
++        return replaySpireAchievementStories(states.filter((row) => row.id === id), token);
++      }
++      const next = [...states.filter((row) => row.id !== id), result.state];
++      if (!await saveStates(next, undefined, token) || !isCurrentAccountGeneration(token)) return false;
++      void import('./cloud_sync').then(({ syncToCloud }) => {
++        if (isCurrentAccountGeneration(token)) return syncToCloud();
++      }).catch((error: unknown) => DebugLogger.error('achievements:spire_sync', error, 'warning'));
++      if (result.change) emitAppEvent('achievement_unlocked');
++      return replaySpireAchievementStories([result.state], token);
++    } catch (error) {
++      DebugLogger.error('achievements:spire_fact', error, 'critical');
++      return false;
++    }
++  }, false);
++}
++
++/** Evidence and unlocks are one persisted snapshot in the existing owner-serialized achievement queue. */
++export async function recordActivityAchievementFact(fact: ActivityFact, token: AccountGenerationToken): Promise<boolean> {
++  if (!token.stableId || !isCurrentAccountGeneration(token)) return false;
++  return enqueueAchievementOperation(token, async () => {
++    try {
++      const states = await loadAchievementStatesForTargetInternal(undefined, token, false);
++      if (!states.length || !isCurrentAccountGeneration(token)) return false;
++      const result = applyActivityFact(states, fact, Date.now());
++      if (result.changed) {
++        if (!await saveStates(result.states, undefined, token) || !isCurrentAccountGeneration(token)) return false;
++        void import('./cloud_sync').then(({syncToCloud}) => { if(isCurrentAccountGeneration(token)) return syncToCloud(); }).catch((error: unknown)=>DebugLogger.error('achievements:activity_sync',error,'warning'));
++        if (result.unlocked.length) emitAppEvent('achievement_unlocked');
++      }
++      return replaySpireAchievementStories(result.states.filter(row=>ACTIVITY_ACHIEVEMENT_IDS.has(row.id)),token);
++    } catch(error) { DebugLogger.error('achievements:activity_fact',error,'warning'); return false; }
++  },false);
++}
++
+ /**
+  * Retired API kept fail-closed for source compatibility with older callers.
+  * Historical shardClaimed data and payout journals are intentionally left untouched.
+diff --git a/app/achievements_screen.tsx b/app/achievements_screen.tsx
+index d6fe9c801..4732abe59 100644
+--- a/app/achievements_screen.tsx
++++ b/app/achievements_screen.tsx
+@@ -1,4 +1,8 @@
+ import React, { useEffect, useState, memo, useCallback, useMemo, useRef } from 'react';
++import { activityAchievementProgress } from '../modules/achievements/activity_progress';
++import { SpireAchievementUpgrade } from '../components/SpireAchievementUpgrade';
++import { spireAchievementUpgradedAt } from '../modules/spire/achievement_progress';
++import { spireUpgradeLabel } from '../modules/spire/achievement_copy';
+ import {
+   View, Text, SectionList, TouchableOpacity, Pressable, Image, ScrollView, useWindowDimensions,
+   InteractionManager,
+@@ -86,6 +90,7 @@ function isVisibleAchievement(a: Achievement): boolean {
+ type AchievementGridMetrics = ReturnType<typeof getAchievementGridMetrics>;
+ 
+ interface AchievementStats {
++  activityStates?: readonly AchievementState[];
+   streak: number;
+   /** Баланс монет — по нему считается «Монетная заначка» (id `shards_*` исторический). */
+   coins: number;
+@@ -107,6 +112,7 @@ async function loadAchievementStats(): Promise<AchievementStats> {
+     return {
+       streak: personalProgress.streakCount,
+       coins: wallet.balance,
++      activityStates: await loadAchievementStates(),
+     };
+   } catch (error: unknown) {
+     console.warn('[ACHIEVEMENTS] stats:load_failed', error instanceof Error ? error.message : String(error));
+@@ -115,6 +121,8 @@ async function loadAchievementStats(): Promise<AchievementStats> {
+ }
+ 
+ function getAchievementProgress(id: string, stats: AchievementStats): [number, number] | null {
++  const activity = activityAchievementProgress(id,stats.activityStates ?? []);
++  if(activity)return activity;
+   if (id.startsWith('streak_')) {
+     const n = parseInt(id.replace('streak_', ''));
+     if (!isNaN(n)) return [Math.min(stats.streak, n), n];
+@@ -292,6 +300,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
+           size={shieldW}
+           maskBg={t.bgPrimary}
+           achievementId={a.id}
++          upgraded={!!spireAchievementUpgradedAt(state)}
+           isDark={isDark}
+         />
+       </View>
+@@ -424,11 +433,12 @@ function CategoryIconImageWithFallback({
+ 
+ function BadgeShieldInner({
+   unlocked, inProgress, color, iconName, size, achievementId,
+-  isDark,
++  isDark, upgraded = false,
+ }: {
+   unlocked: boolean; inProgress: boolean; color: string;
+   iconName: string; size: number; maskBg?: string; achievementId?: string;
+   isDark: boolean;
++  upgraded?: boolean;
+ }) {
+   const W      = size;
+   const BODY_H = Math.round(W * 0.88);
+@@ -457,6 +467,7 @@ function BadgeShieldInner({
+           iconColor={iconColor}
+           opacity={isLocked ? 0.20 : inProgress ? 0.50 : 1}
+         />
++        {unlocked && upgraded && <SpireAchievementUpgrade size={W} color={color} />}
+       </View>
+     );
+   }
+@@ -598,6 +609,7 @@ function AchievementModal({
+               size={124}
+               maskBg={glass.opaqueControl}
+               achievementId={achievement.id}
++              upgraded={!!spireAchievementUpgradedAt(state)}
+               isDark={isDark}
+             />
+           </View>
+@@ -612,6 +624,7 @@ function AchievementModal({
+             >
+               <Text style={{ color: glass.text, fontSize: 13, lineHeight: 17, fontWeight: '800' }}>
+                 {obtainedLabel} · {formatDate(state.unlockedAt)}
++                {spireAchievementUpgradedAt(state) ? ` · ${spireUpgradeLabel(lang)}` : ''}
+               </Text>
+             </View>
+           ) : null}
+@@ -1012,6 +1025,7 @@ export default function AchievementsScreen() {
+           size={size}
+           maskBg={t.bgPrimary}
+           achievementId={achievement.id}
++          upgraded={!!spireAchievementUpgradedAt(state)}
+           isDark={isDark}
+         />
+       </View>
+@@ -1094,6 +1108,7 @@ export default function AchievementsScreen() {
+             <Ionicons name="calendar-outline" size={15} color={t.textMuted} />
+             <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
+               {unlockedAt}
++              {spireAchievementUpgradedAt(state) ? ` · ${spireUpgradeLabel(lang)}` : ''}
+             </Text>
+           </View>
+         )}
+diff --git a/app/client_reports.ts b/app/client_reports.ts
+index 5de36505b..055c20d7e 100644
+--- a/app/client_reports.ts
++++ b/app/client_reports.ts
+@@ -1,4 +1,6 @@
+ import { Platform } from 'react-native';
++import { isManualAchievementReceipt } from '../modules/achievements/activity_progress';
++import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+ import { withCallableTimeout } from './callable_timeout';
+ 
+@@ -62,6 +64,7 @@ export async function submitClientReport(
+   options: SubmitClientReportOptions = {},
+ ): Promise<SubmitClientReportResult | null> {
+   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
++  const accountToken = captureAccountGeneration();
+   const fn = getSubmitClientReportCallable();
+   // 30с вместо ~70с дефолта RN Firebase: на висящей сети кнопка «Отправить»
+   // не должна крутить спиннер больше минуты.
+@@ -70,10 +73,16 @@ export async function submitClientReport(
+     // зачем (§126 п.9): часть отчётов (error_report шлёт deviceOS) приходила без platform → 'unknown'
+     // в админке. Одна общая точка: platform добавляется, если вызывающий не задал своё.
+     payload: typeof payload.platform === 'string' && payload.platform ? payload : { ...payload, platform: Platform.OS },
+-    ...(options.expectedStableUid ? { expectedStableUid: options.expectedStableUid } : {}),
++    ...(options.expectedStableUid ? { expectedStableUid: options.expectedStableUid } : accountToken.stableId && ['user_report','arena_opponent_report','community_pack_report','error_report','spire_task_report'].includes(kind) ? {expectedStableUid:accountToken.stableId} : {}),
+     ...(options.idempotencyKey ? { idempotencyKey: options.idempotencyKey } : {}),
+   };
+   const res = await withCallableTimeout(fn(request), 'submitClientReport');
++  if (res.data?.ok === true && res.data.id && res.data.collection && isManualAchievementReceipt(kind,res.data.collection,res.data.id) && accountToken.stableId
++    && (!options.expectedStableUid || options.expectedStableUid === accountToken.stableId) && isCurrentAccountGeneration(accountToken)) {
++    const { recordActivityAchievementFact } = await import('./achievements');
++    const saved = await recordActivityAchievementFact({ kind:'report', reportKind:kind, collection:res.data.collection, receiptId:res.data.id },accountToken);
++    if (!saved && isCurrentAccountGeneration(accountToken)) throw new Error('report_achievement_receipt_not_saved');
++  }
+   return res.data;
+ }
+ 
+diff --git a/app/dev_chapter_exam_v2_preview.tsx b/app/dev_chapter_exam_v2_preview.tsx
+index fe0a1507b..5424932bd 100644
+--- a/app/dev_chapter_exam_v2_preview.tsx
++++ b/app/dev_chapter_exam_v2_preview.tsx
+@@ -20,6 +20,7 @@ import ChapterExamV2Run from '../components/learning-v2/exam_v2/ChapterExamV2Run
+ import { chapterExamV2DevPreset, isChapterExamV2DevState, type ChapterExamV2DevState } from '../components/learning-v2/exam_v2/chapter_exam_v2_dev_presets';
+ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
+ import { getDevAppearance, setDevAppearance } from './dev_appearance_override';
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+ const LOG = '[DEV-STATE]';
+ const DEV_LESSON = 1;
+@@ -51,7 +52,9 @@ function Inner() {
+   return <ChapterExamV2Run key={`${state}|${chapter}|${theme}`} lessonOrdinal={DEV_LESSON} chapterOrdinal={chapter} source="dev_preview" devPreset={preset} />;
+ }
+ 
+-export default function DevChapterExamV2PreviewRoute() {
++function DevChapterExamV2PreviewRoute() {
+   if (!ENABLE_DEV_TOOLS || IS_STORE_RELEASE) return <Redirect href="/" />;
+   return <Inner />;
+ }
++
++export default withLearningV2DisabledGuardV1('route_dev_chapter_exam_v2_preview', DevChapterExamV2PreviewRoute);
+diff --git a/app/dev_learning_v2_dictionary_v2.tsx b/app/dev_learning_v2_dictionary_v2.tsx
+index 32c249b08..ef3c58a4a 100644
+--- a/app/dev_learning_v2_dictionary_v2.tsx
++++ b/app/dev_learning_v2_dictionary_v2.tsx
+@@ -13,13 +13,14 @@ import LearningV2DictionaryV2 from "../components/learning-v2/LearningV2Dictiona
+ import { useStudyTarget } from "../components/StudyTargetContext";
+ import { useLearningV2CourseUnlockedWordsV1 } from "../hooks/use_learning_v2_course_unlocked_words_v1";
+ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from "./config";
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ import type { CardsTrainingRoute } from "./flashcards/training_entry";
+ import { safeRouterBack } from "./navigation_back";
+ 
+ const LOG = "[V2-DICT]";
+ const ALL_LESSONS = Array.from({ length: 32 }, (_, index) => index + 1);
+ 
+-export default function DevLearningV2DictionaryV2() {
++function DevLearningV2DictionaryV2() {
+   const params = useLocalSearchParams<{ state?: string | string[] }>();
+   const router = useRouter();
+   const { studyTarget } = useStudyTarget();
+@@ -51,3 +52,5 @@ export default function DevLearningV2DictionaryV2() {
+     />
+   );
+ }
++
++export default withLearningV2DisabledGuardV1('route_dev_learning_v2_dictionary_v2', DevLearningV2DictionaryV2);
+diff --git a/app/dev_learning_v2_theory.tsx b/app/dev_learning_v2_theory.tsx
+index 494808eab..b98a98eec 100644
+--- a/app/dev_learning_v2_theory.tsx
++++ b/app/dev_learning_v2_theory.tsx
+@@ -18,12 +18,13 @@ import { useTheme } from "../components/ThemeContext";
+ import { LIQUID_GLASS_THEME_IDS, type LiquidGlassThemeId } from "../constants/liquidGlassThemePalette";
+ import { learningV2TheorySectionForSessionV1, loadLearningV2TheoryV1 } from "../modules/learning-v2/theory/learning_v2_theory_v1";
+ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from "./config";
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ import { safeRouterBack } from "./navigation_back";
+ 
+ const LOG = "[V2-THEORY]";
+ const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
+ 
+-export default function DevLearningV2Theory() {
++function DevLearningV2Theory() {
+   const params = useLocalSearchParams<{ lesson?: string; session?: string; theme?: string }>();
+   const router = useRouter();
+   const { lang } = useLang();
+@@ -61,3 +62,5 @@ export default function DevLearningV2Theory() {
+ }
+ 
+ const styles = StyleSheet.create({ fill: { flex: 1 } });
++
++export default withLearningV2DisabledGuardV1('route_dev_learning_v2_theory', DevLearningV2Theory);
+diff --git a/app/dev_season_preview.tsx b/app/dev_season_preview.tsx
+index 464ac2053..5afc12dfe 100644
+--- a/app/dev_season_preview.tsx
++++ b/app/dev_season_preview.tsx
+@@ -35,6 +35,7 @@ import {
+ } from '../components/learning-v2/season/season_preview_fixtures';
+ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
+ import { getDevAppearance, setDevAppearance } from './dev_appearance_override';
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+ const noop = (): void => undefined;
+ /** Ранг монеты-аватара в превью (как у dev-входа Главной). */
+@@ -107,11 +108,13 @@ function Inner() {
+   );
+ }
+ 
+-export default function DevSeasonPreviewRoute() {
++function DevSeasonPreviewRoute() {
+   if (!ENABLE_DEV_TOOLS || IS_STORE_RELEASE) return <Redirect href="/" />;
+   return <Inner />;
+ }
+ 
++export default withLearningV2DisabledGuardV1('route_dev_season_preview', DevSeasonPreviewRoute);
++
+ const s = StyleSheet.create({
+   root: { flex: 1 },
+   avatar: { width: STORY_RING_SLOT, height: STORY_RING_SLOT },
+diff --git a/app/learning-v2/chapter-exam.tsx b/app/learning-v2/chapter-exam.tsx
+index 2f4a5a735..da0440de0 100644
+--- a/app/learning-v2/chapter-exam.tsx
++++ b/app/learning-v2/chapter-exam.tsx
+@@ -37,6 +37,7 @@ import { useAudio } from '../../hooks/use-audio';
+ import { hapticError, hapticSuccess } from '../../hooks/use-haptics';
+ import { createEnergySessionIntent } from '../energy_session_operation_ledger';
+ import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, isLearningV2OpenForUiLangV1, logLearningV2Hidden } from '../learning_v2_visibility_switch';
++import { withLearningV2DisabledGuardV1 } from '../learning_v2_locale_guard';
+ import { deriveLocalOfflineProgressAccountScopeHash } from '../../modules/learning-v2/progress/progress_account_scope';
+ import { CHAPTER_EXAM_QUESTION_COUNT_V1, type ChapterExamQuestionV1 } from '../../modules/learning-v2/exam/chapter_exam_v1';
+ import LearningV2ModeRouterV1 from '../../modules/learning-v2/modes/mode_router_v1';
+@@ -74,7 +75,7 @@ function openedRangeOf(sessionIds: readonly string[]): Outcome['openedRange'] {
+ }
+ type Prepared = Readonly<{ examKey: string; attempt: number; questions: readonly ChapterExamQuestionV1[]; scopeHash: string }>;
+ 
+-export default function LearningV2ChapterExamScreen() {
++function LearningV2ChapterExamScreen() {
+   // зачем (план Б 16.10): при скрытом V2 ссылка на экзамен ведёт на Главную, а не в пустой раздел
+   if (isLearningV2Hidden()) {
+     logLearningV2Hidden('route_learning_v2_chapter_exam', LEARNING_V2_HIDDEN_REDIRECT);
+@@ -518,3 +519,5 @@ const styles = StyleSheet.create({
+   cta: { height: 52, borderRadius: 26, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+   ctaText: { fontSize: 16, fontWeight: '700' },
+ });
++
++export default withLearningV2DisabledGuardV1('route_learning_v2_chapter_exam', LearningV2ChapterExamScreen);
+diff --git a/app/learning-v2/course.tsx b/app/learning-v2/course.tsx
+index c909023f0..091f25e44 100644
+--- a/app/learning-v2/course.tsx
++++ b/app/learning-v2/course.tsx
+@@ -2,10 +2,11 @@ import React from "react";
+ import { useLocalSearchParams, useRootNavigationState, useRouter } from "expo-router";
+ import { dismissToTabRoute } from "../navigation_back";
+ import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from "../learning_v2_visibility_switch";
++import { withLearningV2DisabledGuardV1 } from "../learning_v2_locale_guard";
+ import { scheduleAfterRootNavigationReady } from "../paywall_navigation";
+ 
+ /** Legacy links return to the retained course tab instead of mounting a second hub. */
+-export default function LearningV2CourseScreen() {
++function LearningV2CourseScreen() {
+   const router = useRouter();
+   const rootNavigationReady = Boolean(useRootNavigationState()?.key);
+   const params = useLocalSearchParams();
+@@ -34,3 +35,5 @@ export default function LearningV2CourseScreen() {
+   }, [query, rootNavigationReady, router]);
+   return null;
+ }
++
++export default withLearningV2DisabledGuardV1('route_learning_v2_course', LearningV2CourseScreen);
+diff --git a/app/learning-v2/intro-reader-fixture.tsx b/app/learning-v2/intro-reader-fixture.tsx
+index 277bc5059..6f7d63809 100644
+--- a/app/learning-v2/intro-reader-fixture.tsx
++++ b/app/learning-v2/intro-reader-fixture.tsx
+@@ -11,6 +11,7 @@ import type {
+   LessonIntroScreen,
+ } from "../lesson_data_types";
+ import { useTheme } from "../../components/ThemeContext";
++import { withLearningV2DisabledGuardV1 } from '../learning_v2_locale_guard';
+ 
+ const locales = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
+ 
+@@ -121,7 +122,7 @@ const fixtureScreens: readonly LessonIntroScreen[] = Object.freeze([
+   },
+ ]);
+ 
+-export default function LearningV2IntroReaderFixtureRoute() {
++function LearningV2IntroReaderFixtureRoute() {
+   const params = useLocalSearchParams<{ run?: string; theme?: string }>();
+   const { setPreviewThemeMode } = useTheme();
+   const [complete, setComplete] = useState(false);
+@@ -158,3 +159,5 @@ export default function LearningV2IntroReaderFixtureRoute() {
+     </View>
+   );
+ }
++
++export default withLearningV2DisabledGuardV1('route_learning_v2_intro_reader_fixture', LearningV2IntroReaderFixtureRoute);
+diff --git a/app/learning-v2/session/[id].tsx b/app/learning-v2/session/[id].tsx
+index a9ab90cdb..34a067dbf 100644
+--- a/app/learning-v2/session/[id].tsx
++++ b/app/learning-v2/session/[id].tsx
+@@ -32,6 +32,7 @@ import type { RuntimeStudyTarget } from "../../../app/target_storage_keys";
+ import SessionAttemptsHud from "../../../components/session_attempts/SessionAttemptsHud";
+ import { Redirect, useLocalSearchParams, useRouter } from "expo-router";
+ import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from "../../learning_v2_visibility_switch";
++import { withLearningV2DisabledGuardV1 } from "../../learning_v2_locale_guard";
+ import React, {
+   useCallback,
+   useEffect,
+@@ -2076,7 +2077,7 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
+ 
+ // зачем (план Б 16.10, координатор 14.10): при скрытом V2 занятие по старой ссылке не открывается — Главная и [V2-HIDDEN].
+ // Проверка в обёртке, а не внутри экрана: у экрана хуки, ранний return до них нарушил бы порядок хуков.
+-export default function LearningV2SessionRoute() {
++function LearningV2SessionRoute() {
+   const { id, sessionRunId, previewMode } = useLocalSearchParams<{ id?: string | string[]; sessionRunId?: string | string[]; previewMode?: string | string[] }>();
+   // зачем (эмулятор 17.10: диплинк на L01 s56 вёл на карту, LessonsTab монтировалась ×2; «сперва логи»): что пришло в маршрут занятия —
+   // без sessionRunId занятие не подготовлено картой (ready-handoff), это решает дальнейший путь
+@@ -2736,3 +2737,5 @@ const styles = StyleSheet.create({
+     fontWeight: "900",
+   },
+ });
++
++export default withLearningV2DisabledGuardV1('route_learning_v2_session', LearningV2SessionRoute);
+diff --git a/app/learning_v2_authoring_preview.tsx b/app/learning_v2_authoring_preview.tsx
+index 18e127b81..8ba468cf0 100644
+--- a/app/learning_v2_authoring_preview.tsx
++++ b/app/learning_v2_authoring_preview.tsx
+@@ -1,8 +1,9 @@
+ import React from "react";
+ import { IS_STORE_RELEASE } from "./config";
+ import { DeferredRedirect } from "../components/DeferredRedirect";
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+-export default function LearningV2AuthoringPreviewGate() {
++function LearningV2AuthoringPreviewGate() {
+   if (__DEV__ && !IS_STORE_RELEASE) {
+     // eslint-disable-next-line @typescript-eslint/no-require-imports -- keep authoring source outside store bundles
+     const Real = require("./_learning_v2_authoring_preview").default;
+@@ -10,3 +11,5 @@ export default function LearningV2AuthoringPreviewGate() {
+   }
+   return <DeferredRedirect href={"/(tabs)/home" as never} />;
+ }
++
++export default withLearningV2DisabledGuardV1('route_learning_v2_authoring_preview', LearningV2AuthoringPreviewGate);
+diff --git a/app/learning_v2_course_released_session_client_v3.ts b/app/learning_v2_course_released_session_client_v3.ts
+index 93bcaed99..790da62d9 100644
+--- a/app/learning_v2_course_released_session_client_v3.ts
++++ b/app/learning_v2_course_released_session_client_v3.ts
+@@ -59,6 +59,7 @@ import {
+ } from "../modules/learning-v2/content/generator_course_contract";
+ import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+ import { noteV2SessionUnavailable } from './lessons_access_diagnostics';
++import { LEARNING_V2_HIDDEN } from './learning_v2_visibility_switch';
+ 
+ export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 =
+   "learning-v2-course-released-session-cache.v3" as const;
+@@ -784,6 +785,7 @@ function appResult(
+ export function peekCurrentLearningV2CourseReleasedSessionV3(
+   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+ ): LearningV2CourseReleasedSessionMaterialV3 | null {
++  if (LEARNING_V2_HIDDEN) return null;
+   const locator = exactCurrentLocator(locatorInput);
+   if (locator.targetLanguage === "en" || locator.targetLanguage === "es") return bundledLearningV2CourseSessionMaterialV3(locator);
+   const stableId = peekStableId();
+@@ -800,6 +802,7 @@ export function peekCurrentLearningV2CourseReleasedSessionV3(
+ }
+ 
+ export async function hydrateLearningV2CourseReleasedSessionCacheV3(): Promise<void> {
++  if (LEARNING_V2_HIDDEN) return;
+   legacyCachePurgeV4 ??= AsyncStorage.removeItem(LEGACY_STORAGE_KEY_V3);
+   await legacyCachePurgeV4;
+   await readEnvelope();
+@@ -850,6 +853,7 @@ function bundledShardFor(
+ export function bundledLearningV2CourseSessionMaterialV3(
+   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+ ): LearningV2CourseReleasedSessionMaterialV3 | null {
++  if (LEARNING_V2_HIDDEN) return null;
+   return bundledSessionMaterial(locatorInput, false);
+ }
+ 
+@@ -857,7 +861,7 @@ export function bundledLearningV2CourseSessionMaterialV3(
+ export function previewLearningV2CourseSessionMaterialV3(
+   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+ ): LearningV2CourseReleasedSessionMaterialV3 | null {
+-  if (!__DEV__) return null;
++  if (LEARNING_V2_HIDDEN || !__DEV__) return null;
+   return bundledSessionMaterial(locatorInput, true);
+ }
+ 
+@@ -1133,7 +1137,9 @@ function bundledSessionMaterial(
+ export function admitCurrentLearningV2CourseSessionPublicationV3(
+   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+ ): LearningV2CourseSessionPublicationAdmissionV3 {
+-  const material = bundledLearningV2CourseSessionMaterialV3(locatorInput);
++  // Existing queued rune-intent recovery must still validate its already-earned
++  // completion against current bundled material while all UI entrypoints stay off.
++  const material = bundledSessionMaterial(locatorInput, false);
+   if (!material || material.releaseId !== "factory-native-v1" ||
+     material.factorySourceFingerprint === null ||
+     material.learnerChild.targetLanguage !== "en") fail();
+@@ -1154,6 +1160,7 @@ export function resolveLearningV2CourseSessionPublicationAdmissionV3(
+ export async function loadCurrentLearningV2CourseReleasedSessionV3(
+   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+ ): Promise<LearningV2CourseReleasedSessionAppResultV3> {
++  if (LEARNING_V2_HIDDEN) throw new Error('learning_v2_disabled_by_owner');
+   const locator = exactCurrentLocator(locatorInput);
+   // зачем это первая строка функции (владелец, 2026-08-17: «первый урок уже
+   // должен быть в бандле» / «убери сервер наглухо»): если сессия написана
+@@ -1260,6 +1267,7 @@ export async function loadCurrentLearningV2CourseReleasedSessionV3(
+ export function preloadCurrentLearningV2CourseReleasedSessionV3(
+   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+ ): Promise<void> {
++  if (LEARNING_V2_HIDDEN) return Promise.resolve();
+   const locator = exactCurrentLocator(locatorInput);
+   const key = currentKey(locator);
+   const existing = currentPreloads.get(key);
+@@ -1277,6 +1285,7 @@ export function preloadCurrentLearningV2CourseReleasedSessionV3(
+ export function waitForCurrentLearningV2CourseReleasedSessionPreloadV3(
+   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+ ): Promise<void> | null {
++  if (LEARNING_V2_HIDDEN) return null;
+   const locator = exactCurrentLocator(locatorInput);
+   return currentPreloads.get(currentKey(locator)) ?? null;
+ }
+@@ -1285,6 +1294,7 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
+   readonly locator: LearningV2CourseReleasedSessionCurrentLocatorV3;
+   readonly sessionRunId: string;
+ }): Promise<LearningV2CourseSessionReadyHandleV3> {
++  if (LEARNING_V2_HIDDEN) throw new Error('learning_v2_disabled_by_owner');
+   if (
+     !plain(input) ||
+     Object.keys(input).sort().join("|") !== "locator|sessionRunId" ||
+@@ -1499,6 +1509,7 @@ export function consumeLearningV2CourseSessionReadyHandoffV3(input: {
+ }
+ 
+ export async function clearLearningV2CourseReleasedSessionCacheV3(): Promise<void> {
++  if (LEARNING_V2_HIDDEN) return;
+   peek.clear();
+   currentPreloads.clear();
+   readyInFlight.clear();
+diff --git a/app/learning_v2_direct_session_player_v1.tsx b/app/learning_v2_direct_session_player_v1.tsx
+index 7921e153c..3774b2d4c 100644
+--- a/app/learning_v2_direct_session_player_v1.tsx
++++ b/app/learning_v2_direct_session_player_v1.tsx
+@@ -297,7 +297,7 @@ import { LearningV2HudPlate } from "../components/learning-v2/LearningV2TaskChro
+ import { lv2TaskPlateStyle, lv2TaskTrackColor } from "../components/learning-v2/learning_v2_task_layout_tokens";
+ import { LearningV2SessionUnavailable, learningV2SessionUnavailableDefaultHint } from "../components/learning-v2/LearningV2SessionUnavailable";
+ import { scheduleNextLearningV2SessionPrewarmV1 } from "./learning_v2_session_launch_v1";
+-import { withLearningV2LocaleGuardV1 } from './learning_v2_locale_guard';
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+ const first = (value: string | string[] | undefined) =>
+   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
+@@ -4778,4 +4778,4 @@ const styles = StyleSheet.create({
+ });
+ 
+ // зачем (координатор 28.10): маршрут V2 открывается только на языке, где у курса есть пояснения (ru/uk) — иначе [V2-HIDDEN] и на Главную
+-export default withLearningV2LocaleGuardV1('route_learning_v2_direct_session_player', LearningV2DirectSessionPlayerV1);
++export default withLearningV2DisabledGuardV1('route_learning_v2_direct_session_player', LearningV2DirectSessionPlayerV1);
+diff --git a/app/learning_v2_home_continue_route.ts b/app/learning_v2_home_continue_route.ts
+index 9f16871ed..e1f07b7eb 100644
+--- a/app/learning_v2_home_continue_route.ts
++++ b/app/learning_v2_home_continue_route.ts
+@@ -33,6 +33,7 @@ export function useHomeContinueV2Prewarm(
+   const environmentRaw = route?.releaseEnvironment;
+   const seasonId = route?.releaseSeasonId || 'learning-v2';
+   useEffect(() => {
++    if (LEARNING_V2_HIDDEN) return undefined;
+     if (!active || !Number.isInteger(lessonOrdinal) || !Number.isInteger(sessionOrdinal)) {
+       if (active && route) console.log(`${LOG} prewarm skip: метка без урока/занятия (${JSON.stringify(route)})`); // guard-ok: ранний выход с причиной
+       return undefined;
+@@ -89,6 +90,10 @@ export type HomeContinueV2LaunchContext = Readonly<{
+ }>;
+ 
+ export async function launchHomeContinueV2(route: Readonly<Record<string, string>>, ctx: HomeContinueV2LaunchContext): Promise<void> {
++  if (LEARNING_V2_HIDDEN) {
++    logLearningV2Hidden('home_continue_launch', 'home');
++    return;
++  }
+   // защита от двойного тапа: вторая подготовка того же занятия не нужна, второй переход — тем более
+   if (launchInFlight) { console.log(`${LOG} launch: повторный тап во время подготовки — пропускаем`); return; }
+   const lessonOrdinal = Number(route.lessonOrdinal);
+@@ -218,6 +223,7 @@ export function peekHomeContinueV2Progress(lessonOrdinal: number, targetLanguage
+ 
+ /** Выпущенные занятия урока и сколько из них пройдено — по тем же правилам, что карта курса. null — прочитать не удалось. */
+ export async function loadHomeContinueV2Progress(lessonOrdinal: number, targetLanguage: HomeContinueV2ProgressTarget = 'en'): Promise<HomeContinueV2Progress | null> {
++  if (LEARNING_V2_HIDDEN) return null;
+   const startedAt = Date.now();
+   try {
+     // зачем: модули курса грузятся лениво — холодный старт Главной не платит за каталог, пока карточка не показывает V2
+@@ -253,10 +259,10 @@ export async function loadHomeContinueV2Progress(lessonOrdinal: number, targetLa
+  */
+ export function useHomeContinueV2Progress(lessonOrdinal: number | null, refreshKey: unknown, active: boolean, targetLanguage: HomeContinueV2ProgressTarget = 'en'): HomeContinueV2Progress | null {
+   const [state, setState] = useState<Readonly<{ targetLanguage: HomeContinueV2ProgressTarget; progress: HomeContinueV2Progress | null }>>(
+-    () => ({ targetLanguage, progress: lessonOrdinal === null ? null : peekHomeContinueV2Progress(lessonOrdinal, targetLanguage) }),
++    () => ({ targetLanguage, progress: LEARNING_V2_HIDDEN || lessonOrdinal === null ? null : peekHomeContinueV2Progress(lessonOrdinal, targetLanguage) }),
+   );
+   useEffect(() => {
+-    if (lessonOrdinal === null || !active) return undefined;
++    if (LEARNING_V2_HIDDEN || lessonOrdinal === null || !active) return undefined;
+     let alive = true;
+     const cached = peekHomeContinueV2Progress(lessonOrdinal, targetLanguage);
+     if (cached) setState((prev) => (prev.targetLanguage === targetLanguage && prev.progress && prev.progress.lessonOrdinal === cached.lessonOrdinal && prev.progress.done === cached.done && prev.progress.total === cached.total ? prev : { targetLanguage, progress: cached }));
+@@ -271,6 +277,7 @@ export function useHomeContinueV2Progress(lessonOrdinal: number | null, refreshK
+     });
+     return () => { alive = false; };
+   }, [lessonOrdinal, refreshKey, active, targetLanguage]);
++  if (LEARNING_V2_HIDDEN) return null;
+   const progress = state.targetLanguage === targetLanguage ? state.progress : null;
+   return lessonOrdinal !== null && progress?.lessonOrdinal === lessonOrdinal ? progress : null;
+ }
+diff --git a/app/learning_v2_last_lesson.ts b/app/learning_v2_last_lesson.ts
+index ebcabef8e..e072893e1 100644
+--- a/app/learning_v2_last_lesson.ts
++++ b/app/learning_v2_last_lesson.ts
+@@ -120,17 +120,21 @@ export function pickInitialLessonOrdinal(args: Readonly<{
+ }
+ 
+ /** Для экранов: значение из памяти + дочитывание с диска; undefined — ещё не знаем (первый кадр без прыжка: рисуем по canonical). */
+-export function useLearningV2LastLesson(target: RuntimeStudyTarget): number | null | undefined {
+-  const [value, setValue] = useState<number | null | undefined>(() => peekLearningV2LastLesson(target));
++export function useLearningV2LastLesson(target: RuntimeStudyTarget, enabled = true): number | null | undefined {
++  const [value, setValue] = useState<number | null | undefined>(() => enabled ? peekLearningV2LastLesson(target) : null);
+   useEffect(() => {
++    if (!enabled) {
++      setValue(null);
++      return undefined;
++    }
+     let alive = true;
+     const sync = () => { if (alive) setValue(peekLearningV2LastLesson(target)); };
+     listeners.add(sync);
+     sync();
+     if (peekLearningV2LastLesson(target) === undefined) void loadLearningV2LastLesson(target);
+     return () => { alive = false; listeners.delete(sync); };
+-  }, [target]);
+-  return value;
++  }, [enabled, target]);
++  return enabled ? value : null;
+ }
+ 
+ /* expo-router route shim: app/ files are treated as routes and need a default export. */
+diff --git a/app/learning_v2_lesson_words.tsx b/app/learning_v2_lesson_words.tsx
+index acb8a12fd..992e04527 100644
+--- a/app/learning_v2_lesson_words.tsx
++++ b/app/learning_v2_lesson_words.tsx
+@@ -26,7 +26,7 @@ import { hapticTap } from '../hooks/use-haptics';
+ import { learningV2ClosedWordsLineV1, learningV2LessonNewWordTotalV1 } from './learning_v2_lesson_words_closed_v1';
+ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+ import { learningV2CourseWordsOrdered, learningV2LessonWordToListWord, learningV2LessonWordsOrdered } from '../components/learning-v2/words/words_list_model';
+-import { withLearningV2LocaleGuardV1 } from './learning_v2_locale_guard';
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+ // зачем: прежние имена остаются доступными отсюда (их читают тесты и другие экраны); сама модель — в components/learning-v2/words/words_list_model.ts
+ export { learningV2CourseWordsOrdered, learningV2LessonWordToListWord, learningV2LessonWordsOrdered };
+@@ -135,4 +135,4 @@ const styles = StyleSheet.create({
+ });
+ 
+ // зачем (координатор 28.10): маршрут V2 открывается только на языке, где у курса есть пояснения (ru/uk) — иначе [V2-HIDDEN] и на Главную
+-export default withLearningV2LocaleGuardV1('route_learning_v2_lesson_words', LearningV2LessonWordsScreen);
++export default withLearningV2DisabledGuardV1('route_learning_v2_lesson_words', LearningV2LessonWordsScreen);
+diff --git a/app/learning_v2_locale_guard.tsx b/app/learning_v2_locale_guard.tsx
+index b24d78850..9cb368801 100644
+--- a/app/learning_v2_locale_guard.tsx
++++ b/app/learning_v2_locale_guard.tsx
+@@ -1,19 +1,31 @@
+-// learning_v2_locale_guard.tsx — общий замок маршрута Learning V2: курс скрыт (рубильник или язык без пояснений курса) → на Главную.
+-// зачем (координатор 28.10, Переводчик: курс есть только на ru/uk, localized() для остальных языков подставляет русский): каждый маршрут V2
+-// обязан проверять язык интерфейса, иначе ссылка, уведомление или «Продолжить» откроют русский текст человеку на en/es/…. Обёртка без хуков —
+-// решение «скрыт» может поменяться при смене языка, а число хуков внутреннего экрана от этого не меняется.
++// learning_v2_locale_guard.tsx — общий внешний замок всех маршрутов Learning V2.
++// Learning V2 отключён решением владельца, не включать. Обёртка не монтирует
++// внутренний экран: его хуки, чтения прогресса и подготовка материала не стартуют.
+ import React, { type ComponentType } from 'react';
+-import { Redirect } from 'expo-router';
++import { useRootNavigationState, useRouter } from 'expo-router';
++import { scheduleAfterRootNavigationReady } from './paywall_navigation';
+ import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from './learning_v2_visibility_switch';
+ 
+-export function withLearningV2LocaleGuardV1<P extends object>(entry: string, Screen: ComponentType<P>): ComponentType<P> {
+-  function LearningV2LocaleGuarded(props: P) {
+-    if (isLearningV2Hidden()) {
+-      logLearningV2Hidden(entry, LEARNING_V2_HIDDEN_REDIRECT);
+-      return <Redirect href={LEARNING_V2_HIDDEN_REDIRECT} />;
+-    }
++export function withLearningV2DisabledGuardV1<P extends object>(entry: string, Screen: ComponentType<P>): ComponentType<P> {
++  function LearningV2DisabledGuarded(props: P) {
++    const router = useRouter();
++    const rootNavigationReady = Boolean(useRootNavigationState()?.key);
++    const hidden = isLearningV2Hidden();
++    React.useEffect(() => {
++      if (!hidden || !rootNavigationReady) return undefined;
++      const scheduled = scheduleAfterRootNavigationReady(() => {
++        if (!isLearningV2Hidden()) return;
++        logLearningV2Hidden(entry, LEARNING_V2_HIDDEN_REDIRECT);
++        router.replace(LEARNING_V2_HIDDEN_REDIRECT);
++      });
++      return () => scheduled.cancel();
++    }, [hidden, rootNavigationReady, router]);
++    if (hidden) return null;
+     return <Screen {...props} />;
+   }
+-  LearningV2LocaleGuarded.displayName = `LearningV2LocaleGuarded(${Screen.displayName ?? Screen.name ?? entry})`;
+-  return LearningV2LocaleGuarded;
++  LearningV2DisabledGuarded.displayName = `LearningV2DisabledGuarded(${Screen.displayName ?? Screen.name ?? entry})`;
++  return LearningV2DisabledGuarded;
+ }
++
++/** Compatibility name for existing route modules; it is also permanently fail-closed. */
++export const withLearningV2LocaleGuardV1 = withLearningV2DisabledGuardV1;
+diff --git a/app/learning_v2_modes_showcase.tsx b/app/learning_v2_modes_showcase.tsx
+index 8b9f16a95..7331458db 100644
+--- a/app/learning_v2_modes_showcase.tsx
++++ b/app/learning_v2_modes_showcase.tsx
+@@ -5,8 +5,9 @@
+ import React from 'react';
+ import { IS_STORE_RELEASE } from './config';
+ import { DeferredRedirect } from '../components/DeferredRedirect';
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+-export default function LearningV2ModesShowcaseGate() {
++function LearningV2ModesShowcaseGate() {
+   if (__DEV__ && !IS_STORE_RELEASE) {
+     // guard-ok: тот же паттерн, что motion_showcase.tsx — рантайм-require
+     // намеренный, не забытый static import: держит реальную витрину вне
+@@ -17,3 +18,5 @@ export default function LearningV2ModesShowcaseGate() {
+   }
+   return <DeferredRedirect href={'/(tabs)/home' as any} />;
+ }
++
++export default withLearningV2DisabledGuardV1('route_learning_v2_modes_showcase', LearningV2ModesShowcaseGate);
+diff --git a/app/learning_v2_modes_showcase_run/[family].tsx b/app/learning_v2_modes_showcase_run/[family].tsx
+index b554d538a..b46fe23ba 100644
+--- a/app/learning_v2_modes_showcase_run/[family].tsx
++++ b/app/learning_v2_modes_showcase_run/[family].tsx
+@@ -21,6 +21,7 @@ import { useTheme } from '../../components/ThemeContext';
+ import { IS_STORE_RELEASE } from '../config';
+ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+ import { rememberNavigationPath, safeRouterBack } from '../navigation_back';
++import { withLearningV2DisabledGuardV1 } from '../learning_v2_locale_guard';
+ import { LEARNING_V2_MODES_SHOWCASE_ROUTE } from '../../constants/devRoutes';
+ import { hapticTap } from '../../hooks/use-haptics';
+ import { cs } from '../../components/dev/motion_showcase/showcase_copy';
+@@ -183,7 +184,7 @@ function VoiceModeStage({ onAdvance }: { readonly onAdvance: () => void }) {
+   );
+ }
+ 
+-export default function LearningV2ModesShowcaseRunScreen() {
++function LearningV2ModesShowcaseRunScreen() {
+   // зачем: та же production-safe защита, что gate-файлы motion_showcase.tsx/
+   // learning_v2_modes_showcase.tsx — динамический маршрут [family] не может
+   // использовать require-gate паттерн (нет одного статичного дочернего
+@@ -338,3 +339,5 @@ const styles = StyleSheet.create({
+   doneTitle: { fontWeight: '800', marginTop: 12 },
+   doneSubtitle: { marginTop: 6, textAlign: 'center' },
+ });
++
++export default withLearningV2DisabledGuardV1('route_learning_v2_modes_showcase_run', LearningV2ModesShowcaseRunScreen);
+diff --git a/app/learning_v2_owner_repository_runtime.ts b/app/learning_v2_owner_repository_runtime.ts
+index 4e4c16a3c..0ace3dd64 100644
+--- a/app/learning_v2_owner_repository_runtime.ts
++++ b/app/learning_v2_owner_repository_runtime.ts
+@@ -118,6 +118,13 @@ export interface LearningV2SessionRuneRewardProtectedReceiptStorageV1 {
+   removeItem(key: string): Promise<void>;
+ }
+ 
++export interface LearningV2SessionRuneRewardRecoveryResultV1 {
++  readonly applied: number;
++  readonly replayed: number;
++  readonly remaining: number;
++  readonly failed: number;
++}
++
+ const SESSION_RUNE_REWARD_INTENT_PREFIX =
+   'learning-v2:session-rune-reward-intent:v1:';
+ 
+@@ -288,32 +295,47 @@ async function removeLearningV2SessionRuneRewardPreparedIntentV1(
+   storage: LearningV2SessionRuneRewardIntentStorageV1,
+   protectedReceiptStorage:
+     LearningV2SessionRuneRewardProtectedReceiptStorageV1,
++  accountToken: AccountGenerationToken,
+ ): Promise<void> {
++  const assertCurrent = () => {
++    if (!accountToken.stableId ||
++      !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
++      throw new Error('learning_v2_account_inactive');
++    }
++  };
++  assertCurrent();
+   const key = sessionRuneRewardIntentKey(intent);
+   const encoded = canonicalJsonV1(intent);
+   const existing = await storage.getItem(key);
++  assertCurrent();
+   if (existing === null) return;
+   if (existing !== encoded) {
+     throw new Error('learning_v2_session_rune_reward_intent_collision');
+   }
++  assertCurrent();
+   await storage.removeItem(key);
++  assertCurrent();
+   if (await storage.getItem(key) !== null) {
+     throw new Error('learning_v2_session_rune_reward_intent_indeterminate');
+   }
++  assertCurrent();
+   const protectedKey = sessionRuneRewardProtectedReceiptKey(intent);
+   const protectedRaw = await protectedReceiptStorage.getItem(protectedKey);
++  assertCurrent();
+   if (protectedRaw !== null) {
+     const protectedReceipt =
+       await readLearningV2SessionRuneRewardProtectedIntentReceiptV1(
+         intent,
+         protectedReceiptStorage,
+       );
++    assertCurrent();
+     if (canonicalJsonV1(protectedReceipt) !== protectedRaw) {
+       throw new Error(
+         'learning_v2_session_rune_reward_protected_receipt_collision',
+       );
+     }
+     await protectedReceiptStorage.removeItem(protectedKey);
++    assertCurrent();
+     if (await protectedReceiptStorage.getItem(protectedKey) !== null) {
+       throw new Error(
+         'learning_v2_session_rune_reward_protected_receipt_indeterminate',
+@@ -325,15 +347,20 @@ async function removeLearningV2SessionRuneRewardPreparedIntentV1(
+ async function listLearningV2SessionRuneRewardPreparedIntentsV1(
+   accountScopeHash: string,
+   storage: LearningV2SessionRuneRewardIntentStorageV1,
+-): Promise<readonly LearningV2SessionRuneRewardPreparedIntentV1[]> {
++  isAccountCurrent: () => boolean,
++): Promise<readonly LearningV2SessionRuneRewardPreparedIntentV1[] | null> {
+   const prefix = sessionRuneRewardIntentPrefix(accountScopeHash);
+-  const keys = (await storage.getAllKeys())
++  const allKeys = await storage.getAllKeys();
++  if (!isAccountCurrent()) return null;
++  const keys = allKeys
+     .filter((key) => key.startsWith(prefix))
+     .sort()
+     .slice(0, 8);
+   const intents: LearningV2SessionRuneRewardPreparedIntentV1[] = [];
+   for (const key of keys) {
++    if (!isAccountCurrent()) return null;
+     const raw = await storage.getItem(key);
++    if (!isAccountCurrent()) return null;
+     if (raw === null) continue;
+     let decoded: unknown;
+     try {
+@@ -698,6 +725,7 @@ async function commitPreparedLearningV2SessionRuneRewardIntentV1(
+           defaultSessionRuneRewardIntentStorage,
+         dependencies.sessionRuneRewardProtectedReceiptStorage ??
+           defaultSessionRuneRewardProtectedReceiptStorage,
++        accountToken,
+       );
+     } catch (error) {
+       // Cleanup is retryable. Leaving the exact intent is safe because the
+@@ -739,21 +767,34 @@ export async function commitLearningV2SessionRuneRewardCompositeV1(
+   );
+ }
+ 
+-export async function recoverPendingLearningV2SessionRuneRewardIntentsV1(
++const EMPTY_SESSION_RUNE_REWARD_RECOVERY_RESULT = Object.freeze({
++  applied: 0,
++  replayed: 0,
++  remaining: 0,
++  failed: 0,
++});
++
++const sessionRuneRewardRecoveryFlights = new Map<
++  string,
++  Promise<LearningV2SessionRuneRewardRecoveryResultV1>
++>();
++
++const sessionRuneRewardRecoveryFlightKey = (
++  accountToken: AccountGenerationToken,
++): string => `${accountToken.generation}:${accountToken.stableId ?? ''}`;
++
++async function recoverPendingLearningV2SessionRuneRewardIntentsV1ForAccount(
++  accountToken: AccountGenerationToken,
+   dependencies: LearningV2OwnerRepositoryRuntimeDependencies = {},
+-): Promise<Readonly<{
+-  applied: number;
+-  replayed: number;
+-  remaining: number;
+-  failed: number;
+-}>> {
+-  const accountToken = dependencies.accountToken ?? captureAccountGeneration();
+-  if (accountToken.phase !== 'active' || !accountToken.stableId ||
+-    !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
+-    return Object.freeze({ applied: 0, replayed: 0, remaining: 0, failed: 0 });
++): Promise<LearningV2SessionRuneRewardRecoveryResultV1> {
++  const stableId = accountToken.stableId;
++  if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) {
++    return EMPTY_SESSION_RUNE_REWARD_RECOVERY_RESULT;
+   }
++  const isAccountCurrent = () =>
++    isCurrentAccountGeneration(accountToken, stableId);
+   const accountScopeHash = deriveLearningV2EconomicAccountScopeHash(
+-    accountToken.stableId,
++    stableId,
+   );
+   const storage = dependencies.sessionRuneRewardIntentStorage ??
+     defaultSessionRuneRewardIntentStorage;
+@@ -763,17 +804,21 @@ export async function recoverPendingLearningV2SessionRuneRewardIntentsV1(
+   const intents = await listLearningV2SessionRuneRewardPreparedIntentsV1(
+     accountScopeHash,
+     storage,
++    isAccountCurrent,
+   );
++  if (intents === null) return EMPTY_SESSION_RUNE_REWARD_RECOVERY_RESULT;
+   let applied = 0;
+   let replayed = 0;
+   let failed = 0;
+   for (const intent of intents) {
++    if (!isAccountCurrent()) break;
+     try {
+       const protectedReceipt =
+         await readLearningV2SessionRuneRewardProtectedIntentReceiptV1(
+           intent,
+           protectedReceiptStorage,
+         );
++      if (!isAccountCurrent()) break;
+       const admission = admitCurrentLearningV2CourseSessionPublicationV3({
+         environment: intent.candidate.completion.environment,
+         targetLanguage: intent.candidate.completion.targetLanguage,
+@@ -803,7 +848,9 @@ export async function recoverPendingLearningV2SessionRuneRewardIntentsV1(
+       if (result.status === 'applied') applied += 1;
+       else if (result.status === 'replayed') replayed += 1;
+       else failed += 1;
++      if (!isAccountCurrent()) break;
+     } catch (error) {
++      if (!isAccountCurrent()) break;
+       failed += 1;
+       DebugLogger.error(
+         'learning_v2_session_rune_reward_intent_recovery',
+@@ -820,6 +867,32 @@ export async function recoverPendingLearningV2SessionRuneRewardIntentsV1(
+   });
+ }
+ 
++export function recoverPendingLearningV2SessionRuneRewardIntentsV1(
++  dependencies: LearningV2OwnerRepositoryRuntimeDependencies = {},
++): Promise<LearningV2SessionRuneRewardRecoveryResultV1> {
++  const accountToken = dependencies.accountToken ?? captureAccountGeneration();
++  if (accountToken.phase !== 'active' || !accountToken.stableId ||
++    !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
++    return Promise.resolve(EMPTY_SESSION_RUNE_REWARD_RECOVERY_RESULT);
++  }
++  const flightKey = sessionRuneRewardRecoveryFlightKey(accountToken);
++  const existing = sessionRuneRewardRecoveryFlights.get(flightKey);
++  if (existing) return existing;
++
++  const flight = recoverPendingLearningV2SessionRuneRewardIntentsV1ForAccount(
++    accountToken,
++    dependencies,
++  );
++  sessionRuneRewardRecoveryFlights.set(flightKey, flight);
++  const clear = () => {
++    if (sessionRuneRewardRecoveryFlights.get(flightKey) === flight) {
++      sessionRuneRewardRecoveryFlights.delete(flightKey);
++    }
++  };
++  void flight.then(clear, clear);
++  return flight;
++}
++
+ export async function commitLearningV2AuthorizedCourseUnlock(
+   request: ServerCourseUnlockRequestV1,
+   dependencies: LearningV2OwnerRepositoryRuntimeDependencies = {},
+diff --git a/app/learning_v2_placement.tsx b/app/learning_v2_placement.tsx
+index cb1432eb9..ed7c999eb 100644
+--- a/app/learning_v2_placement.tsx
++++ b/app/learning_v2_placement.tsx
+@@ -27,11 +27,12 @@ import {
+ } from '../modules/learning-v2/exam/placement_test_v1';
+ import { safeRouterBack } from './navigation_back';
+ import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from './learning_v2_visibility_switch';
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+ 
+ const FALLBACK_ROUTE = '/(tabs)/lessons';
+ 
+-export default function LearningV2PlacementScreen() {
++function LearningV2PlacementScreen() {
+   // зачем (план Б 16.10, как у экзамена главы): при скрытом V2 ссылка на тест ведёт на Главную, а не в пустой раздел
+   if (isLearningV2Hidden()) {
+     logLearningV2Hidden('route_learning_v2_placement', LEARNING_V2_HIDDEN_REDIRECT);
+@@ -178,3 +179,5 @@ const styles = StyleSheet.create({
+   screen: { flex: 1 },
+   flex: { flex: 1 },
+ });
++
++export default withLearningV2DisabledGuardV1('route_learning_v2_placement', LearningV2PlacementScreen);
+diff --git a/app/learning_v2_session_intro.tsx b/app/learning_v2_session_intro.tsx
+index 916cf2331..4203dbcf2 100644
+--- a/app/learning_v2_session_intro.tsx
++++ b/app/learning_v2_session_intro.tsx
+@@ -69,7 +69,7 @@ import type {
+ } from "../modules/learning-v2/contracts/mode_native_payload_v1";
+ import { semanticInk } from '../constants/liquidGlassSemanticInk';
+ import { introMarkerWarningInk } from './learning_v2_intro_marker_ink';
+-import { withLearningV2LocaleGuardV1 } from './learning_v2_locale_guard';
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+ const lineText = (line: IntroLine): string =>
+   line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
+@@ -1053,4 +1053,4 @@ const styles = StyleSheet.create({
+ });
+ 
+ // зачем (координатор 28.10): маршрут V2 открывается только на языке, где у курса есть пояснения (ru/uk) — иначе [V2-HIDDEN] и на Главную
+-export default withLearningV2LocaleGuardV1('route_learning_v2_session_intro', LearningV2SessionIntro);
++export default withLearningV2DisabledGuardV1('route_learning_v2_session_intro', LearningV2SessionIntro);
+diff --git a/app/learning_v2_session_intro_check.tsx b/app/learning_v2_session_intro_check.tsx
+index a55f9c052..ae800434c 100644
+--- a/app/learning_v2_session_intro_check.tsx
++++ b/app/learning_v2_session_intro_check.tsx
+@@ -23,7 +23,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+ import { SCREEN_BACK_SIZE, ScreenBackSlot, ScreenCloseButton } from '../components/v2/ScreenBackButton';
+ import { isShortScreen } from '../constants/layout-scale';
+ import type { BoxShadowValue } from 'react-native';
+-import { withLearningV2LocaleGuardV1 } from './learning_v2_locale_guard';
++import { withLearningV2DisabledGuardV1 } from './learning_v2_locale_guard';
+ 
+ type IntroCheckResult = 'idle' | 'wrong' | 'correct';
+ 
+@@ -378,4 +378,4 @@ const styles = StyleSheet.create({
+ });
+ 
+ // зачем (координатор 28.10): маршрут V2 открывается только на языке, где у курса есть пояснения (ru/uk) — иначе [V2-HIDDEN] и на Главную
+-export default withLearningV2LocaleGuardV1('route_learning_v2_session_intro_check', LearningV2SessionIntroCheck);
++export default withLearningV2DisabledGuardV1('route_learning_v2_session_intro_check', LearningV2SessionIntroCheck);
+diff --git a/app/learning_v2_session_launch_v1.ts b/app/learning_v2_session_launch_v1.ts
+index f078d6fcb..6f7dae020 100644
+--- a/app/learning_v2_session_launch_v1.ts
++++ b/app/learning_v2_session_launch_v1.ts
+@@ -12,6 +12,7 @@ import * as Crypto from 'expo-crypto';
+ import { AppState, InteractionManager } from 'react-native';
+ import { onAccountOwnerChanged } from './account_owner_change';
+ import { DebugLogger } from './debug-logger';
++import { LEARNING_V2_HIDDEN } from './learning_v2_visibility_switch';
+ import type { LearningV2CourseSessionReadyHandleV3 } from './learning_v2_course_released_session_client_v3';
+ 
+ const LOG = '[V2-LAUNCH]';
+@@ -23,6 +24,7 @@ let clientLoaded: LearningV2SessionClientV3Module | null = null;
+ 
+ /** Ленивая загрузка клиента занятий V3 (одна на процесс). */
+ export function loadLearningV2SessionClientV3(): Promise<LearningV2SessionClientV3Module> {
++  if (LEARNING_V2_HIDDEN) return Promise.reject(new Error('learning_v2_disabled_by_owner'));
+   if (!clientPromise) {
+     clientPromise = import('./learning_v2_course_released_session_client_v3')
+       .then((mod) => {
+@@ -81,6 +83,7 @@ export function prepareLearningV2SessionRunV1(
+   locator: LearningV2SessionLocatorV1,
+   options: Readonly<{ devUnlockedDrafts: boolean }>,
+ ): Promise<LearningV2PreparedSessionRunV1> {
++  if (LEARNING_V2_HIDDEN) return Promise.reject(new Error('learning_v2_disabled_by_owner'));
+   if (options.devUnlockedDrafts) return Promise.resolve({ sessionRunId: Crypto.randomUUID(), handle: null });
+   const sessionTag = `lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal}`;
+   const inflightKey = preparationKeyOf(locator);
+@@ -152,6 +155,7 @@ onAccountOwnerChanged('learning_v2_prepared_slot', () => {
+ 
+ /** Есть ли готовая заготовка именно этого занятия (тап откроет его без ожидания). */
+ export function isLearningV2SessionReadyV1(locator: LearningV2SessionLocatorV1): boolean {
++  if (LEARNING_V2_HIDDEN) return false;
+   return preparedSlot?.key === preparationKeyOf(locator);
+ }
+ 
+@@ -160,6 +164,7 @@ export function isLearningV2SessionReadyV1(locator: LearningV2SessionLocatorV1):
+  * Вызывать вне первого кадра — scheduleLearningV2SessionPrewarmV1 делает это после interactions и паузы.
+  */
+ export function prewarmLearningV2SessionRunV1(locator: LearningV2SessionLocatorV1, reason: LearningV2PrewarmReasonV1): Promise<void> {
++  if (LEARNING_V2_HIDDEN) return Promise.resolve();
+   const sessionTag = `lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal}`;
+   const key = preparationKeyOf(locator);
+   if (preparedSlot?.key === key) {
+@@ -194,6 +199,7 @@ export function scheduleLearningV2SessionPrewarmV1(
+   reason: LearningV2PrewarmReasonV1,
+   delayMs: number = LEARNING_V2_PREWARM_DELAY_MS,
+ ): () => void {
++  if (LEARNING_V2_HIDDEN) return () => undefined;
+   let timer: ReturnType<typeof setTimeout> | null = null;
+   let cancelled = false;
+   let appStateSub: { remove: () => void } | null = null;
+@@ -232,6 +238,7 @@ export function scheduleLearningV2SessionPrewarmV1(
+ 
+ /** Следующее выпущенное занятие курса после (урок, занятие) — по каталогу и потолку выпуска. null — дальше ничего нет. */
+ export function nextLearningV2SessionOrdinalsV1(lessonOrdinal: number, sessionOrdinal: number): Readonly<{ lessonOrdinal: number; sessionOrdinal: number }> | null {
++  if (LEARNING_V2_HIDDEN) return null;
+   try {
+     // зачем: каталог курса грузится лениво — модуль запуска не тянет его на старт приложения
+     /* eslint-disable @typescript-eslint/no-require-imports */
+@@ -329,6 +336,7 @@ function startPreparation(locator: LearningV2SessionLocatorV1, sessionTag: strin
+ 
+ /** Передать плееру «готово». Модуль уже загружен (handle выдал он) — синхронно; иначе догружаем и пишем причину. */
+ export function stageLearningV2ReadyHandoffV1(handle: LearningV2CourseSessionReadyHandleV3 | null): void {
++  if (LEARNING_V2_HIDDEN) return;
+   if (!handle) { console.log('[V2-START] handoff_skip reason=no_handle'); return; } // guard-ok: ранний выход с причиной
+   const tap = lastTap;
+   lastTap = null;
+diff --git a/app/premium_theme_entitlements.ts b/app/premium_theme_entitlements.ts
+index ae0720197..23c20fa94 100644
+--- a/app/premium_theme_entitlements.ts
++++ b/app/premium_theme_entitlements.ts
+@@ -64,6 +64,11 @@ function publish(
+   authoritative = true,
+ ): void {
+   snapshot = Object.freeze({ ready, authoritative, ownerStableId, unlocked, progressByCondition });
++  const video = progressByCondition.video_200_hours;
++  if (ready && ownerStableId && video?.unit === 'hours' && video.target === 200) {
++    const token = captureAccountGeneration();
++    if(token.stableId===ownerStableId) void import('./achievements').then(({recordActivityAchievementFact}) => recordActivityAchievementFact({kind:'video',totalSeconds:video.current*3600},token)).catch((error: unknown)=>DebugLogger.error('achievements:video_recovery',error,'warning'));
++  }
+   listeners.forEach((listener) => listener());
+ }
+ 
+diff --git a/app/premium_theme_video_watch.ts b/app/premium_theme_video_watch.ts
+index 03af499c0..38d7a3840 100644
+--- a/app/premium_theme_video_watch.ts
++++ b/app/premium_theme_video_watch.ts
+@@ -1,4 +1,5 @@
+ import { getApp } from '@react-native-firebase/app';
++import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
+ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+ import * as Crypto from 'expo-crypto';
+ 
+@@ -19,6 +20,7 @@ type ReportResponse = Readonly<{
+ }>;
+ 
+ type ActiveSession = {
++  accountToken: AccountGenerationToken;
+   videoId: string;
+   sessionId: string;
+   lastTickAtMs: number;
+@@ -30,7 +32,7 @@ type ActiveSession = {
+ let active: ActiveSession | null = null;
+ 
+ function newSession(videoId: string, nowMs: number): ActiveSession {
+-  return { videoId, sessionId: Crypto.randomUUID().replace(/-/g, ''), lastTickAtMs: nowMs, lastReportAtMs: nowMs, started: false, inFlight: false };
++  return { accountToken:captureAccountGeneration(), videoId, sessionId: Crypto.randomUUID().replace(/-/g, ''), lastTickAtMs: nowMs, lastReportAtMs: nowMs, started: false, inFlight: false };
+ }
+ 
+ async function report(session: ActiveSession, mode: 'start' | 'checkpoint'): Promise<void> {
+@@ -43,7 +45,12 @@ async function report(session: ActiveSession, mode: 'start' | 'checkpoint'): Pro
+       { timeout: 15_000 },
+     );
+     const response = await callable({ mode, sessionId: session.sessionId });
+-    if (active !== session) return;
++    if (active !== session || !isCurrentAccountGeneration(session.accountToken)) return;
++    if (typeof response.data.totalSeconds === 'number' && Number.isSafeInteger(response.data.totalSeconds)) {
++      const {recordActivityAchievementFact}=await import('./achievements');
++      await recordActivityAchievementFact({kind:'video',totalSeconds:response.data.totalSeconds},session.accountToken);
++      if(active!==session||!isCurrentAccountGeneration(session.accountToken))return;
++    }
+     session.started = true;
+     if (response.data.prefetchEligible === true) void ensurePremiumThemePack('grad_full_horizon', 'near_unlock');
+     if (response.data.unlockEligible === true) void claimPremiumThemeCondition('video_200_hours');
+@@ -59,7 +66,7 @@ async function report(session: ActiveSession, mode: 'start' | 'checkpoint'): Pro
+ export function notePremiumThemeVideoPlaybackTick(videoId: string, nowMs: number): void {
+   const id = videoId.trim();
+   if (!id || !Number.isFinite(nowMs)) return;
+-  if (!active || active.videoId !== id || nowMs - active.lastTickAtMs > SESSION_GAP_MS) active = newSession(id, nowMs);
++  if (!active || !isCurrentAccountGeneration(active.accountToken) || active.videoId !== id || nowMs - active.lastTickAtMs > SESSION_GAP_MS) active = newSession(id, nowMs);
+   const session = active;
+   session.lastTickAtMs = nowMs;
+   if (session.inFlight) return;
+diff --git a/components/AchievementArt.tsx b/components/AchievementArt.tsx
+index 85b74e0d0..d1bc338e6 100644
+--- a/components/AchievementArt.tsx
++++ b/components/AchievementArt.tsx
+@@ -19,6 +19,7 @@ import { View, Image as RNImage, type DimensionValue } from 'react-native';
+ import { Image as ExpoImage } from 'expo-image';
+ import Ionicons from '@expo/vector-icons/Ionicons';
+ import { achievementImageSource } from '../constants/achievementImageAssets';
++import { SpireAchievementUpgrade } from './SpireAchievementUpgrade';
+ 
+ const SHIELD = require('../assets/images/levels/achivement.webp');
+ 
+@@ -39,6 +40,7 @@ interface AchievementArtProps {
+   opacity?: number;
+   accessibilityLabel?: string;
+   borderRadius?: number;
++  upgraded?: boolean;
+ }
+ 
+ export default function AchievementArt({
+@@ -51,6 +53,7 @@ export default function AchievementArt({
+   opacity = 1,
+   accessibilityLabel,
+   borderRadius = 0,
++  upgraded = false,
+ }: AchievementArtProps) {
+   const source = achievementImageSource(achievementId);
+   const [failed, setFailed] = useState(false);
+@@ -104,6 +107,7 @@ export default function AchievementArt({
+           onError={() => setFailed(true)}
+         />
+       )}
++      {upgraded && <SpireAchievementUpgrade size={size} color={iconColor} />}
+     </View>
+   );
+ }
+diff --git a/components/stories/StorySlides.tsx b/components/stories/StorySlides.tsx
+index b68b29aed..bd9c3c822 100644
+--- a/components/stories/StorySlides.tsx
++++ b/components/stories/StorySlides.tsx
+@@ -16,6 +16,7 @@ import { spireSkinForTier } from '../../modules/spire/tower_skins';
+ import { clampSpireTierIndex, spireTierName } from '../../modules/spire/tier_names';
+ import type { StoryEvent } from '../../modules/story_events/story_events_core';
+ import { achievementNameForLang, ALL_ACHIEVEMENTS } from '../../app/achievements';
++import { spireUpgradeLabel } from '../../modules/spire/achievement_copy';
+ import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
+ import AchievementArt from '../AchievementArt';
+ import SpireRankCoin from '../spire/SpireRankCoin';
+@@ -140,10 +141,11 @@ function AchievementSlide({ event, lang }: StorySlideProps) {
+   const def = ALL_ACHIEVEMENTS.find((a) => a.id === id);
+   const name = def ? achievementNameForLang(def, lang) : '';
+   const nextDays = nextStreakAchievementDays(id);
++  const upgraded = id.startsWith('spire_summit_') && event.payload.stage === 'upgraded';
+   return (
+     <>
+-      <View style={s.achArt}><AchievementArt achievementId={id} size={120} borderRadius={28} accessibilityLabel={name || undefined} /></View>
+-      <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{storyText(lang, 'achOverline')}</Text>
++      <View style={s.achArt}><AchievementArt achievementId={id} upgraded={upgraded} iconColor={p.accentTextSafe} size={120} borderRadius={28} accessibilityLabel={name || undefined} /></View>
++      <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{upgraded ? spireUpgradeLabel(lang) : storyText(lang, 'achOverline')}</Text>
+       {name ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{name}</Text> : null}
+       {nextDays !== null ? <Text style={[s.sub, { color: p.textSecondary }]}>{storyText(lang, 'achNext', { n: nextDays, dn: streakDayWord(lang, nextDays) })}</Text> : null}
+     </>
+diff --git a/constants/achievementImageAssets.ts b/constants/achievementImageAssets.ts
+index 220df660e..bb763bc6b 100644
+--- a/constants/achievementImageAssets.ts
++++ b/constants/achievementImageAssets.ts
+@@ -1,6 +1,7 @@
+ import type { ImageSourcePropType } from 'react-native';
+ import { getAchievementImageUrl } from './achievement_image_urls';
+ import { isCoreAchievementArt } from './achievementCoreArt';
++import { SPIRE_ACHIEVEMENT_IMAGE } from './spireAchievementImageAssets';
+ 
+ /**
+  * Арт достижений. В бандле остаётся только «ядро» — первые награды, которые
+@@ -31,6 +32,7 @@ export const ACHIEVEMENT_IMAGE: Readonly<Record<string, ImageSourcePropType>> =
+  * дисковый кэш) → undefined, если арта нет вовсе (тогда рисуется щит).
+  */
+ export function achievementImageSource(id: string): ImageSourcePropType | undefined {
++  if (SPIRE_ACHIEVEMENT_IMAGE[id]) return SPIRE_ACHIEVEMENT_IMAGE[id];
+   if (isCoreAchievementArt(id)) return ACHIEVEMENT_IMAGE[id];
+   const url = getAchievementImageUrl(id);
+   return url ? { uri: url } : ACHIEVEMENT_IMAGE[id];
+diff --git a/constants/achievement_image_urls.ts b/constants/achievement_image_urls.ts
+index 69da3c729..5dfaa2102 100644
+--- a/constants/achievement_image_urls.ts
++++ b/constants/achievement_image_urls.ts
+@@ -16,6 +16,8 @@
+  * работает офлайн с первого кадра.
+  */
+ import { isCoreAchievementArt } from './achievementCoreArt';
++import { ACTIVITY_ACHIEVEMENT_IDS } from '../modules/achievements/activity_catalog';
++import { SPIRE_ACHIEVEMENT_SLUGS } from '../modules/spire/achievement_progress';
+ 
+ const BUCKET = 'phraseman-ea0b3.firebasestorage.app';
+ const STORAGE_PREFIX = 'achievement-images';
+@@ -27,7 +29,9 @@ export function achievementObjectPath(id: string): string {
+ 
+ /** URL арта достижения (undefined — арт в бандле, сеть не нужна). */
+ export function getAchievementImageUrl(id: string): string | undefined {
++  if (ACTIVITY_ACHIEVEMENT_IDS.has(id)) return undefined;
+   if (isCoreAchievementArt(id)) return undefined;
++  if (SPIRE_ACHIEVEMENT_SLUGS.some((slug) => id === `spire_summit_${slug}`)) return undefined;
+   const encoded = encodeURIComponent(achievementObjectPath(id));
+   return `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/${encoded}?alt=media`;
+ }
+diff --git a/modules/story_events/story_events_core.ts b/modules/story_events/story_events_core.ts
+index 2b5e8330c..783f9de82 100644
+--- a/modules/story_events/story_events_core.ts
++++ b/modules/story_events/story_events_core.ts
+@@ -50,7 +50,7 @@ export function storyEventKey(type: StoryEventType, payload: StoryEventPayload):
+     // День в ключе: серия может оборваться и снова дойти до того же рубежа — это новый факт.
+     case 'streak_milestone': return `streak_milestone:${part(payload, 'days')}:${part(payload, 'dayKey')}`;
+     case 'coin_rank_up': return `coin_rank_up:${part(payload, 'toRank')}`;
+-    case 'achievement': return `achievement:${part(payload, 'achievementId')}`;
++    case 'achievement': return `achievement:${part(payload, 'achievementId')}${payload.stage === 'upgraded' ? ':upgraded' : ''}`;
+     case 'theme_unlock': return `theme_unlock:${part(payload, 'themeId')}`;
+     default: return '';
+   }
+diff --git a/modules/today-tasks/today_tasks_store.ts b/modules/today-tasks/today_tasks_store.ts
+index 906d4083a..589b389fa 100644
+--- a/modules/today-tasks/today_tasks_store.ts
++++ b/modules/today-tasks/today_tasks_store.ts
+@@ -162,8 +162,14 @@ async function readAvailableKinds(): Promise<readonly TodayTaskKindCore[]> {
+ }
+ 
+ async function persist(state: TodayTasksDayState): Promise<boolean> {
++  const {captureAccountGeneration}=await import('../../app/account_generation');
++  const sourceToken=captureAccountGeneration();
+   try {
+     await AsyncStorage.setItem(stateKey(state.ownerKey), JSON.stringify(state));
++    if(state.tasks.length>0&&state.tasks.every(task=>task.done)&&sourceToken.stableId===state.ownerKey){
++      const {recordSavedDailyAchievement}=await import('../../app/activity_achievement_sources');
++      if(!await recordSavedDailyAchievement(state,sourceToken))return false;
++    }
+     return true;
+   } catch (error) {
+     warn('persist:failed', { ownerKey: state.ownerKey.slice(0, 8), dayKey: state.dayKey, error: errText(error) });
+@@ -240,6 +246,14 @@ async function loadDay(): Promise<TodayTasksDayState> {
+     warn('load:read_failed', { ownerKey: ownerKey.slice(0, 8), error: errText(error) });
+   }
+   if (stored && !needsNewTodayTasksDay(stored, ownerKey, dayKey)) {
++    if(stored.tasks.length>0&&stored.tasks.every(task=>task.done)){
++      const {captureAccountGeneration}=await import('../../app/account_generation');
++      const sourceToken=captureAccountGeneration();
++      if(sourceToken.stableId===stored.ownerKey){
++        const {recordSavedDailyAchievement}=await import('../../app/activity_achievement_sources');
++        if(!await recordSavedDailyAchievement(stored,sourceToken))throw new Error('daily_achievement_recovery_not_saved');
++      }
++    }
+     log('load:from_disk', { dayKey, kinds: stored.tasks.map((t) => t.kind) });
+     publish(stored);
+     return stored;
+@@ -250,7 +264,15 @@ async function loadDay(): Promise<TodayTasksDayState> {
+   if (previous && ownerKey !== ANON_OWNER) await carryOverPendingRewards(previous);
+   // зачем (владелец 22.10, карточка «Неделя · N из 6 дней»; координатор: вариант А): итог прошедшего дня — в историю недели на телефоне;
+   // запись не ждём (новый день не задерживается), сбой — только журнал [TODAY-WEEK]
+-  if (previous) void recordTodayWeekDay(ownerKey, previous);
++  if (previous) {
++    const {captureAccountGeneration}=await import('../../app/account_generation');
++    const sourceToken=captureAccountGeneration();
++    if(sourceToken.stableId===previous.ownerKey){
++      const {recordSavedDailyAchievement}=await import('../../app/activity_achievement_sources');
++      if(!await recordSavedDailyAchievement(previous,sourceToken))throw new Error('daily_achievement_rollover_not_saved');
++    }
++    void recordTodayWeekDay(ownerKey, previous);
++  }
+   const kinds = await readAvailableKinds();
+   const fresh = createTodayTasksDay(ownerKey, dayKey, kinds);
+   log('day:new_set', {
+diff --git a/tests/achievement_foundation_catalog_v2.test.ts b/tests/achievement_foundation_catalog_v2.test.ts
+index b5d665327..219280519 100644
+--- a/tests/achievement_foundation_catalog_v2.test.ts
++++ b/tests/achievement_foundation_catalog_v2.test.ts
+@@ -9,7 +9,8 @@ describe('achievement foundation catalog v2', () => {
+   const retired = ACHIEVEMENT_CATALOG_V2.filter((row) => row.retired);
+ 
+   it('contains the retained 32 active and 9 historical definitions', () => {
+-    expect(active).toHaveLength(32);
++    expect(active.filter((row) => row.foundationGroup !== 'spire' && row.foundationGroup !== 'activity')).toHaveLength(32);
++    expect(active.filter((row) => row.foundationGroup === 'spire')).toHaveLength(12);
+     expect(retired).toHaveLength(9);
+     expect(ACTIVE_FOUNDATION_IDS).toHaveLength(32);
+     expect(SECRET_FOUNDATION_IDS).toHaveLength(3);
+@@ -19,7 +20,8 @@ describe('achievement foundation catalog v2', () => {
+ 
+   it('contains no active Learning V1 surfaces or pearl payouts', () => {
+     for (const row of active) {
+-      expect(row.id).not.toMatch(/lesson|flashcard|mistake|dialog|max_|exam|daily_task/i);
++      // Explicit owner addition: V2 full lessons are active; retired V1 lesson IDs remain excluded.
++      expect(row.id.replace(/^course_v2_(en|es)_lesson_\d+$/, 'v2_course')).not.toMatch(/lesson|flashcard|mistake|dialog|max_|exam|daily_task/i);
+       expect(row).not.toHaveProperty('shards');
+       expect(row).not.toHaveProperty('pearls');
+       expect(row).not.toHaveProperty('shardReward');
+diff --git a/tests/learning_v2_course_startup_redirect.test.tsx b/tests/learning_v2_course_startup_redirect.test.tsx
+index 17a04c8bc..b516e8a13 100644
+--- a/tests/learning_v2_course_startup_redirect.test.tsx
++++ b/tests/learning_v2_course_startup_redirect.test.tsx
+@@ -9,7 +9,6 @@ const logLearningV2Hidden = jest.fn();
+ const cancelScheduledNavigation = jest.fn();
+ let rootNavigationKey: string | undefined;
+ let scheduledNavigation: (() => void) | null = null;
+-let learningV2Hidden = true;
+ 
+ jest.mock("expo-router", () => ({
+   useLocalSearchParams: () => ({ source: "cold-link" }),
+@@ -23,8 +22,8 @@ jest.mock("../app/navigation_back", () => ({
+ }));
+ 
+ jest.mock("../app/learning_v2_visibility_switch", () => ({
+-  LEARNING_V2_HIDDEN_REDIRECT: "/home",
+-  isLearningV2Hidden: () => learningV2Hidden,
++  LEARNING_V2_HIDDEN_REDIRECT: "/lessons_list",
++  isLearningV2Hidden: () => true,
+   logLearningV2Hidden: (...args: unknown[]) =>
+     logLearningV2Hidden(...args),
+ }));
+@@ -40,7 +39,6 @@ beforeEach(() => {
+   jest.clearAllMocks();
+   rootNavigationKey = undefined;
+   scheduledNavigation = null;
+-  learningV2Hidden = true;
+ });
+ 
+ afterEach(async () => {
+@@ -64,32 +62,11 @@ test("cold course link waits for the root navigator and settled task before redi
+ 
+   expect(logLearningV2Hidden).toHaveBeenCalledWith(
+     "route_learning_v2_course",
+-    "/home",
++    "/lessons_list",
+   );
+-  expect(replace).toHaveBeenCalledWith("/home");
++  expect(replace).toHaveBeenCalledWith("/lessons_list");
+   expect(dismissToTabRoute).not.toHaveBeenCalled();
+ 
+   await view.unmount();
+   expect(cancelScheduledNavigation).toHaveBeenCalledTimes(1);
+ });
+-
+-test("ready visible course link keeps its tab destination and forwarded query", async () => {
+-  learningV2Hidden = false;
+-  rootNavigationKey = "root-ready";
+-  const view = await render(<LearningV2CourseScreen />);
+-
+-  expect(scheduledNavigation).toEqual(expect.any(Function));
+-  expect(dismissToTabRoute).not.toHaveBeenCalled();
+-
+-  await act(async () => scheduledNavigation?.());
+-
+-  expect(replace).not.toHaveBeenCalled();
+-  expect(logLearningV2Hidden).not.toHaveBeenCalled();
+-  expect(dismissToTabRoute).toHaveBeenCalledWith(
+-    expect.objectContaining({ replace }),
+-    "/(tabs)/lessons?source=cold-link&courseEntry=v2",
+-  );
+-
+-  await view.unmount();
+-  expect(cancelScheduledNavigation).toHaveBeenCalledTimes(1);
+-});
+diff --git a/tests/learning_v2_last_lesson.test.ts b/tests/learning_v2_last_lesson.test.ts
+index 9f4b26792..60af9905d 100644
+--- a/tests/learning_v2_last_lesson.test.ts
++++ b/tests/learning_v2_last_lesson.test.ts
+@@ -126,7 +126,7 @@ describe('подключение: Уроки пишут, карта читает
+     // (session_arrival), а не вкладка до открытия — подготовка и закрытие модалки ещё не значат, что урок открылся.
+     expect(lessons).not.toContain('rememberLearningV2LastLesson(studyTarget, selected.lessonOrdinal, "launch_session")');
+     expect(read('app/learning-v2/session/[id].tsx')).toContain('rememberLearningV2LastLesson(studyTarget as RuntimeStudyTarget, coordinates.lessonOrdinal, "session_arrival")');
+-    expect(lessons).toContain('const learningV2LastLesson = useLearningV2LastLesson(studyTarget);');
++    expect(lessons).toContain('const learningV2LastLesson = useLearningV2LastLesson(studyTarget, !LEARNING_V2_HIDDEN);');
+     expect(lessons).toContain('preferredLessonOrdinal={learningV2LastLesson ?? null}');
+   });
+ 
+diff --git a/tests/learning_v2_session1_rune_reward_composite_gate.ts b/tests/learning_v2_session1_rune_reward_composite_gate.ts
+index a947567f3..aa110209b 100644
+--- a/tests/learning_v2_session1_rune_reward_composite_gate.ts
++++ b/tests/learning_v2_session1_rune_reward_composite_gate.ts
+@@ -130,13 +130,14 @@ function canonicalRunAndCompletion(input: Readonly<{
+ }
+ 
+ function compositeCandidate(input: Readonly<{
++  accountScopeHash?: string;
+   sessionRunId?: string;
+   attempts?: number;
+   earnedAtMs?: number;
+ }> = {}) {
+   const actual = canonicalRunAndCompletion(input);
+   return createLearningV2SessionRuneRewardCompositeV1({
+-    accountScopeHash: scope.accountScopeHash,
++    accountScopeHash: input.accountScopeHash ?? scope.accountScopeHash,
+     run: actual.run,
+     completion: actual.completion,
+     publicationToken,
+@@ -144,6 +145,28 @@ function compositeCandidate(input: Readonly<{
+   });
+ }
+ 
++export function materializeHistoricalProtectedRuneRewardFixture(
++  accountScopeHash: string,
++) {
++  if (!resolvedMaterial || !publicationToken) {
++    throw new Error('test_publication_not_resolved');
++  }
++  const candidate = compositeCandidate({
++    accountScopeHash,
++    sessionRunId: 'historical-protected-recovery-run',
++  });
++  const intent = createLearningV2SessionRuneRewardPreparedIntentV1(
++    candidate,
++    publicationToken,
++  );
++  const protectedReceipt =
++    createLearningV2SessionRuneRewardProtectedIntentReceiptV1(
++      intent,
++      publicationToken,
++    );
++  return Object.freeze({ candidate, intent, protectedReceipt });
++}
++
+ const legacyReward = materializeServerWalletRewardReceiptCandidate({
+   rewardId: "required-session-initial-legacy-session-1",
+   operationId: "wallet-required-session-initial-legacy-session-1",
+@@ -219,7 +242,9 @@ type V3ClientForGate = typeof import(
+   "../app/learning_v2_course_released_session_client_v3"
+ );
+ 
+-function installNativeLoaderStubs(): () => void {
++function installNativeLoaderStubs(
++  isLearningV2Hidden: () => boolean,
++): () => void {
+   // eslint-disable-next-line @typescript-eslint/no-require-imports
+   const Module = require("node:module") as {
+     _load: (request: string, parent: unknown, isMain: boolean) => unknown;
+@@ -229,6 +254,18 @@ function installNativeLoaderStubs(): () => void {
+   const audioHandles = new WeakSet<object>();
+   const audioSummaries = new WeakMap<object, Readonly<Record<string, unknown>>>();
+   Module._load = (request, parent, isMain) => {
++    if (request === "./learning_v2_visibility_switch") {
++      const actual = original(request, parent, isMain) as Record<string, unknown>;
++      const historicalFixture = {
++        ...actual,
++        isLearningV2Hidden,
++      };
++      Object.defineProperty(historicalFixture, "LEARNING_V2_HIDDEN", {
++        enumerable: true,
++        get: isLearningV2Hidden,
++      });
++      return historicalFixture;
++    }
+     if (request === "@react-native-async-storage/async-storage") {
+       return {
+         getItem: async (key: string) => storage.get(key) ?? null,
+@@ -364,8 +401,15 @@ async function resolveGenuinePublicationForGate(
+   return { client, readyHandle };
+ }
+ 
+-async function main() {
+-  const restoreNativeLoader = installNativeLoaderStubs();
++export async function runLearningV2Session1RuneRewardCompositeGate(
++  options: Readonly<{
++    isLearningV2Hidden?: () => boolean;
++  }> = {},
++) {
++  const restoreNativeLoader = installNativeLoaderStubs(
++    options.isLearningV2Hidden ?? (() => false),
++  );
++  try {
+   const requiredLocales = [
+     "ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl",
+   ] as const;
+@@ -1003,11 +1047,15 @@ async function main() {
+     laterApplied.snapshot.walletState.balanceSubunits,
+   );
+ 
+-  restoreNativeLoader();
+-  console.log("Learning V2 session 1 rune reward composite gate: PASS");
++    console.log("Learning V2 session 1 rune reward composite gate: PASS");
++  } finally {
++    restoreNativeLoader();
++  }
+ }
+ 
+-void main().catch((error: unknown) => {
+-  console.error(error);
+-  process.exitCode = 1;
+-});
++if (require.main === module) {
++  void runLearningV2Session1RuneRewardCompositeGate().catch((error: unknown) => {
++    console.error(error);
++    process.exitCode = 1;
++  });
++}
+diff --git a/tests/learning_v2_session_prepare_inflight_reuse.test.ts b/tests/learning_v2_session_prepare_inflight_reuse.test.ts
+index ecb4fc452..e931867be 100644
+--- a/tests/learning_v2_session_prepare_inflight_reuse.test.ts
++++ b/tests/learning_v2_session_prepare_inflight_reuse.test.ts
+@@ -1,47 +1,23 @@
+-// Жалобы 24.10 №5/№6 («занятие 3 главы 1 стабильно не готовится, проверь связь»): на медленном телефоне сборка занятия не
+-// укладывалась в срок подготовки, а её результат выбрасывался — следующий тап начинал сборку заново и снова не успевал.
+-// Сторож: повторная подготовка того же занятия ждёт уже идущую сборку, а не запускает новую.
+ const mockPrepare = jest.fn();
+ jest.mock('../app/learning_v2_course_released_session_client_v3', () => ({
+   prepareCurrentLearningV2CourseSessionV3: (input: unknown) => mockPrepare(input),
+-  stageLearningV2CourseSessionReadyHandoffV3: () => undefined,
++  stageLearningV2CourseSessionReadyHandoffV3: jest.fn(),
+ }));
+-let mockUuid = 0;
+-jest.mock('expo-crypto', () => ({ randomUUID: () => `run-${++mockUuid}` }));
++jest.mock('expo-crypto', () => ({ randomUUID: () => 'run-disabled' }));
+ jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn(), warn: jest.fn() } }));
++jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: jest.fn() }));
+ 
+-import { LEARNING_V2_PREPARE_TIMEOUT_MS, prepareLearningV2SessionRunV1 } from '../app/learning_v2_session_launch_v1';
++import { prepareLearningV2SessionRunV1 } from '../app/learning_v2_session_launch_v1';
+ 
+ const locator = {
+   environment: 'production' as const, seasonId: 'learning-v2', studyTarget: 'en', learnerSourceLocale: 'ru',
+   lessonOrdinal: 1, sessionOrdinal: 3,
+ };
+ 
+-describe('learning v2 session prepare: slow build is reused, not restarted', () => {
+-  afterEach(() => { jest.useRealTimers(); mockPrepare.mockReset(); });
+-
+-  it('a tap after the deadline waits for the same build and gets its result', async () => {
+-    jest.useFakeTimers();
+-    let finish!: (handle: unknown) => void;
+-    mockPrepare.mockImplementation(() => new Promise((resolve) => { finish = resolve; }));
+-
+-    const first = prepareLearningV2SessionRunV1(locator, { devUnlockedDrafts: false });
+-    const firstOutcome = first.then(() => 'ready', (error: Error) => error.message);
+-    await jest.advanceTimersByTimeAsync(LEARNING_V2_PREPARE_TIMEOUT_MS + 10);
+-    await expect(firstOutcome).resolves.toMatch(/^learning_v2_session_prepare_timeout/);
+-    expect(mockPrepare).toHaveBeenCalledTimes(1);
+-
+-    const second = prepareLearningV2SessionRunV1(locator, { devUnlockedDrafts: false });
+-    await jest.advanceTimersByTimeAsync(1);
+-    expect(mockPrepare).toHaveBeenCalledTimes(1);
+-    finish({ courseSessionId: 'lesson-01:session:03', sessionRunId: 'run-1' });
+-    await expect(second).resolves.toEqual(expect.objectContaining({ sessionRunId: 'run-1' }));
+-
+-    // законченная сборка не держится: следующий запуск — новая подготовка (свой sessionRunId)
+-    mockPrepare.mockImplementation(() => Promise.resolve({ courseSessionId: 'lesson-01:session:03', sessionRunId: 'x' }));
+-    const third = prepareLearningV2SessionRunV1(locator, { devUnlockedDrafts: false });
+-    await jest.advanceTimersByTimeAsync(1);
+-    await expect(third).resolves.toEqual(expect.objectContaining({ sessionRunId: 'run-2' }));
+-    expect(mockPrepare).toHaveBeenCalledTimes(2);
++describe('Learning V2 preparation after the owner full-off decision', () => {
++  it('rejects before starting or reusing any preparation', async () => {
++    await expect(prepareLearningV2SessionRunV1(locator, { devUnlockedDrafts: false })).rejects.toThrow('learning_v2_disabled_by_owner');
++    await expect(prepareLearningV2SessionRunV1(locator, { devUnlockedDrafts: true })).rejects.toThrow('learning_v2_disabled_by_owner');
++    expect(mockPrepare).not.toHaveBeenCalled();
+   });
+ });
+diff --git a/tests/owner_locks_lesson_ready_before_tap_2026_10_25.test.ts b/tests/owner_locks_lesson_ready_before_tap_2026_10_25.test.ts
+index 46f0121cf..0cf3ea693 100644
+--- a/tests/owner_locks_lesson_ready_before_tap_2026_10_25.test.ts
++++ b/tests/owner_locks_lesson_ready_before_tap_2026_10_25.test.ts
+@@ -1,132 +1,40 @@
+-// ЗАМОК ВЛАДЕЛЬЦА 25.10: «урок всегда должен быть готов, то есть он должен быть собран до того, как юзер его попробует начать».
+-// Следующее занятие собирается заранее (после первого кадра Главной, при входе на «Обучение», сразу после финиша занятия),
+-// а тап берёт готовую заготовку без ожидания. В памяти — одна заготовка. Использованная заготовка второй раз не выдаётся:
+-// у каждого запуска свой sessionRunId.
+-import fs from 'node:fs';
+-import path from 'node:path';
+-
++// Superseded by the 2026-11-02 owner decision: Learning V2 must never prepare.
+ const mockPrepare = jest.fn();
++const mockStage = jest.fn();
+ jest.mock('../app/learning_v2_course_released_session_client_v3', () => ({
+-  prepareCurrentLearningV2CourseSessionV3: (input: unknown) => mockPrepare(input),
+-  stageLearningV2CourseSessionReadyHandoffV3: () => undefined,
++  prepareCurrentLearningV2CourseSessionV3: (...args: unknown[]) => mockPrepare(...args),
++  stageLearningV2CourseSessionReadyHandoffV3: (...args: unknown[]) => mockStage(...args),
+ }));
+-let mockUuid = 0;
+-jest.mock('expo-crypto', () => ({ randomUUID: () => `run-${++mockUuid}` }));
++jest.mock('expo-crypto', () => ({ randomUUID: () => 'run-disabled' }));
+ jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn(), warn: jest.fn() } }));
+-const mockAppListeners: ((state: string) => void)[] = [];
+-jest.mock('react-native', () => ({
+-  InteractionManager: { runAfterInteractions: (cb: () => void) => { cb(); return { cancel: () => undefined }; } },
+-  AppState: { currentState: 'active', addEventListener: (_: string, cb: (state: string) => void) => { mockAppListeners.push(cb); return { remove: () => undefined }; } },
+-}));
+-jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: () => undefined }));
++jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: jest.fn() }));
+ 
+ import {
+-  __resetLearningV2PreparedSlotForTests,
+   isLearningV2SessionReadyV1,
+-  prepareLearningV2SessionRunV1,
+   prewarmLearningV2SessionRunV1,
+   scheduleLearningV2SessionPrewarmV1,
+   stageLearningV2ReadyHandoffV1,
+ } from '../app/learning_v2_session_launch_v1';
+ 
+-const at = (lessonOrdinal: number, sessionOrdinal: number) => ({
++const locator = {
+   environment: 'production' as const, seasonId: 'learning-v2', studyTarget: 'en', learnerSourceLocale: 'ru',
+-  lessonOrdinal, sessionOrdinal,
+-});
+-const tap = { devUnlockedDrafts: false };
+-
+-beforeEach(() => {
+-  __resetLearningV2PreparedSlotForTests();
+-  mockPrepare.mockReset();
+-  mockPrepare.mockImplementation((input: { sessionRunId: string }) => Promise.resolve({ handleFor: input.sessionRunId }));
+-  jest.spyOn(console, 'log').mockImplementation(() => undefined);
+-  jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+-});
+-afterEach(() => jest.restoreAllMocks());
+-
+-describe('ЗАМОК ВЛАДЕЛЬЦА 25.10: урок готов до тапа', () => {
+-  it('a prewarmed lesson is handed to the tap at once, without a second build', async () => {
+-    await prewarmLearningV2SessionRunV1(at(1, 3), 'home');
+-    expect(isLearningV2SessionReadyV1(at(1, 3))).toBe(true);
+-    expect(mockPrepare).toHaveBeenCalledTimes(1);
+-
+-    const ready = await prepareLearningV2SessionRunV1(at(1, 3), tap);
+-    expect(mockPrepare).toHaveBeenCalledTimes(1);
+-    expect(ready.handle).toEqual({ handleFor: ready.sessionRunId });
+-  });
+-
+-  it('a used prepared lesson is never handed out twice: the next start builds its own run', async () => {
+-    await prewarmLearningV2SessionRunV1(at(1, 3), 'home');
+-    const first = await prepareLearningV2SessionRunV1(at(1, 3), tap);
+-    expect(isLearningV2SessionReadyV1(at(1, 3))).toBe(false);
+-    const second = await prepareLearningV2SessionRunV1(at(1, 3), tap);
+-    expect(second.sessionRunId).not.toBe(first.sessionRunId);
+-    expect(mockPrepare).toHaveBeenCalledTimes(2);
+-  });
+-
+-  it('a tap during a running prewarm waits for it and the result does not stay as a spare', async () => {
+-    let finish!: (value: unknown) => void;
+-    mockPrepare.mockImplementationOnce(() => new Promise((resolve) => { finish = resolve; }));
+-    const warming = prewarmLearningV2SessionRunV1(at(2, 1), 'lessons_entry');
+-    const tapped = prepareLearningV2SessionRunV1(at(2, 1), tap);
+-    // сборка стартует после уступки кадра и загрузки модуля — ждём, пока заглушка будет вызвана
+-    for (let i = 0; i < 20 && mockPrepare.mock.calls.length === 0; i += 1) await new Promise((resolve) => setTimeout(resolve, 1));
+-    finish({ warm: true });
+-    await warming;
+-    const ready = await tapped;
+-    expect(ready.handle).toEqual({ warm: true });
+-    expect(mockPrepare).toHaveBeenCalledTimes(1);
+-    expect(isLearningV2SessionReadyV1(at(2, 1))).toBe(false);
+-  });
+-
+-  it('only one prepared lesson is kept in memory', async () => {
+-    await prewarmLearningV2SessionRunV1(at(1, 3), 'home');
+-    await prewarmLearningV2SessionRunV1(at(1, 4), 'session_finish');
+-    expect(isLearningV2SessionReadyV1(at(1, 3))).toBe(false);
+-    expect(isLearningV2SessionReadyV1(at(1, 4))).toBe(true);
+-  });
+-
+-  it('every trigger is wired: Home after the first frame, «Обучение» entry, the end of a session', () => {
+-    const read = (file: string) => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+-    expect(read('app/(tabs)/home.tsx')).toMatch(/useHomeContinueV2Prewarm\(/);
+-    expect(read('app/learning_v2_home_continue_route.ts')).toMatch(/scheduleLearningV2SessionPrewarmV1\([\s\S]{0,500}?'home'\)/);
+-    expect(read('app/(tabs)/lessons.tsx')).toMatch(/prewarmLearningV2SessionRunV1\(/);
+-    const player = read('app/learning_v2_direct_session_player_v1.tsx');
+-    const commitAt = player.indexOf('await commitLocalProgress();');
+-    const prewarmAt = player.indexOf('scheduleNextLearningV2SessionPrewarmV1(');
+-    expect(commitAt).toBeGreaterThan(0);
+-    expect(prewarmAt).toBeGreaterThan(commitAt);
+-  });
+-
+-  it('the app went to the background before the pause ended: no build until it is back', async () => {
+-    // eslint-disable-next-line @typescript-eslint/no-require-imports
+-    const { AppState } = require('react-native') as { AppState: { currentState: string } };
+-    AppState.currentState = 'background';
+-    scheduleLearningV2SessionPrewarmV1(at(3, 2), 'home', 5);
+-    await new Promise((resolve) => setTimeout(resolve, 20));
++  lessonOrdinal: 1, sessionOrdinal: 3,
++};
++
++describe('owner full-off: no lesson is prepared before tap', () => {
++  beforeEach(() => jest.clearAllMocks());
++
++  it('direct and scheduled prewarm are no-ops and readiness is always false', async () => {
++    await expect(prewarmLearningV2SessionRunV1(locator, 'home')).resolves.toBeUndefined();
++    const cancel = scheduleLearningV2SessionPrewarmV1(locator, 'lessons_entry', 0);
++    expect(cancel).toEqual(expect.any(Function));
++    cancel();
++    expect(isLearningV2SessionReadyV1(locator)).toBe(false);
+     expect(mockPrepare).not.toHaveBeenCalled();
+-    AppState.currentState = 'active';
+-    mockAppListeners.forEach((listener) => listener('active'));
+-    for (let i = 0; i < 40 && mockPrepare.mock.calls.length === 0; i += 1) await new Promise((resolve) => setTimeout(resolve, 2));
+-    expect(mockPrepare).toHaveBeenCalledTimes(1);
+-  });
+-
+-  it('the prewarm stays off the first frame: after interactions, with a pause', () => {
+-    const launch = fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_session_launch_v1.ts'), 'utf8');
+-    expect(launch).toMatch(/InteractionManager\.runAfterInteractions/);
+   });
+ 
+-  // перемер Сверки 25.10: вход через Сезон не писал [V2-START] — замер «тап → готово» в общей передаче, на любом входе
+-  it('handoff after a tap logs the tap kind and tap-to-ready time; without a tap — no_tap', async () => {
+-    await prewarmLearningV2SessionRunV1(at(1, 5), 'home');
+-    const ready = await prepareLearningV2SessionRunV1(at(1, 5), tap);
+-    stageLearningV2ReadyHandoffV1(ready.handle as never);
+-    const lines = (console.log as jest.Mock).mock.calls.map((c) => String(c[0])).filter((l) => l.startsWith('[V2-START] handoff '));
+-    expect(lines).toHaveLength(1);
+-    expect(lines[0]).toContain('"session":"lesson-1:session:5"');
+-    expect(lines[0]).toContain('"kind":"take_ready"');
+-    expect(lines[0]).toMatch(/"tapToReadyMs":\d+/);
+-    stageLearningV2ReadyHandoffV1(ready.handle as never);
+-    expect(String((console.log as jest.Mock).mock.calls.at(-1)?.[0])).toContain('"kind":"no_tap"');
++  it('staging cannot hand material to a hidden player', () => {
++    stageLearningV2ReadyHandoffV1({} as never);
++    expect(mockStage).not.toHaveBeenCalled();
+   });
+ });
+diff --git a/tests/premium_theme_remote_packs.test.ts b/tests/premium_theme_remote_packs.test.ts
+index 694a30b4c..41087d1b8 100644
+--- a/tests/premium_theme_remote_packs.test.ts
++++ b/tests/premium_theme_remote_packs.test.ts
+@@ -52,12 +52,12 @@ describe('premium achievement themes', () => {
+     }
+   });
+ 
+-  it('re-resolves mounted home art after a remote pack finishes downloading', () => {
++  it('keeps remote-pack refresh for themed art while compact HomeScene stays art-free', () => {
+     const context = read('components/ThemeContext.tsx');
+     const scene = read('components/home/v2/scene/HomeScene.tsx');
+     const themedArt = read('components/theme/ThemedArt.tsx');
+     expect(context).toContain('premiumThemePackRev');
+-    expect(scene).toMatch(/premiumArtRevision[\s\S]*resolveHomeSceneArt[\s\S]*premiumArtRevision, liquidGlassThemeId/);
++    expect(scene).not.toMatch(/premiumArtRevision|resolveHomeSceneArt|subscribePremiumThemePackCache/);
+     expect(themedArt).toMatch(/premiumArtRevision[\s\S]*resolveThemedArt[\s\S]*premiumArtRevision, liquidGlassThemeId/);
+     expect(context).toContain('loadSelectedPack(attempt + 1)');
+   });

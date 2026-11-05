@@ -1,0 +1,64 @@
+import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from '../account_generation';
+import { recordSpireAchievementFact } from '../achievements';
+import { DebugLogger } from '../debug-logger';
+import type { SpireWeekLocal } from '../../modules/spire/report_queue';
+import { reconcileSpireHistory, spireFactsFromWeekResult } from '../../modules/spire/achievement_reconcile';
+import type { SpireLiveGate } from './spire_live_gate';
+import { spireFirestore } from './spire_net';
+
+export async function recordSpireSummit(uid: string, local: SpireWeekLocal, token: AccountGenerationToken): Promise<boolean> {
+  if (local.floor !== 16 || local.stepsCleared < 135) return true;
+  if (token.stableId !== uid || !isCurrentAccountGeneration(token)) return false;
+  return recordSpireAchievementFact({ kind: 'summit', tier: local.tier, floor: local.floor, stepsCleared: local.stepsCleared, atMs: local.reachedAtMs }, token);
+}
+
+const runs = new Map<string, { completedAt: number; pending?: Promise<void> }>();
+const RECHECK_MS = 6 * 60 * 60 * 1000;
+
+/** A freshly fetched weekly result delivers immediately, even if an earlier history scan was empty. */
+export async function recordSpireWeekCollectibles(uid: string, raw: unknown, token: AccountGenerationToken): Promise<boolean> {
+  for (const fact of spireFactsFromWeekResult(raw)) {
+    if (token.stableId !== uid || !isCurrentAccountGeneration(token)) return false;
+    if (!await recordSpireAchievementFact(fact, token)) {
+      runs.delete(`${token.generation}:${uid}`);
+      return false;
+    }
+  }
+  return token.stableId === uid && isCurrentAccountGeneration(token);
+}
+
+/** Reads all languages, 50 documents per page, at most once per six hours per account generation.
+ * Closing the weekly card, missed weeks and reinstalls do not suppress collectible recovery.
+ */
+export async function reconcileSpireCollectibles(gate: SpireLiveGate, uid: string): Promise<void> {
+  const token = captureAccountGeneration();
+  const current = () => token.stableId === uid && isCurrentAccountGeneration(token);
+  if (!current()) return;
+  const key = `${token.generation}:${uid}`;
+  const prior = runs.get(key);
+  if (prior?.pending) return prior.pending;
+  if (prior && Date.now() - prior.completedAt < RECHECK_MS) return;
+  const db = spireFirestore(gate, 'achievements:history') as FirebaseFirestoreTypes.Module | null;
+  if (!db) return;
+  const run = { completedAt: 0, pending: undefined as Promise<void> | undefined };
+  const execute = async () => {
+    try {
+      const done = await reconcileSpireHistory(async (after) => {
+        let query = db.collection('users').doc(uid).collection('spire_week_results').orderBy('__name__').limit(50);
+        if (after) query = query.startAfter(after);
+        const page = await query.get({ source: 'server' });
+        return { rows: page.docs.map((doc) => doc.data()), next: page.size === 50 ? page.docs[49].id : null };
+      }, (fact) => recordSpireAchievementFact(fact, token), current);
+      if (done) run.completedAt = Date.now();
+    } catch (error) {
+      DebugLogger.warn('[SPIRE-ACHIEVEMENTS]', `history retry on next entry: ${String(error)}`);
+    } finally { run.pending = undefined; }
+  };
+  runs.clear(); // stale generations cannot retain an account's history in memory
+  runs.set(key, run);
+  run.pending = execute();
+  return run.pending;
+}
+
+export default function __RouteShim() { return null; }

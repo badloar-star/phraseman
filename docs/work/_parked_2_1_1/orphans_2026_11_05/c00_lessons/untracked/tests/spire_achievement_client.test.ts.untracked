@@ -1,0 +1,70 @@
+import { beginAccountGeneration } from '../app/account_generation';
+import { reconcileSpireCollectibles, recordSpireSummit, recordSpireWeekCollectibles } from '../app/spire/spire_achievement_client';
+import { recordSpireAchievementFact } from '../app/achievements';
+import { spireFirestore } from '../app/spire/spire_net';
+import { spireCreateWeekLocal } from '../modules/spire/report_queue';
+import type { SpireLiveGate } from '../app/spire/spire_live_gate';
+jest.mock('../app/achievements', () => ({ recordSpireAchievementFact: jest.fn(async () => true) }));
+jest.mock('../app/spire/spire_net', () => ({ spireFirestore: jest.fn() }));
+
+const gate = {} as SpireLiveGate;
+let owner = 0;
+const stamp = Date.now() - 1000;
+const raw = { schema: 'spire-week-result.v1', prevTier: 0, newTier: 1, promoted: true, demoted: false, steps: 135, reachedAtMs: stamp, finalizedAt: { toMillis: () => stamp + 1 } };
+function setup() {
+  jest.clearAllMocks();
+  const uid = `collectibles-${++owner}`;
+  const token = beginAccountGeneration(uid);
+  const query = { collection: jest.fn(), doc: jest.fn(), orderBy: jest.fn(), limit: jest.fn(), startAfter: jest.fn(), get: jest.fn() };
+  for (const method of ['collection', 'doc', 'orderBy', 'limit', 'startAfter'] as const) query[method].mockReturnValue(query);
+  query.get.mockResolvedValue({ size: 1, docs: [{ id: '2026-W01_en', data: () => raw }] });
+  jest.mocked(spireFirestore).mockReturnValue(query);
+  return { uid, token, query };
+}
+
+it('recovers from server history and coalesces repeated loads for the same owner', async () => {
+  const { uid, query } = setup();
+  await Promise.all([reconcileSpireCollectibles(gate, uid), reconcileSpireCollectibles(gate, uid)]);
+  await reconcileSpireCollectibles(gate, uid);
+  expect(query.get).toHaveBeenCalledTimes(1);
+  expect(query.get).toHaveBeenCalledWith({ source: 'server' });
+  expect(recordSpireAchievementFact).toHaveBeenCalledTimes(2);
+});
+
+it('delivers a fresh weekly result immediately after an empty throttled history scan', async () => {
+  const { uid, token, query } = setup();
+  query.get.mockResolvedValueOnce({ size: 0, docs: [] });
+  await reconcileSpireCollectibles(gate, uid);
+  expect(recordSpireAchievementFact).not.toHaveBeenCalled();
+  expect(await recordSpireWeekCollectibles(uid, raw, token)).toBe(true);
+  expect(recordSpireAchievementFact).toHaveBeenCalledTimes(2);
+  beginAccountGeneration('next-owner');
+  expect(await recordSpireWeekCollectibles(uid, raw, token)).toBe(false);
+  expect(recordSpireAchievementFact).toHaveBeenCalledTimes(2);
+});
+
+it('retries after offline read or failed persistence instead of throttling recovery', async () => {
+  const { uid, query } = setup();
+  query.get.mockRejectedValueOnce(new Error('offline'));
+  await reconcileSpireCollectibles(gate, uid);
+  jest.mocked(recordSpireAchievementFact).mockResolvedValueOnce(false);
+  await reconcileSpireCollectibles(gate, uid);
+  await reconcileSpireCollectibles(gate, uid);
+  expect(query.get).toHaveBeenCalledTimes(3);
+});
+
+it('never applies a delayed result to a new account', async () => {
+  const { uid, query } = setup();
+  query.get.mockImplementationOnce(async () => { beginAccountGeneration('different-owner'); return { size: 1, docs: [{ id: 'old', data: () => raw }] }; });
+  await reconcileSpireCollectibles(gate, uid);
+  expect(recordSpireAchievementFact).not.toHaveBeenCalled();
+});
+
+it('uses durable local summit data with its original owner token', async () => {
+  const { uid, token } = setup();
+  const local = { ...spireCreateWeekLocal({ lang: 'en', weekKey: '2026-W44', tier: 0, packHash: 'pack' }), floor: 16, stepsCleared: 135, reachedAtMs: stamp };
+  expect(await recordSpireSummit(uid, local, token)).toBe(true);
+  expect(recordSpireAchievementFact).toHaveBeenCalledWith(expect.objectContaining({ kind: 'summit', atMs: stamp }), token);
+  expect(await recordSpireSummit('wrong-owner', local, token)).toBe(false);
+  expect(recordSpireAchievementFact).toHaveBeenCalledTimes(1);
+});

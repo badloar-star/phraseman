@@ -1,0 +1,50 @@
+import { applySpireAchievementFact, spireAchievementId, spireAchievementUpgradedAt } from '../modules/spire/achievement_progress';
+
+const at = Date.parse('2026-10-20T12:00:00Z');
+const summit = (tier = 0) => ({ kind: 'summit' as const, tier, floor: 16, stepsCleared: 135, atMs: at });
+const promotion = (tier = 0) => ({ kind: 'promotion' as const, tier, newTier: tier + 1, promoted: true, demoted: false, atMs: at + 1000 });
+
+describe('Spire collectible achievement facts', () => {
+  it('opens exactly one statuette for each of the twelve summits', () => {
+    expect(new Set(Array.from({ length: 12 }, (_, tier) => spireAchievementId(tier))).size).toBe(12);
+    for (let tier = 0; tier < 12; tier += 1) {
+      const result = applySpireAchievementFact(undefined, summit(tier));
+      expect(result?.state.id).toBe(spireAchievementId(tier));
+      expect(result?.state.unlockedAt).toBe(new Date(at).toISOString());
+      expect(result?.change).toBe('unlocked');
+    }
+  });
+  it('does not award merely reaching floor 15 or incomplete progression', () => {
+    expect(applySpireAchievementFact(undefined, { ...summit(), floor: 15 })).toBeNull();
+    expect(applySpireAchievementFact(undefined, { ...summit(), stepsCleared: 134 })).toBeNull();
+  });
+  it('upgrades the same id once and preserves original unlock date', () => {
+    const opened = applySpireAchievementFact(undefined, summit())!;
+    const upgraded = applySpireAchievementFact(opened.state, promotion())!;
+    expect(upgraded.change).toBe('upgraded');
+    expect(upgraded.state.id).toBe(opened.state.id);
+    expect(upgraded.state.unlockedAt).toBe(opened.state.unlockedAt);
+    expect(spireAchievementUpgradedAt(upgraded.state)).toBe(new Date(at + 1000).toISOString());
+    expect(applySpireAchievementFact(upgraded.state, promotion())).toBeNull();
+    expect(applySpireAchievementFact(upgraded.state, summit())).toBeNull();
+  });
+  it('retains promotion before summit without unlocking prematurely', () => {
+    const pending = applySpireAchievementFact(undefined, promotion())!;
+    expect(pending.state.unlockedAt).toBeNull();
+    expect(pending.change).toBeNull();
+    expect(spireAchievementUpgradedAt(pending.state)).toBeNull();
+    const opened = applySpireAchievementFact(pending.state, { ...summit(), atMs: at + 2000 })!;
+    expect(opened.change).toBe('unlocked');
+    expect(spireAchievementUpgradedAt(opened.state)).toBe(new Date(at + 2000).toISOString());
+  });
+  it('rejects demotion, unchanged tier, skipped tier, unconfirmed promotion and diamond promotion', () => {
+    for (const fact of [ { ...promotion(), promoted: false }, { ...promotion(), demoted: true },
+      { ...promotion(), newTier: 0 }, { ...promotion(), newTier: 2 }, promotion(11) ]) {
+      expect(applySpireAchievementFact(undefined, fact)).toBeNull();
+    }
+  });
+  it('rejects invalid tier and timestamps without clamping into a real award', () => {
+    for (const tier of [-1, 12, 1.5, NaN, Infinity]) expect(applySpireAchievementFact(undefined, summit(tier))).toBeNull();
+    for (const atMs of [0, -1, NaN, Infinity, 9e20]) expect(applySpireAchievementFact(undefined, { ...summit(), atMs })).toBeNull();
+  });
+});

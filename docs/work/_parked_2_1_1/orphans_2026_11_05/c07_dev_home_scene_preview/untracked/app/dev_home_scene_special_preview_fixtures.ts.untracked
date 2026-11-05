@@ -1,0 +1,89 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// dev_home_scene_special_preview_fixtures — fixed, local-only inputs for the
+// 12 special Home scenes.  This module never reads a journal, storage or network.
+// ═══════════════════════════════════════════════════════════════════════════
+import type { Lang } from '../constants/i18n';
+import {
+  HOME_SCENE_SPECIAL_EMPTY_JOURNAL,
+  HOME_SCENE_SPECIAL_STATES,
+  pickHomeSceneSpecial,
+  type HomeSceneSpecialInput,
+  type HomeSceneSpecialState,
+} from '../components/home/v2/scene/home_scene_special';
+import { buildHomeSceneSpecialCopy, type HomeSceneSpecialCopyInput } from '../components/home/v2/scene/home_scene_special_copy';
+import type { HomeSceneDecision } from '../components/home/v2/scene/home_scene_state';
+import type { HomeSceneSpecialRoute, HomeSceneSpecialView } from '../components/home/v2/scene/use_home_scene_special';
+
+export const HOME_SCENE_SPECIAL_PREVIEW_STATES: readonly HomeSceneSpecialState[] = HOME_SCENE_SPECIAL_STATES;
+export const isHomeSceneSpecialPreviewState = (value: unknown): value is HomeSceneSpecialState =>
+  typeof value === 'string' && (HOME_SCENE_SPECIAL_PREVIEW_STATES as readonly string[]).includes(value);
+
+/** Mirrors the private production CTA routes so the preview has no app navigation side effect. */
+export const DEV_HOME_SCENE_SPECIAL_ROUTE: Readonly<Record<HomeSceneSpecialState, HomeSceneSpecialRoute>> = Object.freeze({
+  mistakes_pile: 'mistakes', mistake_poke: 'mistakes', mistake_mastered: 'mistakes', words_due: 'cards',
+  holiday: 'continue', personal_best: 'continue', friend_nudge: 'continue', phrase_of_day_unseen: 'phrase',
+  peak_overtaken: 'peak', milestone: 'stats', fun_stats: 'stats', weekly_recap: 'stats',
+});
+
+type CopyFacts = Omit<HomeSceneSpecialCopyInput, 'lang' | 'special'>;
+
+export type HomeSceneSpecialPreviewSetup = Readonly<{
+  requested: HomeSceneSpecialState;
+  input: HomeSceneSpecialInput;
+  baseDecision: HomeSceneDecision;
+  copyInput: CopyFacts;
+}>;
+
+const baseInput = (now: Date): HomeSceneSpecialInput => Object.freeze({
+  now, mistakesOpen: 0, repeatedMistake: null, masteredMistake: null, phraseOfDaySeen: true,
+  wordsDue: 0, progressDays: 0, today: null, activeLastWeek: false, milestoneKey: null,
+  friendAhead: null, peakOvertaken: null,
+});
+
+const baseDecision = (state: 'continue' | 'day_done'): HomeSceneDecision => Object.freeze({
+  state, offlineLine: false, zeroEnergyNote: false, reason: 'DEV special preview fixture',
+});
+
+const copyFacts: CopyFacts = Object.freeze({
+  n: 15, best: 40, today: 30, friendName: 'Аня', placeTo: 4, right: 'I am ready.',
+  phrase: 'Small steps count.', phraseTr: 'Маленькие шаги важны.', holiday: 'halloween',
+  milestoneKey: 'phrases_100', place: 'Урок 1 · Эпизод 12', weekDays: 5,
+});
+
+const FIXTURES: Readonly<Record<HomeSceneSpecialState, HomeSceneSpecialPreviewSetup>> = Object.freeze({
+  milestone: { requested: 'milestone', input: { ...baseInput(new Date(2026, 9, 22, 18)), milestoneKey: 'phrases_100' }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  holiday: { requested: 'holiday', input: baseInput(new Date(2026, 9, 31, 18)), baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  mistakes_pile: { requested: 'mistakes_pile', input: { ...baseInput(new Date(2026, 9, 22, 18)), mistakesOpen: 15 }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  words_due: { requested: 'words_due', input: { ...baseInput(new Date(2026, 9, 22, 18)), wordsDue: 12 }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  peak_overtaken: { requested: 'peak_overtaken', input: { ...baseInput(new Date(2026, 9, 22, 18)), peakOvertaken: { from: 2, to: 4 } }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  friend_nudge: { requested: 'friend_nudge', input: { ...baseInput(new Date(2026, 9, 22, 18)), friendAhead: { uid: 'dev-preview-friend' } }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  mistake_poke: { requested: 'mistake_poke', input: { ...baseInput(new Date(2026, 9, 22, 18)), repeatedMistake: { id: 'dev-preview-mistake', times: 2 } }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  phrase_of_day_unseen: { requested: 'phrase_of_day_unseen', input: { ...baseInput(new Date(2026, 9, 22, 19)), phraseOfDaySeen: false }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  personal_best: { requested: 'personal_best', input: { ...baseInput(new Date(2026, 9, 22, 18)), today: { tasks: 30, bestDay: 40 } }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  mistake_mastered: { requested: 'mistake_mastered', input: { ...baseInput(new Date(2026, 9, 22, 18)), masteredMistake: { id: 'dev-preview-mastered' } }, baseDecision: baseDecision('day_done'), copyInput: copyFacts },
+  weekly_recap: { requested: 'weekly_recap', input: { ...baseInput(new Date(2026, 9, 26, 18)), activeLastWeek: true }, baseDecision: baseDecision('continue'), copyInput: copyFacts },
+  fun_stats: { requested: 'fun_stats', input: { ...baseInput(new Date(2026, 9, 22, 18)), progressDays: 7 }, baseDecision: baseDecision('day_done'), copyInput: copyFacts },
+});
+
+export function homeSceneSpecialPreviewSetup(requested: HomeSceneSpecialState): HomeSceneSpecialPreviewSetup {
+  return FIXTURES[requested];
+}
+
+/** Uses the production selector and copy builder; only the fixture and CTA handler are DEV-only. */
+export function homeSceneSpecialPreviewView(
+  lang: Lang,
+  requested: HomeSceneSpecialState,
+): Readonly<{ view: HomeSceneSpecialView; reason: string }> {
+  const fixture = homeSceneSpecialPreviewSetup(requested);
+  const decision = pickHomeSceneSpecial(fixture.input, fixture.baseDecision, HOME_SCENE_SPECIAL_EMPTY_JOURNAL);
+  if (decision.special !== requested) throw new Error(`DEV special fixture mismatch: requested=${requested} decided=${decision.special ?? 'none'}`);
+  return Object.freeze({
+    view: Object.freeze({
+      special: decision.special,
+      key: decision.key,
+      copy: buildHomeSceneSpecialCopy({ ...fixture.copyInput, lang, special: decision.special }),
+      route: DEV_HOME_SCENE_SPECIAL_ROUTE[decision.special],
+    }),
+    reason: decision.reason,
+  });
+}

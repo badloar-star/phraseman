@@ -1,0 +1,194 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+jest.mock("../app/cloud_sync", () => ({
+  syncToCloud: jest.fn(async () => undefined),
+}));
+jest.mock("../app/debug-logger", () => ({
+  DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
+}));
+jest.mock("../app/events", () => ({ emitAppEvent: jest.fn() }));
+jest.mock("../app/storage_mutex", () => ({
+  withStorageLock: async (fn: () => unknown) => fn(),
+}));
+jest.mock("../modules/story_events/story_events_store", () => ({
+  recordStoryEvent: jest.fn(async () => ({ recorded: true, id: "story" })),
+}));
+import {
+  beginAccountGeneration,
+  __resetAccountGenerationForTests,
+} from "../app/account_generation";
+import {
+  recordActivityAchievementFact,
+  loadAchievementStates,
+} from "../app/achievements";
+import { recordStoryEvent } from "../modules/story_events/story_events_store";
+import { mergeAchievementStatesRaw } from "../app/achievement_restore_diff";
+import {
+  recordSavedDailyAchievement,
+  reconcileLegacyCourseAchievements,
+  reconcileV2CourseAchievements,
+} from "../app/activity_achievement_sources";
+import { lessonBonusGrantedKey } from "../app/target_storage_keys";
+import { packCourseMasksV1 } from "../modules/learning-v2/progress/course_progress_masks_v1";
+import type { TodayTasksDayState } from "../modules/today-tasks/today_tasks_core";
+
+beforeEach(() => {
+  (AsyncStorage as unknown as { __reset: () => void }).__reset();
+  jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration("activity-owner");
+});
+it("persists thresholds with evidence, posts stories and cannot grant to a changed owner", async () => {
+  const token = beginAccountGeneration("activity-owner");
+  expect(
+    await recordActivityAchievementFact(
+      { kind: "video", totalSeconds: 100 * 3600 },
+      token,
+    ),
+  ).toBe(true);
+  const rows = await loadAchievementStates();
+  expect(
+    rows.filter((s) => s.id.startsWith("video_hours_") && s.unlockedAt),
+  ).toHaveLength(3);
+  expect(
+    rows.find((s) => s.id === "video_hours_10")?.activityEvidence?.videoSeconds,
+  ).toBe(100 * 3600);
+  expect(recordStoryEvent).toHaveBeenCalledWith(
+    "achievement",
+    { achievementId: "video_hours_100" },
+    expect.any(Number),
+    { accountToken: token },
+  );
+  beginAccountGeneration("different-owner");
+  expect(
+    await recordActivityAchievementFact(
+      { kind: "video", totalSeconds: 200 * 3600 },
+      token,
+    ),
+  ).toBe(false);
+});
+it("merges locked evidence then recovers an earned milestone without inventing a second award", async () => {
+  const token = beginAccountGeneration("activity-owner");
+  const row = { id: "reports_sent_10", unlockedAt: null, notified: false };
+  const local = [
+    {
+      ...row,
+      activityEvidence: {
+        reportKeys: Array.from({ length: 6 }, (_, i) => `error_reports:${i}`),
+      },
+    },
+  ];
+  const cloud = [
+    {
+      ...row,
+      activityEvidence: {
+        reportKeys: Array.from(
+          { length: 6 },
+          (_, i) => `error_reports:${i + 4}`,
+        ),
+      },
+    },
+  ];
+  await AsyncStorage.setItem(
+    "achievements_v1",
+    mergeAchievementStatesRaw(JSON.stringify(local), JSON.stringify(cloud)),
+  );
+  await recordActivityAchievementFact({ kind: "reconcile" }, token);
+  await recordActivityAchievementFact({ kind: "reconcile" }, token);
+  expect(
+    (await loadAchievementStates()).filter(
+      (s) => s.id === "reports_sent_10" && s.unlockedAt,
+    ),
+  ).toHaveLength(1);
+});
+it("a failed write does not award; the same fact can retry", async () => {
+  const token = beginAccountGeneration("activity-owner");
+  jest
+    .mocked(AsyncStorage.setItem)
+    .mockRejectedValueOnce(new Error("disk full"));
+  expect(
+    await recordActivityAchievementFact(
+      { kind: "video", totalSeconds: 36000 },
+      token,
+    ),
+  ).toBe(false);
+  expect(recordStoryEvent).not.toHaveBeenCalled();
+  expect(
+    await recordActivityAchievementFact(
+      { kind: "video", totalSeconds: 36000 },
+      token,
+    ),
+  ).toBe(true);
+});
+it("only a nonempty all-done daily set contributes a calendar date", async () => {
+  const token = beginAccountGeneration("activity-owner");
+  const day = (tasks: unknown[]) =>
+    ({
+      ownerKey: "activity-owner",
+      dayKey: "2026-10-28",
+      tasks,
+    }) as TodayTasksDayState;
+  await recordSavedDailyAchievement(day([]), token);
+  await recordSavedDailyAchievement(
+    day([{ done: true }, { done: false }]),
+    token,
+  );
+  expect(
+    (await loadAchievementStates()).find(
+      (s) => s.id === "today_complete_streak_3",
+    )?.activityEvidence,
+  ).toBeUndefined();
+  await recordSavedDailyAchievement(
+    day([{ done: true }, { done: true }]),
+    token,
+  );
+  expect(
+    (await loadAchievementStates()).find(
+      (s) => s.id === "today_complete_streak_3",
+    )?.activityEvidence?.days,
+  ).toEqual(["2026-10-28"]);
+});
+it("legacy recovery requires all 32 lessons of one target and retains permanent pass marks", async () => {
+  const token = beginAccountGeneration("activity-owner");
+  for (let id = 1; id <= 31; id++)
+    await AsyncStorage.setItem(lessonBonusGrantedKey(id, "en"), "1");
+  await AsyncStorage.setItem(lessonBonusGrantedKey(32, "fr"), "1");
+  await reconcileLegacyCourseAchievements(token);
+  expect(
+    (await loadAchievementStates()).find(
+      (s) => s.id === "legacy_course_complete",
+    )?.unlockedAt,
+  ).toBeNull();
+  await AsyncStorage.setItem(lessonBonusGrantedKey(32, "en"), "1");
+  await reconcileLegacyCourseAchievements(token);
+  expect(
+    (await loadAchievementStates()).find(
+      (s) => s.id === "legacy_course_complete",
+    )?.unlockedAt,
+  ).toBeTruthy();
+});
+it("V2 recovery uses actual completed masks independently per language, never opened bits", async () => {
+  const token = beginAccountGeneration("activity-owner");
+  const indices = Array.from({ length: 56 }, (_, i) => i);
+  await AsyncStorage.setItem(
+    "learning_v2_course_masks_sync_v1",
+    packCourseMasksV1({ completed: new Set(), opened: new Set(indices) }),
+  );
+  await reconcileV2CourseAchievements(token);
+  expect(
+    (await loadAchievementStates()).find(
+      (s) => s.id === "course_v2_en_lesson_1",
+    )?.unlockedAt,
+  ).toBeNull();
+  await AsyncStorage.setItem(
+    "learning_v2_course_masks_sync_v1:target:es",
+    packCourseMasksV1({ completed: new Set(indices), opened: new Set() }),
+  );
+  await reconcileV2CourseAchievements(token);
+  const rows = await loadAchievementStates();
+  expect(
+    rows.find((s) => s.id === "course_v2_es_lesson_1")?.unlockedAt,
+  ).toBeTruthy();
+  expect(
+    rows.find((s) => s.id === "course_v2_en_lesson_1")?.unlockedAt,
+  ).toBeNull();
+});

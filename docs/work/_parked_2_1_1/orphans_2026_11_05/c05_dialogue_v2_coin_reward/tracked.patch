@@ -1,0 +1,232 @@
+diff --git a/app/dialogue_v2_coin_reward.ts b/app/dialogue_v2_coin_reward.ts
+index 629c85f56..7c0b7baba 100644
+--- a/app/dialogue_v2_coin_reward.ts
++++ b/app/dialogue_v2_coin_reward.ts
+@@ -58,6 +58,11 @@ export function dialogueV2CoinAwardedKey(ownerStableId: string, sessionId: strin
+ 
+ type Storage = Pick<typeof AsyncStorage, 'getItem' | 'setItem' | 'removeItem'>;
+ 
++/** Strict host read: unavailable storage cannot authorize intent deletion. */
++export async function readDialogueV2CoinsAwardedStrict(ownerStableId: string, sessionId: string, storage: Storage = AsyncStorage): Promise<boolean> {
++  return (await storage.getItem(dialogueV2CoinAwardedKey(ownerStableId, sessionId))) !== null;
++}
++
+ /** Было ли уже начисление за эту сессию. Сбой чтения — считаем «было» (не начислять дважды), с причиной в журнале. */
+ export async function readDialogueV2CoinsAwarded(ownerStableId: string, sessionId: string, storage: Storage = AsyncStorage): Promise<boolean> {
+   try {
+diff --git a/app/practice_rune_settlement.ts b/app/practice_rune_settlement.ts
+index c3e725f7c..e277d6b54 100644
+--- a/app/practice_rune_settlement.ts
++++ b/app/practice_rune_settlement.ts
+@@ -190,6 +190,32 @@ async function readSealedPracticeRuneOperation(
+   }
+ }
+ 
++/** Read-only historical proof for one fixed Dialogue reward. Generic earnings
++ * still require their full marker and retain markerless conflict behavior. */
++export async function readCommittedFixedDialogueReward(input: Readonly<{
++  ownerStableId: string; earnings: PracticeRuneEarnings;
++}>): Promise<PracticeRuneOperation | null> {
++  const {ownerStableId, earnings} = input;
++  if (!ownerStableId || earnings.activity !== 'lesson' || !earnings.sessionKey.startsWith('dialogue_')
++    || earnings.awardPerItem !== 1 || ![10,25,30].includes(earnings.pendingRunes)
++    || earnings.creditedItemIds.length !== earnings.pendingRunes
++    || !earnings.creditedItemIds.every((id, index) => id === `dialogue_coin_${index + 1}`)) {
++    throw new Error('fixed_dialogue_reward_invalid');
++  }
++  const expected: ExpectedPracticeRuneOperation = {ownerStableId, activity: earnings.activity, sessionKey: earnings.sessionKey,
++    completionOrdinal: 1, operationId: practiceRuneSettlementOperationId({...earnings, completionOrdinal: 1})};
++  const raw = await AsyncStorage.getItem(practiceRuneOperationStorageKey(ownerStableId, expected.operationId));
++  if (raw === null) return null;
++  let candidate: unknown;
++  try { candidate = JSON.parse(raw); } catch { throw new Error('level_spin_star_request_conflict'); }
++  const operation = await validatePracticeRuneOperation(candidate, expected);
++  if (!operation || (operation.amount !== earnings.pendingRunes
++    && operation.amount !== applySuperSundayRuneMultiplier(earnings.pendingRunes, operation.createdAtMs))) {
++    throw new Error('level_spin_star_request_conflict');
++  }
++  return operation;
++}
++
+ /**
+  * Repairs the one-step crash window without scanning the full economy history.
+  * `settledOrdinal + 1` is the only legal next ordinal; if that exact durable
+@@ -304,6 +330,12 @@ export async function settlePracticeRuneEarningsToServer(
+   completionOrdinal: number,
+   durableIntent?: PracticeRunePendingIntent,
+ ): Promise<PracticeRuneSettlementResult> {
++  // Capture supplied proof before awaiting account reads. A mismatched owner
++  // must never create a pending marker under the newly active account.
++  const supplied = durableIntent === undefined ? undefined : Object.freeze({
++    ...durableIntent,
++    sealedOperation: durableIntent.sealedOperation ? Object.freeze({...durableIntent.sealedOperation}) : undefined,
++  });
+   tracePracticeRuneSettlement('settlement_enter', {
+     activity: earnings.activity,
+     sessionKey: earnings.sessionKey,
+@@ -320,7 +352,20 @@ export async function settlePracticeRuneEarningsToServer(
+     return { locallyCommitted: true, settled: true };
+   }
+ 
+-  const ownerStableId = (await getStableId()).trim();
++  const activeOwner = (await getStableId()).trim();
++  const ownerStableId = supplied?.sealedOperation?.ownerStableId ?? activeOwner;
++  if (supplied !== undefined) {
++    const operation = await validatePracticeRuneOperation(supplied.sealedOperation, {
++      ownerStableId,
++      operationId: practiceRuneSettlementOperationId({activity: earnings.activity, sessionKey: earnings.sessionKey, completionOrdinal}),
++      activity: earnings.activity, sessionKey: earnings.sessionKey, completionOrdinal,
++    });
++    if (!operation || activeOwner !== ownerStableId
++      || supplied.createdAtMs !== operation.createdAtMs
++      || supplied.requestFingerprint !== operation.requestFingerprint) {
++      return {locallyCommitted: false, settled: false};
++    }
++  }
+   if (!ownerStableId) {
+     tracePracticeRuneSettlement('settlement_skip_owner_missing', {});
+     return { locallyCommitted: false, settled: false };
+@@ -356,10 +401,10 @@ export async function settlePracticeRuneEarningsToServer(
+   }
+   const operation = persistedIntent.sealedOperation;
+   if (!operation
+-    || (durableIntent !== undefined
+-      && (durableIntent.createdAtMs !== persistedIntent.createdAtMs
+-        || durableIntent.requestFingerprint !== persistedIntent.requestFingerprint
+-        || durableIntent.sealedOperation?.requestFingerprint !== operation.requestFingerprint))) {
++    || (supplied !== undefined
++      && (supplied.createdAtMs !== persistedIntent.createdAtMs
++        || supplied.requestFingerprint !== persistedIntent.requestFingerprint
++        || supplied.sealedOperation?.requestFingerprint !== operation.requestFingerprint))) {
+     tracePracticeRuneSettlement('pending_intent_invalid', { operationId });
+     return { locallyCommitted: false, settled: false };
+   }
+diff --git a/components/dialogue_coin/DialogueV2CoinIntentHost.tsx b/components/dialogue_coin/DialogueV2CoinIntentHost.tsx
+index 9a4131b43..5c7e30c05 100644
+--- a/components/dialogue_coin/DialogueV2CoinIntentHost.tsx
++++ b/components/dialogue_coin/DialogueV2CoinIntentHost.tsx
+@@ -4,8 +4,8 @@
+  * зачем: экран итога терял монеты, если человек уходил, пока копилка читалась с диска. Хост живёт в корне приложения
+  * (за флагом dialogue_coin_intent_host_enabled, монтирует DialogueV2CoinIntentGate) и доводит намерения до копилки по
+  * одному, тем же usePracticeRunes и тем же входом, что был у экрана (dialogueV2CoinPracticeRunesInput) → тот же id
+- * операции на сервере. Порядок как у экрана: копилка прочитана → отметка «начислено» ДО начисления → начисление →
+- * намерение снято → зачёт на сервер (settle, долговечная очередь копилки). Журнал — [COINS-EARN] dialog-host.
++ * операции на сервере. Fixed reward seals one immutable operation before the awarded latch and intent removal.
++ * Replay stays on ordinal 1; ordinary repeat-pass accumulator hydration cannot allocate another dialogue reward.
+  */
+ import React, { useEffect, useRef, useState } from 'react';
+ 
+@@ -18,11 +18,10 @@ import {
+   type DialogueV2CoinIntent,
+ } from '../../app/dialogue_v2_coin_intents';
+ import {
+-  clearDialogueV2CoinsAwarded,
+   dialogueV2CoinItemId,
+   dialogueV2CoinPracticeRunesInput,
+   markDialogueV2CoinsAwarded,
+-  readDialogueV2CoinsAwarded,
++  readDialogueV2CoinsAwardedStrict,
+ } from '../../app/dialogue_v2_coin_reward';
+ 
+ const LOG = '[COINS-EARN] dialog-host:';
+@@ -78,8 +77,11 @@ function IntentWorker({ owner, intent, onDone }: Readonly<{ owner: string; inten
+   useEffect(() => {
+     if (startedRef.current || runes.hydrating) return;
+     startedRef.current = true;
++    let cancelled = false;
++    const workerRunes = runesRef.current;
+     const { sessionId, amount } = intent;
+     const short = sessionId.slice(0, 12);
++    const active = async () => { const ownerNow = await currentOwner(); return !cancelled && ownerNow === owner; };
+     void (async () => {
+       // аккаунт сменился, пока копилка читалась: чужая копилка — не трогаем, намерение остаётся своему владельцу
+       const ownerNow = await currentOwner();
+@@ -88,37 +90,25 @@ function IntentWorker({ owner, intent, onDone }: Readonly<{ owner: string; inten
+         onDone();
+         return;
+       }
+-      if (await readDialogueV2CoinsAwarded(owner, sessionId)) {
+-        console.log(`${LOG} уже начислено — намерение снимается без начисления session=${short}`); // guard-ok: ранний выход
+-        await removeDialogueV2CoinIntent(owner, sessionId);
+-        onDone();
+-        return;
+-      }
+-      if (!(await markDialogueV2CoinsAwarded(owner, sessionId, amount))) {
+-        // отметка не записалась — начислять нельзя (при повторе было бы дважды); намерение ждёт следующего запуска
+-        console.warn(`${LOG} отметка не записалась — начисление отложено session=${short}`); // guard-ok: ранний выход
+-        return;
+-      }
+-      let credited = 0;
+-      for (let item = 1; item <= amount; item += 1) credited += runesRef.current.onCorrectAnswer(dialogueV2CoinItemId(item));
+-      if (credited <= 0) {
+-        console.warn(`${LOG} копилка не приняла начисление (credited=${credited}) — отметка откатывается, намерение снято session=${short}`); // guard-ok: ветка отката
+-        await clearDialogueV2CoinsAwarded(owner, sessionId);
++      try {
++        // A legacy latch is not durable economy proof; reconstruct/replay the
++        // same fixed operation even when it survived an earlier pre-seal crash.
++        await readDialogueV2CoinsAwardedStrict(owner, sessionId);
++        if (!(await active())) return;
++        const outcome = await workerRunes.settleFixedReward({ownerStableId: owner, amount,
++          itemIds: Array.from({length: amount}, (_, index) => dialogueV2CoinItemId(index + 1))});
++        if (outcome.status === 'deferred' || outcome.ownerStableId !== owner || !(await active())) return;
++        if (!(await markDialogueV2CoinsAwarded(owner, sessionId, amount))) return;
++        if (!(await active())) return;
+         await removeDialogueV2CoinIntent(owner, sessionId);
++        console.log(`${LOG} durable=${outcome.status} operation=${outcome.operationId} session=${short}`);
+         onDone();
+-        return;
+-      }
+-      await removeDialogueV2CoinIntent(owner, sessionId);
+-      console.log(`${LOG} начислено +${credited} (локально) session=${short}, зачёт на сервер фоном`); // guard-ok: итог
+-      try {
+-        await runesRef.current.settle();
+-        console.log(`${LOG} зачёт отправлен session=${short}`); // guard-ok: итог зачёта
+       } catch (error: unknown) {
+-        console.warn(`${LOG} зачёт не прошёл — копилка повторит при следующем запуске session=${short}`, errText(error)); // guard-ok: catch пишет причину
++        console.warn(`${LOG} durable reward deferred session=${short}`, errText(error));
+       }
+-      onDone();
+     })();
+-  }, [intent, onDone, owner, runes.hydrating]);
++    return () => { cancelled = true; };
++  }, [intent, owner, runes.hydrating]);
+ 
+   return null;
+ }
+diff --git a/tests/dialogue_v2_coin_intent_host.test.tsx b/tests/dialogue_v2_coin_intent_host.test.tsx
+index 3581d2820..a03994ef2 100644
+--- a/tests/dialogue_v2_coin_intent_host.test.tsx
++++ b/tests/dialogue_v2_coin_intent_host.test.tsx
+@@ -15,21 +15,28 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
+ }));
+ jest.mock('react-native', () => ({ AppState: { addEventListener: () => ({ remove: () => undefined }) } }));
+ let mockFlag = false;
+-jest.mock('../app/remote_flags', () => ({ getRemoteBool: () => mockFlag }));
+-jest.mock('../app/stable_id', () => ({ getStableId: async () => 'owner-1' }));
+-jest.mock('../app/dev_dialog_state', () => ({ isDevDialogCoinsAward: () => false }));
++jest.mock("../app/remote_flags.ts", () => ({ getRemoteBool: () => mockFlag }));
++jest.mock("../app/stable_id.ts", () => ({ getStableId: async () => 'owner-1' }));
++jest.mock("../app/dev_dialog_state.ts", () => ({ isDevDialogCoinsAward: () => false }));
+ 
+ type RunesInput = Readonly<{ activity: string; sessionKey: string; completionOrdinal: number; repeatPriceOnly: boolean; enabled: boolean }>;
+ const mockInputs: RunesInput[] = [];
+ const mockCredits: string[] = [];
+ let mockHydrating = false;
+-jest.mock('../hooks/usePracticeRunes', () => ({
++jest.mock("../hooks/usePracticeRunes.ts", () => ({
+   usePracticeRunes: (input: RunesInput) => {
+     mockInputs.push(input);
+     return {
+       hydrating: input.enabled ? mockHydrating : false,
+       onCorrectAnswer: (itemId: string) => { mockCredits.push(`${input.sessionKey}|${itemId}`); return 1; },
+       settle: async () => undefined,
++      // Legacy routing/flag suite uses a boundary model. Durable crash/owner
++      // behavior is exercised separately with the actual hook and settlement.
++      settleFixedReward: async ({ownerStableId, itemIds}: {ownerStableId: string; itemIds: readonly string[]}) => {
++        itemIds.forEach((itemId) => mockCredits.push(`${input.sessionKey}|${itemId}`));
++        return {status: 'sealed' as const, ownerStableId, sessionKey: input.sessionKey,
++          completionOrdinal: 1, operationId: `legacy-suite:${input.sessionKey}`};
++      },
+     };
+   },
+ }));

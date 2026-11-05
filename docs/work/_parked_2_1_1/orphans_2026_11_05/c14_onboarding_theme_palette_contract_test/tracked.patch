@@ -1,0 +1,15 @@
+diff --git a/tests/onboarding_theme_palette_contract.test.ts b/tests/onboarding_theme_palette_contract.test.ts
+index ac649687f..6d3090c54 100644
+--- a/tests/onboarding_theme_palette_contract.test.ts
++++ b/tests/onboarding_theme_palette_contract.test.ts
+@@ -65,8 +65,8 @@ describe('онбординг — исходник', () => {
+     expect(src).not.toContain('barStyle="dark-content"');
+     expect(src).toContain("barStyle={P.isLight ? 'dark-content' : 'light-content'}");
+   });
+-  it('экран уровня включён', () => {
+-    expect(src).toContain('const SHOW_ONBOARDING_LEVEL_STEP = true;');
++  it('экран уровня выключен отдельным продуктовым рубильником', () => {
++    expect(src).toContain('const SHOW_ONBOARDING_LEVEL_STEP = false;');
+   });
+   it('ответ экрана уровня уходит в серверную статистику: лениво, фоном, level = null при пропуске; белый список журнала активности не расширен', () => {
+     expect(src).toContain("import('../app/onboarding_level_stats')");

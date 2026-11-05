@@ -1,0 +1,19 @@
+import { configurePhoneStateProgressCutover,trySubmitProgressThroughPhoneState } from '../../../app/phone_state_progress_cutover';
+import { createPersonalProgressApi } from '../../../modules/phone-state/domains/progress_api';
+import { applyPersonalProgressCommand,emptyPersonalProgressState } from '../../../modules/phone-state/domains/progress_projection';
+jest.mock('../../../app/remote_flags',()=>({getRemoteBool:(key:string)=>key==='phone_state_sync_enabled',getRemoteNumber:()=>100,assignPhoneStateCohort:()=>true}));
+jest.mock('../../../app/phone_state_health',()=>({isPhoneStateHealthCutoverAllowed:()=>true}));
+jest.mock('../../../app/personal_progress_store',()=>({publishPersonalProgressProjection:jest.fn()}));
+test('[CONTRACT-RED:PHONESTATE-TARGET-COLLISION] two targets same lesson keep two distinct completion identities',async()=>{
+  let state=emptyPersonalProgressState();
+  configurePhoneStateProgressCutover(createPersonalProgressApi({journal:{
+    commit:async command=>{const applied=applyPersonalProgressCommand(state,command);state=applied.state;return {projection:state.projection,duplicate:applied.duplicate};},
+    read:async()=>state.projection,
+  }}));
+  try{
+    await trySubmitProgressThroughPhoneState('fixture-owner',{eventId:'lesson:en:1:complete:a',type:'lesson_complete',payload:{lessonId:1,studyTarget:'en',bestPct:80}});
+    await trySubmitProgressThroughPhoneState('fixture-owner',{eventId:'lesson:de:1:complete:b',type:'lesson_complete',payload:{lessonId:1,studyTarget:'de',bestPct:20}});
+    expect(state.appliedEventIds).toHaveLength(2);
+    expect(state.projection.completedLessons).toHaveLength(2);
+  }finally{configurePhoneStateProgressCutover(null);}
+});

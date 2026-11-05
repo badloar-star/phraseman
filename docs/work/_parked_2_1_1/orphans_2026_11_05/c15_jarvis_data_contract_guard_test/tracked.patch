@@ -1,0 +1,111 @@
+diff --git a/functions/src/jarvis/jarvis_data_contract_guard.test.ts b/functions/src/jarvis/jarvis_data_contract_guard.test.ts
+index 4d2ce4ffb..1e29bd85d 100644
+--- a/functions/src/jarvis/jarvis_data_contract_guard.test.ts
++++ b/functions/src/jarvis/jarvis_data_contract_guard.test.ts
+@@ -1,6 +1,42 @@
+ import fs from 'node:fs';
+ import path from 'node:path';
+ 
++describe('Peak collectible data boundary', () => {
++  test('the new stage remains inside existing private achievement state, with server-only promotion facts', () => {
++    const repo = path.resolve(__dirname, '../../..');
++    const read = (file: string) => fs.readFileSync(path.join(repo, file), 'utf8');
++    expect(read('app/achievements.ts')).toContain('spirePromotedAt?: string');
++    expect(read('app/cloud_sync.ts')).toContain("data['achievements_state'] = achievementsV1");
++    expect(read('app/achievement_restore_diff.ts')).toContain('row.spirePromotedAt = dates[0]');
++    expect(read('firestore.rules')).toMatch(/match \/spire_week_results\/\{resultId\}\s*\{\s*allow read:\s*if userDocOwnerMatchesAuth\(userId\);\s*allow write:\s*if false;/);
++    const fetchers = fs.readdirSync(path.join(repo, 'functions/src/jarvis')).filter(file => file.endsWith('_firestore_fetcher.ts')).map(file => read(`functions/src/jarvis/${file}`)).join('\n');
++    expect(fetchers).not.toContain('spirePromotedAt');
++  });
++});
++
++describe('floor record data boundary', () => {
++  test('records stay private behind membership checks and are erased with the owner', () => {
++    const root = path.resolve(__dirname, '../../..');
++    const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
++    const writer = fs.readFileSync(path.join(root, 'functions/src/spire_floor_records.ts'), 'utf8');
++    const deletion = fs.readFileSync(path.join(root, 'functions/src/account_delete.ts'), 'utf8');
++    for (const collection of ['spire_floor_records', 'spire_floor_record_attempts', 'spire_floor_record_results']) {
++      expect(rules).toContain(`match /${collection}/{id} { allow read, write: if false; }`);
++      expect(rules).toContain(`&& collection != '${collection}'`);
++      expect(writer).toContain(`collection('${collection}')`);
++      expect(deletion).toContain(`'${collection}'`);
++    }
++    expect(writer).toContain('record_room_membership');
++    expect(writer).toContain('stepRecordKey(floor, step)');
++    expect(writer).toContain('step-v2_${groupId}');
++    expect(writer).toContain('accepted.receipt');
++    expect(writer).toContain('floorRecordServerEnabled(configSnap.data())');
++    expect(writer).toContain('participantUids');
++    expect(writer).not.toContain("collection('users')");
++    // Jarvis does not consume the new competitive records; existing progress fields remain unchanged.
++  });
++});
++
+ /**
+  * СТОРОЖ КОНТРАКТА ДАННЫХ ДЖАРВИСА.
+  *
+@@ -76,6 +112,8 @@ interface FieldContract {
+  * департамент видит правду».
+  */
+ const FIELD_CONTRACTS: readonly FieldContract[] = [
++  // YouTube admin collections have no Jarvis reader. Their explicit exclusion
++  // and server-only boundary are pinned in the contract table below.
+   // зачем добавлены money/payments/quality (аудит 2026-08-15): три
+   // департамента — включая оба денежных — были вне стража. Переименуют поле,
+   // читатель вернёт пустоту, и Джарвис бодро отчитается, что всё в порядке.
+@@ -215,6 +253,27 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
+   },
+ ];
+ 
++// Explicit non-metric collections: no existing department consumes them.
++// Keep this boundary in the central contract audit as well as feature tests.
++describe('YouTube administrative collection contract table', () => {
++  test('feedback aggregates and deduplication receipts remain server-only',()=>{
++    const source=readSource('youtube_feedback_store.ts');
++    for(const field of ['feedback_item_','feedbackVersion','skipReply','analyzed','topics'])expect(source).toContain(field);
++    expect(source).toContain("db.collection('admin_youtube_comment_settings')");
++    expect(source).toContain('db.runTransaction');
++    expect(source).not.toContain('expireAt');
++  });
++  test.each(['admin_youtube_comments','admin_youtube_comment_settings'])('%s remains callable-only and outside user metrics', collection => {
++    const writer=readSource('youtube_comments.ts');
++    const rules=fs.readFileSync(path.join(root,'firestore.rules'),'utf8');
++    const readers=fs.readdirSync(path.join(functionsSrc,'jarvis')).filter(file=>file.endsWith('_firestore_fetcher.ts')).map(file=>readSource(`jarvis/${file}`)).join('\n');
++    expect(writer).toContain(`'${collection}'`);
++    expect(rules).toContain(`&& collection != '${collection}'`);
++    expect(rules).toContain(`match /${collection}/{id} { allow read, write: if false; }`);
++    expect(readers).not.toContain(collection);
++  });
++});
++
+ // Immutable per-user purchase facts are deliberately not Jarvis metrics. Money
+ // continues to read the bounded RevenueCat receipt collection; these two fields
+ // exist only so the client can observe an already-confirmed purchase outcome.
+@@ -381,6 +440,15 @@ const MONEY_WRITER_CONTRACTS = [
+   // удалён; новых admin_grant в voice_minute_events нет, читатель Джарвиса
+   // по-прежнему пропускает исторические не-выручечные записи.
+   {
++    writer: 'app/paywall_funnel.ts', reader: 'functions/src/paywall_receipt_attribution.ts', field: 'transactionHash',
++    writerPattern: /transactionHash/, readerPattern: /doc\.transactionHash/,
++  },
++  {
++    writer: 'app/paywall_funnel.ts', reader: 'functions/src/paywall_receipt_attribution.ts', field: 'impressionId',
++    writerPattern: /impressionId/, readerPattern: /doc\.impressionId/,
++  },
++  {
++    // schemaVersion 2 adds impressionId + SHA-256 transactionHash; money reader still counts only paid purchase_completed (never trial_started/store_confirmed/access_applied).
+     writer: 'app/paywall_funnel.ts',
+     reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+     field: 'ts',
+@@ -683,6 +751,10 @@ const ISOLATED_COLLECTION_CONTRACTS = [
+ // report card. Jarvis keeps its bounded aggregate category/screen counts and
+ // must never turn this nested personal sequence into model prompt material.
+ const INTENTIONALLY_EXCLUDED_NESTED_FIELDS = [{
++  field: 'public_profiles.profileCardShowcase',
++  writer: 'public_profile_projection.ts',
++  authority: 'display-only award selection and opt-in streak; no Jarvis consumer and no reward grant',
++}, {
+   field: 'error_reports.diagnostics',
+   writer: 'client_reports.ts',
+   authority: 'intentionally_excluded_from_jarvis_prompts',

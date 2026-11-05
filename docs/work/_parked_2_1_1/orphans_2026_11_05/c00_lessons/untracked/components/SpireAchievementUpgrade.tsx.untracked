@@ -1,0 +1,10 @@
+import React from 'react';
+import { View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+/** A second stage of the same collectible, with no pedestal or replacement illustration. */
+export function SpireAchievementUpgrade({ size, color }: { size: number; color: string }) {
+  return <View testID="spire-achievement-upgrade" pointerEvents="none" style={{ position: 'absolute', right: 0, bottom: 0 }}>
+    <Ionicons name="sparkles" size={Math.max(16, Math.round(size * 0.22))} color={color} />
+  </View>;
+}

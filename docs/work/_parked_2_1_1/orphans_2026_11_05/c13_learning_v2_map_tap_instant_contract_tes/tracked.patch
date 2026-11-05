@@ -1,0 +1,17 @@
+diff --git a/tests/learning_v2_map_tap_instant_contract.test.ts b/tests/learning_v2_map_tap_instant_contract.test.ts
+index bb0ccff4f..8f43ea51b 100644
+--- a/tests/learning_v2_map_tap_instant_contract.test.ts
++++ b/tests/learning_v2_map_tap_instant_contract.test.ts
+@@ -71,10 +71,10 @@ describe("Learning V2 map tap instant contract", () => {
+       source.indexOf("const [learningV2Progress, setLearningV2Progress]"),
+     );
+     expect(catalogState).not.toContain("peekLearningV2ActiveCourseCatalogV1(");
+-    expect(source).toContain("const learningV2WarmupEnabled = learningV2WarmupArmed;");
++    expect(source).toContain("const learningV2WarmupEnabled = !LEARNING_V2_HIDDEN && learningV2WarmupArmed;");
+     // Прогресс — авторитет для current/locked/repeat, его нельзя заменять
+     // placeholder-ом на время idle ожидания тяжёлого каталога.
+-    expect(source).toContain("const learningV2ProgressWarmupEnabled = page === \"v2\" || learningV2WarmupArmed;");
++    expect(source).toContain("const learningV2ProgressWarmupEnabled = !LEARNING_V2_HIDDEN && (page === \"v2\" || learningV2WarmupArmed);");
+     const progressWarmupAt = source.indexOf("const learningV2ProgressWarmupEnabled");
+     const progressEffectAt = source.indexOf("useFocusEffect(", progressWarmupAt);
+     const catalogEffectAt = source.indexOf("useFocusEffect(", progressEffectAt + 1);

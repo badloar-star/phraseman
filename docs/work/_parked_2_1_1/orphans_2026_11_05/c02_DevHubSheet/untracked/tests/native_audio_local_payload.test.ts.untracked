@@ -1,0 +1,103 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const playerFactory = jest.fn();
+const claimVideoAudio = jest.fn();
+const files: any[] = [];
+let corrupt = false, writeFails = false, collision = false;
+jest.mock('expo-audio', () => ({ createAudioPlayer: playerFactory }));
+jest.mock('../modules/audio/audio_runtime_arbiter', () => ({ claimVideoAudio }));
+jest.mock('expo-asset', () => ({ Asset: { fromModule: () => ({ localUri: null, uri: 'http://dev.invalid/audio' }) } }));
+jest.mock('react-native', () => ({ Platform: { OS: 'android' }, PermissionsAndroid: {} }));
+jest.mock('../app/dev_diag_gate', () => ({ DIAG_ENABLED: true }));
+jest.mock('../app/speaking_hold_recorder', () => ({}));
+jest.mock('expo-file-system', () => ({
+  Paths: { cache: 'file:///cache/' },
+  File: class {
+    uri: string; exists = false; size = 0; bytes = new Uint8Array(); deleted = 0;
+    constructor(_root: string, name: string) { this.uri = 'file:///cache/' + name; files.push(this); }
+    create(options: { overwrite: boolean }) { expect(options.overwrite).toBe(false); if (collision) throw new Error('exists'); this.exists = true; }
+    write(bytes: Uint8Array) { this.bytes = bytes.slice(); this.size = bytes.length; if (writeFails) throw new Error('partial'); }
+    bytesSync() { const result = this.bytes.slice(); if (corrupt) result[0] ^= 1; return result; }
+    delete() { this.deleted++; this.exists = false; }
+  },
+}));
+import { playBundledAudioSmoke } from '../modules/dev/native_audio_safe_fixture';
+import { createNativeAudioHubController } from '../modules/dev/native_audio_hub_controller';
+beforeEach(() => {
+  jest.clearAllMocks();
+  files.length = 0;
+  corrupt = writeFails = collision = false;
+  claimVideoAudio.mockImplementation((_stop: () => void) => {
+    let current = true;
+    return { isCurrent: () => current, release: jest.fn(() => { current = false; }) };
+  });
+  playerFactory.mockReturnValue({ play: jest.fn(), pause: jest.fn(), release: jest.fn() });
+  global.fetch = jest.fn() as any;
+});
+test('existing exact bytes become verified local file without a resolver download', async () => {
+  const handle = await playBundledAudioSmoke();
+  expect(handle).not.toBeNull(); expect(files).toHaveLength(1);
+  const expected = fs.readFileSync(__dirname + '/../assets/audio/sfx/v1/voice/pm_voice_no_speech_v1.m4a');
+  expect(Buffer.from(files[0].bytes)).toEqual(expected);
+  expect(crypto.createHash('sha256').update(files[0].bytes).digest('hex')).toBe('7bd97a8a2e6db1278ae45a94417f529fd0bf7df6f842420027420e5f0984cd77');
+  expect(playerFactory).toHaveBeenCalledWith(files[0].uri);
+  handle?.stop(); handle?.stop(); expect(files[0].deleted).toBe(1); expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test.each(['absent','poisoned'])('local preparation works with %s atob', async mode => {
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'atob');
+  Object.defineProperty(globalThis, 'atob', { configurable: true, value: mode === 'absent' ? undefined : () => { throw new Error('Browser globals forbidden'); } });
+  try {
+    const handle = await playBundledAudioSmoke(); expect(handle).not.toBeNull();
+    expect(files[0].size).toBe(12363); handle?.stop(); expect(files[0].deleted).toBe(1);
+  } finally {
+    if (descriptor) Object.defineProperty(globalThis, 'atob', descriptor); else Reflect.deleteProperty(globalThis, 'atob');
+  }
+});
+test.each(['corrupt','partial'] as const)('%s write fails before player and cleans its own file', async mode => {
+  corrupt = mode === 'corrupt'; writeFails = mode === 'partial';
+  expect(await playBundledAudioSmoke()).toBeNull(); expect(playerFactory).not.toHaveBeenCalled(); expect(files[0].deleted).toBe(1);
+});
+test('collision never overwrites or deletes someone else’s file', async () => {
+  collision = true; expect(await playBundledAudioSmoke()).toBeNull(); expect(files[0].deleted).toBe(0); expect(playerFactory).not.toHaveBeenCalled();
+});
+test('recording ownership refusal cleans the owned file without creating a player', async () => {
+  claimVideoAudio.mockReturnValue(null);
+  expect(await playBundledAudioSmoke()).toBeNull();
+  expect(claimVideoAudio).toHaveBeenCalledWith(expect.any(Function), 'dev:native-audio-smoke');
+  expect(playerFactory).not.toHaveBeenCalled();
+  expect(files[0].deleted).toBe(1);
+});
+test('arbiter revocation releases the player and owned file exactly once', async () => {
+  let revoke!: () => void;
+  let current = true;
+  const releaseClaim = jest.fn(() => { current = false; });
+  claimVideoAudio.mockImplementation((stop: () => void) => {
+    revoke = () => { current = false; stop(); };
+    return { isCurrent: () => current, release: releaseClaim };
+  });
+  const player = { play: jest.fn(), pause: jest.fn(), release: jest.fn() };
+  playerFactory.mockReturnValue(player);
+
+  const handle = await playBundledAudioSmoke();
+  expect(handle).not.toBeNull();
+  revoke();
+  handle?.stop();
+
+  expect(player.pause).toHaveBeenCalledTimes(1);
+  expect(player.release).toHaveBeenCalledTimes(1);
+  expect(releaseClaim).toHaveBeenCalledTimes(1);
+  expect(files[0].deleted).toBe(1);
+});
+test('player error releases before deleting; unique handles do not delete newer files', async () => {
+  const release = jest.fn(() => { expect(files[0].deleted).toBe(0); });
+  playerFactory.mockReturnValueOnce({ play: () => { throw Error('play'); }, pause: jest.fn(), release });
+  expect(await playBundledAudioSmoke()).toBeNull(); expect(release).toHaveBeenCalledTimes(1); expect(files[0].deleted).toBe(1);
+  const one = await playBundledAudioSmoke(), two = await playBundledAudioSmoke();
+  expect(files[1].uri).not.toBe(files[2].uri); one?.stop(); expect(files[2].deleted).toBe(0); two?.stop(); expect(files[2].deleted).toBe(1);
+});
+test('actual controller close before handle settlement cleans file and permits replay', async () => {
+  const c = createNativeAudioHubController({ play: playBundledAudioSmoke, start: jest.fn() });
+  const pending = c.play(); await c.close(); await pending; expect(files[0].deleted).toBe(1);
+  expect(await c.play()).toBe(true); await c.close(); expect(files[1].deleted).toBe(1);
+});

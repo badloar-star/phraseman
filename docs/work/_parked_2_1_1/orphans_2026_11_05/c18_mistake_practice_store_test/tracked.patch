@@ -1,0 +1,34 @@
+diff --git a/tests/mistake_practice_store.test.ts b/tests/mistake_practice_store.test.ts
+index 4d5086948..caadb4516 100644
+--- a/tests/mistake_practice_store.test.ts
++++ b/tests/mistake_practice_store.test.ts
+@@ -15,6 +15,29 @@ import {
+   __resetAccountGenerationForTests,
+   beginAccountGeneration,
+ } from '../app/account_generation';
++import { configurePhoneStatePracticeBridge } from '../app/phone_state_practice_bridge';
++
++test('journal progress distinguishes an unresolved root read from an unresolved practice projection', async () => {
++  let resolveRoot!: (value: string | null) => void;
++  let resolveProjection!: (value: null) => void;
++  const progress: string[] = [];
++  const storage = createStorage();
++  storage.getItem = () => new Promise((resolve) => { resolveRoot = resolve; });
++  configurePhoneStatePracticeBridge({
++    scope: { stableUid: 'trace-account', accountGeneration: 1 }, deviceId: 'trace-device',
++    store: { commit: jest.fn(), replay: jest.fn(), readProjection: () => new Promise((resolve) => { resolveProjection = resolve; }) } as never,
++    triggerSync: jest.fn(),
++  });
++  const loading = loadMistakeEventJournal({ accountScope: 'trace-account', studyTarget: 'en', storage, onLoadProgress: (stage) => progress.push(stage) });
++  expect(progress.at(-1)).toBe('journal:root_read');
++  resolveRoot(null);
++  await Promise.resolve();
++  await Promise.resolve();
++  expect(progress.at(-1)).toBe('phone_state:read_before');
++  resolveProjection(null);
++  await loading;
++  configurePhoneStatePracticeBridge(null);
++});
+ 
+ function createStorage(): MistakePracticeStorage & {
+   data: Map<string, string>;

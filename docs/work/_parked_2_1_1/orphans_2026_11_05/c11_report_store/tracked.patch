@@ -1,0 +1,52 @@
+diff --git a/modules/spire/report_store.ts b/modules/spire/report_store.ts
+index 6adce49fa..547041a3d 100644
+--- a/modules/spire/report_store.ts
++++ b/modules/spire/report_store.ts
+@@ -163,6 +163,7 @@ export type SpireRecordStepInput = Readonly<{
+   lang: SpireLang;
+   report: SpireStepReport;
+   logger: SpireReportLogger;
++  beforeWeekReplacement?: (previous: SpireWeekLocal) => Promise<boolean>;
+ }>;
+ 
+ /**
+@@ -187,6 +188,11 @@ export function spireRecordStep(
+         packHash: input.report.packHash,
+       });
+     const applied = spireApplyStepReport(current, input.report);
++    if (current.weekKey !== applied.local.weekKey && input.beforeWeekReplacement
++      && !await input.beforeWeekReplacement(current)) {
++      input.logger.warn(LOG, 'record: previous week collectible not persisted; retaining previous week for retry');
++      return { ...applied, persisted: false };
++    }
+     input.logger.info(LOG, `record: ${input.report.reportId} outcome=${input.report.outcome} durationMs=${input.report.durationMs} effect=${applied.effect} steps=${applied.local.stepsCleared} floor=${applied.local.floor}/${applied.local.stepInFloor} pending=${applied.local.pending.length}`);
+     if (applied.dropped.length > 0) {
+       input.logger.warn(LOG, `record: выброшено из очереди ${applied.dropped.length} строк (смена недели или переполнение): ${applied.dropped.map((r) => r.reportId).slice(0, 5).join(',')}`);
+diff --git a/tests/spire_report_queue.test.ts b/tests/spire_report_queue.test.ts
+index 8d7282b97..593bdc224 100644
+--- a/tests/spire_report_queue.test.ts
++++ b/tests/spire_report_queue.test.ts
+@@ -133,6 +133,23 @@ describe('report_queue (чистая логика)', () => {
+ });
+ 
+ describe('report_store (очередь на диске)', () => {
++  test('preserves old summit before first new-week step, and retains it if collectible save fails', async () => {
++    const store = memoryStore();
++    await spireRecordStep(store, { uid: 'u1', lang: 'en', report: reportAt(1), logger: silent });
++    const key = [...store.data.keys()][0];
++    const old = { ...JSON.parse(store.data.get(key)!), floor: 16, stepsCleared: 135 };
++    store.data.set(key, JSON.stringify(old));
++    const nextReport = { ...reportAt(1), weekKey: '2026-W40', reportId: 'next-week-step' };
++    const beforeWeekReplacement = jest.fn(async () => false);
++    const failed = await spireRecordStep(store, { uid: 'u1', lang: 'en', report: nextReport, logger: silent, beforeWeekReplacement });
++    expect(failed.persisted).toBe(false);
++    expect(JSON.parse(store.data.get(key)!)).toMatchObject({ weekKey: WEEK, stepsCleared: 135 });
++    beforeWeekReplacement.mockResolvedValue(true);
++    const saved = await spireRecordStep(store, { uid: 'u1', lang: 'en', report: nextReport, logger: silent, beforeWeekReplacement });
++    expect(saved.persisted).toBe(true);
++    expect(beforeWeekReplacement).toHaveBeenCalledWith(expect.objectContaining({ weekKey: WEEK, floor: 16, stepsCleared: 135 }));
++    expect(JSON.parse(store.data.get(key)!)).toMatchObject({ weekKey: '2026-W40' });
++  });
+   test('офлайн копит, потом досылает одной пачкой; ступень во время запроса не теряется', async () => {
+     const store = memoryStore();
+     await spireRecordStep(store, { uid: 'u1', lang: 'en', report: reportAt(1), logger: silent });

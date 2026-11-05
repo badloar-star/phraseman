@@ -1,0 +1,22 @@
+{
+ "seed": "20261105",
+ "share": 0.15,
+ "mode": "modules",
+ "counts": {
+  "glossary:en": 117,
+  "intro:en": 14,
+  "theory:en": 5,
+  "glossary:es": 52,
+  "intro:es": 14,
+  "theory:es": 5,
+  "glossary:fr": 30,
+  "intro:fr": 14,
+  "theory:fr": 5,
+  "glossary:de": 30,
+  "intro:de": 14,
+  "theory:de": 5,
+  "glossary:it": 30,
+  "intro:it": 14,
+  "theory:it": 5
+ }
+}

@@ -14,3 +14,9 @@ scripts/classic_audit_layer.json, scripts/classic_distractor_patches.json, docs/
 вырастут (новые правки), выборка пересчитается без них и возьмёт данные текущих файлов курса. Чтобы зафиксировать именно эту выборку
 (и подтянуть актуальный текст этих же фраз), запускай: `... --keep=docs/work/classic_audit_control_2026_11_05/MANIFEST.json`.
 Опции: `--seed=`, `--per-lang=`, `--out=`.
+
+## Расширение: словарь, тексты разделов (intro), теории (15%)
+`make_sample_text.mjs` — тот же seed-метод. По данным курса (по умолчанию): 15% лемм glossary.json, 15% экранов intro.json, 15% уроков theory.json на язык
+(en: 117 лемм / 14 экранов / 5 теорий; es 52/14/5; fr, de, it по 30/14/5) → `text/chunk_<glossary|intro|theory>_<lang>_<NN>.json`
+(по 100 / 20 / 5 записей), `text/MANIFEST_TEXT.json`. Для чанков full3 от Теории: `--full3=<папка с chunk_<lang>_NN.json> --kind=glossary|intro|theory`
+берёт 15% записей каждого языка. Формат результата аудитора — как в INSTRUCTIONS.md (id, type, field, problem, fix).

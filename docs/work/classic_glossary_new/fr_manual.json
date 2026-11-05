@@ -1,0 +1,393 @@
+{
+ "_why": "Слова фраз fr без слов словаря (замер Ревизора V0, 20 фраз): уроки 8, 14, 15, 16, 19, 24, 25, 28. Ручной слой — scripts/classic_glossary_manual.mjs.",
+ "forms": {},
+ "new": [
+  {
+   "lemma": "où",
+   "meaning": {
+    "ru": "где, куда",
+    "uk": "де, куди",
+    "en": "where",
+    "es": "dónde"
+   }
+  },
+  {
+   "lemma": "es-tu",
+   "meaning": {
+    "ru": "ты находишься? (в вопросе)",
+    "uk": "ти знаходишся? (у питанні)",
+    "en": "are you (in a question)",
+    "es": "¿estás? (pregunta)"
+   }
+  },
+  {
+   "lemma": "qui",
+   "meaning": {
+    "ru": "кто",
+    "uk": "хто",
+    "en": "who",
+    "es": "quién"
+   }
+  },
+  {
+   "lemma": "parle",
+   "meaning": {
+    "ru": "говорит, говорю",
+    "uk": "говорить, говорю",
+    "en": "speaks, I speak",
+    "es": "habla, hablo"
+   }
+  },
+  {
+   "lemma": "français",
+   "meaning": {
+    "ru": "французский (язык)",
+    "uk": "французька (мова)",
+    "en": "French",
+    "es": "francés"
+   }
+  },
+  {
+   "lemma": "quand",
+   "meaning": {
+    "ru": "когда",
+    "uk": "коли",
+    "en": "when",
+    "es": "cuándo"
+   }
+  },
+  {
+   "lemma": "arrives-tu",
+   "meaning": {
+    "ru": "ты приезжаешь? (в вопросе)",
+    "uk": "ти приїжджаєш? (у питанні)",
+    "en": "do you arrive?",
+    "es": "¿llegas?"
+   }
+  },
+  {
+   "lemma": "partez-vous",
+   "meaning": {
+    "ru": "вы уезжаете? (в вопросе)",
+    "uk": "ви виїжджаєте? (у питанні)",
+    "en": "are you leaving? (you)",
+    "es": "¿se van?"
+   }
+  },
+  {
+   "lemma": "pourquoi",
+   "meaning": {
+    "ru": "почему",
+    "uk": "чому",
+    "en": "why",
+    "es": "por qué"
+   }
+  },
+  {
+   "lemma": "pars-tu",
+   "meaning": {
+    "ru": "ты уезжаешь? (в вопросе)",
+    "uk": "ти виїжджаєш? (у питанні)",
+    "en": "are you leaving? (you)",
+    "es": "¿te vas?"
+   }
+  },
+  {
+   "lemma": "si",
+   "meaning": {
+    "ru": "так, настолько; если",
+    "uk": "так, настільки; якщо",
+    "en": "so; if",
+    "es": "tan; si"
+   }
+  },
+  {
+   "lemma": "tôt",
+   "meaning": {
+    "ru": "рано",
+    "uk": "рано",
+    "en": "early",
+    "es": "temprano"
+   }
+  },
+  {
+   "lemma": "comment",
+   "meaning": {
+    "ru": "как",
+    "uk": "як",
+    "en": "how",
+    "es": "cómo"
+   }
+  },
+  {
+   "lemma": "allez-vous",
+   "meaning": {
+    "ru": "вы идёте, вы едете (в вопросе)",
+    "uk": "ви йдете, ви їдете (у питанні)",
+    "en": "are you going? (you)",
+    "es": "¿van?"
+   }
+  },
+  {
+   "lemma": "pouvez-vous",
+   "meaning": {
+    "ru": "вы можете? (в вопросе)",
+    "uk": "ви можете? (у питанні)",
+    "en": "can you?",
+    "es": "¿pueden?"
+   }
+  },
+  {
+   "lemma": "parler",
+   "meaning": {
+    "ru": "говорить",
+    "uk": "говорити",
+    "en": "to speak",
+    "es": "hablar"
+   }
+  },
+  {
+   "lemma": "moins",
+   "meaning": {
+    "ru": "меньше",
+    "uk": "менше",
+    "en": "less",
+    "es": "menos"
+   }
+  },
+  {
+   "lemma": "vite",
+   "meaning": {
+    "ru": "быстро",
+    "uk": "швидко",
+    "en": "fast",
+    "es": "rápido"
+   }
+  },
+  {
+   "lemma": "dormir",
+   "meaning": {
+    "ru": "спать",
+    "uk": "спати",
+    "en": "to sleep",
+    "es": "dormir"
+   }
+  },
+  {
+   "lemma": "entre",
+   "meaning": {
+    "ru": "входи (одному человеку)",
+    "uk": "заходь (одній людині)",
+    "en": "come in (to one person)",
+    "es": "entra"
+   }
+  },
+  {
+   "lemma": "entrez",
+   "meaning": {
+    "ru": "входите",
+    "uk": "заходьте",
+    "en": "come in (to several people or politely)",
+    "es": "entren"
+   }
+  },
+  {
+   "lemma": "attends",
+   "meaning": {
+    "ru": "жди (одному человеку)",
+    "uk": "чекай (одній людині)",
+    "en": "wait (to one person)",
+    "es": "espera"
+   }
+  },
+  {
+   "lemma": "attendez",
+   "meaning": {
+    "ru": "ждите",
+    "uk": "чекайте",
+    "en": "wait (to several people or politely)",
+    "es": "esperen"
+   }
+  },
+  {
+   "lemma": "écoute",
+   "meaning": {
+    "ru": "слушай (одному человеку)",
+    "uk": "слухай (одній людині)",
+    "en": "listen (to one person)",
+    "es": "escucha"
+   }
+  },
+  {
+   "lemma": "écoutez",
+   "meaning": {
+    "ru": "слушайте",
+    "uk": "слухайте",
+    "en": "listen (to several people or politely)",
+    "es": "escuchen"
+   }
+  },
+  {
+   "lemma": "bien",
+   "meaning": {
+    "ru": "хорошо, внимательно",
+    "uk": "добре, уважно",
+    "en": "well, carefully",
+    "es": "bien"
+   }
+  },
+  {
+   "lemma": "est-elle",
+   "meaning": {
+    "ru": "она (в вопросе)",
+    "uk": "вона (у питанні)",
+    "en": "she (in a question)",
+    "es": "ella (pregunta)"
+   }
+  },
+  {
+   "lemma": "arrivée",
+   "meaning": {
+    "ru": "приехала (о ней)",
+    "uk": "приїхала (про неї)",
+    "en": "arrived (about her)",
+    "es": "llegó (ella)"
+   }
+  },
+  {
+   "lemma": "sont-ils",
+   "meaning": {
+    "ru": "они (в вопросе)",
+    "uk": "вони (у питанні)",
+    "en": "they (in a question)",
+    "es": "ellos (pregunta)"
+   }
+  },
+  {
+   "lemma": "allés",
+   "meaning": {
+    "ru": "ушли, поехали (о них)",
+    "uk": "пішли, поїхали (про них)",
+    "en": "went (about them)",
+    "es": "fueron"
+   }
+  },
+  {
+   "lemma": "j’y",
+   "meaning": {
+    "ru": "я туда",
+    "uk": "я туди",
+    "en": "I there",
+    "es": "yo allí"
+   }
+  },
+  {
+   "lemma": "vais",
+   "meaning": {
+    "ru": "иду, еду",
+    "uk": "йду, їду",
+    "en": "go (I go)",
+    "es": "voy"
+   }
+  },
+  {
+   "lemma": "maintenant",
+   "meaning": {
+    "ru": "сейчас",
+    "uk": "зараз",
+    "en": "now",
+    "es": "ahora"
+   }
+  },
+  {
+   "lemma": "j’en",
+   "meaning": {
+    "ru": "я от этого",
+    "uk": "я від цього",
+    "en": "I of it",
+    "es": "yo de eso"
+   }
+  },
+  {
+   "lemma": "ai",
+   "meaning": {
+    "ru": "у меня есть",
+    "uk": "у мене є",
+    "en": "I have",
+    "es": "tengo"
+   }
+  },
+  {
+   "lemma": "assez",
+   "meaning": {
+    "ru": "достаточно",
+    "uk": "досить",
+    "en": "enough",
+    "es": "suficiente"
+   }
+  },
+  {
+   "lemma": "j’aimerais",
+   "meaning": {
+    "ru": "я бы хотел, я бы хотела",
+    "uk": "я б хотів, я б хотіла",
+    "en": "I would like",
+    "es": "me gustaría"
+   }
+  },
+  {
+   "lemma": "partir",
+   "meaning": {
+    "ru": "уехать, уйти",
+    "uk": "поїхати, піти",
+    "en": "to leave",
+    "es": "irse"
+   }
+  },
+  {
+   "lemma": "on",
+   "meaning": {
+    "ru": "мы (в разговоре); кто-то",
+    "uk": "ми (у розмові); хтось",
+    "en": "we; one",
+    "es": "nosotros; uno"
+   }
+  },
+  {
+   "lemma": "aimerait",
+   "meaning": {
+    "ru": "хотел бы, хотела бы",
+    "uk": "хотів би, хотіла б",
+    "en": "would like",
+    "es": "querría"
+   }
+  },
+  {
+   "lemma": "remercier",
+   "meaning": {
+    "ru": "поблагодарить",
+    "uk": "подякувати",
+    "en": "to thank",
+    "es": "agradecer"
+   }
+  },
+  {
+   "lemma": "toute",
+   "meaning": {
+    "ru": "вся, всю",
+    "uk": "вся, всю",
+    "en": "all, whole",
+    "es": "toda"
+   }
+  },
+  {
+   "lemma": "l’équipe",
+   "meaning": {
+    "ru": "команда",
+    "uk": "команда",
+    "en": "the team",
+    "es": "el equipo"
+   }
+  }
+ ]
+}

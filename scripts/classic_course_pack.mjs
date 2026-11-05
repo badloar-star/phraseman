@@ -614,6 +614,14 @@ function fixDistractors(lang, all) {
         auditForced.add(`${ph.id}#${i}:${cand}`);
         auditStats.tileApplied++;
       }
+      // зачем (механический аудит 05.11): у EN первая плитка с заглавной, а соблазны шли строчными — заглавная выдавала верный ответ; первой позиции выравниваем регистр по верной плитке
+      // EN: верная плитка «I» всегда с заглавной — строчные соблазны выдают её; соблазны этой плитки тоже пишем с заглавной
+      if ((i === 0 && upperFirst(tile.correct)) || (lang === 'en' && tile.correct === 'I')) {
+        const seenCase = new Set();
+        const capped = [];
+        for (const d of kept) { const c = d[0].toUpperCase() + d.slice(1); if (!seenCase.has(c.toLowerCase())) { seenCase.add(c.toLowerCase()); capped.push(c); } }
+        kept.length = 0; kept.push(...capped);
+      }
       tile.distractors = kept;
     });
   }

@@ -31,7 +31,11 @@ export function applyManualGlossary(lang, lemmas, phrases) {
     const forms = [...new Set([n.lemma, ...(n.forms ?? [])])];
     const ids = idsFor(forms);
     if (!ids.length) throw new Error(`словарь ${lang}: «${n.lemma}» не встречается во фразах`);
-    const e = { lemma: n.lemma, meaning: n.meaning, firstLesson: Math.min(...ids.map(lessonOf)), phraseIds: ids, forms };
+    // зачем (сторож classic_data_no_english_source_guard): у новой леммы должны быть ВСЕ локали интерфейса; недостающие (pt-BR/vi/id/tr/pl, а у de/it ещё es) —
+    // как в classic_vocab_apply: берём en (иначе ru), а не оставляем пустыми
+    const ALL = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+    const meaning = Object.fromEntries(ALL.map((l) => [l, String(n.meaning[l] ?? '').trim() || String(n.meaning.en ?? n.meaning.ru).trim()]));
+    const e = { lemma: n.lemma, meaning, firstLesson: Math.min(...ids.map(lessonOf)), phraseIds: ids, forms };
     if (n.pos) e.pos = n.pos;
     lemmas.push(e); byLemma.set(norm(n.lemma), e); manualStats.added++;
   }

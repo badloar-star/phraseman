@@ -14,6 +14,8 @@ import { inflateRawSync } from 'node:zlib';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { applyTheoryFixes, theoryFixStats } from './classic_theory_fixes.mjs';
+import sayLib from './classic_intro_say_lib.cjs';
+const { applyIntroSay } = sayLib;
 import { plainTheoryFor, plainStats } from './classic_plain_apply.mjs';
 import { scrubTheory } from './classic_locale_scrub.mjs';
 import { applyManualGlossary, manualStats } from './classic_glossary_manual.mjs';
@@ -1134,27 +1136,15 @@ function convert(lang, zips) {
   dstat.removed.youVariants = ystat.variants;
   for (const [rule, n] of Object.entries(dstat.left)) if (n) fail(lang, `соблазны: правило ${rule} — осталось ${n}`);
   if (dstat.removed.short) fail(lang, `соблазны: ${dstat.removed.short} плиток с недобором соблазнов`);
-  // зачем (владелец 05.11, «изучаемый язык одним цветом + строка «Читается» под каждым примером вступления», docs/work/release/mockups/target_lang_one_color_PLAN.md (б)):
-  // экран вступления не должен грузить теорию (en theory.json ~2 МБ) — копируем чтение (say ru/uk) в блок вступления: block.sayByLocale = { ru: {"02.01": "…"}, uk: {…} }.
-  // Источник: примеры теории (chapters[].examples[].say по phraseId), для фраз вне теории — docs/work/classic_intro_plain/say_extra_<lang>.json.
-  // зачем (владелец 05.11, «Читается — в эту сборку для всех курсов»; Вступления DE/IT): de и it — тем же путём. Ключ — тот id, по которому экран ищет пример
-  // (app/classic_course_phrases.ts, introExampleIds): у en это examplesById «02.01», у de/it — exampleIds «de:02:01». es/fr включит их сессия, когда будут чтения (иначе сборка упадёт на пропусках).
-  if (['en', 'de', 'it'].includes(lang)) {
-    const fullIds = lang !== 'en';
-    const say = {};
-    for (const th of Object.values(theory)) for (const ch of th.chapters ?? []) for (const e of ch.examples ?? []) { if (e.say && e.phraseId) say[fullIds ? e.phraseId : e.phraseId.split(':').pop()] = e.say; }
+  // зачем (владелец 06.11, «Читается» во вступлениях ВСЕХ курсов, блокер 150): чтение (say ru/uk) копируется из теории и из docs/work/classic_intro_plain/say_extra_<lang>.json в
+  // блок вступления — block.sayByLocale; правило одно на все языки и живёт в scripts/classic_intro_say_lib.cjs (ключ — тот id, что стоит в блоке), поэтому пересборка ЛЮБОГО
+  // курса сама кладёт чтения и не стирает их. Сторож: tests/classic_intro_say_survives_rebuild.test.ts.
+  {
     const extraFile = join(ROOT, 'docs', 'work', 'classic_intro_plain', `say_extra_${lang}.json`);
-    if (existsSync(extraFile)) for (const [k, v] of Object.entries(JSON.parse(readFileSync(extraFile, 'utf8'))) ) if (!k.startsWith('_') && !say[k]) say[k] = v;
-    const missing = [];
-    for (const blocks of Object.values(intro)) for (const b of blocks) {
-      const ids = ((fullIds ? b.exampleIds : b.examplesById) ?? []).map((id) => String(id));
-      if (!ids.length) continue;
-      const by = { ru: {}, uk: {} };
-      for (const id of ids) { const sy = say[id]; if (sy?.ru && sy?.uk) { by.ru[id] = sy.ru; by.uk[id] = sy.uk; } else missing.push(id); }
-      b.sayByLocale = by;
-    }
-    console.log(`чтения во вступлениях ${lang}: ` + JSON.stringify({ blocks: Object.values(intro).flat().filter((b) => b.sayByLocale).length, missing: missing.length }));
-    if (missing.length) fail(lang, `вступления: нет чтения для примеров ${missing.slice(0, 10).join(', ')}`);
+    const extra = existsSync(extraFile) ? JSON.parse(readFileSync(extraFile, 'utf8')) : {};
+    const sayRes = applyIntroSay({ intro, theory, extra });
+    console.log(`чтения во вступлениях ${lang}: ` + JSON.stringify({ blocks: sayRes.blocks, examples: sayRes.examples, missing: sayRes.missing.length }));
+    if (sayRes.missing.length) fail(lang, `вступления: нет чтения для примеров ${[...new Set(sayRes.missing)].slice(0, 10).join(', ')}`);
   }
   files['intro.json'] = intro;
   files['theory.json'] = { format: prof.fmt, data: theory };

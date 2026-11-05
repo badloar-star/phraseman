@@ -7,6 +7,7 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import { getActiveLiquidGlassVariant, liquidGlassTokens, setActiveLiquidGlassVariant } from '../constants/liquidGlassThemePalette';
 import { migrateThemeIdToTune } from '../app/theme_tune_migration';
 import { THEME_TUNE_STANDARD, themeTuneId } from '../constants/theme_tune';
+import { FOLLOW_SYSTEM_MARKER_KEY } from '../app/theme_first_run_default';
 
 const mockStore = new Map<string, string>();
 let mockMultiGetGate: Promise<void> | null = null;
@@ -113,5 +114,15 @@ describe('theme colour level and appearance', () => {
     await waitFor(() => expect(result.current.liquidGlassChoiceReady).toBe(true));
     expect(result.current.liquidGlassAppearance).toBe('light');
     expect(result.current.isDark).toBe(false);
+  });
+
+  // зачем (координатор 05.11 ~21:30, кадр 5562 фиолетовый вместо графита): новичок, следующий за системой, видит «Стандартный», а не именную «Сумерки»
+  // стоит последним: следование системе — состояние процесса (followSystemInProcess), оно не должно протечь в другие тесты
+  it('new user following the system shows the standard tune, not a named theme', async () => {
+    mockStore.set(FOLLOW_SYSTEM_MARKER_KEY, '1');
+    const { result } = await renderHook(() => useTheme(), { wrapper });
+    await waitFor(() => expect(result.current.appliedLiquidGlassThemeId).toBe(themeTuneId(THEME_TUNE_STANDARD)));
+    expect(result.current.liquidGlassThemeId).toBe(themeTuneId(THEME_TUNE_STANDARD));
+    expect(mockStore.get('liquid_glass_theme')).toBeUndefined();
   });
 });

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useMemo, useCall
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // зачем (флаг theme_sliders_v1, слово владельца 05.11): настроенная тема tune:H:S — доступна всем, прежняя тема при включении флага мигрирует в ближайшие H/S (app/theme_tune_migration.ts)
 import { THEME_SLIDERS_V1_ENABLED } from '../constants/theme_sliders_flag';
-import { parseThemeTuneId } from '../constants/theme_tune';
+import { THEME_TUNE_STANDARD, parseThemeTuneId, themeTuneId } from '../constants/theme_tune';
 import { migrateThemeIdToTune } from '../app/theme_tune_migration';
 import { Appearance, useColorScheme, useWindowDimensions } from 'react-native';
 import { DARK, Theme, ThemeMode } from '../constants/theme';
@@ -363,7 +363,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const devAppearance = useSyncExternalStore(subscribeDevAppearance, getDevAppearance, getDevAppearance);
   const systemScheme = useColorScheme();
   const [followSystem, setFollowSystem] = useState<boolean>(() => followSystemInProcess);
-  const systemDefault = pickSystemDefaultTheme(systemScheme);
+  // зачем (координатор 05.11 ~21:30, кадр 5562: Главная нового аккаунта фиолетовая, эталон — графит; журнал: migrate ink→tune:250:35, затем
+  // «[DEFAULT-THEME] … → тема=ink»): пока человек ничего не выбирал, показ шёл мимо миграции — пара «по умолчанию» отдавала именную «Сумерки».
+  // С ползунками именных тем нет: тема «по умолчанию» = «Стандартный» tune:250:35, оформление и насыщенность пары — прежние (замок 24.10).
+  const systemDefault = useMemo(() => {
+    const pair = pickSystemDefaultTheme(systemScheme);
+    return THEME_SLIDERS_V1_ENABLED ? { ...pair, themeId: themeTuneId(THEME_TUNE_STANDARD) } : pair;
+  }, [systemScheme]);
   const liquidGlassAppearance: LiquidGlassAppearance = devAppearance ?? (followSystem ? systemDefault.appearance : savedLiquidGlassAppearance);
   // зачем: запоздалое чтение хранилища при старте не должно затереть выбор, который
   // человек успел сделать раньше (last-write-guard, как с осколками).
@@ -520,7 +526,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [liquidGlassThemeId, appliedLiquidGlassThemeId, liquidGlassAppearance, savedLiquidGlassAppearance, previewLiquidGlassThemeId, devThemeChoice, devAppearance, followSystem]);
   useEffect(() => {
     if (!followSystem) return;
-    console.log(`[DEFAULT-THEME] системный режим=${String(systemScheme)} → тема=${systemDefault.themeId} оформление=${systemDefault.appearance} насыщенность=${systemDefault.intensity} источник=по умолчанию`); // guard-ok: смена пары вслед за системой
+    console.log(`[DEFAULT-THEME] системный режим=${String(systemScheme)} → тема=${systemDefault.themeId} оформление=${systemDefault.appearance} насыщенность=${systemDefault.intensity} источник=по умолчанию ползунки=${String(THEME_SLIDERS_V1_ENABLED)}`); // guard-ok: смена пары вслед за системой
   }, [followSystem, systemScheme, systemDefault.themeId, systemDefault.appearance, systemDefault.intensity]);
 
   // зачем (🔴 владелец 22.10 «темы не переключаются», координатор; префикс [THEME-SWITCH]): dev-оверрайды темы/оформления (dev_state?theme=&appearance=,

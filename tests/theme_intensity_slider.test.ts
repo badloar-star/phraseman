@@ -178,7 +178,9 @@ describe('saving only on release', () => {
       result.current.setPreviewLiquidGlassIntensity(0.6);
     });
     expect(result.current.liquidGlassIntensity).toBe(0.6);
-    expect(result.current.theme.accent).toBe(liquidGlassTokens('graphite', { level: 'calm', appearance: 'dark', intensity: 0.6 }).accent);
+    // зачем (05.11, ползунки включены): тема не выбиралась → «Стандартный» tune:250:35 вместо графита; сравниваем с той темой, что реально применена
+    expect(result.current.appliedLiquidGlassThemeId).toMatch(/^tune:\d+:\d+$/);
+    expect(result.current.theme.accent).toBe(liquidGlassTokens(result.current.appliedLiquidGlassThemeId, { level: 'calm', appearance: 'dark', intensity: 0.6 }).accent);
     expect(mockWrites).toEqual([]);
     await act(async () => { result.current.setLiquidGlassIntensity(0.6); });
     expect(intensityWrites()).toBe(1);

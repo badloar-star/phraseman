@@ -5,6 +5,11 @@ import React from 'react';
 import { renderHook, waitFor } from '@testing-library/react-native';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import { pickSystemDefaultTheme } from '../app/theme_first_run_default';
+import { THEME_SLIDERS_V1_ENABLED } from '../constants/theme_sliders_flag';
+import { THEME_TUNE_STANDARD, themeTuneId } from '../constants/theme_tune';
+// зачем (координатор 05.11 ~21:30, ползунки включены): именных тем нет — новичок видит «Стандартный» tune:250:35 (светлое оформление и насыщенность пары прежние, замок 24.10)
+const SHOWN_DEFAULT = (pairThemeId: string): string => (THEME_SLIDERS_V1_ENABLED ? themeTuneId(THEME_TUNE_STANDARD) : pairThemeId);
+
 
 const mockScheme: 'light' | 'dark' = 'light';
 const mockStorageDelayMs = 1800;
@@ -61,7 +66,7 @@ describe('первый запуск: медленное хранилище (по
     expect(ceilingLine).toMatch(/"elapsedMs":\d+/);
     // поздние данные хранилища приводят пару к системной светлой
     await waitFor(() => expect(result.current.liquidGlassAppearance).toBe('light'), { timeout: 3000 });
-    expect(result.current.liquidGlassThemeId).toBe(pickSystemDefaultTheme(mockScheme).themeId);
+    expect(result.current.liquidGlassThemeId).toBe(SHOWN_DEFAULT(pickSystemDefaultTheme(mockScheme).themeId));
     warn.mockRestore();
     log.mockRestore();
   });

@@ -223,13 +223,18 @@ const LESSON_IRREGULAR_BASES = {
 } satisfies Record<number, string[]>;
 
 function verbsForLesson(bases: string[]): IrregularVerb[] {
-  return bases.map((base) => {
+  return bases.flatMap((base) => {
     const verb = IRREGULAR_VERB_GLOSSARY[base];
-    if (!verb) throw new Error(`Missing irregular verb glossary row: ${base}`);
-    return {
+    if (!verb) {
+      // зачем (координатор 05.11, регрессия 58c71e4cb: база catch без строки глоссария роняла импорт lesson_menu при загрузке модуля):
+      // данные не должны валить приложение на уровне модуля — пишем причину и пропускаем глагол; сторож tests/irregular_verbs_bases_in_glossary_2026_11_05.test.ts ловит такую базу до релиза
+      console.warn('[IRREGULAR-VERBS] missing_row', JSON.stringify({ base }));
+      return [];
+    }
+    return [{
       ...verb,
       sourceLocales: IRREGULAR_VERB_SOURCE_LOCALES[base],
-    };
+    }];
   });
 }
 

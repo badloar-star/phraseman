@@ -5279,7 +5279,9 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
       // зачем (координатор 18.10 05:03): итог фоновой фазы удаления виден и в обычной сборке (раньше только под __DEV__).
       console.log('[AUTH-DELETE]', JSON.stringify({ step: 'bg_out', ok: result.ok, reason: result.ok ? null : String(result.reason), cloudDeleted: result.ok ? result.cloudDeleted : null, tookMs: Date.now() - backgroundStartedAt })); // guard-ok: итог, без идентификаторов
       if (!result.ok) {
-        DebugLogger.error('acc_mut:delete_background_failed', new Error(line), 'critical');
+        // зачем (админка 05.11, G): «local_exit_unverified» — задуманный карантин (замок остаётся, старт/возврат в приложение дожимает удаление; данные уже стёрты в быстрой фазе),
+        // а не сбой: уровень warning, чтобы не шуметь в админке как critical. Остальные причины остаются critical.
+        DebugLogger.error('acc_mut:delete_background_failed', new Error(line), result.reason === 'local_exit_unverified' ? 'warning' : 'critical');
       }
       return result;
     } catch (e) {
@@ -5647,6 +5649,8 @@ async function finishAccountDeletion(
           logAuthEvent('auth_account_delete_quarantined', { reason: 'firebase_signout_failed' });
           return { ok: false, reason: 'firebase_signout_failed' };
         }
+        // зачем (админка 05.11, сигнатура G «local_exit_unverified»): три выхода с одной причиной не различались в журнале — теперь у каждого своя метка ветки и статус личности
+        console.warn(`[AUTH-DELETE] quarantine branch=durable_fresh_identity freshStatus=${String(freshIdentity.status)}`);
         logAuthEvent('auth_account_delete_quarantined', { reason: 'local_exit_unverified' });
         return { ok: false, reason: 'local_exit_unverified' };
       }
@@ -5685,6 +5689,7 @@ async function finishAccountDeletion(
       !localExitComplete
       || (CLOUD_SYNC_ENABLED && localExitLock && freshIdentity?.status !== 'ready')
     ) {
+      console.warn(`[AUTH-DELETE] quarantine branch=completion localExitComplete=${String(localExitComplete)} freshStatus=${String(freshIdentity?.status ?? 'n/a')} cloudSync=${String(CLOUD_SYNC_ENABLED)}`);
       logAuthEvent('auth_account_delete_quarantined', { reason: 'local_exit_unverified' });
       return { ok: false, reason: 'local_exit_unverified' };
     }

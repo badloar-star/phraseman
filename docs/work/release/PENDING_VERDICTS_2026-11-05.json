@@ -9,7 +9,9 @@
    "reference": "docs/work/golden/approved-rev8/rev6-home-free-0.png",
    "note": "аккаунт НЕ ранг 0 (4 плитки Уроки/Карточки/Диалоги/Пик; макет: Уроки/Сохранённые); светлая бирюзовая тема против графита — сравнена раскладка. ✅ заголовок героя = название урока. ❌ пилюля серии «5 дней / Серия» двумя строками (макет «0 дней»); ❌ «Сегодня» 3 задачи без «Все задания» (макет: 1 задача + «Все задания»); ❌ «Фраза дня» без перевода и кнопки озвучки, шеврон (макет: перевод + динамик); ❌ шкала «1 из 50» под заголовком и «Продолжить» — в состоянии 1/50 допустимо, эталона такого состояния нет",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "peak-tab-0743": {
    "verdict": "diff",
@@ -19,7 +21,9 @@
    "reference": "mockups/peak-variants-2026-11-04/variant_B_ink_light.png",
    "note": "✅ нет цифр этажей/подписей/монет +N/панели; лига «Гранит • ⏱ срок»; счёт монета+крупное число, «N место» ниже; топ-5 без номеров и стрелок с зелёной линией; строка «я» с кольцом; «Все участники» плиткой со значком и шевроном; нет «Друзья на этой неделе». ❌ башня примерно вдвое мельче макета (макет ~31% ширины на всю высоту колонки) и тёмно-серая на светлом экране — «башня и экран разных цветов» остаётся; ✅ имя «Татьяна Георгиевна» в 2 строки — это ЗАМОК ВЛАДЕЛЬЦА 22.10 №39 «ник полностью» (не расхождение; в макете имена короткие); 🟡 цвета тем разные (бирюзовая vs Чернила) — не сравнивались ; 07:5x Моменты: башня масштабируется от высоты колонки (~0,55), иконки игроков на башне, наряд башни в цветах темы — коммит в очереди; ПЕРЕКАДРИТЬ Пик 412×915 и 375×667 в графите и «Чернилах»",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "friends-tab-0743": {
    "verdict": "match_candidate",
@@ -29,7 +33,9 @@
    "reference": "слово владельца (скрин 06): убрать строки наград 1/2 и прогресс",
    "note": "✅ строк наград 1 и 2 и полосы прогресса нет; остались заголовок, код с копированием, «Поделиться кодом», «Как это работает»; 🟡 кнопки «Добавить друга» на кадре нет (была на скрине владельца) — уточнить, намеренно ли; чип DEV — только dev-сборка. Эталона-макета пустого состояния нет — match только по слову владельца",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "match",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "sets-tab-0742": {
    "verdict": "diff",
@@ -39,7 +45,9 @@
    "reference": "community-scene-v3 #1 + golden/approved-rev8/rev8-social-*",
    "note": "❌ правок Тем нет: пьедестал «Место свободно» без названий/♥; нет «Набор месяца / Ещё N дней / Условия участия» и «Твой набор · N место»; лист с большим скруглением, нет «Топ / Новые»; чипы-превью слов (Lay/Claim/+1) остаются; нет «Создать набор» внизу. ✅ на Android пьедестал не налезает на табы (на iOS владельца налезал)",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "cards-hub-0744": {
    "verdict": "diff",
@@ -49,7 +57,9 @@
    "reference": "cards-section #1 «Хаб — вариант А»",
    "note": "✅ герой-карточка «Boarding pass» + транскрипция, кнопка «Тренироваться…», плитки 2×2 с акцентным градиентом значков, нет «Начни с готового»; ❌ чипа-счётчика «24/30» в шапке нет (есть только «+»); 🟡 кнопка «Тренироваться с карточками →» без «· осталось N из M» (возможно для Plus/без лимита). Состояние 0/0 НЕ снято (у аккаунта есть наборы) — нужен новичок",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "peak-tab-after-tower-0755": {
    "verdict": "match_candidate",
@@ -59,7 +69,9 @@
    "reference": "mockups/peak-variants-2026-11-04/variant_B_ink_light.png",
    "note": "✅ башня на всю высоту колонки (~30% ширины, как в макете), корона целиком, основание над «Играть», тон башни от темы, иконки игроков на этажах 1–2, лига/счёт/топ-5 с зелёной линией/«Все участники»; имя в 2 строки — замок 22.10 №39. 🟡 тень-эллипс основания у левого края обрезана; метка «я» не видна (у аккаунта нет локальной недели — данные); цвета темы (бирюзовая vs Чернила) не сравнивались. НЕ снято: 375×667, графит и «Чернила», тёмная/светлая — для подтверждения Сверкой",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "home-main-0749": {
    "verdict": "diff",
@@ -69,7 +81,9 @@
    "reference": "golden/approved-rev8/rev6-home-free-0.png",
    "note": "✅ пилюля серии «🔥 5 дней» одной строкой (5c2fc6cab); ✅ заголовок героя = название урока; ❌ «Фраза дня» без перевода и кнопки озвучки (шеврон); на аккаунте-ветеране остаются 4 плитки и 3 задачи — правки ранга 0 (6a2b5ed72) здесь не видны; кнопка «Продолжить»/шкала «1 из 50» — состояние начатого урока, эталона нет",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "lesson1-menu-fr-0803": {
    "verdict": "match_candidate",
@@ -78,7 +92,9 @@
    "reference": "слово владельца: заглушек нет",
    "note": "Меню урока 1 (A1.1): «Начать», «Слова урока 0/16 слов», «Теория — Правила и пояснения»; заглушек «скоро/готовится» нет. Эталона-макета нет (классика) — по слову владельца «заглушки запрещены»",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "match",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "lesson1-theory-fr-0803": {
    "verdict": "match_candidate",
@@ -87,7 +103,9 @@
    "reference": "слово владельца: теория на целевом языке, не английский",
    "note": "Теория fr: заголовок «Я здесь: je suis, tu es», пояснения по-русски, примеры по-французски с переводом, интерактивные задания («Попробуй выбрать форму», «Найди неверное слово»); английского нет (55fa0e899)",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "match",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "lesson1-words-fr-0803": {
    "verdict": "unknown",
@@ -96,7 +114,9 @@
    "reference": "слово владельца: слова урока — реальные данные",
    "note": "Снят экран «1. Словарь» в состоянии «Готовим тренировку…» (скелетон) — это не итоговый экран; перекадрить после загрузки (и вкладку «Список слов»)",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "unknown",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "theory-es-lesson1-0808": {
    "verdict": "match_candidate",
@@ -105,7 +125,9 @@
    "reference": "слово владельца: теория на целевом языке, не английский",
    "note": "Теория es: «Где я, где ты, где вещи: глагол estar», пояснения по-русски, примеры по-испански; английского нет.  (🟡 «уо» на кадре — моё ошибочное прочтение глифов: в данных латиница «yo», Теория проверила сканером 08:15; замечание снято)",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "match",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "lessons-list-es-0808": {
    "verdict": "unknown",
@@ -114,7 +136,9 @@
    "reference": "слово владельца: заглушек нет",
    "note": "Список «Обучение» A1: Урок 1 «Открыт», 2–3 с замком, 4–6 «Проверяем доступ…» — кадр снят в момент проверки доступа (временное состояние), не итог; «блок «Слова урока»/глаголы» не видны — перекадрить после загрузки",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "unknown",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "home-rank0-newbie-0842": {
    "verdict": "diff",
@@ -124,7 +148,9 @@
    "reference": "docs/work/golden/approved-rev8/rev6-home-free-0.png",
    "note": "Главная нового игрока: в приложении карточка «Сегодня» с 4 строками (диалог, карточки, видео, опрос) и плитки Lessons/Flashcards/Dialogues; в макете ранга 0 — одна строка «Пройди урок», плитки «Уроки/Сохранённые», блок «Фраза дня» с озвучкой, ссылка «Все задания». Нижняя панель в приложении 5 вкладок (с Видео), в макете 4. Тема другая (светлая vs тёмная) — сравниваем по структуре. Нет «Фразы дня» на экране. Макет rev6 может быть старше нынешнего решения по рангам — сверить у координатора.",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "cards-hub-newbie-0843": {
    "verdict": "diff",
@@ -134,7 +160,9 @@
    "reference": "owner_screens_2026-11-05/ref_cards_cards-section_phone1.png (богатое состояние) + макет Cards 0/0 (docs/work/mockups/cards-zero-2026-11-05)",
    "note": "Хаб Карточек у новичка: 4 плитки (Saved 0, My packs 0, From videos 6, Community 7) и кнопка «Create a pack», нет «Тренироваться · осталось N из M» и чипа 24/30 (для 0/0 макет их и не рисует). Сравнивать с макетом Cards 0/0 в Сверке. Перед хабом всплывает листок-знакомство (Got it / Later).",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "home-rank0-newbie-0905": {
    "verdict": "diff",
@@ -144,7 +172,9 @@
    "reference": "docs/work/golden/approved-rev8/rev6-home-free-0.png",
    "note": "После P0-починки замков (9f84a4de4) Главная новичка стала ближе к макету: 4 вкладки, плитки «Lessons/Saved», карточка «Сегодня». Остаются расхождения: в «Сегодня» 2 строки (урок + опрос), в макете одна «Пройди урок» и ссылка «Все задания»; в шапке «Day counted / Next: Lesson 1 / Continue lesson 1» вместо названия урока и «Начать»; нет блока «Фраза дня» с озвучкой, вместо него секция «Videos»; тема светлая (сравнение по структуре). Предыдущий кадр до починки (0842) заменён.",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "lesson1-theory-de-0908": {
    "verdict": "match_candidate",
@@ -153,7 +183,9 @@
    "reference": "слово владельца: заглушек нет, теория на языке интерфейса",
    "note": "Теория урока 1 немецкого: заголовок «First words in German», прогресс «Sections 1/6 · drills 0/12», раздел «I am here» с примерами Ich bin hier / ich bin müde (новый формат «как для ребёнка»). Не заглушка. Замечания: фраза «Russian letters only give the sound approximately» в английском интерфейсе; при прокрутке контент заезжает под строку состояния и кнопку «назад» без затемнения края. Меню урока и список de показывают «Lesson 1» без названия темы (кадры lesson1-menu-de, lessons-list-de-plus).",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "match",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "home-rank0-after-b8cd-1001": {
    "verdict": "diff",
@@ -163,7 +195,9 @@
    "reference": "docs/work/golden/approved-rev8/rev6-home-free-0.png",
    "note": "Главная ранга 0 после b8cd2d196 близка к макету: одна задача «Complete a lesson 0/1» + ссылка «All tasks» ✅, плитки «Lessons / Saved» ✅, 4 вкладки ✅, пилюля «0 days» одной строкой ✅, блок «Фраза дня» появился ✅. Остаются: (1) «Фраза дня» без перевода строкой и без кнопки озвучки — вместо неё шеврон «›»; (2) шапка героя «0-day streak / Day counted / Next: I am here / Continue lesson 1» вместо «Урок 1 + название урока + Начать»; (3) тема светлая/фиолетовая против тёмного графита макета (сравнение по структуре); (4) подпись в строке задачи «I am here» против «Один шаг в обычном курсе» (🟡). После п.1–2 можно в match_candidate.",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "lesson1-it-intro-1002": {
    "verdict": "match_candidate",
@@ -172,7 +206,9 @@
    "reference": "слово владельца: заглушек нет, теория на языке ученика",
    "note": "Итальянский, урок 1, вступление: «Я здесь: essere», пояснение по-русски, примеры «Sono qui. — Я здесь.»; не заглушка, английского в тексте нет. Заголовок «Lesson 1 / I am here» — английский интерфейс на кадре.",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "lesson1-it-ex1-english-distractors-1004": {
    "verdict": "diff",
@@ -181,7 +217,9 @@
    "reference": "правило владельца: дистракторы грамматически неверные и НЕ чужого языка; в курсе it нет английских слов",
    "note": "Итальянский, урок 1, сборка фразы «Окно открыто.» → «La …»: среди плиток английские слова fires, finish, fired, find, favorite (и итальянское finestra). Английские дистракторы в итальянском курсе — дефект пула дистракторов (похоже на подбор по первой букве «fi»). Плашка «DEV: grammar hint» — только dev-сборка.",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "diff",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "lesson1-es-menu-theory-1017": {
    "verdict": "match_candidate",
@@ -190,7 +228,9 @@
    "reference": "слово владельца: заглушек нет, названия и теория на месте",
    "note": "Испанский: список A1 с названиями уроков («Where you and others are», «When someone or something is not there»…), меню урока 1 (Start / Vocabulary 0/28 / Theory), теория «Sections 1/6 · drills 0/12», раздел «I am here»: Estoy aquí — “I am here.”, пояснения, примеры lejos/dentro. Не заглушка. Расхождение с de/it: в es названия уроков есть, в de/it на кадрах 09:03–09:12 было «Lesson N» — перепроверить de/it после обновления данных. Слова урока (вкладка «Vocabulary») не сняты.",
    "proposed_by": "3-МАКЕТЫ",
-   "confirmed_by": null
+   "confirmed_by": "Сверка",
+   "signed_verdict": "match",
+   "confirmed_note": "docs/work/tasks/signatures_sverka_2026-11-05.md"
   },
   "paywall-language-0852": {
    "verdict": "diff",

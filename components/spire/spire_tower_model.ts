@@ -103,7 +103,7 @@ export function spireFloorOfSteps(steps: number): number {
   return SPIRE_FLOOR_COUNT + 1;
 }
 
-export type SpireRival = Readonly<{ uid: string; name: string; coinRank: number | null; /** Plus — плоское кольцо у монеты на башне (владелец 21.10). */ isPremium?: boolean }>;
+export type SpireRival = Readonly<{ uid: string; name: string; coinRank: number | null; /** Plus — плоское кольцо у монеты на башне (владелец 21.10). */ isPremium?: boolean; /** Plus/Ultra 06.11 */ plusTier?: 'plus' | 'ultra' | null }>;
 
 /**
  * Соперники по этажам (onFloor макета): все строки комнаты, кроме своей, разложены
@@ -111,14 +111,14 @@ export type SpireRival = Readonly<{ uid: string; name: string; coinRank: number 
  * этом этаже» — из уже закэшированной комнаты, без новых чтений.
  */
 export function spireRivalsByFloor(
-  rows: readonly Readonly<{ uid: string; name: string; steps: number; isMe: boolean; coinRank?: number | null; isPremium?: boolean }>[] | null,
+  rows: readonly Readonly<{ uid: string; name: string; steps: number; isMe: boolean; coinRank?: number | null; isPremium?: boolean; plusTier?: 'plus' | 'ultra' | null }>[] | null,
 ): ReadonlyMap<number, readonly SpireRival[]> {
   const map = new Map<number, SpireRival[]>();
   for (const r of rows ?? []) {
     if (r.isMe) continue;
     const f = Math.min(spireFloorOfSteps(r.steps), SPIRE_FLOOR_COUNT);
     const list = map.get(f) ?? [];
-    list.push({ uid: r.uid, name: r.name, coinRank: r.coinRank ?? null, isPremium: r.isPremium === true });
+    list.push({ uid: r.uid, name: r.name, coinRank: r.coinRank ?? null, isPremium: r.isPremium === true, plusTier: r.plusTier ?? null });
     map.set(f, list);
   }
   return map;

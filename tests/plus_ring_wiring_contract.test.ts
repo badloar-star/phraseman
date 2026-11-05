@@ -64,16 +64,15 @@ describe('кольцо Plus: 7 мест эталона', () => {
     expect(rivals).not.toMatch(/plus=\{m\.isPremium\}|plusKind/);
     // ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот тут я сказал убрать обводку!!!!» — у своей монеты на башне кольца Plus нет (для башни заменяет №6)
     expect(src('components/spire/SpireTowerMarker.tsx')).not.toMatch(/myIsPlus|plusKind/);
-    expect(src('components/spire/SpireFloorInfo.tsx')).toContain('plus={m.isPremium} plusKind="flat"');
+    expect(src('components/spire/SpireFloorInfo.tsx')).toContain("plus={m.isPremium} plusTier={m.plusTier ?? 'plus'} plusKind=\"flat\"");
   });
 
-  // ОЖИДАЕТ ЧАСТЬ D (Plus/Ultra, решение координатора 06.11): Пик берёт уровень и признак из публичного поля plusTier (Ядро e4e2bf551), когда оно выложено на бой;
-  // сейчас в SpireAllMembers стоит plus={false}, поэтому пин красный не из-за Plus/Ultra. it.failing: пока пин не выполняется — зелёный; как только часть D вернёт `plus={m.isPremium}`
-  // или аналог, тест начнёт падать с «expected to fail» — это сигнал снять it.failing и обновить пин под plusTier.
-  it.failing('4 · «Все участники» и пьедестал: кольцо со значком, моя строка — по живому статусу (ждёт часть D)', () => {
-    expect(src('components/spire/SpireAllMembers.tsx')).toContain('<SpireRankCoin rank={m.coinRank} size={40} plus={m.isPremium} />');
-    expect(src('components/spire/SpirePodium.tsx')).toContain('plus={m.isPremium}');
-    expect(src('components/spire/SpireHomeScreen.tsx')).toContain('isPremium: r.isMe ? myIsPlus : r.isPremium === true');
+  // Plus/Ultra часть D: Пик берёт уровень из members.<uid>.plusTier (Ядро a92d340be); своя строка — по живому статусу и продукту магазина.
+  it('4 · «Все участники», пьедестал и ТОП: кольцо со значком по уровню, моя строка — по живому статусу', () => {
+    expect(src('components/spire/SpireAllMembers.tsx')).toContain("plus={m.isPremium === true} plusTier={m.plusTier ?? 'plus'}");
+    expect(src('components/spire/SpirePodium.tsx')).toContain("plus={m.isPremium} plusTier={m.plusTier ?? 'plus'}");
+    expect(src('components/spire/peak/PeakTopRow.tsx')).toContain("plus={row.isPremium} plusTier={row.plusTier ?? 'plus'}");
+    expect(src('components/spire/SpireHomeScreen.tsx')).toContain('isPremium: r.isMe ? myIsPlus : r.isPremium === true, plusTier: r.isMe ? myPlusTier');
   });
 
   it('5 · Друзья: монета друга в поиске, заявках и списке получает Plus через isPlusProfile', () => {

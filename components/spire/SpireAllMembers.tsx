@@ -59,7 +59,7 @@ function SpireAllMembers({ lang, members, onBack, rankBy = 'coins' }: Props) {
             onPress={() => setPlayer({
               uid: m.uid, name: m.name, isMe: m.isMe,
               points: m.weekCoins ?? 0,
-              coinRank: m.coinRank ?? null, isPremium: m.isPremium === true,
+              coinRank: m.coinRank ?? null, isPremium: m.isPremium === true, plusTier: m.plusTier ?? null,
             })}
             style={[s.row, m.isMe ? { backgroundColor: p.cardRaised } : null]}
             accessible
@@ -68,7 +68,7 @@ function SpireAllMembers({ lang, members, onBack, rankBy = 'coins' }: Props) {
             {/* зачем (макет): у зоны повышения слева зелёная вертикальная линия */}
             {zone === 'up' ? <View pointerEvents="none" style={[s.upLine, { backgroundColor: p.correct }]} testID={`spire-all-up-line-${m.uid}`} /> : null}
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
-            <SpireRankCoin rank={m.coinRank} size={40} plus={false} />
+            <SpireRankCoin rank={m.coinRank} size={40} plus={m.isPremium === true} plusTier={m.plusTier ?? 'plus'} />
             {/* зачем (макет): у «я» вместо бейджа «Ты» — имя «Ты» на плашке; число — приглушённое, БЕЗ слов (монеты/ступени) */}
             <Text style={[s.name, { color: p.text }]} numberOfLines={2}>{m.isMe ? spireText(lang, 'you') : m.name}</Text>
             <Text style={[s.steps, { color: p.textSecondary }]}>{spireGroupThousands(m.weekCoins ?? 0)}</Text>

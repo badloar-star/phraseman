@@ -65,6 +65,7 @@ import SpireScene from './scene/SpireScene'; import { useSpireSceneTop } from '.
 import { useSpireSceneScroll } from './scene/use_spire_scene_scroll'; import { useSpireHeaderOverlayInset } from './scene/spire_header_overlay';
 import type { SpireMemberRow } from './spire_room_types';
 import { useIsPlus } from '../plus/use_is_plus';
+import { useSubscriptionTier } from '../plus/use_subscription_tier';
 import { spireTimeLeftText } from './spire_strings';
 import { spirePeopleCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
@@ -96,6 +97,8 @@ export default function SpireHomeScreen() {
   const myCoinRank = preview ? preview.coinRank : realCoinRank;
   // зачем (владелец 21.10, реестр №6): моя строка в «Всех участниках» и на пьедестале — с кольцом, если у меня Plus (живой статус, не снимок комнаты)
   const myIsPlus = useIsPlus();
+  // зачем (владелец 06.11, Plus/Ultra): моя строка в Пике — уровень по продукту магазина, чужие — members.<uid>.plusTier.
+  const myPlusTier = useSubscriptionTier() ?? 'plus';
 
   // Замок 2: null = конфиг ещё не прочитан (кэш), дальше решает config.enabled.
   // зачем (аудит Optimistic UI Шпиля, 13.10): повторный заход не рисует пустой `spire-loading` — берём последний настоящий конфиг из памяти процесса; loadSpireConfig ниже освежает его фоном.
@@ -262,8 +265,8 @@ export default function SpireHomeScreen() {
 
   // Комната недели: живые из кэша комнаты + боты формулой + свои локальные ступени.
   const members: readonly SpireMemberRow[] | null = useMemo(
-    () => (game.rows ? game.rows.map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe, coinRank: r.isMe ? myCoinRank : (r.coinRank ?? null), weekCoins: r.weekCoins, isPremium: r.isMe ? myIsPlus : r.isPremium === true })) : null),
-    [game.rows, myCoinRank, myIsPlus],
+    () => (game.rows ? game.rows.map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe, coinRank: r.isMe ? myCoinRank : (r.coinRank ?? null), weekCoins: r.weekCoins, isPremium: r.isMe ? myIsPlus : r.isPremium === true, plusTier: r.isMe ? myPlusTier : (r.plusTier ?? null) })) : null),
+    [game.rows, myCoinRank, myIsPlus, myPlusTier],
   );
   const offline = game.roomLoad?.status === 'offline';
   // Соперники по этажам — из уже закэшированной комнаты (0 новых чтений).

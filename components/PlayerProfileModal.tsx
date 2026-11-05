@@ -83,6 +83,8 @@ export interface PlayerInfo {
   /** Public rank supplied by an authoritative public-profile projection. */
   coinRank?: number | null;
   isPremium?: boolean;
+  /** Уровень подписки (Plus/Ultra 06.11): ultra — годовая; нет — Plus. */
+  plusTier?: 'plus' | 'ultra' | null;
   isVip?: boolean;
   isLifetime?: boolean;
   /** Настоящий Plus и срок (Ядро 22.10) — кольцо чужого по isPlusProfile. */

@@ -10,7 +10,7 @@ import { SPIRE_TOP_STEPS, spireReachedTop } from '../../shared/spire_top_steps';
 import type { SpireRoomRow } from './room_rows';
 
 /** Нужные модели поля строки комнаты (экран подаёт участников без reachedAtMs). */
-export type PeakInputRow = Pick<SpireRoomRow, 'uid' | 'name' | 'steps' | 'isMe' | 'weekCoins'> & Readonly<{ coinRank?: number | null; isPremium?: boolean }>;
+export type PeakInputRow = Pick<SpireRoomRow, 'uid' | 'name' | 'steps' | 'isMe' | 'weekCoins'> & Readonly<{ coinRank?: number | null; isPremium?: boolean; plusTier?: 'plus' | 'ultra' | null }>;
 export type PeakRankBy = 'steps' | 'coins';
 
 export const PEAK_TOP_COUNT = 5;
@@ -25,6 +25,7 @@ export type PeakRow = Readonly<{
   steps: number;
   isMe: boolean;
   isPremium: boolean;
+  plusTier: 'plus' | 'ultra' | null;
   coinRank: number | null;
   zone: SpireZone;
   reachedTop: boolean;
@@ -67,6 +68,7 @@ export function buildPeakModel(rows: readonly PeakInputRow[], rankBy: PeakRankBy
     steps: r.steps,
     isMe: r.isMe,
     isPremium: r.isPremium === true,
+    plusTier: r.plusTier ?? null,
     coinRank: r.coinRank ?? null,
     zone: zones[i] ?? 'stay',
     reachedTop: spireReachedTop(r.steps),

@@ -11,6 +11,7 @@ import React, { memo, useCallback, useState } from 'react';
 import { View } from 'react-native';
 import AvatarView from '../AvatarView';
 import type { PlusRingKind } from '../plus/plus_ring_spec';
+import type { SubscriptionTier } from '../../app/subscription_tier';
 import { useSpirePalette } from './useSpirePalette';
 
 /** Ранг 0 — бесплатный старт (app/coin_rank_table_v1): монета «по умолчанию» для неизвестного ранга. */
@@ -22,11 +23,13 @@ type Props = Readonly<{
   size: number;
   /** Plus у человека (владелец 21.10): кольцо вокруг монеты. Мемо учитывает: строки списков не перерисовываются зря. */
   plus?: boolean;
+  /** Уровень подписки: ultra — свой цвет и шестигранный значок; по умолчанию Plus (Plus/Ultra 06.11). */
+  plusTier?: SubscriptionTier;
   /** list — кольцо и значок ◆ (списки, пьедестал); flat — плоское кольцо без значка (монеты на башне, стопка на этаже). */
   plusKind?: PlusRingKind;
 }>;
 
-function SpireRankCoin({ rank, size, plus, plusKind }: Props) {
+function SpireRankCoin({ rank, size, plus, plusKind, plusTier }: Props) {
   // зачем (Макеты df9ecf2c3: монеты над подиумом и в списках пустые до ~9 с после данных): пока картинка не отрисована — круг тона скелета
   // того же размера (как у скелета подиума), место не «пустое» и ничего не прыгает; после onLoad подложка прозрачная (нет ореола по краю монеты).
   const p = useSpirePalette();
@@ -36,7 +39,7 @@ function SpireRankCoin({ rank, size, plus, plusKind }: Props) {
   // подиум, «Все участники», «кто на этаже»). Скрываем потомков, чтобы читалка не пыталась озвучить безымянную картинку; размер обёртки = размеру монеты.
   return (
     <View importantForAccessibility="no-hide-descendants" accessibilityElementsHidden style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: loaded ? 'transparent' : p.card }}>
-      <AvatarView avatar="" coinRank={rank ?? SPIRE_BASE_COIN_RANK} size={size} onCoinLoad={onCoinLoad} loadTrace="[PIK-IMG]" plus={plus} plusKind={plusKind} plusSurface={p.bg} />
+      <AvatarView avatar="" coinRank={rank ?? SPIRE_BASE_COIN_RANK} size={size} onCoinLoad={onCoinLoad} loadTrace="[PIK-IMG]" plus={plus} plusTier={plusTier} plusKind={plusKind} plusSurface={p.bg} />
     </View>
   );
 }

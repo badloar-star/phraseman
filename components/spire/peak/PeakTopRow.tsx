@@ -15,7 +15,7 @@ function PeakTopRow({ lang, row, coinSize = 40, onPress }: Props) {
   const p = useSpirePalette();
   // зачем (владелец 05.11, «Макеты как были одобрены», «1 в 1» с variant_B_*): строка топ-5 — монета, имя целиком, приглушённое число; БЕЗ номера места, БЕЗ стрелок зоны (зону показывает зелёная линия слева), БЕЗ значка Plus;
   // кольцо вокруг монеты — только у «я»; имя переносится на вторую строку, а не усекается («Татьяна Г…»)
-  const coin = <SpireRankCoin rank={row.coinRank} size={coinSize} plus={false} />;
+  const coin = <SpireRankCoin rank={row.coinRank} size={coinSize} plus={row.isPremium} plusTier={row.plusTier ?? 'plus'} />;
   const body = (
     <>
       {row.isMe ? (

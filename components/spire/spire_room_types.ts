@@ -15,6 +15,8 @@ export type SpireMemberRow = Readonly<{
   weekCoins?: number;
   /** Plus (кольцо у монеты, владелец 21.10): нет — не Plus. */
   isPremium?: boolean;
+  /** Уровень подписки (Plus/Ultra 06.11): ultra — годовая. */
+  plusTier?: 'plus' | 'ultra' | null;
 }>;
 
 /** D162: чем ранжирована комната на экране — тот же рубильник, что у итога недели. */

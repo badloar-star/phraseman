@@ -76,7 +76,7 @@ function SpirePodium({ lang, members, onOpenAll, rankBy = 'coins', loading = fal
             const blk = sizes.blocks[place - 1];
             return (
               <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${spireCoinsCount(lang, m.weekCoins ?? 0)}`}>
-                <SpireRankCoin rank={m.coinRank} size={place === 1 ? sizes.coinFirst : sizes.coinOther} plus={m.isPremium} />
+                <SpireRankCoin rank={m.coinRank} size={place === 1 ? sizes.coinFirst : sizes.coinOther} plus={m.isPremium} plusTier={m.plusTier ?? 'plus'} />
                 {/* зачем (координатор 13.10): на 360 dp колонка ≈ 101 dp, при шрифте ×1,3 длинное имя без пробела рвалось посреди слова. До 2 строк, перенос по слогам (Android hyphenationFrequency=full, iOS переносит сам), потолок роста шрифта 1,15 только у имени — это не ужатие шрифта под ширину */}
                 <Text style={[s.name, { color: p.text }]} numberOfLines={2} maxFontSizeMultiplier={1.15} android_hyphenationFrequency="full">{spireNickWrap(m.name)}</Text>
                 <View style={s.scoreRow}>

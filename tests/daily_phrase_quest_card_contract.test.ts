@@ -171,15 +171,15 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('{phraseCopy.literal}');
     expect(source).toContain('{phraseCopy.meaning}');
     expect(source).toContain('{phraseCopy.text}');
-    expect(saveBlock).toContain('literalRu={phrase.literal}');
-    expect(saveBlock).toContain('literalUk={phrase.literal_uk}');
-    expect(saveBlock).toContain('literalEs={phrase.literal_es}');
-    expect(saveBlock).toContain('explanationRu={phrase.meaning}');
-    expect(saveBlock).toContain('explanationUk={phrase.meaning_uk}');
-    expect(saveBlock).toContain('explanationEs={phrase.meaning_es}');
-    expect(saveBlock).toContain('exampleRu={phrase.text}');
-    expect(saveBlock).toContain('exampleUk={phrase.text_uk}');
-    expect(saveBlock).toContain('exampleEs={phrase.text_es}');
+    expect(saveBlock).toContain('literalRu={saveForeignOk ? phrase.literal : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
+    expect(saveBlock).toContain('literalUk={saveForeignOk ? phrase.literal_uk : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
+    expect(saveBlock).toContain('literalEs={saveForeignOk ? phrase.literal_es : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
+    expect(saveBlock).toContain('explanationRu={saveForeignOk ? phrase.meaning : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
+    expect(saveBlock).toContain('explanationUk={saveForeignOk ? phrase.meaning_uk : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
+    expect(saveBlock).toContain('explanationEs={saveForeignOk ? phrase.meaning_es : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
+    expect(saveBlock).toContain('exampleRu={saveForeignOk ? phrase.text : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
+    expect(saveBlock).toContain('exampleUk={saveForeignOk ? phrase.text_uk : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
+    expect(saveBlock).toContain('exampleEs={saveForeignOk ? phrase.text_es : undefined}'); // для en-интерфейса перевод не сохраняем (05.11)
     expect(source).not.toContain("declare module '../app/daily_phrase_system'");
     expect(source).not.toContain('example_ru?:');
   });

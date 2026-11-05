@@ -187,6 +187,11 @@ function DailyPhraseCard({
   // зачем (🔴 слово владельца через координатора 05.11: «Фраза дня не должна показывать перевод! Только после того, как ответили на квиз»): на карточке Главной перевод
   // виден только когда на вопрос дня ЭТОЙ фразы уже ответили (в этом процессе или сохранено на диске); до ответа — только сама фраза. Журнал [DAILY-PHRASE-TRANSLATION].
   const [cardAnswered, setCardAnswered] = useState(false);
+  // зачем (координатор 05.11): английскому интерфейсу карточку сохраняем ТОЛЬКО с фразой, без русского перевода — «чужой язык»; журнал [DAILY-PHRASE-SAVE]: какой язык интерфейса и откуда значение
+  useEffect(() => {
+    if (!detailsVisible || !phrase) return;
+    console.log('[DAILY-PHRASE-SAVE] sheet', JSON.stringify({ uiLang: lang, studyTarget, meaningSource: lang === 'en' ? 'none' : lang === 'uk' ? 'meaning_uk' : lang === 'ru' ? 'meaning_ru' : 'sourceLocales/ru-fallback', saveTranslation: lang !== 'en' })); // guard-ok: что уйдёт в карточку
+  }, [detailsVisible, phrase, lang, studyTarget]);
   useEffect(() => {
     if (!phrase) return undefined;
     let cancelled = false;
@@ -532,6 +537,8 @@ function DailyPhraseCard({
   const translationLang = lang === 'en' ? null : phraseLang;
   const translationAllowed = cardAnswered && !noSourceExplanation && translationLang !== null && !phraseCopy.isFallback;
   const cardLiteral = translationAllowed ? (phraseCopy.meaning || phraseCopy.literal) : '';
+  // зачем (координатор 05.11): для en-интерфейса перевод в карточку не кладём (поле пустое, как у фразы без перевода в наборах); для ru/uk/es/pt-BR/vi/id/tr/pl — как раньше
+  const saveForeignOk = lang !== 'en';
   const flashcardSourceLocales = {
     'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
     vi: phrase.sourceLocales?.vi?.meaning,
@@ -901,23 +908,23 @@ function DailyPhraseCard({
                 {(questAnswered || !hasValidQuest) && phrase.allowSave !== false && (
                   <AddToFlashcard
                     en={phrase.english}
-                    ru={phrase.meaning}
-                    uk={phrase.meaning_uk}
-                    es={phrase.meaning_es}
-                    sourceLocales={flashcardSourceLocales}
+                    ru={saveForeignOk ? phrase.meaning : ''}
+                    uk={saveForeignOk ? phrase.meaning_uk : ''}
+                    es={saveForeignOk ? phrase.meaning_es : undefined}
+                    sourceLocales={saveForeignOk ? flashcardSourceLocales : undefined}
                     source="daily_phrase"
                     sourceId={phrase.id || phrase.date}
                     studyTarget={studyTarget}
                     size={24}
-                    literalRu={phrase.literal}
-                    literalUk={phrase.literal_uk}
-                    literalEs={phrase.literal_es}
-                    explanationRu={phrase.meaning}
-                    explanationUk={phrase.meaning_uk}
-                    explanationEs={phrase.meaning_es}
-                    exampleRu={phrase.text}
-                    exampleUk={phrase.text_uk}
-                    exampleEs={phrase.text_es}
+                    literalRu={saveForeignOk ? phrase.literal : undefined}
+                    literalUk={saveForeignOk ? phrase.literal_uk : undefined}
+                    literalEs={saveForeignOk ? phrase.literal_es : undefined}
+                    explanationRu={saveForeignOk ? phrase.meaning : undefined}
+                    explanationUk={saveForeignOk ? phrase.meaning_uk : undefined}
+                    explanationEs={saveForeignOk ? phrase.meaning_es : undefined}
+                    exampleRu={saveForeignOk ? phrase.text : undefined}
+                    exampleUk={saveForeignOk ? phrase.text_uk : undefined}
+                    exampleEs={saveForeignOk ? phrase.text_es : undefined}
                   />
                 )}
                 {/* зачем (решение владельца 18.10 «без голоса», подтверждено координатором 05.11 по находке второго эмулятора): в окне «Фразы дня» после ответа кнопки озвучки нет */}

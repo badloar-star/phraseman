@@ -36,6 +36,13 @@ describe('Фраза дня: перевод только после ответа
     expect(card).toContain('{(questAnswered || !hasValidQuest) && phrase.allowSave !== false && ('); 
     expect(card).toContain("'[DAILY-PHRASE-GATE] reason=no_en_explanation'");
   });
+  it('сохранение для en-интерфейса — только фраза, без перевода; журнал [DAILY-PHRASE-SAVE]', () => {
+    expect(card).toContain("const saveForeignOk = lang !== 'en';");
+    expect(card).toContain("ru={saveForeignOk ? phrase.meaning : ''}");
+    expect(card).toContain("uk={saveForeignOk ? phrase.meaning_uk : ''}");
+    expect(card).toContain('sourceLocales={saveForeignOk ? flashcardSourceLocales : undefined}');
+    expect(card).toContain("'[DAILY-PHRASE-SAVE] sheet'");
+  });
   it('озвучки на карточке нет (замок 18.10)', () => {
     const start = card.indexOf('testID="home-v2-phrase-of-day"');
     const end = card.indexOf('</Pressable>', start);

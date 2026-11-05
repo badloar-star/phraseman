@@ -409,7 +409,8 @@ const PATCHES = JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_distracto
 // Вливаем только английскую часть (es скрыт до 2.1.1) в те же PATCHES.remove / PATCHES.replace по ключу «en:LL:NN», не правя общий файл правок.
 {
   const REV_PATCH_PATH = join(ROOT, 'docs', 'work', 'course_quality_1pct', 'pass1', 'distractor_patch_en_es.json');
-  const REV_LANGS = new Set(['en']);
+  // зачем (Координатор 05.11): только en (es скрыт до 2.1.1); выключить: CLASSIC_REV_PATCH_LANGS=""
+  const REV_LANGS = new Set((process.env.CLASSIC_REV_PATCH_LANGS ?? 'en').split(',').filter(Boolean));
   const revKey = (id) => { const m = /^([a-z]+)[^:]*:(\d\d)[.:](\d\d)$/.exec(id); return m && REV_LANGS.has(m[1]) ? `${m[1]}:${m[2]}:${m[3]}` : null; };
   if (existsSync(REV_PATCH_PATH)) {
     const rp = JSON.parse(readFileSync(REV_PATCH_PATH, 'utf8'));
@@ -426,7 +427,8 @@ const POS_LEX = existsSync(join(ROOT, 'scripts', 'classic_pos_lexicon.json')) ? 
 // «gare» на месте «en», «Waiting» на месте «Take». Подписи из РАЗБОРА В КОНТЕКСТЕ (scripts/classic_ctx_signatures.py): подпись верной плитки
 // в своей фразе обязана входить в подписи кандидата (как он стоит в курсе), плюс точечные запреты подстановок. Языки — CTX_LANGS.
 const CTX_SIG = existsSync(join(ROOT, 'scripts', 'classic_ctx_signatures.json')) ? JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_ctx_signatures.json'), 'utf8')) : null;
-const CTX_LANGS = new Set(['en']); // зачем: в 150 идёт английский (Диспетчер 05.11); es/fr/de/it — после проверки en
+// зачем: в 150 идёт английский (Диспетчер 05.11); es/fr/de/it — после проверки en; выключить: CLASSIC_CTX_LANGS=""
+const CTX_LANGS = new Set((process.env.CLASSIC_CTX_LANGS ?? 'en').split(',').filter(Boolean));
 function ctxReason(ctx, ph, i, d) {
   const S = ctx.ctxSig;
   if (!S) return null;
@@ -535,7 +537,8 @@ function badReason(lang, ctx, ph, i, d, mine) {
   if (ctx.numbers.has(dd) !== isNum || (!ctx.relax && CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
   const seen = ctx.vocab.get(dd);
   // зачем: «без форм из ещё не пройденных уроков» (Координатор 04.11); допуск +2 урока, иначе в уроках 1–3 не из чего выбирать; числительные не режем
-  if (!isNum && !isName && !dc && !(ctx.tags && ctx.tags.strictAll.has(dd)) && !ctx.relax && (seen === undefined || seen > lesson + Math.max(1, 8 - lesson))) return 'unseen';
+  // зачем (Работник А 05.11): при контекстных подписях запас (relax) не снимает «непройденное» — иначе «wasn't» (урок 23) встаёт на место «not» в уроке 2
+  if (!isNum && !isName && !dc && !(ctx.tags && ctx.tags.strictAll.has(dd)) && (!ctx.relax || ctx.ctxSig) && (seen === undefined || seen > lesson + Math.max(1, 8 - lesson))) return 'unseen';
   if (acc.has(keyOf(corrects.map((x, j) => (j === i ? d : x))))) return 'acceptedPhrase';
   if (mine.some((x) => stripP(x) === dd)) return 'duplicate';
   return null;
@@ -706,8 +709,13 @@ function fixDistractors(lang, all) {
       for (let d of tile.distractors) {
         // зачем: замена Ревизора несёт позицию — та же форма слова может стоять соблазном на другой плитке, где замена неуместна
         const forced = rep.find((r) => stripP(r.from) === stripP(d) && (r.position === undefined || r.position === i));
-        if (forced) {
-          const to = upperFirst(d) ? forced.to[0].toUpperCase() + forced.to.slice(1) : forced.to;
+        const forcedTo = forced ? (upperFirst(d) ? forced.to[0].toUpperCase() + forced.to.slice(1) : forced.to) : null;
+        // зачем: для замен Ревизора (с позицией) — те же жёсткие правила, что сторож курса проверяет без исключений; не прошла — слово идёт обычной проверкой
+        const forcedWhy = forced && forced.position !== undefined ? badReason(lang, { ...ctx, noTag: true, ctxSig: null }, ph, i, forcedTo, kept) : null;
+        if (forced && forcedWhy && ['otherCorrect', 'acceptedPhrase', 'selfCase', 'duplicate', 'nonWord', 'patch', 'synonym', 'category', 'unseen', 'article', 'youForm', 'genderPair'].includes(forcedWhy)) {
+          removed.revRejected = (removed.revRejected ?? 0) + 1; console.log(`[DISTR-REV-PATCH] отклонено ${ph.id}#${i} ${forced.from}→${forcedTo}: ${forcedWhy}`);
+        } else if (forced) {
+          const to = forcedTo;
           kept.push(to); removed.patchReplaced = (removed.patchReplaced ?? 0) + 1;
           // замену с позицией дал сильный аудитор (Opus) — мягкие правила генератора её не отменяют, как и правки слоя аудита
           if (forced.position !== undefined) auditForced.add(`${ph.id}#${i}:${to.toLowerCase()}`);
@@ -726,8 +734,9 @@ function fixDistractors(lang, all) {
         if (kept.length >= want || r.position !== i) continue;
         const to = i === 0 && upperFirst(tile.correct) && lang !== 'en' ? r.to[0].toUpperCase() + r.to.slice(1) : r.to;
         if (kept.some((x) => stripP(x) === stripP(to))) continue;
-        const why = badReason(lang, { ...ctx, relax: true, noTag: true }, ph, i, to, kept);
-        if (why && ['otherCorrect', 'acceptedPhrase', 'selfCase', 'duplicate', 'nonWord', 'patch'].includes(why)) { removed.revRejected = (removed.revRejected ?? 0) + 1; console.log(`[DISTR-REV-PATCH] отклонено ${ph.id}#${i} ${r.from}→${to}: ${why}`); continue; }
+        const why = badReason(lang, { ...ctx, noTag: true, ctxSig: null }, ph, i, to, kept);
+        // зачем: сторож курса (tests/classic_courses_pack) не делает исключений для патча Ревизора — синонимы, числительные и непройденные тоже жёсткие
+        if (why && ['otherCorrect', 'acceptedPhrase', 'selfCase', 'duplicate', 'nonWord', 'patch', 'synonym', 'category', 'unseen', 'article', 'youForm', 'genderPair'].includes(why)) { removed.revRejected = (removed.revRejected ?? 0) + 1; console.log(`[DISTR-REV-PATCH] отклонено ${ph.id}#${i} ${r.from}→${to}: ${why}`); continue; }
         kept.push(to); auditForced.add(`${ph.id}#${i}:${to.toLowerCase()}`); removed.revFilled = (removed.revFilled ?? 0) + 1;
       }
       if (kept.length < want) {
@@ -818,7 +827,8 @@ function fixDistractors(lang, all) {
             if (kept.length >= want) break;
             const c = asWanted(c0);
             if (kept.some((x) => stripP(x) === stripP(c)) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
-            if (!badReason(lang, ctxC, ph, i, c, kept)) { tried.add(c); kept.push(c); removed.refilled++; removed.ctxSeen = (removed.ctxSeen ?? 0) + 1; }
+            // класс по контексту проверен ctxReason — классы «в изоляции» (posTag/posSpacy) его не отменяют, как и в проходе noTag ниже
+            if (!badReason(lang, ctxC, ph, i, c, kept)) { tried.add(c); kept.push(c); removed.refilled++; removed.ctxSeen = (removed.ctxSeen ?? 0) + 1; auditForced.add(`${ph.id}#${i}:${c.toLowerCase()}`); }
           }
         }
         // запас: если по правилам класса/непройденного не набралось 5 — берём любые допустимые слова нужного регистра (всё остальное правим по-прежнему)
@@ -840,6 +850,16 @@ function fixDistractors(lang, all) {
             const c = asWanted(c0);
             if (kept.some((x) => stripP(x) === stripP(c)) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
             if (!badReason(lang, ctxN, ph, i, c, kept)) { kept.push(c); removed.refilled++; removed.noTag = (removed.noTag ?? 0) + 1; auditForced.add(`${ph.id}#${i}:${c.toLowerCase()}`); }
+          }
+        }
+        // зачем (Работник А 05.11): при контекстных подписях редкие плитки («one», «not») могут остаться без 5 соблазнов — тест курса требует ровно 5.
+        // Последний запас: без контекстного правила, но с запретом непройденного; затем — прежний запас как было до подписей
+        for (const ctxL of ctx.ctxSig && kept.length < want ? [{ ...ctx, ctxSig: null, noTag: true }, { ...ctx, ctxSig: null, relax: true, noTag: true }] : []) {
+          for (const [c0] of [...everything.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))) {
+            if (kept.length >= want) break;
+            const c = asWanted(c0);
+            if (kept.some((x) => stripP(x) === stripP(c)) || /^i(['’]|$)/.test(c) || upperFirst(c) !== upperWanted || !/^[\p{L}'’-]+$/u.test(c)) continue;
+            if (!badReason(lang, ctxL, ph, i, c, kept)) { kept.push(c); removed.refilled++; removed.ctxFallback = (removed.ctxFallback ?? 0) + 1; auditForced.add(`${ph.id}#${i}:${c.toLowerCase()}`); console.log(`[DISTR-CTX] запас без подписи ${ph.id}#${i} ${tile.correct}→${c} (relax=${!!ctxL.relax})`); }
           }
         }
         if (kept.length < want) { removed.short++; if (shortSamples.length < 6) shortSamples.push(`${ph.id}#${i} ${tile.correct} ${kept.length}/${want}`); }

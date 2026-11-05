@@ -9,6 +9,7 @@ import Reanimated, {
   cancelAnimation,
 } from 'react-native-reanimated';
 import { AdaptiveLabel } from '../text-integrity/AdaptiveLabel';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { nestedBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 
 export type StatBar = {
@@ -97,8 +98,11 @@ function Bar({
     : STUMP_H;
   const grow = useSharedValue(0);
   const pressGlow = useSharedValue(0);
+  // зачем (Reduce Motion, ТОП-20 доступности, 05.11): при «Уменьшить движение» столбики сразу полной высоты, без пружинного каскада
+  const reduceMotion = useReduceMotion();
 
   useEffect(() => {
+    if (reduceMotion) { grow.value = 1; return () => cancelAnimation(grow); }
     grow.value = 0;
     grow.value = withDelay(
       delayMs + index * 55,
@@ -106,7 +110,7 @@ function Bar({
     );
     return () => cancelAnimation(grow);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetH, index, delayMs]);
+  }, [targetH, index, delayMs, reduceMotion]);
 
   useEffect(() => {
     pressGlow.value = withTiming(pressed ? 1 : 0, { duration: 110 });
@@ -161,6 +165,12 @@ function Bar({
  * видимость пузыря — shared values, React-стейт меняется только на границе
  * столбиков.
  */
+/** Подпись столбика для скринридера: день и значение («Пн, 12 минут»); без значения — только день. */
+export function barSpokenLabel(bar: Pick<StatBar, 'bottomLabel' | 'scrubLabel' | 'topLabel'>): string {
+  const value = (bar.scrubLabel ?? bar.topLabel ?? '').trim();
+  return value ? `${bar.bottomLabel}, ${value}` : bar.bottomLabel;
+}
+
 export function StatBars({
   bars,
   accent,
@@ -278,7 +288,8 @@ export function StatBars({
   }));
 
   const columns = bars.map((bar, i) => (
-    <View key={bar.key} style={styles.col}>
+    // зачем (раунд 2, Статистика, скринридер): столбик читается как «Пн, 12 минут» (день + значение), а не набором отдельных кусков; сегодняшний день — жирнее в названии
+    <View key={bar.key} style={styles.col} accessible accessibilityLabel={barSpokenLabel(bar)}>
       {!scrubEnabled ? (
         bar.topLabel ? (
           <AdaptiveLabel testID={`stat-bar-top-${bar.key}`} provenance="authored" availableWidth={columnWidth} compactLineLimit={1} style={[styles.topLabel, { color: bar.highlight ? topLabelColor : topLabelMutedColor }]}>
@@ -298,7 +309,7 @@ export function StatBars({
         pressedColor={scrubEnabled ? scrubHighlightColor : undefined}
       />
       <View style={styles.bottomWrap}>
-        <AdaptiveLabel testID={`stat-bar-bottom-${bar.key}`} provenance="authored" availableWidth={columnWidth} compactLineLimit={1} style={[styles.bottomLabel, { color: bar.highlight ? bottomLabelColor : bottomLabelMutedColor, fontWeight: bar.highlight ? '900' : '700' }]}>
+        <AdaptiveLabel testID={`stat-bar-bottom-${bar.key}`} provenance="authored" availableWidth={columnWidth} compactLineLimit={1} style={[styles.bottomLabel, bar.highlight ? styles.bottomLabelToday : null, { color: bar.highlight ? bottomLabelColor : bottomLabelMutedColor, fontWeight: bar.highlight ? '900' : '700' }]}>
           {bar.bottomLabel}
         </AdaptiveLabel>
         {bar.highlight && todayDotColor ? (
@@ -353,6 +364,7 @@ const styles = StyleSheet.create({
   topLabel: { fontSize: 13, fontWeight: '700' },
   bottomWrap: { alignItems: 'center' },
   bottomLabel: { fontSize: 13 },
+  bottomLabelToday: { fontWeight: '700' },
   todayDot: { width: 4, height: 4, borderRadius: 2, marginTop: 3 },
   bubbleZone: { height: BUBBLE_ZONE_H, justifyContent: 'flex-end' },
   bubble: {

@@ -34,3 +34,6 @@ git apply docs/work/_parked_2_1_1/classic_completion_journal/classic_completion_
 
 ## Состояние на момент парковки
 Тесты кластера на рабочем дереве не прогонялись целиком; в полном прогоне 06.11 их красные/зелёные результаты (если были) — в `docs/work/release/RED_TESTS_*.md`.
+
+## Дополнение (координатор, 05.11 ~16:45)
+`StudyTargetContext_prime.patch` — хвост журнала: `components/StudyTargetContext.tsx` вызывал `commitLessonScreenPrimeStudyTarget` из запаркованного `lesson_screen_bootstrap`; после парковки приложение падало на старте (Render Error: ... is not a function). Файл возвращён к HEAD. Возвращать вместе с основным патчем.

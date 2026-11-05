@@ -1,0 +1,29 @@
+diff --git a/components/StudyTargetContext.tsx b/components/StudyTargetContext.tsx
+index 615078f6c..00019ee35 100644
+--- a/components/StudyTargetContext.tsx
++++ b/components/StudyTargetContext.tsx
+@@ -1,4 +1,4 @@
+-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
++import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+ import { DeviceEventEmitter } from 'react-native';
+ import {
+   DEFAULT_STUDY_TARGET,
+@@ -8,6 +8,7 @@ import {
+   type StudyTarget,
+ } from '../app/study_target';
+ import { peekStudyTargetRaw, writePeekStudyTargetRaw } from '../app/app_snapshot_bootstrap';
++import { commitLessonScreenPrimeStudyTarget } from '../app/lesson_screen_bootstrap';
+ import { useLang, type Lang } from './LangContext';
+ 
+ type Ctx = {
+@@ -31,6 +32,10 @@ export function StudyTargetProvider({ children }: { children: React.ReactNode })
+   const { lang } = useLang();
+   const [studyTarget, setStudyTarget] = useState<StudyTarget>(() => initialStudyTargetFromPeek(lang));
+ 
++  useLayoutEffect(() => {
++    commitLessonScreenPrimeStudyTarget(studyTarget);
++  }, [studyTarget]);
++
+   const refresh = useCallback(async () => {
+     const stored = await getStoredStudyTarget(lang);
+     writePeekStudyTargetRaw(stored);

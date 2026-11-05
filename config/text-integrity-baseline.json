@@ -2,12 +2,99 @@
   "schemaVersion": 1,
   "groups": [
     {
-      "file": "components/CleanOnboarding.tsx",
-      "ownerName": "OptionCard",
-      "ownerPath": "OptionCard",
+      "file": "components/learning-v2/season/SeasonCourseView.tsx",
+      "ownerName": "SeasonCourseView",
+      "ownerPath": "SeasonCourseView",
       "ancestorPath": [
-        "Pressable",
+        "ScrollView",
         "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "3",
+      "testID": null,
+      "fingerprint": "033b445feb01cb5c3452f848fccb1b2fd0ab2cda9dfecb3be916f657f021380a",
+      "count": 1,
+      "lineHints": [
+        355
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/youtube/YoutubeVideoGridCard.tsx",
+      "ownerName": "YoutubeVideoGridCardBase",
+      "ownerPath": "YoutubeVideoGridCardBase",
+      "ancestorPath": [
+        "View",
+        "View",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "033bc2457d1d874e651ac861d141b928849b56b5768fc0253b026504ad865927",
+      "count": 1,
+      "lineHints": [
+        74
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/AppMessagesInbox.tsx",
+      "ownerName": "renderPoll",
+      "ownerPath": "AppMessagesInbox>renderPoll",
+      "ancestorPath": [
+        "View",
+        "View",
+        "KitTouchable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "3",
+      "testID": null,
+      "fingerprint": "044e17b201c2f5bee354082cb89bcef6d3f125426cef5d7ed4db0b7134d055ca",
+      "count": 1,
+      "lineHints": [
+        950
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/youtube/YoutubeVideoGridCard.tsx",
+      "ownerName": "YoutubeVideoGridCardBase",
+      "ownerPath": "YoutubeVideoGridCardBase",
+      "ancestorPath": [
+        "View",
+        "TouchableOpacity",
         "Text"
       ],
       "tag": "Text",
@@ -15,10 +102,10 @@
       "prop": "numberOfLines",
       "value": "2",
       "testID": null,
-      "fingerprint": "00b174499a0bffbbb5c4c5495b1f35c7df402cebf4c810a1e4df80ec22992b32",
+      "fingerprint": "05b8670805abd5e15402d9eaa7ec7002c5178c6d50f5f2ae772399a3729392a6",
       "count": 1,
       "lineHints": [
-        912
+        69
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -46,35 +133,6 @@
       "count": 1,
       "lineHints": [
         127
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/(tabs)/home.tsx",
-      "ownerName": "renderNewHome",
-      "ownerPath": "HomeScreen>renderNewHome",
-      "ancestorPath": [
-        "BouncyScrollView",
-        "Animated.View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "06e7f8f72f0d184712c69d07bea6e43d81f43942d7a3818ab055645724288e0c",
-      "count": 1,
-      "lineHints": [
-        4178
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -114,24 +172,53 @@
       }
     },
     {
-      "file": "components/NotificationCenterButton.tsx",
-      "ownerName": "NotificationCenterButton",
-      "ownerPath": "NotificationCenterButton",
+      "file": "components/youtube/YoutubePlaylistGridCard.tsx",
+      "ownerName": "YoutubePlaylistGridCardBase",
+      "ownerPath": "YoutubePlaylistGridCardBase",
       "ancestorPath": [
-        "MotionModal",
-        "View",
-        "View",
+        "TouchableOpacity",
         "Text"
       ],
       "tag": "Text",
-      "kind": "font-scaling-disabled",
-      "prop": "allowFontScaling",
-      "value": "false",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
       "testID": null,
-      "fingerprint": "0adb9f4829d05eb003bec54ccb859ca797b4b70928380b4eb7d2c0a248b34501",
+      "fingerprint": "08298674b15618263cca712383bbd83325a2efad391b1d919a8a79935cf743be",
       "count": 1,
       "lineHints": [
-        628
+        46
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/scene/DialogsSceneStage.tsx",
+      "ownerName": "DialogsSceneStage",
+      "ownerPath": "DialogsSceneStage",
+      "ancestorPath": [
+        "SceneBlockShadow",
+        "View",
+        "View",
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "0922dbe763e58bf5d455bd8a11e9121b49b267792e2ac31288a57fd2773ee332",
+      "count": 1,
+      "lineHints": [
+        155
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -189,7 +276,66 @@
       "fingerprint": "0f5fe1f97e52b5cc26714c5187085f14656232d6387c7663414e532d63d992d8",
       "count": 1,
       "lineHints": [
-        1247
+        1193
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/CleanOnboarding.tsx",
+      "ownerName": "renderWelcome",
+      "ownerPath": "CleanOnboarding>renderWelcome",
+      "ancestorPath": [
+        "SafeAreaView",
+        "KeyboardAvoidingView",
+        "View",
+        "View",
+        "FadeUp",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "3",
+      "testID": null,
+      "fingerprint": "1277b6aca1bc32cf0429abe8e0c77c305b5320aaacefda8e778d4118daad4b2c",
+      "count": 1,
+      "lineHints": [
+        4066
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonPickScreens.tsx",
+      "ownerName": "SeasonListHeader",
+      "ownerPath": "SeasonListHeader",
+      "ancestorPath": [
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "1297f0ac6ecf3621f68931a92942b5b91244d1c10e0814f77d66833a6eb1d8d3",
+      "count": 1,
+      "lineHints": [
+        53
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -218,6 +364,65 @@
       "count": 1,
       "lineHints": [
         70
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpireGhostLayer.tsx",
+      "ownerName": "SpireGhostLayer",
+      "ownerPath": "SpireGhostLayer",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "View",
+        "Animated.Text"
+      ],
+      "tag": "Animated.Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "1370c00f157f3b8af7ca4bac1caaeef7ae0021fb4d391342574d7cc4140720eb",
+      "count": 1,
+      "lineHints": [
+        105
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/feedback/ComboHeatSlot.tsx",
+      "ownerName": "ComboHeatSlot",
+      "ownerPath": "ComboHeatSlot",
+      "ancestorPath": [
+        "Reanimated.View",
+        "View",
+        "Reanimated.View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": "\"lesson1-combo-tip\"",
+      "fingerprint": "139cad9a5e6600a98b154b0bbfa61e4fd789d2077fdfe90f34956e699db909b2",
+      "count": 1,
+      "lineHints": [
+        136
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -258,37 +463,13 @@
       }
     },
     {
-      "file": "components/ReportErrorButton.tsx",
-      "ownerName": "ReportErrorButton",
-      "ownerPath": "ReportErrorButton",
+      "file": "components/spire/peak/PeakScreenV2.tsx",
+      "ownerName": "PeakScreenV2",
+      "ownerPath": "PeakScreenV2",
       "ancestorPath": [
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "1ec4ba651e57bb092c4d1eac81e3e0ef58d1c43c1ec0576beeaa3c588e4ab6e5",
-      "count": 1,
-      "lineHints": [
-        276
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/PremiumGoldUserName.tsx",
-      "ownerName": "PremiumGoldUserName",
-      "ownerPath": "PremiumGoldUserName",
-      "ancestorPath": [
+        "View",
+        "View",
+        "View",
         "View",
         "Text"
       ],
@@ -297,10 +478,11 @@
       "prop": "numberOfLines",
       "value": "1",
       "testID": null,
-      "fingerprint": "23c3f39a131871be258610860e308b0d7f18eda0a85ba65ffcca64a3e25620a2",
-      "count": 1,
+      "fingerprint": "233cedad3288bf33786e7b4922e9fbfe4ef2f6c87c5c47b5430a41f95602705c",
+      "count": 2,
       "lineHints": [
-        66
+        139,
+        142
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -340,6 +522,62 @@
       }
     },
     {
+      "file": "components/practice/PracticeChrome.tsx",
+      "ownerName": "PracticeHeaderTitle",
+      "ownerPath": "PracticeHeaderTitle",
+      "ancestorPath": [
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "oneLine?1:undefined",
+      "testID": null,
+      "fingerprint": "24b9c5e13e6c1e280c04790a7e4b7499406270c15b226b5ef7d4a70a1260af55",
+      "count": 1,
+      "lineHints": [
+        119
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/scene/SpireScenePedestal.tsx",
+      "ownerName": "SpireScenePedestal",
+      "ownerPath": "SpireScenePedestal",
+      "ancestorPath": [
+        "View",
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "252c0051bf4e3f77ddf175acdd3794d8eabb468ab1a03e73bf547148ec93bedd",
+      "count": 1,
+      "lineHints": [
+        135
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
       "file": "components/ExplainButton.tsx",
       "ownerName": "ExplainButton",
       "ownerPath": "ExplainButton",
@@ -355,7 +593,7 @@
       "fingerprint": "26306cf928a8d31111bb693d2fb505a9321a43d557f808c95ae22f5a639fe87a",
       "count": 1,
       "lineHints": [
-        92
+        97
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -367,22 +605,52 @@
       }
     },
     {
-      "file": "components/PremiumGoldUserName.tsx",
-      "ownerName": "PremiumGoldUserName",
-      "ownerPath": "PremiumGoldUserName",
+      "file": "components/dialogs/hints/DialogSayHints.tsx",
+      "ownerName": "DialogSayHints",
+      "ownerPath": "DialogSayHints",
       "ancestorPath": [
+        "Animated.View",
+        "ScrollView",
+        "PressableScale",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "compact?L.compact.phraseLines:3",
+      "testID": null,
+      "fingerprint": "2673142871b8b23a559f5baf53a199db180ac9553a14cb33f6ae15f30891f1c1",
+      "count": 1,
+      "lineHints": [
+        71
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonPickScreens.tsx",
+      "ownerName": "SeasonListHeader",
+      "ownerPath": "SeasonListHeader",
+      "ancestorPath": [
+        "View",
         "View",
         "Text"
       ],
       "tag": "Text",
-      "kind": "font-scaling-disabled",
-      "prop": "allowFontScaling",
-      "value": "false",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
       "testID": null,
-      "fingerprint": "29f71e6595820ebaee041536caea49d0fff1552247f7c5ed359250b1704be33b",
+      "fingerprint": "2b05ae3352a7c753148912b94b87a6aeb89c382ccc10d1c1172bfdb16c920571",
       "count": 1,
       "lineHints": [
-        66
+        52
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -412,7 +680,7 @@
       "fingerprint": "2b065b62b7e592c7441eda6686ea9d6609984649d1fb038af01de321192b3467",
       "count": 1,
       "lineHints": [
-        304
+        313
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -441,7 +709,65 @@
       "fingerprint": "2c9f5694ce14229bbd7325ddec499e10da3970d670bdc01e842f93e74289a54a",
       "count": 1,
       "lineHints": [
-        1147
+        1248
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/youtube/YoutubeVideoCard.tsx",
+      "ownerName": "YoutubeVideoCard",
+      "ownerPath": "YoutubeVideoCard",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "compactLayout?2:undefined",
+      "testID": null,
+      "fingerprint": "2ee8cddec37c2b0439ef7b962564e413d76947cf5b41ff2aed3ed10b26c34404",
+      "count": 1,
+      "lineHints": [
+        83
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/hints/DialogSayHints.tsx",
+      "ownerName": "DialogSayHints",
+      "ownerPath": "DialogSayHints",
+      "ancestorPath": [
+        "Animated.View",
+        "ScrollView",
+        "PressableScale",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "compact?L.compact.meaningLines:3",
+      "testID": null,
+      "fingerprint": "309f5a7cfee87dc6a855b4676b63132e6fafb465a1a7c5a6123cacda9983fe4b",
+      "count": 1,
+      "lineHints": [
+        72
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -467,7 +793,124 @@
       "fingerprint": "312e753f5af87e1b62a54f661fc999d3b4e59161b099bf85f96a6779f7dfdc34",
       "count": 1,
       "lineHints": [
-        230
+        231
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/CleanOnboarding.tsx",
+      "ownerName": "renderNiceToMeet",
+      "ownerPath": "CleanOnboarding>renderNiceToMeet",
+      "ancestorPath": [
+        "ScreenFrame",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "329c0bc738cd50e76ce19c0d908b8b73610fcd0d8a4a9bcd09c9430bf490b11a",
+      "count": 1,
+      "lineHints": [
+        4269
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/youtube/YoutubeVideoGridCard.tsx",
+      "ownerName": "YoutubeVideoGridCardBase",
+      "ownerPath": "YoutubeVideoGridCardBase",
+      "ancestorPath": [
+        "View",
+        "View",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": null,
+      "fingerprint": "346abf24ee6621a45dd4bfe7703080f20fafdc644b005d0e9f38d46511558ba7",
+      "count": 1,
+      "lineHints": [
+        74
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/auth/SignInProgressButton.tsx",
+      "ownerName": "SignInProgressButton",
+      "ownerPath": "SignInProgressButton",
+      "ancestorPath": [
+        "Animated.View",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "355f8870e58d1820c749fb13bb0373d5d5cb93ce814b7b3c8fd6025f16f48d37",
+      "count": 1,
+      "lineHints": [
+        105
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/DailyPhraseCard.tsx",
+      "ownerName": "DailyPhraseCard",
+      "ownerPath": "DailyPhraseCard",
+      "ancestorPath": [
+        "Modal",
+        "SheetSwipeRoot",
+        "View",
+        "SheetSwipeClose",
+        "Animated.View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "3662bbc934c57a28d6c00abccf3170b3f6d80e07809c4846c2683031a7b5b0f8",
+      "count": 1,
+      "lineHints": [
+        891
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -502,7 +945,7 @@
       "fingerprint": "3754194ff3311d8fad264e0456b78697c4cc0f65e93b84b395597f94dc07b1a4",
       "count": 1,
       "lineHints": [
-        4399
+        3240
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -514,12 +957,42 @@
       }
     },
     {
-      "file": "app/language_welcome.tsx",
-      "ownerName": "renderOptions",
-      "ownerPath": "LanguageWelcomeScreen>renderOptions",
+      "file": "components/dialogs/DialogueV2SessionScreen.tsx",
+      "ownerName": "DialogueV2SessionScreen",
+      "ownerPath": "DialogueV2SessionScreen",
       "ancestorPath": [
+        "KeyboardAvoidingView",
+        "SafeAreaView",
         "View",
-        "Pressable",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": null,
+      "fingerprint": "38de4fcfcbda4e465ea5dd67eeca0afc6a91c908c099af455c279a677ca50a4e",
+      "count": 1,
+      "lineHints": [
+        491
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/youtube/YoutubePlaylistGridCard.tsx",
+      "ownerName": "YoutubePlaylistGridCardBase",
+      "ownerPath": "YoutubePlaylistGridCardBase",
+      "ancestorPath": [
+        "TouchableOpacity",
         "Text"
       ],
       "tag": "Text",
@@ -527,10 +1000,10 @@
       "prop": "numberOfLines",
       "value": "2",
       "testID": null,
-      "fingerprint": "3a57051d1cea9fa8da78246e17e7460acc18afc9d5a15e4c3291b9093c1492d4",
+      "fingerprint": "3b40cfe9ea26d2f81a35201ea33f258c2ca9c26b50a7612a135fe6431644dbe8",
       "count": 1,
       "lineHints": [
-        256
+        45
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -572,6 +1045,36 @@
       }
     },
     {
+      "file": "components/youtube/YoutubePlayerConveniences.tsx",
+      "ownerName": "YoutubePlayerConveniences",
+      "ownerPath": "YoutubePlayerConveniences",
+      "ancestorPath": [
+        "View",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "3befa35111f0b39187ddf17177c9d264e9278795000e613993e6ad21658828c5",
+      "count": 3,
+      "lineHints": [
+        62,
+        66,
+        69
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
       "file": "app/(tabs)/home.tsx",
       "ownerName": "HomeScreen",
       "ownerPath": "HomeScreen",
@@ -593,7 +1096,64 @@
       "fingerprint": "3c8cd995da3cc6bcee0da46e8539e93b18548253bc1d18db79908087d7a20b6f",
       "count": 1,
       "lineHints": [
-        4386
+        3227
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/DialogueV2SessionScreen.tsx",
+      "ownerName": "DialogueV2SessionScreen",
+      "ownerPath": "DialogueV2SessionScreen",
+      "ancestorPath": [
+        "KeyboardAvoidingView",
+        "SafeAreaView",
+        "View",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "426355960d9b6995f4a324ae9267cc9ff289e76bb42394618fd22dcf0c1ba341",
+      "count": 1,
+      "lineHints": [
+        551
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/youtube/YoutubePlaylistGridCard.tsx",
+      "ownerName": "YoutubePlaylistGridCardBase",
+      "ownerPath": "YoutubePlaylistGridCardBase",
+      "ancestorPath": [
+        "TouchableOpacity",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": null,
+      "fingerprint": "44236a8ad98648f79870c9c4eead0385be5ea75564153880d70c6ee275539ca0",
+      "count": 1,
+      "lineHints": [
+        45
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -628,8 +1188,36 @@
       "fingerprint": "4601beb3ca45cc889727a503011fc42ae9d8bbb5c4e30087969bfde12caed554",
       "count": 2,
       "lineHints": [
-        4399,
-        4402
+        3240,
+        3243
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpireAllMembers.tsx",
+      "ownerName": "renderZone",
+      "ownerPath": "SpireAllMembers>renderZone",
+      "ancestorPath": [
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "4853a2ddfdeb7052597f811ea0a0a933ff070df39558c0b20fe830ca38654f42",
+      "count": 1,
+      "lineHints": [
+        73
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -658,8 +1246,8 @@
       "fingerprint": "48968e7e9dc00df77e6fc954b8cd783abf7ccf4b5513942f8bd3bf9c498a9a91",
       "count": 2,
       "lineHints": [
-        1103,
-        1144
+        1203,
+        1244
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -671,14 +1259,68 @@
       }
     },
     {
-      "file": "components/DailyPhraseCard.tsx",
-      "ownerName": "DailyPhraseCard",
-      "ownerPath": "DailyPhraseCard",
+      "file": "components/learning-v2/placement/PlacementChrome.tsx",
+      "ownerName": "PlacementTopicCard",
+      "ownerPath": "PlacementTopicCard",
       "ancestorPath": [
-        "Modal",
         "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "48f537a3b07fb927620b00bf479689f420565022cbb1e5ef07d6a58300f0e27c",
+      "count": 1,
+      "lineHints": [
+        75
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/moments/MomentPromotion.tsx",
+      "ownerName": "LadderRow",
+      "ownerPath": "LadderRow",
+      "ancestorPath": [
         "Animated.View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "4b23a9001039ebf0a1715110ebc0bf12ce7249495a92a86dc2b3fca3ef141b5d",
+      "count": 1,
+      "lineHints": [
+        147
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/home/v2/HomeV2TodayCard.tsx",
+      "ownerName": "HomeV2TodayCardView",
+      "ownerPath": "HomeV2TodayCardView",
+      "ancestorPath": [
         "View",
+        "View",
+        "V2Pressable",
         "View",
         "Text"
       ],
@@ -687,10 +1329,71 @@
       "prop": "numberOfLines",
       "value": "1",
       "testID": null,
-      "fingerprint": "4b30856dab2a6ae91e21e8da558ada9aa9075b7e5453e58590726146b7b4a404",
+      "fingerprint": "4b25b09db624efe37231372711e844618ceee8ca55a1c78d8e5c8053fe4e639e",
+      "count": 2,
+      "lineHints": [
+        282,
+        284
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/hub/DialogsHubThemes.tsx",
+      "ownerName": "DialogsHubThemes",
+      "ownerPath": "DialogsHubThemes",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "4c69c5615d5e991cb395b9ff51d0da421bdee9ea7447893893e14af1f2465f57",
+      "count": 2,
+      "lineHints": [
+        64,
+        65
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/home/v2/HomeV2ContinueCard.tsx",
+      "ownerName": "HomeV2ContinueCardView",
+      "ownerPath": "HomeV2ContinueCardView",
+      "ancestorPath": [
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": "\"home-continue-lesson-title\"",
+      "fingerprint": "4c949538fa541c203415c3221a38c944c94189bb635802d54a7b2dff64b6e980",
       "count": 1,
       "lineHints": [
-        820
+        112
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -720,7 +1423,7 @@
       "fingerprint": "4d13963d472af4a08afbd5027ed4e51d8577556e294c7350c265cefdcc3a7d46",
       "count": 1,
       "lineHints": [
-        395
+        470
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -749,7 +1452,7 @@
       "fingerprint": "4d78d7ad3e538abab17a7818d327eade6b44f73e41de6b7ff1fd9b4f3314f39c",
       "count": 1,
       "lineHints": [
-        106
+        115
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -779,7 +1482,7 @@
       "fingerprint": "4f271fa7f78e9dc1bec9235d7d571c0b855776272f12f2285670a4bc5cda8809",
       "count": 1,
       "lineHints": [
-        864
+        959
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -806,7 +1509,127 @@
       "fingerprint": "5461327666ba69282d0e69bd15751c46246f9854b1bff4abed581130e0579ad2",
       "count": 1,
       "lineHints": [
-        102
+        128
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/flashcards_swipe.tsx",
+      "ownerName": "renderPlay",
+      "ownerPath": "FlashcardsSwipeScreen>renderPlay",
+      "ancestorPath": [
+        "View",
+        "PracticeSessionHeader",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "55cbc151e9bed6f1cc32634e8db7698b2198a422d12ab0ad4e6ccca9036b1c8d",
+      "count": 1,
+      "lineHints": [
+        4108
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/combined_lesson_pick.tsx",
+      "ownerName": "CombinedLessonPickScreen",
+      "ownerPath": "CombinedLessonPickScreen",
+      "ancestorPath": [
+        "ScreenGradient",
+        "View",
+        "ScrollView",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "55eb399a06f0e715f409768743fdf732c562ae2462d5b2fcb1e918b471f6960e",
+      "count": 1,
+      "lineHints": [
+        269
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/DialogueV2SessionScreen.tsx",
+      "ownerName": "DialogueV2SessionScreen",
+      "ownerPath": "DialogueV2SessionScreen",
+      "ancestorPath": [
+        "KeyboardAvoidingView",
+        "SafeAreaView",
+        "View",
+        "View",
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "5d8ebc22af9c0f1f6ed05f3d483903ceb890048177d9c3a02b41ad06d738066f",
+      "count": 1,
+      "lineHints": [
+        507
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/v2/GlassAlertDialog.tsx",
+      "ownerName": "GlassAlertCard",
+      "ownerPath": "GlassAlertCard",
+      "ancestorPath": [
+        "View",
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "5e76b91e698bc1cf3f5c8da956b96bd5e21a88f3ae2b860fa260587d82b2cd5f",
+      "count": 1,
+      "lineHints": [
+        113
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -844,9 +1667,123 @@
       "fingerprint": "5fbfae0c51b0ee47e2b35e9a31d95d95df5c7a7dcf13346a87d66cfb79c01d41",
       "count": 3,
       "lineHints": [
-        683,
-        871,
-        970
+        692,
+        876,
+        975
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpirePodium.tsx",
+      "ownerName": "SpirePodium",
+      "ownerPath": "SpirePodium",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "605aa333006d140e68bf2fd26d0c643857ff4553f4959fbfd9d055ef2d2f4c9b",
+      "count": 1,
+      "lineHints": [
+        81
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/combined_lesson_pick.tsx",
+      "ownerName": "CombinedLessonPickScreen",
+      "ownerPath": "CombinedLessonPickScreen",
+      "ancestorPath": [
+        "ScreenGradient",
+        "View",
+        "ScrollView",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": null,
+      "fingerprint": "635baae6e15101f987352f90f07f7c1d085c1ca11733deecdf624bfa1f959349",
+      "count": 1,
+      "lineHints": [
+        269
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/plus-tab/PlusTabPlans.tsx",
+      "ownerName": "Tile",
+      "ownerPath": "Tile",
+      "ancestorPath": [
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "6443e240cf2c8b122726dd6fe89b350e237b472f9e63d0b4a92c18c66f312a60",
+      "count": 1,
+      "lineHints": [
+        73
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/v2/V2PillSwitch.tsx",
+      "ownerName": "V2PillSwitch",
+      "ownerPath": "V2PillSwitch",
+      "ancestorPath": [
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "657e26ec0bc665d45fc93f7707946067def133908ddf09202c02616d76aebb17",
+      "count": 1,
+      "lineHints": [
+        59
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -874,9 +1811,127 @@
       "fingerprint": "66be378825ebbb1d81bebf607233f632a11897c333c918f4e55dec74ed14f888",
       "count": 3,
       "lineHints": [
-        1133,
-        1157,
-        1203
+        1233,
+        1258,
+        1304
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonPickScreens.tsx",
+      "ownerName": "Row",
+      "ownerPath": "Row",
+      "ancestorPath": [
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "67d72e619da77df68e91d3ac2cfc13ade68d4ddce12ca616a842676682786a34",
+      "count": 1,
+      "lineHints": [
+        96
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/CleanOnboarding.tsx",
+      "ownerName": "PhoneMock",
+      "ownerPath": "PhoneMock",
+      "ancestorPath": [
+        "View",
+        "View",
+        "Animated.View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "684e5d479a46b64aa5bb7e85c92b660cf099cdb8a8fdc997d2a80fc0c0455cab",
+      "count": 1,
+      "lineHints": [
+        1918
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/plus-splash/PlusLaunchSplashView.tsx",
+      "ownerName": "PlusLaunchSplashView",
+      "ownerPath": "PlusLaunchSplashView",
+      "ancestorPath": [
+        "View",
+        "Animated.View",
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "6972c7a47787d64b3a3048f62c21f325e73f0f147fee8cd4506f46e782adb683",
+      "count": 1,
+      "lineHints": [
+        130
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/today_tasks.tsx",
+      "ownerName": "TodayTasksScreen",
+      "ownerPath": "TodayTasksScreen",
+      "ancestorPath": [
+        "View",
+        "SafeAreaView",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "6a4527daacef4756017a97ff220695e798eeb74cb2d344c62d5e8ead034b5536",
+      "count": 1,
+      "lineHints": [
+        206
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -903,7 +1958,7 @@
       "fingerprint": "6d02b5d903e60f3e0708317f1ff00d361dcf3060577693a4aeb1198678973b17",
       "count": 1,
       "lineHints": [
-        374
+        306
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -915,25 +1970,140 @@
       }
     },
     {
-      "file": "components/AppMessagesInbox.tsx",
-      "ownerName": "renderPoll",
-      "ownerPath": "AppMessagesInbox>renderPoll",
+      "file": "app/flashcards/CardFlipV2.tsx",
+      "ownerName": "CardFlipV2Impl",
+      "ownerPath": "CardFlipV2Impl",
+      "ancestorPath": [
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "wordLines(height,lh(40))",
+      "testID": null,
+      "fingerprint": "6f1943a10cde1dc6f6e5d5c974aebe516f9f4d55742a9e962dbf9be48ae80565",
+      "count": 1,
+      "lineHints": [
+        111
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/scene/SpireScenePedestal.tsx",
+      "ownerName": "SpireScenePedestal",
+      "ownerPath": "SpireScenePedestal",
       "ancestorPath": [
         "View",
-        "View",
-        "TouchableOpacity",
         "View",
         "Text"
       ],
       "tag": "Text",
       "kind": "truncation",
       "prop": "numberOfLines",
-      "value": "3",
+      "value": "2",
       "testID": null,
-      "fingerprint": "6e89453f4bf09820a46634d27f44d6b6aba40674600c817c4313b0d31127f30f",
+      "fingerprint": "6fd21982b9aabb28663c762f56a70a0a3b458229042a03b60b757d62c498a923",
       "count": 1,
       "lineHints": [
-        925
+        129
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/home/v2/today_scene/TodaySceneView.tsx",
+      "ownerName": "TodaySceneView",
+      "ownerPath": "TodaySceneView",
+      "ancestorPath": [
+        "ScrollView",
+        "View",
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "71aa44764f564fb03f3ea5e75e61e6ca767baebf6becefaf73edd6a920f779be",
+      "count": 2,
+      "lineHints": [
+        194,
+        195
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonCourseView.tsx",
+      "ownerName": "SeasonCourseView",
+      "ownerPath": "SeasonCourseView",
+      "ancestorPath": [
+        "ScrollView",
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "72763c70a4bf97dcd05eccb4204ed7136814b8eebc56dc1013ea262befdbc33b",
+      "count": 1,
+      "lineHints": [
+        334
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/NotificationCenterButton.tsx",
+      "ownerName": "NotificationCenterButton",
+      "ownerPath": "NotificationCenterButton",
+      "ancestorPath": [
+        "KitSheetModal",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "font-scaling-disabled",
+      "prop": "allowFontScaling",
+      "value": "false",
+      "testID": null,
+      "fingerprint": "72ad21604c61bed037b0514431fd9c6942985a13a6131e1238946007285aa2e0",
+      "count": 1,
+      "lineHints": [
+        707
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -972,6 +2142,35 @@
       }
     },
     {
+      "file": "components/streak/moments/StreakMilestoneToast.tsx",
+      "ownerName": "StreakMilestoneToast",
+      "ownerPath": "StreakMilestoneToast",
+      "ancestorPath": [
+        "Animated.View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "72e739c9fbda57840cc905d2b715c98225b6b531ceb506df2953698c867fcc61",
+      "count": 2,
+      "lineHints": [
+        80,
+        81
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
       "file": "components/VipGreenUserName.tsx",
       "ownerName": "VipGreenUserName",
       "ownerPath": "VipGreenUserName",
@@ -988,6 +2187,118 @@
       "count": 1,
       "lineHints": [
         47
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/streak/moments/StreakMomentFlame.tsx",
+      "ownerName": "StreakMomentFlame",
+      "ownerPath": "StreakMomentFlame",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "76c4f12b23ef2f1640150f7cac05d273f5499fdd9f65aa72d4b7444a8d2ed13b",
+      "count": 1,
+      "lineHints": [
+        105
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonPickScreens.tsx",
+      "ownerName": "Row",
+      "ownerPath": "Row",
+      "ancestorPath": [
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "77fe7d39f38356330b15af854b3b0e8a3991a17859fe5a0768612178f10045b9",
+      "count": 1,
+      "lineHints": [
+        97
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/ReportErrorButton.tsx",
+      "ownerName": "ReportErrorButton",
+      "ownerPath": "ReportErrorButton",
+      "ancestorPath": [
+        "KitTouchable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "78722a2561b18beb1d18f50b371477e1fdcaf4894d83de19ca99074c74d0956d",
+      "count": 1,
+      "lineHints": [
+        319
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpireTowerRivals.tsx",
+      "ownerName": "RivalsLayer",
+      "ownerPath": "RivalsLayer",
+      "ancestorPath": [
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "787848668197b7e153242550c32cf6aab26bf6950afd3da6e937b2d5a8758ec7",
+      "count": 1,
+      "lineHints": [
+        67
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1017,7 +2328,96 @@
       "fingerprint": "798f893279ed287f463a493ee729ffd1dae44f5a060c746a513b12e37284c8c3",
       "count": 1,
       "lineHints": [
-        626
+        641
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/stories/announcements_v2/frames_sections_a.tsx",
+      "ownerName": "DialogsFrame",
+      "ownerPath": "DialogsFrame",
+      "ancestorPath": [
+        "AnnRoot",
+        "View",
+        "Loop",
+        "Keyframed",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "3",
+      "testID": null,
+      "fingerprint": "7a17c4af33b4e721614ec088e90f8ac85d5d707e9303cb7d6cf252f937bb098d",
+      "count": 1,
+      "lineHints": [
+        145
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/scene/DialogsScenePanel.tsx",
+      "ownerName": "DialogCard",
+      "ownerPath": "DialogCard",
+      "ancestorPath": [
+        "V2Pressable",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "7b2135cd5c5c1e1d36e447605550bfd0b3c03e0c5224bd747bbcdfaab4fc7fc6",
+      "count": 1,
+      "lineHints": [
+        93
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/theory/TheoryLessonView.tsx",
+      "ownerName": "TheoryLessonView",
+      "ownerPath": "TheoryLessonView",
+      "ancestorPath": [
+        "ScreenGradient",
+        "View",
+        "BouncyScrollView",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "7cda4d2850140c5bea0d5835bdb3c2859cc93188e8b481cdbdbc62f8c027ef44",
+      "count": 1,
+      "lineHints": [
+        675
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1052,7 +2452,7 @@
       "fingerprint": "7ddc326b84b6e810e2c179c605056ac921ae79c1a098817f05b2a353a077959d",
       "count": 1,
       "lineHints": [
-        4402
+        3243
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1081,7 +2481,7 @@
       "fingerprint": "7ede3653f90312b568d1a2c12d23d7a17c998a1fccac5de97758c13afe91f52c",
       "count": 1,
       "lineHints": [
-        51
+        53
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1137,7 +2537,36 @@
       "fingerprint": "8012e6150ffab5ef83bd4298b3d39e54d4e2de7976a5531edb3e45863d7cacb9",
       "count": 1,
       "lineHints": [
-        75
+        78
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/home/v2/today_scene/TodayWeekCard.tsx",
+      "ownerName": "TodayWeekCard",
+      "ownerPath": "TodayWeekCard",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "83a6fbbaf854b1e8cb54b7ca15a9e7ff69b9723c87cca4c9c9aad782bc039578",
+      "count": 1,
+      "lineHints": [
+        78
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1170,8 +2599,8 @@
       "fingerprint": "8407eea4bd72f6018de8ee083ca081f2d1e403a9eec8a5e7a219281f3c76e769",
       "count": 2,
       "lineHints": [
-        1449,
-        1452
+        1696,
+        1702
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1183,13 +2612,12 @@
       }
     },
     {
-      "file": "app/lesson1.tsx",
-      "ownerName": "LessonContent",
-      "ownerPath": "LessonContent",
+      "file": "app/flashcards/CardsHubV2.tsx",
+      "ownerName": "CardsHubV2Inner",
+      "ownerPath": "CardsHubV2Inner",
       "ancestorPath": [
-        "KeyboardAvoidingView",
         "View",
-        "LessonPressable",
+        "View",
         "Text"
       ],
       "tag": "Text",
@@ -1197,11 +2625,211 @@
       "prop": "numberOfLines",
       "value": "1",
       "testID": null,
-      "fingerprint": "8c94e1e2d4aad6a346c5bf819e9d3b880a243cfb9ea9926e69ea912d8e8d05f8",
+      "fingerprint": "84430b58e80866e0aeb1f990dbe21929f92992346cf1495579fef807390b39a9",
+      "count": 1,
+      "lineHints": [
+        147
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/flashcards/CardFlipV2.tsx",
+      "ownerName": "CardFlipV2Impl",
+      "ownerPath": "CardFlipV2Impl",
+      "ancestorPath": [
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": null,
+      "fingerprint": "84e56b01c5e65bb7ad134f6ce37d8badb8bcf988f614da5a281b345018e843eb",
       "count": 2,
       "lineHints": [
-        1614,
-        1655
+        111,
+        120
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/plus-tab/PlusTabPlans.tsx",
+      "ownerName": "Tile",
+      "ownerPath": "Tile",
+      "ancestorPath": [
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "8613c1b753134d85aa6d5038d986e5603c6d7916def592815cfada645757c5cf",
+      "count": 1,
+      "lineHints": [
+        74
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/community_packs/PackCommentsSheet.tsx",
+      "ownerName": "PackCommentsSheet",
+      "ownerPath": "PackCommentsSheet",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "874a5619734fc5e611f28cfdcc7324f60d513f013ee16d31b93c9755afc52305",
+      "count": 1,
+      "lineHints": [
+        820
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpireGhostLayer.tsx",
+      "ownerName": "SpireGhostLayer",
+      "ownerPath": "SpireGhostLayer",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "View",
+        "Animated.View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "87a60dbc5e885c33f612cfaebb1e8145c52fd1202c2f41b1aba5843405451a28",
+      "count": 1,
+      "lineHints": [
+        108
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/CleanOnboarding.tsx",
+      "ownerName": "OptionCard",
+      "ownerPath": "OptionCard",
+      "ancestorPath": [
+        "KitTouchable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "87b88cb9209ded8204c25940ee6c3e441a6547d9ffca184920ed0729308a909c",
+      "count": 1,
+      "lineHints": [
+        1079
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/LearningV2DictionaryV2.tsx",
+      "ownerName": "LearningV2DictionaryV2",
+      "ownerPath": "LearningV2DictionaryV2",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "88ce5591c7d33eb71895ad1cf0a668bda1f0cd6d4f6d9ee834c18cf0f4e0bfdb",
+      "count": 1,
+      "lineHints": [
+        398
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/workshop/PhraseWorkshopTheorySheet.tsx",
+      "ownerName": "PhraseWorkshopTheorySheetBase",
+      "ownerPath": "PhraseWorkshopTheorySheetBase",
+      "ancestorPath": [
+        "View",
+        "View",
+        "PressableHybrid",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "8e9d11b309de32381e186987921dcee408bb4dd962421d1babbea724d319b576",
+      "count": 1,
+      "lineHints": [
+        84
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1230,8 +2858,41 @@
       "fingerprint": "903590764ed13393be92884e5f36e2bcb423b3454abd126998d471050a7f4f20",
       "count": 2,
       "lineHints": [
-        310,
-        316
+        318,
+        324
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/DialogueV2SessionScreen.tsx",
+      "ownerName": "DialogueV2SessionScreen",
+      "ownerPath": "DialogueV2SessionScreen",
+      "ancestorPath": [
+        "KeyboardAvoidingView",
+        "SafeAreaView",
+        "View",
+        "View",
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": null,
+      "fingerprint": "93d478377a6b31d153a316d641a77ade8074728fb14461899bd202274a7b7a5c",
+      "count": 1,
+      "lineHints": [
+        507
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1259,7 +2920,7 @@
       "fingerprint": "97b452567ef50a89a91805a0bbe1179193e8a26d9f46e9c3da8d78783785b40b",
       "count": 1,
       "lineHints": [
-        126
+        131
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1288,7 +2949,120 @@
       "fingerprint": "9a7e3c7f3e6121111c37e8fd13d8fd44135cb4218e8c73422ecb8e91abcd1cdf",
       "count": 1,
       "lineHints": [
-        857
+        952
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/stories/announcements_v2/frames_time.tsx",
+      "ownerName": "SoonFrame",
+      "ownerPath": "SoonFrame",
+      "ancestorPath": [
+        "AnnRoot",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "9af2bc29d77b50bc1a50ecb413029513e0732f34bdab0b888c9ff9cd2f0eb99a",
+      "count": 1,
+      "lineHints": [
+        234
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpireCountdownOverlay.tsx",
+      "ownerName": "SpireCountdownOverlayBase",
+      "ownerPath": "SpireCountdownOverlayBase",
+      "ancestorPath": [
+        "View",
+        "Animated.Text"
+      ],
+      "tag": "Animated.Text",
+      "kind": "font-scaling-disabled",
+      "prop": "allowFontScaling",
+      "value": "false",
+      "testID": null,
+      "fingerprint": "9dd23d601a99e3629fc276e8f5fbd7d14972b64bff623b26042ad7a754c4a72a",
+      "count": 1,
+      "lineHints": [
+        51
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/DialogueV2PlusTools.tsx",
+      "ownerName": "DialogueV2PlusTools",
+      "ownerPath": "DialogueV2PlusTools",
+      "ancestorPath": [
+        "View",
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "9e7ccc75d197ed81d82612715bef46fc2999f28b63fbaab0ba5bad693b09740c",
+      "count": 2,
+      "lineHints": [
+        67,
+        68
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/video/VideoRewardOverlay.tsx",
+      "ownerName": "VideoRewardFlashBase",
+      "ownerPath": "VideoRewardFlashBase",
+      "ancestorPath": [
+        "View",
+        "Animated.View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "font-scaling-disabled",
+      "prop": "allowFontScaling",
+      "value": "false",
+      "testID": null,
+      "fingerprint": "a020fc35eebae2561fb00d0d820a783c74097827d9f303180fac9a687377aa91",
+      "count": 1,
+      "lineHints": [
+        47
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1315,7 +3089,91 @@
       "fingerprint": "a17e6e2cac0724a463ef9196ae0100dc05d926db0c3944af61850a2301d72980",
       "count": 1,
       "lineHints": [
-        74
+        86
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpireTowerRivals.tsx",
+      "ownerName": "RivalsLayer",
+      "ownerPath": "RivalsLayer",
+      "ancestorPath": [
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "a22902ff62d820a2f3b51d0c5157f6812e8c0ac45451ecf52401aaeda7d8a80e",
+      "count": 1,
+      "lineHints": [
+        69
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/language_welcome.tsx",
+      "ownerName": "renderOptions",
+      "ownerPath": "LanguageWelcomeScreen>renderOptions",
+      "ancestorPath": [
+        "View",
+        "KitTouchable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "a2421ad721e26f6c18168453c71dbd6da3a0e2ba8f2d5b999466783527d2ccb5",
+      "count": 1,
+      "lineHints": [
+        291
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/LearningV2DictionaryV2.tsx",
+      "ownerName": "LearningV2DictionaryV2",
+      "ownerPath": "LearningV2DictionaryV2",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "a30848ca5f47e9c5ac725e3ba5d9be53d15e54f45d5b7c8a725df4802de0e35a",
+      "count": 1,
+      "lineHints": [
+        297
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1355,6 +3213,37 @@
       }
     },
     {
+      "file": "components/home/v2/today_scene/TodaySceneView.tsx",
+      "ownerName": "TodaySceneView",
+      "ownerPath": "TodaySceneView",
+      "ancestorPath": [
+        "ScrollView",
+        "View",
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "a6e01ca5a70b725374a2b00dc634221446d038a63b4fb26c2d8c1a9d83fb68f8",
+      "count": 2,
+      "lineHints": [
+        223,
+        224
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
       "file": "app/flashcards/FlashcardsCategoryTiles.tsx",
       "ownerName": "FlashcardsCategoryTiles",
       "ownerPath": "FlashcardsCategoryTiles",
@@ -1372,7 +3261,7 @@
       "fingerprint": "a98dffc475e118549293524e5faae374fc148f1ce830b075ea37e1ffbe58cfc0",
       "count": 1,
       "lineHints": [
-        99
+        98
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1402,7 +3291,7 @@
       "fingerprint": "aadea2107270a910a8dfc10010c92587a5fbb304ab2f540626576815ebb9c472",
       "count": 1,
       "lineHints": [
-        862
+        957
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1460,7 +3349,240 @@
       "fingerprint": "ae878c5868481566e5c4b10673ea20f06da8ee813de15c2c32a2c47489ad8018",
       "count": 1,
       "lineHints": [
-        313
+        322
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/flashcards/CardFlipV2.tsx",
+      "ownerName": "CardFlipV2Impl",
+      "ownerPath": "CardFlipV2Impl",
+      "ancestorPath": [
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "wordLines(height,lh(36))",
+      "testID": null,
+      "fingerprint": "af00618d4d3ff91e413beb29889b46cf846d8e29dd28253c557cbdd5834b62d9",
+      "count": 1,
+      "lineHints": [
+        120
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/home/v2/HomeV2ContinueCard.tsx",
+      "ownerName": "HomeV2ContinueCardView",
+      "ownerPath": "HomeV2ContinueCardView",
+      "ancestorPath": [
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": "\"home-continue-lesson-title\"",
+      "fingerprint": "afcf9c1fc30921beaf5a419c88f328b0132ba6a0a59d6f0adfc9a0dc624263ff",
+      "count": 1,
+      "lineHints": [
+        112
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/flashcards_video_packs.tsx",
+      "ownerName": "FlashcardsVideoPacksScreen",
+      "ownerPath": "FlashcardsVideoPacksScreen",
+      "ancestorPath": [
+        "View",
+        "SafeAreaView",
+        "ContentWrap",
+        "View",
+        "PackTopBarRow",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "b19c2cd6d855c9b413fef64aae3b9fa47506f209327a437f65987dd2d99aaff7",
+      "count": 1,
+      "lineHints": [
+        614
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/moments/SpireOvertakeToast.tsx",
+      "ownerName": "SpireOvertakeToast",
+      "ownerPath": "SpireOvertakeToast",
+      "ancestorPath": [
+        "View",
+        "Animated.View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": "`${testID}-title`",
+      "fingerprint": "b2ccf0af17dc1f2d0d0bcd4ccfa8de2ae51f08e1855131f893acb935a69e7b37",
+      "count": 1,
+      "lineHints": [
+        85
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/hub/DialogueV2ThemeScreen.tsx",
+      "ownerName": "DialogueV2ThemeScreen",
+      "ownerPath": "DialogueV2ThemeScreen",
+      "ancestorPath": [
+        "ScreenGradient",
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "b41d2da50c302e5f7eb0ef60b76598449eee13be7cdfed5a64068ac8d742b73c",
+      "count": 2,
+      "lineHints": [
+        133,
+        134
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/learning_v2_lesson_words.tsx",
+      "ownerName": "LearningV2LessonWordsScreen",
+      "ownerPath": "LearningV2LessonWordsScreen",
+      "ancestorPath": [
+        "ScreenGradient",
+        "View",
+        "ContentWrap",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "b591d6d573af4a45052eb3916d66186a963a359e51a4ab870ae70e8867efc0cc",
+      "count": 1,
+      "lineHints": [
+        94
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/hub/DialogueV2ThemeScreen.tsx",
+      "ownerName": "ThemeRow",
+      "ownerPath": "ThemeRow",
+      "ancestorPath": [
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "b60a24fd39b8e87c35236bdc3c125c648e6b161bb72bfd7d88991c5433601341",
+      "count": 1,
+      "lineHints": [
+        62
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/scene/SpireScenePedestal.tsx",
+      "ownerName": "SpireScenePedestal",
+      "ownerPath": "SpireScenePedestal",
+      "ancestorPath": [
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "bb1703b74278c6cdc3dc18abf7e4f2f52251eb773dd09c3078465b4233a608ee",
+      "count": 1,
+      "lineHints": [
+        84
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1516,7 +3638,91 @@
       "fingerprint": "bc67b98ae2c5892a9a2a0e38434003fda223256eddb2760813e732dc6f7e36c1",
       "count": 1,
       "lineHints": [
-        130
+        135
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/lesson_prep/LessonPrepCtaBody.tsx",
+      "ownerName": "LessonPrepCtaBody",
+      "ownerPath": "LessonPrepCtaBody",
+      "ancestorPath": [
+        "View",
+        "Animated.View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": "testID?`${testID}-label`:undefined",
+      "fingerprint": "bd4067399b8568518c45bbbb3d900a7ce3fbd5d584cbc8e9f4a555e35615152c",
+      "count": 1,
+      "lineHints": [
+        157
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/youtube/YoutubeVideoGridCard.tsx",
+      "ownerName": "YoutubeVideoGridCardBase",
+      "ownerPath": "YoutubeVideoGridCardBase",
+      "ancestorPath": [
+        "View",
+        "TouchableOpacity",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": null,
+      "fingerprint": "bd767bf3513a58853d51b5db2ccf4dcaea79b7cefccac7f54da7457893de74d5",
+      "count": 1,
+      "lineHints": [
+        69
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/hub/DialogsHubWorldSwitch.tsx",
+      "ownerName": "DialogsHubWorldSwitch",
+      "ownerPath": "DialogsHubWorldSwitch",
+      "ancestorPath": [
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "bd955e1f69adfe6032d8ef3bdb0beabf3069ff09dd5f86af5b556b1d34dfcdad",
+      "count": 1,
+      "lineHints": [
+        49
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1550,8 +3756,8 @@
       "fingerprint": "bdc800f316fe42e53c9641fe8a0a12884e70311305a78196cba993b5fdfb2895",
       "count": 2,
       "lineHints": [
-        4373,
-        4376
+        3214,
+        3217
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1577,7 +3783,7 @@
       "fingerprint": "be74498b2f37d6af2b3bd3c98790297a851e59de539cc42a092fa950b46883a5",
       "count": 1,
       "lineHints": [
-        66
+        75
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1608,7 +3814,37 @@
       "fingerprint": "c1b00bda0c34ef1221b2f67657f41b208cc4760fb8bb3a54e2f03604c6ad460e",
       "count": 1,
       "lineHints": [
-        779
+        873
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/home/v2/HomeV2TodayCard.tsx",
+      "ownerName": "HomeV2TodayCardView",
+      "ownerPath": "HomeV2TodayCardView",
+      "ancestorPath": [
+        "View",
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "c2051f7084d6d31efd5926c898e7bc94f8f5665aa17eb12e2ddb701eedfb8219",
+      "count": 2,
+      "lineHints": [
+        189,
+        190
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1637,7 +3873,189 @@
       "fingerprint": "c2e19e62b11afa546aa5b795d932568edbc86a569d36bb9595df07350a9e45d0",
       "count": 1,
       "lineHints": [
-        399
+        474
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/flashcards/VideoThumb.tsx",
+      "ownerName": "VideoThumbFallback",
+      "ownerPath": "VideoThumbFallback",
+      "ancestorPath": [
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "c2ec8f0cc0dc54133458994bc7820c42fc19a848634b522ef6beab1a1eafbbf0",
+      "count": 1,
+      "lineHints": [
+        62
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/scene/SpireScenePedestal.tsx",
+      "ownerName": "SpireScenePedestal",
+      "ownerPath": "SpireScenePedestal",
+      "ancestorPath": [
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "c366e9730796bbeecef67ca69998abd70491e7d7df47e388cd03a13cb945b868",
+      "count": 1,
+      "lineHints": [
+        90
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/NotificationCenterButton.tsx",
+      "ownerName": "NotificationCenterButton",
+      "ownerPath": "NotificationCenterButton",
+      "ancestorPath": [
+        "KitSheetModal",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "c3e73727317cbf575e37acc3de69934457b8f1d8a9bb40c9abef86af88a3a23c",
+      "count": 2,
+      "lineHints": [
+        707,
+        711
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/AppMessagesInbox.tsx",
+      "ownerName": "renderEmbeddedSection",
+      "ownerPath": "AppMessagesInbox>renderEmbeddedSection",
+      "ancestorPath": [
+        "View",
+        "View",
+        "KitTouchable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "c3f9e14ec2c3ae9d153f048cea00fe8a1507feefec771aa8b4ba1e079e819869",
+      "count": 2,
+      "lineHints": [
+        721,
+        725
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/LearningV2DictionaryV2.tsx",
+      "ownerName": "LearningV2DictionaryV2",
+      "ownerPath": "LearningV2DictionaryV2",
+      "ancestorPath": [
+        "View",
+        "Modal",
+        "SheetSwipeRoot",
+        "SheetSwipeClose",
+        "View",
+        "View",
+        "Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "c40681135dd7bccdd76ad811ec3f1b153307a58c28b661f7b647d28770d71dae",
+      "count": 1,
+      "lineHints": [
+        468
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonCourseView.tsx",
+      "ownerName": "SeasonCourseView",
+      "ownerPath": "SeasonCourseView",
+      "ancestorPath": [
+        "ScrollView",
+        "SceneBlockShadow",
+        "View",
+        "View",
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "c44726883cbd97a2e5754db0a2b2c71a358f3e5da73f45016af75b5d09bdfae9",
+      "count": 1,
+      "lineHints": [
+        300
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1668,7 +4086,7 @@
       "fingerprint": "c478f6fb769189ad2ec412550cfc9a125ed614b5288e8db8dd3bf84e785b45b5",
       "count": 1,
       "lineHints": [
-        1212
+        1158
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1680,11 +4098,13 @@
       }
     },
     {
-      "file": "components/NotificationCenterButton.tsx",
-      "ownerName": "NotificationCenterButton",
-      "ownerPath": "NotificationCenterButton",
+      "file": "components/dialogs/DialogueV2SessionScreen.tsx",
+      "ownerName": "DialogueV2SessionScreen",
+      "ownerPath": "DialogueV2SessionScreen",
       "ancestorPath": [
-        "MotionModal",
+        "KeyboardAvoidingView",
+        "SafeAreaView",
+        "View",
         "View",
         "View",
         "Text"
@@ -1694,10 +4114,406 @@
       "prop": "numberOfLines",
       "value": "1",
       "testID": null,
-      "fingerprint": "cd2bc3d5c83167483acd67555aa236a493bbfd828ffafea932d9d6a04b4fb9cb",
+      "fingerprint": "c48b7cf765f057db61e48d2bed60c1f9a7d3e41469b095faddaf619f930ab612",
       "count": 1,
       "lineHints": [
-        628
+        491
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonCardFace.tsx",
+      "ownerName": "SeasonCardFace",
+      "ownerPath": "SeasonCardFace",
+      "ancestorPath": [
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "3",
+      "testID": null,
+      "fingerprint": "cadf1988331f42fd1e2ebd9b3d5940f5ce22f905f3a4d4db9eda4089e4ad6aa5",
+      "count": 1,
+      "lineHints": [
+        79
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/lessons/LessonHardModeSwitchLine.tsx",
+      "ownerName": "LessonHardModeSwitchLine",
+      "ownerPath": "LessonHardModeSwitchLine",
+      "ancestorPath": [
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "cb4b1d9e166bcc6d2e3f385668bcdf59f4adcbb249a6ff0bb147a14826f8d94d",
+      "count": 1,
+      "lineHints": [
+        32
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/peak/PeakTopRow.tsx",
+      "ownerName": "PeakTopRow",
+      "ownerPath": "PeakTopRow",
+      "ancestorPath": [
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "cc18bbfd8104cc4fc07ea7e6e3ff5d40fb0998cfb6ddbfdc285fac4a5ddf7308",
+      "count": 1,
+      "lineHints": [
+        27
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/video/VideoRewardOverlay.tsx",
+      "ownerName": "VideoRewardStoryHostBase",
+      "ownerPath": "VideoRewardStoryHostBase",
+      "ancestorPath": [
+        "Modal",
+        "Animated.View",
+        "Animated.View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "font-scaling-disabled",
+      "prop": "allowFontScaling",
+      "value": "false",
+      "testID": null,
+      "fingerprint": "d23c40964d1c5125cc8f8f9e9b9f06c1e5ad07d66444ba1f91a7e128432dd96f",
+      "count": 1,
+      "lineHints": [
+        80
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/lesson1.tsx",
+      "ownerName": "LessonContent",
+      "ownerPath": "LessonContent",
+      "ancestorPath": [
+        "KeyboardAvoidingView",
+        "View",
+        "View",
+        "LessonPressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "d3e1baf2276f67055af22c13ffbf6d052df27c43584a20df553aebadc584a106",
+      "count": 2,
+      "lineHints": [
+        1787,
+        1828
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonLockHint.tsx",
+      "ownerName": "SeasonLockHint",
+      "ownerPath": "SeasonLockHint",
+      "ancestorPath": [
+        "Animated.View",
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "d58c55f7e673f325e000a3b43a7459aa8d4e9011edd2fd4abe71c0ea6de6f9d7",
+      "count": 1,
+      "lineHints": [
+        126
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpireFloorInfo.tsx",
+      "ownerName": "SpireFloorInfo",
+      "ownerPath": "SpireFloorInfo",
+      "ancestorPath": [
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "d65567410080b176050835d0de2530e695964712eff9e810c6786004bc92d3ab",
+      "count": 1,
+      "lineHints": [
+        67
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonNavTiles.tsx",
+      "ownerName": "Tile",
+      "ownerPath": "Tile",
+      "ancestorPath": [
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "d70f303f3f310463aa6ed98a4d8d7c93fcefdf8e03b7b82dc91efedb7e7d686d",
+      "count": 1,
+      "lineHints": [
+        59
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/workshop/PhraseWorkshopRowButton.tsx",
+      "ownerName": "PhraseWorkshopRowButtonBase",
+      "ownerPath": "PhraseWorkshopRowButtonBase",
+      "ancestorPath": [
+        "View",
+        "PressableHybrid",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "d97f043b802cdec86646ba38109d50ee6d3d2b2823b4f24545104ef8cb7bfb18",
+      "count": 1,
+      "lineHints": [
+        58
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/(tabs)/settings.tsx",
+      "ownerName": "SettingsMain",
+      "ownerPath": "SettingsMain",
+      "ancestorPath": [
+        "ScreenGradient",
+        "Modal",
+        "View",
+        "View",
+        "View",
+        "TouchableOpacity",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "db501ee69e33e0ecb9f377f89d5e0786d1ec0b12895603e22b67324714c8a0e0",
+      "count": 2,
+      "lineHints": [
+        1718,
+        1993
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/dialogs/DialogueV2SessionScreen.tsx",
+      "ownerName": "DialogueV2SessionScreen",
+      "ownerPath": "DialogueV2SessionScreen",
+      "ancestorPath": [
+        "KeyboardAvoidingView",
+        "SafeAreaView",
+        "View",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "ellipsis",
+      "prop": "ellipsizeMode",
+      "value": "\"tail\"",
+      "testID": null,
+      "fingerprint": "dd72e50c379df1b549179d02b5d3256a86bc9e163ef8447814132f1aa62333f3",
+      "count": 1,
+      "lineHints": [
+        551
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonCourseView.tsx",
+      "ownerName": "HeroTile",
+      "ownerPath": "HeroTile",
+      "ancestorPath": [
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "de811ed2d4ff547e50102a3596cb2cf4832298c21b8719c44dfcbe6542f7668c",
+      "count": 1,
+      "lineHints": [
+        388
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/home/HomeReviewHint.tsx",
+      "ownerName": "HomeReviewHint",
+      "ownerPath": "HomeReviewHint",
+      "ancestorPath": [
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "dee18822da3a08a00e28a6b5305fc2fe3a281fec69007ef31b307fb2010c1781",
+      "count": 1,
+      "lineHints": [
+        34
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "app/flashcards/CardsHubV2.tsx",
+      "ownerName": "CardsHubListRow",
+      "ownerPath": "CardsHubListRow",
+      "ancestorPath": [
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "e217e111951d5973438c31dfcfb9b84b3277631986ab99999f7863601182212d",
+      "count": 1,
+      "lineHints": [
+        104
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1732,8 +4548,97 @@
       "fingerprint": "e2b3c6202d2bb3bed9868fe46900b1df9d27bfe544aa1927bba3eddc99fed6b8",
       "count": 2,
       "lineHints": [
-        4399,
-        4407
+        3240,
+        3248
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/LearningV2TaskChrome.tsx",
+      "ownerName": "LearningV2TaskTitle",
+      "ownerPath": "LearningV2TaskTitle",
+      "ancestorPath": [
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "e54b7acab7f4fc9acd7aa0c946bd49b38d7a471684b07fc7940519fe97b238a7",
+      "count": 1,
+      "lineHints": [
+        41
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpirePodium.tsx",
+      "ownerName": "SpirePodium",
+      "ownerPath": "SpirePodium",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "e64e0227f1afbc369c645d804c9fb86b2275a1770563fbf5f6e3d8a733252782",
+      "count": 1,
+      "lineHints": [
+        83
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonCourseView.tsx",
+      "ownerName": "SeasonCourseView",
+      "ownerPath": "SeasonCourseView",
+      "ancestorPath": [
+        "ScrollView",
+        "SceneBlockShadow",
+        "View",
+        "View",
+        "V2Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "e8eca6c59c58d6696d6c726e949f050374b7079e6f8e37a80af72af29e4516f5",
+      "count": 1,
+      "lineHints": [
+        312
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1762,7 +4667,7 @@
       "fingerprint": "ea50ce5e23939c748264956f0e152e70e4edf4a2b1d33a02d4a19c2426774c5b",
       "count": 1,
       "lineHints": [
-        108
+        111
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1774,13 +4679,99 @@
       }
     },
     {
-      "file": "components/AppMessagesInbox.tsx",
-      "ownerName": "renderEmbeddedSection",
-      "ownerPath": "AppMessagesInbox>renderEmbeddedSection",
+      "file": "components/spire/peak/PeakTourFull.tsx",
+      "ownerName": "PicTop",
+      "ownerPath": "PicTop",
       "ancestorPath": [
         "View",
         "View",
-        "TouchableOpacity",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "ebf8b9529916417265684d73d8fb3e17311657204abfcf104206dc0cdcebbeea",
+      "count": 1,
+      "lineHints": [
+        84
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/stories/announcements_v2/frames_community.tsx",
+      "ownerName": "PollRow",
+      "ownerPath": "PollRow",
+      "ancestorPath": [
+        "Enter",
+        "Pressable",
+        "Keyframed",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "f111e125408597ef6c0695fb6ed010c01689faf975078f1e62d1de19c020eb55",
+      "count": 1,
+      "lineHints": [
+        143
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonNavTiles.tsx",
+      "ownerName": "Tile",
+      "ownerPath": "Tile",
+      "ancestorPath": [
+        "V2Pressable",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": "`${testID}-value`",
+      "fingerprint": "f45233084e45ea0cb3bf2037c505ffc7da908fa583a431fa258ee5b28ff78e2b",
+      "count": 1,
+      "lineHints": [
+        56
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/CleanOnboarding.tsx",
+      "ownerName": "PhoneMock",
+      "ownerPath": "PhoneMock",
+      "ancestorPath": [
+        "View",
+        "View",
+        "Animated.View",
         "View",
         "Text"
       ],
@@ -1789,11 +4780,124 @@
       "prop": "numberOfLines",
       "value": "2",
       "testID": null,
-      "fingerprint": "fb710b03d0d01c6b2c55c61612f66a813c4b3f5ec9ee8d763331e9041a055a3d",
-      "count": 2,
+      "fingerprint": "f474139c12ddf994631b0adfd9d6576f2dc131667ea572041e3636d53e75bce5",
+      "count": 1,
       "lineHints": [
-        694,
-        698
+        1921
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/spire/SpireGhostLayer.tsx",
+      "ownerName": "SpireGhostLayer",
+      "ownerPath": "SpireGhostLayer",
+      "ancestorPath": [
+        "View",
+        "View",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "f506db590e87e919551f84fdf0b89f2b41751e9530040cb86a89be9a6836ddaf",
+      "count": 1,
+      "lineHints": [
+        104
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/learning-v2/season/SeasonCourseView.tsx",
+      "ownerName": "SeasonCourseView",
+      "ownerPath": "SeasonCourseView",
+      "ancestorPath": [
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "f791e3f4b7a6caebe1e21fc3a313b2e79a09a10b75cdeef05ea574155b9b16ed",
+      "count": 1,
+      "lineHints": [
+        266
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/home/v2/today_scene/TodaySceneView.tsx",
+      "ownerName": "TodaySceneView",
+      "ownerPath": "TodaySceneView",
+      "ancestorPath": [
+        "ScrollView",
+        "SceneBlockShadow",
+        "View",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": "\"today-scene-heading\"",
+      "fingerprint": "f9af9a7e6f5830145ac58ef13d40017a4b99b1bc866f2ed84b987dd4e8f22f2a",
+      "count": 1,
+      "lineHints": [
+        144
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/legacy_bonus/LegacyBonusRow.tsx",
+      "ownerName": "LegacyBonusRow",
+      "ownerPath": "LegacyBonusRow",
+      "ancestorPath": [
+        "Animated.View",
+        "Animated.Text"
+      ],
+      "tag": "Animated.Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "fb4ff943d74b6da3b524d023c04af8a69fb0082ee208bdf9aa81b2c480eada29",
+      "count": 1,
+      "lineHints": [
+        131
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1820,7 +4924,7 @@
       "fingerprint": "fdaf47f9de28f56ff933ec76f5114c157325db7cc89722e268f2376bc4be2185",
       "count": 1,
       "lineHints": [
-        374
+        306
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -1832,73 +4936,12 @@
       }
     },
     {
-      "file": "components/CleanOnboarding.tsx",
-      "ownerName": "renderWelcome",
-      "ownerPath": "CleanOnboarding>renderWelcome",
-      "ancestorPath": [
-        "SafeAreaView",
-        "KeyboardAvoidingView",
-        "View",
-        "View",
-        "FadeUp",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "3",
-      "testID": null,
-      "fingerprint": "1277b6aca1bc32cf0429abe8e0c77c305b5320aaacefda8e778d4118daad4b2c",
-      "count": 1,
-      "lineHints": [
-        3167
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "design-session",
-      "reason": "онбординг заморожен владельцем, 01.10, координатор",
-      "expiryMilestone": "onboarding-unfreeze",
-      "exception": {
-        "approvedBy": "coordinator-2026-10-01",
-        "scope": "components/CleanOnboarding.tsx-only"
-      }
-    },
-    {
-      "file": "components/CleanOnboarding.tsx",
-      "ownerName": "renderNiceToMeet",
-      "ownerPath": "CleanOnboarding>renderNiceToMeet",
-      "ancestorPath": [
-        "ScreenFrame",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "329c0bc738cd50e76ce19c0d908b8b73610fcd0d8a4a9bcd09c9430bf490b11a",
-      "count": 1,
-      "lineHints": [
-        3328
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "design-session",
-      "reason": "онбординг заморожен владельцем, 01.10, координатор",
-      "expiryMilestone": "onboarding-unfreeze",
-      "exception": {
-        "approvedBy": "coordinator-2026-10-01",
-        "scope": "components/CleanOnboarding.tsx-only"
-      }
-    },
-    {
-      "file": "components/CleanOnboarding.tsx",
-      "ownerName": "PhoneMock",
-      "ownerPath": "PhoneMock",
+      "file": "components/dialogs/hub/DialogsHubThemes.tsx",
+      "ownerName": "DialogsHubThemes",
+      "ownerPath": "DialogsHubThemes",
       "ancestorPath": [
         "View",
-        "View",
-        "Animated.View",
-        "View",
-        "View",
+        "V2Pressable",
         "Text"
       ],
       "tag": "Text",
@@ -1906,28 +4949,28 @@
       "prop": "numberOfLines",
       "value": "1",
       "testID": null,
-      "fingerprint": "684e5d479a46b64aa5bb7e85c92b660cf099cdb8a8fdc997d2a80fc0c0455cab",
+      "fingerprint": "fe81909e5cf561c64d8c3f19eaaa1143150c7255a8961a4bd9133365528a061c",
       "count": 1,
       "lineHints": [
-        1731
+        86
       ],
       "intendedMode": "temporary-exception",
-      "owner": "design-session",
-      "reason": "онбординг заморожен владельцем, 01.10, координатор",
-      "expiryMilestone": "onboarding-unfreeze",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
       "exception": {
-        "approvedBy": "coordinator-2026-10-01",
-        "scope": "components/CleanOnboarding.tsx-only"
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
       }
     },
     {
-      "file": "components/CleanOnboarding.tsx",
-      "ownerName": "PhoneMock",
-      "ownerPath": "PhoneMock",
+      "file": "components/dialogs/DialogueV2FreeformScreen.tsx",
+      "ownerName": "DialogueV2FreeformScreen",
+      "ownerPath": "DialogueV2FreeformScreen",
       "ancestorPath": [
+        "KeyboardAvoidingView",
+        "SafeAreaView",
         "View",
-        "View",
-        "Animated.View",
         "View",
         "Text"
       ],
@@ -1936,18 +4979,46 @@
       "prop": "numberOfLines",
       "value": "2",
       "testID": null,
-      "fingerprint": "f474139c12ddf994631b0adfd9d6576f2dc131667ea572041e3636d53e75bce5",
+      "fingerprint": "ff2644fd345d22879bb96e4407f260a3798d98fbfff88025c86c52825cfe4189",
       "count": 1,
       "lineHints": [
-        1734
+        326
       ],
       "intendedMode": "temporary-exception",
-      "owner": "design-session",
-      "reason": "онбординг заморожен владельцем, 01.10, координатор",
-      "expiryMilestone": "onboarding-unfreeze",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
       "exception": {
-        "approvedBy": "coordinator-2026-10-01",
-        "scope": "components/CleanOnboarding.tsx-only"
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
+      }
+    },
+    {
+      "file": "components/stories/announcements_v2/frames_community.tsx",
+      "ownerName": "PollRow",
+      "ownerPath": "PollRow",
+      "ancestorPath": [
+        "Enter",
+        "Pressable",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "2",
+      "testID": null,
+      "fingerprint": "ffd6c9b70492acd7927d8955759e3f23b6d55bea2a59ee66711f38954726be95",
+      "count": 1,
+      "lineHints": [
+        140
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "text-integrity-migration",
+      "reason": "Legacy raw truncation frozen pending semantic migration",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "text-integrity-design-2026-07-10",
+        "scope": "legacy-baseline-only"
       }
     }
   ]

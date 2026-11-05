@@ -235,7 +235,7 @@ describe('подключение и запреты', () => {
     expect(src).toContain('useAnimatedStyle');
     // зачем (владелец 05.11 «В ТОЧНОСТИ 1 К 1 как макет»): рамки мотивов апертуры (2 px) и веера (1 px) — часть одобренного макета openings.css; обводок вокруг остальных блоков по-прежнему нет
     expect(src.match(/numberOfLines|adjustsFontSizeToFit|requestAnimationFrame|setInterval/gu) ?? []).toEqual([]);
-    expect((src.match(/borderWidth/gu) ?? []).length).toBeLessThanOrEqual(3);
+    expect((src.match(/borderWidth/gu) ?? []).length).toBeLessThanOrEqual(5); // апертура, веер + два кольца-орбиты окна «Ранг» (эталон rev6)
     expect(src).not.toMatch(/haloStyle|styles.halo|halo:/u); // макет: круга за героем НЕТ (.opening-halo{background:none})
     expect(src).toContain("pointerEvents={ctaReady ? 'auto' : 'none'}");
   });

@@ -36,6 +36,12 @@ const COPY_FROM = 0.61;
 const COPY_FULL = 0.82;
 /** Размер героя макета: `--hero-size` 150 × 1.1 = 165 px, не шире 65 % сцены. */
 const HERO_W = 165;
+/** Точки таймлайна для журнала: якоря макета 15 / 43 / 60 % и CTA 82 %, конец 100 %. */
+/** Фон окна «Ранг» из эталона (пиксели rev6-unlock-rank-cta: #3D4B5F), чернила и дорожка полоски. */
+const RANK_BG = '#3D4B5F';
+const RANK_INK = '#FFFFFF';
+const RANK_TRACK = '#FFFFFF33';
+const PHASE_LOG_MARKS = [0.15, 0.43, 0.6, 0.82, 1] as const;
 /** Искры макета: 14 штук, позиции `left: 12+(n*37)%78 %`, `top: 8+(n*23)%83 %`. */
 const SPARKS = Array.from({ length: 14 }, (_, n) => ({ left: `${12 + (n * 37) % 78}%`, top: `${8 + (n * 23) % 83}%` } as const));
 
@@ -97,10 +103,17 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const progress = useSharedValue(reduced ? 1 : freezeAt ?? 0);
   const [ctaReady, setCtaReady] = useState(reduced || (freezeAt ?? 0) >= COPY_FULL);
   const from = HERO_FROM[id];
+  useEffect(() => {
+    console.log('[SECTION-OPENING]', 'mount', JSON.stringify({ id, lang, freezeAt: freezeAt ?? null, reduced, forceReduced: forceReduced === true, segments, segmentIndex, isDark })); // guard-ok: вход в историю
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: одна строка на показ
+  }, []);
 
   const enableCta = useCallback(() => setCtaReady(true), []);
   const celebrate = useCallback(() => { void hapticMediumImpact(); }, []);
   const pausedRef = React.useRef(false);
+  // зачем (владелец 05.11; Сверка 20:41: на финале p4 пропадали элементы — СПЕРВА ЛОГИ): вход, значения решения и каждая фаза таймлайна пишутся в [SECTION-OPENING] — видно, дошёл ли прогресс до 100 % и что отрисовано
+  const logPhase = useCallback((at: number) => { console.log('[SECTION-OPENING]', 'phase', JSON.stringify({ id, at, ctaReady: at >= COPY_FULL })); /* guard-ok: фазы таймлайна */ }, [id]);
+  const logImage = useCallback((what: string, ok: boolean, detail?: string) => { (ok ? console.log : console.warn)('[SECTION-OPENING]', ok ? 'image_loaded' : 'image_failed', JSON.stringify({ id, what, detail: detail ?? null })); /* guard-ok: загрузка/сбой картинки */ }, [id]);
 
   // зачем (владелец 05.11 «ЭТО ИСТОРИЯ»): таймлайн можно ставить на паузу (удержание) и перематывать (тап) — поэтому CTA и хаптик «Праздник» привязаны к самому прогрессу
   // (useAnimatedReaction), а не к setTimeout: после паузы они сработают в нужной точке (макет: CTA оживает на 82 %, праздник на 60 %)
@@ -117,6 +130,7 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
     () => progress.value,
     (value, previous) => {
       const before = previous ?? 0;
+      for (const mark of PHASE_LOG_MARKS) if (value >= mark && before < mark) runOnJS(logPhase)(mark);
       if (value >= COPY_FULL && before < COPY_FULL) runOnJS(enableCta)();
       if (value >= SECTION_OPENING_PHASE_ANCHORS.celebrate && before < SECTION_OPENING_PHASE_ANCHORS.celebrate && !reduced && freezeAt === undefined) runOnJS(celebrate)();
     },
@@ -199,6 +213,10 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const fan2 = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [0, 0.48, 1], [0, 0.75, 0.4]), transform: [{ translateY: interpolate(progress.value, [0, 0.48], [25, 0], 'clamp') }] }));
   const fan3 = useAnimatedStyle(() => ({ opacity: interpolate(progress.value, [0, 0.56, 1], [0, 0.75, 0.4]), transform: [{ translateY: interpolate(progress.value, [0, 0.56], [25, 0], 'clamp') }, { rotate: `${interpolate(progress.value, [0, 0.56], [0, 18], 'clamp')}deg` }] }));
 
+  // зачем (Сверка 20:41, «Ранг»: эталон rev6-unlock-rank-cta — сине-серый «ранговый» фон с кольцами-орбитами, тёмный и в светлой теме): у окна «Ранг» свой фон и светлые чернила независимо от темы
+  const isRank = id === 'rank';
+  const ink = isRank ? RANK_INK : p.text;
+  const track = isRank ? RANK_TRACK : p.hairline;
   const slot = ART_SLOT[id];
   const art = slot ? THEMED_ART_GENERATED[slot]?.[isDark ? 'dark' : 'light'] : undefined;
   const stageW = Math.max(0, windowW - 24);
@@ -216,6 +234,13 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   // зачем (макет openings.css): размеры и места мотивов — доли сцены, как в макете
   const motif = (
     <View style={styles.motif} pointerEvents="none">
+      {id === 'rank' ? (
+        <>
+          {/* кольца-орбиты эталона rank (openings.css .opening-constellation): большое кольцо −20° и второе под 65° */}
+          <View style={[styles.orbit, { borderColor: '#FFFFFF24', transform: [{ rotate: '-20deg' }] }]} />
+          <View style={[styles.orbitTwo, { borderColor: '#FFFFFF1F', transform: [{ rotate: '65deg' }] }]} />
+        </>
+      ) : null}
       {id === 'video' ? (
         <View style={styles.aperture}>
           {/* guard-ok: рамки мотивов — из одобренного макета openings.css */}
@@ -257,11 +282,11 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   return (
     <MomentFullScreen testID={`section-opening-${id}`}>
       <GestureDetector gesture={swipeDown}>
-      <View style={[styles.root, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 }]} accessibilityViewIsModal>
+      <View style={[styles.root, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 }, isRank ? { backgroundColor: RANK_BG } : null]} accessibilityViewIsModal>
         {/* зачем (история): полоска по числу кадров очереди — пройденные полные, текущий заполняется по таймлайну, будущие пустые */}
         <View style={[styles.segments, { top: insets.top + 2 }]} pointerEvents="none">
           {Array.from({ length: Math.max(1, segments) }, (_, i) => (
-            <View key={i} style={[styles.segment, { backgroundColor: p.hairline }]}>
+            <View key={i} style={[styles.segment, { backgroundColor: track }]}>
               {i < segmentIndex ? <View style={[styles.barFill, { backgroundColor: p.accentGraphic }]} /> : i === segmentIndex ? <Animated.View style={[styles.barFill, { backgroundColor: p.accentGraphic }, barStyle]} /> : null}
             </View>
           ))}
@@ -272,7 +297,7 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
           <Pressable style={styles.zoneRight} onPress={tapNext} onLongPress={holdStart} delayLongPress={180} onPressOut={holdEnd} accessible={false} testID="section-opening-tap-next" />
         </View>
         <View style={styles.top}>
-          <Text style={[styles.label, { color: p.text }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.label}</Text>
+          <Text style={[styles.label, { color: ink }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.label}</Text>
           <V2Button label={sectionOpeningSkip(lang)} variant="secondary" size="small" onPress={skip} testID="section-opening-skip" />
         </View>
         <View style={styles.stage} pointerEvents="none">
@@ -283,22 +308,22 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
           {id === 'rank' ? (
             <Animated.View style={[styles.art, artStyle]}><MyRankCoin size={coinSize} style={{ width: coinSize, height: coinSize }} contentFit="contain" accessible={false} /></Animated.View>
           ) : art ? (
-            <Animated.View style={[artBox, artStyle]}><Image source={art} style={styles.artImage} contentFit="contain" cachePolicy="none" accessible={false} /></Animated.View>
+            <Animated.View style={[artBox, artStyle]}><Image source={art} style={styles.artImage} contentFit="contain" cachePolicy="none" accessible={false} onLoad={() => logImage('art', true)} onError={(e) => logImage('art', false, String((e as { error?: unknown }).error ?? ''))} /></Animated.View>
           ) : null}
           {/* герой: белое свечение вдоль силуэта (drop-shadow макета) — тот же кадр белым цветом, размытый, под героем; круга НЕТ */}
           <Animated.View style={[styles.hero, heroBox, heroStyle]}>
             <Image source={HERO[id]} style={[styles.heroImage, styles.heroGlow]} contentFit="contain" tintColor="#FFFFFF" blurRadius={10} cachePolicy="none" accessible={false} />
-            <Image source={HERO[id]} style={styles.heroImage} contentFit="contain" cachePolicy="none" accessible={false} />
+            <Image source={HERO[id]} style={styles.heroImage} contentFit="contain" cachePolicy="none" accessible={false} onLoad={() => logImage('hero', true)} onError={(e) => logImage('hero', false, String((e as { error?: unknown }).error ?? ''))} />
           </Animated.View>
         </View>
         <Animated.View style={[styles.copy, copyStyle]}>
-          <Text style={[styles.overline, { color: p.text }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{sectionOpeningOverline(lang, id)}</Text>
-          <Text style={[styles.title, { color: p.text }]} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.title}</Text>
-          <Text style={[styles.body, { color: p.text }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{copy.body}</Text>
+          <Text style={[styles.overline, { color: ink }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{sectionOpeningOverline(lang, id)}</Text>
+          <Text style={[styles.title, { color: ink }]} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.title}</Text>
+          <Text style={[styles.body, { color: ink }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{copy.body}</Text>
           <View pointerEvents={ctaReady ? 'auto' : 'none'} importantForAccessibility={ctaReady ? 'yes' : 'no-hide-descendants'}>
             <V2Button label={copy.cta} variant="primary" disabled={!ctaReady} onPress={() => { void hapticSuccess(); onCta(); }} testID="section-opening-cta" />
             <Pressable accessibilityRole="button" accessibilityState={{ disabled: !ctaReady }} onPress={skip} disabled={!ctaReady} hitSlop={8} style={styles.home} testID="section-opening-home">
-              <Text style={[styles.homeText, { color: p.text }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{sectionOpeningHome(lang)}</Text>
+              <Text style={[styles.homeText, { color: ink }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{sectionOpeningHome(lang)}</Text>
             </Pressable>
           </View>
         </Animated.View>
@@ -330,6 +355,8 @@ const styles = StyleSheet.create({
   artPeak: { position: 'absolute', right: '4%', top: '12%', width: '30%', aspectRatio: 1 },
   artImage: { width: '100%', height: '100%' },
   motif: { ...StyleSheet.absoluteFillObject },
+  orbit: { position: 'absolute', top: '6%', bottom: '6%', left: '3%', right: '3%', borderRadius: 9999, borderWidth: 1 }, // guard-ok: кольцо-орбита эталона rank
+  orbitTwo: { position: 'absolute', top: '19%', bottom: '19%', left: '-2%', right: '-2%', borderRadius: 9999, borderWidth: 1 }, // guard-ok: кольцо-орбита эталона rank
   spark: { position: 'absolute', width: 3, height: 3, borderRadius: 2 },
   aperture: { position: 'absolute', right: '2%', top: '22%', width: '60%', height: '48%' },
   apertureLayer: { ...StyleSheet.absoluteFillObject, borderRadius: 24, borderWidth: 2, overflow: 'hidden' }, // guard-ok: рамка мотива — из одобренного владельцем макета openings.css (в точности 1:1, слово владельца 05.11)

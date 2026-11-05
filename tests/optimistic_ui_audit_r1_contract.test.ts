@@ -33,7 +33,8 @@ describe('Optimistic UI audit R1 — cheap gaps stay closed', () => {
   it('comment reactions, pins, deletes and hides roll back and tell the user', () => {
     const sheet = read('app/community_packs/PackCommentsSheet.tsx');
     for (const tag of ['comment_reaction rollback', 'comment_pin rollback', 'comment_delete rollback', 'comment_hide rollback']) expect(sheet).toContain(`[OPT-UI] ${tag}`);
-    expect(sheet).toMatch(/togglePackCommentReaction\(packId, comment\.id, myUserId, reaction, !had\)\.then\(\(ok\) =>/);
+    // зачем (Диспетчер 05.11): между записью и откатом теперь стоят .catch (журнал причины) и .finally (снятие замка двойного тапа) — откат по ok остаётся обязательным
+    expect(sheet).toMatch(/togglePackCommentReaction\(packId, comment\.id, myUserId, reaction, !had\)[\s\S]{0,700}?\.then\(\(ok\) =>/);
     expect(sheet).toMatch(/setPackCommentPinned\(packId, comment\.id, nextPinned\)\.then\(\(ok\) =>/);
     // зачем (аудит Карточек #12, 15.10): без uid отправка больше не молчит — отдельная проверка с тостом; замок отправки прежний, синхронный.
     expect(sheet).toMatch(/if \(!myUserId\) \{ notifyPackCommentsIdentityPending\('send', packId\); return; \}/);

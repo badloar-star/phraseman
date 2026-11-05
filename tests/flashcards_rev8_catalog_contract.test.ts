@@ -10,7 +10,8 @@ describe('rev8 catalog presentation', () => {
     expect(read('app/flashcards/MyPacksV2.tsx')).toContain('<PackCatalogRow');
     expect(read('app/flashcards/FlashcardsCategoryHub.tsx')).toContain('<PackCatalogRow');
     expect(read('app/flashcards/VideoPackRow.tsx')).toContain('<PackCatalogRow');
-    expect(read('app/flashcards/VideoPackRow.tsx')).toContain('duration={duration}');
+    // зачем (Диспетчер 05.11): с bc29b5342 серая строка набора — дата публикации вместо длительности (решение 05.11)
+    expect(read('app/flashcards/VideoPackRow.tsx')).toContain('duration={formatPackPublishDate(pack.updatedAt, lang)}');
   });
 
   it('keeps the social catalog a vertical full-width list', () => {

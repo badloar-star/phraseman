@@ -39,7 +39,8 @@ describe('вход в тренировку карточек: отказ гран
 
   it('локальный старт объявлен ДО защищённого блока, иначе catch его не увидит', () => {
     expect(read('app', 'flashcards_recall_session.tsx')).toMatch(/let recallLocalStart[\s\S]{0,300}void \(async \(\) => \{/);
-    expect(read('app', 'flashcards_swipe.tsx')).toMatch(/let swipeLocalStart[\s\S]{0,200}try \{/);
+    // зачем (Диспетчер 05.11): между объявлением и try добавились журналы входа — порядок «объявлен ДО try» прежний, окно шире
+    expect(read('app', 'flashcards_swipe.tsx')).toMatch(/let swipeLocalStart[\s\S]{0,1500}?try \{/);
     expect(read('app', 'flashcards_speaking_session.tsx')).toMatch(/let speakingLocalStart[\s\S]{0,300}void \(async \(\) => \{/);
   });
 

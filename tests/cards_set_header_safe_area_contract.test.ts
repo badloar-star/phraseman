@@ -13,7 +13,8 @@ describe('экран набора Карточек: отступ сверху н
     expect(screen).not.toMatch(/import\s*\{\s*SafeAreaView\s*\}\s*from 'react-native-safe-area-context'/);
     expect(screen).not.toContain('<SafeAreaView');
     expect(screen).toContain("import { useStableSafeAreaInsets } from './stable_safe_area_metrics';");
-    expect(screen).toContain('paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right');
+    // зачем (Диспетчер 05.11): с 12dfe807f на сцене Сообщества фон уходит под строку состояния (отступ 0 рисует сама сцена); вне сцены — стабильные insets, как прежде
+    expect(screen).toContain('paddingTop: communitySceneSurface ? 0 : insets.top, paddingBottom: communitySceneSurface ? 0 : insets.bottom, paddingLeft: insets.left, paddingRight: insets.right');
   });
 
   it('стабильный inset сверху не меньше высоты строки состояния', () => {

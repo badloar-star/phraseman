@@ -38,7 +38,8 @@ describe('в строках наборов есть сердце, лайки и 
   });
   it('«Мои наборы»: круглая ▶ «Тренировать» в строке; «Из видео»: крупные карточки; Сообщество: «+» создать набор и лупа', () => {
     expect(read('app/flashcards/MyPacksV2.tsx')).toContain('action={<PackDeckPlayButton');
-    expect(read('app/flashcards_video_packs.tsx')).toContain("variant={embedded ? 'plain' : 'card'}");
+    // зачем (Диспетчер 05.11): с 41b59a69b «Из видео» — строки каталога по утверждённому макету, а не крупные карточки
+    expect(read('app/flashcards_video_packs.tsx')).toContain("variant={embedded ? 'plain' : 'catalog'}");
     const hub = read('app/flashcards/FlashcardsCategoryHub.tsx');
     expect(hub).toContain('testID="social-catalog-create"');
     expect(hub).toContain('authorMeta={{ coinRank: author.coinRank, isPremium: author.isPremium }}');
@@ -48,7 +49,8 @@ describe('в строках наборов есть сердце, лайки и 
     expect(row).toContain('words?: readonly string[];');
     expect(row).toContain('words.slice(0, 2).map((word, index) => <DeckWordChip');
     expect(row).toContain('`+${words.length - 2}`');
-    expect(read('app/flashcards/FlashcardsCategoryHub.tsx')).toContain('words={deckWords}');
+    // зачем (Диспетчер 05.11): владелец 05.11 (a9ad43e7f) убрал чипы слов из списка Сообщества — более позднее решение, чем «ничего не терять» 04.11; в «Моих наборах» чипы остаются
+    expect(read('app/flashcards/FlashcardsCategoryHub.tsx')).toContain('words={[]}');
     expect(read('app/flashcards/MyPacksV2.tsx')).toContain('words={packDeckWords(pack)}');
   });
   it('на embedded-вкладке «Сообщество» есть вход «Создать набор»: «+» в шапке сцены ведёт на /community_pack_create', () => {

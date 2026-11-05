@@ -43,14 +43,17 @@ describe('Карточки набора: замки, сообщения и от�
     const bar = read('app/community_packs/CommunityPackSocialBar.tsx');
     const like = bar.slice(bar.indexOf('const onLikePress = useCallback('), bar.indexOf('const onAddPress = useCallback('));
     expect(like).toContain('[OPT-UI] pack_like ignored reason=add_in_flight');
-    expect(like.indexOf('addInFlightRef.current')).toBeLessThan(like.indexOf('toggleLikeOptimistic'));
+    // зачем (Диспетчер 05.11): оптимистичный шаг теперь packSocialLive.setLiked (общий живой лайк), а не toggleLikeOptimistic — замок «добавление в полёте» обязан стоять раньше него
+    expect(like.indexOf('addInFlightRef.current')).toBeGreaterThan(-1);
+    expect(like.indexOf('addInFlightRef.current')).toBeLessThan(like.indexOf('packSocialLive.setLiked'));
     const add = bar.slice(bar.indexOf('const onAddPress = useCallback('), bar.indexOf('const addedLabel = triLang('));
     expect(add).not.toContain('откат добавления пропущен');
     expect(add).toContain('newerAction=${String(newer)}');
     expect(add).toContain('{ ...prev, added: before.added, addedCount: before.addedCount }');
     // сердце: сервер говорит «лайк есть», локального флага нет (после выхода/смены аккаунта) — восстанавливаем, цифра не теряет единицу
     const effect = bar.slice(bar.indexOf('const seqAtStart = opSeqRef.current;'), bar.indexOf('}, [pack.id, pack.likesCount, pack.addedCount'));
-    expect(effect).toContain('const likedNow = liked || serverLiked;');
+    // зачем (Диспетчер 05.11): смысл прежний (локальный ИЛИ серверный), сверху — намерение живого лайка этой сессии (packSocialLive), чтобы поздний ответ не затирал свежий тап
+    expect(effect).toContain('const likedNow = packSocialLive.intent(pack.id) ?? (liked || serverLiked);');
     expect(effect).toContain("[PACK-LIKE] reconcile pack=${pack.id} source=${serverLiked && !liked ? 'server' : 'local'}");
     // обратный случай не сбрасывается: сердце = локальный ИЛИ серверный флаг
     expect(effect).not.toMatch(/liked: serverLiked/);

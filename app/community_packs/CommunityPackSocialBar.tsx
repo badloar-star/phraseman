@@ -282,6 +282,12 @@ export default function CommunityPackSocialBar({
       emitAppEvent('action_toast', actionToastTri('info', { ru: 'Свой набор поддержать сердечком нельзя.', uk: 'Власний набір підтримати сердечком не можна.', en: 'You cannot give your own pack a heart.', es: 'No puedes dar un corazón a tu propio pack.' }));
       return;
     }
+    // зачем (аудит Optimistic UI, координатор 15.10, дыра №6): пока идёт запись «Добавить себе», isAdded оптимистичный: лайк в этот момент обгонял откат добавления (кнопка навсегда «В моих», набора нет)
+    // (Диспетчер 05.11: проверка снята сводным коммитом a82a3b220 — возвращена, сторож cards_pack_opt_ui_gaps_contract)
+    if (addInFlightRef.current) {
+      console.log(`[OPT-UI] pack_like ignored reason=add_in_flight pack=${pack.id}`); // guard-ok: ранний выход пишет причину
+      return;
+    }
     // зачем (координатор 18.10, решение по аудиту (в)): пока лайк в полёте, повторный тап не ставится в очередь — иначе при отказе облака
     // второй тап переворачивал уже откаченное сердце. Один запрос за раз; тап в это время пишет причину и ничего не меняет.
     if (likeInFlightRef.current || !packSocialLive.beginLike(pack.id)) {

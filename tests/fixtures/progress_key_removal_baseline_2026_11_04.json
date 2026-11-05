@@ -29,6 +29,7 @@
  "app/debug-logger.ts": 2,
  "app/dev_as_free_flag.ts": 1,
  "app/dev_energy_tools.ts": 1,
+ "app/dev_force_newbie.ts": 1,
  "app/dev_state_cards_demo.ts": 3,
  "app/dev_state_fixtures.ts": 5,
  "app/diagnostic_test.tsx": 1,

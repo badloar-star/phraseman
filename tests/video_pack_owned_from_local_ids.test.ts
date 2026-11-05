@@ -29,14 +29,16 @@ describe('подключение', () => {
     const row = read('app/flashcards/VideoPackRow.tsx');
     expect(row).not.toMatch(/<CommunityPackSocialBar[^>]*owned=\{false\}/);
     expect(row).toContain('const owned = useOwnedPack(pack.id);');
-    expect((row.match(/owned=\{owned\}/g) ?? []).length).toBe(2);
+    // зачем (Диспетчер 05.11): с 04.11 строка каталога (rowHeart) тоже несёт CommunityPackSocialBar — все три места берут owned из локальных id
+    expect((row.match(/owned=\{owned\}/g) ?? []).length).toBe(3);
     const watch = read('app/lingman_video_watch.tsx');
     expect(watch).not.toMatch(/<CommunityPackSocialBar[^>]*owned=\{false\}/);
     expect(watch).toContain('owned={packOwned}');
   });
   it('кнопки видео-наборов не читают соцсостояние (id video:<id> — несуществующий документ)', () => {
     const bar = read('app/community_packs/CommunityPackSocialBar.tsx');
-    expect(bar).toContain('if (isPreviewCta || isSetAdd || isSetHeart || isVideoAdd || isVideoAddRound) return undefined;');
+    // зачем (Диспетчер 05.11): с a82a3b220 сердце на экране набора (setHeart) читает членство намеренно; видео-кнопки и сердца каталога/плиток по-прежнему не читают ничего
+    expect(bar).toContain("if (isPreviewCta || isSetAdd || mode === 'sceneTileHeart' || mode === 'rowHeart' || isVideoAdd || isVideoAddRound) return undefined;");
   });
   it('«Убрать из моих» сигналит об изменении состава — «Добавить» возвращается сразу', () => {
     expect(read('app/community_packs/communityOwnedStorage.ts')).toContain('notifyOwnedPackIdsChanged();');

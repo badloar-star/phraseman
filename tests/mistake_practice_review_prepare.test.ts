@@ -77,6 +77,7 @@ describe('повтор исправленных: подготовка', () => {
     expect(src).toContain('pool: reviewPool,');
     expect(src).toContain("...(session.pool === 'corrected' ? { review: true } : {}),");
     const hook = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'usePracticeRunes.ts'), 'utf8');
-    expect(hook).toContain('const firstCompletion = input.repeatPriceOnly === true ? false : settledCount === 0;');
+    // зачем (Диспетчер 05.11): с 9e732ded6 цена — по номеру прохода (+3/+2/+1, владелец 05.11); повтор исправленных (repeatPriceOnly) всегда платит самую низкую ставку
+    expect(hook).toContain('const passNumber = input.repeatPriceOnly === true ? 3 : settledCount + 1;');
   });
 });

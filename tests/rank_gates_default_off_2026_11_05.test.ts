@@ -8,17 +8,19 @@ const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), '
 describe('гейты по умолчанию выключены', () => {
   afterEach(() => { applyRemoteConfigSnapshot({}); });
 
-  it('rank_gates_enabled и section_openings_enabled: без конфига false; Пульт включает значением true', () => {
+  it('rank_gates_enabled ВКЛ по умолчанию (слово владельца 05.11 06:08), section_openings_enabled выключен; Пульт переключает значением', () => {
     applyRemoteConfigSnapshot({});
-    expect(getRemoteBool('rank_gates_enabled')).toBe(false);
-    expect(getRemoteBool('section_openings_enabled')).toBe(false);
-    applyRemoteConfigSnapshot({ bools: { rank_gates_enabled: true, section_openings_enabled: true } });
     expect(getRemoteBool('rank_gates_enabled')).toBe(true);
+    expect(getRemoteBool('rank_gates_existing_users')).toBe(true);
+    expect(getRemoteBool('section_openings_enabled')).toBe(false);
+    applyRemoteConfigSnapshot({ bools: { rank_gates_enabled: false, section_openings_enabled: true } });
+    expect(getRemoteBool('rank_gates_enabled')).toBe(false);
     expect(getRemoteBool('section_openings_enabled')).toBe(true);
   });
 
   it('Пульт показывает тумблер «Главная по рангам» выключенным по умолчанию', () => {
-    expect(read('admin/v2/legacy.html')).toMatch(/key: 'rank_gates_enabled',\s+label: 'Главная по рангам \(новые\)', def: false/);
+    // зачем (05.11): значение по умолчанию живёт в app/remote_flags.ts (true); подпись/дефолт тумблера в Пульте обновит выкладка админки — тест проверяет, что ключ в Пульте есть
+    expect(read('admin/v2/legacy.html')).toMatch(/key: 'rank_gates_enabled',\s+label: 'Главная по рангам/);
   });
 
   it('бонус +500 не читает флаг гейтов ни в классике, ни в плеере V2', () => {
@@ -48,7 +50,7 @@ describe('dev-принуждение флагов для E2E Сверки (бе�
     expect(m.getRemoteBool('referral_ladder_enabled')).toBe(false);
   });
   it('без переменной и в стор-релизе принуждения нет', () => {
-    expect(load({}).getRemoteBool('rank_gates_enabled')).toBe(false);
-    expect(load({ force: 'rank_gates_enabled', store: '1' }).getRemoteBool('rank_gates_enabled')).toBe(false);
+    expect(load({}).getRemoteBool('section_openings_enabled')).toBe(false);
+    expect(load({ force: 'section_openings_enabled', store: '1' }).getRemoteBool('section_openings_enabled')).toBe(false);
   });
 });

@@ -55,3 +55,30 @@ describe('«Сегодня» без недоступного', () => {
     for (const k of ['dialog', 'cards', 'mistakes', 'video', 'spire_steps'] as const) expect(kinds).not.toContain(k);
   });
 });
+
+// зачем (владелец 05.11 06:08, «Ранг 0 а у меня всё доступно»): замки действуют и на СТАРЫХ пользователей, пока Пульт не выключил rank_gates_existing_users; неопределённое по-прежнему не запираем
+describe('замки по рангу — старые пользователи (05.11)', () => {
+  const base = { gatesEnabled: true, rank: 0, plusActive: false, plusResolved: true } as const;
+  const oldUser = { isNew: false } as never;
+  it('старый пользователь на ранге 0 при existingUsersGated: видео, диалоги, Пик, хаб карточек закрыты', () => {
+    const { decideForUser } = require('../app/rank_gate_decision');
+    for (const surface of ['video', 'dialogues', 'peak', 'cards_hub'] as const) {
+      expect(decideForUser(surface, { ...base, verdict: oldUser, existingUsersGated: true })).toMatchObject({ status: 'locked' });
+    }
+  });
+  it('«Сохранённые» и друзья/наборы открыты на ранге 0 всегда', () => {
+    const { decideForUser } = require('../app/rank_gate_decision');
+    for (const surface of ['saved_cards', 'own_cards', 'card_practice', 'friends', 'social_packs'] as const) {
+      expect(decideForUser(surface, { ...base, verdict: oldUser, existingUsersGated: true })).toMatchObject({ status: 'allowed' });
+    }
+  });
+  it('Plus открывает всё; без existingUsersGated старый пользователь не заперт (kill-switch Пульта)', () => {
+    const { decideForUser } = require('../app/rank_gate_decision');
+    expect(decideForUser('video', { ...base, plusActive: true, verdict: oldUser, existingUsersGated: true })).toMatchObject({ status: 'allowed' });
+    expect(decideForUser('video', { ...base, verdict: oldUser, existingUsersGated: false })).toMatchObject({ status: 'allowed', basis: 'grandfather' });
+  });
+  it('вердикт не прочитан — не запираем даже при включённых замках', () => {
+    const { decideForUser } = require('../app/rank_gate_decision');
+    expect(decideForUser('video', { ...base, verdict: null, existingUsersGated: true })).toMatchObject({ status: 'allowed' });
+  });
+});

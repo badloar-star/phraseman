@@ -70,11 +70,12 @@ export function useRankAccess(surface: RankAccessSurface): RankAccessDecision {
     return () => { alive = false; };
   }, [epoch]);
   const gatesEnabled = getRemoteBool('rank_gates_enabled') !== false;
+  const existingUsersGated = getRemoteBool('rank_gates_existing_users') !== false;
   // зачем (владелец 30.10): сдвиг требований диалогов «+1, потолок 19» включён только для нового пользователя при включённых гейтах
   setDialogueRankShiftActive(gatesEnabled && verdict?.isNew === true);
   const decision = useMemo(
-    () => decideForUser(surface, { gatesEnabled, verdict, rank, plusActive: premium.isPremium, plusResolved: premium.accessResolved }),
-    [surface, gatesEnabled, verdict, rank, premium.isPremium, premium.accessResolved],
+    () => decideForUser(surface, { gatesEnabled, verdict, rank, plusActive: premium.isPremium, plusResolved: premium.accessResolved, existingUsersGated }),
+    [surface, gatesEnabled, existingUsersGated, verdict, rank, premium.isPremium, premium.accessResolved],
   );
   useEffect(() => {
     const locked = isSurfaceLocked(decision);

@@ -11,9 +11,10 @@ export function isSurfaceLocked(decision: RankAccessDecision): boolean { return 
 /** Чистое решение с учётом «нового/старого» и флага — для тестов и не-хуковых мест. */
 export function decideForUser(
   surface: RankAccessSurface,
-  input: Readonly<{ gatesEnabled: boolean; verdict: RankGateUserVerdict | null; rank: number | null; plusActive: boolean; plusResolved: boolean }>,
+  input: Readonly<{ gatesEnabled: boolean; verdict: RankGateUserVerdict | null; rank: number | null; plusActive: boolean; plusResolved: boolean; existingUsersGated?: boolean }>,
 ): RankAccessDecision {
-  if (!input.gatesEnabled || !input.verdict || !input.verdict.isNew) return { status: 'allowed', basis: 'grandfather' };
+  // зачем (владелец 05.11 06:08, «Ранг 0 а у меня всё доступно»): неопределённое (вердикт не прочитан) по-прежнему НЕ запираем; «старый» пользователь заперт по рангу, если Пульт не выключил rank_gates_existing_users
+  if (!input.gatesEnabled || !input.verdict || (!input.verdict.isNew && input.existingUsersGated !== true)) return { status: 'allowed', basis: 'grandfather' };
   return decideRankAccess(surface, {
     rank: input.rank, rankResolved: input.rank !== null,
     plusActive: input.plusActive, plusResolved: input.plusResolved,

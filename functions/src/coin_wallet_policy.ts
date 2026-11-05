@@ -22,6 +22,10 @@ import {
  *     зачем: префикс унаследован от удалённого «Дневного пути» и НЕ переименован —
  *     совместимость с уже выданными ключами и задеплоенным белым списком;
  *     переименование источника — только отдельным решением владельца;
+ *   - `videofull_<40 hex>`               — +500 за просмотр 70 % видео (владелец 05.11), ОДИН раз навсегда на (uid, videoId):
+ *     hex = sha1(uid|videoId) считает телефон, поэтому повтор того же видео даёт тот же requestId и кошелёк его не начислит
+ *     дважды (идемпотентность по номеру операции). Сумма зашита здесь (РОВНО stars_500), множителя «Супер-воскресенья» нет.
+ *     Сервер НЕ судит, досмотрел ли человек (закон «телефон решает, сервер хранит»), только хранит и помечает аномалии.
  *   - `lessontogether_<40 hex>`          — «Урок вместе» +2 (владелец 22.10, кнопка «А1 — lesson_together: да»).
  *     ЗАМОК ВЛАДЕЛЬЦА 22.10: «сервер для сохранения, а не решений… монеты и всё остальное выдаётся телефоном…
  *     сервер сохраняет для синхронизации, чтобы не потерялось». Телефон решает (раз в день на пару — общий ключ
@@ -34,8 +38,8 @@ import {
  * без них выдуманный клиентом ключ не мог бы напечатать до 30 000 монет за жизнь.
  */
 
-export type CoinWalletSource = 'report_reward' | 'daily_journey' | 'chapter_exam' | 'lesson_together';
-export type CoinWalletSubSource = 'report' | 'journey_runes' | 'exam_pass' | 'friends';
+export type CoinWalletSource = 'report_reward' | 'daily_journey' | 'chapter_exam' | 'lesson_together' | 'video_full';
+export type CoinWalletSubSource = 'report' | 'journey_runes' | 'exam_pass' | 'friends' | 'video_watch';
 
 export type CoinWalletOperationShape = Readonly<{
   requestId: string;
@@ -58,6 +62,7 @@ const SOURCE_PATTERNS: readonly (readonly [RegExp, CoinWalletClassification])[] 
   [/^dailyjourney_[A-Za-z0-9]{32}_\d{1,3}$/, Object.freeze({ source: 'daily_journey', subSource: 'journey_runes' })],
   [CHAPTER_EXAM_REQUEST_RE, Object.freeze({ source: 'chapter_exam', subSource: 'exam_pass' })],
   [/^lessontogether_[0-9a-f]{40}$/, Object.freeze({ source: 'lesson_together', subSource: 'friends' })],
+  [/^videofull_[0-9a-f]{40}$/, Object.freeze({ source: 'video_full', subSource: 'video_watch' })],
 ] as const);
 
 /**
@@ -104,6 +109,14 @@ export const COIN_WALLET_LIMITS = Object.freeze({
    * 3 приглашения × 2 стороны × 2 монеты = 12 — обычный потолок честного телефона.
    */
   lessonTogetherFlagPerDay: 12,
+  /** Награда за видео (владелец 05.11): ровно stars_500, 70 % просмотра, один раз на видео. Дневного предела НЕТ. */
+  videoFullGiftId: 'stars_500',
+  videoFullCoins: 500,
+  /**
+   * Только пометка `[VIDEO-REWARD] limits_flag` (операция ПРИНИМАЕТСЯ): больше 10 наград за сутки UTC = 5000 монет.
+   * Серверу длительность видео неизвестна, поэтому «интервал ≥ 0,6 × длительность» проверить нечем; это грубый сигнал накрутки.
+   */
+  videoFullFlagPerDay: 5_000,
 });
 
 /** Счётчики лимитов — поле users/{uid}.coinWalletLimitsV1 (клиенту запрещено правилами). */
@@ -117,6 +130,8 @@ export type CoinWalletLimitsState = Readonly<{
   chapterExamDayCoins: number;
   lessonTogetherDayKey: string;
   lessonTogetherDayCoins: number;
+  videoFullDayKey: string;
+  videoFullDayCoins: number;
 }>;
 
 export const COIN_WALLET_LIMITS_FIELD = 'coinWalletLimitsV1' as const;
@@ -131,6 +146,8 @@ export const EMPTY_COIN_WALLET_LIMITS: CoinWalletLimitsState = Object.freeze({
   chapterExamDayCoins: 0,
   lessonTogetherDayKey: '',
   lessonTogetherDayCoins: 0,
+  videoFullDayKey: '',
+  videoFullDayCoins: 0,
 });
 
 function nonNegativeInt(value: unknown): number {
@@ -151,6 +168,8 @@ export function normalizeCoinWalletLimits(raw: unknown): CoinWalletLimitsState {
     chapterExamDayCoins: nonNegativeInt(value.chapterExamDayCoins),
     lessonTogetherDayKey: typeof value.lessonTogetherDayKey === 'string' ? value.lessonTogetherDayKey : '',
     lessonTogetherDayCoins: nonNegativeInt(value.lessonTogetherDayCoins),
+    videoFullDayKey: typeof value.videoFullDayKey === 'string' ? value.videoFullDayKey : '',
+    videoFullDayCoins: nonNegativeInt(value.videoFullDayCoins),
   });
 }
 
@@ -177,7 +196,7 @@ export function classifyCoinWalletSource(requestId: string): CoinWalletClassific
   }
   return reject('permission-denied', 'coin_wallet_source_not_allowed', {
     requestIdPrefix: requestId.slice(0, 16),
-    note: 'not report_reward_/dailyjourney_/chapterexam_/lessontogether_ (spins, quests, gift compensation g2c* and others are retired, D148)',
+    note: 'not report_reward_/dailyjourney_/chapterexam_/lessontogether_/videofull_ (spins, quests, gift compensation g2c* and others are retired, D148)',
   });
 }
 
@@ -230,6 +249,16 @@ function assertLessonTogetherShape(operation: CoinWalletOperationShape, fields: 
   }
 }
 
+/** Награда за видео: форма записи (stars_500, сумма 500, gameplay, базовая полоса). Решает ли человек «досмотрел» — телефон. */
+function assertVideoFullShape(operation: CoinWalletOperationShape, fields: Record<string, unknown>): void {
+  if (operation.promotionEligibility !== 'gameplay') {
+    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'video_full_requires_gameplay' });
+  }
+  if (operation.giftId !== COIN_WALLET_LIMITS.videoFullGiftId || operation.amount !== COIN_WALLET_LIMITS.videoFullCoins) {
+    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'video_full_must_be_stars_500' });
+  }
+}
+
 function assertJourneyShape(operation: CoinWalletOperationShape, fields: Record<string, unknown>): void {
   // зачем (кнопка владельца 22.10 «Да, выложить»): старые операции «Дневного пути» ставились в очередь ДО появления
   // promotionEligibility — у них поля нет. После заплатки очереди (OTA 22.10) такая пришла и получила отказ, человек терял
@@ -269,6 +298,8 @@ export function assertCoinWalletOperationShape(
     assertChapterExamShape(operation, fields);
   } else if (classification.source === 'lesson_together') {
     assertLessonTogetherShape(operation, fields);
+  } else if (classification.source === 'video_full') {
+    assertVideoFullShape(operation, fields);
   } else {
     assertJourneyShape(operation, fields);
   }
@@ -335,6 +366,17 @@ export function applyCoinWalletLimits(
       log('limits_ok', { ...fields, used, after });
     }
     return Object.freeze({ ...state, lessonTogetherDayKey: dayKey, lessonTogetherDayCoins: after });
+  }
+  if (classification.source === 'video_full') {
+    // зачем (владелец 05.11): дневного предела на награды за видео НЕТ — только пометка аномалии для админки, отказа нет.
+    const used = state.videoFullDayKey === dayKey ? state.videoFullDayCoins : 0;
+    const after = used + operation.amount;
+    if (after > COIN_WALLET_LIMITS.videoFullFlagPerDay) {
+      console.warn(`[VIDEO-REWARD] limits_flag ${JSON.stringify({ ...fields, used, after, flagAt: COIN_WALLET_LIMITS.videoFullFlagPerDay, accepted: true })}`);
+    } else {
+      console.log(`[VIDEO-REWARD] limits_ok ${JSON.stringify({ ...fields, used, after })}`);
+    }
+    return Object.freeze({ ...state, videoFullDayKey: dayKey, videoFullDayCoins: after });
   }
   // зачем: сюда доходят только известные источники (обработаны выше); неизвестный — отказ.
   return reject('permission-denied', 'coin_wallet_source_not_allowed', { ...fields, note: 'no limits table for source' });

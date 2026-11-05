@@ -189,6 +189,7 @@ export function levelSpinStarAmount(giftId: string): number {
  * Сумма операции кошелька. Множитель «Супер-воскресенья» — только для игровых источников с плавающей суммой.
  * зачем (Ядро 22.10): экзамен главы (chapterexam_) сервер принимает РОВНО 20 на часть; если множитель вернут, удвоенная
  * сумма была бы отклонена сервером и начисление вечно висело бы в очереди. Поэтому у экзамена сумма фиксирована всегда.
+ * То же для награды за видео (videofull_, 500 монет): сумма фиксирована всегда.
  */
 export function levelSpinStarOperationAmountV1(input: Readonly<{
   requestId: string;
@@ -197,7 +198,8 @@ export function levelSpinStarOperationAmountV1(input: Readonly<{
   createdAtMs: number;
 }>): number {
   const baseAmount = levelSpinStarAmount(input.giftId);
-  if (input.promotionEligibility !== 'gameplay' || input.requestId.startsWith('chapterexam_')) return baseAmount;
+  // зачем (владелец 05.11): награда за видео — ровно +500 без «Супер-воскресенья»; сервер принимает videofull_ только на stars_500.
+  if (input.promotionEligibility !== 'gameplay' || input.requestId.startsWith('chapterexam_') || input.requestId.startsWith('videofull_')) return baseAmount;
   return applySuperSundayRuneMultiplier(baseAmount, input.createdAtMs);
 }
 

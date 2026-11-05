@@ -1,0 +1,85 @@
+# зачем (координатор, Эмулятор 2 · Maestro, 05.11): кадры релиза 150 на РУССКОМ и УКРАИНСКОМ интерфейсе (en прогнал Эмулятор 1, не дублируем).
+# Запуск: maestro --device emulator-5562 test -e LANGUI=ru|uk --test-output-dir <папка кадров> 06_release150_frames.yaml
+# Путь: новичок без подписки → Главная → ромб Plus → экран Plus → «Фраза дня» до/после ответа → урок 11 закрыт → dev-подписка → ромб исчез → урок 11 (меню, теория, вступление).
+# dev_state: uiLang и coinRank живут только в памяти — применять ПОСЛЕ запуска, без перезапуска приложения.
+appId: app.phraseman
+name: 06 release150 frames (${LANGUI})
+---
+- launchApp:
+    stopApp: true
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 300000
+- waitForAnimationToEnd:
+    timeout: 20000
+- openLink: "phraseman://dev_state?onboarding=done&plus=off&newbie=on&coinRank=0&uiLang=${LANGUI}"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 120000
+- back
+- extendedWaitUntil:
+    visible: "Пропустить|Пропустити|Скip|Skip"
+    timeout: 120000
+- waitForAnimationToEnd
+- takeScreenshot: 01_home_newbie_overlay
+- tapOn:
+    text: "Пропустить|Пропустити|Skip"
+    optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 02_home_newbie_free
+# ромб Plus в нижней панели
+- tapOn:
+    point: "85%,92%"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 03_plus_top
+- scroll
+- takeScreenshot: 04_plus_middle
+- scroll
+- scroll
+- scroll
+- waitForAnimationToEnd
+- takeScreenshot: 05_plus_bottom
+# назад на Главную
+- tapOn:
+    point: "15%,92%"
+- waitForAnimationToEnd
+# Фраза дня до ответа
+- tapOn:
+    id: "home-v2-phrase-of-day"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 06_phrase_quiz_before
+- tapOn:
+    point: "50%,73%"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 07_phrase_after_answer
+- back
+- waitForAnimationToEnd
+# урок 11 без подписки закрыт
+- openLink: "phraseman:///lesson_menu?id=11"
+- waitForAnimationToEnd:
+    timeout: 15000
+- takeScreenshot: 08_lesson11_locked_free
+- back
+- waitForAnimationToEnd
+# подписка monthly: ромб исчезает
+- openLink: "phraseman://dev_state?plus=on&plan=monthly"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 120000
+- back
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 09_after_subscribe_monthly
+- back
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 10_home_no_diamond_monthly
+# урок 11: меню → теория → вступление
+- openLink: "phraseman:///lesson_menu?id=11"
+- waitForAnimationToEnd:
+    timeout: 15000
+- takeScreenshot: 11_lesson11_menu

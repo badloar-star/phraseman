@@ -79,6 +79,8 @@ if (lang === 'es') {
     console.log(`[THEORY-SAY] ${lang}: say_extra перестроен правилами: ${regen}`);
   }
 }
+// зачем (Вступления DE/IT, 06.11): у de/it немецкое ударение и долгота гласных плохо ложатся на правила — чтения написаны по стилю принятых
+// (теория plain + say_extra вступлений) и лежат в docs/work/classic_intro_plain/say_theory_<lang>.json; источник закоммичен, say.json — результат сборки.
 // fr (06.11): полу-ручная разметка — слои phrases.json / готовые чтения Теории / черновик по словарю слов; см. scripts/classic_say_fr_source.cjs
 if (lang === 'fr') {
   const { buildFrSay } = require('./classic_say_fr_source.cjs');
@@ -88,6 +90,19 @@ if (lang === 'fr') {
   made += Object.keys(fr.ru).length;
   missing.push(...fr.missing);
   console.log(`[THEORY-SAY] fr: источники — правки фраз ${fr.source.phrase}, готовые Теории ${fr.source.known}, черновик по словарю ${fr.source.draft}`);
+}
+if (lang !== 'es' && lang !== 'fr') {
+  const srcPath = path.join(ROOT, 'docs', 'work', 'classic_intro_plain', `say_theory_${lang}.json`);
+  if (fs.existsSync(srcPath)) {
+    const src = JSON.parse(fs.readFileSync(srcPath, 'utf8'));
+    for (const id of [...ids].sort()) {
+      const v = src[id];
+      if (!v?.ru || !v?.uk) { missing.push(id); continue; }
+      say.ru[id] = v.ru;
+      say.uk[id] = v.uk;
+      made += 1;
+    }
+  } else console.log(`[THEORY-SAY] ${lang}: нет ${path.relative(ROOT, srcPath)} — say.json только дополняется существующим`);
 }
 const sortObj = (o) => Object.fromEntries(Object.entries(o).sort(([a], [b]) => a.localeCompare(b)));
 say = { schema: 'phraseman.classic.say/1', lang, ru: sortObj(say.ru), uk: sortObj(say.uk) };

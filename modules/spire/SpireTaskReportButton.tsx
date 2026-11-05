@@ -35,7 +35,7 @@ export function SpireTaskReportButton({
       flagTone="bad" // зачем (28.10): флажок Шпиля по его макету (.sg-rep: var(--bad)) — цвет ошибки темы; общий флажок — вторичный цвет
       // зачем (аудит 11.10): подпись для скринридера на языке интерфейса и под именем раздела «Шпиль», а не «Spire» по-русски
       accessibilityLabel={triLang(lang, {
-        ru: 'Сообщить об ошибке в задании Пика', uk: 'Повідомити про помилку в завданні Піка', en: 'Report a mistake in this Peak task',
+        ru: 'Сообщить об ошибке в задании Пика', uk: 'Повідомити про помилку в завданні Піку', en: 'Report a mistake in this Peak task',
         es: 'Informar de un error en esta tarea del Pico', 'pt-BR': 'Relatar um erro nesta tarefa do Pico', vi: 'Báo lỗi trong nhiệm vụ Đỉnh này',
         id: 'Laporkan kesalahan di tugas Puncak ini', tr: 'Bu Zirve görevindeki hatayı bildir', pl: 'Zgłoś błąd w tym zadaniu Szczytu',
       })}

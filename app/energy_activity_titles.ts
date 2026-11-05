@@ -84,7 +84,7 @@ export function energyActivityTitle(activity: EnergyActivityKey, lang: Lang): st
       });
     case 'spire_step':
       return triLang(lang, {
-        ru: 'этапа Пика', uk: 'етапу Піка', en: 'a Peak stage', es: 'una etapa del Pico',
+        ru: 'этапа Пика', uk: 'етапу Піку', en: 'a Peak stage', es: 'una etapa del Pico',
         'pt-BR': 'uma etapa do Pico', vi: 'một giai đoạn Đỉnh', id: 'satu tahap Puncak',
         tr: 'bir Zirve aşaması', pl: 'etapu Szczytu',
       });

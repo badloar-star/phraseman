@@ -192,7 +192,8 @@
   ],
   "es:15:31": [
    "una",
-   "un"
+   "un",
+   "Cuándo"
   ],
   "es:21:15": [
    "una",
@@ -200,7 +201,8 @@
   ],
   "es:29:13": [
    "una",
-   "un"
+   "un",
+   "Cuándo"
   ],
   "es:32:48": [
    "la"
@@ -212,13 +214,16 @@
    "una"
   ],
   "es:18:19": [
-   "lo"
+   "lo",
+   "Cuándo"
   ],
   "es:04:47": [
    "Son"
   ],
   "es:20:30": [
-   "Han"
+   "Han",
+   "Tengo",
+   "Leído"
   ],
   "fr:01:41": [
    "ici"
@@ -355,6 +360,853 @@
   ],
   "fr:15:04": [
    "On"
+  ],
+  "es:01:29": [
+   "Cuándo"
+  ],
+  "es:02:10": [
+   "Cuándo"
+  ],
+  "es:02:26": [
+   "Cuándo"
+  ],
+  "es:03:20": [
+   "Cuándo"
+  ],
+  "es:03:49": [
+   "Cuándo"
+  ],
+  "es:04:30": [
+   "Cuándo"
+  ],
+  "es:04:49": [
+   "Cuándo"
+  ],
+  "es:04:50": [
+   "Cuándo"
+  ],
+  "es:05:50": [
+   "Cuándo"
+  ],
+  "es:09:29": [
+   "Cuándo"
+  ],
+  "es:09:49": [
+   "Cuándo"
+  ],
+  "es:10:06": [
+   "Cuándo"
+  ],
+  "es:10:10": [
+   "Cuándo"
+  ],
+  "es:10:14": [
+   "Cuándo"
+  ],
+  "es:10:18": [
+   "Cuándo"
+  ],
+  "es:10:19": [
+   "Cuándo"
+  ],
+  "es:10:25": [
+   "Cuándo"
+  ],
+  "es:10:33": [
+   "Cuándo"
+  ],
+  "es:10:34": [
+   "Cuándo"
+  ],
+  "es:10:46": [
+   "Cuándo"
+  ],
+  "es:10:48": [
+   "Cuándo"
+  ],
+  "es:11:03": [
+   "Cuándo"
+  ],
+  "es:11:11": [
+   "Cuándo"
+  ],
+  "es:11:12": [
+   "Cuándo"
+  ],
+  "es:11:23": [
+   "Cuándo"
+  ],
+  "es:11:40": [
+   "Cuándo"
+  ],
+  "es:11:43": [
+   "Cuándo"
+  ],
+  "es:11:44": [
+   "Cuándo"
+  ],
+  "es:13:03": [
+   "Cuándo"
+  ],
+  "es:13:06": [
+   "Cuándo"
+  ],
+  "es:13:13": [
+   "Cuándo"
+  ],
+  "es:13:17": [
+   "Cuándo"
+  ],
+  "es:13:18": [
+   "Cuándo"
+  ],
+  "es:13:33": [
+   "Cuándo"
+  ],
+  "es:13:34": [
+   "Cuándo"
+  ],
+  "es:14:03": [
+   "Cuándo"
+  ],
+  "es:14:05": [
+   "Cuándo"
+  ],
+  "es:14:13": [
+   "Cuándo"
+  ],
+  "es:14:15": [
+   "Cuándo"
+  ],
+  "es:14:17": [
+   "Cuándo"
+  ],
+  "es:14:23": [
+   "Cuándo"
+  ],
+  "es:14:25": [
+   "Cuándo"
+  ],
+  "es:14:33": [
+   "Cuándo"
+  ],
+  "es:14:35": [
+   "Cuándo"
+  ],
+  "es:14:43": [
+   "Cuándo"
+  ],
+  "es:14:45": [
+   "Cuándo"
+  ],
+  "es:15:05": [
+   "Cuándo"
+  ],
+  "es:15:09": [
+   "Cuándo"
+  ],
+  "es:15:13": [
+   "Cuándo"
+  ],
+  "es:15:15": [
+   "Cuándo"
+  ],
+  "es:15:24": [
+   "Cuándo"
+  ],
+  "es:15:25": [
+   "Cuándo"
+  ],
+  "es:15:35": [
+   "Cuándo"
+  ],
+  "es:15:38": [
+   "Cuándo"
+  ],
+  "es:16:03": [
+   "Cuándo"
+  ],
+  "es:16:04": [
+   "Cuándo"
+  ],
+  "es:16:07": [
+   "Cuándo"
+  ],
+  "es:16:10": [
+   "Cuándo"
+  ],
+  "es:16:11": [
+   "Cuándo"
+  ],
+  "es:16:13": [
+   "Cuándo"
+  ],
+  "es:16:17": [
+   "Cuándo"
+  ],
+  "es:16:23": [
+   "Cuándo"
+  ],
+  "es:16:30": [
+   "Cuándo"
+  ],
+  "es:16:34": [
+   "Cuándo"
+  ],
+  "es:16:36": [
+   "Cuándo"
+  ],
+  "es:16:40": [
+   "Cuándo"
+  ],
+  "es:16:42": [
+   "Cuándo"
+  ],
+  "es:16:45": [
+   "Cuándo"
+  ],
+  "es:16:50": [
+   "Cuándo"
+  ],
+  "es:17:21": [
+   "Cuándo"
+  ],
+  "es:17:22": [
+   "Cuándo"
+  ],
+  "es:17:26": [
+   "Cuándo"
+  ],
+  "es:17:27": [
+   "Cuándo"
+  ],
+  "es:17:28": [
+   "Cuándo"
+  ],
+  "es:17:30": [
+   "Cuándo"
+  ],
+  "es:17:41": [
+   "Cuándo"
+  ],
+  "es:17:42": [
+   "Cuándo"
+  ],
+  "es:18:03": [
+   "Cuándo"
+  ],
+  "es:18:05": [
+   "Cuándo"
+  ],
+  "es:18:10": [
+   "Cuándo"
+  ],
+  "es:18:12": [
+   "Cuándo"
+  ],
+  "es:18:14": [
+   "Cuándo"
+  ],
+  "es:18:21": [
+   "Cuándo"
+  ],
+  "es:18:23": [
+   "Cuándo"
+  ],
+  "es:18:28": [
+   "Cuándo"
+  ],
+  "es:18:32": [
+   "Cuándo"
+  ],
+  "es:18:37": [
+   "Cuándo"
+  ],
+  "es:18:40": [
+   "Cuándo"
+  ],
+  "es:18:41": [
+   "Cuándo"
+  ],
+  "es:18:46": [
+   "Cuándo"
+  ],
+  "es:19:05": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:09": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:12": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:14": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:17": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:18": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:33": [
+   "Cuándo",
+   "hemos",
+   "han",
+   "voy",
+   "lees"
+  ],
+  "es:19:35": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:40": [
+   "Cuándo",
+   "hemos",
+   "han",
+   "voy",
+   "lees"
+  ],
+  "es:19:45": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:46": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:48": [
+   "Cuándo",
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:20:02": [
+   "Cuándo"
+  ],
+  "es:20:05": [
+   "Cuándo",
+   "gusta",
+   "abrió"
+  ],
+  "es:20:09": [
+   "Cuándo",
+   "gusta",
+   "abrió"
+  ],
+  "es:20:12": [
+   "Cuándo",
+   "gusta",
+   "abrió"
+  ],
+  "es:20:13": [
+   "Cuándo",
+   "gusta",
+   "abrió"
+  ],
+  "es:20:17": [
+   "Cuándo",
+   "gusta",
+   "abrió"
+  ],
+  "es:20:33": [
+   "Cuándo",
+   "estáis",
+   "está"
+  ],
+  "es:20:35": [
+   "Cuándo",
+   "estáis",
+   "está"
+  ],
+  "es:20:38": [
+   "Cuándo",
+   "abrió",
+   "mandar"
+  ],
+  "es:20:41": [
+   "Cuándo"
+  ],
+  "es:20:45": [
+   "Cuándo",
+   "abrió",
+   "mandar"
+  ],
+  "es:20:46": [
+   "Cuándo",
+   "estáis",
+   "abrió"
+  ],
+  "es:21:03": [
+   "Cuándo"
+  ],
+  "es:21:04": [
+   "Cuándo"
+  ],
+  "es:21:05": [
+   "Cuándo"
+  ],
+  "es:21:09": [
+   "Cuándo"
+  ],
+  "es:21:12": [
+   "Cuándo"
+  ],
+  "es:21:13": [
+   "Cuándo"
+  ],
+  "es:21:23": [
+   "Cuándo"
+  ],
+  "es:21:31": [
+   "Cuándo"
+  ],
+  "es:21:37": [
+   "Cuándo"
+  ],
+  "es:21:45": [
+   "Cuándo"
+  ],
+  "es:21:48": [
+   "Cuándo"
+  ],
+  "es:22:03": [
+   "Cuándo"
+  ],
+  "es:22:05": [
+   "Cuándo"
+  ],
+  "es:22:09": [
+   "Cuándo"
+  ],
+  "es:22:13": [
+   "Cuándo"
+  ],
+  "es:22:19": [
+   "Cuándo"
+  ],
+  "es:22:23": [
+   "Cuándo"
+  ],
+  "es:22:29": [
+   "Cuándo"
+  ],
+  "es:22:33": [
+   "Cuándo"
+  ],
+  "es:22:35": [
+   "Cuándo"
+  ],
+  "es:22:40": [
+   "Cuándo"
+  ],
+  "es:22:43": [
+   "Cuándo"
+  ],
+  "es:22:49": [
+   "Cuándo"
+  ],
+  "es:23:05": [
+   "Cuándo"
+  ],
+  "es:23:09": [
+   "Cuándo"
+  ],
+  "es:23:12": [
+   "Cuándo"
+  ],
+  "es:23:17": [
+   "Cuándo"
+  ],
+  "es:23:33": [
+   "Cuándo"
+  ],
+  "es:23:35": [
+   "Cuándo"
+  ],
+  "es:23:45": [
+   "Cuándo"
+  ],
+  "es:23:46": [
+   "Cuándo"
+  ],
+  "es:24:02": [
+   "Cuándo"
+  ],
+  "es:24:04": [
+   "Cuándo"
+  ],
+  "es:24:07": [
+   "Cuándo"
+  ],
+  "es:24:12": [
+   "Cuándo"
+  ],
+  "es:24:22": [
+   "Cuándo"
+  ],
+  "es:24:24": [
+   "Cuándo"
+  ],
+  "es:24:29": [
+   "Cuándo"
+  ],
+  "es:24:32": [
+   "Cuándo"
+  ],
+  "es:24:34": [
+   "Cuándo"
+  ],
+  "es:24:39": [
+   "Cuándo"
+  ],
+  "es:24:44": [
+   "Cuándo"
+  ],
+  "es:25:50": [
+   "Cuándo"
+  ],
+  "es:26:02": [
+   "Cuándo"
+  ],
+  "es:26:22": [
+   "Cuándo"
+  ],
+  "es:26:25": [
+   "Cuándo"
+  ],
+  "es:26:27": [
+   "Cuándo"
+  ],
+  "es:26:39": [
+   "Cuándo"
+  ],
+  "es:26:43": [
+   "Cuándo"
+  ],
+  "es:26:44": [
+   "Cuándo"
+  ],
+  "es:26:47": [
+   "Cuándo"
+  ],
+  "es:27:08": [
+   "Cuándo"
+  ],
+  "es:27:18": [
+   "Cuándo"
+  ],
+  "es:27:20": [
+   "Cuándo"
+  ],
+  "es:27:22": [
+   "Cuándo"
+  ],
+  "es:27:25": [
+   "Cuándo"
+  ],
+  "es:27:36": [
+   "Cuándo"
+  ],
+  "es:27:39": [
+   "Cuándo"
+  ],
+  "es:27:49": [
+   "Cuándo"
+  ],
+  "es:28:03": [
+   "Cuándo"
+  ],
+  "es:28:04": [
+   "Cuándo"
+  ],
+  "es:28:05": [
+   "Cuándo",
+   "vuelve"
+  ],
+  "es:28:09": [
+   "Cuándo"
+  ],
+  "es:28:13": [
+   "Cuándo"
+  ],
+  "es:28:17": [
+   "Cuándo",
+   "prepara"
+  ],
+  "es:28:33": [
+   "Cuándo",
+   "llama"
+  ],
+  "es:28:35": [
+   "Cuándo"
+  ],
+  "es:28:41": [
+   "Cuándo"
+  ],
+  "es:28:46": [
+   "Cuándo"
+  ],
+  "es:28:48": [
+   "Cuándo"
+  ],
+  "es:29:03": [
+   "Cuándo"
+  ],
+  "es:29:04": [
+   "Cuándo"
+  ],
+  "es:29:05": [
+   "Cuándo"
+  ],
+  "es:29:09": [
+   "Cuándo"
+  ],
+  "es:29:17": [
+   "Cuándo"
+  ],
+  "es:29:45": [
+   "Cuándo"
+  ],
+  "es:29:46": [
+   "Cuándo"
+  ],
+  "es:30:03": [
+   "Cuándo"
+  ],
+  "es:30:21": [
+   "Cuándo"
+  ],
+  "es:30:22": [
+   "Cuándo"
+  ],
+  "es:30:23": [
+   "Cuándo"
+  ],
+  "es:30:24": [
+   "Cuándo"
+  ],
+  "es:30:25": [
+   "Cuándo"
+  ],
+  "es:30:26": [
+   "Cuándo"
+  ],
+  "es:30:27": [
+   "Cuándo"
+  ],
+  "es:30:28": [
+   "Cuándo"
+  ],
+  "es:30:29": [
+   "Cuándo"
+  ],
+  "es:30:30": [
+   "Cuándo"
+  ],
+  "es:30:49": [
+   "Cuándo"
+  ],
+  "es:31:18": [
+   "Cuándo"
+  ],
+  "es:31:21": [
+   "Cuándo"
+  ],
+  "es:31:30": [
+   "Cuándo"
+  ],
+  "es:31:45": [
+   "Cuándo"
+  ],
+  "es:32:21": [
+   "Cuándo"
+  ],
+  "es:32:24": [
+   "Cuándo"
+  ],
+  "es:19:19": [
+   "gusta",
+   "gustan",
+   "fregar",
+   "somos"
+  ],
+  "es:19:22": [
+   "Buscamos",
+   "Buscan",
+   "Buscas",
+   "Busco"
+  ],
+  "es:19:25": [
+   "gusta",
+   "gustan",
+   "entrar",
+   "fregar"
+  ],
+  "es:19:26": [
+   "gusta",
+   "gustan",
+   "fregar",
+   "somos"
+  ],
+  "es:19:29": [
+   "gusta",
+   "gustan",
+   "entrar",
+   "fregar"
+  ],
+  "es:19:30": [
+   "Comprar",
+   "Secando",
+   "Buscamos"
+  ],
+  "es:19:37": [
+   "hemos",
+   "gustan",
+   "gusta",
+   "recibido"
+  ],
+  "es:19:49": [
+   "gusta",
+   "gustan",
+   "entrar",
+   "fregar"
+  ],
+  "es:20:19": [
+   "gusta",
+   "gustan"
+  ],
+  "es:20:22": [
+   "Tengo",
+   "Abrirla"
+  ],
+  "es:20:25": [
+   "gusta",
+   "gustan"
+  ],
+  "es:20:26": [
+   "gusta",
+   "gustan"
+  ],
+  "es:20:34": [
+   "estáis"
+  ],
+  "es:20:40": [
+   "estáis",
+   "está"
+  ],
+  "es:20:44": [
+   "Bebo",
+   "Vuelto",
+   "Sentamos",
+   "Ducha",
+   "Duchan"
+  ],
+  "es:20:48": [
+   "Bebo",
+   "Vuelto",
+   "Sentamos",
+   "Ducha",
+   "Duchan"
+  ],
+  "es:20:49": [
+   "gusta",
+   "gustan"
+  ],
+  "es:20:50": [
+   "Tengo",
+   "Abrirla"
+  ],
+  "es:04:03": [
+   "los"
+  ],
+  "es:04:04": [
+   "los"
+  ],
+  "es:04:05": [
+   "los"
+  ],
+  "es:04:06": [
+   "los",
+   "Estudiantes",
+   "Estudiante",
+   "Guía",
+   "Guías",
+   "Médico"
+  ],
+  "es:04:11": [
+   "los",
+   "una"
+  ],
+  "es:04:12": [
+   "los",
+   "una"
+  ],
+  "es:04:23": [
+   "los"
+  ],
+  "es:04:32": [
+   "los"
+  ],
+  "es:04:41": [
+   "los"
+  ],
+  "es:04:43": [
+   "los"
+  ],
+  "es:04:46": [
+   "los",
+   "una"
+  ],
+  "es:04:48": [
+   "los"
+  ],
+  "es:04:09": [
+   "profesora"
+  ],
+  "es:12:21": [
+   "bebes",
+   "casa"
+  ],
+  "es:28:28": [
+   "Pagamos"
+  ],
+  "es:28:43": [
+   "Pagamos"
   ]
  },
  "answers": {
@@ -380,6 +1232,203 @@
    "remove": [
     "¿Cerca hay una tienda?"
    ]
+  },
+  "es:19:21": {
+   "add": [
+    "Ahora estamos leyendo el libro."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:22": {
+   "add": [
+    "Ahora estáis leyendo el mensaje.",
+    "Vosotros estáis leyendo el mensaje ahora.",
+    "Vosotras estáis leyendo el mensaje ahora."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:25": {
+   "add": [
+    "Ahora mis hermanas están esperando aquí."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:26": {
+   "add": [
+    "Ahora mis hermanos están esperando fuera."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:28": {
+   "add": [
+    "Ahora estamos trabajando en el hotel."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:29": {
+   "add": [
+    "Ahora mis hermanos están comiendo en casa."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:30": {
+   "add": [
+    "Ahora estáis comiendo en la cocina.",
+    "Vosotros estáis comiendo en la cocina ahora.",
+    "Vosotras estáis comiendo en la cocina ahora."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:32": {
+   "add": [
+    "Ahora no estás escribiendo una carta."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:33": {
+   "add": [
+    "Ahora ana no está mandando la foto."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:36": {
+   "add": [
+    "Ahora no estamos bebiendo café."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:38": {
+   "add": [
+    "Ahora no estamos volviendo a casa."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:39": {
+   "add": [
+    "Ahora no estás leyendo el mensaje."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:40": {
+   "add": [
+    "Ahora luis no está abriendo la puerta."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:45": {
+   "add": [
+    "¿Está Luis llevando la bolsa?"
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:46": {
+   "add": [
+    "¿Está Ana recogiendo la bicicleta?"
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:48": {
+   "add": [
+    "¿Está Luis volviendo a la estación?"
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:19:49": {
+   "add": [
+    "¿Están mis hermanas bebiendo café?"
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:21": {
+   "add": [
+    "Esta semana hemos leído el libro."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:22": {
+   "add": [
+    "Esta semana habéis leído el mensaje.",
+    "Vosotros habéis leído el mensaje esta semana.",
+    "Vosotras habéis leído el mensaje esta semana."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:25": {
+   "add": [
+    "Esta semana mis hermanas han abierto la ventana."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:26": {
+   "add": [
+    "Esta semana mis hermanos han vuelto a casa."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:28": {
+   "add": [
+    "Esta semana hemos mandado la foto."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:30": {
+   "add": [
+    "Esta semana habéis llevado la bolsa.",
+    "Vosotros habéis llevado la bolsa esta semana.",
+    "Vosotras habéis llevado la bolsa esta semana."
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:45": {
+   "add": [
+    "¿Ha Luis leído el mensaje hoy?"
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:46": {
+   "add": [
+    "¿Ha Ana abierto la puerta hoy?"
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:20:49": {
+   "add": [
+    "¿Han mis hermanas preparado la cena hoy?"
+   ],
+   "remove": [],
+   "reason": "semantic-es-2026-11-05"
+  },
+  "es:03:23": {
+   "add": [],
+   "remove": [
+    "¿Estás en casa?"
+   ],
+   "reason": "semantic-es-2026-11-05"
   }
  },
  "targets": {
@@ -566,5 +1615,2757 @@
     "Devi firmare qua."
    ]
   }
+ },
+ "replace": {
+  "es:01:29": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:02:10": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:02:26": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:03:20": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:03:49": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:30": [
+   {
+    "from": "Cuándo",
+    "to": "Marta",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Marta",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:49": [
+   {
+    "from": "Cuándo",
+    "to": "Marta",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Marta",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:50": [
+   {
+    "from": "Cuándo",
+    "to": "Marta",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Marta",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:05:50": [
+   {
+    "from": "Cuándo",
+    "to": "Marta",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Marta",
+    "position": 4,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:09:29": [
+   {
+    "from": "Cuándo",
+    "to": "Elena",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:09:49": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Pablo",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:06": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:10": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:14": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:18": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:19": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:25": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:33": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:34": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:46": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:10:48": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:11:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:11:11": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:11:12": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:11:23": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:11:40": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:11:43": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:11:44": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:13:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:13:06": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:13:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:13:17": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:13:18": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:13:33": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:13:34": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:15": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:17": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:23": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:25": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:33": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:35": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:43": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:14:45": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:09": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:15": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:24": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 4,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:25": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:31": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:35": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:15:38": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 4,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:04": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 4,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:07": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:10": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:11": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:17": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:23": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:30": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:34": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:36": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:40": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:42": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:45": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:16:50": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:17:21": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:17:22": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:17:26": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:17:27": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:17:28": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:17:30": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:17:41": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:17:42": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:10": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:12": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:14": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:19": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:21": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:23": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:28": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:32": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:37": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:40": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:41": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:18:46": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:09": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:12": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:14": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:17": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:18": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:33": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "han",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "voy",
+    "to": "ha",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "lees",
+    "to": "he",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:35": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:40": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "han",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "voy",
+    "to": "ha",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "lees",
+    "to": "he",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:45": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:46": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:48": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:02": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 4,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "abrió",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:09": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "abrió",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:12": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "abrió",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "abrió",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:17": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "abrió",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:33": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "estáis",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "está",
+    "to": "estoy",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:35": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "estáis",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "está",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:38": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "abrió",
+    "to": "está",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "mandar",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:41": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:45": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "abrió",
+    "to": "está",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "mandar",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:46": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "estáis",
+    "to": "está",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "abrió",
+    "to": "es",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:04": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:09": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:12": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:23": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:31": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:37": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:45": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:21:48": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:09": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:19": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:23": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:29": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:33": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:35": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:40": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:43": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:22:49": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:23:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:23:09": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:23:12": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:23:17": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:23:33": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:23:35": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:23:45": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:23:46": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:02": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:04": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:07": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:12": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:22": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:24": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:29": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:32": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:34": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:39": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:24:44": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:25:50": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:26:02": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:26:22": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:26:25": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:26:27": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:26:39": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:26:43": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:26:44": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 4,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:26:47": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:27:08": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 4,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:27:18": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 4,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:27:20": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:27:22": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 6,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:27:25": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 6,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:27:36": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 6,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:27:39": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 6,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:27:49": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 6,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:04": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:09": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:17": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:33": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:35": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:41": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:46": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:48": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:29:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:29:04": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:29:05": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:29:09": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:29:13": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:29:17": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:29:45": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:29:46": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:03": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:21": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:22": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:23": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:24": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:25": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:26": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:27": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:28": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:29": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:30": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:30:49": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:31:18": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:31:21": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:31:30": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 5,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:31:45": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:32:21": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:32:24": [
+   {
+    "from": "Cuándo",
+    "to": "Sara",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:19": [
+   {
+    "from": "gusta",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "fregar",
+    "to": "ha",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "somos",
+    "to": "he",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:22": [
+   {
+    "from": "Buscamos",
+    "to": "Es",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Buscan",
+    "to": "Son",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Buscas",
+    "to": "Ha",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Busco",
+    "to": "He",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:25": [
+   {
+    "from": "gusta",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "entrar",
+    "to": "ha",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "fregar",
+    "to": "he",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:26": [
+   {
+    "from": "gusta",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "fregar",
+    "to": "ha",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "somos",
+    "to": "he",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:29": [
+   {
+    "from": "gusta",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "entrar",
+    "to": "ha",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "fregar",
+    "to": "he",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:30": [
+   {
+    "from": "Comprar",
+    "to": "Son",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Secando",
+    "to": "Ha",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Buscamos",
+    "to": "He",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:37": [
+   {
+    "from": "hemos",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gusta",
+    "to": "ha",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "recibido",
+    "to": "he",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:19:49": [
+   {
+    "from": "gusta",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "son",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "entrar",
+    "to": "ha",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "fregar",
+    "to": "he",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:19": [
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:22": [
+   {
+    "from": "Tengo",
+    "to": "Está",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Abrirla",
+    "to": "Es",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:25": [
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:26": [
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:30": [
+   {
+    "from": "Tengo",
+    "to": "Está",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Leído",
+    "to": "Es",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:34": [
+   {
+    "from": "estáis",
+    "to": "está",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:40": [
+   {
+    "from": "estáis",
+    "to": "es",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "está",
+    "to": "son",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:44": [
+   {
+    "from": "Bebo",
+    "to": "Está",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Vuelto",
+    "to": "Es",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Sentamos",
+    "to": "Son",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Ducha",
+    "to": "Estoy",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Duchan",
+    "to": "Hay",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:48": [
+   {
+    "from": "Bebo",
+    "to": "Está",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Vuelto",
+    "to": "Es",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Sentamos",
+    "to": "Son",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Ducha",
+    "to": "Estoy",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Duchan",
+    "to": "Hay",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:49": [
+   {
+    "from": "gusta",
+    "to": "está",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "gustan",
+    "to": "es",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:20:50": [
+   {
+    "from": "Tengo",
+    "to": "Está",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Abrirla",
+    "to": "Es",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:03": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:04": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:05": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:06": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Estudiantes",
+    "to": "Soy",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Estudiante",
+    "to": "Es",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Guía",
+    "to": "Somos",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Guías",
+    "to": "Son",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "Médico",
+    "to": "Sois",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:11": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "una",
+    "to": "estudiante",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:12": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "una",
+    "to": "estudiante",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:23": [
+   {
+    "from": "los",
+    "to": "guías",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:32": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:41": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:43": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:46": [
+   {
+    "from": "los",
+    "to": "guía",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "una",
+    "to": "estudiante",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:48": [
+   {
+    "from": "los",
+    "to": "guías",
+    "position": 2,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:04:09": [
+   {
+    "from": "profesora",
+    "to": "médicos",
+    "position": 1,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:12:21": [
+   {
+    "from": "bebes",
+    "to": "blancas",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   },
+   {
+    "from": "casa",
+    "to": "blanco",
+    "position": 3,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:28": [
+   {
+    "from": "Pagamos",
+    "to": "Pagaron",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ],
+  "es:28:43": [
+   {
+    "from": "Pagamos",
+    "to": "Pagaron",
+    "position": 0,
+    "reason": "semantic-es-2026-11-05"
+   }
+  ]
  }
 }

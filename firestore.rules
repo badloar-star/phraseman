@@ -2656,6 +2656,10 @@ service cloud.firestore {
       allow read: if request.auth != null;
       allow create, update, delete: if isAdmin();
     }
+    // Competitive results and answers are served only through membership-checked callables.
+    match /spire_floor_records/{id} { allow read, write: if false; }
+    match /spire_floor_record_attempts/{id} { allow read, write: if false; }
+    match /spire_floor_record_results/{id} { allow read, write: if false; }
 
     // â”€â”€ Auth links (Google/Apple â†’ stable_id mapping) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Doc id = providerUid (Google sub / Apple sub).
@@ -3584,6 +3588,9 @@ service cloud.firestore {
         && collection != 'jarvis_learning_cohorts'
         && collection != 'jarvis_growth_daily'
         && collection != 'jarvis_quality_daily'
+        && collection != 'spire_floor_records'
+        && collection != 'spire_floor_record_attempts'
+        && collection != 'spire_floor_record_results'
         && collection != 'spire_task_report_receipts'
         && collection != 'spire_task_report_reservations'
         && collection != 'spire_task_incidents'

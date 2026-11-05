@@ -121,7 +121,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются.
   const devTier = getDevSpireTierOverride();
   // зачем (владелец 22.10: «башню перекрашиваем в оттенки темы»): на «Сцене» наряд лиги в цветах темы, вне её — прежний наряд
-  const skin = useMemo(() => (sceneMode && themeColors ? spireThemedSkinForTier(devTier ?? tier, themeColors) : spireSkinForTier(devTier ?? tier)), [devTier, tier, sceneMode, themeColors]);
+  // зачем (решение координатора по №147, правило «все цвета — оттенки темы»): окно башни тоже в цветах темы; без themeColors — прежний арт лиги
+  const skin = useMemo(() => (themeColors ? spireThemedSkinForTier(devTier ?? tier, themeColors) : spireSkinForTier(devTier ?? tier)), [devTier, tier, themeColors]);
   // зачем (закон владельца 14.10, «ничем не обрезаться вообще»; координатор: при нехватке места — меньше масштаб): на 14–15 этаже башня с ореолом и свой этаж обязаны
   // уместиться в окне — масштаб = min(по ширине, высота окна / нужные единицы). Срез допустим только при ручной прокрутке. Для остальных этажей масштаб прежний.
   const nearTopFloor = myFloor !== null && myFloor >= SPIRE_FLOOR_COUNT - 1;
@@ -171,6 +172,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
 
   // Прокрутка к этажу: свой этаж по центру окна (как data-center в макете), иначе низ башни.
   const scrollToFloor = useCallback((floor: number | null, animated: boolean, why: string) => {
+    // Scene is part of SpireHomeScreen's page scroll; never move an inner viewport.
+    if (sceneMode) return;
     if (scale <= 0) {
       console.log('[SPIRE-SCROLL] пропуск: scale<=0', JSON.stringify({ floor, why, width })); // guard-ok: ранний выход логируется
       return;
@@ -299,7 +302,17 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       onAccessibilityAction={onA11yAction}
       testID="spire-tower"
     >
-      <ScrollView
+      {sceneMode ? (
+      <View style={{ flex: 1 }}>
+        {width > 0 ? (
+          <View style={{ width: renderWidth, height: SPIRE_TOWER_GEOM.height * scale, alignSelf: 'center' }}>
+            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} hideWords={sceneMode && hideFloorWords} hideFloorLabels={sceneMode} sceneClean={sceneMode} />
+            {rivalsByFloor && rivalsByFloor.size > 0 ? <View pointerEvents={onPressRival ? 'box-none' : 'none'} style={StyleSheet.absoluteFill}><RivalsLayer onPressRival={onPressRival} onPressMore={onPressMore} rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={SPIRE_SCENE_TOWER.num} sceneFit={sceneFit} hiddenBelow={0} /></View> : null}
+            {myFloor !== null ? <Animated.View pointerEvents={onPressMe ? 'box-none' : 'none'} style={[s.marker, { transform: [{ translateX: tx }, { translateY: ty }] }]}><SpireTowerMarker lang={lang} sceneMode myCoinRank={myCoinRank} onPressMe={onPressMe} /></Animated.View> : null}
+          </View>
+        ) : null}
+      </View>
+      ) : <ScrollView
         ref={scrollRef}
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled
@@ -331,7 +344,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
             ) : null}
           </View>
         ) : null}
-      </ScrollView>
+      </ScrollView>}
       {fadeTop && !sceneMode ? (
         <LinearGradient
           pointerEvents="none"

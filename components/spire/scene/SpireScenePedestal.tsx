@@ -46,6 +46,7 @@ const ME_HIGHLIGHT = colorWithAlpha(SPIRE_SCENE_INK.text, 0.3);
 const LINK = colorWithAlpha(SPIRE_SCENE_INK.text, 0.9);
 
 type Props = Readonly<{
+  recordSlot?: (compact: boolean) => React.ReactNode;
   lang: Lang;
   /** Ширина колонки: от левого края пьедестала до окна башни (spire_scene_layout), dp. */
   width: number;
@@ -68,7 +69,7 @@ type Props = Readonly<{
   onOpenAll: () => void;
 }>;
 
-function SpireScenePedestal({ lang, width, top, count, myPlace, me, myCoinRank, compact, loading, dim, onPressMember, onPressMe, onOpenAll }: Props) {
+function SpireScenePedestal({ recordSlot, lang, width, top, count, myPlace, me, myCoinRank, compact, loading, dim, onPressMember, onPressMe, onOpenAll }: Props) {
   // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, строки не наезжают
   const ts = useScaledTextStyles(s, TEXT_MAX_SCALE);
   const rows: readonly (SpireMemberRow | null)[] = loading ? Array.from({ length: TOP_N }, () => null) : top.slice(0, TOP_N);
@@ -122,7 +123,7 @@ function SpireScenePedestal({ lang, width, top, count, myPlace, me, myCoinRank, 
           })}
         </View>
       ) : null}
-      {loading ? (
+      {recordSlot?.(compact) ?? (loading ? (
         <View style={s.me}>
           <View style={[s.coinEmpty, { width: ME_COIN, height: ME_COIN, borderRadius: ME_COIN / 2 }]} />
           <Text style={[ts.name, s.grow]} numberOfLines={2} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireSceneText(lang, 'searching')}</Text>
@@ -135,7 +136,7 @@ function SpireScenePedestal({ lang, width, top, count, myPlace, me, myCoinRank, 
             {me && !compact ? <Text style={ts.sub} maxFontSizeMultiplier={TEXT_MAX_SCALE} android_hyphenationFrequency="full">{spireNickWrap(me.name)}</Text> : null}
           </View>
         </V2Pressable>
-      )}
+      ))}
       {compact ? null : (
       <V2Pressable testID="spire-scene-pedestal-all" onPress={onOpenAll} disabled={loading || count === 0} scaleTo={0.96} hitSlop={10} outerStyle={s.allOuter} style={s.all}>
         <Text style={ts.allText} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireText(lang, 'allMembers')}</Text>

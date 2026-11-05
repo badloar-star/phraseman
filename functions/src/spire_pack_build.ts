@@ -81,6 +81,9 @@ import {
 import { spireWeekStartMs } from './spire_residents';
 import { validateTournamentTaskForNewRoom, type TournamentTask } from './tournament_core';
 import { verifyTournamentPoolTaskProof, type ArenaPublication } from './tournament_pool_publication';
+import { compileStepRecordVerifier, stepRecordVerifierPath } from './spire_floor_record_verifier';
+import type { StepRecordVerifier } from './spire_floor_record_verifier';
+import { prepareExistingStepRecordVerifier, writeImmutableStepRecordVerifier } from './spire_floor_record_publication';
 
 const LOG = '[SPIRE-PACK]';
 const DAY_MS = 86_400_000;
@@ -97,6 +100,9 @@ function log(event: string, fields: Record<string, unknown>): void {
 function warn(event: string, fields: Record<string, unknown>): void {
   console.warn(LOG, JSON.stringify({ event, ...fields }));
 }
+
+// зачем: журнал причины в catch записей рекорда — под именем logger (сторож немых catch видит именно его)
+const logger = { warn };
 
 function errMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
@@ -271,7 +277,7 @@ export function multilingualPoolUnavailableReason(
  * poolVersion[+studyTarget+publicationFingerprint]+mode+difficulty+__name__ уже
  * существует у Арены — новых индексов не нужно.
  */
-async function loadPool(
+export async function loadPool(
   db: admin.firestore.Firestore,
   publication: ArenaTargetPublication,
   lang: SpireLang,
@@ -350,6 +356,7 @@ type PackOutcome = Readonly<{
   packHash?: string;
   bytes?: number;
   reason?: string;
+  recordVerifierStatus?: 'ready' | 'backfilled' | 'unavailable';
 }>;
 
 async function existingPackHash(path: string): Promise<string | null> {
@@ -360,10 +367,19 @@ async function existingPackHash(path: string): Promise<string | null> {
     const raw = (metadata?.metadata as Record<string, unknown> | undefined)?.packHash;
     return typeof raw === 'string' && raw.length > 0 ? raw : 'present_without_hash';
   } catch (error) {
-    // guard-ok: не знаем, есть ли файл — считаем, что нет, и пишем; причина в логе.
+    // Unknown existence must never be treated as absence (especially during backfill).
     warn('existing_pack_probe_failed', { path, reason: errMessage(error) });
-    return null;
+    throw error;
   }
+}
+
+async function writeRecordVerifier(companion: StepRecordVerifier): Promise<void> {
+  const path = stepRecordVerifierPath(companion.lang, companion.tier, companion.weekId, companion.packHash);
+  const file = admin.storage().bucket().file(path);
+  await writeImmutableStepRecordVerifier({
+    save: async (bytes, options) => file.save(bytes, options),
+    download: async () => { const [bytes] = await file.download(); return [bytes]; },
+  }, companion);
 }
 
 async function writePack(path: string, json: string, meta: Record<string, string>): Promise<void> {
@@ -438,12 +454,20 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
     for (const weekId of input.weekIds) {
       for (const tier of tiers) {
         const path = spirePackPath(lang, tier, weekId);
-        const existing = await existingPackHash(path);
-        if (existing && !input.force) {
-          outcomes.push({ lang, tier, weekId, status: 'kept_existing', packHash: existing });
-          continue;
+        try {
+          const existing = await existingPackHash(path);
+          if (existing && !input.force) {
+            const [ready] = await admin.storage().bucket().file(stepRecordVerifierPath(lang, tier, weekId, existing)).exists();
+            if (ready) {
+              outcomes.push({ lang, tier, weekId, status: 'kept_existing', packHash: existing, recordVerifierStatus: 'ready' });
+              continue;
+            }
+          }
+          todo.push({ weekId, tier, path, existing });
+        } catch (error) {
+          logger.warn('pack_probe_failed', { path, reason: errMessage(error) });
+          outcomes.push({ lang, tier, weekId, status: 'failed', reason: 'pack_probe_failed' });
         }
-        todo.push({ weekId, tier, path, existing });
       }
     }
     if (todo.length === 0) {
@@ -498,6 +522,20 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
           publicationFingerprint: 'spire-multilingual-direct',
           legacyPool: false,
         };
+      if (job.existing && !input.force) {
+        try {
+          const [publicBytes] = await admin.storage().bucket().file(job.path).download();
+          const companion = prepareExistingStepRecordVerifier(publicBytes,
+            { lang, tier: job.tier, weekId: job.weekId, packHash: job.existing }, source,
+            pool.tasks.filter(t => !excludedTaskIds.includes(t.taskId)));
+          await writeRecordVerifier(companion);
+          outcomes.push({ lang, tier: job.tier, weekId: job.weekId, status: 'kept_existing', packHash: job.existing, recordVerifierStatus: 'backfilled' });
+        } catch (error) {
+          logger.warn('record_verifier_backfill_failed', { path: job.path, reason: errMessage(error) });
+          outcomes.push({ lang, tier: job.tier, weekId: job.weekId, status: 'failed', packHash: job.existing, reason: errMessage(error), recordVerifierStatus: 'unavailable' });
+        }
+        continue;
+      }
       const built = buildSpirePack({
         weekId: job.weekId,
         lang,
@@ -513,8 +551,19 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
         continue;
       }
       const { pack, json } = built;
+      // Same verified tasks, same set0 IDs. Server-only path; never alter public pack bytes.
+      // Prepared for future record activation; existing immutable packs are not rewritten.
+      let recordVerifierStatus: 'ready' | 'unavailable' = 'ready';
+      try {
+        const recordVerifier = compileStepRecordVerifier(pack, pool.tasks);
+        await writeRecordVerifier(recordVerifier);
+      } catch (error) {
+        recordVerifierStatus = 'unavailable';
+        // Ordinary Peak remains available; records fail closed when companion is absent.
+        logger.warn('record_verifier_unavailable', { path: job.path, reason: errMessage(error) });
+      }
       if (job.existing === pack.packHash) {
-        outcomes.push({ lang, tier: job.tier, weekId: job.weekId, status: 'same_hash', packHash: pack.packHash });
+        outcomes.push({ lang, tier: job.tier, weekId: job.weekId, status: 'same_hash', packHash: pack.packHash, recordVerifierStatus });
         continue;
       }
       if (job.existing) {
@@ -533,7 +582,7 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
         });
         const bytes = Buffer.byteLength(json, 'utf8');
         log('pack_written', { path: job.path, packHash: pack.packHash, bytes, stats: pack.stats });
-        outcomes.push({ lang, tier: job.tier, weekId: job.weekId, status: 'written', packHash: pack.packHash, bytes });
+        outcomes.push({ lang, tier: job.tier, weekId: job.weekId, status: 'written', packHash: pack.packHash, bytes, recordVerifierStatus });
       } catch (error) {
         // guard-ok: одна неудачная запись не валит остальные шпили; причина в логе и в итоге.
         warn('pack_write_failed', { path: job.path, reason: errMessage(error) });
@@ -616,8 +665,10 @@ const WEEK_ID_RE = /^\d{4}-W\d{2}$/u;
 
 /**
  * adminSpirePackBuild({ weekId?, langs?, tiers?, force? }).
- * По умолчанию — текущая неделя, все языки и шпили, существующие файлы не
- * трогает. Нужен, когда Шпиль включили посреди недели (крон пропускал сборку,
+ * По умолчанию — текущая неделя, все языки и шпили. Существующие публичные
+ * файлы не меняет; отсутствующий private verifier дополняет из точных public
+ * bytes и той же verified publication, без force и без генерации заданий.
+ * Нужен, когда Шпиль включили посреди недели (крон пропускал сборку,
  * пока Шпиль был выключен) или когда сборка крона упала.
  */
 export const adminSpirePackBuild = onCall(

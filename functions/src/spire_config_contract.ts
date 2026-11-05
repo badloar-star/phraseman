@@ -113,6 +113,8 @@ export function spireBotWeekCoins(steps: number): number {
 export type SpireConfigDoc = Readonly<{
   schemaVersion: typeof SPIRE_CONFIG_SCHEMA_VERSION;
   enabled: boolean;
+  /** Competitive step records require this remote lock and a separate source authority lock. */
+  floorRecordsEnabled: boolean;
   timer: SpireTimerConfig;
   coins: SpireCoinsConfig;
   residents: SpireResidentConfig;
@@ -127,6 +129,7 @@ export type SpireConfigDoc = Readonly<{
 export const SPIRE_CONFIG_DEFAULTS: SpireConfigDoc = Object.freeze({
   schemaVersion: SPIRE_CONFIG_SCHEMA_VERSION,
   enabled: false,
+  floorRecordsEnabled: false,
   timer: Object.freeze({
     baseMsByKind: Object.freeze({
       choice: 9_000,
@@ -248,6 +251,7 @@ function buildIntegrity(raw: unknown): SpireIntegrityConfig {
  */
 export function spireBuildConfigDoc(input: Readonly<{
   enabled?: boolean;
+  floorRecordsEnabled?: unknown;
   timer?: unknown;
   coins?: unknown;
   residents?: unknown;
@@ -258,6 +262,7 @@ export function spireBuildConfigDoc(input: Readonly<{
   return {
     schemaVersion: SPIRE_CONFIG_SCHEMA_VERSION,
     enabled: input.enabled === true,
+    floorRecordsEnabled: input.floorRecordsEnabled === true,
     timer: buildTimer(input.timer),
     coins: buildCoins(input.coins),
     residents: buildResidents(input.residents),

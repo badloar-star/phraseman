@@ -79,6 +79,11 @@ export const adminSpireConfigSet = onCall(
       const beforeStatus = spireConfigStatus(before.exists ? before.data() : null);
       const next = spireBuildConfigDoc({
         enabled: data.enabled === true,
+        // Older admin callers do not know this lock. Omission must preserve the
+        // stored value; only an exact boolean changes the rollout state.
+        floorRecordsEnabled: typeof data.floorRecordsEnabled === 'boolean'
+          ? data.floorRecordsEnabled
+          : beforeStatus.config.floorRecordsEnabled,
         timer: data.timer,
         coins: data.coins,
         residents: data.residents,
@@ -95,8 +100,10 @@ export const adminSpireConfigSet = onCall(
         role: actor.role,
         entity: { collection: SPIRE_CONFIG_COLLECTION, id: SPIRE_CONFIG_DOC_ID },
         reason,
-        before: { enabled: beforeStatus.config.enabled, rankBy: beforeStatus.config.rankBy, weekCoinsCap: beforeStatus.config.weekCoinsCap },
-        after: { enabled: next.enabled, rankBy: next.rankBy, weekCoinsCap: next.weekCoinsCap },
+        before: { enabled: beforeStatus.config.enabled, floorRecordsEnabled: beforeStatus.config.floorRecordsEnabled,
+          rankBy: beforeStatus.config.rankBy, weekCoinsCap: beforeStatus.config.weekCoinsCap },
+        after: { enabled: next.enabled, floorRecordsEnabled: next.floorRecordsEnabled,
+          rankBy: next.rankBy, weekCoinsCap: next.weekCoinsCap },
         requestId: auditRef.id,
         timestamp: new Date(nowMs).toISOString(),
       }));

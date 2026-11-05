@@ -12,6 +12,7 @@ import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 export type { SpireSceneBackdropSpec } from './spire_scene_backdrop_math';
+import SceneBackdrop from '../../scene/SceneBackdrop';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
 import { SPIRE_LIGHT_RY_FACTOR, SPIRE_LIGHT_STAGE_H, SPIRE_SHADE_TAIL, spireTopShadeAlpha, type SpireSceneBackdropSpec } from './spire_scene_backdrop_math';
 
@@ -20,7 +21,7 @@ const listeners = new Set<() => void>();
 
 /** Сцена Пика публикует свой фон для слоя шапки; null — сцены нет. */
 export function setSpireSceneBackdrop(next: SpireSceneBackdropSpec | null): void {
-  if (next === spec || (next && spec && next.top === spec.top && next.bottom === spec.bottom && next.glow === spec.glow && next.evening === spec.evening && next.bleed === spec.bleed && next.sceneH === spec.sceneH)) return;
+  if (next === spec || (next && spec && next.top === spec.top && next.bottom === spec.bottom && next.glow === spec.glow && next.evening === spec.evening && next.bleed === spec.bleed && next.sceneH === spec.sceneH && next.palette === spec.palette)) return;
   spec = next;
   console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_backdrop', spec })); // guard-ok: одна строка на смену фона — чем закрыт верх Пика
   listeners.forEach((listener) => {
@@ -53,16 +54,23 @@ function SpireSceneBackdrop({ spec: b, offsetTop }: Readonly<{ spec: SpireSceneB
   }, [offsetTop, height, b, shade, lightRy]);
   return (
     <View pointerEvents="none" style={[s.fill, { top: -offsetTop, height }]}>
-      <LinearGradient colors={[b.top, b.bottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
-      <Svg style={StyleSheet.absoluteFill} width="100%" height="100%">
-        <Defs>
-          <RadialGradient id="spireBackdropLight" cx={b.evening ? '82%' : '18%'} cy="0%" rx="70%" ry={lightRy} fx={b.evening ? '82%' : '18%'} fy="0%">
-            <Stop offset="0" stopColor={b.glow} stopOpacity="1" />
-            <Stop offset="1" stopColor={b.glow} stopOpacity="0" />
-          </RadialGradient>
-        </Defs>
-        <Rect x="0" y="0" width="100%" height="100%" fill="url(#spireBackdropLight)" />
-      </Svg>
+      {b.palette ? (
+        // зачем (вердикт владельца 29.10, scenePalette): фон Пика — утверждённая сцена; два экземпляра (сцена и шапка) — разные id градиентов
+        <SceneBackdrop palette={b.palette} idPrefix={`spireBd${Math.round(offsetTop)}`} />
+      ) : (
+        <>
+          <LinearGradient colors={[b.top, b.bottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
+          <Svg style={StyleSheet.absoluteFill} width="100%" height="100%">
+            <Defs>
+              <RadialGradient id="spireBackdropLight" cx={b.evening ? '82%' : '18%'} cy="0%" rx="70%" ry={lightRy} fx={b.evening ? '82%' : '18%'} fy="0%">
+                <Stop offset="0" stopColor={b.glow} stopOpacity="1" />
+                <Stop offset="1" stopColor={b.glow} stopOpacity="0" />
+              </RadialGradient>
+            </Defs>
+            <Rect x="0" y="0" width="100%" height="100%" fill="url(#spireBackdropLight)" />
+          </Svg>
+        </>
+      )}
       {shade > 0 ? (
         <LinearGradient
           colors={[`rgba(0,0,0,${shade})`, `rgba(0,0,0,${shade})`, SPIRE_SCENE_INK.clear]} // theme-exempt: затемнение — только альфа над фоном темы; конец — токен сцены clear (храповик цветовых литералов 2.0)

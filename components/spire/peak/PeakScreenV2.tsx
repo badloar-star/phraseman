@@ -30,6 +30,7 @@ import PeakStepChips from './PeakStepChips';
 import PeakTourFull from './PeakTourFull'; // зачем (владелец 05.11, макет peak_tour_full_approved): полноэкранный тур первого входа в Пик, 3 страницы со свайпом, вместо прежнего оверлея-подсветки
 import { usePeakTourGate } from './use_peak_tour_gate';
 import { useOverlayBypassLog, useOverlayVisible } from '../../OverlayArbiter';
+import { useSpireTowerTheme } from '../use_spire_tower_theme';
 import { PEAK_TAP_TARGET, peakMaxStep } from './peak_text';
 
 type TowerProps = React.ComponentProps<typeof SpireTower>;
@@ -74,10 +75,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
     [railWidth, rail, towerSkin, towerProps.myFloor],
   );
   // зачем (Макеты 05.11, кадр 07:43: «башня тёмно-серая на светлом экране — башня и экран разных цветов»; макет variant_B: камень башни — оттенок темы): наряд лиги в цветах темы экрана
-  const towerTheme = useMemo(() => {
-    const hex = (c: unknown): c is string => typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c);
-    return hex(p.accentGraphic) && hex(p.bgTop) && hex(p.bg) ? { accent: p.accentGraphic, sceneTop: p.bgTop, sceneBottom: p.bg } : undefined;
-  }, [p.accentGraphic, p.bgTop, p.bg]);
+  const towerTheme = useSpireTowerTheme(p);
   // зачем (владелец 05.11 ~19:12: «наложения зелёная полоска на иконку — убери… и с башни убирай иконки юзеров»): на башне НЕТ монет участников и метки «я»;
   // слой монет и данные для него удалены. Журнал [PEAK-LINE-MARKER] — что рисуется на башне и по какому условию (одна строка на смену этажа).
   useEffect(() => {

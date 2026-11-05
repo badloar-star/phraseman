@@ -29,6 +29,7 @@ import { DebugLogger } from '../../app/debug-logger';
 import { useTabNav } from '../../app/TabContext';
 import { V2 } from '../../constants/v2Style';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
+import { useRuntimeActive } from '../../hooks/use_runtime_active'; import { useSpireTowerTheme } from './use_spire_tower_theme';
 import { useTabContentBottomPad, useTabPillTop } from '../../hooks/use-tab-content-bottom-pad';
 import type { SpireConfigDoc } from '../../modules/spire/config_contract';
 import type { SpireWeekLocal } from '../../modules/spire/report_queue';
@@ -40,17 +41,13 @@ import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import { useSpireBgBottom, useSpirePalette } from './useSpirePalette';
-import { spireScreenLangLock } from './spire_screen_lang_lock';
-import SpireEnergyPill from './SpireEnergyPill';
-import SpireAllMembers from './SpireAllMembers';
-import SpireClimbDock from './SpireClimbDock';
+import { spireScreenLangLock } from './spire_screen_lang_lock'; import SpireEnergyPill from './SpireEnergyPill';
+import SpireAllMembers from './SpireAllMembers'; import SpireClimbDock from './SpireClimbDock';
 import { logSpireDock, logSpireLayout, roundLayout } from './spire_layout_log';
-import SpireFloorInfo from './SpireFloorInfo';
-import SpireFriendsRow from './SpireFriendsRow';
+import SpireFloorInfo from './SpireFloorInfo'; import SpireFriendsRow from './SpireFriendsRow';
 import SpireLockedState from './SpireLockedState';
 import { useSpireConfigQuietRetry } from './use_spire_config_quiet_retry';
-import SpirePodium from './SpirePodium';
-import SpireResultPanel from './SpireResultPanel';
+import SpirePodium from './SpirePodium'; import SpireResultPanel from './SpireResultPanel';
 import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
 const SpireMomentsLayer = lazy(() => import('./moments/SpireMomentsLayer'));
 import SpireHomeSkeleton from './SpireHomeSkeleton';
@@ -59,13 +56,11 @@ import { useSpireTowerTouchLock } from './use_spire_tower_touch_lock'; import { 
 import { SPIRE_THIN_HEADER_STYLES as thin } from './spire_thin_header';
 import SpireStepScreen from './SpireStepScreen';
 import SpireTour from './SpireTour'; import SpireTower from './SpireTower'; import PeakScreenSlot from './peak/PeakScreenSlot'; import { peakScreenV2On } from './peak/peak_screen_flag'; // зачем (владелец 04.11, вариант B «Рельса»): новый экран за флагом, по умолчанию выключен
-import SpireWeekResultCard from './SpireWeekResultCard';
-import { useSpirePreview } from './spire_preview_context';
-import SpireScene from './scene/SpireScene'; import { useSpireSceneTop } from './scene/use_spire_scene_top';
+import SpireWeekResultCard from './SpireWeekResultCard'; import { useSpirePreview } from './spire_preview_context';
+import SpireScene from './scene/SpireScene'; import { useSpireSceneTop } from './scene/use_spire_scene_top'; import { spireRecordSlot } from './spire_record_slot';
 import { useSpireSceneScroll } from './scene/use_spire_scene_scroll'; import { useSpireHeaderOverlayInset } from './scene/spire_header_overlay';
 import type { SpireMemberRow } from './spire_room_types';
-import { useIsPlus } from '../plus/use_is_plus';
-import { useSubscriptionTier } from '../plus/use_subscription_tier';
+import { useIsPlus } from '../plus/use_is_plus'; import { useSubscriptionTier } from '../plus/use_subscription_tier';
 import { spireTimeLeftText } from './spire_strings';
 import { spirePeopleCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
@@ -73,7 +68,6 @@ import { SPIRE_FLOOR_COUNT, spireRivalsByFloor, spireTimeLeft } from './spire_to
 import { useSpireSummit } from './use_spire_summit';
 import { asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek } from './spire_home_week';
 import { usePeakPerfProbeOnTab } from '../../app/spire/use_peak_perf_probe_on_tab';
-
 const LOG = '[SPIRE]';
 const DASH = '—';
 // зачем (координатор 13.10/15.10, [SPIRE-LAYOUT]): запас под списком — макетный пол (120/150/300), но док растёт (подпись причины, панель итога, крупный шрифт) → `dockBottom + dockH + DOCK_GAP - bottomPad`; док стоит на «верх капсулы + зазор» (`useTabPillTop`), не на «отступ минус число» (владелец 15.10)
@@ -84,9 +78,12 @@ export default function SpireHomeScreen() {
   usePeakPerfProbeOnTab('home', 'peak', 'spire'); // зачем (координатор 25.10): вне вкладки Пика кадровый замер на паузе — [PEAK-FOCUS]
   const { lang } = useLang();
   const p = useSpirePalette();
+  // зачем (координатор 05.11, решение по №147 и правило владельца «все цвета — оттенки темы»): окно башни красится в цвета темы, как сцена — те же три токена
+  const towerTheme = useSpireTowerTheme(p);
   const bgBottom = useSpireBgBottom();
   const { studyTarget } = useStudyTarget();
   const { runtimeOwnerId } = useTabNav();
+  const spireRuntimeActive = useRuntimeActive(runtimeOwnerId === 'spire'); // retained Peak: follow Friends only while this named owner is visible and the app is foregrounded
   const { hasPremiumAccess } = usePremium();
   const realCoinRank = useMyCoinRank();
   const bottomPad = useTabContentBottomPad();
@@ -198,7 +195,7 @@ export default function SpireHomeScreen() {
   }, [unlocked, spireLang, studyTarget]);
 
   // Игровая часть: вся сеть — только за воротами (оба замка), см. use_spire_game.ts.
-  const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek }); useSpireLoadReadiness(realGame, preview !== null); // [SPIRE-LOAD] когда пришли люди и что держит «Играть»
+  const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek, runtimeActive: spireRuntimeActive }); useSpireLoadReadiness(realGame, preview !== null); // [SPIRE-LOAD] когда пришли люди и что держит «Играть»
   const game = preview ? preview.game : realGame;
   const devWeekResult = getDevSpireWeekResultOverride(); // dev_state?spireWeek=…: готовый исход «Итога недели» для кадров Сверки (в стор-сборке null)
   // зачем (смета Firebase 13.10, п. 5): потянуть экран = обновить друзей мимо кэша 30 мин. Спиннер держится, пока идёт вызов; повторное потягивание хук игнорирует.
@@ -274,11 +271,11 @@ export default function SpireHomeScreen() {
   const podiumLoading = members === null && (game.live || config === null) && game.roomLoad === null; /* зачем (владелец 26.10): конфиг ещё не прочитан и кэша нет — скелет, не «0» и «—» */ const roomCeilingPassed = useSpireRoomCeiling({ live: game.live || config === null, roomLoad: game.roomLoad, hasRows: members !== null, key: `${spireLang}|${preview ? 'preview' : 'live'}` }); const podiumSkeleton = podiumLoading && !roomCeilingPassed; const podiumColumns = podiumSkeleton || (members !== null && members.length > 0); useSpirePikRenderTrace({ langLocked: langLock.locked, configNull: config === null, unlocked, preview: preview !== null, live: game.live, roomLoad: game.roomLoad, members: members?.length ?? null, tierNull: game.tier === null, showAll, podiumSkeleton, ceilingPassed: roomCeilingPassed }); // зачем (Ревизор по c5ccfd458): колонки подиума есть (комната или скелет) — компакт экономит 40 dp; пустая комната/офлайн — 0, иначе ступень качается
   const budget = useSpireTowerBudget(DOCK_GAP, podiumColumns); const towerWindowH = budget.windowH; // зачем (строка 25 R1_BACKLOG; координатор 15.10, 🔴): окно башни и ступени ужатия — из замеров верха башни, дока и карточки (use_spire_tower_budget), не из модели высоты
   const scene = useSpireSceneTop({ lang, members, rankBy: game.rankBy, roomSearching: podiumSkeleton, offline, plus: hasPremiumAccess, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, floor: myFloor, stepInFloor: shownStepInFloor, coins: config?.coins ?? null, active: runtimeOwnerId === 'spire' }); // зачем (Пик v2, владелец 22.10): «Сцена» за флагом SPIRE_SCENE_V2_ENABLED; null — прежний верх экрана
+  const pageScrollEnabled = scene !== null || !towerTouch.locked; // Scene model → primitive for Fabric boolean props.
   const sceneScroll = useSpireSceneScroll(scene !== null, runtimeOwnerId === 'spire'); // зачем (3b-3): прокрутка гасит цвет шапки «Сообщества», как маска Главной
-  useSpireScrollStateLog({ scrollEnabled: !towerTouch.locked, scene: scene !== null, config: config !== null, unlocked, roomLoad: game.roomLoad?.status ?? null, members: members?.length ?? null, owner: runtimeOwnerId, tailPad: roundLayout(tailPad) }); // [SPIRE-SCROLL]: что решает прокрутку страницы
+  useSpireScrollStateLog({ scrollEnabled: pageScrollEnabled, scene: scene !== null, config: config !== null, unlocked, roomLoad: game.roomLoad?.status ?? null, members: members?.length ?? null, owner: runtimeOwnerId, tailPad: roundLayout(tailPad) }); // [SPIRE-SCROLL]: что решает прокрутку страницы
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)}`;
-  const headerOverlayInset = useSpireHeaderOverlayInset(); // зачем: хук до ранних return (замок/скелет) — иначе число хуков меняется между рендерами и вкладка Пика падает «Rendered more hooks…»
-
+  const headerOverlayInset = useSpireHeaderOverlayInset(); // Хук нужен и на ветках загрузки/замка: иначе переход между ними меняет порядок хуков.
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
   // зачем (правило 10г, координатор 13.10): пока конфиг не прочитан (холодный старт, память пуста) — не пустой View, а скелет по форме экрана (SpireHomeSkeleton, testID spire-loading).
   if (config === null) return <SpireHomeSkeleton lang={lang} />;
@@ -293,13 +290,13 @@ export default function SpireHomeScreen() {
         showsVerticalScrollIndicator={false}
         {...sceneScroll}
         decelerationRate="fast"
-        scrollEnabled={!towerTouch.locked} {...spirePageScrollLogProps(!towerTouch.locked)}
+        scrollEnabled={pageScrollEnabled} {...spirePageScrollLogProps(pageScrollEnabled)}
         // зачем (смета Firebase 13.10, п. 5): друзья в кэше 30 мин — вручную обновляются потягиванием; спиннер системный, экран не блокируется
-        refreshControl={<RefreshControl enabled={!towerTouch.locked} refreshing={friendsRefreshing} onRefresh={onPullRefreshFriends} tintColor={p.text} colors={[p.text]} progressBackgroundColor={p.control} testID="spire-pull-refresh" />}
+        refreshControl={<RefreshControl enabled={pageScrollEnabled} refreshing={friendsRefreshing} onRefresh={onPullRefreshFriends} tintColor={p.text} colors={[p.text]} progressBackgroundColor={p.control} testID="spire-pull-refresh" />}
         onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + tailPad) })}
         onContentSizeChange={(_w, ch) => logSpireLayout('scroll.content', { contentH: roundLayout(ch) })}
       >
-        {peakScreenV2On() ? <PeakScreenSlot lang={lang} members={members} rankBy={game.rankBy} floor={shownFloor} onSelectFloor={onSelect} pillText={subtitle} onOpenAll={openAll} towerProps={{ myFloor, myCoinRank, rivalsByFloor: rivals, dimRivals: offline, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, onTouchActive: towerTouch.onTouchActive }} /> : scene ? <View style={s.bleed}><SpireScene lang={lang} {...scene} rankBy={game.rankBy} myCoinRank={myCoinRank} myPlus={myIsPlus} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} rivalsByFloor={rivals} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} onTouchActive={towerTouch.onTouchActive} onOpenAll={openAll} headerTint={runtimeOwnerId === 'spire'} members={members} dockClear={dockBottom + V2.cta.height} /></View> : <>
+        {peakScreenV2On() ? <PeakScreenSlot lang={lang} members={members} rankBy={game.rankBy} floor={shownFloor} onSelectFloor={onSelect} pillText={subtitle} onOpenAll={openAll} towerProps={{ myFloor, myCoinRank, rivalsByFloor: rivals, dimRivals: offline, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, onTouchActive: towerTouch.onTouchActive }} /> : scene ? <View style={s.bleed}><SpireScene lang={lang} {...scene} rankBy={game.rankBy} myCoinRank={myCoinRank} myPlus={myIsPlus} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} rivalsByFloor={rivals} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} onOpenAll={openAll} headerTint={runtimeOwnerId === 'spire'} members={members} dockClear={dockBottom + V2.cta.height} recordSlot={spireRecordSlot({ preview: !!preview, lang, floor: Math.min(shownFloor, 15), stableId: game.stableId, room: game.roomLoad?.room ?? null, config, active: runtimeOwnerId === 'spire' })} /></View> : <>
         <View style={[s.head, budget.headerThin ? thin.head : null]}>
           <SpireHomeTitle lang={lang} spireLang={spireLang} subtitle={subtitle} tier={game.tier !== null ? (devWeekResult?.newTier ?? game.tier ?? week?.tier) : null} titleStyle={budget.headerThin ? thin.title : null} />
           <SpireEnergyPill ownerActive={runtimeOwnerId === 'spire'} />
@@ -329,7 +326,7 @@ export default function SpireHomeScreen() {
         ) : null}
         {scene || peakScreenV2On() ? null : <>
         <View style={s.towerWrap} onLayout={(e) => budget.onTowerTop(Math.round(e.nativeEvent.layout.y))}>
-          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} onTouchActive={towerTouch.onTouchActive} />
+          <SpireTower themeColors={towerTheme} lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} onTouchActive={towerTouch.onTouchActive} />
         </View>
         <View onLayout={(e) => budget.onInfoHeight(Math.round(e.nativeEvent.layout.height))}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={shownStepInFloor} coins={config.coins} others={rivals.get(shownFloor)} compact={budget.cardCompact} /></View>
         </>}

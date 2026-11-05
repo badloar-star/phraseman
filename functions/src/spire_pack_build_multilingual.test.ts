@@ -3,6 +3,7 @@ import * as path from 'path';
 import { loadMultilingualPool, multilingualPoolUnavailableReason } from './spire_pack_build';
 import { buildSpirePack } from './spire_pack_contract';
 import { SPIRE_CONFIG_DEFAULTS } from './spire_config_contract';
+import { compileStepRecordVerifier } from './spire_floor_record_verifier';
 
 /**
  * End-to-end проверка es/de/fr/it прямой публикации (PM-272, владелец
@@ -49,5 +50,13 @@ describe.each(APPROVED_LANGS)('loadMultilingualPool(%s) — independently approv
       source: { poolVersion: `spire-multilingual-direct-${lang}`, publicationFingerprint: 'spire-multilingual-direct', legacyPool: false },
     });
     expect(built.ok).toBe(true);
+    if (built.ok) {
+      const companion = compileStepRecordVerifier(built.pack, pool.tasks);
+      expect(companion.steps).toHaveLength(135);
+      for (const row of companion.steps) {
+        const set = built.pack.floors.find(f => f.floor === row.floor)!.steps.find(s => s.step === row.step)!.sets[0];
+        expect(row.tasks.map(t => t.taskId)).toEqual(set.tasks.map(t => t.taskId));
+      }
+    }
   });
 });

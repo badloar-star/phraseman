@@ -967,6 +967,7 @@ export {
 // Шпиль: приём пачки отчётов о ступенях (PM-275, TOWER_CONTRACT.md §5) —
 // одна запись progress.spire_week_v1 на пачку, проверка правдоподобия по config/spire_v1.
 export { spireReportSteps } from "./spire_progress";
+export { spireFloorRecords } from "./spire_floor_records";
 // Шпиль: комнаты по 30 на язык и день входа (PM-277, T15/T24); боты — формула
 // spire_residents.ts без чтений/записей и без крона (D56).
 export { spireJoinRoom } from "./spire_groups";

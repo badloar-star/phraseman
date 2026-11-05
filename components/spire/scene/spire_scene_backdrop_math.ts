@@ -1,7 +1,9 @@
 // spire_scene_backdrop_math.ts — чистая математика общего фона «Сцены» Пика (без react-native): спек и затемнение под вкладками.
 // зачем: считается и в приложении, и в тестах замка «верх цельный» (tests/owner_lock_whole_top_2026_10_25.test.ts).
 
-export type SpireSceneBackdropSpec = Readonly<{ top: string; bottom: string; glow: string; evening: boolean; /** от верха экрана до верха сцены, dp */ bleed: number; sceneH: number }>;
+import type { ScenePaletteResult } from '../../scene/scene_palette';
+
+export type SpireSceneBackdropSpec = Readonly<{ top: string; bottom: string; glow: string; evening: boolean; /** утверждённая сцена (scenePalette) для отрисовки; нет — прежний плоский фон */ palette?: ScenePaletteResult | null; /** от верха экрана до верха сцены, dp */ bleed: number; sceneH: number }>;
 
 const rgbaOf = (c: string): readonly [number, number, number, number] => {
   const m = /rgba?((d+),s*(d+),s*(d+)(?:,s*([d.e-]+))?)/.exec(c);

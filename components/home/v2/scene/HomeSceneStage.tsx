@@ -39,6 +39,7 @@ import { useLang } from '../../../LangContext';
 import LessonPrepCtaBody from '../../../lesson_prep/LessonPrepCtaBody';
 // зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
 import { HOME_SCENE_INK } from './home_scene_ink';
+import KitProgressFill from '../../../KitProgressFill';
 
 const LOG = '[HOME-SCENE]';
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
@@ -203,7 +204,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             ) : null}
             {copy.line ? (
               <View style={s.lineRow}>
-                {copy.bar !== null ? <View style={s.bar}><View style={[s.barFill, { width: `${Math.round(copy.bar * 100)}%` }]} /></View> : null}
+                {copy.bar !== null ? <View style={s.bar}><KitProgressFill ratio={copy.bar} style={s.barFill} /></View> : null}
                 <Text style={s.line}>{copy.line}</Text>
               </View>
             ) : null}
@@ -268,7 +269,7 @@ const baseStyles = StyleSheet.create({
   warm: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   lineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: HOME_SCENE_INK.barTrack, overflow: 'hidden' },
-  barFill: { height: 4, backgroundColor: HOME_SCENE_INK.text },
+  barFill: { backgroundColor: HOME_SCENE_INK.text }, // зачем (ТОП-20 №4, 05.11): заливка едет через KitProgressFill (transform, 800 мс), высота — у трека
   line: { color: HOME_SCENE_INK.line, fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'], ...TEXT_OVER_HERO_SHADOW },
   cta: { marginTop: 16, minHeight: 50, paddingVertical: 8, borderRadius: 25, backgroundColor: HOME_SCENE_INK.cta, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22, overflow: 'hidden' },
   ctaText: { color: HOME_SCENE_INK.ctaInk, fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },

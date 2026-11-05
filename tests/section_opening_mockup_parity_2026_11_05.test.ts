@@ -20,7 +20,8 @@ describe('окно «Открытие раздела» = макет approved-rev
   it('арты как в макете: видео intro_videos, Пик spire_tile, у «Ранга» монета, у диалогов/карточек/Plus арта нет', () => {
     expect(src).toContain("{ video: 'intro_videos', peak: 'spire_tile' }");
     expect(src).toContain("id === 'rank' ?");
-    expect(src).toContain('<SpireRankCoin rank={coinRank}');
+    expect(src).toContain('<MyRankCoin size={coinSize}'); // монета строго по рангу пользователя (c2af034df)
+    expect(src).not.toContain('SpireRankCoin');
     for (const old of ['chat_bubbles', 'notecard_stack', 'spiral_notepad', 'cards_hub_saved']) expect(src).not.toContain(old);
   });
 

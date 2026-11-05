@@ -4,7 +4,7 @@
 // зачем (владелец 05.11 дословно: «это не то что я одобрял. ОНО ВООБЩЕ НА МАКЕТАХ НЕ ТАК ВЫГЛЯДЕЛО … В ТОЧНОСТИ 1 К 1 … С АНИМАЦИЕЙ КОТОРУЮ Я ОДОБРИЛ»): окно переписано по макету 1:1 —
 // НИКАКОГО круга за героем (в макете `.opening-halo{background:none}`, вместо него белое свечение вдоль силуэта), герой прижат по правилам макета (влево / вправо у диалогов / центр у Plus / 25 % у Пика),
 // монета ранга справа у окна «Ранг», арты разделов — из тех же пар dark/light, что в макете (видео: intro_videos, Пик: spire_tile; у диалогов и карточек арта нет), надзаголовок «РАНГ N · НОВЫЙ РАЗДЕЛ»,
-// кнопка «На главную», 14 искр, тонкий прогресс 2 px. Таймлайн прежний: 3600 мс, текст с 61 % до 82 %, CTA оживает на 82 % (copy.inert макета).
+// кнопка «На главную», 14 искр, тонкий прогресс 2 px. Монета окна «Ранг» — MyRankCoin: строго по РАНГУ ПОЛЬЗОВАТЕЛЯ (закон владельца 05.11, c2af034df). Таймлайн прежний: 3600 мс, текст с 61 % до 82 %, CTA оживает на 82 % (copy.inert макета).
 // Один sharedValue-таймлайн (0→1), все стили — useAnimatedStyle на UI-потоке: ни одного setState в кадрах (владелец борется с лагами Android). «Уменьшить движение» — сразу финальный кадр.
 // Цвета — токены темы. Хаптик: мягкий на «Праздник», успех на CTA. Сохранено: «Пропустить» (+ лог skip_tap), persisted-закрытие хоста.
 // ═════════════════════════════════════════════════════════════════
@@ -17,13 +17,12 @@ import Animated, {
 } from 'react-native-reanimated';
 import type { Lang } from '../../constants/i18n';
 import { hapticMediumImpact, hapticSuccess } from '../../hooks/use-haptics';
-import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { sectionOpeningCopy, sectionOpeningHome, sectionOpeningOverline, sectionOpeningSkip } from '../../modules/section_openings/section_opening_strings';
 import { SECTION_OPENING_PHASE_ANCHORS, type SectionOpeningId } from '../../modules/section_openings/section_opening_core';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { MomentFullScreen } from '../spire/moments/moments_layout';
 import { useSpirePalette } from '../spire/useSpirePalette';
-import SpireRankCoin from '../spire/SpireRankCoin';
+import MyRankCoin from '../rank/MyRankCoin';
 import { useTheme } from '../ThemeContext';
 import { THEMED_ART_GENERATED } from '../theme/themed_art_assets.generated';
 import { V2Button } from '../v2/V2Kit';
@@ -87,7 +86,6 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const p = useSpirePalette();
   const { isDark } = useTheme();
   const { width: windowW } = useWindowDimensions();
-  const coinRank = useMyCoinRank();
   const reduced = useReducedMotion() || forceReduced === true;
   const copy = sectionOpeningCopy(lang, id);
   const progress = useSharedValue(reduced ? 1 : freezeAt ?? 0);
@@ -231,7 +229,7 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
             <Animated.View key={n} pointerEvents="none" style={[styles.spark, { left: s.left, top: s.top, backgroundColor: p.accentGraphic, boxShadow: `0px 0px 12px ${p.accentGraphic}` }, sparkStyle]} />
           ))}
           {id === 'rank' ? (
-            <Animated.View style={[styles.art, artStyle]}><SpireRankCoin rank={coinRank} size={coinSize} plus={false} /></Animated.View>
+            <Animated.View style={[styles.art, artStyle]}><MyRankCoin size={coinSize} style={{ width: coinSize, height: coinSize }} contentFit="contain" accessible={false} /></Animated.View>
           ) : art ? (
             <Animated.View style={[artBox, artStyle]}><Image source={art} style={styles.artImage} contentFit="contain" cachePolicy="none" accessible={false} /></Animated.View>
           ) : null}

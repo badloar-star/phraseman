@@ -74,4 +74,6 @@ export const VERBS = [
     ['jugar', 'juego', 'juegas', 'juega', 'jugamos', 'juegan', 'jugué', 'jugó', 'jugado']),
   v('preferir', 'предпочитать', 'надавати перевагу', { inf: 'preferir', presente: 'prefiero / prefiere', preterito: 'preferí / prefirió', participio: 'preferido' }, 'e → ie: prefiero; в прошедшем e → i: prefirió.', 'e → ie: prefiero; у минулому e → i: prefirió.',
     ['preferir', 'prefiero', 'prefieres', 'prefiere', 'preferimos', 'prefieren', 'prefería', 'preferí', 'prefirió', 'preferido', 'preferiría']),
+  v('recoger', 'собирать, забирать', 'збирати, забирати', { inf: 'recoger', presente: 'recojo / recoge', preterito: 'recogí / recogió', participio: 'recogido' }, 'В первом лице g → j: recojo.', 'У першій особі g → j: recojo.',
+    ['recoger', 'recojo', 'recoges', 'recoge', 'recogemos', 'recogéis', 'recogen', 'recogía', 'recogí', 'recogió', 'recogieron', 'recogido', 'recoja']),
 ];

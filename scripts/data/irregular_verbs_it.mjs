@@ -71,4 +71,15 @@ export const VERBS = [
     ['rispondere', 'rispondo', 'rispondi', 'risponde', 'rispondiamo', 'rispondete', 'rispondono', 'rispondeva', 'risposto', 'risposta']),
   v('scegliere', 'выбирать', 'вибирати', { inf: 'scegliere', presente: 'io scelgo / lui sceglie', pp: 'scelto' }, 'avere', 'Корень меняется: scelgo, scegli, sceglie.', 'Корінь змінюється: scelgo, scegli, sceglie.',
     ['scegliere', 'scelgo', 'scegli', 'sceglie', 'scegliamo', 'scegliete', 'scelgono', 'sceglieva', 'scelto', 'scelta']),
+  // зачем: проход полноты 05.11 — неправильные глаголы, найденные среди непокрытых слов фраз курса
+  v('chiedere', 'спрашивать, просить', 'питати, просити', { inf: 'chiedere', presente: 'io chiedo / lui chiede', pp: 'chiesto' }, 'avere', 'Причастие неправильное: chiesto.', 'Дієприкметник неправильний: chiesto.',
+    ['chiedere', 'chiedo', 'chiedi', 'chiede', 'chiediamo', 'chiedete', 'chiedono', 'chiedeva', 'chiesto', 'chiederò']),
+  v('correre', 'бежать', 'бігти', { inf: 'correre', presente: 'io corro / lui corre', pp: 'corso' }, 'avere', 'Причастие неправильное: corso.', 'Дієприкметник неправильний: corso.',
+    ['correre', 'corro', 'corri', 'corre', 'corriamo', 'correte', 'corrono', 'correva', 'corso', 'correrò']),
+  v('sedere', 'сидеть', 'сидіти', { inf: 'sedere', presente: 'io siedo / lui siede', pp: 'seduto' }, 'essere', 'Корень меняется: siedo, siedi, siede, sediamo.', 'Корінь змінюється: siedo, siedi, siede, sediamo.',
+    ['sedere', 'siedo', 'siedi', 'siede', 'sediamo', 'sedete', 'siedono', 'sedeva', 'seduto', 'seduta']),
+  v('condividere', 'делиться', 'ділитися', { inf: 'condividere', presente: 'io condivido / lui condivide', pp: 'condiviso' }, 'avere', 'Причастие неправильное: condiviso.', 'Дієприкметник неправильний: condiviso.',
+    ['condividere', 'condivido', 'condividi', 'condivide', 'condividiamo', 'condividete', 'condividono', 'condiviso']),
+  v('dipingere', 'рисовать, красить', 'малювати, фарбувати', { inf: 'dipingere', presente: 'io dipingo / lui dipinge', pp: 'dipinto' }, 'avere', 'Причастие неправильное: dipinto.', 'Дієприкметник неправильний: dipinto.',
+    ['dipingere', 'dipingo', 'dipingi', 'dipinge', 'dipingiamo', 'dipingete', 'dipingono', 'dipinto']),
 ];

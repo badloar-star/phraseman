@@ -8,7 +8,7 @@
 // Один sharedValue-таймлайн (0→1), все стили — useAnimatedStyle на UI-потоке: ни одного setState в кадрах (владелец борется с лагами Android). «Уменьшить движение» — сразу финальный кадр.
 // Цвета — токены темы. Хаптик: мягкий на «Праздник», успех на CTA. Сохранено: «Пропустить» (+ лог skip_tap), persisted-закрытие хоста.
 // ═════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -94,6 +94,47 @@ function BubbleDots({ color }: Readonly<{ color: string }>) {
   );
 }
 
+type SharedProgress = ReturnType<typeof useSharedValue<number>>;
+
+/**
+ * Герой и арт вынесены в мемо-слои: родитель больше не перерисовывается на 82 % (кнопка оживает внутри CtaBlock), поэтому expo-image не перезагружает картинки
+ * (Сверка 20:41: на финале p4 герой и арт пропадали — совпадало по времени с перерисовкой на CTA; политика кэша «none» перезагружала источник).
+ */
+const HeroLayer = memo(function HeroLayer({ source, box, animated, onLog }: Readonly<{ source: ImageSourcePropType; box: object; animated: object; onLog: (what: string, ok: boolean, detail?: string) => void }>) {
+  return (
+    <Animated.View style={[styles.hero, box, animated]}>
+      <Image source={source} style={[styles.heroImage, styles.heroGlow]} contentFit="contain" tintColor="#FFFFFF" blurRadius={10} cachePolicy="none" accessible={false} />
+      <Image source={source} style={styles.heroImage} contentFit="contain" cachePolicy="none" accessible={false} onLoad={() => onLog('hero', true)} onError={(e) => onLog('hero', false, String((e as { error?: unknown }).error ?? ''))} />
+    </Animated.View>
+  );
+});
+
+const ArtLayer = memo(function ArtLayer({ source, box, animated, onLog }: Readonly<{ source: ImageSourcePropType; box: object; animated: object; onLog: (what: string, ok: boolean, detail?: string) => void }>) {
+  return (
+    <Animated.View style={[box, animated]}>
+      <Image source={source} style={styles.artImage} contentFit="contain" cachePolicy="none" accessible={false} onLoad={() => onLog('art', true)} onError={(e) => onLog('art', false, String((e as { error?: unknown }).error ?? ''))} />
+    </Animated.View>
+  );
+});
+
+/** Кнопка раздела и «На главную»: оживают на 82 % таймлайна (copy.inert макета). Своё состояние — перерисовка не задевает картинки. */
+const CtaBlock = memo(function CtaBlock({ progress, initialReady, label, homeLabel, ink, onCta, onHome }: Readonly<{ progress: SharedProgress; initialReady: boolean; label: string; homeLabel: string; ink: string; onCta: () => void; onHome: () => void }>) {
+  const [ready, setReady] = useState(initialReady);
+  const enable = useCallback(() => setReady(true), []);
+  useAnimatedReaction(
+    () => progress.value,
+    (value, previous) => { if (value >= COPY_FULL && (previous ?? 0) < COPY_FULL) runOnJS(enable)(); },
+  );
+  return (
+    <View pointerEvents={ready ? 'auto' : 'none'} importantForAccessibility={ready ? 'yes' : 'no-hide-descendants'}>
+      <V2Button label={label} variant="primary" disabled={!ready} onPress={() => { void hapticSuccess(); onCta(); }} testID="section-opening-cta" />
+      <Pressable accessibilityRole="button" accessibilityState={{ disabled: !ready }} onPress={onHome} disabled={!ready} hitSlop={8} style={styles.home} testID="section-opening-home">
+        <Text style={[styles.homeText, { color: ink }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{homeLabel}</Text>
+      </Pressable>
+    </View>
+  );
+});
+
 export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id, lang, onCta, onSkip, onPrev, freezeAt, forceReduced, segments = 1, segmentIndex = 0 }: SectionOpeningCeremonyProps) {
   const p = useSpirePalette();
   const { isDark } = useTheme();
@@ -101,14 +142,12 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const reduced = useReducedMotion() || forceReduced === true;
   const copy = sectionOpeningCopy(lang, id);
   const progress = useSharedValue(reduced ? 1 : freezeAt ?? 0);
-  const [ctaReady, setCtaReady] = useState(reduced || (freezeAt ?? 0) >= COPY_FULL);
   const from = HERO_FROM[id];
   useEffect(() => {
     console.log('[SECTION-OPENING]', 'mount', JSON.stringify({ id, lang, freezeAt: freezeAt ?? null, reduced, forceReduced: forceReduced === true, segments, segmentIndex, isDark })); // guard-ok: вход в историю
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: одна строка на показ
   }, []);
 
-  const enableCta = useCallback(() => setCtaReady(true), []);
   const celebrate = useCallback(() => { void hapticMediumImpact(); }, []);
   const pausedRef = React.useRef(false);
   // зачем (владелец 05.11; Сверка 20:41: на финале p4 пропадали элементы — СПЕРВА ЛОГИ): вход, значения решения и каждая фаза таймлайна пишутся в [SECTION-OPENING] — видно, дошёл ли прогресс до 100 % и что отрисовано
@@ -131,7 +170,6 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
     (value, previous) => {
       const before = previous ?? 0;
       for (const mark of PHASE_LOG_MARKS) if (value >= mark && before < mark) runOnJS(logPhase)(mark);
-      if (value >= COPY_FULL && before < COPY_FULL) runOnJS(enableCta)();
       if (value >= SECTION_OPENING_PHASE_ANCHORS.celebrate && before < SECTION_OPENING_PHASE_ANCHORS.celebrate && !reduced && freezeAt === undefined) runOnJS(celebrate)();
     },
   );
@@ -222,13 +260,14 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const stageW = Math.max(0, windowW - 24);
   const coinSize = Math.round(stageW * 0.42);
   // положение героя в сцене по макету: left 0 (ранг/видео/карточки), right −3 % (диалоги), left 25 % × 88 % (Пик), по центру left = 50 % − 82 px (Plus); ширина 165, не шире 65 %
-  const heroBox = id === 'dialogs'
+  const heroBox = useMemo(() => id === 'dialogs'
     ? { right: '-3%' as const, height: '100%' as const }
     : id === 'peak'
       ? { left: '25%' as const, height: '88%' as const }
       : id === 'plus'
         ? { left: Math.round(stageW / 2 - HERO_W * 0.55), height: '100%' as const }
-        : { left: 0, height: '100%' as const };
+        : { left: 0, height: '100%' as const },
+    [id, stageW]);
   const artBox = id === 'peak' ? styles.artPeak : styles.art;
 
   // зачем (макет openings.css): размеры и места мотивов — доли сцены, как в макете
@@ -282,7 +321,8 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   return (
     <MomentFullScreen testID={`section-opening-${id}`}>
       <GestureDetector gesture={swipeDown}>
-      <View style={[styles.root, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 }, isRank ? { backgroundColor: RANK_BG } : null]} accessibilityViewIsModal>
+      {/* зачем (Сверка 20:41: «мятный оттенок сверху вместо ровного фона»; макет .opening{background:var(--bg)} — ровный фон): плоский цвет фона темы поверх градиента MomentFullScreen */}
+      <View style={[styles.root, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 }, { backgroundColor: isRank ? RANK_BG : p.bg }]} accessibilityViewIsModal>
         {/* зачем (история): полоска по числу кадров очереди — пройденные полные, текущий заполняется по таймлайну, будущие пустые */}
         <View style={[styles.segments, { top: insets.top + 2 }]} pointerEvents="none">
           {Array.from({ length: Math.max(1, segments) }, (_, i) => (
@@ -308,24 +348,16 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
           {id === 'rank' ? (
             <Animated.View style={[styles.art, artStyle]}><MyRankCoin size={coinSize} style={{ width: coinSize, height: coinSize }} contentFit="contain" accessible={false} /></Animated.View>
           ) : art ? (
-            <Animated.View style={[artBox, artStyle]}><Image source={art} style={styles.artImage} contentFit="contain" cachePolicy="none" accessible={false} onLoad={() => logImage('art', true)} onError={(e) => logImage('art', false, String((e as { error?: unknown }).error ?? ''))} /></Animated.View>
+            <ArtLayer source={art} box={artBox} animated={artStyle} onLog={logImage} />
           ) : null}
           {/* герой: белое свечение вдоль силуэта (drop-shadow макета) — тот же кадр белым цветом, размытый, под героем; круга НЕТ */}
-          <Animated.View style={[styles.hero, heroBox, heroStyle]}>
-            <Image source={HERO[id]} style={[styles.heroImage, styles.heroGlow]} contentFit="contain" tintColor="#FFFFFF" blurRadius={10} cachePolicy="none" accessible={false} />
-            <Image source={HERO[id]} style={styles.heroImage} contentFit="contain" cachePolicy="none" accessible={false} onLoad={() => logImage('hero', true)} onError={(e) => logImage('hero', false, String((e as { error?: unknown }).error ?? ''))} />
-          </Animated.View>
+          <HeroLayer source={HERO[id]} box={heroBox} animated={heroStyle} onLog={logImage} />
         </View>
         <Animated.View style={[styles.copy, copyStyle]}>
           <Text style={[styles.overline, { color: ink }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{sectionOpeningOverline(lang, id)}</Text>
           <Text style={[styles.title, { color: ink }]} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.title}</Text>
           <Text style={[styles.body, { color: ink }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{copy.body}</Text>
-          <View pointerEvents={ctaReady ? 'auto' : 'none'} importantForAccessibility={ctaReady ? 'yes' : 'no-hide-descendants'}>
-            <V2Button label={copy.cta} variant="primary" disabled={!ctaReady} onPress={() => { void hapticSuccess(); onCta(); }} testID="section-opening-cta" />
-            <Pressable accessibilityRole="button" accessibilityState={{ disabled: !ctaReady }} onPress={skip} disabled={!ctaReady} hitSlop={8} style={styles.home} testID="section-opening-home">
-              <Text style={[styles.homeText, { color: ink }]} maxFontSizeMultiplier={BODY_MAX_FONT_SCALE}>{sectionOpeningHome(lang)}</Text>
-            </Pressable>
-          </View>
+          <CtaBlock progress={progress} initialReady={reduced || (freezeAt ?? 0) >= COPY_FULL} label={copy.cta} homeLabel={sectionOpeningHome(lang)} ink={ink} onCta={onCta} onHome={skip} />
         </Animated.View>
       </View>
       </GestureDetector>

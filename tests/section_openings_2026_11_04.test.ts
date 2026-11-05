@@ -237,7 +237,7 @@ describe('подключение и запреты', () => {
     expect(src.match(/numberOfLines|adjustsFontSizeToFit|requestAnimationFrame|setInterval/gu) ?? []).toEqual([]);
     expect((src.match(/borderWidth/gu) ?? []).length).toBeLessThanOrEqual(5); // апертура, веер + два кольца-орбиты окна «Ранг» (эталон rev6)
     expect(src).not.toMatch(/haloStyle|styles.halo|halo:/u); // макет: круга за героем НЕТ (.opening-halo{background:none})
-    expect(src).toContain("pointerEvents={ctaReady ? 'auto' : 'none'}");
+    expect(src).toContain("pointerEvents={ready ? 'auto' : 'none'}"); // кнопка оживает внутри CtaBlock на 82 % (без перерисовки картинок)
   });
 });
 

@@ -18,7 +18,7 @@ import SceneBackdrop from '../../../scene/SceneBackdrop';
 import SceneBlockShadow from '../../../scene/SceneBlockShadow';
 import { isPremiumSceneTheme, sceneFrameToneHex, scenePaletteCached } from '../../../scene/scene_palette';
 import { logSceneEdge, logSceneLayers, logSceneTheme } from './scene_theme_log';
-import Animated, { Easing, FadeInDown, useReducedMotion } from 'react-native-reanimated';
+import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { renderWindowEpoch, useRenderCause } from '../../../../app/render_cause_probe';
@@ -57,6 +57,7 @@ const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
  * Особая сцена (владелец 25.10): текст входит один раз — 300 мс, снизу на 10, ease-out, на UI-потоке; «Уменьшить движение» — сразу.
  * зачем: особая сцена приходит, когда телефон дочитал свои данные, — смена текста видна как событие, а не как скачок.
  */
+const PENDING_ENTER = FadeIn.duration(160).easing(EASE_OUT); // зачем (ТОП-20 №18, 05.11): заголовок появляется из скелета мягко; без скелета (кэш) анимации нет — первый кадр не замедляем
 const SPECIAL_ENTER = FadeInDown.duration(300).easing(EASE_OUT).withInitialValues({ opacity: 0, transform: [{ translateY: 10 }] });
 
 export type HomeSceneChip = Readonly<{ kind: HomeSceneChipKind; label: string; icon: React.ComponentProps<typeof Ionicons>['name'] }>;
@@ -110,6 +111,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const warmTone = homeSceneWarmTone(useShadowGlass().accent).flame;
   // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана вместе со строкой статуса
   // зачем (Сверка 22.10, «Фраза дня» уходила под таб-бар): сцена сжимается ровно настолько, чтобы вся Главная до «Фразы дня» была видна над капсулой (home_scene_fit); остальное не сжимается
+  const sawPendingRef = useRef(false); // скелет реально показывали → при готовности заголовок проявляется
+  if (pending) sawPendingRef.current = true;
   const firstLayoutLoggedRef = useRef(false); // [HOME-SCENE-FIRST]: первая раскладка сцены — одна строка
   const glowLoggedRef = useRef(false);
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
@@ -190,7 +193,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             <View style={[s.skel, { width: 120, height: 12, marginTop: 14 }]} />
           </>
         ) : (
-          <Animated.View key={specialKey ?? 'base'} entering={specialKey && !reduceMotion ? SPECIAL_ENTER : undefined}>
+          <Animated.View key={specialKey ?? 'base'} entering={reduceMotion ? undefined : specialKey ? SPECIAL_ENTER : sawPendingRef.current ? PENDING_ENTER : undefined}>
             {/* зачем (Темы 25.10, home-scene-special-contrast + season-home-contrast: надзаголовок 86 % при крупном шрифте — 20/58 у особых и 25/58 у обычных сцен ниже 4,5): надзаголовок белый 100 % у ВСЕХ сцен */}
             {copy.kicker ? <Text testID="home-scene-kicker" style={s.kicker}>{copy.kicker}</Text> : null}
             {liveEnergy === 'title'

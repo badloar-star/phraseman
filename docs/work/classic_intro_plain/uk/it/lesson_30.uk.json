@@ -1,0 +1,48 @@
+{
+  "lang": "it",
+  "lesson": 30,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Потрібно, щоб…"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся говорити «мені потрібно», «потрібно, щоб».\nBisogna che io parta. — Я маю піти.\nBisogna che io vada alla posta. — Мені потрібно йти на пошту.\nÈ meglio che tu non parta da solo. — Тобі краще не йти одному.\nBisogna che означає «потрібно, щоб»."
+      },
+      "exampleIds": [
+        "it:30:01",
+        "it:30:21",
+        "it:30:41"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Після bisogna che слово змінюється"
+      },
+      "text": {
+        "uk": "Після bisogna che слово про справу звучить по-особливому.\nBisogna che io parta. — Я маю піти.\nBisogna che tu parta. — Тобі треба піти.\nBisogna che partiamo. — Ми маємо піти.\nBisogna che partano. — Вони мають піти.\nЗапам’ятовуйте ці слова разом з bisogna che."
+      },
+      "exampleIds": [
+        "it:30:01",
+        "it:30:02",
+        "it:30:04",
+        "it:30:06"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви побачите фразу українською.\nВнизу — італійські слова. Натискайте їх по одному.\nПісля кожного натискання з’являться наступні слова.\nКрапки, коми та знак питання вибирати не потрібно.\nНаприклад: Bisogna → che → io → parta."
+      },
+      "exampleIds": [
+        "it:30:01",
+        "it:30:03"
+      ]
+    }
+  ]
+}

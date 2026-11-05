@@ -1,0 +1,232 @@
+[
+ {
+  "id": "lesson-13/terms",
+  "field": "title.ru",
+  "fix": "Какой предмет: конец слова как у предмета"
+ },
+ {
+  "id": "lesson-13/terms",
+  "field": "title.uk",
+  "fix": "Який предмет: кінець слова як у предмета"
+ },
+ {
+  "id": "lesson-14/terms",
+  "field": "chapters[6].textByLocale.ru",
+  "fix": "Два места для маленького слова. Можно так: `lo posso fare`. Можно и так: `posso farlo`. Во втором случае слово приклеено к концу. Не ставьте его в обоих местах сразу."
+ },
+ {
+  "id": "lesson-14/terms",
+  "field": "chapters[6].textByLocale.uk",
+  "fix": "Два місця для маленького слова. Можна так: `lo posso fare`. Можна й так: `posso farlo`. У другому разі слово приклеєне до кінця. Не ставте його в обох місцях одразу."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "chapters[1].textByLocale.ru",
+  "fix": "Слово для «делаю сейчас». Если слово кончается на `-are`, ставьте `-ando`: `tagliare` → `tagliando`. Для `leggere` и `scrivere` будет `leggendo`, `scrivendo`. После `sto` не ставьте слово на `-are` без `-ando`."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "chapters[1].textByLocale.uk",
+  "fix": "Слово для «роблю зараз». Якщо слово закінчується на `-are`, ставте `-ando`: `tagliare` → `tagliando`. Для `leggere` і `scrivere` буде `leggendo`, `scrivendo`. Після `sto` не ставте слово на `-are` без `-ando`."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "chapters[2].textByLocale.ru",
+  "fix": "Меняется только `stare`. Второе слово всегда одно и то же. Сравните `sto bevendo` и `sta bevendo`: первое слово другое, а `bevendo` остаётся тем же."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "chapters[2].textByLocale.uk",
+  "fix": "Змінюється тільки `stare`. Друге слово завжди те саме. Порівняйте `sto bevendo` і `sta bevendo`: перше слово інше, а `bevendo` залишається тим самим."
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "title.ru",
+  "fix": "Прямо сейчас: `stare` + слово про дело"
+ },
+ {
+  "id": "lesson-15/terms",
+  "field": "title.uk",
+  "fix": "Зараз: `stare` + слово про справу"
+ },
+ {
+  "id": "lesson-21/terms",
+  "field": "chapters[2].textByLocale.ru",
+  "fix": "Фон бывает неподвижным: было холодно, улица была пустой, ставни были закрыты. Тут ничего не происходит прямо сейчас — просто так было."
+ },
+ {
+  "id": "lesson-21/terms",
+  "field": "chapters[2].textByLocale.uk",
+  "fix": "Тло буває нерухомим: було холодно, вулиця була порожня, віконниці були зачинені. Тут нічого не відбувається просто зараз — просто так було."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "chapters[1].textByLocale.ru",
+  "fix": "`Lo conosco` — я знаю его. А `la conosco` — я знаю её. Маленькое слово стоит перед словом про дело. В конец его здесь не приклеивают."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "chapters[1].textByLocale.uk",
+  "fix": "`Lo conosco` — я знаю його. А `la conosco` — я знаю її. Маленьке слово стоїть перед словом про справу. У кінець його тут не приклеюють."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "chapters[4].textByLocale.ru",
+  "fix": "С «могу» или «хочу» есть два места: `li possiamo comprare` и `possiamo comprarli`. В каждой фразе маленькое слово стоит один раз: либо перед первым словом, либо приклеено к концу последнего."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "chapters[4].textByLocale.uk",
+  "fix": "З «можемо» чи «хочемо» є два місця: `li possiamo comprare` і `possiamo comprarli`. У кожній фразі маленьке слово стоїть один раз: або перед першим словом, або приклеєне до кінця останнього."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "chapters[5].textByLocale.ru",
+  "fix": "В `l’ho vista` вместо `la` пишут короткое `l’`. Конец слова `vista` подсказывает: речь о «ней». Это сокращение нужно не всегда: перед `ho` оно есть, а перед многими другими словами — нет."
+ },
+ {
+  "id": "lesson-22/terms",
+  "field": "chapters[5].textByLocale.uk",
+  "fix": "У `l’ho vista` замість `la` пишуть коротке `l’`. Кінець слова `vista` підказує: мова про «неї». Це скорочення потрібне не завжди: перед `ho` воно є, а перед багатьма іншими словами — ні."
+ },
+ {
+  "id": "lesson-23/terms",
+  "field": "chapters[4].textByLocale.ru",
+  "fix": "Короткое слово можно приклеить в конец. Фраза `devo scriverle` — «я должен ей написать». А `devo scriverla` значило бы «я должен написать её», например записку."
+ },
+ {
+  "id": "lesson-23/terms",
+  "field": "chapters[4].textByLocale.uk",
+  "fix": "Коротке слово можна приклеїти в кінець. Фраза `devo scriverle` — «я маю їй написати». А `devo scriverla` означало б «я маю написати її», наприклад записку."
+ },
+ {
+  "id": "lesson-23/terms",
+  "field": "chapters[6].textByLocale.ru",
+  "fix": "Не всё переводится слово в слово. `Aiutare qualcuno` по-русски «помочь кому-то», а по-итальянски говорят как «помочь его»: `lo aiuto`. Не копируйте русскую фразу слово в слово."
+ },
+ {
+  "id": "lesson-24/terms",
+  "field": "chapters[5].textByLocale.ru",
+  "fix": "Слово `ci` можно приклеить в конец: `tornarci`. С «хочу» оба варианта значат одно и то же: `voglio tornarci` и `ci voglio tornare`. Не ставьте `ci` дважды сразу."
+ },
+ {
+  "id": "lesson-24/terms",
+  "field": "chapters[5].textByLocale.uk",
+  "fix": "Слово `ci` можна приклеїти в кінець: `tornarci`. З «хочу» обидва варіанти означають те саме: `voglio tornarci` і `ci voglio tornare`. Не ставте `ci` двічі одразу."
+ },
+ {
+  "id": "lesson-25/terms",
+  "field": "chapters[4].textByLocale.ru",
+  "fix": "Когда говорят о том, что уже взяли, конец слова может меняться. Если вещи из тех, о которых говорят «она», например `le chiavi`, конец становится `-e`: `ne ho prese due` — «я взял две». Смотрите, о каких вещах речь, а не только на число."
+ },
+ {
+  "id": "lesson-25/terms",
+  "field": "chapters[4].textByLocale.uk",
+  "fix": "Коли кажуть про те, що вже взяли, кінець слова може змінюватися. Якщо речі з тих, про які кажуть «вона», наприклад `le chiavi`, кінець стає `-e`: `ne ho prese due` — «я взяв дві». Дивіться, про які речі йдеться, а не лише на число."
+ },
+ {
+  "id": "lesson-25/terms",
+  "field": "chapters[5].textByLocale.ru",
+  "fix": "Слово `ne` можно приклеить в конец: `prenderne`, `comprarne`. Последнюю букву `e` перед `ne` убирают."
+ },
+ {
+  "id": "lesson-25/terms",
+  "field": "chapters[5].textByLocale.uk",
+  "fix": "Слово `ne` можна приклеїти в кінець: `prenderne`, `comprarne`. Останню літеру `e` перед `ne` прибирають."
+ },
+ {
+  "id": "lesson-26/terms",
+  "field": "chapters[0].textByLocale.ru",
+  "fix": "Меняется слово «какой», а `più` и `meno` — нет. В `più alta` конец `-a` подходит женщине, которую описывают."
+ },
+ {
+  "id": "lesson-26/terms",
+  "field": "chapters[0].textByLocale.uk",
+  "fix": "Змінюється слово «який», а `più` і `meno` — ні. У `più alta` кінець `-a` підходить жінці, яку описують."
+ },
+ {
+  "id": "lesson-26/terms",
+  "field": "chapters[5].textByLocale.ru",
+  "fix": "Фраза `il biglietto meno caro` — самый дешёвый билет из всех. Это не то же самое, что «дешевле другого». Маленькое слово `il` показывает: выбрали один билет из группы."
+ },
+ {
+  "id": "lesson-26/terms",
+  "field": "chapters[5].textByLocale.uk",
+  "fix": "Фраза `il biglietto meno caro` — найдешевший квиток з усіх. Це не те саме, що «дешевше за інший». Маленьке слово `il` показує: вибрали один квиток із групи."
+ },
+ {
+  "id": "lesson-27/terms",
+  "field": "chapters[5].textByLocale.ru",
+  "fix": "С `non` слово не меняется: `non partirò`. Следите за словами про цену и результат. Для одного билета и для двух билетов конец слова разный."
+ },
+ {
+  "id": "lesson-27/terms",
+  "field": "chapters[5].textByLocale.uk",
+  "fix": "З `non` слово не змінюється: `non partirò`. Стежте за словами про ціну й результат. Для одного квитка і для двох квитків кінець слова різний."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "chapters[0].textByLocale.ru",
+  "fix": "Слово `vorrei` — от `volere` — значит «я бы хотел». Не путайте его с `vorrò`: оно значит «я захочу потом». Сравните звук и буквы перед концом."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "chapters[1].textByLocale.ru",
+  "fix": "С `potere` в просьбе второе слово стоит в обычном виде. `Potrebbe ripetere?` просит собеседника повторить. Это не значит, что он уже повторил."
+ },
+ {
+  "id": "lesson-28/terms",
+  "field": "chapters[1].textByLocale.uk",
+  "fix": "З `potere` у проханні друге слово стоїть у звичайному вигляді. `Potrebbe ripetere?` просить співрозмовника повторити. Це не означає, що він уже повторив."
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "chapters[1].textByLocale.uk",
+  "fix": "Слово змінюється, коли діє предмет. Якщо дію виконую я, кінець слова підходить мені. Саме `Che` кінець слова не визначає."
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "chapters[6].textByLocale.ru",
+  "fix": "Есть и другие случаи: `a cui`, `con cui`. Их мы здесь не разбираем. Здесь главное — понять, кто делает или что делают, когда перед словом нет `a` или `con`."
+ },
+ {
+  "id": "lesson-29/terms",
+  "field": "chapters[6].textByLocale.uk",
+  "fix": "Є й інші випадки: `a cui`, `con cui`. Їх ми тут не розбираємо. Тут головне — зрозуміти, хто робить або що роблять, коли перед словом немає `a` чи `con`."
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "chapters[0].textByLocale.ru",
+  "fix": "Отметьте две точки на линии времени. Что было раньше? Сначала оплата или звонок? Раннее дело получает `avevo` и слово про дело. Порядок частей в тексте может быть любым."
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "chapters[0].textByLocale.uk",
+  "fix": "Позначте дві точки на лінії часу. Що було раніше? Спочатку оплата чи дзвінок? Раніша справа отримує `avevo` і слово про справу. Порядок частин у тексті може бути будь-яким."
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "chapters[1].textByLocale.ru",
+  "fix": "Первое слово меняется так же, как вы уже видели. Было `è uscita` — стало `era uscita`. Было `ho` — стало `avevo`. Второе слово остаётся прежним и подходит человеку: о ней — `uscita`, о нём — `uscito`."
+ },
+ {
+  "id": "lesson-31/terms",
+  "field": "chapters[1].textByLocale.uk",
+  "fix": "Перше слово змінюється так само, як ви вже бачили. Було `è uscita` — стало `era uscita`. Було `ho` — стало `avevo`. Друге слово лишається тим самим і пасує людині: про неї — `uscita`, про нього — `uscito`."
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "chapters[0].textByLocale.ru",
+  "fix": "Особое слово после `se`. Оно похоже на прошлое, но речь может быть о сегодня. Само `avessi` не говорит, что время было когда-то."
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "title.ru",
+  "fix": "Если бы было иначе: `se` и «я бы»"
+ },
+ {
+  "id": "lesson-32/terms",
+  "field": "title.uk",
+  "fix": "Якби було інакше: `se` і «я б»"
+ }
+]

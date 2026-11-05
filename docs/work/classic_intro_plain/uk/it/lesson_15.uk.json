@@ -1,0 +1,48 @@
+{
+  "lang": "it",
+  "lesson": 15,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Що ви робите зараз"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся говорити, що робите просто зараз.\nSto leggendo il libro. — Я зараз читаю книжку.\nAna sta scrivendo una lettera. — Ана зараз пише листа.\nStai preparando la cena. — Ти зараз готуєш вечерю.\nСлово sto означає «я зараз цим зайнятий»."
+      },
+      "exampleIds": [
+        "it:15:01",
+        "it:15:05",
+        "it:15:13"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Sto, stai, sta і справа"
+      },
+      "text": {
+        "uk": "Спочатку sto, stai, sta — залежно від того, хто. Потім справа.\nSto leggendo il libro. — Я зараз читаю книжку.\nStai leggendo il libro. — Ти зараз читаєш книжку.\nStiamo leggendo il libro. — Ми зараз читаємо книжку.\nState leggendo il messaggio. — Ви зараз читаєте повідомлення.\nДруге слово не змінюється: leggendo, scrivendo, bevendo."
+      },
+      "exampleIds": [
+        "it:15:01",
+        "it:15:02",
+        "it:15:21",
+        "it:15:22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви побачите фразу українською.\nВнизу — італійські слова. Натискайте їх по одному.\nПісля кожного натискання з’являться наступні слова.\nКрапки, коми та знак питання вибирати не потрібно.\nНаприклад: Sto → leggendo → il → libro."
+      },
+      "exampleIds": [
+        "it:15:01",
+        "it:15:11"
+      ]
+    }
+  ]
+}

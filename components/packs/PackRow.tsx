@@ -609,7 +609,7 @@ const styles = StyleSheet.create({
   deckSubText: { flexShrink: 1, fontSize: 13, fontWeight: '500' },
   deckAvatar: { alignItems: 'center', justifyContent: 'center' },
   deckChips: { flexDirection: 'row' },
-  deckChip: { flex: 1, minWidth: 0, height: 38, borderRadius: 9, paddingHorizontal: 10, justifyContent: 'center' },
+  deckChip: { flex: 1, minWidth: 0, minHeight: 38, borderRadius: 9, paddingVertical: 4, paddingHorizontal: 10, justifyContent: 'center' },
   deckChipText: { fontSize: 13, fontWeight: '600' },
   deckPlay: { alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   deckLikes: { flexDirection: 'row', alignItems: 'center', gap: 5, paddingTop: 2 },

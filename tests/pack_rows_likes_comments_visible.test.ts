@@ -58,6 +58,11 @@ describe('в строках наборов есть сердце, лайки и 
     expect(header).toContain("pathname: '/community_pack_create'");
     expect(read('app/flashcards_packs.tsx')).toContain('sceneMode={embedded}');
   });
+  it('крупный шрифт: чип слов растёт (minHeight 38, не height), текст кнопки комментариев сжимается (flexShrink)', () => {
+    expect(row).toMatch(/deckChip: {[^}]*minHeight: 38/);
+    expect(row).not.toMatch(/deckChip: {[^}]*height: 38/);
+    expect(read('components/packs/CommunityPackScene.tsx')).toMatch(/fontWeight: '600', flexShrink: 1, textAlign: 'center'/);
+  });
   it('три списка передают trailing с rowHeart', () => {
     expect(read('app/flashcards/FlashcardsCategoryHub.tsx')).toContain('variant="rowHeart"');
     expect(read('app/flashcards/MyPacksV2.tsx')).toContain('variant="rowHeart"');

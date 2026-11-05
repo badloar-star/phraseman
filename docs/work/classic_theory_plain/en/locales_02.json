@@ -1,0 +1,30 @@
+{
+  "_note": "Переводы plain-теории английского курса, урок 2 — локаль uk (Переводчик, 05.11). Обращение «ви». Английские слова и примеры не переводятся.",
+  "title": {"uk": "Not, питання і короткі відповіді"},
+  "chapters": {
+    "c1": {
+      "title": {"uk": "Слово not"},
+      "text": {"uk": "Ось як сказати «не».\nI am not late.\nСлово not тут означає «ні».\nСлово late означає «пізніше потрібного часу».\nShe is not ready.\nHe is not busy.\nYou are not late.\nСлово not стоїть одразу після am, is або are.\nЦе те саме «бути», що в уроці 1."}
+    },
+    "c2": {
+      "title": {"uk": "Мій, твій, не тут"},
+      "text": {"uk": "Так само можна сказати про речі.\nMy phone is not on.\nСлово my означає «мій».\nСлово phone означає «телефон».\nСлово on означає «увімкнений».\nYour keys are not here.\nСлово your означає «твій, ваш».\nСлово keys означає «більше одного ключа».\nУ деяких мовах тут кажуть «там немає». В англійській все одно кажуть not.\nThe door is not open."}
+    },
+    "c3": {
+      "title": {"uk": "Питання"},
+      "text": {"uk": "Ось як поставити питання.\nAre you ready?\nIs she ready?\nIs he at work?\nПорівняйте: She is ready і Is she ready.\nСлова is і she поміняйтеся місцями. Так виходить питання.\nТак само з are і am: Are you, Am I.\nСлово at означає «у, на». Слово work тут означає «робота».\nThey are busy.\nСлово they означає «інші люди».\nAre they at home?\nСлово home означає «дім»."}
+    },
+    "c4": {
+      "title": {"uk": "Так і ні"},
+      "text": {"uk": "Ось як коротко відповісти.\nAre you here?\nYes, I am.\nAre you here?\nNo, I am not.\nIs she here?\nYes, she is.\nКартка нижче показує питання і відповідь разом.\nAre they here?\nYes, they are.\nСлово yes означає «так». Слово no означає «ні».\nПісля yes або no ставте «бути», що пасує до того, хто відповідає.\nI — am. He і she — is. You, we і they — are.\nВас запитали «Are you…?», і ви відповідаєте про себе, тож: Yes, I am.\nДля «ні» додайте not.\nСлова here в відповіді немає: зміст береться з питання."}
+    },
+    "c5": {
+      "title": {"uk": "Ліфт, сходи, квиток"},
+      "text": {"uk": "Так само можна спитати про речі.\nIs the lift here?\nСлово lift означає «ліфт».\nAre the stairs safe?\nСлово stairs означає «сходи». Слово safe означає «не небезпечно».\nСлово stairs означає багато сходинок, тому тут are.\nIs your ticket valid?\nСлово ticket означає «квиток».\nСлово valid означає «ще не застарів, можна користуватися».\nIs this seat free?\nСлово this означає «цей, ось цей».\nAre these seats free?\nСлово these означає «ці, ось ці». Місць кілька, тож are.\nIs her phone off?\nСлово her означає «її». Слово off означає «вимкнений»."}
+    },
+    "c6": {
+      "title": {"uk": "Вокзал і потяг"},
+      "text": {"uk": "Поговоримо про вокзал.\nAre you at the station?\nСлово station означає «вокзал».\nIs the platform empty?\nСлово platform означає «перон».\nСлово empty означає «порожній».\nIs the last bus late?\nСлово last означає «останній».\nIs the waiting room warm?\nСлово waiting тут означає «очікування».\nWaiting room — це зал, де люди чекають. Запам’ятайте waiting room цілим словом.\nThe ticket office is not open.\nСлово office означає «каса, office». Ticket office — це місце, де купують квитки.\nIs your train on time?\nСлово train означає «потяг».\nСлово time означає «час».\nOn time означає «не запізнився»."}
+    }
+  }
+}

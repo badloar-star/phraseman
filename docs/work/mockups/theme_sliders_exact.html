@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Оформление: два ползунка</title>
 <style>
-/* ───────── PhraseMan 2.0 · «Оформление»: Светлая/Тёмная + Оттенок + Насыщенность + Иконки ─────────
+/* ───────── PhraseMan 2.0 · «Оформление»: Светлая/Тёмная + Оттенок + Насыщенность ─────────
    зачем (слово владельца через координатора 05.11): заменить ВСЕ темы на «светлая/тёмная + ползунок оттенка + ползунок насыщенности (Plus)»
    и «покажи макет в точности как в приложении». Главная нарисована по коду: размеры в dp 1:1 (экран 411 × 914, как кадр эмулятора 1080 × 2400 при 2,625),
    фон сцены — ровно scene-approved.js (порт приложения scene_palette.ts), шапка/панель «Сегодня»/плитки/таббар — по кадрам Сверки.
@@ -124,15 +124,6 @@ h1 { font-size: 22px; line-height: 28px; margin: 0 0 4px; font-weight: 700; lett
 .ocard.locked .trk { opacity: .45; }
 .reset { margin-top: 12px; height: 44px; border-radius: 22px; border: 0; width: 100%; background: var(--ctl); color: var(--tx); font: 700 16px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
 .reset[disabled] { opacity: .45; cursor: default; }
-.sets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
-.set { position: relative; border: 0; border-radius: 22px; background: var(--ctl); height: 118px; padding: 0; cursor: pointer; color: var(--tx); font: 700 14px Inter, sans-serif; }
-.set.on { background: var(--raise); box-shadow: var(--shr), 0 0 0 2px var(--acc); }
-.set { overflow: hidden; }
-.set .ic { position: absolute; left: 0; right: 0; top: 14px; height: 56px; display: flex; justify-content: center; }
-.set .ic span { position: relative; width: 31px; height: 50px; }
-.set .ic span canvas, .set .ic span img { position: absolute; left: -9px; top: 0; width: 50px; height: 50px; }
-.set .nm { position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; font-size: 14px; }
-.set .lk { position: absolute; right: 8px; top: 8px; width: 22px; height: 22px; border-radius: 11px; background: var(--solid); color: var(--onsolid); display: flex; align-items: center; justify-content: center; font-size: 12px; }
 .sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 262px; border-radius: 30px 30px 0 0; background: var(--card); box-shadow: 0 -20px 60px rgba(0, 0, 0, .35); z-index: 60; transform: translateY(105%); transition: transform .44s cubic-bezier(.2, 1, .3, 1); padding: 22px 20px; }
 .sheet.on { transform: none; }
 .scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .45); z-index: 55; opacity: 0; pointer-events: none; transition: opacity .3s; }
@@ -149,7 +140,7 @@ h1 { font-size: 22px; line-height: 28px; margin: 0 0 4px; font-weight: 700; lett
 <body>
 <div class="page">
   <h1>Оформление: светлая / тёмная + оттенок + насыщенность</h1>
-  <p class="lead">Все цвета обеих Главных и экрана «Оформление» считаются из двух чисел — оттенка и насыщенности — одной функцией в OKLCH. Фон сцены — тот же расчёт, что в приложении (scene_palette.ts). Кастомные иконки цвет не меняют, всё остальное меняет.</p>
+  <p class="lead">Все цвета обеих Главных и экрана «Оформление» считаются из двух чисел — оттенка и насыщенности — одной функцией в OKLCH. Фон сцены — тот же расчёт, что в приложении (scene_palette.ts). Иконки — только стандартные: основа и слой .accent, который красится в цвет оформления.</p>
   <div class="bar">
     <button class="chip on" id="plusBtn">Как с Plus: вкл</button>
     <span class="sep"></span>
@@ -176,8 +167,6 @@ const STD = { H: 250, S: 35 }; // «Стандартный» = сегодняш�
 const st = { ap: 'dark', H: STD.H, S: STD.S, plus: true, set: 'standard', ref: false, pg: 'dark' };
 const SETS = [
   { id: 'standard', name: 'Стандартные', tint: true },
-  { id: 'aurora', name: 'Аврора', tint: false, dir: 'sets/aurora/home-aurora-' },
-  { id: 'sagePorcelain', name: 'Фарфор', tint: false, dir: 'sets/sagePorcelain/home-sagePorcelain-' },
 ];
 /* ───────── ЦВЕТА: одна функция из (оформление, оттенок, насыщенность) — так же будет в коде ───────── */
 const ok = (L, c, h) => hex(okRgb(L, Math.max(0, c), ((h % 360) + 360) % 360));
@@ -256,9 +245,8 @@ function optHTML() {
     <div class="sl"><div class="lb"><b>Оттенок</b><span id="hueV"></span></div><div class="trk" id="hueT"><div class="bar" id="hueB"></div><div class="kn" id="hueK"><i></i></div></div></div>
     <div class="sl"><div class="lb"><b>Насыщенность</b><span id="satV"></span></div><div class="trk" id="satT"><div class="bar" id="satB"></div><div class="kn" id="satK"><i></i></div></div></div>
     <button class="reset" id="reset">${io('refresh')}Вернуть стандартный</button></div>
-  <div class="ocard" style="top:488px"><div class="ch"><b>Иконки</b><span class="plus" id="plusTag2">${io('lock')}Plus</span></div><div class="sets" id="sets"></div></div>
   <div class="gest"></div><div class="sbar"><span>9:41</span><span class="r">${io('flash')}<span class="bat"></span></span></div>
-  <div class="scrim" id="scrim"></div><div class="sheet" id="sheet"><h3>Цвет под себя — с Plus</h3><p>Оттенок и насыщенность меняют сцену, фон, карточки и кнопки. Иконки цвет не меняют.</p><button class="go" id="sheetGo">Открыть Plus</button><button class="no" id="sheetNo">Не сейчас</button></div></div>`;
+  <div class="scrim" id="scrim"></div><div class="sheet" id="sheet"><h3>Цвет под себя — с Plus</h3><p>Оттенок и насыщенность меняют сцену, фон, карточки и кнопки.</p><button class="go" id="sheetGo">Открыть Plus</button><button class="no" id="sheetNo">Не сейчас</button></div></div>`;
 }
 function renderOpt(ph) {
   const t = tokens(st.ap, st.H, st.S); ph.style.cssText = cssVars(t); ph.dataset.ap = st.ap; ph.style.setProperty('--sb', st.ap === 'dark' ? '#fff' : '#16191C');
@@ -270,10 +258,6 @@ function renderOpt(ph) {
   ph.querySelector('#hueK i').style.background = ok(st.ap === 'dark' ? 0.70 : 0.62, 0.14, st.H); ph.querySelector('#satK i').style.background = t.accent;
   ph.querySelector('#hueV').textContent = `${Math.round(st.H)}°`; ph.querySelector('#satV').textContent = `${Math.round(st.S)} %`;
   const dirty = Math.round(st.H) !== STD.H || Math.round(st.S) !== STD.S; ph.querySelector('#reset').disabled = !dirty;
-  const sets = ph.querySelector('#sets');
-  if (!sets.dataset.built) { sets.dataset.built = '1'; sets.innerHTML = SETS.map((s) => `<button class="set" data-set="${s.id}"><div class="ic">${['lessons', 'cards', 'dialogs'].map((k) => `<span><canvas data-k="${k}"></canvas></span>`).join('')}</div><span class="nm">${s.name}</span><span class="lk" style="display:none">${io('lock')}</span></button>`).join(''); }
-  sets.querySelectorAll('.set').forEach((b) => { b.classList.toggle('on', b.dataset.set === st.set); b.querySelector('.lk').style.display = locked && b.dataset.set !== 'standard' ? 'flex' : 'none'; });
-  sets.querySelectorAll('.set').forEach((b) => b.querySelectorAll('canvas').forEach((cv) => drawTile(cv, st.ap, cv.dataset.k, t.accentTint, b.dataset.set)));
 }
 /* ───────── сборка страницы ───────── */
 const stage = document.getElementById('stage'); const cells = {};
@@ -290,7 +274,7 @@ async function renderAll() {
   document.querySelectorAll('[data-now]').forEach((n) => { n.style.display = n.dataset.now === st.ap ? 'inline-flex' : 'none'; });
   const cur = st.ap === 'dark' ? b : a; last = { H: st.H, S: st.S, ap: st.ap };
   console.log(LOG, JSON.stringify({ H: Math.round(st.H), S: Math.round(st.S), ap: st.ap, plus: st.plus, set: st.set, accent: cur.t.accent, sceneTop: C.hex(cur.spec.palette.top), sceneBottom: C.hex(cur.spec.palette.bot), whiteTop: +cur.spec.palette.whiteTop.toFixed(2), seam: +cur.spec.palette.seam.toFixed(2), guard: cur.guard }));
-  const nt = document.getElementById('notes'); if (nt) nt.innerHTML = `<b>Как считается.</b> Из <code>H=${Math.round(st.H)}°</code> и <code>S=${Math.round(st.S)} %</code> функция <code>tokens()</code> в OKLCH даёт акцент <code>${cur.t.accent}</code>, фон <code>${cur.t.bg}</code>, карточку <code>${cur.t.card}</code>, таббар <code>${cur.t.tab}</code>; верх сцены <code>${C.hex(cur.spec.palette.top)}</code>, низ <code>${C.hex(cur.spec.palette.bot)}</code>, белый на верху ${cur.spec.palette.whiteTop.toFixed(1)}:1 (страж ≥ 4,6), шов низа сцены с карточкой ${cur.spec.palette.seam.toFixed(2)} (страж ≥ 1,34 в тёмном). Стандарт = H 250°, S 35 % — сегодняшний вид кадров эмулятора. Кастомные наборы иконок рисуются своими цветами; в макете вместо шести наборов за достижения стоят два набора из прежних макетов (заглушки) — настоящие плитки подставятся, когда будут доступны. Набор иконок меняет только плитки Главной; таббар остаётся стандартным (в кастомных наборах значков таббара нет).`;
+  const nt = document.getElementById('notes'); if (nt) nt.innerHTML = `<b>Как считается.</b> Из <code>H=${Math.round(st.H)}°</code> и <code>S=${Math.round(st.S)} %</code> функция <code>tokens()</code> в OKLCH даёт акцент <code>${cur.t.accent}</code>, фон <code>${cur.t.bg}</code>, карточку <code>${cur.t.card}</code>, таббар <code>${cur.t.tab}</code>; верх сцены <code>${C.hex(cur.spec.palette.top)}</code>, низ <code>${C.hex(cur.spec.palette.bot)}</code>, белый на верху ${cur.spec.palette.whiteTop.toFixed(1)}:1 (страж ≥ 4,6), шов низа сцены с карточкой ${cur.spec.palette.seam.toFixed(2)} (страж ≥ 1,34 в тёмном). Стандарт = H 250°, S 35 % — сегодняшний вид кадров эмулятора.`;
 }
 const schedule = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; renderAll(); }); };
 /* ───────── ввод ───────── */
@@ -305,7 +289,6 @@ function drag(trackId, apply) {
 drag('#hueT', (x) => { st.H = x * 360; }); drag('#satT', (x) => { st.S = Math.max(4, x * 100); });
 phOpt.querySelectorAll('#seg button').forEach((b) => b.addEventListener('click', () => { st.ap = b.dataset.ap; schedule(); }));
 phOpt.querySelector('#reset').addEventListener('click', () => { if (!st.plus) { sheet(); return; } st.H = STD.H; st.S = STD.S; schedule(); });
-phOpt.querySelector('#sets').addEventListener('click', (e) => { const b = e.target.closest('.set'); if (!b) return; if (!st.plus && b.dataset.set !== 'standard') { sheet(); return; } st.set = b.dataset.set; schedule(); });
 phOpt.querySelector('#scrim').addEventListener('click', closeSheet); phOpt.querySelector('#sheetNo').addEventListener('click', closeSheet);
 phOpt.querySelector('#sheetGo').addEventListener('click', () => { st.plus = true; closeSheet(); syncBar(); schedule(); });
 function syncBar() { const p = document.getElementById('plusBtn'); p.textContent = `Как с Plus: ${st.plus ? 'вкл' : 'выкл'}`; p.classList.toggle('on', st.plus); if (!st.plus) { st.H = STD.H; st.S = STD.S; st.set = 'standard'; } }

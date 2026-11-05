@@ -2333,7 +2333,10 @@ function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detai
     // отказов (mismatch/retired/unknown); транзиент — в локальный журнал.
     const transientAuthLink = stage === 'auth_link'
       && [...AUTH_LINK_TRANSIENT_FAILURES].some((code) => detail.endsWith(`:${code}`));
-    const severity = EXPECTED_AUTH_FAILURE_STAGES.has(stage) || transientAuthLink
+    // зачем (журнал ошибок админки за 30 дней: 2 записи critical «remote_stable_link_failed:account_delete_pending»): аккаунт в процессе удаления —
+    // ожидаемый отказ входа, а не сбой; critical-канал (Firestore + Telegram) держим для детерминированных отказов.
+    const expectedAccountDeletePending = detail.endsWith(':account_delete_pending');
+    const severity = EXPECTED_AUTH_FAILURE_STAGES.has(stage) || transientAuthLink || expectedAccountDeletePending
       ? 'warning'
       : 'critical';
     // logAppError плавает в фоне: try/catch вокруг НЕ ловит async-reject плавающего

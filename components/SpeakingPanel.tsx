@@ -137,9 +137,15 @@ const reportedNoSpeechReasons = new Set<string>();
 function reportHoldNoSpeech(reason: string, data: Record<string, unknown>): SpeakingNoSpeechKind {
   const kind = speakingNoSpeechKindOf(reason, typeof data.targetWords === 'number' ? data.targetWords : undefined);
   micTrace('hold:no_speech', { reason, kind, ...data });
+  // зачем (журнал ошибок админки за 30 дней: 228 записей speak_mic как critical, 135 из них no_wav, и 108 из этих 135 — касание короче 300 мс вместо удержания): касание — поведение человека, а не сбой;
+  // трасса выше остаётся, в прод-журнал оно не идёт. Настоящее удержание без звука/речи — warning: диагностика качества, а не падение приложения.
+  if (isSpeakingTapHold(typeof data.holdMs === 'number' ? data.holdMs : null)) {
+    micTrace('hold:no_speech_tap_not_reported', { reason, holdMs: typeof data.holdMs === 'number' ? data.holdMs : null });
+    return kind;
+  }
   if (reportedNoSpeechReasons.has(reason)) return kind;
   reportedNoSpeechReasons.add(reason);
-  DebugLogger.error(`speak_mic:no_speech_${reason}`, new Error(`${reason} ${JSON.stringify(data).slice(0, 300)}`), 'critical');
+  DebugLogger.error(`speak_mic:no_speech_${reason}`, new Error(`${reason} ${JSON.stringify(data).slice(0, 300)}`), 'warning');
   return kind;
 }
 function errorText(e: unknown): string {

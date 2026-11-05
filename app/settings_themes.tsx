@@ -28,6 +28,7 @@ import {
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
 import { ThemeIntensitySlider } from '../components/settings/ThemeIntensitySlider';
+import { ThemeUndoBar, THEME_UNDO_VISIBLE_MS } from '../components/settings/ThemeUndoBar';
 import { useThemesMemLog } from '../components/settings/themesMemLog';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
@@ -290,9 +291,27 @@ export default function SettingsThemes() {
   // зачем: превью интенсивности не должно пережить уход с экрана посреди жеста.
   useEffect(() => () => setPreviewLiquidGlassIntensity(null), [setPreviewLiquidGlassIntensity]);
 
+  // зачем (раунд 2, Настройки п.5): прежняя тема на 5 секунд — плашка «Вернуть прежнюю»; таймер гасится при уходе и при новой смене
+  const [undoThemeId, setUndoThemeId] = useState<LiquidGlassThemeId | null>(null);
+  const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearUndoTimer = useCallback(() => { if (undoTimerRef.current) { clearTimeout(undoTimerRef.current); undoTimerRef.current = null; } }, []);
+  useEffect(() => clearUndoTimer, [clearUndoTimer]);
+  const onUndoTheme = useCallback(() => {
+    if (!undoThemeId) { console.log('[THEME-UNDO] тап без прежней темы — игнор'); return; } // guard-ok: ранний выход называет причину
+    hapticTap();
+    console.log('[THEME-UNDO] вернули', JSON.stringify({ to: undoThemeId })); // guard-ok: одна строка на возврат
+    clearUndoTimer();
+    setLiquidGlassThemeId(undoThemeId);
+    setUndoThemeId(null);
+  }, [undoThemeId, clearUndoTimer, setLiquidGlassThemeId]);
+
   /** Тап по теме = применить сразу (optimistic: state мгновенно, диск догоняет фоном) + ачивка. */
   const onRowPress = useCallback((mode: LiquidGlassThemeId) => {
     if (mode === shownThemeId) return;
+    clearUndoTimer();
+    setUndoThemeId(shownThemeId);
+    undoTimerRef.current = setTimeout(() => { undoTimerRef.current = null; console.log('[THEME-UNDO] время вышло — плашка скрыта'); setUndoThemeId(null); }, THEME_UNDO_VISIBLE_MS); // guard-ok: одна строка на истечение
+    console.log('[THEME-UNDO] смена темы', JSON.stringify({ from: shownThemeId, to: mode })); // guard-ok: одна строка на смену
     // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
     setLiquidGlassThemeId(mode);
     // зачем: ачивка — только за НАСТОЯЩУЮ смену темы.
@@ -302,7 +321,7 @@ export default function SettingsThemes() {
     })().catch((e: unknown) => {
       DebugLogger.error('settings_themes:achievement', e instanceof Error ? e : new Error(String(e)), 'warning');
     });
-  }, [shownThemeId, setLiquidGlassThemeId]);
+  }, [shownThemeId, setLiquidGlassThemeId, clearUndoTimer]);
 
   const onAppearance = useCallback((appearance: LiquidGlassAppearance) => {
     if (appearance === liquidGlassAppearance) return;
@@ -433,6 +452,7 @@ export default function SettingsThemes() {
           </BouncyScrollView>
         </ContentWrap>
       </View>
+      {undoThemeId ? <ThemeUndoBar glass={glass} lang={lang} bottomInset={insets.bottom} onUndo={onUndoTheme} /> : null}
       <ScreenBackButton screen="settings_themes" testID="themes-back" accessibilityLabel={backLabel} onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} />
     </ScreenGradient>
   );

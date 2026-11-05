@@ -25,6 +25,9 @@ import {
   type LiquidGlassGradientThemeId,
 } from './liquidGlassGradientThemes';
 import { premiumThemeTokenOverrides } from './premiumThemeVisualSpecs';
+// зачем (флаг theme_sliders_v1, слово владельца 05.11): тема = Светлая/Тёмная + Оттенок + Насыщенность, идентификатор `tune:H:S`; основа считается в theme_tune.ts
+import { parseThemeTuneId, tunedBaseTokens, type ThemeTuneId } from './theme_tune';
+import { THEME_SLIDERS_V1_ENABLED } from './theme_sliders_flag';
 
 export {
   DEFAULT_LIQUID_GLASS_VARIANT,
@@ -57,7 +60,7 @@ type LiquidGlassTintThemeId = typeof LIQUID_GLASS_TINT_THEME_IDS[number];
 
 // зачем (владелец 2026-10-04): 10 градиентных тем ДОБАВЛЕНЫ к 13 тонированным, а не вместо.
 // Их набор живёт одним списком в liquidGlassGradientThemes.ts.
-export type LiquidGlassThemeId = LiquidGlassTintThemeId | LiquidGlassGradientThemeId;
+export type LiquidGlassThemeId = LiquidGlassTintThemeId | LiquidGlassGradientThemeId | ThemeTuneId;
 
 export const LIQUID_GLASS_THEME_IDS: readonly LiquidGlassThemeId[] = Object.freeze([
   ...LIQUID_GLASS_TINT_THEME_IDS,
@@ -326,6 +329,9 @@ function isTintTheme(id: LiquidGlassThemeId): id is LiquidGlassTintThemeId {
 }
 
 function buildThemeTokens(themeId: LiquidGlassThemeId, variant: Required<LiquidGlassVariant>) {
+  // зачем (theme_sliders_v1): настроенная тема — та же сборка, что у тонированных, только основа из оттенка и насыщенности
+  const tune = parseThemeTuneId(themeId);
+  if (tune) return buildLiquidGlassIntensityTokens(themeId, tunedBaseTokens(tune), variant.appearance, variant.intensity);
   const gradient = liquidGlassGradientTheme(themeId);
   // зачем (владелец 2026-10-04): тёмное — themes-gradient.html, светлое — вариант B «Пастель»
   // из themes-gradient-light.html.
@@ -348,6 +354,8 @@ function buildThemeTokens(themeId: LiquidGlassThemeId, variant: Required<LiquidG
  * Второй аргумент оставлен только для совместимости старых вызовов и игнорируется.
  */
 export function resolveLiquidGlassTheme(id: unknown, _hasPlus?: boolean): LiquidGlassThemeId {
+  // зачем (theme_sliders_v1): `tune:H:S` принимаем только при включённом флаге; иначе — как неизвестное имя (graphite), старые темы не страдают
+  if (THEME_SLIDERS_V1_ENABLED && parseThemeTuneId(id)) return id as ThemeTuneId;
   return typeof id === 'string' && LIQUID_GLASS_THEME_IDS.includes(id as LiquidGlassThemeId)
     ? id as LiquidGlassThemeId
     : 'graphite';
@@ -426,6 +434,6 @@ export function makeLiquidGlassTheme(id: LiquidGlassThemeId, base: Theme, varian
     bgGradient: [t.bgTop, t.bgBottom],
   };
   const resolvedId = resolveLiquidGlassTheme(id);
-  THEME_GLASS_SOURCE.set(theme, { tokens: t, calmCta: TOKEN_REGISTRY[isTintTheme(resolvedId) ? resolvedId : 'graphite'].cta });
+  THEME_GLASS_SOURCE.set(theme, { tokens: t, calmCta: (parseThemeTuneId(resolvedId) ? tunedBaseTokens(parseThemeTuneId(resolvedId)!) : TOKEN_REGISTRY[isTintTheme(resolvedId) ? resolvedId : 'graphite']).cta });
   return theme;
 }

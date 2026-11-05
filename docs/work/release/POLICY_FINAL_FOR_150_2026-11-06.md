@@ -2,7 +2,7 @@
 
 Governance-ID: TG-0563FC925479
 
-Показывается ДО публикации. Публикацию ведёт «Сайт» по слову владельца в день выпуска. Здесь только то, что меняется относительно текущей `legal/privacy_policy_en.json` (от 05.11, коммит `871a04e42`); остальной текст не трогается. Редакция А для §20 (очистка чужих лайков/комментариев ещё НЕ выкачена), редакция Б в 150 НЕ берётся.
+Показывается ДО публикации. Публикацию ведёт «Сайт» по слову владельца в день выпуска. Здесь только то, что меняется относительно текущей `legal/privacy_policy_en.json` (от 05.11, коммит `871a04e42`); остальной текст не трогается. **Редакция Б** (подтверждено Ядром 06.11: очистка чужих лайков/добавлений/комментариев/голосов — `pack_likes.userId`, `pack_adds.userId`, `pack_comments.authorId`, `contest_votes.userId` — в `functions/src/account_delete.ts` (стадия `collection_group_matches`), выложена на бой вместе с Q26, индексы COLLECTION_GROUP READY). Оговорка: счётчики `likesCount`/`addedCount` у наборов не уменьшаются — это сказано в тексте.
 
 Готовые файлы (английская и iOS-версия, JSON валиден, отличаются от текущих `legal/` ровно в разделах 3, 4, 6, 20):
 - `docs/work/release/privacy_candidate/privacy_policy_en.candidate.json`
@@ -10,9 +10,9 @@ Governance-ID: TG-0563FC925479
 
 Дата «Last updated» в первом разделе не менялась: **владелец ставит дату выкладки** (сейчас стоит November 5, 2026).
 
-## 🔴 Сначала — расхождение, которое надо решить владельцу/Сайту
+## Статус расхождения (закрыто)
 
-Коммит `871a04e42` (05.11) УЖЕ внёс в `legal/` и на страницы сайта фразу, что при удалении аккаунта удаляются «your likes, pack additions, comments and contest votes on other users' Community Packs». Но функция очистки этих данных **не выкачена на прод** (ждёт индексы READY, отдельно у Ядра). Если эти страницы уже опубликованы на сайте — политика обещает больше, чем делает приложение. Итоговый текст ниже (редакция А) это исправляет: чужие лайки/комментарии/голоса «may remain … until a cleanup removes them». Проверить, опубликована ли текущая версия, и при необходимости выложить итоговую раньше выпуска.
+Коммит `871a04e42` (05.11) внёс в `legal/` обещание, что при удалении аккаунта удаляются чужие лайки/добавления/комментарии/голоса. Ядро проверило: очистка в коде и на бою, обещание НЕ ложное. Итоговый текст ниже — редакция Б, согласованная с этим фактом. Практическое подтверждение — сквозной тест удаления тестового аккаунта №3 (стадия `collection_group_matches` в журнале воркера) у «Эмулятора».
 
 ## Что меняется (по разделам)
 
@@ -34,25 +34,25 @@ Governance-ID: TG-0563FC925479
 
 Вместо «Comments are visible to other users who have added the same pack, remain attached to the pack, and are not private messages.»:
 
-> Comments are not private messages. Any signed-in user who opens the pack can see the comments on it, together with the commenter's display name. Only a user who has added the pack (or its author) can write a comment. Comments remain attached to the pack until you delete them. If you delete your account, comments you wrote under other users' packs may remain visible; you can delete them yourself before deleting your account, or ask us to remove them through the privacy contact in section 26.
+> Comments are not private messages. Any signed-in user who opens the pack can see the comments on it, together with the commenter's display name. Only a user who has added the pack (or its author) can write a comment. Comments remain attached to the pack until you delete them. When you delete your account, comments you wrote under other users' packs are deleted with it; you can also delete them yourself at any time.
 
 Новый абзац:
 
-> Likes and additions. When you like a Community Pack or add it to your collection, we record a small marker in the pack linking your account ID to that pack, with the time. We use it so that each person can like or add a pack only once and to keep the like and add counts accurate. Other users see only the totals in the App (for example the number of likes next to a pack), not who liked or added it. You cannot like a pack you wrote. These records stay attached to the pack while it exists; you can ask us to delete them through the privacy contact in section 26.
+> Likes and additions. When you like a Community Pack or add it to your collection, we record a small marker in the pack linking your account ID to that pack, with the time. We use it so that each person can like or add a pack only once and to keep the like and add counts accurate. Other users see only the totals in the App (for example the number of likes next to a pack), not who liked or added it. You cannot like a pack you wrote. These markers are deleted when your account deletion runs. The like and add totals shown next to a pack are not recalculated afterwards, so a total may still include a like or addition from a deleted account.
 
-По-русски: комментарии видит любой вошедший пользователь вместе с именем автора (правила базы это допускают); при удалении аккаунта чужие комментарии могут остаться, их можно удалить заранее или попросить нас; лайки/добавления — служебная метка «аккаунт → набор», другим видны только суммы.
+По-русски: комментарии видит любой вошедший пользователь вместе с именем автора (правила базы это допускают); при удалении аккаунта ваши комментарии под чужими наборами удаляются вместе с ним; лайки/добавления — служебная метка «аккаунт → набор», удаляется при удалении аккаунта, другим видны только суммы (суммы после удаления не пересчитываются).
 
-### §20 Account and data deletion — добавляется предложение про связанные записи входа и абзац про Сообщество (редакция А)
+### §20 Account and data deletion — добавляется предложение про связанные записи входа и абзац про Сообщество (редакция Б)
 
 После «Once the 14 days elapse, deletion runs and becomes irreversible.»:
 
 > When deletion runs, we also remove every other sign-in record (Google, Apple, or email) that was linked to your account, so that signing in again with the same provider afterwards creates a new, empty account.
 
-В перечне удаляемого убрано «; your likes, pack additions, comments and contest votes on other users' Community Packs» (это обещание — редакция Б), и добавлен отдельный абзац:
+Перечень удаляемого остаётся как в текущей `legal/` (включает «your likes, pack additions, comments and contest votes on other users' Community Packs»), добавлен отдельный абзац:
 
-> Community Packs you created are deleted in full, together with the likes, additions and comments that other users left on them. Likes, additions, comments and contest votes that you left under other users' packs may remain after your account is deleted, linked to a technical account identifier (and, for comments, to the display name you used, which signed-in users can see), until a cleanup removes them.
+> Community Packs you created are deleted in full, together with the likes, additions and comments that other users left on them. Likes, additions, comments and contest votes that you left under other users' packs are deleted when your account deletion runs. The like and add totals shown next to a pack are not recalculated afterwards.
 
-По-русски: удаление закрывает все связанные способы входа (Q26 — в бою); свои наборы удаляются целиком; чужие лайки/комментарии/голоса могут остаться до очистки, с техническим ID (в комментариях ещё и с именем). Слово «обезличено» не используется: по аудиту данные не обезличены.
+По-русски: удаление закрывает все связанные способы входа (Q26 — в бою); свои наборы удаляются целиком; ваши лайки, добавления, комментарии и голоса конкурса под чужими наборами удаляются при выполнении удаления; суммы лайков/добавлений у наборов после этого не пересчитываются. Слово «обезличено» не используется: данные удаляются, а не обезличиваются.
 
 ## Публикация (только по слову владельца)
 

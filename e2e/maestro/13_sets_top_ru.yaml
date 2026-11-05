@@ -1,0 +1,15 @@
+appId: app.phraseman
+name: 13 Sets top and catalogs
+---
+- tapOn:
+    point: "14%,93%"
+- extendedWaitUntil:
+    visible: ".*0/10.*"
+    timeout: 60000
+- tapOn:
+    point: "68%,93%"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: community_tab
+- scroll
+- takeScreenshot: community_tab_scrolled

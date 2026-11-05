@@ -1,0 +1,50 @@
+appId: app.phraseman
+name: 14 Sets tab themes
+---
+- tapOn:
+    point: "14%,93%"
+- extendedWaitUntil:
+    visible: ".*0/10.*"
+    timeout: 60000
+- openLink: "phraseman://dev_state?set=uiLang:ru,appearance:dark"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- tapOn:
+    point: "68%,93%"
+- extendedWaitUntil:
+    visible: ".*Наборы.*"
+    timeout: 30000
+- tapOn:
+    text: ".*Наборы.*"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: sets_top_dark
+- scroll
+- takeScreenshot: sets_scrolled_dark
+- tapOn:
+    point: "14%,93%"
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_state?set=uiLang:ru,appearance:light"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- tapOn:
+    point: "68%,93%"
+- extendedWaitUntil:
+    visible: ".*Наборы.*"
+    timeout: 30000
+- tapOn:
+    text: ".*Наборы.*"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: sets_top_light
+- scroll
+- takeScreenshot: sets_scrolled_light
+- tapOn:
+    point: "14%,93%"
+- waitForAnimationToEnd

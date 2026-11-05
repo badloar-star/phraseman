@@ -32,3 +32,13 @@
 ## 21:20 — Пункт 3a: Главная без сети (№4, №5 списка Сверки)
 Папка: docs/work/release/frames_2026-11-05/sverka/3-offline/ — home_offline_dark.png, home_offline_light.png (ru, устройство 5560, режим «в самолёте» включён Maestro setAirplaneMode, затем выключен; проверено: airplane_mode_on=0). Flow e2e/maestro/12_home_offline_sets_ru.yaml.
 Видно (home_offline_light): в шапке значок самолёта вместо сигнала сети; баннер «Интернет ушёл погулять. Занятия и карточки работают и без него.»; остальная Главная (серия 5 дней, «Продолжить», «Сегодня», плитки Уроки/Карточки/Диалоги/Пик, ряд «Видео»). Замечание: кадр «светлая» — зелёный градиент шапки (тема карточек тёмно-зелёная), как у «тёмной» — проверить, что dev_state appearance:light применился (на «Открытии раздела» светлая отличалась).
+
+## 21:50 — Окно оплаты generic: журнал размеров (для Входа, координатора, Сверки)
+Кадры: docs/work/release/frames_2026-11-05/sverka/5-paywall-layout/paywall_generic_dark.png и paywall_generic_light.png; строки: .../paywall_layout_log.txt (ru, 5560, окно 411×914 dp, ссылка premium_modal?context=generic&_dev_state=live; Metro с коммитами 3987ec00a и 49d08f78f в дереве; flow 15_paywall_layout_generic_ru.yaml зелёный, 3 мин).
+ЧЕТЫРЕ ЧИСЛА (оба показа, тёмная 21:44:41 и светлая 21:45:17 — одинаковы):
+- sheet:  y=58,  h=856, w=411
+- header: y=0,   h=163, w=411
+- scroll: y=163, h=0,   w=411   ← ВЫСОТА ПРОКРУТКИ = 0
+- dock:   y=163, h=1827, w=411  ← НИЖНЯЯ ПАНЕЛЬ НА ВЕСЬ ЭКРАН (1827 при листе 856)
+[PAYWALL-FIT] skip {"touched":false,"viewportH":0,"contentH":0}, затем skip {"touched":false,"viewportH":0,"contentH":381}.
+Вывод: содержимое (contentH=381) не помещается, потому что viewport прокрутки имеет высоту 0, а «dock» растянут на 1827 (с y=163) — он занимает всю область под шапкой и вытесняет плитки/промокод; визуально внизу пустота (кадр). Это причина «пустого окна»: сломан flex-layout (dock без ограничения высоты / scroll без flex:1 и minHeight). Для Входа.

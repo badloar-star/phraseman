@@ -61,3 +61,12 @@ Governance-ID: TG-1DC7AACFC10C (очередь координатора: тем�
 Governance-ID: TG-8247D3BF5B24 (экран слов без ожидания прогресса; exam_episode_words; learning_v2_locale_gate; прогон сторожей на данных Теории)
 
 Governance-ID: TG-D6AF64F86AEA (экзамен главы l23: слово perfect вне эпизодов — замок владельца 25.10)
+
+Governance-ID: TG-C368A53B3BDD (plain-уроки de/it 10–32: писатели, проверки, независимый читатель-новичок, порции с хешем)
+
+Governance-ID: TG-ACE48A059350 (plain-уроки de/it 16–32: писатели-субагенты, список файлов и хеш Теории)
+
+Governance-ID: TG-5A1F8916E139 (писатели de/it 16–20: запись lesson_NN.json в docs/work/classic_theory_plain)
+Governance-ID: TG-80DEC3B3C3E7 (продолжение: писатели de/it 16–20)
+Governance-ID: TG-FBC7A9A91066
+Governance-ID: TG-270CC8668F3D

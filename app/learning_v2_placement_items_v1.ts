@@ -31,7 +31,6 @@ export const LEARNING_V2_PLACEMENT_ITEMS_V1: Readonly<Record<number, readonly st
     'lesson-03:session:19:i14', // Are they ___? → cities
   ],
   4: [
-    'lesson-04:session:01:i12', // There is ___ old library nearby. → an
     'lesson-04:session:04:i11', // There ___ restaurants near the market. → are
     'lesson-04:session:05:i10', // There ___ a cafe near the supermarket. → is
     'lesson-04:session:09:i12', // ___ there a pharmacy near here? → Is
@@ -148,7 +147,6 @@ export const LEARNING_V2_PLACEMENT_ITEMS_V1: Readonly<Record<number, readonly st
     'lesson-18:session:01:i12', // This living space is ___ than ours. → brighter
     'lesson-18:session:04:i12', // The still water is ___ than the juice. → cheaper
     'lesson-18:session:10:i12', // This repair shop is ___. → the oldest
-    'lesson-18:session:12:i12', // The plain yoghurt is ___ option. → the cheapest
     'lesson-18:session:17:i12', // This green tea is ___ that one. → as cheap as
     'lesson-18:session:18:i12', // This cleaning spray is ___ that one. → as strong as
   ],

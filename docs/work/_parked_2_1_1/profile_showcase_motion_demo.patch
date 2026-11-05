@@ -1,0 +1,32 @@
+diff --git a/components/dev/motion_showcase/sections/screens_profile.tsx b/components/dev/motion_showcase/sections/screens_profile.tsx
+index 1980ca198..20af5cf82 100644
+--- a/components/dev/motion_showcase/sections/screens_profile.tsx
++++ b/components/dev/motion_showcase/sections/screens_profile.tsx
+@@ -15,6 +15,7 @@ import { useTheme } from '../../../ThemeContext';
+ import MotionModal from '../../../MotionModal';
+ import SkeletonSwap from '../../../feedback/SkeletonSwap';
+ import SkeletonBlock from '../../../SkeletonShimmer';
++import ProfileCardShowcaseDemo from '../ProfileCardShowcaseDemo';
+ 
+ /**
+  * Демо-панель общего примитива SkeletonSwap: кнопка «Загрузить» переводит
+@@ -101,6 +102,7 @@ export const SECTION: ShowcaseSection = {
+   order: 75,
+   title: cs('screens_profile_section_title'),
+   items: [
++    { id: 'profile-card-showcase', title: cs('profile_card_showcase_title'), detail: cs('real_screen'), kind: 'render', render: ({ visible, onClose }) => <ProfileCardShowcaseDemo visible={visible} onClose={onClose} /> },
+     { id: 'settings-tab', title: cs('settings_tab_title'), kind: 'route', route: '/(tabs)/settings', detail: cs('real_screen') },
+     { id: 'settings-language', title: cs('settings_language_title'), kind: 'route', route: '/settings_language', detail: cs('real_screen') },
+     { id: 'settings-notifications', title: cs('settings_notifications_title'), kind: 'route', route: '/settings_notifications', detail: cs('real_screen') },
+diff --git a/components/dev/motion_showcase/showcase_copy.ts b/components/dev/motion_showcase/showcase_copy.ts
+index 063fdfd73..f895a3f63 100644
+--- a/components/dev/motion_showcase/showcase_copy.ts
++++ b/components/dev/motion_showcase/showcase_copy.ts
+@@ -544,6 +544,7 @@ const RU = {
+   // Названия уровней и картинки — из app/coin_rank_table_v1.ts (PM-073, нумерация 0–19 по D60).
+   level_up_mint_0_1: 'Стажёр → Кадет · медь',
+   level_up_mint_7_8: 'Профи → Мастер · серебро',
++  profile_card_showcase_title: 'Визитка · награды и цепочка',
+   level_up_mint_18_19: 'Легенда → Титан · платина',
+ };
+ 

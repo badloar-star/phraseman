@@ -1,0 +1,17 @@
+import React, { useState } from 'react';
+import MotionModal from '../../MotionModal';
+import ProfileCardShowcaseSheet from '../../profile-card/ProfileCardShowcaseSheet';
+import type { ShowcasePreference } from '../../../shared/profile_card_showcase';
+
+const earned = new Set(['streak_7', 'streak_30', 'streak_100', 'shards_10000']);
+/** Safe local-only preview: no storage, purchases, or achievement grants. */
+export default function ProfileCardShowcaseDemo({ visible, onClose }: Readonly<{ visible: boolean; onClose: () => void }>) {
+  const [preference, setPreference] = useState<ShowcasePreference>({ awardIds: ['streak_7', 'streak_30'], showStreak: true });
+  const [mode, setMode] = useState<'settings' | 'awards'>('settings');
+  return <MotionModal visible={visible} onRequestClose={onClose}>
+    <ProfileCardShowcaseSheet key={mode} mode={mode} lang="ru" preference={preference} earned={earned}
+      loading={false} loadFailed={false} saving={false} bottomInset={20} onRetry={() => undefined}
+      onSave={async (value) => { setPreference(value); return true; }} onChoose={() => setMode('awards')}
+      onClose={() => { if (mode === 'awards') setMode('settings'); else onClose(); }} />
+  </MotionModal>;
+}

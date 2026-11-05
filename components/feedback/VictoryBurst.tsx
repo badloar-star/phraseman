@@ -26,6 +26,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import fk, { type MilestoneKind } from '../../app/feedback/feedback_kit';
 import ConfettiBurst from './ConfettiBurst';
+import { useReduceMotion } from '../../hooks/use_reduce_motion'; // зачем (ТОП-20 №6, доступность): при «Уменьшении движения» карточка победы только проявляется, без пружины и сдвига
 
 const EXEMPT_COLOR_1 = '#000'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
 
@@ -64,6 +65,7 @@ export function VictoryBurst({
   confettiCount = 60,
 }: VictoryBurstProps) {
   const { theme: t } = useTheme();
+  const reduceMotion = useReduceMotion();
   const shown = useSharedValue(0);
   const backdrop = useSharedValue(0);
 
@@ -83,7 +85,8 @@ export function VictoryBurst({
     fk.milestone(celebrateSound);
 
     backdrop.value = withTiming(1, { duration: 220 });
-    shown.value = withSpring(1, { damping: 12, stiffness: 150, mass: 0.7 });
+    // зачем (ТОП-20 №6): Reduce Motion — короткое проявление вместо пружины; конфетти в этом режиме не рисуется (ConfettiBurst сам возвращает null)
+    shown.value = reduceMotion ? withTiming(1, { duration: 160 }) : withSpring(1, { damping: 12, stiffness: 150, mass: 0.7 });
 
     // Авто-уход.
     backdrop.value = withDelay(
@@ -97,16 +100,16 @@ export function VictoryBurst({
       cancelAnimation(shown);
       cancelAnimation(backdrop);
     };
-  }, [visible, autoHideMs, celebrateSound, shown, backdrop, dismiss]);
+  }, [visible, autoHideMs, celebrateSound, shown, backdrop, dismiss, reduceMotion]);
 
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdrop.value * 0.66 }));
   const cardStyle = useAnimatedStyle(() => ({
     opacity: shown.value,
-    transform: [
+    transform: reduceMotion ? [] : [
       { scale: interpolate(shown.value, [0, 1], [0.8, 1]) },
       { translateY: interpolate(shown.value, [0, 1], [20, 0]) },
     ],
-  }));
+  }), [reduceMotion]);
 
   if (!visible) return null;
 

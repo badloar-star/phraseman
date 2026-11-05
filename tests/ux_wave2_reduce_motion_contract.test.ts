@@ -23,4 +23,12 @@ describe('Reduce Motion: конфетти, TapScale, эквалайзер', () =
     expect(s).toContain('if (levelDriven || !active || reduceMotion) return;');
     expect(s).toContain('[levelDriven, active, reduceMotion, startIdle, stopIdle]');
   });
+  // зачем (ТОП-20 №6, 05.11): карточка «мини-победы» не прыгает пружиной и не сдвигается при Reduce Motion — только проявляется; закрытие по таймеру остаётся
+  it('VictoryBurst: пружина и сдвиг заменены коротким проявлением, автозакрытие не тронуто', () => {
+    const s = read('components/feedback/VictoryBurst.tsx');
+    expect(s).toContain("import { useReduceMotion } from '../../hooks/use_reduce_motion';");
+    expect(s).toContain('reduceMotion ? withTiming(1, { duration: 160 }) : withSpring(1,');
+    expect(s).toContain('transform: reduceMotion ? [] : [');
+    expect(s).toContain('runOnJS(dismiss)()');
+  });
 });

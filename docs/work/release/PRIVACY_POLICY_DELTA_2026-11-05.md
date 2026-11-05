@@ -1,3 +1,55 @@
+# ЧТО ОБНОВИТЬ ДО РЕВЬЮ (утренний пункт владельца, ~5 минут)
+
+Решение координатора 05.11: политику ночью не публикуем. В ASC сборку грузим без ревью, поэтому правка политики — ДО нажатия «отправить на ревью» в сторах.
+
+| Приоритет | Что | Где | Правка |
+|---|---|---|---|
+| 🔴 | Комментарии к наборам видит любой вошедший пользователь, а политика говорит «только добавившие набор» | §6, предложение про комментарии | 1 |
+| 🟡 | Лайки/добавления наборов (метка с ID аккаунта) не описаны | §6, новый абзац | 2 |
+| 🟡 | Прогресс по языкам курсов es/fr/de/it | §4, одно предложение | 3 |
+| 🟡 | Быстрые действия на значке (expo-quick-actions, локально) | §3, одно предложение | 4 |
+
+Комментарии: рекомендация координатора — «правим текст», правила Firestore не трогаем (рискованно ночью). Если владелец решит, что комментарии должен видеть только автор набора, это отдельная правка правил (`pack_comments`, `allow read`) и клиента — не в этот релиз.
+
+## Версия-кандидат (в рабочий путь выкладки НЕ положена)
+
+Лежит только в docs; `legal/`, `app/legal/` и сайт не тронуты:
+- `docs/work/release/privacy_candidate/privacy_policy_en.candidate.json`
+- `docs/work/release/privacy_candidate/privacy_policy_en_ios.candidate.json`
+
+Это копии `legal/privacy_policy_en*.json` от 29.10 с правками 1–4 (каждая замена сработала ровно один раз в обеих версиях, дифф — 12 строк на файл). «Last updated: October 29, 2026» в первом разделе заменить датой выкладки.
+
+# КАК ВЫЛОЖИТЬ (по слову владельца)
+
+```bash
+cp docs/work/release/privacy_candidate/privacy_policy_en.candidate.json legal/privacy_policy_en.json
+cp docs/work/release/privacy_candidate/privacy_policy_en_ios.candidate.json legal/privacy_policy_en_ios.json
+```
+
+Вручную: в обоих `legal/privacy_policy_en*.json` заменить «Last updated: October 29, 2026» на дату выкладки. Затем синхронизация (обновит `app/legal/*.json`, `privacy.html`, `admin/oauth-privacy.html`, `admin/v2/oauth-privacy.html`, `knowly-www/legal/privacy*`, `data-deletion`):
+
+```bash
+npm run legal:sync
+```
+
+Проверка: `git diff --stat` (только legal/*, app/legal/*, privacy.html, admin/*oauth-privacy.html, knowly-www/legal/*) и тесты `privacy_*` / `legal_*`. Выкладка сайта:
+
+```bash
+npm run hosting:knowly-www
+```
+
+```bash
+npm run hosting:admin
+```
+
+Важно:
+- Текст политики **в приложении** лежит в `app/legal/*.json` и едет в сборке/JS-бандле: после sync попадёт в следующую сборку или OTA. Для ревью сторов важна **ссылка на сайт** (`knowly-www/legal/privacy`, `privacy-ios`) — выкладка сайта обновляет её сразу.
+- Перед `hosting:*` сработают `deploy_lock_guard`, `website:surface-contract`, `admin_hosting_deploy_guard` — следовать их сообщениям. До выкладки — сверка «прод = HEAD» по хешам файлов `admin/v2` и `knowly-www` (раньше выкладывали незакоммиченное).
+- Коммит с кандидатом в `legal/*` и производными — отдельный, через safe_commit, ДО выкладки.
+- **Откат:** `git revert <коммит выкладки>` + `npm run legal:sync` + повторные `hosting:knowly-www` и `hosting:admin`; либо Firebase Console → Hosting → предыдущая версия → Rollback (отдельно для таргетов `admin` и `knowlywww`).
+
+---
+
 # Privacy Policy — дельта к сборке 2.1.0 (05.11, Сайт)
 
 Источник политики: `legal/privacy_policy_en.json` (от 29.10), копии `app/legal/*`, `privacy.html`, `knowly-www/legal/privacy*`. Правка делается в JSON → `npm run legal:sync` → выкладка hosting. **Сайт НЕ трогаю: выкладка только по слову координатора утром.** Ниже — готовые абзацы.
@@ -38,13 +90,13 @@
 
 **EN:**
 
-> Likes and additions. When you like a Community Pack or add it to your collection, we record a small marker in the pack linking your account ID to that pack, with the time. We use it so that each person can like or add a pack only once and to keep the like and add counts accurate. Other users see only the totals (for example the number of likes next to a pack), not who liked or added it. You cannot like a pack you wrote. These records are deleted together with your account.
+> Likes and additions. When you like a Community Pack or add it to your collection, we record a small marker in the pack linking your account ID to that pack, with the time. We use it so that each person can like or add a pack only once and to keep the like and add counts accurate. Other users see only the totals in the App (for example the number of likes next to a pack), not who liked or added it. You cannot like a pack you wrote. These records stay attached to the pack while it exists; you can ask us to delete them through the privacy contact in section 26.
 
 **RU:**
 
-> Лайки и добавления. Когда вы ставите лайк набору сообщества или добавляете его себе, мы сохраняем в наборе небольшую отметку, связывающую ID вашего аккаунта с этим набором, и время. Она нужна, чтобы лайк и добавление считались один раз на человека и чтобы счётчики были точными. Другие пользователи видят только итоговые числа (например, количество лайков рядом с набором), но не то, кто лайкнул или добавил. Свой набор лайкнуть нельзя. Эти записи удаляются вместе с аккаунтом.
+> Лайки и добавления. Когда вы ставите лайк набору сообщества или добавляете его себе, мы сохраняем в наборе небольшую отметку, связывающую ID вашего аккаунта с этим набором, и время. Она нужна, чтобы лайк и добавление считались один раз на человека и чтобы счётчики были точными. Другие пользователи видят только итоговые числа (например, количество лайков рядом с набором), но не то, кто лайкнул или добавил. Свой набор лайкнуть нельзя. Эти записи остаются у набора, пока он существует; вы можете попросить удалить их через контакт по вопросам конфиденциальности (раздел 26).
 
-⚠ Проверить перед выкладкой: что удаление аккаунта действительно чистит `pack_likes/{uid}` и `pack_adds/{uid}` во всех наборах (`functions` — каскад удаления). Если нет — фразу «deleted together with your account» заменить на «removed when the pack is removed or when we process your deletion request» и завести задачу на каскад. Доступ к чтению `pack_likes` у правил открыт любому вошедшему (`allow read: if request.auth != null`) — в приложении «кто лайкнул» не показывается, поэтому формулировка «Other users see only the totals» верна для интерфейса; для строгости можно добавить «in the App».
+⚠ Проверено 05.11: в `functions/src` нет каскада удаления `pack_likes`/`pack_adds` при удалении аккаунта — поэтому в тексте НЕ обещано «deleted together with your account». Отдельная задача для Ядра (не блокер): добавить зачистку в каскад удаления аккаунта, тогда фразу можно усилить. Чтение `pack_likes` открыто любому вошедшему (`allow read: if request.auth != null`), в интерфейсе «кто лайкнул» не показывается — поэтому в тексте «in the App».
 
 ## Правка 3 — 🟡 §4 (одно предложение к списку облачного прогресса)
 
@@ -58,11 +110,11 @@
 
 **EN:**
 
-> Home-screen shortcuts and icon badges, if you use them, are created on your device from your local app state; they do not send any information to us.
+> Home-screen quick actions (the shortcuts shown when you press and hold the app icon, for example to continue your last lesson) are created on your device from your local app state; they do not send any information to us.
 
-**RU:** «Ярлыки на значке приложения и счётчики на нём, если вы ими пользуетесь, формируются на устройстве из локального состояния приложения и ничего нам не передают.»
+**RU:** «Быстрые действия на значке приложения (ярлыки при долгом нажатии, например «продолжить последний урок») формируются на устройстве из локального состояния приложения и ничего нам не передают.»
 
-⚠ Для (г): формулировка «ярлыки на значке» взята из задачи координатора; если это iOS/Android quick actions — слова «Home-screen shortcuts» верны, если счётчик-значок (badge) — заменить на «icon badges». Свериться с `app.json`/кодом перед выкладкой (в `app.json` конфигурации quick actions не нашёл — возможно, это нативная часть сборки).
+✔ Уточнено по коду: это expo-quick-actions (`app/quick_actions_bridge.tsx`, ярлыки при долгом нажатии на значок, например «продолжить последний урок»), читает локальный AsyncStorage, в сеть ничего не шлёт. Это не badge.
 
 ---
 

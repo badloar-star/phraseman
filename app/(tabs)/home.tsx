@@ -2980,7 +2980,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             {HOME_SCENE_V2_ENABLED ? null : (
             <View style={{ gap: 4 }}>
               {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} reason={`${homeV2TilesReason};lang=${studyTarget}`} spireLang={String(studyTarget)} uiLang={lang} /> : null}
-              {isVideoButtonEnabled() && homeVideosVisible && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
+              {/* зачем (макет home-free-0, слово владельца «ранг 0 — 1 в 1»): видео закрыто рангом — ленты «Видео» на Главной нет */}
+              {isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
                 <HomeV2VideoRail
                   videos={homeV2Videos}
                   status={homeV2VideoStatus}
@@ -3014,7 +3015,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <HomeReviewHint lang={lang} active={homeRuntimeActive} />
             {HOME_SCENE_V2_ENABLED && homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2TilesInOrder} reason={`${homeV2TilesReason};lang=${studyTarget};row`} spireLang={String(studyTarget)} uiLang={lang} row /> : null}
             {/* зачем (слово владельца 05.11, «ВЕРНИ БЛОК ВИДЕО НА ГЛАВНУЮ КАК БЫЛО РАНЬШЕ, МЕЖДУ ИКОНКАМИ И ФРАЗОЙ ДНЯ»; отменяет вариант 2 от 22.10): лента видео со «Сценой» — между рядом плиток и «Фразой дня», горизонтальный скролл; условия показа те же, что без «Сцены» */}
-            {HOME_SCENE_V2_ENABLED && isVideoButtonEnabled() && homeVideosVisible && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
+            {HOME_SCENE_V2_ENABLED && isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
               <HomeV2VideoRail videos={homeV2Videos} status={homeV2VideoStatus} ownerActive={homeRuntimeActive} />
             ) : null}
             {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}

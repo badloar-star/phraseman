@@ -33,4 +33,9 @@ describe('Главная: ряд плиток и «Сегодня» по ран�
     expect(src).toContain("count: homeTodayRank0 ? triLang(lang, { ru: 'Все задания'");
     expect(src).toContain('surveyRow={homeTodayRank0 ? null :');
   });
+
+  it('на ранге 0 (видео закрыто рангом) ленты «Видео» на Главной нет — обе точки показа проверяют !rankLockedVideo', () => {
+    const hits = src.split('isVideoButtonEnabled() && homeVideosVisible && !rankLockedVideo && !homeV2VideoNoChannel').length - 1;
+    expect(hits).toBe(2);
+  });
 });

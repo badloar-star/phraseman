@@ -58,6 +58,13 @@ describe('аудит экрана Пика B', () => {
     expect(screen).not.toContain('}, 60); // зачем: один кадр');
   });
 
+  it('пустой список «Все участники» показывает короткую строку, а не пустое место', () => {
+    const all = read('components/spire/SpireAllMembers.tsx');
+    expect(all).toContain("rows.length === 0 ?");
+    expect(all).toContain("spireText(lang, 'allEmpty')");
+    expect(read('components/spire/spire_strings.ts')).toContain('allEmpty:');
+  });
+
   it('счётчик «ступени / место» переносит блоки целиком и не сжимает шрифт (слова не рвутся)', () => {
     const counter = read('components/spire/peak/PeakMyCounter.tsx');
     expect(counter).toContain("flexWrap: 'wrap'");

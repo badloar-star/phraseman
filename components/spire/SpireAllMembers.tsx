@@ -95,6 +95,8 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
         </View>
       </View>
       <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
+        {/* зачем (координатор 05.11): пустой список без пояснения выглядел как поломка — короткая строка, без длинной расшифровки */}
+        {rows.length === 0 ? <Text testID="spire-all-empty" style={[s.empty, { color: p.textSecondary }]}>{spireText(lang, 'allEmpty')}</Text> : null}
         {renderZone('up', spireText(lang, 'zoneUp'), p.correct)}
         {renderZone('stay', spireText(lang, 'zoneStay'), p.textSecondary)}
         {renderZone('down', spireText(lang, 'zoneDown'), p.wrong)}
@@ -116,6 +118,7 @@ const s = StyleSheet.create({
   headTitle: { fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -0.3 },
   headSub: { fontSize: 16, lineHeight: 20, marginTop: 2 },
   content: { paddingHorizontal: V2.screenPad, paddingBottom: 40 },
+  empty: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 48 },
   zone: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 22, marginBottom: 10, marginHorizontal: 2 },
   zoneText: { fontSize: 13, fontWeight: '700', letterSpacing: 2 },
   zoneLine: { flex: 1, height: 1 },

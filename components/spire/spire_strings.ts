@@ -32,6 +32,7 @@ const S = {
   zoneUp: ['Зона повышения', 'Зона підвищення', 'Promotion zone', 'Zona de ascenso', 'Zona de subida', 'Vùng thăng hạng', 'Zona naik', 'Yükselme bölgesi', 'Strefa awansu'],
   zoneStay: ['Остаются', 'Залишаються', 'Stay', 'Se quedan', 'Permanecem', 'Ở lại', 'Bertahan', 'Kalanlar', 'Zostają'],
   zoneDown: ['Зона понижения', 'Зона пониження', 'Demotion zone', 'Zona de descenso', 'Zona de descida', 'Vùng xuống hạng', 'Zona turun', 'Düşme bölgesi', 'Strefa spadku'],
+  allEmpty: ['Пока здесь никого', 'Поки тут нікого', 'Nobody here yet', 'Aún no hay nadie', 'Ninguém aqui ainda', 'Chưa có ai ở đây', 'Belum ada siapa pun', 'Henüz kimse yok', 'Na razie nikogo tu nie ma'],
   you: ['Ты', 'Ти', 'You', 'Tú', 'Você', 'Bạn', 'Kamu', 'Sen', 'Ty'],
   back: ['Назад', 'Назад', 'Back', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz'],
 } as const satisfies Record<string, Nine>;

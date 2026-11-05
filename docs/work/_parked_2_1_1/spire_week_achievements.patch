@@ -1,0 +1,168 @@
+diff --git a/app/spire/spire_week_result_client.ts b/app/spire/spire_week_result_client.ts
+index 642795fc4..27a2c6d60 100644
+--- a/app/spire/spire_week_result_client.ts
++++ b/app/spire/spire_week_result_client.ts
+@@ -19,12 +19,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import type { SpireLang } from '../../modules/spire/report_queue';
+ import { spireWeekStartMs } from '../../modules/spire/residents';
+ import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
+-import { captureAccountGeneration, type AccountGenerationToken } from '../account_generation';
++import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from '../account_generation';
+ import { DebugLogger } from '../debug-logger';
+ import type { SpireLiveGate } from './spire_live_gate';
+ import { spireErrorText, spireFirestore } from './spire_net';
+ import { spireReadParticipation } from './spire_room_client';
+ import { recordSpireWeekStory } from '../../modules/story_events/story_event_sources';
++import { reconcileSpireCollectibles, recordSpireWeekCollectibles } from './spire_achievement_client';
+ 
+ const LOG = '[SPIRE]';
+ const CACHE_PREFIX = 'spire_week_result_v1';
+@@ -209,10 +210,15 @@ export async function spireLoadWeekResult(
+   const nowMs = Date.now();
+   // зачем: аккаунт фиксируем ДО чтения — если он сменится, пока ждём сеть, снимок чужого кошелька не вольётся (merge сверит поколение).
+   const accountToken = captureAccountGeneration();
++  const currentOwner = () => accountToken.stableId === input.uid && isCurrentAccountGeneration(accountToken);
++  if (!currentOwner()) return null;
++  // Independent of dismissed/absent card caches and the three-week participation window.
++  void reconcileSpireCollectibles(gate, input.uid);
+   const prevWeek = spirePreviousWeekKey(nowMs);
+   const shouldMark = opts.markShown !== false;
+   const where = opts.where ?? 'spire';
+   const row = await readRow(input.uid, input.lang);
++  if (!currentOwner()) return null;
+   // зачем (владелец 13.10, «ЗАЧЕМ ТУТ КРЕСТИК?»): карточка показывается при ПЕРВОМ входе в Пик на новой неделе и при следующем входе уже нет. Отметка «показано»
+   // — локально по weekId+uid+язык (state 'dismissed'), без записей в Firestore; ставится сразу, как только решили показать (markShown). Лог [SPIRE-WEEK-CARD].
+   const logCard = (decision: 'shown' | 'skip', why: string): void => DebugLogger.info(LOG, `[SPIRE-WEEK-CARD] where=${where} weekId=${prevWeek} lang=${input.lang} ${shouldMark ? decision : `peek_${decision}`}: ${why}`);
+@@ -230,7 +236,7 @@ export async function spireLoadWeekResult(
+       void recordSpireWeekStory(row.result); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
+       void mergeWeekWallet(accountToken, input.uid, row.result, where);
+       if (shouldMark) await markShown();
+-      return row.result;
++      return currentOwner() ? row.result : null;
+     }
+     const giveUp = row.checkedAtMs - spireWeekStartMs(nowMs) > GIVE_UP_AFTER_WEEK_START_MS;
+     if (giveUp || nowMs - row.checkedAtMs < RECHECK_MS) {
+@@ -239,6 +245,7 @@ export async function spireLoadWeekResult(
+     }
+   }
+   const weeks = await spireReadParticipation(input.uid, input.lang);
++  if (!currentOwner()) return null;
+   if (!weeks.includes(prevWeek)) {
+     logCard('skip', `в комнате не сидел (недели=${weeks.join(',') || '—'}) — 0 чтений`);
+     return null;
+@@ -248,7 +255,10 @@ export async function spireLoadWeekResult(
+   try {
+     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     const snap = await (db as any).collection('users').doc(input.uid).collection('spire_week_results').doc(`${prevWeek}_${input.lang}`).get(); // guard-ok: один документ по id
+-    const result = snap?.exists ? spireDecodeWeekResult(snap.data(), prevWeek, input.lang) : null;
++    const rawResult = snap?.exists ? snap.data() : null;
++    const result = rawResult ? spireDecodeWeekResult(rawResult, prevWeek, input.lang) : null;
++    if (result) await recordSpireWeekCollectibles(input.uid, rawResult, accountToken);
++    if (!currentOwner()) return null;
+     DebugLogger.info(LOG, `week result: сеть ${prevWeek}_${input.lang} exists=${String(Boolean(snap?.exists))} разобран=${String(result !== null)}`);
+     if (result) {
+       logCard('shown', 'первый вход на новой неделе — итог прочитан с сервера');
+@@ -260,7 +270,7 @@ export async function spireLoadWeekResult(
+       logCard('skip', 'документа итога нет — повторим позже');
+       await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'absent', checkedAtMs: nowMs, result: null });
+     }
+-    return result;
++    return currentOwner() ? result : null;
+   } catch (error) {
+     logCard('skip', `чтение упало (${spireErrorText(error)}) — повторим при следующем заходе`);
+     return null;
+diff --git a/app/spire_report_client.ts b/app/spire_report_client.ts
+index feed5f88b..781e62e7c 100644
+--- a/app/spire_report_client.ts
++++ b/app/spire_report_client.ts
+@@ -21,6 +21,8 @@
+ // Заблокировано до эпика E08 (единая энергия 5/1/10). Здесь не списываем.
+ // ═══════════════════════════════════════════════════════════════════════════
+ import AsyncStorage from '@react-native-async-storage/async-storage';
++import { captureAccountGeneration } from './account_generation';
++import { recordSpireSummit } from './spire/spire_achievement_client';
+ 
+ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+ import { peekCoinRank } from './coin_rank_state_v1';
+@@ -171,11 +173,15 @@ export async function spireRecordStepResult(
+   report: SpireStepReport,
+ ) {
+   const recordStartedAt = Date.now();
+-  const applied = await spireRecordStep(store, { uid, lang, report, logger });
++  const token = captureAccountGeneration();
++  const applied = await spireRecordStep(store, { uid, lang, report, logger,
++    beforeWeekReplacement: (previous) => recordSpireSummit(uid, previous, token),
++  });
+   DebugLogger.info(LOG, `[PEAK-CLOSE] ${report.reportId} spireRecordStep ${Date.now() - recordStartedAt}мс persisted=${String(applied.persisted)} effect=${applied.effect}`); // guard-ok: замер записи ступени
+   // зачем ([PEAK-CLOSE], координатор 24.10): записанная неделя уже в руках — кладём её в память, без второго чтения диска в секунду закрытия
+   if (applied.persisted) {
+     weekMemory.set(weekMemoryKey(uid, lang), applied.local);
++    await recordSpireSummit(uid, applied.local, token);
+   } else {
+     // зачем: после записи ступени память недели устарела — перечитываем фоном (локальный диск, 0 чтений облака), чтобы следующий вход нарисовал свежую.
+     weekMemory.delete(weekMemoryKey(uid, lang));
+@@ -193,7 +199,9 @@ export async function spireRecordStepResult(
+ 
+ /** Текущее локальное состояние недели — для первого кадра экрана из снапшота. */
+ export function spireReadWeekLocal(uid: string, lang: SpireLang): Promise<SpireWeekLocal | null> {
+-  return spireLoadWeekLocal(store, uid, lang, logger).then((local) => {
++  const token = captureAccountGeneration();
++  return spireLoadWeekLocal(store, uid, lang, logger).then(async (local) => {
++    if (local) await recordSpireSummit(uid, local, token);
+     if (local) weekMemory.set(weekMemoryKey(uid, lang), local);
+     else weekMemory.delete(weekMemoryKey(uid, lang));
+     return local;
+diff --git a/tests/spire_week_wallet_merge.test.ts b/tests/spire_week_wallet_merge.test.ts
+index 71c30c6bf..0b2391473 100644
+--- a/tests/spire_week_wallet_merge.test.ts
++++ b/tests/spire_week_wallet_merge.test.ts
+@@ -6,6 +6,9 @@ let mockStore: Record<string, string> = {};
+ let mockDoc: Record<string, unknown> | null = null;
+ let mockToken: { stableId: string | null; generation: number; phase: string } = { stableId: 'u1', generation: 1, phase: 'active' };
+ const mockMerge = jest.fn(async () => ({ balance: 990, earnedTotal: 1 }));
++const mockCollectible = jest.fn(async () => true);
++const mockWeekStory = jest.fn();
++jest.mock('../app/spire/spire_achievement_client', () => ({ reconcileSpireCollectibles: async () => undefined, recordSpireWeekCollectibles: (...args: unknown[]) => mockCollectible(...(args as [])) }));
+ 
+ jest.mock('@react-native-async-storage/async-storage', () => ({
+   __esModule: true,
+@@ -15,9 +18,9 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
+   },
+ }));
+ jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
+-jest.mock('../app/account_generation', () => ({ captureAccountGeneration: () => mockToken }));
++jest.mock('../app/account_generation', () => ({ captureAccountGeneration: () => mockToken, isCurrentAccountGeneration: (token: unknown) => token === mockToken }));
+ jest.mock('../app/level_spin_star_grants', () => ({ mergeLevelSpinServerStars: (...a: unknown[]) => mockMerge(...(a as [])) }));
+-jest.mock('../modules/story_events/story_event_sources', () => ({ recordSpireWeekStory: () => undefined }));
++jest.mock('../modules/story_events/story_event_sources', () => ({ recordSpireWeekStory: (...args: unknown[]) => mockWeekStory(...args) }));
+ let mockWeeks: string[] = [];
+ jest.mock('../app/spire/spire_room_client', () => ({ spireReadParticipation: async () => mockWeeks }));
+ jest.mock('../app/spire/spire_net', () => ({
+@@ -58,6 +61,8 @@ describe('загрузчик итога вливает снимок кошель
+   beforeEach(() => {
+     mockStore = {};
+     mockMerge.mockClear();
++    mockCollectible.mockClear();
++    mockWeekStory.mockClear();
+     mockToken = { stableId: 'u1', generation: 1, phase: 'active' };
+     mockWeeks = [spirePreviousWeekKey(Date.now())];
+   });
+@@ -73,6 +78,18 @@ describe('загрузчик итога вливает снимок кошель
+     expect(mockMerge).toHaveBeenCalledTimes(1);
+   });
+ 
++  it('смена аккаунта во время выдачи статуэтки не создаёт недельную историю новому владельцу', async () => {
++    mockDoc = paidDoc;
++    mockCollectible.mockImplementationOnce(async () => {
++      mockToken = { stableId: 'new-owner', generation: 2, phase: 'active' };
++      return false;
++    });
++    expect(await spireLoadWeekResult(gate, { uid: 'u1', lang: 'en' })).toBeNull();
++    expect(mockWeekStory).not.toHaveBeenCalled();
++    expect(mockMerge).not.toHaveBeenCalled();
++    expect(mockStore).toEqual({});
++  });
++
+   it('итог без снимка (pending_wallet) → баланс не трогаем', async () => {
+     mockDoc = { ...base, rewardStatus: 'pending_wallet' };
+     mockToken = { stableId: 'u2', generation: 1, phase: 'active' };

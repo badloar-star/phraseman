@@ -19,6 +19,9 @@
 
 Это копии `legal/privacy_policy_en*.json` от 29.10 с правками 1–4 (каждая замена сработала ровно один раз в обеих версиях, дифф — 12 строк на файл). «Last updated: October 29, 2026» в первом разделе заменить датой выкладки.
 
+
+⚠ Аудит `docs/work/tasks/account-delete-community-audit-2026-11-05.md` (05.11) подтвердил: при удалении аккаунта комментарии (с именем), лайки, добавления и голоса конкурса под ЧУЖИМИ наборами не чистятся. Поэтому в кандидате честно сказано «may remain». Если Ядро добавит зачистку (4 collection-group-спеки + индексы) до релиза — в правках 1 и 2 вернуть «deleted together with your account». Раздел 20 («Account and data deletion») и раздел 19 нужно сверить с этим же фактом при выкладке.
+
 # КАК ВЫЛОЖИТЬ (по слову владельца)
 
 ```bash
@@ -78,11 +81,11 @@ npm run hosting:admin
 
 **EN (замена предложения):**
 
-> Comments on a Community Pack are not private messages. Any signed-in user who opens the pack can see the comments on it, together with the commenter's display name. Only a user who has added the pack (or its author) can write a comment. Comments remain attached to the pack until you delete them or you delete your account.
+> Comments on a Community Pack are not private messages. Any signed-in user who opens the pack can see the comments on it, together with the commenter's display name. Only a user who has added the pack (or its author) can write a comment. Comments remain attached to the pack until you delete them. If you delete your account, comments you wrote under other users' packs may remain visible; you can delete them yourself before deleting your account, or ask us to remove them through the privacy contact in section 26.
 
 **RU (для справки владельцу):**
 
-> Комментарии к набору сообщества — не личные сообщения. Любой вошедший пользователь, открывший набор, видит комментарии к нему вместе с отображаемым именем автора комментария. Писать комментарии могут только пользователи, добавившие набор себе, и автор набора. Комментарии остаются у набора, пока вы их не удалите или не удалите аккаунт.
+> Комментарии к набору сообщества — не личные сообщения. Любой вошедший пользователь, открывший набор, видит комментарии к нему вместе с отображаемым именем автора комментария. Писать комментарии могут только пользователи, добавившие набор себе, и автор набора. Комментарии остаются у набора, пока вы их не удалите. Если вы удалите аккаунт, комментарии, оставленные под чужими наборами, могут остаться видимыми; вы можете удалить их сами до удаления аккаунта или попросить нас удалить их через контакт по вопросам конфиденциальности (раздел 26).
 
 Остальной текст абзаца (pin/hide автором, удаление своего комментария, жалобы, уведомление автору с отрывком) остаётся без изменений. Скрытый автором комментарий технически читается любым вошедшим (клиент его фильтрует) — фраза «a hidden comment is not deleted and may still be reviewed if reported» остаётся верной.
 

@@ -34,6 +34,21 @@ export const PRACTICE_RUNE_FULL_AWARD = 3;
 export const PRACTICE_RUNE_REPEAT_AWARD = 1;
 
 /**
+ * Цена правильного ответа при ВТОРОМ прохождении сессии.
+ * зачем (владелец 05.11, дословно): «Правильный ответ сразу +3 монетки! Повторно второй раз даёт +2. Третий раз и все следующие +1
+ * за правильный ответ. Урок, Словарь, Глаголы.» — перекрывает прежнее «повтор = 1».
+ */
+export const PRACTICE_RUNE_SECOND_AWARD = 2;
+
+/** Цена за верный ответ по номеру прохождения (1-based): 1 → 3, 2 → 2, 3 и далее → 1. Нечисло/меньше 1 → самая низкая цена. */
+export function practiceRuneAwardForPass(passNumber: number): number {
+  if (!Number.isSafeInteger(passNumber) || passNumber < 1) return PRACTICE_RUNE_REPEAT_AWARD;
+  if (passNumber === 1) return PRACTICE_RUNE_FULL_AWARD;
+  if (passNumber === 2) return PRACTICE_RUNE_SECOND_AWARD;
+  return PRACTICE_RUNE_REPEAT_AWARD;
+}
+
+/**
  * Учебные активности, приносящие руны. Значение уезжает на сервер в `sourceKind`
  * расписки, поэтому строки стабильны и не переименовываются задним числом.
  */
@@ -123,7 +138,10 @@ function normalizeSessionKey(value: string): string {
 export function createPracticeRuneEarnings(input: Readonly<{
   activity: PracticeRuneActivity;
   sessionKey: string;
-  firstCompletion: boolean;
+  /** Прежний флаг: true → цена первого прохождения (3), false → самая низкая (1). Не нужен, если задан passNumber. */
+  firstCompletion?: boolean;
+  /** Номер прохождения (1-based): цена 3 / 2 / 1+ (practiceRuneAwardForPass). Приоритетнее firstCompletion. */
+  passNumber?: number;
 }>): PracticeRuneEarnings {
   const sessionKey = normalizeSessionKey(input.sessionKey);
   if (!sessionKey) throw new Error('practice_rune_session_key_invalid');
@@ -131,9 +149,11 @@ export function createPracticeRuneEarnings(input: Readonly<{
     schemaVersion: 'practice-rune-earnings.v1',
     activity: input.activity,
     sessionKey,
-    awardPerItem: input.firstCompletion
-      ? PRACTICE_RUNE_FULL_AWARD
-      : PRACTICE_RUNE_REPEAT_AWARD,
+    awardPerItem: input.passNumber !== undefined
+      ? practiceRuneAwardForPass(input.passNumber)
+      : input.firstCompletion
+        ? PRACTICE_RUNE_FULL_AWARD
+        : PRACTICE_RUNE_REPEAT_AWARD,
     creditedItemIds: Object.freeze([]),
     pendingRunes: 0,
   });
@@ -337,6 +357,7 @@ export function parsePracticeRuneEarnings(
 
   const awardPerItem = candidate.awardPerItem;
   if (awardPerItem !== PRACTICE_RUNE_FULL_AWARD
+    && awardPerItem !== PRACTICE_RUNE_SECOND_AWARD
     && awardPerItem !== PRACTICE_RUNE_REPEAT_AWARD) return null;
 
   const rawItems = candidate.creditedItemIds;

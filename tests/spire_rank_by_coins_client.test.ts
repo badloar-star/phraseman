@@ -25,11 +25,13 @@ describe('D162 клиент: договор совпадает с серверо
     expect(server).toContain('SPIRE_WEEK_COINS_CAP_DEFAULT = 20_000');
     expect(server).toContain('SPIRE_BOT_WEEK_COINS_PER_STEP = 30');
     expect(SPIRE_WEEK_COINS_CAP_DEFAULT).toBe(20_000);
-    expect(SPIRE_CONFIG_DEFAULTS.rankBy).toBe('steps');
+    // зачем (владелец 05.11): клиентский дефолт — монеты; ступени только явным rankBy='steps'
+    expect(SPIRE_CONFIG_DEFAULTS.rankBy).toBe('coins');
   });
 
   it('клиент читает рубильник из конфига: только явное coins и только с W43', () => {
-    expect(parseSpireConfigDoc({}).rankBy).toBe('steps');
+    expect(parseSpireConfigDoc({}).rankBy).toBe('coins');
+    expect(parseSpireConfigDoc({ rankBy: 'steps' }).rankBy).toBe('steps');
     expect(parseSpireConfigDoc({ rankBy: 'coins' }).rankBy).toBe('coins');
     expect(spireEffectiveRankBy(parseSpireConfigDoc({ rankBy: 'coins' }), '2026-W42')).toBe('steps');
     expect(spireEffectiveRankBy(parseSpireConfigDoc({ rankBy: 'coins' }), '2026-W43')).toBe('coins');

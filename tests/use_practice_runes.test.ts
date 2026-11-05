@@ -168,7 +168,8 @@ test('next portion preserves pending runes until a local commit succeeds', async
   await act(async () => { await hook.result.current.settle(); });
   await act(() => { expect(hook.result.current.startNewCompletionIfSettled()).toBe(true); });
   expect(hook.result.current.runes).toBe(0);
-  await act(() => { expect(hook.result.current.onCorrectAnswer('go')).toBe(1); });
+  // зачем (владелец 05.11: 3 / 2 / 1): второе прохождение платит 2
+  await act(() => { expect(hook.result.current.onCorrectAnswer('go')).toBe(2); });
 });
 
 test('next portion waits while settlement is in flight', async () => {
@@ -296,9 +297,9 @@ test('an older settle cannot erase runes earned after pressing Repeat', async ()
   });
   await act(() => {
     hook.result.current.startNewCompletion();
-    expect(hook.result.current.onCorrectAnswer('same-card')).toBe(1);
+    expect(hook.result.current.onCorrectAnswer('same-card')).toBe(2); // второе прохождение: +2
   });
-  expect(hook.result.current.runes).toBe(1);
+  expect(hook.result.current.runes).toBe(2);
 
   await act(async () => { await hook.result.current.settle(); });
   const settledOnceKey = practiceRuneSettledOnceStorageKey({
@@ -312,7 +313,7 @@ test('an older settle cannot erase runes earned after pressing Repeat', async ()
     finishFirst({ locallyCommitted: true, settled: false });
     await firstSettle;
   });
-  expect(hook.result.current.runes).toBe(1);
+  expect(hook.result.current.runes).toBe(2);
   expect(storage[settledOnceKey]).toBe('2');
 
   const ordinals = settlement.markPracticeRuneSettlementPending.mock.calls
@@ -382,12 +383,12 @@ test('restart after local commit but before settled marker preserves both comple
     completionOrdinal: 1,
   }));
   await waitFor(() => expect(restarted.result.current.hydrating).toBe(false));
-  await act(() => { expect(restarted.result.current.onCorrectAnswer('card-1')).toBe(1); });
+  await act(() => { expect(restarted.result.current.onCorrectAnswer('card-1')).toBe(2); }); // второе прохождение: +2
   await act(async () => { await restarted.result.current.settle(); });
 
   expect(committed).toEqual([
     { completionOrdinal: 1, amount: 3 },
-    { completionOrdinal: 2, amount: 1 },
+    { completionOrdinal: 2, amount: 2 },
   ]);
 });
 
@@ -564,21 +565,21 @@ test('new earnings after a partial close keep their next ordinal across another 
     activity: 'flashcards_blitz', sessionKey: 'attempt-bound-ordinal', completionOrdinal: 1,
   }));
   await waitFor(() => expect(second.result.current.hydrating).toBe(false));
-  await act(() => { expect(second.result.current.onCorrectAnswer('card-2')).toBe(1); });
+  await act(() => { expect(second.result.current.onCorrectAnswer('card-2')).toBe(2); }); // второе прохождение: +2
   await second.unmount();
 
   const third = await renderHook(() => usePracticeRunes({
     activity: 'flashcards_blitz', sessionKey: 'attempt-bound-ordinal', completionOrdinal: 1,
   }));
   await waitFor(() => expect(third.result.current.hydrating).toBe(false));
-  expect(third.result.current.runes).toBe(1);
+  expect(third.result.current.runes).toBe(2);
   await act(async () => { await third.result.current.settle(); });
 
   expect(settlement.settlePracticeRuneEarningsToServer.mock.calls.map((call) => call[1]))
     .toEqual([1, 2]);
   expect(committed).toEqual([
     { completionOrdinal: 1, amount: 3 },
-    { completionOrdinal: 2, amount: 1 },
+    { completionOrdinal: 2, amount: 2 },
   ]);
 });
 

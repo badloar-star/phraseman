@@ -121,13 +121,15 @@ export const SPIRE_CONFIG_DEFAULTS: SpireConfigDoc = Object.freeze({
     minStepMs: 45_000,
     maxStepsPerHour: 30,
   }),
-  rankBy: 'steps',
+  // зачем (владелец 05.11, скрины TestFlight 149: «Упоминаний ступеней вообще не должно быть, только этажей! Почему там не монетки?»):
+  // если конфиг не пришёл/без поля — клиент по умолчанию в режиме монет; «ступени» возвращаются ТОЛЬКО явным rankBy='steps' (откат).
+  rankBy: 'coins',
   weekCoinsCap: SPIRE_WEEK_COINS_CAP_DEFAULT,
 });
 
-/** Разбор рубильника: только явное 'coins' включает монеты, всё остальное — 'steps' (безопасный дефолт). */
+/** Разбор рубильника: только явное 'steps' возвращает ступени (откат), всё остальное, включая отсутствие поля, — 'coins' (дефолт с 05.11). */
 export function spireRankByOr(value: unknown): SpireRankBy {
-  return value === 'coins' ? 'coins' : 'steps';
+  return value === 'steps' ? 'steps' : 'coins';
 }
 
 /**

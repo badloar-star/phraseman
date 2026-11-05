@@ -252,7 +252,8 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
               ? createPracticeRuneEarnings({
                   activity: stored.activity,
                   sessionKey: stored.sessionKey,
-                  firstCompletion: false,
+                  // зачем (владелец 05.11, 3/2/1): следующий проход после подтверждённых платит по своему номеру прохождения
+                  passNumber: Math.max(markerCount, committedOrdinal) + 1,
                 })
               : Object.freeze({
                   ...stored,
@@ -282,7 +283,8 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       // carries its committed ordinal when the marker trails by more than one.
       const settledCount = Math.max(markerCount, committedOrdinal, accumulatorHighWater);
       settledCountRef.current = settledCount;
-      const firstCompletion = input.repeatPriceOnly === true ? false : settledCount === 0;
+      // зачем (владелец 05.11: «+3, второй раз +2, третий и дальше +1»): цена — по номеру прохождения сессии (settledCount + 1); мастерская фраз (repeatPriceOnly) всегда по низкой цене
+      const passNumber = input.repeatPriceOnly === true ? 3 : settledCount + 1;
       // зачем (владелец, 2026-08-28, «анимация полёта в уроках не появилась»):
       // зачтённая копилка прошлого прохода (pendingRunes 0 при непустом списке
       // оплаченных) раньше восстанавливалась КАК ЕСТЬ — каждый элемент значился
@@ -296,7 +298,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
         ?? (stored !== null && !storedIsFinishedPass
         ? stored
         : createPracticeRuneEarnings({
-            activity: input.activity, sessionKey: input.sessionKey, firstCompletion,
+            activity: input.activity, sessionKey: input.sessionKey, passNumber,
           }));
       // A finished accumulator's ordinal belongs to the pass that just closed;
       // the new pass allocated below must not inherit it.
@@ -382,9 +384,20 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       });
     }
     const current = earningsRef.current;
-    if (!current) return 0;
+    if (!current) {
+      // зачем (владелец 05.11: «счётчик монет стоит, ответ верный»; правило «сперва логи»): тихий выход без копилки был невидим
+      DebugLogger.info('practice_runes:answer_skipped', JSON.stringify({ reason: 'earnings_not_ready', enabled, activity: input.activity, itemId: itemId.slice(0, 80) }));
+      return 0;
+    }
     const result = awardPracticeRune(current, itemId, correctStreak);
-    if (result.awarded === 0) return 0;
+    if (result.awarded === 0) {
+      DebugLogger.info('practice_runes:answer_skipped', JSON.stringify({
+        reason: current.creditedItemIds.includes(itemId) ? 'item_already_credited_in_pass' : 'invalid_item_id',
+        activity: current.activity, sessionKey: current.sessionKey, awardPerItem: current.awardPerItem,
+        credited: current.creditedItemIds.length, pendingRunes: current.pendingRunes, itemId: itemId.slice(0, 80),
+      }));
+      return 0;
+    }
     earningsRef.current = result.earnings;
     const displayedAward = result.earnings.pendingRunes - current.pendingRunes;
     setBaseRunes(result.earnings.pendingRunes);
@@ -596,8 +609,10 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     // определяет settledOnce, а не то, была ли уже вызвана settle() именно
     // сейчас: даже незачтённая (например, экран закрыли без интернета) первая
     // попытка уже потратила «первый раз», второй заход честно платит меньше.
+    // зачем (владелец 05.11, 3/2/1): новый проход без перемонтирования платит по своему номеру — второй 2, третий и дальше 1; «не первое» остаётся правилом (минимум второй номер)
     const earnings = createPracticeRuneEarnings({
-      activity: input.activity, sessionKey: input.sessionKey, firstCompletion: false,
+      activity: input.activity, sessionKey: input.sessionKey,
+      passNumber: input.repeatPriceOnly === true ? 3 : Math.max(settledCountRef.current, 1) + 1,
     });
     const highestAllocatedOrdinal = Math.max(
       0,

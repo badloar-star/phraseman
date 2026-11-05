@@ -9,6 +9,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { streakRecordCaption } from './streak_record_caption';
 
 /** Ключ памяти раскрытого блока «Все показатели» (раунд 2, Статистика п.3). */
 const STATS_LIFETIME_EXPANDED_KEY = 'stats_lifetime_expanded_v1';
@@ -1442,7 +1443,9 @@ function StreakHeroCard({
     const dayCountedWord = triLang(lang, { ru: 'засчитан', uk: 'зараховано', en: 'counted', es: 'contado', 'pt-BR': 'contado', vi: 'đã tính', id: 'dihitung', tr: 'sayıldı', pl: 'zaliczony' });
     const dayNotCountedWord = triLang(lang, { ru: 'не засчитан', uk: 'не зараховано', en: 'not counted', es: 'sin contar', 'pt-BR': 'não contado', vi: 'chưa tính', id: 'belum dihitung', tr: 'sayılmadı', pl: 'niezaliczony' });
     const streakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' });
-    const heroA11yLabel = `${streakWord}: ${totalStreak} ${streakCaption}, ${recordWord} ${bestStreak}. ${weekDays.map((day) => `${day.shortLabel} — ${day.active ? dayCountedWord : dayNotCountedWord}`).join(', ')}`;
+    // зачем (раунд 2, Статистика п.1): «до рекорда N дней» / в день побития «Рекорд!»; нет серии или рекорда — прежний текст «дней подряд · лучший N»
+    const recordCaption = streakRecordCaption(lang, totalStreak, bestStreak);
+    const heroA11yLabel = `${streakWord}: ${totalStreak} ${streakCaption}, ${recordCaption ?? `${recordWord} ${bestStreak}`}. ${weekDays.map((day) => `${day.shortLabel} — ${day.active ? dayCountedWord : dayNotCountedWord}`).join(', ')}`;
     return (
         <StatsCardArtSurface
           testID="stats-streak-hero"
@@ -1473,7 +1476,7 @@ function StreakHeroCard({
                       : <Ionicons name="flame-outline" size={28} color={totalStreak > 0 ? t.textPrimary : t.textMuted} />}
                 </Pressable>
                 <Text style={{ color: t.textPrimary, fontSize: 46, lineHeight: 52, fontWeight: '800', marginTop: 10, fontVariant: ['tabular-nums'] }}>{totalStreak}</Text>
-                <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 20, textAlign: 'center' }}>{`${streakCaption} · ${bestWord} ${bestStreak}`}</Text>
+                <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 20, textAlign: 'center' }}>{recordCaption ? `${streakCaption} · ${recordCaption}` : `${streakCaption} · ${bestWord} ${bestStreak}`}</Text>
             </Pressable>
             {seriesOpen ? (
                 <Reanimated.View entering={FadeInDown.duration(220)} style={{ gap: 8, paddingTop: 12 }}>

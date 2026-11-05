@@ -416,13 +416,13 @@
    "uk": "Я візьму маленьку синю коробку."
   },
   "fr:02:01": {
-   "target": "Je ne suis pas là.",
+   "target": "Je ne suis pas ici.",
    "tiles": [
     "Je",
     "ne",
     "suis",
     "pas",
-    "là"
+    "ici"
    ],
    "accepted": [
     [
@@ -430,18 +430,18 @@
      "ne",
      "suis",
      "pas",
-     "là"
+     "ici"
     ],
     [
      "Je",
      "ne",
      "suis",
      "pas",
-     "ici"
+     "là"
     ]
    ],
    "alternatives": [
-    "Je ne suis pas ici."
+    "Je ne suis pas là."
    ]
   },
   "it:23:06": {

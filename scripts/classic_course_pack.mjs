@@ -441,6 +441,40 @@ function ctxReason(ctx, ph, i, d) {
   if (!have) return ctx.relax ? null : 'ctxUnknown'; // слова нет в курсе ни верным, ни соблазном — форму не знаем
   return have.includes(want) ? null : 'ctxPos';
 }
+// зачем (Координатор 05.11, перемер Ревизора c473219d8: смысл 7,0%): системные шаблоны чинить по КЛАССУ плитки, а не по id —
+// «not» → наречия, «to» → предлоги, артикли/притяжательные → определители, числительные → числительные, «Please» → наречия, «being» → формы be.
+// Правила, точечные замены (B1) и недостающие порядки слов (B3) — scripts/classic_en_pass2.json; действуют вместе с подписями (CTX_LANGS).
+const PASS2_PATH = join(ROOT, 'scripts', 'classic_en_pass2.json');
+const PASS2 = existsSync(PASS2_PATH) ? JSON.parse(readFileSync(PASS2_PATH, 'utf8')) : null;
+if (PASS2 && CTX_LANGS.has('en')) {
+  let nRep = 0, nAlt = 0;
+  // зачем: «from» — слово, дающее верную фразу (B1); запрещаем его во фразе всегда (а не только когда оно из архива), «to» — первый кандидат добора
+  for (const r of PASS2.replacements ?? []) { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); const k = `en:${m[1]}:${m[2]}`; ((PATCHES.replace ??= {})[k] ??= []).push({ from: r.from, to: r.to, position: r.position }); (PATCHES.remove ??= {})[k] = [...(PATCHES.remove[k] ?? []), r.from]; nRep++; }
+  for (const [k, v] of Object.entries(PASS2.alt ?? {})) { const cur = (AUDIT.alt ??= {})[k] ?? { add: [], remove: [] }; AUDIT.alt[k] = { add: [...(cur.add ?? []), ...(v.add ?? [])], remove: [...(cur.remove ?? []), ...(v.remove ?? [])] }; nAlt += (v.add ?? []).length; }
+  console.log(`[DISTR-PASS2] en: классов ${PASS2.classes?.length ?? 0}, замен ${nRep}, альтернатив ${nAlt}`);
+} else console.log(`[DISTR-PASS2] не применяется: файл ${PASS2 ? 'есть' : 'нет'}, CTX_LANGS=${[...CTX_LANGS]}`);
+// класс плитки (или null): совпадение по слову + условие (nextNoun — следующая плитка сущ./прил./числ.; nom — плитка в роли местоимения)
+function tileClass(ctx, ph, i) {
+  if (!PASS2 || ctx.lang !== 'en' || !ctx.ctxSig) return null;
+  const c = stripP(ph.tiles[i].correct);
+  const sig = ctx.ctxSig.tiles[ph.id] ?? [];
+  for (const cl of PASS2.classes ?? []) {
+    if (!cl.tiles.includes(c)) continue;
+    if (cl.cond === 'nextNoun' && !['N/', 'A/', 'NUM/'].includes(sig[i + 1] ?? '')) continue;
+    // зачем: после существительного «that/which» — относительное слово («the reminder that flashes»), не определитель; spaCy путает глагол на -s с сущ.
+    if (cl.cond === 'nextNoun' && i > 0 && sig[i - 1] === 'N/') continue;
+    if (cl.cond === 'nom' && sig[i] !== 'NOM/') continue;
+    return cl;
+  }
+  return null;
+}
+function classReason(ctx, ph, i, d) {
+  if (!PASS2 || ctx.lang !== 'en' || !ctx.ctxSig) return null;
+  // сокращения (he's, hasn't, I'll) — только на плитке-сокращении: на месте «not»/«to»/«Please» они отсеиваются по виду
+  if (/['’]/.test(d) && !/['’]/.test(ph.tiles[i].correct)) return 'contraction';
+  const cl = tileClass(ctx, ph, i);
+  return cl && !cl.candidates.includes(stripP(d)) ? 'classOnly' : null;
+}
 function spacyReason(ctx, ph, i, d) {
   const L = ctx.posLex;
   if (!L) return null;
@@ -531,7 +565,9 @@ function badReason(lang, ctx, ph, i, d, mine) {
     if (!cc && dc && !ctx.articles.has(c) && !isNum && !isName) return 'posClass';
   }
   if (!ctx.noTag) { const tr = tagReason(ctx, ph, i, dd) ?? spacyReason(ctx, ph, i, d); if (tr) return tr; }
-  { const cr = ctxReason(ctx, ph, i, d); if (cr) return cr; } // зачем: действует и в запасных проходах — иначе добор вернёт чужую часть речи
+  // зачем: у плитки с классом (PASS2) решает класс — его кандидаты подобраны вручную и не проверяются подписями; иначе — подписи по контексту.
+  // Оба правила действуют и в запасных проходах — иначе добор вернёт чужую часть речи
+  { const kr = classReason(ctx, ph, i, d); if (kr) return kr; if (!tileClass(ctx, ph, i)) { const cr = ctxReason(ctx, ph, i, d); if (cr) return cr; } }
   if (ctx.adverbOnly && ctx.adverbOnly.words.includes(dd) && !ctx.adverbOnly.allowedFor.includes(c)) return 'posClass';
   if (lang === 'es' && c === 'fuera' && ctx.serForms.has(dd) && !/^(si|que|como|aunque)$/i.test(corrects[i - 1] ?? '')) return 'pos';
   if (ctx.numbers.has(dd) !== isNum || (!ctx.relax && CAT_NAME_LANGS.has(lang) && ctx.names.has(d) !== isName)) return 'category';
@@ -738,6 +774,18 @@ function fixDistractors(lang, all) {
         // зачем: сторож курса (tests/classic_courses_pack) не делает исключений для патча Ревизора — синонимы, числительные и непройденные тоже жёсткие
         if (why && ['otherCorrect', 'acceptedPhrase', 'selfCase', 'duplicate', 'nonWord', 'patch', 'synonym', 'category', 'unseen', 'article', 'youForm', 'genderPair'].includes(why)) { removed.revRejected = (removed.revRejected ?? 0) + 1; console.log(`[DISTR-REV-PATCH] отклонено ${ph.id}#${i} ${r.from}→${to}: ${why}`); continue; }
         kept.push(to); auditForced.add(`${ph.id}#${i}:${to.toLowerCase()}`); removed.revFilled = (removed.revFilled ?? 0) + 1;
+      }
+      // зачем (PASS2): плитка класса добирает сначала кандидатов своего класса по порядку — без классов «в изоляции» (noTag), но с «непройденным» и B1
+      {
+        const cl = tileClass(ctx, ph, i);
+        for (const w of cl && kept.length < want ? cl.candidates : []) {
+          if (kept.length >= want) break;
+          const cand = i > 0 && upperFirst(tile.correct) ? w[0].toUpperCase() + w.slice(1) : w;
+          if (kept.some((x) => stripP(x) === stripP(cand))) continue;
+          const why = badReason(lang, { ...ctx, noTag: true }, ph, i, cand, kept);
+          if (!why) { kept.push(cand); removed.classFilled = (removed.classFilled ?? 0) + 1; auditForced.add(`${ph.id}#${i}:${cand.toLowerCase()}`); }
+          else if (process.env.DEBUG_CLASS) console.log(`[DISTR-PASS2] ${ph.id}#${i} ${tile.correct}: кандидат ${cand} отклонён — ${why}`);
+        }
       }
       if (kept.length < want) {
         // английские соблазны в архиве строчные даже у первой плитки (You → he, they); в остальных языках первая плитка с заглавной

@@ -1,0 +1,624 @@
+{
+ "_comment": "Работник А (Ловушки) 05.11: правки EN по семантическому аудиту Ревизора, проход 2 (docs/work/course_quality_1pct/EN_SEMANTIC_PASS2*.{md,json}, HEAD c473219d8). classes — соблазны по КЛАССУ плитки (правило владельца: та же часть речи и роль, правдоподобная ошибка, фраза при подстановке неверна); у плитки класса допустимы только candidates (порядок = приоритет добора), cond nextNoun — следующая плитка существительное/прилагательное/числительное (her/that как определитель). replacements — точечные замены соблазнов (B1: подстановка даёт верную фразу); alt — недостающие верные порядки слов (B3). Подключение: classic_course_pack.mjs (CTX_LANGS).",
+ "classes": [
+  {
+   "name": "neg",
+   "tiles": [
+    "not"
+   ],
+   "candidates": [
+    "no",
+    "always",
+    "sometimes",
+    "usually",
+    "never",
+    "still",
+    "often",
+    "now",
+    "just",
+    "also",
+    "here",
+    "well",
+    "soon"
+   ]
+  },
+  {
+   "name": "to",
+   "tiles": [
+    "to"
+   ],
+   "candidates": [
+    "in",
+    "at",
+    "for",
+    "by",
+    "after",
+    "of",
+    "on",
+    "from",
+    "with",
+    "near",
+    "until"
+   ]
+  },
+  {
+   "name": "there",
+   "tiles": [
+    "there"
+   ],
+   "cond": "nom",
+   "candidates": [
+    "here",
+    "it",
+    "this",
+    "that",
+    "they",
+    "where"
+   ]
+  },
+  {
+   "name": "article",
+   "tiles": [
+    "a",
+    "an"
+   ],
+   "cond": "nextNoun",
+   "candidates": [
+    "this",
+    "that",
+    "these",
+    "those",
+    "each",
+    "every",
+    "my",
+    "your",
+    "his",
+    "her",
+    "our",
+    "their",
+    "no"
+   ]
+  },
+  {
+   "name": "det",
+   "tiles": [
+    "the",
+    "this",
+    "that",
+    "these",
+    "those",
+    "each",
+    "every",
+    "no",
+    "any",
+    "some",
+    "both"
+   ],
+   "cond": "nextNoun",
+   "candidates": [
+    "this",
+    "that",
+    "these",
+    "those",
+    "each",
+    "every",
+    "my",
+    "your",
+    "his",
+    "her",
+    "our",
+    "their",
+    "no",
+    "the",
+    "a",
+    "both"
+   ]
+  },
+  {
+   "name": "poss",
+   "tiles": [
+    "my",
+    "your",
+    "his",
+    "her",
+    "our",
+    "their",
+    "its"
+   ],
+   "cond": "nextNoun",
+   "candidates": [
+    "my",
+    "your",
+    "his",
+    "her",
+    "our",
+    "their",
+    "the",
+    "this",
+    "that"
+   ]
+  },
+  {
+   "name": "num",
+   "tiles": [
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "fifteen",
+    "twenty",
+    "thirty"
+   ],
+   "candidates": [
+    "two",
+    "three",
+    "four",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "five",
+    "fifteen",
+    "thirty"
+   ]
+  },
+  {
+   "name": "one",
+   "tiles": [
+    "one"
+   ],
+   "candidates": [
+    "once",
+    "ones",
+    "noon",
+    "it",
+    "that",
+    "this",
+    "half",
+    "time"
+   ]
+  },
+  {
+   "name": "please",
+   "tiles": [
+    "please"
+   ],
+   "candidates": [
+    "just",
+    "now",
+    "always",
+    "again",
+    "still",
+    "often",
+    "soon"
+   ]
+  },
+  {
+   "name": "being",
+   "tiles": [
+    "being"
+   ],
+   "candidates": [
+    "been",
+    "be",
+    "was",
+    "were",
+    "are",
+    "is"
+   ]
+  }
+ ],
+ "replacements": [
+  {
+   "id": "en-classic-r1:05.18",
+   "position": 3,
+   "from": "go",
+   "to": "wait"
+  },
+  {
+   "id": "en-classic-r1:05.35",
+   "position": 2,
+   "from": "take",
+   "to": "wait"
+  },
+  {
+   "id": "en-classic-r1:06.12",
+   "position": 5,
+   "from": "go",
+   "to": "need"
+  },
+  {
+   "id": "en-classic-r1:06.20",
+   "position": 5,
+   "from": "go",
+   "to": "need"
+  },
+  {
+   "id": "en-classic-r1:06.49",
+   "position": 3,
+   "from": "get",
+   "to": "wait"
+  },
+  {
+   "id": "en-classic-r1:09.21",
+   "position": 2,
+   "from": "any",
+   "to": "every"
+  },
+  {
+   "id": "en-classic-r1:09.23",
+   "position": 2,
+   "from": "any",
+   "to": "every"
+  },
+  {
+   "id": "en-classic-r1:09.23",
+   "position": 2,
+   "from": "some",
+   "to": "my"
+  },
+  {
+   "id": "en-classic-r1:09.27",
+   "position": 2,
+   "from": "any",
+   "to": "every"
+  },
+  {
+   "id": "en-classic-r1:09.30",
+   "position": 2,
+   "from": "any",
+   "to": "every"
+  },
+  {
+   "id": "en-classic-r1:10.23",
+   "position": 3,
+   "from": "that",
+   "to": "me"
+  },
+  {
+   "id": "en-classic-r1:10.45",
+   "position": 3,
+   "from": "need",
+   "to": "go"
+  },
+  {
+   "id": "en-classic-r1:10.46",
+   "position": 3,
+   "from": "need",
+   "to": "go"
+  },
+  {
+   "id": "en-classic-r1:10.47",
+   "position": 2,
+   "from": "need",
+   "to": "go"
+  },
+  {
+   "id": "en-classic-r1:04.12",
+   "position": 4,
+   "from": "saturdays",
+   "to": "card"
+  },
+  {
+   "id": "en-classic-r1:12.03",
+   "position": 1,
+   "from": "got",
+   "to": "saw"
+  },
+  {
+   "id": "en-classic-r1:12.13",
+   "position": 1,
+   "from": "got",
+   "to": "saw"
+  },
+  {
+   "id": "en-classic-r1:12.20",
+   "position": 5,
+   "from": "for",
+   "to": "with"
+  },
+  {
+   "id": "en-classic-r1:14.50",
+   "position": 4,
+   "from": "still",
+   "to": "always"
+  },
+  {
+   "id": "en-classic-r1:32.19",
+   "position": 4,
+   "from": "and",
+   "to": "so"
+  },
+  {
+   "id": "en-classic-r1:32.28",
+   "position": 2,
+   "from": "that",
+   "to": "where"
+  },
+  {
+   "id": "en-classic-r1:19.12",
+   "position": 2,
+   "from": "at",
+   "to": "from"
+  },
+  {
+   "id": "en-classic-r1:19.17",
+   "position": 2,
+   "from": "in",
+   "to": "until"
+  },
+  {
+   "id": "en-classic-r1:19.29",
+   "position": 4,
+   "from": "by",
+   "to": "from"
+  },
+  {
+   "id": "en-classic-r1:20.31",
+   "position": 3,
+   "from": "at",
+   "to": "from"
+  },
+  {
+   "id": "en-classic-r1:20.42",
+   "position": 3,
+   "from": "by",
+   "to": "of"
+  },
+  {
+   "id": "en-classic-r1:20.43",
+   "position": 4,
+   "from": "at",
+   "to": "from"
+  },
+  {
+   "id": "en-classic-r1:30.26",
+   "position": 7,
+   "from": "was",
+   "to": "comes"
+  },
+  {
+   "id": "en-classic-r1:30.10",
+   "position": 3,
+   "from": "seats",
+   "to": "shines"
+  },
+  {
+   "id": "en-classic-r1:30.10",
+   "position": 3,
+   "from": "keys",
+   "to": "rings"
+  },
+  {
+   "id": "en-classic-r1:30.10",
+   "position": 3,
+   "from": "coins",
+   "to": "opens"
+  },
+  {
+   "id": "en-classic-r1:30.10",
+   "position": 3,
+   "from": "stairs",
+   "to": "works"
+  },
+  {
+   "id": "en-classic-r1:30.10",
+   "position": 3,
+   "from": "mornings",
+   "to": "stops"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "keys",
+   "to": "belonged"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "seats",
+   "to": "listens"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "tickets",
+   "to": "matches"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "bags",
+   "to": "helps"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "doors",
+   "to": "remains"
+  },
+  {
+   "id": "en-classic-r1:30.10",
+   "position": 3,
+   "from": "bags",
+   "to": "starts"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "share",
+   "to": "goes"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "use",
+   "to": "works"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "rooms",
+   "to": "opens"
+  },
+  {
+   "id": "en-classic-r1:30.47",
+   "position": 6,
+   "from": "lock",
+   "to": "starts"
+  }
+ ],
+ "alt": {
+  "en:11:04": {
+   "add": [
+    "On Monday, he worked from home."
+   ]
+  },
+  "en:32:10": {
+   "add": [
+    "Can I pay by card for the rest?"
+   ]
+  },
+  "en:32:12": {
+   "add": [
+    "Last Thursday we changed the date."
+   ]
+  },
+  "en:32:22": {
+   "add": [
+    "As soon as I find it, I will send the number.",
+    "As soon as I find it, I'll send the number."
+   ]
+  },
+  "en:31:44": {
+   "add": [
+    "He reminded us to give back the ladder."
+   ]
+  },
+  "en:31:20": {
+   "add": [
+    "He saw her hand back the invoice."
+   ]
+  },
+  "en:25:11": {
+   "add": [
+    "I was walking home at six."
+   ]
+  },
+  "en:25:12": {
+   "add": [
+    "She was still working at eight."
+   ]
+  },
+  "en:26:05": {
+   "add": [
+    "Lift the handle if the latch sticks."
+   ]
+  },
+  "en:26:21": {
+   "add": [
+    "Press this button if you need help."
+   ]
+  },
+  "en:26:22": {
+   "add": [
+    "Call reception if the light flashes."
+   ]
+  },
+  "en:26:23": {
+   "add": [
+    "Let me know if you find my pass."
+   ]
+  },
+  "en:26:24": {
+   "add": [
+    "Pull the handle gently if the door sticks."
+   ]
+  },
+  "en:26:25": {
+   "add": [
+    "Take my coat if you feel cold."
+   ]
+  },
+  "en:26:26": {
+   "add": [
+    "Check the screen if the train is late."
+   ]
+  },
+  "en:26:27": {
+   "add": [
+    "Move closer if you cannot hear.",
+    "Move closer if you can't hear."
+   ]
+  },
+  "en:26:28": {
+   "add": [
+    "Call reception if there is a leak."
+   ]
+  },
+  "en:26:29": {
+   "add": [
+    "Lift the lid if the printer jams."
+   ]
+  },
+  "en:26:30": {
+   "add": [
+    "Give her my number if you see Anna."
+   ]
+  },
+  "en:26:47": {
+   "add": [
+    "Press the button when the light turns green."
+   ]
+  },
+  "en:28:21": {
+   "add": [
+    "I myself fixed the tap."
+   ]
+  },
+  "en:28:22": {
+   "add": [
+    "She herself wrote the letter."
+   ]
+  },
+  "en:28:23": {
+   "add": [
+    "He himself carried both boxes."
+   ]
+  },
+  "en:28:24": {
+   "add": [
+    "We ourselves did the painting."
+   ]
+  },
+  "en:28:25": {
+   "add": [
+    "They themselves built the shelter."
+   ]
+  },
+  "en:28:28": {
+   "add": [
+    "The manager herself checked the brakes."
+   ]
+  },
+  "en:28:29": {
+   "add": [
+    "The driver himself checked the address."
+   ]
+  },
+  "en:28:30": {
+   "add": [
+    "We ourselves saw the damage."
+   ]
+  }
+ }
+}

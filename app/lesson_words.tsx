@@ -92,7 +92,9 @@ const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 /** Ключи прогресса слов, чьё чтение при входе упало: запись по ним сначала подмешивает сохранённое (R58 #29). */
 const progressReadFailedKeys = new Set<string>();
 
-function parseLessonWordCounts(raw: string | null, lessonId: number): Record<string, number> {
+function parseLessonWordCounts(raw: string | null, lessonId: number, studyTarget?: RuntimeStudyTarget): Record<string, number> {
+  // зачем: миграция английских местоимений (I, you…) и английские формы мн. числа касаются ТОЛЬКО английского курса — в прогресс fr/es/de/it они не попадают
+  const englishOnly = storageStudyTarget(studyTarget) === 'en';
   if (!raw) return {};
   try {
     const data = JSON.parse(raw);
@@ -102,12 +104,12 @@ function parseLessonWordCounts(raw: string | null, lessonId: number): Record<str
     } else if (data && typeof data === 'object') {
       counts = data;
     }
-    if (lessonId === 1 && Object.values(counts).some(c => c >= REQUIRED)) {
+    if (englishOnly && lessonId === 1 && Object.values(counts).some(c => c >= REQUIRED)) {
       for (const p of ['I', 'you', 'he', 'she', 'we', 'it']) {
         if (!counts[p] || counts[p] < REQUIRED) counts[p] = REQUIRED;
       }
     }
-    return mergeLegacyPluralLessonWordCounts(counts).counts;
+    return englishOnly ? mergeLegacyPluralLessonWordCounts(counts).counts : counts;
   } catch {
     return {};
   }
@@ -118,7 +120,7 @@ export async function primeAllLessonWordsFromStorageOnAppLaunch(studyTarget?: Ru
   const keys = lessonIds.map(id => lessonWordsKey(id, studyTarget));
   const entries = await AsyncStorage.multiGet(keys);
   entries.forEach(([key, raw], index) => {
-    lessonWordsProgressCache.set(key, parseLessonWordCounts(raw, lessonIds[index] ?? 1));
+    lessonWordsProgressCache.set(key, parseLessonWordCounts(raw, lessonIds[index] ?? 1, studyTarget));
   });
 }
 
@@ -3070,7 +3072,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           try {
             let toWrite = newCounts;
             if (progressReadFailedKeys.has(storageKey)) {
-              const stored = parseLessonWordCounts(await AsyncStorage.getItem(storageKey), lessonId);
+              const stored = parseLessonWordCounts(await AsyncStorage.getItem(storageKey), lessonId, studyTarget);
               toWrite = { ...stored };
               for (const [word, value] of Object.entries(newCounts)) toWrite[word] = Math.max(Number(toWrite[word] ?? 0), Number(value ?? 0));
               progressReadFailedKeys.delete(storageKey);
@@ -3681,7 +3683,9 @@ function LessonWords() {
   const cachedInitialCounts = lessonWordsProgressCache.get(storageKey) ?? {};
   const [learnedCounts, setLearnedCounts] = useState<Record<string,number>>(() => cachedInitialCounts);
   /** true после чтения lessonN_words: тренажёр монтируется один раз, без кадра со случайной временной очередью. */
-  const [wordProgressReady, setWordProgressReady] = useState(false);
+  // зачем (Макеты 05.11: «Vocabulary грузится 7 с, Preparing practice…», координатор: убрать ожидание): прогресс слов этого урока уже в памяти (прогрев при запуске
+  // приложения или прошлый заход) — тренажёр монтируется сразу с ним, а чтение хранилища только освежает данные фоном. Ждём чтения лишь при пустом кэше.
+  const [wordProgressReady, setWordProgressReady] = useState(() => lessonWordsProgressCache.has(storageKey));
   const learnedListForTraining = useMemo(
     () => Object.keys(learnedCounts).filter(k => (learnedCounts[k] ?? 0) >= REQUIRED),
     [learnedCounts],
@@ -3695,7 +3699,9 @@ function LessonWords() {
   useLayoutEffect(() => {
     const cached = lessonWordsProgressCache.get(storageKey) ?? {};
     setLearnedCounts(cached);
-    setWordProgressReady(false);
+    const primed = lessonWordsProgressCache.has(storageKey);
+    console.log(`[LESSON-WORDS] progress ready from memory=${primed} key=${storageKey}`); // guard-ok: ветка ожидания экрана слов (значение решило, ждать ли чтения)
+    setWordProgressReady(primed);
     setUserTab(initialTab);
   }, [initialTab, lessonId, storageKey]);
 
@@ -3708,7 +3714,7 @@ function LessonWords() {
       .then(v => {
         if (cancelled) return;
         console.log(`[LESSON-WORDS] progress read done ms=${Date.now() - progressReadStartedAt} bytes=${v ? v.length : 0}`); // guard-ok: трасса ожидания экрана слов
-        const counts = parseLessonWordCounts(v, lessonId);
+        const counts = parseLessonWordCounts(v, lessonId, studyTarget);
         lessonWordsProgressCache.set(storageKey, counts);
         if (v && JSON.stringify(counts) !== v) {
           AsyncStorage.setItem(storageKey, JSON.stringify(counts)).catch(noteSwallowedHandler('lesson_words:useEffect.setItem'));

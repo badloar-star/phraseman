@@ -57,3 +57,5 @@ Governance-ID: TG-86DA1598522B (вёрстка: заголовок колонк�
 Governance-ID: TG-364790768A0A (проверка формулировок на упоминания лишних языков)
 
 Governance-ID: TG-1DC7AACFC10C (очередь координатора: темы уроков, журнал ожидания слов, сторож слов, drills)
+
+Governance-ID: TG-8247D3BF5B24 (экран слов без ожидания прогресса; exam_episode_words; learning_v2_locale_gate; прогон сторожей на данных Теории)

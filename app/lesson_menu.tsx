@@ -879,7 +879,8 @@ function LessonMenu() {
         if (!saved) { setWordsLearned(0); return; }
         let counts: Record<string,number> = JSON.parse(saved);
         // Миграция урока 1: местоимения → auto-learned для старых юзеров
-        if (lessonId === 1 && Object.values(counts).some(c => c >= 3)) {
+        // зачем: английские местоимения — миграция только английского курса, в прогресс слов fr/es/de/it их не пишем
+        if (storageStudyTarget(studyTarget) === 'en' && lessonId === 1 && Object.values(counts).some(c => c >= 3)) {
           const pronouns = ['I', 'you', 'he', 'she', 'we', 'it'];
           let migrated = false;
           for (const p of pronouns) {

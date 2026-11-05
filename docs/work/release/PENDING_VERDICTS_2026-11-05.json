@@ -164,6 +164,24 @@
    "note": "Главная ранга 0 после b8cd2d196 близка к макету: одна задача «Complete a lesson 0/1» + ссылка «All tasks» ✅, плитки «Lessons / Saved» ✅, 4 вкладки ✅, пилюля «0 days» одной строкой ✅, блок «Фраза дня» появился ✅. Остаются: (1) «Фраза дня» без перевода строкой и без кнопки озвучки — вместо неё шеврон «›»; (2) шапка героя «0-day streak / Day counted / Next: I am here / Continue lesson 1» вместо «Урок 1 + название урока + Начать»; (3) тема светлая/фиолетовая против тёмного графита макета (сравнение по структуре); (4) подпись в строке задачи «I am here» против «Один шаг в обычном курсе» (🟡). После п.1–2 можно в match_candidate.",
    "proposed_by": "3-МАКЕТЫ",
    "confirmed_by": null
+  },
+  "lesson1-it-intro-1002": {
+   "verdict": "match_candidate",
+   "frame": "docs/work/release/frames_2026-11-05/pending/lesson/lesson1-it-intro__fresh-newbie-VIEWED-1002-720x1600-en-ui-ru-text.png",
+   "viewed_by": "3-МАКЕТЫ 10:12 (кадр 10:02, глазами)",
+   "reference": "слово владельца: заглушек нет, теория на языке ученика",
+   "note": "Итальянский, урок 1, вступление: «Я здесь: essere», пояснение по-русски, примеры «Sono qui. — Я здесь.»; не заглушка, английского в тексте нет. Заголовок «Lesson 1 / I am here» — английский интерфейс на кадре.",
+   "proposed_by": "3-МАКЕТЫ",
+   "confirmed_by": null
+  },
+  "lesson1-it-ex1-english-distractors-1004": {
+   "verdict": "diff",
+   "frame": "docs/work/release/frames_2026-11-05/pending/lesson/lesson1-it-ex1-step2-english-distractors__fresh-VIEWED-1004-720x1600-en.png",
+   "viewed_by": "3-МАКЕТЫ 10:12 (кадр 10:04, глазами)",
+   "reference": "правило владельца: дистракторы грамматически неверные и НЕ чужого языка; в курсе it нет английских слов",
+   "note": "Итальянский, урок 1, сборка фразы «Окно открыто.» → «La …»: среди плиток английские слова fires, finish, fired, find, favorite (и итальянское finestra). Английские дистракторы в итальянском курсе — дефект пула дистракторов (похоже на подбор по первой букве «fi»). Плашка «DEV: grammar hint» — только dev-сборка.",
+   "proposed_by": "3-МАКЕТЫ",
+   "confirmed_by": null
   }
  }
 }

@@ -147,6 +147,8 @@ function translitFr(text, words = {}) {
     let reading = readWord(toks[i], words);
     const prev = i > 0 ? toks[i - 1].toLowerCase() : '';
     if (LIAISON_Z.has(prev) && VOWEL_START.test(toks[i].toLowerCase()) && !/^(h)/i.test(toks[i])) reading = 'з' + reading;
+    // зачем (Ревизор 06.11, класс 2): после c'est перед гласной лиэзон [t] обязателен — «сэ тюн», «сэ та» (c'est un/une/à/ici)
+    else if (/^c[’']est$/.test(prev) && VOWEL_START.test(toks[i].toLowerCase()) && !/^(h)/i.test(toks[i])) reading = 'т' + reading;
     out.push(reading);
   }
   return out.join(' ');
@@ -156,7 +158,8 @@ function translitFr(text, words = {}) {
 function ruToUk(ru) {
   return ru
     .replace(/э/g, 'е').replace(/Э/g, 'Е')
-    .replace(/(?<!к)и/g, 'і').replace(/И/g, 'І') // «ки» (qui) Теория оставляет как есть
+    // зачем (Ревизор 06.11, класс 3): [i] по-украински всегда «і», в том числе после к — qui/qu'il/ci = «кі/кіль» (Теория пишет так же: 29.01, 08.12)
+    .replace(/и/g, 'і').replace(/И/g, 'І')
     .replace(/ы/g, 'и')
     .replace(/ье/g, 'ьє') // бьэн → бьєн
     // зачем: так Теория пишет ё по-украински на 294 готовых чтениях: жё→же, слово «ён» (un; в связке «тён»)→ен, ё в начале слова→е, дёо́р→део́р, иначе ё→ьо (лё→льо, кё→кьо)
@@ -164,6 +167,8 @@ function ruToUk(ru) {
     .replace(/(?<=^|\s)(т?)ён(?=\s|$)/g, '$1ен')
     .replace(/(?<=^|\s)ё/g, 'е')
     .replace(/дёо/g, 'део')
+    // зачем (Ревизор 06.11, класс 4): после мягкого знака ё не удваивает его — mieux «мьё» → «мьо́», не «мььо́»
+    .replace(/(?<=ь)ё/g, 'о')
     .replace(/ё/g, 'ьо');
 }
 

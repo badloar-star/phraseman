@@ -66,8 +66,9 @@ describe('теория fr (старый формат): «Читается» ru �
     const bad: string[] = [];
     for (const id of ids) {
       if (phraseFixes[id]) continue;
+      // зачем (Ревизор 06.11): est-ce читается одним слогом «эс» — слово «est-ce» из словаря, поэтому отдельные est/ce не сверяем
       const ru = strip(say.ru[id] ?? '');
-      for (const token of (targets.get(id) ?? '').toLowerCase().split(/[^\p{L}]+/u).filter(Boolean)) {
+      for (const token of (targets.get(id) ?? '').toLowerCase().replace(/est-ce/g, 'estce').split(/[^\p{L}]+/u).filter(Boolean)) {
         const reading = words[token];
         if (reading && !ru.includes(strip(reading))) bad.push(`${id}: «${token}» = «${reading}» нет в «${say.ru[id]}»`);
       }

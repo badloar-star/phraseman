@@ -16,6 +16,7 @@ import type { Lang } from '../../constants/i18n';
 import { hapticMediumImpact, hapticSuccess } from '../../hooks/use-haptics';
 import { sectionOpeningCopy, sectionOpeningSkip } from '../../modules/section_openings/section_opening_strings';
 import { SECTION_OPENING_PHASE_ANCHORS, type SectionOpeningId } from '../../modules/section_openings/section_opening_core';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { MomentFullScreen } from '../spire/moments/moments_layout';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { V2Button } from '../v2/V2Kit';
@@ -169,13 +170,16 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
     </View>
   );
 
+  // зачем (Вход, баг Эмулятора 05.11 b07_04): окно рисуется в прозрачной Modal под системной полосой — «5:11» налезало на подпись, «Skip» лежал поверх значков
+  // статуса. Фон остаётся под полосой (MomentFullScreen на весь экран), а содержимое сдвигается на верхний и нижний отступы безопасной зоны.
+  const insets = useStableSafeAreaInsets();
   return (
     <MomentFullScreen testID={`section-opening-${id}`}>
-      <View style={styles.root} accessibilityViewIsModal>
+      <View style={[styles.root, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 }]} accessibilityViewIsModal>
         <Animated.View style={[styles.bar, { backgroundColor: p.accentGraphic }, barStyle]} />
         <View style={styles.top}>
           <Text style={[styles.label, { color: p.textSecondary }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.label}</Text>
-          <V2Button label={sectionOpeningSkip(lang)} variant="secondary" size="small" onPress={onSkip} testID="section-opening-skip" />
+          <V2Button label={sectionOpeningSkip(lang)} variant="secondary" size="small" onPress={() => { console.log('[SECTION-OPENING]', 'skip_tap', JSON.stringify({ id })); /* guard-ok: тап Skip */ onSkip(); }} testID="section-opening-skip" />
         </View>
         <View style={styles.stage}>
           <Animated.View style={[styles.halo, { backgroundColor: p.accentGraphic }, haloStyle]} pointerEvents="none" />

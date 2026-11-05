@@ -5,6 +5,8 @@
 //
 // Цвет Plus ОДИНАКОВЫЙ во всех темах (решение владельца): это знак статуса, а не часть темы, поэтому токены темы тут не участвуют.
 
+import type { SubscriptionTier } from '../../app/subscription_tier';
+
 /** Угловой градиент от 200°: #8E7CFF → #6FA8FF → #7FE0D8 → #C69BFF → #8E7CFF (замкнут). */
 export const PLUS_RING_COLORS = ['#8E7CFF', '#6FA8FF', '#7FE0D8', '#C69BFF', '#8E7CFF'] as const; // theme-exempt: знак Plus — один цвет во всех темах
 export const PLUS_RING_START_DEG = 200;
@@ -68,7 +70,7 @@ export type PlusRingSpec = Readonly<{
  * card: кольцо 6, зазор 5, значок 46 (ромб 24, обводка 4), внутри угла монеты на 4.
  * flat: кольцо 3, зазор 2, без значка.
  */
-export function plusRingSpec(size: number, kind: PlusRingKind = 'list', isLight = false): PlusRingSpec {
+export function plusRingSpec(size: number, kind: PlusRingKind = 'list', isLight = false, tier: SubscriptionTier = 'plus'): PlusRingSpec {
   const safeSize = Number.isFinite(size) && size > 0 ? size : 0;
   if (kind === 'card') {
     const ring = 6;
@@ -81,7 +83,7 @@ export function plusRingSpec(size: number, kind: PlusRingKind = 'list', isLight 
   if (kind === 'flat') {
     const ring = 3;
     const gap = 2;
-    return { kind, ring, gap, inset: ring + gap, outer: safeSize + 2 * (ring + gap), flatColor: isLight ? PLUS_FLAT_COLOR_LIGHT : PLUS_FLAT_COLOR, pin: null };
+    return { kind, ring, gap, inset: ring + gap, outer: safeSize + 2 * (ring + gap), flatColor: flatColorForTier(tier, isLight), pin: null };
   }
   const ring = 2.5;
   const gap = 2;
@@ -140,6 +142,71 @@ export function plusTagColors(isLight: boolean): Readonly<{ bg: string; ink: str
   return isLight
     ? { bg: 'rgba(110,92,240,0.12)', ink: '#5442D8' } // theme-exempt: знак Plus — фиксированные цвета по эталону
     : { bg: 'rgba(142,124,255,0.20)', ink: '#C9C0FF' }; // theme-exempt: знак Plus — фиксированные цвета по эталону
+}
+
+// ═══ Ultra — годовая подписка (владелец 06.11: «МАКЕТ ПО УЛЬТРА И ПЛЮС ОДОБРЯЮ!»; макет docs/work/mockups/plus_vs_ultra.html) ═══
+// Та же геометрия, что у Plus (раскладка экранов не меняется), но свой цвет и ДРУГАЯ форма значка: шестиугольник со звездой ✦ вместо круга с ромбом ◆.
+// Цвет — знак статуса, один во всех темах (в светлых — затемнённые стопы, ≥ 3:1). Три варианта на выбор владельца; ВЫБОР — ОДНА константа ULTRA_VARIANT_IN_USE.
+export type UltraVariantId = 'ruby' | 'emerald' | 'platinum';
+export type UltraPalette = Readonly<{
+  ring: readonly string[]; ringLight: readonly string[];
+  pin: readonly [string, string]; pinLight: readonly [string, string]; pinGlyph: string; pinGlyphLight: string;
+  flat: string; flatLight: string;
+  tag: Readonly<{ bg: string; ink: string }>; tagLight: Readonly<{ bg: string; ink: string }>;
+}>;
+export const ULTRA_VARIANTS: Readonly<Record<UltraVariantId, UltraPalette>> = Object.freeze({
+  // theme-exempt: знак Ultra — фиксированные цвета по макету (как знак Plus)
+  ruby: {
+    ring: ['#FF5F8F', '#FF7A59', '#FF4FD0', '#FFA0C0', '#FF5F8F'], ringLight: ['#D9386F', '#D45A2E', '#B8309F', '#C9547E', '#D9386F'],
+    pin: ['#F2467D', '#D83A3A'], pinLight: ['#F2467D', '#D83A3A'], pinGlyph: '#FFFFFF', pinGlyphLight: '#FFFFFF',
+    flat: '#FF6F9A', flatLight: '#C42656',
+    tag: { bg: 'rgba(255,95,143,0.20)', ink: '#FFC2D3' }, tagLight: { bg: 'rgba(179,18,63,0.10)', ink: '#B3123F' },
+  },
+  emerald: {
+    ring: ['#2EE6A6', '#5BE06C', '#17B890', '#8DEFA0', '#2EE6A6'], ringLight: ['#1F9D73', '#3A9A3F', '#12806B', '#4E9D5E', '#1F9D73'],
+    pin: ['#2EE6A6', '#12936F'], pinLight: ['#1F9D73', '#0B6B4B'], pinGlyph: '#04261D', pinGlyphLight: '#FFFFFF',
+    flat: '#34E0A8', flatLight: '#14845F',
+    tag: { bg: 'rgba(46,230,166,0.18)', ink: '#B8F5DE' }, tagLight: { bg: 'rgba(11,107,75,0.10)', ink: '#0B6B4B' },
+  },
+  platinum: {
+    ring: ['#F2F4FF', '#9AA6C7', '#E9EDFF', '#B7C0DE', '#F2F4FF'], ringLight: ['#59607A', '#8A92AC', '#4A506B', '#767E99', '#59607A'],
+    pin: ['#EEF0FF', '#8C97BB'], pinLight: ['#6A7290', '#3A4160'], pinGlyph: '#1B2036', pinGlyphLight: '#FFFFFF',
+    flat: '#DDE2FA', flatLight: '#4A5275',
+    tag: { bg: 'rgba(230,234,255,0.16)', ink: '#E6EAFF' }, tagLight: { bg: 'rgba(58,65,96,0.10)', ink: '#3A4160' },
+  },
+});
+/** ОДНА константа выбора цвета Ultra (решение координатора 06.11: по умолчанию «Рубин»; смена на Изумруд/Платину — одна строка). */
+export const ULTRA_VARIANT_IN_USE: UltraVariantId = 'ruby';
+export const ULTRA_PALETTE: UltraPalette = ULTRA_VARIANTS[ULTRA_VARIANT_IN_USE];
+
+/** Цвета углового градиента кольца для уровня (plus — как раньше). */
+export function ringColorsForTier(tier: SubscriptionTier, isLight: boolean): readonly string[] {
+  if (tier === 'ultra') return isLight ? ULTRA_PALETTE.ringLight : ULTRA_PALETTE.ring;
+  return plusRingColors(isLight);
+}
+/** Градиент значка (круг ◆ у Plus, шестиугольник ✦ у Ultra). */
+export function pinColorsForTier(tier: SubscriptionTier, isLight = false): readonly [string, string] {
+  if (tier === 'ultra') return isLight ? ULTRA_PALETTE.pinLight : ULTRA_PALETTE.pin;
+  return PLUS_PIN_COLORS;
+}
+/** Цвет глифа внутри значка. */
+export function pinGlyphColorForTier(tier: SubscriptionTier, isLight: boolean): string {
+  if (tier === 'ultra') return isLight ? ULTRA_PALETTE.pinGlyphLight : ULTRA_PALETTE.pinGlyph;
+  return PLUS_PIN_GLYPH_COLOR;
+}
+/** Плоское кольцо (жители Пика) для уровня. */
+export function flatColorForTier(tier: SubscriptionTier, isLight: boolean): string {
+  if (tier === 'ultra') return isLight ? ULTRA_PALETTE.flatLight : ULTRA_PALETTE.flat;
+  return isLight ? PLUS_FLAT_COLOR_LIGHT : PLUS_FLAT_COLOR;
+}
+/** Цвета метки «◆ Plus» / «✦ Ultra». */
+export function tagColorsForTier(tier: SubscriptionTier, isLight: boolean): Readonly<{ bg: string; ink: string }> {
+  if (tier === 'ultra') return isLight ? ULTRA_PALETTE.tagLight : ULTRA_PALETTE.tag;
+  return plusTagColors(isLight);
+}
+/** Подпись для озвучки: какой уровень показывает кольцо. */
+export function ringA11yForTier(tier: SubscriptionTier): string {
+  return tier === 'ultra' ? 'Ultra' : 'Plus';
 }
 
 /** Подпись для озвучки экрана: что значит кольцо. */

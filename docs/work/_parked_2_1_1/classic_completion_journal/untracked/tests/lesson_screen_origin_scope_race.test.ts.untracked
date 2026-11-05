@@ -1,0 +1,706 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import React from 'react';
+import { act, render, renderHook, waitFor } from '@testing-library/react-native';
+
+type Deferred<T> = {
+  promise: Promise<T>;
+  resolve: (value: T) => void;
+};
+
+function deferred<T>(): Deferred<T> {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>((done) => { resolve = done; });
+  return { promise, resolve };
+}
+
+const mockMultiGet = jest.fn();
+const mockGetItem = jest.fn();
+const mockSetItem = jest.fn();
+const mockPatchAppSnapshot = jest.fn();
+let mockPeekStudyTargetRaw: string | null = 'en';
+
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  __esModule: true,
+  default: { getItem: mockGetItem, setItem: mockSetItem, multiGet: mockMultiGet },
+}));
+
+jest.mock('../app/app_snapshot_store', () => ({
+  patchAppSnapshot: mockPatchAppSnapshot,
+}));
+
+jest.mock('../app/app_snapshot_bootstrap', () => ({
+  peekStudyTargetRaw: () => mockPeekStudyTargetRaw,
+  writePeekStudyTargetRaw: (value: string | null) => { mockPeekStudyTargetRaw = value; },
+}));
+
+jest.mock('../app/debug-logger', () => ({
+  DebugLogger: { error: jest.fn() },
+}));
+
+import {
+  beginAccountGeneration,
+  captureAccountGeneration,
+} from '../app/account_generation';
+import * as bootstrap from '../app/lesson_screen_bootstrap';
+import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
+
+const ORDER = [0, 1, 2];
+const PROGRESS = ['correct', 'wrong', 'empty'];
+
+function allLessonRows(keys: string[]): [string, string | null][] {
+  return keys.map((key) => {
+    if (key.endsWith('_cellIndex')) return [key, '1'];
+    if (key.endsWith('_phraseOrder')) return [key, JSON.stringify(ORDER)];
+    if (key.endsWith('_progress')) return [key, JSON.stringify(PROGRESS)];
+    if (key.endsWith('_errorReplayOverride')) return [key, '1'];
+    return [key, null];
+  });
+}
+
+describe('lesson screen immutable producer scope', () => {
+  beforeEach(() => {
+    mockMultiGet.mockReset();
+    mockGetItem.mockReset();
+    mockGetItem.mockResolvedValue('en');
+    mockSetItem.mockReset();
+    mockSetItem.mockResolvedValue(undefined);
+    mockPatchAppSnapshot.mockReset();
+    mockPeekStudyTargetRaw = 'en';
+    bootstrap.commitLessonScreenPrimeStudyTarget('en');
+  });
+
+  test('actual provider initial correction commits es before old en prime can publish', async () => {
+    const useCommittedScope = (bootstrap as any).useCommittedLessonScreenPrimeOriginScope;
+    expect(typeof useCommittedScope).toBe('function');
+
+    beginAccountGeneration('provider-correction');
+    const token = captureAccountGeneration();
+    const oldEnRead = deferred<Array<[string, string | null]>>();
+    const storedTarget = deferred<string | null>();
+    mockGetItem.mockReturnValueOnce(storedTarget.promise);
+    const wrapper = ({ children }: { children: React.ReactNode }) => React.createElement(
+      React.StrictMode,
+      null,
+      React.createElement(StudyTargetProvider, null, children),
+    );
+    const hook = await renderHook(() => {
+      const { studyTarget } = useStudyTarget();
+      const getScope = useCommittedScope(token, studyTarget, 'provider:lesson:1');
+      return { studyTarget, getScope };
+    }, { wrapper });
+
+    expect(hook.result.current.studyTarget).toBe('en');
+    const enScope = hook.result.current.getScope();
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(enScope)).toBe(true);
+    mockMultiGet.mockReturnValueOnce(oldEnRead.promise);
+    const pendingEn = bootstrap.primeAllLessonsFromStorageOnAppLaunch('en');
+    expect(mockMultiGet).toHaveBeenCalledTimes(1);
+
+    await act(async () => { storedTarget.resolve('es'); });
+    await waitFor(() => expect(hook.result.current.studyTarget).toBe('es'));
+    const esScope = hook.result.current.getScope();
+    expect(esScope?.studyTarget).toBe('es');
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(enScope)).toBe(false);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(esScope)).toBe(true);
+
+    oldEnRead.resolve([]);
+    await pendingEn;
+    expect(bootstrap.getLessonScreenPrimed(1, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+    hook.unmount();
+  });
+
+  test('committed scope lifecycle rejects old hydration and goNext continuations after a target commit', async () => {
+    const useCommittedScope = (bootstrap as any).useCommittedLessonScreenPrimeOriginScope;
+    expect(typeof useCommittedScope).toBe('function');
+
+    beginAccountGeneration('committed-lifecycle');
+    const token = captureAccountGeneration();
+    const wrapper = ({ children }: { children: React.ReactNode }) => React.createElement(React.StrictMode, null, children);
+    const hook = await renderHook(
+      ({ target }: { target: string }) => useCommittedScope(token, target, 'lesson:1:en'),
+      { initialProps: { target: 'en' }, wrapper },
+    );
+    const enScope = hook.result.current();
+    const hydrationEn = bootstrap.forkLessonScreenPrimeOriginScope(enScope);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(enScope)).toBe(true);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(hydrationEn)).toBe(true);
+
+    let staleStateCommits = 0;
+    const hydrationRead = deferred<void>();
+    const lateHydration = hydrationRead.promise.then(() => {
+      if (!bootstrap.isLessonScreenPrimeOriginScopeCurrent(hydrationEn)) return false;
+      staleStateCommits += 1;
+      return bootstrap.touchLessonScreenPrimed(1, { cell: 2, progress: PROGRESS }, hydrationEn);
+    });
+    const cellWrite = deferred<void>();
+    const lateGoNext = cellWrite.promise.then(() => bootstrap.touchLessonScreenPrimed(
+      1,
+      { cell: 1, progress: PROGRESS },
+      enScope,
+    ));
+
+    mockPeekStudyTargetRaw = 'es';
+    bootstrap.commitLessonScreenPrimeStudyTarget('es');
+    await act(async () => { await hook.rerender({ target: 'es' }); });
+    const esScope = hook.result.current();
+    hydrationRead.resolve();
+    cellWrite.resolve();
+
+    await expect(lateHydration).resolves.toBe(false);
+    await expect(lateGoNext).resolves.toBe(false);
+    expect(staleStateCommits).toBe(0);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(enScope)).toBe(false);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(esScope)).toBe(true);
+    expect(bootstrap.getLessonScreenPrimed(1, 'en')).toBeNull();
+    expect(bootstrap.getLessonScreenPrimed(1, 'es')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+
+    await act(async () => { hook.unmount(); });
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(esScope)).toBe(false);
+  });
+
+  test('same-target run identity commit revokes run A before later component layout effects', async () => {
+    const useCommittedScope = (bootstrap as any).useCommittedLessonScreenPrimeOriginScope;
+    beginAccountGeneration('same-target-run');
+    const token = captureAccountGeneration();
+    let runAScope: bootstrap.LessonScreenPrimeOriginScope | null = null;
+    let layoutTouchResult: boolean | null = null;
+
+    const hook = await renderHook(({ run }: { run: string }) => {
+      const getScope = useCommittedScope(token, 'en', run);
+      React.useLayoutEffect(() => {
+        if (run === 'runB' && runAScope) {
+          layoutTouchResult = bootstrap.touchLessonScreenPrimed(20, { cell: 2 }, runAScope);
+        }
+      }, [run]);
+      return getScope;
+    }, { initialProps: { run: 'runA' } });
+    runAScope = hook.result.current();
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(runAScope)).toBe(true);
+    mockPatchAppSnapshot.mockReset();
+
+    await act(async () => { await hook.rerender({ run: 'runB' }); });
+    const runBScope = hook.result.current();
+    expect(layoutTouchResult).toBe(false);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(runAScope)).toBe(false);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(runBScope)).toBe(true);
+    expect(bootstrap.getLessonScreenPrimed(20, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+    await act(async () => { hook.unmount(); });
+  });
+
+  test('urgent Suspense hide and reveal restores the same committed run before later layout effects', async () => {
+    const useCommittedScope = (bootstrap as any).useCommittedLessonScreenPrimeOriginScope;
+    beginAccountGeneration('suspense-reveal');
+    bootstrap.commitLessonScreenPrimeStudyTarget('en');
+    const token = captureAccountGeneration();
+    const never = new Promise<void>(() => {});
+    let setHidden!: React.Dispatch<React.SetStateAction<boolean>>;
+    let latestGetter!: () => bootstrap.LessonScreenPrimeOriginScope | null;
+    let latestScope: bootstrap.LessonScreenPrimeOriginScope | null = null;
+    let revealLayoutSawCurrent = false;
+
+    function Child({ hidden }: { hidden: boolean }) {
+      const getScope = useCommittedScope(token, 'en', 'suspense:same-run');
+      latestGetter = getScope;
+      React.useLayoutEffect(() => {
+        if (!hidden) {
+          latestScope = getScope();
+          revealLayoutSawCurrent = bootstrap.isLessonScreenPrimeOriginScopeCurrent(latestScope);
+        }
+      }, [getScope, hidden]);
+      if (hidden) throw never;
+      return null;
+    }
+
+    function Harness() {
+      const [hidden, setHiddenState] = React.useState(false);
+      setHidden = setHiddenState;
+      return React.createElement(
+        React.Suspense,
+        { fallback: null },
+        React.createElement(Child, { hidden }),
+      );
+    }
+
+    const view = await render(React.createElement(React.StrictMode, null, React.createElement(Harness)));
+    await waitFor(() => expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(latestGetter())).toBe(true));
+    const firstScope = latestGetter();
+
+    await act(async () => { setHidden(true); });
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(firstScope)).toBe(false);
+    revealLayoutSawCurrent = false;
+    await act(async () => { setHidden(false); });
+
+    expect(revealLayoutSawCurrent).toBe(true);
+    expect(latestScope).not.toBe(firstScope);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(latestScope)).toBe(true);
+    expect(bootstrap.touchLessonScreenPrimed(21, { cell: 2 }, latestScope)).toBe(true);
+    await act(async () => { view.unmount(); });
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(latestScope)).toBe(false);
+  });
+
+  test('urgent Suspense reveal restarts passive hydration for the recreated same-run scope', async () => {
+    const useCommittedScope = (bootstrap as any).useCommittedLessonScreenPrimeOriginScope;
+    beginAccountGeneration('suspense-hydration-restart');
+    bootstrap.commitLessonScreenPrimeStudyTarget('en');
+    const token = captureAccountGeneration();
+    const never = new Promise<void>(() => {});
+    let setHidden!: React.Dispatch<React.SetStateAction<boolean>>;
+    let hydrationRuns = 0;
+    const childScopes: Array<bootstrap.LessonScreenPrimeOriginScope | null> = [];
+    const completions: Array<Deferred<void>> = [];
+    let completedScope: bootstrap.LessonScreenPrimeOriginScope | null = null;
+    let completedPublicationAccepted = false;
+
+    const latestCurrentChildIndex = (): number => {
+      for (let index = childScopes.length - 1; index >= 0; index -= 1) {
+        if (bootstrap.isLessonScreenPrimeOriginScopeCurrent(childScopes[index])) return index;
+      }
+      return -1;
+    };
+
+    function Child({ hidden }: { hidden: boolean }) {
+      const getScope = useCommittedScope(token, 'en', 'suspense:hydration:same-run');
+      React.useEffect(() => {
+        const childScope = bootstrap.forkLessonScreenPrimeOriginScope(getScope());
+        const completion = deferred<void>();
+        hydrationRuns += 1;
+        childScopes.push(childScope);
+        completions.push(completion);
+        void completion.promise.then(() => {
+          if (!bootstrap.isLessonScreenPrimeOriginScopeCurrent(childScope)) return;
+          completedScope = childScope;
+          completedPublicationAccepted = bootstrap.touchLessonScreenPrimed(22, { cell: 3 }, childScope);
+        });
+        return () => bootstrap.disposeLessonScreenPrimeOriginScope(childScope);
+      }, [getScope]);
+      if (hidden) throw never;
+      return null;
+    }
+
+    function Harness() {
+      const [hidden, setHiddenState] = React.useState(false);
+      setHidden = setHiddenState;
+      return React.createElement(
+        React.Suspense,
+        { fallback: null },
+        React.createElement(Child, { hidden }),
+      );
+    }
+
+    const view = await render(React.createElement(Harness));
+    await waitFor(() => expect(hydrationRuns).toBe(1));
+    await waitFor(() => expect(latestCurrentChildIndex()).toBeGreaterThanOrEqual(0));
+    const runsBeforeHide = hydrationRuns;
+    const oldChildIndex = latestCurrentChildIndex();
+    const oldChildScope = childScopes[oldChildIndex];
+    const oldCompletion = completions[oldChildIndex];
+    expect(oldCompletion).toBeDefined();
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(oldChildScope)).toBe(true);
+
+    await act(async () => { setHidden(true); });
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(oldChildScope)).toBe(false);
+    await act(async () => { setHidden(false); });
+    oldCompletion.resolve();
+    await act(async () => { await Promise.resolve(); });
+    expect(completedScope).toBeNull();
+    expect(completedPublicationAccepted).toBe(false);
+    expect(bootstrap.getLessonScreenPrimed(22, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+
+    await waitFor(() => expect(hydrationRuns).toBe(runsBeforeHide + 1));
+    const newChildIndex = latestCurrentChildIndex();
+    const newChildScope = childScopes[newChildIndex];
+    expect(newChildScope).not.toBe(oldChildScope);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(newChildScope)).toBe(true);
+    expect(completions[newChildIndex]).toBeDefined();
+    completions[newChildIndex].resolve();
+    await waitFor(() => expect(completedScope).toBe(newChildScope));
+    expect(completedPublicationAccepted).toBe(true);
+    expect(bootstrap.getLessonScreenPrimed(22, 'en')).not.toBeNull();
+    expect(mockPatchAppSnapshot).toHaveBeenCalledTimes(1);
+    await act(async () => { view.unmount(); });
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(oldChildScope)).toBe(false);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(newChildScope)).toBe(false);
+    mockPatchAppSnapshot.mockReset();
+    beginAccountGeneration('strict-hydration-once');
+    bootstrap.commitLessonScreenPrimeStudyTarget('en');
+    const strictToken = captureAccountGeneration();
+    const strictChildScopes: Array<bootstrap.LessonScreenPrimeOriginScope | null> = [];
+    const strictCompletions: Array<Deferred<void>> = [];
+    const publishedScopes: Array<bootstrap.LessonScreenPrimeOriginScope | null> = [];
+    let strictHydrationRuns = 0;
+
+    function StrictChild() {
+      const getScope = useCommittedScope(strictToken, 'en', 'strict:hydration:same-run');
+      React.useEffect(() => {
+        const childScope = bootstrap.forkLessonScreenPrimeOriginScope(getScope());
+        const completion = deferred<void>();
+        strictHydrationRuns += 1;
+        strictChildScopes.push(childScope);
+        strictCompletions.push(completion);
+        void completion.promise.then(() => {
+          if (!bootstrap.isLessonScreenPrimeOriginScopeCurrent(childScope)) return;
+          if (bootstrap.touchLessonScreenPrimed(23, { cell: 4 }, childScope)) {
+            publishedScopes.push(childScope);
+          }
+        });
+        return () => bootstrap.disposeLessonScreenPrimeOriginScope(childScope);
+      }, [getScope]);
+      return null;
+    }
+
+    const strictView = await render(React.createElement(React.StrictMode, null, React.createElement(StrictChild)));
+    await waitFor(() => expect(strictHydrationRuns).toBe(2));
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(strictChildScopes[0])).toBe(false);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(strictChildScopes[1])).toBe(true);
+
+    await act(async () => {
+      strictCompletions.forEach((completion) => completion.resolve());
+      await Promise.all(strictCompletions.map((completion) => completion.promise));
+    });
+    expect(publishedScopes).toEqual([strictChildScopes[1]]);
+    expect(bootstrap.getLessonScreenPrimed(23, 'en')).not.toBeNull();
+    expect(mockPatchAppSnapshot).toHaveBeenCalledTimes(1);
+    await act(async () => { strictView.unmount(); });
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(strictChildScopes[1])).toBe(false);
+  });
+
+  test('suspended parent target render cannot publish authority or revoke committed en', async () => {
+    const useCommittedScope = (bootstrap as any).useCommittedLessonScreenPrimeOriginScope;
+    beginAccountGeneration('abandoned-render');
+    const token = captureAccountGeneration();
+    const never = new Promise<void>(() => {});
+    let suspendEs = true;
+    let setTarget!: React.Dispatch<React.SetStateAction<string>>;
+    let committedGetter!: () => bootstrap.LessonScreenPrimeOriginScope | null;
+    let committedTarget = '';
+
+    function Child({ target }: { target: string }) {
+      const getScope = useCommittedScope(token, target, 'abandoned:lesson:1');
+      if (target === 'es' && suspendEs) throw never;
+      committedGetter = getScope;
+      return null;
+    }
+
+    function AuthorityOwner() {
+      const [target, setTargetState] = React.useState('en');
+      setTarget = setTargetState;
+      React.useLayoutEffect(() => {
+        bootstrap.commitLessonScreenPrimeStudyTarget(target);
+        committedTarget = target;
+      }, [target]);
+      return React.createElement(Child, { target });
+    }
+
+    const view = await render(React.createElement(
+      React.StrictMode,
+      null,
+      React.createElement(
+        React.Suspense,
+        { fallback: null },
+        React.createElement(AuthorityOwner),
+      ),
+    ));
+    await waitFor(() => expect(committedTarget).toBe('en'));
+    const enScope = committedGetter();
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(enScope)).toBe(true);
+    expect(bootstrap.touchLessonScreenPrimed(17, { cell: 1 }, enScope)).toBe(true);
+    mockPatchAppSnapshot.mockReset();
+
+    const oldEnRead = deferred<Array<[string, string | null]>>();
+    mockMultiGet.mockReturnValueOnce(oldEnRead.promise);
+    const pendingEn = bootstrap.primeLessonScreenFromStorage(18, 'en');
+    expect(mockMultiGet).toHaveBeenCalledTimes(1);
+
+    await act(async () => { React.startTransition(() => setTarget('es')); });
+    expect(committedTarget).toBe('en');
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(enScope)).toBe(true);
+    await bootstrap.primeLessonScreenFromStorage(19, 'es');
+    expect(mockMultiGet).toHaveBeenCalledTimes(1);
+
+    await act(async () => { React.startTransition(() => setTarget('en')); });
+    expect(committedTarget).toBe('en');
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(enScope)).toBe(true);
+
+    suspendEs = false;
+    await act(async () => { setTarget('es'); });
+    await waitFor(() => expect(committedTarget).toBe('es'));
+    const esScope = committedGetter();
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(enScope)).toBe(false);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(esScope)).toBe(true);
+    expect(bootstrap.touchLessonScreenPrimed(19, { cell: 2 }, esScope)).toBe(true);
+    mockPatchAppSnapshot.mockReset();
+
+    oldEnRead.resolve(allLessonRows([
+      'lesson18_cellIndex',
+      'lesson18_phraseOrder',
+      'lesson18_progress',
+      'lesson18_errorReplayOverride',
+    ]));
+    await pendingEn;
+    expect(bootstrap.getLessonScreenPrimed(18, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+    await act(async () => { view.unmount(); });
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(esScope)).toBe(false);
+  });
+
+  test('provider en to es to en is ABA-resistant for work captured in the first en epoch', async () => {
+    const useCommittedScope = (bootstrap as any).useCommittedLessonScreenPrimeOriginScope;
+    beginAccountGeneration('provider-aba');
+    const token = captureAccountGeneration();
+    const wrapper = ({ children }: { children: React.ReactNode }) => React.createElement(
+      StudyTargetProvider,
+      null,
+      children,
+    );
+    const hook = await renderHook(() => {
+      const target = useStudyTarget();
+      const getScope = useCommittedScope(token, target.studyTarget, 'provider:aba');
+      return { ...target, getScope };
+    }, { wrapper });
+    await waitFor(() => expect(hook.result.current.studyTarget).toBe('en'));
+    const firstEnScope = hook.result.current.getScope();
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(firstEnScope)).toBe(true);
+
+    const oldRead = deferred<Array<[string, string | null]>>();
+    mockMultiGet.mockReturnValueOnce(oldRead.promise);
+    const pendingFirstEn = bootstrap.primeLessonScreenFromStorage(16, 'en');
+    expect(mockMultiGet).toHaveBeenCalledTimes(1);
+
+    mockGetItem.mockResolvedValueOnce('es');
+    await act(async () => { await hook.result.current.refresh(); });
+    await waitFor(() => expect(hook.result.current.studyTarget).toBe('es'));
+    mockGetItem.mockResolvedValueOnce('en');
+    await act(async () => { await hook.result.current.refresh(); });
+    await waitFor(() => expect(hook.result.current.studyTarget).toBe('en'));
+    const secondEnScope = hook.result.current.getScope();
+
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(firstEnScope)).toBe(false);
+    expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(secondEnScope)).toBe(true);
+    oldRead.resolve(allLessonRows([
+      'lesson16_cellIndex',
+      'lesson16_phraseOrder',
+      'lesson16_progress',
+      'lesson16_errorReplayOverride',
+    ]));
+    await pendingFirstEn;
+    expect(bootstrap.getLessonScreenPrimed(16, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+    await act(async () => { hook.unmount(); });
+  });
+
+  test('selected prime cannot publish after a same-account target commit', async () => {
+    beginAccountGeneration('selected-target-race');
+    const enRead = deferred<Array<[string, string | null]>>();
+    mockMultiGet.mockReturnValueOnce(enRead.promise);
+    const pendingEn = bootstrap.primeLessonScreenFromStorage(14, 'en');
+
+    mockPeekStudyTargetRaw = 'es';
+    bootstrap.commitLessonScreenPrimeStudyTarget('es');
+    mockMultiGet.mockImplementationOnce(async (keys: string[]) => allLessonRows(keys));
+    await bootstrap.primeLessonScreenFromStorage(14, 'es');
+    enRead.resolve(allLessonRows([
+      'lesson14_cellIndex',
+      'lesson14_phraseOrder',
+      'lesson14_progress',
+      'lesson14_errorReplayOverride',
+    ]));
+    await pendingEn;
+
+    expect(bootstrap.getLessonScreenPrimed(14, 'en')).toBeNull();
+    expect(bootstrap.getLessonScreenPrimed(14, 'es')).not.toBeNull();
+    expect(mockPatchAppSnapshot).toHaveBeenCalledTimes(1);
+  });
+
+  test('all-prime cannot publish after initial peek-to-storage target correction', async () => {
+    beginAccountGeneration('all-target-race');
+    const enRead = deferred<Array<[string, string | null]>>();
+    mockMultiGet.mockReturnValueOnce(enRead.promise);
+    const pendingEn = bootstrap.primeAllLessonsFromStorageOnAppLaunch('en');
+
+    mockPeekStudyTargetRaw = 'es';
+    bootstrap.commitLessonScreenPrimeStudyTarget('es');
+    mockMultiGet.mockImplementationOnce(async (keys: string[]) => allLessonRows(keys));
+    await bootstrap.primeLessonScreenFromStorage(15, 'es');
+    enRead.resolve(allLessonRows(Array.from({ length: 32 }, (_, index) => {
+      const lessonId = Math.floor(index / 4) + 1;
+      const field = ['cellIndex', 'phraseOrder', 'progress', 'errorReplayOverride'][index % 4];
+      return `lesson${lessonId}_${field}`;
+    })));
+    await pendingEn;
+
+    expect(bootstrap.getLessonScreenPrimed(1, 'en')).toBeNull();
+    expect(bootstrap.getLessonScreenPrimed(15, 'es')).not.toBeNull();
+    expect(mockPatchAppSnapshot).toHaveBeenCalledTimes(1);
+  });
+
+  test('disposed en hydration cannot relabel its late result as es for the same account', async () => {
+    const captureScope = (bootstrap as any).captureLessonScreenPrimeOriginScope;
+    const forkScope = (bootstrap as any).forkLessonScreenPrimeOriginScope;
+    const disposeScope = (bootstrap as any).disposeLessonScreenPrimeOriginScope;
+
+    expect(typeof captureScope).toBe('function');
+    expect(typeof forkScope).toBe('function');
+    expect(typeof disposeScope).toBe('function');
+
+    beginAccountGeneration('same-account');
+    const token = captureAccountGeneration();
+    const screenEn = captureScope(token, 'en');
+    const hydrationEn = forkScope(screenEn);
+    const oldRead = deferred<void>();
+    const lateMutation = oldRead.promise.then(() => bootstrap.touchLessonScreenPrimed(
+      1,
+      { cell: 2, order: ORDER, progress: PROGRESS, override: 1 },
+      hydrationEn,
+    ));
+
+    disposeScope(screenEn);
+    bootstrap.commitLessonScreenPrimeStudyTarget('es');
+    const screenEs = captureScope(token, 'es');
+    expect(screenEs?.studyTarget).toBe('es');
+    oldRead.resolve();
+
+    await expect(lateMutation).resolves.toBe(false);
+    expect(bootstrap.getLessonScreenPrimed(1, 'en')).toBeNull();
+    expect(bootstrap.getLessonScreenPrimed(1, 'es')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+
+  test('disposed render scope rejects a late goNext-style touch after target switch', async () => {
+    const captureScope = (bootstrap as any).captureLessonScreenPrimeOriginScope;
+    const disposeScope = (bootstrap as any).disposeLessonScreenPrimeOriginScope;
+    expect(typeof captureScope).toBe('function');
+    expect(typeof disposeScope).toBe('function');
+
+    beginAccountGeneration('same-account-go-next');
+    const token = captureAccountGeneration();
+    const renderEn = captureScope(token, 'en');
+    const pendingWrite = deferred<void>();
+    const lateTouch = pendingWrite.promise.then(() => bootstrap.touchLessonScreenPrimed(
+      2,
+      { cell: 1, order: ORDER, progress: PROGRESS },
+      renderEn,
+    ));
+
+    disposeScope(renderEn);
+    bootstrap.commitLessonScreenPrimeStudyTarget('es');
+    captureScope(token, 'es');
+    pendingWrite.resolve();
+
+    await expect(lateTouch).resolves.toBe(false);
+    expect(bootstrap.getLessonScreenPrimed(2, 'en')).toBeNull();
+    expect(bootstrap.getLessonScreenPrimed(2, 'es')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+
+  test('scope disposal while building an optimistic entry cannot publish cache or snapshot state', () => {
+    const captureScope = (bootstrap as any).captureLessonScreenPrimeOriginScope;
+    const disposeScope = (bootstrap as any).disposeLessonScreenPrimeOriginScope;
+
+    beginAccountGeneration('mutation-fence');
+    const scope = captureScope(captureAccountGeneration(), 'en');
+    const patch = {
+      get cell() {
+        disposeScope(scope);
+        return 2;
+      },
+    };
+
+    expect(bootstrap.touchLessonScreenPrimed(3, patch, scope)).toBe(false);
+    expect(bootstrap.getLessonScreenPrimed(3, 'en')).toBeNull();
+    expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+  });
+
+  test('actual lesson1 producers use immutable scopes and fence disposed continuations', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+    const interactionIndex = source.indexOf('InteractionManager.runAfterInteractions');
+    const effectStart = source.lastIndexOf('  useEffect(() => {', interactionIndex);
+    const effectEnd = source.indexOf('\n  useEffect(() => {', effectStart + 1);
+    const hydrationEffect = source.slice(effectStart, effectEnd);
+    const loadStart = source.indexOf('const loadData = async');
+    const loadEnd = source.indexOf('\n  const shuffleWords', loadStart);
+    const loadData = source.slice(loadStart, loadEnd);
+    const goNextStart = source.indexOf('const goNext = useCallback');
+    const goNextEnd = source.indexOf('\n  // CHANGE v5', goNextStart);
+    const goNext = source.slice(goNextStart, goNextEnd);
+    const storageAwait = loadData.indexOf('await Promise.all([');
+    const postStorageFence = loadData.indexOf(
+      'if (!isLessonScreenPrimeOriginScopeCurrent(originScope)) return;',
+      storageAwait,
+    );
+    const firstStorageStateCommit = loadData.indexOf('serverAttemptIdRef.current = serverAttemptId;', storageAwait);
+
+    expect(source).toContain('forkLessonScreenPrimeOriginScope');
+    expect(source).toContain('disposeLessonScreenPrimeOriginScope');
+    expect(source).toContain('useCommittedLessonScreenPrimeOriginScope');
+    expect(source).toContain('const getScreenPrimeScope = useCommittedLessonScreenPrimeOriginScope(');
+    expect(source).not.toContain('screenPrimeScopeRef.current =');
+    expect(hydrationEffect).toContain('const screenPrimeScope = getScreenPrimeScope();');
+    expect(hydrationEffect).toContain('const hydrationScope = forkLessonScreenPrimeOriginScope(screenPrimeScope);');
+    expect(hydrationEffect).toContain('void loadData(hydrationScope);');
+    expect(hydrationEffect).toContain('disposeLessonScreenPrimeOriginScope(hydrationScope);');
+    expect(hydrationEffect).toContain('}, [getScreenPrimeScope, lang, lessonId, lessonStorageId, studyTarget]);');
+    expect(loadData).toContain('const loadData = async (originScope: LessonScreenPrimeOriginScope | null)');
+    expect(loadData).toContain('if (!isLessonScreenPrimeOriginScopeCurrent(originScope)) return;');
+    expect(storageAwait).toBeGreaterThanOrEqual(0);
+    expect(postStorageFence).toBeGreaterThan(storageAwait);
+    expect(firstStorageStateCommit).toBeGreaterThan(postStorageFence);
+    expect(loadData).toContain('if (isLessonScreenPrimeOriginScopeCurrent(originScope)) setPassCount(passCount);');
+    expect(loadData).toContain('if (isLessonScreenPrimeOriginScopeCurrent(originScope)) setPassCount(info.passCount);');
+    expect(loadData).toContain('if (isLessonScreenPrimeOriginScopeCurrent(originScope)) setLessonHydrated(true);');
+    expect(loadData).toContain('touchLessonScreenPrimed(lessonStorageId, {');
+    expect(loadData).toContain('}, originScope);');
+    expect(loadData).not.toContain('studyTargetRef.current, accountToken');
+    expect(goNext).toContain('touchLessonScreenPrimed(lessonStorageId, {');
+    expect(goNext).toContain('}, screenPrimeScope);');
+    expect(goNext).not.toContain('studyTargetRef.current, accountToken');
+  });
+
+  test('account switch during JSON parse reaches the final fence and performs no atomic commit', async () => {
+    beginAccountGeneration('parse-A');
+    mockMultiGet.mockImplementationOnce(async (keys: string[]) => allLessonRows(keys));
+    const originalParse = JSON.parse;
+    let transitioned = false;
+    const parseSpy = jest.spyOn(JSON, 'parse').mockImplementation((text: string) => {
+      if (!transitioned) {
+        transitioned = true;
+        beginAccountGeneration('parse-B');
+      }
+      return originalParse(text);
+    });
+    const assignSpy = jest.spyOn(Object, 'assign');
+
+    try {
+      await bootstrap.primeAllLessonsFromStorageOnAppLaunch('en');
+      expect(transitioned).toBe(true);
+      expect(assignSpy).not.toHaveBeenCalled();
+      expect(mockPatchAppSnapshot).not.toHaveBeenCalled();
+      for (let lessonId = 1; lessonId <= bootstrap.LESSON_ID_MAX; lessonId += 1) {
+        expect(bootstrap.getLessonScreenPrimed(lessonId, 'en')).toBeNull();
+      }
+    } finally {
+      assignSpy.mockRestore();
+      parseSpy.mockRestore();
+    }
+  });
+
+  test('all-prime source builds off-cache and fences immediately before one atomic assignment', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson_screen_bootstrap.ts'), 'utf8');
+    const start = source.indexOf('export async function primeAllLessonsFromStorageOnAppLaunch');
+    const end = source.indexOf('\nexport async function primeLessonScreenFromStorage', start);
+    const body = source.slice(start, end);
+    const buildStart = body.indexOf('const nextEntries: Record<string, Primed> = {};');
+    const commit = body.indexOf('Object.assign(byLesson, nextEntries);');
+    const finalFence = body.lastIndexOf('if (!isStoragePrimeScopeCurrent(scope)) return;', commit);
+
+    expect(buildStart).toBeGreaterThanOrEqual(0);
+    expect(finalFence).toBeGreaterThan(buildStart);
+    expect(commit).toBeGreaterThan(finalFence);
+    expect(body.slice(buildStart, finalFence)).not.toContain('byLesson[');
+    expect(body.match(/Object\.assign\(byLesson, nextEntries\);/g)).toHaveLength(1);
+  });
+});

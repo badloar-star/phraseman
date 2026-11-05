@@ -1,0 +1,17 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { loadMedalInfoStrict } from '../app/medal_utils';
+import { lessonBestScoreKey,lessonPassCountKey } from '../app/target_storage_keys';
+afterEach(()=>jest.restoreAllMocks());
+beforeEach(async()=>{await AsyncStorage.clear();});
+test('required native medal rejection propagates instead of fabricating empty success',async()=>{
+  jest.spyOn(AsyncStorage,'multiGet').mockRejectedValueOnce(Error('native_medal_read_failed'));
+  await expect(loadMedalInfoStrict(1,'en')).rejects.toThrow('native_medal_read_failed');
+});
+test('required medal reads preserve valid saved facts',async()=>{
+  await AsyncStorage.setItem(lessonBestScoreKey(1,'en'),'5');await AsyncStorage.setItem(lessonPassCountKey(1,'en'),'2');
+  await expect(loadMedalInfoStrict(1,'en')).resolves.toMatchObject({bestScore:5,passCount:2,tier:'gold'});
+});
+test('corrupt required medal facts are rejected',async()=>{
+  await AsyncStorage.setItem(lessonBestScoreKey(1,'en'),'5oops');
+  await expect(loadMedalInfoStrict(1,'en')).rejects.toThrow('medal_corrupt');
+});

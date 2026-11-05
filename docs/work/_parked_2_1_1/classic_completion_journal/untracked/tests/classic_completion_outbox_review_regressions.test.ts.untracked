@@ -1,0 +1,42 @@
+import { createClassicCompletionOutbox } from '../app/classic_completion_outbox';
+import type { CompletionEvent } from '../app/classic_completion_journal_engine';
+import { hashCanonicalBody } from '../modules/learning-v2/policies/decision_registry';
+
+const owner='a'.repeat(64);
+const intent={owner,target:'en',lessonId:1,attempt:'attempt_a',successor:'attempt_b',progress:['correct'],score:5,createdAt:1000,localDate:'2026-11-02',nextLessonId:2};
+const event:CompletionEvent={owner,intent,eventId:'lesson:en:1:complete:attempt_a',fingerprint:hashCanonicalBody(intent)};
+function fixture(body:unknown){
+  const raw=JSON.stringify({...body as object,hash:hashCanonicalBody(body)});
+  const setItem=jest.fn(async()=>undefined),transport=jest.fn(async()=>undefined);
+  return {raw,setItem,transport,outbox:createClassicCompletionOutbox({owner,current:()=>true,locked:async work=>work(),storage:{getItem:async()=>raw,setItem},transport})};
+}
+
+test.each([
+  true,
+  'text',
+  {'en:1':{owner:'foreign',eventId:42,fingerprint:null}},
+  {'de:1':{owner,eventId:event.eventId,fingerprint:event.fingerprint}},
+  {'en:33':{owner,eventId:'lesson:en:33:complete:attempt_a',fingerprint:event.fingerprint}},
+])('malformed delivered state rejects before admission or transport: %j',async delivered=>{
+  const f=fixture({schema:1,pending:[],delivered});
+  await expect(f.outbox.admit(event)).rejects.toThrow();
+  await expect(f.outbox.drain()).rejects.toThrow();
+  expect(f.setItem).not.toHaveBeenCalled();expect(f.transport).not.toHaveBeenCalled();
+});
+
+test.each([{target:'unknown'},{score:999},{progress:['wrong']},{createdAt:-1}])('checksum-valid malformed intent cannot dispatch: %j',async patch=>{
+  const invalidIntent={...intent,...patch};const invalid={owner,intent:invalidIntent,eventId:`lesson:${invalidIntent.target}:1:complete:attempt_a`,fingerprint:hashCanonicalBody(invalidIntent)};
+  const f=fixture({schema:1,pending:[invalid],delivered:{}});
+  await expect(f.outbox.drain()).rejects.toThrow();
+  expect(f.transport).not.toHaveBeenCalled();expect(f.setItem).not.toHaveBeenCalled();
+});
+
+test('33rd unresolved event is rejected without eviction',async()=>{
+  let raw:string|null=null;
+  const storage={getItem:async()=>raw,setItem:async(_key:string,value:string)=>{raw=value;}};
+  const outbox=createClassicCompletionOutbox({owner,current:()=>true,locked:async work=>work(),storage,transport:async()=>undefined});
+  for(let n=0;n<32;n++){const i={...intent,attempt:`attempt_${n}`,successor:`successor_${n}`};await outbox.admit({...event,intent:i,eventId:`lesson:en:1:complete:${i.attempt}`,fingerprint:hashCanonicalBody(i)});}
+  const before=raw;const i={...intent,attempt:'attempt_33',successor:'successor_33'};
+  await expect(outbox.admit({...event,intent:i,eventId:'lesson:en:1:complete:attempt_33',fingerprint:hashCanonicalBody(i)})).rejects.toThrow('capacity');
+  expect(raw).toBe(before);expect(JSON.parse(raw!).pending).toHaveLength(32);
+});

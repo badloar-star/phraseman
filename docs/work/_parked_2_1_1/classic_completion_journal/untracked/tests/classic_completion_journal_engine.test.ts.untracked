@@ -1,0 +1,117 @@
+import { createClassicCompletionJournal, type CompletionIntent, type CompletionEvent, type JournalPorts } from '../app/classic_completion_journal_engine';
+
+const intent = (attempt = 'a', successor = 'b'): CompletionIntent => ({
+  owner: 'a'.repeat(64), target: 'en', lessonId: 1, attempt, successor,
+  progress: Array(50).fill('correct'), score: 5, createdAt: 1000,
+  localDate: '2026-11-02', nextLessonId: 2,
+});
+
+function fixture() {
+  const disk = new Map<string, string>();
+  disk.set('attempt:en:1', 'a');
+  let fail = '';
+  let active = true;
+  let locked = false;
+  const enqueue = jest.fn(async (_event: CompletionEvent) => { if (fail === 'outbox') throw Error('outbox'); });
+  const ports: JournalPorts = {
+    owner: 'a'.repeat(64),
+    isCurrent: () => active,
+    locked: async work => { if (locked) throw Error('nested'); locked = true; try { return await work(); } finally { locked = false; } },
+    storage: {
+      getItem: async key => disk.get(key) ?? null,
+      setItem: async (key, value) => { if (fail && key.startsWith(fail)) throw Error('injected'); disk.set(key, value); },
+    },
+    keys: (target, id) => ({ attempt: `attempt:${target}:${id}`, progress: `progress:${target}:${id}`, cell: `cell:${target}:${id}`, best: `best:${target}:${id}`, passes: `passes:${target}:${id}`, finished: `finished:${target}:${id}`, unlocks: `unlocks:${target}` }),
+    enqueue: async event => { expect(locked).toBe(false); await enqueue(event); return { owner: event.owner, eventId: event.eventId, fingerprint: event.fingerprint }; },
+    medalChanged: jest.fn(),
+  };
+  return { disk, ports, enqueue, engine: createClassicCompletionJournal(ports), fail: (value: string) => { fail = value; }, switchOwner: () => { active = false; } };
+}
+
+describe('Classic completion journal engine', () => {
+  test('commits local facts, stable event, receipt and removes pending', async () => {
+    const f = fixture(); await f.engine.complete(intent());
+    expect(f.disk.get('attempt:en:1')).toBe('b');
+    expect(f.disk.get('passes:en:1')).toBe('1');
+    expect(f.disk.get('unlocks:en')).toBe('[2]');
+    expect(f.enqueue).toHaveBeenCalledTimes(1);
+    expect((await f.engine.pending()).length).toBe(0);
+  });
+  test('prepare failure withholds all projection writes', async () => {
+    const f = fixture(); f.fail('classic_completion');
+    await expect(f.engine.complete(intent())).rejects.toThrow();
+    expect(f.disk.get('attempt:en:1')).toBe('a'); expect(f.enqueue).not.toHaveBeenCalled();
+  });
+  test('restart replays absolute perfect plan once after projection failure', async () => {
+    const f = fixture(); f.fail('finished:'); await expect(f.engine.complete(intent())).rejects.toThrow();
+    expect(f.disk.get('passes:en:1')).toBe('1'); f.fail('');
+    await createClassicCompletionJournal(f.ports).recover(); expect(f.disk.get('passes:en:1')).toBe('1');
+  });
+  test('distinct successor is blocked until prior pending drains', async () => {
+    const f = fixture(); f.fail('finished:'); await expect(f.engine.complete(intent())).rejects.toThrow();
+    await expect(f.engine.complete(intent('b', 'c'))).rejects.toThrow();
+    f.fail(''); await f.engine.complete(intent('b', 'c')); expect(f.disk.get('passes:en:1')).toBe('2');
+  });
+  test('receipt replay never recounts', async () => {
+    const f = fixture(); await f.engine.complete(intent()); await f.engine.complete(intent());
+    expect(f.disk.get('passes:en:1')).toBe('1'); expect(f.enqueue).toHaveBeenCalledTimes(1);
+  });
+  test('evicted receipt stale replay writes nothing', async () => {
+    const f = fixture(); await f.engine.complete(intent()); await f.engine.complete(intent('b', 'c'));
+    const before = [...f.disk]; await expect(f.engine.complete(intent())).rejects.toThrow('stale_attempt'); expect([...f.disk]).toEqual(before);
+  });
+  test('later identity prevents old CORE overwrite', async () => {
+    const f = fixture(); f.fail('progress:'); await expect(f.engine.complete(intent())).rejects.toThrow();
+    f.fail(''); f.disk.set('attempt:en:1', 'c'); const before = [...f.disk];
+    await expect(f.engine.recover()).rejects.toThrow('stale_attempt'); expect([...f.disk]).toEqual(before);
+  });
+  test('legacy best5 missing passes normalizes prior1 then perfect2', async () => {
+    const f = fixture(); f.disk.set('best:en:1', '5'); await f.engine.complete(intent());
+    expect(f.disk.get('passes:en:1')).toBe('2');
+  });
+  test('enqueue failure retains pending with original payload and timestamp', async () => {
+    const f = fixture(); f.fail('outbox'); await expect(f.engine.complete(intent())).rejects.toThrow();
+    const first = f.enqueue.mock.calls[0][0]; f.fail(''); await f.engine.recover();
+    expect(f.enqueue.mock.calls[1][0]).toEqual(first);
+  });
+  test('stale owner never writes projections', async () => {
+    const f = fixture(); f.switchOwner(); await expect(f.engine.complete(intent())).rejects.toThrow('owner_stale');
+    expect(f.disk.size).toBe(1);
+  });
+  test('invalid intent and foreign scope rejected before storage', async () => {
+    const f = fixture(); await expect(f.engine.complete({ ...intent(), owner: 'b'.repeat(64) })).rejects.toThrow();
+    await expect(f.engine.complete({ ...intent(), score: 99 })).rejects.toThrow(); expect(f.disk.size).toBe(1);
+  });
+  test('same attempt concurrent callers share one completion', async () => {
+    const f = fixture(); await Promise.all([f.engine.complete(intent()), f.engine.complete(intent())]);
+    expect(f.disk.get('passes:en:1')).toBe('1'); expect(f.enqueue).toHaveBeenCalledTimes(1);
+  });
+  test.each(Array.from({ length: 17 }, (_, i) => i + 1))('restart after rejection at native write %i preserves one completion', async stopAt => {
+    const f = fixture(); const original = f.ports.storage.setItem; let writes = 0;
+    f.ports.storage.setItem = async (key, value) => { if (++writes === stopAt) throw Error('crash_window'); await original(key, value); };
+    await expect(createClassicCompletionJournal(f.ports).complete(intent())).rejects.toThrow('crash_window');
+    expect(writes).toBe(stopAt);
+    f.ports.storage.setItem = original;
+    const restarted = createClassicCompletionJournal(f.ports);
+    await restarted.recover(); await restarted.complete(intent());
+    expect(f.disk.get('passes:en:1')).toBe('1'); expect(f.disk.get('attempt:en:1')).toBe('b');
+  });
+  test('native write commits then rejects is acknowledged by exact read-back', async () => {
+    const f = fixture(); const original = f.ports.storage.setItem;
+    f.ports.storage.setItem = async (key, value) => { await original(key, value); throw Error('committed_then_rejected'); };
+    await createClassicCompletionJournal(f.ports).complete(intent()); expect(f.disk.get('passes:en:1')).toBe('1');
+  });
+  test('corrupt journal is retained and blocks admission', async () => {
+    const f = fixture(); const key = 'classic_completion_pending_v1:' + f.ports.owner;
+    f.disk.set(key, '{corrupt'); const before = [...f.disk];
+    await expect(f.engine.complete(intent())).rejects.toThrow('journal_corrupt'); expect([...f.disk]).toEqual(before);
+  });
+  test('outbox acknowledgment for another owner is rejected', async () => {
+    const f = fixture(); f.ports.enqueue = async event => ({ ...event, owner: 'b'.repeat(64) });
+    await expect(createClassicCompletionJournal(f.ports).complete(intent())).rejects.toThrow('outbox_ack_invalid'); expect((await f.engine.pending()).length).toBe(1);
+  });
+  test('selected target uses its own projections', async () => {
+    const f = fixture(); f.disk.set('attempt:de:1', 'a'); await f.engine.complete({ ...intent(), target: 'de' });
+    expect(f.disk.get('passes:de:1')).toBe('1'); expect(f.disk.get('passes:en:1')).toBeUndefined();
+  });
+});

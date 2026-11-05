@@ -1,0 +1,12 @@
+import { createClassicCompletionJournal, type JournalPorts } from '../app/classic_completion_journal_engine';
+import { hashCanonicalBody } from '../modules/learning-v2/policies/decision_registry';
+
+test.each(['pending','receipts'].flatMap(field => [1,'invalid',null,[],true].map(value => ({field,value}))))('rejects checksum-valid $field=$value as corrupt before effects', async ({field,value}) => {
+  const body={schema:1,revision:1,pending:{},receipts:{},[field]:value};
+  const raw=JSON.stringify({...body,hash:hashCanonicalBody(body)});
+  const setItem=jest.fn(async()=>undefined); const enqueue=jest.fn(); const medalChanged=jest.fn();
+  const ports: JournalPorts={owner:'a'.repeat(64),isCurrent:()=>true,locked:async work=>work(),
+    storage:{getItem:async()=>raw,setItem},keys:()=>{throw Error('unexpected_projection_access');},enqueue,medalChanged};
+  await expect(createClassicCompletionJournal(ports).recover()).rejects.toThrow('journal_corrupt');
+  expect(setItem).not.toHaveBeenCalled();expect(enqueue).not.toHaveBeenCalled();expect(medalChanged).not.toHaveBeenCalled();
+});

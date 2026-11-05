@@ -1,0 +1,249 @@
+import { hashCanonicalBody } from '../modules/learning-v2/policies/decision_registry';
+import { LEARNING_LANGUAGE_TARGETS } from './learning_language_contour';
+
+export type CompletionResultSnapshot = Readonly<{ total: number; finalCorrect: number; firstTryWrong: number }>;
+export type CompletionIntent = Readonly<{
+  owner: string; target: string; lessonId: number; attempt: string; successor: string;
+  progress: readonly string[]; score: number; createdAt: number; localDate: string;
+  nextLessonId: number | null;
+  scoreOverride?: 'tester_no_limits';
+  resultSnapshot?: CompletionResultSnapshot;
+}>;
+export type CompletionEvent = Readonly<{
+  owner: string; eventId: string; fingerprint: string; intent: CompletionIntent;
+}>;
+type Keys = { attempt: string; progress: string; cell: string; best: string; passes: string; finished: string; unlocks: string };
+export type JournalPorts = {
+  owner: string;
+  storeScope?: object;
+  isCurrent(): boolean;
+  /** Takes account then storage lease; must hold until native I/O settles. */
+  locked<T>(work: () => Promise<T>): Promise<T>;
+  storage: { getItem(key: string): Promise<string | null>; setItem(key: string, value: string): Promise<void> };
+  keys(target: string, lessonId: number): Keys;
+  /** Durable local admission only. Never await transport or its queue mutex. */
+  enqueue(event: CompletionEvent): Promise<{ owner: string; eventId: string; fingerprint: string }>;
+  medalChanged(intent: CompletionIntent, plan: MedalPlan): void;
+};
+type MedalPlan = { best: number; passes: number; previousBest: number; previousPasses: number };
+type RecordV1 = { intent: CompletionIntent; intentHash: string; plan: MedalPlan | null; stage: number; coreStarted: boolean };
+export type CompletionReceipt = { owner: string; target: string; lessonId: number; intentHash: string; attempt: string; successor: string; score: number; passes: number; unlocked: boolean; resultSnapshot?: CompletionResultSnapshot; previousBest?: number; scoreOverride?: 'tester_no_limits' };
+type Store = { schema: 1; revision: number; pending: Record<string, RecordV1>; receipts: Record<string, CompletionReceipt>; hash: string };
+const PREFIX = 'classic_completion_pending_v1:';
+const MAX_BYTES = 128 * 1024;
+const MAX_PENDING = 8;
+const ID = /^[A-Za-z0-9_-]{1,160}$/;
+const tails = new WeakMap<object, Map<string, Promise<unknown>>>();
+const scope = (i: CompletionIntent) => `${i.target}:${i.lessonId}`;
+const fail = (reason: string): never => { throw new Error(`classic_completion_${reason}`); };
+const scoreNumber = (raw: string | null) => { const value = Number(raw ?? 0); return Number.isFinite(value) && value >= 0 && value <= 5 ? value : fail('projection_corrupt'); };
+const passNumber = (raw: string | null) => { const value = Number(raw ?? 0); return Number.isSafeInteger(value) && value >= 0 ? value : fail('projection_corrupt'); };
+const exact = (value: unknown, keys: readonly string[]): boolean => !!value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === keys.length && keys.every(k => Object.prototype.hasOwnProperty.call(value,k));
+const validScore = (n: number) => Number.isFinite(n) && n >= 0 && n <= 5;
+const validPass = (n: number) => Number.isSafeInteger(n) && n >= 0;
+const dictionary = (value: unknown): boolean => value !== null && typeof value === 'object' && !Array.isArray(value) && Object.getPrototypeOf(value) === Object.prototype;
+const own = (value: object, key: string) => Object.prototype.hasOwnProperty.call(value,key);
+const snapshot = (i: CompletionIntent, owner: string): CompletionIntent => {
+  validate(i,owner); // Validate own-present undefined/unknown fields before JSON can erase them.
+  const copy = JSON.parse(JSON.stringify(i)) as CompletionIntent; validate(copy,owner);
+  Object.freeze(copy.progress); if(copy.resultSnapshot)Object.freeze(copy.resultSnapshot); return Object.freeze(copy);
+};
+const freezeReceipt = (r: CompletionReceipt): CompletionReceipt => Object.freeze({...r,...(r.resultSnapshot ? {resultSnapshot:Object.freeze({...r.resultSnapshot})} : {})});
+
+export function validateClassicCompletionResultSnapshot(s: CompletionResultSnapshot, progress?: readonly string[]): void {
+  if(!exact(s,['total','finalCorrect','firstTryWrong']) || !Number.isInteger(s.total) || s.total<1 || s.total>50 ||
+    !Number.isInteger(s.finalCorrect) || s.finalCorrect<0 || s.finalCorrect>s.total ||
+    !Number.isInteger(s.firstTryWrong) || s.firstTryWrong<s.total-s.finalCorrect || s.firstTryWrong>s.total ||
+    (progress && (s.total!==progress.length || s.finalCorrect!==progress.filter(value=>value==='correct'||value==='replay_correct').length)))fail('result_snapshot_invalid');
+}
+
+export function validateClassicCompletionIntent(i: CompletionIntent, owner: string): void {
+  const fields = ['owner','target','lessonId','attempt','successor','progress','score','createdAt','localDate','nextLessonId'];
+  const keys=[...fields,...(i && own(i,'scoreOverride')?['scoreOverride']:[]),...(i && own(i,'resultSnapshot')?['resultSnapshot']:[])];
+  if (!exact(i, keys) || i.owner !== owner || !/^[a-f0-9]{64}$/.test(i.owner) || !(LEARNING_LANGUAGE_TARGETS as readonly string[]).includes(i.target) ||
+      !Number.isInteger(i.lessonId) || i.lessonId < 1 || i.lessonId > 32 ||
+      !ID.test(i.attempt) || !ID.test(i.successor) || i.attempt === i.successor ||
+      !Array.isArray(i.progress) || i.progress.length < 1 || i.progress.length > 50 ||
+      i.progress.some(s => !['correct', 'replay_correct', 'wrong'].includes(s)) ||
+      !Number.isFinite(i.score) || i.score < 0 || i.score > 5 ||
+      !Number.isSafeInteger(i.createdAt) || i.createdAt < 0 || !/^\d{4}-\d{2}-\d{2}$/.test(i.localDate) ||
+      (i.nextLessonId !== null && (i.nextLessonId !== i.lessonId + 1 || i.nextLessonId > 32)) ||
+      (own(i,'scoreOverride') && i.scoreOverride !== 'tester_no_limits')) fail('intent_invalid');
+  if(own(i,'resultSnapshot'))validateClassicCompletionResultSnapshot(i.resultSnapshot!,i.progress);
+  const computed = Number((i.progress.filter(s=>s === 'correct' || s === 'replay_correct').length / i.progress.length * 5).toFixed(1));
+  if (i.score !== (i.scoreOverride === 'tester_no_limits' ? 5 : computed)) fail('score_inconsistent');
+}
+const validate = validateClassicCompletionIntent;
+
+/** The engine has no reward, analytics or network ports by construction. */
+export function createClassicCompletionJournal(inputPorts: JournalPorts) {
+  const storeScope = inputPorts.storeScope ?? inputPorts.storage;
+  const p = Object.freeze({ ...inputPorts, storage: Object.freeze({ ...inputPorts.storage }) });
+  const key = PREFIX + p.owner;
+  const current = () => { if (!p.isCurrent()) fail('owner_stale'); };
+  const locked = <T>(work: () => Promise<T>) => p.locked(async () => { current(); const result = await work(); current(); return result; });
+  const serial = <T>(work: () => Promise<T>): Promise<T> => {
+    let ownerTails = tails.get(storeScope); if (!ownerTails) { ownerTails = new Map(); tails.set(storeScope,ownerTails); }
+    const prior = ownerTails.get(p.owner) ?? Promise.resolve();
+    const run = prior.catch(() => undefined).then(work); ownerTails.set(p.owner,run);
+    const clear = () => { if(ownerTails!.get(p.owner) === run) ownerTails!.delete(p.owner); };
+    void run.then(clear,clear); return run;
+  };
+  async function load(): Promise<Store> {
+    const raw = await p.storage.getItem(key);
+    if (raw === null) return { schema: 1, revision: 0, pending: {}, receipts: {}, hash: '' };
+    if (raw.length > MAX_BYTES) fail('journal_corrupt');
+    let s: Store;
+    try { s = JSON.parse(raw); } catch { return fail('journal_corrupt'); }
+    if (!exact(s,['schema','revision','pending','receipts','hash']) || s.schema !== 1 || !Number.isSafeInteger(s.revision) || s.revision < 1 ||
+        !dictionary(s.pending) || !dictionary(s.receipts)) fail('journal_corrupt');
+    const { hash, ...body } = s;
+    if (hash !== hashCanonicalBody(body) || Object.keys(s.pending).length > MAX_PENDING || Object.keys(s.receipts).length > 384) fail('journal_corrupt');
+    for (const [name, r] of Object.entries(s.pending)) {
+      if (!exact(r,['intent','intentHash','plan','stage','coreStarted'])) fail('journal_corrupt');
+      validate(r.intent, p.owner);
+      if (scope(r.intent) !== name || r.intentHash !== hashCanonicalBody(r.intent) ||
+          !Number.isInteger(r.stage) || r.stage < 0 || r.stage > 5 || typeof r.coreStarted !== 'boolean' ||
+          (r.stage > 0 && !r.coreStarted) || (r.stage >= 2 && r.plan === null) ||
+          (r.stage === 0 && r.plan !== null)) fail('journal_corrupt');
+      if (r.plan !== null) {
+        const plan = r.plan;
+        if (!exact(plan,['best','passes','previousBest','previousPasses']) || !validScore(plan.best) || !validScore(plan.previousBest) ||
+            !validPass(plan.passes) || !validPass(plan.previousPasses) || plan.best !== Math.max(plan.previousBest,r.intent.score) ||
+            plan.previousPasses < (plan.previousBest >= 4.5 ? 1 : 0) ||
+            plan.passes !== plan.previousPasses + (r.intent.progress.every(v=>v==='correct') ? 1 : 0)) fail('journal_corrupt');
+      }
+    }
+    for (const [name,r] of Object.entries(s.receipts)) {
+      const keys=['owner','target','lessonId','intentHash','attempt','successor','score','passes','unlocked',...(r&&own(r,'resultSnapshot')?['resultSnapshot','previousBest']:[]),...(r&&own(r,'scoreOverride')?['scoreOverride']:[])];
+      if (!exact(r,keys) || r.owner !== p.owner ||
+          !(LEARNING_LANGUAGE_TARGETS as readonly string[]).includes(r.target) || !Number.isInteger(r.lessonId) || r.lessonId < 1 || r.lessonId > 32 ||
+          name !== `${r.target}:${r.lessonId}` || !/^[a-f0-9]{64}$/.test(r.intentHash) || !ID.test(r.attempt) || !ID.test(r.successor) || r.attempt === r.successor ||
+          !validScore(r.score) || !validPass(r.passes) || typeof r.unlocked !== 'boolean' ||
+          (own(r,'scoreOverride') && (!own(r,'resultSnapshot') || r.scoreOverride!=='tester_no_limits'))) fail('journal_corrupt');
+      if(own(r,'resultSnapshot')){
+        validateClassicCompletionResultSnapshot(r.resultSnapshot!);
+        if(!validScore(r.previousBest!) || r.score !== (r.scoreOverride==='tester_no_limits'?5:Number((r.resultSnapshot!.finalCorrect/r.resultSnapshot!.total*5).toFixed(1))))fail('journal_corrupt');
+      }
+    }
+    return s;
+  }
+  async function save(s: Store): Promise<void> {
+    current(); s.revision += 1;
+    const { hash: _hash, ...body } = s; s.hash = hashCanonicalBody(body);
+    const raw = JSON.stringify(s); if (raw.length > MAX_BYTES) fail('capacity');
+    // A native write can commit then reject. Read-back is the acknowledgment.
+    try { await p.storage.setItem(key, raw); } catch (error) {
+      if (await p.storage.getItem(key) !== raw) throw error;
+    }
+    if (await p.storage.getItem(key) !== raw) fail('journal_indeterminate'); current();
+  }
+  async function put(k: string, value: string): Promise<void> {
+    current();
+    try { await p.storage.setItem(k, value); } catch (error) { if (await p.storage.getItem(k) !== value) throw error; }
+    if (await p.storage.getItem(k) !== value) fail('projection_indeterminate'); current();
+  }
+  async function commit(i: CompletionIntent): Promise<CompletionReceipt> {
+    const name = scope(i);
+    for (;;) {
+      const ready = await locked(async () => {
+        const s = await load(); const receipt = s.receipts[name];
+        if (receipt?.attempt === i.attempt) {
+          if (receipt.intentHash !== hashCanonicalBody(i)) fail('intent_conflict');
+          if (s.pending[name]?.intentHash === receipt.intentHash) { delete s.pending[name]; await save(s); }
+          return { receipt };
+        }
+        const r = s.pending[name]; if (!r || r.intentHash !== hashCanonicalBody(i)) fail('pending_conflict');
+        const k = p.keys(i.target, i.lessonId);
+        const attempt = await p.storage.getItem(k.attempt);
+        if (attempt !== i.attempt && !(r.coreStarted && attempt === i.successor)) fail('stale_attempt');
+        if (attempt === i.successor && (await p.storage.getItem(k.progress) !== JSON.stringify(i.progress) || await p.storage.getItem(k.cell) !== '0')) fail('stale_attempt');
+        if (r.stage === 0) {
+          if (!r.coreStarted) { r.coreStarted = true; await save(s); }
+          if (attempt === i.attempt) { await put(k.progress, JSON.stringify(i.progress)); await put(k.cell, '0'); await put(k.attempt, i.successor); }
+          r.stage = 1; await save(s);
+        } else if (r.stage === 1) {
+          if (!r.plan) {
+            const best = scoreNumber(await p.storage.getItem(k.best));
+            const passes = Math.max(passNumber(await p.storage.getItem(k.passes)), best >= 4.5 ? 1 : 0);
+            const plannedPasses = passes + (i.progress.every(v => v === 'correct') ? 1 : 0);
+            if (!validPass(plannedPasses)) fail('projection_corrupt');
+            r.plan = { previousBest: best, previousPasses: passes, best: Math.max(best, i.score), passes: plannedPasses };
+            await save(s);
+          }
+          await put(k.best, String(Math.max(scoreNumber(await p.storage.getItem(k.best)), r.plan.best)));
+          await put(k.passes, String(Math.max(passNumber(await p.storage.getItem(k.passes)), r.plan.passes)));
+          p.medalChanged(i, Object.freeze({...r.plan})); r.stage = 2; await save(s);
+        } else if (r.stage === 2) {
+          await put(k.finished, '1'); r.stage = 3; await save(s);
+        } else if (r.stage === 3) {
+          if (i.nextLessonId !== null) {
+            const raw = await p.storage.getItem(k.unlocks); const list: unknown = raw === null ? [] : JSON.parse(raw);
+            if (!Array.isArray(list) || list.some(v => !Number.isInteger(v) || v < 1 || v > 32)) return fail('unlocks_corrupt');
+            if (!list.includes(i.nextLessonId)) await put(k.unlocks, JSON.stringify([...list, i.nextLessonId]));
+          }
+          r.stage = 4; await save(s);
+        } else if (r.stage === 4) { return { enqueue: true }; }
+        else {
+          const plan = r.plan ?? fail('plan_missing');
+          const done: CompletionReceipt = { owner:i.owner,target:i.target,lessonId:i.lessonId,intentHash: r.intentHash, attempt: i.attempt, successor: i.successor, score: i.score, passes: plan.passes, unlocked: i.nextLessonId !== null,
+            ...(i.resultSnapshot?{resultSnapshot:i.resultSnapshot,previousBest:plan.previousBest,...(i.scoreOverride?{scoreOverride:i.scoreOverride}:{})}:{}) };
+          s.receipts[name] = done; await save(s); delete s.pending[name]; await save(s); return { receipt: done };
+        }
+        return {};
+      });
+      if (ready.receipt) return freezeReceipt(ready.receipt);
+      if (ready.enqueue) {
+        current();
+        const event = Object.freeze({ owner: i.owner, eventId: `lesson:${i.target}:${i.lessonId}:complete:${i.attempt}`, fingerprint: hashCanonicalBody(i), intent: i });
+        const ack = await p.enqueue(event); current();
+        if (ack.owner !== i.owner || ack.eventId !== event.eventId || ack.fingerprint !== event.fingerprint) fail('outbox_ack_invalid');
+        await locked(async () => {
+          const s = await load();
+          if (s.receipts[name]?.attempt === i.attempt && s.receipts[name]?.intentHash === event.fingerprint) return;
+          const r = s.pending[name]; if (!r || r.intentHash !== event.fingerprint) fail('pending_conflict'); r.stage = 5; await save(s);
+        });
+      }
+    }
+  }
+  async function completeInner(input: CompletionIntent): Promise<CompletionReceipt> {
+    const i = input;
+    const prior = await locked(async () => {
+      const state = await load(); const receipt = state.receipts[scope(i)];
+      if (receipt?.attempt === i.attempt) {
+        if (receipt.intentHash !== hashCanonicalBody(i) || receipt.successor !== i.successor || receipt.score !== i.score || receipt.unlocked !== (i.nextLessonId !== null)) fail('intent_conflict');
+        return { receipt };
+      }
+      const pending = state.pending[scope(i)];
+      if (pending && pending.intent.attempt !== i.attempt) {
+        const stored = await p.storage.getItem(p.keys(i.target,i.lessonId).attempt);
+        if (pending.intent.successor !== i.attempt || (stored !== pending.intent.attempt && stored !== i.attempt)) fail('stale_attempt');
+      }
+      return { pending };
+    });
+    if (prior.receipt) return freezeReceipt(prior.receipt);
+    if (prior.pending && prior.pending.intent.attempt !== i.attempt) await commit(snapshot(prior.pending.intent,p.owner));
+    await locked(async () => {
+      const s = await load(); const name = scope(i);
+      if (s.pending[name] || s.receipts[name]?.attempt === i.attempt) return;
+      if (await p.storage.getItem(p.keys(i.target, i.lessonId).attempt) !== i.attempt) fail('stale_attempt');
+      if (Object.keys(s.pending).length >= MAX_PENDING) fail('capacity');
+      s.pending[name] = { intent: i, intentHash: hashCanonicalBody(i), plan: null, stage: 0, coreStarted: false }; await save(s);
+    });
+    return commit(i);
+  }
+  return {
+    receipt:(target:string,lessonId:number,attempt:string)=>locked(async()=>{
+      const receipt=(await load()).receipts[`${target}:${lessonId}`];
+      return receipt?.attempt===attempt ? freezeReceipt(receipt) : null;
+    }),
+    complete: (i: CompletionIntent): Promise<CompletionReceipt> => {
+      try { const captured = snapshot(i,p.owner); return serial(() => completeInner(captured)); } catch(error) { return Promise.reject(error); }
+    },
+    pending: () => locked(async () => Object.values((await load()).pending).map(r => snapshot(r.intent,p.owner))),
+    recover: () => serial(async () => {
+      const rows = await locked(async () => Object.values((await load()).pending).sort((a,b) => a.intent.createdAt - b.intent.createdAt));
+      for (const r of rows) await commit(snapshot(r.intent,p.owner));
+    }),
+  };
+}

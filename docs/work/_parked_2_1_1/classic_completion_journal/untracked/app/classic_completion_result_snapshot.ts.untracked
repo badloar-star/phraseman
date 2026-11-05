@@ -1,0 +1,16 @@
+import type { PhraseMistakeInput } from './phrase_analytics';
+import { lessonRunMissCount } from './lesson_run_errors_memory';
+import { lessonFirstTryCountsFromProgress } from './lesson_first_try_counts';
+import { validateClassicCompletionResultSnapshot, type CompletionResultSnapshot } from './classic_completion_journal_engine';
+
+/** Capture A-local numbers synchronously, before completion can await or retry.
+ * Textual error rows remain memory-only; the durable snapshot is numeric.
+ */
+export function captureClassicCompletionResultSnapshot(progress: readonly string[], signals: readonly PhraseMistakeInput[]): CompletionResultSnapshot {
+  const capturedProgress=[...progress];
+  const capturedSignals=signals.map(signal=>typeof signal==='string'?signal:{...signal});
+  const counts=lessonFirstTryCountsFromProgress(capturedProgress,lessonRunMissCount(capturedSignals));
+  const result=Object.freeze({total:capturedProgress.length,finalCorrect:counts.finalCorrect,firstTryWrong:counts.wrong});
+  validateClassicCompletionResultSnapshot(result,capturedProgress);
+  return result;
+}

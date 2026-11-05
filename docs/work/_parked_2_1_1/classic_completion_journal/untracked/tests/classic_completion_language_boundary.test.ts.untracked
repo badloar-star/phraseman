@@ -1,0 +1,40 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { beginAccountGeneration } from '../app/account_generation';
+import { createClassicCompletionRuntime } from '../app/classic_completion_runtime';
+import { configurePhoneStateProgressCutover } from '../app/phone_state_progress_cutover';
+import { createPersonalProgressApi } from '../modules/phone-state/domains/progress_api';
+import { emptyPersonalProgressState,applyPersonalProgressCommand } from '../modules/phone-state/domains/progress_projection';
+import { lessonProgressKey } from '../app/target_storage_keys';
+import { makeLessonServerAttemptId } from '../app/lesson_attempt_identity';
+var networkCalls=jest.fn();
+jest.mock('../app/config',()=>({CLOUD_SYNC_ENABLED:true,IS_EXPO_GO:false}));
+jest.mock('../app/cloud_sync',()=>({ensureAnonUser:jest.fn()}));
+jest.mock('../app/user_id_policy',()=>({getCanonicalUserId:jest.fn(()=>{throw Error('unexpected_owner_lookup');})}));
+jest.mock('../app/remote_flags',()=>({getRemoteBool:(key:string)=>key==='phone_state_sync_enabled',getRemoteNumber:()=>100,assignPhoneStateCohort:()=>true}));
+jest.mock('../app/phone_state_health',()=>({isPhoneStateHealthCutoverAllowed:()=>true}));
+jest.mock('../app/personal_progress_store',()=>({publishPersonalProgressProjection:jest.fn()}));
+jest.mock('../app/phone_state_shadow_adapters',()=>({recordShadowProgressEvent:jest.fn()}));
+jest.mock('../app/medal_utils',()=>({invalidateMedalsCache:jest.fn()}));
+jest.mock('../app/accounts_v2_client_flag',()=>({captureAccountsV2OwnerUid:()=>null,produceAccountsV2ChangeIfEnabled:jest.fn()}));
+jest.mock('@react-native-firebase/functions',()=>({getFunctions:()=>({}),httpsCallable:()=>networkCalls}));
+beforeEach(async()=>{await AsyncStorage.clear();networkCalls.mockClear();});
+afterEach(()=>configurePhoneStateProgressCutover(null));
+
+test('actual runtime holds DE before unscoped PhoneState and server; outbox survives restart and owner change',async()=>{
+  let state=emptyPersonalProgressState();
+  configurePhoneStateProgressCutover(createPersonalProgressApi({journal:{
+    commit:async command=>{const applied=applyPersonalProgressCommand(state,command);state=applied.state;return {projection:state.projection,duplicate:applied.duplicate};},read:async()=>state.projection,
+  }}));
+  const token=beginAccountGeneration('boundary-owner-a');const runtime=createClassicCompletionRuntime(token);
+  const attempt=await runtime.enter(1,'de');
+  await runtime.complete({target:'de',lessonId:1,attempt,successor:makeLessonServerAttemptId(),progress:Array(50).fill('correct'),score:5,nextLessonId:2,createdAt:1000,localDate:'2026-11-01'});
+  expect(state.appliedEventIds).toHaveLength(0);expect(state.projection.completedLessons).toHaveLength(0);
+  const key=(await AsyncStorage.getAllKeys()).find(k=>k.startsWith('classic_completion_outbox_v1:'))!;
+  const original=(await AsyncStorage.getItem(key))!;await runtime.flush();expect(await AsyncStorage.getItem(key)).toBe(original);
+  beginAccountGeneration('boundary-owner-b');const b=createClassicCompletionRuntime(beginAccountGeneration('boundary-owner-b'));await b.recover();await b.flush();
+  expect(await AsyncStorage.getItem(key)).toBe(original);
+  const restarted=createClassicCompletionRuntime(beginAccountGeneration('boundary-owner-a'));await restarted.recover();await restarted.flush();
+  const pending=JSON.parse((await AsyncStorage.getItem(key))!).pending;
+  expect(pending).toHaveLength(1);expect(pending[0]).toMatchObject({eventId:`lesson:de:1:complete:${attempt}`,intent:{target:'de',createdAt:1000,localDate:'2026-11-01'}});
+  expect(JSON.parse((await AsyncStorage.getItem(lessonProgressKey(1,'de')))!)).toHaveLength(50);expect(networkCalls).not.toHaveBeenCalled();
+});

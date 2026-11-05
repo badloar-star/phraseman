@@ -1,0 +1,374 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { parse } from '@babel/parser';
+import { beginAccountGeneration, captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
+import * as bootstrap from '../app/lesson_screen_bootstrap';
+jest.mock('@react-native-async-storage/async-storage',()=>({__esModule:true,default:{getItem:jest.fn(),setItem:jest.fn(),multiGet:jest.fn()}}));
+jest.mock('../app/app_snapshot_store',()=>({patchAppSnapshot:jest.fn()}));
+jest.mock('../app/debug-logger',()=>({DebugLogger:{error:jest.fn()}}));
+const read=(file:string)=>fs.readFileSync(path.join(__dirname,'..','app',file),'utf8');
+test('Classic hydration and input require completion admission',()=>{
+  const source=read('lesson1.tsx');
+  expect(source.includes('await classicRuntime.enter(lessonId, originTarget)')).toBe(true);
+  expect(source.includes('classicAdmissionScopeRef.current !==')).toBe(true);
+  expect(source.includes('classicRuntime.writeProgress(')).toBe(true);
+});
+
+const findVariableFunctionBody = (source:string,name:string):any => {
+  const ast:any=parse(source,{sourceType:'module',plugins:['typescript','jsx']});
+  let found:any=null;
+  const visit=(node:any):void=>{
+    if(!node||typeof node!=='object'||found)return;
+    if(node.type==='VariableDeclarator'&&node.id?.type==='Identifier'&&node.id.name===name){
+      const init=node.init;
+      const fn=init?.type==='CallExpression'&&init.callee?.type==='Identifier'&&init.callee.name==='useCallback'
+        ? init.arguments?.[0]
+        : init;
+      if(fn?.body?.type==='BlockStatement'){found=fn.body;return;}
+    }
+    for(const value of Object.values(node)){
+      if(Array.isArray(value))for(const child of value)visit(child);
+      else visit(value);
+    }
+  };
+  visit(ast);
+  if(!found)throw new Error(`function body not found: ${name}`);
+  return found;
+};
+
+const sliceNode=(source:string,node:any):string=>source.slice(node.start,node.end);
+
+const findBlockContaining=(source:string,node:any,needle:string):any=>{
+  if(!node||typeof node!=='object')return null;
+  for(const value of Object.values(node)){
+    if(Array.isArray(value))for(const child of value){const hit=findBlockContaining(source,child,needle);if(hit)return hit;}
+    else {const hit=findBlockContaining(source,value,needle);if(hit)return hit;}
+  }
+  if(node.type==='BlockStatement'&&node.body.some((child:any)=>sliceNode(source,child).includes(needle)))return node;
+  return null;
+};
+
+test('rejected admission retries with the same opaque current scope and dedupes a double tap',async()=>{
+  const source=read('lesson1.tsx');
+  const loadBody=findVariableFunctionBody(source,'loadData');
+  const checkBody=findVariableFunctionBody(source,'checkAnswer');
+  const tryIndex=loadBody.body.findIndex((node:any)=>node.type==='TryStatement');
+  const tryNode=loadBody.body[tryIndex];
+  const beforeTry=loadBody.body.slice(0,tryIndex).map((node:any)=>sliceNode(source,node)).join('\n');
+  const enterPrefix=tryNode.block.body.slice(0,3).map((node:any)=>sliceNode(source,node)).join('\n');
+  const findAdmission=(node:any):any=>{
+    if(!node||typeof node!=='object')return null;
+    if(node.type==='IfStatement'){
+      const text=sliceNode(source,node);
+      if(text.includes('classicAdmissionScopeRef.current =')&&!text.includes('= null'))return node;
+    }
+    for(const value of Object.values(node)){
+      if(Array.isArray(value))for(const child of value){const hit=findAdmission(child);if(hit)return hit;}
+      else {const hit=findAdmission(value);if(hit)return hit;}
+    }
+    return null;
+  };
+  const admissionNode=findAdmission(tryNode.block);
+  if(!admissionNode)throw new Error('completion admission publication statement not found');
+  const catchBody=tryNode.handler.body.body.map((node:any)=>sliceNode(source,node)).join('\n');
+  const finallyBody=tryNode.finalizer.body.map((node:any)=>sliceNode(source,node)).join('\n');
+  const loadFactory=new Function(
+    'isLessonScreenPrimeOriginScopeCurrent','classicHydrationEpochRef','classicHydrationPendingRef',
+    'isCurrentAccountGeneration','accountToken','classicAdmissionScopeRef','isLessonScreenPrimedThisSession',
+    'lessonStorageId','LESSON_DATA','effectiveTotal','setLessonHydrated','ordinaryClassic','classicRuntime',
+    'lessonId','trackFeatureError',
+    `return async function loadData(originScope){${beforeTry}\ntry{${enterPrefix}\n${sliceNode(source,admissionNode)}\nreturn classicAttempt;}catch(e){${catchBody}}finally{${finallyBody}}}`,
+  );
+
+  const scope={studyTarget:'en',current:true};
+  const hydrationEpoch={current:0};
+  const hydrationPending:{current:number|null}={current:null};
+  const admission:{current:string|null}={current:null};
+  let resolveSecond:(value:string)=>void=()=>{};
+  const enter=jest.fn()
+    .mockRejectedValueOnce(new Error('first enter rejected'))
+    .mockImplementationOnce(()=>new Promise<string>(resolve=>{resolveSecond=resolve;}));
+  const loadData=loadFactory(
+    (candidate:any)=>candidate===scope&&candidate.current,
+    hydrationEpoch,hydrationPending,()=>true,{},admission,()=>true,
+    'lesson-1',[],1,jest.fn(),true,{enter},1,jest.fn(),
+  );
+
+  await loadData(scope);
+  expect(enter).toHaveBeenCalledTimes(1);
+  expect(admission.current).toBeNull();
+  expect(hydrationPending.current).toBeNull();
+
+  const admissionGuardIndex=checkBody.body.findIndex((node:any)=>
+    node.type==='IfStatement'&&sliceNode(source,node).includes('classicAdmissionScopeRef.current !=='),
+  );
+  const guardPrefix=checkBody.body.slice(0,admissionGuardIndex+1).map((node:any)=>sliceNode(source,node)).join('\n');
+  const checkFactory=new Function(
+    'getScreenPrimeScope','isLessonScreenPrimeOriginScopeCurrent','phrase','ordinaryClassic',
+    'isCurrentAccountGeneration','accountToken','classicAdmissionScopeRef','studyTarget','lessonId',
+    'classicHydrationPendingRef','loadData',
+    `return async function checkAnswer(answer){${guardPrefix}\nreturn 'admitted';}`,
+  );
+  const checkAnswer=checkFactory(
+    ()=>scope,(candidate:any)=>candidate===scope&&candidate.current,{},true,()=>true,{},admission,'en',1,
+    hydrationPending,loadData,
+  );
+
+  await checkAnswer('first tap');
+  await checkAnswer('double tap');
+  expect(enter).toHaveBeenCalledTimes(2);
+  expect(hydrationPending.current).not.toBeNull();
+  resolveSecond('attempt-2');
+  await Promise.resolve();
+  await Promise.resolve();
+  expect(admission.current).toBe('en:1');
+  expect(hydrationPending.current).toBeNull();
+  await expect(checkAnswer('answer after retry')).resolves.toBe('admitted');
+  expect(enter).toHaveBeenCalledTimes(2);
+});
+
+test('real scope hide/reveal rejects old admission publication without clearing the new pending child',async()=>{
+  const source=read('lesson1.tsx');
+  const loadBody=findVariableFunctionBody(source,'loadData');
+  const tryIndex=loadBody.body.findIndex((node:any)=>node.type==='TryStatement');
+  const tryNode=loadBody.body[tryIndex];
+  const beforeTry=loadBody.body.slice(0,tryIndex).map((node:any)=>sliceNode(source,node)).join('\n');
+  const enterPrefix=tryNode.block.body.slice(0,3).map((node:any)=>sliceNode(source,node)).join('\n');
+  const serverIndex=tryNode.block.body.findIndex((node:any)=>sliceNode(source,node).includes('const serverAttemptId = classicAttempt'));
+  const progressIndex=tryNode.block.body.findIndex((node:any)=>sliceNode(source,node).trim()==='setProgress(restoredProgress);');
+  const publicationIndex=tryNode.block.body.findIndex((node:any)=>sliceNode(source,node).includes('classicAdmissionScopeRef.current = `${originTarget}:${lessonId}`'));
+  const touchIndex=tryNode.block.body.findIndex((node:any,index:number)=>index>publicationIndex&&sliceNode(source,node).includes('touchLessonScreenPrimed('));
+  const serverSegment=[tryNode.block.body[serverIndex],tryNode.block.body[serverIndex+1],tryNode.block.body[progressIndex]]
+    .map((node:any)=>sliceNode(source,node)).join('\n');
+  const publicationSegment=tryNode.block.body.slice(publicationIndex,touchIndex+1).map((node:any)=>sliceNode(source,node)).join('\n');
+  const catchBody=tryNode.handler.body.body.map((node:any)=>sliceNode(source,node)).join('\n');
+  const finallyBody=tryNode.finalizer.body.map((node:any)=>sliceNode(source,node)).join('\n');
+  const factory=new Function(
+    'isLessonScreenPrimeOriginScopeCurrent','classicHydrationEpochRef','classicHydrationPendingRef',
+    'isCurrentAccountGeneration','accountToken','classicAdmissionScopeRef','isLessonScreenPrimedThisSession',
+    'lessonStorageId','LESSON_DATA','effectiveTotal','setLessonHydrated','ordinaryClassic','classicRuntime',
+    'lessonId','trackFeatureError','routeServerAttemptId','serverAttemptRaw','makeLessonServerAttemptId',
+    'serverAttemptIdRef','setProgress','restoredProgress','startCell','phraseOrderRef','restoredOverrideForUi',
+    'touchLessonScreenPrimed',
+    `return async function loadData(originScope){${beforeTry}\ntry{${enterPrefix}\n${serverSegment}\n${publicationSegment}\nreturn classicAttempt;}catch(e){${catchBody}}finally{${finallyBody}}}`,
+  );
+
+  beginAccountGeneration('combined-hide-reveal');
+  const token=captureAccountGeneration();
+  bootstrap.commitLessonScreenPrimeStudyTarget('en');
+  const oldRoot=bootstrap.captureLessonScreenPrimeOriginScope(token,'en');
+  const oldChild=bootstrap.forkLessonScreenPrimeOriginScope(oldRoot);
+  expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(oldChild)).toBe(true);
+  let resolveOld:(value:string)=>void=()=>{};
+  let resolveNew:(value:string)=>void=()=>{};
+  const enter=jest.fn()
+    .mockImplementationOnce(()=>new Promise<string>(resolve=>{resolveOld=resolve;}))
+    .mockImplementationOnce(()=>new Promise<string>(resolve=>{resolveNew=resolve;}));
+  const epoch={current:0};
+  const pending:{current:number|null}={current:null};
+  const admission:{current:string|null}={current:null};
+  const attempt={current:''};
+  const hydrated=jest.fn();
+  const progress=jest.fn();
+  const loadData=factory(
+    bootstrap.isLessonScreenPrimeOriginScopeCurrent,epoch,pending,isCurrentAccountGeneration,token,admission,()=>true,
+    1,[],1,hydrated,true,{enter},1,jest.fn(),null,null,()=> 'fallback',attempt,progress,['correct'],2,
+    {current:[0]},null,bootstrap.touchLessonScreenPrimed,
+  );
+  const oldRun=loadData(oldChild);
+  expect(enter).toHaveBeenCalledTimes(1);
+  const oldPending=pending.current;
+
+  bootstrap.disposeLessonScreenPrimeOriginScope(oldChild);
+  bootstrap.disposeLessonScreenPrimeOriginScope(oldRoot);
+  const newRoot=bootstrap.captureLessonScreenPrimeOriginScope(token,'en');
+  const newChild=bootstrap.forkLessonScreenPrimeOriginScope(newRoot);
+  const newRun=loadData(newChild);
+  expect(enter).toHaveBeenCalledTimes(2);
+  const newPending=pending.current;
+  expect(newPending).not.toBe(oldPending);
+
+  resolveOld('attempt-old');
+  await oldRun;
+  expect(attempt.current).toBe('');
+  expect(progress).not.toHaveBeenCalled();
+  expect(hydrated).not.toHaveBeenCalled();
+  expect(admission.current).toBeNull();
+  expect(pending.current).toBe(newPending);
+  expect(bootstrap.getLessonScreenPrimed(1,'en')).toBeNull();
+
+  resolveNew('attempt-new');
+  await newRun;
+  expect(attempt.current).toBe('attempt-new');
+  expect(progress).toHaveBeenCalledWith(['correct']);
+  expect(hydrated).toHaveBeenCalledWith(true);
+  expect(admission.current).toBe('en:1');
+  expect(pending.current).toBeNull();
+  expect(bootstrap.getLessonScreenPrimed(1,'en')).toMatchObject({cell:2,progress:['correct']});
+
+  bootstrap.commitLessonScreenPrimeStudyTarget('es');
+  bootstrap.commitLessonScreenPrimeStudyTarget('en');
+  beginAccountGeneration('combined-other-owner');
+  beginAccountGeneration('combined-hide-reveal');
+  expect(bootstrap.isLessonScreenPrimeOriginScopeCurrent(newChild)).toBe(false);
+
+  const introBlock=findBlockContaining(source,tryNode.block,'const introShownRaw = await AsyncStorage.getItem(introKey);');
+  const introReadIndex=introBlock.body.findIndex((node:any)=>sliceNode(source,node).includes('const introShownRaw = await AsyncStorage.getItem'));
+  const introSegment=introBlock.body.slice(introReadIndex-1,introReadIndex+2).map((node:any)=>sliceNode(source,node)).join('\n');
+  const nonordinaryFactory=new Function(
+    'lessonIntroShownKey','lessonId','originTarget','AsyncStorage','originCurrent',
+    `return async function nonordinaryRead(){${introSegment}\nreturn 'published';}`,
+  );
+  const nonordinaryToken=captureAccountGeneration();
+  const nonordinaryRoot=bootstrap.captureLessonScreenPrimeOriginScope(nonordinaryToken,'en');
+  const nonordinaryChild=bootstrap.forkLessonScreenPrimeOriginScope(nonordinaryRoot);
+  let resolveRead:(value:string|null)=>void=()=>{};
+  const nonordinaryRun=nonordinaryFactory(
+    (_lesson:number,target:string)=>`intro:${target}`,1,'en',
+    {getItem:()=>new Promise<string|null>(resolve=>{resolveRead=resolve;})},
+    ()=>bootstrap.isLessonScreenPrimeOriginScopeCurrent(nonordinaryChild),
+  )();
+  bootstrap.disposeLessonScreenPrimeOriginScope(nonordinaryChild);
+  resolveRead(null);
+  await expect(nonordinaryRun).resolves.toBeUndefined();
+});
+
+test('durable completion resolution cannot publish unlock state after its opaque origin is revoked',async()=>{
+  const source=read('lesson1.tsx');
+  const completionBody=findVariableFunctionBody(source,'runLessonCompletionNavigation');
+  const block=findBlockContaining(source,completionBody,'const committed = await classicCommit;');
+  if(!block)throw new Error('durable completion block not found');
+  const committedIndex=block.body.findIndex((node:any)=>sliceNode(source,node).includes('const committed = await classicCommit;'));
+  const startIndex=committedIndex-1;
+  const unlockIndex=block.body.findIndex((node:any,index:number)=>index>committedIndex&&sliceNode(source,node).includes('didUnlock = committed.unlocked'));
+  const exactSegment=block.body.slice(startIndex,unlockIndex+1).map((node:any)=>sliceNode(source,node)).join('\n');
+  const factory=new Function(
+    'classicRuntime','classicIntent','completionOriginCurrent',
+    `return async function witness(){let classicCommit=null;let didUnlock=false;${exactSegment}\nreturn didUnlock;}`,
+  );
+  let current=true;
+  let resolveCommit:(value:{unlocked:boolean})=>void=()=>{};
+  const complete=jest.fn(()=>new Promise<{unlocked:boolean}>(resolve=>{resolveCommit=resolve;}));
+  const pending=factory({complete},{attempt:'attempt-A'},()=>current)();
+  expect(complete).toHaveBeenCalledTimes(1);
+  current=false;
+  resolveCommit({unlocked:true});
+  await expect(pending).resolves.toBeUndefined();
+
+  const navigateBody=findVariableFunctionBody(source,'navigate');
+  const waitIndex=navigateBody.body.findIndex((node:any)=>sliceNode(source,node).includes('await Promise.race'));
+  const postWaitFence=navigateBody.body.findIndex((node:any,index:number)=>
+    index>waitIndex&&node.type==='IfStatement'&&sliceNode(source,node).includes('!completionOriginCurrent()'),
+  );
+  const navigatePrefix=navigateBody.body.slice(0,postWaitFence+1).map((node:any)=>sliceNode(source,node)).join('\n');
+  const navigateFactory=new Function(
+    'completionOriginCurrent','resetShuffleForNextPass','lessonMistakeWritesRef',
+    `return async function navigateWitness(){${navigatePrefix}\nreturn 'navigated';}`,
+  );
+  let resolveMistake:()=>void=()=>{};
+  current=true;
+  const resetShuffle=jest.fn();
+  const navigating=navigateFactory(
+    ()=>current,resetShuffle,{current:[new Promise<void>(resolve=>{resolveMistake=resolve;})]},
+  )();
+  expect(resetShuffle).toHaveBeenCalledTimes(1);
+  current=false;
+  resolveMistake();
+  await expect(navigating).resolves.toBeUndefined();
+});
+
+test('awaited goNext write uses the opaque origin target and a stale continuation cannot touch the new owner',async()=>{
+  const source=read('lesson1.tsx');
+  const goNextBody=findVariableFunctionBody(source,'goNext');
+  const writeIndex=goNextBody.body.findIndex((node:any)=>
+    node.type==='TryStatement'&&sliceNode(source,node).includes('classicRuntime.writeProgress'),
+  );
+  const touchIndex=goNextBody.body.findIndex((node:any,index:number)=>
+    index>writeIndex&&sliceNode(source,node).includes('touchLessonScreenPrimed('),
+  );
+  const exactTail=goNextBody.body.slice(writeIndex,touchIndex+1).map((node:any)=>sliceNode(source,node)).join('\n');
+  const factory=new Function(
+    'ordinaryClassic','classicRuntime','lessonId','studyTarget','screenPrimeScope','serverAttemptIdRef',
+    '_currentProgress','progress','nextCell','AsyncStorage','CELL_KEY','DebugLogger',
+    'isLessonScreenPrimeOriginScopeCurrent','touchLessonScreenPrimed','lessonStorageId','phraseOrderRef','replayCell',
+    `return async function witness(){${exactTail}}`,
+  );
+  let resolveOld:()=>void=()=>{};
+  const oldWrite=jest.fn(()=>new Promise<void>(resolve=>{resolveOld=resolve;}));
+  const touch=jest.fn();
+  const oldScope={studyTarget:'en',current:true};
+  const oldRun=factory(
+    true,{writeProgress:oldWrite},1,'es',oldScope,{current:'attempt-A'},['correct'],['wrong'],2,
+    {setItem:jest.fn()},'cell',{error:jest.fn()},(scope:any)=>scope.current,touch,1,{current:[0,1]},null,
+  )();
+  expect(oldWrite).toHaveBeenCalledWith(1,'en','attempt-A',['correct'],2);
+  oldScope.current=false;
+
+  const newScope={studyTarget:'es',current:true};
+  const newWrite=jest.fn().mockResolvedValue(undefined);
+  await factory(
+    true,{writeProgress:newWrite},1,'en',newScope,{current:'attempt-B'},['wrong'],['empty'],3,
+    {setItem:jest.fn()},'cell',{error:jest.fn()},(scope:any)=>scope.current,touch,1,{current:[1,0]},null,
+  )();
+  expect(newWrite).toHaveBeenCalledWith(1,'es','attempt-B',['wrong'],3);
+  expect(touch).toHaveBeenCalledTimes(1);
+  expect(touch.mock.calls[0][2]).toBe(newScope);
+
+  resolveOld();
+  await oldRun;
+  expect(touch).toHaveBeenCalledTimes(1);
+});
+test('final completion commits before navigation and keeps retry on persistence failure',()=>{
+  const source=read('lesson1.tsx');
+  expect(source.includes('await classicCommit')).toBe(true);
+  expect(source.includes('classic_completion_retry')).toBe(true);
+  expect(source.indexOf('await classicCommit')).toBeLessThan(source.indexOf("pathname: '/lesson_complete'",source.indexOf('await classicCommit')));
+});
+test('result screen consumes durable receipt and never mutates medal/event',()=>{
+  const source=read('lesson_complete.tsx');expect(source.includes('readClassicCompletionResult(')).toBe(true);
+  expect(source.includes('const {canApply,data} = await resultRead;')).toBe(true);
+  expect(source.includes('await saveMedalProgress(')).toBe(false);expect(source.includes('submitProgressEvent({')).toBe(false);
+});
+
+test('root recovery remains first-frame deferred and leaves the audio outcome wiring present',async()=>{
+  const source=read('_layout.tsx');
+  const ast:any=parse(source,{sourceType:'module',plugins:['typescript','jsx']});
+  let effectClosure:any=null;
+  const visit=(node:any):void=>{
+    if(!node||typeof node!=='object'||effectClosure)return;
+    if(node.type==='CallExpression'&&node.callee?.type==='Identifier'&&node.callee.name==='useEffect'){
+      const text=sliceNode(source,node);
+      if(text.includes("'classic_completion_recovery'"))effectClosure=node.arguments[0];
+    }
+    for(const value of Object.values(node)){
+      if(Array.isArray(value))for(const child of value)visit(child);else visit(value);
+    }
+  };
+  visit(ast);
+  if(!effectClosure)throw new Error('classic completion recovery effect not found');
+  const exactClosure=sliceNode(source,effectClosure)
+    .replace("import('./classic_completion_runtime')",'loadRuntime()');
+  const makeEffect=new Function(
+    'ready','firstContentReady','appIsActive','accountGeneration','runAfterHomeFirstFrame',
+    'loadRuntime','noteSwallowedHandler',
+    `return (${exactClosure});`,
+  );
+  const scheduled:Function[]=[];
+  const cancel=jest.fn();
+  const runAfter=jest.fn((_label:string,callback:Function)=>{scheduled.push(callback);return cancel;});
+  const runtime={recover:jest.fn().mockResolvedValue(undefined),flush:jest.fn().mockResolvedValue(undefined)};
+  const classicCompletionRuntime=jest.fn(()=>runtime);
+  const token={phase:'active',stableId:'owner-A',generation:1};
+  const inactive=makeEffect(false,true,true,token,runAfter,()=>Promise.resolve({classicCompletionRuntime}),()=>jest.fn());
+  expect(inactive()).toBeUndefined();
+  expect(runAfter).not.toHaveBeenCalled();
+  const active=makeEffect(true,true,true,token,runAfter,()=>Promise.resolve({classicCompletionRuntime}),()=>jest.fn());
+  expect(active()).toBe(cancel);
+  expect(runAfter).toHaveBeenCalledWith('classic_completion_recovery',expect.any(Function),{holdDuringOnboarding:true});
+  await scheduled[0]();
+  expect(classicCompletionRuntime).toHaveBeenCalledWith(token);
+  expect(runtime.recover).toHaveBeenCalledTimes(1);
+  expect(runtime.flush).toHaveBeenCalledTimes(1);
+  expect(source).toMatch(/import \{ reportRootAudioModeOutcome \} from '\.\/audio_mode_outcome_diagnostics';/);
+  expect(source).toMatch(/\.then\(reportRootAudioModeOutcome\)/);
+});

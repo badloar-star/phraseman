@@ -1,0 +1,374 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { beginAccountGeneration,captureAccountGeneration } from '../app/account_generation';
+import { createClassicCompletionRuntime } from '../app/classic_completion_runtime';
+import { configurePhoneStateProgressCutover,trySubmitProgressThroughPhoneState,retryPendingPhoneStateProgressPublication } from '../app/phone_state_progress_cutover';
+import { createPersonalProgressApi } from '../modules/phone-state/domains/progress_api';
+import { createPersonalProgressReducer } from '../modules/phone-state/domains/progress_reducer';
+import { createReducerRegistry } from '../modules/phone-state/reducer_registry';
+import { createPhoneStateStore, type PhoneStateCommitFailpoint } from '../modules/phone-state/store';
+import { createMemoryPhoneStateDatabase } from '../modules/phone-state/testing/memory_database';
+import { lessonPassCountKey,lessonBestScoreKey,lessonBonusGrantedKey } from '../app/target_storage_keys';
+import { makeLessonServerAttemptId } from '../app/lesson_attempt_identity';
+import * as firstCompletion from '../app/lesson_bonus_grant';
+import { __progressEventsClientTestHooks } from '../app/progress_events_client';
+import { loadProductionProgressJournal } from './helpers/classic_phone_state_production_journal';
+import { bumpStatsDaily } from '../app/stats_daily_breakdown';
+import { trackFeatureSuccess } from '../app/app_activity';
+import { checkAchievements } from '../app/achievements';
+import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+import { touchStreakForToday } from '../app/hall_of_fame_utils';
+import { settlePracticeRuneEarningsToServer } from '../app/practice_rune_settlement';
+import * as runeEarnings from '../app/practice_rune_earnings';
+import { publishPersonalProgressProjection } from '../app/personal_progress_store';
+
+var networkCalls:Record<string,unknown>[]=[];
+jest.mock('../app/config',()=>({CLOUD_SYNC_ENABLED:true,IS_EXPO_GO:false}));
+jest.mock('../app/cloud_sync',()=>({ensureAnonUser:jest.fn()}));
+jest.mock('../app/user_id_policy',()=>({getCanonicalUserId:jest.fn(()=>{throw Error('unexpected_owner_lookup');})}));
+jest.mock('../app/remote_flags',()=>({getRemoteBool:(key:string)=>key==='phone_state_sync_enabled',getRemoteNumber:()=>100,assignPhoneStateCohort:()=>true}));
+jest.mock('../app/phone_state_health',()=>({isPhoneStateHealthCutoverAllowed:()=>true}));
+jest.mock('../app/personal_progress_store',()=>({publishPersonalProgressProjection:jest.fn()}));
+jest.mock('../app/phone_state_shadow_adapters',()=>({recordShadowProgressEvent:jest.fn()}));
+jest.mock('../app/medal_utils',()=>({invalidateMedalsCache:jest.fn()}));
+jest.mock('../app/accounts_v2_client_flag',()=>({captureAccountsV2OwnerUid:()=>null,produceAccountsV2ChangeIfEnabled:jest.fn()}));
+jest.mock('../app/app_health',()=>({logAppWarning:jest.fn()}));
+jest.mock('../app/stats_daily_breakdown',()=>({bumpStatsDaily:jest.fn(async()=>undefined)}));
+jest.mock('../app/app_activity',()=>({trackFeatureSuccess:jest.fn(async()=>undefined)}));
+jest.mock('../app/achievements',()=>({checkAchievements:jest.fn(async()=>undefined)}));
+jest.mock('../modules/today-tasks/today_tasks_store',()=>({recordTodayTaskActivity:jest.fn(async()=>undefined)}));
+jest.mock('../app/hall_of_fame_utils',()=>({touchStreakForToday:jest.fn(async()=>undefined)}));
+jest.mock('../app/practice_rune_settlement',()=>({settlePracticeRuneEarningsToServer:jest.fn(async()=>undefined)}));
+jest.mock('expo-crypto',()=>({CryptoDigestAlgorithm:{SHA256:'SHA256'},digestStringAsync:async(_algorithm:string,value:string)=>jest.requireActual<typeof import('node:crypto')>('node:crypto').createHash('sha256').update(value).digest('hex')}));
+jest.mock('@react-native-firebase/functions',()=>({getFunctions:()=>({}),httpsCallable:()=>async(event:Record<string,unknown>)=>{
+  networkCalls.push(JSON.parse(JSON.stringify(event)));
+  return {data:{ok:true,stableUid:event.stableId,eventId:event.eventId,type:event.type,streakCount:0,activeDate:'2026-11-01'}};
+}}));
+
+const productionJournal=loadProductionProgressJournal();
+const excluded=[bumpStatsDaily,trackFeatureSuccess,checkAchievements,recordTodayTaskActivity,touchStreakForToday,settlePracticeRuneEarningsToServer];
+let clock=1000;
+beforeEach(async()=>{
+  await AsyncStorage.clear();jest.clearAllMocks();networkCalls=[];
+  (publishPersonalProgressProjection as jest.Mock).mockImplementation(()=>undefined);
+  __progressEventsClientTestHooks.resetRuntimeState();clock=1000;
+  jest.spyOn(Date,'now').mockImplementation(()=>clock);
+});
+afterEach(()=>{configurePhoneStateProgressCutover(null);jest.restoreAllMocks();});
+
+async function fixture(phoneFailpoint?:PhoneStateCommitFailpoint){
+  const database=createMemoryPhoneStateDatabase({deviceId:'classic-en-device-1'});
+  const commits:{duplicate:boolean}[]=[];const errors:string[]=[];
+  let phoneRead!:jest.Mock;
+  let afterCommit:()=>void|Promise<void>=()=>undefined;
+  const attach=()=>{
+    const store=createPhoneStateStore({database,registry:createReducerRegistry([createPersonalProgressReducer()]),failpoint:phoneFailpoint});
+    const journal=productionJournal.create({context:{stableUid:'en-crash-owner',lineage:1},deviceId:'classic-en-device-1',store,triggerSync:jest.fn()});
+    phoneRead=jest.fn(journal.read);
+    configurePhoneStateProgressCutover(createPersonalProgressApi({journal:{
+      read:phoneRead,
+      commit:async (command,options)=>{try{const result=await journal.commit(command,options);commits.push({duplicate:result.duplicate});await afterCommit();return result;}catch(error){errors.push(String(error));throw error;}},
+    }}));
+  };
+  attach();
+  const token=beginAccountGeneration('en-crash-owner');const runtime=createClassicCompletionRuntime(token);
+  const attempt=await runtime.enter(1,'en');
+  const intent={target:'en',lessonId:1,attempt,successor:makeLessonServerAttemptId(),progress:Array(50).fill('correct'),score:5,nextLessonId:2,createdAt:1000,localDate:'2026-11-01',resultSnapshot:{total:50,finalCorrect:50,firstTryWrong:1}};
+  const restart=()=>{attach();return createClassicCompletionRuntime(beginAccountGeneration('en-crash-owner'));};
+  const state=async(prefix:string)=>{
+    const key=(await AsyncStorage.getAllKeys()).find(key=>key.startsWith(prefix));
+    return key?JSON.parse((await AsyncStorage.getItem(key))!):null;
+  };
+  return {runtime,token,intent,database,commits,errors,restart,state,phoneRead:()=>phoneRead,reconfigure:attach,onCommitted:(callback:()=>void|Promise<void>)=>{afterCommit=callback;},clearPhoneFailure:()=>{phoneFailpoint=undefined;}};
+}
+
+function failWrites(predicate:(key:string,value:string)=>boolean){
+  const setter=AsyncStorage.setItem as jest.Mock;
+  const original=setter.getMockImplementation()!;
+  setter.mockImplementation(async(key:string,value:string)=>{if(predicate(key,value))throw Error('injected_crash_boundary');return original(key,value);});
+  return ()=>setter.mockImplementation(original);
+}
+
+async function assertSingleFacts(f:Awaited<ReturnType<typeof fixture>>){
+  expect(await AsyncStorage.getItem(lessonPassCountKey(1,'en'))).toBe('1');
+  expect(await AsyncStorage.getItem(lessonBestScoreKey(1,'en'))).toBe('5');
+  const snapshot=f.database.snapshot();
+  expect(snapshot.operations).toHaveLength(1);
+  expect(snapshot.projections[0].state).toMatchObject({appliedEventIds:[`lesson:en:1:complete:${f.intent.attempt}`],projection:{completedLessons:['1']}});
+  expect(snapshot.outbox[0].operationCount).toBe(1);
+}
+
+test('EN PhoneState commit then Classic outbox failure: restart retains one projection/pass and the original pending event',async()=>{
+  const f=await fixture();
+  const restore=failWrites(key=>key.startsWith('classic_completion_outbox_v1:'));
+  try{await expect(f.runtime.complete(f.intent)).rejects.toThrow('injected_crash_boundary');}finally{restore();}
+  await assertSingleFacts(f);
+  expect(Object.values((await f.state('classic_completion_pending_v1:')).pending)).toHaveLength(1);
+  expect(await f.state('classic_completion_outbox_v1:')).toBeNull();
+  clock=2000;const restarted=f.restart();await restarted.recover();await restarted.complete(f.intent);
+  await assertSingleFacts(f);
+  const outbox=await f.state('classic_completion_outbox_v1:');
+  expect(outbox.pending).toHaveLength(1);
+  expect(outbox.pending[0]).toMatchObject({eventId:`lesson:en:1:complete:${f.intent.attempt}`,intent:{createdAt:1000,localDate:'2026-11-01',attempt:f.intent.attempt}});
+  expect(Object.values((await f.state('classic_completion_pending_v1:')).pending)).toHaveLength(0);
+  expect(await restarted.receipt(1,'en',f.intent.attempt)).toMatchObject({resultSnapshot:{total:50,finalCorrect:50,firstTryWrong:1}});
+  expect(networkCalls).toHaveLength(0);
+  // A distinct diagnostic below tests the swallowed PhoneState retry conflict.
+});
+
+test('EN admitted event before completion stage ACK: restart leaves one queue row and does not recount',async()=>{
+  const f=await fixture();
+  const restore=failWrites((key,value)=>key.startsWith('classic_completion_pending_v1:')&&Object.values(JSON.parse(value).pending).some(row=>(row as {stage:number}).stage===5));
+  try{await expect(f.runtime.complete(f.intent)).rejects.toThrow('injected_crash_boundary');}finally{restore();}
+  const before=await f.state('classic_completion_outbox_v1:');expect(before.pending).toHaveLength(1);
+  clock=2000;const restarted=f.restart();await restarted.recover();await restarted.complete(f.intent);
+  expect(await f.state('classic_completion_outbox_v1:')).toEqual(before);await assertSingleFacts(f);
+  expect(await restarted.receipt(1,'en',f.intent.attempt)).toMatchObject({passes:1,score:5});
+});
+
+test('EN server commit before durable dequeue: retry sends the exact event and removes pending only with saved transport receipt',async()=>{
+  const f=await fixture();await f.runtime.complete(f.intent);
+  const before=await f.state('classic_completion_outbox_v1:');
+  const restore=failWrites((key,value)=>key.startsWith('classic_completion_outbox_v1:')&&JSON.parse(value).pending.length===0);
+  try{await expect(f.runtime.flush()).rejects.toThrow('injected_crash_boundary');}finally{restore();}
+  expect(await f.state('classic_completion_outbox_v1:')).toEqual(before);
+  expect(networkCalls).toHaveLength(1);
+  clock=2000;const restarted=f.restart();await restarted.flush();await restarted.complete(f.intent);
+  expect(networkCalls).toHaveLength(2);expect(networkCalls[1]).toEqual(networkCalls[0]);
+  const after=await f.state('classic_completion_outbox_v1:');
+  expect(after.pending).toEqual([]);expect(after.delivered['en:1']).toMatchObject({eventId:before.pending[0].eventId,fingerprint:before.pending[0].fingerprint});
+  await assertSingleFacts(f);
+});
+
+test('runtime replay never invokes reward/analytics boundaries and the actual first-completion marker is written once',async()=>{
+  const f=await fixture();
+  const bonus=jest.spyOn(firstCompletion,'grantLessonFirstCompleteBonus');
+  const answerAward=jest.spyOn(runeEarnings,'awardPracticeRune');
+  const reward={lessonId:1,studyTarget:'en' as const,lang:'ru' as const};
+  expect(await firstCompletion.grantLessonFirstCompleteBonus(reward)).toEqual({status:'granted'});
+  const marker=lessonBonusGrantedKey(1,'en');
+  const beforeCalls=bonus.mock.calls.length;
+  const restore=failWrites((key,value)=>key.startsWith('classic_completion_pending_v1:')&&Object.values(JSON.parse(value).pending).some(row=>(row as {stage:number}).stage===5));
+  try{await expect(f.runtime.complete(f.intent)).rejects.toThrow('injected_crash_boundary');}finally{restore();}
+  clock=2000;const restarted=f.restart();await restarted.recover();await restarted.complete(f.intent);await restarted.recover();
+  expect(bonus).toHaveBeenCalledTimes(beforeCalls);
+  for(const spy of excluded)expect(spy).not.toHaveBeenCalled();
+  expect(answerAward).not.toHaveBeenCalled();
+  expect(await firstCompletion.grantLessonFirstCompleteBonus(reward)).toEqual({status:'already_granted'});
+  const writes=(AsyncStorage.setItem as jest.Mock).mock.calls.filter(([key])=>key===marker);
+  expect(writes).toHaveLength(1);expect(await AsyncStorage.getItem(marker)).toBe('1');
+  await assertSingleFacts(f);
+});
+
+test('changed retry clock preserves exact PhoneState idempotency acknowledgement',async()=>{
+  const f=await fixture();const restore=failWrites(key=>key.startsWith('classic_completion_outbox_v1:'));
+  try{await expect(f.runtime.complete(f.intent)).rejects.toThrow('injected_crash_boundary');}finally{restore();}
+  clock=2000;await f.restart().recover();
+  expect(f.errors).toEqual([]);
+  expect(f.commits).toEqual([{duplicate:false},{duplicate:true}]);
+});
+
+test('enabled EN PhoneState commit rejection leaves journal pending and recovery retries the real transaction',async()=>{
+  const f=await fixture('after_projection');
+  await expect(f.runtime.complete(f.intent)).rejects.toThrow('failpoint:after_projection');
+  expect(f.database.snapshot().operations).toHaveLength(0);
+  expect(await f.runtime.receipt(1,'en',f.intent.attempt)).toBeNull();
+  expect(Object.values((await f.state('classic_completion_pending_v1:')).pending)).toHaveLength(1);
+  expect(await f.state('classic_completion_outbox_v1:')).toBeNull();
+  f.clearPhoneFailure();clock=2000;const restarted=f.restart();await restarted.recover();
+  await assertSingleFacts(f);expect(await restarted.receipt(1,'en',f.intent.attempt)).toMatchObject({passes:1});
+});
+
+test('EN score5 is projected as bestPct100 by the actual PhoneState reducer',async()=>{
+  const f=await fixture();await f.runtime.complete(f.intent);
+  expect(f.database.snapshot().projections[0].state).toMatchObject({projection:{bestResults:{'lesson:1':100}}});
+});
+
+test('publisher failure after actual durable EN commit cannot block outbox/receipt; view refresh retries without recommit',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;
+  publisher.mockImplementation(()=>{throw Error('publisher_failed_after_commit');});
+  await expect(f.runtime.complete(f.intent)).resolves.toMatchObject({passes:1,resultSnapshot:{firstTryWrong:1}});
+  expect(await f.runtime.receipt(1,'en',f.intent.attempt)).toMatchObject({score:5,passes:1});
+  expect(Object.values((await f.state('classic_completion_pending_v1:')).pending)).toHaveLength(0);
+  expect((await f.state('classic_completion_outbox_v1:')).pending).toHaveLength(1);
+  await f.runtime.recover();await new Promise<void>(resolve=>setImmediate(resolve));
+  expect(f.commits).toEqual([{duplicate:false}]);expect(publisher.mock.calls.length).toBeGreaterThan(1);
+  publisher.mockImplementation(()=>undefined);
+  await f.runtime.recover();await new Promise<void>(resolve=>setImmediate(resolve));
+  const publishedCalls=publisher.mock.calls.length;
+  await f.runtime.recover();await new Promise<void>(resolve=>setImmediate(resolve));
+  expect(publisher).toHaveBeenCalledTimes(publishedCalls);expect(f.commits).toEqual([{duplicate:false}]);
+  for(const spy of excluded)expect(spy).not.toHaveBeenCalled();
+  await assertSingleFacts(f);expect(networkCalls).toHaveLength(0);
+});
+
+test('another genuine captured token in the same active generation may refresh without recommitting',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;publisher.mockImplementation(()=>{throw Error('observer_failed');});
+  await f.runtime.complete(f.intent);publisher.mockImplementation(()=>undefined);publisher.mockClear();
+  const secondToken=captureAccountGeneration();expect(secondToken).not.toBe(f.token);
+  await createClassicCompletionRuntime(secondToken).recover();await new Promise<void>(resolve=>setImmediate(resolve));
+  expect(publisher).toHaveBeenCalledTimes(1);expect(f.phoneRead()).toHaveBeenCalledTimes(1);expect(f.commits).toHaveLength(1);
+});
+
+test('wrong owner/generation/phase cannot consume the pending view refresh',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;publisher.mockImplementation(()=>{throw Error('observer_failed');});await f.runtime.complete(f.intent);
+  publisher.mockImplementation(()=>undefined);publisher.mockClear();
+  expect(await retryPendingPhoneStateProgressPublication('other-owner',f.token)).toBe(false);
+  expect(await retryPendingPhoneStateProgressPublication('en-crash-owner',{...f.token,generation:f.token.generation+1})).toBe(false);
+  expect(await retryPendingPhoneStateProgressPublication('en-crash-owner',{...f.token,phase:'transitioning'})).toBe(false);
+  expect(f.phoneRead()).not.toHaveBeenCalled();expect(publisher).not.toHaveBeenCalled();
+  expect(await retryPendingPhoneStateProgressPublication('en-crash-owner',f.token)).toBe(true);expect(f.commits).toHaveLength(1);
+});
+
+test('optional native refresh cannot hold recovery or publish stale A in B; one read stays in flight',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;publisher.mockImplementation(()=>{throw Error('observer_failed');});await f.runtime.complete(f.intent);
+  const read=f.phoneRead();const projection=await read.getMockImplementation()!();let release:(()=>void)|undefined;
+  read.mockImplementationOnce(()=>new Promise(resolve=>{release=()=>resolve(projection);}));publisher.mockImplementation(()=>undefined);publisher.mockClear();
+  let settled=false;const recovering=f.runtime.recover().then(()=>{settled=true;});for(let n=0;n<20&&!release;n++)await new Promise<void>(resolve=>setImmediate(resolve));
+  const settledBeforeRelease=settled;
+  const parallel=await retryPendingPhoneStateProgressPublication('en-crash-owner',f.token);
+  beginAccountGeneration('other-owner');release?.();await recovering;await new Promise<void>(resolve=>setImmediate(resolve));
+  expect(release).toBeDefined();expect(settledBeforeRelease).toBe(true);expect(parallel).toBe(false);
+  expect(read).toHaveBeenCalledTimes(1);expect(publisher).not.toHaveBeenCalled();expect(f.commits).toHaveLength(1);
+});
+
+test('API reconfiguration fences an already dispatched optional read before publication',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;publisher.mockImplementation(()=>{throw Error('observer_failed');});await f.runtime.complete(f.intent);
+  const read=f.phoneRead();const projection=await read.getMockImplementation()!();let release:(()=>void)|undefined;
+  read.mockImplementationOnce(()=>new Promise(resolve=>{release=()=>resolve(projection);}));publisher.mockImplementation(()=>undefined);publisher.mockClear();
+  const pending=retryPendingPhoneStateProgressPublication('en-crash-owner',f.token);for(let n=0;n<20&&!release;n++)await new Promise<void>(resolve=>setImmediate(resolve));
+  configurePhoneStateProgressCutover(null);release?.();expect(await pending).toBe(false);expect(publisher).not.toHaveBeenCalled();expect(f.commits).toHaveLength(1);
+});
+
+test('API reconfiguration during durable commit suppresses the abandoned API initial publication without cancelling ACK',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;
+  f.onCommitted(()=>{f.reconfigure();return undefined;});
+  await expect(f.runtime.complete(f.intent)).resolves.toMatchObject({passes:1,score:5});
+  expect(publisher).not.toHaveBeenCalled();expect(f.commits).toEqual([{duplicate:false}]);
+  expect((await f.state('classic_completion_outbox_v1:')).pending).toHaveLength(1);
+  expect(await f.runtime.receipt(1,'en',f.intent.attempt)).toMatchObject({passes:1});await assertSingleFacts(f);
+});
+
+test('reviewer API-A suspend then API-B publish then A resolve keeps only the new actual durable projection',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;let release:(()=>void)|undefined;
+  f.onCommitted(()=>new Promise<void>(resolve=>{release=resolve;}));
+  const options={requireDurableCommit:true as const,originalCreatedAtMs:1000,publicationScope:{token:f.token,isCurrent:()=>f.runtime.isCurrent()}};
+  const first=trySubmitProgressThroughPhoneState('en-crash-owner',{eventId:'api_a_event',type:'lesson_complete',payload:{lessonId:1,studyTarget:'en',bestPct:100}},options);
+  for(let n=0;n<20&&!release;n++)await new Promise<void>(resolve=>setImmediate(resolve));
+  f.onCommitted(()=>undefined);f.reconfigure();
+  try{
+    await trySubmitProgressThroughPhoneState('en-crash-owner',{eventId:'api_b_event',type:'lesson_complete',payload:{lessonId:2,studyTarget:'en',bestPct:80}},options);
+  }finally{release?.();}
+  const oldCommitted=await first;expect(oldCommitted?.completedLessons).toEqual(['1']);
+  expect(publisher.mock.calls.map(([projection])=>projection.completedLessons)).toEqual([['1','2']]);
+  expect(f.commits).toHaveLength(2);expect(f.database.snapshot().operations).toHaveLength(2);
+  expect(await retryPendingPhoneStateProgressPublication('en-crash-owner',f.token)).toBe(false);expect(f.phoneRead()).not.toHaveBeenCalled();
+});
+
+test('refresh read failure retains retryable publication without recommitting the completion',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;publisher.mockImplementation(()=>{throw Error('observer_failed');});await f.runtime.complete(f.intent);
+  publisher.mockImplementation(()=>undefined);publisher.mockClear();f.phoneRead().mockRejectedValueOnce(Error('view_read_failed'));
+  expect(await retryPendingPhoneStateProgressPublication('en-crash-owner',f.token)).toBe(false);
+  expect(await retryPendingPhoneStateProgressPublication('en-crash-owner',f.token)).toBe(true);
+  expect(publisher).toHaveBeenCalledTimes(1);expect(f.commits).toHaveLength(1);await assertSingleFacts(f);
+});
+
+test('a newer successful publication supersedes the old in-flight refresh',async()=>{
+  const f=await fixture();const publisher=publishPersonalProgressProjection as jest.Mock;publisher.mockImplementation(()=>{throw Error('observer_failed');});await f.runtime.complete(f.intent);
+  const read=f.phoneRead();const projection=await read.getMockImplementation()!();let release:(()=>void)|undefined;
+  read.mockImplementationOnce(()=>new Promise(resolve=>{release=()=>resolve(projection);}));publisher.mockImplementation(()=>undefined);publisher.mockClear();
+  const pending=retryPendingPhoneStateProgressPublication('en-crash-owner',f.token);for(let n=0;n<20&&!release;n++)await new Promise<void>(resolve=>setImmediate(resolve));
+  await f.runtime.complete({...f.intent,attempt:f.intent.successor,successor:makeLessonServerAttemptId(),createdAt:2000});
+  release?.();expect(await pending).toBe(false);expect(publisher).toHaveBeenCalledTimes(1);expect(f.commits).toHaveLength(2);
+});
+
+test('EN score4.5 is projected as bestPct90 without a perfect-pass increase',async()=>{
+  const f=await fixture();await f.runtime.complete({...f.intent,score:4.5,progress:[...Array(45).fill('correct'),...Array(5).fill('wrong')],resultSnapshot:{total:50,finalCorrect:45,firstTryWrong:5}});
+  expect(f.database.snapshot().projections[0].state).toMatchObject({projection:{bestResults:{'lesson:1':90}}});
+  expect(await AsyncStorage.getItem(lessonPassCountKey(1,'en'))).toBe('0');
+});
+
+test.each(['target','score','time'] as const)('same attempt with changed %s fails without rewriting its committed facts',async field=>{
+  const f=await fixture();await f.runtime.complete(f.intent);
+  const original=f.database.snapshot();const outbox=await f.state('classic_completion_outbox_v1:');
+  const changed=field==='target'?{...f.intent,target:'de'}:field==='score'?{...f.intent,score:4.5,progress:[...Array(45).fill('correct'),...Array(5).fill('wrong')]}:{...f.intent,createdAt:2000};
+  await expect(f.runtime.complete(changed)).rejects.toThrow();
+  expect(f.database.snapshot()).toEqual(original);expect(await f.state('classic_completion_outbox_v1:')).toEqual(outbox);await assertSingleFacts(f);
+});
+
+test.each([{bestPct:90,originalCreatedAtMs:1000},{bestPct:100,originalCreatedAtMs:2000}])('PhoneState full fingerprint rejects changed semantics/time: %j',async changed=>{
+  const f=await fixture();await f.runtime.complete(f.intent);const before=f.database.snapshot();
+  await expect(trySubmitProgressThroughPhoneState('en-crash-owner',{eventId:`lesson:en:1:complete:${f.intent.attempt}`,type:'lesson_complete',payload:{lessonId:1,studyTarget:'en',bestPct:changed.bestPct}},{requireDurableCommit:true,originalCreatedAtMs:changed.originalCreatedAtMs})).rejects.toThrow('phone_state_operation_id_reused');
+  expect(f.database.snapshot()).toEqual(before);
+});
+
+test('outbox write succeeds but read-back rejects: no receipt until exact durable admission can be verified',async()=>{
+  const f=await fixture();const getter=AsyncStorage.getItem as jest.Mock;const original=getter.getMockImplementation()!;
+  getter.mockImplementation(async(key:string)=>{
+    const value=await original(key);
+    if(key.startsWith('classic_completion_outbox_v1:')&&value!==null)throw Error('readback_unavailable');
+    return value;
+  });
+  try{await expect(f.runtime.complete(f.intent)).rejects.toThrow('readback_unavailable');}finally{getter.mockImplementation(original);}
+  expect(await f.runtime.receipt(1,'en',f.intent.attempt)).toBeNull();
+  const before=await f.state('classic_completion_outbox_v1:');expect(before.pending).toHaveLength(1);
+  clock=2000;const restarted=f.restart();await restarted.recover();
+  expect(await f.state('classic_completion_outbox_v1:')).toEqual(before);await assertSingleFacts(f);
+  expect(f.errors).toEqual([]);
+});
+
+test('stale A recovery cannot retry PhoneState or mutate pending after B activation',async()=>{
+  const f=await fixture();const restore=failWrites(key=>key.startsWith('classic_completion_outbox_v1:'));
+  try{await expect(f.runtime.complete(f.intent)).rejects.toThrow('injected_crash_boundary');}finally{restore();}
+  const pending=await f.state('classic_completion_pending_v1:');const phone=f.database.snapshot();
+  beginAccountGeneration('en-other-owner');
+  await expect(f.runtime.recover()).rejects.toThrow('owner_stale');
+  expect(await f.state('classic_completion_pending_v1:')).toEqual(pending);expect(f.database.snapshot()).toEqual(phone);
+  expect(f.commits).toHaveLength(1);expect(networkCalls).toHaveLength(0);
+});
+
+test('original time is journal metadata only; legacy calls retain their current-clock behavior',async()=>{
+  const database=createMemoryPhoneStateDatabase({deviceId:'metadata-device-1'});
+  const actualStore=createPhoneStateStore({database,registry:createReducerRegistry([createPersonalProgressReducer()])});
+  const operations:Parameters<typeof actualStore.commit>[0][]=[];
+  const store={...actualStore,commit:async(operation:Parameters<typeof actualStore.commit>[0],options?:Parameters<typeof actualStore.commit>[1])=>{operations.push(operation);return actualStore.commit(operation,options);}};
+  const api=createPersonalProgressApi({journal:productionJournal.create({context:{stableUid:'metadata-owner',lineage:1},deviceId:'metadata-device-1',store,triggerSync:jest.fn()})});
+  const input={eventId:'metadata-event-1',lessonId:'1',bestPct:100};
+  clock=2000;await api.completeLesson(input,{originalCreatedAtMs:1000});
+  clock=3000;await api.completeLesson(input,{originalCreatedAtMs:1000});
+  expect(operations[0].createdAtMs).toBe(1000);expect(operations[1]).toEqual(operations[0]);
+  expect(operations[0].payload).toEqual({kind:'complete_lesson',...input});expect(operations[0].exactResult).toEqual({imported:true});
+  const legacy={...input,eventId:'legacy-event'};await api.completeLesson(legacy);
+  expect(operations.at(-1)?.createdAtMs).toBe(3000);
+  clock=4000;await expect(api.completeLesson(legacy)).rejects.toThrow('phone_state_operation_id_reused');
+  expect(database.snapshot().operations).toHaveLength(2);
+});
+
+test.each([-1,1.5,Number.NaN,Number.MAX_SAFE_INTEGER+1])('invalid original time %s rejects before a PhoneState transaction',async originalCreatedAtMs=>{
+  const f=await fixture();
+  await expect(trySubmitProgressThroughPhoneState('en-crash-owner',{eventId:'invalid-time',type:'lesson_complete',payload:{lessonId:1,studyTarget:'en',bestPct:100}},{requireDurableCommit:true,originalCreatedAtMs})).rejects.toThrow('phone_state_progress_input_invalid');
+  expect(f.database.snapshot().operations).toHaveLength(0);expect(f.commits).toHaveLength(0);
+});
+
+test('legacy completeLesson captures a metadata getter once before validation and journal admission',async()=>{
+  const commit=jest.fn().mockResolvedValue({projection:{},duplicate:false});
+  const api=createPersonalProgressApi({journal:{commit,read:jest.fn().mockResolvedValue({})} as any});
+  let reads=0;
+  const metadata=Object.defineProperty({},'originalCreatedAtMs',{
+    enumerable:true,
+    get:()=>{reads+=1;return reads<3?123:Number.NaN;},
+  });
+  await api.completeLesson({eventId:'metadata-getter-once',lessonId:'1',bestPct:100},metadata as any);
+  expect(reads).toBe(1);
+  expect(commit).toHaveBeenCalledTimes(1);
+  expect(commit.mock.calls[0][1]).toEqual({originalCreatedAtMs:123});
+
+  let invalidReads=0;
+  const invalidMetadata=Object.defineProperty({},'originalCreatedAtMs',{
+    enumerable:true,
+    get:()=>{invalidReads+=1;return invalidReads===1?Number.NaN:123;},
+  });
+  await expect(api.completeLesson({eventId:'metadata-getter-invalid',lessonId:'1'},invalidMetadata as any))
+    .rejects.toThrow('phone_state_progress_input_invalid');
+  expect(invalidReads).toBe(1);
+  expect(commit).toHaveBeenCalledTimes(1);
+});

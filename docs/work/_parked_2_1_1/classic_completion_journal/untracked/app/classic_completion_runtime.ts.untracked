@@ -1,0 +1,87 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from './account_generation';
+import { withStorageLock } from './storage_mutex';
+import { createClassicCompletionJournal, type CompletionIntent, type CompletionReceipt } from './classic_completion_journal_engine';
+import { createClassicCompletionOutbox } from './classic_completion_outbox';
+import { deriveLocalOfflineProgressAccountScopeHash } from '../modules/learning-v2/progress/progress_account_scope';
+import { lessonProgressKey,lessonSessionKey,lessonBestScoreKey,lessonPassCountKey,masteryFinishedOnceKey,unlockedLessonsKey } from './target_storage_keys';
+import { LEARNING_LANGUAGE_TARGETS } from './learning_language_contour';
+import { normalizeLessonServerAttemptId,makeLessonServerAttemptId } from './lesson_attempt_identity';
+import { invalidateMedalsCache } from './medal_utils';
+import { captureAccountsV2OwnerUid,produceAccountsV2ChangeIfEnabled } from './accounts_v2_client_flag';
+import { lessonScoreMeetsPercent,LESSON_UNLOCK_PERCENT } from './lesson_star_scale';
+import { trySubmitProgressThroughPhoneState,retryPendingPhoneStateProgressPublication } from './phone_state_progress_cutover';
+import { submitAdmittedClassicProgressEvent } from './progress_events_client';
+
+export function createClassicCompletionRuntime(token:AccountGenerationToken) {
+  const stableId=token.stableId;
+  const owner=stableId ? deriveLocalOfflineProgressAccountScopeHash(stableId) : '';
+  const v2Owner=captureAccountsV2OwnerUid();
+  const current=()=>{if(token.phase!=='active'||!stableId||!isCurrentAccountGeneration(token,stableId))throw Error('classic_completion_owner_stale');};
+  const validateScope=(id:number,target:string)=>{if(!Number.isInteger(id)||id<1||id>32||!(LEARNING_LANGUAGE_TARGETS as readonly string[]).includes(target))throw Error('classic_completion_scope_invalid');};
+  const locked=<T>(work:()=>Promise<T>)=>withAccountTransitionLock(async()=>{
+    current();return withStorageLock(async()=>{current();const result=await work();current();return result;});
+  });
+  const outbox=createClassicCompletionOutbox({owner,current:()=>{try{current();return true;}catch{return false;}},storage:AsyncStorage,locked,
+    transport:event=>submitAdmittedClassicProgressEvent(event,token)});
+  const engine=createClassicCompletionJournal({owner,storeScope:AsyncStorage,storage:AsyncStorage,locked,
+    isCurrent:()=>{try{current();return true;}catch{return false;}},
+    keys:(target,id)=>({attempt:lessonSessionKey(id,'serverAttemptId',target),progress:lessonProgressKey(id,target),cell:lessonSessionKey(id,'cellIndex',target),best:lessonBestScoreKey(id,target),passes:lessonPassCountKey(id,target),finished:masteryFinishedOnceKey(id,target),unlocks:unlockedLessonsKey(target)}),
+    enqueue:async event=>{
+      // PhoneState has a durable event-ID journal. Account ownership remains held
+      // until the dispatched local transaction settles; no queue/network work here.
+      if(event.intent.target==='en')await withAccountTransitionLock(async()=>{
+        current();await trySubmitProgressThroughPhoneState(stableId,{eventId:event.eventId,type:'lesson_complete',payload:{lessonId:event.intent.lessonId,studyTarget:event.intent.target,bestPct:event.intent.score*20}}, {requireDurableCommit:true,originalCreatedAtMs:event.intent.createdAt,publicationScope:{token,isCurrent:()=>{try{current();return true;}catch{return false;}}}});current();
+      });
+      return outbox.admit(event);
+    },
+    medalChanged:(intent,plan)=>{
+      invalidateMedalsCache();
+      if(plan.best>plan.previousBest){
+        // Existing domain planner compares its durable entity mirror and emits
+        // zero operations for an equal best result (planLesson: lesson_not_better).
+        produceAccountsV2ChangeIfEnabled(v2Owner,()=>({kind:'lesson_result',target:intent.target,lessonId:intent.lessonId,score:plan.best,passed:lessonScoreMeetsPercent(plan.best,LESSON_UNLOCK_PERCENT)}));
+      }
+    },
+  });
+  const recoverScope=async(id:number,target:string)=>{
+    current();validateScope(id,target);
+    for(const pending of await engine.pending())if(pending.lessonId===id&&pending.target===target)await engine.complete(pending);
+  };
+  const strictPut=async(key:string,value:string)=>{
+    current();try{await AsyncStorage.setItem(key,value);}catch(error){if(await AsyncStorage.getItem(key)!==value)throw error;}
+    if(await AsyncStorage.getItem(key)!==value)throw Error('classic_completion_storage_indeterminate');current();
+  };
+  return {
+    owner,
+    isCurrent:()=>{try{current();return true;}catch{return false;}},
+    receipt:(id:number,target:string,attempt:string)=>{validateScope(id,target);return engine.receipt(target,id,attempt);},
+    enter:async(id:number,target:string):Promise<string>=>{
+      await recoverScope(id,target);
+      return locked(async()=>{
+        const key=lessonSessionKey(id,'serverAttemptId',target);const raw=await AsyncStorage.getItem(key);
+        const existing=normalizeLessonServerAttemptId(raw);if(existing)return existing;
+        if(raw!==null)throw Error('classic_completion_attempt_invalid');
+        const attempt=makeLessonServerAttemptId();await strictPut(key,attempt);return attempt;
+      });
+    },
+    complete:(i:Omit<CompletionIntent,'owner'>):Promise<CompletionReceipt>=>engine.complete({...i,owner}),
+    writeProgress:async(id:number,target:string,attempt:string,progress:readonly string[],cell:number):Promise<void>=>{
+      validateScope(id,target);const saved=JSON.stringify(progress);
+      await locked(async()=>{
+        if(await AsyncStorage.getItem(lessonSessionKey(id,'serverAttemptId',target))!==attempt)throw Error('classic_completion_stale_attempt');
+        await strictPut(lessonProgressKey(id,target),saved);await strictPut(lessonSessionKey(id,'cellIndex',target),String(cell));
+      });
+    },
+    recover:async()=>{await engine.recover();void retryPendingPhoneStateProgressPublication(stableId!,token);},
+    flush:()=>outbox.drain(),
+  };
+}
+
+export type ClassicCompletionRuntime=ReturnType<typeof createClassicCompletionRuntime>;
+let cached:{token:AccountGenerationToken;runtime:ClassicCompletionRuntime}|null=null;
+export function classicCompletionRuntime(token=captureAccountGeneration()):ClassicCompletionRuntime{
+  if(token.phase!=='active'||!token.stableId||!isCurrentAccountGeneration(token,token.stableId))throw Error('classic_completion_owner_stale');
+  if(cached&&cached.token.generation===token.generation&&cached.token.stableId===token.stableId&&cached.token.phase===token.phase)return cached.runtime;
+  const runtime=createClassicCompletionRuntime(token);cached={token,runtime};return runtime;
+}

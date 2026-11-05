@@ -1,0 +1,41 @@
+import { createClassicCompletionOutbox } from '../app/classic_completion_outbox';
+import type { CompletionEvent } from '../app/classic_completion_journal_engine';
+import { hashCanonicalBody } from '../modules/learning-v2/policies/decision_registry';
+
+const event: CompletionEvent = { owner: 'a'.repeat(64), eventId: 'lesson:en:1:complete:attempt_a', fingerprint: 'b'.repeat(64), intent: { owner: 'a'.repeat(64), target: 'en', lessonId: 1, attempt: 'attempt_a', successor: 'attempt_b', progress: ['correct'], score: 5, createdAt: 1000, localDate: '2026-11-02', nextLessonId: 2 } };
+const validEvent: CompletionEvent = { ...event, fingerprint: hashCanonicalBody(event.intent) };
+function fixture() {
+  let raw: string | null = null; let current = true; let locked = false;
+  let release!: () => void;
+  const transport = jest.fn(async (_event:CompletionEvent) => { expect(locked).toBe(false); await new Promise<void>(resolve => { release = resolve; }); });
+  const storage = { getItem: async () => raw, setItem: async (_key: string, value: string) => { raw = value; } };
+  const ports = { owner: event.owner, current: () => current, storage,
+    locked: async <T>(work: () => Promise<T>) => { locked = true; try { return await work(); } finally { locked = false; } }, transport };
+  return { ports, outbox: createClassicCompletionOutbox(ports), transport, release: () => release(), switchOwner: () => { current = false; }, raw: () => raw };
+}
+test('durable admit never waits on a preexisting transport', async () => {
+  const f = fixture(); await f.outbox.admit(validEvent); const drain = f.outbox.drain();
+  await new Promise<void>(resolve => setImmediate(resolve)); expect(f.transport).toHaveBeenCalledTimes(1);
+  await expect(f.outbox.admit(validEvent)).resolves.toEqual({ owner: validEvent.owner, eventId: validEvent.eventId, fingerprint: validEvent.fingerprint });
+  f.release(); await drain;
+});
+test('transport-removal receipt proves admission after flush race', async () => {
+  const f = fixture(); await f.outbox.admit(validEvent); const drain = f.outbox.drain(); await new Promise<void>(resolve => setImmediate(resolve));
+  f.release(); await drain; const raw = f.raw(); await f.outbox.admit(validEvent); expect(f.raw()).toBe(raw);
+});
+test('foreign owner or stale token cannot admit', async () => {
+  const f = fixture(); f.switchOwner(); await expect(f.outbox.admit(validEvent)).rejects.toThrow('owner_stale'); expect(f.raw()).toBeNull();
+});
+test('write rejection leaves no acknowledgment', async () => {
+  const f = fixture(); f.ports.storage.setItem = async () => { throw Error('storage_rejected'); };
+  await expect(f.outbox.admit(validEvent)).rejects.toThrow('storage_rejected'); expect(f.raw()).toBeNull();
+});
+test('unsupported target stays pending while supported delivery and later exact drain continue',async()=>{
+  const f=fixture();const deIntent={...validEvent.intent,target:'de'};
+  const deEvent={...validEvent,eventId:'lesson:de:1:complete:attempt_a',intent:deIntent,fingerprint:hashCanonicalBody(deIntent)};
+  await f.outbox.admit(deEvent);await f.outbox.admit(validEvent);
+  f.transport.mockImplementation(async e=>{if(e.intent.target==='de')throw Error('progress_transport_target_unavailable');});
+  await f.outbox.drain();const held=JSON.parse(f.raw()!);expect(held.pending).toEqual([deEvent]);expect(held.delivered['en:1'].eventId).toBe(validEvent.eventId);
+  f.transport.mockResolvedValue(undefined);await f.outbox.drain();expect(JSON.parse(f.raw()!).pending).toHaveLength(0);
+  expect(f.transport.mock.calls.at(-1)?.[0]).toEqual(deEvent);
+});

@@ -1,0 +1,22 @@
+import { captureClassicCompletionResultSnapshot } from '../app/classic_completion_result_snapshot';
+import { beginLessonRunErrors,peekLessonRunMissCount } from '../app/lesson_run_errors_memory';
+import fs from 'node:fs';
+import path from 'node:path';
+
+test('current A signals preserve one corrected miss while remembered cache is empty',()=>{
+  beginLessonRunErrors(1);expect(peekLessonRunMissCount(1)).toBe(0);
+  const signals=[{phrase:'same question',phraseId:'q1'},{phrase:'same question',phraseId:'q1'}];
+  const captured=captureClassicCompletionResultSnapshot(Array(50).fill('correct'),signals);
+  signals.push({phrase:'later B question',phraseId:'q2'});
+  expect(captured).toEqual({total:50,finalCorrect:50,firstTryWrong:1});expect(Object.isFrozen(captured)).toBe(true);
+});
+test('capture preserves the existing first-try formula for 20 final answers and 32 distinct misses',()=>{
+  const signals=Array.from({length:32},(_value,index)=>({phrase:`question${index}`}));
+  expect(captureClassicCompletionResultSnapshot([...Array(20).fill('correct'),...Array(30).fill('wrong')],signals)).toEqual({total:50,finalCorrect:20,firstTryWrong:32});
+});
+test('lesson captures current A ref once before completion awaits and fingerprints that same snapshot',()=>{
+  const source=fs.readFileSync(path.join(process.cwd(),'app/lesson1.tsx'),'utf8');
+  const capture=source.indexOf('const completionResultSnapshot = ordinaryClassic ? captureClassicCompletionResultSnapshot(np,lessonWrongMistakesRef.current)');
+  expect(capture).toBeGreaterThan(-1);expect(capture).toBeLessThan(source.indexOf('const noLimits = await isTesterNoLimitsActive();',capture));
+  expect(source.includes('resultSnapshot:completionResultSnapshot!')).toBe(true);
+});

@@ -1,0 +1,146 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import ts from 'typescript';
+import { lessonFirstTryCountsFromTotals } from '../app/lesson_first_try_counts';
+
+// Execute verbatim effect expressions and their preceding local declarations.
+// This is closure instrumentation, not a mounted/full-component UI test.
+const file=process.env.CLASSIC_RESULT_SOURCE_FILE ?? path.join(process.cwd(),'app/lesson_complete.tsx');
+const source=fs.readFileSync(file,'utf8');
+const ast=ts.createSourceFile(file,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
+let effect:ts.ArrowFunction|undefined;
+let canApplyExpression:string|undefined;
+function visit(node:ts.Node):void{
+  if(ts.isVariableDeclaration(node)&&node.name.getText(ast)==='canApplyCompletionRewards'&&node.initializer&&ts.isCallExpression(node.initializer))canApplyExpression=node.initializer.arguments[0].getText(ast);
+  if(ts.isCallExpression(node)&&ts.isIdentifier(node.expression)&&node.expression.text==='useEffect'&&node.arguments[0]?.getText(ast).includes('lesson_complete:completionReceipt')&&ts.isArrowFunction(node.arguments[0]))effect=node.arguments[0];
+  ts.forEachChild(node,visit);
+}
+visit(ast);
+if(!effect||!ts.isBlock(effect.body))throw Error('result_effect_not_found');
+const statements=effect.body.statements;
+const isAsyncExpression=(node:ts.Statement)=>ts.isExpressionStatement(node)&&ts.isVoidExpression(node.expression);
+const expressions=statements.filter(isAsyncExpression).map(node=>(node as ts.ExpressionStatement).expression as ts.VoidExpression).map(node=>node.expression.getText(ast));
+const prefix=statements.slice(0,statements.findIndex(isAsyncExpression)).map(node=>node.getText(ast)).join('\n');
+if(expressions.length!==2)throw Error('result_effect_shape_changed');
+
+function fixture(overrides:Record<string,unknown>={}){
+  const state={xpReady:false,resultsReady:false,score:null as number|null,counts:null as {correct:number;wrong:number}|null,tierInputs:[] as number[],unlocked:false,exits:0,grants:0,diagnostics:0};
+  const no=()=>undefined;
+  const storageRead=jest.fn(async()=>JSON.stringify(Array(50).fill('correct')));
+  const globals={
+    canApplyCompletionRewards:async()=>true,frenchStudyActive:()=>false,isComboCompletion:false,isWorkshopCompletion:false,journalBackedCompletion:true,
+    completionAttemptProvided:true,normalizedCompletedAttemptId:'attempt_a',isCompletionOriginCurrent:()=>true,
+    lessonId:1,studyTarget:'en',completionAttemptId:'attempt_a',router:{},COMPLETE_TO_LESSONS_TAB:'lessons',markNextNavigationAsReplace:no,
+    dismissToTabRoute:()=>{state.exits++;},
+    classicRuntime:{owner:'a'.repeat(64),isCurrent:()=>true,receipt:async()=>({owner:'a'.repeat(64),target:'en',lessonId:1,attempt:'attempt_a',successor:'attempt_b',score:2,passes:1,unlocked:false,previousBest:1,resultSnapshot:{total:50,finalCorrect:20,firstTryWrong:32}})},
+    grantBonus:async()=>{state.grants++;},noteSwallowedHandler:()=>()=>{state.diagnostics++;},noteSwallowedAs:(_name:string,fallback:unknown)=>()=>fallback,
+    setCompletionXpReady:(value:boolean)=>{state.xpReady=value;},setResultsReady:(value:boolean)=>{state.resultsReady=value;},setLessonScore:(value:number)=>{state.score=value;},
+    AsyncStorage:{getItem:storageRead},lessonProgressKey:()=> 'progress',loadMedalInfo:async()=>({tier:'bronze',bestScore:2,passCount:1}),
+    loadMedalInfoStrict:async()=>({tier:'bronze',bestScore:2,passCount:1}),
+    readClassicCompletionResult:(input:unknown)=>require('../app/classic_completion_result_reader').readClassicCompletionResult(input),
+    params:{previousBestScore:'2',unlocked:'0'},parseRouteLessonResult:()=>null,
+    setLessonCounts:(value:{correct:number;wrong:number}|null)=>{state.counts=value;},setMedalTier:no,setMedalImproved:no,setCompletionDidUnlock:(value:boolean)=>{state.unlocked=value;},DebugLogger:{info:no,warn:no},console:{log:no,warn:no},
+    peekLessonRunMissCount:()=>0,peekLessonRunErrors:()=>[],lessonFirstTryCountsFromProgress:()=>({correct:50,wrong:0}),lessonFirstTryCountsFromTotals,
+    getMedalTier:(score:number)=>{state.tierInputs.push(score);return 'none';},checkAchievements:async()=>undefined,requiresPremiumForLesson:()=>false,shouldAnnounceNextLessonUnlock:()=>false,
+    tryUnlockLevelExam:async()=>null,tryUnlockLingmanExam:async()=>false,checkGemAchievements:async()=>[],...overrides,
+  };
+  return {state,globals,storageRead};
+}
+async function run(index:number,globals:Record<string,unknown>){
+  const compiled=ts.transpileModule(`module.exports=(function(){${prefix}\nreturn (${expressions[index]});})();`,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;
+  const module={exports:undefined as unknown};vm.runInNewContext(compiled,{...globals,module,exports:{}});await module.exports;
+  await new Promise<void>(resolve=>setImmediate(resolve));
+}
+async function runBoth(globals:Record<string,unknown>){
+  const compiled=ts.transpileModule(`module.exports=(function(){${prefix}\nreturn Promise.all([(${expressions[0]}),(${expressions[1]})]);})();`,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;
+  const module={exports:undefined as unknown};vm.runInNewContext(compiled,{...globals,module,exports:{}});await module.exports;
+  await new Promise<void>(resolve=>setImmediate(resolve));
+}
+function actualCanApply(globals:Record<string,unknown>):()=>Promise<boolean>{
+  if(!canApplyExpression)throw Error('canApplyCompletionRewards_not_found');
+  const compiled=ts.transpileModule(`module.exports=(${canApplyExpression});`,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;
+  const module={exports:undefined as unknown};vm.runInNewContext(compiled,{...globals,module,exports:{}});return module.exports as ()=>Promise<boolean>;
+}
+
+test('receipt read failure finishes the reward readiness gate and exits through the existing lessons route without granting',async()=>{
+  const f=fixture({classicRuntime:{receipt:async()=>{throw Error('receipt_read_failed');}}});
+  await run(0,f.globals);expect(f.state).toMatchObject({xpReady:true,exits:1,grants:0});
+});
+test('result receipt read failure is handled without publishing a result or leaving the route pending',async()=>{
+  const f=fixture({classicRuntime:{receipt:async()=>{throw Error('receipt_read_failed');}}});
+  await run(1,f.globals);expect(f.state).toMatchObject({resultsReady:false,exits:1,grants:0,score:null});
+});
+test('receipt A score2 is authoritative when successor B live progress scores5',async()=>{
+  const f=fixture();await run(1,f.globals);expect(f.state).toMatchObject({resultsReady:true,score:2,exits:0});expect(f.storageRead).not.toHaveBeenCalled();
+});
+test('legacy progress read failure is caught by the outer result boundary and exits without a false success',async()=>{
+  const f=fixture({journalBackedCompletion:false,completionAttemptProvided:false,normalizedCompletedAttemptId:null,classicRuntime:{receipt:async()=>null},AsyncStorage:{getItem:async()=>{throw Error('progress_read_failed');}}});
+  await run(1,f.globals);expect(f.state).toMatchObject({resultsReady:false,exits:1,score:null});
+});
+test('an explicit completed attempt with no matching durable receipt cannot show successor progress as success',async()=>{
+  const f=fixture({classicRuntime:{receipt:async()=>null}});await run(1,f.globals);expect(f.state).toMatchObject({resultsReady:false,exits:1,score:null});
+});
+
+test('durable first-try snapshot remains available with no route counts and never successor B error cache',async()=>{
+  const f=fixture({params:{},peekLessonRunMissCount:()=>0});
+  await run(1,f.globals);expect(f.state.counts).toEqual({correct:18,wrong:32});expect(f.storageRead).not.toHaveBeenCalled();
+});
+test('corrected first-try miss survives without route metadata or remembered errors',async()=>{
+  const f=fixture({params:{},peekLessonRunMissCount:()=>0,classicRuntime:{owner:'a'.repeat(64),receipt:async()=>({owner:'a'.repeat(64),target:'en',lessonId:1,attempt:'attempt_a',successor:'attempt_b',score:5,passes:1,unlocked:false,previousBest:2,resultSnapshot:{total:50,finalCorrect:50,firstTryWrong:1}})}});
+  await run(1,f.globals);expect(f.state).toMatchObject({score:5,counts:{correct:49,wrong:1},resultsReady:true});
+});
+test('mismatched route counts are rejected instead of being mixed with A receipt',async()=>{
+  const f=fixture({params:{resultCorrect:'50',resultTotal:'50'}});await runBoth(f.globals);expect(f.state).toMatchObject({score:null,resultsReady:false,grants:0,exits:1});
+});
+test('one validated read is shared before grant and result publication when a required medal read fails',async()=>{
+  let release!:()=>void;
+  const read=()=>new Promise<never>((_resolve,reject)=>{release=()=>reject(Error('required_medal_read_failed'));});
+  const f=fixture({loadMedalInfo:read,loadMedalInfoStrict:read});
+  const running=runBoth(f.globals);for(let n=0;n<10&&!release;n++)await new Promise<void>(resolve=>setImmediate(resolve));
+  const beforeGrant=f.state.grants;expect(release).toBeDefined();release();await running;expect(beforeGrant).toBe(0);
+  expect(f.state).toMatchObject({resultsReady:false,grants:0,exits:1});
+});
+test('a stale result read failure never navigates a different origin screen',async()=>{
+  const f=fixture({isCompletionOriginCurrent:()=>false,classicRuntime:{receipt:async()=>{throw Error('old_owner_read_failed');}}});await runBoth(f.globals);expect(f.state.exits).toBe(0);expect(f.state.grants).toBe(0);
+});
+test('an explicitly malformed attempt never falls back to a generated legacy identity',async()=>{
+  const f=fixture({normalizedCompletedAttemptId:null,completionAttemptProvided:true});await runBoth(f.globals);expect(f.state).toMatchObject({resultsReady:false,grants:0,exits:1});
+});
+test('legacy missing attempt is read-only and never grants',async()=>{
+  const f=fixture({journalBackedCompletion:false,completionAttemptProvided:false,normalizedCompletedAttemptId:null});await runBoth(f.globals);expect(f.state.grants).toBe(0);
+});
+test('A medal transition and unlock ignore B current medal and unchecked route flags',async()=>{
+  const f=fixture({params:{previousBestScore:'0',unlocked:'1'},loadMedalInfoStrict:async()=>({tier:'gold',bestScore:5,passCount:99})});
+  await run(1,f.globals);expect(f.state.tierInputs).toEqual([2,1]);expect(f.state.unlocked).toBe(false);
+});
+
+test.each(['missing','empty','rejected','content_mismatch'])('explicit ordinary FR A receipt remains authoritative when B live progress is %s',async kind=>{
+  const progress=jest.fn(async()=>{if(kind==='rejected')throw Error('B_progress_read_rejected');return kind==='missing'?null:'[]';});
+  const receipt=jest.fn(async()=>({owner:'a'.repeat(64),target:'fr',lessonId:1,attempt:'attempt_a',successor:'attempt_b',score:2,passes:0,unlocked:false,previousBest:1,resultSnapshot:{total:50,finalCorrect:20,firstTryWrong:32}}));
+  const f=fixture({studyTarget:'fr',frenchStudyActive:()=>true,getLessonData:()=>kind==='content_mismatch'?[]:[{}],phraseHasStudyTargetContent:()=>true,AsyncStorage:{getItem:progress},classicRuntime:{owner:'a'.repeat(64),receipt}});
+  f.globals.canApplyCompletionRewards=actualCanApply(f.globals);
+  await runBoth(f.globals);expect(f.state).toMatchObject({resultsReady:true,score:2,counts:{correct:18,wrong:32},exits:0});
+  expect(receipt).toHaveBeenCalledTimes(1);expect(progress).not.toHaveBeenCalled();
+});
+
+test('legacy FR without explicit attempt retains the real content/progress guard',async()=>{
+  const progress=jest.fn(async()=>null),receipt=jest.fn(async()=>null);
+  const f=fixture({studyTarget:'fr',completionAttemptProvided:false,normalizedCompletedAttemptId:null,frenchStudyActive:()=>true,getLessonData:()=>[{}],phraseHasStudyTargetContent:()=>true,AsyncStorage:{getItem:progress},classicRuntime:{owner:'a'.repeat(64),receipt}});
+  f.globals.canApplyCompletionRewards=actualCanApply(f.globals);
+  await runBoth(f.globals);expect(f.state).toMatchObject({resultsReady:false,grants:0,exits:1});expect(progress).toHaveBeenCalledTimes(1);expect(receipt).not.toHaveBeenCalled();
+});
+
+test.each(['missing','malformed'])('explicit FR %s receipt/identity cannot grant or become a legacy fallback',async kind=>{
+  const progress=jest.fn(async()=>null),receipt=jest.fn(async()=>null);
+  const f=fixture({studyTarget:'fr',normalizedCompletedAttemptId:kind==='malformed'?null:'attempt_a',frenchStudyActive:()=>true,getLessonData:()=>[{}],phraseHasStudyTargetContent:()=>true,AsyncStorage:{getItem:progress},classicRuntime:{owner:'a'.repeat(64),receipt}});
+  f.globals.canApplyCompletionRewards=actualCanApply(f.globals);await runBoth(f.globals);
+  expect(f.state).toMatchObject({resultsReady:false,grants:0,exits:1});expect(progress).not.toHaveBeenCalled();expect(receipt).toHaveBeenCalledTimes(kind==='malformed'?0:1);
+});
+
+test('FR workshop/combo retains the existing separate guard even with an explicit route identity',async()=>{
+  const progress=jest.fn(async()=>null),receipt=jest.fn(async()=>null);
+  const f=fixture({studyTarget:'fr',isComboCompletion:true,isWorkshopCompletion:true,frenchStudyActive:()=>true,getLessonData:()=>[{}],phraseHasStudyTargetContent:()=>true,AsyncStorage:{getItem:progress},classicRuntime:{owner:'a'.repeat(64),receipt}});
+  f.globals.canApplyCompletionRewards=actualCanApply(f.globals);await runBoth(f.globals);
+  expect(f.state).toMatchObject({resultsReady:false,grants:0,exits:1});expect(progress).toHaveBeenCalledTimes(1);expect(receipt).not.toHaveBeenCalled();
+});

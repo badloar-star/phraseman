@@ -1,0 +1,43 @@
+import { beginAccountGeneration } from '../app/account_generation';
+import { deriveLocalOfflineProgressAccountScopeHash } from '../modules/learning-v2/progress/progress_account_scope';
+import { hashCanonicalBody } from '../modules/learning-v2/policies/decision_registry';
+import { submitAdmittedClassicProgressEvent,submitProgressEvent,flushPendingProgressEvents,__progressEventsClientTestHooks } from '../app/progress_events_client';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { trySubmitProgressThroughPhoneState } from '../app/phone_state_progress_cutover';
+import type { CompletionEvent } from '../app/classic_completion_journal_engine';
+var calls:unknown[]=[];
+jest.mock('../app/config',()=>({CLOUD_SYNC_ENABLED:true,IS_EXPO_GO:false}));
+jest.mock('../app/cloud_sync',()=>({ensureAnonUser:jest.fn(async()=>'transport-owner-a')}));
+jest.mock('../app/user_id_policy',()=>({getCanonicalUserId:jest.fn(async()=>'transport-owner-a')}));
+jest.mock('../app/referral_bootstrap',()=>({tryApplyPendingReferral:jest.fn(async()=>undefined)}));
+jest.mock('../app/phone_state_progress_cutover',()=>({trySubmitProgressThroughPhoneState:jest.fn(async()=>null)}));
+jest.mock('../app/phone_state_shadow_adapters',()=>({recordShadowProgressEvent:jest.fn()}));
+jest.mock('@react-native-firebase/functions',()=>({getFunctions:()=>({}),httpsCallable:()=>async(event:{stableId:string;eventId:string;type:string})=>{calls.push(event);return {data:{ok:true,stableUid:event.stableId,eventId:event.eventId,type:event.type,streakCount:0,activeDate:'2026-11-01'}};}}));
+function event(target:string):CompletionEvent{
+  const owner=deriveLocalOfflineProgressAccountScopeHash('transport-owner-a');
+  const intent={owner,target,lessonId:1,attempt:'attempt_a',successor:'attempt_b',progress:['correct'],score:5,nextLessonId:2,createdAt:1000,localDate:'2026-11-01'};
+  return {owner,intent,eventId:`lesson:${target}:1:complete:attempt_a`,fingerprint:hashCanonicalBody(intent)};
+}
+beforeEach(async()=>{calls=[];jest.clearAllMocks();await AsyncStorage.clear();__progressEventsClientTestHooks.resetRuntimeState();});
+test.each(['de','es','it','pl','pt-BR','cs','ko'])('unsupported server target %s stays locally pending instead of dispatching as English',async target=>{
+  const token=beginAccountGeneration('transport-owner-a');await expect(submitAdmittedClassicProgressEvent(event(target),token)).rejects.toThrow('target_unavailable');expect(calls).toHaveLength(0);
+});
+test('supported transport preserves original owner, local date and timestamp',async()=>{
+  const token=beginAccountGeneration('transport-owner-a');await submitAdmittedClassicProgressEvent(event('en'),token);
+  expect(calls).toEqual([expect.objectContaining({stableId:'transport-owner-a',clientCreatedAt:1000,clientLocalDate:'2026-11-01'})]);
+});
+test('generic unsupported event is held before PhoneState and network dispatch',async()=>{
+  beginAccountGeneration('transport-owner-a');
+  await expect(submitProgressEvent({eventId:'lesson:de:1:complete:generic_a',type:'lesson_complete',payload:{lessonId:1,studyTarget:'de',score:5}})).rejects.toThrow('target_unavailable');
+  expect(trySubmitProgressThroughPhoneState).not.toHaveBeenCalled();expect(calls).toHaveLength(0);
+  const raw=await AsyncStorage.getItem('progress_server_event_queue_v1:transport-owner-a');
+  expect(JSON.parse(raw!)[0].payload.studyTarget).toBe('de');
+});
+test('restart flush retains unsupported original event without transport or dead letter',async()=>{
+  beginAccountGeneration('transport-owner-a');
+  const queued={eventId:'lesson:de:1:complete:old_a',type:'lesson_complete',stableId:'transport-owner-a',clientLocalDate:'2026-11-01',clientCreatedAt:1000,appVersion:'test',platform:'android',payload:{lessonId:1,studyTarget:'de',score:5}};
+  const key='progress_server_event_queue_v1:transport-owner-a';await AsyncStorage.setItem(key,JSON.stringify([queued]));
+  await AsyncStorage.setItem('progress_server_snapshot_migrated_v1:transport-owner-a','1');
+  await flushPendingProgressEvents();expect(calls).toHaveLength(0);expect(JSON.parse((await AsyncStorage.getItem(key))!)).toEqual([queued]);
+  expect(await AsyncStorage.getItem('progress_server_event_dead_letter_v1:transport-owner-a')).toBeNull();
+});

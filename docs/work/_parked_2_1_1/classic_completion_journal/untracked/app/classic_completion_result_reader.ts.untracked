@@ -1,0 +1,35 @@
+import { validateClassicCompletionResultSnapshot, type CompletionReceipt } from './classic_completion_journal_engine';
+type ResultMedalInfo = Readonly<{tier:'none'|'bronze'|'silver'|'gold';bestScore:number;passCount:number}>;
+
+type ResultReadPorts = Readonly<{
+  owner: string; target: string; lessonId: number; attempt: string | null; explicitAttempt: boolean;
+  isCurrent(): boolean;
+  receipt(): Promise<CompletionReceipt | null>;
+  readMedal(): Promise<ResultMedalInfo>;
+  readProgress(): Promise<string | null>;
+  route: Readonly<{ correct?: string | string[]; total?: string | string[] }>;
+}>;
+
+export async function readClassicCompletionResult(input: ResultReadPorts) {
+  const p=Object.freeze({...input,route:Object.freeze({correct:Array.isArray(input.route.correct)?[...input.route.correct]:input.route.correct,total:Array.isArray(input.route.total)?[...input.route.total]:input.route.total})});
+  const current=()=>{if(!p.isCurrent())throw Error('classic_completion_result_stale');};
+  current();
+  if(p.explicitAttempt&&!p.attempt)throw Error('classic_completion_result_attempt_invalid');
+  let receipt=p.explicitAttempt?await p.receipt():null;current();
+  if(p.explicitAttempt&&!receipt)throw Error('classic_completion_receipt_missing');
+  if(receipt){
+    if(receipt.owner!==p.owner||receipt.target!==p.target||receipt.lessonId!==p.lessonId||receipt.attempt!==p.attempt)throw Error('classic_completion_result_scope_conflict');
+    if(Object.prototype.hasOwnProperty.call(receipt,'resultSnapshot')){
+      validateClassicCompletionResultSnapshot(receipt.resultSnapshot!);
+      const s=receipt.resultSnapshot!;
+      if(receipt.score!==(receipt.scoreOverride==='tester_no_limits'?5:Number((s.finalCorrect/s.total*5).toFixed(1))))throw Error('classic_completion_result_score_conflict');
+      const provided=p.route.correct!==undefined||p.route.total!==undefined;
+      const number=(raw:string|string[]|undefined)=>{const value=Array.isArray(raw)?raw.length===1?raw[0]:undefined:raw;return typeof value==='string'&&/^(0|[1-9]\d*)$/.test(value)?Number(value):Number.NaN;};
+      if(provided&&(number(p.route.correct)!==s.finalCorrect||number(p.route.total)!==s.total))throw Error('classic_completion_result_route_conflict');
+    }
+    receipt=Object.freeze({...receipt,...(receipt.resultSnapshot?{resultSnapshot:Object.freeze({...receipt.resultSnapshot})}:{})});
+  }
+  const savedMedal=Object.freeze({...await p.readMedal()});current();
+  const savedProgress=receipt?null:await p.readProgress();current();
+  return Object.freeze({receipt,savedMedal,savedProgress});
+}

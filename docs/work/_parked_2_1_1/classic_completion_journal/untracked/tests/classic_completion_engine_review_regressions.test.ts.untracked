@@ -1,0 +1,66 @@
+import { createClassicCompletionJournal, type JournalPorts, type CompletionIntent } from '../app/classic_completion_journal_engine';
+import { hashCanonicalBody } from '../modules/learning-v2/policies/decision_registry';
+const owner = 'a'.repeat(64);
+const key = 'classic_completion_pending_v1:' + owner;
+const intent = (attempt='a', successor='b'): CompletionIntent => ({owner,target:'en',lessonId:1,attempt,successor,progress:Array(50).fill('correct'),score:5,createdAt:1000,localDate:'2026-11-02',nextLessonId:2});
+function fixture() {
+  const disk = new Map<string,string>([['attempt:en:1','a']]); let fault = ''; let tail: Promise<unknown> = Promise.resolve();
+  const p: JournalPorts = {owner,isCurrent:()=>true,
+    locked: work => {const run=tail.then(work);tail=run.catch(()=>{});return run;},
+    storage:{getItem:async k=>disk.get(k)??null,setItem:async(k,v)=>{if(fault && k.startsWith(fault))throw Error('fault');disk.set(k,v);}},
+    keys:(t,n)=>({attempt:`attempt:${t}:${n}`,progress:`progress:${t}:${n}`,cell:`cell:${t}:${n}`,best:`best:${t}:${n}`,passes:`passes:${t}:${n}`,finished:`finished:${t}:${n}`,unlocks:`unlocks:${t}`}),
+    enqueue:async e=>({owner:e.owner,eventId:e.eventId,fingerprint:e.fingerprint}),medalChanged:()=>{}};
+  return {disk,p,engine:createClassicCompletionJournal(p),fault:(v:string)=>{fault=v;}};
+}
+function seed(f: ReturnType<typeof fixture>, body: object) { f.disk.set(key,JSON.stringify({...body,hash:hashCanonicalBody(body)})); }
+test('retained receipt returns before draining distinct pending successor', async () => {
+  const f=fixture();await f.engine.complete(intent());f.fault('passes:');await expect(f.engine.complete(intent('b','c'))).rejects.toThrow('fault');f.fault('');
+  const before=[...f.disk];await expect(f.engine.complete(intent())).resolves.toMatchObject({attempt:'a'});expect([...f.disk]).toEqual(before);
+});
+test('malformed receipt cannot return success', async () => {
+  const f=fixture();seed(f,{schema:1,revision:1,pending:{},receipts:{'en:1':{attempt:'a',intentHash:hashCanonicalBody(intent()),successor:'evil',score:999,passes:-2,unlocked:'yes'}}});
+  const before=[...f.disk];await expect(f.engine.complete(intent())).rejects.toThrow();expect([...f.disk]).toEqual(before);
+});
+test('inconsistent stage and plan rejected before projection effects', async () => {
+  const f=fixture();seed(f,{schema:1,revision:1,pending:{'en:1':{intent:intent(),intentHash:hashCanonicalBody(intent()),plan:null,stage:2,coreStarted:false}},receipts:{}});
+  const before=[...f.disk];await expect(f.engine.recover()).rejects.toThrow();expect([...f.disk]).toEqual(before);
+});
+test('complete snapshots intent synchronously before caller can mutate', async () => {
+  const f=fixture();const i={...intent(),progress:Array(50).fill('correct')};const done=f.engine.complete(i);i.progress.fill('wrong');i.score=0;i.nextLessonId=null;await done;
+  expect(f.disk.get('best:en:1')).toBe('5');expect(f.disk.get('passes:en:1')).toBe('1');
+});
+test('distinct port wrappers share owner serialization during suspended enqueue', async () => {
+  const f=fixture();let release!:()=>void;let reached!:()=>void;let calls=0;
+  const entered=new Promise<void>(r=>{reached=r;});const gate=new Promise<void>(r=>{release=r;});
+  f.p.enqueue=async e=>{if(++calls===1){reached();await gate;}return {owner:e.owner,eventId:e.eventId,fingerprint:e.fingerprint};};
+  const a=createClassicCompletionJournal(f.p);const b=createClassicCompletionJournal({...f.p});
+  const first=a.complete(intent());await entered;const second=b.complete(intent());await new Promise<void>(r=>setImmediate(r));release();
+  await expect(Promise.all([first,second])).resolves.toHaveLength(2);expect(calls).toBe(1);
+});
+test('successor identity with conflicting CORE rejects without writes', async () => {
+  const f=fixture();f.fault('cell:');await expect(f.engine.complete(intent())).rejects.toThrow();f.fault('');
+  f.disk.set('attempt:en:1','b');f.disk.set('progress:en:1','["wrong"]');f.disk.set('cell:en:1','12');const before=[...f.disk];
+  await expect(f.engine.recover()).rejects.toThrow();expect([...f.disk]).toEqual(before);
+});
+test('ordinary all-wrong score5 is rejected before writes', async () => {
+  const f=fixture();const before=[...f.disk];await expect(f.engine.complete({...intent(),progress:Array(50).fill('wrong')})).rejects.toThrow();expect([...f.disk]).toEqual(before);
+});
+test.each([['best:en:1','9'],['passes:en:1','1.5'],['passes:en:1','9007199254740992']])('invalid projection %s=%s does not poison a plan', async (k,v) => {
+  const f=fixture();f.disk.set(k,v);await expect(f.engine.complete(intent())).rejects.toThrow();
+  const state=JSON.parse(f.disk.get(key)!);expect(state.pending['en:1'].plan).toBeNull();
+});
+test('explicit tester score override preserves existing policy', async () => {
+  const f=fixture();await f.engine.complete({...intent(),progress:Array(50).fill('wrong'),scoreOverride:'tester_no_limits'});
+  expect(f.disk.get('best:en:1')).toBe('5');expect(f.disk.get('passes:en:1')).toBe('0');
+});
+test('owner and port substitution after API entry cannot redirect completion', async () => {
+  const f=fixture();const done=f.engine.complete(intent());f.p.owner='b'.repeat(64);
+  f.p.storage={getItem:async()=>{throw Error('substituted');},setItem:async()=>{throw Error('substituted');}};
+  await done;expect(f.disk.get('passes:en:1')).toBe('1');
+});
+test('exact successor CORE proof advances without old projection rewrite', async () => {
+  const f=fixture();const i=intent();f.disk.set('attempt:en:1','b');f.disk.set('progress:en:1',JSON.stringify(i.progress));f.disk.set('cell:en:1','0');
+  seed(f,{schema:1,revision:1,pending:{'en:1':{intent:i,intentHash:hashCanonicalBody(i),plan:null,stage:0,coreStarted:true}},receipts:{}});
+  const original=f.p.storage.setItem;f.p.storage.setItem=async(k,v)=>{if(k==='progress:en:1'||k==='cell:en:1'||k==='attempt:en:1')throw Error('must_not_rewrite');await original(k,v);};
+  await createClassicCompletionJournal(f.p).recover();expect(f.disk.get('passes:en:1')).toBe('1');
+});

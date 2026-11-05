@@ -1,0 +1,66 @@
+import { createClassicCompletionJournal } from '../app/classic_completion_journal_engine';
+
+function fixture(){
+  const disk=new Map<string,string>([['attempt','attempt_a']]);
+  let failKey='';
+  const ports={owner:'a'.repeat(64),isCurrent:()=>true,locked:async<T>(work:()=>Promise<T>)=>work(),
+    storage:{getItem:async(key:string)=>disk.get(key)??null,setItem:async(key:string,value:string)=>{if(key===failKey)throw Error('injected_failure');disk.set(key,value);}},
+    keys:()=>({attempt:'attempt',progress:'progress',cell:'cell',best:'best',passes:'passes',finished:'finished',unlocks:'unlocks'}),
+    enqueue:async(event:{owner:string;eventId:string;fingerprint:string})=>({owner:event.owner,eventId:event.eventId,fingerprint:event.fingerprint}),medalChanged:()=>undefined};
+  const intent={owner:ports.owner,target:'en',lessonId:1,attempt:'attempt_a',successor:'attempt_b',progress:[...Array(20).fill('correct'),...Array(30).fill('wrong')],score:2,createdAt:1000,localDate:'2026-11-01',nextLessonId:null,resultSnapshot:{total:50,finalCorrect:20,firstTryWrong:32}};
+  return {disk,ports,intent,engine:createClassicCompletionJournal(ports),fail:(key:string)=>{failKey=key;}};
+}
+
+test('durable A snapshot and medal previousBest survive restart while B owns live progress',async()=>{
+  const f=fixture();f.disk.set('best','1');await f.engine.complete(f.intent);
+  f.disk.set('progress',JSON.stringify(Array(50).fill('correct')));f.disk.set('cell','10');
+  const restarted=createClassicCompletionJournal(f.ports);
+  const receipt=await restarted.receipt('en',1,'attempt_a');
+  expect(receipt).toMatchObject({score:2,previousBest:1,resultSnapshot:{total:50,finalCorrect:20,firstTryWrong:32}});
+  expect(Object.isFrozen((receipt as unknown as {resultSnapshot:object}).resultSnapshot)).toBe(true);
+});
+
+test('a corrected first-try miss remains one after interrupted completion and restart',async()=>{
+  const f=fixture();const input={...f.intent,progress:Array(50).fill('correct'),score:5,resultSnapshot:{total:50,finalCorrect:50,firstTryWrong:1}};
+  f.fail('finished');
+  await expect(f.engine.complete(input)).rejects.toThrow('injected_failure');f.fail('');
+  const restarted=createClassicCompletionJournal(f.ports);await restarted.recover();
+  expect(await restarted.receipt('en',1,'attempt_a')).toMatchObject({score:5,resultSnapshot:{total:50,finalCorrect:50,firstTryWrong:1}});
+  expect(f.disk.get('passes')).toBe('1');
+});
+
+test.each([{total:49,finalCorrect:20,firstTryWrong:32},{total:50,finalCorrect:21,firstTryWrong:32},{total:50,finalCorrect:20,firstTryWrong:29},{total:50,finalCorrect:20,firstTryWrong:51},{total:50,finalCorrect:20,firstTryWrong:32.5}])('invalid snapshot rejects before writes: %j',async resultSnapshot=>{
+  const f=fixture();const before=[...f.disk];await expect(f.engine.complete({...f.intent,resultSnapshot})).rejects.toThrow();expect([...f.disk]).toEqual(before);
+});
+
+test('same attempt with changed valid snapshot conflicts rather than replacing durable A evidence',async()=>{
+  const f=fixture();await f.engine.complete(f.intent);
+  await expect(f.engine.complete({...f.intent,resultSnapshot:{...f.intent.resultSnapshot,firstTryWrong:33}})).rejects.toThrow('intent_conflict');
+});
+
+test('legacy receipt without result snapshot remains readable with honest score and unknown counts',async()=>{
+  const f=fixture();const {resultSnapshot:ignored,...legacy}=f.intent;void ignored;await f.engine.complete(legacy);
+  const receipt=await f.engine.receipt('en',1,'attempt_a');expect(receipt?.score).toBe(2);expect(receipt).not.toHaveProperty('resultSnapshot');
+});
+
+test.each([null,undefined])('an own present snapshot %s is never serialized away into legacy',async resultSnapshot=>{
+  const f=fixture();const before=[...f.disk];await expect(f.engine.complete({...f.intent,resultSnapshot} as unknown as Parameters<typeof f.engine.complete>[0])).rejects.toThrow();expect([...f.disk]).toEqual(before);
+});
+test('unknown undefined properties reject before serialization',async()=>{
+  const f=fixture();const input={...f.intent,unknown:undefined};await expect(f.engine.complete(input)).rejects.toThrow();expect(f.disk.size).toBe(1);
+});
+test('nested snapshot is synchronously cloned before await and returned deeply frozen',async()=>{
+  const f=fixture();const pending=f.engine.complete(f.intent);f.intent.resultSnapshot.firstTryWrong=33;
+  const receipt=await pending;expect(receipt).toMatchObject({resultSnapshot:{firstTryWrong:32}});expect(Object.isFrozen(receipt)).toBe(true);
+  expect(Object.isFrozen((receipt as unknown as {resultSnapshot:object}).resultSnapshot)).toBe(true);
+});
+test('new snapshot and legacy receipt coexist in one owner store; legacy recovery never enriches its intent',async()=>{
+  const f=fixture();await f.engine.complete(f.intent);f.disk.set('attempt','attempt_legacy');
+  f.disk.delete('finished');
+  const {resultSnapshot:ignored,...base}=f.intent;void ignored;const legacy={...base,lessonId:2,attempt:'attempt_legacy',successor:'legacy_next'};
+  f.fail('finished');
+  await expect(f.engine.complete(legacy)).rejects.toThrow('injected_failure');f.fail('');
+  const restarted=createClassicCompletionJournal(f.ports);await restarted.recover();
+  expect(await restarted.receipt('en',1,'attempt_a')).toMatchObject({resultSnapshot:{firstTryWrong:32}});
+  const receipt=await restarted.receipt('en',2,'attempt_legacy');expect(receipt?.score).toBe(2);expect(receipt).not.toHaveProperty('resultSnapshot');
+});

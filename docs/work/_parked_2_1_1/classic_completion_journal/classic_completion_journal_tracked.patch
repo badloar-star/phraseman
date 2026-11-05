@@ -1,0 +1,1747 @@
+diff --git a/app/lesson1.tsx b/app/lesson1.tsx
+index cd70dc68f..f74611a96 100644
+--- a/app/lesson1.tsx
++++ b/app/lesson1.tsx
+@@ -78,6 +78,7 @@ import { getStableId } from './stable_id';
+ import { resolvePhraseMistakeToken } from './mistake_token_resolver';
+ import { lessonMistakeFacet } from './lesson_mistake_facet';
+ import { beginLessonRunErrors, collectLessonRunMistakeId, rememberLessonRunErrors } from './lesson_run_errors_memory';
++import { captureClassicCompletionResultSnapshot } from './classic_completion_result_snapshot';
+ import type { PhraseMistakeInput } from './phrase_analytics';
+ import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
+ import {
+@@ -102,6 +103,9 @@ import { answerDisplayLineWithCanonicalPunctuation, phraseAnswerAlternatives, ph
+ import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Теории» открывал два экрана теории
+ import { useSilentLeave } from '../hooks/use_silent_leave';
+ import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
++import { previousLessonScoreOpensNext } from './lesson_star_scale';
++import { createClassicCompletionRuntime } from './classic_completion_runtime';
++import type { CompletionIntent, CompletionReceipt } from './classic_completion_journal_engine';
+ 
+ // Enabled by default with the same emergency build-time rollback as the shared
+ // navigation helper. Native dismissTo releases the abandoned lesson stack.
+@@ -123,13 +127,18 @@ import {
+   getPhraseWords, lookupContraction,
+   makeExpansionOptions,
+ } from './lesson1_smart_options';
+-import { tryUnlockNextLesson } from './lesson_lock_system';
++import { canUnlockNextLessonAfterCompletion, isLessonUnlocked } from './lesson_lock_system';
+ import {
++  disposeLessonScreenPrimeOriginScope,
++  forkLessonScreenPrimeOriginScope,
+   getInitialOrderAndCell,
+   getInitialOverridePhraseCell,
+   getInitialProgressArray,
++  isLessonScreenPrimeOriginScopeCurrent,
+   isLessonScreenPrimedThisSession,
+   touchLessonScreenPrimed,
++  type LessonScreenPrimeOriginScope,
++  useCommittedLessonScreenPrimeOriginScope,
+ } from './lesson_screen_bootstrap';
+ import { lessonPhraseReportDataId } from './error_report';
+ import ReportErrorButton from '../components/ReportErrorButton';
+@@ -171,7 +180,7 @@ import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface'
+ import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
+ import { useSessionAttempts } from '../hooks/useSessionAttempts';
+ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
+-import { captureAccountGeneration } from './account_generation';
++import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+ import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+ import { KIT_MOTION, SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
+ 
+@@ -2067,6 +2076,11 @@ function LessonScreen() {
+   }, [workshop.closed, router]);
+   const [attemptSessionId] = useState(makeFeedbackAttemptId);
+   const accountToken = useMemo(() => captureAccountGeneration(), []);
++  const ordinaryClassic = !workshopActive && !comboActive;
++  const classicRuntime = useMemo(() => createClassicCompletionRuntime(accountToken), [accountToken]);
++  const classicAdmissionScopeRef = useRef<string | null>(null);
++  const classicHydrationEpochRef = useRef(0);
++  const classicHydrationPendingRef = useRef<number | null>(null);
+   const attempts = useSessionAttempts({
+     token: accountToken,
+     // зачем (мастерская фраз): префикс не «lesson» — энергия за ошибку (режим Б) и сердечки к мастерской не относятся
+@@ -2121,6 +2135,11 @@ function LessonScreen() {
+   const ERROR_REPLAY_SINCE_KEY   = lessonSessionKey(lessonStorageId, 'errorReplaySince', studyTarget);
+   const ERROR_REPLAY_OVERRIDE_KEY = lessonSessionKey(lessonStorageId, 'errorReplayOverride', studyTarget);
+   const SERVER_ATTEMPT_KEY = lessonSessionKey(lessonStorageId, 'serverAttemptId', studyTarget);
++  const getScreenPrimeScope = useCommittedLessonScreenPrimeOriginScope(
++    accountToken,
++    studyTarget,
++    `${lessonStorageId}:${lang}`,
++  );
+   // зачем: ключ сессии рун строится тем же паттерном, что и остальные
+   // *_KEY выше, но lessonSessionKey типизирован узким union полей — не трогаем
+   // его сигнатуру ради одного нового поля 'runes'.
+@@ -2424,20 +2443,26 @@ function LessonScreen() {
+ 
+ 
+   useEffect(() => {
++    const screenPrimeScope = getScreenPrimeScope();
++    const hydrationScope = forkLessonScreenPrimeOriginScope(screenPrimeScope);
+     const task = InteractionManager.runAfterInteractions(() => {
+-      void loadData();
++      void loadData(hydrationScope);
+       // Кешируем имя один раз при монтировании — избегаем async lookup на каждый ответ
+       AsyncStorage.getItem('user_name')
+         .then(n => {
++          if (!isLessonScreenPrimeOriginScopeCurrent(hydrationScope)) return;
+           userNameRef.current = n;
+         })
+         .catch(noteSwallowedHandler('lesson1:useEffect.getItem'));
+     });
+     return () => {
+       task.cancel();
++      disposeLessonScreenPrimeOriginScope(hydrationScope);
++      classicHydrationEpochRef.current += 1;
++      classicAdmissionScopeRef.current = null;
+       if (autoTimer.current) clearTimeout(autoTimer.current);
+     };
+-  }, [lang, lessonId, lessonStorageId, studyTarget]);
++  }, [getScreenPrimeScope, lang, lessonId, lessonStorageId, studyTarget]);
+ 
+   useEffect(() => {
+     let cancelled = false;
+@@ -2971,11 +2996,22 @@ function LessonScreen() {
+     });
+   }, [energyGateBlocked, currentEnergy, bonusEnergy, testerEnergyDisabled, lessonEnergyGate]);
+ 
+-  const loadData = async () => {
+-    if (!isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)) {
++  const loadData = async (originScope: LessonScreenPrimeOriginScope | null) => {
++    if (!isLessonScreenPrimeOriginScopeCurrent(originScope)) return;
++    const originTarget = originScope.studyTarget;
++    const originEpoch = ++classicHydrationEpochRef.current;
++    classicHydrationPendingRef.current = originEpoch;
++    const originCurrent = () => originEpoch === classicHydrationEpochRef.current
++      && isLessonScreenPrimeOriginScopeCurrent(originScope)
++      && isCurrentAccountGeneration(accountToken);
++    classicAdmissionScopeRef.current = null;
++    if (!isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal, originTarget)) {
+       setLessonHydrated(false);
+     }
+     try {
++      if (!originCurrent()) return;
++      const classicAttempt = ordinaryClassic ? await classicRuntime.enter(lessonId, originTarget) : null;
++      if (!originCurrent()) return;
+       const attempt = lessonAnalyticsAttemptRef.current!;
+       // зачем (мастерская фраз): это не урок — запуск/«брошен»/«завершён» в аналитику уроков не идут
+       if (!workshopActive && markLessonAttemptStarted(attempt)) {
+@@ -2983,6 +3019,7 @@ function LessonScreen() {
+       }
+       if (!workshopActive) trackLessonStart().catch(noteSwallowedHandler('lesson1:loadData.trackLessonStart'));
+       if (!hasPlayableLessonRows) {
++        if (!isLessonScreenPrimeOriginScopeCurrent(originScope)) return;
+         phraseOrderRef.current = [];
+         errorQueueRef.current = [];
+         questionsSinceErrorRef.current = 0;
+@@ -2999,7 +3036,7 @@ function LessonScreen() {
+           order: [],
+           progress: [],
+           override: null,
+-        }, studyTarget);
++        }, originScope);
+         setLessonHydrated(true);
+         return;
+       }
+@@ -3008,10 +3045,12 @@ function LessonScreen() {
+       // Проверку делаем РАНЬШЕ тяжёлых await, чтобы экран появился мгновенно;
+       // данные урока продолжают грузиться параллельно — к моменту тапа «Начать»
+       // всё уже готово.
+-      const introKey = lessonIntroShownKey(lessonId, studyTargetRef.current);
++      const introKey = lessonIntroShownKey(lessonId, originTarget);
+       const introShownRaw = await AsyncStorage.getItem(introKey);
+-      if (!workshopActive && !introShownRaw && !isDevLessonIntroSkip() && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
++      if (!originCurrent()) return;
++      if (!workshopActive && !introShownRaw && !isDevLessonIntroSkip() && getLessonIntroScreens(lessonId, originTarget).length > 0) {
+         await AsyncStorage.setItem(introKey, 'true').catch(noteSwallowedHandler('lesson1:loadData.setItem'));
++        if (!originCurrent()) return;
+         syncLessonIntroShownFlagNow();
+         setShowIntroScreens(true);
+         setLessonHydrated(true); // снимаем спиннер — рендерим интро поверх
+@@ -3019,12 +3058,24 @@ function LessonScreen() {
+ 
+       // Проверяем тестерские функции
+       const noLimits = await isTesterNoLimitsActive();
++      if (!originCurrent()) return;
+       setTesterNoLimits(noLimits);
+       // energy state comes from EnergyContext — no local load needed
+ 
+       // зачем (мастерская фраз): медали и число проходов — старого урока N; у мастерской свой счётчик проходов (для расписки монет)
+-      if (workshopActive) void readPhraseWorkshopPassCount(lessonId, studyTargetRef.current).then(setPassCount).catch(noteSwallowedHandler('lesson1:workshopPassCount'));
+-      else loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
++      if (workshopActive) {
++        void readPhraseWorkshopPassCount(lessonId, originTarget)
++          .then((passCount) => {
++            if (!originCurrent()) return;
++            if (isLessonScreenPrimeOriginScopeCurrent(originScope)) setPassCount(passCount);
++          })
++          .catch(noteSwallowedHandler('lesson1:workshopPassCount'));
++      } else {
++        void loadMedalInfo(lessonId, originTarget).then((info) => {
++          if (!originCurrent()) return;
++          if (isLessonScreenPrimeOriginScopeCurrent(originScope)) setPassCount(info.passCount);
++        });
++      }
+       // зачем (владелец 05.11, «очистить ошибки у всех»): очередь повтора ошибок классики хранится по старым позиционным номерам фраз;
+       // одноразовая миграция гасит ТОЛЬКО её (флаг в хранилище, без сети) ДО чтения очереди ниже. Не бросает; прогресс/медали/счётчики не трогает.
+       await ensureClassicErrorQueueMigrated();
+@@ -3038,9 +3089,11 @@ function LessonScreen() {
+         AsyncStorage.getItem(ERROR_REPLAY_OVERRIDE_KEY),
+         AsyncStorage.getItem(SERVER_ATTEMPT_KEY),
+       ]);
+-      const serverAttemptId = routeServerAttemptId || serverAttemptRaw || makeLessonServerAttemptId();
++      if (!isLessonScreenPrimeOriginScopeCurrent(originScope)) return;
++      if (!originCurrent()) return;
++      const serverAttemptId = classicAttempt || routeServerAttemptId || serverAttemptRaw || makeLessonServerAttemptId();
+       serverAttemptIdRef.current = serverAttemptId;
+-      if (serverAttemptRaw !== serverAttemptId) {
++      if (!ordinaryClassic && serverAttemptRaw !== serverAttemptId) {
+         AsyncStorage.setItem(SERVER_ATTEMPT_KEY, serverAttemptId).catch(noteSwallowedHandler('lesson1:loadData.setItem_2'));
+       }
+ 
+@@ -3180,7 +3233,7 @@ function LessonScreen() {
+         ? LESSON_DATA[order[phraseCellBoot] ?? order[phraseCellBoot % order.length]]
+         : LESSON_DATA[phraseCellBoot % LESSON_DATA.length];
+       {
+-        const st = studyTargetRef.current;
++        const st = originTarget;
+         const spWords = getPhraseTokens(startPhrase, st);
+         let spIdx = 0;
+         const spSel: string[] = [];
+@@ -3206,32 +3259,48 @@ function LessonScreen() {
+       // Сразу показываем урок (до вторичных await) — иначе React может сделать commit между
+       // setCellIndex и setLessonHydrated в разных батчах вокруг await и кратковременно
+       // показать 1/50 и первую фразу.
++      if (ordinaryClassic && originCurrent()) classicAdmissionScopeRef.current = `${originTarget}:${lessonId}`;
+       setLessonHydrated(true);
+       touchLessonScreenPrimed(lessonStorageId, {
+         cell: startCell,
+         order: phraseOrderRef.current,
+         progress: restoredProgress,
+         override: restoredOverrideForUi,
+-      }, studyTargetRef.current);
++      }, originScope);
+ 
+       // Загружаем счётчик подсказок 50/50 за сегодня (en — легаси-ключ, fr — свой namespace)
+-      const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current);
++      const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), originTarget);
+       const ffCount = await AsyncStorage.getItem(todayKey);
++      if (!originCurrent()) return;
+       setFiftyFiftyUsedToday(ffCount ? parseInt(ffCount, 10) : 0);
+       setBonusHints(0);
+ 
+       // (проверка энергии при входе — в отдельном useEffect ниже)
+     } catch (e) {
++      if (!originCurrent()) return;
++      if (ordinaryClassic) console.warn('[LESSON-RESULT] classic_admission_retry',JSON.stringify({lessonId,target:originTarget,reason:e instanceof Error?e.message:String(e)}));
+       void trackFeatureError('lesson', 'hydrate', e, { lessonId }, 'lesson1');
+     } finally {
+-      setLessonHydrated(true);
++      if (classicHydrationPendingRef.current === originEpoch) classicHydrationPendingRef.current = null;
++      if (originCurrent()) {
++        if (isLessonScreenPrimeOriginScopeCurrent(originScope)) setLessonHydrated(true);
++      }
+     }
+   };
+ 
+   const shuffleWords = (words: string[]) => setShuffled(words);
+ 
+   const checkAnswer = useCallback(async (answer: string) => {
++    const screenPrimeScope = getScreenPrimeScope();
++    if (!isLessonScreenPrimeOriginScopeCurrent(screenPrimeScope)) return;
++    const completionOriginCurrent = () => isLessonScreenPrimeOriginScopeCurrent(screenPrimeScope)
++      && isCurrentAccountGeneration(accountToken);
+     if (!phrase) return;
++    if (ordinaryClassic && !isCurrentAccountGeneration(accountToken)) return;
++    if (ordinaryClassic && classicAdmissionScopeRef.current !== `${studyTarget}:${lessonId}`) {
++      if (classicHydrationPendingRef.current === null) void loadData(screenPrimeScope);
++      return;
++    }
+     if (energyGateBlockedRef.current) {
+       console.warn('[ENERGY-GATE] lesson1 check blocked — энергия не списана, урок не начат');
+       showEnergyEmptyFeedbackRef.current();
+@@ -3480,17 +3549,22 @@ function LessonScreen() {
+     }
+ 
+     const nextCell = (cellIndex + 1) % effectiveTotal;
++    const pendingCycleEndReplay = nextCell === 0 && errorQueueRef.current.length > 0;
+     // зачем (прогресс не пропадает): хвост старых отметок дописывается обратно, число пройденного не уменьшается
+     const npForStorage = mergeLessonProgressForSave(np, progressTailRef.current);
+     if (orderPersistPendingRef.current) {
+       orderPersistPendingRef.current = false;
+       AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(noteSwallowedHandler('lesson1:orderPersistAfterAnswer'));
+     }
+-    void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(npForStorage)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_3'));
+-    void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_4'));
+-    touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress: np, override: overridePhraseCell }, studyTargetRef.current);
++    if (ordinaryClassic) {
++      if (nextCell !== 0 || pendingCycleEndReplay) void classicRuntime.writeProgress(lessonId, studyTarget, serverAttemptIdRef.current, npForStorage, nextCell).catch(noteSwallowedHandler('lesson1:classicProgress'));
++    } else {
++      void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(npForStorage)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_3'));
++      void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_4'));
++    }
++    if (!isLessonScreenPrimeOriginScopeCurrent(screenPrimeScope)) return;
++    touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress: np, override: overridePhraseCell }, screenPrimeScope);
+ 
+-    const pendingCycleEndReplay = nextCell === 0 && errorQueueRef.current.length > 0;
+     if (pendingCycleEndReplay) {
+       // At the lesson boundary there may be no natural "two questions later".
+       // Prime the existing replay queue so the next tap opens the missed phrase
+@@ -3509,7 +3583,7 @@ function LessonScreen() {
+         ?? makeLessonServerAttemptId();
+       const nextAttemptId = makeLessonServerAttemptId();
+       serverAttemptIdRef.current = nextAttemptId;
+-      AsyncStorage.setItem(SERVER_ATTEMPT_KEY, nextAttemptId).catch(noteSwallowedHandler('lesson1:useCallback.setItem_5'));
++      if (!ordinaryClassic) AsyncStorage.setItem(SERVER_ATTEMPT_KEY, nextAttemptId).catch(noteSwallowedHandler('lesson1:useCallback.setItem_5'));
+       if (!workshopActive) void trackFeatureStart('lesson', 'complete', { lessonId, effectiveTotal }, 'lesson1');
+       sessionAnswerCount.current = 0; // сброс для следующего повтора
+       isReplayRef.current = true;
+@@ -3520,7 +3594,14 @@ function LessonScreen() {
+       // зачем (Ревизор 15.10, 🟡 к e85eb2ccb): сбой перехода на итог возвращает ссылку, и повтор снова проходит весь путь — счётчик дня и
+       // аналитика успеха засчитались бы дважды. Флаг живёт в замыкании прохода: повтор того же прохода их пропускает.
+       let completionStatsCounted = false;
++      const completionCreatedAt = Date.now();
++      const completionResultSnapshot = ordinaryClassic ? captureClassicCompletionResultSnapshot(np,lessonWrongMistakesRef.current) : null;
++      const completionDate = new Date(completionCreatedAt);
++      const completionLocalDate = `${completionDate.getFullYear()}-${String(completionDate.getMonth()+1).padStart(2,'0')}-${String(completionDate.getDate()).padStart(2,'0')}`;
++      let classicIntent: Omit<CompletionIntent,'owner'> | null = null;
++      let classicCommit: Promise<CompletionReceipt> | null = null;
+       const runLessonCompletionNavigation = async () => {
++        if (!completionOriginCurrent()) return;
+         const resetShuffleForNextPass = () => {
+           phraseOrderRef.current = [];
+           AsyncStorage.removeItem(ORDER_KEY).catch(noteSwallowedHandler('lesson1:resetShuffleForNextPass.removeItem'));
+@@ -3571,6 +3652,7 @@ function LessonScreen() {
+ 
+         // Если включен режим "Без ограничений", даём 5 баллов автоматически
+         const noLimits = await isTesterNoLimitsActive();
++        if (!completionOriginCurrent()) return;
+         if (noLimits) {
+           finalScore = 5;
+         }
+@@ -3582,13 +3664,23 @@ function LessonScreen() {
+           bypassCache: true,
+           allowCloudRefresh: false,
+         }).catch(noteSwallowedAs('lesson1:runLessonCompletionNavigation.getVerifiedPremiumAccessStatus', false));
++        if (!completionOriginCurrent()) return;
+         // зачем (мастерская фраз, песочница): зачёт старого курса — разблокировка следующего урока — не выдаётся
+-        const didUnlock = workshopActive ? false : await tryUnlockNextLesson(
+-          lessonId,
+-          finalScore,
+-          studyTarget,
+-          hasPremiumAccess,
+-        );
++        let didUnlock = false;
++        if (ordinaryClassic) {
++          if (!classicIntent) {
++            const canOpenNext = canUnlockNextLessonAfterCompletion(lessonId,hasPremiumAccess) && previousLessonScoreOpensNext(finalScore);
++            const nextAlreadyUnlocked = canOpenNext ? await isLessonUnlocked(lessonId + 1, screenPrimeScope.studyTarget) : true;
++            if (!completionOriginCurrent()) return;
++            const nextRequired = canOpenNext && !nextAlreadyUnlocked;
++            classicIntent = { target:screenPrimeScope.studyTarget,lessonId,attempt:completedAttemptId,successor:nextAttemptId,progress:[...np],score:finalScore,nextLessonId:nextRequired?lessonId+1:null,createdAt:completionCreatedAt,localDate:completionLocalDate,resultSnapshot:completionResultSnapshot!,...(noLimits?{scoreOverride:'tester_no_limits' as const}:{}) };
++          }
++          if (!classicCommit) classicCommit = classicRuntime.complete(classicIntent).catch(error=>{classicCommit=null;throw error;});
++          const committed = await classicCommit;
++          if (!completionOriginCurrent()) return;
++          didUnlock = committed.unlocked;
++        }
++        if (!completionOriginCurrent()) return;
+         if (didUnlock && lessonId === 1) {
+           void import('./cloud_sync')
+             .then((m) => m.syncToCloud({ forceNow: true }))
+@@ -3604,7 +3696,7 @@ function LessonScreen() {
+           // зачем (мастерская фраз, «серия как за практику»): день засчитывается учебным действием; следующий вход получит
+           // новый номер прохода (расписка монет идемпотентна по номеру). Аналитики урока и «уроков завершено» нет — это не урок.
+           void touchStreakForToday('activity:lesson');
+-          void bumpPhraseWorkshopPassCount(lessonId, studyTargetRef.current).catch(noteSwallowedHandler('lesson1:workshopPassBump'));
++          void bumpPhraseWorkshopPassCount(lessonId, screenPrimeScope.studyTarget).catch(noteSwallowedHandler('lesson1:workshopPassBump'));
+           console.log('[PHRASE-WORKSHOP] complete', JSON.stringify({ lessonId, correct, effectiveTotal, passCount, finalScore })); // guard-ok: итог прохода мастерской
+         } else if (completionStatsCounted) {
+           console.log('[LESSON-RESULT] retry_skip_stats', JSON.stringify({ lessonId })); // guard-ok: повтор перехода
+@@ -3617,7 +3709,7 @@ function LessonScreen() {
+             correct,
+             effectiveTotal,
+           }, 'lesson1');
+-          void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
++          void bumpStatsDaily('lessons_completed', 1, screenPrimeScope.studyTarget);
+         }
+ 
+         // зачем: диагнозы тренера удалены вместе с разделом «Моя практика»
+@@ -3625,6 +3717,7 @@ function LessonScreen() {
+         const coachRouteParams = {};
+ 
+         const navigate = async () => {
++          if (!completionOriginCurrent()) return;
+           resetShuffleForNextPass();
+           // зачем (ревью Авторизации 13.10): ждём записи ошибок прохода не дольше 300 мс — иначе ошибка последнего вопроса не попадёт в «Добить (N)»
+           {
+@@ -3635,6 +3728,7 @@ function LessonScreen() {
+               console.log(`[LESSON-RESULT] переход: ждали записи ошибок ${pending.length} шт. ${Date.now() - waitStartedAt} мс`); // guard-ok: журнал ожидания
+             }
+           }
++          if (!completionOriginCurrent()) return;
+           // зачем (владелец 13.10, «почему на итоге нет всех элементов»): список «Ошибки» итога урока (макет practice.html#done) берёт промахи прохода отсюда — до обнуления.
+           if (!workshopActive) rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
+           lessonWrongMistakesRef.current = [];
+@@ -3666,7 +3760,13 @@ function LessonScreen() {
+         // There is one completion surface: go straight to lesson_complete.
+         await navigate();
+         } catch (e) {
++          if (!completionOriginCurrent()) return;
+           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
++          if (ordinaryClassic) {
++            console.warn('[LESSON-RESULT] classic_completion_retry', JSON.stringify({lessonId,reason:e instanceof Error?e.message:String(e)}));
++            lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };
++            return;
++          }
+           // Fallback: navigate to lesson_complete even if tracking fails
+           resetShuffleForNextPass();
+           if (!workshopActive) rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
+@@ -3738,7 +3838,7 @@ function LessonScreen() {
+         goNext(np);
+       }, 4000);
+     }
+-  }, [lessonEnergyGate, progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY, attempts.registerVerdict, attemptSessionId]);
++  }, [lessonEnergyGate, progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY, attempts.registerVerdict, attemptSessionId, getScreenPrimeScope, ordinaryClassic, classicRuntime, accountToken, loadData]);
+ 
+   const retryCurrentLessonPhraseAfterSessionRuneForfeit = useCallback(() => {
+     setShowAttemptsModal(false);
+@@ -3772,6 +3872,8 @@ function LessonScreen() {
+   });
+ 
+   const goNext = useCallback(async (_currentProgress?: string[]) => {
++    const screenPrimeScope = getScreenPrimeScope();
++    if (!isLessonScreenPrimeOriginScopeCurrent(screenPrimeScope)) return;
+     if (autoTimer.current) clearTimeout(autoTimer.current);
+     // зачем (аудит кнопок R58 #27, 15.10): «Дальше» на последнем экране во время паузы перед итогом начинал НОВЫЙ проход (cellIndex по
+     // кругу, статус «играем»), пока переход на итог ещё шёл. Во время завершения «Дальше» = пропустить паузу и открыть итог; если переход
+@@ -3835,11 +3937,15 @@ function LessonScreen() {
+     }
+ 
+     // Сохраняем позицию
+-    try { await AsyncStorage.setItem(CELL_KEY, String(nextCell)); } catch (e) {
++    try {
++      if (ordinaryClassic) await classicRuntime.writeProgress(lessonId,screenPrimeScope.studyTarget,serverAttemptIdRef.current,_currentProgress??progress,nextCell);
++      else await AsyncStorage.setItem(CELL_KEY, String(nextCell));
++    } catch (e) {
+       DebugLogger.error('lesson1:npIdx', e instanceof Error ? e : new Error(String(e)), 'warning');
+     }
+-    touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress, override: replayCell }, studyTargetRef.current);
+-  }, [finishPendingCompletionNow, cellIndex, progress, fadeAnim, LESSON_DATA, persistErrorReplayToStorage, lessonStorageId]);
++    if (!isLessonScreenPrimeOriginScopeCurrent(screenPrimeScope)) return;
++    touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress, override: replayCell }, screenPrimeScope);
++  }, [finishPendingCompletionNow, cellIndex, progress, fadeAnim, LESSON_DATA, persistErrorReplayToStorage, lessonStorageId, getScreenPrimeScope, ordinaryClassic, classicRuntime, lessonId, studyTarget]);
+ 
+   // CHANGE v5: rewritten for contraction branching using phraseWordIdx
+   // Energy is only spent on mistakes — no gate here, users can always attempt answers
+
+diff --git a/app/lesson_complete.tsx b/app/lesson_complete.tsx
+index ec8a71422..6ab382f38 100644
+--- a/app/lesson_complete.tsx
++++ b/app/lesson_complete.tsx
+@@ -49,7 +49,9 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
+ import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
+ import { checkAchievements } from './achievements';
+ import { STORE_URL } from './config';
+-import { checkGemAchievements, getMedalTier, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
++import { checkGemAchievements, getMedalTier, loadMedalInfoStrict, type MedalTier } from './medal_utils';
++import { createClassicCompletionRuntime } from './classic_completion_runtime';
++import { readClassicCompletionResult } from './classic_completion_result_reader';
+ import { lessonScoreToPercent, lessonStarCountFromPercent } from './lesson_star_scale';
+ import { dismissToTabRoute, markNextNavigationAsReplace } from './navigation_back';
+ 
+@@ -72,7 +74,6 @@ import { canShowReview, getReviewActiveDays, markReviewPrompted, markReviewRated
+ import { openStoreReviewPage } from './store_review';
+ import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
+ import { logAppWarning } from './app_health';
+-import { markLessonFinishedOnce } from './mastery';
+ import {
+   getVerifiedPremiumAccessStatus,
+   getVerifiedPremiumStatus,
+@@ -103,8 +104,6 @@ import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
+ import { SETTINGS_OPEN_SIGN_IN_PARAM } from './account_switch_copy';
+ import { buildCelebrationShareBody } from './celebration_share_messages';
+ import { buildLessonShareMessage } from './lesson_share';
+-import { syncToCloud } from './cloud_sync';
+-import { submitProgressEvent } from './progress_events_client';
+ import { getLessonData } from './lesson_data_all';
+ import BouncyScrollView from '../components/BouncyScrollView';
+ import ResultsSequence from '../components/feedback/ResultsSequence';
+@@ -123,7 +122,6 @@ import { navOnce } from './nav_once'; // зачем: замок двойного
+ import { frenchStudyActive } from './spanish_content_gate';
+ import {
+   lessonProgressKey,
+-  lessonSessionKey,
+ } from './target_storage_keys';
+ import { DebugLogger } from './debug-logger';
+ import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+@@ -153,8 +151,6 @@ const nextLessonLabels = (n: number) => ({
+   ru: `Дальше: урок ${n}`, uk: `Далі: урок ${n}`, en: `Next: lesson ${n}`, es: `Siguiente: lección ${n}`,
+   'pt-BR': `Próxima: lição ${n}`, vi: `Tiếp theo: bài ${n}`, id: `Berikutnya: pelajaran ${n}`, tr: `Sonraki: ders ${n}`, pl: `Dalej: lekcja ${n}`,
+ });
+-const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
+-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+ 
+ type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dismissLabel: string; dismissAccessibilityLabel: string; dismissAccessibilityHint: string; ctaAccessibilityLabel: string; ctaAccessibilityHint: string };
+ 
+@@ -587,6 +583,7 @@ export default function LessonComplete() {
+   // зачем (владелец 30.10): подтверждение стартового бонуса «+500 монет за первое занятие» в окне результата
+   const firstLessonBonusNote = useFirstLessonBonusNote(lang);
+   const { studyTarget } = useStudyTarget();
++  const classicRuntime = useMemo(() => createClassicCompletionRuntime(captureAccountGeneration()), []);
+   const softUpsellStudyTarget: SoftUpsellStudyTarget = studyTarget === 'fr' ? 'fr' : 'en';
+   const { hasPremiumAccess, accessResolved } = usePremium();
+   // зачем (Ревизор по 31029c044, 15.10, 🔴): «Следующий урок» читает Plus из контекста В МОМЕНТ решения, а не на тапе — холодный кэш не должен показать платящему пейвол
+@@ -602,6 +599,7 @@ export default function LessonComplete() {
+     id: string;
+     unlocked?: string;
+     completedAttemptId?: string | string[];
++    previousBestScore?: string;
+     repeatAttemptId?: string | string[];
+     passed?: string | string[];
+     runeCompletionOrdinal?: string | string[];
+@@ -611,6 +609,7 @@ export default function LessonComplete() {
+     /** Счёт прохода от экрана урока: верно и всего ответов — запасной источник, когда ключа прогресса в хранилище нет. */
+     resultCorrect?: string | string[];
+     resultTotal?: string | string[];
++    resultMissCount?: string | string[];
+     /** Комбинированный урок: id тем через запятую. Пусто — обычный урок. */
+     combo?: string | string[];
+     /** Разбивка «тема:верно:всего» через запятую, напр. "3:16:17,10:10:16". */
+@@ -647,6 +646,12 @@ export default function LessonComplete() {
+     () => normalizeLessonServerAttemptId(params.completedAttemptId) ?? makeLessonServerAttemptId(),
+     [lessonId, params.completedAttemptId, studyTarget],
+   );
++  const completionAttemptProvided = params.completedAttemptId !== undefined;
++  const normalizedCompletedAttemptId = normalizeLessonServerAttemptId(params.completedAttemptId);
++  const completionOrigin = `${studyTarget}:${lessonId}:${completionAttemptId}`;
++  const completionOriginRef = useRef(completionOrigin);
++  completionOriginRef.current = completionOrigin;
++  const isCompletionOriginCurrent = useCallback(() => completionOriginRef.current === completionOrigin && classicRuntime.isCurrent(),[completionOrigin,classicRuntime]);
+   // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
+   // экрана празднования». Копилка та же, что копилась на lesson1.tsx — она
+   // восстанавливается по идентичному sessionKey с диска, здесь только зовём
+@@ -720,9 +725,10 @@ export default function LessonComplete() {
+   // Subtitle сообщает только о ФАКТИЧЕСКОМ didUnlock из lesson1. Один active
+   // Plus не означает успех: при score < 2.5 route несёт unlocked='0'. И наоборот,
+   // stale/подменённый unlocked='1' не обходит свежий Free entitlement выше.
++  const [completionDidUnlock,setCompletionDidUnlock] = useState(false);
+   const nextLessonUnlockHint = completionAccessReady && shouldAnnounceNextLessonUnlock(
+     lessonId,
+-    params.unlocked === '1',
++    completionDidUnlock,
+     !completionRequiresPremium,
+   )
+     ? triLang(lang, {
+@@ -1135,8 +1141,31 @@ export default function LessonComplete() {
+ 
+   useEffect(() => {
+     let cancelled = false;
++    let resultReadFailed = false;
++    const failResultRead = (error: unknown, scope: string) => {
++      noteSwallowedHandler(scope)(error);
++      if (cancelled || resultReadFailed || !isCompletionOriginCurrent()) return;
++      resultReadFailed = true;
++      setCompletionXpReady(true);
++      markNextNavigationAsReplace();
++      dismissToTabRoute(router, COMPLETE_TO_LESSONS_TAB);
++    };
++    const resultRead = (async () => {
++      const canApply = !isComboCompletion && completionAttemptProvided ? true : await canApplyCompletionRewards();
++      if (!canApply || isComboCompletion) return {canApply,data:null};
++      const data = await readClassicCompletionResult({
++        owner:classicRuntime.owner,target:studyTarget,lessonId,attempt:normalizedCompletedAttemptId,explicitAttempt:completionAttemptProvided,
++        isCurrent:isCompletionOriginCurrent,
++        receipt:()=>classicRuntime.receipt(lessonId,studyTarget,completionAttemptId),
++        readMedal:()=>loadMedalInfoStrict(lessonId,studyTarget),
++        readProgress:()=>AsyncStorage.getItem(lessonProgressKey(lessonId,studyTarget)),
++        route:{correct:params.resultCorrect,total:params.resultTotal},
++      });
++      return {canApply,data};
++    })();
+     void (async () => {
+-      const canApply = await canApplyCompletionRewards();
++      const {canApply,data} = await resultRead;
++      if (cancelled || !isCompletionOriginCurrent()) return;
+       if (!canApply) {
+         if (!cancelled && frenchStudyActive(studyTarget)) {
+           markNextNavigationAsReplace();
+@@ -1144,17 +1173,21 @@ export default function LessonComplete() {
+         }
+         return;
+       }
++      if (!isComboCompletion) {
++        if (!data?.receipt) { if (!cancelled && isCompletionOriginCurrent()) setCompletionXpReady(true); return; }
++      }
++      if (cancelled || resultReadFailed || !isCompletionOriginCurrent()) return;
+       void grantBonus().catch((error: unknown) => {
+         console.warn(`[LESSON-COMPLETE] выдача награды упала lessonId=${lessonId}: ${error instanceof Error ? error.message : String(error)} — экран итога открыт, повтор при следующем заходе`); // guard-ok: catch пишет причину
+       }).finally(() => {
+-        if (!cancelled) setCompletionXpReady(true);
++        if (!cancelled && isCompletionOriginCurrent()) setCompletionXpReady(true);
+       });
+-      if (!isWorkshopCompletion) void markLessonFinishedOnce(lessonId, studyTarget);
+-    })();
++    })().catch((error: unknown) => failResultRead(error,'lesson_complete:completionReceipt'));
+ 
+-    // Загружаем оценку урока, сохраняем медаль
++    // Read the already committed result; result mounting never re-applies it.
+     void (async () => {
+-      const canApply = await canApplyCompletionRewards();
++      const {canApply,data} = await resultRead;
++      if (cancelled || !isCompletionOriginCurrent()) return;
+       if (!canApply) return;
+       // зачем (владелец 2026-09-17, «зачёт только в комбо»): комбинированный
+       // урок НЕ ТРОГАЕТ прогресс тем. saveMedalProgress ниже пишет в ключи
+@@ -1192,12 +1225,14 @@ export default function LessonComplete() {
+         setResultsReady(true);
+         return;
+       }
+-      const saved = await AsyncStorage.getItem(lessonProgressKey(lessonId, studyTarget));
+-      if (cancelled) return;
+-      if (!saved) {
++      if (!data) throw Error('classic_completion_result_unavailable');
++      const {receipt:durableReceipt,savedMedal,savedProgress:saved} = data;
++      if (cancelled || resultReadFailed || !isCompletionOriginCurrent()) return;
++      setCompletionDidUnlock(durableReceipt?.unlocked === true);
++      if (!saved && !durableReceipt) {
+         // Fallback: если прогресс не найден (например, очищен до открытия экрана),
+         // показываем уже сохранённую медаль по best_score, чтобы не было "?".
+-        const info = await loadMedalInfo(lessonId, studyTarget);
++        const info = savedMedal;
+         // зачем (владелец 13.10, «почему тут нет всех элементов»; сперва логи): эта ветка рисует итог БЕЗ счёта «верно/ошибок» (lessonCounts=null), без ошибок и начисления — ровно «заголовок, серые звёзды, +0».
+         const devDemo = __DEV__ ? parseDevLessonResult(params.devResult) : null;
+         // зачем (координатор 13.10): без ключа прогресса счёт берём из маршрута — его кладёт экран урока (resultCorrect/resultTotal), итог не рисуется пустым.
+@@ -1224,42 +1259,31 @@ export default function LessonComplete() {
+         return;
+       }
+       try {
+-        const p: string[] = JSON.parse(saved);
+-        const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
+-        const totalAnswers = Array.isArray(p) && p.length > 0 ? Math.min(p.length, 50) : 50;
+-        const score = parseFloat(((Math.min(correct, totalAnswers) / totalAnswers) * 5).toFixed(1));
++        const p: string[] = durableReceipt ? [] : JSON.parse(saved!);
++        const snapshot = durableReceipt?.resultSnapshot;
++        const correct = durableReceipt ? snapshot?.finalCorrect : p.filter(x => x === 'correct' || x === 'replay_correct').length;
++        const totalAnswers = durableReceipt ? snapshot?.total : Array.isArray(p) && p.length > 0 ? Math.min(p.length, 50) : 50;
++        const score = durableReceipt?.score ?? parseFloat(((Math.min(correct!, totalAnswers!) / totalAnswers!) * 5).toFixed(1));
+         setLessonScore(score);
+         // зачем (Сверка c17199343, координатор 15.10): «верно / ошибок / точность» и «ИДЕАЛ» — по ПЕРВЫМ попыткам; балл, звёзды и монеты выше — как раньше
+-        const firstTry = lessonFirstTryCountsFromProgress(p, peekLessonRunMissCount(lessonId)); // зачем (координатор 15.10): все промахи прохода, не 5 строк списка
+-        setLessonCounts({ correct: firstTry.correct, wrong: firstTry.wrong });
+-        DebugLogger.info('[LESSON-RESULT]', JSON.stringify({ lessonId, source: 'progress', firstTryMistakes: firstTry.wrong, firstTryCorrect: firstTry.correct, finalCorrect: firstTry.finalCorrect, missCount: peekLessonRunMissCount(lessonId), errorRows: peekLessonRunErrors(lessonId).length }));
+-        const { newTier, prevTier, isNewBest, newPassCount } = await saveMedalProgress(lessonId, score, p, studyTarget);
++        const firstTry = durableReceipt
++          ? snapshot ? {correct:snapshot.total-snapshot.firstTryWrong,wrong:snapshot.firstTryWrong,finalCorrect:snapshot.finalCorrect} : null
++          : lessonFirstTryCountsFromProgress(p, peekLessonRunMissCount(lessonId)); // зачем (координатор 15.10): все промахи прохода, не 5 строк списка
++        setLessonCounts(firstTry ? { correct: firstTry.correct, wrong: firstTry.wrong } : null);
++        DebugLogger.info('[LESSON-RESULT]', JSON.stringify({ lessonId, source: durableReceipt ? 'receipt' : 'progress', firstTryMistakes: firstTry?.wrong ?? null, firstTryCorrect: firstTry?.correct ?? null, finalCorrect: firstTry?.finalCorrect ?? null }));
++        if (cancelled || resultReadFailed || !isCompletionOriginCurrent()) return;
++        const previousBest = durableReceipt?.previousBest;
++        const newTier = durableReceipt ? getMedalTier(previousBest === undefined ? durableReceipt.score : Math.max(previousBest,durableReceipt.score)) : savedMedal.tier;
++        const prevTier = previousBest !== undefined ? getMedalTier(previousBest) : newTier;
++        const isNewBest = !!durableReceipt && previousBest !== undefined && durableReceipt.score > previousBest;
++        const newPassCount = durableReceipt?.passes ?? savedMedal.passCount;
+         DebugLogger.info('[LESSON-RESULT]', `ветка=ПРОГРЕСС_НАЙДЕН lesson=${lessonId} target=${studyTarget} ответов=${p.length} верно=${correct} ошибок=${p.filter(x => x === 'wrong').length} из ${totalAnswers} score=${score} → tier ${prevTier}→${newTier} новыйРекорд=${String(isNewBest)} проходов=${newPassCount}`);
+-        submitProgressEvent({
+-          eventId: [
+-            'lesson',
+-            safeLessonCompleteEventPart(studyTarget),
+-            String(lessonId),
+-            'complete',
+-            safeLessonCompleteEventPart(completionAttemptId),
+-          ].join(':'),
+-          type: 'lesson_complete',
+-          payload: {
+-            lessonId,
+-            studyTarget,
+-            score,
+-            passed: correct >= 45,
+-            progress: p,
+-            cellIndex: p.length,
+-            attemptId: completionAttemptId,
+-          },
+-        }).catch(noteSwallowedHandler('lesson_complete:useEffect.submitProgressEvent'));
+-        void syncToCloud({ forceNow: true }).catch(noteSwallowedHandler('lesson_complete:useEffect.syncToCloud'));
+         setMedalTier(newTier);
+         const medalUpgraded = isNewBest && newTier !== prevTier && newTier !== 'none';
+         setMedalImproved(medalUpgraded);
+         setResultsReady(true);
+-        if (correct >= 45 && p.filter(x => x === 'wrong').length === 0 && newPassCount > 0) {
++        if (!durableReceipt || !snapshot) return; // Legacy reads never replay mutations or invent unknown first-try history.
++        if (firstTry && correct! >= 45 && firstTry.wrong === 0 && newPassCount > 0) {
+           checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: newPassCount, studyTarget }).catch(noteSwallowedHandler('lesson_complete:useEffect.checkAchievements'));
+         }
+ 
+@@ -1274,7 +1298,7 @@ export default function LessonComplete() {
+           : false;
+         if (shouldAnnounceNextLessonUnlock(
+           lessonId,
+-          params.unlocked === '1',
++          durableReceipt?.unlocked === true,
+           premiumForUnlockAnnouncement,
+         )) {
+           queue.push({ kind: 'lesson_unlock', unlockedLessonId: lessonId + 1 });
+@@ -1307,22 +1331,23 @@ export default function LessonComplete() {
+         const gems = await checkGemAchievements(lessonId, studyTarget);
+         gems.forEach(g => checkAchievements({ type: 'gem', level: g.level, gem: g.gem, studyTarget }).catch(noteSwallowedHandler('lesson_complete:useEffect.checkAchievements_2')));
+       } catch (error: unknown) {
++        if (durableReceipt) { noteSwallowedHandler('lesson_complete:postResult')(error); return; }
+         console.warn(`[LESSON-COMPLETE] медаль/разблокировка не посчитаны lessonId=${lessonId}: ${error instanceof Error ? error.message : String(error)} — показываю последнюю сохранённую`); // guard-ok: catch пишет причину
+-        const info = await loadMedalInfo(lessonId, studyTarget);
++        const info = savedMedal;
+         DebugLogger.warn('[LESSON-RESULT]', `ветка=ОШИБКА_РАЗБОРА lesson=${lessonId} target=${studyTarget}: ${error instanceof Error ? error.message : String(error)} → из памяти bestScore=${String(info.bestScore)} tier=${info.tier}; счёт верно/ошибок не показан`);
+         setLessonScore(info.bestScore || 0);
+         setMedalTier(info.tier);
+         setMedalImproved(false);
+         setResultsReady(true);
+       }
+-    })();
++    })().catch((error: unknown) => failResultRead(error,'lesson_complete:resultRead'));
+     const cefr = CEFR_FOR_LESSON(lessonId);
+     setLessonCefr(cefr);
+     return () => {
+       cancelled = true;
+       clearLessonCompleteNotifTimer();
+     };
+-  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, grantBonus, lessonId, params.devResult, params.resultCorrect, params.resultTotal, params.unlocked, router, scheduleActiveNotif, studyTarget]);
++  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, completionAttemptProvided, normalizedCompletedAttemptId, isCompletionOriginCurrent, grantBonus, lessonId, params.devResult, params.resultCorrect, params.resultTotal, params.unlocked, router, scheduleActiveNotif, studyTarget,classicRuntime,isComboCompletion,isWorkshopCompletion]);
+ 
+   // ── Триггер регистрационной модалки после первого урока ────────────────────
+   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен
+@@ -1487,15 +1512,11 @@ export default function LessonComplete() {
+     setRepeatOpening(true);
+     const repeatAttemptId = normalizeLessonServerAttemptId(params.repeatAttemptId)
+       ?? makeLessonServerAttemptId();
+-    // The route is the synchronous source of truth for the next screen. Storage
+-    // remains the durable fallback, but navigation never waits for the native
+-    // write and therefore stays instant on Android.
++    // The route is the synchronous handoff for the next screen. For ordinary
++    // Classic lessons, the journal successor recovered by runtime.enter remains
++    // the durable attempt authority; navigation never waits for native storage.
+     // зачем (мастерская фраз): «ещё раз» в песочнице — новый заход в режим; ключи старого урока N не пишем и не прогреваем
+     if (!isWorkshopCompletion) {
+-      void AsyncStorage.setItem(
+-        lessonSessionKey(lessonId, 'serverAttemptId', studyTarget),
+-        repeatAttemptId,
+-      ).catch(noteSwallowedHandler('lesson_complete:useCallback.setItem'));
+       void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_complete:useCallback.primeLessonScreenFromStorage'));
+     }
+     try {
+
+diff --git a/app/lesson_lock_system.ts b/app/lesson_lock_system.ts
+index e8ce968e1..c98ba8b10 100644
+--- a/app/lesson_lock_system.ts
++++ b/app/lesson_lock_system.ts
+@@ -27,7 +27,7 @@
+ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import type { Lang } from '../constants/i18n';
+ import { storageGet, storageSet, storageGetString, storageSetString } from '../lib/storage';
+-import { withStorageLock } from './storage_mutex';
++import { withStorageLock, type StorageLockLease } from './storage_mutex';
+ import { effectiveLessonStarScore } from './lesson_star_score';
+ import {
+   LEVEL_EXAM_UNLOCK_LESSON_PERCENT,
+@@ -89,22 +89,31 @@ export const isLessonUnlocked = async (
+ export const unlockLesson = async (
+   lessonId: number,
+   studyTarget?: RuntimeStudyTarget,
+-): Promise<void> => {
++  inheritedStorageLease?: StorageLockLease,
++): Promise<boolean> => {
+   try {
+     // зачем (аудит 2026-08-24): read-modify-write МАССИВА разблокированных уроков без
+     // замка — классический lost update. isLessonUnlockedByEarnedProgress зовёт unlockLesson
+     // побочным эффектом при обычном ЧТЕНИИ, а меню уроков и главный экран проверяют
+     // доступ параллельно: два перекрывшихся вызова читали один и тот же старый массив,
+     // и урок, открытый первым, терялся при записи второго. Читаем и пишем под замком.
+-    await withStorageLock(async () => {
++    return await withStorageLock(async () => {
+       const key = unlockedLessonsKey(studyTarget);
+-      const unlocked = (await storageGet<number[]>(key)) ?? [];
++      const raw = await AsyncStorage.getItem(key);
++      const unlocked: unknown = raw === null ? [] : JSON.parse(raw);
++      if (!Array.isArray(unlocked) || unlocked.some(value => !Number.isInteger(value) || value < 1 || value > 32)) throw new Error('lesson_unlock_storage_invalid');
+       if (!unlocked.includes(lessonId)) {
+-        await storageSet(key, [...unlocked, lessonId]);
++        const next = JSON.stringify([...unlocked, lessonId]);
++        try { await AsyncStorage.setItem(key, next); } catch (error) {
++          if (await AsyncStorage.getItem(key) !== next) throw error;
++        }
+       }
+-    });
++      const committed: unknown = JSON.parse(await AsyncStorage.getItem(key) ?? '[]');
++      return Array.isArray(committed) && committed.includes(lessonId);
++    }, inheritedStorageLease);
+   } catch (e) {
+       DebugLogger.error('lesson_lock_system:unlocked', e instanceof Error ? e : new Error(String(e)), 'warning');
++      return false;
+     }
+ };
+ 
+@@ -144,8 +153,7 @@ export const tryUnlockNextLesson = async (
+     const nextLessonId = currentLessonId + 1;
+     const alreadyUnlocked = await isLessonUnlocked(nextLessonId, studyTarget);
+     if (!alreadyUnlocked) {
+-      await unlockLesson(nextLessonId, studyTarget);
+-      return true;
++      return unlockLesson(nextLessonId, studyTarget);
+     }
+   }
+   return false;
+
+diff --git a/app/lesson_screen_bootstrap.ts b/app/lesson_screen_bootstrap.ts
+index 7aaf26e98..17e54d0bc 100644
+--- a/app/lesson_screen_bootstrap.ts
++++ b/app/lesson_screen_bootstrap.ts
+@@ -1,4 +1,5 @@
+ import AsyncStorage from '@react-native-async-storage/async-storage';
++import { useCallback, useEffect, useLayoutEffect, useReducer, useRef } from 'react';
+ import { patchAppSnapshot } from './app_snapshot_store';
+ import {
+   lessonProgressKey,
+@@ -7,23 +8,219 @@ import {
+   type RuntimeStudyTarget,
+ } from './target_storage_keys';
+ import { DebugLogger } from './debug-logger';
++import {
++  captureAccountGeneration,
++  isCapturedAccountGenerationToken,
++  isCurrentAccountGeneration,
++  subscribeAccountGeneration,
++  type AccountGenerationToken,
++} from './account_generation';
+ 
+ const TOTAL = 50;
+ 
+-type Primed = {
++type PrimedValue = {
+   cell: number;
+   order: number[] | null;
+   progress: string[] | null;
+   override: number | null;
+ };
+ 
++type PrimeSource = 'storage' | 'optimistic_memory';
++type NormalizedStudyTarget = ReturnType<typeof storageStudyTarget>;
++type PrimeScope = Readonly<{
++  accountToken: AccountGenerationToken;
++  studyTarget: NormalizedStudyTarget;
++  epoch: number;
++  targetEpoch: number;
++}>;
++export type LessonScreenPrimeOriginScope = PrimeScope & Readonly<{
++  parent: LessonScreenPrimeOriginScope | null;
++}>;
++type Primed = PrimedValue & PrimeScope & {
++  lessonId: string;
++  source: PrimeSource;
++};
++
+ const byLesson: Record<string, Primed> = {};
++const issuedLessonScreenPrimeOriginScopes = new WeakSet<object>();
++const disposedLessonScreenPrimeOriginScopes = new WeakSet<object>();
++let primeEpoch = 0;
++let committedPrimeStudyTarget: NormalizedStudyTarget | null = null;
++let primeTargetEpoch = 0;
+ const VALID_PROGRESS_STATES = new Set(['empty', 'correct', 'wrong', 'replay_correct']);
+ 
+ type LessonStorageId = string | number;
+ 
+-function primedKey(lessonId: LessonStorageId, studyTarget?: RuntimeStudyTarget): string {
+-  return `${storageStudyTarget(studyTarget)}:${lessonId}`;
++function normalizedPrimedKey(lessonId: LessonStorageId, studyTarget: NormalizedStudyTarget): string {
++  return `${studyTarget}:${lessonId}`;
++}
++
++function clearLessonPrimeCache(): void {
++  primeEpoch += 1;
++  for (const key of Object.keys(byLesson)) delete byLesson[key];
++}
++
++subscribeAccountGeneration(clearLessonPrimeCache);
++
++function isActiveAccountToken(token: unknown): token is AccountGenerationToken {
++  return isCapturedAccountGenerationToken(token)
++    && token.phase === 'active'
++    && isCurrentAccountGeneration(token);
++}
++
++function capturePrimeScope(studyTarget?: RuntimeStudyTarget): PrimeScope {
++  return Object.freeze({
++    accountToken: captureAccountGeneration(),
++    studyTarget: storageStudyTarget(studyTarget),
++    epoch: primeEpoch,
++    targetEpoch: primeTargetEpoch,
++  });
++}
++
++function isPrimeScopeCurrent(scope: PrimeScope): boolean {
++  return scope.epoch === primeEpoch
++    && scope.targetEpoch === primeTargetEpoch
++    && scope.studyTarget === committedPrimeStudyTarget
++    && isActiveAccountToken(scope.accountToken);
++}
++
++function isStoragePrimeScopeCurrent(scope: PrimeScope): boolean {
++  return isPrimeScopeCurrent(scope);
++}
++
++export function commitLessonScreenPrimeStudyTarget(studyTarget: RuntimeStudyTarget): void {
++  const normalizedTarget = storageStudyTarget(studyTarget);
++  if (normalizedTarget === committedPrimeStudyTarget) return;
++  committedPrimeStudyTarget = normalizedTarget;
++  primeTargetEpoch += 1;
++  for (const key of Object.keys(byLesson)) delete byLesson[key];
++}
++
++export function captureLessonScreenPrimeOriginScope(
++  originatingToken: AccountGenerationToken,
++  studyTarget: RuntimeStudyTarget,
++): LessonScreenPrimeOriginScope | null {
++  if (!isActiveAccountToken(originatingToken)) return null;
++  const normalizedTarget = storageStudyTarget(studyTarget);
++  if (normalizedTarget !== committedPrimeStudyTarget) return null;
++  const scope: LessonScreenPrimeOriginScope = Object.freeze({
++    accountToken: originatingToken,
++    studyTarget: normalizedTarget,
++    epoch: primeEpoch,
++    targetEpoch: primeTargetEpoch,
++    parent: null,
++  });
++  issuedLessonScreenPrimeOriginScopes.add(scope);
++  return scope;
++}
++
++export function forkLessonScreenPrimeOriginScope(
++  parent: LessonScreenPrimeOriginScope | null,
++): LessonScreenPrimeOriginScope | null {
++  if (!isLessonScreenPrimeOriginScopeCurrent(parent)) return null;
++  const scope: LessonScreenPrimeOriginScope = Object.freeze({
++    accountToken: parent.accountToken,
++    studyTarget: parent.studyTarget,
++    epoch: parent.epoch,
++    targetEpoch: parent.targetEpoch,
++    parent,
++  });
++  issuedLessonScreenPrimeOriginScopes.add(scope);
++  return scope;
++}
++
++export function disposeLessonScreenPrimeOriginScope(
++  scope: LessonScreenPrimeOriginScope | null,
++): void {
++  if (scope && issuedLessonScreenPrimeOriginScopes.has(scope)) {
++    disposedLessonScreenPrimeOriginScopes.add(scope);
++  }
++}
++
++export function isLessonScreenPrimeOriginScopeCurrent(
++  scope: LessonScreenPrimeOriginScope | null,
++): scope is LessonScreenPrimeOriginScope {
++  if (!scope || !issuedLessonScreenPrimeOriginScopes.has(scope)) return false;
++  if (disposedLessonScreenPrimeOriginScopes.has(scope) || !isPrimeScopeCurrent(scope)) return false;
++  return scope.parent === null || isLessonScreenPrimeOriginScopeCurrent(scope.parent);
++}
++
++export function useCommittedLessonScreenPrimeOriginScope(
++  originatingToken: AccountGenerationToken,
++  studyTarget: RuntimeStudyTarget,
++  runIdentity: string,
++): () => LessonScreenPrimeOriginScope | null {
++  const normalizedTarget = storageStudyTarget(studyTarget);
++  const identity = `${originatingToken.generation}:${originatingToken.stableId ?? ''}:${originatingToken.phase}:${normalizedTarget}:${runIdentity}`;
++  const committedRef = useRef<Readonly<{
++    identity: string;
++    scope: LessonScreenPrimeOriginScope | null;
++  }> | null>(null);
++  const passiveMountedRef = useRef(false);
++  const pendingLayoutRefreshIdentityRef = useRef<string | null>(null);
++  const [scopeRevision, advanceScopeRevision] = useReducer((revision: number) => revision + 1, 0);
++
++  useLayoutEffect(() => {
++    const refreshRecreatedScope = pendingLayoutRefreshIdentityRef.current === identity
++      && passiveMountedRef.current;
++    pendingLayoutRefreshIdentityRef.current = null;
++    const previous = committedRef.current;
++    if (previous && previous.identity !== identity) {
++      committedRef.current = null;
++      disposeLessonScreenPrimeOriginScope(previous.scope);
++    }
++    if (!committedRef.current) {
++      const scope = captureLessonScreenPrimeOriginScope(originatingToken, normalizedTarget);
++      if (scope) {
++        committedRef.current = Object.freeze({ identity, scope });
++        if (refreshRecreatedScope) advanceScopeRevision();
++      }
++    }
++    return () => {
++      pendingLayoutRefreshIdentityRef.current = identity;
++      const committed = committedRef.current;
++      if (committed?.identity === identity) {
++        committedRef.current = null;
++        disposeLessonScreenPrimeOriginScope(committed.scope);
++      }
++    };
++  }, [identity, normalizedTarget, originatingToken]);
++
++  useEffect(() => {
++    passiveMountedRef.current = true;
++    let committed = committedRef.current?.identity === identity
++      ? committedRef.current
++      : null;
++    if (!committed) {
++      const scope = captureLessonScreenPrimeOriginScope(originatingToken, normalizedTarget);
++      if (scope) {
++        committed = Object.freeze({ identity, scope });
++        committedRef.current = committed;
++      }
++    }
++    return () => {
++      passiveMountedRef.current = false;
++      if (committed && committedRef.current === committed) committedRef.current = null;
++      if (committed) disposeLessonScreenPrimeOriginScope(committed.scope);
++    };
++  }, [identity, normalizedTarget, originatingToken]);
++
++  return useCallback(() => {
++    const committed = committedRef.current;
++    if (committed?.identity !== identity) return null;
++    return isLessonScreenPrimeOriginScopeCurrent(committed.scope) ? committed.scope : null;
++    // eslint-disable-next-line react-hooks/exhaustive-deps -- scopeRevision deliberately changes the getter identity so passive hydration restarts after committed reveal
++  }, [identity, scopeRevision]);
++}
++
++function isPrimedEntryCurrent(
++  entry: Primed,
++  lessonId: LessonStorageId,
++  studyTarget: NormalizedStudyTarget,
++): boolean {
++  return entry.lessonId === String(lessonId)
++    && entry.studyTarget === studyTarget
++    && isPrimeScopeCurrent(entry);
+ }
+ 
+ function parseIntCell(raw: string | null): number {
+@@ -90,14 +287,12 @@ export function buildLessonContentSignature(
+   return `${storageStudyTarget(studyTarget)}:${lessonId}:${phraseDescriptors.length}:${(hash >>> 0).toString(36)}`;
+ }
+ 
+-function applyPrimedFromStorageStrings(
+-  lessonId: LessonStorageId,
++function parsePrimedFromStorageStrings(
+   ci: string | null,
+   order: string | null,
+   prog: string | null,
+   override: string | null,
+-  studyTarget?: RuntimeStudyTarget,
+-): void {
++): PrimedValue {
+   let orderArr: number[] | null = null;
+   if (order) {
+     try {
+@@ -118,7 +313,7 @@ function applyPrimedFromStorageStrings(
+       DebugLogger.error('lesson_screen_bootstrap:applyPrimedFromStorageStrings', e instanceof Error ? e : new Error(String(e)), 'warning');
+     }
+   }
+-  byLesson[primedKey(lessonId, studyTarget)] = {
++  return {
+     cell: parseIntCell(ci),
+     order: orderArr,
+     progress: progressArr,
+@@ -126,45 +321,68 @@ function applyPrimedFromStorageStrings(
+   };
+ }
+ 
+-function publishLessonPrimeSummary(studyTarget?: RuntimeStudyTarget): void {
+-  patchAppSnapshot((current) => ({
+-    lessons: {
+-      source: 'storage',
++function scopedPrimedCount(scope: PrimeScope): number {
++  return Object.values(byLesson).filter((entry) => (
++    entry.studyTarget === scope.studyTarget && isPrimeScopeCurrent(entry)
++  )).length;
++}
++
++function publishLessonPrimeSummary(scope: PrimeScope, source: PrimeSource): void {
++  if (!isPrimeScopeCurrent(scope)) return;
++  const primedCount = scopedPrimedCount(scope);
++  if (!isPrimeScopeCurrent(scope)) return;
++  patchAppSnapshot((current) => {
++    const preserveLastOpened = current.lessons?.studyTarget === scope.studyTarget;
++    return {
++      lessons: {
++      source: source === 'storage' ? 'storage' : 'memory',
+       updatedAt: Date.now(),
+-      primedCount: Object.keys(byLesson).length,
+-      lastOpenedLesson: current.lessons?.lastOpenedLesson ?? null,
++      primedCount,
++      lastOpenedLesson: preserveLastOpened ? current.lessons?.lastOpenedLesson ?? null : null,
+       // зачем (карточка «Продолжить урок» в первом кадре): не терять счёт последнего урока из стартового снимка.
+-      lastOpenedLessonCorrect: current.lessons?.lastOpenedLessonCorrect ?? null,
+-      ...(current.lessons?.studyTarget ? { studyTarget: current.lessons.studyTarget } : {}),
+-    },
+-  }));
++      lastOpenedLessonCorrect: preserveLastOpened ? current.lessons?.lastOpenedLessonCorrect ?? null : null,
++      studyTarget: scope.studyTarget,
++      },
++    };
++  });
+ }
+ 
+ export const LESSON_ID_MAX = 32;
+ 
+ export async function primeAllLessonsFromStorageOnAppLaunch(studyTarget?: RuntimeStudyTarget): Promise<void> {
++  const scope = capturePrimeScope(studyTarget);
++  if (!isStoragePrimeScopeCurrent(scope)) return;
+   const keys: string[] = [];
+   for (let i = 1; i <= LESSON_ID_MAX; i++) {
+     keys.push(
+-      lessonSessionKey(i, 'cellIndex', studyTarget),
+-      lessonSessionKey(i, 'phraseOrder', studyTarget),
+-      lessonProgressKey(i, studyTarget),
+-      lessonSessionKey(i, 'errorReplayOverride', studyTarget),
++      lessonSessionKey(i, 'cellIndex', scope.studyTarget),
++      lessonSessionKey(i, 'phraseOrder', scope.studyTarget),
++      lessonProgressKey(i, scope.studyTarget),
++      lessonSessionKey(i, 'errorReplayOverride', scope.studyTarget),
+     );
+   }
+   const entries = await AsyncStorage.multiGet(keys);
++  if (!isStoragePrimeScopeCurrent(scope)) return;
+   const map = Object.fromEntries(entries) as Record<string, string | null>;
++  if (!isStoragePrimeScopeCurrent(scope)) return;
++  const nextEntries: Record<string, Primed> = {};
+   for (let i = 1; i <= LESSON_ID_MAX; i++) {
+-    applyPrimedFromStorageStrings(
+-      i,
+-      map[lessonSessionKey(i, 'cellIndex', studyTarget)] ?? null,
+-      map[lessonSessionKey(i, 'phraseOrder', studyTarget)] ?? null,
+-      map[lessonProgressKey(i, studyTarget)] ?? null,
+-      map[lessonSessionKey(i, 'errorReplayOverride', studyTarget)] ?? null,
+-      studyTarget,
+-    );
++    nextEntries[normalizedPrimedKey(i, scope.studyTarget)] = {
++      ...parsePrimedFromStorageStrings(
++        map[lessonSessionKey(i, 'cellIndex', scope.studyTarget)] ?? null,
++        map[lessonSessionKey(i, 'phraseOrder', scope.studyTarget)] ?? null,
++        map[lessonProgressKey(i, scope.studyTarget)] ?? null,
++        map[lessonSessionKey(i, 'errorReplayOverride', scope.studyTarget)] ?? null,
++      ),
++      ...scope,
++      lessonId: String(i),
++      source: 'storage',
++    };
+   }
+-  publishLessonPrimeSummary(studyTarget);
++  if (!isStoragePrimeScopeCurrent(scope)) return;
++  Object.assign(byLesson, nextEntries);
++  if (!isStoragePrimeScopeCurrent(scope)) return;
++  publishLessonPrimeSummary(scope, 'storage');
+ }
+ 
+ export async function primeLessonScreenFromStorage(
+@@ -172,15 +390,28 @@ export async function primeLessonScreenFromStorage(
+   studyTarget?: RuntimeStudyTarget,
+ ): Promise<void> {
+   if (!Number.isInteger(lessonId) || lessonId < 1 || lessonId > LESSON_ID_MAX) return;
++  const scope = capturePrimeScope(studyTarget);
++  if (!isStoragePrimeScopeCurrent(scope)) return;
+   try {
+-    const [[, ci], [, order], [, prog], [, override]] = await AsyncStorage.multiGet([
+-      lessonSessionKey(lessonId, 'cellIndex', studyTarget),
+-      lessonSessionKey(lessonId, 'phraseOrder', studyTarget),
+-      lessonProgressKey(lessonId, studyTarget),
+-      lessonSessionKey(lessonId, 'errorReplayOverride', studyTarget),
++    const entries = await AsyncStorage.multiGet([
++      lessonSessionKey(lessonId, 'cellIndex', scope.studyTarget),
++      lessonSessionKey(lessonId, 'phraseOrder', scope.studyTarget),
++      lessonProgressKey(lessonId, scope.studyTarget),
++      lessonSessionKey(lessonId, 'errorReplayOverride', scope.studyTarget),
+     ]);
+-    applyPrimedFromStorageStrings(lessonId, ci, order, prog, override, studyTarget);
+-    publishLessonPrimeSummary(studyTarget);
++    if (!isStoragePrimeScopeCurrent(scope)) return;
++    const [[, ci], [, order], [, prog], [, override]] = entries;
++    if (!isStoragePrimeScopeCurrent(scope)) return;
++    const nextEntry: Primed = {
++      ...parsePrimedFromStorageStrings(ci, order, prog, override),
++      ...scope,
++      lessonId: String(lessonId),
++      source: 'storage',
++    };
++    if (!isStoragePrimeScopeCurrent(scope)) return;
++    byLesson[normalizedPrimedKey(lessonId, scope.studyTarget)] = nextEntry;
++    if (!isStoragePrimeScopeCurrent(scope)) return;
++    publishLessonPrimeSummary(scope, 'storage');
+   } catch (e) {
+       // Priming is an optimization only. Callers must still be able to navigate to // the lesson; the lesson screen performs its own authoritative storage load.
+       DebugLogger.error('lesson_screen_bootstrap:primeLessonScreenFromStorage', e instanceof Error ? e : new Error(String(e)), 'warning');
+@@ -188,23 +419,42 @@ export async function primeLessonScreenFromStorage(
+ }
+ 
+ export function getLessonScreenPrimed(lessonId: LessonStorageId, studyTarget?: RuntimeStudyTarget): Primed | null {
+-  return byLesson[primedKey(lessonId, studyTarget)] ?? null;
++  const normalizedTarget = storageStudyTarget(studyTarget);
++  const key = normalizedPrimedKey(lessonId, normalizedTarget);
++  const entry = byLesson[key];
++  if (!entry) return null;
++  if (!isPrimedEntryCurrent(entry, lessonId, normalizedTarget)) {
++    delete byLesson[key];
++    return null;
++  }
++  return entry;
+ }
+ 
+ export function touchLessonScreenPrimed(
+   lessonId: LessonStorageId,
+-  patch: Partial<Pick<Primed, 'cell' | 'order' | 'progress' | 'override'>>,
+-  studyTarget?: RuntimeStudyTarget,
+-): void {
+-  const key = primedKey(lessonId, studyTarget);
+-  const cur = byLesson[key] ?? { cell: 0, order: null, progress: null, override: null };
+-  byLesson[key] = {
++  patch: Partial<Pick<PrimedValue, 'cell' | 'order' | 'progress' | 'override'>>,
++  originatingScope: LessonScreenPrimeOriginScope | null,
++): boolean {
++  if (!isLessonScreenPrimeOriginScopeCurrent(originatingScope)) return false;
++  const scope: PrimeScope = originatingScope;
++  const key = normalizedPrimedKey(lessonId, scope.studyTarget);
++  const currentEntry = byLesson[key];
++  const cur: PrimedValue = currentEntry && isPrimedEntryCurrent(currentEntry, lessonId, scope.studyTarget)
++    ? currentEntry
++    : { cell: 0, order: null, progress: null, override: null };
++  const nextEntry: Primed = {
+     cell: patch.cell !== undefined ? patch.cell : cur.cell,
+     order: patch.order !== undefined ? patch.order : cur.order,
+     progress: patch.progress !== undefined ? patch.progress : cur.progress,
+     override: patch.override !== undefined ? patch.override : cur.override,
++    ...scope,
++    lessonId: String(lessonId),
++    source: 'optimistic_memory',
+   };
+-  publishLessonPrimeSummary(studyTarget);
++  if (!isLessonScreenPrimeOriginScopeCurrent(originatingScope)) return false;
++  byLesson[key] = nextEntry;
++  publishLessonPrimeSummary(scope, 'optimistic_memory');
++  return true;
+ }
+ 
+ export function getInitialOrderAndCell(
+
+diff --git a/app/medal_utils.ts b/app/medal_utils.ts
+index 83d87eeee..4f27f0e12 100644
+--- a/app/medal_utils.ts
++++ b/app/medal_utils.ts
+@@ -130,6 +130,14 @@ export const loadMedalInfo = async (
+   }
+ };
+ 
++/** Required result reads propagate failure instead of fabricating an empty medal. */
++export const loadMedalInfoStrict = async (lessonId:number,studyTarget?:RuntimeStudyTarget):Promise<MedalInfo> => {
++  const [scoreRaw,passRaw]=await AsyncStorage.multiGet([lessonBestScoreKey(lessonId,studyTarget),lessonPassCountKey(lessonId,studyTarget)]);
++  const bestScore=Number(scoreRaw[1]??0),storedPassCount=Number(passRaw[1]??0);
++  if(!Number.isFinite(bestScore)||bestScore<0||bestScore>5||!Number.isSafeInteger(storedPassCount)||storedPassCount<0)throw Error('classic_completion_medal_corrupt');
++  return {tier:getMedalTier(bestScore),bestScore,passCount:normalizeLessonPassCount(storedPassCount,bestScore)};
++};
++
+ // Вызывается при завершении урока. Возвращает { newTier, prevTier, isNewBest }.
+ export const saveMedalProgress = async (
+   lessonId: number,
+@@ -137,6 +145,7 @@ export const saveMedalProgress = async (
+   progressArr: string[],
+   studyTarget?: RuntimeStudyTarget,
+ ): Promise<{
++  persisted: boolean;
+   newTier: MedalTier;
+   prevTier: MedalTier;
+   isNewBest: boolean;
+@@ -200,6 +209,7 @@ export const saveMedalProgress = async (
+     }
+ 
+     return {
++      persisted: true,
+       newTier,
+       prevTier,
+       isNewBest,
+@@ -210,14 +220,15 @@ export const saveMedalProgress = async (
+   } catch (error) {
+     // зачем (аудит кнопок R58 #33, 15.10): пустой catch выдавал «успех» молча — экран показывает медаль по счёту, но причина несохранения теперь в журнале
+     console.warn('[MEDAL] saveMedalProgress: прогресс медали не сохранён — показываю по текущему счёту', error instanceof Error ? error.message : String(error));
+-    const tier = getMedalTier(currentScore);
++    const saved = await loadMedalInfo(lessonId, studyTarget);
+     return {
+-      newTier: tier,
+-      prevTier: 'none',
+-      isNewBest: true,
+-      prevPassCount: 0,
+-      newPassCount: currentScore >= 4.5 ? 1 : 0,
+-      passCountIncreased: currentScore >= 4.5,
++      persisted: false,
++      newTier: saved.tier,
++      prevTier: saved.tier,
++      isNewBest: false,
++      prevPassCount: saved.passCount,
++      newPassCount: saved.passCount,
++      passCountIncreased: false,
+     };
+   }
+ };
+
+diff --git a/app/progress_events_client.ts b/app/progress_events_client.ts
+index 20618ac99..fd85cc5a2 100644
+--- a/app/progress_events_client.ts
++++ b/app/progress_events_client.ts
+@@ -11,7 +11,10 @@ import {
+   captureAccountGeneration,
+   isCurrentAccountGeneration,
+   withAccountTransitionLock,
++  type AccountGenerationToken,
+ } from './account_generation';
++import type { CompletionEvent } from './classic_completion_journal_engine';
++import { deriveLocalOfflineProgressAccountScopeHash } from '../modules/learning-v2/progress/progress_account_scope';
+ import { recordShadowProgressEvent } from './phone_state_shadow_adapters';
+ import { trySubmitProgressThroughPhoneState } from './phone_state_progress_cutover';
+ import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
+@@ -86,6 +89,9 @@ const SERVER_PROGRESS_BASE_KEYS = [
+ 
+ const LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1', 'c2', 'final'];
+ const TARGETS = ['en', 'fr'] as const;
++function progressTransportTargetSupported(payload:Readonly<Record<string,unknown>>):boolean {
++  return payload.studyTarget == null || (TARGETS as readonly unknown[]).includes(payload.studyTarget);
++}
+ 
+ const EVENT_ID_HASH_PREFIX_LEN = 10;
+ const EVENT_ID_UNSTABLE_PAYLOAD_KEYS = new Set<string>([
+@@ -677,6 +683,7 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult):
+ }
+ 
+ async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEventResult> {
++  if(!progressTransportTargetSupported(event.payload))throw Error('progress_transport_target_unavailable');
+   // зачем: прежде без токена App Check событие прогресса не уходило вовсе
+   // (throw app_check_unavailable) — сервер его не требует, пломба 2026-08-17.
+   const fn = callable<QueuedProgressEvent, ProgressEventResult>('progressSubmitEvent');
+@@ -711,6 +718,8 @@ function parseRetryState(raw: string | null): ProgressRetryState | null {
+ }
+ 
+ async function doFlush(stableId: string): Promise<number> {
++  const canDispatch=await withOwnerQueueMutation(stableId,async state=>state.queue!.some(event=>progressTransportTargetSupported(event.payload)));
++  if(!canDispatch)return 0;
+   if (!(await ensureProgressSnapshotMigratedForOwner(stableId))) return 0;
+   // Реферал: отложенный код (введён офлайн) должен примениться ДО отправки прогресса.
+   // Квалификация «урок 1 пройден» срабатывает только по живому событию урока — если событие
+@@ -734,12 +743,16 @@ async function doFlush(stableId: string): Promise<number> {
+     }
+ 
+     const remaining = [...state.queue!];
++    const deferredTargets:QueuedProgressEvent[]=[];
+     let sent = 0;
+     let removed = 0;
+     let processed = 0;
+     let transientFailure = false;
+     while (remaining.length > 0 && processed < PROGRESS_EVENT_FLUSH_BATCH_MAX) {
+       const next = remaining[0];
++      if(!progressTransportTargetSupported(next.payload)){
++        deferredTargets.push(remaining.shift()!);processed+=1;continue;
++      }
+       try {
+         await submitQueuedEvent(next);
+       } catch (error) {
+@@ -800,9 +813,10 @@ async function doFlush(stableId: string): Promise<number> {
+       processed += 1;
+     }
+     if (removed > 0) {
+-      await writeQueue(stableId, remaining);
+-      state.queue = remaining;
+-      state.eventIds = new Set(remaining.map((event) => event.eventId));
++      const retained=[...remaining,...deferredTargets];
++      await writeQueue(stableId, retained);
++      state.queue = retained;
++      state.eventIds = new Set(retained.map((event) => event.eventId));
+     }
+     if (!transientFailure && retry) await AsyncStorage.removeItem(retryKey).catch(swallowError('progress_events_client:doFlush'));
+     return sent;
+@@ -824,21 +838,45 @@ export async function flushPendingProgressEvents(): Promise<number> {
+   return flushPendingProgressEventsForOwner(stableId);
+ }
+ 
++/** Background transport for an already durably admitted Classic event.
++ * Bypasses the legacy network-held owner queue; ownership and learning date
++ * are captured by the durable intent rather than re-resolved on retry.
++ */
++export async function submitAdmittedClassicProgressEvent(event:CompletionEvent,token:AccountGenerationToken):Promise<void>{
++  if(IS_EXPO_GO||!CLOUD_SYNC_ENABLED)throw Error('progress_server_unavailable');
++  if(!token.stableId||!isCurrentAccountGeneration(token,token.stableId))throw Error('progress_owner_stale');
++  if(event.owner!==deriveLocalOfflineProgressAccountScopeHash(token.stableId)||event.intent.owner!==event.owner)throw Error('progress_owner_mismatch');
++  const i=event.intent;
++  // Current server normalizeStudyTarget supports these existing TARGETS only.
++  // Keep unsupported-language events in the durable Classic outbox until the
++  // shared server contract is migrated; never silently normalize them to EN.
++  if(!(TARGETS as readonly string[]).includes(i.target))throw Error('progress_transport_target_unavailable');
++  const result=await submitQueuedEvent({eventId:event.eventId,type:'lesson_complete',stableId:token.stableId,
++    clientCreatedAt:i.createdAt,clientLocalDate:i.localDate,appVersion:appVersion(),platform:Platform.OS,
++    payload:{lessonId:i.lessonId,studyTarget:i.target,score:i.score,passed:i.progress.filter(v=>v==='correct'||v==='replay_correct').length>=45,progress:[...i.progress],cellIndex:i.progress.length,attemptId:i.attempt}});
++  if(result.ok!==true||result.eventId!==event.eventId||result.type!=='lesson_complete')throw Error('progress_transport_ack_mismatch');
++}
++
+ export async function submitProgressEvent(
+-  request: ProgressEventRequest,
++  input: ProgressEventRequest,
+   options?: ProgressSubmitOptions,
+ ): Promise<ProgressEventResult> {
++  const request:ProgressEventRequest={...input,payload:JSON.parse(JSON.stringify(input.payload))};
+   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+     throw new Error('progress_server_unavailable');
+   }
+   const stableId = await getCanonicalUserId();
+   if (!stableId) throw new Error('progress_stable_id_unavailable');
+   const eventId = request.eventId || makeDeterministicProgressEventId(request.type, request.payload);
+-  const localProjection = await trySubmitProgressThroughPhoneState(stableId, {
++  if(!progressTransportTargetSupported(request.payload)){
++    await enqueue({eventId,type:request.type,clientLocalDate:localDateKey(),clientCreatedAt:Date.now(),appVersion:appVersion(),platform:Platform.OS,stableId,payload:request.payload});
++    throw Error('progress_transport_target_unavailable');
++  }
++  const localProjection = request.payload.studyTarget == null || request.payload.studyTarget === 'en' ? await trySubmitProgressThroughPhoneState(stableId, {
+     eventId,
+     type: request.type,
+     payload: request.payload,
+-  });
++  }) : null;
+   if (localProjection) {
+     // зачем (расследование 2026-08-28, uid 62615956-...): PhoneState считает
+     // streak/weekly_xp/week_points ТОЛЬКО локально в SQLite и раньше здесь
+@@ -852,9 +890,7 @@ export async function submitProgressEvent(
+     // ответ ниже (Optimistic UI не страдает).
+     const activeDate = localProjection.activityDates[localProjection.activityDates.length - 1]
+       ?? localDateKey();
+-    void (async () => {
+-      try {
+-        const event: QueuedProgressEvent = {
++    const event: QueuedProgressEvent = {
+           eventId,
+           type: request.type,
+           clientLocalDate: localDateKey(),
+@@ -863,8 +899,12 @@ export async function submitProgressEvent(
+           platform: Platform.OS,
+           stableId,
+           payload: request.payload,
+-        };
+-        await enqueue(event);
++    };
++    // A PhoneState projection is not a durable server-event acknowledgment.
++    // Admit before resolving; only migration/network delivery is background work.
++    await enqueue(event);
++    void (async () => {
++      try {
+         await ensureProgressSnapshotMigratedWithBaseline(stableId, options?.migrationSnapshot);
+         await flushPendingProgressEventsForOwner(stableId);
+       } catch (e) {
+
+diff --git a/tests/cloud_sync_customization_account_isolation.test.ts b/tests/cloud_sync_customization_account_isolation.test.ts
+index 1546090d2..4a3f92078 100644
+--- a/tests/cloud_sync_customization_account_isolation.test.ts
++++ b/tests/cloud_sync_customization_account_isolation.test.ts
+@@ -4,6 +4,7 @@ import {
+   __resetAccountGenerationForTests,
+   beginAccountGeneration,
+   withAccountTransitionLock,
++  isCurrentAccountGeneration,
+ } from '../app/account_generation';
+ import { restoreAccountSwitchEmergencyBackupIfSafe } from '../app/account_switch_backup_restore';
+ import {
+@@ -13,6 +14,9 @@ import {
+   wipeLocalAccountDataForCleanInstallRecovery,
+ } from '../app/cloud_sync';
+ import { createLesson1LocalProgressStore } from '../modules/learning-v2/progress/lesson1_local_progress';
++import { createClassicCompletionJournal } from '../app/classic_completion_journal_engine';
++import { createClassicCompletionOutbox } from '../app/classic_completion_outbox';
++import { withStorageLock } from '../app/storage_mutex';
+ import { createProgressOutbox } from '../modules/learning-v2/progress/progress_outbox';
+ import {
+   deriveLocalOfflineProgressAccountScopeHash,
+@@ -37,6 +41,12 @@ import {
+   flashcardsLocalAuthorPacksKey,
+   legacyFreeLessonCapKey,
+   legacyFreeLessonMigrationKey,
++  lessonBestScoreKey,
++  lessonPassCountKey,
++  lessonProgressKey,
++  lessonSessionKey,
++  masteryFinishedOnceKey,
++  unlockedLessonsKey,
+ } from '../app/target_storage_keys';
+ 
+ jest.mock('@react-native-async-storage/async-storage');
+@@ -562,6 +572,36 @@ it.each(pendingShardGrantAccountKeys)(
+   },
+ );
+ 
++it('Classic pending journal and outbox survive owner backup/wipe/restore and recover exactly once',async()=>{
++  const owner=deriveLocalOfflineProgressAccountScopeHash(localStableId);
++  const journalKey='classic_completion_pending_v1:'+owner;const outboxKey='classic_completion_outbox_v1:'+owner;
++  const build=(interrupt:boolean)=>{
++    const token=beginAccountGeneration(localStableId);
++    const current=()=>isCurrentAccountGeneration(token,localStableId);
++    const locked=<T,>(work:()=>Promise<T>)=>withAccountTransitionLock(()=>withStorageLock(work));
++    const outbox=createClassicCompletionOutbox({owner,current,locked,storage:AsyncStorage,transport:async()=>{throw Error('progress_transport_target_unavailable');}});
++    return createClassicCompletionJournal({owner,storeScope:AsyncStorage,isCurrent:current,locked,storage:AsyncStorage,
++      keys:(t,id)=>({attempt:lessonSessionKey(id,'serverAttemptId',t),progress:lessonProgressKey(id,t),cell:lessonSessionKey(id,'cellIndex',t),best:lessonBestScoreKey(id,t),passes:lessonPassCountKey(id,t),finished:masteryFinishedOnceKey(id,t),unlocks:unlockedLessonsKey(t)}),
++      medalChanged:()=>undefined,enqueue:async event=>{const ack=await outbox.admit(event);if(interrupt)throw Error('after_admit_before_journal_marker');return ack;},
++    });
++  };
++  const first=build(true);await AsyncStorage.setItem(lessonSessionKey(1,'serverAttemptId','de'),'attempt_a');
++  await expect(first.complete({owner,target:'de',lessonId:1,attempt:'attempt_a',successor:'attempt_b',progress:Array(50).fill('correct'),score:5,nextLessonId:2,createdAt:1000,localDate:'2026-11-01'})).rejects.toThrow('after_admit_before_journal_marker');
++  const journalRaw=await AsyncStorage.getItem(journalKey);const outboxRaw=await AsyncStorage.getItem(outboxKey);
++  await saveAccountSwitchEmergencyBackup('classic-pending-completion',localStableId);
++  expect(await readBackupPairs()).toEqual(expect.arrayContaining([[journalKey,journalRaw],[outboxKey,outboxRaw]]));
++  await wipeLocalAccountData();expect(store[journalKey]).toBeUndefined();expect(store[outboxKey]).toBeUndefined();
++  (getCanonicalUserId as jest.Mock).mockResolvedValue('other-owner');beginAccountGeneration('other-owner');
++  await expect(restoreAccountSwitchEmergencyBackupIfSafe()).resolves.toMatchObject({status:'different_account'});
++  expect(store[journalKey]).toBeUndefined();
++  (getCanonicalUserId as jest.Mock).mockResolvedValue(localStableId);beginAccountGeneration(localStableId);
++  await expect(restoreAccountSwitchEmergencyBackupIfSafe()).resolves.toMatchObject({status:'restored'});
++  expect(store[journalKey]).toBe(journalRaw);expect(store[outboxKey]).toBe(outboxRaw);
++  const restarted=build(false);await restarted.recover();await restarted.recover();
++  expect(await restarted.pending()).toHaveLength(0);expect(await AsyncStorage.getItem(lessonPassCountKey(1,'de'))).toBe('1');
++  expect(JSON.parse(store[outboxKey]).pending).toHaveLength(1);expect(JSON.parse(store[outboxKey]).pending[0].intent.target).toBe('de');
++});
++
+ it('backs up, wipes, restores, and drains one exact pending completion graph', async () => {
+   const session = getLesson1SessionRuntime().compiled.sessions[0];
+   const envelope = completionEnvelopeFor(session, 'backup-restore-session-run');
+
+diff --git a/tests/lesson_complete_repeat_navigation.test.ts b/tests/lesson_complete_repeat_navigation.test.ts
+index 09248b8e5..96f6e64b0 100644
+--- a/tests/lesson_complete_repeat_navigation.test.ts
++++ b/tests/lesson_complete_repeat_navigation.test.ts
+@@ -1,8 +1,56 @@
+ import fs from 'fs';
+ import path from 'path';
++import ts from 'typescript';
++import AsyncStorage from '@react-native-async-storage/async-storage';
++import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
++import { createClassicCompletionRuntime } from '../app/classic_completion_runtime';
++import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from '../app/lesson_attempt_identity';
++import { lessonSessionKey } from '../app/target_storage_keys';
++
++jest.mock('../app/phone_state_progress_cutover',()=>({trySubmitProgressThroughPhoneState:jest.fn(async()=>null),retryPendingPhoneStateProgressPublication:jest.fn(async()=>false)}));
++jest.mock('../app/medal_utils',()=>({invalidateMedalsCache:jest.fn()}));
++jest.mock('../app/accounts_v2_client_flag',()=>({captureAccountsV2OwnerUid:()=>null,produceAccountsV2ChangeIfEnabled:jest.fn()}));
++jest.mock('../app/progress_events_client',()=>({submitAdmittedClassicProgressEvent:jest.fn(async()=>undefined)}));
+ 
+ const ROOT = path.join(__dirname, '..');
+ 
++type RepeatParams = { repeatAttemptId?: string | string[] };
++
++function loadVerbatimRepeatHandler(params:RepeatParams,isWorkshopCompletion=false) {
++  const file=path.join(ROOT,'app','lesson_complete.tsx');
++  const source=fs.readFileSync(file,'utf8');
++  const ast=ts.createSourceFile(file,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
++  let callback='';
++  const visit=(node:ts.Node):void=>{
++    if(ts.isVariableDeclaration(node)&&node.name.getText(ast)==='handleRepeatLesson'){
++      const initializer=node.initializer;
++      if(initializer&&ts.isCallExpression(initializer)&&initializer.arguments[0])callback=initializer.arguments[0].getText(ast);
++    }
++    ts.forEachChild(node,visit);
++  };
++  visit(ast);
++  if(!callback)throw Error('handleRepeatLesson_not_found');
++  const compiled=ts.transpileModule(`module.exports=(${callback});`,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
++  const repeatOpeningRef={current:false};
++  const router={replace:jest.fn()};
++  const primeLessonScreenFromStorage=jest.fn(()=>new Promise<void>(()=>undefined));
++  const scope={
++    repeatOpeningRef,setRepeatOpening:jest.fn(),params,normalizeLessonServerAttemptId,makeLessonServerAttemptId,
++    isWorkshopCompletion,AsyncStorage,lessonSessionKey,lessonId:1,studyTarget:'de',primeLessonScreenFromStorage,
++    noteSwallowedHandler:()=>()=>undefined,markNextNavigationAsReplace:jest.fn(),router,console,
++  };
++  const loaded:{exports?:()=>void}={};
++  new Function('module','exports',...Object.keys(scope),compiled)(loaded,loaded.exports,...Object.values(scope));
++  if(typeof loaded.exports!=='function')throw Error('handleRepeatLesson_compile_failed');
++  return {handler:loaded.exports,router,primeLessonScreenFromStorage,repeatOpeningRef,verbatim:callback};
++}
++
++beforeEach(async()=>{
++  __resetAccountGenerationForTests();
++  await AsyncStorage.clear();
++  jest.clearAllMocks();
++});
++
+ describe('lesson_complete repeat navigation', () => {
+   it('does not block repeat navigation on lesson screen priming', () => {
+     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_complete.tsx'), 'utf8');
+@@ -22,18 +70,77 @@ describe('lesson_complete repeat navigation', () => {
+     expect(handler).not.toContain('await primeLessonScreenFromStorage');
+   });
+ 
+-  it('passes a fresh durable reward identity without waiting on storage', () => {
++  it('hands the normalized repeat identity to the route without directly mutating durable attempt storage', () => {
+     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_complete.tsx'), 'utf8');
+     const handlerStart = source.indexOf('const handleRepeatLesson = useCallback');
+     const handler = source.slice(handlerStart, handlerStart + 1500);
+ 
+     expect(handler).toContain('normalizeLessonServerAttemptId(params.repeatAttemptId)');
+     expect(handler).toContain('?? makeLessonServerAttemptId()');
+-    expect(handler).toContain("lessonSessionKey(lessonId, 'serverAttemptId', studyTarget)");
+-    expect(handler).toContain('void AsyncStorage.setItem(');
++    expect(handler).not.toContain("lessonSessionKey(lessonId, 'serverAttemptId', studyTarget)");
++    expect(handler).not.toContain('AsyncStorage.setItem(');
+     expect(handler).not.toContain('await AsyncStorage.setItem(');
+   });
+ 
++  it('keeps the actual journal successor authoritative across manual verbatim repeat callbacks',async()=>{
++    const runtime=createClassicCompletionRuntime(beginAccountGeneration('repeat-contract-owner-a'));
++    const attempt=await runtime.enter(1,'de');
++    const successor='next_attempt_b';
++    const attemptKey=lessonSessionKey(1,'serverAttemptId','de');
++    const setter=AsyncStorage.setItem as jest.Mock;
++    const original=setter.getMockImplementation()!;
++    let receiptSettled=false;
++    let successorPersistedBeforeReceipt=false;
++    setter.mockImplementation(async(key:string,value:string)=>{
++      if(key===attemptKey&&value===successor&&!receiptSettled)successorPersistedBeforeReceipt=true;
++      return original(key,value);
++    });
++    const completing=runtime.complete({target:'de',lessonId:1,attempt,successor,progress:Array(50).fill('correct'),score:5,nextLessonId:null,createdAt:1000,localDate:'2026-11-02'});
++    completing.then(()=>{receiptSettled=true;},()=>{receiptSettled=true;});
++    const receipt=await completing;
++    setter.mockImplementation(original);
++    expect(successorPersistedBeforeReceipt).toBe(true);
++    expect(receipt.successor).toBe(successor);
++    expect(await AsyncStorage.getItem(attemptKey)).toBe(successor);
++    expect(await runtime.enter(1,'de')).toBe(successor);
++
++    const routes:RepeatParams[]=[
++      {repeatAttemptId:successor},
++      {},
++      {repeatAttemptId:'malformed attempt!'},
++      {repeatAttemptId:'route_not_successor'},
++    ];
++    for(const params of routes){
++      const loaded=loadVerbatimRepeatHandler(params);
++      setter.mockClear();
++      loaded.handler();
++      loaded.handler();
++      await Promise.resolve();
++      expect(loaded.router.replace).toHaveBeenCalledTimes(1);
++      expect(loaded.primeLessonScreenFromStorage).toHaveBeenCalledTimes(1);
++      expect(setter.mock.calls.filter(([key])=>key===attemptKey)).toHaveLength(0);
++      expect(await runtime.enter(1,'de')).toBe(successor);
++    }
++
++    const workshop=loadVerbatimRepeatHandler({repeatAttemptId:successor},true);
++    setter.mockClear();
++    workshop.handler();
++    await Promise.resolve();
++    expect(workshop.primeLessonScreenFromStorage).not.toHaveBeenCalled();
++    expect(setter.mock.calls.filter(([key])=>key===attemptKey)).toHaveLength(0);
++    expect(workshop.router.replace).toHaveBeenCalledWith(expect.objectContaining({params:expect.objectContaining({workshop:'1',from:'workshop'})}));
++
++    // Manual callback invocation, not a mounted React reachability claim: it proves the callback itself has no attempt-key writer.
++    const retained=loadVerbatimRepeatHandler({repeatAttemptId:successor});
++    beginAccountGeneration('repeat-contract-owner-b');
++    await original(attemptKey,'owner_b_attempt');
++    setter.mockClear();
++    retained.handler();
++    await Promise.resolve();
++    expect(await AsyncStorage.getItem(attemptKey)).toBe('owner_b_attempt');
++    expect(setter.mock.calls.filter(([key])=>key===attemptKey)).toHaveLength(0);
++  });
++
+   it('guards the repeat button against double taps while the route opens', () => {
+     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_complete.tsx'), 'utf8');
+     const buttonStart = source.indexOf('testID="lesson-complete-repeat"');
+
+diff --git a/tests/lesson_completion_attempt_identity_contract.test.ts b/tests/lesson_completion_attempt_identity_contract.test.ts
+index 638dfcbf7..bb0ae0ba2 100644
+--- a/tests/lesson_completion_attempt_identity_contract.test.ts
++++ b/tests/lesson_completion_attempt_identity_contract.test.ts
+@@ -1,5 +1,6 @@
+ import fs from 'fs';
+ import path from 'path';
++import { createClassicCompletionJournal, type CompletionEvent } from '../app/classic_completion_journal_engine';
+ 
+ const read = (file: string) => fs.readFileSync(path.join(process.cwd(), file), 'utf8');
+ 
+@@ -21,18 +22,27 @@ describe('lesson completion attempt identity 6A', () => {
+     expect(completion).toContain('repeatAttemptId: nextAttemptId');
+   });
+ 
+-  it('deduplicates server completion by attempt id instead of medal pass_count', () => {
++  it('deduplicates the journal event by attempt id instead of medal pass_count', async () => {
+     const screen = read('app/lesson_complete.tsx');
+-    const submit = screen.slice(
+-      screen.indexOf('submitProgressEvent({'),
+-      screen.indexOf('void syncToCloud', screen.indexOf('submitProgressEvent({')),
+-    );
+-
+-    expect(screen).toContain('completedAttemptId?: string | string[];');
+-    expect(screen).toContain('normalizeLessonServerAttemptId(params.completedAttemptId)');
+-    expect(submit).toContain('safeLessonCompleteEventPart(completionAttemptId)');
+-    expect(submit).toContain('attemptId: completionAttemptId');
+-    expect(submit).not.toContain('Math.max(1, newPassCount)');
++    expect(screen.includes('normalizeLessonServerAttemptId(params.completedAttemptId)')).toBe(true);
++    expect(screen.includes('submitProgressEvent({')).toBe(false);
++    const disk = new Map<string,string>([['attempt','attempt_a'],['passes','4']]);
++    const events: CompletionEvent[] = [];
++    const owner = 'a'.repeat(64);
++    const journal = createClassicCompletionJournal({owner,isCurrent:()=>true,
++      locked:async work=>work(),
++      storage:{getItem:async key=>disk.get(key)??null,setItem:async(key,value)=>{disk.set(key,value);}},
++      keys:()=>({attempt:'attempt',progress:'progress',cell:'cell',best:'best',passes:'passes',finished:'finished',unlocks:'unlocks'}),
++      medalChanged:()=>undefined,
++      enqueue:async event=>{events.push(event);return {owner,eventId:event.eventId,fingerprint:event.fingerprint};},
++    });
++    const intent={owner,target:'en',lessonId:1,attempt:'attempt_a',successor:'attempt_b',progress:Array(50).fill('correct'),score:5,nextLessonId:null,createdAt:1000,localDate:'2026-11-02'};
++    await journal.complete(intent);
++    await journal.complete(intent);
++    expect(disk.get('passes')).toBe('5');
++    expect(events).toHaveLength(1);
++    expect(events[0].eventId).toBe('lesson:en:1:complete:attempt_a');
++    expect(events[0].intent.attempt).toBe('attempt_a');
+   });
+ 
+ });
+
+diff --git a/app/cloud_sync.ts b/app/cloud_sync.ts
+--- a/app/cloud_sync.ts
++++ b/app/cloud_sync.ts
+@@ -839,6 +839,10 @@
+ export { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS };
+ 
+ const ACCOUNT_LOCAL_KEY_PREFIXES = [
++  // Classic completion intent/receipts and locally admitted server events must
++  // travel with the same owner through backup, wipe, restore and residue checks.
++  'classic_completion_pending_v1:',
++  'classic_completion_outbox_v1:',
+   // зачем: снимок 2.0 (efe19ae9d) выкинул эти префиксы вместе с разделом MAX, и
+   // журналы голосовой обратной связи (там текст пользователя) перестали
+   // стираться при смене аккаунта — доставались следующему человеку на телефоне.
+
+diff --git a/app/_layout.tsx b/app/_layout.tsx
+--- a/app/_layout.tsx
++++ b/app/_layout.tsx
+@@ -1456,6 +1456,21 @@
+   useEffect(() => {
+     if (!ready || !firstContentReady || !appIsActive ||
+       accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
++    const cancel = runAfterHomeFirstFrame(
++      'classic_completion_recovery',
++      () => import('./classic_completion_runtime').then(async ({classicCompletionRuntime}) => {
++        const runtime=classicCompletionRuntime(accountGeneration);
++        await runtime.recover();
++        void runtime.flush().catch(noteSwallowedHandler('_layout:classicCompletionFlush'));
++      }).catch(noteSwallowedHandler('_layout:classicCompletionRecovery')),
++      {holdDuringOnboarding:true},
++    );
++    return cancel;
++  },[ready,firstContentReady,appIsActive,accountGeneration]);
++
++  useEffect(() => {
++    if (!ready || !firstContentReady || !appIsActive ||
++      accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+     // WHY: Learning V2 UI is permanently disabled, but a reward intent that was
+     // durably protected by an older build is still an existing economic fact.
+     // Recover only after the first-frame boundary; an empty queue performs one

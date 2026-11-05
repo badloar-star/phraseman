@@ -1,0 +1,105 @@
+import { validateClassicCompletionIntent, type CompletionEvent } from './classic_completion_journal_engine';
+import { hashCanonicalBody } from '../modules/learning-v2/policies/decision_registry';
+import { LEARNING_LANGUAGE_TARGETS } from './learning_language_contour';
+
+export const CLASSIC_COMPLETION_OUTBOX_PREFIX = 'classic_completion_outbox_v1:';
+type Ack = { owner: string; eventId: string; fingerprint: string };
+export type ClassicCompletionOutboxPorts = {
+  owner: string;
+  current(): boolean;
+  /** Account then storage lock. Never used around transport. */
+  locked<T>(work: () => Promise<T>): Promise<T>;
+  storage: { getItem(key: string): Promise<string | null>; setItem(key: string, value: string): Promise<void> };
+  /** Must resolve only after server acknowledgment for this exact event ID. */
+  transport(event: CompletionEvent): Promise<void>;
+};
+type Outbox = { schema: 1; pending: CompletionEvent[]; delivered: Record<string, Ack>; hash: string };
+const slot = (e: CompletionEvent) => `${e.intent.target}:${e.intent.lessonId}`;
+const ack = (e: CompletionEvent): Ack => ({ owner: e.owner, eventId: e.eventId, fingerprint: e.fingerprint });
+const dictionary = (value: unknown): value is Record<string,unknown> => value !== null && typeof value === 'object' && !Array.isArray(value) && Object.getPrototypeOf(value) === Object.prototype;
+const exact = (value: unknown, keys: readonly string[]): boolean => dictionary(value) && Object.keys(value).length === keys.length && keys.every(key=>Object.prototype.hasOwnProperty.call(value,key));
+
+/** Dedicated durable admission is independent of the existing network-held queue.
+ * A transport crash may resend the same ID; it never changes the learning date.
+ */
+export function createClassicCompletionOutbox(p: ClassicCompletionOutboxPorts) {
+  const key = CLASSIC_COMPLETION_OUTBOX_PREFIX + p.owner;
+  let drainFlight: Promise<void> | null = null;
+  const current = () => { if (!p.current()) throw Error('classic_completion_owner_stale'); };
+  const lock = <T>(work: () => Promise<T>) => p.locked(async () => { current(); const value = await work(); current(); return value; });
+  function validate(e: CompletionEvent) {
+    if (!exact(e,['owner','eventId','fingerprint','intent']) || e.owner !== p.owner || e.intent?.owner !== p.owner ||
+        e.eventId !== `lesson:${e.intent.target}:${e.intent.lessonId}:complete:${e.intent.attempt}` ||
+        e.fingerprint !== hashCanonicalBody(e.intent)) throw Error('classic_completion_event_invalid');
+    validateClassicCompletionIntent(e.intent,p.owner);
+  }
+  async function load(): Promise<Outbox> {
+    const raw = await p.storage.getItem(key);
+    if (raw === null) return { schema: 1, pending: [], delivered: {}, hash: '' };
+    if (raw.length > 256 * 1024) throw Error('classic_completion_outbox_corrupt');
+    let state: Outbox;
+    try { state = JSON.parse(raw); } catch { throw Error('classic_completion_outbox_corrupt'); }
+    if (!exact(state,['schema','pending','delivered','hash']) || state.schema !== 1 || !Array.isArray(state.pending) || state.pending.length > 32 ||
+        !dictionary(state.delivered) || Object.keys(state.delivered).length > 384) throw Error('classic_completion_outbox_corrupt');
+    const { hash, ...body } = state;
+    if (hashCanonicalBody(body) !== hash) throw Error('classic_completion_outbox_corrupt');
+    for (const event of state.pending) validate(event);
+    if(new Set(state.pending.map(event=>event.eventId)).size!==state.pending.length)throw Error('classic_completion_outbox_corrupt');
+    for(const [name,receipt] of Object.entries(state.delivered)){
+      const scope=/^([^:]+):([1-9]\d*)$/.exec(name);
+      if(!scope || !(LEARNING_LANGUAGE_TARGETS as readonly string[]).includes(scope[1]) || Number(scope[2])>32 ||
+        !exact(receipt,['owner','eventId','fingerprint']) || receipt.owner!==p.owner || !/^[a-f0-9]{64}$/.test(receipt.fingerprint) ||
+        typeof receipt.eventId!=='string' || !receipt.eventId.startsWith(`lesson:${name}:complete:`) ||
+        !/^[A-Za-z0-9_-]{1,160}$/.test(receipt.eventId.slice(`lesson:${name}:complete:`.length)))throw Error('classic_completion_outbox_corrupt');
+    }
+    return state;
+  }
+  async function save(state: Outbox): Promise<void> {
+    current(); const { hash: _hash, ...body } = state; state.hash = hashCanonicalBody(body);
+    const raw = JSON.stringify(state); if (raw.length > 256 * 1024) throw Error('classic_completion_outbox_capacity');
+    try { await p.storage.setItem(key, raw); } catch (error) { if (await p.storage.getItem(key) !== raw) throw error; }
+    if (await p.storage.getItem(key) !== raw) throw Error('classic_completion_outbox_indeterminate'); current();
+  }
+  return {
+    admit: async (input: CompletionEvent): Promise<Ack> => {
+      validate(input); const e = JSON.parse(JSON.stringify(input)) as CompletionEvent;
+      return lock(async () => {
+        const state = await load(); const done = state.delivered[slot(e)];
+        if (done?.eventId === e.eventId) {
+          if (done.fingerprint !== e.fingerprint || done.owner !== e.owner) throw Error('classic_completion_event_conflict');
+          return done;
+        }
+        const prior = state.pending.find(row => row.eventId === e.eventId);
+        if (prior) { if (prior.fingerprint !== e.fingerprint) throw Error('classic_completion_event_conflict'); return ack(prior); }
+        if (state.pending.length >= 32) throw Error('classic_completion_outbox_capacity');
+        state.pending.push(e); await save(state); return ack(e);
+      });
+    },
+    drain: (): Promise<void> => {
+      if (drainFlight) return drainFlight;
+      drainFlight = (async () => {
+        // One bounded snapshot. New arrivals are handled on the next lifecycle tick.
+        const events = await lock(async () => [...(await load()).pending]);
+        for (const e of events) {
+          current();
+          try{await p.transport(e);}catch(error){
+            if(error instanceof Error&&error.message==='progress_transport_target_unavailable')continue;
+            throw error;
+          }
+          current();
+          await lock(async () => {
+            const state = await load();
+            const prior = state.pending.find(row => row.eventId === e.eventId);
+            if (!prior) return;
+            if (prior.fingerprint !== e.fingerprint) throw Error('classic_completion_event_conflict');
+            // Store transport receipt and queue removal in a single verified value.
+            state.delivered[slot(e)] = ack(e);
+            state.pending = state.pending.filter(row => row.eventId !== e.eventId);
+            await save(state);
+          });
+        }
+      })().finally(() => { drainFlight = null; });
+      return drainFlight;
+    },
+  };
+}

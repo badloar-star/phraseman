@@ -1,0 +1,36 @@
+import { readClassicCompletionResult } from '../app/classic_completion_result_reader';
+import type { CompletionReceipt } from '../app/classic_completion_journal_engine';
+
+function fixture(){
+  const receipt:CompletionReceipt={owner:'a'.repeat(64),target:'en',lessonId:1,attempt:'attempt_a',successor:'attempt_b',score:2,passes:0,unlocked:false,intentHash:'b'.repeat(64),previousBest:1,resultSnapshot:{total:50,finalCorrect:20,firstTryWrong:32}};
+  const readReceipt=jest.fn(async()=>receipt),readMedal=jest.fn(async()=>({tier:'gold' as const,bestScore:5,passCount:2})),readProgress=jest.fn(async()=>JSON.stringify(Array(50).fill('correct')));
+  const ports={owner:receipt.owner,target:'en',lessonId:1,attempt:'attempt_a' as string|null,explicitAttempt:true,isCurrent:()=>true,receipt:readReceipt,readMedal,readProgress,route:{} as {correct?:string;total?:string}};
+  return {receipt,ports,readReceipt,readMedal,readProgress};
+}
+test('valid A snapshot needs no route metadata and never reads B progress',async()=>{
+  const f=fixture();const result=await readClassicCompletionResult(f.ports);expect(result.receipt?.resultSnapshot).toEqual({total:50,finalCorrect:20,firstTryWrong:32});expect(f.readProgress).not.toHaveBeenCalled();
+});
+test.each(['owner','target','lessonId','attempt'] as const)('a mismatched receipt %s is rejected before medal/progress reads',async field=>{
+  const f=fixture();Object.assign(f.receipt,{[field]:field==='lessonId'?2:'other'});
+  await expect(readClassicCompletionResult(f.ports)).rejects.toThrow('scope_conflict');expect(f.readMedal).not.toHaveBeenCalled();expect(f.readProgress).not.toHaveBeenCalled();
+});
+test('old receipt remains score-only and does not obtain counts from successor storage',async()=>{
+  const f=fixture();delete f.receipt.resultSnapshot;delete f.receipt.previousBest;
+  const result=await readClassicCompletionResult(f.ports);expect(result.receipt?.score).toBe(2);expect(result.receipt?.resultSnapshot).toBeUndefined();expect(f.readProgress).not.toHaveBeenCalled();
+});
+test('a required medal failure rejects the entire result outcome',async()=>{
+  const f=fixture();f.readMedal.mockRejectedValueOnce(Error('medal_read_failed'));await expect(readClassicCompletionResult(f.ports)).rejects.toThrow('medal_read_failed');expect(f.readProgress).not.toHaveBeenCalled();
+});
+test('a stale owner after a suspended native read cannot obtain a publishable result',async()=>{
+  const f=fixture();let current=true;let release!:()=>void;f.ports.isCurrent=()=>current;
+  f.readMedal.mockImplementationOnce(()=>new Promise(resolve=>{release=()=>resolve({tier:'gold',bestScore:5,passCount:2});}));
+  const pending=readClassicCompletionResult(f.ports);for(let n=0;n<10&&!release;n++)await new Promise<void>(resolve=>setImmediate(resolve));
+  current=false;release();await expect(pending).rejects.toThrow('result_stale');
+});
+test('route input and returned nested snapshot are captured before later awaits',async()=>{
+  const f=fixture();f.ports.route={correct:'20',total:'50'};
+  let release!:()=>void;f.readMedal.mockImplementationOnce(()=>new Promise(resolve=>{release=()=>resolve({tier:'gold',bestScore:5,passCount:2});}));
+  const pending=readClassicCompletionResult(f.ports);for(let n=0;n<10&&!release;n++)await new Promise<void>(resolve=>setImmediate(resolve));
+  f.receipt.resultSnapshot={total:50,finalCorrect:50,firstTryWrong:0};f.ports.route.correct='50';release();
+  const result=await pending;expect(result.receipt?.resultSnapshot?.finalCorrect).toBe(20);expect(Object.isFrozen(result.receipt?.resultSnapshot)).toBe(true);
+});

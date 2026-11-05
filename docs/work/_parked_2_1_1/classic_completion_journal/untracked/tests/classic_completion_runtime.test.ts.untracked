@@ -1,0 +1,62 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { beginAccountGeneration, withAccountTransitionLock } from '../app/account_generation';
+import { createClassicCompletionRuntime } from '../app/classic_completion_runtime';
+import { lessonSessionKey, lessonPassCountKey, lessonProgressKey } from '../app/target_storage_keys';
+import { makeLessonServerAttemptId } from '../app/lesson_attempt_identity';
+import { submitAdmittedClassicProgressEvent } from '../app/progress_events_client';
+
+jest.mock('../app/phone_state_progress_cutover',()=>({trySubmitProgressThroughPhoneState:jest.fn(async()=>null),retryPendingPhoneStateProgressPublication:jest.fn(async()=>false)}));
+jest.mock('../app/medal_utils',()=>({invalidateMedalsCache:jest.fn()}));
+jest.mock('../app/accounts_v2_client_flag',()=>({captureAccountsV2OwnerUid:()=>null,produceAccountsV2ChangeIfEnabled:jest.fn()}));
+jest.mock('../app/progress_events_client',()=>({submitAdmittedClassicProgressEvent:jest.fn(async()=>undefined)}));
+beforeEach(async()=>{await AsyncStorage.clear();jest.clearAllMocks();});
+
+test('real account/storage leases commit selected target and durable outbox',async()=>{
+  const runtime=createClassicCompletionRuntime(beginAccountGeneration('runtime-owner-a'));
+  const attempt=await runtime.enter(1,'de');
+  const result=await runtime.complete({target:'de',lessonId:1,attempt,successor:makeLessonServerAttemptId(),progress:Array(50).fill('correct'),score:5,nextLessonId:2,createdAt:1000,localDate:'2026-11-02'});
+  expect(result.passes).toBe(1);expect(await AsyncStorage.getItem(lessonPassCountKey(1,'de'))).toBe('1');
+  expect(await AsyncStorage.getItem(lessonPassCountKey(1,'en'))).toBeNull();
+});
+test('late previous-attempt writer cannot undo final CORE',async()=>{
+  const runtime=createClassicCompletionRuntime(beginAccountGeneration('runtime-owner-a'));const attempt=await runtime.enter(1,'en');
+  await runtime.complete({target:'en',lessonId:1,attempt,successor:makeLessonServerAttemptId(),progress:Array(50).fill('correct'),score:5,nextLessonId:2,createdAt:1000,localDate:'2026-11-02'});
+  await expect(runtime.writeProgress(1,'en',attempt,['wrong'],12)).rejects.toThrow('stale_attempt');
+  expect(JSON.parse((await AsyncStorage.getItem(lessonProgressKey(1,'en')))!)).toHaveLength(50);
+});
+test('stale owner runtime rejects before writing B storage',async()=>{
+  const runtime=createClassicCompletionRuntime(beginAccountGeneration('runtime-owner-a'));beginAccountGeneration('runtime-owner-b');
+  await expect(runtime.enter(1,'en')).rejects.toThrow('owner_stale');
+  expect(await AsyncStorage.getItem(lessonSessionKey(1,'serverAttemptId','en'))).toBeNull();
+});
+test('account transition waits until dispatched native write settles',async()=>{
+  const runtime=createClassicCompletionRuntime(beginAccountGeneration('runtime-owner-a'));
+  const setItem=AsyncStorage.setItem as jest.Mock;const original=setItem.getMockImplementation();let release!:()=>void;
+  setItem.mockImplementationOnce((key:string,value:string)=>new Promise<void>(resolve=>{release=()=>{Promise.resolve(original(key,value)).then(resolve);};}));
+  const entry=runtime.enter(1,'en');for(let i=0;i<10 && !release;i++)await new Promise<void>(resolve=>setImmediate(resolve));
+  let transitioned=false;const transition=withAccountTransitionLock(async()=>{beginAccountGeneration('runtime-owner-b');transitioned=true;});
+  await new Promise<void>(resolve=>setImmediate(resolve));expect(transitioned).toBe(false);release();await entry;await transition;expect(transitioned).toBe(true);
+  setItem.mockImplementation(original);
+});
+test('durable next completion does not await a preexisting network flush',async()=>{
+  const runtime=createClassicCompletionRuntime(beginAccountGeneration('runtime-owner-a'));const attempt=await runtime.enter(1,'en');const successor=makeLessonServerAttemptId();
+  const input={target:'en',lessonId:1,attempt,successor,progress:Array(50).fill('correct'),score:5,nextLessonId:2,createdAt:1000,localDate:'2026-11-02'};
+  await runtime.complete(input);
+  let release!:()=>void;let entered!:()=>void;const started=new Promise<void>(resolve=>{entered=resolve;});
+  (submitAdmittedClassicProgressEvent as jest.Mock).mockImplementationOnce(()=>new Promise<void>(resolve=>{release=resolve;entered();}));
+  const flushing=runtime.flush();await started;
+  try{
+    const committed=await Promise.race([runtime.complete({...input,attempt:successor,successor:makeLessonServerAttemptId(),createdAt:2000,nextLessonId:null}),new Promise<never>((_resolve,reject)=>setTimeout(()=>reject(Error('network_blocked_completion')),500))]);
+    expect(committed.passes).toBe(2);
+  }finally{release();await flushing;}
+});
+test('entry refuses input admission while required pending completion cannot recover',async()=>{
+  const runtime=createClassicCompletionRuntime(beginAccountGeneration('runtime-owner-a'));const attempt=await runtime.enter(1,'en');
+  const setItem=AsyncStorage.setItem as jest.Mock;const original=setItem.getMockImplementation();
+  setItem.mockImplementation((key:string,value:string)=>key.includes('finished_once')?Promise.reject(Error('finished_write_failed')):original(key,value));
+  try{
+    await expect(runtime.complete({target:'en',lessonId:1,attempt,successor:makeLessonServerAttemptId(),progress:Array(50).fill('correct'),score:5,nextLessonId:2,createdAt:1000,localDate:'2026-11-02'})).rejects.toThrow('finished_write_failed');
+    await expect(runtime.enter(1,'en')).rejects.toThrow('finished_write_failed');
+  }finally{setItem.mockImplementation(original);}
+  await expect(runtime.enter(1,'en')).resolves.toMatch(/^[A-Za-z0-9_]{8,48}$/);
+});

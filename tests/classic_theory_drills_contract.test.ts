@@ -119,14 +119,16 @@ describe('classic theory view: drills built from theory.json', () => {
       const view = getClassicTheoryView(target, 10, locale)!;
       for (const section of view.sections) {
         const kinds = new Set(section.blocks.map((b) => b.kind));
-        expect([...kinds].filter((k) => !['body', 'examples', 'drill'].includes(k))).toEqual([]);
+        // зачем (новый формат теории «как для ребёнка», 537e3d084): образец готового ответа лежит отдельным блоком note «команда → ответ»; других технических блоков нет
+        expect([...kinds].filter((k) => !['body', 'examples', 'drill', 'note'].includes(k))).toEqual([]);
+        for (const b of section.blocks) if (b.kind === 'note') expect(String((b as { text?: string }).text ?? '')).toContain('\n→ ');
         const drills = section.blocks.flatMap((b) => (b.kind === 'drill' && b.drill ? [b.drill] : []));
         drills.forEach((d, index) => {
           const instruction = (d.instruction ?? d.question) as Record<string, string>;
           const text = instruction[locale === 'ru' ? 'ru' : 'en'];
           expect(text.length).toBeGreaterThan(8);
           expect(/[«“„].+[»”“]/.test(text)).toBe(true); // команда содержит фразу-перевод
-          const hasSample = text.includes('\n');
+          const hasSample = text.includes('\n') || (index === 0 && section.blocks.some((b) => b.kind === 'note')); // образец — в тексте команды (старый формат) или блоком note перед первым заданием (новый)
           expect([target, locale, section.num, index, hasSample]).toEqual([target, locale, section.num, index, index === 0 && section.blocks.some((b) => b.kind === 'examples')]);
         });
       }

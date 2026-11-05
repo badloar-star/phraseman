@@ -12,8 +12,9 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
-  Easing, interpolate, runOnJS, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming,
+  Easing, cancelAnimation, interpolate, runOnJS, useAnimatedReaction, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming,
 } from 'react-native-reanimated';
 import type { Lang } from '../../constants/i18n';
 import { hapticMediumImpact, hapticSuccess } from '../../hooks/use-haptics';
@@ -60,10 +61,15 @@ export type SectionOpeningCeremonyProps = Readonly<{
   /** CTA: перейти в раздел (rank/plus — просто закрыть/дальше). */
   onCta: () => void;
   onSkip: () => void;
+  /** Тап слева: предыдущий кадр истории (true — перешли назад); нет предыдущего или не передан — текущий кадр с начала. */
+  onPrev?: () => boolean;
   /** Тест / скриншот Сверки: показать окно уже в этой точке таймлайна (0…1) без анимации. */
   freezeAt?: number;
   /** Dev-превью / Сверка: показать «уменьшенное движение» (финальный кадр сразу), не трогая настройку системы. */
   forceReduced?: boolean;
+  /** История: сколько кадров в очереди (сегментов полоски) и номер текущего (0…). По умолчанию один. */
+  segments?: number;
+  segmentIndex?: number;
 }>;
 
 /** Цвет с прозрачностью для hex #RRGGBB (иначе как есть) — тени и свечение мотивов макета. */
@@ -82,7 +88,7 @@ function BubbleDots({ color }: Readonly<{ color: string }>) {
   );
 }
 
-export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id, lang, onCta, onSkip, freezeAt, forceReduced }: SectionOpeningCeremonyProps) {
+export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id, lang, onCta, onSkip, onPrev, freezeAt, forceReduced, segments = 1, segmentIndex = 0 }: SectionOpeningCeremonyProps) {
   const p = useSpirePalette();
   const { isDark } = useTheme();
   const { width: windowW } = useWindowDimensions();
@@ -94,17 +100,52 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
 
   const enableCta = useCallback(() => setCtaReady(true), []);
   const celebrate = useCallback(() => { void hapticMediumImpact(); }, []);
+  const pausedRef = React.useRef(false);
 
+  // зачем (владелец 05.11 «ЭТО ИСТОРИЯ»): таймлайн можно ставить на паузу (удержание) и перематывать (тап) — поэтому CTA и хаптик «Праздник» привязаны к самому прогрессу
+  // (useAnimatedReaction), а не к setTimeout: после паузы они сработают в нужной точке (макет: CTA оживает на 82 %, праздник на 60 %)
+  const run = useCallback((fromValue: number) => {
+    progress.value = fromValue;
+    progress.value = withTiming(1, { duration: SECTION_OPENING_DURATION_MS * (1 - fromValue), easing: Easing.linear });
+  }, [progress]);
   useEffect(() => {
+    if (reduced || freezeAt !== undefined) return undefined;
+    run(0);
+    return () => cancelAnimation(progress);
+  }, [freezeAt, progress, reduced, run]);
+  useAnimatedReaction(
+    () => progress.value,
+    (value, previous) => {
+      const before = previous ?? 0;
+      if (value >= COPY_FULL && before < COPY_FULL) runOnJS(enableCta)();
+      if (value >= SECTION_OPENING_PHASE_ANCHORS.celebrate && before < SECTION_OPENING_PHASE_ANCHORS.celebrate && !reduced && freezeAt === undefined) runOnJS(celebrate)();
+    },
+  );
+  // жесты истории: удержание — пауза, тап справа — к финалу кадра (а на финале — следующий кадр/закрыть), тап слева — кадр с начала, свайп вниз — закрыть кадр
+  const holdStart = useCallback(() => {
+    if (reduced || freezeAt !== undefined || progress.value >= 1) return;
+    pausedRef.current = true;
+    cancelAnimation(progress);
+  }, [freezeAt, progress, reduced]);
+  const holdEnd = useCallback(() => {
+    if (!pausedRef.current) return;
+    pausedRef.current = false;
+    run(progress.value);
+  }, [progress, run]);
+  const tapNext = useCallback(() => {
+    if (progress.value < 1 && !reduced && freezeAt === undefined) { cancelAnimation(progress); progress.value = 1; return; }
+    console.log('[SECTION-OPENING]', 'story_tap_next', JSON.stringify({ id, segmentIndex, segments })); // guard-ok: тап «дальше» на финале кадра = следующий кадр или закрытие
+    onSkip();
+  }, [freezeAt, id, onSkip, progress, reduced, segmentIndex, segments]);
+  const tapPrev = useCallback(() => {
+    if (segmentIndex > 0 && onPrev?.() === true) return; // зачем (координатор 05.11): тап слева — ПРЕДЫДУЩИЙ кадр истории
     if (reduced || freezeAt !== undefined) return;
-    progress.value = withTiming(1, { duration: SECTION_OPENING_DURATION_MS, easing: Easing.linear }, (finished) => {
-      if (finished) runOnJS(enableCta)();
-    });
-    // зачем: CTA оживает на 82 % (а не в конце) — как в макете; один таймер вместо слежения за кадрами
-    const ctaTimer = setTimeout(enableCta, SECTION_OPENING_DURATION_MS * COPY_FULL);
-    const celebrateTimer = setTimeout(celebrate, SECTION_OPENING_DURATION_MS * SECTION_OPENING_PHASE_ANCHORS.celebrate);
-    return () => { clearTimeout(ctaTimer); clearTimeout(celebrateTimer); };
-  }, [celebrate, enableCta, freezeAt, progress, reduced]);
+    cancelAnimation(progress);
+    run(0);
+  }, [freezeAt, onPrev, progress, reduced, run, segmentIndex]);
+  const swipeDown = Gesture.Pan().activeOffsetY(24).failOffsetX([-30, 30]).onEnd((event) => {
+    if (event.translationY > 90) runOnJS(onSkip)();
+  });
 
   // ── герой: ключи motion макета — невидим до 12 %, к 48 % на месте (opacity 0→1, сдвиг/поворот/масштаб из `starts`) ──
   const heroStyle = useAnimatedStyle(() => ({
@@ -215,15 +256,26 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
   const skip = () => { console.log('[SECTION-OPENING]', 'skip_tap', JSON.stringify({ id })); /* guard-ok: тап Skip / «На главную» */ onSkip(); };
   return (
     <MomentFullScreen testID={`section-opening-${id}`}>
+      <GestureDetector gesture={swipeDown}>
       <View style={[styles.root, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 }]} accessibilityViewIsModal>
-        <View style={[styles.barTrack, { top: insets.top + 2, backgroundColor: p.hairline }]} pointerEvents="none">
-          <Animated.View style={[styles.barFill, { backgroundColor: p.accentGraphic }, barStyle]} />
+        {/* зачем (история): полоска по числу кадров очереди — пройденные полные, текущий заполняется по таймлайну, будущие пустые */}
+        <View style={[styles.segments, { top: insets.top + 2 }]} pointerEvents="none">
+          {Array.from({ length: Math.max(1, segments) }, (_, i) => (
+            <View key={i} style={[styles.segment, { backgroundColor: p.hairline }]}>
+              {i < segmentIndex ? <View style={[styles.barFill, { backgroundColor: p.accentGraphic }]} /> : i === segmentIndex ? <Animated.View style={[styles.barFill, { backgroundColor: p.accentGraphic }, barStyle]} /> : null}
+            </View>
+          ))}
+        </View>
+        {/* зоны касаний истории под всем остальным: слева ≈35 % — кадр с начала, справа — дальше; удержание — пауза */}
+        <View style={StyleSheet.absoluteFill}>
+          <Pressable style={styles.zoneLeft} onPress={tapPrev} onLongPress={holdStart} delayLongPress={180} onPressOut={holdEnd} accessible={false} testID="section-opening-tap-prev" />
+          <Pressable style={styles.zoneRight} onPress={tapNext} onLongPress={holdStart} delayLongPress={180} onPressOut={holdEnd} accessible={false} testID="section-opening-tap-next" />
         </View>
         <View style={styles.top}>
           <Text style={[styles.label, { color: p.text }]} maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE}>{copy.label}</Text>
           <V2Button label={sectionOpeningSkip(lang)} variant="secondary" size="small" onPress={skip} testID="section-opening-skip" />
         </View>
-        <View style={styles.stage}>
+        <View style={styles.stage} pointerEvents="none">
           {motif}
           {SPARKS.map((s, n) => (
             <Animated.View key={n} pointerEvents="none" style={[styles.spark, { left: s.left, top: s.top, backgroundColor: p.accentGraphic, boxShadow: `0px 0px 12px ${p.accentGraphic}` }, sparkStyle]} />
@@ -251,6 +303,7 @@ export const SectionOpeningCeremony = memo(function SectionOpeningCeremony({ id,
           </View>
         </Animated.View>
       </View>
+      </GestureDetector>
     </MomentFullScreen>
   );
 });
@@ -261,7 +314,10 @@ const BODY_MAX_FONT_SCALE = 1.3;
 const styles = StyleSheet.create({
   root: { flex: 1, paddingHorizontal: 0, paddingTop: 12, paddingBottom: 24 },
   // макет: `.story-progress` left/right 22, высота 2, под статус-баром; заливка едет transform: scaleX от левого края
-  barTrack: { position: 'absolute', left: 22, right: 22, height: 2 },
+  segments: { position: 'absolute', left: 22, right: 22, height: 2, flexDirection: 'row', gap: 4 },
+  segment: { flex: 1, height: 2, overflow: 'hidden' },
+  zoneLeft: { position: 'absolute', left: 0, top: 0, bottom: 0, width: '35%' },
+  zoneRight: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '65%' },
   barFill: { height: 2, transformOrigin: 'left' },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, paddingLeft: 22, paddingRight: 16 },
   label: { fontSize: 11, fontWeight: '600', letterSpacing: 1.6, paddingVertical: 4, paddingHorizontal: 8, marginLeft: -8 },

@@ -49,4 +49,28 @@ describe('окно «Открытие раздела» = макет approved-rev
     expect(sectionOpeningOverline('ru', 'plus')).toBe('ВСЕ РАЗДЕЛЫ ДОСТУПНЫ');
     expect(sectionOpeningHome('ru')).toBe('На главную');
   });
+  // зачем (владелец 05.11 «НЕ МОДАЛ, НЕ ЭКРАН, А ИСТОРИЯ»): окно ведёт себя как история — сегментная полоска по очереди, тап справа/слева, удержание — пауза, свайп вниз — закрыть
+  it('история: сегменты очереди, тап справа/слева, удержание = пауза, свайп вниз = закрыть; CTA и хаптик привязаны к прогрессу, а не к таймеру', () => {
+    expect(src).toContain('segments = 1, segmentIndex = 0');
+    expect(src).toContain('i < segmentIndex');
+    expect(src).toContain('testID="section-opening-tap-prev"');
+    expect(src).toContain('testID="section-opening-tap-next"');
+    expect(src).toContain('onLongPress={holdStart}');
+    expect(src).toContain('cancelAnimation(progress)');
+    expect(src).toContain('Gesture.Pan()');
+    expect(src).toContain('event.translationY > 90');
+    expect(src).toContain('useAnimatedReaction');
+    expect(src).not.toMatch(/setTimeout\(enableCta|setTimeout\(celebrate/u);
+    const slots = fs.readFileSync(path.join(__dirname, '..', 'components/home/home_moment_slots.tsx'), 'utf8');
+    expect(slots).toContain('segments={segments}');
+    expect(slots).toContain('segmentIndex={segmentIndex}');
+    const store = fs.readFileSync(path.join(__dirname, '..', 'modules/section_openings/section_opening_store.ts'), 'utf8');
+    expect(store).toContain('pending: pending.length');
+    // тап слева — ПРЕДЫДУЩИЙ кадр истории (координатор 05.11): стор хранит закрытые кадры, хост отдаёт back(), слот передаёт onPrev, кадр зовёт его при segmentIndex > 0
+    expect(store).toContain('export function goBackSectionOpening(): boolean');
+    expect(store).toContain('history.push(closed)');
+    expect(fs.readFileSync(path.join(__dirname, '..', 'modules/section_openings/use_section_opening_host.ts'), 'utf8')).toContain('back: () => goBackSectionOpening()');
+    expect(slots).toContain('onPrev={() => sectionOpening.back()}');
+    expect(src).toContain('segmentIndex > 0 && onPrev?.() === true');
+  });
 });

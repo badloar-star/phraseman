@@ -257,7 +257,7 @@ describe('dev-вход для Сверки и память', () => {
   });
   it('память: окно монтируется только по показу (слот без окна = null), картинки не копятся в кэше, Reduce Motion можно форсировать', () => {
     const slots = read('components/home/home_moment_slots.tsx');
-    expect(slots).toContain('if (!sectionOpening.current) return null;');
+    expect(slots).toContain('if (!sectionOpening.current) { totalRef.current = 0; return null; }'); // слот без окна = null (+ сброс счётчика кадров истории)
     expect(slots).toContain("lazy(() => import('../section_openings/SectionOpeningCeremony')");
     const ceremony = read('components/section_openings/SectionOpeningCeremony.tsx');
     expect(ceremony.match(/cachePolicy="none"/gu)?.length).toBe(3); // герой + его свечение + арт раздела

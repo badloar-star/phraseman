@@ -17,8 +17,9 @@ export const sectionOpeningKey = (owner: string): string => `${SECTION_OPENING_K
 
 /** Чем закрыли окно: «Пропустить», кнопка раздела (CTA) или «Назад»/системный жест. */
 export type SectionOpeningDismissSource = 'skip' | 'cta' | 'back';
-export type SectionOpeningSnapshot = Readonly<{ owner: string | null; current: SectionOpeningId | null }>;
-const EMPTY_SNAPSHOT: SectionOpeningSnapshot = Object.freeze({ owner: null, current: null });
+// зачем (владелец 05.11 «ЭТО ИСТОРИЯ»): pending — сколько окон осталось в очереди после текущего: сегментная полоска истории показывает всю очередь (Ранг · Видео · Диалоги)
+export type SectionOpeningSnapshot = Readonly<{ owner: string | null; current: SectionOpeningId | null; pending: number }>;
+const EMPTY_SNAPSHOT: SectionOpeningSnapshot = Object.freeze({ owner: null, current: null, pending: 0 });
 
 let owner: string | null = null;
 let marks: SectionOpeningMarks = EMPTY_MARKS;
@@ -26,6 +27,8 @@ let loaded = false;
 let loading: Promise<void> | null = null;
 let current: SectionOpeningId | null = null;
 let pending: SectionOpeningId[] = [];
+// зачем (координатор 05.11, «тап слева — предыдущий кадр»): закрытые в этой «истории» кадры, чтобы вернуться назад
+let history: SectionOpeningId[] = [];
 let snapshot: SectionOpeningSnapshot = EMPTY_SNAPSHOT;
 const listeners = new Set<() => void>();
 
@@ -38,8 +41,8 @@ function currentOwner(): string | null {
 }
 
 function publish(): void {
-  if (snapshot.owner === owner && snapshot.current === current) return; // зачем: та же картина — без перерисовок
-  snapshot = { owner, current };
+  if (snapshot.owner === owner && snapshot.current === current && snapshot.pending === pending.length) return; // зачем: та же картина — без перерисовок
+  snapshot = { owner, current, pending: pending.length };
   listeners.forEach((listener) => {
     try {
       listener();
@@ -56,6 +59,7 @@ function resetForNewOwner(next: string | null): void {
   loading = null;
   current = null;
   pending = [];
+  history = [];
   publish();
 }
 
@@ -124,12 +128,25 @@ export function noteSectionOpeningShown(id: SectionOpeningId): void {
 /** Закрыто (CTA, «Пропустить», «Назад»): следующее окно очереди, если есть. */
 export function dismissSectionOpening(source: SectionOpeningDismissSource = 'back'): SectionOpeningId | null {
   const closed = current;
+  if (closed) history.push(closed);
   current = pending.shift() ?? null;
+  if (current === null) history = []; // история кончилась — назад возвращаться некуда
   // зачем (150 №11, Maestro: «Skip закрывает?»): одна строка на закрытие — какой раздел, чем закрыли, пропуск ли это и лежит ли отметка «показано» (persisted) — значит окно
   // для этого раздела не вернётся. Отметка ставится при ПОКАЗЕ (noteSectionOpeningShown), поэтому «Пропустить» = закрыто навсегда без отдельной записи.
   console.log(LOG, 'dismissed', JSON.stringify({ event: 'dismissed', section: closed, source, skipped: source === 'skip', persisted: closed ? marks.seen.includes(closed) : null, closed, next: current })); // guard-ok: закрытие
   publish();
   return closed;
+}
+
+/** Тап слева в истории: вернуть предыдущий кадр (текущий уходит в начало очереди). false — предыдущего нет. */
+export function goBackSectionOpening(): boolean {
+  const previous = history.pop();
+  if (!previous || current === null) { console.log(LOG, 'back_skipped', JSON.stringify({ hasPrevious: Boolean(previous), current })); return false; } // guard-ok: ранний выход называет причину
+  pending.unshift(current);
+  current = previous;
+  console.log(LOG, 'back', JSON.stringify({ to: current, pending })); // guard-ok: переход назад в истории
+  publish();
+  return true;
 }
 
 export const subscribeSectionOpening = (listener: () => void): (() => void) => {
@@ -144,5 +161,5 @@ subscribeAccountGeneration(() => {
 });
 
 export function __resetSectionOpeningForTests(): void {
-  owner = null; marks = EMPTY_MARKS; loaded = false; loading = null; current = null; pending = []; snapshot = EMPTY_SNAPSHOT;
+  owner = null; marks = EMPTY_MARKS; loaded = false; loading = null; current = null; pending = []; history = []; snapshot = EMPTY_SNAPSHOT;
 }

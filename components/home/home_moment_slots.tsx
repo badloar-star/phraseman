@@ -7,7 +7,7 @@
 // Поведение то же: когда показывать — гейты хуков, порядок окон — таблица приоритетов арбитра (overlay_arbiter_core),
 // окна грузятся лениво и монтируются только по слоту.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { Suspense, lazy, memo, useEffect } from 'react';
+import React, { Suspense, lazy, memo, useEffect, useRef } from 'react';
 import { Modal } from 'react-native';
 
 import type { Lang } from '../../constants/i18n';
@@ -100,7 +100,12 @@ type SectionOpeningSlotProps = Readonly<{
 
 export const HomeSectionOpeningSlot = memo(function HomeSectionOpeningSlot({ lang, active, onNavigate }: SectionOpeningSlotProps) {
   const sectionOpening = useSectionOpeningHost(active);
-  if (!sectionOpening.current) return null;
+  // зачем (владелец 05.11 «ЭТО ИСТОРИЯ»): сегменты полоски = вся очередь этой «истории» (Ранг · Видео · Диалоги); число кадров запоминаем с первого показа, текущий = всего − осталось
+  const totalRef = useRef(0);
+  if (!sectionOpening.current) { totalRef.current = 0; return null; }
+  totalRef.current = Math.max(totalRef.current, 1 + sectionOpening.remaining);
+  const segments = totalRef.current;
+  const segmentIndex = Math.max(0, segments - 1 - sectionOpening.remaining);
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={() => sectionOpening.dismiss('back')}>
       <SheetSwipeRoot>
@@ -108,7 +113,10 @@ export const HomeSectionOpeningSlot = memo(function HomeSectionOpeningSlot({ lan
           <SectionOpeningCeremony
             id={sectionOpening.current}
             lang={lang}
+            segments={segments}
+            segmentIndex={segmentIndex}
             onSkip={() => sectionOpening.dismiss('skip')}
+            onPrev={() => sectionOpening.back()}
             onCta={() => { const route = sectionOpening.accept(); if (route) onNavigate(route); }}
           />
         </Suspense>

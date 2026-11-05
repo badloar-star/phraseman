@@ -16,7 +16,7 @@ import {
   SECTION_OPENING_ROUTES, type SectionOpeningFacts, type SectionOpeningId, type SectionOpeningSurface,
 } from './section_opening_core';
 import {
-  dismissSectionOpening, noteSectionOpeningShown, peekSectionOpening, reconcileSectionOpenings, subscribeSectionOpening,
+  dismissSectionOpening, goBackSectionOpening, noteSectionOpeningShown, peekSectionOpening, reconcileSectionOpenings, subscribeSectionOpening,
 } from './section_opening_store';
 
 const LOG = '[SECTION-OPENING]';
@@ -40,10 +40,14 @@ function useSectionOpeningsEnabled(): boolean {
 export type SectionOpeningHost = Readonly<{
   /** Окно на экране (после арбитра) или null. */
   current: SectionOpeningId | null;
+  /** Сколько окон ждёт в очереди после текущего (для сегментов истории). */
+  remaining: number;
   /** CTA: закрыть и вернуть маршрут раздела (null — rank/plus просто идут дальше). */
   accept: () => string | null;
   /** «Пропустить» / «Назад»: закрыть, следующее окно очереди появится само. */
   dismiss: (source?: 'skip' | 'back') => void;
+  /** Тап слева в истории: вернуть предыдущий кадр; false — предыдущего нет. */
+  back: () => boolean;
 }>;
 
 export function useSectionOpeningHost(active: boolean): SectionOpeningHost {
@@ -121,11 +125,13 @@ export function useSectionOpeningHost(active: boolean): SectionOpeningHost {
 
   return useMemo<SectionOpeningHost>(() => ({
     current: shown,
+    remaining: snap.pending,
     accept: () => {
       const closed = dismissSectionOpening('cta');
       return closed ? SECTION_OPENING_ROUTES[closed] : null;
     },
     dismiss: (source = 'back') => { dismissSectionOpening(source); },
-  }), [shown]);
+    back: () => goBackSectionOpening(),
+  }), [shown, snap.pending]);
 }
 

@@ -1,0 +1,32 @@
+diff --git a/tests/spire_scene_contract.test.ts b/tests/spire_scene_contract.test.ts
+index b57b5fdf4..d2a5b25c3 100644
+--- a/tests/spire_scene_contract.test.ts
++++ b/tests/spire_scene_contract.test.ts
+@@ -144,12 +144,13 @@ async function main(): Promise<void> {
+   const community = read("app/(tabs)/community.tsx");
+   // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «верх цельный»; координатор после 2.0.2: «сцена от самого верха, шапка прозрачная поверх, слой spire_header_layer убрать»):
+   // без «Сцены» (флаг выключен, другой раздел) шапка прежняя; со «Сценой» Пика она лежит поверх тела, вкладки белые, отдельного слоя нет
+-  assert.ok(community.includes("<View onLayout={(e) => setHeaderH(e.nativeEvent.layout.height)} style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null, overScene ? s.headerOver : null]}>"), "шапка без подложки; со «Сценой» Пика — поверх тела");
++  assert.ok(community.includes("topInset > 0 ? { paddingTop: 12 + topInset } : null, s.headerOver"), "общая шапка фиксирована поверх каждого раздела");
++  assert.ok(community.includes("<View style={[s.bodyUnder, { top: headerH }]}>") , "каждый раздел получает единый inset под fixed-шапкой");
+   // зачем (перепин 29.10): сводный коммит a82a3b220 добавил «Наборы» со своей сценой — условие стало «Наборы ИЛИ (Пик при флаге и готовой сцене)»; обе части проверяем по отдельности, Пик не ослаблен
+-  assert.ok(community.includes("const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null);"), "поверх сцены — «Наборы» или Пик при флаге и когда сцена есть");
+-  assert.ok(community.includes("(SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null)"), "Пик: только при флаге, на разделе Пика и когда сцена опубликовала цвет");
+-  assert.ok(community.includes("borderBottomColor: on ? (overScene ? SPIRE_SCENE_INK.text : accentGfx.border) : 'transparent'"), "черта вкладки — прежний цвет, на сцене белая");
+-  assert.ok(community.includes("color: overScene ? (on ? SPIRE_SCENE_INK.text : SPIRE_SCENE_INK.muted) : on ? p.text : p.textSecondary"), "текст вкладок — прежние цвета, на сцене белые");
++  assert.ok(community.includes("const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire');"), "поверх сцены — «Наборы» или Пик при флаге, без lifecycle-зависимости");
++  assert.ok(!community.includes("useSpireSceneHeaderTint"), "шапка не зависит от mount/cleanup Пика");
++  assert.ok(community.includes("const communityHeaderSurface = peakSceneTopHex(liquidGlassThemeId, liquidGlassAppearance);") && community.includes("const communityHeaderInk = SPIRE_SCENE_INK;") && !community.includes("useSpireSceneHeaderTint"), "все три раздела получают чистую Peak surface/ink модель независимо от lifecycle сцены");
++  assert.ok(community.includes("borderBottomColor: on ? communityHeaderInk.text : 'transparent'") && community.includes("color: on ? communityHeaderInk.text : communityHeaderInk.muted"), "индикатор и текст не зависят от выбранного раздела");
+   assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}"), "справа — как раньше; на Пике со «Сценой» — настоящий EnergyBar (аудит F4)");
+   assert.ok(community.includes("hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}"), "вкладки: зона касания ≥ 44 и без щелей между ними");
+   assert.ok(!community.includes("<SpireSceneHeaderLayer"), "отдельного слоя шапки нет — сцена сама под шапкой");
+@@ -219,7 +220,7 @@ async function main(): Promise<void> {
+   assert.ok(read("components/spire/scene/spire_scene_header.tsx").includes("<View style={[styles.tabs, tabsInset]}"), "рисованные вкладки сдвигаются вместе с настоящими под общую «назад»");
+   assert.ok(rivals.includes("hitSlop={Math.max(0, Math.ceil((RIVAL_TAP - size) / 2))}") && rivals.includes("const RIVAL_TAP = 44;"), "монета соперника — кнопка с зоной касания ≥ 44");
+   assert.ok(tower.includes("pointerEvents={onPressRival ? 'box-none' : 'none'}"), "без обработчиков (прежнее окно) ряды по-прежнему не ловят касания");
+-  assert.ok(tower.includes("sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0}"), "ряды соперников на «Сцене» — по расчёту сетки");
++  assert.ok(tower.includes("sceneFit={sceneFit} hiddenBelow={0}"), "у статичной башни сцены нет viewport-скрытия рядов");
+   assert.ok(rivals.includes("if (fl.f <= hiddenBelow) continue;"), "ряды под монетами пьедестала не рисуются");
+   assert.ok(pedestal.includes("plus={false}") && !pedestal.includes("plus={m.isPremium"), "монеты «Комнаты недели» без колец (владелец 22.10: «вот так не надо»)");
+   assert.ok(scene.includes("const pedestalCompact = spireScenePedestalCompact({ visibleH, fontScale, copyTop: off ? COPY_TOP_OFFLINE : COPY_TOP, shape });") && scene.includes("compact={pedestalCompact}"), "колонка не влезает над «Играть» — сжатый пьедестал");

@@ -1,0 +1,50 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { peakSceneTopHex, scenePaletteCached, sceneTopHex } from '../components/scene/scene_palette';
+import { setSpireSceneHeaderTint } from '../components/spire/scene/spire_scene_header_tint';
+
+const root = path.join(__dirname, '..');
+const read = (rel: string) => fs.readFileSync(path.join(root, rel), 'utf8').replace(/\r\n/g, '\n');
+
+describe('Peak scene has one vertical scroll owner', () => {
+  it('renders the scene tower canvas without an inner ScrollView while retaining the window branch', () => {
+    const tower = read('components/spire/SpireTower.tsx');
+    const sceneBranch = tower.slice(tower.indexOf('{sceneMode ? ('), tower.indexOf(') : <ScrollView', tower.indexOf('{sceneMode ? (')));
+    expect(sceneBranch).toContain('<View');
+    expect(sceneBranch).not.toContain('<ScrollView');
+    expect(tower).toContain("variant = 'window'");
+    expect(tower).toContain('<ScrollView');
+  });
+
+  it('keeps the outer Peak page scroll enabled and does not pass tower touch locking into the scene', () => {
+    const home = read('components/spire/SpireHomeScreen.tsx');
+    const sceneCall = home.slice(home.indexOf('<SpireScene'), home.indexOf('</View>', home.indexOf('<SpireScene')));
+    expect(sceneCall).not.toContain('onTouchActive=');
+    expect(home).not.toContain('scrollEnabled={!towerTouch.locked}');
+    expect(home).not.toContain('enabled={!towerTouch.locked}');
+    expect(home).toContain('const pageScrollEnabled = scene !== null || !towerTouch.locked;');
+    expect(home).toContain('scrollEnabled={pageScrollEnabled}');
+    expect(home).toContain('enabled={pageScrollEnabled}');
+    expect(home).not.toContain('enabled={scene || !towerTouch.locked}');
+  });
+
+  it('keeps the Community surface on the pure Peak token after a section switch cleans up Peak', () => {
+    const beforeSwitch = peakSceneTopHex('grad_full_horizon', 'dark');
+    setSpireSceneHeaderTint('#010203');
+    setSpireSceneHeaderTint(null);
+    const afterCleanup = peakSceneTopHex('grad_full_horizon', 'dark');
+
+    expect(afterCleanup).toBe(beforeSwitch);
+    expect(afterCleanup).toBe(sceneTopHex(scenePaletteCached('grad_full_horizon', 'dark', 'peak', 1080, 1950, 2.625)));
+
+    const community = read('app/(tabs)/community.tsx');
+    expect(community).toContain("import { peakSceneTopHex } from '../../components/scene/scene_palette';");
+    expect(community).toContain('const communityHeaderSurface = peakSceneTopHex(liquidGlassThemeId, liquidGlassAppearance);');
+    expect(community).not.toContain('useSpireSceneHeaderTint');
+    expect(community).not.toContain('sceneTint ??');
+    expect(community).toContain('const communityHeaderInk = SPIRE_SCENE_INK;');
+    expect(community).toContain('{ backgroundColor: communityHeaderSurface }');
+    expect(community).toContain('borderBottomColor: on ? communityHeaderInk.text');
+    expect(community).toContain('color: on ? communityHeaderInk.text : communityHeaderInk.muted');
+  });
+});

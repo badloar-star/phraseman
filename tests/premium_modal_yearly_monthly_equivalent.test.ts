@@ -22,13 +22,11 @@ describe('Plus paywall yearly monthly equivalent display', () => {
     // крупная цена «Года» — списываемая сумма за год (S.big), «≈ в месяц» — мелкая подпись под ней (S.per) и строго меньше по кеглю.
     const rows = fs.readFileSync(path.join(process.cwd(), 'components', 'paywall', 'PaywallPlanRows.tsx'), 'utf8');
     expect(rows).toContain('priceTestID="paywall-year-price"');
-    expect(rows).toContain('<Text testID={priceTestID} style={[S.big, { color: g.text }]}>{shown}</Text>');
-    expect(rows).toContain('<Text style={[S.per, { color: g.text }]}>{subPrice}</Text>');
-    expect(rows).toContain('subPrice={yearlyPerMonth ? yearPerMonthApprox(lang, yearlyPerMonth) : pick(lang, COPY.perYear)}');
-    const bigSize = Number(/big: \{ fontSize: (\d+)/u.exec(rows)?.[1]);
-    const perSize = Number(/per: \{ marginTop: \d+, fontSize: (\d+)/u.exec(rows)?.[1]);
-    expect(bigSize).toBeGreaterThanOrEqual(22);
-    expect(perSize).toBeLessThan(bigSize);
+    // макет «Все окна Plus» (05.11): плитка показывает единственную цену — списываемую сумму с периодом («39,99 € в год»), «≈ в месяц» убран
+    expect(rows).toContain('<Text testID={priceTestID} style={[S.price, { color: g.text }]}>');
+    expect(rows).toContain('subPrice={pick(lang, COPY.perYear)}');
+    // цена плитки — 13 жирным, строка пробного периода — 13 обычным: цена заметнее (правило магазинов)
+    expect(/price: \{ fontSize: 13, lineHeight: 17, fontWeight: '700'/u.test(rows)).toBe(true);
     // «в месяц» у года считается из цен магазина, не придумывается
     expect(purchase).toContain('const yearlyPerMonth');
   });

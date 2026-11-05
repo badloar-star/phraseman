@@ -10,8 +10,8 @@
 //  • кнопка закреплена внизу, сравнение раскрывается на месте, никаких окон;
 //  • все цвета — токены АКТИВНОЙ темы (темы бесплатны), своих цветов нет.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useCallback, useRef } from 'react';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../constants/i18n';
@@ -27,6 +27,7 @@ import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
 import V2Pressable from '../v2/V2Pressable';
 import type { PaywallPriceSource } from '../../app/paywall_reference_prices';
 import { PaywallCBenefits, PAYWALL_C_BENEFIT_COUNT } from './PaywallCBenefits';
+import { PAYWALL_V3_RESTORE } from '../../app/paywall_v3_rows';
 import {
   COPY, ctaBuyMonth, ctaBuyYear, ctaStartTrial, fineAfterTrial, fineThenMonth, heroTrialTitle, pick,
 } from './PaywallPlusCopy';
@@ -55,10 +56,12 @@ const PRIVACY_URL = KNOWLY_LEGAL_PRIVACY_URL;
 function openLegal(url: string): void { openLegalLink(url, 'paywall_plus'); }
 
 // ── шапка ───────────────────────────────────────────────────────────────────
-export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeVisible, closeDisabled, onClose, contextTitle, contextSubtitle }: {
+export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeVisible, closeDisabled, onClose, contextTitle, contextSubtitle, contextPill }: {
   lang: Lang; g: GlassTokens; trialDays: number | null; closeVisible: boolean; closeDisabled: boolean; onClose: () => void;
   /** Заголовок/подзаголовок КОНТЕКСТА входа (paywallContextHeadline). Нет — прежняя шапка пробного периода. */
   contextTitle?: string; contextSubtitle?: string;
+  /** Пилюля «что закончилось» (макет «Все окна Plus»: под строкой «PhraseMan Plus», над заголовком). */
+  contextPill?: string;
 }) {
   // зачем (владелец 11.10: «Я НЕ ВИЖУ КОНТЕКСТА! ВСЕ ПЕЙВОЛЫ ДОЛЖНЫ БЫТЬ КОНТЕКСТНЫМИ»; решение 1 «Шторка»): окно говорит про место, откуда
   // человек пришёл — значок входа и пилюля «что закончилось» наверху, ниже заголовок и одна фраза.
@@ -83,9 +86,10 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
   return (
     <View style={S.cHeader}>
       <View style={S.topRow}>
-        <Text style={[S.kicker, { color: g.text }]}>{pick(lang, COPY.kicker)}</Text>
+        <Text style={[S.kicker, { color: g.text }]}>PhraseMan Plus</Text>
         {close}
       </View>
+      {contextPill ? <View testID="paywall-pill" style={[S.pill, { backgroundColor: paywallPlateBg(g) }]}><Text style={[S.pillText, { color: g.text }]}>{contextPill}</Text></View> : null}
       <Text testID="paywall-title" accessibilityRole="header" style={[S.h1, { color: g.text }]}>{title}</Text>
       {subtitle ? <Text testID="paywall-subtitle" style={[S.sub, { color: g.text }]}>{subtitle}</Text> : null}
     </View>
@@ -157,10 +161,11 @@ export const PaywallPlusPriceNote = memo(function PaywallPlusPriceNote({ lang, g
 });
 
 // ── тело: «Что входит», «Free и Plus», ссылки ──────────────────────────────
-export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, leadBenefit, leadCaption, factCaption }: {
+export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, leadBenefit, leadCaption, factCaption, items, paragraph }: {
   lang: Lang; g: GlassTokens; leadBenefit?: string; leadCaption?: string; factCaption?: string;
+  items?: ReadonlyArray<Readonly<{ title: string; detail: string }>>; paragraph?: string;
 }) {
-  return <PaywallCBenefits lang={lang} g={g} leadBenefit={leadBenefit} leadCaption={leadCaption} factCaption={factCaption} />;
+  return <PaywallCBenefits lang={lang} g={g} leadBenefit={leadBenefit} leadCaption={leadCaption} factCaption={factCaption} items={items} paragraph={paragraph} />;
 });
 
 // ── закреплённая кнопка ─────────────────────────────────────────────────────
@@ -203,6 +208,8 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
   const fineText = notice ? pick(lang, COPY.tryInMinute) : ready ? fine : pick(lang, COPY.fineNoPrices);
   return (
     <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]}>
+      {/* макет «Все окна Plus»: строка про автопродление — над кнопкой */}
+      <Text testID="paywall-fine" style={[S.fine, { color: g.text }]}>{fineText}</Text>
       {/* Вариант C: плоская кнопка активной темы, без декоративного свечения/3D. */}
       <V2Pressable
         testID="paywall-cta"
@@ -219,20 +226,17 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
           ? <ActivityIndicator color={g.ctaFillInk} />
           : <Text style={[S.ctaText, { color: g.ctaFillInk }]}>{label}</Text>}
       </V2Pressable>
-      <Text testID="paywall-fine" style={[S.fine, { color: g.text }]}>{fineText}</Text>
       {restoreVisible || promoVisible ? <View style={S.secondaryActions}>
         {/* зачем (R1_PAYWALL_UX): восстановление видно — крутилка рядом с «Восстанавливаем…»; недоступная ссылка приглушена (раньше не отличалась от активной). */}
         {restoreVisible ? <V2Pressable testID="paywall-restore" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.restore)} withHaptic={false} scaleTo={0.95} disabled={restoreDisabled} outerStyle={S.secondaryOuter}
           accessibilityState={{ disabled: restoreDisabled, busy: restoring }} onPress={onRestore}
           style={[S.secondaryAction, { opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1 }]}>
           {restoring ? <ActivityIndicator size="small" color={g.text} /> : null}
-          {!restoring ? <Ionicons name="refresh-outline" size={17} color={g.text} /> : null}
-          <Text style={[S.secondaryActionText, { color: g.text }]}>{pick(lang, restoring ? COPY.restoring : COPY.restore)}</Text>
+          <Text style={[S.secondaryActionText, { color: g.text }]}>{restoring ? pick(lang, COPY.restoring) : (PAYWALL_V3_RESTORE[lang] ?? PAYWALL_V3_RESTORE.en)}</Text>
         </V2Pressable> : null}
         {promoVisible ? <V2Pressable testID="paywall-promo-code" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.enterPromo)}
           accessibilityState={{ disabled: promoDisabled }} withHaptic={false} scaleTo={0.95} disabled={promoDisabled} outerStyle={S.secondaryOuter} onPress={onPromo}
           style={[S.secondaryAction, { opacity: promoDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}>
-          <Ionicons name="pricetag-outline" size={17} color={g.text} />
           <Text style={[S.secondaryActionText, { color: g.text }]}>{pick(lang, COPY.enterPromo)}</Text>
         </V2Pressable> : null}
       </View> : null}
@@ -249,9 +253,35 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
 });
 
 /** Прокручиваемое тело — отдельный экспорт, чтобы экран собирал порядок блоков по макету. */
+/**
+ * зачем (баг по кадру Макетов 05.11, paywall-language-0852; слово координатора: «плитки Год/Месяц обрезаны залипшей кнопкой — на 360×800 и 412×915 видны полностью над кнопкой»):
+ * на низком экране тело шторки длиннее окна, и при открытии плитки тарифов торчали краем из-под кнопки покупки. Пока человек не трогал прокрутку, тело один раз встаёт в конец —
+ * плитки (и строка про цену под ними) целиком над кнопкой; сверху остаётся то, что помещается. Ничего не мигает: прокрутка без анимации до первого касания.
+ * Журнал [PAYWALL-FIT]: высота окна прокрутки, высота содержимого, на сколько прокрутили — по нему видно, на каких экранах срабатывает.
+ */
 export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
+  const scrollRef = useRef<ScrollView | null>(null);
+  const viewportRef = useRef(0);
+  const touchedRef = useRef(false);
+  const contentRef = useRef(0);
+  const lastOffsetRef = useRef(-1);
+  const fitToEnd = useCallback((contentH: number) => {
+    const viewportH = viewportRef.current;
+    if (touchedRef.current || viewportH <= 0 || contentH <= 0) {
+      console.log('[PAYWALL-FIT] skip', JSON.stringify({ touched: touchedRef.current, viewportH: Math.round(viewportH), contentH: Math.round(contentH) })); // guard-ok: ранний выход называет причину
+      return;
+    }
+    const overflow = Math.max(0, Math.round(contentH - viewportH));
+    if (overflow === lastOffsetRef.current) return;
+    lastOffsetRef.current = overflow;
+    console.log('[PAYWALL-FIT]', JSON.stringify({ viewportH: Math.round(viewportH), contentH: Math.round(contentH), overflow, action: overflow > 0 ? 'scroll_to_end' : 'fits' })); // guard-ok: одна строка на смену высоты
+    if (overflow > 0) scrollRef.current?.scrollTo({ y: overflow, animated: false });
+  }, []);
+  // зачем: окно и содержимое измеряются в любом порядке — подгон считается, когда известны оба
+  const onLayout = useCallback((e: LayoutChangeEvent) => { viewportRef.current = e.nativeEvent.layout.height; fitToEnd(contentRef.current); }, [fitToEnd]);
   return (
-    <ScrollView style={S.scroll} contentContainerStyle={S.scrollContent} showsVerticalScrollIndicator={false} decelerationRate="fast">
+    <ScrollView ref={scrollRef} style={S.scroll} contentContainerStyle={S.scrollContent} showsVerticalScrollIndicator={false} decelerationRate="fast"
+      onLayout={onLayout} onContentSizeChange={(_w, h) => { contentRef.current = h; fitToEnd(h); }} onScrollBeginDrag={() => { touchedRef.current = true; }}>
       {children}
     </ScrollView>
   );
@@ -260,11 +290,14 @@ export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
 const S = StyleSheet.create({
   cHeader: { paddingTop: 18, paddingHorizontal: 24 },
   topRow: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  kicker: { fontSize: 14, lineHeight: 20, fontWeight: '700', letterSpacing: 0.2 },
+  // зачем (макет «Все окна Plus», слово владельца 05.11 «1 в 1»): «PhraseMan Plus» обычным регистром, 600 (не капслок), пилюля места входа, заголовок 29/32, подзаголовок 15/20
+  kicker: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
+  pill: { alignSelf: 'flex-start', marginTop: 14, minHeight: 28, borderRadius: 14, paddingHorizontal: 12, justifyContent: 'center' },
+  pillText: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
   close: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   // зачем (ревью 05.11): межстрочный ≥1,15× кегля (было 35 при 32) — две строки заголовка при шрифте ×1,3 не слипаются
-  h1: { marginTop: 18, fontSize: 32, lineHeight: 38, fontWeight: '800', letterSpacing: -0.7 },
-  sub: { marginTop: 8, fontSize: 17, lineHeight: 25 },
+  h1: { marginTop: 16, fontSize: 29, lineHeight: 34, fontWeight: '800', letterSpacing: -0.6 },
+  sub: { marginTop: 8, fontSize: 15, lineHeight: 21 },
   scroll: { flexGrow: 0, flexShrink: 1 },
   scrollContent: { paddingTop: 18, paddingHorizontal: 24, paddingBottom: 30 },
   // overlay-more.css `.om-promo`: поля 14, r18; `.om-kicker` 11/800 по центру; цена 21/800; обычная 13/700 зачёркнута; «далее» 14/21
@@ -295,18 +328,19 @@ const S = StyleSheet.create({
   planRowTop: { marginTop: 14 },
   sectionLabel: { marginTop: 22, marginBottom: 10, marginHorizontal: 4, fontSize: 13, fontWeight: '700', letterSpacing: 2.2 },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 14 },
-  secondaryActions: { flexDirection: 'row', gap: 8, marginTop: 12 },
+  // макет: «Восстановить покупки» — одна текстовая ссылка по центру, ниже (по решению владельца 05.11 она остаётся) «Ввести промокод»
+  secondaryActions: { flexDirection: 'column', alignItems: 'center', gap: 0, marginTop: 6 },
   // зачем (владелец 26.10, «Условия» и «Конфиденциальность» наезжали на плашки): V2Pressable кладёт style на ВНУТРЕННИЙ слой, а flex:1 там давал ему
   // базу высоты 0 — плашка занимала только minHeight 44, текст в 2–3 строки (крупный шрифт, длинный перевод) вылезал вниз на ссылки.
   // Место в ряду (flex) — на внешний слой (outerStyle), внутренний слой растёт по содержимому и тянется до высоты соседней плашки.
-  secondaryOuter: { flex: 1, minWidth: 0 },
+  secondaryOuter: { alignSelf: 'center', minWidth: 0 },
   secondaryAction: { flexGrow: 1, minHeight: 44, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  secondaryActionText: { flexShrink: 1, fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center' },
+  secondaryActionText: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '500', textAlign: 'center' },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },
   restoreRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  link: { fontSize: 12, lineHeight: 17 },
+  link: { fontSize: 13, lineHeight: 18 },
   dock: { paddingTop: 14, paddingHorizontal: 24 },
   cta: { minHeight: 54, borderRadius: 28, paddingHorizontal: 20, paddingVertical: 12, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
-  fine: { marginTop: 9, fontSize: 13, lineHeight: 18, textAlign: 'center', fontVariant: ['tabular-nums'] },
+  ctaText: { fontSize: 15, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
+  fine: { marginBottom: 10, fontSize: 13, lineHeight: 18, textAlign: 'left', fontVariant: ['tabular-nums'] },
 });

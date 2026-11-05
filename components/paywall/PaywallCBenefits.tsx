@@ -41,24 +41,34 @@ const Row = memo(function Row({ g, title, caption, index }: { g: GlassTokens; ti
   );
 });
 
-export const PaywallCBenefits = memo(function PaywallCBenefits({ lang, g, leadBenefit, leadCaption, factCaption }: {
+export const PaywallCBenefits = memo(function PaywallCBenefits({ lang, g, leadBenefit, leadCaption, factCaption, items, paragraph }: {
   lang: Lang; g: GlassTokens; leadBenefit?: string; leadCaption?: string; factCaption?: string;
+  /** Макет «Все окна Plus» (слово владельца 05.11, 1 в 1): готовые три пункта — первая строка больше не повторяет подзаголовок. */
+  items?: ReadonlyArray<Readonly<{ title: string; detail: string }>>;
+  /** Абзац под списком («В первом выбранном языке уроки 1–3 бесплатны…»). */
+  paragraph?: string;
 }) {
-  const benefits = PAYWALL_C_BENEFITS.map((benefit, index) => ({
-    title: index === 0 && leadBenefit ? leadBenefit : pick(lang, benefit.title),
-    caption: index === 0 && leadBenefit ? (factCaption || leadCaption || '') : pick(lang, benefit.detail),
-  }));
+  const benefits = items && items.length > 0
+    ? items.map((item) => ({ title: item.title, caption: item.detail }))
+    : PAYWALL_C_BENEFITS.map((benefit, index) => ({
+      title: index === 0 && leadBenefit ? leadBenefit : pick(lang, benefit.title),
+      caption: index === 0 && leadBenefit ? (factCaption || leadCaption || '') : pick(lang, benefit.detail),
+    }));
   return (
     <View testID="paywall-c-benefits">
       {benefits.map((benefit, index) => <Row key={`${index}:${benefit.title}`} g={g} title={benefit.title} caption={benefit.caption} index={index} />)}
+      {paragraph ? <Text testID="paywall-v3-paragraph" style={[S.paragraph, { color: g.text }]}>{paragraph}</Text> : null}
     </View>
   );
 });
 
 const S = StyleSheet.create({
-  row: { minHeight: 68, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 16 },
-  check: { width: 26, alignItems: 'flex-start', justifyContent: 'center' },
+  // макет «Все окна Plus»: строка плотнее — отступ 10, пункт 16, строка под ним 13 (шапка/абзац/плитки/кнопка помещаются на 360×800)
+  row: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingVertical: 10 },
+  check: { width: 26, alignItems: 'flex-start', justifyContent: 'center', paddingTop: 1 },
   copy: { flex: 1, minWidth: 0 },
-  title: { fontSize: 17, lineHeight: 25, fontWeight: '700' },
-  caption: { fontSize: 13, lineHeight: 19 },
+  title: { fontSize: 15, lineHeight: 21, fontWeight: '700' },
+  caption: { fontSize: 13, lineHeight: 17, marginTop: 1 },
+  // зачем (макет): абзац под списком — обычный текст 13/18, отступ как между блоками листа
+  paragraph: { marginTop: 12, fontSize: 13, lineHeight: 18 },
 });

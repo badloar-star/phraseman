@@ -55,11 +55,11 @@ describe('Paywall trial: the number on screen is the number the store charges by
     expect(screen).not.toMatch(/p\.selected === 'monthly' \? p\.trialDays/);
   });
 
-  it('the monthly tile never says «no free trial»: no trial in the package means no line at all', () => {
+  it('the tile says «no trial period» only when the store package has none (макет «Все окна Plus», 05.11)', () => {
     const tiles = read('components/paywall/PaywallPlanRows.tsx');
     expect(tiles).not.toMatch(/COPY\.noTrial/);
     expect(tiles).toContain('trialDays={monthlyTrialDays}');
-    expect(tiles).toMatch(/\{trialDays \? <Text[\s\S]*?trialFreeLabel\(lang, trialDays\)[\s\S]*?: null\}/);
+    expect(tiles).toMatch(/trialDays \? trialFreeLabel\(lang, trialDays\) : \(PAYWALL_V3_NO_TRIAL_LINE\[lang\] \?\? PAYWALL_V3_NO_TRIAL_LINE\.en\)/);
   });
 
   it('[PAYWALL-TRIAL] names what the store gave for the package', () => {

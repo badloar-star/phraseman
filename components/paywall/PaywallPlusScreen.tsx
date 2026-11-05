@@ -38,6 +38,9 @@ import {
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
 import { COPY, pick } from './PaywallPlusCopy';
 import { paywallContextHeadline, paywallEntryFactsFromParams } from '../../app/paywall_context_headline';
+import { PAYWALL_V3_CTA } from '../../app/paywall_language_add_copy';
+import { PAYWALL_V3_AUTO_RENEW, PAYWALL_V3_CTA_TRIAL, paywallV3Rows } from '../../app/paywall_v3_rows';
+import { paywallV3Body } from '../../app/paywall_language_add_copy';
 import { onAppEvent } from '../../app/events';
 import { getPaywallControlVisibility } from '../../app/paywall_control_visibility';
 import { isPaywallMEnabled } from './m/paywall_m_flag';
@@ -132,6 +135,10 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     [ctx, lang, lessonsDoneParam, streakParam],
   );
   const contextual = headline.copyContext !== 'generic' && !!headline.title;
+  // зачем (макет «Все окна Plus», вариант 3; слово владельца 05.11: «макеты пейволов одобряю! внести 1 в 1»): у КАЖДОГО окна свой заголовок и подзаголовок (у общего входа — «Всё приложение целиком»),
+  // три пункта (первый по месту, «Курс дальше», «Больше практики») и абзац про бесплатные уроки 1–3; первая строка больше не повторяет подзаголовок (🔴 №44 Макетов).
+  const v3Rows = useMemo(() => paywallV3Rows(ctx, lang, headline.firstBenefit), [ctx, lang, headline.firstBenefit]);
+  const v3Paragraph = useMemo(() => paywallV3Body(lang).paragraph, [lang]);
   // зачем (макет paywall-context-redesign #c1): пилюля «что закончилось» рядом со значком входа. Поле `pill` в контракт вносит Ядро;
   // пока его нет — пилюли нет (ничего не выдумываем).
   useEffect(() => {
@@ -248,6 +255,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const labelReady = state === 'ready' && (p.selected === 'monthly' ? !!p.monthlyPrice : !!p.yearlyPrice);
   const yearlyPromo = pricesReady ? p.storePromo.yearly : null;
   const monthlyPromo = pricesReady ? p.storePromo.monthly : null;
+  // зачем (макет: «Начать бесплатно» при пробном периоде, иначе «Подключить Plus»; решения владельца 05.11: цена — на плитках, пробный — показывать, если доступен): со скидкой стора кнопка остаётся с честным текстом цены
+  const selectedTrial = p.selected === 'monthly' ? monthlyTrialDays : yearlyTrialDays;
+  const selectedPromo = p.selected === 'monthly' ? monthlyPromo : yearlyPromo;
   const cta = paywallPlusCtaCopy(lang, {
     selected: p.selected, yearlyPrice: p.yearlyPrice, monthlyPrice: p.monthlyPrice, yearlyTrialDays, monthlyTrialDays,
     yearlyPromo, monthlyPromo,
@@ -291,15 +301,17 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
             enabled={swipeEnabled} travel={windowHeight} onSwipeClose={onSwipeClose}
             header={<PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeVisible={controlVisibility.closeVisible} closeDisabled={checkoutInFlight}
               onClose={() => { console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet close_button`); p.handleClose('close', 'x'); }}
-              contextTitle={contextual ? headline.title : undefined}
-              contextSubtitle={contextual ? headline.subtitle : undefined} />}
+              contextTitle={headline.title || undefined}
+              contextSubtitle={headline.title ? headline.subtitle : undefined}
+              contextPill={headline.pill || undefined} />}
           >
             <PaywallPlusScroll>
               {/* зачем: выгода этого входа стоит над тарифами (`.ben.glass` макета). */}
               <PaywallPlusDetails lang={lang} g={g}
                 leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined}
                 leadCaption={contextual ? headline.subtitle : undefined}
-                factCaption={mFactCaption} />
+                factCaption={mFactCaption}
+                items={v3Rows} paragraph={v3Paragraph} />
               {/* зачем (paywall-gaps-states «Лента пробного периода»): порядок образца — выгода, лента, тарифы */}
               {/* C keeps trial truth compact: each plan shows its own trial; CTA fine shows charge/renewal. */}
               {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
@@ -320,7 +332,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 </Text>
               ) : null}
             </PaywallPlusScroll>
-            <PaywallPlusDockSwitch serverRefused={serverRefused} onLater={() => p.handleClose('close', 'x')} lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
+            <PaywallPlusDockSwitch serverRefused={serverRefused} onLater={() => p.handleClose('close', 'x')} lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady && selectedPromo ? cta.label : selectedTrial ? (PAYWALL_V3_CTA_TRIAL[lang] ?? PAYWALL_V3_CTA_TRIAL.en) : (PAYWALL_V3_CTA[lang] ?? PAYWALL_V3_CTA.en)} fine={selectedTrial || selectedPromo ? cta.fine : (PAYWALL_V3_AUTO_RENEW[lang] ?? PAYWALL_V3_AUTO_RENEW.en)}
               notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
               onPress={() => { void p.handlePurchase(); }}
               // зачем (R1_PAYWALL_UX, координатор 12.10): «Восстановить» не зависит от цен — раньше она молча не нажималась всё время загрузки цен (до потолка 12 с),

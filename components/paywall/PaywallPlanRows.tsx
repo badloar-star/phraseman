@@ -10,7 +10,7 @@
 //  • выбор: хаптик; геометрия не меняется.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo } from 'react';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -19,35 +19,22 @@ import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 import type { PaywallPriceSource } from '../../app/paywall_reference_prices';
 import SkeletonBlock from '../SkeletonShimmer';
 import V2Pressable from '../v2/V2Pressable';
-import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
+import { paywallPlateBg } from './paywall_surfaces';
 export { planRowSelectedPaint } from './paywallPlanRowPaint';
-import { COPY, pick, trialFreeLabel, yearPerMonthApprox } from './PaywallPlusCopy';
-import { paywallPriceFontSize, paywallPriceLineHeight } from './paywall_price_font';
+import { COPY, pick, trialFreeLabel } from './PaywallPlusCopy';
+import { PAYWALL_V3_NO_TRIAL_LINE } from '../../app/paywall_v3_rows';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
 
 /** Высота строки тарифа (и скелета на её месте): первый кадр без прыжка, когда придут цены. */
-export const PLAN_ROW_MIN_HEIGHT = 96;
+export const PLAN_ROW_MIN_HEIGHT = 84;
 const PLAN_ROW_GAP = 10;
-const PLAN_ROW_RADIUS = 18;
+const PLAN_ROW_RADIUS = 16;
 const DISABLED_OPACITY = 0.4;
 
 /** Золото бейджа скидки — смысловой цвет «выгода», темой не красится (макет `--gold` / `#3a2700`). */
 export const PAYWALL_SAVINGS_GOLD = '#FFD27A'; // theme-exempt: золотой бейдж скидки по макету paywall-redesign-1018 (смысловой цвет)
 export const PAYWALL_SAVINGS_GOLD_INK = '#3A2700'; // theme-exempt: чернила бейджа скидки на золоте (≥ 4,5)
-
-const alphaHex = (hex: string, a: number): string => `${hex.slice(0, 7)}${Math.round(Math.max(0, Math.min(1, a)) * 255).toString(16).padStart(2, '0')}`;
-
-const PlanRadio = memo(function PlanRadio({ g, on }: { g: GlassTokens; on: boolean }) {
-  // `.radio`: невыбранный — кольцо 2 тона текста; выбранный — диск цвета шторки с точкой акцента (inset 5 px макета)
-  return on ? (
-    <View style={[S.radio, { backgroundColor: paywallSheetBg(g) }]}>
-      <View style={[S.radioDot, { backgroundColor: g.accentGraphic }]} />
-    </View>
-  ) : (
-    <View style={[S.radio, S.radioRing, { borderColor: alphaHex(g.text.slice(0, 7), 0.35) }]} /> // shadow-ok: guard-ok: кольцо радио — индикатор выбора, не контейнер
-  );
-});
 
 type RowProps = {
   lang: Lang; g: GlassTokens; on: boolean; disabled: boolean; onPress: () => void; testID: string; priceTestID: string;
@@ -58,8 +45,7 @@ type RowProps = {
 const PlanRow = memo(function PlanRow({ lang, g, on, disabled, onPress, testID, priceTestID, name, trialDays, price, promo, approx, subPrice, savingsPct }: RowProps) {
   // зачем (ревью 05.11): пустая цена — «—», а не пустое место; кегль суммы по длине строки и масштабу шрифта (paywall_price_font)
   const shown = promo?.promoPriceString || (price ? `${approx ? '≈ ' : ''}${price}` : '—');
-  const { fontScale } = useWindowDimensions();
-  const priceSize = paywallPriceFontSize(shown, fontScale);
+  // зачем (макет «Все окна Plus», вариант 3; слово владельца 05.11 «1 в 1»; правило сторов — цена из магазина видна на плитке): плитка = имя, цена с периодом («≈ 39,99 € в год»), строка пробного периода
   return (
     <V2Pressable
       testID={testID}
@@ -73,22 +59,11 @@ const PlanRow = memo(function PlanRow({ lang, g, on, disabled, onPress, testID, 
       outerStyle={S.planCell}
       style={[S.row, { backgroundColor: paywallPlateBg(g), borderColor: on ? g.text : 'transparent' }, disabled ? S.disabled : null]}
     >
-      {savingsPct ? (
-        <View testID="paywall-savings-badge" style={S.tag}>
-          <Text style={S.tagText}>{`−${savingsPct}%`}</Text>
-        </View>
-      ) : null}
       <View style={S.inner}>
-        <PlanRadio g={g} on={on} />
-        <View style={S.nameCol}>
-          <Text style={[S.name, { color: g.text }]}>{name}</Text>
-          {trialDays ? <Text testID={`${testID}-trial`} style={[S.trial, { color: g.text }]}>{trialFreeLabel(lang, trialDays)}</Text> : null}
-        </View>
-        <View style={S.priceCol}>
-          {promo ? <Text style={[S.strike, { color: g.text }]}>{promo.standardPriceString}</Text> : null}
-          <Text testID={priceTestID} style={[S.big, { color: g.text, fontSize: priceSize, lineHeight: paywallPriceLineHeight(priceSize) }]}>{shown}</Text>
-          {subPrice ? <Text style={[S.per, { color: g.text }]}>{subPrice}</Text> : null}
-        </View>
+        <Text style={[S.name, { color: g.text }]}>{name}</Text>
+        {promo ? <Text style={[S.strike, { color: g.secondary }]}>{promo.standardPriceString}</Text> : null}
+        <Text testID={priceTestID} style={[S.price, { color: g.text }]}>{`${shown}${subPrice ? ` ${subPrice}` : ''}`}</Text>
+        <Text testID={`${testID}-trial`} style={[S.trial, { color: g.secondary }]}>{trialDays ? trialFreeLabel(lang, trialDays) : (PAYWALL_V3_NO_TRIAL_LINE[lang] ?? PAYWALL_V3_NO_TRIAL_LINE.en)}</Text>
       </View>
     </V2Pressable>
   );
@@ -112,9 +87,9 @@ export const PaywallPlanRows = memo(function PaywallPlanRows({
         lang={lang} g={g} on={selected === 'yearly'} disabled={disabled} onPress={() => onSelect('yearly')}
         testID="paywall-plan-yearly" priceTestID="paywall-year-price" name={pick(lang, COPY.year)}
         trialDays={yearlyTrialDays} price={yearlyPrice} promo={yearlyPromo} approx={yearlyPriceSource === 'reference'}
-        // мелко «≈ X в месяц» у года; нет месячного эквивалента — «в год», чтобы сумма не осталась без периода
-        subPrice={yearlyPerMonth ? yearPerMonthApprox(lang, yearlyPerMonth) : pick(lang, COPY.perYear)}
-        savingsPct={yearlyPrice && monthlyPrice && yearlyPriceSource !== 'reference' && monthlyPriceSource !== 'reference' ? savingsPct : null}
+        // макет: «39,99 € в год» — сумма с периодом, без «≈ в месяц» и без бейджа скидки
+        subPrice={pick(lang, COPY.perYear)}
+        savingsPct={null}
       />
       <PlanRow
         lang={lang} g={g} on={selected === 'monthly'} disabled={disabled} onPress={() => onSelect('monthly')}
@@ -132,33 +107,26 @@ export const PaywallPlanRowsSkeleton = memo(function PaywallPlanRowsSkeleton({ g
   const highlightColor = g.isLight ? g.opaqueSheet : `${g.text.slice(0, 7)}24`;
   return (
     <View testID="paywall-plans-skeleton" accessibilityRole="progressbar" style={S.list}>
-      <View style={S.skeletonCell}><SkeletonBlock width="100%" height={124} borderRadius={PLAN_ROW_RADIUS} baseColor={baseColor} highlightColor={highlightColor} /></View>
-      <View style={S.skeletonCell}><SkeletonBlock width="100%" height={124} borderRadius={PLAN_ROW_RADIUS} baseColor={baseColor} highlightColor={highlightColor} /></View>
+      <View style={S.skeletonCell}><SkeletonBlock width="100%" height={PLAN_ROWS_BLOCK_HEIGHT} borderRadius={PLAN_ROW_RADIUS} baseColor={baseColor} highlightColor={highlightColor} /></View>
+      <View style={S.skeletonCell}><SkeletonBlock width="100%" height={PLAN_ROWS_BLOCK_HEIGHT} borderRadius={PLAN_ROW_RADIUS} baseColor={baseColor} highlightColor={highlightColor} /></View>
     </View>
   );
 });
 
 /** Высота блока двух строк — для «цен нет» на том же месте. */
-export const PLAN_ROWS_BLOCK_HEIGHT = 124;
+export const PLAN_ROWS_BLOCK_HEIGHT = 84;
 
 const S = StyleSheet.create({
   list: { flexDirection: 'row', gap: PLAN_ROW_GAP, marginTop: 18 },
   planCell: { flex: 1, minWidth: 0 },
   skeletonCell: { flex: 1, minWidth: 0 },
-  row: { flexGrow: 1, minHeight: 124, borderRadius: PLAN_ROW_RADIUS, borderWidth: 1.5, paddingVertical: 14, paddingHorizontal: 14, justifyContent: 'center' }, // shadow-ok: guard-ok: selection-control outline
+  row: { flexGrow: 1, minHeight: 84, borderRadius: PLAN_ROW_RADIUS, borderWidth: 2, paddingVertical: 12, paddingHorizontal: 13, justifyContent: 'center' }, // shadow-ok: guard-ok: selection-control outline (контур выбранной плитки 2 px, как на макете)
   disabled: { opacity: DISABLED_OPACITY },
-  inner: { flex: 1, alignItems: 'flex-start', gap: 8 },
-  radio: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
-  radioRing: { borderWidth: 2 }, // shadow-ok: guard-ok: typo-exempt: кольцо радио — индикатор выбора, не контейнер
-  radioDot: { width: 12, height: 12, borderRadius: 6 },
-  nameCol: { flex: 1, minWidth: 0 },
-  name: { fontSize: 16, lineHeight: 22, fontWeight: '800' },
-  trial: { marginTop: 2, fontSize: 13, lineHeight: 17, fontWeight: '700' },
-  priceCol: { alignItems: 'flex-start', flexShrink: 1, minWidth: 0 },
+  inner: { flex: 1, alignItems: 'flex-start', gap: 2 },
+  name: { fontSize: 15, lineHeight: 21, fontWeight: '800' },
+  trial: { fontSize: 13, lineHeight: 17 },
+  // зачем (правило магазинов): цена на плитке заметнее строки пробного периода — 13 жирным у строки 13 обычной
+  price: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // зачем (правило магазинов): сумма списания — самая крупная цифра строки; «≈ в месяц» — мелко под ней
-  big: { fontSize: 22, lineHeight: 27, fontWeight: '800', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
-  per: { marginTop: 4, fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
   strike: { fontSize: 13, lineHeight: 17, textDecorationLine: 'line-through', fontVariant: ['tabular-nums'] },
-  tag: { position: 'absolute', top: -10, right: 16, zIndex: 3, minHeight: 22, borderRadius: 11, paddingHorizontal: 9, justifyContent: 'center', backgroundColor: PAYWALL_SAVINGS_GOLD },
-  tagText: { fontSize: 13, lineHeight: 17, fontWeight: '800', color: PAYWALL_SAVINGS_GOLD_INK, fontVariant: ['tabular-nums'] },
 });

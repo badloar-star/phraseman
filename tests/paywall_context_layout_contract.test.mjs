@@ -13,11 +13,13 @@ const read = (...p) => normalizeEol(readFileSync(join(ROOT, ...p), 'utf8'));
 
 test('plus window header and benefits are contextual', () => {
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
-  assert.match(screen, /contextTitle=\{contextual \? headline\.title : undefined\}/);
-  assert.match(screen, /leadBenefit=\{contextual && headline\.firstBenefit/);
+  // слово владельца 05.11 («макеты пейволов одобряю, 1 в 1»): у каждого окна свой заголовок/подзаголовок/пилюля, три пункта и абзац — из макета «Все окна Plus»
+  assert.match(screen, /contextTitle=\{headline\.title \|\| undefined\}/);
+  assert.match(screen, /contextPill=\{headline\.pill \|\| undefined\}/);
+  assert.match(screen, /items=\{v3Rows\} paragraph=\{v3Paragraph\}/);
   assert.match(screen, /factCaption=\{mFactCaption\}/);
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  assert.match(plus, /<PaywallCBenefits lang=\{lang\} g=\{g\} leadBenefit=\{leadBenefit\} leadCaption=\{leadCaption\} factCaption=\{factCaption\} \/>/);
+  assert.match(plus, /<PaywallCBenefits lang=\{lang\} g=\{g\} leadBenefit=\{leadBenefit\} leadCaption=\{leadCaption\} factCaption=\{factCaption\} items=\{items\} paragraph=\{paragraph\} \/>/);
   const benefits = read('components', 'paywall', 'PaywallCBenefits.tsx');
   assert.match(benefits, /testID="paywall-c-benefits"/);
   assert.match(benefits, /index === 0 && leadBenefit \? leadBenefit/);
@@ -37,7 +39,7 @@ test('plus window is a sheet over the previous screen with plans side by side (�
   // Вариант C: две плоские плитки рядом; выбранный тариф отмечен тонкой рамкой текста темы, без свечения/3D.
   const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
   assert.match(rows, /list: \{ flexDirection: 'row', gap: PLAN_ROW_GAP/);
-  assert.match(rows, /row: \{ flex: 1, minWidth: 0, minHeight: 124/);
+  assert.match(rows, /row: \{ flexGrow: 1, minHeight: 84/);
   assert.match(rows, /testID="paywall-plan-yearly"/);
   assert.match(rows, /borderColor: on \? g\.text : 'transparent'/);
 });
@@ -79,7 +81,7 @@ test('plan tiles are never empty: shimmer skeleton, or the quiet price note that
   const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
   assert.match(rows, /import SkeletonBlock from '\.\.\/SkeletonShimmer';/);
   assert.match(rows, /skeletonCell: \{ flex: 1, minWidth: 0 \}/);
-  assert.equal((rows.match(/<SkeletonBlock width="100%" height=\{124\}/g) ?? []).length, 2);
+  assert.equal((rows.match(/<SkeletonBlock width="100%" height=\{PLAN_ROWS_BLOCK_HEIGHT\}/g) ?? []).length, 2);
   assert.match(plus, /<PaywallPlanRowsSkeleton g=\{g\} \/>/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /const plansShown: PaywallPlusState = state === 'loading' && sawPricesError \? 'error' : state;/);

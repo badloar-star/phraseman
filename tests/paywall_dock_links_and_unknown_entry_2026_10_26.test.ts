@@ -46,9 +46,10 @@ describe('низ окна Plus: плашки и ссылки не перекры
     const outer = dockSource.match(/secondaryOuter: \{([^}]*)\}/);
     expect(inner).not.toBeNull();
     expect(outer).not.toBeNull();
+    // макет «Все окна Plus» (05.11): «Восстановить покупки» и «Ввести промокод» — две текстовые ссылки по центру колонкой; место — на внешнем слое, не flex на внутреннем
     expect(inner![1]).not.toMatch(/\bflex:\s*1\b/);
     expect(inner![1]).toMatch(/flexGrow:\s*1/);
-    expect(outer![1]).toMatch(/\bflex:\s*1\b/);
+    expect(outer![1]).toMatch(/alignSelf:\s*'center'/);
     expect(outer![1]).toMatch(/minWidth:\s*0/);
     expect(dockSource.match(/outerStyle=\{S\.secondaryOuter\}/g)?.length).toBe(2);
   });

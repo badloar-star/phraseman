@@ -36,8 +36,9 @@ describe('owner-selected native paywall C contract', () => {
 
   test('renders the frozen C geometry and exactly three flat benefit rows', () => {
     expect(benefits).toContain('PAYWALL_C_BENEFIT_COUNT = 3');
-    expect(plus).toContain('fontSize: 32');
-    expect(plus).toContain('lineHeight: 38');
+    // макет «Все окна Plus» (05.11): заголовок 29/34, подзаголовок 15/21 (было 32/38)
+    expect(plus).toContain('fontSize: 29');
+    expect(plus).toContain('lineHeight: 34');
     expect(plus).toContain('paddingHorizontal: 24');
     expect(plus).toContain('minHeight: 44');
     expect(plus).toContain('cta: { minHeight: 54, borderRadius: 28');
@@ -52,7 +53,7 @@ describe('owner-selected native paywall C contract', () => {
   test('renders side-by-side store plans while retaining real promo/trial/source fields', () => {
     expect(plans).toContain('flexDirection: \'row\'');
     expect(plans).toContain('const PLAN_ROW_GAP = 10');
-    expect(plans).toContain('const PLAN_ROW_RADIUS = 18');
+    expect(plans).toContain('const PLAN_ROW_RADIUS = 16'); // макет: радиус плитки 16
     expect(plans).toContain('yearlyPromo');
     expect(plans).toContain('monthlyPromo');
     expect(plans).toContain("yearlyPriceSource === 'reference'");

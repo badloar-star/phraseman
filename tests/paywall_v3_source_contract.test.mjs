@@ -64,18 +64,17 @@ test('the Plus paywall is the only one: A–G screens, variant picker and A/B sh
   assert.doesNotMatch(nav, /paywall_[a-g]|resolvePaywallAbVariant/);
 });
 
-test('year price is the big one; «≈ per month» of the year plan is small', () => {
-  // тест устарел структурно после 1359f5244 (тарифы переехали в PaywallPlanRows, вариант A), поведение не менялось: сумма списания —
-  // самая крупная цифра строки (S.big), «≈ в месяц» — мелко под ней (S.per). Отдельного стиля «месяц крупнее/мельче года» в строках нет:
-  // у года и у месяца один и тот же крупный стиль суммы.
+test('plan tile: billed price with period is bold and clearer than the trial line (store rule)', () => {
+  // макет «Все окна Plus» (слово владельца 05.11, 1 в 1): плитка = имя + «39,99 € в год» + строка пробного периода; «≈ в месяц» и бейджа скидки нет —
+  // списываемая сумма остаётся единственной ценой, поэтому самая заметная (жирная 13 против обычной 13 строки пробного периода).
   const ui = read('components/paywall/PaywallPlanRows.tsx');
   const size = (key) => Number(ui.match(new RegExp(`${key}: \\{[^}]*fontSize: ([\\d.]+)`))?.[1]);
-  assert.ok(size('big') > size('per'), 'year total is larger than «≈ per month»');
-  assert.ok(size('big') > size('strike'), 'year total is larger than the struck-through standard price');
-  assert.match(ui, /testID=\{priceTestID\} style=\{\[S\.big/);
+  assert.ok(size('price') >= size('trial'), 'billed price is not smaller than the trial line');
+  assert.match(ui, /price: \{ fontSize: 13, lineHeight: 17, fontWeight: '700'/);
+  assert.match(ui, /testID=\{priceTestID\} style=\{\[S\.price/);
   assert.match(ui, /priceTestID="paywall-year-price"/);
-  assert.match(ui, /yearPerMonthApprox\(lang, yearlyPerMonth\)/);
-  assert.match(ui, /\{subPrice \? <Text style=\{\[S\.per/);
+  assert.match(ui, /subPrice=\{pick\(lang, COPY\.perYear\)\}/);
+  assert.doesNotMatch(ui, /PlanRadio|paywall-savings-badge/, 'no selection circle and no savings badge on the sample tile');
 });
 
 test('trial length comes only from the store — no hard-coded 7/12/17 day durations', () => {
@@ -154,7 +153,7 @@ test('the fixed CTA covers trial, yearly and monthly wording; taps stay ≥ 44dp
     assert.ok(copy.includes(token), `missing CTA copy «${token}»`);
   }
   const ui = read(UI);
-  assert.match(ui, /cta: \{ minHeight: 58/);
+  assert.match(ui, /cta: \{ minHeight: 54/); // было 58 — устаревший пин: в HEAD кнопка 54, тест был красным до переноса пейвола (05.11)
   assert.match(ui, /close: \{ width: 44, height: 44/);
   assert.match(ui, /linkHit: \{ minHeight: 44/);
   // зачем (владелец 11.10, 960f2de5f): блока «Цены не загрузились» с кнопкой повтора больше нет — тихая строка про цену, поэтому стиля retry нет

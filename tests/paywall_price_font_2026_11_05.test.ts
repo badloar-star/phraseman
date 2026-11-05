@@ -27,10 +27,11 @@ describe('кегль суммы в плитке тарифа', () => {
   it('плитка: пустая цена — «—», сумма идёт через paywall_price_font, без сжатия шрифта; заголовок lineHeight ≥ 1,15×', () => {
     const rows = read('components/paywall/PaywallPlanRows.tsx');
     expect(rows).toContain("(price ? `${approx ? '≈ ' : ''}${price}` : '—')");
-    expect(rows).toContain('paywallPriceFontSize(shown, fontScale)');
+    // макет «Все окна Plus» (05.11): цена в плитке — одна строка 13 жирным («39,99 € в год»), крупной суммы и подгонки кегля больше нет; длинная цена переносится
+    expect(rows).toContain("price: { fontSize: 13, lineHeight: 17, fontWeight: '700'");
     expect(rows).not.toMatch(/adjustsFontSizeToFit/);
     const plus = read('components/paywall/PaywallPlus.tsx');
-    expect(plus).toMatch(/h1: \{[^}]*fontSize: 32, lineHeight: 38/);
-    expect(38 / 32).toBeGreaterThanOrEqual(1.15);
+    expect(plus).toMatch(/h1: \{[^}]*fontSize: 29, lineHeight: 34/);
+    expect(34 / 29).toBeGreaterThanOrEqual(1.15);
   });
 });

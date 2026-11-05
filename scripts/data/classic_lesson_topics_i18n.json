@@ -1,0 +1,387 @@
+{
+  "_why": "Переводы тем уроков 1–6 классических курсов на es/pt-BR/vi/id/tr/pl: в theory.json там английская копия (проверка 1cdcbafd6). Генератор scripts/gen_classic_lesson_topics.cjs подставляет их, только если в theory.json значение пустое или совпадает с en — настоящий перевод из theory.json всегда главнее.",
+  "es": {
+    "3": {
+      "es": "Preguntar dónde está alguien o algo",
+      "pt-BR": "Perguntar onde está alguém ou algo",
+      "vi": "Hỏi ai đó hoặc cái gì ở đâu",
+      "id": "Bertanya di mana seseorang atau sesuatu",
+      "tr": "Birinin ya da bir şeyin nerede olduğunu sormak",
+      "pl": "Pytamy, gdzie ktoś lub coś jest"
+    },
+    "4": {
+      "es": "Quién eres: nombre y profesión",
+      "pt-BR": "Quem você é: nome e profissão",
+      "vi": "Bạn là ai: tên và nghề nghiệp",
+      "id": "Siapa kamu: nama dan pekerjaan",
+      "tr": "Kimsin: ad ve meslek",
+      "pl": "Kim jesteś: imię i zawód"
+    },
+    "5": {
+      "es": "¿Dónde? ¿Quién? ¿Qué?",
+      "pt-BR": "Onde? Quem? O quê?",
+      "vi": "Ở đâu? Ai? Cái gì?",
+      "id": "Di mana? Siapa? Apa?",
+      "tr": "Nerede? Kim? Ne?",
+      "pl": "Gdzie? Kto? Co?"
+    },
+    "6": {
+      "es": "Una cosa y varias",
+      "pt-BR": "Uma coisa e várias",
+      "vi": "Một đồ vật và nhiều đồ vật",
+      "id": "Satu benda dan beberapa",
+      "tr": "Bir nesne ve birkaç nesne",
+      "pl": "Jedna rzecz i kilka"
+    },
+    "7": {
+      "es": "Hay: ¿qué hay aquí?",
+      "pt-BR": "Hay: o que tem aqui?",
+      "vi": "Hay: ở đây có gì?",
+      "id": "Hay: ada apa di sini?",
+      "tr": "Hay: burada ne var?",
+      "pl": "Hay: co tu jest?"
+    },
+    "8": {
+      "es": "Mío, tuyo o suyo: mi, tu, su",
+      "pt-BR": "Meu, seu ou deles: mi, tu, su",
+      "vi": "Của tôi, của bạn hay của họ: mi, tu, su",
+      "id": "Milikku, milikmu, atau milik mereka: mi, tu, su",
+      "tr": "Benim, senin ya da onların: mi, tu, su",
+      "pl": "Mój, twój czy ich: mi, tu, su"
+    },
+    "9": {
+      "es": "Trabajo, estudio, hablo",
+      "pt-BR": "Eu trabalho, eu estudo, eu falo",
+      "vi": "Tôi làm việc, tôi học, tôi nói",
+      "id": "Saya bekerja, saya belajar, saya berbicara",
+      "tr": "Çalışıyorum, öğreniyorum, konuşuyorum",
+      "pl": "Pracuję, uczę się, mówię"
+    }
+  },
+  "fr": {
+    "1": {
+      "es": "Quién está dónde",
+      "pt-BR": "Quem está onde",
+      "vi": "Ai ở đâu",
+      "id": "Siapa di mana",
+      "tr": "Kim nerede",
+      "pl": "Kto gdzie jest"
+    },
+    "2": {
+      "es": "Cómo decir «no»",
+      "pt-BR": "Como dizer “não”",
+      "vi": "Cách nói “không”",
+      "id": "Cara mengatakan “tidak”",
+      "tr": "“Değil” nasıl söylenir",
+      "pl": "Jak powiedzieć „nie”"
+    },
+    "3": {
+      "es": "Pregunta de sí o no",
+      "pt-BR": "Pergunta de sim ou não",
+      "vi": "Câu hỏi có hay không",
+      "id": "Pertanyaan ya atau tidak",
+      "tr": "Evet-hayır sorusu",
+      "pl": "Pytanie typu „tak czy nie”"
+    },
+    "4": {
+      "es": "Esto es una persona o una cosa",
+      "pt-BR": "Isto é uma pessoa ou uma coisa",
+      "vi": "Đây là người hay đồ vật",
+      "id": "Ini orang atau benda",
+      "tr": "Bu bir kişi mi, bir nesne mi",
+      "pl": "To osoba czy rzecz"
+    },
+    "5": {
+      "es": "Tengo",
+      "pt-BR": "Eu tenho",
+      "vi": "Tôi có",
+      "id": "Saya punya",
+      "tr": "Bende var",
+      "pl": "Mam"
+    },
+    "6": {
+      "es": "Dónde están las cosas",
+      "pt-BR": "Onde as coisas estão",
+      "vi": "Đồ vật ở đâu",
+      "id": "Di mana barang-barang berada",
+      "tr": "Eşyalar nerede",
+      "pl": "Gdzie co leży"
+    },
+    "7": {
+      "es": "Lo que hacemos",
+      "pt-BR": "O que fazemos",
+      "vi": "Chúng ta làm gì",
+      "id": "Apa yang kita lakukan",
+      "tr": "Ne yapıyoruz",
+      "pl": "Co robimy"
+    },
+    "8": {
+      "es": "Preguntas: dónde, quién, cuándo, cuánto",
+      "pt-BR": "Perguntas: onde, quem, quando, quanto",
+      "vi": "Câu hỏi: ở đâu, ai, khi nào, bao nhiêu",
+      "id": "Pertanyaan: di mana, siapa, kapan, berapa",
+      "tr": "Sorular: nerede, kim, ne zaman, ne kadar",
+      "pl": "Pytania: gdzie, kto, kiedy, ile"
+    },
+    "9": {
+      "es": "Mi, tu, su, nuestro",
+      "pt-BR": "Meu, seu, dele, nosso",
+      "vi": "Của tôi, của bạn, của anh ấy, của chúng ta",
+      "id": "Milikku, milikmu, miliknya, milik kita",
+      "tr": "Benim, senin, onun, bizim",
+      "pl": "Mój, twój, jego, nasz"
+    }
+  },
+  "de": {
+    "1": {
+      "es": "Primeras palabras en alemán",
+      "pt-BR": "Primeiras palavras em alemão",
+      "vi": "Những từ tiếng Đức đầu tiên",
+      "id": "Kata-kata pertama dalam bahasa Jerman",
+      "tr": "Almancada ilk kelimeler",
+      "pl": "Pierwsze słowa po niemiecku"
+    },
+    "2": {
+      "es": "Llave, bolso, teléfono",
+      "pt-BR": "Chave, bolsa, telefone",
+      "vi": "Chìa khóa, túi xách, điện thoại",
+      "id": "Kunci, tas, telepon",
+      "tr": "Anahtar, çanta, telefon",
+      "pl": "Klucz, torba, telefon"
+    },
+    "3": {
+      "es": "Vivo, aprendo, trabajo",
+      "pt-BR": "Eu moro, eu estudo, eu trabalho",
+      "vi": "Tôi sống, tôi học, tôi làm việc",
+      "id": "Saya tinggal, saya belajar, saya bekerja",
+      "tr": "Yaşıyorum, öğreniyorum, çalışıyorum",
+      "pl": "Mieszkam, uczę się, pracuję"
+    },
+    "4": {
+      "es": "Primero, «cuándo»",
+      "pt-BR": "Primeiro, “quando”",
+      "vi": "Bắt đầu bằng “khi nào”",
+      "id": "Mulai dengan “kapan”",
+      "tr": "Önce “ne zaman”",
+      "pl": "Najpierw „kiedy”"
+    },
+    "5": {
+      "es": "Pregunta: «sí» o «no»",
+      "pt-BR": "Pergunta: “sim” ou “não”",
+      "vi": "Câu hỏi: “có” hay “không”",
+      "id": "Pertanyaan: “ya” atau “tidak”",
+      "tr": "Soru: “evet” mi “hayır” mı",
+      "pl": "Pytanie: „tak” czy „nie”"
+    },
+    "6": {
+      "es": "Dónde, cuándo, cómo, qué, quién",
+      "pt-BR": "Onde, quando, como, o quê, quem",
+      "vi": "Ở đâu, khi nào, thế nào, cái gì, ai",
+      "id": "Di mana, kapan, bagaimana, apa, siapa",
+      "tr": "Nerede, ne zaman, nasıl, ne, kim",
+      "pl": "Gdzie, kiedy, jak, co, kto"
+    },
+    "7": {
+      "es": "Lo que tienes y lo que necesitas",
+      "pt-BR": "O que você tem e o que precisa",
+      "vi": "Bạn có gì và cần gì",
+      "id": "Apa yang kamu punya dan apa yang kamu butuhkan",
+      "tr": "Neyin var ve neye ihtiyacın var",
+      "pl": "Co masz i czego potrzebujesz"
+    },
+    "8": {
+      "es": "Cómo decir «no» y «ningún»",
+      "pt-BR": "Como dizer “não” e “nenhum”",
+      "vi": "Cách nói “không” và “không có”",
+      "id": "Cara mengatakan “tidak” dan “bukan”",
+      "tr": "“Değil” ve “hiç” nasıl söylenir",
+      "pl": "Jak powiedzieć „nie” i „żaden”"
+    },
+    "9": {
+      "es": "Mi, tu, su, nuestro, vuestro",
+      "pt-BR": "Meu, seu, dela, nosso, de vocês",
+      "vi": "Của tôi, của bạn, của cô ấy, của chúng ta, của các bạn",
+      "id": "Milikku, milikmu, miliknya, milik kita, milik kalian",
+      "tr": "Benim, senin, onun, bizim, sizin",
+      "pl": "Mój, twój, jej, nasz, wasz"
+    },
+    "16": {
+      "es": "Lo que ya has hecho",
+      "pt-BR": "O que você já fez",
+      "vi": "Bạn đã làm được gì",
+      "id": "Apa yang sudah kamu lakukan",
+      "tr": "Neler yaptın",
+      "pl": "Co już zrobiłeś"
+    },
+    "17": {
+      "es": "Llegó, se levantó, se quedó",
+      "pt-BR": "Chegou, levantou, ficou",
+      "vi": "Đã đến, đã dậy, đã ở lại",
+      "id": "Datang, bangun, tinggal",
+      "tr": "Geldi, kalktı, kaldı",
+      "pl": "Przyjechał, wstał, został"
+    },
+    "18": {
+      "es": "Cómo era y qué había",
+      "pt-BR": "Como era e o que havia",
+      "vi": "Đã như thế nào và có gì",
+      "id": "Bagaimana dulu dan apa yang ada",
+      "tr": "Nasıldı ve ne vardı",
+      "pl": "Jak było i co było"
+    },
+    "19": {
+      "es": "Me lavo, me alegro, me encuentro",
+      "pt-BR": "Eu me lavo, fico feliz, me encontro",
+      "vi": "Tôi rửa mặt, tôi mong chờ, tôi gặp gỡ",
+      "id": "Saya mencuci muka, saya menanti, saya bertemu",
+      "tr": "Yıkanıyorum, seviniyorum, buluşuyorum",
+      "pl": "Myję się, cieszę się, spotykam się"
+    },
+    "20": {
+      "es": "Más, menos, mejor",
+      "pt-BR": "Mais, menos, melhor",
+      "vi": "Hơn, kém hơn, tốt hơn",
+      "id": "Lebih banyak, lebih sedikit, lebih baik",
+      "tr": "Daha çok, daha az, daha iyi",
+      "pl": "Więcej, mniej, lepiej"
+    }
+  },
+  "it": {
+    "1": {
+      "es": "Estoy aquí",
+      "pt-BR": "Estou aqui",
+      "vi": "Tôi ở đây",
+      "id": "Saya di sini",
+      "tr": "Buradayım",
+      "pl": "Jestem tutaj"
+    },
+    "2": {
+      "es": "No estoy aquí",
+      "pt-BR": "Não estou aqui",
+      "vi": "Tôi không ở đây",
+      "id": "Saya tidak di sini",
+      "tr": "Burada değilim",
+      "pl": "Nie ma mnie tutaj"
+    },
+    "3": {
+      "es": "¿Estás ahí?",
+      "pt-BR": "Você está aí?",
+      "vi": "Bạn có ở đó không?",
+      "id": "Kamu di sana?",
+      "tr": "Orada mısın?",
+      "pl": "Jesteś tam?"
+    },
+    "4": {
+      "es": "Es él, es ella, es una cosa",
+      "pt-BR": "É ele, é ela, é uma coisa",
+      "vi": "Đây là anh ấy, cô ấy, đồ vật",
+      "id": "Dia laki-laki, dia perempuan, ini benda",
+      "tr": "Bu erkek, bu kadın, bu bir nesne",
+      "pl": "To on, to ona, to rzecz"
+    },
+    "5": {
+      "es": "Tengo",
+      "pt-BR": "Eu tenho",
+      "vi": "Tôi có",
+      "id": "Saya punya",
+      "tr": "Bende var",
+      "pl": "Mam"
+    },
+    "6": {
+      "es": "Dónde están las cosas",
+      "pt-BR": "Onde as coisas estão",
+      "vi": "Đồ vật ở đâu",
+      "id": "Di mana barang-barang berada",
+      "tr": "Eşyalar nerede",
+      "pl": "Gdzie co leży"
+    },
+    "7": {
+      "es": "Acciones cotidianas",
+      "pt-BR": "Ações do dia a dia",
+      "vi": "Hoạt động hằng ngày",
+      "id": "Kegiatan sehari-hari",
+      "tr": "Günlük işler",
+      "pl": "Codzienne czynności"
+    },
+    "8": {
+      "es": "Preguntas",
+      "pt-BR": "Perguntas",
+      "vi": "Câu hỏi",
+      "id": "Pertanyaan",
+      "tr": "Sorular",
+      "pl": "Pytania"
+    },
+    "9": {
+      "es": "Mío, tuyo, nuestro",
+      "pt-BR": "Meu, seu, nosso",
+      "vi": "Của tôi, của bạn, của chúng ta",
+      "id": "Milikku, milikmu, milik kita",
+      "tr": "Benim, senin, bizim",
+      "pl": "Mój, twój, nasz"
+    },
+    "10": {
+      "es": "Hay",
+      "pt-BR": "Há, existe",
+      "vi": "Có",
+      "id": "Ada",
+      "tr": "Var",
+      "pl": "Jest, są"
+    },
+    "11": {
+      "es": "Voy, vamos",
+      "pt-BR": "Eu vou, nós vamos",
+      "vi": "Tôi đi, chúng ta đi",
+      "id": "Saya pergi, kita pergi",
+      "tr": "Gidiyorum, gidiyoruz",
+      "pl": "Idę, jedziemy"
+    },
+    "12": {
+      "es": "Un poco de comida",
+      "pt-BR": "Um pouco de comida",
+      "vi": "Một chút đồ ăn",
+      "id": "Sedikit makanan",
+      "tr": "Biraz yemek",
+      "pl": "Trochę jedzenia"
+    },
+    "16": {
+      "es": "Pedir a alguien que haga algo",
+      "pt-BR": "Pedir para alguém fazer algo",
+      "vi": "Nhờ ai đó làm gì",
+      "id": "Meminta seseorang melakukan sesuatu",
+      "tr": "Birinden bir şey yapmasını istemek",
+      "pl": "Poprosić kogoś o coś"
+    },
+    "17": {
+      "es": "Mi mañana",
+      "pt-BR": "Minha manhã",
+      "vi": "Buổi sáng của tôi",
+      "id": "Pagiku",
+      "tr": "Sabahım",
+      "pl": "Mój poranek"
+    },
+    "18": {
+      "es": "Lo que ya está hecho",
+      "pt-BR": "O que já está feito",
+      "vi": "Những gì đã xong",
+      "id": "Apa yang sudah selesai",
+      "tr": "Zaten yapılmış olanlar",
+      "pl": "Co już zrobione"
+    },
+    "19": {
+      "es": "Quién llegó, quién se fue",
+      "pt-BR": "Quem chegou, quem saiu",
+      "vi": "Ai đã đến, ai đã đi",
+      "id": "Siapa yang datang, siapa yang pergi",
+      "tr": "Kim geldi, kim gitti",
+      "pl": "Kto przyjechał, kto wyszedł"
+    },
+    "20": {
+      "es": "Cómo era antes",
+      "pt-BR": "Como era antes",
+      "vi": "Trước đây như thế nào",
+      "id": "Bagaimana dulu",
+      "tr": "Eskiden nasıldı",
+      "pl": "Jak było kiedyś"
+    }
+  }
+}

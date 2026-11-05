@@ -11,6 +11,22 @@ const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 
 const clean = (s) => String(s ?? '').replace(/`/g, '').replace(/\s+/g, ' ').trim();
 
+// зачем (координатор 05.11, проверка 1cdcbafd6): в theory.json у тем уроков 1–6 поля es/pt-BR/vi/id/tr/pl — английская копия,
+// и в списке уроков пользователь с таким интерфейсом видел английский. Переводы лежат в источнике scripts/data/classic_lesson_topics_i18n.json
+// (не в .gen.ts — иначе следующая генерация вернула бы английский). Подставляем, только если в theory.json значение пустое или = en:
+// настоящий перевод из theory.json всегда главнее.
+const OVERLAY = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts', 'data', 'classic_lesson_topics_i18n.json'), 'utf8'));
+
+function withTopicTranslations(titles, overlay) {
+  if (!overlay) return titles;
+  const next = { ...titles };
+  for (const locale of LOCALES) {
+    if (locale === 'en' || typeof overlay[locale] !== 'string') continue;
+    if (!next[locale] || next[locale] === next.en) next[locale] = clean(overlay[locale]);
+  }
+  return next;
+}
+
 function buildTopics() {
   const out = {};
   for (const lang of LANGS) {
@@ -35,6 +51,7 @@ function buildTopics() {
           if (value) titles[locale] = value;
         }
       }
+      if (titles) titles = withTopicTranslations(titles, OVERLAY[lang]?.[String(n)]);
       if (titles && Object.keys(titles).length > 0) lessons[n] = titles;
     }
     out[lang] = lessons;

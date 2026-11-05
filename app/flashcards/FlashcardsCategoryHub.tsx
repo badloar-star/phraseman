@@ -996,10 +996,10 @@ export default function FlashcardsCategoryHub({
     );
   };
 
+  // зачем (координатор 05.11): лог [SETS-HERO] на условии отрисовки героя; оператор в JSX давал тип void (ошибка типов)
+  console.log('[SETS-HERO] hub gate', JSON.stringify({ sceneMode: !!sceneMode, catalog: catalogCommunityPacks.length, uiLang: lang }));
   return (
     <View style={{ paddingHorizontal: sceneMode ? 0 : H_PAD }}>
-      {/* зачем (координатор 05.11): лог [SETS-HERO] на условии отрисовки героя — sceneMode и число наборов каталога */}
-      {console.log('[SETS-HERO] hub gate', JSON.stringify({ sceneMode: !!sceneMode, catalog: catalogCommunityPacks.length, uiLang: lang }))}
       {sceneMode ? <CommunityContestStage packs={catalogCommunityPacks} lang={lang} authorId={hubAuthorStableId} onOpen={pack => openRowRef.current(pack)} /> : null}
       {/* ── 1. Заголовок экрана переехал в ШАПКУ (`flashcards_packs.tsx`):
            раньше здесь был крупный «Наборы», а ниже — секция «Наборы сообщества»,

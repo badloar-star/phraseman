@@ -13,8 +13,6 @@ import { spireSkinForTier } from '../../../modules/spire/tower_skins';
 import { SPIRE_FLOOR_COUNT } from '../spire_tower_model';
 import { spireTowerHeadroom } from '../spire_tower_bounds';
 import { peakTowerFit } from './peak_tower_fit';
-import { pickPeakTowerPlayers } from './peak_tower_players';
-import PeakTowerPlayers from './PeakTowerPlayers';
 import V2Pressable from '../../v2/V2Pressable';
 import type { SpireMemberRow } from '../spire_room_types';
 import { spireText } from '../spire_strings';
@@ -80,8 +78,11 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
     const hex = (c: unknown): c is string => typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c);
     return hex(p.accentGraphic) && hex(p.bgTop) && hex(p.bg) ? { accent: p.accentGraphic, sceneTop: p.bgTop, sceneBottom: p.bg } : undefined;
   }, [p.accentGraphic, p.bgTop, p.bg]);
-  // зачем (владелец 05.11 07:38: «на башне все еще надо показывать иконки юзеров кто где»): иконки из уже загруженной комнаты (0 новых чтений)
-  const towerPlayers = useMemo(() => pickPeakTowerPlayers(towerProps.rivalsByFloor, towerProps.myFloor), [towerProps.rivalsByFloor, towerProps.myFloor]);
+  // зачем (владелец 05.11 ~19:12: «наложения зелёная полоска на иконку — убери… и с башни убирай иконки юзеров»): на башне НЕТ монет участников и метки «я»;
+  // слой монет и данные для него удалены. Журнал [PEAK-LINE-MARKER] — что рисуется на башне и по какому условию (одна строка на смену этажа).
+  useEffect(() => {
+    console.log('[PEAK-LINE-MARKER]', JSON.stringify({ tower: 'clean', participantCoins: 'removed', ownMarker: 'hidden (myCoinRank=null: метка пустая)', myFloor: towerProps.myFloor, upLine: 'peak-up-line, left 0 width 3 в панели списка, ничего не перекрывает', reason: 'owner_05_11_no_user_icons_on_tower' })); // guard-ok: трассировка решения по башне
+  }, [towerProps.myFloor]);
   // зачем: участники приходят порядком комнаты (уже по рубильнику); weekCoins в документе может отсутствовать — считаем 0
   const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0 })), rankBy), [members, rankBy]);
   // зачем (тур первого входа): окна затемнения считаются от измеренных блоков; меряем только когда тур показывается (в обычной жизни — ноль работы)
@@ -123,10 +124,9 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   return (
     <View style={s.root} testID="peak-screen-v2">
       <View ref={railRef} collapsable={false} style={[s.rail, { width: railWidth, height: rail }]} testID="peak-tower-rail">
-        {/* зачем: variant="scene" — башня без плиты-панели и без подписей этажей; монет «+N» слева нет (rivalsByFloor не передаём), вместо них — компактные иконки на теле башни (PeakTowerPlayers), «я» — метка SpireTower */}
+        {/* зачем: variant="scene" — башня без плиты-панели и без подписей этажей; монет «+N» слева нет (rivalsByFloor не передаём), иконок участников и метки «я» на башне нет (владелец 05.11 ~19:12) */}
         <View style={[s.towerBox, { width: towerFit.width, height: towerFit.height, left: towerFit.offsetLeft, bottom: -towerFit.sinkDown }]} testID="peak-tower-box">
-          <SpireTower {...towerProps} variant="scene" hideFloorWords rivalsByFloor={undefined} themeColors={towerTheme} lang={lang} selected={floor} onSelect={onSelectFloor} windowHeight={towerFit.height} />
-          <PeakTowerPlayers players={towerPlayers} scale={towerFit.scale} />
+          <SpireTower {...towerProps} variant="scene" hideFloorWords rivalsByFloor={undefined} myCoinRank={null} onPressMe={undefined} themeColors={towerTheme} lang={lang} selected={floor} onSelect={onSelectFloor} windowHeight={towerFit.height} />
         </View>
       </View>
       <View style={s.panel}>

@@ -1,6 +1,7 @@
 // Governance-ID: TG-HOMEVIDEO-0511
 import fs from 'node:fs';
-import { homeVideoPacksTileWanted } from '../app/home_video_tile_rule';
+import { HOME_TILE_ROW_MAX, homeVideoPacksTileWanted } from '../app/home_video_tile_rule';
+import { VIDEO_PHRASES_NAME } from '../app/video_phrases_name';
 import path from 'node:path';
 import { homeVideoPacksTileReason, logHomeVideoPacksTile, __resetHomeVideoPacksTileLogForTests } from '../app/home_video_packs_tile_log';
 
@@ -49,9 +50,30 @@ describe('Главная: плитка «Фразы из видео» живёт
     expect(tileBlock).toContain("nav.push('/flashcards_video_packs' as never)");
   });
 
-  test('название плитки — «Фразы из видео» на русском и украинском', () => {
-    expect(tileBlock).toContain("ru: 'Фразы из видео'");
-    expect(tileBlock).toContain("uk: 'Фрази з відео'");
+  // зачем (слово владельца ~21:00): название раздела — ОДНО слово «Видеофразы» на всех 9 языках
+  test('название плитки — одно слово из общей таблицы, без пробелов, на всех 9 языках', () => {
+    expect(tileBlock).toContain('title: triLang(lang, VIDEO_PHRASES_NAME)');
+    expect(Object.keys(VIDEO_PHRASES_NAME).sort()).toEqual(['en', 'es', 'id', 'pl', 'pt-BR', 'ru', 'tr', 'uk', 'vi']);
+    for (const name of Object.values(VIDEO_PHRASES_NAME)) expect(name).toMatch(/^S+$/);
+    expect(VIDEO_PHRASES_NAME.ru).toBe('Видеофразы');
+    expect(VIDEO_PHRASES_NAME.uk).toBe('Відеофрази');
+  });
+
+  // зачем (слово владельца ~20:50: «НИКОГДА НЕ 5! ИКОНОК ТОЛЬКО 4»): жёсткий потолок ряда на любом ранге, free и Plus
+  test('итоговый ряд плиток режется до HOME_TILE_ROW_MAX и «Видеофразы» не сверх четырёх', () => {
+    expect(HOME_TILE_ROW_MAX).toBe(4);
+    expect(home).toContain('.slice(0, HOME_TILE_ROW_MAX);');
+    expect(home).toContain("homeV2TilesCore.filter((tile) => tile.key !== 'video_packs').slice(0, HOME_TILE_ROW_MAX)");
+  });
+
+  test('на любом ранге 0…5, free/Plus, при любой длине ряда итог ≤ 4, «Видеофразы» только при закрытом Видео', () => {
+    for (const rank of [0, 1, 2, 3, 4, 5]) for (const plus of [false, true]) for (let core = 0; core <= 6; core += 1) {
+      const videoUnlocked = rank >= 1 || plus;
+      const cappedCore = Math.min(core, HOME_TILE_ROW_MAX);
+      const wanted = homeVideoPacksTileWanted({ available: true, videoUnlocked, rowWithoutVideo: cappedCore });
+      expect(cappedCore + (wanted ? 1 : 0)).toBeLessThanOrEqual(4);
+      if (videoUnlocked) expect(wanted).toBe(false);
+    }
   });
 
   test('ранг 0, видео закрыто: журнал называет плитку показанной, замок Видео в причину не входит', () => {

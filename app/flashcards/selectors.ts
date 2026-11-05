@@ -1,4 +1,5 @@
 // Pure derived-logic for card lists and filter structures.
+import { VIDEO_PHRASES_NAME } from '../video_phrases_name'; // зачем (слово владельца ~21:00): одно слово «Видеофразы»
 import type { Lang } from '../../constants/i18n';
 import { CardItem, CategoryId } from './types';
 
@@ -143,15 +144,15 @@ export function buildFilterOptions(
 }
 
 const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'daily_phrase' | 'video_phrase', string>> = {
-  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', daily_phrase: 'Фраза дня', video_phrase: 'Фразы из видео' },
-  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', daily_phrase: 'Фраза дня', video_phrase: 'Вислови з відео' },
-  en: { word: 'Words', verb: 'Verbs', dialog: 'Dialogs', daily_phrase: 'Phrase of the day', video_phrase: 'Video phrases' },
-  es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase del día', video_phrase: 'Frases de vídeo' },
-  'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase do dia', video_phrase: 'Frases de vídeo' },
-  vi: { word: 'Từ', verb: 'Động từ', dialog: 'Hội thoại', daily_phrase: 'Cụm từ hôm nay', video_phrase: 'Cụm từ từ video' },
-  id: { word: 'Kata', verb: 'Verba', dialog: 'Dialog', daily_phrase: 'Frasa harian', video_phrase: 'Frasa video' },
-  tr: { word: 'Kelimeler', verb: 'Fiiller', dialog: 'Diyaloglar', daily_phrase: 'Günün ifadesi', video_phrase: 'Video ifadeleri' },
-  pl: { word: 'Słowa', verb: 'Czasowniki', dialog: 'Dialogi', daily_phrase: 'Fraza dnia', video_phrase: 'Frazy z wideo' },
+  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', daily_phrase: 'Фраза дня', video_phrase: VIDEO_PHRASES_NAME['ru'] },
+  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', daily_phrase: 'Фраза дня', video_phrase: VIDEO_PHRASES_NAME['uk'] },
+  en: { word: 'Words', verb: 'Verbs', dialog: 'Dialogs', daily_phrase: 'Phrase of the day', video_phrase: VIDEO_PHRASES_NAME['en'] },
+  es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase del día', video_phrase: VIDEO_PHRASES_NAME['es'] },
+  'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase do dia', video_phrase: VIDEO_PHRASES_NAME['pt-BR'] },
+  vi: { word: 'Từ', verb: 'Động từ', dialog: 'Hội thoại', daily_phrase: 'Cụm từ hôm nay', video_phrase: VIDEO_PHRASES_NAME['vi'] },
+  id: { word: 'Kata', verb: 'Verba', dialog: 'Dialog', daily_phrase: 'Frasa harian', video_phrase: VIDEO_PHRASES_NAME['id'] },
+  tr: { word: 'Kelimeler', verb: 'Fiiller', dialog: 'Diyaloglar', daily_phrase: 'Günün ifadesi', video_phrase: VIDEO_PHRASES_NAME['tr'] },
+  pl: { word: 'Słowa', verb: 'Czasowniki', dialog: 'Dialogi', daily_phrase: 'Fraza dnia', video_phrase: VIDEO_PHRASES_NAME['pl'] },
 };
 
 const FILTER_LESSON_LABELS: Record<Lang, string> = {

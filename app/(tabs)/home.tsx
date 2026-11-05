@@ -158,7 +158,8 @@ import {
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
-import { homeVideoPacksTileWanted } from '../home_video_tile_rule'; // зачем (слово владельца ~20:41): правило «видеоплитка только пока Видео закрыт» — чистая функция, проверяется по рангам 0…5
+import { VIDEO_PHRASES_NAME } from '../video_phrases_name';
+import { HOME_TILE_ROW_MAX, homeVideoPacksTileWanted } from '../home_video_tile_rule'; // зачем (слово владельца ~20:41): правило «видеоплитка только пока Видео закрыт» — чистая функция, проверяется по рангам 0…5
 import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
 import { isHomeContinueV2Enabled, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
@@ -2682,7 +2683,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // зачем (слово владельца через координатора, e4331d3b4, макет одобрен «да! оно!!!»): плитка «Фразы из видео» на Главной ВСЕГДА, даже у ранга 0 с закрытым
                 // разделом «Видео»: ранговый замок вкладки Видео её и экран наборов из видео не прячет («в каждом ролике говорим, что в приложении есть все фразы из видео»)
                 available: isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible,
-                title: triLang(lang, { ru: 'Фразы из видео', uk: 'Фрази з відео', en: 'Video phrases', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Frazy z filmów' }),
+                title: triLang(lang, VIDEO_PHRASES_NAME), // зачем (слово владельца ~21:00): название раздела одним словом «Видеофразы»
                 subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Вислови з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
                 onPress: () => { nav.push('/flashcards_video_packs' as never); },
                 ...tileArt('cards_from_video', require('../../assets/images/v2/spiral_notepad.png')), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
@@ -2726,11 +2727,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // стоит рядом с «Уроки» и «Сохранённые» ТОЛЬКО пока раздел «Видео» закрыт (videoUnlocked=false). Как только Видео открыт — плитки нет (наборы из видео доступны в самом разделе),
         // пятой в ряд она не становится никогда. Прежняя правка b086c01ce («ВСЕГДА, и на ранге ≥1») была неверной и отменена.
         const homeV2VideoTile = homeV2FillerTiles.find((tile) => tile.key === 'video_packs');
-        const homeV2TilesNoVideo: HomeFeatureTile[] = homeV2TilesCore.filter((tile) => tile.key !== 'video_packs');
+        // зачем (слово владельца ~20:50: «КОРОЧЕ НИКОГДА НЕ 5! ИКОНОК ТОЛЬКО 4 МОЖЕТ БЫТЬ»): жёсткий потолок ряда — 4 плитки на любом ранге, free и Plus; и ядро ряда, и итог режутся до HOME_TILE_ROW_MAX
+        const homeV2TilesNoVideo: HomeFeatureTile[] = homeV2TilesCore.filter((tile) => tile.key !== 'video_packs').slice(0, HOME_TILE_ROW_MAX);
         const homeV2VideoTileWanted = homeVideoPacksTileWanted({ available: Boolean(homeV2VideoTile?.available), videoUnlocked: !rankLockedVideo, rowWithoutVideo: homeV2TilesNoVideo.length });
-        const homeV2Tiles: HomeFeatureTile[] = homeV2VideoTileWanted && homeV2VideoTile
+        const homeV2Tiles: HomeFeatureTile[] = (homeV2VideoTileWanted && homeV2VideoTile
             ? [...homeV2TilesNoVideo, (({ available: _available, ...tile }) => tile)(homeV2VideoTile)]
-            : homeV2TilesNoVideo;
+            : homeV2TilesNoVideo).slice(0, HOME_TILE_ROW_MAX);
         const homeV2TilesReason = homeV2WithSpire ? 'four:all_sections_and_spire'
             : homeV2RankedBase.length === 3 ? `three:spire_off(surface=${isLearningSurfaceReady(studyTarget, 'spire')},tab=${spireTabEnabled})`
             : `fill:base=${homeV2RankedBase.map((tile) => tile.key).join('+') || 'none'}`;

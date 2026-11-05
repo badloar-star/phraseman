@@ -150,6 +150,22 @@ const S = {
   contestWinPack: ['«{pack}»', '«{pack}»', '“{pack}”', '«{pack}»', '“{pack}”', '“{pack}”', '“{pack}”', '“{pack}”', '„{pack}”'],
   // подпись строки набора для чтения с экрана: «42 голоса» (♥ экранный диктор не читает как «голос»)
   contestWinVotes: ['{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}'],
+  // ── история лесенки приглашений (владелец 29.10: «автоматически, плюс история»; макет claude.ai/artifact/AjzTj69i2bE6EeDfPBxxTG v3) ──
+  // зачем: ru — слово в слово из макета; «… тебе и другу» и «Зови друзей» на 8 языках — как уже выверенный анонс конкурса; остальное —
+  // черновик Моментов, отправляется Переводчику. Без рода: «Первый урок пройден». {passed} — число друзей с глаголом в нужной форме (21 друг прошёл).
+  ladderOverline: ['Зови друзей', 'Клич друзів', 'Invite friends', 'Invita a amigos', 'Convide amigos', 'Mời bạn bè', 'Ajak teman', 'Arkadaşlarını davet et', 'Zaproś znajomych'],
+  ladderCoinsWord: ['{cw}', '{cw}', '{cw}', '{cw}', '{cw}', '{cw}', '{cw}', '{cw}', '{cw}'],
+  ladderCoinsLabel: ['{coins} {cw}', '{coins} {cw}', '{coins} {cw}', '{coins} {cw}', '{coins} {cw}', '{coins} {cw}', '{coins} {cw}', '{coins} {cw}', '{coins} {cw}'],
+  ladderFriendTitle: ['Друг прошёл первый урок', 'Друг пройшов перший урок', 'A friend finished the first lesson', 'Un amigo terminó la primera lección', 'Um amigo concluiu a primeira lição', 'Bạn của bạn đã học xong bài đầu tiên', 'Temanmu menyelesaikan pelajaran pertama', 'Arkadaşın ilk dersi bitirdi', 'Znajomy ukończył pierwszą lekcję'],
+  ladderCoinsText: ['{coins} {cw} — тебе и другу.', '{coins} {cw} — тобі й другові.', '{coins} {cw} for you and your friend.', '{coins} {cw} para ti y tu amigo.', '{coins} {cw} para você e seu amigo.', '{coins} {cw} cho bạn và bạn của bạn.', '{coins} {cw} untukmu dan temanmu.', 'Sana ve arkadaşına {coins} {cw}.', '{coins} {cw} dla ciebie i znajomego.'],
+  ladderNextPlus: ['Ещё {friends} {friends_w} — и Plus на {plusDays} {plusDays_w}.', 'Ще {friends} {friends_w} — і Plus на {plusDays} {plusDays_w}.', '{friends} more {friends_w} and you get Plus for {plusDays} {plusDays_w}.', '{friends} {friends_w} más y tendrás Plus por {plusDays} {plusDays_w}.', 'Mais {friends} {friends_w} e você ganha Plus por {plusDays} {plusDays_w}.', 'Thêm {friends} {friends_w} nữa là có Plus {plusDays} {plusDays_w}.', '{friends} {friends_w} lagi — dan kamu dapat Plus {plusDays} {plusDays_w}.', '{friends} {friends_w} daha — {plusDays} {plusDays_w} Plus senin.', 'Jeszcze {friends} {friends_w} — i Plus na {plusDays} {plusDays_w}.'],
+  ladderPlusDaysWord: ['{plusDays_w} Plus', '{plusDays_w} Plus', '{plusDays_w} of Plus', '{plusDays_w} de Plus', '{plusDays_w} de Plus', '{plusDays_w} Plus', '{plusDays_w} Plus', '{plusDays_w} Plus', '{plusDays_w} Plus'],
+  ladderPlusLabel: ['Plus на {plusDays} {plusDays_w}', 'Plus на {plusDays} {plusDays_w}', 'Plus for {plusDays} {plusDays_w}', 'Plus por {plusDays} {plusDays_w}', 'Plus por {plusDays} {plusDays_w}', 'Plus {plusDays} {plusDays_w}', 'Plus {plusDays} {plusDays_w}', '{plusDays} {plusDays_w} Plus', 'Plus na {plusDays} {plusDays_w}'],
+  ladderPlusTitle: ['{passed} {passed_w} первый урок', '{passed} {passed_w} перший урок', '{passed} {passed_w} the first lesson', '{passed} {passed_w} la primera lección', '{passed} {passed_w} a primeira lição', '{passed} {passed_w} bài đầu tiên', '{passed} {passed_w} pelajaran pertama', '{passed} {passed_w} ilk dersi bitirdi', '{passed} {passed_w} pierwszą lekcję'],
+  ladderPlusText: ['Plus на {plusDays} {plusDays_w} уже включён. И {coins} {cw} — тебе и другу.', 'Plus на {plusDays} {plusDays_w} вже увімкнено. І {coins} {cw} — тобі й другові.', 'Plus for {plusDays} {plusDays_w} is already on. And {coins} {cw} for you and your friend.', 'Plus por {plusDays} {plusDays_w} ya está activado. Y {coins} {cw} para ti y tu amigo.', 'Plus por {plusDays} {plusDays_w} já está ativado. E {coins} {cw} para você e seu amigo.', 'Đã bật Plus {plusDays} {plusDays_w}. Và {coins} {cw} cho bạn và bạn của bạn.', 'Plus {plusDays} {plusDays_w} sudah aktif. Dan {coins} {cw} untukmu dan temanmu.', '{plusDays} {plusDays_w} Plus zaten açık. Sana ve arkadaşına da {coins} {cw}.', 'Plus na {plusDays} {plusDays_w} jest już włączony. I {coins} {cw} dla ciebie i znajomego.'],
+  ladderInvitedOverline: ['Приглашение', 'Запрошення', 'Invitation', 'Invitación', 'Convite', 'Lời mời', 'Undangan', 'Davet', 'Zaproszenie'],
+  ladderInvitedTitle: ['Первый урок пройден', 'Перший урок пройдено', 'First lesson done', 'Primera lección completada', 'Primeira lição concluída', 'Đã xong bài đầu tiên', 'Pelajaran pertama selesai', 'İlk ders tamam', 'Pierwsza lekcja ukończona'],
+  ladderInvitedText: ['{coins} {cw} — тебе и другу, который позвал.', '{coins} {cw} — тобі й другові, який тебе запросив.', '{coins} {cw} for you and the friend who invited you.', '{coins} {cw} para ti y para el amigo que te invitó.', '{coins} {cw} para você e para o amigo que te convidou.', '{coins} {cw} cho bạn và người bạn đã mời bạn.', '{coins} {cw} untukmu dan teman yang mengundangmu.', 'Sana ve seni davet eden arkadaşına {coins} {cw}.', '{coins} {cw} dla ciebie i znajomego, który cię zaprosił.'],
 } as const satisfies Readonly<Record<string, Nine>>;
 
 export type StoryTemplateStringKey = keyof typeof S;
@@ -174,6 +190,9 @@ const WORDS = {
   // убрал — их таблицы (друг, пройденный урок) ушли вместе с ними; месяцы Plus и голоса нужны лесенке и истории победителю
   month: { ru: f3('месяц', 'месяца', 'месяцев'), uk: f3('місяць', 'місяці', 'місяців'), pl: f3('miesiąc', 'miesiące', 'miesięcy'), en: f2('month', 'months'), es: f2('mes', 'meses'), 'pt-BR': f2('mês', 'meses'), vi: f1('tháng'), id: f1('bulan'), tr: f1('ay') },
   vote: { ru: f3('голос', 'голоса', 'голосов'), uk: f3('голос', 'голоси', 'голосів'), pl: f3('głos', 'głosy', 'głosów'), en: f2('vote', 'votes'), es: f2('voto', 'votos'), 'pt-BR': f2('voto', 'votos'), vi: f1('phiếu'), id: f1('suara'), tr: f1('oy') },
+  // лесенка (29.10): «друг» — как в выверенном Переводчиком анонсе; «друг прошёл» — число друзей вместе с глаголом (21 друг прошёл, 3 друга прошли)
+  friend: { ru: f3('друг', 'друга', 'друзей'), uk: f3('друг', 'друзі', 'друзів'), pl: f3('znajomy', 'znajomych', 'znajomych'), en: f2('friend', 'friends'), es: f2('amigo', 'amigos'), 'pt-BR': f2('amigo', 'amigos'), vi: f1('bạn'), id: f1('teman'), tr: f1('arkadaş') },
+  friendPassed: { ru: f3('друг прошёл', 'друга прошли', 'друзей прошли'), uk: f3('друг пройшов', 'друзі пройшли', 'друзів пройшли'), pl: f3('znajomy ukończył', 'znajomych ukończyło', 'znajomych ukończyło'), en: f2('friend finished', 'friends finished'), es: f2('amigo terminó', 'amigos terminaron'), 'pt-BR': f2('amigo concluiu', 'amigos concluíram'), vi: f1('người bạn đã học xong'), id: f1('teman menyelesaikan'), tr: f1('arkadaşın') },
 } as const satisfies Readonly<Record<string, WordRow>>;
 
 /** Какая таблица к какому плейсхолдеру (Переводчик 28.10): `{days}` → `{days_w}` и т. д. */
@@ -182,6 +201,8 @@ const WORD_OF: Readonly<Record<string, keyof typeof WORDS>> = {
   lessons: 'lesson', minutes: 'minute', chapters: 'chapter', count: 'person', cards: 'card', turns: 'turn', exams: 'exam',
   // конкурс: {months} месяцев Plus (лесенка, история победителю), {votes} голосов (история победителю)
   months: 'month', votes: 'vote',
+  // лесенка приглашений: {friends} друзей до Plus, {passed} друзей с первым уроком (с глаголом), {plusDays} дней Plus
+  friends: 'friend', passed: 'friendPassed', plusDays: 'day',
 };
 
 /** Число из переменной: 1180, «1 180» (с неразрывным пробелом) → 1180; не число → null. */

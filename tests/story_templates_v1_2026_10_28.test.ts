@@ -50,16 +50,18 @@ describe('шаблоны историй v1 — реестр', () => {
     expect(tplText('ru', 'ctaShareLink')).toBe('Поделиться ссылкой');
   });
 
-  it('фотостудия: кадр по id или номеру; 23 кадра макета, за ними 4 кадра анонса конкурса и история победителю', () => {
+  it('фотостудия: кадр по id или номеру; 23 кадра макета, за ними анонс конкурса, история победителю и история лесенки', () => {
     expect(studioStartIndex('duel')).toBe(8);
     expect(studioStartIndex('23')).toBe(22);
     expect(studioStartIndex('0')).toBe(0);
     expect(studioStartIndex(undefined)).toBe(0);
     const events = studioEvents(1);
-    expect(events).toHaveLength(28);
+    expect(events).toHaveLength(31);
     expect(events[8]).toMatchObject({ id: 'studio-duel', type: 'achievement', payload: { studioTemplate: 'duel' } });
     expect(events[23]).toMatchObject({ id: 'studio-contest_start', payload: { studioTemplate: 'contest_start' } });
     expect(events[27]).toMatchObject({ id: 'studio-contest_winner', payload: { studioTemplate: 'contest_winner' } });
+    // история лесенки приглашений (29.10): кадры 29–31
+    expect(events.slice(28).map((e) => e.payload.studioTemplate)).toEqual(['ladder_friend', 'ladder_plus', 'ladder_invited']);
   });
 });
 
@@ -70,7 +72,9 @@ describe('шаблоны историй v1 — строки на 9 языках'
       cards: 48, pct: 92, count: 14, time: '0:02', streak: 7, h: 3, m: '20', active: 21, daysInMonth: 31, exams: 2, date: '20 июля', theme: 'Титан',
       rank: 8, cleared: 12, left: 3, title: 'В кафе', done: 6, turns: 14,
       // конкурс «Набор месяца» (29.10): месяцы Plus и место (лесенка), голоса, месяц с предлогом и набор (история победителю)
-      votes: 10, months: 3, place: 1, monthIn: 'за ноябрь', pack: 'B2 глаголы' };
+      votes: 10, months: 3, place: 1, monthIn: 'за ноябрь', pack: 'B2 глаголы',
+      // лесенка приглашений (29.10): друзей до Plus, друзей с первым уроком, дней Plus
+      friends: 2, passed: 3, plusDays: 14 };
     for (const key of STORY_TEMPLATE_STRING_KEYS) {
       for (const lang of LANGS) {
         const text = tplText(lang, key, vars);

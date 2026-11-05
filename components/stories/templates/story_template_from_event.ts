@@ -13,7 +13,7 @@ import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
 import { nextStreakMilestone } from '../../streak/moments/streak_milestones';
 import { DAY_MS, dayKeyToMs } from './story_template_dates';
 import {
-  isStoryTemplateId, STORY_CONTEST_RULES, STORY_TEMPLATE_SAMPLES,
+  isStoryTemplateId, STORY_CONTEST_RULES, STORY_LADDER_RULES, STORY_TEMPLATE_SAMPLES,
   type StoryBubble, type StoryCardSample, type StoryPodiumEntry, type StoryTemplate,
 } from './story_template_registry';
 
@@ -146,6 +146,8 @@ export function storyTemplateFromEvent(event: StoryEventLike, studio = false): S
       return contestIntroOf(p, event.atMs);
     case 'contest_winner':
       return contestWinnerOf(p);
+    case 'referral_ladder':
+      return referralLadderOf(p);
     default:
       return null;
   }
@@ -189,4 +191,24 @@ export function contestWinnerOf(p: Readonly<Record<string, unknown>>): StoryTemp
   const givenMonths = num(p.plusMonths);
   const plusMonths = givenMonths !== null && givenMonths >= 0 ? Math.trunc(givenMonths) : STORY_CONTEST_RULES.plusMonths[place - 1] ?? 0;
   return { id: 'contest_winner', place, month: Number(month[1]), plusMonths, packTitle: str(p.packTitle), hearts: Math.max(0, int(p.hearts)) };
+}
+
+/**
+ * История лесенки приглашений (владелец 29.10). Форма — Ядра (LadderStory v1, functions/src/referral_ladder_server.ts): role referrer | referee,
+ * coins, plusDays, friendNumber, atMs; lifetime ставит мост, если у человека бессрочный Plus. Без роли или без монет — кадра нет (null).
+ * plusDays > 0 — ступень Plus взята (кадр 30); 0 — друг прошёл урок (кадр 29); тому, кого позвали, — кадр 31 (номер друга ему не нужен, Ядро 29.10).
+ */
+export function referralLadderOf(p: Readonly<Record<string, unknown>>): StoryTemplate | null {
+  const coins = int(p.coins);
+  const role = str(p.role);
+  if (coins <= 0 || (role !== 'referrer' && role !== 'referee')) return null;
+  if (role === 'referee') return { id: 'ladder_invited', coins };
+  const rules = STORY_LADDER_RULES;
+  const plusDays = Math.max(0, int(p.plusDays));
+  const friendNumber = Math.max(0, int(p.friendNumber));
+  if (plusDays > 0) return { id: 'ladder_plus', coins, friends: Math.max(friendNumber, rules.friendsPerPlus), plusDays };
+  // зачем (Ядро 29.10: бессрочному Plus продлевать нечего — plusDays 0): фраза «ещё N — и Plus» для него неправда; на взятой ступени её тоже нет
+  const step = friendNumber % rules.friendsPerPlus;
+  const friendsLeft = flag(p.lifetime) || friendNumber === 0 || step === 0 ? null : rules.friendsPerPlus - step;
+  return { id: 'ladder_friend', coins, friendsLeft, plusDays: rules.plusDays };
 }

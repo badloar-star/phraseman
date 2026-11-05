@@ -12,6 +12,7 @@
 import { buildReferralShareLinks } from './referral_bootstrap';
 import { generateReferralCode, getReferralCode } from './referral_system';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { isReferralLadderEnabled } from './referral_ladder_flag';
 import type { Lang } from '../constants/i18n';
 
 // зачем (D188-следствие, владелец 14.10): приглашают в приложение, где учат любой из пяти языков, — без «английского»;
@@ -102,6 +103,7 @@ function pickBody(lang: InviteShareLang, seed: string): string {
 }
 
 export type ReferralInviteShare = { message: string; url: string };
+export type ReferralInviteProgram = 'roulette' | 'ladder';
 
 function label(lang: InviteShareLang, copy: Record<InviteShareLang, string>): string {
   return copy[lang];
@@ -115,20 +117,39 @@ function label(lang: InviteShareLang, copy: Record<InviteShareLang, string>): st
  * и когда авто-атрибуция не срабатывала (iOS без буфера, Android без Install Referrer),
  * другу физически нечего было ввести вручную — «введи мой код» без кода.
  */
-function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string, refCode: string): ReferralInviteShare {
+function buildReferralInviteShare(
+  lang: InviteShareLang,
+  inviteHttps: string,
+  refCode: string,
+  program: ReferralInviteProgram,
+): ReferralInviteShare {
   const body = pickBody(lang, inviteHttps);
-  // Явно проговариваем условие и награду пригласившему — чтобы друг понял, что сделать.
-  const condition = label(lang, {
-    ru: 'Установи приложение, введи мой код и оформи Plus — я получу ключ. Награда — Plus от 1 дня до 365 дней.',
-    uk: 'Встанови застосунок, введи мій код і оформи Plus — я отримаю ключ. Нагорода — Plus від 1 до 365 днів.',
-    en: 'Install the app, enter my code, and get Plus — I\'ll get a key. Reward: Plus from 1 to 365 days.',
-    es: 'Instala la app, introduce mi código y compra Plus: recibiré una llave. Recompensa: Plus de 1 a 365 días.',
-    'pt-BR': 'Instale o app, insira meu código e assine Plus: receberei uma chave. Recompensa: Plus de 1 a 365 dias.',
-    vi: 'Cài ứng dụng, nhập mã của mình và mua Plus — mình nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
-    id: 'Pasang aplikasi, masukkan kodeku, dan beli Plus — aku mendapat kunci. Hadiah: Plus 1–365 hari.',
-    tr: 'Uygulamayı kur, kodumu gir ve Plus satın al — bir anahtar kazanırım. Ödül: 1–365 gün Plus.',
-    pl: 'Zainstaluj aplikację, wpisz mój kod i kup Plus — dostanę klucz. Nagroda: Plus od 1 do 365 dni.',
-  });
+  // Новые приглашения при включённой лесенке сервер помечает program='ladder'; старая рулетка
+  // при выключенном флаге остаётся действующим контрактом. Не обещаем награду без проверок:
+  // монеты зависят от зачёта по правилам программы, Plus — от отдельной eligibility и cooldown 30 дней.
+  const condition = program === 'ladder'
+    ? label(lang, {
+      ru: 'Установи приложение, введи мой код и пройди первый урок. Если приглашение засчитается по правилам программы, мы оба получим по 500 монет. За каждых трёх друзей, выполнивших условия Plus, я получу Plus на 14 дней; выдача — не чаще одного раза в 30 дней.',
+      uk: 'Встанови застосунок, введи мій код і пройди перший урок. Якщо запрошення буде зараховано за правилами програми, ми обоє отримаємо по 500 монет. За кожних трьох друзів, які виконають умови Plus, я отримаю Plus на 14 днів; видача — не частіше одного разу на 30 днів.',
+      en: 'Install the app, enter my code, and complete your first lesson. If the invite qualifies under the program rules, we’ll each get 500 coins. For every three friends who meet the Plus requirements, I’ll get 14 days of Plus; grants are limited to once every 30 days.',
+      es: 'Instala la app, introduce mi código y completa tu primera lección. Si la invitación cumple las reglas del programa, recibiremos 500 monedas cada uno. Por cada tres amigos que cumplan los requisitos de Plus, recibiré 14 días de Plus; como máximo, una concesión cada 30 días.',
+      'pt-BR': 'Instale o app, insira meu código e conclua sua primeira lição. Se o convite cumprir as regras do programa, nós dois receberemos 500 moedas. A cada três amigos que cumprirem os requisitos do Plus, receberei 14 dias de Plus; no máximo uma concessão a cada 30 dias.',
+      vi: 'Cài ứng dụng, nhập mã của mình và hoàn thành bài học đầu tiên. Nếu lời mời đáp ứng quy định của chương trình, mỗi người sẽ nhận 500 xu. Cứ ba người bạn đáp ứng điều kiện Plus, mình sẽ nhận 14 ngày Plus; mỗi 30 ngày chỉ cấp một lần.',
+      id: 'Pasang aplikasi, masukkan kodeku, dan selesaikan pelajaran pertamamu. Jika undangan memenuhi aturan program, kita masing-masing mendapat 500 koin. Untuk setiap tiga teman yang memenuhi syarat Plus, aku mendapat Plus selama 14 hari; pemberian dibatasi satu kali setiap 30 hari.',
+      tr: 'Uygulamayı kur, kodumu gir ve ilk dersini tamamla. Davet program kurallarına uygunsa ikimiz de 500’er jeton alırız. Plus koşullarını karşılayan her üç arkadaş için 14 günlük Plus kazanırım; ödül en fazla 30 günde bir verilir.',
+      pl: 'Zainstaluj aplikację, wpisz mój kod i ukończ pierwszą lekcję. Jeśli zaproszenie spełni zasady programu, każde z nas otrzyma 500 monet. Za każdych trzech znajomych spełniających warunki Plus dostanę 14 dni Plus; nagroda jest przyznawana najwyżej raz na 30 dni.',
+    })
+    : label(lang, {
+      ru: 'Установи приложение, введи мой код и оформи Plus — я получу ключ. Награда — Plus от 1 дня до 365 дней.',
+      uk: 'Встанови застосунок, введи мій код і оформи Plus — я отримаю ключ. Нагорода — Plus від 1 до 365 днів.',
+      en: 'Install the app, enter my code, and get Plus — I\'ll get a key. Reward: Plus from 1 to 365 days.',
+      es: 'Instala la app, introduce mi código y compra Plus: recibiré una llave. Recompensa: Plus de 1 a 365 días.',
+      'pt-BR': 'Instale o app, insira meu código e assine Plus: receberei uma chave. Recompensa: Plus de 1 a 365 dias.',
+      vi: 'Cài ứng dụng, nhập mã của mình và mua Plus — mình nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
+      id: 'Pasang aplikasi, masukkan kodeku, dan beli Plus — aku mendapat kunci. Hadiah: Plus 1–365 hari.',
+      tr: 'Uygulamayı kur, kodumu gir ve Plus satın al — bir anahtar kazanırım. Ödül: 1–365 gün Plus.',
+      pl: 'Zainstaluj aplikację, wpisz mój kod i kup Plus — dostanę klucz. Nagroda: Plus od 1 do 365 dni.',
+    });
   const codeLabel = label(lang, {
     ru: 'Мой код: ',
     uk: 'Мій код: ',
@@ -167,6 +188,8 @@ function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string, re
 export async function buildCloudReferralInviteShare(params: {
   lang: InviteShareLang;
   userName: string;
+  /** Для тестов/явных поверхностей; без override режим берётся из того же cached remote flag, что и UI лесенки. */
+  program?: ReferralInviteProgram;
 }): Promise<ReferralInviteShare | null> {
   const accountToken = captureAccountGeneration();
   // Кэш-код первым: Share должен открываться сразу после тапа. Серверный ensure
@@ -180,8 +203,9 @@ export async function buildCloudReferralInviteShare(params: {
   if (!isCurrentAccountGeneration(accountToken) || !refCode || refCode.trim().length < 4) return null;
   const { https: inviteHttps } = buildReferralShareLinks(refCode);
   const { lang } = params;
+  const program = params.program ?? (isReferralLadderEnabled() ? 'ladder' : 'roulette');
   // One public invite URL is enough: the landing page handles app-open/store routing.
-  return buildReferralInviteShare(lang, inviteHttps, refCode);
+  return buildReferralInviteShare(lang, inviteHttps, refCode, program);
 }
 
 /* expo-router route shim: utility module under app/ */

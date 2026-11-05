@@ -11,7 +11,7 @@
 export const STORY_EVENT_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 export const STORY_EVENT_LIMIT = 20;
 
-export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement' | 'contest_winner'; // contest_winner — история победителю (Моменты 29.10): из проекции доступа, в журнал историй не пишется
+export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement' | 'contest_winner' | 'referral_ladder'; // contest_winner, referral_ladder — истории из проекции доступа (Моменты 29.10), в журнал историй не пишутся
 
 export type StoryEventPayload = Readonly<Record<string, string | number | boolean>>;
 

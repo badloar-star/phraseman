@@ -6,9 +6,11 @@ import { DebugLogger } from '../../app/debug-logger';
 import { usePremium } from '../../components/PremiumContext';
 import { announcementsForViewer } from './announcement_plus_filter';
 import { CONTEST_WIN_ID_PREFIX } from './contest_win_story';
+import { LADDER_STORY_ID_PREFIX } from './referral_ladder_story';
 import { storyPlaybackQueue, storyRecentQueue, type StoryEventList } from './story_events_core';
 import { markSeen as markStorySeenInStore, peekStoryEventsSnapshot, primeStoryEvents, subscribeStoryEvents } from './story_events_store';
 import { useContestWinStory } from './use_contest_win_story';
+import { useReferralLadderStory } from './use_referral_ladder_story';
 
 export type UseStoryEventsResult = Readonly<{
   /** false — флаг stories_v1 выключен: кольца нет, историй нет. */
@@ -43,13 +45,20 @@ export function useStoryEvents(): UseStoryEventsResult {
   // зачем (Ядро и координатор 29.10): история победителю «Набор месяца» — из проекции доступа, которую уже слушает PremiumContext (0 или 1 событие)
   const contestWin = useContestWinStory(snapshot.enabled);
   const markContestWinSeen = contestWin.markSeen;
-  const stories=useMemo(()=>[...snapshot.stories,...forViewer.visible,...contestWin.stories],[snapshot.stories,forViewer.visible,contestWin.stories]);
+  // зачем (владелец 29.10 «автоматически, плюс история»): история лесенки приглашений — из той же проекции доступа (0 или 1 событие)
+  const ladder = useReferralLadderStory(snapshot.enabled);
+  const markLadderSeen = ladder.markSeen;
+  const stories=useMemo(
+    ()=>[...snapshot.stories,...forViewer.visible,...contestWin.stories,...ladder.stories],
+    [snapshot.stories,forViewer.visible,contestWin.stories,ladder.stories],
+  );
   // зачем: кольцо гаснет мгновенно (память), запись на диск идёт фоном — без ожидания и без спиннера.
   const markSeen = useCallback((id: string) => {
     if (id.startsWith('announcement:')) markAnnouncementSeen(id);
     else if (id.startsWith(CONTEST_WIN_ID_PREFIX)) markContestWinSeen(id);
+    else if (id.startsWith(LADDER_STORY_ID_PREFIX)) markLadderSeen(id);
     else void markStorySeenInStore(id);
-  }, [markAnnouncementSeen, markContestWinSeen]);
+  }, [markAnnouncementSeen, markContestWinSeen, markLadderSeen]);
   const playback = useMemo(() => storyPlaybackQueue(stories), [stories]);
   const recent = useMemo(() => storyRecentQueue(stories), [stories]);
   return { enabled: snapshot.enabled, unseenCount: stories.filter(event=>!event.seen).length, stories, playback, recent, markSeen };

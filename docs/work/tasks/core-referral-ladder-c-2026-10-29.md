@@ -1,5 +1,6 @@
 # Ядро · коммит C: лесенка приглашений вместо рулетки (владелец 29.10 ~09:20–09:22, защита — координатор)
 
+Governance-ID: TG-15F8C199EC23
 Governance-ID: TG-9EB75C5CFFAA
 Governance-ID: TG-92E2FB056EA8
 Governance-ID: TG-2030A8D26068

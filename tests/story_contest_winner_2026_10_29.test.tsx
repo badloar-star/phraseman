@@ -73,11 +73,11 @@ const coreField = (over: Readonly<Record<string, unknown>> = {}): Record<string,
 describe('история победителю — реестр и фотостудия', () => {
   it('один кадр после 23 кадров макета и 4 кадров анонса — в фотостудии 28-й; кнопки нет (как в макете)', () => {
     expect(STORY_CONTEST_WINNER_TEMPLATE_IDS).toEqual(['contest_winner']);
-    expect(STORY_ALL_TEMPLATE_IDS).toHaveLength(28);
+    // зачем (29.10): за историей победителю идут кадры лесенки — проверяем место победителя, а не общее число кадров
     expect(STORY_ALL_TEMPLATE_IDS[27]).toBe('contest_winner');
     expect(studioStartIndex('28')).toBe(27);
     expect(studioStartIndex('contest_winner')).toBe(27);
-    expect(studioStartIndex('29')).toBe(0);
+    expect(studioStartIndex(String(STORY_ALL_TEMPLATE_IDS.length + 1))).toBe(0);
     expect(studioEvents(1)[27]).toMatchObject({ id: 'studio-contest_winner', type: 'achievement', payload: { studioTemplate: 'contest_winner' } });
     expect(STORY_TEMPLATE_CTA.contest_winner).toBeUndefined();
   });

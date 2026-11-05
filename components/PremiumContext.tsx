@@ -53,6 +53,7 @@ import {
 } from '../app/premium_activation_event_guard';
 import { DebugLogger } from '../app/debug-logger';
 import { publishContestLastWin } from '../modules/story_events/contest_win_store';
+import { publishReferralLastReward } from '../modules/story_events/referral_ladder_store';
 import { rnfbInstance } from '../app/rnfb_modular';
 import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -650,6 +651,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
             if (!snap.exists || !isListenerCurrent()) return;
             const data = snap.data ? snap.data() : undefined;
             publishContestLastWin(listenerStableId, data?.contestLastWin); // зачем (координатор 29.10): история победителю — строка проекции в мост историй; не бросает, без state и перерисовок Plus
+            publishReferralLastReward(listenerStableId, data?.referralLastReward); // зачем (владелец и координатор 29.10): история лесенки — тот же мост; не бросает, без state, новых чтений нет
             const projectedVipActive = data?.vipActive === true;
             const projectedPremiumPlan = typeof data?.premiumPlan === 'string' ? data.premiumPlan : '';
             const projectedPremiumExpiry = Number(data?.premiumExpiresAtMs);

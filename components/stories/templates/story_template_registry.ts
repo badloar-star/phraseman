@@ -30,8 +30,14 @@ export const STORY_CONTEST_TEMPLATE_IDS = ['contest_start', 'contest_vote', 'con
  * (поле contest_last_win, форма Ядра 29.10). В фотостудии — кадр 28.
  */
 export const STORY_CONTEST_WINNER_TEMPLATE_IDS = ['contest_winner'] as const;
-/** Все шаблоны: 23 кадра макета + анонс конкурса + история победителю. */
-export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS, ...STORY_CONTEST_WINNER_TEMPLATE_IDS] as const;
+/**
+ * История лесенки приглашений — 3 кадра (владелец 29.10: «автоматически, плюс история»; макет claude.ai/artifact/AjzTj69i2bE6EeDfPBxxTG v3):
+ * друг прошёл первый урок (500 монет обоим), каждый третий друг (ещё Plus на 14 дней), тому, кого позвали. В фотостудии — 29–31.
+ * зачем отдельными кадрами: у каждого случая свой текст и своё число на диске; Сверка снимает каждый по номеру.
+ */
+export const STORY_LADDER_TEMPLATE_IDS = ['ladder_friend', 'ladder_plus', 'ladder_invited'] as const;
+/** Все шаблоны: 23 кадра макета + анонс конкурса + история победителю + история лесенки. */
+export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS, ...STORY_CONTEST_WINNER_TEMPLATE_IDS, ...STORY_LADDER_TEMPLATE_IDS] as const;
 export type StoryTemplateId = (typeof STORY_ALL_TEMPLATE_IDS)[number];
 
 export function isStoryTemplateId(value: unknown): value is StoryTemplateId {
@@ -96,13 +102,20 @@ export type StoryTemplate =
   | T<'contest_prizes', { plusMonths: readonly [number, number, number] }>
   | T<'contest_invite', { coins: number }>
   // ── история победителю: month — 1…12 из monthId; plusMonths 0 — бессрочный Plus (строки про Plus нет); packTitle '' — без строки набора ──
-  | T<'contest_winner', { place: 1 | 2 | 3; month: number; plusMonths: number; packTitle: string; hearts: number }>;
+  | T<'contest_winner', { place: 1 | 2 | 3; month: number; plusMonths: number; packTitle: string; hearts: number }>
+  // ── история лесенки: friendsLeft — сколько друзей до следующего Plus (null — фразы нет: бессрочный Plus или ступень только что взята) ──
+  | T<'ladder_friend', { coins: number; friendsLeft: number | null; plusDays: number }>
+  | T<'ladder_plus', { coins: number; friends: number; plusDays: number }>
+  | T<'ladder_invited', { coins: number }>;
 
 /**
  * Числа, которые показывает анонс (владелец 29.10): призы — Plus на 3, 2 и 1 месяц за 1, 2 и 3 место; за друга с первым уроком — 500 монет
  * тебе и ему. Условия голоса и Plus за 3 друзей на кадрах больше не показываются (плитки убраны 29.10) — на сервере они те же, считает Ядро.
  */
 export const STORY_CONTEST_RULES = Object.freeze({ plusMonths: [3, 2, 1] as const, inviteCoins: 500 });
+
+/** Лесенка приглашений (владелец 29.10; сервер — Ядро, referral_ladder_server): 500 монет обоим за друга с первым уроком, Plus на 14 дней за каждых 3. */
+export const STORY_LADDER_RULES = Object.freeze({ coinsPerFriend: 500, friendsPerPlus: 3, plusDays: 14 });
 
 export type StoryTemplateOf<I extends StoryTemplateId> = Extract<StoryTemplate, { id: I }>;
 
@@ -163,11 +176,15 @@ export const STORY_TEMPLATE_SAMPLES: Readonly<{ [I in StoryTemplateId]: StoryTem
   contest_invite: { id: 'contest_invite', coins: STORY_CONTEST_RULES.inviteCoins },
   // макет v4: «Твой набор — 1 место за ноябрь», Plus на 3 месяца, «B2 глаголы» и ♥ 42
   contest_winner: { id: 'contest_winner', place: 1, month: 11, plusMonths: STORY_CONTEST_RULES.plusMonths[0], packTitle: 'B2 глаголы', hearts: 42 },
+  // макет лесенки v3: 4-й друг (до Plus ещё 2), 3-й друг (Plus на 14 дней), тот, кого позвали
+  ladder_friend: { id: 'ladder_friend', coins: STORY_LADDER_RULES.coinsPerFriend, friendsLeft: 2, plusDays: STORY_LADDER_RULES.plusDays },
+  ladder_plus: { id: 'ladder_plus', coins: STORY_LADDER_RULES.coinsPerFriend, friends: 3, plusDays: STORY_LADDER_RULES.plusDays },
+  ladder_invited: { id: 'ladder_invited', coins: STORY_LADDER_RULES.coinsPerFriend },
 };
 
 // ── фотостудия (dev-маршрут) ─────────────────────────────────────────────────────────────────────────────────────────
 
-/** Номер кадра из параметра фотостудии: id шаблона («duel») или номер 1…28 (24–27 — анонс конкурса, 28 — история победителю); иначе — первый кадр. */
+/** Номер кадра из параметра фотостудии: id шаблона («duel») или номер 1…31 (24–27 — анонс конкурса, 28 — история победителю, 29–31 — лесенка); иначе — первый кадр. */
 export function studioStartIndex(raw: string | undefined): number {
   if (isStoryTemplateId(raw)) return (STORY_ALL_TEMPLATE_IDS as readonly string[]).indexOf(raw);
   const n = Math.trunc(Number(raw));

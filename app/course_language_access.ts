@@ -156,6 +156,7 @@ export async function recordPrimaryCourseLanguageAtOnboarding(
 const MEMO_TTL_MS = 20_000;
 let memo: { owner: string; atMs: number; record: PrimaryCourseLanguageRecord | null } | null = null;
 const lockedTargets = new Set<string>();
+let lastTracedLockDecision: string | null = null;
 
 async function readRecord(nowMs: number): Promise<PrimaryCourseLanguageRecord | null> {
   const owner = activeOwner();
@@ -200,6 +201,12 @@ export async function resolveCourseLanguageLock(studyTarget?: RuntimeStudyTarget
       console.log(`${LOG} not_locked:has_progress`, JSON.stringify({ target, primary: result.primary }));
     }
     if (result.locked) lockedTargets.add(target); else lockedTargets.delete(target);
+    // зачем (P0 06.11 «второй язык у бесплатного упирается в пейвол»): решение замка и значения, которые его определили — только при смене, чтобы не шуметь.
+    const decisionKey = `${target}|${result.locked ? 1 : 0}|${result.reason}|${result.primary ?? '-'}`;
+    if (decisionKey !== lastTracedLockDecision) {
+      lastTracedLockDecision = decisionKey;
+      console.log(`[ONBOARD-LANG] lock_decision target=${target} locked=${result.locked ? 1 : 0} reason=${result.reason} primary=${result.primary ?? 'none'}`); // guard-ok: трассировка P0
+    }
     return result;
   } catch (error) {
     console.warn(`${LOG} read_failed`, JSON.stringify({ target, reason: error instanceof Error ? error.message : String(error) }));

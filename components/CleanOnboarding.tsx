@@ -3367,6 +3367,7 @@ function CleanOnboarding({
       console.log(`[ONBOARDING-LANG] ui=${lang}: английский не предлагается языком изучения — дефолт en не ставим, выбор на экране языка`);
       return;
     }
+    console.log(`[ONBOARD-LANG] ensure_en: дефолт en записывается (кнопка «Начать»/новый аккаунт), ui=${lang} — перезапишет выбор, если он уже был`); // guard-ok: трассировка P0 «выбор языка»
     setStudyTarget('en');
     await AsyncStorage.multiSet([
       [ONBOARDING_REQUESTED_STUDY_TARGET_KEY, 'en'],
@@ -3399,6 +3400,8 @@ function CleanOnboarding({
   // (Optimistic UI: карточка выделяется мгновенно, запись догоняет фоном).
   // Каждый проглоченный отказ логируется с префиксом [ONBOARDING-LANG].
   const chooseStudyTarget = useCallback(async (target: StudyTarget) => {
+    // зачем (P0 06.11 «выбор языка не меняет курс», сперва логи): вход выбора — что нажато, интерфейс, что было выбрано до этого.
+    console.log(`[ONBOARD-LANG] choose target=${target} ui=${lang} prevState=${studyTarget}`); // guard-ok: трассировка P0 «выбор языка»
     setStudyTarget(target);
     await AsyncStorage.multiSet([
       [ONBOARDING_REQUESTED_STUDY_TARGET_KEY, target],
@@ -3415,7 +3418,13 @@ function CleanOnboarding({
     if (target === 'fr') {
       void prefetchAndRecordStudyTargetServerPack('fr', lang).catch(swallowError('ONBOARDING-LANG:fr_server_pack_prefetch'));
     }
-  }, [lang]);
+    // сверка после записи: что реально лежит в хранилище (кто мог перезаписать между нажатием и этим местом).
+    const readBack = await AsyncStorage.multiGet([ONBOARDING_REQUESTED_STUDY_TARGET_KEY, 'study_target_v1']).catch((error: unknown) => {
+      console.warn(`[ONBOARD-LANG] choose:readback_failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`); // guard-ok: трассировка P0 «выбор языка»
+      return null;
+    });
+    console.log(`[ONBOARD-LANG] choose:done target=${target} requestedKey=${readBack?.[0]?.[1] ?? 'n/a'} studyTargetKey=${readBack?.[1]?.[1] ?? 'n/a'} match=${readBack?.[1]?.[1] === target ? 1 : 0}`); // guard-ok: трассировка P0 «выбор языка»
+  }, [lang, studyTarget]);
 
   const chooseSource = useCallback((next: DiscoverySource) => {
     setSource(next);

@@ -93,11 +93,24 @@ export function emitStudyTargetChanged(): void {
   getDeviceEventEmitter().emit(STUDY_TARGET_CHANGED);
 }
 
+// зачем (P0 06.11, «сперва логи»): выбор языка на онбординге не менял курс — читателя видим по смене значения (не на каждое чтение, чтобы не шуметь).
+let lastTracedStudyTargetRead: string | null = null;
+
 export async function getStoredStudyTarget(uiLang: Lang): Promise<ProductionStudyTarget> {
   const AsyncStorage = getAsyncStorage();
   const raw = await AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY);
-  if (isProductionStudyTarget(raw)) return raw;
-  if (raw != null) await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, DEFAULT_STUDY_TARGET);
+  const known = isProductionStudyTarget(raw);
+  const result: ProductionStudyTarget = known ? raw : DEFAULT_STUDY_TARGET;
+  const tracePoint = `${String(raw)}>${result}`;
+  if (tracePoint !== lastTracedStudyTargetRead) {
+    lastTracedStudyTargetRead = tracePoint;
+    console.log(`[ONBOARD-LANG] read raw=${String(raw)} known=${known ? 1 : 0} result=${result} ui=${uiLang} source=AsyncStorage:${STUDY_TARGET_STORAGE_KEY}`); // guard-ok: трассировка P0 «выбор языка»
+  }
+  if (known) return raw;
+  if (raw != null) {
+    console.warn(`[ONBOARD-LANG] read:unknown_value_reset raw=${String(raw)} -> ${DEFAULT_STUDY_TARGET}`); // guard-ok: трассировка P0 «выбор языка»
+    await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, DEFAULT_STUDY_TARGET);
+  }
   return DEFAULT_STUDY_TARGET;
 }
 
@@ -106,7 +119,10 @@ export async function setStoredStudyTarget(target: StudyTarget, uiLang: Lang): P
     ? target
     : DEFAULT_STUDY_TARGET;
   const AsyncStorage = getAsyncStorage();
+  const before = await AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY).catch(() => 'read_failed');
+  if (next !== target) console.warn(`[ONBOARD-LANG] set:target_not_production requested=${String(target)} -> ${next}`); // guard-ok: трассировка P0 «выбор языка»
   await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, next);
+  console.log(`[ONBOARD-LANG] set requested=${String(target)} written=${next} before=${String(before)} ui=${uiLang}`); // guard-ok: трассировка P0 «выбор языка»
   emitStudyTargetChanged();
   return next;
 }

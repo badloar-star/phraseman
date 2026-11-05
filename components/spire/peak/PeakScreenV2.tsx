@@ -29,10 +29,9 @@ import { peakTourDevOff } from './peak_screen_flag';
 import PeakStepSheet from './PeakStepSheet';
 import PeakFloorStepper from './PeakFloorStepper';
 import PeakStepChips from './PeakStepChips';
-import PeakTour from './PeakTour'; // зачем (тур утверждён владельцем 04.11): оверлей первого входа поверх этого экрана
+import PeakTourFull from './PeakTourFull'; // зачем (владелец 05.11, макет peak_tour_full_approved): полноэкранный тур первого входа в Пик, 3 страницы со свайпом, вместо прежнего оверлея-подсветки
 import { usePeakTourGate } from './use_peak_tour_gate';
 import { useOverlayBypassLog, useOverlayVisible } from '../../OverlayArbiter';
-import type { PeakTourRect, PeakTourRects } from './peak_tour_core';
 import { PEAK_TAP_TARGET, peakMaxStep } from './peak_text';
 
 type TowerProps = React.ComponentProps<typeof SpireTower>;
@@ -61,15 +60,6 @@ export const PEAK_RAIL_WIDTH_NARROW = 112;
 export const PEAK_ROW_COIN_SIZE = 36;
 /** Высота строки топ-5 (PeakTopRow.minHeight) — по ней считается зелёная линия зоны повышения. */
 export const PEAK_ROW_HEIGHT = 56;
-
-function measureBlock(ref: React.RefObject<View | null>): Promise<PeakTourRect | null> {
-  return new Promise((resolve) => {
-    const node = ref.current;
-    if (!node) { console.warn('[PEAK-TOUR] measure: блока нет'); resolve(null); return; }
-    const timer = setTimeout(() => { console.warn('[PEAK-TOUR] measure: таймаут'); resolve(null); }, 400);
-    node.measureInWindow((x, y, width, height) => { clearTimeout(timer); resolve(width > 0 && height > 0 ? { x, y, width, height } : null); });
-  });
-}
 
 function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records = null, railHeight, tour: tourProp }: Props) {
   const tour = tourProp ?? (peakTourDevOff() ? 'off' : 'auto');
@@ -106,27 +96,9 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   // Замер блоков и показ начинаются только после выдачи слота. Принудительная страница (dev-съёмка) идёт мимо арбитра.
   const tourSlot = useOverlayVisible('peakTour', forcedPage === null && gate.visible);
   const tourOn = forcedPage !== null || tourSlot;
-  const [tourRects, setTourRects] = useState<PeakTourRects | null>(null);
-  useOverlayBypassLog('peakTour', forcedPage !== null && tourRects !== null); // зачем: принудительный показ (dev-съёмка) мимо арбитра виден в журнале как bypass
-  useEffect(() => {
-    if (!tourOn) { setTourRects(null); return undefined; }
-    let alive = true;
-    // зачем (Эмулятор 05.11, кадры tour-p1..p3: «светлые блоки» вместо окон подсветки — замер на 60 мс шёл ДО раскладки башни и прокрутки, окна ставились в верх экрана):
-    // меряем после раскладки (250 мс), затем перемеряем (900 мс) и обновляем окна, только если блоки сдвинулись.
-    let last = '';
-    const measure = (phase: string) => {
-      void Promise.all([measureBlock(headRef), measureBlock(pillRef), measureBlock(railRef), measureBlock(topRef), measureBlock(counterRef)]).then(([head, pill, rail, top, counter]) => {
-        const next = { head, pill, rail, top, counter };
-        const key = JSON.stringify(next);
-        console.log('[PEAK-TOUR]', 'measured', JSON.stringify({ phase, changed: key !== last, head, top, counter })); // guard-ok: итог замера (диагностика окон подсветки)
-        if (alive && key !== last) { last = key; setTourRects(next); }
-      });
-    };
-    const t1 = setTimeout(() => measure('layout'), 250);
-    const t2 = setTimeout(() => measure('settled'), 900);
-    return () => { alive = false; clearTimeout(t1); clearTimeout(t2); };
-  }, [tourOn]);
-  const finishTour = useCallback(() => { if (forcedPage === null) gate.finish(); else setTourRects(null); }, [forcedPage, gate]);
+  // зачем: полноэкранный тур не подсвечивает блоки экрана — замер не нужен, показ сразу после выдачи слота арбитром
+  useOverlayBypassLog('peakTour', forcedPage !== null && tourOn); // зачем: принудительный показ (dev-съёмка) мимо арбитра виден в журнале как bypass
+  const finishTour = useCallback(() => { if (forcedPage === null) gate.finish(); }, [forcedPage, gate]);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [sheetFloor, setSheetFloor] = useState(floor);
   const [sheetStep, setSheetStep] = useState(1);
@@ -189,9 +161,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
           <Ionicons name="chevron-forward" size={22} color={p.text} />
         </V2Pressable>
       </View>
-      {tourOn && tourRects ? (
-        <PeakTour lang={lang} rankBy={rankBy} rects={tourRects} topCount={model.top.length} upCount={model.top.filter((r) => r.zone === 'up').length} initialPage={forcedPage ?? 0} onDone={finishTour} />
-      ) : null}
+      {tourOn ? <PeakTourFull lang={lang} initialPage={forcedPage ?? 0} onDone={finishTour} /> : null}
       <PeakStepSheet lang={lang} visible={sheetOpen} title={`${floorWord} ${sheetFloor} · ${sheetStep}`} record={record} onClose={() => setSheetOpen(false)} stepper={stepper} />
     </View>
   );

@@ -189,8 +189,9 @@ describe('проводка и правила вёрстки', () => {
     // зачем (координатор 05.11): по умолчанию тур 'auto', в dev-превью ?tour=off отключает его для чистого кадра
     expect(screen).toContain("tourProp ?? (peakTourDevOff() ? 'off' : 'auto')");
     expect(screen).toContain('usePeakTourGate(');
-    expect(screen).toContain('<PeakTour');
-    expect(screen).toContain('measureInWindow');
+    // зачем (владелец 05.11, макет peak_tour_full_approved): на экране Пика теперь полноэкранный тур — без подсветки блоков и замера окон
+    expect(screen).toContain('<PeakTourFull');
+    expect(screen).not.toContain('measureInWindow');
     const tour = read('components/spire/peak/PeakTour.tsx');
     expect(tour).toContain('reduceMotion ? undefined');
     expect(tour).toContain('<Mask');

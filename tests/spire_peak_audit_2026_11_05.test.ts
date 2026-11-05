@@ -54,11 +54,12 @@ describe('аудит экрана Пика B', () => {
     expect(read('app/dev_spire_preview.tsx')).toContain("state === 'tour' && params.peakB !== '1'");
   });
 
-  it('замер окон тура идёт после раскладки (250 мс) и перемеряется (900 мс), а не на 60 мс', () => {
+  it('полноэкранный тур Пика не меряет блоки экрана и показывается сразу после выдачи слота арбитром (макет peak_tour_full_approved, владелец 05.11)', () => {
     const screen = read('components/spire/peak/PeakScreenV2.tsx');
-    expect(screen).toContain("setTimeout(() => measure('layout'), 250)");
-    expect(screen).toContain("setTimeout(() => measure('settled'), 900)");
-    expect(screen).not.toContain('}, 60); // зачем: один кадр');
+    expect(screen).toContain('<PeakTourFull');
+    expect(screen).not.toContain("measure('layout')");
+    expect(screen).not.toContain('measureBlock');
+    expect(screen).toContain("useOverlayVisible('peakTour'");
   });
 
   it('пустой список «Все участники» показывает короткую строку, а не пустое место', () => {

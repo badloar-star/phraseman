@@ -20,6 +20,7 @@ const LIVE_PEAK_FILES = [
   'components/spire/peak/PeakMyCounter.tsx',
   'components/spire/peak/PeakTopSkeleton.tsx',
   'components/spire/peak/PeakTour.tsx',
+  'components/spire/peak/PeakTourFull.tsx',
   'components/spire/peak/PeakStepChips.tsx',
   'components/spire/peak/PeakFloorStepper.tsx',
   'components/spire/peak/PeakStepSheet.tsx',
@@ -36,7 +37,7 @@ describe('ЗАМКИ на живой Пик B — состав и вид', () =>
     const src = read('components/spire/peak/PeakScreenV2.tsx');
     for (const needle of [
       "import SpireTower from '../SpireTower'", "import PeakMyCounter from './PeakMyCounter'", "import PeakTopRow from './PeakTopRow'",
-      "import PeakTour from './PeakTour'", "import PeakStepSheet from './PeakStepSheet'",
+      "import PeakTourFull from './PeakTourFull'", "import PeakStepSheet from './PeakStepSheet'",
     ]) expect(src).toContain(needle);
   });
 

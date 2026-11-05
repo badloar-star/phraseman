@@ -30,6 +30,18 @@ Governance-ID: TG-0563FC925479
 
 По-русски: прогресс по языкам курсов хранится в аккаунте; за досмотренное видео (≥70 %) выдаётся разовая награда монетами, для этого хранится ID видео и время награды (только чтобы не выдать дважды и выявлять злоупотребления; другим не показывается; удаляется вместе с аккаунтом). Порог 70 % — из `video-full-reward-server-core-2026-11-05.md`; если Ядро изменит порог, поправить число.
 
+### §5 Public, social, and historical competition — Plus/Ultra: другие люди видят УРОВЕНЬ подписки (новая публичная передача данных)
+
+С годовой подпиской («Ultra», слово владельца 06.11) кольцо вокруг аватара у друзей, в Пике и в профиле имеет другой цвет и форму значка, чем у месячной («Plus»). Для этого сервер хранит в публичном профиле уровень `plusTier` ('plus' | 'ultra') рядом с признаком Plus и сроком (Ядро, `e4e2bf551`; пишется только при активной магазинной подписке, VIP/подарок/пожизненная → plus). Прежняя фраза политики «other users may see a Plus marker» не говорила, что видно ещё и какой план, — заменяется:
+
+> If you have Phraseman Plus or Ultra, other users may see a subscription marker (for example, a ring around your avatar) next to your nickname in friends lists, leaderboards, Peak rooms, and community features. The marker's colour and shape show which plan you have: Plus (monthly subscription) or Ultra (yearly subscription); to show it we store your plan level (plus or ultra) in your public profile together with the Plus end date. Both plans give the same access.
+
+По-русски: другие пользователи могут видеть метку подписки (например, кольцо у аватара); цвет и форма метки показывают тариф — Plus (месячная) или Ultra (годовая); для этого в публичном профиле хранится уровень плана и срок Plus; оба тарифа дают одинаковый доступ.
+
+Там, где политика описывает покупки (раздел о покупках и подписках, версия для Android/сайта): «Phraseman Plus subscriptions…» → «Phraseman Plus (monthly) and Ultra (yearly) subscriptions…». Обе правки уже внесены в кандидаты `privacy_candidate/*` (в iOS-версии формулировки покупок другие, правится только §5).
+
+**Что публиковать до сборки с Ultra:** политику ДО того, как сервер начнёт писать `plusTier` в боевые профили (выкладка Ядра — по слову координатора).
+
 ### §6 User content, community packs, reports, and moderation — заменяется предложение про комментарии, добавляется абзац про лайки
 
 Вместо «Comments are visible to other users who have added the same pack, remain attached to the pack, and are not private messages.»:

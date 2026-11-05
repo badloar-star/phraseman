@@ -5,7 +5,7 @@
 // неправда. Первый показ и просмотр отмечаются в памяти сразу, на диск — фоном.
 import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 import { DebugLogger } from '../../app/debug-logger';
-import { useReferralLadderEnabled } from '../../app/referral_ladder_flag';
+import { useReferralLadderV2Enabled } from '../../app/referral_ladder_flag';
 import { usePremium } from '../../components/PremiumContext';
 import { ladderStoryDecision } from './referral_ladder_story';
 import { markLadderStorySeen, peekLadderStory, recordLadderStoryFirstShow, subscribeLadderStory } from './referral_ladder_store';
@@ -17,7 +17,8 @@ const EMPTY: StoryEventList = Object.freeze([]);
 export type UseReferralLadderStoryResult = Readonly<{ stories: StoryEventList; markSeen: (id: string) => void }>;
 
 export function useReferralLadderStory(enabled: boolean): UseReferralLadderStoryResult {
-  const ladderEnabled = useReferralLadderEnabled();
+  // зачем (координатор 05.11): история лесенки — новая часть 150, живёт на ключе v2 (дефолт ВЫКЛ), а не на старом ключе экрана
+  const ladderEnabled = useReferralLadderV2Enabled();
   const { isPro } = usePremium();
   const snap = useSyncExternalStore(subscribeLadderStory, peekLadderStory, peekLadderStory);
   const decision = useMemo(

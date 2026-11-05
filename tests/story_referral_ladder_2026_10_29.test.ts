@@ -186,7 +186,7 @@ describe('лесенка — подключение и запреты владе
     expect(ring).toContain('...ladder.stories');
     expect(ring).toContain('else if (id.startsWith(LADDER_STORY_ID_PREFIX)) markLadderSeen(id);');
     const hook = read('modules/story_events/use_referral_ladder_story.ts');
-    expect(hook).toContain('const ladderEnabled = useReferralLadderEnabled();');
+    expect(hook).toContain('const ladderEnabled = useReferralLadderV2Enabled();');
     expect(hook).toContain('lifetime: isPro');
     expect(LADDER_STORY_ID_PREFIX).toBe('referral_ladder:');
   });

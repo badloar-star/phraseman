@@ -12,7 +12,7 @@ jest.mock('../app/account_generation', () => ({
   isCurrentAccountGeneration: () => true,
 }));
 jest.mock('../app/referral_ladder_flag', () => ({
-  isReferralLadderEnabled: () => ladderEnabled,
+  isReferralLadderV2Enabled: () => ladderEnabled, // зачем (координатор 05.11): текст приглашения идёт на ключе v2
 }));
 
 import { buildCloudReferralInviteShare } from '../app/referral_invite_share';

@@ -54,7 +54,7 @@ describe('referral invite share planned locale runtime copy', () => {
 
   it('keeps referral share focused on one public invite link on every platform', () => {
     expect(source).toContain('buildReferralInviteShare');
-    expect(source).toContain("params.program ?? (isReferralLadderEnabled() ? 'ladder' : 'roulette')");
+    expect(source).toContain("params.program ?? (isReferralLadderV2Enabled() ? 'ladder' : 'roulette')");
     expect(source).toContain('return buildReferralInviteShare(lang, inviteHttps, refCode, program);');
     expect(source).not.toContain('Platform.OS');
     expect(source).not.toContain('STORE_URL_IOS');

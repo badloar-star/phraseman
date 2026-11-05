@@ -12,7 +12,7 @@
 import { buildReferralShareLinks } from './referral_bootstrap';
 import { generateReferralCode, getReferralCode } from './referral_system';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
-import { isReferralLadderEnabled } from './referral_ladder_flag';
+import { isReferralLadderV2Enabled } from './referral_ladder_flag';
 import type { Lang } from '../constants/i18n';
 
 // зачем (D188-следствие, владелец 14.10): приглашают в приложение, где учат любой из пяти языков, — без «английского»;
@@ -203,7 +203,8 @@ export async function buildCloudReferralInviteShare(params: {
   if (!isCurrentAccountGeneration(accountToken) || !refCode || refCode.trim().length < 4) return null;
   const { https: inviteHttps } = buildReferralShareLinks(refCode);
   const { lang } = params;
-  const program = params.program ?? (isReferralLadderEnabled() ? 'ladder' : 'roulette');
+  // зачем (координатор 05.11): обещание «500 монет каждому» в тексте — часть НОВОЙ лесенки 150, на отдельном ключе v2 (дефолт ВЫКЛ)
+  const program = params.program ?? (isReferralLadderV2Enabled() ? 'ladder' : 'roulette');
   // One public invite URL is enough: the landing page handles app-open/store routing.
   return buildReferralInviteShare(lang, inviteHttps, refCode, program);
 }

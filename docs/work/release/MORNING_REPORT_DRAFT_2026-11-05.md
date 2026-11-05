@@ -37,7 +37,10 @@
 
 ## 4. Что сделать утром (чек-лист)
 
-- [ ] Проверить, что обе сборки (Android и iOS) лежат по ссылкам ниже.
+- [ ] 1) Открыть TestFlight и дождаться статуса «Ready to Test» у iOS-сборки.
+- [ ] 2) Решить про отправку на ревью в App Store Connect (сейчас не отправлено).
+- [ ] 3) В Google Play загрузить .aab самому, если решите (сейчас не загружено).
+- [ ] Проверить, что обе сборки лежат по ссылкам ниже.
 - [ ] Проверить тур Пика и энергию в одной сборке на телефоне.
 - [ ] Когда сборка готова к магазину — включить нужные переключатели в Пульте (ранги, открытия разделов, Пик).
 - [ ] В App Store Connect нажать «отправить на проверку» самостоятельно: из этой ночи в магазин ничего не отправлено.
@@ -45,6 +48,6 @@
 
 ## 5. Сборки и время
 
-- Android (AAB): [ССЫЛКА EAS ANDROID] — готовность: [ВРЕМЯ]
-- iOS: [ССЫЛКА EAS IOS] — готовность: [ВРЕМЯ]
-- Отчёт о проверке на устройстве: [ВРЕМЯ]
+- Android (файл .aab для Google Play): https://expo.dev/artifacts/eas/0R_MmbSBgO0G1kx5MHiscFT3xBTjEJWNSRbFFIy1AA0.aab — страница сборки: https://expo.dev/accounts/badloar/projects/phraseman/builds/05d97ff4-a630-40eb-9a82-d5a6259bf381 — готовность: 03:00. В Google Play НЕ отправлялась.
+- iOS (файл .ipa): https://expo.dev/artifacts/eas/krmR25VCAQBCkPSHR-t4usGIfiJ3oQUUPIjw2B8W3wQ.ipa — страница сборки: https://expo.dev/accounts/badloar/projects/phraseman/builds/b1ae1455-4325-47e0-a0d3-0b60b1b27ee5 — загружена в App Store Connect, на ревью НЕ отправлена — проверка в TestFlight: https://appstoreconnect.apple.com/apps/6764800879/testflight/ios — готовность: 03:00. Версия 2.1.0, номер сборки 149.
+- Отчёт о проверке на устройстве: будет к 06:00

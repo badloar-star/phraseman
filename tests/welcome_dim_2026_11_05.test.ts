@@ -27,3 +27,12 @@ describe('пелена приветствия', () => {
     expect(s).toContain('dimColor={welcomeDimColor(palette.accentGraphic)}');
   });
 });
+
+describe('приветствие — только на Главной', () => {
+  it('шлюз сверяет владельца среды вкладок и не запрашивает слот вне Главной', () => {
+    const s = read('components/onboarding/WelcomeGate.tsx');
+    expect(s).toContain("const onHome = force || runtimeOwnerId === 'home';");
+    expect(s).toContain("useOverlayVisible('onboardingWelcome', wants && !force && onHome)");
+    expect(s).toContain('const visible = (force ? wants : granted) && onHome;');
+  });
+});

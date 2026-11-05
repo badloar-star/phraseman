@@ -16,6 +16,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useActiveAccountOwner } from '../../hooks/use_active_account_owner';
 import { useOverlayVisible } from '../OverlayArbiter';
+import { useTabNav } from '../../app/TabContext';
 import type { Lang } from '../../constants/i18n';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { ApprovedWelcome } from './ApprovedWelcome';
@@ -72,8 +73,15 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
   // зачем (координатор 04.11): приветствие показывается ТОЛЬКО через арбитр окон (ключ 'onboardingWelcome', приоритет выше «Открытий разделов» и праздников) —
   // wants = «хочу показать», visible = «арбитр выдал слот». force (dev-съёмка) идёт мимо арбитра.
   const [wants, setWants] = useState(force);
-  const granted = useOverlayVisible('onboardingWelcome', wants && !force);
-  const visible = force ? wants : granted;
+  // зачем (слово владельца 05.11: «приветствие только на Главной»; Вердикт G: кадр с Пиком под пеленой): все вкладки живут в ОДНОМ роутном экране, шлюз смонтирован в
+  // Главной всегда — без проверки владельца среды он всплывал над Пиком/любой вкладкой. Честный сигнал — runtimeOwnerId; dev-превью (force) идёт мимо.
+  const { runtimeOwnerId } = useTabNav();
+  const onHome = force || runtimeOwnerId === 'home';
+  const granted = useOverlayVisible('onboardingWelcome', wants && !force && onHome);
+  const visible = (force ? wants : granted) && onHome;
+  useEffect(() => {
+    if (wants) console.log('[WELCOME-B3]', JSON.stringify({ event: 'host_check', runtimeOwnerId, onHome, granted, visible })); // guard-ok: где сейчас вкладка и показали ли мы приветствие
+  }, [wants, runtimeOwnerId, onHome, granted, visible]);
   const owner = useActiveAccountOwner();
 
   useEffect(() => {

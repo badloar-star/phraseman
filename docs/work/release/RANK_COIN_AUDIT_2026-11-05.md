@@ -64,3 +64,24 @@
 3. Экзамены глав — передать `useMyCoinRank()` (2 вызова).
 4. `FriendTogetherSheet`, `NotificationCenterButton` — передать `coinRank`; Наборы `?? 0` → нейтральный круг.
 5. Настройки: до чтения ранга — скелет, не бронза.
+
+## 6. Дополнение по фокусу координатора (то, чего нет у Дизайна)
+**Прямые `require` монет вне `homeRuneAsset`:**
+- `components/PracticeRuneCounter.tsx:19`: свой `coin_rank_00`, ❌ бронза. Дизайн должен включить его в починку одной точкой.
+- `components/onboarding/ApprovedWelcome.tsx:24`: `coin_rank_00` в тексте приветствия. ✅ Для новичка ранг 0, это утверждённый rev8. ⚠️ Если приветствие видит игрок с рангом выше 0 (повторный вход или перенос аккаунта), то бронза неверна.
+- `app/theme_ui_assets.ts:6` (`rune: coin_rank_00`): потребителей `.rune` не найдено, похоже на мёртвый ключ. Удалить или перевести на ранг, чтобы не всплыл.
+
+**Профиль и визитка:**
+- `components/PlayerProfileModal.tsx:196-203`: свой профиль показывает `useMyCoinRank`, чужой — `player.coinRank`. Выбор делает `resolvePlayerProfileVisibleRank`. ✅
+- Дуэль «Вместе»: `DuelVersus.tsx:25` ← `FriendDuelIncomingHost.tsx:75-76`. Свой ранг из `useMyCoinRank`, чужой из `incoming.friend.coinRank`. ✅
+
+**Другие экраны:**
+- Plus-вкладка (`app/manage_subscription.tsx`): монет нет, проверять нечего.
+- Окна «Открытие раздела» (`components/section_openings/SectionOpeningCeremony.tsx:31-40`): только картинки разделов (HERO/ART), монеты ранга нет. ✅ Если в самих картинках нарисована монета, это решает Дизайн.
+- Тур Пика: раздел 5, пилюля «ты» = `rank={0}`.
+
+**Монеты чужих игроков, итог:**
+- ✅ Друзья, визитка, дуэль, комментарии Наборов.
+- ⚠️ Пик и Шпиль (ранг из документа комнаты пишется только при входе и устаревает; нет поля → бронза).
+- ⚠️ Авторы Наборов (`?? 0` → бронза при неизвестном ранге).
+- ❌ `FriendTogetherSheet.tsx:141,143` и `NotificationCenterButton.tsx:597`: `AvatarView` без `coinRank`, вместо монеты рисуется старый аватар.

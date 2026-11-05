@@ -1,0 +1,38 @@
+# зачем (план 150, путь 9; правило a0a9054ca/ed8619270): «Фраза дня» при английском интерфейсе — перевода (русского) нет ни до, ни после ответа; кнопки звука в окне нет.
+# testID: home-v2-phrase-of-day (плитка), daily-phrase-option-correct / -wrong-N (варианты ответа), daily-phrase-english (английская фраза).
+appId: app.phraseman
+name: "09 Фраза дня (en): до и после ответа русского нет, звука нет"
+---
+- runFlow: _prelude_home_en.yaml
+- scrollUntilVisible:
+    element:
+      id: "home-v2-phrase-of-day"
+    direction: DOWN
+    timeout: 30000
+    optional: true
+- takeScreenshot: 01_home_phrase_card
+# до ответа: на плитке только английская фраза, русских букв нет
+- assertNotVisible: ".*[А-Яа-яЁё]+.*"
+- tapOn:
+    id: "home-v2-phrase-of-day"
+- waitForAnimationToEnd
+- takeScreenshot: 02_phrase_before_answer
+- assertNotVisible: ".*[А-Яа-яЁё]+.*"
+# кнопки озвучки в окне нет
+- assertNotVisible:
+    id: "daily-phrase-speak"
+- assertNotVisible:
+    id: "daily-phrase-sound"
+- assertNotVisible:
+    id: "daily-phrase-play"
+# ответить верно
+- tapOn:
+    id: "daily-phrase-option-correct"
+    optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 03_phrase_after_answer
+# после ответа перевод для английского интерфейса не показываем ни при каком курсе
+- assertNotVisible: ".*[А-Яа-яЁё]+.*"
+- assertNotVisible: "Literal translation"
+- assertNotVisible:
+    id: "daily-phrase-speak"

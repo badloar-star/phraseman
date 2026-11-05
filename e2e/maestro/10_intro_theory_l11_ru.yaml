@@ -1,0 +1,51 @@
+# зачем (план 150, путь 10): вступление и теория урока 11 на русском интерфейсе — у английских слов один цвет (проверка по снимкам), в теории есть «Читается».
+# Цвет текста Maestro не читает, поэтому: takeScreenshot для сверки глазами + assertVisible по подписи «Читается» и по слову урока.
+appId: app.phraseman
+name: 10 Вступление и теория урока 11 (ru)
+---
+- runFlow: _prelude_home_ru.yaml
+# урок 11 разблокируем dev-состоянием (если не открыт); затем меню урока
+- openLink: "phraseman://dev_state?onboarding=done&plus=on"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- tapOn:
+    text: "Уроки"
+    optional: true
+- waitForAnimationToEnd
+- scrollUntilVisible:
+    element:
+      text: "Урок 11.*|11"
+    direction: DOWN
+    timeout: 60000
+- tapOn:
+    text: "Урок 11.*|11"
+- waitForAnimationToEnd
+- takeScreenshot: 01_lesson11_menu
+# вступление (первый показ): английские слова одного цвета
+- runFlow:
+    when:
+      visible: "Начать сначала|Начать с начала|Продолжить"
+    commands:
+      - tapOn:
+          text: "Теория"
+          optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 02_intro_l11
+- assertVisible: ".*[А-Яа-яЁё]{3,}.*"
+# теория урока: «Читается» есть у каждого примера
+- tapOn:
+    text: "Теория"
+    optional: true
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible: "Читается.*"
+    timeout: 30000
+- takeScreenshot: 03_theory_l11_top
+- scroll
+- takeScreenshot: 04_theory_l11_mid
+- assertVisible: "Читается.*"
+- scroll
+- takeScreenshot: 05_theory_l11_bottom

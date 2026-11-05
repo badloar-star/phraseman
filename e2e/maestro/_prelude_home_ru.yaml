@@ -1,0 +1,19 @@
+# зачем: вход для флоу на русском интерфейсе (uiLang=ru): тот же перезапуск, что _prelude_home_en, но язык интерфейса — русский; курс — английский.
+appId: app.phraseman
+---
+- launchApp:
+    stopApp: true
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+- extendedWaitUntil:
+    visible: "Начать урок 1|Продолжить урок 1|Сегодня.*|Start lesson 1|Continue lesson 1|Today.*"
+    timeout: 300000
+- openLink: "phraseman://dev_state?onboarding=done&plus=off&newbie=off&uiLang=ru"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- tapOn:
+    text: "Пропустить"
+    optional: true

@@ -1,0 +1,52 @@
+# зачем (план 150, путь 5): урок 1 с самого начала до итога; на итоге виден счётчик монет «+N». Три прохода подряд (repeat): правило владельца 05.11 —
+# первый верный ответ +3 монеты, второй проход +2, третий и далее +1. Проверка: N1 > N2 > N3 > 0 (точные числа зависят от числа заданий и бонуса серии).
+# testID итога: lesson-complete-screen, lesson-complete-repeat. У числа монет testID нет — берём текст «+N» по регулярному выражению.
+appId: app.phraseman
+name: 05 Урок 1 до итога, монеты +3/+2/+1 (en)
+---
+- runFlow: _prelude_home_en.yaml
+- tapOn:
+    text: "Start lesson 1|Continue lesson 1|Start|Continue"
+- extendedWaitUntil:
+    visible: "Start from the beginning|Continue"
+    timeout: 40000
+- tapOn:
+    text: "Start from the beginning"
+    optional: true
+# проход 1
+- runFlow: _lesson1_pass_en.yaml
+- takeScreenshot: 01_summary_pass1
+- copyTextFrom:
+    text: "[+][0-9]+"
+- evalScript: ${output.coins1 = parseInt(maestro.copiedText.replace('+', ''), 10)}
+- assertTrue: ${output.coins1 > 0}
+# проход 2 (повтор)
+- tapOn:
+    id: "lesson-complete-repeat"
+- extendedWaitUntil:
+    visible: "Start from the beginning|Continue|Repeat.*"
+    timeout: 40000
+- tapOn:
+    text: "Start from the beginning"
+    optional: true
+- runFlow: _lesson1_pass_en.yaml
+- takeScreenshot: 02_summary_pass2
+- copyTextFrom:
+    text: "[+][0-9]+"
+- evalScript: ${output.coins2 = parseInt(maestro.copiedText.replace('+', ''), 10)}
+- assertTrue: ${output.coins2 > 0 && output.coins2 < output.coins1}
+# проход 3 (повтор): +1 за верный ответ — не больше, чем на втором
+- tapOn:
+    id: "lesson-complete-repeat"
+- extendedWaitUntil:
+    visible: "Start from the beginning|Continue|Repeat.*"
+    timeout: 40000
+- tapOn:
+    text: "Start from the beginning"
+    optional: true
+- runFlow: _lesson1_pass_en.yaml
+- takeScreenshot: 03_summary_pass3
+- copyTextFrom:
+    text: "[+][0-9]+"
+- evalScript: ${output.coins3 = parseInt(maestro.copiedText.replace('+', ''), 10)}
+- assertTrue: ${output.coins3 > 0 && output.coins3 < output.coins2}

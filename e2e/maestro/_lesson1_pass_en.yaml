@@ -1,0 +1,72 @@
+# зачем (план 150, путь 5): один полный проход урока 1 до экрана итога (lesson-complete-screen). Общая часть для флоу 05 (три прохода — проверка монет +3/+2/+1).
+# Задания разных видов отвечаем верно: выбор слова (lesson1-word-option-correct, только dev), ввод (lesson1-typed-input ← lesson1-expected-answer),
+# сборка фразы из плиток (lesson-word-tile по словам lesson1-expected-answer). Останов — по появлению экрана итога, потолок 220 шагов.
+appId: app.phraseman
+---
+- repeat:
+    while:
+      notVisible:
+        id: "lesson-complete-screen"
+    times: 220
+    commands:
+      - runFlow:
+          when:
+            visible:
+              id: "lesson1-next"
+          commands:
+            - tapOn:
+                id: "lesson1-next"
+      - runFlow:
+          when:
+            visible: "Tap to see more"
+          commands:
+            - tapOn: "Tap to see more"
+      - runFlow:
+          when:
+            visible:
+              id: "lesson1-word-option-correct"
+          commands:
+            - tapOn:
+                id: "lesson1-word-option-correct"
+      - runFlow:
+          when:
+            visible:
+              id: "lesson1-typed-input"
+          commands:
+            - copyTextFrom:
+                id: "lesson1-expected-answer"
+            - tapOn:
+                id: "lesson1-typed-input"
+            - inputText: ${maestro.copiedText}
+            - pressKey: Enter
+      - runFlow:
+          when:
+            visible:
+              id: "lesson-word-tile"
+          commands:
+            - copyTextFrom:
+                id: "lesson1-expected-answer"
+            - evalScript: ${output.words = maestro.copiedText.replace(/[.,!?¿¡]/g, '').trim().split(/\s+/); output.i = 0}
+            - repeat:
+                times: 16
+                commands:
+                  - runFlow:
+                      when:
+                        true: ${output.i < output.words.length}
+                      commands:
+                        - tapOn:
+                            text: ${output.words[output.i]}
+                        - evalScript: ${output.i = output.i + 1}
+      - runFlow:
+          when:
+            visible:
+              id: "lesson1-check"
+          commands:
+            - tapOn:
+                id: "lesson1-check"
+      - waitForAnimationToEnd:
+          timeout: 2000
+- extendedWaitUntil:
+    visible:
+      id: "lesson-complete-screen"
+    timeout: 60000

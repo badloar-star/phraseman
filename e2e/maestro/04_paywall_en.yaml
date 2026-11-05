@@ -1,0 +1,53 @@
+# зачем (план 150, путь 4): окно оплаты — открыть с вкладки Plus, выбрать Plus (monthly) и Ultra (yearly), закрыть крестиком.
+# testID из кода: paywall-sheet, paywall-plan-monthly/yearly (и paywall-m-plan-* у варианта M), paywall-cta, paywall-close.
+appId: app.phraseman
+name: "04 Окно оплаты: открыть, выбрать Plus/Ultra, закрыть (en)"
+---
+- runFlow: _prelude_home_en.yaml
+- takeScreenshot: 01_home_free
+# вкладка Plus — правый нижний угол (как во флоу 06)
+- tapOn:
+    point: "85%,92%"
+- waitForAnimationToEnd
+- takeScreenshot: 02_plus_tab
+# кнопка покупки на вкладке открывает окно оплаты; если окно уже открыто самой вкладкой — шаг пропускается
+- runFlow:
+    when:
+      notVisible:
+        id: "paywall-sheet"
+    commands:
+      - tapOn:
+          id: "paywall-cta"
+          optional: true
+      - waitForAnimationToEnd
+- extendedWaitUntil:
+    visible:
+      id: "paywall-close"
+    timeout: 30000
+- takeScreenshot: 03_paywall_open
+# Plus = помесячно, Ultra = годовой план (так в dev_state: plan=monthly → Plus, plan=yearly → Ultra)
+- tapOn:
+    id: "paywall-plan-monthly"
+    optional: true
+- tapOn:
+    id: "paywall-m-plan-monthly"
+    optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 04_paywall_plus_selected
+- tapOn:
+    id: "paywall-plan-yearly"
+    optional: true
+- tapOn:
+    id: "paywall-m-plan-yearly"
+    optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 05_paywall_ultra_selected
+- assertVisible:
+    id: "paywall-cta"
+# закрыть и убедиться, что окна нет
+- tapOn:
+    id: "paywall-close"
+- waitForAnimationToEnd
+- assertNotVisible:
+    id: "paywall-sheet"
+- takeScreenshot: 06_paywall_closed

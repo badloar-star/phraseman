@@ -1,0 +1,35 @@
+# зачем (план 150, путь 9): «Фраза дня» при русском интерфейсе — до ответа перевода нет, после ответа он есть на русском; кнопки звука нет.
+# Перевод на плитке/в окне — текст «Дословно»/смысл; отдельного testID у него нет, поэтому проверяем по подписи «Дословно» и по снимкам.
+appId: app.phraseman
+name: "09 Фраза дня (ru): до ответа перевода нет, после — есть"
+---
+- runFlow: _prelude_home_ru.yaml
+- scrollUntilVisible:
+    element:
+      id: "home-v2-phrase-of-day"
+    direction: DOWN
+    timeout: 30000
+    optional: true
+- takeScreenshot: 01_home_phrase_card
+- tapOn:
+    id: "home-v2-phrase-of-day"
+- waitForAnimationToEnd
+- takeScreenshot: 02_phrase_before_answer
+# до ответа перевод скрыт
+- assertNotVisible: "Дословно"
+- assertNotVisible:
+    id: "daily-phrase-speak"
+- assertNotVisible:
+    id: "daily-phrase-sound"
+- assertNotVisible:
+    id: "daily-phrase-play"
+- tapOn:
+    id: "daily-phrase-option-correct"
+    optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 03_phrase_after_answer
+# после ответа перевод есть (русский текст, подпись «Дословно» в окне)
+- assertVisible: ".*[А-Яа-яЁё]{3,}.*"
+- assertVisible: "Дословно|Перевод.*"
+- assertNotVisible:
+    id: "daily-phrase-speak"

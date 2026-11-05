@@ -1,0 +1,65 @@
+# зачем (план 150, путь 13; макет peak_tour_full_approved_2026-11-05): полноэкранный тур Пика — 3 страницы, «Пропустить», «Далее»/«Начать», свайп.
+# Превью без сервера: phraseman://dev_spire_preview?state=peak_tour&page=1 (тур поверх экрана Пика на моках; флаг «показан» не трогается).
+# testID: peak-tour-full, peak-tour-full-page-N, peak-tour-full-skip-N, peak-tour-full-next-N. Тексты — ключи peakTour1..3 (en), заголовков нет.
+appId: app.phraseman
+name: 13 Полноэкранный тур Пика, 3 страницы (en)
+---
+- runFlow: _prelude_home_en.yaml
+- openLink: "phraseman://dev_spire_preview?state=peak_tour&page=1"
+- extendedWaitUntil:
+    visible:
+      id: "peak-tour-full"
+    timeout: 60000
+# страница 1: башня, текст 1, «Пропустить» и «Далее»
+- assertVisible:
+    id: "peak-tour-full-page-1"
+- assertVisible: ".*love to compete.*"
+- assertVisible: "Skip"
+- assertVisible: "Next"
+- assertNotVisible: "Start"
+- takeScreenshot: 01_page1
+# «Далее» → страница 2: пять строк «Player 1–5», плашки лиги/энергии/+1 000
+- tapOn:
+    id: "peak-tour-full-next-1"
+- waitForAnimationToEnd
+- assertVisible: ".*5 learners who earned the most coins.*"
+- assertVisible: "Player.1"
+- assertVisible: "Player.5"
+- assertVisible: "[+]1.000"
+- takeScreenshot: 02_page2
+# свайпом вперёд → страница 3: окно башни, текст 3, «Начать»
+- swipe:
+    direction: LEFT
+- waitForAnimationToEnd
+- assertVisible: ".*reach the top floor of Peak.*"
+- assertVisible: "Start"
+- assertNotVisible: "Next"
+- takeScreenshot: 03_page3
+# свайпом назад → страница 2, затем снова вперёд
+- swipe:
+    direction: RIGHT
+- waitForAnimationToEnd
+- assertVisible: ".*5 learners who earned the most coins.*"
+- swipe:
+    direction: LEFT
+- waitForAnimationToEnd
+- assertVisible: "Start"
+# «Начать» закрывает тур
+- tapOn:
+    id: "peak-tour-full-next-3"
+- waitForAnimationToEnd
+- assertNotVisible:
+    id: "peak-tour-full"
+- takeScreenshot: 04_after_start
+# и ветка «Пропустить»: открыть заново, пропустить с первой страницы
+- openLink: "phraseman://dev_spire_preview?state=peak_tour&page=1"
+- extendedWaitUntil:
+    visible:
+      id: "peak-tour-full"
+    timeout: 60000
+- tapOn:
+    id: "peak-tour-full-skip-1"
+- waitForAnimationToEnd
+- assertNotVisible:
+    id: "peak-tour-full"
+- takeScreenshot: 05_after_skip

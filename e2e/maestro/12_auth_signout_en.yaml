@@ -1,0 +1,70 @@
+# зачем (план 150, путь 12): вход тестовым аккаунтом Auth-эмулятора → выход → повторный вход.
+# Учётка не хранится в репозитории: исполнитель Maestro передаёт AUTH_EMAIL и AUTH_PASSWORD (адрес вида accounts-v2-e2e-a@phraseman.test) из gitignored
+# scripts/accounts-v2-emulator-seed.local.json: maestro test -e AUTH_EMAIL=… -e AUTH_PASSWORD=… e2e/maestro/12_auth_signout_en.yaml
+# Вход работает только в dev-сборке с EXPO_PUBLIC_FIREBASE_EMULATOR_HOST (маршрут dev-emulator-login). testID: settings-profile-sign-in, settings-account-row,
+# account-logout-button, account-logout-confirm.
+appId: app.phraseman
+name: 12 Вход тест-аккаунтом, выход, повторный вход (en)
+env:
+  AUTH_EMAIL: ""
+  AUTH_PASSWORD: ""
+---
+- runFlow: _prelude_home_en.yaml
+- tapOn: "Settings"
+- waitForAnimationToEnd
+# гость: в профиле есть кнопка входа
+- assertVisible:
+    id: "settings-profile-sign-in"
+- takeScreenshot: 01_guest_settings
+# вход тестовым аккаунтом эмулятора (ссылка dev-only, пароль в логи не попадает)
+- openLink: "phraseman://dev-emulator-login?email=${AUTH_EMAIL}&password=${AUTH_PASSWORD}"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- tapOn: "Settings"
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    notVisible:
+      id: "settings-profile-sign-in"
+    timeout: 45000
+- takeScreenshot: 02_signed_in_settings
+# выход: Аккаунт → Выйти → подтвердить
+- tapOn:
+    id: "settings-account-row"
+- waitForAnimationToEnd
+- scrollUntilVisible:
+    element:
+      id: "account-logout-button"
+    direction: DOWN
+    timeout: 30000
+- tapOn:
+    id: "account-logout-button"
+- waitForAnimationToEnd
+- takeScreenshot: 03_logout_confirm
+- tapOn:
+    id: "account-logout-confirm"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: 04_after_logout
+# после выхода — снова гость: кнопка входа в профиле
+- runFlow:
+    when:
+      notVisible:
+        id: "settings-profile-sign-in"
+    commands:
+      - tapOn: "Settings"
+      - waitForAnimationToEnd
+- extendedWaitUntil:
+    visible:
+      id: "settings-profile-sign-in"
+    timeout: 45000
+# повторный вход
+- openLink: "phraseman://dev-emulator-login?email=${AUTH_EMAIL}&password=${AUTH_PASSWORD}"
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- tapOn: "Settings"
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    notVisible:
+      id: "settings-profile-sign-in"
+    timeout: 45000
+- takeScreenshot: 05_signed_in_again

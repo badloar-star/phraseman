@@ -1,0 +1,47 @@
+# зачем (план 150, путь 11): Настройки → Оформление: переключатель светлая/тёмная, ползунки оттенка и насыщенности, сброс.
+# testID: settings-themes-row (строка), appearance-* (экран), appearance-back.
+appId: app.phraseman
+name: 11 Настройки → Оформление
+---
+- runFlow: _prelude_home_en.yaml
+- tapOn: "Settings"
+- waitForAnimationToEnd
+- takeScreenshot: 01_settings
+- scrollUntilVisible:
+    element:
+      id: "settings-themes-row"
+    direction: DOWN
+    timeout: 30000
+- tapOn:
+    id: "settings-themes-row"
+- waitForAnimationToEnd
+- takeScreenshot: 02_appearance_screen
+- assertVisible: "Appearance"
+- assertVisible:
+    id: "appearance-hue"
+- assertVisible:
+    id: "appearance-saturation"
+- assertVisible:
+    id: "appearance-reset"
+# сдвинуть оттенок, снять кадр, сбросить
+- swipe:
+    from:
+      id: "appearance-hue"
+    direction: RIGHT
+- waitForAnimationToEnd
+- takeScreenshot: 03_appearance_hue_changed
+- swipe:
+    from:
+      id: "appearance-saturation"
+    direction: LEFT
+- waitForAnimationToEnd
+- takeScreenshot: 04_appearance_saturation_changed
+- tapOn:
+    id: "appearance-reset"
+- waitForAnimationToEnd
+- takeScreenshot: 05_appearance_reset
+- tapOn:
+    id: "appearance-back"
+- waitForAnimationToEnd
+- assertVisible:
+    id: "settings-themes-row"

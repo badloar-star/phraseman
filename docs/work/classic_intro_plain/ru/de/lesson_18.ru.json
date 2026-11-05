@@ -1,0 +1,48 @@
+{
+  "lang": "de",
+  "lesson": 18,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Как было раньше"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, каким что было и что у вас было.\nIch war müde. — Я был уставшим.\nWir waren zu Hause. — Мы были дома.\nIch hatte Zeit. — У меня было время.\nWar — был, hatte — у меня было."
+      },
+      "exampleIds": [
+        "de:18:01",
+        "de:18:04",
+        "de:18:07"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Bin — war, habe — hatte"
+      },
+      "text": {
+        "ru": "Сейчас: Ich bin müde. Раньше: Ich war müde.\nIch war müde. — Я был уставшим.\nDu warst müde. — Ты был уставшим.\nDie Gäste waren zufrieden. — Гости были довольны.\nСейчас: Ich habe Zeit. Раньше: Ich hatte Zeit.\nTom hatte Durst. — Том хотел пить."
+      },
+      "exampleIds": [
+        "de:18:01",
+        "de:18:02",
+        "de:18:06",
+        "de:18:09"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример, «Я был уставшим»: Ich → war → müde.\n«Был» — war, «у меня было» — hatte."
+      },
+      "exampleIds": [
+        "de:18:01",
+        "de:18:07"
+      ]
+    }
+  ]
+}

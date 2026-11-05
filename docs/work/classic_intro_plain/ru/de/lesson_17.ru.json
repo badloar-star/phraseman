@@ -1,0 +1,48 @@
+{
+  "lang": "de",
+  "lesson": 17,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Куда вы пошли и приехали"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, куда вы уже пошли или приехали.\nIch bin angekommen. — Я приехал.\nIch bin nach Hause gegangen. — Я пошёл домой.\nAnna ist mit dem Bus gefahren. — Анна поехала на автобусе.\nКогда человек куда-то двигается, говорят не habe, а bin."
+      },
+      "exampleIds": [
+        "de:17:01",
+        "de:17:11",
+        "de:17:13"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Bin + слово в конце"
+      },
+      "text": {
+        "ru": "Сначала bin, bist, ist, sind или seid — смотря кто.\nВ конце — слово про движение.\nIch bin angekommen. — Я приехал.\nDu bist angekommen. — Ты приехал.\nWir sind angekommen. — Мы приехали.\nТак же говорят «остался» и «стал».\nIch bin heute zu Hause geblieben. — Я сегодня остался дома."
+      },
+      "exampleIds": [
+        "de:17:01",
+        "de:17:02",
+        "de:17:04",
+        "de:17:41"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример, «Я приехал»: Ich → bin → angekommen.\nЕсли кто-то двигался — bin, ist, sind."
+      },
+      "exampleIds": [
+        "de:17:01",
+        "de:17:07"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 32,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Если бы"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить «если бы…, то я бы…».\nWenn ich mehr Zeit hätte, würde ich mitkommen. — Если бы у меня было больше времени, я бы пошёл с вами.\nIch würde zu Fuß gehen, wenn der Weg kürzer wäre. — Я бы пошёл пешком, если бы дорога была короче.\nWenn du angerufen hättest, hätte ich gewartet. — Если бы ты позвонил, я бы подождал.\nHätte — «было бы», wäre — «был бы», würde — «я бы»."
+      },
+      "exampleIds": [
+        "de:32:01",
+        "de:32:11",
+        "de:32:22"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Wenn … hätte, würde …"
+      },
+      "text": {
+        "ru": "После wenn дело уходит в конец: wenn ich mehr Zeit hätte.\nПосле запятой — würde, а само дело в самом конце.\nWenn ich mehr Zeit hätte, würde ich mitkommen. — Если бы у меня было больше времени, я бы пошёл с вами.\nПро то, что уже не случилось, говорят hätte … и снова hätte.\nWenn du angerufen hättest, hätte ich gewartet. — Если бы ты позвонил, я бы подождал."
+      },
+      "exampleIds": [
+        "de:32:01",
+        "de:32:22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Wenn → ich → mehr → Zeit → hätte → würde → ich → mitkommen."
+      },
+      "exampleIds": [
+        "de:32:01",
+        "de:32:05"
+      ]
+    }
+  ]
+}

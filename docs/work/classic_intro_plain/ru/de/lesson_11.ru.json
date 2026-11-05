@@ -1,0 +1,47 @@
+{
+  "lang": "de",
+  "lesson": 11,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Где что лежит и стоит"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, где лежат, стоят и висят вещи.\nDer Schlüssel liegt auf dem Tisch. — Ключ лежит на столе.\nDer Koffer steht neben der Tür. — Чемодан стоит рядом с дверью.\nDie Jacke hängt im Flur. — Куртка висит в прихожей.\nLiegt — лежит, steht — стоит, hängt — висит."
+      },
+      "exampleIds": [
+        "de:11:01",
+        "de:11:12",
+        "de:11:06"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "На, в, под, рядом"
+      },
+      "text": {
+        "ru": "Сначала вещь, потом «лежит» или «стоит», потом где.\nAuf — на, in — в, unter — под, neben — рядом, vor — перед.\nПосле них, когда речь о «где», говорят dem или der.\nDer Pass liegt in der Tasche. — Паспорт в сумке.\nDer Ball liegt unter dem Bett. — Мяч лежит под кроватью.\nIn и dem сливаются в im.\nDu bist im Bad. — Ты в ванной."
+      },
+      "exampleIds": [
+        "de:11:03",
+        "de:11:19",
+        "de:11:22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример, «Ключ лежит на столе»: Der → Schlüssel → liegt → auf → dem → Tisch."
+      },
+      "exampleIds": [
+        "de:11:01",
+        "de:11:31"
+      ]
+    }
+  ]
+}

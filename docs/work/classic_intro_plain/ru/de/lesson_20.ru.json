@@ -1,0 +1,47 @@
+{
+  "lang": "de",
+  "lesson": 20,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Сравнить: быстрее, больше"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь сравнивать.\nDer Zug ist schneller als der Bus. — Поезд быстрее автобуса.\nAnna ist älter als Tom. — Анна старше Тома.\nIch trinke lieber Tee. — Я предпочитаю чай.\nСлово als значит «чем»."
+      },
+      "exampleIds": [
+        "de:20:02",
+        "de:20:38",
+        "de:20:21"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Добавьте er в конце"
+      },
+      "text": {
+        "ru": "Чтобы сказать «быстрее» или «дешевле», к слову добавляют конец: schneller, billiger.\nDer Zug ist schneller als der Bus. — Поезд быстрее автобуса.\nИногда слово меняется сильнее: gut — хорошо, besser — лучше.\nHeute geht es mir besser. — Сегодня мне лучше.\n«Такой же, как» — so … wie.\nDer Bus ist so voll wie gestern. — Автобус так же полон, как вчера."
+      },
+      "exampleIds": [
+        "de:20:02",
+        "de:20:26",
+        "de:20:41"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример, «Поезд быстрее автобуса»: Der → Zug → ist → schneller → als → der → Bus."
+      },
+      "exampleIds": [
+        "de:20:02",
+        "de:20:03"
+      ]
+    }
+  ]
+}

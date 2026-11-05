@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 12,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Куда вы кладёте и идёте"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, куда вы кладёте вещи и куда идёте.\nIch lege den Schlüssel auf den Tisch. — Я кладу ключ на стол.\nIch stelle die Tasse auf den Tisch. — Я ставлю чашку на стол.\nIch gehe in die Küche. — Я иду на кухню.\nLege — кладу, stelle — ставлю, hänge — вешаю."
+      },
+      "exampleIds": [
+        "de:12:01",
+        "de:12:06",
+        "de:12:21"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Где — dem, куда — den"
+      },
+      "text": {
+        "ru": "Сравните «где лежит» и «куда кладу».\nDer Schlüssel liegt auf dem Tisch. — Ключ лежит на столе.\nIch lege den Schlüssel auf den Tisch. — Я кладу ключ на стол.\nКогда вещь двигается куда-то, после auf, in, an говорят den, die или das.\nIn и das сливаются в ins.\nWir gehen ins Café. — Мы идём в кафе."
+      },
+      "exampleIds": [
+        "de:12:01",
+        "de:12:25"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример, «Я иду на кухню»: Ich → gehe → in → die → Küche.\nСпросите себя: где или куда?"
+      },
+      "exampleIds": [
+        "de:12:21",
+        "de:12:06"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 31,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Это случилось ещё раньше"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, что одно случилось ещё раньше другого.\nAls ich ankam, war der Bus schon abgefahren. — Когда я приехал, автобус уже ушёл.\nAls Tom ankam, hatte Anna schon gekocht. — Когда приехал Том, Анна уже приготовила еду.\nNachdem ich gegessen hatte, ging ich spazieren. — После того как я поел, я пошёл гулять.\nСлово nachdem значит «после того как»."
+      },
+      "exampleIds": [
+        "de:31:01",
+        "de:31:02",
+        "de:31:21"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Hatte и war + слово в конце"
+      },
+      "text": {
+        "ru": "Вы уже знаете habe gekocht и bin gefahren.\nДля того, что было ещё раньше, вместо habe говорят hatte, вместо bin — war.\nAls Tom ankam, hatte Anna schon gekocht. — Когда приехал Том, Анна уже приготовила еду.\nAls ich ankam, war der Bus schon abgefahren. — Когда я приехал, автобус уже ушёл."
+      },
+      "exampleIds": [
+        "de:31:02",
+        "de:31:01"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Als → ich → ankam → war → der → Bus → schon → abgefahren."
+      },
+      "exampleIds": [
+        "de:31:01",
+        "de:31:21"
+      ]
+    }
+  ]
+}

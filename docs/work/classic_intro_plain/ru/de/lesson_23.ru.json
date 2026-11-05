@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 23,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Если… и когда…"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить «если» и «когда».\nWenn es regnet, bleibe ich zu Hause. — Если пойдёт дождь, я останусь дома.\nWenn ich müde bin, mache ich eine Pause. — Если я устал, я делаю перерыв.\nIch rufe dich an, wenn ich zu Hause bin. — Я позвоню тебе, когда буду дома.\nСлово wenn значит «если» или «когда»."
+      },
+      "exampleIds": [
+        "de:23:01",
+        "de:23:03",
+        "de:23:11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Wenn в начале — дело сразу после запятой"
+      },
+      "text": {
+        "ru": "После wenn слово про дело уходит в конец: wenn es regnet.\nЕсли фраза начинается с wenn, после запятой сначала идёт дело, потом кто.\nWenn es regnet, bleibe ich zu Hause. — Если пойдёт дождь, я останусь дома.\nСмотрите: bleibe, потом ich.\nЕсли wenn в середине, всё начинается как обычно.\nIch rufe dich an, wenn ich zu Hause bin. — Я позвоню тебе, когда буду дома."
+      },
+      "exampleIds": [
+        "de:23:01",
+        "de:23:11"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Wenn → es → regnet → bleibe → ich → zu → Hause."
+      },
+      "exampleIds": [
+        "de:23:01",
+        "de:23:02"
+      ]
+    }
+  ]
+}

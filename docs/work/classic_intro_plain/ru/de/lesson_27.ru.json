@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 27,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Который"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить «который».\nDas ist der Mann, der hier wohnt. — Это мужчина, который здесь живёт.\nDas ist der Schlüssel, den ich suche. — Это ключ, который я ищу.\nIch kenne den Arzt, der heute arbeitet. — Я знаю врача, который сегодня работает.\n«Который» по-немецки звучит так же, как der, die, das."
+      },
+      "exampleIds": [
+        "de:27:01",
+        "de:27:11",
+        "de:27:05"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Der, die, das — и дело в конце"
+      },
+      "text": {
+        "ru": "После запятой идёт der, die или das — как у самой вещи.\nСлово про дело уходит в конец.\nDas ist das Kind, das hier wohnt. — Это ребёнок, который здесь живёт.\nЕсли вещь ищут или берут, вместо der говорят den.\nDas ist der Schlüssel, den ich suche. — Это ключ, который я ищу."
+      },
+      "exampleIds": [
+        "de:27:03",
+        "de:27:11"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Das → ist → der → Mann → der → hier → wohnt."
+      },
+      "exampleIds": [
+        "de:27:01",
+        "de:27:07"
+      ]
+    }
+  ]
+}

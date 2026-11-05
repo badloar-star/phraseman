@@ -1,0 +1,48 @@
+{
+  "lang": "de",
+  "lesson": 8,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Не и нет"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить «не» и «нет».\nIch bin nicht müde. — Я не устал.\nDas Radio funktioniert nicht. — Радио не работает.\nIch habe keinen Schlüssel. — У меня нет ключа.\nСлово nicht значит «не»."
+      },
+      "exampleIds": [
+        "de:08:01",
+        "de:08:38",
+        "de:08:11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Nicht или kein"
+      },
+      "text": {
+        "ru": "Когда чего-то нет, перед вещью ставят kein, keine или keinen.\nIch habe keinen Schlüssel. — У меня нет ключа.\nDu hast keine Tasche. — У тебя нет сумки.\nAnna hat kein Handy. — У Анны нет телефона.\nВ остальных случаях говорят nicht.\nIch wohne nicht hier. — Я живу не здесь.\nЕсли после дела ничего нет, nicht стоит в конце."
+      },
+      "exampleIds": [
+        "de:08:11",
+        "de:08:12",
+        "de:08:13",
+        "de:08:35"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример, «Я не устал»: Ich → bin → nicht → müde.\nПроверьте, нет вещи или просто «не»."
+      },
+      "exampleIds": [
+        "de:08:01",
+        "de:08:11"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "lang": "de",
+  "lesson": 29,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Вежливая просьба"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь вежливо просить и говорить «я бы».\nIch hätte gern einen Tee. — Мне бы чаю.\nKönnten Sie mir helfen? — Не могли бы вы мне помочь?\nIch würde gern einen Tisch reservieren. — Я хотел бы забронировать столик.\nТак говорят в кафе, в магазине, с незнакомыми людьми."
+      },
+      "exampleIds": [
+        "de:29:01",
+        "de:29:11",
+        "de:29:26"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Hätte, könnte, würde"
+      },
+      "text": {
+        "ru": "Hätte gern — «мне бы», «я хотел бы получить».\nIch hätte gern ein Wasser. — Я хотел бы воды.\nKönnten Sie — «не могли бы вы».\nKönntest du kurz warten? — Не мог бы ты немного подождать?\nWürde … gern — «я бы с радостью», дело стоит в конце.\nIch würde gern einen Tisch reservieren. — Я хотел бы забронировать столик."
+      },
+      "exampleIds": [
+        "de:29:02",
+        "de:29:12",
+        "de:29:26"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Ich → hätte → gern → einen → Tee."
+      },
+      "exampleIds": [
+        "de:29:01",
+        "de:29:11"
+      ]
+    }
+  ]
+}

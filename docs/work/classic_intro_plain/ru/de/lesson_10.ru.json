@@ -1,0 +1,47 @@
+{
+  "lang": "de",
+  "lesson": 10,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "С кем, на чём, куда"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, на чём вы едете, с кем вы и куда идёте.\nIch komme mit dem Bus. — Я приезжаю на автобусе.\nIch spreche mit dem Arzt. — Я разговариваю с врачом.\nTom geht zum Arzt. — Том идёт к врачу.\nСлово mit значит «на» или «с», zum и zur — «к» или «в»."
+      },
+      "exampleIds": [
+        "de:10:01",
+        "de:10:06",
+        "de:10:13"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "После mit, zu, bei — dem и der"
+      },
+      "text": {
+        "ru": "После слов mit, zu, bei, von, aus маленькое слово перед вещью меняется.\nDer Bus становится dem Bus.\nIch komme mit dem Bus. — Я приезжаю на автобусе.\nDie Bahn становится der Bahn.\nAnna kommt mit der Bahn. — Анна приезжает на электричке.\nZu и dem сливаются в zum, zu и der — в zur.\nIch fahre zur Arbeit. — Я еду на работу."
+      },
+      "exampleIds": [
+        "de:10:01",
+        "de:10:02",
+        "de:10:11"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример, «Я приезжаю на автобусе»: Ich → komme → mit → dem → Bus."
+      },
+      "exampleIds": [
+        "de:10:01",
+        "de:10:13"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "lang": "de",
+  "lesson": 26,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Стараюсь, начинаю, чтобы"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить «стараюсь сделать», «забыл сделать», «чтобы».\nDu versuchst, leise zu sein. — Ты стараешься вести себя тихо.\nIch fange an, Deutsch zu lernen. — Я начинаю учить немецкий.\nTom spart Geld, um ein Fahrrad zu kaufen. — Том копит деньги, чтобы купить велосипед.\nСлова um … zu значат «чтобы»."
+      },
+      "exampleIds": [
+        "de:26:02",
+        "de:26:16",
+        "de:26:44"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Zu + дело в самом конце"
+      },
+      "text": {
+        "ru": "После запятой само дело стоит в конце, а перед ним — zu.\nIch fange an, Deutsch zu lernen. — Я начинаю учить немецкий.\nЕсли у слова две части, zu встаёт внутрь: abzuschließen.\nDu hast vergessen, die Tür abzuschließen. — Ты забыл запереть дверь.\n«Чтобы» — um в начале и zu в конце.\nTom spart Geld, um ein Fahrrad zu kaufen. — Том копит деньги, чтобы купить велосипед."
+      },
+      "exampleIds": [
+        "de:26:16",
+        "de:26:12",
+        "de:26:44"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Ich → fange → an → Deutsch → zu → lernen."
+      },
+      "exampleIds": [
+        "de:26:16",
+        "de:26:02"
+      ]
+    }
+  ]
+}

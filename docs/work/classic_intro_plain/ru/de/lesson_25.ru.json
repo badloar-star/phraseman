@@ -1,0 +1,48 @@
+{
+  "lang": "de",
+  "lesson": 25,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "ru": "Какая это вещь"
+      },
+      "text": {
+        "ru": "Сегодня вы научитесь говорить, какая вещь: красная, маленькая, новая.\nDer rote Mantel passt. — Красное пальто подходит.\nDer kleine Koffer ist leicht. — Маленький чемодан лёгкий.\nIch nehme den roten Mantel. — Я беру красное пальто.\nСлово «какой» стоит между der, die, das и названием вещи."
+      },
+      "exampleIds": [
+        "de:25:01",
+        "de:25:05",
+        "de:25:11"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "ru": "Конец слова меняется"
+      },
+      "text": {
+        "ru": "После der, die, das говорят rote, kleine, neue.\nDer rote Mantel passt. — Красное пальто подходит.\nDas rote Kleid passt. — Красное платье подходит.\nЕсли стоит den или dem, говорят roten, kleinen, frühen.\nIch nehme den roten Mantel. — Я беру красное пальто.\nIch fahre mit dem frühen Zug. — Я еду ранним поездом."
+      },
+      "exampleIds": [
+        "de:25:01",
+        "de:25:03",
+        "de:25:11",
+        "de:25:21"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "ru": "Что вы будете делать"
+      },
+      "text": {
+        "ru": "Вы увидите фразу по-русски.\nВнизу — немецкие слова. Нажимайте их по одному.\nПосле каждого нажатия появятся следующие слова.\nТочки, запятые и знак вопроса выбирать не нужно.\nНапример: Der → rote → Mantel → passt.\nПосмотрите на слово перед вещью: der, den или dem."
+      },
+      "exampleIds": [
+        "de:25:01",
+        "de:25:13"
+      ]
+    }
+  ]
+}

@@ -1483,7 +1483,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.plan !== undefined) {
     await step('plan', request.plan, async () => {
       const { setDevPlanOverride } = await import('./dev_vip_override');
-      return setDevPlanOverride(request.plan === 'off' ? null : request.plan!, Date.now(), request.planUntilMs ?? null);
+      const applied = setDevPlanOverride(request.plan === 'off' ? null : request.plan!, Date.now(), request.planUntilMs ?? null);
+      // зачем (150 №8): план живёт только в памяти — без события экраны с кольцом/меткой (useSubscriptionTier) не перерисуются и останутся на старом уровне
+      emitAppEvent('premium_access_changed', { active: request.plan !== 'off', source: 'dev_plan' });
+      return applied;
     });
   }
   if (request.studyfail !== undefined || request.support !== undefined || request.cache !== undefined) {

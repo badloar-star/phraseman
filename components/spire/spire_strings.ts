@@ -23,7 +23,7 @@ const S = {
   guard: ['Страж', 'Вартовий', 'Guardian', 'Guardián', 'Guardião', 'Người canh', 'Penjaga', 'Muhafız', 'Strażnik'],
   summit: ['Вершина', 'Вершина', 'Summit', 'Cima', 'Topo', 'Đỉnh', 'Puncak', 'Zirve', 'Szczyt'],
   aboveClouds: ['Над облаками', 'Над хмарами', 'Above the clouds', 'Sobre las nubes', 'Acima das nuvens', 'Trên mây', 'Di atas awan', 'Bulutların üstünde', 'Nad chmurami'],
-  stepsShort: ['ступ.', 'сход.', 'steps', 'esc.', 'deg.', 'bậc', 'lgk', 'bsm', 'st.'],
+  stepsShort: ['эт.', 'пов.', 'fl.', 'pis.', 'and.', 'tầng', 'lt', 'kat', 'pięt.'],
   coinsPerFloor: ['монет за этаж', 'монет за поверх', 'coins per floor', 'monedas por piso', 'moedas por andar', 'xu mỗi tầng', 'koin per lantai', 'jeton kat başına', 'monet za piętro'],
   youHere: ['Ты здесь', 'Ти тут', 'You are here', 'Estás aquí', 'Você está aqui', 'Bạn ở đây', 'Kamu di sini', 'Buradasın', 'Jesteś tutaj'],
   outOf: ['из', 'з', 'of', 'de', 'de', 'trên', 'dari', '/', 'z'],

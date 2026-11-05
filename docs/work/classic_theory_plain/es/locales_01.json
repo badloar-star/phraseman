@@ -1,0 +1,79 @@
+{
+  "_note": "Переводы plain-теории испанского курса, урок 1 (Переводчик, 05.11). Локали: es, pt-BR, vi, id, tr, pl. Испанские слова и примеры не переводятся. Без русского и кириллицы в текстах.",
+  "title": {
+    "es": "Dónde estás tú y los demás",
+    "pt-BR": "Onde você e os outros estão",
+    "vi": "Bạn và những người khác ở đâu",
+    "id": "Di mana kamu dan yang lain",
+    "tr": "Sen ve diğerleri nerede",
+    "pl": "Gdzie jesteś ty i inni"
+  },
+  "chapters": {
+    "c1": {
+      "title": {"es": "Estoy aquí", "pt-BR": "Estou aqui", "vi": "Tôi ở đây", "id": "Saya di sini", "tr": "Buradayım", "pl": "Jestem tutaj"},
+      "text": {
+        "es": "Mira cómo se dice «estoy aquí».\nEstoy aquí. — «estoy aquí».\nLa palabra estoy significa «estoy ubicado».\nLa palabra aquí significa «aquí».\nLa tilde sobre una letra muestra qué parte de la palabra se dice más fuerte.\nLa ayuda de pronunciación da el sonido solo de forma aproximada.\nLa palabra estoy no cambia; cambia solo el lugar:\nlejos — «lejos», dentro — «dentro».\nEl modelo de las tareas es la respuesta terminada: muestra qué hacer.",
+        "pt-BR": "Veja como se diz “Estou aqui”.\nEstoy aquí. — “Estou aqui.”\nA palavra estoy significa “estou localizado”.\nA palavra aquí significa “aqui”.\nO acento sobre uma letra mostra qual parte da palavra se fala mais forte.\nA ajuda de pronúncia mostra o som só de forma aproximada.\nA palavra estoy não muda; muda só o lugar:\nlejos — “longe”, dentro — “dentro”.\nO modelo nas tarefas é a resposta pronta: ele mostra o que fazer.",
+        "vi": "Xem cách nói “Tôi ở đây”.\nEstoy aquí. — “Tôi ở đây.”\nTừ estoy nghĩa là “tôi đang ở”.\nTừ aquí nghĩa là “đây”.\nDấu trên một chữ cái cho biết phần nào của từ cần đọc to hơn.\nPhần gợi ý phát âm chỉ thể hiện âm gần đúng.\nTừ estoy không đổi; chỉ đổi nơi chốn:\nlejos — “xa”, dentro — “bên trong”.\nMẫu trong bài tập là câu trả lời đã có sẵn: nó cho bạn biết cần làm gì.",
+        "id": "Lihat cara mengatakan “Saya di sini”.\nEstoy aquí. — “Saya di sini.”\nKata estoy berarti “saya berada”.\nKata aquí berarti “di sini”.\nTanda di atas huruf menunjukkan bagian kata yang diucapkan lebih keras.\nBantuan pengucapan hanya memberi bunyi secara kira-kira.\nKata estoy tidak berubah; yang berubah hanya tempatnya:\nlejos — “jauh”, dentro — “di dalam”.\nContoh di tugas adalah jawaban yang sudah jadi: ia menunjukkan apa yang harus dilakukan.",
+        "tr": "“Buradayım” nasıl söylenir, bakın.\nEstoy aquí. — “Buradayım.”\nEstoy kelimesi “bulunuyorum” anlamına gelir.\nAquí kelimesi “burada” anlamına gelir.\nBir harfin üstündeki işaret, kelimenin hangi kısmının daha güçlü söyleneceğini gösterir.\nTelaffuz ipucu sesi yalnızca kabaca gösterir.\nEstoy kelimesi değişmez; sadece yer değişir:\nlejos — “uzak”, dentro — “içeride”.\nGörevlerdeki örnek hazır cevaptır: ne yapacağınızı gösterir.",
+        "pl": "Zobacz, jak powiedzieć „Jestem tutaj”.\nEstoy aquí. — „Jestem tutaj.”\nSłowo estoy znaczy „jestem położony”.\nSłowo aquí znaczy „tutaj”.\nKreska nad literą pokazuje, która część słowa jest mocniejsza.\nPodpowiedź wymowy pokazuje dźwięk tylko w przybliżeniu.\nSłowo estoy się nie zmienia; zmienia się tylko miejsce:\nlejos — „daleko”, dentro — „w środku”.\nPrzykład w zadaniach to gotowa odpowiedź: pokazuje, co robić."
+      }
+    },
+    "c2": {
+      "title": {"es": "Tú y nosotros", "pt-BR": "Você e nós", "vi": "Bạn và chúng ta", "id": "Kamu dan kita", "tr": "Sen ve biz", "pl": "Ty i my"},
+      "text": {
+        "es": "Ahora, sobre la persona con la que hablas.\nEstás aquí. — «estás aquí».\nLa palabra estás significa «estás ubicado».\nLa palabra cerca significa «cerca».\nCuando hablamos de nosotros, la palabra es otra: estamos — «estamos ubicados».\nCuando hablas con varias personas: estáis — «estáis ubicados».\nEl español no escribe «yo» y «tú» por separado:\nestán escondidos dentro de estoy y estás.",
+        "pt-BR": "Agora, sobre a pessoa com quem você fala.\nEstás aquí. — “Você está aqui.”\nA palavra estás significa “você está localizado”.\nA palavra cerca significa “perto”.\nQuando é sobre nós, a palavra é outra: estamos — “estamos localizados”.\nQuando você fala com várias pessoas: estáis — “vocês estão localizados”.\nO espanhol não escreve “eu” e “você” separadamente:\neles ficam escondidos dentro de estoy e estás.",
+        "vi": "Bây giờ nói về người mà bạn đang nói chuyện.\nEstás aquí. — “Bạn ở đây.”\nTừ estás nghĩa là “bạn đang ở”.\nTừ cerca nghĩa là “gần”.\nKhi nói về chúng ta, từ khác: estamos — “chúng tôi đang ở”.\nKhi nói với nhiều người: estáis — “các bạn đang ở”.\nTiếng Tây Ban Nha không viết riêng “tôi” và “bạn”:\nchúng nằm ẩn trong estoy và estás.",
+        "id": "Sekarang tentang orang yang sedang kamu ajak bicara.\nEstás aquí. — “Kamu di sini.”\nKata estás berarti “kamu berada”.\nKata cerca berarti “dekat”.\nKalau tentang kita, katanya lain: estamos — “kami berada”.\nKalau bicara dengan beberapa orang: estáis — “kalian berada”.\nBahasa Spanyol tidak menulis “saya” dan “kamu” terpisah:\nkeduanya tersembunyi di dalam estoy dan estás.",
+        "tr": "Şimdi konuştuğun kişi hakkında.\nEstás aquí. — “Sen buradasın.”\nEstás kelimesi “sen bulunuyorsun” anlamına gelir.\nCerca kelimesi “yakın” anlamına gelir.\nBiz hakkında konuşunca kelime başka olur: estamos — “biz bulunuyoruz”.\nBirden çok kişiyle konuşunca: estáis — “siz bulunuyorsunuz”.\nİspanyolca “ben” ve “sen” kelimelerini ayrı yazmaz:\nbunlar estoy ve estás içinde gizlidir.",
+        "pl": "Teraz o osobie, z którą rozmawiasz.\nEstás aquí. — „Ty jesteś tutaj.”\nSłowo estás znaczy „ty jesteś położony”.\nSłowo cerca znaczy „blisko”.\nKiedy mówimy o nas, słowo jest inne: estamos — „my jesteśmy położeni”.\nKiedy mówisz do kilku osób: estáis — „wy jesteście położeni”.\nHiszpański nie pisze osobno „ja” i „ty”:\nsą ukryte w estoy i estás."
+      }
+    },
+    "c3": {
+      "title": {"es": "Él, ella, un nombre", "pt-BR": "Ele, ela, um nome", "vi": "Anh ấy, cô ấy, một cái tên", "id": "Dia laki-laki, dia perempuan, sebuah nama", "tr": "O erkek, o kadın, bir isim", "pl": "On, ona, imię"},
+      "text": {
+        "es": "Cuando hablamos de él o de ella, la palabra es otra: está.\nÉl está aquí. — «Él está aquí.»\nLa palabra él significa «él», ella significa «ella». La palabra está significa «está ubicado».\nLa palabra allí significa «allí», fuera significa «afuera».\nAna es un nombre. «Él» y «ella» se escriben por separado en español.\nEn ella, la parte del medio suena como la «y» de «yo».",
+        "pt-BR": "Quando falamos dele ou dela, a palavra é outra: está.\nÉl está aquí. — “Ele está aqui.”\nA palavra él significa “ele”, ella significa “ela”. A palavra está significa “está localizado”.\nA palavra allí significa “ali”, fuera significa “lá fora”.\nAna é um nome. “Ele” e “ela” são escritos separadamente em espanhol.\nEm ella, o meio soa como o “i” de “ia”.",
+        "vi": "Khi nói về anh ấy hoặc cô ấy, từ khác: está.\nÉl está aquí. — “Anh ấy ở đây.”\nTừ él nghĩa là “anh ấy”, ella nghĩa là “cô ấy”. Từ está nghĩa là “đang ở”.\nTừ allí nghĩa là “ở đằng kia”, fuera nghĩa là “bên ngoài”.\nAna là một cái tên. “Anh ấy” và “cô ấy” được viết riêng trong tiếng Tây Ban Nha.\nTrong ella, phần giữa được đọc gần giống chữ “y” trong “yes”.",
+        "id": "Saat membicarakan dia laki-laki atau perempuan, katanya lain: está.\nÉl está aquí. — “Dia di sini.”\nKata él berarti “dia (laki-laki)”, ella berarti “dia (perempuan)”. Kata está berarti “berada”.\nKata allí berarti “di sana”, fuera berarti “di luar”.\nAna adalah sebuah nama. “Él” dan “ella” ditulis terpisah dalam bahasa Spanyol.\nDi dalam ella, bagian tengahnya berbunyi seperti “y” pada “yes”.",
+        "tr": "Erkek ya da kadından söz ederken kelime başkadır: está.\nÉl está aquí. — “O burada.”\nÉl kelimesi “o (erkek)”, ella kelimesi “o (kadın)” anlamına gelir. Está kelimesi “bulunuyor” anlamına gelir.\nAllí kelimesi “orada”, fuera kelimesi “dışarıda” anlamına gelir.\nAna bir isimdir. İspanyolcada “o erkek” ve “o kadın” ayrı yazılır.\nElla’da ortadaki ses “yes” kelimesindeki “y” gibidir.",
+        "pl": "Kiedy mówimy o nim albo o niej, słowo jest inne: está.\nÉl está aquí. — „On jest tutaj.”\nSłowo él znaczy „on”, ella znaczy „ona”. Słowo está znaczy „jest położony”.\nSłowo allí znaczy „tam”, fuera znaczy „na zewnątrz”.\nAna to imię. „On” i „ona” w hiszpańskim pisze się osobno.\nW ella środek brzmi jak „y” w „yes”."
+      }
+    },
+    "c4": {
+      "title": {"es": "Varias personas", "pt-BR": "Várias pessoas", "vi": "Nhiều người", "id": "Beberapa orang", "tr": "Birden çok kişi", "pl": "Kilka osób"},
+      "text": {
+        "es": "¿Hablamos de varias personas? La palabra cambia otra vez: están.\nEllos están allí. — «Ellos están allí.»\nLa palabra están significa «están ubicados».\nLa palabra ellos significa «ellos» (hombres o un grupo mixto).\nLa palabra ellas significa «ellas» (solo mujeres).\nLa palabra y significa «y». Luis también es un nombre.",
+        "pt-BR": "Falamos de várias pessoas? A palavra muda de novo: están.\nEllos están allí. — “Eles estão ali.”\nA palavra están significa “estão localizados”.\nA palavra ellos significa “eles” (homens ou grupo misto).\nA palavra ellas significa “elas” (só mulheres).\nA palavra y significa “e”. Luis também é um nome.",
+        "vi": "Nói về nhiều người? Từ lại đổi: están.\nEllos están allí. — “Họ ở đằng kia.”\nTừ están nghĩa là “đang ở”.\nTừ ellos nghĩa là “họ” (nam hoặc nhóm hỗn hợp).\nTừ ellas nghĩa là “họ” (chỉ toàn nữ).\nTừ y nghĩa là “và”. Luis cũng là một cái tên.",
+        "id": "Membicarakan beberapa orang? Katanya berubah lagi: están.\nEllos están allí. — “Mereka di sana.”\nKata están berarti “berada”.\nKata ellos berarti “mereka” (laki-laki atau kelompok campuran).\nKata ellas berarti “mereka” (hanya perempuan).\nKata y berarti “dan”. Luis juga sebuah nama.",
+        "tr": "Birden çok kişiden mi söz ediyoruz? Kelime yine değişir: están.\nEllos están allí. — “Onlar orada.”\nEstán kelimesi “bulunuyorlar” anlamına gelir.\nEllos kelimesi “onlar” (erkekler ya da karışık grup) anlamına gelir.\nEllas kelimesi “onlar” (yalnızca kadınlar) anlamına gelir.\nY kelimesi “ve” anlamına gelir. Luis de bir isimdir.",
+        "pl": "Mówimy o kilku osobach? Słowo znów się zmienia: están.\nEllos están allí. — „Oni są tam.”\nSłowo están znaczy „są położeni”.\nSłowo ellos znaczy „oni” (mężczyźni albo mieszana grupa).\nSłowo ellas znaczy „one” (tylko kobiety).\nSłowo y znaczy „i”. Luis to też imię."
+      }
+    },
+    "c5": {
+      "title": {"es": "En casa y en clase", "pt-BR": "Em casa e na aula", "vi": "Ở nhà và trong lớp", "id": "Di rumah dan di kelas", "tr": "Evde ve derste", "pl": "W domu i na lekcji"},
+      "text": {
+        "es": "Para nombrar un lugar necesitas la palabra en.\nEstoy en casa. — «Estoy en casa.»\nLa palabra en significa «en», «a» o «de» según el lugar.\nLa palabra casa significa «casa», clase significa «clase».\nLa palabra estoy no cambia; cambia solo el lugar detrás de en.",
+        "pt-BR": "Para dizer um lugar, você precisa da palavra en.\nEstoy en casa. — “Estou em casa.”\nA palavra en significa “em” ou “no”, conforme o lugar.\nA palavra casa significa “casa”, clase significa “aula”.\nA palavra estoy não muda; muda só o lugar depois de en.",
+        "vi": "Để nói tên nơi chốn, bạn cần từ en.\nEstoy en casa. — “Tôi ở nhà.”\nTừ en nghĩa là “ở”, “trong” hoặc “tại”, tùy nơi chốn.\nTừ casa nghĩa là “nhà”, clase nghĩa là “lớp học”.\nTừ estoy không đổi; chỉ đổi nơi chốn sau en.",
+        "id": "Untuk menyebut tempat, kamu perlu kata en.\nEstoy en casa. — “Saya di rumah.”\nKata en berarti “di”, tergantung tempatnya.\nKata casa berarti “rumah”, clase berarti “kelas”.\nKata estoy tidak berubah; yang berubah hanya tempat setelah en.",
+        "tr": "Bir yeri adlandırmak için en kelimesine ihtiyacın var.\nEstoy en casa. — “Evdeyim.”\nEn kelimesi yere göre “de/da” anlamına gelir.\nCasa kelimesi “ev”, clase kelimesi “ders” anlamına gelir.\nEstoy kelimesi değişmez; en’den sonraki yer değişir.",
+        "pl": "Żeby nazwać miejsce, potrzebujesz słowa en.\nEstoy en casa. — „Jestem w domu.”\nSłowo en znaczy „w”, „na” zależnie od miejsca.\nSłowo casa znaczy „dom”, clase znaczy „lekcja”.\nSłowo estoy się nie zmienia; zmienia się tylko miejsce po en."
+      }
+    },
+    "c6": {
+      "title": {"es": "Cosas y lugares", "pt-BR": "Coisas e lugares", "vi": "Đồ vật và nơi chốn", "id": "Benda dan tempat", "tr": "Eşyalar ve yerler", "pl": "Rzeczy i miejsca"},
+      "text": {
+        "es": "Ahora, las cosas.\nEl móvil está aquí. — «El móvil está aquí.»\nLa palabra móvil significa «teléfono».\nLas palabras el, la, los, las van delante del nombre de una cosa.\nSignifican «el/la/los/las»: aprende cada una junto con su palabra.\n¿Varias cosas? Entonces, los o las, y están.\nMuchos lugares también llevan la: en la cocina — «en la cocina».\nNo delante de casa: en casa — «en casa».\nLa palabra estación significa «estación», puerta significa «puerta».\nEn la frase sobre Ana, en significa «en»: en la puerta — «en la puerta».",
+        "pt-BR": "Agora, as coisas.\nEl móvil está aquí. — “O celular está aqui.”\nA palavra móvil significa “celular”.\nAs palavras el, la, los, las ficam antes do nome de uma coisa.\nElas significam “o/a/os/as”: aprenda cada uma junto com a sua palavra.\nVárias coisas? Então los ou las, e están.\nMuitos lugares também levam la: en la cocina — “na cozinha”.\nNão antes de casa: en casa — “em casa”.\nA palavra estación significa “estação”, puerta significa “porta”.\nNa frase sobre Ana, en significa “em”: en la puerta — “na porta”.",
+        "vi": "Bây giờ là đồ vật.\nEl móvil está aquí. — “Điện thoại ở đây.”\nTừ móvil nghĩa là “điện thoại”.\nCác từ el, la, los, las đứng trước tên một đồ vật.\nChúng nghĩa là “cái/những”: hãy học mỗi từ cùng với danh từ của nó.\nNhiều đồ vật? Thì dùng los hoặc las, và están.\nNhiều nơi chốn cũng có la: en la cocina — “trong bếp”.\nKhông dùng trước casa: en casa — “ở nhà”.\nTừ estación nghĩa là “nhà ga”, puerta nghĩa là “cửa”.\nTrong câu về Ana, en nghĩa là “ở”: en la puerta — “ở cửa”.",
+        "id": "Sekarang benda.\nEl móvil está aquí. — “Ponselnya ada di sini.”\nKata móvil berarti “ponsel”.\nKata el, la, los, las ditaruh sebelum nama benda.\nArtinya “si/sang/para”: pelajari tiap kata bersama namanya.\nBanyak benda? Pakai los atau las, dan están.\nBanyak tempat juga memakai la: en la cocina — “di dapur”.\nTidak sebelum casa: en casa — “di rumah”.\nKata estación berarti “stasiun”, puerta berarti “pintu”.\nDalam kalimat tentang Ana, en berarti “di”: en la puerta — “di pintu”.",
+        "tr": "Şimdi eşyalar.\nEl móvil está aquí. — “Telefon burada.”\nMóvil kelimesi “telefon” anlamına gelir.\nEl, la, los, las kelimeleri bir eşyanın adından önce gelir.\nBunlar “o/bu” anlamına gelir: her birini kendi kelimesiyle birlikte öğren.\nBirden çok eşya mı? O zaman los ya da las, ve están.\nBirçok yer de la alır: en la cocina — “mutfakta”.\nCasa’dan önce gelmez: en casa — “evde”.\nEstación kelimesi “istasyon”, puerta kelimesi “kapı” anlamına gelir.\nAna ile ilgili cümlede en “de/da” anlamına gelir: en la puerta — “kapıda”.",
+        "pl": "Teraz rzeczy.\nEl móvil está aquí. — „Telefon jest tutaj.”\nSłowo móvil znaczy „telefon”.\nSłowa el, la, los, las stoją przed nazwą rzeczy.\nZnaczą „ten/ta/te”: ucz się każdego razem z jego słowem.\nKilka rzeczy? Wtedy los albo las i están.\nWiele miejsc też bierze la: en la cocina — „w kuchni”.\nNie przed casa: en casa — „w domu”.\nSłowo estación znaczy „stacja”, puerta znaczy „drzwi”.\nW zdaniu o Anie en znaczy „przy”: en la puerta — „przy drzwiach”."
+      }
+    }
+  }
+}

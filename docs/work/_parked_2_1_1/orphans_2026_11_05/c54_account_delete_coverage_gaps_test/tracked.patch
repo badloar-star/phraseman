@@ -1,0 +1,159 @@
+diff --git a/functions/src/account_delete_coverage_gaps.test.ts b/functions/src/account_delete_coverage_gaps.test.ts
+index 7a14ea4c4..9a9fa16bb 100644
+--- a/functions/src/account_delete_coverage_gaps.test.ts
++++ b/functions/src/account_delete_coverage_gaps.test.ts
+@@ -31,6 +31,8 @@ describe('account deletion plan covers the PM-252 gaps by both identities', () =
+     ['premium_dialog_quotas', 'stableUid', STABLE], ['premium_dialog_quotas', 'authUid', AUTH],
+     ['premium_dialog_billing', 'uid', STABLE], ['premium_dialog_billing', 'authUid', AUTH],
+     ['spire_task_report_reservations', 'stableUid', STABLE],
++    ['spire_floor_record_attempts', 'uid', STABLE],
++    ['spire_floor_record_results', 'uid', STABLE],
+   ])('%s.%s = %s', (collection, field, value) => {
+     expect(has(collection, field, value)).toBe(true);
+   });
+@@ -63,7 +65,7 @@ describe('account deletion plan covers the PM-252 gaps by both identities', () =
+ 
+ // ── Заглушка Firestore: коллекции в памяти, where(==, !=), limit, batch(update/set/delete), doc().get() ──
+ type Data = Record<string, unknown>;
+-function makeDb(seed: Record<string, Record<string, Data>>) {
++function makeDb(seed: Record<string, Record<string, Data>>, hooks: { beforeBatchCommit?: () => void } = {}) {
+   const store: Record<string, Map<string, Data>> = {};
+   for (const [c, docs] of Object.entries(seed)) store[c] = new Map(Object.entries(docs).map(([id, d]) => [id, JSON.parse(JSON.stringify(d))]));
+   const col = (c: string) => (store[c] ??= new Map());
+@@ -96,7 +98,10 @@ function makeDb(seed: Record<string, Record<string, Data>>) {
+     get: async () => {
+       const docs = [...col(c).entries()].filter(([, d]) => filters.every(([p, op, v]) => {
+         const val = getPath(d, p);
+-        return op === '==' ? val === v : op === '!=' ? val !== undefined && val !== null && val !== v : false;
++        return op === '==' ? val === v
++          : op === '!=' ? val !== undefined && val !== null && val !== v
++            : op === 'array-contains' ? Array.isArray(val) && val.includes(v)
++              : false;
+       })).slice(0, lim).map(([id, d]) => ({ id, ref: ref(c, id), data: () => d }));
+       return { empty: docs.length === 0, size: docs.length, docs };
+     },
+@@ -109,7 +114,7 @@ function makeDb(seed: Record<string, Record<string, Data>>) {
+         update: (r: { c: string; id: string }, patch: Data) => ops.push(() => applyUpdate(col(r.c).get(r.id)!, patch)),
+         set: (r: { c: string; id: string }, d: Data) => ops.push(() => col(r.c).set(r.id, { ...(col(r.c).get(r.id) ?? {}), ...d })),
+         delete: (r: { c: string; id: string }) => ops.push(() => col(r.c).delete(r.id)),
+-        commit: async () => { ops.forEach((op) => op()); },
++        commit: async () => { hooks.beforeBatchCommit?.(); ops.forEach((op) => op()); },
+       };
+     },
+     // зачем (сироты Codex 29.10): removeFromSpireGroups стирает рекорды этажей Пика в транзакции — заглушке нужен runTransaction
+@@ -169,6 +174,115 @@ test('spire floor records of the deleted member are scrubbed; other members keep
+   expect(JSON.stringify(record)).not.toContain(STABLE);
+ });
+ 
++test('spire step-v2 and legacy records are both scrubbed idempotently before membership removal', async () => {
++  const { db, store } = makeDb({
++    spire_groups: { g1: { liveMemberCount: 2, members: { [STABLE]: { name: 'Аня' }, other: { name: 'Bob' } } } },
++    spire_floor_records: {
++      g1: {
++        records: { 1: { uid: STABLE, durationMs: 900 }, 2: { uid: 'other', durationMs: 1200 } },
++        personal: { [STABLE]: { 1: { uid: STABLE, durationMs: 900 } }, other: { 2: { uid: 'other', durationMs: 1200 } } },
++      },
++      'step-v2_g1': {
++        version: 'step-record-v2',
++        participantUids: [STABLE, 'other'],
++        records: { '1:1': { uid: STABLE, durationMs: 700 }, '1:2': { uid: 'other', durationMs: 800 } },
++        personal: { [STABLE]: { '1:1': { uid: STABLE, durationMs: 700 } }, other: { '1:2': { uid: 'other', durationMs: 800 } } },
++      },
++    },
++  });
++
++  await removeFromSpireGroups(db, STABLE, stats());
++  await removeFromSpireGroups(db, STABLE, stats());
++
++  const legacy = store.spire_floor_records.get('g1')!;
++  expect(legacy.records).toEqual({ 2: { uid: 'other', durationMs: 1200 } });
++  expect(legacy.personal).toEqual({ other: { 2: { uid: 'other', durationMs: 1200 } } });
++  const stepV2 = store.spire_floor_records.get('step-v2_g1')!;
++  expect(stepV2.records).toEqual({ '1:2': { uid: 'other', durationMs: 800 } });
++  expect(stepV2.personal).toEqual({ other: { '1:2': { uid: 'other', durationMs: 800 } } });
++  expect(stepV2.participantUids).toEqual(['other']);
++  expect(JSON.stringify([legacy, stepV2])).not.toContain(STABLE);
++  expect(store.spire_groups.get('g1')!.liveMemberCount).toBe(1);
++});
++
++test('spire step-v2 records remain discoverable and scrub idempotently after membership is already gone', async () => {
++  const { db, store } = makeDb({
++    spire_groups: { g1: { liveMemberCount: 1, members: { other: { name: 'Bob' } } } },
++    spire_floor_records: {
++      'step-v2_g1': {
++        version: 'step-record-v2',
++        participantUids: [STABLE, 'other'],
++        records: { '1:1': { uid: STABLE, durationMs: 700 }, '1:2': { uid: 'other', durationMs: 800 } },
++        personal: { [STABLE]: { '1:1': { uid: STABLE, durationMs: 700 } }, other: { '1:2': { uid: 'other', durationMs: 800 } } },
++      },
++    },
++  });
++
++  await removeFromSpireGroups(db, STABLE, stats());
++  await removeFromSpireGroups(db, STABLE, stats());
++
++  const stepV2 = store.spire_floor_records.get('step-v2_g1')!;
++  expect(stepV2.records).toEqual({ '1:2': { uid: 'other', durationMs: 800 } });
++  expect(stepV2.personal).toEqual({ other: { '1:2': { uid: 'other', durationMs: 800 } } });
++  expect(stepV2.participantUids).toEqual(['other']);
++  expect(JSON.stringify(stepV2)).not.toContain(STABLE);
++  expect(store.spire_groups.get('g1')!.liveMemberCount).toBe(1);
++});
++
++test('failed orphan record scrub keeps the participant index discoverable for retry', async () => {
++  const { db, store } = makeDb({
++    spire_floor_records: {
++      'step-v2_g1': {
++        version: 'step-record-v2', participantUids: [STABLE],
++        records: { '1:1': { uid: STABLE, durationMs: 700 } },
++        personal: { [STABLE]: { '1:1': { uid: STABLE, durationMs: 700 } } },
++      },
++    },
++  });
++  const runTransaction = db.runTransaction.bind(db);
++  let failOnce = true;
++  (db as unknown as { runTransaction: typeof db.runTransaction }).runTransaction = async (work) => {
++    if (failOnce) { failOnce = false; throw new Error('injected_record_scrub_failure'); }
++    return runTransaction(work);
++  };
++
++  await expect(removeFromSpireGroups(db, STABLE, stats())).rejects.toThrow('injected_record_scrub_failure');
++  expect(store.spire_floor_records.get('step-v2_g1')!.participantUids).toEqual([STABLE]);
++
++  await removeFromSpireGroups(db, STABLE, stats());
++  expect(JSON.stringify(store.spire_floor_records.get('step-v2_g1'))).not.toContain(STABLE);
++});
++
++test('a finish racing after the pre-removal scrub is caught after membership removal', async () => {
++  let injectFinish = false;
++  let store!: Record<string, Map<string, Data>>;
++  const fixture = makeDb({
++    spire_groups: { g1: { liveMemberCount: 2, members: { [STABLE]: { name: 'Аня' }, other: { name: 'Bob' } } } },
++    spire_floor_records: {
++      'step-v2_g1': {
++        version: 'step-record-v2', participantUids: [STABLE, 'other'],
++        records: { '1:2': { uid: 'other', durationMs: 800 } },
++        personal: { [STABLE]: { '1:1': { uid: STABLE, durationMs: 900 } }, other: { '1:2': { uid: 'other', durationMs: 800 } } },
++      },
++    },
++  }, { beforeBatchCommit: () => {
++    if (injectFinish) return;
++    injectFinish = true;
++    const record = store.spire_floor_records.get('step-v2_g1')!;
++    record.participantUids = [STABLE, 'other'];
++    record.records = { ...(record.records as Data), '1:1': { uid: STABLE, durationMs: 700 } };
++    record.personal = { ...(record.personal as Data), [STABLE]: { '1:1': { uid: STABLE, durationMs: 700 } } };
++  } });
++  store = fixture.store;
++
++  await removeFromSpireGroups(fixture.db, STABLE, stats());
++
++  const record = store.spire_floor_records.get('step-v2_g1')!;
++  expect(JSON.stringify(record)).not.toContain(STABLE);
++  expect(record.participantUids).toEqual(['other']);
++  expect(store.spire_groups.get('g1')!.members).toEqual({ other: { name: 'Bob' } });
++});
++
+ test('a ban keeps only an identity hash — no uid, name or reason text', async () => {
+   const { db, store } = makeDb({ banned_users: { [STABLE]: { uid: STABLE, name: 'Аня', reason: 'спам', bannedAtMs: 123 } } });
+   await replaceBanWithHash(db, STABLE, stats());

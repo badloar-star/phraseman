@@ -1,0 +1,2 @@
+const base = require('./jest.classic-completion.cjs');
+module.exports = { ...base, testMatch: [...base.testMatch, '<rootDir>/tests/classic_completion_engine_review_regressions.test.ts'] };

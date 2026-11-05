@@ -1,0 +1,8 @@
+const base=require('./jest.classic-completion-m2-acceptance.cjs');
+module.exports={...base,testMatch:[...base.testMatch,
+ '<rootDir>/tests/classic_completion_en_crash_replay.test.ts',
+ '<rootDir>/tests/classic_completion_outbox_review_regressions.test.ts',
+ '<rootDir>/tests/classic_completion_result_review_regressions.test.ts',
+ '<rootDir>/tests/phone_state_progress_api.test.ts',
+ '<rootDir>/tests/phone_state_store_transaction.test.ts'
+]};

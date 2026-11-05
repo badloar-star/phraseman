@@ -1,0 +1,2 @@
+const base=require('./jest.classic-completion-all.cjs');
+module.exports={...base,testMatch:[...base.testMatch,'<rootDir>/tests/classic_completion_journal_map_schema.test.ts']};

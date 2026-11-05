@@ -1,0 +1,38 @@
+import { act, cleanup, renderHook } from '@testing-library/react-native';
+
+jest.mock('../modules/audio/audio_runtime_arbiter', () => ({
+  claimRecordingAudio: jest.fn(),
+  whenRecordingAudioReady: jest.fn(),
+}));
+
+import {
+  claimRecordingAudio,
+  whenRecordingAudioReady,
+} from '../modules/audio/audio_runtime_arbiter';
+import { useManagedRecordingAudio } from '../hooks/use_managed_recording_audio';
+
+describe('managed recording readiness cleanup', () => {
+  afterEach(cleanup);
+
+  it('releases and invalidates the production claim when readiness is false', async () => {
+    let current = true;
+    const claim = {
+      isCurrent: jest.fn(() => current),
+      release: jest.fn(() => {
+        current = false;
+      }),
+    };
+    (claimRecordingAudio as jest.Mock).mockReturnValue(claim);
+    (whenRecordingAudioReady as jest.Mock).mockResolvedValue(false);
+    const hook = await renderHook(() => useManagedRecordingAudio(jest.fn()));
+    let began: boolean | undefined;
+
+    await act(async () => {
+      began = await hook.result.current.begin();
+    });
+
+    expect(began).toBe(false);
+    expect(claim.release).toHaveBeenCalledTimes(1);
+    expect(hook.result.current.isCurrent()).toBe(false);
+  });
+});

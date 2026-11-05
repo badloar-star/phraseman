@@ -1,0 +1,35 @@
+diff --git a/tests/spire_game_source_contract.test.mjs b/tests/spire_game_source_contract.test.mjs
+index 8f04e86af..42f4f3971 100644
+--- a/tests/spire_game_source_contract.test.mjs
++++ b/tests/spire_game_source_contract.test.mjs
+@@ -74,6 +74,7 @@ const pureModules = ['modules/spire/pack_plan.ts', 'modules/spire/answer_reveal.
+ const gate = read('app/spire/spire_live_gate.ts');
+ const net = read('app/spire/spire_net.ts');
+ const game = read('app/spire/use_spire_game.ts');
++const friendsRefresh = read('app/spire/use_spire_friends_refresh.ts');
+ const runner = read('app/spire/use_spire_step_runner.ts');
+ const home = read('components/spire/SpireHomeScreen.tsx');
+ const stepScreen = read('components/spire/SpireStepScreen.tsx');
+@@ -152,7 +153,21 @@ test('game hook: no network while the gate is closed', () => {
+   assert.ok(flushAt > -1 && game.lastIndexOf('if (!gate || !ids || !lang) return;', flushAt) > -1, 'queue flush is behind the gate');
+   assert.equal(game.split('spireFlushNow(').length - 1, 1, 'single flush call site');
+   // Экран не зовёт сеть сам: только через хук.
+-  assert.ok(home.includes('useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek })'), 'home passes the lock into the hook (в DEV-превью ворота закрыты, игра подменена моками)');
++  assert.ok(home.includes("useRuntimeActive(runtimeOwnerId === 'spire')"), 'Peak derives activity from named runtime ownership plus focus/AppState');
++  assert.ok(home.includes('useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek, runtimeActive: spireRuntimeActive })'), 'home passes the lock and foreground owner activity into the hook (в DEV-превью ворота закрыты, игра подменена моками)');
++  assert.ok(game.includes('useSpireFriendsRefresh({ gate, ids, lang, friendsCount: friends.length, setFriends, runtimeActive, ownerEpoch })'), 'runtime activity and owner epoch reach only the Friends follow lifecycle');
++  assert.ok(game.includes("const sub = AppState.addEventListener('change', (next) => { if (next !== 'active') flush('app_background'); });"), 'durable background flush remains independent from Peak visibility');
++});
++
++test('friends runtime session transition mutates refs only after commit', () => {
++  assert.ok(friendsRefresh.includes('useLayoutEffect(() => {'), 'runtime-session transition uses a commit-safe layout effect');
++  const beforeLayoutEffect = friendsRefresh.slice(
++    friendsRefresh.indexOf('export function useSpireFriendsRefresh'),
++    friendsRefresh.indexOf('useLayoutEffect(() => {'),
++  );
++  assert.ok(!beforeLayoutEffect.includes('runtimeSessionRef.current ='), 'render does not advance the runtime generation');
++  assert.ok(!beforeLayoutEffect.includes('inFlightRef.current = null'), 'render does not clear the manual lock');
++  assert.ok(!beforeLayoutEffect.includes('activeOwnerKeyRef.current ='), 'render does not publish an uncommitted owner');
+ });
+ 
+ test('no Firestore listeners or collection scans in the game layer', () => {

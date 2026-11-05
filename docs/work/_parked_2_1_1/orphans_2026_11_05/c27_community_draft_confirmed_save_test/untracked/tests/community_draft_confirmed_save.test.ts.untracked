@@ -1,0 +1,62 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { saveCommunityPackCreateDraft, type CommunityPackCreateDraftV1 } from '../app/community_packs/communityPackDraftStorage';
+
+let mockGeneration = 1;
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => mockGeneration,
+  isCurrentAccountGeneration: (token: number) => token === mockGeneration,
+  withAccountTransitionLock: async (operation: () => Promise<void>) => operation(),
+}));
+jest.mock('../app/dev_cards_state', () => ({ getDevPackDraft: () => null, isDevPackDraftNone: () => false }));
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/swallow_log', () => ({ noteSwallowed: jest.fn(), noteSwallowedAs: () => () => undefined }));
+
+const draft: Omit<CommunityPackCreateDraftV1, 'v'> = {
+  title: 'Latest title', description: '', themeIdx: 0, packLanguage: 'en', level: 'B1',
+  publishToCommunity: true, rows: [{ id: 'one', en: 'Latest word', ru: 'Перевод', uk: '' }],
+  addCardFormOpen: false, draftEn: '', draftRu: '', draftEs: '', draftPlannedTranslation: '', draftNote: '',
+};
+
+beforeEach(() => { jest.restoreAllMocks(); jest.clearAllMocks(); mockGeneration = 1; });
+
+it('does not confirm saving until the latest title and cards have been written', async () => {
+  let complete!: () => void;
+  let started!: () => void;
+  const writing = new Promise<void>(resolve => { started = resolve; });
+  jest.spyOn(AsyncStorage, 'getItem').mockResolvedValue(null);
+  const write = jest.spyOn(AsyncStorage, 'setItem').mockImplementation(() => {
+    started();
+    return new Promise<void>(resolve => { complete = resolve; });
+  });
+  let confirmed = false;
+  const saving = saveCommunityPackCreateDraft(draft, 'en', 'ru', { throwOnError: true }).then(() => { confirmed = true; });
+  await writing;
+  expect(confirmed).toBe(false);
+  const saved = JSON.parse(write.mock.calls[0][1]);
+  expect(saved.title).toBe('Latest title');
+  expect(saved.rows[0].en).toBe('Latest word');
+  expect(saved.level).toBe('B1');
+  complete();
+  await saving;
+  expect(confirmed).toBe(true);
+});
+
+it('rejects a confirmed save if storage fails, so navigation can retain the editor', async () => {
+  jest.spyOn(AsyncStorage, 'getItem').mockResolvedValue(null);
+  jest.spyOn(AsyncStorage, 'setItem').mockRejectedValue(new Error('disk full'));
+  await expect(saveCommunityPackCreateDraft(draft, 'en', 'ru', { throwOnError: true })).rejects.toThrow('disk full');
+});
+
+it('preserves the non-throwing autosave contract for existing callers', async () => {
+  jest.spyOn(AsyncStorage, 'getItem').mockResolvedValue(null);
+  jest.spyOn(AsyncStorage, 'setItem').mockRejectedValue(new Error('offline storage'));
+  await expect(saveCommunityPackCreateDraft(draft, 'en', 'ru')).resolves.toBeUndefined();
+});
+
+it('rejects a queued confirmed save after account generation changes without writing it', async () => {
+  const write = jest.spyOn(AsyncStorage, 'setItem');
+  const saving = saveCommunityPackCreateDraft(draft, 'en', 'ru', { throwOnError: true });
+  mockGeneration = 2;
+  await expect(saving).rejects.toThrow('Account changed');
+  expect(write).not.toHaveBeenCalled();
+});

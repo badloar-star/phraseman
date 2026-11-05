@@ -1,0 +1,7 @@
+const base=require('./jest.classic-completion-m2.cjs');
+module.exports={...base,testMatch:[...base.testMatch,
+ '<rootDir>/tests/lesson_completion_attempt_identity_contract.test.ts',
+ '<rootDir>/tests/lesson_completion_entitlement_contract.test.ts',
+ '<rootDir>/tests/lesson_back_during_completion_r58.test.ts',
+ '<rootDir>/tests/lesson_complete_e1_e4_parity_contract.test.ts'
+]};

@@ -1,0 +1,12 @@
+diff --git a/tests/safe_top_one_canvas_contract.test.ts b/tests/safe_top_one_canvas_contract.test.ts
+index d1ecdee77..90e29ab8d 100644
+--- a/tests/safe_top_one_canvas_contract.test.ts
++++ b/tests/safe_top_one_canvas_contract.test.ts
+@@ -76,6 +76,6 @@ describe('верх экрана: зона часов — часть общего
+     expect(stage).toContain('style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}');
+     // градиент сцены — во весь блок, включая зону часов
+     // зачем (вердикт владельца 29.10): фон сцены Главной рисует общий слой по scenePalette — он заполняет всю область сцены, включая зону часов
+-    expect(stage).toContain('<SceneBackdrop palette={scenePal} idPrefix="homeSc" />');
++    expect(stage).toContain('<SceneBackdrop palette={scenePal} idPrefix="homeSc" active={active} />');
+   });
+ });

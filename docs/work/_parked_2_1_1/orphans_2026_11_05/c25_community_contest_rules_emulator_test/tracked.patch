@@ -1,0 +1,16 @@
+diff --git a/functions/src/community_contest_rules.emulator.test.ts b/functions/src/community_contest_rules.emulator.test.ts
+index bdb5ec343..60ed0daee 100644
+--- a/functions/src/community_contest_rules.emulator.test.ts
++++ b/functions/src/community_contest_rules.emulator.test.ts
+@@ -69,8 +69,10 @@ describe('community hearts and private rewards — real Firestore Rules', () =>
+     await assertFails(setDoc(doc(db, `community_packs/p/contest_votes/${oldMonth}_a`), { monthId: oldMonth, userId: 'a', liked: true, updatedAt: serverTimestamp() }));
+     await assertFails(setDoc(doc(db, 'community_contest_winners/p'), { monthId, place: 3 }));
+   });
+-  it('prevents client Plus, reward or result fabrication', async () => {
++  it('denies an authenticated document owner self-grant of community Plus', async () => {
+     await assertFails(updateDoc(doc(db, 'users/a'), { 'progress.community_plus_until_ms': String(Date.now() + 1e10) }));
++  });
++  it('prevents client reward, result and contest-config fabrication', async () => {
+     await assertFails(setDoc(doc(db, 'users/a/community_month_rewards/fake'), { claimed: false, place: 1 }));
+     await assertFails(setDoc(doc(db, 'community_month_results/2026-10'), { winners: ['a'] }));
+     await assertFails(setDoc(doc(db, 'community_contest_config/current'), { enabled: false }));

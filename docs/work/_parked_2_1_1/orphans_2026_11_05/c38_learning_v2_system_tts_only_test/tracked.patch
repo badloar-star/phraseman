@@ -1,0 +1,33 @@
+diff --git a/tests/learning_v2_system_tts_only.test.ts b/tests/learning_v2_system_tts_only.test.ts
+index 99440ef86..db5b56f6c 100644
+--- a/tests/learning_v2_system_tts_only.test.ts
++++ b/tests/learning_v2_system_tts_only.test.ts
+@@ -6,7 +6,7 @@ const read = (relativePath: string): string => fs.readFileSync(
+   'utf8',
+ );
+ 
+-describe('Learning V2 system TTS only', () => {
++describe('Learning V2 recorded audio with device TTS fallback', () => {
+   it('does not create or invoke prerecorded players in either session runtime', () => {
+     const direct = read('app/learning_v2_direct_session_player_v1.tsx');
+     const legacy = read('app/learning-v2/session/[id].tsx');
+@@ -21,12 +21,17 @@ describe('Learning V2 system TTS only', () => {
+     expect(direct).not.toContain('resolveLearningV2CourseSessionSupplementalAudioV1');
+   });
+ 
+-  it('opts every live Learning V2 speech surface into device TTS', () => {
++  it('opts the ES direct player into durable recorded audio while other surfaces retain device TTS', () => {
+     const direct = read('app/learning_v2_direct_session_player_v1.tsx');
+     const legacy = read('app/learning-v2/session/[id].tsx');
+     const dictionary = read('components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx');
+ 
+-    expect(direct).toContain('systemTtsOnly: true');
++    expect(direct).toContain('systemTtsOnly: studyTarget !== "es"');
++    expect(direct).toMatch(/learningV2Recorded:\s*studyTarget === "es"/u);
++    expect(direct).toContain('completedPrefixCount: progress.chainCompletedCount');
++    expect(direct).toContain('audio.getLearningV2ProgressiveAudioRuntime()');
++    expect(direct).toContain('signal: controller.signal');
++    expect(direct).not.toContain('runtime?.cancelAll()');
+     expect(legacy).toContain('systemTtsOnly: true');
+     expect(dictionary).toContain('systemTtsOnly: true');
+     expect(direct).toContain('language: previewSpeechLocaleRef.current');

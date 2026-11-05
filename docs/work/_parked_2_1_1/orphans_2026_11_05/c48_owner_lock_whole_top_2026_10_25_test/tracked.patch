@@ -1,0 +1,21 @@
+diff --git a/tests/owner_lock_whole_top_2026_10_25.test.ts b/tests/owner_lock_whole_top_2026_10_25.test.ts
+index bf4eefbf2..1702a6b0d 100644
+--- a/tests/owner_lock_whole_top_2026_10_25.test.ts
++++ b/tests/owner_lock_whole_top_2026_10_25.test.ts
+@@ -26,11 +26,12 @@ describe('верх экрана цельный (замок владельца 25
+     // поэтому слоя нет вовсе: фон сцены (spire_scene_backdrop) рисуется от верха экрана под шапкой и часами, шапка лежит поверх прозрачной.
+     const community = read('app/(tabs)/community.tsx');
+     expect(community).not.toContain('<SpireSceneHeaderLayer');
+-    // зачем (перепин 29.10): сводный коммит a82a3b220 добавил «Наборы» со своей сценой — условие «Наборы ИЛИ (Пик при флаге и готовой сцене)»; Пик не ослаблен
+-    expect(community).toContain("const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null);");
+-    expect(community).toContain("(SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null)");
++    // Пик и «Наборы» остаются в одном overlay-контейнере; поверхность берётся из чистой Peak-палитры, а не из mount/cleanup сцены.
++    expect(community).toContain("const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire');");
++    expect(community).toContain("const communityHeaderSurface = peakSceneTopHex(liquidGlassThemeId, liquidGlassAppearance);");
++    expect(community).not.toContain('useSpireSceneHeaderTint');
+     expect(community).toContain("headerOver: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2 },");
+-    expect(community).toContain('<View style={overScene ? s.bodyUnder : s.body}>');
++    expect(community).toContain('<View style={[s.bodyUnder, { top: headerH }]}>');
+     const scene = read('components/spire/scene/SpireScene.tsx');
+     expect(scene).toContain('<View pointerEvents="none" style={[s.backdrop, { top: -bleed, height: bleed + frame.sceneH }]}><SpireSceneBackdrop spec={backdrop} offsetTop={0} /></View>');
+     expect(scene).not.toContain('<LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}');

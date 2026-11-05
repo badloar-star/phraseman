@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "classic-completion-current-false-success-red.v1",
+  "capturedAt": "2026-11-02",
+  "expectedOverallStatus": "RED",
+  "scope": "test-only; no production, real-data, Firebase, API, deploy, or release mutation",
+  "sourceImports": [
+    {
+      "module": "app/lesson_lock_system.ts",
+      "sha256": "47AA22C9F46E3CBFF042D248524D1839FB1AE7C38F1BEA16E4C8915C6F766B67",
+      "closure": "unlockLesson:89-109; tryUnlockNextLesson:134-151",
+      "contractId": "UNLOCK-ACK"
+    },
+    {
+      "module": "app/medal_utils.ts",
+      "sha256": "CE236AADF0D423B50BB7851D5098BADB2F50B41FC43B3BFC0E7E8730DFD730BC",
+      "closure": "saveMedalProgress:134-223",
+      "contractId": "MEDAL-ACK"
+    },
+    {
+      "module": "app/progress_events_client.ts",
+      "sha256": "A6423E26753CE571DE03753CFC45D013B319180C7E2F20F49EB6A0BD037003AC",
+      "closure": "enqueue:475-482; submitProgressEvent PhoneState branch:827-884",
+      "contractId": "OUTBOX-ACK"
+    }
+  ],
+  "allowedInjectedBoundaries": [
+    "AsyncStorage write rejection/delay",
+    "PhoneState projection result",
+    "Firebase callable terminal stub after durable queue release",
+    "stable owner and account-generation fence"
+  ],
+  "forbiddenProofTechnique": "No copied/reimplemented production function is accepted as evidence.",
+  "classification": {
+    "contractRed": "Jest executes all three tests and failures contain [CONTRACT-RED:*] assertion titles with received current behavior.",
+    "harnessFailure": "Module resolution, TypeScript transform, setup, timeout, worker crash, or zero executed tests. These are not contract evidence."
+  }
+}
+

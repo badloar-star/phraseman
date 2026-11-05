@@ -1,0 +1,161 @@
+/**
+ * Executable RED evidence for the current Classic completion contracts.
+ *
+ * This file deliberately imports the production modules. Dependencies at the
+ * storage/network boundary are mocked only to inject the three failure windows;
+ * no production function is copied into the fixture.
+ *
+ * Run only through this directory's bounded Jest config. The normal repository
+ * testMatch does not include *.red.ts.
+ */
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+var phoneProjectionMock = jest.fn();
+
+jest.mock('../../../app/config', () => ({
+  CLOUD_SYNC_ENABLED: true,
+  IS_EXPO_GO: false,
+}));
+jest.mock('../../../app/cloud_sync', () => ({
+  ensureAnonUser: jest.fn(async () => 'fixture-owner-a'),
+}));
+jest.mock('../../../app/user_id_policy', () => ({
+  getCanonicalUserId: jest.fn(async () => 'fixture-owner-a'),
+}));
+jest.mock('../../../app/account_generation', () => ({
+  captureAccountGeneration: () => ({ phase: 'active', stableId: 'fixture-owner-a', generation: 1 }),
+  isCurrentAccountGeneration: () => true,
+  subscribeAccountGeneration: () => ({ remove: jest.fn() }),
+  withAccountTransitionLock: async (work: (lease?: unknown) => unknown) => work({ fixture: true }),
+}));
+jest.mock('../../../app/phone_state_shadow_adapters', () => ({
+  recordShadowProgressEvent: jest.fn(),
+}));
+jest.mock('../../../app/phone_state_progress_cutover', () => ({
+  trySubmitProgressThroughPhoneState: (...args: unknown[]) => phoneProjectionMock(...args),
+}));
+jest.mock('../../../app/debug-logger', () => ({
+  DebugLogger: { error: jest.fn(), warn: jest.fn(), info: jest.fn() },
+  reportSwallowed: jest.fn(),
+  swallowError: () => () => undefined,
+}));
+jest.mock('@react-native-firebase/app', () => ({ getApp: () => ({}) }));
+jest.mock('@react-native-firebase/functions', () => ({
+  getFunctions: () => ({}),
+  httpsCallable: () => async (event: { eventId: string; type: string; stableId: string }) => ({
+    data: {
+      ok: true,
+      stableUid: event.stableId,
+      eventId: event.eventId,
+      type: event.type,
+      duplicate: false,
+      streakCount: 1,
+      activeDate: '2026-11-02',
+    },
+  }),
+}));
+
+import {
+  isLessonUnlocked,
+  tryUnlockNextLesson,
+} from '../../../app/lesson_lock_system';
+import { saveMedalProgress } from '../../../app/medal_utils';
+import {
+  __progressEventsClientTestHooks,
+  submitProgressEvent,
+} from '../../../app/progress_events_client';
+
+const storage = AsyncStorage as typeof AsyncStorage & { __reset?: () => void };
+
+describe('Classic completion current false-success RED fixtures', () => {
+  beforeEach(() => {
+    storage.__reset?.();
+    jest.clearAllMocks();
+    __progressEventsClientTestHooks.resetRuntimeState();
+    phoneProjectionMock.mockResolvedValue(null);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  test('[CONTRACT-RED:UNLOCK-ACK] rejected unlock write cannot be reported as a committed unlock', async () => {
+    const setItem = AsyncStorage.setItem as jest.MockedFunction<typeof AsyncStorage.setItem>;
+    setItem.mockRejectedValueOnce(new Error('fixture_unlock_storage_rejected'));
+
+    const reportedUnlock = await tryUnlockNextLesson(1, 3, undefined, false);
+    const durableUnlock = await isLessonUnlocked(2);
+
+    expect({
+      reportedUnlock,
+      durableUnlock,
+    }).toEqual({
+      reportedUnlock: false,
+      durableUnlock: false,
+    });
+  });
+
+  test('[CONTRACT-RED:MEDAL-ACK] rejected medal write cannot return success-shaped new-best/pass claims', async () => {
+    const multiSet = AsyncStorage.multiSet as jest.MockedFunction<typeof AsyncStorage.multiSet>;
+    multiSet.mockRejectedValueOnce(new Error('fixture_medal_storage_rejected'));
+
+    const outcome = await saveMedalProgress(1, 5, new Array(50).fill('correct'));
+
+    expect({
+      durableBest: await AsyncStorage.getItem('lesson1_best_score'),
+      durablePassCount: await AsyncStorage.getItem('lesson1_pass_count'),
+      claimedNewBest: outcome.isNewBest,
+      claimedPassIncrease: outcome.passCountIncreased,
+    }).toEqual({
+      durableBest: null,
+      durablePassCount: null,
+      claimedNewBest: false,
+      claimedPassIncrease: false,
+    });
+  });
+
+  test('[CONTRACT-RED:OUTBOX-ACK] PhoneState completion cannot resolve before its owner queue write', async () => {
+    phoneProjectionMock.mockResolvedValue({
+      streakCount: 1,
+      activityDates: ['2026-11-02'],
+    });
+
+    const originalSetItem = (AsyncStorage.setItem as jest.Mock).getMockImplementation();
+    let releaseQueueWrite: (() => void) | undefined;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+      if (!key.startsWith('progress_server_event_queue_v1:')) {
+        return originalSetItem?.(key, value) ?? Promise.resolve();
+      }
+      return new Promise<void>((resolve) => {
+        releaseQueueWrite = () => {
+          Promise.resolve(originalSetItem?.(key, value)).then(() => resolve());
+        };
+      });
+    });
+
+    const submission = submitProgressEvent({
+      eventId: 'lesson:en:1:complete:fixture-attempt-1',
+      type: 'lesson_complete',
+      payload: {
+        lessonId: 1,
+        studyTarget: 'en',
+        score: 5,
+        passed: true,
+        attemptId: 'fixture-attempt-1',
+      },
+    });
+
+    const observedBeforeQueueCommit = await Promise.race([
+      submission.then(() => 'resolved' as const),
+      new Promise<'pending'>((resolve) => setImmediate(() => resolve('pending'))),
+    ]);
+
+    // Always release the injected storage gate so this RED fixture does not
+    // leave a detached production promise waiting after the assertion.
+    releaseQueueWrite?.();
+    await new Promise<void>((resolve) => setImmediate(resolve));
+
+    expect(observedBeforeQueueCommit).toBe('pending');
+  });
+});
+

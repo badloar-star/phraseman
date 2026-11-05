@@ -1,0 +1,35 @@
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+
+// New administrative collections are deliberately excluded from user/economy totals.
+// Jarvis audits delivery metadata only, never OAuth tokens or private knowledge content.
+describe('Jarvis YouTube comment data boundary', () => {
+  const root = path.resolve(__dirname, '../../..');
+  const writer = fs.readFileSync(path.join(root,'functions/src/youtube_comments.ts'),'utf8');
+  const rules = fs.readFileSync(path.join(root,'firestore.rules'),'utf8');
+  it.each(['admin_youtube_comments','admin_youtube_comment_settings'])('%s is server-only', collection => {
+    expect(writer).toContain(`'${collection}'`);
+    expect(rules).toContain(`match /${collection}/{id} { allow read, write: if false; }`);
+    expect(rules).toContain(`&& collection != '${collection}'`);
+  });
+  it('preserves moderation delivery state and immutable recipient fields for future readers', () => {
+    for (const field of ['configId','channelId','parentId','syncedAt','expireAt','sentId','sentAt','inFlightId','notBefore']) expect(writer).toContain(field);
+    expect(writer).not.toMatch(/(?:set|update)\([^\n]*\b(?:accessToken|refreshToken|token)\s*[:,]/);
+  });
+  it('keeps owner topic guidance and uniqueness ledger explicit',()=>{
+    for(const field of ['topicId','questions','answers','reserveReplyText','uniqueReplyKey','duplicate_reply_rewrite'])expect(writer).toContain(field);
+    expect(writer).toContain("settings.doc('analysis')");
+  });
+  it('expires public page caches and bounds shared read quota',()=>{
+    const indexes=JSON.parse(fs.readFileSync(path.join(root,'firestore.indexes.json'),'utf8'));
+    expect(indexes.fieldOverrides).toEqual(expect.arrayContaining([expect.objectContaining({collectionGroup:'admin_youtube_comment_settings',fieldPath:'expireAt',ttl:true})]));
+    for(const field of ['read_budget','hourly','daily','youtube_read_budget'])expect(writer).toContain(field);
+  });
+  it('keeps durable credentials in denied server settings and exposes only connection status',()=>{
+    const oauth=fs.readFileSync(path.join(root,'functions/src/youtube_oauth.ts'),'utf8');
+    expect(oauth).toContain("const SETTINGS='admin_youtube_comment_settings'");
+    for(const field of ['refreshToken','accessToken','oauth_state_','refreshLease','code_verifier'])expect(oauth).toContain(field);
+    expect(writer).toContain('authorization:await youtubeAuthorizationStatus');
+    expect(writer).not.toContain('...oauth');
+  });
+});

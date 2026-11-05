@@ -1,0 +1,33 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const ROOT = path.join(__dirname, '..');
+const read = (relative: string) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
+
+describe('owner full-off: first Classic entry slice', () => {
+  it('sets the permanent switch and canonical Classic fallback', () => {
+    const source = read('app/learning_v2_visibility_switch.ts');
+    expect(source).toContain('Learning V2 отключён решением владельца, не включать');
+    expect(source).toContain('export const LEARNING_V2_HIDDEN: boolean = true;');
+    expect(source).toContain("export const LEARNING_V2_HIDDEN_REDIRECT = '/lessons_list' as const;");
+  });
+
+  it('the Home Course tile goes straight to the retained Classic tab without a V2-page request', () => {
+    const source = read('app/(tabs)/home.tsx');
+    const start = source.indexOf("const openLessonsTabFromHome = (source: 'home_tile' | 'home_continue_first') => {");
+    const end = source.indexOf('const openLessonsFromHome', start);
+    const handler = source.slice(start, end);
+    expect(start).toBeGreaterThan(0);
+    expect(handler).toContain('goToTab(1);');
+    expect(handler).not.toContain('requestLessonsV2Page');
+    expect(source).not.toContain("import { requestLessonsV2Page } from '../lessons_open_v2_request';");
+  });
+
+  it('forces only raw V2 state to Classic while preserving Dialogs', () => {
+    const source = read('app/(tabs)/lessons.tsx');
+    expect(source).toContain('→ старт=lessons reason=owner_disabled');
+    expect(source).toContain('return "lessons";');
+    expect(source).toContain('const page = LEARNING_V2_HIDDEN && pageRaw === "v2" ? "lessons" : pageRaw;');
+    expect(source).toContain('const allowedNext = LEARNING_V2_HIDDEN && next === "v2" ? "lessons" : next;');
+  });
+});

@@ -1,0 +1,1 @@
+export declare const DebugLogger: { error(context: string, error: Error, severity: string): void };

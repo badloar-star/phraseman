@@ -1,0 +1,63 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const { chromium } = require('playwright');
+
+(async () => {
+  const html = fs.readFileSync('admin/v2/legacy.html', 'utf8');
+  const open = html.slice(html.indexOf('  window.openDetail = function(uid) {'), html.indexOf('    // Accordion toggle + lazy-load on first open'));
+  const show = open.slice(open.lastIndexOf('    `;') + 6);
+  const close = html.match(/window\.closeDetail = function\(\) \{([\s\S]*?)\n  \};/)[1];
+  const modalFunctions = html.slice(html.indexOf('  function showInputModal('), html.indexOf("  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetail(); });"));
+  const premiumFunctions = html.slice(html.indexOf('  window.closePremiumGrantModal = function'), html.indexOf('  async function grantAdminPremiumChoice('));
+  const browser = await chromium.launch({ headless: true });
+  try {
+    for (const width of [1600, 390]) {
+      const page = await browser.newPage({ viewport: { width, height: 900 } });
+      await page.route('**/*', route => route.abort());
+      await page.setContent(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<link\b[^>]*>/gi, ''));
+      await page.evaluate(() => {
+        document.body.classList.add('pm-v4-ready', 'pm-v9-ready', 'pm-phase6-ready', 'pm-admin-authenticated', 'kn-admin', 'pm-owner-redesign');
+        document.body.dataset.adminSkin = 'onboarding';
+        document.querySelectorAll('#admin-app').forEach(el => el.style.display = 'block');
+        document.querySelectorAll('#tab-control-panel').forEach(el => el.style.setProperty('display', 'none', 'important'));
+      });
+      await page.addScriptTag({ content: modalFunctions });
+      await page.addScriptTag({ content: 'const escapeHtml = s => s; window._users = [{ uid: "fixture", name: "Fixture" }];\n' + premiumFunctions });
+      for (let round = 0; round < 2; round++) {
+        await page.evaluate(show);
+        const result = await page.locator('#detail').evaluate(el => {
+          const r = el.getBoundingClientRect();
+          return { width: r.width, height: r.height, right: r.right, hit: el.contains(document.elementFromPoint(r.right - 20, r.top + 30)) };
+        });
+        assert.ok(result.width > 0 && result.height > 0, `Drawer hidden at ${width}px: ${JSON.stringify(result)}`);
+        assert.ok(result.right <= width + 1 && result.hit, `Drawer must be on screen above backdrop: ${JSON.stringify(result)}`);
+        for (const kind of ['confirm', 'input']) {
+          for (const accept of [false, true]) {
+            await page.evaluate(({ kind }) => {
+              window.modalResult = 'pending';
+              const fn = kind === 'confirm' ? showConfirmModal : showInputModal;
+              fn({ title: 'Regression fixture', defaultVal: 'fixture' }).then(value => { window.modalResult = value; });
+            }, { kind });
+            const id = kind === 'confirm' ? 'ucmodal' : 'umodal';
+            const button = page.locator(`[id="${id}-overlay"]`).first().locator(accept ? `[id="${id}-confirm-btn"]` : '.umodal-cancel');
+            await button.click({ timeout: 2000 });
+            assert.equal(await page.evaluate(() => window.modalResult), kind === 'confirm' ? accept : accept ? 'fixture' : null);
+            assert.equal(await page.locator('#detail').isVisible(), true);
+            for (const overlay of await page.locator(`[id="${id}-overlay"]`).all()) assert.equal(await overlay.isVisible(), false);
+          }
+        }
+        await page.evaluate(() => window.openPremiumGrantModal('fixture'));
+        const premiumOverlay = page.locator('[id="pg-overlay"]').first();
+        await premiumOverlay.click({ position: { x: 2, y: 2 }, timeout: 2000 });
+        assert.equal(await premiumOverlay.isVisible(), false, 'Premium fallback backdrop closes on click');
+        await page.evaluate(close);
+        assert.equal(await page.locator('#detail').isVisible(), false);
+        for (const overlay of await page.locator('[id="detail-overlay"]').all()) {
+          assert.equal(await overlay.isVisible(), false, 'Every backdrop must close');
+        }
+      }
+      await page.close();
+      console.log(`PASS ${width}px: drawer open/close/reopen, nested confirmation and input cancel/accept with real clicks`);
+    }
+  } finally { await browser.close(); }
+})().catch(error => { console.error(error); process.exitCode = 1; });

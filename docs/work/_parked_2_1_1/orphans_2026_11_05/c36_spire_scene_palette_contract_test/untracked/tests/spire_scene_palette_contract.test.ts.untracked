@@ -1,0 +1,39 @@
+// зачем (вердикт владельца 29.10, scenePalette; координатор: Пик на единой палитре): фон Пика — утверждённая сцена («Глубокое небо» / «А»); вечер Пика — как день, без углей;
+// белый на зоне текста сцены Пика ≥ 4,6 у всех 29 тем × 2 оформлений.
+import fs from 'node:fs';
+import path from 'node:path';
+
+import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
+import { scenePalette, sceneTextZoneWhiteContrast } from '../components/scene/scene_palette';
+
+const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const PREMIUM = new Set(['grad_full_olive', 'grad_full_ref_signal_lime', 'grad_full_ref_storm_violet', 'grad_full_titanium', 'grad_full_horizon', 'grad_full_ref_gravity_blue']);
+
+describe('Пик на scenePalette', () => {
+  it('SpireScene берёт цвета из scenePalette и кладёт палитру в спеку фона', () => {
+    const src = read('components/spire/scene/SpireScene.tsx');
+    expect(src).toContain('scenePaletteCached(');
+    expect(src).toContain("'peak'");
+    expect(src).toContain('sceneTop, sceneBottom');
+    expect(src).toMatch(/evening: false, bleed, sceneH: frame\.sceneH, palette/);
+  });
+
+  it('вечера с углями у Пика нет, лишних звёзд поверх «неба» нет, старого затемнения низа нет', () => {
+    const src = read('components/spire/scene/SpireScene.tsx');
+    expect(src).not.toContain('spireSceneEmber');
+    expect(src).not.toContain('tokens.eveningGlow');
+    expect(src).toContain('isSkyPalette(palette) ? null : SCENE_STARS.map(');
+    expect(src).not.toContain('tokens.scrim ?');
+  });
+
+  it('фон Пика (сцена и слой шапки) рисует общий SceneBackdrop', () => {
+    const src = read('components/spire/scene/spire_scene_backdrop.tsx');
+    expect(src).toContain("import SceneBackdrop from '../../scene/SceneBackdrop'");
+    expect(src).toContain('<SceneBackdrop palette={b.palette}');
+  });
+
+  it.each(LIQUID_GLASS_THEME_IDS.flatMap((id) => (['dark', 'light'] as const).map((ap) => [id, ap] as const)))('белый на зоне текста сцены Пика ≥ 4,6: %s %s', (id, ap) => {
+    const pal = scenePalette(id, ap, 'peak', 1080, 1950, { premium: PREMIUM.has(id) });
+    expect(sceneTextZoneWhiteContrast(pal)).toBeGreaterThanOrEqual(4.6);
+  });
+});

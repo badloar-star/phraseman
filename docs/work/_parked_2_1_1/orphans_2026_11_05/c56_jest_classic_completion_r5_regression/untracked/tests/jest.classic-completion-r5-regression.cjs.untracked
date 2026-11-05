@@ -1,0 +1,10 @@
+const base=require('./jest.classic-completion-r5-focused.cjs');
+module.exports={...base,testMatch:[...base.testMatch,
+ '<rootDir>/tests/classic_completion_runtime.test.ts',
+ '<rootDir>/tests/classic_completion_language_boundary.test.ts',
+ '<rootDir>/tests/classic_completion_transport.test.ts',
+ '<rootDir>/tests/classic_completion_result_reader.test.ts',
+ '<rootDir>/tests/classic_completion_screen_contract.test.ts',
+ '<rootDir>/tests/phone_state_progress_api.test.ts',
+ '<rootDir>/tests/personal_progress_store.test.ts'
+]};

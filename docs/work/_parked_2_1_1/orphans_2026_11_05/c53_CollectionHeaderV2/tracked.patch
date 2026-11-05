@@ -1,0 +1,13 @@
+diff --git a/app/flashcards/CollectionHeaderV2.tsx b/app/flashcards/CollectionHeaderV2.tsx
+index f7fbb7427..8d4eb0496 100644
+--- a/app/flashcards/CollectionHeaderV2.tsx
++++ b/app/flashcards/CollectionHeaderV2.tsx
+@@ -135,7 +135,7 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onMenu, s
+ export function useCollectionLimitLabel(): string | null {
+   const quota = useFlashcardTrainingQuotaPreview();
+   // зачем (D174, cards-section-056): пилюля = «использовано/лимит» (30/30), как D166 «4/3» у энергии, а не «осталось/лимит» (0/30)
+-  return quota.status === 'waiting' ? null : `${Math.min(quota.limit, Math.max(0, quota.used))}/${quota.limit}`;
++  return quota.limit <= 0 || quota.status === 'waiting' ? null : `${Math.min(quota.limit, Math.max(0, quota.used))}/${quota.limit}`;
+ }
+ 
+ /** Капсула поиска (макет `.srch`): лупа, ввод, крестик. Живёт в полосе масштаба над сеткой (кадр «Поиск») или под заголовком (пустой результат). */

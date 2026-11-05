@@ -1,0 +1,23 @@
+# Classic completion current false-success RED fixtures
+
+This isolated fixture imports the current production modules and injects only storage/transport boundaries. Its expected status before the critical repair is **3 contract failures**:
+
+- `UNLOCK-ACK`: rejected unlock storage write is still reported as `true`;
+- `MEDAL-ACK`: rejected medal write returns new-best/pass success-shaped values;
+- `OUTBOX-ACK`: PhoneState submission resolves before the durable queue write.
+
+It is excluded from normal Jest discovery because the file suffix is `.red.ts`. Run it under the repository shared semaphore:
+
+```powershell
+$env:PM_SESSION_ID='codex-session15-classic-completion-red'
+& 'C:\Program Files\Git\bin\bash.exe' .claude/semaphore/slot.sh run --wait=3600 "classic completion bounded RED fixtures" -- npx jest --config tests/red-fixtures/classic-completion/jest.config.cjs --runInBand --no-cache --no-watchman
+```
+
+Classification:
+
+- **Contract RED:** Jest loads the actual source, executes all three tests, and failures name `[CONTRACT-RED:UNLOCK-ACK]`, `[CONTRACT-RED:MEDAL-ACK]`, and `[CONTRACT-RED:OUTBOX-ACK]` with the unsafe received values.
+- **Harness failure:** transform/module/setup failure, timeout, worker crash, or fewer than three executed tests. Do not report this as proof of the product defect.
+- **Unexpected GREEN:** current behavior changed or the injection no longer reaches the stated closure; inspect source/manifest before accepting it as a fix.
+
+The manifest pins the exact source hashes and closure lines observed when this fixture was prepared. Hash drift is review metadata, not a reason to copy old logic into the test.
+

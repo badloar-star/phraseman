@@ -1,0 +1,60 @@
+diff --git a/tests/community_pack_live_state.test.ts b/tests/community_pack_live_state.test.ts
+index b9704d2b0..04b7d9643 100644
+--- a/tests/community_pack_live_state.test.ts
++++ b/tests/community_pack_live_state.test.ts
+@@ -78,3 +78,55 @@ it('ignores an older monthly response after a completed optimistic operation', (
+   store.setContestEntries(month.id, entries, started);
+   expect(store.contestEntries(month.id)[0].hearts).toBe(3);
+ });
++
++it.each([true, false])('retains a changed monthly row omitted by a stale response (pending=%s)', pending => {
++  const store = createPackSocialLiveStore();
++  const month = contestMonth(Date.now());
++  const entry = { id: 'p', authorId: 'other', title: 'Pack', publishedAtMs: month.startMs, status: 'published', hearts: 2, myMonthHeart: false };
++  store.get('p', initial);
++  store.setContestEntries(month.id, [entry]);
++  const started = store.getVersion();
++  store.beginLike('p'); store.setLiked('p', true);
++  if (!pending) store.endLike('p');
++  store.setContestEntries(month.id, [], started);
++  expect(store.contestEntries(month.id)).toEqual([{ ...entry, hearts: 3, myMonthHeart: true }]);
++  expect(store.peek('p')).toMatchObject({ liked: true, likesCount: 13 });
++  store.endLike('p');
++  // A genuinely fresh snapshot can still remove a withdrawn/ineligible pack.
++  store.setContestEntries(month.id, [], store.getVersion());
++  expect(store.contestEntries(month.id)).toEqual([]);
++});
++
++it('preserves a pending monthly row through a newer omission and can still roll it back', () => {
++  const store = createPackSocialLiveStore();
++  const month = contestMonth(Date.now());
++  const entry = { id: 'p', authorId: 'other', title: 'Pack', publishedAtMs: month.startMs, status: 'published', hearts: 2, myMonthHeart: false };
++  store.get('p', initial);
++  store.setContestEntries(month.id, [entry]);
++  store.beginLike('p'); store.setLiked('p', true);
++  store.setContestEntries(month.id, [], store.getVersion());
++  expect(store.contestEntries(month.id)[0].hearts).toBe(3);
++  store.setLiked('p', false); store.endLike('p');
++  expect(store.contestEntries(month.id)).toEqual([entry]);
++  expect(store.peek('p')).toEqual(initial);
++});
++
++it('does not restore a previous month score when a pending like fails after rollover', () => {
++  const clock = jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 10, 30, 23, 59));
++  try {
++    const store = createPackSocialLiveStore();
++    const oldMonth = contestMonth(Date.now());
++    const entry = { id: 'p', authorId: 'other', title: 'Pack', publishedAtMs: oldMonth.startMs, status: 'published', hearts: 400, myMonthHeart: false };
++    store.get('p', initial);
++    store.setContestEntries(oldMonth.id, [entry]);
++    store.beginLike('p'); store.setLiked('p', true);
++    clock.mockReturnValue(oldMonth.endMs);
++    const newMonth = contestMonth(Date.now());
++    const freshEntry = { ...entry, hearts: 5 };
++    store.setContestEntries(newMonth.id, [freshEntry]);
++    store.setLiked('p', false); store.endLike('p');
++    expect(store.contestEntries(newMonth.id)).toEqual([freshEntry]);
++    expect(store.contestEntries(oldMonth.id)).toEqual([]);
++    expect(store.peek('p')).toEqual(initial);
++  } finally { clock.mockRestore(); }
++});

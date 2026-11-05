@@ -1,0 +1,37 @@
+diff --git a/scripts/mockups/ann_v2_capture.cjs b/scripts/mockups/ann_v2_capture.cjs
+index c3b781de4..a24af287d 100644
+--- a/scripts/mockups/ann_v2_capture.cjs
++++ b/scripts/mockups/ann_v2_capture.cjs
+@@ -155,10 +155,11 @@ async function judge(png) {
+       for (let attempt = 1; attempt <= 4 && !(verdict && verdict.ok); attempt += 1) {
+         // зачем (проба 08:21–08:43): на попытках 2 и 4 deep link не шлём — кадр мог просто не успеть (JS-STALL, переход между кадрами),
+         // повторная ссылка перезапускает маршрут и сбрасывает ожидание
+-        if (attempt === 1 || attempt === 3) { adb(['logcat', '-c'], { soft: true }); adb(['shell', `am start -a android.intent.action.VIEW -d ${quote(link)} ${APP}`]); }
++        // зачем: после force-stop приложение запускает только наша ссылка — без неё 300 с ожидания уходят впустую (проба 09:16–09:22)
++        if (attempt === 1 || attempt === 3 || justRestarted) { adb(['logcat', '-c'], { soft: true }); adb(['shell', `am start -a android.intent.action.VIEW -d ${quote(link)} ${APP}`]); }
+         const t0 = Date.now();
+         // зачем: после нашего холодного старта бандл с медленного Metro (сборщик Сверки) идёт 3+ минуты — ждём до 5
+-        const ready = await waitFrameLog(design, justRestarted ? 300000 : attempt === 1 ? 20000 : 10000);
++        const ready = await waitFrameLog(design, justRestarted ? 300000 : attempt === 1 ? 45000 : 15000);
+         if (!ready) console.log(LOG, `${name}: приложение не сообщило о кадре за ${Math.round((Date.now() - t0) / 1000)} с (попытка ${attempt}${justRestarted ? ', после перезапуска' : ''})`);
+         await sleep(ready ? WAIT_MS : 1500);
+         justRestarted = false;
+@@ -166,9 +167,16 @@ async function judge(png) {
+         verdict = await judge(png);
+         if (verdict.ok) {
+           // зачем: экран без узла story-ann-<design> — это не кадр объявления (сборка без маршрута, другая страница), а не «просто картинка»
+-          const nodes = uiNodes(design);
++          let nodes = uiNodes(design);
++          // зачем: под нагрузкой view кадра появляются в иерархии на 1–4 с позже строки лога — перечитываем дамп, а не бракуем кадр
++          // зачем: корень кадра отдаётся не всегда (прогон 3: у части кадров его нет при живом слайде) — один повтор дампа, дальше верим логу
++          for (let k = 0; k < 1 && nodes && !nodes.some((n) => n.id === `story-ann-${design}`); k += 1) { await sleep(1500); nodes = uiNodes(design); }
++          if (nodes && nodes.some((n) => n.id === `story-ann-${design}`)) { png = adb(['exec-out', 'screencap', '-p'], { binary: true }); verdict = await judge(png); if (!verdict.ok) { console.log(LOG, `${name}: повторный снимок после дампа — ${verdict.why}`); } }
+           verdict.nodes = nodes;
+-          const hasDesign = nodes ? nodes.some((n) => n.id === `story-ann-${design}`) : null;
++          const rootSeen = nodes ? nodes.some((n) => n.id === `story-ann-${design}`) : null;
++          // зачем: строка «[STORY-ANN2]: кадр <design>» пишется самим слайдом этого design — такое же доказательство, как корневой узел
++          const hasDesign = rootSeen === true || ready ? true : rootSeen;
++          if (!rootSeen && ready && nodes) console.log(LOG, `${name}: корня story-ann-${design} в иерархии нет, кадр принят по логу приложения (узлов story-*: ${nodes.length})`);
+           if (hasDesign === false) verdict = { ok: false, why: 'no_design_node', nodes: nodes.map((n) => n.id).slice(0, 8) };
+         }
+         if (!verdict.ok) {

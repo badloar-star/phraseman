@@ -1,0 +1,28 @@
+const path = require('node:path');
+
+const rootDir = path.resolve(__dirname, '../../..');
+const base = require(path.join(rootDir, 'package.json')).jest;
+
+module.exports = {
+  ...base,
+  rootDir,
+  testMatch: [
+    '<rootDir>/tests/red-fixtures/classic-completion/current_false_success.red.ts',
+  ],
+  testPathIgnorePatterns: [],
+  collectCoverage: false,
+  maxWorkers: 1,
+  forceExit: false,
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+      tsconfig: {
+        isolatedModules: true,
+        strict: true,
+        esModuleInterop: true,
+        paths: { '@/*': ['./*'] },
+        jsx: 'react',
+      },
+    }],
+  },
+};
+

@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import test from 'node:test';
+
+const root = join(import.meta.dirname, '..');
+const read = (...parts) => readFileSync(join(root, ...parts), 'utf8');
+
+test('fixture prepares and verifies owned local bytes behind the diagnostic gate', () => {
+  const fixture = read('modules', 'dev', 'native_audio_safe_fixture.ts');
+  assert.match(fixture, /file\.bytesSync\(\)/);
+  assert.match(fixture, /readback\.some/);
+  assert.match(fixture, /isVerifiedLocalAudioUri/);
+  assert.doesNotMatch(fixture, /downloadAsync|https?:\/\//i);
+  assert.match(fixture, /createAudioPlayer\(file\.uri\)/);
+  assert.ok(fixture.indexOf("require('./native_audio_local_payload')") > fixture.indexOf('if (!isEnabled()) return null;'));
+});
+
+test('the existing Dev Hub owns four deliberate audio/mic actions and cleanup', () => {
+  const registry = read('components', 'dev', 'devToolRegistry.ts');
+  const sheet = read('components', 'dev', 'DevHubSheet.tsx');
+  for (const action of [
+    'native-audio-play',
+    'native-audio-stop',
+    'native-mic-start',
+    'native-mic-stop',
+  ]) {
+    assert.match(registry, new RegExp(`'${action}'`));
+    assert.match(sheet, new RegExp(`case '${action}'`));
+  }
+  assert.match(sheet, /playBundledAudioSmoke/);
+  assert.match(sheet, /startLocalMicSmoke/);
+  assert.match(sheet, /bindNativeAudioHubLifecycle\(AppState/);
+  assert.match(sheet, /useEffect\(\(\) => \(\) =>/);
+  assert.doesNotMatch(sheet, /request\(.*RECORD_AUDIO/);
+});
+
+test('the source snapshot does not introduce routes, V2, TTS, ASR, or network fallback', () => {
+  const fixture = read('modules', 'dev', 'native_audio_safe_fixture.ts').toLowerCase();
+  const sheet = read('components', 'dev', 'DevHubSheet.tsx').toLowerCase();
+  for (const forbidden of ['expo-router', 'learning-v2', 'expo-speech', 'speech-recognition', 'whisper', 'downloadasync', 'fetch(']) {
+    assert.equal(fixture.includes(forbidden), false, `fixture contains ${forbidden}`);
+  }
+  assert.equal(sheet.includes("case 'native-audio-play'"), true, 'wiring action is present');
+});

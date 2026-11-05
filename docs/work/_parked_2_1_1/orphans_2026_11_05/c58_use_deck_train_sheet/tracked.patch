@@ -1,0 +1,13 @@
+diff --git a/app/flashcards/use_deck_train_sheet.tsx b/app/flashcards/use_deck_train_sheet.tsx
+index ecd5821d0..9f7bd7e10 100644
+--- a/app/flashcards/use_deck_train_sheet.tsx
++++ b/app/flashcards/use_deck_train_sheet.tsx
+@@ -42,7 +42,7 @@ export function useDeckTrainSheet(options: Readonly<{ deckId: string; count: num
+   const trainingLocked = quotaPreview.status === 'exhausted';
+   // как на хабе: квоту прочитать НЕЛЬЗЯ ('unavailable'/'stale_account') — человека не наказываем за нашу аварию; ждём только 'waiting'
+   const trainingEntryReady = quotaPreview.status === 'allowed' || quotaPreview.status === 'unavailable' || quotaPreview.status === 'stale_account';
+-  const limitLabel = quotaPreview.status === 'waiting' || !accessResolved || hasPremiumAccess
++  const limitLabel = quotaPreview.limit <= 0 || quotaPreview.status === 'waiting' || !accessResolved || hasPremiumAccess
+     ? null
+     : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
+ 

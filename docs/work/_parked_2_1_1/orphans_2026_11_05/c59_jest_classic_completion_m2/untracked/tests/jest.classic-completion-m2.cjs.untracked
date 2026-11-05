@@ -1,0 +1,15 @@
+const base=require('./jest.classic-completion-m1r2.cjs');
+module.exports={...base,testMatch:[...base.testMatch,
+ '<rootDir>/tests/classic_completion_runtime.test.ts',
+ '<rootDir>/tests/classic_completion_screen_contract.test.ts',
+ '<rootDir>/tests/classic_completion_transport.test.ts',
+ '<rootDir>/tests/classic_completion_language_boundary.test.ts',
+ '<rootDir>/tests/red-fixtures/classic-completion/current_false_success.red.ts',
+ '<rootDir>/tests/lesson_lock_system.test.ts',
+ '<rootDir>/tests/unit/lesson_lock_system.test.ts',
+ '<rootDir>/tests/medal_utils.test.ts',
+ '<rootDir>/tests/lesson_bonus_grant.test.ts',
+ '<rootDir>/tests/practice_rune_settlement.test.ts',
+ '<rootDir>/tests/use_practice_runes.test.ts',
+ '<rootDir>/tests/cloud_sync_customization_account_isolation.test.ts'
+]};

@@ -1,0 +1,42 @@
+diff --git a/tests/lesson_completion_entitlement_contract.test.ts b/tests/lesson_completion_entitlement_contract.test.ts
+index ed2258ccf..635e5094e 100644
+--- a/tests/lesson_completion_entitlement_contract.test.ts
++++ b/tests/lesson_completion_entitlement_contract.test.ts
+@@ -7,14 +7,21 @@ const lesson = read('lesson1.tsx');
+ const completion = read('lesson_complete.tsx');
+ 
+ describe('lesson completion entitlement wiring', () => {
+-  it('verifies active Plus before asking the lock system to persist the next lesson', () => {
++  it('verifies active Plus before preparing the durable next-lesson unlock', () => {
+     const entitlement = lesson.indexOf('const hasPremiumAccess = noLimits || await getVerifiedPremiumAccessStatus({');
+-    // зачем (aa2bbfc3e, Мастерская фраз): в режиме Мастерской следующий урок не открывается (`workshopActive ? false : await tryUnlockNextLesson(`); проверка Plus по-прежнему идёт ДО запроса открытия.
+-    const unlock = lesson.indexOf('await tryUnlockNextLesson(', entitlement);
++    const eligibility = lesson.indexOf('const canOpenNext = canUnlockNextLessonAfterCompletion(lessonId,hasPremiumAccess)', entitlement);
++    const unlockRead = lesson.indexOf('await isLessonUnlocked(lessonId + 1, screenPrimeScope.studyTarget)', eligibility);
++    const staleScopeFence = lesson.indexOf('if (!completionOriginCurrent()) return;', unlockRead);
++    const unlock = lesson.indexOf('const nextRequired = canOpenNext && !nextAlreadyUnlocked;', staleScopeFence);
++    const intent = lesson.indexOf('nextLessonId:nextRequired?lessonId+1:null', unlock);
++    const commit = lesson.indexOf('classicRuntime.complete(classicIntent)', intent);
+     expect(entitlement).toBeGreaterThan(-1);
+-    expect(unlock).toBeGreaterThan(entitlement);
+-    expect(lesson).toMatch(/const didUnlock = (?:workshopActive \? false : )?await tryUnlockNextLesson\(/);
+-    expect(lesson.slice(unlock, unlock + 240)).toContain('hasPremiumAccess');
++    expect(eligibility).toBeGreaterThan(entitlement);
++    expect(unlockRead).toBeGreaterThan(eligibility);
++    expect(staleScopeFence).toBeGreaterThan(unlockRead);
++    expect(unlock).toBeGreaterThan(staleScopeFence);
++    expect(intent).toBeGreaterThan(unlock);
++    expect(commit).toBeGreaterThan(intent);
+   });
+ 
+   it('does not trust the unlocked route flag when announcing the next lesson', () => {
+@@ -35,7 +42,8 @@ describe('lesson completion entitlement wiring', () => {
+     expect(hint).toBeGreaterThan(-1);
+     expect(hintEnd).toBeGreaterThan(hint);
+     expect(hintBlock).toContain('shouldAnnounceNextLessonUnlock(');
+-    expect(hintBlock).toContain("params.unlocked === '1'");
++    expect(hintBlock).toContain('completionDidUnlock');
++    expect(hintBlock.includes("params.unlocked === '1'")).toBe(false);
+     expect(hintBlock).not.toContain('completionRequiresPremium\n    ?');
+     // зачем (04.10): 7887bbc7b — подсказка о следующем уроке стала веткой starsNote (макет E1–E4), смысл тот же.
+     expect(completion.slice(results, results + 3000)).toMatch(/starsNote=\{[\s\S]{0,700}?: nextLessonUnlockHint\s*\?/);

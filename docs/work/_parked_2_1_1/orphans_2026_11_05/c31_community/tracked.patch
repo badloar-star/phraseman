@@ -1,0 +1,90 @@
+diff --git a/app/(tabs)/community.tsx b/app/(tabs)/community.tsx
+index 0da788e22..8051536ed 100644
+--- a/app/(tabs)/community.tsx
++++ b/app/(tabs)/community.tsx
+@@ -7,17 +7,16 @@ import { useLocalSearchParams, usePathname, useRouter } from 'expo-router';
+ import { useLang } from '../../components/LangContext';
+ import { triLang } from '../../constants/i18n';
+ import { V2 } from '../../constants/v2Style';
+-import { useV2Palette } from '../../components/v2/useV2Palette';
+ import { CommunityHeaderSlotProvider, type CommunityHeaderSlot } from '../community_header_slot';
+ import { TabRuntimeOwnerOverride, useTabNav } from '../TabContext';
+ import { SUB_RUNTIME_OWNER_IDS, type SubRuntimeOwnerId } from '../tab_page_model';
+ import { isSpireTabEnabled, primeSpireTabFlag, useSpireTabEnabled } from '../spire_tab_flag';
+ import { refreshSpireTabFlagIfClosed } from '../spire_gate_refresh';
+ import { hapticTap } from '../../hooks/use-haptics';
+-import { useSpireSceneHeaderTint } from '../../components/spire/scene/spire_scene_header_tint';
+ import { traceSpireTabLayout, traceSpireTabsHeader } from '../../components/spire/scene/spire_tabs_scroll_trace';
+ import { setSpireHeaderOverlayInset } from '../../components/spire/scene/spire_header_overlay';
+ import { SPIRE_SCENE_INK } from '../../components/spire/scene/spire_scene_palette';
++import { peakSceneTopHex } from '../../components/scene/scene_palette';
+ import { useTabTopBleedInset } from '../../components/tab_top_bleed';
+ import SpireEnergyPill from '../../components/spire/SpireEnergyPill';
+ import ScreenBackButton, { SCREEN_BACK_RESERVED } from '../../components/v2/ScreenBackButton';
+@@ -25,6 +24,7 @@ import { tabEnteredByMenu } from '../tab_entry_source';
+ import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene_flag';
+ import { useIsFocused } from '@react-navigation/native';
+ import { useSceneStatusBar } from '../../hooks/use_scene_status_bar';
++import { useTheme } from '../../components/ThemeContext';
+ 
+ type Section = SubRuntimeOwnerId;
+ type SectionScreen = React.ComponentType<{ presentation?: 'push' | 'embedded' }>;
+@@ -58,7 +58,7 @@ function sectionFromParam(value: unknown): Section | null {
+  */
+ export default function CommunityTabRoute() {
+   const { lang } = useLang();
+-  const p = useV2Palette();
++  const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+   const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder (в тёмном ≈ accent, вид не меняется)
+   const pathname = usePathname();
+   const { section: sectionParam } = useLocalSearchParams<{ section?: string }>();
+@@ -77,12 +77,15 @@ export default function CommunityTabRoute() {
+   const topInset = useTabTopBleedInset();
+   // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «верх цельный»; координатор: «сцена от самого верха, шапка прозрачная поверх, слой spire_header_layer убрать»):
+   // на Пике со «Сценой» шапка лежит ПОВЕРХ тела, тело — от верха экрана, лента Пика отступает на высоту шапки (spire_header_overlay); вкладки белые
+-  const sceneTint = useSpireSceneHeaderTint();
+-  const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null);
++  const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire');
++  // Одна каноническая Peak-канва для всех трёх разделов. Чистый токен не ждёт mount
++  // сцены и не сбрасывается её cleanup, поэтому шапка не прыгает при смене раздела.
++  const communityHeaderSurface = peakSceneTopHex(liquidGlassThemeId, liquidGlassAppearance);
++  const communityHeaderInk = SPIRE_SCENE_INK;
+   const [headerH, setHeaderH] = useState(0);
+-  useEffect(() => { setSpireHeaderOverlayInset(overScene ? headerH : 0); }, [overScene, headerH]);
++  useEffect(() => { setSpireHeaderOverlayInset(0); }, []);
+   // зачем (владелец 29.10, вкладки наезжают при прокрутке Пика; «сперва логи»): решение шапки пишется при каждой смене — см. spire_tabs_scroll_trace
+-  useEffect(() => { traceSpireTabsHeader({ section, overScene, sceneTint, topInset, headerH }); }, [section, overScene, sceneTint, topInset, headerH]);
++  useEffect(() => { traceSpireTabsHeader({ section, overScene, sceneTint: communityHeaderSurface, topInset, headerH }); }, [section, overScene, communityHeaderSurface, topInset, headerH]);
+   useEffect(() => () => setSpireHeaderOverlayInset(0), []);
+ 
+   useEffect(() => {
+@@ -176,7 +179,7 @@ export default function CommunityTabRoute() {
+ 
+   return (
+     <View testID="community-tab" style={s.root}>
+-      <View onLayout={(e) => setHeaderH(e.nativeEvent.layout.height)} style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null, overScene ? s.headerOver : null]}>
++      <View onLayout={(e) => setHeaderH(e.nativeEvent.layout.height)} style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null, s.headerOver, { backgroundColor: communityHeaderSurface }]}>
+         {section === 'packs' && packsSlot?.overlay ? (
+           // зачем (packs-simple.html кадр 2): открытый поиск «Наборов» встаёт на место строки вкладок.
+           <View style={[s.headerOverlay, backInset]}>{packsSlot.overlay}</View>
+@@ -197,9 +200,9 @@ export default function CommunityTabRoute() {
+                 // зачем (координатор 22.10: «тап при x≈93 dp не попадает»): зазор между вкладками 22 перекрыт целиком (11 + 11), высота зоны ≥ 44
+                 hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}
+                 // зачем (packs-simple.html `.tabs3`): активная вкладка — белый текст и полоса 3px акцента под словом.
+-                style={[s.tab, { borderBottomColor: on ? (overScene ? SPIRE_SCENE_INK.text : accentGfx.border) : 'transparent' }]}
++                style={[s.tab, { borderBottomColor: on ? communityHeaderInk.text : 'transparent' }]}
+               >
+-                <Text style={[s.tabText, { color: overScene ? (on ? SPIRE_SCENE_INK.text : SPIRE_SCENE_INK.muted) : on ? p.text : p.textSecondary }]}>{seg.label}</Text>
++                <Text style={[s.tabText, { color: on ? communityHeaderInk.text : communityHeaderInk.muted }]}>{seg.label}</Text>
+               </Pressable>
+             );
+           })}
+@@ -208,7 +211,7 @@ export default function CommunityTabRoute() {
+         <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}</View>
+         </>)}
+       </View>
+-      <View style={overScene ? s.bodyUnder : s.body}>
++      <View style={[s.bodyUnder, { top: headerH }]}>
+         {renderSection('friends')}
+         {spireVisible ? renderSection('spire') : null}
+         {renderSection('packs')}

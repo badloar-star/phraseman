@@ -1,0 +1,33 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { assertFails, assertSucceeds, initializeTestEnvironment, type RulesTestEnvironment } from '@firebase/rules-unit-testing';
+import { doc, setDoc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
+// Full rules compilation can exceed the default five-second setup timeout.
+jest.setTimeout(30_000);
+const legacy={step:'shown',variant:'PLUS',context:'no_energy',plan:null,obColor:null,price:null,day:'2026-10-28',ts:1793188800000,uidh:'abc',dev:false,expireAt:new Date('2027-01-26')};
+describe('paywall attribution schema (emulator)',()=>{
+ let env:RulesTestEnvironment;
+ beforeAll(async()=>{env=await initializeTestEnvironment({projectId:'demo-phraseman-monetization',firestore:{rules:readFileSync(path.resolve(__dirname,'../../firestore.rules'),'utf8')}});});
+ afterAll(async()=>env?.cleanup());
+ beforeEach(async()=>env.clearFirestore());
+ test('legacy mobile writes remain valid',async()=>{await assertSucceeds(setDoc(doc(env.authenticatedContext('a').firestore(),'paywall_funnel','legacy'),legacy));});
+ test.each(['shown','store_confirmed','access_applied'])('%s supports bounded impression and transaction hash',async step=>{
+ await assertSucceeds(setDoc(doc(env.authenticatedContext('a').firestore(),'paywall_funnel',step),{...legacy,step,schemaVersion:2,impressionId:'impression',transactionHash:step==='shown'?null:'a'.repeat(64)}));
+ });
+ test('a confirmed purchase may record an unknown bounded RevenueCat period',async()=>{
+ await assertSucceeds(setDoc(doc(env.authenticatedContext('a').firestore(),'paywall_funnel','unknown-period'),{...legacy,step:'purchase_completed',schemaVersion:2,impressionId:'impression',transactionHash:'a'.repeat(64),periodType:'PREPAID'}));
+ });
+ test('raw transaction IDs, malformed hashes and oversized impressions are rejected',async()=>{
+ const db=env.authenticatedContext('a').firestore();
+ for(const extra of [{transactionId:'raw-secret'},{schemaVersion:3},{transactionHash:'not-a-hash'},{impressionId:'x'.repeat(81)},{periodType:'x'.repeat(25)}]) await assertFails(setDoc(doc(db,'paywall_funnel','invalid'),{...legacy,...extra}));
+ });
+ test('anonymous client cannot write; signed-in client cannot read, update or delete',async()=>{
+ await assertFails(setDoc(doc(env.unauthenticatedContext().firestore(),'paywall_funnel','x'),legacy));
+ const ref=doc(env.authenticatedContext('a').firestore(),'paywall_funnel','x');await assertSucceeds(setDoc(ref,legacy));
+ await assertFails(getDoc(ref));await assertFails(updateDoc(ref,{step:'purchase_completed'}));await assertFails(deleteDoc(ref));
+ });
+ test('admin can read the analytics document',async()=>{
+ await env.withSecurityRulesDisabled(async ctx=>setDoc(doc(ctx.firestore(),'paywall_funnel','x'),legacy));
+ await assertSucceeds(getDoc(doc(env.authenticatedContext('admin',{admin:true}).firestore(),'paywall_funnel','x')));
+ });
+});

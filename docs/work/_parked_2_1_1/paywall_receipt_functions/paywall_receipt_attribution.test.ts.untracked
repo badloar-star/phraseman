@@ -1,0 +1,18 @@
+import { createHash } from 'node:crypto';
+import { reconcilePaywallReceipts } from './paywall_receipt_attribution';
+const hash=(id:string)=>createHash('sha256').update('paywall-transaction:v1:'+id).digest('hex');
+const funnel=(step:string,id='paid')=>({step,variant:'PLUS',context:'no_energy',plan:'monthly',dev:false,impressionId:'i',transactionHash:hash(id),schemaVersion:2});
+const receipt=(id:string,periodType='NORMAL',environment='PRODUCTION')=>({transactionId:id,eventType:'INITIAL_PURCHASE',periodType,environment,grossUsdMicros:periodType==='TRIAL'?0:7990000});
+test('joins receipts, separates trial and paid, and tracks local access',()=>{
+ const r=reconcilePaywallReceipts([funnel('store_confirmed'),funnel('access_applied'),funnel('store_confirmed','trial')],[receipt('paid'),receipt('trial','TRIAL')]);
+ expect(r.metrics).toMatchObject({verifiedPaid:1,verifiedTrials:1,accessApplied:1,accessUnobserved:1,unmatched:0});
+ expect(r.purchaseDocs).toHaveLength(1);expect(r.purchaseDocs[0].variant).toBe('PLUS');
+});
+test('duplicates and sandbox never inflate paid conversion',()=>{
+ const r=reconcilePaywallReceipts([funnel('store_confirmed'),funnel('store_confirmed'),funnel('store_confirmed','sandbox')],[receipt('paid'),receipt('paid'),receipt('sandbox','NORMAL','SANDBOX')]);
+ expect(r.metrics.verifiedPaid).toBe(1);expect(r.purchaseDocs).toHaveLength(1);
+});
+test('unknown or absent receipt is not a purchase; renewal is not a new purchase',()=>{
+ const r=reconcilePaywallReceipts([funnel('store_confirmed','missing'),funnel('store_confirmed','renew')],[{...receipt('renew'),eventType:'RENEWAL'}]);
+ expect(r.purchaseDocs).toHaveLength(0);expect(r.metrics.unmatched).toBe(1);
+});

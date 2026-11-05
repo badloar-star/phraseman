@@ -54,6 +54,9 @@ const MAX_ID_LEN = 180;
 const MAX_ACCOUNT_DELETE_IDENTITIES = 64;
 const ACCOUNT_DELETE_RECEIPT_MAX_ATTEMPTS = 64;
 const ACCOUNT_DELETE_RECEIPT_RATE_WINDOW_MS = 60_000;
+// Step-v2 keeps the existing collection but prefixes the room document id so
+// legacy floor records remain readable without being reinterpreted.
+const SPIRE_STEP_RECORD_DOC_PREFIX = 'step-v2_';
 // зачем (Пакет 6A): шаг стирания V2 обязан отдать управление с запасом на
 // надгробие, удаление Auth и диагностику — иначе таймаут оборвёт конвейер посреди.
 const ACCOUNTS_V2_PURGE_RESERVE_MS = 90_000;
@@ -1595,6 +1598,46 @@ export async function removeFromSpireGroups(
   stableUid: string,
   stats: DeleteStats,
 ): Promise<void> {
+  const scrubRecordRefs = async (recordRefs: FirebaseFirestore.DocumentReference[]): Promise<void> => {
+    await db.runTransaction(async (tx) => {
+      const recordSnaps = await Promise.all(recordRefs.map((recordRef) => tx.get(recordRef)));
+      for (let index = 0; index < recordSnaps.length; index += 1) {
+        const recordSnap = recordSnaps[index];
+        if (!recordSnap.exists) continue;
+        const data = recordSnap.data() ?? {};
+        const records = { ...(data.records ?? {}) };
+        const personal = { ...(data.personal ?? {}) };
+        delete personal[stableUid];
+        for (const key of Object.keys(records)) if (records[key]?.uid === stableUid) delete records[key];
+        const patch: Record<string, unknown> = { records, personal };
+        if (recordRefs[index].id.startsWith(SPIRE_STEP_RECORD_DOC_PREFIX)) {
+          patch.participantUids = Array.isArray(data.participantUids)
+            ? data.participantUids.filter((uid: unknown) => uid !== stableUid)
+            : [];
+        }
+        tx.update(recordRefs[index], patch);
+      }
+    });
+  };
+
+  const scrubIndexedStepRecords = async (): Promise<void> => {
+    // Step-v2 keeps a server-maintained participant index so records remain
+    // discoverable even if group membership was already removed. Removing the
+    // index entry in the same transaction keeps a failed scrub retryable.
+    for (;;) {
+      stats.queriesRun += 1;
+      const records = await db.collection('spire_floor_records')
+        .where('participantUids', 'array-contains', stableUid)
+        .limit(DELETE_BATCH_LIMIT)
+        .get();
+      if (records.empty) break;
+      for (const record of records.docs) await scrubRecordRefs([record.ref]);
+      if (records.size < DELETE_BATCH_LIMIT) break;
+    }
+  };
+
+  await scrubIndexedStepRecords();
+
   const memberPath = new admin.firestore.FieldPath('members', stableUid);
   let removed = 0;
   for (;;) {
@@ -1604,17 +1647,11 @@ export async function removeFromSpireGroups(
     // Erase private best times and public ownership before removing membership.
     // A failed scrub leaves membership discoverable for the deletion retry.
     for (const group of snap.docs) {
-      const recordRef = db.collection('spire_floor_records').doc(group.id);
-      await db.runTransaction(async (tx) => {
-        const recordSnap = await tx.get(recordRef);
-        if (!recordSnap.exists) return;
-        const data = recordSnap.data() ?? {};
-        const records = { ...(data.records ?? {}) };
-        const personal = { ...(data.personal ?? {}) };
-        delete personal[stableUid];
-        for (const floor of Object.keys(records)) if (records[floor]?.uid === stableUid) delete records[floor];
-        tx.update(recordRef, { records, personal });
-      });
+      const recordRefs = [
+        db.collection('spire_floor_records').doc(group.id),
+        db.collection('spire_floor_records').doc(`${SPIRE_STEP_RECORD_DOC_PREFIX}${group.id}`),
+      ];
+      await scrubRecordRefs(recordRefs);
     }
     const batch = db.batch();
     for (const doc of snap.docs) {
@@ -1629,6 +1666,10 @@ export async function removeFromSpireGroups(
     await batch.commit();
     if (snap.size < DELETE_BATCH_LIMIT) break;
   }
+  // A finish transaction that read membership before the removal batch may
+  // have raced with the first scrub. Once membership is gone it cannot commit
+  // again; this second indexed sweep removes any record it briefly restored.
+  await scrubIndexedStepRecords();
   console.log('[ACCOUNT-DELETE] spire_groups member removed', JSON.stringify({ groups: removed }));
 }
 

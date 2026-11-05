@@ -1,0 +1,56 @@
+import { createHash } from 'node:crypto';
+
+export interface FunnelReceiptLink {
+  step?: unknown; variant?: unknown; context?: unknown; plan?: unknown; dev?: unknown;
+  schemaVersion?: unknown; impressionId?: unknown; transactionHash?: unknown;
+}
+export interface StoreReceiptRow {
+  transactionId?: unknown; originalTransactionId?: unknown; eventType?: unknown;
+  periodType?: unknown; environment?: unknown; grossUsdMicros?: unknown;
+}
+const str = (v: unknown): string => typeof v === 'string' ? v.trim() : '';
+const hash = (v: string): string => createHash('sha256').update(`paywall-transaction:v1:${v}`).digest('hex');
+/** Receipt-backed analytics only. Never grants access or changes billing. Attribution is client-reported. */
+export function reconcilePaywallReceipts(funnel: readonly FunnelReceiptLink[], receipts: readonly StoreReceiptRow[]) {
+  const metrics = { verifiedPaid: 0, verifiedTrials: 0, trialConversions: 0, accessApplied: 0, accessUnobserved: 0, unmatched: 0, excluded: 0, missingTransaction: 0, unattributedReceipts: 0 };
+  const byHash = new Map<string, StoreReceiptRow>();
+  for (const row of receipts) {
+    if (!str(row.transactionId)) continue;
+    const key = hash(str(row.transactionId));
+    const existing = byHash.get(key);
+    // Cancellation/expiration can repeat a transaction ID; preserve its origin receipt regardless of query order.
+    if (existing && ['INITIAL_PURCHASE', 'NON_RENEWING_PURCHASE'].includes(str(existing.eventType))) continue;
+    byHash.set(key, row);
+  }
+  const applied = new Set(funnel.filter(d => d.dev === false && d.step === 'access_applied').map(d => `${str(d.impressionId)}:${str(d.transactionHash)}`));
+  const seen = new Set<string>();
+  const purchaseDocs: FunnelReceiptLink[] = [];
+  for (const doc of funnel) {
+    if (doc.dev !== false || doc.schemaVersion !== 2 || doc.step !== 'store_confirmed' || !str(doc.impressionId)) continue;
+    const txHash = str(doc.transactionHash);
+    if (!/^[a-f0-9]{64}$/.test(txHash)) { metrics.missingTransaction++; continue; }
+    if (seen.has(txHash)) continue;
+    seen.add(txHash);
+    const row = byHash.get(txHash);
+    if (!row) { metrics.unmatched++; continue; }
+    if (row.environment !== 'PRODUCTION' || !['INITIAL_PURCHASE', 'NON_RENEWING_PURCHASE'].includes(str(row.eventType))) { metrics.excluded++; continue; }
+    const trial = row.periodType === 'TRIAL';
+    const paid = !trial && typeof row.grossUsdMicros === 'number' && row.grossUsdMicros > 0;
+    if (!trial && !paid) { metrics.unmatched++; continue; }
+    if (trial) metrics.verifiedTrials++;
+    let converted = false;
+    if (trial && str(row.originalTransactionId)) {
+      converted = receipts.some(r => r.environment === 'PRODUCTION' && r.eventType === 'RENEWAL'
+        && str(r.originalTransactionId) === str(row.originalTransactionId) && r.periodType !== 'TRIAL'
+        && typeof r.grossUsdMicros === 'number' && r.grossUsdMicros > 0);
+    }
+    if (converted) metrics.trialConversions++;
+    if (paid || converted) { metrics.verifiedPaid++; purchaseDocs.push({ ...doc, step: 'purchase_completed' }); }
+    if (applied.has(`${str(doc.impressionId)}:${txHash}`)) metrics.accessApplied++;
+    else metrics.accessUnobserved++;
+  }
+  for (const [key, row] of byHash) {
+    if (row.environment === 'PRODUCTION' && ['INITIAL_PURCHASE', 'NON_RENEWING_PURCHASE'].includes(str(row.eventType)) && !seen.has(key)) metrics.unattributedReceipts++;
+  }
+  return { metrics, purchaseDocs };
+}

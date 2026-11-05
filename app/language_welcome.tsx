@@ -64,6 +64,10 @@ import BackGlyph from '../components/v2/BackGlyph';
 import { useTheme } from '../components/ThemeContext';
 import { logSceneTheme } from '../components/home/v2/scene/scene_theme_log';
 import { languageWelcomePalette, type LanguageWelcomePalette } from './language_welcome_palette';
+import Animated, { FadeIn, ReduceMotion } from 'react-native-reanimated';
+
+// зачем (ТОП-20 №15, 05.11): шаги «цель» и «уровень» появляются мягко (200 мс), а не рывком; первый кадр экрана (welcome) без анимации — старт не замедляем; Reduce Motion уважается
+const STEP_ENTER = FadeIn.duration(200).reduceMotion(ReduceMotion.System);
 
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -361,20 +365,20 @@ export default function LanguageWelcomeScreen() {
           </View>
         ) : null}
         {step === 'goal' ? (
-          <View>
+          <Animated.View entering={STEP_ENTER}>
             <Text style={styles.question}>
               {fill(lc.lwGoalQuestion, { lang: target ? lc[LANGUAGE_Q_KEY[target]] : '' })}
             </Text>
             {renderOptions(GOAL_OPTIONS, goal, (id) => { setGoal(id); })}
-          </View>
+          </Animated.View>
         ) : null}
         {step === 'level' ? (
-          <View>
+          <Animated.View entering={STEP_ENTER}>
             <Text style={styles.question}>
               {lc.lwLevelQuestion}
             </Text>
             {renderOptions(LEVEL_OPTIONS, level, (id) => { setLevel(id); })}
-          </View>
+          </Animated.View>
         ) : null}
       </ScrollView>
 

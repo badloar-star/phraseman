@@ -7,6 +7,12 @@ export type OverlayKey =
   | 'coinRankEnough'
   | 'sectionOpening'
   | 'peakTour'
+  | 'spireOutcome'
+  | 'spirePosition'
+  | 'coinRankUpgrade'
+  | 'streakMilestone'
+  | 'firstDialog'
+  | 'referralFriendReward'
   | 'update'
   | 'releaseNotes'
   | 'broadcast'
@@ -72,6 +78,14 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   // «приветствие > открытие раздела > тур Пика > праздники». Закрывает человек («Далее»/«Пропустить»/«Начать»), выселять нельзя; нативный <Modal> (NATIVE_MODAL_KEYS).
   'peakTour',
   'levelUp',
+  // зачем (владелец 05.11, «такое нельзя допускать»): окна-результаты экранов тоже в очереди, ниже тура Пика и рядом с праздниками: итог ступени и позиция Пика, повышение ранга монеты,
+  // рубеж серии, «Первый разговор», награда за друга. Все закрывает человек (выселять нельзя), все — нативный <Modal> (NATIVE_MODAL_KEYS).
+  'spireOutcome',
+  'spirePosition',
+  'coinRankUpgrade',
+  'streakMilestone',
+  'firstDialog',
+  'referralFriendReward',
   'themedAlert',
   'premiumCelebration',
   'vipCelebration',
@@ -160,6 +174,12 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'introFullAccess',
   'sectionOpening',
   'peakTour',
+  'spireOutcome',
+  'spirePosition',
+  'coinRankUpgrade',
+  'streakMilestone',
+  'firstDialog',
+  'referralFriendReward',
   'levelUp',
   'premiumCelebration',
   'vipCelebration',
@@ -205,6 +225,12 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   onboardingWelcome: false,
   authRecovery: false,
   peakTour: false,
+  spireOutcome: false,
+  spirePosition: false,
+  coinRankUpgrade: false,
+  streakMilestone: false,
+  firstDialog: false,
+  referralFriendReward: false,
   spireWeekMoment: false,
   welcomeBack: false,
   legacyBonusWelcome: false,

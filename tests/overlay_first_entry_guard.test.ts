@@ -20,29 +20,26 @@ function walk(dir: string, out: string[] = []): string[] {
 
 // Окно рисует один файл, слот занимает другой (хозяин). Тест проверяет, что у хозяина есть useOverlayVisible с этим ключом.
 const SLOT_OWNED_ELSEWHERE: Readonly<Record<string, Readonly<{ owner: string; key: string }>>> = {
+  'components/spire/peak/PeakTourFull.tsx': { owner: 'components/spire/peak/PeakScreenV2.tsx', key: 'peakTour' }, // полноэкранный тур (координатор 05.11): слот берёт PeakScreenV2
   'components/spire/peak/PeakTour.tsx': { owner: 'components/spire/peak/PeakScreenV2.tsx', key: 'peakTour' },
   'components/home/home_moment_slots.tsx': { owner: 'modules/section_openings/use_section_opening_host.ts', key: 'sectionOpening' },
   'components/spire/moments/SpireWeekMomentHost.tsx': { owner: 'app/spire/use_spire_week_moment.ts', key: 'spireWeekMoment' },
+  'components/celebration/ReferralFriendRewardHybrid.tsx': { owner: 'components/referral_friend_reward_modal.tsx', key: 'referralFriendReward' },
+  'components/level_up/LevelUpMintCeremony.tsx': { owner: 'components/level_up/CoinRankUpgradeCeremony.tsx', key: 'coinRankUpgrade' },
   'components/PremiumCelebrationModal.tsx': { owner: 'app/(tabs)/home.tsx', key: 'premiumCelebration' },
   'components/lesson_moments/LessonPerfectHost.tsx': { owner: 'app/lesson_complete.tsx', key: 'lessonResultsSequence' },
 };
 
 // Долг: окна без арбитра. Каждое — с причиной и владельцем; убрать строку можно только подключив окно к арбитру.
 const DEBT_WITHOUT_ARBITER: Readonly<Record<string, string>> = {
-  'components/celebration/ReferralFriendRewardHybrid.tsx': 'хост referral_friend_reward_modal.tsx без арбитра; ключ referralWelcome есть — подключить (Вход)',
   'components/CleanOnboarding.tsx': 'сам онбординг: идёт до любых окон, арбитр ещё не нужен; приветствие после него — через арбитр',
-  'components/dialog_moments/FirstDialogHost.tsx': 'момент первого диалога на экране итогов диалога; нужен ключ в арбитре (Моменты)',
   'components/FirstPurchaseSealCelebration.tsx': 'используется только из DevHub (dev-инструмент)',
   'components/IntroFullAccessModal.tsx': 'окно «72 часа» снято (D186); остался показ в dev-витрине',
-  'components/level_up/LevelUpMintCeremony.tsx': 'церемония повышения ранга: хост Главной берёт слот levelUp, проверить тип прямого вызова (Моменты)',
-  'components/spire/moments/SpireOutcomeMomentHost.tsx': 'моменты итога Пика без арбитра (Пик)',
-  'components/spire/moments/SpirePositionMomentsHost.tsx': 'моменты позиции Пика без арбитра (Пик)',
-  'components/spire/SpireTour.tsx': 'старый тур Пика (картинка); показывается только при выключенном экране Пика B',
-  'components/streak/moments/StreakMilestoneHost.tsx': 'веха серии на итоговых экранах без арбитра (Моменты)',
+  'components/spire/SpireTour.tsx': 'старый тур Пика (картинка); показывается только при выключенном экране Пика B; тексты — только peakTour1..3 (сторож peak_tour_owner_copy_guard)',
 };
 
 const FIRST_ENTRY = /(tour|welcome|celebrat|moment|opening|reward|splash|congrat|gift|milestone|onboard|ceremony|intro|level)/i;
-const MAX_DEBT = 10;
+const MAX_DEBT = 4; // зачем (05.11): сжат с 10 до 4 — остались онбординг до всех окон, два снятых/dev-окна и старый тур Пика
 
 describe('сторож наложения окон: первый вход и праздники идут через арбитр', () => {
   const files = [...walk('components'), ...walk('app')].filter((f) => !/showcase|preview|Studio/i.test(f));

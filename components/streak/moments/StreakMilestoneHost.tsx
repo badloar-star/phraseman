@@ -9,6 +9,7 @@
 // Журнал: [STREAK-MILESTONE] — решение (рубеж, день, сегодня, флаг, диск, причина), показ, закрытие.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useOverlayVisible } from '../../OverlayArbiter';
 import { useMemMomentsTrack } from '../../moments/mem_moments_probe';
 import { Modal, StyleSheet, View } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
@@ -98,7 +99,11 @@ function StreakMilestoneHost({ lang, onOpenChange }: StreakMilestoneHostProps) {
 
   // зачем (R129): окно рубежа размонтируется после закрытия — журнал [MEM-MOMENTS], только отладка
   useMemMomentsTrack('host:streak-milestone', open && milestone !== null, String(milestone));
+  // зачем (владелец 05.11: два полноэкранных окна на одном кадре — «такое нельзя допускать»): рубеж серии (сцены в <Modal>) ждёт слот арбитра (ключ streakMilestone); малый рубеж-тост — наложение без блокировки касаний, слота не берёт.
+  const isToast = milestone !== null && streakMomentKind(milestone) === 'toast';
+  const slot = useOverlayVisible('streakMilestone', open && milestone !== null && !isToast);
   if (!open || milestone === null) return null;
+  if (!isToast && !slot) return null;
   const moment = <StreakMilestoneMoment lang={lang} milestone={milestone} coinRank={coinRank} onDone={done} />;
   if (streakMomentKind(milestone) === 'toast') {
     return <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>{moment}</View>;

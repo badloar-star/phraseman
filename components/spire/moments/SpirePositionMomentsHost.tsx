@@ -10,6 +10,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import { Modal } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
 import { useGuardedNav } from '../../../hooks/use-guarded-nav';
+import { useOverlayVisible } from '../../OverlayArbiter';
 import { SheetSwipeRoot } from '../../modal_fx/SheetSwipeClose';
 import SpireLastChanceSheet from './SpireLastChanceSheet';
 import SpireOvertakeToast from './SpireOvertakeToast';
@@ -74,7 +75,9 @@ function SpirePositionMomentsHost({ lang, coinRank, positions, blocked, busy, on
   // зачем: страховка — если по какой-то причине данных окна нет, окно закрывается и не блокирует очередь
   const missing = active !== null && !((active.kind === 'rise' && shown.rise) || (active.kind === 'overtake' && shown.overtake) || (active.kind === 'lastChance' && shown.lastChance));
   useEffect(() => { if (missing) finish('data_missing'); }, [missing, finish]);
-  if (!active) return null;
+  // зачем (владелец 05.11: два полноэкранных окна на одном кадре — «такое нельзя допускать»): позиционные окна (rise/overtake/lastChance) ждут слот арбитра (ключ spirePosition); показ уже засчитан, окно просто ждёт очереди.
+  const slot = useOverlayVisible('spirePosition', active !== null);
+  if (!active || !slot) return null;
   if (active.kind === 'rise' && shown.rise) {
     const rise = shown.rise;
     return (

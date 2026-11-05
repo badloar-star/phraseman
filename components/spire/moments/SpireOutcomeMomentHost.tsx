@@ -10,6 +10,7 @@ import { Modal } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
 import type { SpireCoinsConfig } from '../../../modules/spire/config_contract';
 import type { SpireStepOutcome } from '../../../app/spire/use_spire_game';
+import { useOverlayVisible } from '../../OverlayArbiter';
 import { SheetSwipeRoot } from '../../modal_fx/SheetSwipeClose';
 import { noteOutcomeHostMounted, noteOutcomeHostUnmounted } from '../spire_outcome_host_trace';
 
@@ -35,6 +36,9 @@ function SpireOutcomeMomentHost({ lang, outcome, coins, coinRank, busy, onClimb,
     noteOutcomeHostMounted(kind);
     return () => noteOutcomeHostUnmounted(kind, 'outcome_cleared_or_screen_unmounted');
   }, [kind]);
+  // зачем (владелец 05.11: два полноэкранных окна на одном кадре — «такое нельзя допускать»): итог ступени ждёт слот арбитра окон, а не рисуется поверх другого окна (ключ spireOutcome).
+  const slot = useOverlayVisible('spireOutcome', true);
+  if (!slot) return null;
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onLater}
       onShow={() => console.log(`[SPIRE-AFTER-ROUND] натив: окно итога показано kind=${kind}`)} // guard-ok: трасса показа нативного окна

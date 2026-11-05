@@ -9,6 +9,7 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Modal } from 'react-native';
 import { hydrateDialogueV2DoneIds, peekDialogueV2DoneIds } from '../../app/dialogue_v2_done_store';
 import type { Lang } from '../../constants/i18n';
+import { useOverlayVisible } from '../OverlayArbiter';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useFireOnce } from '../moments/use_fire_once';
 import FirstDialogMoment from './FirstDialogMoment';
@@ -72,7 +73,9 @@ function FirstDialogHost({ lang, studyTarget, scenarioId, endedBy, turns, goalsD
     }, 'dismiss');
   }, [fire, studyTarget]);
 
-  if (!open) return null;
+  // зачем (владелец 05.11: два полноэкранных окна на одном кадре — «такое нельзя допускать»): «Первый разговор — есть!» ждёт слот арбитра (ключ firstDialog).
+  const slot = useOverlayVisible('firstDialog', open);
+  if (!open || !slot) return null;
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={dismiss}>
       <FirstDialogMoment lang={lang} studyTarget={studyTarget} coinRank={coinRank} turns={turns} goalsDone={goalsDone} goalsTotal={goalsTotal} onNext={next} />

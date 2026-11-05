@@ -8,6 +8,7 @@
  */
 import React from 'react';
 import ReferralFriendRewardHybrid from './celebration/ReferralFriendRewardHybrid';
+import { useOverlayVisible } from './OverlayArbiter';
 
 export interface FriendRewardCelebrationData {
   name: string;
@@ -22,11 +23,13 @@ interface Props {
 }
 
 export default function ReferralFriendRewardModal({ data, onClose, title, subtitle, ctaLabel }: Props) {
+  // зачем (владелец 05.11: два полноэкранных окна на одном кадре — «такое нельзя допускать»): награда за друга ждёт слот арбитра окон (ключ referralFriendReward).
+  const slot = useOverlayVisible('referralFriendReward', !!data);
   if (!data) return null;
 
   return (
     <ReferralFriendRewardHybrid
-      visible={!!data}
+      visible={slot}
       title={title}
       subtitle={subtitle}
       ctaLabel={ctaLabel}

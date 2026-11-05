@@ -9,6 +9,7 @@ import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import LevelUpMintCeremony from './LevelUpMintCeremony';
 import { coinRankMintSide } from './coin_rank_mint_side';
 import { useLang } from '../LangContext';
+import { useOverlayVisible } from '../OverlayArbiter';
 import type { CoinRankCeremony } from '../../hooks/use_coin_rank_upgrade';
 
 type Props = Readonly<{
@@ -23,11 +24,13 @@ function CoinRankUpgradeCeremony({ ceremony, onDone }: Props) {
   const from = useMemo(() => coinRankMintSide(ceremony?.fromRank ?? 0, lang), [ceremony, lang]);
   const to = useMemo(() => coinRankMintSide(ceremony?.toRank ?? 1, lang), [ceremony, lang]);
   // зачем (координатор 14.10): звук повышения ранга монеты V2 в момент показа церемонии; флаг sound_v2 выключен — тишина как раньше
-  const showing = ceremony !== null;
+  // зачем (владелец 05.11: два полноэкранных окна на одном кадре — «такое нельзя допускать»): церемония повышения ранга ждёт слот арбитра (ключ coinRankUpgrade); звук и показ — только после выдачи слота.
+  const slot = useOverlayVisible('coinRankUpgrade', ceremony !== null);
+  const showing = slot;
   useEffect(() => {
     if (showing) tryPlayV2Event('coin_rank', 'coin_rank_ceremony');
   }, [showing]);
-  return <LevelUpMintCeremony visible={ceremony !== null} from={from} to={to} onDone={onDone} />;
+  return <LevelUpMintCeremony visible={slot} from={from} to={to} onDone={onDone} />;
 }
 
 export default memo(CoinRankUpgradeCeremony);

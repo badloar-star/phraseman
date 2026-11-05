@@ -184,6 +184,8 @@ export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset 
   })();
   const mine = ranked.findIndex(row => row.pack.authorStableId === authorId);
   const LP = (ru: string, en: string): string => communitySceneText(lang, ru, en);
+  // зачем (координатор 05.11, владелец: «Наборы» без героя): лог [SETS-HERO] — видно, отрисована ли сцена и с каким числом наборов
+  console.log('[SETS-HERO] stage render', JSON.stringify({ packs: packs.length, lang, hasAuthor: authorId !== null, topInset, mine: mine }));
   return <View style={[s.stage, { paddingTop: topInset }]}><CommunitySceneBackdrop /><CommunitySceneFan />
     <View style={s.stageCopy}><Text style={s.kicker}>{schedule.phase === 'upcoming' ? LP('До начала конкурса', 'Contest starts in') : LP('До конца конкурса', 'Contest ends in')}</Text><Text style={s.stageTitle}>{LP(`${schedule.days} ${schedule.days % 10 === 1 && schedule.days % 100 !== 11 ? 'день' : schedule.days % 10 >= 2 && schedule.days % 10 <= 4 && (schedule.days % 100 < 12 || schedule.days % 100 > 14) ? 'дня' : 'дней'}`, `${schedule.days} ${schedule.days === 1 ? 'day' : 'days'}`)}</Text>
       <KitTouchable onPress={() => setRules(true)} accessibilityRole="button" style={s.rulesButton}><Text style={s.ruleLabel}>{LP('Условия участия', 'How to take part')}</Text><Ionicons name="chevron-forward" size={14} color={WHITE} /></KitTouchable>

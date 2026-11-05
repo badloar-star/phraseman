@@ -5,5 +5,7 @@ set -u
 ROOT=$(cd "$(dirname "$0")/../.." && pwd)
 cd "$ROOT" || exit 1
 export EXPO_PUBLIC_FIREBASE_EMULATOR_HOST=10.0.2.2
+# зачем (06.11): Firestore-эмулятор на 8085 (8080 занят Open WebUI владельца) — приложение узнаёт порт отсюда (только dev-ветка)
+export EXPO_PUBLIC_FIREBASE_EMULATOR_FIRESTORE_PORT=8085
 echo "[E2E] dev-сервер :8082, EXPO_PUBLIC_FIREBASE_EMULATOR_HOST=$EXPO_PUBLIC_FIREBASE_EMULATOR_HOST"
 exec npx expo start --dev-client --port 8082 --clear

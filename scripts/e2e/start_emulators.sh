@@ -13,4 +13,6 @@ if [ "${WITH_FUNCTIONS:-0}" = "1" ]; then
   echo "[E2E] Functions-эмулятор требует собранный functions/lib; собирай из чистого HEAD отдельно (docs/work/e2e/README.md)"
 fi
 echo "[E2E] старт эмуляторов: $ONLY (проект demo-phraseman), данные в .e2e-emulator-data (не коммитится)"
-exec npx firebase emulators:start --only "$ONLY" --project demo-phraseman --import ".e2e-emulator-data" --export-on-exit ".e2e-emulator-data"
+# зачем (06.11): конфиг firebase.e2e.json — Auth 9099 и Firestore 8085 ТОЛЬКО на 127.0.0.1 (порт 8080 на ПК занят Open WebUI владельца, в локальную сеть эмуляторы не выставляются);
+# Android-эмулятор достаёт их через 10.0.2.2, приложению порт Firestore сообщает EXPO_PUBLIC_FIREBASE_EMULATOR_FIRESTORE_PORT=8085 (metro_emulator.sh).
+exec npx firebase emulators:start --config firebase.e2e.json --only "$ONLY" --project demo-phraseman --import ".e2e-emulator-data" --export-on-exit ".e2e-emulator-data"

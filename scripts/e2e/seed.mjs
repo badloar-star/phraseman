@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-process.env.FIRESTORE_EMULATOR_HOST ||= '127.0.0.1:8080';
+process.env.FIRESTORE_EMULATOR_HOST ||= '127.0.0.1:8085'; // зачем (06.11): 8080 занят Open WebUI владельца; Firestore-эмулятор — на 8085 (firebase.e2e.json)
 process.env.FIREBASE_AUTH_EMULATOR_HOST ||= '127.0.0.1:9099';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const require = createRequire(path.join(root, 'functions', 'package.json'));

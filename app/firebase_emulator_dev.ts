@@ -44,6 +44,21 @@ export function resolveFirebaseEmulatorHost(isDev: unknown, rawHost: unknown): F
   return Object.freeze({ connect: true, host });
 }
 
+/**
+ * зачем (E2E 06.11): порт 8080 на машине разработчика может быть занят другим сервисом (Open WebUI владельца) — Firestore-эмулятор поднимают на другом порту
+ * (например 8085), и приложению нужно знать его. Переменная EXPO_PUBLIC_FIREBASE_EMULATOR_FIRESTORE_PORT действует только в этой dev-ветке (в релизе ветка вырезана);
+ * не число 1024–65535 → порт из firebase.json (8080) и запись в журнал. Чистая функция — проверяется тестом.
+ */
+export function resolveFirestoreEmulatorPort(raw: unknown): number {
+  if (typeof raw !== 'string' || raw.trim().length === 0) return FIREBASE_EMULATOR_PORTS.firestore;
+  const value = Number(raw.trim());
+  if (!Number.isInteger(value) || value < 1024 || value > 65535) {
+    console.warn(`${LOG} firestore_port_override_ignored value=${raw.trim().slice(0, 12)}`);
+    return FIREBASE_EMULATOR_PORTS.firestore;
+  }
+  return value;
+}
+
 type UseEmulatorTarget = Readonly<{ useEmulator: (...args: never[]) => unknown }>;
 
 export type FirebaseEmulatorModules = Readonly<{
@@ -113,7 +128,7 @@ export function connectFirebaseEmulatorsForDev(
     }
   };
   const { host } = decision;
-  const ports = FIREBASE_EMULATOR_PORTS;
+  const ports = { ...FIREBASE_EMULATOR_PORTS, firestore: resolveFirestoreEmulatorPort(process.env.EXPO_PUBLIC_FIREBASE_EMULATOR_FIRESTORE_PORT) };
   attempt('auth', () => (modules.auth().useEmulator as (url: string) => unknown)(`http://${host}:${ports.auth}`));
   attempt('firestore', () => (modules.firestore().useEmulator as (h: string, p: number) => unknown)(host, ports.firestore));
   attempt('functions', () => (modules.functions().useEmulator as (h: string, p: number) => unknown)(host, ports.functions));

@@ -863,13 +863,9 @@ function FlashcardsHubScreenInner() {
   const showFresh = savedCount === 0 && myPackCount === 0;
   // зачем (C2): объект `fresh` не должен меняться между рендерами без смены языка/показа
   const fresh = useMemo(() => showFresh
-    ? {
-      title: triLang(lang, { ru: 'Начни с готового', uk: 'Почни з готового', en: 'Start with a ready pack', es: 'Empieza con algo listo', 'pt-BR': 'Comece com algo pronto', vi: 'Bắt đầu với bộ có sẵn', id: 'Mulai dari yang siap pakai', tr: 'Hazır bir setle başla', pl: 'Zacznij od gotowego' }),
-      sub: triLang(lang, { ru: 'Добавь набор из сообщества или из видео', uk: 'Додай набір зі спільноти або з відео', en: 'Add a pack from the community or from a video', es: 'Añade un pack de la comunidad o de un vídeo', 'pt-BR': 'Adicione um pacote da comunidade ou de um vídeo', vi: 'Thêm bộ thẻ từ cộng đồng hoặc từ video', id: 'Tambahkan paket dari komunitas atau dari video', tr: 'Topluluktan ya da videodan bir paket ekle', pl: 'Dodaj zestaw od społeczności lub z wideo' }),
-      cta: triLang(lang, { ru: 'Выбрать набор', uk: 'Обрати набір', en: 'Choose a pack', es: 'Elegir un pack', 'pt-BR': 'Escolher um pacote', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybierz zestaw' }),
-      onPress: () => router.push('/flashcards_packs' as never),
-    }
-    : undefined, [showFresh, lang, router]);
+    // зачем (макет cards-zero 05.11): без плашки-приглашения; главная кнопка при 0/0 — «Создать набор» (то же действие, что «+» в шапке)
+    ? { cta: copy.create, onPress: openCreatePack }
+    : undefined, [showFresh, copy.create, openCreatePack]);
 
   // зачем (C2): стабильные подписи и обработчики для memo(CardsHubV2). onTrainPress читает свежую квоту и флаги, поэтому берём её «последнюю» через ref —
   // ссылка на пропс onTrain при этом не меняется.

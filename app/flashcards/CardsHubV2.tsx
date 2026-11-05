@@ -56,7 +56,8 @@ type Props = Readonly<{
    * Новичок: своих карточек и наборов нет (макет cards-section-extra.js hubNewS). Вместо стопки — стеклянная карточка
    * «Начните с готового», главная кнопка — «Выбрать набор» (а не тренировка, тренировать пока нечего).
    */
-  fresh?: Readonly<{ title: string; sub: string; cta: string; onPress: () => void }>;
+  // зачем (макет cards-zero 05.11, владелец: «не такой макет одобрял»): при 0/0 плашки-приглашения нет — одна главная кнопка «Создать набор» на её месте
+  fresh?: Readonly<{ cta: string; onPress: () => void }>;
 }>;
 
 /** Смешивает цвет темы с тёмным основанием (как color-mix макета: доля темы + тёмный). */
@@ -180,19 +181,7 @@ function CardsHubV2Inner({
       <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
       <Text style={[styles.subtitle, { color: g.secondary, lineHeight: lh(22) }]}>{subtitle}</Text>
 
-      {fresh ? (
-        // зачем (Сверка cards-section-003, hubNewS): у новичка не было этого состояния — стопка показывала выдуманную
-        // карточку «Boarding pass», которой у человека нет. Карточка по центру: плитка 64/r20, 24/700, подпись 16.
-        <View testID="fc-cards-hub-fresh" style={[styles.fresh, { minHeight: stackH, boxShadow: plateBoxShadow(g) }]}>
-          <PlateFill g={g} radius={26} />
-          <View style={[styles.freshIcon, { boxShadow: nestedBoxShadow(g) }]}>
-            <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-            <Ionicons name="people-outline" size={28} color={faceInk} />
-          </View>
-          <Text accessibilityRole="header" style={[styles.freshTitle, { color: g.text, lineHeight: lh(30) }]}>{fresh.title}</Text>
-          <Text style={[styles.freshSub, { color: g.secondary, lineHeight: lh(22) }]}>{fresh.sub}</Text>
-        </View>
-      ) : (
+      {fresh ? null : (
       <View style={[styles.stack, { height: stackH }]} pointerEvents="box-none">
         <StackCard g={g} opacity={0.7} radius={28} style={[styles.stackBack2, { height: Math.round(110 * k) }]} />
         <StackCard g={g} opacity={0.9} radius={28} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
@@ -217,7 +206,7 @@ function CardsHubV2Inner({
         ]}>
         <Text style={[styles.ctaText, { color: g.ctaFillInk, lineHeight: lh(22) }]}>{fresh ? fresh.cta : trainLabel}</Text>
         <View style={styles.ctaIcon}>
-          <Ionicons name={!fresh && trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.ctaFillInk} />
+          <Ionicons name={fresh ? 'add' : trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.ctaFillInk} />
         </View>
       </V2Pressable>
       </View>
@@ -282,10 +271,6 @@ const styles = StyleSheet.create({
   tileOuter: { width: '48%', flexGrow: 1 },
   tile: { flex: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
   // hubNewS `.gl.pad`: 26 от подзаголовка, высота стопки (250 в макете), всё по центру.
-  fresh: { marginTop: 26, borderRadius: 26, paddingHorizontal: 22, paddingVertical: 22, alignItems: 'center', justifyContent: 'center' },
-  freshIcon: { width: 64, height: 64, borderRadius: 20, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  freshTitle: { marginTop: 18, fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center' },
-  freshSub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   tileIcon: { width: 52, height: 52, borderRadius: 15, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   tileTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700' },
   tileTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },

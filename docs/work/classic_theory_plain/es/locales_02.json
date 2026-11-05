@@ -1,0 +1,68 @@
+{
+  "_note": "Переводы plain-теории испанского курса, урок 2 (Переводчик, 05.11). Локали: es, pt-BR, vi, id, tr, pl. Испанские слова и примеры не переводятся. Без русского и кириллицы в текстах.",
+  "title": {
+    "es": "Cuando alguien o algo no está",
+    "pt-BR": "Quando alguém ou algo não está",
+    "vi": "Khi ai đó hoặc cái gì đó không ở đây",
+    "id": "Saat seseorang atau sesuatu tidak ada",
+    "tr": "Biri ya da bir şey olmadığında",
+    "pl": "Kiedy kogoś lub czegoś nie ma"
+  },
+  "chapters": {
+    "c1": {
+      "title": {"es": "La palabra no", "pt-BR": "A palavra não", "vi": "Từ no", "id": "Kata no", "tr": "No kelimesi", "pl": "Słowo no"},
+      "text": {
+        "es": "Ya sabes: Estoy en casa. — «Estoy en casa.»\nAñade la palabra no, y tendrás «no estoy en casa».\nNo estoy en casa. — «No estoy en casa.»\nLa palabra no significa «no».\nLa palabra no va justo antes de estoy y estamos. Nada más cambia.",
+        "pt-BR": "Você já sabe: Estoy en casa. — “Estou em casa.”\nAcrescente a palavra no, e você tem “não estou em casa”.\nNo estoy en casa. — “Não estou em casa.”\nA palavra no significa “não”.\nA palavra no fica logo antes de estoy e estamos. Nada mais muda.",
+        "vi": "Bạn đã biết: Estoy en casa. — “Tôi ở nhà.”\nThêm từ no, bạn có “tôi không ở nhà”.\nNo estoy en casa. — “Tôi không ở nhà.”\nTừ no nghĩa là “không”.\nTừ no đứng ngay trước estoy và estamos. Không có gì khác thay đổi.",
+        "id": "Kamu sudah tahu: Estoy en casa. — “Saya di rumah.”\nTambahkan kata no, dan jadilah “saya tidak di rumah”.\nNo estoy en casa. — “Saya tidak di rumah.”\nKata no berarti “tidak”.\nKata no berada tepat sebelum estoy dan estamos. Tidak ada yang lain berubah.",
+        "tr": "Zaten biliyorsun: Estoy en casa. — “Evdeyim.”\nNo kelimesini ekle, “evde değilim” olur.\nNo estoy en casa. — “Evde değilim.”\nNo kelimesi “değil” anlamına gelir.\nNo kelimesi tam olarak estoy ve estamos’tan önce gelir. Başka bir şey değişmez.",
+        "pl": "Już wiesz: Estoy en casa. — „Jestem w domu.”\nDodaj słowo no i masz „nie jestem w domu”.\nNo estoy en casa. — „Nie jestem w domu.”\nSłowo no znaczy „nie”.\nSłowo no stoi tuż przed estoy i estamos. Nic więcej się nie zmienia."
+      }
+    },
+    "c2": {
+      "title": {"es": "Otras personas", "pt-BR": "Outras pessoas", "vi": "Người khác", "id": "Orang lain", "tr": "Başka insanlar", "pl": "Inne osoby"},
+      "text": {
+        "es": "Lo mismo se dice de otras personas.\nAna no está en casa. — «Ana no está en casa.»\nLa palabra no va antes de está.\n¿Varias personas? Entonces, en lugar de está, dices están, «están ubicados».",
+        "pt-BR": "Diz-se o mesmo sobre outras pessoas.\nAna no está en casa. — “Ana não está em casa.”\nA palavra no fica antes de está.\nVárias pessoas? Então, em vez de está, você diz están, “estão localizados”.",
+        "vi": "Cũng nói như vậy về người khác.\nAna no está en casa. — “Ana không ở nhà.”\nTừ no đứng trước está.\nNhiều người? Thì thay vì está, bạn nói están, “đang ở”.",
+        "id": "Dengan cara yang sama kita bicara tentang orang lain.\nAna no está en casa. — “Ana tidak di rumah.”\nKata no berada sebelum está.\nBanyak orang? Maka, alih-alih está, katakan están, “berada”.",
+        "tr": "Başka insanlar için de aynı şekilde söylenir.\nAna no está en casa. — “Ana evde değil.”\nNo kelimesi está’dan önce gelir.\nBirden çok kişi mi? O zaman está yerine están, “bulunuyorlar” diyorsun.",
+        "pl": "Tak samo mówi się o innych osobach.\nAna no está en casa. — „Ana nie jest w domu.”\nSłowo no stoi przed está.\nKilka osób? Wtedy zamiast está mówisz están, „są położeni”."
+      }
+    },
+    "c3": {
+      "title": {"es": "Aquí no está", "pt-BR": "Aqui não está", "vi": "Ở đây không có", "id": "Di sini tidak ada", "tr": "Burada yok", "pl": "Nie ma tutaj"},
+      "text": {
+        "es": "Mira cómo se dice «Ana no está aquí».\nAna no está aquí. — «Ana no está aquí.»\nEn español se dice «no está ubicada aquí».\nEl sentido es el mismo.\nAhora, sobre las cosas.\nLa llave no está aquí. — «La llave no está aquí.»\nLa palabra llave significa «llave».\nLas palabras la, el, los, las van delante del nombre de una cosa.\nSignifican «el/la/los/las»: aprende cada una junto con su palabra.\n¿Varias cosas? Entonces, las y están: llaves significa «llaves».",
+        "pt-BR": "Veja como se diz “Ana não está aqui”.\nAna no está aquí. — “Ana não está aqui.”\nEm espanhol se diz “não está localizada aqui”.\nO sentido é o mesmo.\nAgora, sobre as coisas.\nLa llave no está aquí. — “A chave não está aqui.”\nA palavra llave significa “chave”.\nAs palavras la, el, los, las ficam antes do nome de uma coisa.\nSignificam “o/a/os/as”: aprenda cada uma junto com a sua palavra.\nVárias coisas? Então las e están: llaves significa “chaves”.",
+        "vi": "Xem cách nói “Ana không ở đây”.\nAna no está aquí. — “Ana không ở đây.”\nTiếng Tây Ban Nha nói “không được đặt ở đây”.\nÝ nghĩa vẫn như vậy.\nBây giờ là đồ vật.\nLa llave no está aquí. — “Chìa khóa không ở đây.”\nTừ llave nghĩa là “chìa khóa”.\nCác từ la, el, los, las đứng trước tên một đồ vật.\nChúng nghĩa là “cái/những”: hãy học mỗi từ cùng với danh từ của nó.\nNhiều đồ vật? Thì dùng las và están: llaves nghĩa là “những chìa khóa”.",
+        "id": "Lihat cara mengatakan “Ana tidak di sini”.\nAna no está aquí. — “Ana tidak di sini.”\nDalam bahasa Spanyol dikatakan “tidak berada di sini”.\nArtinya sama.\nSekarang tentang benda.\nLa llave no está aquí. — “Kuncinya tidak ada di sini.”\nKata llave berarti “kunci”.\nKata la, el, los, las ditaruh sebelum nama benda.\nArtinya “si/sang/para”: pelajari tiap kata bersama namanya.\nBanyak benda? Pakai las dan están: llaves berarti “kunci-kunci”.",
+        "tr": "“Ana burada değil” nasıl söylenir, bakın.\nAna no está aquí. — “Ana burada değil.”\nİspanyolcada “burada bulunmuyor” denir.\nAnlam aynıdır.\nŞimdi eşyalar.\nLa llave no está aquí. — “Anahtar burada değil.”\nLlave kelimesi “anahtar” anlamına gelir.\nLa, el, los, las kelimeleri bir eşyanın adından önce gelir.\nBunlar “o/bu” anlamına gelir: her birini kendi kelimesiyle birlikte öğren.\nBirden çok eşya mı? O zaman las ve están: llaves “anahtarlar” anlamına gelir.",
+        "pl": "Zobacz, jak powiedzieć „Ana nie jest tutaj”.\nAna no está aquí. — „Ana nie jest tutaj.”\nPo hiszpańsku mówi się „nie jest położona tutaj”.\nZnaczenie jest to samo.\nTeraz o rzeczach.\nLa llave no está aquí. — „Klucz nie jest tutaj.”\nSłowo llave znaczy „klucz”.\nSłowa la, el, los, las stoją przed nazwą rzeczy.\nZnaczą „ten/ta/te”: ucz się każdego razem z jego słowem.\nKilka rzeczy? Wtedy las i están: llaves znaczy „klucze”."
+      }
+    },
+    "c4": {
+      "title": {"es": "Tienda, farmacia, oficina", "pt-BR": "Loja, farmácia, escritório", "vi": "Cửa hàng, hiệu thuốc, văn phòng", "id": "Toko, apotek, kantor", "tr": "Dükkân, eczane, ofis", "pl": "Sklep, apteka, biuro"},
+      "text": {
+        "es": "Ahora tres lugares nuevos.\nNo estoy en la tienda. — «No estoy en la tienda.»\nLa palabra tienda significa «tienda». La palabra en significa «en».\nLa palabra farmacia significa «farmacia», oficina significa «oficina».",
+        "pt-BR": "Agora três lugares novos.\nNo estoy en la tienda. — “Não estou na loja.”\nA palavra tienda significa “loja”. A palavra en significa “em”.\nA palavra farmacia significa “farmácia”, oficina significa “escritório”.",
+        "vi": "Bây giờ là ba nơi chốn mới.\nNo estoy en la tienda. — “Tôi không ở trong cửa hàng.”\nTừ tienda nghĩa là “cửa hàng”. Từ en nghĩa là “ở/trong”.\nTừ farmacia nghĩa là “hiệu thuốc”, oficina nghĩa là “văn phòng”.",
+        "id": "Sekarang tiga tempat baru.\nNo estoy en la tienda. — “Saya tidak di toko.”\nKata tienda berarti “toko”. Kata en berarti “di”.\nKata farmacia berarti “apotek”, oficina berarti “kantor”.",
+        "tr": "Şimdi üç yeni yer.\nNo estoy en la tienda. — “Dükkânda değilim.”\nTienda kelimesi “dükkân” anlamına gelir. En kelimesi “içinde/de” anlamına gelir.\nFarmacia kelimesi “eczane”, oficina kelimesi “ofis” anlamına gelir.",
+        "pl": "Teraz trzy nowe miejsca.\nNo estoy en la tienda. — „Nie jestem w sklepie.”\nSłowo tienda znaczy „sklep”. Słowo en znaczy „w”.\nSłowo farmacia znaczy „apteka”, oficina znaczy „biuro”."
+      }
+    },
+    "c5": {
+      "title": {"es": "Bolso y bolsillo", "pt-BR": "Bolsa e bolso", "vi": "Túi xách và túi áo", "id": "Tas dan saku", "tr": "Çanta ve cep", "pl": "Torba i kieszeń"},
+      "text": {
+        "es": "Ahora el bolso y el bolsillo.\nEl móvil no está en el bolso. — «El móvil no está en el bolso.»\nLa palabra móvil significa «teléfono». La palabra bolso significa «bolso».\nLa palabra bolsillo significa «bolsillo».",
+        "pt-BR": "Agora a bolsa e o bolso.\nEl móvil no está en el bolso. — “O celular não está na bolsa.”\nA palavra móvil significa “celular”. A palavra bolso significa “bolsa”.\nA palavra bolsillo significa “bolso (de roupa)”.",
+        "vi": "Bây giờ là túi xách và túi áo.\nEl móvil no está en el bolso. — “Điện thoại không ở trong túi xách.”\nTừ móvil nghĩa là “điện thoại”. Từ bolso nghĩa là “túi xách”.\nTừ bolsillo nghĩa là “túi áo”.",
+        "id": "Sekarang tas dan saku.\nEl móvil no está en el bolso. — “Ponselnya tidak ada di dalam tas.”\nKata móvil berarti “ponsel”. Kata bolso berarti “tas”.\nKata bolsillo berarti “saku”.",
+        "tr": "Şimdi çanta ve cep.\nEl móvil no está en el bolso. — “Telefon çantada değil.”\nMóvil kelimesi “telefon” anlamına gelir. Bolso kelimesi “çanta” anlamına gelir.\nBolsillo kelimesi “cep” anlamına gelir.",
+        "pl": "Teraz torba i kieszeń.\nEl móvil no está en el bolso. — „Telefon nie jest w torbie.”\nSłowo móvil znaczy „telefon”. Słowo bolso znaczy „torba”.\nSłowo bolsillo znaczy „kieszeń”."
+      }
+    }
+  }
+}

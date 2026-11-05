@@ -87,7 +87,7 @@ describe('Daily phrase for es/de/it is bundled (D163)', () => {
   // зачем (решение владельца 12.10: «английские объяснения — можно позже»): английскому интерфейсу русский не показываем.
   it('English UI hides the ru-only explanation, quiz and save for es/de/it and logs the reason', () => {
     const card = fs.readFileSync(path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx'), 'utf8');
-    expect(card).toContain("const noSourceExplanation = lang === 'en' && studyTarget !== 'en';");
+    expect(card).toContain("const noSourceExplanation = lang === 'en';"); // английскому интерфейсу русский не показываем ни при каком курсе (05.11)
     expect(card).toContain('[DAILY-PHRASE-GATE] reason=no_en_explanation');
     expect(card).toContain('phrase && detailsVisible && !noSourceExplanation');
     expect(card).toContain('(showQuestExplanation || !hasValidQuest) && !noSourceExplanation');

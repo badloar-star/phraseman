@@ -29,6 +29,11 @@ describe('Фраза дня: перевод только после ответа
   it('хук ответа стоит ДО раннего return (порядок хуков не ломается)', () => {
     expect(card.indexOf('const [cardAnswered, setCardAnswered]')).toBeLessThan(card.indexOf('if (!phrase) {'));
   });
+  it('английскому интерфейсу русский не показываем ни при каком курсе; в окне после ответа озвучки нет (находка эмулятора 05.11)', () => {
+    expect(card).toContain("const noSourceExplanation = lang === 'en';");
+    expect(card).not.toContain('name="volume-high"');
+    expect(card).toContain("'[DAILY-PHRASE-GATE] reason=no_en_explanation'");
+  });
   it('озвучки на карточке нет (замок 18.10)', () => {
     const start = card.indexOf('testID="home-v2-phrase-of-day"');
     const end = card.indexOf('</Pressable>', start);

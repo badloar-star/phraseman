@@ -167,10 +167,12 @@ function DailyPhraseCard({
   // зачем (решение владельца 12.10 через координатора: «английские объяснения — можно позже»): у пакетов es/de/it объяснения
   // только ru/uk. Английскому интерфейсу русский не показываем: фраза и озвучка остаются, а дословный перевод, значение,
   // пример, вопрос дня и сохранение в карточки (там русский текст) скрыты до появления английского источника.
-  const noSourceExplanation = lang === 'en' && studyTarget !== 'en';
+  // зачем (🔴 находка второго эмулятора 05.11: «перевод и пояснения на русском при АНГЛИЙСКОМ интерфейсе» — при курсе английского рамка lang==='en' && studyTarget!=='en' не срабатывала и в шторке шёл русский):
+  // английскому интерфейсу русский не показываем НИ ПРИ КАКОМ курсе — английских толкований у фраз нет (решение 12.10), остаётся сама фраза
+  const noSourceExplanation = lang === 'en';
   useEffect(() => {
     if (!noSourceExplanation) return;
-    console.log('[DAILY-PHRASE-GATE] reason=no_en_explanation', JSON.stringify({ studyTarget, uiLang: lang, hidden: ['literal', 'meaning', 'example', 'quiz', 'save'] })); // guard-ok: видимое сокращение карточки называет причину
+    console.log('[DAILY-PHRASE-GATE] reason=no_en_explanation', JSON.stringify({ studyTarget, uiLang: lang, phraseLang, rule: 'en-интерфейс: толкований на английском нет, русский не показываем', hidden: ['literal', 'meaning', 'example', 'quiz', 'save'] })); // guard-ok: видимое сокращение карточки называет причину
   }, [noSourceExplanation, studyTarget, lang]);
   // зачем: варианты квеста нужны только в открытой шторке деталей — не считаем
   // их (и не грузим каталог идиом) на первом кадре Главной. useMemo заодно
@@ -917,24 +919,7 @@ function DailyPhraseCard({
                     exampleEs={phrase.text_es}
                   />
                 )}
-                {(showQuestExplanation || !hasValidQuest) && (
-                  <Pressable
-                    onPress={() => { const en = phrase.english?.trim(); if (en) speak(en, undefined, { language: inferExpoSpeechLanguage(en, studyTarget) }); }}
-                    hitSlop={8}
-                    accessibilityRole="button"
-                    accessibilityLabel={triLang(lang, {
-                      uk: 'Озвучити', ru: 'Озвучить', en: 'Play', es: 'Reproducir',
-                      'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
-                    })}
-                    style={({ pressed }) => [
-                      styles.closeButton,
-                      { backgroundColor: t.bgSurface2 },
-                      pressed && styles.pressed,
-                    ]}
-                  >
-                    <Ionicons name="volume-high" size={20} color={t.accentText} />
-                  </Pressable>
-                )}
+                {/* зачем (решение владельца 18.10 «без голоса», подтверждено координатором 05.11 по находке второго эмулятора): в окне «Фразы дня» после ответа кнопки озвучки нет */}
                 <Pressable
                   onPress={closeDetails}
                   hitSlop={8}

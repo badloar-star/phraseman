@@ -41,7 +41,8 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('showQuestExplanation');
     expect(source).toContain('explanationAnim');
     expect(source).toContain('Animated.timing(explanationAnim');
-    expect(source).toContain('{(showQuestExplanation || !hasValidQuest) && (');
+    // зачем (05.11): кнопка озвучки в шторке снята, остаётся блок толкований — он скрыт для английского интерфейса
+    expect(source).toContain('{(showQuestExplanation || !hasValidQuest) && !noSourceExplanation && (');
   });
 
   it('records an answer locally and shakes on a wrong answer', () => {
@@ -65,11 +66,8 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('selectedQuestCorrect && !questPreviouslyAnswered');
   });
 
-  it('hides the pronunciation button until the explanation is visible', () => {
-    expect(source).toContain('{(showQuestExplanation || !hasValidQuest) && (');
-    expect(source.indexOf('{(showQuestExplanation || !hasValidQuest) && (')).toBeLessThan(
-      source.indexOf('name="volume-high"'),
-    );
+  it('has no pronunciation button in the details sheet (owner: no voice on the daily phrase, 18.10 / 05.11)', () => {
+    expect(source).not.toContain('name="volume-high"');
   });
 
   it('permanently keeps the oversized AI explain action out of the daily phrase', () => {

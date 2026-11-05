@@ -976,8 +976,8 @@ export const CLASSIC_LESSON_TOPICS: Readonly<Record<ClassicTopicLang, Readonly<R
    "pl": "Jedno zdarzenie przeszłe: als"
   },
   "25": {
-   "ru": "Какой именно? Прилагательное после определённого артикля",
-   "uk": "Який саме? Прикметник після певного артикля",
+   "ru": "Какой именно? Большой, новый, красный",
+   "uk": "Який саме? Великий, новий, червоний",
    "en": "Which one? An adjective after a definite article.",
    "es": "¿Cuál? Un adjetivo después de un artículo definido.",
    "pt-BR": "Qual deles? Um adjetivo após um artigo definido.",
@@ -987,8 +987,8 @@ export const CLASSIC_LESSON_TOPICS: Readonly<Record<ClassicTopicLang, Readonly<R
    "pl": "Który? Przymiotnik po rodzajniku określonym."
   },
   "26": {
-   "ru": "Два действия: инфинитив с zu",
-   "uk": "Дві дії: інфінітив з zu",
+   "ru": "Два действия: как соединить их с zu",
+   "uk": "Дві дії: як з'єднати їх зі словом zu",
    "en": "Two actions: infinitive with zu",
    "es": "Dos acciones: infinitivo con zu",
    "pt-BR": "Duas ações: infinitivo com zu",
@@ -1198,8 +1198,8 @@ export const CLASSIC_LESSON_TOPICS: Readonly<Record<ClassicTopicLang, Readonly<R
    "pl": "Trochę jedzenia"
   },
   "13": {
-   "ru": "Какой предмет: согласование прилагательного",
-   "uk": "Який предмет: узгодження прикметника",
+   "ru": "Какой предмет: конец слова как у предмета",
+   "uk": "Який предмет: кінець слова як у предмета",
    "en": "What object: adjective agreement",
    "es": "¿Qué objeto?: concordancia adjetival",
    "pt-BR": "Que objeto: concordância adjetiva",
@@ -1220,8 +1220,8 @@ export const CLASSIC_LESSON_TOPICS: Readonly<Record<ClassicTopicLang, Readonly<R
    "pl": "Can, must, want: dwa czasowniki"
   },
   "15": {
-   "ru": "Прямо сейчас: stare + герундий",
-   "uk": "Зараз: stare + герундій",
+   "ru": "Прямо сейчас: stare + слово про дело",
+   "uk": "Зараз: stare + слово про справу",
    "en": "Right now: stare + gerund",
    "es": "Ahora mismo: stare + gerundio",
    "pt-BR": "Agora: stare + gerúndio",
@@ -1407,8 +1407,8 @@ export const CLASSIC_LESSON_TOPICS: Readonly<Record<ClassicTopicLang, Readonly<R
    "pl": "Przed innym zdarzeniem: trapassato prossimo"
   },
   "32": {
-   "ru": "Если бы было иначе: se и условное наклонение",
-   "uk": "Якби було інакше: se та умовний спосіб",
+   "ru": "Если бы было иначе: se и «я бы»",
+   "uk": "Якби було інакше: se і «я б»",
    "en": "If only it were different: se and the conditional mood",
    "es": "Si tan solo fuera diferente: se y el modo condicional",
    "pt-BR": "Se ao menos fosse diferente: se e o modo condicional",

@@ -49,3 +49,8 @@
 - Размеры: sheet h=856 (generic 835); header 205/197/163/205/239 (course/language_add/generic/no_energy/premium_expired); scroll h=360/368/381/360/326 (>0); dock h=291 (ниже ожидаемых 300–450, но всё помещается); PAYWALL-FIT: contentH=381, overflow 21/13/0/21/55, action scroll_to_end (generic: fits).
 - Кадры: выгоды, плитки «Ultra·Год €39,99 / Plus·Месяц €7,99», «Подключить Ultra», «Восстановить покупки», «Ввести промокод», «Условия/Конфиденциальность» — всё на месте во всех контекстах.
 - ДЕФЕКТ для Входа: при overflow>0 (premium_expired, overflow 55) авто-прокрутка scroll_to_end сдвигает список — первая выгода «Серия, фразы и уроки сохранены» залезает под подзаголовок/шапку (виден обрезок строки, light_premium_expired.png). Нужно скроллить к началу или не прокручивать автоматически.
+
+## Очередь Сверки 7-final (23:12, 5560)
+- п.1 окна оплаты: sverka/7-final/1-paywalls/ (10 кадров + журнал; метка fix:"noFlexGrow-406692e88+children" в 90 строках, dock h=291, scroll h=326–381).
+- п.2 «Открытие раздела» RU, 6 разделов (rank, video, dialogs, peak, cards, plus) × фазы 1–4 × тёмная/светлая = 48 кадров: sverka/7-final/2-openings/{dark,light}_<раздел>_p<N>.png; журналы [SECTION-OPENING]: section_opening_dark.txt (117 строк), section_opening_light.txt (125). Флоу e2e/maestro/17_openings_final_{dark,light}.yaml.
+- НЕ сделано в п.2: тема «Спокойно» (ползунок насыщенности на минимум) и запись жестов истории — отдельным проходом после п.3–5.

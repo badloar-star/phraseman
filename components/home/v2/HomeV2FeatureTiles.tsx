@@ -41,6 +41,9 @@ function sameTileData(a: readonly HomeFeatureTile[], b: readonly HomeFeatureTile
   });
 }
 
+/** Масштаб светлого арта «Фразы из видео»: 499/450 по ширине видимой части (см. зачем у плитки); 1 — как есть. */
+const VIDEO_PACKS_LIGHT_ART_SCALE = 1.12;
+
 let wrapperRenders = 0;
 let viewRenders = 0;
 let lastTilesLog = '';
@@ -113,7 +116,10 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
             <View pointerEvents="none" style={[s.sceneTileFill, { backgroundColor: g.opaqueCard }]} />
             {/* зачем (Сверка home4, scenes-compact `.tile`; координатор: «подпись ВНУТРИ плитки, без подписи снизу»): плитка — карточка r20, картинка 58 сверху, подпись 13/700 внутри; поля 6/4/10 */}
             <View pointerEvents="none" style={s.sceneArt}>
-              <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={s.sceneArtImage} />
+              {/* зачем (замечание координатора 06.11, кадр home_newbie_3tiles): светлый арт «Фразы из видео» (cards_from_video) нарисован с полями —
+                  видимая часть 450×395 из 512 против ~499×446 у «Уроков»/«Сохранённых», плитка выглядела мельче и выше; выравниваем посадку
+                  масштабом по измеренной рамке видимой части (assets v2art/light), тёмный арт заполняет рамку как соседи */}
+              <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={tile.key === 'video_packs' && g.isLight ? [s.sceneArtImage, { transform: [{ scale: VIDEO_PACKS_LIGHT_ART_SCALE }] }] : s.sceneArtImage} />
               {tile.key === 'spire' && spirePlace !== null ? (
                 <View style={[s.badge, { backgroundColor: g.ctaFill }]}>
                   <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{spirePlaceBadgeText(uiLang, spirePlace)}</Text>

@@ -1,0 +1,80 @@
+diff --git a/app/_layout.tsx b/app/_layout.tsx
+index 0e6360104..a1c2698ce 100644
+--- a/app/_layout.tsx
++++ b/app/_layout.tsx
+@@ -108,6 +108,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+ import * as SplashScreen from 'expo-splash-screen';
+ import { UI_SFX_AUDIO_MODE } from './audio_playback_mode';
+ import { setManagedAudioMode } from './audio_session_coordinator';
++import { reportRootAudioModeOutcome } from './audio_mode_outcome_diagnostics';
+ import { releaseStaleAudioActivity } from '../modules/audio/audio_activity';
+ import { stopAllAudioOwnersOnResume } from '../modules/audio/audio_runtime_arbiter';
+ import { soundDirector } from '../modules/audio/sound_director';
+@@ -221,6 +222,7 @@ import { notifNudgeCopy } from './notif_nudge_copy';
+ import { hydrateAgeGateFromStorage } from './age_gate';
+ import { prefetchMarketplacePacks } from './flashcards/marketplace';
+ import { syncPublicProfileSnapshot } from './public_profile_snapshot';
++import { useProfileCardShowcaseSync } from '../hooks/use_profile_card_showcase_sync';
+ import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
+ import { incrementSessionCount } from './review_utils';
+ import { checkForUpdate, UpdateInfo } from './update_check';
+@@ -1095,6 +1097,7 @@ function bootCommitProfilerOnRender(id: string, phase: string, actualDuration: n
+ let notifNudgeConfirmInFlight = false;
+ 
+ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
++  useProfileCardShowcaseSync();
+   const [ready, setReady]           = useState(false);
+   const reduceMotion = useReduceMotion();
+   const [rootNavigationReady, setRootNavigationReady] = useState(false);
+@@ -1450,6 +1453,31 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
+       .catch(noteSwallowedHandler('_layout:useEffect.call_5'));
+   }, [accountGeneration.phase, accountGeneration.stableId, appIsActive]);
+ 
++  useEffect(() => {
++    if (!ready || !firstContentReady || !appIsActive ||
++      accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
++    // WHY: Learning V2 UI is permanently disabled, but a reward intent that was
++    // durably protected by an older build is still an existing economic fact.
++    // Recover only after the first-frame boundary; an empty queue performs one
++    // local key lookup and never materializes course data or creates a reward.
++    const cancelDeferred = runAfterHomeFirstFrame(
++      'lv2_existing_rune_reward_recovery',
++      () => import('./learning_v2_session_rune_reward_recovery_bootstrap')
++        .then(({ runLearningV2SessionRuneRewardRecoveryBootstrapV1 }) =>
++          runLearningV2SessionRuneRewardRecoveryBootstrapV1({
++            accountToken: accountGeneration,
++          }))
++        .catch(noteSwallowedHandler('_layout:useEffect.recover_existing_lv2_rune_reward')),
++      { holdDuringOnboarding: true },
++    );
++    return cancelDeferred;
++  }, [
++    accountGeneration,
++    appIsActive,
++    firstContentReady,
++    ready,
++  ]);
++
+   useEffect(() => {
+     // зачем (владелец 04.11, заморозка V2): V2 виден только при пройденном уроке целиком; проверка — один локальный multiGet без сети,
+     // на входе в аккаунт, при смене аккаунта и при возврате в приложение (подхватывает восстановление прогресса из облака).
+@@ -1741,6 +1769,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
+ 
+   useEffect(() => {
+     void setManagedAudioMode(UI_SFX_AUDIO_MODE)
++      .then(reportRootAudioModeOutcome)
+       .catch(noteSwallowedHandler('_layout:useEffect.setManagedAudioMode'));
+     // зачем прогрев (аудит §R8, 2026-08-30): expo-audio не буферизует до
+     // play(), и самый первый запуск каждого звука платил латентность создания
+diff --git a/app/cloud_sync.ts b/app/cloud_sync.ts
+index 767512f35..51308e110 100644
+--- a/app/cloud_sync.ts
++++ b/app/cloud_sync.ts
+@@ -957,6 +957,7 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
+   // multiSet с тратой; кэш своего текста визитки — тоже данные этого аккаунта.
+   'profile_card_pro_v1:',
+   'profile_card_bio_cache_v1:',
++  'profile_card_showcase_v1:', // earned-award selection and opt-in streak follow/wipe with the account
+ ] as const;
+ 
+ export function isAccountLocalJournalStorageKey(key: string): boolean {

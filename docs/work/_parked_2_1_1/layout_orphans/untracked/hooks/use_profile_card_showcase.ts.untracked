@@ -1,0 +1,60 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../app/account_generation';
+import { loadAchievementStates } from '../app/achievements';
+import { DebugLogger } from '../app/debug-logger';
+import { readShowcasePreference, saveShowcasePreference } from '../app/profile_card_showcase_store';
+import { syncPublicProfileSnapshot } from '../app/public_profile_snapshot';
+import { hydratePersonalProgress, usePersonalProgressSnapshot } from '../app/personal_progress_store';
+import { normalizeShowcase, type ShowcasePreference } from '../shared/profile_card_showcase';
+
+const EMPTY = normalizeShowcase(null);
+type Loaded = Readonly<{ token: AccountGenerationToken; preference: ShowcasePreference; earned: ReadonlySet<string> }>;
+
+export function useProfileCardShowcase(enabled: boolean) {
+  const [token, setToken] = useState(captureAccountGeneration);
+  const [loaded, setLoaded] = useState<Loaded | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [retry, setRetry] = useState(0);
+  const busy = useRef(false);
+  const progress = usePersonalProgressSnapshot();
+  useEffect(() => { const sub = subscribeAccountGeneration(setToken); return () => sub.remove(); }, []);
+  useEffect(() => {
+    if (!enabled || !token.stableId || !isCurrentAccountGeneration(token)) return;
+    let alive = true;
+    setLoading(true); setFailed(false);
+    void Promise.all([readShowcasePreference(token.stableId), loadAchievementStates(token), hydratePersonalProgress()]).then(([preference, states]) => {
+      if (!alive || !isCurrentAccountGeneration(token)) return;
+      setLoaded({ token, preference, earned: new Set(states.filter((s) => !!s.unlockedAt).map((s) => s.id)) });
+      setLoading(false);
+    }).catch((error: unknown) => {
+      if (!alive || !isCurrentAccountGeneration(token)) return;
+      setLoading(false); setFailed(true);
+      DebugLogger.warn('[PROFILE-CARD]', `showcase load failed: ${String(error)}`);
+    });
+    return () => { alive = false; };
+  }, [enabled, token, retry]);
+  const current = enabled && loaded && loaded.token.generation === token.generation && isCurrentAccountGeneration(loaded.token) ? loaded : null;
+  const preference = current?.preference ?? EMPTY;
+  // Existing snapshot coalesces identical hashes. No timer and no extra profile reads.
+  useEffect(() => {
+    if (current && preference.showStreak && progress.hydrated) void syncPublicProfileSnapshot({ reason: 'display_change' }, token);
+  }, [current, preference.showStreak, progress.hydrated, progress.streakCount, token]);
+  const save = useCallback(async (value: ShowcasePreference): Promise<boolean> => {
+    if (busy.current || !current) return false;
+    busy.current = true; setSaving(true);
+    try {
+      const ok = await saveShowcasePreference(current.token, value);
+      if (!isCurrentAccountGeneration(current.token)) return false;
+      if (ok) {
+        setLoaded({ ...current, preference: { awardIds: [...value.awardIds], showStreak: value.showStreak } });
+        void syncPublicProfileSnapshot({ reason: 'display_change' }, current.token);
+      }
+      return ok;
+    } finally { busy.current = false; setSaving(false); }
+  }, [current]);
+  return { token, preference, showcase: normalizeShowcase({ ...preference, streakDays: progress.streakCount }),
+    earned: current?.earned ?? new Set<string>(), loading: loading || (!current && !failed), failed, saving, save,
+    reload: () => setRetry((value) => value + 1) };
+}

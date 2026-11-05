@@ -1,0 +1,43 @@
+import { normalizeShowcase, validateEarnedShowcase, type ShowcasePreference } from '../shared/profile_card_showcase';
+import { isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from './account_generation';
+import { DebugLogger } from './debug-logger';
+import { persistPortablePreference, readPortablePreference } from './phone_state_preference_bridge';
+
+export const SHOWCASE_STORAGE_PREFIX = 'profile_card_showcase_v1:';
+function key(owner: string): string {
+  if (!owner.trim()) throw new Error('showcase_owner_missing');
+  return SHOWCASE_STORAGE_PREFIX + encodeURIComponent(owner.trim());
+}
+
+export async function readShowcasePreference(owner: string): Promise<ShowcasePreference> {
+  const raw = await readPortablePreference(key(owner));
+  let parsed: unknown = null;
+  if (raw !== null) {
+    try { parsed = JSON.parse(raw); }
+    catch { DebugLogger.warn('[PROFILE-CARD]', 'Malformed showcase preference; showing safe defaults until the next save.'); }
+  }
+  const { awardIds, showStreak } = normalizeShowcase(parsed);
+  return { awardIds, showStreak };
+}
+
+/** The opened sheet's token is required: a late click must not adopt a new account. */
+export async function saveShowcasePreference(token: AccountGenerationToken, value: ShowcasePreference): Promise<boolean> {
+  const owner = token.stableId;
+  if (!owner || !isCurrentAccountGeneration(token, owner)) return false;
+  try {
+    const { loadAchievementStates } = await import('./achievements');
+    const states = await loadAchievementStates(token);
+    const earned = new Set(states.filter((state) => !!state.unlockedAt).map((state) => state.id));
+    if (!validateEarnedShowcase(value.awardIds, earned)) return false;
+    return await withAccountTransitionLock(async () => {
+      if (!isCurrentAccountGeneration(token, owner)) return false;
+      await persistPortablePreference(key(owner), JSON.stringify({ awardIds: [...value.awardIds], showStreak: value.showStreak === true }), { requireJournal: true, expectedStableUid: owner });
+      return isCurrentAccountGeneration(token, owner);
+    });
+  } catch (error) {
+    DebugLogger.warn('[PROFILE-CARD]', `showcase save failed: ${String(error)}`);
+    return false;
+  }
+}
+
+export default function __RouteShim() { return null; }

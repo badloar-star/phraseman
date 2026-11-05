@@ -1,0 +1,25 @@
+const mockSync = jest.fn().mockResolvedValue(undefined);
+const mockRead = jest.fn().mockResolvedValue({ awardIds: [], showStreak: false });
+let mockNetwork: (state: { isConnected: boolean; isInternetReachable: boolean }) => void;
+const mockUnsubscribe = jest.fn();
+let mockCleanup: (() => void) | undefined;
+jest.mock('react', () => ({ useEffect: (effect: () => () => void) => { mockCleanup = effect(); } }));
+jest.mock('@react-native-community/netinfo', () => ({ __esModule: true, default: { addEventListener: (fn: typeof mockNetwork) => { mockNetwork = fn; return mockUnsubscribe; } } }));
+jest.mock('../app/account_generation', () => ({ captureAccountGeneration: () => ({ stableId: 'owner', generation: 1 }), isCurrentAccountGeneration: () => true }));
+jest.mock('../app/personal_progress_store', () => ({ getPersonalProgressSnapshot: () => ({ streakCount: 10, hydrated: true }), subscribePersonalProgress: () => mockUnsubscribe }));
+jest.mock('../app/profile_card_showcase_store', () => ({ readShowcasePreference: (...args: unknown[]) => mockRead(...args) }));
+jest.mock('../app/public_profile_snapshot', () => ({ syncPublicProfileSnapshot: (...args: unknown[]) => mockSync(...args) }));
+import { useProfileCardShowcaseSync } from '../hooks/use_profile_card_showcase_sync';
+it('republishes on reconnect even when visibility has been disabled offline', () => {
+  useProfileCardShowcaseSync();
+  mockNetwork({ isConnected: true, isInternetReachable: true });
+  mockSync.mockClear();
+  mockNetwork({ isConnected: false, isInternetReachable: false });
+  mockNetwork({ isConnected: true, isInternetReachable: true });
+  expect(mockSync).toHaveBeenCalledTimes(1);
+  expect(mockSync).toHaveBeenCalledWith({ reason: 'display_change' }, expect.objectContaining({ stableId: 'owner' }));
+  mockNetwork({ isConnected: true, isInternetReachable: true });
+  expect(mockSync).toHaveBeenCalledTimes(1);
+  mockCleanup?.();
+  expect(mockUnsubscribe).toHaveBeenCalledTimes(2);
+});

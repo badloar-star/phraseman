@@ -1,0 +1,254 @@
+import {
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+} from '../app/account_generation';
+import {
+  recoverPendingLearningV2SessionRuneRewardIntentsV1,
+  type LearningV2SessionRuneRewardIntentStorageV1,
+  type LearningV2SessionRuneRewardProtectedReceiptStorageV1,
+} from '../app/learning_v2_owner_repository_runtime';
+import { deriveLearningV2EconomicAccountScopeHash } from '../modules/learning-v2/progress/economic_account_scope';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const repoRoot = path.resolve(__dirname, '..');
+const read = (relativePath: string): string =>
+  fs.readFileSync(path.join(repoRoot, relativePath), 'utf8');
+const emptyRecoveryResult = Object.freeze({
+  applied: 0,
+  replayed: 0,
+  remaining: 0,
+  failed: 0,
+});
+
+function deferred<T>() {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>((next) => { resolve = next; });
+  return { promise, resolve };
+}
+
+function intentStorage(input: Readonly<{
+  getAllKeys?: () => Promise<readonly string[]>;
+  getItem?: (key: string) => Promise<string | null>;
+}> = {}) {
+  return {
+    getAllKeys: jest.fn(input.getAllKeys ?? (async () => [])),
+    getItem: jest.fn(input.getItem ?? (async () => null)),
+    setItem: jest.fn(async () => undefined),
+    removeItem: jest.fn(async () => undefined),
+  } satisfies LearningV2SessionRuneRewardIntentStorageV1;
+}
+
+function protectedStorage() {
+  return {
+    getItem: jest.fn(async () => {
+      throw new Error('protected_receipt_must_not_be_read');
+    }),
+    setItem: jest.fn(async () => undefined),
+    removeItem: jest.fn(async () => undefined),
+  } satisfies LearningV2SessionRuneRewardProtectedReceiptStorageV1;
+}
+
+afterEach(() => {
+  invalidateAccountGeneration();
+});
+
+describe('Learning V2 durable rune recovery bootstrap while course UI is disabled', () => {
+  it('is reachable from the root lifecycle without mounting the disabled player', () => {
+    const root = read('app/_layout.tsx');
+    expect(root).toContain("import('./learning_v2_session_rune_reward_recovery_bootstrap')");
+    expect(root).toContain('runLearningV2SessionRuneRewardRecoveryBootstrapV1({');
+    expect(root).toContain('accountToken: accountGeneration');
+  });
+
+  it('rechecks the captured generation after the lazy recovery import resolves', async () => {
+    const accountA = beginAccountGeneration('rune-recovery-lazy-account-a');
+    const loaded = deferred<Readonly<{
+      recoverPendingLearningV2SessionRuneRewardIntentsV1: jest.Mock;
+    }>>();
+    const recover = jest.fn(async () => emptyRecoveryResult);
+    const bootstrap = require(
+      '../app/learning_v2_session_rune_reward_recovery_bootstrap'
+    ) as Readonly<{
+      runLearningV2SessionRuneRewardRecoveryBootstrapV1(input: Readonly<{
+        accountToken: typeof accountA;
+        loadRecovery: () => typeof loaded.promise;
+      }>): Promise<typeof emptyRecoveryResult>;
+    }>;
+
+    const staleRun = bootstrap.runLearningV2SessionRuneRewardRecoveryBootstrapV1({
+      accountToken: accountA,
+      loadRecovery: () => loaded.promise,
+    });
+    beginAccountGeneration('rune-recovery-lazy-account-b');
+    loaded.resolve({
+      recoverPendingLearningV2SessionRuneRewardIntentsV1: recover,
+    });
+
+    await expect(staleRun).resolves.toEqual(emptyRecoveryResult);
+    expect(recover).not.toHaveBeenCalled();
+  });
+
+  it('does not lazy-load recovery without an active current identity', async () => {
+    const inactiveToken = invalidateAccountGeneration();
+    const loadRecovery = jest.fn(async () => ({
+      recoverPendingLearningV2SessionRuneRewardIntentsV1: jest.fn(),
+    }));
+    const bootstrap = require(
+      '../app/learning_v2_session_rune_reward_recovery_bootstrap'
+    ) as Readonly<{
+      runLearningV2SessionRuneRewardRecoveryBootstrapV1(input: Readonly<{
+        accountToken: typeof inactiveToken;
+        loadRecovery: typeof loadRecovery;
+      }>): Promise<typeof emptyRecoveryResult>;
+    }>;
+
+    await expect(
+      bootstrap.runLearningV2SessionRuneRewardRecoveryBootstrapV1({
+        accountToken: inactiveToken,
+        loadRecovery,
+      }),
+    ).resolves.toEqual(emptyRecoveryResult);
+    expect(loadRecovery).not.toHaveBeenCalled();
+  });
+
+  it('does no protected read, write, publication materialization, or new intent work for an empty queue', async () => {
+    const accountToken = beginAccountGeneration('rune-recovery-empty');
+    const intents = intentStorage();
+    const protectedReceipts = protectedStorage();
+
+    await expect(recoverPendingLearningV2SessionRuneRewardIntentsV1({
+      accountToken,
+      sessionRuneRewardIntentStorage: intents,
+      sessionRuneRewardProtectedReceiptStorage: protectedReceipts,
+    })).resolves.toEqual({ applied: 0, replayed: 0, remaining: 0, failed: 0 });
+
+    expect(intents.getAllKeys).toHaveBeenCalledTimes(1);
+    expect(intents.getItem).not.toHaveBeenCalled();
+    expect(intents.setItem).not.toHaveBeenCalled();
+    expect(intents.removeItem).not.toHaveBeenCalled();
+    expect(protectedReceipts.getItem).not.toHaveBeenCalled();
+    expect(protectedReceipts.setItem).not.toHaveBeenCalled();
+    expect(protectedReceipts.removeItem).not.toHaveBeenCalled();
+  });
+
+  it('does not inspect storage without an active current identity', async () => {
+    const inactiveToken = invalidateAccountGeneration();
+    const intents = intentStorage();
+
+    await expect(recoverPendingLearningV2SessionRuneRewardIntentsV1({
+      accountToken: inactiveToken,
+      sessionRuneRewardIntentStorage: intents,
+      sessionRuneRewardProtectedReceiptStorage: protectedStorage(),
+    })).resolves.toEqual({ applied: 0, replayed: 0, remaining: 0, failed: 0 });
+
+    expect(intents.getAllKeys).not.toHaveBeenCalled();
+  });
+
+  it('coalesces concurrent recovery for the same account generation', async () => {
+    const accountToken = beginAccountGeneration('rune-recovery-one-flight');
+    const keys = deferred<readonly string[]>();
+    const intents = intentStorage({ getAllKeys: () => keys.promise });
+    const dependencies = {
+      accountToken,
+      sessionRuneRewardIntentStorage: intents,
+      sessionRuneRewardProtectedReceiptStorage: protectedStorage(),
+    };
+
+    const first = recoverPendingLearningV2SessionRuneRewardIntentsV1(dependencies);
+    const duplicate = recoverPendingLearningV2SessionRuneRewardIntentsV1(dependencies);
+    expect(first).toBe(duplicate);
+    expect(intents.getAllKeys).toHaveBeenCalledTimes(1);
+
+    keys.resolve([]);
+    await expect(Promise.all([first, duplicate])).resolves.toEqual([
+      { applied: 0, replayed: 0, remaining: 0, failed: 0 },
+      { applied: 0, replayed: 0, remaining: 0, failed: 0 },
+    ]);
+  });
+
+  it('stops after an A-to-B switch resolves the old intent index', async () => {
+    const accountA = beginAccountGeneration('rune-recovery-account-a');
+    const accountAScopeHash = deriveLearningV2EconomicAccountScopeHash(
+      'rune-recovery-account-a',
+    );
+    const keys = deferred<readonly string[]>();
+    const intentsA = intentStorage({ getAllKeys: () => keys.promise });
+    const protectedA = protectedStorage();
+
+    const recoveringA = recoverPendingLearningV2SessionRuneRewardIntentsV1({
+      accountToken: accountA,
+      sessionRuneRewardIntentStorage: intentsA,
+      sessionRuneRewardProtectedReceiptStorage: protectedA,
+    });
+    beginAccountGeneration('rune-recovery-account-b');
+    keys.resolve([
+      `learning-v2:session-rune-reward-intent:v1:${accountAScopeHash}:old-account-row`,
+    ]);
+
+    await expect(recoveringA).resolves.toEqual({
+      applied: 0,
+      replayed: 0,
+      remaining: 0,
+      failed: 0,
+    });
+    expect(intentsA.getItem).not.toHaveBeenCalled();
+    expect(protectedA.getItem).not.toHaveBeenCalled();
+  });
+
+  it('discards an old A row when the account switches while that row is being read', async () => {
+    const accountA = beginAccountGeneration('rune-recovery-row-account-a');
+    const accountAScopeHash = deriveLearningV2EconomicAccountScopeHash(
+      'rune-recovery-row-account-a',
+    );
+    const row = deferred<string | null>();
+    const intentsA = intentStorage({
+      getAllKeys: async () => [
+        `learning-v2:session-rune-reward-intent:v1:${accountAScopeHash}:old-row`,
+      ],
+      getItem: () => row.promise,
+    });
+    const protectedA = protectedStorage();
+
+    const recoveringA = recoverPendingLearningV2SessionRuneRewardIntentsV1({
+      accountToken: accountA,
+      sessionRuneRewardIntentStorage: intentsA,
+      sessionRuneRewardProtectedReceiptStorage: protectedA,
+    });
+    await Promise.resolve();
+    expect(intentsA.getItem).toHaveBeenCalledTimes(1);
+    beginAccountGeneration('rune-recovery-row-account-b');
+    row.resolve('{}');
+
+    await expect(recoveringA).resolves.toEqual(emptyRecoveryResult);
+    expect(protectedA.getItem).not.toHaveBeenCalled();
+  });
+
+  it('lets B recover independently while an old A generation is still waiting', async () => {
+    const accountA = beginAccountGeneration('rune-recovery-independent-a');
+    const keysA = deferred<readonly string[]>();
+    const intentsA = intentStorage({ getAllKeys: () => keysA.promise });
+    const recoveringA = recoverPendingLearningV2SessionRuneRewardIntentsV1({
+      accountToken: accountA,
+      sessionRuneRewardIntentStorage: intentsA,
+      sessionRuneRewardProtectedReceiptStorage: protectedStorage(),
+    });
+
+    const accountB = beginAccountGeneration('rune-recovery-independent-b');
+    const intentsB = intentStorage();
+    await expect(recoverPendingLearningV2SessionRuneRewardIntentsV1({
+      accountToken: accountB,
+      sessionRuneRewardIntentStorage: intentsB,
+      sessionRuneRewardProtectedReceiptStorage: protectedStorage(),
+    })).resolves.toEqual({ applied: 0, replayed: 0, remaining: 0, failed: 0 });
+    expect(intentsB.getAllKeys).toHaveBeenCalledTimes(1);
+
+    keysA.resolve([]);
+    await expect(recoveringA).resolves.toEqual({
+      applied: 0,
+      replayed: 0,
+      remaining: 0,
+      failed: 0,
+    });
+  });
+});

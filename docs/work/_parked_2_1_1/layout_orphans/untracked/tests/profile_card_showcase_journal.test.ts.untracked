@@ -1,0 +1,30 @@
+const mockSet = jest.fn();
+jest.mock('@react-native-async-storage/async-storage', () => ({ __esModule: true, default: { setItem: (...args: unknown[]) => mockSet(...args), getItem: jest.fn() } }));
+jest.mock('expo-crypto', () => ({ randomUUID: () => 'test-op' }));
+import { configurePhoneStatePreferenceBridge, persistPortablePreference } from '../app/phone_state_preference_bridge';
+const key = 'profile_card_showcase_v1:owner';
+const strict = { requireJournal: true, expectedStableUid: 'owner' };
+beforeEach(() => mockSet.mockResolvedValue(undefined));
+afterEach(() => { configurePhoneStatePreferenceBridge(null); jest.clearAllMocks(); });
+it('does not report a saved showcase while the journal is unavailable', async () => {
+  configurePhoneStatePreferenceBridge(null);
+  await expect(persistPortablePreference(key, '{}', strict)).rejects.toThrow();
+  expect(mockSet).not.toHaveBeenCalled();
+});
+it('treats the authoritative commit as saved even when the legacy mirror fails', async () => {
+  const commit = jest.fn().mockResolvedValue(undefined);
+  configurePhoneStatePreferenceBridge({ scope: { stableUid: 'owner', accountGeneration: 1 }, deviceId: 'd', store: { commit } } as unknown as NonNullable<Parameters<typeof configurePhoneStatePreferenceBridge>[0]>);
+  mockSet.mockRejectedValue(new Error('mirror full'));
+  await expect(persistPortablePreference(key, '{}', strict)).resolves.toBeUndefined();
+  expect(commit).toHaveBeenCalledTimes(1);
+});
+it('does not mirror a failed or wrong-account journal write', async () => {
+  const commit = jest.fn().mockRejectedValue(new Error('journal unavailable'));
+  const runtime = { scope: { stableUid: 'other', accountGeneration: 1 }, deviceId: 'd', store: { commit } } as unknown as NonNullable<Parameters<typeof configurePhoneStatePreferenceBridge>[0]>;
+  configurePhoneStatePreferenceBridge(runtime);
+  await expect(persistPortablePreference(key, '{}', strict)).rejects.toThrow();
+  expect(commit).not.toHaveBeenCalled();
+  configurePhoneStatePreferenceBridge({ ...runtime, scope: { ...runtime.scope, stableUid: 'owner' } });
+  await expect(persistPortablePreference(key, '{}', strict)).rejects.toThrow('journal unavailable');
+  expect(mockSet).not.toHaveBeenCalled();
+});

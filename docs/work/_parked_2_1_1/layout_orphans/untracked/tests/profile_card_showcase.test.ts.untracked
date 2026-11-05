@@ -1,0 +1,30 @@
+import { normalizeShowcase, toggleShowcaseAward, validateEarnedShowcase } from '../shared/profile_card_showcase';
+import { ACHIEVEMENT_CATALOG_V2 } from '../app/achievement_catalog_v2';
+import { SHOWCASE_AWARD_IDS } from '../shared/profile_card_showcase_ids';
+
+const ids = ['streak_7', 'streak_30', 'streak_100'];
+describe('profile card showcase', () => {
+  it('keeps the server-safe ID allowlist in sync with all client awards', () => {
+    expect([...SHOWCASE_AWARD_IDS].sort()).toEqual(ACHIEVEMENT_CATALOG_V2.map((a) => a.id).sort());
+  });
+  it('defaults to private streak and no awards', () => {
+    expect(normalizeShowcase(null)).toEqual({ awardIds: [], showStreak: false, streakDays: 0 });
+  });
+  it('keeps three unique known IDs in selection order and hides counts without consent', () => {
+    expect(normalizeShowcase({ awardIds: [...ids, ids[0], 'shards_10000', 'unknown'], streakDays: 123 })).toEqual({ awardIds: ids, showStreak: false, streakDays: 0 });
+    expect(normalizeShowcase({ showStreak: true, streakDays: Infinity }).streakDays).toBe(0);
+    expect(normalizeShowcase({ showStreak: true, streakDays: 365 }).streakDays).toBe(365);
+  });
+  it('refuses the fourth choice and can remove and replace a slot', () => {
+    expect(toggleShowcaseAward(ids, 'shards_10000')).toEqual(ids);
+    expect(toggleShowcaseAward(toggleShowcaseAward(ids, ids[1]), 'shards_10000')).toEqual([ids[0], ids[2], 'shards_10000']);
+  });
+  it('refuses unearned, duplicate, unknown and oversized submissions', () => {
+    expect(validateEarnedShowcase(ids, new Set(ids))).toBe(true);
+    expect(validateEarnedShowcase([], new Set())).toBe(true);
+    expect(validateEarnedShowcase(['shards_10000'], new Set(ids))).toBe(false);
+    expect(validateEarnedShowcase(['streak_7', 'streak_7'], new Set(ids))).toBe(false);
+    expect(validateEarnedShowcase([...ids, 'streak_365'], new Set([...ids, 'streak_365']))).toBe(false);
+    expect(validateEarnedShowcase(['unknown'], new Set(['unknown']))).toBe(false);
+  });
+});

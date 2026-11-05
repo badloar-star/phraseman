@@ -1,0 +1,34 @@
+const mockRead = jest.fn();
+const mockWrite = jest.fn();
+const mockStates = jest.fn();
+const mockCurrent = jest.fn();
+jest.mock('../app/phone_state_preference_bridge', () => ({ readPortablePreference: (...a: unknown[]) => mockRead(...a), persistPortablePreference: (...a: unknown[]) => mockWrite(...a) }));
+jest.mock('../app/achievements', () => ({ loadAchievementStates: (...a: unknown[]) => mockStates(...a) }));
+jest.mock('../app/account_generation', () => ({ isCurrentAccountGeneration: (...a: unknown[]) => mockCurrent(...a), withAccountTransitionLock: (fn: () => Promise<unknown>) => fn() }));
+import { readShowcasePreference, saveShowcasePreference } from '../app/profile_card_showcase_store';
+const token = { stableId: 'owner', phase: 'active' as const, generation: 1 };
+beforeEach(() => { jest.clearAllMocks(); mockCurrent.mockReturnValue(true); mockRead.mockResolvedValue(null); mockWrite.mockResolvedValue(undefined); mockStates.mockResolvedValue([{ id: 'streak_7', unlockedAt: '2026-01-01' }]); });
+describe('showcase storage', () => {
+  it('writes earned selections durably, bound to the owner', async () => {
+    expect(await saveShowcasePreference(token, { awardIds: ['streak_7'], showStreak: true })).toBe(true);
+    expect(mockWrite).toHaveBeenCalledWith('profile_card_showcase_v1:owner', JSON.stringify({ awardIds: ['streak_7'], showStreak: true }), { requireJournal: true, expectedStableUid: 'owner' });
+  });
+  it('rejects locked awards and stale account operations', async () => {
+    expect(await saveShowcasePreference(token, { awardIds: ['streak_365'], showStreak: false })).toBe(false);
+    mockCurrent.mockReturnValue(false);
+    expect(await saveShowcasePreference(token, { awardIds: [], showStreak: false })).toBe(false);
+    expect(mockWrite).not.toHaveBeenCalled();
+  });
+  it('does not report success on write failure', async () => {
+    mockWrite.mockRejectedValue(new Error('disk full'));
+    expect(await saveShowcasePreference(token, { awardIds: [], showStreak: false })).toBe(false);
+  });
+  it('reads defaults and stored selection; recovers malformed JSON without writing', async () => {
+    expect(await readShowcasePreference('owner')).toEqual({ awardIds: [], showStreak: false });
+    mockRead.mockResolvedValue(JSON.stringify({ awardIds: ['streak_7'], showStreak: true }));
+    expect(await readShowcasePreference('owner')).toEqual({ awardIds: ['streak_7'], showStreak: true });
+    mockRead.mockResolvedValue('{');
+    await expect(readShowcasePreference('owner')).resolves.toEqual({ awardIds: [], showStreak: false });
+    expect(mockWrite).not.toHaveBeenCalled();
+  });
+});

@@ -1,0 +1,19 @@
+import { buildAuthoritativePublicProfileProjection } from './public_profile_projection';
+describe('showcase projection', () => {
+  it('keeps cosmetic local streak separate from trusted competitive progress', () => {
+    const result = buildAuthoritativePublicProfileProjection('a', {
+      progressServerAuthoritative: true, progressServerState: { streakCount: 6 },
+    }, { profileCardShowcase: { awardIds: [], showStreak: true, streakDays: 40 } }, 1);
+    expect(result.streak).toBe(6);
+    expect(result.profileCardShowcase).toEqual({ awardIds: [], showStreak: true, streakDays: 40 });
+  });
+  it('preserves omission for old clients and publishes explicit removal', () => {
+    expect(buildAuthoritativePublicProfileProjection('a', {}, {}, 1)).not.toHaveProperty('profileCardShowcase');
+    expect(buildAuthoritativePublicProfileProjection('a', {}, { profileCardShowcase: { awardIds: [], showStreak: false, streakDays: 50 } }, 1).profileCardShowcase).toEqual({ awardIds: [], showStreak: false, streakDays: 0 });
+  });
+  it('accepts all card tiers, rejects unknown IDs and bounds counts', () => {
+    const result = buildAuthoritativePublicProfileProjection('a', {}, { profileCardShowcase: { awardIds: ['streak_7', 'bad', 'streak_7'], showStreak: true, streakDays: 200000 } }, 1);
+    expect(result.profileCardPro).toBe(false);
+    expect(result.profileCardShowcase).toEqual({ awardIds: ['streak_7'], showStreak: true, streakDays: 100000 });
+  });
+});

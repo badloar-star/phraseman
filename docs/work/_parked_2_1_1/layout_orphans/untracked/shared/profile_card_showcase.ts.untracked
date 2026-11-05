@@ -1,0 +1,33 @@
+import { SHOWCASE_AWARD_IDS } from './profile_card_showcase_ids';
+
+export const SHOWCASE_AWARD_LIMIT = 3;
+const knownIds = new Set(SHOWCASE_AWARD_IDS);
+export type ProfileCardShowcase = Readonly<{
+  awardIds: readonly string[];
+  showStreak: boolean;
+  streakDays: number;
+}>;
+export type ShowcasePreference = Pick<ProfileCardShowcase, 'awardIds' | 'showStreak'>;
+
+/** Public cosmetics only: these IDs never grant achievements or rewards. */
+export function normalizeShowcase(value: unknown): ProfileCardShowcase {
+  const data = value && typeof value === 'object' && !Array.isArray(value)
+    ? value as Record<string, unknown> : {};
+  const awardIds = Array.isArray(data.awardIds)
+    ? [...new Set(data.awardIds.filter((id): id is string => typeof id === 'string' && knownIds.has(id)))].slice(0, SHOWCASE_AWARD_LIMIT)
+    : [];
+  const showStreak = data.showStreak === true;
+  const streakDays = showStreak && typeof data.streakDays === 'number' && Number.isSafeInteger(data.streakDays)
+    ? Math.max(0, Math.min(100_000, data.streakDays)) : 0;
+  return Object.freeze({ awardIds: Object.freeze(awardIds), showStreak, streakDays });
+}
+
+export function toggleShowcaseAward(ids: readonly string[], id: string): readonly string[] {
+  if (ids.includes(id)) return ids.filter((entry) => entry !== id);
+  return ids.length < SHOWCASE_AWARD_LIMIT && knownIds.has(id) ? [...ids, id] : ids;
+}
+
+export function validateEarnedShowcase(ids: readonly string[], earned: ReadonlySet<string>): boolean {
+  return ids.length <= SHOWCASE_AWARD_LIMIT && new Set(ids).size === ids.length
+    && ids.every((id) => knownIds.has(id) && earned.has(id));
+}

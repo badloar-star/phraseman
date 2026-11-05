@@ -1,0 +1,68 @@
+import React from 'react';
+jest.unmock('react-native');
+import { fireEvent, render, waitFor } from '@testing-library/react-native';
+jest.mock('@expo/vector-icons/Ionicons', () => () => null);
+jest.mock('react-native-reanimated', () => ({ __esModule: true, default: { View: require('react-native').View }, FadeInDown: { duration: () => undefined } }));
+jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
+jest.mock('../components/AchievementArt', () => () => null);
+jest.mock('../components/modal_fx/SheetSwipeClose', () => ({ children }: { children: React.ReactNode }) => children);
+jest.mock('../components/PressableHybrid', () => {
+  const React = require('react'); const { Pressable } = require('react-native');
+  return ({ children, contentStyle, ...props }: Record<string, unknown>) => React.createElement(Pressable, props, children);
+});
+jest.mock('../components/DuoPressable', () => {
+  const React = require('react'); const { Pressable } = require('react-native');
+  return ({ children, ...props }: Record<string, unknown>) => React.createElement(Pressable, props, children);
+});
+jest.mock('../components/profile-card/profile_card_sheet_paint', () => ({ useProfileSheetPaint: () => ({ sheet: '#111', title: '#fff', hint: '#aaa', field: '#222', warn: '#f90', shadow: '#000', button: { altBg: '#333', primaryBg: '#eee', primaryInk: '#111' } }) }));
+jest.mock('../app/achievements', () => ({
+  ALL_ACHIEVEMENTS: ['streak_7', 'streak_30', 'streak_100', 'streak_365'].map(id => ({ id, nameRu: id })),
+  achievementNameForLang: (a: { nameRu: string }) => a.nameRu,
+}));
+import ProfileCardShowcaseSheet, { type ShowcaseSheetProps } from '../components/profile-card/ProfileCardShowcaseSheet';
+const first = ['streak_7', 'streak_30', 'streak_100'];
+function props(overrides: Partial<ShowcaseSheetProps> = {}): ShowcaseSheetProps {
+  return { mode: 'awards', lang: 'ru', preference: { awardIds: first, showStreak: false }, earned: new Set([...first, 'streak_365']), loading: false, loadFailed: false, saving: false, bottomInset: 0,
+    onSave: jest.fn().mockResolvedValue(true), onChoose: jest.fn(), onClose: jest.fn(), onRetry: jest.fn(), ...overrides };
+}
+it('limits selection to three, removes/replaces in order and saves', async () => {
+  const p = props(); const ui = await render(<ProfileCardShowcaseSheet {...p} />);
+  await fireEvent.press(ui.getByTestId('showcase-choice-streak_365'));
+  expect(ui.getByText('Выбрано три. Сними отметку, чтобы выбрать другую.')).toBeTruthy();
+  await fireEvent.press(ui.getByTestId('showcase-choice-streak_30'));
+  await fireEvent.press(ui.getByTestId('showcase-choice-streak_365'));
+  await fireEvent.press(ui.getByTestId('showcase-awards-save'));
+  await waitFor(() => expect(p.onClose).toHaveBeenCalled());
+  expect(p.onSave).toHaveBeenCalledWith({ awardIds: ['streak_7', 'streak_100', 'streak_365'], showStreak: false });
+});
+it('cancel does not save; failure keeps the sheet and draft', async () => {
+  const p = props({ onSave: jest.fn().mockResolvedValue(false) }); const ui = await render(<ProfileCardShowcaseSheet {...p} />);
+  await fireEvent.press(ui.getByTestId('showcase-sheet-close'));
+  expect(p.onSave).not.toHaveBeenCalled();
+  (p.onClose as jest.Mock).mockClear();
+  await fireEvent.press(ui.getByTestId('showcase-awards-save'));
+  await waitFor(() => expect(ui.getByText('Не удалось сохранить. Попробуй ещё раз.')).toBeTruthy());
+  expect(p.onClose).not.toHaveBeenCalled();
+});
+it('shows only earned awards and supports an empty collection', async () => {
+  const p = props({ earned: new Set(), preference: { awardIds: [], showStreak: false } }); const ui = await render(<ProfileCardShowcaseSheet {...p} />);
+  expect(ui.queryByTestId('showcase-choice-streak_7')).toBeNull();
+  expect(ui.getByText('Здесь появятся твои полученные награды.')).toBeTruthy();
+});
+it('settings checkbox saves explicit consent and opens the picker', async () => {
+  const p = props({ mode: 'settings' }); const ui = await render(<ProfileCardShowcaseSheet {...p} />);
+  await fireEvent.press(ui.getByTestId('showcase-open-awards')); expect(p.onChoose).toHaveBeenCalled();
+  await fireEvent.press(ui.getByTestId('showcase-show-streak'));
+  await waitFor(() => expect(p.onSave).toHaveBeenCalledWith({ awardIds: first, showStreak: true }));
+});
+
+it('ignores a repeated tap while saving instead of reporting a false error', async () => {
+  let finish!: (ok: boolean) => void;
+  const onSave = jest.fn(() => new Promise<boolean>((resolve) => { finish = resolve; }));
+  const p = props({ mode: 'settings', onSave }); const ui = await render(<ProfileCardShowcaseSheet {...p} />);
+  await fireEvent.press(ui.getByTestId('showcase-show-streak'));
+  await fireEvent.press(ui.getByTestId('showcase-show-streak'));
+  expect(onSave).toHaveBeenCalledTimes(1);
+  finish(true);
+  await waitFor(() => expect(ui.queryByText('Не удалось сохранить. Попробуй ещё раз.')).toBeNull());
+});

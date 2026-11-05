@@ -1,0 +1,41 @@
+import { useEffect } from 'react';
+import NetInfo from '@react-native-community/netinfo';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
+import { getPersonalProgressSnapshot, subscribePersonalProgress } from '../app/personal_progress_store';
+import { readShowcasePreference } from '../app/profile_card_showcase_store';
+import { syncPublicProfileSnapshot } from '../app/public_profile_snapshot';
+import { DebugLogger } from '../app/debug-logger';
+
+/** Count changes publish through the existing coalescing snapshot queue; no polling. */
+export function useProfileCardShowcaseSync(): void {
+  useEffect(() => {
+    let previous = getPersonalProgressSnapshot().streakCount;
+    let alive = true;
+    let connected = false;
+    const unsubscribeNetwork = NetInfo.addEventListener((state) => {
+      const next = state.isConnected === true && state.isInternetReachable !== false;
+      if (next && !connected) {
+        const token = captureAccountGeneration();
+        // Also publish OFF: an offline visibility revocation must reach other players.
+        if (alive && token.stableId && isCurrentAccountGeneration(token)) {
+          void syncPublicProfileSnapshot({ reason: 'display_change' }, token);
+        }
+      }
+      connected = next;
+    });
+    const unsubscribe = subscribePersonalProgress(() => {
+      const progress = getPersonalProgressSnapshot();
+      const count = progress.streakCount;
+      if (!progress.hydrated || count === previous) return;
+      previous = count;
+      const token = captureAccountGeneration();
+      if (!token.stableId || !isCurrentAccountGeneration(token)) return;
+      void readShowcasePreference(token.stableId).then((preference) => {
+        if (alive && preference.showStreak && isCurrentAccountGeneration(token)) {
+          void syncPublicProfileSnapshot({ reason: 'display_change' }, token);
+        }
+      }).catch((error: unknown) => DebugLogger.warn('[PROFILE-CARD]', `streak showcase sync deferred: ${String(error)}`));
+    });
+    return () => { alive = false; unsubscribe(); unsubscribeNetwork(); };
+  }, []);
+}

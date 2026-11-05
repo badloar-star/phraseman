@@ -32,3 +32,6 @@ A5 (двойной сбой очистки при выходе) не трога�
 ## Rollback
 
 Вернуть два вызова `noticeAccountDeletedForever(lang, 'onboarding')`.
+Governance-ID: TG-2BBC5880DAC1
+Governance-ID: TG-C868373D25C7
+Governance-ID: TG-B8B99FF64313

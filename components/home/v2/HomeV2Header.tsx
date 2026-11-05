@@ -120,7 +120,8 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
                   В обычной шапке сохраняем прежний лимит для длинных локализованных плашек. */}
               <View style={keep ? s.statCopyKeep : s.statCopy}>
                 <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={scene ? undefined : 1.1} style={[headerText.statValue, { color: textColor }]}>{stat.value}</FlowText>
-                {stat.testID !== 'home-v2-coins' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={scene ? undefined : 1.1} style={[headerText.statLabel, { color: subColor }]}>{stat.label}</FlowText> : null}
+                {/* зачем (макет rev6-home-free-0, владелец: макеты 1:1): пилюля серии — одна строка «🔥 N дней», без подписи «Серия» (она остаётся для диктора в accessibilityLabel) */}
+                {stat.testID !== 'home-v2-coins' && stat.testID !== 'home-v2-streak' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={scene ? undefined : 1.1} style={[headerText.statLabel, { color: subColor }]}>{stat.label}</FlowText> : null}
               </View>
               {stat.trailing ? <><View style={[s.divider, { backgroundColor: textColor }]} />{stat.trailing}</> : null}
             </>;

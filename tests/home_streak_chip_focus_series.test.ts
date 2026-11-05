@@ -11,3 +11,13 @@ describe('шапка Главной → блок «Серия»', () => {
     expect(src.slice(at, at + 1500)).toContain("nav.push('/streak_stats?focus=series')");
   });
 });
+
+// ЗАМОК (макет approved-rev8/rev6-home-free-0, владелец 05.11 «1 в 1»): пилюля серии на Главной — одна строка «🔥 N дней», без подписи «Серия» под числом.
+describe('пилюля серии: одна строка без подписи', () => {
+  it('шапка не рисует подпись для home-v2-streak (подпись остаётся только в accessibilityLabel)', () => {
+    const fs = require('node:fs') as typeof import('node:fs');
+    const path = require('node:path') as typeof import('node:path');
+    const src = fs.readFileSync(path.join(__dirname, '..', 'components/home/v2/HomeV2Header.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    expect(src).toContain("stat.testID !== 'home-v2-coins' && stat.testID !== 'home-v2-streak'");
+  });
+});

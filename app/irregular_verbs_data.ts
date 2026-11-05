@@ -34,6 +34,7 @@ const IRREGULAR_VERB_GLOSSARY: Record<string, IrregularVerb> = {
   break: { base: 'break', past: 'broke', pp: 'broken', ru: 'Ломать', uk: 'Ламати', es: 'Romper', 'pt-BR': 'Quebrar / romper', vi: 'Làm vỡ / phá vỡ', id: 'Memecahkan / merusak', tr: 'Kırmak', pl: 'Łamać / zepsuć' },
   bring: { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити', es: 'Traer', 'pt-BR': 'Trazer', vi: 'Mang đến', id: 'Membawa', tr: 'Getirmek', pl: 'Przynosić' },
   build: { base: 'build', past: 'built', pp: 'built', ru: 'Строить', uk: 'Будувати', es: 'Construir', 'pt-BR': 'Construir', vi: 'Xây dựng', id: 'Membangun', tr: 'İnşa etmek', pl: 'Budować' },
+  catch: { base: 'catch', past: 'caught', pp: 'caught', ru: 'Ловить', uk: 'Ловити', es: 'Atrapar', 'pt-BR': 'Pegar', vi: 'Bắt', id: 'Menangkap', tr: 'Yakalamak', pl: 'Łapać' },
   buy: { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати', es: 'Comprar', 'pt-BR': 'Comprar', vi: 'Mua', id: 'Membeli', tr: 'Satın almak', pl: 'Kupować' },
   choose: { base: 'choose', past: 'chose', pp: 'chosen', ru: 'Выбирать', uk: 'Вибирати', es: 'Elegir', 'pt-BR': 'Escolher', vi: 'Chọn', id: 'Memilih', tr: 'Seçmek', pl: 'Wybierać' },
   come: { base: 'come', past: 'came', pp: 'come', ru: 'Приходить', uk: 'Приходити', es: 'Venir', 'pt-BR': 'Vir', vi: 'Đến', id: 'Datang', tr: 'Gelmek', pl: 'Przychodzić' },

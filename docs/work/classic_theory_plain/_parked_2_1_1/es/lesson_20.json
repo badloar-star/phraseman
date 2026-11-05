@@ -1,0 +1,485 @@
+{
+  "lang": "es",
+  "lesson": 20,
+  "title": {
+    "ru": "Я уже сделал",
+    "en": "I have already done it"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я уже позвонил",
+        "en": "I have already called"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я уже позвонил в отель».\nYa he llamado al hotel. — «Я уже позвонил в отель.»\nЧитается: йа э йама́до аль оте́ль.\nСлово ya значит «уже».\nЗдесь два слова: he и llamado. Вместе he llamado значит «я позвонил».\nYa has llamado a Ana. — «Ты уже позвонил Ане.»\nМеняется первое слово: he — «я», has — «ты». Слово llamado остаётся.\nYa he abierto la puerta. — «Я уже открыл дверь.»\nСлово abierto здесь значит «открыл».\nYa has abierto la ventana. — «Ты уже открыл окно.»",
+        "en": "Look at how to say “I have already called the hotel”.\nYa he llamado al hotel. — “I have already called the hotel.”\nThe word ya means “already”.\nThere are two words here: he and llamado. Together he llamado means “I have called”.\nYa has llamado a Ana. — “You have already called Ana.”\nThe first word changes: he — “I”, has — “you”. The word llamado stays.\nYa he abierto la puerta. — “I have already opened the door.”\nThe word abierto here means “opened”.\nYa has abierto la ventana. — “You have already opened the window.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:20:01",
+          "say": {
+            "ru": "йа э йама́до аль оте́ль",
+            "uk": "йа е йама́до аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:20:02",
+          "say": {
+            "ru": "йа ас йама́до а А́на",
+            "uk": "йа ас йама́до а А́на"
+          }
+        },
+        {
+          "phraseId": "es:20:03",
+          "say": {
+            "ru": "йа э абье́рто ла пуэ́рта",
+            "uk": "йа е абье́рто ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:20:04",
+          "say": {
+            "ru": "йа ас абье́рто ла бэнта́на",
+            "uk": "йа ас абье́рто ла бента́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже позвонил в отель»",
+            "uk": "Виберіть, як сказати: «Я вже зателефонував до готелю»",
+            "en": "Choose how to say: “I have already called the hotel”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:20:01",
+          "options": [
+            "es:20:01",
+            "es:20:02",
+            "es:20:03"
+          ],
+          "answerId": "es:20:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже открыл дверь»",
+            "uk": "Виберіть, як сказати: «Я вже відчинив двері»",
+            "en": "Choose how to say: “I have already opened the door”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:03",
+          "options": [
+            "es:20:03",
+            "es:20:04",
+            "es:20:01"
+          ],
+          "answerId": "es:20:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты уже открыл окно»",
+            "uk": "Виберіть, як сказати: «Ти вже відчинив вікно»",
+            "en": "Choose how to say: “You have already opened the window”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:04",
+          "options": [
+            "es:20:04",
+            "es:20:02",
+            "es:20:03"
+          ],
+          "answerId": "es:20:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Она, мы уже купили",
+        "en": "She, we have already bought"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана уже купила билет».\nAna ya ha comprado un billete. — «Ана уже купила билет.»\nЧитается: А́на йа а компра́до ун бийе́тэ.\nСлово ha — когда речь об Ане, о нём, о ней.\nСлово comprado значит «купила».\nYa hemos comprado pan. — «Мы уже купили хлеб.»\nСлово hemos — когда речь о нас.\nAna ya ha confirmado la reserva. — «Ана уже подтвердила бронь.»\nСлово confirmado значит «подтвердила».\nHemos recibido el pedido hoy. — «Мы сегодня получили заказ.»\nСлово recibido значит «получили». Слово pedido — «заказ».",
+        "en": "Look at how to say “Ana has already bought a ticket”.\nAna ya ha comprado un billete. — “Ana has already bought a ticket.”\nThe word ha is used when it is about Ana, him, her.\nThe word comprado means “bought”.\nYa hemos comprado pan. — “We have already bought bread.”\nThe word hemos is used when it is about us.\nAna ya ha confirmado la reserva. — “Ana has already confirmed the reservation.”\nThe word confirmado means “confirmed”.\nHemos recibido el pedido hoy. — “We received the order today.”\nThe word recibido means “received”. The word pedido means “order”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:20:05",
+          "say": {
+            "ru": "А́на йа а компра́до ун бийе́тэ",
+            "uk": "А́на йа а компра́до ун бійе́те"
+          }
+        },
+        {
+          "phraseId": "es:20:06",
+          "say": {
+            "ru": "йа э́мос компра́до пан",
+            "uk": "йа е́мос компра́до пан"
+          }
+        },
+        {
+          "phraseId": "es:20:12",
+          "say": {
+            "ru": "А́на йа а конфирма́до ла рэсэ́рба",
+            "uk": "А́на йа а конфірма́до ла ресе́рба"
+          }
+        },
+        {
+          "phraseId": "es:20:18",
+          "say": {
+            "ru": "э́мос рэсиби́до эль пэди́до ой",
+            "uk": "е́мос ресібі́до ель педі́до ой"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана уже купила билет»",
+            "uk": "Виберіть, як сказати: «Ана вже купила квиток»",
+            "en": "Choose how to say: “Ana has already bought a ticket”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:20:05",
+          "options": [
+            "es:20:05",
+            "es:20:06",
+            "es:20:12"
+          ],
+          "answerId": "es:20:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы уже купили хлеб»",
+            "uk": "Виберіть, як сказати: «Ми вже купили хліб»",
+            "en": "Choose how to say: “We have already bought bread”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:06",
+          "options": [
+            "es:20:06",
+            "es:20:05",
+            "es:20:18"
+          ],
+          "answerId": "es:20:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сегодня получили заказ»",
+            "uk": "Виберіть, як сказати: «Ми сьогодні отримали замовлення»",
+            "en": "Choose how to say: “We received the order today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:18",
+          "options": [
+            "es:20:18",
+            "es:20:12",
+            "es:20:06"
+          ],
+          "answerId": "es:20:18"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Написал, прочитал, оплатил",
+        "en": "Wrote, read, paid"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я уже написал письмо».\nYa he escrito una carta. — «Я уже написал письмо.»\nЧитается: йа э эскри́то у́на ка́рта.\nСлово escrito значит «написал».\nLuis ya ha leído el libro. — «Луис уже прочитал книгу.»\nСлово leído значит «прочитал».\nYa hemos leído el mensaje. — «Мы уже прочитали сообщение.»\nYa he recogido el paquete. — «Я уже забрал посылку.»\nСлово paquete значит «посылка».\nYa he pagado la factura. — «Я уже оплатил счёт.»\nСлово factura значит «счёт на оплату».\nYa he comprado los huevos en el supermercado. — «Я уже купил яйца в супермаркете.»\nСлово huevos значит «яйца».",
+        "en": "Look at how to say “I have already written a letter”.\nYa he escrito una carta. — “I have already written a letter.”\nThe word escrito means “written”.\nLuis ya ha leído el libro. — “Luis has already read the book.”\nThe word leído means “read”.\nYa hemos leído el mensaje. — “We have already read the message.”\nYa he recogido el paquete. — “I have already picked up the package.”\nThe word paquete means “package”.\nYa he pagado la factura. — “I have already paid the bill.”\nThe word factura means “bill, invoice”.\nYa he comprado los huevos en el supermercado.\n“I have already bought the eggs at the supermarket.” The word huevos means “eggs”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:20:07",
+          "say": {
+            "ru": "йа э эскри́то у́на ка́рта",
+            "uk": "йа е ескрі́то у́на ка́рта"
+          }
+        },
+        {
+          "phraseId": "es:20:09",
+          "say": {
+            "ru": "Луи́с йа а лээ́до эль ли́бро",
+            "uk": "Луі́с йа а лее́до ель лі́бро"
+          }
+        },
+        {
+          "phraseId": "es:20:10",
+          "say": {
+            "ru": "йа э́мос лээ́до эль мэнса́хэ",
+            "uk": "йа е́мос лее́до ель менса́хе"
+          }
+        },
+        {
+          "phraseId": "es:20:23",
+          "say": {
+            "ru": "йа э рэкохи́до эль пакэ́тэ",
+            "uk": "йа е рекохі́до ель паке́те"
+          }
+        },
+        {
+          "phraseId": "es:20:24",
+          "say": {
+            "ru": "йа э пага́до ла факту́ра",
+            "uk": "йа е пага́до ла факту́ра"
+          }
+        },
+        {
+          "phraseId": "es:20:29",
+          "say": {
+            "ru": "йа э компра́до лос уэ́бос эн эль супэрмэрка́до",
+            "uk": "йа е компра́до лос уе́бос ен ель супермерка́до"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже написал письмо»",
+            "uk": "Виберіть, як сказати: «Я вже написав листа»",
+            "en": "Choose how to say: “I have already written a letter”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:20:07",
+          "options": [
+            "es:20:07",
+            "es:20:09",
+            "es:20:10"
+          ],
+          "answerId": "es:20:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже оплатил счёт»",
+            "uk": "Виберіть, як сказати: «Я вже оплатив рахунок»",
+            "en": "Choose how to say: “I have already paid the bill”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:24",
+          "options": [
+            "es:20:24",
+            "es:20:23",
+            "es:20:29"
+          ],
+          "answerId": "es:20:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже купил яйца в супермаркете»",
+            "uk": "Виберіть, як сказати: «Я вже купив яйця в супермаркеті»",
+            "en": "Choose how to say: “I have already bought the eggs at the supermarket”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:29",
+          "options": [
+            "es:20:29",
+            "es:20:24",
+            "es:20:07"
+          ],
+          "answerId": "es:20:29"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Сегодня, на этой неделе",
+        "en": "Today, this week"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сегодня заплатил наличными».\nHe pagado en efectivo hoy. — «Я сегодня заплатил наличными.»\nЧитается: э пага́до эн эфэкти́бо ой.\nMis hermanos han vuelto a casa hoy. — «Мои братья сегодня вернулись домой.»\nСлово han — когда речь о них.\nHemos leído el libro esta semana. — «Мы на этой неделе прочитали книгу.»\nСлово semana значит «неделя». Слова esta semana — «на этой неделе».\nHabéis leído el mensaje esta semana. — «Вы на этой неделе прочитали сообщение.»\nСлово habéis — когда речь о вас, о нескольких людях.\nLuis ha mandado el paquete hoy. — «Луис сегодня отправил посылку.»",
+        "en": "Look at how to say “I paid in cash today”.\nHe pagado en efectivo hoy. — “I paid in cash today.”\nMis hermanos han vuelto a casa hoy. — “My brothers came back home today.”\nThe word han is used when it is about them.\nHemos leído el libro esta semana. — “We read the book this week.”\nThe word semana means “week”. The words esta semana — “this week”.\nHabéis leído el mensaje esta semana. — “You read the message this week.”\nThe word habéis is used when it is about several of you.\nLuis ha mandado el paquete hoy. — “Luis sent the package today.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:20:15",
+          "say": {
+            "ru": "э пага́до эн эфэкти́бо ой",
+            "uk": "е пага́до ен ефекті́бо ой"
+          }
+        },
+        {
+          "phraseId": "es:20:19",
+          "say": {
+            "ru": "мис эрма́нос ан буэ́льто а ка́са ой",
+            "uk": "міс ерма́нос ан буе́льто а ка́са ой"
+          }
+        },
+        {
+          "phraseId": "es:20:21",
+          "say": {
+            "ru": "э́мос лээ́до эль ли́бро э́ста сэма́на",
+            "uk": "е́мос лее́до ель лі́бро е́ста сема́на"
+          }
+        },
+        {
+          "phraseId": "es:20:22",
+          "say": {
+            "ru": "абэ́йс лээ́до эль мэнса́хэ э́ста сэма́на",
+            "uk": "абе́йс лее́до ель менса́хе е́ста сема́на"
+          }
+        },
+        {
+          "phraseId": "es:20:38",
+          "say": {
+            "ru": "Луи́с а манда́до эль пакэ́тэ ой",
+            "uk": "Луі́с а манда́до ель паке́те ой"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сегодня заплатил наличными»",
+            "uk": "Виберіть, як сказати: «Я сьогодні заплатив готівкою»",
+            "en": "Choose how to say: “I paid in cash today”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:20:15",
+          "options": [
+            "es:20:15",
+            "es:20:19",
+            "es:20:38"
+          ],
+          "answerId": "es:20:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы на этой неделе прочитали книгу»",
+            "uk": "Виберіть, як сказати: «Ми цього тижня прочитали книжку»",
+            "en": "Choose how to say: “We read the book this week”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:21",
+          "options": [
+            "es:20:21",
+            "es:20:22",
+            "es:20:19"
+          ],
+          "answerId": "es:20:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис сегодня отправил посылку»",
+            "uk": "Виберіть, як сказати: «Луїс сьогодні відправив посилку»",
+            "en": "Choose how to say: “Luis sent the package today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:38",
+          "options": [
+            "es:20:38",
+            "es:20:15",
+            "es:20:19"
+          ],
+          "answerId": "es:20:38"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не и вопрос",
+        "en": "Not, and a question"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сегодня утром не написал сообщение».\nNo he escrito un mensaje esta mañana. — «Я сегодня утром не написал сообщение.»\nЧитается: но э эскри́то ун мэнса́хэ э́ста манья́на.\nСлова esta mañana значат «сегодня утром». Слово no стоит перед he.\nNo hemos recibido la factura. — «Мы не получили счёт.»\nNo he terminado de fregar los platos. — «Я ещё не закончил мыть посуду.»\nСлово terminado значит «закончил». Слово fregar — «мыть».\nА теперь вопрос. Слова те же, голос в конце идёт вверх.\n¿Has llamado a Ana hoy? — «Ты сегодня позвонил Ане?»\n¿Has recibido mi correo? — «Ты получил моё электронное письмо?»\nСлово correo значит «электронное письмо».\n¿Has confirmado el pedido? — «Ты подтвердил заказ?»",
+        "en": "Look at how to say “I did not write a message this morning”.\nNo he escrito un mensaje esta mañana.\n“I did not write a message this morning.”\nThe words esta mañana mean “this morning”. The word no goes before he.\nNo hemos recibido la factura. — “We did not receive the bill.”\nNo he terminado de fregar los platos.\n“I have not finished washing the dishes.”\nThe word terminado means “finished”. The word fregar means “to wash up”.\nAnd now a question. The words are the same, the voice goes up at the end.\n¿Has llamado a Ana hoy? — “Did you call Ana today?”\n¿Has recibido mi correo? — “Did you receive my email?”\nThe word correo means “email”.\n¿Has confirmado el pedido? — “Did you confirm the order?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:20:31",
+          "say": {
+            "ru": "но э эскри́то ун мэнса́хэ э́ста манья́на",
+            "uk": "но е ескрі́то ун менса́хе е́ста манья́на"
+          }
+        },
+        {
+          "phraseId": "es:20:32",
+          "say": {
+            "ru": "но э́мос рэсиби́до ла факту́ра",
+            "uk": "но е́мос ресібі́до ла факту́ра"
+          }
+        },
+        {
+          "phraseId": "es:20:39",
+          "say": {
+            "ru": "но э тэрмина́до дэ фрэга́р лос пла́тос",
+            "uk": "но е терміна́до де фрега́р лос пла́тос"
+          }
+        },
+        {
+          "phraseId": "es:20:41",
+          "say": {
+            "ru": "ас йама́до а А́на ой",
+            "uk": "ас йама́до а А́на ой"
+          }
+        },
+        {
+          "phraseId": "es:20:27",
+          "say": {
+            "ru": "ас рэсиби́до ми корре́о",
+            "uk": "ас ресібі́до мі корре́о"
+          }
+        },
+        {
+          "phraseId": "es:20:42",
+          "say": {
+            "ru": "ас конфирма́до эль пэди́до",
+            "uk": "ас конфірма́до ель педі́до"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сегодня утром не написал сообщение»",
+            "uk": "Виберіть, як сказати: «Я сьогодні вранці не написав повідомлення»",
+            "en": "Choose how to say: “I did not write a message this morning”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:20:31",
+          "options": [
+            "es:20:31",
+            "es:20:32",
+            "es:20:39"
+          ],
+          "answerId": "es:20:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не получили счёт»",
+            "uk": "Виберіть, як сказати: «Ми не отримали рахунок»",
+            "en": "Choose how to say: “We did not receive the bill”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:32",
+          "options": [
+            "es:20:32",
+            "es:20:31",
+            "es:20:41"
+          ],
+          "answerId": "es:20:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты сегодня позвонил Ане?»",
+            "uk": "Виберіть, як сказати: «Ти сьогодні зателефонував Ані?»",
+            "en": "Choose how to say: “Did you call Ana today?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:20:41",
+          "options": [
+            "es:20:41",
+            "es:20:27",
+            "es:20:42"
+          ],
+          "answerId": "es:20:41"
+        }
+      ]
+    }
+  ]
+}

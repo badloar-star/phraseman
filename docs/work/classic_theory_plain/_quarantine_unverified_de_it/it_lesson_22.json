@@ -1,0 +1,524 @@
+{
+  "lang": "it",
+  "lesson": 22,
+  "title": {
+    "ru": "Его, её, их",
+    "uk": "Його, її, їх",
+    "en": "Him, her, them"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Его, её, их",
+        "uk": "Його, її, їх",
+        "en": "Him, her, them"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вижу его».\nLo vedo. — «Я вижу его.»\nЧитается: ло ве́до.\nLa vedo. — «Я вижу её.»\nЧитается: ла ве́до.\nLi vedo. — «Я вижу их.»\nЧитается: ли ве́до.\nСлово vedo значит «я вижу».\nСлово lo значит «его», слово la — «её», слово li — «их».\nПо-русски «его» стоит после слова «вижу».\nПо-итальянски короткое слово стоит перед ним: lo vedo.\nСлово conosci значит «ты знаешь»: lo conosci — «ты его знаешь».",
+        "uk": "Дивіться, як сказати «Я бачу його».\nLo vedo. — «Я бачу його.»\nЧитається: ло ве́до.\nLa vedo. — «Я бачу її.»\nЧитається: ла ве́до.\nLi vedo. — «Я бачу їх.»\nЧитається: лі ве́до.\nСлово vedo означає «я бачу».\nСлово lo означає «його», слово la — «її», слово li — «їх».\nУкраїнською «його» стоїть після слова «бачу».\nІталійською коротке слово стоїть перед ним: lo vedo.\nСлово conosci означає «ти знаєш»: lo conosci — «ти знаєш його».",
+        "en": "Look at how to say “I see him”.\nLo vedo. — “I see him.”\nLa vedo. — “I see her.”\nLi vedo. — “I see them.”\nThe word vedo means “I see”.\nThe word lo means “him”, the word la — “her”, the word li — “them”.\nIn English “him” comes after “see”.\nIn Italian the short word comes before it: lo vedo.\nThe word conosci means “you know”: lo conosci — “you know him”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:22:01",
+          "say": {
+            "ru": "ло ве́до",
+            "uk": "ло ве́до"
+          }
+        },
+        {
+          "phraseId": "it:22:02",
+          "say": {
+            "ru": "ла ве́до",
+            "uk": "ла ве́до"
+          }
+        },
+        {
+          "phraseId": "it:22:03",
+          "say": {
+            "ru": "ли ве́до",
+            "uk": "лі ве́до"
+          }
+        },
+        {
+          "phraseId": "it:22:04",
+          "say": {
+            "ru": "ло коно́ши",
+            "uk": "ло коно́ші"
+          }
+        },
+        {
+          "phraseId": "it:22:05",
+          "say": {
+            "ru": "ла коно́ши",
+            "uk": "ла коно́ші"
+          }
+        },
+        {
+          "phraseId": "it:22:06",
+          "say": {
+            "ru": "ли коно́ши",
+            "uk": "лі коно́ші"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вижу его.»",
+            "uk": "Виберіть, як сказати: «Я бачу його.»",
+            "en": "Choose how to say: “I see him.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:22:01",
+          "options": [
+            "it:22:01",
+            "it:22:02",
+            "it:22:03"
+          ],
+          "answerId": "it:22:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вижу её.»",
+            "uk": "Виберіть, як сказати: «Я бачу її.»",
+            "en": "Choose how to say: “I see her.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:02",
+          "options": [
+            "it:22:02",
+            "it:22:01",
+            "it:22:03"
+          ],
+          "answerId": "it:22:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты их знаешь.»",
+            "uk": "Виберіть, як сказати: «Ти знаєш їх.»",
+            "en": "Choose how to say: “You know them.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:06",
+          "options": [
+            "it:22:06",
+            "it:22:04",
+            "it:22:05"
+          ],
+          "answerId": "it:22:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Кто ищет кого",
+        "uk": "Хто кого шукає",
+        "en": "Who looks for whom"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Она ищет его».\nLei lo cerca. — «Она ищет его.»\nЧитается: ле́й ло че́рка.\nLei la cerca. — «Она ищет её.»\nЧитается: ле́й ла че́рка.\nLi aspettiamo. — «Мы ждём их.»\nЧитается: ли аспеттья́мо.\nСлово lei значит «она», слово cerca — «ищет».\nСлова lei lo cerca значат «она ищет его».\nКороткое слово снова стоит перед действием.\nСлово aspettiamo значит «мы ждём»: li aspettiamo — «мы ждём их».",
+        "uk": "Дивіться, як сказати «Вона шукає його».\nLei lo cerca. — «Вона шукає його.»\nЧитається: ле́й ло че́рка.\nLei la cerca. — «Вона шукає її.»\nЧитається: ле́й ла че́рка.\nLi aspettiamo. — «Ми чекаємо на них.»\nЧитається: лі аспеттья́мо.\nСлово lei означає «вона», слово cerca — «шукає».\nСлова lei lo cerca означають «вона шукає його».\nКоротке слово знову стоїть перед дією.\nСлово aspettiamo означає «ми чекаємо»: li aspettiamo — «ми чекаємо на них».",
+        "en": "Look at how to say “She is looking for him”.\nLei lo cerca. — “She is looking for him.”\nLei la cerca. — “She is looking for her.”\nLi aspettiamo. — “We are waiting for them.”\nThe word lei means “she”, the word cerca — “is looking for”.\nThe words lei lo cerca mean “she is looking for him”.\nThe short word again comes before the action.\nThe word aspettiamo means “we wait”: li aspettiamo — “we are waiting for them”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:22:07",
+          "say": {
+            "ru": "ле́й ло че́рка",
+            "uk": "ле́й ло че́рка"
+          }
+        },
+        {
+          "phraseId": "it:22:08",
+          "say": {
+            "ru": "ле́й ла че́рка",
+            "uk": "ле́й ла че́рка"
+          }
+        },
+        {
+          "phraseId": "it:22:09",
+          "say": {
+            "ru": "ле́й ли че́рка",
+            "uk": "ле́й лі че́рка"
+          }
+        },
+        {
+          "phraseId": "it:22:10",
+          "say": {
+            "ru": "ли аспеттья́мо",
+            "uk": "лі аспеттья́мо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она ищет его.»",
+            "uk": "Виберіть, як сказати: «Вона шукає його.»",
+            "en": "Choose how to say: “She is looking for him.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:22:07",
+          "options": [
+            "it:22:07",
+            "it:22:08",
+            "it:22:09"
+          ],
+          "answerId": "it:22:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она ищет её.»",
+            "uk": "Виберіть, як сказати: «Вона шукає її.»",
+            "en": "Choose how to say: “She is looking for her.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:08",
+          "options": [
+            "it:22:08",
+            "it:22:07",
+            "it:22:09"
+          ],
+          "answerId": "it:22:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ждём их.»",
+            "uk": "Виберіть, як сказати: «Ми чекаємо на них.»",
+            "en": "Choose how to say: “We are waiting for them.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:10",
+          "options": [
+            "it:22:10",
+            "it:22:03",
+            "it:22:09"
+          ],
+          "answerId": "it:22:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Сначала предмет, потом слово",
+        "uk": "Спершу предмет, потім слово",
+        "en": "Name the thing first"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Дверь — я её закрываю».\nLa porta, la chiudo io. — «Дверь — я её закрываю.»\nЧитается: ла по́рта ла кью́до и́о.\nLe chiavi, le porto con me. — «Ключи я беру с собой.»\nЧитается: ле кья́ви ле по́рто кон ме.\nIl pane, lo taglio io. — «Я режу хлеб.»\nЧитается: иль па́не ло та́льо и́о.\nСначала называем предмет: la porta — «дверь».\nПотом одним словом возвращаемся к нему: la.\nСлово chiudo значит «я закрываю»: la chiudo — «я её закрываю».\nК ключам (le chiavi) подходит слово le: le porto — «я беру их».\nК стаканам (i bicchieri) подходит слово li: li lavo — «я мою их».",
+        "uk": "Дивіться, як сказати «Двері - я її закриваю».\nLa porta, la chiudo io. — «Двері - я її закриваю.»\nЧитається: ла по́рта ла кью́до і́о.\nLe chiavi, le porto con me. — «Ключі я беру із собою.»\nЧитається: ле кья́ві ле по́рто кон ме.\nIl pane, lo taglio io. — «Я ріжу хліб.»\nЧитається: іль па́не ло та́льо і́о.\nСпершу називаємо предмет: la porta — «двері».\nПотім одним словом повертаємося до нього: la.\nСлово chiudo означає «я зачиняю»: la chiudo — «я її зачиняю».\nДо ключів (le chiavi) підходить слово le: le porto — «я беру їх».\nДо склянок (i bicchieri) підходить слово li: li lavo — «я мию їх».",
+        "en": "Look at how to say “The door: I close it”.\nLa porta, la chiudo io. — “The door: I close it.”\nLe chiavi, le porto con me. — “The keys: I take them with me.”\nIl pane, lo taglio io. — “The bread: I cut it.”\nFirst we name the thing: la porta — “the door”.\nThen we come back to it with one word: la.\nThe word chiudo means “I close”: la chiudo — “I close it”.\nFor the keys (le chiavi) we use the word le: le porto — “I take them”.\nFor the glasses (i bicchieri) we use the word li: li lavo — “I wash them”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:22:11",
+          "say": {
+            "ru": "ла по́рта ла кью́до и́о",
+            "uk": "ла по́рта ла кью́до і́о"
+          }
+        },
+        {
+          "phraseId": "it:22:12",
+          "say": {
+            "ru": "ла бо́рса ла те́нго и́о",
+            "uk": "ла бо́рса ла те́нго і́о"
+          }
+        },
+        {
+          "phraseId": "it:22:13",
+          "say": {
+            "ru": "ле кья́ви ле по́рто кон ме",
+            "uk": "ле кья́ві ле по́рто кон ме"
+          }
+        },
+        {
+          "phraseId": "it:22:14",
+          "say": {
+            "ru": "ла джа́кка ла ме́тто ви́а",
+            "uk": "ла джа́кка ла ме́тто ві́а"
+          }
+        },
+        {
+          "phraseId": "it:22:15",
+          "say": {
+            "ru": "иль па́не ло та́льо и́о",
+            "uk": "іль па́не ло та́льо і́о"
+          }
+        },
+        {
+          "phraseId": "it:22:16",
+          "say": {
+            "ru": "и биккье́ри ли ла́во и́о",
+            "uk": "і біккье́рі лі ла́во і́о"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь — я её закрываю.»",
+            "uk": "Виберіть, як сказати: «Двері - я її закриваю.»",
+            "en": "Choose how to say: “The door: I close it.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:22:11",
+          "options": [
+            "it:22:11",
+            "it:22:12",
+            "it:22:13"
+          ],
+          "answerId": "it:22:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключи я беру с собой.»",
+            "uk": "Виберіть, як сказати: «Ключі я беру із собою.»",
+            "en": "Choose how to say: “The keys: I take them with me.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:13",
+          "options": [
+            "it:22:13",
+            "it:22:14",
+            "it:22:15"
+          ],
+          "answerId": "it:22:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я режу хлеб.»",
+            "uk": "Виберіть, як сказати: «Я ріжу хліб.»",
+            "en": "Choose how to say: “The bread: I cut it.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:15",
+          "options": [
+            "it:22:15",
+            "it:22:16",
+            "it:22:11"
+          ],
+          "answerId": "it:22:15"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не его, не её",
+        "uk": "Не його, не її",
+        "en": "Not him, not her"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я его не нахожу».\nNon lo trovo. — «Я его не нахожу.»\nЧитается: нон ло тро́во.\nNon li vediamo. — «Мы их не видим.»\nЧитается: нон ли ведья́мо.\nLei non la riconosce. — «Она её не узнаёт.»\nЧитается: ле́й нон ла риконо́ше.\nСлово non значит «не».\nОно стоит перед коротким словом: non lo trovo.\nСлова non lo trovo значат «я его не нахожу».\nСлова non li vediamo значат «мы их не видим».\nСлово sentiamo значит «мы слышим»: non lo sentiamo — «мы его не слышим».",
+        "uk": "Дивіться, як сказати «Я його не знаходжу».\nNon lo trovo. — «Я його не знаходжу.»\nЧитається: нон ло тро́во.\nNon li vediamo. — «Ми їх не бачимо.»\nЧитається: нон лі ведья́мо.\nLei non la riconosce. — «Вона її не впізнає.»\nЧитається: ле́й нон ла ріконо́ше.\nСлово non означає «не».\nВоно стоїть перед коротким словом: non lo trovo.\nСлова non lo trovo означають «я його не знаходжу».\nСлова non li vediamo означають «ми їх не бачимо».\nСлово sentiamo означає «ми чуємо»: non lo sentiamo — «ми його не чуємо».",
+        "en": "Look at how to say “I cannot find it”.\nNon lo trovo. — “I cannot find it.”\nNon li vediamo. — “We do not see them.”\nLei non la riconosce. — “She does not recognise her.”\nThe word non means “not”.\nIt comes before the short word: non lo trovo.\nThe words non lo trovo mean “I cannot find it”.\nThe words non li vediamo mean “we do not see them”.\nThe word sentiamo means “we hear”: non lo sentiamo — “we do not hear it”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:22:21",
+          "say": {
+            "ru": "нон ло тро́во",
+            "uk": "нон ло тро́во"
+          }
+        },
+        {
+          "phraseId": "it:22:22",
+          "say": {
+            "ru": "ле́й нон ла риконо́ше",
+            "uk": "ле́й нон ла ріконо́ше"
+          }
+        },
+        {
+          "phraseId": "it:22:23",
+          "say": {
+            "ru": "нон ли ведья́мо",
+            "uk": "нон лі ведья́мо"
+          }
+        },
+        {
+          "phraseId": "it:22:24",
+          "say": {
+            "ru": "нон ло сентья́мо",
+            "uk": "нон ло сентья́мо"
+          }
+        },
+        {
+          "phraseId": "it:22:25",
+          "say": {
+            "ru": "ло́ро нон ло пре́ндоно",
+            "uk": "ло́ро нон ло пре́ндоно"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я его не нахожу.»",
+            "uk": "Виберіть, як сказати: «Я його не знаходжу.»",
+            "en": "Choose how to say: “I cannot find it.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:22:21",
+          "options": [
+            "it:22:21",
+            "it:22:23",
+            "it:22:24"
+          ],
+          "answerId": "it:22:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы их не видим.»",
+            "uk": "Виберіть, як сказати: «Ми їх не бачимо.»",
+            "en": "Choose how to say: “We do not see them.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:23",
+          "options": [
+            "it:22:23",
+            "it:22:21",
+            "it:22:24"
+          ],
+          "answerId": "it:22:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они его не берут.»",
+            "uk": "Виберіть, як сказати: «Вони його не беруть.»",
+            "en": "Choose how to say: “They do not take it.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:25",
+          "options": [
+            "it:22:25",
+            "it:22:22",
+            "it:22:21"
+          ],
+          "answerId": "it:22:25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Хочу, могу — и его",
+        "uk": "Хочу, можу — і його",
+        "en": "Want, can — and him"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Можно я его оставлю себе».\nPosso tenerlo? — «Можно я его оставлю себе?»\nЧитается: по́ссо тене́рло.\nVorrei provarlo. — «Я хотел бы его примерить.»\nЧитается: ворре́й прова́рло.\nPuoi lasciarla qui. — «Ты можешь оставить её здесь.»\nЧитается: пуо́й лаша́рла куи.\nБывает два действия подряд: «могу оставить».\nТогда короткое слово прилипает к концу второго.\nСлово posso значит «я могу»: posso tenerlo — «можно я его оставлю».\nСлово vorrei значит «я хотел бы»: vorrei provarlo — «я хотел бы его примерить».\nТак же li и la: comprarli — «купить их», lasciarla — «оставить её».\nНовые слова: il giornale — «газета», il cavo — «кабель».\nСлово collegarlo значит «подключить его».\nСлово la batteria значит «аккумулятор».\nСлова il portafoglio elettronico значат «электронный кошелёк».",
+        "uk": "Дивіться, як сказати «Можна, я його залишу собі».\nPosso tenerlo? — «Можна, я його залишу собі?»\nЧитається: по́ссо тене́рло.\nVorrei provarlo. — «Я хотів би його приміряти.»\nЧитається: ворре́й прова́рло.\nPuoi lasciarla qui. — «Ти можеш залишити її тут.»\nЧитається: пуо́й лаша́рла куі.\nБуває дві дії підряд: «можу залишити».\nТоді коротке слово прилипає до кінця другого.\nСлово posso означає «я можу»: posso tenerlo — «можна, я його залишу».\nСлово vorrei означає «я хотів би»: vorrei provarlo — «я хотів би його приміряти».\nТак само li і la: comprarli — «купити їх», lasciarla — «залишити її».\nНові слова: il giornale — «газета», il cavo — «кабель».\nСлово collegarlo означає «підключити його».\nСлово la batteria означає «акумулятор».\nСлова il portafoglio elettronico означають «електронний гаманець».",
+        "en": "Look at how to say “May I keep it”.\nPosso tenerlo? — “May I keep it?”\nVorrei provarlo. — “I would like to try it on.”\nPuoi lasciarla qui. — “You can leave it here.”\nSometimes two actions come in a row: “can keep”.\nThen the short word sticks to the end of the second one.\nThe word posso means “I can”: posso tenerlo — “may I keep it”.\nThe word vorrei means “I would like”: vorrei provarlo — “to try it on”.\nThe same with li and la: comprarli — “to buy them”, lasciarla — “to leave it”.\nNew words: il giornale — “newspaper”, il cavo — “cable”.\nThe word collegarlo means “to plug it in”.\nThe word la batteria means “battery”.\nThe words il portafoglio elettronico mean “e-wallet”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:22:28",
+          "say": {
+            "ru": "по́ссо тене́рло",
+            "uk": "по́ссо тене́рло"
+          }
+        },
+        {
+          "phraseId": "it:22:30",
+          "say": {
+            "ru": "ворре́й прова́рло",
+            "uk": "ворре́й прова́рло"
+          }
+        },
+        {
+          "phraseId": "it:22:34",
+          "say": {
+            "ru": "пуо́й лаша́рла куи",
+            "uk": "пуо́й лаша́рла куі"
+          }
+        },
+        {
+          "phraseId": "it:22:36",
+          "say": {
+            "ru": "поссья́мо компра́рли онли́не",
+            "uk": "поссья́мо компра́рлі онлі́не"
+          }
+        },
+        {
+          "phraseId": "it:22:35",
+          "say": {
+            "ru": "иль джорна́ле префери́ско леддже́рло дома́ни",
+            "uk": "іль джорна́ле префері́ско леддже́рло дома́ні"
+          }
+        },
+        {
+          "phraseId": "it:22:39",
+          "say": {
+            "ru": "куэ́сто ка́во о интентсьо́не ди коллега́рло",
+            "uk": "куе́сто ка́во о інтентсьо́не ді коллега́рло"
+          }
+        },
+        {
+          "phraseId": "it:22:46",
+          "say": {
+            "ru": "ла баттери́я ла рика́рико аль матти́но",
+            "uk": "ла баттері́я ла ріка́ріко аль матті́но"
+          }
+        },
+        {
+          "phraseId": "it:22:49",
+          "say": {
+            "ru": "иль ми́о портафо́льо элеттро́нико ло у́зо куа́ндо вьа́джо",
+            "uk": "іль мі́о портафо́льо елеттро́ніко ло у́зо куа́ндо вьа́джо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можно я его оставлю себе?»",
+            "uk": "Виберіть, як сказати: «Можна, я його залишу собі?»",
+            "en": "Choose how to say: “May I keep it?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:22:28",
+          "options": [
+            "it:22:28",
+            "it:22:30",
+            "it:22:34"
+          ],
+          "answerId": "it:22:28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хотел бы его примерить.»",
+            "uk": "Виберіть, як сказати: «Я хотів би його приміряти.»",
+            "en": "Choose how to say: “I would like to try it on.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:30",
+          "options": [
+            "it:22:30",
+            "it:22:28",
+            "it:22:36"
+          ],
+          "answerId": "it:22:30"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты можешь оставить её здесь.»",
+            "uk": "Виберіть, як сказати: «Ти можеш залишити її тут.»",
+            "en": "Choose how to say: “You can leave it here.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:22:34",
+          "options": [
+            "it:22:34",
+            "it:22:36",
+            "it:22:28"
+          ],
+          "answerId": "it:22:34"
+        }
+      ]
+    }
+  ]
+}

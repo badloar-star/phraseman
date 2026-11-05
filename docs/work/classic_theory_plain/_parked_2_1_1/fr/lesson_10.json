@@ -1,0 +1,485 @@
+{
+  "lang": "fr",
+  "lesson": 10,
+  "title": {
+    "ru": "Есть, имеется",
+    "en": "There is, there are"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Есть",
+        "en": "There is"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Есть скамейка».\nIl y a un banc. — «Есть скамейка.»\nЧитается: иль и я ан бан.\nСлова il y a значат «есть, имеется».\nСлово banc значит «скамейка». Слово un значит «один».\nIl y a une table. — «Есть стол.»\nСлово une тоже значит «один». Для banc говорят un, для table — une.\nЧто ставить, un или une, запоминайте вместе с названием вещи.\nIl y a deux bancs. — «Есть две скамейки.»\nСлово deux значит «два, две».\nIl y a trois chaises. — «Есть три стула.»\nСлово trois значит «три». Слова il y a здесь не меняются.",
+        "en": "Look at how to say “There is a bench”.\nIl y a un banc. — “There is a bench.”\nThe words il y a mean “there is, there are”.\nThe word banc means “bench”. The word un means “one”.\nIl y a une table. — “There is a table.”\nThe word une also means “one”. We say un for banc and une for table.\nWhether to use un or une, learn together with the name of the thing.\nIl y a deux bancs. — “There are two benches.”\nThe word deux means “two”.\nIl y a trois chaises. — “There are three chairs.”\nThe word trois means “three”. The words il y a do not change here."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:10:01",
+          "say": {
+            "ru": "иль и я ан бан",
+            "uk": "іль і я ан бан"
+          }
+        },
+        {
+          "phraseId": "fr:10:02",
+          "say": {
+            "ru": "иль и я юн та́бль",
+            "uk": "іль і я юн та́бль"
+          }
+        },
+        {
+          "phraseId": "fr:10:03",
+          "say": {
+            "ru": "иль и я дё бан",
+            "uk": "іль і я дьо бан"
+          }
+        },
+        {
+          "phraseId": "fr:10:04",
+          "say": {
+            "ru": "иль и я труа шэз",
+            "uk": "іль і я труа шез"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть скамейка»",
+            "uk": "Виберіть, як сказати: «Є лава»",
+            "en": "Choose how to say: “There is a bench”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:10:01",
+          "options": [
+            "fr:10:01",
+            "fr:10:02",
+            "fr:10:03"
+          ],
+          "answerId": "fr:10:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть две скамейки»",
+            "uk": "Виберіть, як сказати: «Є дві лавки»",
+            "en": "Choose how to say: “There are two benches”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:03",
+          "options": [
+            "fr:10:03",
+            "fr:10:01",
+            "fr:10:04"
+          ],
+          "answerId": "fr:10:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть три стула»",
+            "uk": "Виберіть, як сказати: «Є три стільці»",
+            "en": "Choose how to say: “There are three chairs”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:04",
+          "options": [
+            "fr:10:04",
+            "fr:10:02",
+            "fr:10:03"
+          ],
+          "answerId": "fr:10:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Где что лежит",
+        "en": "Where things are"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где что лежит.\nDans le sac, il y a une carte. — «В сумке карта.»\nЧитается: дан лё сак, иль и я юн карт.\nСлово dans значит «в». Слово le по-русски не говорят.\nSur le lit, il y a une écharpe. — «На кровати шарф.»\nСлово sur значит «на». Слово lit значит «кровать».\nDans la cuisine, il y a une horloge. — «На кухне есть часы.»\nСлово cuisine значит «кухня». Слово la — как le, его не говорят.\nDans la poche, il y a un ticket. — «В кармане билет.»\nМесто можно назвать и в конце.\nIl y a une couverture dans le placard. — «В шкафу лежит одеяло.»\nСлово couverture значит «одеяло». Слово placard значит «шкаф».\nIl y a un colis à la réception. — «На ресепшене лежит посылка.»\nСлово colis значит «посылка». Слова à la значат «на, в».",
+        "en": "Look at how to say where things are.\nDans le sac, il y a une carte. — “In the bag there is a card.”\nThe word dans means “in”. There is no word for le in English.\nSur le lit, il y a une écharpe. — “On the bed there is a scarf.”\nThe word sur means “on”. The word lit means “bed”.\nDans la cuisine, il y a une horloge. — “In the kitchen there is a clock.”\nThe word cuisine means “kitchen”. The word la is like le: learn it with the thing.\nDans la poche, il y a un ticket. — “In the pocket there is a ticket.”\nYou can also say the place at the end.\nIl y a une couverture dans le placard. — “There is a blanket in the cupboard.”\nThe word couverture means “blanket”. The word placard means “cupboard”.\nIl y a un colis à la réception. — “There is a parcel at the reception.”\nThe word colis means “parcel”. The words à la mean “at, in”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:10:11",
+          "say": {
+            "ru": "дан лё сак, иль и я юн карт",
+            "uk": "дан льо сак, іль і я юн карт"
+          }
+        },
+        {
+          "phraseId": "fr:10:12",
+          "say": {
+            "ru": "сюр лё ли, иль и я юн эша́рп",
+            "uk": "сюр льо лі, іль і я юн еша́рп"
+          }
+        },
+        {
+          "phraseId": "fr:10:15",
+          "say": {
+            "ru": "дан ла кюизи́н, иль и я юн орло́ж",
+            "uk": "дан ла кюізі́н, іль і я юн орло́ж"
+          }
+        },
+        {
+          "phraseId": "fr:10:13",
+          "say": {
+            "ru": "дан ла пош, иль и я ан тикэ́",
+            "uk": "дан ла пош, іль і я ан тіке́"
+          }
+        },
+        {
+          "phraseId": "fr:10:45",
+          "say": {
+            "ru": "иль и я юн кувэртю́р дан лё плака́р",
+            "uk": "іль і я юн кувертю́р дан льо плака́р"
+          }
+        },
+        {
+          "phraseId": "fr:10:43",
+          "say": {
+            "ru": "иль и я ан коли́ а ла рэсепсьо́н",
+            "uk": "іль і я ан колі́ а ла ресепсьо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В сумке карта»",
+            "uk": "Виберіть, як сказати: «У сумці є карта»",
+            "en": "Choose how to say: “In the bag there is a card”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:10:11",
+          "options": [
+            "fr:10:11",
+            "fr:10:12",
+            "fr:10:13"
+          ],
+          "answerId": "fr:10:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В шкафу лежит одеяло»",
+            "uk": "Виберіть, як сказати: «У шафі є ковдра»",
+            "en": "Choose how to say: “There is a blanket in the cupboard”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:45",
+          "options": [
+            "fr:10:45",
+            "fr:10:43",
+            "fr:10:15"
+          ],
+          "answerId": "fr:10:45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На ресепшене лежит посылка»",
+            "uk": "Виберіть, як сказати: «На рецепції лежить посилка»",
+            "en": "Choose how to say: “There is a parcel at the reception”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:43",
+          "options": [
+            "fr:10:43",
+            "fr:10:45",
+            "fr:10:12"
+          ],
+          "answerId": "fr:10:43"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Хлеб, вода, книги",
+        "en": "Bread, water, books"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Есть хлеб».\nIl y a du pain. — «Есть хлеб.»\nЧитается: иль и я дю пан.\nСлово pain значит «хлеб». Слово du по-русски не говорят.\nIl y a de l’eau. — «Есть вода.»\nСлово l’eau значит «вода». Слово de перед ним не говорят.\nIl y a du café. — «Есть кофе.»\nСлова du и de ставят перед тем, что не считают: хлеб, кофе, вода.\nIl y a des livres sur la table. — «На столе лежат книги.»\nСлово des ставят, когда вещей несколько. Слово livres значит «книги».\nDans le tiroir, il y a des piles. — «В ящике лежат батарейки.»\nСлово tiroir значит «ящик». Слово piles значит «батарейки».",
+        "en": "Look at how to say “There is bread”.\nIl y a du pain. — “There is bread.”\nThe word pain means “bread”. There is no word for du in English.\nIl y a de l’eau. — “There is water.”\nThe word l’eau means “water”. The word de before it is not said in English either.\nIl y a du café. — “There is coffee.”\nThe words du and de stand before things we do not count: bread, coffee, water.\nIl y a des livres sur la table. — “There are books on the table.”\nThe word des is used when there are several things. The word livres means “books”.\nDans le tiroir, il y a des piles. — “In the drawer there are batteries.”\nThe word tiroir means “drawer”. The word piles means “batteries”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:10:08",
+          "say": {
+            "ru": "иль и я дю пан",
+            "uk": "іль і я дю пан"
+          }
+        },
+        {
+          "phraseId": "fr:10:09",
+          "say": {
+            "ru": "иль и я дё ло",
+            "uk": "іль і я дьо ло"
+          }
+        },
+        {
+          "phraseId": "fr:10:10",
+          "say": {
+            "ru": "иль и я дю кафе́",
+            "uk": "іль і я дю кафе́"
+          }
+        },
+        {
+          "phraseId": "fr:10:07",
+          "say": {
+            "ru": "иль и я дэ ливр сюр ла та́бль",
+            "uk": "іль і я де лівр сюр ла та́бль"
+          }
+        },
+        {
+          "phraseId": "fr:10:16",
+          "say": {
+            "ru": "дан лё тируа́р, иль и я дэ пиль",
+            "uk": "дан льо тіруа́р, іль і я де піль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть хлеб»",
+            "uk": "Виберіть, як сказати: «Є хліб»",
+            "en": "Choose how to say: “There is bread”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:10:08",
+          "options": [
+            "fr:10:08",
+            "fr:10:09",
+            "fr:10:10"
+          ],
+          "answerId": "fr:10:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть вода»",
+            "uk": "Виберіть, як сказати: «Є вода»",
+            "en": "Choose how to say: “There is water”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:09",
+          "options": [
+            "fr:10:09",
+            "fr:10:10",
+            "fr:10:08"
+          ],
+          "answerId": "fr:10:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На столе лежат книги»",
+            "uk": "Виберіть, як сказати: «На столі книги»",
+            "en": "Choose how to say: “There are books on the table”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:07",
+          "options": [
+            "fr:10:07",
+            "fr:10:16",
+            "fr:10:08"
+          ],
+          "answerId": "fr:10:07"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Есть ли?",
+        "en": "Is there?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Есть ли автобус?»\nEst-ce qu’il y a une consigne ? — «Есть ли камера хранения багажа?»\nЧитается: эс киль и я юн консинь.\nСлова est-ce qu’il в начале делают вопрос.\nEst-ce qu’il y a une chambre libre ? — «Есть ли свободная комната?»\nМожно и без них: голос в конце идёт вверх.\nIl y a des toilettes ici ? — «Есть ли здесь туалеты?»\nIl y a du lait au frigo ? — «Есть ли молоко в холодильнике?»\nСлово lait значит «молоко». Слова au frigo значат «в холодильнике».\nСлово prise значит «розетка». Слово près значит «рядом».",
+        "en": "Look at how to ask “Is there a bus?”\nEst-ce qu’il y a une consigne ? — “Is there a left-luggage office?”\nThe words est-ce qu’il at the start make a question.\nEst-ce qu’il y a une chambre libre ? — “Is there a free room?”\nYou can also skip them: the voice goes up at the end.\nIl y a des toilettes ici ? — “Are there toilets here?”\nIl y a du lait au frigo ? — “Is there milk in the fridge?”\nThe word lait means “milk”. The words au frigo mean “in the fridge”.\nThe word prise means “socket”. The word près means “near”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:10:23",
+          "say": {
+            "ru": "эс киль и я юн консинь",
+            "uk": "ес кіль і я юн консінь"
+          }
+        },
+        {
+          "phraseId": "fr:10:21",
+          "say": {
+            "ru": "эс киль и я ан бюс сэ суа́р",
+            "uk": "ес кіль і я ан бюс се суа́р"
+          }
+        },
+        {
+          "phraseId": "fr:10:27",
+          "say": {
+            "ru": "эс киль и я юн шанбр либр",
+            "uk": "ес кіль і я юн шанбр лібр"
+          }
+        },
+        {
+          "phraseId": "fr:10:24",
+          "say": {
+            "ru": "иль и я дэ туале́т иси́",
+            "uk": "іль і я де туале́т ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:10:28",
+          "say": {
+            "ru": "иль и я дю лэ о фриго́",
+            "uk": "іль і я дю ле о фріго́"
+          }
+        },
+        {
+          "phraseId": "fr:10:29",
+          "say": {
+            "ru": "эс киль и я юн приз пре дю ли",
+            "uk": "ес кіль і я юн пріз пре дю лі"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли сегодня вечером автобус?»",
+            "uk": "Виберіть, як сказати: «Чи є автобус сьогодні ввечері?»",
+            "en": "Choose how to say: “Is there a bus this evening?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:10:21",
+          "options": [
+            "fr:10:21",
+            "fr:10:27",
+            "fr:10:24"
+          ],
+          "answerId": "fr:10:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли свободная комната?»",
+            "uk": "Виберіть, як сказати: «Чи є вільна кімната?»",
+            "en": "Choose how to say: “Is there a free room?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:27",
+          "options": [
+            "fr:10:27",
+            "fr:10:21",
+            "fr:10:28"
+          ],
+          "answerId": "fr:10:27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли молоко в холодильнике?»",
+            "uk": "Виберіть, як сказати: «Чи є молоко в холодильнику?»",
+            "en": "Choose how to say: “Is there milk in the fridge?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:28",
+          "options": [
+            "fr:10:28",
+            "fr:10:24",
+            "fr:10:27"
+          ],
+          "answerId": "fr:10:28"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Нет",
+        "en": "There is no"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Нет скамейки».\nIl n’y a pas de banc. — «Нет скамейки.»\nЧитается: иль ни я па дё бан.\nСлова il n’y a pas de значат «нет».\nПеред словом «вода» de пишут коротко: pas d’eau.\nIl n’y a pas de sucre. — «Нет сахара.»\nСлово sucre значит «сахар».\nIl n’y a pas d’eau chaude. — «Нет горячей воды.»\nСлово chaude значит «горячая».\nIl n’y a plus de billets. — «Билетов больше нет.»\nСлова plus de значат «больше нет».",
+        "en": "Look at how to say “There is no bench”.\nIl n’y a pas de banc. — “There is no bench.”\nThe words il n’y a pas de mean “there is no”.\nBefore the word for “water”, de is written short: pas d’eau.\nIl n’y a pas de sucre. — “There is no sugar.”\nThe word sucre means “sugar”.\nIl n’y a pas d’eau chaude. — “There is no hot water.”\nThe word chaude means “hot”.\nIl n’y a plus de billets. — “There are no more tickets.”\nThe words plus de mean “no more”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:10:31",
+          "say": {
+            "ru": "иль ни я па дё бан",
+            "uk": "іль ні я па дьо бан"
+          }
+        },
+        {
+          "phraseId": "fr:10:35",
+          "say": {
+            "ru": "иль ни я па дё сю́кр",
+            "uk": "іль ні я па дьо сю́кр"
+          }
+        },
+        {
+          "phraseId": "fr:10:33",
+          "say": {
+            "ru": "иль ни я па до шод",
+            "uk": "іль ні я па до шод"
+          }
+        },
+        {
+          "phraseId": "fr:10:36",
+          "say": {
+            "ru": "иль ни я плю дё бийэ́",
+            "uk": "іль ні я плю дьо бійе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нет скамейки»",
+            "uk": "Виберіть, як сказати: «Лавки немає»",
+            "en": "Choose how to say: “There is no bench”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:10:31",
+          "options": [
+            "fr:10:31",
+            "fr:10:35",
+            "fr:10:36"
+          ],
+          "answerId": "fr:10:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нет горячей воды»",
+            "uk": "Виберіть, як сказати: «Гарячої води немає»",
+            "en": "Choose how to say: “There is no hot water”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:33",
+          "options": [
+            "fr:10:33",
+            "fr:10:31",
+            "fr:10:36"
+          ],
+          "answerId": "fr:10:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билетов больше нет»",
+            "uk": "Виберіть, як сказати: «Квитків більше немає»",
+            "en": "Choose how to say: “There are no more tickets”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:10:36",
+          "options": [
+            "fr:10:36",
+            "fr:10:35",
+            "fr:10:33"
+          ],
+          "answerId": "fr:10:36"
+        }
+      ]
+    }
+  ]
+}

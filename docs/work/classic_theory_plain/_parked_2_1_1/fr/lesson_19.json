@@ -1,0 +1,506 @@
+{
+  "lang": "fr",
+  "lesson": 19,
+  "title": {
+    "ru": "Приехал, ушёл, вернулся",
+    "en": "Arrived, left, came back"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Приехал, приехала",
+        "en": "He arrived, she arrived"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Поль приехал».\nPaul est arrivé. — «Поль приехал.»\nЧитается: поль э тариве́.\nСлово arrivé значит «приехал». Здесь говорят est, а не a.\nLéa est arrivée. — «Леа приехала.»\nПро женщину слово чуть длиннее, но звучит так же.\nPaul est parti. — «Поль уехал.»\nСлово parti значит «уехал».\nLéa est partie. — «Леа уехала.»\nMon frère est venu. — «Мой брат пришел.»\nСлово venu значит «пришёл».\nMa sœur est venue. — «Моя сестра пришла.»\nПро мужчину — одно слово, про женщину — длиннее.",
+        "en": "Look at how to say “Paul arrived”.\nPaul est arrivé. — “Paul arrived.”\nThe word arrivé means “arrived”. Here we say est, not a.\nLéa est arrivée. — “Léa arrived.”\nFor a woman the word is a bit longer, but it sounds the same.\nPaul est parti. — “Paul left.”\nThe word parti means “left”.\nLéa est partie. — “Léa left.”\nMon frère est venu. — “My brother came.”\nThe word venu means “came”.\nMa sœur est venue. — “My sister came.”\nFor a man — one word, for a woman — a longer one."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:19:01",
+          "say": {
+            "ru": "поль э тариве́",
+            "uk": "поль е таріве́"
+          }
+        },
+        {
+          "phraseId": "fr:19:02",
+          "say": {
+            "ru": "леа́ э тариве́",
+            "uk": "леа́ е таріве́"
+          }
+        },
+        {
+          "phraseId": "fr:19:03",
+          "say": {
+            "ru": "поль э парти́",
+            "uk": "поль е парті́"
+          }
+        },
+        {
+          "phraseId": "fr:19:04",
+          "say": {
+            "ru": "леа́ э парти́",
+            "uk": "леа́ е парті́"
+          }
+        },
+        {
+          "phraseId": "fr:19:09",
+          "say": {
+            "ru": "мон фрэр э вёню́",
+            "uk": "мон фрер е вьоню́"
+          }
+        },
+        {
+          "phraseId": "fr:19:10",
+          "say": {
+            "ru": "ма сёр э вёню́",
+            "uk": "ма сьор е вьоню́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль приехал»",
+            "uk": "Виберіть, як сказати: «Поль приїхав»",
+            "en": "Choose how to say: “Paul arrived”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:19:01",
+          "options": [
+            "fr:19:01",
+            "fr:19:03",
+            "fr:19:09"
+          ],
+          "answerId": "fr:19:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа приехала»",
+            "uk": "Виберіть, як сказати: «Леа приїхала»",
+            "en": "Choose how to say: “Léa arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:02",
+          "options": [
+            "fr:19:02",
+            "fr:19:04",
+            "fr:19:10"
+          ],
+          "answerId": "fr:19:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сестра пришла»",
+            "uk": "Виберіть, як сказати: «Моя сестра прийшла»",
+            "en": "Choose how to say: “My sister came”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:10",
+          "options": [
+            "fr:19:10",
+            "fr:19:09",
+            "fr:19:03"
+          ],
+          "answerId": "fr:19:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Несколько человек",
+        "en": "Several people"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Они прибыли».\nIls sont arrivés. — «Они прибыли.»\nЧитается: иль сон тариве́.\nСлово sont значит «есть» про нескольких. Слово arrivés значит «прибыли».\nElles sont arrivées. — «Они прибыли.»\nСлово elles значит «они» — про женщин.\nIls sont partis. — «Они ушли.»\nElles sont parties. — «Они ушли.»\nMes parents sont allés au marché. — «Мои родители пошли на рынок.»\nСлово allés значит «пошли».\nMes sœurs sont allées au concert. — «Мои сестры пошли на концерт.»\nКогда речь о нескольких, слово длиннее. Звучит так же.",
+        "en": "Look at how to say “They arrived”.\nIls sont arrivés. — “They arrived.”\nThe word sont means “are” for several people. The word arrivés means “arrived”.\nElles sont arrivées. — “They arrived.”\nThe word elles means “they” — about women.\nIls sont partis. — “They left.”\nElles sont parties. — “They left.”\nMes parents sont allés au marché. — “My parents went to the market.”\nThe word allés means “went”.\nMes sœurs sont allées au concert. — “My sisters went to the concert.”\nFor several people the word is longer. It sounds the same."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:19:05",
+          "say": {
+            "ru": "иль сон тариве́",
+            "uk": "іль сон таріве́"
+          }
+        },
+        {
+          "phraseId": "fr:19:06",
+          "say": {
+            "ru": "эль сон тариве́",
+            "uk": "ель сон таріве́"
+          }
+        },
+        {
+          "phraseId": "fr:19:07",
+          "say": {
+            "ru": "иль сон парти́",
+            "uk": "іль сон парті́"
+          }
+        },
+        {
+          "phraseId": "fr:19:08",
+          "say": {
+            "ru": "эль сон парти́",
+            "uk": "ель сон парті́"
+          }
+        },
+        {
+          "phraseId": "fr:19:13",
+          "say": {
+            "ru": "мэ пара́н сон тале́ о марше́",
+            "uk": "ме пара́н сон тале́ о марше́"
+          }
+        },
+        {
+          "phraseId": "fr:19:14",
+          "say": {
+            "ru": "мэ сёр сон тале́ о консэ́р",
+            "uk": "ме сьор сон тале́ о консе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они прибыли»",
+            "uk": "Виберіть, як сказати: «Вони прибули»",
+            "en": "Choose how to say: “They arrived”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:19:05",
+          "options": [
+            "fr:19:05",
+            "fr:19:07",
+            "fr:19:13"
+          ],
+          "answerId": "fr:19:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они ушли»",
+            "uk": "Виберіть, як сказати: «Вони пішли»",
+            "en": "Choose how to say: “They left”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:08",
+          "options": [
+            "fr:19:08",
+            "fr:19:06",
+            "fr:19:14"
+          ],
+          "answerId": "fr:19:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои сестры пошли на концерт»",
+            "uk": "Виберіть, як сказати: «Мої сестри пішли на концерт»",
+            "en": "Choose how to say: “My sisters went to the concert”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:14",
+          "options": [
+            "fr:19:14",
+            "fr:19:13",
+            "fr:19:06"
+          ],
+          "answerId": "fr:19:14"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вернулся, остался, вошёл",
+        "en": "Came home, stayed, went in"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мама вернулась».\nMa mère est rentrée tôt. — «Моя мама вернулась домой рано.»\nЧитается: ма мэр э рантре́ то.\nСлово rentrée значит «вернулась домой». Слово mère значит «мама».\nMon père est rentré tard. — «Мой отец вернулся домой поздно.»\nLes invités sont restés ici. — «Гости остались здесь.»\nСлово invités значит «гости». Слово restés значит «остались».\nLéa est entrée dans la salle. — «Леа вошла в комнату.»\nСлово entrée значит «вошла».\nLes enfants sont sortis dans la cour. — «Дети вышли во двор.»\nСлово sortis значит «вышли».\nLes élèves sont retournés en classe. — «Ученики вернулись в класс.»\nСлово élèves значит «ученики». Слово retournés значит «вернулись».",
+        "en": "Look at how to say “Mother came home”.\nMa mère est rentrée tôt. — “My mother came home early.”\nThe word rentrée means “came home”. The word mère means “mother”.\nMon père est rentré tard. — “My father came home late.”\nLes invités sont restés ici. — “The guests stayed here.”\nThe word invités means “guests”. The word restés means “stayed”.\nLéa est entrée dans la salle. — “Léa went into the room.”\nThe word entrée means “went in”.\nLes enfants sont sortis dans la cour. — “The children went out into the yard.”\nThe word sortis means “went out”.\nLes élèves sont retournés en classe. — “The pupils went back to class.”\nThe word élèves means “pupils”. The word retournés means “went back”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:19:15",
+          "say": {
+            "ru": "ма мэр э рантре́ то",
+            "uk": "ма мер е рантре́ то"
+          }
+        },
+        {
+          "phraseId": "fr:19:16",
+          "say": {
+            "ru": "мон пэр э рантре́ тар",
+            "uk": "мон пер е рантре́ тар"
+          }
+        },
+        {
+          "phraseId": "fr:19:17",
+          "say": {
+            "ru": "лез анвите́ сон рэсте́ иси́",
+            "uk": "лез анвіте́ сон ресте́ ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:19:21",
+          "say": {
+            "ru": "леа́ э антре́ дан ла саль",
+            "uk": "леа́ е антре́ дан ла саль"
+          }
+        },
+        {
+          "phraseId": "fr:19:23",
+          "say": {
+            "ru": "лэ занфан сон сорти́ дан ла кур",
+            "uk": "ле занфан сон сорті́ дан ла кур"
+          }
+        },
+        {
+          "phraseId": "fr:19:47",
+          "say": {
+            "ru": "лез элев сон рётурне́ ан класс",
+            "uk": "лез елев сон рьотурне́ ан класс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя мама вернулась домой рано»",
+            "uk": "Виберіть, як сказати: «Моя мама повернулася додому рано»",
+            "en": "Choose how to say: “My mother came home early”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:19:15",
+          "options": [
+            "fr:19:15",
+            "fr:19:16",
+            "fr:19:17"
+          ],
+          "answerId": "fr:19:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа вошла в комнату»",
+            "uk": "Виберіть, як сказати: «Леа зайшла до кімнати»",
+            "en": "Choose how to say: “Léa went into the room”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:21",
+          "options": [
+            "fr:19:21",
+            "fr:19:23",
+            "fr:19:47"
+          ],
+          "answerId": "fr:19:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ученики вернулись в класс»",
+            "uk": "Виберіть, як сказати: «Учні повернулися до класу»",
+            "en": "Choose how to say: “The pupils went back to class”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:47",
+          "options": [
+            "fr:19:47",
+            "fr:19:15",
+            "fr:19:17"
+          ],
+          "answerId": "fr:19:47"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вверх, вниз, упал",
+        "en": "Up, down, fell"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Сестра поднялась».\nMa sœur est montée au premier étage. — «Моя сестра поднялась на второй этаж.»\nЧитается: ма сёр э монте́ о премье́ этаж.\nСлово montée значит «поднялась». Слова premier étage значат «второй этаж».\nLes clients sont descendus sur le palier. — «Покупатели спустились на лестничную площадку.»\nСлово descendus значит «спустились». Слово palier значит «лестничная площадка».\nLa voisine est descendue chercher le courrier. — «Соседка спустилась вниз за почтой.»\nСлово courrier значит «почта».\nLa clé est tombée sous la table. — «Ключ упал под стол.»\nСлово tombée значит «упал».\nLes pièces de monnaie sont tombées de ma poche. — «Монеты выпали из моего кармана.»\nСлова pièces de monnaie значат «монеты».",
+        "en": "Look at how to say “My sister went up”.\nMa sœur est montée au premier étage. — “My sister went upstairs.”\nThe word montée means “went up”. The words premier étage mean “first floor”.\nLes clients sont descendus sur le palier. — “The customers came down to the landing.”\nThe word descendus means “came down”. The word palier means “landing”.\nLa voisine est descendue chercher le courrier. — “The neighbour went down to get the mail.”\nThe word courrier means “mail”.\nLa clé est tombée sous la table. — “The key fell under the table.”\nThe word tombée means “fell”.\nLes pièces de monnaie sont tombées de ma poche. — “Coins fell from my pocket.”\nThe words pièces de monnaie mean “coins”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:19:25",
+          "say": {
+            "ru": "ма сёр э монте́ о премье́ этаж",
+            "uk": "ма сьор е монте́ о премье́ етаж"
+          }
+        },
+        {
+          "phraseId": "fr:19:26",
+          "say": {
+            "ru": "лэ клиан сон десандю́ сюр лё палье́",
+            "uk": "ле кліан сон десандю́ сюр льо палье́"
+          }
+        },
+        {
+          "phraseId": "fr:19:46",
+          "say": {
+            "ru": "ла вуазин э десандю́ шэрше́ лё курье́",
+            "uk": "ла вуазін е десандю́ шерше́ льо курье́"
+          }
+        },
+        {
+          "phraseId": "fr:19:27",
+          "say": {
+            "ru": "ла кле́ э тонбе́ су ла табль",
+            "uk": "ла кле́ е тонбе́ су ла табль"
+          }
+        },
+        {
+          "phraseId": "fr:19:28",
+          "say": {
+            "ru": "лэ пьес дё моне́ сон тонбе́ дё ма пош",
+            "uk": "ле пьес дьо моне́ сон тонбе́ дьо ма пош"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сестра поднялась на второй этаж»",
+            "uk": "Виберіть, як сказати: «Моя сестра піднялася на другий поверх»",
+            "en": "Choose how to say: “My sister went up to the second floor”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:19:25",
+          "options": [
+            "fr:19:25",
+            "fr:19:26",
+            "fr:19:27"
+          ],
+          "answerId": "fr:19:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ упал под стол»",
+            "uk": "Виберіть, як сказати: «Ключ упав під стіл»",
+            "en": "Choose how to say: “The key fell under the table”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:27",
+          "options": [
+            "fr:19:27",
+            "fr:19:28",
+            "fr:19:46"
+          ],
+          "answerId": "fr:19:27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Соседка спустилась вниз за почтой»",
+            "uk": "Виберіть, як сказати: «Сусідка спустилася вниз по пошту»",
+            "en": "Choose how to say: “The neighbour went down to get the mail”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:46",
+          "options": [
+            "fr:19:46",
+            "fr:19:25",
+            "fr:19:26"
+          ],
+          "answerId": "fr:19:46"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Ещё не и вопрос",
+        "en": "Not yet, and questions"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Поль ещё не вернулся».\nPaul n’est pas encore revenu. — «Поль ещё не вернулся.»\nЧитается: поль нэ па занкор рёвню́.\nСлова n’est pas стоят вокруг est и значат «не».\nСлово encore значит «ещё». Слово revenu значит «вернулся».\nMes cousins ne sont pas venus. — «Мои кузены не пришли.»\nА теперь вопрос.\nQuand est-elle arrivée ? — «Когда она приехала?»\nСлово quand значит «когда». Слова est-elle: слова поменялись местами.\nOù sont-ils allés ? — «Куда они ушли?»\nСлово où значит «куда».\nLes infirmières sont déjà parties ? — «Медсёстры уже ушли?»\nСлово infirmières значит «медсёстры». Слово déjà значит «уже».",
+        "en": "Look at how to say “Paul has not come back yet”.\nPaul n’est pas encore revenu. — “Paul has not come back yet.”\nThe words n’est pas stand around est and mean “not”.\nThe word encore means “yet”. The word revenu means “came back”.\nMes cousins ne sont pas venus. — “My cousins did not come.”\nAnd now a question.\nQuand est-elle arrivée ? — “When did she arrive?”\nThe word quand means “when”. The words est-elle: the words swapped places.\nOù sont-ils allés ? — “Where did they go?”\nThe word où means “where to”.\nLes infirmières sont déjà parties ? — “Have the nurses already left?”\nThe word infirmières means “nurses”. The word déjà means “already”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:19:31",
+          "say": {
+            "ru": "поль нэ па занкор рёвню́",
+            "uk": "поль не па занкор рьовню́"
+          }
+        },
+        {
+          "phraseId": "fr:19:33",
+          "say": {
+            "ru": "мэ кузэ́н нё сон па вёню́",
+            "uk": "ме кузе́н ньо сон па вьоню́"
+          }
+        },
+        {
+          "phraseId": "fr:19:36",
+          "say": {
+            "ru": "кан э тэль ариве́",
+            "uk": "кан е тель аріве́"
+          }
+        },
+        {
+          "phraseId": "fr:19:37",
+          "say": {
+            "ru": "у сон тиль але́",
+            "uk": "у сон тіль але́"
+          }
+        },
+        {
+          "phraseId": "fr:19:40",
+          "say": {
+            "ru": "лез анфирмье́р сон дежа парти́",
+            "uk": "лез анфірмье́р сон дежа парті́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль ещё не вернулся»",
+            "uk": "Виберіть, як сказати: «Пол ще не повернувся»",
+            "en": "Choose how to say: “Paul has not come back yet”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:19:31",
+          "options": [
+            "fr:19:31",
+            "fr:19:33",
+            "fr:19:36"
+          ],
+          "answerId": "fr:19:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда она приехала?»",
+            "uk": "Виберіть, як сказати: «Коли вона приїхала?»",
+            "en": "Choose how to say: “When did she arrive?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:36",
+          "options": [
+            "fr:19:36",
+            "fr:19:37",
+            "fr:19:40"
+          ],
+          "answerId": "fr:19:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Медсёстры уже ушли?»",
+            "uk": "Виберіть, як сказати: «Медсестри вже пішли?»",
+            "en": "Choose how to say: “Have the nurses already left?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:19:40",
+          "options": [
+            "fr:19:40",
+            "fr:19:31",
+            "fr:19:37"
+          ],
+          "answerId": "fr:19:40"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,703 @@
+{
+  "lang": "de",
+  "lesson": 10,
+  "title": {
+    "ru": "С кем, куда, откуда",
+    "uk": "З ким, куди, звідки",
+    "en": "With whom, where to, where from"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "На чём едут",
+        "uk": "Чим їдуть",
+        "en": "How you travel"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я приезжаю на автобусе».\nIch komme mit dem Bus. — «Я приезжаю на автобусе.»\nЧитается: их ко́ме мит дем бус\nСлово mit значит «с». Когда едут, оно значит «на».\nСлово komme значит «я приезжаю». Слово Bus — «автобус».\nРаньше вы видели der Bus. После слова mit стало dem Bus.\nСлова der и dem — маленькие слова перед названием вещи, как die и das.\nПо-русски их нет, запоминайте их вместе с названием вещи.\nAnna kommt mit der Bahn. — «Анна приезжает на электричке.»\nЧитается: А́нна комт мит дер бан\nСлово kommt значит «приезжает». Слово Bahn — «электричка».\nБыло die Bahn, стало mit der Bahn.\nTom kommt mit dem Fahrrad. — «Том приезжает на велосипеде.»\nЧитается: том комт мит дем фа́ррат\nСлово Fahrrad значит «велосипед».\nБыло das Fahrrad, стало mit dem Fahrrad.\nWir kommen mit dem Taxi. — «Мы приезжаем на такси.»\nЧитается: вир ко́мен мит дем та́кси\nСлово kommen значит «мы приезжаем». Слово Taxi — «такси».\nСлова komme и kommen — одно слово: «я приезжаю», «мы приезжаем».\nПо смыслу фразы оно бывает «приезжаю» или «прихожу».\nБыло das Taxi, стало mit dem Taxi.\nIhr kommt mit dem Zug. — «Вы приезжаете на поезде.»\nЧитается: ир комт мит дем цук\nСлово Ihr значит «вы (вы все)». Слово Zug — «поезд».\nДля Ihr слово kommt значит «приезжаете»: оно меняется, смотря о ком речь.\nБыло der Zug, стало mit dem Zug.",
+        "uk": "Дивіться, як сказати «Я приїжджаю автобусом».\nIch komme mit dem Bus. — «Я приїжджаю автобусом.»\nЧитається: іх ко́ме міт дем бус\nСлово mit означає «з». Коли їдуть, воно означає «на».\nСлово komme означає «я приїжджаю». Слово Bus — «автобус».\nРаніше ви бачили der Bus. Після слова mit стало dem Bus.\nСлова der і dem — маленькі слова перед назвою речі, як die і das.\nПо-українськи їх немає, запам’ятовуйте їх разом із назвою речі.\nAnna kommt mit der Bahn. — «Анна приїжджає електричкою.»\nЧитається: А́нна комт міт дер бан\nСлово kommt означає «приїжджає». Слово Bahn — «електричка».\nБуло die Bahn, стало mit der Bahn.\nTom kommt mit dem Fahrrad. — «Том приїжджає велосипедом.»\nЧитається: том комт міт дем фа́ррат\nСлово Fahrrad означає «велосипед».\nБуло das Fahrrad, стало mit dem Fahrrad.\nWir kommen mit dem Taxi. — «Ми приїжджаємо на таксі.»\nЧитається: вір ко́мен міт дем та́ксі\nСлово kommen означає «ми приїжджаємо». Слово Taxi — «таксі».\nСлова komme і kommen — одне слово: «я приїжджаю», «ми приїжджаємо».\nЗа змістом фрази воно буває «приїжджаю» або «приходжу».\nБуло das Taxi, стало mit dem Taxi.\nIhr kommt mit dem Zug. — «Ви приїжджаєте поїздом.»\nЧитається: ір комт міт дем цук\nСлово Ihr означає «ви (ви всі)». Слово Zug — «поїзд».\nДля Ihr слово kommt означає «приїжджаєте»: воно змінюється, залежно від того, про кого мова.\nБуло der Zug, стало mit dem Zug.",
+        "en": "Look at how to say “I come by bus”.\nIch komme mit dem Bus. — “I come by bus.”\nSounds like: eekh kOme mit dem boos\nThe word mit means “with”. When you travel, it means “by”.\nThe word komme means “I come”. The word Bus means “bus”.\nYou have seen der Bus before. After the word mit it became dem Bus.\nThe words der and dem are small words before a name, like die and das.\nEnglish has no such words, so learn them together with the name.\nAnna kommt mit der Bahn. — “Anna comes by train.”\nSounds like: Anna komt mit dair ban\nThe word kommt means “comes”. The word Bahn means “commuter train”.\nIt was die Bahn, now it is mit der Bahn.\nTom kommt mit dem Fahrrad. — “Tom comes by bike.”\nSounds like: tom komt mit dem fArrat\nThe word Fahrrad means “bike”.\nIt was das Fahrrad, now it is mit dem Fahrrad.\nWir kommen mit dem Taxi. — “We come by taxi.”\nSounds like: veer kOmen mit dem tAksi\nThe word kommen means “we come”. The word Taxi means “taxi”.\nThe words komme and kommen are one word: “I come”, “we come”.\nDepending on the phrase it means “arrive” or “come”.\nIt was das Taxi, now it is mit dem Taxi.\nIhr kommt mit dem Zug. — “You come by train.”\nSounds like: eer komt mit dem tsook\nThe word Ihr means “you (all of you)”. The word Zug means “train”.\nFor Ihr the word kommt means “you come”: it changes depending on who is meant.\nIt was der Zug, now it is mit dem Zug."
+      },
+      "examples": [
+        {
+          "phraseId": "de:10:01",
+          "say": {
+            "ru": "их ко́ме мит дем бус",
+            "uk": "іх ко́ме міт дем бус"
+          }
+        },
+        {
+          "phraseId": "de:10:02",
+          "say": {
+            "ru": "А́нна комт мит дер бан",
+            "uk": "А́нна комт міт дер бан"
+          }
+        },
+        {
+          "phraseId": "de:10:03",
+          "say": {
+            "ru": "том комт мит дем фа́ррат",
+            "uk": "том комт міт дем фа́ррат"
+          }
+        },
+        {
+          "phraseId": "de:10:04",
+          "say": {
+            "ru": "вир ко́мен мит дем та́кси",
+            "uk": "вір ко́мен міт дем та́ксі"
+          }
+        },
+        {
+          "phraseId": "de:10:05",
+          "say": {
+            "ru": "ир комт мит дем цук",
+            "uk": "ір комт міт дем цук"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я приезжаю на автобусе.»",
+            "uk": "Виберіть, як сказати: «Я приїжджаю автобусом.»",
+            "en": "Choose how to say: “I come by bus.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:10:01",
+          "options": [
+            "de:10:01",
+            "de:10:02",
+            "de:10:03"
+          ],
+          "answerId": "de:10:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы приезжаем на такси.»",
+            "uk": "Виберіть, як сказати: «Ми приїжджаємо на таксі.»",
+            "en": "Choose how to say: “We come by taxi.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:04",
+          "options": [
+            "de:10:04",
+            "de:10:05",
+            "de:10:03"
+          ],
+          "answerId": "de:10:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна приезжает на электричке.»",
+            "uk": "Виберіть, як сказати: «Анна приїжджає електричкою.»",
+            "en": "Choose how to say: “Anna comes by train.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:02",
+          "options": [
+            "de:10:02",
+            "de:10:01",
+            "de:10:03"
+          ],
+          "answerId": "de:10:02"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "С кем говорят",
+        "uk": "З ким розмовляють",
+        "en": "Who you talk to"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я разговариваю с врачом».\nIch spreche mit dem Arzt. — «Я разговариваю с врачом.»\nЧитается: их шпре́хе мит дем арцт\nСлово mit здесь значит «с».\nСлово spreche значит «я разговариваю». Слово Arzt — «врач».\nБыло der Arzt, стало mit dem Arzt.\nAnna spricht mit dem Kind. — «Анна разговаривает с ребёнком.»\nЧитается: А́нна шприхт мит дем кинт\nСлово spricht значит «разговаривает». Слово Kind — «ребёнок».\nБыло das Kind, стало mit dem Kind.\nСлова spreche и spricht — одно слово: «я разговариваю», «он, она разговаривает».\nWir sprechen mit den Gästen. — «Мы разговариваем с гостями.»\nЧитается: вир шпре́хен мит ден ге́стен\nСлово sprechen значит «разговариваем». Слово Gäste — «гости».\nБыло Gäste «гости» — их несколько. Стало mit den Gästen: перед ними den, в конце добавилась «н».\nEr spricht mit mir. — «Он разговаривает со мной.»\nЧитается: эр шприхт мит мир\nСлово Er значит «он». Слово mir — «мной».\nВместо ich после mit говорят mir: mit mir — «со мной».",
+        "uk": "Дивіться, як сказати «Я розмовляю з лікарем».\nIch spreche mit dem Arzt. — «Я розмовляю з лікарем.»\nЧитається: іх шпре́хе міт дем арцт\nСлово mit тут означає «з».\nСлово spreche означає «я розмовляю». Слово Arzt — «лікар».\nБуло der Arzt, стало mit dem Arzt.\nAnna spricht mit dem Kind. — «Анна розмовляє з дитиною.»\nЧитається: А́нна шпріхт міт дем кінт\nСлово spricht означає «розмовляє». Слово Kind — «дитина».\nБуло das Kind, стало mit dem Kind.\nСлова spreche і spricht — одне слово: «я розмовляю», «він, вона розмовляє».\nWir sprechen mit den Gästen. — «Ми розмовляємо із гостями.»\nЧитається: вір шпре́хен міт ден ге́стен\nСлово sprechen означає «розмовляємо». Слово Gäste — «гості».\nБуло Gäste «гості» — їх кілька. Стало mit den Gästen: перед ними den, в кінці додалася «н».\nEr spricht mit mir. — «Він розмовляє зі мною.»\nЧитається: ер шпріхт міт мір\nСлово Er означає «він». Слово mir — «мною».\nЗамість ich після mit кажуть mir: mit mir — «зі мною».",
+        "en": "Look at how to say “I talk to the doctor”.\nIch spreche mit dem Arzt. — “I talk to the doctor.”\nSounds like: eekh shprEkhe mit dem artst\nThe word mit here means “with”.\nThe word spreche means “I talk”. The word Arzt means “doctor”.\nIt was der Arzt, now it is mit dem Arzt.\nAnna spricht mit dem Kind. — “Anna talks to the child.”\nSounds like: Anna shprikht mit dem kint\nThe word spricht means “talks”. The word Kind means “child”.\nIt was das Kind, now it is mit dem Kind.\nThe words spreche and spricht are one word: “I talk”, “he, she talks”.\nWir sprechen mit den Gästen. — “We talk to the guests.”\nSounds like: veer shprEkhen mit den gEsten\nThe word sprechen means “we talk”. The word Gäste means “guests”.\nIt was Gäste “guests” — there are several. Now mit den Gästen: den before them, and an “n” is added at the end.\nEr spricht mit mir. — “He talks to me.”\nSounds like: air shprikht mit meer\nThe word Er means “he”. The word mir means “me”.\nInstead of ich, after mit you say mir: mit mir means “with me”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:10:06",
+          "say": {
+            "ru": "их шпре́хе мит дем арцт",
+            "uk": "іх шпре́хе міт дем арцт"
+          }
+        },
+        {
+          "phraseId": "de:10:08",
+          "say": {
+            "ru": "А́нна шприхт мит дем кинт",
+            "uk": "А́нна шпріхт міт дем кінт"
+          }
+        },
+        {
+          "phraseId": "de:10:09",
+          "say": {
+            "ru": "вир шпре́хен мит ден ге́стен",
+            "uk": "вір шпре́хен міт ден ге́стен"
+          }
+        },
+        {
+          "phraseId": "de:10:10",
+          "say": {
+            "ru": "эр шприхт мит мир",
+            "uk": "ер шпріхт міт мір"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я разговариваю с врачом.»",
+            "uk": "Виберіть, як сказати: «Я розмовляю з лікарем.»",
+            "en": "Choose how to say: “I talk to the doctor.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:10:06",
+          "options": [
+            "de:10:06",
+            "de:10:08",
+            "de:10:10"
+          ],
+          "answerId": "de:10:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы разговариваем с гостями.»",
+            "uk": "Виберіть, як сказати: «Ми розмовляємо із гостями.»",
+            "en": "Choose how to say: “We talk to the guests.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:09",
+          "options": [
+            "de:10:09",
+            "de:10:06",
+            "de:10:08"
+          ],
+          "answerId": "de:10:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он разговаривает со мной.»",
+            "uk": "Виберіть, як сказати: «Він розмовляє зі мною.»",
+            "en": "Choose how to say: “He talks to me.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:10",
+          "options": [
+            "de:10:10",
+            "de:10:09",
+            "de:10:06"
+          ],
+          "answerId": "de:10:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Куда идут и едут",
+        "uk": "Куди йдуть і їдуть",
+        "en": "Where you go"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я еду на работу».\nIch fahre zur Arbeit. — «Я еду на работу.»\nЧитается: их фа́ре цур а́рбайт\nСлово fahre значит «я еду».\nСлово zu значит «к, на». Слово zur — это zu и der, сказанные вместе.\nСлово Arbeit значит «работа».\nБыло die Arbeit, стало zur Arbeit.\nTom geht zum Arzt. — «Том идёт к врачу.»\nЧитается: том гет цум арцт\nСлово geht значит «идёт».\nСлово zum — это zu и dem вместе.\nБыло der Arzt, стало zum Arzt.\nWir gehen zur Kasse. — «Мы идём к кассе.»\nЧитается: вир ге́ен цур ка́се\nСлово gehen значит «идём». Слово Kasse — «касса».\nБыло die Kasse, стало zur Kasse.\nСлова geht и gehen — одно слово: «идёт», «идём». Ещё оно значит «идти».\nСлово zu значит «к»: идут к человеку (zum Arzt — «к врачу») или к месту (zur Kasse — «к кассе»).\nIch bringe das Paket zur Post. — «Я несу посылку на почту.»\nЧитается: их бри́нге дас паке́т цур пост\nСлово bringe значит «я несу». Слово Paket — «посылка». Слово Post — «почта».\nБыло die Post, стало zur Post.\nЗдесь zur значит «на»: «на почту».",
+        "uk": "Дивіться, як сказати «Я їду на роботу».\nIch fahre zur Arbeit. — «Я їду на роботу.»\nЧитається: іх фа́ре цур а́рбайт\nСлово fahre означає «я їду».\nСлово zu означає «до, на». Слово zur — це zu і der, сказані разом.\nСлово Arbeit означає «робота».\nБуло die Arbeit, стало zur Arbeit.\nTom geht zum Arzt. — «Том іде до лікаря.»\nЧитається: том гет цум арцт\nСлово geht означає «іде».\nСлово zum — це zu і dem разом.\nБуло der Arzt, стало zum Arzt.\nWir gehen zur Kasse. — «Ми йдемо до каси.»\nЧитається: вір ге́ен цур ка́се\nСлово gehen означає «йдемо». Слово Kasse — «каса».\nБуло die Kasse, стало zur Kasse.\nСлова geht і gehen — одне слово: «іде», «йдемо». Ще воно означає «йти».\nСлово zu означає «до»: йдуть до людини (zum Arzt — «до лікаря») або до місця (zur Kasse — «до каси»).\nIch bringe das Paket zur Post. — «Я несу посилку на пошту.»\nЧитається: іх брі́нге дас паке́т цур пост\nСлово bringe означає «я несу». Слово Paket — «посилка». Слово Post — «пошта».\nБуло die Post, стало zur Post.\nТут zur означає «на»: «на пошту».",
+        "en": "Look at how to say “I go to work”.\nIch fahre zur Arbeit. — “I go to work.”\nSounds like: eekh fAre tsoor Arbayt\nThe word fahre means “I go (by vehicle)”.\nThe word zu means “to”. The word zur is zu and der said together.\nThe word Arbeit means “work”.\nIt was die Arbeit, now it is zur Arbeit.\nTom geht zum Arzt. — “Tom goes to the doctor.”\nSounds like: tom get tsoom artst\nThe word geht means “goes”.\nThe word zum is zu and dem together.\nIt was der Arzt, now it is zum Arzt.\nWir gehen zur Kasse. — “We go to the checkout.”\nSounds like: veer gE-en tsoor kAse\nThe word gehen means “we go”. The word Kasse means “checkout”.\nIt was die Kasse, now it is zur Kasse.\nThe words geht and gehen are one word: “goes”, “we go”. It also means “to go”.\nThe word zu means “to”: you go to a person (zum Arzt — “to the doctor”) or to a place (zur Kasse — “to the checkout”).\nIch bringe das Paket zur Post. — “I take the parcel to the post office.”\nSounds like: eekh brInge das pakEt tsoor post\nThe word bringe means “I take”. The word Paket means “parcel”.\nThe word Post means “post office”.\nIt was die Post, now it is zur Post.\nHere zur means “to”: “to the post office”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:10:11",
+          "say": {
+            "ru": "их фа́ре цур а́рбайт",
+            "uk": "іх фа́ре цур а́рбайт"
+          }
+        },
+        {
+          "phraseId": "de:10:13",
+          "say": {
+            "ru": "том гет цум арцт",
+            "uk": "том гет цум арцт"
+          }
+        },
+        {
+          "phraseId": "de:10:15",
+          "say": {
+            "ru": "вир ге́ен цур ка́се",
+            "uk": "вір ге́ен цур ка́се"
+          }
+        },
+        {
+          "phraseId": "de:10:17",
+          "say": {
+            "ru": "их бри́нге дас паке́т цур пост",
+            "uk": "іх брі́нге дас паке́т цур пост"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я еду на работу.»",
+            "uk": "Виберіть, як сказати: «Я їду на роботу.»",
+            "en": "Choose how to say: “I go to work.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:10:11",
+          "options": [
+            "de:10:11",
+            "de:10:13",
+            "de:10:15"
+          ],
+          "answerId": "de:10:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том идёт к врачу.»",
+            "uk": "Виберіть, як сказати: «Том іде до лікаря.»",
+            "en": "Choose how to say: “Tom goes to the doctor.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:13",
+          "options": [
+            "de:10:13",
+            "de:10:15",
+            "de:10:17"
+          ],
+          "answerId": "de:10:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я несу посылку на почту.»",
+            "uk": "Виберіть, як сказати: «Я несу посилку на пошту.»",
+            "en": "Choose how to say: “I take the parcel to the post office.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:17",
+          "options": [
+            "de:10:17",
+            "de:10:11",
+            "de:10:15"
+          ],
+          "answerId": "de:10:17"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "У кого находятся",
+        "uk": "У кого перебувають",
+        "en": "Who you are with"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я у врача».\nIch bin beim Arzt. — «Я у врача.»\nЧитается: их бин баим арцт\nСлово bei значит «у». Слово beim — это bei и dem вместе.\nБыло der Arzt, стало beim Arzt.\nСравните: zum Arzt — «к врачу» (идут).\nА beim Arzt — «у врача» (находятся).\nDie Tasche ist bei Anna. — «Сумка у Анны.»\nЧитается: ди та́ше ист бай А́нна\nСлово Tasche значит «сумка».\nПеред именем маленького слова нет: bei Anna — «у Анны».\nAnna wohnt bei ihrer Mutter. — «Анна живёт у своей матери.»\nЧитается: А́нна вонт бай и́рер му́тер\nСлово wohnt значит «живёт». Слово Mutter — «мать». Слово ihrer — «своей».\nЗдесь bei тоже значит «у»: bei ihrer Mutter — «у своей матери».\nTom wohnt bei seinem Vater. — «Том живёт у своего отца.»\nЧитается: том вонт бай за́йнем фа́тер\nСлово Vater значит «отец». Слово seinem — «своего».\nСлова bei seinem Vater значат «у своего отца».",
+        "uk": "Дивіться, як сказати «Я у лікаря».\nIch bin beim Arzt. — «Я у лікаря.»\nЧитається: іх бін баім арцт\nСлово bei означає «у». Слово beim — це bei і dem разом.\nБуло der Arzt, стало beim Arzt.\nПорівняйте: zum Arzt — «до лікаря» (йдуть).\nА beim Arzt — «у лікаря» (перебувають).\nDie Tasche ist bei Anna. — «Сумка у Ганни.»\nЧитається: ді та́ше іст бай А́нна\nСлово Tasche означає «сумка».\nПеред іменем маленького слова немає: bei Anna — «у Анни».\nAnna wohnt bei ihrer Mutter. — «Анна живе у своєї матері.»\nЧитається: А́нна вонт бай і́рер му́тер\nСлово wohnt означає «живе». Слово Mutter — «мати». Слово ihrer — «своєї».\nТут bei теж означає «у»: bei ihrer Mutter — «у своєї матері».\nTom wohnt bei seinem Vater. — «Том живе у свого батька.»\nЧитається: том вонт бай за́йнем фа́тер\nСлово Vater означає «батько». Слово seinem — «свого».\nСлова bei seinem Vater означають «у свого батька».",
+        "en": "Look at how to say “I am at the doctor’s”.\nIch bin beim Arzt. — “I am at the doctor’s.”\nSounds like: eekh been baym artst\nThe word bei means “at”. The word beim is bei and dem together.\nIt was der Arzt, now it is beim Arzt.\nCompare: zum Arzt means “to the doctor” (you go).\nAnd beim Arzt means “at the doctor’s” (you are there).\nDie Tasche ist bei Anna. — “The bag is at Anna’s.”\nSounds like: dee tAshe eest bay Anna\nThe word Tasche means “bag”.\nBefore a name there is no small word: bei Anna means “at Anna’s”.\nAnna wohnt bei ihrer Mutter. — “Anna lives with her mother.”\nSounds like: Anna vont bay Irer mOOter\nThe word wohnt means “lives”. The word Mutter means “mother”.\nThe word ihrer means “her own”.\nHere bei also means “at”: bei ihrer Mutter means “at her mother’s”.\nTom wohnt bei seinem Vater. — “Tom lives with his father.”\nSounds like: tom vont bay zAynem fAter\nThe word Vater means “father”. The word seinem means “his own”.\nThe words bei seinem Vater mean “at his father’s”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:10:24",
+          "say": {
+            "ru": "их бин баим арцт",
+            "uk": "іх бін баім арцт"
+          }
+        },
+        {
+          "phraseId": "de:10:29",
+          "say": {
+            "ru": "ди та́ше ист бай А́нна",
+            "uk": "ді та́ше іст бай А́нна"
+          }
+        },
+        {
+          "phraseId": "de:10:21",
+          "say": {
+            "ru": "А́нна вонт бай и́рер му́тер",
+            "uk": "А́нна вонт бай і́рер му́тер"
+          }
+        },
+        {
+          "phraseId": "de:10:22",
+          "say": {
+            "ru": "том вонт бай за́йнем фа́тер",
+            "uk": "том вонт бай за́йнем фа́тер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я у врача.»",
+            "uk": "Виберіть, як сказати: «Я у лікаря.»",
+            "en": "Choose how to say: “I am at the doctor’s.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:10:24",
+          "options": [
+            "de:10:24",
+            "de:10:29",
+            "de:10:21"
+          ],
+          "answerId": "de:10:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сумка у Анны.»",
+            "uk": "Виберіть, як сказати: «Сумка у Ганни.»",
+            "en": "Choose how to say: “The bag is at Anna’s.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:29",
+          "options": [
+            "de:10:29",
+            "de:10:24",
+            "de:10:22"
+          ],
+          "answerId": "de:10:29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна живёт у своей матери.»",
+            "uk": "Виберіть, як сказати: «Анна живе у своєї матері.»",
+            "en": "Choose how to say: “Anna lives with her mother.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:21",
+          "options": [
+            "de:10:21",
+            "de:10:22",
+            "de:10:24"
+          ],
+          "answerId": "de:10:21"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Откуда приходит",
+        "uk": "Звідки приходить",
+        "en": "Where it comes from"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Письмо из банка».\nDer Brief kommt von der Bank. — «Письмо из банка.»\nЧитается: дер бриф комт фон дер банк\nСлово Brief значит «письмо».\nСлово kommt здесь значит «приходит»: письмо приходит.\nСлово von значит «от, из». Слово Bank — «банк».\nБыло die Bank, стало von der Bank.\nDie Nachricht kommt von meinem Bruder. — «Сообщение от моего брата.»\nЧитается: ди на́хрихт комт фон ма́йнем бру́дер\nСлово Nachricht значит «сообщение». Слово Bruder — «брат». Слово meinem — «моего».\nРаньше вы видели meine «моя». Теперь meinem «моего».\nDas Geschenk kommt von den Kindern. — «Подарок от детей.»\nЧитается: дас гешэ́нк комт фон ден ки́ндерн\nСлово Geschenk значит «подарок». Слово Kinder — «дети».\nБыло Kinder «дети» — их несколько. Стало von den Kindern: перед ними den, в конце добавилась «н».",
+        "uk": "Дивіться, як сказати «Лист із банку».\nDer Brief kommt von der Bank. — «Лист із банку.»\nЧитається: дер бріф комт фон дер банк\nСлово Brief означає «лист».\nСлово kommt тут означає «приходить»: лист приходить.\nСлово von означає «від, із». Слово Bank — «банк».\nБуло die Bank, стало von der Bank.\nDie Nachricht kommt von meinem Bruder. — «Повідомлення від мого брата.»\nЧитається: ді на́хріхт комт фон ма́йнем бру́дер\nСлово Nachricht означає «повідомлення». Слово Bruder — «брат». Слово meinem — «мого».\nРаніше ви бачили meine «моя». Тепер meinem «мого».\nDas Geschenk kommt von den Kindern. — «Подарунок від дітей.»\nЧитається: дас геше́нк комт фон ден кі́ндерн\nСлово Geschenk означає «подарунок». Слово Kinder — «діти».\nБуло Kinder «діти» — їх кілька. Стало von den Kindern: перед ними den, в кінці додалася «н».",
+        "en": "Look at how to say “The letter is from the bank”.\nDer Brief kommt von der Bank. — “The letter is from the bank.”\nSounds like: dair breef komt fon dair bank\nThe word Brief means “letter”.\nThe word kommt here means “comes”: a letter arrives.\nThe word von means “from”. The word Bank means “bank”.\nIt was die Bank, now it is von der Bank.\nDie Nachricht kommt von meinem Bruder. — “The message is from my brother.”\nSounds like: dee nAkhrikht komt fon mAynem brOOder\nThe word Nachricht means “message”. The word Bruder means “brother”.\nThe word meinem means “my”.\nBefore you saw meine “my”. Now it is meinem.\nDas Geschenk kommt von den Kindern. — “The gift is from the children.”\nSounds like: das geshEnk komt fon den kIndern\nThe word Geschenk means “gift”. The word Kinder means “children”.\nIt was Kinder “children” — there are several. Now von den Kindern: den before them, and an “n” is added at the end."
+      },
+      "examples": [
+        {
+          "phraseId": "de:10:31",
+          "say": {
+            "ru": "дер бриф комт фон дер банк",
+            "uk": "дер бріф комт фон дер банк"
+          }
+        },
+        {
+          "phraseId": "de:10:32",
+          "say": {
+            "ru": "ди на́хрихт комт фон ма́йнем бру́дер",
+            "uk": "ді на́хріхт комт фон ма́йнем бру́дер"
+          }
+        },
+        {
+          "phraseId": "de:10:33",
+          "say": {
+            "ru": "дас гешэ́нк комт фон ден ки́ндерн",
+            "uk": "дас геше́нк комт фон ден кі́ндерн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Письмо из банка.»",
+            "uk": "Виберіть, як сказати: «Лист із банку.»",
+            "en": "Choose how to say: “The letter is from the bank.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:10:31",
+          "options": [
+            "de:10:31",
+            "de:10:32",
+            "de:10:33"
+          ],
+          "answerId": "de:10:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Подарок от детей.»",
+            "uk": "Виберіть, як сказати: «Подарунок від дітей.»",
+            "en": "Choose how to say: “The gift is from the children.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:33",
+          "options": [
+            "de:10:33",
+            "de:10:31",
+            "de:10:32"
+          ],
+          "answerId": "de:10:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сообщение от моего брата.»",
+            "uk": "Виберіть, як сказати: «Повідомлення від мого брата.»",
+            "en": "Choose how to say: “The message is from my brother.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:32",
+          "options": [
+            "de:10:32",
+            "de:10:33",
+            "de:10:31"
+          ],
+          "answerId": "de:10:32"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Откуда выходят",
+        "uk": "Звідки виходять",
+        "en": "Where from, out of"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Она выходит из кухни».\nSie kommt aus der Küche. — «Она выходит из кухни.»\nЧитается: зи комт аус дер кю́хе\nСлово Sie значит «она». Слово aus — «из».\nСлово aus значит «из» — когда выходят изнутри.\nСлово Küche значит «кухня».\nБыло die Küche, стало aus der Küche.\nDer Bus kommt aus Berlin. — «Автобус едет из Берлина.»\nЧитается: дер бус комт аус берли́н\nСлово Berlin значит «Берлин».\nЗдесь kommt значит «едет». Перед названием города маленького слова нет: aus Berlin — «из Берлина».\nTom kommt vom Sport. — «Том возвращается с тренировки.»\nЧитается: том комт фом шпорт\nСлово vom — это von и dem вместе: «от, с».\nСлово Sport значит «спорт, тренировка».\nБыло der Sport, стало vom Sport.\nТут kommt значит «возвращается». Смысл слова kommt смотрите по фразе: «приезжает», «приходит», «выходит», «возвращается».",
+        "uk": "Дивіться, як сказати «Вона виходить із кухні».\nSie kommt aus der Küche. — «Вона виходить із кухні.»\nЧитається: зі комт аус дер кю́хе\nСлово Sie означає «вона». Слово aus — «із».\nСлово aus означає «із» — коли виходять зсередини.\nСлово Küche означає «кухня».\nБуло die Küche, стало aus der Küche.\nDer Bus kommt aus Berlin. — «Автобус їде із Берліна.»\nЧитається: дер бус комт аус берлі́н\nСлово Berlin означає «Берлін».\nТут kommt означає «їде». Перед назвою міста маленького слова немає: aus Berlin — «із Берліна».\nTom kommt vom Sport. — «Том повертається із тренування.»\nЧитається: том комт фом шпорт\nСлово vom — це von і dem разом: «від, з».\nСлово Sport означає «спорт, тренування».\nБуло der Sport, стало vom Sport.\nТут kommt означає «повертається». Зміст слова kommt дивіться за фразою: «приїжджає», «приходить», «виходить», «повертається».",
+        "en": "Look at how to say “She comes out of the kitchen”.\nSie kommt aus der Küche. — “She comes out of the kitchen.”\nSounds like: zee komt aoos dair kYOOkhe\nThe word Sie means “she”. The word aus means “out of”.\nThe word aus means “out of” — you come from inside.\nThe word Küche means “kitchen”.\nIt was die Küche, now it is aus der Küche.\nDer Bus kommt aus Berlin. — “The bus comes from Berlin.”\nSounds like: dair boos komt aoos berlEEn\nThe word Berlin means “Berlin”.\nHere kommt means “travels”. Before the name of a city there is no small word: aus Berlin means “from Berlin”.\nTom kommt vom Sport. — “Tom is coming back from sports.”\nSounds like: tom komt fom shport\nThe word vom is von and dem together: “from”.\nThe word Sport means “sport, training”.\nIt was der Sport, now it is vom Sport.\nHere kommt means “comes back”. Look at the phrase: kommt can be “arrives”, “comes”, “comes out”, “comes back”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:10:38",
+          "say": {
+            "ru": "зи комт аус дер кю́хе",
+            "uk": "зі комт аус дер кю́хе"
+          }
+        },
+        {
+          "phraseId": "de:10:40",
+          "say": {
+            "ru": "дер бус комт аус берли́н",
+            "uk": "дер бус комт аус берлі́н"
+          }
+        },
+        {
+          "phraseId": "de:10:36",
+          "say": {
+            "ru": "том комт фом шпорт",
+            "uk": "том комт фом шпорт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она выходит из кухни.»",
+            "uk": "Виберіть, як сказати: «Вона виходить із кухні.»",
+            "en": "Choose how to say: “She comes out of the kitchen.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:10:38",
+          "options": [
+            "de:10:38",
+            "de:10:40",
+            "de:10:36"
+          ],
+          "answerId": "de:10:38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус едет из Берлина.»",
+            "uk": "Виберіть, як сказати: «Автобус їде із Берліна.»",
+            "en": "Choose how to say: “The bus comes from Berlin.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:40",
+          "options": [
+            "de:10:40",
+            "de:10:38",
+            "de:10:31"
+          ],
+          "answerId": "de:10:40"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том возвращается с тренировки.»",
+            "uk": "Виберіть, як сказати: «Том повертається із тренування.»",
+            "en": "Choose how to say: “Tom is coming back from sports.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:36",
+          "options": [
+            "de:10:36",
+            "de:10:40",
+            "de:10:38"
+          ],
+          "answerId": "de:10:36"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Сначала «когда»",
+        "uk": "Спочатку «коли»",
+        "en": "“When” comes first"
+      },
+      "text": {
+        "ru": "Раньше фраза начиналась с «кто»: сначала «кто», потом действие.\nWir trinken Tee. — «Мы пьём чай.»\nЧитается: вир три́нкен те\nСлово trinken значит «пьём». Слово Tee — «чай».\nТеперь фраза может начаться с «когда» — после чего что-то происходит.\nСмотрите, как сказать «После еды мы пьём чай».\nNach dem Essen trinken wir Tee. — «После еды мы пьём чай.»\nЧитается: нах дем э́сен три́нкен вир те\nСлово nach значит «после». Слово Essen — «еда».\nБыло das Essen, стало nach dem Essen.\nВидите: сначала «после еды», потом trinken, потом wir.\nNach dem Kurs gehen wir zur Post. — «После занятия мы идём на почту.»\nЧитается: нах дем курс ге́ен вир цур пост\nСлово Kurs значит «занятие».\nБыло der Kurs, стало nach dem Kurs.\nЗдесь так же: сначала «после занятия», потом gehen, потом wir.\nЕщё раз: сначала «кто», потом действие.\nIch wohne hier. — «Я живу здесь.»\nЧитается: их во́не хир\nСлово wohne значит «живу». Слово hier — «здесь».\nSeit dem Umzug wohne ich hier. — «Я живу здесь с момента переезда.»\nЧитается: зайт дем у́мцук во́не их хир\nСлово seit значит «с, с тех пор». Слово Umzug — «переезд».\nБыло der Umzug, стало seit dem Umzug.\nОпять сначала «с каких пор», потом wohne, потом ich.",
+        "uk": "Раніше фраза починалася з «хто»: спочатку «хто», потім дія.\nWir trinken Tee. — «Ми п’ємо чай.»\nЧитається: вір трі́нкен те\nСлово trinken означає «п’ємо». Слово Tee — «чай».\nТепер фраза може початися з «коли» — після чого щось відбувається.\nДивіться, як сказати «Після їди ми п'ємо чай».\nNach dem Essen trinken wir Tee. — «Після їди ми п'ємо чай.»\nЧитається: нах дем е́сен трі́нкен вір те\nСлово nach означає «після». Слово Essen — «їжа».\nБуло das Essen, стало nach dem Essen.\nБачите: спочатку «після їжі», потім trinken, потім wir.\nNach dem Kurs gehen wir zur Post. — «Після заняття ми йдемо на пошту.»\nЧитається: нах дем курс ге́ен вір цур пост\nСлово Kurs означає «заняття».\nБуло der Kurs, стало nach dem Kurs.\nТут так само: спочатку «після заняття», потім gehen, потім wir.\nЩе раз: спочатку «хто», потім дія.\nIch wohne hier. — «Я мешкаю тут.»\nЧитається: іх во́не хір\nСлово wohne означає «живу». Слово hier — «тут».\nSeit dem Umzug wohne ich hier. — «Я мешкаю тут з моменту переїзду.»\nЧитається: зайт дем у́мцук во́не іх хір\nСлово seit означає «з, відтоді». Слово Umzug — «переїзд».\nБуло der Umzug, стало seit dem Umzug.\nЗнову спочатку «відколи», потім wohne, потім ich.",
+        "en": "Before, a phrase began with “who”: first who, then the action.\nWir trinken Tee. — “We drink tea.”\nSounds like: veer trInken tay\nThe word trinken means “we drink”. The word Tee means “tea”.\nNow a phrase can begin with “when” — after what something happens.\nLook at how to say “After the meal we drink tea”.\nNach dem Essen trinken wir Tee. — “After the meal we drink tea.”\nSounds like: nakh dem Esen trInken veer tay\nThe word nach means “after”. The word Essen means “meal”.\nIt was das Essen, now it is nach dem Essen.\nSee: first “after the meal”, then trinken, then wir.\nNach dem Kurs gehen wir zur Post. — “After the class we go to the post office.”\nSounds like: nakh dem koors gE-en veer tsoor post\nThe word Kurs means “class”.\nIt was der Kurs, now it is nach dem Kurs.\nSame here: first “after the class”, then gehen, then wir.\nOnce more: first who, then the action.\nIch wohne hier. — “I live here.”\nSounds like: eekh vOne kheer\nThe word wohne means “I live”. The word hier means “here”.\nSeit dem Umzug wohne ich hier. — “I have lived here since the move.”\nSounds like: zayt dem OOmtsook vOne eekh kheer\nThe word seit means “since”.\nThe word Umzug means “move to a new home”.\nIt was der Umzug, now it is seit dem Umzug.\nAgain: first “since when”, then wohne, then ich."
+      },
+      "examples": [
+        {
+          "phraseId": "de:10:41",
+          "say": {
+            "ru": "нах дем э́сен три́нкен вир те",
+            "uk": "нах дем е́сен трі́нкен вір те"
+          }
+        },
+        {
+          "phraseId": "de:10:43",
+          "say": {
+            "ru": "нах дем курс ге́ен вир цур пост",
+            "uk": "нах дем курс ге́ен вір цур пост"
+          }
+        },
+        {
+          "phraseId": "de:10:45",
+          "say": {
+            "ru": "зайт дем у́мцук во́не их хир",
+            "uk": "зайт дем у́мцук во́не іх хір"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «После еды мы пьём чай.»",
+            "uk": "Виберіть, як сказати: «Після їди ми п'ємо чай.»",
+            "en": "Choose how to say: “After the meal we drink tea.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:10:41",
+          "options": [
+            "de:10:41",
+            "de:10:45",
+            "de:10:43"
+          ],
+          "answerId": "de:10:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «После занятия мы идём на почту.»",
+            "uk": "Виберіть, як сказати: «Після заняття ми йдемо на пошту.»",
+            "en": "Choose how to say: “After the class we go to the post office.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:43",
+          "options": [
+            "de:10:43",
+            "de:10:41",
+            "de:10:45"
+          ],
+          "answerId": "de:10:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу здесь с момента переезда.»",
+            "uk": "Виберіть, як сказати: «Я мешкаю тут з моменту переїзду.»",
+            "en": "Choose how to say: “I have lived here since the move.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:45",
+          "options": [
+            "de:10:45",
+            "de:10:43",
+            "de:10:41"
+          ],
+          "answerId": "de:10:45"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Неделя, погода, дом",
+        "uk": "Тиждень, погода, дім",
+        "en": "Week, weather, home"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я уже неделю учу немецкий».\nSeit einer Woche lerne ich Deutsch. — «Я уже неделю учу немецкий.»\nЧитается: зайт а́йнер во́хе ле́рне их дойч\nСлово einer значит «одной». Слово Woche — «неделя». Слово lerne — «учу».\nСлово Deutsch значит «немецкий».\nРаньше вы видели eine. После seit стало einer.\nСлова seit einer Woche значат «уже неделю».\nBei diesem Wetter bleibe ich zu Hause. — «В такую погоду я остаюсь дома.»\nЧитается: бай ди́зем ве́тер бла́йбе их цу ха́узе\nСлово bei здесь значит «в»: bei diesem Wetter — «в такую погоду».\nСлово diesem значит «этом». Слово Wetter — «погода». Слово bleibe — «остаюсь».\nСлова zu Hause значат «дома». Слово zu значит «к, на», а Hause — «дом»; вместе — «дома».",
+        "uk": "Дивіться, як сказати «Я вже тиждень вивчаю німецьку».\nSeit einer Woche lerne ich Deutsch. — «Я вже тиждень вивчаю німецьку.»\nЧитається: зайт а́йнер во́хе ле́рне іх дойч\nСлово einer означає «однієї». Слово Woche — «тиждень». Слово lerne — «вивчаю».\nСлово Deutsch означає «німецька мова».\nРаніше ви бачили eine. Після seit стало einer.\nСлова seit einer Woche означають «вже тиждень».\nBei diesem Wetter bleibe ich zu Hause. — «За такої погоди я залишаюся вдома.»\nЧитається: бай ді́зем ве́тер бла́йбе іх цу ха́узе\nСлово bei тут означає «за»: bei diesem Wetter — «за такої погоди».\nСлово diesem означає «цьому». Слово Wetter — «погода». Слово bleibe — «залишаюся».\nСлова zu Hause означають «вдома». Слово zu означає «до, на», а Hause — «дім»; разом — «вдома».",
+        "en": "Look at how to say “I have been learning German for a week”.\nSeit einer Woche lerne ich Deutsch. — “I have been learning German for a week.”\nSounds like: zayt Ayner vOkhe lErne eekh doych\nThe word einer means “one”. The word Woche means “week”.\nThe word lerne means “I learn”. The word Deutsch means “German”.\nYou have seen eine before. After seit it became einer.\nThe words seit einer Woche mean “for a week now”.\nBei diesem Wetter bleibe ich zu Hause. — “In this weather I stay at home.”\nSounds like: bay dEEzem vEter blAybe eekh tsoo khAoose\nThe word bei here means “in”: bei diesem Wetter means “in this weather”.\nThe word diesem means “this”. The word Wetter means “weather”.\nThe word bleibe means “I stay”.\nThe words zu Hause mean “at home”. The word zu means “to”, and Hause means “home”; together they mean “at home”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:10:46",
+          "say": {
+            "ru": "зайт а́йнер во́хе ле́рне их дойч",
+            "uk": "зайт а́йнер во́хе ле́рне іх дойч"
+          }
+        },
+        {
+          "phraseId": "de:10:50",
+          "say": {
+            "ru": "бай ди́зем ве́тер бла́йбе их цу ха́узе",
+            "uk": "бай ді́зем ве́тер бла́йбе іх цу ха́узе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В такую погоду я остаюсь дома.»",
+            "uk": "Виберіть, як сказати: «За такої погоди я залишаюся вдома.»",
+            "en": "Choose how to say: “In this weather I stay at home.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:10:50",
+          "options": [
+            "de:10:50",
+            "de:10:46",
+            "de:10:41"
+          ],
+          "answerId": "de:10:50"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже неделю учу немецкий.»",
+            "uk": "Виберіть, як сказати: «Я вже тиждень вивчаю німецьку.»",
+            "en": "Choose how to say: “I have been learning German for a week.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:46",
+          "options": [
+            "de:10:46",
+            "de:10:45",
+            "de:10:50"
+          ],
+          "answerId": "de:10:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу здесь с момента переезда.»",
+            "uk": "Виберіть, як сказати: «Я мешкаю тут з моменту переїзду.»",
+            "en": "Choose how to say: “I have lived here since the move.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:10:45",
+          "options": [
+            "de:10:45",
+            "de:10:46",
+            "de:10:41"
+          ],
+          "answerId": "de:10:45"
+        }
+      ]
+    }
+  ]
+}

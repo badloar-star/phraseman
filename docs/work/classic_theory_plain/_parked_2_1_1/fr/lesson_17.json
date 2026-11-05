@@ -1,0 +1,492 @@
+{
+  "lang": "fr",
+  "lesson": 17,
+  "title": {
+    "ru": "Я встаю, я умываюсь",
+    "en": "I get up, I wash"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я встаю",
+        "en": "I get up"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я встаю».\nJe me lève. — «Я встаю.»\nЧитается: жё мё лэв.\nСлово lève значит «встаю». Слово me значит «себя».\nПо-русски «себя» не говорят: оно уже внутри слова «встаю».\nОба слова меняются, смотря о ком речь.\nTu te lèves. — «Ты встаешь.»\nСлово te значит «себя» — когда речь о собеседнике.\nElle se lève. — «Она встает.»\nСлово se значит «себя» — когда речь о ней или о нём.\nNous nous levons. — «Мы встаем.»\nЗдесь два слова nous: первое «мы», второе «себя».\nVous vous levez. — «Вы встаёте.»\nIls se lèvent. — «Они встают.»",
+        "en": "Look at how to say “I get up”.\nJe me lève. — “I get up.”\nThe word lève means “get up”. The word me means “myself”.\nIn English we do not say “myself” here: it is already inside “get up”.\nBoth words change depending on who we talk about.\nTu te lèves. — “You get up.”\nThe word te means “yourself”.\nElle se lève. — “She gets up.”\nThe word se means “herself, himself”.\nNous nous levons. — “We get up.”\nHere there are two nous: the first is “we”, the second is “ourselves”.\nVous vous levez. — “You get up.”\nIls se lèvent. — “They get up.”"
+      },
+      "examples": [
+        {
+          "phraseId": "fr:17:01",
+          "say": {
+            "ru": "жё мё лэв",
+            "uk": "жьо мьо лев"
+          }
+        },
+        {
+          "phraseId": "fr:17:02",
+          "say": {
+            "ru": "тю тё лэв",
+            "uk": "тю тьо лев"
+          }
+        },
+        {
+          "phraseId": "fr:17:03",
+          "say": {
+            "ru": "эль сё лэв",
+            "uk": "ель сьо лев"
+          }
+        },
+        {
+          "phraseId": "fr:17:04",
+          "say": {
+            "ru": "ну ну лёво́н",
+            "uk": "ну ну льово́н"
+          }
+        },
+        {
+          "phraseId": "fr:17:05",
+          "say": {
+            "ru": "ву ву лёве́",
+            "uk": "ву ву льове́"
+          }
+        },
+        {
+          "phraseId": "fr:17:06",
+          "say": {
+            "ru": "иль сё лэв",
+            "uk": "іль сьо лев"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я встаю»",
+            "uk": "Виберіть, як сказати: «Я встаю»",
+            "en": "Choose how to say: “I get up”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:17:01",
+          "options": [
+            "fr:17:01",
+            "fr:17:03",
+            "fr:17:04"
+          ],
+          "answerId": "fr:17:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы встаем»",
+            "uk": "Виберіть, як сказати: «Ми встаємо»",
+            "en": "Choose how to say: “We get up”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:04",
+          "options": [
+            "fr:17:04",
+            "fr:17:05",
+            "fr:17:06"
+          ],
+          "answerId": "fr:17:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они встают»",
+            "uk": "Виберіть, як сказати: «Вони встають»",
+            "en": "Choose how to say: “They get up”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:06",
+          "options": [
+            "fr:17:06",
+            "fr:17:02",
+            "fr:17:03"
+          ],
+          "answerId": "fr:17:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Готовлюсь, просыпаюсь",
+        "en": "I get ready, I wake up"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я готовлюсь».\nJe me prépare. — «Я готовлюсь.»\nЧитается: жё мё препа́р.\nСлово prépare значит «готовлюсь». Слова me и se — «себя».\nPaul se prépare. — «Поль готовится.»\nJe me réveille tôt. — «Я просыпаюсь рано.»\nСлово réveille значит «просыпаюсь». Слово tôt значит «рано».\nTu te réveilles à sept heures. — «Ты просыпаешься в семь часов.»\nСлова à sept heures значат «в семь часов».\nNous nous réveillons avec la radio. — «Мы просыпаемся под радио.»\nСлово avec значит «с, под». Слово radio значит «радио».",
+        "en": "Look at how to say “I get ready”.\nJe me prépare. — “I get ready.”\nThe word prépare means “get ready”. The words me and se mean “myself, herself”.\nPaul se prépare. — “Paul gets ready.”\nJe me réveille tôt. — “I wake up early.”\nThe word réveille means “wake up”. The word tôt means “early”.\nTu te réveilles à sept heures. — “You wake up at seven o’clock.”\nThe words à sept heures mean “at seven o’clock”.\nNous nous réveillons avec la radio. — “We wake up to the radio.”\nThe word avec means “with”. The word radio means “radio”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:17:07",
+          "say": {
+            "ru": "жё мё препа́р",
+            "uk": "жьо мьо препа́р"
+          }
+        },
+        {
+          "phraseId": "fr:17:09",
+          "say": {
+            "ru": "поль сё препа́р",
+            "uk": "поль сьо препа́р"
+          }
+        },
+        {
+          "phraseId": "fr:17:11",
+          "say": {
+            "ru": "жё мё реве́й то",
+            "uk": "жьо мьо реве́й то"
+          }
+        },
+        {
+          "phraseId": "fr:17:12",
+          "say": {
+            "ru": "тю тё реве́й а сэ тёр",
+            "uk": "тю тьо реве́й а се тьор"
+          }
+        },
+        {
+          "phraseId": "fr:17:14",
+          "say": {
+            "ru": "ну ну ревейо́н авэк ла радио́",
+            "uk": "ну ну ревейо́н авек ла радіо́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я готовлюсь»",
+            "uk": "Виберіть, як сказати: «Я готуюся»",
+            "en": "Choose how to say: “I get ready”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:17:07",
+          "options": [
+            "fr:17:07",
+            "fr:17:11",
+            "fr:17:12"
+          ],
+          "answerId": "fr:17:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль готовится»",
+            "uk": "Виберіть, як сказати: «Пол готується»",
+            "en": "Choose how to say: “Paul gets ready”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:09",
+          "options": [
+            "fr:17:09",
+            "fr:17:12",
+            "fr:17:14"
+          ],
+          "answerId": "fr:17:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы просыпаемся под радио»",
+            "uk": "Виберіть, як сказати: «Ми прокидаємося від радіо»",
+            "en": "Choose how to say: “We wake up to the radio”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:14",
+          "options": [
+            "fr:17:14",
+            "fr:17:11",
+            "fr:17:12"
+          ],
+          "answerId": "fr:17:14"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Душ, одежда, зубы",
+        "en": "Shower, clothes, teeth"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я принимаю душ».\nJe me douche le matin. — «Я принимаю душ утром.»\nЧитается: жё мё душ лё мате́н.\nСлово douche значит «принимаю душ». Слова le matin значат «утром».\nNous nous couchons tôt. — «Мы ложимся спать рано.»\nСлово couchons значит «ложимся спать».\nJe m’habille dans la chambre. — «Я одеваюсь в спальне.»\nСлово m’habille значит «одеваюсь».\nPaul se rase devant le miroir. — «Поль бреется перед зеркалом.»\nСлово rase значит «бреется». Слово miroir значит «зеркало».\nJe me brosse les dents. — «Я чищу зубы.»\nElle se lave les mains. — «Она моет руки.»\nСлово lave значит «моет». Слова les dents и les mains — «зубы» и «руки».",
+        "en": "Look at how to say “I take a shower”.\nJe me douche le matin. — “I take a shower in the morning.”\nThe word douche means “take a shower”. The words le matin mean “in the morning”.\nNous nous couchons tôt. — “We go to bed early.”\nThe word couchons means “go to bed”.\nJe m’habille dans la chambre. — “I get dressed in the bedroom.”\nThe word m’habille means “get dressed”.\nPaul se rase devant le miroir. — “Paul shaves in front of the mirror.”\nThe word rase means “shaves”. The word miroir means “mirror”.\nJe me brosse les dents. — “I brush my teeth.”\nElle se lave les mains. — “She washes her hands.”\nThe word lave means “washes”. The words les dents and les mains mean “teeth” and “hands”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:17:17",
+          "say": {
+            "ru": "жё мё душ лё мате́н",
+            "uk": "жьо мьо душ льо мате́н"
+          }
+        },
+        {
+          "phraseId": "fr:17:20",
+          "say": {
+            "ru": "ну ну кушо́н то",
+            "uk": "ну ну кушо́н то"
+          }
+        },
+        {
+          "phraseId": "fr:17:21",
+          "say": {
+            "ru": "жё мабий дан ла шанбр",
+            "uk": "жьо мабій дан ла шанбр"
+          }
+        },
+        {
+          "phraseId": "fr:17:25",
+          "say": {
+            "ru": "поль сё раз дёван лё мируа́р",
+            "uk": "поль сьо раз дьован льо міруа́р"
+          }
+        },
+        {
+          "phraseId": "fr:17:26",
+          "say": {
+            "ru": "жё мё брос ле дан",
+            "uk": "жьо мьо брос ле дан"
+          }
+        },
+        {
+          "phraseId": "fr:17:27",
+          "say": {
+            "ru": "эль сё лав ле мэн",
+            "uk": "ель сьо лав ле мен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я принимаю душ утром»",
+            "uk": "Виберіть, як сказати: «Я приймаю душ вранці»",
+            "en": "Choose how to say: “I take a shower in the morning”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:17:17",
+          "options": [
+            "fr:17:17",
+            "fr:17:21",
+            "fr:17:25"
+          ],
+          "answerId": "fr:17:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль бреется перед зеркалом»",
+            "uk": "Виберіть, як сказати: «Пол голиться перед дзеркалом»",
+            "en": "Choose how to say: “Paul shaves in front of the mirror”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:25",
+          "options": [
+            "fr:17:25",
+            "fr:17:26",
+            "fr:17:27"
+          ],
+          "answerId": "fr:17:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она моет руки»",
+            "uk": "Виберіть, як сказати: «Вона миє руки»",
+            "en": "Choose how to say: “She washes her hands”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:27",
+          "options": [
+            "fr:17:27",
+            "fr:17:20",
+            "fr:17:17"
+          ],
+          "answerId": "fr:17:27"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не встаю, нужно встать",
+        "en": "Not, and have to"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не встаю».\nJe ne me lève pas avant six heures. — «Я не встаю раньше шести часов.»\nЧитается: жё нё мё лэв па аван си зёр.\nСлова ne и pas стоят вокруг слов me lève и значат «не».\nElle ne se couche pas tard. — «Она не ложится спать поздно.»\nСлово tard значит «поздно».\nNous ne nous dépêchons pas. — «Мы никуда не спешим.»\nСлово dépêchons значит «спешим».\nЕсли рядом есть слово vais или doit, слово se стоит перед вторым словом.\nJe vais me reposer. — «Я собираюсь отдохнуть.»\nСлово reposer значит «отдохнуть».\nElle doit se lever tôt. — «Ей нужно рано вставать.»\nСлово lever значит «вставать». Слово se стоит перед ним.",
+        "en": "Look at how to say “I do not get up”.\nJe ne me lève pas avant six heures. — “I do not get up before six.”\nThe words ne and pas stand around me lève and mean “not”.\nElle ne se couche pas tard. — “She does not go to bed late.”\nThe word tard means “late”.\nNous ne nous dépêchons pas. — “We are not in a hurry.”\nThe word dépêchons means “hurry”.\nNow with another word: the word se goes before the second word.\nJe vais me reposer. — “I am going to rest.”\nThe word reposer means “to rest”.\nElle doit se lever tôt. — “She has to get up early.”\nThe word lever means “to get up”. The word se stands before it."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:17:31",
+          "say": {
+            "ru": "жё нё мё лэв па аван си зёр",
+            "uk": "жьо ньо мьо лев па аван сі зьор"
+          }
+        },
+        {
+          "phraseId": "fr:17:32",
+          "say": {
+            "ru": "эль нё сё куш па тар",
+            "uk": "ель ньо сьо куш па тар"
+          }
+        },
+        {
+          "phraseId": "fr:17:33",
+          "say": {
+            "ru": "ну нё ну депэшо́н па",
+            "uk": "ну ньо ну депешо́н па"
+          }
+        },
+        {
+          "phraseId": "fr:17:36",
+          "say": {
+            "ru": "жё вэ мё рэпозе́",
+            "uk": "жьо ве мьо репозе́"
+          }
+        },
+        {
+          "phraseId": "fr:17:38",
+          "say": {
+            "ru": "эль дуа сё лёве́ то",
+            "uk": "ель дуа сьо льове́ то"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не встаю раньше шести часов»",
+            "uk": "Виберіть, як сказати: «Я не встаю раніше шостої години»",
+            "en": "Choose how to say: “I do not get up before six o’clock”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:17:31",
+          "options": [
+            "fr:17:31",
+            "fr:17:32",
+            "fr:17:33"
+          ],
+          "answerId": "fr:17:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы никуда не спешим»",
+            "uk": "Виберіть, як сказати: «Ми нікуди не поспішаємо»",
+            "en": "Choose how to say: “We are not in a hurry”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:33",
+          "options": [
+            "fr:17:33",
+            "fr:17:36",
+            "fr:17:38"
+          ],
+          "answerId": "fr:17:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ей нужно рано вставать»",
+            "uk": "Виберіть, як сказати: «Їй треба рано вставати»",
+            "en": "Choose how to say: “She has to get up early”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:38",
+          "options": [
+            "fr:17:38",
+            "fr:17:31",
+            "fr:17:32"
+          ],
+          "answerId": "fr:17:38"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Меня зовут",
+        "en": "My name is"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Меня зовут Мари».\nJe m’appelle Marie. — «Меня зовут Мари.»\nЧитается: жё мапэ́ль мари́.\nСлово m’appelle значит «меня зовут».\nComment s’appelle ton voisin ? — «Как зовут твоего соседа?»\nСлово s’appelle значит «зовут». Слово voisin значит «сосед».\nJe me dépêche pour le bus. — «Я спешу на автобус.»\nСлово dépêche значит «спешу».\nElle se promène dans le parc. — «Она гуляет в парке.»\nСлово promène значит «гуляет».",
+        "en": "Look at how to say “My name is Marie”.\nJe m’appelle Marie. — “My name is Marie.”\nThe word m’appelle means “I am called”.\nComment s’appelle ton voisin ? — “What is your neighbour called?”\nThe word s’appelle means “is called”. The word voisin means “neighbour”.\nJe me dépêche pour le bus. — “I hurry for the bus.”\nThe word dépêche means “hurry”.\nElle se promène dans le parc. — “She walks in the park.”\nThe word promène means “walks”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:17:46",
+          "say": {
+            "ru": "жё мапэ́ль мари́",
+            "uk": "жьо мапе́ль марі́"
+          }
+        },
+        {
+          "phraseId": "fr:17:45",
+          "say": {
+            "ru": "кома́н сапэ́ль тон вуазэ́н",
+            "uk": "кома́н сапе́ль тон вуазе́н"
+          }
+        },
+        {
+          "phraseId": "fr:17:41",
+          "say": {
+            "ru": "жё мё депэ́ш пур лё бюс",
+            "uk": "жьо мьо депе́ш пур льо бюс"
+          }
+        },
+        {
+          "phraseId": "fr:17:42",
+          "say": {
+            "ru": "эль сё промэ́н дан лё парк",
+            "uk": "ель сьо проме́н дан льо парк"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Меня зовут Мари»",
+            "uk": "Виберіть, як сказати: «Мене звати Марі»",
+            "en": "Choose how to say: “My name is Marie”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:17:46",
+          "options": [
+            "fr:17:46",
+            "fr:17:45",
+            "fr:17:41"
+          ],
+          "answerId": "fr:17:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Как зовут твоего соседа?»",
+            "uk": "Виберіть, як сказати: «Як звати твого сусіда?»",
+            "en": "Choose how to say: “What is your neighbour called?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:45",
+          "options": [
+            "fr:17:45",
+            "fr:17:41",
+            "fr:17:42"
+          ],
+          "answerId": "fr:17:45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она гуляет в парке»",
+            "uk": "Виберіть, як сказати: «Вона гуляє парком»",
+            "en": "Choose how to say: “She walks in the park”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:17:42",
+          "options": [
+            "fr:17:42",
+            "fr:17:46",
+            "fr:17:41"
+          ],
+          "answerId": "fr:17:42"
+        }
+      ]
+    }
+  ]
+}

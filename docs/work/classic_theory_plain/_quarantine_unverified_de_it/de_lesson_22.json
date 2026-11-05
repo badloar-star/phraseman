@@ -1,0 +1,468 @@
+{
+  "lang": "de",
+  "lesson": 22,
+  "title": {
+    "ru": "Я знаю, говорю, надеюсь",
+    "uk": "Я знаю, кажу, сподіваюся",
+    "en": "I know, I say, I hope"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я знаю, что…",
+        "uk": "Я знаю, що…",
+        "en": "I know that…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я знаю, что Анна здесь».\nIch weiß, dass Anna hier ist. — «Я знаю, что Анна здесь.»\nЧитается: их вайс дас А́нна хи́р ист\nСлово Ich значит «я». Слово weiß — «знаю, знает». Слово dass — «что».\nСлово hier значит «здесь». Слово ist — «есть».\nПосле слова dass слово действия уходит в самый конец: ist.\nIch weiß, dass Tom heute arbeitet. — «Я знаю, что Том сегодня работает.»\nЧитается: их вайс дас Том хо́йте а́рбайтет\nСлово heute значит «сегодня». Слово arbeitet — «работает».\nWir wissen, dass der Bus bald kommt. — «Мы знаем, что автобус скоро придёт.»\nЧитается: вир ви́ссен дас дер бус бальт комт\nСлово Wir значит «мы». Слово wissen — «знаем».\nСлово der по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Bus значит «автобус». Слово bald — «скоро». Слово kommt — «приходит».\nСлово weiß меняется, смотря о ком речь: о нас — wissen.\nAnna weiß, dass wir morgen kommen. — «Анна знает, что мы придём завтра.»\nЧитается: А́нна вайс дас вир мо́рген ко́мен\nСлово morgen значит «завтра». Слово kommen — «приходить».",
+        "uk": "Дивіться, як сказати «Я знаю, що Анна тут».\nIch weiß, dass Anna hier ist. — «Я знаю, що Анна тут.»\nЧитається: іх вайс дас А́нна хі́р іст\nСлово Ich означає «я». Слово weiß — «знаю, знає». Слово dass — «що».\nСлово hier означає «тут». Слово ist — «є».\nПісля слова dass слово дії йде в самий кінець: ist.\nIch weiß, dass Tom heute arbeitet. — «Я знаю, що Том сьогодні працює.»\nЧитається: іх вайс дас Том хо́йте а́рбайтет\nСлово heute означає «сьогодні». Слово arbeitet — «працює».\nWir wissen, dass der Bus bald kommt. — «Ми знаємо, що автобус незабаром прийде.»\nЧитається: вір ві́ссен дас дер бус бальт комт\nСлово Wir означає «ми». Слово wissen — «знаємо».\nСлово der по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Bus означає «автобус». Слово bald — «скоро». Слово kommt — «приходить».\nСлово weiß змінюється залежно від того, про кого мова: про нас — wissen.\nAnna weiß, dass wir morgen kommen. — «Анна знає, що ми прийдемо завтра.»\nЧитається: А́нна вайс дас вір мо́рген ко́мен\nСлово morgen означає «завтра». Слово kommen — «приходити».",
+        "en": "Look at how to say “I know that Anna is here”.\nIch weiß, dass Anna hier ist. — “I know that Anna is here.”\nSounds like: eekh vays das Anna khEEr eest\nThe word Ich means “I”. The word weiß — “know”. The word dass — “that”.\nThe word hier means “here”. The word ist — “is”.\nAfter dass, the action word goes to the very end: ist.\nIch weiß, dass Tom heute arbeitet. — “I know that Tom is working today.”\nSounds like: eekh vays das tom khOyte Arbaytet\nThe word heute means “today”. The word arbeitet — “works”.\nWir wissen, dass der Bus bald kommt.\n— “We know that the bus is coming soon.”\nSounds like: veer vEEssen das der boos balt komt\nThe word Wir means “we”. The word wissen — “know”.\nThe word der means “the”.\nThe word Bus means “bus”. The word bald — “soon”. The word kommt — “comes”.\nThe word weiß changes with who we talk about: for “we” it is wissen.\nAnna weiß, dass wir morgen kommen. — “Anna knows that we are coming tomorrow.”\nSounds like: Anna vays das veer mOrgen kOmen\nThe word morgen means “tomorrow”. The word kommen — “to come”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:22:01",
+          "say": {
+            "ru": "их вайс дас А́нна хи́р ист",
+            "uk": "іх вайс дас А́нна хі́р іст"
+          }
+        },
+        {
+          "phraseId": "de:22:02",
+          "say": {
+            "ru": "их вайс дас Том хо́йте а́рбайтет",
+            "uk": "іх вайс дас Том хо́йте а́рбайтет"
+          }
+        },
+        {
+          "phraseId": "de:22:03",
+          "say": {
+            "ru": "вир ви́ссен дас дер бус бальт комт",
+            "uk": "вір ві́ссен дас дер бус бальт комт"
+          }
+        },
+        {
+          "phraseId": "de:22:05",
+          "say": {
+            "ru": "А́нна вайс дас вир мо́рген ко́мен",
+            "uk": "А́нна вайс дас вір мо́рген ко́мен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я знаю, что Анна здесь»",
+            "uk": "Виберіть, як сказати: «Я знаю, що Анна тут»",
+            "en": "Choose how to say: “I know that Anna is here”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:22:01",
+          "options": [
+            "de:22:01",
+            "de:22:02",
+            "de:22:03"
+          ],
+          "answerId": "de:22:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я знаю, что Том сегодня работает»",
+            "uk": "Виберіть, як сказати: «Я знаю, що Том сьогодні працює»",
+            "en": "Choose how to say: “I know that Tom is working today”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:02",
+          "options": [
+            "de:22:02",
+            "de:22:01",
+            "de:22:03"
+          ],
+          "answerId": "de:22:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы знаем, что автобус скоро придёт»",
+            "uk": "Виберіть, як сказати: «Ми знаємо, що автобус незабаром прийде»",
+            "en": "Choose how to say: “We know that the bus is coming soon”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:03",
+          "options": [
+            "de:22:03",
+            "de:22:01",
+            "de:22:02"
+          ],
+          "answerId": "de:22:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Он говорит, что…",
+        "uk": "Він каже, що…",
+        "en": "He says that…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Том говорит, что он устал».\nTom sagt, dass er müde ist. — «Том говорит, что он устал.»\nЧитается: Том загт дас эр мю́де ист\nСлово sagt значит «говорит». Слово er — «он». Слово müde — «уставший».\nAnna sagt, dass sie Hunger hat. — «Анна говорит, что хочет есть.»\nЧитается: А́нна загт дас зи ху́нгер хат\nСлово sie значит «она».\nСлова Hunger hat значат «хочет есть».\nDie Kinder sagen, dass sie fertig sind. — «Дети говорят, что закончили.»\nЧитается: ди ки́ндер за́ген дас зи фе́ртих зинд\nСлово Die по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Kinder значит «дети». Слово sagen — «говорят». Слово fertig — «готовы».\nСлово sind значит «есть (о нас, о них)».\nEr sagt, dass die Tür offen ist. — «Он говорит, что дверь открыта.»\nЧитается: эр загт дас ди тюр о́фен ист\nСлово Tür значит «дверь». Слово offen — «открыта».",
+        "uk": "Дивіться, як сказати «Том каже, що він втомився».\nTom sagt, dass er müde ist. — «Том каже, що він втомився.»\nЧитається: Том загт дас ер мю́де іст\nСлово sagt означає «каже». Слово er — «він». Слово müde — «втомлений».\nAnna sagt, dass sie Hunger hat. — «Ганна каже, що хоче їсти.»\nЧитається: А́нна загт дас зі ху́нгер хат\nСлово sie означає «вона».\nСлова Hunger hat означають «хоче їсти».\nDie Kinder sagen, dass sie fertig sind. — «Діти кажуть, що закінчили.»\nЧитається: ді кі́ндер за́ген дас зі фе́ртіх зінд\nСлово Die по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Kinder означає «діти». Слово sagen — «кажуть». Слово fertig — «готові».\nСлово sind означає «є (про нас, про них)».\nEr sagt, dass die Tür offen ist. — «Він каже, що двері відчинені.»\nЧитається: ер загт дас ді тюр о́фен іст\nСлово Tür означає «двері». Слово offen — «відчинені».",
+        "en": "Look at how to say “Tom says that he is tired”.\nTom sagt, dass er müde ist. — “Tom says that he is tired.”\nSounds like: tom zagt das er mYOOde eest\nThe word sagt means “says”. The word er — “he”. The word müde — “tired”.\nAnna sagt, dass sie Hunger hat. — “Anna says that she is hungry.”\nSounds like: Anna zagt das zee khOOnger khat\nThe word sie means “she”.\nThe words Hunger hat mean “is hungry”.\nDie Kinder sagen, dass sie fertig sind. — “The children say that they are ready.”\nSounds like: dee kEEnder zAgen das zee fErteekh zeend\nThe word Die means “the”.\nThe word Kinder means “children”. The word sagen — “say”. The word fertig — “ready”.\nThe word sind means “are”.\nEr sagt, dass die Tür offen ist. — “He says that the door is open.”\nSounds like: er zagt das dee tyoor Ofen eest\nThe word Tür means “door”. The word offen — “open”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:22:06",
+          "say": {
+            "ru": "Том загт дас эр мю́де ист",
+            "uk": "Том загт дас ер мю́де іст"
+          }
+        },
+        {
+          "phraseId": "de:22:07",
+          "say": {
+            "ru": "А́нна загт дас зи ху́нгер хат",
+            "uk": "А́нна загт дас зі ху́нгер хат"
+          }
+        },
+        {
+          "phraseId": "de:22:08",
+          "say": {
+            "ru": "ди ки́ндер за́ген дас зи фе́ртих зинд",
+            "uk": "ді кі́ндер за́ген дас зі фе́ртіх зінд"
+          }
+        },
+        {
+          "phraseId": "de:22:10",
+          "say": {
+            "ru": "эр загт дас ди тюр о́фен ист",
+            "uk": "ер загт дас ді тюр о́фен іст"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том говорит, что он устал»",
+            "uk": "Виберіть, як сказати: «Том каже, що він втомився»",
+            "en": "Choose how to say: “Tom says that he is tired”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:22:06",
+          "options": [
+            "de:22:06",
+            "de:22:07",
+            "de:22:08"
+          ],
+          "answerId": "de:22:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна говорит, что хочет есть»",
+            "uk": "Виберіть, як сказати: «Ганна каже, що хоче їсти»",
+            "en": "Choose how to say: “Anna says that she is hungry”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:07",
+          "options": [
+            "de:22:07",
+            "de:22:06",
+            "de:22:08"
+          ],
+          "answerId": "de:22:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети говорят, что закончили»",
+            "uk": "Виберіть, як сказати: «Діти кажуть, що закінчили»",
+            "en": "Choose how to say: “The children say that they are ready”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:08",
+          "options": [
+            "de:22:08",
+            "de:22:06",
+            "de:22:07"
+          ],
+          "answerId": "de:22:08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Думаю, надеюсь",
+        "uk": "Думаю, сподіваюся",
+        "en": "I think, I hope"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я думаю, что магазин открыт».\nIch glaube, dass der Laden offen ist. — «Я думаю, что магазин открыт.»\nЧитается: их гла́убе дас дер ла́ден о́фен ист\nСлово glaube значит «думаю». Слово Laden — «магазин».\nWir hoffen, dass es morgen trocken bleibt. — «Мы надеемся, что завтра обойдётся без дождя.»\nЧитается: вир хо́ффен дас ес мо́рген тро́кен бла́йбт\nСлово hoffen значит «надеемся».\nСлово es по-русски не говорят: здесь оно просто нужно.\nСлово trocken значит «сухо». Слово bleibt — «остаётся».\nIch hoffe, dass der Schlüssel passt. — «Надеюсь, ключ подойдёт.»\nЧитается: их хо́ффе дас дер шлю́сель паст\nСлово hoffe значит «надеюсь». Слово Schlüssel — «ключ». Слово passt — «подходит».\nEr hofft, dass die Gäste bleiben. — «Он надеется, что гости останутся.»\nЧитается: эр хо́ффт дас ди ге́сте бла́йбен\nСлово hofft значит «надеется». Слово Gäste — «гости». Слово bleiben — «оставаться».",
+        "uk": "Дивіться, як сказати «Я думаю, що магазин відкритий».\nIch glaube, dass der Laden offen ist. — «Я думаю, що магазин відкритий.»\nЧитається: іх гла́убе дас дер ла́ден о́фен іст\nСлово glaube означає «думаю». Слово Laden — «магазин».\nWir hoffen, dass es morgen trocken bleibt. — «Ми сподіваємось, що завтра обійдеться без дощу.»\nЧитається: вір хо́ффен дас ес мо́рген тро́кен бла́йбт\nСлово hoffen означає «сподіваємося».\nСлово es по-українськи не кажуть: тут воно просто потрібне.\nСлово trocken означає «сухо». Слово bleibt — «залишається».\nIch hoffe, dass der Schlüssel passt. — «Сподіваюся, ключ підійде.»\nЧитається: іх хо́ффе дас дер шлю́сель паст\nСлово hoffe означає «сподіваюся». Слово Schlüssel — «ключ». Слово passt — «підходить».\nEr hofft, dass die Gäste bleiben. — «Він сподівається, що гості залишаться.»\nЧитається: ер хо́ффт дас ді ге́сте бла́йбен\nСлово hofft означає «сподівається». Слово Gäste — «гості». Слово bleiben — «залишатися».",
+        "en": "Look at how to say “I think that the shop is open”.\nIch glaube, dass der Laden offen ist. — “I think that the shop is open.”\nSounds like: eekh glAoobe das der lAden Ofen eest\nThe word glaube means “think”. The word Laden — “shop”.\nWir hoffen, dass es morgen trocken bleibt. — “We hope that it stays dry tomorrow.”\nSounds like: veer khOffen das es mOrgen trOken blAybt\nThe word hoffen means “hope”.\nThe word es means “it”.\nThe word trocken means “dry”. The word bleibt — “stays”.\nIch hoffe, dass der Schlüssel passt. — “I hope that the key fits.”\nSounds like: eekh khOffe das der shlYOOsel past\nThe word hoffe means “hope”. The word Schlüssel — “key”. The word passt — “fits”.\nEr hofft, dass die Gäste bleiben. — “He hopes that the guests stay.”\nSounds like: er khOfft das dee gEste blAyben\nThe word hofft means “hopes”. The word Gäste — “guests”.\nThe word bleiben — “to stay”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:22:11",
+          "say": {
+            "ru": "их гла́убе дас дер ла́ден о́фен ист",
+            "uk": "іх гла́убе дас дер ла́ден о́фен іст"
+          }
+        },
+        {
+          "phraseId": "de:22:16",
+          "say": {
+            "ru": "вир хо́ффен дас ес мо́рген тро́кен бла́йбт",
+            "uk": "вір хо́ффен дас ес мо́рген тро́кен бла́йбт"
+          }
+        },
+        {
+          "phraseId": "de:22:17",
+          "say": {
+            "ru": "их хо́ффе дас дер шлю́сель паст",
+            "uk": "іх хо́ффе дас дер шлю́сель паст"
+          }
+        },
+        {
+          "phraseId": "de:22:18",
+          "say": {
+            "ru": "эр хо́ффт дас ди ге́сте бла́йбен",
+            "uk": "ер хо́ффт дас ді ге́сте бла́йбен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я думаю, что магазин открыт»",
+            "uk": "Виберіть, як сказати: «Я думаю, що магазин відкритий»",
+            "en": "Choose how to say: “I think that the shop is open”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:22:11",
+          "options": [
+            "de:22:11",
+            "de:22:16",
+            "de:22:17"
+          ],
+          "answerId": "de:22:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы надеемся, что завтра обойдётся без дождя»",
+            "uk": "Виберіть, як сказати: «Ми сподіваємось, що завтра обійдеться без дощу»",
+            "en": "Choose how to say: “We hope that it stays dry tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:16",
+          "options": [
+            "de:22:16",
+            "de:22:11",
+            "de:22:17"
+          ],
+          "answerId": "de:22:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Надеюсь, ключ подойдёт»",
+            "uk": "Виберіть, як сказати: «Сподіваюся, ключ підійде»",
+            "en": "Choose how to say: “I hope that the key fits”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:17",
+          "options": [
+            "de:22:17",
+            "de:22:11",
+            "de:22:16"
+          ],
+          "answerId": "de:22:17"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Замечаю, обещаю",
+        "uk": "Помічаю, обіцяю",
+        "en": "I notice, I promise"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ты замечаешь, что вода холодная».\nDu merkst, dass das Wasser kalt ist. — «Ты замечаешь, что вода холодная.»\nЧитается: ду ме́ркст дас дас ва́ссер кальт ист\nСлово Du значит «ты». Слово merkst — «замечаешь».\nСлово das по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Wasser значит «вода». Слово kalt — «холодный».\nEr merkt, dass die Milch fehlt. — «Он замечает, что молока нет.»\nЧитается: эр ме́ркт дас ди мильх фелт\nСлово merkt значит «замечает». Слово Milch — «молоко». Слово fehlt — «не хватает».\nAnna schreibt, dass sie später kommt. — «Анна пишет, что придёт позже.»\nЧитается: А́нна шрайпт дас зи шпэ́тер комт\nСлово schreibt значит «пишет». Слово später — «позже».\nSie bestätigt, dass das Zimmer frei ist. — «Она подтверждает, что номер свободен.»\nЧитается: зи бештэ́тигт дас дас ци́мер фра́й ист\nСлово bestätigt значит «подтверждает». Слово Zimmer — «комната, номер». Слово frei — «свободно».\nSie verspricht, dass sie morgen anruft. — «Она обещает, что позвонит завтра.»\nЧитается: зи фершпри́хт дас зи мо́рген а́нруфт\nСлово verspricht значит «обещает». Слово anruft — «звонит».\nСлово anruft пишется слитно и стоит в самом конце.",
+        "uk": "Дивіться, як сказати «Ти помічаєш, що вода холодна».\nDu merkst, dass das Wasser kalt ist. — «Ти помічаєш, що вода холодна.»\nЧитається: ду ме́ркст дас дас ва́ссер кальт іст\nСлово Du означає «ти». Слово merkst — «помічаєш».\nСлово das по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Wasser означає «вода». Слово kalt — «холодний».\nEr merkt, dass die Milch fehlt. — «Він зауважує, що молока немає.»\nЧитається: ер ме́ркт дас ді мільх фелт\nСлово merkt означає «помічає». Слово Milch — «молоко». Слово fehlt — «бракує».\nAnna schreibt, dass sie später kommt. — «Ганна пише, що прийде пізніше.»\nЧитається: А́нна шрайпт дас зі шпе́тер комт\nСлово schreibt означає «пише». Слово später — «пізніше».\nSie bestätigt, dass das Zimmer frei ist. — «Вона підтверджує, що номер вільний.»\nЧитається: зі беште́тігт дас дас ці́мер фра́й іст\nСлово bestätigt означає «підтверджує». Слово Zimmer — «кімната, номер». Слово frei — «вільно».\nSie verspricht, dass sie morgen anruft. — «Вона обіцяє, що подзвонить завтра.»\nЧитається: зі фершпрі́хт дас зі мо́рген а́нруфт\nСлово verspricht означає «обіцяє». Слово anruft — «телефонує».\nСлово anruft пишеться разом і стоїть у самому кінці.",
+        "en": "Look at how to say “You notice that the water is cold”.\nDu merkst, dass das Wasser kalt ist. — “You notice that the water is cold.”\nSounds like: doo mErkst das das vAsser kalt eest\nThe word Du means “you”. The word merkst — “notice”.\nThe word das means “the”.\nThe word Wasser means “water”. The word kalt — “cold”.\nEr merkt, dass die Milch fehlt. — “He notices that the milk is missing.”\nSounds like: er mErkt das dee meelkh felt\nThe word merkt means “notices”. The word Milch — “milk”.\nThe word fehlt — “is missing”.\nAnna schreibt, dass sie später kommt. — “Anna writes that she is coming later.”\nSounds like: Anna shraypt das zee shpEter komt\nThe word schreibt means “writes”. The word später — “later”.\nSie bestätigt, dass das Zimmer frei ist. — “She confirms that the room is free.”\nSounds like: zee beshtEteegt das das tsEEmer frAy eest\nThe word bestätigt means “confirms”. The word Zimmer — “room”. The word frei — “free”.\nSie verspricht, dass sie morgen anruft. — “She promises that she will call tomorrow.”\nSounds like: zee fershprEEkht das zee mOrgen Anrooft\nThe word verspricht means “promises”. The word anruft — “calls”.\nThe word anruft is written as one word and stands at the very end."
+      },
+      "examples": [
+        {
+          "phraseId": "de:22:19",
+          "say": {
+            "ru": "ду ме́ркст дас дас ва́ссер кальт ист",
+            "uk": "ду ме́ркст дас дас ва́ссер кальт іст"
+          }
+        },
+        {
+          "phraseId": "de:22:29",
+          "say": {
+            "ru": "эр ме́ркт дас ди мильх фелт",
+            "uk": "ер ме́ркт дас ді мільх фелт"
+          }
+        },
+        {
+          "phraseId": "de:22:21",
+          "say": {
+            "ru": "А́нна шрайпт дас зи шпэ́тер комт",
+            "uk": "А́нна шрайпт дас зі шпе́тер комт"
+          }
+        },
+        {
+          "phraseId": "de:22:23",
+          "say": {
+            "ru": "зи бештэ́тигт дас дас ци́мер фра́й ист",
+            "uk": "зі беште́тігт дас дас ці́мер фра́й іст"
+          }
+        },
+        {
+          "phraseId": "de:22:27",
+          "say": {
+            "ru": "зи фершпри́хт дас зи мо́рген а́нруфт",
+            "uk": "зі фершпрі́хт дас зі мо́рген а́нруфт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты замечаешь, что вода холодная»",
+            "uk": "Виберіть, як сказати: «Ти помічаєш, що вода холодна»",
+            "en": "Choose how to say: “You notice that the water is cold”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:22:19",
+          "options": [
+            "de:22:19",
+            "de:22:29",
+            "de:22:21"
+          ],
+          "answerId": "de:22:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он замечает, что молока нет»",
+            "uk": "Виберіть, як сказати: «Він зауважує, що молока немає»",
+            "en": "Choose how to say: “He notices that the milk is missing”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:29",
+          "options": [
+            "de:22:29",
+            "de:22:19",
+            "de:22:21"
+          ],
+          "answerId": "de:22:29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна пишет, что придёт позже»",
+            "uk": "Виберіть, як сказати: «Ганна пише, що прийде пізніше»",
+            "en": "Choose how to say: “Anna writes that she is coming later”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:21",
+          "options": [
+            "de:22:21",
+            "de:22:19",
+            "de:22:29"
+          ],
+          "answerId": "de:22:21"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Хорошо, что…",
+        "uk": "Добре, що…",
+        "en": "It is good that…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Хорошо, что ты спрашиваешь».\nEs ist gut, dass du fragst. — «Хорошо, что ты спрашиваешь.»\nЧитается: ес ист гут дас ду фра́гст\nСлово gut значит «хорошо». Слово fragst — «спрашиваешь».\nEs ist wichtig, dass wir pünktlich sind. — «Важно, чтобы мы пришли вовремя.»\nЧитается: ес ист ви́хтих дас вир пю́нктлих зинд\nСлово wichtig значит «важно». Слово pünktlich — «вовремя».\nEs stimmt, dass die Miete steigt. — «Правда, что квартплата растёт.»\nЧитается: ес штимт дас ди ми́те шта́йгт\nСлово stimmt значит «верно». Слово Miete — «квартплата». Слово steigt — «растёт».\nDanke, dass du auf mich gewartet hast. — «Спасибо, что подождал меня.»\nЧитается: да́нке дас ду ауф мих гева́ртет хаст\nСлово Danke значит «спасибо».\nСлова auf mich gewartet hast вместе значат «подождал меня».",
+        "uk": "Дивіться, як сказати «Добре, що ти питаєш».\nEs ist gut, dass du fragst. — «Добре, що ти питаєш.»\nЧитається: ес іст гут дас ду фра́гст\nСлово gut означає «добре». Слово fragst — «питаєш».\nEs ist wichtig, dass wir pünktlich sind. — «Важливо, щоб ми прийшли вчасно.»\nЧитається: ес іст ві́хтіх дас вір пю́нктліх зінд\nСлово wichtig означає «важливо». Слово pünktlich — «вчасно».\nEs stimmt, dass die Miete steigt. — «Правда, що квартплата зростає.»\nЧитається: ес штімт дас ді мі́те шта́йгт\nСлово stimmt означає «правильно». Слово Miete — «квартплата». Слово steigt — «зростає».\nDanke, dass du auf mich gewartet hast. — «Дякую, що зачекав мене.»\nЧитається: да́нке дас ду ауф міх гева́ртет хаст\nСлово Danke означає «дякую».\nСлова auf mich gewartet hast разом означають «зачекав мене».",
+        "en": "Look at how to say “It is good that you ask”.\nEs ist gut, dass du fragst. — “It is good that you ask.”\nSounds like: es eest goot das doo frAgst\nThe word gut means “well”. The word fragst — “ask”.\nEs ist wichtig, dass wir pünktlich sind.\n— “It is important that we are on time.”\nSounds like: es eest vEEkhteekh das veer pYOOnktleekh zeend\nThe word wichtig means “important”. The word pünktlich — “on time”.\nEs stimmt, dass die Miete steigt.\n— “It is true that the rent is going up.”\nSounds like: es shteemt das dee mEEte shtAygt\nThe word stimmt means “true”. The word Miete — “rent”.\nThe word steigt — “goes up”.\nDanke, dass du auf mich gewartet hast. — “Thank you for waiting for me.”\nSounds like: dAnke das doo aoof meekh gevArtet khast\nThe word Danke means “thank you”.\nThe words auf mich gewartet hast together mean “waited for me”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:22:46",
+          "say": {
+            "ru": "ес ист гут дас ду фра́гст",
+            "uk": "ес іст гут дас ду фра́гст"
+          }
+        },
+        {
+          "phraseId": "de:22:47",
+          "say": {
+            "ru": "ес ист ви́хтих дас вир пю́нктлих зинд",
+            "uk": "ес іст ві́хтіх дас вір пю́нктліх зінд"
+          }
+        },
+        {
+          "phraseId": "de:22:49",
+          "say": {
+            "ru": "ес штимт дас ди ми́те шта́йгт",
+            "uk": "ес штімт дас ді мі́те шта́йгт"
+          }
+        },
+        {
+          "phraseId": "de:22:50",
+          "say": {
+            "ru": "да́нке дас ду ауф мих гева́ртет хаст",
+            "uk": "да́нке дас ду ауф міх гева́ртет хаст"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хорошо, что ты спрашиваешь»",
+            "uk": "Виберіть, як сказати: «Добре, що ти питаєш»",
+            "en": "Choose how to say: “It is good that you ask”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:22:46",
+          "options": [
+            "de:22:46",
+            "de:22:47",
+            "de:22:49"
+          ],
+          "answerId": "de:22:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Важно, чтобы мы пришли вовремя»",
+            "uk": "Виберіть, як сказати: «Важливо, щоб ми прийшли вчасно»",
+            "en": "Choose how to say: “It is important that we are on time”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:47",
+          "options": [
+            "de:22:47",
+            "de:22:46",
+            "de:22:49"
+          ],
+          "answerId": "de:22:47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Правда, что квартплата растёт»",
+            "uk": "Виберіть, як сказати: «Правда, що квартплата зростає»",
+            "en": "Choose how to say: “It is true that the rent is going up”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:22:49",
+          "options": [
+            "de:22:49",
+            "de:22:46",
+            "de:22:47"
+          ],
+          "answerId": "de:22:49"
+        }
+      ]
+    }
+  ]
+}

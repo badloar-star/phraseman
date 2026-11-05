@@ -1,0 +1,499 @@
+{
+  "lang": "es",
+  "lesson": 13,
+  "title": {
+    "ru": "Как вы: устал, занят, готов, открыто",
+    "en": "How you are: tired, busy, ready, open"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Устал",
+        "en": "Tired"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я устал».\nEstoy cansado. — «Я устал.»\nЧитается: эсто́й кана́до.\nСлово cansado значит «уставший». Слово estoy вы знаете.\nLuis está cansado. — «Луис устал.»\nAna está cansada. — «Ана устала.»\nО мужчине говорят cansado, о женщине — cansada.\nEstamos cansados. — «Мы устали.»\nКогда речь о нескольких людях, на конце ещё «с».",
+        "en": "Look at how to say “I am tired”.\nEstoy cansado. — “I am tired.”\nThe word cansado means “tired”. You already know the word estoy.\nLuis está cansado. — “Luis is tired.”\nAna está cansada. — “Ana is tired.”\nAbout a man you say cansado, about a woman — cansada.\nEstamos cansados. — “We are tired.”\nWhen it is about several people, there is an “s” at the end."
+      },
+      "examples": [
+        {
+          "phraseId": "es:13:01",
+          "say": {
+            "ru": "эсто́й кана́до",
+            "uk": "есто́й кана́до"
+          }
+        },
+        {
+          "phraseId": "es:13:03",
+          "say": {
+            "ru": "Луи́с эста́ кана́до",
+            "uk": "Луі́с еста́ кана́до"
+          }
+        },
+        {
+          "phraseId": "es:13:06",
+          "say": {
+            "ru": "А́на эста́ кана́да",
+            "uk": "А́на еста́ кана́да"
+          }
+        },
+        {
+          "phraseId": "es:13:04",
+          "say": {
+            "ru": "эста́мос кана́дос",
+            "uk": "еста́мос кана́дос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я устал»",
+            "uk": "Виберіть, як сказати: «Я втомився»",
+            "en": "Choose how to say: “I am tired”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:13:01",
+          "options": [
+            "es:13:01",
+            "es:13:03",
+            "es:13:06"
+          ],
+          "answerId": "es:13:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана устала»",
+            "uk": "Виберіть, як сказати: «Ана втомилася»",
+            "en": "Choose how to say: “Ana is tired”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:06",
+          "options": [
+            "es:13:06",
+            "es:13:03",
+            "es:13:04"
+          ],
+          "answerId": "es:13:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы устали»",
+            "uk": "Виберіть, як сказати: «Ми втомилися»",
+            "en": "Choose how to say: “We are tired”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:04",
+          "options": [
+            "es:13:04",
+            "es:13:01",
+            "es:13:03"
+          ],
+          "answerId": "es:13:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Занят, готов",
+        "en": "Busy, ready"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Сегодня я занят».\nHoy estoy ocupado. — «Сегодня я занят.»\nЧитается: ой эсто́й окупа́до.\nСлово ocupado значит «занятый».\nHoy estamos ocupados. — «Сегодня мы заняты.»\nHoy estás ocupada. — «Сегодня ты занята.»\nТеперь вопрос: «Вы готовы?»\n¿Estáis listos? — «Вы готовы?» Так говорят нескольким людям.\nСлово listo значит «готовый».\n¿Está Luis listo? — «Луис готов?»\n¿Estás lista? — «Ты готова?»",
+        "en": "Look at how to say “Today I am busy”.\nHoy estoy ocupado. — “Today I am busy.”\nThe word ocupado means “busy”.\nHoy estamos ocupados. — “Today we are busy.”\nHoy estás ocupada. — “Today you are busy.” (said to a woman)\nNow a question: “Are you ready?”\n¿Estáis listos? — “Are you ready?” This is said to several people.\nThe word listo means “ready”.\n¿Está Luis listo? — “Is Luis ready?”\n¿Estás lista? — “Are you ready?” (said to a woman)"
+      },
+      "examples": [
+        {
+          "phraseId": "es:13:11",
+          "say": {
+            "ru": "ой эсто́й окупа́до",
+            "uk": "ой есто́й окупа́до"
+          }
+        },
+        {
+          "phraseId": "es:13:12",
+          "say": {
+            "ru": "ой эста́с окупа́да",
+            "uk": "ой еста́с окупа́да"
+          }
+        },
+        {
+          "phraseId": "es:13:14",
+          "say": {
+            "ru": "ой эста́мос окупа́дос",
+            "uk": "ой еста́мос окупа́дос"
+          }
+        },
+        {
+          "phraseId": "es:13:16",
+          "say": {
+            "ru": "эста́с ли́ста",
+            "uk": "еста́с лі́ста"
+          }
+        },
+        {
+          "phraseId": "es:13:18",
+          "say": {
+            "ru": "эста́ Луи́с ли́сто",
+            "uk": "еста́ Луі́с лі́сто"
+          }
+        },
+        {
+          "phraseId": "es:13:19",
+          "say": {
+            "ru": "эста́йс ли́стос",
+            "uk": "еста́йс лі́стос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня я занят»",
+            "uk": "Виберіть, як сказати: «Сьогодні я зайнятий»",
+            "en": "Choose how to say: “Today I am busy”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:13:11",
+          "options": [
+            "es:13:11",
+            "es:13:12",
+            "es:13:14"
+          ],
+          "answerId": "es:13:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня мы заняты»",
+            "uk": "Виберіть, як сказати: «Сьогодні ми зайняті»",
+            "en": "Choose how to say: “Today we are busy”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:14",
+          "options": [
+            "es:13:14",
+            "es:13:11",
+            "es:13:12"
+          ],
+          "answerId": "es:13:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис готов?»",
+            "uk": "Виберіть, як сказати: «Луїс готовий?»",
+            "en": "Choose how to say: “Is Luis ready?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:18",
+          "options": [
+            "es:13:18",
+            "es:13:16",
+            "es:13:19"
+          ],
+          "answerId": "es:13:18"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Рад, не нервничает, свободен",
+        "en": "Glad, not nervous, free"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Сегодня я рад».\nEstoy contento hoy. — «Сегодня я рад.»\nЧитается: эсто́й конте́нто ой.\nСлово contento значит «довольный, рад».\nEstamos contentas hoy. — «Сегодня мы рады.»\nТак говорят женщины: contentas.\nAna no está nerviosa. — «Ана не нервничает.»\nСлово no значит «не». Слово nerviosa значит «взволнованная».\nLuis no está nervioso. — «Луис не нервничает.»\n¿Está libre la mesa? — «Стол свободен?»\nСлово libre значит «свободный».\n¿Está libre el médico? — «Врач свободен?»",
+        "en": "Look at how to say “Today I am glad”.\nEstoy contento hoy. — “Today I am glad.”\nThe word contento means “glad, happy”.\nEstamos contentas hoy. — “Today we are glad.”\nThis is what women say: contentas.\nAna no está nerviosa. — “Ana is not nervous.”\nThe word no means “not”. The word nerviosa means “nervous”.\nLuis no está nervioso. — “Luis is not nervous.”\n¿Está libre la mesa? — “Is the table free?”\nThe word libre means “free”.\n¿Está libre el médico? — “Is the doctor free?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:13:43",
+          "say": {
+            "ru": "эсто́й конте́нто ой",
+            "uk": "есто́й конте́нто ой"
+          }
+        },
+        {
+          "phraseId": "es:13:41",
+          "say": {
+            "ru": "эста́мос конте́нтас ой",
+            "uk": "еста́мос конте́нтас ой"
+          }
+        },
+        {
+          "phraseId": "es:13:33",
+          "say": {
+            "ru": "А́на но эста́ нэрбьо́са",
+            "uk": "А́на но еста́ нербьо́са"
+          }
+        },
+        {
+          "phraseId": "es:13:34",
+          "say": {
+            "ru": "Луи́с но эста́ нэрбьо́со",
+            "uk": "Луі́с но еста́ нербьо́со"
+          }
+        },
+        {
+          "phraseId": "es:13:36",
+          "say": {
+            "ru": "эста́ ли́брэ ла мэ́са",
+            "uk": "еста́ лі́бре ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:13:37",
+          "say": {
+            "ru": "эста́ ли́брэ эль ме́дико",
+            "uk": "еста́ лі́бре ель ме́діко"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня я рад»",
+            "uk": "Виберіть, як сказати: «Сьогодні я радий»",
+            "en": "Choose how to say: “Today I am glad”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:13:43",
+          "options": [
+            "es:13:43",
+            "es:13:41",
+            "es:13:33"
+          ],
+          "answerId": "es:13:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис не нервничает»",
+            "uk": "Виберіть, як сказати: «Луїс не нервує»",
+            "en": "Choose how to say: “Luis is not nervous”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:34",
+          "options": [
+            "es:13:34",
+            "es:13:33",
+            "es:13:43"
+          ],
+          "answerId": "es:13:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Стол свободен?»",
+            "uk": "Виберіть, як сказати: «Стіл вільний?»",
+            "en": "Choose how to say: “Is the table free?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:36",
+          "options": [
+            "es:13:36",
+            "es:13:37",
+            "es:13:34"
+          ],
+          "answerId": "es:13:36"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Открыто, закрыто",
+        "en": "Open, closed"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Дверь открыта».\nLa puerta está abierta. — «Дверь открыта.»\nЧитается: ла пуэ́рта эста́ абье́рта.\nСлово abierta значит «открытая».\nLa ventana está abierta. — «Окно открыто.»\nLa tienda está abierta. — «Магазин открыт.»\nСлово меняется: после el — abierto, после la — abierta.\nLa farmacia está cerrada. — «Аптека закрыта.»\nСлово cerrada значит «закрытая».\nLas tiendas están cerradas hoy. — «Магазины сегодня закрыты.»",
+        "en": "Look at how to say “The door is open”.\nLa puerta está abierta. — “The door is open.”\nThe word abierta means “open”.\nLa ventana está abierta. — “The window is open.”\nLa tienda está abierta. — “The shop is open.”\nThe word changes: after el — abierto, after la — abierta.\nLa farmacia está cerrada. — “The pharmacy is closed.”\nThe word cerrada means “closed”.\nLas tiendas están cerradas hoy. — “The shops are closed today.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:13:21",
+          "say": {
+            "ru": "ла пуэ́рта эста́ абье́рта",
+            "uk": "ла пуе́рта еста́ абье́рта"
+          }
+        },
+        {
+          "phraseId": "es:13:22",
+          "say": {
+            "ru": "ла бэнта́на эста́ абье́рта",
+            "uk": "ла бента́на еста́ абье́рта"
+          }
+        },
+        {
+          "phraseId": "es:13:23",
+          "say": {
+            "ru": "ла тьэ́нда эста́ абье́рта",
+            "uk": "ла тье́нда еста́ абье́рта"
+          }
+        },
+        {
+          "phraseId": "es:13:26",
+          "say": {
+            "ru": "ла тьэ́нда эста́ сэрра́да ой",
+            "uk": "ла тье́нда еста́ серра́да ой"
+          }
+        },
+        {
+          "phraseId": "es:13:27",
+          "say": {
+            "ru": "ла фарма́сья эста́ сэрра́да",
+            "uk": "ла фарма́сья еста́ серра́да"
+          }
+        },
+        {
+          "phraseId": "es:13:29",
+          "say": {
+            "ru": "лас тьэ́ндас эста́н сэрра́дас ой",
+            "uk": "лас тье́ндас еста́н серра́дас ой"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь открыта»",
+            "uk": "Виберіть, як сказати: «Двері відчинені»",
+            "en": "Choose how to say: “The door is open”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:13:21",
+          "options": [
+            "es:13:21",
+            "es:13:22",
+            "es:13:27"
+          ],
+          "answerId": "es:13:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазин сегодня закрыт»",
+            "uk": "Виберіть, як сказати: «Магазин сьогодні зачинений»",
+            "en": "Choose how to say: “The shop is closed today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:26",
+          "options": [
+            "es:13:26",
+            "es:13:23",
+            "es:13:27"
+          ],
+          "answerId": "es:13:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазины сегодня закрыты»",
+            "uk": "Виберіть, як сказати: «Магазини сьогодні зачинені»",
+            "en": "Choose how to say: “The shops are closed today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:29",
+          "options": [
+            "es:13:29",
+            "es:13:26",
+            "es:13:23"
+          ],
+          "answerId": "es:13:29"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Холодный, чистый",
+        "en": "Cold, clean"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Кофе холодный».\nEl café está frío. — «Кофе холодный.»\nЧитается: эль кафэ́ эста́ фри́о.\nСлово frío значит «холодный».\nEl agua está fría. — «Вода холодная.»\nПеред agua говорят el, но слово fría всё равно как после la.\nLa cocina está limpia. — «Кухня чистая.»\nСлово limpia значит «чистая».\nLa bufanda está limpia. — «Шарф чистый.»\nLas mesas están limpias. — «Столы чистые.»",
+        "en": "Look at how to say “The coffee is cold”.\nEl café está frío. — “The coffee is cold.”\nThe word frío means “cold”.\nEl agua está fría. — “The water is cold.”\nBefore agua you say el, but fría still goes as after la.\nLa cocina está limpia. — “The kitchen is clean.”\nThe word limpia means “clean”.\nLa bufanda está limpia. — “The scarf is clean.”\nLas mesas están limpias. — “The tables are clean.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:13:46",
+          "say": {
+            "ru": "эль кафэ́ эста́ фри́о",
+            "uk": "ель кафе́ еста́ фрі́о"
+          }
+        },
+        {
+          "phraseId": "es:13:47",
+          "say": {
+            "ru": "эль а́гуа эста́ фри́а",
+            "uk": "ель а́гуа еста́ фрі́а"
+          }
+        },
+        {
+          "phraseId": "es:13:48",
+          "say": {
+            "ru": "ла коси́на эста́ ли́мпья",
+            "uk": "ла косі́на еста́ лі́мпья"
+          }
+        },
+        {
+          "phraseId": "es:13:49",
+          "say": {
+            "ru": "ла буфа́нда эста́ ли́мпья",
+            "uk": "ла буфа́нда еста́ лі́мпья"
+          }
+        },
+        {
+          "phraseId": "es:13:50",
+          "say": {
+            "ru": "лас мэ́сас эста́н ли́мпьяс",
+            "uk": "лас ме́сас еста́н лі́мпьяс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кофе холодный»",
+            "uk": "Виберіть, як сказати: «Кава холодна»",
+            "en": "Choose how to say: “The coffee is cold”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:13:46",
+          "options": [
+            "es:13:46",
+            "es:13:47",
+            "es:13:49"
+          ],
+          "answerId": "es:13:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кухня чистая»",
+            "uk": "Виберіть, як сказати: «Кухня чиста»",
+            "en": "Choose how to say: “The kitchen is clean”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:48",
+          "options": [
+            "es:13:48",
+            "es:13:49",
+            "es:13:50"
+          ],
+          "answerId": "es:13:48"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вода холодная»",
+            "uk": "Виберіть, як сказати: «Вода холодна»",
+            "en": "Choose how to say: “The water is cold”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:13:47",
+          "options": [
+            "es:13:47",
+            "es:13:46",
+            "es:13:48"
+          ],
+          "answerId": "es:13:47"
+        }
+      ]
+    }
+  ]
+}

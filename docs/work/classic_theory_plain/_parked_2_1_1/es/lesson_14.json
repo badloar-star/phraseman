@@ -1,0 +1,499 @@
+{
+  "lang": "es",
+  "lesson": 14,
+  "title": {
+    "ru": "Я встаю, я моюсь, я сажусь",
+    "en": "I get up, I wash, I sit down"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я встаю",
+        "en": "I get up"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я встаю рано».\nMe levanto temprano. — «Я встаю рано.»\nЧитается: мэ лева́нто тэмпра́но.\nСлово levanto значит «я встаю». Слово temprano значит «рано».\nСлово me значит «себя». По-русски его не говорят: просто «я встаю».\nAna se levanta temprano. — «Ана встаёт рано.»\nСлово se тоже значит «себя», когда речь об Ане, о нём, о них.\nTe levantas a las siete. — «Ты встаёшь в семь.»\nСлово te значит «себя». Так говорят одному близкому человеку.\nСлово siete значит «семь».\nСлово a значит «в», когда называют час.\nNos levantamos a las siete. — «Мы встаём в семь.»\nСлово nos значит «себя», когда речь о нас.",
+        "en": "Look at how to say “I get up early”.\nMe levanto temprano. — “I get up early.”\nThe word levanto means “I get up”. The word temprano means “early”.\nThe word me means “myself”. We do not say it in English: just “I get up”.\nAna se levanta temprano. — “Ana gets up early.”\nThe word se also means “oneself”, when it is about Ana, him, them.\nTe levantas a las siete. — “You get up at seven.”\nThe word te means “yourself”, said to one close person.\nThe word siete means “seven”.\nThe word a means “at”, when you name the hour.\nNos levantamos a las siete. — “We get up at seven.”\nThe word nos means “ourselves”, when it is about us."
+      },
+      "examples": [
+        {
+          "phraseId": "es:14:01",
+          "say": {
+            "ru": "мэ лева́нто тэмпра́но",
+            "uk": "ме лева́нто темпра́но"
+          }
+        },
+        {
+          "phraseId": "es:14:02",
+          "say": {
+            "ru": "тэ лева́нтас а лас сье́тэ",
+            "uk": "те лева́нтас а лас сье́те"
+          }
+        },
+        {
+          "phraseId": "es:14:03",
+          "say": {
+            "ru": "А́на сэ лева́нта тэмпра́но",
+            "uk": "А́на се лева́нта темпра́но"
+          }
+        },
+        {
+          "phraseId": "es:14:04",
+          "say": {
+            "ru": "нос леванта́мос а лас сье́тэ",
+            "uk": "нос леванта́мос а лас сье́те"
+          }
+        },
+        {
+          "phraseId": "es:14:06",
+          "say": {
+            "ru": "мис эрма́нос сэ лева́нтан а лас сье́тэ",
+            "uk": "міс ерма́нос се лева́нтан а лас сье́те"
+          }
+        },
+        {
+          "phraseId": "es:14:07",
+          "say": {
+            "ru": "ос леванта́йс тэмпра́но",
+            "uk": "ос леванта́йс темпра́но"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я встаю рано»",
+            "uk": "Виберіть, як сказати: «Я встаю рано»",
+            "en": "Choose how to say: “I get up early”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:14:01",
+          "options": [
+            "es:14:01",
+            "es:14:03",
+            "es:14:02"
+          ],
+          "answerId": "es:14:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана встаёт рано»",
+            "uk": "Виберіть, як сказати: «Ана встає рано»",
+            "en": "Choose how to say: “Ana gets up early”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:03",
+          "options": [
+            "es:14:03",
+            "es:14:01",
+            "es:14:06"
+          ],
+          "answerId": "es:14:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы встаём в семь»",
+            "uk": "Виберіть, як сказати: «Ми встаємо о сьомій»",
+            "en": "Choose how to say: “We get up at seven”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:04",
+          "options": [
+            "es:14:04",
+            "es:14:02",
+            "es:14:06"
+          ],
+          "answerId": "es:14:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я принимаю душ",
+        "en": "I take a shower"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я принимаю душ по утрам».\nMe ducho por la mañana. — «Я принимаю душ по утрам.»\nЧитается: мэ ду́чо пор ла манья́на.\nСлово ducho значит «я принимаю душ». Слово mañana значит «утро».\nСлово por значит «по». Вместе por la mañana — «по утрам».\nAna se ducha por la mañana. — «Ана принимает душ по утрам.»\nNos duchamos en casa. — «Мы принимаем душ дома.»\nMis hermanos se duchan en casa. — «Мои братья принимают душ дома.»\nTe duchas en casa. — «Ты принимаешь душ дома.»",
+        "en": "Look at how to say “I take a shower in the morning”.\nMe ducho por la mañana. — “I take a shower in the morning.”\nThe word ducho means “I take a shower”. The word mañana means “morning”.\nThe word por means “in, during”. Together por la mañana — “in the mornings”.\nAna se ducha por la mañana. — “Ana takes a shower in the morning.”\nNos duchamos en casa. — “We take a shower at home.”\nMis hermanos se duchan en casa. — “My brothers take a shower at home.”\nTe duchas en casa. — “You take a shower at home.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:14:11",
+          "say": {
+            "ru": "мэ ду́чо пор ла манья́на",
+            "uk": "ме ду́чо пор ла манья́на"
+          }
+        },
+        {
+          "phraseId": "es:14:12",
+          "say": {
+            "ru": "тэ ду́час эн ка́са",
+            "uk": "те ду́час ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:14:13",
+          "say": {
+            "ru": "А́на сэ ду́ча пор ла манья́на",
+            "uk": "А́на се ду́ча пор ла манья́на"
+          }
+        },
+        {
+          "phraseId": "es:14:14",
+          "say": {
+            "ru": "нос дуча́мос эн ка́са",
+            "uk": "нос дуча́мос ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:14:16",
+          "say": {
+            "ru": "мис эрма́нос сэ ду́чан эн ка́са",
+            "uk": "міс ерма́нос се ду́чан ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я принимаю душ по утрам»",
+            "uk": "Виберіть, як сказати: «Я приймаю душ вранці»",
+            "en": "Choose how to say: “I take a shower in the morning”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:14:11",
+          "options": [
+            "es:14:11",
+            "es:14:13",
+            "es:14:12"
+          ],
+          "answerId": "es:14:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы принимаем душ дома»",
+            "uk": "Виберіть, як сказати: «Ми приймаємо душ вдома»",
+            "en": "Choose how to say: “We take a shower at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:14",
+          "options": [
+            "es:14:14",
+            "es:14:16",
+            "es:14:12"
+          ],
+          "answerId": "es:14:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана принимает душ по утрам»",
+            "uk": "Виберіть, як сказати: «Ана приймає душ вранці»",
+            "en": "Choose how to say: “Ana takes a shower in the morning”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:13",
+          "options": [
+            "es:14:13",
+            "es:14:11",
+            "es:14:16"
+          ],
+          "answerId": "es:14:13"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я мою руки",
+        "en": "I wash my hands"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я мою руки».\nMe lavo las manos. — «Я мою руки.»\nЧитается: мэ ла́бо лас ма́нос.\nСлово lavo значит «я мою». Слово manos значит «руки».\nСлово las по-русски не говорят, запоминайте его вместе с manos.\nAna se lava las manos. — «Ана моет руки.»\nTe lavas la cara. — «Ты моешь лицо.»\nСлово cara значит «лицо».\nMis hermanos se lavan la cara. — «Мои братья моют лицо.»\nOs laváis las manos. — «Вы моете руки.»\nСлово os значит «себя», когда говорят нескольким людям.",
+        "en": "Look at how to say “I wash my hands”.\nMe lavo las manos. — “I wash my hands.”\nThe word lavo means “I wash”. The word manos means “hands”.\nThe word las has no Russian match: learn it together with manos.\nAna se lava las manos. — “Ana washes her hands.”\nTe lavas la cara. — “You wash your face.”\nThe word cara means “face”.\nMis hermanos se lavan la cara. — “My brothers wash their faces.”\nOs laváis las manos. — “You wash your hands.”\nThe word os means “yourselves”, said to several people."
+      },
+      "examples": [
+        {
+          "phraseId": "es:14:21",
+          "say": {
+            "ru": "мэ ла́бо лас ма́нос",
+            "uk": "ме ла́бо лас ма́нос"
+          }
+        },
+        {
+          "phraseId": "es:14:23",
+          "say": {
+            "ru": "А́на сэ ла́ба лас ма́нос",
+            "uk": "А́на се ла́ба лас ма́нос"
+          }
+        },
+        {
+          "phraseId": "es:14:22",
+          "say": {
+            "ru": "тэ ла́бас ла ка́ра",
+            "uk": "те ла́бас ла ка́ра"
+          }
+        },
+        {
+          "phraseId": "es:14:26",
+          "say": {
+            "ru": "мис эрма́нос сэ ла́бан ла ка́ра",
+            "uk": "міс ерма́нос се ла́бан ла ка́ра"
+          }
+        },
+        {
+          "phraseId": "es:14:27",
+          "say": {
+            "ru": "ос лаба́йс лас ма́нос",
+            "uk": "ос лаба́йс лас ма́нос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я мою руки»",
+            "uk": "Виберіть, як сказати: «Я мию руки»",
+            "en": "Choose how to say: “I wash my hands”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:14:21",
+          "options": [
+            "es:14:21",
+            "es:14:23",
+            "es:14:22"
+          ],
+          "answerId": "es:14:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья моют лицо»",
+            "uk": "Виберіть, як сказати: «Мої брати миють обличчя»",
+            "en": "Choose how to say: “My brothers wash their faces”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:26",
+          "options": [
+            "es:14:26",
+            "es:14:22",
+            "es:14:27"
+          ],
+          "answerId": "es:14:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана моет руки»",
+            "uk": "Виберіть, як сказати: «Ана миє руки»",
+            "en": "Choose how to say: “Ana washes her hands”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:23",
+          "options": [
+            "es:14:23",
+            "es:14:21",
+            "es:14:27"
+          ],
+          "answerId": "es:14:23"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я сажусь",
+        "en": "I sit down"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сажусь здесь».\nMe siento aquí. — «Я сажусь здесь.»\nЧитается: мэ сье́нто аки́.\nСлово siento значит «я сажусь».\nAna se sienta aquí. — «Ана садится здесь.»\nNos sentamos cerca de la ventana. — «Мы садимся у окна.»\nСмотрите: в siento и sienta звук «ье», а в sentamos — просто «е».\nMis hermanos se sientan cerca de la ventana. — «Мои братья садятся у окна.»\nOs sentáis aquí. — «Вы садитесь здесь.»",
+        "en": "Look at how to say “I sit down here”.\nMe siento aquí. — “I sit down here.”\nThe word siento means “I sit down”.\nAna se sienta aquí. — “Ana sits down here.”\nNos sentamos cerca de la ventana. — “We sit down near the window.”\nLook: siento and sienta have “ie”, but sentamos has just “e”.\nMis hermanos se sientan cerca de la ventana. — “My brothers sit down near the window.”\nOs sentáis aquí. — “You sit down here.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:14:31",
+          "say": {
+            "ru": "мэ сье́нто аки́",
+            "uk": "ме сье́нто акі́"
+          }
+        },
+        {
+          "phraseId": "es:14:33",
+          "say": {
+            "ru": "А́на сэ сье́нта аки́",
+            "uk": "А́на се сье́нта акі́"
+          }
+        },
+        {
+          "phraseId": "es:14:34",
+          "say": {
+            "ru": "нос сэнта́мос сэ́рка дэ ла бэнта́на",
+            "uk": "нос сента́мос се́рка де ла бента́на"
+          }
+        },
+        {
+          "phraseId": "es:14:36",
+          "say": {
+            "ru": "мис эрма́нос сэ сье́нтан сэ́рка дэ ла бэнта́на",
+            "uk": "міс ерма́нос се сье́нтан се́рка де ла бента́на"
+          }
+        },
+        {
+          "phraseId": "es:14:37",
+          "say": {
+            "ru": "ос сэнта́йс аки́",
+            "uk": "ос сента́йс акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сажусь здесь»",
+            "uk": "Виберіть, як сказати: «Я сідаю тут»",
+            "en": "Choose how to say: “I sit down here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:14:31",
+          "options": [
+            "es:14:31",
+            "es:14:33",
+            "es:14:37"
+          ],
+          "answerId": "es:14:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы садимся у окна»",
+            "uk": "Виберіть, як сказати: «Ми сідаємо біля вікна»",
+            "en": "Choose how to say: “We sit down near the window”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:34",
+          "options": [
+            "es:14:34",
+            "es:14:36",
+            "es:14:31"
+          ],
+          "answerId": "es:14:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы садитесь здесь»",
+            "uk": "Виберіть, як сказати: «Ви сідаєте тут»",
+            "en": "Choose how to say: “You sit down here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:37",
+          "options": [
+            "es:14:37",
+            "es:14:31",
+            "es:14:33"
+          ],
+          "answerId": "es:14:37"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Я готовлюсь, не, вопрос",
+        "en": "I get ready, not, a question"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я готовлюсь к занятию».\nMe preparo para la clase. — «Я готовлюсь к занятию.»\nЧитается: мэ прэпа́ро па́ра ла кла́сэ.\nСлово preparo значит «я готовлюсь». Слово para значит «к, для».\nNos preparamos para el viaje. — «Мы готовимся к поездке.»\nСлово viaje значит «поездка».\nNo me levanto temprano. — «Я не встаю рано.»\nСлово no ставят перед me: no me levanto.\nNo me preparo para la clase. — «Я не готовлюсь к занятию.»\nА теперь вопрос. Слова те же, голос в конце идёт вверх.\n¿Te levantas a las siete? — «Ты встаёшь в семь?»\n¿Te preparas para el viaje? — «Ты готовишься к поездке?»",
+        "en": "Look at how to say “I am getting ready for class”.\nMe preparo para la clase. — “I am getting ready for class.”\nThe word preparo means “I get ready”. The word para means “for”.\nNos preparamos para el viaje. — “We are getting ready for the trip.”\nThe word viaje means “trip”.\nNo me levanto temprano. — “I do not get up early.”\nThe word no goes before me: no me levanto.\nNo me preparo para la clase. — “I am not getting ready for class.”\nAnd now a question. The words are the same, the voice goes up at the end.\n¿Te levantas a las siete? — “Do you get up at seven?”\n¿Te preparas para el viaje? — “Are you getting ready for the trip?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:14:41",
+          "say": {
+            "ru": "мэ прэпа́ро па́ра ла кла́сэ",
+            "uk": "ме препа́ро па́ра ла кла́се"
+          }
+        },
+        {
+          "phraseId": "es:14:44",
+          "say": {
+            "ru": "нос прэпара́мос па́ра эль бья́хэ",
+            "uk": "нос препара́мос па́ра ель бья́хе"
+          }
+        },
+        {
+          "phraseId": "es:14:49",
+          "say": {
+            "ru": "но мэ прэпа́ро па́ра ла кла́сэ",
+            "uk": "но ме препа́ро па́ра ла кла́се"
+          }
+        },
+        {
+          "phraseId": "es:14:09",
+          "say": {
+            "ru": "но мэ лева́нто тэмпра́но",
+            "uk": "но ме лева́нто темпра́но"
+          }
+        },
+        {
+          "phraseId": "es:14:08",
+          "say": {
+            "ru": "тэ лева́нтас а лас сье́тэ",
+            "uk": "те лева́нтас а лас сье́те"
+          }
+        },
+        {
+          "phraseId": "es:14:48",
+          "say": {
+            "ru": "тэ прэпа́рас па́ра эль бья́хэ",
+            "uk": "те препа́рас па́ра ель бья́хе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я готовлюсь к занятию»",
+            "uk": "Виберіть, як сказати: «Я готуюся до заняття»",
+            "en": "Choose how to say: “I am getting ready for the class”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:14:41",
+          "options": [
+            "es:14:41",
+            "es:14:44",
+            "es:14:49"
+          ],
+          "answerId": "es:14:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не готовлюсь к занятию»",
+            "uk": "Виберіть, як сказати: «Я не готуюся до заняття»",
+            "en": "Choose how to say: “I am not getting ready for the class”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:49",
+          "options": [
+            "es:14:49",
+            "es:14:41",
+            "es:14:09"
+          ],
+          "answerId": "es:14:49"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты готовишься к поездке?»",
+            "uk": "Виберіть, як сказати: «Ти готуєшся до поїздки?»",
+            "en": "Choose how to say: “Are you getting ready for the trip?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:14:48",
+          "options": [
+            "es:14:48",
+            "es:14:44",
+            "es:14:08"
+          ],
+          "answerId": "es:14:48"
+        }
+      ]
+    }
+  ]
+}

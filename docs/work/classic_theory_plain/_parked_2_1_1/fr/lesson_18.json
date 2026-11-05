@@ -1,0 +1,492 @@
+{
+  "lang": "fr",
+  "lesson": 18,
+  "title": {
+    "ru": "Я сделал: что уже случилось",
+    "en": "I did: what already happened"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я закрыл",
+        "en": "I closed"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я закрыл дверь».\nJ’ai fermé la porte. — «Я закрыл дверь.»\nЧитается: же ферме́ ла порт.\nСлово j’ai значит «я» и показывает: дело уже сделано.\nСлово fermé значит «закрыл». Оно не меняется.\nПервое слово меняется, смотря о ком речь.\nElle a fermé la fenêtre. — «Она закрыла окно.»\nСлово a значит «она, уже сделала».\nNous avons fermé le magasin. — «Мы закрыли магазин.»\nСлово avons значит «мы, уже сделали».\nVous avez fermé le garage. — «Вы закрыли гараж.»\nСлово avez значит «вы, уже сделали».\nIls ont fermé la salle. — «Они закрыли зал.»\nСлово ont значит «они, уже сделали». Слово salle значит «зал».",
+        "en": "Look at how to say “I closed the door”.\nJ’ai fermé la porte. — “I closed the door.”\nThe word j’ai means “I” and shows that it is already done.\nThe word fermé means “closed”. It does not change.\nThe first word changes depending on who we talk about.\nElle a fermé la fenêtre. — “She closed the window.”\nThe word a means “she, already did”.\nNous avons fermé le magasin. — “We closed the shop.”\nThe word avons means “we, already did”.\nVous avez fermé le garage. — “You closed the garage.”\nThe word avez means “you, already did”.\nIls ont fermé la salle. — “They closed the hall.”\nThe word ont means “they, already did”. The word salle means “hall”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:18:01",
+          "say": {
+            "ru": "же ферме́ ла порт",
+            "uk": "же ферме́ ла порт"
+          }
+        },
+        {
+          "phraseId": "fr:18:03",
+          "say": {
+            "ru": "эль а ферме́ ла фенэ́тр",
+            "uk": "ель а ферме́ ла фене́тр"
+          }
+        },
+        {
+          "phraseId": "fr:18:04",
+          "say": {
+            "ru": "ну завон ферме́ лё магазэ́н",
+            "uk": "ну завон ферме́ льо магазе́н"
+          }
+        },
+        {
+          "phraseId": "fr:18:05",
+          "say": {
+            "ru": "ву завэ ферме́ лё гара́ж",
+            "uk": "ву заве ферме́ льо гара́ж"
+          }
+        },
+        {
+          "phraseId": "fr:18:06",
+          "say": {
+            "ru": "иль зон ферме́ ла саль",
+            "uk": "іль зон ферме́ ла саль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я закрыл дверь»",
+            "uk": "Виберіть, як сказати: «Я зачинив двері»",
+            "en": "Choose how to say: “I closed the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:18:01",
+          "options": [
+            "fr:18:01",
+            "fr:18:03",
+            "fr:18:04"
+          ],
+          "answerId": "fr:18:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы закрыли магазин»",
+            "uk": "Виберіть, як сказати: «Ми зачинили магазин»",
+            "en": "Choose how to say: “We closed the shop”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:04",
+          "options": [
+            "fr:18:04",
+            "fr:18:05",
+            "fr:18:06"
+          ],
+          "answerId": "fr:18:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они закрыли зал»",
+            "uk": "Виберіть, як сказати: «Вони закрили зал»",
+            "en": "Choose how to say: “They closed the hall”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:06",
+          "options": [
+            "fr:18:06",
+            "fr:18:01",
+            "fr:18:03"
+          ],
+          "answerId": "fr:18:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Купил, заказал",
+        "en": "I bought, I ordered"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я купил хлеб».\nJ’ai acheté du pain. — «Я купил хлеб.»\nЧитается: же аште́ дю пан.\nСлово acheté значит «купил».\nNous avons acheté deux billets. — «Мы купили два билета.»\nJ’ai réservé une table. — «Я забронировал столик.»\nСлово réservé значит «забронировал».\nIl a payé l’addition. — «Он оплатил счет.»\nСлово payé значит «оплатил». Слово l’addition значит «счёт в ресторане».\nNous avons commandé le dessert. — «Мы заказали десерт.»\nСлово commandé значит «заказали».\nVous avez gardé le reçu. — «Вы сохранили чек.»\nСлово gardé значит «сохранили».\nВсе эти слова звучат на «е́»: acheté, réservé, payé, gardé.",
+        "en": "Look at how to say “I bought bread”.\nJ’ai acheté du pain. — “I bought bread.”\nThe word acheté means “bought”.\nNous avons acheté deux billets. — “We bought two tickets.”\nJ’ai réservé une table. — “I booked a table.”\nThe word réservé means “booked”.\nIl a payé l’addition. — “He paid the bill.”\nThe word payé means “paid”. The word addition means “restaurant bill”.\nNous avons commandé le dessert. — “We ordered the dessert.”\nThe word commandé means “ordered”.\nVous avez gardé le reçu. — “You kept the receipt.”\nThe word gardé means “kept”.\nAll these words end with the sound “é”: acheté, réservé, payé, gardé."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:18:07",
+          "say": {
+            "ru": "же аште́ дю пан",
+            "uk": "же аште́ дю пан"
+          }
+        },
+        {
+          "phraseId": "fr:18:09",
+          "say": {
+            "ru": "ну завон аште́ дё бийэ́",
+            "uk": "ну завон аште́ дьо бійе́"
+          }
+        },
+        {
+          "phraseId": "fr:18:11",
+          "say": {
+            "ru": "же резерве́ юн табль",
+            "uk": "же резерве́ юн табль"
+          }
+        },
+        {
+          "phraseId": "fr:18:13",
+          "say": {
+            "ru": "иль а пейе́ ладисьо́н",
+            "uk": "іль а пейе́ ладісьо́н"
+          }
+        },
+        {
+          "phraseId": "fr:18:14",
+          "say": {
+            "ru": "ну завон команде́ лё дэсэр",
+            "uk": "ну завон команде́ льо десер"
+          }
+        },
+        {
+          "phraseId": "fr:18:15",
+          "say": {
+            "ru": "ву завэ гарде́ лё рэсю́",
+            "uk": "ву заве гарде́ льо ресю́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я купил хлеб»",
+            "uk": "Виберіть, як сказати: «Я купив хліб»",
+            "en": "Choose how to say: “I bought bread”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:18:07",
+          "options": [
+            "fr:18:07",
+            "fr:18:09",
+            "fr:18:11"
+          ],
+          "answerId": "fr:18:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я забронировал столик»",
+            "uk": "Виберіть, як сказати: «Я забронював столик»",
+            "en": "Choose how to say: “I booked a table”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:11",
+          "options": [
+            "fr:18:11",
+            "fr:18:13",
+            "fr:18:14"
+          ],
+          "answerId": "fr:18:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы заказали десерт»",
+            "uk": "Виберіть, як сказати: «Ми замовили десерт»",
+            "en": "Choose how to say: “We ordered the dessert”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:14",
+          "options": [
+            "fr:18:14",
+            "fr:18:15",
+            "fr:18:09"
+          ],
+          "answerId": "fr:18:14"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Особые слова",
+        "en": "Special words"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я поехал на поезде».\nJ’ai pris le train. — «Я поехал на поезде.»\nЧитается: же при лё трэн.\nСлово pris значит «взял, поехал». Оно звучит по-другому.\nLéa a lu le message. — «Леа прочитала сообщение.»\nСлово lu значит «прочитала».\nNous avons vu le film. — «Мы посмотрели фильм.»\nСлово vu значит «увидели, посмотрели».\nIls ont bu le jus de pomme. — «Они выпили яблочный сок.»\nСлово bu значит «выпили».\nElle a fait une copie. — «Она сделала копию.»\nСлово fait значит «сделала». Слово copie значит «копия».\nNous avons dit merci. — «Мы сказали спасибо.»\nСлово dit значит «сказали».\nТакие слова запоминайте целиком.",
+        "en": "Look at how to say “I took the train”.\nJ’ai pris le train. — “I took the train.”\nThe word pris means “took”. It sounds different.\nLéa a lu le message. — “Léa read the message.”\nThe word lu means “read”.\nNous avons vu le film. — “We watched the film.”\nThe word vu means “saw, watched”.\nIls ont bu le jus de pomme. — “They drank the apple juice.”\nThe word bu means “drank”.\nElle a fait une copie. — “She made a copy.”\nThe word fait means “made”. The word copie means “copy”.\nNous avons dit merci. — “We said thank you.”\nThe word dit means “said”.\nLearn such words as they are."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:18:21",
+          "say": {
+            "ru": "же при лё трэн",
+            "uk": "же прі льо трен"
+          }
+        },
+        {
+          "phraseId": "fr:18:23",
+          "say": {
+            "ru": "леа́ а лю лё мэнса́ж",
+            "uk": "леа́ а лю льо менса́ж"
+          }
+        },
+        {
+          "phraseId": "fr:18:24",
+          "say": {
+            "ru": "ну завон вю лё фильм",
+            "uk": "ну завон вю льо фільм"
+          }
+        },
+        {
+          "phraseId": "fr:18:25",
+          "say": {
+            "ru": "иль зон бю лё жю дё пом",
+            "uk": "іль зон бю льо жю дьо пом"
+          }
+        },
+        {
+          "phraseId": "fr:18:28",
+          "say": {
+            "ru": "эль а фэ юн копи́",
+            "uk": "ель а фе юн копі́"
+          }
+        },
+        {
+          "phraseId": "fr:18:30",
+          "say": {
+            "ru": "ну завон ди мэрси́",
+            "uk": "ну завон ді мерсі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я поехал на поезде»",
+            "uk": "Виберіть, як сказати: «Я поїхав поїздом»",
+            "en": "Choose how to say: “I took the train”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:18:21",
+          "options": [
+            "fr:18:21",
+            "fr:18:23",
+            "fr:18:24"
+          ],
+          "answerId": "fr:18:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы посмотрели фильм»",
+            "uk": "Виберіть, як сказати: «Ми подивилися фільм»",
+            "en": "Choose how to say: “We watched the film”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:24",
+          "options": [
+            "fr:18:24",
+            "fr:18:25",
+            "fr:18:28"
+          ],
+          "answerId": "fr:18:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она сделала копию»",
+            "uk": "Виберіть, як сказати: «Вона зробила копію»",
+            "en": "Choose how to say: “She made a copy”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:28",
+          "options": [
+            "fr:18:28",
+            "fr:18:30",
+            "fr:18:23"
+          ],
+          "answerId": "fr:18:28"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не сделал",
+        "en": "I did not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не слышал звонка».\nJe n’ai pas entendu la sonnette. — «Я не слышал звонка в дверь.»\nЧитается: жё нэ па затанду́ ла сонэ́т.\nСлова ne и pas стоят вокруг первого слова: je n’ai pas.\nСлово entendu значит «слышал». Слово sonnette значит «дверной звонок».\nElle n’a pas trouvé son badge. — «Она не нашла свой пропуск.»\nСлово trouvé значит «нашла».\nNous n’avons pas oublié la ceinture. — «Мы не забыли ремень.»\nСлово oublié значит «забыли».\nVous n’avez pas encore signé. — «Вы еще не подписали.»\nСлово encore значит «ещё». Слово signé значит «подписали».",
+        "en": "Look at how to say “I did not hear the doorbell”.\nJe n’ai pas entendu la sonnette. — “I did not hear the doorbell.”\nThe words ne and pas stand around the first word: je n’ai pas.\nThe word entendu means “heard”. The word sonnette means “doorbell”.\nElle n’a pas trouvé son badge. — “She did not find her badge.”\nThe word trouvé means “found”.\nNous n’avons pas oublié la ceinture. — “We did not forget the belt.”\nThe word oublié means “forgot”.\nVous n’avez pas encore signé. — “You have not signed yet.”\nThe word encore means “yet”. The word signé means “signed”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:18:31",
+          "say": {
+            "ru": "жё нэ па затанду́ ла сонэ́т",
+            "uk": "жьо не па затанду́ ла соне́т"
+          }
+        },
+        {
+          "phraseId": "fr:18:33",
+          "say": {
+            "ru": "эль на па труве́ сон бадж",
+            "uk": "ель на па труве́ сон бадж"
+          }
+        },
+        {
+          "phraseId": "fr:18:34",
+          "say": {
+            "ru": "ну навон па убли́е ла сентюр",
+            "uk": "ну навон па ублі́е ла сентюр"
+          }
+        },
+        {
+          "phraseId": "fr:18:36",
+          "say": {
+            "ru": "ву навэ па анкор синье́",
+            "uk": "ву наве па анкор сінье́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не слышал звонка в дверь»",
+            "uk": "Виберіть, як сказати: «Я не чув дзвінка у двері»",
+            "en": "Choose how to say: “I did not hear the doorbell”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:18:31",
+          "options": [
+            "fr:18:31",
+            "fr:18:33",
+            "fr:18:34"
+          ],
+          "answerId": "fr:18:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не забыли ремень»",
+            "uk": "Виберіть, як сказати: «Ми не забули про ремінь»",
+            "en": "Choose how to say: “We did not forget the belt”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:34",
+          "options": [
+            "fr:18:34",
+            "fr:18:36",
+            "fr:18:31"
+          ],
+          "answerId": "fr:18:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы еще не подписали»",
+            "uk": "Виберіть, як сказати: «Ви ще не підписалися»",
+            "en": "Choose how to say: “You have not signed yet”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:36",
+          "options": [
+            "fr:18:36",
+            "fr:18:33",
+            "fr:18:34"
+          ],
+          "answerId": "fr:18:36"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Когда это было",
+        "en": "When it happened"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Вчера я постирал».\nHier, j’ai lavé les serviettes. — «Вчера я постирал полотенца.»\nЧитается: ье́р, же лаве́ ле сервьет.\nСлово hier значит «вчера». Слово lavé значит «постирал».\nCe matin, elle a changé la pile. — «Сегодня утром она поменяла батарейку.»\nСлова ce matin значат «сегодня утром». Слово changé значит «поменяла».\nQuand avez-vous envoyé le dossier ? — «Когда вы отправили документы?»\nСлово envoyé значит «отправили». Слово dossier значит «папка, документы».\nElle a rempli sa bouteille avant le départ. — «Она наполнила свою бутылку перед уходом.»\nСлово avant значит «перед». Слово départ значит «отправление».\nQui a cassé le verre ? — «Кто разбил стакан?»\nСлово cassé значит «разбил».",
+        "en": "Look at how to say “Yesterday I washed”.\nHier, j’ai lavé les serviettes. — “Yesterday I washed the towels.”\nThe word hier means “yesterday”. The word lavé means “washed”.\nCe matin, elle a changé la pile. — “This morning she changed the battery.”\nThe words ce matin mean “this morning”. The word changé means “changed”.\nQuand avez-vous envoyé le dossier ? — “When did you send the documents?”\nThe word envoyé means “sent”. The word dossier means “folder, documents”.\nElle a rempli sa bouteille avant le départ. — “She filled her bottle before leaving.”\nThe word avant means “before”. The word départ means “departure”.\nQui a cassé le verre ? — “Who broke the glass?”\nThe word cassé means “broke”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:18:41",
+          "say": {
+            "ru": "ье́р, же лаве́ ле сервьет",
+            "uk": "ье́р, же лаве́ ле сервьет"
+          }
+        },
+        {
+          "phraseId": "fr:18:42",
+          "say": {
+            "ru": "сё матэн, эль а шанже́ ла пиль",
+            "uk": "сьо матен, ель а шанже́ ла піль"
+          }
+        },
+        {
+          "phraseId": "fr:18:40",
+          "say": {
+            "ru": "кан авэ ву анвуаье́ лё досье́",
+            "uk": "кан аве ву анвуаье́ льо досье́"
+          }
+        },
+        {
+          "phraseId": "fr:18:49",
+          "say": {
+            "ru": "эль а рампли́ са бутэй аван лё депар",
+            "uk": "ель а рамплі́ са бутей аван льо депар"
+          }
+        },
+        {
+          "phraseId": "fr:18:39",
+          "say": {
+            "ru": "ки а касе́ лё вэр",
+            "uk": "кі а касе́ льо вер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вчера я постирал полотенца»",
+            "uk": "Виберіть, як сказати: «Вчора я виправ рушники»",
+            "en": "Choose how to say: “Yesterday I washed the towels”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:18:41",
+          "options": [
+            "fr:18:41",
+            "fr:18:42",
+            "fr:18:40"
+          ],
+          "answerId": "fr:18:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда вы отправили документы?»",
+            "uk": "Виберіть, як сказати: «Коли ви надіслали документи?»",
+            "en": "Choose how to say: “When did you send the documents?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:40",
+          "options": [
+            "fr:18:40",
+            "fr:18:49",
+            "fr:18:39"
+          ],
+          "answerId": "fr:18:40"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кто разбил стакан?»",
+            "uk": "Виберіть, як сказати: «Хто розбив склянку?»",
+            "en": "Choose how to say: “Who broke the glass?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:18:39",
+          "options": [
+            "fr:18:39",
+            "fr:18:41",
+            "fr:18:42"
+          ],
+          "answerId": "fr:18:39"
+        }
+      ]
+    }
+  ]
+}

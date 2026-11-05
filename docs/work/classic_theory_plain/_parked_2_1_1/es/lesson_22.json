@@ -1,0 +1,506 @@
+{
+  "lang": "es",
+  "lesson": 22,
+  "title": {
+    "ru": "Вчера: я сходил, сделал, пришёл, смог",
+    "en": "Yesterday: I went, did, came, could"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я сходил",
+        "en": "I went"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вчера сходил к врачу».\nFui al médico ayer. — «Я вчера сходил к врачу.»\nЧитается: фуи́ аль мэ́дико айэ́р.\nСлово fui значит «я сходил». Слово ayer — «вчера».\nСлово меняется, смотря о ком речь: «я» — fui, «ты» — fuiste.\nAna fue a la estación. — «Ана сходила на вокзал.»\nО ней или о нём говорят fue. О нас — fuimos.\nMis hermanos fueron al médico ayer. — «Мои братья вчера сходили к врачу.»\nО них говорят fueron. Слово centro значит «центр».",
+        "en": "Look at how to say “I went to the doctor yesterday”.\nFui al médico ayer. — “I went to the doctor yesterday.”\nThe word fui means “I went”. The word ayer means “yesterday”.\nThe word changes depending on who it is about: “I” — fui, “you” — fuiste.\nAna fue a la estación. — “Ana went to the station.”\nFor her or him, people say fue. For us — fuimos.\nMis hermanos fueron al médico ayer. — “My brothers went to the doctor yesterday.”\nFor them, people say fueron. The word centro means “centre”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:22:01",
+          "say": {
+            "ru": "фуи́ аль мэ́дико айэ́р",
+            "uk": "фуі́ аль ме́діко айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:02",
+          "say": {
+            "ru": "фуи́стэ аль отэ́ль ано́чэ",
+            "uk": "фуі́сте аль оте́ль ано́че"
+          }
+        },
+        {
+          "phraseId": "es:22:03",
+          "say": {
+            "ru": "А́на фуэ́ а ла эстасьо́н",
+            "uk": "А́на фуе́ а ла естасьо́н"
+          }
+        },
+        {
+          "phraseId": "es:22:04",
+          "say": {
+            "ru": "фуи́мос аль сэ́нтро айэ́р",
+            "uk": "фуі́мос аль се́нтро айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:06",
+          "say": {
+            "ru": "мис эрма́нос фуэ́рон аль мэ́дико айэ́р",
+            "uk": "міс ерма́нос фуе́рон аль ме́діко айе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера сходил к врачу»",
+            "uk": "Виберіть, як сказати: «Я вчора сходив до лікаря»",
+            "en": "Choose how to say: “I went to the doctor yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:22:01",
+          "options": [
+            "es:22:01",
+            "es:22:02",
+            "es:22:04"
+          ],
+          "answerId": "es:22:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана сходила на вокзал»",
+            "uk": "Виберіть, як сказати: «Ана сходила на вокзал»",
+            "en": "Choose how to say: “Ana went to the station”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:03",
+          "options": [
+            "es:22:03",
+            "es:22:01",
+            "es:22:06"
+          ],
+          "answerId": "es:22:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья вчера сходили к врачу»",
+            "uk": "Виберіть, як сказати: «Мої брати вчора сходили до лікаря»",
+            "en": "Choose how to say: “My brothers went to the doctor yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:06",
+          "options": [
+            "es:22:06",
+            "es:22:03",
+            "es:22:04"
+          ],
+          "answerId": "es:22:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "У меня было",
+        "en": "I had"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня вчера было совещание».\nTuve una reunión ayer. — «У меня вчера было совещание.»\nЧитается: ту́бэ у́на рэуньо́н айэ́р.\nСлово tuve значит «у меня было». Слово reunión — «совещание, встреча».\nСлово una по-русски не говорят, запоминайте его вместе с reunión.\nСлово меняется, смотря о ком речь: «я» — tuve, «ты» — tuviste.\nAna tuvo una idea. — «У Аны появилась идея.»\nО ней или о нём говорят tuvo. О нас — tuvimos, о них — tuvieron.\n¿Tuviste un problema ayer? — «У тебя вчера возникла проблема?»\nСлово problema значит «проблема».",
+        "en": "Look at how to say “I had a meeting yesterday”.\nTuve una reunión ayer. — “I had a meeting yesterday.”\nThe word tuve means “I had”. The word reunión means “meeting”.\nThe word una has no match in Russian. Learn it together with reunión.\nThe word changes depending on who it is about: “I” — tuve, “you” — tuviste.\nAna tuvo una idea. — “Ana had an idea.”\nFor her or him, people say tuvo. For us — tuvimos, for them — tuvieron.\n¿Tuviste un problema ayer? — “Did you have a problem yesterday?”\nThe word problema means “problem”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:22:11",
+          "say": {
+            "ru": "ту́бэ у́на рэуньо́н айэ́р",
+            "uk": "ту́бе у́на реуньо́н айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:12",
+          "say": {
+            "ru": "туви́стэ тьэ́мпо па́ра лэ́эр ано́чэ",
+            "uk": "туві́сте тье́мпо па́ра ле́ер ано́че"
+          }
+        },
+        {
+          "phraseId": "es:22:13",
+          "say": {
+            "ru": "А́на ту́бо у́на идэ́а",
+            "uk": "А́на ту́бо у́на іде́а"
+          }
+        },
+        {
+          "phraseId": "es:22:14",
+          "say": {
+            "ru": "туби́мос у́на си́та айэ́р",
+            "uk": "тубі́мос у́на сі́та айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:16",
+          "say": {
+            "ru": "мис эрма́нос тубьэ́рон у́на рэуньо́н айэ́р",
+            "uk": "міс ерма́нос тубье́рон у́на реуньо́н айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:20",
+          "say": {
+            "ru": "туви́стэ ун проблэ́ма айэ́р",
+            "uk": "туві́сте ун пробле́ма айе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня вчера было совещание»",
+            "uk": "Виберіть, як сказати: «У мене вчора була нарада»",
+            "en": "Choose how to say: “I had a meeting yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:22:11",
+          "options": [
+            "es:22:11",
+            "es:22:13",
+            "es:22:14"
+          ],
+          "answerId": "es:22:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Аны появилась идея»",
+            "uk": "Виберіть, як сказати: «У Ани виникла ідея»",
+            "en": "Choose how to say: “Ana had an idea”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:13",
+          "options": [
+            "es:22:13",
+            "es:22:11",
+            "es:22:20"
+          ],
+          "answerId": "es:22:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нас вчера была назначена встреча»",
+            "uk": "Виберіть, як сказати: «У нас вчора була призначена зустріч»",
+            "en": "Choose how to say: “We had an appointment yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:14",
+          "options": [
+            "es:22:14",
+            "es:22:12",
+            "es:22:11"
+          ],
+          "answerId": "es:22:14"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я сделал",
+        "en": "I did"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вчера сделал покупки».\nHice la compra ayer. — «Я вчера сделал покупки.»\nЧитается: и́сэ ла ко́мпра айэ́р.\nСлово hice значит «я сделал». Слово compra — «покупки».\nСлово hice — от слова hacer, «делать».\nСлово меняется, смотря о ком речь: «я» — hice, «ты» — hiciste.\nAna hizo una foto. — «Ана сделала фотографию.»\nО ней или о нём говорят hizo. О нас — hicimos.\nMis hermanos hicieron la compra ayer. — «Мои братья вчера сделали покупки.»\nО них говорят hicieron.",
+        "en": "Look at how to say “I did the shopping yesterday”.\nHice la compra ayer. — “I did the shopping yesterday.”\nThe word hice means “I did”. The word compra means “shopping”.\nThe word hice comes from hacer, “to do”.\nThe word changes depending on who it is about: “I” — hice, “you” — hiciste.\nAna hizo una foto. — “Ana took a photo.”\nFor her or him, people say hizo. For us — hicimos.\nMis hermanos hicieron la compra ayer. — “My brothers did the shopping yesterday.”\nFor them, people say hicieron."
+      },
+      "examples": [
+        {
+          "phraseId": "es:22:21",
+          "say": {
+            "ru": "и́сэ ла ко́мпра айэ́р",
+            "uk": "і́се ла ко́мпра айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:22",
+          "say": {
+            "ru": "иси́стэ у́на рэсэ́рба ано́чэ",
+            "uk": "ісі́сте у́на ресе́рба ано́че"
+          }
+        },
+        {
+          "phraseId": "es:22:23",
+          "say": {
+            "ru": "А́на и́со у́на фо́то",
+            "uk": "А́на і́со у́на фо́то"
+          }
+        },
+        {
+          "phraseId": "es:22:24",
+          "say": {
+            "ru": "иси́мос у́на прэгу́нта айэ́р",
+            "uk": "ісі́мос у́на прегу́нта айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:26",
+          "say": {
+            "ru": "мис эрма́нос исьэ́рон ла ко́мпра айэ́р",
+            "uk": "міс ерма́нос ісье́рон ла ко́мпра айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:30",
+          "say": {
+            "ru": "иси́стэ ла сэ́на айэ́р",
+            "uk": "ісі́сте ла се́на айе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера сделал покупки»",
+            "uk": "Виберіть, як сказати: «Я вчора зробив покупки»",
+            "en": "Choose how to say: “I did the shopping yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:22:21",
+          "options": [
+            "es:22:21",
+            "es:22:22",
+            "es:22:24"
+          ],
+          "answerId": "es:22:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана сделала фотографию»",
+            "uk": "Виберіть, як сказати: «Ана зробила фотографію»",
+            "en": "Choose how to say: “Ana took a photo”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:23",
+          "options": [
+            "es:22:23",
+            "es:22:21",
+            "es:22:26"
+          ],
+          "answerId": "es:22:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья вчера сделали покупки»",
+            "uk": "Виберіть, як сказати: «Мої брати вчора зробили покупки»",
+            "en": "Choose how to say: “My brothers did the shopping yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:26",
+          "options": [
+            "es:22:26",
+            "es:22:23",
+            "es:22:24"
+          ],
+          "answerId": "es:22:26"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я пришёл",
+        "en": "I came"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вчера пришёл домой».\nVine a casa ayer. — «Я вчера пришёл домой.»\nЧитается: би́нэ а ка́са айэ́р.\nСлово vine значит «я пришёл, я приехал». Слово venir — «приходить, приезжать».\nVine en taxi desde el aeropuerto. — «Я приехал из аэропорта на такси.»\nЧитается: би́нэ эн та́кси дэ́сдэ эль аэропуэ́рто.\nСлово taxi значит «такси». Слово desde — «из, от исходной точки».\nСлово меняется, смотря о ком речь: «я» — vine, «ты» — viniste.\nAna vino en tren. — «Ана приехала на поезде.»\nО ней или о нём говорят vino. О нас — vinimos, о них — vinieron.",
+        "en": "Look at how to say “I came home yesterday”.\nVine a casa ayer. — “I came home yesterday.”\nThe word vine means “I came, I arrived”. The word venir means “to come”.\nVine en taxi desde el aeropuerto. — “I came by taxi from the airport.”\nThe word taxi means “taxi”. The word desde means “from”.\nThe word changes depending on who it is about: “I” — vine, “you” — viniste.\nAna vino en tren. — “Ana came by train.”\nFor her or him, people say vino. For us — vinimos, for them — vinieron."
+      },
+      "examples": [
+        {
+          "phraseId": "es:22:31",
+          "say": {
+            "ru": "би́нэ а ка́са айэ́р",
+            "uk": "бі́не а ка́са айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:32",
+          "say": {
+            "ru": "би́нэ эн та́кси дэ́сдэ эль аэропуэ́рто",
+            "uk": "бі́не ен та́ксі де́сде ель аеропуе́рто"
+          }
+        },
+        {
+          "phraseId": "es:22:33",
+          "say": {
+            "ru": "А́на би́но эн трэн",
+            "uk": "А́на бі́но ен трен"
+          }
+        },
+        {
+          "phraseId": "es:22:34",
+          "say": {
+            "ru": "бини́мос а ла рэуньо́н айэ́р",
+            "uk": "біні́мос а ла реуньо́н айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:36",
+          "say": {
+            "ru": "мис эрма́нос бинье́рон а ка́са айэ́р",
+            "uk": "міс ерма́нос бінье́рон а ка́са айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:38",
+          "say": {
+            "ru": "бини́стэ эн трэн айэ́р",
+            "uk": "біні́сте ен трен айе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера пришёл домой»",
+            "uk": "Виберіть, як сказати: «Я вчора прийшов додому»",
+            "en": "Choose how to say: “I came home yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:22:31",
+          "options": [
+            "es:22:31",
+            "es:22:33",
+            "es:22:34"
+          ],
+          "answerId": "es:22:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я приехал из аэропорта на такси»",
+            "uk": "Виберіть, як сказати: «Я приїхав з аеропорту на таксі»",
+            "en": "Choose how to say: “I came by taxi from the airport”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:32",
+          "options": [
+            "es:22:32",
+            "es:22:31",
+            "es:22:38"
+          ],
+          "answerId": "es:22:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана приехала на поезде»",
+            "uk": "Виберіть, як сказати: «Ана приїхала потягом»",
+            "en": "Choose how to say: “Ana came by train”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:33",
+          "options": [
+            "es:22:33",
+            "es:22:38",
+            "es:22:32"
+          ],
+          "answerId": "es:22:33"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Я смог",
+        "en": "I could"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вчера смог войти».\nPude entrar ayer. — «Я вчера смог войти.»\nЧитается: пу́дэ энтра́р айэ́р.\nСлово pude значит «я смог». Слово entrar — «войти».\nСлово меняется, смотря о ком речь: «я» — pude, «ты» — pudiste.\nAna pudo comprar el billete. — «Ана смогла купить билет.»\nО ней или о нём говорят pudo. О нас — pudimos.\nNo pude abrir el paraguas. — «Я не смог раскрыть зонт.»\nЧитается: но пу́дэ абри́р эль пара́гуас.\nСлово no ставят перед словом, как русское «не». Слово paraguas — «зонт».",
+        "en": "Look at how to say “I was able to enter yesterday”.\nPude entrar ayer. — “I was able to enter yesterday.”\nThe word pude means “I could”. The word entrar means “to enter”.\nThe word changes depending on who it is about: “I” — pude, “you” — pudiste.\nAna pudo comprar el billete. — “Ana was able to buy the ticket.”\nFor her or him, people say pudo. For us — pudimos.\nNo pude abrir el paraguas. — “I could not open the umbrella.”\nThe word no goes before the other word, like “not”. The word paraguas means “umbrella”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:22:41",
+          "say": {
+            "ru": "пу́дэ энтра́р айэ́р",
+            "uk": "пу́де ентра́р айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:43",
+          "say": {
+            "ru": "А́на пу́до компра́р эль бийэ́тэ",
+            "uk": "А́на пу́до компра́р ель бійе́те"
+          }
+        },
+        {
+          "phraseId": "es:22:44",
+          "say": {
+            "ru": "пуди́мос йама́р аль отэ́ль айэ́р",
+            "uk": "пуді́мос йама́р аль оте́ль айе́р"
+          }
+        },
+        {
+          "phraseId": "es:22:46",
+          "say": {
+            "ru": "но пу́дэ абри́р эль пара́гуас",
+            "uk": "но пу́де абрі́р ель пара́гуас"
+          }
+        },
+        {
+          "phraseId": "es:22:50",
+          "say": {
+            "ru": "пуди́стэ абри́р ла пуэ́рта айэ́р",
+            "uk": "пуді́сте абрі́р ла пуе́рта айе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера смог войти»",
+            "uk": "Виберіть, як сказати: «Я вчора зміг зайти»",
+            "en": "Choose how to say: “I was able to enter yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:22:41",
+          "options": [
+            "es:22:41",
+            "es:22:43",
+            "es:22:44"
+          ],
+          "answerId": "es:22:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не смог раскрыть зонт»",
+            "uk": "Виберіть, як сказати: «Я не зміг розкрити парасольку»",
+            "en": "Choose how to say: “I could not open the umbrella”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:46",
+          "options": [
+            "es:22:46",
+            "es:22:41",
+            "es:22:50"
+          ],
+          "answerId": "es:22:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана смогла купить билет»",
+            "uk": "Виберіть, як сказати: «Ана змогла купити квиток»",
+            "en": "Choose how to say: “Ana was able to buy the ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:22:43",
+          "options": [
+            "es:22:43",
+            "es:22:44",
+            "es:22:41"
+          ],
+          "answerId": "es:22:43"
+        }
+      ]
+    }
+  ]
+}

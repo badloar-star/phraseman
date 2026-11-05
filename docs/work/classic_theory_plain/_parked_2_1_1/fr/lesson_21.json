@@ -1,0 +1,478 @@
+{
+  "lang": "fr",
+  "lesson": 21,
+  "title": {
+    "ru": "Я делал, когда случилось",
+    "en": "I was doing when it happened"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Делал, когда…",
+        "en": "Was doing when…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я читал, когда ты позвонил».\nJe lisais quand tu as appelé. — «Я читал, когда ты позвонил.»\nЧитается: жё лизэ́ кан тю а апеле́.\nСлово lisais значит «читал». Слово quand значит «когда».\nСлова tu as appelé значат «ты позвонил».\nСначала то, что шло долго: «читал». Потом то, что случилось вдруг: «позвонил».\nElle cuisinait quand le téléphone a sonné. — «Она готовила, когда зазвонил телефон.»\nСлово cuisinait значит «готовила». Слова a sonné значат «зазвонил».\nNous mangions quand Paul est arrivé. — «Мы ели, когда приехал Поль.»\nIl pleuvait quand nous sommes partis. — «Когда мы уходили, шел дождь.»\nСлово pleuvait значит «шёл дождь». Слова sommes partis значат «мы ушли».",
+        "en": "Look at how to say “I was reading when you called”.\nJe lisais quand tu as appelé. — “I was reading when you called.”\nThe word lisais means “was reading”. The word quand means “when”.\nThe words tu as appelé mean “you called”.\nFirst what was going on for a while: “was reading”. Then what happened suddenly: “called”.\nElle cuisinait quand le téléphone a sonné. — “She was cooking when the phone rang.”\nThe word cuisinait means “was cooking”. The words a sonné mean “rang”.\nNous mangions quand Paul est arrivé. — “We were eating when Paul arrived.”\nIl pleuvait quand nous sommes partis. — “It was raining when we left.”\nThe word pleuvait means “was raining”. The words sommes partis mean “we left”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:21:01",
+          "say": {
+            "ru": "жё лизэ́ кан тю а апеле́",
+            "uk": "жьо лізе́ кан тю а апеле́"
+          }
+        },
+        {
+          "phraseId": "fr:21:03",
+          "say": {
+            "ru": "эль кюизинэ́ кан лё телефон а сонэ́",
+            "uk": "ель кюізіне́ кан льо телефон а соне́"
+          }
+        },
+        {
+          "phraseId": "fr:21:04",
+          "say": {
+            "ru": "ну манжийо́н кан поль э тариве́",
+            "uk": "ну манжійо́н кан поль е таріве́"
+          }
+        },
+        {
+          "phraseId": "fr:21:11",
+          "say": {
+            "ru": "иль плёвэ́ кан ну сом парти́",
+            "uk": "іль пльове́ кан ну сом парті́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я читал, когда ты позвонил»",
+            "uk": "Виберіть, як сказати: «Я читав, коли ти зателефонував»",
+            "en": "Choose how to say: “I was reading when you called”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:21:01",
+          "options": [
+            "fr:21:01",
+            "fr:21:03",
+            "fr:21:04"
+          ],
+          "answerId": "fr:21:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ели, когда приехал Поль»",
+            "uk": "Виберіть, як сказати: «Ми їли, коли прийшов Пол»",
+            "en": "Choose how to say: “We were eating when Paul arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:04",
+          "options": [
+            "fr:21:04",
+            "fr:21:11",
+            "fr:21:03"
+          ],
+          "answerId": "fr:21:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда мы уходили, шел дождь»",
+            "uk": "Виберіть, як сказати: «Коли ми виходили, йшов дощ»",
+            "en": "Choose how to say: “It was raining when we left”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:11",
+          "options": [
+            "fr:21:11",
+            "fr:21:01",
+            "fr:21:03"
+          ],
+          "answerId": "fr:21:11"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Каким всё было вокруг",
+        "en": "What it was like around"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, какая была погода.\nIl faisait beau quand le train est arrivé. — «Погода была хорошая, когда прибыл поезд.»\nЧитается: иль фёзэ́ бо кан лё трэн э тариве́.\nСлово beau здесь значит «хорошая погода».\nLa rue était vide quand Paul est sorti. — «Улица была пуста, когда вышел Поль.»\nСлово vide значит «пустой».\nLes volets étaient fermés quand je suis passé. — «Ставни были закрыты, когда я проходил мимо.»\nСлово volets значит «ставни».\nIl faisait froid quand la porte s’est ouverte. — «Было холодно, когда открылась дверь.»\nLa salle était pleine quand le concert a commencé. — «Зал был полон, когда начался концерт.»\nСначала говорят, какой всё было вокруг. Потом — что случилось.",
+        "en": "Look at how to say what the weather was like.\nIl faisait beau quand le train est arrivé. — “It was sunny when the train came.”\nThe word beau here means “nice weather”.\nLa rue était vide quand Paul est sorti. — “The street was empty when Paul left.”\nThe word vide means “empty”.\nLes volets étaient fermés quand je suis passé. — “The shutters were closed when I passed.”\nThe word volets means “shutters”.\nIl faisait froid quand la porte s’est ouverte. — “It was cold when the door opened.”\nLa salle était pleine quand le concert a commencé. — “The hall was full.”\nFirst we say what it was like around. Then what happened."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:21:12",
+          "say": {
+            "ru": "иль фёзэ́ бо кан лё трэн э тариве́",
+            "uk": "іль фьозе́ бо кан льо трен е таріве́"
+          }
+        },
+        {
+          "phraseId": "fr:21:13",
+          "say": {
+            "ru": "ла рю этэ́ вид кан поль э сорти́",
+            "uk": "ла рю ете́ від кан поль е сорті́"
+          }
+        },
+        {
+          "phraseId": "fr:21:14",
+          "say": {
+            "ru": "лэ воле́ зетэ́ ферме́ кан жё сюи пасе́",
+            "uk": "ле воле́ зете́ ферме́ кан жьо сюі пасе́"
+          }
+        },
+        {
+          "phraseId": "fr:21:15",
+          "say": {
+            "ru": "иль фёзэ́ фруа кан ла порт сэ тувэ́рт",
+            "uk": "іль фьозе́ фруа кан ла порт се туве́рт"
+          }
+        },
+        {
+          "phraseId": "fr:21:16",
+          "say": {
+            "ru": "ла саль этэ́ плэн кан лё консэ́р а комансе́",
+            "uk": "ла саль ете́ плен кан льо консе́р а комансе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Погода была хорошая, когда прибыл поезд»",
+            "uk": "Виберіть, як сказати: «Погода була гарною, коли прибув поїзд»",
+            "en": "Choose how to say: “The weather was nice when the train arrived”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:21:12",
+          "options": [
+            "fr:21:12",
+            "fr:21:13",
+            "fr:21:14"
+          ],
+          "answerId": "fr:21:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ставни были закрыты, когда я проходил мимо»",
+            "uk": "Виберіть, як сказати: «Віконниці були зачинені, коли я проходив повз»",
+            "en": "Choose how to say: “The shutters were closed when I passed”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:14",
+          "options": [
+            "fr:21:14",
+            "fr:21:15",
+            "fr:21:16"
+          ],
+          "answerId": "fr:21:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Зал был полон, когда начался концерт»",
+            "uk": "Виберіть, як сказати: «Зал був повний, коли почався концерт»",
+            "en": "Choose how to say: “The hall was full when the concert began”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:16",
+          "options": [
+            "fr:21:16",
+            "fr:21:12",
+            "fr:21:13"
+          ],
+          "answerId": "fr:21:16"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Пока",
+        "en": "While"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Пока я убирался».\nPendant que je rangeais, Léa a trouvé le reçu. — «Пока я убирался, Леа нашла квитанцию.»\nЧитается: пандан кё жё ранжэ́, леа́ а труве́ лё рэсю́.\nСлова pendant que значат «пока». Слово rangeais значит «убирался».\nPendant que nous attendions, le médecin est sorti. — «Пока мы ждали, вышел врач.»\nPendant qu’il pleuvait, nous avons pris un café. — «Пока шел дождь, мы пили кофе.»\nПеред словом il говорят pendant qu’il.\nPendant que vous dormiez, le facteur est passé. — «Пока вы спали, приходил почтальон.»\nСлово dormiez значит «спали».",
+        "en": "Look at how to say “While I was tidying”.\nPendant que je rangeais, Léa a trouvé le reçu. — “While I tidied, Léa found it.”\nThe words pendant que mean “while”. The word rangeais means “was tidying”.\nPendant que nous attendions, le médecin est sorti. — “While we waited, the doctor came out.”\nPendant qu’il pleuvait, nous avons pris un café. — “While it rained, we had coffee.”\nBefore il we say pendant qu’il.\nPendant que vous dormiez, le facteur est passé. — “While you were asleep, the postman came.”\nThe word dormiez means “were asleep”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:21:21",
+          "say": {
+            "ru": "пандан кё жё ранжэ́, леа́ а труве́ лё рэсю́",
+            "uk": "пандан кьо жьо ранже́, леа́ а труве́ льо ресю́"
+          }
+        },
+        {
+          "phraseId": "fr:21:22",
+          "say": {
+            "ru": "пандан кё ну затандийо́н, лё медсэ́н э сорти́",
+            "uk": "пандан кьо ну затандійо́н, льо медсе́н е сорті́"
+          }
+        },
+        {
+          "phraseId": "fr:21:24",
+          "say": {
+            "ru": "пандан киль плёвэ́, ну завон при ан кафе́",
+            "uk": "пандан кіль пльове́, ну завон прі ан кафе́"
+          }
+        },
+        {
+          "phraseId": "fr:21:28",
+          "say": {
+            "ru": "пандан кё жё шэршэ́ мэ люнэ́т, лё бюс э парти́",
+            "uk": "пандан кьо жьо шерше́ ме люне́т, льо бюс е парті́"
+          }
+        },
+        {
+          "phraseId": "fr:21:30",
+          "say": {
+            "ru": "пандан кё ву дормье́, лё фактёр э пасе́",
+            "uk": "пандан кьо ву дормье́, льо фактьор е пасе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока я убирался, Леа нашла квитанцию»",
+            "uk": "Виберіть, як сказати: «Поки я прибирав, Леа знайшла чек»",
+            "en": "Choose how to say: “While I was tidying, Léa found the receipt”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:21:21",
+          "options": [
+            "fr:21:21",
+            "fr:21:22",
+            "fr:21:24"
+          ],
+          "answerId": "fr:21:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока мы ждали, вышел врач»",
+            "uk": "Виберіть, як сказати: «Поки ми чекали, вийшов лікар»",
+            "en": "Choose how to say: “While we waited, the doctor came out”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:22",
+          "options": [
+            "fr:21:22",
+            "fr:21:24",
+            "fr:21:28"
+          ],
+          "answerId": "fr:21:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока вы спали, приходил почтальон»",
+            "uk": "Виберіть, як сказати: «Поки ви спали, приходив листоноша»",
+            "en": "Choose how to say: “While you were asleep, the postman came”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:30",
+          "options": [
+            "fr:21:30",
+            "fr:21:21",
+            "fr:21:28"
+          ],
+          "answerId": "fr:21:30"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Что случилось, пока я…",
+        "en": "What happened while I…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Будильник сработал».\nLe réveil a sonné alors que je m’habillais. — «Будильник сработал, пока я одевалась.»\nЧитается: лё ревэй а сонэ́ алор кё жё мабийэ́.\nСлово réveil значит «будильник». Слова alors que тоже значат «пока».\nMa sœur est arrivée pendant que je me douchais. — «Сестра приехала, пока я принимала душ.»\nLe chat est entré pendant que nous aérions. — «Кошка вошла, пока мы проветривали комнату.»\nСлово chat значит «кошка, кот». Слово aérions значит «проветривали».\nСлово escalier значит «лестница». Слово retenti значит «зазвонил».\nLe miroir est tombé pendant que je me rasais. — «Зеркало упало, когда я брился.»",
+        "en": "Look at how to say “The alarm clock rang”.\nLe réveil a sonné alors que je m’habillais. — “The alarm rang while I dressed.”\nThe word réveil means “alarm clock”. The words alors que also mean “while”.\nMa sœur est arrivée pendant que je me douchais. — “My sister came while I showered.”\nLe chat est entré pendant que nous aérions. — “The cat came in while we aired.”\nThe word chat means “cat”. The word aérions means “were airing”.\nThe word escalier means “stairs”. The word retenti means “rang”.\nLe miroir est tombé pendant que je me rasais. — “The mirror fell while I shaved.”"
+      },
+      "examples": [
+        {
+          "phraseId": "fr:21:33",
+          "say": {
+            "ru": "лё ревэй а сонэ́ алор кё жё мабийэ́",
+            "uk": "льо ревей а соне́ алор кьо жьо мабійе́"
+          }
+        },
+        {
+          "phraseId": "fr:21:34",
+          "say": {
+            "ru": "ма сёр э тариве́ пандан кё жё мё душэ́",
+            "uk": "ма сьор е таріве́ пандан кьо жьо мьо душе́"
+          }
+        },
+        {
+          "phraseId": "fr:21:35",
+          "say": {
+            "ru": "лё ша э антре́ пандан кё ну зарийо́н",
+            "uk": "льо ша е антре́ пандан кьо ну зарійо́н"
+          }
+        },
+        {
+          "phraseId": "fr:21:40",
+          "say": {
+            "ru": "ла сонэ́т а рётанти́ пандан кё жё монтэ́ лескалье́",
+            "uk": "ла соне́т а рьотанті́ пандан кьо жьо монте́ лескалье́"
+          }
+        },
+        {
+          "phraseId": "fr:21:32",
+          "say": {
+            "ru": "лё мируа́р э тонбе́ пандан кё жё мё разэ́",
+            "uk": "льо міруа́р е тонбе́ пандан кьо жьо мьо разе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Будильник сработал, пока я одевалась»",
+            "uk": "Виберіть, як сказати: «Будильник задзвонив, поки я одягалася»",
+            "en": "Choose how to say: “The alarm clock rang while I was getting dressed”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:21:33",
+          "options": [
+            "fr:21:33",
+            "fr:21:34",
+            "fr:21:35"
+          ],
+          "answerId": "fr:21:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Кошка вошла, пока мы проветривали комнату»",
+            "uk": "Виберіть, як сказати: «Кіт зайшов, поки ми провітрювали кімнату»",
+            "en": "Choose how to say: “The cat came in while we were airing the room”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:35",
+          "options": [
+            "fr:21:35",
+            "fr:21:40",
+            "fr:21:32"
+          ],
+          "answerId": "fr:21:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Зеркало упало, когда я брился»",
+            "uk": "Виберіть, як сказати: «Дзеркало впало, поки я голився»",
+            "en": "Choose how to say: “The mirror fell while I was shaving”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:32",
+          "options": [
+            "fr:21:32",
+            "fr:21:33",
+            "fr:21:34"
+          ],
+          "answerId": "fr:21:32"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Другие истории",
+        "en": "More stories"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я засыпал».\nJe m’endormais quand quelqu’un a sonné. — «Я засыпал, когда кто-то позвонил в звонок.»\nЧитается: жё мандормэ́ кан келькён а сонэ́.\nСлово m’endormais значит «засыпал». Слово quelqu’un значит «кто-то».\nJe cherchais un banc quand j’ai aperçu Léa. — «Я искал скамейку, когда увидел Леа.»\nСлова j’ai aperçu значат «я увидел».\nСлово courant значит «электричество». Слова a sauté значат «отключилось».\nСлово lâché значит «уронил».",
+        "en": "Look at how to say “I was falling asleep”.\nJe m’endormais quand quelqu’un a sonné. — “I was falling asleep when someone rang.”\nThe word m’endormais means “was falling asleep”. The word quelqu’un means “someone”.\nJe cherchais un banc quand j’ai aperçu Léa. — “I sought a bench, saw Léa.”\nThe words j’ai aperçu mean “I spotted”.\nThe word courant means “electricity”. The words a sauté mean “cut out”.\nThe word lâché means “dropped”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:21:50",
+          "say": {
+            "ru": "жё мандормэ́ кан келькён а сонэ́",
+            "uk": "жьо мандорме́ кан келькьон а соне́"
+          }
+        },
+        {
+          "phraseId": "fr:21:41",
+          "say": {
+            "ru": "жё шэршэ́ ан бан кан же апэрсю́ леа́",
+            "uk": "жьо шерше́ ан бан кан же аперсю́ леа́"
+          }
+        },
+        {
+          "phraseId": "fr:21:45",
+          "say": {
+            "ru": "ла радио́ пасэ́ юн шансо́н кан лё куран а соте́",
+            "uk": "ла радіо́ пасе́ юн шансо́н кан льо куран а соте́"
+          }
+        },
+        {
+          "phraseId": "fr:21:46",
+          "say": {
+            "ru": "иль монтэ́ лескалье́ кан иль а лаше́ са вализ",
+            "uk": "іль монте́ лескалье́ кан іль а лаше́ са валіз"
+          }
+        },
+        {
+          "phraseId": "fr:21:48",
+          "say": {
+            "ru": "лё пан этэ́ анкор шо кан жё ле купе́",
+            "uk": "льо пан ете́ анкор шо кан жьо ле купе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я засыпал, когда кто-то позвонил в звонок»",
+            "uk": "Виберіть, як сказати: «Я засинав, коли хтось подзвонив у дзвінок»",
+            "en": "Choose how to say: “I was falling asleep when someone rang”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:21:50",
+          "options": [
+            "fr:21:50",
+            "fr:21:41",
+            "fr:21:45"
+          ],
+          "answerId": "fr:21:50"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «По радио играла песня, когда отключилось электричество»",
+            "uk": "Виберіть, як сказати: «Радіо грало пісню, коли зникло світло»",
+            "en": "Choose how to say: “The radio was playing a song when the power went out”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:45",
+          "options": [
+            "fr:21:45",
+            "fr:21:46",
+            "fr:21:48"
+          ],
+          "answerId": "fr:21:45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хлеб был еще теплым, когда я его разрезал»",
+            "uk": "Виберіть, як сказати: «Хліб був ще теплим, коли я його різав»",
+            "en": "Choose how to say: “The bread was still warm when I cut it”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:21:48",
+          "options": [
+            "fr:21:48",
+            "fr:21:50",
+            "fr:21:41"
+          ],
+          "answerId": "fr:21:48"
+        }
+      ]
+    }
+  ]
+}

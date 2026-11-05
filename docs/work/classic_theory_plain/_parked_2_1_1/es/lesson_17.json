@@ -1,0 +1,492 @@
+{
+  "lang": "es",
+  "lesson": 17,
+  "title": {
+    "ru": "Мне нравится",
+    "en": "I like"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Мне нравится",
+        "en": "I like"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нравится кофе».\nMe gusta el café. — «Мне нравится кофе.»\nЧитается: мэ гу́ста эль кафэ́.\nСлова me gusta значат «мне нравится».\nСлово me значит «мне». Слово gusta значит «нравится».\nMe gusta la música. — «Мне нравится музыка.»\nСлово música значит «музыка».\nMe gusta este libro. — «Мне нравится эта книга.»\nСлово este значит «этот, эта».",
+        "en": "Look at how to say “I like coffee”.\nMe gusta el café. — “I like coffee.”\nThe words me gusta mean “I like”.\nThe word me means “to me”. The word gusta means “is pleasing”.\nMe gusta la música. — “I like music.”\nThe word música means “music”.\nMe gusta este libro. — “I like this book.”\nThe word este means “this”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:17:01",
+          "say": {
+            "ru": "мэ гу́ста эль кафэ́",
+            "uk": "ме гу́ста ель кафе́"
+          }
+        },
+        {
+          "phraseId": "es:17:02",
+          "say": {
+            "ru": "мэ гу́ста эль пан",
+            "uk": "ме гу́ста ель пан"
+          }
+        },
+        {
+          "phraseId": "es:17:03",
+          "say": {
+            "ru": "мэ гу́ста ла му́сика",
+            "uk": "ме гу́ста ла му́сіка"
+          }
+        },
+        {
+          "phraseId": "es:17:04",
+          "say": {
+            "ru": "мэ гу́ста э́стэ ли́бро",
+            "uk": "ме гу́ста е́сте лі́бро"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравится кофе»",
+            "uk": "Виберіть, як сказати: «Мені подобається кава»",
+            "en": "Choose how to say: “I like coffee”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:17:01",
+          "options": [
+            "es:17:01",
+            "es:17:02",
+            "es:17:03"
+          ],
+          "answerId": "es:17:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравится хлеб»",
+            "uk": "Виберіть, як сказати: «Мені подобається хліб»",
+            "en": "Choose how to say: “I like bread”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:02",
+          "options": [
+            "es:17:02",
+            "es:17:01",
+            "es:17:04"
+          ],
+          "answerId": "es:17:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравится эта книга»",
+            "uk": "Виберіть, як сказати: «Мені подобається ця книжка»",
+            "en": "Choose how to say: “I like this book”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:04",
+          "options": [
+            "es:17:04",
+            "es:17:03",
+            "es:17:01"
+          ],
+          "answerId": "es:17:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мне нравятся",
+        "en": "I like (several things)"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нравятся эти книги».\nMe gustan estos libros. — «Мне нравятся эти книги.»\nЧитается: мэ гу́стан э́стос ли́брос.\nНравится одна вещь — gusta. Нравятся несколько — gustan.\nВ конце слова добавляется звук «н».\nСлово este тоже меняется: estos libros — «эти книги».\nMe gustan las fotos. — «Мне нравятся фотографии.»\nMe gustan las ventanas grandes. — «Мне нравятся большие окна.»\nMe gustan estas canciones. — «Мне нравятся эти песни.»\nСлово canciones значит «песни». Слово estas — «эти».",
+        "en": "Look at how to say “I like these books”.\nMe gustan estos libros. — “I like these books.”\nOne thing is liked — gusta. Several things are liked — gustan.\nThe sound “n” is added at the end of the word.\nThe word este changes too: estos libros — “these books”.\nMe gustan las fotos. — “I like the photos.”\nMe gustan las ventanas grandes. — “I like big windows.”\nMe gustan estas canciones. — “I like these songs.”\nThe word canciones means “songs”. The word estas means “these”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:17:06",
+          "say": {
+            "ru": "мэ гу́стан э́стос ли́брос",
+            "uk": "ме гу́стан е́стос лі́брос"
+          }
+        },
+        {
+          "phraseId": "es:17:07",
+          "say": {
+            "ru": "мэ гу́стан лас фо́тос",
+            "uk": "ме гу́стан лас фо́тос"
+          }
+        },
+        {
+          "phraseId": "es:17:08",
+          "say": {
+            "ru": "мэ гу́стан тус идэ́ас",
+            "uk": "ме гу́стан тус іде́ас"
+          }
+        },
+        {
+          "phraseId": "es:17:09",
+          "say": {
+            "ru": "мэ гу́стан лас бэнта́нас гра́ндэс",
+            "uk": "ме гу́стан лас бента́нас гра́ндес"
+          }
+        },
+        {
+          "phraseId": "es:17:10",
+          "say": {
+            "ru": "мэ гу́стан э́стас кансьо́нэс",
+            "uk": "ме гу́стан е́стас кансьо́нес"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравятся эти книги»",
+            "uk": "Виберіть, як сказати: «Мені подобаються ці книжки»",
+            "en": "Choose how to say: “I like these books”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:17:06",
+          "options": [
+            "es:17:06",
+            "es:17:07",
+            "es:17:09"
+          ],
+          "answerId": "es:17:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравятся большие окна»",
+            "uk": "Виберіть, як сказати: «Мені подобаються великі вікна»",
+            "en": "Choose how to say: “I like big windows”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:09",
+          "options": [
+            "es:17:09",
+            "es:17:07",
+            "es:17:10"
+          ],
+          "answerId": "es:17:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравятся эти песни»",
+            "uk": "Виберіть, як сказати: «Мені подобаються ці пісні»",
+            "en": "Choose how to say: “I like these songs”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:10",
+          "options": [
+            "es:17:10",
+            "es:17:06",
+            "es:17:08"
+          ],
+          "answerId": "es:17:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Нравится: «тебе», нам, вам",
+        "en": "Do you like, we like"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Тебе нравится отель?»\n¿Te gusta el hotel? — «Тебе нравится отель?»\nЧитается: тэ гу́ста эль оте́ль.\nСлово te значит «тебе». Так говорят одному близкому человеку.\nСлово playa значит «пляж».\n¿Te gusta la playa? — «Тебе нравится пляж?»\n¿Te gustan mis fotos? — «Тебе нравятся мои фотографии?»\nNos gusta esta mesa. — «Нам нравится этот стол.»\nСлово nos значит «нам».\n¿Os gusta esta canción? — «Вам нравится эта песня?»\nСлово os значит «вам». Так говорят нескольким людям.",
+        "en": "Look at how to ask “Do you like the hotel?”\n¿Te gusta el hotel? — “Do you like the hotel?”\nThe word te means “to you”, said to one close person.\nThe word playa means “beach”.\n¿Te gusta la playa? — “Do you like the beach?”\n¿Te gustan mis fotos? — “Do you like my photos?”\nNos gusta esta mesa. — “We like this table.”\nThe word nos means “to us”.\n¿Os gusta esta canción? — “Do you like this song?”\nThe word os means “to you”, said to several people."
+      },
+      "examples": [
+        {
+          "phraseId": "es:17:11",
+          "say": {
+            "ru": "тэ гу́ста эль оте́ль",
+            "uk": "те гу́ста ель оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:17:13",
+          "say": {
+            "ru": "тэ гу́ста ла пла́йа",
+            "uk": "те гу́ста ла пла́йа"
+          }
+        },
+        {
+          "phraseId": "es:17:12",
+          "say": {
+            "ru": "тэ гу́стан мис фо́тос",
+            "uk": "те гу́стан міс фо́тос"
+          }
+        },
+        {
+          "phraseId": "es:17:46",
+          "say": {
+            "ru": "нос гу́ста э́ста мэ́са",
+            "uk": "нос гу́ста е́ста ме́са"
+          }
+        },
+        {
+          "phraseId": "es:17:26",
+          "say": {
+            "ru": "нос гу́стан лас фо́тос дэ А́на",
+            "uk": "нос гу́стан лас фо́тос де А́на"
+          }
+        },
+        {
+          "phraseId": "es:17:29",
+          "say": {
+            "ru": "ос гу́ста э́ста кансьо́н",
+            "uk": "ос гу́ста е́ста кансьо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Тебе нравится отель?»",
+            "uk": "Виберіть, як сказати: «Тобі подобається готель?»",
+            "en": "Choose how to say: “Do you like the hotel?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:17:11",
+          "options": [
+            "es:17:11",
+            "es:17:13",
+            "es:17:12"
+          ],
+          "answerId": "es:17:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нравится этот стол»",
+            "uk": "Виберіть, як сказати: «Нам подобається цей стіл»",
+            "en": "Choose how to say: “We like this table”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:46",
+          "options": [
+            "es:17:46",
+            "es:17:26",
+            "es:17:29"
+          ],
+          "answerId": "es:17:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вам нравится эта песня?»",
+            "uk": "Виберіть, як сказати: «Вам подобається ця пісня?»",
+            "en": "Choose how to say: “Do you like this song?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:29",
+          "options": [
+            "es:17:29",
+            "es:17:11",
+            "es:17:46"
+          ],
+          "answerId": "es:17:29"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Ане нравится",
+        "en": "Ana likes"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ане нравится этот отель».\nA Ana le gusta este hotel. — «Ане нравится этот отель.»\nЧитается: а А́на лэ гу́ста э́стэ оте́ль.\nСлово a здесь по-русски не говорят. Слово le значит «ей, ему».\nA Luis le gusta esta película. — «Луису нравится этот фильм.»\nСлово película значит «фильм».\nA mi hermana le gustan las verduras. — «Моей сестре нравятся овощи.»\nA mis hermanos les gusta este hotel. — «Моим братьям нравится этот отель.»\nСлово les значит «им».\nLes gustan las fotos de Ana. — «Им нравятся фотографии Аны.»",
+        "en": "Look at how to say “Ana likes this hotel”.\nA Ana le gusta este hotel. — “Ana likes this hotel.”\nThe word a has no Russian match here. The word le means “to her, to him”.\nA Luis le gusta esta película. — “Luis likes this film.”\nThe word película means “film”.\nA mi hermana le gustan las verduras. — “My sister likes vegetables.”\nA mis hermanos les gusta este hotel. — “My brothers like this hotel.”\nThe word les means “to them”.\nLes gustan las fotos de Ana. — “They like Ana’s photos.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:17:21",
+          "say": {
+            "ru": "а А́на лэ гу́ста э́стэ оте́ль",
+            "uk": "а А́на ле гу́ста е́сте оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:17:22",
+          "say": {
+            "ru": "а Луи́с лэ гу́ста э́ста пэли́кула",
+            "uk": "а Луі́с ле гу́ста е́ста пелі́кула"
+          }
+        },
+        {
+          "phraseId": "es:17:24",
+          "say": {
+            "ru": "а ми эрма́на лэ гу́стан лас бэрду́рас",
+            "uk": "а мі ерма́на ле гу́стан лас берду́рас"
+          }
+        },
+        {
+          "phraseId": "es:17:25",
+          "say": {
+            "ru": "а мис эрма́нос лэс гу́ста э́стэ оте́ль",
+            "uk": "а міс ерма́нос лес гу́ста е́сте оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:17:27",
+          "say": {
+            "ru": "лэс гу́стан лас фо́тос дэ А́на",
+            "uk": "лес гу́стан лас фо́тос де А́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ане нравится этот отель»",
+            "uk": "Виберіть, як сказати: «Ані подобається цей готель»",
+            "en": "Choose how to say: “Ana likes this hotel”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:17:21",
+          "options": [
+            "es:17:21",
+            "es:17:22",
+            "es:17:24"
+          ],
+          "answerId": "es:17:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луису нравится этот фильм»",
+            "uk": "Виберіть, як сказати: «Луїсу подобається цей фільм»",
+            "en": "Choose how to say: “Luis likes this film”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:22",
+          "options": [
+            "es:17:22",
+            "es:17:21",
+            "es:17:25"
+          ],
+          "answerId": "es:17:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моим братьям нравится этот отель»",
+            "uk": "Виберіть, як сказати: «Моїм братам подобається цей готель»",
+            "en": "Choose how to say: “My brothers like this hotel”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:25",
+          "options": [
+            "es:17:25",
+            "es:17:21",
+            "es:17:27"
+          ],
+          "answerId": "es:17:25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Нравится делать, не нравится",
+        "en": "Like doing, do not like"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нравится читать дома».\nMe gusta leer en casa. — «Мне нравится читать дома.»\nЧитается: мэ гу́ста лээ́р эн ка́са.\nПосле gusta слово leer не меняется.\nMe gusta pasear por la playa. — «Мне нравится гулять по пляжу.»\nСлово pasear значит «гулять».\nNos gusta ir en bicicleta. — «Нам нравится ездить на велосипеде.»\nСлово ir значит «идти, ехать».\nNo me gustan estos zapatos. — «Мне не нравятся эти туфли.»\nСлово zapatos значит «туфли». Слово no ставят перед me.\nA Ana no le gustan estos zapatos. — «Ане не нравятся эти туфли.»\nNo me gusta este mapa. — «Мне не нравится эта карта.»",
+        "en": "Look at how to say “I like reading at home”.\nMe gusta leer en casa. — “I like reading at home.”\nAfter gusta, the word leer does not change.\nMe gusta pasear por la playa. — “I like walking on the beach.”\nThe word pasear means “to walk, to stroll”.\nNos gusta ir en bicicleta. — “We like riding a bike.”\nThe word ir means “to go”.\nNo me gustan estos zapatos. — “I do not like these shoes.”\nThe word zapatos means “shoes”. The word no goes before me.\nA Ana no le gustan estos zapatos. — “Ana does not like these shoes.”\nNo me gusta este mapa. — “I do not like this map.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:17:31",
+          "say": {
+            "ru": "мэ гу́ста лээ́р эн ка́са",
+            "uk": "ме гу́ста лее́р ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:17:32",
+          "say": {
+            "ru": "мэ гу́ста пасэа́р пор ла пла́йа",
+            "uk": "ме гу́ста пасеа́р пор ла пла́йа"
+          }
+        },
+        {
+          "phraseId": "es:17:48",
+          "say": {
+            "ru": "нос гу́ста ир эн бисиклэ́та",
+            "uk": "нос гу́ста ір ен бісікле́та"
+          }
+        },
+        {
+          "phraseId": "es:17:16",
+          "say": {
+            "ru": "но мэ гу́ста э́стэ ма́па",
+            "uk": "но ме гу́ста е́сте ма́па"
+          }
+        },
+        {
+          "phraseId": "es:17:17",
+          "say": {
+            "ru": "но мэ гу́стан э́стос сапа́тос",
+            "uk": "но ме гу́стан е́стос сапа́тос"
+          }
+        },
+        {
+          "phraseId": "es:17:41",
+          "say": {
+            "ru": "а А́на но лэ гу́стан э́стос сапа́тос",
+            "uk": "а А́на но ле гу́стан е́стос сапа́тос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нравится читать дома»",
+            "uk": "Виберіть, як сказати: «Мені подобається читати вдома»",
+            "en": "Choose how to say: “I like reading at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:17:31",
+          "options": [
+            "es:17:31",
+            "es:17:32",
+            "es:17:48"
+          ],
+          "answerId": "es:17:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нравится ездить на велосипеде»",
+            "uk": "Виберіть, як сказати: «Нам подобається їздити на велосипеді»",
+            "en": "Choose how to say: “We like riding a bike”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:48",
+          "options": [
+            "es:17:48",
+            "es:17:31",
+            "es:17:32"
+          ],
+          "answerId": "es:17:48"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне не нравятся эти туфли»",
+            "uk": "Виберіть, як сказати: «Мені не подобаються ці туфлі»",
+            "en": "Choose how to say: “I do not like these shoes”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:17:17",
+          "options": [
+            "es:17:17",
+            "es:17:16",
+            "es:17:41"
+          ],
+          "answerId": "es:17:17"
+        }
+      ]
+    }
+  ]
+}

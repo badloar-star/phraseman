@@ -1,0 +1,499 @@
+{
+  "lang": "es",
+  "lesson": 23,
+  "title": {
+    "ru": "Раньше я жил, работал, ездил",
+    "en": "Before, I used to live, work, go"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Раньше я жил",
+        "en": "I used to live"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я раньше жил здесь».\nVivía aquí antes. — «Я раньше жил здесь.»\nЧитается: биби́а аки́ анте́с.\nСлово vivía значит «я жил». Слово antes — «раньше».\nТак рассказывают о том, что было долго или повторялось.\nСлово меняется, смотря о ком речь: «я» — vivía, «ты» — vivías.\nAna comía en casa antes. — «Ана раньше ела дома.»\nО ней говорят comía. О нас — comíamos.\nVivía en un barrio tranquilo. — «Я жил в тихом районе.»\nСлово barrio значит «район города». Слово tranquilo — «тихий, спокойный».",
+        "en": "Look at how to say “I used to live here”.\nVivía aquí antes. — “I used to live here.”\nThe word vivía means “I lived”. The word antes means “before”.\nPeople say it about something that lasted a long time or happened again and again.\nThe word changes depending on who it is about: “I” — vivía, “you” — vivías.\nAna comía en casa antes. — “Ana used to eat at home.”\nFor her, people say comía. For us — comíamos.\nVivía en un barrio tranquilo. — “I lived in a quiet neighbourhood.”\nThe word barrio means “neighbourhood”. The word tranquilo means “quiet, calm”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:23:01",
+          "say": {
+            "ru": "биби́а аки́ анте́с",
+            "uk": "бібі́а акі́ анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:02",
+          "say": {
+            "ru": "биби́ас аки́ анте́с",
+            "uk": "бібі́ас акі́ анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:05",
+          "say": {
+            "ru": "А́на коми́а эн ка́са анте́с",
+            "uk": "А́на комі́а ен ка́са анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:06",
+          "say": {
+            "ru": "коми́амос эн ка́са анте́с",
+            "uk": "комі́амос ен ка́са анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:07",
+          "say": {
+            "ru": "биби́а эн ун ба́рьо транки́ло",
+            "uk": "бібі́а ен ун ба́рьо транкі́ло"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я раньше жил здесь»",
+            "uk": "Виберіть, як сказати: «Я раніше жив тут»",
+            "en": "Choose how to say: “I used to live here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:23:01",
+          "options": [
+            "es:23:01",
+            "es:23:02",
+            "es:23:06"
+          ],
+          "answerId": "es:23:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана раньше ела дома»",
+            "uk": "Виберіть, як сказати: «Ана раніше їла вдома»",
+            "en": "Choose how to say: “Ana used to eat at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:05",
+          "options": [
+            "es:23:05",
+            "es:23:01",
+            "es:23:06"
+          ],
+          "answerId": "es:23:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы раньше ели дома»",
+            "uk": "Виберіть, як сказати: «Ми раніше їли вдома»",
+            "en": "Choose how to say: “We used to eat at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:06",
+          "options": [
+            "es:23:06",
+            "es:23:05",
+            "es:23:01"
+          ],
+          "answerId": "es:23:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Раньше я работал",
+        "en": "I used to work"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Луис раньше работал дома».\nLuis trabajaba en casa antes. — «Луис раньше работал дома.»\nЧитается: Луи́с трабаха́ба эн ка́са анте́с.\nСлово trabajaba значит «работал». О нас — trabajábamos.\nTrabajábamos en el hotel antes. — «Мы раньше работали в отеле.»\nEsperabas fuera cada día. — «Ты каждый день ждал снаружи.»\nСлово esperabas значит «ты ждал». Слово fuera — «снаружи».\nСлово cada значит «каждый». Слово día — «день».\nVivíamos cerca de la tienda. — «Мы жили рядом с магазином.»",
+        "en": "Look at how to say “Luis used to work at home”.\nLuis trabajaba en casa antes. — “Luis used to work at home.”\nThe word trabajaba means “worked”. For us — trabajábamos.\nTrabajábamos en el hotel antes. — “We used to work at the hotel.”\nEsperabas fuera cada día. — “You waited outside every day.”\nThe word esperabas means “you waited”. The word fuera means “outside”.\nThe word cada means “every”. The word día means “day”.\nVivíamos cerca de la tienda. — “We lived near the shop.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:23:09",
+          "say": {
+            "ru": "Луи́с трабаха́ба эн ка́са анте́с",
+            "uk": "Луі́с трабаха́ба ен ка́са анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:10",
+          "say": {
+            "ru": "трабаха́бамос эн эль отэ́ль анте́с",
+            "uk": "трабаха́бамос ен ель оте́ль анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:17",
+          "say": {
+            "ru": "А́на трабаха́ба эн ка́са ка́да ди́а",
+            "uk": "А́на трабаха́ба ен ка́са ка́да ді́а"
+          }
+        },
+        {
+          "phraseId": "es:23:20",
+          "say": {
+            "ru": "эспера́бас фуэ́ра ка́да ди́а",
+            "uk": "еспера́бас фуе́ра ка́да ді́а"
+          }
+        },
+        {
+          "phraseId": "es:23:21",
+          "say": {
+            "ru": "биби́амос сэ́рка дэ ла тьэ́нда",
+            "uk": "бібі́амос се́рка де ла тье́нда"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис раньше работал дома»",
+            "uk": "Виберіть, як сказати: «Луїс раніше працював вдома»",
+            "en": "Choose how to say: “Luis used to work at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:23:09",
+          "options": [
+            "es:23:09",
+            "es:23:10",
+            "es:23:17"
+          ],
+          "answerId": "es:23:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы раньше работали в отеле»",
+            "uk": "Виберіть, як сказати: «Ми раніше працювали у готелі»",
+            "en": "Choose how to say: “We used to work at the hotel”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:10",
+          "options": [
+            "es:23:10",
+            "es:23:09",
+            "es:23:21"
+          ],
+          "answerId": "es:23:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты каждый день ждал снаружи»",
+            "uk": "Виберіть, як сказати: «Ти щодня чекав надворі»",
+            "en": "Choose how to say: “You waited outside every day”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:20",
+          "options": [
+            "es:23:20",
+            "es:23:17",
+            "es:23:21"
+          ],
+          "answerId": "es:23:20"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Раньше я пил, читал, писал",
+        "en": "I used to drink, read, write"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я каждый день пил воду».\nBebía agua cada día. — «Я каждый день пил воду.»\nЧитается: бэби́а а́гуа ка́да ди́а.\nСлово bebía значит «я пил». Слово agua — «вода».\nLeías el mensaje cada día. — «Ты каждый день читал сообщение.»\nСлово leías значит «ты читал».\nEscribía una carta cada día. — «Я каждый день писал письмо.»\nСлово escribía значит «я писал». О нас — escribíamos.\nMis hermanas leían el libro a menudo. — «Мои сёстры часто читали книгу.»\nСлова a menudo значат «часто». Слово leían — «они читали».",
+        "en": "Look at how to say “I drank water every day”.\nBebía agua cada día. — “I drank water every day.”\nThe word bebía means “I drank”. The word agua means “water”.\nLeías el mensaje cada día. — “You read the message every day.”\nThe word leías means “you read”.\nEscribía una carta cada día. — “I wrote a letter every day.”\nThe word escribía means “I wrote”. For us — escribíamos.\nMis hermanas leían el libro a menudo. — “My sisters often read the book.”\nThe words a menudo mean “often”. The word leían means “they read”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:23:11",
+          "say": {
+            "ru": "бэби́а а́гуа ка́да ди́а",
+            "uk": "бебі́а а́гуа ка́да ді́а"
+          }
+        },
+        {
+          "phraseId": "es:23:12",
+          "say": {
+            "ru": "А́на бэби́а кафэ́ ка́да ди́а",
+            "uk": "А́на бебі́а кафе́ ка́да ді́а"
+          }
+        },
+        {
+          "phraseId": "es:23:14",
+          "say": {
+            "ru": "лэи́ас эль мэнса́хэ ка́да ди́а",
+            "uk": "леі́ас ель менса́хе ка́да ді́а"
+          }
+        },
+        {
+          "phraseId": "es:23:15",
+          "say": {
+            "ru": "эскриби́а у́на ка́рта ка́да ди́а",
+            "uk": "ескрібі́а у́на ка́рта ка́да ді́а"
+          }
+        },
+        {
+          "phraseId": "es:23:16",
+          "say": {
+            "ru": "эскриби́амос ун мэнса́хэ ка́да ди́а",
+            "uk": "ескрібі́амос ун менса́хе ка́да ді́а"
+          }
+        },
+        {
+          "phraseId": "es:23:25",
+          "say": {
+            "ru": "мис эрма́нас лэи́ан эль ли́бро а мэну́до",
+            "uk": "міс ерма́нас леі́ан ель лі́бро а мену́до"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я каждый день пил воду»",
+            "uk": "Виберіть, як сказати: «Я щодня пив воду»",
+            "en": "Choose how to say: “I drank water every day”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:23:11",
+          "options": [
+            "es:23:11",
+            "es:23:12",
+            "es:23:14"
+          ],
+          "answerId": "es:23:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я каждый день писал письмо»",
+            "uk": "Виберіть, як сказати: «Я щодня писав листа»",
+            "en": "Choose how to say: “I wrote a letter every day”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:15",
+          "options": [
+            "es:23:15",
+            "es:23:16",
+            "es:23:14"
+          ],
+          "answerId": "es:23:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты каждый день читал сообщение»",
+            "uk": "Виберіть, як сказати: «Ти щодня читав повідомлення»",
+            "en": "Choose how to say: “You read the message every day”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:14",
+          "options": [
+            "es:23:14",
+            "es:23:15",
+            "es:23:25"
+          ],
+          "answerId": "es:23:14"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Раньше я ездил",
+        "en": "I used to go"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Моя мама ездила на рынок на автобусе».\nMi madre iba al mercado en autobús.\nЧитается: ми ма́дрэ и́ба аль мэрка́до эн аутобу́с.\nСлово iba значит «ездила, ходила». Слово autobús — «автобус».\nÍbamos al colegio en bicicleta. — «Мы ездили в школу на велосипедах.»\nСлово íbamos значит «мы ездили». Слово colegio — «школа».\nDe niño iba a ese colegio. — «В детстве я ходил в ту школу.»\nСлова de niño значат «в детстве». Слово ese — «тот».\nMis vecinos paseaban por el parque. — «Мои соседи гуляли по парку.»\nСлово vecinos значит «соседи». Слово parque — «парк».",
+        "en": "Look at how to say “My mother used to go to the market by bus”.\nMi madre iba al mercado en autobús.\nThe word iba means “went, travelled”. The word autobús means “bus”.\nÍbamos al colegio en bicicleta. — “We used to go to school by bike.”\nThe word íbamos means “we went”. The word colegio means “school”.\nDe niño iba a ese colegio. — “As a child, I went to that school.”\nThe words de niño mean “as a child”. The word ese means “that”.\nMis vecinos paseaban por el parque. — “My neighbours used to walk in the park.”\nThe word vecinos means “neighbours”. The word parque means “park”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:23:13",
+          "say": {
+            "ru": "ми ма́дрэ и́ба аль мэрка́до эн аутобу́с",
+            "uk": "мі ма́дре і́ба аль мерка́до ен аутобу́с"
+          }
+        },
+        {
+          "phraseId": "es:23:19",
+          "say": {
+            "ru": "дэ ни́ньо и́ба а э́сэ коле́хио",
+            "uk": "де ні́ньо і́ба а е́се коле́хіо"
+          }
+        },
+        {
+          "phraseId": "es:23:38",
+          "say": {
+            "ru": "и́бамос аль коле́хио эн бисикле́та",
+            "uk": "і́бамос аль коле́хіо ен бісікле́та"
+          }
+        },
+        {
+          "phraseId": "es:23:27",
+          "say": {
+            "ru": "эль аутобу́с паса́ба пор ми ба́рьо",
+            "uk": "ель аутобу́с паса́ба пор мі ба́рьо"
+          }
+        },
+        {
+          "phraseId": "es:23:24",
+          "say": {
+            "ru": "мис бэси́нос пасэа́бан пор эль па́ркэ",
+            "uk": "міс бесі́нос пасеа́бан пор ель па́рке"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя мама ездила на рынок на автобусе»",
+            "uk": "Виберіть, як сказати: «Моя мама їздила на ринок автобусом»",
+            "en": "Choose how to say: “My mother used to go to the market by bus”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:23:13",
+          "options": [
+            "es:23:13",
+            "es:23:38",
+            "es:23:19"
+          ],
+          "answerId": "es:23:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ездили в школу на велосипедах»",
+            "uk": "Виберіть, як сказати: «Ми їздили до школи велосипедами»",
+            "en": "Choose how to say: “We used to go to school by bike”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:38",
+          "options": [
+            "es:23:38",
+            "es:23:19",
+            "es:23:13"
+          ],
+          "answerId": "es:23:38"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В детстве я ходил в ту школу»",
+            "uk": "Виберіть, як сказати: «У дитинстві я ходив до тієї школи»",
+            "en": "Choose how to say: “As a child, I went to that school”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:19",
+          "options": [
+            "es:23:19",
+            "es:23:13",
+            "es:23:24"
+          ],
+          "answerId": "es:23:19"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не и вопрос",
+        "en": "Not, and a question"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не».\nNo trabajaba en casa antes. — «Я раньше не работал дома.»\nЧитается: но трабаха́ба эн ка́са анте́с.\nСлово no ставят перед словом, как русское «не».\nА теперь вопрос.\n¿Vivías aquí antes? — «Ты раньше жил здесь?»\nСлова те же, а голос в конце идёт вверх.\n¿Leíais juntos en clase? — «Вы обычно читали вместе на занятии?»\nСлово juntos значит «вместе». Слово clase — «занятие».\n¿Tus vecinos también trabajaban aquí? — «Твои соседи тоже раньше работали здесь?»\nСлово también значит «тоже».",
+        "en": "Look at how to say “not”.\nNo trabajaba en casa antes. — “I did not use to work at home.”\nThe word no goes before the other word, like “not”.\nAnd now a question.\n¿Vivías aquí antes? — “Did you live here before?”\nThe words are the same, but the voice goes up at the end.\n¿Leíais juntos en clase? — “Did you usually read together in class?”\nThe word juntos means “together”. The word clase means “class”.\n¿Tus vecinos también trabajaban aquí? — “Did your neighbours also work here?”\nThe word también means “also”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:23:31",
+          "say": {
+            "ru": "но трабаха́ба эн ка́са анте́с",
+            "uk": "но трабаха́ба ен ка́са анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:32",
+          "say": {
+            "ru": "но коми́ас эн ла коси́на анте́с",
+            "uk": "но комі́ас ен ла косі́на анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:41",
+          "say": {
+            "ru": "биби́ас аки́ анте́с",
+            "uk": "бібі́ас акі́ анте́с"
+          }
+        },
+        {
+          "phraseId": "es:23:50",
+          "say": {
+            "ru": "лэи́аис ху́нтос эн кла́сэ",
+            "uk": "леі́аіс ху́нтос ен кла́се"
+          }
+        },
+        {
+          "phraseId": "es:23:48",
+          "say": {
+            "ru": "тус бэси́нос тамбье́н трабаха́бан аки́",
+            "uk": "тус бесі́нос тамбье́н трабаха́бан акі́"
+          }
+        },
+        {
+          "phraseId": "es:23:34",
+          "say": {
+            "ru": "дэ ни́ньо компра́ба фру́та эн э́сэ мэрка́до",
+            "uk": "де ні́ньо компра́ба фру́та ен е́се мерка́до"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я раньше не работал дома»",
+            "uk": "Виберіть, як сказати: «Я раніше не працював вдома»",
+            "en": "Choose how to say: “I did not use to work at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:23:31",
+          "options": [
+            "es:23:31",
+            "es:23:41",
+            "es:23:32"
+          ],
+          "answerId": "es:23:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты раньше жил здесь?»",
+            "uk": "Виберіть, як сказати: «Ти раніше жив тут?»",
+            "en": "Choose how to say: “Did you live here before?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:41",
+          "options": [
+            "es:23:41",
+            "es:23:31",
+            "es:23:50"
+          ],
+          "answerId": "es:23:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы обычно читали вместе на занятии?»",
+            "uk": "Виберіть, як сказати: «Ви зазвичай читали разом на занятті?»",
+            "en": "Choose how to say: “Did you usually read together in class?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:23:50",
+          "options": [
+            "es:23:50",
+            "es:23:48",
+            "es:23:41"
+          ],
+          "answerId": "es:23:50"
+        }
+      ]
+    }
+  ]
+}

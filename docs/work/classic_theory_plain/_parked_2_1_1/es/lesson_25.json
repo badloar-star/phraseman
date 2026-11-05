@@ -1,0 +1,471 @@
+{
+  "lang": "es",
+  "lesson": 25,
+  "title": {
+    "ru": "Попросить: «Открой», «Купи», «Включи»",
+    "en": "Asking: “Open”, “Buy”, “Turn on”"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Открой, прочитай, напиши",
+        "en": "Open, read, write"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Открой дверь».\nAbre la puerta. — «Открой дверь.»\nЧитается: а́брэ ла пуэ́рта.\nСлово abre значит «открой». Так просят одного человека на «ты».\nLee el libro. — «Прочитай книгу.»\nEscribe una carta. — «Напиши письмо.»\nСлово lee значит «прочитай». Слово escribe — «напиши».",
+        "en": "Look at how to say “Open the door”.\nAbre la puerta. — “Open the door.”\nThe word abre means “open”.\nPeople say it to one person they call “you” in a friendly way.\nLee el libro. — “Read the book.”\nEscribe una carta. — “Write a letter.”\nThe word lee means “read”. The word escribe means “write”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:25:01",
+          "say": {
+            "ru": "а́брэ ла пуэ́рта",
+            "uk": "а́бре ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:25:02",
+          "say": {
+            "ru": "а́брэ ла бэнта́на",
+            "uk": "а́бре ла бента́на"
+          }
+        },
+        {
+          "phraseId": "es:25:03",
+          "say": {
+            "ru": "лэ́э эль ли́бро",
+            "uk": "ле́е ель лі́бро"
+          }
+        },
+        {
+          "phraseId": "es:25:05",
+          "say": {
+            "ru": "эскри́бэ у́на ка́рта",
+            "uk": "ескрі́бе у́на ка́рта"
+          }
+        },
+        {
+          "phraseId": "es:25:06",
+          "say": {
+            "ru": "эскри́бэ ун мэнса́хэ",
+            "uk": "ескрі́бе ун менса́хе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Открой дверь»",
+            "uk": "Виберіть, як сказати: «Відчини двері»",
+            "en": "Choose how to say: “Open the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:25:01",
+          "options": [
+            "es:25:01",
+            "es:25:03",
+            "es:25:05"
+          ],
+          "answerId": "es:25:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Прочитай книгу»",
+            "uk": "Виберіть, як сказати: «Прочитай книжку»",
+            "en": "Choose how to say: “Read the book”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:03",
+          "options": [
+            "es:25:03",
+            "es:25:01",
+            "es:25:05"
+          ],
+          "answerId": "es:25:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Напиши письмо»",
+            "uk": "Виберіть, як сказати: «Напиши листа»",
+            "en": "Choose how to say: “Write a letter”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:05",
+          "options": [
+            "es:25:05",
+            "es:25:06",
+            "es:25:03"
+          ],
+          "answerId": "es:25:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Купи, позвони, закрой",
+        "en": "Buy, call, close"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Купи хлеб».\nCompra pan. — «Купи хлеб.»\nЧитается: ко́мпра пан.\nСлово compra значит «купи». Слово pan — «хлеб».\nLlama al hotel. — «Позвони в отель.»\nСлово llama значит «позвони». Слово prepara — «приготовь».\nCierra el grifo. — «Закрой кран.»\nСлово cierra значит «закрой». Слово grifo — «водопроводный кран».",
+        "en": "Look at how to say “Buy bread”.\nCompra pan. — “Buy bread.”\nThe word compra means “buy”. The word pan means “bread”.\nLlama al hotel. — “Call the hotel.”\nThe word llama means “call”. The word prepara means “prepare”.\nCierra el grifo. — “Close the tap.”\nThe word cierra means “close”. The word grifo means “tap”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:25:08",
+          "say": {
+            "ru": "ко́мпра пан",
+            "uk": "ко́мпра пан"
+          }
+        },
+        {
+          "phraseId": "es:25:09",
+          "say": {
+            "ru": "йа́ма аль отэ́ль",
+            "uk": "йа́ма аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:25:10",
+          "say": {
+            "ru": "сьэ́рра эль гри́фо",
+            "uk": "сье́рра ель грі́фо"
+          }
+        },
+        {
+          "phraseId": "es:25:19",
+          "say": {
+            "ru": "препа́ра ла сэ́на",
+            "uk": "препа́ра ла се́на"
+          }
+        },
+        {
+          "phraseId": "es:25:15",
+          "say": {
+            "ru": "ма́нда ла фо́то",
+            "uk": "ма́нда ла фо́то"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Купи хлеб»",
+            "uk": "Виберіть, як сказати: «Купи хліб»",
+            "en": "Choose how to say: “Buy bread”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:25:08",
+          "options": [
+            "es:25:08",
+            "es:25:09",
+            "es:25:10"
+          ],
+          "answerId": "es:25:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Позвони в отель»",
+            "uk": "Виберіть, як сказати: «Зателефонуй до готелю»",
+            "en": "Choose how to say: “Call the hotel”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:09",
+          "options": [
+            "es:25:09",
+            "es:25:08",
+            "es:25:15"
+          ],
+          "answerId": "es:25:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Закрой кран»",
+            "uk": "Виберіть, як сказати: «Закрий кран»",
+            "en": "Choose how to say: “Close the tap”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:10",
+          "options": [
+            "es:25:10",
+            "es:25:09",
+            "es:25:19"
+          ],
+          "answerId": "es:25:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Включи, выключи",
+        "en": "Turn on, turn off"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Выключи свет».\nApaga la luz. — «Выключи свет.»\nЧитается: апа́га ла лус.\nСлово apaga значит «выключи». Слово luz — «свет».\nEnciende el horno. — «Включи духовку.»\nСлово enciende значит «включи». Слово horno — «духовка».\nApaga el horno ahora. — «Теперь выключи духовку.»\nСлово ahora значит «сейчас, теперь».",
+        "en": "Look at how to say “Turn off the light”.\nApaga la luz. — “Turn off the light.”\nThe word apaga means “turn off”. The word luz means “light”.\nEnciende el horno. — “Turn on the oven.”\nThe word enciende means “turn on”. The word horno means “oven”.\nApaga el horno ahora. — “Now turn off the oven.”\nThe word ahora means “now”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:25:07",
+          "say": {
+            "ru": "апа́га ла лус",
+            "uk": "апа́га ла лус"
+          }
+        },
+        {
+          "phraseId": "es:25:14",
+          "say": {
+            "ru": "энсьэ́ндэ эль о́рно",
+            "uk": "енсье́нде ель о́рно"
+          }
+        },
+        {
+          "phraseId": "es:25:28",
+          "say": {
+            "ru": "апа́га эль о́рно ао́ра",
+            "uk": "апа́га ель о́рно ао́ра"
+          }
+        },
+        {
+          "phraseId": "es:25:32",
+          "say": {
+            "ru": "энсьэ́ндэ ла лус дэль ба́ньо",
+            "uk": "енсье́нде ла лус дель ба́ньо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Выключи свет»",
+            "uk": "Виберіть, як сказати: «Вимкни світло»",
+            "en": "Choose how to say: “Turn off the light”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:25:07",
+          "options": [
+            "es:25:07",
+            "es:25:14",
+            "es:25:28"
+          ],
+          "answerId": "es:25:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Включи духовку»",
+            "uk": "Виберіть, як сказати: «Увімкни духовку»",
+            "en": "Choose how to say: “Turn on the oven”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:14",
+          "options": [
+            "es:25:14",
+            "es:25:07",
+            "es:25:28"
+          ],
+          "answerId": "es:25:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Теперь выключи духовку»",
+            "uk": "Виберіть, як сказати: «Тепер вимкни духовку»",
+            "en": "Choose how to say: “Now turn off the oven”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:28",
+          "options": [
+            "es:25:28",
+            "es:25:14",
+            "es:25:07"
+          ],
+          "answerId": "es:25:28"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Сделай потише, немного",
+        "en": "Turn it down, a little"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Сделай потише».\nBaja el volumen. — «Сделай потише.»\nЧитается: ба́ха эль болу́мэн.\nСлово baja значит «убавь». Слово volumen — «громкость».\nBaja un poco el volumen. — «Убавь немного громкость.»\nСлова un poco значат «немного». Слово poco — «мало».\nPasa la sal. — «Передай соль.»\nСлово pasa значит «передай». Слово sal — «соль».",
+        "en": "Look at how to say “Turn it down”.\nBaja el volumen. — “Turn the volume down.”\nThe word baja means “lower”. The word volumen means “volume”.\nBaja un poco el volumen. — “Turn the volume down a little.”\nThe words un poco mean “a little”. The word poco means “little”.\nPasa la sal. — “Pass the salt.”\nThe word pasa means “pass”. The word sal means “salt”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:25:24",
+          "say": {
+            "ru": "ба́ха эль болу́мэн",
+            "uk": "ба́ха ель болу́мен"
+          }
+        },
+        {
+          "phraseId": "es:25:34",
+          "say": {
+            "ru": "ба́ха ун по́ко эль болу́мэн",
+            "uk": "ба́ха ун по́ко ель болу́мен"
+          }
+        },
+        {
+          "phraseId": "es:25:38",
+          "say": {
+            "ru": "а́брэ эль гри́фо ун по́ко",
+            "uk": "а́бре ель грі́фо ун по́ко"
+          }
+        },
+        {
+          "phraseId": "es:25:17",
+          "say": {
+            "ru": "па́са ла саль",
+            "uk": "па́са ла саль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сделай потише»",
+            "uk": "Виберіть, як сказати: «Зроби тихіше»",
+            "en": "Choose how to say: “Turn the volume down”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:25:24",
+          "options": [
+            "es:25:24",
+            "es:25:34",
+            "es:25:17"
+          ],
+          "answerId": "es:25:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Убавь немного громкость»",
+            "uk": "Виберіть, як сказати: «Зменш трохи гучність»",
+            "en": "Choose how to say: “Turn the volume down a little”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:34",
+          "options": [
+            "es:25:34",
+            "es:25:24",
+            "es:25:38"
+          ],
+          "answerId": "es:25:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Передай соль»",
+            "uk": "Виберіть, як сказати: «Передай сіль»",
+            "en": "Choose how to say: “Pass the salt”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:17",
+          "options": [
+            "es:25:17",
+            "es:25:24",
+            "es:25:38"
+          ],
+          "answerId": "es:25:17"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Завтра, позже, если",
+        "en": "Tomorrow, later, if"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Открой дверь завтра».\nAbre la puerta mañana. — «Открой дверь завтра.»\nЧитается: а́брэ ла пуэ́рта маньа́на.\nСлово mañana значит «завтра». Слова más tarde — «позже».\nManda el mapa más tarde. — «Отправь карту позже.»\nLleva una toalla a la playa. — «Возьми на пляж полотенце.»\nСлово toalla значит «полотенце». Слово playa — «пляж».\nLlama a la puerta si no suena el timbre.\nЭто «Постучи в дверь, если звонок не работает».\nЗдесь llama значит «постучи»: так говорят про дверь.\nСлово si значит «если».",
+        "en": "Look at how to say “Open the door tomorrow”.\nAbre la puerta mañana. — “Open the door tomorrow.”\nThe word mañana means “tomorrow”. The words más tarde mean “later”.\nManda el mapa más tarde. — “Send the map later.”\nLleva una toalla a la playa. — “Take a towel to the beach.”\nThe word toalla means “towel”. The word playa means “beach”.\nLlama a la puerta si no suena el timbre.\nIt means “Knock on the door if the doorbell does not work”.\nHere llama means “knock”: this is said about a door.\nThe word si means “if”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:25:41",
+          "say": {
+            "ru": "а́брэ ла пуэ́рта маньа́на",
+            "uk": "а́бре ла пуе́рта маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:25:36",
+          "say": {
+            "ru": "ма́нда эль ма́па мас та́рдэ",
+            "uk": "ма́нда ель ма́па мас та́рде"
+          }
+        },
+        {
+          "phraseId": "es:25:37",
+          "say": {
+            "ru": "йэ́ба у́на тоа́йа а ла пла́йа",
+            "uk": "йе́ба у́на тоа́йа а ла пла́йа"
+          }
+        },
+        {
+          "phraseId": "es:25:33",
+          "say": {
+            "ru": "йа́ма а ла пуэ́рта си но суэ́на эль ти́мбрэ",
+            "uk": "йа́ма а ла пуе́рта сі но суе́на ель ті́мбре"
+          }
+        },
+        {
+          "phraseId": "es:25:49",
+          "say": {
+            "ru": "йа́ма аль отэ́ль маньа́на",
+            "uk": "йа́ма аль оте́ль маньа́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Открой дверь завтра»",
+            "uk": "Виберіть, як сказати: «Відчини двері завтра»",
+            "en": "Choose how to say: “Open the door tomorrow”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:25:41",
+          "options": [
+            "es:25:41",
+            "es:25:36",
+            "es:25:49"
+          ],
+          "answerId": "es:25:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Отправь карту позже»",
+            "uk": "Виберіть, як сказати: «Надішли мапу пізніше»",
+            "en": "Choose how to say: “Send the map later”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:36",
+          "options": [
+            "es:25:36",
+            "es:25:41",
+            "es:25:37"
+          ],
+          "answerId": "es:25:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Возьми на пляж полотенце»",
+            "uk": "Виберіть, як сказати: «Візьми на пляж рушник»",
+            "en": "Choose how to say: “Take a towel to the beach”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:25:37",
+          "options": [
+            "es:25:37",
+            "es:25:36",
+            "es:25:49"
+          ],
+          "answerId": "es:25:37"
+        }
+      ]
+    }
+  ]
+}

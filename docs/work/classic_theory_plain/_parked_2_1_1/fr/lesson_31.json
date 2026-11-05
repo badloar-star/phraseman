@@ -1,0 +1,485 @@
+{
+  "lang": "fr",
+  "lesson": 31,
+  "title": {
+    "ru": "Уже было раньше: j’avais mangé, il était parti",
+    "en": "Already done before: j’avais mangé, il était parti"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я уже поел",
+        "en": "I had already eaten"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что одно действие было раньше другого.\nJ’avais déjà mangé quand tu as appelé.\n«Когда ты позвонил, я уже поел.»\nЧитается: жавэ́ дежа́ манже́ кан тю а апеле́.\nСлово déjà значит «уже». Слово quand значит «когда».\nСлово mangé значит «поел». Перед ним стоит слово avais.\nСлова avais mangé вместе значат «поел раньше».\nElle avait déjà rangé la salle. — «Она уже убрала комнату.»\nСлово rangé значит «убрала». Слово salle значит «комната, зал».\nСлово avais меняется, смотря о ком речь.\nЯ — j’avais, она — avait, мы — avions.\nNous avions déjà réservé nos places. — «Мы уже забронировали свои места.»\nСлово réservé значит «забронировали». Слово places значит «места».\nVous aviez déjà lu le message. — «Вы уже прочитали сообщение.»\nСлово lu значит «прочитали».\nIls avaient déjà pris le bus. — «Они уже сели на автобус.»\nСлово pris значит «сели».",
+        "en": "Look at how to say that one action happened before another.\nJ’avais déjà mangé quand tu as appelé.\n“I had already eaten when you called.”\nThe word déjà means “already”. The word quand means “when”.\nThe word mangé means “eaten”. The word avais stands before it.\nThe words avais mangé together mean “had eaten”.\nElle avait déjà rangé la salle.\n“She had already tidied the room.”\nThe word rangé means “tidied”. The word salle means “room, hall”.\nThe word avais changes depending on who it is about.\nI — j’avais, she — avait, we — avions.\nNous avions déjà réservé nos places.\n“We had already booked our seats.”\nThe word réservé means “booked”. The word places means “seats”.\nVous aviez déjà lu le message.\n“You had already read the message.”\nThe word lu means “read”.\nIls avaient déjà pris le bus.\n“They had already taken the bus.”\nThe word pris means “taken”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:31:01",
+          "say": {
+            "ru": "жавэ́ дежа́ манже́ кан тю а апеле́",
+            "uk": "жаве́ дежа́ манже́ кан тю а апеле́"
+          }
+        },
+        {
+          "phraseId": "fr:31:03",
+          "say": {
+            "ru": "эль авэ́ дежа́ ранже́ ла саль",
+            "uk": "ель аве́ дежа́ ранже́ ла саль"
+          }
+        },
+        {
+          "phraseId": "fr:31:04",
+          "say": {
+            "ru": "ну завьо́н дежа́ рэзервэ́ но плас",
+            "uk": "ну завьо́н дежа́ резерве́ но плас"
+          }
+        },
+        {
+          "phraseId": "fr:31:05",
+          "say": {
+            "ru": "ву завье́ дежа́ лю лё мэса́ж",
+            "uk": "ву завье́ дежа́ лю льо меса́ж"
+          }
+        },
+        {
+          "phraseId": "fr:31:06",
+          "say": {
+            "ru": "иль завэ́ дежа́ при лё бюс",
+            "uk": "іль заве́ дежа́ прі льо бюс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда ты позвонил, я уже поел»",
+            "uk": "Виберіть, як сказати: «Коли ти подзвонив, я вже поїв»",
+            "en": "Choose how to say: “When you called, I had already eaten”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:31:01",
+          "options": [
+            "fr:31:01",
+            "fr:31:03",
+            "fr:31:04"
+          ],
+          "answerId": "fr:31:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она уже убрала комнату»",
+            "uk": "Виберіть, як сказати: «Вона вже прибрала в кімнаті»",
+            "en": "Choose how to say: “She had already tidied the room”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:03",
+          "options": [
+            "fr:31:03",
+            "fr:31:01",
+            "fr:31:05"
+          ],
+          "answerId": "fr:31:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они уже сели на автобус»",
+            "uk": "Виберіть, як сказати: «Вони вже сіли на автобус»",
+            "en": "Choose how to say: “They had already taken the bus”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:06",
+          "options": [
+            "fr:31:06",
+            "fr:31:05",
+            "fr:31:04"
+          ],
+          "answerId": "fr:31:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Он уже ушёл",
+        "en": "He had already left"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Когда я вошёл, Поль уже ушёл».\nPaul était déjà parti quand je suis entré.\n«Когда я вошёл, Поль уже ушёл.»\nЧитается: поль этэ́ дежа́ парти́ кан жё сюи антре́.\nСлово était значит «был». Слово parti значит «ушёл».\nСлова était parti вместе значат «уже ушёл». Слово entré значит «вошёл».\nLéa était déjà partie quand j’ai appelé.\n«Леа уже ушла, когда я позвонил.»\nО Поле говорят parti, о Леа — partie.\nLes clientes étaient déjà sorties. — «Клиентки к тому моменту уже вышли.»\nСлово clientes значит «клиентки». Слово sorties значит «вышли».\nСлово étaient значит «были», когда речь о них.\nMes parents étaient déjà rentrés. — «Мои родители уже вернулись домой.»\nСлово parents значит «родители». Слово rentrés значит «вернулись домой».\nQuand j’ai ouvert la porte, le chat était déjà sorti.\n«Когда я открыл дверь, кот уже вышел.»\nСлово chat значит «кот».",
+        "en": "Look at how to say “When I came in, Paul had already left”.\nPaul était déjà parti quand je suis entré.\n“When I came in, Paul had already left.”\nThe word était means “was”. The word parti means “left”.\nThe words était parti together mean “had already left”. The word entré means “came in”.\nLéa était déjà partie quand j’ai appelé.\n“Léa had already left when I called.”\nFor Paul we say parti, for Léa — partie.\nLes clientes étaient déjà sorties. — “The customers had already gone out.”\nThe word clientes means “customers (women)”. The word sorties means “gone out”.\nThe word étaient means “were”, when it is about them.\nMes parents étaient déjà rentrés. — “My parents had already come home.”\nThe word parents means “parents”. The word rentrés means “come home”.\nQuand j’ai ouvert la porte, le chat était déjà sorti.\n“When I opened the door, the cat had already gone out.”\nThe word chat means “cat”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:31:07",
+          "say": {
+            "ru": "поль этэ́ дежа́ парти́ кан жё сюи антре́",
+            "uk": "поль ете́ дежа́ парті́ кан жьо сюі антре́"
+          }
+        },
+        {
+          "phraseId": "fr:31:08",
+          "say": {
+            "ru": "леа́ этэ́ дежа́ парти́ кан жэ апеле́",
+            "uk": "леа́ ете́ дежа́ парті́ кан же апеле́"
+          }
+        },
+        {
+          "phraseId": "fr:31:09",
+          "say": {
+            "ru": "лэ клиа́нт этэ́ дежа́ сорти́",
+            "uk": "ле кліа́нт ете́ дежа́ сорті́"
+          }
+        },
+        {
+          "phraseId": "fr:31:10",
+          "say": {
+            "ru": "мэ паран этэ́ дежа́ рантре́",
+            "uk": "ме паран ете́ дежа́ рантре́"
+          }
+        },
+        {
+          "phraseId": "fr:31:31",
+          "say": {
+            "ru": "кан жэ увэ́р ла порт, лё ша этэ́ дежа́ сорти́",
+            "uk": "кан же уве́р ла порт, льо ша ете́ дежа́ сорті́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда я вошёл, Поль уже ушёл»",
+            "uk": "Виберіть, як сказати: «Коли я увійшов, Поль уже пішов»",
+            "en": "Choose how to say: “When I came in, Paul had already left”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:31:07",
+          "options": [
+            "fr:31:07",
+            "fr:31:08",
+            "fr:31:09"
+          ],
+          "answerId": "fr:31:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа уже ушла, когда я позвонил»",
+            "uk": "Виберіть, як сказати: «Леа вже пішла, коли я подзвонив»",
+            "en": "Choose how to say: “Léa had already left when I called”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:08",
+          "options": [
+            "fr:31:08",
+            "fr:31:07",
+            "fr:31:10"
+          ],
+          "answerId": "fr:31:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои родители уже вернулись домой»",
+            "uk": "Виберіть, як сказати: «Мої батьки вже повернулися додому»",
+            "en": "Choose how to say: “My parents had already come home”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:10",
+          "options": [
+            "fr:31:10",
+            "fr:31:09",
+            "fr:31:31"
+          ],
+          "answerId": "fr:31:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Сумка, которую забыл",
+        "en": "The bag that I had forgotten"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Поль искал сумку, которую раньше забыл».\nPaul cherchait le sac qu’il avait oublié.\n«Поль искал сумку, которую раньше забыл.»\nЧитается: поль шэршэ́ лё сак киль авэ́ убльие́.\nСлово cherchait значит «искал». Слова qu’il avait oublié значат «которую он забыл».\nElle a relu la lettre qu’elle avait reçue.\n«Она перечитала письмо, которое до этого получила.»\nСлово lettre значит «письмо». Слово reçue значит «получила».\nTu as retrouvé le badge que tu avais perdu.\n«Ты нашёл пропуск, который до этого потерял.»\nСлово badge значит «пропуск». Слово perdu значит «потерял».\nLe pain que j’avais acheté était encore chaud.\n«Хлеб, который я купил, был ещё тёплым.»\nСлово acheté значит «купил». Слова encore chaud значат «ещё тёплый».\nJ’avais déjà bu la moitié du bol de soupe.\n«Я уже выпил половину тарелки супа.»\nСлово bu значит «выпил». Слово moitié значит «половина».",
+        "en": "Look at how to say “Paul was looking for the bag he had forgotten”.\nPaul cherchait le sac qu’il avait oublié.\n“Paul was looking for the bag he had forgotten.”\nThe word cherchait means “was looking for”.\nThe words qu’il avait oublié mean “that he had forgotten”.\nElle a relu la lettre qu’elle avait reçue.\n“She reread the letter she had received.”\nThe word lettre means “letter”. The word reçue means “received”.\nTu as retrouvé le badge que tu avais perdu.\n“You found the badge you had lost.”\nThe word badge means “badge”. The word perdu means “lost”.\nLe pain que j’avais acheté était encore chaud.\n“The bread I had bought was still warm.”\nThe word acheté means “bought”. The words encore chaud mean “still warm”.\nJ’avais déjà bu la moitié du bol de soupe.\n“I had already drunk half of the bowl of soup.”\nThe word bu means “drunk”. The word moitié means “half”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:31:12",
+          "say": {
+            "ru": "поль шэршэ́ лё сак киль авэ́ убльие́",
+            "uk": "поль шерше́ льо сак кіль аве́ убльіе́"
+          }
+        },
+        {
+          "phraseId": "fr:31:13",
+          "say": {
+            "ru": "эль а рёлю́ ла лэтр кэль авэ́ рёсю́",
+            "uk": "ель а рьолю́ ла летр кель аве́ рьосю́"
+          }
+        },
+        {
+          "phraseId": "fr:31:15",
+          "say": {
+            "ru": "тю а рётруве́ лё бадж кё тю авэ́ пэрдю́",
+            "uk": "тю а рьотруве́ льо бадж кьо тю аве́ пердю́"
+          }
+        },
+        {
+          "phraseId": "fr:31:16",
+          "say": {
+            "ru": "лё пэн кё жавэ́ ашьте́ этэ́ анко́р шо",
+            "uk": "льо пен кьо жаве́ ашьте́ ете́ анко́р шо"
+          }
+        },
+        {
+          "phraseId": "fr:31:17",
+          "say": {
+            "ru": "жавэ́ дежа́ бю ла муатье́ дю боль дё суп",
+            "uk": "жаве́ дежа́ бю ла муатье́ дю боль дьо суп"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль искал сумку, которую раньше забыл»",
+            "uk": "Виберіть, як сказати: «Поль шукав сумку, яку раніше забув»",
+            "en": "Choose how to say: “Paul was looking for the bag that he had forgotten”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:31:12",
+          "options": [
+            "fr:31:12",
+            "fr:31:13",
+            "fr:31:15"
+          ],
+          "answerId": "fr:31:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты нашёл пропуск, который до этого потерял»",
+            "uk": "Виберіть, як сказати: «Ти знайшов перепустку, яку до цього втратив»",
+            "en": "Choose how to say: “You found the badge that you had lost”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:15",
+          "options": [
+            "fr:31:15",
+            "fr:31:13",
+            "fr:31:16"
+          ],
+          "answerId": "fr:31:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже выпил половину тарелки супа»",
+            "uk": "Виберіть, як сказати: «Я вже випив половину миски супу»",
+            "en": "Choose how to say: “I had already drunk half of the bowl of soup”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:17",
+          "options": [
+            "fr:31:17",
+            "fr:31:16",
+            "fr:31:12"
+          ],
+          "answerId": "fr:31:17"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не видел, не получили",
+        "en": "Had not seen, had not received"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не».\nJe n’avais pas vu le panneau. — «Я не видел табличку.»\nЧитается: жё навэ́ па вю лё пано́.\nСлова n’avais … pas вместе значат «не». Слово vu значит «видел».\nСлово panneau значит «указатель, табличка».\nNous n’avions pas reçu le code. — «Мы не получили код.»\nСлово reçu значит «получили». Слово code значит «код».\nIls n’avaient pas encore fini le travail.\n«Они ещё не закончили работу.»\nСлова pas encore значат «ещё не». Слово fini значит «закончили».\nJe n’étais jamais entré dans ce musée.\n«До того я ни разу не заходил в этот музей.»\nСлово jamais значит «никогда». Слово entré значит «зашёл».\nTu m’avais promis de vérifier le panneau.\n«Ты обещал мне проверить табличку.»\nСлова m’avais promis значат «обещал мне». Слово promis значит «обещал».",
+        "en": "Look at how to say “not”.\nJe n’avais pas vu le panneau.\n“I had not seen the sign.”\nThe words n’avais … pas together mean “not”. The word vu means “seen”.\nThe word panneau means “sign”.\nNous n’avions pas reçu le code.\n“We had not received the code.”\nThe word reçu means “received”. The word code means “code”.\nIls n’avaient pas encore fini le travail.\n“They had not finished the work yet.”\nThe words pas encore mean “not yet”. The word fini means “finished”.\nJe n’étais jamais entré dans ce musée.\n“I had never been into this museum.”\nThe word jamais means “never”. The word entré means “gone in”.\nTu m’avais promis de vérifier le panneau.\n“You had promised me to check the sign.”\nThe words m’avais promis mean “had promised me”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:31:21",
+          "say": {
+            "ru": "жё навэ́ па вю лё пано́",
+            "uk": "жьо наве́ па вю льо пано́"
+          }
+        },
+        {
+          "phraseId": "fr:31:23",
+          "say": {
+            "ru": "ну навьо́н па рёсю́ лё код",
+            "uk": "ну навьо́н па рьосю́ льо код"
+          }
+        },
+        {
+          "phraseId": "fr:31:24",
+          "say": {
+            "ru": "иль навэ́ па занко́р фини́ лё трава́й",
+            "uk": "іль наве́ па занко́р фіні́ льо трава́й"
+          }
+        },
+        {
+          "phraseId": "fr:31:26",
+          "say": {
+            "ru": "жё нетэ́ жамэ́ антре́ дан сё мюзе́",
+            "uk": "жьо нете́ жаме́ антре́ дан сьо мюзе́"
+          }
+        },
+        {
+          "phraseId": "fr:31:30",
+          "say": {
+            "ru": "тю мавэ́ проми́ дё верифье́ лё пано́",
+            "uk": "тю маве́ промі́ дьо веріфье́ льо пано́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не видел табличку»",
+            "uk": "Виберіть, як сказати: «Я не бачив таблички»",
+            "en": "Choose how to say: “I had not seen the sign”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:31:21",
+          "options": [
+            "fr:31:21",
+            "fr:31:23",
+            "fr:31:24"
+          ],
+          "answerId": "fr:31:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они ещё не закончили работу»",
+            "uk": "Виберіть, як сказати: «Вони ще не закінчили роботу»",
+            "en": "Choose how to say: “They had not finished the work yet”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:24",
+          "options": [
+            "fr:31:24",
+            "fr:31:21",
+            "fr:31:26"
+          ],
+          "answerId": "fr:31:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты обещал мне проверить табличку»",
+            "uk": "Виберіть, як сказати: «Ти обіцяв мені перевірити табличку»",
+            "en": "Choose how to say: “You had promised me to check the sign”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:30",
+          "options": [
+            "fr:31:30",
+            "fr:31:23",
+            "fr:31:26"
+          ],
+          "answerId": "fr:31:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Когда и потому что",
+        "en": "When and because"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Когда мы приехали, фильм уже начался».\nQuand nous sommes arrivés, le film avait commencé.\n«Когда мы приехали, фильм уже начался.»\nЧитается: кан ну сом зариве́, лё фильм авэ́ комансе́.\nСлова nous sommes arrivés значат «мы приехали». Слово film значит «фильм».\nСлово commencé значит «начался».\nQuand elle a regardé son sac, son portefeuille avait disparu.\n«Когда она заглянула в сумку, кошелёк уже исчез.»\nСлово portefeuille значит «кошелёк». Слово disparu значит «исчез».\nСлово regardé значит «заглянула».\nQuand Paul a rappelé, j’avais trouvé une solution.\n«Когда Поль перезвонил, я уже нашёл решение.»\nСлово solution значит «решение». Слово trouvé значит «нашёл». Слово rappelé значит «перезвонил».\nJ’étais fatigué parce que j’avais mal dormi.\n«Я устал, потому что плохо спал.»\nСлова parce que значат «потому что». Слово fatigué значит «усталый».\nСлова mal dormi значат «плохо спал».\nJ’avais préparé les valises la veille. — «Я собрал чемоданы накануне.»\nСлово préparé значит «собрал». Слово valises значит «чемоданы». Слова la veille значат «накануне».",
+        "en": "Look at how to say “When we arrived, the film had started”.\nQuand nous sommes arrivés, le film avait commencé.\n“When we arrived, the film had started.”\nThe words nous sommes arrivés mean “we arrived”. The word film means “film”.\nThe word commencé means “started”.\nQuand elle a regardé son sac, son portefeuille avait disparu.\n“When she looked into her bag, her wallet had disappeared.”\nThe word portefeuille means “wallet”. The word disparu means “disappeared”.\nThe word regardé means “looked”.\nQuand Paul a rappelé, j’avais trouvé une solution.\n“When Paul called back, I had found a solution.”\nThe word solution means “solution”. The word trouvé means “found”.\nThe word rappelé means “called back”.\nJ’étais fatigué parce que j’avais mal dormi.\n“I was tired because I had slept badly.”\nThe words parce que mean “because”. The word fatigué means “tired”.\nThe words mal dormi mean “slept badly”.\nJ’avais préparé les valises la veille.\n“I had packed the suitcases the day before.”\nThe word préparé means “packed”. The word valises means “suitcases”.\nThe words la veille mean “the day before”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:31:32",
+          "say": {
+            "ru": "кан ну сом зариве́, лё фильм авэ́ комансе́",
+            "uk": "кан ну сом заріве́, льо фільм аве́ комансе́"
+          }
+        },
+        {
+          "phraseId": "fr:31:33",
+          "say": {
+            "ru": "кан эль а рёгарде́ сон сак, сон портфёй авэ́ диспарю́",
+            "uk": "кан ель а рьогарде́ сон сак, сон портфьой аве́ діспарю́"
+          }
+        },
+        {
+          "phraseId": "fr:31:34",
+          "say": {
+            "ru": "кан поль а рапле́, жавэ́ труве́ юн солюсьо́н",
+            "uk": "кан поль а рапле́, жаве́ труве́ юн солюсьо́н"
+          }
+        },
+        {
+          "phraseId": "fr:31:36",
+          "say": {
+            "ru": "жетэ́ фатиге́ парс кё жавэ́ маль дорми́",
+            "uk": "жете́ фатіге́ парс кьо жаве́ маль дормі́"
+          }
+        },
+        {
+          "phraseId": "fr:31:41",
+          "say": {
+            "ru": "жавэ́ прэпарэ́ лэ вализ ла вэй",
+            "uk": "жаве́ препаре́ ле валіз ла вей"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда мы приехали, фильм уже начался»",
+            "uk": "Виберіть, як сказати: «Коли ми приїхали, фільм уже почався»",
+            "en": "Choose how to say: “When we arrived, the film had started”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:31:32",
+          "options": [
+            "fr:31:32",
+            "fr:31:33",
+            "fr:31:34"
+          ],
+          "answerId": "fr:31:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда Поль перезвонил, я уже нашёл решение»",
+            "uk": "Виберіть, як сказати: «Коли Поль передзвонив, я вже знайшов рішення»",
+            "en": "Choose how to say: “When Paul called back, I had found a solution”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:34",
+          "options": [
+            "fr:31:34",
+            "fr:31:33",
+            "fr:31:36"
+          ],
+          "answerId": "fr:31:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собрал чемоданы накануне»",
+            "uk": "Виберіть, як сказати: «Я зібрав валізи напередодні»",
+            "en": "Choose how to say: “I had packed the suitcases the day before”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:31:41",
+          "options": [
+            "fr:31:41",
+            "fr:31:36",
+            "fr:31:32"
+          ],
+          "answerId": "fr:31:41"
+        }
+      ]
+    }
+  ]
+}

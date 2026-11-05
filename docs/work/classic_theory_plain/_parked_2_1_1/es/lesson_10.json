@@ -1,0 +1,471 @@
+{
+  "lang": "es",
+  "lesson": 10,
+  "title": {
+    "ru": "Я живу, ем, пью, читаю, пишу",
+    "en": "I live, eat, drink, read, write"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я живу",
+        "en": "I live"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я живу здесь».\nVivo aquí. — «Я живу здесь.»\nЧитается: би́бо аки́.\nСлово vivo значит «я живу». Первая буква в vivo читается почти как «б».\nVives aquí. — «Ты живёшь здесь.»\nVivimos aquí. — «Мы живём здесь.»\nСлова cerca de la estación вы знаете: «рядом с вокзалом».",
+        "en": "Look at how to say “I live here”.\nVivo aquí. — “I live here.”\nThe word vivo means “I live”. Its first letter sounds almost like “b”.\nVives aquí. — “You live here.”\nVivimos aquí. — “We live here.”\nYou know the words cerca de la estación: “near the station”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:10:01",
+          "say": {
+            "ru": "би́бо аки́",
+            "uk": "бі́бо акі́"
+          }
+        },
+        {
+          "phraseId": "es:10:02",
+          "say": {
+            "ru": "би́бэс аки́",
+            "uk": "бі́бес акі́"
+          }
+        },
+        {
+          "phraseId": "es:10:03",
+          "say": {
+            "ru": "би́бо сэ́рка дэ ла эстасьо́н",
+            "uk": "бі́бо се́рка де ла естасьо́н"
+          }
+        },
+        {
+          "phraseId": "es:10:21",
+          "say": {
+            "ru": "биби́мос аки́",
+            "uk": "бібі́мос акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу здесь»",
+            "uk": "Виберіть, як сказати: «Я живу тут»",
+            "en": "Choose how to say: “I live here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:10:01",
+          "options": [
+            "es:10:01",
+            "es:10:02",
+            "es:10:21"
+          ],
+          "answerId": "es:10:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу рядом с вокзалом»",
+            "uk": "Виберіть, як сказати: «Я живу поруч із вокзалом»",
+            "en": "Choose how to say: “I live near the station”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:03",
+          "options": [
+            "es:10:03",
+            "es:10:01",
+            "es:10:21"
+          ],
+          "answerId": "es:10:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы живём здесь»",
+            "uk": "Виберіть, як сказати: «Ми живемо тут»",
+            "en": "Choose how to say: “We live here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:21",
+          "options": [
+            "es:10:21",
+            "es:10:01",
+            "es:10:02"
+          ],
+          "answerId": "es:10:21"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я ем, я пью",
+        "en": "I eat, I drink"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я ем дома».\nComo en casa. — «Я ем дома.»\nЧитается: ко́мо эн ка́са.\nСлово como значит «я ем». Ana come — «Ана ест».\nBebo agua. — «Я пью воду.»\nСлово bebo значит «я пью». Luis bebe — «Луис пьёт».\nBebo café con leche. — «Я пью кофе с молоком.»\nСлово con значит «с».",
+        "en": "Look at how to say “I eat at home”.\nComo en casa. — “I eat at home.”\nThe word como means “I eat”. Ana come — “Ana eats”.\nBebo agua. — “I drink water.”\nThe word bebo means “I drink”. Luis bebe — “Luis drinks”.\nBebo café con leche. — “I drink coffee with milk.”\nThe word con means “with”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:10:05",
+          "say": {
+            "ru": "ко́мо эн ка́са",
+            "uk": "ко́мо ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:10:06",
+          "say": {
+            "ru": "А́на ко́мэ эн ка́са",
+            "uk": "А́на ко́ме ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:10:11",
+          "say": {
+            "ru": "бэ́бо а́гуа",
+            "uk": "бе́бо а́гуа"
+          }
+        },
+        {
+          "phraseId": "es:10:10",
+          "say": {
+            "ru": "Луи́с бэ́бэ кафэ́",
+            "uk": "Луі́с бе́бе кафе́"
+          }
+        },
+        {
+          "phraseId": "es:10:13",
+          "say": {
+            "ru": "бэ́бо кафэ́ кон лэ́чэ",
+            "uk": "бе́бо кафе́ кон ле́че"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ем дома»",
+            "uk": "Виберіть, як сказати: «Я їм удома»",
+            "en": "Choose how to say: “I eat at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:10:05",
+          "options": [
+            "es:10:05",
+            "es:10:06",
+            "es:10:11"
+          ],
+          "answerId": "es:10:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я пью воду»",
+            "uk": "Виберіть, як сказати: «Я п’ю воду»",
+            "en": "Choose how to say: “I drink water”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:11",
+          "options": [
+            "es:10:11",
+            "es:10:10",
+            "es:10:05"
+          ],
+          "answerId": "es:10:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис пьёт кофе»",
+            "uk": "Виберіть, як сказати: «Луїс п’є каву»",
+            "en": "Choose how to say: “Luis drinks coffee”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:10",
+          "options": [
+            "es:10:10",
+            "es:10:11",
+            "es:10:06"
+          ],
+          "answerId": "es:10:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я читаю, я пишу",
+        "en": "I read, I write"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я читаю сообщение».\nLeo el mensaje. — «Я читаю сообщение.»\nЧитается: лэ́о эль мэнса́хэ.\nСлово leo значит «я читаю». Слово mensaje — «сообщение».\nLuis lee el libro. — «Луис читает книгу.»\nEscribes una carta. — «Ты пишешь письмо.»\nСлово escribes значит «ты пишешь». Слово carta — «письмо».\nСлово una по-русски не говорят, запоминайте его вместе с carta.\nСлово periódico значит «газета».",
+        "en": "Look at how to say “I read the message”.\nLeo el mensaje. — “I read the message.”\nThe word leo means “I read”. The word mensaje means “message”.\nLuis lee el libro. — “Luis reads the book.”\nEscribes una carta. — “You write a letter.”\nThe word escribes means “you write”. The word carta means “letter”.\nThe word una works like “a”: una carta — “a letter”.\nThe word periódico means “newspaper”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:10:15",
+          "say": {
+            "ru": "лэ́о эль мэнса́хэ",
+            "uk": "ле́о ель менса́хе"
+          }
+        },
+        {
+          "phraseId": "es:10:14",
+          "say": {
+            "ru": "Луи́с лэ́э эль ли́бро",
+            "uk": "Луі́с ле́е ель лі́бро"
+          }
+        },
+        {
+          "phraseId": "es:10:17",
+          "say": {
+            "ru": "эскри́бэс у́на ка́рта",
+            "uk": "ескрі́бес у́на ка́рта"
+          }
+        },
+        {
+          "phraseId": "es:10:19",
+          "say": {
+            "ru": "А́на эскри́бэ ун мэнса́хэ",
+            "uk": "А́на ескрі́бе ун менса́хе"
+          }
+        },
+        {
+          "phraseId": "es:10:25",
+          "say": {
+            "ru": "А́на лэ́э эль пэрьо́дико эн эль трэн",
+            "uk": "А́на ле́е ель перьо́діко ен ель трен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я читаю сообщение»",
+            "uk": "Виберіть, як сказати: «Я читаю повідомлення»",
+            "en": "Choose how to say: “I read the message”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:10:15",
+          "options": [
+            "es:10:15",
+            "es:10:14",
+            "es:10:19"
+          ],
+          "answerId": "es:10:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты пишешь письмо»",
+            "uk": "Виберіть, як сказати: «Ти пишеш листа»",
+            "en": "Choose how to say: “You write a letter”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:17",
+          "options": [
+            "es:10:17",
+            "es:10:19",
+            "es:10:15"
+          ],
+          "answerId": "es:10:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана пишет сообщение»",
+            "uk": "Виберіть, як сказати: «Ана пише повідомлення»",
+            "en": "Choose how to say: “Ana writes a message”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:19",
+          "options": [
+            "es:10:19",
+            "es:10:15",
+            "es:10:17"
+          ],
+          "answerId": "es:10:19"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Мы, они, вы",
+        "en": "We, they, you"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы открываем дверь».\nAbrimos la puerta. — «Мы открываем дверь.»\nЧитается: абри́мос ла пуэ́рта.\nСлово abrimos значит «мы открываем».\nMis hermanos abren la ventana. — «Мои братья открывают окно.»\nСлово abren значит «они открывают». Слово ventana — «окно».\nMis hermanos beben agua. — «Мои братья пьют воду.»\nComéis en casa. — «Вы едите дома.» Так говорят нескольким людям.",
+        "en": "Look at how to say “We open the door”.\nAbrimos la puerta. — “We open the door.”\nThe word abrimos means “we open”.\nMis hermanos abren la ventana. — “My brothers open the window.”\nThe word abren means “they open”. The word ventana means “window”.\nMis hermanos beben agua. — “My brothers drink water.”\nComéis en casa. — “You eat at home.” This is said to several people."
+      },
+      "examples": [
+        {
+          "phraseId": "es:10:28",
+          "say": {
+            "ru": "абри́мос ла пуэ́рта",
+            "uk": "абрі́мос ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:10:29",
+          "say": {
+            "ru": "мис эрма́нос а́брэн ла бэнта́на",
+            "uk": "міс ерма́нос а́брен ла бента́на"
+          }
+        },
+        {
+          "phraseId": "es:10:23",
+          "say": {
+            "ru": "мис эрма́нос бэ́бэн а́гуа",
+            "uk": "міс ерма́нос бе́бен а́гуа"
+          }
+        },
+        {
+          "phraseId": "es:10:22",
+          "say": {
+            "ru": "комэ́йс эн ка́са",
+            "uk": "коме́йс ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы открываем дверь»",
+            "uk": "Виберіть, як сказати: «Ми відчиняємо двері»",
+            "en": "Choose how to say: “We open the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:10:28",
+          "options": [
+            "es:10:28",
+            "es:10:29",
+            "es:10:23"
+          ],
+          "answerId": "es:10:28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья открывают окно»",
+            "uk": "Виберіть, як сказати: «Мої брати відчиняють вікно»",
+            "en": "Choose how to say: “My brothers open the window”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:29",
+          "options": [
+            "es:10:29",
+            "es:10:28",
+            "es:10:23"
+          ],
+          "answerId": "es:10:29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы едите дома»",
+            "uk": "Виберіть, як сказати: «Ви їсте вдома»",
+            "en": "Choose how to say: “You eat at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:22",
+          "options": [
+            "es:10:22",
+            "es:10:23",
+            "es:10:05"
+          ],
+          "answerId": "es:10:22"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не и вопрос",
+        "en": "Not, and a question"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «нет».\nNo abro la puerta hoy. — «Я сегодня не открываю дверь.»\nЧитается: но а́бро ла пуэ́рта ой.\nСлово no ставят перед словом, как русское «не».\nNo bebo café con azúcar. — «Я не пью кофе с сахаром.»\nА теперь вопрос.\n¿Lees el libro? — «Ты читаешь книгу?»\nСлова те же, а голос в конце идёт вверх.\nСлово del — это de и el вместе: cerca del hotel — «рядом с отелем».",
+        "en": "Look at how to say “not”.\nNo abro la puerta hoy. — “I am not opening the door today.”\nThe word no goes before the action word, like “not”.\nNo bebo café con azúcar. — “I do not drink coffee with sugar.”\nAnd now a question.\n¿Lees el libro? — “Are you reading the book?”\nThe words are the same, but the voice goes up at the end.\nThe word del is de and el together: cerca del hotel — “near the hotel”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:10:31",
+          "say": {
+            "ru": "но а́бро ла пуэ́рта ой",
+            "uk": "но а́бро ла пуе́рта ой"
+          }
+        },
+        {
+          "phraseId": "es:10:36",
+          "say": {
+            "ru": "но бэ́бо кафэ́ кон асу́кар",
+            "uk": "но бе́бо кафе́ кон асу́кар"
+          }
+        },
+        {
+          "phraseId": "es:10:44",
+          "say": {
+            "ru": "лэ́эс эль ли́бро",
+            "uk": "ле́ес ель лі́бро"
+          }
+        },
+        {
+          "phraseId": "es:10:43",
+          "say": {
+            "ru": "бэбэ́мос а́гуа",
+            "uk": "бебе́мос а́гуа"
+          }
+        },
+        {
+          "phraseId": "es:10:40",
+          "say": {
+            "ru": "биби́мос сэ́рка дэль отэ́ль",
+            "uk": "бібі́мос се́рка дель оте́ль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сегодня не открываю дверь»",
+            "uk": "Виберіть, як сказати: «Я сьогодні не відчиняю двері»",
+            "en": "Choose how to say: “I am not opening the door today”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:10:31",
+          "options": [
+            "es:10:31",
+            "es:10:28",
+            "es:10:36"
+          ],
+          "answerId": "es:10:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты читаешь книгу?»",
+            "uk": "Виберіть, як сказати: «Ти читаєш книжку?»",
+            "en": "Choose how to say: “Are you reading the book?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:44",
+          "options": [
+            "es:10:44",
+            "es:10:14",
+            "es:10:43"
+          ],
+          "answerId": "es:10:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не пью кофе с сахаром»",
+            "uk": "Виберіть, як сказати: «Я не п’ю каву з цукром»",
+            "en": "Choose how to say: “I do not drink coffee with sugar”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:10:36",
+          "options": [
+            "es:10:36",
+            "es:10:13",
+            "es:10:31"
+          ],
+          "answerId": "es:10:36"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,492 @@
+{
+  "lang": "fr",
+  "lesson": 14,
+  "title": {
+    "ru": "Могу, должен, хочу",
+    "en": "I can, I must, I want"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я могу",
+        "en": "I can"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я могу войти».\nJe peux entrer. — «Я могу войти.»\nЧитается: жё пё антре́.\nСлово peux значит «могу». Слово entrer значит «войти».\nСлово меняется, смотря о ком речь.\nElle peut venir. — «Она может прийти.»\nСлово peut значит «она может». Слово venir значит «прийти».\nNous pouvons attendre. — «Мы можем подождать.»\nСлово pouvons значит «мы можем». Слово attendre значит «подождать».\nVous pouvez passer. — «Вы можете пройти.»\nСлово pouvez значит «вы можете». Слово passer значит «пройти».\nIls peuvent rester. — «Они могут остаться.»\nСлово peuvent значит «они могут». Слово rester значит «остаться».\nВторое слово не меняется: entrer, venir, attendre.",
+        "en": "Look at how to say “I can come in”.\nJe peux entrer. — “I can come in.”\nThe word peux means “I can”. The word entrer means “to come in”.\nThe word changes depending on who we are talking about.\nElle peut venir. — “She can come.”\nThe word peut means “she can”. The word venir means “to come”.\nNous pouvons attendre. — “We can wait.”\nThe word pouvons means “we can”. The word attendre means “to wait”.\nVous pouvez passer. — “You can pass.”\nThe word pouvez means “you can”. The word passer means “to pass”.\nIls peuvent rester. — “They can stay.”\nThe word peuvent means “they can”. The word rester means “to stay”.\nThe second word does not change: entrer, venir, attendre."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:14:01",
+          "say": {
+            "ru": "жё пё антре́",
+            "uk": "жьо пьо антре́"
+          }
+        },
+        {
+          "phraseId": "fr:14:03",
+          "say": {
+            "ru": "эль пё вёни́р",
+            "uk": "ель пьо вьоні́р"
+          }
+        },
+        {
+          "phraseId": "fr:14:04",
+          "say": {
+            "ru": "ну пуво́н атандр",
+            "uk": "ну пуво́н атандр"
+          }
+        },
+        {
+          "phraseId": "fr:14:05",
+          "say": {
+            "ru": "ву пуве́ пасе́",
+            "uk": "ву пуве́ пасе́"
+          }
+        },
+        {
+          "phraseId": "fr:14:06",
+          "say": {
+            "ru": "иль пёв рэсте́",
+            "uk": "іль пьов ресте́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я могу войти»",
+            "uk": "Виберіть, як сказати: «Я можу зайти»",
+            "en": "Choose how to say: “I can come in”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:14:01",
+          "options": [
+            "fr:14:01",
+            "fr:14:03",
+            "fr:14:04"
+          ],
+          "answerId": "fr:14:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы можем подождать»",
+            "uk": "Виберіть, як сказати: «Ми можемо почекати»",
+            "en": "Choose how to say: “We can wait”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:04",
+          "options": [
+            "fr:14:04",
+            "fr:14:05",
+            "fr:14:06"
+          ],
+          "answerId": "fr:14:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они могут остаться»",
+            "uk": "Виберіть, як сказати: «Вони можуть залишитися»",
+            "en": "Choose how to say: “She can come”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:06",
+          "options": [
+            "fr:14:06",
+            "fr:14:01",
+            "fr:14:03"
+          ],
+          "answerId": "fr:14:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мне нужно",
+        "en": "I have to"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нужно уйти».\nJe dois partir. — «Мне нужно уйти.»\nЧитается: жё дуа парти́р.\nСлово dois значит «мне нужно». Слово partir значит «уйти».\nIl doit rentrer. — «Ему нужно идти домой.»\nСлово doit значит «ему нужно». Слово rentrer значит «идти домой».\nNous devons payer. — «Нам нужно заплатить.»\nСлово devons значит «нам нужно». Слово payer значит «заплатить».\nVous devez signer ici. — «Вы должны подписать здесь.»\nСлово devez значит «вы должны». Слово signer значит «подписать».\nJe dois remplir ce formulaire. — «Я должен заполнить эту форму.»\nСлово remplir значит «заполнить». Слово formulaire значит «бланк, форма».\nIl faut réserver une place. — «Нужно забронировать место.»\nСлова il faut значат «нужно» — для всех сразу.",
+        "en": "Look at how to say “I have to leave”.\nJe dois partir. — “I have to leave.”\nThe word dois means “I have to”. The word partir means “to leave”.\nIl doit rentrer. — “He has to go home.”\nThe word doit means “he has to”. The word rentrer means “to go home”.\nNous devons payer. — “We have to pay.”\nThe word devons means “we have to”. The word payer means “to pay”.\nVous devez signer ici. — “You must sign here.”\nThe word devez means “you must”. The word signer means “to sign”.\nJe dois remplir ce formulaire. — “I must fill in this form.”\nThe word remplir means “to fill in”. The word formulaire means “form”.\nIl faut réserver une place. — “You need to book a seat.”\nThe words il faut mean “it is necessary” — for everyone at once."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:14:07",
+          "say": {
+            "ru": "жё дуа парти́р",
+            "uk": "жьо дуа парті́р"
+          }
+        },
+        {
+          "phraseId": "fr:14:09",
+          "say": {
+            "ru": "иль дуа рантре́",
+            "uk": "іль дуа рантре́"
+          }
+        },
+        {
+          "phraseId": "fr:14:10",
+          "say": {
+            "ru": "ну дёво́н пеье́",
+            "uk": "ну дьово́н пеье́"
+          }
+        },
+        {
+          "phraseId": "fr:14:24",
+          "say": {
+            "ru": "ву дёве́ синье́ иси́",
+            "uk": "ву дьове́ сінье́ ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:14:26",
+          "say": {
+            "ru": "жё дуа рамплир сэ формюлэ́р",
+            "uk": "жьо дуа рамплір се формюле́р"
+          }
+        },
+        {
+          "phraseId": "fr:14:25",
+          "say": {
+            "ru": "иль фо резерве́ юн плас",
+            "uk": "іль фо резерве́ юн плас"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужно уйти»",
+            "uk": "Виберіть, як сказати: «Мені треба йти»",
+            "en": "Choose how to say: “I have to leave”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:14:07",
+          "options": [
+            "fr:14:07",
+            "fr:14:09",
+            "fr:14:10"
+          ],
+          "answerId": "fr:14:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужно заплатить»",
+            "uk": "Виберіть, як сказати: «Ми маємо заплатити»",
+            "en": "Choose how to say: “We have to pay”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:10",
+          "options": [
+            "fr:14:10",
+            "fr:14:24",
+            "fr:14:26"
+          ],
+          "answerId": "fr:14:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я должен заполнить эту форму»",
+            "uk": "Виберіть, як сказати: «Я повинен заповнити цю форму»",
+            "en": "Choose how to say: “I must fill in this form”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:26",
+          "options": [
+            "fr:14:26",
+            "fr:14:25",
+            "fr:14:07"
+          ],
+          "answerId": "fr:14:26"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я хочу",
+        "en": "I want"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я хочу попробовать».\nJe veux essayer. — «Я хочу попробовать.»\nЧитается: жё вё эсэйе́.\nСлово veux значит «хочу». Слово essayer значит «попробовать».\nElle veut réserver. — «Она хочет забронировать.»\nСлово veut значит «она хочет». Слово réserver значит «забронировать».\nNous voulons visiter le musée. — «Мы хотим посетить музей.»\nСлово voulons значит «мы хотим». Слово visiter значит «посетить».\nVous voulez boire quelque chose ? — «Хотите что-нибудь выпить?»\nСлово voulez значит «вы хотите». Слово boire значит «выпить».\nСлова quelque chose значат «что-нибудь».\nIls veulent changer de place. — «Они хотят пересесть.»\nСлово veulent значит «они хотят».",
+        "en": "Look at how to say “I want to try”.\nJe veux essayer. — “I want to try.”\nThe word veux means “I want”. The word essayer means “to try”.\nElle veut réserver. — “She wants to book.”\nThe word veut means “she wants”. The word réserver means “to book”.\nNous voulons visiter le musée. — “We want to visit the museum.”\nThe word voulons means “we want”. The word visiter means “to visit”.\nVous voulez boire quelque chose ? — “Do you want to drink something?”\nThe word voulez means “you want”. The word boire means “to drink”.\nThe words quelque chose mean “something”.\nIls veulent changer de place. — “They want to change seats.”\nThe word veulent means “they want”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:14:11",
+          "say": {
+            "ru": "жё вё эсэйе́",
+            "uk": "жьо вьо есейе́"
+          }
+        },
+        {
+          "phraseId": "fr:14:12",
+          "say": {
+            "ru": "эль вё резерве́",
+            "uk": "ель вьо резерве́"
+          }
+        },
+        {
+          "phraseId": "fr:14:14",
+          "say": {
+            "ru": "ну вулон визите́ лё мюзе́",
+            "uk": "ну вулон візіте́ льо мюзе́"
+          }
+        },
+        {
+          "phraseId": "fr:14:15",
+          "say": {
+            "ru": "ву вуле́ буар кёлькё шоз",
+            "uk": "ву вуле́ буар кьолькьо шоз"
+          }
+        },
+        {
+          "phraseId": "fr:14:16",
+          "say": {
+            "ru": "иль вёль шанже́ дё плас",
+            "uk": "іль вьоль шанже́ дьо плас"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу попробовать»",
+            "uk": "Виберіть, як сказати: «Я хочу спробувати»",
+            "en": "Choose how to say: “I want to try”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:14:11",
+          "options": [
+            "fr:14:11",
+            "fr:14:12",
+            "fr:14:14"
+          ],
+          "answerId": "fr:14:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы хотим посетить музей»",
+            "uk": "Виберіть, як сказати: «Ми хочемо відвідати музей»",
+            "en": "Choose how to say: “We want to visit the museum”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:14",
+          "options": [
+            "fr:14:14",
+            "fr:14:15",
+            "fr:14:16"
+          ],
+          "answerId": "fr:14:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они хотят пересесть»",
+            "uk": "Виберіть, як сказати: «Вони хочуть пересісти»",
+            "en": "Choose how to say: “They want to change seats”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:16",
+          "options": [
+            "fr:14:16",
+            "fr:14:11",
+            "fr:14:12"
+          ],
+          "answerId": "fr:14:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Просьба и вопрос",
+        "en": "Asking"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Могу я вам помочь?»\nJe peux vous aider ? — «Могу я вам помочь?»\nЧитается: жё пё ву зеде́.\nСлово aider значит «помочь».\nVous pouvez répéter ? — «Можете повторить?»\nСлово répéter значит «повторить».\nPouvez-vous parler moins vite ? — «Можете говорить медленнее?»\nСлово vous стоит в конце, и так тоже спрашивают.\nСлово parler значит «говорить». Слова moins vite значат «медленнее».\nPouvez-vous m’indiquer la sortie ? — «Можете сказать, где выход?»\nEst-ce que je peux payer par carte ? — «Могу ли я оплатить картой?»\nСлова est-ce que в начале делают вопрос. Слова par carte значат «картой».",
+        "en": "Look at how to ask “May I help you?”\nJe peux vous aider ? — “May I help you?”\nThe word aider means “to help”.\nVous pouvez répéter ? — “Can you repeat?”\nThe word répéter means “to repeat”.\nPouvez-vous parler moins vite ? — “Can you speak more slowly?”\nThe word vous goes at the end, and that is another way to ask.\nThe word parler means “to speak”. The words moins vite mean “more slowly”.\nPouvez-vous m’indiquer la sortie ? — “Can you tell me where the exit is?”\nEst-ce que je peux payer par carte ? — “Can I pay by card?”\nThe words est-ce que at the start make a question.\nThe words par carte mean “by card”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:14:17",
+          "say": {
+            "ru": "жё пё ву зеде́",
+            "uk": "жьо пьо ву зеде́"
+          }
+        },
+        {
+          "phraseId": "fr:14:19",
+          "say": {
+            "ru": "ву пуве́ репете́",
+            "uk": "ву пуве́ репете́"
+          }
+        },
+        {
+          "phraseId": "fr:14:20",
+          "say": {
+            "ru": "пуве́ ву парле́ муэн вит",
+            "uk": "пуве́ ву парле́ муен віт"
+          }
+        },
+        {
+          "phraseId": "fr:14:42",
+          "say": {
+            "ru": "пуве́ ву мэндике́ ла сорти́",
+            "uk": "пуве́ ву мендіке́ ла сорті́"
+          }
+        },
+        {
+          "phraseId": "fr:14:41",
+          "say": {
+            "ru": "эс кё жё пё пеье́ пар карт",
+            "uk": "ес кьо жьо пьо пеье́ пар карт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Могу я вам помочь?»",
+            "uk": "Виберіть, як сказати: «Чи можу я вам допомогти?»",
+            "en": "Choose how to say: “May I help you?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:14:17",
+          "options": [
+            "fr:14:17",
+            "fr:14:19",
+            "fr:14:20"
+          ],
+          "answerId": "fr:14:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можете повторить?»",
+            "uk": "Виберіть, як сказати: «Чи можете ви повторити?»",
+            "en": "Choose how to say: “Can you repeat?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:19",
+          "options": [
+            "fr:14:19",
+            "fr:14:20",
+            "fr:14:42"
+          ],
+          "answerId": "fr:14:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Могу ли я оплатить картой?»",
+            "uk": "Виберіть, як сказати: «Чи можу я розплатитися карткою?»",
+            "en": "Choose how to say: “Can I pay by card?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:41",
+          "options": [
+            "fr:14:41",
+            "fr:14:17",
+            "fr:14:42"
+          ],
+          "answerId": "fr:14:41"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не могу, не хочу",
+        "en": "I cannot, I do not want"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не могу».\nJe ne peux pas porter cette valise. — «Я не могу нести этот чемодан.»\nЧитается: жё нё пё па порте́ сэт вализ.\nСлова ne и pas стоят вокруг peux и значат «не».\nСлово porter значит «нести».\nPaul ne peut pas répondre maintenant. — «Поль не может ответить прямо сейчас.»\nСлово répondre значит «ответить». Слово maintenant значит «сейчас».\nVous ne devez pas toucher ce bouton. — «Вам нельзя трогать эту кнопку.»\nСлово toucher значит «трогать». Слово bouton значит «кнопка».\nJe ne veux pas déranger. — «Я не хочу мешать.»\nСлово déranger значит «мешать».\nJe ne peux pas lire cette étiquette. — «Я не могу прочитать эту этикетку.»\nСлово étiquette значит «этикетка, ярлык». Слово lire значит «читать».",
+        "en": "Look at how to say “I cannot”.\nJe ne peux pas porter cette valise. — “I cannot carry this suitcase.”\nThe words ne and pas stand around peux and mean “not”.\nThe word porter means “to carry”.\nPaul ne peut pas répondre maintenant. — “Paul cannot answer right now.”\nThe word répondre means “to answer”. The word maintenant means “now”.\nVous ne devez pas toucher ce bouton. — “You must not touch this button.”\nThe word toucher means “to touch”. The word bouton means “button”.\nJe ne veux pas déranger. — “I do not want to disturb.”\nThe word déranger means “to disturb”.\nJe ne peux pas lire cette étiquette. — “I cannot read this label.”\nThe word étiquette means “label”. The word lire means “to read”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:14:31",
+          "say": {
+            "ru": "жё нё пё па порте́ сэт вализ",
+            "uk": "жьо ньо пьо па порте́ сет валіз"
+          }
+        },
+        {
+          "phraseId": "fr:14:33",
+          "say": {
+            "ru": "поль нё пё па репондр мэнтена́н",
+            "uk": "поль ньо пьо па репондр ментена́н"
+          }
+        },
+        {
+          "phraseId": "fr:14:35",
+          "say": {
+            "ru": "ву нё дёве́ па туше́ сэ бутон",
+            "uk": "ву ньо дьове́ па туше́ се бутон"
+          }
+        },
+        {
+          "phraseId": "fr:14:36",
+          "say": {
+            "ru": "жё нё вё па деранже́",
+            "uk": "жьо ньо вьо па деранже́"
+          }
+        },
+        {
+          "phraseId": "fr:14:40",
+          "say": {
+            "ru": "жё нё пё па лир сэт этике́т",
+            "uk": "жьо ньо пьо па лір сет етіке́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не могу нести этот чемодан»",
+            "uk": "Виберіть, як сказати: «Я не можу нести цю валізу»",
+            "en": "Choose how to say: “I cannot carry this suitcase”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:14:31",
+          "options": [
+            "fr:14:31",
+            "fr:14:33",
+            "fr:14:35"
+          ],
+          "answerId": "fr:14:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вам нельзя трогать эту кнопку»",
+            "uk": "Виберіть, як сказати: «Вам не можна торкатися цієї кнопки»",
+            "en": "Choose how to say: “You must not touch this button”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:35",
+          "options": [
+            "fr:14:35",
+            "fr:14:36",
+            "fr:14:40"
+          ],
+          "answerId": "fr:14:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не могу прочитать эту этикетку»",
+            "uk": "Виберіть, як сказати: «Я не можу прочитати цю етикетку»",
+            "en": "Choose how to say: “I cannot read this label”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:14:40",
+          "options": [
+            "fr:14:40",
+            "fr:14:31",
+            "fr:14:36"
+          ],
+          "answerId": "fr:14:40"
+        }
+      ]
+    }
+  ]
+}

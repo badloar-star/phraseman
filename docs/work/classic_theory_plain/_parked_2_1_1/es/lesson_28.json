@@ -1,0 +1,492 @@
+{
+  "lang": "es",
+  "lesson": 28,
+  "title": {
+    "ru": "Завтра я позвоню, куплю, напишу",
+    "en": "Tomorrow I will call, buy, write"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я позвоню завтра",
+        "en": "I will call tomorrow"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я завтра позвоню в отель».\nLlamaré al hotel mañana.\nЧитается: йамаре́ аль отэ́ль маньа́на.\nСлово llamaré значит «я позвоню». Слово mañana — «завтра».\nСлово меняется, смотря о ком речь: «я» — llamaré, «ты» — llamarás.\nAna volverá a casa mañana. — «Ана завтра вернётся домой.»\nСлово volverá значит «вернётся». О нас — volveremos. О них — volverán.",
+        "en": "Look at how to say “I will call the hotel tomorrow”.\nLlamaré al hotel mañana.\nThe word llamaré means “I will call”. The word mañana means “tomorrow”.\nThe word changes depending on who it is about: “I” — llamaré, “you” — llamarás.\nAna volverá a casa mañana. — “Ana will come back home tomorrow.”\nThe word volverá means “will come back”. For us — volveremos. For them — volverán."
+      },
+      "examples": [
+        {
+          "phraseId": "es:28:01",
+          "say": {
+            "ru": "йамаре́ аль отэ́ль маньа́на",
+            "uk": "йамаре́ аль оте́ль маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:28:02",
+          "say": {
+            "ru": "йамара́с аль отэ́ль маньа́на",
+            "uk": "йамара́с аль оте́ль маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:28:05",
+          "say": {
+            "ru": "А́на болбэра́ а ка́са маньа́на",
+            "uk": "А́на болбера́ а ка́са маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:28:06",
+          "say": {
+            "ru": "болбэрэ́мос а ка́са маньа́на",
+            "uk": "болбере́мос а ка́са маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:28:23",
+          "say": {
+            "ru": "мис эрма́нос болбэра́н а ка́са маньа́на",
+            "uk": "міс ерма́нос болбера́н а ка́са маньа́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я завтра позвоню в отель»",
+            "uk": "Виберіть, як сказати: «Я завтра зателефоную до готелю»",
+            "en": "Choose how to say: “I will call the hotel tomorrow”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:28:01",
+          "options": [
+            "es:28:01",
+            "es:28:02",
+            "es:28:06"
+          ],
+          "answerId": "es:28:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана завтра вернётся домой»",
+            "uk": "Виберіть, як сказати: «Ана завтра повернеться додому»",
+            "en": "Choose how to say: “Ana will come back home tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:05",
+          "options": [
+            "es:28:05",
+            "es:28:06",
+            "es:28:23"
+          ],
+          "answerId": "es:28:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы завтра вернёмся домой»",
+            "uk": "Виберіть, як сказати: «Ми завтра повернемося додому»",
+            "en": "Choose how to say: “We will come back home tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:06",
+          "options": [
+            "es:28:06",
+            "es:28:05",
+            "es:28:23"
+          ],
+          "answerId": "es:28:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я напишу, я прочитаю",
+        "en": "I will write, I will read"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я позже напишу письмо».\nEscribiré una carta más tarde.\nЧитается: эскрибирэ́ у́на ка́рта мас та́рдэ.\nСлово escribiré значит «я напишу». Слова más tarde — «позже».\nLeeré el mensaje más tarde. — «Я позже прочитаю сообщение.»\nСлово leeré значит «я прочитаю».\nLuis comprará un billete mañana. — «Луис завтра купит билет.»\nCompraremos pan mañana. — «Мы завтра купим хлеб.»\nСлово меняется, смотря о ком речь: о нём — comprará, о нас — compraremos.",
+        "en": "Look at how to say “I will write a letter later”.\nEscribiré una carta más tarde.\nThe word escribiré means “I will write”. The words más tarde mean “later”.\nLeeré el mensaje más tarde. — “I will read the message later.”\nThe word leeré means “I will read”.\nLuis comprará un billete mañana. — “Luis will buy a ticket tomorrow.”\nCompraremos pan mañana. — “We will buy bread tomorrow.”\nThe word changes depending on who it is about:\nfor him — comprará, for us — compraremos."
+      },
+      "examples": [
+        {
+          "phraseId": "es:28:11",
+          "say": {
+            "ru": "эскрибирэ́ у́на ка́рта мас та́рдэ",
+            "uk": "ескрібіре́ у́на ка́рта мас та́рде"
+          }
+        },
+        {
+          "phraseId": "es:28:15",
+          "say": {
+            "ru": "лээрэ́ эль мэнса́хэ мас та́рдэ",
+            "uk": "леере́ ель менса́хе мас та́рде"
+          }
+        },
+        {
+          "phraseId": "es:28:09",
+          "say": {
+            "ru": "Луи́с компрара́ ун бийэ́тэ маньа́на",
+            "uk": "Луі́с компрара́ ун бійе́те маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:28:10",
+          "say": {
+            "ru": "компрарэ́мос пан маньа́на",
+            "uk": "компраре́мос пан маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:28:14",
+          "say": {
+            "ru": "абрира́с ла бэнта́на мас та́рдэ",
+            "uk": "абріра́с ла бента́на мас та́рде"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я позже напишу письмо»",
+            "uk": "Виберіть, як сказати: «Я пізніше напишу листа»",
+            "en": "Choose how to say: “I will write a letter later”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:28:11",
+          "options": [
+            "es:28:11",
+            "es:28:15",
+            "es:28:10"
+          ],
+          "answerId": "es:28:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я позже прочитаю сообщение»",
+            "uk": "Виберіть, як сказати: «Я пізніше прочитаю повідомлення»",
+            "en": "Choose how to say: “I will read the message later”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:15",
+          "options": [
+            "es:28:15",
+            "es:28:11",
+            "es:28:14"
+          ],
+          "answerId": "es:28:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис завтра купит билет»",
+            "uk": "Виберіть, як сказати: «Луїс завтра купить квиток»",
+            "en": "Choose how to say: “Luis will buy a ticket tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:09",
+          "options": [
+            "es:28:09",
+            "es:28:10",
+            "es:28:14"
+          ],
+          "answerId": "es:28:09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "В мастерской",
+        "en": "At the workshop"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Механик проверит тормоза».\nEl mecánico revisará los frenos.\nЧитается: эль мэка́нико рэбисара́ лос фрэ́нос.\nСлово mecánico значит «механик». Слово revisará — «проверит».\nСлово frenos значит «тормоза». Слово rueda — «колесо».\nRepararán mi bicicleta en el taller. — «В мастерской починят мой велосипед.»\nСлово repararán значит «починят». Слово taller — «мастерская».\nLlevaré la bicicleta al taller. — «Я отвезу велосипед в мастерскую.»",
+        "en": "Look at how to say “The mechanic will check the brakes”.\nEl mecánico revisará los frenos.\nThe word mecánico means “mechanic”. The word revisará means “will check”.\nThe word frenos means “brakes”. The word rueda means “wheel”.\nRepararán mi bicicleta en el taller.\n“They will repair my bike at the workshop.”\nThe word repararán means “they will repair”. The word taller means “workshop”.\nLlevaré la bicicleta al taller. — “I will take the bike to the workshop.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:28:12",
+          "say": {
+            "ru": "эль мэка́нико рэбисара́ лос фрэ́нос",
+            "uk": "ель мека́ніко ребісара́ лос фре́нос"
+          }
+        },
+        {
+          "phraseId": "es:28:30",
+          "say": {
+            "ru": "эль мэка́нико рэбисара́ ла ру́эда",
+            "uk": "ель мека́ніко ребісара́ ла ру́еда"
+          }
+        },
+        {
+          "phraseId": "es:28:19",
+          "say": {
+            "ru": "рэпарара́н ми бисикле́та эн эль тайе́р",
+            "uk": "репарара́н мі бісікле́та ен ель тайе́р"
+          }
+        },
+        {
+          "phraseId": "es:28:07",
+          "say": {
+            "ru": "йэбаре́ ла бисикле́та аль тайе́р",
+            "uk": "йебаре́ ла бісікле́та аль тайе́р"
+          }
+        },
+        {
+          "phraseId": "es:28:16",
+          "say": {
+            "ru": "камбьарэ́мос ла ру́эда маньа́на",
+            "uk": "камбьаре́мос ла ру́еда маньа́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Механик проверит тормоза»",
+            "uk": "Виберіть, як сказати: «Механік перевірить гальма»",
+            "en": "Choose how to say: “The mechanic will check the brakes”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:28:12",
+          "options": [
+            "es:28:12",
+            "es:28:30",
+            "es:28:16"
+          ],
+          "answerId": "es:28:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В мастерской починят мой велосипед»",
+            "uk": "Виберіть, як сказати: «У майстерні полагодять мій велосипед»",
+            "en": "Choose how to say: “They will repair my bike at the workshop”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:19",
+          "options": [
+            "es:28:19",
+            "es:28:07",
+            "es:28:16"
+          ],
+          "answerId": "es:28:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я отвезу велосипед в мастерскую»",
+            "uk": "Виберіть, як сказати: «Я відвезу велосипед до майстерні»",
+            "en": "Choose how to say: “I will take the bike to the workshop”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:07",
+          "options": [
+            "es:28:07",
+            "es:28:19",
+            "es:28:30"
+          ],
+          "answerId": "es:28:07"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не",
+        "en": "Not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «нет».\nNo compraré un billete esta noche.\nЧитается: но компрарэ́ ун бийэ́тэ э́ста но́чэ.\nЭто «Я сегодня вечером не куплю билет».\nСлово no ставят перед словом, как русское «не».\nСлова esta noche значат «сегодня вечером». Слово noche — «ночь, вечер».\nNo usaré la bicicleta mañana. — «Я завтра не буду пользоваться велосипедом.»\nСлово usaré значит «я буду пользоваться». Слово usar — «использовать».\nLuis no mandará el mapa esta noche. — «Луис сегодня вечером не отправит карту.»",
+        "en": "Look at how to say “not”.\nNo compraré un billete esta noche.\nIt means “I will not buy a ticket tonight”.\nThe word no goes before the other word, like “not”.\nThe words esta noche mean “tonight”. The word noche means “night, evening”.\nNo usaré la bicicleta mañana. — “I will not use the bicycle tomorrow.”\nThe word usaré means “I will use”. The word usar means “to use”.\nLuis no mandará el mapa esta noche.\n“Luis will not send the map tonight.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:28:31",
+          "say": {
+            "ru": "но компрарэ́ ун бийэ́тэ э́ста но́чэ",
+            "uk": "но компраре́ ун бійе́те е́ста но́че"
+          }
+        },
+        {
+          "phraseId": "es:28:34",
+          "say": {
+            "ru": "но усарэ́ ла бисикле́та маньа́на",
+            "uk": "но усаре́ ла бісікле́та маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:28:35",
+          "say": {
+            "ru": "Луи́с но мандара́ эль ма́па э́ста но́чэ",
+            "uk": "Луі́с но мандара́ ель ма́па е́ста но́че"
+          }
+        },
+        {
+          "phraseId": "es:28:38",
+          "say": {
+            "ru": "но болбэра́с а ла эстасьо́н э́ста но́чэ",
+            "uk": "но болбера́с а ла естасьо́н е́ста но́че"
+          }
+        },
+        {
+          "phraseId": "es:28:37",
+          "say": {
+            "ru": "но компрарэ́ о́тра ру́эда",
+            "uk": "но компраре́ о́тра ру́еда"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сегодня вечером не куплю билет»",
+            "uk": "Виберіть, як сказати: «Я сьогодні ввечері не куплю квиток»",
+            "en": "Choose how to say: “I will not buy a ticket tonight”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:28:31",
+          "options": [
+            "es:28:31",
+            "es:28:34",
+            "es:28:35"
+          ],
+          "answerId": "es:28:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я завтра не буду пользоваться велосипедом»",
+            "uk": "Виберіть, як сказати: «Я завтра не користуватимуся велосипедом»",
+            "en": "Choose how to say: “I will not use the bicycle tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:34",
+          "options": [
+            "es:28:34",
+            "es:28:31",
+            "es:28:37"
+          ],
+          "answerId": "es:28:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис сегодня вечером не отправит карту»",
+            "uk": "Виберіть, як сказати: «Луїс сьогодні ввечері не надішле мапу»",
+            "en": "Choose how to say: “Luis will not send the map tonight”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:35",
+          "options": [
+            "es:28:35",
+            "es:28:38",
+            "es:28:31"
+          ],
+          "answerId": "es:28:35"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вопрос",
+        "en": "A question"
+      },
+      "text": {
+        "ru": "Смотрите, как задать вопрос.\n¿Llamarás a Ana? — «Ты позвонишь Ане?»\nЧитается: йамара́с а А́на.\nСлова те же, а голос в конце идёт вверх.\n¿Pagaremos en efectivo? — «Мы заплатим наличными?»\n¿Repararán el ascensor mañana? — «Лифт завтра починят?»\nСлово ascensor значит «лифт».\nLlevaré el paraguas si empieza a llover.\nЭто «Я возьму зонт, если начнётся дождь».",
+        "en": "Look at how to ask a question.\n¿Llamarás a Ana? — “Will you call Ana?”\nThe words are the same, but the voice goes up at the end.\n¿Pagaremos en efectivo? — “Shall we pay in cash?”\n¿Repararán el ascensor mañana? — “Will they repair the lift tomorrow?”\nThe word ascensor means “lift, elevator”.\nLlevaré el paraguas si empieza a llover.\nIt means “I will take the umbrella if it starts to rain”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:28:41",
+          "say": {
+            "ru": "йамара́с а А́на",
+            "uk": "йамара́с а А́на"
+          }
+        },
+        {
+          "phraseId": "es:28:42",
+          "say": {
+            "ru": "рэбисара́с ла факту́ра",
+            "uk": "ребісара́с ла факту́ра"
+          }
+        },
+        {
+          "phraseId": "es:28:43",
+          "say": {
+            "ru": "пагарэ́мос эн эфэкти́бо",
+            "uk": "пагаре́мос ен ефекті́бо"
+          }
+        },
+        {
+          "phraseId": "es:28:47",
+          "say": {
+            "ru": "рэпарара́н эль асэнсо́р маньа́на",
+            "uk": "репарара́н ель асенсо́р маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:28:45",
+          "say": {
+            "ru": "йэбаре́ эль пара́гуас си эмпье́са а йобэ́р",
+            "uk": "йебаре́ ель пара́гуас сі емпье́са а йобе́р"
+          }
+        },
+        {
+          "phraseId": "es:28:50",
+          "say": {
+            "ru": "лээрэ́ис эль мэнса́хэ",
+            "uk": "леере́іс ель менса́хе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты позвонишь Ане?»",
+            "uk": "Виберіть, як сказати: «Ти зателефонуєш Ані?»",
+            "en": "Choose how to say: “Will you call Ana?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:28:41",
+          "options": [
+            "es:28:41",
+            "es:28:42",
+            "es:28:43"
+          ],
+          "answerId": "es:28:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы заплатим наличными?»",
+            "uk": "Виберіть, як сказати: «Ми заплатимо готівкою?»",
+            "en": "Choose how to say: “Shall we pay in cash?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:43",
+          "options": [
+            "es:28:43",
+            "es:28:41",
+            "es:28:47"
+          ],
+          "answerId": "es:28:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Лифт завтра починят?»",
+            "uk": "Виберіть, як сказати: «Ліфт завтра полагодять?»",
+            "en": "Choose how to say: “Will they repair the lift tomorrow?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:28:47",
+          "options": [
+            "es:28:47",
+            "es:28:42",
+            "es:28:50"
+          ],
+          "answerId": "es:28:47"
+        }
+      ]
+    }
+  ]
+}

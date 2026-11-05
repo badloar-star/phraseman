@@ -1,0 +1,426 @@
+{
+  "lang": "it",
+  "lesson": 10,
+  "title": {
+    "ru": "Есть, имеется",
+    "uk": "Є, наявне",
+    "en": "There is, there are"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Есть один предмет",
+        "uk": "Є одна річ",
+        "en": "There is one thing"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что что-то есть.\nC’è una panchina. — «Есть скамейка.»\nЧитается: че́ у́на панки́на\nC’è un tavolo. — «Есть стол.»\nЧитается: че́ ун та́воло\nC’è un pacco alla reception. — «На ресепшене есть посылка.»\nЧитается: че́ ун па́кко а́лла ресе́пшн\nСлово c’è значит «есть, имеется».\nСлова una и un значат «одна» и «один». По-русски их не говорят.\nСлово panchina значит «скамейка», слово tavolo — «стол».\nСлово pacco значит «посылка», слова alla reception — «на ресепшене».",
+        "uk": "Дивіться, як сказати, що щось є.\nC’è una panchina. — «Є лава.»\nЧитається: че́ у́на панкі́на\nC’è un tavolo. — «Є стіл.»\nЧитається: че́ ун та́воло\nC’è un pacco alla reception. — «На рецепції є посилка.»\nЧитається: че́ ун па́кко а́лла ресе́пшн\nСлово c’è означає «є, наявне».\nСлова una та un означають «одна» та «один». Українською їх не кажуть.\nСлово panchina означає «лава», слово tavolo — «стіл».\nСлово pacco означає «посилка», слова alla reception — «на рецепції».",
+        "en": "Look at how to say that something is there.\nC’è una panchina. — “There is a bench.”\nC’è un tavolo. — “There is a table.”\nC’è un pacco alla reception. — “There is a parcel at the reception desk.”\nThe word c’è means “there is”.\nThe words una and un mean “a” or “one”.\nThe word panchina means “bench”, the word tavolo — “table”.\nThe word pacco means “parcel”, the words alla reception — “at the reception desk”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:10:01",
+          "say": {
+            "ru": "че́ у́на панки́на",
+            "uk": "че́ у́на панкі́на"
+          }
+        },
+        {
+          "phraseId": "it:10:02",
+          "say": {
+            "ru": "че́ ун та́воло",
+            "uk": "че́ ун та́воло"
+          }
+        },
+        {
+          "phraseId": "it:10:43",
+          "say": {
+            "ru": "че́ ун па́кко а́лла ресе́пшн",
+            "uk": "че́ ун па́кко а́лла ресе́пшн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть скамейка»",
+            "uk": "Виберіть, як сказати: «Є лава»",
+            "en": "Choose how to say: “There is a bench”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:10:01",
+          "options": [
+            "it:10:01",
+            "it:10:02",
+            "it:10:43"
+          ],
+          "answerId": "it:10:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть стол»",
+            "uk": "Виберіть, як сказати: «Є стіл»",
+            "en": "Choose how to say: “There is a table”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:02",
+          "options": [
+            "it:10:01",
+            "it:10:02",
+            "it:10:43"
+          ],
+          "answerId": "it:10:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На ресепшене есть посылка»",
+            "uk": "Виберіть, як сказати: «На рецепції є посилка»",
+            "en": "Choose how to say: “There is a parcel at the reception desk”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:43",
+          "options": [
+            "it:10:01",
+            "it:10:02",
+            "it:10:43"
+          ],
+          "answerId": "it:10:43"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Есть несколько",
+        "uk": "Є кілька",
+        "en": "There are several"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вещей несколько.\nCi sono due panchine. — «Есть две скамейки.»\nЧитается: чи со́но ду́е панки́не\nCi sono tre sedie. — «Есть три стула.»\nЧитается: чи со́но тре се́дье\nNel cassetto ci sono delle pile. — «В ящике лежат батарейки.»\nЧитается: нель кассе́тто чи со́но де́лле пи́ле\nСлова ci sono значат «есть», когда вещей несколько.\nСлово c’è — для одной вещи.\nСлово due значит «два», слово tre — «три».\nСлово panchine значит «скамейки», слово sedie — «стулья».\nСлово delle стоит перед pile: по-русски его нет.\nСлово pile значит «батарейки», слова nel cassetto — «в ящике».",
+        "uk": "Дивіться, як сказати, що речей кілька.\nCi sono due panchine. — «Є дві лавки.»\nЧитається: чі со́но ду́е панкі́не\nCi sono tre sedie. — «Є три стільці.»\nЧитається: чі со́но тре се́дье\nNel cassetto ci sono delle pile. — «У шухляді є батарейки.»\nЧитається: нель кассе́тто чі со́но де́лле пі́ле\nСлова ci sono означають «є», коли речей кілька.\nСлово c’è — для однієї речі.\nСлово due означає «два», слово tre — «три».\nСлово panchine означає «лави», слово sedie — «стільці».\nСлово delle стоїть перед pile: українською його нема.\nСлово pile означає «батарейки», слова nel cassetto — «в шухляді».",
+        "en": "Look at how to say that there are several things.\nCi sono due panchine. — “There are two benches.”\nCi sono tre sedie. — “There are three chairs.”\nNel cassetto ci sono delle pile. — “There are batteries in the drawer.”\nThe words ci sono mean “there are”, when there are several things.\nThe word c’è is for one thing.\nThe word due means “two”, the word tre — “three”.\nThe word panchine means “benches”, the word sedie — “chairs”.\nThe word delle stands before pile. It has no English twin.\nThe word pile means “batteries”, the words nel cassetto — “in the drawer”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:10:03",
+          "say": {
+            "ru": "чи со́но ду́е панки́не",
+            "uk": "чі со́но ду́е панкі́не"
+          }
+        },
+        {
+          "phraseId": "it:10:04",
+          "say": {
+            "ru": "чи со́но тре се́дье",
+            "uk": "чі со́но тре се́дье"
+          }
+        },
+        {
+          "phraseId": "it:10:16",
+          "say": {
+            "ru": "нель кассе́тто чи со́но де́лле пи́ле",
+            "uk": "нель кассе́тто чі со́но де́лле пі́ле"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть две скамейки»",
+            "uk": "Виберіть, як сказати: «Є дві лавки»",
+            "en": "Choose how to say: “There are two benches”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:10:03",
+          "options": [
+            "it:10:03",
+            "it:10:04",
+            "it:10:16"
+          ],
+          "answerId": "it:10:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть три стула»",
+            "uk": "Виберіть, як сказати: «Є три стільці»",
+            "en": "Choose how to say: “There are three chairs”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:04",
+          "options": [
+            "it:10:03",
+            "it:10:04",
+            "it:10:16"
+          ],
+          "answerId": "it:10:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В ящике лежат батарейки»",
+            "uk": "Виберіть, як сказати: «У шухляді є батарейки»",
+            "en": "Choose how to say: “There are batteries in the drawer”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:16",
+          "options": [
+            "it:10:03",
+            "it:10:04",
+            "it:10:16"
+          ],
+          "answerId": "it:10:16"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Где что есть",
+        "uk": "Де що є",
+        "en": "Where things are"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, где что-то есть.\nNella borsa c’è una mappa. — «В сумке карта.»\nЧитается: не́лла бо́рса че́ у́на ма́ппа\nC’è un orologio in cucina. — «На кухне есть часы.»\nЧитается: че́ ун оро́лоджо ин кучи́на\nC’è una coperta nell’armadio. — «В шкафу лежит одеяло.»\nЧитается: че́ у́на копе́рта нелларма́дьо\nМесто можно назвать сначала: nella borsa — «в сумке».\nИли в конце: in cucina — «на кухне».\nСлово c’è остаётся тем же.\nСлово orologio значит «часы», слово cucina — «кухня».\nСлово coperta значит «одеяло».\nСлово nell’armadio значит «в шкафу».",
+        "uk": "Дивіться, як сказати, де щось є.\nNella borsa c’è una mappa. — «У сумці є карта.»\nЧитається: не́лла бо́рса че́ у́на ма́ппа\nC’è un orologio in cucina. — «На кухні є годинник.»\nЧитається: че́ ун оро́лоджо ін кучі́на\nC’è una coperta nell’armadio. — «У шафі є ковдра.»\nЧитається: че́ у́на копе́рта нелларма́дьо\nМісце можна назвати спочатку: nella borsa — «в сумці».\nАбо в кінці: in cucina — «на кухні».\nСлово c’è залишається тим самим.\nСлово orologio означає «годинник», слово cucina — «кухня».\nСлово coperta означає «ковдра».\nСлово nell’armadio означає «в шафі».",
+        "en": "Look at how to say where something is.\nNella borsa c’è una mappa. — “There is a map in the bag.”\nC’è un orologio in cucina. — “There is a clock in the kitchen.”\nC’è una coperta nell’armadio. — “There is a blanket in the wardrobe.”\nYou can name the place first: nella borsa — “in the bag”.\nOr at the end: in cucina — “in the kitchen”.\nThe word c’è stays the same.\nThe word orologio means “clock”, the word cucina — “kitchen”.\nThe word coperta means “blanket”.\nThe word nell’armadio means “in the wardrobe”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:10:11",
+          "say": {
+            "ru": "не́лла бо́рса че́ у́на ма́ппа",
+            "uk": "не́лла бо́рса че́ у́на ма́ппа"
+          }
+        },
+        {
+          "phraseId": "it:10:15",
+          "say": {
+            "ru": "че́ ун оро́лоджо ин кучи́на",
+            "uk": "че́ ун оро́лоджо ін кучі́на"
+          }
+        },
+        {
+          "phraseId": "it:10:46",
+          "say": {
+            "ru": "че́ у́на копе́рта нелларма́дьо",
+            "uk": "че́ у́на копе́рта нелларма́дьо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В сумке карта»",
+            "uk": "Виберіть, як сказати: «У сумці є карта»",
+            "en": "Choose how to say: “There is a map in the bag”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:10:11",
+          "options": [
+            "it:10:11",
+            "it:10:15",
+            "it:10:46"
+          ],
+          "answerId": "it:10:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На кухне есть часы»",
+            "uk": "Виберіть, як сказати: «На кухні є годинник»",
+            "en": "Choose how to say: “There is a clock in the kitchen”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:15",
+          "options": [
+            "it:10:11",
+            "it:10:15",
+            "it:10:46"
+          ],
+          "answerId": "it:10:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В шкафу лежит одеяло»",
+            "uk": "Виберіть, як сказати: «У шафі є ковдра»",
+            "en": "Choose how to say: “There is a blanket in the wardrobe”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:46",
+          "options": [
+            "it:10:11",
+            "it:10:15",
+            "it:10:46"
+          ],
+          "answerId": "it:10:46"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Есть ли…?",
+        "uk": "Чи є…?",
+        "en": "Is there…?"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Есть ли…?».\nC’è un autobus stasera? — «Есть ли сегодня вечером автобус?»\nЧитается: че́ ун а́утобус стасе́ра\nC’è una camera libera? — «Есть ли свободная комната?»\nЧитается: че́ у́на ка́мера ли́бера\nC’è del latte in frigorifero? — «Есть ли молоко в холодильнике?»\nЧитается: че́ дель ла́тте ин фриджори́феро\nСлова те же, что и в обычной фразе.\nВопрос слышен по голосу: он поднимается в конце.\nСлово autobus значит «автобус», слово stasera — «сегодня вечером».\nСлова camera libera значат «свободная комната».\nСлово del стоит перед latte: по-русски его нет.\nСлово latte значит «молоко», слово frigorifero — «холодильник».\nСлова in frigorifero значат «в холодильнике».",
+        "uk": "Дивіться, як спитати «Чи є…?».\nC’è un autobus stasera? — «Чи є автобус сьогодні ввечері?»\nЧитається: че́ ун а́утобус стасе́ра\nC’è una camera libera? — «Чи є вільна кімната?»\nЧитається: че́ у́на ка́мера лі́бера\nC’è del latte in frigorifero? — «Чи є молоко в холодильнику?»\nЧитається: че́ дель ла́тте ін фріджорі́феро\nСлова ті самі, що й у звичайній фразі.\nПитання чути за голосом: він піднімається в кінці.\nСлово autobus означає «автобус», слово stasera — «сьогодні ввечері».\nСлова camera libera означають «вільна кімната».\nСлово del стоїть перед latte: українською його нема.\nСлово latte означає «молоко», слово frigorifero — «холодильник».\nСлова in frigorifero означають «в холодильнику».",
+        "en": "Look at how to ask “Is there…?”.\nC’è un autobus stasera? — “Is there a bus this evening?”\nC’è una camera libera? — “Is there a free room?”\nC’è del latte in frigorifero? — “Is there any milk in the fridge?”\nThe words are the same as in a normal sentence.\nYou hear the question in the voice: it goes up at the end.\nThe word autobus means “bus”, the word stasera — “this evening”.\nThe words camera libera mean “free room”.\nThe word del stands before latte. It has no English twin.\nThe word latte means “milk”, the word frigorifero — “fridge”.\nThe words in frigorifero mean “in the fridge”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:10:21",
+          "say": {
+            "ru": "че́ ун а́утобус стасе́ра",
+            "uk": "че́ ун а́утобус стасе́ра"
+          }
+        },
+        {
+          "phraseId": "it:10:27",
+          "say": {
+            "ru": "че́ у́на ка́мера ли́бера",
+            "uk": "че́ у́на ка́мера лі́бера"
+          }
+        },
+        {
+          "phraseId": "it:10:28",
+          "say": {
+            "ru": "че́ дель ла́тте ин фриджори́феро",
+            "uk": "че́ дель ла́тте ін фріджорі́феро"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли сегодня вечером автобус?»",
+            "uk": "Виберіть, як сказати: «Чи є автобус сьогодні ввечері?»",
+            "en": "Choose how to say: “Is there a bus this evening?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:10:21",
+          "options": [
+            "it:10:21",
+            "it:10:27",
+            "it:10:28"
+          ],
+          "answerId": "it:10:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли свободная комната?»",
+            "uk": "Виберіть, як сказати: «Чи є вільна кімната?»",
+            "en": "Choose how to say: “Is there a free room?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:27",
+          "options": [
+            "it:10:21",
+            "it:10:27",
+            "it:10:28"
+          ],
+          "answerId": "it:10:27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Есть ли молоко в холодильнике?»",
+            "uk": "Виберіть, як сказати: «Чи є молоко в холодильнику?»",
+            "en": "Choose how to say: “Is there any milk in the fridge?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:28",
+          "options": [
+            "it:10:21",
+            "it:10:27",
+            "it:10:28"
+          ],
+          "answerId": "it:10:28"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Нет",
+        "uk": "Немає",
+        "en": "There is not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что чего-то нет.\nNon c’è sapone. — «Нет мыла.»\nЧитается: нон че́ сапо́не\nNon c’è acqua calda. — «Нет горячей воды.»\nЧитается: нон че́ а́кква ка́льда\nNon ci sono più biglietti. — «Билетов больше нет.»\nЧитается: нон чи со́но пью билье́тти\nСлово non ставят перед c’è: получается «нет».\nСлова non ci sono значат «нет» для нескольких вещей.\nСлова non ci sono più значат «больше нет».\nСлово sapone значит «мыло», слова acqua calda — «горячая вода».\nСлово biglietti значит «билеты».",
+        "uk": "Дивіться, як сказати, що чогось немає.\nNon c’è sapone. — «Мила немає.»\nЧитається: нон че́ сапо́не\nNon c’è acqua calda. — «Гарячої води немає.»\nЧитається: нон че́ а́кква ка́льда\nNon ci sono più biglietti. — «Квитків більше немає.»\nЧитається: нон чі со́но пью білье́тті\nСлово non ставлять перед c’è: виходить «немає».\nСлова non ci sono означають «немає» для кількох речей.\nСлова non ci sono più означають «більше немає».\nСлово sapone означає «мило», слова acqua calda — «гаряча вода».\nСлово biglietti означає «квитки».",
+        "en": "Look at how to say that something is not there.\nNon c’è sapone. — “There is no soap.”\nNon c’è acqua calda. — “There is no hot water.”\nNon ci sono più biglietti. — “There are no more tickets.”\nThe word non stands before c’è: it becomes “there is no”.\nThe words non ci sono mean “there are no” for several things.\nThe words non ci sono più mean “there are no more”.\nThe word sapone means “soap”, the words acqua calda — “hot water”.\nThe word biglietti means “tickets”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:10:32",
+          "say": {
+            "ru": "нон че́ сапо́не",
+            "uk": "нон че́ сапо́не"
+          }
+        },
+        {
+          "phraseId": "it:10:33",
+          "say": {
+            "ru": "нон че́ а́кква ка́льда",
+            "uk": "нон че́ а́кква ка́льда"
+          }
+        },
+        {
+          "phraseId": "it:10:36",
+          "say": {
+            "ru": "нон чи со́но пью билье́тти",
+            "uk": "нон чі со́но пью білье́тті"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нет мыла»",
+            "uk": "Виберіть, як сказати: «Мила немає»",
+            "en": "Choose how to say: “There is no soap”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:10:32",
+          "options": [
+            "it:10:32",
+            "it:10:33",
+            "it:10:36"
+          ],
+          "answerId": "it:10:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нет горячей воды»",
+            "uk": "Виберіть, як сказати: «Гарячої води немає»",
+            "en": "Choose how to say: “There is no hot water”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:33",
+          "options": [
+            "it:10:32",
+            "it:10:33",
+            "it:10:36"
+          ],
+          "answerId": "it:10:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Билетов больше нет»",
+            "uk": "Виберіть, як сказати: «Квитків більше немає»",
+            "en": "Choose how to say: “There are no more tickets”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:10:36",
+          "options": [
+            "it:10:32",
+            "it:10:33",
+            "it:10:36"
+          ],
+          "answerId": "it:10:36"
+        }
+      ]
+    }
+  ]
+}

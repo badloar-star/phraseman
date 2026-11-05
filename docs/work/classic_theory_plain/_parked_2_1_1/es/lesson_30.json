@@ -1,0 +1,478 @@
+{
+  "lang": "es",
+  "lesson": 30,
+  "title": {
+    "ru": "Я хочу, чтобы ты…",
+    "en": "I want you to…"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я хочу, чтобы ты пришёл",
+        "en": "I want you to come"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я хочу, чтобы ты пришёл завтра».\nQuiero que vengas mañana.\nЧитается: кьэ́ро кэ бэ́нгас маньа́на.\nСлово quiero значит «я хочу». Слово que тут значит «чтобы».\nСлово vengas значит «ты пришёл». Оно стоит после que.\nQuiero que leas el mensaje. — «Я хочу, чтобы ты прочитал сообщение.»\nСлово leas значит «ты прочитал».\nQuiero que cierres la ventana. — «Я хочу, чтобы ты закрыл окно.»",
+        "en": "Look at how to say “I want you to come tomorrow”.\nQuiero que vengas mañana.\nThe word quiero means “I want”. The word que here means “that”.\nThe word vengas means “you come”. It stands after que.\nQuiero que leas el mensaje. — “I want you to read the message.”\nThe word leas means “you read”.\nQuiero que cierres la ventana. — “I want you to close the window.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:30:01",
+          "say": {
+            "ru": "кьэ́ро кэ бэ́нгас маньа́на",
+            "uk": "кье́ро ке бе́нгас маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:30:02",
+          "say": {
+            "ru": "кьэ́ро кэ э́нтрэс ао́ра",
+            "uk": "кье́ро ке е́нтрес ао́ра"
+          }
+        },
+        {
+          "phraseId": "es:30:04",
+          "say": {
+            "ru": "кьэ́ро кэ лэ́ас эль мэнса́хэ",
+            "uk": "кье́ро ке ле́ас ель менса́хе"
+          }
+        },
+        {
+          "phraseId": "es:30:05",
+          "say": {
+            "ru": "кьэ́ро кэ йа́мэс аль отэ́ль",
+            "uk": "кье́ро ке йа́мес аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:30:07",
+          "say": {
+            "ru": "кьэ́ро кэ сьэ́ррэс ла бэнта́на",
+            "uk": "кье́ро ке сье́ррес ла бента́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу, чтобы ты пришёл завтра»",
+            "uk": "Виберіть, як сказати: «Я хочу, щоб ти прийшов завтра»",
+            "en": "Choose how to say: “I want you to come tomorrow”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:30:01",
+          "options": [
+            "es:30:01",
+            "es:30:02",
+            "es:30:04"
+          ],
+          "answerId": "es:30:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу, чтобы ты прочитал сообщение»",
+            "uk": "Виберіть, як сказати: «Я хочу, щоб ти прочитав повідомлення»",
+            "en": "Choose how to say: “I want you to read the message”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:04",
+          "options": [
+            "es:30:04",
+            "es:30:05",
+            "es:30:07"
+          ],
+          "answerId": "es:30:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу, чтобы ты закрыл окно»",
+            "uk": "Виберіть, як сказати: «Я хочу, щоб ти зачинив вікно»",
+            "en": "Choose how to say: “I want you to close the window”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:07",
+          "options": [
+            "es:30:07",
+            "es:30:01",
+            "es:30:05"
+          ],
+          "answerId": "es:30:07"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я хочу, чтобы он, она, мы",
+        "en": "I want him, her, us to"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я хочу, чтобы Луис открыл дверь».\nQuiero que Luis abra la puerta.\nЧитается: кьэ́ро кэ Луи́с а́бра ла пуэ́рта.\nСлово abra тут значит «открыл».\nQuiero que la profesora hable más despacio.\nЭто «Я хочу, чтобы преподавательница говорила помедленнее».\nСлово despacio значит «медленно». Слова más despacio — «помедленнее».\nQuiero que volvamos juntos. — «Я хочу, чтобы мы вернулись вместе.»\nQuiero que el médico venga hoy. — «Я хочу, чтобы врач пришёл сегодня.»",
+        "en": "Look at how to say “I want Luis to open the door”.\nQuiero que Luis abra la puerta.\nThe word abra here means “opens”.\nQuiero que la profesora hable más despacio.\nIt means “I want the teacher to speak more slowly”.\nThe word despacio means “slowly”. The words más despacio mean “more slowly”.\nQuiero que volvamos juntos. — “I want us to come back together.”\nQuiero que el médico venga hoy. — “I want the doctor to come today.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:30:03",
+          "say": {
+            "ru": "кьэ́ро кэ Луи́с а́бра ла пуэ́рта",
+            "uk": "кье́ро ке Луі́с а́бра ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:30:10",
+          "say": {
+            "ru": "кьэ́ро кэ эль мэ́дико бэ́нга ой",
+            "uk": "кье́ро ке ель ме́діко бе́нга ой"
+          }
+        },
+        {
+          "phraseId": "es:30:08",
+          "say": {
+            "ru": "кьэ́ро кэ ла профэсо́ра а́бле мас деспа́сьо",
+            "uk": "кье́ро ке ла професо́ра а́бле мас деспа́сьо"
+          }
+        },
+        {
+          "phraseId": "es:30:09",
+          "say": {
+            "ru": "кьэ́ро кэ болба́мос ху́нтос",
+            "uk": "кье́ро ке болба́мос ху́нтос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу, чтобы Луис открыл дверь»",
+            "uk": "Виберіть, як сказати: «Я хочу, щоб Луїс відчинив двері»",
+            "en": "Choose how to say: “I want Luis to open the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:30:03",
+          "options": [
+            "es:30:03",
+            "es:30:10",
+            "es:30:09"
+          ],
+          "answerId": "es:30:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу, чтобы преподавательница говорила помедленнее»",
+            "uk": "Виберіть, як сказати: «Я хочу, щоб викладачка говорила повільніше»",
+            "en": "Choose how to say: “I want the teacher to speak more slowly”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:08",
+          "options": [
+            "es:30:08",
+            "es:30:03",
+            "es:30:09"
+          ],
+          "answerId": "es:30:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу, чтобы мы вернулись вместе»",
+            "uk": "Виберіть, як сказати: «Я хочу, щоб ми повернулися разом»",
+            "en": "Choose how to say: “I want us to come back together”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:09",
+          "options": [
+            "es:30:09",
+            "es:30:10",
+            "es:30:08"
+          ],
+          "answerId": "es:30:09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Мы хотим, чтобы ты…",
+        "en": "We want you to…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы хотим, чтобы ты записал номер».\nQueremos que apuntes el número.\nЧитается: кэрэ́мос кэ апу́нтэс эль ну́мэро.\nСлово queremos значит «мы хотим». Слово apuntes — «ты записал».\nСлово apuntar значит «записывать, делать пометку».\nСлово меняется, смотря о ком речь: «я» — quiero, «мы» — queremos.\nQueremos que nos avises mañana.\nЭто «Мы хотим, чтобы ты завтра дал нам знать».\nСлово avisar значит «предупреждать, давать знать».\nQueremos que volváis juntos. — «Мы хотим, чтобы вы вернулись вместе.»",
+        "en": "Look at how to say “We want you to write down the number”.\nQueremos que apuntes el número.\nThe word queremos means “we want”. The word apuntes means “you write down”.\nThe word apuntar means “to write down, to note”.\nThe word changes depending on who it is about: “I” — quiero, “we” — queremos.\nQueremos que nos avises mañana.\nIt means “We want you to let us know tomorrow”.\nThe word avisar means “to warn, to let know”.\nQueremos que volváis juntos. — “We want you all to come back together.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:30:12",
+          "say": {
+            "ru": "кэрэ́мос кэ апу́нтэс эль ну́мэро",
+            "uk": "кере́мос ке апу́нтес ель ну́меро"
+          }
+        },
+        {
+          "phraseId": "es:30:15",
+          "say": {
+            "ru": "кэрэ́мос кэ нос аби́сэс маньа́на",
+            "uk": "кере́мос ке нос абі́сес маньа́на"
+          }
+        },
+        {
+          "phraseId": "es:30:13",
+          "say": {
+            "ru": "кэрэ́мос кэ рэби́сэс лос фрэ́нос",
+            "uk": "кере́мос ке ребі́сес лос фре́нос"
+          }
+        },
+        {
+          "phraseId": "es:30:18",
+          "say": {
+            "ru": "кэрэ́мос кэ болба́ис ху́нтос",
+            "uk": "кере́мос ке болба́іс ху́нтос"
+          }
+        },
+        {
+          "phraseId": "es:30:11",
+          "say": {
+            "ru": "кэрэ́мос кэ э́нтрэс ао́ра",
+            "uk": "кере́мос ке е́нтрес ао́ра"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы хотим, чтобы ты записал номер»",
+            "uk": "Виберіть, як сказати: «Ми хочемо, щоб ти записав номер»",
+            "en": "Choose how to say: “We want you to write down the number”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:30:12",
+          "options": [
+            "es:30:12",
+            "es:30:15",
+            "es:30:13"
+          ],
+          "answerId": "es:30:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы хотим, чтобы ты завтра дал нам знать»",
+            "uk": "Виберіть, як сказати: «Ми хочемо, щоб ти завтра дав нам знати»",
+            "en": "Choose how to say: “We want you to let us know tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:15",
+          "options": [
+            "es:30:15",
+            "es:30:12",
+            "es:30:18"
+          ],
+          "answerId": "es:30:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы хотим, чтобы вы вернулись вместе»",
+            "uk": "Виберіть, як сказати: «Ми хочемо, щоб ви повернулися разом»",
+            "en": "Choose how to say: “We want you all to come back together”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:18",
+          "options": [
+            "es:30:18",
+            "es:30:11",
+            "es:30:13"
+          ],
+          "answerId": "es:30:18"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Ана хочет, мама не хочет",
+        "en": "Ana wants, mother does not want"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана хочет, чтобы ты записал пароль».\nAna quiere que apuntes la contraseña.\nЧитается: А́на кьэ́рэ кэ апу́нтэс ла контрасэ́нья.\nСлово quiere значит «хочет». Слово contraseña — «пароль».\nAna quiere que leas el texto de la pantalla.\nЭто «Ана хочет, чтобы ты прочитал текст на экране».\nСлово texto значит «текст». Слово pantalla — «экран».\nMi madre no quiere que apagues la luz.\nЭто «Моя мама не хочет, чтобы ты выключал свет».\nСлово no ставят перед словом, как русское «не».\nAna quiere que el mecánico repare la rueda.\nЭто «Ана хочет, чтобы механик починил колесо».",
+        "en": "Look at how to say “Ana wants you to write down the password”.\nAna quiere que apuntes la contraseña.\nThe word quiere means “wants”. The word contraseña means “password”.\nAna quiere que leas el texto de la pantalla.\nIt means “Ana wants you to read the text on the screen”.\nThe word texto means “text”. The word pantalla means “screen”.\nMi madre no quiere que apagues la luz.\n“My mother does not want you to turn off the light.”\nThe word no goes before the other word, like “not”.\nAna quiere que el mecánico repare la rueda.\nIt means “Ana wants the mechanic to repair the wheel”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:30:24",
+          "say": {
+            "ru": "А́на кьэ́рэ кэ апу́нтэс ла контрасэ́нья",
+            "uk": "А́на кье́ре ке апу́нтес ла контрасе́нья"
+          }
+        },
+        {
+          "phraseId": "es:30:23",
+          "say": {
+            "ru": "А́на кьэ́рэ кэ лэ́ас эль тэ́ксто дэ ла панта́йа",
+            "uk": "А́на кье́ре ке ле́ас ель те́ксто де ла панта́йа"
+          }
+        },
+        {
+          "phraseId": "es:30:21",
+          "say": {
+            "ru": "А́на кьэ́рэ кэ эль мэка́нико рэпа́рэ ла ру́эда",
+            "uk": "А́на кье́ре ке ель мека́ніко репа́ре ла ру́еда"
+          }
+        },
+        {
+          "phraseId": "es:30:31",
+          "say": {
+            "ru": "ми ма́дрэ но кьэ́рэ кэ апа́гэс ла лус",
+            "uk": "мі ма́дре но кье́ре ке апа́гес ла лус"
+          }
+        },
+        {
+          "phraseId": "es:30:33",
+          "say": {
+            "ru": "ми ма́дрэ но кьэ́рэ кэ ка́нтэс дэспуэ́с дэ ла сэ́на",
+            "uk": "мі ма́дре но кье́ре ке ка́нтес деспуе́с де ла се́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана хочет, чтобы ты записал пароль»",
+            "uk": "Виберіть, як сказати: «Ана хоче, щоб ти записав пароль»",
+            "en": "Choose how to say: “Ana wants you to write down the password”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:30:24",
+          "options": [
+            "es:30:24",
+            "es:30:23",
+            "es:30:31"
+          ],
+          "answerId": "es:30:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана хочет, чтобы ты прочитал текст на экране»",
+            "uk": "Виберіть, як сказати: «Ана хоче, щоб ти прочитав текст на екрані»",
+            "en": "Choose how to say: “Ana wants you to read the text on the screen”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:23",
+          "options": [
+            "es:30:23",
+            "es:30:21",
+            "es:30:24"
+          ],
+          "answerId": "es:30:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя мама не хочет, чтобы ты выключал свет»",
+            "uk": "Виберіть, як сказати: «Моя мама не хоче, щоб ти вимикав світло»",
+            "en": "Choose how to say: “My mother does not want you to turn off the light”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:31",
+          "options": [
+            "es:30:31",
+            "es:30:33",
+            "es:30:21"
+          ],
+          "answerId": "es:30:31"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Хотите, чтобы я…?",
+        "en": "Do you want me to…?"
+      },
+      "text": {
+        "ru": "Смотрите, как задать вопрос.\n¿Quieres que llame al hotel? — «Ты хочешь, чтобы я позвонила в отель?»\nЧитается: кьэ́рэс кэ йа́мэ аль отэ́ль.\nСлова те же, а голос в конце идёт вверх.\nСлово quieres значит «ты хочешь».\n¿Quieres que copie la dirección? — «Хочешь, чтобы я скопировал адрес?»\nСлово copie значит «я скопировал». Слово copiar — «копировать».\nСлово dirección значит «адрес».\n¿Quieres que baje el volumen? — «Хочешь, чтобы я сделал потише?»",
+        "en": "Look at how to ask a question.\n¿Quieres que llame al hotel? — “Do you want me to call the hotel?”\nThe words are the same, but the voice goes up at the end.\nThe word quieres means “you want”.\n¿Quieres que copie la dirección? — “Do you want me to copy the address?”\nThe word copie means “I copy”. The word copiar means “to copy”.\nThe word dirección means “address”.\n¿Quieres que baje el volumen?\n“Do you want me to turn the volume down?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:30:41",
+          "say": {
+            "ru": "кьэ́рэс кэ йа́мэ аль отэ́ль",
+            "uk": "кье́рес ке йа́ме аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:30:42",
+          "say": {
+            "ru": "кьэ́рэс кэ ко́пье ла дирэксьо́н",
+            "uk": "кье́рес ке ко́пье ла дірексьо́н"
+          }
+        },
+        {
+          "phraseId": "es:30:48",
+          "say": {
+            "ru": "кьэ́рэс кэ ба́хэ эль болу́мэн",
+            "uk": "кье́рес ке ба́хе ель болу́мен"
+          }
+        },
+        {
+          "phraseId": "es:30:49",
+          "say": {
+            "ru": "кьэ́рэс кэ Луи́с а́бра ла пуэ́рта",
+            "uk": "кье́рес ке Луі́с а́бра ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:30:06",
+          "say": {
+            "ru": "кьэ́ро кэ ко́пьес ла контрасэ́нья",
+            "uk": "кье́ро ке ко́пьес ла контрасе́нья"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты хочешь, чтобы я позвонила в отель?»",
+            "uk": "Виберіть, як сказати: «Ти хочеш, щоб я зателефонувала до готелю?»",
+            "en": "Choose how to say: “Do you want me to call the hotel?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:30:41",
+          "options": [
+            "es:30:41",
+            "es:30:42",
+            "es:30:48"
+          ],
+          "answerId": "es:30:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хочешь, чтобы я скопировал адрес?»",
+            "uk": "Виберіть, як сказати: «Хочеш, щоб я скопіював адресу?»",
+            "en": "Choose how to say: “Do you want me to copy the address?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:42",
+          "options": [
+            "es:30:42",
+            "es:30:48",
+            "es:30:41"
+          ],
+          "answerId": "es:30:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хочешь, чтобы я сделал потише?»",
+            "uk": "Виберіть, як сказати: «Хочеш, щоб я зробив тихіше?»",
+            "en": "Choose how to say: “Do you want me to turn the volume down?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:30:48",
+          "options": [
+            "es:30:48",
+            "es:30:49",
+            "es:30:41"
+          ],
+          "answerId": "es:30:48"
+        }
+      ]
+    }
+  ]
+}

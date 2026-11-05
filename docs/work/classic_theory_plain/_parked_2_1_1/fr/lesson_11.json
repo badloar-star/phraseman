@@ -1,0 +1,492 @@
+{
+  "lang": "fr",
+  "lesson": 11,
+  "title": {
+    "ru": "Я иду, я еду",
+    "en": "I go, I am going"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я иду",
+        "en": "I go"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я иду на вокзал».\nJe vais à la gare. — «Я иду на вокзал.»\nЧитается: жё вэ а ла гар.\nСлово vais значит «я иду, я еду». Слова à la значат «на, в».\nСлово меняется, смотря о ком речь.\nTu vas à la gare. — «Ты идешь на вокзал.»\nСлово vas значит «ты идёшь».\nElle va au marché. — «Она идет на рынок.»\nСлово va значит «она идёт, он идёт». Перед marché говорят au, перед gare — à la.\nNous allons à l’école. — «Мы идём в школу.»\nСлово allons значит «мы идём».\nVous allez à l’école. — «Вы идёте в школу.»\nСлово allez значит «вы идёте».\nIls vont au bureau. — «Они идут в офис.»\nСлово vont значит «они идут».",
+        "en": "Look at how to say “I am going to the station”.\nJe vais à la gare. — “I am going to the station.”\nThe word vais means “I go, I am going”. The words à la mean “to, at”.\nThe word changes depending on who we are talking about.\nTu vas à la gare. — “You go to the station.”\nThe word vas means “you go”.\nElle va au marché. — “She goes to the market.”\nThe word va means “she goes, he goes”.\nWe say au before marché and à la before gare.\nNous allons à l’école. — “We go to school.”\nThe word allons means “we go”.\nVous allez à l’école. — “You go to school.”\nThe word allez means “you go”.\nIls vont au bureau. — “They go to the office.”\nThe word vont means “they go”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:11:01",
+          "say": {
+            "ru": "жё вэ а ла гар",
+            "uk": "жьо ве а ла гар"
+          }
+        },
+        {
+          "phraseId": "fr:11:02",
+          "say": {
+            "ru": "тю ва а ла гар",
+            "uk": "тю ва а ла гар"
+          }
+        },
+        {
+          "phraseId": "fr:11:03",
+          "say": {
+            "ru": "эль ва о марше́",
+            "uk": "ель ва о марше́"
+          }
+        },
+        {
+          "phraseId": "fr:11:05",
+          "say": {
+            "ru": "ну зало́н а леко́ль",
+            "uk": "ну зало́н а леко́ль"
+          }
+        },
+        {
+          "phraseId": "fr:11:06",
+          "say": {
+            "ru": "ву зале́ а леко́ль",
+            "uk": "ву зале́ а леко́ль"
+          }
+        },
+        {
+          "phraseId": "fr:11:07",
+          "say": {
+            "ru": "иль вон о бюро́",
+            "uk": "іль вон о бюро́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду на вокзал»",
+            "uk": "Виберіть, як сказати: «Я йду на залізничний вокзал»",
+            "en": "Choose how to say: “I am going to the station”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:11:01",
+          "options": [
+            "fr:11:01",
+            "fr:11:02",
+            "fr:11:03"
+          ],
+          "answerId": "fr:11:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы идём в школу»",
+            "uk": "Виберіть, як сказати: «Ми йдемо до школи»",
+            "en": "Choose how to say: “We are going to school”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:05",
+          "options": [
+            "fr:11:05",
+            "fr:11:06",
+            "fr:11:07"
+          ],
+          "answerId": "fr:11:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она идет на рынок»",
+            "uk": "Виберіть, як сказати: «Вона йде на ринок»",
+            "en": "Choose how to say: “She is going to the market”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:03",
+          "options": [
+            "fr:11:03",
+            "fr:11:06",
+            "fr:11:01"
+          ],
+          "answerId": "fr:11:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "К людям",
+        "en": "To people"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Леа идёт к врачу».\nLéa va chez le médecin. — «Леа идёт к врачу.»\nЧитается: леа́ ва ше лё медсэ́н.\nСлово chez значит «к, у». Слово médecin значит «врач».\nPaul va chez le dentiste. — «Поль идёт к стоматологу.»\nJe vais chez ma sœur. — «Я иду к сестре.»\nСлово chez говорят, когда идут к человеку, а не в место.\nNous allons chez des amis. — «Мы идём к друзьям.»\nСлово amis значит «друзья».\nIls vont chez leurs parents. — «Они идут к родителям.»\nСлово parents значит «родители».\nAprès le travail, je vais chez mes parents. — «После работы я иду к родителям.»\nСлова après le travail значат «после работы».",
+        "en": "Look at how to say “Léa goes to the doctor”.\nLéa va chez le médecin. — “Léa goes to the doctor.”\nThe word chez means “to, at the place of”. The word médecin means “doctor”.\nPaul va chez le dentiste. — “Paul goes to the dentist.”\nJe vais chez ma sœur. — “I am going to my sister’s.”\nWe say chez when we go to a person, not to a place.\nNous allons chez des amis. — “We go to friends.”\nThe word amis means “friends”.\nIls vont chez leurs parents. — “They go to their parents.”\nThe word parents means “parents”.\nAprès le travail, je vais chez mes parents. — “After work I go to my parents.”\nThe words après le travail mean “after work”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:11:11",
+          "say": {
+            "ru": "леа́ ва ше лё медсэ́н",
+            "uk": "леа́ ва ше льо медсе́н"
+          }
+        },
+        {
+          "phraseId": "fr:11:12",
+          "say": {
+            "ru": "поль ва ше лё дантист",
+            "uk": "поль ва ше льо дантіст"
+          }
+        },
+        {
+          "phraseId": "fr:11:13",
+          "say": {
+            "ru": "жё вэ ше ма сёр",
+            "uk": "жьо ве ше ма сьор"
+          }
+        },
+        {
+          "phraseId": "fr:11:15",
+          "say": {
+            "ru": "ну зало́н ше дэ зами́",
+            "uk": "ну зало́н ше де замі́"
+          }
+        },
+        {
+          "phraseId": "fr:11:16",
+          "say": {
+            "ru": "иль вон ше лёр пара́н",
+            "uk": "іль вон ше льор пара́н"
+          }
+        },
+        {
+          "phraseId": "fr:11:50",
+          "say": {
+            "ru": "апрэ́ лё трава́й, жё вэ ше мэ пара́н",
+            "uk": "апре́ льо трава́й, жьо ве ше ме пара́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа идёт к врачу»",
+            "uk": "Виберіть, як сказати: «Леа йде до лікаря»",
+            "en": "Choose how to say: “Léa goes to the doctor”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:11:11",
+          "options": [
+            "fr:11:11",
+            "fr:11:12",
+            "fr:11:13"
+          ],
+          "answerId": "fr:11:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду к сестре»",
+            "uk": "Виберіть, як сказати: «Я йду до сестри»",
+            "en": "Choose how to say: “I am going to my sister’s”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:13",
+          "options": [
+            "fr:11:13",
+            "fr:11:15",
+            "fr:11:16"
+          ],
+          "answerId": "fr:11:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они идут к родителям»",
+            "uk": "Виберіть, як сказати: «Вони йдуть до батьків»",
+            "en": "Choose how to say: “They go to their parents”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:16",
+          "options": [
+            "fr:11:16",
+            "fr:11:11",
+            "fr:11:50"
+          ],
+          "answerId": "fr:11:16"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Города и страны",
+        "en": "Cities and countries"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я еду в Лион».\nJe vais à Lyon. — «Я еду в Лион.»\nЧитается: жё вэ а лио́н.\nПеред городом говорят à.\nNous allons en France. — «Мы едем во Францию.»\nПеред Францией говорят en.\nIls vont en Belgique. — «Они едут в Бельгию.»\nПеред Бельгией тоже en.\nVous allez au Portugal. — «Вы едете в Португалию.»\nПеред Portugal говорят au.\nMa sœur va aux Pays-Bas. — «Моя сестра едет в Нидерланды.»\nЗдесь aux: Pays-Bas — это несколько земель.\nЗапоминайте слово вместе с названием страны.",
+        "en": "Look at how to say “I am going to Lyon”.\nJe vais à Lyon. — “I am going to Lyon.”\nBefore a city we say à.\nNous allons en France. — “We are going to France.”\nBefore France we say en.\nIls vont en Belgique. — “They are going to Belgium.”\nBefore Belgium we say en too.\nVous allez au Portugal. — “You are going to Portugal.”\nBefore Portugal we say au.\nMa sœur va aux Pays-Bas. — “My sister is going to the Netherlands.”\nHere we say aux: Pays-Bas is several lands together.\nLearn the word together with the name of the country."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:11:21",
+          "say": {
+            "ru": "жё вэ а лио́н",
+            "uk": "жьо ве а ліо́н"
+          }
+        },
+        {
+          "phraseId": "fr:11:23",
+          "say": {
+            "ru": "ну зало́н он франс",
+            "uk": "ну зало́н он франс"
+          }
+        },
+        {
+          "phraseId": "fr:11:24",
+          "say": {
+            "ru": "иль вон он бельжи́к",
+            "uk": "іль вон он бельжі́к"
+          }
+        },
+        {
+          "phraseId": "fr:11:26",
+          "say": {
+            "ru": "ву зале́ о португа́ль",
+            "uk": "ву зале́ о португа́ль"
+          }
+        },
+        {
+          "phraseId": "fr:11:28",
+          "say": {
+            "ru": "ма сёр ва о пэи́ ба",
+            "uk": "ма сьор ва о пеі́ ба"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я еду в Лион»",
+            "uk": "Виберіть, як сказати: «Я їду до Ліона»",
+            "en": "Choose how to say: “I am going to Lyon”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:11:21",
+          "options": [
+            "fr:11:21",
+            "fr:11:23",
+            "fr:11:24"
+          ],
+          "answerId": "fr:11:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы едем во Францию»",
+            "uk": "Виберіть, як сказати: «Ми їдемо до Франції»",
+            "en": "Choose how to say: “We are going to France”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:23",
+          "options": [
+            "fr:11:23",
+            "fr:11:26",
+            "fr:11:28"
+          ],
+          "answerId": "fr:11:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сестра едет в Нидерланды»",
+            "uk": "Виберіть, як сказати: «Моя сестра їде до Нідерландів»",
+            "en": "Choose how to say: “My sister is going to the Netherlands”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:28",
+          "options": [
+            "fr:11:28",
+            "fr:11:24",
+            "fr:11:21"
+          ],
+          "answerId": "fr:11:28"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Как добраться",
+        "en": "How to get there"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «пешком».\nJe vais au travail à pied. — «Я иду на работу пешком.»\nЧитается: жё вэ о трава́й а пье.\nСлова à pied значат «пешком».\nElle va au musée en bus. — «Она едет в музей на автобусе.»\nСлово en значит «на» — на автобусе.\nTu vas à la gare en voiture. — «Ты едешь на вокзал на машине.»\nСлова en voiture значат «на машине».\nIl va au stade en métro. — «Он едет на стадион на метро.»\nСлово métro значит «метро».\nNous allons au parc à vélo. — «Мы едем в парк на велосипедах.»\nСлова à vélo значат «на велосипеде».",
+        "en": "Look at how to say “on foot”.\nJe vais au travail à pied. — “I walk to work.”\nThe words à pied mean “on foot”.\nElle va au musée en bus. — “She goes to the museum by bus.”\nThe word en means “by” here: by bus.\nTu vas à la gare en voiture. — “You go to the station by car.”\nThe words en voiture mean “by car”.\nIl va au stade en métro. — “He goes to the stadium by metro.”\nThe word métro means “metro, subway”.\nNous allons au parc à vélo. — “We go to the park by bike.”\nThe words à vélo mean “by bike”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:11:31",
+          "say": {
+            "ru": "жё вэ о трава́й а пье",
+            "uk": "жьо ве о трава́й а пье"
+          }
+        },
+        {
+          "phraseId": "fr:11:32",
+          "say": {
+            "ru": "эль ва о мюзе́ он бюс",
+            "uk": "ель ва о мюзе́ он бюс"
+          }
+        },
+        {
+          "phraseId": "fr:11:34",
+          "say": {
+            "ru": "тю ва а ла гар он вуату́р",
+            "uk": "тю ва а ла гар он вуату́р"
+          }
+        },
+        {
+          "phraseId": "fr:11:36",
+          "say": {
+            "ru": "иль ва о стад он метро́",
+            "uk": "іль ва о стад он метро́"
+          }
+        },
+        {
+          "phraseId": "fr:11:33",
+          "say": {
+            "ru": "ну зало́н о парк а вело́",
+            "uk": "ну зало́н о парк а вело́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду на работу пешком»",
+            "uk": "Виберіть, як сказати: «Я йду на роботу пішки»",
+            "en": "Choose how to say: “I walk to work”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:11:31",
+          "options": [
+            "fr:11:31",
+            "fr:11:32",
+            "fr:11:36"
+          ],
+          "answerId": "fr:11:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она едет в музей на автобусе»",
+            "uk": "Виберіть, як сказати: «Вона їде до музею автобусом»",
+            "en": "Choose how to say: “She goes to the museum by bus”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:32",
+          "options": [
+            "fr:11:32",
+            "fr:11:34",
+            "fr:11:36"
+          ],
+          "answerId": "fr:11:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он едет на стадион на метро»",
+            "uk": "Виберіть, як сказати: «Він їде на стадіон метро»",
+            "en": "Choose how to say: “He goes to the stadium by metro”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:36",
+          "options": [
+            "fr:11:36",
+            "fr:11:31",
+            "fr:11:33"
+          ],
+          "answerId": "fr:11:36"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не иду и вопрос",
+        "en": "Not going, and questions"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не иду».\nJe ne vais pas au magasin aujourd’hui. — «Я сегодня не иду в магазин.»\nЧитается: жё нё вэ па о магазэ́н ожурдюи́.\nСлова ne и pas стоят вокруг vais и значат «не».\nPaul ne va pas à la réunion. — «Поль не идёт на собрание.»\nСлово réunion значит «собрание, встреча».\nА теперь вопрос.\nEst-ce que tu vas à la poste ? — «Ты идёшь на почту?»\nСлова est-ce que в начале делают вопрос. Слово poste значит «почта».\nOù allez-vous après le cours ? — «Куда вы идёте после занятия?»\nСлово où значит «куда, где».",
+        "en": "Look at how to say “I am not going”.\nJe ne vais pas au magasin aujourd’hui. — “I am not going to the shop today.”\nThe words ne and pas stand around vais and mean “not”.\nPaul ne va pas à la réunion. — “Paul is not going to the meeting.”\nThe word réunion means “meeting”.\nAnd now a question.\nEst-ce que tu vas à la poste ? — “Are you going to the post office?”\nThe words est-ce que at the start make a question. The word poste means “post office”.\nOù allez-vous après le cours ? — “Where are you going after class?”\nThe word où means “where”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:11:43",
+          "say": {
+            "ru": "жё нё вэ па о магазэ́н ожурдюи́",
+            "uk": "жьо ньо ве па о магазе́н ожурдюі́"
+          }
+        },
+        {
+          "phraseId": "fr:11:44",
+          "say": {
+            "ru": "поль нё ва па а ла реюнио́н",
+            "uk": "поль ньо ва па а ла реюніо́н"
+          }
+        },
+        {
+          "phraseId": "fr:11:42",
+          "say": {
+            "ru": "эс кё тю ва а ла пост",
+            "uk": "ес кьо тю ва а ла пост"
+          }
+        },
+        {
+          "phraseId": "fr:11:41",
+          "say": {
+            "ru": "у але́ ву апрэ́ лё кур",
+            "uk": "у але́ ву апре́ льо кур"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сегодня не иду в магазин»",
+            "uk": "Виберіть, як сказати: «Я не піду сьогодні до магазину»",
+            "en": "Choose how to say: “I am not going to the shop today”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:11:43",
+          "options": [
+            "fr:11:43",
+            "fr:11:44",
+            "fr:11:42"
+          ],
+          "answerId": "fr:11:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты идёшь на почту?»",
+            "uk": "Виберіть, як сказати: «Ти йдеш на пошту?»",
+            "en": "Choose how to say: “Are you going to the post office?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:42",
+          "options": [
+            "fr:11:42",
+            "fr:11:41",
+            "fr:11:43"
+          ],
+          "answerId": "fr:11:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль не идёт на собрание»",
+            "uk": "Виберіть, як сказати: «Поль не йде на зустріч»",
+            "en": "Choose how to say: “Paul is not going to the meeting”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:11:44",
+          "options": [
+            "fr:11:44",
+            "fr:11:42",
+            "fr:11:41"
+          ],
+          "answerId": "fr:11:44"
+        }
+      ]
+    }
+  ]
+}

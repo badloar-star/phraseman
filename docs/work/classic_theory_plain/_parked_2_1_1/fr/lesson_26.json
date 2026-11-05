@@ -1,0 +1,492 @@
+{
+  "lang": "fr",
+  "lesson": 26,
+  "title": {
+    "ru": "Больше, меньше, так же, самый",
+    "en": "More, less, as much, the most"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Выше, легче, такой же",
+        "en": "Taller, lighter, the same"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Поль выше меня».\nPaul est plus grand que moi. — «Поль выше меня.»\nЧитается: поль э плю гран кё муа.\nСлово grand значит «высокий». Слово plus значит «более».\nСлово que значит «чем». Слово moi значит «я, меня».\nLéa est plus grande que moi. — «Леа выше меня.»\nО Поле говорят grand, о Леа — grande.\nСлово меняется, смотря о ком речь.\nCe sac est moins lourd que l’autre. — «Эта сумка легче другой.»\nСлово moins значит «менее». Слово lourd значит «тяжёлый».\nСлово l’autre значит «другой».\nLe thé est aussi chaud que le café.\n«Чай такой же горячий, как кофе.»\nСлова aussi … que значат «такой же, как». Слово chaud значит «горячий».\nLe bus est plus lent que le train. — «Автобус медленнее поезда.»\nСлово lent значит «медленный».",
+        "en": "Look at how to say “Paul is taller than me”.\nPaul est plus grand que moi. — “Paul is taller than me.”\nThe word grand means “tall”. The word plus means “more”.\nThe word que means “than”. The word moi means “me”.\nLéa est plus grande que moi. — “Léa is taller than me.”\nFor Paul we say grand, for Léa — grande.\nThe word changes depending on who it is about.\nCe sac est moins lourd que l’autre.\n“This bag is lighter than the other one.”\nThe word moins means “less”. The word lourd means “heavy”.\nThe word l’autre means “the other”.\nLe thé est aussi chaud que le café.\n“The tea is as hot as the coffee.”\nThe words aussi … que mean “as … as”. The word chaud means “hot”.\nLe bus est plus lent que le train.\n“The bus is slower than the train.”\nThe word lent means “slow”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:26:01",
+          "say": {
+            "ru": "поль э плю гран кё муа",
+            "uk": "поль е плю гран кьо муа"
+          }
+        },
+        {
+          "phraseId": "fr:26:02",
+          "say": {
+            "ru": "леа́ э плю гранд кё муа",
+            "uk": "леа́ е плю гранд кьо муа"
+          }
+        },
+        {
+          "phraseId": "fr:26:03",
+          "say": {
+            "ru": "сё сак э муэ́н лур кё лотр",
+            "uk": "сьо сак е муе́н лур кьо лотр"
+          }
+        },
+        {
+          "phraseId": "fr:26:05",
+          "say": {
+            "ru": "лё те э оси́ шо кё лё кафэ́",
+            "uk": "льо те е осі́ шо кьо льо кафе́"
+          }
+        },
+        {
+          "phraseId": "fr:26:07",
+          "say": {
+            "ru": "лё бюс э плю лан кё лё трэн",
+            "uk": "льо бюс е плю лан кьо льо трен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль выше меня»",
+            "uk": "Виберіть, як сказати: «Пол вищий за мене»",
+            "en": "Choose how to say: “Paul is taller than me”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:26:01",
+          "options": [
+            "fr:26:01",
+            "fr:26:03",
+            "fr:26:05"
+          ],
+          "answerId": "fr:26:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эта сумка легче другой»",
+            "uk": "Виберіть, як сказати: «Ця сумка легша за іншу»",
+            "en": "Choose how to say: “This bag is lighter than the other one”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:03",
+          "options": [
+            "fr:26:03",
+            "fr:26:01",
+            "fr:26:07"
+          ],
+          "answerId": "fr:26:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус медленнее поезда»",
+            "uk": "Виберіть, як сказати: «Автобус повільніший за поїзд»",
+            "en": "Choose how to say: “The bus is slower than the train”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:07",
+          "options": [
+            "fr:26:07",
+            "fr:26:05",
+            "fr:26:03"
+          ],
+          "answerId": "fr:26:07"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Быстрее, дороже, дешевле",
+        "en": "Faster, dearer, cheaper"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Метро быстрее автобуса».\nLe métro est plus rapide que le bus. — «Метро быстрее автобуса.»\nЧитается: лё метро́ э плю рапи́д кё лё бюс.\nСлово métro значит «метро». Слово rapide значит «быстрый».\nCe manteau est plus cher que la veste. — «Это пальто дороже куртки.»\nСлово cher значит «дорогой». Слово manteau значит «пальто».\nCe pull est moins cher que le manteau. — «Этот свитер дешевле пальто.»\nСлова moins cher значат «менее дорогой», то есть «дешевле».\nLe vieux fauteuil est plus bas. — «Старое кресло ниже.»\nСлово fauteuil значит «кресло». Слово vieux значит «старый». Слово bas значит «низкий».\nЕсли сравнивать не с чем, слова que в конце нет.\nLa terrasse est plus fraîche que le salon.\n«На террасе прохладнее, чем в гостиной.»\nСлово fraîche значит «прохладная». Слово salon значит «гостиная».\nCette échelle est plus stable. — «Эта лестница более устойчива.»\nСлово échelle значит «приставная лестница». Слово stable значит «устойчивый».",
+        "en": "Look at how to say “The metro is faster than the bus”.\nLe métro est plus rapide que le bus.\n“The metro is faster than the bus.”\nThe word métro means “metro”. The word rapide means “fast”.\nCe manteau est plus cher que la veste.\n“This coat is more expensive than the jacket.”\nThe word cher means “expensive”. The word manteau means “coat”.\nCe pull est moins cher que le manteau.\n“This sweater is cheaper than the coat.”\nThe words moins cher mean “less expensive”, that is “cheaper”.\nLe vieux fauteuil est plus bas. — “The old armchair is lower.”\nThe word fauteuil means “armchair”. The word vieux means “old”. The word bas means “low”.\nIf there is nothing to compare with, there is no que at the end.\nLa terrasse est plus fraîche que le salon.\n“The terrace is cooler than the living room.”\nThe word fraîche means “cool”. The word salon means “living room”.\nCette échelle est plus stable. — “This ladder is more stable.”\nThe word échelle means “ladder”. The word stable means “stable”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:26:08",
+          "say": {
+            "ru": "лё метро́ э плю рапи́д кё лё бюс",
+            "uk": "льо метро́ е плю рапі́д кьо льо бюс"
+          }
+        },
+        {
+          "phraseId": "fr:26:11",
+          "say": {
+            "ru": "сё манто́ э плю шэр кё ла вэст",
+            "uk": "сьо манто́ е плю шер кьо ла вест"
+          }
+        },
+        {
+          "phraseId": "fr:26:12",
+          "say": {
+            "ru": "сё пюль э муэ́н шэр кё лё манто́",
+            "uk": "сьо пюль е муе́н шер кьо льо манто́"
+          }
+        },
+        {
+          "phraseId": "fr:26:14",
+          "say": {
+            "ru": "лё вьё фотёй э плю ба",
+            "uk": "льо вььо фотьой е плю ба"
+          }
+        },
+        {
+          "phraseId": "fr:26:16",
+          "say": {
+            "ru": "ла тэра́с э плю фрэш кё лё сало́н",
+            "uk": "ла тера́с е плю фреш кьо льо сало́н"
+          }
+        },
+        {
+          "phraseId": "fr:26:20",
+          "say": {
+            "ru": "сэт эшэ́ль э плю стабль",
+            "uk": "сет еше́ль е плю стабль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Метро быстрее автобуса»",
+            "uk": "Виберіть, як сказати: «Метро швидше за автобус»",
+            "en": "Choose how to say: “The metro is faster than the bus”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:26:08",
+          "options": [
+            "fr:26:08",
+            "fr:26:11",
+            "fr:26:12"
+          ],
+          "answerId": "fr:26:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Этот свитер дешевле пальто»",
+            "uk": "Виберіть, як сказати: «Цей светр дешевший за пальто»",
+            "en": "Choose how to say: “This sweater is cheaper than the coat”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:12",
+          "options": [
+            "fr:26:12",
+            "fr:26:11",
+            "fr:26:16"
+          ],
+          "answerId": "fr:26:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эта лестница более устойчива»",
+            "uk": "Виберіть, як сказати: «Ця драбина стабільніша»",
+            "en": "Choose how to say: “This ladder is more stable”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:20",
+          "options": [
+            "fr:26:20",
+            "fr:26:14",
+            "fr:26:16"
+          ],
+          "answerId": "fr:26:20"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Быстрее иду, лучше сплю",
+        "en": "I walk faster, I sleep better"
+      },
+      "text": {
+        "ru": "Теперь о том, как что-то делают.\nJe marche plus vite que toi. — «Я хожу быстрее тебя.»\nЧитается: жё марш плю вит кё туа.\nСлово marche значит «хожу». Слово vite значит «быстро».\nСлово toi значит «ты, тебя».\nTu parles plus lentement que Paul. — «Ты говоришь медленнее Поля.»\nСлово lentement значит «медленно».\nElle travaille aussi bien que son frère.\n«Она работает так же хорошо, как и её брат.»\nСлово bien значит «хорошо». Слово frère значит «брат».\nJe dors mieux ici. — «Я здесь лучше сплю.»\nСлово mieux значит «лучше».\nNous entendons mieux près de la scène. — «Мы лучше слышим возле сцены.»\nСлова près de значат «возле». Слово scène значит «сцена».",
+        "en": "Now about how someone does something.\nJe marche plus vite que toi. — “I walk faster than you.”\nThe word marche means “walk”. The word vite means “fast”.\nThe word toi means “you”.\nTu parles plus lentement que Paul. — “You speak more slowly than Paul.”\nThe word lentement means “slowly”.\nElle travaille aussi bien que son frère.\n“She works as well as her brother.”\nThe word bien means “well”. The word frère means “brother”.\nJe dors mieux ici. — “I sleep better here.”\nThe word mieux means “better”.\nNous entendons mieux près de la scène. — “We hear better near the stage.”\nThe words près de mean “near”. The word scène means “stage”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:26:21",
+          "say": {
+            "ru": "жё марш плю вит кё туа",
+            "uk": "жьо марш плю віт кьо туа"
+          }
+        },
+        {
+          "phraseId": "fr:26:22",
+          "say": {
+            "ru": "тю парль плю лантма́н кё поль",
+            "uk": "тю парль плю лантма́н кьо поль"
+          }
+        },
+        {
+          "phraseId": "fr:26:23",
+          "say": {
+            "ru": "эль трава́й оси́ бьэ́н кё сон фрэр",
+            "uk": "ель трава́й осі́ бье́н кьо сон фрер"
+          }
+        },
+        {
+          "phraseId": "fr:26:25",
+          "say": {
+            "ru": "жё дор мьё иси́",
+            "uk": "жьо дор мььо ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:26:26",
+          "say": {
+            "ru": "ну занантандо́н мьё прэ дё ла сэн",
+            "uk": "ну занантандо́н мььо пре дьо ла сен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хожу быстрее тебя»",
+            "uk": "Виберіть, як сказати: «Я ходжу швидше за тебе»",
+            "en": "Choose how to say: “I walk faster than you”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:26:21",
+          "options": [
+            "fr:26:21",
+            "fr:26:22",
+            "fr:26:23"
+          ],
+          "answerId": "fr:26:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она работает так же хорошо, как и её брат»",
+            "uk": "Виберіть, як сказати: «Вона працює так само добре, як і її брат»",
+            "en": "Choose how to say: “She works as well as her brother”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:23",
+          "options": [
+            "fr:26:23",
+            "fr:26:22",
+            "fr:26:21"
+          ],
+          "answerId": "fr:26:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я здесь лучше сплю»",
+            "uk": "Виберіть, як сказати: «Я тут краще сплю»",
+            "en": "Choose how to say: “I sleep better here”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:25",
+          "options": [
+            "fr:26:25",
+            "fr:26:26",
+            "fr:26:21"
+          ],
+          "answerId": "fr:26:25"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Больше людей, меньше кофе",
+        "en": "More people, less coffee"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «По субботам людей больше».\nIl y a plus de monde le samedi. — «По субботам людей больше.»\nЧитается: иль и а плю дё монд лё самди́.\nСлово monde здесь значит «люди». Слово samedi значит «суббота».\nСлова il y a значат «есть»: il y a plus de monde — «людей больше».\nСлово de стоит между plus и тем, чего больше.\nJ’ai moins de bagages que toi. — «У меня меньше багажа, чем у тебя.»\nСлово moins значит «меньше». Слово bagages значит «багаж».\nElle lit plus de livres que moi. — «Она читает больше книг, чем я.»\nСлово livres значит «книги».\nCe trajet demande moins d’efforts. — «Эта поездка требует меньше усилий.»\nСлово trajet значит «поездка». Слова moins d’efforts значат «меньше усилий».\nPaul boit moins de café maintenant. — «Поль теперь пьет меньше кофе.»\nСлово boit значит «пьёт». Слово maintenant значит «теперь».",
+        "en": "Look at how to say “There are more people on Saturdays”.\nIl y a plus de monde le samedi.\n“There are more people on Saturdays.”\nThe word monde here means “people”. The word samedi means “Saturday”.\nThe words il y a mean “there is”.\nThe word de stands between plus and the thing there is more of.\nJ’ai moins de bagages que toi. — “I have less luggage than you.”\nThe word moins means “less”. The word bagages means “luggage”.\nElle lit plus de livres que moi.\n“She reads more books than I do.”\nThe word livres means “books”.\nCe trajet demande moins d’efforts. — “This trip takes less effort.”\nThe word trajet means “trip”. The words moins d’efforts mean “less effort”.\nPaul boit moins de café maintenant. — “Paul drinks less coffee now.”\nThe word boit means “drinks”. The word maintenant means “now”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:26:31",
+          "say": {
+            "ru": "иль и а плю дё монд лё самди́",
+            "uk": "іль і а плю дьо монд льо самді́"
+          }
+        },
+        {
+          "phraseId": "fr:26:32",
+          "say": {
+            "ru": "жэ муэ́н дё бага́ж кё туа",
+            "uk": "же муе́н дьо бага́ж кьо туа"
+          }
+        },
+        {
+          "phraseId": "fr:26:34",
+          "say": {
+            "ru": "эль ли плю дё ливр кё муа",
+            "uk": "ель лі плю дьо лівр кьо муа"
+          }
+        },
+        {
+          "phraseId": "fr:26:35",
+          "say": {
+            "ru": "сё тражэ́ дёманд муэ́н дэфо́р",
+            "uk": "сьо траже́ дьоманд муе́н дефо́р"
+          }
+        },
+        {
+          "phraseId": "fr:26:38",
+          "say": {
+            "ru": "поль буа муэ́н дё кафэ́ мэнтна́н",
+            "uk": "поль буа муе́н дьо кафе́ ментна́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «По субботам людей больше»",
+            "uk": "Виберіть, як сказати: «У суботу людей більше»",
+            "en": "Choose how to say: “There are more people on Saturdays”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:26:31",
+          "options": [
+            "fr:26:31",
+            "fr:26:32",
+            "fr:26:34"
+          ],
+          "answerId": "fr:26:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня меньше багажа, чем у тебя»",
+            "uk": "Виберіть, як сказати: «У мене менше багажу, ніж у тебе»",
+            "en": "Choose how to say: “I have less luggage than you”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:32",
+          "options": [
+            "fr:26:32",
+            "fr:26:34",
+            "fr:26:31"
+          ],
+          "answerId": "fr:26:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль теперь пьет меньше кофе»",
+            "uk": "Виберіть, як сказати: «Пол тепер п'є менше кави»",
+            "en": "Choose how to say: “Paul drinks less coffee now”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:38",
+          "options": [
+            "fr:26:38",
+            "fr:26:35",
+            "fr:26:34"
+          ],
+          "answerId": "fr:26:38"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Самый",
+        "en": "The most"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это самый короткий маршрут».\nC’est le chemin le plus court. — «Это самый короткий маршрут.»\nЧитается: сэ лё шёмэ́н лё плю кур.\nСлова c’est значат «это». Слово chemin значит «маршрут».\nСлово court значит «короткий». Слова le plus значат «самый».\nC’est le billet le moins cher. — «Это самый дешевый билет.»\nСлова le moins cher значат «самый дешёвый».\nC’est mon meilleur souvenir. — «Это мое лучшее воспоминание.»\nСлово meilleur значит «лучший». Слово souvenir значит «воспоминание».\nCe sont les meilleures places. — «Это лучшие места.»\nСлово places значит «места».\nJe prends la plus petite portion. — «Я беру самую маленькую порцию.»\nСлово petite значит «маленькая». Слово portion значит «порция».",
+        "en": "Look at how to say “This is the shortest route”.\nC’est le chemin le plus court. — “This is the shortest route.”\nThe words c’est mean “this is”. The word chemin means “route”.\nThe word court means “short”. The words le plus mean “the most”.\nC’est le billet le moins cher. — “This is the cheapest ticket.”\nThe words le moins cher mean “the cheapest”.\nC’est mon meilleur souvenir. — “This is my best memory.”\nThe word meilleur means “best”. The word souvenir means “memory”.\nCe sont les meilleures places. — “These are the best seats.”\nThe word places means “seats”.\nJe prends la plus petite portion. — “I take the smallest portion.”\nThe word petite means “small”. The word portion means “portion”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:26:41",
+          "say": {
+            "ru": "сэ лё шёмэ́н лё плю кур",
+            "uk": "се льо шьоме́н льо плю кур"
+          }
+        },
+        {
+          "phraseId": "fr:26:43",
+          "say": {
+            "ru": "сэ лё бийэ́ лё муэ́н шэр",
+            "uk": "се льо бійе́ льо муе́н шер"
+          }
+        },
+        {
+          "phraseId": "fr:26:45",
+          "say": {
+            "ru": "сэ мон мэйёр сувни́р",
+            "uk": "се мон мейьор сувні́р"
+          }
+        },
+        {
+          "phraseId": "fr:26:46",
+          "say": {
+            "ru": "сё сон лэ мэйёр плас",
+            "uk": "сьо сон ле мейьор плас"
+          }
+        },
+        {
+          "phraseId": "fr:26:48",
+          "say": {
+            "ru": "жё пран ла плю пёти́т порсьо́н",
+            "uk": "жьо пран ла плю пьоті́т порсьо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это самый короткий маршрут»",
+            "uk": "Виберіть, як сказати: «Це найкоротший маршрут»",
+            "en": "Choose how to say: “This is the shortest route”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:26:41",
+          "options": [
+            "fr:26:41",
+            "fr:26:43",
+            "fr:26:48"
+          ],
+          "answerId": "fr:26:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это самый дешевый билет»",
+            "uk": "Виберіть, як сказати: «Це найдешевший квиток»",
+            "en": "Choose how to say: “This is the cheapest ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:43",
+          "options": [
+            "fr:26:43",
+            "fr:26:41",
+            "fr:26:45"
+          ],
+          "answerId": "fr:26:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я беру самую маленькую порцию»",
+            "uk": "Виберіть, як сказати: «Я беру найменшу порцію»",
+            "en": "Choose how to say: “I take the smallest portion”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:26:48",
+          "options": [
+            "fr:26:48",
+            "fr:26:45",
+            "fr:26:41"
+          ],
+          "answerId": "fr:26:48"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,509 @@
+{
+  "lang": "it",
+  "lesson": 12,
+  "title": {
+    "ru": "Немного еды",
+    "uk": "Трохи їжі",
+    "en": "Some food"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Беру хлеб, суп, воду",
+        "uk": "Беру хліб, суп, воду",
+        "en": "Taking bread, soup, water"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы берёте еду или питьё.\nPrendo del pane. — «Я беру хлеб.»\nЧитается: пре́ндо дель па́не\nPrendo della zuppa. — «Я беру суп.»\nЧитается: пре́ндо де́лла дзу́ппа\nPrendiamo dell’acqua. — «Мы берём воду.»\nЧитается: прендья́мо делла́кква\nСлово prendo значит «я беру». Слово prendiamo значит «мы берём».\nСлово pane значит «хлеб», слово zuppa — «суп», слово acqua — «вода».\nСлова del и della значат «немного, часть». По-русски этого слова не говорят.\nУ каждой еды своя пара: pane — del pane; zuppa — della zuppa; acqua — dell’acqua.\nЭто слово пишут перед едой, когда берут часть. Значит оно «немного, часть».\nНе надо выбирать самому: в заданиях пара уже стоит в готовых фразах.\nВ dell’acqua слово della потеряло последнюю букву: acqua начинается на гласную.",
+        "uk": "Дивіться, як сказати, що ви берете їжу або питво.\nPrendo del pane. — «Я беру хліб.»\nЧитається: пре́ндо дель па́не\nPrendo della zuppa. — «Я беру суп.»\nЧитається: пре́ндо де́лла дзу́ппа\nPrendiamo dell’acqua. — «Ми беремо воду.»\nЧитається: прендья́мо делла́кква\nСлово prendo означає «я беру». Слово prendiamo означає «ми беремо».\nСлово pane означає «хліб», слово zuppa — «суп», слово acqua — «вода».\nСлова del та della означають «трохи, частина». Українською цього слова не кажуть.\nУ кожної їжі своя пара: pane — del pane; zuppa — della zuppa; acqua — dell’acqua.\nЦе слово пишуть перед їжею, коли беруть частину. Означає воно «трохи, частина».\nНе треба вибирати самому: у завданнях пара вже стоїть у готових фразах.\nУ dell’acqua слово della втратило останню літеру: acqua починається з голосної.",
+        "en": "Look at how to say that you take food or drink.\nPrendo del pane. — “I take some bread.”\nPrendo della zuppa. — “I take some soup.”\nPrendiamo dell’acqua. — “We take some water.”\nThe word prendo means “I take”. The word prendiamo means “we take”.\nThe word pane means “bread”, the word zuppa — “soup”, the word acqua — “water”.\nThe words del and della mean “some”, as in “some bread”.\nEach food has its own pair.\npane — del pane; zuppa — della zuppa; acqua — dell’acqua.\nThis word is written before food when you take a part. It means “some, a part”.\nYou need not choose yourself.\nIn the tasks the pair already stands in ready phrases.\nIn dell’acqua, della lost its last letter: acqua starts with a vowel."
+      },
+      "examples": [
+        {
+          "phraseId": "it:12:01",
+          "say": {
+            "ru": "пре́ндо дель па́не",
+            "uk": "пре́ндо дель па́не"
+          }
+        },
+        {
+          "phraseId": "it:12:03",
+          "say": {
+            "ru": "пре́ндо де́лла дзу́ппа",
+            "uk": "пре́ндо де́лла дзу́ппа"
+          }
+        },
+        {
+          "phraseId": "it:12:05",
+          "say": {
+            "ru": "прендья́мо делла́кква",
+            "uk": "прендья́мо делла́кква"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я беру хлеб»",
+            "uk": "Виберіть, як сказати: «Я беру хліб»",
+            "en": "Choose how to say: “I take some bread”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:12:01",
+          "options": [
+            "it:12:01",
+            "it:12:03",
+            "it:12:05"
+          ],
+          "answerId": "it:12:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я беру суп»",
+            "uk": "Виберіть, як сказати: «Я беру суп»",
+            "en": "Choose how to say: “I take some soup”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:03",
+          "options": [
+            "it:12:01",
+            "it:12:03",
+            "it:12:05"
+          ],
+          "answerId": "it:12:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы берём воду»",
+            "uk": "Виберіть, як сказати: «Ми беремо воду»",
+            "en": "Choose how to say: “We take some water”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:05",
+          "options": [
+            "it:12:01",
+            "it:12:03",
+            "it:12:05"
+          ],
+          "answerId": "it:12:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Покупаю",
+        "uk": "Купую",
+        "en": "Buying"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы что-то покупаете.\nCompro del burro. — «Я покупаю сливочное масло.»\nЧитается: ко́мпро дель бу́рро\nCompro della farina. — «Я покупаю муку.»\nЧитается: ко́мпро де́лла фари́на\nCompriamo del pesce. — «Мы покупаем рыбу.»\nЧитается: компрья́мо дель пе́ше\nСлово compro значит «я покупаю». Слово compriamo значит «мы покупаем».\nСлово burro значит «сливочное масло». Слово farina значит «мука».\nСлово pesce значит «рыба».\nПеред ними снова del и della («немного»): по-русски их нет.",
+        "uk": "Дивіться, як сказати, що ви щось купуєте.\nCompro del burro. — «Я купую вершкове масло.»\nЧитається: ко́мпро дель бу́рро\nCompro della farina. — «Я купую борошно.»\nЧитається: ко́мпро де́лла фарі́на\nCompriamo del pesce. — «Ми купуємо рибу.»\nЧитається: компрья́мо дель пе́ше\nСлово compro означає «я купую». Слово compriamo означає «ми купуємо».\nСлово burro означає «вершкове масло». Слово farina означає «борошно».\nСлово pesce означає «риба».\nПеред ними знову del та della: українською їх нема.",
+        "en": "Look at how to say that you buy something.\nCompro del burro. — “I buy some butter.”\nCompro della farina. — “I buy some flour.”\nCompriamo del pesce. — “We buy some fish.”\nThe word compro means “I buy”. The word compriamo means “we buy”.\nThe word burro means “butter”. The word farina means “flour”.\nThe word pesce means “fish”.\nBefore them again stand del and della."
+      },
+      "examples": [
+        {
+          "phraseId": "it:12:11",
+          "say": {
+            "ru": "ко́мпро дель бу́рро",
+            "uk": "ко́мпро дель бу́рро"
+          }
+        },
+        {
+          "phraseId": "it:12:12",
+          "say": {
+            "ru": "ко́мпро де́лла фари́на",
+            "uk": "ко́мпро де́лла фарі́на"
+          }
+        },
+        {
+          "phraseId": "it:12:13",
+          "say": {
+            "ru": "компрья́мо дель пе́ше",
+            "uk": "компрья́мо дель пе́ше"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я покупаю сливочное масло»",
+            "uk": "Виберіть, як сказати: «Я купую вершкове масло»",
+            "en": "Choose how to say: “I buy some butter”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:12:11",
+          "options": [
+            "it:12:11",
+            "it:12:12",
+            "it:12:13"
+          ],
+          "answerId": "it:12:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я покупаю муку»",
+            "uk": "Виберіть, як сказати: «Я купую борошно»",
+            "en": "Choose how to say: “I buy some flour”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:12",
+          "options": [
+            "it:12:11",
+            "it:12:12",
+            "it:12:13"
+          ],
+          "answerId": "it:12:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы покупаем рыбу»",
+            "uk": "Виберіть, як сказати: «Ми купуємо рибу»",
+            "en": "Choose how to say: “We buy some fish”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:13",
+          "options": [
+            "it:12:11",
+            "it:12:12",
+            "it:12:13"
+          ],
+          "answerId": "it:12:13"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Ем и пью",
+        "uk": "Їм і п’ю",
+        "en": "Eating and drinking"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы едите или пьёте.\nMangiamo della pasta. — «Мы едим макароны.»\nЧитается: манджья́мо де́лла па́ста\nBevo del tè. — «Я пью чай.»\nЧитается: бе́во дель те́\nLei beve dell’acqua. — «Она пьет воду.»\nЧитается: ле́й бе́ве делла́кква\nСлово mangiamo значит «мы едим». Слово bevo значит «я пью».\nСлово lei значит «она». Слово beve значит «он пьёт» или «она пьёт».\nСлово pasta значит «макароны», слово tè — «чай».",
+        "uk": "Дивіться, як сказати, що ви їсте або п’єте.\nMangiamo della pasta. — «Ми їмо макарони.»\nЧитається: манджья́мо де́лла па́ста\nBevo del tè. — «Я п’ю чай.»\nЧитається: бе́во дель те́\nLei beve dell’acqua. — «Вона п’є воду.»\nЧитається: ле́й бе́ве делла́кква\nСлово mangiamo означає «ми їмо». Слово bevo означає «я п’ю».\nСлово lei означає «вона». Слово beve означає «він п’є» або «вона п’є».\nСлово pasta означає «макарони», слово tè — «чай».",
+        "en": "Look at how to say that you eat or drink.\nMangiamo della pasta. — “We eat some pasta.”\nBevo del tè. — “I drink some tea.”\nLei beve dell’acqua. — “She drinks some water.”\nThe word mangiamo means “we eat”. The word bevo means “I drink”.\nThe word lei means “she”. The word beve means “he drinks” or “she drinks”.\nThe word pasta means “pasta”, the word tè — “tea”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:12:19",
+          "say": {
+            "ru": "манджья́мо де́лла па́ста",
+            "uk": "манджья́мо де́лла па́ста"
+          }
+        },
+        {
+          "phraseId": "it:12:21",
+          "say": {
+            "ru": "бе́во дель те́",
+            "uk": "бе́во дель те́"
+          }
+        },
+        {
+          "phraseId": "it:12:22",
+          "say": {
+            "ru": "ле́й бе́ве делла́кква",
+            "uk": "ле́й бе́ве делла́кква"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы едим макароны»",
+            "uk": "Виберіть, як сказати: «Ми їмо макарони»",
+            "en": "Choose how to say: “We eat some pasta”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:12:19",
+          "options": [
+            "it:12:19",
+            "it:12:21",
+            "it:12:22"
+          ],
+          "answerId": "it:12:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я пью чай»",
+            "uk": "Виберіть, як сказати: «Я п’ю чай»",
+            "en": "Choose how to say: “I drink some tea”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:21",
+          "options": [
+            "it:12:19",
+            "it:12:21",
+            "it:12:22"
+          ],
+          "answerId": "it:12:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она пьет воду»",
+            "uk": "Виберіть, як сказати: «Вона п’є воду»",
+            "en": "Choose how to say: “She drinks some water”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:22",
+          "options": [
+            "it:12:19",
+            "it:12:21",
+            "it:12:22"
+          ],
+          "answerId": "it:12:22"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Добавляю",
+        "uk": "Додаю",
+        "en": "Adding"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы что-то добавляете.\nAggiungo del sale. — «Я добавляю соль.»\nЧитается: аджу́нго дель са́ле\nLei aggiunge del pepe. — «Она добавляет перец.»\nЧитается: ле́й аджу́нже дель пе́пе\nAggiungi della senape. — «Ты добавляешь горчицу.»\nЧитается: аджу́нджи де́лла се́напе\nСлово aggiungo значит «я добавляю». Слово aggiunge значит «она добавляет».\nСлово aggiungi значит «ты добавляешь».\nСлово sale значит «соль», слово pepe — «перец», слово senape — «горчица».",
+        "uk": "Дивіться, як сказати, що ви щось додаєте.\nAggiungo del sale. — «Я додаю сіль.»\nЧитається: аджу́нго дель са́ле\nLei aggiunge del pepe. — «Вона додає перець.»\nЧитається: ле́й аджу́нже дель пе́пе\nAggiungi della senape. — «Ти додаєш гірчицю.»\nЧитається: аджу́нджі де́лла се́напе\nСлово aggiungo означає «я додаю». Слово aggiunge означає «вона додає».\nСлово aggiungi означає «ти додаєш».\nСлово sale означає «сіль», слово pepe — «перець», слово senape — «гірчиця».",
+        "en": "Look at how to say that you add something.\nAggiungo del sale. — “I add some salt.”\nLei aggiunge del pepe. — “She adds some pepper.”\nAggiungi della senape. — “You add some mustard.”\nThe word aggiungo means “I add”. The word aggiunge means “she adds”.\nThe word aggiungi means “you add”.\nThe word sale means “salt”, the word pepe — “pepper”, the word senape — “mustard”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:12:25",
+          "say": {
+            "ru": "аджу́нго дель са́ле",
+            "uk": "аджу́нго дель са́ле"
+          }
+        },
+        {
+          "phraseId": "it:12:26",
+          "say": {
+            "ru": "ле́й аджу́нже дель пе́пе",
+            "uk": "ле́й аджу́нже дель пе́пе"
+          }
+        },
+        {
+          "phraseId": "it:12:27",
+          "say": {
+            "ru": "аджу́нджи де́лла се́напе",
+            "uk": "аджу́нджі де́лла се́напе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я добавляю соль»",
+            "uk": "Виберіть, як сказати: «Я додаю сіль»",
+            "en": "Choose how to say: “I add some salt”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:12:25",
+          "options": [
+            "it:12:25",
+            "it:12:26",
+            "it:12:27"
+          ],
+          "answerId": "it:12:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она добавляет перец»",
+            "uk": "Виберіть, як сказати: «Вона додає перець»",
+            "en": "Choose how to say: “She adds some pepper”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:26",
+          "options": [
+            "it:12:25",
+            "it:12:26",
+            "it:12:27"
+          ],
+          "answerId": "it:12:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты добавляешь горчицу»",
+            "uk": "Виберіть, як сказати: «Ти додаєш гірчицю»",
+            "en": "Choose how to say: “You add some mustard”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:27",
+          "options": [
+            "it:12:25",
+            "it:12:26",
+            "it:12:27"
+          ],
+          "answerId": "it:12:27"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Когда нет del",
+        "uk": "Коли немає del",
+        "en": "When del disappears"
+      },
+      "text": {
+        "ru": "Сравните: bevo del tè — «я пью чай».\nNon bevo latte. — «Я не пью молоко.»\nЧитается: нон бе́во ла́тте\nLui non beve caffè. — «Он не пьет кофе.»\nЧитается: лу́й нон бе́ве каффе́\nNon aggiungi sale? — «Ты не добавляешь соль?»\nЧитается: нон аджу́нджи са́ле\nСлово non значит «не». Слово lui значит «он». После non слова del и della пропадают.\nСлово latte значит «молоко», слово caffè — «кофе».\nСлово sale значит «соль».",
+        "uk": "Порівняйте: bevo del tè — «я п’ю чай».\nNon bevo latte. — «Я не п’ю молока.»\nЧитається: нон бе́во ла́тте\nLui non beve caffè. — «Він не п’є каву.»\nЧитається: лу́й нон бе́ве каффе́\nNon aggiungi sale? — «Ти не додаєш сіль?»\nЧитається: нон аджу́нджі са́ле\nСлово non означає «не». Слово lui означає «він». Після non слова del та della зникають.\nСлово latte означає «молоко», слово caffè — «кава».\nСлово sale означає «сіль».",
+        "en": "Compare: bevo del tè — “I drink tea”.\nNon bevo latte. — “I do not drink milk.”\nLui non beve caffè. — “He does not drink coffee.”\nNon aggiungi sale? — “Are you not adding salt?”\nThe word non means “not”. The word lui means “he”.\nAfter non the words del and della disappear.\nThe word latte means “milk”, the word caffè — “coffee”.\nThe word sale means “salt”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:12:31",
+          "say": {
+            "ru": "нон бе́во ла́тте",
+            "uk": "нон бе́во ла́тте"
+          }
+        },
+        {
+          "phraseId": "it:12:33",
+          "say": {
+            "ru": "лу́й нон бе́ве каффе́",
+            "uk": "лу́й нон бе́ве каффе́"
+          }
+        },
+        {
+          "phraseId": "it:12:35",
+          "say": {
+            "ru": "нон аджу́нджи са́ле",
+            "uk": "нон аджу́нджі са́ле"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не пью молоко»",
+            "uk": "Виберіть, як сказати: «Я не п’ю молока»",
+            "en": "Choose how to say: “I do not drink milk”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:12:31",
+          "options": [
+            "it:12:31",
+            "it:12:33",
+            "it:12:35"
+          ],
+          "answerId": "it:12:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не пьет кофе»",
+            "uk": "Виберіть, як сказати: «Він не п’є каву»",
+            "en": "Choose how to say: “He does not drink coffee”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:33",
+          "options": [
+            "it:12:31",
+            "it:12:33",
+            "it:12:35"
+          ],
+          "answerId": "it:12:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты не добавляешь соль?»",
+            "uk": "Виберіть, як сказати: «Ти не додаєш сіль?»",
+            "en": "Choose how to say: “Are you not adding salt?”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:35",
+          "options": [
+            "it:12:31",
+            "it:12:33",
+            "it:12:35"
+          ],
+          "answerId": "it:12:35"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Чашка, ложка, немного",
+        "uk": "Чашка, ложка, трохи",
+        "en": "A cup, a spoon, a little"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, сколько чего-то.\nVuoi una tazza di tè? — «Хочешь чашку чая?»\nЧитается: вуо́й у́на та́цца ди те́\nVorrei un po’ di zuppa. — «Я бы хотел немного супа.»\nЧитается: ворре́й ун по ди дзу́ппа\nAggiunge un cucchiaio di miele. — «Она добавляет ложку меда.»\nЧитается: аджу́нже ун куккья́йо ди мье́ле\nСлова una и un значат «одна» и «один».\nНо по-русски «чашка чая» мы говорим без «одна»: una tazza — «чашка», un cucchiaio — «ложка».\nСлово tazza значит «чашка», слово cucchiaio — «ложка», слово miele — «мёд».\nСлова un po’ di значат «немного».\nСлово di значит «чего»: tazza di tè — «чашка чая».\nСлово vuoi значит «ты хочешь», слово vorrei — «я бы хотел».\nПеред едой «немного» говорят двумя способами.\nDel / della: беру, покупаю, ем, пью, добавляю («Prendo del pane»).\nUn po’ di: я бы хотел («Vorrei un po’ di zuppa»).\nОба значат «немного». В заданиях стоят готовые фразы.",
+        "uk": "Дивіться, як сказати, скільки чогось.\nVuoi una tazza di tè? — «Хочеш чашку чаю?»\nЧитається: вуо́й у́на та́цца ді те́\nVorrei un po’ di zuppa. — «Я б хотів трохи супу.»\nЧитається: ворре́й ун по ді дзу́ппа\nAggiunge un cucchiaio di miele. — «Вона додає ложку меду.»\nЧитається: аджу́нже ун куккья́йо ді мье́ле\nСлова una та un означають «одна» та «один».\nАле українською «чашка чаю» ми кажемо без «одна»: una tazza — «чашка», un cucchiaio — «ложка».\nСлово tazza означає «чашка», слово cucchiaio — «ложка», слово miele — «мед».\nСлова un po’ di прямо означають «трохи».\nСлово di означає «чого»: tazza di tè — «чашка чаю».\nСлово vuoi означає «ти хочеш», слово vorrei — «я б хотів».\nПеред їжею «трохи» кажуть двома способами.\nDel / della: беру, купую, їм, п’ю, додаю («Prendo del pane»).\nUn po’ di: я б хотів («Vorrei un po’ di zuppa»).\nОбидва означають «трохи». У завданнях стоять готові фрази.",
+        "en": "Look at how to say how much of something.\nVuoi una tazza di tè? — “Would you like a cup of tea?”\nVorrei un po’ di zuppa. — “I would like a little soup.”\nAggiunge un cucchiaio di miele. — “She adds a spoonful of honey.”\nThe words una and un mean “one”.\nBut in English we say “a cup of tea” without “one”.\nuna tazza — “a cup”, un cucchiaio — “a spoon”.\nThe word tazza means “cup”, the word cucchiaio — “spoon”.\nThe word miele means “honey”.\nThe words un po’ di mean “a little”.\nThe word di links the amount and the thing.\nTazza di tè means “a cup of tea”.\nThe word vuoi means “you want”, the word vorrei — “I would like”.\nBefore food, “some” is said in two ways.\nDel / della: take, buy, eat, drink, add (“Prendo del pane”).\nUn po’ di: I would like (“Vorrei un po’ di zuppa”).\nBoth mean “some”.\nIn the tasks, ready phrases are given."
+      },
+      "examples": [
+        {
+          "phraseId": "it:12:44",
+          "say": {
+            "ru": "вуо́й у́на та́цца ди те́",
+            "uk": "вуо́й у́на та́цца ді те́"
+          }
+        },
+        {
+          "phraseId": "it:12:39",
+          "say": {
+            "ru": "ворре́й ун по ди дзу́ппа",
+            "uk": "ворре́й ун по ді дзу́ппа"
+          }
+        },
+        {
+          "phraseId": "it:12:45",
+          "say": {
+            "ru": "аджу́нже ун куккья́йо ди мье́ле",
+            "uk": "аджу́нже ун куккья́йо ді мье́ле"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хочешь чашку чая?»",
+            "uk": "Виберіть, як сказати: «Хочеш чашку чаю?»",
+            "en": "Choose how to say: “Would you like a cup of tea?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:12:44",
+          "options": [
+            "it:12:44",
+            "it:12:39",
+            "it:12:45"
+          ],
+          "answerId": "it:12:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы хотел немного супа»",
+            "uk": "Виберіть, як сказати: «Я б хотів трохи супу»",
+            "en": "Choose how to say: “I would like a little soup”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:39",
+          "options": [
+            "it:12:44",
+            "it:12:39",
+            "it:12:45"
+          ],
+          "answerId": "it:12:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она добавляет ложку меда»",
+            "uk": "Виберіть, як сказати: «Вона додає ложку меду»",
+            "en": "Choose how to say: “She adds a spoonful of honey”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:12:45",
+          "options": [
+            "it:12:44",
+            "it:12:39",
+            "it:12:45"
+          ],
+          "answerId": "it:12:45"
+        }
+      ]
+    }
+  ]
+}

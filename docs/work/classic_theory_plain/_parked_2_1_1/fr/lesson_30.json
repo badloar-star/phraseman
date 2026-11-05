@@ -1,0 +1,485 @@
+{
+  "lang": "fr",
+  "lesson": 30,
+  "title": {
+    "ru": "Нужно, чтобы: il faut que",
+    "en": "It is necessary that: il faut que"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Мне нужно уйти",
+        "en": "I need to leave"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нужно уйти».\nIl faut que je parte. — «Мне нужно уйти.»\nЧитается: иль фо кё жё парт.\nСлова il faut значат «нужно». Слово que значит «чтобы».\nСлово parte значит «уйду». По-русски: «нужно, чтобы я ушёл».\nIl faut que tu partes. — «Тебе нужно уйти.»\nIl faut qu’elle parte. — «Ей нужно уйти.»\nСлово qu’elle — это que и elle вместе. Слово elle значит «она».\nIl faut que nous partions. — «Нам нужно уйти.»\nСлово меняется, смотря о ком речь.\nЯ — parte, мы — partions, вы — partiez.\nIl faut que vous partiez. — «Вам нужно уйти.»\nIl faut qu’ils partent. — «Им нужно уйти.»",
+        "en": "Look at how to say “I need to leave”.\nIl faut que je parte. — “I need to leave.”\nThe words il faut mean “it is necessary”. The word que means “that”.\nThe word parte means “leave”. In Russian: “it is necessary that I leave”.\nIl faut que tu partes. — “You need to leave.”\nIl faut qu’elle parte. — “She needs to leave.”\nThe word qu’elle is que and elle together. The word elle means “she”.\nIl faut que nous partions. — “We need to leave.”\nThe word changes depending on who it is about.\nI — parte, we — partions, you — partiez.\nIl faut que vous partiez. — “You need to leave.”\nIl faut qu’ils partent. — “They need to leave.”"
+      },
+      "examples": [
+        {
+          "phraseId": "fr:30:01",
+          "say": {
+            "ru": "иль фо кё жё парт",
+            "uk": "іль фо кьо жьо парт"
+          }
+        },
+        {
+          "phraseId": "fr:30:02",
+          "say": {
+            "ru": "иль фо кё тю парт",
+            "uk": "іль фо кьо тю парт"
+          }
+        },
+        {
+          "phraseId": "fr:30:03",
+          "say": {
+            "ru": "иль фо кэль парт",
+            "uk": "іль фо кель парт"
+          }
+        },
+        {
+          "phraseId": "fr:30:04",
+          "say": {
+            "ru": "иль фо кё ну партьо́н",
+            "uk": "іль фо кьо ну партьо́н"
+          }
+        },
+        {
+          "phraseId": "fr:30:05",
+          "say": {
+            "ru": "иль фо кё ву партье́",
+            "uk": "іль фо кьо ву партье́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужно уйти»",
+            "uk": "Виберіть, як сказати: «Я маю піти»",
+            "en": "Choose how to say: “I need to leave”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:30:01",
+          "options": [
+            "fr:30:01",
+            "fr:30:02",
+            "fr:30:04"
+          ],
+          "answerId": "fr:30:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужно уйти»",
+            "uk": "Виберіть, як сказати: «Ми маємо піти»",
+            "en": "Choose how to say: “We need to leave”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:04",
+          "options": [
+            "fr:30:04",
+            "fr:30:01",
+            "fr:30:05"
+          ],
+          "answerId": "fr:30:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вам нужно уйти»",
+            "uk": "Виберіть, як сказати: «Ви повинні піти»",
+            "en": "Choose how to say: “You need to leave”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:05",
+          "options": [
+            "fr:30:05",
+            "fr:30:04",
+            "fr:30:03"
+          ],
+          "answerId": "fr:30:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мне нужно быть",
+        "en": "I need to be"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нужно быть там».\nIl faut que je sois là. — «Мне нужно быть там.»\nЧитается: иль фо кё жё суа ла.\nСлово sois значит «быть». Здесь оно выглядит особенно, его запоминают целиком.\nIl faut que tu sois prêt. — «Нужно, чтобы ты был готов.»\nСлово prêt значит «готов».\nIl faut qu’elle soit prête. — «Ей нужно быть готовой.»\nО нём говорят prêt, о ней — prête.\nСлово soit значит «быть», когда речь о нём или о ней.\nIl faut que nous soyons à l’heure. — «Нам нужно быть вовремя.»\nСлово soyons значит «быть» для нас. Слова à l’heure значат «вовремя».\nIl faut que le sol soit sec. — «Нужно, чтобы пол был сухим.»\nСлово sol значит «пол». Слово sec значит «сухой».",
+        "en": "Look at how to say “I need to be there”.\nIl faut que je sois là. — “I need to be there.”\nThe word sois means “be”. Here it looks special, learn it as it is.\nIl faut que tu sois prêt. — “You need to be ready.”\nThe word prêt means “ready”.\nIl faut qu’elle soit prête. — “She needs to be ready.”\nFor him we say prêt, for her — prête.\nThe word soit means “be” when it is about him or her.\nIl faut que nous soyons à l’heure. — “We need to be on time.”\nThe word soyons means “be” for us. The words à l’heure mean “on time”.\nIl faut que le sol soit sec. — “The floor needs to be dry.”\nThe word sol means “floor”. The word sec means “dry”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:30:07",
+          "say": {
+            "ru": "иль фо кё жё суа ла",
+            "uk": "іль фо кьо жьо суа ла"
+          }
+        },
+        {
+          "phraseId": "fr:30:08",
+          "say": {
+            "ru": "иль фо кё тю суа прэ",
+            "uk": "іль фо кьо тю суа пре"
+          }
+        },
+        {
+          "phraseId": "fr:30:09",
+          "say": {
+            "ru": "иль фо кэль суа прэт",
+            "uk": "іль фо кель суа прет"
+          }
+        },
+        {
+          "phraseId": "fr:30:10",
+          "say": {
+            "ru": "иль фо кё ну суайо́н а лёр",
+            "uk": "іль фо кьо ну суайо́н а льор"
+          }
+        },
+        {
+          "phraseId": "fr:30:31",
+          "say": {
+            "ru": "иль фо кё лё соль суа сэк",
+            "uk": "іль фо кьо льо соль суа сек"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужно быть там»",
+            "uk": "Виберіть, як сказати: «Мені потрібно бути там»",
+            "en": "Choose how to say: “I need to be there”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:30:07",
+          "options": [
+            "fr:30:07",
+            "fr:30:08",
+            "fr:30:10"
+          ],
+          "answerId": "fr:30:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужно быть вовремя»",
+            "uk": "Виберіть, як сказати: «Нам потрібно бути вчасно»",
+            "en": "Choose how to say: “We need to be on time”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:10",
+          "options": [
+            "fr:30:10",
+            "fr:30:07",
+            "fr:30:31"
+          ],
+          "answerId": "fr:30:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ей нужно быть готовой»",
+            "uk": "Виберіть, як сказати: «Їй потрібно бути готовою»",
+            "en": "Choose how to say: “She needs to be ready”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:09",
+          "options": [
+            "fr:30:09",
+            "fr:30:08",
+            "fr:30:07"
+          ],
+          "answerId": "fr:30:09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Иметь и делать",
+        "en": "To have and to do"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нужно сделать копию».\nIl faut que je fasse une copie. — «Мне нужно сделать копию.»\nЧитается: иль фо кё жё фас юн копи́.\nСлово fasse значит «сделать». Слово copie значит «копия».\nIl faut qu’on fasse une pause. — «Нам нужно сделать перерыв.»\nСлово qu’on здесь значит «чтобы мы». Слово pause значит «перерыв».\nIl faut que j’aie une pièce d’identité.\n«Мне нужно иметь при себе удостоверение личности.»\nСлово j’aie значит «иметь». Слова pièce d’identité значат «удостоверение личности».\nIl faut qu’elle ait un billet. — «Ей нужен билет.»\nСлово ait значит «иметь», когда речь о нём или о ней.\nIl faut que vous ayez le reçu.\n«Нужно, чтобы у вас был с собой чек.»\nСлово ayez значит «иметь» для вас. Слово reçu значит «чек».\nЭти слова тоже особые: их запоминают целиком.",
+        "en": "Look at how to say “I need to make a copy”.\nIl faut que je fasse une copie. — “I need to make a copy.”\nThe word fasse means “do, make”. The word copie means “copy”.\nIl faut qu’on fasse une pause. — “We need to take a break.”\nThe word on here means “we”. The word pause means “break”.\nIl faut que j’aie une pièce d’identité.\n“I need to have an ID with me.”\nThe word j’aie means “have”. The words pièce d’identité mean “ID”.\nIl faut qu’elle ait un billet. — “She needs a ticket.”\nThe word ait means “have”, when it is about him or her.\nIl faut que vous ayez le reçu.\n“You need to have the receipt with you.”\nThe word ayez means “have” for you. The word reçu means “receipt”.\nThese words are also special: learn them as they are."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:30:16",
+          "say": {
+            "ru": "иль фо кё жё фас юн копи́",
+            "uk": "іль фо кьо жьо фас юн копі́"
+          }
+        },
+        {
+          "phraseId": "fr:30:18",
+          "say": {
+            "ru": "иль фо кон фас юн поз",
+            "uk": "іль фо кон фас юн поз"
+          }
+        },
+        {
+          "phraseId": "fr:30:11",
+          "say": {
+            "ru": "иль фо кё жэ юн пьэс дидантите́",
+            "uk": "іль фо кьо же юн пьес дідантіте́"
+          }
+        },
+        {
+          "phraseId": "fr:30:13",
+          "say": {
+            "ru": "иль фо кэль э ан бийэ́",
+            "uk": "іль фо кель е ан бійе́"
+          }
+        },
+        {
+          "phraseId": "fr:30:14",
+          "say": {
+            "ru": "иль фо кё ву зэйе́ лё рёсю́",
+            "uk": "іль фо кьо ву зейе́ льо рьосю́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужно сделать копию»",
+            "uk": "Виберіть, як сказати: «Мені потрібно зробити копію»",
+            "en": "Choose how to say: “I need to make a copy”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:30:16",
+          "options": [
+            "fr:30:16",
+            "fr:30:18",
+            "fr:30:13"
+          ],
+          "answerId": "fr:30:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужно сделать перерыв»",
+            "uk": "Виберіть, як сказати: «Нам потрібно зробити перерву»",
+            "en": "Choose how to say: “We need to take a break”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:18",
+          "options": [
+            "fr:30:18",
+            "fr:30:16",
+            "fr:30:11"
+          ],
+          "answerId": "fr:30:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ей нужен билет»",
+            "uk": "Виберіть, як сказати: «Їй потрібно мати квиток»",
+            "en": "Choose how to say: “She needs a ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:13",
+          "options": [
+            "fr:30:13",
+            "fr:30:11",
+            "fr:30:14"
+          ],
+          "answerId": "fr:30:13"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Сходить и взять",
+        "en": "To go and to take"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мне нужно сходить на почту».\nIl faut que j’aille à la poste. — «Мне нужно сходить на почту.»\nЧитается: иль фо кё жай а ла пост.\nСлово j’aille значит «пойти». Слово poste значит «почта».\nIl faut que nous allions au bureau avant le repas.\n«Нам нужно сходить в офис до обеда.»\nСлово allions значит «пойти» для нас. Слово bureau значит «офис».\nСлова avant le repas значат «до обеда».\nIl faut qu’elles aillent au bureau. — «Им нужно идти в офис.»\nСлово elles значит «они», когда речь о женщинах.\nIl faut que je prenne une petite portion. — «Мне нужно взять небольшую порцию.»\nСлово prenne значит «взять». Слово petite значит «маленькая». Слово portion значит «порция».\nIl faut que vous preniez rendez-vous. — «Вам нужно записаться на прием.»\nСлова preniez rendez-vous значат «записаться на приём».",
+        "en": "Look at how to say “I need to go to the post office”.\nIl faut que j’aille à la poste.\n“I need to go to the post office.”\nThe word j’aille means “go”. The word poste means “post office”.\nIl faut que nous allions au bureau avant le repas.\n“We need to go to the office before the meal.”\nThe word allions means “go” for us. The word bureau means “office”.\nThe words avant le repas mean “before the meal”.\nIl faut qu’elles aillent au bureau. — “They need to go to the office.”\nThe word elles means “they”, when it is about women.\nIl faut que je prenne une petite portion.\n“I need to take a small portion.”\nThe word prenne means “take”. The word petite means “small”. The word portion means “portion”.\nIl faut que vous preniez rendez-vous. — “You need to make an appointment.”\nThe words preniez rendez-vous mean “make an appointment”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:30:21",
+          "say": {
+            "ru": "иль фо кё жай а ла пост",
+            "uk": "іль фо кьо жай а ла пост"
+          }
+        },
+        {
+          "phraseId": "fr:30:24",
+          "say": {
+            "ru": "иль фо кё ну зальо́н о бюро́ аван лё рёпа",
+            "uk": "іль фо кьо ну зальо́н о бюро́ аван льо рьопа"
+          }
+        },
+        {
+          "phraseId": "fr:30:26",
+          "say": {
+            "ru": "иль фо кэль зай о бюро́",
+            "uk": "іль фо кель зай о бюро́"
+          }
+        },
+        {
+          "phraseId": "fr:30:27",
+          "say": {
+            "ru": "иль фо кё жё прэн юн пётит порсьо́н",
+            "uk": "іль фо кьо жьо прен юн пьотіт порсьо́н"
+          }
+        },
+        {
+          "phraseId": "fr:30:30",
+          "say": {
+            "ru": "иль фо кё ву прёнье́ рандеву́",
+            "uk": "іль фо кьо ву прьонье́ рандеву́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне нужно сходить на почту»",
+            "uk": "Виберіть, як сказати: «Мені потрібно йти на пошту»",
+            "en": "Choose how to say: “I need to go to the post office”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:30:21",
+          "options": [
+            "fr:30:21",
+            "fr:30:24",
+            "fr:30:27"
+          ],
+          "answerId": "fr:30:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужно сходить в офис до обеда»",
+            "uk": "Виберіть, як сказати: «Нам потрібно піти в офіс до обіду»",
+            "en": "Choose how to say: “We need to go to the office before the meal”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:24",
+          "options": [
+            "fr:30:24",
+            "fr:30:21",
+            "fr:30:26"
+          ],
+          "answerId": "fr:30:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вам нужно записаться на прием»",
+            "uk": "Виберіть, як сказати: «Вам потрібно записатися на прийом»",
+            "en": "Choose how to say: “You need to make an appointment”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:30",
+          "options": [
+            "fr:30:30",
+            "fr:30:27",
+            "fr:30:26"
+          ],
+          "answerId": "fr:30:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не нужно, и другие слова",
+        "en": "Should not, and other words"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Тебе не следует уходить одному».\nIl ne faut pas que tu partes seul. — «Тебе не следует уходить одному.»\nЧитается: иль нё фо па кё тю парт соль.\nСлова ne и pas стоят вокруг слова faut. Слово seul значит «один».\nIl ne faut pas que le lait déborde. — «Молоко не должно выкипеть.»\nСлово lait значит «молоко». Слово déborde значит «переливается через край».\nIl faut que le résultat soit lisible. — «Результат должен быть разборчивым.»\nСлово résultat значит «результат». Слово lisible значит «разборчивый».\nIl faut que quelqu’un prévienne le gardien. — «Кто-то должен сообщить охраннику.»\nСлово quelqu’un значит «кто-то». Слово gardien значит «сторож».\nСлово prévienne значит «предупредить».\nIl faut que la réparation soit terminée lundi.\n«Ремонт должен быть завершен к понедельнику.»\nСлово réparation значит «ремонт». Слово terminée значит «завершён».\nСлово lundi значит «понедельник».",
+        "en": "Look at how to say “You should not leave alone”.\nIl ne faut pas que tu partes seul. — “You should not leave alone.”\nThe words ne and pas stand around the word faut. The word seul means “alone”.\nIl ne faut pas que le lait déborde.\n“The milk must not boil over.”\nThe word lait means “milk”. The word déborde means “overflows”.\nIl faut que le résultat soit lisible. — “The result must be legible.”\nThe word résultat means “result”. The word lisible means “legible”.\nIl faut que quelqu’un prévienne le gardien. — “Someone must tell the guard.”\nThe word quelqu’un means “someone”. The word gardien means “guard”.\nThe word prévienne means “warn, tell”.\nIl faut que la réparation soit terminée lundi.\n“The repair must be finished by Monday.”\nThe word réparation means “repair”. The word terminée means “finished”.\nThe word lundi means “Monday”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:30:41",
+          "say": {
+            "ru": "иль нё фо па кё тю парт соль",
+            "uk": "іль ньо фо па кьо тю парт соль"
+          }
+        },
+        {
+          "phraseId": "fr:30:42",
+          "say": {
+            "ru": "иль нё фо па кё лё лэ дебо́рд",
+            "uk": "іль ньо фо па кьо льо ле дебо́рд"
+          }
+        },
+        {
+          "phraseId": "fr:30:32",
+          "say": {
+            "ru": "иль фо кё лё рэзюльта́ суа лизибль",
+            "uk": "іль фо кьо льо резюльта́ суа лізібль"
+          }
+        },
+        {
+          "phraseId": "fr:30:44",
+          "say": {
+            "ru": "иль фо кё кэлькэ́н прэвьэн лё гардьэ́н",
+            "uk": "іль фо кьо кельке́н превьен льо гардье́н"
+          }
+        },
+        {
+          "phraseId": "fr:30:49",
+          "say": {
+            "ru": "иль фо кё ла рэпарасьо́н суа тэрминэ́ лёнди́",
+            "uk": "іль фо кьо ла репарасьо́н суа терміне́ льонді́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Тебе не следует уходить одному»",
+            "uk": "Виберіть, як сказати: «Тобі не слід йти одному»",
+            "en": "Choose how to say: “You should not leave alone”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:30:41",
+          "options": [
+            "fr:30:41",
+            "fr:30:42",
+            "fr:30:32"
+          ],
+          "answerId": "fr:30:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Молоко не должно выкипеть»",
+            "uk": "Виберіть, як сказати: «Молоко не повинно википіти»",
+            "en": "Choose how to say: “The milk must not boil over”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:42",
+          "options": [
+            "fr:30:42",
+            "fr:30:41",
+            "fr:30:44"
+          ],
+          "answerId": "fr:30:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ремонт должен быть завершен к понедельнику»",
+            "uk": "Виберіть, як сказати: «Ремонт потрібно завершити до понеділка»",
+            "en": "Choose how to say: “The repair must be finished by Monday”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:30:49",
+          "options": [
+            "fr:30:49",
+            "fr:30:32",
+            "fr:30:44"
+          ],
+          "answerId": "fr:30:49"
+        }
+      ]
+    }
+  ]
+}

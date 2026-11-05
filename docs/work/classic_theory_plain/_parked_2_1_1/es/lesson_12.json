@@ -1,0 +1,492 @@
+{
+  "lang": "es",
+  "lesson": 12,
+  "title": {
+    "ru": "Какой он: новый, большой, красный",
+    "en": "What it is like: new, big, red"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Новый",
+        "en": "New"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Книга новая».\nEl libro es nuevo. — «Книга новая.»\nЧитается: эль ли́бро эс нуэ́бо.\nСлово nuevo значит «новый». Слово es по-русски не говорят.\nLa mochila es nueva. — «Рюкзак новый.»\nКонец слова меняется. После el — nuevo, после la — nueva.\nСмотрите на el или la, а не на русский перевод: «рюкзак новый», а mochila — nueva.\nEl móvil es nuevo. — «Телефон новый.»\nLa llave es nueva. — «Ключ новый.»",
+        "en": "Look at how to say “The book is new”.\nEl libro es nuevo. — “The book is new.”\nThe word nuevo means “new”. The word es has no Russian match.\nLa mochila es nueva. — “The backpack is new.”\nThe end of the word changes. After el — nuevo, after la — nueva.\nLook at el or la, not at the Russian: “рюкзак новый”, but la mochila — nueva.\nEl móvil es nuevo. — “The phone is new.”\nLa llave es nueva. — “The key is new.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:12:01",
+          "say": {
+            "ru": "эль ли́бро эс нуэ́бо",
+            "uk": "ель лі́бро ес нуе́бо"
+          }
+        },
+        {
+          "phraseId": "es:12:03",
+          "say": {
+            "ru": "эль мо́биль эс нуэ́бо",
+            "uk": "ель мо́біль ес нуе́бо"
+          }
+        },
+        {
+          "phraseId": "es:12:06",
+          "say": {
+            "ru": "ла мочи́ла эс нуэ́ба",
+            "uk": "ла мочі́ла ес нуе́ба"
+          }
+        },
+        {
+          "phraseId": "es:12:08",
+          "say": {
+            "ru": "ла йа́бэ эс нуэ́ба",
+            "uk": "ла йа́бе ес нуе́ба"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Книга новая»",
+            "uk": "Виберіть, як сказати: «Книжка нова»",
+            "en": "Choose how to say: “The book is new”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:12:01",
+          "options": [
+            "es:12:01",
+            "es:12:06",
+            "es:12:08"
+          ],
+          "answerId": "es:12:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Рюкзак новый»",
+            "uk": "Виберіть, як сказати: «Рюкзак новий»",
+            "en": "Choose how to say: “The backpack is new”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:06",
+          "options": [
+            "es:12:06",
+            "es:12:01",
+            "es:12:03"
+          ],
+          "answerId": "es:12:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ новый»",
+            "uk": "Виберіть, як сказати: «Ключ новий»",
+            "en": "Choose how to say: “The key is new”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:08",
+          "options": [
+            "es:12:08",
+            "es:12:03",
+            "es:12:01"
+          ],
+          "answerId": "es:12:08"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Маленький",
+        "en": "Small"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Книги маленькие».\nLos libros son pequeños. — «Книги маленькие.»\nЧитается: лос ли́брос сон пэкэ́ньос.\nСлово pequeños значит «маленькие». Слово son значит «есть», когда речь о многих.\nLas mochilas son pequeñas. — «Рюкзаки маленькие.»\nВещей несколько — слово получает «с» на конце: pequeño — pequeños.\nПосле las — pequeñas, после los — pequeños.\nLos coches son pequeños. — «Машины маленькие.»\nLas mesas son pequeñas. — «Столы маленькие.»",
+        "en": "Look at how to say “The books are small”.\nLos libros son pequeños. — “The books are small.”\nThe word pequeños means “small”. The word son means “are”, for many things.\nLas mochilas son pequeñas. — “The backpacks are small.”\nThere are several things — the word gets an “s” at the end: pequeño — pequeños.\nAfter las — pequeñas, after los — pequeños.\nLos coches son pequeños. — “The cars are small.”\nLas mesas son pequeñas. — “The tables are small.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:12:11",
+          "say": {
+            "ru": "лос ли́брос сон пэкэ́ньос",
+            "uk": "лос лі́брос сон пеке́ньос"
+          }
+        },
+        {
+          "phraseId": "es:12:16",
+          "say": {
+            "ru": "лас мочи́лас сон пэкэ́ньяс",
+            "uk": "лас мочі́лас сон пеке́ньяс"
+          }
+        },
+        {
+          "phraseId": "es:12:13",
+          "say": {
+            "ru": "лос ко́чэс сон пэкэ́ньос",
+            "uk": "лос ко́чес сон пеке́ньос"
+          }
+        },
+        {
+          "phraseId": "es:12:19",
+          "say": {
+            "ru": "лас мэ́сас сон пэкэ́ньяс",
+            "uk": "лас ме́сас сон пеке́ньяс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Книги маленькие»",
+            "uk": "Виберіть, як сказати: «Книжки маленькі»",
+            "en": "Choose how to say: “The books are small”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:12:11",
+          "options": [
+            "es:12:11",
+            "es:12:16",
+            "es:12:19"
+          ],
+          "answerId": "es:12:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Рюкзаки маленькие»",
+            "uk": "Виберіть, як сказати: «Рюкзаки маленькі»",
+            "en": "Choose how to say: “The backpacks are small”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:16",
+          "options": [
+            "es:12:16",
+            "es:12:11",
+            "es:12:13"
+          ],
+          "answerId": "es:12:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Столы маленькие»",
+            "uk": "Виберіть, як сказати: «Столи маленькі»",
+            "en": "Choose how to say: “The tables are small”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:19",
+          "options": [
+            "es:12:19",
+            "es:12:13",
+            "es:12:11"
+          ],
+          "answerId": "es:12:19"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Большой",
+        "en": "Big"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Дом большой».\nLa casa es grande. — «Дом большой.»\nЧитается: ла ка́са эс гра́ндэ.\nСлово grande значит «большой».\nEl hotel es grande. — «Отель большой.»\nСлово grande не меняется: ни после la, ни после el.\nLos abrigos son grandes. — «Пальто большие.»\nКогда вещей несколько, на конце «с»: grandes.\n¿Son grandes las ventanas? — «Окна большие?»\nСлова те же, голос в конце идёт вверх.",
+        "en": "Look at how to say “The house is big”.\nLa casa es grande. — “The house is big.”\nThe word grande means “big”.\nEl hotel es grande. — “The hotel is big.”\nThe word grande does not change: not after la, not after el.\nLos abrigos son grandes. — “The coats are big.”\nWhen there are several things, there is an “s” at the end: grandes.\n¿Son grandes las ventanas? — “Are the windows big?”\nThe words are the same, the voice goes up at the end."
+      },
+      "examples": [
+        {
+          "phraseId": "es:12:31",
+          "say": {
+            "ru": "ла ка́са эс гра́ндэ",
+            "uk": "ла ка́са ес гра́нде"
+          }
+        },
+        {
+          "phraseId": "es:12:32",
+          "say": {
+            "ru": "эль оте́ль эс гра́ндэ",
+            "uk": "ель оте́ль ес гра́нде"
+          }
+        },
+        {
+          "phraseId": "es:12:12",
+          "say": {
+            "ru": "лос абри́гос сон гра́ндэс",
+            "uk": "лос абрі́гос сон гра́ндес"
+          }
+        },
+        {
+          "phraseId": "es:12:33",
+          "say": {
+            "ru": "ла коси́на эс гра́ндэ",
+            "uk": "ла косі́на ес гра́нде"
+          }
+        },
+        {
+          "phraseId": "es:12:36",
+          "say": {
+            "ru": "сон гра́ндэс лас бэнта́нас",
+            "uk": "сон гра́ндес лас бента́нас"
+          }
+        },
+        {
+          "phraseId": "es:12:40",
+          "say": {
+            "ru": "сон гра́ндэс лас мэ́сас",
+            "uk": "сон гра́ндес лас ме́сас"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дом большой»",
+            "uk": "Виберіть, як сказати: «Будинок великий»",
+            "en": "Choose how to say: “The house is big”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:12:31",
+          "options": [
+            "es:12:31",
+            "es:12:33",
+            "es:12:32"
+          ],
+          "answerId": "es:12:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пальто большие»",
+            "uk": "Виберіть, як сказати: «Пальта великі»",
+            "en": "Choose how to say: “The coats are big”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:12",
+          "options": [
+            "es:12:12",
+            "es:12:32",
+            "es:12:11"
+          ],
+          "answerId": "es:12:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Окна большие?»",
+            "uk": "Виберіть, як сказати: «Вікна великі?»",
+            "en": "Choose how to say: “Are the windows big?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:36",
+          "options": [
+            "es:12:36",
+            "es:12:40",
+            "es:12:31"
+          ],
+          "answerId": "es:12:36"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Красный, чёрный, белый",
+        "en": "Red, black, white"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Моя машина красная».\nMi coche es rojo. — «Моя машина красная.»\nЧитается: ми ко́чэ эс ро́хо.\nСлово rojo значит «красный». Слово mi значит «мой, моя».\nMi mochila es roja. — «Мой рюкзак красный.»\nMi bolso es negro. — «Моя сумка чёрная.»\nСлово negro значит «чёрный».\nMi móvil es blanco. — «Мой телефон белый.»\nСлово blanco значит «белый».\nLas camisetas son blancas. — «Футболки белые.»\nСлово camiseta значит «футболка».\nЗдесь слова меняются так же: rojo — roja, blanco — blancas.",
+        "en": "Look at how to say “My car is red”.\nMi coche es rojo. — “My car is red.”\nThe word rojo means “red”. The word mi means “my”.\nMi mochila es roja. — “My backpack is red.”\nMi bolso es negro. — “My bag is black.”\nThe word negro means “black”.\nMi móvil es blanco. — “My phone is white.”\nThe word blanco means “white”.\nLas camisetas son blancas. — “The T-shirts are white.”\nThe word camiseta means “T-shirt”.\nThese words change in the same way: rojo — roja, blanco — blancas."
+      },
+      "examples": [
+        {
+          "phraseId": "es:12:21",
+          "say": {
+            "ru": "ми ко́чэ эс ро́хо",
+            "uk": "мі ко́че ес ро́хо"
+          }
+        },
+        {
+          "phraseId": "es:12:22",
+          "say": {
+            "ru": "ми мочи́ла эс ро́ха",
+            "uk": "мі мочі́ла ес ро́ха"
+          }
+        },
+        {
+          "phraseId": "es:12:23",
+          "say": {
+            "ru": "ми бо́льсо эс нэ́гро",
+            "uk": "мі бо́льсо ес не́гро"
+          }
+        },
+        {
+          "phraseId": "es:12:25",
+          "say": {
+            "ru": "ми мо́биль эс бла́нко",
+            "uk": "мі мо́біль ес бла́нко"
+          }
+        },
+        {
+          "phraseId": "es:12:47",
+          "say": {
+            "ru": "лас камисэ́тас сон бла́нкас",
+            "uk": "лас камісе́тас сон бла́нкас"
+          }
+        },
+        {
+          "phraseId": "es:12:24",
+          "say": {
+            "ru": "тэ́нго у́на камисэ́та ро́ха",
+            "uk": "те́нго у́на камісе́та ро́ха"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя машина красная»",
+            "uk": "Виберіть, як сказати: «Моя машина червона»",
+            "en": "Choose how to say: “My car is red”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:12:21",
+          "options": [
+            "es:12:21",
+            "es:12:23",
+            "es:12:25"
+          ],
+          "answerId": "es:12:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Моя сумка чёрная»",
+            "uk": "Виберіть, як сказати: «Моя сумка чорна»",
+            "en": "Choose how to say: “My bag is black”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:23",
+          "options": [
+            "es:12:23",
+            "es:12:21",
+            "es:12:22"
+          ],
+          "answerId": "es:12:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня красная футболка»",
+            "uk": "Виберіть, як сказати: «У мене червона футболка»",
+            "en": "Choose how to say: “I have a red T-shirt”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:24",
+          "options": [
+            "es:12:24",
+            "es:12:47",
+            "es:12:22"
+          ],
+          "answerId": "es:12:24"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Я ищу, у меня, здесь есть",
+        "en": "I am looking for, I have, there is"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я ищу чёрный шарф».\nBusco una bufanda negra. — «Я ищу чёрный шарф.»\nЧитается: бу́ско у́на буфа́нда нэ́гра.\nСлово busco значит «я ищу». Слово bufanda значит «шарф».\nСлово negra идёт после bufanda: сначала вещь, потом какая она.\nBusco una maleta pequeña. — «Я ищу маленький чемодан.»\nTengo un libro nuevo. — «У меня новая книга.»\nTengo dos maletas rojas. — «У меня два красных чемодана.»\nHay un coche blanco aquí. — «Здесь есть белая машина.»\nСлово hay значит «есть, имеется».\nHay dos libros nuevos aquí. — «Здесь есть две новые книги.»",
+        "en": "Look at how to say “I am looking for a black scarf”.\nBusco una bufanda negra. — “I am looking for a black scarf.”\nThe word busco means “I am looking for”. The word bufanda means “scarf”.\nThe word negra goes after bufanda: first the thing, then what it is like.\nBusco una maleta pequeña. — “I am looking for a small suitcase.”\nTengo un libro nuevo. — “I have a new book.”\nTengo dos maletas rojas. — “I have two red suitcases.”\nHay un coche blanco aquí. — “There is a white car here.”\nThe word hay means “there is, there are”.\nHay dos libros nuevos aquí. — “There are two new books here.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:12:29",
+          "say": {
+            "ru": "бу́ско у́на буфа́нда нэ́гра",
+            "uk": "бу́ско у́на буфа́нда не́гра"
+          }
+        },
+        {
+          "phraseId": "es:12:41",
+          "say": {
+            "ru": "бу́ско у́на мале́та пэкэ́нья",
+            "uk": "бу́ско у́на мале́та пеке́нья"
+          }
+        },
+        {
+          "phraseId": "es:12:26",
+          "say": {
+            "ru": "тэ́нго ун ли́бро нуэ́бо",
+            "uk": "те́нго ун лі́бро нуе́бо"
+          }
+        },
+        {
+          "phraseId": "es:12:28",
+          "say": {
+            "ru": "тэ́нго дос мале́тас ро́хас",
+            "uk": "те́нго дос мале́тас ро́хас"
+          }
+        },
+        {
+          "phraseId": "es:12:46",
+          "say": {
+            "ru": "ай ун ко́чэ бла́нко аки́",
+            "uk": "ай ун ко́че бла́нко акі́"
+          }
+        },
+        {
+          "phraseId": "es:12:49",
+          "say": {
+            "ru": "ай дос ли́брос нуэ́бос аки́",
+            "uk": "ай дос лі́брос нуе́бос акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ищу чёрный шарф»",
+            "uk": "Виберіть, як сказати: «Я шукаю чорний шарф»",
+            "en": "Choose how to say: “I am looking for a black scarf”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:12:29",
+          "options": [
+            "es:12:29",
+            "es:12:41",
+            "es:12:46"
+          ],
+          "answerId": "es:12:29"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ищу маленький чемодан»",
+            "uk": "Виберіть, як сказати: «Я шукаю маленьку валізу»",
+            "en": "Choose how to say: “I am looking for a small suitcase”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:41",
+          "options": [
+            "es:12:41",
+            "es:12:29",
+            "es:12:26"
+          ],
+          "answerId": "es:12:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Здесь есть две новые книги»",
+            "uk": "Виберіть, як сказати: «Тут є дві нові книжки»",
+            "en": "Choose how to say: “There are two new books here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:12:49",
+          "options": [
+            "es:12:49",
+            "es:12:46",
+            "es:12:28"
+          ],
+          "answerId": "es:12:49"
+        }
+      ]
+    }
+  ]
+}

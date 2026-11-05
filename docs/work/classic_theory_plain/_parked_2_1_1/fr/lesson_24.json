@@ -1,0 +1,478 @@
+{
+  "lang": "fr",
+  "lesson": 24,
+  "title": {
+    "ru": "Туда и там: слово y",
+    "en": "There: the word y"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Туда",
+        "en": "There (going)"
+      },
+      "text": {
+        "ru": "Смотрите, как не повторять место.\nJe vais au marché et Paul y va aussi.\n«Я иду на рынок, и Поль тоже.»\nЧитается: жё вэ о марше́ э поль и ва оси́.\nСлово marché значит «рынок». Слово aussi значит «тоже».\nСлово y значит «туда». Оно заменяет «на рынок», чтобы не повторять.\nПо-русски здесь просто «и Поль тоже».\nElle va au musée et nous y allons aussi.\n«Она идёт в музей, и мы тоже.»\nСлово musée значит «музей». Слово y опять стоит перед словом allons.\nJ’y vais maintenant. — «Я иду туда сейчас.»\nСлово je перед y сокращается: j’y. Слово maintenant значит «сейчас».\nIl y va à pied. — «Он идёт туда пешком.»\nСлова à pied значат «пешком».\nNous y allons en bus. — «Мы едем туда на автобусе.»\nСлова en bus значат «на автобусе».",
+        "en": "Look at how not to repeat a place.\nJe vais au marché et Paul y va aussi.\n“I am going to the market and Paul is too.”\nThe word marché means “market”. The word aussi means “too”.\nThe word y means “there”. It replaces “to the market”, so we do not repeat it.\nIn Russian it is simply “and Paul too”.\nElle va au musée et nous y allons aussi.\n“She is going to the museum and we are too.”\nThe word musée means “museum”. The word y again stands before allons.\nJ’y vais maintenant. — “I am going there now.”\nThe word je becomes j’ before y. The word maintenant means “now”.\nIl y va à pied. — “He is going there on foot.”\nThe words à pied mean “on foot”.\nNous y allons en bus. — “We are going there by bus.”\nThe words en bus mean “by bus”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:24:01",
+          "say": {
+            "ru": "жё вэ о марше́ э поль и ва оси́",
+            "uk": "жьо ве о марше́ е поль і ва осі́"
+          }
+        },
+        {
+          "phraseId": "fr:24:04",
+          "say": {
+            "ru": "эль ва о мюзе́ э ну зи ало́н оси́",
+            "uk": "ель ва о мюзе́ е ну зі ало́н осі́"
+          }
+        },
+        {
+          "phraseId": "fr:24:07",
+          "say": {
+            "ru": "жи вэ мэнтна́н",
+            "uk": "жі ве ментна́н"
+          }
+        },
+        {
+          "phraseId": "fr:24:09",
+          "say": {
+            "ru": "иль и ва а пье",
+            "uk": "іль і ва а пье"
+          }
+        },
+        {
+          "phraseId": "fr:24:10",
+          "say": {
+            "ru": "ну зи ало́н ан бюс",
+            "uk": "ну зі ало́н ан бюс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду на рынок, и Поль тоже»",
+            "uk": "Виберіть, як сказати: «Я йду на ринок, і Пол теж йде»",
+            "en": "Choose how to say: “I am going to the market and Paul is too”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:24:01",
+          "options": [
+            "fr:24:01",
+            "fr:24:04",
+            "fr:24:10"
+          ],
+          "answerId": "fr:24:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду туда сейчас»",
+            "uk": "Виберіть, як сказати: «Я йду туди зараз»",
+            "en": "Choose how to say: “I am going there now”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:07",
+          "options": [
+            "fr:24:07",
+            "fr:24:09",
+            "fr:24:10"
+          ],
+          "answerId": "fr:24:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы едем туда на автобусе»",
+            "uk": "Виберіть, як сказати: «Ми їдемо туди автобусом»",
+            "en": "Choose how to say: “We are going there by bus”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:10",
+          "options": [
+            "fr:24:10",
+            "fr:24:09",
+            "fr:24:07"
+          ],
+          "answerId": "fr:24:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Там",
+        "en": "There (being)"
+      },
+      "text": {
+        "ru": "Теперь «там».\nJ’y habite depuis un an. — «Я живу там уже год.»\nЧитается: жи аби́т дёпюи́ ан ан.\nСлово habite значит «живу». Слово y здесь значит «там».\nСлова depuis un an значат «уже год».\nElle y habite avec sa sœur. — «Она живёт там со своей сестрой.»\nСлово avec значит «с». Слово sœur значит «сестра».\nCet atelier est lumineux et nous y travaillons ensemble.\n«В этой мастерской светло, и мы работаем здесь вместе.»\nСлово atelier значит «мастерская». Слово ensemble значит «вместе».\nJ’aime cette terrasse et on y mange bien.\n«Мне нравится эта терраса, и еда здесь хорошая.»\nСлово terrasse значит «терраса». Слова on y mange bien значат «здесь хорошо едят».\nNotre salon est frais et j’y dors parfois.\n«В нашей гостиной прохладно, и я иногда там сплю.»\nСлово salon значит «гостиная». Слово dors значит «сплю».\nСлово parfois значит «иногда».",
+        "en": "Now “there” as a place where we are.\nJ’y habite depuis un an. — “I have lived there for a year.”\nThe word habite means “live”. The word y here means “there”.\nThe words depuis un an mean “for a year”.\nElle y habite avec sa sœur. — “She lives there with her sister.”\nThe word avec means “with”. The word sœur means “sister”.\nCet atelier est lumineux et nous y travaillons ensemble.\n“This workshop is bright and we work here together.”\nThe word atelier means “workshop”. The word ensemble means “together”.\nJ’aime cette terrasse et on y mange bien.\n“I like this terrace and the food here is good.”\nThe word terrasse means “terrace”. The words on y mange bien mean “people eat well here”.\nNotre salon est frais et j’y dors parfois.\n“Our living room is cool and I sometimes sleep there.”\nThe word salon means “living room”. The word dors means “sleep”.\nThe word parfois means “sometimes”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:24:11",
+          "say": {
+            "ru": "жи аби́т дёпюи́ ан ан",
+            "uk": "жі абі́т дьопюі́ ан ан"
+          }
+        },
+        {
+          "phraseId": "fr:24:12",
+          "say": {
+            "ru": "эль и аби́т авэ́к са сёр",
+            "uk": "ель і абі́т аве́к са сьор"
+          }
+        },
+        {
+          "phraseId": "fr:24:14",
+          "say": {
+            "ru": "сэт атёлье́ э люмино́ э ну зи траваийо́н анса́нбль",
+            "uk": "сет атьолье́ е люміно́ е ну зі траваійо́н анса́нбль"
+          }
+        },
+        {
+          "phraseId": "fr:24:16",
+          "say": {
+            "ru": "жэм сэт тэра́с э он и манж бьэ́н",
+            "uk": "жем сет тера́с е он і манж бье́н"
+          }
+        },
+        {
+          "phraseId": "fr:24:19",
+          "say": {
+            "ru": "нотр сало́н э фрэ э жи дор парфуа́",
+            "uk": "нотр сало́н е фре е жі дор парфуа́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я живу там уже год»",
+            "uk": "Виберіть, як сказати: «Я живу там рік»",
+            "en": "Choose how to say: “I have lived there for a year”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:24:11",
+          "options": [
+            "fr:24:11",
+            "fr:24:12",
+            "fr:24:14"
+          ],
+          "answerId": "fr:24:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она живёт там со своей сестрой»",
+            "uk": "Виберіть, як сказати: «Вона живе там зі своєю сестрою»",
+            "en": "Choose how to say: “She lives there with her sister”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:12",
+          "options": [
+            "fr:24:12",
+            "fr:24:11",
+            "fr:24:16"
+          ],
+          "answerId": "fr:24:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В нашей гостиной прохладно, и я иногда там сплю»",
+            "uk": "Виберіть, як сказати: «У нашій вітальні прохолодно, і я іноді там сплю»",
+            "en": "Choose how to say: “Our living room is cool and I sometimes sleep there”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:19",
+          "options": [
+            "fr:24:19",
+            "fr:24:16",
+            "fr:24:14"
+          ],
+          "answerId": "fr:24:19"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Уже был, купила там",
+        "en": "Already been, bought there"
+      },
+      "text": {
+        "ru": "Теперь про то, что уже было.\nJ’y suis déjà allé. — «Я уже там был.»\nЧитается: жи сюи дежа́ але́.\nСлово déjà значит «уже». Слова suis allé значат «был, ходил».\nСлово y стоит перед словом suis.\nElle y est déjà allée. — «Она уже там была.»\nLéa y a acheté du pain. — «Леа купила там хлеб.»\nСлова a acheté значат «купила». Слово pain значит «хлеб».\nСлово y стоит перед словом a.\nCette exposition est superbe et j’y retourne demain.\n«Эта выставка великолепна, и завтра я туда вернусь.»\nСлово exposition значит «выставка». Слово retourne значит «возвращаюсь».\nCette scène est grande : vous y avez déjà joué ?\n«Эта сцена большая: вы когда-нибудь выступали на ней?»\nСлово scène значит «сцена». Слово grande значит «большая».\nСлова avez joué значат «выступали, играли».",
+        "en": "Now about what has already happened.\nJ’y suis déjà allé. — “I have already been there.”\nThe word déjà means “already”. The words suis allé mean “went, been”.\nThe word y stands before suis.\nElle y est déjà allée. — “She has already been there.”\nLéa y a acheté du pain. — “Léa bought bread there.”\nThe words a acheté mean “bought”. The word pain means “bread”.\nThe word y stands before a.\nCette exposition est superbe et j’y retourne demain.\n“This exhibition is superb and I am going back tomorrow.”\nThe word exposition means “exhibition”. The word retourne means “go back”.\nCette scène est grande : vous y avez déjà joué ?\n“This stage is big: have you ever performed on it?”\nThe word scène means “stage”. The word grande means “big”.\nThe words avez joué mean “performed, played”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:24:21",
+          "say": {
+            "ru": "жи сюи дежа́ але́",
+            "uk": "жі сюі дежа́ але́"
+          }
+        },
+        {
+          "phraseId": "fr:24:22",
+          "say": {
+            "ru": "эль и э дежа́ але́",
+            "uk": "ель і е дежа́ але́"
+          }
+        },
+        {
+          "phraseId": "fr:24:25",
+          "say": {
+            "ru": "леа́ и а ашьте́ дю пэн",
+            "uk": "леа́ і а ашьте́ дю пен"
+          }
+        },
+        {
+          "phraseId": "fr:24:27",
+          "say": {
+            "ru": "сэт экспозисьо́н э сюпэ́рб э жи рёту́рн дёмэ́н",
+            "uk": "сет експозісьо́н е сюпе́рб е жі рьоту́рн дьоме́н"
+          }
+        },
+        {
+          "phraseId": "fr:24:30",
+          "say": {
+            "ru": "сэт сэн э гранд: ву зи аве́ дежа́ жуэ́",
+            "uk": "сет сен е гранд: ву зі аве́ дежа́ жуе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уже там был»",
+            "uk": "Виберіть, як сказати: «Я вже там був»",
+            "en": "Choose how to say: “I have already been there”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:24:21",
+          "options": [
+            "fr:24:21",
+            "fr:24:22",
+            "fr:24:25"
+          ],
+          "answerId": "fr:24:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она уже там была»",
+            "uk": "Виберіть, як сказати: «Вона вже там була»",
+            "en": "Choose how to say: “She has already been there”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:22",
+          "options": [
+            "fr:24:22",
+            "fr:24:21",
+            "fr:24:25"
+          ],
+          "answerId": "fr:24:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа купила там хлеб»",
+            "uk": "Виберіть, як сказати: «Леа купила там хліб»",
+            "en": "Choose how to say: “Léa bought bread there”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:25",
+          "options": [
+            "fr:24:25",
+            "fr:24:21",
+            "fr:24:27"
+          ],
+          "answerId": "fr:24:25"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не",
+        "en": "Not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не».\nJe n’y vais pas le soir. — «Я не хожу туда по вечерам.»\nЧитается: жё ни вэ па лё суа́р.\nСлово n’y — это ne и y вместе. Слово pas стоит после.\nСлова le soir значат «по вечерам».\nNous n’y habitons plus. — «Мы там больше не живём.»\nСлово plus значит «больше».\nElle n’y travaille pas le lundi. — «Она не работает там по понедельникам.»\nСлова le lundi значат «по понедельникам».\nIls n’y sont jamais allés. — «Они там никогда не были.»\nСлово jamais значит «никогда».",
+        "en": "Look at how to say “not”.\nJe n’y vais pas le soir.\n“I do not go there in the evening.”\nThe word n’y is ne and y together. The word pas stands after.\nThe words le soir mean “in the evenings”.\nNous n’y habitons plus. — “We no longer live there.”\nThe word plus means “any more”.\nElle n’y travaille pas le lundi. — “She does not work there on Mondays.”\nThe words le lundi mean “on Mondays”.\nIls n’y sont jamais allés. — “They have never been there.”\nThe word jamais means “never”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:24:31",
+          "say": {
+            "ru": "жё ни вэ па лё суа́р",
+            "uk": "жьо ні ве па льо суа́р"
+          }
+        },
+        {
+          "phraseId": "fr:24:32",
+          "say": {
+            "ru": "ну ни абито́н плю",
+            "uk": "ну ні абіто́н плю"
+          }
+        },
+        {
+          "phraseId": "fr:24:33",
+          "say": {
+            "ru": "эль ни трава́й па лё лёнди́",
+            "uk": "ель ні трава́й па льо льонді́"
+          }
+        },
+        {
+          "phraseId": "fr:24:34",
+          "say": {
+            "ru": "иль ни сон жамэ́ зале́",
+            "uk": "іль ні сон жаме́ зале́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не хожу туда по вечерам»",
+            "uk": "Виберіть, як сказати: «Я не ходжу туди ввечері»",
+            "en": "Choose how to say: “I do not go there in the evening”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:24:31",
+          "options": [
+            "fr:24:31",
+            "fr:24:32",
+            "fr:24:33"
+          ],
+          "answerId": "fr:24:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы там больше не живём»",
+            "uk": "Виберіть, як сказати: «Ми там більше не живемо»",
+            "en": "Choose how to say: “We no longer live there”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:32",
+          "options": [
+            "fr:24:32",
+            "fr:24:31",
+            "fr:24:34"
+          ],
+          "answerId": "fr:24:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они там никогда не были»",
+            "uk": "Виберіть, як сказати: «Вони там ніколи не були»",
+            "en": "Choose how to say: “They have never been there”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:34",
+          "options": [
+            "fr:24:34",
+            "fr:24:33",
+            "fr:24:31"
+          ],
+          "answerId": "fr:24:34"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Могу, хочу, иду",
+        "en": "Can, want, going"
+      },
+      "text": {
+        "ru": "Теперь два слова подряд.\nJe ne peux pas y rester. — «Я не могу там оставаться.»\nЧитается: жё нё пё па зи рэсте́.\nСлово peux значит «могу». Слово rester значит «оставаться».\nСлово y стоит прямо перед словом rester.\nTu veux y retourner ? — «Ты хочешь туда вернуться?»\nСлово veux значит «хочешь». Слово retourner значит «вернуться».\nNous allons y déjeuner. — «Мы идём туда на обед.»\nСлово déjeuner значит «обедать».\nVous pouvez y aller à vélo. — «Вы можете доехать туда на велосипеде.»\nСлово vélo значит «велосипед».\nCe parc est ouvert et on peut y entrer.\n«Этот парк открыт, и в него можно войти.»\nСлово ouvert значит «открыт». Слово entrer значит «войти».",
+        "en": "Now two words in a row.\nJe ne peux pas y rester. — “I cannot stay there.”\nThe word peux means “can”. The word rester means “to stay”.\nThe word y stands right before rester.\nTu veux y retourner ? — “Do you want to go back there?”\nThe word veux means “want”. The word retourner means “to go back”.\nNous allons y déjeuner. — “We are going there for lunch.”\nThe word déjeuner means “to have lunch”.\nVous pouvez y aller à vélo. — “You can get there by bike.”\nThe word vélo means “bike”.\nCe parc est ouvert et on peut y entrer.\n“This park is open and you can go in.”\nThe word ouvert means “open”. The word entrer means “to go in”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:24:35",
+          "say": {
+            "ru": "жё нё пё па зи рэсте́",
+            "uk": "жьо ньо пьо па зі ресте́"
+          }
+        },
+        {
+          "phraseId": "fr:24:36",
+          "say": {
+            "ru": "тю вё зи рётурне́",
+            "uk": "тю вьо зі рьотурне́"
+          }
+        },
+        {
+          "phraseId": "fr:24:37",
+          "say": {
+            "ru": "ну зало́н и дежёне́",
+            "uk": "ну зало́н і дежьоне́"
+          }
+        },
+        {
+          "phraseId": "fr:24:39",
+          "say": {
+            "ru": "ву пуве́ зи але́ а вело́",
+            "uk": "ву пуве́ зі але́ а вело́"
+          }
+        },
+        {
+          "phraseId": "fr:24:45",
+          "say": {
+            "ru": "сё парк э тувэ́р э он пё зи антре́",
+            "uk": "сьо парк е туве́р е он пьо зі антре́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не могу там оставаться»",
+            "uk": "Виберіть, як сказати: «Я не можу там залишитися»",
+            "en": "Choose how to say: “I cannot stay there”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:24:35",
+          "options": [
+            "fr:24:35",
+            "fr:24:36",
+            "fr:24:37"
+          ],
+          "answerId": "fr:24:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы идём туда на обед»",
+            "uk": "Виберіть, як сказати: «Ми йдемо туди на обід»",
+            "en": "Choose how to say: “We are going there for lunch”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:37",
+          "options": [
+            "fr:24:37",
+            "fr:24:36",
+            "fr:24:35"
+          ],
+          "answerId": "fr:24:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы можете доехать туда на велосипеде»",
+            "uk": "Виберіть, як сказати: «Ви можете поїхати туди на велосипеді»",
+            "en": "Choose how to say: “You can get there by bike”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:24:39",
+          "options": [
+            "fr:24:39",
+            "fr:24:37",
+            "fr:24:45"
+          ],
+          "answerId": "fr:24:39"
+        }
+      ]
+    }
+  ]
+}

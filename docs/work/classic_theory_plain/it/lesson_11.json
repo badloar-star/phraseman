@@ -1,0 +1,523 @@
+{
+  "lang": "it",
+  "lesson": 11,
+  "title": {
+    "ru": "Я иду, мы едем",
+    "uk": "Я йду, ми їдемо",
+    "en": "I go, we go"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я, ты, он",
+        "uk": "Я, ти, він",
+        "en": "I, you, he"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы идёте.\nVado in stazione. — «Я иду на вокзал.»\nЧитается: ва́до ин статсьо́не\nVai in stazione. — «Ты идешь на вокзал.»\nЧитается: ва́й ин статсьо́не\nLui va al mercato. — «Он идет на рынок.»\nЧитается: лу́й ва аль мерка́то\nIo vado al cinema. — «Я иду в кино.»\nЧитается: и́о ва́до аль чи́нема\nСлово vado значит «я иду». Слово vai значит «ты идёшь».\nСлово va значит «он идёт» или «она идёт».\nСлово меняется, смотря о ком речь.\nСлово io значит «я». Его можно не говорить: vado и так значит «я иду».\nСлово lui значит «он».\nСлова in stazione значат «на вокзал», слова al cinema — «в кино».\nСлова al mercato значат «на рынок».",
+        "uk": "Дивіться, як сказати, що ви йдете.\nVado in stazione. — «Я йду на залізничний вокзал.»\nЧитається: ва́до ін статсьо́не\nVai in stazione. — «Ти йдеш на залізничний вокзал.»\nЧитається: ва́й ін статсьо́не\nLui va al mercato. — «Він іде на ринок.»\nЧитається: лу́й ва аль мерка́то\nIo vado al cinema. — «Я йду в кіно.»\nЧитається: і́о ва́до аль чі́нема\nСлово vado означає «я йду». Слово vai означає «ти йдеш».\nСлово va означає «він іде» або «вона іде».\nСлово змінюється залежно від того, про кого мова.\nСлово io означає «я». Його можна не казати: vado і так означає «я йду».\nСлово lui означає «він».\nСлова in stazione означають «на вокзал», слова al cinema — «в кіно».\nСлова al mercato означають «на ринок».",
+        "en": "Look at how to say that you are going somewhere.\nVado in stazione. — “I am going to the station.”\nVai in stazione. — “You are going to the station.”\nLui va al mercato. — “He is going to the market.”\nIo vado al cinema. — “I am going to the cinema.”\nThe word vado means “I go”. The word vai means “you go”.\nThe word va means “he goes” or “she goes”.\nThe word changes, depending on who is going.\nThe word io means “I”. You can leave it out: vado already means “I go”.\nThe word lui means “he”.\nThe words in stazione mean “to the station”, the words al cinema — “to the cinema”.\nThe words al mercato mean “to the market”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:11:01",
+          "say": {
+            "ru": "ва́до ин статсьо́не",
+            "uk": "ва́до ін статсьо́не"
+          }
+        },
+        {
+          "phraseId": "it:11:02",
+          "say": {
+            "ru": "ва́й ин статсьо́не",
+            "uk": "ва́й ін статсьо́не"
+          }
+        },
+        {
+          "phraseId": "it:11:04",
+          "say": {
+            "ru": "лу́й ва аль мерка́то",
+            "uk": "лу́й ва аль мерка́то"
+          }
+        },
+        {
+          "phraseId": "it:11:09",
+          "say": {
+            "ru": "и́о ва́до аль чи́нема",
+            "uk": "і́о ва́до аль чі́нема"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду на вокзал»",
+            "uk": "Виберіть, як сказати: «Я йду на залізничний вокзал»",
+            "en": "Choose how to say: “I am going to the station”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:11:01",
+          "options": [
+            "it:11:01",
+            "it:11:02",
+            "it:11:04"
+          ],
+          "answerId": "it:11:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты идешь на вокзал»",
+            "uk": "Виберіть, як сказати: «Ти йдеш на залізничний вокзал»",
+            "en": "Choose how to say: “You are going to the station”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:02",
+          "options": [
+            "it:11:01",
+            "it:11:02",
+            "it:11:04"
+          ],
+          "answerId": "it:11:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду в кино»",
+            "uk": "Виберіть, як сказати: «Я йду в кіно»",
+            "en": "Choose how to say: “I am going to the cinema”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:09",
+          "options": [
+            "it:11:02",
+            "it:11:04",
+            "it:11:09"
+          ],
+          "answerId": "it:11:09"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Мы, вы, они",
+        "uk": "Ми, ви, вони",
+        "en": "We, you, they"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «мы идём», «вы идёте», «они идут».\nNoi andiamo a scuola. — «Мы идём в школу.»\nЧитается: но́й андья́мо а скуо́ла\nAndate a scuola. — «Вы идёте в школу.»\nЧитается: анда́те а скуо́ла\nLoro vanno in ufficio. — «Они идут в офис.»\nЧитается: ло́ро ва́нно ин уффи́чо\nСлово andiamo значит «мы идём». Слово noi значит «мы».\nСлово andate значит «вы идёте».\nСлово vanno значит «они идут». Слово loro значит «они».\nСлова noi и loro можно не говорить.\nСлова a scuola значат «в школу», слова in ufficio — «в офис».",
+        "uk": "Дивіться, як сказати «ми йдемо», «ви йдете», «вони йдуть».\nNoi andiamo a scuola. — «Ми йдемо до школи.»\nЧитається: но́й андья́мо а скуо́ла\nAndate a scuola. — «Ви йдете до школи.»\nЧитається: анда́те а скуо́ла\nLoro vanno in ufficio. — «Вони йдуть до офісу.»\nЧитається: ло́ро ва́нно ін уффі́чо\nСлово andiamo означає «ми йдемо». Слово noi означає «ми».\nСлово andate означає «ви йдете».\nСлово vanno означає «вони йдуть». Слово loro означає «вони».\nСлова noi та loro можна не казати.\nСлова a scuola означають «до школи», слова in ufficio — «до офісу».",
+        "en": "Look at how to say “we go”, “you go”, “they go”.\nNoi andiamo a scuola. — “We are going to school.”\nAndate a scuola. — “You are going to school.”\nLoro vanno in ufficio. — “They are going to the office.”\nThe word andiamo means “we go”. The word noi means “we”.\nThe word andate means “you go”.\nThe word vanno means “they go”. The word loro means “they”.\nYou can leave out noi and loro.\nThe words a scuola mean “to school”, the words in ufficio — “to the office”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:11:05",
+          "say": {
+            "ru": "но́й андья́мо а скуо́ла",
+            "uk": "но́й андья́мо а скуо́ла"
+          }
+        },
+        {
+          "phraseId": "it:11:06",
+          "say": {
+            "ru": "анда́те а скуо́ла",
+            "uk": "анда́те а скуо́ла"
+          }
+        },
+        {
+          "phraseId": "it:11:07",
+          "say": {
+            "ru": "ло́ро ва́нно ин уффи́чо",
+            "uk": "ло́ро ва́нно ін уффі́чо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы идём в школу»",
+            "uk": "Виберіть, як сказати: «Ми йдемо до школи»",
+            "en": "Choose how to say: “We are going to school”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:11:05",
+          "options": [
+            "it:11:05",
+            "it:11:06",
+            "it:11:07"
+          ],
+          "answerId": "it:11:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы идёте в школу»",
+            "uk": "Виберіть, як сказати: «Ви йдете до школи»",
+            "en": "Choose how to say: “You are going to school”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:06",
+          "options": [
+            "it:11:05",
+            "it:11:06",
+            "it:11:07"
+          ],
+          "answerId": "it:11:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они идут в офис»",
+            "uk": "Виберіть, як сказати: «Вони йдуть до офісу»",
+            "en": "Choose how to say: “They are going to the office”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:07",
+          "options": [
+            "it:11:05",
+            "it:11:06",
+            "it:11:07"
+          ],
+          "answerId": "it:11:07"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "К кому идут",
+        "uk": "До кого йдуть",
+        "en": "Going to a person"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы идёте к человеку.\nLea va dal medico. — «Леа идёт к врачу.»\nЧитается: ле́а ва даль ме́дико\nPaolo va dal dentista. — «Паоло идёт к стоматологу.»\nЧитается: па́оло ва даль денти́ста\nVado a casa di mia sorella. — «Я иду к сестре.»\nЧитается: ва́до а ка́за ди ми́а соре́лла\nСлово dal значит «к»: dal medico — «к врачу».\nСлово medico значит «врач», слово dentista — «стоматолог».\nСлова a casa di значат «к … домой».\nСлова mia sorella значат «моя сестра»: a casa di mia sorella — «к сестре».",
+        "uk": "Дивіться, як сказати, що ви йдете до людини.\nLea va dal medico. — «Леа йде до лікаря.»\nЧитається: ле́а ва даль ме́діко\nPaolo va dal dentista. — «Паоло йде до стоматолога.»\nЧитається: па́оло ва даль денті́ста\nVado a casa di mia sorella. — «Я йду до сестри.»\nЧитається: ва́до а ка́за ді мі́а соре́лла\nСлово dal означає «до»: dal medico — «до лікаря».\nСлово medico означає «лікар», слово dentista — «стоматолог».\nСлова a casa di означають «до … додому».\nСлова mia sorella означають «моя сестра»: a casa di mia sorella — «до сестри».",
+        "en": "Look at how to say that you are going to a person.\nLea va dal medico. — “Lea is going to the doctor.”\nPaolo va dal dentista. — “Paolo is going to the dentist.”\nVado a casa di mia sorella. — “I am going to my sister’s.”\nThe word dal means “to”: dal medico — “to the doctor”.\nThe word medico means “doctor”, the word dentista — “dentist”.\nThe words a casa di mean “to … home”.\nThe words mia sorella mean “my sister”: a casa di mia sorella — “to my sister’s”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:11:11",
+          "say": {
+            "ru": "ле́а ва даль ме́дико",
+            "uk": "ле́а ва даль ме́діко"
+          }
+        },
+        {
+          "phraseId": "it:11:12",
+          "say": {
+            "ru": "па́оло ва даль денти́ста",
+            "uk": "па́оло ва даль денті́ста"
+          }
+        },
+        {
+          "phraseId": "it:11:13",
+          "say": {
+            "ru": "ва́до а ка́за ди ми́а соре́лла",
+            "uk": "ва́до а ка́за ді мі́а соре́лла"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа идёт к врачу»",
+            "uk": "Виберіть, як сказати: «Леа йде до лікаря»",
+            "en": "Choose how to say: “Lea is going to the doctor”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:11:11",
+          "options": [
+            "it:11:11",
+            "it:11:12",
+            "it:11:13"
+          ],
+          "answerId": "it:11:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло идёт к стоматологу»",
+            "uk": "Виберіть, як сказати: «Паоло йде до стоматолога»",
+            "en": "Choose how to say: “Paolo is going to the dentist”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:12",
+          "options": [
+            "it:11:11",
+            "it:11:12",
+            "it:11:13"
+          ],
+          "answerId": "it:11:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду к сестре»",
+            "uk": "Виберіть, як сказати: «Я йду до сестри»",
+            "en": "Choose how to say: “I am going to my sister’s”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:13",
+          "options": [
+            "it:11:11",
+            "it:11:12",
+            "it:11:13"
+          ],
+          "answerId": "it:11:13"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "В город, в страну",
+        "uk": "До міста, до країни",
+        "en": "To a city, to a country"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что вы едете в город или в страну.\nIo vado a Lione. — «Я еду в Лион.»\nЧитается: и́о ва́до а лио́не\nLei va a Parigi. — «Она едет в Париж.»\nЧитается: ле́й ва а пари́джи\nNoi andiamo in Francia. — «Мы едем во Францию.»\nЧитается: но́й андья́мо ин фра́нча\nVado in Spagna. — «Я еду в Испанию.»\nЧитается: ва́до ин спа́нья\nСлово vado значит и «я иду», и «я еду».\nСлово va значит и «он идёт», и «он едет». Слово andiamo — «мы едем».\nСлово lei значит «она»: lei va — «она едет».\nПеред городом говорят a: a Lione — «в Лион», a Parigi — «в Париж».\nПеред страной говорят in: in Francia — «во Францию», in Spagna — «в Испанию».",
+        "uk": "Дивіться, як сказати, що ви їдете до міста або до країни.\nIo vado a Lione. — «Я їду до Ліона.»\nЧитається: і́о ва́до а ліо́не\nLei va a Parigi. — «Вона їде до Парижа.»\nЧитається: ле́й ва а парі́джі\nNoi andiamo in Francia. — «Ми їдемо до Франції.»\nЧитається: но́й андья́мо ін фра́нча\nVado in Spagna. — «Я їду до Іспанії.»\nЧитається: ва́до ін спа́нья\nСлово vado означає і «я йду», і «я їду».\nСлово va означає і «він іде», і «він їде». Слово andiamo — «ми їдемо».\nСлово lei означає «вона»: lei va — «вона їде».\nПеред містом кажуть a: a Lione — «до Ліона», a Parigi — «до Парижа».\nПеред країною кажуть in: in Francia — «до Франції», in Spagna — «до Іспанії».",
+        "en": "Look at how to say that you are going to a city or a country.\nIo vado a Lione. — “I am going to Lyon.”\nLei va a Parigi. — “She is going to Paris.”\nNoi andiamo in Francia. — “We are going to France.”\nVado in Spagna. — “I am going to Spain.”\nThe word vado means both “I walk” and “I travel”.\nThe word va means both “he walks” and “he travels”. The word andiamo — “we travel”.\nThe word lei means “she”: lei va — “she goes”.\nBefore a city people say a: a Lione — “to Lyon”, a Parigi — “to Paris”.\nBefore a country people say in: in Francia — “to France”, in Spagna — “to Spain”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:11:21",
+          "say": {
+            "ru": "и́о ва́до а лио́не",
+            "uk": "і́о ва́до а ліо́не"
+          }
+        },
+        {
+          "phraseId": "it:11:22",
+          "say": {
+            "ru": "ле́й ва а пари́джи",
+            "uk": "ле́й ва а парі́джі"
+          }
+        },
+        {
+          "phraseId": "it:11:23",
+          "say": {
+            "ru": "но́й андья́мо ин фра́нча",
+            "uk": "но́й андья́мо ін фра́нча"
+          }
+        },
+        {
+          "phraseId": "it:11:30",
+          "say": {
+            "ru": "ва́до ин спа́нья",
+            "uk": "ва́до ін спа́нья"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я еду в Лион»",
+            "uk": "Виберіть, як сказати: «Я їду до Ліона»",
+            "en": "Choose how to say: “I am going to Lyon”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:11:21",
+          "options": [
+            "it:11:21",
+            "it:11:22",
+            "it:11:23"
+          ],
+          "answerId": "it:11:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она едет в Париж»",
+            "uk": "Виберіть, як сказати: «Вона їде до Парижа»",
+            "en": "Choose how to say: “She is going to Paris”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:22",
+          "options": [
+            "it:11:21",
+            "it:11:22",
+            "it:11:23"
+          ],
+          "answerId": "it:11:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я еду в Испанию»",
+            "uk": "Виберіть, як сказати: «Я їду до Іспанії»",
+            "en": "Choose how to say: “I am going to Spain”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:30",
+          "options": [
+            "it:11:22",
+            "it:11:23",
+            "it:11:30"
+          ],
+          "answerId": "it:11:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Как добираются",
+        "uk": "Як добираються",
+        "en": "How you get there"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, как вы добираетесь.\nVado al lavoro a piedi. — «Я иду на работу пешком.»\nЧитается: ва́до аль лаво́ро а пье́ди\nLei va al museo in autobus. — «Она едет в музей на автобусе.»\nЧитается: ле́й ва аль музе́о ин а́утобус\nLui va allo stadio in metropolitana. — «Он едет на стадион на метро.»\nЧитается: лу́й ва а́лло ста́дьо ин метрополита́на\nСлова a piedi значат «пешком».\nСлова in autobus значат «на автобусе», слова in metropolitana — «на метро».\nСлово metropolitana значит «метро». Слово stadio значит «стадион».\nСлово lavoro значит «работа»: al lavoro — «на работу».\nСлова al museo значат «в музей», слова allo stadio — «на стадион».",
+        "uk": "Дивіться, як сказати, як ви добираєтесь.\nVado al lavoro a piedi. — «Я йду на роботу пішки.»\nЧитається: ва́до аль лаво́ро а пье́ді\nLei va al museo in autobus. — «Вона їде до музею автобусом.»\nЧитається: ле́й ва аль музе́о ін а́утобус\nLui va allo stadio in metropolitana. — «Він їде на стадіон метро.»\nЧитається: лу́й ва а́лло ста́дьо ін метрополіта́на\nСлова a piedi означають «пішки».\nСлова in autobus означають «автобусом», слова in metropolitana — «метро».\nСлово metropolitana означає «метро». Слово stadio означає «стадіон».\nСлово lavoro означає «робота»: al lavoro — «на роботу».\nСлова al museo означають «до музею», слова allo stadio — «на стадіон».",
+        "en": "Look at how to say how you get there.\nVado al lavoro a piedi. — “I walk to work.”\nLei va al museo in autobus. — “She goes to the museum by bus.”\nLui va allo stadio in metropolitana. — “He goes to the stadium by metro.”\nThe words a piedi mean “on foot”.\nThe words in autobus mean “by bus”, the words in metropolitana — “by metro”.\nThe word metropolitana means “metro”. The word stadio means “stadium”.\nThe word lavoro means “work”: al lavoro — “to work”.\nThe words al museo mean “to the museum”, the words allo stadio — “to the stadium”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:11:31",
+          "say": {
+            "ru": "ва́до аль лаво́ро а пье́ди",
+            "uk": "ва́до аль лаво́ро а пье́ді"
+          }
+        },
+        {
+          "phraseId": "it:11:32",
+          "say": {
+            "ru": "ле́й ва аль музе́о ин а́утобус",
+            "uk": "ле́й ва аль музе́о ін а́утобус"
+          }
+        },
+        {
+          "phraseId": "it:11:36",
+          "say": {
+            "ru": "лу́й ва а́лло ста́дьо ин метрополита́на",
+            "uk": "лу́й ва а́лло ста́дьо ін метрополіта́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду на работу пешком»",
+            "uk": "Виберіть, як сказати: «Я йду на роботу пішки»",
+            "en": "Choose how to say: “I walk to work”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:11:31",
+          "options": [
+            "it:11:31",
+            "it:11:32",
+            "it:11:36"
+          ],
+          "answerId": "it:11:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она едет в музей на автобусе»",
+            "uk": "Виберіть, як сказати: «Вона їде до музею автобусом»",
+            "en": "Choose how to say: “She goes to the museum by bus”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:32",
+          "options": [
+            "it:11:31",
+            "it:11:32",
+            "it:11:36"
+          ],
+          "answerId": "it:11:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он едет на стадион на метро»",
+            "uk": "Виберіть, як сказати: «Він їде на стадіон метро»",
+            "en": "Choose how to say: “He goes to the stadium by metro”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:36",
+          "options": [
+            "it:11:31",
+            "it:11:32",
+            "it:11:36"
+          ],
+          "answerId": "it:11:36"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Не иду, иду ли",
+        "uk": "Не йду, чи йдеш",
+        "en": "Not going, going?"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не иду» и как спросить.\nVai all’ufficio postale? — «Ты идёшь на почту?»\nЧитается: ва́й аллуффи́чо поста́ле\nPaolo non va alla riunione. — «Паоло не идёт на собрание.»\nЧитается: па́оло нон ва а́лла риуньо́не\nNon andiamo in centro. — «Мы не едем в центр города.»\nЧитается: нон андья́мо ин че́нтро\nСлово non значит «не». Оно стоит перед словом va: non va — «не идёт».\nВопрос слышен по голосу, слова те же.\nСлова ufficio postale значат «почта», слова all’ufficio postale — «на почту».\nСлово riunione значит «собрание».\nСлова in centro значат «в центр города».",
+        "uk": "Дивіться, як сказати «не йду» і як спитати.\nVai all’ufficio postale? — «Ти йдеш на пошту?»\nЧитається: ва́й аллуффі́чо поста́ле\nPaolo non va alla riunione. — «Паоло не йде на зустріч.»\nЧитається: па́оло нон ва а́лла ріуньо́не\nNon andiamo in centro. — «Ми не їдемо в центр міста.»\nЧитається: нон андья́мо ін че́нтро\nСлово non означає «не». Воно стоїть перед словом va: non va — «не йде».\nПитання чути за голосом, слова ті самі.\nСлова ufficio postale означають «пошта», слова all’ufficio postale — «на пошту».\nСлово riunione означає «зустріч».\nСлова in centro означають «до центру міста».",
+        "en": "Look at how to say “I am not going” and how to ask.\nVai all’ufficio postale? — “Are you going to the post office?”\nPaolo non va alla riunione. — “Paolo is not going to the meeting.”\nNon andiamo in centro. — “We are not going downtown.”\nThe word non means “not”.\nIt stands before the word va: non va — “is not going”.\nYou hear the question in the voice, the words are the same.\nThe words ufficio postale mean “post office”.\nThe words all’ufficio postale mean “to the post office”.\nThe word riunione means “meeting”.\nThe words in centro mean “to the city centre”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:11:42",
+          "say": {
+            "ru": "ва́й аллуффи́чо поста́ле",
+            "uk": "ва́й аллуффі́чо поста́ле"
+          }
+        },
+        {
+          "phraseId": "it:11:44",
+          "say": {
+            "ru": "па́оло нон ва а́лла риуньо́не",
+            "uk": "па́оло нон ва а́лла ріуньо́не"
+          }
+        },
+        {
+          "phraseId": "it:11:45",
+          "say": {
+            "ru": "нон андья́мо ин че́нтро",
+            "uk": "нон андья́мо ін че́нтро"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты идёшь на почту?»",
+            "uk": "Виберіть, як сказати: «Ти йдеш на пошту?»",
+            "en": "Choose how to say: “Are you going to the post office?”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:11:42",
+          "options": [
+            "it:11:42",
+            "it:11:44",
+            "it:11:45"
+          ],
+          "answerId": "it:11:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло не идёт на собрание»",
+            "uk": "Виберіть, як сказати: «Паоло не йде на зустріч»",
+            "en": "Choose how to say: “Paolo is not going to the meeting”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:44",
+          "options": [
+            "it:11:42",
+            "it:11:44",
+            "it:11:45"
+          ],
+          "answerId": "it:11:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не едем в центр города»",
+            "uk": "Виберіть, як сказати: «Ми не їдемо в центр міста»",
+            "en": "Choose how to say: “We are not going downtown”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:11:45",
+          "options": [
+            "it:11:42",
+            "it:11:44",
+            "it:11:45"
+          ],
+          "answerId": "it:11:45"
+        }
+      ]
+    }
+  ]
+}

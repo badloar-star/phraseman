@@ -1,0 +1,478 @@
+{
+  "lang": "fr",
+  "lesson": 15,
+  "title": {
+    "ru": "Я собираюсь, я сделаю",
+    "en": "I am going to do"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я собираюсь",
+        "en": "I am going to"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я собираюсь уйти».\nJe vais partir. — «Я собираюсь уйти.»\nЧитается: жё вэ парти́р.\nСлово vais вы уже знаете: «иду». Здесь оно значит «собираюсь».\nСлово partir значит «уйти». Оно не меняется.\nElle va téléphoner. — «Она собирается позвонить.»\nСлово va значит «она собирается». Слово téléphoner значит «позвонить».\nNous allons marcher. — «Мы собираемся пойти пешком.»\nСлово allons значит «мы собираемся». Слово marcher значит «идти пешком».\nVous allez rester. — «Вы собираетесь остаться.»\nСлово allez значит «вы собираетесь».\nIls vont rentrer. — «Они пойдут домой.»\nСлово vont значит «они собираются».\nПервое слово меняется, смотря о ком речь. Второе остаётся тем же.",
+        "en": "Look at how to say “I am going to leave”.\nJe vais partir. — “I am going to leave.”\nYou already know the word vais: “go”. Here it means “am going to”.\nThe word partir means “to leave”. It does not change.\nElle va téléphoner. — “She is going to call.”\nThe word va means “she is going to”. The word téléphoner means “to call”.\nNous allons marcher. — “We are going to walk.”\nThe word allons means “we are going to”. The word marcher means “to walk”.\nVous allez rester. — “You are going to stay.”\nThe word allez means “you are going to”.\nIls vont rentrer. — “They will go home.”\nThe word vont means “they are going to”.\nThe first word changes depending on who we talk about. The second stays the same."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:15:01",
+          "say": {
+            "ru": "жё вэ парти́р",
+            "uk": "жьо ве парті́р"
+          }
+        },
+        {
+          "phraseId": "fr:15:03",
+          "say": {
+            "ru": "эль ва телефоне́",
+            "uk": "ель ва телефоне́"
+          }
+        },
+        {
+          "phraseId": "fr:15:04",
+          "say": {
+            "ru": "ну зало́н марше́",
+            "uk": "ну зало́н марше́"
+          }
+        },
+        {
+          "phraseId": "fr:15:05",
+          "say": {
+            "ru": "ву зале́ рэсте́",
+            "uk": "ву зале́ ресте́"
+          }
+        },
+        {
+          "phraseId": "fr:15:06",
+          "say": {
+            "ru": "иль вон рантре́",
+            "uk": "іль вон рантре́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собираюсь уйти»",
+            "uk": "Виберіть, як сказати: «Я збираюся йти»",
+            "en": "Choose how to say: “I am going to leave”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:15:01",
+          "options": [
+            "fr:15:01",
+            "fr:15:03",
+            "fr:15:04"
+          ],
+          "answerId": "fr:15:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы собираемся пойти пешком»",
+            "uk": "Виберіть, як сказати: «Ми збираємося піти пішки»",
+            "en": "Choose how to say: “We are going to walk”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:04",
+          "options": [
+            "fr:15:04",
+            "fr:15:05",
+            "fr:15:06"
+          ],
+          "answerId": "fr:15:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они пойдут домой»",
+            "uk": "Виберіть, як сказати: «Вони підуть додому»",
+            "en": "Choose how to say: “They will go home”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:06",
+          "options": [
+            "fr:15:06",
+            "fr:15:01",
+            "fr:15:03"
+          ],
+          "answerId": "fr:15:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Что я сделаю",
+        "en": "What I will do"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я забронирую номер».\nJe vais réserver une chambre. — «Я забронирую номер.»\nЧитается: жё вэ резерве́ юн шанбр.\nJe vais acheter du pain. — «Я собираюсь купить хлеб.»\nСлово acheter значит «купить».\nJe vais garder la facture. — «Я сохраню квитанцию.»\nСлово garder значит «сохранить». Слово facture значит «квитанция, счёт».\nElle va reporter son voyage. — «Она отложит свою поездку.»\nСлово reporter значит «отложить». Слово voyage значит «поездка».\nNous allons vérifier l’adresse. — «Мы проверим адрес.»\nСлово vérifier значит «проверить».\nCe week-end, je vais réparer mon vélo. — «В эти выходные я собираюсь починить свой велосипед.»\nСлово réparer значит «починить».",
+        "en": "Look at how to say “I will book a room”.\nJe vais réserver une chambre. — “I will book a room.”\nJe vais acheter du pain. — “I am going to buy bread.”\nThe word acheter means “to buy”.\nJe vais garder la facture. — “I will keep the invoice.”\nThe word garder means “to keep”. The word facture means “invoice”.\nElle va reporter son voyage. — “She will postpone her trip.”\nThe word reporter means “to postpone”. The word voyage means “trip”.\nNous allons vérifier l’adresse. — “We will check the address.”\nThe word vérifier means “to check”.\nCe week-end, je vais réparer mon vélo. — “This weekend I will repair my bike.”\nThe word réparer means “to repair”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:15:07",
+          "say": {
+            "ru": "жё вэ резерве́ юн шанбр",
+            "uk": "жьо ве резерве́ юн шанбр"
+          }
+        },
+        {
+          "phraseId": "fr:15:11",
+          "say": {
+            "ru": "жё вэ аште́ дю пан",
+            "uk": "жьо ве аште́ дю пан"
+          }
+        },
+        {
+          "phraseId": "fr:15:37",
+          "say": {
+            "ru": "жё вэ гарде́ ла фактю́р",
+            "uk": "жьо ве гарде́ ла фактю́р"
+          }
+        },
+        {
+          "phraseId": "fr:15:38",
+          "say": {
+            "ru": "эль ва репорте́ сон вуаяж",
+            "uk": "ель ва репорте́ сон вуаяж"
+          }
+        },
+        {
+          "phraseId": "fr:15:39",
+          "say": {
+            "ru": "ну зало́н верифье́ ладрэ́с",
+            "uk": "ну зало́н веріфье́ ладре́с"
+          }
+        },
+        {
+          "phraseId": "fr:15:50",
+          "say": {
+            "ru": "сё уикэ́нд, жё вэ репаре́ мон вело́",
+            "uk": "сьо уіке́нд, жьо ве репаре́ мон вело́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я забронирую номер»",
+            "uk": "Виберіть, як сказати: «Я забронюю кімнату»",
+            "en": "Choose how to say: “I will book a room”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:15:07",
+          "options": [
+            "fr:15:07",
+            "fr:15:11",
+            "fr:15:37"
+          ],
+          "answerId": "fr:15:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сохраню квитанцию»",
+            "uk": "Виберіть, як сказати: «Я збережу квитанцію»",
+            "en": "Choose how to say: “I will keep the invoice”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:37",
+          "options": [
+            "fr:15:37",
+            "fr:15:38",
+            "fr:15:39"
+          ],
+          "answerId": "fr:15:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы проверим адрес»",
+            "uk": "Виберіть, як сказати: «Ми перевіримо адресу»",
+            "en": "Choose how to say: “We will check the address”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:39",
+          "options": [
+            "fr:15:39",
+            "fr:15:50",
+            "fr:15:07"
+          ],
+          "answerId": "fr:15:39"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Скоро",
+        "en": "Soon"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать, что скоро будет.\nLe film va commencer. — «Фильм начнётся.»\nЧитается: лё фильм ва комансе́.\nСлово va здесь значит «будет». Слово commencer значит «начаться».\nDans deux minutes, le train va partir. — «Поезд отправится через две минуты.»\nСлова dans deux minutes значат «через две минуты».\nCe soir, nous allons dîner ensemble. — «Сегодня вечером мы будем ужинать вместе.»\nСлово dîner значит «ужинать».\nSamedi, ils vont visiter le marché. — «В субботу они пойдут на рынок.»\nСлово samedi значит «в субботу».\nLe facteur va passer dans la matinée. — «Почтальон зайдёт утром.»\nСлово facteur значит «почтальон». Слова dans la matinée значат «утром».\nКогда это будет, можно сказать в самом начале.",
+        "en": "Look at how to say that something will happen soon.\nLe film va commencer. — “The film will start.”\nThe word va here means “will”. The word commencer means “to start”.\nDans deux minutes, le train va partir. — “The train will leave in two minutes.”\nThe words dans deux minutes mean “in two minutes”.\nCe soir, nous allons dîner ensemble. — “Tonight we will have dinner together.”\nThe word dîner means “to have dinner”.\nSamedi, ils vont visiter le marché. — “On Saturday they will visit the market.”\nThe word samedi means “on Saturday”.\nLe facteur va passer dans la matinée. — “The postman will come in the morning.”\nThe word facteur means “postman”. The words dans la matinée mean “in the morning”.\nWhen it happens can be said at the very start."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:15:20",
+          "say": {
+            "ru": "лё фильм ва комансе́",
+            "uk": "льо фільм ва комансе́"
+          }
+        },
+        {
+          "phraseId": "fr:15:25",
+          "say": {
+            "ru": "дан дё минют, лё трэн ва парти́р",
+            "uk": "дан дьо мінют, льо трен ва парті́р"
+          }
+        },
+        {
+          "phraseId": "fr:15:22",
+          "say": {
+            "ru": "сё суа́р, ну зало́н дине́ ансанбль",
+            "uk": "сьо суа́р, ну зало́н діне́ ансанбль"
+          }
+        },
+        {
+          "phraseId": "fr:15:24",
+          "say": {
+            "ru": "самди́, иль вон визите́ лё марше́",
+            "uk": "самді́, іль вон візіте́ льо марше́"
+          }
+        },
+        {
+          "phraseId": "fr:15:42",
+          "say": {
+            "ru": "лё фактёр ва пасе́ дан ла матине́",
+            "uk": "льо фактьор ва пасе́ дан ла матіне́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Фильм начнётся»",
+            "uk": "Виберіть, як сказати: «Фільм почнеться»",
+            "en": "Choose how to say: “The film will start”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:15:20",
+          "options": [
+            "fr:15:20",
+            "fr:15:25",
+            "fr:15:22"
+          ],
+          "answerId": "fr:15:20"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня вечером мы будем ужинать вместе»",
+            "uk": "Виберіть, як сказати: «Сьогодні ввечері ми повечеряємо разом»",
+            "en": "Choose how to say: “Tonight we will have dinner together”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:22",
+          "options": [
+            "fr:15:22",
+            "fr:15:24",
+            "fr:15:42"
+          ],
+          "answerId": "fr:15:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Почтальон зайдёт утром»",
+            "uk": "Виберіть, як сказати: «Листоноша зайде вранці»",
+            "en": "Choose how to say: “The postman will come in the morning”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:42",
+          "options": [
+            "fr:15:42",
+            "fr:15:20",
+            "fr:15:25"
+          ],
+          "answerId": "fr:15:42"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Вопрос",
+        "en": "A question"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Ты завтра пойдешь на работу?»\nTu vas travailler demain ? — «Ты завтра пойдешь на работу?»\nЧитается: тю ва траваие́ дёмэ́н.\nГолос в конце идёт вверх.\nVous allez prendre un dessert ? — «Вы возьмёте десерт?»\nСлово dessert значит «десерт».\nQu’est-ce que tu vas commander ? — «Что ты собираешься заказать?»\nСлова qu’est-ce que в начале значат «что». Слово commander значит «заказать».\nOù allez-vous dormir ? — «Где вы будете спать?»\nСлово où значит «где». Слово dormir значит «спать».",
+        "en": "Look at how to ask “Are you going to work tomorrow?”\nTu vas travailler demain ? — “Are you going to work tomorrow?”\nThe voice goes up at the end.\nVous allez prendre un dessert ? — “Will you have a dessert?”\nThe word dessert means “dessert”.\nQu’est-ce que tu vas commander ? — “What are you going to order?”\nThe words qu’est-ce que at the start mean “what”. The word commander means “to order”.\nOù allez-vous dormir ? — “Where will you sleep?”\nThe word où means “where”. The word dormir means “to sleep”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:15:26",
+          "say": {
+            "ru": "тю ва траваие́ дёмэ́н",
+            "uk": "тю ва траваіе́ дьоме́н"
+          }
+        },
+        {
+          "phraseId": "fr:15:27",
+          "say": {
+            "ru": "ву зале́ прандр ан дэсэр",
+            "uk": "ву зале́ прандр ан десер"
+          }
+        },
+        {
+          "phraseId": "fr:15:29",
+          "say": {
+            "ru": "кэс кё тю ва команде́",
+            "uk": "кес кьо тю ва команде́"
+          }
+        },
+        {
+          "phraseId": "fr:15:30",
+          "say": {
+            "ru": "у але́ ву дорми́р",
+            "uk": "у але́ ву дормі́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты завтра пойдешь на работу?»",
+            "uk": "Виберіть, як сказати: «Ти завтра підеш на роботу?»",
+            "en": "Choose how to say: “Are you going to work tomorrow?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:15:26",
+          "options": [
+            "fr:15:26",
+            "fr:15:27",
+            "fr:15:29"
+          ],
+          "answerId": "fr:15:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы возьмёте десерт?»",
+            "uk": "Виберіть, як сказати: «Ви візьмете десерт?»",
+            "en": "Choose how to say: “Will you have a dessert?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:27",
+          "options": [
+            "fr:15:27",
+            "fr:15:30",
+            "fr:15:26"
+          ],
+          "answerId": "fr:15:27"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где вы будете спать?»",
+            "uk": "Виберіть, як сказати: «Де ви спатимете?»",
+            "en": "Choose how to say: “Where will you sleep?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:30",
+          "options": [
+            "fr:15:30",
+            "fr:15:29",
+            "fr:15:27"
+          ],
+          "answerId": "fr:15:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не буду",
+        "en": "I will not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я никуда не пойду».\nJe ne vais pas sortir ce soir. — «Сегодня вечером я никуда не пойду.»\nЧитается: жё нё вэ па сорти́р сё суа́р.\nСлова ne и pas стоят вокруг vais и значат «не».\nСлово sortir значит «выйти».\nIl ne va pas pleuvoir aujourd’hui. — «Сегодня дождя не будет.»\nСлово pleuvoir значит «идти» про дождь.\nNous n’allons pas déménager. — «Мы не собираемся переезжать.»\nСлово déménager значит «переезжать».\nElles ne vont pas prendre de taxi. — «Они не будут брать такси.»",
+        "en": "Look at how to say “I will not go out”.\nJe ne vais pas sortir ce soir. — “I am not going out tonight.”\nThe words ne and pas stand around vais and mean “not”.\nThe word sortir means “to go out”.\nIl ne va pas pleuvoir aujourd’hui. — “It will not rain today.”\nThe word pleuvoir means “to rain”.\nNous n’allons pas déménager. — “We are not going to move.”\nThe word déménager means “to move house”.\nElles ne vont pas prendre de taxi. — “They will not take a taxi.”"
+      },
+      "examples": [
+        {
+          "phraseId": "fr:15:31",
+          "say": {
+            "ru": "жё нё вэ па сорти́р сё суа́р",
+            "uk": "жьо ньо ве па сорті́р сьо суа́р"
+          }
+        },
+        {
+          "phraseId": "fr:15:33",
+          "say": {
+            "ru": "иль нё ва па плёвуа́р ожурдюи́",
+            "uk": "іль ньо ва па пльовуа́р ожурдюі́"
+          }
+        },
+        {
+          "phraseId": "fr:15:34",
+          "say": {
+            "ru": "ну нало́н па деменаже́",
+            "uk": "ну нало́н па деменаже́"
+          }
+        },
+        {
+          "phraseId": "fr:15:36",
+          "say": {
+            "ru": "эль нё вон па прандр дё такси́",
+            "uk": "ель ньо вон па прандр дьо таксі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня вечером я никуда не пойду»",
+            "uk": "Виберіть, як сказати: «Сьогодні ввечері я нікуди не піду»",
+            "en": "Choose how to say: “I am not going out tonight”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:15:31",
+          "options": [
+            "fr:15:31",
+            "fr:15:33",
+            "fr:15:34"
+          ],
+          "answerId": "fr:15:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сегодня дождя не будет»",
+            "uk": "Виберіть, як сказати: «Сьогодні дощу не буде»",
+            "en": "Choose how to say: “It will not rain today”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:33",
+          "options": [
+            "fr:15:33",
+            "fr:15:34",
+            "fr:15:36"
+          ],
+          "answerId": "fr:15:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они не будут брать такси»",
+            "uk": "Виберіть, як сказати: «Вони не збираються брати таксі»",
+            "en": "Choose how to say: “They will not take a taxi”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:15:36",
+          "options": [
+            "fr:15:36",
+            "fr:15:31",
+            "fr:15:34"
+          ],
+          "answerId": "fr:15:36"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,464 @@
+{
+  "lang": "es",
+  "lesson": 24,
+  "title": {
+    "ru": "Я делал одно, и тут случилось другое",
+    "en": "I was doing one thing, and then something happened"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я читал, когда зазвонил телефон",
+        "en": "I was reading when the phone rang"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я читал сообщение, когда зазвонил телефон».\nLeía el mensaje cuando sonó el móvil.\nЧитается: лэи́а эль мэнса́хэ куа́ндо соно́ эль мо́биль.\nСлово cuando значит «когда». Слово leía — «я читал».\nСлово sonó значит «зазвонил». Слово móvil — «телефон».\nСначала идёт то, что длилось: leía. Потом то, что случилось вдруг: sonó.\nBebía café cuando llegó el tren. — «Я пил кофе, когда прибыл поезд.»\nСлово llegó значит «прибыл, пришёл».",
+        "en": "Look at how to say “I was reading the message when the phone rang”.\nLeía el mensaje cuando sonó el móvil.\nThe word cuando means “when”. The word leía means “I was reading”.\nThe word sonó means “rang”. The word móvil means “phone”.\nFirst comes what was going on: leía. Then what happened suddenly: sonó.\nBebía café cuando llegó el tren.\n“I was drinking coffee when the train arrived.”\nThe word llegó means “arrived, came”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:24:01",
+          "say": {
+            "ru": "лэи́а эль мэнса́хэ куа́ндо соно́ эль мо́биль",
+            "uk": "леі́а ель менса́хе куа́ндо соно́ ель мо́біль"
+          }
+        },
+        {
+          "phraseId": "es:24:06",
+          "say": {
+            "ru": "бэби́а кафэ́ куа́ндо йэго́ эль трэн",
+            "uk": "бебі́а кафе́ куа́ндо йего́ ель трен"
+          }
+        },
+        {
+          "phraseId": "es:24:09",
+          "say": {
+            "ru": "коми́амос эн ка́са куа́ндо соно́ эль мо́биль",
+            "uk": "комі́амос ен ка́са куа́ндо соно́ ель мо́біль"
+          }
+        },
+        {
+          "phraseId": "es:24:03",
+          "say": {
+            "ru": "эспера́бамос эль трэн куа́ндо йэго́ ми эрма́на",
+            "uk": "еспера́бамос ель трен куа́ндо йего́ мі ерма́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я читал сообщение, когда зазвонил телефон»",
+            "uk": "Виберіть, як сказати: «Я читав повідомлення, коли задзвонив телефон»",
+            "en": "Choose how to say: “I was reading the message when the phone rang”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:24:01",
+          "options": [
+            "es:24:01",
+            "es:24:06",
+            "es:24:09"
+          ],
+          "answerId": "es:24:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я пил кофе, когда прибыл поезд»",
+            "uk": "Виберіть, як сказати: «Я пив каву, коли прибув потяг»",
+            "en": "Choose how to say: “I was drinking coffee when the train arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:06",
+          "options": [
+            "es:24:06",
+            "es:24:01",
+            "es:24:03"
+          ],
+          "answerId": "es:24:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ели дома, когда зазвонил телефон»",
+            "uk": "Виберіть, як сказати: «Ми їли вдома, коли задзвонив телефон»",
+            "en": "Choose how to say: “We were eating at home when the phone rang”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:09",
+          "options": [
+            "es:24:09",
+            "es:24:03",
+            "es:24:01"
+          ],
+          "answerId": "es:24:09"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Ана готовила, когда…",
+        "en": "Ana was cooking when…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана готовила ужин, когда я получил твоё сообщение».\nAna preparaba la cena cuando recibí tu mensaje.\nЧитается: А́на препара́ба ла сэ́на куа́ндо рэсиби́ ту мэнса́хэ.\nСлово preparaba значит «готовила». Слово recibí — «я получил».\nMis hermanos trabajaban cuando entró el médico. — «Мои братья работали, когда вошёл врач.»\nСлово trabajaban значит «они работали». Слово entró — «вошёл».\nPreparaba la sopa cuando sonó el timbre. — «Я готовил суп, когда раздался звонок в дверь.»\nСлово timbre значит «звонок у двери».",
+        "en": "Look at how to say “Ana was preparing dinner when I received your message”.\nAna preparaba la cena cuando recibí tu mensaje.\nThe word preparaba means “was preparing”. The word recibí means “I received”.\nMis hermanos trabajaban cuando entró el médico.\n“My brothers were working when the doctor came in.”\nThe word trabajaban means “they were working”. The word entró means “came in”.\nPreparaba la sopa cuando sonó el timbre.\n“I was preparing soup when the doorbell rang.”\nThe word timbre means “doorbell”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:24:02",
+          "say": {
+            "ru": "А́на препара́ба ла сэ́на куа́ндо рэсиби́ ту мэнса́хэ",
+            "uk": "А́на препара́ба ла се́на куа́ндо ресібі́ ту менса́хе"
+          }
+        },
+        {
+          "phraseId": "es:24:05",
+          "say": {
+            "ru": "мис эрма́нос трабаха́бан куа́ндо энтро́ эль мэ́дико",
+            "uk": "міс ерма́нос трабаха́бан куа́ндо ентро́ ель ме́діко"
+          }
+        },
+        {
+          "phraseId": "es:24:14",
+          "say": {
+            "ru": "препара́ба ла со́па куа́ндо соно́ эль ти́мбрэ",
+            "uk": "препара́ба ла со́па куа́ндо соно́ ель ті́мбре"
+          }
+        },
+        {
+          "phraseId": "es:24:08",
+          "say": {
+            "ru": "ла профэсо́ра абла́ба куа́ндо тэрмино́ ла рэуньо́н",
+            "uk": "ла професо́ра абла́ба куа́ндо терміно́ ла реуньо́н"
+          }
+        },
+        {
+          "phraseId": "es:24:04",
+          "say": {
+            "ru": "Луи́с эскриби́а у́на ка́рта куа́ндо сэ абрьо́ ла пуэ́рта",
+            "uk": "Луі́с ескрібі́а у́на ка́рта куа́ндо се абрьо́ ла пуе́рта"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана готовила ужин, когда я получил твоё сообщение»",
+            "uk": "Виберіть, як сказати: «Ана готувала вечерю, коли я отримав твоє повідомлення»",
+            "en": "Choose how to say: “Ana was preparing dinner when I received your message”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:24:02",
+          "options": [
+            "es:24:02",
+            "es:24:05",
+            "es:24:14"
+          ],
+          "answerId": "es:24:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья работали, когда вошёл врач»",
+            "uk": "Виберіть, як сказати: «Мої брати працювали, коли зайшов лікар»",
+            "en": "Choose how to say: “My brothers were working when the doctor came in”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:05",
+          "options": [
+            "es:24:05",
+            "es:24:02",
+            "es:24:08"
+          ],
+          "answerId": "es:24:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я готовил суп, когда раздался звонок в дверь»",
+            "uk": "Виберіть, як сказати: «Я готував суп, коли пролунав дзвінок у двері»",
+            "en": "Choose how to say: “I was preparing soup when the doorbell rang”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:14",
+          "options": [
+            "es:24:14",
+            "es:24:04",
+            "es:24:08"
+          ],
+          "answerId": "es:24:14"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Мы ждали, когда пошёл дождь",
+        "en": "We were waiting when it rained"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы ждали автобус, когда пошёл дождь».\nEsperábamos el autobús cuando empezó a llover.\nЧитается: эспера́бамос эль аутобу́с куа́ндо эмпэсо́ а йобэ́р.\nСлова empezó a llover значат «пошёл дождь».\nСлово llover значит «идти (о дожде)». Слово empezó — «начал».\nBuscabas la llave cuando llegó Ana. — «Ты искала ключ, когда пришла Ана.»\nСлово buscabas значит «ты искала».\nAna leía el periódico cuando llegó el taxi. — «Ана читала газету, когда приехало такси.»",
+        "en": "Look at how to say “We were waiting for the bus when it started to rain”.\nEsperábamos el autobús cuando empezó a llover.\nThe words empezó a llover mean “it started to rain”.\nThe word llover means “to rain”. The word empezó means “started”.\nBuscabas la llave cuando llegó Ana.\n“You were looking for the key when Ana arrived.”\nThe word buscabas means “you were looking for”.\nAna leía el periódico cuando llegó el taxi.\n“Ana was reading the newspaper when the taxi arrived.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:24:19",
+          "say": {
+            "ru": "эспера́бамос эль аутобу́с куа́ндо эмпэсо́ а йобэ́р",
+            "uk": "еспера́бамос ель аутобу́с куа́ндо емпесо́ а йобе́р"
+          }
+        },
+        {
+          "phraseId": "es:24:07",
+          "say": {
+            "ru": "буска́бас ла йа́бэ куа́ндо йэго́ А́на",
+            "uk": "буска́бас ла йа́бе куа́ндо йего́ А́на"
+          }
+        },
+        {
+          "phraseId": "es:24:29",
+          "say": {
+            "ru": "А́на лэи́а эль пэрьо́дико куа́ндо йэго́ эль та́кси",
+            "uk": "А́на леі́а ель перьо́діко куа́ндо йего́ ель та́ксі"
+          }
+        },
+        {
+          "phraseId": "es:24:23",
+          "say": {
+            "ru": "эспера́бамос эль трэн куа́ндо эмпэсо́ а йобэ́р",
+            "uk": "еспера́бамос ель трен куа́ндо емпесо́ а йобе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ждали автобус, когда пошёл дождь»",
+            "uk": "Виберіть, як сказати: «Ми чекали на автобус, коли пішов дощ»",
+            "en": "Choose how to say: “We were waiting for the bus when it started to rain”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:24:19",
+          "options": [
+            "es:24:19",
+            "es:24:23",
+            "es:24:07"
+          ],
+          "answerId": "es:24:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты искала ключ, когда пришла Ана»",
+            "uk": "Виберіть, як сказати: «Ти шукала ключ, коли прийшла Ана»",
+            "en": "Choose how to say: “You were looking for the key when Ana arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:07",
+          "options": [
+            "es:24:07",
+            "es:24:29",
+            "es:24:23"
+          ],
+          "answerId": "es:24:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана читала газету, когда приехало такси»",
+            "uk": "Виберіть, як сказати: «Ана читала газету, коли приїхало таксі»",
+            "en": "Choose how to say: “Ana was reading the newspaper when the taxi arrived”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:29",
+          "options": [
+            "es:24:29",
+            "es:24:19",
+            "es:24:07"
+          ],
+          "answerId": "es:24:29"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Пока",
+        "en": "While"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Пока я читал сообщение, открылась дверь».\nMientras leía el mensaje, se abrió la puerta.\nЧитается: мьентрас лэи́а эль мэнса́хэ, сэ абрьо́ ла пуэ́рта.\nСлово mientras значит «пока, в то время как».\nMientras cantaba Ana, empezó a llover. — «Пока Ана пела, пошёл дождь.»\nСлово cantaba значит «пела». Слово cantar — «петь».\nMientras bebía café, sonó el móvil. — «Пока я пил кофе, зазвонил телефон.»\nMientras cortaba el queso, sonó el timbre. — «Пока я нарезал сыр, раздался звонок в дверь.»\nСлово cortaba значит «нарезал».",
+        "en": "Look at how to say “While I was reading the message, the door opened”.\nMientras leía el mensaje, se abrió la puerta.\nThe word mientras means “while”.\nMientras cantaba Ana, empezó a llover.\n“While Ana was singing, it started to rain.”\nThe word cantaba means “was singing”. The word cantar means “to sing”.\nMientras bebía café, sonó el móvil.\n“While I was drinking coffee, the phone rang.”\nMientras cortaba el queso, sonó el timbre.\n“While I was cutting the cheese, the doorbell rang.”\nThe word cortaba means “was cutting”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:24:31",
+          "say": {
+            "ru": "мьентрас лэи́а эль мэнса́хэ сэ абрьо́ ла пуэ́рта",
+            "uk": "мьентрас леі́а ель менса́хе се абрьо́ ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:24:34",
+          "say": {
+            "ru": "мьентрас канта́ба А́на эмпэсо́ а йобэ́р",
+            "uk": "мьентрас канта́ба А́на емпесо́ а йобе́р"
+          }
+        },
+        {
+          "phraseId": "es:24:36",
+          "say": {
+            "ru": "мьентрас бэби́а кафэ́ соно́ эль мо́биль",
+            "uk": "мьентрас бебі́а кафе́ соно́ ель мо́біль"
+          }
+        },
+        {
+          "phraseId": "es:24:40",
+          "say": {
+            "ru": "мьентрас корта́ба эль кэ́со соно́ эль ти́мбрэ",
+            "uk": "мьентрас корта́ба ель ке́со соно́ ель ті́мбре"
+          }
+        },
+        {
+          "phraseId": "es:24:32",
+          "say": {
+            "ru": "мьентрас А́на препара́ба ла сэ́на энтро́ эль мэ́дико",
+            "uk": "мьентрас А́на препара́ба ла се́на ентро́ ель ме́діко"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока я читал сообщение, открылась дверь»",
+            "uk": "Виберіть, як сказати: «Поки я читав повідомлення, відчинилися двері»",
+            "en": "Choose how to say: “While I was reading the message, the door opened”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:24:31",
+          "options": [
+            "es:24:31",
+            "es:24:36",
+            "es:24:34"
+          ],
+          "answerId": "es:24:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока Ана пела, пошёл дождь»",
+            "uk": "Виберіть, як сказати: «Поки Ана співала, пішов дощ»",
+            "en": "Choose how to say: “While Ana was singing, it started to rain”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:34",
+          "options": [
+            "es:24:34",
+            "es:24:32",
+            "es:24:40"
+          ],
+          "answerId": "es:24:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока я нарезал сыр, раздался звонок в дверь»",
+            "uk": "Виберіть, як сказати: «Поки я нарізав сир, пролунав дзвінок у двері»",
+            "en": "Choose how to say: “While I was cutting the cheese, the doorbell rang”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:40",
+          "options": [
+            "es:24:40",
+            "es:24:36",
+            "es:24:31"
+          ],
+          "answerId": "es:24:40"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Я готовил, мне позвонили",
+        "en": "I was cooking, someone called me"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я готовил, когда открылась дверь».\nYo cocinaba cuando se abrió la puerta.\nЧитается: йо косина́ба куа́ндо сэ абрьо́ ла пуэ́рта.\nСлово yo значит «я». Слово cocinaba — «готовил».\nСлово yo часто не говорят: смотрите, как в следующей фразе.\nBebía café cuando me llamaste. — «Я пил кофе, когда ты мне позвонил.»\nСлово me значит «мне». Слово llamaste — «ты позвонил».\nMientras esperábamos el tren, me llamó Ana. — «Пока мы ждали поезд, мне позвонила Ана.»",
+        "en": "Look at how to say “I was cooking when the door opened”.\nYo cocinaba cuando se abrió la puerta.\nThe word yo means “I”. The word cocinaba means “was cooking”.\nPeople often leave out the word yo: see the next sentence.\nBebía café cuando me llamaste. — “I was drinking coffee when you called me.”\nThe word me means “me”. The word llamaste means “you called”.\nMientras esperábamos el tren, me llamó Ana.\n“While we were waiting for the train, Ana called me.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:24:30",
+          "say": {
+            "ru": "йо косина́ба куа́ндо сэ абрьо́ ла пуэ́рта",
+            "uk": "йо косіна́ба куа́ндо се абрьо́ ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:24:16",
+          "say": {
+            "ru": "бэби́а кафэ́ куа́ндо мэ йама́стэ",
+            "uk": "бебі́а кафе́ куа́ндо ме йама́сте"
+          }
+        },
+        {
+          "phraseId": "es:24:33",
+          "say": {
+            "ru": "мьентрас эспера́бамос эль трэн мэ йамо́ А́на",
+            "uk": "мьентрас еспера́бамос ель трен ме йамо́ А́на"
+          }
+        },
+        {
+          "phraseId": "es:24:25",
+          "say": {
+            "ru": "мис эрма́нос трабаха́бан куа́ндо мэ йама́стэ",
+            "uk": "міс ерма́нос трабаха́бан куа́ндо ме йама́сте"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я готовил, когда открылась дверь»",
+            "uk": "Виберіть, як сказати: «Я готував, коли відчинилися двері»",
+            "en": "Choose how to say: “I was cooking when the door opened”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:24:30",
+          "options": [
+            "es:24:30",
+            "es:24:16",
+            "es:24:25"
+          ],
+          "answerId": "es:24:30"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я пил кофе, когда ты мне позвонил»",
+            "uk": "Виберіть, як сказати: «Я пив каву, коли ти мені зателефонував»",
+            "en": "Choose how to say: “I was drinking coffee when you called me”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:16",
+          "options": [
+            "es:24:16",
+            "es:24:30",
+            "es:24:25"
+          ],
+          "answerId": "es:24:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока мы ждали поезд, мне позвонила Ана»",
+            "uk": "Виберіть, як сказати: «Поки ми чекали на потяг, мені зателефонувала Ана»",
+            "en": "Choose how to say: “While we were waiting for the train, Ana called me”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:24:33",
+          "options": [
+            "es:24:33",
+            "es:24:25",
+            "es:24:16"
+          ],
+          "answerId": "es:24:33"
+        }
+      ]
+    }
+  ]
+}

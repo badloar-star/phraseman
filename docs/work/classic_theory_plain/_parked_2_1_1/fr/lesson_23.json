@@ -1,0 +1,464 @@
+{
+  "lang": "fr",
+  "lesson": 23,
+  "title": {
+    "ru": "Ему, ей, им: lui и leur",
+    "en": "To him, to her, to them: lui and leur"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я разговариваю с ним, с ними",
+        "en": "I talk to him, to them"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я разговариваю с ним».\nJe lui parle. — «Я разговариваю с ним.»\nЧитается: жё люи парль.\nСлово parle значит «разговариваю». Слово lui говорят, когда речь о нём или о ней.\nОно значит «ему», «ей», «с ним», «с ней».\nNous lui parlons. — «Мы разговариваем с ней.»\nСлово parlons значит «разговариваем».\nJe leur parle. — «Я разговариваю с ними.»\nСлово leur говорят, когда речь о нескольких людях: «им», «с ними».\nЗдесь leur — это не «их», а «им».\nVous leur parlez. — «Вы разговариваете с ними.»\nСлова lui и leur стоят перед словом parle.",
+        "en": "Look at how to say “I talk to him”.\nJe lui parle. — “I talk to him.”\nThe word parle means “talk”. The word lui is for him or her.\nIt means “to him”, “to her”.\nNous lui parlons. — “We talk to her.”\nThe word parlons means “talk”.\nJe leur parle. — “I talk to them.”\nThe word leur is used when it is about several people: “to them”.\nHere leur does not mean “their”, it means “to them”.\nVous leur parlez. — “You talk to them.”\nThe words lui and leur stand before parle."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:23:01",
+          "say": {
+            "ru": "жё люи парль",
+            "uk": "жьо люі парль"
+          }
+        },
+        {
+          "phraseId": "fr:23:03",
+          "say": {
+            "ru": "ну люи парло́н",
+            "uk": "ну люі парло́н"
+          }
+        },
+        {
+          "phraseId": "fr:23:04",
+          "say": {
+            "ru": "жё лёр парль",
+            "uk": "жьо льор парль"
+          }
+        },
+        {
+          "phraseId": "fr:23:06",
+          "say": {
+            "ru": "ву лёр парле́",
+            "uk": "ву льор парле́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я разговариваю с ним»",
+            "uk": "Виберіть, як сказати: «Я розмовляю з ним»",
+            "en": "Choose how to say: “I am talking to him”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:23:01",
+          "options": [
+            "fr:23:01",
+            "fr:23:04",
+            "fr:23:03"
+          ],
+          "answerId": "fr:23:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я разговариваю с ними»",
+            "uk": "Виберіть, як сказати: «Я розмовляю з ними»",
+            "en": "Choose how to say: “I am talking to them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:04",
+          "options": [
+            "fr:23:04",
+            "fr:23:01",
+            "fr:23:06"
+          ],
+          "answerId": "fr:23:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы разговариваем с ней»",
+            "uk": "Виберіть, як сказати: «Ми розмовляємо з нею»",
+            "en": "Choose how to say: “We are talking to her”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:03",
+          "options": [
+            "fr:23:03",
+            "fr:23:01",
+            "fr:23:04"
+          ],
+          "answerId": "fr:23:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Пишу, отвечаю, звоню",
+        "en": "I write, answer, call"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я ей пишу».\nJe lui écris. — «Я ей пишу.»\nЧитается: жё люи экри́.\nСлово écris значит «пишу». Слово lui здесь значит «ей».\nPaul lui répond. — «Поль ей отвечает.»\nСлово répond значит «отвечает».\nLéa leur répond. — «Леа им отвечает.»\nJe lui téléphone ce soir. — «Я позвоню ей сегодня вечером.»\nСлово téléphone значит «звоню». Слова ce soir значат «сегодня вечером».\nNous leur téléphonons demain. — «Мы позвоним им завтра.»\nСлово demain значит «завтра».",
+        "en": "Look at how to say “I write to her”.\nJe lui écris. — “I write to her.”\nThe word écris means “write”. The word lui here means “to her”.\nPaul lui répond. — “Paul answers her.”\nThe word répond means “answers”.\nLéa leur répond. — “Léa answers them.”\nJe lui téléphone ce soir. — “I will call her this evening.”\nThe word téléphone means “call”. The words ce soir mean “this evening”.\nNous leur téléphonons demain. — “We will call them tomorrow.”\nThe word demain means “tomorrow”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:23:07",
+          "say": {
+            "ru": "жё люи экри́",
+            "uk": "жьо люі екрі́"
+          }
+        },
+        {
+          "phraseId": "fr:23:09",
+          "say": {
+            "ru": "поль люи рэпо́н",
+            "uk": "поль люі репо́н"
+          }
+        },
+        {
+          "phraseId": "fr:23:10",
+          "say": {
+            "ru": "леа́ лёр рэпо́н",
+            "uk": "леа́ льор репо́н"
+          }
+        },
+        {
+          "phraseId": "fr:23:11",
+          "say": {
+            "ru": "жё люи телефо́н сё суа́р",
+            "uk": "жьо люі телефо́н сьо суа́р"
+          }
+        },
+        {
+          "phraseId": "fr:23:12",
+          "say": {
+            "ru": "ну лёр телефоно́н дёмэ́н",
+            "uk": "ну льор телефоно́н дьоме́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ей пишу»",
+            "uk": "Виберіть, як сказати: «Я пишу їй»",
+            "en": "Choose how to say: “I am writing to her”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:23:07",
+          "options": [
+            "fr:23:07",
+            "fr:23:09",
+            "fr:23:10"
+          ],
+          "answerId": "fr:23:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа им отвечает»",
+            "uk": "Виберіть, як сказати: «Леа відповідає їм»",
+            "en": "Choose how to say: “Léa answers them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:10",
+          "options": [
+            "fr:23:10",
+            "fr:23:09",
+            "fr:23:12"
+          ],
+          "answerId": "fr:23:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы позвоним им завтра»",
+            "uk": "Виберіть, як сказати: «Ми зателефонуємо їм завтра»",
+            "en": "Choose how to say: “We will call them tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:12",
+          "options": [
+            "fr:23:12",
+            "fr:23:11",
+            "fr:23:10"
+          ],
+          "answerId": "fr:23:12"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Отправляю, одалживаю, дарю",
+        "en": "I send, lend, give"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Она отправляет ему сообщение».\nElle lui envoie un message. — «Она отправляет ему сообщение.»\nЧитается: эль люи анвуа́ ан мэса́ж.\nСлово envoie значит «отправляет». Слово message значит «сообщение».\nСлово un по-русски не говорят, запоминайте его вместе с message.\nСначала lui — кому, потом envoie, потом — что отправляют.\nIl leur envoie une photo. — «Он отправляет им фотографию.»\nСлово photo значит «фотография». Слово une по-русски не говорят.\nJe lui prête mon stylo. — «Я одалживаю ему свою ручку.»\nСлово prête значит «одалживаю». Слово stylo значит «ручка».\nJe lui offre un livre pour son anniversaire.\n«Я дарю ей книгу на день рождения.»\nСлово offre значит «дарю». Слово livre значит «книга».\nСлово anniversaire значит «день рождения».",
+        "en": "Look at how to say “She sends him a message”.\nElle lui envoie un message. — “She sends him a message.”\nThe word envoie means “sends”. The word message means “message”.\nThe word un has no Russian word, learn it together with message.\nFirst lui — to whom, then envoie, then — what is sent.\nIl leur envoie une photo. — “He sends them a photo.”\nThe word photo means “photo”. The word une has no Russian word.\nJe lui prête mon stylo. — “I lend him my pen.”\nThe word prête means “lend”. The word stylo means “pen”.\nJe lui offre un livre pour son anniversaire.\n“I give her a book for her birthday.”\nThe word offre means “give”. The word livre means “book”.\nThe word anniversaire means “birthday”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:23:13",
+          "say": {
+            "ru": "эль люи анвуа́ ан мэса́ж",
+            "uk": "ель люі анвуа́ ан меса́ж"
+          }
+        },
+        {
+          "phraseId": "fr:23:14",
+          "say": {
+            "ru": "иль лёр анвуа́ юн фото́",
+            "uk": "іль льор анвуа́ юн фото́"
+          }
+        },
+        {
+          "phraseId": "fr:23:15",
+          "say": {
+            "ru": "жё люи прэт мон стило́",
+            "uk": "жьо люі прет мон стіло́"
+          }
+        },
+        {
+          "phraseId": "fr:23:21",
+          "say": {
+            "ru": "жё люи офр ан ливр пур сон анивэрсэ́р",
+            "uk": "жьо люі офр ан лівр пур сон аніверсе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она отправляет ему сообщение»",
+            "uk": "Виберіть, як сказати: «Вона надсилає йому повідомлення»",
+            "en": "Choose how to say: “She sends him a message”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:23:13",
+          "options": [
+            "fr:23:13",
+            "fr:23:14",
+            "fr:23:15"
+          ],
+          "answerId": "fr:23:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он отправляет им фотографию»",
+            "uk": "Виберіть, як сказати: «Він надсилає їм фотографію»",
+            "en": "Choose how to say: “He sends them a photo”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:14",
+          "options": [
+            "fr:23:14",
+            "fr:23:13",
+            "fr:23:15"
+          ],
+          "answerId": "fr:23:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дарю ей книгу на день рождения»",
+            "uk": "Виберіть, як сказати: «Я дарую їй книгу на день народження»",
+            "en": "Choose how to say: “I give her a book for her birthday”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:21",
+          "options": [
+            "fr:23:21",
+            "fr:23:15",
+            "fr:23:13"
+          ],
+          "answerId": "fr:23:21"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Спрашиваю, объясняю, возвращаю",
+        "en": "I ask, explain, give back"
+      },
+      "text": {
+        "ru": "Смотрите, как просить совета у человека.\nJe lui demande conseil avant de signer.\n«Я спрашиваю у нее совета перед тем, как подписать.»\nЧитается: жё люи дёманд консэ́й аван дё синье́.\nСлово demande значит «спрашиваю». Слово conseil значит «совет».\nСлова avant de signer значат «перед тем, как подписать».\nJe leur explique la règle du jeu. — «Я объясняю им правила игры.»\nСлово explique значит «объясняю». Слово règle значит «правило».\nJe lui rends sa carte après le paiement. — «Я возвращаю ей карту после оплаты.»\nСлово rends значит «возвращаю». Слово paiement значит «оплата».\nСлово après значит «после».\nJe lui signale la fuite dans la cuisine.\n«Я рассказываю ей о протечке на кухне.»\nСлово signale значит «сообщаю». Слово fuite значит «протечка».\nСлова dans la cuisine значат «на кухне».",
+        "en": "Look at how to ask someone for advice.\nJe lui demande conseil avant de signer. — “I ask her for advice before signing.”\nThe word demande means “ask”. The word conseil means “advice”.\nThe words avant de signer mean “before signing”.\nJe leur explique la règle du jeu.\n“I explain the rules of the game to them.”\nThe word explique means “explain”. The word règle means “rule”.\nJe lui rends sa carte après le paiement.\n“I give her card back after the payment.”\nThe word rends means “give back”. The word paiement means “payment”.\nThe word après means “after”.\nJe lui signale la fuite dans la cuisine.\n“I tell her about the leak in the kitchen.”\nThe word signale means “report”. The word fuite means “leak”.\nThe words dans la cuisine mean “in the kitchen”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:23:24",
+          "say": {
+            "ru": "жё люи дёманд консэ́й аван дё синье́",
+            "uk": "жьо люі дьоманд консе́й аван дьо сінье́"
+          }
+        },
+        {
+          "phraseId": "fr:23:25",
+          "say": {
+            "ru": "жё лёр эксплик ла рэгль дю жё",
+            "uk": "жьо льор експлік ла регль дю жьо"
+          }
+        },
+        {
+          "phraseId": "fr:23:26",
+          "say": {
+            "ru": "жё люи ран са карт апрэ́ лё пэма́н",
+            "uk": "жьо люі ран са карт апре́ льо пема́н"
+          }
+        },
+        {
+          "phraseId": "fr:23:29",
+          "say": {
+            "ru": "жё люи синья́ль ла фюи́т дан ла кюизи́н",
+            "uk": "жьо люі сінья́ль ла фюі́т дан ла кюізі́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я спрашиваю у нее совета перед тем, как подписать»",
+            "uk": "Виберіть, як сказати: «Я прошу її поради перед тим, як підписати»",
+            "en": "Choose how to say: “I ask her for advice before signing”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:23:24",
+          "options": [
+            "fr:23:24",
+            "fr:23:25",
+            "fr:23:26"
+          ],
+          "answerId": "fr:23:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я объясняю им правила игры»",
+            "uk": "Виберіть, як сказати: «Я пояснюю їм правила гри»",
+            "en": "Choose how to say: “I explain the rules of the game to them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:25",
+          "options": [
+            "fr:23:25",
+            "fr:23:24",
+            "fr:23:26"
+          ],
+          "answerId": "fr:23:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я возвращаю ей карту после оплаты»",
+            "uk": "Виберіть, як сказати: «Я повертаю їй картку після оплати»",
+            "en": "Choose how to say: “I give her card back after the payment”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:26",
+          "options": [
+            "fr:23:26",
+            "fr:23:29",
+            "fr:23:24"
+          ],
+          "answerId": "fr:23:26"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не, нужно, уже",
+        "en": "Not, must, already"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не».\nJe ne lui réponds pas tout de suite. — «Я не отвечаю ей сразу.»\nЧитается: жё нё люи рэпо́н па ту дё сюи́т.\nСлова ne и pas стоят вокруг, lui — между ними.\nСлова tout de suite значат «сразу».\nNous ne lui disons rien. — «Мы ей ничего не говорим.»\nСлово disons значит «говорим». Слово rien значит «ничего».\nJe vais lui demander l’heure. — «Я собираюсь спросить у неё время.»\nСлово lui стоит прямо перед demander — перед тем, что собираются сделать.\nNous devons lui rendre son badge. — «Нам нужно вернуть ему пропуск.»\nСлово devons значит «нужно». Слово rendre значит «вернуть».\nJe lui ai envoyé la facture. — «Я отправил ему счет.»\nСлово facture значит «счёт». Слова ai envoyé значат «отправил».\nЗдесь lui стоит перед словом ai.",
+        "en": "Look at how to say “not”.\nJe ne lui réponds pas tout de suite.\n“I do not answer her right away.”\nThe words ne and pas stand around, lui is between them.\nThe words tout de suite mean “right away”.\nNous ne lui disons rien. — “We tell her nothing.”\nThe word disons means “say”. The word rien means “nothing”.\nJe vais lui demander l’heure. — “I am going to ask her the time.”\nThe word lui stands right before demander — before what we are going to do.\nNous devons lui rendre son badge. — “We must give him back his badge.”\nThe word devons means “must”. The word rendre means “give back”.\nJe lui ai envoyé la facture. — “I sent him the invoice.”\nThe word facture means “invoice”. The words ai envoyé mean “sent”.\nHere lui stands before the word ai."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:23:31",
+          "say": {
+            "ru": "жё нё люи рэпо́н па ту дё сюи́т",
+            "uk": "жьо ньо люі репо́н па ту дьо сюі́т"
+          }
+        },
+        {
+          "phraseId": "fr:23:33",
+          "say": {
+            "ru": "ну нё люи дизо́н рьэ́н",
+            "uk": "ну ньо люі дізо́н рье́н"
+          }
+        },
+        {
+          "phraseId": "fr:23:36",
+          "say": {
+            "ru": "жё вэ люи дёманде́ лёр",
+            "uk": "жьо ве люі дьоманде́ льор"
+          }
+        },
+        {
+          "phraseId": "fr:23:38",
+          "say": {
+            "ru": "ну дёво́н люи ранд сон бадж",
+            "uk": "ну дьово́н люі ранд сон бадж"
+          }
+        },
+        {
+          "phraseId": "fr:23:41",
+          "say": {
+            "ru": "жё люи э анвуайе́ ла фактю́р",
+            "uk": "жьо люі е анвуайе́ ла фактю́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не отвечаю ей сразу»",
+            "uk": "Виберіть, як сказати: «Я не відповідаю їй одразу»",
+            "en": "Choose how to say: “I do not answer her right away”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:23:31",
+          "options": [
+            "fr:23:31",
+            "fr:23:33",
+            "fr:23:36"
+          ],
+          "answerId": "fr:23:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собираюсь спросить у неё время»",
+            "uk": "Виберіть, як сказати: «Я збираюся запитати в неї, котра година»",
+            "en": "Choose how to say: “I am going to ask her the time”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:36",
+          "options": [
+            "fr:23:36",
+            "fr:23:38",
+            "fr:23:31"
+          ],
+          "answerId": "fr:23:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я отправил ему счет»",
+            "uk": "Виберіть, як сказати: «Я надіслав йому рахунок»",
+            "en": "Choose how to say: “I sent him the invoice”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:23:41",
+          "options": [
+            "fr:23:41",
+            "fr:23:31",
+            "fr:23:38"
+          ],
+          "answerId": "fr:23:41"
+        }
+      ]
+    }
+  ]
+}

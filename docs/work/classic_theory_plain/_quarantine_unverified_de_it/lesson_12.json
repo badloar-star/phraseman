@@ -1,0 +1,606 @@
+{
+  "lang": "de",
+  "lesson": 12,
+  "title": {
+    "ru": "Куда положить, куда пойти",
+    "uk": "Куди покласти, куди піти",
+    "en": "Where to put things, where to go"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я кладу",
+        "uk": "Я кладу",
+        "en": "I put (lay) it"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я кладу ключ на стол».\nIch lege den Schlüssel auf den Tisch. — «Я кладу ключ на стол.»\nЧитается: их ле́ге ден шлю́сель ауф ден тиш\nСлово lege значит «я кладу».\nСравните: auf dem Tisch — «на столе». А auf den Tisch — «на стол».\nЕсли вещь уже лежит — dem Tisch. Если вещь кладут — den Tisch.\nIch lege den Pass in die Tasche. — «Я кладу паспорт в сумку.»\nЧитается: их ле́ге ден пас ин ди та́ше\nБыло in der Tasche — «в сумке».\nСтало in die Tasche — «в сумку».\nСмотрите: der становится den, а die не меняется.\nAnna legt die Brille ins Auto. — «Анна кладёт очки в машину.»\nЧитается: А́нна легт ди бри́ле инс а́уто\nСлово legt значит «кладёт».\nСлово ins — это in и das вместе. Слово das не меняется.\nSie legt die Decke auf das Bett. — «Она кладёт одеяло на кровать.»\nЧитается: зи легт ди де́ке ауф дас бет\nСлово Decke значит «одеяло, плед».\nСлова auf das Bett значат «на кровать». Слово das не меняется.",
+        "uk": "Дивіться, як сказати «Я кладу ключ на стіл».\nIch lege den Schlüssel auf den Tisch. — «Я кладу ключ на стіл.»\nЧитається: іх ле́ге ден шлю́сель ауф ден тіш\nСлово lege означає «я кладу».\nПорівняйте: auf dem Tisch — «на столі». А auf den Tisch — «на стіл».\nЯкщо річ уже лежить — dem Tisch. Якщо річ кладуть — den Tisch.\nIch lege den Pass in die Tasche. — «Я кладу паспорт у сумку.»\nЧитається: іх ле́ге ден пас ін ді та́ше\nБуло in der Tasche — «у сумці».\nСтало in die Tasche — «у сумку».\nДивіться: der стає den, а die не змінюється.\nAnna legt die Brille ins Auto. — «Анна кладе окуляри у машину.»\nЧитається: А́нна легт ді брі́ле інс а́уто\nСлово legt означає «кладе».\nСлово ins — це in і das разом. Слово das не змінюється.\nSie legt die Decke auf das Bett. — «Вона кладе ковдру на ліжко.»\nЧитається: зі легт ді де́ке ауф дас бет\nСлово Decke означає «ковдра, плед».\nСлова auf das Bett означають «на ліжко». Слово das не змінюється.",
+        "en": "Look at how to say “I put the key on the table”.\nIch lege den Schlüssel auf den Tisch. — “I put the key on the table.”\nSounds like: eekh lEge den shlYOOsel aoof den tish\nThe word lege means “I put (lay)”.\nCompare: auf dem Tisch means “on the table”. Auf den Tisch means “onto the table”.\nIf the thing is already there: dem Tisch. If you put it there: den Tisch.\nIch lege den Pass in die Tasche. — “I put the passport in the bag.”\nSounds like: eekh lEge den pas in dee tAshe\nIt was in der Tasche, “in the bag”.\nNow in die Tasche, “into the bag”.\nLook: der becomes den, but die stays die.\nAnna legt die Brille ins Auto. — “Anna puts the glasses in the car.”\nSounds like: Anna legt dee brEEle ins Aooto\nThe word legt means “puts (lays)”.\nThe word ins is in and das together. The word das stays das.\nSie legt die Decke auf das Bett. — “She puts the blanket on the bed.”\nSounds like: zee legt dee dEke aoof das bet\nThe word Decke means “blanket”.\nThe words auf das Bett mean “onto the bed”. The word das stays das."
+      },
+      "examples": [
+        {
+          "phraseId": "de:12:01",
+          "say": {
+            "ru": "их ле́ге ден шлю́сель ауф ден тиш",
+            "uk": "іх ле́ге ден шлю́сель ауф ден тіш"
+          }
+        },
+        {
+          "phraseId": "de:12:02",
+          "say": {
+            "ru": "их ле́ге ден пас ин ди та́ше",
+            "uk": "іх ле́ге ден пас ін ді та́ше"
+          }
+        },
+        {
+          "phraseId": "de:12:03",
+          "say": {
+            "ru": "А́нна легт ди бри́ле инс а́уто",
+            "uk": "А́нна легт ді брі́ле інс а́уто"
+          }
+        },
+        {
+          "phraseId": "de:12:44",
+          "say": {
+            "ru": "зи легт ди де́ке ауф дас бет",
+            "uk": "зі легт ді де́ке ауф дас бет"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я кладу ключ на стол.»",
+            "uk": "Виберіть, як сказати: «Я кладу ключ на стіл.»",
+            "en": "Choose how to say: “I put the key on the table.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:12:01",
+          "options": [
+            "de:12:01",
+            "de:12:02",
+            "de:12:03"
+          ],
+          "answerId": "de:12:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я кладу паспорт в сумку.»",
+            "uk": "Виберіть, як сказати: «Я кладу паспорт у сумку.»",
+            "en": "Choose how to say: “I put the passport in the bag.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:02",
+          "options": [
+            "de:12:02",
+            "de:12:44",
+            "de:12:01"
+          ],
+          "answerId": "de:12:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она кладёт одеяло на кровать.»",
+            "uk": "Виберіть, як сказати: «Вона кладе ковдру на ліжко.»",
+            "en": "Choose how to say: “She puts the blanket on the bed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:44",
+          "options": [
+            "de:12:44",
+            "de:12:03",
+            "de:12:01"
+          ],
+          "answerId": "de:12:44"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я ставлю",
+        "uk": "Я ставлю",
+        "en": "I stand it up"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я ставлю чашку на стол».\nIch stelle die Tasse auf den Tisch. — «Я ставлю чашку на стол.»\nЧитается: их ште́ле ди та́се ауф ден тиш\nСлово stelle значит «я ставлю».\nСлово die Tasse не поменялось. А der Tisch стало den Tisch.\nAnna stellt die Lampe neben das Bett. — «Анна ставит лампу рядом с кроватью.»\nЧитается: А́нна штельт ди ла́мпе не́бен дас бет\nСлово stellt значит «ставит». Слово Lampe — «лампа».\nБыло neben dem Bett (вещь уже стоит). Стало neben das Bett (вещь ставят).\nTom stellt den Stuhl ans Fenster. — «Том ставит стул к окну.»\nЧитается: том штельт ден штуль анс фе́нстер\nСлово Fenster значит «окно».\nСлово an значит «у, на». Слово ans — это an и das вместе.\nСлова ans Fenster значат «к окну».\nБыло der Stuhl, стало den Stuhl.\nEr stellt den Eimer unter das Waschbecken. — «Он ставит ведро под раковину.»\nЧитается: эр штельт ден а́ймер у́нтер дас ва́шбекен\nСлово Eimer значит «ведро».\nБыло das Waschbecken, осталось das.",
+        "uk": "Дивіться, як сказати «Я ставлю чашку на стіл».\nIch stelle die Tasse auf den Tisch. — «Я ставлю чашку на стіл.»\nЧитається: іх ште́ле ді та́се ауф ден тіш\nСлово stelle означає «я ставлю».\nСлово die Tasse не змінилося. А der Tisch стало den Tisch.\nAnna stellt die Lampe neben das Bett. — «Анна ставить лампу поруч із ліжком.»\nЧитається: А́нна штельт ді ла́мпе не́бен дас бет\nСлово stellt означає «ставить». Слово Lampe — «лампа».\nБуло neben dem Bett (річ уже стоїть). Стало neben das Bett (річ ставлять).\nTom stellt den Stuhl ans Fenster. — «Том ставить стілець до вікна.»\nЧитається: том штельт ден штуль анс фе́нстер\nСлово Fenster означає «вікно».\nСлово an означає «біля, на». Слово ans — це an і das разом.\nСлова ans Fenster означають «до вікна».\nБуло der Stuhl, стало den Stuhl.\nEr stellt den Eimer unter das Waschbecken. — «Він ставить цебро під раковину.»\nЧитається: ер штельт ден а́ймер у́нтер дас ва́шбекен\nСлово Eimer означає «цебро».\nБуло das Waschbecken, лишилося das.",
+        "en": "Look at how to say “I put the cup on the table”.\nIch stelle die Tasse auf den Tisch. — “I put the cup on the table.”\nSounds like: eekh shtEle dee tAse aoof den tish\nThe word stelle means “I stand (it)”.\nThe words die Tasse did not change. But der Tisch became den Tisch.\nAnna stellt die Lampe neben das Bett. — “Anna puts the lamp next to the bed.”\nSounds like: Anna shtelt dee lAmpe nEben das bet\nThe word stellt means “stands (it)”. The word Lampe means “lamp”.\nIt was neben dem Bett (already there). Now neben das Bett (put there).\nTom stellt den Stuhl ans Fenster. — “Tom puts the chair by the window.”\nSounds like: tom shtelt den shtool ans fEnster\nThe word Fenster means “window”.\nThe word an means “at, on”. The word ans is an and das together.\nThe words ans Fenster mean “to the window”.\nIt was der Stuhl, now it is den Stuhl.\nEr stellt den Eimer unter das Waschbecken. — “He puts the bucket under the sink.”\nSounds like: air shtelt den Aymer OOnter das vAshbeken\nThe word Eimer means “bucket”.\nIt was das Waschbecken, it stays das."
+      },
+      "examples": [
+        {
+          "phraseId": "de:12:06",
+          "say": {
+            "ru": "их ште́ле ди та́се ауф ден тиш",
+            "uk": "іх ште́ле ді та́се ауф ден тіш"
+          }
+        },
+        {
+          "phraseId": "de:12:08",
+          "say": {
+            "ru": "А́нна штельт ди ла́мпе не́бен дас бет",
+            "uk": "А́нна штельт ді ла́мпе не́бен дас бет"
+          }
+        },
+        {
+          "phraseId": "de:12:09",
+          "say": {
+            "ru": "том штельт ден штуль анс фе́нстер",
+            "uk": "том штельт ден штуль анс фе́нстер"
+          }
+        },
+        {
+          "phraseId": "de:12:45",
+          "say": {
+            "ru": "эр штельт ден а́ймер у́нтер дас ва́шбекен",
+            "uk": "ер штельт ден а́ймер у́нтер дас ва́шбекен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ставлю чашку на стол.»",
+            "uk": "Виберіть, як сказати: «Я ставлю чашку на стіл.»",
+            "en": "Choose how to say: “I put the cup on the table.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:12:06",
+          "options": [
+            "de:12:06",
+            "de:12:08",
+            "de:12:09"
+          ],
+          "answerId": "de:12:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна ставит лампу рядом с кроватью.»",
+            "uk": "Виберіть, як сказати: «Анна ставить лампу поруч із ліжком.»",
+            "en": "Choose how to say: “Anna puts the lamp next to the bed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:08",
+          "options": [
+            "de:12:08",
+            "de:12:45",
+            "de:12:06"
+          ],
+          "answerId": "de:12:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он ставит ведро под раковину.»",
+            "uk": "Виберіть, як сказати: «Він ставить цебро під раковину.»",
+            "en": "Choose how to say: “He puts the bucket under the sink.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:45",
+          "options": [
+            "de:12:45",
+            "de:12:09",
+            "de:12:08"
+          ],
+          "answerId": "de:12:45"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я вешаю",
+        "uk": "Я вішаю",
+        "en": "I hang it up"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вешаю куртку на крючок».\nIch hänge die Jacke an den Haken. — «Я вешаю куртку на крючок.»\nЧитается: их хе́нге ди я́ке ан ден ха́кен\nСлово hängt вы уже видели: «висит». Теперь оно значит «вешает».\nСмотрите по фразе: вещь уже висит или её вешают.\nСлово hänge значит «я вешаю». Слово Haken — «крючок».\nБыло der Haken, стало an den Haken.\nAnna hängt das Handtuch an die Heizung. — «Анна вешает полотенце на батарею.»\nЧитается: А́нна хенгт дас ха́нтух ан ди ха́йцунг\nЗдесь hängt значит «вешает».\nСлово die не меняется: an die Heizung.\nWir hängen die Uhr über die Tür. — «Мы вешаем часы над дверью.»\nЧитается: вир хе́нген ди ур ю́бер ди тюр\nСлово hängen значит «вешаем».\nСлово die не меняется: über die Tür.",
+        "uk": "Дивіться, як сказати «Я вішаю куртку на гачок».\nIch hänge die Jacke an den Haken. — «Я вішаю куртку на гачок.»\nЧитається: іх хе́нге ді я́ке ан ден ха́кен\nСлово hängt ви вже бачили: «висить». Тепер воно означає «вішає».\nДивіться за фразою: річ уже висить чи її вішають.\nСлово hänge означає «я вішаю». Слово Haken — «гачок».\nБуло der Haken, стало an den Haken.\nAnna hängt das Handtuch an die Heizung. — «Анна вішає рушник на батарею.»\nЧитається: А́нна хенгт дас ха́нтух ан ді ха́йцунг\nТут hängt означає «вішає».\nСлово die не змінюється: an die Heizung.\nWir hängen die Uhr über die Tür. — «Ми вішаємо годинник над дверима.»\nЧитається: вір хе́нген ді ур ю́бер ді тюр\nСлово hängen означає «вішаємо».\nСлово die не змінюється: über die Tür.",
+        "en": "Look at how to say “I hang the jacket on the hook”.\nIch hänge die Jacke an den Haken. — “I hang the jacket on the hook.”\nSounds like: eekh khEnge dee yAke an den khAken\nYou have seen the word hängt: “hangs”. Now it means “hangs up”.\nLook at the phrase: is the thing already hanging, or is someone hanging it?\nThe word hänge means “I hang (it up)”. The word Haken means “hook”.\nIt was der Haken, now it is an den Haken.\nAnna hängt das Handtuch an die Heizung. — “Anna hangs the towel on the radiator.”\nSounds like: Anna khengt das khAntookh an dee khAytsoong\nHere hängt means “hangs up”.\nThe word die stays die: an die Heizung.\nWir hängen die Uhr über die Tür. — “We hang the clock above the door.”\nSounds like: veer khEngen dee oor YOOber dee tYOOr\nThe word hängen means “we hang (it up)”.\nThe word die stays die: über die Tür."
+      },
+      "examples": [
+        {
+          "phraseId": "de:12:11",
+          "say": {
+            "ru": "их хе́нге ди я́ке ан ден ха́кен",
+            "uk": "іх хе́нге ді я́ке ан ден ха́кен"
+          }
+        },
+        {
+          "phraseId": "de:12:13",
+          "say": {
+            "ru": "А́нна хенгт дас ха́нтух ан ди ха́йцунг",
+            "uk": "А́нна хенгт дас ха́нтух ан ді ха́йцунг"
+          }
+        },
+        {
+          "phraseId": "de:12:15",
+          "say": {
+            "ru": "вир хе́нген ди ур ю́бер ди тюр",
+            "uk": "вір хе́нген ді ур ю́бер ді тюр"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вешаю куртку на крючок.»",
+            "uk": "Виберіть, як сказати: «Я вішаю куртку на гачок.»",
+            "en": "Choose how to say: “I hang the jacket on the hook.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:12:11",
+          "options": [
+            "de:12:11",
+            "de:12:13",
+            "de:12:15"
+          ],
+          "answerId": "de:12:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна вешает полотенце на батарею.»",
+            "uk": "Виберіть, як сказати: «Анна вішає рушник на батарею.»",
+            "en": "Choose how to say: “Anna hangs the towel on the radiator.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:13",
+          "options": [
+            "de:12:13",
+            "de:12:15",
+            "de:12:11"
+          ],
+          "answerId": "de:12:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы вешаем часы над дверью.»",
+            "uk": "Виберіть, як сказати: «Ми вішаємо годинник над дверима.»",
+            "en": "Choose how to say: “We hang the clock above the door.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:15",
+          "options": [
+            "de:12:15",
+            "de:12:11",
+            "de:12:13"
+          ],
+          "answerId": "de:12:15"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я вкладываю",
+        "uk": "Я вкладаю",
+        "en": "I slip it in"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я кладу удостоверение в куртку».\nIch stecke den Ausweis in die Jacke. — «Я кладу удостоверение в куртку.»\nЧитается: их ште́ке ден а́усвайс ин ди я́ке\nСлово stecke значит «я кладу внутрь, вкладываю».\nКак выбрать: lege — кладу сверху, чтобы вещь лежала.\nА stecke — вкладываю внутрь: в куртку, в конверт.\nDu steckst die Karte in den Umschlag. — «Ты вкладываешь открытку в конверт.»\nЧитается: ду штекст ди ка́рте ин ден у́мшлаг\nСлово steckst значит «вкладываешь».\nСлово Karte значит «карта» или «открытка» — смотрите по фразе. Здесь «открытка».\nСлово Umschlag значит «конверт».\nБыло der Umschlag, стало in den Umschlag.\nSie steckt den Brief in den Briefkasten. — «Она опускает письмо в почтовый ящик.»\nЧитается: зи штект ден бриф ин ден бри́фкастен\nСлово steckt значит «опускает». Слово Briefkasten — «почтовый ящик».\nБыло der Briefkasten, стало in den Briefkasten.",
+        "uk": "Дивіться, як сказати «Я кладу посвідчення у куртку».\nIch stecke den Ausweis in die Jacke. — «Я кладу посвідчення у куртку.»\nЧитається: іх ште́ке ден а́усвайс ін ді я́ке\nСлово stecke означає «я кладу всередину, вкладаю».\nЯк вибрати: lege — кладу зверху, щоб річ лежала.\nА stecke — вкладаю всередину: у куртку, у конверт.\nDu steckst die Karte in den Umschlag. — «Ти вкладаєш листівку у конверт.»\nЧитається: ду штекст ді ка́рте ін ден у́мшлаг\nСлово steckst означає «вкладаєш».\nСлово Karte означає «карта» або «листівка» — дивіться за фразою. Тут «листівка».\nСлово Umschlag означає «конверт».\nБуло der Umschlag, стало in den Umschlag.\nSie steckt den Brief in den Briefkasten. — «Вона опускає листа до поштової скриньки.»\nЧитається: зі штект ден бріф ін ден брі́фкастен\nСлово steckt означає «опускає». Слово Briefkasten — «поштова скринька».\nБуло der Briefkasten, стало in den Briefkasten.",
+        "en": "Look at how to say “I put the ID in the jacket”.\nIch stecke den Ausweis in die Jacke. — “I put the ID in the jacket.”\nSounds like: eekh shtEke den Aoosvays in dee yAke\nThe word stecke means “I slip in”.\nHow to choose: lege means putting a thing on top so that it lies.\nAnd stecke means slipping it inside: into a jacket, into an envelope.\nDu steckst die Karte in den Umschlag. — “You put the card in the envelope.”\nSounds like: doo shtekst dee kArte in den OOmshlag\nThe word steckst means “you slip in”.\nThe word Karte means “map” or “card” — look at the phrase. Here it is “card”.\nThe word Umschlag means “envelope”.\nIt was der Umschlag, now it is in den Umschlag.\nSie steckt den Brief in den Briefkasten. — “She puts the letter in the mailbox.”\nSounds like: zee shtekt den breef in den brEEfkasten\nThe word steckt means “drops in”. The word Briefkasten means “mailbox”.\nIt was der Briefkasten, now it is in den Briefkasten."
+      },
+      "examples": [
+        {
+          "phraseId": "de:12:16",
+          "say": {
+            "ru": "их ште́ке ден а́усвайс ин ди я́ке",
+            "uk": "іх ште́ке ден а́усвайс ін ді я́ке"
+          }
+        },
+        {
+          "phraseId": "de:12:17",
+          "say": {
+            "ru": "ду штекст ди ка́рте ин ден у́мшлаг",
+            "uk": "ду штекст ді ка́рте ін ден у́мшлаг"
+          }
+        },
+        {
+          "phraseId": "de:12:18",
+          "say": {
+            "ru": "зи штект ден бриф ин ден бри́фкастен",
+            "uk": "зі штект ден бріф ін ден брі́фкастен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я кладу удостоверение в куртку.»",
+            "uk": "Виберіть, як сказати: «Я кладу посвідчення у куртку.»",
+            "en": "Choose how to say: “I put the ID in the jacket.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:12:16",
+          "options": [
+            "de:12:16",
+            "de:12:17",
+            "de:12:18"
+          ],
+          "answerId": "de:12:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты вкладываешь открытку в конверт.»",
+            "uk": "Виберіть, як сказати: «Ти вкладаєш листівку у конверт.»",
+            "en": "Choose how to say: “You put the card in the envelope.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:17",
+          "options": [
+            "de:12:17",
+            "de:12:18",
+            "de:12:16"
+          ],
+          "answerId": "de:12:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она опускает письмо в почтовый ящик.»",
+            "uk": "Виберіть, як сказати: «Вона опускає листа до поштової скриньки.»",
+            "en": "Choose how to say: “She puts the letter in the mailbox.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:18",
+          "options": [
+            "de:12:18",
+            "de:12:16",
+            "de:12:17"
+          ],
+          "answerId": "de:12:18"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Иду куда-то",
+        "uk": "Іду кудись",
+        "en": "Going somewhere"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я иду на кухню».\nIch gehe in die Küche. — «Я иду на кухню.»\nЧитается: их ге́е ин ди кю́хе\nСлово gehe значит «я иду».\nБыло in der Küche, стало in die Küche.\nСлово in показывает «внутрь»: in die Küche — внутрь кухни.\nAnna geht ins Bad. — «Анна идёт в ванную.»\nЧитается: А́нна гет инс бат\nСлово Bad значит «ванная».\nСлово ins — это in и das вместе.\nБыло das Bad, стало ins Bad.\nWir gehen ins Café. — «Мы идём в кафе.»\nЧитается: вир ге́ен инс кафе́\nСлово Café значит «кафе».\nБыло das Café, стало ins Café.\nСравните: Tom geht zum Arzt — «к врачу», Wir gehen zur Kasse — «к кассе».\nТам идут К человеку или К месту. А ins Café — внутрь помещения.",
+        "uk": "Дивіться, як сказати «Я йду на кухню».\nIch gehe in die Küche. — «Я йду на кухню.»\nЧитається: іх ге́е ін ді кю́хе\nСлово gehe означає «я йду».\nБуло in der Küche, стало in die Küche.\nСлово in показує «всередину»: in die Küche — всередину кухні.\nAnna geht ins Bad. — «Анна йде у ванну кімнату.»\nЧитається: А́нна гет інс бат\nСлово Bad означає «ванна кімната».\nСлово ins — це in і das разом.\nБуло das Bad, стало ins Bad.\nWir gehen ins Café. — «Ми йдемо до кафе.»\nЧитається: вір ге́ен інс кафе́\nСлово Café означає «кафе».\nБуло das Café, стало ins Café.\nПорівняйте: Tom geht zum Arzt — «до лікаря», Wir gehen zur Kasse — «до каси».\nТам ідуть ДО людини або ДО місця. А ins Café — всередину приміщення.",
+        "en": "Look at how to say “I go into the kitchen”.\nIch gehe in die Küche. — “I go into the kitchen.”\nSounds like: eekh gE-e in dee kYOOkhe\nThe word gehe means “I go”.\nIt was in der Küche, now it is in die Küche.\nThe word in shows “inside”: in die Küche means into the kitchen.\nAnna geht ins Bad. — “Anna goes into the bathroom.”\nSounds like: Anna get ins bat\nThe word Bad means “bathroom”.\nThe word ins is in and das together.\nIt was das Bad, now it is ins Bad.\nWir gehen ins Café. — “We go into the café.”\nSounds like: veer gE-en ins kafE\nThe word Café means “café”.\nIt was das Café, now it is ins Café.\nCompare: Tom geht zum Arzt — “to the doctor”, Wir gehen zur Kasse — “to the checkout”.\nThere you go TO a person or a place. But ins Café means inside a room."
+      },
+      "examples": [
+        {
+          "phraseId": "de:12:21",
+          "say": {
+            "ru": "их ге́е ин ди кю́хе",
+            "uk": "іх ге́е ін ді кю́хе"
+          }
+        },
+        {
+          "phraseId": "de:12:23",
+          "say": {
+            "ru": "А́нна гет инс бат",
+            "uk": "А́нна гет інс бат"
+          }
+        },
+        {
+          "phraseId": "de:12:25",
+          "say": {
+            "ru": "вир ге́ен инс кафе́",
+            "uk": "вір ге́ен інс кафе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я иду на кухню.»",
+            "uk": "Виберіть, як сказати: «Я йду на кухню.»",
+            "en": "Choose how to say: “I go into the kitchen.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:12:21",
+          "options": [
+            "de:12:21",
+            "de:12:23",
+            "de:12:25"
+          ],
+          "answerId": "de:12:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна идёт в ванную.»",
+            "uk": "Виберіть, як сказати: «Анна йде у ванну кімнату.»",
+            "en": "Choose how to say: “Anna goes into the bathroom.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:23",
+          "options": [
+            "de:12:23",
+            "de:12:25",
+            "de:12:21"
+          ],
+          "answerId": "de:12:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы идём в кафе.»",
+            "uk": "Виберіть, як сказати: «Ми йдемо до кафе.»",
+            "en": "Choose how to say: “We go into the café.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:25",
+          "options": [
+            "de:12:25",
+            "de:12:21",
+            "de:12:23"
+          ],
+          "answerId": "de:12:25"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Несём и катим",
+        "uk": "Несемо і котимо",
+        "en": "Carrying and pushing"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы относим ящики в подвал».\nWir bringen die Kisten in den Keller. — «Мы относим ящики в подвал.»\nЧитается: вир бри́нген ди ки́стен ин ден ке́лер\nСлово bringen значит «относим, несём». Слово Kisten — «ящики». Слово Keller — «подвал».\nБыло Kiste «ящик» (один), стало Kisten «ящики» (несколько): добавилась «н».\nБыло der Keller, стало in den Keller.\nAnna schiebt den Wagen in den Hof. — «Анна вкатывает тележку во двор.»\nЧитается: А́нна шипт ден ва́ген ин ден хоф\nСлово schiebt значит «катит, толкает». Слово Wagen — «тележка». Слово Hof — «двор».\nБыло der Hof, стало in den Hof.\nIch packe die Schuhe in den Koffer. — «Я упаковываю обувь в чемодан.»\nЧитается: их па́ке ди шу́э ин ден ко́фер\nСлово packe значит «упаковываю». Слово Schuhe — «обувь».\nБыло der Koffer, стало in den Koffer.",
+        "uk": "Дивіться, як сказати «Ми відносимо ящики до підвалу».\nWir bringen die Kisten in den Keller. — «Ми відносимо ящики до підвалу.»\nЧитається: вір брі́нген ді кі́стен ін ден ке́лер\nСлово bringen означає «відносимо, несемо». Слово Kisten — «ящики». Слово Keller — «підвал».\nБуло Kiste «ящик» (один), стало Kisten «ящики» (кілька): додалася «н».\nБуло der Keller, стало in den Keller.\nAnna schiebt den Wagen in den Hof. — «Ганна вкочує візок у двір.»\nЧитається: А́нна шіпт ден ва́ген ін ден хоф\nСлово schiebt означає «котить, штовхає». Слово Wagen — «візок». Слово Hof — «двір».\nБуло der Hof, стало in den Hof.\nIch packe die Schuhe in den Koffer. — «Я упаковую взуття у валізу.»\nЧитається: іх па́ке ді шу́е ін ден ко́фер\nСлово packe означає «пакую». Слово Schuhe — «взуття».\nБуло der Koffer, стало in den Koffer.",
+        "en": "Look at how to say “We take the boxes down to the cellar”.\nWir bringen die Kisten in den Keller. — “We take the boxes down to the cellar.”\nSounds like: veer brIngen dee kIsten in den kEler\nThe word bringen means “we take”. The word Kisten means “boxes”.\nThe word Keller means “cellar”.\nIt was Kiste “box” (one), now Kisten “boxes” (several): an “n” is added.\nIt was der Keller, now it is in den Keller.\nAnna schiebt den Wagen in den Hof. — “Anna pushes the cart into the yard.”\nSounds like: Anna sheept den vAgen in den hof\nThe word schiebt means “pushes”. The word Wagen means “cart”.\nThe word Hof means “yard”.\nIt was der Hof, now it is in den Hof.\nIch packe die Schuhe in den Koffer. — “I pack the shoes into the suitcase.”\nSounds like: eekh pAke dee shOO-e in den kOfer\nThe word packe means “I pack”. The word Schuhe means “shoes”.\nIt was der Koffer, now it is in den Koffer."
+      },
+      "examples": [
+        {
+          "phraseId": "de:12:48",
+          "say": {
+            "ru": "вир бри́нген ди ки́стен ин ден ке́лер",
+            "uk": "вір брі́нген ді кі́стен ін ден ке́лер"
+          }
+        },
+        {
+          "phraseId": "de:12:47",
+          "say": {
+            "ru": "А́нна шипт ден ва́ген ин ден хоф",
+            "uk": "А́нна шіпт ден ва́ген ін ден хоф"
+          }
+        },
+        {
+          "phraseId": "de:12:20",
+          "say": {
+            "ru": "их па́ке ди шу́э ин ден ко́фер",
+            "uk": "іх па́ке ді шу́е ін ден ко́фер"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы относим ящики в подвал.»",
+            "uk": "Виберіть, як сказати: «Ми відносимо ящики до підвалу.»",
+            "en": "Choose how to say: “We take the boxes down to the cellar.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:12:48",
+          "options": [
+            "de:12:48",
+            "de:12:47",
+            "de:12:20"
+          ],
+          "answerId": "de:12:48"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна вкатывает тележку во двор.»",
+            "uk": "Виберіть, як сказати: «Ганна вкочує візок у двір.»",
+            "en": "Choose how to say: “Anna pushes the cart into the yard.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:47",
+          "options": [
+            "de:12:47",
+            "de:12:20",
+            "de:12:48"
+          ],
+          "answerId": "de:12:47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я упаковываю обувь в чемодан.»",
+            "uk": "Виберіть, як сказати: «Я упаковую взуття у валізу.»",
+            "en": "Choose how to say: “I pack the shoes into the suitcase.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:20",
+          "options": [
+            "de:12:20",
+            "de:12:48",
+            "de:12:47"
+          ],
+          "answerId": "de:12:20"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Спрашиваем «куда?»",
+        "uk": "Питаємо «куди?»",
+        "en": "Asking “where to?”"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Куда ты ставишь ящик?».\nWohin stellst du die Kiste? — «Куда ты ставишь ящик?»\nЧитается: вохи́н штельст ду ди ки́сте\nСлово Wohin значит «куда». Слово stellst — «ставишь».\nРаньше вы видели Wo — «где». Теперь Wohin — «куда».\nСлово Kiste значит «ящик». Несколько ящиков — Kisten: добавляется «н».\nLegst du den Löffel in die Schublade? — «Ты кладёшь ложку в выдвижной ящик?»\nЧитается: легст ду ден лэ́фель ин ди шу́бладе\nСлово Legst значит «кладёшь».\nСлово Legst стоит первым — значит, это вопрос.\nHängst du die Jacke in den Schrank? — «Ты вешаешь куртку в шкаф?»\nЧитается: хенгст ду ди я́ке ин ден шранк\nСлово Hängst значит «вешаешь».\nСлово Hängst тоже стоит первым — это вопрос.",
+        "uk": "Дивіться, як запитати «Куди ти ставиш ящик?».\nWohin stellst du die Kiste? — «Куди ти ставиш ящик?»\nЧитається: вохі́н штельст ду ді кі́сте\nСлово Wohin означає «куди». Слово stellst — «ставиш».\nРаніше ви бачили Wo — «де». Тепер Wohin — «куди».\nСлово Kiste означає «ящик». Кілька ящиків — Kisten: додається «н».\nLegst du den Löffel in die Schublade? — «Ти кладеш ложку в шухляду?»\nЧитається: легст ду ден ле́фель ін ді шу́бладе\nСлово Legst означає «кладеш».\nСлово Legst стоїть першим — отже, це питання.\nHängst du die Jacke in den Schrank? — «Ти вішаєш куртку у шафу?»\nЧитається: хенгст ду ді я́ке ін ден шранк\nСлово Hängst означає «вішаєш».\nСлово Hängst теж стоїть першим — це питання.",
+        "en": "Look at how to ask “Where do you put the box?”.\nWohin stellst du die Kiste? — “Where do you put the box?”\nSounds like: vohIn shtelst doo dee kIste\nThe word Wohin means “where to”. The word stellst means “you stand (it)”.\nBefore you saw Wo, “where”. Now Wohin, “where to”.\nThe word Kiste means “box”. Several boxes are Kisten: an “n” is added.\nLegst du den Löffel in die Schublade? — “Do you put the spoon in the drawer?”\nSounds like: legst doo den lEfel in dee shOOblade\nThe word Legst means “you put”.\nThe word Legst comes first — so it is a question.\nHängst du die Jacke in den Schrank? — “Do you hang the jacket in the closet?”\nSounds like: khengst doo dee yAke in den shrank\nThe word Hängst means “you hang (it up)”.\nThe word Hängst also comes first — it is a question."
+      },
+      "examples": [
+        {
+          "phraseId": "de:12:31",
+          "say": {
+            "ru": "вохи́н штельст ду ди ки́сте",
+            "uk": "вохі́н штельст ду ді кі́сте"
+          }
+        },
+        {
+          "phraseId": "de:12:32",
+          "say": {
+            "ru": "легст ду ден лэ́фель ин ди шу́бладе",
+            "uk": "легст ду ден ле́фель ін ді шу́бладе"
+          }
+        },
+        {
+          "phraseId": "de:12:34",
+          "say": {
+            "ru": "хенгст ду ди я́ке ин ден шранк",
+            "uk": "хенгст ду ді я́ке ін ден шранк"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Куда ты ставишь ящик?»",
+            "uk": "Виберіть, як сказати: «Куди ти ставиш ящик?»",
+            "en": "Choose how to say: “Where do you put the box?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:12:31",
+          "options": [
+            "de:12:31",
+            "de:12:32",
+            "de:12:34"
+          ],
+          "answerId": "de:12:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты кладёшь ложку в выдвижной ящик?»",
+            "uk": "Виберіть, як сказати: «Ти кладеш ложку в шухляду?»",
+            "en": "Choose how to say: “Do you put the spoon in the drawer?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:32",
+          "options": [
+            "de:12:32",
+            "de:12:34",
+            "de:12:31"
+          ],
+          "answerId": "de:12:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты вешаешь куртку в шкаф?»",
+            "uk": "Виберіть, як сказати: «Ти вішаєш куртку у шафу?»",
+            "en": "Choose how to say: “Do you hang the jacket in the closet?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:12:34",
+          "options": [
+            "de:12:34",
+            "de:12:31",
+            "de:12:32"
+          ],
+          "answerId": "de:12:34"
+        }
+      ]
+    }
+  ]
+}

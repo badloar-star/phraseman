@@ -1,0 +1,468 @@
+{
+  "lang": "de",
+  "lesson": 23,
+  "title": {
+    "ru": "Если и когда",
+    "uk": "Якщо і коли",
+    "en": "If and when"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Если…, то…",
+        "uk": "Якщо…, то…",
+        "en": "If…, then…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если пойдёт дождь, я останусь дома».\nWenn es regnet, bleibe ich zu Hause. — «Если пойдёт дождь, я останусь дома.»\nЧитается: венн ес ре́гнет бла́йбе их цу ха́узе\nСлово Wenn значит «если, когда».\nСлово es по-русски не говорят: здесь оно просто нужно.\nСлово regnet значит «идёт дождь». Слово bleibe — «остаюсь». Слово ich — «я».\nСлова zu Hause значат «дома». После запятой слово действия идёт сразу: bleibe.\nWenn es schneit, nehme ich den Bus. — «Если пойдёт снег, я поеду на автобусе.»\nЧитается: венн ес шна́йт не́ме их ден бус\nСлово schneit значит «идёт снег». Слово nehme — «беру».\nСлово den по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Bus значит «автобус».\nWenn ich müde bin, mache ich eine Pause. — «Если я устал, я делаю перерыв.»\nЧитается: венн их мю́де бин ма́хе их а́йне па́узе\nСлово müde значит «уставший». Слово bin — «я есть».\nСлова mache eine Pause значат «делаю перерыв».\nWenn Anna Zeit hat, kommt sie mit.\n— «Если у Анны есть время, она пойдёт с нами.»\nЧитается: венн А́нна цайт хат комт зи мит\nСлово Zeit значит «время». Слово hat — «имеет». Слово sie — «она».\nСлова kommt mit значат «идёт с нами».",
+        "uk": "Дивіться, як сказати «Якщо йтиме дощ, я залишуся вдома».\nWenn es regnet, bleibe ich zu Hause. — «Якщо йтиме дощ, я залишуся вдома.»\nЧитається: венн ес ре́гнет бла́йбе іх цу ха́узе\nСлово Wenn означає «якщо, коли».\nСлово es по-українськи не кажуть: тут воно просто потрібне.\nСлово regnet означає «йде дощ». Слово bleibe — «залишаюся». Слово ich — «я».\nСлова zu Hause означають «вдома». Після коми слово дії йде одразу: bleibe.\nWenn es schneit, nehme ich den Bus. — «Якщо піде сніг, я поїду автобусом.»\nЧитається: венн ес шна́йт не́ме іх ден бус\nСлово schneit означає «йде сніг». Слово nehme — «беру».\nСлово den по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Bus означає «автобус».\nWenn ich müde bin, mache ich eine Pause. — «Якщо я втомився, я роблю перерву.»\nЧитається: венн іх мю́де бін ма́хе іх а́йне па́узе\nСлово müde означає «втомлений». Слово bin — «я є».\nСлова mache eine Pause означають «роблю перерву».\nWenn Anna Zeit hat, kommt sie mit.\n— «Якщо Анна має час, вона піде з нами.»\nЧитається: венн А́нна цайт хат комт зі міт\nСлово Zeit означає «час». Слово hat — «має». Слово sie — «вона».\nСлова kommt mit означають «йде з нами».",
+        "en": "Look at how to say “If it rains, I stay at home”.\nWenn es regnet, bleibe ich zu Hause. — “If it rains, I stay at home.”\nSounds like: venn es rEgnet blAybe eekh tsoo khAooze\nThe word Wenn means “if, when”.\nThe word es means “it”.\nThe word regnet means “rains”. The word bleibe — “I stay”.\nThe word ich — “I”.\nThe words zu Hause mean “at home”.\nAfter the comma the action word comes right away: bleibe.\nWenn es schneit, nehme ich den Bus. — “If it snows, I take the bus.”\nSounds like: venn es shnAyt nEme eekh den boos\nThe word schneit means “snows”. The word nehme — “take”.\nThe word den means “the”.\nThe word Bus means “bus”.\nWenn ich müde bin, mache ich eine Pause.\n— “If I am tired, I take a break.”\nSounds like: venn eekh mYOOde been mAkhe eekh Ayne pAooze\nThe word müde means “tired”. The word bin — “I am”.\nThe words mache eine Pause mean “take a break”.\nWenn Anna Zeit hat, kommt sie mit. — “If Anna has time, she comes along.”\nSounds like: venn Anna tsayt khat komt zee meet\nThe word Zeit means “time”. The word hat — “has”. The word sie — “she”.\nThe words kommt mit mean “comes along”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:23:01",
+          "say": {
+            "ru": "венн ес ре́гнет бла́йбе их цу ха́узе",
+            "uk": "венн ес ре́гнет бла́йбе іх цу ха́узе"
+          }
+        },
+        {
+          "phraseId": "de:23:02",
+          "say": {
+            "ru": "венн ес шна́йт не́ме их ден бус",
+            "uk": "венн ес шна́йт не́ме іх ден бус"
+          }
+        },
+        {
+          "phraseId": "de:23:03",
+          "say": {
+            "ru": "венн их мю́де бин ма́хе их а́йне па́узе",
+            "uk": "венн іх мю́де бін ма́хе іх а́йне па́узе"
+          }
+        },
+        {
+          "phraseId": "de:23:05",
+          "say": {
+            "ru": "венн А́нна цайт хат комт зи мит",
+            "uk": "венн А́нна цайт хат комт зі міт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если пойдёт дождь, я останусь дома»",
+            "uk": "Виберіть, як сказати: «Якщо йтиме дощ, я залишуся вдома»",
+            "en": "Choose how to say: “If it rains, I stay at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:23:01",
+          "options": [
+            "de:23:01",
+            "de:23:02",
+            "de:23:03"
+          ],
+          "answerId": "de:23:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если пойдёт снег, я поеду на автобусе»",
+            "uk": "Виберіть, як сказати: «Якщо піде сніг, я поїду автобусом»",
+            "en": "Choose how to say: “If it snows, I take the bus”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:02",
+          "options": [
+            "de:23:02",
+            "de:23:01",
+            "de:23:03"
+          ],
+          "answerId": "de:23:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если я устал, я делаю перерыв»",
+            "uk": "Виберіть, як сказати: «Якщо я втомився, я роблю перерву»",
+            "en": "Choose how to say: “If I am tired, I take a break”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:03",
+          "options": [
+            "de:23:03",
+            "de:23:01",
+            "de:23:02"
+          ],
+          "answerId": "de:23:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Сначала главное",
+        "uk": "Спочатку головне",
+        "en": "The main part first"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Том берёт такси, если уже поздно».\nTom nimmt ein Taxi, wenn es spät ist. — «Том берёт такси, если уже поздно.»\nЧитается: Том ни́мт а́йн та́кси венн ес шпэт ист\nСлово nimmt значит «берёт».\nСлово ein по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Taxi значит «такси». Слово spät — «поздно». Слово ist — «есть».\nЕсли wenn стоит в середине, слово действия стоит в конце: ist.\nIch kaufe Milch, wenn der Laden offen ist. — «Я куплю молоко, если магазин открыт.»\nЧитается: их ка́уфе мильх венн дер ла́ден о́фен ист\nСлово kaufe значит «покупаю». Слово Milch — «молоко».\nСлово der по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Laden значит «магазин». Слово offen — «открыт».\nIch höre Musik, wenn ich koche. — «Я слушаю музыку, когда готовлю.»\nЧитается: их хё́ре музи́к венн их ко́хе\nСлово höre значит «слушаю». Слово Musik — «музыка». Слово koche — «готовлю».\nWir lüften, wenn das Wetter gut ist. — «Мы проветриваем, когда погода хорошая.»\nЧитается: вир лю́фтен венн дас ве́тер гут ист\nСлово Wir значит «мы». Слово lüften — «проветриваем».\nСлово das по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Wetter значит «погода». Слово gut — «хорошо».\nWir fahren los, wenn alle bereit sind. — «Мы выедем, когда все будут готовы.»\nЧитается: вир фа́рен лос венн а́лле бера́йт зинд\nСлово alle значит «все». Слово bereit — «готов».\nСлово sind — «есть (о нас, о них)».\nСлова fahren los значат «отправляемся».",
+        "uk": "Дивіться, як сказати «Том бере таксі, якщо вже пізно».\nTom nimmt ein Taxi, wenn es spät ist. — «Том бере таксі, якщо вже пізно.»\nЧитається: Том ні́мт а́йн та́ксі венн ес шпет іст\nСлово nimmt означає «бере».\nСлово ein по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Taxi означає «таксі». Слово spät — «пізно». Слово ist — «є».\nЯкщо wenn стоїть посередині, слово дії стоїть у кінці: ist.\nIch kaufe Milch, wenn der Laden offen ist. — «Я куплю молоко, якщо магазин відкритий.»\nЧитається: іх ка́уфе мільх венн дер ла́ден о́фен іст\nСлово kaufe означає «купую». Слово Milch — «молоко».\nСлово der по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Laden означає «магазин». Слово offen — «відкритий».\nIch höre Musik, wenn ich koche. — «Я слухаю музику, коли готую.»\nЧитається: іх хьо́ре музі́к венн іх ко́хе\nСлово höre означає «слухаю». Слово Musik — «музика». Слово koche — «готую».\nWir lüften, wenn das Wetter gut ist. — «Ми провітрюємо, коли погода хороша.»\nЧитається: вір лю́фтен венн дас ве́тер гут іст\nСлово Wir означає «ми». Слово lüften — «провітрюємо».\nСлово das по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Wetter означає «погода». Слово gut — «добре».\nWir fahren los, wenn alle bereit sind. — «Ми виїдемо, коли всі будуть готові.»\nЧитається: вір фа́рен лос венн а́лле бера́йт зінд\nСлово alle означає «всі». Слово bereit — «готовий».\nСлово sind — «є (про нас, про них)».\nСлова fahren los означають «вирушаємо».",
+        "en": "Look at how to say “Tom takes a taxi if it is late”.\nTom nimmt ein Taxi, wenn es spät ist.\n— “Tom takes a taxi if it is late.”\nSounds like: tom nEEmt Ayn tAksee venn es shpet eest\nThe word nimmt means “takes”.\nThe word ein means “a”.\nThe word Taxi means “taxi”. The word spät — “late”. The word ist — “is”.\nWhen wenn is in the middle, the action word is at the end: ist.\nIch kaufe Milch, wenn der Laden offen ist.\n— “I buy milk if the shop is open.”\nSounds like: eekh kAoofe meelkh venn der lAden Ofen eest\nThe word kaufe means “buy”. The word Milch — “milk”.\nThe word der means “the”.\nThe word Laden means “shop”. The word offen — “open”.\nIch höre Musik, wenn ich koche. — “I listen to music when I cook.”\nSounds like: eekh khYOre moozEEk venn eekh kOkhe\nThe word höre means “listen to”. The word Musik — “music”.\nThe word koche — “cook”.\nWir lüften, wenn das Wetter gut ist.\n— “We air the room when the weather is nice.”\nSounds like: veer lYOOften venn das vEter goot eest\nThe word Wir means “we”. The word lüften — “air the room”.\nThe word das means “the”.\nThe word Wetter means “weather”. The word gut — “well”.\nWir fahren los, wenn alle bereit sind. — “We set off when everyone is ready.”\nSounds like: veer fAren los venn Alle berAyt zeend\nThe word alle means “everyone”. The word bereit — “ready”. The word sind — “are”.\nThe words fahren los mean “set off”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:23:14",
+          "say": {
+            "ru": "Том ни́мт а́йн та́кси венн ес шпэт ист",
+            "uk": "Том ні́мт а́йн та́ксі венн ес шпет іст"
+          }
+        },
+        {
+          "phraseId": "de:23:15",
+          "say": {
+            "ru": "их ка́уфе мильх венн дер ла́ден о́фен ист",
+            "uk": "іх ка́уфе мільх венн дер ла́ден о́фен іст"
+          }
+        },
+        {
+          "phraseId": "de:23:19",
+          "say": {
+            "ru": "их хё́ре музи́к венн их ко́хе",
+            "uk": "іх хьо́ре музі́к венн іх ко́хе"
+          }
+        },
+        {
+          "phraseId": "de:23:20",
+          "say": {
+            "ru": "вир лю́фтен венн дас ве́тер гут ист",
+            "uk": "вір лю́фтен венн дас ве́тер гут іст"
+          }
+        },
+        {
+          "phraseId": "de:23:12",
+          "say": {
+            "ru": "вир фа́рен лос венн а́лле бера́йт зинд",
+            "uk": "вір фа́рен лос венн а́лле бера́йт зінд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том берёт такси, если уже поздно»",
+            "uk": "Виберіть, як сказати: «Том бере таксі, якщо вже пізно»",
+            "en": "Choose how to say: “Tom takes a taxi if it is late”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:23:14",
+          "options": [
+            "de:23:14",
+            "de:23:15",
+            "de:23:19"
+          ],
+          "answerId": "de:23:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я куплю молоко, если магазин открыт»",
+            "uk": "Виберіть, як сказати: «Я куплю молоко, якщо магазин відкритий»",
+            "en": "Choose how to say: “I buy milk if the shop is open”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:15",
+          "options": [
+            "de:23:15",
+            "de:23:14",
+            "de:23:19"
+          ],
+          "answerId": "de:23:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я слушаю музыку, когда готовлю»",
+            "uk": "Виберіть, як сказати: «Я слухаю музику, коли готую»",
+            "en": "Choose how to say: “I listen to music when I cook”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:19",
+          "options": [
+            "de:23:19",
+            "de:23:14",
+            "de:23:15"
+          ],
+          "answerId": "de:23:19"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Просьба после wenn",
+        "uk": "Прохання після wenn",
+        "en": "A request after wenn"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если позвонят в дверь, открой, пожалуйста».\nWenn es klingelt, öffne bitte die Tür! — «Если позвонят в дверь, открой, пожалуйста!»\nЧитается: венн ес кли́нгельт э́фне би́тте ди тюр\nСлово klingelt значит «звонят в дверь». Слово öffne — «открываю». Слово bitte — «пожалуйста».\nСлово die по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Tür значит «дверь».\nWenn ihr Hilfe braucht, fragt Anna! — «Если вам нужна помощь, спросите Анну!»\nЧитается: венн ир хи́льфе браухт фра́гт А́нна\nСлово ihr значит «вы». Слово Hilfe — «помощь». Слово braucht — «нужна».\nСлово fragt значит «спросите».\nWenn dir kalt ist, zieh die Jacke an! — «Если тебе холодно, надень куртку!»\nЧитается: венн дир кальт ист ци ди я́ке ан\nСлово dir значит «тебе». Слово kalt — «холодный». Слово Jacke — «куртка».\nСлова zieh … an значат «надень».\nWenn du gehst, schalte das Licht aus! — «Когда будешь уходить, выключи свет!»\nЧитается: венн ду ге́ст ша́льте дас лихт аус\nСлово du значит «ты». Слово gehst — «уходишь». Слово Licht — «свет».\nСлова schalte … aus значат «выключи».",
+        "uk": "Дивіться, як сказати «Якщо подзвонять у двері, відчини, будь ласка».\nWenn es klingelt, öffne bitte die Tür! — «Якщо подзвонять у двері, відчини, будь ласка!»\nЧитається: венн ес клі́нгельт е́фне бі́тте ді тюр\nСлово klingelt означає «дзвонять у двері». Слово öffne — «відкриваю». Слово bitte — «будь ласка».\nСлово die по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Tür означає «двері».\nWenn ihr Hilfe braucht, fragt Anna! — «Якщо вам потрібна допомога, спитайте Анну!»\nЧитається: венн ір хі́льфе браухт фра́гт А́нна\nСлово ihr означає «ви». Слово Hilfe — «допомога». Слово braucht — «потрібна».\nСлово fragt означає «спитайте».\nWenn dir kalt ist, zieh die Jacke an! — «Якщо тобі холодно, одягни куртку!»\nЧитається: венн дір кальт іст ці ді я́ке ан\nСлово dir означає «тобі». Слово kalt — «холодний». Слово Jacke — «куртка».\nСлова zieh … an означають «одягни».\nWenn du gehst, schalte das Licht aus! — «Коли йтимеш, вимкни світло!»\nЧитається: венн ду ге́ст ша́льте дас ліхт аус\nСлово du означає «ти». Слово gehst — «йдеш». Слово Licht — «світло».\nСлова schalte … aus означають «вимкни».",
+        "en": "Look at how to say “If the doorbell rings, please open the door”.\nWenn es klingelt, öffne bitte die Tür!\n— “If the doorbell rings, please open the door!”\nSounds like: venn es klEEngelt Efne bEEtte dee tyoor\nThe word klingelt means “rings”. The word öffne — “I open”.\nThe word bitte — “please”.\nThe word die means “the”.\nThe word Tür means “door”.\nWenn ihr Hilfe braucht, fragt Anna! — “If you all need help, ask Anna!”\nSounds like: venn eer khEElfe braookht frAgt Anna\nThe word ihr means “you all”. The word Hilfe — “help”.\nThe word braucht — “needs”.\nThe word fragt means “ask”.\nWenn dir kalt ist, zieh die Jacke an!\n— “If you are cold, put on the jacket!”\nSounds like: venn deer kalt eest tsee dee YAke an\nThe word dir means “you”. The word kalt — “cold”. The word Jacke — “jacket”.\nThe words zieh … an mean “put on”.\nWenn du gehst, schalte das Licht aus! — “When you leave, switch off the light!”\nSounds like: venn doo gEst shAlte das leekht aoos\nThe word du means “you”. The word gehst — “leave”. The word Licht — “light”.\nThe words schalte … aus mean “switch off”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:23:22",
+          "say": {
+            "ru": "венн ес кли́нгельт э́фне би́тте ди тюр",
+            "uk": "венн ес клі́нгельт е́фне бі́тте ді тюр"
+          }
+        },
+        {
+          "phraseId": "de:23:30",
+          "say": {
+            "ru": "венн ир хи́льфе браухт фра́гт А́нна",
+            "uk": "венн ір хі́льфе браухт фра́гт А́нна"
+          }
+        },
+        {
+          "phraseId": "de:23:25",
+          "say": {
+            "ru": "венн дир кальт ист ци ди я́ке ан",
+            "uk": "венн дір кальт іст ці ді я́ке ан"
+          }
+        },
+        {
+          "phraseId": "de:23:28",
+          "say": {
+            "ru": "венн ду ге́ст ша́льте дас лихт аус",
+            "uk": "венн ду ге́ст ша́льте дас ліхт аус"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если позвонят в дверь, открой, пожалуйста»",
+            "uk": "Виберіть, як сказати: «Якщо подзвонять у двері, відчини, будь ласка»",
+            "en": "Choose how to say: “If the doorbell rings, please open the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:23:22",
+          "options": [
+            "de:23:22",
+            "de:23:30",
+            "de:23:25"
+          ],
+          "answerId": "de:23:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если вам нужна помощь, спросите Анну»",
+            "uk": "Виберіть, як сказати: «Якщо вам потрібна допомога, спитайте Анну»",
+            "en": "Choose how to say: “If you all need help, ask Anna”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:30",
+          "options": [
+            "de:23:30",
+            "de:23:22",
+            "de:23:25"
+          ],
+          "answerId": "de:23:30"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если тебе холодно, надень куртку»",
+            "uk": "Виберіть, як сказати: «Якщо тобі холодно, одягни куртку»",
+            "en": "Choose how to say: “If you are cold, put on the jacket”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:25",
+          "options": [
+            "de:23:25",
+            "de:23:22",
+            "de:23:30"
+          ],
+          "answerId": "de:23:25"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Могу и надо",
+        "uk": "Можу і треба",
+        "en": "I can and I must"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если хочешь, я могу тебя забрать».\nWenn du möchtest, kann ich dich abholen. — «Если хочешь, я могу тебя забрать.»\nЧитается: венн ду мё́хтест кан их дих а́бхолен\nСлово möchtest значит «хочешь». Слово kann — «могу». Слово dich — «тебя».\nСлово abholen значит «забрать».\nWenn ich krank bin, muss ich den Termin absagen.\n— «Если я заболею, мне придётся отменить запись.»\nЧитается: венн их кранк бин мус их ден терми́н а́бзаген\nСлово krank значит «больной». Слово muss — «нужно». Слово Termin — «встреча, приём».\nСлово absagen значит «отменить».\nWenn Sie Fragen haben, können Sie hier anrufen.\n— «Если у вас есть вопросы, можете позвонить сюда.»\nЧитается: венн зи фра́ген ха́бен кё́ннен зи хи́р а́нруфен\nСлово Fragen значит «вопросы». Слово haben — «имеем, имеют». Слово können — «можете».\nСлово hier значит «здесь».\nСлово Sie с большой буквы здесь значит вежливое «вы».\nСлова können … anrufen значат «можете позвонить».\nWenn das Handy leer ist, kann ich nicht anrufen.\n— «Если телефон разряжен, я не могу позвонить.»\nЧитается: венн дас хе́нди лер ист кан их нихт а́нруфен\nСлово Handy значит «телефон». Слово leer — «пустой». Слово nicht — «не».",
+        "uk": "Дивіться, як сказати «Якщо хочеш, я можу тебе забрати».\nWenn du möchtest, kann ich dich abholen. — «Якщо хочеш, я можу тебе забрати.»\nЧитається: венн ду мьо́хтест кан іх діх а́бхолен\nСлово möchtest означає «хочеш». Слово kann — «можу». Слово dich — «тебе».\nСлово abholen означає «забрати».\nWenn ich krank bin, muss ich den Termin absagen.\n— «Якщо я захворію, мені доведеться скасувати запис.»\nЧитається: венн іх кранк бін мус іх ден термі́н а́бзаген\nСлово krank означає «хворий». Слово muss — «треба». Слово Termin — «зустріч, прийом».\nСлово absagen означає «скасувати».\nWenn Sie Fragen haben, können Sie hier anrufen.\n— «Якщо ви маєте запитання, можете зателефонувати сюди.»\nЧитається: венн зі фра́ген ха́бен кьо́ннен зі хі́р а́нруфен\nСлово Fragen означає «запитання». Слово haben — «маємо, мають». Слово können — «можете».\nСлово hier означає «тут».\nСлово Sie з великої літери тут означає ввічливе «ви».\nСлова können … anrufen означають «можете зателефонувати».\nWenn das Handy leer ist, kann ich nicht anrufen.\n— «Якщо телефон розряджений, я не можу зателефонувати.»\nЧитається: венн дас хе́нді лер іст кан іх ніхт а́нруфен\nСлово Handy означає «телефон». Слово leer — «порожній». Слово nicht — «не».",
+        "en": "Look at how to say “If you like, I can pick you up”.\nWenn du möchtest, kann ich dich abholen.\n— “If you like, I can pick you up.”\nSounds like: venn doo mYOkhtest kan eekh deekh Abkholen\nThe word möchtest means “would like”. The word kann — “can”.\nThe word dich — “you”.\nThe word abholen means “pick up”.\nWenn ich krank bin, muss ich den Termin absagen.\n— “If I am ill, I have to cancel the appointment.”\nSounds like: venn eekh krank been moos eekh den termEEn Abzagen\nThe word krank means “ill”. The word muss — “must”. The word Termin — “appointment”.\nThe word absagen means “cancel”.\nWenn Sie Fragen haben, können Sie hier anrufen.\n— “If you have questions, you can call here.”\nSounds like: venn zee frAgen khAben kYOnnen zee khEEr Anroofen\nThe word Fragen means “questions”. The word haben — “have”. The word können — “can”.\nThe word hier means “here”.\nThe word Sie with a capital letter here means the polite “you”.\nThe words können … anrufen mean “can call”.\nWenn das Handy leer ist, kann ich nicht anrufen.\n— “If the phone is dead, I cannot call.”\nSounds like: venn das khEndee ler eest kan eekh neekht Anroofen\nThe word Handy means “phone”. The word leer — “empty”. The word nicht — “not”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:23:33",
+          "say": {
+            "ru": "венн ду мё́хтест кан их дих а́бхолен",
+            "uk": "венн ду мьо́хтест кан іх діх а́бхолен"
+          }
+        },
+        {
+          "phraseId": "de:23:35",
+          "say": {
+            "ru": "венн их кранк бин мус их ден терми́н а́бзаген",
+            "uk": "венн іх кранк бін мус іх ден термі́н а́бзаген"
+          }
+        },
+        {
+          "phraseId": "de:23:38",
+          "say": {
+            "ru": "венн зи фра́ген ха́бен кё́ннен зи хи́р а́нруфен",
+            "uk": "венн зі фра́ген ха́бен кьо́ннен зі хі́р а́нруфен"
+          }
+        },
+        {
+          "phraseId": "de:23:39",
+          "say": {
+            "ru": "венн дас хе́нди лер ист кан их нихт а́нруфен",
+            "uk": "венн дас хе́нді лер іст кан іх ніхт а́нруфен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если хочешь, я могу тебя забрать»",
+            "uk": "Виберіть, як сказати: «Якщо хочеш, я можу тебе забрати»",
+            "en": "Choose how to say: “If you like, I can pick you up”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:23:33",
+          "options": [
+            "de:23:33",
+            "de:23:35",
+            "de:23:38"
+          ],
+          "answerId": "de:23:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если я заболею, мне придётся отменить запись»",
+            "uk": "Виберіть, як сказати: «Якщо я захворію, мені доведеться скасувати запис»",
+            "en": "Choose how to say: “If I am ill, I have to cancel the appointment”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:35",
+          "options": [
+            "de:23:35",
+            "de:23:33",
+            "de:23:38"
+          ],
+          "answerId": "de:23:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если у вас есть вопросы, можете позвонить сюда»",
+            "uk": "Виберіть, як сказати: «Якщо ви маєте запитання, можете зателефонувати сюди»",
+            "en": "Choose how to say: “If you have questions, you can call here”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:38",
+          "options": [
+            "de:23:38",
+            "de:23:33",
+            "de:23:35"
+          ],
+          "answerId": "de:23:38"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Работа и дорога",
+        "uk": "Робота і дорога",
+        "en": "Work and travel"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Когда Том работает в ночную смену, он спит днём».\nWenn Tom Nachtschicht hat, schläft er tagsüber.\n— «Когда Том работает в ночную смену, он спит днём.»\nЧитается: венн Том на́хтшихт хат шлэ́фт эр та́гсюбер\nСлово Nachtschicht значит «ночная смена». Слово schläft — «спит». Слово er — «он».\nСлово tagsüber значит «днём».\nСлова Nachtschicht hat значат «работает в ночную смену».\nWir nehmen die Treppe, wenn der Aufzug nicht fährt.\n— «Мы идём по лестнице, когда лифт не работает.»\nЧитается: вир не́мен ди тре́ппе венн дер а́уфцуг нихт фэрт\nСлово nehmen значит «брать». Слово Treppe — «лестница». Слово Aufzug — «лифт».\nСлово fährt значит «едет».\nWenn die Busfahrer streiken, gehe ich zu Fuß.\n— «Когда водители автобусов бастуют, я иду пешком.»\nЧитается: венн ди бу́сфарер штра́йкен ге́е их цу фус\nСлово Busfahrer значит «водители автобусов». Слово streiken — «бастуют». Слово gehe — «я иду».\nСлова zu Fuß значат «пешком».\nWenn die Bahn pünktlich ist, schaffen wir den Anschluss.\n— «Если электричка придёт вовремя, мы успеем на пересадку.»\nЧитается: венн ди бан пю́нктлих ист ша́ффен вир ден а́ншлус\nСлово Bahn значит «электричка». Слово pünktlich — «вовремя». Слово schaffen — «успеем».\nСлово Anschluss значит «пересадка».",
+        "uk": "Дивіться, як сказати «Коли Том працює в нічну зміну, він спить вдень».\nWenn Tom Nachtschicht hat, schläft er tagsüber.\n— «Коли Том працює в нічну зміну, він спить вдень.»\nЧитається: венн Том на́хтшіхт хат шле́фт ер та́гсюбер\nСлово Nachtschicht означає «нічна зміна». Слово schläft — «спить». Слово er — «він».\nСлово tagsüber означає «вдень».\nСлова Nachtschicht hat означають «працює в нічну зміну».\nWir nehmen die Treppe, wenn der Aufzug nicht fährt.\n— «Ми йдемо сходами, коли ліфт не працює.»\nЧитається: вір не́мен ді тре́ппе венн дер а́уфцуг ніхт ферт\nСлово nehmen означає «брати». Слово Treppe — «сходи». Слово Aufzug — «ліфт».\nСлово fährt означає «їде».\nWenn die Busfahrer streiken, gehe ich zu Fuß.\n— «Коли водії автобусів страйкують, я йду пішки.»\nЧитається: венн ді бу́сфарер штра́йкен ге́е іх цу фус\nСлово Busfahrer означає «водії автобусів». Слово streiken — «страйкують». Слово gehe — «я йду».\nСлова zu Fuß означають «пішки».\nWenn die Bahn pünktlich ist, schaffen wir den Anschluss.\n— «Якщо електричка прийде вчасно, ми встигнемо на пересадку.»\nЧитається: венн ді бан пю́нктліх іст ша́ффен вір ден а́ншлус\nСлово Bahn означає «електричка». Слово pünktlich — «вчасно». Слово schaffen — «встигнемо».\nСлово Anschluss означає «пересадка».",
+        "en": "Look at how to say “When Tom works nights, he sleeps during the day”.\nWenn Tom Nachtschicht hat, schläft er tagsüber.\n— “When Tom works nights, he sleeps during the day.”\nSounds like: venn tom nAkhtsheekht khat shlEft er tAgsyoober\nThe word Nachtschicht means “night shift”. The word schläft — “sleeps”.\nThe word er — “he”.\nThe word tagsüber means “during the day”.\nThe words Nachtschicht hat mean “works the night shift”.\nWir nehmen die Treppe, wenn der Aufzug nicht fährt.\n— “We take the stairs when the lift is not working.”\nSounds like: veer nEmen dee trEppe venn der Aooftsoog neekht fert\nThe word nehmen means “to take”. The word Treppe — “stairs”.\nThe word Aufzug — “lift”.\nThe word fährt means “goes”.\nWenn die Busfahrer streiken, gehe ich zu Fuß.\n— “When the bus drivers are on strike, I walk.”\nSounds like: venn dee bOOsfarer shtrAyken gEe eekh tsoo foos\nThe word Busfahrer means “bus drivers”. The word streiken — “are on strike”.\nThe word gehe — “I go”.\nThe words zu Fuß mean “on foot”.\nWenn die Bahn pünktlich ist, schaffen wir den Anschluss.\n— “If the train is on time, we make our connection.”\nSounds like: venn dee ban pYOOnktleekh eest shAffen veer den Anshloos\nThe word Bahn means “train”. The word pünktlich — “on time”.\nThe word schaffen — “make it”.\nThe word Anschluss means “connection”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:23:42",
+          "say": {
+            "ru": "венн Том на́хтшихт хат шлэ́фт эр та́гсюбер",
+            "uk": "венн Том на́хтшіхт хат шле́фт ер та́гсюбер"
+          }
+        },
+        {
+          "phraseId": "de:23:48",
+          "say": {
+            "ru": "вир не́мен ди тре́ппе венн дер а́уфцуг нихт фэрт",
+            "uk": "вір не́мен ді тре́ппе венн дер а́уфцуг ніхт ферт"
+          }
+        },
+        {
+          "phraseId": "de:23:49",
+          "say": {
+            "ru": "венн ди бу́сфарер штра́йкен ге́е их цу фус",
+            "uk": "венн ді бу́сфарер штра́йкен ге́е іх цу фус"
+          }
+        },
+        {
+          "phraseId": "de:23:50",
+          "say": {
+            "ru": "венн ди бан пю́нктлих ист ша́ффен вир ден а́ншлус",
+            "uk": "венн ді бан пю́нктліх іст ша́ффен вір ден а́ншлус"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда Том работает в ночную смену, он спит днём»",
+            "uk": "Виберіть, як сказати: «Коли Том працює в нічну зміну, він спить вдень»",
+            "en": "Choose how to say: “When Tom works nights, he sleeps during the day”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:23:42",
+          "options": [
+            "de:23:42",
+            "de:23:48",
+            "de:23:49"
+          ],
+          "answerId": "de:23:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы идём по лестнице, когда лифт не работает»",
+            "uk": "Виберіть, як сказати: «Ми йдемо сходами, коли ліфт не працює»",
+            "en": "Choose how to say: “We take the stairs when the lift is not working”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:48",
+          "options": [
+            "de:23:48",
+            "de:23:42",
+            "de:23:49"
+          ],
+          "answerId": "de:23:48"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда водители автобусов бастуют, я иду пешком»",
+            "uk": "Виберіть, як сказати: «Коли водії автобусів страйкують, я йду пішки»",
+            "en": "Choose how to say: “When the bus drivers are on strike, I walk”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:23:49",
+          "options": [
+            "de:23:49",
+            "de:23:42",
+            "de:23:48"
+          ],
+          "answerId": "de:23:49"
+        }
+      ]
+    }
+  ]
+}

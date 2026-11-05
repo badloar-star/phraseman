@@ -1,0 +1,506 @@
+{
+  "lang": "es",
+  "lesson": 27,
+  "title": {
+    "ru": "Книга, которую я купил",
+    "en": "The book that I bought"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Книга, которую я купил",
+        "en": "The book that I bought"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Книга, которую я купил, короткая».\nEl libro que compré es corto.\nЧитается: эль ли́бро кэ компре́ эс ко́рто.\nСлово que значит «который, которая, которую». Слово corto — «короткий».\nСлово que соединяет две части: «книга» и «которую я купил».\nLa mochila que compró Ana es roja. — «Рюкзак, который купила Ана, красный.»\nСлово que стоит и после «книга», и после «рюкзак».\nEl libro que buscas es mío. — «Книга, которую ты ищешь, моя.»\nСлово mío значит «мой, моя».",
+        "en": "Look at how to say “The book that I bought is short”.\nEl libro que compré es corto.\nThe word que means “that, which, who”. The word corto means “short”.\nThe word que joins two parts: “the book” and “that I bought”.\nLa mochila que compró Ana es roja.\n“The backpack that Ana bought is red.”\nThe word que stands after “book” and after “backpack” alike.\nEl libro que buscas es mío.\n“The book that you are looking for is mine.”\nThe word mío means “mine”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:27:01",
+          "say": {
+            "ru": "эль ли́бро кэ компре́ эс ко́рто",
+            "uk": "ель лі́бро ке компре́ ес ко́рто"
+          }
+        },
+        {
+          "phraseId": "es:27:02",
+          "say": {
+            "ru": "эль ли́бро кэ лэи́ эс ко́рто",
+            "uk": "ель лі́бро ке леі́ ес ко́рто"
+          }
+        },
+        {
+          "phraseId": "es:27:08",
+          "say": {
+            "ru": "ла мочи́ла кэ компро́ А́на эс ро́ха",
+            "uk": "ла мочі́ла ке компро́ А́на ес ро́ха"
+          }
+        },
+        {
+          "phraseId": "es:27:10",
+          "say": {
+            "ru": "ла мочи́ла кэ дэхэ́ эн ка́са эс ро́ха",
+            "uk": "ла мочі́ла ке дехе́ ен ка́са ес ро́ха"
+          }
+        },
+        {
+          "phraseId": "es:27:07",
+          "say": {
+            "ru": "ла мочи́ла кэ бу́скас эс ро́ха",
+            "uk": "ла мочі́ла ке бу́скас ес ро́ха"
+          }
+        },
+        {
+          "phraseId": "es:27:03",
+          "say": {
+            "ru": "эль ли́бро кэ бу́скас эс ми́о",
+            "uk": "ель лі́бро ке бу́скас ес мі́о"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Книга, которую я купил, короткая»",
+            "uk": "Виберіть, як сказати: «Книжка, яку я купив, коротка»",
+            "en": "Choose how to say: “The book that I bought is short”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:27:01",
+          "options": [
+            "es:27:01",
+            "es:27:02",
+            "es:27:08"
+          ],
+          "answerId": "es:27:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Книга, которую я прочитал, короткая»",
+            "uk": "Виберіть, як сказати: «Книжка, яку я прочитав, коротка»",
+            "en": "Choose how to say: “The book that I read is short”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:02",
+          "options": [
+            "es:27:02",
+            "es:27:01",
+            "es:27:07"
+          ],
+          "answerId": "es:27:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Рюкзак, который купила Ана, красный»",
+            "uk": "Виберіть, як сказати: «Рюкзак, який купила Ана, червоний»",
+            "en": "Choose how to say: “The backpack that Ana bought is red”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:08",
+          "options": [
+            "es:27:08",
+            "es:27:07",
+            "es:27:10"
+          ],
+          "answerId": "es:27:08"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Врач, который пришёл",
+        "en": "The doctor who came"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Врач, который здесь работает, — мой брат».\nEl médico que trabaja aquí es mi hermano.\nЧитается: эль мэ́дико кэ траба́ха аки́ эс ми эрма́но.\nСлово que тут значит «который». Слово trabaja — «работает».\nEl médico que vino ayer es mi hermano.\nЭто «Врач, который пришёл вчера, — мой брат».\nEl camarero que nos dio la cuenta es mi vecino.\nЭто «Официант, который принёс нам счёт, — мой сосед».\nСлова nos dio значат «нам дал».",
+        "en": "Look at how to say “The doctor who works here is my brother”.\nEl médico que trabaja aquí es mi hermano.\nThe word que here means “who”. The word trabaja means “works”.\nEl médico que vino ayer es mi hermano.\nIt means “The doctor who came yesterday is my brother”.\nEl camarero que nos dio la cuenta es mi vecino.\nIt means “The waiter who gave us the bill is my neighbour”.\nThe words nos dio mean “gave us”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:27:11",
+          "say": {
+            "ru": "эль мэ́дико кэ траба́ха аки́ эс ми эрма́но",
+            "uk": "ель ме́діко ке траба́ха акі́ ес мі ерма́но"
+          }
+        },
+        {
+          "phraseId": "es:27:12",
+          "say": {
+            "ru": "эль мэ́дико кэ би́но айэ́р эс ми эрма́но",
+            "uk": "ель ме́діко ке бі́но айе́р ес мі ерма́но"
+          }
+        },
+        {
+          "phraseId": "es:27:14",
+          "say": {
+            "ru": "эль бэси́но кэ би́но айэ́р эс мэ́дико",
+            "uk": "ель бесі́но ке бі́но айе́р ес ме́діко"
+          }
+        },
+        {
+          "phraseId": "es:27:15",
+          "say": {
+            "ru": "эль камарэ́ро кэ нос дио ла куэ́нта эс ми бэси́но",
+            "uk": "ель камаре́ро ке нос діо ла куе́нта ес мі бесі́но"
+          }
+        },
+        {
+          "phraseId": "es:27:43",
+          "say": {
+            "ru": "эль клиэ́нтэ кэ йамо́ айэ́р эста́ аки́",
+            "uk": "ель кліе́нте ке йамо́ айе́р еста́ акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Врач, который здесь работает, — мой брат»",
+            "uk": "Виберіть, як сказати: «Лікар, який тут працює, — мій брат»",
+            "en": "Choose how to say: “The doctor who works here is my brother”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:27:11",
+          "options": [
+            "es:27:11",
+            "es:27:12",
+            "es:27:14"
+          ],
+          "answerId": "es:27:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Врач, который пришёл вчера, — мой брат»",
+            "uk": "Виберіть, як сказати: «Лікар, який прийшов учора, — мій брат»",
+            "en": "Choose how to say: “The doctor who came yesterday is my brother”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:12",
+          "options": [
+            "es:27:12",
+            "es:27:11",
+            "es:27:14"
+          ],
+          "answerId": "es:27:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Официант, который принёс нам счёт, — мой сосед»",
+            "uk": "Виберіть, як сказати: «Офіціант, який приніс нам рахунок, — мій сусід»",
+            "en": "Choose how to say: “The waiter who gave us the bill is my neighbour”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:15",
+          "options": [
+            "es:27:15",
+            "es:27:14",
+            "es:27:43"
+          ],
+          "answerId": "es:27:15"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Ключи, которые ты ищешь",
+        "en": "The keys that you are looking for"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ключи, которые ты ищешь, лежат на столе».\nLas llaves que buscas están en la mesa.\nЧитается: лас йа́бэс кэ бу́скас эста́н эн ла ме́са.\nСлово que и тут значит «которые». Слово buscas — «ты ищешь».\nLas llaves que me dio Luis están en la mesa.\nЭто «Ключи, которые мне дал Луис, лежат на столе».\nСлово me значит «мне».\nEl regalo que compré está en casa. — «Подарок, который я купил, дома.»",
+        "en": "Look at how to say “The keys that you are looking for are on the table”.\nLas llaves que buscas están en la mesa.\nThe word que here means “that” again. The word buscas means “you look for”.\nLas llaves que me dio Luis están en la mesa.\nIt means “The keys that Luis gave me are on the table”.\nThe word me means “me”.\nEl regalo que compré está en casa.\n“The gift that I bought is at home.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:27:16",
+          "say": {
+            "ru": "лас йа́бэс кэ бу́скас эста́н эн ла ме́са",
+            "uk": "лас йа́бес ке бу́скас еста́н ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:27:18",
+          "say": {
+            "ru": "лас йа́бэс кэ йэ́ба А́на эста́н эн ла ме́са",
+            "uk": "лас йа́бес ке йе́ба А́на еста́н ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:27:20",
+          "say": {
+            "ru": "лас йа́бэс кэ мэ дио Луи́с эста́н эн ла ме́са",
+            "uk": "лас йа́бес ке ме діо Луі́с еста́н ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:27:19",
+          "say": {
+            "ru": "лас йа́бэс кэ дэха́стэ аки́ эста́н эн ла ме́са",
+            "uk": "лас йа́бес ке деха́сте акі́ еста́н ен ла ме́са"
+          }
+        },
+        {
+          "phraseId": "es:27:17",
+          "say": {
+            "ru": "эль рэга́ло кэ компре́ эста́ эн ка́са",
+            "uk": "ель рега́ло ке компре́ еста́ ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключи, которые ты ищешь, лежат на столе»",
+            "uk": "Виберіть, як сказати: «Ключі, які ти шукаєш, лежать на столі»",
+            "en": "Choose how to say: “The keys that you are looking for are on the table”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:27:16",
+          "options": [
+            "es:27:16",
+            "es:27:18",
+            "es:27:20"
+          ],
+          "answerId": "es:27:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключи, которые мне дал Луис, лежат на столе»",
+            "uk": "Виберіть, як сказати: «Ключі, які мені дав Луїс, лежать на столі»",
+            "en": "Choose how to say: “The keys that Luis gave me are on the table”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:20",
+          "options": [
+            "es:27:20",
+            "es:27:16",
+            "es:27:19"
+          ],
+          "answerId": "es:27:20"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключи, которые несёт Ана, лежат на столе»",
+            "uk": "Виберіть, як сказати: «Ключі, які несе Ана, лежать на столі»",
+            "en": "Choose how to say: “The keys that Ana is carrying are on the table”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:18",
+          "options": [
+            "es:27:18",
+            "es:27:20",
+            "es:27:17"
+          ],
+          "answerId": "es:27:18"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не могу найти, чьё это",
+        "en": "I cannot find it, whose is it"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не могу найти сообщение, которое ты написал».\nNo encuentro el mensaje que escribiste.\nЧитается: но энкуэ́нтро эль мэнса́хэ кэ эскриби́стэ.\nСлова no encuentro значат «я не могу найти».\nСлово escribiste значит «ты написал».\n¿Dónde está el paquete que recibiste?\nЭто «Где посылка, которую ты получил?»\nСлово dónde значит «где». Слово paquete — «посылка».\n¿Es tuyo el bolso que está en la silla?\nЭто «Сумка, которая лежит на стуле, твоя?»\nСлово tuyo значит «твой, твоя». Слово silla — «стул».",
+        "en": "Look at how to say “I cannot find the message that you wrote”.\nNo encuentro el mensaje que escribiste.\nThe words no encuentro mean “I cannot find”.\nThe word escribiste means “you wrote”.\n¿Dónde está el paquete que recibiste?\nIt means “Where is the package that you received?”\nThe word dónde means “where”. The word paquete means “package”.\n¿Es tuyo el bolso que está en la silla?\nIt means “Is the bag that is on the chair yours?”\nThe word tuyo means “yours”. The word silla means “chair”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:27:21",
+          "say": {
+            "ru": "но энкуэ́нтро эль мэнса́хэ кэ эскриби́стэ",
+            "uk": "но енкуе́нтро ель менса́хе ке ескрібі́сте"
+          }
+        },
+        {
+          "phraseId": "es:27:22",
+          "say": {
+            "ru": "но энкуэ́нтро эль мэнса́хэ кэ мандо́ А́на",
+            "uk": "но енкуе́нтро ель менса́хе ке мандо́ А́на"
+          }
+        },
+        {
+          "phraseId": "es:27:25",
+          "say": {
+            "ru": "но энкуэ́нтро эль мэнса́хэ кэ бу́ска Луи́с",
+            "uk": "но енкуе́нтро ель менса́хе ке бу́ска Луі́с"
+          }
+        },
+        {
+          "phraseId": "es:27:26",
+          "say": {
+            "ru": "до́ндэ эста́ эль паке́тэ кэ рэсиби́стэ",
+            "uk": "до́нде еста́ ель паке́те ке ресібі́сте"
+          }
+        },
+        {
+          "phraseId": "es:27:27",
+          "say": {
+            "ru": "до́ндэ эста́ ла фо́то кэ компра́стэ",
+            "uk": "до́нде еста́ ла фо́то ке компра́сте"
+          }
+        },
+        {
+          "phraseId": "es:27:46",
+          "say": {
+            "ru": "эс ту́йо эль бо́льсо кэ эста́ эн ла си́йа",
+            "uk": "ес ту́йо ель бо́льсо ке еста́ ен ла сі́йа"
+          }
+        },
+        {
+          "phraseId": "es:27:47",
+          "say": {
+            "ru": "эс ту́йо эль рэло́х кэ энконтра́мос",
+            "uk": "ес ту́йо ель рело́х ке енконтра́мос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не могу найти сообщение, которое ты написал»",
+            "uk": "Виберіть, як сказати: «Я не можу знайти повідомлення, яке ти написав»",
+            "en": "Choose how to say: “I cannot find the message that you wrote”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:27:21",
+          "options": [
+            "es:27:21",
+            "es:27:22",
+            "es:27:25"
+          ],
+          "answerId": "es:27:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где посылка, которую ты получил?»",
+            "uk": "Виберіть, як сказати: «Де посилка, яку ти отримав?»",
+            "en": "Choose how to say: “Where is the package that you received?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:26",
+          "options": [
+            "es:27:26",
+            "es:27:27",
+            "es:27:21"
+          ],
+          "answerId": "es:27:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сумка, которая лежит на стуле, твоя?»",
+            "uk": "Виберіть, як сказати: «Сумка, яка лежить на стільці, твоя?»",
+            "en": "Choose how to say: “Is the bag that is on the chair yours?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:46",
+          "options": [
+            "es:27:46",
+            "es:27:47",
+            "es:27:26"
+          ],
+          "answerId": "es:27:46"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Магазин, поезд, который…",
+        "en": "The shop, the train that…"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Магазин, в котором продают книги, маленький».\nLa tienda que vende libros es pequeña.\nЧитается: ла тьэ́нда кэ бэ́ндэ ли́брос эс пэке́нья.\nСлово vende значит «продаёт». Слово vender — «продавать».\nLa tienda que visitamos ayer es pequeña.\nЭто «Магазин, в который мы вчера заходили, маленький».\nСлово visitamos значит «мы заходили». Слово visitar — «посещать».\nEl tren que sale ahora está allí.\nЭто «Поезд, который сейчас отправляется, вон там».\nСлово sale значит «отправляется». Слово salir — «выходить, отправляться».\nEl tren que vimos ayer está allí. — «Поезд, который мы видели вчера, вон там.»\nСлово vimos значит «мы видели». Слово ver — «видеть».",
+        "en": "Look at how to say “The shop that sells books is small”.\nLa tienda que vende libros es pequeña.\nThe word vende means “sells”. The word vender means “to sell”.\nLa tienda que visitamos ayer es pequeña.\nIt means “The shop we visited yesterday is small”.\nThe word visitamos means “we visited”. The word visitar means “to visit”.\nEl tren que sale ahora está allí.\nIt means “The train that is leaving now is over there”.\nThe word sale means “leaves”. The word salir means “to go out, to leave”.\nEl tren que vimos ayer está allí.\n“The train that we saw yesterday is over there.”\nThe word vimos means “we saw”. The word ver means “to see”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:27:34",
+          "say": {
+            "ru": "ла тьэ́нда кэ бэ́ндэ ли́брос эс пэке́нья",
+            "uk": "ла тье́нда ке бе́нде лі́брос ес пеке́нья"
+          }
+        },
+        {
+          "phraseId": "es:27:35",
+          "say": {
+            "ru": "ла тьэ́нда кэ бисита́мос айэ́р эс пэке́нья",
+            "uk": "ла тье́нда ке бісіта́мос айе́р ес пеке́нья"
+          }
+        },
+        {
+          "phraseId": "es:27:41",
+          "say": {
+            "ru": "эль трэн кэ са́лэ ао́ра эста́ айи́",
+            "uk": "ель трен ке са́ле ао́ра еста́ айі́"
+          }
+        },
+        {
+          "phraseId": "es:27:44",
+          "say": {
+            "ru": "эль трэн кэ би́мос айэ́р эста́ айи́",
+            "uk": "ель трен ке бі́мос айе́р еста́ айі́"
+          }
+        },
+        {
+          "phraseId": "es:27:45",
+          "say": {
+            "ru": "эль трэн кэ ва аль сэ́нтро эста́ айи́",
+            "uk": "ель трен ке ва аль се́нтро еста́ айі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазин, в котором продают книги, маленький»",
+            "uk": "Виберіть, як сказати: «Магазин, у якому продають книжки, маленький»",
+            "en": "Choose how to say: “The shop that sells books is small”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:27:34",
+          "options": [
+            "es:27:34",
+            "es:27:35",
+            "es:27:45"
+          ],
+          "answerId": "es:27:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поезд, который сейчас отправляется, вон там»",
+            "uk": "Виберіть, як сказати: «Потяг, який зараз відправляється, он там»",
+            "en": "Choose how to say: “The train that is leaving now is over there”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:41",
+          "options": [
+            "es:27:41",
+            "es:27:44",
+            "es:27:45"
+          ],
+          "answerId": "es:27:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазин, в который мы вчера заходили, маленький»",
+            "uk": "Виберіть, як сказати: «Магазин, до якого ми вчора заходили, маленький»",
+            "en": "Choose how to say: “The shop that we visited yesterday is small”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:27:35",
+          "options": [
+            "es:27:35",
+            "es:27:34",
+            "es:27:44"
+          ],
+          "answerId": "es:27:35"
+        }
+      ]
+    }
+  ]
+}

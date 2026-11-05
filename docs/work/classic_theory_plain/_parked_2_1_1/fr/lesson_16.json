@@ -1,0 +1,485 @@
+{
+  "lang": "fr",
+  "lesson": 16,
+  "title": {
+    "ru": "Заходи, заходите, давайте",
+    "en": "Come in, let’s go"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Заходи, заходите",
+        "en": "Come in"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Заходи!»\nEntre ! — «Заходи!»\nЧитается: антр.\nТак говорят близкому человеку. Слова «я» и «ты» не нужны.\nEntrez ! — «Заходите!»\nТак говорят вам или нескольким людям. Слово чуть длиннее.\nAttends ! — «Подожди!»\nAttendez ! — «Подождите!»\nReste ici ! — «Останься здесь!»\nRestez ici ! — «Останьтесь здесь!»\nБлизкому человеку — короткое слово. Вам — длиннее.",
+        "en": "Look at how to say “Come in!”\nEntre ! — “Come in!”\nThis is said to a close person. No word for “I” or “you” is needed.\nEntrez ! — “Come in!”\nThis is said to you politely or to several people. The word is a bit longer.\nAttends ! — “Wait!”\nAttendez ! — “Please wait!”\nReste ici ! — “Stay here!”\nRestez ici ! — “Please stay here!”\nShort word for a close person. Longer word for “you” politely."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:16:01",
+          "say": {
+            "ru": "антр",
+            "uk": "антр"
+          }
+        },
+        {
+          "phraseId": "fr:16:02",
+          "say": {
+            "ru": "антре́",
+            "uk": "антре́"
+          }
+        },
+        {
+          "phraseId": "fr:16:03",
+          "say": {
+            "ru": "атан",
+            "uk": "атан"
+          }
+        },
+        {
+          "phraseId": "fr:16:04",
+          "say": {
+            "ru": "атанде́",
+            "uk": "атанде́"
+          }
+        },
+        {
+          "phraseId": "fr:16:05",
+          "say": {
+            "ru": "рэст иси́",
+            "uk": "рест ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:16:06",
+          "say": {
+            "ru": "рэсте́ иси́",
+            "uk": "ресте́ ісі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Заходи!»",
+            "uk": "Виберіть, як сказати: «Заходь!»",
+            "en": "Choose how to say: “Come in!”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:16:01",
+          "options": [
+            "fr:16:01",
+            "fr:16:03",
+            "fr:16:05"
+          ],
+          "answerId": "fr:16:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Подождите!»",
+            "uk": "Виберіть, як сказати: «Зачекайте!»",
+            "en": "Choose how to say: “Please wait!”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:04",
+          "options": [
+            "fr:16:04",
+            "fr:16:03",
+            "fr:16:02"
+          ],
+          "answerId": "fr:16:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Останьтесь здесь!»",
+            "uk": "Виберіть, як сказати: «Залишайтеся тут!»",
+            "en": "Choose how to say: “Please stay here!”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:06",
+          "options": [
+            "fr:16:06",
+            "fr:16:05",
+            "fr:16:01"
+          ],
+          "answerId": "fr:16:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Сделай",
+        "en": "Do it"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Закрой дверь!»\nFerme la porte ! — «Закрой дверь!»\nЧитается: фэрм ла порт.\nСлово ferme значит «закрой».\nOuvre la fenêtre ! — «Открой окно!»\nСлово ouvre значит «открой». Слово fenêtre значит «окно».\nPose le sac ici ! — «Поставь сумку сюда!»\nСлово pose значит «поставь».\nAttache ta ceinture ! — «Пристегни ремень!»\nСлово attache значит «пристегни». Слово ceinture значит «ремень».\nFerme le robinet ! — «Закрой кран!»\nСлово robinet значит «кран».\nТак говорят близкому человеку.",
+        "en": "Look at how to say “Close the door!”\nFerme la porte ! — “Close the door!”\nThe word ferme means “close”.\nOuvre la fenêtre ! — “Open the window!”\nThe word ouvre means “open”. The word fenêtre means “window”.\nPose le sac ici ! — “Put the bag here!”\nThe word pose means “put”.\nAttache ta ceinture ! — “Fasten your belt!”\nThe word attache means “fasten”. The word ceinture means “belt”.\nFerme le robinet ! — “Close the tap!”\nThe word robinet means “tap”.\nThis is said to a close person."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:16:11",
+          "say": {
+            "ru": "фэрм ла порт",
+            "uk": "ферм ла порт"
+          }
+        },
+        {
+          "phraseId": "fr:16:12",
+          "say": {
+            "ru": "увр ла фенэ́тр",
+            "uk": "увр ла фене́тр"
+          }
+        },
+        {
+          "phraseId": "fr:16:13",
+          "say": {
+            "ru": "поз лё сак иси́",
+            "uk": "поз льо сак ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:16:46",
+          "say": {
+            "ru": "аташ та сентюр",
+            "uk": "аташ та сентюр"
+          }
+        },
+        {
+          "phraseId": "fr:16:48",
+          "say": {
+            "ru": "фэрм лё робинэ́",
+            "uk": "ферм льо робіне́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Закрой дверь!»",
+            "uk": "Виберіть, як сказати: «Зачини двері!»",
+            "en": "Choose how to say: “Close the door!”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:16:11",
+          "options": [
+            "fr:16:11",
+            "fr:16:12",
+            "fr:16:13"
+          ],
+          "answerId": "fr:16:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поставь сумку сюда!»",
+            "uk": "Виберіть, як сказати: «Постав сумку сюди!»",
+            "en": "Choose how to say: “Put the bag here!”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:13",
+          "options": [
+            "fr:16:13",
+            "fr:16:46",
+            "fr:16:48"
+          ],
+          "answerId": "fr:16:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Закрой кран!»",
+            "uk": "Виберіть, як сказати: «Закрий кран!»",
+            "en": "Choose how to say: “Close the tap!”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:48",
+          "options": [
+            "fr:16:48",
+            "fr:16:11",
+            "fr:16:46"
+          ],
+          "answerId": "fr:16:48"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Сделайте, пожалуйста",
+        "en": "Please do it"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Распишитесь внизу, пожалуйста».\nSignez en bas, s’il vous plaît. — «Распишитесь внизу, пожалуйста.»\nЧитается: синье́ ан ба, силь ву плэ.\nСлова s’il vous plaît значат «пожалуйста». Слово signez значит «распишитесь».\nMontrez votre billet, s’il vous plaît. — «Покажите свой билет, пожалуйста.»\nСлово montrez значит «покажите».\nAppuyez sur le bouton vert. — «Нажмите зелёную кнопку.»\nСлово appuyez значит «нажмите».\nPosez le colis sur la balance. — «Положите посылку на весы.»\nСлово balance значит «весы».\nVérifiez le montant. — «Проверьте сумму.»\nСлово montant значит «сумма платежа».\nBaissez le volume, s’il vous plaît. — «Убавьте громкость, пожалуйста.»\nСлово volume значит «громкость».",
+        "en": "Look at how to say “Please sign at the bottom”.\nSignez en bas, s’il vous plaît. — “Please sign at the bottom.”\nThe words s’il vous plaît mean “please”. The word signez means “sign”.\nMontrez votre billet, s’il vous plaît. — “Please show your ticket.”\nThe word montrez means “show”.\nAppuyez sur le bouton vert. — “Press the green button.”\nThe word appuyez means “press”.\nPosez le colis sur la balance. — “Put the parcel on the scales.”\nThe word balance means “scales”.\nVérifiez le montant. — “Check the amount.”\nThe word montant means “amount to pay”.\nBaissez le volume, s’il vous plaît. — “Please turn the volume down.”\nThe word volume means “volume”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:16:21",
+          "say": {
+            "ru": "синье́ ан ба, силь ву плэ",
+            "uk": "сінье́ ан ба, сіль ву пле"
+          }
+        },
+        {
+          "phraseId": "fr:16:22",
+          "say": {
+            "ru": "монтре́ вотр бийэ́, силь ву плэ",
+            "uk": "монтре́ вотр бійе́, сіль ву пле"
+          }
+        },
+        {
+          "phraseId": "fr:16:25",
+          "say": {
+            "ru": "апюйе́ сюр лё бутон вэр",
+            "uk": "апюйе́ сюр льо бутон вер"
+          }
+        },
+        {
+          "phraseId": "fr:16:28",
+          "say": {
+            "ru": "позе́ лё коли́ сюр ла баланс",
+            "uk": "позе́ льо колі́ сюр ла баланс"
+          }
+        },
+        {
+          "phraseId": "fr:16:29",
+          "say": {
+            "ru": "верифье́ лё монтан",
+            "uk": "веріфье́ льо монтан"
+          }
+        },
+        {
+          "phraseId": "fr:16:47",
+          "say": {
+            "ru": "бессе́ лё волюм, силь ву плэ",
+            "uk": "бессе́ льо волюм, сіль ву пле"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Распишитесь внизу, пожалуйста»",
+            "uk": "Виберіть, як сказати: «Розпишіться внизу, будь ласка»",
+            "en": "Choose how to say: “Please sign at the bottom”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:16:21",
+          "options": [
+            "fr:16:21",
+            "fr:16:22",
+            "fr:16:25"
+          ],
+          "answerId": "fr:16:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Положите посылку на весы»",
+            "uk": "Виберіть, як сказати: «Покладіть посилку на ваги»",
+            "en": "Choose how to say: “Put the parcel on the scales”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:28",
+          "options": [
+            "fr:16:28",
+            "fr:16:29",
+            "fr:16:47"
+          ],
+          "answerId": "fr:16:28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Убавьте громкость, пожалуйста»",
+            "uk": "Виберіть, як сказати: «Зменште гучність, будь ласка»",
+            "en": "Choose how to say: “Please turn the volume down”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:47",
+          "options": [
+            "fr:16:47",
+            "fr:16:25",
+            "fr:16:22"
+          ],
+          "answerId": "fr:16:47"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не делай",
+        "en": "Do not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Не беги!»\nNe cours pas ! — «Не беги!»\nЧитается: нё кур па.\nСлова ne и pas стоят вокруг слова cours и значат «не». Здесь cours значит «беги».\nN’oublie pas ton parapluie ! — «Не забудь свой зонт!»\nСлово n’oublie значит «не забудь».\nNe perdez pas le reçu ! — «Не потеряйте чек!»\nСлово perdez значит «потеряйте».\nN’ajoutez pas de sel ! — «Не добавляйте соль!»\nСлово n’ajoutez значит «не добавляйте».",
+        "en": "Look at how to say “Do not run!”\nNe cours pas ! — “Do not run!”\nThe words ne and pas stand around cours and mean “not”. Here cours means “run”.\nN’oublie pas ton parapluie ! — “Do not forget your umbrella!”\nThe word oublie means “forget”.\nNe perdez pas le reçu ! — “Do not lose the receipt!”\nThe word perdez means “lose”.\nN’ajoutez pas de sel ! — “Do not add salt!”\nThe word ajoutez means “add”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:16:31",
+          "say": {
+            "ru": "нё кур па",
+            "uk": "ньо кур па"
+          }
+        },
+        {
+          "phraseId": "fr:16:33",
+          "say": {
+            "ru": "нубли́ па тон параплюи́",
+            "uk": "нублі́ па тон параплюі́"
+          }
+        },
+        {
+          "phraseId": "fr:16:35",
+          "say": {
+            "ru": "нё пердэ́ па лё рэсю́",
+            "uk": "ньо перде́ па льо ресю́"
+          }
+        },
+        {
+          "phraseId": "fr:16:37",
+          "say": {
+            "ru": "ажутэ́ па дё сэль",
+            "uk": "ажуте́ па дьо сель"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не беги!»",
+            "uk": "Виберіть, як сказати: «Не біжи!»",
+            "en": "Choose how to say: “Do not run!”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:16:31",
+          "options": [
+            "fr:16:31",
+            "fr:16:33",
+            "fr:16:35"
+          ],
+          "answerId": "fr:16:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не потеряйте чек!»",
+            "uk": "Виберіть, як сказати: «Не втратьте чек!»",
+            "en": "Choose how to say: “Do not lose the receipt!”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:35",
+          "options": [
+            "fr:16:35",
+            "fr:16:37",
+            "fr:16:31"
+          ],
+          "answerId": "fr:16:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не добавляйте соль!»",
+            "uk": "Виберіть, як сказати: «Не додавайте сіль!»",
+            "en": "Choose how to say: “Do not add salt!”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:37",
+          "options": [
+            "fr:16:37",
+            "fr:16:33",
+            "fr:16:35"
+          ],
+          "answerId": "fr:16:37"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Давайте",
+        "en": "Let’s"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Пойдём на рынок!»\nAllons au marché ! — «Пойдём на рынок!»\nЧитается: алон о марше́.\nСлово allons вы знаете: «мы идём». Здесь оно значит «пойдём».\nFaisons une pause ! — «Давайте сделаем перерыв!»\nСлово faisons значит «давайте сделаем». Слово pause значит «перерыв».\nRestons ensemble ! — «Давайте держаться вместе!»\nСлово restons значит «давайте останемся».\nCherchons une autre table ! — «Давайте поищем другой столик!»\nСлово cherchons значит «давайте поищем». Слово autre значит «другой».\nТак зовут сделать что-то вместе с собой.",
+        "en": "Look at how to say “Let’s go to the market!”\nAllons au marché ! — “Let’s go to the market!”\nYou know the word allons: “we go”. Here it means “let’s go”.\nFaisons une pause ! — “Let’s take a break!”\nThe word faisons means “let’s make”. The word pause means “break”.\nRestons ensemble ! — “Let’s stay together!”\nThe word restons means “let’s stay”.\nCherchons une autre table ! — “Let’s look for another table!”\nThe word cherchons means “let’s look for”. The word autre means “other”.\nThis is how we invite someone to do something together."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:16:41",
+          "say": {
+            "ru": "алон о марше́",
+            "uk": "алон о марше́"
+          }
+        },
+        {
+          "phraseId": "fr:16:42",
+          "say": {
+            "ru": "фёзон юн поз",
+            "uk": "фьозон юн поз"
+          }
+        },
+        {
+          "phraseId": "fr:16:43",
+          "say": {
+            "ru": "рэстон ансанбль",
+            "uk": "рестон ансанбль"
+          }
+        },
+        {
+          "phraseId": "fr:16:44",
+          "say": {
+            "ru": "шэршон юн отр табль",
+            "uk": "шершон юн отр табль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пойдём на рынок!»",
+            "uk": "Виберіть, як сказати: «Підемо на ринок!»",
+            "en": "Choose how to say: “Let’s go to the market!”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:16:41",
+          "options": [
+            "fr:16:41",
+            "fr:16:42",
+            "fr:16:43"
+          ],
+          "answerId": "fr:16:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Давайте держаться вместе!»",
+            "uk": "Виберіть, як сказати: «Давайте триматися разом!»",
+            "en": "Choose how to say: “Let’s stay together!”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:43",
+          "options": [
+            "fr:16:43",
+            "fr:16:44",
+            "fr:16:41"
+          ],
+          "answerId": "fr:16:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Давайте поищем другой столик!»",
+            "uk": "Виберіть, як сказати: «Пошукаймо інший столик!»",
+            "en": "Choose how to say: “Let’s look for another table!”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:16:44",
+          "options": [
+            "fr:16:44",
+            "fr:16:42",
+            "fr:16:43"
+          ],
+          "answerId": "fr:16:44"
+        }
+      ]
+    }
+  ]
+}

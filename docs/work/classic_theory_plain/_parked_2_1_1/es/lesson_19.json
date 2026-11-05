@@ -1,0 +1,478 @@
+{
+  "lang": "es",
+  "lesson": 19,
+  "title": {
+    "ru": "Что я делаю сейчас",
+    "en": "What I am doing now"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я сейчас читаю",
+        "en": "I am reading now"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сейчас читаю книгу».\nEstoy leyendo el libro. — «Я сейчас читаю книгу.»\nЧитается: эсто́й лэйэ́ндо эль ли́бро.\nЗдесь два слова. Слово estoy вы знаете. Слово leyendo показывает, что читают прямо сейчас.\nВместе estoy leyendo значит «я сейчас читаю».\nEstás leyendo el libro. — «Ты сейчас читаешь книгу.»\nМеняется только первое слово: estoy, estás. Слово leyendo остаётся.\nAna está escribiendo una carta. — «Ана сейчас пишет письмо.»\nEstamos escribiendo una carta. — «Мы сейчас пишем письмо.»\nСлово escribiendo показывает, что пишут прямо сейчас. Конец такой же, «-ендо».",
+        "en": "Look at how to say “I am reading the book now”.\nEstoy leyendo el libro. — “I am reading the book now.”\nThere are two words here. You know the word estoy. The word leyendo means “reading”.\nTogether estoy leyendo means “I am reading now”.\nEstás leyendo el libro. — “You are reading the book now.”\nOnly the first word changes: estoy, estás. The word leyendo stays.\nAna está escribiendo una carta. — “Ana is writing a letter now.”\nEstamos escribiendo una carta. — “We are writing a letter now.”\nThe word escribiendo means “writing”. It ends the same way, “-endo”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:19:01",
+          "say": {
+            "ru": "эсто́й лэйэ́ндо эль ли́бро",
+            "uk": "есто́й лейе́ндо ель лі́бро"
+          }
+        },
+        {
+          "phraseId": "es:19:02",
+          "say": {
+            "ru": "эста́с лэйэ́ндо эль ли́бро",
+            "uk": "еста́с лейе́ндо ель лі́бро"
+          }
+        },
+        {
+          "phraseId": "es:19:05",
+          "say": {
+            "ru": "А́на эста́ эскрибье́ндо у́на ка́рта",
+            "uk": "А́на еста́ ескрібье́ндо у́на ка́рта"
+          }
+        },
+        {
+          "phraseId": "es:19:06",
+          "say": {
+            "ru": "эста́мос эскрибье́ндо у́на ка́рта",
+            "uk": "еста́мос ескрібье́ндо у́на ка́рта"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сейчас читаю книгу»",
+            "uk": "Виберіть, як сказати: «Я зараз читаю книжку»",
+            "en": "Choose how to say: “I am reading the book now”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:19:01",
+          "options": [
+            "es:19:01",
+            "es:19:02",
+            "es:19:05"
+          ],
+          "answerId": "es:19:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана сейчас пишет письмо»",
+            "uk": "Виберіть, як сказати: «Ана зараз пише листа»",
+            "en": "Choose how to say: “Ana is writing a letter now”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:05",
+          "options": [
+            "es:19:05",
+            "es:19:01",
+            "es:19:06"
+          ],
+          "answerId": "es:19:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сейчас пишем письмо»",
+            "uk": "Виберіть, як сказати: «Ми зараз пишемо листа»",
+            "en": "Choose how to say: “We are writing a letter now”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:06",
+          "options": [
+            "es:19:06",
+            "es:19:05",
+            "es:19:02"
+          ],
+          "answerId": "es:19:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я сейчас ем, пью",
+        "en": "I am eating, drinking now"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Луис сейчас ест дома».\nLuis está comiendo en casa. — «Луис сейчас ест дома.»\nЧитается: Луи́с эста́ комье́ндо эн ка́са.\nСлово comiendo показывает, что едят прямо сейчас. Вместе está comiendo — «сейчас ест».\nEstamos comiendo en casa. — «Мы сейчас едим дома.»\nEstoy bebiendo agua. — «Я сейчас пью воду.»\nСлово bebiendo показывает, что пьют прямо сейчас. Вместе estoy bebiendo — «я сейчас пью».\nAna está bebiendo café. — «Ана сейчас пьёт кофе.»",
+        "en": "Look at how to say “Luis is eating at home now”.\nLuis está comiendo en casa. — “Luis is eating at home now.”\nThe word comiendo means “eating”. Together está comiendo — “is eating now”.\nEstamos comiendo en casa. — “We are eating at home now.”\nEstoy bebiendo agua. — “I am drinking water now.”\nThe word bebiendo means “drinking”. Together estoy bebiendo — “I am drinking now”.\nAna está bebiendo café. — “Ana is drinking coffee now.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:19:09",
+          "say": {
+            "ru": "Луи́с эста́ комье́ндо эн ка́са",
+            "uk": "Луі́с еста́ комье́ндо ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:19:10",
+          "say": {
+            "ru": "эста́мос комье́ндо эн ка́са",
+            "uk": "еста́мос комье́ндо ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:19:11",
+          "say": {
+            "ru": "эсто́й бэбье́ндо а́гуа",
+            "uk": "есто́й бебье́ндо а́гуа"
+          }
+        },
+        {
+          "phraseId": "es:19:12",
+          "say": {
+            "ru": "А́на эста́ бэбье́ндо кафэ́",
+            "uk": "А́на еста́ бебье́ндо кафе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис сейчас ест дома»",
+            "uk": "Виберіть, як сказати: «Луїс зараз їсть вдома»",
+            "en": "Choose how to say: “Luis is eating at home now”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:19:09",
+          "options": [
+            "es:19:09",
+            "es:19:10",
+            "es:19:11"
+          ],
+          "answerId": "es:19:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сейчас пью воду»",
+            "uk": "Виберіть, як сказати: «Я зараз п’ю воду»",
+            "en": "Choose how to say: “I am drinking water now”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:11",
+          "options": [
+            "es:19:11",
+            "es:19:12",
+            "es:19:10"
+          ],
+          "answerId": "es:19:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сейчас едим дома»",
+            "uk": "Виберіть, як сказати: «Ми зараз їмо вдома»",
+            "en": "Choose how to say: “We are eating at home now”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:10",
+          "options": [
+            "es:19:10",
+            "es:19:09",
+            "es:19:12"
+          ],
+          "answerId": "es:19:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я режу, готовлю, пробую",
+        "en": "I cut, cook, taste"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я сейчас режу луковицу».\nEstoy cortando una cebolla. — «Я сейчас режу луковицу.»\nЧитается: эсто́й корта́ндо у́на сэбо́йа.\nСлово cortando показывает, что режут. Слово cebolla значит «луковица».\nЗдесь конец другой, «-андо». Смысл тот же.\nLuis está preparando una sopa. — «Луис сейчас варит суп.»\nСлово sopa значит «суп».\nEstoy probando la sopa. — «Я сейчас пробую суп.»\nСлово probando показывает, что пробуют на вкус.\nEstamos envolviendo el regalo. — «Мы сейчас заворачиваем подарок.»\nСлово regalo значит «подарок».",
+        "en": "Look at how to say “I am cutting an onion now”.\nEstoy cortando una cebolla. — “I am cutting an onion now.”\nThe word cortando means “cutting”. The word cebolla means “onion”.\nThe ending here is different, “-ando”. The meaning is the same.\nLuis está preparando una sopa. — “Luis is making soup now.”\nThe word sopa means “soup”.\nEstoy probando la sopa. — “I am tasting the soup now.”\nThe word probando means “tasting”.\nEstamos envolviendo el regalo. — “We are wrapping the gift now.”\nThe word regalo means “gift”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:19:07",
+          "say": {
+            "ru": "эсто́й корта́ндо у́на сэбо́йа",
+            "uk": "есто́й корта́ндо у́на себо́йа"
+          }
+        },
+        {
+          "phraseId": "es:19:14",
+          "say": {
+            "ru": "Луи́с эста́ прэпара́ндо у́на со́па",
+            "uk": "Луі́с еста́ препара́ндо у́на со́па"
+          }
+        },
+        {
+          "phraseId": "es:19:24",
+          "say": {
+            "ru": "эсто́й проба́ндо ла со́па",
+            "uk": "есто́й проба́ндо ла со́па"
+          }
+        },
+        {
+          "phraseId": "es:19:27",
+          "say": {
+            "ru": "эста́с корта́ндо лас бэрду́рас",
+            "uk": "еста́с корта́ндо лас берду́рас"
+          }
+        },
+        {
+          "phraseId": "es:19:31",
+          "say": {
+            "ru": "эста́мос энболвье́ндо эль рэга́ло",
+            "uk": "еста́мос енболвье́ндо ель рега́ло"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сейчас режу луковицу»",
+            "uk": "Виберіть, як сказати: «Я зараз ріжу цибулину»",
+            "en": "Choose how to say: “I am cutting an onion now”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:19:07",
+          "options": [
+            "es:19:07",
+            "es:19:14",
+            "es:19:27"
+          ],
+          "answerId": "es:19:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис сейчас варит суп»",
+            "uk": "Виберіть, як сказати: «Луїс зараз варить суп»",
+            "en": "Choose how to say: “Luis is making soup now”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:14",
+          "options": [
+            "es:19:14",
+            "es:19:24",
+            "es:19:07"
+          ],
+          "answerId": "es:19:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сейчас пробую суп»",
+            "uk": "Виберіть, як сказати: «Я зараз куштую суп»",
+            "en": "Choose how to say: “I am tasting the soup now”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:24",
+          "options": [
+            "es:19:24",
+            "es:19:14",
+            "es:19:31"
+          ],
+          "answerId": "es:19:24"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я мою, вытираю, открываю",
+        "en": "I wash, dry, open"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана сейчас вытирает тарелки».\nAna está secando los platos. — «Ана сейчас вытирает тарелки.»\nЧитается: А́на эста́ сэка́ндо лос пла́тос.\nСлово secando показывает, что вытирают. Слово platos значит «тарелки».\nEstamos fregando los platos. — «Мы сейчас моем посуду.»\nСлово fregando показывает, что моют посуду.\nMe estoy lavando las manos. — «Я сейчас мою руки.»\nСлово me стоит перед estoy.\nEstoy abriendo la puerta. — «Я сейчас открываю дверь.»\nAna está llevando la maleta. — «Ана сейчас несёт чемодан.»",
+        "en": "Look at how to say “Ana is drying the plates now”.\nAna está secando los platos. — “Ana is drying the plates now.”\nThe word secando means “drying”. The word platos means “plates”.\nEstamos fregando los platos. — “We are washing the dishes now.”\nThe word fregando means “washing up”.\nMe estoy lavando las manos. — “I am washing my hands now.”\nThe word me goes before estoy.\nEstoy abriendo la puerta. — “I am opening the door now.”\nAna está llevando la maleta. — “Ana is carrying the suitcase now.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:19:18",
+          "say": {
+            "ru": "А́на эста́ сэка́ндо лос пла́тос",
+            "uk": "А́на еста́ сека́ндо лос пла́тос"
+          }
+        },
+        {
+          "phraseId": "es:19:23",
+          "say": {
+            "ru": "эста́мос фрэга́ндо лос пла́тос",
+            "uk": "еста́мос фрега́ндо лос пла́тос"
+          }
+        },
+        {
+          "phraseId": "es:19:34",
+          "say": {
+            "ru": "мэ эсто́й лаба́ндо лас ма́нос",
+            "uk": "ме есто́й лаба́ндо лас ма́нос"
+          }
+        },
+        {
+          "phraseId": "es:19:15",
+          "say": {
+            "ru": "эсто́й абрье́ндо ла пуэ́рта",
+            "uk": "есто́й абрье́ндо ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:19:17",
+          "say": {
+            "ru": "А́на эста́ йэба́ндо ла мале́та",
+            "uk": "А́на еста́ йеба́ндо ла мале́та"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана сейчас вытирает тарелки»",
+            "uk": "Виберіть, як сказати: «Ана зараз витирає тарілки»",
+            "en": "Choose how to say: “Ana is drying the plates now”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:19:18",
+          "options": [
+            "es:19:18",
+            "es:19:23",
+            "es:19:34"
+          ],
+          "answerId": "es:19:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сейчас моем посуду»",
+            "uk": "Виберіть, як сказати: «Ми зараз миємо посуд»",
+            "en": "Choose how to say: “We are washing the dishes now”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:23",
+          "options": [
+            "es:19:23",
+            "es:19:18",
+            "es:19:15"
+          ],
+          "answerId": "es:19:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я сейчас открываю дверь»",
+            "uk": "Виберіть, як сказати: «Я зараз відчиняю двері»",
+            "en": "Choose how to say: “I am opening the door now”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:15",
+          "options": [
+            "es:19:15",
+            "es:19:17",
+            "es:19:34"
+          ],
+          "answerId": "es:19:15"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не и вопрос",
+        "en": "Not, and a question"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы сейчас не пьём кофе».\nNo estamos bebiendo café ahora. — «Мы сейчас не пьём кофе.»\nЧитается: но эста́мос бэбье́ндо кафэ́ ао́ра.\nСлово no стоит перед estamos.\nLuis no está abriendo la puerta ahora. — «Луис сейчас не открывает дверь.»\nMis hermanas están esperando aquí ahora. — «Мои сёстры сейчас ждут здесь.»\nА теперь вопрос. Слова те же, голос в конце идёт вверх.\n¿Estás trabajando en casa? — «Ты сейчас работаешь дома?»\n¿Estamos esperando aquí? — «Мы сейчас ждём здесь?»\n¿Mis hermanas están bebiendo café? — «Мои сёстры сейчас пьют кофе?»",
+        "en": "Look at how to say “We are not drinking coffee now”.\nNo estamos bebiendo café ahora. — “We are not drinking coffee now.”\nThe word no goes before estamos.\nLuis no está abriendo la puerta ahora.\n“Luis is not opening the door now.”\nMis hermanas están esperando aquí ahora. — “My sisters are waiting here now.”\nAnd now a question. The words are the same, the voice goes up at the end.\n¿Estás trabajando en casa? — “Are you working at home now?”\n¿Estamos esperando aquí? — “Are we waiting here now?”\n¿Mis hermanas están bebiendo café? — “Are my sisters drinking coffee now?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:19:36",
+          "say": {
+            "ru": "но эста́мос бэбье́ндо кафэ́ ао́ра",
+            "uk": "но еста́мос бебье́ндо кафе́ ао́ра"
+          }
+        },
+        {
+          "phraseId": "es:19:40",
+          "say": {
+            "ru": "Луи́с но эста́ абрье́ндо ла пуэ́рта ао́ра",
+            "uk": "Луі́с но еста́ абрье́ндо ла пуе́рта ао́ра"
+          }
+        },
+        {
+          "phraseId": "es:19:25",
+          "say": {
+            "ru": "мис эрма́нас эста́н эспэра́ндо аки́ ао́ра",
+            "uk": "міс ерма́нас еста́н еспера́ндо акі́ ао́ра"
+          }
+        },
+        {
+          "phraseId": "es:19:41",
+          "say": {
+            "ru": "эста́с трабаха́ндо эн ка́са",
+            "uk": "еста́с трабаха́ндо ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:19:47",
+          "say": {
+            "ru": "эста́мос эспэра́ндо аки́",
+            "uk": "еста́мос еспера́ндо акі́"
+          }
+        },
+        {
+          "phraseId": "es:19:49",
+          "say": {
+            "ru": "мис эрма́нас эста́н бэбье́ндо кафэ́",
+            "uk": "міс ерма́нас еста́н бебье́ндо кафе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сейчас не пьём кофе»",
+            "uk": "Виберіть, як сказати: «Ми зараз не п’ємо каву»",
+            "en": "Choose how to say: “We are not drinking coffee now”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:19:36",
+          "options": [
+            "es:19:36",
+            "es:19:25",
+            "es:19:40"
+          ],
+          "answerId": "es:19:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты сейчас работаешь дома?»",
+            "uk": "Виберіть, як сказати: «Ти зараз працюєш вдома?»",
+            "en": "Choose how to say: “Are you working at home now?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:41",
+          "options": [
+            "es:19:41",
+            "es:19:47",
+            "es:19:25"
+          ],
+          "answerId": "es:19:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сейчас ждём здесь?»",
+            "uk": "Виберіть, як сказати: «Ми зараз чекаємо тут?»",
+            "en": "Choose how to say: “Are we waiting here now?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:19:47",
+          "options": [
+            "es:19:47",
+            "es:19:41",
+            "es:19:49"
+          ],
+          "answerId": "es:19:47"
+        }
+      ]
+    }
+  ]
+}

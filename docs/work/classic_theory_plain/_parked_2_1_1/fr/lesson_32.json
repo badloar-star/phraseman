@@ -1,0 +1,485 @@
+{
+  "lang": "fr",
+  "lesson": 32,
+  "title": {
+    "ru": "Если бы... то бы: слово si",
+    "en": "If... then...: the word si"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Если бы у меня было",
+        "en": "If I had"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если бы у меня было время, я бы пришел».\nSi j’avais le temps, je viendrais.\n«Если бы у меня было время, я бы пришел.»\nЧитается: си жавэ́ лё тан, жё вьендрэ́.\nСлово si значит «если бы». Слово avais значит «было у меня».\nСлово temps значит «время». Слово viendrais значит «пришёл бы».\nПервая часть — условие. Вторая часть — что тогда будет, с «бы».\nSi tu avais le temps, tu viendrais.\n«Если бы у тебя было время, ты бы пришел.»\nSi j’avais le choix, je resterais.\n«Если бы у меня был выбор, я бы остался.»\nСлово choix значит «выбор». Слово resterais значит «остался бы».\nSi Paul avait une voiture, il viendrait.\n«Если бы у Поля была машина, он бы приехал.»\nСлово voiture значит «машина». Слово viendrait значит «приехал бы».\nСлово меняется, смотря о ком речь: я — viendrais, он — viendrait.\nSi j’avais un billet, j’entrerais.\n«Если бы у меня был билет, я бы вошел.»\nСлово j’entrerais значит «я бы вошёл». Слово billet значит «билет».",
+        "en": "Look at how to say “If I had time, I would come”.\nSi j’avais le temps, je viendrais.\n“If I had time, I would come.”\nThe word si means “if”. The word avais means “had”.\nThe word temps means “time”. The word viendrais means “would come”.\nThe first part is the condition. The second part is what would happen then.\nSi tu avais le temps, tu viendrais.\n“If you had time, you would come.”\nSi j’avais le choix, je resterais.\n“If I had a choice, I would stay.”\nThe word choix means “choice”. The word resterais means “would stay”.\nSi Paul avait une voiture, il viendrait.\n“If Paul had a car, he would come.”\nThe word voiture means “car”. The word viendrait means “would come”.\nThe word changes depending on who it is about: I\nviendrais, he\nSi j’avais un billet, j’entrerais.\n“If I had a ticket, I would go in.”\nThe word j’entrerais means “I would go in”. The word billet means “ticket”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:32:01",
+          "say": {
+            "ru": "си жавэ́ лё тан, жё вьендрэ́",
+            "uk": "сі жаве́ льо тан, жьо вьендре́"
+          }
+        },
+        {
+          "phraseId": "fr:32:02",
+          "say": {
+            "ru": "си тю авэ́ лё тан, тю вьендрэ́",
+            "uk": "сі тю аве́ льо тан, тю вьендре́"
+          }
+        },
+        {
+          "phraseId": "fr:32:03",
+          "say": {
+            "ru": "си жавэ́ лё шуа, жё рэстрэ́",
+            "uk": "сі жаве́ льо шуа, жьо рестре́"
+          }
+        },
+        {
+          "phraseId": "fr:32:08",
+          "say": {
+            "ru": "си поль авэ́ юн вуатю́р, иль вьендрэ́",
+            "uk": "сі поль аве́ юн вуатю́р, іль вьендре́"
+          }
+        },
+        {
+          "phraseId": "fr:32:10",
+          "say": {
+            "ru": "си жавэ́ ан бийэ́, жантрёрэ́",
+            "uk": "сі жаве́ ан бійе́, жантрьоре́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня было время, я бы пришел»",
+            "uk": "Виберіть, як сказати: «Якби в мене був час, я б прийшов»",
+            "en": "Choose how to say: “If I had time, I would come”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:32:01",
+          "options": [
+            "fr:32:01",
+            "fr:32:02",
+            "fr:32:03"
+          ],
+          "answerId": "fr:32:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня был выбор, я бы остался»",
+            "uk": "Виберіть, як сказати: «Якби в мене був вибір, я б залишився»",
+            "en": "Choose how to say: “If I had a choice, I would stay”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:03",
+          "options": [
+            "fr:32:03",
+            "fr:32:01",
+            "fr:32:10"
+          ],
+          "answerId": "fr:32:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня был билет, я бы вошел»",
+            "uk": "Виберіть, як сказати: «Якби в мене був квиток, я б зайшов»",
+            "en": "Choose how to say: “If I had a ticket, I would go in”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:10",
+          "options": [
+            "fr:32:10",
+            "fr:32:03",
+            "fr:32:08"
+          ],
+          "answerId": "fr:32:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Если бы я был",
+        "en": "If I were"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если бы я был свободен, я бы помог тебе».\nSi j’étais libre, je t’aiderais.\n«Если бы я был свободен, я бы помог тебе.»\nЧитается: си жетэ́ либр, жё тэдрэ́.\nСлово étais значит «был». Слово libre значит «свободен».\nСлова je t’aiderais значат «я бы помог тебе».\nSi tu étais libre, tu pourrais venir.\n«Если бы ты был свободен, ты мог бы прийти.»\nСлово pourrais значит «мог бы». Слово venir значит «прийти».\nSi nous étions prêts, nous partirions.\n«Если бы мы были готовы, мы бы ушли.»\nСлово étions значит «были» для нас. Слово prêts значит «готовы».\nСлово partirions значит «ушли бы».\nSi elle était ici, elle comprendrait.\n«Если бы она была здесь, она бы поняла.»\nСлово était значит «была». Слово comprendrait значит «поняла бы».\nSi vous étiez d’accord, on commencerait.\n«Если бы вы согласились, мы бы начали.»\nСлова d’accord значат «согласны». Слово étiez значит «были» для вас.\nСлово on здесь значит «мы». Слово commencerait значит «начали бы».",
+        "en": "Look at how to say “If I were free, I would help you”.\nSi j’étais libre, je t’aiderais.\n“If I were free, I would help you.”\nThe word étais means “was, were”. The word libre means “free”.\nThe words je t’aiderais mean “I would help you”.\nSi tu étais libre, tu pourrais venir.\n“If you were free, you could come.”\nThe word pourrais means “could”. The word venir means “to come”.\nSi nous étions prêts, nous partirions.\n“If we were ready, we would leave.”\nThe word étions means “were” for us. The word prêts means “ready”.\nThe word partirions means “would leave”.\nSi elle était ici, elle comprendrait.\n“If she were here, she would understand.”\nThe word était means “was, were”. The word comprendrait means “would understand”.\nSi vous étiez d’accord, on commencerait.\n“If you agreed, we would start.”\nThe words d’accord mean “agree”. The word étiez means “were” for you.\nThe word on here means “we”. The word commencerait means “would start”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:32:04",
+          "say": {
+            "ru": "си жетэ́ либр, жё тэдрэ́",
+            "uk": "сі жете́ лібр, жьо тедре́"
+          }
+        },
+        {
+          "phraseId": "fr:32:05",
+          "say": {
+            "ru": "си тю этэ́ либр, тю пурэ́ вёни́р",
+            "uk": "сі тю ете́ лібр, тю пуре́ вьоні́р"
+          }
+        },
+        {
+          "phraseId": "fr:32:06",
+          "say": {
+            "ru": "си ну зетьо́н прэ, ну партирьо́н",
+            "uk": "сі ну зетьо́н пре, ну партірьо́н"
+          }
+        },
+        {
+          "phraseId": "fr:32:07",
+          "say": {
+            "ru": "си эль этэ́ иси́, эль компрандрэ́",
+            "uk": "сі ель ете́ ісі́, ель компрандре́"
+          }
+        },
+        {
+          "phraseId": "fr:32:09",
+          "say": {
+            "ru": "си ву зетье́ дако́р, он комансрэ́",
+            "uk": "сі ву зетье́ дако́р, он комансре́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы я был свободен, я бы помог тебе»",
+            "uk": "Виберіть, як сказати: «Якби я був вільний, я б допоміг тобі»",
+            "en": "Choose how to say: “If I were free, I would help you”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:32:04",
+          "options": [
+            "fr:32:04",
+            "fr:32:05",
+            "fr:32:06"
+          ],
+          "answerId": "fr:32:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы мы были готовы, мы бы ушли»",
+            "uk": "Виберіть, як сказати: «Якби ми були готові, ми б пішли»",
+            "en": "Choose how to say: “If we were ready, we would leave”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:06",
+          "options": [
+            "fr:32:06",
+            "fr:32:04",
+            "fr:32:07"
+          ],
+          "answerId": "fr:32:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы она была здесь, она бы поняла»",
+            "uk": "Виберіть, як сказати: «Якби вона була тут, вона б зрозуміла»",
+            "en": "Choose how to say: “If she were here, she would understand”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:07",
+          "options": [
+            "fr:32:07",
+            "fr:32:05",
+            "fr:32:09"
+          ],
+          "answerId": "fr:32:07"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Если бы автобус приходил раньше",
+        "en": "If the bus came earlier"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если бы автобус приходил раньше, я бы на нём ездил».\nSi le bus passait plus tôt, je le prendrais.\n«Если бы автобус приходил раньше, я бы на нём ездил.»\nЧитается: си лё бюс пасэ́ плю то, жё лё прандрэ́.\nСлово passait значит «приходил». Слова plus tôt значат «раньше».\nСлово prendrais значит «взял бы, ездил бы».\nSi la gare était plus proche, nous marcherions.\n«Если бы железнодорожный вокзал был ближе, мы бы шли пешком.»\nСлово proche значит «близко». Слово marcherions значит «шли бы».\nSi le train coûtait moins cher, on voyagerait davantage.\n«Если бы поезд был дешевле, мы бы больше путешествовали.»\nСлово coûtait значит «стоил». Слово voyagerait значит «путешествовали бы».\nСлово davantage значит «больше».\nSi la route était libre, nous arriverions avant midi.\n«Если бы дорога была свободна, мы бы приехали до полудня.»\nСлово route значит «дорога». Слова avant midi значат «до полудня».\nSi j’habitais près du parc, j’irais courir.\n«Если бы я жил рядом с парком, я бы пошел на пробежку.»\nСлово habitais значит «жил». Слово courir значит «бегать».\nСлово j’irais значит «я бы пошёл».",
+        "en": "Look at how to say “If the bus came earlier, I would take it”.\nSi le bus passait plus tôt, je le prendrais.\n“If the bus came earlier, I would take it.”\nThe word passait means “came”. The words plus tôt mean “earlier”.\nThe word prendrais means “would take”.\nSi la gare était plus proche, nous marcherions.\n“If the station were closer, we would walk.”\nThe word proche means “close”. The word marcherions means “would walk”.\nSi le train coûtait moins cher, on voyagerait davantage.\n“If the train cost less, we would travel more.”\nThe word coûtait means “cost”. The word voyagerait means “would travel”.\nThe word davantage means “more”.\nSi la route était libre, nous arriverions avant midi.\n“If the road were clear, we would arrive before noon.”\nThe word route means “road”. The words avant midi mean “before noon”.\nSi j’habitais près du parc, j’irais courir.\n“If I lived near the park, I would go running.”\nThe word habitais means “lived”. The word courir means “to run”.\nThe word j’irais means “I would go”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:32:11",
+          "say": {
+            "ru": "си жабитэ́ прэ дю парк, жирэ́ кури́р",
+            "uk": "сі жабіте́ пре дю парк, жіре́ курі́р"
+          }
+        },
+        {
+          "phraseId": "fr:32:13",
+          "say": {
+            "ru": "си лё бюс пасэ́ плю то, жё лё прандрэ́",
+            "uk": "сі льо бюс пасе́ плю то, жьо льо прандре́"
+          }
+        },
+        {
+          "phraseId": "fr:32:14",
+          "say": {
+            "ru": "си ла гар этэ́ плю прош, ну маршёрьо́н",
+            "uk": "сі ла гар ете́ плю прош, ну маршьорьо́н"
+          }
+        },
+        {
+          "phraseId": "fr:32:15",
+          "say": {
+            "ru": "си лё трэн кутэ́ муэ́н шэр, он вуаяжрэ́ даванта́ж",
+            "uk": "сі льо трен куте́ муе́н шер, он вуаяжре́ даванта́ж"
+          }
+        },
+        {
+          "phraseId": "fr:32:16",
+          "say": {
+            "ru": "си ла рут этэ́ либр, ну зариверьо́н аван миди́",
+            "uk": "сі ла рут ете́ лібр, ну заріверьо́н аван міді́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы автобус приходил раньше, я бы на нём ездил»",
+            "uk": "Виберіть, як сказати: «Якби автобус приходив раніше, я б ним їздив»",
+            "en": "Choose how to say: “If the bus came earlier, I would take it”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:32:13",
+          "options": [
+            "fr:32:13",
+            "fr:32:14",
+            "fr:32:16"
+          ],
+          "answerId": "fr:32:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы железнодорожный вокзал был ближе, мы бы шли пешком»",
+            "uk": "Виберіть, як сказати: «Якби залізнична станція була ближче, ми б пішли пішки»",
+            "en": "Choose how to say: “If the station were closer, we would walk”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:14",
+          "options": [
+            "fr:32:14",
+            "fr:32:13",
+            "fr:32:15"
+          ],
+          "answerId": "fr:32:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы дорога была свободна, мы бы приехали до полудня»",
+            "uk": "Виберіть, як сказати: «Якби дорога була вільна, ми б прибули до полудня»",
+            "en": "Choose how to say: “If the road were clear, we would arrive before noon”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:16",
+          "options": [
+            "fr:32:16",
+            "fr:32:11",
+            "fr:32:15"
+          ],
+          "answerId": "fr:32:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Сначала что сделал бы",
+        "en": "What I would do first"
+      },
+      "text": {
+        "ru": "Можно начать с того, что сделали бы, а условие сказать потом.\nJe choisirais cette chambre si elle était moins chère.\n«Я бы выбрал эту комнату, если бы она была дешевле.»\nЧитается: жё шуазирэ́ сэт шанбр си эль этэ́ муэ́н шэр.\nСлово choisirais значит «выбрал бы». Слово cette значит «эта».\nСлова moins chère значат «дешевле».\nJe prendrais la veste si elle était plus chaude.\n«Я бы взял куртку, если бы она была теплее.»\nСлово chaude значит «тёплая».\nElle appellerait le médecin si elle avait son numéro.\n«Она бы позвонила врачу, если бы у неё был его номер.»\nСлово appellerait значит «позвонила бы». Слово numéro значит «номер».\nJe porterais ce sac s’il était plus léger.\n«Я бы понёс эту сумку, если бы она была легче.»\nСлово porterais значит «понёс бы». Слово léger значит «лёгкий».\nСлово s’il значит «если бы он».\nOn prendrait un taxi si on avait des bagages.\n«Мы бы взяли такси, если бы у нас был багаж.»\nСлово taxi значит «такси». Слово bagages значит «багаж».",
+        "en": "We can start with what we would do, and say the condition after.\nJe choisirais cette chambre si elle était moins chère.\n“I would choose this room if it were cheaper.”\nThe word choisirais means “would choose”. The word cette means “this”.\nThe words moins chère mean “cheaper”.\nJe prendrais la veste si elle était plus chaude.\n“I would take the jacket if it were warmer.”\nThe word chaude means “warm”.\nElle appellerait le médecin si elle avait son numéro.\n“She would call the doctor if she had his number.”\nThe word appellerait means “would call”. The word numéro means “number”.\nJe porterais ce sac s’il était plus léger.\n“I would carry this bag if it were lighter.”\nThe word porterais means “would carry”. The word léger means “light”.\nThe word s’il means “if he, if it”.\nOn prendrait un taxi si on avait des bagages.\n“We would take a taxi if we had luggage.”\nThe word taxi means “taxi”. The word bagages means “luggage”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:32:21",
+          "say": {
+            "ru": "жё шуазирэ́ сэт шанбр си эль этэ́ муэ́н шэр",
+            "uk": "жьо шуазіре́ сет шанбр сі ель ете́ муе́н шер"
+          }
+        },
+        {
+          "phraseId": "fr:32:22",
+          "say": {
+            "ru": "жё прандрэ́ ла вэст си эль этэ́ плю шод",
+            "uk": "жьо прандре́ ла вест сі ель ете́ плю шод"
+          }
+        },
+        {
+          "phraseId": "fr:32:24",
+          "say": {
+            "ru": "эль апэлрэ́ лё медсэ́н си эль авэ́ сон нюмеро́",
+            "uk": "ель апелре́ льо медсе́н сі ель аве́ сон нюмеро́"
+          }
+        },
+        {
+          "phraseId": "fr:32:28",
+          "say": {
+            "ru": "жё портрэ́ сё сак силь этэ́ плю лежэ́",
+            "uk": "жьо портре́ сьо сак сіль ете́ плю леже́"
+          }
+        },
+        {
+          "phraseId": "fr:32:29",
+          "say": {
+            "ru": "он прандрэ́ ан такси́ си он авэ́ дэ бага́ж",
+            "uk": "он прандре́ ан таксі́ сі он аве́ де бага́ж"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы выбрал эту комнату, если бы она была дешевле»",
+            "uk": "Виберіть, як сказати: «Я б вибрав цю кімнату, якби вона була дешевшою»",
+            "en": "Choose how to say: “I would choose this room if it were cheaper”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:32:21",
+          "options": [
+            "fr:32:21",
+            "fr:32:22",
+            "fr:32:24"
+          ],
+          "answerId": "fr:32:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы взял куртку, если бы она была теплее»",
+            "uk": "Виберіть, як сказати: «Я б взяв куртку, якби вона була теплішою»",
+            "en": "Choose how to say: “I would take the jacket if it were warmer”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:22",
+          "options": [
+            "fr:32:22",
+            "fr:32:21",
+            "fr:32:28"
+          ],
+          "answerId": "fr:32:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы бы взяли такси, если бы у нас был багаж»",
+            "uk": "Виберіть, як сказати: «Ми б взяли таксі, якби у нас був багаж»",
+            "en": "Choose how to say: “We would take a taxi if we had luggage”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:29",
+          "options": [
+            "fr:32:29",
+            "fr:32:28",
+            "fr:32:24"
+          ],
+          "answerId": "fr:32:29"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Дом, расходы, шанс",
+        "en": "Home, costs, a chance"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если бы духовка работала, она бы испекла пирог».\nSi le four fonctionnait, elle ferait une tarte.\n«Если бы духовка работала, она бы испекла пирог.»\nЧитается: си лё фур фонксьонэ́, эль фрэ́ юн тарт.\nСлово four значит «духовка». Слово fonctionnait значит «работала».\nСлово tarte значит «пирог».\nSi j’avais du miel, j’en mettrais dans le thé.\n«Если бы у меня был мед, я бы добавил его в чай.»\nСлово miel значит «мёд». Слово mettrais значит «положил бы».\nSi la clé disparaissait, nous préviendrions le gardien.\n«Если бы ключ пропал, мы бы сообщили охраннику.»\nСлово disparaissait значит «пропал». Слово gardien значит «сторож».\nSi les frais de livraison étaient moins élevés, je commanderais cet arbre.\n«Если бы доставка стоила меньше, я бы заказал это дерево.»\nСлово frais значит «расходы». Слово livraison значит «доставка».\nСлово arbre значит «дерево». Слово élevés значит «высокие».\nSi j’avais ton expérience, je tenterais ma chance.\n«Если бы у меня был твой опыт, я бы попытал счастья.»\nСлово expérience значит «опыт». Слово chance значит «шанс, удача».\nСлово tenterais значит «попытал бы».",
+        "en": "Look at how to say “If the oven worked, she would bake a tart”.\nSi le four fonctionnait, elle ferait une tarte.\n“If the oven worked, she would bake a tart.”\nThe word four means “oven”. The word fonctionnait means “worked”.\nThe word tarte means “tart”.\nSi j’avais du miel, j’en mettrais dans le thé.\n“If I had honey, I would put some in the tea.”\nThe word miel means “honey”. The word mettrais means “would put”.\nSi la clé disparaissait, nous préviendrions le gardien.\n“If the key disappeared, we would tell the guard.”\nThe word disparaissait means “disappeared”. The word gardien means “guard”.\nSi les frais de livraison étaient moins élevés, je commanderais cet arbre.\n“If the delivery costs were lower, I would order this tree.”\nThe word frais means “costs”. The word livraison means “delivery”.\nThe word arbre means “tree”. The word élevés means “high”.\nSi j’avais ton expérience, je tenterais ma chance.\n“If I had your experience, I would try my luck.”\nThe word expérience means “experience”. The word chance means “chance, luck”.\nThe word tenterais means “would try”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:32:36",
+          "say": {
+            "ru": "си лё фур фонксьонэ́, эль фрэ́ юн тарт",
+            "uk": "сі льо фур фонксьоне́, ель фре́ юн тарт"
+          }
+        },
+        {
+          "phraseId": "fr:32:38",
+          "say": {
+            "ru": "си жавэ́ дю мьэль, жан мэтрэ́ дан лё те",
+            "uk": "сі жаве́ дю мьель, жан метре́ дан льо те"
+          }
+        },
+        {
+          "phraseId": "fr:32:45",
+          "say": {
+            "ru": "си ла кле диспарэсэ́, ну прэвьендрьо́н лё гардьэ́н",
+            "uk": "сі ла кле діспаресе́, ну превьендрьо́н льо гардье́н"
+          }
+        },
+        {
+          "phraseId": "fr:32:48",
+          "say": {
+            "ru": "си лэ фрэ дё ливрэзо́н этэ́ муэ́н зэлёвэ́, жё командрэ́ сэт арбр",
+            "uk": "сі ле фре дьо ліврезо́н ете́ муе́н зельове́, жьо командре́ сет арбр"
+          }
+        },
+        {
+          "phraseId": "fr:32:49",
+          "say": {
+            "ru": "си жавэ́ тон экспэрьа́нс, жё тантрэ́ ма шанс",
+            "uk": "сі жаве́ тон експерьа́нс, жьо тантре́ ма шанс"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы духовка работала, она бы испекла пирог»",
+            "uk": "Виберіть, як сказати: «Якби духовка працювала, вона б спекла пиріг»",
+            "en": "Choose how to say: “If the oven worked, she would bake a tart”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:32:36",
+          "options": [
+            "fr:32:36",
+            "fr:32:38",
+            "fr:32:45"
+          ],
+          "answerId": "fr:32:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы ключ пропал, мы бы сообщили охраннику»",
+            "uk": "Виберіть, як сказати: «Якби ключ зник, ми б повідомили охоронця»",
+            "en": "Choose how to say: “If the key disappeared, we would tell the guard”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:45",
+          "options": [
+            "fr:32:45",
+            "fr:32:38",
+            "fr:32:36"
+          ],
+          "answerId": "fr:32:45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня был твой опыт, я бы попытал счастья»",
+            "uk": "Виберіть, як сказати: «Якби в мене був твій досвід, я б спробував щастя»",
+            "en": "Choose how to say: “If I had your experience, I would try my luck”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:32:49",
+          "options": [
+            "fr:32:49",
+            "fr:32:48",
+            "fr:32:38"
+          ],
+          "answerId": "fr:32:49"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,485 @@
+{
+  "lang": "fr",
+  "lesson": 25,
+  "title": {
+    "ru": "Из них, немного, сколько: слово en",
+    "en": "Some of them, a little, how many: the word en"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Один из них, два из них",
+        "en": "One of them, two of them"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я хочу один из них».\nJ’en veux un. — «Я хочу один из них.»\nЧитается: жан вё ан.\nСлово veux значит «хочу». Слово un значит «один».\nСлово en значит «из них» или «их». По-русски его часто не говорят.\nСлово je перед en сокращается: j’en.\nJ’en veux deux. — «Я хочу два из них.»\nСлово deux значит «два».\nTu en prends un. — «Ты берёшь один.»\nСлово prends значит «берёшь».\nElle en garde trois. — «Она оставляет себе три.»\nСлово trois значит «три».\nNous en achetons quatre. — «Мы покупаем четыре.»\nСлово achetons значит «покупаем». Слово quatre значит «четыре».\nСлово en стоит перед словом, которое говорит, что человек делает.",
+        "en": "Look at how to say “I want one of them”.\nJ’en veux un. — “I want one of them.”\nThe word veux means “want”. The word un means “one”.\nThe word en means “of them” or “some”. In Russian it is often left out.\nThe word je becomes j’ before en.\nJ’en veux deux. — “I want two of them.”\nThe word deux means “two”.\nTu en prends un. — “You take one.”\nThe word prends means “take”.\nElle en garde trois. — “She keeps three.”\nThe word trois means “three”.\nNous en achetons quatre. — “We buy four.”\nThe word achetons means “buy”. The word quatre means “four”.\nThe word en stands before the word that says what the person does."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:25:01",
+          "say": {
+            "ru": "жан вё ан",
+            "uk": "жан вьо ан"
+          }
+        },
+        {
+          "phraseId": "fr:25:02",
+          "say": {
+            "ru": "жан вё дё",
+            "uk": "жан вьо дьо"
+          }
+        },
+        {
+          "phraseId": "fr:25:03",
+          "say": {
+            "ru": "тю ан пран ан",
+            "uk": "тю ан пран ан"
+          }
+        },
+        {
+          "phraseId": "fr:25:05",
+          "say": {
+            "ru": "эль ан гард труа",
+            "uk": "ель ан гард труа"
+          }
+        },
+        {
+          "phraseId": "fr:25:06",
+          "say": {
+            "ru": "ну зан ашьто́н катр",
+            "uk": "ну зан ашьто́н катр"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу один из них»",
+            "uk": "Виберіть, як сказати: «Я хочу один із них»",
+            "en": "Choose how to say: “I want one of them”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:25:01",
+          "options": [
+            "fr:25:01",
+            "fr:25:02",
+            "fr:25:03"
+          ],
+          "answerId": "fr:25:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хочу два из них»",
+            "uk": "Виберіть, як сказати: «Я хочу два з них»",
+            "en": "Choose how to say: “I want two of them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:02",
+          "options": [
+            "fr:25:02",
+            "fr:25:01",
+            "fr:25:05"
+          ],
+          "answerId": "fr:25:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы покупаем четыре»",
+            "uk": "Виберіть, як сказати: «Ми купуємо чотири»",
+            "en": "Choose how to say: “We buy four”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:06",
+          "options": [
+            "fr:25:06",
+            "fr:25:03",
+            "fr:25:05"
+          ],
+          "answerId": "fr:25:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Немного, ложка, лоток",
+        "en": "A little, a spoon, a tray"
+      },
+      "text": {
+        "ru": "Теперь про то, что берут понемногу.\nDu pain, j’en prends un peu. — «Хлеба я возьму немного.»\nЧитается: дю пэн, жан пран ан пё.\nСлово pain значит «хлеб». Слова un peu значат «немного».\nСлово du по-русски не говорят, запоминайте его вместе с pain.\nСлово en значит «его, их» — чтобы не повторять pain.\nСлова du, de la и des значат «немного, сколько-то». По-русски их не говорят.\nDes œufs, j’en prends six. — «Возьму шесть яиц.»\nСлово œufs значит «яйца». Слово six значит «шесть».\nDe la soupe, il en reste un bol. — «Осталась тарелка супа.»\nСлово soupe значит «суп». Слово bol значит «миска, тарелка».\nDu miel, j’en ajoute une cuillère. — «Мёда добавляю ложку.»\nСлово miel значит «мёд». Слово cuillère значит «ложка».\nDes fraises, elle en veut une barquette. — «Клубники она хочет один лоток.»\nСлово fraises значит «клубника». Слово barquette значит «лоток, небольшая упаковка».",
+        "en": "Now about what we take a little at a time.\nDu pain, j’en prends un peu. — “I will take a little bread.”\nThe word pain means “bread”. The words un peu mean “a little”.\nThe word du has no Russian word, learn it together with pain.\nThe word en means “some of it” — so pain is not said again.\nThe words du, de la and des mean “some”.\nDes œufs, j’en prends six. — “I will take six eggs.”\nThe word œufs means “eggs”. The word six means “six”.\nDe la soupe, il en reste un bol.\n“There is a bowl of soup left.”\nThe word soupe means “soup”. The word bol means “bowl”.\nDu miel, j’en ajoute une cuillère. — “I add a spoon of honey.”\nThe word miel means “honey”. The word cuillère means “spoon”.\nDes fraises, elle en veut une barquette. — “She wants one tray of strawberries.”\nThe word fraises means “strawberries”. The word barquette means “tray, small pack”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:25:11",
+          "say": {
+            "ru": "дю пэн, жан пран ан пё",
+            "uk": "дю пен, жан пран ан пьо"
+          }
+        },
+        {
+          "phraseId": "fr:25:14",
+          "say": {
+            "ru": "дэ зё, жан пран сис",
+            "uk": "де зьо, жан пран сіс"
+          }
+        },
+        {
+          "phraseId": "fr:25:16",
+          "say": {
+            "ru": "дё ла суп, иль ан рэст ан боль",
+            "uk": "дьо ла суп, іль ан рест ан боль"
+          }
+        },
+        {
+          "phraseId": "fr:25:17",
+          "say": {
+            "ru": "дю мьэль, жан ажу́т юн кюийэ́р",
+            "uk": "дю мьель, жан ажу́т юн кюійе́р"
+          }
+        },
+        {
+          "phraseId": "fr:25:19",
+          "say": {
+            "ru": "дэ фрэз, эль ан вё юн баркэ́т",
+            "uk": "де фрез, ель ан вьо юн барке́т"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хлеба я возьму немного»",
+            "uk": "Виберіть, як сказати: «Хліба я візьму небагато»",
+            "en": "Choose how to say: “I will take a little bread”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:25:11",
+          "options": [
+            "fr:25:11",
+            "fr:25:14",
+            "fr:25:16"
+          ],
+          "answerId": "fr:25:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Возьму шесть яиц»",
+            "uk": "Виберіть, як сказати: «Я візьму шість яєць»",
+            "en": "Choose how to say: “I will take six eggs”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:14",
+          "options": [
+            "fr:25:14",
+            "fr:25:11",
+            "fr:25:17"
+          ],
+          "answerId": "fr:25:14"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Клубники она хочет один лоток»",
+            "uk": "Виберіть, як сказати: «Полуниці вона хоче один лоток»",
+            "en": "Choose how to say: “She wants one tray of strawberries”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:19",
+          "options": [
+            "fr:25:19",
+            "fr:25:17",
+            "fr:25:16"
+          ],
+          "answerId": "fr:25:19"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Нет, больше нет",
+        "en": "None, no more"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не».\nJe n’en ai pas. — «У меня их нет.»\nЧитается: жё нан э па.\nСлово n’en — это ne и en вместе. Слово pas стоит после.\nNous n’en avons plus. — «У нас их больше нет.»\nСлово plus значит «больше».\nElle n’en veut pas. — «Она их не хочет.»\nIl n’en reste aucune. — «Не осталось ни одной.»\nСлово aucune значит «ни одной».\nIl n’en garde qu’un. — «Он оставляет себе только один.»\nСлово qu’un значит «только один».",
+        "en": "Look at how to say “not”.\nJe n’en ai pas. — “I do not have any.”\nThe word n’en is ne and en together. The word pas stands after.\nNous n’en avons plus. — “We have none left.”\nThe word plus means “any more”.\nElle n’en veut pas. — “She does not want any.”\nIl n’en reste aucune. — “There is not one left.”\nThe word aucune means “not one”.\nIl n’en garde qu’un. — “He keeps only one.”\nThe word qu’un means “only one”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:25:21",
+          "say": {
+            "ru": "жё нан э па",
+            "uk": "жьо нан е па"
+          }
+        },
+        {
+          "phraseId": "fr:25:22",
+          "say": {
+            "ru": "ну нан аво́н плю",
+            "uk": "ну нан аво́н плю"
+          }
+        },
+        {
+          "phraseId": "fr:25:23",
+          "say": {
+            "ru": "эль нан вё па",
+            "uk": "ель нан вьо па"
+          }
+        },
+        {
+          "phraseId": "fr:25:24",
+          "say": {
+            "ru": "иль нан рэст окю́н",
+            "uk": "іль нан рест окю́н"
+          }
+        },
+        {
+          "phraseId": "fr:25:29",
+          "say": {
+            "ru": "иль нан гард кан",
+            "uk": "іль нан гард кан"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня их нет»",
+            "uk": "Виберіть, як сказати: «У мене їх немає»",
+            "en": "Choose how to say: “I do not have any”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:25:21",
+          "options": [
+            "fr:25:21",
+            "fr:25:22",
+            "fr:25:23"
+          ],
+          "answerId": "fr:25:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нас их больше нет»",
+            "uk": "Виберіть, як сказати: «У нас їх більше немає»",
+            "en": "Choose how to say: “We have none left”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:22",
+          "options": [
+            "fr:25:22",
+            "fr:25:21",
+            "fr:25:23"
+          ],
+          "answerId": "fr:25:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она их не хочет»",
+            "uk": "Виберіть, як сказати: «Вона їх не хоче»",
+            "en": "Choose how to say: “She does not want any”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:23",
+          "options": [
+            "fr:25:23",
+            "fr:25:21",
+            "fr:25:24"
+          ],
+          "answerId": "fr:25:23"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Уже купил, уже нашла",
+        "en": "Already bought, already found"
+      },
+      "text": {
+        "ru": "Теперь про то, что уже сделано.\nJ’en ai acheté deux. — «Я купил два.»\nЧитается: жан э ашьте́ дё.\nСлова ai acheté значат «купил». Слово en стоит перед словом ai.\nElle en a trouvé une. — «Она нашла одну.»\nСлова a trouvé значат «нашла». Слово une значит «одна».\nNous en avons réservé trois. — «Мы зарезервировали три.»\nСлова avons réservé значат «зарезервировали».\nOn en a perdu un. — «Один мы потеряли.»\nСлово on здесь значит «мы». Слова a perdu значат «потеряли».\nJe vais en reprendre. — «Я возьму ещё.»\nСлово reprendre значит «взять ещё». Слово en стоит прямо перед ним.",
+        "en": "Now about what is already done.\nJ’en ai acheté deux. — “I bought two.”\nThe words ai acheté mean “bought”. The word en stands before ai.\nElle en a trouvé une. — “She found one.”\nThe words a trouvé mean “found”. The word une means “one”.\nNous en avons réservé trois. — “We booked three.”\nThe words avons réservé mean “booked”.\nOn en a perdu un. — “We lost one.”\nThe word on here means “we”. The words a perdu mean “lost”.\nJe vais en reprendre. — “I will take some more.”\nThe word reprendre means “take more”. The word en stands right before it."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:25:31",
+          "say": {
+            "ru": "жан э ашьте́ дё",
+            "uk": "жан е ашьте́ дьо"
+          }
+        },
+        {
+          "phraseId": "fr:25:32",
+          "say": {
+            "ru": "эль ан а трувэ́ юн",
+            "uk": "ель ан а труве́ юн"
+          }
+        },
+        {
+          "phraseId": "fr:25:33",
+          "say": {
+            "ru": "ну зан аво́н рэзервэ́ труа",
+            "uk": "ну зан аво́н резерве́ труа"
+          }
+        },
+        {
+          "phraseId": "fr:25:35",
+          "say": {
+            "ru": "он ан а пэрдю́ ан",
+            "uk": "он ан а пердю́ ан"
+          }
+        },
+        {
+          "phraseId": "fr:25:36",
+          "say": {
+            "ru": "жё вэ ан рёпра́нд",
+            "uk": "жьо ве ан рьопра́нд"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я купил два»",
+            "uk": "Виберіть, як сказати: «Я купив два»",
+            "en": "Choose how to say: “I bought two”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:25:31",
+          "options": [
+            "fr:25:31",
+            "fr:25:32",
+            "fr:25:33"
+          ],
+          "answerId": "fr:25:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она нашла одну»",
+            "uk": "Виберіть, як сказати: «Вона знайшла одну»",
+            "en": "Choose how to say: “She found one”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:32",
+          "options": [
+            "fr:25:32",
+            "fr:25:31",
+            "fr:25:35"
+          ],
+          "answerId": "fr:25:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы зарезервировали три»",
+            "uk": "Виберіть, як сказати: «Ми зарезервували три»",
+            "en": "Choose how to say: “We booked three”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:33",
+          "options": [
+            "fr:25:33",
+            "fr:25:35",
+            "fr:25:31"
+          ],
+          "answerId": "fr:25:33"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Могу принести, нужно заказать",
+        "en": "Can bring, need to order"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Можешь принести две штуки?»\nTu peux en apporter deux ? — «Можешь принести две штуки?»\nЧитается: тю пё зан апорте́ дё.\nСлово peux значит «можешь». Слово apporter значит «принести».\nСлово en стоит прямо перед словом apporter.\nNous devons en commander davantage. — «Нам нужно заказать ещё.»\nСлово devons значит «нужно». Слово commander значит «заказать».\nСлово davantage значит «ещё, больше».\nCes batteries sont chargées, vous pouvez en garder la moitié.\n«Эти батареи заряжены; половину можете оставить себе.»\nСлово batteries значит «батареи». Слово chargées значит «заряжены».\nСлово moitié значит «половина».\nJ’ai trop de cartons et je vais en donner.\n«У меня слишком много коробок, я отдам часть.»\nСлова trop de значат «слишком много». Слово cartons значит «коробки».\nIl manque des verres, je vais en chercher.\n«Не хватает стаканов, я пойду за ними.»\nСлова il manque значат «не хватает».",
+        "en": "Look at how to say “Can you bring two?”\nTu peux en apporter deux ? — “Can you bring two?”\nThe word peux means “can”. The word apporter means “to bring”.\nThe word en stands right before apporter.\nNous devons en commander davantage. — “We need to order more.”\nThe word devons means “need to”. The word commander means “to order”.\nThe word davantage means “more”.\nCes batteries sont chargées, vous pouvez en garder la moitié.\n“These batteries are charged; you can keep half.”\nThe word batteries means “batteries”. The word chargées means “charged”.\nThe word moitié means “half”.\nJ’ai trop de cartons et je vais en donner.\n“I have too many boxes and I will give some away.”\nThe words trop de mean “too many”. The word cartons means “boxes”.\nIl manque des verres, je vais en chercher.\n“There are not enough glasses, I will go and get some.”\nThe words il manque mean “is missing”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:25:37",
+          "say": {
+            "ru": "тю пё зан апорте́ дё",
+            "uk": "тю пьо зан апорте́ дьо"
+          }
+        },
+        {
+          "phraseId": "fr:25:39",
+          "say": {
+            "ru": "ну дёво́н ан командэ́ даванта́ж",
+            "uk": "ну дьово́н ан команде́ даванта́ж"
+          }
+        },
+        {
+          "phraseId": "fr:25:40",
+          "say": {
+            "ru": "сэ батри́ сон шарже́, ву пуве́ зан гарде́ ла муатье́",
+            "uk": "се батрі́ сон шарже́, ву пуве́ зан гарде́ ла муатье́"
+          }
+        },
+        {
+          "phraseId": "fr:25:48",
+          "say": {
+            "ru": "жэ тро дё картон э жё вэ зан доне́",
+            "uk": "же тро дьо картон е жьо ве зан доне́"
+          }
+        },
+        {
+          "phraseId": "fr:25:46",
+          "say": {
+            "ru": "иль манк дэ вэр, жё вэ зан шэрше́",
+            "uk": "іль манк де вер, жьо ве зан шерше́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можешь принести две штуки?»",
+            "uk": "Виберіть, як сказати: «Чи можеш принести дві штуки?»",
+            "en": "Choose how to say: “Can you bring two?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:25:37",
+          "options": [
+            "fr:25:37",
+            "fr:25:39",
+            "fr:25:40"
+          ],
+          "answerId": "fr:25:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам нужно заказать ещё»",
+            "uk": "Виберіть, як сказати: «Нам потрібно замовити ще»",
+            "en": "Choose how to say: “We need to order more”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:39",
+          "options": [
+            "fr:25:39",
+            "fr:25:37",
+            "fr:25:48"
+          ],
+          "answerId": "fr:25:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Эти батареи заряжены; половину можете оставить себе»",
+            "uk": "Виберіть, як сказати: «Ці батареї заряджені; ви можете залишити половину з них»",
+            "en": "Choose how to say: “You can keep half”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:25:40",
+          "options": [
+            "fr:25:40",
+            "fr:25:48",
+            "fr:25:39"
+          ],
+          "answerId": "fr:25:40"
+        }
+      ]
+    }
+  ]
+}

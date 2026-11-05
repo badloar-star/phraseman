@@ -1,0 +1,485 @@
+{
+  "lang": "fr",
+  "lesson": 29,
+  "title": {
+    "ru": "Который: слова qui и que",
+    "en": "Which, who: the words qui and que"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Который едет, который открывает",
+        "en": "Which goes, which opens"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это автобус, который едет до вокзала».\nC’est le bus qui va à la gare.\n«Это автобус, который едет до вокзала.»\nЧитается: сэ лё бюс ки ва а ла гар.\nСлова c’est значат «это». Слово bus значит «автобус». Слово va значит «едет».\nСлово qui значит «который». Оно связывает «автобус» с тем, что он делает.\nVoici la clé qui ouvre la cave. — «Вот ключ, который открывает подвал.»\nСлово voici значит «вот». Слово clé значит «ключ». Слово cave значит «подвал».\nСлово ouvre значит «открывает».\nVoilà le médecin qui travaille ici. — «Вот врач, который здесь работает.»\nСлово voilà тоже значит «вот».\nC’est le livre qui est sur la table.\n«Это книга, которая лежит на столе.»\nСлова sur la table значат «на столе».\nJ’ai un voisin qui parle italien. — «У меня есть сосед, который говорит по-итальянски.»\nСлово voisin значит «сосед». Слово italien значит «итальянский».\nСразу после qui говорят, что делает этот человек или предмет.",
+        "en": "Look at how to say “This is the bus that goes to the station”.\nC’est le bus qui va à la gare.\n“This is the bus that goes to the station.”\nThe words c’est mean “this is”. The word bus means “bus”. The word va means “goes”.\nThe word qui means “which, who”. It links “bus” with what it does.\nVoici la clé qui ouvre la cave.\n“Here is the key that opens the cellar.”\nThe word voici means “here is”. The word clé means “key”. The word cave means “cellar”.\nThe word ouvre means “opens”.\nVoilà le médecin qui travaille ici. — “Here is the doctor who works here.”\nThe word voilà also means “here is”.\nC’est le livre qui est sur la table.\n“This is the book that is on the table.”\nThe words sur la table mean “on the table”.\nJ’ai un voisin qui parle italien. — “I have a neighbour who speaks Italian.”\nThe word voisin means “neighbour”. The word italien means “Italian”.\nRight after qui we say what this person or thing does."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:29:01",
+          "say": {
+            "ru": "сэ лё бюс ки ва а ла гар",
+            "uk": "се льо бюс кі ва а ла гар"
+          }
+        },
+        {
+          "phraseId": "fr:29:03",
+          "say": {
+            "ru": "вуаси́ ла кле ки увр ла кав",
+            "uk": "вуасі́ ла кле кі увр ла кав"
+          }
+        },
+        {
+          "phraseId": "fr:29:07",
+          "say": {
+            "ru": "вуаля́ лё медсэ́н ки трава́й иси́",
+            "uk": "вуаля́ льо медсе́н кі трава́й ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:29:09",
+          "say": {
+            "ru": "сэ лё ливр ки э сюр ла табль",
+            "uk": "се льо лівр кі е сюр ла табль"
+          }
+        },
+        {
+          "phraseId": "fr:29:11",
+          "say": {
+            "ru": "жэ ан вуазэ́н ки парль итальэ́н",
+            "uk": "же ан вуазе́н кі парль італье́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это автобус, который едет до вокзала»",
+            "uk": "Виберіть, як сказати: «Це автобус, який їде до залізничного вокзалу»",
+            "en": "Choose how to say: “This is the bus that goes to the station”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:29:01",
+          "options": [
+            "fr:29:01",
+            "fr:29:03",
+            "fr:29:07"
+          ],
+          "answerId": "fr:29:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вот ключ, который открывает подвал»",
+            "uk": "Виберіть, як сказати: «Ось ключ, що відчиняє льох»",
+            "en": "Choose how to say: “Here is the key that opens the cellar”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:03",
+          "options": [
+            "fr:29:03",
+            "fr:29:01",
+            "fr:29:09"
+          ],
+          "answerId": "fr:29:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вот врач, который здесь работает»",
+            "uk": "Виберіть, як сказати: «Ось лікар, який тут працює»",
+            "en": "Choose how to say: “Here is the doctor who works here”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:07",
+          "options": [
+            "fr:29:07",
+            "fr:29:09",
+            "fr:29:11"
+          ],
+          "answerId": "fr:29:07"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Который я ищу, который я ношу",
+        "en": "Which I look for, which I wear"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Это автобус, на котором я еду».\nC’est le bus que je prends. — «Это автобус, на котором я еду.»\nЧитается: сэ лё бюс кё жё пран.\nСлово prends значит «беру, еду». Слово que тоже значит «который».\nПосле que сначала называют, кто что делает: je prends — «я еду».\nVoici la clé que je cherche. — «Вот ключ, который я ищу.»\nСлово cherche значит «ищу».\nC’est la veste que je porte. — «Это куртка, которую я ношу.»\nСлово porte значит «ношу».\nVoilà le médecin que je connais. — «Вот врач, которого я знаю.»\nСлово connais значит «знаю».\nC’est le livre que tu veux. — «Это книга, которую ты хочешь.»\nСлово veux значит «хочешь».\nСравните: «ключ открывает» — qui. «Я ищу ключ» — que.",
+        "en": "Look at how to say “This is the bus that I take”.\nC’est le bus que je prends. — “This is the bus that I take.”\nThe word prends means “take”. The word que also means “which”.\nAfter que we first say who does what: je prends — “I take”.\nVoici la clé que je cherche.\n“Here is the key that I am looking for.”\nThe word cherche means “look for”.\nC’est la veste que je porte. — “This is the jacket that I wear.”\nThe word porte means “wear”.\nVoilà le médecin que je connais. — “Here is the doctor that I know.”\nThe word connais means “know”.\nC’est le livre que tu veux. — “This is the book that you want.”\nThe word veux means “want”.\nCompare: “the key opens” — qui. “I look for the key” — que."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:29:02",
+          "say": {
+            "ru": "сэ лё бюс кё жё пран",
+            "uk": "се льо бюс кьо жьо пран"
+          }
+        },
+        {
+          "phraseId": "fr:29:04",
+          "say": {
+            "ru": "вуаси́ ла кле кё жё шэрш",
+            "uk": "вуасі́ ла кле кьо жьо шерш"
+          }
+        },
+        {
+          "phraseId": "fr:29:06",
+          "say": {
+            "ru": "сэ ла вэст кё жё порт",
+            "uk": "се ла вест кьо жьо порт"
+          }
+        },
+        {
+          "phraseId": "fr:29:08",
+          "say": {
+            "ru": "вуаля́ лё медсэ́н кё жё конэ́",
+            "uk": "вуаля́ льо медсе́н кьо жьо коне́"
+          }
+        },
+        {
+          "phraseId": "fr:29:10",
+          "say": {
+            "ru": "сэ лё ливр кё тю вё",
+            "uk": "се льо лівр кьо тю вьо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это автобус, на котором я еду»",
+            "uk": "Виберіть, як сказати: «Це автобус, на якому я їду»",
+            "en": "Choose how to say: “This is the bus that I take”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:29:02",
+          "options": [
+            "fr:29:02",
+            "fr:29:04",
+            "fr:29:06"
+          ],
+          "answerId": "fr:29:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вот ключ, который я ищу»",
+            "uk": "Виберіть, як сказати: «Ось ключ, який я шукаю»",
+            "en": "Choose how to say: “Here is the key that I am looking for”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:04",
+          "options": [
+            "fr:29:04",
+            "fr:29:02",
+            "fr:29:08"
+          ],
+          "answerId": "fr:29:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вот врач, которого я знаю»",
+            "uk": "Виберіть, як сказати: «Ось лікар, якого я знаю»",
+            "en": "Choose how to say: “Here is the doctor that I know”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:08",
+          "options": [
+            "fr:29:08",
+            "fr:29:06",
+            "fr:29:10"
+          ],
+          "answerId": "fr:29:08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Кто помогает, кому помогают",
+        "en": "Who helps, who is helped"
+      },
+      "text": {
+        "ru": "Смотрите, как одно слово меняет смысл.\nLa personne qui m’aide est ma voisine.\n«Человек, который мне помогает,\nЧитается: ла пэрсо́н ки мэд э ма вуази́н.\nСлово personne значит «человек». Слово m’aide значит «мне помогает».\nСлово voisine значит «соседка».\nЗдесь человек помогает мне. После qui говорят, что он делает.\nLa personne que j’aide est ma voisine.\n«Человек, которому я помогаю,\nЗдесь помогаю я. После que сразу стоит j’aide — «я помогаю».\nL’enfant qui appelle sa mère est ici. — «Ребенок, зовущий свою маму, здесь.»\nСлово l’enfant значит «ребёнок». Слово appelle значит «зовёт». Слово mère значит «мама».\nL’enfant que sa mère appelle est dehors.\n«Ребенок, которого зовет его мама, находится на улице.»\nЗдесь ребёнка зовёт мама. Поэтому после que стоит sa mère.\nC’est Léa qui a réservé. — «Именно Леа всё забронировала.»\nСлова a réservé значат «забронировала». Слова c’est Léa qui подчёркивают: именно Леа.",
+        "en": "Look at how one word changes the meaning.\nLa personne qui m’aide est ma voisine.\n“The person who helps me is my neighbour.”\nThe word personne means “person”. The word m’aide means “helps me”.\nThe word voisine means “neighbour”.\nHere the person helps me. After qui we say what the person does.\nLa personne que j’aide est ma voisine.\n“The person I help is my neighbour.”\nHere I am the one who helps. After que comes j’aide — “I help”.\nL’enfant qui appelle sa mère est ici.\n“The child who is calling his mother is here.”\nThe word l’enfant means “the child”. The word appelle means “calls”. The word mère means “mother”.\nL’enfant que sa mère appelle est dehors.\n“The child his mother is calling is outside.”\nHere the mother is calling the child. So sa mère comes after que.\nC’est Léa qui a réservé. — “It is Léa who booked.”\nThe words a réservé mean “booked”. The words c’est Léa qui stress: it was Léa."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:29:36",
+          "say": {
+            "ru": "ла пэрсо́н ки мэд э ма вуази́н",
+            "uk": "ла персо́н кі мед е ма вуазі́н"
+          }
+        },
+        {
+          "phraseId": "fr:29:37",
+          "say": {
+            "ru": "ла пэрсо́н кё жэд э ма вуази́н",
+            "uk": "ла персо́н кьо жед е ма вуазі́н"
+          }
+        },
+        {
+          "phraseId": "fr:29:38",
+          "say": {
+            "ru": "лянфа́н ки апэль са мэр э иси́",
+            "uk": "лянфа́н кі апель са мер е ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:29:39",
+          "say": {
+            "ru": "лянфа́н кё са мэр апэль э дёо́р",
+            "uk": "лянфа́н кьо са мер апель е дьоо́р"
+          }
+        },
+        {
+          "phraseId": "fr:29:13",
+          "say": {
+            "ru": "сэ леа́ ки а рэзервэ́",
+            "uk": "се леа́ кі а резерве́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Человек, который мне помогает, — моя соседка»",
+            "uk": "Виберіть, як сказати: «Людина, яка мені допомагає, - моя сусідка»",
+            "en": "Choose how to say: “The person who helps me is my neighbour”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:29:36",
+          "options": [
+            "fr:29:36",
+            "fr:29:37",
+            "fr:29:13"
+          ],
+          "answerId": "fr:29:36"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Человек, которому я помогаю, — моя соседка»",
+            "uk": "Виберіть, як сказати: «Людина, якій я допомагаю, - моя сусідка»",
+            "en": "Choose how to say: “The person I help is my neighbour”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:37",
+          "options": [
+            "fr:29:37",
+            "fr:29:36",
+            "fr:29:38"
+          ],
+          "answerId": "fr:29:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ребенок, которого зовет его мама, находится на улице»",
+            "uk": "Виберіть, як сказати: «Дитина, яку кличе мама, надворі»",
+            "en": "Choose how to say: “The child his mother is calling is outside”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:39",
+          "options": [
+            "fr:29:39",
+            "fr:29:38",
+            "fr:29:36"
+          ],
+          "answerId": "fr:29:39"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Хлеб, который ты печёшь",
+        "en": "The bread that you bake"
+      },
+      "text": {
+        "ru": "Теперь вещь называют сначала.\nLe pain que tu prépares sent bon. — «Хлеб, который ты печёшь, вкусно пахнет.»\nЧитается: лё пэн кё тю прэпар сан бон.\nСлово prépares значит «готовишь». Слова sent bon значат «вкусно пахнет».\nСначала называют вещь, потом que и того, кто с ней что-то делает.\nLe café que tu bois est très fort.\n«Кофе, который ты пьёшь, очень крепкий.»\nСлово bois значит «пьёшь». Слово fort значит «крепкий».\nLes gants que je porte sont chauds. — «Перчатки, которые на мне, теплые.»\nСлово gants значит «перчатки». Слово chauds значит «тёплые».\nLe message que j’écris est court. — «Сообщение, которое я пишу, короткое.»\nСлово court значит «короткое».\nLe plat que vous servez est délicieux. — «Блюдо, которое вы подаете, очень вкусное.»\nСлово plat значит «блюдо». Слово servez значит «подаёте». Слово délicieux значит «вкусный».",
+        "en": "Now we name the thing first.\nLe pain que tu prépares sent bon.\n“The bread you are baking smells good.”\nThe word prépares means “prepare”. The words sent bon mean “smells good”.\nFirst the thing, then que and the one who does something with it.\nLe café que tu bois est très fort.\n“The coffee you drink is very strong.”\nThe word bois means “drink”. The word fort means “strong”.\nLes gants que je porte sont chauds.\n“The gloves I am wearing are warm.”\nThe word gants means “gloves”. The word chauds means “warm”.\nLe message que j’écris est court. — “The message I am writing is short.”\nThe word court means “short”.\nLe plat que vous servez est délicieux.\n“The dish you are serving is delicious.”\nThe word plat means “dish”. The word servez means “serve”. The word délicieux means “delicious”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:29:21",
+          "say": {
+            "ru": "лё пэн кё тю прэпар сан бон",
+            "uk": "льо пен кьо тю препар сан бон"
+          }
+        },
+        {
+          "phraseId": "fr:29:23",
+          "say": {
+            "ru": "лё кафэ́ кё тю буа э трэ фор",
+            "uk": "льо кафе́ кьо тю буа е тре фор"
+          }
+        },
+        {
+          "phraseId": "fr:29:25",
+          "say": {
+            "ru": "лэ ган кё жё порт сон шо",
+            "uk": "ле ган кьо жьо порт сон шо"
+          }
+        },
+        {
+          "phraseId": "fr:29:27",
+          "say": {
+            "ru": "лё мэса́ж кё жэкри э кур",
+            "uk": "льо меса́ж кьо жекрі е кур"
+          }
+        },
+        {
+          "phraseId": "fr:29:30",
+          "say": {
+            "ru": "лё пла кё ву сервэ́ э делисьё́",
+            "uk": "льо пла кьо ву серве́ е делісььо́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Хлеб, который ты печёшь, вкусно пахнет»",
+            "uk": "Виберіть, як сказати: «Хліб, який ти печеш, смачно пахне»",
+            "en": "Choose how to say: “The bread you are baking smells good”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:29:21",
+          "options": [
+            "fr:29:21",
+            "fr:29:23",
+            "fr:29:25"
+          ],
+          "answerId": "fr:29:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Перчатки, которые на мне, теплые»",
+            "uk": "Виберіть, як сказати: «Рукавички, які я ношу, теплі»",
+            "en": "Choose how to say: “The gloves I am wearing are warm”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:25",
+          "options": [
+            "fr:29:25",
+            "fr:29:23",
+            "fr:29:27"
+          ],
+          "answerId": "fr:29:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Блюдо, которое вы подаете, очень вкусное»",
+            "uk": "Виберіть, як сказати: «Страва, яку ви подаєте, дуже смачна»",
+            "en": "Choose how to say: “The dish you are serving is delicious”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:30",
+          "options": [
+            "fr:29:30",
+            "fr:29:27",
+            "fr:29:23"
+          ],
+          "answerId": "fr:29:30"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Ещё примеры",
+        "en": "More examples"
+      },
+      "text": {
+        "ru": "Вот ещё примеры.\nJe connais un café qui sert du thé à la menthe.\n«Я знаю кафе, где подают мятный чай.»\nЧитается: жё конэ́ ан кафэ́ ки сэр дю те а ла мант.\nСлово sert значит «подаёт». Слово menthe значит «мята».\nСлова du thé значат «чай».\nJ’ai perdu le papier qui indique le code.\n«Я потерял клочок бумаги с кодом.»\nСлово papier значит «листок бумаги». Слово code значит «код».\nСлово indique значит «показывает».\nLe pot que tu cherches est derrière la menthe.\n«Горшок, который ты ищешь, стоит за мятой.»\nСлово derrière значит «за».\nLe train que nous devons prendre part à midi.\n«Поезд, на котором мы должны ехать, отправляется в полдень.»\nСлова nous devons значат «мы должны». Слово part значит «отправляется».\nLa fenêtre qui ferme mal donne sur la rue.\n«Окно, которое плохо закрывается, выходит на улицу.»\nСлово mal значит «плохо». Слова donne sur значат «выходит на».",
+        "en": "Here are more examples.\nJe connais un café qui sert du thé à la menthe.\n“I know a café that serves mint tea.”\nThe word sert means “serves”. The word menthe means “mint”.\nThe words du thé mean “tea”.\nJ’ai perdu le papier qui indique le code.\n“I lost the paper with the code.”\nThe word papier means “paper”. The word code means “code”.\nThe word indique means “shows”.\nLe pot que tu cherches est derrière la menthe.\n“The pot you are looking for is behind the mint.”\nThe word derrière means “behind”.\nLe train que nous devons prendre part à midi.\n“The train we have to take leaves at noon.”\nThe words nous devons mean “we must”. The word part means “leaves”.\nLa fenêtre qui ferme mal donne sur la rue.\n“The window that closes badly faces the street.”\nThe word mal means “badly”. The words donne sur mean “faces”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:29:41",
+          "say": {
+            "ru": "жё конэ́ ан кафэ́ ки сэр дю те а ла мант",
+            "uk": "жьо коне́ ан кафе́ кі сер дю те а ла мант"
+          }
+        },
+        {
+          "phraseId": "fr:29:45",
+          "say": {
+            "ru": "жэ пэрдю́ лё папье́ ки эндик лё код",
+            "uk": "же пердю́ льо папье́ кі ендік льо код"
+          }
+        },
+        {
+          "phraseId": "fr:29:46",
+          "say": {
+            "ru": "лё по кё тю шэрш э дэрье́р ла мант",
+            "uk": "льо по кьо тю шерш е дерье́р ла мант"
+          }
+        },
+        {
+          "phraseId": "fr:29:44",
+          "say": {
+            "ru": "лё трэн кё ну дёво́н прандр пар а миди́",
+            "uk": "льо трен кьо ну дьово́н прандр пар а міді́"
+          }
+        },
+        {
+          "phraseId": "fr:29:50",
+          "say": {
+            "ru": "ла фёнэ́тр ки фэрм маль дон сюр ла рю",
+            "uk": "ла фьоне́тр кі ферм маль дон сюр ла рю"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я знаю кафе, где подают мятный чай»",
+            "uk": "Виберіть, як сказати: «Я знаю кафе, де подають м'ятний чай»",
+            "en": "Choose how to say: “I know a café that serves mint tea”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:29:41",
+          "options": [
+            "fr:29:41",
+            "fr:29:45",
+            "fr:29:46"
+          ],
+          "answerId": "fr:29:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я потерял клочок бумаги с кодом»",
+            "uk": "Виберіть, як сказати: «Я загубив клаптик паперу з кодом»",
+            "en": "Choose how to say: “I lost the paper with the code”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:45",
+          "options": [
+            "fr:29:45",
+            "fr:29:46",
+            "fr:29:41"
+          ],
+          "answerId": "fr:29:45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Окно, которое плохо закрывается, выходит на улицу»",
+            "uk": "Виберіть, як сказати: «Вікно, яке погано зачиняється, виходить на вулицю»",
+            "en": "Choose how to say: “The window that closes badly faces the street”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:29:50",
+          "options": [
+            "fr:29:50",
+            "fr:29:44",
+            "fr:29:41"
+          ],
+          "answerId": "fr:29:50"
+        }
+      ]
+    }
+  ]
+}

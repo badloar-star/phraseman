@@ -1,0 +1,485 @@
+{
+  "lang": "es",
+  "lesson": 29,
+  "title": {
+    "ru": "Я бы позвонил, я бы снял",
+    "en": "I would call, I would rent"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я бы позвонил",
+        "en": "I would call"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я позвонил бы в отель».\nLlamaría al hotel.\nЧитается: йамари́а аль отэ́ль.\nСлово llamaría значит «я позвонил бы». Так говорят о том, что могло бы быть.\nСлово меняется, смотря о ком речь: «я» — llamaría, «ты» — llamarías.\nAna compraría un billete. — «Ана купила бы билет.»\nСлово compraría значит «купила бы». О нас — esperaríamos: «мы подождали бы».",
+        "en": "Look at how to say “I would call the hotel”.\nLlamaría al hotel.\nThe word llamaría means “I would call”. People say it about what could happen.\nThe word changes depending on who it is about: “I” — llamaría, “you” — llamarías.\nAna compraría un billete. — “Ana would buy a ticket.”\nThe word compraría means “would buy”. For us — esperaríamos: “we would wait”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:29:01",
+          "say": {
+            "ru": "йамари́а аль отэ́ль",
+            "uk": "йамарі́а аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:29:02",
+          "say": {
+            "ru": "йамари́ас аль отэ́ль",
+            "uk": "йамарі́ас аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:29:05",
+          "say": {
+            "ru": "А́на компрари́а ун бийэ́тэ",
+            "uk": "А́на компрарі́а ун бійе́те"
+          }
+        },
+        {
+          "phraseId": "es:29:07",
+          "say": {
+            "ru": "компрари́а пан",
+            "uk": "компрарі́а пан"
+          }
+        },
+        {
+          "phraseId": "es:29:09",
+          "say": {
+            "ru": "Луи́с болбэри́а а ка́са",
+            "uk": "Луі́с болбері́а а ка́са"
+          }
+        },
+        {
+          "phraseId": "es:29:10",
+          "say": {
+            "ru": "эсперари́амос аки́",
+            "uk": "есперарі́амос акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я позвонил бы в отель»",
+            "uk": "Виберіть, як сказати: «Я зателефонував би до готелю»",
+            "en": "Choose how to say: “I would call the hotel”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:29:01",
+          "options": [
+            "es:29:01",
+            "es:29:02",
+            "es:29:10"
+          ],
+          "answerId": "es:29:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана купила бы билет»",
+            "uk": "Виберіть, як сказати: «Ана купила б квиток»",
+            "en": "Choose how to say: “Ana would buy a ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:05",
+          "options": [
+            "es:29:05",
+            "es:29:07",
+            "es:29:09"
+          ],
+          "answerId": "es:29:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы подождали бы здесь»",
+            "uk": "Виберіть, як сказати: «Ми почекали б тут»",
+            "en": "Choose how to say: “We would wait here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:10",
+          "options": [
+            "es:29:10",
+            "es:29:09",
+            "es:29:02"
+          ],
+          "answerId": "es:29:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я бы снял комнату",
+        "en": "I would rent a room"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы бы сняли комнату».\nAlquilaríamos una habitación.\nЧитается: алькилари́амос у́на абитасьо́н.\nСлово alquilaríamos значит «мы бы сняли». Слово habitación — «комната».\nYo elegiría la habitación con balcón. — «Я бы выбрал комнату с балконом.»\nСлово elegiría значит «я бы выбрал». Слово balcón — «балкон».\nEn el balcón pondría una mesa. — «На балконе я бы поставил стол.»\nСлово pondría значит «я бы поставил». Слово poner — «ставить, класть».\nPediría otra habitación. — «Я бы попросил другую комнату.»",
+        "en": "Look at how to say “We would rent a room”.\nAlquilaríamos una habitación.\nThe word alquilaríamos means “we would rent”. The word habitación means “room”.\nYo elegiría la habitación con balcón.\n“I would choose the room with a balcony.”\nThe word elegiría means “I would choose”. The word balcón means “balcony”.\nEn el balcón pondría una mesa.\n“On the balcony I would put a table.”\nThe word pondría means “I would put”. The word poner means “to put”.\nPediría otra habitación. — “I would ask for another room.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:29:06",
+          "say": {
+            "ru": "алькилари́амос у́на абитасьо́н",
+            "uk": "алькіларі́амос у́на абітасьо́н"
+          }
+        },
+        {
+          "phraseId": "es:29:12",
+          "say": {
+            "ru": "йо элехири́а ла абитасьо́н кон балко́н",
+            "uk": "йо елехірі́а ла абітасьо́н кон балко́н"
+          }
+        },
+        {
+          "phraseId": "es:29:29",
+          "say": {
+            "ru": "эн эль балко́н пондри́а у́на ме́са",
+            "uk": "ен ель балко́н пондрі́а у́на ме́са"
+          }
+        },
+        {
+          "phraseId": "es:29:35",
+          "say": {
+            "ru": "педири́а о́тра абитасьо́н",
+            "uk": "педірі́а о́тра абітасьо́н"
+          }
+        },
+        {
+          "phraseId": "es:29:24",
+          "say": {
+            "ru": "элехири́амос эль ба́рьо мас транки́ло",
+            "uk": "елехірі́амос ель ба́рьо мас транкі́ло"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы бы сняли комнату»",
+            "uk": "Виберіть, як сказати: «Ми б винайняли кімнату»",
+            "en": "Choose how to say: “We would rent a room”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:29:06",
+          "options": [
+            "es:29:06",
+            "es:29:12",
+            "es:29:35"
+          ],
+          "answerId": "es:29:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы выбрал комнату с балконом»",
+            "uk": "Виберіть, як сказати: «Я б обрав кімнату з балконом»",
+            "en": "Choose how to say: “I would choose the room with a balcony”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:12",
+          "options": [
+            "es:29:12",
+            "es:29:06",
+            "es:29:35"
+          ],
+          "answerId": "es:29:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы попросил другую комнату»",
+            "uk": "Виберіть, як сказати: «Я б попросив іншу кімнату»",
+            "en": "Choose how to say: “I would ask for another room”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:35",
+          "options": [
+            "es:29:35",
+            "es:29:12",
+            "es:29:24"
+          ],
+          "answerId": "es:29:35"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Квартира подешевле",
+        "en": "A cheaper flat"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я бы поискал квартиру подешевле».\nBuscaría un piso más barato.\nЧитается: бускари́а ун пи́со мас бара́то.\nСлово buscaría значит «я бы поискал». Слово piso — «квартира».\nСлово barato значит «дешёвый». Слова más barato — «подешевле».\nVisitaría el piso con luz natural.\nЭто «Я бы посмотрел квартиру с естественным освещением».\nСлово natural значит «естественный». Слово luz — «свет».\n¿Alquilarías un piso sin luz natural? — «Ты бы снял квартиру без естественного света?»\nСлово sin значит «без».",
+        "en": "Look at how to say “I would look for a cheaper flat”.\nBuscaría un piso más barato.\nThe word buscaría means “I would look for”. The word piso means “flat”.\nThe word barato means “cheap”. The words más barato mean “cheaper”.\nVisitaría el piso con luz natural.\nIt means “I would view the flat with natural light”.\nThe word natural means “natural”. The word luz means “light”.\n¿Alquilarías un piso sin luz natural?\n“Would you rent a flat without natural light?”\nThe word sin means “without”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:29:15",
+          "say": {
+            "ru": "бускари́а ун пи́со мас бара́то",
+            "uk": "бускарі́а ун пі́со мас бара́то"
+          }
+        },
+        {
+          "phraseId": "es:29:19",
+          "say": {
+            "ru": "биситари́а эль пи́со кон лус натура́ль",
+            "uk": "бісітарі́а ель пі́со кон лус натура́ль"
+          }
+        },
+        {
+          "phraseId": "es:29:43",
+          "say": {
+            "ru": "алькилари́ас ун пи́со син лус натура́ль",
+            "uk": "алькіларі́ас ун пі́со сін лус натура́ль"
+          }
+        },
+        {
+          "phraseId": "es:29:47",
+          "say": {
+            "ru": "элехири́ас эль пи́со кон балко́н",
+            "uk": "елехірі́ас ель пі́со кон балко́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы поискал квартиру подешевле»",
+            "uk": "Виберіть, як сказати: «Я б пошукав дешевшу квартиру»",
+            "en": "Choose how to say: “I would look for a cheaper flat”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:29:15",
+          "options": [
+            "es:29:15",
+            "es:29:19",
+            "es:29:43"
+          ],
+          "answerId": "es:29:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы посмотрел квартиру с естественным освещением»",
+            "uk": "Виберіть, як сказати: «Я б подивився квартиру з природним освітленням»",
+            "en": "Choose how to say: “I would view the flat with natural light”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:19",
+          "options": [
+            "es:29:19",
+            "es:29:15",
+            "es:29:43"
+          ],
+          "answerId": "es:29:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты бы снял квартиру без естественного света?»",
+            "uk": "Виберіть, як сказати: «Ти б винайняв квартиру без природного світла?»",
+            "en": "Choose how to say: “Would you rent a flat without natural light?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:43",
+          "options": [
+            "es:29:43",
+            "es:29:47",
+            "es:29:19"
+          ],
+          "answerId": "es:29:43"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я бы не",
+        "en": "I would not"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я бы не снял такую шумную квартиру».\nNo alquilaría un piso tan ruidoso.\nЧитается: но алькилари́а ун пи́со тан руидо́со.\nСлово no ставят перед словом, как русское «не».\nСлово ruidoso значит «шумный». Слово tan — «так, настолько».\nNo pagaría tanto por una habitación ruidosa.\nЭто «Я бы столько не заплатил за шумную комнату».\nСлово tanto значит «так много, столько».\nСлово ruidosa тоже значит «шумная»: так говорят о комнате.",
+        "en": "Look at how to say “I would not rent such a noisy flat”.\nNo alquilaría un piso tan ruidoso.\nThe word no goes before the other word, like “not”.\nThe word ruidoso means “noisy”. The word tan means “so, that”.\nNo pagaría tanto por una habitación ruidosa.\nIt means “I would not pay that much for a noisy room”.\nThe word tanto means “so much”.\nThe word ruidosa also means “noisy”: people say it about a room."
+      },
+      "examples": [
+        {
+          "phraseId": "es:29:33",
+          "say": {
+            "ru": "но алькилари́а ун пи́со тан руидо́со",
+            "uk": "но алькіларі́а ун пі́со тан руідо́со"
+          }
+        },
+        {
+          "phraseId": "es:29:37",
+          "say": {
+            "ru": "но пагари́а та́нто пор у́на абитасьо́н руидо́са",
+            "uk": "но пагарі́а та́нто пор у́на абітасьо́н руідо́са"
+          }
+        },
+        {
+          "phraseId": "es:29:31",
+          "say": {
+            "ru": "но лээри́а эль ли́бро ой",
+            "uk": "но леері́а ель лі́бро ой"
+          }
+        },
+        {
+          "phraseId": "es:29:34",
+          "say": {
+            "ru": "но болбэри́амос а ка́са ой",
+            "uk": "но болбері́амос а ка́са ой"
+          }
+        },
+        {
+          "phraseId": "es:29:36",
+          "say": {
+            "ru": "мис эрма́нас но компрари́ан ун ко́чэ тан бара́то",
+            "uk": "міс ерма́нас но компрарі́ан ун ко́че тан бара́то"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы не снял такую шумную квартиру»",
+            "uk": "Виберіть, як сказати: «Я б не винайняв таку шумну квартиру»",
+            "en": "Choose how to say: “I would not rent such a noisy flat”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:29:33",
+          "options": [
+            "es:29:33",
+            "es:29:37",
+            "es:29:31"
+          ],
+          "answerId": "es:29:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы столько не заплатил за шумную комнату»",
+            "uk": "Виберіть, як сказати: «Я б стільки не заплатив за шумну кімнату»",
+            "en": "Choose how to say: “I would not pay that much for a noisy room”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:37",
+          "options": [
+            "es:29:37",
+            "es:29:33",
+            "es:29:36"
+          ],
+          "answerId": "es:29:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сегодня не вернулись бы домой»",
+            "uk": "Виберіть, як сказати: «Ми сьогодні не повернулися б додому»",
+            "en": "Choose how to say: “We would not come back home today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:34",
+          "options": [
+            "es:29:34",
+            "es:29:31",
+            "es:29:36"
+          ],
+          "answerId": "es:29:34"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Вопрос",
+        "en": "A question"
+      },
+      "text": {
+        "ru": "Смотрите, как задать вопрос.\n¿Llamarías al hotel? — «Ты позвонил бы в отель?»\nЧитается: йамари́ас аль отэ́ль.\nСлова те же, а голос в конце идёт вверх.\n¿Pagarías con tarjeta? — «Ты заплатил бы картой?»\n¿Esperarías aquí un minuto? — «Ты бы подождал здесь минутку?»\n¿Luis leería el libro? — «Луис прочитал бы книгу?»",
+        "en": "Look at how to ask a question.\n¿Llamarías al hotel? — “Would you call the hotel?”\nThe words are the same, but the voice goes up at the end.\n¿Pagarías con tarjeta? — “Would you pay by card?”\n¿Esperarías aquí un minuto? — “Would you wait here for a minute?”\n¿Luis leería el libro? — “Would Luis read the book?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:29:41",
+          "say": {
+            "ru": "йамари́ас аль отэ́ль",
+            "uk": "йамарі́ас аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:29:44",
+          "say": {
+            "ru": "пагари́ас кон тархэ́та",
+            "uk": "пагарі́ас кон тархе́та"
+          }
+        },
+        {
+          "phraseId": "es:29:48",
+          "say": {
+            "ru": "эсперари́ас аки́ ун мину́то",
+            "uk": "есперарі́ас акі́ ун міну́то"
+          }
+        },
+        {
+          "phraseId": "es:29:45",
+          "say": {
+            "ru": "Луи́с лээри́а эль ли́бро",
+            "uk": "Луі́с леері́а ель лі́бро"
+          }
+        },
+        {
+          "phraseId": "es:29:50",
+          "say": {
+            "ru": "мандари́аис ла фо́то",
+            "uk": "мандарі́аіс ла фо́то"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты позвонил бы в отель?»",
+            "uk": "Виберіть, як сказати: «Ти зателефонував би до готелю?»",
+            "en": "Choose how to say: “Would you call the hotel?”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:29:41",
+          "options": [
+            "es:29:41",
+            "es:29:44",
+            "es:29:45"
+          ],
+          "answerId": "es:29:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты заплатил бы картой?»",
+            "uk": "Виберіть, як сказати: «Ти заплатив би карткою?»",
+            "en": "Choose how to say: “Would you pay by card?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:44",
+          "options": [
+            "es:29:44",
+            "es:29:41",
+            "es:29:48"
+          ],
+          "answerId": "es:29:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис прочитал бы книгу?»",
+            "uk": "Виберіть, як сказати: «Луїс прочитав би книжку?»",
+            "en": "Choose how to say: “Would Luis read the book?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:29:45",
+          "options": [
+            "es:29:45",
+            "es:29:50",
+            "es:29:44"
+          ],
+          "answerId": "es:29:45"
+        }
+      ]
+    }
+  ]
+}

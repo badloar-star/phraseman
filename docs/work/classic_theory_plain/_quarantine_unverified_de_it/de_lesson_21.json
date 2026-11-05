@@ -1,0 +1,468 @@
+{
+  "lang": "de",
+  "lesson": 21,
+  "title": {
+    "ru": "Потому что, поскольку",
+    "uk": "Тому що, оскільки",
+    "en": "Because"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Потому что",
+        "uk": "Тому що",
+        "en": "Because"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я останусь здесь, потому что устал».\nIch bleibe hier, weil ich müde bin. — «Я останусь здесь, потому что устал.»\nЧитается: их бла́йбе хи́р вайль их мю́де бин\nСлово Ich значит «я». Слово bleibe — «остаюсь». Слово hier — «здесь».\nСлово weil значит «потому что». Слово müde — «уставший». Слово bin — «я есть».\nПосле слова weil слово действия уходит в самый конец: bin.\nAnna bleibt hier, weil sie krank ist. — «Анна остаётся здесь, потому что болеет.»\nЧитается: А́нна бла́йбт хи́р вайль зи кранк ист\nСлово bleibt значит «остаётся». Слово sie — «она». Слово krank — «больна».\nСлово ist значит «есть».\nTom geht nach Hause, weil er friert. — «Том идёт домой, потому что мёрзнет.»\nЧитается: Том гет нах ха́узе вайль эр фри́рт\nСлово geht значит «идёт». Слово er — «он». Слово friert — «мёрзнет».\nСлова nach Hause значат «домой». Снова слово действия в конце: friert.\nIch nehme den Bus, weil es regnet.\n— «Я еду на автобусе, потому что идёт дождь.»\nЧитается: их не́ме ден бус вайль ес ре́гнет\nСлово nehme значит «беру».\nСлово den по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Bus значит «автобус».\nСлово es по-русски не говорят: здесь оно просто нужно.\nСлово regnet значит «идёт дождь».\nIch nehme den Bus — буквально «я беру автобус». Так говорят, когда едут на нём.",
+        "uk": "Дивіться, як сказати «Я залишусь тут, бо втомився».\nIch bleibe hier, weil ich müde bin. — «Я залишусь тут, бо втомився.»\nЧитається: іх бла́йбе хі́р вайль іх мю́де бін\nСлово Ich означає «я». Слово bleibe — «залишаюся». Слово hier — «тут».\nСлово weil означає «тому що». Слово müde — «втомлений». Слово bin — «я є».\nПісля слова weil слово дії йде в самий кінець: bin.\nAnna bleibt hier, weil sie krank ist. — «Анна залишається тут, тому що хворіє.»\nЧитається: А́нна бла́йбт хі́р вайль зі кранк іст\nСлово bleibt означає «залишається». Слово sie — «вона». Слово krank — «хвора».\nСлово ist означає «є».\nTom geht nach Hause, weil er friert. — «Том іде додому, бо мерзне.»\nЧитається: Том гет нах ха́узе вайль ер фрі́рт\nСлово geht означає «іде». Слово er — «він». Слово friert — «мерзне».\nСлова nach Hause означають «додому». Знову слово дії в кінці: friert.\nIch nehme den Bus, weil es regnet. — «Я їду автобусом, тому що йде дощ.»\nЧитається: іх не́ме ден бус вайль ес ре́гнет\nСлово nehme означає «беру».\nСлово den по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Bus означає «автобус».\nСлово es по-українськи не кажуть: тут воно просто потрібне.\nСлово regnet означає «йде дощ».\nIch nehme den Bus — буквально «я беру автобус». Так кажуть, коли їдуть ним.",
+        "en": "Look at how to say “I am staying here because I am tired”.\nIch bleibe hier, weil ich müde bin.\n— “I am staying here because I am tired.”\nSounds like: eekh blAybe khEEr vayl eekh mYOOde been\nThe word Ich means “I”. The word bleibe — “I stay”.\nThe word hier — “here”.\nThe word weil means “because”. The word müde — “tired”.\nThe word bin — “I am”.\nAfter weil, the action word goes to the very end: bin.\nAnna bleibt hier, weil sie krank ist.\n— “Anna is staying here because she is ill.”\nSounds like: Anna blAybt khEEr vayl zee krank eest\nThe word bleibt means “stays”. The word sie — “she”. The word krank — “ill”.\nThe word ist means “is”.\nTom geht nach Hause, weil er friert.\n— “Tom is going home because he is cold.”\nSounds like: tom get nakh khAooze vayl er frEErt\nThe word geht means “goes”. The word er — “he”.\nThe word friert — “is freezing”.\nThe words nach Hause mean “home”. Again the action word is last: friert.\nIch nehme den Bus, weil es regnet.\n— “I take the bus because it is raining.”\nSounds like: eekh nEme den boos vayl es rEgnet\nThe word nehme means “take”.\nThe word den means “the”.\nThe word Bus means “bus”.\nThe word es means “it”.\nThe word regnet means “rains”.\nIch nehme den Bus is literally “I take the bus”.\nThis is how you say you ride it."
+      },
+      "examples": [
+        {
+          "phraseId": "de:21:01",
+          "say": {
+            "ru": "их бла́йбе хи́р вайль их мю́де бин",
+            "uk": "іх бла́йбе хі́р вайль іх мю́де бін"
+          }
+        },
+        {
+          "phraseId": "de:21:02",
+          "say": {
+            "ru": "А́нна бла́йбт хи́р вайль зи кранк ист",
+            "uk": "А́нна бла́йбт хі́р вайль зі кранк іст"
+          }
+        },
+        {
+          "phraseId": "de:21:03",
+          "say": {
+            "ru": "Том гет нах ха́узе вайль эр фри́рт",
+            "uk": "Том гет нах ха́узе вайль ер фрі́рт"
+          }
+        },
+        {
+          "phraseId": "de:21:06",
+          "say": {
+            "ru": "их не́ме ден бус вайль ес ре́гнет",
+            "uk": "іх не́ме ден бус вайль ес ре́гнет"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я останусь здесь, потому что устал»",
+            "uk": "Виберіть, як сказати: «Я залишусь тут, бо втомився»",
+            "en": "Choose how to say: “I am staying here because I am tired”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:21:01",
+          "options": [
+            "de:21:01",
+            "de:21:02",
+            "de:21:03"
+          ],
+          "answerId": "de:21:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна остаётся здесь, потому что болеет»",
+            "uk": "Виберіть, як сказати: «Анна залишається тут, тому що хворіє»",
+            "en": "Choose how to say: “Anna is staying here because she is ill”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:02",
+          "options": [
+            "de:21:02",
+            "de:21:01",
+            "de:21:03"
+          ],
+          "answerId": "de:21:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том идёт домой, потому что мёрзнет»",
+            "uk": "Виберіть, як сказати: «Том іде додому, бо мерзне»",
+            "en": "Choose how to say: “Tom is going home because he is cold”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:03",
+          "options": [
+            "de:21:03",
+            "de:21:01",
+            "de:21:02"
+          ],
+          "answerId": "de:21:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Причина — то, что происходит",
+        "uk": "Причина — те, що відбувається",
+        "en": "The reason is what is happening"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы ждём, потому что поезд опаздывает».\nWir warten, weil der Zug spät kommt. — «Мы ждём, потому что поезд опаздывает.»\nЧитается: вир ва́ртен вайль дер цук шпэт комт\nСлово Wir значит «мы». Слово warten — «ждём».\nСлово der по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Zug значит «поезд». Слово spät — «поздно». Слово kommt — «приходит».\nAnna trinkt Wasser, weil sie Durst hat. — «Анна пьёт воду, потому что хочет пить.»\nЧитается: А́нна три́нкт ва́ссер вайль зи дурст хат\nСлово trinkt значит «пьёт». Слово Wasser — «вода».\nСлова Durst hat значат «хочет пить».\nWir gehen zu Fuß, weil die Bahn streikt.\n— «Мы идём пешком, потому что на железной дороге забастовка.»\nЧитается: вир ге́ен цу фус вайль ди бан штра́йкт\nСлово gehen значит «идём».\nСлово die по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Bahn значит «электричка». Слово streikt — «бастует».\nСлова zu Fuß значат «пешком».\nTom sucht Schatten, weil die Sonne scheint. — «Том ищет тень, потому что светит солнце.»\nЧитается: Том зухт ша́ттен вайль ди зо́нне ша́йнт\nСлово sucht значит «ищет». Слово Schatten — «тень». Слово Sonne — «солнце».\nСлово scheint значит «светит».",
+        "uk": "Дивіться, як сказати «Ми чекаємо, тому що потяг спізнюється».\nWir warten, weil der Zug spät kommt. — «Ми чекаємо, тому що потяг спізнюється.»\nЧитається: вір ва́ртен вайль дер цук шпет комт\nСлово Wir означає «ми». Слово warten — «чекаємо».\nСлово der по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Zug означає «потяг». Слово spät — «пізно». Слово kommt — «приходить».\nAnna trinkt Wasser, weil sie Durst hat. — «Анна п'є воду, бо хоче пити.»\nЧитається: А́нна трі́нкт ва́ссер вайль зі дурст хат\nСлово trinkt означає «п’є». Слово Wasser — «вода».\nСлова Durst hat означають «хоче пити».\nWir gehen zu Fuß, weil die Bahn streikt.\n— «Ми йдемо пішки, тому що на залізниці страйк.»\nЧитається: вір ге́ен цу фус вайль ді бан штра́йкт\nСлово gehen означає «йдемо».\nСлово die по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Bahn означає «електричка». Слово streikt — «страйкує».\nСлова zu Fuß означають «пішки».\nTom sucht Schatten, weil die Sonne scheint. — «Том шукає тінь, бо сонце світить.»\nЧитається: Том зухт ша́ттен вайль ді зо́нне ша́йнт\nСлово sucht означає «шукає». Слово Schatten — «тінь». Слово Sonne — «сонце».\nСлово scheint означає «світить».",
+        "en": "Look at how to say “We are waiting because the train is late”.\nWir warten, weil der Zug spät kommt.\n— “We are waiting because the train is late.”\nSounds like: veer vArten vayl der tsook shpet komt\nThe word Wir means “we”. The word warten — “wait”.\nThe word der means “the”.\nThe word Zug means “train”. The word spät — “late”. The word kommt — “comes”.\nAnna trinkt Wasser, weil sie Durst hat. — “Anna drinks water because she is thirsty.”\nSounds like: Anna trEEnkt vAsser vayl zee doorst khat\nThe word trinkt means “drinks”. The word Wasser — “water”.\nThe words Durst hat mean “is thirsty”.\nWir gehen zu Fuß, weil die Bahn streikt.\n— “We walk because the train workers are on strike.”\nSounds like: veer gEen tsoo foos vayl dee ban shtrAykt\nThe word gehen means “we go”.\nThe word die means “the”.\nThe word Bahn means “train”. The word streikt — “is on strike”.\nThe words zu Fuß mean “on foot”.\nTom sucht Schatten, weil die Sonne scheint.\n— “Tom looks for shade because the sun is shining.”\nSounds like: tom zookht shAtten vayl dee zOnne shAynt\nThe word sucht means “looks for”. The word Schatten — “shade”.\nThe word Sonne — “sun”.\nThe word scheint means “shines”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:21:04",
+          "say": {
+            "ru": "вир ва́ртен вайль дер цук шпэт комт",
+            "uk": "вір ва́ртен вайль дер цук шпет комт"
+          }
+        },
+        {
+          "phraseId": "de:21:07",
+          "say": {
+            "ru": "А́нна три́нкт ва́ссер вайль зи дурст хат",
+            "uk": "А́нна трі́нкт ва́ссер вайль зі дурст хат"
+          }
+        },
+        {
+          "phraseId": "de:21:09",
+          "say": {
+            "ru": "вир ге́ен цу фус вайль ди бан штра́йкт",
+            "uk": "вір ге́ен цу фус вайль ді бан штра́йкт"
+          }
+        },
+        {
+          "phraseId": "de:21:14",
+          "say": {
+            "ru": "Том зухт ша́ттен вайль ди зо́нне ша́йнт",
+            "uk": "Том зухт ша́ттен вайль ді зо́нне ша́йнт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ждём, потому что поезд опаздывает»",
+            "uk": "Виберіть, як сказати: «Ми чекаємо, тому що потяг спізнюється»",
+            "en": "Choose how to say: “We are waiting because the train is late”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:21:04",
+          "options": [
+            "de:21:04",
+            "de:21:07",
+            "de:21:09"
+          ],
+          "answerId": "de:21:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна пьёт воду, потому что хочет пить»",
+            "uk": "Виберіть, як сказати: «Анна п'є воду, бо хоче пити»",
+            "en": "Choose how to say: “Anna drinks water because she is thirsty”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:07",
+          "options": [
+            "de:21:07",
+            "de:21:04",
+            "de:21:09"
+          ],
+          "answerId": "de:21:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы идём пешком, потому что на железной дороге забастовка»",
+            "uk": "Виберіть, як сказати: «Ми йдемо пішки, тому що на залізниці страйк»",
+            "en": "Choose how to say: “We walk because the train workers are on strike”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:09",
+          "options": [
+            "de:21:09",
+            "de:21:04",
+            "de:21:07"
+          ],
+          "answerId": "de:21:09"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "В конце два слова",
+        "uk": "У кінці два слова",
+        "en": "Two words at the end"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я выезжаю раньше, потому что мне предстоит пересадка».\nIch fahre früher, weil ich umsteigen muss.\n— «Я выезжаю раньше, потому что мне предстоит пересадка.»\nЧитается: их фа́ре фрю́эр вайль их у́мштайген мус\nСлово fahre значит «я еду». Слово früher — «раньше». Слово umsteigen — «пересесть».\nСлово muss значит «нужно».\nВ конце теперь два слова: umsteigen muss. Так бывает, когда «надо» или «хочу».\nWir gehen, weil wir arbeiten müssen. — «Мы уходим, потому что нам надо работать.»\nЧитается: вир ге́ен вайль вир а́рбайтен мю́сен\nСлово arbeiten значит «работать». Слово müssen — «должны».\nTom übt, weil er besser sprechen will. — «Том занимается, потому что хочет лучше говорить.»\nЧитается: Том ю́пт вайль эр бе́сер шпре́хен вилль\nСлово übt значит «занимается». Слово besser — «лучше». Слово sprechen — «говорить».\nСлово will значит «хочет».\nIhr bleibt hier, weil ihr helfen könnt. — «Вы остаётесь здесь, потому что можете помочь.»\nЧитается: ир бла́йбт хи́р вайль ир хе́лфен кёнт\nСлово Ihr значит «вы». Слово helfen — «помочь». Слово könnt — «можете».",
+        "uk": "Дивіться, як сказати «Я виїжджаю раніше, тому що мені треба робити пересадку».\nIch fahre früher, weil ich umsteigen muss.\n— «Я виїжджаю раніше, тому що мені треба робити пересадку.»\nЧитається: іх фа́ре фрю́ер вайль іх у́мштайген мус\nСлово fahre означає «я їду». Слово früher — «раніше». Слово umsteigen — «пересісти».\nСлово muss означає «треба».\nУ кінці тепер два слова: umsteigen muss. Так буває, коли «треба» або «хочу».\nWir gehen, weil wir arbeiten müssen. — «Ми йдемо, тому що нам треба працювати.»\nЧитається: вір ге́ен вайль вір а́рбайтен мю́сен\nСлово arbeiten означає «працювати». Слово müssen — «мусимо».\nTom übt, weil er besser sprechen will. — «Том займається, тому що хоче краще говорити.»\nЧитається: Том ю́пт вайль ер бе́сер шпре́хен вілль\nСлово übt означає «займається». Слово besser — «краще». Слово sprechen — «говорити».\nСлово will означає «хоче».\nIhr bleibt hier, weil ihr helfen könnt. — «Ви залишаєтеся тут, тому що можете допомогти.»\nЧитається: ір бла́йбт хі́р вайль ір хе́лфен кьонт\nСлово Ihr означає «ви». Слово helfen — «допомогти». Слово könnt — «можете».",
+        "en": "Look at how to say “I leave earlier because I have to change trains”.\nIch fahre früher, weil ich umsteigen muss.\n— “I leave earlier because I have to change trains.”\nSounds like: eekh fAre frYOOer vayl eekh OOmshtaygen moos\nThe word fahre means “I go (by vehicle)”. The word früher — “earlier”.\nThe word umsteigen — “change trains”.\nThe word muss means “must”.\nNow there are two words at the end: umsteigen muss. This happens with “must”\nor “want”.\nWir gehen, weil wir arbeiten müssen. — “We are leaving because we have to work.”\nSounds like: veer gEen vayl veer Arbayten mYOOsen\nThe word arbeiten means “to work”. The word müssen — “must”.\nTom übt, weil er besser sprechen will.\n— “Tom practises because he wants to speak better.”\nSounds like: tom YOOpt vayl er bEser shprEkhen veell\nThe word übt means “practises”. The word besser — “better”. The word sprechen — “speak”.\nThe word will means “wants”.\nIhr bleibt hier, weil ihr helfen könnt.\n— “You all are staying here because you can help.”\nSounds like: eer blAybt khEEr vayl eer khElfen kyont\nThe word Ihr means “you all”. The word helfen — “help”.\nThe word könnt — “can”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:21:21",
+          "say": {
+            "ru": "их фа́ре фрю́эр вайль их у́мштайген мус",
+            "uk": "іх фа́ре фрю́ер вайль іх у́мштайген мус"
+          }
+        },
+        {
+          "phraseId": "de:21:22",
+          "say": {
+            "ru": "вир ге́ен вайль вир а́рбайтен мю́сен",
+            "uk": "вір ге́ен вайль вір а́рбайтен мю́сен"
+          }
+        },
+        {
+          "phraseId": "de:21:24",
+          "say": {
+            "ru": "Том ю́пт вайль эр бе́сер шпре́хен вилль",
+            "uk": "Том ю́пт вайль ер бе́сер шпре́хен вілль"
+          }
+        },
+        {
+          "phraseId": "de:21:26",
+          "say": {
+            "ru": "ир бла́йбт хи́р вайль ир хе́лфен кёнт",
+            "uk": "ір бла́йбт хі́р вайль ір хе́лфен кьонт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я выезжаю раньше, потому что мне предстоит пересадка»",
+            "uk": "Виберіть, як сказати: «Я виїжджаю раніше, тому що мені треба робити пересадку»",
+            "en": "Choose how to say: “I leave earlier because I have to change trains”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:21:21",
+          "options": [
+            "de:21:21",
+            "de:21:22",
+            "de:21:24"
+          ],
+          "answerId": "de:21:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы уходим, потому что нам надо работать»",
+            "uk": "Виберіть, як сказати: «Ми йдемо, тому що нам треба працювати»",
+            "en": "Choose how to say: “We are leaving because we have to work”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:22",
+          "options": [
+            "de:21:22",
+            "de:21:21",
+            "de:21:24"
+          ],
+          "answerId": "de:21:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том занимается, потому что хочет лучше говорить»",
+            "uk": "Виберіть, як сказати: «Том займається, тому що хоче краще говорити»",
+            "en": "Choose how to say: “Tom practises because he wants to speak better”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:24",
+          "options": [
+            "de:21:24",
+            "de:21:21",
+            "de:21:22"
+          ],
+          "answerId": "de:21:24"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Причина уже случилась",
+        "uk": "Причина вже сталася",
+        "en": "The reason already happened"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Анна устала, потому что рано встала».\nAnna ist müde, weil sie früh aufgestanden ist. — «Анна устала, потому что рано встала.»\nЧитается: А́нна ист мю́де вайль зи фрю а́уфгештанден ист\nСлово früh значит «рано».\nЗдесь в конце тоже два слова. Слова aufgestanden ist вместе значат «встала».\nIch bin froh, weil ich den Pass gefunden habe.\n— «Я рад, потому что нашёл паспорт.»\nЧитается: их бин фро вайль их ден пас гефу́нден ха́бе\nСлово froh значит «рад». Слово Pass — «паспорт».\nСлова gefunden habe вместе значат «нашёл».\nWir sind spät dran, weil wir den Zug verpasst haben.\n— «Мы опаздываем, потому что пропустили поезд.»\nЧитается: вир зинд шпэт дран вайль вир ден цук ферпа́ст ха́бен\nСлова spät dran значат «опаздываем». Слова verpasst haben вместе значат «пропустили».\nIch zahle noch einmal, weil die erste Zahlung nicht geklappt hat.\n— «Я плачу ещё раз, потому что первый платёж не прошёл.»\nЧитается: их ца́ле нох а́йнмаль вайль ди э́рсте ца́лунг нихт гекла́пт хат\nСлово zahle значит «плачу». Слово erste — «первый». Слово Zahlung — «платёж».\nСлово nicht значит «не».\nСлова noch einmal значат «ещё раз». Слова geklappt hat вместе значат «прошёл».\nIch nehme den Ersatzschlüssel, weil ich meinen verloren habe.\n— «Я беру запасной ключ, потому что потерял свой.»\nЧитается: их не́ме ден эрза́цшлю́ссель вайль их ма́йнен ферло́рен ха́бе\nСлово Ersatzschlüssel значит «запасной ключ».\nСлова meinen verloren habe вместе значат «потерял свой».",
+        "uk": "Дивіться, як сказати «Анна втомилася, бо рано встала».\nAnna ist müde, weil sie früh aufgestanden ist. — «Анна втомилася, бо рано встала.»\nЧитається: А́нна іст мю́де вайль зі фрю а́уфгештанден іст\nСлово früh означає «рано».\nТут у кінці теж два слова. Слова aufgestanden ist разом означають «встала».\nIch bin froh, weil ich den Pass gefunden habe. — «Я радий, бо знайшов паспорт.»\nЧитається: іх бін фро вайль іх ден пас гефу́нден ха́бе\nСлово froh означає «радий». Слово Pass — «паспорт».\nСлова gefunden habe разом означають «знайшов».\nWir sind spät dran, weil wir den Zug verpasst haben.\n— «Ми запізнюємося, тому що пропустили поїзд.»\nЧитається: вір зінд шпет дран вайль вір ден цук ферпа́ст ха́бен\nСлова spät dran означають «запізнюємося». Слова verpasst haben разом означають «пропустили».\nIch zahle noch einmal, weil die erste Zahlung nicht geklappt hat.\n— «Я плачу ще раз, бо перший платіж не пройшов.»\nЧитається: іх ца́ле нох а́йнмаль вайль ді е́рсте ца́лунг ніхт гекла́пт хат\nСлово zahle означає «плачу». Слово erste — «перший». Слово Zahlung — «платіж».\nСлово nicht означає «не».\nСлова noch einmal означають «ще раз». Слова geklappt hat разом означають «пройшов».\nIch nehme den Ersatzschlüssel, weil ich meinen verloren habe.\n— «Я беру запасний ключ, тому що втратив свій.»\nЧитається: іх не́ме ден ерза́цшлю́ссель вайль іх ма́йнен ферло́рен ха́бе\nСлово Ersatzschlüssel означає «запасний ключ».\nСлова meinen verloren habe разом означають «втратив свій».",
+        "en": "Look at how to say “Anna is tired because she got up early”.\nAnna ist müde, weil sie früh aufgestanden ist.\n— “Anna is tired because she got up early.”\nSounds like: Anna eest mYOOde vayl zee fryoo Aoofgeshtanden eest\nThe word früh means “early”.\nHere too there are two words at the end.\nThe words aufgestanden ist together mean “got up”.\nIch bin froh, weil ich den Pass gefunden habe.\n— “I am glad because I have found the passport.”\nSounds like: eekh been fro vayl eekh den pas gefOOnden khAbe\nThe word froh means “glad”. The word Pass — “passport”.\nThe words gefunden habe together mean “found”.\nWir sind spät dran, weil wir den Zug verpasst haben.\n— “We are late because we missed the train.”\nSounds like: veer zeend shpet dran vayl veer den tsook ferpAst khAben\nThe words spät dran mean “late”. The words verpasst haben together mean “missed”.\nIch zahle noch einmal, weil die erste Zahlung nicht geklappt hat.\n— “I pay again because the first payment did not work.”\nSounds like: eekh tsAle nokh Aynmal vayl dee Erste tsAloong neekht geklApt khat\nThe word zahle means “pay”. The word erste — “first”. The word Zahlung — “payment”.\nThe word nicht means “not”.\nThe words noch einmal mean “once more”. The words geklappt hat together mean “worked”.\nIch nehme den Ersatzschlüssel, weil ich meinen verloren habe.\n— “I take the spare key because I have lost mine.”\nSounds like: eekh nEme den erzAtsshlYOOssel vayl eekh mAynen ferlOren khAbe\nThe word Ersatzschlüssel means “spare key”.\nThe words meinen verloren habe together mean “lost mine”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:21:31",
+          "say": {
+            "ru": "А́нна ист мю́де вайль зи фрю а́уфгештанден ист",
+            "uk": "А́нна іст мю́де вайль зі фрю а́уфгештанден іст"
+          }
+        },
+        {
+          "phraseId": "de:21:33",
+          "say": {
+            "ru": "их бин фро вайль их ден пас гефу́нден ха́бе",
+            "uk": "іх бін фро вайль іх ден пас гефу́нден ха́бе"
+          }
+        },
+        {
+          "phraseId": "de:21:34",
+          "say": {
+            "ru": "вир зинд шпэт дран вайль вир ден цук ферпа́ст ха́бен",
+            "uk": "вір зінд шпет дран вайль вір ден цук ферпа́ст ха́бен"
+          }
+        },
+        {
+          "phraseId": "de:21:36",
+          "say": {
+            "ru": "их ца́ле нох а́йнмаль вайль ди э́рсте ца́лунг нихт гекла́пт хат",
+            "uk": "іх ца́ле нох а́йнмаль вайль ді е́рсте ца́лунг ніхт гекла́пт хат"
+          }
+        },
+        {
+          "phraseId": "de:21:40",
+          "say": {
+            "ru": "их не́ме ден эрза́цшлю́ссель вайль их ма́йнен ферло́рен ха́бе",
+            "uk": "іх не́ме ден ерза́цшлю́ссель вайль іх ма́йнен ферло́рен ха́бе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна устала, потому что рано встала»",
+            "uk": "Виберіть, як сказати: «Анна втомилася, бо рано встала»",
+            "en": "Choose how to say: “Anna is tired because she got up early”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:21:31",
+          "options": [
+            "de:21:31",
+            "de:21:33",
+            "de:21:34"
+          ],
+          "answerId": "de:21:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я рад, потому что нашёл паспорт»",
+            "uk": "Виберіть, як сказати: «Я радий, бо знайшов паспорт»",
+            "en": "Choose how to say: “I am glad because I have found the passport”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:33",
+          "options": [
+            "de:21:33",
+            "de:21:31",
+            "de:21:34"
+          ],
+          "answerId": "de:21:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы опаздываем, потому что пропустили поезд»",
+            "uk": "Виберіть, як сказати: «Ми запізнюємося, тому що пропустили поїзд»",
+            "en": "Choose how to say: “We are late because we missed the train”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:34",
+          "options": [
+            "de:21:34",
+            "de:21:31",
+            "de:21:33"
+          ],
+          "answerId": "de:21:34"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Причина в начале",
+        "uk": "Причина на початку",
+        "en": "The reason comes first"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Из-за дождя мы остаёмся в кафе».\nWeil es regnet, bleiben wir im Café. — «Из-за дождя мы остаёмся в кафе.»\nЧитается: вайль ес ре́гнет бла́йбен вир им кафе́\nСлово bleiben значит «оставаться». Слово im — «в». Слово Café — «кафе».\nЕсли сказать причину первой, после запятой сразу идёт слово действия: bleiben.\nWeil der Bus ausfällt, fahre ich mit dem Rad.\n— «Поскольку автобус отменили, я поеду на велосипеде.»\nЧитается: вайль дер бус а́усфэллт фа́ре их мит дем рад\nСлово ausfällt значит «отменяется». Слово mit — «на, с».\nСлово dem по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Rad значит «велосипед».\nWeil der Aufzug kaputt ist, nehmen wir die Treppe.\n— «Поскольку лифт сломан, мы идём по лестнице.»\nЧитается: вайль дер а́уфцуг капу́т ист не́мен вир ди тре́ппе\nСлово Aufzug значит «лифт». Слово kaputt — «сломан». Слово nehmen — «брать».\nСлово Treppe значит «лестница».\nWeil der Akku leer ist, lade ich das Handy.\n— «Поскольку аккумулятор разряжен, я заряжаю телефон.»\nЧитается: вайль дер а́кку лер ист ла́де их дас хе́нди\nСлово Akku значит «аккумулятор». Слово leer — «пустой». Слово lade — «заряжаю».\nСлово das по-русски не говорят: запоминайте его вместе с названием вещи.\nСлово Handy значит «телефон».",
+        "uk": "Дивіться, як сказати «Через дощ ми залишаємось у кафе».\nWeil es regnet, bleiben wir im Café. — «Через дощ ми залишаємось у кафе.»\nЧитається: вайль ес ре́гнет бла́йбен вір ім кафе́\nСлово bleiben означає «залишатися». Слово im — «у». Слово Café — «кафе».\nЯкщо сказати причину першою, після коми одразу йде слово дії: bleiben.\nWeil der Bus ausfällt, fahre ich mit dem Rad.\n— «Оскільки автобус скасували, я поїду велосипедом.»\nЧитається: вайль дер бус а́усфеллт фа́ре іх міт дем рад\nСлово ausfällt означає «скасовується». Слово mit — «на, з».\nСлово dem по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Rad означає «велосипед».\nWeil der Aufzug kaputt ist, nehmen wir die Treppe.\n— «Оскільки ліфт зламаний, ми йдемо сходами.»\nЧитається: вайль дер а́уфцуг капу́т іст не́мен вір ді тре́ппе\nСлово Aufzug означає «ліфт». Слово kaputt — «зламаний». Слово nehmen — «брати».\nСлово Treppe означає «сходи».\nWeil der Akku leer ist, lade ich das Handy.\n— «Оскільки акумулятор розряджений, я заряджаю телефон.»\nЧитається: вайль дер а́кку лер іст ла́де іх дас хе́нді\nСлово Akku означає «акумулятор». Слово leer — «порожній». Слово lade — «заряджаю».\nСлово das по-українськи не кажуть: запам’ятовуйте його разом із назвою речі.\nСлово Handy означає «телефон».",
+        "en": "Look at how to say “Because it is raining, we are staying in the café”.\nWeil es regnet, bleiben wir im Café.\n— “Because it is raining, we are staying in the café.”\nSounds like: vayl es rEgnet blAyben veer eem kafE\nThe word bleiben means “to stay”. The word im — “in”.\nThe word Café — “café”.\nIf the reason comes first, the action word comes right after the comma: bleiben.\nWeil der Bus ausfällt, fahre ich mit dem Rad.\n— “Because the bus is cancelled, I go by bike.”\nSounds like: vayl der boos Aoosfellt fAre eekh meet dem rad\nThe word ausfällt means “is cancelled”. The word mit — “by, with”.\nThe word dem means “the”.\nThe word Rad means “bike”.\nWeil der Aufzug kaputt ist, nehmen wir die Treppe.\n— “Because the lift is broken, we take the stairs.”\nSounds like: vayl der Aooftsoog kapOOt eest nEmen veer dee trEppe\nThe word Aufzug means “lift”. The word kaputt — “broken”.\nThe word nehmen — “to take”.\nThe word Treppe means “stairs”.\nWeil der Akku leer ist, lade ich das Handy.\n— “Because the battery is empty, I am charging the phone.”\nSounds like: vayl der Akkoo ler eest lAde eekh das khEndee\nThe word Akku means “battery”. The word leer — “empty”. The word lade — “charge”.\nThe word das means “the”.\nThe word Handy means “phone”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:21:41",
+          "say": {
+            "ru": "вайль ес ре́гнет бла́йбен вир им кафе́",
+            "uk": "вайль ес ре́гнет бла́йбен вір ім кафе́"
+          }
+        },
+        {
+          "phraseId": "de:21:42",
+          "say": {
+            "ru": "вайль дер бус а́усфэллт фа́ре их мит дем рад",
+            "uk": "вайль дер бус а́усфеллт фа́ре іх міт дем рад"
+          }
+        },
+        {
+          "phraseId": "de:21:46",
+          "say": {
+            "ru": "вайль дер а́уфцуг капу́т ист не́мен вир ди тре́ппе",
+            "uk": "вайль дер а́уфцуг капу́т іст не́мен вір ді тре́ппе"
+          }
+        },
+        {
+          "phraseId": "de:21:49",
+          "say": {
+            "ru": "вайль дер а́кку лер ист ла́де их дас хе́нди",
+            "uk": "вайль дер а́кку лер іст ла́де іх дас хе́нді"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Из-за дождя мы остаёмся в кафе»",
+            "uk": "Виберіть, як сказати: «Через дощ ми залишаємось у кафе»",
+            "en": "Choose how to say: “Because it is raining, we are staying in the café”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:21:41",
+          "options": [
+            "de:21:41",
+            "de:21:42",
+            "de:21:46"
+          ],
+          "answerId": "de:21:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поскольку автобус отменили, я поеду на велосипеде»",
+            "uk": "Виберіть, як сказати: «Оскільки автобус скасували, я поїду велосипедом»",
+            "en": "Choose how to say: “Because the bus is cancelled, I go by bike”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:42",
+          "options": [
+            "de:21:42",
+            "de:21:41",
+            "de:21:46"
+          ],
+          "answerId": "de:21:42"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поскольку лифт сломан, мы идём по лестнице»",
+            "uk": "Виберіть, як сказати: «Оскільки ліфт зламаний, ми йдемо сходами»",
+            "en": "Choose how to say: “Because the lift is broken, we take the stairs”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:21:46",
+          "options": [
+            "de:21:46",
+            "de:21:41",
+            "de:21:42"
+          ],
+          "answerId": "de:21:46"
+        }
+      ]
+    }
+  ]
+}

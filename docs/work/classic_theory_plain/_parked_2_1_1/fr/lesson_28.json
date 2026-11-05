@@ -1,0 +1,492 @@
+{
+  "lang": "fr",
+  "lesson": 28,
+  "title": {
+    "ru": "Вежливо: «я бы хотел», «не могли бы вы»",
+    "en": "Politely: “I would like”, “could you”"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я бы хотел",
+        "en": "I would like"
+      },
+      "text": {
+        "ru": "Смотрите, как вежливо сказать «Я бы хотел кофе».\nJe voudrais un café. — «Я бы хотел кофе.»\nЧитается: жё вудрэ́ ан кафэ́.\nСлово voudrais значит «хотел бы». Так звучит вежливее, чем «хочу».\nСлово un по-русски не говорят, запоминайте его вместе с café.\nTu voudrais du lait ? — «Хочешь молока?»\nСлово lait значит «молоко». Слово du по-русски не говорят.\nElle voudrait une chambre calme. — «Она хотела бы тихую комнату.»\nСлово voudrait значит «хотела бы». Слово calme значит «тихая».\nNous voudrions deux billets. — «Мы хотели бы два билета.»\nVous voudriez une autre table ? — «Хотите другой столик?»\nСлово autre значит «другой».\nСлово меняется, смотря о ком речь.\nЯ — voudrais, мы — voudrions, вы — voudriez.",
+        "en": "Look at how to say politely “I would like a coffee”.\nJe voudrais un café. — “I would like a coffee.”\nThe word voudrais means “would like”. It sounds more polite than “want”.\nThe word un has no Russian word, learn it together with café.\nTu voudrais du lait ? — “Would you like some milk?”\nThe word lait means “milk”. The word du has no Russian word.\nElle voudrait une chambre calme. — “She would like a quiet room.”\nThe word voudrait means “would like”. The word calme means “quiet”.\nNous voudrions deux billets. — “We would like two tickets.”\nVous voudriez une autre table ? — “Would you like another table?”\nThe word autre means “other”.\nThe word changes depending on who it is about.\nI — voudrais, we — voudrions, you — voudriez."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:28:01",
+          "say": {
+            "ru": "жё вудрэ́ ан кафэ́",
+            "uk": "жьо вудре́ ан кафе́"
+          }
+        },
+        {
+          "phraseId": "fr:28:03",
+          "say": {
+            "ru": "тю вудрэ́ дю лэ",
+            "uk": "тю вудре́ дю ле"
+          }
+        },
+        {
+          "phraseId": "fr:28:04",
+          "say": {
+            "ru": "эль вудрэ́ юн шанбр кальм",
+            "uk": "ель вудре́ юн шанбр кальм"
+          }
+        },
+        {
+          "phraseId": "fr:28:05",
+          "say": {
+            "ru": "ну вудрьо́н дё бийэ́",
+            "uk": "ну вудрьо́н дьо бійе́"
+          }
+        },
+        {
+          "phraseId": "fr:28:06",
+          "say": {
+            "ru": "ву вудрье́ юн отр табль",
+            "uk": "ву вудрье́ юн отр табль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы хотел кофе»",
+            "uk": "Виберіть, як сказати: «Я хотів би кави»",
+            "en": "Choose how to say: “I would like a coffee”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:28:01",
+          "options": [
+            "fr:28:01",
+            "fr:28:03",
+            "fr:28:05"
+          ],
+          "answerId": "fr:28:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она хотела бы тихую комнату»",
+            "uk": "Виберіть, як сказати: «Вона хотіла б тиху кімнату»",
+            "en": "Choose how to say: “She would like a quiet room”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:04",
+          "options": [
+            "fr:28:04",
+            "fr:28:01",
+            "fr:28:05"
+          ],
+          "answerId": "fr:28:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы хотели бы два билета»",
+            "uk": "Виберіть, як сказати: «Ми хотіли б два квитки»",
+            "en": "Choose how to say: “We would like two tickets”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:05",
+          "options": [
+            "fr:28:05",
+            "fr:28:06",
+            "fr:28:01"
+          ],
+          "answerId": "fr:28:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я бы предпочёл",
+        "en": "I would prefer"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я хотел бы уйти пораньше».\nJ’aimerais partir tôt. — «Я хотел бы уйти пораньше.»\nЧитается: жэмрэ́ парти́р то.\nСлово j’aimerais значит «я хотел бы». Слово partir значит «уйти».\nСлово tôt значит «рано».\nPaul aimerait apprendre à conduire. — «Поль хотел бы научиться водить машину.»\nСлово aimerait значит «хотел бы». Слово apprendre значит «научиться».\nСлово conduire значит «водить машину».\nJe préférerais payer en espèces. — «Я бы предпочёл заплатить наличными.»\nСлово préférerais значит «предпочёл бы». Слово payer значит «заплатить».\nСлова en espèces значат «наличными».\nNous préférerions une table dehors. — «Мы бы предпочли столик на улице.»\nСлово préférerions значит «предпочли бы». Слово dehors значит «на улице».\nJe souhaiterais déplacer mon rendez-vous. — «Я хотел бы перенести встречу.»\nСлово souhaiterais значит «хотел бы». Слово déplacer значит «перенести».\nСлово rendez-vous значит «встреча».",
+        "en": "Look at how to say “I would like to leave early”.\nJ’aimerais partir tôt. — “I would like to leave early.”\nThe word j’aimerais means “I would like”. The word partir means “to leave”.\nThe word tôt means “early”.\nPaul aimerait apprendre à conduire. — “Paul would like to learn to drive.”\nThe word aimerait means “would like”. The word apprendre means “to learn”.\nThe word conduire means “to drive”.\nJe préférerais payer en espèces. — “I would prefer to pay in cash.”\nThe word préférerais means “would prefer”. The word payer means “to pay”.\nThe words en espèces mean “in cash”.\nNous préférerions une table dehors. — “We would prefer a table outside.”\nThe word préférerions means “would prefer”. The word dehors means “outside”.\nJe souhaiterais déplacer mon rendez-vous. — “I would like to move my appointment.”\nThe word souhaiterais means “would like”. The word déplacer means “to move”.\nThe word rendez-vous means “appointment”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:28:07",
+          "say": {
+            "ru": "жэмрэ́ парти́р то",
+            "uk": "жемре́ парті́р то"
+          }
+        },
+        {
+          "phraseId": "fr:28:09",
+          "say": {
+            "ru": "поль эмрэ́ апрандр а кондюи́р",
+            "uk": "поль емре́ апрандр а кондюі́р"
+          }
+        },
+        {
+          "phraseId": "fr:28:21",
+          "say": {
+            "ru": "ну прэфэрэрьо́н юн табль дёо́р",
+            "uk": "ну преферерьо́н юн табль дьоо́р"
+          }
+        },
+        {
+          "phraseId": "fr:28:22",
+          "say": {
+            "ru": "жё прэфэрэрэ́ пэйе́ ан эспэ́с",
+            "uk": "жьо преферере́ пейе́ ан еспе́с"
+          }
+        },
+        {
+          "phraseId": "fr:28:44",
+          "say": {
+            "ru": "жё суэтрэ́ деплясе́ мон рандеву́",
+            "uk": "жьо суетре́ деплясе́ мон рандеву́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я хотел бы уйти пораньше»",
+            "uk": "Виберіть, як сказати: «Я хотів би піти раніше»",
+            "en": "Choose how to say: “I would like to leave early”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:28:07",
+          "options": [
+            "fr:28:07",
+            "fr:28:09",
+            "fr:28:21"
+          ],
+          "answerId": "fr:28:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы бы предпочли столик на улице»",
+            "uk": "Виберіть, як сказати: «Ми б воліли столик на вулиці»",
+            "en": "Choose how to say: “We would prefer a table outside”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:21",
+          "options": [
+            "fr:28:21",
+            "fr:28:22",
+            "fr:28:07"
+          ],
+          "answerId": "fr:28:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы предпочёл заплатить наличными»",
+            "uk": "Виберіть, як сказати: «Я б волів платити готівкою»",
+            "en": "Choose how to say: “I would prefer to pay in cash”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:22",
+          "options": [
+            "fr:28:22",
+            "fr:28:44",
+            "fr:28:09"
+          ],
+          "answerId": "fr:28:22"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Не могли бы вы",
+        "en": "Could you"
+      },
+      "text": {
+        "ru": "Смотрите, как вежливо попросить.\nPourriez-vous répéter, s’il vous plaît ? — «Не могли бы вы повторить, пожалуйста?»\nЧитается: пурье́ ву рэпете́, силь ву плэ.\nСлово pourriez значит «могли бы». Слово vous стоит после, через чёрточку.\nСлово répéter значит «повторить». Слова s’il vous plaît значат «пожалуйста».\nPourriez-vous écrire votre nom ? — «Не могли бы вы написать своё имя?»\nСлово écrire значит «написать». Слово nom значит «имя».\nPourriez-vous vérifier le montant ? — «Не могли бы вы проверить сумму?»\nСлово vérifier значит «проверить». Слово montant значит «сумма».\nTu pourrais baisser le volume ? — «Не мог бы ты сделать потише?»\nСлово pourrais значит «мог бы». Слова baisser le volume значат «сделать потише».\nEst-ce que je pourrais essayer cette veste ? — «Можно мне примерить эту куртку?»\nСлова je pourrais значат «я мог бы», то есть «можно мне».\nСлово essayer значит «примерить».",
+        "en": "Look at how to ask politely.\nPourriez-vous répéter, s’il vous plaît ? — “Could you repeat, please?”\nThe word pourriez means “could”. The word vous stands after, with a dash.\nThe word répéter means “to repeat”. The words s’il vous plaît mean “please”.\nPourriez-vous écrire votre nom ? — “Could you write your name?”\nThe word écrire means “to write”. The word nom means “name”.\nPourriez-vous vérifier le montant ? — “Could you check the amount?”\nThe word vérifier means “to check”. The word montant means “amount”.\nTu pourrais baisser le volume ? — “Could you turn the volume down?”\nThe word pourrais means “could”. The words baisser le volume mean “turn the volume down”.\nEst-ce que je pourrais essayer cette veste ?\n“Could I try on this jacket?”\nThe words je pourrais mean “I could”, that is “may I”.\nThe word essayer means “to try on”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:28:11",
+          "say": {
+            "ru": "пурье́ ву рэпете́, силь ву плэ",
+            "uk": "пурье́ ву репете́, сіль ву пле"
+          }
+        },
+        {
+          "phraseId": "fr:28:12",
+          "say": {
+            "ru": "пурье́ ву экри́р вотр но",
+            "uk": "пурье́ ву екрі́р вотр но"
+          }
+        },
+        {
+          "phraseId": "fr:28:14",
+          "say": {
+            "ru": "пурье́ ву верифье́ лё монта́н",
+            "uk": "пурье́ ву веріфье́ льо монта́н"
+          }
+        },
+        {
+          "phraseId": "fr:28:16",
+          "say": {
+            "ru": "тю пурэ́ бэсе́ лё волю́м",
+            "uk": "тю пуре́ бесе́ льо волю́м"
+          }
+        },
+        {
+          "phraseId": "fr:28:19",
+          "say": {
+            "ru": "эс кё жё пурэ́ эсэйе́ сэт вэст",
+            "uk": "ес кьо жьо пуре́ есейе́ сет вест"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не могли бы вы повторить, пожалуйста?»",
+            "uk": "Виберіть, як сказати: «Чи не могли б ви повторити, будь ласка?»",
+            "en": "Choose how to say: “Could you repeat, please?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:28:11",
+          "options": [
+            "fr:28:11",
+            "fr:28:12",
+            "fr:28:14"
+          ],
+          "answerId": "fr:28:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не могли бы вы написать своё имя?»",
+            "uk": "Виберіть, як сказати: «Чи не могли б ви написати своє ім'я?»",
+            "en": "Choose how to say: “Could you write your name?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:12",
+          "options": [
+            "fr:28:12",
+            "fr:28:14",
+            "fr:28:16"
+          ],
+          "answerId": "fr:28:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Не мог бы ты сделать потише?»",
+            "uk": "Виберіть, як сказати: «Чи не міг би ти зробити тихіше?»",
+            "en": "Choose how to say: “Could you turn the volume down?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:16",
+          "options": [
+            "fr:28:16",
+            "fr:28:19",
+            "fr:28:11"
+          ],
+          "answerId": "fr:28:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "У вас не найдётся",
+        "en": "Would you have"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «У вас не найдётся номера на двоих?»\nAuriez-vous une chambre pour deux ? — «У вас не найдётся номера на двоих?»\nЧитается: орье́ ву юн шанбр пур дё.\nСлово auriez значит «имели бы». Слово chambre значит «комната, номер».\nСлова pour deux значат «на двоих».\nAuriez-vous des disponibilités demain ? — «У вас есть свободные места завтра?»\nСлово disponibilités значит «свободные места или время».\nIl me faudrait une confirmation écrite. — «Мне потребуется письменное подтверждение.»\nСлова il me faudrait значат «мне потребуется».\nСлово confirmation значит «подтверждение». Слово écrite значит «письменное».\nJe voudrais un devis pour la cuisine. — «Я бы хотел смету на кухню.»\nСлово devis значит «смета». Слова pour la cuisine значат «на кухню».\nNous aimerions prolonger notre séjour. — «Мы хотели бы продлить наше пребывание.»\nСлова nous aimerions значат «мы хотели бы». Слово prolonger значит «продлить».\nСлово séjour значит «пребывание».\nJe préférerais la place côté allée. — «Я бы предпочёл место у прохода.»\nСлово place значит «место». Слова côté allée значат «у прохода».",
+        "en": "Look at how to ask “Would you have a room for two?”\nAuriez-vous une chambre pour deux ? — “Would you have a room for two?”\nThe word auriez means “would have”. The word chambre means “room”.\nThe words pour deux mean “for two”.\nAuriez-vous des disponibilités demain ? — “Do you have any availability tomorrow?”\nThe word disponibilités means “free places or time”.\nIl me faudrait une confirmation écrite. — “I would need a written confirmation.”\nThe words il me faudrait mean “I would need”.\nThe word confirmation means “confirmation”. The word écrite means “written”.\nJe voudrais un devis pour la cuisine.\n“I would like an estimate for the kitchen.”\nThe word devis means “estimate”. The words pour la cuisine mean “for the kitchen”.\nNous aimerions prolonger notre séjour. — “We would like to extend our stay.”\nThe words nous aimerions mean “we would like”. The word prolonger means “to extend”.\nThe word séjour means “stay”.\nJe préférerais la place côté allée. — “I would prefer the aisle seat.”\nThe word place means “seat”. The words côté allée mean “by the aisle”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:28:41",
+          "say": {
+            "ru": "орье́ ву юн шанбр пур дё",
+            "uk": "орье́ ву юн шанбр пур дьо"
+          }
+        },
+        {
+          "phraseId": "fr:28:42",
+          "say": {
+            "ru": "орье́ ву дэ диспонибилите́ дёмэ́н",
+            "uk": "орье́ ву де діспонібіліте́ дьоме́н"
+          }
+        },
+        {
+          "phraseId": "fr:28:46",
+          "say": {
+            "ru": "иль мё фодрэ́ юн конфирмасьо́н экри́т",
+            "uk": "іль мьо фодре́ юн конфірмасьо́н екрі́т"
+          }
+        },
+        {
+          "phraseId": "fr:28:47",
+          "say": {
+            "ru": "жё вудрэ́ ан дёви пур ла кюизи́н",
+            "uk": "жьо вудре́ ан дьові пур ла кюізі́н"
+          }
+        },
+        {
+          "phraseId": "fr:28:45",
+          "say": {
+            "ru": "ну зэмэрьо́н пролонже́ нотр сежу́р",
+            "uk": "ну земерьо́н пролонже́ нотр сежу́р"
+          }
+        },
+        {
+          "phraseId": "fr:28:50",
+          "say": {
+            "ru": "жё прэфэрэрэ́ ла плас коте́ але́",
+            "uk": "жьо преферере́ ла плас коте́ але́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У вас не найдётся номера на двоих?»",
+            "uk": "Виберіть, як сказати: «У вас не знайдеться номер на двох?»",
+            "en": "Choose how to say: “Would you have a room for two?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:28:41",
+          "options": [
+            "fr:28:41",
+            "fr:28:42",
+            "fr:28:47"
+          ],
+          "answerId": "fr:28:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мне потребуется письменное подтверждение»",
+            "uk": "Виберіть, як сказати: «Мені потрібне письмове підтвердження»",
+            "en": "Choose how to say: “I would need a written confirmation”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:46",
+          "options": [
+            "fr:28:46",
+            "fr:28:42",
+            "fr:28:50"
+          ],
+          "answerId": "fr:28:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы хотел смету на кухню»",
+            "uk": "Виберіть, як сказати: «Я хотів би отримати цінову пропозицію на кухню»",
+            "en": "Choose how to say: “I would like an estimate for the kitchen”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:47",
+          "options": [
+            "fr:28:47",
+            "fr:28:46",
+            "fr:28:45"
+          ],
+          "answerId": "fr:28:47"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Мы могли бы, вам стоит",
+        "en": "We could, you should"
+      },
+      "text": {
+        "ru": "Теперь «мы могли бы» и «вам стоит».\nOn pourrait partager un bol de soupe. — «Мы могли бы разделить тарелку супа.»\nЧитается: он пурэ́ партажэ́ ан боль дё суп.\nСлово on здесь значит «мы». Слово pourrait значит «мог бы».\nСлово partager значит «разделить».\nVous pourriez passer après le cours. — «Вы могли бы зайти после занятия.»\nСлово passer значит «зайти». Слово cours значит «занятие».\nVous devriez garder le reçu. — «Вам стоит сохранить чек.»\nСлово devriez значит «вам стоит». Слово garder значит «сохранить».\nСлово reçu значит «чек».\nJe devrais appeler le garage. — «Мне следует позвонить в автосервис.»\nСлово devrais значит «мне следует». Слово appeler значит «позвонить».\nNous devrions prendre le premier train. — «Нам следует сесть на первый поезд.»\nСлово devrions значит «нам следует». Слово premier значит «первый».",
+        "en": "Now “we could” and “you should”.\nOn pourrait partager un bol de soupe.\n“We could share a bowl of soup.”\nThe word on here means “we”. The word pourrait means “could”.\nThe word partager means “to share”.\nVous pourriez passer après le cours. — “You could stop by after the class.”\nThe word passer means “to stop by”. The word cours means “class”.\nVous devriez garder le reçu. — “You should keep the receipt.”\nThe word devriez means “you should”. The word garder means “to keep”.\nThe word reçu means “receipt”.\nJe devrais appeler le garage. — “I should call the garage.”\nThe word devrais means “I should”. The word appeler means “to call”.\nNous devrions prendre le premier train. — “We should take the first train.”\nThe word devrions means “we should”. The word premier means “first”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:28:26",
+          "say": {
+            "ru": "он пурэ́ партажэ́ ан боль дё суп",
+            "uk": "он пуре́ партаже́ ан боль дьо суп"
+          }
+        },
+        {
+          "phraseId": "fr:28:38",
+          "say": {
+            "ru": "ву пурье́ пасе́ апрэ́ лё кур",
+            "uk": "ву пурье́ пасе́ апре́ льо кур"
+          }
+        },
+        {
+          "phraseId": "fr:28:31",
+          "say": {
+            "ru": "ву дёврье́ гарде́ лё рёсю́",
+            "uk": "ву дьоврье́ гарде́ льо рьосю́"
+          }
+        },
+        {
+          "phraseId": "fr:28:33",
+          "say": {
+            "ru": "жё дёврэ́ апле́ лё гара́ж",
+            "uk": "жьо дьовре́ апле́ льо гара́ж"
+          }
+        },
+        {
+          "phraseId": "fr:28:34",
+          "say": {
+            "ru": "ну дёврьо́н прандр лё прёмье́ трэн",
+            "uk": "ну дьоврьо́н прандр льо прьомье́ трен"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы могли бы разделить тарелку супа»",
+            "uk": "Виберіть, як сказати: «Ми могли б розділити миску супу»",
+            "en": "Choose how to say: “We could share a bowl of soup”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:28:26",
+          "options": [
+            "fr:28:26",
+            "fr:28:38",
+            "fr:28:31"
+          ],
+          "answerId": "fr:28:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вам стоит сохранить чек»",
+            "uk": "Виберіть, як сказати: «Вам варто зберегти чек»",
+            "en": "Choose how to say: “You should keep the receipt”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:31",
+          "options": [
+            "fr:28:31",
+            "fr:28:33",
+            "fr:28:34"
+          ],
+          "answerId": "fr:28:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Нам следует сесть на первый поезд»",
+            "uk": "Виберіть, як сказати: «Нам слід сісти на перший поїзд»",
+            "en": "Choose how to say: “We should take the first train”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:28:34",
+          "options": [
+            "fr:28:34",
+            "fr:28:33",
+            "fr:28:38"
+          ],
+          "answerId": "fr:28:34"
+        }
+      ]
+    }
+  ]
+}

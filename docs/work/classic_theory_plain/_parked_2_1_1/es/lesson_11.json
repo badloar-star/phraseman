@@ -1,0 +1,492 @@
+{
+  "lang": "es",
+  "lesson": 11,
+  "title": {
+    "ru": "У меня есть, у меня нет",
+    "en": "I have, I do not have"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "У меня есть",
+        "en": "I have"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня есть вопрос».\nTengo una pregunta. — «У меня есть вопрос.»\nЧитается: тэ́нго у́на прегу́нта.\nСлово tengo значит «у меня есть». Слово pregunta значит «вопрос».\nTienes una pregunta. — «У тебя есть вопрос.»\nAna tiene una pregunta. — «У Аны есть вопрос.»\nСлово меняется, смотря о ком речь.\nTengo — «у меня», tienes — «у тебя», tiene — «у Аны».",
+        "en": "Look at how to say “I have a question”.\nTengo una pregunta. — “I have a question.”\nThe word tengo means “I have”. The word pregunta means “question”.\nTienes una pregunta. — “You have a question.”\nAna tiene una pregunta. — “Ana has a question.”\nThe word changes depending on who it is about.\nTengo — “I have”, tienes — “you have”, tiene — “Ana has”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:11:01",
+          "say": {
+            "ru": "тэ́нго у́на прегу́нта",
+            "uk": "те́нго у́на прегу́нта"
+          }
+        },
+        {
+          "phraseId": "es:11:02",
+          "say": {
+            "ru": "тье́нэс у́на прегу́нта",
+            "uk": "тье́нес у́на прегу́нта"
+          }
+        },
+        {
+          "phraseId": "es:11:03",
+          "say": {
+            "ru": "А́на тье́нэ у́на прегу́нта",
+            "uk": "А́на тье́не у́на прегу́нта"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня есть вопрос»",
+            "uk": "Виберіть, як сказати: «У мене є запитання»",
+            "en": "Choose how to say: “I have a question”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:11:01",
+          "options": [
+            "es:11:01",
+            "es:11:02",
+            "es:11:03"
+          ],
+          "answerId": "es:11:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У тебя есть вопрос»",
+            "uk": "Виберіть, як сказати: «У тебе є запитання»",
+            "en": "Choose how to say: “You have a question”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:02",
+          "options": [
+            "es:11:02",
+            "es:11:01",
+            "es:11:03"
+          ],
+          "answerId": "es:11:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Аны есть вопрос»",
+            "uk": "Виберіть, як сказати: «В Ани є запитання»",
+            "en": "Choose how to say: “Ana has a question”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:03",
+          "options": [
+            "es:11:03",
+            "es:11:02",
+            "es:11:01"
+          ],
+          "answerId": "es:11:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "У нас есть",
+        "en": "We have"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У нас есть вопрос».\nTenemos una pregunta. — «У нас есть вопрос.»\nЧитается: тэнэ́мос у́на прегу́нта.\nСлово tenemos значит «у нас есть».\nMis hermanos tienen una pregunta. — «У моих братьев есть вопрос.»\nСлово tienen значит «у них есть».\nTenemos tiempo. — «У нас есть время.» Слово tiempo значит «время».\nTenemos una reserva. — «У нас есть бронь.» Слово reserva значит «бронь».\nTenemos una idea. — «У нас есть идея.» Слово idea значит «идея».\nTenemos dos billetes. — «У нас есть два билета.»",
+        "en": "Look at how to say “We have a question”.\nTenemos una pregunta. — “We have a question.”\nThe word tenemos means “we have”.\nMis hermanos tienen una pregunta. — “My brothers have a question.”\nThe word tienen means “they have”.\nTenemos tiempo. — “We have time.” The word tiempo means “time”.\nTenemos una reserva. — “We have a reservation.” The word reserva means “reservation”.\nTenemos una idea. — “We have an idea.” The word idea means “idea”.\nTenemos dos billetes. — “We have two tickets.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:11:04",
+          "say": {
+            "ru": "тэнэ́мос у́на прегу́нта",
+            "uk": "тене́мос у́на прегу́нта"
+          }
+        },
+        {
+          "phraseId": "es:11:05",
+          "say": {
+            "ru": "мис эрма́нос тье́нэн у́на прегу́нта",
+            "uk": "міс ерма́нос тье́нен у́на прегу́нта"
+          }
+        },
+        {
+          "phraseId": "es:11:16",
+          "say": {
+            "ru": "тэнэ́мос тье́мпо",
+            "uk": "тене́мос тье́мпо"
+          }
+        },
+        {
+          "phraseId": "es:11:17",
+          "say": {
+            "ru": "тэнэ́мос у́на рэсэ́рба",
+            "uk": "тене́мос у́на ресе́рба"
+          }
+        },
+        {
+          "phraseId": "es:11:20",
+          "say": {
+            "ru": "тэнэ́мос у́на иде́я",
+            "uk": "тене́мос у́на іде́я"
+          }
+        },
+        {
+          "phraseId": "es:11:18",
+          "say": {
+            "ru": "тэнэ́мос дос бийе́тэс",
+            "uk": "тене́мос дос бійе́тес"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нас есть вопрос»",
+            "uk": "Виберіть, як сказати: «У нас є запитання»",
+            "en": "Choose how to say: “We have a question”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:11:04",
+          "options": [
+            "es:11:04",
+            "es:11:01",
+            "es:11:05"
+          ],
+          "answerId": "es:11:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У моих братьев есть вопрос»",
+            "uk": "Виберіть, як сказати: «У моїх братів є запитання»",
+            "en": "Choose how to say: “My brothers have a question”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:05",
+          "options": [
+            "es:11:05",
+            "es:11:04",
+            "es:11:03"
+          ],
+          "answerId": "es:11:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нас есть бронь»",
+            "uk": "Виберіть, як сказати: «У нас є бронювання»",
+            "en": "Choose how to say: “We have a reservation”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:17",
+          "options": [
+            "es:11:17",
+            "es:11:16",
+            "es:11:20"
+          ],
+          "answerId": "es:11:17"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "У меня вещь",
+        "en": "I have a thing"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня ключ».\nTengo la llave. — «У меня ключ.»\nЧитается: тэ́нго ла йа́бэ.\nСлово llave значит «ключ». Слово la по-русски не говорят, запоминайте его вместе с llave.\nTengo el mapa. — «У меня карта.»\nTengo tu libro. — «У меня твоя книга.» Слово tu значит «твоя».\nTengo las entradas. — «У меня билеты.» Слово entradas значит «билеты на вход».\nTengo otra botella de agua. — «У меня есть ещё одна бутылка воды.»\nСлово otra значит «ещё одна».",
+        "en": "Look at how to say “I have the key”.\nTengo la llave. — “I have the key.”\nThe word llave means “key”.\nThe word la has no Russian match: learn it together with llave.\nTengo el mapa. — “I have the map.”\nTengo tu libro. — “I have your book.” The word tu means “your”.\nTengo las entradas. — “I have the tickets.” The word entradas means “entrance tickets”.\nTengo otra botella de agua. — “I have another bottle of water.”\nThe word otra means “another”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:11:06",
+          "say": {
+            "ru": "тэ́нго ла йа́бэ",
+            "uk": "те́нго ла йа́бе"
+          }
+        },
+        {
+          "phraseId": "es:11:07",
+          "say": {
+            "ru": "тэ́нго эль ма́па",
+            "uk": "те́нго ель ма́па"
+          }
+        },
+        {
+          "phraseId": "es:11:08",
+          "say": {
+            "ru": "тэ́нго ту ли́бро",
+            "uk": "те́нго ту лі́бро"
+          }
+        },
+        {
+          "phraseId": "es:11:10",
+          "say": {
+            "ru": "тэ́нго лас энтра́дас",
+            "uk": "те́нго лас ентра́дас"
+          }
+        },
+        {
+          "phraseId": "es:11:19",
+          "say": {
+            "ru": "тэ́нго о́тра ботэ́йя дэ а́гуа",
+            "uk": "те́нго о́тра боте́йя де а́гуа"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня ключ»",
+            "uk": "Виберіть, як сказати: «У мене ключ»",
+            "en": "Choose how to say: “I have the key”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:11:06",
+          "options": [
+            "es:11:06",
+            "es:11:07",
+            "es:11:08"
+          ],
+          "answerId": "es:11:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня билеты»",
+            "uk": "Виберіть, як сказати: «У мене квитки»",
+            "en": "Choose how to say: “I have the tickets”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:10",
+          "options": [
+            "es:11:10",
+            "es:11:06",
+            "es:11:07"
+          ],
+          "answerId": "es:11:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня есть ещё одна бутылка воды»",
+            "uk": "Виберіть, як сказати: «Я маю ще одну пляшку води»",
+            "en": "Choose how to say: “I have another bottle of water”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:19",
+          "options": [
+            "es:11:19",
+            "es:11:06",
+            "es:11:10"
+          ],
+          "answerId": "es:11:19"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Встреча и номер",
+        "en": "An appointment and a number"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У Аны назначена встреча».\nAna tiene una cita. — «У Аны назначена встреча.»\nЧитается: А́на тье́нэ у́на си́та.\nСлово cita значит «назначенная встреча».\nMi madre tiene una cita. — «У моей мамы назначена встреча.»\nEl profesor tiene una cita. — «У преподавателя назначена встреча.»\nMi madre tiene mi número. — «У моей мамы есть мой номер.»\nСлово número значит «номер». Слово mi значит «мой».\nEl médico tiene mi número. — «У врача есть мой номер.»",
+        "en": "Look at how to say “Ana has an appointment”.\nAna tiene una cita. — “Ana has an appointment.”\nThe word cita means “appointment”.\nMi madre tiene una cita. — “My mother has an appointment.”\nEl profesor tiene una cita. — “The teacher has an appointment.”\nMi madre tiene mi número. — “My mother has my number.”\nThe word número means “number”. The word mi means “my”.\nEl médico tiene mi número. — “The doctor has my number.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:11:11",
+          "say": {
+            "ru": "А́на тье́нэ у́на си́та",
+            "uk": "А́на тье́не у́на сі́та"
+          }
+        },
+        {
+          "phraseId": "es:11:14",
+          "say": {
+            "ru": "ми ма́дрэ тье́нэ у́на си́та",
+            "uk": "мі ма́дре тье́не у́на сі́та"
+          }
+        },
+        {
+          "phraseId": "es:11:15",
+          "say": {
+            "ru": "эль профэсо́р тье́нэ у́на си́та",
+            "uk": "ель професо́р тье́не у́на сі́та"
+          }
+        },
+        {
+          "phraseId": "es:11:41",
+          "say": {
+            "ru": "ми ма́дрэ тье́нэ ми ну́мэро",
+            "uk": "мі ма́дре тье́не мі ну́меро"
+          }
+        },
+        {
+          "phraseId": "es:11:43",
+          "say": {
+            "ru": "А́на тье́нэ ми ну́мэро",
+            "uk": "А́на тье́не мі ну́меро"
+          }
+        },
+        {
+          "phraseId": "es:11:45",
+          "say": {
+            "ru": "эль ме́дико тье́нэ ми ну́мэро",
+            "uk": "ель ме́діко тье́не мі ну́меро"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У Аны назначена встреча»",
+            "uk": "Виберіть, як сказати: «В Ани призначена зустріч»",
+            "en": "Choose how to say: “Ana has an appointment”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:11:11",
+          "options": [
+            "es:11:11",
+            "es:11:14",
+            "es:11:15"
+          ],
+          "answerId": "es:11:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У моей мамы есть мой номер»",
+            "uk": "Виберіть, як сказати: «У моєї мами є мій номер»",
+            "en": "Choose how to say: “My mother has my number”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:41",
+          "options": [
+            "es:11:41",
+            "es:11:43",
+            "es:11:45"
+          ],
+          "answerId": "es:11:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У врача есть мой номер»",
+            "uk": "Виберіть, як сказати: «У лікаря є мій номер»",
+            "en": "Choose how to say: “The doctor has my number”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:45",
+          "options": [
+            "es:11:45",
+            "es:11:41",
+            "es:11:43"
+          ],
+          "answerId": "es:11:45"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Нет и вопрос",
+        "en": "Not, and a question"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «У меня нет мелочи».\nNo tengo cambio. — «У меня нет мелочи.»\nЧитается: но тэ́нго ка́мбьо.\nСлово no значит «не». Слово cambio значит «мелочь».\nNo tenemos cambio. — «У нас нет мелочи.»\nNo tenéis cambio. — «У вас нет мелочи.» Так говорят нескольким людям.\nА теперь вопрос. Слова те же, голос в конце идёт вверх.\n¿Tienes un minuto? — «У тебя есть минутка?»\nСлово minuto значит «минута».\n¿Tiene usted una reserva? — «У вас есть бронь?»\nСлово usted — вежливое «вы» одному человеку. С ним говорят tiene.",
+        "en": "Look at how to say “I have no change”.\nNo tengo cambio. — “I have no change.”\nThe word no means “not”. The word cambio means “small change”.\nNo tenemos cambio. — “We have no change.”\nNo tenéis cambio. — “You have no change.” This is said to several people.\nAnd now a question. The words are the same, the voice goes up at the end.\n¿Tienes un minuto? — “Do you have a minute?”\nThe word minuto means “minute”.\n¿Tiene usted una reserva? — “Do you have a reservation?”\nThe word usted is a polite “you” for one person. It goes with tiene."
+      },
+      "examples": [
+        {
+          "phraseId": "es:11:21",
+          "say": {
+            "ru": "но тэ́нго ка́мбьо",
+            "uk": "но те́нго ка́мбьо"
+          }
+        },
+        {
+          "phraseId": "es:11:24",
+          "say": {
+            "ru": "но тэнэ́мос ка́мбьо",
+            "uk": "но тене́мос ка́мбьо"
+          }
+        },
+        {
+          "phraseId": "es:11:25",
+          "say": {
+            "ru": "но тэнэ́йс ка́мбьо",
+            "uk": "но тене́йс ка́мбьо"
+          }
+        },
+        {
+          "phraseId": "es:11:31",
+          "say": {
+            "ru": "тье́нэс ун мину́то",
+            "uk": "тье́нес ун міну́то"
+          }
+        },
+        {
+          "phraseId": "es:11:35",
+          "say": {
+            "ru": "тье́нэс у́на прегу́нта",
+            "uk": "тье́нес у́на прегу́нта"
+          }
+        },
+        {
+          "phraseId": "es:11:36",
+          "say": {
+            "ru": "тье́нэ устэ́д у́на рэсэ́рба",
+            "uk": "тье́не усте́д у́на ресе́рба"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня нет мелочи»",
+            "uk": "Виберіть, як сказати: «У мене немає дрібних грошей»",
+            "en": "Choose how to say: “I do not have change”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:11:21",
+          "options": [
+            "es:11:21",
+            "es:11:24",
+            "es:11:25"
+          ],
+          "answerId": "es:11:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У нас нет мелочи»",
+            "uk": "Виберіть, як сказати: «У нас немає дрібних грошей»",
+            "en": "Choose how to say: “We do not have change”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:24",
+          "options": [
+            "es:11:24",
+            "es:11:21",
+            "es:11:25"
+          ],
+          "answerId": "es:11:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У тебя есть минутка?»",
+            "uk": "Виберіть, як сказати: «У тебе є хвилинка?»",
+            "en": "Choose how to say: “Do you have a minute?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:11:31",
+          "options": [
+            "es:11:31",
+            "es:11:35",
+            "es:11:36"
+          ],
+          "answerId": "es:11:31"
+        }
+      ]
+    }
+  ]
+}

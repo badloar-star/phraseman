@@ -1,0 +1,478 @@
+{
+  "lang": "fr",
+  "lesson": 22,
+  "title": {
+    "ru": "Его, её, их: короткие слова вместо вещи",
+    "en": "Him, her, them: short words instead of the thing"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я вижу его, её, их",
+        "en": "I see him, her, them"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вижу его».\nJe le vois. — «Я вижу его.»\nЧитается: жё лё вуа.\nСлово vois значит «вижу». Слово le значит «его».\nJe la vois. — «Я вижу её.»\nJe les vois. — «Я вижу их.»\nСлово la значит «её». Слово les значит «их».\nЭти слова стоят перед словом vois, а не после.\nTu le connais. — «Ты его знаешь.»\nСлово connais значит «знаешь». Слово le опять стоит перед ним.",
+        "en": "Look at how to say “I see him”.\nJe le vois. — “I see him.”\nThe word vois means “see”. The word le means “him”.\nJe la vois. — “I see her.”\nJe les vois. — “I see them.”\nThe word la means “her”. The word les means “them”.\nThese words stand before vois, not after it.\nTu le connais. — “You know him.”\nThe word connais means “know”. The word le again stands before it."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:22:01",
+          "say": {
+            "ru": "жё лё вуа",
+            "uk": "жьо льо вуа"
+          }
+        },
+        {
+          "phraseId": "fr:22:02",
+          "say": {
+            "ru": "жё ла вуа",
+            "uk": "жьо ла вуа"
+          }
+        },
+        {
+          "phraseId": "fr:22:03",
+          "say": {
+            "ru": "жё лэ вуа",
+            "uk": "жьо ле вуа"
+          }
+        },
+        {
+          "phraseId": "fr:22:04",
+          "say": {
+            "ru": "тю лё конэ́",
+            "uk": "тю льо коне́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вижу его»",
+            "uk": "Виберіть, як сказати: «Я бачу його»",
+            "en": "Choose how to say: “I see him”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:22:01",
+          "options": [
+            "fr:22:01",
+            "fr:22:02",
+            "fr:22:03"
+          ],
+          "answerId": "fr:22:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вижу её»",
+            "uk": "Виберіть, як сказати: «Я бачу її»",
+            "en": "Choose how to say: “I see her”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:02",
+          "options": [
+            "fr:22:02",
+            "fr:22:01",
+            "fr:22:03"
+          ],
+          "answerId": "fr:22:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вижу их»",
+            "uk": "Виберіть, як сказати: «Я бачу їх»",
+            "en": "Choose how to say: “I see them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:03",
+          "options": [
+            "fr:22:03",
+            "fr:22:02",
+            "fr:22:01"
+          ],
+          "answerId": "fr:22:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Она ищет, мы ждём",
+        "en": "She looks for, we wait for"
+      },
+      "text": {
+        "ru": "Теперь про того, кого ищут и ждут.\nElle le cherche. — «Она ищет его.»\nЧитается: эль лё шэрш.\nСлово elle значит «она». Слово cherche значит «ищет».\nElle la cherche. — «Она ищет её.»\nElle les cherche. — «Она ищет их.»\nNous les attendons. — «Мы ждём их.»\nСлово nous значит «мы». Слово attendons значит «ждём».\nСлова le, la, les опять стоят перед словом, которое говорит, что человек делает.",
+        "en": "Now about the one we look for or wait for.\nElle le cherche. — “She is looking for him.”\nThe word elle means “she”. The word cherche means “looks for”.\nElle la cherche. — “She is looking for her.”\nElle les cherche. — “She is looking for them.”\nNous les attendons. — “We are waiting for them.”\nThe word nous means “we”. The word attendons means “wait for”.\nThe words le, la, les again stand before the word that says what the person does."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:22:07",
+          "say": {
+            "ru": "эль лё шэрш",
+            "uk": "ель льо шерш"
+          }
+        },
+        {
+          "phraseId": "fr:22:08",
+          "say": {
+            "ru": "эль ла шэрш",
+            "uk": "ель ла шерш"
+          }
+        },
+        {
+          "phraseId": "fr:22:09",
+          "say": {
+            "ru": "эль лэ шэрш",
+            "uk": "ель ле шерш"
+          }
+        },
+        {
+          "phraseId": "fr:22:10",
+          "say": {
+            "ru": "ну лэ затандо́н",
+            "uk": "ну ле затандо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она ищет его»",
+            "uk": "Виберіть, як сказати: «Вона шукає його»",
+            "en": "Choose how to say: “She is looking for him”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:22:07",
+          "options": [
+            "fr:22:07",
+            "fr:22:08",
+            "fr:22:09"
+          ],
+          "answerId": "fr:22:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она ищет их»",
+            "uk": "Виберіть, як сказати: «Вона шукає їх»",
+            "en": "Choose how to say: “She is looking for them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:09",
+          "options": [
+            "fr:22:09",
+            "fr:22:07",
+            "fr:22:08"
+          ],
+          "answerId": "fr:22:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ждём их»",
+            "uk": "Виберіть, як сказати: «Ми чекаємо на них»",
+            "en": "Choose how to say: “We are waiting for them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:10",
+          "options": [
+            "fr:22:10",
+            "fr:22:09",
+            "fr:22:07"
+          ],
+          "answerId": "fr:22:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Сначала вещь, потом слово о ней",
+        "en": "The thing first, then a short word"
+      },
+      "text": {
+        "ru": "Иногда сначала называют вещь, а потом говорят о ней.\nLa porte, je la ferme. — «Дверь — я её закрываю.»\nЧитается: ла порт, жё ла фэрм.\nСлово porte значит «дверь». Слово ferme значит «закрываю».\nПервое la по-русски не говорят, запоминайте его вместе с porte.\nВторое la значит «её». Оно повторяет слово porte.\nLe sac, je le garde. — «Сумку я оставляю у себя.»\nСлово sac значит «сумка». Слово garde значит «оставляю у себя».\nLes verres, je les lave. — «Я мою стаканы.»\nСлово verres значит «стаканы». Слово lave значит «мою».\nLe pull, je l’essaie. — «Свитер — я его примеряю.»\nСлово pull значит «свитер». Слова je l’essaie значат «я его примеряю».\nСлово le сокращается и пишется слитно со следующим словом: l’essaie.\nЕщё слова: batterie — «аккумулятор», portefeuille électronique — «электронный кошелёк».",
+        "en": "Sometimes we name the thing first, then say something about it.\nLa porte, je la ferme. — “The door — I close it.”\nThe word porte means “door”. The word ferme means “close”.\nThe first la has no Russian word, learn it together with porte.\nThe second la means “it”. It repeats the word porte.\nLe sac, je le garde. — “I keep the bag.”\nThe word sac means “bag”. The word garde means “keep”.\nLes verres, je les lave. — “I wash the glasses.”\nThe word verres means “glasses”. The word lave means “wash”.\nLe pull, je l’essaie. — “The sweater — I try it on.”\nThe word pull means “sweater”. The words je l’essaie mean “I try it on”.\nThe word le gets shorter and is joined to the next word: l’essaie.\nMore words: batterie — “battery”, portefeuille électronique — “e-wallet”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:22:11",
+          "say": {
+            "ru": "ла порт, жё ла фэрм",
+            "uk": "ла порт, жьо ла ферм"
+          }
+        },
+        {
+          "phraseId": "fr:22:12",
+          "say": {
+            "ru": "лё сак, жё лё гард",
+            "uk": "льо сак, жьо льо гард"
+          }
+        },
+        {
+          "phraseId": "fr:22:16",
+          "say": {
+            "ru": "лэ вэр, жё лэ лав",
+            "uk": "ле вер, жьо ле лав"
+          }
+        },
+        {
+          "phraseId": "fr:22:19",
+          "say": {
+            "ru": "лё пюль, жё лесэ́",
+            "uk": "льо пюль, жьо лесе́"
+          }
+        },
+        {
+          "phraseId": "fr:22:46",
+          "say": {
+            "ru": "ла батри́, жё ла рёшарж лё матэ́н",
+            "uk": "ла батрі́, жьо ла рьошарж льо мате́н"
+          }
+        },
+        {
+          "phraseId": "fr:22:49",
+          "say": {
+            "ru": "мон портфёй электрони́к, жё лютили́з ан вуая́ж",
+            "uk": "мон портфьой електроні́к, жьо лютілі́з ан вуая́ж"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дверь — я её закрываю»",
+            "uk": "Виберіть, як сказати: «Двері - я її закриваю»",
+            "en": "Choose how to say: “The door — I close it”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:22:11",
+          "options": [
+            "fr:22:11",
+            "fr:22:12",
+            "fr:22:16"
+          ],
+          "answerId": "fr:22:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сумку я оставляю у себя»",
+            "uk": "Виберіть, як сказати: «Сумку я залишаю у себе»",
+            "en": "Choose how to say: “I keep the bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:12",
+          "options": [
+            "fr:22:12",
+            "fr:22:11",
+            "fr:22:19"
+          ],
+          "answerId": "fr:22:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я мою стаканы»",
+            "uk": "Виберіть, як сказати: «Я мию склянки»",
+            "en": "Choose how to say: “I wash the glasses”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:16",
+          "options": [
+            "fr:22:16",
+            "fr:22:12",
+            "fr:22:11"
+          ],
+          "answerId": "fr:22:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Не",
+        "en": "Not"
+      },
+      "text": {
+        "ru": "Теперь «не».\nJe ne le trouve pas. — «Я его не нахожу.»\nЧитается: жё нё лё трув па.\nСлово trouve значит «нахожу». Слова ne и pas вместе значат «не».\nСлово le стоит между ними, перед trouve.\nElle ne la reconnaît pas. — «Она её не узнаёт.»\nNous ne les voyons pas. — «Мы их не видим.»\nСлово reconnaît значит «узнаёт». Слово voyons значит «видим».\nOn ne l’entend pas. — «Мы его не слышим.»\nСлово on здесь значит «мы». Слова l’entend значат «слышим его».\nIls ne le prennent pas. — «Они его не берут.»\nСлово ils значит «они». Слово prennent значит «берут».",
+        "en": "Now “not”.\nJe ne le trouve pas. — “I do not find him.”\nThe word trouve means “find”. The words ne and pas together mean “not”.\nThe word le stands between them, before trouve.\nElle ne la reconnaît pas. — “She does not recognise her.”\nNous ne les voyons pas. — “We do not see them.”\nThe word reconnaît means “recognises”. The word voyons means “see”.\nOn ne l’entend pas. — “We do not hear it.”\nThe word on here means “we”. The words l’entend mean “hear it”.\nIls ne le prennent pas. — “They do not take it.”\nThe word ils means “they”. The word prennent means “take”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:22:21",
+          "say": {
+            "ru": "жё нё лё трув па",
+            "uk": "жьо ньо льо трув па"
+          }
+        },
+        {
+          "phraseId": "fr:22:22",
+          "say": {
+            "ru": "эль нё ла рёконэ́ па",
+            "uk": "ель ньо ла рьоконе́ па"
+          }
+        },
+        {
+          "phraseId": "fr:22:23",
+          "say": {
+            "ru": "ну нё лэ вуайо́н па",
+            "uk": "ну ньо ле вуайо́н па"
+          }
+        },
+        {
+          "phraseId": "fr:22:24",
+          "say": {
+            "ru": "он нё ланта́н па",
+            "uk": "он ньо ланта́н па"
+          }
+        },
+        {
+          "phraseId": "fr:22:25",
+          "say": {
+            "ru": "иль нё лё прэн па",
+            "uk": "іль ньо льо прен па"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я его не нахожу»",
+            "uk": "Виберіть, як сказати: «Я його не знаходжу»",
+            "en": "Choose how to say: “I do not find him”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:22:21",
+          "options": [
+            "fr:22:21",
+            "fr:22:22",
+            "fr:22:23"
+          ],
+          "answerId": "fr:22:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы их не видим»",
+            "uk": "Виберіть, як сказати: «Ми їх не бачимо»",
+            "en": "Choose how to say: “We do not see them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:23",
+          "options": [
+            "fr:22:23",
+            "fr:22:21",
+            "fr:22:22"
+          ],
+          "answerId": "fr:22:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она её не узнаёт»",
+            "uk": "Виберіть, як сказати: «Вона її не впізнає»",
+            "en": "Choose how to say: “She does not recognise her”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:22",
+          "options": [
+            "fr:22:22",
+            "fr:22:21",
+            "fr:22:25"
+          ],
+          "answerId": "fr:22:22"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Могу, хочу, собираюсь",
+        "en": "Can, want, going to"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Можно я его оставлю себе?»\nEst-ce que je peux le garder ? — «Можно я его оставлю себе?»\nЧитается: эс кё жё пё лё гарде́.\nСлова est-ce que начинают вопрос. Слово peux значит «могу».\nСлово garder значит «оставить себе». Слово le стоит прямо перед ним.\nElle doit les rendre. — «Она должна их вернуть.»\nСлово doit значит «должна». Слово rendre значит «вернуть».\nСлово les стоит прямо перед rendre.\nCe câble, je vais le brancher. — «Я собираюсь подключить этот кабель.»\nСлово câble значит «кабель». Слово brancher значит «подключить к розетке».\nСлово vais значит «собираюсь». Слово ce значит «этот».\nLe journal, je préfère le lire demain. — «Газету я предпочитаю почитать завтра.»\nСлово journal значит «газета». Слово lire значит «читать».",
+        "en": "Look at how to say “Can I keep it?”\nEst-ce que je peux le garder ? — “Can I keep it?”\nThe words est-ce que start a question. The word peux means “can”.\nThe word garder means “to keep”. The word le stands right before it.\nElle doit les rendre. — “She has to return them.”\nThe word doit means “has to”. The word rendre means “to return”.\nThe word les stands right before rendre.\nCe câble, je vais le brancher. — “I am going to plug in this cable.”\nThe word câble means “cable”. The word brancher means “to plug in”.\nThe word vais means “am going to”. The word ce means “this”.\nLe journal, je préfère le lire demain. — “I prefer to read the newspaper tomorrow.”\nThe word journal means “newspaper”. The word lire means “to read”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:22:28",
+          "say": {
+            "ru": "эс кё жё пё лё гарде́",
+            "uk": "ес кьо жьо пьо льо гарде́"
+          }
+        },
+        {
+          "phraseId": "fr:22:29",
+          "say": {
+            "ru": "тю ва лэ шэрше́",
+            "uk": "тю ва ле шерше́"
+          }
+        },
+        {
+          "phraseId": "fr:22:33",
+          "say": {
+            "ru": "эль дуа лэ ранд",
+            "uk": "ель дуа ле ранд"
+          }
+        },
+        {
+          "phraseId": "fr:22:35",
+          "say": {
+            "ru": "лё журна́ль, жё прэфэ́р лё лир дёмэ́н",
+            "uk": "льо журна́ль, жьо префе́р льо лір дьоме́н"
+          }
+        },
+        {
+          "phraseId": "fr:22:39",
+          "say": {
+            "ru": "сё кабль, жё вэ лё бранше́",
+            "uk": "сьо кабль, жьо ве льо бранше́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можно я его оставлю себе?»",
+            "uk": "Виберіть, як сказати: «Можна я його залишу собі?»",
+            "en": "Choose how to say: “Can I keep it?”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:22:28",
+          "options": [
+            "fr:22:28",
+            "fr:22:33",
+            "fr:22:39"
+          ],
+          "answerId": "fr:22:28"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она должна их вернуть»",
+            "uk": "Виберіть, як сказати: «Вона має їх повернути»",
+            "en": "Choose how to say: “She has to return them”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:33",
+          "options": [
+            "fr:22:33",
+            "fr:22:29",
+            "fr:22:28"
+          ],
+          "answerId": "fr:22:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собираюсь подключить этот кабель»",
+            "uk": "Виберіть, як сказати: «Я підключу цей кабель»",
+            "en": "Choose how to say: “I am going to plug in this cable”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:22:39",
+          "options": [
+            "fr:22:39",
+            "fr:22:35",
+            "fr:22:33"
+          ],
+          "answerId": "fr:22:39"
+        }
+      ]
+    }
+  ]
+}

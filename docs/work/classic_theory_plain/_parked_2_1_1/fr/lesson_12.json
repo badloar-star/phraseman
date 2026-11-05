@@ -1,0 +1,471 @@
+{
+  "lang": "fr",
+  "lesson": 12,
+  "title": {
+    "ru": "Беру, покупаю, ем, пью",
+    "en": "I take, buy, eat, drink"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я беру",
+        "en": "I take"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я беру хлеб».\nJe prends du pain. — «Я беру хлеб.»\nЧитается: жё пран дю пан.\nСлово prends значит «беру». Слово du по-русски не говорят.\nJe prends de la soupe. — «Я беру суп.»\nСлова de la тоже не говорят. Для воды: de l’eau.\nСлова du и de la стоят перед едой и питьём.\nСлово меняется, смотря о ком речь.\nIl prend du fromage. — «Он берёт сыр.»\nСлово prend значит «он берёт».\nNous prenons de l’eau. — «Мы берём воду.»\nСлово prenons значит «мы берём».\nVous prenez du lait. — «Вы берёте молоко.»\nСлово prenez значит «вы берёте».",
+        "en": "Look at how to say “I take bread”.\nJe prends du pain. — “I take bread.”\nThe word prends means “I take”. There is no word for du in English.\nJe prends de la soupe. — “I take soup.”\nThe words de la are not said either. For water: de l’eau.\nThe words du and de la stand before food and drink.\nThe word changes depending on who we are talking about.\nIl prend du fromage. — “He takes cheese.”\nThe word prend means “he takes”.\nNous prenons de l’eau. — “We take water.”\nThe word prenons means “we take”.\nVous prenez du lait. — “You take milk.”\nThe word prenez means “you take”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:12:01",
+          "say": {
+            "ru": "жё пран дю пан",
+            "uk": "жьо пран дю пан"
+          }
+        },
+        {
+          "phraseId": "fr:12:03",
+          "say": {
+            "ru": "жё пран дё ла суп",
+            "uk": "жьо пран дьо ла суп"
+          }
+        },
+        {
+          "phraseId": "fr:12:07",
+          "say": {
+            "ru": "иль пран дю фромаж",
+            "uk": "іль пран дю фромаж"
+          }
+        },
+        {
+          "phraseId": "fr:12:05",
+          "say": {
+            "ru": "ну прёно́н дё ло",
+            "uk": "ну прьоно́н дьо ло"
+          }
+        },
+        {
+          "phraseId": "fr:12:06",
+          "say": {
+            "ru": "ву прёнэ́ дю лэ",
+            "uk": "ву прьоне́ дю ле"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я беру хлеб»",
+            "uk": "Виберіть, як сказати: «Я беру хліб»",
+            "en": "Choose how to say: “I take bread”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:12:01",
+          "options": [
+            "fr:12:01",
+            "fr:12:03",
+            "fr:12:05"
+          ],
+          "answerId": "fr:12:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы берём воду»",
+            "uk": "Виберіть, як сказати: «Ми беремо воду»",
+            "en": "Choose how to say: “We take water”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:05",
+          "options": [
+            "fr:12:05",
+            "fr:12:06",
+            "fr:12:07"
+          ],
+          "answerId": "fr:12:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он берёт сыр»",
+            "uk": "Виберіть, як сказати: «Він бере сир»",
+            "en": "Choose how to say: “He takes cheese”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:07",
+          "options": [
+            "fr:12:07",
+            "fr:12:01",
+            "fr:12:06"
+          ],
+          "answerId": "fr:12:07"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Покупаю, ем, пью",
+        "en": "I buy, eat, drink"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я покупаю масло».\nJ’achète du beurre. — «Я покупаю сливочное масло.»\nЧитается: жашэ́т дю бёр.\nСлово achète значит «покупаю». Слово beurre значит «сливочное масло».\nJ’achète de la farine. — «Я покупаю муку.»\nСлово farine значит «мука».\nJe mange du poulet. — «Я ем курицу.»\nСлово mange значит «ем».\nJe bois du thé. — «Я пью чай.»\nСлово bois значит «пью».\nElle boit de l’eau. — «Она пьет воду.»\nСлово boit значит «она пьёт».",
+        "en": "Look at how to say “I buy butter”.\nJ’achète du beurre. — “I buy butter.”\nThe word achète means “I buy”. The word beurre means “butter”.\nJ’achète de la farine. — “I buy flour.”\nThe word farine means “flour”.\nJe mange du poulet. — “I eat chicken.”\nThe word mange means “I eat”.\nJe bois du thé. — “I drink tea.”\nThe word bois means “I drink”.\nElle boit de l’eau. — “She drinks water.”\nThe word boit means “she drinks”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:12:11",
+          "say": {
+            "ru": "жашэ́т дю бёр",
+            "uk": "жаше́т дю бьор"
+          }
+        },
+        {
+          "phraseId": "fr:12:12",
+          "say": {
+            "ru": "жашэ́т дё ла фарин",
+            "uk": "жаше́т дьо ла фарін"
+          }
+        },
+        {
+          "phraseId": "fr:12:17",
+          "say": {
+            "ru": "жё манж дю пуле́",
+            "uk": "жьо манж дю пуле́"
+          }
+        },
+        {
+          "phraseId": "fr:12:21",
+          "say": {
+            "ru": "жё буа дю тэ",
+            "uk": "жьо буа дю те"
+          }
+        },
+        {
+          "phraseId": "fr:12:22",
+          "say": {
+            "ru": "эль буа дё ло",
+            "uk": "ель буа дьо ло"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я покупаю сливочное масло»",
+            "uk": "Виберіть, як сказати: «Я купую вершкове масло»",
+            "en": "Choose how to say: “I buy butter”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:12:11",
+          "options": [
+            "fr:12:11",
+            "fr:12:12",
+            "fr:12:17"
+          ],
+          "answerId": "fr:12:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ем курицу»",
+            "uk": "Виберіть, як сказати: «Я їм курку»",
+            "en": "Choose how to say: “I eat chicken”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:17",
+          "options": [
+            "fr:12:17",
+            "fr:12:21",
+            "fr:12:22"
+          ],
+          "answerId": "fr:12:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она пьет воду»",
+            "uk": "Виберіть, як сказати: «Вона п'є воду»",
+            "en": "Choose how to say: “She drinks water”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:22",
+          "options": [
+            "fr:12:22",
+            "fr:12:21",
+            "fr:12:12"
+          ],
+          "answerId": "fr:12:22"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Добавляю, осталось",
+        "en": "I add, there is left"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я добавляю соль».\nJe mets du sel. — «Я добавляю соль.»\nЧитается: жё мэ дю сэль.\nСлово mets значит «добавляю, кладу». Слово sel значит «соль».\nElle ajoute du poivre. — «Она добавляет перец.»\nСлово ajoute значит «она добавляет».\nIl reste du sucre. — «Осталось немного сахара.»\nСлова il reste значат «осталось».\nIl reste de la confiture. — «Осталось немного джема.»",
+        "en": "Look at how to say “I add salt”.\nJe mets du sel. — “I add salt.”\nThe word mets means “I add, I put”. The word sel means “salt”.\nElle ajoute du poivre. — “She adds pepper.”\nThe word ajoute means “she adds”.\nIl reste du sucre. — “There is some sugar left.”\nThe words il reste mean “there is left”.\nIl reste de la confiture. — “There is some jam left.”"
+      },
+      "examples": [
+        {
+          "phraseId": "fr:12:25",
+          "say": {
+            "ru": "жё мэ дю сэль",
+            "uk": "жьо ме дю сель"
+          }
+        },
+        {
+          "phraseId": "fr:12:26",
+          "say": {
+            "ru": "эль ажу́т дю пуавр",
+            "uk": "ель ажу́т дю пуавр"
+          }
+        },
+        {
+          "phraseId": "fr:12:28",
+          "say": {
+            "ru": "иль рэст дю сюкр",
+            "uk": "іль рест дю сюкр"
+          }
+        },
+        {
+          "phraseId": "fr:12:29",
+          "say": {
+            "ru": "иль рэст дё ла конфитю́р",
+            "uk": "іль рест дьо ла конфітю́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я добавляю соль»",
+            "uk": "Виберіть, як сказати: «Я додаю сіль»",
+            "en": "Choose how to say: “I add salt”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:12:25",
+          "options": [
+            "fr:12:25",
+            "fr:12:26",
+            "fr:12:28"
+          ],
+          "answerId": "fr:12:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она добавляет перец»",
+            "uk": "Виберіть, як сказати: «Вона додає перець»",
+            "en": "Choose how to say: “She adds pepper”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:26",
+          "options": [
+            "fr:12:26",
+            "fr:12:28",
+            "fr:12:29"
+          ],
+          "answerId": "fr:12:26"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Осталось немного джема»",
+            "uk": "Виберіть, як сказати: «Залишилося трохи варення»",
+            "en": "Choose how to say: “There is some jam left”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:29",
+          "options": [
+            "fr:12:29",
+            "fr:12:25",
+            "fr:12:28"
+          ],
+          "answerId": "fr:12:29"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Немного, стакан, чашка",
+        "en": "A little, a glass, a cup"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «немного».\nJe voudrais un peu de soupe. — «Я бы хотел немного супа.»\nЧитается: жё вудрэ́ ан пё дё суп.\nСлова un peu de значат «немного». Дальше говорят просто de.\nElle prend beaucoup de légumes. — «Она берёт много овощей.»\nСлова beaucoup de значат «много».\nJe voudrais un verre d’eau. — «Я бы хотел стакан воды.»\nСлова un verre de значат «стакан».\nTu veux une tasse de thé ? — «Хочешь чашку чая?»\nСлова une tasse de значат «чашка».\nElle ajoute une cuillère de miel. — «Она добавляет ложку меда.»\nСлово cuillère значит «ложка». Слово miel значит «мёд».",
+        "en": "Look at how to say “a little”.\nJe voudrais un peu de soupe. — “I would like a little soup.”\nThe words un peu de mean “a little”. After them we say just de.\nElle prend beaucoup de légumes. — “She takes a lot of vegetables.”\nThe words beaucoup de mean “a lot”.\nJe voudrais un verre d’eau. — “I would like a glass of water.”\nThe words un verre de mean “a glass”.\nTu veux une tasse de thé ? — “Do you want a cup of tea?”\nThe words une tasse de mean “a cup”.\nElle ajoute une cuillère de miel. — “She adds a spoonful of honey.”\nThe word cuillère means “spoon”. The word miel means “honey”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:12:39",
+          "say": {
+            "ru": "жё вудрэ́ ан пё дё суп",
+            "uk": "жьо вудре́ ан пьо дьо суп"
+          }
+        },
+        {
+          "phraseId": "fr:12:40",
+          "say": {
+            "ru": "эль пран боку дё легю́м",
+            "uk": "ель пран боку дьо легю́м"
+          }
+        },
+        {
+          "phraseId": "fr:12:41",
+          "say": {
+            "ru": "жё вудрэ́ ан вэр до",
+            "uk": "жьо вудре́ ан вер до"
+          }
+        },
+        {
+          "phraseId": "fr:12:44",
+          "say": {
+            "ru": "тю вё юн тас дё тэ",
+            "uk": "тю вьо юн тас дьо те"
+          }
+        },
+        {
+          "phraseId": "fr:12:45",
+          "say": {
+            "ru": "эль ажу́т юн кюйе́р дё мьель",
+            "uk": "ель ажу́т юн кюйе́р дьо мьель"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы хотел немного супа»",
+            "uk": "Виберіть, як сказати: «Я б хотів трохи супу»",
+            "en": "Choose how to say: “I would like a little soup”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:12:39",
+          "options": [
+            "fr:12:39",
+            "fr:12:41",
+            "fr:12:44"
+          ],
+          "answerId": "fr:12:39"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы хотел стакан воды»",
+            "uk": "Виберіть, як сказати: «Я б хотів склянку води»",
+            "en": "Choose how to say: “I would like a glass of water”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:41",
+          "options": [
+            "fr:12:41",
+            "fr:12:44",
+            "fr:12:45"
+          ],
+          "answerId": "fr:12:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она добавляет ложку меда»",
+            "uk": "Виберіть, як сказати: «Вона додає ложку меду»",
+            "en": "Choose how to say: “She adds a spoonful of honey”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:45",
+          "options": [
+            "fr:12:45",
+            "fr:12:40",
+            "fr:12:39"
+          ],
+          "answerId": "fr:12:45"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не беру",
+        "en": "I do not take"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не беру молоко».\nJe ne prends pas de lait. — «Я не беру молоко.»\nЧитается: жё нё пран па дё лэ.\nСлова ne и pas стоят вокруг prends и значат «не».\nВместо du и de la говорят de.\nNous ne mangeons pas de viande. — «Мы не едим мясо.»\nСлово mangeons значит «мы едим». Слово viande значит «мясо».\nElle n’achète pas de beurre. — «Она не покупает сливочное масло.»\nJe n’ai plus de farine. — «У меня закончилась мука.»\nСлова n’ai plus de значат «больше нет».",
+        "en": "Look at how to say “I do not take milk”.\nJe ne prends pas de lait. — “I do not take milk.”\nThe words ne and pas stand around prends and mean “not”.\nInstead of du and de la we say de.\nNous ne mangeons pas de viande. — “We do not eat meat.”\nThe word mangeons means “we eat”. The word viande means “meat”.\nElle n’achète pas de beurre. — “She does not buy butter.”\nJe n’ai plus de farine. — “I have no more flour.”\nThe words n’ai plus de mean “no more”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:12:31",
+          "say": {
+            "ru": "жё нё пран па дё лэ",
+            "uk": "жьо ньо пран па дьо ле"
+          }
+        },
+        {
+          "phraseId": "fr:12:32",
+          "say": {
+            "ru": "ну нё манжо́н па дё вьянд",
+            "uk": "ну ньо манжо́н па дьо вьянд"
+          }
+        },
+        {
+          "phraseId": "fr:12:34",
+          "say": {
+            "ru": "эль нашэ́т па дё бёр",
+            "uk": "ель наше́т па дьо бьор"
+          }
+        },
+        {
+          "phraseId": "fr:12:36",
+          "say": {
+            "ru": "жё нэ плю дё фарин",
+            "uk": "жьо не плю дьо фарін"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не беру молоко»",
+            "uk": "Виберіть, як сказати: «Я не беру молоко»",
+            "en": "Choose how to say: “I do not take milk”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:12:31",
+          "options": [
+            "fr:12:31",
+            "fr:12:32",
+            "fr:12:36"
+          ],
+          "answerId": "fr:12:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не покупает сливочное масло»",
+            "uk": "Виберіть, як сказати: «Вона не купує вершкове масло»",
+            "en": "Choose how to say: “She does not buy butter”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:34",
+          "options": [
+            "fr:12:34",
+            "fr:12:31",
+            "fr:12:36"
+          ],
+          "answerId": "fr:12:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «У меня закончилась мука»",
+            "uk": "Виберіть, як сказати: «У мене закінчилося борошно»",
+            "en": "Choose how to say: “I have no more flour”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:12:36",
+          "options": [
+            "fr:12:36",
+            "fr:12:32",
+            "fr:12:34"
+          ],
+          "answerId": "fr:12:36"
+        }
+      ]
+    }
+  ]
+}

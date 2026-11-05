@@ -1,0 +1,517 @@
+{
+  "lang": "it",
+  "lesson": 21,
+  "title": {
+    "ru": "Что делал, когда случилось",
+    "uk": "Що робив, коли сталося",
+    "en": "What I was doing when it happened"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Читал, когда позвонили",
+        "uk": "Читав, коли зателефонували",
+        "en": "Reading when you called"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я читал, когда ты позвонил».\nLeggevo quando hai chiamato. — «Я читал, когда ты позвонил.»\nЧитается: леддже́во куа́ндо а́й кьяма́то.\nDormivo quando hai chiamato. — «Я спала, когда ты позвонила.»\nЧитается: дорми́во куа́ндо а́й кьяма́то.\nCucinava quando è squillato il telefono. — «Она готовила, когда зазвонил телефон.»\nЧитается: кучина́ва куа́ндо э скуилла́то иль теле́фоно.\nСлово quando значит «когда».\nСначала то, что шло долго: leggevo — «я читал».\nПотом то, что случилось вдруг: hai chiamato — «ты позвонил».\nСлово dormivo значит «я спала», слово cucinava — «она готовила».",
+        "uk": "Дивіться, як сказати «Я читав, коли ти зателефонував».\nLeggevo quando hai chiamato. — «Я читав, коли ти зателефонував.»\nЧитається: леддже́во куа́ндо а́й кьяма́то.\nDormivo quando hai chiamato. — «Я спала, коли ти подзвонила.»\nЧитається: дормі́во куа́ндо а́й кьяма́то.\nCucinava quando è squillato il telefono. — «Вона готувала, коли задзвонив телефон.»\nЧитається: кучіна́ва куа́ндо е скуілла́то іль теле́фоно.\nСлово quando означає «коли».\nСпочатку те, що тривало довго: leggevo — «я читав».\nПотім те, що сталося раптом: hai chiamato — «ти зателефонував».\nСлово dormivo означає «я спала», слово cucinava — «вона готувала».",
+        "en": "Look at how to say “I was reading when you called”.\nLeggevo quando hai chiamato. — “I was reading when you called.”\nDormivo quando hai chiamato. — “I was sleeping when you called.”\nCucinava quando è squillato il telefono. — “She was cooking when the phone rang.”\nThe word quando means “when”.\nFirst, what went on for a while: leggevo — “I was reading”.\nThen, what happened suddenly: hai chiamato — “you called”.\nThe word dormivo means “I was sleeping”, the word cucinava — “she was cooking”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:21:01",
+          "say": {
+            "ru": "леддже́во куа́ндо а́й кьяма́то",
+            "uk": "леддже́во куа́ндо а́й кьяма́то"
+          }
+        },
+        {
+          "phraseId": "it:21:02",
+          "say": {
+            "ru": "дорми́во куа́ндо а́й кьяма́то",
+            "uk": "дормі́во куа́ндо а́й кьяма́то"
+          }
+        },
+        {
+          "phraseId": "it:21:03",
+          "say": {
+            "ru": "кучина́ва куа́ндо э скуилла́то иль теле́фоно",
+            "uk": "кучіна́ва куа́ндо е скуілла́то іль теле́фоно"
+          }
+        },
+        {
+          "phraseId": "it:21:08",
+          "say": {
+            "ru": "ле́а каммина́ва куа́ндо а коминча́то а пьо́вере",
+            "uk": "ле́а камміна́ва куа́ндо а комінча́то а пьо́вере"
+          }
+        },
+        {
+          "phraseId": "it:21:17",
+          "say": {
+            "ru": "э́ро а́лла статсьо́не куа́ндо а́й скри́тто",
+            "uk": "е́ро а́лла статсьо́не куа́ндо а́й скрі́тто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я читал, когда ты позвонил.»",
+            "uk": "Виберіть, як сказати: «Я читав, коли ти зателефонував.»",
+            "en": "Choose how to say: “I was reading when you called.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:21:01",
+          "options": [
+            "it:21:01",
+            "it:21:02",
+            "it:21:03"
+          ],
+          "answerId": "it:21:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я спала, когда ты позвонила.»",
+            "uk": "Виберіть, як сказати: «Я спала, коли ти подзвонила.»",
+            "en": "Choose how to say: “I was sleeping when you called.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:02",
+          "options": [
+            "it:21:02",
+            "it:21:01",
+            "it:21:03"
+          ],
+          "answerId": "it:21:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она готовила, когда зазвонил телефон.»",
+            "uk": "Виберіть, як сказати: «Вона готувала, коли задзвонив телефон.»",
+            "en": "Choose how to say: “She was cooking when the phone rang.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:03",
+          "options": [
+            "it:21:03",
+            "it:21:02",
+            "it:21:08"
+          ],
+          "answerId": "it:21:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Что шло в тот момент",
+        "uk": "Що тривало в ту мить",
+        "en": "What was going on then"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы ели, когда приехал Паоло».\nStavamo mangiando quando è arrivato Paolo. — «Мы ели, когда приехал Паоло.»\nЧитается: става́мо манджа́ндо куа́ндо э аррива́то па́оло.\nStavi scrivendo quando sono entrato. — «Ты писал, когда я вошёл.»\nЧитается: ста́ви скриве́ндо куа́ндо со́но энтра́то.\nStavano parlando quando è andata via la luce. — «Они разговаривали, когда погас свет.»\nЧитается: ста́вано парла́ндо куа́ндо э анда́та ви́а ла лу́че.\nТак тоже можно сказать о том, что шло в тот момент.\nСлова stavamo mangiando значат «мы ели».\nСлова stavo lavorando значат «я работала».\nСлова stavano parlando значат «они разговаривали».\nСмысл тот же: что-то шло, и тут случилось другое.",
+        "uk": "Дивіться, як сказати «Ми їли, коли прийшов Паоло».\nStavamo mangiando quando è arrivato Paolo. — «Ми їли, коли прийшов Паоло.»\nЧитається: става́мо манджа́ндо куа́ндо е арріва́то па́оло.\nStavi scrivendo quando sono entrato. — «Ти писав, коли я увійшов.»\nЧитається: ста́ві скріве́ндо куа́ндо со́но ентра́то.\nStavano parlando quando è andata via la luce. — «Вони розмовляли, коли згасло світло.»\nЧитається: ста́вано парла́ндо куа́ндо е анда́та ві́а ла лу́че.\nТак теж можна сказати про те, що тривало в ту мить.\nСлова stavamo mangiando означають «ми їли».\nСлова stavo lavorando означають «я працювала».\nСлова stavano parlando означають «вони розмовляли».\nЗміст той самий: щось тривало, і тут сталося інше.",
+        "en": "Look at how to say “We were eating when Paolo arrived”.\nStavamo mangiando quando è arrivato Paolo. — “We were eating when Paolo arrived.”\nStavi scrivendo quando sono entrato. — “You were writing when I came in.”\nStavano parlando quando è andata via la luce.\n“They were talking when the light went out.”\nThis is another way to say what was going on at that moment.\nThe words stavamo mangiando mean “we were eating”.\nThe words stavo lavorando mean “I was working”.\nThe words stavano parlando mean “they were talking”.\nThe meaning is the same: something was going on, and then something else happened."
+      },
+      "examples": [
+        {
+          "phraseId": "it:21:04",
+          "say": {
+            "ru": "става́мо манджа́ндо куа́ндо э аррива́то па́оло",
+            "uk": "става́мо манджа́ндо куа́ндо е арріва́то па́оло"
+          }
+        },
+        {
+          "phraseId": "it:21:05",
+          "say": {
+            "ru": "ста́ви скриве́ндо куа́ндо со́но энтра́то",
+            "uk": "ста́ві скріве́ндо куа́ндо со́но ентра́то"
+          }
+        },
+        {
+          "phraseId": "it:21:06",
+          "say": {
+            "ru": "ста́вано парла́ндо куа́ндо э анда́та ви́а ла лу́че",
+            "uk": "ста́вано парла́ндо куа́ндо е анда́та ві́а ла лу́че"
+          }
+        },
+        {
+          "phraseId": "it:21:07",
+          "say": {
+            "ru": "ста́во лавора́ндо куа́ндо э пасса́та",
+            "uk": "ста́во лавора́ндо куа́ндо е пасса́та"
+          }
+        },
+        {
+          "phraseId": "it:21:09",
+          "say": {
+            "ru": "става́мо аспетта́ндо куа́ндо э аррива́то л’а́утобус",
+            "uk": "става́мо аспетта́ндо куа́ндо е арріва́то л’а́утобус"
+          }
+        },
+        {
+          "phraseId": "it:21:10",
+          "say": {
+            "ru": "ста́во пага́ндо куа́ндо ми э каду́та ла ка́рта",
+            "uk": "ста́во пага́ндо куа́ндо мі е каду́та ла ка́рта"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы ели, когда приехал Паоло.»",
+            "uk": "Виберіть, як сказати: «Ми їли, коли прийшов Паоло.»",
+            "en": "Choose how to say: “We were eating when Paolo arrived.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:21:04",
+          "options": [
+            "it:21:04",
+            "it:21:05",
+            "it:21:06"
+          ],
+          "answerId": "it:21:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты писал, когда я вошёл.»",
+            "uk": "Виберіть, як сказати: «Ти писав, коли я увійшов.»",
+            "en": "Choose how to say: “You were writing when I came in.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:05",
+          "options": [
+            "it:21:05",
+            "it:21:04",
+            "it:21:06"
+          ],
+          "answerId": "it:21:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я работала, когда она проходила мимо.»",
+            "uk": "Виберіть, як сказати: «Я працювала, коли вона проходила повз.»",
+            "en": "Choose how to say: “I was working when she walked by.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:07",
+          "options": [
+            "it:21:07",
+            "it:21:10",
+            "it:21:09"
+          ],
+          "answerId": "it:21:07"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Каким всё было",
+        "uk": "Яким усе було",
+        "en": "How things were"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Шёл дождь, когда мы вышли».\nPioveva quando siamo usciti. — «Шёл дождь, когда мы вышли.»\nЧитается: пьове́ва куа́ндо сьа́мо уши́ти.\nFaceva freddo quando la porta si è aperta. — «Было холодно, когда открылась дверь.»\nЧитается: фаче́ва фре́ддо куа́ндо ла по́рта си э апе́рта.\nLe persiane erano chiuse quando sono passato. — «Ставни были закрыты, когда я проходил мимо.»\nЧитается: ле персья́не э́рано кью́зе куа́ндо со́но пасса́то.\nТак рассказывают, что было вокруг в тот момент.\nСлово pioveva значит «шёл дождь».\nСлова faceva freddo значат «было холодно».\nСлово era значит «был, была, было», слово erano — «были».\nСлова le persiane значат «ставни».",
+        "uk": "Дивіться, як сказати «Ішов дощ, коли ми вийшли».\nPioveva quando siamo usciti. — «Ішов дощ, коли ми вийшли.»\nЧитається: пьове́ва куа́ндо сьа́мо уші́ті.\nFaceva freddo quando la porta si è aperta. — «Було холодно, коли двері відчинилися.»\nЧитається: фаче́ва фре́ддо куа́ндо ла по́рта сі е апе́рта.\nLe persiane erano chiuse quando sono passato. — «Віконниці були зачинені, коли я проходив повз.»\nЧитається: ле персья́не е́рано кью́зе куа́ндо со́но пасса́то.\nТак розповідають, що було навколо в ту мить.\nСлово pioveva означає «йшов дощ».\nСлова faceva freddo означають «було холодно».\nСлово era означає «був, була, було», слово erano — «були».\nСлова le persiane означають «віконниці».",
+        "en": "Look at how to say “It was raining when we went out”.\nPioveva quando siamo usciti. — “It was raining when we went out.”\nFaceva freddo quando la porta si è aperta.\n“It was cold when the door opened.”\nLe persiane erano chiuse quando sono passato.\n“The shutters were closed when I walked by.”\nThis is how we tell what was around us at that moment.\nThe word pioveva means “it was raining”.\nThe words faceva freddo mean “it was cold”.\nThe word era means “was”, the word erano — “were”.\nThe words le persiane mean “the shutters”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:21:11",
+          "say": {
+            "ru": "пьове́ва куа́ндо сьа́мо уши́ти",
+            "uk": "пьове́ва куа́ндо сьа́мо уші́ті"
+          }
+        },
+        {
+          "phraseId": "it:21:12",
+          "say": {
+            "ru": "иль те́мпо э́ра бе́лло куа́ндо э аррива́то иль тре́но",
+            "uk": "іль те́мпо е́ра бе́лло куа́ндо е арріва́то іль тре́но"
+          }
+        },
+        {
+          "phraseId": "it:21:13",
+          "say": {
+            "ru": "ла стра́да э́ра дезе́рта куа́ндо па́оло э уши́то",
+            "uk": "ла стра́да е́ра дезе́рта куа́ндо па́оло е уші́то"
+          }
+        },
+        {
+          "phraseId": "it:21:14",
+          "say": {
+            "ru": "ле персья́не э́рано кью́зе куа́ндо со́но пасса́то",
+            "uk": "ле персья́не е́рано кью́зе куа́ндо со́но пасса́то"
+          }
+        },
+        {
+          "phraseId": "it:21:15",
+          "say": {
+            "ru": "фаче́ва фре́ддо куа́ндо ла по́рта си э апе́рта",
+            "uk": "фаче́ва фре́ддо куа́ндо ла по́рта сі е апе́рта"
+          }
+        },
+        {
+          "phraseId": "it:21:16",
+          "say": {
+            "ru": "ла са́ла э́ра пье́на куа́ндо э иницья́то иль конче́рто",
+            "uk": "ла са́ла е́ра пье́на куа́ндо е ініцья́то іль конче́рто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Шёл дождь, когда мы вышли.»",
+            "uk": "Виберіть, як сказати: «Ішов дощ, коли ми вийшли.»",
+            "en": "Choose how to say: “It was raining when we went out.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:21:11",
+          "options": [
+            "it:21:11",
+            "it:21:15",
+            "it:21:16"
+          ],
+          "answerId": "it:21:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Было холодно, когда открылась дверь.»",
+            "uk": "Виберіть, як сказати: «Було холодно, коли двері відчинилися.»",
+            "en": "Choose how to say: “It was cold when the door opened.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:15",
+          "options": [
+            "it:21:15",
+            "it:21:11",
+            "it:21:13"
+          ],
+          "answerId": "it:21:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ставни были закрыты, когда я проходил мимо.»",
+            "uk": "Виберіть, як сказати: «Віконниці були зачинені, коли я проходив повз.»",
+            "en": "Choose how to say: “The shutters were closed when I walked by.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:14",
+          "options": [
+            "it:21:14",
+            "it:21:16",
+            "it:21:12"
+          ],
+          "answerId": "it:21:14"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Пока",
+        "uk": "Поки",
+        "en": "While"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Пока шел дождь, мы пили кофе».\nMentre pioveva, abbiamo preso il caffè. — «Пока шел дождь, мы пили кофе.»\nЧитается: ме́нтре пьове́ва аббья́мо пре́зо иль каффе́.\nMentre aspettavamo, è uscito il dottore. — «Пока мы ждали, вышел врач.»\nЧитается: ме́нтре аспеттава́мо э уши́то иль дотто́ре.\nMentre riordinavo, Lea ha trovato lo scontrino. — «Пока я убирался, Леа нашла квитанцию.»\nЧитается: ме́нтре риордина́во ле́а а трова́то ло сконтри́но.\nСлово mentre значит «пока».\nПосле mentre идёт то, что длилось: aspettavamo — «мы ждали».\nПотом то, что случилось: è uscito il dottore — «вышел врач».\nСлово riordinavo значит «я наводил порядок».",
+        "uk": "Дивіться, як сказати «Поки йшов дощ, ми пили каву».\nMentre pioveva, abbiamo preso il caffè. — «Поки йшов дощ, ми пили каву.»\nЧитається: ме́нтре пьове́ва аббья́мо пре́зо іль каффе́.\nMentre aspettavamo, è uscito il dottore. — «Поки ми чекали, вийшов лікар.»\nЧитається: ме́нтре аспеттава́мо е уші́то іль дотто́ре.\nMentre riordinavo, Lea ha trovato lo scontrino. — «Поки я прибирав, Леа знайшла чек.»\nЧитається: ме́нтре ріордіна́во ле́а а трова́то ло сконтрі́но.\nСлово mentre означає «поки».\nПісля mentre йде те, що тривало: aspettavamo — «ми чекали».\nПотім те, що сталося: è uscito il dottore — «вийшов лікар».\nСлово riordinavo означає «я наводив лад».",
+        "en": "Look at how to say “While it was raining, we had coffee”.\nMentre pioveva, abbiamo preso il caffè. — “While it was raining, we had coffee.”\nMentre aspettavamo, è uscito il dottore. — “While we were waiting, the doctor came out.”\nMentre riordinavo, Lea ha trovato lo scontrino.\n“While I was tidying up, Lea found the receipt.”\nThe word mentre means “while”.\nAfter mentre comes what went on: aspettavamo — “we were waiting”.\nThen what happened: è uscito il dottore — “the doctor came out”.\nThe word riordinavo means “I was tidying up”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:21:21",
+          "say": {
+            "ru": "ме́нтре риордина́во ле́а а трова́то ло сконтри́но",
+            "uk": "ме́нтре ріордіна́во ле́а а трова́то ло сконтрі́но"
+          }
+        },
+        {
+          "phraseId": "it:21:22",
+          "say": {
+            "ru": "ме́нтре аспеттава́мо э уши́то иль дотто́ре",
+            "uk": "ме́нтре аспеттава́мо е уші́то іль дотто́ре"
+          }
+        },
+        {
+          "phraseId": "it:21:23",
+          "say": {
+            "ru": "ме́нтре гуида́ви о ле́тто иль месса́джо",
+            "uk": "ме́нтре гуіда́ві о ле́тто іль месса́джо"
+          }
+        },
+        {
+          "phraseId": "it:21:24",
+          "say": {
+            "ru": "ме́нтре пьове́ва аббья́мо пре́зо иль каффе́",
+            "uk": "ме́нтре пьове́ва аббья́мо пре́зо іль каффе́"
+          }
+        },
+        {
+          "phraseId": "it:21:25",
+          "say": {
+            "ru": "ме́нтре па́оло парла́ва о аннота́то иль су́о ну́меро",
+            "uk": "ме́нтре па́оло парла́ва о аннота́то іль су́о ну́меро"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока шел дождь, мы пили кофе.»",
+            "uk": "Виберіть, як сказати: «Поки йшов дощ, ми пили каву.»",
+            "en": "Choose how to say: “While it was raining, we had coffee.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:21:24",
+          "options": [
+            "it:21:24",
+            "it:21:22",
+            "it:21:25"
+          ],
+          "answerId": "it:21:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока мы ждали, вышел врач.»",
+            "uk": "Виберіть, як сказати: «Поки ми чекали, вийшов лікар.»",
+            "en": "Choose how to say: “While we were waiting, the doctor came out.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:22",
+          "options": [
+            "it:21:22",
+            "it:21:24",
+            "it:21:25"
+          ],
+          "answerId": "it:21:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Пока Паоло говорил, я записал его номер.»",
+            "uk": "Виберіть, як сказати: «Поки Паоло розмовляв, я записав його номер.»",
+            "en": "Choose how to say: “While Paolo was talking, I wrote down his number.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:25",
+          "options": [
+            "it:21:25",
+            "it:21:21",
+            "it:21:22"
+          ],
+          "answerId": "it:21:25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Сначала случилось, потом «пока»",
+        "uk": "Спершу сталося, потім «поки»",
+        "en": "First it happened, then “while”"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я услышал шум, когда читал».\nHo sentito un rumore mentre leggevo. — «Я услышал шум, когда читал.»\nЧитается: о сенти́то ун румо́ре ме́нтре леддже́во.\nLo specchio è caduto mentre mi radevo. — «Зеркало упало, когда я брился.»\nЧитается: ло спе́ккьо э каду́то ме́нтре ми раде́во.\nLa sveglia è suonata mentre mi vestivo. — «Будильник сработал, пока я одевалась.»\nЧитается: ла све́лья э суона́та ме́нтре ми вести́во.\nМожно сказать и наоборот: сначала то, что случилось.\nСлово mentre всё равно значит «пока».\nСлово la sveglia значит «будильник», слово il gatto — «кот».\nСлова le scale значат «лестница»: salivo le scale — «я поднимался по лестнице».\nСлово la corrente значит «электричество»: è andata via la corrente — «отключилось электричество».",
+        "uk": "Дивіться, як сказати «Я почув шум, коли читав».\nHo sentito un rumore mentre leggevo. — «Я почув шум, коли читав.»\nЧитається: о сенті́то ун румо́ре ме́нтре леддже́во.\nLo specchio è caduto mentre mi radevo. — «Дзеркало впало, поки я голився.»\nЧитається: ло спе́ккьо е каду́то ме́нтре мі раде́во.\nLa sveglia è suonata mentre mi vestivo. — «Будильник задзвонив, поки я одягалася.»\nЧитається: ла све́лья е суона́та ме́нтре мі весті́во.\nМожна сказати й навпаки: спочатку те, що сталося.\nСлово mentre все одно означає «поки».\nСлово la sveglia означає «будильник», слово il gatto — «кіт».\nСлова le scale означають «сходи»: salivo le scale — «я піднімався сходами».\nСлово la corrente означає «електрика»: è andata via la corrente — «зникло світло».",
+        "en": "Look at how to say “I heard a noise while I was reading”.\nHo sentito un rumore mentre leggevo. — “I heard a noise while I was reading.”\nLo specchio è caduto mentre mi radevo. — “The mirror fell while I was shaving.”\nLa sveglia è suonata mentre mi vestivo.\n“The alarm clock rang while I was getting dressed.”\nYou can also say it the other way round: first what happened.\nThe word mentre still means “while”.\nThe word la sveglia means “alarm clock”, the word il gatto — “cat”.\nThe words le scale mean “the stairs”: salivo le scale — “I went up the stairs”.\nThe word la corrente means “electricity”: è andata via la corrente — “the power went out”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:21:31",
+          "say": {
+            "ru": "о сенти́то ун румо́ре ме́нтре леддже́во",
+            "uk": "о сенті́то ун румо́ре ме́нтре леддже́во"
+          }
+        },
+        {
+          "phraseId": "it:21:32",
+          "say": {
+            "ru": "ло спе́ккьо э каду́то ме́нтре ми раде́во",
+            "uk": "ло спе́ккьо е каду́то ме́нтре мі раде́во"
+          }
+        },
+        {
+          "phraseId": "it:21:33",
+          "say": {
+            "ru": "ла све́лья э суона́та ме́нтре ми вести́во",
+            "uk": "ла све́лья е суона́та ме́нтре мі весті́во"
+          }
+        },
+        {
+          "phraseId": "it:21:35",
+          "say": {
+            "ru": "иль га́тто э энтра́то ме́нтре става́мо ареджа́ндо ла ста́нца",
+            "uk": "іль га́тто е ентра́то ме́нтре става́мо ареджа́ндо ла ста́нца"
+          }
+        },
+        {
+          "phraseId": "it:21:40",
+          "say": {
+            "ru": "иль кампане́лло а суона́то ме́нтре сали́во ле ска́ле",
+            "uk": "іль кампане́лло а суона́то ме́нтре салі́во ле ска́ле"
+          }
+        },
+        {
+          "phraseId": "it:21:45",
+          "say": {
+            "ru": "ла ра́дьо ста́ва тразметте́ндо у́на канцо́не куа́ндо э анда́та ви́а ла корре́нте",
+            "uk": "ла ра́дьо ста́ва тразметте́ндо у́на канцо́не куа́ндо е анда́та ві́а ла корре́нте"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Будильник сработал, пока я одевалась.»",
+            "uk": "Виберіть, як сказати: «Будильник задзвонив, поки я одягалася.»",
+            "en": "Choose how to say: “The alarm clock rang while I was getting dressed.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:21:33",
+          "options": [
+            "it:21:33",
+            "it:21:32",
+            "it:21:31"
+          ],
+          "answerId": "it:21:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я услышал шум, когда читал.»",
+            "uk": "Виберіть, як сказати: «Я почув шум, коли читав.»",
+            "en": "Choose how to say: “I heard a noise while I was reading.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:31",
+          "options": [
+            "it:21:31",
+            "it:21:32",
+            "it:21:40"
+          ],
+          "answerId": "it:21:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Зеркало упало, когда я брился.»",
+            "uk": "Виберіть, як сказати: «Дзеркало впало, поки я голився.»",
+            "en": "Choose how to say: “The mirror fell while I was shaving.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:21:32",
+          "options": [
+            "it:21:32",
+            "it:21:33",
+            "it:21:35"
+          ],
+          "answerId": "it:21:32"
+        }
+      ]
+    }
+  ]
+}

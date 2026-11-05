@@ -1,0 +1,492 @@
+{
+  "lang": "es",
+  "lesson": 32,
+  "title": {
+    "ru": "Если бы… я бы…",
+    "en": "If… I would…"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Если бы было время, я бы пошёл",
+        "en": "If I had time, I would go"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если бы у меня было время, я бы пошёл с тобой».\nSi tuviera tiempo, iría contigo.\nЧитается: си тубье́ра тьэ́мпо, ири́а конти́го.\nСлово si значит «если». Слово tuviera — «если бы у меня было».\nСлово iría значит «я бы пошёл». Слово contigo — «с тобой».\nФраза состоит из двух частей: «если бы…» и «я бы…».\nIría contigo si hubiera un tren directo.\nЭто «Я бы поехал с тобой, если бы был прямой поезд».\nСлово directo значит «прямой, без пересадки».",
+        "en": "Look at how to say “If I had time, I would go with you”.\nSi tuviera tiempo, iría contigo.\nThe word si means “if”. The word tuviera means “if I had”.\nThe word iría means “I would go”. The word contigo means “with you”.\nThe phrase has two parts: “if…” and “I would…”.\nIría contigo si hubiera un tren directo.\nIt means “I would go with you if there were a direct train”.\nThe word directo means “direct, without changing”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:32:01",
+          "say": {
+            "ru": "си тубье́ра тьэ́мпо ири́а конти́го",
+            "uk": "сі тубье́ра тье́мпо ірі́а конті́го"
+          }
+        },
+        {
+          "phraseId": "es:32:02",
+          "say": {
+            "ru": "ири́а конти́го си тубье́ра дине́ро",
+            "uk": "ірі́а конті́го сі тубье́ра діне́ро"
+          }
+        },
+        {
+          "phraseId": "es:32:03",
+          "say": {
+            "ru": "си эстубье́ра ли́брэ ири́а конти́го",
+            "uk": "сі естубье́ра лі́бре ірі́а конті́го"
+          }
+        },
+        {
+          "phraseId": "es:32:04",
+          "say": {
+            "ru": "си бибье́ра мас сэ́рка ири́а конти́го",
+            "uk": "сі бібье́ра мас се́рка ірі́а конті́го"
+          }
+        },
+        {
+          "phraseId": "es:32:05",
+          "say": {
+            "ru": "ири́а конти́го си убье́ра ун трэн дире́кто",
+            "uk": "ірі́а конті́го сі убье́ра ун трен діре́кто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня было время, я бы пошёл с тобой»",
+            "uk": "Виберіть, як сказати: «Якби я мав час, я б пішов із тобою»",
+            "en": "Choose how to say: “If I had time, I would go with you”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:32:01",
+          "options": [
+            "es:32:01",
+            "es:32:02",
+            "es:32:04"
+          ],
+          "answerId": "es:32:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы я был свободен, я бы пошёл с тобой»",
+            "uk": "Виберіть, як сказати: «Якби я був вільний, я б пішов із тобою»",
+            "en": "Choose how to say: “If I were free, I would go with you”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:03",
+          "options": [
+            "es:32:03",
+            "es:32:01",
+            "es:32:05"
+          ],
+          "answerId": "es:32:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы поехал с тобой, если бы был прямой поезд»",
+            "uk": "Виберіть, як сказати: «Я б поїхав із тобою, якби був прямий потяг»",
+            "en": "Choose how to say: “I would go with you if there were a direct train”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:05",
+          "options": [
+            "es:32:05",
+            "es:32:04",
+            "es:32:02"
+          ],
+          "answerId": "es:32:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я бы тебя навестил, проводил",
+        "en": "I would visit you, see you off"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я бы тебя навестил, если бы у меня было время».\nTe visitaría si tuviera tiempo.\nЧитается: тэ биситари́а си тубье́ра тьэ́мпо.\nСлово te значит «тебя». Слово visitaría — «я бы навестил».\nTe acompañaría si tuviera tiempo.\nЭто «Я бы тебя проводил, если бы у меня было время».\nСлово acompañaría значит «я бы проводил». Слово acompañar — «сопровождать».\nSi tuviera coche, te visitaría. — «Если бы у меня была машина, я бы тебя навестил.»\nЧасти можно менять местами: смысл тот же.",
+        "en": "Look at how to say “I would visit you if I had time”.\nTe visitaría si tuviera tiempo.\nThe word te means “you”. The word visitaría means “I would visit”.\nTe acompañaría si tuviera tiempo.\nIt means “I would see you off if I had time”.\nThe word acompañaría means “I would accompany”. The word acompañar means “to accompany”.\nSi tuviera coche, te visitaría.\n“If I had a car, I would visit you.”\nThe parts can swap places: the meaning stays the same."
+      },
+      "examples": [
+        {
+          "phraseId": "es:32:06",
+          "say": {
+            "ru": "тэ биситари́а си тубье́ра тьэ́мпо",
+            "uk": "те бісітарі́а сі тубье́ра тье́мпо"
+          }
+        },
+        {
+          "phraseId": "es:32:07",
+          "say": {
+            "ru": "си тубье́ра ко́чэ тэ биситари́а",
+            "uk": "сі тубье́ра ко́че те бісітарі́а"
+          }
+        },
+        {
+          "phraseId": "es:32:08",
+          "say": {
+            "ru": "си бибье́ра мас сэ́рка тэ биситари́а",
+            "uk": "сі бібье́ра мас се́рка те бісітарі́а"
+          }
+        },
+        {
+          "phraseId": "es:32:36",
+          "say": {
+            "ru": "тэ акомпаньяри́а си тубье́ра тьэ́мпо",
+            "uk": "те акомпаньярі́а сі тубье́ра тье́мпо"
+          }
+        },
+        {
+          "phraseId": "es:32:38",
+          "say": {
+            "ru": "си тубье́ра ко́чэ тэ акомпаньяри́а",
+            "uk": "сі тубье́ра ко́че те акомпаньярі́а"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы тебя навестил, если бы у меня было время»",
+            "uk": "Виберіть, як сказати: «Я б тебе відвідав, якби я мав час»",
+            "en": "Choose how to say: “I would visit you if I had time”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:32:06",
+          "options": [
+            "es:32:06",
+            "es:32:07",
+            "es:32:36"
+          ],
+          "answerId": "es:32:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня была машина, я бы тебя навестил»",
+            "uk": "Виберіть, як сказати: «Якби я мав машину, я б тебе відвідав»",
+            "en": "Choose how to say: “If I had a car, I would visit you”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:07",
+          "options": [
+            "es:32:07",
+            "es:32:08",
+            "es:32:38"
+          ],
+          "answerId": "es:32:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня была машина, я бы тебя проводил»",
+            "uk": "Виберіть, як сказати: «Якби я мав машину, я б тебе провів»",
+            "en": "Choose how to say: “If I had a car, I would accompany you”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:38",
+          "options": [
+            "es:32:38",
+            "es:32:36",
+            "es:32:07"
+          ],
+          "answerId": "es:32:38"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Если бы были деньги",
+        "en": "If I had the money"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если бы у меня были деньги, я бы купил билет».\nSi tuviera dinero, compraría el billete.\nЧитается: си тубье́ра дине́ро компрари́а эль бийэ́тэ.\nSi costara menos, alquilaría la habitación.\nЭто «Если бы комната стоила дешевле, я бы её снял».\nСлово costara значит «стоила бы». Слово menos — «меньше».\nСлова costara menos значат «стоила бы дешевле».\nCompraría ese billete si fuera más barato.\nЭто «Я бы купил этот билет, если бы он был дешевле».",
+        "en": "Look at how to say “If I had money, I would buy the ticket”.\nSi tuviera dinero, compraría el billete.\nSi costara menos, alquilaría la habitación.\nIt means “If it cost less, I would rent the room”.\nThe word costara means “would cost”. The word menos means “less”.\nThe words costara menos mean “would cost less”.\nCompraría ese billete si fuera más barato.\nIt means “I would buy that ticket if it were cheaper”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:32:11",
+          "say": {
+            "ru": "си тубье́ра дине́ро компрари́а эль бийэ́тэ",
+            "uk": "сі тубье́ра діне́ро компрарі́а ель бійе́те"
+          }
+        },
+        {
+          "phraseId": "es:32:13",
+          "say": {
+            "ru": "компрари́а эль бийэ́тэ си убье́ра ун трэн дире́кто",
+            "uk": "компрарі́а ель бійе́те сі убье́ра ун трен діре́кто"
+          }
+        },
+        {
+          "phraseId": "es:32:12",
+          "say": {
+            "ru": "си коста́ра мэ́нос алькилари́а ла абитасьо́н",
+            "uk": "сі коста́ра ме́нос алькіларі́а ла абітасьо́н"
+          }
+        },
+        {
+          "phraseId": "es:32:47",
+          "say": {
+            "ru": "пагари́а ой си коста́ра мэ́нос",
+            "uk": "пагарі́а ой сі коста́ра ме́нос"
+          }
+        },
+        {
+          "phraseId": "es:32:14",
+          "say": {
+            "ru": "компрари́а э́сэ бийэ́тэ си фуэ́ра мас бара́то",
+            "uk": "компрарі́а е́се бійе́те сі фуе́ра мас бара́то"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы у меня были деньги, я бы купил билет»",
+            "uk": "Виберіть, як сказати: «Якби я мав гроші, я б купив квиток»",
+            "en": "Choose how to say: “If I had money, I would buy the ticket”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:32:11",
+          "options": [
+            "es:32:11",
+            "es:32:13",
+            "es:32:47"
+          ],
+          "answerId": "es:32:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы комната стоила дешевле, я бы её снял»",
+            "uk": "Виберіть, як сказати: «Якби кімната коштувала дешевше, я б її винайняв»",
+            "en": "Choose how to say: “If it cost less, I would rent the room”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:12",
+          "options": [
+            "es:32:12",
+            "es:32:47",
+            "es:32:14"
+          ],
+          "answerId": "es:32:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы заплатил сегодня, если бы это стоило дешевле»",
+            "uk": "Виберіть, як сказати: «Я б заплатив сьогодні, якби це коштувало дешевше»",
+            "en": "Choose how to say: “I would pay today if it cost less”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:47",
+          "options": [
+            "es:32:47",
+            "es:32:14",
+            "es:32:11"
+          ],
+          "answerId": "es:32:47"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Если бы я мог помочь",
+        "en": "If I could help"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если бы я мог тебе помочь, я бы остался здесь».\nSi pudiera ayudarte, me quedaría aquí.\nЧитается: си пудье́ра айуда́ртэ, мэ кэдари́а аки́.\nСлово ayudarte значит «помочь тебе». Слово ayudar — «помогать».\nСлова me quedaría значат «я бы остался».\nSi tuviera señal, te enviaría el archivo.\nЭто «Если бы был сигнал, я бы отправил тебе файл».\nСлово archivo значит «файл».\nSi hubiera una avería, llamaría al taller.\nЭто «Если бы что-то сломалось, я бы позвонил в мастерскую».\nСлово avería значит «поломка».\nSi perdiera las llaves, llamaría a mi vecino.\nЭто «Если бы я потерял ключи, я бы позвонил соседу».\nСлово perder значит «терять» и «опаздывать на транспорт».\nСлово pueblo значит «посёлок, деревня».",
+        "en": "Look at how to say “If I could help you, I would stay here”.\nSi pudiera ayudarte, me quedaría aquí.\nThe word ayudarte means “to help you”. The word ayudar means “to help”.\nThe words me quedaría mean “I would stay”.\nSi tuviera señal, te enviaría el archivo.\nIt means “If there were signal, I would send you the file”.\nThe word archivo means “file”.\nSi hubiera una avería, llamaría al taller.\nIt means “If something broke down, I would call the workshop”.\nThe word avería means “breakdown”.\nSi perdiera las llaves, llamaría a mi vecino.\nIt means “If I lost the keys, I would call my neighbour”.\nThe word perder means “to lose” and “to miss (a ride)”.\nThe word pueblo means “village, small town”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:32:45",
+          "say": {
+            "ru": "си пудье́ра айуда́ртэ мэ кэдари́а аки́",
+            "uk": "сі пудье́ра айуда́рте ме кедарі́а акі́"
+          }
+        },
+        {
+          "phraseId": "es:32:44",
+          "say": {
+            "ru": "си тубье́ра сэнья́ль тэ энбьяри́а эль арчи́бо",
+            "uk": "сі тубье́ра сенья́ль те енбьярі́а ель арчі́бо"
+          }
+        },
+        {
+          "phraseId": "es:32:19",
+          "say": {
+            "ru": "си убье́ра у́на абэри́а йамари́а аль тайе́р",
+            "uk": "сі убье́ра у́на абері́а йамарі́а аль тайе́р"
+          }
+        },
+        {
+          "phraseId": "es:32:49",
+          "say": {
+            "ru": "си пердье́ра лас йа́бэс йамари́а а ми бэси́но",
+            "uk": "сі пердье́ра лас йа́бес йамарі́а а мі бесі́но"
+          }
+        },
+        {
+          "phraseId": "es:32:46",
+          "say": {
+            "ru": "си бибье́ра эн эль пуэ́бло нэсэситари́а ун ко́чэ",
+            "uk": "сі бібье́ра ен ель пуе́бло несесітарі́а ун ко́че"
+          }
+        },
+        {
+          "phraseId": "es:32:27",
+          "say": {
+            "ru": "болбэри́а эн та́кси си пердье́ра эль аутобу́с",
+            "uk": "болбері́а ен та́ксі сі пердье́ра ель аутобу́с"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы я мог тебе помочь, я бы остался здесь»",
+            "uk": "Виберіть, як сказати: «Якби я міг тобі допомогти, я б залишився тут»",
+            "en": "Choose how to say: “If I could help you, I would stay here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:32:45",
+          "options": [
+            "es:32:45",
+            "es:32:44",
+            "es:32:19"
+          ],
+          "answerId": "es:32:45"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы был сигнал, я бы отправил тебе файл»",
+            "uk": "Виберіть, як сказати: «Якби був сигнал, я б надіслав тобі файл»",
+            "en": "Choose how to say: “If there were signal, I would send you the file”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:44",
+          "options": [
+            "es:32:44",
+            "es:32:19",
+            "es:32:49"
+          ],
+          "answerId": "es:32:44"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы я опоздал на автобус, то вернулся бы на такси»",
+            "uk": "Виберіть, як сказати: «Я б повернувся на таксі, якби запізнився на автобус»",
+            "en": "Choose how to say: “I would come back by taxi if I missed the bus”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:27",
+          "options": [
+            "es:32:27",
+            "es:32:46",
+            "es:32:49"
+          ],
+          "answerId": "es:32:27"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Если бы ты мог, если бы было открыто",
+        "en": "If you could, if it were open"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Если бы ты мог прийти, мы бы поехали в центр».\nSi pudieras venir, iríamos al centro.\nЧитается: си пудье́рас бэни́р, ири́амос аль сэ́нтро.\nСлово pudieras значит «ты мог бы». Слово iríamos — «мы бы поехали».\nSi la puerta estuviera abierta, entraría.\nЭто «Если бы дверь была открыта, я бы вошёл».\nСлово abierta значит «открыта».\nSi el túnel estuviera cerrado, volvería al pueblo.\nЭто «Если бы тоннель был закрыт, я бы вернулся в посёлок».\nСлово cerrado значит «закрыт».\nNo alquilaría ese piso si fuera tan ruidoso.\nЭто «Я бы не снял ту квартиру, если бы она была такой шумной».",
+        "en": "Look at how to say “If you could come, we would go to the centre”.\nSi pudieras venir, iríamos al centro.\nThe word pudieras means “you could”. The word iríamos means “we would go”.\nSi la puerta estuviera abierta, entraría.\nIt means “If the door were open, I would go in”.\nThe word abierta means “open”.\nSi el túnel estuviera cerrado, volvería al pueblo.\nIt means “If the tunnel were closed, I would go back to the village”.\nThe word cerrado means “closed”.\nNo alquilaría ese piso si fuera tan ruidoso.\nIt means “I would not rent that flat if it were so noisy”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:32:18",
+          "say": {
+            "ru": "си пудье́рас бэни́р ири́амос аль сэ́нтро",
+            "uk": "сі пудье́рас бені́р ірі́амос аль се́нтро"
+          }
+        },
+        {
+          "phraseId": "es:32:40",
+          "say": {
+            "ru": "си пудье́рас бэни́р тэ акомпаньяри́а",
+            "uk": "сі пудье́рас бені́р те акомпаньярі́а"
+          }
+        },
+        {
+          "phraseId": "es:32:35",
+          "say": {
+            "ru": "си ла пуэ́рта эстубье́ра абье́рта энтрари́а",
+            "uk": "сі ла пуе́рта естубье́ра абье́рта ентрарі́а"
+          }
+        },
+        {
+          "phraseId": "es:32:39",
+          "say": {
+            "ru": "си эль ту́нэль эстубье́ра сэрра́до болбэри́а аль пуэ́бло",
+            "uk": "сі ель ту́нель естубье́ра серра́до болбері́а аль пуе́бло"
+          }
+        },
+        {
+          "phraseId": "es:32:33",
+          "say": {
+            "ru": "но алькилари́а э́сэ пи́со си фуэ́ра тан руидо́со",
+            "uk": "но алькіларі́а е́се пі́со сі фуе́ра тан руідо́со"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы ты мог прийти, мы бы поехали в центр»",
+            "uk": "Виберіть, як сказати: «Якби ти міг прийти, ми б поїхали до центру»",
+            "en": "Choose how to say: “If you could come, we would go to the centre”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:32:18",
+          "options": [
+            "es:32:18",
+            "es:32:40",
+            "es:32:35"
+          ],
+          "answerId": "es:32:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Если бы дверь была открыта, я бы вошёл»",
+            "uk": "Виберіть, як сказати: «Якби двері були відчинені, я б зайшов»",
+            "en": "Choose how to say: “If the door were open, I would go in”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:35",
+          "options": [
+            "es:32:35",
+            "es:32:39",
+            "es:32:33"
+          ],
+          "answerId": "es:32:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я бы не снял ту квартиру, если бы она была такой шумной»",
+            "uk": "Виберіть, як сказати: «Я б не винайняв ту квартиру, якби вона була такою шумною»",
+            "en": "Choose how to say: “I would not rent that flat if it were so noisy”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:32:33",
+          "options": [
+            "es:32:33",
+            "es:32:35",
+            "es:32:18"
+          ],
+          "answerId": "es:32:33"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,478 @@
+{
+  "lang": "es",
+  "lesson": 26,
+  "title": {
+    "ru": "Кому? «Я написал ему», «Я дал им»",
+    "en": "To whom? “I wrote to him”, “I gave them”"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я написал ей",
+        "en": "I wrote to her"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я написал ей письмо».\nLe escribí una carta. — «Я написал ей письмо.»\nЧитается: лэ эскриби́ у́на ка́рта.\nСлово le значит «ему, ей». Слово escribí — «я написал».\nLe escribí una carta a Luis. — «Я написал Луису письмо.»\nСлова a Luis называют, кому именно.\nLes escribí una carta a mis hermanas. — «Я написал моим сёстрам письмо.»\nСлово les значит «им», когда речь о нескольких людях.",
+        "en": "Look at how to say “I wrote her a letter”.\nLe escribí una carta. — “I wrote her a letter.”\nThe word le means “to him, to her”. The word escribí means “I wrote”.\nLe escribí una carta a Luis. — “I wrote Luis a letter.”\nThe words a Luis name exactly who it is for.\nLes escribí una carta a mis hermanas.\n“I wrote my sisters a letter.”\nThe word les means “to them”, when it is about several people."
+      },
+      "examples": [
+        {
+          "phraseId": "es:26:01",
+          "say": {
+            "ru": "лэ эскриби́ у́на ка́рта",
+            "uk": "ле ескрібі́ у́на ка́рта"
+          }
+        },
+        {
+          "phraseId": "es:26:02",
+          "say": {
+            "ru": "лэ эскриби́ у́на ка́рта а Луи́с",
+            "uk": "ле ескрібі́ у́на ка́рта а Луі́с"
+          }
+        },
+        {
+          "phraseId": "es:26:04",
+          "say": {
+            "ru": "лэс эскриби́ у́на ка́рта а мис эрма́нас",
+            "uk": "лес ескрібі́ у́на ка́рта а міс ерма́нас"
+          }
+        },
+        {
+          "phraseId": "es:26:03",
+          "say": {
+            "ru": "но лэ эскриби́ у́на ка́рта",
+            "uk": "но ле ескрібі́ у́на ка́рта"
+          }
+        },
+        {
+          "phraseId": "es:26:05",
+          "say": {
+            "ru": "лэс эскриби́стэ у́на ка́рта",
+            "uk": "лес ескрібі́сте у́на ка́рта"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я написал ей письмо»",
+            "uk": "Виберіть, як сказати: «Я написав їй листа»",
+            "en": "Choose how to say: “I wrote her a letter”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:26:01",
+          "options": [
+            "es:26:01",
+            "es:26:04",
+            "es:26:03"
+          ],
+          "answerId": "es:26:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я написал моим сёстрам письмо»",
+            "uk": "Виберіть, як сказати: «Я написав моїм сестрам листа»",
+            "en": "Choose how to say: “I wrote my sisters a letter”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:04",
+          "options": [
+            "es:26:04",
+            "es:26:01",
+            "es:26:02"
+          ],
+          "answerId": "es:26:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты написал им письмо?»",
+            "uk": "Виберіть, як сказати: «Ти написав їм листа?»",
+            "en": "Choose how to say: “Did you write them a letter?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:05",
+          "options": [
+            "es:26:05",
+            "es:26:01",
+            "es:26:04"
+          ],
+          "answerId": "es:26:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я отправил ему",
+        "en": "I sent to him"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я отправил ему фотографию».\nLe mandé la foto. — «Я отправил ему фотографию.»\nЧитается: лэ манде́ ла фо́то.\nСлово mandé значит «я отправил». Тут le значит «ему».\nLe mandé la receta a mi madre. — «Я отправил маме рецепт.»\nСлово receta значит «рецепт блюда».\nLes mandé la factura a los clientes. — «Я отправил клиентам счёт.»\nСлово cliente значит «клиент, покупатель».",
+        "en": "Look at how to say “I sent him the photo”.\nLe mandé la foto. — “I sent him the photo.”\nThe word mandé means “I sent”. Here le means “to him”.\nLe mandé la receta a mi madre. — “I sent my mother the recipe.”\nThe word receta means “recipe”.\nLes mandé la factura a los clientes.\n“I sent the clients the invoice.”\nThe word cliente means “client, customer”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:26:06",
+          "say": {
+            "ru": "лэ манде́ ла фо́то",
+            "uk": "ле манде́ ла фо́то"
+          }
+        },
+        {
+          "phraseId": "es:26:07",
+          "say": {
+            "ru": "лэ манде́ ла рэсэ́та а ми ма́дрэ",
+            "uk": "ле манде́ ла ресе́та а мі ма́дре"
+          }
+        },
+        {
+          "phraseId": "es:26:09",
+          "say": {
+            "ru": "лэс манде́ ла факту́ра а лос клие́нтэс",
+            "uk": "лес манде́ ла факту́ра а лос кліе́нтес"
+          }
+        },
+        {
+          "phraseId": "es:26:08",
+          "say": {
+            "ru": "но лэс манде́ ла фо́то",
+            "uk": "но лес манде́ ла фо́то"
+          }
+        },
+        {
+          "phraseId": "es:26:26",
+          "say": {
+            "ru": "лэ манда́мос ун мэнса́хэ",
+            "uk": "ле манда́мос ун менса́хе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я отправил ему фотографию»",
+            "uk": "Виберіть, як сказати: «Я надіслав йому фотографію»",
+            "en": "Choose how to say: “I sent him the photo”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:26:06",
+          "options": [
+            "es:26:06",
+            "es:26:08",
+            "es:26:26"
+          ],
+          "answerId": "es:26:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я отправил клиентам счёт»",
+            "uk": "Виберіть, як сказати: «Я надіслав клієнтам рахунок»",
+            "en": "Choose how to say: “I sent the clients the invoice”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:09",
+          "options": [
+            "es:26:09",
+            "es:26:07",
+            "es:26:08"
+          ],
+          "answerId": "es:26:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы отправили ей сообщение»",
+            "uk": "Виберіть, як сказати: «Ми надіслали їй повідомлення»",
+            "en": "Choose how to say: “We sent her a message”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:26",
+          "options": [
+            "es:26:26",
+            "es:26:06",
+            "es:26:09"
+          ],
+          "answerId": "es:26:26"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Я дал ей",
+        "en": "I gave to her"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я дал ей ключ».\nLe di la llave. — «Я дал ей ключ.»\nЧитается: лэ ди ла йа́бэ.\nСлово di значит «я дал». Слово dar — «давать».\nСлово меняется, смотря о ком речь: «я» — di, «ты» — diste, «мы» — dimos.\nLes di la llave a mis hermanas. — «Я дал моим сёстрам ключ.»\nNo les di la llave. — «Я не дал им ключ.»",
+        "en": "Look at how to say “I gave her the key”.\nLe di la llave. — “I gave her the key.”\nThe word di means “I gave”. The word dar means “to give”.\nThe word changes depending on who it is about:\n“I” — di, “you” — diste, “we” — dimos.\nLes di la llave a mis hermanas. — “I gave my sisters the key.”\nNo les di la llave. — “I did not give them the key.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:26:11",
+          "say": {
+            "ru": "лэ ди ла йа́бэ",
+            "uk": "ле ді ла йа́бе"
+          }
+        },
+        {
+          "phraseId": "es:26:12",
+          "say": {
+            "ru": "лэс ди ла йа́бэ а мис эрма́нас",
+            "uk": "лес ді ла йа́бе а міс ерма́нас"
+          }
+        },
+        {
+          "phraseId": "es:26:13",
+          "say": {
+            "ru": "но лэс ди ла йа́бэ",
+            "uk": "но лес ді ла йа́бе"
+          }
+        },
+        {
+          "phraseId": "es:26:15",
+          "say": {
+            "ru": "лэ ди́стэ ла йа́бэ",
+            "uk": "ле ді́сте ла йа́бе"
+          }
+        },
+        {
+          "phraseId": "es:26:31",
+          "say": {
+            "ru": "лэ ди́мос лос ли́брос",
+            "uk": "ле ді́мос лос лі́брос"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дал ей ключ»",
+            "uk": "Виберіть, як сказати: «Я дав їй ключ»",
+            "en": "Choose how to say: “I gave her the key”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:26:11",
+          "options": [
+            "es:26:11",
+            "es:26:13",
+            "es:26:31"
+          ],
+          "answerId": "es:26:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дал моим сёстрам ключ»",
+            "uk": "Виберіть, як сказати: «Я дав моїм сестрам ключ»",
+            "en": "Choose how to say: “I gave my sisters the key”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:12",
+          "options": [
+            "es:26:12",
+            "es:26:11",
+            "es:26:13"
+          ],
+          "answerId": "es:26:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы дали ему книги»",
+            "uk": "Виберіть, як сказати: «Ми дали йому книжки»",
+            "en": "Choose how to say: “We gave him the books”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:31",
+          "options": [
+            "es:26:31",
+            "es:26:15",
+            "es:26:11"
+          ],
+          "answerId": "es:26:31"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Я показал им",
+        "en": "I showed them"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я показал им карту».\nLes mostré el mapa. — «Я показал им карту.»\nЧитается: лэс мостре́ эль ма́па.\nСлово mostré значит «я показал». Слово mostrar — «показывать».\nLe mostré el mapa a Ana. — «Я показал Ане карту.»\nLes enseñamos las fotos. — «Мы показали им фотографии.»\nСлово enseñamos значит «мы показали». Слово enseñar — тоже «показывать».\nLe enseñé la cuenta a Luis. — «Я показал Луису счёт.»",
+        "en": "Look at how to say “I showed them the map”.\nLes mostré el mapa. — “I showed them the map.”\nThe word mostré means “I showed”. The word mostrar means “to show”.\nLe mostré el mapa a Ana. — “I showed Ana the map.”\nLes enseñamos las fotos. — “We showed them the photos.”\nThe word enseñamos means “we showed”. The word enseñar also means “to show”.\nLe enseñé la cuenta a Luis. — “I showed Luis the bill.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:26:21",
+          "say": {
+            "ru": "лэс мостре́ эль ма́па",
+            "uk": "лес мостре́ ель ма́па"
+          }
+        },
+        {
+          "phraseId": "es:26:22",
+          "say": {
+            "ru": "лэ мостре́ эль ма́па а А́на",
+            "uk": "ле мостре́ ель ма́па а А́на"
+          }
+        },
+        {
+          "phraseId": "es:26:46",
+          "say": {
+            "ru": "лэс энсеньа́мос лас фо́тос",
+            "uk": "лес енсеньа́мос лас фо́тос"
+          }
+        },
+        {
+          "phraseId": "es:26:47",
+          "say": {
+            "ru": "лэ энсеньа́мос лас фо́тос а А́на",
+            "uk": "ле енсеньа́мос лас фо́тос а А́на"
+          }
+        },
+        {
+          "phraseId": "es:26:23",
+          "say": {
+            "ru": "но лэ мостре́ эль ма́па",
+            "uk": "но ле мостре́ ель ма́па"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я показал им карту»",
+            "uk": "Виберіть, як сказати: «Я показав їм мапу»",
+            "en": "Choose how to say: “I showed them the map”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:26:21",
+          "options": [
+            "es:26:21",
+            "es:26:22",
+            "es:26:46"
+          ],
+          "answerId": "es:26:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я показал Ане карту»",
+            "uk": "Виберіть, як сказати: «Я показав Ані мапу»",
+            "en": "Choose how to say: “I showed Ana the map”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:22",
+          "options": [
+            "es:26:22",
+            "es:26:21",
+            "es:26:47"
+          ],
+          "answerId": "es:26:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы показали им фотографии»",
+            "uk": "Виберіть, як сказати: «Ми показали їм фотографії»",
+            "en": "Choose how to say: “We showed them the photos”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:46",
+          "options": [
+            "es:26:46",
+            "es:26:47",
+            "es:26:21"
+          ],
+          "answerId": "es:26:46"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Я попросил, я поблагодарил",
+        "en": "I asked, I thanked"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я попросил у официанта счёт».\nLe pedí la cuenta al camarero.\nЧитается: лэ педи́ ла куэ́нта аль камарэ́ро.\nСлово pedí значит «я попросил». Слово cuenta — «счёт в кафе».\nСлово camarero значит «официант».\nLe di las gracias a la profesora. — «Я поблагодарил преподавательницу.»\nСлово gracias значит «спасибо». Слова dar las gracias — «благодарить».",
+        "en": "Look at how to say “I asked the waiter for the bill”.\nLe pedí la cuenta al camarero.\nThe word pedí means “I asked for”. The word cuenta means “bill (in a café)”.\nThe word camarero means “waiter”.\nLe di las gracias a la profesora. — “I thanked the teacher.”\nThe word gracias means “thank you”. The words dar las gracias mean “to thank”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:26:19",
+          "say": {
+            "ru": "лэ педи́ ла куэ́нта аль камарэ́ро",
+            "uk": "ле педі́ ла куе́нта аль камаре́ро"
+          }
+        },
+        {
+          "phraseId": "es:26:37",
+          "say": {
+            "ru": "лэ педи́мос о́тра ботэ́йа аль камарэ́ро",
+            "uk": "ле педі́мос о́тра боте́йа аль камаре́ро"
+          }
+        },
+        {
+          "phraseId": "es:26:33",
+          "say": {
+            "ru": "лэс педи́ ла ли́ста а мис бэси́нос",
+            "uk": "лес педі́ ла лі́ста а міс бесі́нос"
+          }
+        },
+        {
+          "phraseId": "es:26:45",
+          "say": {
+            "ru": "лэ ди лас гра́сьяс а ла профэсо́ра",
+            "uk": "ле ді лас гра́сьяс а ла професо́ра"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я попросил у официанта счёт»",
+            "uk": "Виберіть, як сказати: «Я попросив у офіціанта рахунок»",
+            "en": "Choose how to say: “I asked the waiter for the bill”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:26:19",
+          "options": [
+            "es:26:19",
+            "es:26:37",
+            "es:26:33"
+          ],
+          "answerId": "es:26:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы попросили у официанта ещё одну бутылку»",
+            "uk": "Виберіть, як сказати: «Ми попросили в офіціанта ще одну пляшку»",
+            "en": "Choose how to say: “We asked the waiter for another bottle”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:37",
+          "options": [
+            "es:26:37",
+            "es:26:19",
+            "es:26:33"
+          ],
+          "answerId": "es:26:37"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я поблагодарил преподавательницу»",
+            "uk": "Виберіть, як сказати: «Я подякував викладачці»",
+            "en": "Choose how to say: “I thanked the teacher”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:26:45",
+          "options": [
+            "es:26:45",
+            "es:26:19",
+            "es:26:33"
+          ],
+          "answerId": "es:26:45"
+        }
+      ]
+    }
+  ]
+}

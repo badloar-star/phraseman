@@ -1,0 +1,492 @@
+{
+  "lang": "es",
+  "lesson": 16,
+  "title": {
+    "ru": "Я собираюсь",
+    "en": "I am going to"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я собираюсь позвонить",
+        "en": "I am going to call"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я собираюсь позвонить в отель».\nVoy a llamar al hotel. — «Я собираюсь позвонить в отель.»\nЧитается: бой а йама́р аль оте́ль.\nСлова voy a вместе значат «я собираюсь». Слово llamar значит «звонить».\nVas a llamar al hotel. — «Ты собираешься позвонить в отель.»\nСлова vas a значат «ты собираешься». Слово llamar не меняется.\nVoy a llamar a Ana. — «Я собираюсь позвонить Ане.»\nVoy a volver a casa. — «Я собираюсь вернуться домой.»\nСлово voy меняется, смотря о ком речь: voy — «я», vas — «ты».",
+        "en": "Look at how to say “I am going to call the hotel”.\nVoy a llamar al hotel. — “I am going to call the hotel.”\nThe words voy a together mean “I am going to”. The word llamar means “to call”.\nVas a llamar al hotel. — “You are going to call the hotel.”\nThe words vas a mean “you are going to”. The word llamar does not change.\nVoy a llamar a Ana. — “I am going to call Ana.”\nVoy a volver a casa. — “I am going to go back home.”\nThe word voy changes depending on who it is about: voy\n“I”, vas — “you”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:16:01",
+          "say": {
+            "ru": "бой а йама́р аль оте́ль",
+            "uk": "бой а йама́р аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:16:02",
+          "say": {
+            "ru": "бас а йама́р аль оте́ль",
+            "uk": "бас а йама́р аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:16:03",
+          "say": {
+            "ru": "бой а йама́р а А́на",
+            "uk": "бой а йама́р а А́на"
+          }
+        },
+        {
+          "phraseId": "es:16:05",
+          "say": {
+            "ru": "бой а больбэ́р а ка́са",
+            "uk": "бой а больбе́р а ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собираюсь позвонить в отель»",
+            "uk": "Виберіть, як сказати: «Я збираюся зателефонувати до готелю»",
+            "en": "Choose how to say: “I am going to call the hotel”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:16:01",
+          "options": [
+            "es:16:01",
+            "es:16:02",
+            "es:16:03"
+          ],
+          "answerId": "es:16:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собираюсь позвонить Ане»",
+            "uk": "Виберіть, як сказати: «Я збираюся зателефонувати Ані»",
+            "en": "Choose how to say: “I am going to call Ana”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:03",
+          "options": [
+            "es:16:03",
+            "es:16:01",
+            "es:16:05"
+          ],
+          "answerId": "es:16:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собираюсь вернуться домой»",
+            "uk": "Виберіть, як сказати: «Я збираюся повернутися додому»",
+            "en": "Choose how to say: “I am going to go back home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:05",
+          "options": [
+            "es:16:05",
+            "es:16:03",
+            "es:16:02"
+          ],
+          "answerId": "es:16:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Он, мы собираемся купить",
+        "en": "He, we are going to buy"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана собирается войти в магазин».\nAna va a entrar en la tienda. — «Ана собирается войти в магазин.»\nЧитается: А́на ба а энтра́р эн ла тье́нда.\nСлова va a значат «собирается».\nVamos a entrar en la tienda. — «Мы собираемся войти в магазин.»\nСлова vamos a значат «мы собираемся».\nVoy a comprar un billete. — «Я собираюсь купить билет.»\nLuis va a comprar pan. — «Луис собирается купить хлеб.»\nСлово pan значит «хлеб».\nVoy a comprar arroz. — «Я собираюсь купить рис.»\nVamos a comprar verduras. — «Мы собираемся купить овощи.»\nСлово arroz значит «рис». Слово verduras — «овощи».",
+        "en": "Look at how to say “Ana is going to enter the shop”.\nAna va a entrar en la tienda.\n“Ana is going to enter the shop.”\nThe words va a mean “is going to”.\nVamos a entrar en la tienda. — “We are going to enter the shop.”\nThe words vamos a mean “we are going to”.\nVoy a comprar un billete. — “I am going to buy a ticket.”\nLuis va a comprar pan. — “Luis is going to buy bread.”\nThe word pan means “bread”.\nVoy a comprar arroz. — “I am going to buy rice.”\nVamos a comprar verduras. — “We are going to buy vegetables.”\nThe word arroz means “rice”. The word verduras means “vegetables”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:16:07",
+          "say": {
+            "ru": "А́на ба а энтра́р эн ла тье́нда",
+            "uk": "А́на ба а ентра́р ен ла тье́нда"
+          }
+        },
+        {
+          "phraseId": "es:16:08",
+          "say": {
+            "ru": "ба́мос а энтра́р эн ла тье́нда",
+            "uk": "ба́мос а ентра́р ен ла тье́нда"
+          }
+        },
+        {
+          "phraseId": "es:16:09",
+          "say": {
+            "ru": "бой а компра́р ун бийе́тэ",
+            "uk": "бой а компра́р ун бійе́те"
+          }
+        },
+        {
+          "phraseId": "es:16:10",
+          "say": {
+            "ru": "Луи́с ба а компра́р пан",
+            "uk": "Луі́с ба а компра́р пан"
+          }
+        },
+        {
+          "phraseId": "es:16:15",
+          "say": {
+            "ru": "бой а компра́р арро́с",
+            "uk": "бой а компра́р арро́с"
+          }
+        },
+        {
+          "phraseId": "es:16:16",
+          "say": {
+            "ru": "ба́мос а компра́р бэрду́рас",
+            "uk": "ба́мос а компра́р берду́рас"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана собирается войти в магазин»",
+            "uk": "Виберіть, як сказати: «Ана збирається зайти до магазину»",
+            "en": "Choose how to say: “Ana is going to enter the shop”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:16:07",
+          "options": [
+            "es:16:07",
+            "es:16:08",
+            "es:16:09"
+          ],
+          "answerId": "es:16:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис собирается купить хлеб»",
+            "uk": "Виберіть, як сказати: «Луїс збирається купити хліб»",
+            "en": "Choose how to say: “Luis is going to buy bread”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:10",
+          "options": [
+            "es:16:10",
+            "es:16:15",
+            "es:16:16"
+          ],
+          "answerId": "es:16:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы собираемся купить овощи»",
+            "uk": "Виберіть, як сказати: «Ми збираємося купити овочі»",
+            "en": "Choose how to say: “We are going to buy vegetables”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:16",
+          "options": [
+            "es:16:16",
+            "es:16:15",
+            "es:16:10"
+          ],
+          "answerId": "es:16:16"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Позже",
+        "en": "Later"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана позже собирается написать письмо».\nAna va a escribir una carta más tarde. — «Ана позже собирается написать письмо.»\nЧитается: А́на ба а эскриби́р у́на ка́рта ма́с та́рдэ.\nСлова más tarde вместе значат «позже».\nСлово más значит «больше». Слово tarde значит «поздно».\nLuis va a leer el libro más tarde. — «Луис позже собирается прочитать книгу.»\nVoy a escribir la lista. — «Я собираюсь составить список.»\nСлово lista значит «список».\nMis hermanos van a preparar la cena más tarde. — «Мои братья позже собираются приготовить ужин.»\nСлова van a значат «собираются». Слово preparar — «готовить». Слово cena — «ужин».",
+        "en": "Look at how to say “Ana is going to write a letter later”.\nAna va a escribir una carta más tarde.\n“Ana is going to write a letter later.”\nThe words más tarde together mean “later”.\nThe word más means “more”. The word tarde means “late”.\nLuis va a leer el libro más tarde.\n“Luis is going to read the book later.”\nVoy a escribir la lista. — “I am going to write the list.”\nThe word lista means “list”.\nMis hermanos van a preparar la cena más tarde.\n“My brothers are going to prepare dinner later.”\nThe words van a mean “are going to”.\nThe word preparar means “to prepare”. The word cena means “dinner”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:16:11",
+          "say": {
+            "ru": "А́на ба а эскриби́р у́на ка́рта ма́с та́рдэ",
+            "uk": "А́на ба а ескрібі́р у́на ка́рта ма́с та́рде"
+          }
+        },
+        {
+          "phraseId": "es:16:13",
+          "say": {
+            "ru": "Луи́с ба а лээ́р эль ли́бро ма́с та́рдэ",
+            "uk": "Луі́с ба а лее́р ель лі́бро ма́с та́рде"
+          }
+        },
+        {
+          "phraseId": "es:16:18",
+          "say": {
+            "ru": "бой а эскриби́р ла ли́ста",
+            "uk": "бой а ескрібі́р ла лі́ста"
+          }
+        },
+        {
+          "phraseId": "es:16:19",
+          "say": {
+            "ru": "мис эрма́нос бан а прэпара́р ла сэ́на ма́с та́рдэ",
+            "uk": "міс ерма́нос бан а препара́р ла се́на ма́с та́рде"
+          }
+        },
+        {
+          "phraseId": "es:16:20",
+          "say": {
+            "ru": "ба́мос а прэпара́р ла мочи́ла ма́с та́рдэ",
+            "uk": "ба́мос а препара́р ла мочі́ла ма́с та́рде"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана позже собирается написать письмо»",
+            "uk": "Виберіть, як сказати: «Ана пізніше збирається написати листа»",
+            "en": "Choose how to say: “Ana is going to write a letter later”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:16:11",
+          "options": [
+            "es:16:11",
+            "es:16:13",
+            "es:16:18"
+          ],
+          "answerId": "es:16:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья позже собираются приготовить ужин»",
+            "uk": "Виберіть, як сказати: «Мої брати пізніше збираються приготувати вечерю»",
+            "en": "Choose how to say: “My brothers are going to prepare dinner later”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:19",
+          "options": [
+            "es:16:19",
+            "es:16:20",
+            "es:16:13"
+          ],
+          "answerId": "es:16:19"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я собираюсь составить список»",
+            "uk": "Виберіть, як сказати: «Я збираюся скласти список»",
+            "en": "Choose how to say: “I am going to write the list”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:18",
+          "options": [
+            "es:16:18",
+            "es:16:11",
+            "es:16:13"
+          ],
+          "answerId": "es:16:18"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Завтра и вы",
+        "en": "Tomorrow and you"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы завтра собираемся заплатить наличными».\nVamos a pagar en efectivo mañana. — «Мы завтра собираемся заплатить наличными.»\nЧитается: ба́мос а пага́р эн эфэкти́бо манья́на.\nСлово mañana значит «утро» и ещё «завтра».\nVais a pagar con tarjeta mañana. — «Вы завтра собираетесь заплатить картой.»\nСлова vais a значат «вы собираетесь». Так говорят нескольким людям.\nAna va a pasar por el supermercado. — «Ана собирается зайти в супермаркет.»\nСлова pasar por значат «зайти». Слово supermercado — «супермаркет».\nVamos a volver a la estación mañana. — «Мы завтра собираемся вернуться на вокзал.»",
+        "en": "Look at how to say “Tomorrow we are going to pay in cash”.\nVamos a pagar en efectivo mañana.\n“Tomorrow we are going to pay in cash.”\nThe word mañana means “morning” and also “tomorrow”.\nVais a pagar con tarjeta mañana.\n“Tomorrow you are going to pay by card.”\nThe words vais a mean “you are going to”. This is said to several people.\nAna va a pasar por el supermercado.\n“Ana is going to stop by the supermarket.”\nThe words pasar por mean “to stop by”. The word supermercado means “supermarket”.\nVamos a volver a la estación mañana.\n“Tomorrow we are going to go back to the station.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:16:21",
+          "say": {
+            "ru": "ба́мос а пага́р эн эфэкти́бо манья́на",
+            "uk": "ба́мос а пага́р ен ефекті́бо манья́на"
+          }
+        },
+        {
+          "phraseId": "es:16:22",
+          "say": {
+            "ru": "ба́йс а пага́р кон тархэ́та манья́на",
+            "uk": "ба́йс а пага́р кон тархе́та манья́на"
+          }
+        },
+        {
+          "phraseId": "es:16:23",
+          "say": {
+            "ru": "А́на ба а паса́р пор эль супэрмэрка́до",
+            "uk": "А́на ба а паса́р пор ель супермерка́до"
+          }
+        },
+        {
+          "phraseId": "es:16:24",
+          "say": {
+            "ru": "ба́мос а больбэ́р а ла эстасьо́н манья́на",
+            "uk": "ба́мос а больбе́р а ла естасьо́н манья́на"
+          }
+        },
+        {
+          "phraseId": "es:16:26",
+          "say": {
+            "ru": "мис эрма́нос бан а энтра́р эн ла офиси́на манья́на",
+            "uk": "міс ерма́нос бан а ентра́р ен ла офісі́на манья́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы завтра собираемся заплатить наличными»",
+            "uk": "Виберіть, як сказати: «Ми завтра збираємося заплатити готівкою»",
+            "en": "Choose how to say: “We are going to pay in cash tomorrow”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:16:21",
+          "options": [
+            "es:16:21",
+            "es:16:22",
+            "es:16:24"
+          ],
+          "answerId": "es:16:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы завтра собираетесь заплатить картой»",
+            "uk": "Виберіть, як сказати: «Ви завтра збираєтеся заплатити карткою»",
+            "en": "Choose how to say: “You are going to pay by card tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:22",
+          "options": [
+            "es:16:22",
+            "es:16:21",
+            "es:16:26"
+          ],
+          "answerId": "es:16:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана собирается зайти в супермаркет»",
+            "uk": "Виберіть, як сказати: «Ана збирається зайти до супермаркету»",
+            "en": "Choose how to say: “Ana is going to stop by the supermarket”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:23",
+          "options": [
+            "es:16:23",
+            "es:16:26",
+            "es:16:24"
+          ],
+          "answerId": "es:16:23"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не собираюсь, потому что, вопрос",
+        "en": "Not going to, because, a question"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не собираюсь покупать молоко».\nNo voy a comprar leche hoy. — «Я не собираюсь сегодня покупать молоко.»\nЧитается: но бой а компра́р лэ́чэ ой.\nСлово no ставят перед voy.\nLuis no va a volver a casa hoy. — «Луис сегодня не собирается возвращаться домой.»\nVoy a esperar porque estás ocupado. — «Я подожду, потому что ты занят.»\nСлово porque значит «потому что».\nА теперь вопрос. Слова те же, голос в конце идёт вверх.\n¿Vas a llamar al hotel? — «Ты собираешься позвонить в отель?»\n¿Ana va a volver a casa? — «Ана собирается вернуться домой?»",
+        "en": "Look at how to say “I am not going to buy milk”.\nNo voy a comprar leche hoy.\n“I am not going to buy milk today.”\nThe word no goes before voy.\nLuis no va a volver a casa hoy.\n“Luis is not going to go back home today.”\nVoy a esperar porque estás ocupado. — “I will wait because you are busy.”\nThe word porque means “because”.\nAnd now a question. The words are the same, the voice goes up at the end.\n¿Vas a llamar al hotel? — “Are you going to call the hotel?”\n¿Ana va a volver a casa? — “Is Ana going to go back home?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:16:31",
+          "say": {
+            "ru": "но бой а компра́р лэ́чэ ой",
+            "uk": "но бой а компра́р ле́че ой"
+          }
+        },
+        {
+          "phraseId": "es:16:34",
+          "say": {
+            "ru": "Луи́с но ба а больбэ́р а ка́са ой",
+            "uk": "Луі́с но ба а больбе́р а ка́са ой"
+          }
+        },
+        {
+          "phraseId": "es:16:32",
+          "say": {
+            "ru": "бой а эспэра́р по́ркэ эста́с окупа́до",
+            "uk": "бой а еспера́р по́рке еста́с окупа́до"
+          }
+        },
+        {
+          "phraseId": "es:16:41",
+          "say": {
+            "ru": "бас а йама́р аль оте́ль",
+            "uk": "бас а йама́р аль оте́ль"
+          }
+        },
+        {
+          "phraseId": "es:16:42",
+          "say": {
+            "ru": "А́на ба а больбэ́р а ка́са",
+            "uk": "А́на ба а больбе́р а ка́са"
+          }
+        },
+        {
+          "phraseId": "es:16:49",
+          "say": {
+            "ru": "ба́йс а эспэра́р аки́",
+            "uk": "ба́йс а еспера́р акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не собираюсь сегодня покупать молоко»",
+            "uk": "Виберіть, як сказати: «Я не збираюся сьогодні купувати молоко»",
+            "en": "Choose how to say: “I am not going to buy milk today”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:16:31",
+          "options": [
+            "es:16:31",
+            "es:16:34",
+            "es:16:32"
+          ],
+          "answerId": "es:16:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис сегодня не собирается возвращаться домой»",
+            "uk": "Виберіть, як сказати: «Луїс сьогодні не збирається повертатися додому»",
+            "en": "Choose how to say: “Luis is not going to go back home today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:34",
+          "options": [
+            "es:16:34",
+            "es:16:31",
+            "es:16:42"
+          ],
+          "answerId": "es:16:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты собираешься позвонить в отель?»",
+            "uk": "Виберіть, як сказати: «Ти збираєшся зателефонувати до готелю?»",
+            "en": "Choose how to say: “Are you going to call the hotel?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:16:41",
+          "options": [
+            "es:16:41",
+            "es:16:42",
+            "es:16:49"
+          ],
+          "answerId": "es:16:41"
+        }
+      ]
+    }
+  ]
+}

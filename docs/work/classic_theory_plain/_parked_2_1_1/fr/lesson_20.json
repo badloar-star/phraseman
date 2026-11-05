@@ -1,0 +1,499 @@
+{
+  "lang": "fr",
+  "lesson": 20,
+  "title": {
+    "ru": "Раньше: я жил, я был",
+    "en": "In the past: I used to live, I was"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Раньше я жил",
+        "en": "I used to live"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я раньше здесь жил».\nJ’habitais ici. — «Я раньше здесь жил.»\nЧитается: жабитэ́ иси́.\nСлово habitais значит «жил». Так говорят о том, что было раньше и долго.\nСлово меняется, смотря о ком речь.\nElle habitait à Lyon. — «Она жила в Лионе.»\nСлово habitait значит «жила».\nNous habitions à la campagne. — «Мы жили в сельской местности.»\nСлово habitions значит «жили». Слово campagne значит «сельская местность».\nVous habitiez en ville. — «Вы жили в городе.»\nСлово ville значит «город».\nIls habitaient près du port. — «Они жили недалеко от порта.»\nСлово port значит «порт».\nСлова habitais, habitait, habitaient звучат одинаково.",
+        "en": "Look at how to say “I used to live here”.\nJ’habitais ici. — “I used to live here.”\nThe word habitais means “lived”. We say it about something long and in the past.\nThe word changes depending on who we talk about.\nElle habitait à Lyon. — “She lived in Lyon.”\nThe word habitait means “lived”.\nNous habitions à la campagne. — “We lived in the countryside.”\nThe word habitions means “lived”. The word campagne means “countryside”.\nVous habitiez en ville. — “You lived in town.”\nThe word ville means “town”.\nIls habitaient près du port. — “They lived near the port.”\nThe word port means “port”.\nThe words habitais, habitait, habitaient sound the same."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:20:01",
+          "say": {
+            "ru": "жабитэ́ иси́",
+            "uk": "жабіте́ ісі́"
+          }
+        },
+        {
+          "phraseId": "fr:20:03",
+          "say": {
+            "ru": "эль абитэ́ а лио́н",
+            "uk": "ель абіте́ а ліо́н"
+          }
+        },
+        {
+          "phraseId": "fr:20:04",
+          "say": {
+            "ru": "ну забитийо́н а ла кампань",
+            "uk": "ну забітійо́н а ла кампань"
+          }
+        },
+        {
+          "phraseId": "fr:20:05",
+          "say": {
+            "ru": "ву забитье́ ан виль",
+            "uk": "ву забітье́ ан віль"
+          }
+        },
+        {
+          "phraseId": "fr:20:06",
+          "say": {
+            "ru": "иль забитэ́ пре дю пор",
+            "uk": "іль забіте́ пре дю пор"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я раньше здесь жил»",
+            "uk": "Виберіть, як сказати: «Я раніше тут жив»",
+            "en": "Choose how to say: “I used to live here”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:20:01",
+          "options": [
+            "fr:20:01",
+            "fr:20:03",
+            "fr:20:04"
+          ],
+          "answerId": "fr:20:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы жили в сельской местности»",
+            "uk": "Виберіть, як сказати: «Ми жили в сільській місцевості»",
+            "en": "Choose how to say: “We lived in the countryside”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:04",
+          "options": [
+            "fr:20:04",
+            "fr:20:05",
+            "fr:20:06"
+          ],
+          "answerId": "fr:20:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они жили недалеко от порта»",
+            "uk": "Виберіть, як сказати: «Вони жили біля порту»",
+            "en": "Choose how to say: “They lived near the port”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:06",
+          "options": [
+            "fr:20:06",
+            "fr:20:01",
+            "fr:20:03"
+          ],
+          "answerId": "fr:20:06"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Раньше я был",
+        "en": "I was"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я часто был один».\nJ’étais souvent seul. — «Я часто был один.»\nЧитается: жетэ́ сувэ́н сёль.\nСлово étais значит «был». Слово souvent значит «часто». Слово seul значит «один».\nElle était souvent seule. — «Она часто была одна.»\nСлово était значит «была». Слово seule значит «одна».\nNous étions voisins. — «Мы были соседями.»\nСлово étions значит «были».\nLe jardin était grand. — «Сад был большим.»\nLa rue était déserte. — «Улица была пустынна.»\nСлово déserte значит «пустынная».\nLes fenêtres étaient ouvertes. — «Окна были открыты.»\nСлово étaient значит «были». Слово ouvertes значит «открыты».",
+        "en": "Look at how to say “I was often alone”.\nJ’étais souvent seul. — “I was often alone.”\nThe word étais means “was”. The word souvent means “often”. The word seul means “alone”.\nElle était souvent seule. — “She was often alone.”\nThe word était means “was”. The word seule means “alone”.\nNous étions voisins. — “We were neighbours.”\nThe word étions means “were”.\nLe jardin était grand. — “The garden was big.”\nLa rue était déserte. — “The street was empty.”\nThe word déserte means “empty”.\nLes fenêtres étaient ouvertes. — “The windows were open.”\nThe word étaient means “were”. The word ouvertes means “open”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:20:07",
+          "say": {
+            "ru": "жетэ́ сувэ́н сёль",
+            "uk": "жете́ суве́н сьоль"
+          }
+        },
+        {
+          "phraseId": "fr:20:08",
+          "say": {
+            "ru": "эль этэ́ сувэ́н сёль",
+            "uk": "ель ете́ суве́н сьоль"
+          }
+        },
+        {
+          "phraseId": "fr:20:09",
+          "say": {
+            "ru": "ну зетийо́н вуазэ́н",
+            "uk": "ну зетійо́н вуазе́н"
+          }
+        },
+        {
+          "phraseId": "fr:20:10",
+          "say": {
+            "ru": "лё жарден этэ́ гран",
+            "uk": "льо жарден ете́ гран"
+          }
+        },
+        {
+          "phraseId": "fr:20:25",
+          "say": {
+            "ru": "ла рю этэ́ дезэ́рт",
+            "uk": "ла рю ете́ дезе́рт"
+          }
+        },
+        {
+          "phraseId": "fr:20:26",
+          "say": {
+            "ru": "лэ фенэ́тр зетэ́ уве́рт",
+            "uk": "ле фене́тр зете́ уве́рт"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я часто был один»",
+            "uk": "Виберіть, як сказати: «Я часто був сам»",
+            "en": "Choose how to say: “I was often alone”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:20:07",
+          "options": [
+            "fr:20:07",
+            "fr:20:08",
+            "fr:20:09"
+          ],
+          "answerId": "fr:20:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы были соседями»",
+            "uk": "Виберіть, як сказати: «Ми були сусідами»",
+            "en": "Choose how to say: “We were neighbours”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:09",
+          "options": [
+            "fr:20:09",
+            "fr:20:10",
+            "fr:20:25"
+          ],
+          "answerId": "fr:20:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Окна были открыты»",
+            "uk": "Виберіть, як сказати: «Вікна були відчинені»",
+            "en": "Choose how to say: “The windows were open”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:26",
+          "options": [
+            "fr:20:26",
+            "fr:20:25",
+            "fr:20:10"
+          ],
+          "answerId": "fr:20:26"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Что повторялось",
+        "en": "What used to repeat"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я раньше работал по субботам».\nAvant, je travaillais le samedi. — «Я раньше работал по субботам.»\nЧитается: аван, жё траваие́ лё самди́.\nСлово avant значит «раньше». Слово travaillais значит «работал».\nLe dimanche, nous mangions ensemble. — «По воскресеньям мы ели вместе.»\nСлово mangions значит «ели».\nChaque matin, il achetait du pain. — «Каждое утро он покупал хлеб.»\nСлова chaque matin значат «каждое утро». Слово achetait значит «покупал».\nLe soir, elle écoutait la radio. — «Вечером она слушала радио.»\nСлово écoutait значит «слушала».\nСлово tarte значит «пирог». Слово préparait значит «готовила».\nJe me promenais le long du canal. — «Я гулял вдоль канала.»\nСлово canal значит «канал». Слова le long du значат «вдоль».",
+        "en": "Look at how to say “I used to work on Saturdays”.\nAvant, je travaillais le samedi. — “I used to work on Saturdays.”\nThe word avant means “before”. The word travaillais means “worked”.\nLe dimanche, nous mangions ensemble. — “On Sundays we ate together.”\nThe word mangions means “ate”.\nChaque matin, il achetait du pain. — “Every morning he bought bread.”\nThe words chaque matin mean “every morning”. The word achetait means “bought”.\nLe soir, elle écoutait la radio. — “In the evening she listened to the radio.”\nThe word écoutait means “listened”.\nThe word tarte means “pie”. The word préparait means “made”.\nJe me promenais le long du canal. — “I used to walk along the canal.”\nThe word canal means “canal”. The words le long du mean “along”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:20:11",
+          "say": {
+            "ru": "аван, жё траваие́ лё самди́",
+            "uk": "аван, жьо траваіе́ льо самді́"
+          }
+        },
+        {
+          "phraseId": "fr:20:12",
+          "say": {
+            "ru": "лё диманш, ну манжийо́н ансанбль",
+            "uk": "льо діманш, ну манжійо́н ансанбль"
+          }
+        },
+        {
+          "phraseId": "fr:20:13",
+          "say": {
+            "ru": "шак мате́н, иль аштэ́ дю пан",
+            "uk": "шак мате́н, іль аште́ дю пан"
+          }
+        },
+        {
+          "phraseId": "fr:20:14",
+          "say": {
+            "ru": "лё суа́р, эль экутэ́ ла радио́",
+            "uk": "льо суа́р, ель екуте́ ла радіо́"
+          }
+        },
+        {
+          "phraseId": "fr:20:42",
+          "say": {
+            "ru": "ма тант препарэ́ ла мэм тарт шак диманш",
+            "uk": "ма тант препаре́ ла мем тарт шак діманш"
+          }
+        },
+        {
+          "phraseId": "fr:20:46",
+          "say": {
+            "ru": "жё мё промнэ́ лё лон дю кана́ль",
+            "uk": "жьо мьо промне́ льо лон дю кана́ль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я раньше работал по субботам»",
+            "uk": "Виберіть, як сказати: «Раніше я працював по суботах»",
+            "en": "Choose how to say: “I used to work on Saturdays”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:20:11",
+          "options": [
+            "fr:20:11",
+            "fr:20:12",
+            "fr:20:13"
+          ],
+          "answerId": "fr:20:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Каждое утро он покупал хлеб»",
+            "uk": "Виберіть, як сказати: «Щоранку він купував хліб»",
+            "en": "Choose how to say: “Every morning he bought bread”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:13",
+          "options": [
+            "fr:20:13",
+            "fr:20:14",
+            "fr:20:42"
+          ],
+          "answerId": "fr:20:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я гулял вдоль канала»",
+            "uk": "Виберіть, як сказати: «Я гуляв уздовж каналу»",
+            "en": "Choose how to say: “I used to walk along the canal”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:46",
+          "options": [
+            "fr:20:46",
+            "fr:20:12",
+            "fr:20:14"
+          ],
+          "answerId": "fr:20:46"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Погода и вокруг",
+        "en": "Weather and surroundings"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Было жарко».\nIl faisait chaud. — «Было жарко.»\nЧитается: иль фёзэ́ шо.\nСлово faisait здесь значит «было» — про погоду.\nIl pleuvait sans arrêt. — «Непрерывно шел дождь.»\nСлово pleuvait значит «шёл дождь». Слова sans arrêt значат «без остановки».\nLe vent soufflait fort. — «Сильно дул ветер.»\nСлово vent значит «ветер». Слово soufflait значит «дул».\nLa lumière était faible. — «Свет был тусклым.»\nСлово lumière значит «свет». Слово faible значит «тусклый».\nLa salle sentait le café. — «В комнате пахло кофе.»\nСлово sentait значит «пахло».",
+        "en": "Look at how to say “It was hot”.\nIl faisait chaud. — “It was hot.”\nThe word faisait here means “was” — about the weather.\nIl pleuvait sans arrêt. — “It rained non-stop.”\nThe word pleuvait means “rained”. The words sans arrêt mean “without stopping”.\nLe vent soufflait fort. — “The wind blew hard.”\nThe word vent means “wind”. The word soufflait means “blew”.\nLa lumière était faible. — “The light was dim.”\nThe word lumière means “light”. The word faible means “dim”.\nLa salle sentait le café. — “The room smelled of coffee.”\nThe word sentait means “smelled”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:20:21",
+          "say": {
+            "ru": "иль фёзэ́ шо",
+            "uk": "іль фьозе́ шо"
+          }
+        },
+        {
+          "phraseId": "fr:20:23",
+          "say": {
+            "ru": "иль плёвэ́ сан арэ́",
+            "uk": "іль пльове́ сан аре́"
+          }
+        },
+        {
+          "phraseId": "fr:20:24",
+          "say": {
+            "ru": "лё ван суфлэ́ фор",
+            "uk": "льо ван суфле́ фор"
+          }
+        },
+        {
+          "phraseId": "fr:20:27",
+          "say": {
+            "ru": "ла люмье́р этэ́ фэбль",
+            "uk": "ла люмье́р ете́ фебль"
+          }
+        },
+        {
+          "phraseId": "fr:20:28",
+          "say": {
+            "ru": "ла саль сантэ́ лё кафе́",
+            "uk": "ла саль санте́ льо кафе́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Было жарко»",
+            "uk": "Виберіть, як сказати: «Було спекотно»",
+            "en": "Choose how to say: “It was hot”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:20:21",
+          "options": [
+            "fr:20:21",
+            "fr:20:23",
+            "fr:20:24"
+          ],
+          "answerId": "fr:20:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сильно дул ветер»",
+            "uk": "Виберіть, як сказати: «Вітер дув сильно»",
+            "en": "Choose how to say: “The wind blew hard”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:24",
+          "options": [
+            "fr:20:24",
+            "fr:20:27",
+            "fr:20:28"
+          ],
+          "answerId": "fr:20:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «В комнате пахло кофе»",
+            "uk": "Виберіть, як сказати: «У кімнаті пахло кавою»",
+            "en": "Choose how to say: “The room smelled of coffee”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:28",
+          "options": [
+            "fr:20:28",
+            "fr:20:21",
+            "fr:20:27"
+          ],
+          "answerId": "fr:20:28"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не знал и вопрос",
+        "en": "Did not, and questions"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не знал».\nJe ne connaissais pas le quartier. — «Я не знал этот район.»\nЧитается: жё нё конесэ́ па лё картье́.\nСлова ne и pas стоят вокруг connaissais и значат «не».\nСлово quartier значит «район».\nIl n’y avait pas d’ascenseur. — «Лифта не было.»\nСлова il n’y avait pas значат «не было».\nNous n’étions pas pressés. — «Мы никуда не спешили.»\nА теперь вопрос.\nOù travaillait ta mère ? — «Где работала твоя мама?»\nСлово où значит «где».\nQue faisiez-vous le soir ? — «Чем вы занимались по вечерам?»\nСлово que значит «что». Слово faisiez значит «делали».",
+        "en": "Look at how to say “I did not know”.\nJe ne connaissais pas le quartier. — “I did not know the neighbourhood.”\nThe words ne and pas stand around connaissais and mean “not”.\nThe word quartier means “neighbourhood”.\nIl n’y avait pas d’ascenseur. — “There was no lift.”\nThe words il n’y avait pas mean “there was not”.\nNous n’étions pas pressés. — “We were not in a hurry.”\nAnd now a question.\nOù travaillait ta mère ? — “Where did your mother work?”\nThe word où means “where”.\nQue faisiez-vous le soir ? — “What did you do in the evenings?”\nThe word que means “what”. The word faisiez means “did”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:20:31",
+          "say": {
+            "ru": "жё нё конесэ́ па лё картье́",
+            "uk": "жьо ньо конесе́ па льо картье́"
+          }
+        },
+        {
+          "phraseId": "fr:20:32",
+          "say": {
+            "ru": "иль ни я авэ́ па дасансёр",
+            "uk": "іль ні я аве́ па дасансьор"
+          }
+        },
+        {
+          "phraseId": "fr:20:34",
+          "say": {
+            "ru": "ну нэтийо́н па прессе́",
+            "uk": "ну нетійо́н па прессе́"
+          }
+        },
+        {
+          "phraseId": "fr:20:37",
+          "say": {
+            "ru": "у траваийэ́ та мэр",
+            "uk": "у траваійе́ та мер"
+          }
+        },
+        {
+          "phraseId": "fr:20:38",
+          "say": {
+            "ru": "кё фёзье́ ву лё суа́р",
+            "uk": "кьо фьозье́ ву льо суа́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не знал этот район»",
+            "uk": "Виберіть, як сказати: «Я не знав району»",
+            "en": "Choose how to say: “I did not know the neighbourhood”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:20:31",
+          "options": [
+            "fr:20:31",
+            "fr:20:32",
+            "fr:20:34"
+          ],
+          "answerId": "fr:20:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы никуда не спешили»",
+            "uk": "Виберіть, як сказати: «Ми не поспішали»",
+            "en": "Choose how to say: “We were not in a hurry”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:34",
+          "options": [
+            "fr:20:34",
+            "fr:20:37",
+            "fr:20:38"
+          ],
+          "answerId": "fr:20:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чем вы занимались по вечерам?»",
+            "uk": "Виберіть, як сказати: «Чим ви займалися вечорами?»",
+            "en": "Choose how to say: “What did you do in the evenings?”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:20:38",
+          "options": [
+            "fr:20:38",
+            "fr:20:31",
+            "fr:20:37"
+          ],
+          "answerId": "fr:20:38"
+        }
+      ]
+    }
+  ]
+}

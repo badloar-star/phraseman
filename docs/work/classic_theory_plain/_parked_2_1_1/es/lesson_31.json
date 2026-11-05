@@ -1,0 +1,485 @@
+{
+  "lang": "es",
+  "lesson": 31,
+  "title": {
+    "ru": "Позвоню, когда приду",
+    "en": "I will call when I arrive"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Позвоню, когда приду",
+        "en": "I will call when I arrive"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я тебе позвоню, когда приду домой».\nTe llamaré cuando llegue a casa.\nЧитается: тэ йамаре́ куа́ндо йе́гэ а ка́са.\nСлово te значит «тебе». Слово llamaré — «я позвоню».\nСлово cuando значит «когда». Слово llegue — «я приду».\nКогда речь о том, что будет потом, после cuando говорят llegue.\nTe llamaré cuando tenga tiempo. — «Я тебе позвоню, когда у меня будет время.»\nСлово tenga значит «у меня будет».\nTe llamaré cuando sepa la hora. — «Я тебе позвоню, когда я узнаю время.»\nСлово sepa значит «я узнаю». Слово saber — «знать». Слово hora — «время, час».",
+        "en": "Look at how to say “I will call you when I get home”.\nTe llamaré cuando llegue a casa.\nThe word te means “you”. The word llamaré means “I will call”.\nThe word cuando means “when”. The word llegue means “I arrive”.\nWhen it is about later, after cuando you say llegue.\nTe llamaré cuando tenga tiempo.\n“I will call you when I have time.”\nThe word tenga means “I have”.\nTe llamaré cuando sepa la hora.\n“I will call you when I know the time.”\nThe word sepa means “I know”. The word saber means “to know”.\nThe word hora means “time, hour”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:31:01",
+          "say": {
+            "ru": "тэ йамаре́ куа́ндо йе́гэ а ка́са",
+            "uk": "те йамаре́ куа́ндо йе́ге а ка́са"
+          }
+        },
+        {
+          "phraseId": "es:31:02",
+          "say": {
+            "ru": "тэ йамаре́ куа́ндо тэ́рмине дэ трабаха́р",
+            "uk": "те йамаре́ куа́ндо те́рміне де трабаха́р"
+          }
+        },
+        {
+          "phraseId": "es:31:04",
+          "say": {
+            "ru": "тэ йамаре́ куа́ндо тэ́нга тьэ́мпо",
+            "uk": "те йамаре́ куа́ндо те́нга тье́мпо"
+          }
+        },
+        {
+          "phraseId": "es:31:05",
+          "say": {
+            "ru": "тэ йамаре́ куа́ндо сэ́па ла о́ра",
+            "uk": "те йамаре́ куа́ндо се́па ла о́ра"
+          }
+        },
+        {
+          "phraseId": "es:31:03",
+          "say": {
+            "ru": "куа́ндо тэ́рмина ла кла́сэ тэ йамаре́",
+            "uk": "куа́ндо те́рміна ла кла́се те йамаре́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я тебе позвоню, когда приду домой»",
+            "uk": "Виберіть, як сказати: «Я тобі зателефоную, коли прийду додому»",
+            "en": "Choose how to say: “I will call you when I get home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:31:01",
+          "options": [
+            "es:31:01",
+            "es:31:02",
+            "es:31:05"
+          ],
+          "answerId": "es:31:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я тебе позвоню, когда я закончу работать»",
+            "uk": "Виберіть, як сказати: «Я тобі зателефоную, коли я закінчу працювати»",
+            "en": "Choose how to say: “I will call you when I finish work”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:02",
+          "options": [
+            "es:31:02",
+            "es:31:01",
+            "es:31:04"
+          ],
+          "answerId": "es:31:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я тебе позвоню, когда я узнаю время»",
+            "uk": "Виберіть, як сказати: «Я тобі зателефоную, коли я дізнаюся час»",
+            "en": "Choose how to say: “I will call you when I know the time”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:05",
+          "options": [
+            "es:31:05",
+            "es:31:04",
+            "es:31:02"
+          ],
+          "answerId": "es:31:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Когда появится связь",
+        "en": "When there is signal"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я позвоню тебе, когда появится связь».\nTe llamaré cuando tenga cobertura.\nЧитается: тэ йамаре́ куа́ндо тэ́нга кобэрту́ра.\nСлово cobertura значит «связь (мобильная)».\nCuando salga del túnel, te llamaré.\nЭто «Когда я выеду из тоннеля, я тебе позвоню».\nСлово túnel значит «тоннель».\nHablaremos cuando vuelva la señal. — «Мы поговорим, когда снова появится сигнал.»\nСлово señal значит «сигнал».\nTe mandaré el horario cuando tenga cobertura.\nЭто «Я пришлю тебе расписание, когда появится связь». Слово horario — «расписание».",
+        "en": "Look at how to say “I will call you when there is signal”.\nTe llamaré cuando tenga cobertura.\nThe word cobertura means “mobile coverage, signal”.\nCuando salga del túnel, te llamaré.\nIt means “When I come out of the tunnel, I will call you”.\nThe word túnel means “tunnel”.\nHablaremos cuando vuelva la señal. — “We will talk when the signal is back.”\nThe word señal means “signal”.\nTe mandaré el horario cuando tenga cobertura.\nIt means “I will send you the timetable when there is signal”.\nThe word horario means “timetable”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:31:06",
+          "say": {
+            "ru": "тэ йамаре́ куа́ндо тэ́нга кобэрту́ра",
+            "uk": "те йамаре́ куа́ндо те́нга коберту́ра"
+          }
+        },
+        {
+          "phraseId": "es:31:17",
+          "say": {
+            "ru": "куа́ндо са́льга дэль ту́нэль тэ йамаре́",
+            "uk": "куа́ндо са́льга дель ту́нель те йамаре́"
+          }
+        },
+        {
+          "phraseId": "es:31:28",
+          "say": {
+            "ru": "абларэ́мос куа́ндо бу́эльба ла сэнья́ль",
+            "uk": "абларе́мос куа́ндо бу́ельба ла сенья́ль"
+          }
+        },
+        {
+          "phraseId": "es:31:39",
+          "say": {
+            "ru": "тэ мандаре́ эль ора́рьо куа́ндо тэ́нга кобэрту́ра",
+            "uk": "те мандаре́ ель ора́рьо куа́ндо те́нга коберту́ра"
+          }
+        },
+        {
+          "phraseId": "es:31:48",
+          "say": {
+            "ru": "куа́ндо са́льга дэль ту́нэль тэ мандаре́ ла убикасьо́н",
+            "uk": "куа́ндо са́льга дель ту́нель те мандаре́ ла убікасьо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я позвоню тебе, когда появится связь»",
+            "uk": "Виберіть, як сказати: «Я зателефоную тобі, коли з’явиться зв’язок»",
+            "en": "Choose how to say: “I will call you when I have signal”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:31:06",
+          "options": [
+            "es:31:06",
+            "es:31:17",
+            "es:31:28"
+          ],
+          "answerId": "es:31:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда я выеду из тоннеля, я тебе позвоню»",
+            "uk": "Виберіть, як сказати: «Коли я виїду з тунелю, я тобі зателефоную»",
+            "en": "Choose how to say: “When I come out of the tunnel, I will call you”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:17",
+          "options": [
+            "es:31:17",
+            "es:31:28",
+            "es:31:48"
+          ],
+          "answerId": "es:31:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы поговорим, когда снова появится сигнал»",
+            "uk": "Виберіть, як сказати: «Ми поговоримо, коли знову з’явиться сигнал»",
+            "en": "Choose how to say: “We will talk when the signal is back”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:28",
+          "options": [
+            "es:31:28",
+            "es:31:39",
+            "es:31:06"
+          ],
+          "answerId": "es:31:28"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Заряжу и отправлю",
+        "en": "I will charge and send"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я отправлю тебе фото, когда заряжу телефон».\nTe mandaré la foto cuando cargue el móvil.\nЧитается: тэ мандаре́ ла фо́то куа́ндо ка́ргэ эль мо́биль.\nСлово cargue значит «я заряжу». Слово cargar — «заряжать».\nCuando la batería esté cargada, enviaré las fotos.\nЭто «Когда аккумулятор зарядится, я отправлю фотографии».\nСлово batería значит «аккумулятор». Слово cargada — «заряженный».\nСлово enviaré значит «я отправлю». Слово enviar — «отправлять».",
+        "en": "Look at how to say “I will send you the photo when I charge the phone”.\nTe mandaré la foto cuando cargue el móvil.\nThe word cargue means “I charge”. The word cargar means “to charge”.\nCuando la batería esté cargada, enviaré las fotos.\nIt means “When the battery is charged, I will send the photos”.\nThe word batería means “battery”. The word cargada means “charged”.\nThe word enviaré means “I will send”. The word enviar means “to send”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:31:08",
+          "say": {
+            "ru": "тэ мандаре́ ла фо́то куа́ндо ка́ргэ эль мо́биль",
+            "uk": "те мандаре́ ла фо́то куа́ндо ка́рге ель мо́біль"
+          }
+        },
+        {
+          "phraseId": "es:31:32",
+          "say": {
+            "ru": "каргаре́ эль мо́биль куа́ндо йе́гэ а ла офиси́на",
+            "uk": "каргаре́ ель мо́біль куа́ндо йе́ге а ла офісі́на"
+          }
+        },
+        {
+          "phraseId": "es:31:35",
+          "say": {
+            "ru": "куа́ндо ла батэри́а эсте́ карга́да энбьяре́ лас фо́тас",
+            "uk": "куа́ндо ла батері́а есте́ карга́да енбьяре́ лас фо́тас"
+          }
+        },
+        {
+          "phraseId": "es:31:38",
+          "say": {
+            "ru": "тэ энбьяре́ эль корре́о куа́ндо конфи́рмэ ла рэсэ́рба",
+            "uk": "те енбьяре́ ель корре́о куа́ндо конфі́рме ла ресе́рба"
+          }
+        },
+        {
+          "phraseId": "es:31:23",
+          "say": {
+            "ru": "камбьяре́ ла батэри́а куа́ндо йе́гэ а ка́са",
+            "uk": "камбьяре́ ла батері́а куа́ндо йе́ге а ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я отправлю тебе фото, когда заряжу телефон»",
+            "uk": "Виберіть, як сказати: «Я надішлю тобі фото, коли заряджу телефон»",
+            "en": "Choose how to say: “I will send you the photo when I charge the phone”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:31:08",
+          "options": [
+            "es:31:08",
+            "es:31:32",
+            "es:31:35"
+          ],
+          "answerId": "es:31:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда аккумулятор зарядится, я отправлю фотографии»",
+            "uk": "Виберіть, як сказати: «Коли акумулятор зарядиться, я надішлю фотографії»",
+            "en": "Choose how to say: “When the battery is charged, I will send the photos”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:35",
+          "options": [
+            "es:31:35",
+            "es:31:23",
+            "es:31:32"
+          ],
+          "answerId": "es:31:35"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я поставлю телефон на зарядку, когда доберусь до офиса»",
+            "uk": "Виберіть, як сказати: «Я поставлю телефон на зарядку, коли дістануся офісу»",
+            "en": "Choose how to say: “I will charge the phone when I get to the office”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:32",
+          "options": [
+            "es:31:32",
+            "es:31:08",
+            "es:31:23"
+          ],
+          "answerId": "es:31:32"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Заплачу, когда будут деньги",
+        "en": "I will pay when I have the money"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я заплачу, когда у меня будут деньги».\nPagaré cuando tenga el dinero.\nЧитается: пагаре́ куа́ндо тэ́нга эль дине́ро.\nСлово dinero значит «деньги». Слово pagaré — «я заплачу».\nPagaré cuando reciba el dinero. — «Я заплачу, когда получу деньги.»\nCuando tenga el dinero, compraremos los billetes.\nЭто «Когда у меня будут деньги, мы купим билеты».\nCompraremos los billetes cuando confirmen el horario.\nЭто «Мы купим билеты, когда подтвердят расписание».",
+        "en": "Look at how to say “I will pay when I have the money”.\nPagaré cuando tenga el dinero.\nThe word dinero means “money”. The word pagaré means “I will pay”.\nPagaré cuando reciba el dinero. — “I will pay when I receive the money.”\nCuando tenga el dinero, compraremos los billetes.\nIt means “When I have the money, we will buy the tickets”.\nCompraremos los billetes cuando confirmen el horario.\nIt means “We will buy the tickets when they confirm the timetable”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:31:46",
+          "say": {
+            "ru": "пагаре́ куа́ндо тэ́нга эль дине́ро",
+            "uk": "пагаре́ куа́ндо те́нга ель діне́ро"
+          }
+        },
+        {
+          "phraseId": "es:31:49",
+          "say": {
+            "ru": "пагаре́ куа́ндо рэси́ба эль дине́ро",
+            "uk": "пагаре́ куа́ндо ресі́ба ель діне́ро"
+          }
+        },
+        {
+          "phraseId": "es:31:11",
+          "say": {
+            "ru": "куа́ндо тэ́нга эль дине́ро компрарэ́мос лос бийэ́тэс",
+            "uk": "куа́ндо те́нга ель діне́ро компраре́мос лос бійе́тес"
+          }
+        },
+        {
+          "phraseId": "es:31:13",
+          "say": {
+            "ru": "компрарэ́мос лос бийэ́тэс куа́ндо конфи́рмэн эль ора́рьо",
+            "uk": "компраре́мос лос бійе́тес куа́ндо конфі́рмен ель ора́рьо"
+          }
+        },
+        {
+          "phraseId": "es:31:50",
+          "say": {
+            "ru": "пагаре́ куа́ндо тэрмине́мос ла рэуньо́н",
+            "uk": "пагаре́ куа́ндо терміне́мос ла реуньо́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я заплачу, когда у меня будут деньги»",
+            "uk": "Виберіть, як сказати: «Я заплачу, коли у мене будуть гроші»",
+            "en": "Choose how to say: “I will pay when I have the money”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:31:46",
+          "options": [
+            "es:31:46",
+            "es:31:49",
+            "es:31:50"
+          ],
+          "answerId": "es:31:46"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда у меня будут деньги, мы купим билеты»",
+            "uk": "Виберіть, як сказати: «Коли у мене будуть гроші, ми купимо квитки»",
+            "en": "Choose how to say: “When I have the money, we will buy the tickets”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:11",
+          "options": [
+            "es:31:11",
+            "es:31:13",
+            "es:31:46"
+          ],
+          "answerId": "es:31:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы купим билеты, когда подтвердят расписание»",
+            "uk": "Виберіть, як сказати: «Ми купимо квитки, коли підтвердять розклад»",
+            "en": "Choose how to say: “We will buy the tickets when they confirm the timetable”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:13",
+          "options": [
+            "es:31:13",
+            "es:31:11",
+            "es:31:49"
+          ],
+          "answerId": "es:31:13"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Когда придёт он, когда вернёшься",
+        "en": "When he comes, when you return"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Когда придёт Ана, мы вернёмся домой».\nCuando venga Ana, volveremos a casa.\nЧитается: куа́ндо бэ́нга А́на болбэрэ́мос а ка́са.\nСлово venga значит «придёт».\nCuando estés listo, saldremos. — «Когда ты будешь готов, мы выйдем.»\nСлово estés значит «ты будешь». Слово saldremos — «мы выйдем».\nTe daré la llave cuando vuelvas. — «Я дам тебе ключ, когда ты вернёшься.»\nСлово vuelvas значит «ты вернёшься». Слово daré — «я дам».",
+        "en": "Look at how to say “When Ana comes, we will go back home”.\nCuando venga Ana, volveremos a casa.\nThe word venga means “comes”.\nCuando estés listo, saldremos. — “When you are ready, we will leave.”\nThe word estés means “you are”. The word saldremos means “we will leave”.\nTe daré la llave cuando vuelvas.\n“I will give you the key when you come back.”\nThe word vuelvas means “you come back”. The word daré means “I will give”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:31:18",
+          "say": {
+            "ru": "куа́ндо бэ́нга А́на болбэрэ́мос а ка́са",
+            "uk": "куа́ндо бе́нга А́на болбере́мос а ка́са"
+          }
+        },
+        {
+          "phraseId": "es:31:41",
+          "say": {
+            "ru": "куа́ндо эсте́с ли́сто сальдрэ́мос",
+            "uk": "куа́ндо есте́с лі́сто сальдре́мос"
+          }
+        },
+        {
+          "phraseId": "es:31:44",
+          "say": {
+            "ru": "куа́ндо йе́гэ эль трэн сальдрэ́мос",
+            "uk": "куа́ндо йе́ге ель трен сальдре́мос"
+          }
+        },
+        {
+          "phraseId": "es:31:36",
+          "say": {
+            "ru": "тэ даре́ ла йа́бэ куа́ндо бу́эльбас",
+            "uk": "те даре́ ла йа́бе куа́ндо бу́ельбас"
+          }
+        },
+        {
+          "phraseId": "es:31:22",
+          "say": {
+            "ru": "куа́ндо бу́эльбас абрирэ́ ла пуэ́рта",
+            "uk": "куа́ндо бу́ельбас абріре́ ла пуе́рта"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда придёт Ана, мы вернёмся домой»",
+            "uk": "Виберіть, як сказати: «Коли прийде Ана, ми повернемося додому»",
+            "en": "Choose how to say: “When Ana comes, we will go back home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:31:18",
+          "options": [
+            "es:31:18",
+            "es:31:44",
+            "es:31:41"
+          ],
+          "answerId": "es:31:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Когда ты будешь готов, мы выйдем»",
+            "uk": "Виберіть, як сказати: «Коли ти будеш готовий, ми вийдемо»",
+            "en": "Choose how to say: “When you are ready, we will leave”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:41",
+          "options": [
+            "es:31:41",
+            "es:31:44",
+            "es:31:36"
+          ],
+          "answerId": "es:31:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дам тебе ключ, когда ты вернёшься»",
+            "uk": "Виберіть, як сказати: «Я дам тобі ключ, коли ти повернешся»",
+            "en": "Choose how to say: “I will give you the key when you come back”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:31:36",
+          "options": [
+            "es:31:36",
+            "es:31:22",
+            "es:31:18"
+          ],
+          "answerId": "es:31:36"
+        }
+      ]
+    }
+  ]
+}

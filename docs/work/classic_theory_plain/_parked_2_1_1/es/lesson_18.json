@@ -1,0 +1,492 @@
+{
+  "lang": "es",
+  "lesson": 18,
+  "title": {
+    "ru": "Его, её, их",
+    "en": "It and them"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Он, она",
+        "en": "It (one thing)"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Он у меня здесь».\nLo tengo aquí. — «Он у меня здесь.»\nЧитается: ло тэ́нго аки́.\nСлово lo значит «он, его». Его ставят перед tengo.\nВы уже сказали el libro. Дальше вместо него говорят lo.\nLa tengo aquí. — «Она у меня здесь.»\nСлово la значит «она, её». Оно заменяет вещь с la, например la llave.\nLa tienes aquí. — «Она у тебя здесь.»\nLuis no lo tiene aquí. — «У Луиса его здесь нет.»\n¿Ana lo tiene aquí? — «Он у Аны здесь?»",
+        "en": "Look at how to say “I have it here” (a thing with el).\nLo tengo aquí. — “I have it here.”\nThe word lo means “it, him”. It goes before tengo.\nYou have already said el libro. After that you say lo instead.\nLa tengo aquí. — “I have it here.” (a thing with la)\nThe word la means “it, her”. It replaces a thing with la, for example la llave.\nLa tienes aquí. — “You have it here.”\nLuis no lo tiene aquí. — “Luis does not have it here.”\n¿Ana lo tiene aquí? — “Does Ana have it here?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:18:01",
+          "say": {
+            "ru": "ло тэ́нго аки́",
+            "uk": "ло те́нго акі́"
+          }
+        },
+        {
+          "phraseId": "es:18:06",
+          "say": {
+            "ru": "ла тэ́нго аки́",
+            "uk": "ла те́нго акі́"
+          }
+        },
+        {
+          "phraseId": "es:18:02",
+          "say": {
+            "ru": "ла тье́нэс аки́",
+            "uk": "ла тье́нес акі́"
+          }
+        },
+        {
+          "phraseId": "es:18:05",
+          "say": {
+            "ru": "Луи́с но ло тье́нэ аки́",
+            "uk": "Луі́с но ло тье́не акі́"
+          }
+        },
+        {
+          "phraseId": "es:18:10",
+          "say": {
+            "ru": "А́на ло тье́нэ аки́",
+            "uk": "А́на ло тье́не акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он у меня здесь»",
+            "uk": "Виберіть, як сказати: «Він у мене тут»",
+            "en": "Choose how to say: “I have it here (the one with el)”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:18:01",
+          "options": [
+            "es:18:01",
+            "es:18:06",
+            "es:18:02"
+          ],
+          "answerId": "es:18:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она у меня здесь»",
+            "uk": "Виберіть, як сказати: «Вона в мене тут»",
+            "en": "Choose how to say: “I have it here (the one with la)”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:06",
+          "options": [
+            "es:18:06",
+            "es:18:01",
+            "es:18:02"
+          ],
+          "answerId": "es:18:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он у Аны здесь?»",
+            "uk": "Виберіть, як сказати: «Він в Ани тут?»",
+            "en": "Choose how to say: “Does Ana have it here?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:10",
+          "options": [
+            "es:18:10",
+            "es:18:05",
+            "es:18:01"
+          ],
+          "answerId": "es:18:10"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Они",
+        "en": "Them"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Они у нас здесь».\nLas tenemos aquí. — «Они у нас здесь.»\nЧитается: лас тэнэ́мос аки́.\nСлово las значит «они, их», когда речь о вещах с las, например las llaves.\nСлово los тоже значит «они, их». Оно заменяет вещи с los, например los libros.\nAna los tiene en el bolso. — «Они у Аны в сумке.»\nMis hermanos las tienen aquí. — «Они у моих братьев здесь.»\nLos devuelvo hoy. — «Я верну их сегодня.»\nСлово devuelvo значит «я возвращаю».\nLas guardo en el bolsillo. — «Я кладу их в карман.»\nСлово guardo значит «я кладу, храню».",
+        "en": "Look at how to say “We have them here”.\nLas tenemos aquí. — “We have them here.”\nThe word las means “them”, for things with las, for example las llaves.\nThe word los also means “them”. It replaces things with los, for example los libros.\nAna los tiene en el bolso. — “Ana has them in the bag.”\nMis hermanos las tienen aquí. — “My brothers have them here.”\nLos devuelvo hoy. — “I will return them today.”\nThe word devuelvo means “I return”.\nLas guardo en el bolsillo. — “I put them in my pocket.”\nThe word guardo means “I put, I keep”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:18:04",
+          "say": {
+            "ru": "лас тэнэ́мос аки́",
+            "uk": "лас тене́мос акі́"
+          }
+        },
+        {
+          "phraseId": "es:18:03",
+          "say": {
+            "ru": "А́на лос тье́нэ эн эль бо́льсо",
+            "uk": "А́на лос тье́не ен ель бо́льсо"
+          }
+        },
+        {
+          "phraseId": "es:18:08",
+          "say": {
+            "ru": "мис эрма́нос лас тье́нэн аки́",
+            "uk": "міс ерма́нос лас тье́нен акі́"
+          }
+        },
+        {
+          "phraseId": "es:18:13",
+          "say": {
+            "ru": "лос дэбуэ́льбо ой",
+            "uk": "лос дебуе́льбо ой"
+          }
+        },
+        {
+          "phraseId": "es:18:38",
+          "say": {
+            "ru": "лас гуа́рдо эн эль больси́йо",
+            "uk": "лас гуа́рдо ен ель больсі́йо"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они у нас здесь»",
+            "uk": "Виберіть, як сказати: «Вони у нас тут»",
+            "en": "Choose how to say: “We have them here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:18:04",
+          "options": [
+            "es:18:04",
+            "es:18:03",
+            "es:18:08"
+          ],
+          "answerId": "es:18:04"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они у Аны в сумке»",
+            "uk": "Виберіть, як сказати: «Вони в Ани в сумці»",
+            "en": "Choose how to say: “Ana has them in the bag”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:03",
+          "options": [
+            "es:18:03",
+            "es:18:04",
+            "es:18:08"
+          ],
+          "answerId": "es:18:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я верну их сегодня»",
+            "uk": "Виберіть, як сказати: «Я поверну їх сьогодні»",
+            "en": "Choose how to say: “I will return them today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:13",
+          "options": [
+            "es:18:13",
+            "es:18:38",
+            "es:18:04"
+          ],
+          "answerId": "es:18:13"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Ищу, несу, меняю",
+        "en": "Look for, carry, change"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ты его ищешь».\nLo buscas. — «Ты его ищешь.»\nЧитается: ло бу́скас.\nСлово buscas значит «ты ищешь». Слово lo стоит перед ним.\nAna la busca. — «Ана её ищет.»\nAna lo lleva a casa. — «Ана его несёт домой.»\nСлово lleva значит «несёт».\nLas llevo a casa. — «Я их несу домой.»\n¿La cambias en la tienda? — «Ты меняешь её в магазине?»\nСлово cambias значит «ты меняешь».",
+        "en": "Look at how to say “You are looking for it”.\nLo buscas. — “You are looking for it.”\nThe word buscas means “you look for”. The word lo goes before it.\nAna la busca. — “Ana is looking for it.”\nAna lo lleva a casa. — “Ana carries it home.”\nThe word lleva means “carries”.\nLas llevo a casa. — “I carry them home.”\n¿La cambias en la tienda? — “Do you exchange it in the shop?”\nThe word cambias means “you change, you exchange”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:18:11",
+          "say": {
+            "ru": "ло бу́скас",
+            "uk": "ло бу́скас"
+          }
+        },
+        {
+          "phraseId": "es:18:12",
+          "say": {
+            "ru": "А́на ла бу́ска",
+            "uk": "А́на ла бу́ска"
+          }
+        },
+        {
+          "phraseId": "es:18:21",
+          "say": {
+            "ru": "А́на ло йэ́ба а ка́са",
+            "uk": "А́на ло йе́ба а ка́са"
+          }
+        },
+        {
+          "phraseId": "es:18:24",
+          "say": {
+            "ru": "лас йэ́бо а ка́са",
+            "uk": "лас йе́бо а ка́са"
+          }
+        },
+        {
+          "phraseId": "es:18:17",
+          "say": {
+            "ru": "ла ка́мбьяс эн ла тье́нда",
+            "uk": "ла ка́мбьяс ен ла тье́нда"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты его ищешь»",
+            "uk": "Виберіть, як сказати: «Ти його шукаєш»",
+            "en": "Choose how to say: “You are looking for it”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:18:11",
+          "options": [
+            "es:18:11",
+            "es:18:12",
+            "es:18:21"
+          ],
+          "answerId": "es:18:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана его несёт домой»",
+            "uk": "Виберіть, як сказати: «Ана його несе додому»",
+            "en": "Choose how to say: “Ana carries it home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:21",
+          "options": [
+            "es:18:21",
+            "es:18:24",
+            "es:18:12"
+          ],
+          "answerId": "es:18:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я их несу домой»",
+            "uk": "Виберіть, як сказати: «Я їх несу додому»",
+            "en": "Choose how to say: “I carry them home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:24",
+          "options": [
+            "es:18:24",
+            "es:18:21",
+            "es:18:17"
+          ],
+          "answerId": "es:18:24"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Мне нужно",
+        "en": "I need"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Он нам сегодня нужен».\nLo necesitamos hoy. — «Он нам сегодня нужен.»\nЧитается: ло нэсэсита́мос ой.\nСлово necesitamos значит «нам нужно».\nLuis la necesita hoy. — «Она Луису сегодня нужна.»\nLos necesito hoy. — «Они мне сегодня нужны.»\nСлово necesito значит «мне нужно».\n¿Ana los necesita hoy? — «Они Ане сегодня нужны?»\nLa lavo a mano. — «Я стираю её вручную.»\nСлово lavo значит «я мою, стираю». Слова a mano значат «вручную».",
+        "en": "Look at how to say “We need it today”.\nLo necesitamos hoy. — “We need it today.”\nThe word necesitamos means “we need”.\nLuis la necesita hoy. — “Luis needs it today.”\nLos necesito hoy. — “I need them today.”\nThe word necesito means “I need”.\n¿Ana los necesita hoy? — “Does Ana need them today?”\nLa lavo a mano. — “I wash it by hand.”\nThe word lavo means “I wash”. The words a mano mean “by hand”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:18:31",
+          "say": {
+            "ru": "ло нэсэсита́мос ой",
+            "uk": "ло несесіта́мос ой"
+          }
+        },
+        {
+          "phraseId": "es:18:32",
+          "say": {
+            "ru": "Луи́с ла нэсэси́та ой",
+            "uk": "Луі́с ла несесі́та ой"
+          }
+        },
+        {
+          "phraseId": "es:18:33",
+          "say": {
+            "ru": "лос нэсэси́то ой",
+            "uk": "лос несесі́то ой"
+          }
+        },
+        {
+          "phraseId": "es:18:37",
+          "say": {
+            "ru": "А́на лос нэсэси́та ой",
+            "uk": "А́на лос несесі́та ой"
+          }
+        },
+        {
+          "phraseId": "es:18:34",
+          "say": {
+            "ru": "ла ла́бо а ма́но",
+            "uk": "ла ла́бо а ма́но"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он нам сегодня нужен»",
+            "uk": "Виберіть, як сказати: «Він нам сьогодні потрібен»",
+            "en": "Choose how to say: “We need it today”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:18:31",
+          "options": [
+            "es:18:31",
+            "es:18:32",
+            "es:18:33"
+          ],
+          "answerId": "es:18:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Они мне сегодня нужны»",
+            "uk": "Виберіть, як сказати: «Вони мені сьогодні потрібні»",
+            "en": "Choose how to say: “I need them today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:33",
+          "options": [
+            "es:18:33",
+            "es:18:31",
+            "es:18:37"
+          ],
+          "answerId": "es:18:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она Луису сегодня нужна»",
+            "uk": "Виберіть, як сказати: «Вона Луїсу сьогодні потрібна»",
+            "en": "Choose how to say: “Luis needs it today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:32",
+          "options": [
+            "es:18:32",
+            "es:18:31",
+            "es:18:37"
+          ],
+          "answerId": "es:18:32"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Оставляю, забираю, слушаю",
+        "en": "Leave, pick up, listen"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Луис оставляет его дома».\nLuis lo deja en casa. — «Луис оставляет его дома.»\nЧитается: Луи́с ло дэ́ха эн ка́са.\nСлово deja значит «оставляет».\nNo lo dejamos en casa. — «Мы его не оставляем дома.»\nСлово no стоит перед lo.\nLa recojo en recepción. — «Я забираю её со стойки регистрации.»\nСлово recojo значит «я забираю».\nLos recojo después de clase. — «Я заберу их после занятия.»\nСлово después значит «после».\nLo envuelvo en casa. — «Я заворачиваю его дома.»\nСлово envuelvo значит «я заворачиваю».\nLa música la escucho en casa. — «Музыку я слушаю дома.»\nСлово escucho значит «я слушаю». Слово la повторяет слово música.",
+        "en": "Look at how to say “Luis leaves it at home”.\nLuis lo deja en casa. — “Luis leaves it at home.”\nThe word deja means “leaves”.\nNo lo dejamos en casa. — “We do not leave it at home.”\nThe word no goes before lo.\nLa recojo en recepción. — “I pick it up at the reception desk.”\nThe word recojo means “I pick up”.\nLos recojo después de clase. — “I will pick them up after class.”\nThe word después means “after”.\nLo envuelvo en casa. — “I wrap it at home.”\nThe word envuelvo means “I wrap”.\nLa música la escucho en casa. — “I listen to music at home.”\nThe word escucho means “I listen”. The word la repeats the word música."
+      },
+      "examples": [
+        {
+          "phraseId": "es:18:41",
+          "say": {
+            "ru": "Луи́с ло дэ́ха эн ка́са",
+            "uk": "Луі́с ло де́ха ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:18:45",
+          "say": {
+            "ru": "но ло дэха́мос эн ка́са",
+            "uk": "но ло деха́мос ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:18:22",
+          "say": {
+            "ru": "ла рэко́хо эн рэсэпсьо́н",
+            "uk": "ла реко́хо ен ресепсьо́н"
+          }
+        },
+        {
+          "phraseId": "es:18:44",
+          "say": {
+            "ru": "лос рэко́хо дэспуэ́с дэ кла́сэ",
+            "uk": "лос реко́хо деспуе́с де кла́се"
+          }
+        },
+        {
+          "phraseId": "es:18:26",
+          "say": {
+            "ru": "ло энбуэ́льбо эн ка́са",
+            "uk": "ло енбуе́льбо ен ка́са"
+          }
+        },
+        {
+          "phraseId": "es:18:43",
+          "say": {
+            "ru": "ла му́сика ла эску́чо эн ка́са",
+            "uk": "ла му́сіка ла еску́чо ен ка́са"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис оставляет его дома»",
+            "uk": "Виберіть, як сказати: «Луїс залишає його вдома»",
+            "en": "Choose how to say: “Luis leaves it at home”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:18:41",
+          "options": [
+            "es:18:41",
+            "es:18:45",
+            "es:18:22"
+          ],
+          "answerId": "es:18:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я забираю её со стойки регистрации»",
+            "uk": "Виберіть, як сказати: «Я забираю її зі стійки реєстрації»",
+            "en": "Choose how to say: “I pick it up at the reception desk”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:22",
+          "options": [
+            "es:18:22",
+            "es:18:44",
+            "es:18:26"
+          ],
+          "answerId": "es:18:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Музыку я слушаю дома»",
+            "uk": "Виберіть, як сказати: «Музику я слухаю вдома»",
+            "en": "Choose how to say: “I listen to music at home”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:18:43",
+          "options": [
+            "es:18:43",
+            "es:18:26",
+            "es:18:41"
+          ],
+          "answerId": "es:18:43"
+        }
+      ]
+    }
+  ]
+}

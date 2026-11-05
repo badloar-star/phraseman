@@ -1,0 +1,506 @@
+{
+  "lang": "es",
+  "lesson": 21,
+  "title": {
+    "ru": "Что я сделал вчера",
+    "en": "What I did yesterday"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я вчера позвонил",
+        "en": "I called yesterday"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вчера позвонил в отель».\nLlamé al hotel ayer. — «Я вчера позвонил в отель.»\nЧитается: йамэ́ аль оте́ль айэ́р.\nСлово ayer значит «вчера». Слово llamé значит «я позвонил».\nLlamaste al hotel ayer. — «Ты вчера позвонил в отель.»\nСлово llamaste значит «ты позвонил».\nКонец слова меняется, смотря о ком речь: llamé — «я», llamaste — «ты».\nLlamé a Ana ayer. — «Я вчера позвонил Ане.»\nLlamaste a Ana ayer. — «Ты вчера позвонил Ане.»",
+        "en": "Look at how to say “I called the hotel yesterday”.\nLlamé al hotel ayer. — “I called the hotel yesterday.”\nThe word ayer means “yesterday”. The word llamé means “I called”.\nLlamaste al hotel ayer. — “You called the hotel yesterday.”\nThe word llamaste means “you called”.\nThe end of the word changes depending on who it is about: llamé\n“I”, llamaste — “you”.\nLlamé a Ana ayer. — “I called Ana yesterday.”\nLlamaste a Ana ayer. — “You called Ana yesterday.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:21:01",
+          "say": {
+            "ru": "йамэ́ аль оте́ль айэ́р",
+            "uk": "йаме́ аль оте́ль айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:02",
+          "say": {
+            "ru": "йама́стэ аль оте́ль айэ́р",
+            "uk": "йама́сте аль оте́ль айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:03",
+          "say": {
+            "ru": "йамэ́ а А́на айэ́р",
+            "uk": "йаме́ а А́на айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:04",
+          "say": {
+            "ru": "йама́стэ а А́на айэ́р",
+            "uk": "йама́сте а А́на айе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера позвонил в отель»",
+            "uk": "Виберіть, як сказати: «Я вчора зателефонував до готелю»",
+            "en": "Choose how to say: “I called the hotel yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:21:01",
+          "options": [
+            "es:21:01",
+            "es:21:02",
+            "es:21:03"
+          ],
+          "answerId": "es:21:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты вчера позвонил в отель»",
+            "uk": "Виберіть, як сказати: «Ти вчора зателефонував до готелю»",
+            "en": "Choose how to say: “You called the hotel yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:02",
+          "options": [
+            "es:21:02",
+            "es:21:01",
+            "es:21:04"
+          ],
+          "answerId": "es:21:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера позвонил Ане»",
+            "uk": "Виберіть, як сказати: «Я вчора зателефонував Ані»",
+            "en": "Choose how to say: “I called Ana yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:03",
+          "options": [
+            "es:21:03",
+            "es:21:01",
+            "es:21:04"
+          ],
+          "answerId": "es:21:03"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Я купил",
+        "en": "I bought"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана вчера купила билет».\nAna compró un billete ayer. — «Ана вчера купила билет.»\nЧитается: А́на компро́ ун бийе́тэ айэ́р.\nСлово compró значит «купила», когда речь об Ане, о нём, о ней.\nCompramos un billete ayer. — «Мы вчера купили билет.»\nСлово compramos значит «мы купили». Слово compré — «я купил».\nCompré queso en el mercado. — «Я купил сыр на рынке.»\nСлово queso значит «сыр». Слово mercado — «рынок».\nCompramos un kilo de arroz. — «Мы купили килограмм риса.»\nСлово kilo значит «килограмм».\nAna compró fruta ayer. — «Ана вчера купила фрукты.»\nСлово fruta значит «фрукты».",
+        "en": "Look at how to say “Ana bought a ticket yesterday”.\nAna compró un billete ayer. — “Ana bought a ticket yesterday.”\nThe word compró means “bought”, when it is about Ana, him, her.\nCompramos un billete ayer. — “We bought a ticket yesterday.”\nThe word compramos means “we bought”. The word compré means “I bought”.\nCompré queso en el mercado. — “I bought cheese at the market.”\nThe word queso means “cheese”. The word mercado means “market”.\nCompramos un kilo de arroz. — “We bought a kilo of rice.”\nThe word kilo means “kilogram”.\nAna compró fruta ayer. — “Ana bought fruit yesterday.”\nThe word fruta means “fruit”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:21:05",
+          "say": {
+            "ru": "А́на компро́ ун бийе́тэ айэ́р",
+            "uk": "А́на компро́ ун бійе́те айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:06",
+          "say": {
+            "ru": "компра́мос ун бийе́тэ айэ́р",
+            "uk": "компра́мос ун бійе́те айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:08",
+          "say": {
+            "ru": "компра́стэ пан айэ́р",
+            "uk": "компра́сте пан айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:07",
+          "say": {
+            "ru": "компрэ́ ке́со эн эль мэрка́до",
+            "uk": "компре́ ке́со ен ель мерка́до"
+          }
+        },
+        {
+          "phraseId": "es:21:14",
+          "say": {
+            "ru": "компра́мос ун ки́ло дэ арро́с",
+            "uk": "компра́мос ун кі́ло де арро́с"
+          }
+        },
+        {
+          "phraseId": "es:21:23",
+          "say": {
+            "ru": "А́на компро́ фру́та айэ́р",
+            "uk": "А́на компро́ фру́та айе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана вчера купила билет»",
+            "uk": "Виберіть, як сказати: «Ана вчора купила квиток»",
+            "en": "Choose how to say: “Ana bought a ticket yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:21:05",
+          "options": [
+            "es:21:05",
+            "es:21:06",
+            "es:21:08"
+          ],
+          "answerId": "es:21:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы вчера купили билет»",
+            "uk": "Виберіть, як сказати: «Ми вчора купили квиток»",
+            "en": "Choose how to say: “We bought a ticket yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:06",
+          "options": [
+            "es:21:06",
+            "es:21:05",
+            "es:21:08"
+          ],
+          "answerId": "es:21:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я купил сыр на рынке»",
+            "uk": "Виберіть, як сказати: «Я купив сир на ринку»",
+            "en": "Choose how to say: “I bought cheese at the market”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:07",
+          "options": [
+            "es:21:07",
+            "es:21:14",
+            "es:21:23"
+          ],
+          "answerId": "es:21:07"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Вчера вечером",
+        "en": "Last night"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вчера вечером написал письмо».\nEscribí una carta anoche. — «Я вчера вечером написал письмо.»\nЧитается: эскриби́ у́на ка́рта ано́чэ.\nСлово anoche значит «вчера вечером». Слово escribí — «я написал».\nAna escribió un mensaje anoche. — «Ана вчера вечером написала сообщение.»\nСлово escribió — «написала». Конец у него другой, чем у compró.\nLuis abrió la puerta anoche. — «Луис вчера вечером открыл дверь.»\nMandé la foto anoche. — «Я вчера вечером отправил фотографию.»\nMandamos el mapa anoche. — «Мы вчера вечером отправили карту.»\nMis hermanos llevaron la maleta anoche. — «Мои братья вчера вечером отнесли чемодан.»\nСлово llevaron значит «отнесли», когда речь о них.",
+        "en": "Look at how to say “I wrote a letter last night”.\nEscribí una carta anoche. — “I wrote a letter last night.”\nThe word anoche means “last night”. The word escribí means “I wrote”.\nAna escribió un mensaje anoche. — “Ana wrote a message last night.”\nThe word escribió means “wrote”. Its end is different from compró.\nLuis abrió la puerta anoche. — “Luis opened the door last night.”\nMandé la foto anoche. — “I sent the photo last night.”\nMandamos el mapa anoche. — “We sent the map last night.”\nMis hermanos llevaron la maleta anoche. — “My brothers carried the suitcase last night.”\nThe word llevaron means “carried”, when it is about them."
+      },
+      "examples": [
+        {
+          "phraseId": "es:21:11",
+          "say": {
+            "ru": "эскриби́ у́на ка́рта ано́чэ",
+            "uk": "ескрібі́ у́на ка́рта ано́че"
+          }
+        },
+        {
+          "phraseId": "es:21:12",
+          "say": {
+            "ru": "А́на эскрибьо́ ун мэнса́хэ ано́чэ",
+            "uk": "А́на ескрібьо́ ун менса́хе ано́че"
+          }
+        },
+        {
+          "phraseId": "es:21:13",
+          "say": {
+            "ru": "Луи́с абрьо́ ла пуэ́рта ано́чэ",
+            "uk": "Луі́с абрьо́ ла пуе́рта ано́че"
+          }
+        },
+        {
+          "phraseId": "es:21:15",
+          "say": {
+            "ru": "мандэ́ ла фо́то ано́чэ",
+            "uk": "манде́ ла фо́то ано́че"
+          }
+        },
+        {
+          "phraseId": "es:21:16",
+          "say": {
+            "ru": "манда́мос эль ма́па ано́чэ",
+            "uk": "манда́мос ель ма́па ано́че"
+          }
+        },
+        {
+          "phraseId": "es:21:19",
+          "say": {
+            "ru": "мис эрма́нос йэба́рон ла мале́та ано́чэ",
+            "uk": "міс ерма́нос йеба́рон ла мале́та ано́че"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера вечером написал письмо»",
+            "uk": "Виберіть, як сказати: «Я учора ввечері написав листа»",
+            "en": "Choose how to say: “I wrote a letter last night”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:21:11",
+          "options": [
+            "es:21:11",
+            "es:21:12",
+            "es:21:13"
+          ],
+          "answerId": "es:21:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана вчера вечером написала сообщение»",
+            "uk": "Виберіть, як сказати: «Ана учора ввечері написала повідомлення»",
+            "en": "Choose how to say: “Ana wrote a message last night”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:12",
+          "options": [
+            "es:21:12",
+            "es:21:11",
+            "es:21:13"
+          ],
+          "answerId": "es:21:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья вчера вечером отнесли чемодан»",
+            "uk": "Виберіть, як сказати: «Мої брати учора ввечері віднесли валізу»",
+            "en": "Choose how to say: “My brothers carried the suitcase last night”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:19",
+          "options": [
+            "es:21:19",
+            "es:21:15",
+            "es:21:16"
+          ],
+          "answerId": "es:21:19"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Приготовили, заплатили, перед",
+        "en": "Prepared, paid, before dinner"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Луис вчера приготовил ужин».\nLuis preparó la cena ayer. — «Луис вчера приготовил ужин.»\nЧитается: Луи́с прэпаро́ ла сэ́на айэ́р.\nСлово preparó значит «приготовил».\nMis hermanas prepararon la cena ayer. — «Мои сёстры вчера приготовили ужин.»\nPagamos en efectivo ayer. — «Мы вчера заплатили наличными.»\nPagasteis con tarjeta ayer. — «Вы вчера заплатили картой.»\nСлово pagasteis — когда речь о вас, о нескольких людях.\nMe levanté temprano ayer. — «Я вчера рано встал.»\nMe duché antes de la cena. — «Я принял душ перед ужином.»\nСлово antes значит «раньше, перед». Слова antes de — «перед».",
+        "en": "Look at how to say “Luis prepared dinner yesterday”.\nLuis preparó la cena ayer. — “Luis prepared dinner yesterday.”\nThe word preparó means “prepared”.\nMis hermanas prepararon la cena ayer. — “My sisters prepared dinner yesterday.”\nPagamos en efectivo ayer. — “We paid in cash yesterday.”\nPagasteis con tarjeta ayer. — “You paid by card yesterday.”\nThe word pagasteis is used when it is about several of you.\nMe levanté temprano ayer. — “I got up early yesterday.”\nMe duché antes de la cena. — “I took a shower before dinner.”\nThe word antes means “before”. The words antes de — “before”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:21:09",
+          "say": {
+            "ru": "Луи́с прэпаро́ ла сэ́на айэ́р",
+            "uk": "Луі́с препаро́ ла се́на айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:25",
+          "say": {
+            "ru": "мис эрма́нас прэпара́рон ла сэ́на айэ́р",
+            "uk": "міс ерма́нас препара́рон ла се́на айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:21",
+          "say": {
+            "ru": "пага́мос эн эфэкти́бо айэ́р",
+            "uk": "пага́мос ен ефекті́бо айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:22",
+          "say": {
+            "ru": "пага́стэйс кон тархэ́та айэ́р",
+            "uk": "пага́стейс кон тархе́та айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:28",
+          "say": {
+            "ru": "мэ леванте́ тэмпра́но айэ́р",
+            "uk": "ме леванте́ темпра́но айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:35",
+          "say": {
+            "ru": "мэ дучэ́ а́нтэс дэ ла сэ́на",
+            "uk": "ме дуче́ а́нтес де ла се́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис вчера приготовил ужин»",
+            "uk": "Виберіть, як сказати: «Луїс вчора приготував вечерю»",
+            "en": "Choose how to say: “Luis prepared dinner yesterday”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:21:09",
+          "options": [
+            "es:21:09",
+            "es:21:25",
+            "es:21:21"
+          ],
+          "answerId": "es:21:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы вчера заплатили наличными»",
+            "uk": "Виберіть, як сказати: «Ми вчора заплатили готівкою»",
+            "en": "Choose how to say: “We paid in cash yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:21",
+          "options": [
+            "es:21:21",
+            "es:21:22",
+            "es:21:09"
+          ],
+          "answerId": "es:21:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы вчера заплатили картой»",
+            "uk": "Виберіть, як сказати: «Ви вчора заплатили карткою»",
+            "en": "Choose how to say: “You paid by card yesterday”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:22",
+          "options": [
+            "es:21:22",
+            "es:21:21",
+            "es:21:09"
+          ],
+          "answerId": "es:21:22"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не и вопрос",
+        "en": "Not, and a question"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я вчера вечером не позвонил Ане».\nNo llamé a Ana anoche. — «Я вчера вечером не позвонил Ане.»\nЧитается: но йамэ́ а А́на ано́чэ.\nСлово no стоит перед llamé.\nNo compramos huevos ayer. — «Мы вчера не купили яйца.»\nNo compré un kilo de queso. — «Я не покупал килограмм сыра.»\nА теперь вопрос. Слова те же, голос в конце идёт вверх.\n¿Llamaste al hotel ayer? — «Ты вчера позвонил в отель?»\n¿Compraste queso ayer? — «Ты вчера купил сыр?»\n¿Escribisteis un mensaje ayer? — «Вы вчера написали сообщение?»\nСлово escribisteis — когда речь о вас, о нескольких людях.",
+        "en": "Look at how to say “I did not call Ana last night”.\nNo llamé a Ana anoche. — “I did not call Ana last night.”\nThe word no goes before llamé.\nNo compramos huevos ayer. — “We did not buy eggs yesterday.”\nNo compré un kilo de queso.\n“I did not buy a kilo of cheese.”\nAnd now a question. The words are the same, the voice goes up at the end.\n¿Llamaste al hotel ayer? — “Did you call the hotel yesterday?”\n¿Compraste queso ayer? — “Did you buy cheese yesterday?”\n¿Escribisteis un mensaje ayer? — “Did you write a message yesterday?”\nThe word escribisteis is used when it is about several of you."
+      },
+      "examples": [
+        {
+          "phraseId": "es:21:31",
+          "say": {
+            "ru": "но йамэ́ а А́на ано́чэ",
+            "uk": "но йаме́ а А́на ано́че"
+          }
+        },
+        {
+          "phraseId": "es:21:33",
+          "say": {
+            "ru": "но компра́мос уэ́бос айэ́р",
+            "uk": "но компра́мос уе́бос айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:38",
+          "say": {
+            "ru": "но компрэ́ ун ки́ло дэ ке́со",
+            "uk": "но компре́ ун кі́ло де ке́со"
+          }
+        },
+        {
+          "phraseId": "es:21:41",
+          "say": {
+            "ru": "йама́стэ аль оте́ль айэ́р",
+            "uk": "йама́сте аль оте́ль айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:42",
+          "say": {
+            "ru": "компра́стэ ке́со айэ́р",
+            "uk": "компра́сте ке́со айе́р"
+          }
+        },
+        {
+          "phraseId": "es:21:50",
+          "say": {
+            "ru": "эскриби́стэйс ун мэнса́хэ айэ́р",
+            "uk": "ескрібі́стейс ун менса́хе айе́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я вчера вечером не позвонил Ане»",
+            "uk": "Виберіть, як сказати: «Я учора ввечері не зателефонував Ані»",
+            "en": "Choose how to say: “I did not call Ana last night”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:21:31",
+          "options": [
+            "es:21:31",
+            "es:21:33",
+            "es:21:38"
+          ],
+          "answerId": "es:21:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты вчера позвонил в отель?»",
+            "uk": "Виберіть, як сказати: «Ти вчора зателефонував до готелю?»",
+            "en": "Choose how to say: “Did you call the hotel yesterday?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:41",
+          "options": [
+            "es:21:41",
+            "es:21:42",
+            "es:21:50"
+          ],
+          "answerId": "es:21:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты вчера купил сыр?»",
+            "uk": "Виберіть, як сказати: «Ти вчора купив сир?»",
+            "en": "Choose how to say: “Did you buy cheese yesterday?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:21:42",
+          "options": [
+            "es:21:42",
+            "es:21:41",
+            "es:21:50"
+          ],
+          "answerId": "es:21:42"
+        }
+      ]
+    }
+  ]
+}

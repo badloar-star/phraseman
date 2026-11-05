@@ -1,0 +1,492 @@
+{
+  "lang": "fr",
+  "lesson": 27,
+  "title": {
+    "ru": "Что будет: завтра, потом, скоро",
+    "en": "What will be: tomorrow, later, soon"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я уеду, вы уедете",
+        "en": "I will leave, you will leave"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я уеду завтра».\nJe partirai demain. — «Я уеду завтра.»\nЧитается: жё партирэ́ дёмэ́н.\nСлово partirai значит «уеду». Слово demain значит «завтра».\nTu partiras demain. — «Ты уедешь завтра.»\nСлово partiras значит «уедешь».\nElle partira demain. — «Она уедет завтра.»\nСлово partira значит «уедет». Оно звучит как partiras, но пишется иначе.\nСлово меняется, смотря о ком речь.\nЯ — partirai, мы — partirons, вы — partirez, они — partiront.\nNous partirons ensemble. — «Мы уедем вместе.»\nСлово ensemble значит «вместе».\nVous partirez ensemble. — «Вы уйдете вместе.»\nIls partiront à midi. — «Они уйдут в полдень.»\nСлова à midi значат «в полдень».",
+        "en": "Look at how to say “I will leave tomorrow”.\nJe partirai demain. — “I will leave tomorrow.”\nThe word partirai means “will leave”. The word demain means “tomorrow”.\nTu partiras demain. — “You will leave tomorrow.”\nThe word partiras means “will leave”.\nElle partira demain. — “She will leave tomorrow.”\nThe word partira means “will leave”. It sounds like partiras, but it is written differently.\nThe word changes depending on who it is about.\nI — partirai, we — partirons, you — partirez, they — partiront.\nNous partirons ensemble. — “We will leave together.”\nThe word ensemble means “together”.\nVous partirez ensemble. — “You will leave together.”\nIls partiront à midi. — “They will leave at noon.”\nThe words à midi mean “at noon”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:27:01",
+          "say": {
+            "ru": "жё партирэ́ дёмэ́н",
+            "uk": "жьо партіре́ дьоме́н"
+          }
+        },
+        {
+          "phraseId": "fr:27:03",
+          "say": {
+            "ru": "эль партира́ дёмэ́н",
+            "uk": "ель партіра́ дьоме́н"
+          }
+        },
+        {
+          "phraseId": "fr:27:04",
+          "say": {
+            "ru": "ну партиро́н ансанбль",
+            "uk": "ну партіро́н ансанбль"
+          }
+        },
+        {
+          "phraseId": "fr:27:05",
+          "say": {
+            "ru": "ву партире́ ансанбль",
+            "uk": "ву партіре́ ансанбль"
+          }
+        },
+        {
+          "phraseId": "fr:27:06",
+          "say": {
+            "ru": "иль партиро́н а миди́",
+            "uk": "іль партіро́н а міді́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я уеду завтра»",
+            "uk": "Виберіть, як сказати: «Я поїду завтра»",
+            "en": "Choose how to say: “I will leave tomorrow”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:27:01",
+          "options": [
+            "fr:27:01",
+            "fr:27:03",
+            "fr:27:04"
+          ],
+          "answerId": "fr:27:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она уедет завтра»",
+            "uk": "Виберіть, як сказати: «Вона поїде завтра»",
+            "en": "Choose how to say: “She will leave tomorrow”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:03",
+          "options": [
+            "fr:27:03",
+            "fr:27:01",
+            "fr:27:06"
+          ],
+          "answerId": "fr:27:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы уедем вместе»",
+            "uk": "Виберіть, як сказати: «Ми поїдемо разом»",
+            "en": "Choose how to say: “We will leave together”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:04",
+          "options": [
+            "fr:27:04",
+            "fr:27:05",
+            "fr:27:06"
+          ],
+          "answerId": "fr:27:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Позвонит, приготовит, зайдёт",
+        "en": "Will call, will cook, will stop by"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Поль позвонит в банк».\nPaul appellera la banque. — «Поль позвонит в банк.»\nЧитается: поль апэлра́ ла банк.\nСлово appellera значит «позвонит». Слово banque значит «банк».\nLéa préparera le repas. — «Леа приготовит еду.»\nСлово préparera значит «приготовит». Слово repas значит «приём пищи, еда».\nTu passeras à l’atelier après l’exposition. — «Ты зайдёшь в мастерскую после выставки.»\nСлово passeras значит «зайдёшь». Слова à l’atelier значат «в мастерскую».\nСлова après l’exposition значат «после выставки».\nJe brancherai la lampe quand le courant reviendra.\n«Я включу лампу, когда снова включат электричество.»\nСлово quand значит «когда». Слово lampe значит «лампа».\nСлово courant значит «электричество». Слово reviendra значит «вернётся».",
+        "en": "Look at how to say “Paul will call the bank”.\nPaul appellera la banque. — “Paul will call the bank.”\nThe word appellera means “will call”. The word banque means “bank”.\nLéa préparera le repas. — “Léa will prepare the meal.”\nThe word préparera means “will prepare”. The word repas means “meal”.\nTu passeras à l’atelier après l’exposition.\n“You will stop by the workshop after the exhibition.”\nThe word passeras means “will stop by”. The word atelier means “workshop”.\nThe words après l’exposition mean “after the exhibition”.\nJe brancherai la lampe quand le courant reviendra.\n“I will plug in the lamp when the power comes back.”\nThe word quand means “when”. The word lampe means “lamp”.\nThe word courant means “electricity”. The word reviendra means “comes back”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:27:09",
+          "say": {
+            "ru": "поль апэлра́ ла банк",
+            "uk": "поль апелра́ ла банк"
+          }
+        },
+        {
+          "phraseId": "fr:27:10",
+          "say": {
+            "ru": "леа́ прэпарра́ лё рёпа",
+            "uk": "леа́ препарра́ льо рьопа"
+          }
+        },
+        {
+          "phraseId": "fr:27:08",
+          "say": {
+            "ru": "тю пасра́ а латёлье́ апрэ́ лэкспозисьо́н",
+            "uk": "тю пасра́ а латьолье́ апре́ лекспозісьо́н"
+          }
+        },
+        {
+          "phraseId": "fr:27:07",
+          "say": {
+            "ru": "жё браншёрэ́ ла лямп кан лё кура́н рёвьэндра́",
+            "uk": "жьо браншьоре́ ла лямп кан льо кура́н рьовьендра́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Поль позвонит в банк»",
+            "uk": "Виберіть, як сказати: «Пол зателефонує в банк»",
+            "en": "Choose how to say: “Paul will call the bank”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:27:09",
+          "options": [
+            "fr:27:09",
+            "fr:27:10",
+            "fr:27:08"
+          ],
+          "answerId": "fr:27:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Леа приготовит еду»",
+            "uk": "Виберіть, як сказати: «Леа приготує їжу»",
+            "en": "Choose how to say: “Léa will prepare the meal”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:10",
+          "options": [
+            "fr:27:10",
+            "fr:27:09",
+            "fr:27:08"
+          ],
+          "answerId": "fr:27:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты зайдёшь в мастерскую после выставки»",
+            "uk": "Виберіть, як сказати: «Ти зайдеш до майстерні після виставки»",
+            "en": "Choose how to say: “You will stop by the workshop after the exhibition”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:08",
+          "options": [
+            "fr:27:08",
+            "fr:27:09",
+            "fr:27:10"
+          ],
+          "answerId": "fr:27:08"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Буду, получу, смогу, пойду",
+        "en": "I will be, get, be able, go"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я буду дома в шесть часов».\nJe serai à la maison à six heures.\n«Я буду дома в шесть часов.»\nЧитается: жё сёрэ́ а ла мэзо́н а си зёр.\nСлово serai значит «буду». Слова à la maison значат «дома».\nСлова six heures значат «шесть часов».\nЭти слова особые: их запоминают целиком.\nTu seras au bureau demain. — «Завтра ты будешь в офисе.»\nСлово seras значит «будешь».\nIl aura le résultat lundi. — «Он получит результат в понедельник.»\nСлово aura значит «получит». Слово résultat значит «результат».\nСлово lundi значит «понедельник».\nNous aurons assez de place. — «У нас будет достаточно места.»\nСлово aurons значит «будет у нас». Слово assez значит «достаточно».\nVous pourrez payer sur place. — «Вы сможете оплатить на месте.»\nСлово pourrez значит «сможете». Слово payer значит «оплатить».\nJ’irai au marché samedi. — «Я пойду на рынок в субботу.»\nСлово j’irai значит «пойду». Слово samedi значит «суббота».",
+        "en": "Look at how to say “I will be at home at six”.\nJe serai à la maison à six heures.\n“I will be at home at six o’clock.”\nThe word serai means “will be”. The words à la maison mean “at home”.\nThe words six heures mean “six o’clock”.\nThese words are special: learn them as they are.\nTu seras au bureau demain. — “You will be at the office tomorrow.”\nThe word seras means “will be”.\nIl aura le résultat lundi. — “He will get the result on Monday.”\nThe word aura means “will get”. The word résultat means “result”.\nThe word lundi means “Monday”.\nNous aurons assez de place. — “We will have enough room.”\nThe word aurons means “will have”. The word assez means “enough”.\nVous pourrez payer sur place.\n“You will be able to pay on the spot.”\nThe word pourrez means “will be able”. The word payer means “to pay”.\nJ’irai au marché samedi. — “I will go to the market on Saturday.”\nThe word j’irai means “will go”. The word samedi means “Saturday”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:27:11",
+          "say": {
+            "ru": "жё сёрэ́ а ла мэзо́н а си зёр",
+            "uk": "жьо сьоре́ а ла мезо́н а сі зьор"
+          }
+        },
+        {
+          "phraseId": "fr:27:12",
+          "say": {
+            "ru": "тю сёра́ о бюро́ дёмэ́н",
+            "uk": "тю сьора́ о бюро́ дьоме́н"
+          }
+        },
+        {
+          "phraseId": "fr:27:13",
+          "say": {
+            "ru": "иль ора́ лё рэзюльта́ лёнди́",
+            "uk": "іль ора́ льо резюльта́ льонді́"
+          }
+        },
+        {
+          "phraseId": "fr:27:14",
+          "say": {
+            "ru": "ну зоро́н асэ́ дё плас",
+            "uk": "ну зоро́н асе́ дьо плас"
+          }
+        },
+        {
+          "phraseId": "fr:27:15",
+          "say": {
+            "ru": "ву пурре́ пэйе́ сюр плас",
+            "uk": "ву пурре́ пейе́ сюр плас"
+          }
+        },
+        {
+          "phraseId": "fr:27:17",
+          "say": {
+            "ru": "жире́ о марше́ самди́",
+            "uk": "жіре́ о марше́ самді́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я буду дома в шесть часов»",
+            "uk": "Виберіть, як сказати: «Я буду вдома о шостій годині»",
+            "en": "Choose how to say: “I will be at home at six o’clock”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:27:11",
+          "options": [
+            "fr:27:11",
+            "fr:27:12",
+            "fr:27:17"
+          ],
+          "answerId": "fr:27:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он получит результат в понедельник»",
+            "uk": "Виберіть, як сказати: «Він отримає результат у понеділок»",
+            "en": "Choose how to say: “He will get the result on Monday”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:13",
+          "options": [
+            "fr:27:13",
+            "fr:27:14",
+            "fr:27:15"
+          ],
+          "answerId": "fr:27:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы сможете оплатить на месте»",
+            "uk": "Виберіть, як сказати: «Ви зможете заплатити на місці»",
+            "en": "Choose how to say: “You will be able to pay on the spot”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:15",
+          "options": [
+            "fr:27:15",
+            "fr:27:11",
+            "fr:27:17"
+          ],
+          "answerId": "fr:27:15"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Расписание: когда что будет",
+        "en": "Schedules: when things happen"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Магазин откроется в девять часов».\nLe magasin ouvrira à neuf heures. — «Магазин откроется в девять часов.»\nЧитается: лё магазэ́н уврира́ а нёф ёр.\nСлово magasin значит «магазин». Слово ouvrira значит «откроется».\nСлова neuf heures значат «девять часов».\nLe colis arrivera avant midi. — «Посылка прибудет до полудня.»\nСлово colis значит «посылка». Слово arrivera значит «прибудет».\nСлова avant midi значат «до полудня».\nLe plombier passera dans la matinée. — «Сантехник приедет утром.»\nСлово plombier значит «сантехник». Слова dans la matinée значат «утром».\nVotre commande sera prête vendredi. — «Ваш заказ будет готов в пятницу.»\nСлово commande значит «заказ». Слово prête значит «готов».\nСлово vendredi значит «пятница».\nLe médecin vous rappellera demain. — «Врач перезвонит вам завтра.»\nСлово médecin значит «врач». Слово vous здесь значит «вам».\nСлово rappellera значит «перезвонит».",
+        "en": "Look at how to say “The shop will open at nine”.\nLe magasin ouvrira à neuf heures. — “The shop will open at nine o’clock.”\nThe word magasin means “shop”. The word ouvrira means “will open”.\nThe words neuf heures mean “nine o’clock”.\nLe colis arrivera avant midi. — “The parcel will arrive before noon.”\nThe word colis means “parcel”. The word arrivera means “will arrive”.\nThe words avant midi mean “before noon”.\nLe plombier passera dans la matinée. — “The plumber will come in the morning.”\nThe word plombier means “plumber”. The words dans la matinée mean “in the morning”.\nVotre commande sera prête vendredi. — “Your order will be ready on Friday.”\nThe word commande means “order”. The word prête means “ready”.\nThe word vendredi means “Friday”.\nLe médecin vous rappellera demain. — “The doctor will call you back tomorrow.”\nThe word médecin means “doctor”. The word vous here means “you”.\nThe word rappellera means “will call back”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:27:22",
+          "say": {
+            "ru": "лё магазэ́н уврира́ а нёф ёр",
+            "uk": "льо магазе́н увріра́ а ньоф ьор"
+          }
+        },
+        {
+          "phraseId": "fr:27:24",
+          "say": {
+            "ru": "лё коли́ аривра́ аван миди́",
+            "uk": "льо колі́ арівра́ аван міді́"
+          }
+        },
+        {
+          "phraseId": "fr:27:25",
+          "say": {
+            "ru": "лё пломбье́ пасра́ дан ла матине́",
+            "uk": "льо пломбье́ пасра́ дан ла матіне́"
+          }
+        },
+        {
+          "phraseId": "fr:27:26",
+          "say": {
+            "ru": "вотр команд сёра́ прэт вандрёди́",
+            "uk": "вотр команд сьора́ прет вандрьоді́"
+          }
+        },
+        {
+          "phraseId": "fr:27:28",
+          "say": {
+            "ru": "лё медсэ́н ву рапэлра́ дёмэ́н",
+            "uk": "льо медсе́н ву рапелра́ дьоме́н"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Магазин откроется в девять часов»",
+            "uk": "Виберіть, як сказати: «Магазин відкриється о дев'ятій годині»",
+            "en": "Choose how to say: “The shop will open at nine o’clock”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:27:22",
+          "options": [
+            "fr:27:22",
+            "fr:27:24",
+            "fr:27:25"
+          ],
+          "answerId": "fr:27:22"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сантехник приедет утром»",
+            "uk": "Виберіть, як сказати: «Сантехнік приїде вранці»",
+            "en": "Choose how to say: “The plumber will come in the morning”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:25",
+          "options": [
+            "fr:27:25",
+            "fr:27:22",
+            "fr:27:26"
+          ],
+          "answerId": "fr:27:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ваш заказ будет готов в пятницу»",
+            "uk": "Виберіть, як сказати: «Ваше замовлення буде готове в п'ятницю»",
+            "en": "Choose how to say: “Your order will be ready on Friday”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:26",
+          "options": [
+            "fr:27:26",
+            "fr:27:24",
+            "fr:27:28"
+          ],
+          "answerId": "fr:27:26"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не, вопрос, понадобится",
+        "en": "Not, a question, will need"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «не».\nJe ne resterai pas longtemps. — «Я не задержусь надолго.»\nЧитается: жё нё рэстрэ́ па лонта́н.\nСлова ne и pas стоят вокруг слова resterai.\nСлово longtemps значит «надолго».\nElle ne prendra pas la voiture. — «Она не возьмет машину.»\nСлово prendra значит «возьмёт». Слово voiture значит «машина».\nIls ne seront pas là dimanche. — «Их не будет здесь в воскресенье.»\nСлово seront значит «будут». Слово dimanche значит «воскресенье».\nVous aurez besoin d’une pièce d’identité. — «Вам понадобится удостоверение личности.»\nСлова aurez besoin значат «вам понадобится».\nСлова pièce d’identité значат «удостоверение личности».\nСлово d’une по-русски не говорят.\nÀ quelle heure arriverez-vous ? — «Во сколько вы приедете?»\nСлова à quelle heure значат «во сколько». Слово vous стоит после, через чёрточку.\nTu trouveras la clé sous le pot. — «Ты найдёшь ключ под горшком.»\nСлово trouveras значит «найдёшь». Слово sous значит «под».\nСлово pot значит «горшок, ёмкость».",
+        "en": "Look at how to say “not”.\nJe ne resterai pas longtemps. — “I will not stay long.”\nThe words ne and pas stand around the word resterai.\nThe word longtemps means “for long”.\nElle ne prendra pas la voiture. — “She will not take the car.”\nThe word prendra means “will take”. The word voiture means “car”.\nIls ne seront pas là dimanche. — “They will not be here on Sunday.”\nThe word seront means “will be”. The word dimanche means “Sunday”.\nVous aurez besoin d’une pièce d’identité. — “You will need an ID.”\nThe words aurez besoin mean “you will need”.\nThe words pièce d’identité mean “ID”.\nThe word d’une has no Russian word.\nÀ quelle heure arriverez-vous ? — “What time will you arrive?”\nThe words à quelle heure mean “what time”. The word vous stands after, with a dash.\nTu trouveras la clé sous le pot.\n“You will find the key under the pot.”\nThe word trouveras means “will find”. The word sous means “under”.\nThe word pot means “pot”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:27:31",
+          "say": {
+            "ru": "жё нё рэстрэ́ па лонта́н",
+            "uk": "жьо ньо рестре́ па лонта́н"
+          }
+        },
+        {
+          "phraseId": "fr:27:32",
+          "say": {
+            "ru": "эль нё прандра́ па ла вуатю́р",
+            "uk": "ель ньо прандра́ па ла вуатю́р"
+          }
+        },
+        {
+          "phraseId": "fr:27:34",
+          "say": {
+            "ru": "иль нё сёро́н па ла диманш",
+            "uk": "іль ньо сьоро́н па ла діманш"
+          }
+        },
+        {
+          "phraseId": "fr:27:36",
+          "say": {
+            "ru": "ву зорэ́ бёзуэ́н дюн пьэс дидантите́",
+            "uk": "ву зоре́ бьозуе́н дюн пьес дідантіте́"
+          }
+        },
+        {
+          "phraseId": "fr:27:38",
+          "say": {
+            "ru": "а кэль ёр ариврэ́ ву",
+            "uk": "а кель ьор арівре́ ву"
+          }
+        },
+        {
+          "phraseId": "fr:27:48",
+          "say": {
+            "ru": "тю трувра́ ла кле су лё по",
+            "uk": "тю трувра́ ла кле су льо по"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не задержусь надолго»",
+            "uk": "Виберіть, як сказати: «Я не затримаюся надовго»",
+            "en": "Choose how to say: “I will not stay long”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:27:31",
+          "options": [
+            "fr:27:31",
+            "fr:27:32",
+            "fr:27:34"
+          ],
+          "answerId": "fr:27:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Их не будет здесь в воскресенье»",
+            "uk": "Виберіть, як сказати: «Їх тут не буде в неділю»",
+            "en": "Choose how to say: “They will not be here on Sunday”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:34",
+          "options": [
+            "fr:27:34",
+            "fr:27:31",
+            "fr:27:32"
+          ],
+          "answerId": "fr:27:34"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты найдёшь ключ под горшком»",
+            "uk": "Виберіть, як сказати: «Ти знайдеш ключ під горщиком»",
+            "en": "Choose how to say: “You will find the key under the pot”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:27:48",
+          "options": [
+            "fr:27:48",
+            "fr:27:36",
+            "fr:27:38"
+          ],
+          "answerId": "fr:27:48"
+        }
+      ]
+    }
+  ]
+}

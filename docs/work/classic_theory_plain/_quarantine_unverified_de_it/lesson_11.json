@@ -1,0 +1,682 @@
+{
+  "lang": "de",
+  "lesson": 11,
+  "title": {
+    "ru": "Где что находится",
+    "uk": "Де що знаходиться",
+    "en": "Where things are"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Что где лежит",
+        "uk": "Що де лежить",
+        "en": "What lies where"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ключ лежит на столе».\nDer Schlüssel liegt auf dem Tisch. — «Ключ лежит на столе.»\nЧитается: дер шлю́сель ликт ауф дем тиш\nСлово Schlüssel значит «ключ». Слово liegt — «лежит». Слово auf — «на».\nСлово Tisch значит «стол».\nБыло der Tisch, стало auf dem Tisch.\nDer Pass liegt in der Tasche. — «Паспорт в сумке.»\nЧитается: дер пас ликт ин дер та́ше\nСлово Pass значит «паспорт». Слово in — «в».\nБыло die Tasche, стало in der Tasche.\nПо-русски «лежит» здесь не говорят («паспорт в сумке»), а по-немецки слово liegt нужно.\nКак после mit: der и das становятся dem, а die становится der.\nDie Brille liegt im Auto. — «Очки лежат в машине.»\nЧитается: ди бри́ле ликт им а́уто\nСлово Brille значит «очки». Слово Auto — «машина».\nСлово im — это in и dem вместе.\nБыло das Auto, стало im Auto.",
+        "uk": "Дивіться, як сказати «Ключ лежить на столі».\nDer Schlüssel liegt auf dem Tisch. — «Ключ лежить на столі.»\nЧитається: дер шлю́сель лікт ауф дем тіш\nСлово Schlüssel означає «ключ». Слово liegt — «лежить». Слово auf — «на».\nСлово Tisch означає «стіл».\nБуло der Tisch, стало auf dem Tisch.\nDer Pass liegt in der Tasche. — «Паспорт у сумці.»\nЧитається: дер пас лікт ін дер та́ше\nСлово Pass означає «паспорт». Слово in — «у».\nБуло die Tasche, стало in der Tasche.\nПо-українськи «лежить» тут не кажуть («паспорт у сумці»), а по-німецьки слово liegt потрібне.\nЯк після mit: der і das стають dem, а die стає der.\nDie Brille liegt im Auto. — «Окуляри лежать у машині.»\nЧитається: ді брі́ле лікт ім а́уто\nСлово Brille означає «окуляри». Слово Auto — «машина».\nСлово im — це in і dem разом.\nБуло das Auto, стало im Auto.",
+        "en": "Look at how to say “The key is lying on the table”.\nDer Schlüssel liegt auf dem Tisch. — “The key is lying on the table.”\nSounds like: dair shlYOOsel leekt aoof dem tish\nThe word Schlüssel means “key”. The word liegt means “lies”.\nThe word auf means “on”. The word Tisch means “table”.\nIt was der Tisch, now it is auf dem Tisch.\nDer Pass liegt in der Tasche. — “The passport is in the bag.”\nSounds like: dair pas leekt in dair tAshe\nThe word Pass means “passport”. The word in means “in”.\nIt was die Tasche, now it is in der Tasche.\nIn English you can leave out “lies” here, but in German the word liegt is needed.\nLike after mit: der and das become dem, die becomes der.\nDie Brille liegt im Auto. — “The glasses are in the car.”\nSounds like: dee brEEle leekt im Aooto\nThe word Brille means “glasses”. The word Auto means “car”.\nThe word im is in and dem together.\nIt was das Auto, now it is im Auto."
+      },
+      "examples": [
+        {
+          "phraseId": "de:11:01",
+          "say": {
+            "ru": "дер шлю́сель ликт ауф дем тиш",
+            "uk": "дер шлю́сель лікт ауф дем тіш"
+          }
+        },
+        {
+          "phraseId": "de:11:03",
+          "say": {
+            "ru": "дер пас ликт ин дер та́ше",
+            "uk": "дер пас лікт ін дер та́ше"
+          }
+        },
+        {
+          "phraseId": "de:11:05",
+          "say": {
+            "ru": "ди бри́ле ликт им а́уто",
+            "uk": "ді брі́ле лікт ім а́уто"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ключ лежит на столе.»",
+            "uk": "Виберіть, як сказати: «Ключ лежить на столі.»",
+            "en": "Choose how to say: “The key is lying on the table.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:11:01",
+          "options": [
+            "de:11:01",
+            "de:11:03",
+            "de:11:05"
+          ],
+          "answerId": "de:11:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паспорт в сумке.»",
+            "uk": "Виберіть, як сказати: «Паспорт у сумці.»",
+            "en": "Choose how to say: “The passport is in the bag.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:03",
+          "options": [
+            "de:11:03",
+            "de:11:05",
+            "de:11:01"
+          ],
+          "answerId": "de:11:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Очки лежат в машине.»",
+            "uk": "Виберіть, як сказати: «Окуляри лежать у машині.»",
+            "en": "Choose how to say: “The glasses are in the car.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:05",
+          "options": [
+            "de:11:05",
+            "de:11:01",
+            "de:11:03"
+          ],
+          "answerId": "de:11:05"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Что висит",
+        "uk": "Що висить",
+        "en": "What hangs"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Куртка висит в прихожей».\nDie Jacke hängt im Flur. — «Куртка висит в прихожей.»\nЧитается: ди я́ке хенгт им флур\nСлово Jacke значит «куртка». Слово hängt — «висит». Слово Flur — «прихожая, коридор».\nБыло der Flur, стало im Flur.\nDas Bild hängt an der Wand. — «Картина висит на стене.»\nЧитается: дас бильт хенгт ан дер вант\nСлово Bild значит «картина». Слово Wand — «стена».\nСлово an значит «на» и «у»: висит на стене, у стены.\nБыло die Wand, стало an der Wand.\nDas Handtuch hängt an der Heizung. — «Полотенце висит на батарее.»\nЧитается: дас ха́нтух хенгт ан дер ха́йцунг\nСлово Handtuch значит «полотенце». Слово Heizung — «батарея».\nБыло die Heizung, стало an der Heizung.",
+        "uk": "Дивіться, як сказати «Куртка висить у передпокої».\nDie Jacke hängt im Flur. — «Куртка висить у передпокої.»\nЧитається: ді я́ке хенгт ім флур\nСлово Jacke означає «куртка». Слово hängt — «висить». Слово Flur — «передпокій, коридор».\nБуло der Flur, стало im Flur.\nDas Bild hängt an der Wand. — «Картина висить на стіні.»\nЧитається: дас більт хенгт ан дер вант\nСлово Bild означає «картина». Слово Wand — «стіна».\nСлово an означає «на» і «біля»: висить на стіні, біля стіни.\nБуло die Wand, стало an der Wand.\nDas Handtuch hängt an der Heizung. — «Рушник висить на батареї.»\nЧитається: дас ха́нтух хенгт ан дер ха́йцунг\nСлово Handtuch означає «рушник». Слово Heizung — «батарея».\nБуло die Heizung, стало an der Heizung.",
+        "en": "Look at how to say “The jacket is hanging in the hallway”.\nDie Jacke hängt im Flur. — “The jacket is hanging in the hallway.”\nSounds like: dee yAke khengt im floor\nThe word Jacke means “jacket”. The word hängt means “hangs”.\nThe word Flur means “hallway”.\nIt was der Flur, now it is im Flur.\nDas Bild hängt an der Wand. — “The picture is hanging on the wall.”\nSounds like: das bilt khengt an dair vant\nThe word Bild means “picture”. The word Wand means “wall”.\nThe word an means “on” and “at”: hanging on the wall, by the wall.\nIt was die Wand, now it is an der Wand.\nDas Handtuch hängt an der Heizung. — “The towel is hanging on the radiator.”\nSounds like: das khAntookh khengt an dair khAytsoong\nThe word Handtuch means “towel”. The word Heizung means “radiator”.\nIt was die Heizung, now it is an der Heizung."
+      },
+      "examples": [
+        {
+          "phraseId": "de:11:06",
+          "say": {
+            "ru": "ди я́ке хенгт им флур",
+            "uk": "ді я́ке хенгт ім флур"
+          }
+        },
+        {
+          "phraseId": "de:11:07",
+          "say": {
+            "ru": "дас бильт хенгт ан дер вант",
+            "uk": "дас більт хенгт ан дер вант"
+          }
+        },
+        {
+          "phraseId": "de:11:18",
+          "say": {
+            "ru": "дас ха́нтух хенгт ан дер ха́йцунг",
+            "uk": "дас ха́нтух хенгт ан дер ха́йцунг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Куртка висит в прихожей.»",
+            "uk": "Виберіть, як сказати: «Куртка висить у передпокої.»",
+            "en": "Choose how to say: “The jacket is hanging in the hallway.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:11:06",
+          "options": [
+            "de:11:06",
+            "de:11:07",
+            "de:11:18"
+          ],
+          "answerId": "de:11:06"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Картина висит на стене.»",
+            "uk": "Виберіть, як сказати: «Картина висить на стіні.»",
+            "en": "Choose how to say: “The picture is hanging on the wall.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:07",
+          "options": [
+            "de:11:07",
+            "de:11:18",
+            "de:11:06"
+          ],
+          "answerId": "de:11:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Полотенце висит на батарее.»",
+            "uk": "Виберіть, як сказати: «Рушник висить на батареї.»",
+            "en": "Choose how to say: “The towel is hanging on the radiator.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:18",
+          "options": [
+            "de:11:18",
+            "de:11:06",
+            "de:11:07"
+          ],
+          "answerId": "de:11:18"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Кто где сидит",
+        "uk": "Хто де сидить",
+        "en": "Who sits where"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Том сидит на стуле».\nTom sitzt auf dem Stuhl. — «Том сидит на стуле.»\nЧитается: том зитст ауф дем штуль\nСлово sitzt значит «сидит». Слово Stuhl — «стул».\nБыло der Stuhl, стало auf dem Stuhl.\nAnna sitzt auf der Bank. — «Анна сидит на скамейке.»\nЧитается: А́нна зитст ауф дер банк\nСлово Bank здесь значит «скамейка». В уроке 10 слово Bank значило «банк». Смотрите на смысл фразы.\nБыло die Bank, стало auf der Bank.\nDie Kinder sitzen im Bus. — «Дети сидят в автобусе.»\nЧитается: ди ки́ндер зи́цен им бус\nСлово sitzen значит «сидят».\nСлова sitzt и sitzen — одно слово: «сидит», «сидят».\nБыло der Bus, стало im Bus.",
+        "uk": "Дивіться, як сказати «Том сидить на стільці».\nTom sitzt auf dem Stuhl. — «Том сидить на стільці.»\nЧитається: том зітст ауф дем штуль\nСлово sitzt означає «сидить». Слово Stuhl — «стілець».\nБуло der Stuhl, стало auf dem Stuhl.\nAnna sitzt auf der Bank. — «Анна сидить на лавці.»\nЧитається: А́нна зітст ауф дер банк\nСлово Bank тут означає «лавка». В уроці 10 слово Bank означало «банк». Дивіться на зміст фрази.\nБуло die Bank, стало auf der Bank.\nDie Kinder sitzen im Bus. — «Діти сидять у автобусі.»\nЧитається: ді кі́ндер зі́цен ім бус\nСлово sitzen означає «сидять».\nСлова sitzt і sitzen — одне слово: «сидить», «сидять».\nБуло der Bus, стало im Bus.",
+        "en": "Look at how to say “Tom is sitting on the chair”.\nTom sitzt auf dem Stuhl. — “Tom is sitting on the chair.”\nSounds like: tom zitst aoof dem shtool\nThe word sitzt means “sits”. The word Stuhl means “chair”.\nIt was der Stuhl, now it is auf dem Stuhl.\nAnna sitzt auf der Bank. — “Anna is sitting on the bench.”\nSounds like: Anna zitst aoof dair bank\nThe word Bank here means “bench”. In lesson 10 Bank meant “bank”. Look at the meaning of the phrase.\nIt was die Bank, now it is auf der Bank.\nDie Kinder sitzen im Bus. — “The children are sitting in the bus.”\nSounds like: dee kInder zItsen im boos\nThe word sitzen means “they sit”.\nThe words sitzt and sitzen are one word: “sits”, “sit”.\nIt was der Bus, now it is im Bus."
+      },
+      "examples": [
+        {
+          "phraseId": "de:11:08",
+          "say": {
+            "ru": "том зитст ауф дем штуль",
+            "uk": "том зітст ауф дем штуль"
+          }
+        },
+        {
+          "phraseId": "de:11:09",
+          "say": {
+            "ru": "А́нна зитст ауф дер банк",
+            "uk": "А́нна зітст ауф дер банк"
+          }
+        },
+        {
+          "phraseId": "de:11:10",
+          "say": {
+            "ru": "ди ки́ндер зи́цен им бус",
+            "uk": "ді кі́ндер зі́цен ім бус"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Том сидит на стуле.»",
+            "uk": "Виберіть, як сказати: «Том сидить на стільці.»",
+            "en": "Choose how to say: “Tom is sitting on the chair.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:11:08",
+          "options": [
+            "de:11:08",
+            "de:11:09",
+            "de:11:10"
+          ],
+          "answerId": "de:11:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна сидит на скамейке.»",
+            "uk": "Виберіть, як сказати: «Анна сидить на лавці.»",
+            "en": "Choose how to say: “Anna is sitting on the bench.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:09",
+          "options": [
+            "de:11:09",
+            "de:11:08",
+            "de:11:10"
+          ],
+          "answerId": "de:11:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Дети сидят в автобусе.»",
+            "uk": "Виберіть, як сказати: «Діти сидять у автобусі.»",
+            "en": "Choose how to say: “The children are sitting in the bus.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:10",
+          "options": [
+            "de:11:10",
+            "de:11:08",
+            "de:11:09"
+          ],
+          "answerId": "de:11:10"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Что стоит",
+        "uk": "Що стоїть",
+        "en": "What stands"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Велосипед стоит перед дверью».\nDas Fahrrad steht vor der Tür. — «Велосипед стоит перед дверью.»\nЧитается: дас фа́ррат штет фор дер тюр\nСлово steht значит «стоит». Слово vor — «перед». Слово Tür — «дверь».\nБыло die Tür, стало vor der Tür.\nDer Koffer steht neben der Tür. — «Чемодан стоит рядом с дверью.»\nЧитается: дер ко́фер штет не́бен дер тюр\nСлово Koffer значит «чемодан». Слово neben — «рядом с».\nБыло die Tür, стало neben der Tür.\nDie Kiste steht hinter dem Schrank. — «Ящик стоит за шкафом.»\nЧитается: ди ки́сте штет хи́нтер дем шранк\nСлово Kiste значит «ящик». Слово hinter — «за». Слово Schrank — «шкаф».\nБыло der Schrank, стало hinter dem Schrank.",
+        "uk": "Дивіться, як сказати «Велосипед стоїть перед дверима».\nDas Fahrrad steht vor der Tür. — «Велосипед стоїть перед дверима.»\nЧитається: дас фа́ррат штет фор дер тюр\nСлово steht означає «стоїть». Слово vor — «перед». Слово Tür — «двері».\nБуло die Tür, стало vor der Tür.\nDer Koffer steht neben der Tür. — «Валіза стоїть поруч із дверима.»\nЧитається: дер ко́фер штет не́бен дер тюр\nСлово Koffer означає «валіза». Слово neben — «поруч із».\nБуло die Tür, стало neben der Tür.\nDie Kiste steht hinter dem Schrank. — «Ящик стоїть за шафою.»\nЧитається: ді кі́сте штет хі́нтер дем шранк\nСлово Kiste означає «ящик». Слово hinter — «за». Слово Schrank — «шафа».\nБуло der Schrank, стало hinter dem Schrank.",
+        "en": "Look at how to say “The bike is standing in front of the door”.\nDas Fahrrad steht vor der Tür. — “The bike is standing in front of the door.”\nSounds like: das fArrat shtet for dair tYOOr\nThe word steht means “stands”. The word vor means “in front of”.\nThe word Tür means “door”.\nIt was die Tür, now it is vor der Tür.\nDer Koffer steht neben der Tür. — “The suitcase is standing next to the door.”\nSounds like: dair kOfer shtet nEben dair tYOOr\nThe word Koffer means “suitcase”. The word neben means “next to”.\nIt was die Tür, now it is neben der Tür.\nDie Kiste steht hinter dem Schrank. — “The box is standing behind the cabinet.”\nSounds like: dee kIste shtet khInter dem shrank\nThe word Kiste means “box”. The word hinter means “behind”.\nThe word Schrank means “cabinet”.\nIt was der Schrank, now it is hinter dem Schrank."
+      },
+      "examples": [
+        {
+          "phraseId": "de:11:11",
+          "say": {
+            "ru": "дас фа́ррат штет фор дер тюр",
+            "uk": "дас фа́ррат штет фор дер тюр"
+          }
+        },
+        {
+          "phraseId": "de:11:12",
+          "say": {
+            "ru": "дер ко́фер штет не́бен дер тюр",
+            "uk": "дер ко́фер штет не́бен дер тюр"
+          }
+        },
+        {
+          "phraseId": "de:11:15",
+          "say": {
+            "ru": "ди ки́сте штет хи́нтер дем шранк",
+            "uk": "ді кі́сте штет хі́нтер дем шранк"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Велосипед стоит перед дверью.»",
+            "uk": "Виберіть, як сказати: «Велосипед стоїть перед дверима.»",
+            "en": "Choose how to say: “The bike is standing in front of the door.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:11:11",
+          "options": [
+            "de:11:11",
+            "de:11:12",
+            "de:11:15"
+          ],
+          "answerId": "de:11:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чемодан стоит рядом с дверью.»",
+            "uk": "Виберіть, як сказати: «Валіза стоїть поруч із дверима.»",
+            "en": "Choose how to say: “The suitcase is standing next to the door.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:12",
+          "options": [
+            "de:11:12",
+            "de:11:15",
+            "de:11:11"
+          ],
+          "answerId": "de:11:12"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ящик стоит за шкафом.»",
+            "uk": "Виберіть, як сказати: «Ящик стоїть за шафою.»",
+            "en": "Choose how to say: “The box is standing behind the cabinet.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:15",
+          "options": [
+            "de:11:15",
+            "de:11:11",
+            "de:11:12"
+          ],
+          "answerId": "de:11:15"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Над и под",
+        "uk": "Над і під",
+        "en": "Above and under"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Зеркало висит над раковиной».\nDer Spiegel hängt über dem Waschbecken. — «Зеркало висит над раковиной.»\nЧитается: дер шпи́гель хенгт ю́бер дем ва́шбекен\nСлово Spiegel значит «зеркало». Слово über — «над». Слово Waschbecken — «раковина».\nБыло das Waschbecken, стало über dem Waschbecken.\nDie Uhr hängt über der Tür. — «Часы висят над дверью.»\nЧитается: ди ур хенгт ю́бер дер тюр\nСлово Uhr значит «часы».\nБыло die Tür, стало über der Tür.\nDer Ball liegt unter dem Bett. — «Мяч лежит под кроватью.»\nЧитается: дер баль ликт у́нтер дем бет\nСлово Ball значит «мяч». Слово unter — «под». Слово Bett — «кровать».\nБыло das Bett, стало unter dem Bett.",
+        "uk": "Дивіться, як сказати «Дзеркало висить над раковиною».\nDer Spiegel hängt über dem Waschbecken. — «Дзеркало висить над раковиною.»\nЧитається: дер шпі́гель хенгт ю́бер дем ва́шбекен\nСлово Spiegel означає «дзеркало». Слово über — «над». Слово Waschbecken — «раковина».\nБуло das Waschbecken, стало über dem Waschbecken.\nDie Uhr hängt über der Tür. — «Годинник висить над дверима.»\nЧитається: ді ур хенгт ю́бер дер тюр\nСлово Uhr означає «годинник».\nБуло die Tür, стало über der Tür.\nDer Ball liegt unter dem Bett. — «М'яч лежить під ліжком.»\nЧитається: дер баль лікт у́нтер дем бет\nСлово Ball означає «м’яч». Слово unter — «під». Слово Bett — «ліжко».\nБуло das Bett, стало unter dem Bett.",
+        "en": "Look at how to say “The mirror is hanging above the sink”.\nDer Spiegel hängt über dem Waschbecken. — “The mirror is hanging above the sink.”\nSounds like: dair shpEEgel khengt YOOber dem vAshbeken\nThe word Spiegel means “mirror”. The word über means “above”.\nThe word Waschbecken means “sink”.\nIt was das Waschbecken, now it is über dem Waschbecken.\nDie Uhr hängt über der Tür. — “The clock is hanging above the door.”\nSounds like: dee oor khengt YOOber dair tYOOr\nThe word Uhr means “clock”.\nIt was die Tür, now it is über der Tür.\nDer Ball liegt unter dem Bett. — “The ball is lying under the bed.”\nSounds like: dair bal leekt OOnter dem bet\nThe word Ball means “ball”. The word unter means “under”.\nThe word Bett means “bed”.\nIt was das Bett, now it is unter dem Bett."
+      },
+      "examples": [
+        {
+          "phraseId": "de:11:16",
+          "say": {
+            "ru": "дер шпи́гель хенгт ю́бер дем ва́шбекен",
+            "uk": "дер шпі́гель хенгт ю́бер дем ва́шбекен"
+          }
+        },
+        {
+          "phraseId": "de:11:17",
+          "say": {
+            "ru": "ди ур хенгт ю́бер дер тюр",
+            "uk": "ді ур хенгт ю́бер дер тюр"
+          }
+        },
+        {
+          "phraseId": "de:11:19",
+          "say": {
+            "ru": "дер баль ликт у́нтер дем бет",
+            "uk": "дер баль лікт у́нтер дем бет"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Зеркало висит над раковиной.»",
+            "uk": "Виберіть, як сказати: «Дзеркало висить над раковиною.»",
+            "en": "Choose how to say: “The mirror is hanging above the sink.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:11:16",
+          "options": [
+            "de:11:16",
+            "de:11:17",
+            "de:11:19"
+          ],
+          "answerId": "de:11:16"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Часы висят над дверью.»",
+            "uk": "Виберіть, як сказати: «Годинник висить над дверима.»",
+            "en": "Choose how to say: “The clock is hanging above the door.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:17",
+          "options": [
+            "de:11:17",
+            "de:11:16",
+            "de:11:19"
+          ],
+          "answerId": "de:11:17"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мяч лежит под кроватью.»",
+            "uk": "Виберіть, як сказати: «М'яч лежить під ліжком.»",
+            "en": "Choose how to say: “The ball is lying under the bed.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:19",
+          "options": [
+            "de:11:19",
+            "de:11:17",
+            "de:11:16"
+          ],
+          "answerId": "de:11:19"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "title": {
+        "ru": "Где я",
+        "uk": "Де я",
+        "en": "Where I am"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я на кухне».\nIch bin in der Küche. — «Я на кухне.»\nЧитается: их бин ин дер кю́хе\nСлово bin значит «я нахожусь».\nПо-русски слово «нахожусь» часто не говорят, а по-немецки bin нужно.\nБыло die Küche, стало in der Küche.\nAnna ist im Garten. — «Анна в саду.»\nЧитается: А́нна ист им га́ртен\nСлово ist значит «находится». Слово Garten — «сад».\nБыло der Garten, стало im Garten.\nIhr seid am Bahnhof. — «Вы на вокзале.»\nЧитается: ир зайт ам ба́нхоф\nСлово seid значит «находитесь». Слово Bahnhof — «вокзал».\nСлово am — это an и dem вместе. Здесь am Bahnhof — «на вокзале».\nБыло der Bahnhof, стало am Bahnhof.",
+        "uk": "Дивіться, як сказати «Я на кухні».\nIch bin in der Küche. — «Я на кухні.»\nЧитається: іх бін ін дер кю́хе\nСлово bin означає «я перебуваю».\nПо-українськи слово «перебуваю» часто не кажуть, а по-німецьки bin потрібне.\nБуло die Küche, стало in der Küche.\nAnna ist im Garten. — «Анна в саду.»\nЧитається: А́нна іст ім га́ртен\nСлово ist означає «перебуває». Слово Garten — «сад».\nБуло der Garten, стало im Garten.\nIhr seid am Bahnhof. — «Ви на вокзалі.»\nЧитається: ір зайт ам ба́нхоф\nСлово seid означає «перебуваєте». Слово Bahnhof — «вокзал».\nСлово am — це an і dem разом. Тут am Bahnhof — «на вокзалі».\nБуло der Bahnhof, стало am Bahnhof.",
+        "en": "Look at how to say “I am in the kitchen”.\nIch bin in der Küche. — “I am in the kitchen.”\nSounds like: eekh been in dair kYOOkhe\nThe word bin means “I am (somewhere)”.\nIn English you do not always say “am located”, but in German bin is needed.\nIt was die Küche, now it is in der Küche.\nAnna ist im Garten. — “Anna is in the garden.”\nSounds like: Anna eest im gArten\nThe word ist means “is (somewhere)”. The word Garten means “garden”.\nIt was der Garten, now it is im Garten.\nIhr seid am Bahnhof. — “You are at the station.”\nSounds like: eer zayt am bAnhof\nThe word seid means “you are (somewhere)”. The word Bahnhof means “station”.\nThe word am is an and dem together. Here am Bahnhof means “at the station”.\nIt was der Bahnhof, now it is am Bahnhof."
+      },
+      "examples": [
+        {
+          "phraseId": "de:11:21",
+          "say": {
+            "ru": "их бин ин дер кю́хе",
+            "uk": "іх бін ін дер кю́хе"
+          }
+        },
+        {
+          "phraseId": "de:11:23",
+          "say": {
+            "ru": "А́нна ист им га́ртен",
+            "uk": "А́нна іст ім га́ртен"
+          }
+        },
+        {
+          "phraseId": "de:11:26",
+          "say": {
+            "ru": "ир зайт ам ба́нхоф",
+            "uk": "ір зайт ам ба́нхоф"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я на кухне.»",
+            "uk": "Виберіть, як сказати: «Я на кухні.»",
+            "en": "Choose how to say: “I am in the kitchen.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:11:21",
+          "options": [
+            "de:11:21",
+            "de:11:23",
+            "de:11:26"
+          ],
+          "answerId": "de:11:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Анна в саду.»",
+            "uk": "Виберіть, як сказати: «Анна в саду.»",
+            "en": "Choose how to say: “Anna is in the garden.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:23",
+          "options": [
+            "de:11:23",
+            "de:11:26",
+            "de:11:21"
+          ],
+          "answerId": "de:11:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы на вокзале.»",
+            "uk": "Виберіть, як сказати: «Ви на вокзалі.»",
+            "en": "Choose how to say: “You are at the station.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:26",
+          "options": [
+            "de:11:26",
+            "de:11:21",
+            "de:11:23"
+          ],
+          "answerId": "de:11:26"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "title": {
+        "ru": "Спрашиваем, где что",
+        "uk": "Питаємо, де що",
+        "en": "Asking where things are"
+      },
+      "text": {
+        "ru": "Смотрите, как спросить «Где лежит удостоверение?».\nWo liegt der Ausweis? — «Где лежит удостоверение?»\nЧитается: во ликт дер а́усвайс\nСлово Wo значит «где». Слово Ausweis — «удостоверение».\nВопрос начинается со слова Wo: сначала «где», потом liegt, потом «что».\nDer Löffel liegt in der Schublade. — «Ложка в выдвижном ящике.»\nЧитается: дер лэ́фель ликт ин дер шу́бладе\nСлово Löffel значит «ложка». Слово Schublade — «выдвижной ящик».\nБыло die Schublade, стало in der Schublade.\nSteht die Tasse auf dem Regal? — «Чашка стоит на полке?»\nЧитается: штет ди та́се ауф дем рега́ль\nСлово Tasse значит «чашка». Слово Regal — «полка».\nСлово Steht стоит первым — значит, это вопрос.\nБыло das Regal, стало auf dem Regal.\nIst die Kasse hinter der Treppe? — «Касса за лестницей?»\nЧитается: ист ди ка́се хи́нтер дер тре́пе\nСлово Treppe значит «лестница».\nЗдесь первым стоит Ist — это тоже вопрос.",
+        "uk": "Дивіться, як запитати «Де лежить посвідчення?».\nWo liegt der Ausweis? — «Де лежить посвідчення?»\nЧитається: во лікт дер а́усвайс\nСлово Wo означає «де». Слово Ausweis — «посвідчення».\nПитання починається зі слова Wo: спочатку «де», потім liegt, потім «що».\nDer Löffel liegt in der Schublade. — «Ложка у шухляді.»\nЧитається: дер ле́фель лікт ін дер шу́бладе\nСлово Löffel означає «ложка». Слово Schublade — «висувна шухляда».\nБуло die Schublade, стало in der Schublade.\nSteht die Tasse auf dem Regal? — «Чашка стоїть на полиці?»\nЧитається: штет ді та́се ауф дем рега́ль\nСлово Tasse означає «чашка». Слово Regal — «полиця».\nСлово Steht стоїть першим — отже, це питання.\nБуло das Regal, стало auf dem Regal.\nIst die Kasse hinter der Treppe? — «Каса за сходами?»\nЧитається: іст ді ка́се хі́нтер дер тре́пе\nСлово Treppe означає «сходи».\nТут першим стоїть Ist — це теж питання.",
+        "en": "Look at how to ask “Where is the ID?”.\nWo liegt der Ausweis? — “Where is the ID?”\nSounds like: vo leekt dair Aoosvays\nThe word Wo means “where”. The word Ausweis means “ID card”.\nThe question begins with the word Wo: first “where”, then liegt, then “what”.\nDer Löffel liegt in der Schublade. — “The spoon is in the drawer.”\nSounds like: dair lEfel leekt in dair shOOblade\nThe word Löffel means “spoon”. The word Schublade means “drawer”.\nIt was die Schublade, now it is in der Schublade.\nSteht die Tasse auf dem Regal? — “Is the cup standing on the shelf?”\nSounds like: shtet dee tAse aoof dem regAl\nThe word Tasse means “cup”. The word Regal means “shelf”.\nThe word Steht comes first — so it is a question.\nIt was das Regal, now it is auf dem Regal.\nIst die Kasse hinter der Treppe? — “Is the checkout behind the stairs?”\nSounds like: ist dee kAse khInter dair trEpe\nThe word Treppe means “stairs”.\nHere Ist comes first — this is also a question."
+      },
+      "examples": [
+        {
+          "phraseId": "de:11:31",
+          "say": {
+            "ru": "во ликт дер а́усвайс",
+            "uk": "во лікт дер а́усвайс"
+          }
+        },
+        {
+          "phraseId": "de:11:47",
+          "say": {
+            "ru": "дер лэ́фель ликт ин дер шу́бладе",
+            "uk": "дер ле́фель лікт ін дер шу́бладе"
+          }
+        },
+        {
+          "phraseId": "de:11:40",
+          "say": {
+            "ru": "штет ди та́се ауф дем рега́ль",
+            "uk": "штет ді та́се ауф дем рега́ль"
+          }
+        },
+        {
+          "phraseId": "de:11:37",
+          "say": {
+            "ru": "ист ди ка́се хи́нтер дер тре́пе",
+            "uk": "іст ді ка́се хі́нтер дер тре́пе"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Где лежит удостоверение?»",
+            "uk": "Виберіть, як сказати: «Де лежить посвідчення?»",
+            "en": "Choose how to say: “Where is the ID?”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:11:31",
+          "options": [
+            "de:11:31",
+            "de:11:47",
+            "de:11:40"
+          ],
+          "answerId": "de:11:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ложка в выдвижном ящике.»",
+            "uk": "Виберіть, як сказати: «Ложка у шухляді.»",
+            "en": "Choose how to say: “The spoon is in the drawer.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:47",
+          "options": [
+            "de:11:47",
+            "de:11:31",
+            "de:11:37"
+          ],
+          "answerId": "de:11:47"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чашка стоит на полке?»",
+            "uk": "Виберіть, як сказати: «Чашка стоїть на полиці?»",
+            "en": "Choose how to say: “Is the cup standing on the shelf?”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:40",
+          "options": [
+            "de:11:40",
+            "de:11:37",
+            "de:11:47"
+          ],
+          "answerId": "de:11:40"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "title": {
+        "ru": "Ещё места",
+        "uk": "Ще місця",
+        "en": "More places"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Почта находится между банком и гостиницей».\nDie Post liegt zwischen der Bank und dem Hotel. — «Почта находится между банком и гостиницей.»\nЧитается: ди пост ликт цви́шен дер банк унт дем хоте́ль\nСлово liegt здесь значит «находится».\nСлово zwischen значит «между».\nСлово Bank здесь значит «банк».\nСлово und значит «и». Слово Hotel — «гостиница».\nБыли die Bank и das Hotel, стало zwischen der Bank und dem Hotel.\nDer Bus hält an der Ecke. — «Автобус останавливается на углу.»\nЧитается: дер бус хельт ан дер э́ке\nСлово hält значит «останавливается». Слово Ecke — «угол».\nБыло die Ecke, стало an der Ecke.\nСлова an der Ecke значат «на углу».\nWir treffen uns am Eingang. — «Мы встречаемся у входа.»\nЧитается: вир тре́фен унс ам а́йнганг\nСлова treffen uns вместе значат «встречаемся».\nСлово Eingang значит «вход».\nБыло der Eingang, стало am Eingang.\nСлова am Eingang значат «у входа».",
+        "uk": "Дивіться, як сказати «Пошта знаходиться між банком та готелем».\nDie Post liegt zwischen der Bank und dem Hotel. — «Пошта знаходиться між банком та готелем.»\nЧитається: ді пост лікт цві́шен дер банк унт дем хоте́ль\nСлово liegt тут означає «знаходиться».\nСлово zwischen означає «між».\nСлово Bank тут означає «банк».\nСлово und означає «і». Слово Hotel — «готель».\nБули die Bank і das Hotel, стало zwischen der Bank und dem Hotel.\nDer Bus hält an der Ecke. — «Автобус зупиняється на розі.»\nЧитається: дер бус хельт ан дер е́ке\nСлово hält означає «зупиняється». Слово Ecke — «ріг, кут».\nБуло die Ecke, стало an der Ecke.\nСлова an der Ecke означають «на розі».\nWir treffen uns am Eingang. — «Ми зустрічаємось біля входу.»\nЧитається: вір тре́фен унс ам а́йнганг\nСлова treffen uns разом означають «зустрічаємось».\nСлово Eingang означає «вхід».\nБуло der Eingang, стало am Eingang.\nСлова am Eingang означають «біля входу».",
+        "en": "Look at how to say “The post office is between the bank and the hotel”.\nDie Post liegt zwischen der Bank und dem Hotel. — “The post office is between the bank and the hotel.”\nSounds like: dee post leekt tsvIshen dair bank oont dem hotEl\nThe word liegt here means “is located”.\nThe word zwischen means “between”.\nThe word Bank here means “bank”.\nThe word und means “and”. The word Hotel means “hotel”.\nIt was die Bank and das Hotel, now zwischen der Bank und dem Hotel.\nDer Bus hält an der Ecke. — “The bus stops at the corner.”\nSounds like: dair boos helt an dair Eke\nThe word hält means “stops”. The word Ecke means “corner”.\nIt was die Ecke, now it is an der Ecke.\nThe words an der Ecke mean “at the corner”.\nWir treffen uns am Eingang. — “We meet at the entrance.”\nSounds like: veer trEfen oons am Aynggang\nThe words treffen uns together mean “we meet”.\nThe word Eingang means “entrance”.\nIt was der Eingang, now it is am Eingang.\nThe words am Eingang mean “at the entrance”."
+      },
+      "examples": [
+        {
+          "phraseId": "de:11:41",
+          "say": {
+            "ru": "ди пост ликт цви́шен дер банк унт дем хоте́ль",
+            "uk": "ді пост лікт цві́шен дер банк унт дем хоте́ль"
+          }
+        },
+        {
+          "phraseId": "de:11:43",
+          "say": {
+            "ru": "дер бус хельт ан дер э́ке",
+            "uk": "дер бус хельт ан дер е́ке"
+          }
+        },
+        {
+          "phraseId": "de:11:44",
+          "say": {
+            "ru": "вир тре́фен унс ам а́йнганг",
+            "uk": "вір тре́фен унс ам а́йнганг"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Почта находится между банком и гостиницей.»",
+            "uk": "Виберіть, як сказати: «Пошта знаходиться між банком та готелем.»",
+            "en": "Choose how to say: “The post office is between the bank and the hotel.”"
+          },
+          "sample": true,
+          "promptPhraseId": "de:11:41",
+          "options": [
+            "de:11:41",
+            "de:11:43",
+            "de:11:44"
+          ],
+          "answerId": "de:11:41"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Автобус останавливается на углу.»",
+            "uk": "Виберіть, як сказати: «Автобус зупиняється на розі.»",
+            "en": "Choose how to say: “The bus stops at the corner.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:43",
+          "options": [
+            "de:11:43",
+            "de:11:44",
+            "de:11:41"
+          ],
+          "answerId": "de:11:43"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы встречаемся у входа.»",
+            "uk": "Виберіть, як сказати: «Ми зустрічаємось біля входу.»",
+            "en": "Choose how to say: “We meet at the entrance.”"
+          },
+          "sample": false,
+          "promptPhraseId": "de:11:44",
+          "options": [
+            "de:11:44",
+            "de:11:41",
+            "de:11:43"
+          ],
+          "answerId": "de:11:44"
+        }
+      ]
+    }
+  ]
+}

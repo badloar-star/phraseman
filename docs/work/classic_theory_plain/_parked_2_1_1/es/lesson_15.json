@@ -1,0 +1,492 @@
+{
+  "lang": "es",
+  "lesson": 15,
+  "title": {
+    "ru": "Я могу",
+    "en": "I can"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Я могу войти",
+        "en": "I can come in"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я могу войти в магазин».\nPuedo entrar en la tienda. — «Я могу войти в магазин.»\nЧитается: пуэ́до энтра́р эн ла тье́нда.\nСлово puedo значит «я могу». Слово entrar значит «войти».\nPuedes entrar en la tienda. — «Ты можешь войти в магазин.»\nСлово puedes значит «ты можешь». Слово entrar не меняется.\n¿Puedo entrar ahora? — «Можно мне сейчас войти?»\nСлово ahora значит «сейчас».\nPuedes entrar en la oficina. — «Ты можешь войти в офис.»",
+        "en": "Look at how to say “I can enter the shop”.\nPuedo entrar en la tienda. — “I can enter the shop.”\nThe word puedo means “I can”. The word entrar means “to enter”.\nPuedes entrar en la tienda. — “You can enter the shop.”\nThe word puedes means “you can”. The word entrar does not change.\n¿Puedo entrar ahora? — “May I come in now?”\nThe word ahora means “now”.\nPuedes entrar en la oficina. — “You can enter the office.”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:15:01",
+          "say": {
+            "ru": "пуэ́до энтра́р эн ла тье́нда",
+            "uk": "пуе́до ентра́р ен ла тье́нда"
+          }
+        },
+        {
+          "phraseId": "es:15:02",
+          "say": {
+            "ru": "пуэ́дэс энтра́р эн ла тье́нда",
+            "uk": "пуе́дес ентра́р ен ла тье́нда"
+          }
+        },
+        {
+          "phraseId": "es:15:03",
+          "say": {
+            "ru": "пуэ́до энтра́р ао́ра",
+            "uk": "пуе́до ентра́р ао́ра"
+          }
+        },
+        {
+          "phraseId": "es:15:04",
+          "say": {
+            "ru": "пуэ́дэс энтра́р эн ла офиси́на",
+            "uk": "пуе́дес ентра́р ен ла офісі́на"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я могу войти в магазин»",
+            "uk": "Виберіть, як сказати: «Я можу зайти до магазину»",
+            "en": "Choose how to say: “I can enter the shop”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:15:01",
+          "options": [
+            "es:15:01",
+            "es:15:02",
+            "es:15:04"
+          ],
+          "answerId": "es:15:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можно мне сейчас войти?»",
+            "uk": "Виберіть, як сказати: «Можна мені зараз зайти?»",
+            "en": "Choose how to say: “May I come in now?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:03",
+          "options": [
+            "es:15:03",
+            "es:15:01",
+            "es:15:02"
+          ],
+          "answerId": "es:15:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты можешь войти в офис»",
+            "uk": "Виберіть, як сказати: «Ти можеш зайти до офісу»",
+            "en": "Choose how to say: “You can enter the office”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:04",
+          "options": [
+            "es:15:04",
+            "es:15:02",
+            "es:15:01"
+          ],
+          "answerId": "es:15:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Ждать и платить",
+        "en": "Wait and pay"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана может подождать здесь».\nAna puede esperar aquí. — «Ана может подождать здесь.»\nЧитается: А́на пуэ́дэ эспэра́р аки́.\nСлово puede значит «может». Слово esperar значит «ждать».\nPodemos esperar aquí. — «Мы можем подождать здесь.»\nСлово podemos значит «мы можем». Внутри слова перемена: puedo, но podemos.\nLuis puede pagar en efectivo. — «Луис может заплатить наличными.»\nСлово pagar значит «платить». Слово efectivo значит «наличные».\nPuedes pagar con tarjeta hoy. — «Ты сегодня можешь заплатить картой.»\nСлово tarjeta значит «карта для оплаты».",
+        "en": "Look at how to say “Ana can wait here”.\nAna puede esperar aquí. — “Ana can wait here.”\nThe word puede means “can”. The word esperar means “to wait”.\nPodemos esperar aquí. — “We can wait here.”\nThe word podemos means “we can”. There is a change inside the word: puedo, but podemos.\nLuis puede pagar en efectivo. — “Luis can pay in cash.”\nThe word pagar means “to pay”. The word efectivo means “cash”.\nPuedes pagar con tarjeta hoy. — “You can pay by card today.”\nThe word tarjeta means “payment card”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:15:05",
+          "say": {
+            "ru": "А́на пуэ́дэ эспэра́р аки́",
+            "uk": "А́на пуе́де еспера́р акі́"
+          }
+        },
+        {
+          "phraseId": "es:15:06",
+          "say": {
+            "ru": "подэ́мос эспэра́р аки́",
+            "uk": "поде́мос еспера́р акі́"
+          }
+        },
+        {
+          "phraseId": "es:15:07",
+          "say": {
+            "ru": "пуэ́до эспэра́р фуэ́ра",
+            "uk": "пуе́до еспера́р фуе́ра"
+          }
+        },
+        {
+          "phraseId": "es:15:09",
+          "say": {
+            "ru": "Луи́с пуэ́дэ пага́р эн эфэкти́бо",
+            "uk": "Луі́с пуе́де пага́р ен ефекті́бо"
+          }
+        },
+        {
+          "phraseId": "es:15:10",
+          "say": {
+            "ru": "подэ́мос пага́р эн эфэкти́бо",
+            "uk": "поде́мос пага́р ен ефекті́бо"
+          }
+        },
+        {
+          "phraseId": "es:15:22",
+          "say": {
+            "ru": "пуэ́дэс пага́р кон тархэ́та ой",
+            "uk": "пуе́дес пага́р кон тархе́та ой"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана может подождать здесь»",
+            "uk": "Виберіть, як сказати: «Ана може почекати тут»",
+            "en": "Choose how to say: “Ana can wait here”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:15:05",
+          "options": [
+            "es:15:05",
+            "es:15:06",
+            "es:15:07"
+          ],
+          "answerId": "es:15:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы можем заплатить наличными»",
+            "uk": "Виберіть, як сказати: «Ми можемо заплатити готівкою»",
+            "en": "Choose how to say: “We can pay in cash”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:10",
+          "options": [
+            "es:15:10",
+            "es:15:06",
+            "es:15:09"
+          ],
+          "answerId": "es:15:10"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ты сегодня можешь заплатить картой»",
+            "uk": "Виберіть, як сказати: «Ти сьогодні можеш заплатити карткою»",
+            "en": "Choose how to say: “You can pay by card today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:22",
+          "options": [
+            "es:15:22",
+            "es:15:10",
+            "es:15:09"
+          ],
+          "answerId": "es:15:22"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Купить, отправить, отнести",
+        "en": "Buy, send, carry"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я могу открыть дверь».\nPuedo abrir la puerta. — «Я могу открыть дверь.»\nЧитается: пуэ́до абри́р ла пуэ́рта.\nAna puede comprar un billete. — «Ана может купить билет.»\nСлово comprar значит «покупать».\nPuedo escribir un mensaje. — «Я могу написать сообщение.»\nPuedes mandar la foto. — «Ты можешь отправить фотографию.»\nСлово mandar значит «отправлять».\nMis hermanos pueden llevar la maleta. — «Мои братья могут отнести чемодан.»\nСлово pueden значит «могут». Слово llevar значит «нести».\nMis hermanas pueden llevar la bolsa. — «Мои сёстры могут отнести пакет.»\nСлово bolsa значит «пакет, сумка».",
+        "en": "Look at how to say “I can open the door”.\nPuedo abrir la puerta. — “I can open the door.”\nAna puede comprar un billete. — “Ana can buy a ticket.”\nThe word comprar means “to buy”.\nPuedo escribir un mensaje. — “I can write a message.”\nPuedes mandar la foto. — “You can send the photo.”\nThe word mandar means “to send”.\nMis hermanos pueden llevar la maleta. — “My brothers can carry the suitcase.”\nThe word pueden means “can” (for several people). The word llevar means “to carry”.\nMis hermanas pueden llevar la bolsa. — “My sisters can carry the bag.”\nThe word bolsa means “bag”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:15:11",
+          "say": {
+            "ru": "пуэ́до абри́р ла пуэ́рта",
+            "uk": "пуе́до абрі́р ла пуе́рта"
+          }
+        },
+        {
+          "phraseId": "es:15:13",
+          "say": {
+            "ru": "А́на пуэ́дэ компра́р ун бийе́тэ",
+            "uk": "А́на пуе́де компра́р ун бійе́те"
+          }
+        },
+        {
+          "phraseId": "es:15:16",
+          "say": {
+            "ru": "пуэ́до эскриби́р ун мэнса́хэ",
+            "uk": "пуе́до ескрібі́р ун менса́хе"
+          }
+        },
+        {
+          "phraseId": "es:15:17",
+          "say": {
+            "ru": "пуэ́дэс манда́р ла фо́то",
+            "uk": "пуе́дес манда́р ла фо́то"
+          }
+        },
+        {
+          "phraseId": "es:15:19",
+          "say": {
+            "ru": "мис эрма́нос пуэ́дэн йэба́р ла мале́та",
+            "uk": "міс ерма́нос пуе́ден йеба́р ла мале́та"
+          }
+        },
+        {
+          "phraseId": "es:15:20",
+          "say": {
+            "ru": "мис эрма́нас пуэ́дэн йэба́р ла бо́льса",
+            "uk": "міс ерма́нас пуе́ден йеба́р ла бо́льса"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я могу открыть дверь»",
+            "uk": "Виберіть, як сказати: «Я можу відчинити двері»",
+            "en": "Choose how to say: “I can open the door”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:15:11",
+          "options": [
+            "es:15:11",
+            "es:15:13",
+            "es:15:16"
+          ],
+          "answerId": "es:15:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана может купить билет»",
+            "uk": "Виберіть, як сказати: «Ана може купити квиток»",
+            "en": "Choose how to say: “Ana can buy a ticket”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:13",
+          "options": [
+            "es:15:13",
+            "es:15:16",
+            "es:15:17"
+          ],
+          "answerId": "es:15:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои братья могут отнести чемодан»",
+            "uk": "Виберіть, як сказати: «Мої брати можуть віднести валізу»",
+            "en": "Choose how to say: “My brothers can carry the suitcase”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:19",
+          "options": [
+            "es:15:19",
+            "es:15:20",
+            "es:15:13"
+          ],
+          "answerId": "es:15:19"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Позвонить и вернуться",
+        "en": "Call and go back"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Мы сегодня можем позвонить в отель».\nPodemos llamar al hotel hoy. — «Мы сегодня можем позвонить в отель.»\nЧитается: подэ́мос йама́р аль оте́ль ой.\nСлово llamar значит «звонить». Слово al значит «в, к».\nAna puede llamar a Luis hoy. — «Ана сегодня может позвонить Луису.»\nСлово a перед Luis значит «к».\nLuis puede volver a casa hoy. — «Луис сегодня может вернуться домой.»\nСлово volver значит «вернуться». Слова a casa значат «домой».",
+        "en": "Look at how to say “Today we can call the hotel”.\nPodemos llamar al hotel hoy. — “Today we can call the hotel.”\nThe word llamar means “to call”. The word al means “to”.\nAna puede llamar a Luis hoy. — “Today Ana can call Luis.”\nThe word a before Luis means “to”.\nLuis puede volver a casa hoy. — “Today Luis can go back home.”\nThe word volver means “to go back”. The words a casa mean “home”."
+      },
+      "examples": [
+        {
+          "phraseId": "es:15:23",
+          "say": {
+            "ru": "подэ́мос йама́р аль оте́ль ой",
+            "uk": "поде́мос йама́р аль оте́ль ой"
+          }
+        },
+        {
+          "phraseId": "es:15:24",
+          "say": {
+            "ru": "А́на пуэ́дэ йама́р а Луи́с ой",
+            "uk": "А́на пуе́де йама́р а Луі́с ой"
+          }
+        },
+        {
+          "phraseId": "es:15:25",
+          "say": {
+            "ru": "Луи́с пуэ́дэ больбэ́р а ка́са ой",
+            "uk": "Луі́с пуе́де больбе́р а ка́са ой"
+          }
+        },
+        {
+          "phraseId": "es:15:26",
+          "say": {
+            "ru": "мис эрма́нас пуэ́дэн больбэ́р а ла эстасьо́н ой",
+            "uk": "міс ерма́нас пуе́ден больбе́р а ла естасьо́н ой"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы сегодня можем позвонить в отель»",
+            "uk": "Виберіть, як сказати: «Ми сьогодні можемо зателефонувати до готелю»",
+            "en": "Choose how to say: “We can call the hotel today”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:15:23",
+          "options": [
+            "es:15:23",
+            "es:15:24",
+            "es:15:25"
+          ],
+          "answerId": "es:15:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Луис сегодня может вернуться домой»",
+            "uk": "Виберіть, як сказати: «Луїс сьогодні може повернутися додому»",
+            "en": "Choose how to say: “Luis can go back home today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:25",
+          "options": [
+            "es:15:25",
+            "es:15:26",
+            "es:15:24"
+          ],
+          "answerId": "es:15:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мои сёстры сегодня могут вернуться на вокзал»",
+            "uk": "Виберіть, як сказати: «Мої сестри сьогодні можуть повернутися на вокзал»",
+            "en": "Choose how to say: “My sisters can go back to the station today”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:26",
+          "options": [
+            "es:15:26",
+            "es:15:25",
+            "es:15:23"
+          ],
+          "answerId": "es:15:26"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не могу, но, пожалуйста",
+        "en": "Cannot, but, please"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Ана не может отправить фотографию».\nAna no puede mandar la foto. — «Ана не может отправить фотографию.»\nЧитается: А́на но пуэ́дэ манда́р ла фо́то.\nСлово no ставят перед puede.\nNo podemos pagar en efectivo aquí. — «Мы не можем заплатить здесь наличными.»\nEstoy cansado, pero puedo esperar. — «Я устал, но могу подождать.»\nСлово pero значит «но».\n¿Puedes abrirla, por favor? — «Ты можешь её открыть, пожалуйста?»\nСлова por favor значат «пожалуйста». Слово abrirla — «открыть её».\n¿Puedo pagar aquí? — «Можно я заплачу здесь?»\n¿Puedes esperar fuera? — «Ты можешь подождать снаружи?»",
+        "en": "Look at how to say “Ana cannot send the photo”.\nAna no puede mandar la foto. — “Ana cannot send the photo.”\nThe word no goes before puede.\nNo podemos pagar en efectivo aquí. — “We cannot pay in cash here.”\nEstoy cansado, pero puedo esperar. — “I am tired, but I can wait.”\nThe word pero means “but”.\n¿Puedes abrirla, por favor? — “Can you open it, please?”\nThe words por favor mean “please”. The word abrirla means “to open it”.\n¿Puedo pagar aquí? — “May I pay here?”\n¿Puedes esperar fuera? — “Can you wait outside?”"
+      },
+      "examples": [
+        {
+          "phraseId": "es:15:31",
+          "say": {
+            "ru": "А́на но пуэ́дэ манда́р ла фо́то",
+            "uk": "А́на но пуе́де манда́р ла фо́то"
+          }
+        },
+        {
+          "phraseId": "es:15:33",
+          "say": {
+            "ru": "но подэ́мос пага́р эн эфэкти́бо аки́",
+            "uk": "но поде́мос пага́р ен ефекті́бо акі́"
+          }
+        },
+        {
+          "phraseId": "es:15:43",
+          "say": {
+            "ru": "эсто́й кана́до пэ́ро пуэ́до эспэра́р",
+            "uk": "есто́й кана́до пе́ро пуе́до еспера́р"
+          }
+        },
+        {
+          "phraseId": "es:15:44",
+          "say": {
+            "ru": "пуэ́дэс эспэра́р фуэ́ра",
+            "uk": "пуе́дес еспера́р фуе́ра"
+          }
+        },
+        {
+          "phraseId": "es:15:47",
+          "say": {
+            "ru": "пуэ́дэс абри́рла пор фабо́р",
+            "uk": "пуе́дес абрі́рла пор фабо́р"
+          }
+        },
+        {
+          "phraseId": "es:15:48",
+          "say": {
+            "ru": "пуэ́до пага́р аки́",
+            "uk": "пуе́до пага́р акі́"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Ана не может отправить фотографию»",
+            "uk": "Виберіть, як сказати: «Ана не може надіслати фотографію»",
+            "en": "Choose how to say: “Ana cannot send the photo”"
+          },
+          "sample": true,
+          "promptPhraseId": "es:15:31",
+          "options": [
+            "es:15:31",
+            "es:15:13",
+            "es:15:33"
+          ],
+          "answerId": "es:15:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы не можем заплатить здесь наличными»",
+            "uk": "Виберіть, як сказати: «Ми не можемо заплатити тут готівкою»",
+            "en": "Choose how to say: “We cannot pay in cash here”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:33",
+          "options": [
+            "es:15:33",
+            "es:15:31",
+            "es:15:48"
+          ],
+          "answerId": "es:15:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Можно я заплачу здесь?»",
+            "uk": "Виберіть, як сказати: «Можна я заплачу тут?»",
+            "en": "Choose how to say: “May I pay here?”"
+          },
+          "sample": false,
+          "promptPhraseId": "es:15:48",
+          "options": [
+            "es:15:48",
+            "es:15:44",
+            "es:15:33"
+          ],
+          "answerId": "es:15:48"
+        }
+      ]
+    }
+  ]
+}

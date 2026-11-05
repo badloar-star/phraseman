@@ -1,0 +1,485 @@
+{
+  "lang": "fr",
+  "lesson": 13,
+  "title": {
+    "ru": "Какой: тяжёлый, белый, новый",
+    "en": "What kind: heavy, white, new"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Тяжёлый, лёгкий",
+        "en": "Heavy, light"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Сумка тяжелая».\nLe sac est lourd. — «Сумка тяжелая.»\nЧитается: лё сак э лур.\nСлово lourd значит «тяжёлый». Слово est значит «есть», по-русски его не говорят.\nСлово le тоже не говорят.\nLa valise est lourde. — «Чемодан тяжелый.»\nСлово valise значит «чемодан». Слово lourde тоже значит «тяжёлый».\nСлово меняется, смотря о какой вещи речь.\nДля sac говорят lourd, для valise — lourde.\nLe sac est léger. — «Сумка легкая.»\nСлово léger значит «лёгкий».\nLa veste est légère. — «Куртка лёгкая.»\nСлово légère тоже значит «лёгкий».\nЗапоминайте слово вместе с названием вещи.",
+        "en": "Look at how to say “The bag is heavy”.\nLe sac est lourd. — “The bag is heavy.”\nThe word lourd means “heavy”. The word est means “is”.\nThe word le is learned together with the thing.\nLa valise est lourde. — “The suitcase is heavy.”\nThe word valise means “suitcase”. The word lourde also means “heavy”.\nThe word changes depending on which thing we talk about.\nWe say lourd for sac and lourde for valise.\nLe sac est léger. — “The bag is light.”\nThe word léger means “light”.\nLa veste est légère. — “The jacket is light.”\nThe word légère also means “light”.\nLearn the word together with the name of the thing."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:13:01",
+          "say": {
+            "ru": "лё сак э лур",
+            "uk": "льо сак е лур"
+          }
+        },
+        {
+          "phraseId": "fr:13:02",
+          "say": {
+            "ru": "ла вализ э лурд",
+            "uk": "ла валіз е лурд"
+          }
+        },
+        {
+          "phraseId": "fr:13:03",
+          "say": {
+            "ru": "лё сак э леже́",
+            "uk": "льо сак е леже́"
+          }
+        },
+        {
+          "phraseId": "fr:13:04",
+          "say": {
+            "ru": "ла вест э леже́р",
+            "uk": "ла вест е леже́р"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Сумка тяжелая»",
+            "uk": "Виберіть, як сказати: «Сумка важка»",
+            "en": "Choose how to say: “The bag is heavy”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:13:01",
+          "options": [
+            "fr:13:01",
+            "fr:13:02",
+            "fr:13:03"
+          ],
+          "answerId": "fr:13:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Чемодан тяжелый»",
+            "uk": "Виберіть, як сказати: «Валіза важка»",
+            "en": "Choose how to say: “The suitcase is heavy”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:02",
+          "options": [
+            "fr:13:02",
+            "fr:13:03",
+            "fr:13:04"
+          ],
+          "answerId": "fr:13:02"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Куртка лёгкая»",
+            "uk": "Виберіть, як сказати: «Куртка легка»",
+            "en": "Choose how to say: “The jacket is light”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:04",
+          "options": [
+            "fr:13:04",
+            "fr:13:01",
+            "fr:13:03"
+          ],
+          "answerId": "fr:13:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Цвета",
+        "en": "Colours"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать цвет.\nLe drap est blanc. — «Простыня белая.»\nЧитается: лё дра э блан.\nСлово drap значит «простыня». Слово blanc значит «белый».\nLa chemise est blanche. — «Рубашка белая.»\nСлово chemise значит «рубашка». Слово blanche тоже значит «белый».\nLe pull est vert. — «Свитер зеленый.»\nСлово pull значит «свитер». Слово vert значит «зелёный».\nLa jupe est verte. — «Юбка зеленая.»\nСлово jupe значит «юбка». Слово verte тоже значит «зелёный».\nLe bonnet est gris. — «Шапка серая.»\nLa robe est grise. — «Платье серое.»\nСлово gris значит «серый». Слово grise тоже.\nДля названий с la цвет чуть длиннее: blanc — blanche, vert — verte.",
+        "en": "Look at how to say a colour.\nLe drap est blanc. — “The sheet is white.”\nThe word drap means “sheet”. The word blanc means “white”.\nLa chemise est blanche. — “The shirt is white.”\nThe word chemise means “shirt”. The word blanche also means “white”.\nLe pull est vert. — “The sweater is green.”\nThe word pull means “sweater”. The word vert means “green”.\nLa jupe est verte. — “The skirt is green.”\nThe word jupe means “skirt”. The word verte also means “green”.\nLe bonnet est gris. — “The hat is grey.”\nLa robe est grise. — “The dress is grey.”\nThe word gris means “grey”. The word grise also does.\nFor names with la the colour is a bit longer: blanc — blanche, vert — verte."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:13:05",
+          "say": {
+            "ru": "лё дра э блан",
+            "uk": "льо дра е блан"
+          }
+        },
+        {
+          "phraseId": "fr:13:06",
+          "say": {
+            "ru": "ла шемиз э бланш",
+            "uk": "ла шеміз е бланш"
+          }
+        },
+        {
+          "phraseId": "fr:13:07",
+          "say": {
+            "ru": "лё пюль э вэр",
+            "uk": "льо пюль е вер"
+          }
+        },
+        {
+          "phraseId": "fr:13:08",
+          "say": {
+            "ru": "ла жюп э вэрт",
+            "uk": "ла жюп е верт"
+          }
+        },
+        {
+          "phraseId": "fr:13:09",
+          "say": {
+            "ru": "лё бонэ́ э гри",
+            "uk": "льо боне́ е грі"
+          }
+        },
+        {
+          "phraseId": "fr:13:10",
+          "say": {
+            "ru": "ла роб э гриз",
+            "uk": "ла роб е гріз"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Простыня белая»",
+            "uk": "Виберіть, як сказати: «Простирадло біле»",
+            "en": "Choose how to say: “The sheet is white”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:13:05",
+          "options": [
+            "fr:13:05",
+            "fr:13:07",
+            "fr:13:09"
+          ],
+          "answerId": "fr:13:05"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Юбка зеленая»",
+            "uk": "Виберіть, як сказати: «Спідниця зелена»",
+            "en": "Choose how to say: “The skirt is green”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:08",
+          "options": [
+            "fr:13:08",
+            "fr:13:06",
+            "fr:13:10"
+          ],
+          "answerId": "fr:13:08"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Платье серое»",
+            "uk": "Виберіть, як сказати: «Сукня сіра»",
+            "en": "Choose how to say: “The dress is grey”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:10",
+          "options": [
+            "fr:13:10",
+            "fr:13:05",
+            "fr:13:07"
+          ],
+          "answerId": "fr:13:10"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Новый, полный, несколько",
+        "en": "New, full, several"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Велосипед новый».\nLe vélo est neuf. — «Велосипед новый.»\nЧитается: лё вело́ э нёф.\nСлово neuf значит «новый».\nLa voiture est neuve. — «Машина новая.»\nСлово neuve тоже значит «новый».\nТеперь вещей несколько.\nLes vélos sont neufs. — «Велосипеды новые.»\nСлово les ставят, когда вещей несколько. Слово sont значит «есть» про несколько вещей.\nLa boîte est pleine. — «Коробка полная.»\nСлово boîte значит «коробка». Слово pleine значит «полный».\nLes boîtes sont pleines. — «Коробки полные.»\nЛишняя буква в конце не слышна: boîte и boîtes звучат одинаково.\nLes étagères sont trop basses. — «Полки слишком низкие.»\nСлово étagères значит «полки». Слово trop значит «слишком».",
+        "en": "Look at how to say “The bike is new”.\nLe vélo est neuf. — “The bike is new.”\nThe word neuf means “new”.\nLa voiture est neuve. — “The car is new.”\nThe word neuve also means “new”.\nNow there are several things.\nLes vélos sont neufs. — “The bikes are new.”\nThe word les is used for several things. The word sont means “are”.\nLa boîte est pleine. — “The box is full.”\nThe word boîte means “box”. The word pleine means “full”.\nLes boîtes sont pleines. — “The boxes are full.”\nThe extra letter at the end is not heard: boîte and boîtes sound the same.\nLes étagères sont trop basses. — “The shelves are too low.”\nThe word étagères means “shelves”. The word trop means “too”."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:13:11",
+          "say": {
+            "ru": "лё вело́ э нёф",
+            "uk": "льо вело́ е ньоф"
+          }
+        },
+        {
+          "phraseId": "fr:13:12",
+          "say": {
+            "ru": "ла вуатю́р э нёв",
+            "uk": "ла вуатю́р е ньов"
+          }
+        },
+        {
+          "phraseId": "fr:13:13",
+          "say": {
+            "ru": "лэ вело́ сон нёф",
+            "uk": "ле вело́ сон ньоф"
+          }
+        },
+        {
+          "phraseId": "fr:13:15",
+          "say": {
+            "ru": "ла буат э плэн",
+            "uk": "ла буат е плен"
+          }
+        },
+        {
+          "phraseId": "fr:13:16",
+          "say": {
+            "ru": "лэ буат сон плэн",
+            "uk": "ле буат сон плен"
+          }
+        },
+        {
+          "phraseId": "fr:13:47",
+          "say": {
+            "ru": "лэ зетажэ́р сон тро бас",
+            "uk": "ле зетаже́р сон тро бас"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Велосипед новый»",
+            "uk": "Виберіть, як сказати: «Велосипед новий»",
+            "en": "Choose how to say: “The bike is new”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:13:11",
+          "options": [
+            "fr:13:11",
+            "fr:13:12",
+            "fr:13:13"
+          ],
+          "answerId": "fr:13:11"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Велосипеды новые»",
+            "uk": "Виберіть, як сказати: «Велосипеди нові»",
+            "en": "Choose how to say: “The bikes are new”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:13",
+          "options": [
+            "fr:13:13",
+            "fr:13:15",
+            "fr:13:16"
+          ],
+          "answerId": "fr:13:13"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Коробки полные»",
+            "uk": "Виберіть, як сказати: «Коробки повні»",
+            "en": "Choose how to say: “The boxes are full”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:16",
+          "options": [
+            "fr:13:16",
+            "fr:13:47",
+            "fr:13:12"
+          ],
+          "answerId": "fr:13:16"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Цвет после названия",
+        "en": "The colour after the name"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «чёрная сумка».\nJe cherche un sac noir. — «Я ищу черную сумку.»\nЧитается: жё шэрш ан сак нуар.\nСлово noir значит «чёрный». Цвет стоит после названия вещи.\nJe cherche une veste noire. — «Я ищу черную куртку.»\nСлово noire тоже значит «чёрный».\nElle porte un pantalon bleu. — «На ней синие брюки.»\nСлово porte значит «носит, на ней». Слово bleu значит «синий».\nIl porte une chemise bleue. — «На нем синяя рубашка.»\nJ’achète des chaussettes noires. — «Я покупаю чёрные носки.»\nСлово chaussettes значит «носки».\nВещей несколько — и цвет другой: noire — noires.",
+        "en": "Look at how to say “a black bag”.\nJe cherche un sac noir. — “I am looking for a black bag.”\nThe word noir means “black”. The colour comes after the name of the thing.\nJe cherche une veste noire. — “I am looking for a black jacket.”\nThe word noire also means “black”.\nElle porte un pantalon bleu. — “She is wearing blue trousers.”\nThe word porte means “wears”. The word bleu means “blue”.\nIl porte une chemise bleue. — “He is wearing a blue shirt.”\nJ’achète des chaussettes noires. — “I buy black socks.”\nThe word chaussettes means “socks”.\nThere are several things, so the colour changes too: noire — noires."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:13:21",
+          "say": {
+            "ru": "жё шэрш ан сак нуар",
+            "uk": "жьо шерш ан сак нуар"
+          }
+        },
+        {
+          "phraseId": "fr:13:22",
+          "say": {
+            "ru": "жё шэрш юн вест нуар",
+            "uk": "жьо шерш юн вест нуар"
+          }
+        },
+        {
+          "phraseId": "fr:13:23",
+          "say": {
+            "ru": "эль порт ан панталон блё",
+            "uk": "ель порт ан панталон бльо"
+          }
+        },
+        {
+          "phraseId": "fr:13:24",
+          "say": {
+            "ru": "иль порт юн шемиз блё",
+            "uk": "іль порт юн шеміз бльо"
+          }
+        },
+        {
+          "phraseId": "fr:13:25",
+          "say": {
+            "ru": "жашэ́т дэ шосэ́т нуар",
+            "uk": "жаше́т де шосе́т нуар"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ищу черную сумку»",
+            "uk": "Виберіть, як сказати: «Я шукаю чорну сумку»",
+            "en": "Choose how to say: “I am looking for a black bag”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:13:21",
+          "options": [
+            "fr:13:21",
+            "fr:13:22",
+            "fr:13:23"
+          ],
+          "answerId": "fr:13:21"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «На ней синие брюки»",
+            "uk": "Виберіть, як сказати: «Вона в синіх штанях»",
+            "en": "Choose how to say: “She is wearing blue trousers”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:23",
+          "options": [
+            "fr:13:23",
+            "fr:13:24",
+            "fr:13:25"
+          ],
+          "answerId": "fr:13:23"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я покупаю чёрные носки»",
+            "uk": "Виберіть, як сказати: «Я купую чорні шкарпетки»",
+            "en": "Choose how to say: “I buy black socks”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:25",
+          "options": [
+            "fr:13:25",
+            "fr:13:21",
+            "fr:13:24"
+          ],
+          "answerId": "fr:13:25"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Большой и маленький",
+        "en": "Big and small"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «небольшой сад».\nC’est un petit jardin. — «Это небольшой сад.»\nЧитается: сэ тан пти жарде́н.\nСлово c’est значит «это». Слово petit значит «небольшой».\nСлово jardin значит «сад».\nC’est une petite cour. — «Это небольшой дворик.»\nСлово petite тоже значит «небольшой». Слово cour значит «двор».\nIl habite dans un grand appartement. — «Он живёт в большой квартире.»\nСлово grand значит «большой».\nElle travaille dans une grande salle. — «Она работает в большой комнате.»\nСлово grande тоже значит «большой».\nЭти слова стоят перед названием вещи.",
+        "en": "Look at how to say “a small garden”.\nC’est un petit jardin. — “It is a small garden.”\nThe word c’est means “it is”. The word petit means “small”.\nThe word jardin means “garden”.\nC’est une petite cour. — “It is a small yard.”\nThe word petite also means “small”. The word cour means “yard”.\nIl habite dans un grand appartement. — “He lives in a big flat.”\nThe word grand means “big”.\nElle travaille dans une grande salle. — “She works in a big room.”\nThe word grande also means “big”.\nThese words stand before the name of the thing."
+      },
+      "examples": [
+        {
+          "phraseId": "fr:13:31",
+          "say": {
+            "ru": "сэ тан пти жарде́н",
+            "uk": "се тан пті жарде́н"
+          }
+        },
+        {
+          "phraseId": "fr:13:32",
+          "say": {
+            "ru": "сэ тюн птит кур",
+            "uk": "се тюн птіт кур"
+          }
+        },
+        {
+          "phraseId": "fr:13:33",
+          "say": {
+            "ru": "иль абит дан зан гран апартема́н",
+            "uk": "іль абіт дан зан гран апартема́н"
+          }
+        },
+        {
+          "phraseId": "fr:13:34",
+          "say": {
+            "ru": "эль трава́й дан зюн град саль",
+            "uk": "ель трава́й дан зюн град саль"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Это небольшой сад»",
+            "uk": "Виберіть, як сказати: «Це маленький сад»",
+            "en": "Choose how to say: “It is a small garden”"
+          },
+          "sample": true,
+          "promptPhraseId": "fr:13:31",
+          "options": [
+            "fr:13:31",
+            "fr:13:32",
+            "fr:13:33"
+          ],
+          "answerId": "fr:13:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он живёт в большой квартире»",
+            "uk": "Виберіть, як сказати: «Він живе у великій квартирі»",
+            "en": "Choose how to say: “He lives in a big flat”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:33",
+          "options": [
+            "fr:13:33",
+            "fr:13:34",
+            "fr:13:31"
+          ],
+          "answerId": "fr:13:33"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она работает в большой комнате»",
+            "uk": "Виберіть, як сказати: «Вона працює у великій кімнаті»",
+            "en": "Choose how to say: “She works in a big room”"
+          },
+          "sample": false,
+          "promptPhraseId": "fr:13:34",
+          "options": [
+            "fr:13:34",
+            "fr:13:32",
+            "fr:13:33"
+          ],
+          "answerId": "fr:13:34"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,524 @@
+{
+  "lang": "it",
+  "lesson": 23,
+  "title": {
+    "ru": "Ему, ей, им",
+    "uk": "Йому, їй, їм",
+    "en": "To him, to her, to them"
+  },
+  "chapters": [
+    {
+      "id": "c1",
+      "title": {
+        "ru": "Ему, ей, им",
+        "uk": "Йому, їй, їм",
+        "en": "To him, to her, to them"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я разговариваю с ним».\nGli parlo. — «Я разговариваю с ним.»\nЧитается: льи па́рло.\nLe parliamo. — «Мы разговариваем с ней.»\nЧитается: ле парлья́мо.\nParlo a loro. — «Я разговариваю с ними.»\nЧитается: па́рло а ло́ро.\nСлово parlo значит «я говорю».\nСлово gli значит «ему» и «им». Слово le значит «ей».\nGli parlo — «я разговариваю с ним».\nLe parliamo — «мы разговариваем с ней».\nСлова a loro значат «с ними».",
+        "uk": "Дивіться, як сказати «Я розмовляю з ним».\nGli parlo. — «Я розмовляю з ним.»\nЧитається: льі па́рло.\nLe parliamo. — «Ми розмовляємо з нею.»\nЧитається: ле парлья́мо.\nParlo a loro. — «Я розмовляю з ними.»\nЧитається: па́рло а ло́ро.\nСлово parlo означає «я говорю».\nСлово gli означає «йому» і «їм». Слово le означає «їй».\nGli parlo — «я розмовляю з ним».\nLe parliamo — «ми розмовляємо з нею».\nСлова a loro означають «з ними».",
+        "en": "Look at how to say “I am talking to him”.\nGli parlo. — “I am talking to him.”\nLe parliamo. — “We are talking to her.”\nParlo a loro. — “I am talking to them.”\nThe word parlo means “I speak”.\nThe word gli means “to him” and “to them”. The word le means “to her”.\nGli parlo — “I am talking to him”.\nLe parliamo — “we are talking to her”.\nThe words a loro mean “to them”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:23:01",
+          "say": {
+            "ru": "льи па́рло",
+            "uk": "льі па́рло"
+          }
+        },
+        {
+          "phraseId": "it:23:02",
+          "say": {
+            "ru": "льи па́рли",
+            "uk": "льі па́рлі"
+          }
+        },
+        {
+          "phraseId": "it:23:03",
+          "say": {
+            "ru": "ле парлья́мо",
+            "uk": "ле парлья́мо"
+          }
+        },
+        {
+          "phraseId": "it:23:04",
+          "say": {
+            "ru": "па́рло а ло́ро",
+            "uk": "па́рло а ло́ро"
+          }
+        },
+        {
+          "phraseId": "it:23:05",
+          "say": {
+            "ru": "ле́й па́рла а ло́ро",
+            "uk": "ле́й па́рла а ло́ро"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я разговариваю с ним.»",
+            "uk": "Виберіть, як сказати: «Я розмовляю з ним.»",
+            "en": "Choose how to say: “I am talking to him.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:23:01",
+          "options": [
+            "it:23:01",
+            "it:23:03",
+            "it:23:04"
+          ],
+          "answerId": "it:23:01"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы разговариваем с ней.»",
+            "uk": "Виберіть, як сказати: «Ми розмовляємо з нею.»",
+            "en": "Choose how to say: “We are talking to her.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:03",
+          "options": [
+            "it:23:03",
+            "it:23:01",
+            "it:23:04"
+          ],
+          "answerId": "it:23:03"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я разговариваю с ними.»",
+            "uk": "Виберіть, як сказати: «Я розмовляю з ними.»",
+            "en": "Choose how to say: “I am talking to them.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:04",
+          "options": [
+            "it:23:04",
+            "it:23:05",
+            "it:23:01"
+          ],
+          "answerId": "it:23:04"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "title": {
+        "ru": "Писать и отвечать",
+        "uk": "Писати і відповідати",
+        "en": "Write and answer"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я ей пишу».\nIo le scrivo. — «Я ей пишу.»\nЧитается: и́о ле скри́во.\nPaolo le risponde. — «Паоло ей отвечает.»\nЧитается: па́оло ле риспо́нде.\nLe telefonerò stasera. — «Я позвоню ей сегодня вечером.»\nЧитается: ле телефонеро́ стасе́ра.\nСлово scrivo значит «я пишу»: io le scrivo — «я ей пишу».\nСлово io значит «я». Его можно не говорить.\nСлово risponde значит «отвечает»: Paolo le risponde — «Паоло ей отвечает».\nСлова le telefonerò значат «я ей позвоню».\nСлова gli telefoneremo значат «мы им позвоним».",
+        "uk": "Дивіться, як сказати «Я пишу їй».\nIo le scrivo. — «Я пишу їй.»\nЧитається: і́о ле скрі́во.\nPaolo le risponde. — «Паоло відповідає їй.»\nЧитається: па́оло ле ріспо́нде.\nLe telefonerò stasera. — «Я зателефоную їй сьогодні ввечері.»\nЧитається: ле телефонеро́ стасе́ра.\nСлово scrivo означає «я пишу»: io le scrivo — «я пишу їй».\nСлово io означає «я». Його можна не казати.\nСлово risponde означає «відповідає»: Paolo le risponde — «Паоло відповідає їй».\nСлова le telefonerò означають «я зателефоную їй».\nСлова gli telefoneremo означають «ми зателефонуємо їм».",
+        "en": "Look at how to say “I write to her”.\nIo le scrivo. — “I write to her.”\nPaolo le risponde. — “Paolo answers her.”\nLe telefonerò stasera. — “I will call her this evening.”\nThe word scrivo means “I write”: io le scrivo — “I write to her”.\nThe word io means “I”. You can leave it out.\nThe word risponde means “answers”: Paolo le risponde — “Paolo answers her”.\nThe words le telefonerò mean “I will call her”.\nThe words gli telefoneremo mean “we will call them”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:23:07",
+          "say": {
+            "ru": "и́о ле скри́во",
+            "uk": "і́о ле скрі́во"
+          }
+        },
+        {
+          "phraseId": "it:23:08",
+          "say": {
+            "ru": "льи скри́ви",
+            "uk": "льі скрі́ві"
+          }
+        },
+        {
+          "phraseId": "it:23:09",
+          "say": {
+            "ru": "па́оло ле риспо́нде",
+            "uk": "па́оло ле ріспо́нде"
+          }
+        },
+        {
+          "phraseId": "it:23:10",
+          "say": {
+            "ru": "ле́а риспо́нде а ло́ро",
+            "uk": "ле́а ріспо́нде а ло́ро"
+          }
+        },
+        {
+          "phraseId": "it:23:11",
+          "say": {
+            "ru": "ле телефонеро́ стасе́ра",
+            "uk": "ле телефонеро́ стасе́ра"
+          }
+        },
+        {
+          "phraseId": "it:23:12",
+          "say": {
+            "ru": "льи телефонере́мо дома́ни",
+            "uk": "льі телефонере́мо дома́ні"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я ей пишу.»",
+            "uk": "Виберіть, як сказати: «Я пишу їй.»",
+            "en": "Choose how to say: “I write to her.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:23:07",
+          "options": [
+            "it:23:07",
+            "it:23:08",
+            "it:23:09"
+          ],
+          "answerId": "it:23:07"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Паоло ей отвечает.»",
+            "uk": "Виберіть, як сказати: «Паоло відповідає їй.»",
+            "en": "Choose how to say: “Paolo answers her.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:09",
+          "options": [
+            "it:23:09",
+            "it:23:07",
+            "it:23:10"
+          ],
+          "answerId": "it:23:09"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Мы позвоним им завтра.»",
+            "uk": "Виберіть, як сказати: «Ми зателефонуємо їм завтра.»",
+            "en": "Choose how to say: “We will call them tomorrow.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:12",
+          "options": [
+            "it:23:12",
+            "it:23:11",
+            "it:23:08"
+          ],
+          "answerId": "it:23:12"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "title": {
+        "ru": "Дать и показать",
+        "uk": "Дати й показати",
+        "en": "Give and show"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я одалживаю ему свою ручку».\nGli presto la mia penna. — «Я одалживаю ему свою ручку.»\nЧитается: льи пре́сто ла ми́а пе́нна.\nGli mostrate l’uscita. — «Вы показываете им выход.»\nЧитается: льи мостра́те л’уши́та.\nLe regalo un libro per il suo compleanno. — «Я дарю ей книгу на день рождения.»\nЧитается: ле рега́ло ун ли́бро пер иль су́о комплеа́нно.\nСначала короткое слово: кому. Потом — что даём.\nGli presto la mia penna — «я одалживаю ему ручку».\nСлово gli — «ему», а la mia penna — «мою ручку».\nСлово mostrate значит «вы показываете»: gli mostrate l’uscita — «вы показываете им выход».\nСлово regalo значит «я дарю»: le regalo un libro — «я дарю ей книгу».\nСлово il compleanno значит «день рождения».",
+        "uk": "Дивіться, як сказати «Я позичаю йому свою ручку».\nGli presto la mia penna. — «Я позичаю йому свою ручку.»\nЧитається: льі пре́сто ла мі́а пе́нна.\nGli mostrate l’uscita. — «Ви показуєте їм вихід.»\nЧитається: льі мостра́те л’уші́та.\nLe regalo un libro per il suo compleanno. — «Я дарую їй книгу на день народження.»\nЧитається: ле рега́ло ун лі́бро пер іль су́о комплеа́нно.\nСпершу коротке слово: кому. Потім — що даємо.\nGli presto la mia penna — «я позичаю йому ручку».\nСлово gli — «йому», а la mia penna — «мою ручку».\nСлово mostrate означає «ви показуєте»: gli mostrate l’uscita — «ви показуєте їм вихід».\nСлово regalo означає «я дарую»: le regalo un libro — «я дарую їй книгу».\nСлово il compleanno означає «день народження».",
+        "en": "Look at how to say “I lend him my pen”.\nGli presto la mia penna. — “I lend him my pen.”\nGli mostrate l’uscita. — “You show them the exit.”\nLe regalo un libro per il suo compleanno.\n“I give her a book for her birthday.”\nFirst the short word: to whom. Then what we give.\nGli presto la mia penna — “I lend him my pen”.\nThe word gli is “to him”, and la mia penna is “my pen”.\nThe word mostrate means “you show”: gli mostrate l’uscita — “you show them the exit”.\nThe word regalo means “I give as a gift”: le regalo un libro — “I give her a book”.\nThe word il compleanno means “birthday”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:23:15",
+          "say": {
+            "ru": "льи пре́сто ла ми́а пе́нна",
+            "uk": "льі пре́сто ла мі́а пе́нна"
+          }
+        },
+        {
+          "phraseId": "it:23:17",
+          "say": {
+            "ru": "льи дья́мо аппунтаме́нто",
+            "uk": "льі дья́мо аппунтаме́нто"
+          }
+        },
+        {
+          "phraseId": "it:23:18",
+          "say": {
+            "ru": "льи мостра́те л’уши́та",
+            "uk": "льі мостра́те л’уші́та"
+          }
+        },
+        {
+          "phraseId": "it:23:19",
+          "say": {
+            "ru": "льи по́ртано ун биккье́ре д’а́кква",
+            "uk": "льі по́ртано ун біккье́ре д’а́кква"
+          }
+        },
+        {
+          "phraseId": "it:23:21",
+          "say": {
+            "ru": "ле рега́ло ун ли́бро пер иль су́о комплеа́нно",
+            "uk": "ле рега́ло ун лі́бро пер іль су́о комплеа́нно"
+          }
+        },
+        {
+          "phraseId": "it:23:23",
+          "say": {
+            "ru": "ле ла́шо ла ми́а кья́ве а́лла ресе́пшн",
+            "uk": "ле ла́шо ла мі́а кья́ве а́лла ресе́пшн"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я одалживаю ему свою ручку.»",
+            "uk": "Виберіть, як сказати: «Я позичаю йому свою ручку.»",
+            "en": "Choose how to say: “I lend him my pen.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:23:15",
+          "options": [
+            "it:23:15",
+            "it:23:18",
+            "it:23:19"
+          ],
+          "answerId": "it:23:15"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Вы показываете им выход.»",
+            "uk": "Виберіть, як сказати: «Ви показуєте їм вихід.»",
+            "en": "Choose how to say: “You show them the exit.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:18",
+          "options": [
+            "it:23:18",
+            "it:23:15",
+            "it:23:19"
+          ],
+          "answerId": "it:23:18"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я дарю ей книгу на день рождения.»",
+            "uk": "Виберіть, як сказати: «Я дарую їй книгу на день народження.»",
+            "en": "Choose how to say: “I give her a book for her birthday.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:21",
+          "options": [
+            "it:23:21",
+            "it:23:23",
+            "it:23:15"
+          ],
+          "answerId": "it:23:21"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "title": {
+        "ru": "Спросить, объяснить, вернуть",
+        "uk": "Запитати, пояснити, повернути",
+        "en": "Ask, explain, give back"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я объясняю им правила игры».\nGli spiego le regole del gioco. — «Я объясняю им правила игры.»\nЧитается: льи спье́го ле рего́ле дель джо́ко.\nLe restituisco la carta dopo il pagamento. — «Я возвращаю ей карту после оплаты.»\nЧитается: ле реституи́ско ла ка́рта до́по иль пагаме́нто.\nLe parlo della perdita in cucina. — «Я рассказываю ей о протечке на кухне.»\nЧитается: ле па́рло де́лла пе́рдита ин кучи́на.\nСлово chiedo значит «я спрашиваю»: le chiedo un consiglio — «я спрашиваю у неё совета».\nСлово il consiglio значит «совет».\nСлово spiego значит «я объясняю»: gli spiego le regole — «я объясняю им правила».\nСлово restituisco значит «я возвращаю»: le restituisco la carta — «я возвращаю ей карту».\nСлово il pagamento значит «оплата».\nСлово la perdita значит «протечка»: le parlo della perdita — «я рассказываю ей о протечке».",
+        "uk": "Дивіться, як сказати «Я пояснюю їм правила гри».\nGli spiego le regole del gioco. — «Я пояснюю їм правила гри.»\nЧитається: льі спье́го ле рего́ле дель джо́ко.\nLe restituisco la carta dopo il pagamento. — «Я повертаю їй картку після оплати.»\nЧитається: ле рестітуі́ско ла ка́рта до́по іль пагаме́нто.\nLe parlo della perdita in cucina. — «Я розповідаю їй про витік на кухні.»\nЧитається: ле па́рло де́лла пе́рдіта ін кучі́на.\nСлово chiedo означає «я питаю»: le chiedo un consiglio — «я прошу в неї поради».\nСлово il consiglio означає «порада».\nСлово spiego означає «я пояснюю»: gli spiego le regole — «я пояснюю їм правила».\nСлово restituisco означає «я повертаю»: le restituisco la carta — «я повертаю їй картку».\nСлово il pagamento означає «оплата».\nСлово la perdita означає «витік»: le parlo della perdita — «я розповідаю їй про витік».",
+        "en": "Look at how to say “I explain the rules of the game to them”.\nGli spiego le regole del gioco.\n“I explain the rules of the game to them.”\nLe restituisco la carta dopo il pagamento.\n“I give her the card back after the payment.”\nLe parlo della perdita in cucina.\n“I tell her about the leak in the kitchen.”\nThe word chiedo means “I ask”: le chiedo un consiglio — “I ask her for advice”.\nThe word il consiglio means “advice”.\nThe word spiego means “I explain”: gli spiego le regole — “I explain the rules to them”.\nThe word restituisco means “I give back”: le restituisco la carta — “I give her the card back”.\nThe word il pagamento means “payment”.\nThe word la perdita means “leak”: le parlo della perdita — “I tell her about the leak”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:23:24",
+          "say": {
+            "ru": "ле кье́до ун конси́льо при́ма ди фирма́ре",
+            "uk": "ле кье́до ун консі́льо прі́ма ді фірма́ре"
+          }
+        },
+        {
+          "phraseId": "it:23:25",
+          "say": {
+            "ru": "льи спье́го ле рего́ле дель джо́ко",
+            "uk": "льі спье́го ле рего́ле дель джо́ко"
+          }
+        },
+        {
+          "phraseId": "it:23:26",
+          "say": {
+            "ru": "ле реституи́ско ла ка́рта до́по иль пагаме́нто",
+            "uk": "ле рестітуі́ско ла ка́рта до́по іль пагаме́нто"
+          }
+        },
+        {
+          "phraseId": "it:23:29",
+          "say": {
+            "ru": "ле па́рло де́лла пе́рдита ин кучи́на",
+            "uk": "ле па́рло де́лла пе́рдіта ін кучі́на"
+          }
+        },
+        {
+          "phraseId": "it:23:27",
+          "say": {
+            "ru": "льи о́ффро ун каффе́ ме́нтре аспе́ттано",
+            "uk": "льі о́ффро ун каффе́ ме́нтре аспе́ттано"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я спрашиваю у нее совета перед тем, как подписать.»",
+            "uk": "Виберіть, як сказати: «Я прошу її поради перед тим, як підписати.»",
+            "en": "Choose how to say: “I ask her for advice before signing.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:23:24",
+          "options": [
+            "it:23:24",
+            "it:23:25",
+            "it:23:26"
+          ],
+          "answerId": "it:23:24"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я объясняю им правила игры.»",
+            "uk": "Виберіть, як сказати: «Я пояснюю їм правила гри.»",
+            "en": "Choose how to say: “I explain the rules of the game to them.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:25",
+          "options": [
+            "it:23:25",
+            "it:23:24",
+            "it:23:29"
+          ],
+          "answerId": "it:23:25"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я возвращаю ей карту после оплаты.»",
+            "uk": "Виберіть, як сказати: «Я повертаю їй картку після оплати.»",
+            "en": "Choose how to say: “I give her the card back after the payment.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:26",
+          "options": [
+            "it:23:26",
+            "it:23:29",
+            "it:23:24"
+          ],
+          "answerId": "it:23:26"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "title": {
+        "ru": "Не и два действия",
+        "uk": "Не й дві дії",
+        "en": "Not, and two actions"
+      },
+      "text": {
+        "ru": "Смотрите, как сказать «Я не отвечаю ей сразу».\nNon le rispondo subito. — «Я не отвечаю ей сразу.»\nЧитается: нон ле риспо́ндо су́бито.\nLei non gli dice il prezzo. — «Она не говорит им цену.»\nЧитается: ле́й нон льи ди́че иль пре́ццо.\nNon vuole telefonarle. — «Он не хочет ей звонить.»\nЧитается: нон вуо́ле телефона́рле.\nСлово non значит «не». Оно стоит перед коротким словом.\nNon le rispondo subito — «я не отвечаю ей сразу».\nСлово dice значит «говорит»: non gli dice il prezzo — «не говорит им цену».\nКогда действий два, le прилипает к концу: non vuole telefonarle — «не хочет ей звонить».\nСлово loro стоит после действия: può lasciare loro un messaggio — «можете оставить им сообщение».\nVorrei dire loro grazie — «я хотел бы сказать им спасибо».",
+        "uk": "Дивіться, як сказати «Я не відповідаю їй одразу».\nNon le rispondo subito. — «Я не відповідаю їй одразу.»\nЧитається: нон ле ріспо́ндо су́біто.\nLei non gli dice il prezzo. — «Вона не каже їм ціну.»\nЧитається: ле́й нон льі ді́че іль пре́ццо.\nNon vuole telefonarle. — «Він не хоче їй дзвонити.»\nЧитається: нон вуо́ле телефона́рле.\nСлово non означає «не». Воно стоїть перед коротким словом.\nNon le rispondo subito — «я не відповідаю їй одразу».\nСлово dice означає «каже»: non gli dice il prezzo — «не каже їм ціну».\nКоли дій дві, le прилипає до кінця: non vuole telefonarle — «не хоче їй дзвонити».\nСлово loro стоїть після дії: può lasciare loro un messaggio — «можете залишити їм повідомлення».\nVorrei dire loro grazie — «я хотів би сказати їм спасибі».",
+        "en": "Look at how to say “I do not answer her right away”.\nNon le rispondo subito. — “I do not answer her right away.”\nLei non gli dice il prezzo. — “She does not tell them the price.”\nNon vuole telefonarle. — “He does not want to call her.”\nThe word non means “not”. It comes before the short word.\nNon le rispondo subito — “I do not answer her right away”.\nThe word dice means “says”: non gli dice il prezzo — “does not tell them the price”.\nWith two actions, le sticks to the end: non vuole telefonarle — “does not want to call her”.\nThe word loro comes after the action: può lasciare loro un messaggio — “you can leave them a message”.\nVorrei dire loro grazie — “I would like to say thank you to them”."
+      },
+      "examples": [
+        {
+          "phraseId": "it:23:31",
+          "say": {
+            "ru": "нон ле риспо́ндо су́бито",
+            "uk": "нон ле ріспо́ндо су́біто"
+          }
+        },
+        {
+          "phraseId": "it:23:32",
+          "say": {
+            "ru": "ле́й нон льи ди́че иль пре́ццо",
+            "uk": "ле́й нон льі ді́че іль пре́ццо"
+          }
+        },
+        {
+          "phraseId": "it:23:33",
+          "say": {
+            "ru": "нон ле дича́мо нье́нте",
+            "uk": "нон ле діча́мо нье́нте"
+          }
+        },
+        {
+          "phraseId": "it:23:34",
+          "say": {
+            "ru": "нон льи скри́ви ма́й",
+            "uk": "нон льі скрі́ві ма́й"
+          }
+        },
+        {
+          "phraseId": "it:23:35",
+          "say": {
+            "ru": "нон вуо́ле телефона́рле",
+            "uk": "нон вуо́ле телефона́рле"
+          }
+        },
+        {
+          "phraseId": "it:23:37",
+          "say": {
+            "ru": "пуо́ лаша́ре ло́ро ун месса́джо",
+            "uk": "пуо́ лаша́ре ло́ро ун месса́джо"
+          }
+        },
+        {
+          "phraseId": "it:23:40",
+          "say": {
+            "ru": "ворре́й ди́ре ло́ро гра́цье",
+            "uk": "ворре́й ді́ре ло́ро гра́цье"
+          }
+        }
+      ],
+      "practice": [
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Я не отвечаю ей сразу.»",
+            "uk": "Виберіть, як сказати: «Я не відповідаю їй одразу.»",
+            "en": "Choose how to say: “I do not answer her right away.”"
+          },
+          "sample": true,
+          "promptPhraseId": "it:23:31",
+          "options": [
+            "it:23:31",
+            "it:23:32",
+            "it:23:33"
+          ],
+          "answerId": "it:23:31"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Она не говорит им цену.»",
+            "uk": "Виберіть, як сказати: «Вона не каже їм ціну.»",
+            "en": "Choose how to say: “She does not tell them the price.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:32",
+          "options": [
+            "it:23:32",
+            "it:23:31",
+            "it:23:34"
+          ],
+          "answerId": "it:23:32"
+        },
+        {
+          "command": {
+            "ru": "Выберите, как сказать: «Он не хочет ей звонить.»",
+            "uk": "Виберіть, як сказати: «Він не хоче їй дзвонити.»",
+            "en": "Choose how to say: “He does not want to call her.”"
+          },
+          "sample": false,
+          "promptPhraseId": "it:23:35",
+          "options": [
+            "it:23:35",
+            "it:23:37",
+            "it:23:40"
+          ],
+          "answerId": "it:23:35"
+        }
+      ]
+    }
+  ]
+}

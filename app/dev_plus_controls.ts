@@ -96,6 +96,16 @@ export async function readDevLocalPlusOverride(stableId: string): Promise<DevLoc
   return 'inherit';
 }
 
+/**
+ * зачем (150, Maestro: dev plus=on → урок 11 «Открыт», но меню бросает на пейвол): список читает PremiumContext (он применяет dev-подмену), а меню урока —
+ * ПРОВЕРЕННЫЙ статус подписки (premium_guard), который dev-подмену не видит. Для меню в dev-сборке подмена «granted» должна считаться подпиской, как в списке.
+ * В стор-сборке readDevLocalPlusOverride всегда 'inherit' → false: настоящих подписчиков и платящих это не касается.
+ */
+export async function devPlusGrantsAccess(stableId: string | null | undefined): Promise<boolean> {
+  if (!stableId) return false;
+  return (await readDevLocalPlusOverride(stableId)) === 'granted';
+}
+
 export async function setDevLocalPlusOverride(
   stableId: string,
   mode: Exclude<DevLocalPlusOverride, 'inherit'>,

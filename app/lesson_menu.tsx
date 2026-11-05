@@ -62,6 +62,7 @@ import {
   isTesterNoLimitsActive,
 } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
+import { devPlusGrantsAccess } from './dev_plus_controls';
 import {
   lessonPaywallContext,
   requiresPremiumForLesson,
@@ -724,7 +725,14 @@ function LessonMenu() {
           return;
         }
 
-        const premiumNow = await getVerifiedPremiumStatus();
+        const premiumVerified = await getVerifiedPremiumStatus();
+        // зачем (150, Maestro 05.11): dev-подмена «Plus включён» (dev_state plus=on) считается подпиской, как в списке уроков; в стор-сборке всегда false.
+        const devPlusGrant = premiumVerified ? false : await devPlusGrantsAccess(captureAccountGeneration().stableId).catch((error: unknown) => {
+          console.warn('[LESSON-MENU] dev_plus_read_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
+          return false;
+        });
+        const premiumNow = premiumVerified || devPlusGrant;
+        console.log(`[LESSON-MENU] premium_source ${JSON.stringify({ lessonId, verified: premiumVerified, devPlusGrant, premiumNow })}`); // guard-ok: откуда взят статус подписки
 
         if (!premiumNow && !isPremiumAccessDecisionConfirmedForCurrentAccount()) {
           entitlementPending = true;

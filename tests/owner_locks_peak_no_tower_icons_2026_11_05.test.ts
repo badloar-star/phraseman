@@ -18,8 +18,15 @@ describe('Пик: на башне нет иконок пользователей
 
   it('башня экрана Пика не рисует монету-метку «я» (myCoinRank=null) и не получает соперников', () => {
     expect(screen).toMatch(/<SpireTower [^>]*variant="scene"[^>]*rivalsByFloor={undefined} myCoinRank={null} onPressMe={undefined}/);
-    // метка без ранга — пустая рамка, монеты нет (SpireTowerMarker: myCoinRank !== null ? <AvatarView …> : null)
-    expect(read('components/spire/SpireTowerMarker.tsx')).toContain('myCoinRank !== null ? <AvatarView');
+    // метка без ранга не рисуется вовсе — ни рамки, ни кружка (координатор: «на месте маркера не должно быть ничего»)
+    expect(read('components/spire/SpireTowerMarker.tsx')).toContain('if (myCoinRank === null) return null;');
+  });
+
+  it('тур Пика (страница 3): башня без монеты пользователя; монета у «+1 000» — монета ранга, а не зашитая базовая', () => {
+    const tour = read('components/spire/peak/PeakTourFull.tsx');
+    expect(tour).toMatch(/<SpireTower [^>]*myFloor=\{15\}[^>]*myCoinRank=\{null\}/);
+    expect(tour).not.toContain('<Coin rank={0}');
+    expect(tour).toContain('useMyCoinRank()');
   });
 
   it('зелёная полоска списка лежит в панели списка и без указателя; маркера на ней нет', () => {

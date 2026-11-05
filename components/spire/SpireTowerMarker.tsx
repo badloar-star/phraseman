@@ -31,6 +31,8 @@ type Props = Readonly<{
 }>;
 
 function SpireTowerMarker({ lang, sceneMode, myCoinRank, onPressMe }: Props) {
+  // зачем (владелец 05.11 ~19:12, координатор: «на месте маркера не должно быть ничего — ни рамки, ни кружка»): экран Пика и тур передают башне ранг null — тогда метки нет вовсе (ни кнопки, ни пустого круга)
+  if (myCoinRank === null) return null;
   if (sceneMode) {
     // своя монета крупнее (×1,1); тап — своя карточка (отклик — только масштаб V2Pressable, зона 44); TalkBack читает «Вы»
     return (

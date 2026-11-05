@@ -15,6 +15,7 @@ import { triLang, type Lang } from '../../../constants/i18n';
 import { V2 } from '../../../constants/v2Style';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { coinRankSourceForSize } from '../../../app/coin_rank_table_v1';
+import { useMyCoinRank } from '../../../hooks/use_my_coin_rank';
 import { spireTierName } from '../../../modules/spire/tier_names';
 import V2Pressable from '../../v2/V2Pressable';
 import SpireTower from '../SpireTower';
@@ -70,6 +71,8 @@ function PicTower({ lang }: Readonly<{ lang: Lang }>) {
 function PicTop({ lang, compact }: Readonly<{ lang: Lang; compact: boolean }>) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const pill = [s.pill, compact ? s.pillCompact : null, { backgroundColor: p.card }, sh.nested];
+  // зачем (владелец 05.11 ~19:15: «монета абсолютно во всех местах обязана соответствовать рангу строго»): монета у «+1 000» — монета ранга пользователя, не зашитая базовая (rank 0); ранга ещё нет — монеты нет
+  const myRank = useMyCoinRank();
   const pillText = [s.pillText, { color: p.text }]; // зачем: шрифт плашек везде 15 (сторож «текст не мельче 15»); на узком экране сжимаются только поля и зазор
   return (
     <View style={s.fill}>
@@ -95,7 +98,7 @@ function PicTop({ lang, compact }: Readonly<{ lang: Lang; compact: boolean }>) {
           <Ionicons name="arrow-up" size={18} color={p.correct} />
         </View>
         <View style={pill}>
-          <Coin rank={0} dp={PILL_COIN_DP} />
+          {myRank !== null ? <Coin rank={myRank} dp={PILL_COIN_DP} /> : <View style={{ width: PILL_COIN_DP, height: PILL_COIN_DP }} />}
           <Text style={pillText}>{`+1${NBSP}000`}</Text>
         </View>
       </View>
@@ -103,13 +106,13 @@ function PicTop({ lang, compact }: Readonly<{ lang: Lang; compact: boolean }>) {
   );
 }
 
-/** Рисунок 3 — вершина башни, моя монета на 15 этаже, переход в новую лигу. */
+/** Рисунок 3 — вершина башни, переход в новую лигу. Монеты пользователя на башне нет (владелец 05.11 ~19:40: «башня в туре тоже чистая»). */
 function PicSummit({ lang, width }: Readonly<{ lang: Lang; width: number }>) {
   const p = useSpirePalette();
   return (
     <View style={{ width }}>
       <View pointerEvents="none">
-        <SpireTower lang={lang} myFloor={15} selected={15} onSelect={noop} myCoinRank={7} windowHeight={WINDOW3_HEIGHT} />
+        <SpireTower lang={lang} myFloor={15} selected={15} onSelect={noop} myCoinRank={null} windowHeight={WINDOW3_HEIGHT} />
       </View>
       <View style={[s.league, { backgroundColor: p.cta }]}>
         <Text style={[s.pillText, { color: p.ctaText }]}>{spireTierName(0, lang)}</Text>

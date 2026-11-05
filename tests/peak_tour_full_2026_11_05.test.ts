@@ -37,7 +37,7 @@ describe('полноэкранный тур Пика: 1:1 по утверждё�
     expect(src).toContain('coinRankSourceForSize');
     expect(src).toMatch(/TOP5[\s\S]*\[12, 1840\][\s\S]*\[5, 1275\]/);
     expect(src).toMatch(/\+1\$\{NBSP\}000/);
-    expect(src).toMatch(/myFloor=\{15\}[\s\S]*myCoinRank=\{7\}/);
+    expect(src).toMatch(/myFloor=\{15\}[\s\S]*myCoinRank=\{null\}/); // 05.11 ~19:40 владелец: башня в туре без монеты пользователя
     expect(src).toContain('name="flash"');
   });
 

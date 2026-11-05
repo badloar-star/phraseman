@@ -49,8 +49,11 @@ export function useSpireRoomSync(input: Readonly<{
   // зачем: вкладку берём из лёгкого TabContext (без навигации — экран и тесты не тянут @react-navigation)
   const { runtimeOwnerId } = useTabNav();
   const onPeak = runtimeOwnerId === 'spire';
+  const onPeakRef = useRef(onPeak);
+  onPeakRef.current = onPeak;
   const prevOnPeakRef = useRef(onPeak);
   const hasRoomRef = useRef(false);
+  const resumeNeededRef = useRef(!onPeak);
   const attemptRef = useRef(0);
   const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const runRef = useRef<(why: string) => void>(() => undefined);
@@ -59,13 +62,25 @@ export function useSpireRoomSync(input: Readonly<{
   // прошлого поколения (запрос A ещё в полёте) в комнату B не попадают
   const genRef = useRef(0);
 
-  const clearRetry = (): void => { if (retryTimerRef.current) { clearTimeout(retryTimerRef.current); retryTimerRef.current = null; } };
+  const clearRetry = useCallback((): void => {
+    if (retryTimerRef.current) {
+      clearTimeout(retryTimerRef.current);
+      retryTimerRef.current = null;
+    }
+  }, []);
 
   const run = useCallback((why: string) => {
+    if (!onPeakRef.current) {
+      clearRetry();
+      if (!hasRoomRef.current) resumeNeededRef.current = true;
+      DebugLogger.info(SPIRE, `${TAG} попытка «${why}» пропущена: Пик скрыт`);
+      return;
+    }
     if (!gate || !ids || !lang) {
       DebugLogger.info(SPIRE, `${TAG} попытка «${why}» пропущена: ворота=${gate ? 'есть' : 'нет'} ids=${ids ? 'есть' : 'нет'} язык=${lang ?? '—'}`);
       return;
     }
+    resumeNeededRef.current = false;
     clearRetry();
     attemptRef.current += 1;
     const attempt = attemptRef.current;
@@ -88,6 +103,7 @@ export function useSpireRoomSync(input: Readonly<{
       setRoomLoad((cur) => spireMergeRoomLoad(cur, load, { uid: ids.uid, lang }));
       if (load.room) {
         hasRoomRef.current = true;
+        resumeNeededRef.current = false;
         attemptRef.current = 0;
         // Прогрев пакета недели: «Подняться» стартует без ожидания сети. После анимаций входа — разбор файла (~1 МБ JSON).
         const room = load.room;
@@ -98,7 +114,16 @@ export function useSpireRoomSync(input: Readonly<{
         });
         return;
       }
-      if (load.status === 'paused') { DebugLogger.info(SPIRE, `${TAG} Пик на паузе — повтор не планируем`); return; }
+      if (load.status === 'paused') {
+        resumeNeededRef.current = false;
+        DebugLogger.info(SPIRE, `${TAG} Пик на паузе — повтор не планируем`);
+        return;
+      }
+      if (!onPeakRef.current) {
+        resumeNeededRef.current = true;
+        DebugLogger.info(SPIRE, `${TAG} комнаты нет, но Пик скрыт — повтор при возврате`);
+        return;
+      }
       const delay = SPIRE_ROOM_RETRY_MS[attempt - 1];
       if (delay === undefined) { DebugLogger.warn(SPIRE, `${TAG} комнаты нет после ${attempt} попыток — дальше повтор только при возврате в Пик/приложение`); return; }
       DebugLogger.warn(SPIRE, `${TAG} комнаты нет (${load.reason}) — повтор №${attempt + 1} через ${delay}мс`);
@@ -109,11 +134,16 @@ export function useSpireRoomSync(input: Readonly<{
       DebugLogger.warn(SPIRE, `${TAG} [PIK-LOAD] sync_failed попытка ${attempt} code=${code} ms=${Date.now() - startedAt}`);
       if (stale('сбой')) return;
       if (!aliveRef.current || hasRoomRef.current) { DebugLogger.info(SPIRE, `${TAG} после сбоя повтор не нужен: на экране=${String(aliveRef.current)} комната=${String(hasRoomRef.current)}`); return; }
+      if (!onPeakRef.current) {
+        resumeNeededRef.current = true;
+        DebugLogger.info(SPIRE, `${TAG} сбой получен при скрытом Пике — повтор при возврате`);
+        return;
+      }
       const delay = SPIRE_ROOM_RETRY_MS[attempt - 1];
       if (delay === undefined) { DebugLogger.warn(SPIRE, `${TAG} сбой после ${attempt} попыток — дальше повтор только при возврате`); return; }
       retryTimerRef.current = setTimeout(() => { if (!stale('автоповтор после сбоя')) runRef.current(`автоповтор ${attempt + 1} после сбоя`); }, delay);
     });
-  }, [gate, ids, lang, setRoomLoad]);
+  }, [clearRetry, gate, ids, lang, setRoomLoad]);
   runRef.current = run;
 
   // Вход на экран (и смена языка / аккаунта): первая попытка; кэш к этому моменту уже показан первым кадром.
@@ -122,24 +152,30 @@ export function useSpireRoomSync(input: Readonly<{
     aliveRef.current = true;
     hasRoomRef.current = false;
     attemptRef.current = 0;
+    resumeNeededRef.current = !onPeakRef.current;
     run('вход в Пик');
     return () => { aliveRef.current = false; clearRetry(); };
-  }, [run]);
+  }, [clearRetry, run]);
 
   // Возврат во вкладку Пика без комнаты — сразу повтор (не ждём таймер).
   useEffect(() => {
     const cameBack = onPeak && !prevOnPeakRef.current;
     prevOnPeakRef.current = onPeak;
-    if (!cameBack || hasRoomRef.current || attemptRef.current === 0) return;
+    if (!onPeak) {
+      if (!hasRoomRef.current) resumeNeededRef.current = true;
+      clearRetry();
+      return;
+    }
+    if (!cameBack || hasRoomRef.current || !resumeNeededRef.current) return;
     DebugLogger.info(SPIRE, `${TAG} возврат во вкладку Пика без комнаты — повтор сразу`);
     attemptRef.current = 0;
     runRef.current('возврат во вкладку');
-  }, [onPeak]);
+  }, [clearRetry, onPeak]);
 
   // Возврат в приложение без комнаты — сразу повтор.
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
-      if (state !== 'active' || hasRoomRef.current || !aliveRef.current) return;
+      if (state !== 'active' || hasRoomRef.current || !aliveRef.current || !onPeakRef.current) return;
       DebugLogger.info(SPIRE, `${TAG} приложение снова активно, комнаты нет — повтор сразу`);
       attemptRef.current = 0;
       runRef.current('возврат в приложение');

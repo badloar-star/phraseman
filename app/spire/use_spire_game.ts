@@ -82,9 +82,10 @@ type Input = Readonly<{
   lang: SpireLang | null;
   week: SpireWeekLocal | null;
   setWeek: (week: SpireWeekLocal | null) => void;
+  runtimeActive?: boolean;
 }>;
 
-export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
+export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeActive = true }: Input) {
   const gate: SpireLiveGate | null = useMemo(
     () => (unlocked && lang ? spireOpenLiveGate(config, 'home') : null), // зачем (замер 17.10 [SPIRE-LOAD]): тот же конфиг новым объектом (кэш → сеть) пересоздавал ворота — повторные identity и тройной room:sync
     [unlocked, lang, config ? JSON.stringify(config) : null], // eslint-disable-line react-hooks/exhaustive-deps -- зачем: ворота меняются только при смене содержимого конфига
@@ -382,7 +383,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   }, [weekResult, ids, lang]);
 
   // зачем (смета Firebase 13.10, п. 5): ручное обновление друзей (потянуть экран) вынесено в отдельный хук — файл остаётся ≤ 400 строк (контракт spire_game_source_contract).
-  const refreshFriends = useSpireFriendsRefresh({ gate, ids, lang, friendsCount: friends.length, setFriends });
+  const refreshFriends = useSpireFriendsRefresh({ gate, ids, lang, friendsCount: friends.length, setFriends, runtimeActive, ownerEpoch });
 
   return {
     live: gate !== null,

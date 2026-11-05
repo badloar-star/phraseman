@@ -30,8 +30,12 @@ describe('Главная со «Сценой»: до бита', () => {
     expect(stage).toMatch(/titleLong: { color: HOME_SCENE_INK.text, fontSize: 26, lineHeight: 32/);
     expect(stage).toMatch(/title: { color: HOME_SCENE_INK.text, fontSize: 30, lineHeight: 36/);
   });
-  it('«Фраза дня» со сценой — без строки перевода', () => {
-    expect(phrase).toContain('{cardLiteral && !sceneLook ? (');
+  // зачем (golden approved-rev8/rev6-home-free-0, решение координатора 05.11; прежний пин «без перевода» отменён): со «Сценой» под фразой строка перевода; озвучки на карточке нет (замок 18.10)
+  it('«Фраза дня» со сценой — перевод строкой под фразой (шрифт 15/20), без кнопки озвучки', () => {
+    expect(phrase).toContain('{cardLiteral ? (');
+    expect(phrase).toContain('sceneLook ? styles.v2TranslationScene : styles.v2Translation');
+    expect(phrase).toContain('v2TranslationScene: { fontSize: 15, lineHeight: 20');
+    expect(phrase).not.toContain('volume-high" size={20} color={v2');
   });
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот тут вот без слов!!!» — подписей вкладок нет и со «Сценой» (главный сторож — v2_tab_bar_liquid_glass_theme)
   it('таб-бар со «Сценой» — только значки, без подписей', () => {

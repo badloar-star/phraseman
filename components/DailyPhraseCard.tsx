@@ -507,7 +507,8 @@ function DailyPhraseCard({
     pl: 'Fraza dnia',
   });
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
-  const cardLiteral = noSourceExplanation ? '' : phraseCopy.literal;
+  // зачем (🔴 кадр 5554 10:53 + макет rev6-home-free-0: под фразой — её ЗНАЧЕНИЕ строкой («Отправиться на тот свет»), а не «Буквально: …»): берём смысл, буквальный перевод — только если смысла нет
+  const cardLiteral = noSourceExplanation ? '' : (phraseCopy.meaning || phraseCopy.literal);
   const flashcardSourceLocales = {
     'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
     vi: phrase.sourceLocales?.vi?.meaning,
@@ -692,8 +693,9 @@ function DailyPhraseCard({
             <Text style={[sceneLook ? styles.v2KickerScene : styles.v2Kicker, { color: v2.textSecondary }]}>{sceneLook ? title : title.toUpperCase()}</Text>
             <Text style={[sceneLook ? styles.v2PhraseScene : styles.v2Phrase, { color: v2.text }]}>{phrase.english}</Text>
             <DailyPhraseFriendsRow phraseId={phrase.id || phrase.date} visible={homeCardVisible} />
-            {cardLiteral && !sceneLook ? (
-              <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{cardLiteral}</Text>
+            {/* зачем (golden rev6-home-free-0, слово владельца 05.11 «1 в 1»; решение координатора): перевод строкой под фразой есть и со «Сценой»; озвучки на карточке нет (замок 18.10) */}
+            {cardLiteral ? (
+              <Text style={[sceneLook ? styles.v2TranslationScene : styles.v2Translation, { color: v2.textSecondary }]}>{cardLiteral}</Text>
             ) : null}
           </View>
           {sceneLook ? <Ionicons name="chevron-forward" size={18} color={v2.textSecondary} accessible={false} /> : null}
@@ -1118,6 +1120,7 @@ const styles = StyleSheet.create({
   v2Phrase: { fontSize: 19, lineHeight: 23, fontWeight: '800', letterSpacing: -0.3, marginTop: 2 },
   v2PhraseScene: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginTop: 2 },
   v2Translation: { ...V2_TYPE.body, marginTop: 1 },
+  v2TranslationScene: { fontSize: 15, lineHeight: 20, marginTop: 2 },
   placeholder: {
     minHeight: 88,
     marginHorizontal: 16,

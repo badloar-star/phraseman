@@ -115,10 +115,17 @@ function LessonPrepCtaBody({ source, lang, label, ink, fillColor, idleIcon = nul
   const [shownText, setShownText] = useState(text);
   const textOpacity = useSharedValue(1);
   useEffect(() => {
-    if (text === shownText) return;
+    // зачем (🔴 кадр 5554 10:53: белая кнопка героя «Начать» только с треугольником, текста нет; сперва логи [HOME-HERO]): подпись меняется туда-обратно (A→B→A), пока идёт её растворение, —
+    // ветка «текст совпал» раньше выходила, не вернув непрозрачность, и надпись оставалась невидимой. Теперь при совпадении текста непрозрачность всегда возвращается к 1.
+    if (text === shownText) {
+      if (textOpacity.value < 1) console.log('[HOME-HERO]', 'label_restore', JSON.stringify({ source, text, shownText, opacity: Math.round(textOpacity.value * 100) / 100, stage })); // guard-ok: одна строка на восстановление подписи
+      textOpacity.value = reduceMotion ? 1 : withTiming(1, { duration: PREP_SWAP_MS * 0.55, easing: EASE_OUT });
+      return;
+    }
+    console.log('[HOME-HERO]', 'label_change', JSON.stringify({ source, from: shownText, to: text, stage, reduceMotion })); // guard-ok: одна строка на смену подписи
     if (reduceMotion) { setShownText(text); return; }
     textOpacity.value = withTiming(0, { duration: PREP_SWAP_MS * 0.45, easing: EASE_OUT }, (done) => { if (done) runOnJS(setShownText)(text); });
-  }, [reduceMotion, shownText, text, textOpacity]);
+  }, [reduceMotion, shownText, text, textOpacity, source, stage]);
   useEffect(() => {
     textOpacity.value = reduceMotion ? 1 : withTiming(1, { duration: PREP_SWAP_MS * 0.55, easing: EASE_OUT });
   }, [reduceMotion, shownText, textOpacity]);

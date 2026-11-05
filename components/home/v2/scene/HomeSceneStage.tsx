@@ -149,6 +149,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
     console.log(LOG, 'cta', JSON.stringify({ state, label: copy.cta })); // guard-ok: одна строка на тап
     onCta();
   };
+  // зачем (🔴 кадр 5554 10:53, «Начать» без текста; сперва логи): какая подпись и какой заголовок реально пришли в героя и в каком состоянии — один поиск [HOME-HERO]
+  useEffect(() => {
+    console.log('[HOME-HERO]', 'copy', JSON.stringify({ state, kicker: copy.kicker, title: copy.title, cta: copy.cta, line: copy.line, pending, busy })); // guard-ok: одна строка на смену текста героя
+  }, [state, copy.kicker, copy.title, copy.cta, copy.line, pending, busy]);
   return (
     // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ»): градиент и свет сцены — от верха экрана, под часами;
     // высота сцены считается от верха экрана, как в эталоне (.a-stage 540 вместе со строкой статуса), раскладка отступает на зону часов

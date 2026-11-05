@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plus и Ultra</title>
+<!-- Governance-ID: TG-2AF12620132A -->
+<style>
+/* Plus — цвета из components/plus/plus_ring_spec.ts (знак статуса, один во всех темах; в светлых — затемнённые стопы). Ultra — три варианта на выбор. */
+:root {
+  --bg: #0d0d12; --surface: #17171f; --surface2: #1e1e28; --ink: #f4f4f8; --muted: #a2a2b4; --hair: rgba(255,255,255,.08);
+  --shadow: 0 18px 40px -22px rgba(0,0,0,.7);
+  --plus-a: #8E7CFF; --plus-b: #6FA8FF; --plus-c: #7FE0D8; --plus-d: #C69BFF;
+  --plus-pin1: #8E7CFF; --plus-pin2: #5F90DB; --plus-tag-bg: rgba(142,124,255,.2); --plus-tag-ink: #C9C0FF; --plus-glyph: #fff;
+  --plus-accent: #8E7CFF; --plus-on: #fff;
+  --gap: 2px; --ease: cubic-bezier(.2,1,.3,1);
+}
+:root[data-theme="light"] {
+  --bg: #f1f2ee; --surface: #ffffff; --surface2: #e9eae4; --ink: #17181c; --muted: #5c5f6a; --hair: rgba(0,0,0,.09);
+  --shadow: 0 16px 34px -22px rgba(30,30,50,.35);
+  --plus-a: #7A6BDB; --plus-b: #527CBD; --plus-c: #4B847F; --plus-d: #8D6EB5;
+  --plus-tag-bg: rgba(84,66,216,.1); --plus-tag-ink: #5442D8;
+  --plus-accent: #6D5CE0;
+}
+/* варианты Ultra: тёмная / светлая */
+:root[data-ultra="ruby"] { --u-a:#FF5F8F; --u-b:#FF7A59; --u-c:#FF4FD0; --u-d:#FFA0C0; --u-pin1:#FF5F8F; --u-pin2:#E8423F; --u-tag-bg:rgba(255,95,143,.2); --u-tag-ink:#FFC2D3; --u-glyph:#fff; --u-accent:#FF5F8F; --u-on:#2a0714; }
+:root[data-ultra="emerald"] { --u-a:#2EE6A6; --u-b:#5BE06C; --u-c:#17B890; --u-d:#8DEFA0; --u-pin1:#2EE6A6; --u-pin2:#12936F; --u-tag-bg:rgba(46,230,166,.18); --u-tag-ink:#B8F5DE; --u-glyph:#04261D; --u-accent:#2EE6A6; --u-on:#04261D; }
+:root[data-ultra="platinum"] { --u-a:#F2F4FF; --u-b:#9AA6C7; --u-c:#E9EDFF; --u-d:#B7C0DE; --u-pin1:#EEF0FF; --u-pin2:#8C97BB; --u-tag-bg:rgba(230,234,255,.16); --u-tag-ink:#E6EAFF; --u-glyph:#1B2036; --u-accent:#DDE2FA; --u-on:#14172a; }
+:root[data-theme="light"][data-ultra="ruby"] { --u-a:#D9386F; --u-b:#D45A2E; --u-c:#B8309F; --u-d:#C9547E; --u-pin1:#D9386F; --u-pin2:#B3123F; --u-tag-bg:rgba(179,18,63,.1); --u-tag-ink:#B3123F; --u-accent:#C42656; --u-on:#fff; }
+:root[data-theme="light"][data-ultra="emerald"] { --u-a:#1F9D73; --u-b:#3A9A3F; --u-c:#12806B; --u-d:#4E9D5E; --u-pin1:#1F9D73; --u-pin2:#0B6B4B; --u-tag-bg:rgba(11,107,75,.1); --u-tag-ink:#0B6B4B; --u-glyph:#fff; --u-accent:#14845F; --u-on:#fff; }
+:root[data-theme="light"][data-ultra="platinum"] { --u-a:#59607A; --u-b:#8A92AC; --u-c:#4A506B; --u-d:#767E99; --u-pin1:#6A7290; --u-pin2:#3A4160; --u-tag-bg:rgba(58,65,96,.1); --u-tag-ink:#3A4160; --u-glyph:#fff; --u-accent:#4A5275; --u-on:#fff; }
+
+* { box-sizing: border-box; margin: 0; }
+html { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.45 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding: 0 16px 80px; }
+.wrap { max-width: 1040px; margin: 0 auto; }
+header.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); padding: 14px 0 12px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+h1 { font-size: 20px; font-weight: 700; letter-spacing: -.01em; margin-right: auto; }
+.seg { display: inline-flex; background: var(--surface2); border-radius: 999px; padding: 3px; gap: 2px; }
+.seg button { font: 600 13px/1 inherit; color: var(--muted); background: none; border: 0; padding: 8px 14px; border-radius: 999px; cursor: pointer; transition: background .24s var(--ease), color .24s var(--ease); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 0 var(--hair), var(--shadow); }
+.seg button:focus-visible { outline: 2px solid var(--plus-accent); outline-offset: 2px; }
+.lbl { font-size: 12px; color: var(--muted); margin-right: 6px; }
+h2 { font-size: 15px; font-weight: 700; margin: 34px 0 12px; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .pair { grid-template-columns: 1fr; } }
+.col { background: var(--surface); border-radius: 22px; padding: 18px; box-shadow: var(--shadow); min-width: 0; }
+.col h3 { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.row:last-child { margin-bottom: 0; }
+.note { font-size: 12px; color: var(--muted); }
+
+/* ── Значок-пин: Plus = круг + ромб ◆; Ultra = шестиугольник + звезда ✦ ── */
+.pin { position: relative; display: inline-grid; place-items: center; width: var(--s); height: var(--s); flex: none; }
+.pin::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--c1), var(--c2)); }
+.pin svg { position: relative; width: calc(var(--s) * .58); height: calc(var(--s) * .58); fill: var(--glyph); }
+.pin.plus { --c1: var(--plus-pin1); --c2: var(--plus-pin2); --glyph: var(--plus-glyph); }
+.pin.plus::before { border-radius: 50%; }
+.pin.ultra { --c1: var(--u-pin1); --c2: var(--u-pin2); --glyph: var(--u-glyph); }
+.pin.ultra::before { clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%); border-radius: 0; }
+.pin.ultra svg { width: calc(var(--s) * .56); height: calc(var(--s) * .56); }
+
+/* ── Метка «◆ Plus» / «✦ Ultra» ── */
+.tag { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; font-size: 12px; line-height: 1; padding: 6px 10px; border-radius: 999px; }
+.tag svg { width: 11px; height: 11px; fill: currentColor; }
+.tag.plus { background: var(--plus-tag-bg); color: var(--plus-tag-ink); }
+.tag.ultra { background: var(--u-tag-bg); color: var(--u-tag-ink); }
+
+/* ── Бейдж-пилюля (PlusBadge xs/sm/md): заливка акцента ── */
+.pill { display: inline-flex; align-items: center; gap: 4px; font-weight: 800; border-radius: 999px; color: var(--on); background: linear-gradient(135deg, var(--a1), var(--a2)); }
+.pill.xs { font-size: 9px; padding: 2px 6px; } .pill.sm { font-size: 10px; padding: 3px 8px; } .pill.md { font-size: 12px; padding: 5px 10px; }
+.pill svg { width: 1em; height: 1em; fill: currentColor; }
+.pill.plus { --a1: var(--plus-a); --a2: var(--plus-pin2); --on: #fff; }
+.pill.ultra { --a1: var(--u-pin1); --a2: var(--u-pin2); --on: var(--u-glyph); }
+
+/* ── Аватар и аура ── */
+.av { position: relative; display: inline-block; vertical-align: middle; width: var(--s); height: var(--s); flex: none; margin: 6px; }
+.av .face { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #8fd0ff, #3d6fd1 60%, #24408f); display: grid; place-items: center; color: #fff; font-weight: 800; font-size: calc(var(--s) * .38); }
+.ring { position: absolute; left: calc(-1 * (var(--rw) + var(--gap))); top: calc(-1 * (var(--rw) + var(--gap))); width: calc(var(--s) + 2 * (var(--rw) + var(--gap))); height: calc(var(--s) + 2 * (var(--rw) + var(--gap))); border-radius: 50%;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--rw)), #000 calc(100% - var(--rw) + .5px)); mask: radial-gradient(farthest-side, transparent calc(100% - var(--rw)), #000 calc(100% - var(--rw) + .5px)); }
+.ring.plus { background: conic-gradient(from 200deg, var(--plus-a), var(--plus-b), var(--plus-c), var(--plus-d), var(--plus-a)); }
+.ring.ultra { background: conic-gradient(from 200deg, var(--u-a), var(--u-b), var(--u-c), var(--u-d), var(--u-a)); }
+.ring.spin { animation: spin 14s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.av .pin { position: absolute; right: calc(-1 * var(--ov)); bottom: calc(-1 * var(--ov)); filter: drop-shadow(0 0 0 var(--surface)); }
+.av .pin::after { content: ""; position: absolute; inset: -2px; z-index: -1; background: var(--surf, var(--surface)); }
+.av .pin.plus::after { border-radius: 50%; }
+.av .pin.ultra::after { clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%); }
+
+/* ── Профиль / Настройки / шапка Главной / ряд друзей ── */
+.card2 { background: var(--surface2); border-radius: 18px; padding: 14px; }
+.name { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.sub { font-size: 12px; color: var(--muted); }
+.set { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: var(--surface2); border-radius: 14px; }
+.set b { font-weight: 600; }
+.home { display: flex; align-items: center; gap: 12px; background: var(--surface2); border-radius: 18px; padding: 12px 14px; }
+.chip { margin-left: auto; font-weight: 700; font-size: 12px; padding: 6px 10px; border-radius: 999px; background: var(--surface); }
+.friend { display: flex; align-items: center; gap: 12px; padding: 8px 4px; }
+.friend + .friend { border-top: 1px solid var(--hair); }
+.flat { position: absolute; left: -5px; top: -5px; width: calc(var(--s) + 10px); height: calc(var(--s) + 10px); border-radius: 50%; border: 3px solid; }
+.flat.plus { border-color: var(--plus-a); } .flat.ultra { border-color: var(--u-a); }
+
+/* ── Пейвол: плитки Месяц = Plus, Год = Ultra ── */
+.paywall { background: var(--surface); border-radius: 26px; padding: 22px; box-shadow: var(--shadow); }
+.paywall h4 { font-size: 20px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 4px; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0 14px; }
+@media (max-width: 520px) { .tiles { grid-template-columns: 1fr; } }
+.tile { position: relative; text-align: left; font: inherit; color: var(--ink); background: var(--surface2); border: 0; border-radius: 20px; padding: 16px; cursor: pointer; transition: transform .24s cubic-bezier(.3,1.4,.5,1), box-shadow .24s var(--ease), background .24s var(--ease); }
+.tile:active { transform: scale(.975); }
+.tile:focus-visible { outline: 2px solid var(--plus-accent); outline-offset: 3px; }
+.tile .tn { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 17px; margin: 8px 0 2px; }
+.tile .per { font-size: 12px; color: var(--muted); }
+.tile .price { font-weight: 800; font-size: 22px; margin-top: 10px; letter-spacing: -.01em; }
+.tile .caption { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.tile.plus[aria-pressed="true"] { background: color-mix(in srgb, var(--plus-a) 16%, var(--surface2)); box-shadow: 0 0 0 2px var(--plus-a), 0 18px 34px -18px color-mix(in srgb, var(--plus-a) 60%, transparent); }
+.tile.ultra[aria-pressed="true"] { background: color-mix(in srgb, var(--u-a) 16%, var(--surface2)); box-shadow: 0 0 0 2px var(--u-a), 0 18px 34px -18px color-mix(in srgb, var(--u-a) 60%, transparent); }
+.tile .best { position: absolute; top: 12px; right: 12px; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 999px; background: var(--u-tag-bg); color: var(--u-tag-ink); }
+.cta { width: 100%; font: 800 16px/1 inherit; border: 0; border-radius: 16px; padding: 16px; cursor: pointer; color: var(--on); background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 80%, #000)); box-shadow: 0 16px 30px -14px var(--accent); transition: transform .24s cubic-bezier(.3,1.4,.5,1), background .24s var(--ease); }
+.cta:active { transform: scale(.98); }
+.cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.cta.plus { --accent: var(--plus-accent); --on: #fff; } .cta.ultra { --accent: var(--u-accent); --on: var(--u-on); }
+.legal { font-size: 12px; color: var(--muted); margin-top: 10px; }
+.legal i { font-style: normal; color: var(--ink); }
+.todo { background: var(--surface); border-radius: 20px; padding: 18px; box-shadow: var(--shadow); }
+.todo ol { padding-left: 20px; display: grid; gap: 6px; }
+.todo code { font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--surface2); padding: 2px 6px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) { .ring.spin { animation: none; } .tile, .cta, .seg button { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Plus и Ultra</h1>
+    <span><span class="lbl">Тема</span><span class="seg" id="segTheme"><button data-v="dark" aria-pressed="true">Тёмная</button><button data-v="light" aria-pressed="false">Светлая</button></span></span>
+    <span><span class="lbl">Вариант Ultra</span><span class="seg" id="segUltra"><button data-v="ruby" aria-pressed="true">Рубин</button><button data-v="emerald" aria-pressed="false">Изумруд</button><button data-v="platinum" aria-pressed="false">Платина</button></span></span>
+  </header>
+  <p class="note" style="margin-top:4px">Слева — Plus (месячная, как в приложении сейчас). Справа — Ultra (годовая). Ultra повторяет размеры Plus, поэтому раскладка экранов не меняется.</p>
+
+  <h2>Значок и метка</h2>
+  <div class="pair">
+    <div class="col"><h3>Plus · месяц</h3>
+      <div class="row" id="pinsPlus"></div>
+      <div class="row"><span class="tag plus"><svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10L4 12z"/></svg>Plus</span><span class="pill plus xs"><svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10L4 12z"/></svg>Plus</span><span class="pill plus sm"><svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10L4 12z"/></svg>Plus</span><span class="pill plus md"><svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10L4 12z"/></svg>Plus</span></div>
+    </div>
+    <div class="col"><h3>Ultra · год</h3>
+      <div class="row" id="pinsUltra"></div>
+      <div class="row"><span class="tag ultra"><svg viewBox="0 0 24 24"><path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg>Ultra</span><span class="pill ultra xs"><svg viewBox="0 0 24 24"><path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg>Ultra</span><span class="pill ultra sm"><svg viewBox="0 0 24 24"><path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg>Ultra</span><span class="pill ultra md"><svg viewBox="0 0 24 24"><path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg>Ultra</span></div>
+    </div>
+  </div>
+
+  <h2>Аура вокруг аватара</h2>
+  <div class="pair">
+    <div class="col"><h3>Plus · список 44, шапка 56, визитка 120</h3><div class="row" id="avPlus" style="gap:26px"></div></div>
+    <div class="col"><h3>Ultra · список 44, шапка 56, визитка 120</h3><div class="row" id="avUltra" style="gap:26px"></div></div>
+  </div>
+
+  <h2>Профиль «Аккаунт» и Настройки</h2>
+  <div class="pair">
+    <div class="col"><h3>Plus</h3>
+      <div class="card2"><div class="row" style="margin:0"><div id="profPlus"></div><div><div class="name">Anna K. <span class="tag plus"><svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10L4 12z"/></svg>Plus</span></div><div class="sub">Подписка активна · продление через 21 день</div></div></div></div>
+      <div class="set" style="margin-top:12px"><b>Подписка</b><span class="tag plus"><svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10L4 12z"/></svg>Plus</span></div>
+    </div>
+    <div class="col"><h3>Ultra</h3>
+      <div class="card2"><div class="row" style="margin:0"><div id="profUltra"></div><div><div class="name">Anna K. <span class="tag ultra"><svg viewBox="0 0 24 24"><path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg>Ultra</span></div><div class="sub">Подписка активна · продление через 312 дней</div></div></div></div>
+      <div class="set" style="margin-top:12px"><b>Подписка</b><span class="tag ultra"><svg viewBox="0 0 24 24"><path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg>Ultra</span></div>
+    </div>
+  </div>
+
+  <h2>Шапка Главной, друзья, Пик</h2>
+  <div class="pair">
+    <div class="col"><h3>Plus</h3>
+      <div class="home"><div id="homePlus"></div><div><div class="name">Привет, Anna</div><div class="sub">Сегодня 1 из 3</div></div><span class="chip">12</span></div>
+      <div style="margin-top:10px" id="friendsPlus"></div>
+    </div>
+    <div class="col"><h3>Ultra</h3>
+      <div class="home"><div id="homeUltra"></div><div><div class="name">Привет, Anna</div><div class="sub">Сегодня 1 из 3</div></div><span class="chip">12</span></div>
+      <div style="margin-top:10px" id="friendsUltra"></div>
+    </div>
+  </div>
+
+  <h2>Пейвол: Месяц = Plus, Год = Ultra</h2>
+  <div class="paywall">
+    <h4 id="pwTitle">Открой всё с Ultra</h4>
+    <div class="note">Цены на плитках — из магазина в валюте человека (здесь примерные, в евро).</div>
+    <div class="tiles">
+      <button class="tile plus" id="tileMonth" aria-pressed="false"><span class="pin plus" style="--s:30px"><svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10L4 12z"/></svg></span><div class="tn">Plus</div><div class="per">Месяц</div><div class="price">€7,99</div><div class="caption">в месяц</div></button>
+      <button class="tile ultra" id="tileYear" aria-pressed="true"><span class="best">Выгоднее</span><span class="pin ultra" style="--s:30px"><svg viewBox="0 0 24 24"><path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg></span><div class="tn">Ultra</div><div class="per">Год</div><div class="price">€39,99</div><div class="caption">≈ €3,33 в месяц</div></button>
+    </div>
+    <button class="cta ultra" id="cta">Попробовать Ultra</button>
+    <div class="legal" id="legal"><i>Ultra</i>: пробный период (если есть) и сумма — из магазина. Подписка продлевается автоматически, отменить можно в настройках магазина.</div>
+  </div>
+
+  <h2>Что поменять владельцу в консолях (шаг 2, после «да»)</h2>
+  <div class="todo"><ol>
+    <li>App Store Connect и Google Play → подписка с месячным периодом: отображаемое название «Phraseman Plus»; годовая: «Phraseman Ultra» (названия видны в окне оплаты и в «Подписках» магазина).</li>
+    <li>Идентификаторы продуктов (<code>product id</code>) НЕ менять — иначе потеряются текущие подписчики; уровень приложение определяет по их периоду (год → Ultra, месяц → Plus).</li>
+    <li>RevenueCat → Offerings: подписи пакетов «Monthly» / «Annual» оставить; в описании продуктов написать Plus / Ultra для читаемости.</li>
+    <li>Описание подписки (Subscription localization): тексты про «Plus» в годовой заменить на «Ultra» на нужных языках.</li>
+  </ol></div>
+</div>
+
+<script>
+const PLUS = '<svg viewBox="0 0 24 24"><path d="M12 2l8 10-8 10L4 12z"/></svg>';
+const ULTRA = '<svg viewBox="0 0 24 24"><path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg>';
+const glyph = (k) => (k === 'plus' ? PLUS : ULTRA);
+const pin = (k, s) => `<span class="pin ${k}" style="--s:${s}px">${glyph(k)}</span>`;
+// аватар с кольцом и значком: размеры как в plus_ring_spec (list: кольцо 2,5 / зазор 2; card: кольцо 6 / зазор 5, значок 46)
+function avatar(k, s, kind = 'list', letter = 'A') {
+  const card = kind === 'card';
+  const rw = card ? 6 : 2.5; const gap = card ? 5 : 2;
+  const pinS = card ? 46 : Math.max(14, Math.round(s * .4));
+  const ov = card ? -2 : rw + 3 - 2;
+  const showPin = s >= 26;
+  return `<span class="av" style="--s:${s}px;--rw:${rw}px;--gap:${gap}px;--ov:${ov}px"><span class="face">${letter}</span><span class="ring ${k} spin"></span>${showPin ? `<span class="pin ${k}" style="--s:${pinS}px">${glyph(k)}</span>` : ''}</span>`;
+}
+function plainAvatar(s, letter) { return `<span class="av" style="--s:${s}px"><span class="face">${letter}</span></span>`; }
+function flatAvatar(k, s, letter) { return `<span class="av" style="--s:${s}px"><span class="face">${letter}</span><span class="flat ${k}"></span></span>`; }
+function fill() {
+  for (const [k, id] of [['plus', 'Plus'], ['ultra', 'Ultra']]) {
+    document.getElementById('pins' + id).innerHTML = [14, 20, 30, 46].map((s) => pin(k, s)).join('');
+    document.getElementById('av' + id).innerHTML = avatar(k, 44) + avatar(k, 56) + avatar(k, 120, 'card', 'A');
+    document.getElementById('prof' + id).innerHTML = avatar(k, 56);
+    document.getElementById('home' + id).innerHTML = avatar(k, 40);
+    document.getElementById('friends' + id).innerHTML =
+      `<div class="friend">${flatAvatar(k, 34, 'M')}<div><div class="name">Max</div><div class="sub">Этаж 14 · ${k === 'plus' ? 'Plus' : 'Ultra'}</div></div></div>` +
+      `<div class="friend">${plainAvatar(34, 'S')}<div><div class="name">Sofia</div><div class="sub">Этаж 9</div></div></div>`;
+  }
+}
+fill();
+const root = document.documentElement;
+function seg(id, attr, after) {
+  const el = document.getElementById(id);
+  el.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    root.setAttribute(attr, b.dataset.v); if (after) after();
+  });
+}
+root.setAttribute('data-ultra', 'ruby');
+seg('segTheme', 'data-theme'); seg('segUltra', 'data-ultra');
+// плитки пейвола
+const tm = document.getElementById('tileMonth'), ty = document.getElementById('tileYear');
+function pick(year) {
+  ty.setAttribute('aria-pressed', String(year)); tm.setAttribute('aria-pressed', String(!year));
+  const name = year ? 'Ultra' : 'Plus';
+  document.getElementById('pwTitle').textContent = `Открой всё с ${name}`;
+  const cta = document.getElementById('cta'); cta.textContent = `Попробовать ${name}`; cta.className = 'cta ' + (year ? 'ultra' : 'plus');
+  document.getElementById('legal').innerHTML = `<i>${name}</i>: пробный период (если есть) и сумма — из магазина. Подписка продлевается автоматически, отменить можно в настройках магазина.`;
+}
+tm.addEventListener('click', () => pick(false)); ty.addEventListener('click', () => pick(true));
+</script>
+</body>
+</html>

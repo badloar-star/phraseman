@@ -179,6 +179,7 @@ function CanonicalYearHeatmap({
   onOpenMonth: (monthKey: string) => void;
 }) {
   const { theme: t, f, themeMode } = useTheme();
+  const { lang } = useLang(); // зачем: подпись клетки для скринридера на языке интерфейса
   const { width } = useWindowDimensions();
   const palette = useMemo(() => heatPalette(themeMode, accentGraphicOf(t)), [themeMode, t]); // зачем: рампа пересчитывается только при смене темы, не на каждом рендере годовой сетки
   const activityMapSurface = themeMode === 'gold'
@@ -211,7 +212,7 @@ function CanonicalYearHeatmap({
           <TouchableOpacity
             key={day?.date ?? `empty-${index}`}
             accessibilityRole="button"
-            accessibilityLabel={day?.date}
+            accessibilityLabel={day ? heatmapDaySpokenLabel(day.date, day.minutes, lang) : undefined}
             activeOpacity={0.76}
             disabled={!day}
             onPress={() => day && onOpenMonth(day.date.slice(0, 7))}
@@ -440,6 +441,13 @@ const PRACTICE_MINUTE_FORMS: Record<string, CountForms> = {
   en: { one: 'minute of practice', other: 'minutes of practice' },
 };
 
+// зачем (раунд 2, Статистика, скринридер): клетка карты читалась как «2026-11-04»; теперь «4 ноября, 15 минут практики» — день словами и минуты, как на экране
+export function heatmapDaySpokenLabel(dateKey: string, minutes: number, lang: string): string {
+  const dayText = formatSelectedDay(dateKey, lang);
+  const safeMinutes = Math.max(0, Math.round(minutes));
+  return safeMinutes > 0 ? `${dayText}, ${countLabel(lang, safeMinutes, PRACTICE_MINUTE_FORMS)}` : dayText;
+}
+
 export function MonthExplorerModal({
   days,
   monthKeys,
@@ -634,7 +642,7 @@ export function MonthExplorerModal({
                     key={cell.day.date}
                     testID={`activity-365-day-${cell.day.date}`}
                     accessibilityRole="button"
-                    accessibilityLabel={cell.day.date}
+                    accessibilityLabel={heatmapDaySpokenLabel(cell.day.date, cell.day.minutes, lang)}
                     accessibilityState={{ selected: isSelected, disabled: cell.day.future }}
                     disabled={cell.day.future}
                     activeOpacity={0.78}

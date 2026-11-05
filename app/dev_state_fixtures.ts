@@ -847,6 +847,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     });
   }
   if (request.free) await step('free', request.free, () => setDevAsFreeFlag(request.free === 'on'));
+  // зачем (150, Maestro: тап по уроку 11 при plus=on не открывал урок): флаг «как Free» (free=on) переживает перезапуск и ПОДМЕНЯЕТ Plus на Free в проверке уроков списка
+  // ([DEV-AS-FREE] applied) — dev-подмена Plus молча гасилась. plus=on без явного free= теперь заодно снимает флаг; явный free=on/off по-прежнему главный.
+  if (request.plus === 'on' && !request.free) await step('free_auto_off', 'plus=on', () => setDevAsFreeFlag(false));
   if (request.newbie) await step('newbie', request.newbie, () => setDevForceNewbie(request.newbie === 'on'));
   if (request.appearance) {
     // зачем (Макеты 15.10): светлая/тёмная Главная ссылкой, только память

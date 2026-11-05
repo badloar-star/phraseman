@@ -313,7 +313,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               {/* зачем: выгода этого входа стоит над тарифами (`.ben.glass` макета). */}
               <PaywallPlusDetails lang={lang} g={g}
                 leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined}
-                leadCaption={contextual ? headline.subtitle : undefined}
+                // зачем (Сверка 05.11, premium_expired: первая выгода наезжала на подзаголовок, overflow 55): когда шапка уже показывает подзаголовок (есть заголовок входа), подпись первой выгоды его не повторяет
+                leadCaption={contextual && !headline.title ? headline.subtitle : undefined}
                 factCaption={mFactCaption}
                 items={v3Rows} paragraph={v3Paragraph} />
               {/* зачем (paywall-gaps-states «Лента пробного периода»): порядок образца — выгода, лента, тарифы */}

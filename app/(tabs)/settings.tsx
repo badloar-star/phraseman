@@ -72,6 +72,9 @@ import { isReferralCloudEnabled } from '../referral_cloud';
 import { selectAccountScopedReferralState, selectReferralSurfaceState } from '../referral_surface_state';
 import ReferralInviteBannerArt from '../../components/ReferralInviteBannerArt';
 import Constants from 'expo-constants';
+import * as Clipboard from 'expo-clipboard';
+import { daysWithUs, nextVersionTap, versionCopiedText, versionThanksText, type VersionTapState } from '../settings_version_footer';
+import { peekCurrentAccountCreatedAtMs } from '../account_created_at';
 import { getAppReleaseBuildId } from '../app_build_id';
 import { clearAppCaches } from '../cache_reset';
 import { openStoreReviewPage } from '../store_review';
@@ -285,6 +288,25 @@ export default function SettingsMain() {
 
   // зачем (26.10, «Вместе» в 2.0.3): строка «Моя неделя» прячется и удалённым аварийным выключателем friends_together_enabled
   const { lang, s } = useLang();
+  // зачем (раунд 2, Настройки п.1): 7 тапов по строке версии — тост «Спасибо, что учишься с нами N дней»; долгое нажатие — копия «версия + сборка»
+  const versionTapRef = useRef<VersionTapState>({ count: 0, lastAtMs: 0 });
+  const onVersionPress = useCallback(() => {
+    const next = nextVersionTap(versionTapRef.current, Date.now());
+    versionTapRef.current = next.state;
+    if (!next.fired) return;
+    const days = daysWithUs(peekCurrentAccountCreatedAtMs(), Date.now());
+    console.log(`[SETTINGS-VERSION] 7 тапов: дней с нами=${String(days)}`); // guard-ok: значение, решившее тост
+    if (days === null) return;
+    doHaptic();
+    emitAppEvent('action_toast', actionToastTri('info', { ru: versionThanksText('ru', days), uk: versionThanksText('uk', days), en: versionThanksText('en', days), es: versionThanksText('es', days), 'pt-BR': versionThanksText('pt-BR', days), vi: versionThanksText('vi', days), id: versionThanksText('id', days), tr: versionThanksText('tr', days), pl: versionThanksText('pl', days) }));
+  }, []);
+  const onVersionLongPress = useCallback(() => {
+    const text = `${Constants.expoConfig?.version ?? ''} (${getAppReleaseBuildId()})`;
+    doHaptic();
+    Clipboard.setStringAsync(text).then(() => {
+      emitAppEvent('action_toast', actionToastTri('info', { ru: versionCopiedText('ru'), uk: versionCopiedText('uk'), en: versionCopiedText('en'), es: versionCopiedText('es'), 'pt-BR': versionCopiedText('pt-BR'), vi: versionCopiedText('vi'), id: versionCopiedText('id'), tr: versionCopiedText('tr'), pl: versionCopiedText('pl') }));
+    }).catch((error: unknown) => console.warn(`[SETTINGS-VERSION] копирование не удалось: ${error instanceof Error ? error.message : String(error)}`)); // guard-ok: catch называет причину
+  }, []);
   const L = (
     ru: string,
     uk: string,
@@ -1533,9 +1555,11 @@ export default function SettingsMain() {
 
         {/* Подвал макета A: «Версия 2.0.0 (118) · Dev Hub» мелко по центру; Dev Hub — только в дев-сборке. */}
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginTop: 26, paddingBottom: 12 }}>
+          <TouchableOpacity testID="settings-version" accessibilityRole="button" activeOpacity={0.7} hitSlop={10} onPress={onVersionPress} onLongPress={onVersionLongPress} delayLongPress={500}>
           <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, textAlign: 'center' }}>
             {`${L('Версия', 'Версія', 'Version', 'Versión', 'Versão', 'Phiên bản', 'Versi', 'Sürüm', 'Wersja')} ${Constants.expoConfig?.version ?? ''} (${getAppReleaseBuildId()})`}
           </Text>
+          </TouchableOpacity>
           {ENABLE_DEV_TOOLS ? (
             <>
               <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18 }}>{' · '}</Text>

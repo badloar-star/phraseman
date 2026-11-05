@@ -1,0 +1,30 @@
+appId: app.phraseman
+name: 12 Home offline and Sets
+---
+- extendedWaitUntil:
+    visible: ".*0/10.*"
+    timeout: 120000
+- openLink: "phraseman://dev_state?set=uiLang:ru,appearance:dark"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- setAirplaneMode: enabled
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: home_offline_dark
+- setAirplaneMode: disabled
+- waitForAnimationToEnd
+- openLink: "phraseman://dev_state?set=uiLang:ru,appearance:light"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 60000
+- back
+- waitForAnimationToEnd
+- setAirplaneMode: enabled
+- waitForAnimationToEnd
+- waitForAnimationToEnd
+- takeScreenshot: home_offline_light
+- setAirplaneMode: disabled
+- waitForAnimationToEnd

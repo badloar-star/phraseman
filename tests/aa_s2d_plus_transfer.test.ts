@@ -313,10 +313,11 @@ test('paywall and «Управление подпиской» mark their store o
   // зачем (координатор 05.10): рабочая копия в CRLF — исходник читаем с окончаниями LF
   const read = (rel: string) => fsMod.readFileSync(require.resolve('../' + rel), 'utf8').replace(/\r\n?/g, '\n');
   // зачем (ревью 12.10 п.1): внутри метки потока теперь ещё ставится флаг purchaseInvoked — вызов магазина остаётся единственным return внутри метки
-  expect(read('app/paywall_purchase.ts')).toMatch(/withPurchaseFlow\('paywall_purchase', \(\) => \{\s*purchaseInvoked = true;[^\n]*\n\s*return Purchases\.purchasePackage\(pkg\);/);
+  // зачем (Q8, 06.11): при замене месячной на годовую на Android вызов магазина получает третьим аргументом параметры замены — иначе прежняя обычная покупка
+  expect(read('app/paywall_purchase.ts')).toMatch(/withPurchaseFlow\('paywall_purchase', \(\) => \{\s*purchaseInvoked = true;[^\n]*\n\s*return googleChange \? Purchases\.purchasePackage\(pkg, null, googleChange\) : Purchases\.purchasePackage\(pkg\);/);
   // зачем (10.10): 65(а) d677a328e — «Проверить статус» (getCustomerInfo) и «Восстановить» идут одним путём; оба внутри метки.
   expect(read('app/paywall_purchase.ts')).toContain("withPurchaseFlow('paywall_restore', () => (mode === 'check' ? Purchases.getCustomerInfo() : Purchases.restorePurchases()))");
-  expect(read('app/manage_subscription_purchase.ts')).toContain("withPurchaseFlow('manage_subscription_upgrade', () => Purchases.purchasePackage(yearlyPackage, opts as any))");
+  expect(read('app/manage_subscription_purchase.ts')).toContain("withPurchaseFlow('manage_subscription_upgrade', () => Purchases.purchasePackage(yearlyPackage, null, googleChange))");
   expect(read('app/manage_subscription.tsx')).toContain("withPurchaseFlow('manage_subscription_restore', () => Purchases.restorePurchases())");
 });
 

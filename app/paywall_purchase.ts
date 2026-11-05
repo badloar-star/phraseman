@@ -19,7 +19,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { pickPaywallPrice, resolvePaywallReferencePrices, type PaywallPriceSource } from './paywall_reference_prices';
 import { useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
-import Purchases, { INTRO_ELIGIBILITY_STATUS, PURCHASES_ERROR_CODE, type PurchasesPackage } from 'react-native-purchases';
+import Purchases, { INTRO_ELIGIBILITY_STATUS, PRORATION_MODE, PURCHASES_ERROR_CODE, type PurchasesPackage } from 'react-native-purchases';
+import { decideAndroidPlanChange, googleProductChangeInfoFor } from './android_plan_change';
 
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { isLifetimeButtonEnabled } from './remote_flags';
@@ -1275,13 +1276,32 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         DebugLogger.info('[PAYWALL]', 'покупка: окно закрыто/аккаунт сменился до начала оплаты — оплату не начинаем');
         return;
       }
+      // зачем (Q8, решение владельца 05.11): Android, активна месячная подписка, выбран годовой план → ЗАМЕНА подписки (третий аргумент purchasePackage), а не вторая параллельная.
+      // Любая неопределённость (не Android, нет месячной, ошибка чтения customerInfo) → прежняя обычная покупка; решение и причина — в журнале [PLAN-CHANGE].
+      let googleChange: ReturnType<typeof googleProductChangeInfoFor> | null = null;
+      if (Platform.OS === 'android' && selected === 'yearly') {
+        try {
+          const activeInfo = await Purchases.getCustomerInfo();
+          const decision = decideAndroidPlanChange({
+            platform: Platform.OS,
+            targetProductId: pkg.product.identifier,
+            targetIsYearly: true,
+            monthlyProductIds: packagesRef.current.monthly ? [packagesRef.current.monthly.product.identifier] : [],
+            activeSubscriptions: activeInfo.activeSubscriptions ?? [],
+          });
+          console.log('[PLAN-CHANGE]', JSON.stringify({ surface: 'paywall', change: decision.change, reason: decision.reason, mode: decision.change ? 'DEFERRED' : null })); // guard-ok: решение и причина, без идентификаторов пользователя
+          if (decision.change) googleChange = googleProductChangeInfoFor(decision.oldProductIdentifier, PRORATION_MODE.DEFERRED);
+        } catch (e) {
+          DebugLogger.warn('[PLAN-CHANGE]', `paywall: customerInfo не прочитан (${e instanceof Error ? e.message : String(e)}) — обычная покупка без замены`);
+        }
+      }
       setPayStarted(true); // L1: с этого момента окно не закрывается
       const purchaseResult = await runRevenueCatOperationForGeneration(
         operationAccount,
         // AA S2d раунд 3: метка потока покупки — фоновый перенос Plus в это время ждёт.
         () => withPurchaseFlow('paywall_purchase', () => {
           purchaseInvoked = true; // зачем (ревью 12.10 п.1): флаг в момент самого вызова магазина, не раньше
-          return Purchases.purchasePackage(pkg); // RAW пакет — цена стора без изменений
+          return googleChange ? Purchases.purchasePackage(pkg, null, googleChange) : Purchases.purchasePackage(pkg); // RAW пакет — цена стора без изменений; googleChange — замена месячной на годовую (Q8)
         }),
       );
       if (purchaseResult.status !== 'ok') {

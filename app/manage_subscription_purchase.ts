@@ -13,6 +13,7 @@ import {
 } from './premium_revenuecat_state';
 import { reportSwallowed } from './debug-logger';
 import { withPurchaseFlow } from './purchase_flow_activity';
+import { googleProductChangeInfoFor, googleSubscriptionIdOf } from './android_plan_change';
 
 export type ManagePlanChangeResult =
   | { status: 'stale' }
@@ -71,16 +72,16 @@ export async function changeManageSubscriptionPlanForGeneration(params: Readonly
   if (latestPlan == null) return { status: 'unknown', customerInfo: latestInfo };
 
   if (!await revenueCatIdentityMatches(generation)) return { status: 'stale' };
-  const opts = Platform.OS === 'android'
-    ? {
-      googleProductChangeInfo: {
-        oldProductIdentifier: currentProductId ?? '',
-        prorationMode: PRORATION_MODE.DEFERRED,
-      },
-    }
-    : undefined;
+  // зачем (Q8, решение владельца 05.11): параметры замены подписки Google идут ТРЕТЬИМ аргументом purchasePackage (второй — устаревший upgradeInfo).
+  // Раньше объект googleProductChangeInfo передавался вторым и игнорировался → вместо замены создавалась вторая подписка. Пустой идентификатор → обычная покупка + запись в журнал.
+  const oldSubscriptionId = Platform.OS === 'android' ? googleSubscriptionIdOf(currentProductId ?? '') : '';
+  if (Platform.OS === 'android' && oldSubscriptionId.length === 0) {
+    console.warn('[PLAN-CHANGE] manage: нет идентификатора текущей подписки — замена невозможна, обычная покупка');
+  }
+  const googleChange = oldSubscriptionId.length > 0 ? googleProductChangeInfoFor(oldSubscriptionId, PRORATION_MODE.DEFERRED) : null;
+  console.log('[PLAN-CHANGE]', JSON.stringify({ surface: 'manage', platform: Platform.OS, replace: googleChange !== null, old: googleChange?.oldProductIdentifier ?? null, mode: googleChange ? 'DEFERRED' : null })); // guard-ok: ветка и значение, без идентификаторов пользователя
   // AA S2d раунд 3: метка потока покупки — фоновый перенос Plus в это время ждёт.
-  const { customerInfo } = await withPurchaseFlow('manage_subscription_upgrade', () => Purchases.purchasePackage(yearlyPackage, opts as any));
+  const { customerInfo } = await withPurchaseFlow('manage_subscription_upgrade', () => Purchases.purchasePackage(yearlyPackage, null, googleChange));
   if (!isManageSubscriptionOperationCurrent(generation)) return { status: 'stale' };
   if (!await revenueCatIdentityMatches(generation)) return { status: 'stale' };
   const persisted = await persistForGeneration(

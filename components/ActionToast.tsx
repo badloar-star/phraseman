@@ -622,7 +622,8 @@ function ActionToast() {
           <View style={styles.iconBare}>
             <Ionicons name={tone.icon} size={24} color={chrome.title} />
           </View>
-          <View style={styles.copy} accessible accessibilityLabel={`${toneLabel}. ${message}`}>
+          {/* зачем (ТОП-20 №12, доступность): тост этой ветки не озвучивался — экранный диктор читает появившееся сообщение вежливо, как в остальных ветках */}
+          <View style={styles.copy} accessible accessibilityLiveRegion="polite" accessibilityLabel={`${toneLabel}. ${message}`}>
             <Text style={[styles.message, { color: chrome.title }]}>
               {message}
             </Text>

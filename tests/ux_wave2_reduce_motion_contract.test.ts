@@ -31,4 +31,11 @@ describe('Reduce Motion: конфетти, TapScale, эквалайзер', () =
     expect(s).toContain('transform: reduceMotion ? [] : [');
     expect(s).toContain('runOnJS(dismiss)()');
   });
+  // зачем (ТОП-20 №12, 05.11): во всех ветках тоста сообщение — «живая область», иначе диктор молчит о появившемся тосте
+  it('ActionToast: каждая копия с сообщением помечена accessibilityLiveRegion', () => {
+    const s = read('components/ActionToast.tsx');
+    const copies = s.split('\n').filter((l) => l.includes('style={styles.copy}') && l.includes('accessibilityLabel={`${toneLabel}. ${message}`}'));
+    expect(copies.length).toBeGreaterThanOrEqual(2);
+    for (const line of copies) expect(line).toContain('accessibilityLiveRegion="polite"');
+  });
 });

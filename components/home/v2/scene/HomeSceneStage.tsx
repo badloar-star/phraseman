@@ -12,7 +12,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { msSinceJsEntry } from '../../../../app/cold_start_entry_mark';
-import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PixelRatio, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import SceneBackdrop from '../../../scene/SceneBackdrop';
 import SceneBlockShadow from '../../../scene/SceneBlockShadow';
@@ -88,6 +88,9 @@ type Props = {
 };
 
 const HOME_STAGE_MODULE_AT = Date.now(); // [TOP-BAND]: отсчёт времени до первой раскладки сцены
+// зачем (🔴 владелец 05.11: «два оттенка вверху сцены»; [HOME-FIT]: planned 280, actual 317–325): расчётная высота (280) меньше фактической — сцена растёт по содержимому. Палитра и фон считаются по ФАКТИЧЕСКОЙ высоте (onLayout);
+// стартовое значение — последняя измеренная (модульная память), чтобы первый кадр не мигал.
+let LAST_ACTUAL_STAGE_H: number | null = null;
 
 export default function HomeSceneStage(props: Props) {
   const latestRef = useRef<Props>(props);
@@ -116,6 +119,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const firstLayoutLoggedRef = useRef(false); // [HOME-SCENE-FIRST]: первая раскладка сцены — одна строка
   const glowLoggedRef = useRef(false);
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
+  const [actualH, setActualH] = useState<number | null>(LAST_ACTUAL_STAGE_H);
+  const paletteH = actualH !== null && actualH > 0 ? actualH : stageH;
   // Header начинается в координате сцены, а Stage уже добавляет topInset как padding.
   // Поэтому резервируем только часть измеренной шапки ниже safe area; 52dp остаётся baseline.
   const reservedTopSpace = Math.max(TOP_SPACE, headerHeight - topInset);
@@ -124,10 +129,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const dpr = PixelRatio.get();
   const scenePal = useMemo(() => {
     const t0 = Date.now();
-    const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'home', windowW * dpr, stageH * dpr, dpr, evening); // вечер: «небо + тёплый край» (владелец 29.10), без красного и углей
+    const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'home', windowW * dpr, paletteH * dpr, dpr, evening); // вечер: «небо + тёплый край» (владелец 29.10), без красного и углей
     logSceneTheme('home:stage', liquidGlassThemeId, liquidGlassAppearance, 'scenePalette(' + pal.mode + ')', { mode: pal.mode, ms: Date.now() - t0, evening: evening ? 1 : 0, guard: JSON.stringify(pal.guard) });
     return pal;
-  }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, dpr, evening]);
+  }, [liquidGlassThemeId, liquidGlassAppearance, windowW, paletteH, dpr, evening]);
   // зачем (слово владельца 29.10, [SCENE-EDGE]): блок сцены Главной — высота, доля окна, нижний край (радиус 32, без плавного ухода в фон), источник палитры
   useEffect(() => {
     logSceneEdge('home', { sceneH: Math.round(stageH), sceneW: Math.round(windowW), windowH: Math.round(windowH), shareOfWindow: Math.round((stageH / windowH) * 100), bottomRadius: 28, fadeToBg: false, panelOverlap: HOME_SCENE_PANEL_OVERLAP, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: scenePal.mode, source: isPremium ? 'premiumThemeVisualSpec' : 'scenePalette', evening });
@@ -162,6 +167,12 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}
       onLayout={(e) => {
         // зачем (Сверка home5, «Фраза дня» срезана на 390): цифры вместо догадки — расчётная и фактическая высота сцены, окно, верх капсулы; временно, [HOME-FIT]
+        const measuredH = Math.round(e.nativeEvent.layout.height);
+        if (measuredH > 0 && measuredH !== LAST_ACTUAL_STAGE_H) {
+          console.log('[HOME-FIT]', 'stageH', JSON.stringify({ before: Math.round(paletteH), after: measuredH, planned: stageH, source: LAST_ACTUAL_STAGE_H === null ? 'first_measure' : 'relayout' })); // guard-ok: одна строка на смену фактической высоты
+          LAST_ACTUAL_STAGE_H = measuredH;
+          setActualH(measuredH);
+        }
         console.log('[HOME-FIT]', JSON.stringify({ planned: stageH, actual: Math.round(e.nativeEvent.layout.height), headerHeight: Math.round(headerHeight), reservedTopSpace: Math.round(reservedTopSpace), windowH, windowW, pillTop, fontScale, title: copy.title })); // guard-ok: одна строка на смену высоты
         // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, «верх цельный»; координатор: полоса у владельца на Главной в 7:56 — первый кадр или возврат на вкладку?): когда сцена встала,
         // от какой высоты экрана она красит верх, каким цветом и готова ли (pending — скелет). Мс — от загрузки модуля сцены.
@@ -173,7 +184,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       {/* зачем (вердикт владельца 29.10, scenePalette): фон Главной — утверждённая сцена; тёмное «Глубокое небо», светлое «А»; вечер — «Небо + тёплый край» (справа внизу тёплый отсвет оттенка темы, без красного света и углей) */}
       {/* зачем (слово владельца 29.10: «темы за достижения сломаны, там были свои уникальные сцены, не надо было трогать»): у 6 тем за награды фон сцены свой — градиент из premiumThemeVisualSpec и свет края, как на da0a435e3; общего неба и звёзд у них нет */}
       {isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} /> : <SceneBackdrop palette={scenePal} idPrefix="homeSc" active={active} />}
-      <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={stageH} />
+      <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={paletteH} />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" onLayout={() => { if (!glowLoggedRef.current) { glowLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'glow_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'svg_glow' })); } /* guard-ok: одна строка на монтирование */ }}>
         <Defs>
           {isPremium ? (

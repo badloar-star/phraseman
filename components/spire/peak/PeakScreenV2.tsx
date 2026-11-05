@@ -9,6 +9,12 @@ import type { Lang } from '../../../constants/i18n';
 import { buildPeakModel, peakStepRecord, type PeakRankBy, type PeakStepRecord } from '../../../modules/spire/peak_model';
 import { useSpirePalette } from '../useSpirePalette';
 import SpireTower from '../SpireTower';
+import { spireSkinForTier } from '../../../modules/spire/tower_skins';
+import { SPIRE_FLOOR_COUNT } from '../spire_tower_model';
+import { spireTowerHeadroom } from '../spire_tower_bounds';
+import { peakTowerFit } from './peak_tower_fit';
+import { pickPeakTowerPlayers } from './peak_tower_players';
+import PeakTowerPlayers from './PeakTowerPlayers';
 import V2Pressable from '../../v2/V2Pressable';
 import type { SpireMemberRow } from '../spire_room_types';
 import { spireText } from '../spire_strings';
@@ -72,6 +78,19 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   // зачем (владелец 05.11: «Макеты как были одобрены», «цифры этажей слева — убрать, я сказал»; «1 в 1» с variant_B_*): башня крупная, ~31 % ширины экрана, чистая — без колонки цифр, подписей ВЕРШИНА/СТРАЖ/НАД ОБЛАКАМИ и монет «+N» соперников
   const railWidth = Math.max(PEAK_RAIL_WIDTH_NARROW, Math.round(width * 0.31));
   const rail = railHeight ?? Math.max(420, Math.min(640, Math.round(height * 0.72)));
+  // зачем (владелец 05.11 07:4x: «башню сделать больше по возможности и опустить вниз»): масштаб — от высоты колонки (вся башня с короной), основание у низа; тело не шире колонки
+  const towerSkin = spireSkinForTier(towerProps.tier ?? null);
+  const towerFit = useMemo(
+    () => peakTowerFit({ railWidth, railHeight: rail, headroomUnits: spireTowerHeadroom(towerSkin, towerProps.myFloor === SPIRE_FLOOR_COUNT) }),
+    [railWidth, rail, towerSkin, towerProps.myFloor],
+  );
+  // зачем (Макеты 05.11, кадр 07:43: «башня тёмно-серая на светлом экране — башня и экран разных цветов»; макет variant_B: камень башни — оттенок темы): наряд лиги в цветах темы экрана
+  const towerTheme = useMemo(() => {
+    const hex = (c: unknown): c is string => typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c);
+    return hex(p.accentGraphic) && hex(p.bgTop) && hex(p.bg) ? { accent: p.accentGraphic, sceneTop: p.bgTop, sceneBottom: p.bg } : undefined;
+  }, [p.accentGraphic, p.bgTop, p.bg]);
+  // зачем (владелец 05.11 07:38: «на башне все еще надо показывать иконки юзеров кто где»): иконки из уже загруженной комнаты (0 новых чтений)
+  const towerPlayers = useMemo(() => pickPeakTowerPlayers(towerProps.rivalsByFloor, towerProps.myFloor), [towerProps.rivalsByFloor, towerProps.myFloor]);
   // зачем: участники приходят порядком комнаты (уже по рубильнику); weekCoins в документе может отсутствовать — считаем 0
   const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0 })), rankBy), [members, rankBy]);
   // зачем (тур первого входа): окна затемнения считаются от измеренных блоков; меряем только когда тур показывается (в обычной жизни — ноль работы)
@@ -126,9 +145,12 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   );
   return (
     <View style={s.root} testID="peak-screen-v2">
-      <View ref={railRef} collapsable={false} style={[s.rail, { width: railWidth }]}>
-        {/* зачем: variant="scene" — башня без плиты-панели и без подписей этажей (тот же рисунок, что у утверждённой «Сцены»); соперников по этажам не передаём — монет «+N» вдоль башни нет, остаётся только метка «я» */}
-        <SpireTower {...towerProps} variant="scene" hideFloorWords rivalsByFloor={undefined} lang={lang} selected={floor} onSelect={onSelectFloor} windowHeight={rail} />
+      <View ref={railRef} collapsable={false} style={[s.rail, { width: railWidth, height: rail }]} testID="peak-tower-rail">
+        {/* зачем: variant="scene" — башня без плиты-панели и без подписей этажей; монет «+N» слева нет (rivalsByFloor не передаём), вместо них — компактные иконки на теле башни (PeakTowerPlayers), «я» — метка SpireTower */}
+        <View style={[s.towerBox, { width: towerFit.width, height: towerFit.height, left: towerFit.offsetLeft, bottom: -towerFit.sinkDown }]} testID="peak-tower-box">
+          <SpireTower {...towerProps} variant="scene" hideFloorWords rivalsByFloor={undefined} themeColors={towerTheme} lang={lang} selected={floor} onSelect={onSelectFloor} windowHeight={towerFit.height} />
+          <PeakTowerPlayers players={towerPlayers} scale={towerFit.scale} />
+        </View>
       </View>
       <View style={s.panel}>
         <View ref={headRef} collapsable={false} style={s.head}>
@@ -173,6 +195,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
 const s = StyleSheet.create({
   root: { flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
   rail: { marginLeft: -8 },
+  towerBox: { position: 'absolute' },
   panel: { flex: 1, minWidth: 0 },
   head: { alignSelf: 'flex-start' },
   floorBtn: { minHeight: PEAK_TAP_TARGET, justifyContent: 'center', alignSelf: 'flex-start' },

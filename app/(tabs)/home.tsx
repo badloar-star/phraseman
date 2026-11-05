@@ -159,6 +159,7 @@ import {
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { VIDEO_PHRASES_NAME } from '../video_phrases_name';
+import { homeHeroProgressBranch, logHomeHeroPick } from '../home_hero_log'; // зачем (координатор 05.11): журнал [HOME-HERO] pick
 import { HOME_TILE_ROW_MAX, homeVideoPacksTileWanted } from '../home_video_tile_rule'; // зачем (слово владельца ~20:41): правило «видеоплитка только пока Видео закрыт» — чистая функция, проверяется по рангам 0…5
 import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
 import { isHomeContinueV2Enabled, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
@@ -2899,6 +2900,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           legacyProgress: lastLesson ? lastLesson.progress ?? 0 : null,
         });
         if (HOME_SCENE_V2_ENABLED) logHomeSceneCount(homeSceneLessonNo, homeSceneCount);
+        // зачем (координатор 05.11, баг «0-day streak / Day counted» у новичка; сперва логи): одно значение hasProgress и ветка, которая его выбрала — [HOME-HERO] pick
+        const homeSceneHasProgress = homeTodayRank0 && homeSceneLessonNo === 1 && !lastLesson && (homeSceneCount.done ?? 0) === 0 ? false : continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null;
+        if (HOME_SCENE_V2_ENABLED) {
+          const heroFacts = { rank0: homeTodayRank0, lessonNo: homeSceneLessonNo, lastLessonId: lastLesson ? lastLesson.id : null, doneInLesson: homeSceneCount.done ?? null, continueKind: continueChoice.kind, continueResolved };
+          logHomeHeroPick({ ...heroFacts, streakDays: displayStreak, streakToday, hasProgress: homeSceneHasProgress, branch: homeHeroProgressBranch(heroFacts) });
+        }
         const renderHomeScene = () => (
           <HomeScene
             lang={lang}
@@ -2910,7 +2917,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             plus={hasPremiumAccess}
             energy={energyPeekNow ? energyPeekNow.energy : null}
             // зачем (макет home-free-0, вердикт Макетов 05.11: герой ранга 0 — «Урок 1 + название + Начать»): на ранге 0 до первого пройденного занятия сцена — 'newbie' (прогресса нет), а не «День засчитан / Продолжить» (серия первого дня прогрессом не считается)
-            hasProgress={homeTodayRank0 && homeSceneLessonNo === 1 && !lastLesson && (homeSceneCount.done ?? 0) === 0 ? false : continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null}
+            hasProgress={homeSceneHasProgress}
             place={{
               badge: continuePlace ? homeContinuePlaceBadge(lang, continueChoice.kind === 'dialog' ? 'dialog' : 'cards')
                 : homeSceneLessonNo !== null ? triLang(lang, { ru: `Урок ${homeSceneLessonNo}`, uk: `Урок ${homeSceneLessonNo}`, en: `Lesson ${homeSceneLessonNo}`, es: `Lección ${homeSceneLessonNo}`, 'pt-BR': `Lição ${homeSceneLessonNo}`, vi: `Bài ${homeSceneLessonNo}`, id: `Pelajaran ${homeSceneLessonNo}`, tr: `Ders ${homeSceneLessonNo}`, pl: `Lekcja ${homeSceneLessonNo}` }) : null,

@@ -33,6 +33,8 @@ describe('Сцена Главной: таблица приоритетов ге�
   it('экзамен раньше «всё пройдено»', () => expect(pick({ chapterExamReady: true, allReleasedDone: true }).state).toBe('exam_ready'));
   it('«всё пройдено» раньше «день засчитан»', () => expect(pick({ allReleasedDone: true, dayCounted: true }).state).toBe('all_done'));
   it('день засчитан', () => expect(pick({ dayCounted: true }).state).toBe('day_done'));
+  // зачем (координатор 05.11): «0-day streak / Day counted» — противоречие; при серии 0 герой «день засчитан» не выбирается
+  it('день засчитан, но серия 0 — не «день засчитан»', () => expect(pick({ dayCounted: true, streakDays: 0 }).state).toBe('continue'));
   it('нет сети: свой герой и строка; при другом герое — только строка', () => {
     expect(pick({ offline: true })).toMatchObject({ state: 'offline', offlineLine: true });
     expect(pick({ offline: true, dayCounted: true })).toMatchObject({ state: 'day_done', offlineLine: true });

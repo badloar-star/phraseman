@@ -68,7 +68,8 @@ export function pickHomeSceneState(input: HomeSceneInput): HomeSceneDecision {
   if (input.streakLostToday) return decide('streak_lost', 'streakLostToday=true');
   if (input.chapterExamReady) return decide('exam_ready', 'chapterExamReady=true');
   if (input.allReleasedDone) return decide('all_done', 'allReleasedDone=true');
-  if (input.dayCounted === true) return decide('day_done', `dayCounted=true streakDays=${input.streakDays}`);
+  // зачем (координатор 05.11, кадр coord_check/home_dark_current_rank: «0-day streak» + «Day counted» у новичка): засчитанный день означает серию ≥ 1; при серии 0 «день засчитан» — рассинхрон сигнала и серии, героя «день сделан» не показываем
+  if (input.dayCounted === true && input.streakDays >= 1) return decide('day_done', `dayCounted=true streakDays=${input.streakDays}`);
   if (offline) return decide('offline', 'offline=true');
   return decide('continue', `default hasProgress=${String(input.hasProgress)} hour=${input.hour} energy=${String(input.energy)}`);
 }

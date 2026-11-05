@@ -1,8 +1,8 @@
 import React, { createContext, useContext } from 'react';
-import { switchOffTrackTone, switchOnTone } from './switch_chrome';
 import { StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
+import { GlassSwitch } from './GlassSwitch';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
 import { RowDivider } from '../v2/RowDivider';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
@@ -215,22 +215,6 @@ export function SettingsGlassSwitch({ value, onValueChange, testID, accessibilit
   accessibilityLabel: string;
   glass: SettingsGlass;
 }) {
-  return (
-    <PressableHybrid
-      testID={testID}
-      accessibilityLabel={accessibilityLabel}
-      accessibilityRole="switch"
-      accessibilityState={{ checked: value }}
-      onPress={() => onValueChange(!value)}
-      withHaptic={false}
-      withSound={false}
-      variant="chip"
-      style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
-      contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
-    >
-      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? switchOnTone(glass).track : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
-        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? switchOnTone(glass).knob : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
-      </View>
-    </PressableHybrid>
-  );
+  // зачем (владелец 04.11, ТОП-20 №3 «тумблеры с хаптиком»; координатор 05.11 «сделать всё»): последняя копия без анимации — теперь общий GlassSwitch (бегунок на UI-потоке, лёгкий хаптик, Reduce Motion).
+  return <GlassSwitch testID={testID} accessibilityLabel={accessibilityLabel} value={value} onValueChange={onValueChange} glass={glass} />;
 }

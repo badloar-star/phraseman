@@ -7,8 +7,6 @@ import path from 'path';
 import { switchOnTone } from '../components/settings/switch_chrome';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
-// зачем (волна UX 2, 04.11): Уведомления и Приватность делегируют общему GlassSwitch — тон проверяем в нём; Настройки обучения пока свой LocalSwitch
-const FILES = ['app/settings_edu.tsx'];
 
 describe('LocalSwitch on-state uses the shared switchOnTone token', () => {
   it('token: accent track and accent-ink knob', () => {
@@ -24,14 +22,9 @@ describe('LocalSwitch on-state uses the shared switchOnTone token', () => {
     expect(read('app/privacy_settings.tsx')).toContain('return <GlassSwitch {...');
   });
 
-  it.each(FILES)('%s: on-state track/knob come from switchOnTone, not glass.selected/lightTint', (rel) => {
-    const src = read(rel);
-    const fn = src.slice(src.indexOf('function LocalSwitch('), src.indexOf('\n}\n', src.indexOf('function LocalSwitch(')));
-    expect(src).toContain("import { switchOffTrackTone, switchOnTone } from '../components/settings/switch_chrome';");
-    expect(fn).toContain('const onTone = switchOnTone(glass);');
-    expect(fn).toMatch(/backgroundColor: value \? onTone\.track : /);
-    expect(fn).toMatch(/backgroundColor: value \? onTone\.knob : /);
-    expect(fn).not.toMatch(/value \? glass\.selected/);
-    expect(fn).not.toMatch(/value \? glass\.lightTint/);
+  it('Настройки обучения (LocalSwitch) и общий SettingsGlassSwitch делегируют GlassSwitch', () => {
+    // зачем (ТОП-20 №3, 05.11): копии тумблера свёрнуты в общий GlassSwitch — тон включённого проверен выше
+    expect(read('app/settings_edu.tsx')).toMatch(/function LocalSwitch\([^]*?return <GlassSwitch /);
+    expect(read('components/settings/SettingsGlassRows.tsx')).toMatch(/export function SettingsGlassSwitch\([^]*?return <GlassSwitch /);
   });
 });

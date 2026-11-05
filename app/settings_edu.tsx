@@ -1,6 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { actionToastTri, emitAppEvent } from './events';
-import { switchOffTrackTone, switchOnTone } from '../components/settings/switch_chrome';
 import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -12,6 +11,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import ScreenBackButton, { ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { useTheme } from '../components/ThemeContext';
 import PressableHybrid from '../components/PressableHybrid';
+import { GlassSwitch } from '../components/settings/GlassSwitch';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useAudio } from '../hooks/use-audio';
 import {
@@ -59,46 +59,8 @@ type LocalSwitchProps = {
 };
 
 function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }: LocalSwitchProps) {
-  const offTone = switchOffTrackTone(glass);
-  // зачем (координатор 13.10, Темы 4801981d8; образец settings-gap-013/014/015/034 `.gs-sw.on`): включённый — дорожка цвета акцента
-  // и «чернильный» бегунок из общего токена switchOnTone, а не тёмная дорожка glass.selected с белым бегунком.
-  const onTone = switchOnTone(glass);
-  return (
-    <PressableHybrid
-      testID={testID}
-      accessibilityLabel={accessibilityLabel}
-      accessibilityRole="switch"
-      accessibilityState={{ checked: value }}
-      onPress={() => onValueChange(!value)}
-      withHaptic={false}
-      withSound={false}
-      variant="chip"
-      style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
-      contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
-    >
-      <View
-        style={{
-          width: 48,
-          height: 29,
-          borderRadius: 16,
-          padding: 3,
-          justifyContent: 'center',
-          // зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном (switchOffTrackTone)
-          backgroundColor: value ? onTone.track : offTone.track,
-        }}
-      >
-        <View
-          style={{
-            width: 21,
-            height: 21,
-            borderRadius: 11,
-            backgroundColor: value ? onTone.knob : offTone.knob,
-            transform: [{ translateX: value ? 19 : 0 }],
-          }}
-        />
-      </View>
-    </PressableHybrid>
-  );
+  // зачем (ТОП-20 №3, 05.11): копия тумблера заменена общим GlassSwitch — плавный бегунок на UI-потоке, лёгкий хаптик, Reduce Motion.
+  return <GlassSwitch testID={testID} accessibilityLabel={accessibilityLabel} value={value} onValueChange={onValueChange} glass={glass} />;
 }
 
 // зачем: последнее показанное значение строки «Голос озвучки (EN)» живёт в памяти модуля —

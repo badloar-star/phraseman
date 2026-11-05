@@ -34,9 +34,12 @@ describe('switchOnTone — все темы (11А)', () => {
     expect(bad).toEqual([]);
   });
   it('общий переключатель Настроек берёт цвета включённого из switchOnTone', () => {
-    const src = fs.readFileSync(path.join(__dirname, '..', 'components/settings/SettingsGlassRows.tsx'), 'utf8');
-    expect(src).toContain('switchOnTone(glass).track');
-    expect(src).toContain('switchOnTone(glass).knob');
+    // зачем (ТОП-20 №3, 05.11): SettingsGlassSwitch делегирует общему GlassSwitch — тон включённого берётся там из switchOnTone
+    const rows = fs.readFileSync(path.join(__dirname, '..', 'components/settings/SettingsGlassRows.tsx'), 'utf8');
+    expect(rows).toContain('<GlassSwitch');
+    const src = fs.readFileSync(path.join(__dirname, '..', 'components/settings/GlassSwitch.tsx'), 'utf8');
+    expect(src).toContain('switchOnTone(glass)');
+    expect(src).toContain('onTone.knob');
     expect(src).not.toContain('value ? glass.lightTint');
   });
 });

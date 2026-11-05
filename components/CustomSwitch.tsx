@@ -3,6 +3,8 @@ import { tryPlayV2Event } from '../modules/sound_v2/legacy_bridge';
 import { TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { mergeSwitchAccessibilityState } from './a11y_state';
+import { hapticTap } from '../hooks/use-haptics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 // Точные размеры как у нативного iOS Switch
 const W   = 51;   // ширина трека
@@ -30,11 +32,18 @@ function CustomSwitch({
   testID,
 }: Props) {
   const { theme: t } = useTheme();
+  // зачем (ТОП-20 №3/№6, 05.11): тумблер — управляющий элемент: лёгкий хаптик на тап; при системном «Уменьшить движение» бегунок встаёт сразу, без пружины
+  const reduceMotion = useReduceMotion();
 
   const thumbX  = useRef(new Animated.Value(value ? MAX_X : 0)).current;
   const progress = useRef(new Animated.Value(value ? 1 : 0)).current;
 
   useEffect(() => {
+    if (reduceMotion) {
+      thumbX.setValue(value ? MAX_X : 0);
+      progress.setValue(value ? 1 : 0);
+      return;
+    }
     Animated.parallel([
       Animated.spring(thumbX, {
         toValue: value ? MAX_X : 0,
@@ -48,7 +57,7 @@ function CustomSwitch({
         useNativeDriver: false,
       }),
     ]).start();
-  }, [value, progress, thumbX]);
+  }, [value, progress, thumbX, reduceMotion]);
 
   // Выкл: цвет bgSurface из темы (подходит и тёмной и светлой)
   // Вкл: зелёный
@@ -65,6 +74,7 @@ function CustomSwitch({
         if (disabled) return;
         // зачем (координатор 14.10): звук переключателя V2 (toggle_on/toggle_off), 4 варианта; флаг sound_v2 выключен — тишина как раньше
         tryPlayV2Event(value ? 'toggle_off' : 'toggle_on', 'custom_switch');
+        hapticTap();
         onValueChange(!value);
       }}
       accessibilityRole="switch"

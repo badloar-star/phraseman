@@ -206,7 +206,7 @@ function PeakTourFull({ lang, initialPage = 0, onDone }: Props) {
   return (
     <Modal visible animationType="fade" presentationStyle="fullScreen" onRequestClose={onSkip} statusBarTranslucent>
       <View style={[s.root, { backgroundColor: p.bg }]} testID="peak-tour-full">
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           ref={scrollRef}
           horizontal
           pagingEnabled

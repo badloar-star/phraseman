@@ -98,7 +98,7 @@ export default function PlusTabScreen() {
 
   return (
     <PaywallTierScope tier={ultra ? 'ultra' : 'plus'}>
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         testID="plus-tab-scroll"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[S.content, { paddingBottom: bottomPad }]}

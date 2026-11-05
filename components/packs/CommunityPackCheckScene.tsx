@@ -37,7 +37,7 @@ export function CommunityPackCheckScene({ cards, lang, busy, error, onEdit, onPu
     {/* зачем (владелец: «фон сцены идёт под статус-бар», сторож safe_top_one_canvas_contract): строку состояния не красим — она прозрачная, сцена (корневой View с sceneTop) рисуется под часами; значки ведёт useSceneStatusBar выше */}
     <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
     <View style={{ flex: 1 }}>
-    <FlatList style={{ backgroundColor: g.bg }} data={cards} keyExtractor={card => card.id} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: bottomInset + 90 + tabSpace }} ListHeaderComponent={<>
+    <FlatList decelerationRate="fast" style={{ backgroundColor: g.bg }} data={cards} keyExtractor={card => card.id} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: bottomInset + 90 + tabSpace }} ListHeaderComponent={<>
       <View style={{ height: 390, borderBottomLeftRadius: 34, borderBottomRightRadius: 34, overflow: 'hidden' }}><CommunitySceneBackdrop /><CommunitySceneFan size={186} top={84} right={-8} />
 
         <View style={{ position: 'absolute', bottom: 58, left: 20, right: 20 }}><Text style={{ fontSize: 34, lineHeight: 40, letterSpacing: -.6, fontWeight: '700', color: '#FFFFFF' }}>{LP('Проверка', 'Review')}</Text><Text accessibilityLiveRegion="polite" style={{ fontSize: 15, fontWeight: '700', color: '#FFD0C4', marginTop: 8 }}>✦ {status}</Text></View>

@@ -20,7 +20,7 @@ export default function PeakScreenPreview({ lang, rankBy, tourPage }: Readonly<{
   const [floor, setFloor] = useState(7);
   return (
     <View style={[StyleSheet.absoluteFill, { backgroundColor: p.bg }]} testID="peak-screen-preview">
-      <ScrollView contentContainerStyle={{ paddingTop: insets.top + 16, paddingHorizontal: 20, paddingBottom: 80 }}>
+      <ScrollView decelerationRate="fast" contentContainerStyle={{ paddingTop: insets.top + 16, paddingHorizontal: 20, paddingBottom: 80 }}>
         <PeakScreenV2
           lang={lang}
           members={MEMBERS}

@@ -112,7 +112,7 @@ export function CommunityContestRules({ visible, lang, onClose }: Readonly<{ vis
   ] as const;
   return <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
     <View style={s.modalBackdrop}><KitTouchable accessibilityLabel={LP('Закрыть', 'Close')} onPress={onClose} style={StyleSheet.absoluteFill} />
-      <View style={[s.sheet, { backgroundColor: g.opaqueCard }]}><ScrollView showsVerticalScrollIndicator={false}>
+      <View style={[s.sheet, { backgroundColor: g.opaqueCard }]}><ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false}>
         <View style={[s.grab, { backgroundColor: g.secondary }]} /><Text style={[s.sheetTitle, { color: g.text }]}>{LP('Как участвовать', 'How to take part')}</Text>
         <Text style={[s.body, { color: g.secondary }]}>{LP('Делись наборами, учись с другими и получай награды.', 'Share packs, learn together and earn rewards.')}</Text>
         {rows.map(([icon, title, body]) => <View key={icon} style={s.ruleRow}><View style={[s.ruleIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name={icon} size={18} color={g.text} /></View><View style={s.ruleText}><Text style={[s.ruleTitle, { color: g.text }]}>{title}</Text><Text style={[s.ruleBody, { color: g.secondary }]}>{body}</Text></View></View>)}

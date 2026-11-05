@@ -25,8 +25,16 @@ let mockPendingRecord: Record<string, any> | null = null;
 
 // зачем (10.10): заливка полосы прогресса берёт Animated из react-native, а в этом тесте он урезан до заглушки — полоса тесту не нужна.
 jest.mock('../components/KitProgressFill', () => ({ __esModule: true, default: () => null, KitProgressFill: () => null }));
+// зачем (Диспетчер 05.11): общая кнопка V2Pressable (Back wave 12) держит Animated.Value — в урезанной заглушке react-native его нет; тест проверяет экран, а не анимацию кнопки
+jest.mock('../components/v2/V2Pressable', () => ({
+  __esModule: true,
+  v2PressableStyleOpacity: () => 1,
+  default: (props: { testID?: string; onPress?: () => void; disabled?: boolean; accessibilityLabel?: string; children?: unknown }) => require('react').createElement('Pressable', { testID: props.testID, onPress: props.onPress, disabled: props.disabled, accessibilityLabel: props.accessibilityLabel }, props.children),
+}));
 jest.mock('react-native', () => ({
   AccessibilityInfo: { setAccessibilityFocus: jest.fn() },
+  // зачем (Диспетчер 05.11): app/config.ts читает Platform.OS при импорте (цепочка V2Pressable → debug-logger → firebase → config)
+  Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },
   ActivityIndicator: 'ActivityIndicator', Pressable: 'Pressable', ScrollView: 'ScrollView', StatusBar: 'StatusBar',
   Text: 'Text', TextInput: 'TextInput', View: 'View', findNodeHandle: () => 1,
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style },

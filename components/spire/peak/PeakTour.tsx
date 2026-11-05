@@ -122,7 +122,7 @@ function PeakTour({ lang, rankBy, rects, topCount, upCount, initialPage = 0, onD
             {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, i === page && s.dotOn, { backgroundColor: i === page ? p.text : p.control }]} />)}
           </View>
           {/* зачем (контракт reachable_action_buttons, ночь 05.11): текст — в прокручиваемой области с потолком высоты, кнопки «Пропустить»/«Далее»/«Начать» ниже и всегда достижимы, даже на самом низком экране или при очень длинном языке */}
-          <ScrollView style={{ maxHeight: Math.max(120, Math.round(size.height * 0.4)) }} showsVerticalScrollIndicator={false} bounces={false}>
+          <ScrollView decelerationRate="fast" style={{ maxHeight: Math.max(120, Math.round(size.height * 0.4)) }} showsVerticalScrollIndicator={false} bounces={false}>
             {title ? <Text accessibilityRole="header" style={[s.title, { color: p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{title}</Text> : null}
             <Text style={[title ? s.text : s.textOnly, { color: title ? p.textSecondary : p.text }]} maxFontSizeMultiplier={CARD_MAX_FONT_SCALE}>{text}</Text>
           </ScrollView>

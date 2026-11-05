@@ -31,7 +31,7 @@ export default function PeakKitPreview({ lang }: Readonly<{ lang: Lang }>) {
   );
   return (
     <View style={[StyleSheet.absoluteFill, { backgroundColor: p.bg }]} testID="peak-kit-preview">
-      <ScrollView contentContainerStyle={{ paddingTop: insets.top + 16, paddingHorizontal: 20, paddingBottom: 60, gap: 16 }}>
+      <ScrollView decelerationRate="fast" contentContainerStyle={{ paddingTop: insets.top + 16, paddingHorizontal: 20, paddingBottom: 60, gap: 16 }}>
         <PeakMyCounter lang={lang} me={model.me} />
         <View>{model.top.map((row) => <PeakTopRow key={row.uid} lang={lang} row={row} onPress={() => setOpen(true)} />)}</View>
         <PeakAllList lang={lang} rows={model.all} />

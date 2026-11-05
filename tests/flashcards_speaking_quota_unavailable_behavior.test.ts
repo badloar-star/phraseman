@@ -18,6 +18,14 @@ let mockAttemptIdFactory = () => 'attempt-stable';
 let mockPendingRecord: Record<string, any> | null = null;
 let mockSpeechNa = false;
 
+// зачем (Диспетчер 05.11): общая кнопка V2Pressable (Back wave 12) держит Animated.Value — в урезанной заглушке react-native его нет; тест проверяет экран, а не анимацию кнопки
+// зачем (Диспетчер 05.11): заливка полосы прогресса держит Animated.Value — заглушка, как в flashcards_recall_pending_start_behavior
+jest.mock('../components/KitProgressFill', () => ({ __esModule: true, default: () => null, KitProgressFill: () => null }));
+jest.mock('../components/v2/V2Pressable', () => ({
+  __esModule: true,
+  v2PressableStyleOpacity: () => 1,
+  default: (props: { testID?: string; onPress?: () => void; disabled?: boolean; accessibilityLabel?: string; children?: unknown }) => require('react').createElement('Pressable', { testID: props.testID, onPress: props.onPress, disabled: props.disabled, accessibilityLabel: props.accessibilityLabel }, props.children),
+}));
 jest.mock('react-native', () => ({
   ScrollView: 'ScrollView', Text: 'Text', TouchableOpacity: 'TouchableOpacity', View: 'View',
   // зачем: 17fbb3d32 — шапка тренировок по practice.html (PracticeChrome) собрана на Pressable.

@@ -2158,6 +2158,31 @@
     "position": 0,
     "from": "Nehmen",
     "with": "Abend"
+   },
+   {
+    "position": 3,
+    "from": "Habe",
+    "with": "Butter"
+   },
+   {
+    "position": 3,
+    "from": "Warten",
+    "with": "Zucker"
+   },
+   {
+    "position": 3,
+    "from": "Kochen",
+    "with": "Obst"
+   },
+   {
+    "position": 3,
+    "from": "Kaufen",
+    "with": "Fleisch"
+   },
+   {
+    "position": 3,
+    "from": "Wach",
+    "with": "Saft"
    }
   ],
   "de:04:14": [
@@ -2214,6 +2239,16 @@
     "position": 0,
     "from": "Komme",
     "with": "Um"
+   },
+   {
+    "position": 4,
+    "from": "Habe",
+    "with": "Obst"
+   },
+   {
+    "position": 4,
+    "from": "Warten",
+    "with": "Fleisch"
    }
   ],
   "de:04:16": [
@@ -2221,6 +2256,36 @@
     "position": 0,
     "from": "Komme",
     "with": "Um"
+   },
+   {
+    "position": 2,
+    "from": "machen",
+    "with": "schlafen"
+   },
+   {
+    "position": 4,
+    "from": "Habe",
+    "with": "Salat"
+   },
+   {
+    "position": 4,
+    "from": "Warten",
+    "with": "Kuchen"
+   },
+   {
+    "position": 4,
+    "from": "Kaufen",
+    "with": "Reis"
+   },
+   {
+    "position": 4,
+    "from": "Wach",
+    "with": "Fisch"
+   },
+   {
+    "position": 4,
+    "from": "Suchen",
+    "with": "Pizza"
    }
   ],
   "de:04:17": [
@@ -2228,6 +2293,21 @@
     "position": 0,
     "from": "Komme",
     "with": "Um"
+   },
+   {
+    "position": 4,
+    "from": "Habe",
+    "with": "Englisch"
+   },
+   {
+    "position": 4,
+    "from": "Warten",
+    "with": "Russisch"
+   },
+   {
+    "position": 4,
+    "from": "Kochen",
+    "with": "Mathe"
    }
   ],
   "de:04:18": [
@@ -2261,6 +2341,56 @@
     "position": 1,
     "from": "Nehmen",
     "with": "Abend"
+   },
+   {
+    "position": 4,
+    "from": "dir",
+    "with": "mein"
+   },
+   {
+    "position": 4,
+    "from": "sich",
+    "with": "meiner"
+   },
+   {
+    "position": 4,
+    "from": "viel",
+    "with": "meinem"
+   },
+   {
+    "position": 4,
+    "from": "was",
+    "with": "meines"
+   },
+   {
+    "position": 4,
+    "from": "ihnen",
+    "with": "unsere"
+   },
+   {
+    "position": 1,
+    "from": "Kisten",
+    "with": "Mittag"
+   },
+   {
+    "position": 1,
+    "from": "Taxi",
+    "with": "Nacht"
+   },
+   {
+    "position": 1,
+    "from": "Hören",
+    "with": "Dienstag"
+   },
+   {
+    "position": 1,
+    "from": "Kochen",
+    "with": "Abend"
+   },
+   {
+    "position": 1,
+    "from": "Möchten",
+    "with": "Sonntag"
    }
   ],
   "de:04:37": [
@@ -2315,6 +2445,31 @@
     "position": 0,
     "from": "Komme",
     "with": "Um"
+   },
+   {
+    "position": 1,
+    "from": "Kisten",
+    "with": "Mittag"
+   },
+   {
+    "position": 1,
+    "from": "Taxi",
+    "with": "Nacht"
+   },
+   {
+    "position": 1,
+    "from": "Hören",
+    "with": "Dienstag"
+   },
+   {
+    "position": 1,
+    "from": "Kochen",
+    "with": "Abend"
+   },
+   {
+    "position": 1,
+    "from": "Möchten",
+    "with": "Sonntag"
    }
   ],
   "de:04:50": [
@@ -3317,6 +3472,16 @@
     "position": 4,
     "from": "in",
     "with": "über"
+   },
+   {
+    "position": 2,
+    "from": "eis",
+    "with": "das"
+   },
+   {
+    "position": 2,
+    "from": "wer",
+    "with": "ein"
    }
   ],
   "de:12:37": [
@@ -4167,6 +4332,36 @@
     "position": 6,
     "from": "sie",
     "with": "kurz"
+   },
+   {
+    "position": 3,
+    "from": "des",
+    "with": "sie"
+   },
+   {
+    "position": 4,
+    "from": "roten",
+    "with": "liest"
+   },
+   {
+    "position": 4,
+    "from": "alten",
+    "with": "lesen"
+   },
+   {
+    "position": 4,
+    "from": "hintere",
+    "with": "lese"
+   },
+   {
+    "position": 4,
+    "from": "fahrt",
+    "with": "schreibt"
+   },
+   {
+    "position": 4,
+    "from": "nasse",
+    "with": "nehmt"
    }
   ],
   "de:28:12": [
@@ -9126,6 +9321,16 @@
     "position": 2,
     "from": "dalla",
     "with": "dagli"
+   },
+   {
+    "position": 1,
+    "from": "puliti",
+    "with": "arriva"
+   },
+   {
+    "position": 1,
+    "from": "porta",
+    "with": "torna"
    }
   ],
   "it:11:17": [
@@ -9147,6 +9352,11 @@
     "position": 1,
     "from": "beviamo",
     "with": "dell’aglio"
+   },
+   {
+    "position": 1,
+    "from": "olio",
+    "with": "dell’aceto"
    }
   ],
   "it:12:24": [
@@ -9189,6 +9399,26 @@
     "position": 2,
     "from": "miele",
     "with": "molto"
+   },
+   {
+    "position": 2,
+    "from": "te",
+    "with": "poche"
+   },
+   {
+    "position": 2,
+    "from": "chi",
+    "with": "alcune"
+   },
+   {
+    "position": 2,
+    "from": "l’ascensore",
+    "with": "tutte"
+   },
+   {
+    "position": 2,
+    "from": "l’odore",
+    "with": "troppe"
    }
   ],
   "it:12:44": [
@@ -9382,6 +9612,11 @@
     "position": 1,
     "from": "chiave",
     "with": "partirà"
+   },
+   {
+    "position": 1,
+    "from": "arriverà",
+    "with": "chiamerà"
    }
   ],
   "it:27:30": [
@@ -9424,6 +9659,11 @@
     "position": 3,
     "from": "pagare",
     "with": "piatto"
+   },
+   {
+    "position": 1,
+    "from": "prendere",
+    "with": "ripetere"
    }
   ],
   "it:28:33": [
@@ -9724,6 +9964,1154 @@
     "position": 4,
     "from": "posto",
     "with": "bagaglio"
+   }
+  ],
+  "de:19:15": [
+   {
+    "position": 2,
+    "from": "man",
+    "with": "mich"
+   },
+   {
+    "position": 2,
+    "from": "andere",
+    "with": "dich"
+   },
+   {
+    "position": 2,
+    "from": "eis",
+    "with": "sich"
+   },
+   {
+    "position": 2,
+    "from": "etwas",
+    "with": "uns"
+   },
+   {
+    "position": 2,
+    "from": "wer",
+    "with": "dir"
+   }
+  ],
+  "de:19:29": [
+   {
+    "position": 2,
+    "from": "man",
+    "with": "mich"
+   },
+   {
+    "position": 2,
+    "from": "andere",
+    "with": "dich"
+   },
+   {
+    "position": 2,
+    "from": "eis",
+    "with": "sich"
+   },
+   {
+    "position": 2,
+    "from": "etwas",
+    "with": "uns"
+   },
+   {
+    "position": 2,
+    "from": "wer",
+    "with": "dir"
+   }
+  ],
+  "de:19:35": [
+   {
+    "position": 3,
+    "from": "man",
+    "with": "mich"
+   },
+   {
+    "position": 3,
+    "from": "andere",
+    "with": "dich"
+   },
+   {
+    "position": 3,
+    "from": "eis",
+    "with": "sich"
+   },
+   {
+    "position": 3,
+    "from": "etwas",
+    "with": "uns"
+   },
+   {
+    "position": 3,
+    "from": "wer",
+    "with": "dir"
+   }
+  ],
+  "de:19:20": [
+   {
+    "position": 4,
+    "from": "gut",
+    "with": "müde"
+   }
+  ],
+  "de:03:40": [
+   {
+    "position": 3,
+    "from": "wohnst",
+    "with": "oben"
+   }
+  ],
+  "de:04:11": [
+   {
+    "position": 3,
+    "from": "Habe",
+    "with": "Käse"
+   },
+   {
+    "position": 3,
+    "from": "Warten",
+    "with": "Obst"
+   },
+   {
+    "position": 3,
+    "from": "Kochen",
+    "with": "Salz"
+   },
+   {
+    "position": 3,
+    "from": "Kaufen",
+    "with": "Reis"
+   },
+   {
+    "position": 3,
+    "from": "Wach",
+    "with": "Kaffee"
+   }
+  ],
+  "de:04:33": [
+   {
+    "position": 5,
+    "from": "Habe",
+    "with": "Radio"
+   },
+   {
+    "position": 5,
+    "from": "Warten",
+    "with": "Nachrichten"
+   },
+   {
+    "position": 5,
+    "from": "Kochen",
+    "with": "Jazz"
+   }
+  ],
+  "de:04:34": [
+   {
+    "position": 5,
+    "from": "Habe",
+    "with": "Kaffee"
+   },
+   {
+    "position": 5,
+    "from": "Warten",
+    "with": "Saft"
+   }
+  ],
+  "de:04:39": [
+   {
+    "position": 5,
+    "from": "Habe",
+    "with": "Kaffee"
+   },
+   {
+    "position": 5,
+    "from": "Warten",
+    "with": "Saft"
+   },
+   {
+    "position": 5,
+    "from": "Kochen",
+    "with": "Bier"
+   },
+   {
+    "position": 5,
+    "from": "Kaufen",
+    "with": "Limonade"
+   },
+   {
+    "position": 5,
+    "from": "Wach",
+    "with": "Kakao"
+   }
+  ],
+  "de:04:26": [
+   {
+    "position": 4,
+    "from": "dir",
+    "with": "ein"
+   },
+   {
+    "position": 4,
+    "from": "sich",
+    "with": "einen"
+   },
+   {
+    "position": 4,
+    "from": "viel",
+    "with": "einer"
+   },
+   {
+    "position": 4,
+    "from": "was",
+    "with": "eines"
+   },
+   {
+    "position": 4,
+    "from": "ihnen",
+    "with": "einem"
+   }
+  ],
+  "de:12:03": [
+   {
+    "position": 5,
+    "from": "Hängst",
+    "with": "Bad"
+   }
+  ],
+  "de:12:31": [
+   {
+    "position": 3,
+    "from": "dir",
+    "with": "der"
+   },
+   {
+    "position": 3,
+    "from": "dich",
+    "with": "das"
+   },
+   {
+    "position": 3,
+    "from": "sich",
+    "with": "dem"
+   },
+   {
+    "position": 3,
+    "from": "uns",
+    "with": "des"
+   },
+   {
+    "position": 3,
+    "from": "mich",
+    "with": "ein"
+   }
+  ],
+  "de:12:32": [
+   {
+    "position": 2,
+    "from": "dir",
+    "with": "der"
+   },
+   {
+    "position": 2,
+    "from": "dich",
+    "with": "das"
+   },
+   {
+    "position": 2,
+    "from": "sich",
+    "with": "dem"
+   },
+   {
+    "position": 2,
+    "from": "uns",
+    "with": "des"
+   },
+   {
+    "position": 2,
+    "from": "mich",
+    "with": "ein"
+   }
+  ],
+  "de:12:34": [
+   {
+    "position": 2,
+    "from": "dir",
+    "with": "der"
+   },
+   {
+    "position": 2,
+    "from": "dich",
+    "with": "das"
+   },
+   {
+    "position": 2,
+    "from": "sich",
+    "with": "dem"
+   },
+   {
+    "position": 2,
+    "from": "uns",
+    "with": "des"
+   },
+   {
+    "position": 2,
+    "from": "mich",
+    "with": "ein"
+   },
+   {
+    "position": 0,
+    "from": "Fenster",
+    "with": "Legst"
+   },
+   {
+    "position": 0,
+    "from": "Garten",
+    "with": "Stellst"
+   }
+  ],
+  "de:12:35": [
+   {
+    "position": 2,
+    "from": "dir",
+    "with": "der"
+   },
+   {
+    "position": 2,
+    "from": "dich",
+    "with": "das"
+   },
+   {
+    "position": 2,
+    "from": "sich",
+    "with": "dem"
+   },
+   {
+    "position": 2,
+    "from": "uns",
+    "with": "des"
+   },
+   {
+    "position": 2,
+    "from": "mich",
+    "with": "ein"
+   }
+  ],
+  "de:27:08": [
+   {
+    "position": 5,
+    "from": "baby",
+    "with": "vom"
+   },
+   {
+    "position": 5,
+    "from": "eis",
+    "with": "im"
+   }
+  ],
+  "de:27:09": [
+   {
+    "position": 5,
+    "from": "baby",
+    "with": "vom"
+   },
+   {
+    "position": 5,
+    "from": "eis",
+    "with": "beim"
+   }
+  ],
+  "de:27:22": [
+   {
+    "position": 3,
+    "from": "baby",
+    "with": "im"
+   },
+   {
+    "position": 3,
+    "from": "eis",
+    "with": "beim"
+   }
+  ],
+  "de:27:23": [
+   {
+    "position": 3,
+    "from": "baby",
+    "with": "im"
+   },
+   {
+    "position": 3,
+    "from": "eis",
+    "with": "aufs"
+   }
+  ],
+  "de:27:24": [
+   {
+    "position": 3,
+    "from": "baby",
+    "with": "beim"
+   },
+   {
+    "position": 3,
+    "from": "eis",
+    "with": "ins"
+   }
+  ],
+  "de:27:50": [
+   {
+    "position": 6,
+    "from": "baby",
+    "with": "im"
+   },
+   {
+    "position": 6,
+    "from": "eis",
+    "with": "zum"
+   },
+   {
+    "position": 2,
+    "from": "euch",
+    "with": "dem"
+   },
+   {
+    "position": 2,
+    "from": "man",
+    "with": "des"
+   },
+   {
+    "position": 2,
+    "from": "andere",
+    "with": "die"
+   },
+   {
+    "position": 2,
+    "from": "wenig",
+    "with": "das"
+   },
+   {
+    "position": 2,
+    "from": "baby",
+    "with": "ein"
+   }
+  ],
+  "de:27:15": [
+   {
+    "position": 6,
+    "from": "euch",
+    "with": "wir"
+   },
+   {
+    "position": 6,
+    "from": "andere",
+    "with": "ihr"
+   },
+   {
+    "position": 6,
+    "from": "wenig",
+    "with": "du"
+   },
+   {
+    "position": 6,
+    "from": "baby",
+    "with": "uns"
+   },
+   {
+    "position": 6,
+    "from": "eis",
+    "with": "dich"
+   }
+  ],
+  "de:27:35": [
+   {
+    "position": 5,
+    "from": "euch",
+    "with": "wir"
+   },
+   {
+    "position": 5,
+    "from": "andere",
+    "with": "ihr"
+   },
+   {
+    "position": 5,
+    "from": "wenig",
+    "with": "du"
+   },
+   {
+    "position": 5,
+    "from": "baby",
+    "with": "uns"
+   },
+   {
+    "position": 5,
+    "from": "eis",
+    "with": "dich"
+   }
+  ],
+  "de:27:19": [
+   {
+    "position": 5,
+    "from": "euch",
+    "with": "dir"
+   },
+   {
+    "position": 5,
+    "from": "man",
+    "with": "ihm"
+   },
+   {
+    "position": 5,
+    "from": "andere",
+    "with": "uns"
+   },
+   {
+    "position": 5,
+    "from": "wenig",
+    "with": "ihnen"
+   },
+   {
+    "position": 5,
+    "from": "baby",
+    "with": "dich"
+   }
+  ],
+  "de:27:41": [
+   {
+    "position": 3,
+    "from": "euch",
+    "with": "dir"
+   },
+   {
+    "position": 3,
+    "from": "man",
+    "with": "ihm"
+   },
+   {
+    "position": 3,
+    "from": "andere",
+    "with": "uns"
+   },
+   {
+    "position": 3,
+    "from": "wenig",
+    "with": "ihnen"
+   },
+   {
+    "position": 3,
+    "from": "baby",
+    "with": "dich"
+   }
+  ],
+  "de:27:32": [
+   {
+    "position": 5,
+    "from": "euch",
+    "with": "ein"
+   },
+   {
+    "position": 5,
+    "from": "man",
+    "with": "einem"
+   },
+   {
+    "position": 5,
+    "from": "andere",
+    "with": "einer"
+   },
+   {
+    "position": 5,
+    "from": "wenig",
+    "with": "eine"
+   },
+   {
+    "position": 5,
+    "from": "baby",
+    "with": "eines"
+   }
+  ],
+  "de:27:36": [
+   {
+    "position": 5,
+    "from": "euch",
+    "with": "viel"
+   },
+   {
+    "position": 5,
+    "from": "man",
+    "with": "mehr"
+   },
+   {
+    "position": 5,
+    "from": "andere",
+    "with": "kein"
+   },
+   {
+    "position": 5,
+    "from": "baby",
+    "with": "genug"
+   },
+   {
+    "position": 5,
+    "from": "eis",
+    "with": "extra"
+   }
+  ],
+  "de:27:43": [
+   {
+    "position": 3,
+    "from": "euch",
+    "with": "dem"
+   },
+   {
+    "position": 3,
+    "from": "man",
+    "with": "das"
+   },
+   {
+    "position": 3,
+    "from": "andere",
+    "with": "die"
+   },
+   {
+    "position": 3,
+    "from": "wenig",
+    "with": "ein"
+   },
+   {
+    "position": 3,
+    "from": "baby",
+    "with": "des"
+   }
+  ],
+  "de:27:44": [
+   {
+    "position": 3,
+    "from": "euch",
+    "with": "dem"
+   },
+   {
+    "position": 3,
+    "from": "man",
+    "with": "den"
+   },
+   {
+    "position": 3,
+    "from": "andere",
+    "with": "des"
+   },
+   {
+    "position": 3,
+    "from": "wenig",
+    "with": "die"
+   },
+   {
+    "position": 3,
+    "from": "baby",
+    "with": "das"
+   }
+  ],
+  "de:27:14": [
+   {
+    "position": 4,
+    "from": "hast",
+    "with": "der"
+   },
+   {
+    "position": 4,
+    "from": "haben",
+    "with": "den"
+   },
+   {
+    "position": 4,
+    "from": "habt",
+    "with": "dem"
+   },
+   {
+    "position": 4,
+    "from": "hat",
+    "with": "des"
+   },
+   {
+    "position": 4,
+    "from": "habe",
+    "with": "das"
+   }
+  ],
+  "de:27:20": [
+   {
+    "position": 4,
+    "from": "hast",
+    "with": "der"
+   },
+   {
+    "position": 4,
+    "from": "habt",
+    "with": "den"
+   },
+   {
+    "position": 4,
+    "from": "hat",
+    "with": "dem"
+   },
+   {
+    "position": 4,
+    "from": "habe",
+    "with": "des"
+   },
+   {
+    "position": 4,
+    "from": "hatte",
+    "with": "das"
+   }
+  ],
+  "de:27:30": [
+   {
+    "position": 4,
+    "from": "geschneit",
+    "with": "kaufst"
+   },
+   {
+    "position": 4,
+    "from": "schneit",
+    "with": "nimmst"
+   }
+  ],
+  "de:28:22": [
+   {
+    "position": 3,
+    "from": "rufst",
+    "with": "kein"
+   },
+   {
+    "position": 3,
+    "from": "des",
+    "with": "nur"
+   },
+   {
+    "position": 3,
+    "from": "dem",
+    "with": "auch"
+   },
+   {
+    "position": 3,
+    "from": "das",
+    "with": "oft"
+   },
+   {
+    "position": 3,
+    "from": "der",
+    "with": "hier"
+   }
+  ],
+  "de:28:47": [
+   {
+    "position": 3,
+    "from": "rufst",
+    "with": "kein"
+   },
+   {
+    "position": 3,
+    "from": "des",
+    "with": "nur"
+   },
+   {
+    "position": 3,
+    "from": "dem",
+    "with": "auch"
+   },
+   {
+    "position": 3,
+    "from": "das",
+    "with": "oft"
+   },
+   {
+    "position": 3,
+    "from": "der",
+    "with": "hier"
+   },
+   {
+    "position": 4,
+    "from": "gesperrt",
+    "with": "gedeckt"
+   }
+  ],
+  "de:28:41": [
+   {
+    "position": 0,
+    "from": "Aufging",
+    "with": "Warum"
+   }
+  ],
+  "de:28:42": [
+   {
+    "position": 0,
+    "from": "Besten",
+    "with": "Warum"
+   }
+  ],
+  "de:28:32": [
+   {
+    "position": 6,
+    "from": "beim",
+    "with": "ans"
+   }
+  ],
+  "it:03:01": [
+   {
+    "position": 0,
+    "from": "Trent’anni",
+    "with": "Sono"
+   },
+   {
+    "position": 0,
+    "from": "Vent’anni",
+    "with": "Siete"
+   }
+  ],
+  "it:03:02": [
+   {
+    "position": 0,
+    "from": "Trent’anni",
+    "with": "Sono"
+   },
+   {
+    "position": 0,
+    "from": "Vent’anni",
+    "with": "Siete"
+   }
+  ],
+  "it:03:03": [
+   {
+    "position": 0,
+    "from": "Trent’anni",
+    "with": "Sono"
+   },
+   {
+    "position": 0,
+    "from": "Vent’anni",
+    "with": "Siete"
+   }
+  ],
+  "it:03:11": [
+   {
+    "position": 0,
+    "from": "Trent’anni",
+    "with": "Sono"
+   },
+   {
+    "position": 0,
+    "from": "Vent’anni",
+    "with": "Siete"
+   }
+  ],
+  "it:03:46": [
+   {
+    "position": 0,
+    "from": "Trent’anni",
+    "with": "Sono"
+   },
+   {
+    "position": 0,
+    "from": "Vent’anni",
+    "with": "Siete"
+   }
+  ],
+  "it:04:29": [
+   {
+    "position": 4,
+    "from": "compro",
+    "with": "amici"
+   },
+   {
+    "position": 4,
+    "from": "minuti",
+    "with": "nipoti"
+   },
+   {
+    "position": 4,
+    "from": "anni",
+    "with": "fratelli"
+   },
+   {
+    "position": 4,
+    "from": "trent’anni",
+    "with": "cugini"
+   },
+   {
+    "position": 4,
+    "from": "vent’anni",
+    "with": "genitori"
+   }
+  ],
+  "it:11:11": [
+   {
+    "position": 1,
+    "from": "puliti",
+    "with": "arriva"
+   },
+   {
+    "position": 1,
+    "from": "porta",
+    "with": "torna"
+   }
+  ],
+  "it:11:27": [
+   {
+    "position": 1,
+    "from": "puliti",
+    "with": "arriva"
+   },
+   {
+    "position": 1,
+    "from": "porta",
+    "with": "torna"
+   }
+  ],
+  "it:11:28": [
+   {
+    "position": 2,
+    "from": "puliti",
+    "with": "arriva"
+   },
+   {
+    "position": 2,
+    "from": "porta",
+    "with": "torna"
+   }
+  ],
+  "it:11:44": [
+   {
+    "position": 2,
+    "from": "puliti",
+    "with": "arriva"
+   },
+   {
+    "position": 2,
+    "from": "porta",
+    "with": "torna"
+   }
+  ],
+  "it:11:37": [
+   {
+    "position": 2,
+    "from": "puliti",
+    "with": "arrivano"
+   }
+  ],
+  "it:12:35": [
+   {
+    "position": 2,
+    "from": "beve",
+    "with": "pepe"
+   },
+   {
+    "position": 2,
+    "from": "aggiunge",
+    "with": "zucchero"
+   },
+   {
+    "position": 2,
+    "from": "prende",
+    "with": "aceto"
+   },
+   {
+    "position": 2,
+    "from": "sceglie",
+    "with": "burro"
+   },
+   {
+    "position": 2,
+    "from": "vuoi",
+    "with": "limone"
+   }
+  ],
+  "it:12:15": [
+   {
+    "position": 1,
+    "from": "pallone",
+    "with": "vende"
+   },
+   {
+    "position": 1,
+    "from": "figli",
+    "with": "mangia"
+   },
+   {
+    "position": 1,
+    "from": "d’acqua",
+    "with": "cerca"
+   },
+   {
+    "position": 1,
+    "from": "panna",
+    "with": "usa"
+   },
+   {
+    "position": 1,
+    "from": "pasta",
+    "with": "taglia"
+   }
+  ],
+  "it:12:21": [
+   {
+    "position": 0,
+    "from": "Buio",
+    "with": "Mangio"
+   },
+   {
+    "position": 0,
+    "from": "Fondo",
+    "with": "Compro"
+   },
+   {
+    "position": 0,
+    "from": "Freddo",
+    "with": "Voglio"
+   },
+   {
+    "position": 0,
+    "from": "Vecchio",
+    "with": "Cerco"
+   },
+   {
+    "position": 0,
+    "from": "Grigio",
+    "with": "Vendo"
+   }
+  ],
+  "it:12:37": [
+   {
+    "position": 2,
+    "from": "quante",
+    "with": "già"
+   },
+   {
+    "position": 2,
+    "from": "quanto",
+    "with": "troppo"
+   },
+   {
+    "position": 2,
+    "from": "quanti",
+    "with": "molto"
+   },
+   {
+    "position": 2,
+    "from": "chi",
+    "with": "mai"
+   },
+   {
+    "position": 2,
+    "from": "la",
+    "with": "sempre"
+   }
+  ],
+  "it:12:38": [
+   {
+    "position": 1,
+    "from": "una",
+    "with": "è"
+   },
+   {
+    "position": 1,
+    "from": "la",
+    "with": "sono"
+   },
+   {
+    "position": 1,
+    "from": "il",
+    "with": "era"
+   },
+   {
+    "position": 1,
+    "from": "un",
+    "with": "siamo"
+   },
+   {
+    "position": 1,
+    "from": "le",
+    "with": "siete"
+   }
+  ],
+  "it:11:50": [
+   {
+    "position": 7,
+    "from": "l’indirizzo",
+    "with": "tuoi"
+   },
+   {
+    "position": 7,
+    "from": "mi",
+    "with": "suoi"
+   },
+   {
+    "position": 7,
+    "from": "ti",
+    "with": "nostri"
+   },
+   {
+    "position": 7,
+    "from": "quante",
+    "with": "vostri"
+   },
+   {
+    "position": 7,
+    "from": "quanti",
+    "with": "loro"
+   }
+  ],
+  "it:19:21": [
+   {
+    "position": 4,
+    "from": "camera",
+    "with": "cucina"
+   }
+  ],
+  "it:19:46": [
+   {
+    "position": 4,
+    "from": "per",
+    "with": "con"
+   }
+  ],
+  "it:19:48": [
+   {
+    "position": 3,
+    "from": "in",
+    "with": "con"
+   }
+  ],
+  "it:20:25": [
+   {
+    "position": 3,
+    "from": "vuota",
+    "with": "stretta"
+   }
+  ],
+  "it:27:16": [
+   {
+    "position": 0,
+    "from": "L’idraulico",
+    "with": "Torneranno"
+   },
+   {
+    "position": 0,
+    "from": "Rubinetto",
+    "with": "Aspetteranno"
+   },
+   {
+    "position": 0,
+    "from": "Appartamento",
+    "with": "Lavoreranno"
+   },
+   {
+    "position": 0,
+    "from": "Consiglio",
+    "with": "Dormiranno"
+   },
+   {
+    "position": 0,
+    "from": "Elettronico",
+    "with": "Mangeranno"
    }
   ]
  },
@@ -10389,7 +11777,9 @@
    ]
   },
   "it:03:10": {
-   "add": [],
+   "add": [
+    "Lei è libero?"
+   ],
    "remove": [
     "Sei libero?"
    ]
@@ -11567,6 +12957,138 @@
    "add": [
     "Se avessi la mia bicicletta, arriverei prima a casa.",
     "Arriverei prima a casa se avessi la mia bicicletta."
+   ],
+   "remove": []
+  },
+  "de:04:41": {
+   "add": [
+    "Der Laden ist heute offen."
+   ],
+   "remove": []
+  },
+  "de:04:42": {
+   "add": [
+    "Das Büro ist morgen zu."
+   ],
+   "remove": []
+  },
+  "de:04:43": {
+   "add": [
+    "Das Café ist am Montag offen."
+   ],
+   "remove": []
+  },
+  "de:04:44": {
+   "add": [
+    "Die Fenster sind heute zu."
+   ],
+   "remove": []
+  },
+  "de:04:45": {
+   "add": [
+    "Der Platz ist am Abend frei."
+   ],
+   "remove": []
+  },
+  "de:04:46": {
+   "add": [
+    "Die Küche ist in der Pause frei."
+   ],
+   "remove": []
+  },
+  "de:04:50": {
+   "add": [
+    "Der Kurs ist am Freitag zu Ende."
+   ],
+   "remove": []
+  },
+  "de:03:44": {
+   "add": [
+    "Zusammen bezahlen wir."
+   ],
+   "remove": []
+  },
+  "de:03:49": {
+   "add": [
+    "Zusammen lernt ihr."
+   ],
+   "remove": []
+  },
+  "de:20:16": {
+   "add": [
+    "Es ist heute kälter als gestern."
+   ],
+   "remove": []
+  },
+  "de:20:17": {
+   "add": [
+    "Es ist im Süden wärmer."
+   ],
+   "remove": []
+  },
+  "de:20:18": {
+   "add": [
+    "Heute ist der Wind stärker."
+   ],
+   "remove": []
+  },
+  "de:20:19": {
+   "add": [
+    "Jetzt ist das Wasser sauberer."
+   ],
+   "remove": []
+  },
+  "de:20:20": {
+   "add": [
+    "Hier ist der Strand schöner."
+   ],
+   "remove": []
+  },
+  "de:20:47": {
+   "add": [
+    "Ich schwimme am liebsten im See."
+   ],
+   "remove": []
+  },
+  "de:20:49": {
+   "add": [
+    "Das Wasser ist hier am tiefsten."
+   ],
+   "remove": []
+  },
+  "de:20:50": {
+   "add": [
+    "Der Laden ist morgens am ruhigsten."
+   ],
+   "remove": []
+  },
+  "it:11:43": {
+   "add": [
+    "Non vado al negozio oggi."
+   ],
+   "remove": []
+  },
+  "it:19:09": {
+   "add": [
+    "Mio fratello è arrivato."
+   ],
+   "remove": []
+  },
+  "it:19:10": {
+   "add": [
+    "Mia sorella è arrivata."
+   ],
+   "remove": []
+  },
+  "it:27:13": {
+   "add": [
+    "Il risultato si saprà lunedì."
+   ],
+   "remove": []
+  },
+  "it:27:44": {
+   "add": [
+    "Dopo il concerto tornerò a casa a piedi."
    ],
    "remove": []
   }

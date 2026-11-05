@@ -90,6 +90,7 @@ export default function PlusTabScreen() {
     yearlyApprox: p.yearlyPriceSource === 'reference', monthlyApprox: p.monthlyPriceSource === 'reference',
   });
   const ultra = p.selected === 'yearly';
+  const ctaShown = ultra ? ULTRA_CTA_FALLBACK[lang] ?? ULTRA_CTA_FALLBACK.en : PLUS_CTA_FALLBACK[lang] ?? PLUS_CTA_FALLBACK.en;
   const ctaBackground = ultra ? ULTRA_PALETTE.pin[0] : g.ctaFill;
   const ctaInk = ultra ? ULTRA_PALETTE.pinGlyph : g.ctaFillInk;
 
@@ -135,10 +136,12 @@ export default function PlusTabScreen() {
           ) : null}
         </View>
 
-        {/* зачем (D158, как в окне оплаты): кнопка покупки жива и без цен — тап сам загрузит offerings и купит */}
+        {/* зачем (D158, как в окне оплаты): кнопка покупки жива и без цен — тап сам загрузит offerings и купит.
+            Подпись кнопки и строка под ней — ВСЕГДА по утверждённому макету plus_tab_approved_2026-11-05 (D из MOCKUP_VERDICTS_LV2, 05.11): «Оформить Ultra на год» / «Оформить Plus на месяц»
+            и «Цена и пробный период — из магазина. Отмена в любой момент.»; цена видна на плитках планов (из магазина), в кнопку она больше не вшивается. */}
         <V2Pressable
           testID="plus-tab-cta"
-          accessibilityLabel={cta.label}
+          accessibilityLabel={ctaShown}
           accessibilityState={{ disabled: ctaBusy, busy: p.purchasing }}
           disabled={ctaBusy}
           onPress={() => { DebugLogger.info(LOG, `тап покупки: план=${p.selected} состояние=${state}`); void p.handlePurchase(); }}
@@ -148,9 +151,9 @@ export default function PlusTabScreen() {
         >
           {p.purchasing
             ? <ActivityIndicator color={ctaInk} />
-            : <Text style={[S.ctaText, { color: ctaInk }]}>{state === 'ready' ? cta.label : (ultra ? ULTRA_CTA_FALLBACK[lang] ?? ULTRA_CTA_FALLBACK.en : PLUS_CTA_FALLBACK[lang] ?? PLUS_CTA_FALLBACK.en)}</Text>}
+            : <Text style={[S.ctaText, { color: ctaInk }]}>{ctaShown}</Text>}
         </V2Pressable>
-        <Text style={[S.fine, { color: g.secondary }]}>{p.tapNotice ? TRY_LATER[lang] ?? TRY_LATER.en : (state === 'ready' ? cta.fine : STORE_NOTE[lang] ?? STORE_NOTE.en)}</Text>
+        <Text style={[S.fine, { color: g.secondary }]}>{p.tapNotice ? TRY_LATER[lang] ?? TRY_LATER.en : (STORE_NOTE[lang] ?? STORE_NOTE.en)}</Text>
       </ScrollView>
     </PaywallTierScope>
   );

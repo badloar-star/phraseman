@@ -25,7 +25,7 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
 
     const purchaseBody = sharedHook.slice(purchaseStart, restoreStart);
 
-    expect(purchaseBody).toContain('return Purchases.purchasePackage(pkg);'); // зачем (ревью 12.10 п.1): перед вызовом внутри метки ставится флаг purchaseInvoked
+    expect(purchaseBody).toContain('Purchases.purchasePackage(pkg)'); // Q8 (c6eb21823): вызов двухвариантный — замена подписки на Android + обычный // зачем (ревью 12.10 п.1): перед вызовом внутри метки ставится флаг purchaseInvoked
     // зачем (D158-уточнение): `let`, а не `const` — после покупки customerInfo перечитывается (песочница Apple
     // отстаёт), поэтому присваивание законно; суть сторожа — брать customerInfo из результата покупки.
     expect(purchaseBody).toContain('let { customerInfo } = purchaseResult.value;');

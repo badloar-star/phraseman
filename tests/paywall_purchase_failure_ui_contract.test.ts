@@ -65,7 +65,11 @@ describe('ревью п.1: stale вокруг purchasePackage', () => {
   it('флаг purchaseInvoked ставится ВНУТРИ обёртки, прямо перед purchasePackage', () => {
     const wrapper = between(body, "withPurchaseFlow('paywall_purchase', () => {", "if (purchaseResult.status !== 'ok') {");
     expect(wrapper.indexOf('purchaseInvoked = true;')).toBeGreaterThan(-1);
-    expect(wrapper.indexOf('purchaseInvoked = true;')).toBeLessThan(wrapper.indexOf('return Purchases.purchasePackage(pkg);'));
+    // Q8 (c6eb21823): вызов — «googleChange ? purchasePackage(pkg, null, googleChange) : purchasePackage(pkg)»; флаг обязан стоять раньше ПЕРВОГО вызова магазина
+    const firstCall = wrapper.indexOf('Purchases.purchasePackage(');
+    expect(firstCall).toBeGreaterThan(-1);
+    expect(wrapper.indexOf('purchaseInvoked = true;')).toBeLessThan(firstCall);
+    expect(wrapper).toContain('Purchases.purchasePackage(pkg)');
     expect(body.match(/purchaseInvoked = true;/g)?.length).toBe(1);
   });
 

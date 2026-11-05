@@ -56,6 +56,11 @@ const PRIVACY_URL = KNOWLY_LEGAL_PRIVACY_URL;
 // зачем (R58 #53): одна функция открытия юридических ссылок на всё приложение (тост при сбое) — app/open_legal_link.ts
 function openLegal(url: string): void { openLegalLink(url, 'paywall_plus'); }
 
+// зачем (150, Сверка 05.11: на 10 кадрах окон оплаты нет плиток, цен и ссылок; сперва логи): положение и высота частей окна — шторка, шапка, окно прокрутки, нижняя панель
+export const logPaywallLayout = (part: string) => (e: LayoutChangeEvent): void => {
+  const l = e.nativeEvent.layout;
+  console.log('[PAYWALL-LAYOUT]', JSON.stringify({ part, y: Math.round(l.y), h: Math.round(l.height), w: Math.round(l.width) })); // guard-ok: геометрия частей окна
+};
 // ── шапка ───────────────────────────────────────────────────────────────────
 export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeVisible, closeDisabled, onClose, contextTitle, contextSubtitle, contextPill }: {
   lang: Lang; g: GlassTokens; trialDays: number | null; closeVisible: boolean; closeDisabled: boolean; onClose: () => void;
@@ -215,7 +220,7 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
   const tierText = useTierText();
   const fineText = tierText(notice ? pick(lang, COPY.tryInMinute) : ready ? fine : pick(lang, COPY.fineNoPrices));
   return (
-    <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]}>
+    <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]} onLayout={logPaywallLayout('dock')}>
       {/* макет «Все окна Plus»: строка про автопродление — над кнопкой */}
       <Text testID="paywall-fine" style={[S.fine, { color: g.text }]}>{fineText}</Text>
       {/* Вариант C: плоская кнопка активной темы, без декоративного свечения/3D. */}
@@ -268,6 +273,8 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
  * Журнал [PAYWALL-FIT]: высота окна прокрутки, высота содержимого, на сколько прокрутили — по нему видно, на каких экранах срабатывает.
  */
 export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
+  // зачем (150, Сверка: на 10 кадрах окон оплаты нет плиток/ссылок): положение и высота окна прокрутки — рядом с [PAYWALL-FIT]
+
   const scrollRef = useRef<ScrollView | null>(null);
   const viewportRef = useRef(0);
   const touchedRef = useRef(false);
@@ -286,7 +293,7 @@ export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
     if (overflow > 0) scrollRef.current?.scrollTo({ y: overflow, animated: false });
   }, []);
   // зачем: окно и содержимое измеряются в любом порядке — подгон считается, когда известны оба
-  const onLayout = useCallback((e: LayoutChangeEvent) => { viewportRef.current = e.nativeEvent.layout.height; fitToEnd(contentRef.current); }, [fitToEnd]);
+  const onLayout = useCallback((e: LayoutChangeEvent) => { logPaywallLayout('scroll')(e); viewportRef.current = e.nativeEvent.layout.height; fitToEnd(contentRef.current); }, [fitToEnd]);
   return (
     <ScrollView ref={scrollRef} style={S.scroll} contentContainerStyle={S.scrollContent} showsVerticalScrollIndicator={false} decelerationRate="fast"
       onLayout={onLayout} onContentSizeChange={(_w, h) => { contentRef.current = h; fitToEnd(h); }} onScrollBeginDrag={() => { touchedRef.current = true; }}>

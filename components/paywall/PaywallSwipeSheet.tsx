@@ -13,6 +13,7 @@ import { View, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, { Easing as REasing, runOnJS, useAnimatedStyle, useReducedMotion, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { KIT_MOTION, SHEET } from '../../constants/motionHybrid';
+import { logPaywallLayout } from './PaywallPlus';
 
 /** Сдвиг вниз, после которого шторка закрывается (как HybridSheetShell). */
 export const PAYWALL_SWIPE_CLOSE_DISTANCE = 88;
@@ -83,9 +84,9 @@ export function PaywallSwipeSheet({ testID, style, enabled, travel, onSwipeClose
   const dragStyle = useAnimatedStyle(() => ({ transform: [{ translateY: dragY.value }] }));
 
   return (
-    <Animated.View testID={testID} style={[style, dragStyle]}>
+    <Animated.View testID={testID} style={[style, dragStyle]} onLayout={logPaywallLayout('sheet')}>
       <GestureDetector gesture={pan}>
-        <View collapsable={false}>{header}</View>
+        <View collapsable={false} onLayout={logPaywallLayout('header')}>{header}</View>
       </GestureDetector>
       {children}
     </Animated.View>

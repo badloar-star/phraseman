@@ -1,0 +1,47 @@
+{
+  "lang": "de",
+  "lesson": 29,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Ввічливе прохання"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся ввічливо просити й говорити «я б».\nIch hätte gern einen Tee. — Мені б чаю.\nKönnten Sie mir helfen? — Чи не могли б ви допомогти мені?\nIch würde gern einen Tisch reservieren. — Я хотів би забронювати столик.\nТак говорять у кафе, у магазині, з незнайомими людьми."
+      },
+      "exampleIds": [
+        "de:29:01",
+        "de:29:11",
+        "de:29:26"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Hätte, könnte, würde"
+      },
+      "text": {
+        "uk": "Hätte gern — «мені б», «я хотів би отримати».\nIch hätte gern ein Wasser. — Я хотів би води.\nKönnten Sie — «чи не могли б ви».\nKönntest du kurz warten? — Не міг би ти трохи зачекати?\nWürde … gern — «я б залюбки», дія стоїть у кінці.\nIch würde gern einen Tisch reservieren. — Я хотів би забронювати столик."
+      },
+      "exampleIds": [
+        "de:29:02",
+        "de:29:12",
+        "de:29:26"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви побачите фразу українською.\nВнизу — німецькі слова. Натискайте їх по одному.\nПісля кожного натискання з’являться наступні слова.\nКрапки, коми та знак питання вибирати не потрібно.\nНаприклад: Ich → hätte → gern → einen → Tee."
+      },
+      "exampleIds": [
+        "de:29:01",
+        "de:29:11"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 27,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Який"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся говорити «який», «яка».\nDas ist der Mann, der hier wohnt. — Це чоловік, який тут мешкає.\nDas ist der Schlüssel, den ich suche. — Це ключ, який я шукаю.\nIch kenne den Arzt, der heute arbeitet. — Я знаю лікаря, який сьогодні працює.\n«Який» німецькою звучить так само, як der, die, das."
+      },
+      "exampleIds": [
+        "de:27:01",
+        "de:27:11",
+        "de:27:05"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Der, die, das — і дія в кінці"
+      },
+      "text": {
+        "uk": "Після коми йде der, die або das — як у самої речі.\nСлово про дію йде в кінець.\nDas ist das Kind, das hier wohnt. — Це дитина, яка тут мешкає.\nЯкщо річ шукають або беруть, замість der кажуть den.\nDas ist der Schlüssel, den ich suche. — Це ключ, який я шукаю."
+      },
+      "exampleIds": [
+        "de:27:03",
+        "de:27:11"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви побачите фразу українською.\nВнизу — німецькі слова. Натискайте їх по одному.\nПісля кожного натискання з’являться наступні слова.\nКрапки, коми та знак питання вибирати не потрібно.\nНаприклад: Das → ist → der → Mann → der → hier → wohnt."
+      },
+      "exampleIds": [
+        "de:27:01",
+        "de:27:07"
+      ]
+    }
+  ]
+}

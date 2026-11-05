@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 31,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Це сталося ще раніше"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся говорити, що одне сталося ще раніше за інше.\nAls ich ankam, war der Bus schon abgefahren. — Коли я приїхав, автобус уже пішов.\nAls Tom ankam, hatte Anna schon gekocht. — Коли приїхав Том, Ганна вже приготувала їжу.\nNachdem ich gegessen hatte, ging ich spazieren. — Після того, як я поїв, я пішов гуляти.\nСлово nachdem означає «після того як»."
+      },
+      "exampleIds": [
+        "de:31:01",
+        "de:31:02",
+        "de:31:21"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Hatte і war + слово в кінці"
+      },
+      "text": {
+        "uk": "Ви вже знаєте habe gekocht і bin gefahren.\nДля того, що було ще раніше, замість habe кажуть hatte, замість bin — war.\nAls Tom ankam, hatte Anna schon gekocht. — Коли приїхав Том, Ганна вже приготувала їжу.\nAls ich ankam, war der Bus schon abgefahren. — Коли я приїхав, автобус уже пішов."
+      },
+      "exampleIds": [
+        "de:31:02",
+        "de:31:01"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви побачите фразу українською.\nВнизу — німецькі слова. Натискайте їх по одному.\nПісля кожного натискання з’являться наступні слова.\nКрапки, коми та знак питання вибирати не потрібно.\nНаприклад: Als → ich → ankam → war → der → Bus → schon → abgefahren."
+      },
+      "exampleIds": [
+        "de:31:01",
+        "de:31:21"
+      ]
+    }
+  ]
+}

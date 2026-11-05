@@ -1,0 +1,48 @@
+{
+  "lang": "de",
+  "lesson": 18,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Як було раніше"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся говорити, яким щось було і що у вас було.\nIch war müde. — Я був втомлений.\nWir waren zu Hause. — Ми були вдома.\nIch hatte Zeit. — У мене був час.\nWar — був, hatte — у мене було."
+      },
+      "exampleIds": [
+        "de:18:01",
+        "de:18:04",
+        "de:18:07"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Bin — war, habe — hatte"
+      },
+      "text": {
+        "uk": "Зараз: Ich bin müde. Раніше: Ich war müde.\nIch war müde. — Я був втомлений.\nDu warst müde. — Ти був стомленим.\nDie Gäste waren zufrieden. — Гості були задоволені.\nЗараз: Ich habe Zeit. Раніше: Ich hatte Zeit.\nTom hatte Durst. — Том хотів пити."
+      },
+      "exampleIds": [
+        "de:18:01",
+        "de:18:02",
+        "de:18:06",
+        "de:18:09"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви побачите фразу українською.\nВнизу — німецькі слова. Натискайте їх по одному.\nПісля кожного натискання з’являться наступні слова.\nКрапки, коми та знак питання вибирати не потрібно.\nНаприклад, «Я був втомлений»: Ich → war → müde.\n«Був» — war, «у мене було» — hatte."
+      },
+      "exampleIds": [
+        "de:18:01",
+        "de:18:07"
+      ]
+    }
+  ]
+}

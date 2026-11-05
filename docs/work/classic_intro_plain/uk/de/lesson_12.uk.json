@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 12,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Куди ви кладете й ідете"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся говорити, куди ви кладете речі й куди йдете.\nIch lege den Schlüssel auf den Tisch. — Я кладу ключ на стіл.\nIch stelle die Tasse auf den Tisch. — Я ставлю чашку на стіл.\nIch gehe in die Küche. — Я йду на кухню.\nLege — кладу, stelle — ставлю, hänge — вішаю."
+      },
+      "exampleIds": [
+        "de:12:01",
+        "de:12:06",
+        "de:12:21"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Де — dem, куди — den"
+      },
+      "text": {
+        "uk": "Порівняйте «де лежить» і «куди кладу».\nDer Schlüssel liegt auf dem Tisch. — Ключ лежить на столі.\nIch lege den Schlüssel auf den Tisch. — Я кладу ключ на стіл.\nКоли річ рухається кудись, після auf, in, an кажуть den, die або das.\nIn і das зливаються в ins.\nWir gehen ins Café. — Ми йдемо до кафе."
+      },
+      "exampleIds": [
+        "de:12:01",
+        "de:12:25"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви побачите фразу українською.\nВнизу — німецькі слова. Натискайте їх по одному.\nПісля кожного натискання з’являться наступні слова.\nКрапки, коми та знак питання вибирати не потрібно.\nНаприклад, «Я йду на кухню»: Ich → gehe → in → die → Küche.\nЗапитайте себе: де чи куди?"
+      },
+      "exampleIds": [
+        "de:12:21",
+        "de:12:06"
+      ]
+    }
+  ]
+}

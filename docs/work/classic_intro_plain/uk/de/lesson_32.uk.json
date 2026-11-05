@@ -1,0 +1,46 @@
+{
+  "lang": "de",
+  "lesson": 32,
+  "blocks": [
+    {
+      "kind": "concept",
+      "title": {
+        "uk": "Якби"
+      },
+      "text": {
+        "uk": "Сьогодні ви навчитеся говорити «якби…, то я б…».\nWenn ich mehr Zeit hätte, würde ich mitkommen. — Якби я мав більше часу, я пішов би з вами.\nIch würde zu Fuß gehen, wenn der Weg kürzer wäre. — Я пішов би пішки, якби дорога була коротшою.\nWenn du angerufen hättest, hätte ich gewartet. — Якби ти зателефонував, я б зачекав.\nHätte — «було б», wäre — «був би», würde — «я б»."
+      },
+      "exampleIds": [
+        "de:32:01",
+        "de:32:11",
+        "de:32:22"
+      ]
+    },
+    {
+      "kind": "formula",
+      "title": {
+        "uk": "Wenn … hätte, würde …"
+      },
+      "text": {
+        "uk": "Після wenn дія йде в кінець: wenn ich mehr Zeit hätte.\nПісля коми — würde, а сама дія в самому кінці.\nWenn ich mehr Zeit hätte, würde ich mitkommen. — Якби я мав більше часу, я пішов би з вами.\nПро те, чого вже не сталося, кажуть hätte … і знову hätte.\nWenn du angerufen hättest, hätte ich gewartet. — Якби ти зателефонував, я б зачекав."
+      },
+      "exampleIds": [
+        "de:32:01",
+        "de:32:22"
+      ]
+    },
+    {
+      "kind": "practice",
+      "title": {
+        "uk": "Що ви робитимете"
+      },
+      "text": {
+        "uk": "Ви побачите фразу українською.\nВнизу — німецькі слова. Натискайте їх по одному.\nПісля кожного натискання з’являться наступні слова.\nКрапки, коми та знак питання вибирати не потрібно.\nНаприклад: Wenn → ich → mehr → Zeit → hätte → würde → ich → mitkommen."
+      },
+      "exampleIds": [
+        "de:32:01",
+        "de:32:05"
+      ]
+    }
+  ]
+}

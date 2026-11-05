@@ -1249,6 +1249,45 @@
      "prendere"
     ]
    }
+  },
+  "es": {
+   "rules": {
+    "nameOnly": true,
+    "detOnly": true
+   },
+   "classes": [
+    {
+     "name": "wh",
+     "tiles": [
+      "dónde",
+      "cuándo",
+      "quién",
+      "quiénes",
+      "qué",
+      "cuánto",
+      "cuánta",
+      "cuántos",
+      "cuántas",
+      "cómo",
+      "cuál",
+      "cuáles"
+     ],
+     "candidates": [
+      "dónde",
+      "cuándo",
+      "quién",
+      "quiénes",
+      "qué",
+      "cuánto",
+      "cuánta",
+      "cuántos",
+      "cuántas",
+      "cómo",
+      "cuál",
+      "cuáles"
+     ]
+    }
+   ]
   }
  }
 }

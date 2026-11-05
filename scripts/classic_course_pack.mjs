@@ -431,12 +431,15 @@ const POS_LEX = existsSync(join(ROOT, 'scripts', 'classic_pos_lexicon.json')) ? 
 // в своей фразе обязана входить в подписи кандидата (как он стоит в курсе), плюс точечные запреты подстановок. Языки — CTX_LANGS.
 const CTX_SIG = existsSync(join(ROOT, 'scripts', 'classic_ctx_signatures.json')) ? JSON.parse(readFileSync(join(ROOT, 'scripts', 'classic_ctx_signatures.json'), 'utf8')) : null;
 // зачем: en (Диспетчер 05.11) + de/it (Координатор 05.11: системные шаблоны Ревизора SEMANTIC_ES_DE_IT чинятся классами); es/fr — позже; выключить: CLASSIC_CTX_LANGS=""
-const CTX_LANGS = new Set((process.env.CLASSIC_CTX_LANGS ?? 'en,de,it').split(',').filter(Boolean));
+const CTX_LANGS = new Set((process.env.CLASSIC_CTX_LANGS ?? 'en,de,it,es').split(',').filter(Boolean));
 function ctxReason(ctx, ph, i, d) {
   const S = ctx.ctxSig;
   if (!S) return null;
   const want = S.tiles[ph.id]?.[i];
   if (!want) return null; // нет разбора верной плитки — правило не применяем
+  // зачем (Ловушки 05.11, откат «lernt/lerne → kochen», «ducha/duchan → estación»): форма ТОГО ЖЕ слова (общие первые 4 буквы) —
+  // самая правдоподобная ошибка ученика; контекст её не режет, даже если spaCy ошибся с частью речи плитки. Только не-en: en выверен Ревизором.
+  { const c = ph.tiles[i].correct.toLowerCase(); const dl = d.toLowerCase(); if (ctx.lang !== 'en' && c.length >= 4 && dl !== c && dl.slice(0, 4) === c.slice(0, 4)) return null; }
   const m = /(\d\d)[.:](\d\d)$/.exec(ph.id);
   // зачем: регистр первой плитки выравнивается ПОСЛЕ проверки (that → That), поэтому запреты сверяем без учёта регистра
   if (m && S.bans[`${m[1]}:${m[2]}#${i}`]?.some((b) => b.toLowerCase() === d.toLowerCase())) return 'ctxPos';

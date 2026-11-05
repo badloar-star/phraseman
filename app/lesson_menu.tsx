@@ -37,7 +37,7 @@ import fk from './feedback/feedback_kit';
 import { LESSONS_WITH_WORDS, lessonWordCount, lessonWordKeys } from './lesson_words';
 import { classicLessonWordCount, classicLessonWordKeys, classicWordsActiveFor } from './classic_lesson_words';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
+import { irregularVerbsForLesson, lessonHasIrregularVerbs } from './irregular_verbs_for_target';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
 import { vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import CircularProgress from '../components/CircularProgress';
@@ -246,13 +246,15 @@ function parseWordsLearned(lessonId: number, wordsRaw: string | null, studyTarge
   }
 }
 
-function parseIrregularLearned(lessonId: number, irregularRaw: string | null): number {
-  if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return 0;
+function parseIrregularLearned(lessonId: number, irregularRaw: string | null, studyTarget?: RuntimeStudyTarget): number {
+  // зачем (владелец 05.11: глаголы es/fr/de/it): список урока — по курсу (английский / свой у fr-es-de-it / пусто)
+  const lessonVerbs = irregularVerbsForLesson(studyTarget, lessonId);
+  if (lessonVerbs.length === 0) return 0;
   try {
     const counts: Record<string, number> = irregularRaw ? JSON.parse(irregularRaw) : {};
-    const lessonVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] ?? [];
     return lessonVerbs.filter(v => (counts[v.base] ?? 0) >= 3).length;
-  } catch {
+  } catch (error: unknown) {
+    console.warn('[CLASSIC-VERBS] menu counts parse failed', lessonId, error instanceof Error ? error.message : String(error)); // guard-ok: причина 0 выученных
     return 0;
   }
 }
@@ -314,7 +316,7 @@ export async function prefetchLessonMenuCache(
     lessonMenuCacheById[lessonMenuCacheKey(id, studyTarget)] = {
       ...parseProgress(freshestProgressRaw(id, map[progressKey] ?? null, studyTarget), map[bestScoreKey] ?? null),
       wordsLearned: parseWordsLearned(id, map[wordsKey] ?? null, studyTarget),
-      irregularLearned: parseIrregularLearned(id, map[irregularKey] ?? null),
+      irregularLearned: parseIrregularLearned(id, map[irregularKey] ?? null, studyTarget),
       prepositionAnswered: prep.answered,
       prepositionTotal: prep.total,
       theoryProgressPct: parseTheoryMenuProgress(map[theorySectionsKey] ?? null),
@@ -440,6 +442,8 @@ function LessonMenu() {
   // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): пункт без данных целевого языка скрыт, а не подписан текстом-заглушкой.
   const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
   const targetVerbsAvailable = vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs');
+  // зачем (владелец 05.11: глаголы es/fr/de/it «по урокам, только новые»): число глаголов урока — из списка своего курса
+  const lessonVerbCount = irregularVerbsForLesson(studyTarget, lessonId).length;
   const menuStorageTarget = storageStudyTarget(studyTarget);
   const menuClassicWords = classicWordsActiveFor(menuStorageTarget) ? menuStorageTarget : null;
   const wordsTotal = menuClassicWords ? classicLessonWordCount(menuClassicWords, lessonId) : (LESSONS_WITH_WORDS.has(lessonId) ? lessonWordCount(lessonId) : 0);
@@ -895,13 +899,9 @@ function LessonMenu() {
         setWordsLearned(learned);
       } catch { setWordsLearned(0); }
     });
-    if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
+    if (lessonHasIrregularVerbs(studyTarget, lessonId)) {
       AsyncStorage.getItem(irregularKey).then(saved => {
-        try {
-          const counts: Record<string,number> = saved ? JSON.parse(saved) : {};
-          const lessonVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] ?? [];
-          setIrregularLearned(lessonVerbs.filter(v => (counts[v.base] ?? 0) >= 3).length);
-        } catch { setIrregularLearned(0); }
+        setIrregularLearned(parseIrregularLearned(lessonId, saved, studyTarget));
       });
     }
     AsyncStorage.getItem(prepositionProgressKey).then(saved => {
@@ -1122,12 +1122,12 @@ function LessonMenu() {
     },
     {
       testID: 'lesson-menu-irregular-verbs',
-      hidden: !targetVerbsAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
+      hidden: !targetVerbsAvailable || lessonVerbCount === 0,
       // зачем (Сверка learn-020, макет learn.html B2): «Неправильные глаголы» (ru); остальные языки — прежние строки
       label: triLang(lang, { ru: 'Неправильные глаголы', uk: s.lessonMenu.verbs, en: s.lessonMenu.verbs, es: s.lessonMenu.verbs, 'pt-BR': s.lessonMenu.verbs, vi: s.lessonMenu.verbs, id: s.lessonMenu.verbs, tr: s.lessonMenu.verbs, pl: s.lessonMenu.verbs }),
-      sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
+      sub: lessonVerbCount > 0
         ? (() => {
-            const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
+            const total = lessonVerbCount;
             return total > 0
               ? triLang(lang, {
                   ru: `${irregularLearned}/${total}\u00A0глаголов`,
@@ -1166,13 +1166,13 @@ function LessonMenu() {
       // зачем (Сверка learn-020, learn.html menuRow): значки строк по макету — глаголы «swap», предлоги «key», теория «list».
       icon: 'swap-horizontal-outline' as const,
       pct: (() => {
-        if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return undefined;
-        const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
+        if (lessonVerbCount === 0) return undefined;
+        const total = lessonVerbCount;
         return total > 0 ? Math.round(irregularLearned / total * 100) : undefined;
       })(),
       onPress: () => {
         hapticTap();
-        if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
+        if (lessonVerbCount > 0) {
           if (!navOnce(`lesson_menu:irregular:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один экран глаголов
           router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } });
         }

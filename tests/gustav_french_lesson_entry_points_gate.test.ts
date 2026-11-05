@@ -71,7 +71,7 @@ describe('Gustav French lesson entry point gate', () => {
       source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
       source.indexOf("testID: 'lesson-menu-prepositions'"),
     );
-    expect(verbsSlice).toContain('hidden: !targetVerbsAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
+    expect(verbsSlice).toContain('hidden: !targetVerbsAvailable || lessonVerbCount === 0');
     expect(verbsSlice).not.toContain('unavailable:');
     expect(verbsSlice).not.toContain("setSoonOpen('verbs')");
 

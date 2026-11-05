@@ -19,6 +19,10 @@ export interface IrregularVerb {
   tr: string;
   pl: string;
   sourceLocales?: IrregularVerbSourceLocaleMap;
+  /** Английский перевод (только у глаголов курсов fr/es/de/it — для языков интерфейса без своего перевода). */
+  en?: string;
+  /** Курс, из которого глагол (fr/es/de/it). Нет поля — английский список. */
+  classicCourse?: 'es' | 'fr' | 'de' | 'it';
 }
 
 /** Все допустимые ответы для целевой формы глагола (включая варианты). */

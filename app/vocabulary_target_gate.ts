@@ -3,6 +3,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { classicWordsActiveFor } from './classic_lesson_words';
+import { classicVerbsActiveFor } from './classic_irregular_verbs';
 
 export type VocabularyGateSurface = 'lesson_words' | 'irregular_verbs' | 'preposition_drill';
 
@@ -41,8 +42,11 @@ export function vocabularyContentAvailableForTarget(
   // английские слова под чужим курсом. Пока словарь курса не подключён к этим экранам — для не-английских целей закрыто (тихий возврат).
   const target = storageStudyTarget(studyTarget);
   if (target === 'en') return true;
-  // зачем (владелец 05.11: «слова — во все курсы всех языков»): «Слова урока» fr/es/de/it берутся из glossary.json курса; неправильные глаголы
-  // и предлоги для них скрыты, пока нет своих списков (английский список не подставляется никогда).
+  // зачем (владелец 05.11: «слова — во все курсы всех языков»): «Слова урока» fr/es/de/it берутся из glossary.json курса.
+  // зачем (владелец 05.11: «неправильные глаголы и аналог для es/fr/de/it — в 150, по урокам, только новые»): у глаголов теперь свой список
+  // курса (modules/classic-irregular-verbs/<lang>.json, app/classic_irregular_verbs.ts). Предлоги — по-прежнему скрыты
+  // (своего списка нет). Английский список под чужим курсом не подставляется никогда.
+  if (surface === 'irregular_verbs') return classicVerbsActiveFor(target);
   return surface === 'lesson_words' && classicWordsActiveFor(target);
 }
 

@@ -13,7 +13,9 @@ describe('irregular verbs selected-option audio', () => {
 
     expect(start).toBeGreaterThanOrEqual(0);
     expect(end).toBeGreaterThan(start);
-    expect(handler).toContain("speakAudio(word, speechRate, { language: 'en-US' })");
-    expect(handler).not.toContain("speakAudio(correct, speechRate, { language: 'en-US' })");
+    expect(handler).toContain('speakAudio(word, speechRate, { language: verbSpeechLanguage(verb) })');
+    expect(handler).not.toContain('speakAudio(correct, speechRate');
+    // зачем (владелец 05.11: глаголы fr/es/de/it): голос — язык курса глагола, у английского списка по-прежнему en-US
+    expect(source).toContain("verb?.classicCourse ? classicVerbsSpeechLanguage(verb.classicCourse) : 'en-US'");
   });
 });

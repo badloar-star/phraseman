@@ -6,6 +6,7 @@ import path from 'path';
 
 import { lessonSupportContentAvailableForTarget } from '../app/lesson_support_target_gate';
 import { vocabularyContentAvailableForTarget } from '../app/vocabulary_target_gate';
+import { CLASSIC_IRREGULAR_VERBS_ENABLED } from '../app/classic_irregular_verbs';
 import { classicLessonWordBank } from '../app/classic_lesson_words';
 import { getClassicTheory } from '../app/classic_theory';
 
@@ -57,15 +58,16 @@ describe('classic courses: no stubs, no English source for a non-English course'
     expect(menu).not.toMatch(/unavailable: (?!boolean)/);
     expect(menu).not.toContain('soonOpen');
     expect(menu).toContain('hidden: !targetVocabularyAvailable || !lessonHasWords');
-    expect(menu).toContain('hidden: !targetVerbsAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
+    expect(menu).toContain('hidden: !targetVerbsAvailable || lessonVerbCount === 0');
     expect(menu).toContain('hidden: !targetHasPrepositionDrill,');
     expect(menu).toContain('classicLessonWordCount');
     expect(menu).toContain('targetTheoryUnavailable ||');
   });
 
-  it.each(TARGETS)('%s: words come from the course glossary; verbs, prepositions and cheat sheet of the English source are closed', (target) => {
+  it.each(TARGETS)('%s: words and irregular verbs come from the course itself; prepositions and cheat sheet of the English source are closed', (target) => {
     expect(vocabularyContentAvailableForTarget(target, 'lesson_words')).toBe(true);
-    expect(vocabularyContentAvailableForTarget(target, 'irregular_verbs')).toBe(false);
+    // зачем (владелец 05.11: глаголы es/fr/de/it в 150): свой список курса — раздел открыт
+    expect(vocabularyContentAvailableForTarget(target, 'irregular_verbs')).toBe(CLASSIC_IRREGULAR_VERBS_ENABLED);
     expect(vocabularyContentAvailableForTarget(target, 'preposition_drill')).toBe(false);
     expect(lessonSupportContentAvailableForTarget(target, 'lesson_hint', 1)).toBe(false);
   });

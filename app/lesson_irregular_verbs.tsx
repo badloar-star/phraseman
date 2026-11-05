@@ -41,7 +41,9 @@ import { pluralWord } from '../constants/plural';
 import { verbLearnedDoneTitle, verbFormsSubtitle } from './feedback/feedback_i18n';
 import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
-import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb, acceptedFormsFor, portionsForVerbs } from './irregular_verbs_data';
+import { IrregularVerb, acceptedFormsFor, portionsForVerbs } from './irregular_verbs_data';
+import { allIrregularVerbsFor, irregularVerbsForLesson } from './irregular_verbs_for_target';
+import { classicVerbsSlotCaptions, classicVerbsSpeechLanguage } from './classic_irregular_verbs';
 import { buildIrregularVerbOptions, ensureCompleteIrregularVerbOptions } from './irregular_verb_options';
 import { irregularVerbPortionProgress } from './irregular_verb_portion_progress';
 import VerbLetterBank from '../components/VerbLetterBank';
@@ -205,8 +207,19 @@ const IRREGULAR_VERB_ES_BY_BASE: Record<string, string> = {
 
 function irregularVerbTranslation(verb: IrregularVerb, lang: Lang): string {
   if (lang === 'uk') return verb.uk;
+  // зачем (владелец 05.11: глаголы курсов fr/es/de/it): у них перевод ru/uk + английский для остальных 7 языков интерфейса
+  if (verb.classicCourse) {
+    if (lang === 'ru') return verb.ru;
+    if (lang === 'en') return verb.en || verb.ru;
+    return (verb as unknown as Record<string, string | undefined>)[lang] || verb.en || verb.ru;
+  }
   if (lang === 'es') return verb.es || IRREGULAR_VERB_ES_BY_BASE[verb.base] || verb.base;
   return verb.ru;
+}
+
+/** Голос озвучки формы: язык курса глагола (fr-FR / es-ES / de-DE / it-IT), у английского списка — en-US. */
+function verbSpeechLanguage(verb: IrregularVerb | undefined): string {
+  return verb?.classicCourse ? classicVerbsSpeechLanguage(verb.classicCourse) : 'en-US';
 }
 
 /**
@@ -216,12 +229,18 @@ function irregularVerbTranslation(verb: IrregularVerb, lang: Lang): string {
  * Формы: base = настоящее/инфинитив, past = прошедшее, pp = причастие.
  * Возвращаем подписи для колонок base/past/pp и строку будущего (will + base).
  */
-function verbTenseCaptions(lang: Lang): {
+function verbTenseCaptions(lang: Lang, course?: IrregularVerb['classicCourse']): {
   present: string;
   pastT: string;
   participle: string;
   future: (base: string) => string;
 } {
+  // зачем (владелец 05.11: глаголы fr/es/de/it): у курса свои три формы (fr/it: инфинитив → настоящее → причастие;
+  // es/de: инфинитив → прошедшее → причастие) — подписи под ячейками по смыслу формы курса, а не английские V1/V2/V3.
+  if (course) {
+    const c = classicVerbsSlotCaptions(course, lang);
+    return { present: c.base, pastT: c.past, participle: c.pp, future: (base) => base };
+  }
   // зачем: единый переводчик проекта вместо if-лестницы (сторож i18n +
   // недостающие 5 языков раньше молча откатывались на русский).
   const present = triLang(lang, { ru: 'настоящее', uk: 'теперішнє', en: 'present', es: 'presente', 'pt-BR': 'presente', vi: 'hiện tại', id: 'sekarang', tr: 'şimdiki', pl: 'teraźniejszy' });
@@ -520,7 +539,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     setFeedbackCorrect(isCorrect);
     setPhase('feedback');
 
-    if (voiceOut) speakAudio(word, speechRate, { language: 'en-US' });
+    if (voiceOut) speakAudio(word, speechRate, { language: verbSpeechLanguage(verb) });
 
     if (isCorrect) {
       runCorrectRef.current += 1;
@@ -549,7 +568,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
             canonicalTarget: correct,
             sourceMeaning: verb.ru,
             // зачем (репорт 13.10 «Находить — found»): в «Моих ошибках» не было видно, какая форма спрашивается (прошлое/причастие/основная)
-            sourcePrompt: `${irregularVerbTranslation(verb, lang)} — ${form === 'past' ? verbTenseCaptions(lang).pastT : form === 'pp' ? verbTenseCaptions(lang).participle : verbTenseCaptions(lang).present}`,
+            sourcePrompt: `${irregularVerbTranslation(verb, lang)} — ${form === 'past' ? verbTenseCaptions(lang, verb.classicCourse).pastT : form === 'pp' ? verbTenseCaptions(lang, verb.classicCourse).participle : verbTenseCaptions(lang, verb.classicCourse).present}`,
             lessonId: String(lessonId ?? 0),
             distractors: activeOptions,
           },
@@ -650,7 +669,10 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   });
 
   // Зрелый глагол → собираем форму из букв (воспроизведение), новый → 4 кнопки (узнавание).
-  const recallActive = !!activeVerb && isRecallVerb(activeVerb.base);
+  // зачем (глаголы de 05.11): у отделяемых глаголов форма из двух слов (rief an) — из букв её не собрать без пробела-плитки,
+  // поэтому такие формы всегда спрашиваем кнопками.
+  const activeAnswer = activeVerb ? (activeForm === 'past' ? activeVerb.past : activeForm === 'pp' ? activeVerb.pp : activeVerb.base) : '';
+  const recallActive = !!activeVerb && isRecallVerb(activeVerb.base) && !/\s/.test(activeAnswer);
   const activeAcceptedForms = useMemo(
     () => activeVerb ? acceptedFormsFor(activeVerb, activeForm) : [],
     [activeVerb, activeForm],
@@ -753,7 +775,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     { key: 'pp',   value: verb.pp,   isTarget: form === 'pp'   },
   ];
 
-  const tc = verbTenseCaptions(lang);
+  const tc = verbTenseCaptions(lang, verb.classicCourse);
   const tenseByKey: Record<FormKey, string> = { base: tc.present, past: tc.pastT, pp: tc.participle };
   const feedbackTint = phase === 'feedback' ? (feedbackCorrect ? t.correct : t.wrong) : null;
   const hintText = phase === 'answering'
@@ -994,6 +1016,9 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
   const scrollX = useRef(new Animated.Value(0)).current;
   const [containerW, setContainerW] = useState(0);
   const sv = stringsForLang(lang).verbs;
+  // зачем (владелец 05.11: глаголы fr/es/de/it): шапка таблицы — названия форм курса, а не английские base/past/participle
+  const tableCourse = allVerbs[0]?.classicCourse;
+  const head = tableCourse ? classicVerbsSlotCaptions(tableCourse, lang) : { base: sv.base, past: sv.past, pp: sv.pp };
   const cardW = containerW - 32;
   const canScroll = cardW > 0 && TABLE_W > cardW;
   const thumbW = canScroll ? Math.max(40, (cardW / TABLE_W) * (cardW - 32)) : 0;
@@ -1021,9 +1046,9 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
       >
         <View style={{ minWidth: TABLE_W - 28 }}>
           <View style={{ flexDirection: 'row', paddingTop: 6, paddingBottom: 10 }}>
-            <Text style={[headStyle, { width: COL.base }]}>{sv.base}</Text>
-            <Text style={[headStyle, { width: COL.past }]}>{sv.past}</Text>
-            <Text style={[headStyle, { width: COL.pp }]}>{sv.pp}</Text>
+            <Text style={[headStyle, { width: COL.base }]}>{head.base}</Text>
+            <Text style={[headStyle, { width: COL.past }]}>{head.past}</Text>
+            <Text style={[headStyle, { width: COL.pp }]}>{head.pp}</Text>
             <Text style={[headStyle, { width: COL.tr }]}>{sv.tr}</Text>
             <View style={{ width: COL.save }} />
           </View>
@@ -1037,21 +1062,21 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
                 style={{ flexDirection: 'row', alignItems: 'center', minHeight: 48, paddingVertical: 4, borderTopWidth: rowIdx === 0 ? 0 : StyleSheet.hairlineWidth /* guard-ok */, borderTopColor: glass.line }}
               >
                 <TouchableOpacity
-                  onPress={() => speakAudio(verb.base, undefined, { language: 'en-US' })}
+                  onPress={() => speakAudio(verb.base, undefined, { language: verbSpeechLanguage(verb) })}
                   activeOpacity={0.6}
                   style={{ width: COL.base, minHeight: 44, justifyContent: 'center' }}
                 >
                   <Text style={{ color: formColor, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{verb.base}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => speakAudio(verb.past, undefined, { language: 'en-US' })}
+                  onPress={() => speakAudio(verb.past, undefined, { language: verbSpeechLanguage(verb) })}
                   activeOpacity={0.6}
                   style={{ width: COL.past, minHeight: 44, justifyContent: 'center' }}
                 >
                   <Text style={{ color: formColor, fontSize: 16, lineHeight: 21 }}>{verb.past}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => speakAudio(verb.pp, undefined, { language: 'en-US' })}
+                  onPress={() => speakAudio(verb.pp, undefined, { language: verbSpeechLanguage(verb) })}
                   activeOpacity={0.6}
                   style={{ width: COL.pp, minHeight: 44, justifyContent: 'center' }}
                 >
@@ -1174,8 +1199,16 @@ function LessonIrregularVerbs() {
   const lessonId = parseInt(id || '1', 10);
   const frenchIrregularBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs');
   const irregularStorageKey = irregularVerbsGlobalKey(studyTarget);
-  const allVerbs = frenchIrregularBlocked ? [] : (IRREGULAR_VERBS_BY_LESSON[lessonId] || []);
-  const allVerbsFlat: IrregularVerb[] = frenchIrregularBlocked ? [] : Object.values(IRREGULAR_VERBS_BY_LESSON).flat();
+  // зачем (владелец 05.11: глаголы es/fr/de/it «по урокам, только новые»): список урока и пул вариантов — из списка своего курса
+  // (английский / modules/classic-courses/<lang>/irregular_verbs.json); пул мемоизирован, чтобы не пересобирать массив на каждый кадр.
+  const allVerbs = useMemo(
+    () => (frenchIrregularBlocked ? [] : irregularVerbsForLesson(studyTarget, lessonId)),
+    [frenchIrregularBlocked, studyTarget, lessonId],
+  );
+  const allVerbsFlat: IrregularVerb[] = useMemo(
+    () => (frenchIrregularBlocked ? [] : allIrregularVerbsFor(studyTarget)),
+    [frenchIrregularBlocked, studyTarget],
+  );
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
   useEffect(() => {

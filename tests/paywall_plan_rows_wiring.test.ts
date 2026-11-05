@@ -16,8 +16,10 @@ describe('approved Plus plan rows', () => {
     const screen = read('components/paywall/PaywallPlusScreen.tsx');
     expect(screen).toContain('savingsPct={p.savingsPct}');
     const rows = read('components/paywall/PaywallPlanRows.tsx');
-    expect(rows).toContain("yearlyPriceSource !== 'reference'");
-    expect(rows).toContain("monthlyPriceSource !== 'reference'");
+    // зачем (пейвол 1:1 по макету, a1aec863f): строка плана помечает справочную цену как приблизительную («≈ »), а не прячет скидку по признаку источника;
+    // смысл охраны тот же — справочная цена не выдаётся за цену стора, процент экономии идёт только из реальных цен стора (savingsPct)
+    expect(rows).toContain("approx={yearlyPriceSource === 'reference'}");
+    expect(rows).toContain("approx={monthlyPriceSource === 'reference'}");
     expect(rows).toContain('trialDays={yearlyTrialDays}');
     expect(rows).toContain('trialDays={monthlyTrialDays}');
   });

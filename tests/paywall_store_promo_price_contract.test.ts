@@ -62,8 +62,10 @@ describe('скидка стора доезжает до пейвола чест�
     // зачем (D158, 11.10): промо-цена стора всегда первая; обычная цена получает «≈ », если она справочная, — поэтому в запасной ветке шаблон, а не голая переменная
     // В C промо-цена остаётся крупной, обычная — зачёркнутой; обе используют текст активной темы.
     const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
-    expect(rows).toContain("const shown = promo?.promoPriceString || `${approx ? '≈ ' : ''}${price}`;");
-    expect(rows).toContain('{promo ? <Text style={[S.strike, { color: g.text }]}>{promo.standardPriceString}</Text> : null}');
+    // зачем (пейвол 1:1 по макету, a1aec863f): при пустой цене плитка показывает «—», а не «≈ undefined»/пустоту; промо-цена стора по-прежнему первая, справочная — с «≈ »
+    expect(rows).toContain("const shown = promo?.promoPriceString || (price ? `${approx ? '≈ ' : ''}${price}` : '—');");
+    // зачем (макет пейвола, a1aec863f): зачёркнутая обычная цена — приглушённым цветом темы (secondary), чтобы промо-цена оставалась главной; смысл охраны тот же — обычная цена видна зачёркнутой рядом с промо
+    expect(rows).toContain('{promo ? <Text style={[S.strike, { color: g.secondary }]}>{promo.standardPriceString}</Text> : null}');
     expect(rows).toMatch(/strike: \{[^}]*textDecorationLine: 'line-through'/u);
     expect(rows).toContain('promo={yearlyPromo}');
     expect(rows).toContain('promo={monthlyPromo}');

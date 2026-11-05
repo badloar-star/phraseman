@@ -524,6 +524,10 @@ const getPerWordDistracts = (
   const enSurface = String(phrase?.english ?? '').trim();
   const normalizedStudyTarget = storageStudyTarget(studyTarget);
   const isFrenchTarget = ENABLE_DEV_STUDY_TARGET_LANG && normalizedStudyTarget === 'fr';
+  // зачем (владелец/Теория 05.11, №43: английские fires/finish/favorite в плитках итальянского): английские пулы приложения
+  // (WORD_POOLS_L1, существительные/глаголы/прилагательные) годятся ТОЛЬКО для курса английского. Для любого языка, кроме en/es/fr
+  // (у них свои пулы выше), соблазны берутся ТОЛЬКО из курса (wordData.distractors и соседнее слово) — чужой язык в плитках запрещён.
+  const isOtherTarget = normalizedStudyTarget !== 'en' && normalizedStudyTarget !== 'es' && normalizedStudyTarget !== 'fr';
   const blockLoudAsDistractorForStrangeNoise =
     /\bstrange\s+noise\b/i.test(enSurface) &&
     !(ENABLE_DEV_STUDY_TARGET_LANG && (studyTarget === 'es' || normalizedStudyTarget === 'fr'));
@@ -534,7 +538,9 @@ const getPerWordDistracts = (
   };
 
   const globalFallbackPool =
-    ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es'
+    isOtherTarget
+      ? []
+      : ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es'
       ? SPANISH_FALLBACK_POOL.filter((w: string) => !w.includes(' '))
       : isFrenchTarget
       ? FRENCH_FALLBACK_POOL.filter((w: string) => !w.includes(' '))
@@ -555,7 +561,7 @@ const getPerWordDistracts = (
   //      Russian: a demonstrative source ("этот стол") forces this/that, so we DON'T strip.
   //   2. Polite request can/could (and offer will/would) — "Can you…?" = "Could you…?".
   //   3. (handled separately via month guard below.)
-  const enOnlyGuards = !isSpanishTarget && !isFrenchTarget;
+  const enOnlyGuards = !isSpanishTarget && !isFrenchTarget && !isOtherTarget;
   const ruPrompt = String(phrase?.russian ?? phrase?.ukrainian ?? '').toLowerCase();
   const correctKey = optionIdentity(currentCorrect);
   const DEIXIS = new Set(['it', 'this', 'that', 'these', 'those']);
@@ -584,6 +590,7 @@ const getPerWordDistracts = (
   const isForbiddenEquivalent = (w: string): boolean =>
     forbiddenEquivalents.size > 0 && forbiddenEquivalents.has(optionIdentity(w));
   const sameLanguageCategoryPool = (): string[] => {
+    if (isOtherTarget) return []; // зачем: см. isOtherTarget — только курс, без английских пулов
     if (isSpanishTarget) {
       if (cat.includes('articulo') || cat === 'article') return ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas'];
       if (cat.includes('pronombre') || cat === 'pronoun') return ['yo', 'tú', 'él', 'ella', 'usted', 'nosotros', 'ellos', 'me', 'te', 'se', 'nos', 'lo', 'la', 'le'];
@@ -646,7 +653,7 @@ const getPerWordDistracts = (
   const closedClassGuard = (():
     | { category: string; pool: string[] }
     | null => {
-    if (isSpanishTarget || isFrenchTarget) return null; // ES/FR have their own category pools above
+    if (isSpanishTarget || isFrenchTarget || isOtherTarget) return null; // ES/FR have their own category pools above; other targets — course only
     // Month homograph fix (e.g. "We meet in May"): "May" collides with modal "may", and
     // "January"/"October" otherwise fall to the global pool and get look-alike nouns
     // (junior/jaguar/octopus). A month in a phrase must get OTHER months as distractors.
@@ -673,6 +680,20 @@ const getPerWordDistracts = (
   const currentDistractors = closedClassGuard
     ? [...rawCurrentDistractors, ...closedClassPool]
     : [...rawCurrentDistractors, ...categoryFallbackPool, ...globalFallbackPool];
+
+  // зачем (логи сперва, владелец 05.11, №43): откуда взяты соблазны плитки — курс или пулы приложения. Один компактный журнал на слово.
+  console.log('[TILE-SOURCE]', JSON.stringify({
+    target: normalizedStudyTarget,
+    phraseId: String(phrase?.id ?? ''),
+    wordIndex,
+    correct: String(currentCorrect),
+    fromCourse: rawCurrentDistractors.length,
+    nextWordFromCourse: Array.isArray(rows[wordIndex + 1]?.distractors) ? rows[wordIndex + 1].distractors.length : 0,
+    categoryPool: categoryFallbackPool.length,
+    globalPool: globalFallbackPool.length,
+    closedClass: closedClassGuard?.category ?? null,
+    englishPoolsAllowed: !isOtherTarget,
+  }));
 
   // Sliding window: pull distractors from next word too (like competitor)
   const nextWordData = rows[wordIndex + 1];

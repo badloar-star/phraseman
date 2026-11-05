@@ -1,0 +1,8 @@
+11-05 23:42:02.142 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'mount', '{"id":"peak","lang":"ru","freezeAt":1,"reduced":false,"forceReduced":false,"segments":1,"segmentIndex":0,"isDark":false}'
+11-05 23:42:03.397 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'image_loaded', '{"id":"peak","what":"hero","detail":null}'
+11-05 23:42:03.398 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'image_loaded', '{"id":"peak","what":"art","detail":null}'
+11-05 23:42:03.413 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"peak","at":0.15,"ctaReady":false}'
+11-05 23:42:03.414 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"peak","at":0.43,"ctaReady":false}'
+11-05 23:42:03.415 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"peak","at":0.6,"ctaReady":false}'
+11-05 23:42:03.415 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"peak","at":0.82,"ctaReady":true}'
+11-05 23:42:03.416 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"peak","at":1,"ctaReady":true}'

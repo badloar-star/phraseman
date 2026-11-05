@@ -1,0 +1,7 @@
+11-05 23:41:37.912 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'mount', '{"id":"rank","lang":"ru","freezeAt":1,"reduced":false,"forceReduced":false,"segments":1,"segmentIndex":0,"isDark":false}'
+11-05 23:41:39.576 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'image_loaded', '{"id":"rank","what":"hero","detail":null}'
+11-05 23:41:39.611 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.15,"ctaReady":false}'
+11-05 23:41:39.616 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.43,"ctaReady":false}'
+11-05 23:41:39.617 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.6,"ctaReady":false}'
+11-05 23:41:39.619 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":0.82,"ctaReady":true}'
+11-05 23:41:39.619 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"rank","at":1,"ctaReady":true}'

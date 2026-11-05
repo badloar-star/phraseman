@@ -1,0 +1,8 @@
+11-05 23:40:59.039 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'mount', '{"id":"video","lang":"ru","freezeAt":1,"reduced":false,"forceReduced":false,"segments":1,"segmentIndex":0,"isDark":false}'
+11-05 23:41:00.335 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'image_loaded', '{"id":"video","what":"hero","detail":null}'
+11-05 23:41:00.338 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'image_loaded', '{"id":"video","what":"art","detail":null}'
+11-05 23:41:00.365 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"video","at":0.15,"ctaReady":false}'
+11-05 23:41:00.369 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"video","at":0.43,"ctaReady":false}'
+11-05 23:41:00.373 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"video","at":0.6,"ctaReady":false}'
+11-05 23:41:00.376 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"video","at":0.82,"ctaReady":true}'
+11-05 23:41:00.378 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"video","at":1,"ctaReady":true}'

@@ -1,0 +1,7 @@
+11-05 23:41:12.087 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'mount', '{"id":"dialogs","lang":"ru","freezeAt":1,"reduced":false,"forceReduced":false,"segments":1,"segmentIndex":0,"isDark":false}'
+11-05 23:41:13.138 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'image_loaded', '{"id":"dialogs","what":"hero","detail":null}'
+11-05 23:41:13.146 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"dialogs","at":0.15,"ctaReady":false}'
+11-05 23:41:13.148 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"dialogs","at":0.43,"ctaReady":false}'
+11-05 23:41:13.149 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"dialogs","at":0.6,"ctaReady":false}'
+11-05 23:41:13.149 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"dialogs","at":0.82,"ctaReady":true}'
+11-05 23:41:13.150 I/ReactNativeJS(21213): '[SECTION-OPENING]', 'phase', '{"id":"dialogs","at":1,"ctaReady":true}'

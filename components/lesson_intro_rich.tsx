@@ -28,13 +28,26 @@ export function legacyIntroValue<T>(
   ruValue?: T,
   ukValue?: T,
   esValue?: T,
+  enValue?: T,
 ): T | undefined {
   switch (lang) {
     case 'uk':
       return firstDefined(ukValue, ruValue);
   }
-  if (spanishLessonUiStringsActive(lang, studyTarget)) return firstDefined(esValue, ruValue);
+  if (spanishLessonUiStringsActive(lang, studyTarget)) return firstDefined(esValue, enValue, ruValue);
+  // зачем (слово владельца через координатора 05.11, находка Maestro: интерфейс EN показывал вступление урока 1 на русском): ru→RU, uk→UK,
+  // остальные локали → EN, пока своих переводов нет (в 150 не показываем чужой язык); без EN-значения (вызовы без enValue) — прежний RU
+  if (lang !== 'ru' && enValue !== undefined) return enValue;
   return ruValue;
+}
+
+/** [CLASSIC-INTRO]: какое поле вступления взято и почему — одна строка на (урок, локаль, поле). */
+const loggedIntroChoices = new Set<string>();
+export function logClassicIntroChoice(screen: LessonIntroScreen, lang: Lang, field: string, reason: string): void {
+  const key = `${screen.lessonId ?? '?'}:${screen.screenId ?? screen.order ?? '?'}:${lang}:${field}`;
+  if (loggedIntroChoices.has(key)) return;
+  loggedIntroChoices.add(key);
+  console.log('[CLASSIC-INTRO]', JSON.stringify({ lessonId: screen.lessonId ?? null, screen: screen.screenId ?? null, ui: lang, field, reason }));
 }
 
 /**
@@ -127,8 +140,8 @@ export function richIntroLines(screen: LessonIntroScreen, lang: Lang, studyTarge
     pl: screen.linesPl,
   };
   const selected = isPlannedIntroLang(lang)
-    ? plannedLines[lang]
-    : legacyIntroValue(lang, studyTarget, screen.linesRU, screen.linesUK, screen.linesES);
+    ? firstDefined(plannedLines[lang], screen.linesEN)
+    : legacyIntroValue(lang, studyTarget, screen.linesRU, screen.linesUK, screen.linesES, screen.linesEN);
   return selected ?? [];
 }
 
@@ -141,8 +154,8 @@ export function richSubtitle(screen: LessonIntroScreen, lang: Lang, studyTarget:
     pl: screen.subtitlePl,
   };
   return isPlannedIntroLang(lang)
-    ? plannedSubtitles[lang]
-    : legacyIntroValue(lang, studyTarget, screen.subtitleRU, screen.subtitleUK, screen.subtitleES);
+    ? firstDefined(plannedSubtitles[lang], screen.subtitleEN)
+    : legacyIntroValue(lang, studyTarget, screen.subtitleRU, screen.subtitleUK, screen.subtitleES, screen.subtitleEN);
 }
 
 export function richTitle(screen: LessonIntroScreen, lang: Lang, studyTarget: StudyTargetLang): string | undefined {
@@ -153,9 +166,11 @@ export function richTitle(screen: LessonIntroScreen, lang: Lang, studyTarget: St
     tr: screen.titleTr,
     pl: screen.titlePl,
   };
-  return isPlannedIntroLang(lang)
-    ? plannedTitles[lang]
-    : legacyIntroValue(lang, studyTarget, screen.titleRU, screen.titleUK, screen.titleES);
+  const title = isPlannedIntroLang(lang)
+    ? firstDefined(plannedTitles[lang], screen.titleEN)
+    : legacyIntroValue(lang, studyTarget, screen.titleRU, screen.titleUK, screen.titleES, screen.titleEN);
+  logClassicIntroChoice(screen, lang, 'title', title === screen.titleEN && title !== undefined ? 'en_for_non_ru_uk_locale' : title === screen.titleRU ? 'ru' : title === screen.titleUK ? 'uk' : 'own_locale_field');
+  return title;
 }
 
 export function plainIntroText(screen: LessonIntroScreen, lang: Lang, studyTarget: StudyTargetLang): string | undefined {
@@ -166,9 +181,11 @@ export function plainIntroText(screen: LessonIntroScreen, lang: Lang, studyTarge
     tr: screen.textTr,
     pl: screen.textPl,
   };
-  return isPlannedIntroLang(lang)
-    ? plannedText[lang]
-    : legacyIntroValue(lang, studyTarget, screen.textRU, screen.textUK, screen.textES);
+  const text = isPlannedIntroLang(lang)
+    ? firstDefined(plannedText[lang], screen.textEN)
+    : legacyIntroValue(lang, studyTarget, screen.textRU, screen.textUK, screen.textES, screen.textEN);
+  logClassicIntroChoice(screen, lang, 'text', text === screen.textEN && text !== undefined ? 'en_for_non_ru_uk_locale' : text === screen.textRU ? 'ru' : text === screen.textUK ? 'uk' : 'own_locale_field');
+  return text;
 }
 
 export function richKindToLegacyKind(kind: LessonIntroScreen['kind']): LessonIntroBlockKind {

@@ -165,6 +165,11 @@ export interface LessonIntroScreen {
   titleId?: string;
   titleTr?: string;
   titlePl?: string;
+  /** EN-тексты вступления классических курсов (intro.json): для не-ru/uk локалей, пока своих переводов нет (слово владельца 05.11) */
+  titleEN?: string;
+  subtitleEN?: string;
+  textEN?: string;
+  linesEN?: IntroLine[];
   /** Опциональный список примеров: EN-фраза + перевод (рисуется отдельной колонкой под текстом) */
   examples?: any[];
   lessonId?: number;

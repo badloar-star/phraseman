@@ -1532,7 +1532,9 @@ const LessonContent = React.memo(function LessonContent({
                     <DuoPressable
                       // зачем (координатор 12.10, съёмка R1 energy-modes-002…005/016): робот не знает, какой номер неверный —
                       // в dev первый неверный вариант помечен `lesson1-word-option-wrong` (ошибка по шагу). В стор-сборке __DEV__ = false.
-                      testID={isCorrectOption ? 'lesson1-word-option-correct' : (__DEV__ && wordOptionItems.find((o) => !o.isCorrectOption)?.index === i ? 'lesson1-word-option-wrong' : `lesson1-word-option-${i}`)}
+                      // зачем (координатор 05.11, Maestro-проход урока до итога): помеченные плитки нужны роботу ТОЛЬКО в dev; в релизе плитки
+                      // без testID — ничего не подсказывает, какой вариант верный (владелец: «в релизе — ничего»)
+                      testID={__DEV__ ? (isCorrectOption ? 'lesson1-word-option-correct' : (wordOptionItems.find((o) => !o.isCorrectOption)?.index === i ? 'lesson1-word-option-wrong' : `lesson1-word-option-${i}`)) : undefined}
                       pressedExternally={isFlashing}
                       withHaptic={false}
                       disabled={wordDispatchPending}

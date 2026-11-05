@@ -9,6 +9,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { RankGateUserVerdict } from './rank_gates_new_user';
+import { isDevForceNewbie } from './dev_force_newbie';
 
 export const FIRST_LESSON_BONUS_COINS = 500;
 export const FIRST_LESSON_BONUS_GIFT_ID = 'stars_500';
@@ -65,6 +66,11 @@ export function maybeGrantFirstLessonBonus(deps: FirstLessonBonusDeps): Promise<
       const owner = await deps.ownerStableId();
       if (!owner) {
         console.warn('[RANK-GATE] first_lesson_bonus skip', JSON.stringify({ reason: 'no_owner' })); // guard-ok: ранний выход с причиной
+        return false;
+      }
+      // зачем (Сверка 06.11, dev-ключ «новичок» на боевом аккаунте): монеты +500 при ключе НЕ выдаём — иначе они ушли бы на настоящий аккаунт владельца.
+      if (await isDevForceNewbie()) {
+        console.warn('[NEWBIE-SIM] first_lesson_bonus skip', JSON.stringify({ reason: 'dev_force_newbie_no_real_coins' })); // guard-ok: ранний выход с причиной
         return false;
       }
       const [verdict, alreadyGranted] = await Promise.all([deps.verdict(), deps.readFlag(owner)]);

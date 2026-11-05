@@ -19,6 +19,7 @@ import { captureAccountGeneration } from './account_generation';
 import { peekCurrentAccountCreatedAtMs } from './account_created_at';
 import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { RANK_GATES_PRIOR_PROGRESS_KEYS, judgeRankGateUser, type RankGateUserVerdict } from './rank_gates_new_user';
+import { isDevForceNewbie } from './dev_force_newbie';
 import { MAIN_COURSE_LESSON_COUNT } from './main_course_access';
 import { STUDY_TARGETS, isStudyTarget, STUDY_TARGET_STORAGE_KEY } from './study_target';
 import { lessonBestScoreKey, lessonProgressKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
@@ -136,7 +137,10 @@ export async function recordPrimaryCourseLanguageAtOnboarding(
       sinceMs,
       accountCreatedAtMs: peekCurrentAccountCreatedAtMs(), // зачем: ветеран на втором устройстве (старый аккаунт Auth) не «новый» — то же правило, что у ранговых гейтов
     });
-    const record: PrimaryCourseLanguageRecord = { v: 1, primary: target, newUser: verdict.isNew, atMs: nowMs };
+    // зачем (Сверка 06.11, dev_state?newbie=on): в dev-ключе запись первого языка считает человека новым (замок дополнительного языка проверяется на залогиненном аккаунте).
+    const forceNew = await isDevForceNewbie();
+    if (forceNew) console.log(`${LOG} onboarding:dev_force_newbie`, JSON.stringify({ verdictWas: verdict.isNew, now: true })); // guard-ok: ветка и значение
+    const record: PrimaryCourseLanguageRecord = { v: 1, primary: target, newUser: forceNew || verdict.isNew, atMs: nowMs };
     if (activeOwner() !== owner) {
       console.log(`${LOG} onboarding:owner_changed`, JSON.stringify({ reason: 'аккаунт сменился во время записи — не пишем чужому' }));
       return 'failed';

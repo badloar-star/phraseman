@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { captureAccountGeneration } from './account_generation';
 import { peekCurrentAccountCreatedAtMs } from './account_created_at';
 import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
+import { isDevForceNewbie } from './dev_force_newbie';
 
 /**
  * Момент выхода версии с ранговыми гейтами (мс). ЗАГЛУШКА: максимум = «никто не новый», гейты не работают, пока сборка не подставит
@@ -90,6 +91,11 @@ export async function readRankGateUserVerdict(nowMs: number = Date.now(), sinceM
     if (!owner) {
       console.log('[RANK-GATE] verdict', JSON.stringify({ isNew: false, reason: 'no_owner' })); // guard-ok: ранний выход называет причину
       return { isNew: false, reason: 'no_owner' };
+    }
+    // зачем (Сверка 06.11, dev_state?newbie=on): на залогиненном старом аккаунте «новичка» иначе не получить без выхода/очистки. Только dev-сборка; ничего не пишем и не стираем — подменяется лишь вердикт на чтении.
+    if (await isDevForceNewbie()) {
+      console.log('[NEWBIE-SIM] verdict forced new', JSON.stringify({ owner: `${owner.slice(0, 6)}…` })); // guard-ok: ветка и значение, которое её решило
+      return { isNew: true, reason: 'force_new' };
     }
     const cohortKey = rankGateCohortKey(owner);
     // зачем (владелец 30.10): новичок после первого занятия получает прогресс (серия/опыт) — без липкой отметки следующий запуск счёл бы его «старым» и

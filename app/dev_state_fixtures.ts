@@ -31,6 +31,7 @@ import { parseDevStreakMilestone } from './dev_streak_milestone';
 import { devSetEnergy, devSetEnergyRestoringIn, setDevEnergyModeOverride } from './dev_energy_tools';
 import { getDevLocalPlusStorageKey, setDevLocalPlusOverride } from './dev_plus_controls';
 import { setDevAsFreeFlag } from './dev_as_free_flag';
+import { setDevForceNewbie } from './dev_force_newbie';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { setSoundV2DevOverride } from '../modules/sound_v2/sound_v2_flag';
@@ -115,6 +116,8 @@ export type DevStateRequest = Readonly<{
   level?: number | 'clear';
   onboarding?: 'done' | 'pending';
   free?: 'on' | 'off';
+  /** «Новичок» без выхода из аккаунта и без стирания данных (Сверка 06.11): подменяет вердикт «новый» на чтении; бонус +500 не выдаётся. off — снять. */
+  newbie?: 'on' | 'off';
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
   cards?: 'demo' | 'demo_lessons' | 'demo_long' | 'demo_nopacks' | 'demo_few' | 'custom50' | 'demo_published' | 'notranslation' | 'empty';
   /** Слот сообщений Настроек (R1 settings-gap-007…009, 029): dev-кампания — опрос / опрос с голосом / сообщение внизу / сообщение вверху / убрать. */
@@ -432,6 +435,9 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     }
   }
   request.free = pick('free', ['on', 'off'] as const);
+  // зачем (Диспетчер 06.11): ссылка может быть newbie=1 / newbie=0 или on/off — одно и то же.
+  const newbiePicked = pick('newbie', ['on', 'off', '1', '0'] as const);
+  request.newbie = newbiePicked === undefined ? undefined : (newbiePicked === 'on' || newbiePicked === '1' ? 'on' : 'off');
   request.cards = pick('cards', ['demo', 'demo_lessons', 'demo_long', 'demo_nopacks', 'demo_few', 'custom50', 'demo_published', 'notranslation', 'empty'] as const);
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
   request.dialogFail = pick('dev_dialog_fail', [...DEV_DIALOG_FAILS, 'off'] as const);
@@ -819,6 +825,7 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     });
   }
   if (request.free) await step('free', request.free, () => setDevAsFreeFlag(request.free === 'on'));
+  if (request.newbie) await step('newbie', request.newbie, () => setDevForceNewbie(request.newbie === 'on'));
   if (request.appearance) {
     // зачем (Макеты 15.10): светлая/тёмная Главная ссылкой, только память
     await step('appearance', request.appearance, async () => {

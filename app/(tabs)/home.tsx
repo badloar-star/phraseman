@@ -2716,11 +2716,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeV2RankedFillers = homeV2SavedAsCards ? homeV2FillerTiles.filter((tile) => tile.key !== 'saved') : homeV2FillerTiles;
         const homeV2SpireTile = homeV2FillerTiles[0]!;
         const homeV2WithSpire = homeV2RankedBase.length === 3 && homeV2SpireTile.available;
-        const homeV2Tiles: HomeFeatureTile[] = homeV2WithSpire
+        const homeV2TilesCore: HomeFeatureTile[] = homeV2WithSpire
             ? [...homeV2RankedBase, (({ available: _available, ...tile }) => tile)(homeV2SpireTile)]
             : homeV2RankedBase.length >= 3 || homeV2RankedBase.length === 0
             ? homeV2RankedBase
             : [...homeV2RankedBase, ...homeV2RankedFillers.filter((tile) => tile.available).map(({ available: _available, ...tile }) => tile)].slice(0, 3);
+        // зачем (🔴 закон владельца ~15:05 через координатора, e4331d3b4; вердикт Макетов 05.11): плитка «Фразы из видео» на Главной ВСЕГДА — рядом с «Уроки» и «Сохранённые», на любом ранге, а не только когда в ряду есть место (на ранге ≥1 ряд из трёх уже занят, и плитка пропадала). Ряд длиннее трёх идёт горизонтальной лентой (HomeV2FeatureTiles); порядок — в конце.
+        const homeV2VideoTile = homeV2FillerTiles.find((tile) => tile.key === 'video_packs');
+        const homeV2Tiles: HomeFeatureTile[] = homeV2VideoTile?.available && !homeV2TilesCore.some((tile) => tile.key === 'video_packs')
+            ? [...homeV2TilesCore, (({ available: _available, ...tile }) => tile)(homeV2VideoTile)]
+            : homeV2TilesCore;
         const homeV2TilesReason = homeV2WithSpire ? 'four:all_sections_and_spire'
             : homeV2RankedBase.length === 3 ? `three:spire_off(surface=${isLearningSurfaceReady(studyTarget, 'spire')},tab=${spireTabEnabled})`
             : `fill:base=${homeV2RankedBase.map((tile) => tile.key).join('+') || 'none'}`;

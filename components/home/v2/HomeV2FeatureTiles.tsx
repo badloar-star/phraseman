@@ -177,6 +177,8 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
       </View>
     );
   }
+  // зачем (вердикт Макетов 05.11, кадр ru_frames/02: при ТРЁХ плитках «Сохранённые» рвалось посреди слова «Сохранённ/ые» — слово 16 dp не влезало в 80 dp внутри плитки): в ряду из трёх плиток название 13/17 и поля 4 dp (шкала 16/13, без сжатия шрифта); цифры — [TILE-LABEL] brokenMidWord
+  const dense = tiles.length >= 3;
   return (
     <View testID="home-v2-feature-tiles" style={s.row}>
       {tiles.map((tile) => (
@@ -188,14 +190,14 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
           onPress={() => press(tile.key)}
           scaleTo={0.96}
           outerStyle={s.tileSlot}
-          style={[s.tile, glass]}
+          style={[s.tile, dense ? s.tileDense : null, glass]}
         >
-          <View pointerEvents="none" style={s.art}>
+          <View pointerEvents="none" style={[s.art, dense ? s.artDense : null]}>
             {/* зачем (координатор 15.10): основа + необязательный слой .accent в цвет темы (tile.artAccent из того же resolve); без слоя — один Image, как раньше */}
             <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={s.artImage} />
           </View>
           {/* зачем (Сверка font13, home_es_13_light: на живом кадре при шрифте 1,3 «Lecciones» рвалось «Leccione/s» — боевая ветка плиток этот Text, а не iconTitle): потолок роста кегля 1,05 (16→16,8 dp, слово ≈81 из 87 dp), не ужатие; цифры — [TILE-LABEL] */}
-          <Text style={[s.title, { color: p.text }]} maxFontSizeMultiplier={1.05} onLayout={(e) => logTileLabel('box', tile, uiLang, e)} onTextLayout={(e) => logTileLabel('lines', tile, uiLang, e)}>{tile.title}</Text>
+          <Text style={[dense ? s.titleDense : s.title, { color: p.text }]} maxFontSizeMultiplier={1.05} onLayout={(e) => logTileLabel('box', tile, uiLang, e)} onTextLayout={(e) => logTileLabel('lines', tile, uiLang, e)}>{tile.title}</Text>
         </V2Pressable>
       ))}
     </View>
@@ -247,6 +249,10 @@ const s = StyleSheet.create({
   art: { flex: 1, marginHorizontal: -10, marginBottom: 4, paddingLeft: 10, paddingTop: 6, alignItems: 'flex-start', justifyContent: 'center' },
   artImage: { width: '86%', height: '100%', maxWidth: 84, maxHeight: 84 },
   title: { ...V2_TYPE.headline },
+  // три плитки в ряд: поля 4 dp вместо 10, название 13/17 (см. dense в компоненте)
+  tileDense: { paddingHorizontal: 4 },
+  artDense: { marginHorizontal: -4, paddingLeft: 4 },
+  titleDense: { fontSize: 13, lineHeight: 17, fontWeight: '700' as const },
   // Вариант (а): плашка-иконка, арт по центру (башня Пика целиком в кадре), название под плашкой.
   // зачем (ратчет typography_two_sizes, D145; координатор 17.10): ниже заголовка допустимы только 16 и 13 — название 14→13, цифра места на бейдже 11→13 (бейдж на 2 dp выше, текст всё так же в одну строку).
   sceneTile: { borderRadius: 20, paddingTop: 6, paddingHorizontal: 4, paddingBottom: 10, alignItems: 'center' },

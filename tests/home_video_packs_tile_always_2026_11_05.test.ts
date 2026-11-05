@@ -19,6 +19,13 @@ describe('Главная: плитка «Фразы из видео» не за�
     expect(availableLine).not.toContain('rankLockedVideo');
   });
 
+  // зачем (Макеты 05.11, эмулятор: «на Главной с пятью вкладками плитки нет»): раньше плитка добавлялась только пока в ряду было меньше трёх — на ранге ≥1 пропадала
+  test('плитка добавляется ВСЕГДА, когда доступна, а не только при свободном месте в ряду из трёх', () => {
+    expect(home).toContain("const homeV2VideoTile = homeV2FillerTiles.find((tile) => tile.key === 'video_packs');");
+    expect(home).toContain("homeV2VideoTile?.available && !homeV2TilesCore.some((tile) => tile.key === 'video_packs')");
+    expect(home).toContain('[...homeV2TilesCore, (({ available: _available, ...tile }) => tile)(homeV2VideoTile)]');
+  });
+
   test('плитка ведёт на экран наборов из видео', () => {
     expect(tileBlock).toContain("nav.push('/flashcards_video_packs' as never)");
   });

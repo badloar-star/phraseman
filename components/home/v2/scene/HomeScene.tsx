@@ -17,6 +17,8 @@ import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 
 import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
 import type { Lang } from '../../../../constants/i18n';
+import { lessonNameForStudyTarget } from '../../../../app/lesson_titles_for_study_target'; // зачем: название урока 1 для героя новичка (макет rev6-home-free-0)
+import type { StudyTargetLang } from '../../../../app/study_target_lang_dev';
 import { V2 } from '../../../../constants/v2Style';
 import { useTheme } from '../../../ThemeContext';
 import type { ThemedArtBrightness } from '../../../theme/themed_art_registry';
@@ -305,14 +307,17 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     setHomeSceneStatusTint(tokens.sceneTop);
     return () => setHomeSceneStatusTint(null);
   }, [tokens.sceneTop, p.statusTint]);
+  // зачем (владелец 05.11, вердикт Макетов по rev6-home-free-0; координатор 05.11): у героя новичка под «Урок 1» стоит НАЗВАНИЕ урока («Местоимения и глагол To Be»), а не «Начать урок 1» — кнопка и так «Начать». Карточка «последнее место» остаётся с прежним заголовком (контракт home_continue_places).
+  const newbieTitle = decision.state === 'newbie' && p.place.ctaTarget === 'start' && typeof p.studyTarget === 'string' ? lessonNameForStudyTarget(p.lang, p.studyTarget as StudyTargetLang, 1) : undefined;
+  const heroTitle = newbieTitle && newbieTitle.trim() ? newbieTitle : p.place.title;
   const copyInput = useMemo<HomeSceneCopyInput>(() => ({
-    lang: p.lang, state: decision.state, zeroEnergyNote: decision.zeroEnergyNote, badge: p.place.badge, episode: p.place.episode, title: p.place.title,
+    lang: p.lang, state: decision.state, zeroEnergyNote: decision.zeroEnergyNote, badge: p.place.badge, episode: p.place.episode, title: heroTitle,
     progress: p.place.done !== null && p.place.total !== null ? { done: p.place.done, total: p.place.total } : null,
     streakDays: p.streakDays, minutesToMidnight: toMidnight, daysAway: p.daysAway, energyMinutes: null,
     theoryAvailable: p.place.theoryLessonId !== null, wordsAvailable: HOME_SCENE_WORDS_CHIP_ENABLED && p.place.theoryLessonId !== null,
     lostStreakDays: p.lostStreakDays, ctaTarget: p.place.ctaTarget, lessonNo: p.place.lessonNo ?? null,
   // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: minuteTick и toMidnight меняют только вечерний текст раз в минуту
-  }), [p.lang, decision.state, decision.zeroEnergyNote, p.place.badge, p.place.episode, p.place.title, p.place.done, p.place.total, p.place.theoryLessonId, p.place.ctaTarget, p.place.lessonNo, p.streakDays, p.daysAway, p.lostStreakDays, evening ? toMidnight : 0, minuteTick]);
+  }), [p.lang, decision.state, decision.zeroEnergyNote, p.place.badge, p.place.episode, heroTitle, p.place.done, p.place.total, p.place.theoryLessonId, p.place.ctaTarget, p.place.lessonNo, p.streakDays, p.daysAway, p.lostStreakDays, evening ? toMidnight : 0, minuteTick]);
   const specialView = p.special ?? null;
   const copy = useMemo(() => {
     const own = buildHomeSceneCopy(copyInput);

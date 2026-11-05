@@ -30,3 +30,9 @@ Governance-ID: TG-99CBEA04214F
 ## Дополнение 05.11 (вердикты по кадрам)
 Файл docs/work/release/MOCKUP_VERDICTS_LV2_2026-11-05.md — сверка кадров эмулятора с одобренными макетами, только чтение кадров, код не трогается.
 Governance-ID: TG-2A28E9B878A0
+Governance-ID: TG-87DE919332AE
+Governance-ID: TG-90336CBC1A51
+Governance-ID: TG-7B0C92A721CE
+Governance-ID: TG-DD126617126A
+Governance-ID: TG-D733C51BC881
+Governance-ID: TG-7836041F89D2

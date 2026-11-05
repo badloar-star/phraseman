@@ -27,7 +27,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { AnimatedCountUpText } from "../../AnimatedCountUpText";
-import { HOME_RUNE_ICON_SOURCE } from "../../home/homeRuneAsset";
+import { MyRankCoin } from '../../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { Lv2Cta, lv2CardStyle, useLv2Glass, type Lv2Glass } from "../LearningV2Glass";
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { semanticInk } from '../../../constants/liquidGlassSemanticInk';
@@ -139,7 +139,7 @@ const ResultAward = memo(function ResultAward({
       style={sx.award}
     >
       <Animated.View style={coinStyle}>
-        <Image source={HOME_RUNE_ICON_SOURCE} style={sx.coin} contentFit="contain" accessible={false} />
+        <MyRankCoin style={sx.coin} contentFit="contain" accessible={false} />
       </Animated.View>
       <View style={sx.awardNum} importantForAccessibility="no-hide-descendants">
         <Text style={[sx.awardValue, { color: g.text }]}>+</Text>

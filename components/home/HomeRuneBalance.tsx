@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
-import { HOME_RUNE_ICON_SOURCE } from './homeRuneAsset';
+import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { formatCompactNumber } from '../../app/format_compact_number';
 
 /**
@@ -11,7 +11,6 @@ import { formatCompactNumber } from '../../app/format_compact_number';
  * зачем экспорт, а не второй require: путь к валюте обязан жить в одном месте.
  * Разойдись он — частица летела бы одной картинкой, а приземлялась в другую.
  */
-export { HOME_RUNE_ICON_SOURCE } from './homeRuneAsset';
 
 type HomeRuneBalanceProps = Readonly<{
   balance: number;
@@ -78,9 +77,8 @@ export default memo(function HomeRuneBalance({
       importantForAccessibility={standaloneA11y ? 'auto' : 'no-hide-descendants'}
       style={[styles.container, reserveTapHeight ? styles.containerTapTarget : null]}
     >
-      <Image
+      <MyRankCoin
         testID="home-rune-asset"
-        source={HOME_RUNE_ICON_SOURCE}
         style={{ width: iconSize, height: iconSize }}
         contentFit="contain"
         accessibilityElementsHidden

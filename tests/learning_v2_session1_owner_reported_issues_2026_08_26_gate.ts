@@ -60,7 +60,8 @@ assert.ok(player.includes("onHoldEnd={stopVoiceCapture}"));
 assert.ok(player.includes("learningV2CourseSessionVoiceResponseV1("));
 assert.ok(!player.includes("renderInlineSurface={false}"));
 assert.ok(!player.includes('testID="learning-v2-footer-hold-to-talk"'));
-assert.ok(player.includes('require("../assets/images/coins/coin_rank_00.webp")'));
+// зачем (слово владельца 05.11): плеер рисует монету РАНГА пользователя, а не require базовой coin_rank_00
+assert.ok(player.includes("<MyRankCoin") && !player.includes("coin_rank_00"));
 assert.ok(player.includes("stableShuffleLearningV2OptionsV1("));
 
 const productionAudio = read("app/learning_v2_session1_production_audio_v1.ts");

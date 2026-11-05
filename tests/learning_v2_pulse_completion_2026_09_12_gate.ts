@@ -33,7 +33,7 @@ assert.match(sequence, /accessibilityLabel=\{skipAnimationA11yLabel\}/);
 // 30.09: XP удалён — в итоге только монеты; следов XP в анимации быть не должно.
 assert.match(sequence, /finalReward > 0 \|\| hasRunes/);
 assert.doesNotMatch(sequence, /finalXp|lateXpAnimatedRef/);
-assert.match(sequence, /HOME_RUNE_ICON_SOURCE/);
+assert.match(sequence, /MyRankCoin/); // монета строго по рангу пользователя (слово владельца 05.11)
 assert.doesNotMatch(
   sequence,
   /level-spin-rewards\/stars_10\.webp/,

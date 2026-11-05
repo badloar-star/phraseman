@@ -1,9 +1,9 @@
 /**
- * Canonical rune artwork used by every balance and reward surface.
+ * УДАЛЕНО 05.11 (слово владельца ~19:15: «монета абсолютно во всех местах обязана соответствовать рангу строго»).
  *
- * Keep the static require in this dependency-free module so animation and
- * wallet tests do not have to load the Expo Image renderer just to reuse the
- * same asset.
+ * Раньше здесь жила фиксированная базовая монета (ранг 0), её рисовали баланс, итоги, праздничные окна и полёт наград.
+ * Теперь монета везде — монета РАНГА текущего пользователя: компонент components/rank/MyRankCoin.tsx и хук hooks/use_my_rank_coin.ts
+ * (тот же источник, что у строки «Ты» в Пике). Прямая базовая монета в экранах запрещена — сторож tests/rank_coin_everywhere_2026_11_05.test.ts.
+ * Файл оставлен пустой заглушкой, чтобы старые ссылки не падали; новых импортов быть не должно.
  */
-// зачем (владелец 01.10): в 2.0 валюта — монеты; старая руна stars_10 заменена базовой монетой.
-export const HOME_RUNE_ICON_SOURCE = require('../../assets/images/coins/coin_rank_00.webp');
+export {};

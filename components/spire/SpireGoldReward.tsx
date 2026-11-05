@@ -12,7 +12,7 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, { Easing, runOnJS, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withSequence, withTiming, type SharedValue } from 'react-native-reanimated';
-import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
+import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 
@@ -41,7 +41,7 @@ function Coin({ from, to, delay, onLand }: Readonly<{ from: Pt; to: Pt; delay: n
     const y = u * u * u * from.y + 3 * u * u * k * p1.y + 3 * u * k * k * p2.y + k * k * k * to.y;
     return { opacity: k > 0 && k < 0.92 ? 1 : 0, transform: [{ translateX: x - COIN / 2 }, { translateY: y - COIN / 2 }, { scale: 1 - 0.25 * k }] }; // guard-ok: масштаб монеты в полёте, не баланс
   });
-  return <Animated.View pointerEvents="none" style={[s.coin, style]}><Image source={HOME_RUNE_ICON_SOURCE} style={s.coinImg} contentFit="cover" accessible={false} /></Animated.View>;
+  return <Animated.View pointerEvents="none" style={[s.coin, style]}><MyRankCoin style={s.coinImg} contentFit="cover" accessible={false} /></Animated.View>;
 }
 
 function bump(v: SharedValue<number>): void {
@@ -81,7 +81,7 @@ function SpireGoldReward({ launch, perStep, top, right }: Readonly<{ launch: Spi
   return (
     <View ref={rootRef} pointerEvents="none" style={StyleSheet.absoluteFill} testID="spire-gold-reward">
       <Animated.View ref={chipRef} style={[s.chip, { top, right, backgroundColor: p.control }, sh.nested, chipStyle]} importantForAccessibility="no-hide-descendants" accessibilityElementsHidden>
-        <Image source={HOME_RUNE_ICON_SOURCE} style={s.chipImg} contentFit="cover" accessible={false} />
+        <MyRankCoin style={s.chipImg} contentFit="cover" accessible={false} />
         <Text style={[s.chipText, { color: p.text }]}>{`+${value}`}</Text>
       </Animated.View>
       {flight ? (

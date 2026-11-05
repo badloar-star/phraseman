@@ -45,7 +45,8 @@ jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) 
 jest.mock('../components/learning-v2/LearningV2Glass', () => ({
   useLv2Glass: () => ({ bg: '#000', text: '#fff', secondary: '#aaa', mutedText: '#999', good: '#0f0', bad: '#f00', goodSoft: 'rgba(0,255,0,0.2)', badSoft: 'rgba(255,0,0,0.2)', opaqueCard: '#111', opaqueControl: '#222', opaqueSheet: '#222', plateFillFrom: '#111', dividerTone: '#333', cta: '#fff', ctaInk: '#000' }),
 }));
-jest.mock('../components/home/homeRuneAsset', () => ({ HOME_RUNE_ICON_SOURCE: 1 }));
+// зачем (слово владельца 05.11): монета строго по рангу — компонент подменён простой картинкой, ранг в этом тесте не проверяется
+jest.mock('../components/rank/MyRankCoin', () => ({ MyRankCoin: 'Image', __esModule: true, default: 'Image' }));
 jest.mock('../components/v2/ShadowSurface', () => ({ plateBoxShadow: () => 'none', nestedBoxShadow: () => 'none' }));
 jest.mock('../components/v2/V2Glass', () => ({ V2IconTile: 'V2IconTile' }));
 jest.mock('../components/streak/moments/use_streak_colors', () => ({ useStreakColors: () => ({ accent: '#7EF0C8', accentGraphic: '#7EF0C8', second: '#88f', gold: '#fc0', text: '#fff' }) }));

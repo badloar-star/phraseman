@@ -60,7 +60,7 @@ import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_
 import CoinRewardFlight, {
   type CoinRewardFlightPoint,
 } from "../components/rewards/CoinRewardFlight";
-import { HOME_RUNE_ICON_SOURCE } from "../components/home/homeRuneAsset";
+import { MyRankCoin } from '../components/rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import EnergyBar from "../components/EnergyBar";
 import ReportErrorButton from "../components/ReportErrorButton";
 import { submitLearningV2TaskReportV1 } from "./learning_v2_task_report_v1";
@@ -3325,8 +3325,7 @@ function LearningV2DirectSessionPlayerV1() {
         accessibilityLabel={learningV2RuneAccessibilityLabelV1(lang, sessionRunes)}
         style={[styles.runeCounter, lv2TaskPlateStyle(g)]}
       >
-        <Image
-          source={HOME_RUNE_ICON_SOURCE}
+        <MyRankCoin
           style={styles.runeAsset}
           contentFit="contain"
           accessibilityElementsHidden

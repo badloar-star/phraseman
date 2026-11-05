@@ -45,7 +45,7 @@ import fk from '../../app/feedback/feedback_kit';
 import ConfettiBurst from './ConfettiBurst';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
-import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
+import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import {
   getResultsSequenceAudioPlan,
   getResultsSequenceMotionPlan,
@@ -940,8 +940,7 @@ export function ResultsSequence({
               >
                 <Text style={[styles.pulseRewardLabel, { color: t.textMuted }]}>{runesLabel}</Text>
                 <View style={styles.pulseRewardValueRow}>
-                  <Image
-                    source={HOME_RUNE_ICON_SOURCE}
+                  <MyRankCoin
                     style={styles.pulseRuneAsset}
                     contentFit="contain"
                     accessible={false}
@@ -1049,8 +1048,7 @@ export function ResultsSequence({
               accessibilityLabel={runesAccessibilityLabel ?? `${runesValue} ${runesLabel}`}
             />
             {/* guard-ok: декоративный ассет, смысл несёт accessibilityLabel выше */}
-            <Image
-              source={HOME_RUNE_ICON_SOURCE}
+            <MyRankCoin
               style={styles.runesAsset}
               contentFit="contain"
               accessible={false}

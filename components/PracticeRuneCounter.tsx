@@ -16,7 +16,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { soundDirector } from '../modules/audio/sound_director';
 import AnimatedCountUpText from './AnimatedCountUpText';
 
-const RUNE_ASSET = require('../assets/images/coins/coin_rank_00.webp');
+import { MyRankCoin } from './rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 
 /**
  * PracticeRuneCounter — счётчик рун, заработанных В ЭТОЙ сессии.
@@ -140,8 +140,7 @@ export const PracticeRuneCounter = memo(forwardRef<View, Props>(
               родителя («Заработано: 12 рун»). Своя подпись у картинки заставила
               бы скринридер читать руну дважды. */}
           <Animated.View style={runeMotionStyle}>
-            <Image
-              source={RUNE_ASSET}
+            <MyRankCoin
               style={styles.asset}
               contentFit="contain"
               accessible={false}

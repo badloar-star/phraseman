@@ -21,7 +21,7 @@ export type ApprovedWelcomeProps = Readonly<{
 
 const character = require('../../assets/images/onboarding/rev8/02-introduction.webp');
 // Exact same SHA-256 as approved rev8 assets/coin-0.webp.
-const coin = require('../../assets/images/coins/coin_rank_00.webp');
+import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 const ease = Easing.bezier(.23,1,.32,1);
 
 /** Presentational only: host owns activation, account state and destinations. */
@@ -87,7 +87,7 @@ export function ApprovedWelcome({homeBackdrop,selectedLanguage,lang='ru',active,
       </Animated.View>
       <Animated.View style={[styles.speech,{opacity:speech,transform:[{translateY:speech.interpolate({inputRange:[0,1],outputRange:[8,0]})}]}]}>
         {reply.title?<Text style={styles.title}>{reply.title}</Text>:null}
-        <Pressable accessibilityRole="button" accessibilityLabel={ui.showAll} onPress={()=>setCount(length)}><Text style={styles.body}>{showCoin?<>{text.slice(0,coinPosition)}<Image testID="welcome-inline-coin" source={coin} style={styles.coin} accessibilityElementsHidden />{text.slice(coinPosition)}</>:text}</Text></Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={ui.showAll} onPress={()=>setCount(length)}><Text style={styles.body}>{showCoin?<>{text.slice(0,coinPosition)}<MyRankCoin testID="welcome-inline-coin" style={styles.coin} accessibilityElementsHidden />{text.slice(coinPosition)}</>:text}</Text></Pressable>
       </Animated.View>
     </View>
     <View style={[styles.footer,{paddingBottom:safeBottom+20}]}>

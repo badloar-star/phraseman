@@ -25,10 +25,9 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(fs.existsSync(RUNE_ASSET_PATH)).toBe(true);
     expect(fs.existsSync(RUNE_COMPONENT_PATH)).toBe(true);
     const runeComponent = read(RUNE_COMPONENT_PATH);
-    expect(runeComponent).toContain("import { HOME_RUNE_ICON_SOURCE } from './homeRuneAsset';");
-    expect(read(RUNE_ASSET_MODULE_PATH)).toContain(
-      "require('../../assets/images/coins/coin_rank_00.webp')",
-    );
+    // зачем (слово владельца 05.11): баланс рисует монету РАНГА пользователя (MyRankCoin), а не фиксированную базовую; в homeRuneAsset.ts её больше нет
+    expect(runeComponent).toContain("import { MyRankCoin } from '../rank/MyRankCoin';");
+    expect(read(RUNE_ASSET_MODULE_PATH)).not.toContain('coin_rank_00');
     expect(home).toContain(
       "import { getRunesBalance, peekRunes } from '../runes_system';",
     );

@@ -40,12 +40,12 @@ assert.ok(
   "the runtime must use the canonical per-interaction award ladder",
 );
 assert.ok(
-  player.includes("HOME_RUNE_ICON_SOURCE") && player.includes("<Image"),
-  "the top-right rune HUD must render the existing rune asset",
+  player.includes("<MyRankCoin"),
+  "the top-right rune HUD must render the coin of the user's rank (owner 05.11: coin strictly by rank everywhere)",
 );
 assert.ok(
-  canonicalRuneAsset.includes("coins/coin_rank_00.webp"),
-  "the shared rune source must resolve to the canonical shipped asset",
+  !canonicalRuneAsset.includes("coin_rank_00"),
+  "no fixed base coin: the shared rune source is the rank coin component (components/rank/MyRankCoin.tsx)",
 );
 assert.ok(
   !player.includes("<RuneGlyph"),
@@ -55,8 +55,8 @@ assert.ok(
 // зачем (PM-052, D75): полёт начисления — единый CoinRewardFlight (летит монета coin_rank_00).
 const flight = read("components/rewards/CoinRewardFlight.tsx");
 assert.ok(
-  flight.includes("COIN_ICON_SOURCE") && flight.includes("<Animated.Image"),
-  "the award flight must animate the same real rune asset",
+  flight.includes("<MyRankCoin"),
+  "the award flight must animate the coin of the user's rank (owner 05.11: flying coin too)",
 );
 assert.ok(
   !flight.includes("pickRuneGlyphs") && !flight.includes("<Text"),

@@ -10,7 +10,7 @@ import { Image } from 'expo-image';
 import React, { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
-import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
+import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 
 export const LEGACY_BONUS_FLY_MS = 640;
 export const LEGACY_BONUS_FLY_STAGGER_MS = 70;
@@ -56,7 +56,7 @@ function FlyCoin({ spec, onDone }: Readonly<{ spec: CoinSpec; onDone: (id: numbe
   });
   return (
     <Animated.View pointerEvents="none" style={[s.coin, style]}>
-      <Image source={HOME_RUNE_ICON_SOURCE} style={s.img} contentFit="contain" accessible={false} />
+      <MyRankCoin style={s.img} contentFit="contain" accessible={false} />
     </Animated.View>
   );
 }

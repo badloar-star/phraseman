@@ -15,7 +15,7 @@ import Animated, { Easing as REasing, useAnimatedStyle, useReducedMotion, useSha
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import PressableHybrid from '../../components/PressableHybrid';
 import { BalancePill } from '../../components/completion/V2DoneScreen';
-import { HOME_RUNE_ICON_SOURCE } from '../../components/home/homeRuneAsset';
+import { MyRankCoin } from '../../components/rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
@@ -191,7 +191,7 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
         {/* guard-ok: только отображение начисленного, баланс не меняется */}
         <View style={s.coinRow}>
           <View ref={coinFlight.originRef} collapsable={false} onLayout={() => setOriginReady(true)} style={[s.pill, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]} accessible accessibilityLabel={`+${coins} ${runeWord(lang, coins)}`}>
-            <Image source={HOME_RUNE_ICON_SOURCE} style={s.coin} contentFit="contain" accessible={false} />
+            <MyRankCoin style={s.coin} contentFit="contain" accessible={false} />
             <View style={s.plusNum}>
               <Text style={[s.pillText, { color: g.text }]}>+</Text>
               <AnimatedCountUpText value={coins} durationMs={KIT_MOTION.counterMs} style={[s.pillText, { color: g.text }]} accessible={false} importantForAccessibility="no-hide-descendants" />

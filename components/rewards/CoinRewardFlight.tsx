@@ -6,8 +6,8 @@
  * один на всё приложение. Вид, кривая и тайминги утверждены владельцем ещё для
  * прежнего полёта (каталог движения A5, mock 08: 620 мс, каскад 90 мс,
  * cubic-bezier(.33,.52,.25,.99), дуга, один звук отрыва) — их не меняли, сменили
- * только валюту и имена. Летит базовая монета `coin_rank_00` (тот же ассет, что в
- * балансе), не шрифтовой символ.
+ * только валюту и имена. Летит монета РАНГА пользователя (тот же источник, что в
+ * балансе: MyRankCoin; слово владельца 05.11), не шрифтовой символ.
  *
  * Требования координатора 02.10: анимация целиком в UI-потоке (Reanimated, без
  * setState в кадрах; единственный setState — замер окна при раскладке), не больше
@@ -32,7 +32,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { soundDirector } from '../../modules/audio/sound_director';
-import { HOME_RUNE_ICON_SOURCE as COIN_ICON_SOURCE } from '../home/homeRuneAsset';
+import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { logMemCoin } from '../coins/mem_coin_probe';
 import { COIN_SIZE, coinFlightBulge } from './coin_flight_bulge';
 
@@ -113,7 +113,7 @@ const FlightCoin = memo(function FlightCoin({ index, isLast, dx, dy, bulge, onLa
   return (
     <Animated.View pointerEvents="none" style={[styles.coin, style]}>
       {/* зачем (R129): монета 768² в 18 dp, несколько сразу — expo-image декодирует под размер вида; движение у обёртки Animated.View, сама картинка статична */}
-      <Image source={COIN_ICON_SOURCE} contentFit="contain" style={styles.asset} onLoad={() => logMemCoin('coin-reward-flight', COIN_SIZE)} />
+      <MyRankCoin contentFit="contain" style={styles.asset} onLoad={() => logMemCoin('coin-reward-flight', COIN_SIZE)} />
     </Animated.View>
   );
 });

@@ -2,7 +2,7 @@ import { Image } from 'expo-image';
 import React, { memo } from 'react';
 import { type ImageStyle, type StyleProp, type TextStyle } from 'react-native';
 
-import { HOME_RUNE_ICON_SOURCE } from './home/homeRuneAsset';
+import { MyRankCoin } from './rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 
 /**
  * Значок валюты для статичных счётчиков и подписей.
@@ -23,8 +23,7 @@ interface Props {
 
 export const RuneGlyph = memo(function RuneGlyph({ size, style }: Props) {
   return (
-    <Image
-      source={HOME_RUNE_ICON_SOURCE}
+    <MyRankCoin
       // Значок декоративен: смысл несёт число рядом и accessibilityLabel родителя.
       accessible={false}
       contentFit="contain"

@@ -14,7 +14,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 import { useLang } from '../LangContext';
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
-import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
+import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { noteCoinDisplay, peekDisplayedRunes, subscribeDisplayedRunes } from '../../app/runes_system';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -128,7 +128,7 @@ export const CoinAward = memo(function CoinAward({ amount, lang, g, animate, pla
     return (
       <View style={[s.awardPlaque, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]} accessible accessibilityLabel={`+${amount} ${runeWord(lang, amount)}`}>
         <Reanimated.View style={style}>
-          <Image source={HOME_RUNE_ICON_SOURCE} style={s.awardPlaqueCoin} contentFit="contain" accessible={false} />
+          <MyRankCoin style={s.awardPlaqueCoin} contentFit="contain" accessible={false} />
         </Reanimated.View>
         <Text style={[s.awardPlaqueText, { color: g.text }]}>+{shown} {runeWord(lang, amount)}</Text>
       </View>
@@ -137,7 +137,7 @@ export const CoinAward = memo(function CoinAward({ amount, lang, g, animate, pla
   return (
     <View style={s.award} accessible accessibilityLabel={`+${amount} ${runeWord(lang, amount)}`}>
       <Reanimated.View style={style}>
-        <Image source={HOME_RUNE_ICON_SOURCE} style={s.awardCoin} contentFit="contain" accessible={false} />
+        <MyRankCoin style={s.awardCoin} contentFit="contain" accessible={false} />
       </Reanimated.View>
       <Text style={[s.awardNum, { color: g.text }]}>+{shown}</Text>
       <Text style={[s.awardUnit, { color: g.secondary }]}>{runeWord(lang, amount)}</Text>
@@ -158,7 +158,7 @@ export const BalancePill = memo(function BalancePill({ g, lang }: { g: Lv2Glass;
   const text = String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   return (
     <View testID="v2-done-balance" accessible accessibilityLabel={`${value} ${runeWord(lang, value)}`} style={[s.balance, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
-      <Image source={HOME_RUNE_ICON_SOURCE} style={s.balanceCoin} contentFit="contain" accessible={false} />
+      <MyRankCoin style={s.balanceCoin} contentFit="contain" accessible={false} />
       <Text style={[s.balanceText, { color: g.text }]}>{text}</Text>
     </View>
   );

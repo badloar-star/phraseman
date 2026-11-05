@@ -21,6 +21,9 @@ jest.mock('react-native', () => ({
   },
 }));
 
+// зачем (слово владельца 05.11): баланс рисует монету ранга пользователя — хук ранга подменён (ранг не предмет этого теста, тестируется в rank_coin_everywhere)
+jest.mock('../hooks/use_my_rank_coin', () => ({ useMyRankCoinSource: () => 1, MY_RANK_COIN_DEFAULT_SIZE: 48 }));
+
 jest.mock('expo-image', () => {
   const ReactModule = jest.requireActual('react');
   return {

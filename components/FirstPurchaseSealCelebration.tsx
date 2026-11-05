@@ -55,7 +55,7 @@ import { playCelebrationSceneSound } from '../modules/audio/celebrationScenePlay
 // поймать опечатку в нём. У празднования Plus приведение оправдано — там имя
 // собирается динамически, а здесь оно пряталo бы настоящую проверку.
 import type { SoundEventId } from '../modules/audio/sound_events';
-import { HOME_RUNE_ICON_SOURCE } from './home/homeRuneAsset';
+import { useMyRankCoinSource } from '../hooks/use_my_rank_coin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import { logMemCoin } from './coins/mem_coin_probe';
 
 export type FirstPurchaseKind = 'dialog' | 'lesson';
@@ -134,9 +134,10 @@ function FirstPurchaseSealCelebrationImpl({
    * сочетания, которые выглядят чужими.
    */
   const accent = g.cta;
+  const rankCoinSource = useMyRankCoinSource(60);
   const coinSource = kind === 'lesson'
     ? (PEARL_ICONS[themeMode] ?? PEARL_ICONS.indigo)
-    : HOME_RUNE_ICON_SOURCE;
+    : rankCoinSource;
 
   const drop = useSharedValue(0);
   const shockA = useSharedValue(0);

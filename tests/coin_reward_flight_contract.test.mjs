@@ -32,8 +32,10 @@ test('«уменьшить движение» — без полёта и сра�
 });
 
 test('летит монета и звучит монетный звук отрыва', () => {
-  assert.match(asset, /coins\/coin_rank_00\.webp/);
-  assert.match(coin, /source=\{COIN_ICON_SOURCE\}/);
+  // зачем (слово владельца 05.11, «монета строго по рангу, и летящая тоже»): летит монета РАНГА пользователя, а не фиксированная базовая
+  assert.doesNotMatch(asset, /coin_rank_00/);
+  assert.doesNotMatch(coin, /coin_rank_00/);
+  assert.match(coin, /<MyRankCoin/);
   assert.match(coin, /soundDirector\.request\('pm\.coin\.flight_start'/);
   assert.match(sounds, /'pm\.coin\.flight_start': event\(/);
   assert.doesNotMatch(sounds, /'pm\.reward\.rune_flight_start'/);

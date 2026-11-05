@@ -21,7 +21,7 @@ import { peekStreakDayState, subscribeStreakDayState, type StreakDayState } from
 import { peekTodayTasks, subscribeTodayTasks } from '../../modules/today-tasks/today_tasks_store';
 import { todayTasksToView } from '../../modules/today-tasks/today_tasks_view';
 import type { TodayTasksDayState } from '../../modules/today-tasks/today_tasks_core';
-import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
+import { MyRankCoin } from '../rank/MyRankCoin'; // зачем (слово владельца 05.11): монета строго по рангу пользователя, не фиксированная базовая
 import type { Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
 import { V2IconTile } from '../v2/V2Glass';
@@ -333,10 +333,10 @@ export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { am
       accessibilityLabel={`+${amount} ${runeWord(lang, amount)}`}
       style={[s.plateRow, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}
     >
-      <Image source={HOME_RUNE_ICON_SOURCE} style={s.rowCoin} contentFit="contain" accessible={false} />
+      <MyRankCoin style={s.rowCoin} contentFit="contain" accessible={false} />
       <CountUpText from={0} to={amount} phase={phase} delay={0} duration={T.coinCount} ticker={ticker} format={coinsFormat} style={[s.rowTitle, s.grow, { color: g.text }]} />
       <View testID="v2-done-chain-balance" onLayout={(e: LayoutChangeEvent) => setPillW(e.nativeEvent.layout.width)} style={[s.pill, { backgroundColor: g.opaqueControl }]}>
-        <Image source={HOME_RUNE_ICON_SOURCE} style={s.pillCoin} contentFit="contain" accessible={false} />
+        <MyRankCoin style={s.pillCoin} contentFit="contain" accessible={false} />
         <CountUpText from={balanceRun ? balanceRun.from : balance} to={balanceRun ? balanceRun.to : balance} phase={balanceRun?.credited ? phase : 'final'} delay={T.balanceAt} duration={T.balanceCount} ticker={ticker} format={groupThousands} style={[s.pillText, { color: g.text }]} />
       </View>
       {animate && dx > 0 ? Array.from({ length: T.flyCount }, (_, k) => <FlyCoin key={k} k={k} dx={dx} color={c.accentGraphic} />) : null /* guard-ok: шесть монет фиксированного числа */}

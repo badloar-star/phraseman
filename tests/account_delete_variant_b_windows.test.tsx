@@ -102,7 +102,7 @@ describe('проводка: флаг, режим «навсегда», поле 
     const modal = readSource('components/DeleteAccountConfirmModal.tsx');
     expect(modal).toContain("hasProviderSignIn && getRemoteBool('account_delete_variant_b_ui_enabled') === true");
     expect(modal).toContain("const attemptHandoff = async (): Promise<DeleteAccountHandoff> => (mode === 'now' ? await beginAccountDeletionNow() : await beginAccountDeletion());");
-    expect(modal).toContain('const res = variantB ? await retryAccountDeleteHandoffQuietly(attemptHandoff, mode) : await attemptHandoff();');
+    expect(modal).toContain('const res = await retryAccountDeleteHandoffQuietly(attemptHandoff, mode);');
     expect(modal).toContain("(mode !== 'grace' && (!deleteConfirmMatches && !retryApproved))");
     expect(modal).toContain('const dialogBody = variantBBody ?? (');
   });

@@ -299,7 +299,11 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       const attemptHandoff = async (): Promise<DeleteAccountHandoff> => (mode === 'now' ? await beginAccountDeletionNow() : await beginAccountDeletion());
       // зачем (правило владельца 22.09 «удаление не имеет права не пройти», координатор 25.10): в новых окнах отказ быстрой
       // фазы (до точки невозврата) повторяем сами, тихо; окон «Не получилось» нет. Прежнее окно — как было.
-      const res = variantB ? await retryAccountDeleteHandoffQuietly(attemptHandoff, mode) : await attemptHandoff();
+      // зачем (A9, Q25 «только успех» — решение владельца 05.11, auth-scenario-matrix §D): окна «Не получилось подготовить удаление / Выход не завершился» не должны
+      // выскакивать от первого же сбоя быстрой фазы — тихие повторы теперь для ВСЕХ окон (раньше только вариант Б). Сбой быстрой фазы случается ДО точки невозврата
+      // (замок удаления не записан, аккаунт не тронут): окно остаётся лишь после исчерпания повторов — молча «успешно» нельзя, запрос удаления иначе не записан.
+      console.log('[ACCOUNT-DELETE-UI] handoff:quiet_retry', JSON.stringify({ variantB, mode })); // guard-ok: ветка
+      const res = await retryAccountDeleteHandoffQuietly(attemptHandoff, mode);
       if (!res.ok) {
         traceAccountDeleteUi(`local_delete_rejected:${res.reason}`);
         reportAccountDeleteHandoffFailed(res.reason);

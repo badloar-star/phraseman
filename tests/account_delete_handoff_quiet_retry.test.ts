@@ -50,7 +50,7 @@ describe('окно удаления: новые окна без окон отк�
   const confirm = modal.slice(modal.indexOf('const handleConfirmDelete'), modal.indexOf('const handleCancel'));
 
   it('вариант Б: тихие повторы и ранний выход без showInfoAlert — и при отказе, и при исключении', () => {
-    expect(confirm).toContain('const res = variantB ? await retryAccountDeleteHandoffQuietly(attemptHandoff, mode) : await attemptHandoff();');
+    expect(confirm).toContain('const res = await retryAccountDeleteHandoffQuietly(attemptHandoff, mode);');
     const rejected = confirm.slice(confirm.indexOf('if (!res.ok) {'), confirm.indexOf("traceAccountDeleteUi('local_delete_committed');"));
     expect(rejected.indexOf('if (variantB) {')).toBeLessThan(rejected.indexOf('showInfoAlert('));
     expect(rejected).toContain('[ACCOUNT-DELETE-UI] handoff_failed_silent');

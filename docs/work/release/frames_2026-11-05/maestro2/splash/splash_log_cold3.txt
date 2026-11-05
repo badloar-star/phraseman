@@ -1,0 +1,16 @@
+: '[BOOTSPLASH] +5912ms [SPLASH-COIN] start :: {"reducedMotion":null}', { [Stack] name: 'Stack' }
+: '[BOOTSPLASH] +6014ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#101214","light":false,"source":"system","systemScheme":"light","choiceReady":false,"theme":"graphite"}', { [Stack] name: 'Stack' }
+: '[BOOTSPLASH] +6027ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":true,"canHideNativeSplash":false}', { [Stack] name: 'Stack' }
+: [THEME-BOOT] frame {"frame":1,"msSinceBoot":11010,"systemScheme":"light","followSystem":false,"savedTheme":"graphite","savedAppearance":"dark","chosenTheme":"graphite","chosenAppearance":"dark","choiceReady":false,"hydratedInProcess":false,"covered":true}
+: '[BOOTSPLASH] +6750ms [THEME-BOOT] splash-hold: первый кадр :: {"bg":"#101214"}', { [Stack] name: 'Stack' }
+: [THEME-BOOT] hydrate {"msSinceBoot":11686,"storedTheme":"ink","storedAppearance":"light","storedIntensity":"1","onboardingDone":"1","followMarker":"0","bootScheme":"light","decision":"stored_choice/stored:theme+intensity+level"}
+: [THEME-BOOT] entitlements {"wait":"none","waitedMs":0,"msSinceBoot":11688}
+: '[BOOTSPLASH] +8511ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#101214","light":false,"source":"theme","systemScheme":"light","choiceReady":true,"theme":"ink"}', { [Stack] name: 'Stack' }
+: [THEME-BOOT] frame {"frame":3,"msSinceBoot":12983,"systemScheme":"light","followSystem":false,"savedTheme":"ink","savedAppearance":"light","chosenTheme":"ink","chosenAppearance":"light","choiceReady":true,"hydratedInProcess":true,"covered":false}
+: '[BOOTSPLASH] +8831ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":true,"bg":"#101214","light":false,"source":"theme","systemScheme":"light","choiceReady":true,"theme":"ink"}', { [Stack] name: 'Stack' }
+: [BOOTSPLASH] +8866ms [SPLASH-COIN] min-hold done :: {"total":1800,"reducedMotion":false}
+: [BOOTSPLASH] +9385ms [THEME-BOOT] SplashScreen.hideAsync() :: {"source":"useEffect","reason":"painted","waitedMs":0,"jsSplashPaintedAt":1793905953756}
+: '[BOOTSPLASH] +9506ms [SPLASH-COIN] end :: {"ms":3594,"finished":false,"reducedMotion":null}', { [Stack] name: 'Stack' }
+: '[BOOTSPLASH] +9522ms [THEME-BOOT] splash-hold :: {"visible":false,"canHideNativeSplash":true,"bg":"#101214","light":false,"source":"theme","systemScheme":"light","choiceReady":true,"theme":"ink"}', { [Stack] name: 'Stack' }
+: '[BOOTSPLASH] +9524ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":false,"canHideNativeSplash":true}', { [Stack] name: 'Stack' }
+: '[BOOTSPLASH] +9560ms [THEME-BOOT] SplashScreen.hideAsync() :: {"source":"nativeSplashCanHide","reason":"painted","waitedMs":0,"jsSplashPaintedAt":1793905953756}', { [Stack] name: 'Stack' }

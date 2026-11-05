@@ -4,6 +4,8 @@ import { Modal, Pressable, StyleSheet, useWindowDimensions, View } from 'react-n
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { useLang } from '../../LangContext';
 import YoutubeInlinePlayer from '../../youtube/YoutubeInlinePlayer';
+import { VideoRewardFlash } from '../../video/VideoRewardOverlay';
+import { useVideoFullWatch } from '../../../hooks/use_video_full_watch';
 import type { LingmanYoutubeVideo } from '../../../app/lingman_youtube';
 import { triLang } from '../../../constants/i18n';
 import { V2 } from '../../../constants/v2Style';
@@ -14,11 +16,16 @@ type Props = {
   onClose: () => void;
   /** D131: открыть ролик на секунде фразы; нет → с начала, как раньше. */
   startSec?: number;
+  /** Длительность и признак эфира — для награды +500 за просмотр (нет длительности — награды нет). Передаёт карточка ленты. */
+  durationSec?: number | null;
+  live?: boolean;
   testID?: string;
 };
 
 /** Keep the autoplaying player visible and inside both device safe areas. */
-export default function HomeV2VideoPlayerModal({ video, onClose, startSec, testID = 'home-v2-video-player' }: Props) {
+export default function HomeV2VideoPlayerModal({ video, onClose, startSec, durationSec, live = false, testID = 'home-v2-video-player' }: Props) {
+  // зачем (владелец 05.11: «+500 монет за полный просмотр видео — 70 %»): детектор следит за роликом в окне Главной; иконка «+500» — поверх плеера в момент награды
+  const { flashKey } = useVideoFullWatch({ videoId: video.id, durationSec, live });
   const insets = useStableSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const { lang } = useLang();
@@ -42,6 +49,7 @@ export default function HomeV2VideoPlayerModal({ video, onClose, startSec, testI
             presentation="preview"
             startSec={startSec}
           />
+          <VideoRewardFlash flashKey={flashKey} />
         </View>
       </View>
     </Modal>

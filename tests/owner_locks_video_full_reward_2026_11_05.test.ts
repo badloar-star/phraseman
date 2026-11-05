@@ -63,4 +63,10 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 05.11 — +500 монет за полн�
     // тексты в окне: заголовок на 9 языках, «+N» и значки
     expect((overlay.match(/<Text /g) ?? []).length).toBe(3); // «+500» иконки, заголовок, «+N»
   });
+
+  it('текст «Ты досмотрел видео до конца. Награда уже на счёте.» запрещён владельцем (и неверен по правилу 70 %): его нет ни в окне истории, ни в плеере, ни в хуке', () => {
+    for (const rel of ['components/video/VideoRewardOverlay.tsx', 'hooks/use_video_full_watch.ts', 'app/video_full_story_state.ts', 'app/video_full_reward.ts', 'app/lingman_video_watch.tsx', 'components/home/v2/HomeV2VideoPlayerModal.tsx']) {
+      expect(`${rel}: ${/досмотрел[аи]? видео до конца|Награда уже на счёте|already (on|in) your (balance|account)|Reward is already/i.test(code(rel))}`).toBe(`${rel}: false`);
+    }
+  });
 });

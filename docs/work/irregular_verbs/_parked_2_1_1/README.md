@@ -1,0 +1,2 @@
+# Парковка до 2.1.1
+Файлы irregular_verbs.json курсов es/it от закрытой сессии «15 · ГЛАГОЛЫ» лежали в modules/classic-courses/<lang>/ без записи в manifest.json и роняли manifest-тесты. Перенесены сюда координатором 05.11, чтобы не потерять. Вернуть в модуль вместе с записью в manifest и сборщиком scripts/classic_irregular_verbs_build.mjs (чужая незакоммиченная правка 15 в рабочем дереве) в 2.1.1.

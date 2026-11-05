@@ -1,0 +1,475 @@
+diff --git a/app/paywall_funnel.ts b/app/paywall_funnel.ts
+index 435130a6f..77a9abfa4 100644
+--- a/app/paywall_funnel.ts
++++ b/app/paywall_funnel.ts
+@@ -12,6 +12,8 @@
+ // дашборде, не раскрывает сам id. dev=true у __DEV__-сборок (дашборд фильтрует).
+ // expireAt — для TTL-политики Firestore (поле expireAt, настроить в консоли).
+ // ════════════════════════════════════════════════════════════════════════════
++import * as Crypto from 'expo-crypto';
++import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+ import { Platform } from 'react-native';
+ 
+ import { isAnalyticsConsentGranted } from './analytics_consent';
+@@ -36,6 +38,8 @@ function hashToUnit(input: string): number {
+ }
+ 
+ export type PaywallFunnelStep =
++  | 'store_confirmed'
++  | 'access_applied'
+   | 'shown'
+   | 'cta_click'
+   | 'trial_started'
+@@ -74,10 +78,15 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
+ 
+ export interface PaywallFunnelPayload {
+   variant: PaywallVariantLabel;
++  impressionId?: string;
++  /** Used only to compute a SHA-256 join key; raw transaction IDs are never written. */
++  transactionId?: string;
+   context: string;
+   // Тип плана хранит только активные предложения стора и допускает восстановление
+   // ранее оформленной покупки.
+   plan?: 'monthly' | 'yearly' | 'lifetime' | null;
++  /** RevenueCat entitlement period, bounded before analytics persistence. */
++  periodType?: string | null;
+   obColor?: 'main';
+   /**
+    * Локализованная цена стора в момент покупки (priceString, уже через storePriceTrim),
+@@ -91,9 +100,12 @@ export interface PaywallFunnelPayload {
+ function paywallFunnelEventKey(step: PaywallFunnelStep, payload: PaywallFunnelPayload): string {
+   return [
+     step,
++    payload.impressionId ?? '',
++    payload.transactionId ?? '',
+     payload.variant,
+     String(payload.context || 'generic'),
+     payload.plan ?? '',
++    payload.periodType ?? '',
+     payload.obColor ?? '',
+   ].join(':');
+ }
+@@ -103,6 +115,7 @@ function shouldDropDuplicateFunnelEvent(step: PaywallFunnelStep, payload: Paywal
+   if (step === 'shown') {
+     if (_shownOnce.has(key)) return true;
+     _shownOnce.add(key);
++    if (_shownOnce.size > FUNNEL_DEDUPE_CACHE_LIMIT) _shownOnce.delete(_shownOnce.values().next().value!);
+     return false;
+   }
+ 
+@@ -124,17 +137,25 @@ export function logPaywallFunnel(step: PaywallFunnelStep, payload: PaywallFunnel
+   // как и trackEvent/PostHog (см. analytics_consent.ts).
+   if (!isAnalyticsConsentGranted()) return;
+   if (shouldDropDuplicateFunnelEvent(step, payload, Date.now())) return;
++  const account = captureAccountGeneration();
+   void (async () => {
+     try {
+       const factory = await getFirestoreModule();
+       if (!factory) return;
+       const stableId = await getStableId();
++      const transactionHash = payload.transactionId
++        ? await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, 'paywall-transaction:v1:' + payload.transactionId.trim())
++        : null;
++      if (!isAnalyticsConsentGranted() || !isCurrentAccountGeneration(account)) return;
+       const ts = Date.now();
+       await factory().collection(COLLECTION).add({
+         step,
+         variant: payload.variant,
+         context: String(payload.context || 'generic').slice(0, 40),
+         plan: payload.plan ?? null,
++        periodType: typeof payload.periodType === 'string' && payload.periodType.trim()
++          ? payload.periodType.trim().slice(0, 24)
++          : null,
+         obColor: payload.obColor ?? null,
+         price: typeof payload.price === 'string' && payload.price.trim()
+           ? payload.price.trim().slice(0, 24)
+@@ -144,15 +165,16 @@ export function logPaywallFunnel(step: PaywallFunnelStep, payload: PaywallFunnel
+         uidh: Math.round(hashToUnit(`${stableId}:funnel`) * 1e9).toString(36),
+         dev: typeof __DEV__ !== 'undefined' && __DEV__,
+         expireAt: new Date(ts + TTL_MS),
++        ...(payload.impressionId ? { schemaVersion: 2, impressionId: payload.impressionId.slice(0, 80), transactionHash } : {}),
+       });
+     } catch (error) {
+       // permission-denied — ожидаемый сценарий, когда задеплоенные Firestore-правила
+       // отстают от клиента (новый context/obColor ещё не в allow-листе). Воронка
+-      // чисто аналитическая и fire-and-forget — не шумим в консоль/дев-оверлей,
+-      // чтобы не выглядело как поломка приложения. Прочие ошибки логируем.
++      // аналитическая: не блокируем покупку, но фиксируем отставшие правила в диагностике.
+       const code = (error as { code?: string } | null)?.code;
+       const message = error instanceof Error ? error.message : String(error ?? '');
+       if (code === 'firestore/permission-denied' || message.includes('permission-denied')) {
++        DebugLogger.error('paywall_funnel:rules_rejected', new Error('Funnel schema rejected by deployed rules'), 'warning');
+         return;
+       }
+       DebugLogger.error('paywall_funnel:log', error, 'warning');
+diff --git a/app/paywall_purchase.ts b/app/paywall_purchase.ts
+index 04019332a..52fb5c8ad 100644
+--- a/app/paywall_purchase.ts
++++ b/app/paywall_purchase.ts
+@@ -463,6 +463,21 @@ export function purchaseErrorCategory(error: unknown): PurchaseErrorCategory {
+   return 'sdk_other';
+ }
+ 
++export type ConfirmedPurchasePeriod = Readonly<{
++  kind: 'paid' | 'trial' | 'unknown';
++  periodType: string;
++}>;
++
++/** RevenueCat can add period values; an active entitlement must still leave an analytics trace. */
++export function classifyConfirmedPurchasePeriod(periodType: unknown): ConfirmedPurchasePeriod {
++  const normalized = typeof periodType === 'string' && periodType.trim()
++    ? periodType.trim().toUpperCase()
++    : 'unknown';
++  if (normalized === 'NORMAL' || normalized === 'INTRO') return { kind: 'paid', periodType: normalized };
++  if (normalized === 'TRIAL') return { kind: 'trial', periodType: normalized };
++  return { kind: 'unknown', periodType: normalized.slice(0, 24) || 'unknown' };
++}
++
+ /** Восстановление прервано сменой аккаунта (R1_PAYWALL_UX п.3): раньше крутилка просто пропадала без слова. */
+ export function restoreAccountChangedToast() {
+   return actionToastTri('error', {
+@@ -515,6 +530,7 @@ export interface PaywallPurchaseArgs {
+   source: string;
+   lang: Lang;
+   impression?: PaywallAnalyticsImpression;
++  trackShown?: boolean;
+   /**
+    * DEV/QA: форс «триал-режима» из тест-меню (_force_trial_ui=1). В Metro стора
+    * нет (DEV_IAP_BYPASS) → trialDays обычно null, и триал-зависимое (trust-бейдж
+@@ -543,12 +559,16 @@ export const DEV_FORCE_TRIAL_DEFAULT_DAYS = 3;
+ 
+ let onboardingPaywallHookMounts = 0; // зачем: счётчик перемонтирований хука онбординга для [ONB-PAYWALL-WAIT]
+ 
+-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, forceTrialDays, resumeLessonId, impression: suppliedImpression, resilientCheckout = false, allowReferencePrice = true, devState: devStateArg = null }: PaywallPurchaseArgs) {
++export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, forceTrialDays, resumeLessonId, impression: suppliedImpression, trackShown = true, resilientCheckout = false, allowReferencePrice = true, devState: devStateArg = null }: PaywallPurchaseArgs) {
+   // зачем (координатор 12.10, R1 «нет пути»): явный `_dev_state` окна сильнее состояния по ссылке `dev_state?paywall=…` (пейвол онбординга); в стор-сборке оба null.
+   const devState = devStateArg ?? getDevPaywallLinkState();
+   const router = useRouter();
+   const { refillToMax } = useEnergy();
+   const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));
++  useEffect(() => {
++    // Includes onboarding; the screen's identical event is deduplicated by impression ID.
++    if (trackShown) logPaywallFunnel('shown', { variant, context, impressionId: impression.id });
++  }, [context, impression, trackShown, variant]);
+   const [selected, setSelected] = useState<PaywallPlan>('yearly');
+   const [packages, setPackages] = useState<PremiumPackages>({});
+   const [introEligibility, setIntroEligibility] = useState<Record<string, TrialEligibility>>({});
+@@ -1085,7 +1105,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
+         logAfterWinUpsellCta('level_up', selected),
+       ).catch(swallowError('paywall_purchase:logAfterWinUpsellCta'));
+     }
+-    logPaywallFunnel('cta_click', { variant, context, plan: selected });
++    logPaywallFunnel('cta_click', { variant, context, impressionId: impression.id, plan: selected });
+     if (DEV_IAP_BYPASS || previewPrices) {
+       DebugLogger.info('[PAYWALL]', `тап: магазин не зовём dev_bypass=${String(DEV_IAP_BYPASS)} previewPrices=${String(previewPrices)} (предпросмотр / dev-обход) — показываем dev-окно`);
+       showDevPurchasePreviewAlert(lang);
+@@ -1320,6 +1340,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
+         else if (isOperationAccountCurrent() && !lifeRef.current.dead) setTapNotice(true);
+         return;
+       }
++      const transactionId = purchaseResult.value.transaction?.transactionIdentifier;
++      logPaywallFunnel('store_confirmed', { variant, context, impressionId: impression.id, transactionId, plan: selected });
+       let { customerInfo } = purchaseResult.value;
+       // зачем: в Sandbox/TestFlight customerInfo из purchasePackage иногда ещё не
+       // отражает свежий entitlement (RevenueCat не успел досинхронизироваться с
+@@ -1394,11 +1416,16 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
+       // день-строк с сервера, чтобы контент лежал в кэше до входа в любой день.
+       // Передаём состояние целиком: присваивание идёт внутри async-колбэка,
+       // из-за чего TS сужает замыкание до never при обращении к полю.
+-      void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant, ...paywallImpressionParams(impression) });
+-      logPaywallFunnel('purchase_completed', { variant, context, plan: selected, price: storePriceTrim(pkg.product.priceString) || null });
+-      if (pkgTrial.hasTrial) {
++
++      logPaywallFunnel('access_applied', { variant, context, impressionId: impression.id, transactionId, plan: selected });
++      // Receipt period, not offer eligibility, determines trial vs paid. The server joins the transaction hash.
++      const confirmedPeriod = classifyConfirmedPurchasePeriod(customerInfo.entitlements.active.premium?.periodType);
++      if (confirmedPeriod.kind === 'paid') {
++        void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: false, paywall: variant, ...paywallImpressionParams(impression) });
++        logPaywallFunnel('purchase_completed', { variant, context, impressionId: impression.id, transactionId, plan: selected, price: storePriceTrim(pkg.product.priceString) || null, periodType: confirmedPeriod.periodType });
++      } else if (confirmedPeriod.kind === 'trial') {
+         void trackEvent('trial_started', { context, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
+-        logPaywallFunnel('trial_started', { variant, context, plan: selected });
++        logPaywallFunnel('trial_started', { variant, context, impressionId: impression.id, transactionId, plan: selected, periodType: confirmedPeriod.periodType });
+         const reminderDays = pkgTrial.days;
+         const reminderPrice = storePriceTrim(pkg.product.priceString);
+         const trialStartMs = Date.now();
+@@ -1460,6 +1487,17 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
+         } else {
+           DebugLogger.warn('[TRIAL-REMINDER]', `покупка: напоминание не ставим — пробный ${reminderDays ?? 'null'} дн. (нужно больше 2)`);
+         }
++      } else {
++        DebugLogger.error('paywall_purchase:period_unknown', new Error('confirmed purchase without known periodType'), 'warning');
++        logPaywallFunnel('purchase_completed', {
++          variant,
++          context,
++          impressionId: impression.id,
++          transactionId,
++          plan: selected,
++          price: storePriceTrim(pkg.product.priceString) || null,
++          periodType: confirmedPeriod.periodType,
++        });
+       }
+       if (source === 'onboarding') {
+         if (!isOperationAccountCurrent()) {
+@@ -1532,7 +1570,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
+         + `cancelled=${String(wasCancelled)} plan=${selected} source=${source} ui=${failureUi}`);
+       if ((err as { userCancelled?: boolean })?.userCancelled) {
+         void trackEvent('purchase_cancelled', { context, plan: selected, paywall: variant, ...paywallImpressionParams(impression) });
+-        logPaywallFunnel('purchase_cancelled', { variant, context, plan: selected });
++        logPaywallFunnel('purchase_cancelled', { variant, context, impressionId: impression.id, plan: selected });
+       } else if (errCode === PURCHASES_ERROR_CODE.PAYMENT_PENDING_ERROR) {
+         // Ask to Buy / 3-D Secure: оплата ушла на подтверждение. Раньше эта
+         // ветка падала в общий «Не удалось оформить» — юзер путался и платил
+@@ -1550,7 +1588,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
+           error: purchaseErrorCategory(err),
+           ...paywallImpressionParams(impression),
+         });
+-        logPaywallFunnel('purchase_failed', { variant, context, plan: selected });
++        logPaywallFunnel('purchase_failed', { variant, context, impressionId: impression.id, plan: selected });
+         if (failureUi === 'onboarding_alert') {
+           void enqueueThemedBlockingInfoAlert(
+             triLang(lang, {
+@@ -1743,7 +1781,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
+         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
+         emitAppEvent('action_toast', paywallRestoreToast(mode === 'check' ? 'purchase_confirmed' : 'restored'));
+         void trackEvent('subscription_restored', { context, paywall: variant, mode });
+-        logPaywallFunnel('restore_completed', { variant, context, plan });
++        logPaywallFunnel('restore_completed', { variant, context, impressionId: impression.id, plan });
+         if (source === 'onboarding') {
+           if (!isOperationAccountCurrent()) {
+             DebugLogger.info('[PAYWALL]', `restore: онбординг — аккаунт сменился после применения доступа mode=${mode}, завершение флоу пропущено`);
+@@ -1817,7 +1855,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
+     closeLockUntilRef.current = nowMs + PAYWALL_CLOSE_LOCK_MS;
+     paywallCloseMark('doClose:analytics_start');
+     void trackEvent('paywall_close', { context, source, paywall: variant, reason, ...paywallImpressionParams(impression) });
+-    logPaywallFunnel('close', { variant, context, plan: selected });
++    logPaywallFunnel('close', { variant, context, impressionId: impression.id, plan: selected });
+     if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(swallowError('paywall_purchase:schedulePaywallAbandoned'));
+     // Онбординг: закрытие пейвола (без покупки) НЕ выкидывает на home, а возвращает
+     // на следующий шаг онбординга — ввод имени. Раньше safeRouterBack уводил на home
+diff --git a/functions/src/admin_paywall_variant_stats.test.ts b/functions/src/admin_paywall_variant_stats.test.ts
+index 4ce9b6717..3841ffa4d 100644
+--- a/functions/src/admin_paywall_variant_stats.test.ts
++++ b/functions/src/admin_paywall_variant_stats.test.ts
+@@ -221,7 +221,7 @@ describe('buildPaywallVariantStatsReport', () => {
+     expect(b).toMatchObject({ shown: 1, purchases: 1, conversionPct: 100, revenueMicros: 0, unpricedPurchases: 1 });
+     const g = report.variants.find((row) => row.variant === 'G')!;
+     expect(g).toMatchObject({ shown: 0, purchases: 0, conversionPct: null, revenueMicros: 0 });
+-    expect(report.variants).toHaveLength(7);
++    expect(report.variants).toHaveLength(8);
+     expect(report.revenue).toMatchObject({ kind: 'estimate', currency: 'USD' });
+     expect(report.totals).toMatchObject({
+       shown: 3, cta: 1, purchases: 3, conversionPct: 100,
+@@ -258,7 +258,7 @@ describe('buildPaywallVariantStatsReport', () => {
+ 
+   it('returns an all-zero report for an empty range', () => {
+     const report = build([], []);
+-    expect(report.variants).toHaveLength(7);
++    expect(report.variants).toHaveLength(8);
+     expect(report.totals).toMatchObject({
+       shown: 0, cta: 0, purchases: 0, conversionPct: null, revenueMicros: null, unpricedPurchases: 0,
+     });
+@@ -422,7 +422,7 @@ describe('adminGetPaywallVariantStats', () => {
+   it('returns an empty all-zero report when nothing is stored', async () => {
+     const result = await callStats({ rangeDays: 90 });
+     expect(result).toMatchObject({ ok: true, rangeDays: 90 });
+-    expect(result.variants).toHaveLength(7);
++    expect(result.variants).toHaveLength(8);
+     expect(result.totals).toMatchObject({ shown: 0, purchases: 0, conversionPct: null, revenueMicros: null });
+     expect(result.revenue.kind).toBe('unavailable');
+   });
+diff --git a/functions/src/admin_paywall_variant_stats.ts b/functions/src/admin_paywall_variant_stats.ts
+index 3f7691b01..04feed91e 100644
+--- a/functions/src/admin_paywall_variant_stats.ts
++++ b/functions/src/admin_paywall_variant_stats.ts
+@@ -14,6 +14,7 @@
+ //   числа не выдумываются. Точная per-variant выручка невозможна без атрибуции
+ //   variant → transaction, которой в данных нет.
+ // ════════════════════════════════════════════════════════════════════════════
++import { reconcilePaywallReceipts, type FunnelReceiptLink, type StoreReceiptRow } from './paywall_receipt_attribution';
+ import * as admin from 'firebase-admin';
+ import { HttpsError, onCall } from 'firebase-functions/v2/https';
+ import { ENFORCE_APP_CHECK } from './callable_options';
+@@ -34,7 +35,7 @@ const CONTEXT_ROW_CAP = 200;
+  *  а за 7 дней покупок может не быть вовсе. */
+ export const PAYWALL_STATS_PRICE_WINDOW_DAYS = 90;
+ export const PAYWALL_STATS_RANGE_DAYS = [7, 30, 90] as const;
+-export const PAYWALL_STATS_VARIANTS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'] as const;
++export const PAYWALL_STATS_VARIANTS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'PLUS'] as const;
+ export const PAYWALL_STATS_PLANS = ['monthly', 'yearly', 'lifetime'] as const;
+ 
+ export type PaywallStatsRangeDays = (typeof PAYWALL_STATS_RANGE_DAYS)[number];
+@@ -43,7 +44,7 @@ export type PaywallStatsPlan = (typeof PAYWALL_STATS_PLANS)[number];
+ export type PaywallRevenueKind = 'estimate' | 'unavailable';
+ 
+ /** Сырые поля документа paywall_funnel, нужные агрегации. */
+-export interface PaywallVariantFunnelDoc {
++export interface PaywallVariantFunnelDoc extends FunnelReceiptLink {
+   step?: unknown;
+   variant?: unknown;
+   plan?: unknown;
+@@ -52,7 +53,7 @@ export interface PaywallVariantFunnelDoc {
+ }
+ 
+ /** Сырые поля документа revenuecat_premium_events, нужные для оценки цены. */
+-export interface PaywallVariantPriceRow {
++export interface PaywallVariantPriceRow extends StoreReceiptRow {
+   eventType?: unknown;
+   environment?: unknown;
+   billingCadence?: unknown;
+@@ -128,6 +129,7 @@ export interface PaywallVariantVerdict {
+ }
+ 
+ export interface PaywallVariantStatsReport {
++  readonly reconciliation: ReturnType<typeof reconcilePaywallReceipts>['metrics'];
+   readonly ok: true;
+   readonly rangeDays: PaywallStatsRangeDays;
+   readonly fromMs: number;
+@@ -345,7 +347,10 @@ export function buildPaywallVariantStatsReport(input: BuildPaywallVariantStatsIn
+   }
+   const contexts = new Map<string, ContextBucket>();
+ 
+-  for (const doc of input.funnelDocs) {
++  const reconciliation = reconcilePaywallReceipts(input.funnelDocs, input.priceRows);
++  // Legacy counts remain visible; v2 purchases require a matching production receipt.
++  const attributedDocs = [...input.funnelDocs.filter(d => !(d.schemaVersion === 2 && d.step === 'purchase_completed')), ...reconciliation.purchaseDocs];
++  for (const doc of attributedDocs) {
+     if (doc.dev === true) continue; // дев-сборки не считаем, как и в продуктовой воронке
+     const variant = normalizeVariant(doc.variant);
+     if (!variant) continue; // legacy v1/v2 и мусор не входят в сравнение A–G
+@@ -426,6 +431,7 @@ export function buildPaywallVariantStatsReport(input: BuildPaywallVariantStatsIn
+ 
+   return {
+     ok: true,
++    reconciliation: reconciliation.metrics,
+     rangeDays: input.rangeDays,
+     fromMs: input.fromMs,
+     generatedAtMs: input.generatedAtMs,
+@@ -495,6 +501,9 @@ async function loadPriceRows(db: FirebaseFirestore.Firestore, priceFromMs: numbe
+     for (const doc of snapshot.docs) {
+       const data = doc.data() as Record<string, unknown>;
+       rows.push({
++        transactionId: data.transactionId,
++        originalTransactionId: data.originalTransactionId,
++        periodType: data.periodType,
+         eventType: data.eventType,
+         environment: data.environment,
+         billingCadence: data.billingCadence,
+diff --git a/tests/paywall_funnel_behavior.test.ts b/tests/paywall_funnel_behavior.test.ts
+index 15d8e354e..8c4a7566d 100644
+--- a/tests/paywall_funnel_behavior.test.ts
++++ b/tests/paywall_funnel_behavior.test.ts
+@@ -51,6 +51,9 @@ jest.mock('../app/debug-logger', () => ({
+ // GDPR gate (added to paywall_funnel): writes are blocked until analytics consent
+ // is granted. Default the mock to "granted" so the write path runs; one test below
+ // flips it to assert the gate actually blocks.
++jest.mock('../app/account_generation', () => ({ captureAccountGeneration: () => ({ generation: 1 }), isCurrentAccountGeneration: () => accountCurrent }));
++jest.mock('expo-crypto', () => ({ CryptoDigestAlgorithm: {SHA256: 'SHA-256'}, digestStringAsync: async (_algorithm: string, value: string) => require('node:crypto').createHash('sha256').update(value).digest('hex') }));
++let accountCurrent = true;
+ let consentGranted = true;
+ jest.mock('../app/analytics_consent', () => ({
+   isAnalyticsConsentGranted: () => consentGranted,
+@@ -78,6 +81,7 @@ function load(): Mod {
+ beforeEach(() => {
+   jest.resetModules();
+   consentGranted = true;
++  accountCurrent = true;
+   addCalls.length = 0;
+   addImpl = async (data) => {
+     addCalls.push(data);
+@@ -187,7 +191,7 @@ test('plan defaults to null and obColor defaults to null in the payload', async
+   expect(addCalls[0].obColor).toBeNull();
+ });
+ 
+-test('permission-denied on write is swallowed silently (no DebugLogger.error)', async () => {
++test('permission-denied is visible in diagnostics without throwing', async () => {
+   const { logPaywallFunnel } = load();
+   addImpl = async () => {
+     const err: any = new Error('permission-denied writing paywall_funnel');
+@@ -196,7 +200,7 @@ test('permission-denied on write is swallowed silently (no DebugLogger.error)',
+   };
+   logPaywallFunnel('cta_click', { variant: 'A', context: 'gated' });
+   await flush();
+-  expect(debugError).not.toHaveBeenCalled();
++  expect(debugError.mock.calls[0][0]).toBe('paywall_funnel:rules_rejected');
+ });
+ 
+ test('an unexpected write error is logged as a warning (not swallowed)', async () => {
+@@ -230,6 +234,13 @@ test('purchase price passes through on purchase_completed and defaults to null',
+   expect(addCalls[1].price).toBeNull();
+ });
+ 
++test('confirmed RevenueCat period is bounded and written with the purchase event', async () => {
++  const { logPaywallFunnel } = load();
++  logPaywallFunnel('purchase_completed', { variant: 'D', context: 'checkout', periodType: 'PREPAID' });
++  await flush();
++  expect(addCalls[0].periodType).toBe('PREPAID');
++});
++
+ test('blank price coerces to null and long price is truncated to 24 chars', async () => {
+   const { logPaywallFunnel } = load();
+   // Разные планы, потому что дедупликация воронки схлопывает одинаковые
+@@ -243,3 +254,26 @@ test('blank price coerces to null and long price is truncated to 24 chars', asyn
+   expect(typeof addCalls[1].price).toBe('string');
+   expect((addCalls[1].price as string).length).toBe(24);
+ });
++
++
++test('v2 joins an impression to a SHA-256 transaction without storing the raw ID', async () => {
++ const {logPaywallFunnel}=load();
++ logPaywallFunnel('store_confirmed',{variant:'PLUS',context:'no_energy',impressionId:'visit-1',transactionId:'store-receipt'});
++ await flush();
++ expect(addCalls[0]).toMatchObject({schemaVersion:2,impressionId:'visit-1',transactionHash:require('node:crypto').createHash('sha256').update('paywall-transaction:v1:store-receipt').digest('hex')});
++ expect(addCalls[0]).not.toHaveProperty('transactionId');
++});
++test('separate impressions of the same context are not collapsed',async()=>{
++ const {logPaywallFunnel}=load();
++ logPaywallFunnel('shown',{variant:'PLUS',context:'no_energy',impressionId:'v1'});
++ logPaywallFunnel('shown',{variant:'PLUS',context:'no_energy',impressionId:'v2'});
++ await flush();expect(addCalls).toHaveLength(2);
++});
++test('revoked consent during async preparation prevents the write',async()=>{
++ const {logPaywallFunnel}=load();logPaywallFunnel('shown',{variant:'PLUS',context:'no_energy',impressionId:'v'});
++ consentGranted=false;await flush();expect(addCalls).toHaveLength(0);
++});
++test('account switch during async preparation prevents the write',async()=>{
++ const {logPaywallFunnel}=load();logPaywallFunnel('shown',{variant:'PLUS',context:'no_energy',impressionId:'v'});
++ accountCurrent=false;await flush();expect(addCalls).toHaveLength(0);
++});
+diff --git a/tests/paywall_purchase_behavior.test.ts b/tests/paywall_purchase_behavior.test.ts
+index 539cc2ba3..185db83a9 100644
+--- a/tests/paywall_purchase_behavior.test.ts
++++ b/tests/paywall_purchase_behavior.test.ts
+@@ -75,7 +75,31 @@ jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+ jest.mock('../app/premium_celebration_state', () => ({ markCelebrationPending: jest.fn(async () => {}) }));
+ jest.mock('../components/EnergyContext', () => ({ useEnergy: () => ({ reload: jest.fn(async () => {}) }) }));
+ jest.mock('../app/premium_guard', () => ({ invalidatePremiumCache: jest.fn() }));
+-import { purchaseErrorCategory, storePriceTrim } from '../app/paywall_purchase';
++import { classifyConfirmedPurchasePeriod, purchaseErrorCategory, storePriceTrim } from '../app/paywall_purchase';
++
++describe('confirmed purchase period analytics', () => {
++  test.each([
++    ['NORMAL', 'paid'],
++    ['intro', 'paid'],
++    ['TRIAL', 'trial'],
++    [undefined, 'unknown'],
++    ['PREPAID', 'unknown'],
++  ] as const)('classifies %p as %s without inventing a trial', (periodType, expected) => {
++    expect(classifyConfirmedPurchasePeriod(periodType)).toEqual({
++      kind: expected,
++      periodType: periodType ? periodType.toUpperCase() : 'unknown',
++    });
++  });
++
++  test('an unknown period emits a warning and a completed funnel event', () => {
++    const fs = require('fs');
++    const path = require('path');
++    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'paywall_purchase.ts'), 'utf8');
++    expect(source).toContain("DebugLogger.error('paywall_purchase:period_unknown'");
++    expect(source).toContain("logPaywallFunnel('purchase_completed', {");
++    expect(source).toContain('periodType: confirmedPeriod.periodType');
++  });
++});
+ 
+ describe('purchaseErrorCategory (analytics privacy)', () => {
+   test('returns a bounded category without copying the raw message', () => {

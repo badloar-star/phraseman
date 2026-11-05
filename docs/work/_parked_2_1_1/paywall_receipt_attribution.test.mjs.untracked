@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { createHash } from 'node:crypto';
+import { test } from 'node:test';
+const require = createRequire(import.meta.url);
+const ts = require('typescript');
+const source = readFileSync(new URL('../functions/src/paywall_receipt_attribution.ts', import.meta.url), 'utf8');
+const { outputText } = ts.transpileModule(source, {compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}});
+const exported={};new Function('require','exports',outputText)(require,exported);
+const {reconcilePaywallReceipts}=exported;
+const hash=id=>createHash('sha256').update('paywall-transaction:v1:'+id).digest('hex');
+const event=(step,id='p',other={})=>({step,variant:'PLUS',context:'no_energy',plan:'monthly',dev:false,schemaVersion:2,impressionId:'i',transactionHash:hash(id),...other});
+const receipt=(id='p',other={})=>({transactionId:id,originalTransactionId:id,eventType:'INITIAL_PURCHASE',periodType:'NORMAL',environment:'PRODUCTION',grossUsdMicros:7990000,...other});
+test('paid receipt linked to impression and local access, once despite duplicate events',()=>{
+const r=reconcilePaywallReceipts([event('store_confirmed'),event('store_confirmed'),event('access_applied')],[receipt(),receipt()]);
+assert.equal(r.metrics.verifiedPaid,1);assert.equal(r.metrics.accessApplied,1);assert.equal(r.purchaseDocs.length,1);assert.equal(r.purchaseDocs[0].impressionId,'i');
+});
+test('trial is not paid; first paid renewal on the same chain converts it once',()=>{
+const f=[event('store_confirmed')],trial=receipt('p',{periodType:'TRIAL',grossUsdMicros:0});
+assert.equal(reconcilePaywallReceipts(f,[trial]).metrics.verifiedPaid,0);
+const r=reconcilePaywallReceipts(f,[trial,receipt('r1',{eventType:'RENEWAL',originalTransactionId:'p'}),receipt('r2',{eventType:'RENEWAL',originalTransactionId:'p'})]);
+assert.equal(r.metrics.verifiedTrials,1);assert.equal(r.metrics.trialConversions,1);assert.equal(r.metrics.verifiedPaid,1);
+});
+test('sandbox, restore, cancellation and unverified events cannot invent purchases',()=>{
+assert.equal(reconcilePaywallReceipts([event('store_confirmed')],[receipt('p',{environment:'SANDBOX'})]).metrics.verifiedPaid,0);
+assert.equal(reconcilePaywallReceipts([event('restore_completed')],[receipt()]).metrics.verifiedPaid,0);
+assert.equal(reconcilePaywallReceipts([event('store_confirmed')],[receipt('p',{eventType:'CANCELLATION'})]).metrics.verifiedPaid,0);
+assert.equal(reconcilePaywallReceipts([event('store_confirmed')],[]).metrics.unmatched,1);
+});
+test('origin receipt wins over same-transaction cancellation in either query order',()=>{
+const cancellation=receipt('p',{eventType:'CANCELLATION'});
+for(const rows of [[receipt(),cancellation],[cancellation,receipt()]])assert.equal(reconcilePaywallReceipts([event('store_confirmed')],rows).metrics.verifiedPaid,1);
+});
+test('missing local access confirmation is uncertainty, and dev events are excluded',()=>{
+const r=reconcilePaywallReceipts([event('store_confirmed'),event('access_applied','p',{dev:true})],[receipt()]);
+assert.equal(r.metrics.accessUnobserved,1);assert.equal(r.metrics.accessApplied,0);
+assert.equal(reconcilePaywallReceipts([event('store_confirmed','p',{dev:true})],[receipt()]).metrics.verifiedPaid,0);
+});
+test('unknown price or missing transaction hash never becomes a paid event',()=>{
+assert.equal(reconcilePaywallReceipts([event('store_confirmed')],[receipt('p',{grossUsdMicros:null})]).metrics.verifiedPaid,0);
+assert.equal(reconcilePaywallReceipts([event('store_confirmed','p',{transactionHash:null})],[receipt()]).purchaseDocs.length,0);
+});

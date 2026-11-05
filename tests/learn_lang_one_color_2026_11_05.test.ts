@@ -20,6 +20,24 @@ describe('разбор строки: изучаемый язык отдельн�
     expect(runs.filter((r) => r.isLang).map((r) => r.text)).toEqual(['ed', 'I walked home yesterday']);
     expect(runs.map((r) => r.text).join('')).toBe('Добавьте ed в конец. I walked home yesterday. — Я вчера шёл домой.');
   });
+  // зачем (координатор 05.11): слова fr/es/de/it с акцентами красятся ЦЕЛИКОМ одним куском, а не обрываются на букве с диакритикой.
+  it.each([
+    ['Она сказала: Elle est prête. — Она готова.', 'Elle est prête'],
+    ['Скажи: ¿Cómo estás? — как дела', 'Cómo estás?'],
+    ['Скажи: Ich heiße Müller und esse Straße. Всё', 'Ich heiße Müller und esse Straße'],
+    ['Скажи: Il cuore è qui, così. — сердце', 'Il cuore è qui, così'],
+    ['Скажи: El niño, cœur, Ça va. — ок', 'El niño, cœur, Ça va'],
+  ])('акценты не рвут слово: %s', (input, expectedLang) => {
+    const langText = splitLangRuns(input).filter((r) => r.isLang).map((r) => r.text);
+    expect(langText.join(' ')).toContain(expectedLang.replace(/\?$/, ''));
+    // ни одной буквы с акцентом не осталось в нескрашенной части
+    const plain = splitLangRuns(input).filter((r) => !r.isLang).map((r) => r.text).join('');
+    expect(plain).not.toMatch(/[àâçéèêëîïôùûüÿñßœÀÉÇÑÜ]/u);
+  });
+  it('en не сломан: чистый ASCII красится как раньше', () => {
+    const runs = splitLangRuns('Добавьте ed. I walked home. — Я');
+    expect(runs.filter((r) => r.isLang).map((r) => r.text)).toEqual(['ed. I walked home']);
+  });
   it('кириллица без латиницы — ничего не красится', () => {
     expect(splitLangRuns('Это значит: она позвонила.').every((r) => !r.isLang)).toBe(true);
   });

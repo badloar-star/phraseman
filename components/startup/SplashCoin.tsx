@@ -102,9 +102,18 @@ function SplashCoinImpl({ subtitleColor, wordmarkTint, reducedMotion, fontFamily
     anim.start(({ finished: done }) => {
       const ms = Date.now() - startedAt.current;
       if (done) splashCoinFinished = true;
-      onLog('[SPLASH-COIN] end', { ms, finished: done, reducedMotion });
+      onLog('[SPLASH-COIN] end', { ms, finished: done, reducedMotion, reason: done ? 'completed' : 'stopped_before_native_event' });
     });
-    return () => anim.stop();
+    return () => {
+      // зачем (координатор 05.11, лог end finished:false на 3594 мс): анимация на нативном драйвере и идёт в UI-потоке независимо от JS; при тяжёлом холодном старте
+      // JS-поток занят, событие «закончено» доходит ПОСЛЕ снятия заставки, и stop() даёт finished:false, хотя на экране монета доиграла (прошло ≥ 1,8 с).
+      // Считаем такую анимацию доигравшей, чтобы запасной экран онбординга не перезапускал её заново; раньше срока (скрыли раньше) — по-прежнему не доиграла.
+      const elapsed = Date.now() - startedAt.current;
+      const playedLongEnough = elapsed >= SPLASH_COIN_TOTAL_MS;
+      onLog('[SPLASH-COIN] cleanup', { elapsedMs: elapsed, playedLongEnough, alreadyFinished: splashCoinFinished });
+      if (playedLongEnough) splashCoinFinished = true;
+      anim.stop();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reducedMotion === true]);
 

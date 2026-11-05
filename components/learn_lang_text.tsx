@@ -19,7 +19,10 @@ export const CYRILLIC_INTERFACE_LANGS: ReadonlySet<string> = new Set(['ru', 'uk'
 export const isLatinSplitInterface = (lang: string): boolean => CYRILLIC_INTERFACE_LANGS.has(lang);
 
 /** Слово/фраза изучаемого языка: ASCII-блок (буквы, цифры, пробел, дефис, слэш, апостроф, знаки), как splitEnglish вступления. */
-const LATIN_RUN = /([A-Za-z][A-Za-z0-9 '’\-/.,→↔]*)/g;
+// зачем (координатор 05.11, «prête» красилось кусками): изучаемый язык может быть fr/es/de/it — буквы с акцентами (à é ê ñ ü ß ç œ…) такие же слова, как ASCII.
+// Явный набор вместо \p{Script=Latin}: не зависим от поддержки свойств Юникода в движке JS на телефоне. À-Ö, Ø-ö, ø-ÿ = латиница-1 без × и ÷ (в диапазон входят ß ñ ü ç), Œ œ Ÿ — отдельно.
+const LATIN_LETTER = "A-Za-zÀ-ÖØ-öø-ÿŒœŸ";
+const LATIN_RUN = new RegExp(`([${LATIN_LETTER}][${LATIN_LETTER}0-9 '’\\-/.,→↔]*)`, 'g');
 
 export type LangRun = Readonly<{ text: string; isLang: boolean }>;
 

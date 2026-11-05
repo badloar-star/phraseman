@@ -334,7 +334,8 @@ function CommunityPackRowBase({
       emphasis={emphasis}
       highlight={highlight}
       opening={opening}
-      words={deckWords}
+      // зачем (владелец 05.11, «слова-чипы Lay/Claim/+1 не нужны»): единая строка набора без чипов слов; лайк и комментарии остаются в строке
+      words={[]}
       showArrow={!sceneMode}
       onPress={onOpen}
       onLongPress={onLongPress}

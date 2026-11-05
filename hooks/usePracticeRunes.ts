@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DebugLogger } from '../app/debug-logger';
+import { lessonCoinsLog, lessonCoinsShortKey } from '../app/lesson_coins_log'; // зачем (владелец 05.11, №80/№72): журнал [LESSON-COINS] цепочки монет
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
 import { todayTaskKindForPracticeActivity } from '../modules/today-tasks/today_tasks_practice_map';
 import { getStableId } from '../app/stable_id';
@@ -10,6 +11,7 @@ import {
   createPracticeRuneEarnings,
   forfeitPendingPracticeRunes,
   practiceRuneAwardForCorrectStreak,
+  practiceRuneAwardForPass,
   parsePracticeRuneAccumulator,
   practiceRuneEarningsStorageKey,
   recoverablePracticeRunePendingDelta,
@@ -169,12 +171,14 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     // DEV HUB ONLY (владелец, 2026-08-27): «Проверка рун» — диск и сеть не
     // трогаются вообще, счётчик уже выставлен случайным числом в useState выше.
     if (devFakeStartRunes !== undefined) { setHydrating(false); return; }
-    if (!enabled) { setHydrating(false); return; }
+    if (!enabled) { lessonCoinsLog('hydrate_skip', { reason: 'disabled', activity: input.activity }); setHydrating(false); return; }
     let cancelled = false;
+    const hydrateStartedAtMs = Date.now();
+    lessonCoinsLog('hydrate_enter', { activity: input.activity, sessionKey: lessonCoinsShortKey(input.sessionKey), requestedOrdinal: input.completionOrdinal, repeatPriceOnly: input.repeatPriceOnly === true });
     void (async () => {
       const ownerStableId = (await getStableId()).trim();
-      if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
-      if (!ownerStableId) { setHydrating(false); return; }
+      if (cancelled || sessionGeneration !== sessionGenerationRef.current) { lessonCoinsLog('hydrate_abort', { at: 'after_owner', cancelled, staleGeneration: sessionGeneration !== sessionGenerationRef.current, ms: Date.now() - hydrateStartedAtMs }); return; }
+      if (!ownerStableId) { lessonCoinsLog('hydrate_skip', { reason: 'owner_empty', ms: Date.now() - hydrateStartedAtMs }); setHydrating(false); return; }
       ownerRef.current = ownerStableId;
 
       const storageKey = practiceRuneEarningsStorageKey({
@@ -285,6 +289,8 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       settledCountRef.current = settledCount;
       // зачем (владелец 05.11: «+3, второй раз +2, третий и дальше +1»): цена — по номеру прохождения сессии (settledCount + 1); мастерская фраз (repeatPriceOnly) всегда по низкой цене
       const passNumber = input.repeatPriceOnly === true ? 3 : settledCount + 1;
+      // зачем (владелец 05.11, №80/№72): откуда взят номер прохода и какой ценой он платит — одна строка решения
+      lessonCoinsLog('pass_decision', { markerCount, committedOrdinal, accumulatorHighWater, settledCount, repeatPriceOnly: input.repeatPriceOnly === true, passNumber, awardPerItem: practiceRuneAwardForPass(passNumber), source: input.repeatPriceOnly === true ? 'repeatPriceOnly' : (settledCount === committedOrdinal && committedOrdinal > markerCount ? 'economy_journal' : (settledCount === accumulatorHighWater && accumulatorHighWater > markerCount ? 'accumulator' : 'marker')), storedIsFinishedPass, recoveredNext: recoveredNextCompletion !== null, ms: Date.now() - hydrateStartedAtMs });
       // зачем (владелец, 2026-08-28, «анимация полёта в уроках не появилась»):
       // зачтённая копилка прошлого прохода (pendingRunes 0 при непустом списке
       // оплаченных) раньше восстанавливалась КАК ЕСТЬ — каждый элемент значился
@@ -324,6 +330,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       earningsRef.current = earnings;
       setBaseRunes(earnings.pendingRunes);
       setHydrating(false);
+      lessonCoinsLog('hydrated', { awardPerItem: earnings.awardPerItem, pendingRunes: earnings.pendingRunes, credited: earnings.creditedItemIds.length, assignedOrdinal, ms: Date.now() - hydrateStartedAtMs });
       DebugLogger.info('practice_runes:hydrated', JSON.stringify({
         activity: input.activity,
         sessionKey: earnings.sessionKey,
@@ -386,11 +393,13 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const current = earningsRef.current;
     if (!current) {
       // зачем (владелец 05.11: «счётчик монет стоит, ответ верный»; правило «сперва логи»): тихий выход без копилки был невидим
+      lessonCoinsLog('answer_skipped', { reason: 'earnings_not_ready', enabled, activity: input.activity });
       DebugLogger.info('practice_runes:answer_skipped', JSON.stringify({ reason: 'earnings_not_ready', enabled, activity: input.activity, itemId: itemId.slice(0, 80) }));
       return 0;
     }
     const result = awardPracticeRune(current, itemId, correctStreak);
     if (result.awarded === 0) {
+      lessonCoinsLog('answer_skipped', { reason: current.creditedItemIds.includes(itemId) ? 'item_already_credited_in_pass' : 'invalid_item_id', awardPerItem: current.awardPerItem, credited: current.creditedItemIds.length, pendingRunes: current.pendingRunes });
       DebugLogger.info('practice_runes:answer_skipped', JSON.stringify({
         reason: current.creditedItemIds.includes(itemId) ? 'item_already_credited_in_pass' : 'invalid_item_id',
         activity: current.activity, sessionKey: current.sessionKey, awardPerItem: current.awardPerItem,
@@ -400,6 +409,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     }
     earningsRef.current = result.earnings;
     const displayedAward = result.earnings.pendingRunes - current.pendingRunes;
+    lessonCoinsLog('answer_awarded', { awardPerItem: result.earnings.awardPerItem, awarded: result.awarded, displayedAward, pendingBefore: current.pendingRunes, pendingAfter: result.earnings.pendingRunes, credited: result.earnings.creditedItemIds.length });
     setBaseRunes(result.earnings.pendingRunes);
     persist(result.earnings);
     DebugLogger.info('practice_runes:answer_awarded', JSON.stringify({
@@ -456,6 +466,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const current = earningsRef.current;
     const ownerStableId = ownerRef.current;
     if (!current || !ownerStableId || current.pendingRunes <= 0) {
+      lessonCoinsLog('settle_skip', { reason: 'not_ready', hasEarnings: Boolean(current), hasOwner: Boolean(ownerStableId), pendingRunes: current?.pendingRunes ?? null });
       DebugLogger.info('practice_runes:settle_skip_not_ready', JSON.stringify({
         activity: input.activity,
         sessionKey: input.sessionKey,
@@ -466,6 +477,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       return;
     }
     if (settlementInFlightRef.current !== null) {
+      lessonCoinsLog('settle_skip', { reason: 'in_flight', pendingRunes: current.pendingRunes });
       DebugLogger.info('practice_runes:settle_skip_in_flight', JSON.stringify({
         activity: current.activity,
         sessionKey: current.sessionKey,
@@ -507,6 +519,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       highestAllocatedOrdinal + 1,
     );
     settlementOrdinalByGenerationRef.current.set(sessionGeneration, effectiveOrdinal);
+    lessonCoinsLog('settle_start', { pendingRunes: current.pendingRunes, awardPerItem: current.awardPerItem, requestedOrdinal: input.completionOrdinal, settledCount: settledCountRef.current, effectiveOrdinal });
     DebugLogger.info('practice_runes:settle_start', JSON.stringify({
       activity: current.activity,
       sessionKey: current.sessionKey,
@@ -534,6 +547,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const result = await settlePracticeRuneEarningsToServer(
       current, effectiveOrdinal, durableIntent,
     );
+    lessonCoinsLog('settle_server_result', { effectiveOrdinal, locallyCommitted: result.locallyCommitted, serverSettled: result.settled });
     DebugLogger.info('practice_runes:settle_server_result', JSON.stringify({
       activity: current.activity,
       sessionKey: current.sessionKey,
@@ -587,6 +601,10 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       serverSettled: result.settled,
       displayedRunes: current.pendingRunes,
     }));
+    } catch (error) {
+      // зачем (владелец 05.11, №80/№72): падение зачёта не должно пропасть — причина в журнале, ошибка уходит вызывающему как раньше
+      lessonCoinsLog('settle_failed', { reason: error instanceof Error ? error.message : String(error), pendingRunes: current.pendingRunes });
+      throw error;
     } finally {
       if (settlementInFlightRef.current === sessionGeneration) {
         settlementInFlightRef.current = null;

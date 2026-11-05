@@ -6,7 +6,7 @@
  * НЕ запираем. Точка подключения праздничных окон открытия: onRankSectionOpened (шаг «Моменты», не здесь).
  * Лог: [RANK-GATE].
  */
-import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { usePremium } from '../components/PremiumContext';
 import { getRemoteBool, getRemoteNumber } from '../app/remote_flags';
 import { readRankGateUserVerdict, type RankGateUserVerdict } from '../app/rank_gates_new_user';
@@ -58,6 +58,10 @@ export function onRankSectionOpened(listener: OpenedListener): () => void {
   return () => { openedListeners.delete(listener); };
 }
 const lastLocked = new Map<RankAccessSurface, boolean>();
+// зачем (замечание координатора 06.11: нижняя панель стала 4-вкладочной в 16:47, а плитки Главной держали «разблокированный ранг» до 16:50; «сперва логи»):
+// у каждого вызова хука своё состояние (ранг, вердикт), поэтому панель и Главная могут увидеть смену в разное время; журнал [RANK-LOCK-SYNC] — по строке на смену
+// решения у КАЖДОГО потребителя (instance), чтобы по времени и значениям сравнить панель и Главную.
+let rankAccessInstanceSeq = 0;
 
 export function useRankAccess(surface: RankAccessSurface): RankAccessDecision {
   const rank = useMyCoinRank();
@@ -84,6 +88,19 @@ export function useRankAccess(surface: RankAccessSurface): RankAccessDecision {
     () => decideForUser(surface, { gatesEnabled, verdict: effectiveVerdict, rank, plusActive: premium.isPremium, plusResolved: premium.accessResolved, existingUsersGated }),
     [surface, gatesEnabled, existingUsersGated, effectiveVerdict, rank, premium.isPremium, premium.accessResolved],
   );
+  const instanceRef = useRef(0);
+  if (instanceRef.current === 0) { rankAccessInstanceSeq += 1; instanceRef.current = rankAccessInstanceSeq; }
+  const lastSyncRef = useRef('');
+  useEffect(() => {
+    const locked = isSurfaceLocked(decision);
+    const signature = `${locked}|${decision.status}|${rank}|${effectiveVerdict?.reason ?? 'none'}|${gatesEnabled}|${premium.isPremium}|${premium.accessResolved}`;
+    if (lastSyncRef.current === signature) return;
+    lastSyncRef.current = signature;
+    console.log('[RANK-LOCK-SYNC]', JSON.stringify({ // guard-ok: одна строка на смену решения у потребителя, без идентификаторов
+      surface, instance: instanceRef.current, locked, status: decision.status, rank, verdict: effectiveVerdict?.reason ?? null,
+      isNew: effectiveVerdict?.isNew ?? null, gatesEnabled, plus: premium.isPremium, plusResolved: premium.accessResolved, atMs: Date.now(),
+    }));
+  }, [decision, effectiveVerdict, gatesEnabled, premium.accessResolved, premium.isPremium, rank, surface]);
   useEffect(() => {
     const locked = isSurfaceLocked(decision);
     const was = lastLocked.get(surface);

@@ -127,12 +127,16 @@ export function buildVideoPackDoc(args: Readonly<{
   keepSocial: boolean;
   /** R110: автоназвание (2–3 слова) на 9 языках из админки; нет — прежнее имя документа. */
   packTitles?: VideoPackTitles | null;
+  /** Название самого видео: запасное имя набора, когда админ оставил название пустым (владелец 05.11). */
+  videoTitleFallback?: string;
 }>): Record<string, unknown> {
   const { videoId: id, phrases, sourceName, actorUid, nowMs, keepSocial, packTitles } = args;
+  const videoNameFallback = cleanPackSourceTitle(args.videoTitleFallback ?? '').slice(0, 240);
   // зачем (владелец, журнал строка 5): sourceName = имя файла из админки («… 500 фраз.docx») — в витрину без хвоста файла.
   const videoTitle = cleanPackSourceTitle(sourceName).slice(0, 240);
   /** Маппер каталога отбрасывает набор с пустым titleRu — запасное имя обязательно. */
-  const fallbackTitle = videoTitle || 'Фразы из видео';
+  // зачем (слово владельца 05.11): «если не написать имя, а оставить пусто — набор называется именем видео»; нет и его — имя документа.
+  const fallbackTitle = videoNameFallback || videoTitle || 'Фразы из видео';
   // зачем (владелец 17.10, R110): название набора — короткое живое название по смыслу фраз, на всех языках витрины;
   // имя файла остаётся в videoTitle/origin (по нему узнаётся источник), но в витрину больше не идёт.
   const titles: VideoPackTitles = packTitles ?? {
@@ -171,7 +175,7 @@ export function buildVideoPackDoc(args: Readonly<{
     titleId: titles.Id,
     titleTr: titles.Tr,
     titlePl: titles.Pl,
-    titleSource: packTitles ? 'auto_or_admin' : 'source_name',
+    titleSource: packTitles ? 'auto_or_admin' : (videoNameFallback ? 'video_title' : 'source_name'),
     description: '',
     descriptionRu: '',
     descriptionUk: '',
@@ -222,7 +226,7 @@ export function buildVideoPackDoc(args: Readonly<{
  */
 async function syncVideoPack(
   db: FirebaseFirestore.Firestore,
-  args: Readonly<{ videoId: string; phrases: readonly VideoPhrase[]; sourceName: string; actorUid: string; nowMs: number; packTitles?: VideoPackTitles | null }>,
+  args: Readonly<{ videoId: string; phrases: readonly VideoPhrase[]; sourceName: string; actorUid: string; nowMs: number; packTitles?: VideoPackTitles | null; videoTitleFallback?: string }>,
 ): Promise<{ ok: boolean; reason?: string }> {
   const { videoId: id, phrases, sourceName, actorUid, nowMs, packTitles } = args;
   try {
@@ -245,9 +249,9 @@ async function syncVideoPack(
     const existing = await packRef.get();
     /** Лайки и добавления существующего набора переживают перепубликацию. */
     const keepSocial = existing.exists;
-    const payload = buildVideoPackDoc({ videoId: id, phrases, sourceName, actorUid, nowMs, keepSocial, packTitles });
+    const payload = buildVideoPackDoc({ videoId: id, phrases, sourceName, actorUid, nowMs, keepSocial, packTitles, videoTitleFallback: args.videoTitleFallback });
     const title = String(payload.titleRu);
-    console.log(`[VIDEO-PACK-TITLE] набор ${videoPackId(id)}: источник названия=${packTitles ? 'автоназвание/админ' : 'имя документа'}, ru="${title}"`);
+    console.log(`[VIDEO-PACK-TITLE] набор ${videoPackId(id)}: source=${packTitles ? 'pack' : (args.videoTitleFallback ? 'video' : 'document')} (pack=название набора админа, video=имя видео, document=имя документа), ru="${title}"`);
 
     await packRef.set(payload, { merge: true });
 
@@ -457,7 +461,9 @@ export const adminSaveVideoPhraseDraft = onCall({ region: REGION, enforceAppChec
   if (!sourceName) throw new HttpsError('invalid-argument', 'source_name_required');
   // R110: автоназвание набора (можно поправить руками) — хранится в черновике, публикация и пересборка берут его оттуда
   const packTitles = request.data?.packTitles === undefined ? null : normalizeVideoPackTitles(request.data?.packTitles);
-  console.log('[VIDEO-PACK-TITLE] save-draft', JSON.stringify({ videoId: id, hasTitles: Boolean(packTitles), ru: packTitles?.Ru ?? null }));
+  // зачем (владелец 05.11): пустое название набора → имя видео; админка присылает имя выбранного видео, оно хранится в версии
+  const videoTitle = cleanPackSourceTitle(String(request.data?.videoTitle ?? '')).slice(0, 240);
+  console.log('[VIDEO-PACK-TITLE] save-draft', JSON.stringify({ videoId: id, hasTitles: Boolean(packTitles), ru: packTitles?.Ru ?? null, videoTitle: videoTitle || null }));
   const requestedVersion = String(request.data?.versionId ?? '').trim();
   const draftId = requestedVersion || `draft-${Date.now()}`;
   if (!/^[0-9A-Za-z._-]{1,80}$/.test(draftId)) throw new HttpsError('invalid-argument', 'version_id_invalid');
@@ -468,7 +474,7 @@ export const adminSaveVideoPhraseDraft = onCall({ region: REGION, enforceAppChec
   await db.runTransaction(async (tx) => {
     const existing = await tx.get(version);
     if (existing.exists && existing.data()?.status === 'published') throw new HttpsError('failed-precondition', 'published_version_immutable');
-    tx.set(version, { schemaVersion: 1, videoId: id, status: 'draft', sourceName, ...(packTitles ? { packTitles } : {}), phrases, phraseCount: phrases.length, createdAtMs: existing.data()?.createdAtMs ?? now, updatedAtMs: now, updatedBy: actor.uid }, { merge: true });
+    tx.set(version, { schemaVersion: 1, videoId: id, status: 'draft', sourceName, ...(videoTitle ? { videoTitle } : {}), ...(packTitles ? { packTitles } : {}), phrases, phraseCount: phrases.length, createdAtMs: existing.data()?.createdAtMs ?? now, updatedAtMs: now, updatedBy: actor.uid }, { merge: true });
     tx.set(root, { videoId: id, draftVersion: draftId, draftPhraseCount: phrases.length, updatedAtMs: now, updatedBy: actor.uid }, { merge: true });
   });
   return { ok: true, videoId: id, versionId: draftId, phraseCount: phrases.length };
@@ -487,6 +493,7 @@ export const adminPublishVideoPhrases = onCall({ region: REGION, enforceAppCheck
   /** Имя источника из версии — оно же станет заголовком набора. */
   let publishedSourceName = '';
   let publishedPackTitles: VideoPackTitles | null = null;
+  let publishedVideoTitle = '';
   let alreadyPublished = false;
   await db.runTransaction(async (tx) => {
     const snapshot = await tx.get(version);
@@ -516,6 +523,7 @@ export const adminPublishVideoPhrases = onCall({ region: REGION, enforceAppCheck
       publishedAtMs = Number(data.publishedAtMs) || publishedAtMs;
       publishedSourceName = String(data.sourceName ?? '').trim();
       publishedPackTitles = normalizeVideoPackTitles(data.packTitles);
+      publishedVideoTitle = String(data.videoTitle ?? '').trim();
       return;
     }
     const now = Date.now();
@@ -526,6 +534,7 @@ export const adminPublishVideoPhrases = onCall({ region: REGION, enforceAppCheck
     publishedAtMs = now;
     publishedSourceName = String(data.sourceName ?? '').trim();
     publishedPackTitles = normalizeVideoPackTitles(data.packTitles);
+    publishedVideoTitle = String(data.videoTitle ?? '').trim();
   });
 
   /**
@@ -543,6 +552,7 @@ export const adminPublishVideoPhrases = onCall({ region: REGION, enforceAppCheck
     actorUid: actor.uid,
     nowMs: publishedAtMs,
     packTitles: publishedPackTitles,
+    videoTitleFallback: publishedVideoTitle,
   });
 
   return { ok: true, videoId: id, activeVersion: selectedVersion, alreadyPublished, packCreated: pack.ok, packReason: pack.reason ?? null };
@@ -657,6 +667,7 @@ export const adminBackfillVideoPacks = onCall({ region: REGION, enforceAppCheck:
           nowMs: now,
           // зачем: пересборка не должна затирать автоназвание названием файла
           packTitles: normalizeVideoPackTitles(data.packTitles),
+          videoTitleFallback: String(data.videoTitle ?? '').trim(), // зачем: пересборка тоже берёт имя видео, если название набора пустое
         });
         if (res.ok) created += 1;
         else skipped.push({ videoId: id, reason: res.reason ?? 'sync_failed' });

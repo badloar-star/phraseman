@@ -40,8 +40,11 @@ describe('Gustav French dev surface parity', () => {
     expect(diagnostic).toContain('const frenchDiagnosticBlocked = !diagnosticContentAvailableForTarget(studyTarget)');
     expect(diagnostic).toContain('loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20)');
 
-    expect(lessonMenu).toContain("const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr'");
-    expect(lessonMenu).toContain('unavailable: frenchAuxiliarySourceGated');
+    // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): раньше тест требовал саму заглушку (frenchAuxiliarySourceGated).
+    // Новый контракт: пункт без данных целевого языка скрыт (hidden), заглушки-подписи нет, английский источник не подставляется.
+    expect(lessonMenu).toContain("const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words')");
+    expect(lessonMenu).toContain('hidden: !targetVocabularyAvailable || !LESSONS_WITH_WORDS.has(lessonId)');
+    expect(lessonMenu).not.toContain('frenchAuxiliarySourceGated');
     expect(lessonMenu).not.toContain('hideEnglishOnlyAuxiliary');
   });
 

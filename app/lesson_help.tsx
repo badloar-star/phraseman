@@ -17,11 +17,9 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import type { Theme } from '../constants/theme';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { getLessonIntroScreens } from './lesson_data_all';
-import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
+import { storageStudyTarget } from './target_storage_keys';
 import type { IntroLine, LessonIntroScreen } from './lesson_data_types';
-import { frenchStudyActive } from './spanish_content_gate';
 import {
-  frenchLessonSupportGateCopy,
   lessonSupportContentAvailableForTarget,
 } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
@@ -322,9 +320,11 @@ function LessonHelp() {
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const tg = useMemo(() => ({ ...t, bgCard: glass.card, bgSurface: glass.opaqueControl, border: glass.line }), [t, glass.card, glass.opaqueControl, glass.line]);
   const { lang } = useLang();
-  const isFrenchTarget = frenchStudyActive(studyTarget);
+  // зачем (владелец 05.11: «теория во всех языках показывает английский»): имя историческое — теперь это «курс НЕ английский». Для такого курса
+  // теория = вступления самого курса (getLessonIntroScreens по языку курса); английский источник не показывается никогда.
+  const isFrenchTarget = storageStudyTarget(studyTarget) !== 'en';
   const frenchTheoryAllowed = !isFrenchTarget || lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
-  const frenchTheoryScreens = isFrenchTarget && frenchTheoryAllowed ? getFrenchLessonIntroScreens(lessonId) : undefined;
+  const frenchTheoryScreens = isFrenchTarget && frenchTheoryAllowed ? getLessonIntroScreens(lessonId, studyTarget) : undefined;
   const theory = getTheoryContent(lessonId);
   const theoryTitleEs = theoryTitleEsFor(lessonId, theory);
   const plannedLocale = plannedTheoryLocale(lang);
@@ -336,9 +336,12 @@ function LessonHelp() {
   const frenchTheoryTitle = frenchTheoryScreens?.[0]
     ? introTitleForUi(frenchTheoryScreens[0], lang)
     : undefined;
-  const frenchTheoryGateCopy = isFrenchTarget && !frenchTheoryAllowed
-    ? frenchLessonSupportGateCopy('lesson_theory', lang, lessonId)
-    : null;
+  // зачем (владелец 05.11): прямой переход на /lesson_help при курсе без своей теории не показывает ни английский текст, ни заглушку — возвращает в меню урока.
+  useEffect(() => {
+    if (!isFrenchTarget || frenchTheoryAllowed) return;
+    console.log('[LESSON-HELP] theory unavailable for target — back to menu', JSON.stringify({ lessonId, studyTarget })); // guard-ok: ранний выход с причиной
+    safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+  }, [isFrenchTarget, frenchTheoryAllowed, lessonId, studyTarget, router]);
   const unavailableTheoryTitle = triLang(lang, {
     uk: `Урок ${lessonId}`,
     ru: `Урок ${lessonId}`,
@@ -424,7 +427,7 @@ function LessonHelp() {
             style={{ color: glass.text, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginBottom: 16 }}
           >
             {isFrenchTarget
-              ? (frenchTheoryGateCopy?.title ?? frenchTheoryTitle ?? unavailableTheoryTitle)
+              ? (frenchTheoryTitle ?? unavailableTheoryTitle)
               : theory
               ? theoryTitleForLang(lessonId, theory, lang, theoryTitleEs)
               : unavailableTheoryTitle}
@@ -436,22 +439,11 @@ function LessonHelp() {
               text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español." /* i18n-ok: подсказка показывается только при испанском интерфейсе (showSpanishTheoryNotice) */
             />
           ) : null}
-          {isFrenchTarget && frenchTheoryGateCopy ? (
-            <Body
-              key="french-theory-source-gate"
-              t={tg}
-              f={f}
-              text={frenchTheoryGateCopy.body}
-            />
-          ) : isFrenchTarget && frenchTheoryScreens?.length ? (
+          {isFrenchTarget && frenchTheoryScreens?.length ? (
             renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, tg, lang, f)
           ) : isFrenchTarget ? (
-            <Body
-              key="unavailable"
-              t={tg}
-              f={f}
-              text={unavailableTheoryText}
-            />
+            // зачем: теории целевого языка нет — экран закрывается эффектом выше (пункт в меню скрыт), заглушку-текст не рисуем
+            null
           ) : plannedTheoryScreens?.length ? (
             renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, tg, lang, f)
           ) : plannedLocale ? (

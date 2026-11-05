@@ -10,10 +10,6 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import TonalSurface from '../components/TonalSurface';
-import {
-  frenchLessonSupportGateCopy,
-  lessonSupportContentAvailableForTarget,
-} from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -24,7 +20,7 @@ import TheoryLessonView, {
 import { LESSON1_THEORY } from './theory_content_lesson1';
 import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
 import { THEORY_FALLBACK, theoryContentKey, theoryEntryFor, theoryHasOwnText } from '../constants/i18n';
-import { lessonTheorySectionsSeenKey } from './target_storage_keys';
+import { lessonTheorySectionsSeenKey, storageStudyTarget } from './target_storage_keys';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { RowDivider } from '../components/v2/RowDivider';
 import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
@@ -1473,6 +1469,15 @@ function HintScreen() {
     console.log(`[I18N-FALLBACK] hint: lang=${lang} entry=${theoryEntry} → replace /lesson_help id=${lessonId}`); // guard-ok: ранний выход логируется
     router.replace({ pathname: '/lesson_help', params: { id: String(lessonId) } } as never);
   }, [theoryEntry, lang, lessonId, router]);
+  // зачем (владелец 05.11: «теория во всех языках показывает английский»): шпаргалка и теория этого экрана — английские; в курсе другого языка
+  // экран не показывает их никогда, а ведёт на /lesson_help (теория целевого языка, а если её нет — обратно в меню).
+  const hintForeignTarget = storageStudyTarget(studyTarget) !== 'en';
+  React.useEffect(() => {
+    if (!hintForeignTarget) return;
+    console.log(`[LESSON-HELP] hint: курс не английский (${String(studyTarget)}) → replace /lesson_help id=${lessonId}`); // guard-ok: ранний выход с причиной
+    router.replace({ pathname: '/lesson_help', params: { id: String(lessonId) } } as never);
+  }, [hintForeignTarget, studyTarget, lessonId, router]);
+  if (hintForeignTarget) return null;
   if (theoryEntry !== 'hint') return null;
 
   // Новая теория «дорогой минимализм» — для всех уроков с готовым контентом
@@ -1483,8 +1488,6 @@ function HintScreen() {
   }
 
   const hint = HINTS[lessonId] || HINTS[1];
-  const frenchHintBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
-  const frenchHintCopy = frenchHintBlocked ? frenchLessonSupportGateCopy('lesson_hint', lang, lessonId) : null;
 
   const hintSubtitle = triLang(lang, {
     ru: `${T.ru.lessonN(lessonId)} · Шпаргалка`,
@@ -1522,24 +1525,12 @@ function HintScreen() {
             {hintSubtitle}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-            {frenchHintCopy?.title ?? hintTitle}
+            {hintTitle}
           </Text>
         </View>
       </View>
       <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
-        {frenchHintCopy ? (
-          <TonalSurface radius={16} style={{ padding: 18, gap: 12 }}>
-            <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, alignItems: 'center', justifyContent: 'center' }}>
-              <Ionicons name="shield-checkmark-outline" size={30} color={t.accentText} />
-            </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-              {frenchHintCopy.title}
-            </Text>
-            <Text style={{ color: t.accentText, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
-              {frenchHintCopy.body}
-            </Text>
-          </TonalSurface>
-        ) : hint.render(t, lang, f)}
+        {hint.render(t, lang, f)}
         {/* зачем: у экрана две ветки. Через TheoryLessonView флаг есть, а
             «Шпаргалка» рисует правило урока напрямую — и там пожаловаться
             было нельзя, хотя контент тот же грамматический. */}
@@ -1555,7 +1546,7 @@ function HintScreen() {
           onPress={() => safeRouterBack(router, '/(tabs)/home' as any)}
         >
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-            {frenchHintCopy?.action ?? triLang(lang, {
+            {triLang(lang, {
               ru: 'Закрыть',
               uk: 'Закрити',
               en: 'Close',

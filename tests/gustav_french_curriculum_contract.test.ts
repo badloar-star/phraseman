@@ -5,7 +5,6 @@ import { FRENCH_CONTENT_SOURCE_GATE } from '../app/french_content_source_gate';
 import { getLessonIntroScreens } from '../app/lesson_data_all';
 import { FRENCH_DRAFT_INTRO_LESSON_IDS, FRENCH_INTRO_LESSON_IDS } from '../app/lesson_intro_screens_fr';
 import {
-  frenchLessonSupportGateCopy,
   lessonSupportContentAvailableForTarget,
   lessonSupportContentGateForTarget,
 } from '../app/lesson_support_target_gate';
@@ -103,32 +102,35 @@ describe('Gustav French curriculum contract', () => {
     expect(getLessonIntroScreens(19, 'fr')).toHaveLength(0);
   });
 
-  it('routes the theory screen through French target content and scoped theory progress', () => {
+  it('routes the theory screen through the course target content and scoped theory progress', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help.tsx'), 'utf8');
 
-    expect(source).toContain('getFrenchLessonIntroScreens');
-    expect(source).toContain('frenchStudyActive(studyTarget)');
+    // зачем (владелец 05.11: «теория во всех языках показывает английский», «нигде никаких заглушек»): теория не-английского курса — это
+    // вступления самого курса (getLessonIntroScreens по языку курса); текстов-заглушек нет, английский источник не подставляется.
+    expect(source).toContain("const isFrenchTarget = storageStudyTarget(studyTarget) !== 'en'");
     expect(source).toContain('shouldBlockLessonAccess(lessonId, studyTarget)');
     expect(source).toContain("lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)");
-    expect(source).toContain("frenchLessonSupportGateCopy('lesson_theory', lang, lessonId)");
-    expect(source).toContain('const frenchTheoryScreens = isFrenchTarget && frenchTheoryAllowed ? getFrenchLessonIntroScreens(lessonId) : undefined');
-    expect(source).toContain('renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, t, lang, f)');
+    expect(source).toContain('const frenchTheoryScreens = isFrenchTarget && frenchTheoryAllowed ? getLessonIntroScreens(lessonId, studyTarget) : undefined');
+    expect(source).toContain('renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, tg, lang, f)');
     expect(source).toContain('const plannedTheoryScreens = plannedLocale && !isFrenchTarget ? getLessonIntroScreens(lessonId, studyTarget) : undefined');
-    expect(source).toContain('renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, t, lang, f)');
-    expect(source).toContain('key="french-theory-source-gate"');
-    expect(source).toContain('text={frenchTheoryGateCopy.body}');
+    expect(source).toContain('renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, tg, lang, f)');
+    expect(source).not.toContain('frenchLessonSupportGateCopy');
+    expect(source).not.toContain('french-theory-source-gate');
     expect(source).toContain("updateTaskProgress('open_theory', 1, studyTarget)");
     expect(source).not.toContain('theory_xp_claimed');
   });
 
-  it('opens sourced French lesson theory while keeping hint support gated from English fallback', () => {
+  it('opens the course theory of every non-English course and never the English hint or theory', () => {
     const gateSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_support_target_gate.ts'), 'utf8');
 
     expect(gateSource).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys'");
-    expect(gateSource).toContain("storageStudyTarget(studyTarget) !== 'fr'");
+    expect(gateSource).toContain("if (target === 'en') return true;");
     expect(lessonSupportContentAvailableForTarget('en', 'lesson_theory', 1)).toBe(true);
     expect(lessonSupportContentAvailableForTarget('fr', 'lesson_theory', 1)).toBe(true);
-    expect(lessonSupportContentAvailableForTarget('fr', 'lesson_hint', 1)).toBe(false);
+    for (const target of ['fr', 'es', 'de', 'it'] as const) {
+      expect(lessonSupportContentAvailableForTarget(target, 'lesson_theory', 1)).toBe(true);
+      expect(lessonSupportContentAvailableForTarget(target, 'lesson_hint', 1)).toBe(false);
+    }
 
     expect(lessonSupportContentGateForTarget('fr', 'lesson_theory', 1)).toMatchObject({
       enabled: true,
@@ -146,22 +148,18 @@ describe('Gustav French curriculum contract', () => {
       reason: 'french_lesson_hint_source_gate',
       blockedRoutes: ['/hint'],
     });
-
-    expect(frenchLessonSupportGateCopy('lesson_theory', 'ru', 1).body).toContain('Английская теория урока 1 скрыта');
-    expect(frenchLessonSupportGateCopy('lesson_hint', 'uk', 1).body).toContain('Англійську шпаргалку уроку 1 приховано');
-    expect(JSON.stringify(frenchLessonSupportGateCopy('lesson_hint', 'ru', 1))).not.toMatch(/Français|Commencer|Astuce/);
+    expect(lessonSupportContentGateForTarget('es', 'lesson_hint', 1)).toMatchObject({ enabled: false, studyTarget: 'es' });
   });
 
-  it('keeps the standalone hint route behind the French support source gate', () => {
+  it('keeps the standalone hint route away from the English source for a non-English course', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'hint.tsx'), 'utf8');
 
     expect(source).toContain('useStudyTarget');
-    expect(source).toContain("lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId)");
-    expect(source).toContain("frenchLessonSupportGateCopy('lesson_hint', lang, lessonId)");
-    expect(source).toContain('const frenchHintCopy = frenchHintBlocked ?');
-    expect(source).toContain('frenchHintCopy ? (');
-    expect(source).toContain('TonalSurface');
-    expect(source).toContain(': hint.render(t, lang, f)');
+    expect(source).toContain("const hintForeignTarget = storageStudyTarget(studyTarget) !== 'en'");
+    expect(source).toContain('if (hintForeignTarget) return null;');
+    expect(source).not.toContain('frenchLessonSupportGateCopy');
+    expect(source).not.toContain('frenchHintCopy');
+    expect(source).toContain('hint.render(t, lang, f)');
   });
 
   it('extends the global French source gate with theory and hint evidence blockers', () => {

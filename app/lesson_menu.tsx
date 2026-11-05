@@ -38,6 +38,7 @@ import { LESSONS_WITH_WORDS, lessonWordCount, lessonWordKeys } from './lesson_wo
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
+import { vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import CircularProgress from '../components/CircularProgress';
 import {
   isLessonUnlockedByEarnedProgress,
@@ -49,7 +50,6 @@ import {
 } from './lesson_lock_system';
 import { effectiveLessonStarScore } from './lesson_star_score';
 import { perfScreenMount } from './perf-monitor';
-import { GlassAlertDialog } from '../components/v2/GlassAlertDialog';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { lessonListJustOpened, peekLessonGateDecision } from './lesson_premium_gate';
 import { isCourseLanguageLockedSync, resolveCourseLanguageLock } from './course_language_access';
@@ -74,7 +74,6 @@ import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '.
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import GoldBevel from '../components/GoldBevel';
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
-import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import {
@@ -431,12 +430,10 @@ function LessonMenu() {
   const lessonName = lessonNames[lessonId - 1] || defaultLessonTitle;
   const lessonCefrLabel = lessonCefrLabelForStudyTarget(lessonId, studyTarget);
   const cachedMenu = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
-  const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr';
-  const frenchLessonSourceGated = !frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId);
-  const frenchTheorySourceGated = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
+  // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): пункт без данных целевого языка скрыт, а не подписан текстом-заглушкой.
+  const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
+  const targetTheoryUnavailable = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
   const targetHasPrepositionDrill = hasLessonPrepositionDrillForTarget(lessonId, studyTarget);
-  const englishHasPrepositionDrill = hasLessonPrepositionDrillForTarget(lessonId, 'en');
-  const prepositionSourceGated = frenchAuxiliarySourceGated && englishHasPrepositionDrill && !targetHasPrepositionDrill;
 
   const [score,setScore] = useState(cachedMenu?.score ?? 0);
   const [scoreKnown, setScoreKnown] = useState(cachedMenu?.scoreKnown ?? false);
@@ -449,7 +446,6 @@ function LessonMenu() {
   // Кольцо теории отражает открытые разделы и выполненные задания.
   const [theoryProgressPct, setTheoryProgressPct] = useState(cachedMenu?.theoryProgressPct ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
-  const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null);
 
   // Состояние блокировки урока
   const [isLessonLocked, setIsLessonLocked] = useState(true);
@@ -564,7 +560,7 @@ function LessonMenu() {
   const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(() => peekPrepHintSeen() !== true);
 
   const showReplayCta = finishedOnce && !lessonLaunchBlocked;
-  const canShowLessonPrepHint = !frenchAuxiliarySourceGated && !frenchTheorySourceGated;
+  const canShowLessonPrepHint = !targetTheoryUnavailable;
   // зачем (координатор 12.10, Сверка evidence/lesson_menu_lang): где пункт теории скрыт (английский — своей теории нет), совет не должен
   // отсылать к «Theory» — только к словам урока.
   const theoryHiddenForLang = theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu') === 'hidden';
@@ -959,56 +955,42 @@ function LessonMenu() {
   // строки): каждый обработчик старта пишет вход, каждое решение со значениями, каждый ранний выход и итог навигации.
   const lessonMenuTrace = useCallback((event: string, extra: Record<string, unknown> = {}) => {
     console.log(`[LESSON-MENU] ${event} ${JSON.stringify({
-      lessonId, studyTarget, lockStateLoaded, isLessonLocked, lockReason, lessonLaunchBlocked, frenchLessonSourceGated,
+      lessonId, studyTarget, lockStateLoaded, isLessonLocked, lockReason, lessonLaunchBlocked,
       energy, bonusEnergy, energyReady: menuEnergyReady, energyUnlimited: menuEnergyUnlimited, ...extra,
     })}`);
-  }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked, lockReason, lessonLaunchBlocked, frenchLessonSourceGated, energy, bonusEnergy, menuEnergyReady, menuEnergyUnlimited]);
+  }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked, lockReason, lessonLaunchBlocked, energy, bonusEnergy, menuEnergyReady, menuEnergyUnlimited]);
 
   const openLessonFromMenu = useCallback(() => {
     lessonMenuTrace('primary:continue');
     if (lessonLaunchBlocked) { lessonMenuTrace('primary:exit', { reason: 'launch_blocked' }); return; }
-    if (frenchLessonSourceGated) {
-      lessonMenuTrace('primary:exit', { reason: 'french_source_gated', shown: 'soon_sheet' });
-      setSoonOpen('frenchLesson');
-      return;
-    }
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage'));
     if (!navOnce(`lesson_menu:open:${lessonId}`)) { lessonMenuTrace('primary:exit', { reason: 'double_tap' }); return; }
     lessonMenuTrace('primary:navigate', { to: '/lesson1', mode: 'push', from: 'continue', plan: planLessonParams });
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
-  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, lessonMenuTrace, router, studyTarget]);
+  }, [lessonId, lessonLaunchBlocked, lessonMenuTrace, router, studyTarget]);
 
   const handleStartLesson = useCallback(() => {
     lessonMenuTrace('primary:start');
     if (lessonLaunchBlocked) { lessonMenuTrace('primary:exit', { reason: 'launch_blocked' }); return; }
-    if (frenchLessonSourceGated) {
-      lessonMenuTrace('primary:exit', { reason: 'french_source_gated', shown: 'soon_sheet' });
-      setSoonOpen('frenchLesson');
-      return;
-    }
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage_2'));
     // push (не replace): meню урока должно остаться в стеке, чтобы «назад» из lesson1
     // возвращал на lesson_menu, а не проваливался на список уроков (tabs/lessons).
     if (!navOnce(`lesson_menu:open:${lessonId}`)) { lessonMenuTrace('primary:exit', { reason: 'double_tap' }); return; }
     lessonMenuTrace('primary:navigate', { to: '/lesson1', mode: 'push', from: 'start', plan: planLessonParams });
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
-  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, lessonMenuTrace, router, studyTarget]);
+  }, [lessonId, lessonLaunchBlocked, lessonMenuTrace, router, studyTarget]);
 
   const handleContinueLesson = openLessonFromMenu;
 
   const handleReplayIntroAndContinue = useCallback(() => {
     if (lessonLaunchBlocked) return;
-    if (frenchLessonSourceGated) {
-      setSoonOpen('frenchLesson');
-      return;
-    }
     if (!navOnce(`lesson_menu:replay:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап «Показать вступление» — один урок
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage_3'));
     router.push({
       pathname: '/lesson1',
       params: { id: lessonId, from: 'lesson_menu', replayIntro: '1', replayIntroAt: String(Date.now()) },
     });
-  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, router, studyTarget]);
+  }, [lessonId, lessonLaunchBlocked, router, studyTarget]);
 
   // handleLockedLessonPress удалён: при закрытом уроке экран меню не рисуется,
   // и нажать эту плитку стало невозможно (ранний return уводит на пейвол или
@@ -1034,19 +1016,7 @@ function LessonMenu() {
   }[] = [
     {
       testID: 'lesson-menu-primary',
-      label: frenchLessonSourceGated
-        ? triLang(lang, {
-  ru: 'Загрузка пакета',
-  uk: 'Завантаження пакета',
-  es: 'Material pendiente',
-  en: 'Loading pack',
-  "pt-BR": 'Carregando pacote',
-  vi: 'Nội dung đang chờ duyệt',
-  id: 'Materi sedang ditinjau',
-  tr: 'Paket yükleniyor',
-  pl: 'Ładowanie zestawu',
-})
-        : showReplayCta
+      label: showReplayCta
         ? triLang(lang, {
   ru: 'Перепройти',
   uk: 'Пройти знову',
@@ -1059,61 +1029,33 @@ function LessonMenu() {
   pl: 'Powtórz',
 })
         : (isStarted ? s.lessonMenu.continue : s.lessonMenu.start),
-      sub: frenchLessonSourceGated
-        ? triLang(lang, {
-  ru: 'Этот урок пока готовится. Скоро откроется.',
-  uk: 'Цей урок ще готується. Скоро відкриється.',
-  es: 'Esta lección se está preparando. Pronto estará disponible.',
-  en: 'This lesson is being prepared. It will open soon.',
-  "pt-BR": 'Esta lição está sendo preparada. Em breve estará disponível.',
-  vi: 'Bài học này đang được chuẩn bị. Sắp ra mắt.',
-  id: 'Pelajaran ini sedang disiapkan. Segera tersedia.',
-  tr: 'Bu ders hazırlanıyor. Yakında açılacak.',
-  pl: 'Ta lekcja jest w przygotowaniu. Wkrótce będzie dostępna.',
-})
-        : showReplayCta
+      sub: showReplayCta
         ? `${progress} / 50  ·  ${lessonMenuStarCount(score)} / 3 ★`
         : isStarted
           ? `${progress} / 50  ·  ${lessonMenuStarCount(score)} / 3 ★`
           : '',
-      icon: frenchLessonSourceGated
-        ? 'shield-checkmark-outline'
-        : isLessonLocked
+      icon: isLessonLocked
         ? 'lock-closed'
         : showReplayCta
           ? 'refresh-circle-outline'
           : (isStarted ? 'play-circle-outline' : 'rocket-outline'),
-      pct: frenchLessonSourceGated || showReplayCta ? undefined : Math.round(progress / 50 * 100),
+      pct: showReplayCta ? undefined : Math.round(progress / 50 * 100),
       // Ветка isLessonLocked убрана: до отрисовки этой плитки при закрытом уроке
       // дело больше не доходит — ранний return выше уводит с экрана.
-      onPress: frenchLessonSourceGated
-          ? () => setSoonOpen('frenchLesson')
-        : showReplayCta
+      onPress: showReplayCta
           ? handleStartLesson
           : (isStarted
               ? handleContinueLesson
               : handleStartLesson),
-      onLongPress: isStarted && !frenchLessonSourceGated && !isLessonLocked && !showReplayCta ? handleReplayIntroAndContinue : undefined,
+      onLongPress: isStarted && !isLessonLocked && !showReplayCta ? handleReplayIntroAndContinue : undefined,
       disabled: lessonLaunchBlocked,
-      unavailable: frenchLessonSourceGated,
     },
     {
       testID: 'lesson-menu-words',
+      hidden: !targetVocabularyAvailable || !LESSONS_WITH_WORDS.has(lessonId),
       // зачем (Сверка learn-020, макет learn.html B): в русском интерфейсе строка называется «Слова урока» (в остальных языках прежние названия — подсказка ниже ссылается на них)
       label: triLang(lang, { ru: 'Слова урока', uk: s.lessonMenu.vocab, en: s.lessonMenu.vocab, es: s.lessonMenu.vocab, 'pt-BR': s.lessonMenu.vocab, vi: s.lessonMenu.vocab, id: s.lessonMenu.vocab, tr: s.lessonMenu.vocab, pl: s.lessonMenu.vocab }),
-      sub: frenchAuxiliarySourceGated
-        ? triLang(lang, {
-            ru: 'Французский словарь урока пока готовится. Английские слова скрыты.',
-            uk: 'Французький словник уроку ще готується. Англійські слова приховано.',
-            es: 'El vocabulario francés de esta lección se está preparando.',
-            en: 'The French vocabulary for this lesson is being prepared. English words are hidden.',
-            'pt-BR': 'O vocabulário francês desta lição está sendo preparado.',
-            vi: 'Từ vựng tiếng Pháp của bài này đang được chuẩn bị.',
-            id: 'Kosakata bahasa Prancis pelajaran ini sedang disiapkan.',
-            tr: 'Bu dersin Fransızca kelime listesi hazırlanıyor.',
-            pl: 'Francuskie słownictwo do tej lekcji jest przygotowywane.',
-          })
-        : LESSONS_WITH_WORDS.has(lessonId)
+      sub: LESSONS_WITH_WORDS.has(lessonId)
         ? (() => {
             const total = lessonWordCount(lessonId);
             if (total > 0) {
@@ -1152,45 +1094,25 @@ function LessonMenu() {
             tr: 'Bu dersin kelimeleri',
             pl: 'Słowa z tej lekcji',
           }),
-      icon: frenchAuxiliarySourceGated ? 'shield-checkmark-outline' as const : 'book-outline' as const,
+      icon: 'book-outline' as const,
       pct: (() => {
-        if (frenchAuxiliarySourceGated) return undefined;
         if (!LESSONS_WITH_WORDS.has(lessonId)) return undefined;
         const total = lessonWordCount(lessonId);
         return total > 0 ? Math.round(wordsLearned / total * 100) : undefined;
       })(),
       onPress: () => {
-        if (frenchAuxiliarySourceGated) {
-          setSoonOpen('vocab');
-          return;
-        }
         if (LESSONS_WITH_WORDS.has(lessonId)) {
           if (!navOnce(`lesson_menu:words:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один экран слов
           router.push({ pathname: '/lesson_words', params: { id: lessonId, tab: 'train' } });
-        } else {
-          setSoonOpen('vocab');
         }
       },
-      unavailable: frenchAuxiliarySourceGated,
     },
     {
       testID: 'lesson-menu-irregular-verbs',
-      hidden: !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
+      hidden: !targetVocabularyAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
       // зачем (Сверка learn-020, макет learn.html B2): «Неправильные глаголы» (ru); остальные языки — прежние строки
       label: triLang(lang, { ru: 'Неправильные глаголы', uk: s.lessonMenu.verbs, en: s.lessonMenu.verbs, es: s.lessonMenu.verbs, 'pt-BR': s.lessonMenu.verbs, vi: s.lessonMenu.verbs, id: s.lessonMenu.verbs, tr: s.lessonMenu.verbs, pl: s.lessonMenu.verbs }),
-      sub: frenchAuxiliarySourceGated
-        ? triLang(lang, {
-            ru: 'Французские глаголы урока пока готовятся. Английский список скрыт.',
-            uk: 'Французькі дієслова уроку ще готуються. Англійський список приховано.',
-            es: 'Los verbos franceses de esta lección se están preparando.',
-            en: 'The French verbs for this lesson are being prepared. The English list is hidden.',
-            'pt-BR': 'Os verbos franceses desta lição estão sendo preparados.',
-            vi: 'Động từ tiếng Pháp của bài này đang được chuẩn bị.',
-            id: 'Kata kerja bahasa Prancis pelajaran ini sedang disiapkan.',
-            tr: 'Bu dersin Fransızca fiilleri hazırlanıyor.',
-            pl: 'Francuskie czasowniki do tej lekcji są przygotowywane.',
-          })
-        : LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
+      sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
         ? (() => {
             const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
             return total > 0
@@ -1229,31 +1151,23 @@ function LessonMenu() {
             pl: 'Czasowniki nieregularne z tej lekcji',
           }),
       // зачем (Сверка learn-020, learn.html menuRow): значки строк по макету — глаголы «swap», предлоги «key», теория «list».
-      icon: frenchAuxiliarySourceGated ? 'shield-checkmark-outline' as const : 'swap-horizontal-outline' as const,
+      icon: 'swap-horizontal-outline' as const,
       pct: (() => {
-        if (frenchAuxiliarySourceGated) return undefined;
         if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return undefined;
         const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
         return total > 0 ? Math.round(irregularLearned / total * 100) : undefined;
       })(),
       onPress: () => {
         hapticTap();
-        if (frenchAuxiliarySourceGated) {
-          setSoonOpen('verbs');
-          return;
-        }
         if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
           if (!navOnce(`lesson_menu:irregular:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один экран глаголов
           router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } });
-        } else {
-          setSoonOpen('verbs');
         }
       },
-      unavailable: frenchAuxiliarySourceGated,
     },
     {
       testID: 'lesson-menu-prepositions',
-      hidden: !targetHasPrepositionDrill && !prepositionSourceGated,
+      hidden: !targetHasPrepositionDrill,
       label: triLang(lang, {
   ru: 'Тренажёр предлогов',
   uk: 'Тренажер прийменників',
@@ -1288,16 +1202,10 @@ function LessonMenu() {
             tr: 'Bu dersin edatları',
             pl: 'Przyimki z tej lekcji',
           }),
-      icon: prepositionSourceGated ? 'shield-checkmark-outline' as const : 'key-outline' as const,
-      pct: prepositionSourceGated
-        ? undefined
-        : prepositionTotal > 0 ? Math.round(prepositionAnswered / prepositionTotal * 100) : undefined,
+      icon: 'key-outline' as const,
+      pct: prepositionTotal > 0 ? Math.round(prepositionAnswered / prepositionTotal * 100) : undefined,
       onPress: () => {
         hapticTap();
-        if (prepositionSourceGated) {
-          setSoonOpen('prepositions');
-          return;
-        }
         if (targetHasPrepositionDrill) {
           if (menuEnergyReady && !menuEnergyUnlimited && energy + bonusEnergy <= 0) {
             emitAppEvent('action_toast', {
@@ -1312,40 +1220,13 @@ function LessonMenu() {
           }
           if (!navOnce(`lesson_menu:prepositions:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — один тренажёр предлогов
           router.push({ pathname: '/preposition_drill', params: { id: lessonId } });
-        } else {
-          setSoonOpen('prepositions');
         }
       },
-      unavailable: prepositionSourceGated,
     },
     {
       testID: 'lesson-menu-theory',
-      label: frenchTheorySourceGated
-        ? triLang(lang, {
-            ru: 'Теория',
-            uk: 'Теорія',
-            es: 'Teoría',
-            en: 'Theory',
-            "pt-BR": 'Teoria',
-            vi: 'Lý thuyết đang được duyệt',
-            id: 'Teori sedang ditinjau',
-            tr: 'Teori',
-            pl: 'Teoria',
-          })
-        : s.lessonMenu.theory,
-      sub: frenchTheorySourceGated
-        ? triLang(lang, {
-            ru: 'Теория этого урока пока готовится. Скоро откроется.',
-            uk: 'Теорія цього уроку ще готується. Скоро відкриється.',
-            es: 'La teoría de esta lección se está preparando. Pronto estará disponible.',
-            en: 'The theory for this lesson is being prepared. It will open soon.',
-            "pt-BR": 'A teoria desta lição está sendo preparada. Em breve estará disponível.',
-            vi: 'Lý thuyết của bài học này đang được chuẩn bị. Sắp ra mắt.',
-            id: 'Teori pelajaran ini sedang disiapkan. Segera tersedia.',
-            tr: 'Bu dersin teorisi hazırlanıyor. Yakında açılacak.',
-            pl: 'Teoria tej lekcji jest w przygotowaniu. Wkrótce będzie dostępna.',
-          })
-        : triLang(lang, {
+      label: s.lessonMenu.theory,
+      sub: triLang(lang, {
   ru: 'Правила и пояснения',
   uk: 'Правила та пояснення',
   es: 'Reglas y explicaciones',
@@ -1356,24 +1237,19 @@ function LessonMenu() {
   tr: 'Kurallar ve açıklamalar',
   pl: 'Zasady i wyjaśnienia',
 }),
-      icon: frenchTheorySourceGated ? 'shield-checkmark-outline' as const : 'list-outline' as const,
+      icon: 'list-outline' as const,
       // Кольцо отражает просмотренные разделы теории и не гейтит закрытие урока.
-      pct: frenchTheorySourceGated ? undefined : theoryProgressPct,
+      pct: theoryProgressPct,
       onPress: () => {
         hapticTap();
-        if (frenchTheorySourceGated) {
-          setSoonOpen('frenchTheory');
-          return;
-        }
         // зачем (координатор 12.10): маршрут теории по языку интерфейса — pt-BR/vi/id/tr/pl в lesson_help (их язык), en скрыт до решения владельца.
         const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu');
         if (entry === 'hidden') return;
         if (!navOnce(`lesson_menu:theory:${lessonId}`)) return; // зачем (аудит R58 #25, 15.10): двойной тап — одна теория
         router.push({ pathname: entry === 'hint' ? '/hint' : '/lesson_help', params: { id: lessonId } });
       },
-      unavailable: frenchTheorySourceGated,
       // Своей теории для языка нет (английский) — пункт не показываем; список фильтрует hidden, пустой строки нет.
-      hidden: theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu') === 'hidden',
+      hidden: targetTheoryUnavailable || theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu') === 'hidden',
     },
   ];
 
@@ -1549,97 +1425,6 @@ function LessonMenu() {
           ранний return выше уводит на пейвол (премиум) или назад в список
           (уровень/прогресс), где причину называет модал списка. Мёртвый модал
           удалён, чтобы не выглядел работающим запасным путём. */}
-      {/* зачем (Сверка overlays-runtime 030–033, 05.10): «Скоро» — окно по центру (`.or-alert`) с белой «Закрыть»,
-          а не шторка выбора со стрелкой «›». */}
-      <GlassAlertDialog
-        visible={soonOpen !== null}
-        title={triLang(lang, {
-  ru: 'Скоро',
-  uk: 'Скоро',
-  en: 'Coming soon',
-  es: 'Próximamente',
-  "pt-BR": 'Em breve',
-  vi: 'Sắp có',
-  id: 'Segera hadir',
-  tr: 'Yakında',
-  pl: 'Wkrótce',
-})}
-        message={
-          soonOpen === 'frenchLesson'
-            ? triLang(lang, {
-  ru: 'Этот урок пока готовится. Мы откроем его, когда материал будет полностью готов.',
-  uk: 'Цей урок ще готується. Ми відкриємо його, коли матеріал буде повністю готовий.',
-  en: 'This lesson is still being prepared. We’ll unlock it once the material is fully ready.',
-  es: 'Esta lección se está preparando. La abriremos cuando el material esté listo.',
-  "pt-BR": 'Esta lição está sendo preparada. Vamos abri-la quando o material estiver pronto.',
-  vi: 'Bài học này đang được chuẩn bị. Chúng tôi sẽ mở khi nội dung sẵn sàng.',
-  id: 'Pelajaran ini sedang disiapkan. Akan kami buka saat materinya siap.',
-  tr: 'Bu ders hazırlanıyor. Materyal tamamen hazır olunca açacağız.',
-  pl: 'Ta lekcja jest w przygotowaniu. Otworzymy ją, gdy materiał będzie gotowy.',
-})
-            : soonOpen === 'frenchTheory'
-              ? triLang(lang, {
-  ru: 'Теория этого урока пока готовится. Мы откроем её, когда материал будет полностью готов.',
-  uk: 'Теорія цього уроку ще готується. Ми відкриємо її, коли матеріал буде повністю готовий.',
-  en: 'This lesson’s theory is still being prepared. We’ll unlock it once the material is fully ready.',
-  es: 'La teoría de esta lección se está preparando. La abriremos cuando el material esté listo.',
-  "pt-BR": 'A teoria desta lição está sendo preparada. Vamos abri-la quando o material estiver pronto.',
-  vi: 'Lý thuyết của bài học này đang được chuẩn bị. Chúng tôi sẽ mở khi nội dung sẵn sàng.',
-  id: 'Teori pelajaran ini sedang disiapkan. Akan kami buka saat materinya siap.',
-  tr: 'Bu dersin teorisi hazırlanıyor. Materyal tamamen hazır olunca açacağız.',
-  pl: 'Teoria tej lekcji jest w przygotowaniu. Otworzymy ją, gdy materiał będzie gotowy.',
-})
-            : soonOpen === 'vocab'
-            ? triLang(lang, {
-  ru: 'Словарь для этого урока скоро появится',
-  uk: 'Словник для цього уроку ще готується',
-  en: 'This lesson’s vocabulary is still being prepared.',
-  es: 'El vocabulario de esta lección aún está en preparación.',
-  "pt-BR": 'O vocabulário desta lição ainda está sendo preparado.',
-  vi: 'Từ vựng cho bài học này vẫn đang được chuẩn bị.',
-  id: 'Kosakata untuk pelajaran ini masih disiapkan.',
-  tr: 'Bu dersin kelime listesi hâlâ hazırlanıyor.',
-  pl: 'Słownictwo do tej lekcji jest jeszcze przygotowywane.',
-})
-            : soonOpen === 'verbs'
-              ? triLang(lang, {
-  ru: 'Материал для этого урока ещё готовится',
-  uk: 'Матеріал для цього уроку ще готується',
-  en: 'This lesson’s material is still being prepared.',
-  es: 'El material de esta lección aún está en preparación.',
-  "pt-BR": 'O material desta lição ainda está sendo preparado.',
-  vi: 'Tài liệu cho bài học này vẫn đang được chuẩn bị.',
-  id: 'Materi untuk pelajaran ini masih disiapkan.',
-  tr: 'Bu dersin materyali hâlâ hazırlanıyor.',
-  pl: 'Materiał do tej lekcji jest jeszcze przygotowywany.',
-})
-              : soonOpen === 'prepositions'
-                ? triLang(lang, {
-  ru: 'Тренажёр предлогов временно недоступен.',
-  uk: 'Тренажер прийменників тимчасово недоступний.',
-  en: 'The preposition trainer is temporarily unavailable.',
-  es: 'La práctica de preposiciones no está disponible por ahora.',
-  "pt-BR": 'O treino de preposições não está disponível no momento.',
-  vi: 'Phần luyện giới từ hiện chưa khả dụng.',
-  id: 'Latihan preposisi sementara tidak tersedia.',
-  tr: 'Edat alıştırması şu anda kullanılamıyor.',
-  pl: 'Trening przyimków jest chwilowo niedostępny.',
-})
-              : ''
-        }
-        actions={[{ label: triLang(lang, {
-  ru: 'Закрыть',
-  uk: 'Закрити',
-  en: 'Close',
-  es: 'Cerrar',
-  "pt-BR": 'Fechar',
-  vi: 'Đóng',
-  id: 'Tutup',
-  tr: 'Kapat',
-  pl: 'Zamknij',
-}), onPress: () => setSoonOpen(null) }]}
-        onRequestClose={() => setSoonOpen(null)}
-      />
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>

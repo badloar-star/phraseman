@@ -6,9 +6,10 @@ import {
   assertFrenchLessonIntroApproved,
   frenchLessonActivationState,
 } from '../app/french_content_source_gate';
-import { getLessonData, getLessonIntroScreens } from '../app/lesson_data_all';
+import { getLessonData } from '../app/lesson_data_all';
 import {
   FRENCH_DRAFT_INTRO_LESSON_IDS,
+  getFrenchLessonIntroScreens,
   validateFrenchIntroScreenShape,
 } from '../app/lesson_intro_screens_fr';
 
@@ -45,7 +46,9 @@ describe('Gustav French source gate', () => {
 
   it('does not activate bundled draft French phrases even though the runtime server pack is approved', () => {
     expect(getLessonData(1).some((phrase) => phrase.french || phrase.wordsFr?.length)).toBe(false);
-    expect(getLessonIntroScreens(1, 'fr').every((screen, index) => (
+    // зачем (05.11): getLessonIntroScreens(…, 'fr') теперь отдаёт вступления классического курса (intro.json) с другой формой; форму «богатых»
+    // французских экранов проверяем у них самих.
+    expect((getFrenchLessonIntroScreens(1) ?? []).every((screen, index) => (
       validateFrenchIntroScreenShape(screen, 1, index).length === 0
     ))).toBe(true);
   });

@@ -117,7 +117,8 @@ describe('Gustav French vocabulary target gate', () => {
     expect(source).not.toContain('prepositionDrillPerfectKey');
     expect(source).toContain('shouldBlockLessonAccess(lessonId, studyTarget)');
     expect(source).toContain('getLessonPrepositionPack(lessonId, studyTarget)');
-    expect(source).toContain('preposition-drill-french-source-gate-back');
+    // зачем (владелец 05.11): экран-заглушка с кнопкой «назад» убран — закрытый раздел возвращает назад без текста.
+    expect(source).not.toContain('preposition-drill-french-source-gate-back');
     expect(source).not.toContain("getLessonPrepositionPack(lessonId)");
     expect(source).not.toContain('preposition_drill_perfect_lesson');
   });

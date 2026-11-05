@@ -21,9 +21,10 @@ describe('Gustav French lesson entry point gate', () => {
   it('lets lesson_menu primary, continue, and intro replay open /lesson1 for French', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
 
-    expect(source).toContain("import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate'");
+    // зачем (владелец 05.11): запуск урока больше не закрывается заглушкой «урок готовится» — модал и ветка frenchLessonSourceGated удалены.
     expect(source).toContain("import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate'");
-    expect(source).toContain('const frenchLessonSourceGated = !frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)');
+    expect(source).not.toContain('frenchLessonSourceGated');
+    expect(source).not.toContain('frenchLessonRuntimeAvailableForTarget');
 
     const sharedOpenSlice = source.slice(
       source.indexOf('const openLessonFromMenu = useCallback'),
@@ -48,41 +49,43 @@ describe('Gustav French lesson entry point gate', () => {
     expect(replayIntroSlice).toContain("pathname: '/lesson1'");
   });
 
-  it('keeps French auxiliary sections from opening English-only helpers as substitutes', () => {
+  it('hides auxiliary sections of a non-English course instead of stubbing them or opening English-only helpers', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
 
-    expect(source).toContain("const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr'");
-    expect(source).toContain("const englishHasPrepositionDrill = hasLessonPrepositionDrillForTarget(lessonId, 'en')");
+    // зачем (владелец 05.11): контракт был «заглушка есть» — теперь «заглушки нет, пункт скрыт, английского источника для не-en нет».
+    expect(source).toContain("const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words')");
     expect(source).not.toContain('hideEnglishOnlyAuxiliary');
+    expect(source).not.toContain('frenchAuxiliarySourceGated');
+    expect(source).not.toContain('prepositionSourceGated');
+    expect(source).not.toContain('frenchTheorySourceGated');
 
     const wordsSlice = source.slice(
       source.indexOf("testID: 'lesson-menu-words'"),
       source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
     );
-    expect(wordsSlice).toContain('unavailable: frenchAuxiliarySourceGated');
-    expect(wordsSlice.indexOf("if (frenchAuxiliarySourceGated)")).toBeLessThan(
-      wordsSlice.indexOf("router.push({ pathname: '/lesson_words'"),
-    );
+    expect(wordsSlice).toContain('hidden: !targetVocabularyAvailable || !LESSONS_WITH_WORDS.has(lessonId)');
+    expect(wordsSlice).not.toContain('unavailable:');
+    expect(wordsSlice).not.toContain("setSoonOpen('vocab')");
 
     const verbsSlice = source.slice(
       source.indexOf("testID: 'lesson-menu-irregular-verbs'"),
       source.indexOf("testID: 'lesson-menu-prepositions'"),
     );
-    expect(verbsSlice).toContain('hidden: !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
-    expect(verbsSlice).toContain('unavailable: frenchAuxiliarySourceGated');
-    expect(verbsSlice.indexOf("if (frenchAuxiliarySourceGated)")).toBeLessThan(
-      verbsSlice.indexOf("router.push({ pathname: '/lesson_irregular_verbs'"),
-    );
+    expect(verbsSlice).toContain('hidden: !targetVocabularyAvailable || !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)');
+    expect(verbsSlice).not.toContain('unavailable:');
+    expect(verbsSlice).not.toContain("setSoonOpen('verbs')");
 
     const prepositionsSlice = source.slice(
       source.indexOf("testID: 'lesson-menu-prepositions'"),
       source.indexOf("testID: 'lesson-menu-theory'"),
     );
-    expect(prepositionsSlice).toContain('hidden: !targetHasPrepositionDrill && !prepositionSourceGated');
-    expect(prepositionsSlice).toContain('unavailable: prepositionSourceGated');
-    expect(prepositionsSlice.indexOf('if (prepositionSourceGated)')).toBeLessThan(
-      prepositionsSlice.indexOf("router.push({ pathname: '/preposition_drill'"),
-    );
+    expect(prepositionsSlice).toContain('hidden: !targetHasPrepositionDrill,');
+    expect(prepositionsSlice).not.toContain('unavailable:');
+    expect(prepositionsSlice).not.toContain("setSoonOpen('prepositions')");
+
+    const theorySlice = source.slice(source.indexOf("testID: 'lesson-menu-theory'"));
+    expect(theorySlice).toContain('targetTheoryUnavailable ||');
+    expect(theorySlice.slice(0, theorySlice.indexOf('];'))).not.toContain("setSoonOpen('frenchTheory')");
   });
 
 });

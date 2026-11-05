@@ -1686,21 +1686,11 @@ const LessonContent = React.memo(function LessonContent({
 
           {/* Theory Button */}
           {/* зачем (координатор 12.10): своей теории для языка интерфейса нет (английский) — кнопку не показываем; pt-BR/vi/id/tr/pl — в lesson_help на их языке. */}
-          {workshopTitle === undefined && (lessonTheorySupportBlocked || theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1') !== 'hidden') && (
+          {workshopTitle === undefined && !lessonTheorySupportBlocked && theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1') !== 'hidden' && (
           <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); if (!navOnce(`lesson1:theory:${topicLessonId}`)) return; /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1'); if (entry === 'hidden') return; router.push(entry === 'hint' ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
-            <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={glass.text} />
+            <Ionicons name="book-outline" size={26} color={glass.text} />
             <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>
-              {lessonTheorySupportBlocked ? triLang(lang, {
-                ru: 'Теория',
-                uk: 'Теорія',
-                en: 'Theory',
-                es: 'Teoría',
-                'pt-BR': 'Teoria',
-                vi: 'Lý thuyết',
-                id: 'Teori',
-                tr: 'Teori',
-                pl: 'Teoria',
-              }) : s.lesson.theory}
+              {s.lesson.theory}
             </Text>
           </LessonPressable>
           )}

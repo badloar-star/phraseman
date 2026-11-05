@@ -54,7 +54,6 @@ import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contrac
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { irregularVerbsGlobalKey, type RuntimeStudyTarget } from './target_storage_keys';
 import {
-  frenchVocabularyGateCopy,
   vocabularyContentAvailableForTarget,
 } from './vocabulary_target_gate';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
@@ -1141,32 +1140,17 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   );
 }
 
-function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack: () => void }) {
-  const { liquidGlassThemeId } = useTheme();
-  const glass = liquidGlassTokens(liquidGlassThemeId);
-  const copy = frenchVocabularyGateCopy('irregular_verbs', lang);
-
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28, paddingBottom: 40 }}>
-      <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
-        <Ionicons name="shield-checkmark-outline" size={26} color={glass.text} />
-      </View>
-      <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 18 }}>
-        {copy.title}
-      </Text>
-      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 }}>
-        {copy.body}
-      </Text>
-      <PracticeCta
-        glass={glass}
-        size="small"
-        testID="lesson-irregular-verbs-french-source-gate-back"
-        label={copy.action}
-        onPress={onBack}
-        style={{ marginTop: 22 }}
-      />
-    </View>
-  );
+function FrenchIrregularVerbsUnavailable({ onBack }: { lang: Lang; onBack: () => void }) {
+  // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): у курса нет раздела на его языке — в меню урока пункт скрыт, а прямой заход
+  // (старая ссылка) не рисует текст-заглушку, а возвращает назад. Английский источник не показывается никогда.
+  const leftRef = useRef(false);
+  useEffect(() => {
+    if (leftRef.current) return;
+    leftRef.current = true;
+    console.log('[LESSON-SUPPORT] FrenchIrregularVerbsUnavailable: раздела на языке курса нет — возврат назад'); // guard-ok: ранний выход с причиной
+    onBack();
+  }, [onBack]);
+  return null;
 }
 
 // ── Root ──────────────────────────────────────────────────────────────────────

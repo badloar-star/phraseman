@@ -55,7 +55,7 @@ describe('мастерская фраз: экран урока (lesson1)', () =>
     expect(src).toContain('const hasIntroScreens = !workshopActive && getLessonIntroScreens(lessonId, studyTarget).length > 0;');
     expect(src).toContain('if (!workshopActive && !introShownRaw && !isDevLessonIntroSkip()');
     expect(src).toContain('const lessonHintSupportBlocked = workshopActive || !lessonSupportContentAvailableForTarget(');
-    expect(src).toContain('{workshopTitle === undefined && (lessonTheorySupportBlocked ||');
+    expect(src).toContain('{workshopTitle === undefined && !lessonTheorySupportBlocked && theoryEntryFor(');
     expect(src).toContain('if (workshop.closed) safeRouterBack(router,');
   });
 

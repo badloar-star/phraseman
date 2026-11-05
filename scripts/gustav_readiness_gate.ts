@@ -635,8 +635,9 @@ async function main(): Promise<void> {
     !frenchDevSurfaceParitySources.dailyPhrase.includes("if (studyTarget === 'fr')"),
     frenchDevSurfaceParitySources.diagnostic.includes('const frenchDiagnosticBlocked = !diagnosticContentAvailableForTarget(studyTarget)'),
     frenchDevSurfaceParitySources.diagnostic.includes('FrenchDiagnosticUnavailable'),
-    frenchDevSurfaceParitySources.lessonMenu.includes("const frenchAuxiliarySourceGated = studyTarget === 'fr'"),
-    frenchDevSurfaceParitySources.lessonMenu.includes('unavailable: frenchAuxiliarySourceGated'),
+    // зачем (владелец 05.11: «нигде не должно быть никаких заглушек»): контракт «заглушка есть» заменён на «заглушки нет, пункт без данных скрыт».
+    frenchDevSurfaceParitySources.lessonMenu.includes("const targetVocabularyAvailable = vocabularyContentAvailableForTarget(studyTarget, 'lesson_words')"),
+    !frenchDevSurfaceParitySources.lessonMenu.includes('frenchAuxiliarySourceGated'),
     !frenchDevSurfaceParitySources.lessonMenu.includes('hideEnglishOnlyAuxiliary'),
     frenchDevSurfaceParitySources.test.includes("describe('Gustav French dev surface parity'"),
   ];

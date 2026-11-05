@@ -5,15 +5,16 @@ import {
   isFrenchLessonIntroApproved,
 } from './french_content_source_gate';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { classicCourseActiveFor, getClassicIntroScreens } from './classic_course_phrases';
 
 export type LessonSupportGateSurface = 'lesson_theory' | 'lesson_hint';
 
 export type LessonSupportContentGate = {
   enabled: boolean;
-  studyTarget: 'en' | 'fr';
+  studyTarget: 'en' | 'fr' | 'es' | 'de' | 'it';
   surface: LessonSupportGateSurface;
   lessonId?: number;
-  reason?: 'french_lesson_theory_source_gate' | 'french_lesson_hint_source_gate';
+  reason?: 'french_lesson_theory_source_gate' | 'french_lesson_hint_source_gate' | 'target_lesson_theory_source_gate' | 'target_lesson_hint_source_gate';
   blockedRoutes: string[];
   requiredEvidence: string[];
 };
@@ -36,16 +37,22 @@ function evidenceForSurface(surface: LessonSupportGateSurface): string[] {
     : [...FRENCH_LESSON_THEORY_EVIDENCE];
 }
 
+/**
+ * зачем (владелец 05.11: «нигде не должно быть заглушек», «теория во всех языках показывает английский»):
+ * английский источник теории и шпаргалки НИКОГДА не показывается в курсе другого языка. Для не-английского курса
+ * теорию открывают вступления самого курса (classic intro.json; для французского — ещё одобренные французские
+ * экраны). Шпаргалки на языке курса нет — пункт скрыт (hidden), а не подписан «скоро».
+ */
 export function lessonSupportContentAvailableForTarget(
   studyTarget: RuntimeStudyTarget | undefined,
   surface: LessonSupportGateSurface,
   lessonId?: number,
 ): boolean {
-  if (storageStudyTarget(studyTarget) !== 'fr') return true;
-  if (surface === 'lesson_theory' && lessonId != null) {
-    return isFrenchLessonIntroApproved(lessonId);
-  }
-  return false;
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'en') return true;
+  if (surface !== 'lesson_theory' || lessonId == null) return false;
+  if (classicCourseActiveFor(target) && (getClassicIntroScreens(lessonId, target)?.length ?? 0) > 0) return true;
+  return target === 'fr' && isFrenchLessonIntroApproved(lessonId);
 }
 
 export function lessonSupportContentGateForTarget(
@@ -54,13 +61,25 @@ export function lessonSupportContentGateForTarget(
   lessonId?: number,
 ): LessonSupportContentGate {
   const enabled = lessonSupportContentAvailableForTarget(studyTarget, surface, lessonId);
-  if (storageStudyTarget(studyTarget) !== 'fr') {
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'en') {
     return {
       enabled,
       studyTarget: 'en',
       surface,
       lessonId,
       blockedRoutes: [],
+      requiredEvidence: [],
+    };
+  }
+  if (target !== 'fr') {
+    return {
+      enabled,
+      studyTarget: target as 'es' | 'de' | 'it',
+      surface,
+      lessonId,
+      reason: surface === 'lesson_hint' ? 'target_lesson_hint_source_gate' : 'target_lesson_theory_source_gate',
+      blockedRoutes: surface === 'lesson_hint' ? ['/hint'] : ['/lesson_help'],
       requiredEvidence: [],
     };
   }

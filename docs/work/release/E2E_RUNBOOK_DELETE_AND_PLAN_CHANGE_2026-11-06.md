@@ -31,6 +31,13 @@
 
 ## 3. Q8: замена месячной подписки Plus на годовую (Android, тестер Google Play)
 
+**Проверка кодом (06.11): годовая заменяет месячную, а не создаёт вторую подписку.**
+- Экран оплаты — `app/paywall_purchase.ts:1301-1324`: Android + выбран годовой → `Purchases.getCustomerInfo()` (1304) → `decideAndroidPlanChange` (1305) → при активной месячной `googleProductChangeInfoFor(old, PRORATION_MODE.DEFERRED)` (1313) → `Purchases.purchasePackage(pkg, null, googleChange)` (1324): параметры замены идут ТРЕТЬИМ аргументом.
+- Управление подпиской — `app/manage_subscription_purchase.ts:75-84`: тот же третий аргумент (84), `DEFERRED` (81).
+- Чистое решение — `app/android_plan_change.ts:31-42` (`decideAndroidPlanChange`: замена только на Android, целевой годовой, активна месячная; иначе обычная покупка с причиной в журнале).
+- Режим `DEFERRED`: смена на ближайшем продлении, без двойного списания и без возврата за остаток.
+- Тесты: `tests/android_plan_change_2026_11_06.test.ts`, `tests/aa_s2d_plus_transfer.test.ts`.
+
 Условие: аккаунт №2 или №3 внесён в Play Console как лицензионный тестер (решение координатора 06.11); сборка с c6eb21823; покупки идут тестовой картой Google («тестовая покупка» в окне оплаты). **Если в окне Google Play нет пометки «тестовая покупка / test card» — НЕ подтверждать.**
 
 | Шаг | Действие | Ждём | Журнал |

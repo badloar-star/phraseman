@@ -33,3 +33,4 @@ Owner: «5 · ВХОД»
 Убрать добавленные console.log.
 Governance-ID: TG-6688A3EEB2CE
 Governance-ID: TG-C4396CD4463A
+Governance-ID: TG-59203EA73920

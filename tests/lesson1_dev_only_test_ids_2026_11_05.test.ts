@@ -16,6 +16,15 @@ describe('lesson1: тестовые id плиток только в dev', () => 
     expect(source).not.toMatch(/testID=\{isCorrectOption \? 'lesson1-word-option-correct'/);
   });
 
+  test('скрытый эталон ответа для Maestro существует только при __DEV__', () => {
+    const idx = source.indexOf('testID="lesson1-expected-answer"');
+    expect(idx).toBeGreaterThan(0);
+    const before = source.slice(Math.max(0, idx - 200), idx);
+    expect(before).toContain('{__DEV__ && phrase ? (');
+    expect(source.slice(idx, idx + 400)).toContain('phraseCanonicalAnswer(phrase, studyTarget)');
+    expect(source.match(/lesson1-expected-answer/g)).toHaveLength(1);
+  });
+
   test('в релизной ветке testID не задаётся', () => {
     const idx = source.indexOf("testID={__DEV__ ? (isCorrectOption ? 'lesson1-word-option-correct'");
     const line = source.slice(idx, source.indexOf('\n', idx));

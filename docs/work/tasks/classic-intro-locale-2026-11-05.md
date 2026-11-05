@@ -1,6 +1,7 @@
 Governance-ID: TG-599187487F25
 Governance-ID: TG-INTRO-LOCALE-0511
 Governance-ID: TG-D6C8809BD272
+Governance-ID: TG-50C038B005BB
 
 # Task packet: вступление урока классического курса — язык по локали интерфейса (находка Maestro)
 
@@ -24,3 +25,6 @@ Governance-ID: TG-D6C8809BD272
 
 ## Rollback
 `git revert` коммита.
+
+## Дополнение 05.11 (dev-эталон для Maestro)
+Только `__DEV__`: скрытый Text `lesson1-expected-answer` с эталоном ответа на экране урока (`phraseCanonicalAnswer`) для шагов с вводом текста/речью; Maestro берёт его `copyTextFrom` и вводит `inputText`. В релизе узла нет.

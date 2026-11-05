@@ -1226,6 +1226,17 @@ const LessonContent = React.memo(function LessonContent({
             pl: settings.hardMode ? 'Wpisz zdanie:' : 'Ułóż zdanie:',
           })}
         </Text>
+        {/* зачем (координатор 05.11, Maestro-проход урока до итога): ТОЛЬКО dev — скрытый эталон ответа для шагов с вводом текста/речью
+            (copyTextFrom → inputText); в релизе узла нет, ничто не подсказывает ответ */}
+        {__DEV__ && phrase ? (
+          <Text
+            testID="lesson1-expected-answer"
+            accessibilityLabel={phraseCanonicalAnswer(phrase, studyTarget)}
+            style={{ position: 'absolute', width: 1, height: 1, opacity: 0.01 }}
+          >
+            {phraseCanonicalAnswer(phrase, studyTarget)}
+          </Text>
+        ) : null}
         <Pressable onPress={status === 'result' ? undefined : handleBgTap} style={{ width: '100%' }}>
           <Text
             testID="lesson1-source-prompt"

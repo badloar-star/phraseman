@@ -283,7 +283,9 @@ export function getClassicTheoryView(target: unknown, lessonId: number, locale: 
     // «ошибка → верно», таблицы форм и справок — они остаются в данных и вернутся, когда Теория перепишет их простыми словами.
     const blocks: TheoryBlock[] = [{ kind: 'body', text: section.body }];
     if (section.examples.length > 0) {
-      blocks.push({ kind: 'examples', examples: section.examples.slice(0, 6).map((e) => ({ en: e.target, translation: e.translation })) });
+      // зачем (владелец 06.11): под фразой — «Читается: …» (ru/uk), как у теории нового формата; данные — modules/classic-courses/<lang>/say.json
+      const readingLabel = locale === 'uk' ? 'Читається' : 'Читается';
+      blocks.push({ kind: 'examples', examples: section.examples.slice(0, 6).map((e) => ({ en: e.target, translation: e.translation, ...(e.reading ? { reading: `${readingLabel}: ${e.reading}` } : {}) })) });
     }
     const first = section.examples[0];
     const sampleLine = first ? `${first.target} — ${first.translation}` : null;

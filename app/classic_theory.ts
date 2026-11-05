@@ -7,7 +7,8 @@ import { lazyContent } from './content_lazy';
 import { classicCourseActiveFor } from './classic_course_phrases';
 import { getRawClassicPhrases, rawPhraseTranslation } from './classic_raw_phrases';
 
-export type ClassicTheoryExample = Readonly<{ target: string; translation: string }>;
+// зачем (владелец 06.11, «Читается» и в теории всех курсов): reading — чтение фразы кириллицей с ударением на языке интерфейса (только ru/uk) из modules/classic-courses/<lang>/say.json
+export type ClassicTheoryExample = Readonly<{ target: string; translation: string; reading?: string }>;
 export type ClassicTheorySection = Readonly<{
   title?: string;
   body: string;
@@ -40,6 +41,23 @@ const filesOf = lazyContent('classic_theory_files', () => ({
   /* eslint-enable @typescript-eslint/no-require-imports */
 }));
 
+type SayFile = Readonly<{ ru?: Readonly<Record<string, string>>; uk?: Readonly<Record<string, string>> }>;
+const sayFilesOf = lazyContent('classic_say_files', () => ({
+  /* eslint-disable @typescript-eslint/no-require-imports */
+  es: require('../modules/classic-courses/es/say.json') as SayFile,
+  fr: require('../modules/classic-courses/fr/say.json') as SayFile,
+  de: require('../modules/classic-courses/de/say.json') as SayFile,
+  it: require('../modules/classic-courses/it/say.json') as SayFile,
+  /* eslint-enable @typescript-eslint/no-require-imports */
+}));
+
+/** Чтение фразы курса (полный id «es:10:01») для ru/uk; для остальных языков интерфейса — undefined (строки «Читается» нет). */
+export function classicReadingFor(target: 'es' | 'fr' | 'de' | 'it', phraseId: string, locale: string): string | undefined {
+  if (locale !== 'ru' && locale !== 'uk') return undefined;
+  const value = sayFilesOf()[target]?.[locale]?.[phraseId];
+  return typeof value === 'string' && value.trim() ? value.trim() : undefined;
+}
+
 const str = (v: unknown): string => (typeof v === 'string' ? v : '');
 const obj = (v: unknown): Record<string, unknown> => (v && typeof v === 'object' ? (v as Record<string, unknown>) : {});
 const arr = (v: unknown): unknown[] => (Array.isArray(v) ? v : []);
@@ -64,7 +82,8 @@ function examplesFor(target: 'es' | 'fr' | 'de' | 'it', lessonId: number, ids: u
     const p = phrases.find((x) => x.id === id || x.id.endsWith(`:${id}`));
     if (!p) continue;
     // зачем: перевод на ЯЗЫК ИНТЕРФЕЙСА (включая английский); раньше en в данных терялся и англоязычный интерфейс получал русский перевод.
-    out.push({ target: p.target, translation: rawPhraseTranslation(p, locale) });
+    const reading = classicReadingFor(target, p.id, locale);
+    out.push({ target: p.target, translation: rawPhraseTranslation(p, locale), ...(reading ? { reading } : {}) });
   }
   return out;
 }

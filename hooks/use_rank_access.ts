@@ -8,13 +8,15 @@
  */
 import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { usePremium } from '../components/PremiumContext';
-import { getRemoteBool } from '../app/remote_flags';
+import { getRemoteBool, getRemoteNumber } from '../app/remote_flags';
 import { readRankGateUserVerdict, type RankGateUserVerdict } from '../app/rank_gates_new_user';
 import { useMyCoinRank } from './use_my_coin_rank';
 import type { RankAccessDecision, RankAccessSurface } from '../shared/rank_access_contract';
 import { setDialogueRankShiftActive } from '../app/dialogue_rank_shift';
 import { decideForUser, isSurfaceLocked } from '../app/rank_gate_decision';
 import { subscribeAccountGeneration } from '../app/account_generation';
+import { useActiveAccountOwner } from './use_active_account_owner';
+import { isRankGateForcedNew } from '../app/rank_gate_uid_hash';
 
 export { decideForUser, isSurfaceLocked };
 export type { RankAccessDecision };
@@ -72,10 +74,15 @@ export function useRankAccess(surface: RankAccessSurface): RankAccessDecision {
   const gatesEnabled = getRemoteBool('rank_gates_enabled') !== false;
   const existingUsersGated = getRemoteBool('rank_gates_existing_users') !== false;
   // зачем (владелец 30.10): сдвиг требований диалогов «+1, потолок 19» включён только для нового пользователя при включённых гейтах
-  setDialogueRankShiftActive(gatesEnabled && verdict?.isNew === true);
+  // зачем (владелец 05.11 07:1x): аккаунт, чей хэш uid лежит в remote config (rank_gates_force_new_uid_hash), считается «новым» принудительно — поверх липкой отметки, которая в сторадже НЕ меняется; прогресс не трогаем
+  const owner = useActiveAccountOwner();
+  const forcedNew = isRankGateForcedNew(owner, getRemoteNumber('rank_gates_force_new_uid_hash'));
+  const effectiveVerdict: RankGateUserVerdict | null = forcedNew ? { isNew: true, reason: 'force_new' } : verdict;
+  useEffect(() => { if (forcedNew) console.log('[RANK-GATE] verdict force-new', JSON.stringify({ owner: owner ? `${owner.slice(0, 6)}…` : null, storedVerdict: verdict?.reason ?? null })); }, [forcedNew, owner, verdict]); // guard-ok: одна строка на смену
+  setDialogueRankShiftActive(gatesEnabled && effectiveVerdict?.isNew === true);
   const decision = useMemo(
-    () => decideForUser(surface, { gatesEnabled, verdict, rank, plusActive: premium.isPremium, plusResolved: premium.accessResolved, existingUsersGated }),
-    [surface, gatesEnabled, existingUsersGated, verdict, rank, premium.isPremium, premium.accessResolved],
+    () => decideForUser(surface, { gatesEnabled, verdict: effectiveVerdict, rank, plusActive: premium.isPremium, plusResolved: premium.accessResolved, existingUsersGated }),
+    [surface, gatesEnabled, existingUsersGated, effectiveVerdict, rank, premium.isPremium, premium.accessResolved],
   );
   useEffect(() => {
     const locked = isSurfaceLocked(decision);

@@ -34,7 +34,7 @@ export type RankGateUserVerdict = Readonly<{
   isNew: boolean;
   reason:
     | 'new' | 'no_timestamp' | 'before_release' | 'prior_progress' | 'clock_skew' | 'read_failed' | 'sticky_new' | 'sticky_old'
-    | 'old_account' | 'account_age_unknown' | 'no_owner' | 'owner_changed';
+    | 'old_account' | 'account_age_unknown' | 'no_owner' | 'owner_changed' | 'force_new';
 }>;
 
 /** Причины, при которых решение НЕ фиксируется (неизвестное не должно стать липким). */

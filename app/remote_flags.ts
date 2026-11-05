@@ -23,6 +23,8 @@ import {
 import type { SoftUpsellTrigger } from './soft_upsell_core';
 
 export type RemoteNumberKey =
+  // зачем (владелец 05.11): хэш uid аккаунта, который показывается «новым» принудительно (0 — выкл); считает app/rank_gate_uid_hash.ts
+  | 'rank_gates_force_new_uid_hash'
   | 'onboarding_ab_welcome_pct'
   | 'onboarding_ab_builder_pct'
   | 'paywall_v2_pct'
@@ -265,6 +267,7 @@ export type RemoteTextKey =
   | 'onboarding_enabled_steps_v1';
 
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
+  rank_gates_force_new_uid_hash: 0,
   // зачем (PM-081, D06): запас энергии ровно 5, пульт его не меняет.
   // PM-083 (BIBLE «+1 за 10 минут»; D06): 0→5 занимает 50 минут.
   onboarding_ab_welcome_pct: 0,
@@ -450,6 +453,7 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
 const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
+  rank_gates_force_new_uid_hash: { min: 0, max: 2147483647 },
   // Product invariant (PM-081, D06/D07): capacity is exactly 5, no bonuses.
   // PM-083 (D06): интервал фиксирован — пульт не ускоряет и не замедляет.
   onboarding_ab_welcome_pct: { min: 0, max: 100 },
@@ -562,7 +566,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
   // promo/payment, and premium entitlement. All other product decisions stay
   // local even if legacy keys are still present in an old Firestore document.
   const allowedNumbers = new Set<RemoteNumberKey>([
-    'auth_link_cache_ttl_ms', 'phone_state_cutover_percent', 'paywall_v2_pct',
+    'rank_gates_force_new_uid_hash', 'auth_link_cache_ttl_ms', 'phone_state_cutover_percent', 'paywall_v2_pct',
     'app_messages_feed_rev', 'global_broadcast_rev', 'home_survey_rev',
   ]);
   const allowedBools = new Set<RemoteBoolKey>([

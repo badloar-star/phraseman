@@ -5,6 +5,7 @@ import { getAvatarByIndex } from '../constants/avatars';
 import { coinRankRowForDisplay, coinRankSourceForSize, isValidCoinRank } from '../app/coin_rank_table_v1';
 import { PlusRingOverlay } from './plus/PlusAvatarRing';
 import type { PlusRingKind } from './plus/plus_ring_spec';
+import type { SubscriptionTier } from '../app/subscription_tier';
 
 const EXEMPT_COLOR_1 = '#273449'; // theme-exempt: заглушка аватара и подложка — тёмная плашка под изображением
 
@@ -45,6 +46,8 @@ interface Props {
   plusKind?: PlusRingKind;
   /** Цвет поверхности под аватаром — для обводки значка ◆; нет — фон экрана темы. */
   plusSurface?: string;
+  /** Уровень подписки для кольца: plus (месячная) / ultra (годовая); по умолчанию plus. */
+  plusTier?: SubscriptionTier;
   /** Префикс журнала загрузки монеты (например «[PIK-IMG]»): время до onLoad, ранг, размер, откуда ассет. Без префикса — тихо. */
   loadTrace?: string;
 }
@@ -89,7 +92,7 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace, plus, plusKind, plusSurface }: Props) {
+function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace, plus, plusKind, plusSurface, plusTier = 'plus' }: Props) {
   const mountedAtRef = useRef(Date.now()); // отсчёт журнала загрузки монеты — от монтирования, а не от последней перерисовки
   // зачем (PM-076, D62 п.2): параллельный путь к старому показу — если ранг монеты
   // известен, рисуем монету ранга из единой таблицы. Старые ветки ниже не трогаем:
@@ -123,7 +126,7 @@ function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace,
             console.warn(loadTrace, JSON.stringify({ stage: 'coin:error', rank: coinRank, ms: Date.now() - traceStartedAt, variant: coinPick.variant, scheme: assetScheme(coinPick.source), error: String(event?.error ?? '').slice(0, 80) })); // guard-ok: ошибка загрузки — причина в журнале, заглушка остаётся
           } : undefined}
         />
-        {plus === true ? <PlusRingOverlay size={size} kind={plusKind} surface={plusSurface} /> : null}
+        {plus === true ? <PlusRingOverlay size={size} kind={plusKind} surface={plusSurface} tier={plusTier} /> : null}
       </View>
     );
   }
@@ -135,7 +138,7 @@ function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace,
   return (
     <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
       {content}
-      {plus === true ? <PlusRingOverlay size={size} kind={plusKind} surface={plusSurface} /> : null}
+      {plus === true ? <PlusRingOverlay size={size} kind={plusKind} surface={plusSurface} tier={plusTier} /> : null}
     </View>
   );
 }

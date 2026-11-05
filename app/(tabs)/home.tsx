@@ -6,6 +6,7 @@ import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium } from '../../components/PremiumContext';
+import { useSubscriptionTier } from '../../components/plus/use_subscription_tier';
 import { useHomeTrialRow } from '../../hooks/use_home_trial_row';
 import { WelcomeGate } from '../../components/onboarding/WelcomeGate';
 import { useTabFocusTick, useTabNav } from '../TabContext';
@@ -1154,6 +1155,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         pl: "Cześć,",
     }));
     const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
+    // зачем (владелец 06.11, Plus/Ultra): кольцо на Главной у годовой подписки — Ultra (другой цвет и значок), у месячной — Plus.
+    const homeSubTier = useSubscriptionTier() ?? 'plus';
     useEffect(() => {
         // зачем (аудит скорости R1, 12.10): captureAccountGeneration() каждый раз отдаёт НОВЫЙ объект, поэтому вызов в эффекте ниже на монтировании
         // менял state (тот же поколение/аккаунт/фаза, другая идентичность) → полный лишний рендер всей Главной и перезапуск эффекта счётчика ошибок
@@ -2809,6 +2812,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     onOpenProfile={stableOpenHomeProfile}
                     // зачем (ЗАМОК ВЛАДЕЛЬЦА 28.10 20:05, «два кольца сразу не может быть»): кольцо Plus рисует сам слот и только когда нет непросмотренной истории
                     plusSurface={tone === 'scene' && (isPremium || isVip || isPro) ? (surface ?? homeV2Palette.bg) : null}
+                    plusTier={homeSubTier}
                     profileLabel={triLang(lang, { ru: 'Мой профиль', uk: 'Мій профіль', en: 'My profile', es: 'Mi perfil', 'pt-BR': 'Meu perfil', vi: 'Hồ sơ của tôi', id: 'Profil saya', tr: 'Profilim', pl: 'Mój profil' })}
                   />
                 )}

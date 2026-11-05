@@ -20,6 +20,7 @@ import { STORY_RING_COIN, STORY_RING_SLOT } from './story_ring_constants';
 import type { StoryOrigin } from './StoryViewer';
 import { storyText } from './story_strings';
 import { PlusAvatarRing } from '../plus/PlusAvatarRing';
+import type { SubscriptionTier } from '../../app/subscription_tier';
 
 const LOG = '[STORY-RING]';
 const AVATAR_LOG = '[AVATAR-TAP]';
@@ -61,11 +62,13 @@ export type StoryAvatarSlotProps = Readonly<{
    * зачем (ЗАМОК ВЛАДЕЛЬЦА 28.10 20:05, «два кольца сразу не может быть»): рисуется ТОЛЬКО когда нет непросмотренной истории — иначе остаётся одно красное кольцо историй.
    */
   plusSurface?: string | null;
+  /** Уровень подписки для кольца на Главной: plus (месячная) / ultra (годовая). По умолчанию plus. */
+  plusTier?: SubscriptionTier;
 }>;
 
 type ViewerState = Readonly<{ events: StoryEventList; origin: StoryOrigin | null }>;
 
-function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenProfile, profileLabel, plusSurface = null }: StoryAvatarSlotProps) {
+function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenProfile, profileLabel, plusSurface = null, plusTier = 'plus' }: StoryAvatarSlotProps) {
   const { enabled, unseenCount, playback, stories, markSeen } = useStoryEvents();
   const buttonRef = useRef<React.ElementRef<typeof TouchableOpacity> | null>(null);
   const [viewer, setViewer] = useState<ViewerState | null>(null);
@@ -190,7 +193,7 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
           accessibilityLabel={ring ? storyText(lang, 'ringLabel') : profileLabel}
           hitSlop={6}
         >
-          {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : plusSurface !== null ? <PlusAvatarRing plus size={STORY_RING_SLOT} surface={plusSurface}>{coin(STORY_RING_SLOT)}</PlusAvatarRing> : coin(STORY_RING_SLOT)}
+          {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : plusSurface !== null ? <PlusAvatarRing plus tier={plusTier} size={STORY_RING_SLOT} surface={plusSurface}>{coin(STORY_RING_SLOT)}</PlusAvatarRing> : coin(STORY_RING_SLOT)}
         </TouchableOpacity>
       </View>
       {viewer && Viewer ? (

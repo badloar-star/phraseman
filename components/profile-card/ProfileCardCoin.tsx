@@ -15,6 +15,7 @@ import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import type { ProfileCardLook } from '../../app/profile_card_styles';
 import { LinearGradient } from '../SafeLinearGradient';
 import { PlusRingOverlay } from '../plus/PlusAvatarRing';
+import type { SubscriptionTier } from '../../app/subscription_tier';
 import { gradientPoints } from './profile_card_looks';
 import { useLoop } from './useLoop';
 import { useShadowGlass } from '../v2/ShadowSurface';
@@ -28,6 +29,8 @@ type Props = Readonly<{
   testID?: string;
   /** У человека есть Plus (владелец 21.10, реестр №6): кольцо 6 + зазор 5 и значок ◆ 46 у монеты. Кольцо внутри плавающего корня — «летает» вместе с монетой. */
   plus?: boolean;
+  /** Уровень подписки для кольца визитки: plus (месячная) / ultra (годовая); по умолчанию plus. */
+  plusTier?: SubscriptionTier;
   /** Цвет карточки — для обводки значка ◆. */
   plusSurface?: string;
 }>;
@@ -122,7 +125,7 @@ export function GoldRing({ size }: { size: number }) {
   );
 }
 
-function ProfileCardCoin({ look, rank, size, animate, testID, plus, plusSurface }: Props) {
+function ProfileCardCoin({ look, rank, size, animate, testID, plus, plusTier = 'plus', plusSurface }: Props) {
   const float = useLoop(5500, animate && FLOAT_LOOKS.has(look), { yoyo: true, restAt: 0 });
   const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -7 * float.value }] }));
   const shade = useCoinShade();
@@ -150,7 +153,7 @@ function ProfileCardCoin({ look, rank, size, animate, testID, plus, plusSurface 
       </View>
       {rank !== null && SHEEN_LOOKS.has(look) ? <Sheen rank={rank} size={size} animate={animate} /> : null}
       {/* зачем: «Обсидиан» держит монету в своём золотом кольце (GoldRing) — второе кольцо рядом не рисуем, значок ◆ остаётся */}
-      {plus === true ? <PlusRingOverlay size={size} kind="card" surface={plusSurface} hideRing={look === 'obs'} testID="profile-card-plus-ring" /> : null}
+      {plus === true ? <PlusRingOverlay size={size} kind="card" tier={plusTier} surface={plusSurface} hideRing={look === 'obs'} testID="profile-card-plus-ring" /> : null}
     </Animated.View>
   );
 }

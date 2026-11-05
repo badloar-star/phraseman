@@ -80,13 +80,20 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   useEffect(() => {
     if (!tourOn) { setTourRects(null); return undefined; }
     let alive = true;
-    const timer = setTimeout(() => {
+    // зачем (Эмулятор 05.11, кадры tour-p1..p3: «светлые блоки» вместо окон подсветки — замер на 60 мс шёл ДО раскладки башни и прокрутки, окна ставились в верх экрана):
+    // меряем после раскладки (250 мс), затем перемеряем (900 мс) и обновляем окна, только если блоки сдвинулись.
+    let last = '';
+    const measure = (phase: string) => {
       void Promise.all([measureBlock(headRef), measureBlock(pillRef), measureBlock(railRef), measureBlock(topRef), measureBlock(counterRef)]).then(([head, pill, rail, top, counter]) => {
-        console.log('[PEAK-TOUR]', 'measured', JSON.stringify({ head: head !== null, pill: pill !== null, rail: rail !== null, top: top !== null, counter: counter !== null })); // guard-ok: итог замера
-        if (alive) setTourRects({ head, pill, rail, top, counter });
+        const next = { head, pill, rail, top, counter };
+        const key = JSON.stringify(next);
+        console.log('[PEAK-TOUR]', 'measured', JSON.stringify({ phase, changed: key !== last, head, top, counter })); // guard-ok: итог замера (диагностика окон подсветки)
+        if (alive && key !== last) { last = key; setTourRects(next); }
       });
-    }, 60); // зачем: один кадр на раскладку, потом замер
-    return () => { alive = false; clearTimeout(timer); };
+    };
+    const t1 = setTimeout(() => measure('layout'), 250);
+    const t2 = setTimeout(() => measure('settled'), 900);
+    return () => { alive = false; clearTimeout(t1); clearTimeout(t2); };
   }, [tourOn]);
   const finishTour = useCallback(() => { if (forcedPage === null) gate.finish(); else setTourRects(null); }, [forcedPage, gate]);
   const [sheetOpen, setSheetOpen] = useState(false);

@@ -1,0 +1,30 @@
+# зачем (координатор 05.11): «Фраза дня» — до ответа только фраза и варианты, перевод появляется после ответа; для en-интерфейса при курсе английский перевода и кнопки звука нет совсем.
+# Запуск: maestro --device emulator-5562 test -e LANGUI=en|ru --test-output-dir <папка> 09_phrase_of_day.yaml
+appId: app.phraseman
+name: 09 phrase of day
+---
+- launchApp:
+    stopApp: true
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+- extendedWaitUntil:
+    visible: "Today|Сегодня|Сьогодні|Пропустить|Пропустити|Skip|Start lesson 1|Continue lesson 1"
+    timeout: 300000
+- runFlow:
+    file: _dev_state.yaml
+    env:
+      LINK: "onboarding=done&plus=off&newbie=on&uiLang=${LANGUI}"
+- tapOn:
+    text: "Пропустить|Пропустити|Skip"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    id: "home-v2-phrase-of-day"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 01_phrase_before_answer
+- tapOn:
+    point: "50%,73%"
+    optional: true
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 02_phrase_after_answer

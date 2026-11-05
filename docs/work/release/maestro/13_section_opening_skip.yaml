@@ -1,0 +1,29 @@
+# зачем (координатор 05.11): «Открытие раздела» — окно PHRASEMAN PLUS после подписки: текст не под часами, тап Skip закрывает; лог [SECTION-OPENING] снимается отдельно через adb logcat.
+# Запуск: maestro --device emulator-5562 test -e LANGUI=en --test-output-dir <папка> 13_section_opening_skip.yaml
+appId: app.phraseman
+name: 13 section opening skip
+---
+- launchApp:
+    stopApp: true
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+- extendedWaitUntil:
+    visible: "Today|Сегодня|Сьогодні|Пропустить|Пропустити|Skip|Start lesson 1|Continue lesson 1"
+    timeout: 300000
+- runFlow:
+    file: _dev_state.yaml
+    env:
+      LINK: "onboarding=done&plus=off&newbie=off&seen=reset&uiLang=${LANGUI}"
+- runFlow:
+    file: _dev_state.yaml
+    env:
+      LINK: "plus=on&plan=yearly"
+- openLink: "phraseman:///lesson_menu?id=11"
+- extendedWaitUntil:
+    visible: "Skip|Пропустить|Пропустити"
+    timeout: 60000
+- takeScreenshot: 01_section_opening_shown
+- tapOn:
+    id: "section-opening-skip"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 02_after_skip

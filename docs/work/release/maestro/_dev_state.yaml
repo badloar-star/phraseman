@@ -1,0 +1,15 @@
+# зачем: применить dev_state без жёсткого ожидания «DEV-STATE OK» (при newbie=on приложение уводит в вступление урока 1 раньше, чем экран успевает показаться) и вернуться на Главную.
+# Параметр: LINK — query-часть ссылки с & (не set=).
+appId: app.phraseman
+---
+- openLink: "phraseman://dev_state?${LINK}"
+- extendedWaitUntil:
+    visible: "DEV-STATE OK"
+    timeout: 25000
+    optional: true
+- openLink: "phraseman:///(tabs)/home"
+- waitForAnimationToEnd:
+    timeout: 15000
+- extendedWaitUntil:
+    visible: "Today|Сегодня|Сьогодні|Пропустить|Пропустити|Skip|Today.*|Сегодня.*"
+    timeout: 240000

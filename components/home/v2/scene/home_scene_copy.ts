@@ -190,7 +190,8 @@ export function buildHomeSceneCopy(i: HomeSceneCopyInput): HomeSceneCopy {
   const base = { warm: null, note: null, chips: [] as readonly HomeSceneChipKind[] };
   switch (i.state) {
     case 'newbie':
-      return { ...base, kicker: place, title: i.title, line: null, bar: null, cta: T.start(lang) };
+      // зачем (макет home-free-0, вердикт Макетов 05.11): герой новичка — «Урок 1» + название урока + «Начать»; без «· Эпизод N», без полосы и строк серии
+      return { ...base, kicker: i.badge ?? place, title: i.title, line: null, bar: null, cta: T.start(lang) };
     case 'continue':
     case 'offline':
       return { ...base, kicker: place, title: i.title, line: progressLine, bar, cta: T.cont(lang) };

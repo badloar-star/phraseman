@@ -22,7 +22,7 @@ jest.mock('../constants/liquidGlassThemePalette', () => ({
 import fs from 'node:fs';
 import path from 'node:path';
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import { deriveReferralLadder, referralRouletteVisibleWithLadder } from '../app/referral_ladder_model';
 import { REFERRAL_LADDER_TEXTS, referralLadderText } from '../components/referral_ladder_strings';
 import ReferralLadder from '../components/referral_ladder';
@@ -118,6 +118,27 @@ describe('разметка', () => {
     expect(view.getByTestId('referral-ladder-how')).toBeTruthy();
     expect(all).not.toMatch(/Забрать|Получить приз|Claim/);
   });
+  it('компактный вариант для вкладки «Друзья»: только заголовок, код и два действия — без значка, наград, прогресса и лимита', async () => {
+    const view = await render(
+      <ReferralLadder
+        {...props(0)}
+        compactFriends
+        view={deriveReferralLadder(data(10, 3, { monthCounted: 10, monthlyCap: 10 }))}
+      />,
+    );
+    const all = textsOf(view.toJSON());
+    expect(all).toContain('Зови друзей — награда за каждого');
+    expect(all).toContain('PHRASE-7K2Q');
+    expect(all).toContain('Поделиться кодом');
+    expect(all).toContain('Как это работает');
+    expect(all).not.toContain('Друг прошёл первый урок');
+    expect(all).not.toContain('Plus на 14 дней');
+    expect(view.queryByTestId('referral-ladder-header-icon')).toBeNull();
+    expect(view.queryByTestId('referral-ladder-step-1')).toBeNull();
+    expect(view.queryByTestId('referral-ladder-step-2')).toBeNull();
+    expect(view.queryByTestId('referral-ladder-bar')).toBeNull();
+    expect(view.queryByTestId('referral-ladder-cap')).toBeNull();
+  });
   it('3 друга и Plus выдан: полосы и «n из 3» нет, ступень 2 — «уже у тебя»', async () => {
     const view = await render(<ReferralLadder {...props(3, 1)} />);
     const all = textsOf(view.toJSON());
@@ -143,14 +164,32 @@ describe('разметка', () => {
     const normal = await render(<ReferralLadder {...props(1)} />);
     expect(normal.queryByTestId('referral-ladder-cap')).toBeNull();
   });
-  it('лист «Как это работает»: четыре строки с числами с сервера и кнопка «Понятно»', async () => {
+  it('лист «Как это работает»: пять честных строк разделяют правила монет и Plus', async () => {
     const view = await render(<ReferralLadderHowSheet visible onClose={noop} view={deriveReferralLadder(data(0, 0, { lessonWindowDays: 20, coinsPerFriend: 700, plusDaysPerGrant: 30 }))} />);
     const all = textsOf(view.toJSON());
-    expect(all).toContain('в течение 20 дней после ввода твоего кода');
-    expect(all).toContain('700 монет тебе и 700 ему');
-    expect(all).toContain('Plus на 30 дней');
+    expect(all).toContain('Приглашение действует 20 дней');
+    expect(all).toContain('считается первый пройденный урок, а не регистрация');
+    expect(all).toContain('вы оба получите по 700 монет');
+    expect(all).toContain('в «Новом курсе» в два разных дня');
+    expect(all).toContain('Два аккаунта на одном устройстве для Plus не засчитываются');
+    expect(all).toContain('Каждые три таких друга дают тебе Plus на 30 дней');
+    expect(all).toContain('не чаще одной выдачи в 30 дней');
     expect(all).toContain('Понятно');
-    for (const k of ['how1', 'how2', 'how3', 'how4']) expect(view.getByTestId(`referral-ladder-${k}`)).toBeTruthy();
+    for (const k of ['how1', 'how2', 'how3', 'how4', 'how5']) expect(view.getByTestId(`referral-ladder-${k}`)).toBeTruthy();
+  });
+  it('лист «Как это работает» по запросу показывает вход в существующий ввод кода друга', async () => {
+    const onEnterFriendCode = jest.fn();
+    const view = await render(
+      <ReferralLadderHowSheet
+        visible
+        onClose={noop}
+        onEnterFriendCode={onEnterFriendCode}
+        view={deriveReferralLadder(data(0))}
+      />,
+    );
+    expect(textsOf(view.toJSON())).toContain('Ввести код друга');
+    fireEvent.press(view.getByTestId('referral-ladder-enter-friend-code'));
+    expect(onEnterFriendCode).toHaveBeenCalledTimes(1);
   });
 });
 

@@ -1,5 +1,5 @@
 // Владелец 29.10 (утверждённый макет «Лесенка приглашений», ответ координатора В): на вкладке «Друзья» в пустом списке вместо значка/заголовка/подсказки встаёт
-// лесенка; «Добавить друга» остаётся под ней (других входов в пустом списке нет). Флаг выключен — пустое состояние прежнее (значок, заголовок, подсказка, кнопка).
+// лесенка без отдельной кнопки «Добавить друга»: ввод кода переехал в «Как это работает». Флаг выключен — пустое состояние прежнее (значок, заголовок, подсказка, кнопка).
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
 
 jest.mock('react-native', () => ({
@@ -36,13 +36,13 @@ describe('пустая вкладка «Друзья» и лесенка', () =>
     expect(view.getByTestId('friends-empty-add')).toBeTruthy();
   });
 
-  it('с лесенкой — лесенка на месте значка/заголовка/подсказки, «Добавить друга» остаётся под ней', async () => {
+  it('с лесенкой — только слот лесенки, без прежнего текста и отдельной кнопки «Добавить друга»', async () => {
     const view = await render(<FriendsEmptyState onAdd={() => undefined} ladder={React.createElement('Text', { testID: 'ladder-slot' }, 'ЛЕСЕНКА')} />);
     const all = asText(view.toJSON());
     expect(all).toContain('ЛЕСЕНКА');
     expect(all).not.toContain('Учиться вместе приятнее');
     expect(all).not.toContain('Найди друга по имени');
-    expect(view.getByTestId('friends-empty-add')).toBeTruthy();
+    expect(view.queryByTestId('friends-empty-add')).toBeNull();
     expect(view.getByTestId('friends-list-empty')).toBeTruthy();
   });
 });

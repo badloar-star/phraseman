@@ -2880,7 +2880,7 @@ export default function FriendsTabScreen() {
 
 
       {friendsLadderShown ? (
-        <ReferralLadderHowSheet visible={friendsLadderHowOpen} onClose={() => setFriendsLadderHowOpen(false)} view={friendsLadderView} />
+        <ReferralLadderHowSheet visible={friendsLadderHowOpen} onClose={() => setFriendsLadderHowOpen(false)} view={friendsLadderView} onEnterFriendCode={() => { setFriendsLadderHowOpen(false); setAddModalOpen(true); setFoundUser(null); setSearchError(null); setCodeInput(''); }} />
       ) : null}
 
       <AddFriendModal

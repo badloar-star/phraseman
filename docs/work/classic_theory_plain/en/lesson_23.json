@@ -368,8 +368,8 @@
         "en": "Questions"
       },
       "text": {
-        "ru": "Чтобы спросить, поставьте is, are, was или were в начало фразы.\nIs breakfast included? — Завтрак включен?\nЧитается: из брэ́кфаст инклу́дид.\nСлово included значит «включён» (include + d).\nAre the drinks included? — Напитки включены?\nЧитается: ар зэ дри́нкс инклу́дид.\nСлово drinks значит «напитки» (drink + s).\nWas your bag checked? — Вашу сумку проверили?\nЧитается: уо́з ёр бэ́г чэ́кт.\nСлово Was стоит первым, значит, это вопрос.\nWhen are the bins collected? — Когда вывозят мусор?\nЧитается: уэ́н ар зэ би́нз колэ́ктид.\nСлово bins значит «мусорные баки» (bin + s).\nСлово When значит «когда».\nHow is the deposit returned? — Как возвращается задаток?\nЧитается: ха́у из зэ дипо́зит рита́рнд.\nСлово deposit значит «задаток».",
-        "uk": "Щоб запитати, поставте is, are, was або were на початок фрази.\nIs breakfast included? — Чи включено сніданок?\nЧитається: із бре́кфаст інклу́дід.\nСлово included означає «включений» (include + d).\nAre the drinks included? — Чи включено напої?\nЧитається: ар зе дрі́нкс інклу́дід.\nСлово drinks означає «напої» (drink + s).\nWas your bag checked? — Вашу сумку перевірили?\nЧитається: уо́з йор бе́г че́кт.\nСлово Was стоїть першим, отже, це питання.\nWhen are the bins collected? — Коли вивозять сміття?\nЧитається: уе́н ар зе бі́нз коле́ктід.\nСлово bins означає «сміттєві баки» (bin + s).\nСлово When означає «коли».\nHow is the deposit returned? — Як повертається завдаток?\nЧитається: ха́у із зе діпо́зіт ріта́рнд.\nСлово deposit означає «завдаток».",
+        "ru": "Чтобы спросить, поставьте is, are, was или were в начало фразы.\nIs breakfast included? — Завтрак включен?\nЧитается: из брэ́кфаст инклу́дид.\nСлово included значит «включён» (include + d).\nAre the drinks included? — Напитки включены?\nЧитается: ар зэ дри́нкс инклу́дид.\nСлово drinks значит «напитки» (drink + s).\nWas your bag checked? — Вашу сумку проверили?\nЧитается: уо́з ёр бэ́г чэ́кт.\nСлово Was стоит первым, значит, это вопрос.\nWhen are the bins collected? — Когда вывозят мусор?\nЧитается: уэ́н ар зэ би́нз колэ́ктид.\nСлово bins значит «мусорные баки» (bin + s).\nСлово When значит «когда».\nHow is the deposit returned? — Как возвращается залог?\nЧитается: ха́у из зэ дипо́зит рита́рнд.\nСлово deposit значит «залог».",
+        "uk": "Щоб запитати, поставте is, are, was або were на початок фрази.\nIs breakfast included? — Чи включено сніданок?\nЧитається: із бре́кфаст інклу́дід.\nСлово included означає «включений» (include + d).\nAre the drinks included? — Чи включено напої?\nЧитається: ар зе дрі́нкс інклу́дід.\nСлово drinks означає «напої» (drink + s).\nWas your bag checked? — Вашу сумку перевірили?\nЧитається: уо́з йор бе́г че́кт.\nСлово Was стоїть першим, отже, це питання.\nWhen are the bins collected? — Коли вивозять сміття?\nЧитається: уе́н ар зе бі́нз коле́ктід.\nСлово bins означає «сміттєві баки» (bin + s).\nСлово When означає «коли».\nHow is the deposit returned? — Як повертається застава?\nЧитається: ха́у із зе діпо́зіт ріта́рнд.\nСлово deposit означає «застава».",
         "en": "To ask a question, put is, are, was or were at the start.\nIs breakfast included?\nThe word included means “inside the price” (include + d).\nAre the drinks included?\nThe word drinks means “things we drink” (drink + s).\nWas your bag checked?\nThe word Was comes first, so this is a question.\nWhen are the bins collected?\nThe word bins means “big boxes for rubbish” (bin + s).\nThe word When asks about the time.\nHow is the deposit returned?\nThe word deposit means “money you give at the start and get back later”."
       },
       "examples": [
@@ -435,8 +435,8 @@
         },
         {
           "command": {
-            "ru": "Выберите, как сказать: «Как возвращается задаток?»",
-            "uk": "Виберіть, як сказати: «Як повертається завдаток?»",
+            "ru": "Выберите, как сказать: «Как возвращается залог?»",
+            "uk": "Виберіть, як сказати: «Як повертається застава?»",
             "en": "Choose how to say: “How is the deposit returned?”"
           },
           "sample": false,

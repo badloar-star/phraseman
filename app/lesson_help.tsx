@@ -361,6 +361,13 @@ function LessonHelp() {
     ? introTitleForUi(frenchTheoryScreens[0], lang)
     : undefined);
   // зачем (владелец 05.11): прямой переход на /lesson_help при курсе без своей теории не показывает ни английский текст, ни заглушку — возвращает в меню урока.
+  // зачем (владелец 05.11): любой заход без теории (нет ни своей теории курса, ни английской для этого интерфейса) возвращает в меню урока без текста-заглушки
+  const theoryMissingHere = !isFrenchTarget && !plannedTheoryScreens?.length && (Boolean(plannedLocale) || (lang === 'en' && THEORY_FALLBACK === 'hide') || !theory);
+  useEffect(() => {
+    if (!theoryMissingHere) return;
+    console.log('[LESSON-HELP] theory missing for lesson — back to menu', JSON.stringify({ lessonId, lang, studyTarget })); // guard-ok: ранний выход с причиной
+    safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+  }, [theoryMissingHere, lessonId, lang, studyTarget, router]);
   useEffect(() => {
     if (!isFrenchTarget || frenchTheoryAllowed) return;
     console.log('[LESSON-HELP] theory unavailable for target — back to menu', JSON.stringify({ lessonId, studyTarget })); // guard-ok: ранний выход с причиной
@@ -376,17 +383,6 @@ function LessonHelp() {
     id: `Pelajaran ${lessonId}`,
     tr: `Ders ${lessonId}`,
     pl: `Lekcja ${lessonId}`,
-  });
-  const unavailableTheoryText = triLang(lang, {
-    uk: `Теорія для уроку ${lessonId} незабаром з'явиться. Продовжуй практикуватись!`,
-    ru: `Теория для урока ${lessonId} скоро появится. Пока практикуйся — это важнее!`,
-    en: `Theory for lesson ${lessonId} is coming soon. Keep practicing — it matters more!`,
-    es: `La teoría de la lección ${lessonId} estará disponible pronto. ¡Sigue practicando!`,
-    'pt-BR': `A teoria da lição ${lessonId} estará disponível em breve. Continue praticando!`,
-    vi: `Lý thuyết của bài ${lessonId} sẽ sớm có. Hãy tiếp tục luyện tập!`,
-    id: `Teori untuk pelajaran ${lessonId} akan segera tersedia. Tetap berlatih!`,
-    tr: `${lessonId}. dersin teorisi yakında hazır olacak. Pratik yapmaya devam et!`,
-    pl: `Teoria do lekcji ${lessonId} pojawi się wkrótce. Ćwicz dalej!`,
   });
 
   // зачем (владелец 05.11: «как в английском курсе»): «Теория» fr/es/de/it — тот же экран, что у английского (TheoryLessonView): разделы-аккордеон,
@@ -491,30 +487,13 @@ function LessonHelp() {
           ) : plannedTheoryScreens?.length ? (
             renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, tg, lang, f)
           ) : plannedLocale ? (
-            <Body
-              key="planned-locale-theory-unavailable"
-              t={tg}
-              f={f}
-              text={unavailableTheoryText}
-            />
+            // зачем (владелец 05.11: «никаких заглушек»): текста-заглушки нет — экран закрывается эффектом выше, пункт в меню скрыт
+            null
           ) : lang === 'en' && THEORY_FALLBACK === 'hide' ? (
-            // зачем (координатор 12.10): английской теории нет — честное «скоро», а не русский текст (прямой заход по ссылке).
-            <Body
-              key="en-theory-hidden"
-              t={tg}
-              f={f}
-              text={unavailableTheoryText}
-            />
+            null
           ) : theory ? (
             renderSpanishTheory ? theory.renderES!(tg, f) : theory.render(tg, renderLegacyAsUk, f)
-          ) : (
-            <Body
-              key="unavailable"
-              t={tg}
-              f={f}
-              text={unavailableTheoryText}
-            />
-          )}
+          ) : null}
 
           <ReportErrorButton
             variant="icon-flag"

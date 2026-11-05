@@ -262,7 +262,8 @@ const S = StyleSheet.create({
   topRow: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   kicker: { fontSize: 14, lineHeight: 20, fontWeight: '700', letterSpacing: 0.2 },
   close: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  h1: { marginTop: 18, fontSize: 32, lineHeight: 35, fontWeight: '800', letterSpacing: -0.7 },
+  // зачем (ревью 05.11): межстрочный ≥1,15× кегля (было 35 при 32) — две строки заголовка при шрифте ×1,3 не слипаются
+  h1: { marginTop: 18, fontSize: 32, lineHeight: 38, fontWeight: '800', letterSpacing: -0.7 },
   sub: { marginTop: 8, fontSize: 17, lineHeight: 25 },
   scroll: { flexGrow: 0, flexShrink: 1 },
   scrollContent: { paddingTop: 18, paddingHorizontal: 24, paddingBottom: 30 },

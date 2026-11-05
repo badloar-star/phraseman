@@ -37,7 +37,7 @@ describe('owner-selected native paywall C contract', () => {
   test('renders the frozen C geometry and exactly three flat benefit rows', () => {
     expect(benefits).toContain('PAYWALL_C_BENEFIT_COUNT = 3');
     expect(plus).toContain('fontSize: 32');
-    expect(plus).toContain('lineHeight: 35');
+    expect(plus).toContain('lineHeight: 38');
     expect(plus).toContain('paddingHorizontal: 24');
     expect(plus).toContain('minHeight: 44');
     expect(plus).toContain('cta: { minHeight: 54, borderRadius: 28');

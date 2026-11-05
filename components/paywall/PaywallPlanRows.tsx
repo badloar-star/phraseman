@@ -10,7 +10,7 @@
 //  • выбор: хаптик; геометрия не меняется.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -22,6 +22,7 @@ import V2Pressable from '../v2/V2Pressable';
 import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
 export { planRowSelectedPaint } from './paywallPlanRowPaint';
 import { COPY, pick, trialFreeLabel, yearPerMonthApprox } from './PaywallPlusCopy';
+import { paywallPriceFontSize, paywallPriceLineHeight } from './paywall_price_font';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
 
@@ -55,7 +56,10 @@ type RowProps = {
 };
 
 const PlanRow = memo(function PlanRow({ lang, g, on, disabled, onPress, testID, priceTestID, name, trialDays, price, promo, approx, subPrice, savingsPct }: RowProps) {
-  const shown = promo?.promoPriceString || `${approx ? '≈ ' : ''}${price}`;
+  // зачем (ревью 05.11): пустая цена — «—», а не пустое место; кегль суммы по длине строки и масштабу шрифта (paywall_price_font)
+  const shown = promo?.promoPriceString || (price ? `${approx ? '≈ ' : ''}${price}` : '—');
+  const { fontScale } = useWindowDimensions();
+  const priceSize = paywallPriceFontSize(shown, fontScale);
   return (
     <V2Pressable
       testID={testID}
@@ -82,7 +86,7 @@ const PlanRow = memo(function PlanRow({ lang, g, on, disabled, onPress, testID, 
         </View>
         <View style={S.priceCol}>
           {promo ? <Text style={[S.strike, { color: g.text }]}>{promo.standardPriceString}</Text> : null}
-          <Text testID={priceTestID} style={[S.big, { color: g.text }]}>{shown}</Text>
+          <Text testID={priceTestID} style={[S.big, { color: g.text, fontSize: priceSize, lineHeight: paywallPriceLineHeight(priceSize) }]}>{shown}</Text>
           {subPrice ? <Text style={[S.per, { color: g.text }]}>{subPrice}</Text> : null}
         </View>
       </View>

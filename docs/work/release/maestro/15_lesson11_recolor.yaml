@@ -1,0 +1,36 @@
+# зачем (координатор 05.11, перекраска текста): урок 11 английского курса, интерфейс ru — вступление (английские фразы одним цветом темы, «Читается» серым курсивом) и теория, тёмная и светлая темы.
+# Запуск: maestro --device emulator-5562 test -e APPEARANCE=dark|light --test-output-dir <папка> 15_lesson11_recolor.yaml
+appId: app.phraseman
+name: 15 lesson 11 recolor
+---
+- launchApp:
+    stopApp: true
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+- extendedWaitUntil:
+    visible: "Today|Сегодня|Сьогодні|Пропустить|Пропустити|Skip|Start lesson 1|Continue lesson 1"
+    timeout: 300000
+- runFlow:
+    file: _dev_state.yaml
+    env:
+      LINK: "onboarding=done&newbie=off&plus=on&plan=monthly&uiLang=ru&appearance=${APPEARANCE}"
+- tapOn:
+    text: "Пропустить"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: "Пропустить"
+    optional: true
+- openLink: "phraseman:///lesson_menu?id=11"
+- waitForAnimationToEnd:
+    timeout: 15000
+- tapOn:
+    text: "Пропустить"
+    optional: true
+- waitForAnimationToEnd
+- takeScreenshot: 01_lesson11_menu
+- tapOn:
+    text: "Теория"
+    optional: true
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: 02_after_theory_tap

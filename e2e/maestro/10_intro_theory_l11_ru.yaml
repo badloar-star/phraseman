@@ -11,19 +11,17 @@ name: 10 Вступление и теория урока 11 (ru)
     timeout: 60000
 - back
 - waitForAnimationToEnd
+# зачем (Эмулятор 2): список уроков не прокручивается до «Урок 11» по тексту — открываем меню урока 11 ссылкой; окна «Открытие раздела» и приветствие закрываем «Пропустить».
 - tapOn:
-    text: "Уроки"
+    text: "Пропустить"
+    optional: true
+- openLink: "phraseman:///lesson_menu?id=11"
+- waitForAnimationToEnd:
+    timeout: 15000
+- tapOn:
+    text: "Пропустить"
     optional: true
 - waitForAnimationToEnd
-- scrollUntilVisible:
-    element:
-      text: "Урок 11.*|11"
-    direction: DOWN
-    timeout: 60000
-- tapOn:
-    text: "Урок 11.*|11"
-- waitForAnimationToEnd
-- takeScreenshot: 01_lesson11_menu
 # вступление (первый показ): английские слова одного цвета
 - runFlow:
     when:

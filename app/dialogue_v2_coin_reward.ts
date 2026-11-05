@@ -58,6 +58,11 @@ export function dialogueV2CoinAwardedKey(ownerStableId: string, sessionId: strin
 
 type Storage = Pick<typeof AsyncStorage, 'getItem' | 'setItem' | 'removeItem'>;
 
+/** Strict host read: unavailable storage cannot authorize intent deletion. */
+export async function readDialogueV2CoinsAwardedStrict(ownerStableId: string, sessionId: string, storage: Storage = AsyncStorage): Promise<boolean> {
+  return (await storage.getItem(dialogueV2CoinAwardedKey(ownerStableId, sessionId))) !== null;
+}
+
 /** Было ли уже начисление за эту сессию. Сбой чтения — считаем «было» (не начислять дважды), с причиной в журнале. */
 export async function readDialogueV2CoinsAwarded(ownerStableId: string, sessionId: string, storage: Storage = AsyncStorage): Promise<boolean> {
   try {

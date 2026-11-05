@@ -15,21 +15,28 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 }));
 jest.mock('react-native', () => ({ AppState: { addEventListener: () => ({ remove: () => undefined }) } }));
 let mockFlag = false;
-jest.mock('../app/remote_flags', () => ({ getRemoteBool: () => mockFlag }));
-jest.mock('../app/stable_id', () => ({ getStableId: async () => 'owner-1' }));
-jest.mock('../app/dev_dialog_state', () => ({ isDevDialogCoinsAward: () => false }));
+jest.mock("../app/remote_flags.ts", () => ({ getRemoteBool: () => mockFlag }));
+jest.mock("../app/stable_id.ts", () => ({ getStableId: async () => 'owner-1' }));
+jest.mock("../app/dev_dialog_state.ts", () => ({ isDevDialogCoinsAward: () => false }));
 
 type RunesInput = Readonly<{ activity: string; sessionKey: string; completionOrdinal: number; repeatPriceOnly: boolean; enabled: boolean }>;
 const mockInputs: RunesInput[] = [];
 const mockCredits: string[] = [];
 let mockHydrating = false;
-jest.mock('../hooks/usePracticeRunes', () => ({
+jest.mock("../hooks/usePracticeRunes.ts", () => ({
   usePracticeRunes: (input: RunesInput) => {
     mockInputs.push(input);
     return {
       hydrating: input.enabled ? mockHydrating : false,
       onCorrectAnswer: (itemId: string) => { mockCredits.push(`${input.sessionKey}|${itemId}`); return 1; },
       settle: async () => undefined,
+      // Legacy routing/flag suite uses a boundary model. Durable crash/owner
+      // behavior is exercised separately with the actual hook and settlement.
+      settleFixedReward: async ({ownerStableId, itemIds}: {ownerStableId: string; itemIds: readonly string[]}) => {
+        itemIds.forEach((itemId) => mockCredits.push(`${input.sessionKey}|${itemId}`));
+        return {status: 'sealed' as const, ownerStableId, sessionKey: input.sessionKey,
+          completionOrdinal: 1, operationId: `legacy-suite:${input.sessionKey}`};
+      },
     };
   },
 }));

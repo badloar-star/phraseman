@@ -190,6 +190,32 @@ async function readSealedPracticeRuneOperation(
   }
 }
 
+/** Read-only historical proof for one fixed Dialogue reward. Generic earnings
+ * still require their full marker and retain markerless conflict behavior. */
+export async function readCommittedFixedDialogueReward(input: Readonly<{
+  ownerStableId: string; earnings: PracticeRuneEarnings;
+}>): Promise<PracticeRuneOperation | null> {
+  const {ownerStableId, earnings} = input;
+  if (!ownerStableId || earnings.activity !== 'lesson' || !earnings.sessionKey.startsWith('dialogue_')
+    || earnings.awardPerItem !== 1 || ![10,25,30].includes(earnings.pendingRunes)
+    || earnings.creditedItemIds.length !== earnings.pendingRunes
+    || !earnings.creditedItemIds.every((id, index) => id === `dialogue_coin_${index + 1}`)) {
+    throw new Error('fixed_dialogue_reward_invalid');
+  }
+  const expected: ExpectedPracticeRuneOperation = {ownerStableId, activity: earnings.activity, sessionKey: earnings.sessionKey,
+    completionOrdinal: 1, operationId: practiceRuneSettlementOperationId({...earnings, completionOrdinal: 1})};
+  const raw = await AsyncStorage.getItem(practiceRuneOperationStorageKey(ownerStableId, expected.operationId));
+  if (raw === null) return null;
+  let candidate: unknown;
+  try { candidate = JSON.parse(raw); } catch { throw new Error('level_spin_star_request_conflict'); }
+  const operation = await validatePracticeRuneOperation(candidate, expected);
+  if (!operation || (operation.amount !== earnings.pendingRunes
+    && operation.amount !== applySuperSundayRuneMultiplier(earnings.pendingRunes, operation.createdAtMs))) {
+    throw new Error('level_spin_star_request_conflict');
+  }
+  return operation;
+}
+
 /**
  * Repairs the one-step crash window without scanning the full economy history.
  * `settledOrdinal + 1` is the only legal next ordinal; if that exact durable
@@ -304,6 +330,12 @@ export async function settlePracticeRuneEarningsToServer(
   completionOrdinal: number,
   durableIntent?: PracticeRunePendingIntent,
 ): Promise<PracticeRuneSettlementResult> {
+  // Capture supplied proof before awaiting account reads. A mismatched owner
+  // must never create a pending marker under the newly active account.
+  const supplied = durableIntent === undefined ? undefined : Object.freeze({
+    ...durableIntent,
+    sealedOperation: durableIntent.sealedOperation ? Object.freeze({...durableIntent.sealedOperation}) : undefined,
+  });
   tracePracticeRuneSettlement('settlement_enter', {
     activity: earnings.activity,
     sessionKey: earnings.sessionKey,
@@ -320,7 +352,20 @@ export async function settlePracticeRuneEarningsToServer(
     return { locallyCommitted: true, settled: true };
   }
 
-  const ownerStableId = (await getStableId()).trim();
+  const activeOwner = (await getStableId()).trim();
+  const ownerStableId = supplied?.sealedOperation?.ownerStableId ?? activeOwner;
+  if (supplied !== undefined) {
+    const operation = await validatePracticeRuneOperation(supplied.sealedOperation, {
+      ownerStableId,
+      operationId: practiceRuneSettlementOperationId({activity: earnings.activity, sessionKey: earnings.sessionKey, completionOrdinal}),
+      activity: earnings.activity, sessionKey: earnings.sessionKey, completionOrdinal,
+    });
+    if (!operation || activeOwner !== ownerStableId
+      || supplied.createdAtMs !== operation.createdAtMs
+      || supplied.requestFingerprint !== operation.requestFingerprint) {
+      return {locallyCommitted: false, settled: false};
+    }
+  }
   if (!ownerStableId) {
     tracePracticeRuneSettlement('settlement_skip_owner_missing', {});
     return { locallyCommitted: false, settled: false };
@@ -356,10 +401,10 @@ export async function settlePracticeRuneEarningsToServer(
   }
   const operation = persistedIntent.sealedOperation;
   if (!operation
-    || (durableIntent !== undefined
-      && (durableIntent.createdAtMs !== persistedIntent.createdAtMs
-        || durableIntent.requestFingerprint !== persistedIntent.requestFingerprint
-        || durableIntent.sealedOperation?.requestFingerprint !== operation.requestFingerprint))) {
+    || (supplied !== undefined
+      && (supplied.createdAtMs !== persistedIntent.createdAtMs
+        || supplied.requestFingerprint !== persistedIntent.requestFingerprint
+        || supplied.sealedOperation?.requestFingerprint !== operation.requestFingerprint))) {
     tracePracticeRuneSettlement('pending_intent_invalid', { operationId });
     return { locallyCommitted: false, settled: false };
   }

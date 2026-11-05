@@ -28,6 +28,7 @@ import {
   markPracticeRuneSettlementPending,
   readCommittedPracticeRuneCompletionOrdinal,
   readCommittedPracticeRuneSettlementEarnings,
+  readCommittedFixedDialogueReward,
   settlePracticeRuneEarningsToServer,
 } from '../app/practice_rune_settlement';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -78,7 +79,19 @@ export type UsePracticeRunesInput = Readonly<{
   devFakeStartRunes?: number;
 }>;
 
+export type FixedPracticeReward = Readonly<{
+  ownerStableId: string;
+  itemIds: readonly string[];
+  amount: number;
+}>;
+export type DurablePracticeRewardOutcome =
+  | Readonly<{ status: 'deferred' }>
+  | Readonly<{ status: 'sealed' | 'locally_committed'; ownerStableId: string;
+      sessionKey: string; completionOrdinal: number; operationId: string }>;
+
 export type UsePracticeRunesResult = Readonly<{
+  /** One immutable reward, independent of repeat-pass accumulator hydration. */
+  settleFixedReward: (reward: FixedPracticeReward) => Promise<DurablePracticeRewardOutcome>;
   /** Сколько рун будет начислено при зачёте прямо сейчас, с воскресным ×2. */
   runes: number;
   /** Отметить правильный ответ; урок может передать 1-based непрерывную серию. */
@@ -659,5 +672,49 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
   }, [enabled, devFakeStartRunes, startNewCompletion]);
 
   const breakdown = { baseRunes, awardPerItem: earningsRef.current?.awardPerItem ?? null, creditedItems: earningsRef.current?.creditedItemIds.length ?? null };
-  return { runes, onCorrectAnswer, settle, forfeitPendingRunes, startNewCompletion, startNewCompletionIfSettled, hydrating, breakdown };
+  const fixedInFlight = useRef(false);
+  const mounted = useRef(true);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  const settleFixedReward = useCallback(async (reward: FixedPracticeReward): Promise<DurablePracticeRewardOutcome> => {
+    const deferred = { status: 'deferred' } as const;
+    if (!enabled || devFakeStartRunes !== undefined || hydrating || fixedInFlight.current
+      || !mounted.current || ownerRef.current !== reward.ownerStableId) return deferred;
+    // This opt-in path is for one fixed lesson reward at unit price. It never
+    // allocates a successor ordinal from generic repeat-pass hydration.
+    if (input.activity !== 'lesson' || input.repeatPriceOnly !== true || input.completionOrdinal !== 1
+      || !Number.isSafeInteger(reward.amount) || reward.amount <= 0
+      || reward.itemIds.length !== reward.amount || new Set(reward.itemIds).size !== reward.amount) return deferred;
+    const generation = sessionGenerationRef.current;
+    const owner = reward.ownerStableId;
+    const amount = reward.amount;
+    const itemIds = [...reward.itemIds];
+    let earnings = createPracticeRuneEarnings({activity: input.activity, sessionKey: input.sessionKey, firstCompletion: false});
+    for (const itemId of itemIds) earnings = awardPracticeRune(earnings, itemId).earnings;
+    if (earnings.pendingRunes !== amount) return deferred;
+    const current = async () => {
+      const ownerNow = (await getStableId()).trim();
+      return mounted.current && sessionGenerationRef.current === generation
+        && ownerRef.current === owner && ownerNow === owner;
+    };
+    fixedInFlight.current = true;
+    try {
+      if (!(await current())) return deferred;
+      const committed = await readCommittedFixedDialogueReward({ownerStableId: owner, earnings});
+      if (!(await current())) return deferred;
+      if (committed) return Object.freeze({status: 'locally_committed', ownerStableId: owner,
+        sessionKey: earnings.sessionKey, completionOrdinal: 1, operationId: committed.operationId});
+      const durable = await markPracticeRuneSettlementPending({ownerStableId: owner, earnings, completionOrdinal: 1});
+      if (!(await current())) return deferred;
+      const operation = durable.sealedOperation;
+      if (!operation || operation.ownerStableId !== owner || operation.amount !== amount) return deferred;
+      const result = await settlePracticeRuneEarningsToServer(earnings, 1, durable);
+      if (!(await current())) return deferred;
+      // The full sealed marker remains recovery authority even if local storage
+      // or network rejected the settlement. Do not clear it on this fixed path.
+      return Object.freeze({status: result.locallyCommitted ? 'locally_committed' : 'sealed',
+        ownerStableId: owner, sessionKey: earnings.sessionKey, completionOrdinal: 1,
+        operationId: operation.operationId});
+    } finally { fixedInFlight.current = false; }
+  }, [enabled, devFakeStartRunes, hydrating, input.activity, input.sessionKey, input.completionOrdinal, input.repeatPriceOnly]);
+  return { runes, onCorrectAnswer, settle, settleFixedReward, forfeitPendingRunes, startNewCompletion, startNewCompletionIfSettled, hydrating, breakdown };
 }

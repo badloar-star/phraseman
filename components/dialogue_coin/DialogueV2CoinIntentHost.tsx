@@ -4,8 +4,8 @@
  * зачем: экран итога терял монеты, если человек уходил, пока копилка читалась с диска. Хост живёт в корне приложения
  * (за флагом dialogue_coin_intent_host_enabled, монтирует DialogueV2CoinIntentGate) и доводит намерения до копилки по
  * одному, тем же usePracticeRunes и тем же входом, что был у экрана (dialogueV2CoinPracticeRunesInput) → тот же id
- * операции на сервере. Порядок как у экрана: копилка прочитана → отметка «начислено» ДО начисления → начисление →
- * намерение снято → зачёт на сервер (settle, долговечная очередь копилки). Журнал — [COINS-EARN] dialog-host.
+ * операции на сервере. Fixed reward seals one immutable operation before the awarded latch and intent removal.
+ * Replay stays on ordinal 1; ordinary repeat-pass accumulator hydration cannot allocate another dialogue reward.
  */
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -18,11 +18,10 @@ import {
   type DialogueV2CoinIntent,
 } from '../../app/dialogue_v2_coin_intents';
 import {
-  clearDialogueV2CoinsAwarded,
   dialogueV2CoinItemId,
   dialogueV2CoinPracticeRunesInput,
   markDialogueV2CoinsAwarded,
-  readDialogueV2CoinsAwarded,
+  readDialogueV2CoinsAwardedStrict,
 } from '../../app/dialogue_v2_coin_reward';
 
 const LOG = '[COINS-EARN] dialog-host:';
@@ -78,8 +77,11 @@ function IntentWorker({ owner, intent, onDone }: Readonly<{ owner: string; inten
   useEffect(() => {
     if (startedRef.current || runes.hydrating) return;
     startedRef.current = true;
+    let cancelled = false;
+    const workerRunes = runesRef.current;
     const { sessionId, amount } = intent;
     const short = sessionId.slice(0, 12);
+    const active = async () => { const ownerNow = await currentOwner(); return !cancelled && ownerNow === owner; };
     void (async () => {
       // аккаунт сменился, пока копилка читалась: чужая копилка — не трогаем, намерение остаётся своему владельцу
       const ownerNow = await currentOwner();
@@ -88,37 +90,25 @@ function IntentWorker({ owner, intent, onDone }: Readonly<{ owner: string; inten
         onDone();
         return;
       }
-      if (await readDialogueV2CoinsAwarded(owner, sessionId)) {
-        console.log(`${LOG} уже начислено — намерение снимается без начисления session=${short}`); // guard-ok: ранний выход
-        await removeDialogueV2CoinIntent(owner, sessionId);
-        onDone();
-        return;
-      }
-      if (!(await markDialogueV2CoinsAwarded(owner, sessionId, amount))) {
-        // отметка не записалась — начислять нельзя (при повторе было бы дважды); намерение ждёт следующего запуска
-        console.warn(`${LOG} отметка не записалась — начисление отложено session=${short}`); // guard-ok: ранний выход
-        return;
-      }
-      let credited = 0;
-      for (let item = 1; item <= amount; item += 1) credited += runesRef.current.onCorrectAnswer(dialogueV2CoinItemId(item));
-      if (credited <= 0) {
-        console.warn(`${LOG} копилка не приняла начисление (credited=${credited}) — отметка откатывается, намерение снято session=${short}`); // guard-ok: ветка отката
-        await clearDialogueV2CoinsAwarded(owner, sessionId);
-        await removeDialogueV2CoinIntent(owner, sessionId);
-        onDone();
-        return;
-      }
-      await removeDialogueV2CoinIntent(owner, sessionId);
-      console.log(`${LOG} начислено +${credited} (локально) session=${short}, зачёт на сервер фоном`); // guard-ok: итог
       try {
-        await runesRef.current.settle();
-        console.log(`${LOG} зачёт отправлен session=${short}`); // guard-ok: итог зачёта
+        // A legacy latch is not durable economy proof; reconstruct/replay the
+        // same fixed operation even when it survived an earlier pre-seal crash.
+        await readDialogueV2CoinsAwardedStrict(owner, sessionId);
+        if (!(await active())) return;
+        const outcome = await workerRunes.settleFixedReward({ownerStableId: owner, amount,
+          itemIds: Array.from({length: amount}, (_, index) => dialogueV2CoinItemId(index + 1))});
+        if (outcome.status === 'deferred' || outcome.ownerStableId !== owner || !(await active())) return;
+        if (!(await markDialogueV2CoinsAwarded(owner, sessionId, amount))) return;
+        if (!(await active())) return;
+        await removeDialogueV2CoinIntent(owner, sessionId);
+        console.log(`${LOG} durable=${outcome.status} operation=${outcome.operationId} session=${short}`);
+        onDone();
       } catch (error: unknown) {
-        console.warn(`${LOG} зачёт не прошёл — копилка повторит при следующем запуске session=${short}`, errText(error)); // guard-ok: catch пишет причину
+        console.warn(`${LOG} durable reward deferred session=${short}`, errText(error));
       }
-      onDone();
     })();
-  }, [intent, onDone, owner, runes.hydrating]);
+    return () => { cancelled = true; };
+  }, [intent, owner, runes.hydrating]);
 
   return null;
 }

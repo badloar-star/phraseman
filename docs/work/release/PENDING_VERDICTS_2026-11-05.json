@@ -191,6 +191,16 @@
    "note": "Испанский: список A1 с названиями уроков («Where you and others are», «When someone or something is not there»…), меню урока 1 (Start / Vocabulary 0/28 / Theory), теория «Sections 1/6 · drills 0/12», раздел «I am here»: Estoy aquí — “I am here.”, пояснения, примеры lejos/dentro. Не заглушка. Расхождение с de/it: в es названия уроков есть, в de/it на кадрах 09:03–09:12 было «Lesson N» — перепроверить de/it после обновления данных. Слова урока (вкладка «Vocabulary») не сняты.",
    "proposed_by": "3-МАКЕТЫ",
    "confirmed_by": null
+  },
+  "paywall-language-0852": {
+   "verdict": "diff",
+   "frame": "docs/work/release/frames_2026-11-05/pending/newbie/paywall-another-language-newbie__REAL-viewed-0852-720x1600.png",
+   "compose": "docs/work/release/frames_2026-11-05/pending/compose/paywall-language__variant3-light_vs_app-0852.png",
+   "viewed_by": "3-МАКЕТЫ 10:35 (глазами)",
+   "reference": "docs/work/golden/refs/paywall-c/variant-3-language-light.png (копия Codex paywall-preview/variant-3-*; одобренные approved-rev8 для пейвола-языка отдельного кадра не содержат)",
+   "note": "Платный экран «другой язык»: расхождения — (1) заголовок/тексты другие («Another language to learn» против «Ещё один язык. Больше тебя.»; пункты «A new course in another language» дублируют подзаголовок вместо «Языки на выбор / Курс дальше / Больше практики»); (2) плитки «Год / Месяц» на кадре обрезаны залипшей кнопкой «Subscribe…» и почти не видны, в макете видны целиком; (3) нет поясняющего абзаца про бесплатные уроки 1–3; (4) кнопки «Restore / Enter promo code» вместо одной «Восстановить покупки»; сравнение по структуре (язык кадра английский, макета русский). Эталон не помечен как approved — решение о его статусе за координатором.",
+   "proposed_by": "3-МАКЕТЫ",
+   "confirmed_by": null
   }
  }
 }

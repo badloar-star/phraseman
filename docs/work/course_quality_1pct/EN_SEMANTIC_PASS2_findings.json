@@ -1,0 +1,692 @@
+[
+ {
+  "chunk": "00",
+  "id": "en-classic-r1:02.17",
+  "type": "B2",
+  "problem": "«Am I early?» переведено как «Я пришёл раньше?» / «Я прийшов раніше?». Это сравнительная степень («раньше чего?»), а в оригинале «early». Нужно «Я пришёл рано?» / «Я прийшов рано?»."
+ },
+ {
+  "chunk": "00",
+  "id": "en-classic-r1:02.01",
+  "type": "B1",
+  "problem": "Системный дефект: соблазны плитки «not» (she's, he's, to, hasn't, center) одинаковы во всех фразах с «not» (02.01-02.10, 02.22, 02.24, 02.26, 02.28, 02.30, 02.37-02.40, 02.45, 02.48, 02.49). «center» (существительное), «to» и «hasn't» не подходят по грамматике. Ученик находит «not» методом исключения, не зная слова. Нужны правдоподобные соблазны, например «never», «no», «now», «nor», «also»."
+ },
+ {
+  "chunk": "00",
+  "id": "en-classic-r1:02.18",
+  "type": "B1",
+  "problem": "Системный дефект: соблазны плитки «the / your / her / this» в вопросах урока 2 (who, which, what, him, anybody, itself) — вопросительные и личные местоимения на месте артикля или притяжательного. Такая фраза неграмматична, ученик отсеивает их без знания слов. Затронуты 02.18-02.20, 02.32-02.35, 02.42-02.44, 02.46, 02.47, 02.50 и 02.31. Нужны определители: this, that, these, those, any, each, no."
+ },
+ {
+  "chunk": "08",
+  "id": "en-classic-r1:17.34",
+  "type": "M",
+  "problem": "ru «Он без очков.» не передаёт «is not wearing his glasses»: теряются «не носит/не надел» и притяжательное «его». Нужно, например, «Он не носит свои очки» или «Он без своих очков»; uk «Він без окулярів» с тем же дефектом."
+ },
+ {
+  "chunk": "08",
+  "id": "en-classic-r1:18.22",
+  "type": "M",
+  "problem": "uk «на цій лінії» — калька. Для подписи естественнее «на цьому рядку» (в ru верно «на этой строке»), иначе ru и uk расходятся."
+ },
+ {
+  "chunk": "08",
+  "id": "en-classic-r1:18.38",
+  "type": "M",
+  "problem": "uk «Обережно натисніть на двері» не передаёт «Push the door»: нужно «Обережно штовхніть двері». «Натисніть на двері» читается как «нажмите на дверь»."
+ },
+ {
+  "chunk": "03",
+  "id": "en-classic-r1:07.14",
+  "type": "M",
+  "problem": "uk «У нас призначений прийом» — калька и неестественно. Лучше: «У нас запис на прийом.»"
+ },
+ {
+  "chunk": "03",
+  "id": "en-classic-r1:07.38",
+  "type": "B2",
+  "problem": "uk «У цих дверях немає ручки» — неверная форма: «двері» стоят в местном падеже вместо родительного, к тому же множественное число при единственном «This door». Нужно: «У цих дверей немає ручки.»"
+ },
+ {
+  "chunk": "03",
+  "id": "en-classic-r1:08.14",
+  "type": "B2",
+  "problem": "ru «Стойка регистрации» добавляет «регистрации», которого нет в target «The desk», и расходится с uk «Стійка». Нужно: «Стойка закрывается в половине пятого.»"
+ },
+ {
+  "chunk": "03",
+  "id": "en-classic-r1:08.13",
+  "type": "B1",
+  "problem": "Соблазны на позиции «one» — «hasn't», «center», «restrooms» — явный мусор из другого класса слов, ученик отсеет их без знания языка. Нужны числительные, например «two», «three», «four»."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:09.21",
+  "type": "B1",
+  "problem": "Соблазн 'any' на позиции 'a' даёт верную фразу 'Is there any bus stop nearby?', её нет в alternatives. Заменить соблазн, например на 'one'."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:09.23",
+  "type": "B1",
+  "problem": "Соблазн 'any' (и 'some') на позиции 'a' даёт верное 'Is there any cash machine here?'. Заменить соблазн."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:09.27",
+  "type": "B1",
+  "problem": "Соблазн 'any' на позиции 'a' даёт очень естественное 'Is there any charge for parking?', которое подходит под ru/uk. Заменить соблазн."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:09.30",
+  "type": "B1",
+  "problem": "Соблазн 'any' на позиции 'a' даёт верное 'Is there any direct train?'. Заменить соблазн."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:10.23",
+  "type": "B1",
+  "problem": "Соблазн 'that' на позиции 'it' даёт верное 'Can you write that down?', оно подходит под ru/uk, а в alternatives его нет. Заменить соблазн или добавить альтернативу."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:10.45",
+  "type": "B1",
+  "problem": "Соблазн 'need' на позиции 'have' даёт верное 'You do not need to print the ticket', оно совпадает с ru/uk. Заменить соблазн."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:10.46",
+  "type": "B1",
+  "problem": "Соблазн 'need' на позиции 'have' даёт верное 'She does not need to work tonight', оно совпадает с ru/uk. Заменить соблазн."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:10.47",
+  "type": "B1",
+  "problem": "Соблазн 'need' на позиции 'have' даёт верное 'Do we need to sign both pages?', оно совпадает с ru/uk. Заменить соблазн."
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:09.09",
+  "type": "M",
+  "problem": "ru добавляет 'висит', которого нет в target и в uk ('Надворі є карта'), так что ru и uk расходятся. Исправить на 'Снаружи есть карта.'"
+ },
+ {
+  "chunk": "04",
+  "id": "en-classic-r1:09.49",
+  "type": "M",
+  "problem": "ru 'У выхода есть люди.' неестественно, это калька с 'There are'. Лучше 'У выхода стоят люди.' или 'У выхода люди.'"
+ },
+ {
+  "chunk": "01",
+  "id": "en-classic-r1:03.36",
+  "type": "B2",
+  "problem": "В ru «Он проверяет телефон» потерян притяжательный элемент his. Соблазны her, my, our и their тогда тоже подходят. Нужно «Он проверяет свой телефон», в uk «свій телефон»."
+ },
+ {
+  "chunk": "01",
+  "id": "en-classic-r1:03.42",
+  "type": "B1",
+  "problem": "Для позиции 0 (Her) соблазны даны подлежащими (I, You, We, She, He), а не притяжательными. Они сразу отсеиваются грамматикой («I shift»). Нужны His, Their, My, Our, Your."
+ },
+ {
+  "chunk": "01",
+  "id": "en-classic-r1:03.44",
+  "type": "B1",
+  "problem": "Для позиции 2 (to) соблазны «not, she's, he's, hasn't, center» нелепы и не из того класса слов. Нужны предлоги: in, at, by, for, after."
+ },
+ {
+  "chunk": "01",
+  "id": "en-classic-r1:03.47",
+  "type": "B1",
+  "problem": "Для позиции 4 (to) соблазны «not, she's, he's, hasn't, center» нелепы и не из того класса слов. Нужны предлоги: in, at, by, for, after."
+ },
+ {
+  "chunk": "01",
+  "id": "en-classic-r1:04.12",
+  "type": "B1",
+  "problem": "Для cash есть соблазн «saturdays»: это нелепое слово в нижнем регистре, не по теме фразы. Нужно что-то вроде price, card, key, ticket, seat."
+ },
+ {
+  "chunk": "01",
+  "id": "en-classic-r1:04.*",
+  "type": "B1",
+  "problem": "Для плитки «not» во всём уроке 4 (04.01–04.50) соблазны «she's, he's, to, hasn't, center» нелепы и выдают себя сразу. Нужны правдоподобные: never, no, also, just, still."
+ },
+ {
+  "chunk": "01",
+  "id": "en-classic-r1:04.43",
+  "type": "M",
+  "problem": "В ru «квитанция» для receipt в магазине не подходит. В uk стоит «чек», и ru с uk расходятся. Нужно «На чеке не указана дата»."
+ },
+ {
+  "chunk": "01",
+  "id": "en-classic-r1:04.47",
+  "type": "M",
+  "problem": "В ru «Квитанция нам не нужна» стоит неестественное «квитанция» для receipt, а в uk «чек». Нужно «Чек нам не нужен»."
+ },
+ {
+  "chunk": "02",
+  "id": "en-classic-r1:05.18",
+  "type": "B1",
+  "problem": "Соблазн «go» на позиции 3 даёт верную естественную фразу «Do the buses go on Sundays?» («ходят по воскресеньям»), которой нет в alternatives. Заменить «go» на «need»."
+ },
+ {
+  "chunk": "02",
+  "id": "en-classic-r1:05.35",
+  "type": "B1",
+  "problem": "Соблазн «take» на позиции 2 даёт естественную фразу «Do you take a lunch break?», близкую по смыслу к «У вас есть перерыв на обед?». Заменить «take» на «wait»."
+ },
+ {
+  "chunk": "02",
+  "id": "en-classic-r1:06.12",
+  "type": "B1",
+  "problem": "Соблазн «go» на позиции 5 даёт верную фразу «What time does the bus go?» («в какое время отправляется автобус»). Заменить «go» на «need»."
+ },
+ {
+  "chunk": "02",
+  "id": "en-classic-r1:06.20",
+  "type": "B1",
+  "problem": "Соблазн «go» на позиции 5 даёт верную фразу «How often do the trains go?» («как часто ходят поезда»). Заменить «go» на «need»."
+ },
+ {
+  "chunk": "02",
+  "id": "en-classic-r1:06.49",
+  "type": "B1",
+  "problem": "Соблазн «get» на позиции 3 даёт естественную фразу «Why do you get the early bus?», равную «Почему вы едете на раннем автобусе». Заменить «get» на «wait»."
+ },
+ {
+  "chunk": "10",
+  "id": "en-classic-r1:22.48",
+  "type": "M",
+  "problem": "ru «число» не совпадает с uk «номер» и с number (номер); для номера «число» неестественно. Исправление ru: «Попробуйте прочитать номер вслух.»"
+ },
+ {
+  "chunk": "10",
+  "id": "en-classic-r1:22.12",
+  "type": "M",
+  "problem": "ru «вдоль реки» (along) не совпадает с uk «біля річки» и с by the river (у/возле реки). Исправление ru: «Ей нравится гулять у реки.»"
+ },
+ {
+  "chunk": "07",
+  "id": "en-classic-r1:15.04",
+  "type": "M",
+  "problem": "uk 'Он та сумка твоя' — русизм 'Он'; естественно 'Та сумка твоя.'"
+ },
+ {
+  "chunk": "07",
+  "id": "en-classic-r1:15.41",
+  "type": "B1",
+  "problem": "Позиция 0 (Please): соблазны Hasn't/Postal/Round-trip — явный мусор не по теме и не по классу слов, отсеиваются без знания слова"
+ },
+ {
+  "chunk": "07",
+  "id": "en-classic-r1:16.07",
+  "type": "B1",
+  "problem": "Позиция 0 (Please): соблазны Hasn't/Neighbor/Postal — явный мусор, отсеиваются сразу"
+ },
+ {
+  "chunk": "07",
+  "id": "en-classic-r1:16.23",
+  "type": "M",
+  "problem": "ru/uk 'поискали адрес/пошукали адресу' — калька, не передаёт look up (посмотреть/найти в справочнике); лучше 'Мы посмотрели адрес.'"
+ },
+ {
+  "chunk": "07",
+  "id": "en-classic-r1:16.24",
+  "type": "M",
+  "problem": "ru 'Он это поискал.' / uk 'Він це пошукав.' — неестественно и неточно для looked it up; лучше 'Он это посмотрел.' / 'Він це знайшов.'"
+ },
+ {
+  "chunk": "07",
+  "id": "en-classic-r1:16.41",
+  "type": "B1",
+  "problem": "Позиция 0 (Please): соблазны Hasn't/Neighbor/Postal — явный мусор"
+ },
+ {
+  "chunk": "07",
+  "id": "en-classic-r1:16.50",
+  "type": "B1",
+  "problem": "Позиция 0 (Please): соблазны Hasn't/Neighbor/Postal — явный мусор"
+ },
+ {
+  "chunk": "05",
+  "id": "en-classic-r1:12.03",
+  "type": "B1",
+  "problem": "Соблазн «got» на позиции 2 даёт верную естественную фразу «We got the bus home» (= took the bus). Заменить на «saw»."
+ },
+ {
+  "chunk": "05",
+  "id": "en-classic-r1:12.13",
+  "type": "B1",
+  "problem": "Соблазн «got» на позиции 2 даёт верную естественную фразу «We got the early train» (= caught). Заменить на «saw»."
+ },
+ {
+  "chunk": "05",
+  "id": "en-classic-r1:12.20",
+  "type": "B1",
+  "problem": "Соблазн «for» на позиции 5 даёт верное «the address for the clinic» (= адрес клиники). Заменить на «with»."
+ },
+ {
+  "chunk": "05",
+  "id": "en-classic-r1:11.04",
+  "type": "B3",
+  "problem": "В alternatives нет естественного порядка «On Monday, he worked from home.», а подсказка его не исключает. В соседних фразах такие варианты записаны."
+ },
+ {
+  "chunk": "05",
+  "id": "en-classic-r1:12.01",
+  "type": "M",
+  "problem": "Для «early» в ru «раньше» и в uk «раніше» (= earlier) неточны, нужно «рано/пораньше» («рано»). Смысл «раньше чем кто-то или обычно» в target отсутствует."
+ },
+ {
+  "chunk": "06",
+  "id": "en-classic-r1:14.50",
+  "type": "B1",
+  "problem": "Соблазн «still» на позиции «even» даёт верную фразу «The second bus was still later than the first» (still + сравнительная степень = ещё, как «ещё сильнее» в ru и «навіть» в uk). Её нет в alternatives. Замена: «still» на «always» на позиции 4."
+ },
+ {
+  "chunk": "11",
+  "id": "en-classic-r1:23.27",
+  "type": "M",
+  "problem": "uk «Коли збирають сміттєві баки?» неприродно (калька bins), смысл расходится с ru «вывозят мусор». Лучше: «Коли вивозять сміття?»"
+ },
+ {
+  "chunk": "11",
+  "id": "en-classic-r1:23.31",
+  "type": "B2",
+  "problem": "uk «Гараж не включено у вартість оренди» неграмматично: при подлежащем в именительном нужно «Гараж не включений у вартість оренди»"
+ },
+ {
+  "chunk": "11",
+  "id": "en-classic-r1:23.47",
+  "type": "B1",
+  "problem": "Соблазны плитки «being» neighbor и postal явный мусор (существительное и прилагательное). Заменить на «been» и «be»"
+ },
+ {
+  "chunk": "11",
+  "id": "en-classic-r1:23.47",
+  "type": "M",
+  "problem": "ru «На нашей улице проводится ремонт дорожного покрытия» канцелярит, а uk «Нашу вулицю ремонтують» теряет resurfaced, то есть ru и uk расходятся по смыслу. Лучше: ru «Нашу улицу заново асфальтируют», uk «Нашу вулицю заново асфальтують»"
+ },
+ {
+  "chunk": "11",
+  "id": "en-classic-r1:23.48",
+  "type": "B1",
+  "problem": "Соблазны плитки «being» neighbor и postal явный мусор (существительное и прилагательное). Заменить на «been» и «be»"
+ },
+ {
+  "chunk": "11",
+  "id": "en-classic-r1:24.30",
+  "type": "M",
+  "problem": "neighbour нейтрально, а ru «соседкой» и uk «сусідкою» без оснований женского рода. Лучше: ru «Вы уже познакомились с нашим новым соседом?», uk «Ви вже познайомилися з нашим новим сусідом?»"
+ },
+ {
+  "chunk": "11",
+  "id": "en-classic-r1:24.40",
+  "type": "B2",
+  "problem": "ru «нет уже два дня» (настоящее) расходится с uk «не було ... два дні» (прошедшее). Для present perfect лучше uk «Вже два дні в нас немає гарячої води»"
+ },
+ {
+  "chunk": "11",
+  "id": "en-classic-r1:24.42",
+  "type": "B2",
+  "problem": "ru «абонемент» не соответствует pass, которым входят (uk «пропуск»), и ru с uk расходятся. Нужно ru «Я потерял свой пропуск, поэтому не могу войти»"
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:32.19",
+  "type": "B1",
+  "problem": "Соблазн 'and' на позиции 'when' даёт верную естественную фразу 'I was checking in and my phone rang', её нет в alternatives. Заменить соблазн, например, на 'so'."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:32.28",
+  "type": "B1",
+  "problem": "Соблазн 'that' на позиции 'who' даёт верную фразу 'The woman that answered knew the driver'. Заменить соблазн, например, на 'where'."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:31.25",
+  "type": "B2",
+  "problem": "В ru 'Я почувствовал вибрацию телефона' потеряно притяжательное 'my' и изменена конструкция. В uk есть 'мій телефон', то есть ru и uk расходятся."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:32.07",
+  "type": "B2",
+  "problem": "В ru 'coat' переведён как 'куртки', а в uk 'пальта'. Потеряно 'my' и конструкция 'felt my phone vibrate'. Нужно 'Я почувствовал, как мой телефон завибрировал в кармане пальто'."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:32.10",
+  "type": "B3",
+  "problem": "Не засчитают естественный порядок 'Can I pay by card for the rest?'. Подсказка его не исключает, в alternatives его нет."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:32.12",
+  "type": "B3",
+  "problem": "Не засчитают 'Last Thursday we changed the date.' Это естественный порядок, подсказка его не исключает, в alternatives его нет."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:32.22",
+  "type": "B3",
+  "problem": "В alternatives нет 'As soon as I find it, I will send the number.' и варианта с 'I'll'. У похожих фраз 32.21 и 32.23 инверсия в alternatives есть."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:31.44",
+  "type": "B3",
+  "problem": "Не засчитают естественное 'He reminded us to give back the ladder.' (глагол с частицей). В alternatives его нет."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:31.20",
+  "type": "B3",
+  "problem": "Не засчитают естественное 'He saw her hand back the invoice.' В alternatives его нет."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:31.37",
+  "type": "M",
+  "problem": "В uk 'Дим змусив мої очі сльозитися' калька с английского. Естественнее: 'Від диму в мене сльозилися очі'."
+ },
+ {
+  "chunk": "15",
+  "id": "en-classic-r1:32.50",
+  "type": "M",
+  "problem": "В ru 'потребовал возврата' слишком сильно для 'ask for a refund'. Нужно 'попросил вернуть деньги'."
+ },
+ {
+  "chunk": "09",
+  "id": "en-classic-r1:19.12",
+  "type": "B1",
+  "problem": "Соблазн 'at' на позиции 3 даёт естественную верную фразу 'Meet me at the lobby.' (= в вестибюле). Заменить, например, на 'from'."
+ },
+ {
+  "chunk": "09",
+  "id": "en-classic-r1:19.17",
+  "type": "B1",
+  "problem": "Соблазн 'in' на позиции 2 даёт верную фразу 'They are in the airport.' (= Они в аэропорту). Заменить 'in' на 'until'."
+ },
+ {
+  "chunk": "09",
+  "id": "en-classic-r1:19.29",
+  "type": "B1",
+  "problem": "Соблазн 'by' на позиции 4 даёт верную фразу 'The post office is by the bridge.' (= рядом с мостом). Заменить 'by' на 'from'."
+ },
+ {
+  "chunk": "09",
+  "id": "en-classic-r1:20.31",
+  "type": "B1",
+  "problem": "Соблазн 'at' на позиции 3 даёт верную фразу 'I drink water at lunch.' (= во время обеда). Заменить 'at' на 'from'."
+ },
+ {
+  "chunk": "09",
+  "id": "en-classic-r1:20.42",
+  "type": "B1",
+  "problem": "Соблазн 'by' на позиции 3 даёт верную фразу 'Is the hotel by the station?' (= рядом со станцией). Заменить 'by' на 'of'."
+ },
+ {
+  "chunk": "09",
+  "id": "en-classic-r1:20.43",
+  "type": "B1",
+  "problem": "Соблазн 'at' на позиции 4 даёт естественную фразу 'I had an egg at breakfast.', близкую по смыслу к ru/uk. Заменить 'at' на 'from'."
+ },
+ {
+  "chunk": "09",
+  "id": "en-classic-r1:20.17",
+  "type": "M",
+  "problem": "ru 'Часы громко звенят.' не соответствует target 'The clock is loud.' (меняет конструкцию на глагол 'звенят') и расходится с uk 'Годинник гучний.'. Исправить на 'Часы громкие.'"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:25.18",
+  "type": "B2",
+  "problem": "uk «Собака гавкав» мужского рода, ru «Собака лаяла» женского. Нужно uk «Собака гавкала біля поручня.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.04",
+  "type": "B2",
+  "problem": "ru «мы сядем на автобус» передаёт catch неверно (catch = успеть). uk «встигнемо» верно, ru и uk расходятся. Нужно ru «мы успеем на автобус». Сейчас соблазн take даёт верную фразу, подходящую под ru."
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.14",
+  "type": "B2",
+  "problem": "ru «увидит вывеску», а sign здесь дорожный знак. uk «знак». Нужно ru «увидит знак»."
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.36",
+  "type": "B2",
+  "problem": "ru «поедем на такси вдвоем» добавляет «вдвоем», которого нет в target (share a taxi). uk «спільним таксі» передаёт иначе. Нужно согласовать, например ru «поедем в одном такси»."
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.29",
+  "type": "M",
+  "problem": "ru «Если принтер застрял» неестественно: застревает бумага, а не принтер. uk «заклинить» в будущем времени, ru в прошедшем. Нужно ru «Если принтер заклинит, поднимите крышку.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:25.11",
+  "type": "B3",
+  "problem": "alternatives пуст, хотя «I was walking home at six.» не исключается подсказкой и естественен (в 25.13 такой вариант есть)."
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:25.12",
+  "type": "B3",
+  "problem": "alternatives пуст, хотя «She was still working at eight.» не исключается подсказкой и естественен."
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.05",
+  "type": "B3",
+  "problem": "Нет варианта «Lift the handle if the latch sticks.» (в 26.01–26.20 обратный порядок есть)."
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.21",
+  "type": "B3",
+  "problem": "Нет варианта «Press this button if you need help.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.22",
+  "type": "B3",
+  "problem": "Нет варианта «Call reception if the light flashes.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.23",
+  "type": "B3",
+  "problem": "Нет варианта «Let me know if you find my pass.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.24",
+  "type": "B3",
+  "problem": "Нет варианта «Pull the handle gently if the door sticks.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.25",
+  "type": "B3",
+  "problem": "Нет варианта «Take my coat if you feel cold.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.26",
+  "type": "B3",
+  "problem": "Нет варианта «Check the screen if the train is late.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.27",
+  "type": "B3",
+  "problem": "Нет вариантов «Move closer if you cannot hear.» и «Move closer if you can't hear.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.28",
+  "type": "B3",
+  "problem": "Нет варианта «Call reception if there is a leak.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.29",
+  "type": "B3",
+  "problem": "Нет варианта «Lift the lid if the printer jams.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.30",
+  "type": "B3",
+  "problem": "Нет варианта «Give her my number if you see Anna.»"
+ },
+ {
+  "chunk": "12",
+  "id": "en-classic-r1:26.47",
+  "type": "B3",
+  "problem": "Нет варианта «Press the button when the light turns green.»"
+ },
+ {
+  "chunk": "14",
+  "id": "en-classic-r1:29.25",
+  "type": "B2",
+  "problem": "ru «принимали заказы» не соответствует «take bookings» (бронирования); uk «бронювання» верно, ru и uk расходятся. Исправить ru: «Раньше они не принимали бронирования.»"
+ },
+ {
+  "chunk": "14",
+  "id": "en-classic-r1:30.26",
+  "type": "B1",
+  "problem": "Позиция 7 (went): соблазн «was» даёт верную фразу «I remember the day when the power was off», близкую к ru/uk «отключили электричество/електрику». Заменить «was» на «comes»."
+ },
+ {
+  "chunk": "14",
+  "id": "en-classic-r1:30.32",
+  "type": "B2",
+  "problem": "ru «у которой мы нашли ключи» значит «нашли ключи у неё», а target «whose keys we found» значит «ключи которой мы нашли». Исправить ru: «Женщина, чьи ключи мы нашли, здесь.»"
+ },
+ {
+  "chunk": "14",
+  "id": "en-classic-r1:30.34",
+  "type": "B2",
+  "problem": "uk «чий собака втік» — грамматическая ошибка: «собака» женского рода. Исправить uk: «Сусід, чия собака втекла, залишив записку.»"
+ },
+ {
+  "chunk": "14",
+  "id": "en-classic-r1:30.50",
+  "type": "B2",
+  "problem": "ru «Кто занимается рассмотрением жалоб?» и uk «Хто займається скаргами?» теряют структуру «the person who», так что target «Who is the person who handles complaints?» неочевиден. Исправить ru: «Кто тот человек, который занимается жалобами?», uk: «Хто та людина, яка займається скаргами?»"
+ },
+ {
+  "chunk": "14",
+  "id": "en-classic-r1:30.10",
+  "type": "B1",
+  "problem": "Позиция 3 (flashes): все 5 соблазнов — существительные (seats, keys, coins, stairs, mornings) на месте глагола, их отсеивают по грамматике без знания слов. Заменить на правдоподобные глаголы: «shines», «rings», «opens», «works», «stops»."
+ },
+ {
+  "chunk": "14",
+  "id": "en-classic-r1:30.47",
+  "type": "B1",
+  "problem": "Позиция 6 (belongs): все 5 соблазнов — существительные (keys, seats, tickets, bags, doors) на месте глагола, их отсеивают по грамматике. Заменить на правдоподобные глаголы: «belonged», «listens», «matches», «helps», «remains»."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:27.34",
+  "type": "B2",
+  "problem": "uk «запізнився» (минуле) не совпадает с ru «опаздывает» (настоящее); разный смысл ru и uk. Исправление uk: «Я запитав, чому автобус запізнюється»."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.24",
+  "type": "B2",
+  "problem": "uk «Ми самі фарбували» (несовершенный вид, процесс) не совпадает с ru «покрасили» (результат). Исправление uk: «Ми самі пофарбували»."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.46",
+  "type": "B2",
+  "problem": "ru «проверял себя» и uk «випробував себе» передают разный смысл «tested himself»; ru ещё и в несовершенном виде. Исправление: ru «но он проверил себя», uk «але він перевірив себе»."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.10",
+  "type": "M",
+  "problem": "ru «посмотрел на себя в окно» неверно: речь об отражении, а не о взгляде через окно. Исправление ru: «Он посмотрел на себя в окне»."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.10",
+  "type": "M",
+  "problem": "uk «подивився на себе у вікно» неверно по той же причине. Исправление uk: «Він подивився на себе у вікні»."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.39",
+  "type": "M",
+  "problem": "ru «обожгитесь на сковороде» неестественно: по-русски обжигаются «о сковороду». Исправление ru: «Не обожгитесь о сковороду»."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.42",
+  "type": "M",
+  "problem": "uk «Ми кожен подивився» нарушает согласование (мн. число + ед. число). Исправление uk: «Кожен із нас подивився на себе в дзеркало»."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.21",
+  "type": "B3",
+  "problem": "Равно естественный порядок «I myself fixed the tap» совпадает с порядком ru «Я сам починил кран», но его нет в alternatives. Добавить: «I myself fixed the tap.»"
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.22",
+  "type": "B3",
+  "problem": "«She herself wrote the letter» (ru «Она сама написала письмо») не в alternatives. Добавить этот вариант."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.23",
+  "type": "B3",
+  "problem": "«He himself carried both boxes» (ru «Он сам перенёс обе коробки») не в alternatives. Добавить этот вариант."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.24",
+  "type": "B3",
+  "problem": "«We ourselves did the painting» (ru «Мы сами покрасили») не в alternatives. Добавить этот вариант."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.25",
+  "type": "B3",
+  "problem": "«They themselves built the shelter» (ru «Они сами построили убежище») не в alternatives. Добавить этот вариант."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.28",
+  "type": "B3",
+  "problem": "«The manager herself checked the brakes» (ru «Менеджер сама проверила тормоза») не в alternatives. Добавить этот вариант."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.29",
+  "type": "B3",
+  "problem": "«The driver himself checked the address» (ru «Водитель сам проверил адрес») не в alternatives. Добавить этот вариант."
+ },
+ {
+  "chunk": "13",
+  "id": "en-classic-r1:28.30",
+  "type": "B3",
+  "problem": "«We ourselves saw the damage» (ru «Мы сами увидели повреждения») не в alternatives. Добавить этот вариант."
+ }
+]

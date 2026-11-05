@@ -1,5 +1,5 @@
 {
- "_comment": "Работник А (Ловушки) 05.11: правки EN по семантическому аудиту Ревизора, проход 2 (docs/work/course_quality_1pct/EN_SEMANTIC_PASS2*.{md,json}, HEAD c473219d8). classes — соблазны по КЛАССУ плитки (правило владельца: та же часть речи и роль, правдоподобная ошибка, фраза при подстановке неверна); у плитки класса допустимы только candidates (порядок = приоритет добора), cond nextNoun — следующая плитка существительное/прилагательное/числительное (her/that как определитель). replacements — точечные замены соблазнов (B1: подстановка даёт верную фразу); alt — недостающие верные порядки слов (B3). Подключение: classic_course_pack.mjs (CTX_LANGS).",
+ "_comment": "Работник А (Ловушки) 05.11: правки EN по семантическому аудиту Ревизора, проход 2 (docs/work/course_quality_1pct/EN_SEMANTIC_PASS2*.{md,json}, HEAD c473219d8). classes — соблазны по КЛАССУ плитки (правило владельца: та же часть речи и роль, правдоподобная ошибка, фраза при подстановке неверна); у плитки класса допустимы только candidates (порядок = приоритет добора), cond nextNoun — следующая плитка существительное/прилагательное/числительное (her/that как определитель). replacements — точечные замены соблазнов (B1: подстановка даёт верную фразу); alt — недостающие верные порядки слов (B3). Подключение: classic_course_pack.mjs (CTX_LANGS). Проход 3 (EN_SEMANTIC_PASS3, 161b67877): классы canQ (Can в начале просьбы — без Might/Could/May), cannot (модальные), indef (everything/anything…), артикль перед причастием; 30 замен B1, 8 добавок B3.",
  "classes": [
   {
    "name": "neg",
@@ -214,6 +214,62 @@
     "were",
     "are",
     "is"
+   ]
+  },
+  {
+   "name": "canQ",
+   "tiles": [
+    "can"
+   ],
+   "cond": "first",
+   "candidates": [
+    "should",
+    "must",
+    "will",
+    "do",
+    "did",
+    "does",
+    "is",
+    "are",
+    "have"
+   ]
+  },
+  {
+   "name": "cannot",
+   "tiles": [
+    "cannot"
+   ],
+   "candidates": [
+    "must",
+    "should",
+    "will",
+    "can",
+    "would",
+    "do",
+    "did",
+    "may"
+   ]
+  },
+  {
+   "name": "indef",
+   "tiles": [
+    "everything",
+    "anything",
+    "something",
+    "nothing"
+   ],
+   "candidates": [
+    "something",
+    "nothing",
+    "anything",
+    "everything",
+    "everyone",
+    "someone",
+    "anyone",
+    "nobody",
+    "it",
+    "one",
+    "him"
    ]
   }
  ],
@@ -475,6 +531,156 @@
    "position": 6,
    "from": "lock",
    "to": "starts"
+  },
+  {
+   "id": "en-classic-r1:05.47",
+   "position": 5,
+   "from": "near",
+   "to": "after"
+  },
+  {
+   "id": "en-classic-r1:18.30",
+   "position": 1,
+   "from": "take",
+   "to": "turn"
+  },
+  {
+   "id": "en-classic-r1:02.31",
+   "position": 3,
+   "from": "empty",
+   "to": "cheap"
+  },
+  {
+   "id": "en-classic-r1:02.36",
+   "position": 3,
+   "from": "empty",
+   "to": "cheap"
+  },
+  {
+   "id": "en-classic-r1:02.41",
+   "position": 2,
+   "from": "in",
+   "to": "after"
+  },
+  {
+   "id": "en-classic-r1:02.49",
+   "position": 3,
+   "from": "in",
+   "to": "after"
+  },
+  {
+   "id": "en-classic-r1:32.01",
+   "position": 5,
+   "from": "free",
+   "to": "closed"
+  },
+  {
+   "id": "en-classic-r1:32.01",
+   "position": 5,
+   "from": "empty",
+   "to": "quiet"
+  },
+  {
+   "id": "en-classic-r1:23.16",
+   "position": 4,
+   "from": "shown",
+   "to": "locked"
+  },
+  {
+   "id": "en-classic-r1:07.50",
+   "position": 2,
+   "from": "what",
+   "to": "something"
+  },
+  {
+   "id": "en-classic-r1:08.33",
+   "position": 2,
+   "from": "is",
+   "to": "go"
+  },
+  {
+   "id": "en-classic-r1:04.30",
+   "position": 4,
+   "from": "go",
+   "to": "break"
+  },
+  {
+   "id": "en-classic-r1:04.50",
+   "position": 5,
+   "from": "at",
+   "to": "from"
+  },
+  {
+   "id": "en-classic-r1:04.50",
+   "position": 5,
+   "from": "for",
+   "to": "with"
+  },
+  {
+   "id": "en-classic-r1:21.20",
+   "position": 0,
+   "from": "Might",
+   "to": "Did"
+  },
+  {
+   "id": "en-classic-r1:21.45",
+   "position": 4,
+   "from": "can",
+   "to": "did"
+  },
+  {
+   "id": "en-classic-r1:21.45",
+   "position": 4,
+   "from": "could",
+   "to": "does"
+  },
+  {
+   "id": "en-classic-r1:22.14",
+   "position": 3,
+   "from": "by",
+   "to": "with"
+  },
+  {
+   "id": "en-classic-r1:16.24",
+   "position": 2,
+   "from": "that",
+   "to": "his"
+  },
+  {
+   "id": "en-classic-r1:16.41",
+   "position": 3,
+   "from": "boots",
+   "to": "hat"
+  },
+  {
+   "id": "en-classic-r1:16.47",
+   "position": 2,
+   "from": "take",
+   "to": "tell"
+  },
+  {
+   "id": "en-classic-r1:27.13",
+   "position": 5,
+   "from": "in",
+   "to": "of"
+  },
+  {
+   "id": "en-classic-r1:27.50",
+   "position": 5,
+   "from": "got",
+   "to": "parked"
+  },
+  {
+   "id": "en-classic-r1:30.40",
+   "position": 3,
+   "from": "package",
+   "to": "season"
+  },
+  {
+   "id": "en-classic-r1:30.50",
+   "position": 4,
+   "from": "that",
+   "to": "how"
   }
  ],
  "alt": {
@@ -618,6 +824,51 @@
   "en:28:30": {
    "add": [
     "We ourselves saw the damage."
+   ]
+  },
+  "en:07:35": {
+   "add": [
+    "They don't have an elevator.",
+    "They haven't got an elevator.",
+    "They have not got an elevator.",
+    "They do not have an elevator."
+   ]
+  },
+  "en:28:50": {
+   "add": [
+    "On the way home, take care of yourself."
+   ]
+  },
+  "en:28:26": {
+   "add": [
+    "Did you yourself make this?"
+   ]
+  },
+  "en:28:27": {
+   "add": [
+    "I myself want to hear it."
+   ]
+  },
+  "en:29:38": {
+   "add": [
+    "How much did a room use to cost here?"
+   ]
+  },
+  "en:29:45": {
+   "add": [
+    "Now I am used to getting up early.",
+    "Now I'm used to getting up early."
+   ]
+  },
+  "en:29:48": {
+   "add": [
+    "I used to hate the early shift, but now I am used to it.",
+    "I used to hate the early shift, but now I'm used to it."
+   ]
+  },
+  "en:30:30": {
+   "add": [
+    "The room where we had lunch is now free."
    ]
   }
  }

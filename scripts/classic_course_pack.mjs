@@ -460,7 +460,10 @@ function tileClass(ctx, ph, i) {
   const sig = ctx.ctxSig.tiles[ph.id] ?? [];
   for (const cl of PASS2.classes ?? []) {
     if (!cl.tiles.includes(c)) continue;
-    if (cl.cond === 'nextNoun' && !['N/', 'A/', 'NUM/'].includes(sig[i + 1] ?? '')) continue;
+    // зачем (проход 3): артикль перед причастием-определением («a blocked nose», «a driving licence») — тоже определитель
+    const nounLike = ['N/', 'A/', 'NUM/', ...(['a', 'an', 'the'].includes(c) ? ['V/Part', 'V/Ger'] : [])];
+    if (cl.cond === 'nextNoun' && !nounLike.includes(sig[i + 1] ?? '')) continue;
+    if (cl.cond === 'first' && i !== 0) continue;
     // зачем: после существительного «that/which» — относительное слово («the reminder that flashes»), не определитель; spaCy путает глагол на -s с сущ.
     if (cl.cond === 'nextNoun' && i > 0 && sig[i - 1] === 'N/') continue;
     if (cl.cond === 'nom' && sig[i] !== 'NOM/') continue;

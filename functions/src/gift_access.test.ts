@@ -94,6 +94,7 @@ describe('introFullAccessClaim policy', () => {
     expect(source).not.toContain('request.data?.stableId');
     expect(source).not.toContain('request.data?.grantedAtMs');
     expect(source).not.toContain('request.data?.endsAtMs');
-    expect(indexSource).toContain("export { introFullAccessClaim } from './gift_access';");
+    // зачем: форматирование index.ts — двойные кавычки; пин сторожит сам экспорт, а не вид кавычек
+    expect(indexSource).toMatch(/export \{ introFullAccessClaim \} from ["']\.\/gift_access["'];/);
   });
 });

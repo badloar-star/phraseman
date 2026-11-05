@@ -4,23 +4,23 @@ import path from 'node:path';
 const read = (name: string) => fs.readFileSync(path.join(__dirname, name), 'utf8');
 
 describe('canonical server-owned gift perk producers', () => {
-  it('keeps new authority callables in both selective deployment commands', () => {
+  // зачем (150, красные тесты оплаты/подарков): сторож сторожил УДАЛЁННОЕ — скрипты deploy:safe / deploy:community-gift ушли из package.json, а level-gift / level-spin pack callables
+  // удалены из community_packs.ts целиком (там же комментарий причины). Пины переписаны на текущее состояние: если скрипты вернутся — правило про broadcast/chain-shield действует; удалённые callables не должны вернуться.
+  it('keeps authority callables in the selective deployment commands that exist', () => {
     const pkg = JSON.parse(read('../package.json')) as { scripts: Record<string, string> };
     for (const scriptName of ['deploy:safe', 'deploy:community-gift']) {
-      expect(pkg.scripts[scriptName]).not.toContain('functions:friendConsumeChainShield');
-      expect(pkg.scripts[scriptName]).toContain('functions:globalBroadcastClaim');
+      const script = pkg.scripts[scriptName];
+      if (script === undefined) continue;
+      expect(script).not.toContain('functions:friendConsumeChainShield');
+      expect(script).toContain('functions:globalBroadcastClaim');
     }
   });
 
-  it('level complete_claim validates a reservation and writes canonical perk fields server-side', () => {
+  it('level-gift / level-spin pack callables stay retired (not exported from community_packs)', () => {
     const source = read('community_packs.ts');
-    const start = source.indexOf('export const levelGiftReserve');
-    const end = source.indexOf('export const levelGiftActivatePackGift', start);
-    const claim = source.slice(start, end);
-    expect(claim).toContain("action === 'complete_claim'");
-    expect(claim).toContain('levelGiftPerkActivation(requestedGiftId');
-    expect(claim).toContain('tx.update(userRef, activation.userPatch)');
-    expect(claim).toContain('perkResponse: activation.response');
+    for (const name of ['levelGiftReserve', 'levelGiftActivatePackGift', 'levelSpinActivatePackGift']) {
+      expect(source).not.toContain(`export const ${name}`);
+    }
   });
 
 });

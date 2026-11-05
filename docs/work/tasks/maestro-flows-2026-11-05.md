@@ -24,3 +24,8 @@ Governance-ID: TG-7E394F0FCDD1
 
 ## Rollback
 Удалить добавленные yaml-файлы; приложение не затронуто.
+Governance-ID: TG-ED7FB5691909
+Governance-ID: TG-99CBEA04214F
+
+## Дополнение 05.11 (вердикты по кадрам)
+Файл docs/work/release/MOCKUP_VERDICTS_LV2_2026-11-05.md — сверка кадров эмулятора с одобренными макетами, только чтение кадров, код не трогается.

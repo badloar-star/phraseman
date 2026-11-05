@@ -1,0 +1,101 @@
+<title>Награда за просмотр видео</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* раскладка: вкладки сверху, под ними один или два телефона на реальных кадрах; плашка-монета нейтральная тёмная, чтобы читаться на любой обложке и в любой теме */
+:root{--bg:#f4f2f7;--fg:#1d1a24;--mut:#645d70;--card:#ffffff;--line:rgba(29,26,36,.14);--on:#1d1a24;--on-fg:#f4f2f7;--acc:#2f7a6b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0e13;--fg:#f2eef6;--mut:#a8a0b3;--card:#1b1921;--line:rgba(255,255,255,.14);--on:#f2eef6;--on-fg:#0f0e13;--acc:#6fcfb8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f0e13;--fg:#f2eef6;--mut:#a8a0b3;--card:#1b1921;--line:rgba(255,255,255,.14);--on:#f2eef6;--on-fg:#0f0e13;--acc:#6fcfb8;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-block:20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:22px;line-height:1.2;margin:0 0 6px;text-wrap:balance}
+.lead{margin:0 0 14px;color:var(--mut);max-width:64ch}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.bar button,.bar select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;min-height:44px}
+.bar button[aria-pressed="true"]{background:var(--on);color:var(--on-fg);border-color:transparent}
+.bar button:focus-visible,.bar select:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.lbl{color:var(--mut);font-size:14px;margin-right:4px}
+.stage{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.col{width:min(360px,100%);min-width:0}
+.ph{position:relative;border-radius:30px;overflow:hidden;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.3);--u:.4}
+.ph img.fr,.ph canvas{display:block;width:100%;height:auto}
+.note{color:var(--mut);margin:10px 0 0;font-size:15px}.note b{color:var(--fg)}
+.note ul{margin:6px 0 0;padding-left:20px}.note li{margin:4px 0}
+/* плашка на превью: монета текущего ранга + +500; без обводки */
+.bd{position:absolute;display:flex;align-items:center;gap:calc(var(--u)*10px);padding:calc(var(--u)*7px) calc(var(--u)*18px) calc(var(--u)*7px) calc(var(--u)*8px);border-radius:999px;background:rgba(8,10,14,.66);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-weight:800;font-size:calc(var(--u)*30px);line-height:1;letter-spacing:.2px;pointer-events:none}
+.bd img{width:calc(var(--u)*40px);height:calc(var(--u)*40px);display:block}
+.bd.got{background:rgba(8,10,14,.5);color:rgba(255,255,255,.82)}
+.bd.got img{opacity:.5;filter:grayscale(.7)}
+.bd .ck{width:calc(var(--u)*26px);height:calc(var(--u)*26px);border-radius:50%;background:#35c27a;display:flex;align-items:center;justify-content:center}
+.bd .ck svg{width:60%;height:60%}
+/* плеер: конец видео */
+.ov{position:absolute;left:calc(44/900*100%);top:calc(233/2000*100%);width:calc(789/900*100%);height:calc(444/2000*100%);border-radius:calc(var(--u)*34px);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:calc(var(--u)*10px);background:rgba(6,8,12,.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);color:#fff;text-align:center}
+.ov img{width:calc(var(--u)*190px);height:calc(var(--u)*190px)}
+.ov .big{font-size:calc(var(--u)*92px);font-weight:900;line-height:1}
+.ov .sub{font-size:calc(var(--u)*34px);font-weight:700;padding:0 calc(var(--u)*30px)}
+.ov.chip{inset:auto;left:calc(64/900*100%);top:calc(590/2000*100%);width:auto;height:auto;border-radius:999px;flex-direction:row;padding:calc(var(--u)*10px) calc(var(--u)*24px) calc(var(--u)*10px) calc(var(--u)*12px);gap:calc(var(--u)*12px);background:rgba(8,10,14,.7)}
+.ov.chip img{width:calc(var(--u)*50px);height:calc(var(--u)*50px)}
+.ov.chip .sub{padding:0;font-size:calc(var(--u)*30px)}
+.pop{animation:pop .6s cubic-bezier(.23,1,.32,1) both}
+@keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+.toast{position:absolute;left:50%;top:calc(75/2000*100%);transform:translateX(-50%);display:flex;align-items:center;gap:calc(var(--u)*12px);background:rgba(8,10,14,.82);color:#fff;border-radius:999px;padding:calc(var(--u)*12px) calc(var(--u)*26px) calc(var(--u)*12px) calc(var(--u)*14px);font-weight:800;font-size:calc(var(--u)*34px);white-space:nowrap}
+.toast img{width:calc(var(--u)*50px);height:calc(var(--u)*50px)}
+.toast .tag{font-weight:600;opacity:.8;font-size:calc(var(--u)*26px)}
+.bar2{position:absolute;left:calc(44/900*100%);right:calc(67/900*100%);top:calc(694/2000*100%);height:calc(var(--u)*10px);border-radius:99px;background:rgba(0,0,0,.14)}
+.bar2 i{display:block;height:100%;border-radius:99px;background:#e8453c;width:72%}
+.q{margin:18px 0 0;padding:0;list-style:none;max-width:64ch}
+.q li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:8px 0;color:var(--mut)}
+.q b{color:var(--fg)}
+@media (prefers-reduced-motion:reduce){.pop{animation:none}}
+</style>
+<h1>Награда +500 монет за просмотр видео</h1>
+<p class="lead">Макет на настоящих экранах приложения. Плашка с монетой показывает награду на каждом ролике, при завершении награда приходит сразу, затем история.</p>
+<div class="bar" role="group" aria-label="Экран"><button data-t="list" aria-pressed="true">Раздел «Видео»</button><button data-t="home" aria-pressed="false">Главная</button><button data-t="play" aria-pressed="false">Плеер</button><button data-t="story" aria-pressed="false">История</button><button data-t="notes" aria-pressed="false">Решить</button></div>
+<div class="bar"><span class="lbl">Ранг монеты</span><select id="rank" aria-label="Ранг монеты"><option value="c0">Ранг 0 · Стажёр</option><option value="c3">Ранг 3</option><option value="c6">Ранг 6</option><option value="c9">Ранг 9</option></select><span class="lbl" id="stateLbl" hidden>Состояние</span><select id="pstate" aria-label="Состояние в плеере" hidden><option value="done">Только что досмотрел</option><option value="got">Награда уже получена</option><option value="part">Не до конца</option><option value="off">Нет сети</option></select><button id="replay" hidden>Показать ещё раз</button><span class="lbl" id="stLbl" hidden>Тема окна</span><select id="sth" aria-label="Тема окна" hidden><option value="stDark">Тёмная</option><option value="stLight">Светлая</option></select></div>
+
+<section id="v-list" class="stage"><div class="col"><div class="ph" id="p-list"><img class="fr" id="i-list" alt="Раздел «Видео» — реальный экран"></div></div><div class="col note"><b>Раздел «Видео».</b><ul><li>Плашка в левом верхнем углу обложки: монета текущего ранга и «+500». Название и длительность не закрыты.</li><li>Не просмотрено и «не до конца» — монета и «+500».</li><li>Награда получена — приглушённая монета с галочкой, без «+500» (ролики 2 и 5).</li><li>Плашка тёмная полупрозрачная, поэтому читается на любой обложке и в любой теме. Обводок нет.</li></ul></div></section>
+<section id="v-home" class="stage" hidden><div class="col"><div class="ph" id="p-home"><img class="fr" id="i-home" alt="Главная с лентой видео — реальный экран"></div></div><div class="col note"><b>Главная, лента «Видео».</b><ul><li>Те же плашки на каждом ролике горизонтальной ленты.</li><li>Кадр взят из сборки, где лента есть; в текущей сборке ленты на Главной нет (кадр 07:24), см. «Решить».</li></ul></div></section>
+<section id="v-play" class="stage" hidden><div class="col"><div class="ph" id="p-play"><img class="fr" id="i-play" alt="Плеер — реальный экран"><div id="ovl"></div></div></div><div class="col note" id="pnote"></div></section>
+<section id="v-story" class="stage" hidden><div class="col"><div class="ph" style="--u:.4"><canvas id="cs" aria-label="История: видео просмотрено"></canvas></div></div><div class="col note"><b>История после завершения.</b><ul><li>Тот же формат, что у окон «Открылось видео / Открылись карточки»: подпись-раздел, крупный заголовок, одна фраза, главная кнопка, ссылка.</li><li>Вместо реквизита — монета текущего ранга.</li><li>«Следующее видео» ведёт в раздел «Видео». Пропустить можно в любой момент.</li></ul></div></section>
+<section id="v-notes" hidden><ul class="q"><li><b>Что считать полным просмотром.</b> Дошёл до последних секунд без перемотки вперёд, или достаточно отметки 95 %? Предлагаю: 95 % и без пропусков более 10 секунд.</li><li><b>Один раз на ролик.</b> Награду за каждое видео выдаёт сервер один раз на аккаунт; повторный просмотр награды не даёт. Иначе монеты можно накрутить.</li><li><b>Нет сети.</b> Награда считается сразу на телефоне и подтверждается при подключении; если сервер откажет, сумма откатывается с понятным сообщением.</li><li><b>Лента на Главной.</b> В текущей сборке на Главной ленты видео нет. Вернуть ленту ради плашки или оставить награду только в разделе «Видео»?</li><li><b>Размер награды.</b> 500 монет за ролик заметно больше награды за урок (+3/+2/+1). Подтвердить сумму и дневной лимит.</li></ul></section>
+<script>
+/*__DATA__*/
+var u=document.getElementById.bind(document),tabs=document.querySelectorAll("[data-t]"),rank=u("rank"),COIN=function(){return DATA[rank.value]};
+var RM=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+u("i-list").src=DATA.list;u("i-home").src=DATA.home;u("i-play").src=DATA.play;
+function sz(){document.querySelectorAll(".ph").forEach(function(p){p.style.setProperty("--u",(p.clientWidth/900).toFixed(4))})}
+function badge(host,x,y,st){var d=document.createElement("div");d.className="bd"+(st==="got"?" got":"");d.style.left=(x/900*100)+"%";d.style.top=(y/2000*100)+"%";
+ d.innerHTML='<img alt="" src="'+COIN()+'">'+(st==="got"?'<span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>':'<span>+500</span>');host.appendChild(d)}
+function drawBadges(){document.querySelectorAll("#p-list .bd,#p-home .bd").forEach(function(n){n.remove()});
+ var L=u("p-list"),H=u("p-home");var th=[[44,583],[463,583],[44,997],[463,997],[44,1410],[463,1410]],ss=["new","got","new","new","got","new"];
+ th.forEach(function(p,i){badge(L,p[0]+14,p[1]+14,ss[i])});
+ badge(H,27+14,903+14,"new");badge(H,584+14,903+14,"new")}
+function play(){var host=u("p-play"),o=u("ovl"),st=u("pstate").value,c=COIN();host.querySelectorAll(".bar2,.toast").forEach(function(n){n.remove()});o.innerHTML="";var note=u("pnote");
+ if(st==="done"){o.innerHTML='<div class="ov pop"><img alt="" src="'+c+'"><div class="big">+500</div><div class="sub">Видео просмотрено до конца</div></div>';
+  var t=document.createElement("div");t.className="toast pop";t.innerHTML='<img alt="" src="'+c+'"><span id="cnt">690</span>';host.appendChild(t);
+  var el=t.querySelector("#cnt"),a=690,b=1190,d=RM?0:900,t0=performance.now();(function f(n){var k=d?Math.min(1,(n-t0)/d):1,e=1-Math.pow(1-k,3);el.textContent=Math.round(a+(b-a)*e).toLocaleString("ru-RU");if(k<1)requestAnimationFrame(f)})(t0);
+  note.innerHTML="<b>Конец видео.</b><ul><li>Награда и счётчик +500 появляются в тот же кадр, без ожидания сервера.</li><li>Окно закрывается само или по касанию; затем предлагается история.</li></ul>"}
+ else if(st==="got"){o.innerHTML='<div class="ov chip pop"><img alt="" style="opacity:.55" src="'+c+'"><div class="sub">Награда за это видео уже получена</div></div>';note.innerHTML="<b>Повторный просмотр.</b><ul><li>Награды нет, окно спокойное, без анимации монет.</li><li>Счётчик не меняется.</li></ul>"}
+ else if(st==="part"){o.innerHTML='<div class="ov chip pop"><img alt="" src="'+c+'"><div class="sub">Досмотри до конца: +500</div></div>';var b2=document.createElement("div");b2.className="bar2";b2.innerHTML="<i></i>";host.appendChild(b2);note.innerHTML="<b>Не до конца.</b><ul><li>Показываем прогресс и условие награды, монеты не начисляются.</li><li>Выглядит так же, как неполученная плашка в списке.</li></ul>"}
+ else{o.innerHTML='<div class="ov pop"><img alt="" src="'+c+'"><div class="big">+500</div><div class="sub">Придёт, когда появится сеть</div></div>';var t2=document.createElement("div");t2.className="toast";t2.innerHTML='<img alt="" src="'+c+'"><span>690</span><span class="tag">ожидает +500</span>';host.appendChild(t2);note.innerHTML="<b>Нет сети.</b><ul><li>Награда запоминается на телефоне и подтверждается при подключении.</li><li>Если сервер откажет, счётчик вернётся с понятным сообщением.</li></ul>"}
+ sz()}
+function story(){var th=u("sth").value,img=new Image();img.onload=function(){var W=img.width,H=img.height,k=W/390,c=u("cs");c.width=W;c.height=H;var x=c.getContext("2d");x.drawImage(img,0,0);
+ var src=document.createElement("canvas");src.width=W;src.height=H;var s=src.getContext("2d");s.drawImage(img,0,0);
+ var px=function(a,b){var d=s.getImageData(Math.round(a*k),Math.round(b*k),1,1).data;return[d[0],d[1],d[2]]},rgb=function(v){return"rgb("+v[0]+","+v[1]+","+v[2]+")"},lum=function(v){return .299*v[0]+.587*v[1]+.114*v[2]};
+ var bg=px(20,548),btn=px(40,724),card=px(185,236);var darkBtn=lum(btn)<128;
+ x.fillStyle=rgb(bg);x.fillRect(0,548*k,W,128*k);
+ var gr=x.createRadialGradient(264*k,300*k,10*k,264*k,300*k,92*k);gr.addColorStop(0,rgb(card));gr.addColorStop(1,rgb(card));x.fillStyle=gr;x.beginPath();x.ellipse(264*k,300*k,90*k,76*k,0,0,Math.PI*2);x.fill();
+ var img2=new Image();img2.onload=function(){var s2=104*k;x.drawImage(img2,264*k-s2/2,300*k-s2/2,s2,s2);
+  var fg=lum(bg)<128?"#f4f4f7":"#12151c";x.fillStyle=fg;x.textAlign="center";x.textBaseline="middle";
+  x.font="700 "+(11*k)+"px system-ui,Segoe UI,Roboto,sans-serif";x.globalAlpha=.85;x.fillText("ВИДЕО ПРОСМОТРЕНО",195*k,566*k);x.globalAlpha=1;
+  x.font="800 "+(31*k)+"px system-ui,Segoe UI,Roboto,sans-serif";x.fillText("+500 монет",195*k,603*k);
+  x.font="500 "+(16*k)+"px system-ui,Segoe UI,Roboto,sans-serif";x.globalAlpha=.9;x.fillText("Ты досмотрел видео до конца.",195*k,642*k);x.fillText("Награда уже на счёте.",195*k,665*k);x.globalAlpha=1;
+  x.fillStyle=rgb(btn);x.fillRect(60*k,706*k,270*k,36*k);x.fillStyle=darkBtn?"#ffffff":"#12151c";x.font="700 "+(16*k)+"px system-ui,Segoe UI,Roboto,sans-serif";x.fillText("Следующее видео",195*k,725*k);
+  x.fillStyle=rgb(bg);x.fillRect(120*k,764*k,150*k,24*k);x.fillStyle=fg;x.font="500 "+(14*k)+"px system-ui,Segoe UI,Roboto,sans-serif";x.fillText("На главную",195*k,776*k)};img2.src=COIN()};img.src=DATA[th]}
+function view(t){tabs.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.t===t))});["list","home","play","story","notes"].forEach(function(n){u("v-"+n).hidden=n!==t});
+ var isP=t==="play",isS=t==="story";u("pstate").hidden=!isP;u("stateLbl").hidden=!isP;u("replay").hidden=!isP;u("sth").hidden=!isS;u("stLbl").hidden=!isS;u("rank").hidden=t==="notes";sz();if(isP)play();if(isS)story()}
+tabs.forEach(function(b){b.onclick=function(){view(b.dataset.t)}});
+rank.onchange=function(){drawBadges();if(!u("v-play").hidden)play();if(!u("v-story").hidden)story()};
+u("pstate").onchange=play;u("replay").onclick=play;u("sth").onchange=story;window.addEventListener("resize",sz);
+var im=u("i-list");function init(){sz();drawBadges()}if(im.complete)init();else im.onload=init;
+</script>

@@ -141,10 +141,10 @@
    "es": "habla"
   },
   "stops": {
-   "ru": "останавливается",
-   "uk": "зупиняється",
-   "en": "halts",
-   "es": "para"
+   "ru": "останавливается; остановки (на маршруте)",
+   "uk": "зупиняється; зупинки (на маршруті)",
+   "en": "halts; places on a route where a bus or train halts",
+   "es": "para; paradas"
   },
   "opens": {
    "ru": "открывается",

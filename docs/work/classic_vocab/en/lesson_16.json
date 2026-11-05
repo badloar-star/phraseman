@@ -165,10 +165,10 @@
    "es": "cinco"
   },
   "away": {
-   "ru": "прочь, на место; убрать",
-   "uk": "геть, на місце; прибрати",
-   "en": "not here; to its place",
-   "es": "lejos; guardar"
+   "ru": "прочь, вдаль; на место; убрать; отъезжать (pull away)",
+   "uk": "геть, вдалину; на місце; прибрати; від'їжджати (pull away)",
+   "en": "not here; to its place; pull away means to drive off",
+   "es": "lejos; guardar; pull away = alejarse"
   }
  }
 }

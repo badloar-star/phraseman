@@ -141,10 +141,10 @@
    "es": "con suavidad"
   },
   "pull": {
-   "ru": "потяните",
-   "uk": "потягніть",
-   "en": "move something towards you",
-   "es": "tirar"
+   "ru": "потяните; тянуть; отъезжать (pull away)",
+   "uk": "потягніть; тягнути; від'їжджати (pull away)",
+   "en": "move something towards you; pull away means to drive off",
+   "es": "tirar; pull away = alejarse"
   },
   "towards": {
    "ru": "к, в сторону",

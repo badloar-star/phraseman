@@ -153,10 +153,10 @@
    "es": "luces"
   },
   "on": {
-   "ru": "включён",
-   "uk": "увімкнений",
-   "en": "working, switched on",
-   "es": "encendido"
+   "ru": "включён; в (в автобусе, поезде)",
+   "uk": "увімкнений; у (в автобусі, поїзді)",
+   "en": "working, switched on; inside a bus or train (on the bus)",
+   "es": "encendido; en (en el autobús, el tren)"
   },
   "off": {
    "ru": "выключен",

@@ -1,0 +1,50 @@
+diff --git a/tests/youtube_connect_once_contract.test.ts b/tests/youtube_connect_once_contract.test.ts
+index 351fa2199..cfa08cece 100644
+--- a/tests/youtube_connect_once_contract.test.ts
++++ b/tests/youtube_connect_once_contract.test.ts
+@@ -1,31 +1,33 @@
+-// зачем (владелец 04.10): «Подключить» всплывало после закрытия вкладки, а английский канал давал ложное
+-// «Выбран другой канал» — сверка шла с внутренним номером каталога вместо YouTube-id. Без новых секретов.
++// Owner 28.10: durable per-channel server grants replace browser-only renewal.
+ import * as fs from 'fs';
+ import * as path from 'path';
+ 
+ const admin = fs.readFileSync(path.join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
+-const block = admin.slice(admin.indexOf('const VP_YT_CLIENT_ID'), admin.indexOf("byId('vp-transcript-file')?.addEventListener"));
++const block = admin.slice(admin.indexOf('const VP_YT_STORE'), admin.indexOf("byId('vp-transcript-file')?.addEventListener"));
++const server=fs.readFileSync(path.join(__dirname,'..','functions','src','youtube_oauth.ts'),'utf8');
+ 
+ describe('YouTube: подключение один раз, сверка по YouTube-id', () => {
+   it('сверка канала по youtubeChannelId, а не по внутреннему номеру каталога', () => {
+-    expect(block).toContain("const expectedYt=String(channel?.youtubeChannelId||'')");
+-    expect(block).toContain('got.some((it)=>it.id===expectedYt)');
++    expect(server).toContain('item.id===session.channelId');
++    expect(server).toContain('current?.youtubeChannelId!==session.channelId');
+     expect(block).not.toContain('ids.includes(channelId)');
+   });
+-  it('токен в localStorage, не в sessionStorage; тихое обновление по подсказке аккаунта', () => {
+-    expect(block).toContain('localStorage.setItem(VP_YT_STORE');
++  it('очищает старые браузерные токены и обновляет доступ через сервер', () => {
++    expect(block).toContain('localStorage.removeItem(VP_YT_STORE)');
++    expect(block).not.toContain('localStorage.setItem(VP_YT_STORE');
++    expect(block).not.toContain('localStorage.getItem(VP_YT_STORE');
+     expect(block).not.toContain('sessionStorage');
+-    expect(block).toContain('login_hint:hint');
++    expect(block).toContain("vpYtServer('authToken',configId)");
++    expect(server).toContain("grant_type:'refresh_token'");
+   });
+   it('факт подключения — в Firestore без токенов', () => {
+     const bridge = admin.slice(admin.indexOf('window.pmYoutubeConnections = {'), admin.indexOf('// === Learning V2 · Генератор E1'));
+     expect(bridge).toContain("doc(db, 'admin_youtube_connections', 'state')");
+     expect(bridge).not.toMatch(/accessToken|access_token/);
+-    expect(block).toMatch(/const record=\{youtubeChannelId:expectedYt,title:[^}]*accountHint,connectedAtMs:Date\.now\(\)\}/);
++    expect(server).toContain("const SETTINGS='admin_youtube_comment_settings'");
+   });
+-  it('логи [VIDEO-TRANSCRIPT]: что ждали, что вернул Google, откуда статус', () => {
+-    expect(block).toContain("'[VIDEO-TRANSCRIPT] admin connect start'");
+-    expect(block).toContain("'[VIDEO-TRANSCRIPT] admin connect google returned'");
++  it('сохраняет диагностический источник подключения без логирования токенов', () => {
+     expect(block).toContain("'[VIDEO-TRANSCRIPT] admin connections from firestore'");
++    expect(server).not.toMatch(/console\.(log|warn|error)/);
+   });
+ });

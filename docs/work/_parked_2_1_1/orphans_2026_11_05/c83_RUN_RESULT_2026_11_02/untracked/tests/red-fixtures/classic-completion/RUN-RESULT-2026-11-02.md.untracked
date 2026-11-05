@@ -1,0 +1,45 @@
+# Bounded RED run result — 2026-11-02 19:48 UTC
+
+## Classification
+
+- Expected overall state: `RED`.
+- Executed tests: `3`.
+- Contract failures: `3`.
+- Harness failures in the decisive run: `0`.
+- Jest suites: `1 failed / 1 total`.
+- Exit code: `1` (expected for the captured RED state).
+- Shared semaphore: acquired, `GO slot 1/1`; released by `slot.sh run`.
+
+## Decisive command
+
+```powershell
+$env:PM_SESSION_ID='codex-session15-classic-completion-red'
+& 'C:\Program Files\Git\bin\bash.exe' .claude/semaphore/slot.sh run --wait=3600 'classic completion bounded RED fixtures' -- npx jest --config tests/red-fixtures/classic-completion/jest.config.cjs --runInBand --no-cache --no-watchman
+```
+
+## Contract evidence
+
+| Contract | Expected safe result | Actual current result |
+|---|---|---|
+| `UNLOCK-ACK` | rejected write cannot report committed unlock | `durableUnlock=false`, but `reportedUnlock=true` |
+| `MEDAL-ACK` | rejected write cannot claim new best/pass | both durable keys `null`, but `claimedNewBest=true`, `claimedPassIncrease=true` |
+| `OUTBOX-ACK` | PhoneState completion remains pending until owner queue write resolves | submission was `resolved` while injected queue write was still blocked |
+
+All three Jest failure names contained their `[CONTRACT-RED:*]` IDs. The only runtime warning was the production medal fallback logging its injected storage rejection; it was not a harness failure.
+
+## Harness failure kept separate
+
+The first attempted wrapper invocation used the Windows `bash.exe` alias, which is WSL on this machine. WSL had no installed distribution, so Jest executed `0` tests. That attempt is classified only as `HARNESS-FAIL` and is not product evidence. The decisive run used `C:\Program Files\Git\bin\bash.exe` and executed all three tests.
+
+## Source closure verification
+
+Immediately after the decisive run, every manifest hash matched the imported production file:
+
+```text
+UNLOCK-ACK match=True 47AA22C9F46E3CBFF042D248524D1839FB1AE7C38F1BEA16E4C8915C6F766B67
+MEDAL-ACK  match=True CE236AADF0D423B50BB7851D5098BADB2F50B41FC43B3BFC0E7E8730DFD730BC
+OUTBOX-ACK match=True A6423E26753CE571DE03753CFC45D013B319180C7E2F20F49EB6A0BD037003AC
+```
+
+No production source, real data, Firebase, external API, deployment, or release state was mutated.
+

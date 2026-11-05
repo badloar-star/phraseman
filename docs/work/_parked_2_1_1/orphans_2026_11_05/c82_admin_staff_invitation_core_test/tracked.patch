@@ -1,0 +1,13 @@
+diff --git a/functions/src/admin_staff_invitation_core.test.ts b/functions/src/admin_staff_invitation_core.test.ts
+index 77f384a29..d6767fd7a 100644
+--- a/functions/src/admin_staff_invitation_core.test.ts
++++ b/functions/src/admin_staff_invitation_core.test.ts
+@@ -21,7 +21,7 @@ describe('staff invitation reservation core', () => {
+   test('normalizes an exact bounded create request and rejects extra or unsafe fields', () => {
+     expect(parseCreateInvitationInput(createInput)).toEqual({ ...createInput, email: 'employee@example.com' });
+     for (const invalid of [
+-      { ...createInput, password: 'dummy-owner-must-never-see-this' },
++      { ...createInput, password: 'owner-must-never-see-this' },
+       { ...createInput, email: 'bad' },
+       { ...createInput, expiresInHours: 0 },
+       { ...createInput, expiresInHours: 169 },

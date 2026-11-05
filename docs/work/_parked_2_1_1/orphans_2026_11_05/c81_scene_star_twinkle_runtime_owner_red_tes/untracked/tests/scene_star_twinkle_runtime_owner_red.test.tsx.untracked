@@ -1,0 +1,184 @@
+import React, { useSyncExternalStore } from 'react';
+import { act, cleanup, render } from '@testing-library/react-native';
+import { cancelAnimation, withRepeat } from 'react-native-reanimated';
+
+import { TabProvider, useTabNav } from '../app/TabContext';
+import type { TabRuntimeOwnerId } from '../app/tab_page_model';
+import { setLiteModeFlag, isLiteModeOn, subscribeLiteModeFlag } from '../constants/lite_mode_flag';
+import SceneStarTwinkle from '../components/scene/SceneStarTwinkle';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+
+let mockAppActive = true;
+let mockScreenFocused = true;
+let mockReduceMotion = false;
+const mockSharedValues: { value: unknown }[] = [];
+
+jest.mock('../app/runtime_app_state_store', () => ({
+  useAppRuntimeActive: () => mockAppActive,
+}));
+
+jest.mock('../hooks/use_is_screen_focused', () => ({
+  useIsScreenFocused: () => mockScreenFocused,
+}));
+
+jest.mock('../hooks/use_reduce_motion', () => ({
+  useReduceMotion: () => mockReduceMotion,
+}));
+
+jest.mock('react-native', () => ({
+  View: 'View',
+  StyleSheet: {
+    absoluteFill: {},
+    create: (styles: unknown) => styles,
+  },
+}));
+
+jest.mock('react-native-reanimated', () => {
+  const ReactActual = jest.requireActual('react') as typeof React;
+  return {
+    __esModule: true,
+    default: { View: 'Animated.View' },
+    cancelAnimation: jest.fn(),
+    Easing: { inOut: (value: unknown) => value, sin: 'sin' },
+    useAnimatedStyle: (factory: () => unknown) => factory(),
+    useSharedValue: (initial: unknown) => {
+      const ref = ReactActual.useRef<{ value: unknown } | null>(null);
+      if (ref.current === null) {
+        ref.current = { value: initial };
+        mockSharedValues.push(ref.current);
+      }
+      return ref.current;
+    },
+    withDelay: (_delay: number, value: unknown) => value,
+    withRepeat: jest.fn((value: unknown) => ({ kind: 'repeat', value })),
+    withSequence: (...values: unknown[]) => values.at(-1),
+    withTiming: (value: unknown) => value,
+  };
+});
+
+type Star = Readonly<{ x: number; y: number; r: number; a: number }>;
+type RuntimeAwareTwinkleProps = Readonly<{
+  stars: readonly Star[];
+  active: boolean;
+  lite: boolean;
+}>;
+
+// The wished-for boundary is intentionally expressed as props. Current production
+// accepts only `stars`, so React delivers `active`/`lite` but the component ignores
+// them. This keeps the RED on the actual component rather than a lexical scan.
+const RuntimeAwareTwinkle = SceneStarTwinkle as React.ComponentType<RuntimeAwareTwinkleProps>;
+
+const STARS: readonly Star[] = Array.from({ length: 172 }, (_, index) => ({
+  x: (index % 20) / 20,
+  y: (index % 17) / 17,
+  r: 1 + (index % 3) * 0.1,
+  a: 0.3 + (index % 5) * 0.1,
+}));
+
+const TWINKLE_DOTS = 22; // indices 0..168 at SCENE_TWINKLE_EVERY=8
+const noop = () => undefined;
+
+function RuntimeSceneHarness() {
+  const { runtimeOwnerId } = useTabNav();
+  const active = useRuntimeActive(runtimeOwnerId === 'home');
+  const lite = useSyncExternalStore(subscribeLiteModeFlag, isLiteModeOn, isLiteModeOn);
+  return <RuntimeAwareTwinkle stars={STARS} active={active} lite={lite} />;
+}
+
+function tree(runtimeOwnerId: TabRuntimeOwnerId) {
+  return (
+    <TabProvider
+      activeIdx={runtimeOwnerId === 'home' ? 0 : 1}
+      runtimeOwnerId={runtimeOwnerId}
+      focusTick={0}
+      onTabChange={noop}
+      onSwipeStart={noop}
+      onSwipeComplete={noop}
+    >
+      <RuntimeSceneHarness />
+    </TabProvider>
+  );
+}
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  mockSharedValues.length = 0;
+  mockAppActive = true;
+  mockScreenFocused = true;
+  mockReduceMotion = false;
+  setLiteModeFlag(false);
+});
+
+afterEach(async () => {
+  await cleanup();
+  await act(async () => setLiteModeFlag(false));
+});
+
+describe('SceneStarTwinkle retained Home runtime ownership — dynamic RED', () => {
+  it('RED: Home → Classic cancels all 22 loops while retaining the same dot instances', async () => {
+    const view = await render(tree('home'));
+    expect(withRepeat).toHaveBeenCalledTimes(TWINKLE_DOTS);
+    expect(mockSharedValues).toHaveLength(TWINKLE_DOTS);
+
+    await view.rerender(tree('lessons'));
+
+    expect(mockSharedValues).toHaveLength(TWINKLE_DOTS);
+    expect((cancelAnimation as jest.Mock).mock.calls.length).toBeGreaterThanOrEqual(TWINKLE_DOTS);
+  });
+
+  it('RED: Home → Classic → Home restarts exactly one loop per retained dot', async () => {
+    const view = await render(tree('home'));
+    await view.rerender(tree('lessons'));
+    await view.rerender(tree('home'));
+
+    expect(mockSharedValues).toHaveLength(TWINKLE_DOTS);
+    expect(withRepeat).toHaveBeenCalledTimes(TWINKLE_DOTS * 2);
+  });
+
+  it('RED: app background cancels all 22 loops without unmounting retained Home', async () => {
+    const view = await render(tree('home'));
+    expect(mockSharedValues).toHaveLength(TWINKLE_DOTS);
+
+    mockAppActive = false;
+    await view.rerender(tree('home'));
+
+    expect(mockSharedValues).toHaveLength(TWINKLE_DOTS);
+    expect((cancelAnimation as jest.Mock).mock.calls.length).toBeGreaterThanOrEqual(TWINKLE_DOTS);
+  });
+
+  it('RED: app background → foreground restarts exactly one loop per retained dot', async () => {
+    const view = await render(tree('home'));
+    mockAppActive = false;
+    await view.rerender(tree('home'));
+    mockAppActive = true;
+    await view.rerender(tree('home'));
+
+    expect(mockSharedValues).toHaveLength(TWINKLE_DOTS);
+    expect(withRepeat).toHaveBeenCalledTimes(TWINKLE_DOTS * 2);
+  });
+});
+
+describe('SceneStarTwinkle Reduce Motion / lite matrix — current behavior', () => {
+  it('motion allowed + lite off starts 22 loops', async () => {
+    await render(tree('home'));
+    expect(withRepeat).toHaveBeenCalledTimes(TWINKLE_DOTS);
+  });
+
+  it('Reduce Motion holds the deterministic static alpha and starts no loop', async () => {
+    mockReduceMotion = true;
+    await render(tree('home'));
+
+    expect(withRepeat).not.toHaveBeenCalled();
+    expect(cancelAnimation).toHaveBeenCalledTimes(TWINKLE_DOTS);
+    expect(mockSharedValues.map((value) => value.value)).toEqual(
+      STARS.filter((_, index) => index % 8 === 0).map((star) => star.a),
+    );
+  });
+
+  it('lite alone is currently independent from motion and still starts 22 loops', async () => {
+    await act(async () => setLiteModeFlag(true));
+    await render(tree('home'));
+
+    expect(withRepeat).toHaveBeenCalledTimes(TWINKLE_DOTS);
+  });
+});

@@ -1,0 +1,29 @@
+diff --git a/tests/lessons_list_top_edge_fade_contract.test.ts b/tests/lessons_list_top_edge_fade_contract.test.ts
+index e3b618b71..9bb0d6b73 100644
+--- a/tests/lessons_list_top_edge_fade_contract.test.ts
++++ b/tests/lessons_list_top_edge_fade_contract.test.ts
+@@ -1,5 +1,5 @@
+ // зачем (learn-007, находка Тем 13.10): верхний край списка уроков под полем поиска был жёстким срезом. Мягкое растворение появляется только после прокрутки,
+-// не ловит нажатия, берёт цвет фона темы и подключено внутри обёртки списка.
++// не ловит нажатия, берёт цвет фона темы и подключено рядом со списком.
+ import fs from 'node:fs';
+ import path from 'node:path';
+ 
+@@ -19,11 +19,14 @@ describe('список уроков: растворение верхнего к
+     expect(fade).not.toMatch(/borderWidth|borderColor/); // стиль «Тень»: без обводок
+   });
+ 
+-  it('подключён в app/(tabs)/lessons.tsx внутри обёртки списка, только при общем scrollY таб-оболочки', () => {
++  it('подключён рядом с legacy FlatList и не возвращает Android gesture-обёртку', () => {
+     expect(lessons).toContain('import ListTopEdgeFade from "../../components/lessons/ListTopEdgeFade";');
+     const at = lessons.indexOf('{topFadeScroll ? <ListTopEdgeFade g={learnGlass} scrollY={topFadeScroll.scrollY} /> : null}');
+     expect(at).toBeGreaterThan(0);
+-    expect(lessons.indexOf('</BouncyWrap>', at)).toBeGreaterThan(at);
+-    expect(lessons.lastIndexOf('<BouncyWrap style={bouncyStyle}>', at)).toBeGreaterThan(0);
++    expect(lessons.lastIndexOf('<Animated.FlatList', at)).toBeGreaterThan(0);
++    const legacyBranch = lessons.slice(lessons.indexOf('testID="legacy-lessons-catalog"'), lessons.indexOf('learningV2DenialHint !== null'));
++    expect(legacyBranch).toContain('<LegacyLessonsScrollWrap');
++    expect(legacyBranch).not.toContain('<BouncyWrap');
++    expect(lessons).toContain('if (Platform.OS === "android") return <View style={{ flex: 1 }}>{children}</View>;');
+   });
+ });

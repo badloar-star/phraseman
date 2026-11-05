@@ -1,0 +1,18 @@
+const ts = require('C:/appsprojects/phraseman/node_modules/typescript');
+const path = require('node:path');
+const fs = require('node:fs');
+const root = path.resolve(__dirname, '..');
+const config = ts.readConfigFile(path.join(root, 'tsconfig.audio-contract.json'), ts.sys.readFile);
+const parsed = ts.parseJsonConfigFileContent(config.config, ts.sys, root);
+const host = ts.createCompilerHost(parsed.options);
+host.resolveModuleNames = (names, containing) => names.map(name => name === './debug-logger'
+  ? { resolvedFileName: path.join(__dirname, 'scoped_logger_stub.d.ts'), extension: ts.Extension.Dts }
+  : ts.resolveModuleName(name, containing, parsed.options, host).resolvedModule);
+const program = ts.createProgram(parsed.fileNames, parsed.options, host);
+const diagnostics = ts.getPreEmitDiagnostics(program);
+for (const diagnostic of diagnostics) process.stdout.write(ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n') + '\n');
+// The large existing DevHub graph is syntax-checked; strict types above cover the repaired contract.
+const sheet = path.join(root, 'components/dev/DevHubSheet.tsx');
+const syntax = ts.transpileModule(fs.readFileSync(sheet, 'utf8'), { fileName: sheet, compilerOptions: { jsx: ts.JsxEmit.React }, reportDiagnostics: true }).diagnostics || [];
+process.stdout.write(`Strict contract diagnostics=${diagnostics.length}; DevHub syntax diagnostics=${syntax.length}\n`);
+process.exitCode = diagnostics.length || syntax.length ? 1 : 0;

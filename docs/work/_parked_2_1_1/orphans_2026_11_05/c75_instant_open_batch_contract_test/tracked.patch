@@ -1,0 +1,21 @@
+diff --git a/tests/instant_open_batch_contract.test.ts b/tests/instant_open_batch_contract.test.ts
+index 982a39cf5..5b8a608b4 100644
+--- a/tests/instant_open_batch_contract.test.ts
++++ b/tests/instant_open_batch_contract.test.ts
+@@ -56,13 +56,13 @@ describe('instant open batch', () => {
+     expect(button.match(/prefillExplainResultFromDisk\(/g)?.length).toBeGreaterThanOrEqual(2);
+   });
+ 
+-  it('the lessons tab arms the V2 warmup after the first frame, not only after opening V2', () => {
++  it('the lessons tab keeps both V2 warmups disabled under owner full-off', () => {
+     const src = read('app/(tabs)/lessons.tsx');
+     // зачем (R1 перф, 1968ed8f2): прогрев V2 включается тем же условием, что и сам V2, — без особого случая для dev-сборок, чтобы замеры dev совпадали с релизом
+     // зачем (работа 19.10, восстановлена 22.10): тяжёлый прогрев каталога V2 ждёт паузы в касаниях (2,5 с без жестов),
+     // чтобы первый вход в /learning-v2/course принимал касания; прогресс V2 по-прежнему греется сразу на вкладке V2.
+-    expect(src).toContain('const learningV2WarmupEnabled = learningV2WarmupArmed;');
+-    expect(src).toContain('const learningV2ProgressWarmupEnabled = page === "v2" || learningV2WarmupArmed;');
++    expect(src).toContain('const learningV2WarmupEnabled = !LEARNING_V2_HIDDEN && learningV2WarmupArmed;');
++    expect(src).toContain('const learningV2ProgressWarmupEnabled = !LEARNING_V2_HIDDEN && (page === "v2" || learningV2WarmupArmed);');
+     expect(src).toContain('timer = setTimeout(waitForIdle, 2500);');
+   });
+ });

@@ -1,0 +1,13 @@
+diff --git a/tests/loud_playback_audio_mode_contract.test.ts b/tests/loud_playback_audio_mode_contract.test.ts
+index 0cedf3b86..7f1f8bd13 100644
+--- a/tests/loud_playback_audio_mode_contract.test.ts
++++ b/tests/loud_playback_audio_mode_contract.test.ts
+@@ -38,6 +38,8 @@ describe('purpose-specific playback audio modes', () => {
+     const phraseAudioSource = fs.readFileSync(path.join(ROOT, 'hooks', 'phrase_audio_player.ts'), 'utf8');
+ 
+     expect(layoutSource).toContain('setManagedAudioMode(UI_SFX_AUDIO_MODE)');
++    expect(layoutSource).toContain("import { reportRootAudioModeOutcome } from './audio_mode_outcome_diagnostics';");
++    expect(layoutSource).toContain('.then(reportRootAudioModeOutcome)');
+     expect(layoutSource).not.toContain('setAudioModeAsync(');
+     expect(phraseAudioSource).toContain('claimSpokenAudio(stopPhraseAudio,');
+   });

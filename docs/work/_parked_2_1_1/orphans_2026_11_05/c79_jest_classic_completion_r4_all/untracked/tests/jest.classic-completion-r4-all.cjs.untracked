@@ -1,0 +1,7 @@
+const base=require('./jest.classic-completion-m2r3-all.cjs');
+module.exports={...base,testMatch:[...base.testMatch,
+ '<rootDir>/tests/classic_completion_durable_result_snapshot.test.ts',
+ '<rootDir>/tests/classic_completion_result_reader.test.ts',
+ '<rootDir>/tests/classic_completion_snapshot_capture.test.ts',
+ '<rootDir>/tests/classic_completion_strict_medal_read.test.ts'
+]};

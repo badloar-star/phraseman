@@ -63,3 +63,8 @@
 
 ## Пересъёмка p4 (тёмная) после конца анимации (23:27, 5560)
 - Показы video, dialogs, plus, rank, фаза 4: кадр делался только после строки `[SECTION-OPENING] phase at:1 ctaReady:true` (+1,5 с); во всех 4 показах строка дождалась. Кадры перезаписаны: sverka/7-final/2-openings/dark_{video,dialogs,plus,rank}_p4.png; журналы показов: section_opening_dark_<раздел>_p4_retake.txt. Кнопка действия видна (проверен plus).
+
+## premium_expired v3 после aba95e147 (23:36, 5560) — ИСПРАВЛЕНО
+- HEAD содержит aba95e147; проверка curl бандла не вернула файл (таймаут сборки), но лог подтверждает свежий код: [PAYWALL-FIT] overflow=27 action=scroll_to_end (было 55), header 239, scroll 326, dock 291.
+- dark_premium_expired_v3.png: заголовок первой выгоды «Всё на месте» и подпись «Серия, фразы и уроки сохранены» видны целиком под подзаголовком «…Подключи Ultra и продолжай.», без наложения; плитки, «Подключить Ultra», «Восстановить», «Ввести промокод», «Условия/Конфиденциальность» на месте.
+- Файлы: sverka/7-final/1-paywalls/{dark,light}_premium_expired_v3.png, paywall_layout_log_expired_v3.txt. Светлая снята тем же прогоном (те же числа), глазами проверена только тёмная.

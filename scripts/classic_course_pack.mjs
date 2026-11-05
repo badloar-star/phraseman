@@ -478,19 +478,6 @@ for (const lg of Object.keys(PASS2?.langs ?? {})) {
     console.log(`[SEMANTIC-LAYER] ${f}: замен ${nRep}, правок alt ${nAlt}`);
   }
 }
-// зачем (Координатор 06.11, «смысловые правки es в уроках 17–32», порог Fable ≤15%): точечные правки соблазнов (замена слова на позиции) и допустимых ответов (alt add/remove)
-// из своих файлов docs/work/classic_semantic_layer_<lang>_*.json — формат: {"replacements":[{"id":"es:19:05","position":1,"from":"x","to":"y"}],"alt":{"es:19:05":{"add":[],"remove":[]}}}.
-// Файлы не пересекаются с scripts/classic_en_pass2.json (Ловушки) и classic_es_semantic_patch.mjs (Глаголы); применяются поверх PASS2.
-{
-  const dir = join(ROOT, 'docs', 'work');
-  for (const f of readdirSync(dir).filter((n) => /^classic_semantic_layer_[a-z]{2}_.*\.json$/.test(n)).sort()) {
-    const lg = f.split('_')[3];
-    const L = JSON.parse(readFileSync(join(dir, f), 'utf8')); let nRep = 0, nAlt = 0;
-    for (const r of L.replacements ?? []) { const m = /(\d\d)[.:](\d\d)$/.exec(r.id); const k = `${lg}:${m[1]}:${m[2]}`; ((PATCHES.replace ??= {})[k] ??= []).push({ from: r.from, to: r.to, position: r.position }); (PATCHES.remove ??= {})[k] = [...((PATCHES.remove ??= {})[k] ?? []), r.from]; nRep++; }
-    for (const [k, v] of Object.entries(L.alt ?? {})) { const cur = (AUDIT.alt ??= {})[k] ?? { add: [], remove: [] }; AUDIT.alt[k] = { add: [...(cur.add ?? []), ...(v.add ?? [])], remove: [...(cur.remove ?? []), ...(v.remove ?? [])] }; nAlt += (v.add ?? []).length + (v.remove ?? []).length; }
-    console.log(`[SEMANTIC-LAYER] ${f}: замен ${nRep}, правок alt ${nAlt}`);
-  }
-}
 const passFor = (lang) => (lang === 'en' ? PASS2 : PASS2?.langs?.[lang] ?? null);
 // класс плитки (или null): совпадение по слову + условие (nextNoun — следующая плитка сущ./прил./числ.; nom — плитка в роли местоимения;
 // first — первая плитка; sig — подпись плитки из списка cl.sig)

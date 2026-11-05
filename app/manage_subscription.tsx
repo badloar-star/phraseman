@@ -21,6 +21,8 @@ import { getDevPlanOverride } from './dev_vip_override';
 import { MANAGE_NO_ACCESS_PAYWALL, decideManageAccess } from './manage_subscription_access';
 import { usePremium } from '../components/PremiumContext';
 import { peekPremiumPlan, rememberPremiumPlan } from './premium_plan_peek';
+import { applyTierName } from './subscription_tier';
+import { useSubscriptionTier } from '../components/plus/use_subscription_tier';
 import { isDevManageLoadingHold } from './dev_paywall_state';
 import {
   View, Text, ScrollView, StyleSheet, ActivityIndicator,
@@ -273,6 +275,8 @@ export default function ManageSubscription() {
   const offerStatLabelInk = legibleOn(glass.secondary, glass.text, [flattenOver(glass.buttonFillDisabled, flattenOver(glass.opaqueSheet, glass.bg))], 4.55);
   const designScale = FONT_SCALE[fontSize] / FONT_SCALE.medium * uiScale;
   const scaled = useCallback((value: number) => Math.round(value * designScale), [designScale]);
+  // зачем (владелец 06.11, Plus/Ultra): у владельца годовой подписки все строки экрана говорят «Ultra» (название не переводится), у месячной — «Plus».
+  const manageTier = useSubscriptionTier() ?? 'plus';
   const LP = (
     ru: string,
     uk: string,
@@ -283,7 +287,7 @@ export default function ManageSubscription() {
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(L, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl });
+  ) => applyTierName(triLang(L, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl }), manageTier);
 
   // зачем (аудит инстант-открытия 2026-07-25): раньше fallbackPlan/loading стартовали
   // "пустыми" и модалка ждала initRevenueCat()+getCustomerInfo()+AsyncStorage — юзер видел

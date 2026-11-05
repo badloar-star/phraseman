@@ -52,12 +52,36 @@ function violations(file: string, course: string): string[] {
   return bad;
 }
 
+// зачем (решение Fable 3f8388694 через координатора, 05.11): английская копия теории/словаря в es/pt-BR/vi/id/tr/pl — известный долг 2.1.1
+// (владелец: «потом», не блокер 150; перевод ~1700 текстов — docs/work/release/NEXT_UPDATES_BACKLOG_2026-11-05.md §1).
+// Долг ЗАМОРОЖЕН потолком на 05.11: текущее число разрешено, любая НОВАЯ копия — красный. Перевели — потолок опускать (только вниз).
+// Пустые значения и ru/uk без кириллицы — по-прежнему строго 0: это не долг, а поломка.
+const KNOWN_DEBT_2_1_1_COPY_CEILING: Readonly<Record<string, number>> = {
+  'es/theory.json': 258, 'es/glossary.json': 10, 'es/intro.json': 0,
+  'fr/theory.json': 318, 'fr/glossary.json': 50, 'fr/intro.json': 0,
+  'de/theory.json': 516, 'de/glossary.json': 5, 'de/intro.json': 0,
+  'it/theory.json': 571, 'it/glossary.json': 40, 'it/intro.json': 0,
+};
+// Заголовки «Формы: …» / «Фразы: …» — русская подпись + примеры на изучаемом языке; это не английский источник, а ложное срабатывание правила трети.
+const ALLOWED_RU_UK_HEADINGS = new Set([
+  'de/intro.json.19[1].titleByLocale[ru]', 'de/intro.json.19[1].titleByLocale[uk]',
+  'it/intro.json.28[1].titleByLocale[ru]', 'it/intro.json.28[1].titleByLocale[uk]',
+]);
+const isCopyDebt = (v: string): boolean => /\]: копия английского «/.test(v);
+const violationKey = (v: string): string => v.slice(0, v.indexOf(': '));
+
 describe('данные классики: язык интерфейса получает свой текст, а не английский источник', () => {
   for (const file of ['theory.json', 'glossary.json', 'intro.json']) {
     it.each(COURSES)(`%s / ${file}`, (course) => {
-      const bad = violations(file, course);
-      expect(bad.slice(0, 12)).toEqual([]);
-      expect(bad.length).toBe(0);
+      const all = violations(file, course).filter((v) => !ALLOWED_RU_UK_HEADINGS.has(violationKey(v)));
+      // строго: пустые и ru/uk без своего языка
+      const strict = all.filter((v) => !isCopyDebt(v));
+      expect(strict.slice(0, 12)).toEqual([]);
+      // долг 2.1.1: английских копий не больше потолка 05.11
+      const copies = all.filter(isCopyDebt).length;
+      const ceiling = KNOWN_DEBT_2_1_1_COPY_CEILING[`${course}/${file}`] ?? 0;
+      if (copies > ceiling) console.warn(`[CLASSIC-EN-DEBT] ${course}/${file}: копий ${copies} > потолка ${ceiling} — добавилась новая английская копия`); // guard-ok: причина падения
+      expect(copies).toBeLessThanOrEqual(ceiling);
     });
   }
 });

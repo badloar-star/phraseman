@@ -79,6 +79,16 @@ if (lang === 'es') {
     console.log(`[THEORY-SAY] ${lang}: say_extra перестроен правилами: ${regen}`);
   }
 }
+// fr (06.11): полу-ручная разметка — слои phrases.json / готовые чтения Теории / черновик по словарю слов; см. scripts/classic_say_fr_source.cjs
+if (lang === 'fr') {
+  const { buildFrSay } = require('./classic_say_fr_source.cjs');
+  const fr = buildFrSay({ ids: [...ids].sort(), targets, theory, root: ROOT });
+  Object.assign(say.ru, fr.ru);
+  Object.assign(say.uk, fr.uk);
+  made += Object.keys(fr.ru).length;
+  missing.push(...fr.missing);
+  console.log(`[THEORY-SAY] fr: источники — правки фраз ${fr.source.phrase}, готовые Теории ${fr.source.known}, черновик по словарю ${fr.source.draft}`);
+}
 const sortObj = (o) => Object.fromEntries(Object.entries(o).sort(([a], [b]) => a.localeCompare(b)));
 say = { schema: 'phraseman.classic.say/1', lang, ru: sortObj(say.ru), uk: sortObj(say.uk) };
 console.log(`[THEORY-SAY] ${lang}: фраз в старой теории ${ids.size}, чтений построено ${made}, всего в файле ${Object.keys(say.ru).length}, нет фразы курса: ${missing.length}${missing.length ? ' (' + missing.slice(0, 5).join(', ') + ')' : ''}`);

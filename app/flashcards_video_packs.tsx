@@ -30,6 +30,7 @@ import {
   AppState,
   FlatList,
   Platform,
+  Pressable,
   StatusBar,
   StyleSheet,
   Text,
@@ -73,12 +74,12 @@ import {
 import type { FlashcardMarketPack } from './flashcards/marketplace';
 import VideoPackRow from './flashcards/VideoPackRow';
 import { KitEmpty, KitFound, KitSearchField } from '../components/cards-grid/CardsKit';
-import { PackBackBare, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../components/packs/PackScreenKit';
+import { PackBackBare, PackScreenTitle, PackTopBarRow } from '../components/packs/PackScreenKit';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
-import { defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
+import { defaultPackLanguageForStudyTarget, normalizePackLanguage, packLanguageLabel, type PackLanguage } from './flashcards/pack_languages';
 import { getStoredPackLanguage, peekStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 
 function VideoGlass({ tint, edge }: { tint: string; edge: string }) {
@@ -439,7 +440,9 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
       opening={openingPackId === item.id}
       disabled={openingPackId !== null && openingPackId !== item.id}
       onOpen={openPack}
-      variant={embedded ? 'plain' : 'card'}
+      // зачем (слово владельца 05.11 через координатора, 🔴): экран «Из видео» — СПИСОК строк как утверждённый макет (стопка cards.webp, название набора,
+      // «N карточек · длительность», ›), без обложек и кнопки «Добавить»; добавление — на экране самого набора (lingman_video_watch previewCta / VideoSetView setAdd)
+      variant={embedded ? 'plain' : 'catalog'}
     />
   ), [embedded, lang, openingPackId, openPack, t]);
 
@@ -606,7 +609,10 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
           <View style={styles.top}>
             <PackTopBarRow
               left={<PackBackBare g={kg} testID="mp-back" label={copy.back} onPress={() => safeRouterBack(router, '/flashcards' as never)} />}
-              right={<PackSquareButton g={kg} testID="fc-video-packs-menu" label={copy.menu} onPress={() => setMenuOpen(true)} />}
+              // зачем (макет rev7-packs-video): справа в шапке — название языка наборов («Английский»); тап открывает то же меню (язык, поиск, сортировка)
+              right={<Pressable testID="fc-video-packs-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={{ top: 12, bottom: 12, left: 12, right: 8 }} onPress={() => setMenuOpen(true)} style={styles.langLabelBtn}>
+                <Text numberOfLines={1} style={{ color: kg.secondary, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>{packLanguageLabel(packLanguage, lang)}</Text>
+              </Pressable>}
             />
           </View>
           <View style={styles.headBlock}>
@@ -659,13 +665,16 @@ const styles = StyleSheet.create({
   langRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 4 },
   searchWrap: { marginTop: 16 },
   // зачем (cards-v2 videoAll()): `margin-bottom: 22` между карточками роликов, 20 от заголовка; владелец 04.11 «я разве просил что-то убирать?» — крупные карточки «Из видео» возвращены (кадр 16:9, полоса просмотра, «Добавить +»)
-  listContent: { paddingHorizontal: 20, paddingTop: 20, paddingBottom: 32, gap: 22 },
+  // зачем (слово владельца 05.11, эталон rev7-packs-video): строки-карточки списком с зазором 12, а не крупные карточки с зазором 22
+  listContent: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 32, gap: 12 },
+  langLabelBtn: { minHeight: 44, justifyContent: 'center', paddingLeft: 8 },
   // зачем (video-redesign #c1, экран 4): во вкладке поля задаёт сам экран «Видео», строки без карточек — без зазора, разделяет линия.
   embedded: { flex: 1, minHeight: 0 },
   listContentEmbedded: { paddingHorizontal: 0, paddingTop: 4, gap: 0 },
   /** Геометрия скелета = геометрия строки (карточка 87, кадр 112×63) — без прыжка. */
-  skeletonRow: { height: 87, borderRadius: 14, paddingVertical: 12, paddingLeft: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  skeletonThumb: { width: 112, height: 63, borderRadius: 12 },
+  // зачем: геометрия скелета = строка `catalog` (PackCatalogRow: высота 86, радиус 18, стопка 54, поля 16) — без прыжка при загрузке
+  skeletonRow: { height: 86, borderRadius: 18, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  skeletonThumb: { width: 54, height: 54, borderRadius: 12 },
   skeletonLines: { flex: 1, paddingRight: 14 },
   skeletonLine: { height: 14, borderRadius: 5 },
 });

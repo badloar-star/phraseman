@@ -28,7 +28,8 @@ function PeakMyCounter({ lang, me, rankBy = 'coins', loading = false }: Props) {
 }
 
 const s = StyleSheet.create({
-  row: { flexDirection: 'row', gap: 24 },
+  // зачем (Сверка 05.11, живой кадр: «0 ступен/ей», «6/место» — слова рвались по символам в узкой колонке): блоки переносятся ЦЕЛИКОМ (flexWrap), слово внутри блока не рвётся; без сжатия шрифта и без обрезки
+  row: { flexDirection: 'row', flexWrap: 'wrap', columnGap: 24, rowGap: 2 },
   cell: { flexShrink: 1 },
   value: { fontSize: 28, lineHeight: 34, fontWeight: '800', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
 });

@@ -57,4 +57,11 @@ describe('аудит экрана Пика B', () => {
     expect(screen).toContain("setTimeout(() => measure('settled'), 900)");
     expect(screen).not.toContain('}, 60); // зачем: один кадр');
   });
+
+  it('счётчик «ступени / место» переносит блоки целиком и не сжимает шрифт (слова не рвутся)', () => {
+    const counter = read('components/spire/peak/PeakMyCounter.tsx');
+    expect(counter).toContain("flexWrap: 'wrap'");
+    expect(counter).not.toContain('adjustsFontSizeToFit');
+    expect(counter).not.toContain('numberOfLines');
+  });
 });

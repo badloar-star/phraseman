@@ -18,7 +18,7 @@ import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
  * Момент выхода версии с ранговыми гейтами (мс). ЗАГЛУШКА: максимум = «никто не новый», гейты не работают, пока сборка не подставит
  * реальный момент релиза (координатор: «подставим при сборке»).
  */
-export const RANK_GATES_NEW_USERS_SINCE_MS = Number.MAX_SAFE_INTEGER;
+export const RANK_GATES_NEW_USERS_SINCE_MS = 1793841350582; // зачем (срез сборки 2.1.0, координатор 05.11): 2026-11-05T01:15:50.582Z — «новые» = аккаунт создан не раньше этого момента
 
 /** Признаки прежнего прогресса (как в ui_lang_migration): любой из них делает пользователя «старым». */
 export const RANK_GATES_PRIOR_PROGRESS_KEYS = ['streak_count', 'user_total_xp'] as const;

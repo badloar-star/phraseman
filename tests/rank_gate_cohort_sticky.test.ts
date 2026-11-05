@@ -52,7 +52,8 @@ describe('когорта липкая и принадлежит аккаунту
     store.set('onboarding_completed_at_ms_v1', '9000');
     expect((await readRankGateUserVerdict(NOW)).reason).toBe('before_release');
     expect(store.get(rankGateCohortKey('uid-A'))).toBe('old');
-    expect(mod.RANK_GATES_NEW_USERS_SINCE_MS).toBe(Number.MAX_SAFE_INTEGER);
+    // зачем (срез 2.1.0, 05.11): метка релиза подставлена вместо заглушки MAX_SAFE_INTEGER — тест проверяет только, что метка позже момента онбординга теста (9000)
+    expect(mod.RANK_GATES_NEW_USERS_SINCE_MS).toBeGreaterThan(9000);
   });
   it('ключ когорты — в стираемом семействе story_events_v1: и содержит владельца', () => {
     expect(rankGateCohortKey('uid-A')).toBe('story_events_v1:rank_cohort:uid-A');

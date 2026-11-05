@@ -37,3 +37,10 @@
 4. Срез версии: app.json version 2.1.0, android.versionCode 149, ios.buildNumber "149", **runtimeVersion "2.1.0"** (вместе с version). Сторож tests/release_version_consistency_2026_11_05.test.ts (96375ae38). version.json на сервере НЕ поднимать до выхода в стор.
 5. При падении: «not bumped» → поднять app.json и закоммитить (requireCommit); Gradle OOM → eas.json production.android.resourceClass "large" и перезапуск.
 6. 🟡 .codex-tmp-local-inventory.txt (44 МБ) в индексе — убрать в следующем обновлении.
+
+## Страховочная №2 (Ядро, 05.11 ~00:40, ревизия de6a9961a, 2.0.3/148, без сабмита)
+Governance-ID: TG-3C55CFCC6A75
+Причина: с первой страховочной (0c466ed90/e4ffca813) в HEAD ушли правки курсов, тура Пика и Пик B. Предусловия на снимке HEAD (ca9832864): проверка типов — 0 ошибок вне functions/ и scripts/, classic_courses_pack 59/59.
+- Android (resourceClass large): build `c1c7c708-5cfe-40f5-8058-812b368ceb36` — **FINISHED** (~01:05). AAB: https://expo.dev/artifacts/eas/MOAgxcdzqVR3incxEPx1na0TXm1O4pSzaYKGh5xlk4E.aab. В Google Play не отправлялась.
+- iOS: build `2156a312-6360-4118-9ccd-f195f0d3b849` — IN_PROGRESS (на 01:07). Без сабмита.
+- Номер 148 занят прежними релизами (iOS 4a4b269d 26.10) → эти сборки только артефакты, сабмит невозможен (см. FINAL_BUILD_RUNBOOK_2026-11-05.md §0). 149/150 в истории EAS свободны.
